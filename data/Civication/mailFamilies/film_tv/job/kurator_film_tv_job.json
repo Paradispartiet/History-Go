@@ -1,0 +1,64 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "kurator_film_tv",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "kurator_programutvalg",
+      "purpose": "Gjøre kuratorisk premiss, verkutvalg og dokumenterte kriterier til første arbeidsvalg.",
+      "learning_focus": ["kuratorisk_begrunnelse", "verkforstaelse", "bredde"],
+      "mails": [
+        {
+          "role_scope": "kurator_film_tv",
+          "place_id": "cinemateket_oslo",
+          "repeatable": false,
+          "stage": "stable",
+          "id": "film_tv_kurator_job_programutvalg_001",
+          "mail_type": "job",
+          "mail_family": "kurator_programutvalg",
+          "phase": "morning",
+          "priority": 110,
+          "cooldown": 2,
+          "from": "Programansvarlig",
+          "people_ref": "film_tv_programansvarlig",
+          "subject": "Vi trenger et utvalg som kan forsvares",
+          "summary": "Du har plass til tre verk i en serie om filmminne, men fire sterke kandidater og bare ett av dem er et åpenbart publikumstrekkplaster.",
+          "purpose": "Teste om spilleren gjør kuratoriske kriterier eksplisitte før programmet låses.",
+          "stakes": "Et kjent verk kan styrke oppslutningen, men et ubegrunnet valg kan gjøre programideen smalere og vanskeligere å forsvare.",
+          "situation": [
+            "Serien skal undersøke hvordan filmhistorie blir husket og glemt.",
+            "Ett kjent verk vil sannsynligvis fylle salen.",
+            "Et mindre synlig verk tilfører et perspektiv som ellers mangler."
+          ],
+          "task_domain": "programmering_og_verkutvalg",
+          "task_kind": "job",
+          "competency": "kuratorisk_begrunnelse",
+          "pressure": "publikumsforventning",
+          "choice_axis": "eksplisitte_kriterier_vs_kjent_navn",
+          "consequence_axis": "programbredde_vs_kortsiktig_trekkraft",
+          "narrative_arc": "fra_ide_til_begrunnet_program",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lås kriteriene før du velger",
+              "reply": "Jeg skriver ned hvilke spørsmål serien skal svare på og vurderer alle fire verk mot de samme kriteriene.",
+              "effect": 1,
+              "tags": ["curation", "criteria", "breadth"],
+              "feedback": "Du gjør utvalget etterprøvbart og kan forklare både valg og fravalg."
+            },
+            {
+              "id": "B",
+              "label": "Start med det sikreste publikumsnavnet",
+              "reply": "Jeg setter inn det kjente verket først og former resten av programmet rundt det.",
+              "effect": -1,
+              "tags": ["audience", "canon_risk"],
+              "feedback": "Du får en enkel start, men lar ett navn definere programmet før premisset er testet."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -260,7 +260,7 @@
       tab.addEventListener("click", () => trigger?.classList.remove("is-active"));
     });
     document.addEventListener("click", event => {
-      if (!wrap.contains(event.target)) {
+      if (!(event.target instanceof Node) || !wrap.contains(event.target)) {
         wrap.classList.remove("is-open");
         trigger?.setAttribute("aria-expanded", "false");
       }

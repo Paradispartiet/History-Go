@@ -144,6 +144,57 @@
         "anti_trivia_rule": "verified",
         "universal_subject_scope": "verified"
       }
+    },
+    {
+      "subject_id": "by",
+      "proof_scope": "structured_subject_gate",
+      "audit_script": "tools/audit-by-theory-integrity.mjs",
+      "test": "tests/by-theory-integrity.test.mjs",
+      "workflow": ".github/workflows/fagverk-by-pilot.yml",
+      "evidence_files": [
+        "data/fag/by/fagkart_by.json",
+        "data/fag/by/theory_integrity_bindings_by_v1.json",
+        "data/fagverk/fagverk_registry.json",
+        "reports/fagverk/by-complete-audit.json",
+        "reports/fagverk/by-theory-integrity-audit.json"
+      ],
+      "existing_gate_proves": {
+        "canonical_field_coverage": "verified",
+        "structured_scope_mechanism": "verified",
+        "limitations": "verified",
+        "rival_or_alternative": "verified",
+        "person_work_binding": "verified",
+        "scholarly_source_quality": "verified",
+        "claim_or_content_binding": "verified",
+        "actual_prose_binding": "verified",
+        "anti_trivia_rule": "verified",
+        "universal_subject_scope": "verified"
+      }
+    },
+    {
+      "subject_id": "kunst",
+      "proof_scope": "structured_subject_gate",
+      "audit_script": "tools/audit-kunst-theory-integrity.mjs",
+      "test": "tests/kunst-theory-integrity.test.mjs",
+      "workflow": ".github/workflows/fagverk-kunst-phase3.yml",
+      "evidence_files": [
+        "data/fag/kunst/fagkart_kunst_canonical_v4_5.json",
+        "data/fagverk/fagverk_registry.json",
+        "reports/fagverk/kunst-complete-audit.json",
+        "reports/fagverk/kunst-theory-integrity-audit.json"
+      ],
+      "existing_gate_proves": {
+        "canonical_field_coverage": "verified",
+        "structured_scope_mechanism": "verified",
+        "limitations": "verified",
+        "rival_or_alternative": "verified",
+        "person_work_binding": "verified",
+        "scholarly_source_quality": "verified",
+        "claim_or_content_binding": "verified",
+        "actual_prose_binding": "verified",
+        "anti_trivia_rule": "verified",
+        "universal_subject_scope": "verified"
+      }
     }
   ]
 }

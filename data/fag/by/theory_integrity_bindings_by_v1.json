@@ -1,0 +1,40 @@
+{
+  "schema": "history_go_by_theory_integrity_bindings_v1",
+  "version": "1.0.0",
+  "subject_id": "by",
+  "status": "proof_selection_only",
+  "purpose": "Read-only strict-proof bridge for existing registered By prose where generic token selection under-detects an otherwise substantive canonical theory/model binding. This file does not alter canonical emner, topic hooks, claims, sources, prose or completion status.",
+  "rules": {
+    "canonical_fagkart_is_authoritative": true,
+    "registered_chapter_prose_is_authoritative": true,
+    "verified_claim_binding_required": true,
+    "required_terms_must_exist_in_existing_prose": true,
+    "names_alone_do_not_count_as_theory_evidence": true,
+    "content_rewrite_forbidden": true,
+    "completion_status_read_only": true
+  },
+  "bindings": [
+    {
+      "domain_id": "boligpolitikk_og_velferd",
+      "hook_id": "boligpolitikk_affordability",
+      "reason": "The canonical affordability hook is substantively used across the existing housing-policy chapter through housing-burden, finance/wealth and economic-access analysis, but generic thinker-rationale token overlap selects only one section.",
+      "sections": [
+        {
+          "section_id": "boligpol-grunnlag-3",
+          "required_terms": ["boligbyrde", "inntekt", "kostnad"],
+          "minimum_verified_claims": 2
+        },
+        {
+          "section_id": "boligpol-fordypning-1",
+          "required_terms": ["tilgang", "finansiering", "formue"],
+          "minimum_verified_claims": 2
+        },
+        {
+          "section_id": "boligpol-anvendelse-3",
+          "required_terms": ["økonomisk tilgang", "finansieringsmulighet", "boligproduksjon"],
+          "minimum_verified_claims": 2
+        }
+      ]
+    }
+  ]
+}

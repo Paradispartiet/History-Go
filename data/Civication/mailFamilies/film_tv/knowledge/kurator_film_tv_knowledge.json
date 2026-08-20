@@ -1,0 +1,64 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "kurator_film_tv",
+  "mail_type": "knowledge",
+  "families": [
+    {
+      "id": "kurator_kunnskap_i_praksis",
+      "purpose": "Bruke Film/TV-fagverkets skille mellom bevaring, tilgang og visning som funksjonell kuratorkunnskap.",
+      "learning_focus": ["filmarv", "tilgang", "rettigheter"],
+      "mails": [
+        {
+          "role_scope": "kurator_film_tv",
+          "place_id": "cinemateket_oslo",
+          "repeatable": false,
+          "stage": "stable",
+          "id": "film_tv_kurator_knowledge_bevaring_tilgang_001",
+          "mail_type": "knowledge",
+          "mail_family": "kurator_kunnskap_i_praksis",
+          "phase": "forenoon",
+          "priority": 80,
+          "cooldown": 4,
+          "from": "Filmarkivaren",
+          "people_ref": "film_tv_arkivar",
+          "subject": "Arkivet har filmen – betyr det at vi kan vise den?",
+          "summary": "En kollega antar at en bevart og digitalisert film automatisk er tilgjengelig for offentlig visning.",
+          "purpose": "Teste skillet mellom bevaring, fysisk/digital tilgang og visningsrett.",
+          "stakes": "Feil begrepsbruk kan gjøre at en arkivressurs behandles som en ferdig visningsavtale.",
+          "situation": [
+            "Arkivet har en bevart kopi.",
+            "Kopien kan undersøkes av fagpersoner.",
+            "Offentlig visning krever fortsatt riktig rettighets- og kopiavklaring."
+          ],
+          "task_domain": "filmarv_og_rettigheter",
+          "task_kind": "knowledge",
+          "competency": "verkforstaelse",
+          "pressure": "begrepsforenkling",
+          "choice_axis": "skill_bevaring_tilgang_visning_vs_slutt_alt_sammen",
+          "consequence_axis": "faglig_presisjon_vs_rettighetsfeil",
+          "narrative_arc": "fra_arkivfunn_til_riktig_visningsgrunnlag",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skill de tre lagene før du går videre",
+              "reply": "At filmen er bevart og tilgjengelig for undersøkelse betyr ikke at offentlig visning er klarert; vi sjekker rettighet og visningskopi separat.",
+              "effect": 1,
+              "tags": ["knowledge", "archive", "rights"],
+              "feedback": "Du bruker fagkunnskap som praktisk beslutningsstøtte."
+            },
+            {
+              "id": "B",
+              "label": "Behandle arkivtilgang som visningsklarering",
+              "reply": "Når arkivet allerede kan levere filen, må den i praksis være klar for visning.",
+              "effect": -1,
+              "tags": ["knowledge_gap", "rights_risk"],
+              "feedback": "Du gjør teknisk tilgang til en juridisk og kuratorisk konklusjon."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

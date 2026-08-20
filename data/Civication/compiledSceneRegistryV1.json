@@ -45,6 +45,15 @@
     "data/Civication/mailFamilies/by/followup/by_saksbehandler_followup.json",
     "data/Civication/mailFamilies/by/knowledge/by_saksbehandler_knowledge.json",
     "data/Civication/mailFamilies/by/consequence/by_saksbehandler_consequence.json",
+    "data/Civication/mailFamilies/film_tv/job/kurator_film_tv_job.json",
+    "data/Civication/mailFamilies/film_tv/people/kurator_film_tv_people.json",
+    "data/Civication/mailFamilies/film_tv/story/kurator_film_tv_story.json",
+    "data/Civication/mailFamilies/film_tv/conflict/kurator_film_tv_conflict.json",
+    "data/Civication/mailFamilies/film_tv/event/kurator_film_tv_event.json",
+    "data/Civication/mailFamilies/film_tv/micro/kurator_film_tv_micro.json",
+    "data/Civication/mailFamilies/film_tv/followup/kurator_film_tv_followup.json",
+    "data/Civication/mailFamilies/film_tv/knowledge/kurator_film_tv_knowledge.json",
+    "data/Civication/mailFamilies/film_tv/consequence/kurator_film_tv_consequence.json",
     "data/Civication/mailFamilies/film_tv/job/produksjonsassistent_job.json",
     "data/Civication/mailFamilies/film_tv/people/produksjonsassistent_people.json",
     "data/Civication/mailFamilies/film_tv/conflict/produksjonsassistent_conflict.json",
@@ -61,6 +70,15 @@
     "data/Civication/mailFamilies/media/followup/media_redaksjon_followup.json",
     "data/Civication/mailFamilies/media/knowledge/media_redaksjon_knowledge.json",
     "data/Civication/mailFamilies/media/consequence/media_redaksjon_consequence.json",
+    "data/Civication/mailFamilies/media/job/media_redaksjonell_ledelse_job.json",
+    "data/Civication/mailFamilies/media/people/media_redaksjonell_ledelse_people.json",
+    "data/Civication/mailFamilies/media/story/media_redaksjonell_ledelse_story.json",
+    "data/Civication/mailFamilies/media/conflict/media_redaksjonell_ledelse_conflict.json",
+    "data/Civication/mailFamilies/media/event/media_redaksjonell_ledelse_event.json",
+    "data/Civication/mailFamilies/media/micro/media_redaksjonell_ledelse_micro.json",
+    "data/Civication/mailFamilies/media/followup/media_redaksjonell_ledelse_followup.json",
+    "data/Civication/mailFamilies/media/knowledge/media_redaksjonell_ledelse_knowledge.json",
+    "data/Civication/mailFamilies/media/consequence/media_redaksjonell_ledelse_consequence.json",
     "data/Civication/mailFamilies/naeringsliv/job/administrasjonsmedarbeider_job.json",
     "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json",
     "data/Civication/mailFamilies/naeringsliv/story/administrasjonsmedarbeider_story.json",
@@ -23313,6 +23331,1115 @@
       "category": "film_tv",
       "compatibility_projection": {
         "category": "film_tv",
+        "choice_axis": "fail_closed_vs_annonser_forst",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du beskytter både programmet og publikum mot en rettighet som ennå ikke finnes.",
+            "id": "A",
+            "label": "Hold verket betinget til avtalen er bekreftet",
+            "reply": "Vi merker filmen som ikke bekreftet og låser en reserve før vi annonserer.",
+            "tags": [
+              "rights",
+              "traceability",
+              "fallback"
+            ]
+          },
+          {
+            "effect": -2,
+            "feedback": "Du gjør et uavklart vilkår til et offentlig løfte.",
+            "id": "B",
+            "label": "Annonsér og forvent at papirene ordner seg",
+            "reply": "Kopien er jo tilgjengelig, så vi går ut med filmen og rydder avtalen etterpå.",
+            "tags": [
+              "rights_risk",
+              "deadline"
+            ]
+          }
+        ],
+        "competency": "rettighetssikkerhet",
+        "consequence_axis": "rettighetssikkerhet_vs_programrisiko",
+        "cooldown": 4,
+        "from": "Rettighetskoordinator",
+        "id": "film_tv_kurator_conflict_rettigheter_001",
+        "mail_family": "kurator_rettighetskonflikt",
+        "mail_type": "conflict",
+        "narrative_arc": "fra_onskeverk_til_bekreftet_visning",
+        "people_ref": "film_tv_rettighetskoordinator",
+        "phase": "workday",
+        "place_id": "cinemateket_oslo",
+        "pressure": "annonseringsfrist",
+        "priority": 105,
+        "purpose": "Teste om spilleren skiller fysisk tilgang fra juridisk visningsrett.",
+        "repeatable": false,
+        "role_scope": "kurator_film_tv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/conflict/kurator_film_tv_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "En restaurert kopi er tilgjengelig fra et samarbeidende arkiv.",
+          "Rettighetshaver har ikke bekreftet vilkårene skriftlig.",
+          "Kommunikasjonsteamet trenger endelig programtittel før arbeidsdagen slutter."
+        ],
+        "stage": "stable",
+        "stakes": "En prematur annonsering kan skape forventninger og kostnader uten at institusjonen faktisk har rett til å vise filmen.",
+        "subject": "Kopien finnes – men tillatelsen er ikke på plass",
+        "summary": "Arkivet kan levere en restaurert kopi, men den skriftlige visningstillatelsen mangler og programfristen er i dag.",
+        "task_domain": "rettigheter_og_visning",
+        "task_kind": "conflict"
+      },
+      "id": "film_tv_kurator_conflict_rettigheter_001",
+      "mail_type": "conflict",
+      "role_scope": "kurator_film_tv",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du beskytter både programmet og publikum mot en rettighet som ennå ikke finnes.",
+            "id": "A",
+            "label": "Hold verket betinget til avtalen er bekreftet",
+            "reply": "Vi merker filmen som ikke bekreftet og låser en reserve før vi annonserer."
+          },
+          {
+            "effects": {
+              "score_delta": -2
+            },
+            "feedback": "Du gjør et uavklart vilkår til et offentlig løfte.",
+            "id": "B",
+            "label": "Annonsér og forvent at papirene ordner seg",
+            "reply": "Kopien er jo tilgjengelig, så vi går ut med filmen og rydder avtalen etterpå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "En restaurert kopi er tilgjengelig fra et samarbeidende arkiv.",
+            "Rettighetshaver har ikke bekreftet vilkårene skriftlig.",
+            "Kommunikasjonsteamet trenger endelig programtittel før arbeidsdagen slutter."
+          ],
+          "subject": "Kopien finnes – men tillatelsen er ikke på plass",
+          "summary": "Arkivet kan levere en restaurert kopi, men den skriftlige visningstillatelsen mangler og programfristen er i dag."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_kurator_conflict_rettigheter_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "cinemateket_oslo",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_kurator_conflict_rettigheter_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/conflict/kurator_film_tv_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "kurator_film_tv.mail.film_tv_kurator_conflict_rettigheter_001",
+        "version": 1
+      },
+      "source_hash": "69ff8f00d5d7ce9460dafc9cafa7fa7f9987d187a90728ad6aad204f31b1739e",
+      "source_path": "data/Civication/mailFamilies/film_tv/conflict/kurator_film_tv_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "dokumenter_og_rett_avvik_vs_forklar_bort",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du gjør etterkontroll til en del av kuratorisk kvalitet.",
+            "id": "A",
+            "label": "Dokumenter status og rett eventuelle avvik",
+            "reply": "Jeg sammenholder avtalen, programarket og det som faktisk ble publisert, og retter avvik før neste runde.",
+            "tags": [
+              "consequence",
+              "trust",
+              "rights"
+            ]
+          },
+          {
+            "effect": -2,
+            "feedback": "Du måler kvalitet bare i om kvelden gikk, ikke i om institusjonen kan stole på prosessen.",
+            "id": "B",
+            "label": "Behandle avvik som ubetydelige hvis visningen gikk bra",
+            "reply": "Publikum fikk en god kveld, så små forskjeller mellom logg og program trenger ikke mer arbeid.",
+            "tags": [
+              "trust_risk",
+              "rights_risk"
+            ]
+          }
+        ],
+        "competency": "rettighetssikkerhet",
+        "consequence_axis": "institusjonell_tillit_vs_tillitstap",
+        "cooldown": 8,
+        "from": "Programansvarlig",
+        "id": "film_tv_kurator_consequence_rettigheter_001",
+        "mail_family": "kurator_rettighetskonsekvens",
+        "mail_type": "consequence",
+        "narrative_arc": "fra_dagens_valg_til_senere_programtillit",
+        "people_ref": "film_tv_programansvarlig",
+        "phase": "day_end",
+        "place_id": "cinemateket_oslo",
+        "pressure": "etterkontroll",
+        "priority": 95,
+        "purpose": "Gjøre rettighets- og sporbarhetsvalg til en senere institusjonell konsekvens.",
+        "repeatable": false,
+        "role_scope": "kurator_film_tv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/consequence/kurator_film_tv_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Rettighetsloggen viser hva som faktisk ble bekreftet.",
+          "Programteksten og intern status kan sammenlignes med loggen.",
+          "Neste programrunde avhenger av om arbeidsmåten var pålitelig."
+        ],
+        "stage": "stable",
+        "stakes": "God dokumentasjon gir handlingsrom; avvik mellom avtale og publisert program kan utløse stopp, ekstraarbeid og tillitstap.",
+        "subject": "Dagens programstatus blir morgendagens tillit",
+        "summary": "Programansvarlig går gjennom rettighetsloggen og ser om dagens offentlige program samsvarer med de dokumenterte vilkårene.",
+        "task_domain": "programansvar_og_konsekvens",
+        "task_kind": "consequence",
+        "thread_key": "film_tv_kurator_rettigheter_001"
+      },
+      "id": "film_tv_kurator_consequence_rettigheter_001",
+      "mail_type": "consequence",
+      "role_scope": "kurator_film_tv",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gjør etterkontroll til en del av kuratorisk kvalitet.",
+            "id": "A",
+            "label": "Dokumenter status og rett eventuelle avvik",
+            "reply": "Jeg sammenholder avtalen, programarket og det som faktisk ble publisert, og retter avvik før neste runde."
+          },
+          {
+            "effects": {
+              "score_delta": -2
+            },
+            "feedback": "Du måler kvalitet bare i om kvelden gikk, ikke i om institusjonen kan stole på prosessen.",
+            "id": "B",
+            "label": "Behandle avvik som ubetydelige hvis visningen gikk bra",
+            "reply": "Publikum fikk en god kveld, så små forskjeller mellom logg og program trenger ikke mer arbeid."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Rettighetsloggen viser hva som faktisk ble bekreftet.",
+            "Programteksten og intern status kan sammenlignes med loggen.",
+            "Neste programrunde avhenger av om arbeidsmåten var pålitelig."
+          ],
+          "subject": "Dagens programstatus blir morgendagens tillit",
+          "summary": "Programansvarlig går gjennom rettighetsloggen og ser om dagens offentlige program samsvarer med de dokumenterte vilkårene."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_kurator_consequence_rettigheter_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "cinemateket_oslo",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_kurator_consequence_rettigheter_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/consequence/kurator_film_tv_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "film_tv_kurator_rettigheter_001",
+        "version": 1
+      },
+      "source_hash": "af0a7e61530714e84c6f1c22e437cea5ddb4613c9670bdc16b96b2ebfd59fafe",
+      "source_path": "data/Civication/mailFamilies/film_tv/consequence/kurator_film_tv_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "revider_programlogikk_vs_fyll_hullet",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du endrer programmet uten å late som ingenting har skjedd.",
+            "id": "A",
+            "label": "Revider serien rundt det verkbare premisset",
+            "reply": "Jeg velger reserven som fortsatt svarer på hovedspørsmålet og oppdaterer begrunnelsen og programteksten.",
+            "tags": [
+              "programming",
+              "fallback",
+              "traceability"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du redder tittelen på plakaten, men svekker seriens indre logikk.",
+            "id": "B",
+            "label": "Ta den mest publikumsvennlige reserven",
+            "reply": "Vi trenger å fylle plassen raskt; det kjente reserveverket får fungere som erstatning.",
+            "tags": [
+              "deadline",
+              "coherence_risk"
+            ]
+          }
+        ],
+        "competency": "programmering",
+        "consequence_axis": "sammenheng_vs_tidsbesparelse",
+        "cooldown": 4,
+        "from": "Programansvarlig",
+        "id": "film_tv_kurator_event_programendring_001",
+        "mail_family": "kurator_programhendelse",
+        "mail_type": "event",
+        "narrative_arc": "fra_planbrudd_til_begrunnet_revisjon",
+        "people_ref": "film_tv_programansvarlig",
+        "phase": "workday",
+        "place_id": "cinemateket_oslo",
+        "pressure": "fast_visningsdato",
+        "priority": 85,
+        "purpose": "Teste om spilleren kan revidere en kuratorisk idé uten å skjule at premissene har endret seg.",
+        "repeatable": false,
+        "role_scope": "kurator_film_tv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/event/kurator_film_tv_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Hovedverket kan ikke vises på den planlagte datoen.",
+          "To reserveverk er rettighetsklarert.",
+          "Bare ett av reserveverkene svarer på seriens opprinnelige hovedspørsmål."
+        ],
+        "stage": "stable",
+        "stakes": "En rask erstatning kan holde datoen, men ødelegge sammenhengen hvis den bare fyller et tomrom.",
+        "subject": "Hovedverket faller ut av serien",
+        "summary": "Rettighetshaver trekker visningsmuligheten for hovedverket etter at resten av serien er utviklet rundt det.",
+        "task_domain": "programmering_og_avvik",
+        "task_kind": "event"
+      },
+      "id": "film_tv_kurator_event_programendring_001",
+      "mail_type": "event",
+      "role_scope": "kurator_film_tv",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du endrer programmet uten å late som ingenting har skjedd.",
+            "id": "A",
+            "label": "Revider serien rundt det verkbare premisset",
+            "reply": "Jeg velger reserven som fortsatt svarer på hovedspørsmålet og oppdaterer begrunnelsen og programteksten."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du redder tittelen på plakaten, men svekker seriens indre logikk.",
+            "id": "B",
+            "label": "Ta den mest publikumsvennlige reserven",
+            "reply": "Vi trenger å fylle plassen raskt; det kjente reserveverket får fungere som erstatning."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Hovedverket kan ikke vises på den planlagte datoen.",
+            "To reserveverk er rettighetsklarert.",
+            "Bare ett av reserveverkene svarer på seriens opprinnelige hovedspørsmål."
+          ],
+          "subject": "Hovedverket faller ut av serien",
+          "summary": "Rettighetshaver trekker visningsmuligheten for hovedverket etter at resten av serien er utviklet rundt det."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_kurator_event_programendring_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "cinemateket_oslo",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_kurator_event_programendring_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/event/kurator_film_tv_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "kurator_film_tv.mail.film_tv_kurator_event_programendring_001",
+        "version": 1
+      },
+      "source_hash": "80cb882e93a2347e4be5d455ceb29fd513f841fc0ddac110767c37181cbb8ee0",
+      "source_path": "data/Civication/mailFamilies/film_tv/event/kurator_film_tv_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "oppdater_etter_vilkar_vs_behold_opprinnelig_plan",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du gjør avtalen til faktisk programstatus.",
+            "id": "A",
+            "label": "Oppdater program og kommunikasjon etter vilkåret",
+            "reply": "Vi låser den godkjente kopien, tar ut tilleggsmaterialet og oppdaterer teksten før publisering.",
+            "tags": [
+              "rights",
+              "followup",
+              "traceability"
+            ]
+          },
+          {
+            "effect": -2,
+            "feedback": "Du erstatter et eksplisitt vilkår med din egen tolkning.",
+            "id": "B",
+            "label": "Behold tilleggsmaterialet fordi det ikke er hovedverket",
+            "reply": "Vilkåret gjelder sikkert bare selve filmen; vi lar introduksjonsfilmen stå.",
+            "tags": [
+              "rights_risk",
+              "assumption"
+            ]
+          }
+        ],
+        "competency": "rettighetssikkerhet",
+        "consequence_axis": "avtalelojalitet_vs_bruddrisiko",
+        "cooldown": 5,
+        "from": "Rettighetskoordinator",
+        "id": "film_tv_kurator_followup_rettigheter_001",
+        "mail_family": "kurator_rettighetsoppfolging",
+        "mail_type": "followup",
+        "narrative_arc": "fra_betinget_program_til_dokumentert_visning",
+        "people_ref": "film_tv_rettighetskoordinator",
+        "phase": "afternoon",
+        "place_id": "cinemateket_oslo",
+        "pressure": "siste_lasing",
+        "priority": 75,
+        "purpose": "Teste om spilleren oppdaterer programmet etter faktiske vilkår i stedet for den opprinnelige antakelsen.",
+        "repeatable": false,
+        "role_scope": "kurator_film_tv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/followup/kurator_film_tv_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Hovedfilmen er nå rettighetsklarert.",
+          "Tillatelsen gjelder en bestemt kopi og et avgrenset programoppsett.",
+          "Kommunikasjonsteksten ble skrevet før vilkåret kom."
+        ],
+        "stage": "stable",
+        "stakes": "Programmet kan nå gjennomføres, men bare dersom den offentlige planen samsvarer med avtalen.",
+        "subject": "Tillatelsen kom – med et vilkår vi ikke hadde planlagt",
+        "summary": "Rettighetshaver godkjenner visningen, men bare i en bestemt kopi og uten den ekstra introduksjonsfilmen du hadde planlagt.",
+        "task_domain": "rettigheter_og_oppfolging",
+        "task_kind": "followup",
+        "thread_key": "film_tv_kurator_rettigheter_001"
+      },
+      "id": "film_tv_kurator_followup_rettigheter_001",
+      "mail_type": "followup",
+      "role_scope": "kurator_film_tv",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gjør avtalen til faktisk programstatus.",
+            "id": "A",
+            "label": "Oppdater program og kommunikasjon etter vilkåret",
+            "reply": "Vi låser den godkjente kopien, tar ut tilleggsmaterialet og oppdaterer teksten før publisering."
+          },
+          {
+            "effects": {
+              "score_delta": -2
+            },
+            "feedback": "Du erstatter et eksplisitt vilkår med din egen tolkning.",
+            "id": "B",
+            "label": "Behold tilleggsmaterialet fordi det ikke er hovedverket",
+            "reply": "Vilkåret gjelder sikkert bare selve filmen; vi lar introduksjonsfilmen stå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Hovedfilmen er nå rettighetsklarert.",
+            "Tillatelsen gjelder en bestemt kopi og et avgrenset programoppsett.",
+            "Kommunikasjonsteksten ble skrevet før vilkåret kom."
+          ],
+          "subject": "Tillatelsen kom – med et vilkår vi ikke hadde planlagt",
+          "summary": "Rettighetshaver godkjenner visningen, men bare i en bestemt kopi og uten den ekstra introduksjonsfilmen du hadde planlagt."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_kurator_followup_rettigheter_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "cinemateket_oslo",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_kurator_followup_rettigheter_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/followup/kurator_film_tv_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "film_tv_kurator_rettigheter_001",
+        "version": 1
+      },
+      "source_hash": "0a93028e55efeb10d2c0786f2a74f8ec0921221c81a2832d013bacb26df06fc3",
+      "source_path": "data/Civication/mailFamilies/film_tv/followup/kurator_film_tv_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "eksplisitte_kriterier_vs_kjent_navn",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du gjør utvalget etterprøvbart og kan forklare både valg og fravalg.",
+            "id": "A",
+            "label": "Lås kriteriene før du velger",
+            "reply": "Jeg skriver ned hvilke spørsmål serien skal svare på og vurderer alle fire verk mot de samme kriteriene.",
+            "tags": [
+              "curation",
+              "criteria",
+              "breadth"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du får en enkel start, men lar ett navn definere programmet før premisset er testet.",
+            "id": "B",
+            "label": "Start med det sikreste publikumsnavnet",
+            "reply": "Jeg setter inn det kjente verket først og former resten av programmet rundt det.",
+            "tags": [
+              "audience",
+              "canon_risk"
+            ]
+          }
+        ],
+        "competency": "kuratorisk_begrunnelse",
+        "consequence_axis": "programbredde_vs_kortsiktig_trekkraft",
+        "cooldown": 2,
+        "from": "Programansvarlig",
+        "id": "film_tv_kurator_job_programutvalg_001",
+        "mail_family": "kurator_programutvalg",
+        "mail_type": "job",
+        "narrative_arc": "fra_ide_til_begrunnet_program",
+        "people_ref": "film_tv_programansvarlig",
+        "phase": "morning",
+        "place_id": "cinemateket_oslo",
+        "pressure": "publikumsforventning",
+        "priority": 110,
+        "purpose": "Teste om spilleren gjør kuratoriske kriterier eksplisitte før programmet låses.",
+        "repeatable": false,
+        "role_scope": "kurator_film_tv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/job/kurator_film_tv_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Serien skal undersøke hvordan filmhistorie blir husket og glemt.",
+          "Ett kjent verk vil sannsynligvis fylle salen.",
+          "Et mindre synlig verk tilfører et perspektiv som ellers mangler."
+        ],
+        "stage": "stable",
+        "stakes": "Et kjent verk kan styrke oppslutningen, men et ubegrunnet valg kan gjøre programideen smalere og vanskeligere å forsvare.",
+        "subject": "Vi trenger et utvalg som kan forsvares",
+        "summary": "Du har plass til tre verk i en serie om filmminne, men fire sterke kandidater og bare ett av dem er et åpenbart publikumstrekkplaster.",
+        "task_domain": "programmering_og_verkutvalg",
+        "task_kind": "job"
+      },
+      "id": "film_tv_kurator_job_programutvalg_001",
+      "mail_type": "job",
+      "role_scope": "kurator_film_tv",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gjør utvalget etterprøvbart og kan forklare både valg og fravalg.",
+            "id": "A",
+            "label": "Lås kriteriene før du velger",
+            "reply": "Jeg skriver ned hvilke spørsmål serien skal svare på og vurderer alle fire verk mot de samme kriteriene."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du får en enkel start, men lar ett navn definere programmet før premisset er testet.",
+            "id": "B",
+            "label": "Start med det sikreste publikumsnavnet",
+            "reply": "Jeg setter inn det kjente verket først og former resten av programmet rundt det."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Serien skal undersøke hvordan filmhistorie blir husket og glemt.",
+            "Ett kjent verk vil sannsynligvis fylle salen.",
+            "Et mindre synlig verk tilfører et perspektiv som ellers mangler."
+          ],
+          "subject": "Vi trenger et utvalg som kan forsvares",
+          "summary": "Du har plass til tre verk i en serie om filmminne, men fire sterke kandidater og bare ett av dem er et åpenbart publikumstrekkplaster."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_kurator_job_programutvalg_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "cinemateket_oslo",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_kurator_job_programutvalg_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/job/kurator_film_tv_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "kurator_film_tv.mail.film_tv_kurator_job_programutvalg_001",
+        "version": 1
+      },
+      "source_hash": "63631069cc1951e3cd05688bfb1d13e3aa0374f8108e344c9399a9661941f817",
+      "source_path": "data/Civication/mailFamilies/film_tv/job/kurator_film_tv_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "skill_bevaring_tilgang_visning_vs_slutt_alt_sammen",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du bruker fagkunnskap som praktisk beslutningsstøtte.",
+            "id": "A",
+            "label": "Skill de tre lagene før du går videre",
+            "reply": "At filmen er bevart og tilgjengelig for undersøkelse betyr ikke at offentlig visning er klarert; vi sjekker rettighet og visningskopi separat.",
+            "tags": [
+              "knowledge",
+              "archive",
+              "rights"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du gjør teknisk tilgang til en juridisk og kuratorisk konklusjon.",
+            "id": "B",
+            "label": "Behandle arkivtilgang som visningsklarering",
+            "reply": "Når arkivet allerede kan levere filen, må den i praksis være klar for visning.",
+            "tags": [
+              "knowledge_gap",
+              "rights_risk"
+            ]
+          }
+        ],
+        "competency": "verkforstaelse",
+        "consequence_axis": "faglig_presisjon_vs_rettighetsfeil",
+        "cooldown": 4,
+        "from": "Filmarkivaren",
+        "id": "film_tv_kurator_knowledge_bevaring_tilgang_001",
+        "mail_family": "kurator_kunnskap_i_praksis",
+        "mail_type": "knowledge",
+        "narrative_arc": "fra_arkivfunn_til_riktig_visningsgrunnlag",
+        "people_ref": "film_tv_arkivar",
+        "phase": "forenoon",
+        "place_id": "cinemateket_oslo",
+        "pressure": "begrepsforenkling",
+        "priority": 80,
+        "purpose": "Teste skillet mellom bevaring, fysisk/digital tilgang og visningsrett.",
+        "repeatable": false,
+        "role_scope": "kurator_film_tv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/knowledge/kurator_film_tv_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Arkivet har en bevart kopi.",
+          "Kopien kan undersøkes av fagpersoner.",
+          "Offentlig visning krever fortsatt riktig rettighets- og kopiavklaring."
+        ],
+        "stage": "stable",
+        "stakes": "Feil begrepsbruk kan gjøre at en arkivressurs behandles som en ferdig visningsavtale.",
+        "subject": "Arkivet har filmen – betyr det at vi kan vise den?",
+        "summary": "En kollega antar at en bevart og digitalisert film automatisk er tilgjengelig for offentlig visning.",
+        "task_domain": "filmarv_og_rettigheter",
+        "task_kind": "knowledge"
+      },
+      "id": "film_tv_kurator_knowledge_bevaring_tilgang_001",
+      "mail_type": "knowledge",
+      "role_scope": "kurator_film_tv",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du bruker fagkunnskap som praktisk beslutningsstøtte.",
+            "id": "A",
+            "label": "Skill de tre lagene før du går videre",
+            "reply": "At filmen er bevart og tilgjengelig for undersøkelse betyr ikke at offentlig visning er klarert; vi sjekker rettighet og visningskopi separat."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør teknisk tilgang til en juridisk og kuratorisk konklusjon.",
+            "id": "B",
+            "label": "Behandle arkivtilgang som visningsklarering",
+            "reply": "Når arkivet allerede kan levere filen, må den i praksis være klar for visning."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Arkivet har en bevart kopi.",
+            "Kopien kan undersøkes av fagpersoner.",
+            "Offentlig visning krever fortsatt riktig rettighets- og kopiavklaring."
+          ],
+          "subject": "Arkivet har filmen – betyr det at vi kan vise den?",
+          "summary": "En kollega antar at en bevart og digitalisert film automatisk er tilgjengelig for offentlig visning."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_kurator_knowledge_bevaring_tilgang_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "cinemateket_oslo",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_kurator_knowledge_bevaring_tilgang_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/knowledge/kurator_film_tv_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "kurator_film_tv.mail.film_tv_kurator_knowledge_bevaring_tilgang_001",
+        "version": 1
+      },
+      "source_hash": "8f05e8600c06ac3d225d96f2f788d345d4846fab8dd449cb35ef0164e8965578",
+      "source_path": "data/Civication/mailFamilies/film_tv/knowledge/kurator_film_tv_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "presiser_metadata_vs_la_det_sta",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du stopper en liten uklarhet før den blir en offentlig feil.",
+            "id": "A",
+            "label": "Skill premiere og restaurering eksplisitt",
+            "reply": "Jeg retter feltene og skriver hvilken versjon vi faktisk skal vise.",
+            "tags": [
+              "metadata",
+              "archive",
+              "precision"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du sparer et minutt nå og gjør neste arbeidsledd mer usikkert.",
+            "id": "B",
+            "label": "La årstallet stå til programteksten er ferdig",
+            "reply": "Alle skjønner hvilken film vi mener; vi kan rydde metadata senere.",
+            "tags": [
+              "metadata_risk",
+              "delay"
+            ]
+          }
+        ],
+        "competency": "verkforstaelse",
+        "consequence_axis": "sporbarhet_vs_feilspredning",
+        "cooldown": 2,
+        "from": "Filmarkivaren",
+        "id": "film_tv_kurator_micro_metadata_001",
+        "mail_family": "kurator_mikrovalg",
+        "mail_type": "micro",
+        "narrative_arc": "fra_liten_uklarhet_til_ren_programdata",
+        "people_ref": "film_tv_arkivar",
+        "phase": "forenoon",
+        "place_id": "cinemateket_oslo",
+        "pressure": "småfeil_under_tidspress",
+        "priority": 55,
+        "purpose": "Teste om spilleren rydder metadata før feilen sprer seg.",
+        "repeatable": false,
+        "role_scope": "kurator_film_tv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/micro/kurator_film_tv_micro.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Verket har originalt premiereår og et senere restaureringsår.",
+          "Begge årstallene er relevante, men betyr ulike ting.",
+          "Programarket brukes av flere personer senere i dagen."
+        ],
+        "stage": "stable",
+        "stakes": "En liten metadatafeil kan forplante seg til programtekst, nettside og introduksjon.",
+        "subject": "To versjoner av samme film står i programarket",
+        "summary": "Programarket blander restaureringsår og opprinnelig premiereår, slik at formidlingen ser ut til å beskrive to forskjellige verk.",
+        "task_domain": "programdata_og_sporbarhet",
+        "task_kind": "micro"
+      },
+      "id": "film_tv_kurator_micro_metadata_001",
+      "mail_type": "micro",
+      "role_scope": "kurator_film_tv",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du stopper en liten uklarhet før den blir en offentlig feil.",
+            "id": "A",
+            "label": "Skill premiere og restaurering eksplisitt",
+            "reply": "Jeg retter feltene og skriver hvilken versjon vi faktisk skal vise."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du sparer et minutt nå og gjør neste arbeidsledd mer usikkert.",
+            "id": "B",
+            "label": "La årstallet stå til programteksten er ferdig",
+            "reply": "Alle skjønner hvilken film vi mener; vi kan rydde metadata senere."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Verket har originalt premiereår og et senere restaureringsår.",
+            "Begge årstallene er relevante, men betyr ulike ting.",
+            "Programarket brukes av flere personer senere i dagen."
+          ],
+          "subject": "To versjoner av samme film står i programarket",
+          "summary": "Programarket blander restaureringsår og opprinnelig premiereår, slik at formidlingen ser ut til å beskrive to forskjellige verk."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_kurator_micro_metadata_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "cinemateket_oslo",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_kurator_micro_metadata_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/micro/kurator_film_tv_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "kurator_film_tv.mail.film_tv_kurator_micro_metadata_001",
+        "version": 1
+      },
+      "source_hash": "b1e1adf8366edec48fba9d6a351279d3f3aea129f860b196b320af955a9669fb",
+      "source_path": "data/Civication/mailFamilies/film_tv/micro/kurator_film_tv_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "reviderbarhet_vs_forsvare_eget_utvalg",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du gjør uenigheten til en kontroll av programmet, ikke en kamp om smak.",
+            "id": "A",
+            "label": "Test kritikken mot premisset",
+            "reply": "La oss sjekke hvert verk mot det vi faktisk lover publikum og endre enten teksten eller utvalget der de ikke stemmer.",
+            "tags": [
+              "collaboration",
+              "breadth",
+              "precision"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du beskytter eierskapet, men lar en dokumentert mismatch bli stående.",
+            "id": "B",
+            "label": "Forsvar utvalget som kuratorens prerogativ",
+            "reply": "Jeg står for utvalget; teksten får heller gjøre begrunnelsen tydeligere.",
+            "tags": [
+              "status",
+              "blind_spot"
+            ]
+          }
+        ],
+        "competency": "bredde_og_representasjon",
+        "consequence_axis": "faglig_tillit_vs_laste_blindsoner",
+        "cooldown": 3,
+        "from": "Formidleren",
+        "id": "film_tv_kurator_people_programsamtale_001",
+        "mail_family": "kurator_programsamtale",
+        "mail_type": "people",
+        "narrative_arc": "fra_eget_utvalg_til_felles_kvalitetssikring",
+        "people_ref": "film_tv_formidler",
+        "phase": "forenoon",
+        "place_id": "cinemateket_oslo",
+        "pressure": "eierskap_til_egen_ide",
+        "priority": 90,
+        "purpose": "Teste om spilleren tåler faglig motstand og undersøker blindsoner.",
+        "repeatable": false,
+        "role_scope": "kurator_film_tv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/people/kurator_film_tv_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Programteksten bruker ord som «mangfold» og «flere perspektiver».",
+          "Det faktiske utvalget er mer homogent enn teksten antyder.",
+          "Det finnes en alternativ film som passer premisset, men er mindre kjent."
+        ],
+        "stage": "stable",
+        "stakes": "En defensiv reaksjon kan gjøre både programmet og formidlingen mindre presis.",
+        "subject": "Programteksten gjør utvalget smalere enn du tror",
+        "summary": "Formidleren mener at programteksten lover bredde, mens to av tre verk kommer fra samme tradisjon og samme type kanon.",
+        "task_domain": "programmering_og_samarbeid",
+        "task_kind": "people"
+      },
+      "id": "film_tv_kurator_people_programsamtale_001",
+      "mail_type": "people",
+      "role_scope": "kurator_film_tv",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gjør uenigheten til en kontroll av programmet, ikke en kamp om smak.",
+            "id": "A",
+            "label": "Test kritikken mot premisset",
+            "reply": "La oss sjekke hvert verk mot det vi faktisk lover publikum og endre enten teksten eller utvalget der de ikke stemmer."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du beskytter eierskapet, men lar en dokumentert mismatch bli stående.",
+            "id": "B",
+            "label": "Forsvar utvalget som kuratorens prerogativ",
+            "reply": "Jeg står for utvalget; teksten får heller gjøre begrunnelsen tydeligere."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Programteksten bruker ord som «mangfold» og «flere perspektiver».",
+            "Det faktiske utvalget er mer homogent enn teksten antyder.",
+            "Det finnes en alternativ film som passer premisset, men er mindre kjent."
+          ],
+          "subject": "Programteksten gjør utvalget smalere enn du tror",
+          "summary": "Formidleren mener at programteksten lover bredde, mens to av tre verk kommer fra samme tradisjon og samme type kanon."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_kurator_people_programsamtale_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "cinemateket_oslo",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_kurator_people_programsamtale_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/people/kurator_film_tv_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "kurator_film_tv.mail.film_tv_kurator_people_programsamtale_001",
+        "version": 1
+      },
+      "source_hash": "04c813394e368d14dc4bac6a7982e7808f0da67c39da7d6ff18db4cc7d2ff6b7",
+      "source_path": "data/Civication/mailFamilies/film_tv/people/kurator_film_tv_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "historisk_skille_vs_samtidsgjoring",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du beholder både den etiske vurderingen og den historiske forskjellen.",
+            "id": "A",
+            "label": "Skill samtid, dokumentasjon og dagens vurdering",
+            "reply": "Jeg skriver om slik at vi først beskriver hva kildene viser om samtiden, og deretter markerer vår nåværende vurdering.",
+            "tags": [
+              "history",
+              "context",
+              "precision"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du gjør teksten enklere, men historisk svakere.",
+            "id": "B",
+            "label": "Behold den tydeligste moralske formuleringen",
+            "reply": "Publikum trenger en klar inngang, så vi lar dagens vurdering stå som hovedforklaring.",
+            "tags": [
+              "presentism",
+              "simplification"
+            ]
+          }
+        ],
+        "competency": "kontekstpresisjon",
+        "consequence_axis": "forstaelse_vs_anakronisme",
+        "cooldown": 6,
+        "from": "Filmarkivaren",
+        "id": "film_tv_kurator_story_kontekst_001",
+        "mail_family": "kurator_programhistorie",
+        "mail_type": "story",
+        "narrative_arc": "fra_verk_til_historisk_kontekst",
+        "people_ref": "film_tv_arkivar",
+        "phase": "afternoon",
+        "place_id": "cinemateket_oslo",
+        "pressure": "forenkling",
+        "priority": 70,
+        "purpose": "Teste historisk presisjon i kuratorisk kontekst.",
+        "repeatable": false,
+        "role_scope": "kurator_film_tv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/story/kurator_film_tv_story.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Arkivmaterialet dokumenterer flere samtidige reaksjoner, ikke én enhetlig respons.",
+          "Dagens etiske vurdering er viktig, men er ikke det samme som historisk beskrivelse.",
+          "Introduksjonen skal være kort nok til en faktisk visning."
+        ],
+        "stage": "stable",
+        "stakes": "En elegant, men anakronistisk introduksjon kan gjøre publikums forståelse dårligere.",
+        "subject": "Introduksjonen blander verkets samtid og vår vurdering",
+        "summary": "Utkastet til introduksjon beskriver et kontroversielt historisk trekk som om samtidens publikum vurderte det på samme måte som vi gjør i dag.",
+        "task_domain": "kontekst_og_formidling",
+        "task_kind": "story"
+      },
+      "id": "film_tv_kurator_story_kontekst_001",
+      "mail_type": "story",
+      "role_scope": "kurator_film_tv",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du beholder både den etiske vurderingen og den historiske forskjellen.",
+            "id": "A",
+            "label": "Skill samtid, dokumentasjon og dagens vurdering",
+            "reply": "Jeg skriver om slik at vi først beskriver hva kildene viser om samtiden, og deretter markerer vår nåværende vurdering."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør teksten enklere, men historisk svakere.",
+            "id": "B",
+            "label": "Behold den tydeligste moralske formuleringen",
+            "reply": "Publikum trenger en klar inngang, så vi lar dagens vurdering stå som hovedforklaring."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Arkivmaterialet dokumenterer flere samtidige reaksjoner, ikke én enhetlig respons.",
+            "Dagens etiske vurdering er viktig, men er ikke det samme som historisk beskrivelse.",
+            "Introduksjonen skal være kort nok til en faktisk visning."
+          ],
+          "subject": "Introduksjonen blander verkets samtid og vår vurdering",
+          "summary": "Utkastet til introduksjon beskriver et kontroversielt historisk trekk som om samtidens publikum vurderte det på samme måte som vi gjør i dag."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_kurator_story_kontekst_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "cinemateket_oslo",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_kurator_story_kontekst_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/story/kurator_film_tv_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "kurator_film_tv.mail.film_tv_kurator_story_kontekst_001",
+        "version": 1
+      },
+      "source_hash": "51314d11d16a76b967e11a1534c8e9460621f2d315e66e052a3f4463a7db7aee",
+      "source_path": "data/Civication/mailFamilies/film_tv/story/kurator_film_tv_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
         "choice_axis": "godkjent_omlegging_vs_snarvei",
         "choices": [
           {
@@ -25383,6 +26510,1121 @@
       },
       "source_hash": "0c59ad7c32b2b864062447cf923d975cea7c4afd4b935d61d4ab7b00c4184961",
       "source_path": "data/Civication/mailFamilies/media/story/media_redaksjon_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "media",
+      "compatibility_projection": {
+        "category": "media",
+        "choice_axis": "uavhengig_beslutning_vs_tilgangspress",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Beslutningen forblir redaksjonell og etterprøvbar.",
+            "id": "A",
+            "label": "Hold kriteriene faste og dokumenter kontakten",
+            "reply": "Vi vurderer tidspunktet etter sakens dokumentasjon og offentlig interesse, ikke etter trusselen om mindre tilgang. Kontakten loggføres.",
+            "tags": [
+              "independence",
+              "accountability"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Tilgang blir i praksis et veto over publiseringsbeslutningen.",
+            "id": "B",
+            "label": "Utsett for å bevare relasjonen",
+            "reply": "Vi holder saken til i morgen. Det er viktigere å beholde samarbeidet med aktøren.",
+            "tags": [
+              "access_pressure",
+              "independence_risk"
+            ]
+          }
+        ],
+        "competency": "redaksjonell_uavhengighet",
+        "consequence_axis": "integritet_vs_avhengighet",
+        "cooldown": 3,
+        "day_phase": "workday",
+        "from": "Deskredaktøren",
+        "id": "media_redaksjonell_ledelse_conflict_press_001",
+        "mail_family": "ledelse_uavhengighet_vs_press",
+        "mail_type": "conflict",
+        "narrative_arc": "fra_eksternt_press_til_redaksjonell_grense",
+        "people_ref": "media_deskredaktor",
+        "phase": "early",
+        "place_id": "aftenposten_akersgata",
+        "pressure": "eksternt_press",
+        "priority": 105,
+        "purpose": "Teste om lederen holder ekstern tilgang adskilt fra redaksjonelt beslutningsgrunnlag.",
+        "repeatable": false,
+        "role_scope": "media_redaksjonell_ledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/media/conflict/media_redaksjonell_ledelse_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Sakens sentrale fakta er dokumentert.",
+          "Aktøren får samtidig imøtegåelse og rimelig svarfrist.",
+          "Presset gjelder tidspunktet, ikke en konkret dokumentasjonsfeil."
+        ],
+        "stage": "stable",
+        "stakes": "Å bøye seg kan gi kortsiktig ro og tilgang, men gjøre redaksjonell uavhengighet betinget av aktørens makt.",
+        "subject": "En mektig aktør vil at vi utsetter",
+        "summary": "En berørt aktør varsler tap av tilgang og samarbeid dersom redaksjonen publiserer den dokumenterte saken nå.",
+        "task_domain": "uavhengighet_og_publisering",
+        "task_kind": "conflict"
+      },
+      "id": "media_redaksjonell_ledelse_conflict_press_001",
+      "mail_type": "conflict",
+      "role_scope": "media_redaksjonell_ledelse",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Beslutningen forblir redaksjonell og etterprøvbar.",
+            "id": "A",
+            "label": "Hold kriteriene faste og dokumenter kontakten",
+            "reply": "Vi vurderer tidspunktet etter sakens dokumentasjon og offentlig interesse, ikke etter trusselen om mindre tilgang. Kontakten loggføres."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Tilgang blir i praksis et veto over publiseringsbeslutningen.",
+            "id": "B",
+            "label": "Utsett for å bevare relasjonen",
+            "reply": "Vi holder saken til i morgen. Det er viktigere å beholde samarbeidet med aktøren."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Sakens sentrale fakta er dokumentert.",
+            "Aktøren får samtidig imøtegåelse og rimelig svarfrist.",
+            "Presset gjelder tidspunktet, ikke en konkret dokumentasjonsfeil."
+          ],
+          "subject": "En mektig aktør vil at vi utsetter",
+          "summary": "En berørt aktør varsler tap av tilgang og samarbeid dersom redaksjonen publiserer den dokumenterte saken nå."
+        },
+        "day_phase": "workday",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "media_redaksjonell_ledelse_conflict_press_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "aftenposten_akersgata",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "media_redaksjonell_ledelse_conflict_press_001",
+          "source_path": "data/Civication/mailFamilies/media/conflict/media_redaksjonell_ledelse_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "media_redaksjonell_ledelse.mail.media_redaksjonell_ledelse_conflict_press_001",
+        "version": 1
+      },
+      "source_hash": "8c3f3a77862ca63b5a98ebb723a974a3f462dc425290d2fc833085876a199317",
+      "source_path": "data/Civication/mailFamilies/media/conflict/media_redaksjonell_ledelse_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "media",
+      "compatibility_projection": {
+        "category": "media",
+        "choice_axis": "sporbar_laring_vs_defensiv_forklaring",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Etterspillet blir en dokumentert forbedring.",
+            "id": "A",
+            "label": "Legg fram beslutningssporet og læringen",
+            "reply": "Vi viser hva vi visste, hva som endret seg, hvorfor vi rettet og hvilket kontrollpunkt som er styrket.",
+            "tags": [
+              "accountability",
+              "learning",
+              "trust"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du normaliserer systemsvikten i stedet for å redusere den.",
+            "id": "B",
+            "label": "Forklar at presset gjorde feilen uunngåelig",
+            "reply": "Dette var en ekstraordinær nyhetsdag; under slikt press kan ikke alle kontrollpunkter fungere perfekt.",
+            "tags": [
+              "defensiveness",
+              "repeat_risk"
+            ]
+          }
+        ],
+        "competency": "rettelseskultur",
+        "consequence_axis": "langsiktig_tillit_vs_gjentatt_systemsvikt",
+        "cooldown": 4,
+        "day_phase": "day_end",
+        "from": "Vaktsjefen",
+        "id": "media_redaksjonell_ledelse_consequence_publisering_001",
+        "mail_family": "ledelse_rettelse_og_laring",
+        "mail_type": "consequence",
+        "narrative_arc": "lederbeslutning_blir_redaksjonell_hukommelse",
+        "people_ref": "media_vaktsjef",
+        "phase": "mastery",
+        "place_id": "vg_huset",
+        "pressure": "tillit_og_internt_ansvar",
+        "priority": 94,
+        "purpose": "Koble tidligere publiserings- og rettelsesvalg til senere redaksjonell tillit og arbeidsmessig ansvar.",
+        "repeatable": false,
+        "role_scope": "media_redaksjonell_ledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/media/consequence/media_redaksjonell_ledelse_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Versjonene og kildegrunnlaget kan sammenlignes.",
+          "Rettelsen er offentlig synlig.",
+          "Neste lignende sak vil bruke kontrollpunktet som ble stående igjen etter denne."
+        ],
+        "stage": "stable",
+        "stakes": "Konsekvensen gjelder ikke bare én sak, men om redaksjonen kan vise hvordan beslutninger ble tatt og forbedret.",
+        "subject": "Etterspillet viser hva lederbeslutningen kostet",
+        "summary": "Publikum og redaksjonen kan nå se om beslutningssporet var tydelig, om rettelsen var åpen og om samme svakhet er mindre sannsynlig neste gang.",
+        "task_domain": "etterspill_og_ansvar",
+        "task_kind": "consequence",
+        "thread_key": "media_redaksjonell_ledelse_publisering_001"
+      },
+      "id": "media_redaksjonell_ledelse_consequence_publisering_001",
+      "mail_type": "consequence",
+      "role_scope": "media_redaksjonell_ledelse",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Etterspillet blir en dokumentert forbedring.",
+            "id": "A",
+            "label": "Legg fram beslutningssporet og læringen",
+            "reply": "Vi viser hva vi visste, hva som endret seg, hvorfor vi rettet og hvilket kontrollpunkt som er styrket."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du normaliserer systemsvikten i stedet for å redusere den.",
+            "id": "B",
+            "label": "Forklar at presset gjorde feilen uunngåelig",
+            "reply": "Dette var en ekstraordinær nyhetsdag; under slikt press kan ikke alle kontrollpunkter fungere perfekt."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Versjonene og kildegrunnlaget kan sammenlignes.",
+            "Rettelsen er offentlig synlig.",
+            "Neste lignende sak vil bruke kontrollpunktet som ble stående igjen etter denne."
+          ],
+          "subject": "Etterspillet viser hva lederbeslutningen kostet",
+          "summary": "Publikum og redaksjonen kan nå se om beslutningssporet var tydelig, om rettelsen var åpen og om samme svakhet er mindre sannsynlig neste gang."
+        },
+        "day_phase": "day_end",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "media_redaksjonell_ledelse_consequence_publisering_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "vg_huset",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "media_redaksjonell_ledelse_consequence_publisering_001",
+          "source_path": "data/Civication/mailFamilies/media/consequence/media_redaksjonell_ledelse_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "media_redaksjonell_ledelse_publisering_001",
+        "version": 1
+      },
+      "source_hash": "7ebf597600b1ffd0bf127046e6bfc7d04cf3004818205af7ed344b0248140caf",
+      "source_path": "data/Civication/mailFamilies/media/consequence/media_redaksjonell_ledelse_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "media",
+      "compatibility_projection": {
+        "category": "media",
+        "choice_axis": "revidere_vinkel_vs_beskytte_investert_arbeid",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Redaksjonen viser at ny evidens kan endre en beslutning.",
+            "id": "A",
+            "label": "Stopp og bygg om saken rundt det nye belegget",
+            "reply": "Vi endrer tittel og hovedpremiss. Arbeidet vi allerede har gjort er ikke viktigere enn det materialet faktisk viser.",
+            "tags": [
+              "revision",
+              "evidence",
+              "leadership"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du beskytter den gamle fortellingen mot ny informasjon.",
+            "id": "B",
+            "label": "Publiser planlagt og legg dokumentet inn som nyanse",
+            "reply": "Vi har investert for mye i denne vinkelen til å snu nå. Dokumentet kan nevnes lenger nede.",
+            "tags": [
+              "sunk_cost",
+              "framing_risk"
+            ]
+          }
+        ],
+        "competency": "prioriteringskvalitet",
+        "consequence_axis": "redaksjonell_troverdighet_vs_lasning",
+        "cooldown": 3,
+        "day_phase": "afternoon",
+        "from": "Vaktsjefen",
+        "id": "media_redaksjonell_ledelse_event_nyopplysning_001",
+        "mail_family": "ledelse_ny_opplysning",
+        "mail_type": "event",
+        "narrative_arc": "fra_ny_evidens_til_revidert_beslutning",
+        "people_ref": "media_vaktsjef",
+        "phase": "mid",
+        "place_id": "nrk_huset_marienlyst",
+        "pressure": "sen_endring",
+        "priority": 95,
+        "purpose": "Teste om lederen tør å endre vinkel når evidensen endrer seg.",
+        "repeatable": false,
+        "role_scope": "media_redaksjonell_ledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/media/event/media_redaksjonell_ledelse_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Det nye dokumentet er verifisert.",
+          "Den planlagte tittelen bygger på premisset som nå er svekket.",
+          "Det finnes fortsatt en viktig og godt dokumentert sak dersom vinkelen endres."
+        ],
+        "stage": "stable",
+        "stakes": "Å holde fast ved den gamle vinkelen sparer tid, men gjør historien mindre sannferdig enn materialet redaksjonen nå har.",
+        "subject": "Nytt dokument endrer hovedpremisset",
+        "summary": "Kort før publisering kommer et dokument som svekker én av sakens sentrale antakelser, men styrker et annet funn.",
+        "task_domain": "publiseringsflyt",
+        "task_kind": "event"
+      },
+      "id": "media_redaksjonell_ledelse_event_nyopplysning_001",
+      "mail_type": "event",
+      "role_scope": "media_redaksjonell_ledelse",
+      "scene": {
+        "arc_stage": "mid",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Redaksjonen viser at ny evidens kan endre en beslutning.",
+            "id": "A",
+            "label": "Stopp og bygg om saken rundt det nye belegget",
+            "reply": "Vi endrer tittel og hovedpremiss. Arbeidet vi allerede har gjort er ikke viktigere enn det materialet faktisk viser."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du beskytter den gamle fortellingen mot ny informasjon.",
+            "id": "B",
+            "label": "Publiser planlagt og legg dokumentet inn som nyanse",
+            "reply": "Vi har investert for mye i denne vinkelen til å snu nå. Dokumentet kan nevnes lenger nede."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Det nye dokumentet er verifisert.",
+            "Den planlagte tittelen bygger på premisset som nå er svekket.",
+            "Det finnes fortsatt en viktig og godt dokumentert sak dersom vinkelen endres."
+          ],
+          "subject": "Nytt dokument endrer hovedpremisset",
+          "summary": "Kort før publisering kommer et dokument som svekker én av sakens sentrale antakelser, men styrker et annet funn."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "media_redaksjonell_ledelse_event_nyopplysning_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "nrk_huset_marienlyst",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "media_redaksjonell_ledelse_event_nyopplysning_001",
+          "source_path": "data/Civication/mailFamilies/media/event/media_redaksjonell_ledelse_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "media_redaksjonell_ledelse.mail.media_redaksjonell_ledelse_event_nyopplysning_001",
+        "version": 1
+      },
+      "source_hash": "f94cf6c7716230db326d3bc7f1854ee6ef631a629aadcec16f630f187c584c70",
+      "source_path": "data/Civication/mailFamilies/media/event/media_redaksjonell_ledelse_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "media",
+      "compatibility_projection": {
+        "category": "media",
+        "choice_axis": "apen_laring_vs_minimal_korrigering",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Rettelsen blir til en forbedring av arbeidsmåten.",
+            "id": "A",
+            "label": "Dokumenter årsaken og endre kontrollpunktet",
+            "reply": "Vi logger hvor beslutningssporet brøt, hvem som skal eie siste godkjenning og hva som skal sjekkes i neste tilsvarende sak.",
+            "tags": [
+              "correction",
+              "learning",
+              "accountability"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Teksten er rettet, men systemsvakheten står urørt.",
+            "id": "B",
+            "label": "Lukk saken når teksten er rettet",
+            "reply": "Publikum har fått korrigeringen. Vi trenger ikke bruke mer tid på intern gjennomgang.",
+            "tags": [
+              "minimal_correction",
+              "repeat_risk"
+            ]
+          }
+        ],
+        "competency": "rettelseskultur",
+        "consequence_axis": "bedre_system_vs_gjentakelsesrisiko",
+        "cooldown": 4,
+        "day_phase": "evening",
+        "from": "Vaktsjefen",
+        "id": "media_redaksjonell_ledelse_followup_rettelse_001",
+        "mail_family": "ledelse_rettelse_og_laring",
+        "mail_type": "followup",
+        "narrative_arc": "fra_rettelse_til_redaksjonell_hukommelse",
+        "people_ref": "media_vaktsjef",
+        "phase": "mastery",
+        "place_id": "aftenposten_akersgata",
+        "pressure": "omdomme_og_tid",
+        "priority": 92,
+        "purpose": "Teste om rettelse behandles som systemlæring og ikke bare tekstendring.",
+        "repeatable": false,
+        "role_scope": "media_redaksjonell_ledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/media/followup/media_redaksjonell_ledelse_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Rettelsen er synlig for publikum.",
+          "Feilen kan spores til en uklar siste godkjenning.",
+          "Teamet har en ny lignende sak neste dag."
+        ],
+        "stage": "stable",
+        "stakes": "En rask rettelse kan avslutte saken utad, men uten intern læring kan samme svakhet gjenta seg.",
+        "subject": "Feilen er rettet – hva gjør vi med beslutningssporet?",
+        "summary": "En feil er korrigert offentlig. Nå må lederen avgjøre om redaksjonen også dokumenterer årsaken og forbedrer kontrollpunktet.",
+        "task_domain": "rettelse_og_laring",
+        "task_kind": "followup",
+        "thread_key": "media_redaksjonell_ledelse_publisering_001"
+      },
+      "id": "media_redaksjonell_ledelse_followup_rettelse_001",
+      "mail_type": "followup",
+      "role_scope": "media_redaksjonell_ledelse",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Rettelsen blir til en forbedring av arbeidsmåten.",
+            "id": "A",
+            "label": "Dokumenter årsaken og endre kontrollpunktet",
+            "reply": "Vi logger hvor beslutningssporet brøt, hvem som skal eie siste godkjenning og hva som skal sjekkes i neste tilsvarende sak."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Teksten er rettet, men systemsvakheten står urørt.",
+            "id": "B",
+            "label": "Lukk saken når teksten er rettet",
+            "reply": "Publikum har fått korrigeringen. Vi trenger ikke bruke mer tid på intern gjennomgang."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Rettelsen er synlig for publikum.",
+            "Feilen kan spores til en uklar siste godkjenning.",
+            "Teamet har en ny lignende sak neste dag."
+          ],
+          "subject": "Feilen er rettet – hva gjør vi med beslutningssporet?",
+          "summary": "En feil er korrigert offentlig. Nå må lederen avgjøre om redaksjonen også dokumenterer årsaken og forbedrer kontrollpunktet."
+        },
+        "day_phase": "evening",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "media_redaksjonell_ledelse_followup_rettelse_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "aftenposten_akersgata",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "media_redaksjonell_ledelse_followup_rettelse_001",
+          "source_path": "data/Civication/mailFamilies/media/followup/media_redaksjonell_ledelse_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "media_redaksjonell_ledelse_publisering_001",
+        "version": 1
+      },
+      "source_hash": "830e2bd33f849cbe05d79d7d4946689e11bc6dfd51060d0901093eb21d63a183",
+      "source_path": "data/Civication/mailFamilies/media/followup/media_redaksjonell_ledelse_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "media",
+      "compatibility_projection": {
+        "category": "media",
+        "choice_axis": "prioritering_vs_volum",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du gjør kapasitet til en eksplisitt del av kvalitetsansvaret.",
+            "id": "A",
+            "label": "Prioriter to saker og sett eksplisitt kontrollpunkt på den tredje",
+            "reply": "Vi tar den dokumenterte og tidskritiske saken først, og den viktige saken når siste bekreftelse er på plass. Den tredje venter.",
+            "tags": [
+              "prioritization",
+              "verification",
+              "mandate"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du gjør etterarbeid til erstatning for kontroll før publisering.",
+            "id": "B",
+            "label": "Be alle tre teamene publisere innen fristen",
+            "reply": "Vi må holde volumet oppe; publiser alle tre og rydd svakheter i oppdateringer etterpå.",
+            "tags": [
+              "volume",
+              "quality_risk"
+            ]
+          }
+        ],
+        "competency": "prioriteringskvalitet",
+        "consequence_axis": "kvalitet_og_tillit_vs_produksjonspress",
+        "cooldown": 2,
+        "day_phase": "morning",
+        "from": "Vaktsjefen",
+        "id": "media_redaksjonell_ledelse_job_prioritering_001",
+        "mail_family": "ledelse_prioritering_og_mandat",
+        "mail_type": "job",
+        "narrative_arc": "fra_kapasitet_til_forsvarlig_prioritering",
+        "people_ref": "media_vaktsjef",
+        "phase": "intro",
+        "place_id": "vg_huset",
+        "pressure": "kapasitet_og_tid",
+        "priority": 115,
+        "purpose": "Teste om lederen prioriterer etter offentlig betydning, dokumentasjonsgrad og faktisk kapasitet.",
+        "repeatable": false,
+        "role_scope": "media_redaksjonell_ledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/media/job/media_redaksjonell_ledelse_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Én sak er godt dokumentert og tidskritisk.",
+          "Én sak er viktig, men mangler en sentral bekreftelse.",
+          "Én sak er lett å publisere, men har lavere offentlig betydning."
+        ],
+        "stage": "stable",
+        "stakes": "Et bredt ja til alt kan gi flere publiseringer, men skyver kontrollarbeidet under terskelen redaksjonen kan stå inne for.",
+        "subject": "Tre store saker, kapasitet til to",
+        "summary": "Desken har tre sterke saker, men bare kapasitet til å kvalitetssikre to forsvarlig før hovedpubliseringen.",
+        "task_domain": "redaksjonell_ledelse",
+        "task_kind": "job"
+      },
+      "id": "media_redaksjonell_ledelse_job_prioritering_001",
+      "mail_type": "job",
+      "role_scope": "media_redaksjonell_ledelse",
+      "scene": {
+        "arc_stage": "intro",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gjør kapasitet til en eksplisitt del av kvalitetsansvaret.",
+            "id": "A",
+            "label": "Prioriter to saker og sett eksplisitt kontrollpunkt på den tredje",
+            "reply": "Vi tar den dokumenterte og tidskritiske saken først, og den viktige saken når siste bekreftelse er på plass. Den tredje venter."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør etterarbeid til erstatning for kontroll før publisering.",
+            "id": "B",
+            "label": "Be alle tre teamene publisere innen fristen",
+            "reply": "Vi må holde volumet oppe; publiser alle tre og rydd svakheter i oppdateringer etterpå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Én sak er godt dokumentert og tidskritisk.",
+            "Én sak er viktig, men mangler en sentral bekreftelse.",
+            "Én sak er lett å publisere, men har lavere offentlig betydning."
+          ],
+          "subject": "Tre store saker, kapasitet til to",
+          "summary": "Desken har tre sterke saker, men bare kapasitet til å kvalitetssikre to forsvarlig før hovedpubliseringen."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "media_redaksjonell_ledelse_job_prioritering_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "vg_huset",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "media_redaksjonell_ledelse_job_prioritering_001",
+          "source_path": "data/Civication/mailFamilies/media/job/media_redaksjonell_ledelse_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "media_redaksjonell_ledelse.mail.media_redaksjonell_ledelse_job_prioritering_001",
+        "version": 1
+      },
+      "source_hash": "ec8f1628689cb53b88395796015ff4e614439c6ce62a6ef7c0ac54d959aed118",
+      "source_path": "data/Civication/mailFamilies/media/job/media_redaksjonell_ledelse_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "media",
+      "compatibility_projection": {
+        "category": "media",
+        "choice_axis": "presis_attribusjon_vs_overfortolkning",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Formuleringen følger bevisstyrken.",
+            "id": "A",
+            "label": "Skriv det dokumentet faktisk viser",
+            "reply": "Vi skriver at informasjonen var tilgjengelig i organisasjonen, og skiller det fra spørsmålet om hva personen selv visste.",
+            "tags": [
+              "source_criticism",
+              "precision"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du gjør en slutning om til et dokumentert faktum.",
+            "id": "B",
+            "label": "Behold «visste» fordi leseren forstår poenget",
+            "reply": "Dokumentet er nært nok; vi beholder den tydelige formuleringen.",
+            "tags": [
+              "overclaim",
+              "evidence_risk"
+            ]
+          }
+        ],
+        "competency": "publiseringskvalitet",
+        "consequence_axis": "etterprovbarhet_vs_feilrisiko",
+        "cooldown": 3,
+        "day_phase": "workday",
+        "from": "Deskredaktøren",
+        "id": "media_redaksjonell_ledelse_knowledge_belegg_001",
+        "mail_family": "ledelse_belegg_og_publiseringsansvar",
+        "mail_type": "knowledge",
+        "narrative_arc": "fra_dokument_til_forsvarlig_formulering",
+        "people_ref": "media_deskredaktor",
+        "phase": "mid",
+        "place_id": "nrk_huset_marienlyst",
+        "pressure": "slagkraft",
+        "priority": 88,
+        "purpose": "Teste om lederen skiller dokumentert tilgjengelighet fra dokumentert personlig kunnskap.",
+        "repeatable": false,
+        "role_scope": "media_redaksjonell_ledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/media/knowledge/media_redaksjonell_ledelse_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Dokumentet er autentisk og relevant.",
+          "Det viser distribusjon til organisasjonen, ikke at personen leste det.",
+          "Ingen annen kilde kan bekrefte personlig kunnskap."
+        ],
+        "stage": "stable",
+        "stakes": "En sterkere formulering kan øke slagkraften, men gjør redaksjonen ansvarlig for en påstand dokumentasjonen ikke bærer.",
+        "subject": "Er overskriften sterkere enn dokumentasjonen?",
+        "summary": "Tittelen sier at en aktør «visste», mens dokumentene bare viser at informasjonen var tilgjengelig i organisasjonen.",
+        "task_domain": "kildekritikk_og_formulering",
+        "task_kind": "knowledge"
+      },
+      "id": "media_redaksjonell_ledelse_knowledge_belegg_001",
+      "mail_type": "knowledge",
+      "role_scope": "media_redaksjonell_ledelse",
+      "scene": {
+        "arc_stage": "mid",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Formuleringen følger bevisstyrken.",
+            "id": "A",
+            "label": "Skriv det dokumentet faktisk viser",
+            "reply": "Vi skriver at informasjonen var tilgjengelig i organisasjonen, og skiller det fra spørsmålet om hva personen selv visste."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør en slutning om til et dokumentert faktum.",
+            "id": "B",
+            "label": "Behold «visste» fordi leseren forstår poenget",
+            "reply": "Dokumentet er nært nok; vi beholder den tydelige formuleringen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Dokumentet er autentisk og relevant.",
+            "Det viser distribusjon til organisasjonen, ikke at personen leste det.",
+            "Ingen annen kilde kan bekrefte personlig kunnskap."
+          ],
+          "subject": "Er overskriften sterkere enn dokumentasjonen?",
+          "summary": "Tittelen sier at en aktør «visste», mens dokumentene bare viser at informasjonen var tilgjengelig i organisasjonen."
+        },
+        "day_phase": "workday",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "media_redaksjonell_ledelse_knowledge_belegg_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "nrk_huset_marienlyst",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "media_redaksjonell_ledelse_knowledge_belegg_001",
+          "source_path": "data/Civication/mailFamilies/media/knowledge/media_redaksjonell_ledelse_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "media_redaksjonell_ledelse.mail.media_redaksjonell_ledelse_knowledge_belegg_001",
+        "version": 1
+      },
+      "source_hash": "7394e7e167bf9fb6bd4ce86b30d83d7beb92e4a9e7d5f809946b3f68dc160b4d",
+      "source_path": "data/Civication/mailFamilies/media/knowledge/media_redaksjonell_ledelse_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "media",
+      "compatibility_projection": {
+        "category": "media",
+        "choice_axis": "sporbar_godkjenning_vs_hast",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Et lite kontrollpunkt bevarer både kvalitet og ansvarslinje.",
+            "id": "A",
+            "label": "Lås versjonen og avklar beslutningseier",
+            "reply": "Vi publiserer ikke den sterkere formuleringen før kildegrunnlag og godkjenning er eksplisitt.",
+            "tags": [
+              "traceability",
+              "quality"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du gjør teknisk rekkefølge til redaksjonell godkjenning.",
+            "id": "B",
+            "label": "Bruk siste versjon siden den ligger øverst",
+            "reply": "Den nyeste er sikkert den avklarte. Vi tar den og rydder loggen etterpå.",
+            "tags": [
+              "version_risk",
+              "assumption"
+            ]
+          }
+        ],
+        "competency": "rolleavklaring",
+        "consequence_axis": "ansvarlighet_vs_uklar_beslutningslinje",
+        "cooldown": 2,
+        "day_phase": "afternoon",
+        "from": "Deskredaktøren",
+        "id": "media_redaksjonell_ledelse_micro_eier_001",
+        "mail_family": "ledelse_siste_kontroll",
+        "mail_type": "micro",
+        "narrative_arc": "fra_liten_versjonsfeil_til_tydelig_eierskap",
+        "people_ref": "media_deskredaktor",
+        "phase": "advanced",
+        "place_id": "vg_huset",
+        "pressure": "siste_minutt",
+        "priority": 75,
+        "purpose": "Teste om lederen stanser en uklar versjon før publisering.",
+        "repeatable": false,
+        "role_scope": "media_redaksjonell_ledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/media/micro/media_redaksjonell_ledelse_micro.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Begge versjoner er teknisk publiserbare.",
+          "Den nyeste er mer kategorisk.",
+          "Endringen mangler notat om kildegrunnlag og beslutning."
+        ],
+        "stage": "stable",
+        "stakes": "En liten versjonsuklarhet kan gjøre det umulig å vite hvem som godkjente den sterkeste formuleringen.",
+        "subject": "Hvem eier den siste formuleringen?",
+        "summary": "To versjoner av ingressen ligger i systemet, og den nyeste har en sterkere påstand uten synlig beslutningseier.",
+        "task_domain": "versjonskontroll",
+        "task_kind": "micro"
+      },
+      "id": "media_redaksjonell_ledelse_micro_eier_001",
+      "mail_type": "micro",
+      "role_scope": "media_redaksjonell_ledelse",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Et lite kontrollpunkt bevarer både kvalitet og ansvarslinje.",
+            "id": "A",
+            "label": "Lås versjonen og avklar beslutningseier",
+            "reply": "Vi publiserer ikke den sterkere formuleringen før kildegrunnlag og godkjenning er eksplisitt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør teknisk rekkefølge til redaksjonell godkjenning.",
+            "id": "B",
+            "label": "Bruk siste versjon siden den ligger øverst",
+            "reply": "Den nyeste er sikkert den avklarte. Vi tar den og rydder loggen etterpå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Begge versjoner er teknisk publiserbare.",
+            "Den nyeste er mer kategorisk.",
+            "Endringen mangler notat om kildegrunnlag og beslutning."
+          ],
+          "subject": "Hvem eier den siste formuleringen?",
+          "summary": "To versjoner av ingressen ligger i systemet, og den nyeste har en sterkere påstand uten synlig beslutningseier."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "media_redaksjonell_ledelse_micro_eier_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "vg_huset",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "media_redaksjonell_ledelse_micro_eier_001",
+          "source_path": "data/Civication/mailFamilies/media/micro/media_redaksjonell_ledelse_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "media_redaksjonell_ledelse.mail.media_redaksjonell_ledelse_micro_eier_001",
+        "version": 1
+      },
+      "source_hash": "0aa5aae63171c89b39fa0eec7a6b26448ac6493f5e2428692436f0c189dba70d",
+      "source_path": "data/Civication/mailFamilies/media/micro/media_redaksjonell_ledelse_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "media",
+      "compatibility_projection": {
+        "category": "media",
+        "choice_axis": "presist_mandat_vs_implisitt_aksept",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Reporteren og desken får samme eksplisitte grense.",
+            "id": "A",
+            "label": "Avgrens mandatet til det som faktisk er bekreftet",
+            "reply": "Gå med det dokumenterte hovedforløpet. Den belastende detaljen holder vi ute til den er uavhengig bekreftet.",
+            "tags": [
+              "clarity",
+              "verification",
+              "leadership"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du delegerer bort en publiseringsgrense som nettopp krever tydelig lederansvar.",
+            "id": "B",
+            "label": "La reporteren vurdere detaljen selv",
+            "reply": "Du kjenner saken best; bruk detaljen hvis du mener kilden er god nok.",
+            "tags": [
+              "delegation_risk",
+              "ambiguity"
+            ]
+          }
+        ],
+        "competency": "rolleavklaring",
+        "consequence_axis": "felles_situasjonsforstaelse_vs_overdrivelse",
+        "cooldown": 2,
+        "day_phase": "forenoon",
+        "from": "Reporteren",
+        "id": "media_redaksjonell_ledelse_people_status_001",
+        "mail_family": "ledelse_status_og_ansvar",
+        "mail_type": "people",
+        "narrative_arc": "fra_rapportertilstand_til_ledermandat",
+        "people_ref": "media_reporterkollega",
+        "phase": "early",
+        "place_id": "vg_huset",
+        "pressure": "deskfrist",
+        "priority": 90,
+        "purpose": "Teste om lederen gir et presist mandat som skiller publiserbart fra fortsatt ubekreftet.",
+        "repeatable": false,
+        "role_scope": "media_redaksjonell_ledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/media/people/media_redaksjonell_ledelse_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Hovedforløpet er dokumentert fra to uavhengige kilder.",
+          "Den mest belastende detaljen har bare én interessert kilde.",
+          "Desken trenger en beslutning om tittel og ingress."
+        ],
+        "stage": "stable",
+        "stakes": "En uklar lederbeskjed kan gjøre én kildepåstand til redaksjonens felles premiss.",
+        "subject": "Hva kan jeg love desken nå?",
+        "summary": "Reporteren har to bekreftelser på hovedforløpet, men den mest belastende detaljen kommer fortsatt fra én part.",
+        "task_domain": "redaksjonell_koordinering",
+        "task_kind": "people"
+      },
+      "id": "media_redaksjonell_ledelse_people_status_001",
+      "mail_type": "people",
+      "role_scope": "media_redaksjonell_ledelse",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Reporteren og desken får samme eksplisitte grense.",
+            "id": "A",
+            "label": "Avgrens mandatet til det som faktisk er bekreftet",
+            "reply": "Gå med det dokumenterte hovedforløpet. Den belastende detaljen holder vi ute til den er uavhengig bekreftet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du delegerer bort en publiseringsgrense som nettopp krever tydelig lederansvar.",
+            "id": "B",
+            "label": "La reporteren vurdere detaljen selv",
+            "reply": "Du kjenner saken best; bruk detaljen hvis du mener kilden er god nok."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Hovedforløpet er dokumentert fra to uavhengige kilder.",
+            "Den mest belastende detaljen har bare én interessert kilde.",
+            "Desken trenger en beslutning om tittel og ingress."
+          ],
+          "subject": "Hva kan jeg love desken nå?",
+          "summary": "Reporteren har to bekreftelser på hovedforløpet, men den mest belastende detaljen kommer fortsatt fra én part."
+        },
+        "day_phase": "forenoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "media_redaksjonell_ledelse_people_status_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "vg_huset",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "media_redaksjonell_ledelse_people_status_001",
+          "source_path": "data/Civication/mailFamilies/media/people/media_redaksjonell_ledelse_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "media_redaksjonell_ledelse.mail.media_redaksjonell_ledelse_people_status_001",
+        "version": 1
+      },
+      "source_hash": "9b383da6d83c9856ae34bb938bb933e8d693a1a85f31dad1bdf2b2e5733ffbb3",
+      "source_path": "data/Civication/mailFamilies/media/people/media_redaksjonell_ledelse_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "media",
+      "compatibility_projection": {
+        "category": "media",
+        "choice_axis": "kvalitetskultur_vs_volumpress",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Lederansvar kobles til etterprøvbar praksis.",
+            "id": "A",
+            "label": "Gjør beslutningskvaliteten til hovedresultatet",
+            "reply": "Det viktigste er at teamet kan forklare hvorfor vi publiserte, ventet og rettet.",
+            "tags": [
+              "trust",
+              "leadership",
+              "learning"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Produksjonsvolum får forrang over kontrollene som reduserte feil.",
+            "id": "B",
+            "label": "Gjør publiseringsvolumet til hovedresultatet",
+            "reply": "Neste gang må vi få flere saker ut selv om kontrollpunktene blir knappere.",
+            "tags": [
+              "volume_pressure",
+              "quality_risk"
+            ]
+          }
+        ],
+        "competency": "redaksjonell_tillit",
+        "consequence_axis": "langsiktig_tillit_vs_kortsiktig_signal",
+        "cooldown": 5,
+        "day_phase": "day_end",
+        "from": "Deskredaktøren",
+        "id": "media_redaksjonell_ledelse_story_tillit_001",
+        "mail_family": "ledelse_tillit_som_system",
+        "mail_type": "story",
+        "narrative_arc": "fra_enkelte_beslutninger_til_lederpraksis",
+        "people_ref": "media_deskredaktor",
+        "phase": "climax",
+        "place_id": "aftenposten_akersgata",
+        "pressure": "resultatpress",
+        "priority": 90,
+        "purpose": "Knytte prioritering, uavhengighet og rettelse sammen som lederpraksis.",
+        "repeatable": false,
+        "role_scope": "media_redaksjonell_ledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/media/story/media_redaksjonell_ledelse_story.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Redaksjonen publiserte færre saker enn først planlagt.",
+          "Den viktigste saken ble mer presis etter ny dokumentasjon.",
+          "En rettelse ble brukt til å forbedre neste kontrollpunkt."
+        ],
+        "stage": "stable",
+        "stakes": "Lederrollen måles i om redaksjonen kan forklare beslutningene og lære av dem.",
+        "subject": "Dagen da redaksjonen endret kurs",
+        "summary": "Teamet ser tilbake på en dag der en sak ble omprioritert, en formulering ble avgrenset og en feil ble rettet synlig.",
+        "task_domain": "lederidentitet",
+        "task_kind": "story"
+      },
+      "id": "media_redaksjonell_ledelse_story_tillit_001",
+      "mail_type": "story",
+      "role_scope": "media_redaksjonell_ledelse",
+      "scene": {
+        "arc_stage": "climax",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Lederansvar kobles til etterprøvbar praksis.",
+            "id": "A",
+            "label": "Gjør beslutningskvaliteten til hovedresultatet",
+            "reply": "Det viktigste er at teamet kan forklare hvorfor vi publiserte, ventet og rettet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Produksjonsvolum får forrang over kontrollene som reduserte feil.",
+            "id": "B",
+            "label": "Gjør publiseringsvolumet til hovedresultatet",
+            "reply": "Neste gang må vi få flere saker ut selv om kontrollpunktene blir knappere."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Redaksjonen publiserte færre saker enn først planlagt.",
+            "Den viktigste saken ble mer presis etter ny dokumentasjon.",
+            "En rettelse ble brukt til å forbedre neste kontrollpunkt."
+          ],
+          "subject": "Dagen da redaksjonen endret kurs",
+          "summary": "Teamet ser tilbake på en dag der en sak ble omprioritert, en formulering ble avgrenset og en feil ble rettet synlig."
+        },
+        "day_phase": "day_end",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "media_redaksjonell_ledelse_story_tillit_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "aftenposten_akersgata",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "media_redaksjonell_ledelse_story_tillit_001",
+          "source_path": "data/Civication/mailFamilies/media/story/media_redaksjonell_ledelse_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "media_redaksjonell_ledelse.mail.media_redaksjonell_ledelse_story_tillit_001",
+        "version": 1
+      },
+      "source_hash": "906aed7335403abb0363079ca3a1195e94ea093cb6adeed363c6f51d6712cb8b",
+      "source_path": "data/Civication/mailFamilies/media/story/media_redaksjonell_ledelse_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -147919,7 +150161,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "49353fabfade39c321de79829e82acce0dbac722046801de322cc638d093dcbb",
+  "registry_hash": "dfe2ebcb93b77b23b8e2a02fa30be6f21f68e584913eec79f1c90d6f01f8b8b3",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -148095,6 +150337,17 @@
       "by_saksbehandler_knowledge_likebehandling_001",
       "by_saksbehandler_consequence_klage_001"
     ],
+    "film_tv/kurator_film_tv": [
+      "film_tv_kurator_job_programutvalg_001",
+      "film_tv_kurator_people_programsamtale_001",
+      "film_tv_kurator_story_kontekst_001",
+      "film_tv_kurator_conflict_rettigheter_001",
+      "film_tv_kurator_event_programendring_001",
+      "film_tv_kurator_micro_metadata_001",
+      "film_tv_kurator_followup_rettigheter_001",
+      "film_tv_kurator_knowledge_bevaring_tilgang_001",
+      "film_tv_kurator_consequence_rettigheter_001"
+    ],
     "film_tv/produksjonsassistent": [
       "film_tv_pa_job_to_call_sheet",
       "film_tv_pa_people_line_hasteonske",
@@ -148114,6 +150367,17 @@
       "media_redaksjon_followup_verifisering_001",
       "media_redaksjon_knowledge_kildelag_001",
       "media_redaksjon_consequence_verifisering_001"
+    ],
+    "media/media_redaksjonell_ledelse": [
+      "media_redaksjonell_ledelse_job_prioritering_001",
+      "media_redaksjonell_ledelse_people_status_001",
+      "media_redaksjonell_ledelse_story_tillit_001",
+      "media_redaksjonell_ledelse_conflict_press_001",
+      "media_redaksjonell_ledelse_event_nyopplysning_001",
+      "media_redaksjonell_ledelse_micro_eier_001",
+      "media_redaksjonell_ledelse_followup_rettelse_001",
+      "media_redaksjonell_ledelse_knowledge_belegg_001",
+      "media_redaksjonell_ledelse_consequence_publisering_001"
     ],
     "naeringsliv/administrasjonsmedarbeider": [
       "job_administrasjonsmedarbeider_week1_voucher_without_owner",
@@ -148980,11 +151244,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 210,
+    "compiled_source_file_count": 228,
     "ignored_source_file_count": 1,
-    "input_file_count": 211,
-    "role_count": 29,
-    "scene_count": 973,
+    "input_file_count": 229,
+    "role_count": 31,
+    "scene_count": 991,
     "shadowed_duplicate_count": 0
   },
   "version": 1

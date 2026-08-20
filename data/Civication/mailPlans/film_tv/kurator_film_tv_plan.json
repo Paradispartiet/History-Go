@@ -1,0 +1,82 @@
+{
+  "schema": "civication_mail_plan_v1",
+  "id": "film_tv_kurator_film_tv_v1",
+  "category": "film_tv",
+  "role_scope": "kurator_film_tv",
+  "title": "Kurator (film/TV)",
+  "description": "En spillbar kuratordag ved Cinemateket: fra programidé og verkutvalg til rettighetskontroll, kontekst, publikumsvalg og sporbar oppfølging.",
+  "arc": {
+    "from": "Ny kurator som har en tydelig idé, men ennå ikke har gjort kriterier, rettigheter og konsekvenser fullt sporbare.",
+    "to": "Pålitelig kurator som kan begrunne utvalg, kontrollere visningsgrunnlag, synliggjøre bindinger og bygge presis kontekst.",
+    "core_questions": [
+      "Hva gjør et verk relevant for akkurat dette programmet?",
+      "Når er et verk faktisk tilgjengelig for visning?",
+      "Hvordan balanserer du publikum, bredde og et eksplisitt kuratorisk mandat?"
+    ]
+  },
+  "outcome_rules": {
+    "fired": {
+      "stability_values": [
+        "FIRED"
+      ],
+      "strikes_gte": 3,
+      "score_lte": -3
+    },
+    "promoted": {
+      "completion_ratio_gte": 1,
+      "score_gte": 2,
+      "strikes_lte": 0,
+      "allow_warning": false
+    },
+    "stagnated": {
+      "autonomy_delta": -8,
+      "stability": "STAGNATED",
+      "add_branch_flags": [
+        "career_stagnated",
+        "film_tv_curator_stalled"
+      ]
+    }
+  },
+  "sequence": [
+    {
+      "step": 1,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Gjør programideen til et dokumentert verkutvalg med eksplisitte kriterier.",
+      "allowed_families": [
+        "kurator_programutvalg"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 2,
+      "type": "people",
+      "phase": "early",
+      "step_goal": "Avklar uenighet om programbredde uten å gjøre smak til fasit.",
+      "allowed_families": [
+        "kurator_programsamtale"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 3,
+      "type": "conflict",
+      "phase": "mid",
+      "step_goal": "Hold et attraktivt verk ute av låst program til rettigheter og vilkår er avklart.",
+      "allowed_families": [
+        "kurator_rettighetskonflikt"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 4,
+      "type": "event",
+      "phase": "mid",
+      "step_goal": "Revider programmet når ny informasjon endrer kontekst eller tilgjengelighet.",
+      "allowed_families": [
+        "kurator_programhendelse"
+      ],
+      "fallback_types": []
+    }
+  ]
+}

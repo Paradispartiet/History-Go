@@ -1,0 +1,65 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "kurator_film_tv",
+  "mail_type": "followup",
+  "families": [
+    {
+      "id": "kurator_rettighetsoppfolging",
+      "purpose": "Følge en tidligere rettighetsavklaring helt fram til dokumentert programstatus.",
+      "learning_focus": ["oppfolging", "rettigheter", "sporbarhet"],
+      "mails": [
+        {
+          "role_scope": "kurator_film_tv",
+          "place_id": "cinemateket_oslo",
+          "repeatable": false,
+          "stage": "stable",
+          "id": "film_tv_kurator_followup_rettigheter_001",
+          "mail_type": "followup",
+          "mail_family": "kurator_rettighetsoppfolging",
+          "phase": "afternoon",
+          "priority": 75,
+          "cooldown": 5,
+          "from": "Rettighetskoordinator",
+          "people_ref": "film_tv_rettighetskoordinator",
+          "thread_key": "film_tv_kurator_rettigheter_001",
+          "subject": "Tillatelsen kom – med et vilkår vi ikke hadde planlagt",
+          "summary": "Rettighetshaver godkjenner visningen, men bare i en bestemt kopi og uten den ekstra introduksjonsfilmen du hadde planlagt.",
+          "purpose": "Teste om spilleren oppdaterer programmet etter faktiske vilkår i stedet for den opprinnelige antakelsen.",
+          "stakes": "Programmet kan nå gjennomføres, men bare dersom den offentlige planen samsvarer med avtalen.",
+          "situation": [
+            "Hovedfilmen er nå rettighetsklarert.",
+            "Tillatelsen gjelder en bestemt kopi og et avgrenset programoppsett.",
+            "Kommunikasjonsteksten ble skrevet før vilkåret kom."
+          ],
+          "task_domain": "rettigheter_og_oppfolging",
+          "task_kind": "followup",
+          "competency": "rettighetssikkerhet",
+          "pressure": "siste_lasing",
+          "choice_axis": "oppdater_etter_vilkar_vs_behold_opprinnelig_plan",
+          "consequence_axis": "avtalelojalitet_vs_bruddrisiko",
+          "narrative_arc": "fra_betinget_program_til_dokumentert_visning",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Oppdater program og kommunikasjon etter vilkåret",
+              "reply": "Vi låser den godkjente kopien, tar ut tilleggsmaterialet og oppdaterer teksten før publisering.",
+              "effect": 1,
+              "tags": ["rights", "followup", "traceability"],
+              "feedback": "Du gjør avtalen til faktisk programstatus."
+            },
+            {
+              "id": "B",
+              "label": "Behold tilleggsmaterialet fordi det ikke er hovedverket",
+              "reply": "Vilkåret gjelder sikkert bare selve filmen; vi lar introduksjonsfilmen stå.",
+              "effect": -2,
+              "tags": ["rights_risk", "assumption"],
+              "feedback": "Du erstatter et eksplisitt vilkår med din egen tolkning."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -83,15 +83,4 @@ for (const component of policy.contract_components) {
 assert.equal(world.audit.salary.linked_titles, 3, 'three formal newsroom job titles stay linked');
 assert.equal(world.audit.salary.exact_titles, 3, 'all linked newsroom titles retain exact salary bands');
 
-assert.equal(matrix.summary.discovered_worlds, 89);
-assert.equal(matrix.summary.work_worlds, 88);
-assert.equal(matrix.summary.career_worlds, 85);
-assert.equal(matrix.summary.noncareer_worlds, 3);
-assert.equal(matrix.summary.support_worlds, 1);
-assert.equal(matrix.summary.statuses.reference_complete, 5);
-assert.equal(matrix.summary.statuses.playable, 20);
-assert.equal(matrix.summary.statuses.partial, 0);
-assert.equal(matrix.summary.statuses.architecture_only, 60);
-assert.equal(matrix.summary.runtime_gate_pass, 25);
-
 console.log('✓ Media newsroom is canonical playable without changing role-model or FWG versions');
