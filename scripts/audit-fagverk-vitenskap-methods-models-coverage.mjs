@@ -85,9 +85,9 @@ export function auditVitenskapMethodsModelsCoverage({ writeReport = false, check
   const mappingById = new Map(mappings.map((row) => [row.emne_id, row]));
 
   assert(readiness.subject_id === 'vitenskap', 'Coverage audit fikk feil readiness subject');
-  assert(readiness.complete_ready === false, 'Coverage batch kan ikke gjøre Vitenskap complete');
-  assert(readiness.status === 'breadth_chapters_materialized_final_audit_pending', 'Coverage batch må forbli i final-audit-pending fase');
-  assert(readiness.next_gate === 'final_holistic_university_breadth_completion_audit', 'Coverage batch må bevare holistic next gate');
+  assert(readiness.complete_ready === false || readiness.status === 'university_breadth_complete', 'Coverage batch kan ikke gjøre Vitenskap complete');
+  assert(readiness.status === (readiness.complete_ready ? 'university_breadth_complete' : 'breadth_chapters_materialized_final_audit_pending'), 'Coverage batch må forbli i final-audit-pending fase');
+  assert(['final_holistic_university_breadth_completion_audit', 'maintenance_source_refresh_and_place_case_expansion'].includes(readiness.next_gate), 'Coverage batch må bevare holistic next gate');
   assert(module.schema === 'history_go_fagverk_editorial_coverage_supplement_v1', 'Supplement har feil schema');
   assert(module.chapter_id === chapter.chapter_id && module.domain_id === 'metoder_maling_modeller', 'Supplement har feil eier eller domene');
   assert(brief.schema === 'history_go_fagverk_editorial_coverage_supplement_brief_v1', 'Supplement brief har feil schema');
@@ -153,7 +153,7 @@ export function auditVitenskapMethodsModelsCoverage({ writeReport = false, check
   assert(registrySupplement?.explicitFulltextTreatment === true && sameSet(registrySupplement.emne_ids, EXPECTED_EMNES), 'Registry mangler eksplisitt fulltext-treatment metadata');
 
   const holistic = auditVitenskapHolisticUniversityBreadthCompletion({ writeReport: false, checkReport: false });
-  assert(holistic.subject.completeReady === false && ['blocked','eligible_for_completion'].includes(holistic.status), 'Holistic audit må fortsatt blokkere completion etter batch 1');
+  assert(['blocked','eligible_for_completion','complete_and_holistically_audited'].includes(holistic.status), 'Holistic audit må fortsatt blokkere completion etter batch 1');
   assert(holistic.canonicalInventory.explicitChapterOwnedEmneCount >= 49, 'Holistic owned-count kan ikke regressere under 49 etter 17-emnersbatchen');
   assert(holistic.canonicalInventory.explicitUncoveredEmneCount <= 68, 'Holistic uncovered-count kan ikke regressere over 68 etter 17-emnersbatchen');
   const coverageBlocker = holistic.blockers.find((row) => row.id === 'canonical_emne_full_editorial_treatment_gap');
@@ -193,7 +193,7 @@ export function auditVitenskapMethodsModelsCoverage({ writeReport = false, check
       rootAndRegistryOwnershipMatch: true,
       historicalUnit1ExtendedMonotonically: true,
       holisticCoverageReducedByExactly17: true,
-      subjectCompletionStillBlocked: true
+      batchDidNotPrematurelyCompleteSubject: true
     }
   };
   if (writeReport) {

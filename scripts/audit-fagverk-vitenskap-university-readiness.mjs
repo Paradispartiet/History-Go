@@ -97,14 +97,14 @@ export function auditVitenskapUniversityReadiness({ writeReport = false, checkRe
   const releaseSubject = release.subjects?.vitenskap;
 
   assert(readiness.schema === 'history_go_fagverk_vitenskap_university_readiness_v1', 'Vitenskap readiness har feil schema');
-  assert(['1.2.0', '1.3.0'].includes(readiness.version), 'Vitenskap readiness har ukjent post-reconciliation-versjon');
+  assert(['1.2.0', '1.3.0', '1.4.0'].includes(readiness.version), 'Vitenskap readiness har ukjent post-reconciliation-versjon');
   assert(readiness.subject_id === 'vitenskap', 'Vitenskap readiness har feil subject_id');
   assert(readiness.title === categories.labels.vitenskap, 'Vitenskap readiness har feil canonical tittel');
-  assert(['breadth_inventory_reconciled_chapter_production_in_progress','breadth_chapters_materialized_final_audit_pending'].includes(readiness.status), 'Vitenskap readiness har feil chapter-production-status');
-  assert(readiness.complete_ready === false, 'Breadth-kapittelproduksjon kan ikke gjøre Vitenskap complete-ready før alle blockers er lukket');
+  assert(['breadth_inventory_reconciled_chapter_production_in_progress','breadth_chapters_materialized_final_audit_pending','university_breadth_complete'].includes(readiness.status), 'Vitenskap readiness har feil chapter-production-status');
+  assert(readiness.complete_ready === (readiness.status === 'university_breadth_complete'), 'Vitenskap complete_ready må følge eksplisitt university_breadth_complete-status');
   assert(readiness.canonical_scope?.no_fixed_completion_quota === true, 'Vitenskap må fortsatt forby tallkvote som ferdigbevis');
-  assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'Vitenskap må forbli chapters_in_progress');
-  assert(['remaining_chapter_production_across_reconciled_university_breadth','final_holistic_university_breadth_completion_audit'].includes(statusEntry?.nextGate), 'Vitenskap har feil neste port');
+  assert(statusEntry?.editorialStatus === (readiness.complete_ready ? 'complete' : 'chapters_in_progress'), 'Vitenskap editorialStatus matcher ikke readiness completion state');
+  assert(['remaining_chapter_production_across_reconciled_university_breadth','final_holistic_university_breadth_completion_audit','maintenance_source_refresh_and_place_case_expansion'].includes(statusEntry?.nextGate), 'Vitenskap har feil neste port');
 
   assert(isDeepStrictEqual(pensum.summary, {
     domain_count: 6,
@@ -153,7 +153,7 @@ export function auditVitenskapUniversityReadiness({ writeReport = false, checkRe
   assert(Array.isArray(readiness.blocking_gaps) && readiness.blocking_gaps.length === 0, 'Strukturelle blocking gaps skal være reconcilet');
   const editorialBlockers = readiness.editorial_blockers || [];
   assert(editorialBlockers.length <= BREADTH_FAMILIES.length, 'Readiness har for mange breadth editorial blockers');
-  const expectedProgressGate = editorialBlockers.length === 0 ? 'final_holistic_university_breadth_completion_audit' : 'remaining_chapter_production_across_reconciled_university_breadth';
+  const expectedProgressGate = readiness.complete_ready ? 'maintenance_source_refresh_and_place_case_expansion' : editorialBlockers.length === 0 ? 'final_holistic_university_breadth_completion_audit' : 'remaining_chapter_production_across_reconciled_university_breadth';
   assert(readiness.next_gate === expectedProgressGate, 'Readiness next_gate matcher ikke breadth-fremdriften');
   assert(statusEntry.nextGate === expectedProgressGate, 'Subject status nextGate matcher ikke breadth-fremdriften');
   assert(editorialBlockers.every((id) => BREADTH_FAMILIES.includes(id)), 'Readiness har ukjent breadth editorial blocker');
@@ -199,7 +199,7 @@ export function auditVitenskapUniversityReadiness({ writeReport = false, checkRe
 
   const report = {
     schema: 'history_go_fagverk_vitenskap_university_readiness_audit_v1',
-    version: '1.3.0',
+    version: '1.4.0',
     status: readiness.status,
     generatedFrom: P,
     subject: {

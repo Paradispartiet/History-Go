@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { auditVitenskapHolisticQualityReview } from '../scripts/audit-fagverk-vitenskap-holistic-quality-review.mjs';
 
-test('Vitenskap holistic quality review is evidence-based and completion-eligible without flipping readiness', () => {
+test('Vitenskap holistic quality review remains evidence-based after final readiness reconciliation', () => {
   const report = auditVitenskapHolisticQualityReview({ writeReport: false, checkReport: true });
   assert.equal(report.status, 'pass');
   assert.equal(report.totalScore, 28);
@@ -17,9 +17,9 @@ test('Vitenskap holistic quality review is evidence-based and completion-eligibl
   assert.equal(report.canonicalEvidence.exactDuplicateParagraphs, 0);
   assert.equal(report.canonicalEvidence.oldGenericQuestionSetEmnes, 89);
   assert.equal(report.canonicalEvidence.missingLegacyKeyQuestionEmnes, 4);
-  assert.equal(report.transition.holisticStatus, 'eligible_for_completion');
+  assert.equal(report.transition.holisticStatus, 'complete_and_holistically_audited');
   assert.equal(report.transition.qualityReviewStatus, 'pass');
   assert.equal(report.transition.eligibleForCompletion, true);
-  assert.equal(report.transition.completeReadyStillFalse, true);
+  assert.equal(report.transition.completeReadyStillFalse, false);
   assert.equal(report.nonBlockingDebtExplicit, true);
 });

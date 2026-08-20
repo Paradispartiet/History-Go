@@ -16,7 +16,7 @@ test('Vitenskap society power ethics batch reduces only legitimate holistic bloc
   const report = auditVitenskapSocietyPowerEthicsCoverage({ writeReport: false, checkReport: false });
   assert.equal(report.coverage.holisticOwnedAfterBatch, 78);
   assert.equal(report.coverage.holisticUncoveredAfterBatch, 39);
-  assert.equal(report.guards.subjectCompleteRemainsFalse, true);
+  assert.equal(report.guards.batchDidNotPrematurelyCompleteSubject, true);
   assert.equal(report.guards.qualityReviewDeferred, true);
 });
 

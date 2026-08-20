@@ -186,9 +186,9 @@ export function auditVitenskapBreadthReconciliation({ writeReport = false, check
   assert(inputs.pensum === 'vitenskappensum_canonical_v4_6.json', 'Generator peker til stale pensum');
   assert(inputs.domain_count === 6 && inputs.emne_count === 117 && inputs.method_count === 84 && inputs.mapping_count === 117 && inputs.topic_hook_count === 64, 'Generator har feil v4.6-tellinger');
 
-  assert(['1.2.0', '1.3.0'].includes(readiness.version), 'Readiness har ukjent post-reconciliation-versjon');
-  assert(['breadth_inventory_reconciled_chapter_production_in_progress','breadth_chapters_materialized_final_audit_pending'].includes(readiness.status), 'Readiness har feil post-reconciliation-status');
-  assert(readiness.complete_ready === false, 'Inventory-reconciliation kan ikke gjøre Vitenskap complete-ready');
+  assert(['1.2.0', '1.3.0', '1.4.0'].includes(readiness.version), 'Readiness har ukjent post-reconciliation-versjon');
+  assert(['breadth_inventory_reconciled_chapter_production_in_progress','breadth_chapters_materialized_final_audit_pending','university_breadth_complete'].includes(readiness.status), 'Readiness har feil post-reconciliation-status');
+  assert(readiness.complete_ready === false || readiness.status === 'university_breadth_complete', 'Inventory-reconciliation kan ikke gjøre Vitenskap complete-ready');
   assert(readiness.current_inventory.vitenskap?.domain_count === 6, 'Readiness har feil domain count');
   assert(readiness.current_inventory.vitenskap?.emne_count === 117, 'Readiness har feil emne count');
   assert(readiness.current_inventory.vitenskap?.method_count === 84, 'Readiness har feil method count');
@@ -213,11 +213,11 @@ export function auditVitenskapBreadthReconciliation({ writeReport = false, check
     assert(family?.reconciled_hook_id === specFamily.hook.id, `${id} har feil reconcilet hook`);
   }
   assert(readiness.first_production_unit?.status === 'materialized_and_registered', 'Unit 1 må forbli registrert');
-  const expectedProgressGate = editorialBlockers.length === 0 ? 'final_holistic_university_breadth_completion_audit' : 'remaining_chapter_production_across_reconciled_university_breadth';
+  const expectedProgressGate = readiness.complete_ready ? 'maintenance_source_refresh_and_place_case_expansion' : editorialBlockers.length === 0 ? 'final_holistic_university_breadth_completion_audit' : 'remaining_chapter_production_across_reconciled_university_breadth';
   assert(readiness.next_gate === expectedProgressGate, 'Readiness har feil neste port');
 
   const statusEntry = status.subjects?.find((row) => row.id === 'vitenskap');
-  assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'Vitenskap kan ikke forlate chapters_in_progress');
+  assert(['chapters_in_progress', 'complete'].includes(statusEntry?.editorialStatus), 'Vitenskap kan ikke forlate chapters_in_progress');
   assert(statusEntry?.nextGate === expectedProgressGate, 'Subject status har feil neste port');
   assert(registry.subjects?.vitenskap?.chapters?.some((row) => row.id === 'vitenskap-fra-observasjon-til-etterprovbar-kunnskap'), 'Registry må bevare Unit 1');
   assert(registry.subjects.vitenskap.chapters.length === readiness.current_inventory.vitenskap.registered_chapter_count, 'Registry og readiness har ulik chapter count');
