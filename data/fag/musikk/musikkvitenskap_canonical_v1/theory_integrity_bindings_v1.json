@@ -1,0 +1,244 @@
+{
+  "schema": "history_go_musikk_theory_integrity_bindings_v1",
+  "version": "1.0.0",
+  "status": "canonical",
+  "subject_id": "musikk",
+  "completion_status_read_only": true,
+  "content_mutation": false,
+  "production_rule": "Teorinavn er proveniens, ikke trivia. Strict proof krever at hvert canonicalt hovedfelt binder to relevante teoriobjekter til navngitt forsker, konkret verk, verifisert scholarly source, canonicalt emne og forskningsdebatt, verified claim og det faktiske avsnittet der teorien får analytisk betydning.",
+  "fields": [
+    {
+      "domain_id": "musikalsk_analyse_lyd_struktur",
+      "comparison": {
+        "theory_object_ids": ["musikk-hanninen-segmentation", "musikk-caplin-formal-functions"],
+        "interpretive_consequence": "Hanninen gjør segmenteringsvalget og alternative motivgrenser synlige, mens Caplin gjør formfunksjon og kadens til eksplisitte modellvalg. Sammen viser de hvorfor lokaliserte trekk ikke er teorinøytrale, uten å gjøre modellen til komponistintensjon eller universell fasit."
+      },
+      "theory_objects": [
+        {
+          "id": "musikk-hanninen-segmentation",
+          "emne_id": "em_musikk_vit_melodi_motiv_frasering",
+          "theory_id": "schema_topic_intertekst",
+          "debate_id": "verk_eller_hendelse",
+          "theorist": {"name": "Dora A. Hanninen", "work": "A Theory of Music Analysis: On Segmentation and Associative Organization", "scholarly_source_id": "src_hanninen_theory_music_analysis_2017"},
+          "scope": "Objektet brukes på avgrensede lyd- eller partiturpassasjer der motiv, frase og assosiasjon avhenger av en eksplisitt segmenteringsregel.",
+          "core_claim_or_mechanism": "Analytiske segmenter er begrunnede valg som organiserer observerbare trekk; alternative segmenteringer kan derfor gi andre forbindelser uten at objektet endres.",
+          "evidence_or_observable_basis": "Taktangivelser, navngitte motiv, gjentakelser og eksplisitte alternative grensedragninger gjør analysen kontrollerbar i den konkrete Beethoven-passasjen.",
+          "limitations": ["Segmentering alene dokumenterer verken historisk påvirkning eller komponistens bevisste intensjon.", "Modellen må avgrenses til dokumentert repertoar og kan ikke behandles som én naturlig lyttemåte."],
+          "rival_or_alternative": "Caplin er alternativet når spørsmålet gjelder formfunksjon og kadensforløp snarere enn hvordan motiviske enheter blir avgrenset og assosiert.",
+          "interpretive_consequence": "Boss-avsnittet leses som en modellavhengig motivanalyse: alpha blir saliensskapende i den valgte segmenteringen, mens teksten bevarer muligheten for andre enheter.",
+          "claim_binding": {"chapter_id": "musikalsk-analyse-lyd-struktur", "module_file": "data/fagverk/musikk/musikalsk-analyse-lyd-struktur/02-rytme-tone-klang-form.json", "section_id": "melodi_harmoni_modell", "paragraph_index": 0, "claim_id": "claim_musikk_melody_boss_alpha_salience_development", "source_ids": ["prod_src_boss_hidden_repetition_beethoven_1999"]}
+        },
+        {
+          "id": "musikk-caplin-formal-functions",
+          "emne_id": "em_musikk_vit_form_prosess_improvisasjon",
+          "theory_id": "prosessuell_form",
+          "debate_id": "verk_eller_hendelse",
+          "theorist": {"name": "William E. Caplin", "work": "Classical Form: A Theory of Formal Functions for the Instrumental Music of Haydn, Mozart, and Beethoven", "scholarly_source_id": "src_caplin_classical_form_1998"},
+          "scope": "Objektet brukes på lokaliserte forløp i klassisk-tonalt repertoar der harmoniske hendelser får funksjon i en tidslig formprosess.",
+          "core_claim_or_mechanism": "Formfunksjoner beskriver hvordan harmonisk stabilitet, fortsettelse og kadens organiserer forventning og retning gjennom et avgrenset forløp.",
+          "evidence_or_observable_basis": "Halvslutning, dominantpedal og fullkommen autentisk kadens er lokalisert til bestemte takter, slik at funksjonslesningen kan prøves mot partituret.",
+          "limitations": ["Formfunksjonene er stil- og repertoaravhengige og kan ikke universaliseres til alle musikalske tradisjoner.", "En funksjonsanalyse dokumenterer ikke alene opphav, resepsjon eller komponistens bevisste intensjon."],
+          "rival_or_alternative": "Hanninen er alternativet når den avgjørende usikkerheten ligger i segmentering og associative forbindelser fremfor kadensens formfunksjon.",
+          "interpretive_consequence": "Caplin-avsnittet blir et eksplisitt teoriavhengig argument om hvordan takt 41–63 virker som prosess, ikke bare en opplisting av harmoniske etiketter.",
+          "claim_binding": {"chapter_id": "musikalsk-analyse-lyd-struktur", "module_file": "data/fagverk/musikk/musikalsk-analyse-lyd-struktur/02-rytme-tone-klang-form.json", "section_id": "melodi_harmoni_modell", "paragraph_index": 1, "claim_id": "claim_musikk_harmony_caplin_dominant_pedal_new_key_41_63", "source_ids": ["prod_src_caplin_tempest_exposition_2010"]}
+        }
+      ]
+    },
+    {
+      "domain_id": "historisk_musikkvitenskap_historiografi",
+      "comparison": {"theory_object_ids": ["musikk-treitler-historical-imagination", "musikk-goehr-work-concept"], "interpretive_consequence": "Treitler gjør periodisering til en kildeavhengig historiografisk konstruksjon; Goehr gjør verkstatus til en historisk og institusjonell kategori. Sammen viser de hvordan både tidsinndeling og analyseobjekt må konkurranseprøves mot alternativer."},
+      "theory_objects": [
+        {
+          "id": "musikk-treitler-historical-imagination", "emne_id": "em_musikk_vit_periodisering_anakronisme", "theory_id": "kulturarv_arkivstillhet", "debate_id": "nasjonal_musikkhistorie",
+          "theorist": {"name": "Leo Treitler", "work": "Music and the Historical Imagination", "scholarly_source_id": "treitler_historical_imagination"},
+          "scope": "Objektet brukes på historieskrivning der perioder, samtidighet og utviklingslinjer må spores til bestemte kilder og fortellingsvalg.",
+          "core_claim_or_mechanism": "Historisk sammenheng blir argumentert gjennom utvalg, ordning og begreper; perioder er derfor analytiske konstruksjoner som gjør noe synlig og annet mindre synlig.",
+          "evidence_or_observable_basis": "To navngitte periodiseringsmodeller sammenlignes på stilgrenser, komponister og kilderegimer, slik at forskjellen mellom modellene kan inspiseres.",
+          "limitations": ["Historiografisk kritikk kan ikke erstatte datering og kontroll av de konkrete historiske kildene.", "At en modell ekskluderer noe beviser ikke at eksklusjonen er tilsiktet eller politisk motivert."],
+          "rival_or_alternative": "Goehr er alternativet når problemet først og fremst gjelder hva som får status som verk eller objekt, ikke hvordan tiden deles inn.",
+          "interpretive_consequence": "Avsnittet leses som en konkurranse mellom historiografiske ordninger: Berker og Uslu produserer ulike forløp fordi de organiserer kildene forskjellig.",
+          "claim_binding": {"chapter_id": "historisk-musikkvitenskap-historiografi", "module_file": "data/fagverk/musikk/historisk-musikkvitenskap-historiografi/03-anvendelse-kritikk-selvtest.json", "section_id": "test_kategorien", "paragraph_index": 0, "claim_id": "claim_musikk_history_periodization_ottoman_turkish_models_source_dependency", "source_ids": ["prod_src_firat_periodization_ottoman_turkish_2019", "prod_src_berker_turk_musikisinde_donemler_1985", "prod_src_uslu_new_periodization_turkish_music_2015"]}
+        },
+        {
+          "id": "musikk-goehr-work-concept", "emne_id": "em_musikk_vit_verkbegrep_forfatterskap_kanon", "theory_id": "felt_kulturell_produksjon", "debate_id": "verk_eller_hendelse",
+          "theorist": {"name": "Lydia Goehr", "work": "The Imaginary Museum of Musical Works", "scholarly_source_id": "goehr_imaginary_museum"},
+          "scope": "Objektet brukes når komponert helhet, framføring, eksamensprestasjon og arkivobjekt konkurrerer om å definere den relevante musikalske enheten.",
+          "core_claim_or_mechanism": "Verkbegrepet virker som en historisk regulerende kategori som fordeler status, eierskap og analytisk oppmerksomhet mellom musikalske praksiser.",
+          "evidence_or_observable_basis": "Crotchs gradskomposisjon kan identifiseres samtidig gjennom institusjonell funksjon, arkivstatus, komponert form og mulig framføringsliv.",
+          "limitations": ["Et historisert verkbegrep gjør ikke enhver stabil musikalsk identitet ugyldig eller analytisk ubrukelig.", "Kategorikritikk alene dokumenterer ikke hvordan objektet faktisk ble framført, mottatt eller verdsatt."],
+          "rival_or_alternative": "Treitler er alternativet når hovedusikkerheten gjelder periodisering og historieskrivningens tidsorden snarere enn objektets verkstatus.",
+          "interpretive_consequence": "Avsnittet viser at samme kildeobjekt kan ha flere samtidige statuser; forskningsspørsmålet må avgjøre hvilken status som bærer slutningen.",
+          "claim_binding": {"chapter_id": "historisk-musikkvitenskap-historiografi", "module_file": "data/fagverk/musikk/historisk-musikkvitenskap-historiografi/03-anvendelse-kritikk-selvtest.json", "section_id": "test_kategorien", "paragraph_index": 1, "claim_id": "claim_musikk_history_work_canon_oxford_degree_exercise_institutional_status", "source_ids": ["prod_src_golding_oxford_degree_exercises_2025"]}
+        }
+      ]
+    },
+    {
+      "domain_id": "etnomusikologi_kultur_samfunn",
+      "comparison": {"theory_object_ids": ["musikk-turino-social-life", "musikk-smith-decolonizing-methodologies"], "interpretive_consequence": "Turino synliggjør hvordan deltakelse og feltrolle produserer sosial tilgang; Smith synliggjør hvem som har myndighet over kunnskap, metadata og gjenbruk. Sammen binder de relasjonell feltmetode til styring uten å gjøre nærhet til samtykke."},
+      "theory_objects": [
+        {
+          "id": "musikk-turino-social-life", "emne_id": "em_musikk_vit_feltarbeid_deltakende_observasjon", "theory_id": "musikk_som_sosial_praksis", "debate_id": "identitet_essensialisering",
+          "theorist": {"name": "Thomas Turino", "work": "Music as Social Life: The Politics of Participation", "scholarly_source_id": "turino_music_social_life"},
+          "scope": "Objektet brukes på musisering som relasjonell praksis der forskerrolle, deltakelse, ferdigheter og gruppetilhørighet endrer hva som kan observeres.",
+          "core_claim_or_mechanism": "Musikalsk mening og sosial tilgang oppstår gjennom deltakelsesformer; forskerens handlinger blir derfor en del av evidenssituasjonen, ikke et nøytralt utsiktspunkt.",
+          "evidence_or_observable_basis": "Feltperiode, navngitte grupper og overgang fra notater til praktisk trommearbeid, medlemskap, læring og framføring er dokumentert konkret.",
+          "limitations": ["Deltakelse gir ikke automatisk representativ innsikt i hele fellesskapet eller alle medlemmenes erfaringer.", "Sosial praksis kan ikke erstatte analyse av konkrete lydlige, materielle og historiske forhold."],
+          "rival_or_alternative": "Smith er alternativet når spørsmålet gjelder epistemisk myndighet, rettigheter og kontroll over forskningens data fremfor feltrollens deltakelsesform.",
+          "interpretive_consequence": "Wadō-avsnittet viser feltrollen som en mekanisme som både åpner og avgrenser tilgang; rolleovergangen blir en del av claimets proveniens.",
+          "claim_binding": {"chapter_id": "etnomusikologi-kultur-samfunn", "module_file": "data/fagverk/musikk/etnomusikologi-kultur-samfunn/01-feltarbeid-intervju-identitet.json", "section_id": "feltrollen_produserer_tilgang", "paragraph_index": 0, "claim_id": "claim_musikk_ethno_fieldwork_wado_role_transition_2017_2018", "source_ids": ["prod_src_mcdonald_taiko_baqueta_2022"]}
+        },
+        {
+          "id": "musikk-smith-decolonizing-methodologies", "emne_id": "em_musikk_vit_dekolonial_urfolksstyrt_forskning", "theory_id": "dekolonial_postkolonial_kritikk", "debate_id": "kulturarv_fellesskapsmyndighet",
+          "theorist": {"name": "Linda Tuhiwai Smith", "work": "Decolonizing Methodologies: Research and Indigenous Peoples", "scholarly_source_id": "smith_decolonizing_methodologies_3e"},
+          "scope": "Objektet brukes på forskning, arkiv og metadata der urfolksfellesskapets myndighet over tilgang, attribusjon, undervisning og gjenbruk er dokumenterbar.",
+          "core_claim_or_mechanism": "Kunnskapsproduksjon fordeler myndighet gjennom forskningsdesign og infrastrukturer; dekolonial metode krever derfor konkrete styringsrelasjoner, ikke bare inkluderende etiketter.",
+          "evidence_or_observable_basis": "Tre spesifikke TK-merker er knyttet til identifiserte Passamaquoddy-opptak og tolkes sammen med CARE-prinsippenes krav til kontroll og ansvar.",
+          "limitations": ["Dekolonial etikett alene dokumenterer ikke lokal autorisasjon, samtykke eller ansvarlig praksis.", "Én styringsmodell kan ikke importeres uendret til andre urfolksfellesskap eller arkivkontekster."],
+          "rival_or_alternative": "Turino er alternativet når analysen gjelder hvordan deltakelse og relasjoner produserer tilgang snarere enn hvem som styrer data og gjenbruk.",
+          "interpretive_consequence": "CARE-avsnittet gjør fellesskapsmyndighet operativ gjennom metadata og bruksvilkår; offentlig tilgang blir eksplisitt skilt fra grenseløs tillatelse.",
+          "claim_binding": {"chapter_id": "etnomusikologi-kultur-samfunn", "module_file": "data/fagverk/musikk/etnomusikologi-kultur-samfunn/02-migrasjon-ritual-kunnskapsstyring.json", "section_id": "fellesskapet_styrer_arkivbruken", "paragraph_index": 2, "claim_id": "claim_musikk_ethno_passamaquoddy_tk_labels_governance", "source_ids": ["carroll_care_principles", "prod_src_local_contexts_passamaquoddy_tk_labels_2022_2026"]}
+        }
+      ]
+    },
+    {
+      "domain_id": "framforing_praksis_samspill",
+      "comparison": {"theory_object_ids": ["musikk-cook-creative-practice", "musikk-godoy-leman-gesture"], "interpretive_consequence": "Cook gjør framføringsvariasjon til meningsproduserende praksis; Godøy og Leman gjør kroppslig gest til et relasjonelt, målbart objekt. Sammen skiller de realiseringsvalg fra kinematisk mekanisme og fra udokumentert intensjon."},
+      "theory_objects": [
+        {
+          "id": "musikk-cook-creative-practice", "emne_id": "em_musikk_vit_fortolkning_framforingsvariasjon", "theory_id": "framforing_som_prosess", "debate_id": "verk_eller_hendelse",
+          "theorist": {"name": "Nicholas Cook", "work": "Music as Creative Practice", "scholarly_source_id": "src_cook_music_as_creative_practice_2018"},
+          "scope": "Objektet brukes på kontrollerte sammenligninger av samme passasje i navngitte framføringer der artikulasjon og teknisk realisering varierer.",
+          "core_claim_or_mechanism": "Framføring produserer musikalske relasjoner gjennom situerte valg og handlinger; variasjon er derfor analytisk materiale, ikke bare avvik fra en tekst.",
+          "evidence_or_observable_basis": "Samme åpning i Rebonds B sammenlignes mellom Kato, Fischer og Sietzen, med lydutdrag og fem dokumenterte hånd- og kølleløsninger.",
+          "limitations": ["Hørbar variasjon dokumenterer ikke alene hvorfor utøveren valgte løsningen eller hva utøveren mente.", "Tre innspillinger kan ikke etablere hele verkets eller perkusjonsfeltets framføringsnorm."],
+          "rival_or_alternative": "Godøy og Leman er alternativet når spørsmålet gjelder målbar gest og koordinering fremfor fortolkning som kreativ praksis.",
+          "interpretive_consequence": "Rebonds-avsnittet blir bevis for flere realiserbare artikulasjoner i samme passasje, mens teksten uttrykkelig stanser før sannest eller intendert utførelse.",
+          "claim_binding": {"chapter_id": "framforing-praksis-samspill", "module_file": "data/fagverk/musikk/framforing-praksis-samspill/01-fortolkning-kropp-koordinering.json", "section_id": "samme_passasje_flere_realiseringer", "paragraph_index": 0, "claim_id": "claim_musikk_performance_rebonds_ruff_variation_kato_fischer_sietzen", "source_ids": ["prod_src_duinker_rebonds_structural_affordances_2021"]}
+        },
+        {
+          "id": "musikk-godoy-leman-gesture", "emne_id": "em_musikk_vit_kropp_gest_teknikk", "theory_id": "embodied_enactive_cognition", "debate_id": "struktur_kontekst",
+          "theorist": {"name": "Rolf Inge Godøy", "work": "Musical Gestures: Sound, Movement, and Meaning", "scholarly_source_id": "src_godoy_leman_musical_gestures_2010"},
+          "scope": "Objektet brukes på avgrensede framføringsoppgaver der kroppslig bevegelse, lyd og koordinering er synkronisert og målt med definerte variabler.",
+          "core_claim_or_mechanism": "Musikalsk forståelse og koordinering oppstår i koblingen mellom persepsjon, handling og miljø; gest må derfor behandles som relasjon, ikke løs metafor.",
+          "evidence_or_observable_basis": "Hodebevegelse, lyd og MIDI ble synkronisert i 108 cue-klipp, og jerk, gestutslag og asynkroni ble målt i en definert første-slag-oppgave.",
+          "limitations": ["Hodegest i et cue-vindu representerer ikke hele kroppen, hele framføringen eller all musikalsk kommunikasjon.", "Laboratorieoppgaven dokumenterer ikke automatisk en universell mekanisme eller utøverens subjektive følelse."],
+          "rival_or_alternative": "Cook er alternativet når analysen gjelder kreative realiseringsvalg og fortolkning fremfor gestens målbare koordinasjonsfunksjon.",
+          "interpretive_consequence": "Avsnittet leses som en avgrenset kobling mellom gestegenskaper og timing i én oppgave, ikke som generell kroppsteori eller direkte tilgang til uttrykk.",
+          "claim_binding": {"chapter_id": "framforing-praksis-samspill", "module_file": "data/fagverk/musikk/framforing-praksis-samspill/01-fortolkning-kropp-koordinering.json", "section_id": "gesten_som_malbart_objekt", "paragraph_index": 1, "claim_id": "claim_musikk_performance_bishop_goebl_gesture_smoothness_magnitude", "source_ids": ["src_bishop_goebl_gesture_kinematics_piano_duos_2018"]}
+        }
+      ]
+    },
+    {
+      "domain_id": "lydmedier_teknologi_beregning",
+      "comparison": {"theory_object_ids": ["musikk-sterne-sound-reproduction", "musikk-eriksson-platformization"], "interpretive_consequence": "Sterne gjør opptakets produksjonskjede og mediering synlig; Eriksson mfl. gjør plattformens hybride kuraterings- og rangeringsledd synlige. Sammen skiller de produksjon av lydobjektet fra senere distribusjon og styring."},
+      "theory_objects": [
+        {
+          "id": "musikk-sterne-sound-reproduction", "emne_id": "em_musikk_vit_opptak_studio_som_instrument", "theory_id": "mediering_remediering", "debate_id": "teknologideterminisme",
+          "theorist": {"name": "Jonathan Sterne", "work": "The Audible Past: Cultural Origins of Sound Reproduction", "scholarly_source_id": "src_sterne_audible_past_2003"},
+          "scope": "Objektet brukes på versjonerte opptaks- og miksekjeder der råspor, stems, DAW-sesjon, parametre og render kan skilles empirisk.",
+          "core_claim_or_mechanism": "Lydreproduksjon er en historisk og materiell mediering som former hva som kan produseres, høres og sammenlignes; den er ikke et transparent vindu.",
+          "evidence_or_observable_basis": "Mix Evaluation Dataset skiller råspor, stems, 180 miksrender, DAW-sesjoner, parameterinnstillinger og lyttevurderinger i samme produksjonskjede.",
+          "limitations": ["Den ferdige miksen avslører ikke arbeidsprosessen uten versjons-, sesjons- og parameterdata.", "Dokumentert mediering beviser ikke at teknologien alene bestemte estetiske valg eller lytterrespons."],
+          "rival_or_alternative": "Eriksson er alternativet når analysen gjelder plattformisert distribusjon, kuratering og rangering etter at lydobjektet er produsert.",
+          "interpretive_consequence": "Datasettavsnittet leses som et proveniensargument: de 180 miksene er ulike, sporbare produksjonsresultater og ikke utskiftbare lydfiler.",
+          "claim_binding": {"chapter_id": "lydmedier-teknologi-beregning", "module_file": "data/fagverk/musikk/lydmedier-teknologi-beregning/01-studio-instrument-plattform.json", "section_id": "miks_som_produksjonskjede", "paragraph_index": 0, "claim_id": "claim_musikk_technology_mix_dataset_production_chain", "source_ids": ["prod_src_de_man_reiss_mix_evaluation_dataset_2017"]}
+        },
+        {
+          "id": "musikk-eriksson-platformization", "emne_id": "em_musikk_vit_radio_plate_streaming_plattform", "theory_id": "plattformisering", "debate_id": "algoritmisk_skjevhet",
+          "theorist": {"name": "Maria Eriksson", "work": "Spotify Teardown: Inside the Black Box of Streaming Music", "scholarly_source_id": "src_eriksson_fleischer_johansson_snickars_vonderau_spotify_teardown_2019"},
+          "scope": "Objektet brukes på tidsavgrensede plattformversjoner der kandidater, redaksjonelle regler, modeller, rangering og observerte utfall kan holdes fra hverandre.",
+          "core_claim_or_mechanism": "Plattformisering reorganiserer synlighet gjennom sammenvevde tekniske og institusjonelle ledd; grensesnittet alene avslører verken årsak eller effekt.",
+          "evidence_or_observable_basis": "Spotifys egen tekniske tekst beskriver kandidatgenerering, rangering, tre hyllekilder og en fire måneder lang transformasjonsfeil med senere validering.",
+          "limitations": ["Selskapets arkitekturbeskrivelse dokumenterer ikke hva én bestemt bruker faktisk mottok eller hvorfor.", "En historisk plattformversjon kan ikke uten ny kontroll generaliseres til dagens kode, marked eller kuratering."],
+          "rival_or_alternative": "Sterne er alternativet når hovedspørsmålet gjelder opptaksobjektets produksjon og mediering snarere enn plattformens distribusjonsstyring.",
+          "interpretive_consequence": "Home-avsnittet blir en modell av hybrid autoritet og feilmulighet, samtidig som manglende logger og uavhengige data stopper kausale effektpåstander.",
+          "claim_binding": {"chapter_id": "lydmedier-teknologi-beregning", "module_file": "data/fagverk/musikk/lydmedier-teknologi-beregning/01-studio-instrument-plattform.json", "section_id": "plattformens_synlige_og_usynlige_ledd", "paragraph_index": 0, "claim_id": "claim_musikk_technology_spotify_home_hybrid_curation_pipeline", "source_ids": ["prod_src_spotify_home_personalization_part1_2021"]}
+        }
+      ]
+    },
+    {
+      "domain_id": "persepsjon_kognisjon_akustikk",
+      "comparison": {"theory_object_ids": ["musikk-bregman-auditory-scene", "musikk-huron-expectation"], "interpretive_consequence": "Bregman gjør gruppering av samtidige lydstrømmer til et oppgavebundet persepsjonsproblem; Huron gjør forventning til lærte sannsynligheter som må skilles fra emosjons- og minnerespons. Sammen holder de ulike kognitive nivåer fra hverandre."},
+      "theory_objects": [
+        {
+          "id": "musikk-bregman-auditory-scene", "emne_id": "em_musikk_vit_auditiv_scene_kildeseparasjon", "theory_id": "auditiv_gruppering_psykoakustikk", "debate_id": "universaler_innkulturering",
+          "theorist": {"name": "Albert S. Bregman", "work": "Auditory Scene Analysis: The Perceptual Organization of Sound", "scholarly_source_id": "src_bregman_auditory_scene_analysis_1990"},
+          "scope": "Objektet brukes på definerte stimuli og lytteoppgaver der spektrale og temporale trekk bidrar til å organisere samtidige toner som strømmer.",
+          "core_claim_or_mechanism": "Auditiv gruppering organiserer en kompleks lydblanding i mulige kilder og strømmer; resultatet avhenger av stimulus, oppgave, oppmerksomhet og erfaring.",
+          "evidence_or_observable_basis": "Tre syntetiske tonestrømmer, måltonetelling, P300, klassifikasjon og et åpent 64-kanals EEG-datasett danner separate, sporbare evidensledd.",
+          "limitations": ["Klassifikasjonsnøyaktighet er ikke direkte mål på hele lytterens opplevelse eller musikalske forståelse.", "Elleve deltakere, ett øre og syntetiske toner kan ikke uten videre generaliseres på tvers av kultur og erfaring."],
+          "rival_or_alternative": "Huron er alternativet når forskningsspørsmålet gjelder forventning, læring og respons over tid fremfor samtidig kildeseparasjon.",
+          "interpretive_consequence": "Kojima–Kanoh-avsnittet viser strømidentitet som et resultat av definert stimulus og oppgave, ikke som en selvforklarende egenskap ved lyden.",
+          "claim_binding": {"chapter_id": "persepsjon-kognisjon-akustikk", "module_file": "data/fagverk/musikk/persepsjon-kognisjon-akustikk/01-signal-scene-tid.json", "section_id": "auditiv_scene", "paragraph_index": 0, "claim_id": "claim_musikk_perception_kojima_three_stream_attention_chain", "source_ids": ["prod_src_kojima_kanoh_streams_2024", "prod_src_kojima_kanoh_nemar_dataset_2026"]}
+        },
+        {
+          "id": "musikk-huron-expectation", "emne_id": "em_musikk_vit_forventning_minner_følelser", "theory_id": "forventning_prediktiv_prosessering", "debate_id": "musikk_emosjon_kausalitet",
+          "theorist": {"name": "David Huron", "work": "Sweet Anticipation: Music and the Psychology of Expectation", "scholarly_source_id": "src_huron_sweet_anticipation_2006"},
+          "scope": "Objektet brukes på lytterstudier der familiaritet, nytelse, valens, arousal og minne er målt separat med dokumenterte stimuli og responsformat.",
+          "core_claim_or_mechanism": "Forventning formes av lærte sannsynligheter og avvik; respons må derfor knyttes til eksponering og målvariabel uten å gjøre prediksjon til total forklaring.",
+          "evidence_or_observable_basis": "MUSIFEAST-17 binder hvert trettisekundersklipp til metadata og separate normer for familiaritet, nytelse, valens, arousal og tanketyper.",
+          "limitations": ["Uttrykt valens er ikke nødvendigvis indusert følelse, og familiaritet er ikke automatisk episodisk minne.", "Normer fra bestemte lyttergrupper og sjangre kan ikke universaliseres til alle kulturer eller situasjoner."],
+          "rival_or_alternative": "Bregman er alternativet når problemet gjelder hvordan samtidige lydkilder grupperes, ikke hvordan forventning og emosjonsmål utvikles over tid.",
+          "interpretive_consequence": "MUSIFEAST-avsnittet blir et krav om å holde responsevariablene adskilt; modellen åpner for læring uten å overselge kausalitet eller nevral forklaring.",
+          "claim_binding": {"chapter_id": "persepsjon-kognisjon-akustikk", "module_file": "data/fagverk/musikk/persepsjon-kognisjon-akustikk/02-forventning-laering-inferens.json", "section_id": "familiaritet_emosjon_minne", "paragraph_index": 0, "claim_id": "claim_musikk_perception_musifeast_familiarity_emotion_norms", "source_ids": ["prod_src_vanderwalle_wu_margulis_jakubowski_musifeast_2025", "prod_src_musifeast17_osf_repository"]}
+        }
+      ]
+    },
+    {
+      "domain_id": "institusjoner_okonomi_politikk_offentlighet",
+      "comparison": {"theory_object_ids": ["musikk-hesmondhalgh-baker-creative-labour", "musikk-towse-music-economics"], "interpretive_consequence": "Hesmondhalgh og Baker gjør porteføljer, usynlig arbeid og profesjonelle ulikheter synlige; Towse gjør rettighetslag, kontrakter og verdikjede synlige. Sammen skiller de arbeidslivets erfaringsmål fra økonomiens pengestrømmer og nevnere."},
+      "theory_objects": [
+        {
+          "id": "musikk-hesmondhalgh-baker-creative-labour", "emne_id": "em_musikk_vit_arbeidsliv_profesjoner_skjult_arbeid", "theory_id": "felt_kulturell_produksjon", "debate_id": "kanon_representasjon",
+          "theorist": {"name": "David Hesmondhalgh", "work": "Creative Labour: Media Work in Three Cultural Industries", "scholarly_source_id": "src_hesmondhalgh_baker_creative_labour_2011"},
+          "scope": "Objektet brukes på avgrensede arbeidslivsdata der roller, inntektskilder, kontrakter, synlighet og ulønnet eller skjult arbeid kan skilles.",
+          "core_claim_or_mechanism": "Kulturelle produksjonsfelt fordeler muligheter og anerkjennelse gjennom institusjoner, portvoktere og kapitalformer; synlige roller er ikke hele arbeidet.",
+          "evidence_or_observable_basis": "Musicians’ Census oppgir respondentutvalg, gjennomsnittlig antall roller, inntektsbånd og karrierebarrierer, men mangler komplett tids- og kontraktslogg.",
+          "limitations": ["Et respondentutvalg kan ikke uten vekting og frafallsanalyse representere alle som arbeider med musikk.", "Synlige roller og inntektsbånd dokumenterer ikke alene tidsbruk, timebetaling eller husholdningsøkonomi."],
+          "rival_or_alternative": "Towse er alternativet når hovedspørsmålet gjelder rettighetslag og pengestrømmer i verdikjeden fremfor arbeidets roller og synlighet.",
+          "interpretive_consequence": "Census-avsnittet leses som avgrensede mål på porteføljearbeid, mens fraværsregnskapet stopper en total beskrivelse av arbeidsvilkårene.",
+          "claim_binding": {"chapter_id": "institusjoner-okonomi-politikk-offentlighet", "module_file": "data/fagverk/musikk/institusjoner-okonomi-politikk-offentlighet/01-arbeid-verdi-rettigheter.json", "section_id": "portefoljearbeid_og_synlighet", "paragraph_index": 0, "claim_id": "claim_musikk_institutions_census_portfolio_work_visibility", "source_ids": ["prod_src_musicians_census_financial_2023"]}
+        },
+        {
+          "id": "musikk-towse-music-economics", "emne_id": "em_musikk_vit_bransje_verdikjeder_rettigheter", "theory_id": "plattformisering", "debate_id": "teknologideterminisme",
+          "theorist": {"name": "Ruth Towse", "work": "Economics of the music industry", "scholarly_source_id": "src_towse_economics_music_industry_2010"},
+          "scope": "Objektet brukes på dokumenterte verdikjeder der sangrettighet, innspillingsrettighet, kontraktsledd, territorium, periode og økonomisk nevner holdes atskilt.",
+          "core_claim_or_mechanism": "Musikkøkonomien fordeler verdi gjennom separate rettigheter og forhandlingsledd; plattforminntekt kan derfor ikke leses som én enkel pris per strømming.",
+          "evidence_or_observable_basis": "CMA skiller publiserings- og innspillingsrettigheter og gir en eksplisitt illustrasjon med strømmetall og betaling som kan avgrenses til sine forutsetninger.",
+          "limitations": ["En illustrativ betaling er ikke en stabil pris per strøm og kan ikke generaliseres mellom avtaler eller territorier.", "Aggregerte markedsandeler dokumenterer ikke den enkelte artists kontrakt, recoupment eller samlede inntekt."],
+          "rival_or_alternative": "Hesmondhalgh er alternativet når spørsmålet gjelder profesjonelle roller, skjult arbeid og sosial ulikhet snarere enn rettighetsøkonomi.",
+          "interpretive_consequence": "CMA-avsnittet blir en flerleddet verdikjedemodell der hvert prosent- og pengetall må beholde sin egen nevner, kontrakt og tidsavgrensning.",
+          "claim_binding": {"chapter_id": "institusjoner-okonomi-politikk-offentlighet", "module_file": "data/fagverk/musikk/institusjoner-okonomi-politikk-offentlighet/01-arbeid-verdi-rettigheter.json", "section_id": "to_rettighetslag", "paragraph_index": 0, "claim_id": "claim_musikk_institutions_cma_streaming_rights_value_chain", "source_ids": ["prod_src_cma_music_streaming_final_2022"]}
+        }
+      ]
+    },
+    {
+      "domain_id": "norsk_nordisk_samisk_sted_arkiv",
+      "comparison": {"theory_object_ids": ["musikk-grimley-norwegian-identity", "musikk-diamond-sami-audio"], "interpretive_consequence": "Grimley gjør norsk musikkhistoriografi og identitetskonstruksjon til kuraterte prosesser; Diamond gjør samisk lydproduksjon og posisjonering til relasjonelle, lokalt avgrensede praksiser. Sammen forbyr de at nasjonal eller samisk etikett behandles som homogen essens."},
+      "theory_objects": [
+        {
+          "id": "musikk-grimley-norwegian-identity", "emne_id": "em_musikk_vit_norsk_musikkhistoriografi", "theory_id": "kulturarv_arkivstillhet", "debate_id": "nasjonal_musikkhistorie",
+          "theorist": {"name": "Daniel M. Grimley", "work": "Grieg: Music, Landscape and Norwegian Identity", "scholarly_source_id": "src_grimley_grieg_landscape_identity_2006"},
+          "scope": "Objektet brukes på norske utgave-, arkiv- og formidlingsprosjekter der institusjon, utvalg, metadata og synliggjøring produserer et historisk korpus.",
+          "core_claim_or_mechanism": "Nasjonal musikalsk identitet og kulturarv formes gjennom kuratering, sted, fortelling og institusjonelle valg; korpuset er ikke et nøytralt speil.",
+          "evidence_or_observable_basis": "Norsk Musikkarvs start, redaksjonelle kriterier og Forgotten Voices’ lokale, flerspråklige verkregistre viser to dokumenterbare former for synliggjøring.",
+          "limitations": ["Et kuratert korpus representerer ikke automatisk all musikk i Norge eller alle historiske fravær.", "Nasjonal identitetsanalyse kan ikke utlede mottak eller tilhørighet fra landskap og verk alene."],
+          "rival_or_alternative": "Diamond er alternativet når spørsmålet gjelder samisk posisjonering, lokal myndighet og lydproduksjon fremfor norsk institusjonell historiografi.",
+          "interpretive_consequence": "Avsnittet leses som bevis for hvordan institusjoner endrer det synlige korpuset, samtidig som nye portaler ikke gjøres til komplette historiske arkiv.",
+          "claim_binding": {"chapter_id": "norsk-nordisk-samisk-sted-arkiv", "module_file": "data/fagverk/musikk/norsk-nordisk-samisk-sted-arkiv/01-historiografi-nordisk-relasjon.json", "section_id": "historiografisk_korpus", "paragraph_index": 0, "claim_id": "claim_musikk_nordic_nmh_forgotten_voices_historiography", "source_ids": ["prod_src_nmh_about_critical_editions_2023", "prod_src_uib_forgotten_voices_archive_future_2025"]}
+        },
+        {
+          "id": "musikk-diamond-sami-audio", "emne_id": "em_musikk_vit_samisk_joik_vokaltradisjoner", "theory_id": "identitet_posisjonering", "debate_id": "joik_kategorisering_styring",
+          "theorist": {"name": "Beverley Diamond", "work": "Mixing It Up: A Comparative Approach to Sámi Audio Production", "scholarly_source_id": "src_diamond_sami_audio_production_2017"},
+          "scope": "Objektet brukes på lokalt og historisk identifiserte samiske lydobjekter der språk, region, person- eller gruppetilknytning og tillatelseskjede er dokumentert.",
+          "core_claim_or_mechanism": "Identitet blir posisjonert gjennom musisering, mediering og institusjoner; samisk tilhørighet må derfor spesifiseres relasjonelt fremfor å brukes som homogen kategori.",
+          "evidence_or_observable_basis": "Caset identifiserer Karesuando-samer med flyttehistorie til Tromsø-området og skiller arkivtilgang fra tidligere samtykke og dagens myndighet.",
+          "limitations": ["Ett regionalt case kan ikke representere andre samiske regioner, språk eller joikpraksiser.", "Arkivtillatelse eller offentlig metadata er ikke automatisk tillatelse til avspilling, transkripsjon eller tolkning."],
+          "rival_or_alternative": "Grimley er alternativet når analysen gjelder norsk historiografisk kuratering og nasjonale identitetsfortellinger fremfor lokalt samisk styrt lydpraksis.",
+          "interpretive_consequence": "Avsnittet stanser paraplykategorien samisk musikk og gjør region, migrasjon og myndighetskjede til nødvendige vilkår for enhver videre slutning.",
+          "claim_binding": {"chapter_id": "norsk-nordisk-samisk-sted-arkiv", "module_file": "data/fagverk/musikk/norsk-nordisk-samisk-sted-arkiv/02-joik-muntlighet-arkiv.json", "section_id": "fellesskapsmyndighet_og_grense", "paragraph_index": 0, "claim_id": "claim_musikk_nordic_sami_joik_archive_permission_chain", "source_ids": ["prod_src_uit_nordnorsk_folkemusikksamling_overview_2026", "prod_src_uit_joiker_one_motif_objects_2012"]}
+        }
+      ]
+    }
+  ]
+}
