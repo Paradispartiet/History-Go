@@ -13,6 +13,8 @@ import { auditKunstTheoryIntegrity } from '../tools/audit-kunst-theory-integrity
 import { auditMediaTheoryIntegrity } from '../tools/audit-media-theory-integrity.mjs';
 import { auditMusikkTheoryIntegrity } from '../tools/audit-musikk-theory-integrity.mjs';
 import { auditLitteraturTheoryIntegrity } from '../tools/audit-litteratur-theory-integrity.mjs';
+import { auditNaturTheoryIntegrity } from '../tools/audit-natur-theory-integrity.mjs';
+import { auditNaeringslivTheoryIntegrity } from '../tools/audit-naeringsliv-theory-integrity.mjs';
 
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const CONTRACT='data/fag/fagverk_theory_quality_contract_v1.json';
@@ -33,7 +35,9 @@ const RUNNERS={
   kunst:()=>auditKunstTheoryIntegrity(),
   media:()=>auditMediaTheoryIntegrity(),
   musikk:()=>auditMusikkTheoryIntegrity(),
-  litteratur:()=>auditLitteraturTheoryIntegrity()
+  litteratur:()=>auditLitteraturTheoryIntegrity(),
+  natur:()=>auditNaturTheoryIntegrity(),
+  naeringsliv:()=>auditNaeringslivTheoryIntegrity()
 };
 
 const STRICT_KEYS=[
@@ -113,6 +117,12 @@ export function auditFagverkTheoryIntegrity({writeReport=false,checkReport=true}
   const litteraturAdapter=adapterById.get('litteratur');
   assert(litteraturAdapter?.proof_scope==='structured_subject_gate','Litteratur må bruke permanent structured subject gate etter 28-felts reconciliation');
   assert(allVerified(litteraturAdapter?.existing_gate_proves),'Litteratur structured subject gate må dokumentere alle strict proof-dimensjoner');
+  const naturAdapter=adapterById.get('natur');
+  assert(naturAdapter?.proof_scope==='structured_subject_gate','Natur må bruke permanent structured subject gate etter 12-felts reconciliation');
+  assert(allVerified(naturAdapter?.existing_gate_proves),'Natur structured subject gate må dokumentere alle strict proof-dimensjoner');
+  const naeringslivAdapter=adapterById.get('naeringsliv');
+  assert(naeringslivAdapter?.proof_scope==='structured_subject_gate','Næringsliv må bruke permanent structured subject gate etter 6-felts reconciliation');
+  assert(allVerified(naeringslivAdapter?.existing_gate_proves),'Næringsliv structured subject gate må dokumentere alle strict proof-dimensjoner');
 
   const baselineById=new Map(baseline.subjects.map(s=>[s.id,s]));
   const subjects=contract.subjects.map(entry=>{
