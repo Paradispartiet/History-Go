@@ -27,6 +27,7 @@ on:
       - 'scripts/audit-fagverk-vitenskap-chemistry-material-science-source-brief.mjs'
       - 'scripts/audit-fagverk-vitenskap-chemistry-material-science-fulltext.mjs'
       - 'scripts/audit-fagverk-vitenskap-medicine-biomedicine-public-health-source-brief.mjs'
+      - 'tools/audit-vitenskap-theory-integrity.mjs'
       - 'scripts/build-fagverk-release-manifest.mjs'
       - 'tests/fagverk-subject-inventory.test.mjs'
       - 'tests/fagverk-general-engine.test.mjs'
@@ -41,6 +42,7 @@ on:
       - 'tests/fagverk-vitenskap-chemistry-material-science-source-brief.test.mjs'
       - 'tests/fagverk-vitenskap-chemistry-material-science-fulltext.test.mjs'
       - 'tests/fagverk-vitenskap-medicine-biomedicine-public-health-source-brief.test.mjs'
+      - 'tests/vitenskap-theory-integrity.test.mjs'
       - 'tests/fagverk-release-manifest.test.mjs'
       - 'tests/vitenskap-teknologi-category-contract.test.mjs'
       - 'reports/fagverk/**'
@@ -63,6 +65,7 @@ on:
       - 'scripts/audit-fagverk-vitenskap-chemistry-material-science-source-brief.mjs'
       - 'scripts/audit-fagverk-vitenskap-chemistry-material-science-fulltext.mjs'
       - 'scripts/audit-fagverk-vitenskap-medicine-biomedicine-public-health-source-brief.mjs'
+      - 'tools/audit-vitenskap-theory-integrity.mjs'
       - 'tests/fagverk-vitenskap-breadth-reconciliation.test.mjs'
       - 'tests/fagverk-vitenskap-pilot.test.mjs'
       - 'tests/fagverk-vitenskap-university-readiness.test.mjs'
@@ -74,6 +77,7 @@ on:
       - 'tests/fagverk-vitenskap-chemistry-material-science-source-brief.test.mjs'
       - 'tests/fagverk-vitenskap-chemistry-material-science-fulltext.test.mjs'
       - 'tests/fagverk-vitenskap-medicine-biomedicine-public-health-source-brief.test.mjs'
+      - 'tests/vitenskap-theory-integrity.test.mjs'
       - 'reports/fagverk/**'
       - '.github/workflows/fagverk-vitenskap-pilot.yml'
   workflow_dispatch:
@@ -103,6 +107,7 @@ jobs:
           node --check scripts/audit-fagverk-vitenskap-chemistry-material-science-source-brief.mjs
           node --check scripts/audit-fagverk-vitenskap-chemistry-material-science-fulltext.mjs
           node --check scripts/audit-fagverk-vitenskap-medicine-biomedicine-public-health-source-brief.mjs
+          node --check tools/audit-vitenskap-theory-integrity.mjs
       - name: Validate shared Fagverk inventory and engine
         run: |
           node scripts/audit-fagverk-subject-inventory.mjs
@@ -241,6 +246,8 @@ jobs:
           node --test tests/fagverk-vitenskap-chemistry-material-science-source-brief.test.mjs
           node --test tests/fagverk-vitenskap-chemistry-material-science-fulltext.test.mjs
           node --test tests/fagverk-vitenskap-medicine-biomedicine-public-health-source-brief.test.mjs
+          node tools/audit-vitenskap-theory-integrity.mjs
+          node --test tests/vitenskap-theory-integrity.test.mjs
           node --test tests/fagverk-release-manifest.test.mjs
           node --test tests/vitenskap-teknologi-category-contract.test.mjs
       - name: Validate nested Teknologi scientific package

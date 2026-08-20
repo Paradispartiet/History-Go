@@ -17,6 +17,7 @@ import { auditNaturTheoryIntegrity } from '../tools/audit-natur-theory-integrity
 import { auditNaeringslivTheoryIntegrity } from '../tools/audit-naeringsliv-theory-integrity.mjs';
 import { auditPsykologiTheoryIntegrity } from '../tools/audit-psykologi-theory-integrity.mjs';
 import { auditSportTheoryIntegrity } from '../tools/audit-sport-theory-integrity.mjs';
+import { auditVitenskapTheoryIntegrity } from '../tools/audit-vitenskap-theory-integrity.mjs';
 
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const CONTRACT='data/fag/fagverk_theory_quality_contract_v1.json';
@@ -41,7 +42,8 @@ const RUNNERS={
   natur:()=>auditNaturTheoryIntegrity(),
   naeringsliv:()=>auditNaeringslivTheoryIntegrity(),
   psykologi:()=>auditPsykologiTheoryIntegrity(),
-  sport:()=>auditSportTheoryIntegrity()
+  sport:()=>auditSportTheoryIntegrity(),
+  vitenskap:()=>auditVitenskapTheoryIntegrity()
 };
 
 const STRICT_KEYS=[
@@ -133,6 +135,9 @@ export function auditFagverkTheoryIntegrity({writeReport=false,checkReport=true}
   const sportAdapter=adapterById.get('sport');
   assert(sportAdapter?.proof_scope==='structured_subject_gate','Sport må bruke permanent structured subject gate etter 6-felts reconciliation');
   assert(allVerified(sportAdapter?.existing_gate_proves),'Sport structured subject gate må dokumentere alle strict proof-dimensjoner');
+  const vitenskapAdapter=adapterById.get('vitenskap');
+  assert(vitenskapAdapter?.proof_scope==='structured_subject_gate','Vitenskap må bruke permanent structured subject gate etter 6-felts reconciliation');
+  assert(allVerified(vitenskapAdapter?.existing_gate_proves),'Vitenskap structured subject gate må dokumentere alle strict proof-dimensjoner');
 
   const baselineById=new Map(baseline.subjects.map(s=>[s.id,s]));
   const subjects=contract.subjects.map(entry=>{

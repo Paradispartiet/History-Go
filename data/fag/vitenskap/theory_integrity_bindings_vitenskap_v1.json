@@ -1,0 +1,318 @@
+{
+  "schema": "history_go_vitenskap_theory_integrity_bindings_v1",
+  "version": "1.0.0",
+  "status": "canonical",
+  "subject_id": "vitenskap",
+  "profile": "model_evidence",
+  "completion_status_read_only": true,
+  "content_mutation": false,
+  "production_rule": "Modell- og teorinavn er proveniens, ikke trivia. Strict proof krever at hvert canonicalt hovedfelt binder to faglig relevante modeller, mekanismer eller evidensrammer til canonicale emner, avgrenset virkeområde, forutsetninger, observerbart grunnlag, reelle begrensninger, alternativ modell, claimsporet kilde og faktisk kapittelprosa. Personverk er bare påkrevd når en navngitt person er vitenskapelig bærende.",
+  "fields": [
+    {
+      "domain_id": "institusjoner_laboratorier_kunnskapssteder",
+      "comparison": {
+        "model_object_ids": ["vit-institutional-correctability", "vit-place-practice-traceability"],
+        "interpretive_consequence": "Institusjonell korrigerbarhet forklarer hvordan organisering, ansvar og kritikk kan gjøre forskning mer pålitelig, mens praksis–sporbarhetsrammen følger instrument, referanse, prosedyre og data gjennom den konkrete målekjeden. Sammen hindrer de både prestisjebasert autoritetstro og forestillingen om at teknisk utstyr alene produserer evidens."
+      },
+      "model_objects": [
+        {
+          "id": "vit-institutional-correctability",
+          "model_kind": "institutional_evidence_framework",
+          "model_name": "Institusjonell korrigerbarhet og forskningsintegritet",
+          "emne_ids": ["em_vit_institusjonell_autoritet"],
+          "scope": "Rammeverket brukes når universitet, laboratorium, institutt eller forskningsorganisasjon påberopes som kunnskapsautoritet, og prosedyrer, kompetanse, dokumentasjon, ansvarslinjer og feilkorreksjon kan undersøkes konkret.",
+          "core_claim_or_mechanism": "Organisert kompetanse og kontroll kan styrke pålitelighet når data, metoder, avvik, interessekonflikter og kritikk blir sporbare og korrigerbare; institusjonsnavnet er aldri evidens nok for den enkelte konklusjonen.",
+          "assumptions_or_preconditions": ["Relevant ekspertise, arbeidsdeling og kontrollprosedyrer må faktisk finnes i saken og ikke bare beskrives i institusjonens omdømme eller formelle mandat.", "Andre må kunne få tilgang til tilstrekkelige data, metoder, beslutningsspor og ansvarspunkter til å rekonstruere eller utfordre påstanden."],
+          "evidence_or_observable_basis": "Evidensen ligger i dokumenterte integritetsordninger, data- og metodepraksis, avviksbehandling, tilgang til kritikk, opplyste interesser og faktisk korrigering av feil gjennom forskningsprosessen.",
+          "limitations": ["Gode prosedyrer garanterer ikke at hvert resultat er riktig, og formell etterlevelse kan sameksistere med svake design, utilgjengelige data eller uheldige insentiver.", "Institusjonell skepsis er heller ikke en erstatning for evidensanalyse; relevant organisert ekspertise kan være nødvendig selv om autoriteten må begrunnes saklig."],
+          "rival_or_alternative": "Praksis–sporbarhetsrammen er det operative alternativet når spørsmålet ikke primært gjelder organisasjonens korrigerbarhet, men om en bestemt observasjon eller måling kan følges gjennom instrument, referanse og behandling.",
+          "what_it_explains_or_interprets": "Rammeverket forklarer hvorfor begrunnet institusjonell tillit kan være epistemisk relevant uten å bli et autoritetsargument, og hvor organisatoriske forhold kan styrke eller svekke feiloppdagelse.",
+          "interpretive_consequence": "Kapittelprosaen leses som en analyse av kontrollerbare praksiser og ansvarsmekanismer, ikke som rangering av universiteter eller en liste over institusjoner med antatt sannhetsprivilegium.",
+          "scholarly_source": {"source_id": "vit1-19-nasem-integrity", "authority_class": "scholarly_consensus_report", "source_role": "National Academies-rapporten gir faglig syntese av forskningsintegritet som både individuelt og organisatorisk ansvar gjennom planlegging, gjennomføring, rapportering og forvaltning.", "use_limit": "Rapporten begrunner organisatoriske integritetsmekanismer, men brukes ikke som bevis for at en bestemt institusjon eller studie faktisk følger dem eller har produsert et korrekt resultat."},
+          "evidence_binding": {"module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/05-institusjoner-laboratorier-kunnskapssteder.json", "section_id": "vit1-institusjoner-1", "paragraph_index": 0, "claim_id": "vit1-33", "source_id": "vit1-19-nasem-integrity"},
+          "content_bindings": [
+            {"role": "mechanism", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/05-institusjoner-laboratorier-kunnskapssteder.json", "section_id": "vit1-institusjoner-1", "paragraph_index": 1},
+            {"role": "evidence", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/05-institusjoner-laboratorier-kunnskapssteder.json", "section_id": "vit1-institusjoner-1", "paragraph_index": 0},
+            {"role": "limitation_or_alternative", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/05-institusjoner-laboratorier-kunnskapssteder.json", "section_id": "vit1-institusjoner-1", "paragraph_index": 2}
+          ]
+        },
+        {
+          "id": "vit-place-practice-traceability",
+          "model_kind": "measurement_chain",
+          "model_name": "Sted–praksis–sporbarhetskjeden",
+          "emne_ids": ["em_vit_kjemi_laboratorium"],
+          "scope": "Rammeverket brukes på laboratorier og observatorier der prøver, instrumenter, kalibrering, protokoller, referanser, tidsserier og databehandling kan knyttes til den konkrete påstanden som vurderes.",
+          "core_claim_or_mechanism": "Et sted blir vitenskapelig gjennom kontrollerte og dokumenterte praksiser: måleresultatet må kunne spores fra fenomen og prøve via instrument, referanse og behandling til usikkerhet og inferens.",
+          "assumptions_or_preconditions": ["Measurand, instrumentrespons, prøvebehandling og relevante miljø- eller tidsbetingelser må være definert før sporbarhet kan vurderes.", "Referanser, kalibreringer, prosedyrer og datatransformasjoner må være dokumenterte nok til at sammenligning eller reanalyse er mulig."],
+          "evidence_or_observable_basis": "Observerbart grunnlag er kalibreringsjournaler, referansematerialer, blankprøver, instrumentmetadata, stabile observasjonsprosedyrer, behandlingslogger, usikkerhetsbudsjetter og sammenlignbare dataserier.",
+          "limitations": ["Et laboratorium kontrollerer bare spesifiserte forhold; prøveutvalg, konstruktvaliditet, databehandling og overførbarhet kan fortsatt begrense konklusjonen.", "Et observatorium kan produsere lange serier uten at de er homogene dersom instrument, lokasjon, protokoll eller prosessering har endret seg uten tilstrekkelig dokumentasjon."],
+          "rival_or_alternative": "Institusjonell korrigerbarhet er alternativet når målekjeden er teknisk tydelig, men spørsmålet gjelder organisasjonens insentiver, ansvar, åpenhet og evne til å oppdage eller rette feil.",
+          "what_it_explains_or_interprets": "Rammeverket forklarer hvordan materielle steder, instrumenter og rutiner gir kontrollerbar evidens, og hvorfor et avansert apparat eller en kjent bygning ikke alene validerer slutningen.",
+          "interpretive_consequence": "Laboratorium og observatorium analyseres som rekonstruksjonsbare målesystemer med avgrensede kontrollfordeler, ikke som symboler på vitenskapelighet eller universell metodekvalitet.",
+          "scholarly_source": {"source_id": "vit1-20-rcn-research-infrastructure", "authority_class": "national_research_authority", "source_role": "Forskningsrådets infrastrukturbeskrivelse dokumenterer hvordan avansert utstyr, laboratorier, data- og e-infrastruktur, registre, databaser og samlinger inngår i moderne forskningspraksis.", "use_limit": "Kilden avgrenser infrastrukturtyper og funksjoner, men dokumenterer ikke kvaliteten på et bestemt instrument, datasett eller forskningsresultat uten den lokale evidenskjeden."},
+          "evidence_binding": {"module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/05-institusjoner-laboratorier-kunnskapssteder.json", "section_id": "vit1-institusjoner-2", "paragraph_index": 0, "claim_id": "vit1-35", "source_id": "vit1-20-rcn-research-infrastructure"},
+          "content_bindings": [
+            {"role": "mechanism", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/05-institusjoner-laboratorier-kunnskapssteder.json", "section_id": "vit1-institusjoner-2", "paragraph_index": 0},
+            {"role": "evidence", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/05-institusjoner-laboratorier-kunnskapssteder.json", "section_id": "vit1-institusjoner-2", "paragraph_index": 1},
+            {"role": "limitation_or_alternative", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/05-institusjoner-laboratorier-kunnskapssteder.json", "section_id": "vit1-institusjoner-2", "paragraph_index": 2}
+          ]
+        }
+      ]
+    },
+    {
+      "domain_id": "metoder_maling_modeller",
+      "comparison": {
+        "model_object_ids": ["vit-experimental-identification", "vit-model-validation-domain"],
+        "interpretive_consequence": "Eksperimentell identifikasjon vurderer om designet skiller en hypotese fra relevante alternative forklaringer, mens modellvalidering vurderer om en selektiv representasjon og dens implementasjon er adekvat innen et bestemt bruksområde. Sammen skiller de kontroll av datagenerering fra kontroll av representasjon og ekstrapolasjon."
+      },
+      "model_objects": [
+        {
+          "id": "vit-experimental-identification",
+          "model_kind": "causal_inference_framework",
+          "model_name": "Eksperimentell identifikasjon og replikasjon",
+          "emne_ids": ["em_vit_hypotese_observasjon", "em_vit_eksperiment_variabler", "em_vit_kontroll_replikasjon"],
+          "scope": "Rammeverket brukes når en hypotese kobles til observerbare konsekvenser gjennom et design med definerte utfall, planlagt variasjon, kontroll eller randomisering og relevante alternative forklaringer.",
+          "core_claim_or_mechanism": "Designet bestemmer hvilke kontraster data kan støtte: planlagt variasjon og kontroll kan isolere effekter, mens uavhengig replikasjon undersøker om kunnskapskravet står utenfor originaldatasettet.",
+          "assumptions_or_preconditions": ["Utfallet må representere fenomenet tilstrekkelig, og manipulasjon, kontrollbetingelser og analyse må svare på samme vitenskapelige spørsmål.", "Forvekslingsfaktorer, seleksjon, statistisk styrke og avvik mellom original og replikasjon må være synlige før resultatene sammenlignes."],
+          "evidence_or_observable_basis": "Evidensen består av forhåndsdefinerte kontraster, målte responser, kontrollbetingelser, manipulasjonskontroll, usikkerhetsanalyse og uavhengige datasett som tester samme påstand.",
+          "limitations": ["Et kontrollert eksperiment kan fortsatt ha svak måling, lav styrke, manglende etterlevelse, seleksjon eller begrenset ekstern validitet.", "Et negativt replikasjonsresultat falsifiserer ikke automatisk en hel teori dersom design, kontekst eller måling ikke tester samme operative hypotese."],
+          "rival_or_alternative": "Modellvalideringsrammen er alternativet når datagenereringen er kjent, men hovedproblemet er om modellens variabler, idealiseringer, parametre og numeriske implementasjon støtter slutningen.",
+          "what_it_explains_or_interprets": "Rammeverket forklarer hvorfor empiri bare blir evidens i forhold til en bestemt påstand og hvilke designledd som gjør konkurrerende årsaksforklaringer mer eller mindre plausible.",
+          "interpretive_consequence": "Metodeprosaen brukes til å rekonstruere identifikasjonslogikken, ikke til en enkel oppskrift der ordet eksperiment automatisk gir kausal sannhet.",
+          "scholarly_source": {"source_id": "vit1-12-nist-experimental-design", "authority_class": "national_scientific_authority", "source_role": "NISTs metodehåndbok definerer eksperimentdesign gjennom planlagt variasjon av faktorer og observasjon av målte responser for å trekke gyldige, objektive slutninger om systemet.", "use_limit": "Kilden gir generelle designprinsipper, men validerer ikke et konkret eksperiment og erstatter ikke domenespesifikk vurdering av måling, etikk, utvalg eller overførbarhet."},
+          "evidence_binding": {"module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/04-metoder-maling-modeller.json", "section_id": "vit1-metoder-1", "paragraph_index": 0, "claim_id": "vit1-19", "source_id": "vit1-12-nist-experimental-design"},
+          "content_bindings": [
+            {"role": "mechanism", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/04-metoder-maling-modeller.json", "section_id": "vit1-metoder-1", "paragraph_index": 0},
+            {"role": "evidence", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/04-metoder-maling-modeller.json", "section_id": "vit1-metoder-1", "paragraph_index": 1},
+            {"role": "limitation_or_alternative", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/04-metoder-maling-modeller.json", "section_id": "vit1-metoder-1", "paragraph_index": 2}
+          ]
+        },
+        {
+          "id": "vit-model-validation-domain",
+          "model_kind": "model_validation_framework",
+          "model_name": "Formålsbundet modellvalidering og sensitivitetsanalyse",
+          "emne_ids": ["em_vit_abstraksjon_forenkling", "em_vit_matematikk_modellering"],
+          "scope": "Rammeverket brukes på matematiske og komputasjonelle modeller der mål-system, variabler, idealiseringer, kalibreringsdata, implementasjon og konkret bruksformål kan skilles og kontrolleres.",
+          "core_claim_or_mechanism": "Modeller muliggjør forklaring og beregning ved selektiv forenkling, men adekvans krever separat kontroll av intern implementasjon, tilpasning til observasjoner, sensitivitet og gyldighetsområde.",
+          "assumptions_or_preconditions": ["Mål-system, formål og hvilke egenskaper modellen skal representere må være eksplisitte nok til at valideringskriteriene kan begrunnes.", "Kalibrering og validering må holdes analytisk adskilt, og relevante alternative spesifikasjoner eller uavhengige data må finnes når robusthet hevdes."],
+          "evidence_or_observable_basis": "Observerbart grunnlag er residualer, prediksjonsfeil, uavhengige valideringsdata, sensitivitetsanalyser, robuste resultater ved endrede parametre og dokumenterte implementasjonstester.",
+          "limitations": ["Intern matematisk korrekthet eller feilfri kode viser ikke at variablene og mekanismene representerer mål-systemet godt nok for bruken.", "God tilpasning innen kalibreringsområdet støtter ikke automatisk ekstrapolasjon til nye skalaer, populasjoner, regimer eller beslutningssituasjoner."],
+          "rival_or_alternative": "Eksperimentell identifikasjon er alternativet når spørsmålet gjelder hvordan nye data kan isolere en årsakseffekt, ikke hvordan en allerede formulert modell representerer og generaliserer.",
+          "what_it_explains_or_interprets": "Rammeverket forklarer hvorfor nyttige idealiseringer kan være vitenskapelig sterke, og hvordan verifikasjon, validering og egnethet for formål setter forskjellige grenser for modellpåstander.",
+          "interpretive_consequence": "Modellprosaen vurderes gjennom eksplisitte antakelser, robusthet og bruksområde, ikke gjennom realisme i grafikk, høy R² eller teknisk kompleksitet alene.",
+          "scholarly_source": {"source_id": "vit1-13-nist-model-validation", "authority_class": "national_scientific_authority", "source_role": "NISTs modellvalideringsmateriale dokumenterer residualanalyse og andre kontroller som kreves utover ett tilpasningsmål når en statistisk modell vurderes mot data.", "use_limit": "Kilden brukes til generell valideringslogikk og kan ikke alene avgjøre representasjon, kausal mekanisme eller bruksgrenser i et bestemt fagdomene."},
+          "evidence_binding": {"module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/04-metoder-maling-modeller.json", "section_id": "vit1-metoder-4", "paragraph_index": 0, "claim_id": "vit1-25", "source_id": "vit1-13-nist-model-validation"},
+          "content_bindings": [
+            {"role": "mechanism", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/04-metoder-maling-modeller.json", "section_id": "vit1-metoder-4", "paragraph_index": 0},
+            {"role": "evidence", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/04-metoder-maling-modeller.json", "section_id": "vit1-metoder-4", "paragraph_index": 1},
+            {"role": "limitation_or_alternative", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/04-metoder-maling-modeller.json", "section_id": "vit1-metoder-4", "paragraph_index": 2}
+          ]
+        }
+      ]
+    },
+    {
+      "domain_id": "paradigmer_teorier_sannhet",
+      "comparison": {
+        "model_object_ids": ["vit-selective-model-representation", "vit-kuhn-paradigm-change"],
+        "interpretive_consequence": "Selektiv modellrepresentasjon vurderer adekvans for en bestemt inferens i et avgrenset mål-system, mens Kuhns paradigmeramme undersøker bredere historiske endringer i eksempler, problemer, standarder og begreper. Sammen hindrer de at enhver modellfeil kalles paradigmekrise og at enhver teoriendring behandles som ren lokal parameterjustering."
+      },
+      "model_objects": [
+        {
+          "id": "vit-selective-model-representation",
+          "model_kind": "epistemic_model_framework",
+          "model_name": "Selektiv modellrepresentasjon og empirisk adekvans",
+          "emne_ids": ["em_vit_teori_modell"],
+          "scope": "Rammeverket brukes når vitenskapelige modeller representerer et valgt mål-system gjennom variable, relasjoner, idealiseringer eller mekanismer, og den konkrete inferensen må vurderes relativt til formål og domene.",
+          "core_claim_or_mechanism": "En modell er et selektivt epistemisk redskap, ikke et speilbilde; kvalitet avhenger av hvilke trekk som bevares, hvilke idealiseringer som brukes, og om den aktuelle slutningen overlever empirisk og representasjonell kontroll.",
+          "assumptions_or_preconditions": ["Mål-system, representasjonsforhold og den påståtte inferensen må spesifiseres før det kan avgjøres hvilke modellforskjeller som er relevante.", "Intern implementasjon, empirisk tilpasning og filosofisk spørsmål om hva modellen representerer må holdes som separate kontrollnivåer."],
+          "evidence_or_observable_basis": "Evidens kommer fra modellens prediksjoner, residualer, uavhengige observasjoner, robuste sammenligninger og eksplisitt analyse av hvordan idealiseringene påvirker den påståtte overføringen til mål-systemet.",
+          "limitations": ["En modell kan være empirisk adekvat for én oppgave uten at alle uobserverbare strukturer eller mekanismer bør tolkes bokstavelig.", "Validering i ett regime eller etter ett kriterium dokumenterer ikke automatisk forklaringskraft, sannhet eller anvendelighet utenfor dette området."],
+          "rival_or_alternative": "Kuhns paradigmeramme er alternativet når analyseenheten ikke er én modells lokale adekvans, men en historisk transformasjon av et helt forskningsfelts problemer, standarder og begrepsapparat.",
+          "what_it_explains_or_interprets": "Rammeverket forklarer hvordan idealiserte og forenklede modeller kan bære kunnskap, og hvorfor modellkritikk må knyttes til den bestemte funksjonen og slutningen modellen brukes til.",
+          "interpretive_consequence": "Teori- og modellprosaen blir en gradert inferensanalyse der representasjon, validering og sannhetsnivå skilles, ikke en generell debatt om modellen er helt sann eller helt falsk.",
+          "scholarly_source": {"source_id": "vit1-49-sep-models-science", "authority_class": "scholarly_reference", "source_role": "Stanford Encyclopedia of Philosophy sammenfatter faglitteraturen om modeller som selektive og idealiserte representasjoner, epistemiske verktøy og bærere av avgrensede slutninger.", "use_limit": "Oppslagsverket gir forskningsbasert syntese, men dokumenterer ikke empirisk ytelse eller gyldighetsområde for en konkret naturvitenskapelig modell uten domenedata."},
+          "evidence_binding": {"module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/09-paradigmer-teorier-sannhet.json", "section_id": "vit1-paradigme-1", "paragraph_index": 0, "claim_id": "vit1-86", "source_id": "vit1-49-sep-models-science"},
+          "content_bindings": [
+            {"role": "mechanism", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/09-paradigmer-teorier-sannhet.json", "section_id": "vit1-paradigme-1", "paragraph_index": 0},
+            {"role": "evidence", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/09-paradigmer-teorier-sannhet.json", "section_id": "vit1-paradigme-1", "paragraph_index": 1},
+            {"role": "limitation_or_alternative", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/09-paradigmer-teorier-sannhet.json", "section_id": "vit1-paradigme-1", "paragraph_index": 2}
+          ]
+        },
+        {
+          "id": "vit-kuhn-paradigm-change",
+          "model_kind": "historical_epistemic_framework",
+          "model_name": "Kuhnsk paradigmeendring med kontinuitetskontroll",
+          "emne_ids": ["em_vit_paradigmeskifte", "em_vit_vitenskapelige_revolusjoner", "em_vit_faglig_konflikt"],
+          "scope": "Rammeverket brukes på dokumenterte historiske endringer der eksempler, problemtyper, standarder, begreper, instrumenter eller institusjonelle praksiser endres sammen og kontinuitet kan sammenlignes med brudd.",
+          "core_claim_or_mechanism": "Normal forskning stabiliseres gjennom delte eksempler og standarder; dypere vitenskapelig endring kan omforme flere deler av rammen samtidig, men anomalier eller én ny artikkel er ikke alene et paradigmeskifte.",
+          "assumptions_or_preconditions": ["Historisk evidens må vise hvilke praksiser, begreper og standarder som faktisk endret seg, og hvilke som ble videreført gjennom transformasjonen.", "Faglig konflikt må dekomponeres i data, modell, måling, evidensstandard og problemvalg før den tolkes som paradigmekonflikt."],
+          "evidence_or_observable_basis": "Grunnlaget er historiske forskningspraksiser, lærebokeksempler, instrumenter, problemvalg, standarder, samtidige tekster og dokumentert endring eller kontinuitet i hvordan feltet løser problemer.",
+          "limitations": ["Revolusjonsbegrepet kan overdrive skarpe brudd og skjule kontinuitet i data, teknikker, personale og lokale praksiser.", "Vedvarende uenighet kan skyldes manglende data, ulike modeller eller praktiske mål uten at hele feltets paradigme er i krise."],
+          "rival_or_alternative": "Selektiv modellrepresentasjon er alternativet når konflikten gjelder én modells idealisering, validering eller bruksområde fremfor en bred historisk endring i forskningsrammen.",
+          "what_it_explains_or_interprets": "Rammeverket fortolker hvorfor normal forskning kan være produktiv innen stabile standarder, og når endring i begreper og praksis er dyp nok til å kreve mer enn lokal modellkritikk.",
+          "interpretive_consequence": "Paradigme og revolusjon brukes som krevende historisk-epistemiske kategorier med eksplisitt kontinuitetskontroll, ikke som pynt på enhver ny teori eller offentlig ekspertuenighet.",
+          "scholarly_source": {"source_id": "vit1-54-sep-thomas-kuhn", "authority_class": "scholarly_reference", "source_role": "Stanford Encyclopedia of Philosophy gir forskningsbasert syntese av Kuhns paradigmer, normalvitenskap, anomalier, krise, revolusjoner, inkommensurabilitet og senere presiseringer.", "use_limit": "Kilden dokumenterer rammeverkets faglige innhold, men en konkret historisk episode kan bare klassifiseres som paradigmeendring gjennom selvstendig primær- og forskningshistorisk evidens."},
+          "evidence_binding": {"module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/09-paradigmer-teorier-sannhet.json", "section_id": "vit1-paradigme-5", "paragraph_index": 0, "claim_id": "vit1-94", "source_id": "vit1-54-sep-thomas-kuhn"},
+          "content_bindings": [
+            {"role": "mechanism", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/09-paradigmer-teorier-sannhet.json", "section_id": "vit1-paradigme-5", "paragraph_index": 0},
+            {"role": "evidence", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/09-paradigmer-teorier-sannhet.json", "section_id": "vit1-paradigme-5", "paragraph_index": 1},
+            {"role": "limitation_or_alternative", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/09-paradigmer-teorier-sannhet.json", "section_id": "vit1-paradigme-5", "paragraph_index": 2}
+          ]
+        }
+      ]
+    },
+    {
+      "domain_id": "teknologi_data_infrastruktur",
+      "comparison": {
+        "model_object_ids": ["vit-computational-reproducibility", "vit-data-provenance-fair"],
+        "interpretive_consequence": "Komputasjonell reproducerbarhet følger om samme input, kode, parametre og miljø kan rekonstruere beregningen, mens provenance–FAIR-rammen følger dataenes transformasjon og betingelser for ansvarlig gjenbruk. Sammen viser de at verken samme kode eller teknisk tilgjengelige data alene etablerer vitenskapelig validitet."
+      },
+      "model_objects": [
+        {
+          "id": "vit-computational-reproducibility",
+          "model_kind": "computational_evidence_framework",
+          "model_name": "Komputasjonell reproducerbarhet med miljørobusthet",
+          "emne_ids": ["em_vit_beregning", "em_vit_automatisering"],
+          "scope": "Rammeverket brukes når algoritmer, kode, numeriske representasjoner, data, parametre, avhengigheter og maskinvaremiljø inngår i en vitenskapelig beregning som skal rekonstrueres eller granskes.",
+          "core_claim_or_mechanism": "Samme data og beregningssteg kan teste komputasjonell reproducerbarhet, mens replikasjon krever nye data; relevant robusthet krever i tillegg at slutningen tåler rimelige numeriske og miljømessige variasjoner.",
+          "assumptions_or_preconditions": ["Input, kodeversjon, parametre, avhengigheter, utførelsesrekkefølge og toleranser må være identifisert slik at beregningen kan gjenskapes.", "Automatiserte trinn må testes mot forskningsspørsmålet og mellomresultater, ikke bare vurderes etter om pipeline fullfører uten teknisk feil."],
+          "evidence_or_observable_basis": "Evidensen består av reproduksjonskjøringer, versjonslåste miljøer, testdata, mellomresultater, numeriske toleranser og analyser av om slutningen står ved realistiske variasjoner i bibliotek, presisjon og maskinvare.",
+          "limitations": ["Bit-for-bit-reproduksjon kan gjenta en systematisk data-, modell- eller kodefeil og er derfor ikke synonymt med vitenskapelig validering.", "Numeriske forskjeller mellom miljøer er ikke automatisk substansielle; betydningen må vurderes mot toleranser, effektstørrelse og konklusjonens robusthet."],
+          "rival_or_alternative": "Provenance–FAIR-rammen er alternativet når beregningen lar seg gjenskape, men hovedspørsmålet er hvor data kommer fra, hvordan de ble transformert og om de kan gjenbrukes til et nytt formål.",
+          "what_it_explains_or_interprets": "Rammeverket forklarer hvorfor kode, data og maskinvare er del av evidenskjeden, og hvordan komputasjonell reproduksjon skiller seg fra empirisk replikasjon og modellvalidering.",
+          "interpretive_consequence": "Digital vitenskap vurderes på rekonstruksjon og robust vitenskapelig slutning, ikke på at samme skript kan kjøres eller at automatiseringen produserer identisk output.",
+          "scholarly_source": {"source_id": "vit1-06-nasem-reproducibility", "authority_class": "scholarly_consensus_report", "source_role": "National Academies-rapporten skiller komputasjonell reproducerbarhet med samme data og beregningssteg fra replikasjon med nye data for det samme vitenskapelige spørsmålet.", "use_limit": "Rapportens definisjoner dokumenterer kontrolltypene, men viser ikke at en konkret kodebase er robust, korrekt implementert eller vitenskapelig validert."},
+          "evidence_binding": {"module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/07-teknologi-data-infrastruktur.json", "section_id": "vit1-digital-1", "paragraph_index": 0, "claim_id": "vit1-62", "source_id": "vit1-06-nasem-reproducibility"},
+          "content_bindings": [
+            {"role": "mechanism", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/07-teknologi-data-infrastruktur.json", "section_id": "vit1-digital-1", "paragraph_index": 0},
+            {"role": "evidence", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/07-teknologi-data-infrastruktur.json", "section_id": "vit1-digital-1", "paragraph_index": 1},
+            {"role": "limitation_or_alternative", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/07-teknologi-data-infrastruktur.json", "section_id": "vit1-digital-1", "paragraph_index": 2}
+          ]
+        },
+        {
+          "id": "vit-data-provenance-fair",
+          "model_kind": "data_lifecycle_framework",
+          "model_name": "Dataproveniens, FAIR og formålsbundet gjenbruk",
+          "emne_ids": ["em_vit_datasett", "em_vit_digital_vitenskap"],
+          "scope": "Rammeverket brukes på forskningsdata som beveger seg gjennom innhenting, kalibrering, filtrering, kobling, analyse, deling, bevaring og gjenbruk, med dokumenterbare aktører og transformasjoner.",
+          "core_claim_or_mechanism": "Proveniens knytter avledede data til input, aktiviteter, programvare, ansvar og versjon, mens FAIR gjør data og metadata lettere å finne, få tilgang til, koble og gjenbruke uten å garantere validitet.",
+          "assumptions_or_preconditions": ["Dataobjekter, transformasjoner, programvare, parametre og ansvarlige aktører må kunne identifiseres gjennom hele den relevante livssyklusen.", "Nytt bruksformål må sammenlignes med opprinnelig utvalg, målekonstrukt, datakvalitet, lisens, etikk og representativitet før gjenbruk."],
+          "evidence_or_observable_basis": "Observerbart grunnlag er maskinlesbar provenance, metadata, versjons- og behandlingslogger, dokumenterte dataordbøker, vedvarende identifikatorer, tilgangsbetingelser og faglig vurdert fitness for purpose.",
+          "limitations": ["FAIRness og interoperabilitet kan være høy selv om målingene er skjeve, utvalget ikke er representativt eller datasettet er uegnet til spørsmålet.", "Detaljert provenance gjør transformasjonen synlig, men reparerer ikke nødvendigvis tapte data, ukjent seleksjon eller svak konstruktvaliditet."],
+          "rival_or_alternative": "Komputasjonell reproducerbarhet er alternativet når datahistorien er godt dokumentert, men spørsmålet gjelder om den konkrete analysen og dens tekniske miljø kan gjenskapes og tåle variasjon.",
+          "what_it_explains_or_interprets": "Rammeverket forklarer hvordan dataenes historie bærer epistemisk informasjon, og hvorfor teknisk tilgjengelighet må kombineres med ny faglig vurdering før avledede analyser kan brukes som evidens.",
+          "interpretive_consequence": "Datasett analyseres som historiske, transformerte forskningsobjekter med gjenbruksgrenser, ikke som nøytrale tabeller der åpenhet eller standardformat fungerer som sannhetsstempel.",
+          "scholarly_source": {"source_id": "vit1-40-fair-principles", "authority_class": "peer_reviewed_article", "source_role": "Den fagfellevurderte FAIR-artikkelen formulerer prinsippene for findability, accessibility, interoperability og reusability for forskningsdata og metadata.", "use_limit": "FAIR-prinsippene beskriver datastyring og gjenbrukbarhet, men brukes ikke som bevis for målevaliditet, representativitet, fravær av bias eller egnethet til et nytt spørsmål."},
+          "evidence_binding": {"module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/07-teknologi-data-infrastruktur.json", "section_id": "vit1-digital-2", "paragraph_index": 2, "claim_id": "vit1-67", "source_id": "vit1-40-fair-principles"},
+          "content_bindings": [
+            {"role": "mechanism", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/07-teknologi-data-infrastruktur.json", "section_id": "vit1-digital-2", "paragraph_index": 1},
+            {"role": "evidence", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/07-teknologi-data-infrastruktur.json", "section_id": "vit1-digital-2", "paragraph_index": 0},
+            {"role": "limitation_or_alternative", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/07-teknologi-data-infrastruktur.json", "section_id": "vit1-digital-2", "paragraph_index": 2}
+          ]
+        }
+      ]
+    },
+    {
+      "domain_id": "natur_medisin_miljo",
+      "comparison": {
+        "model_object_ids": ["vit-epidemiological-population-inference", "vit-ecological-risk-system"],
+        "interpretive_consequence": "Epidemiologisk populasjonsinferens analyserer fordeling, determinanter, sammenligning og bias i spesifiserte menneskepopulasjoner, mens økologisk risikoramme avgrenser stressorer, eksponeringsveier, endepunkter og nivåer i miljøsystemer. Sammen hindrer de overføring fra enkel observasjon til årsak, individråd eller uavgrenset systempåstand."
+      },
+      "model_objects": [
+        {
+          "id": "vit-epidemiological-population-inference",
+          "model_kind": "population_evidence_framework",
+          "model_name": "Epidemiologisk populasjonsinferens med bias-kontroll",
+          "emne_ids": ["em_vit_epidemiologi", "em_vit_medisin_helse"],
+          "scope": "Rammeverket brukes på systematiske studier av fordeling og determinanter for helserelaterte tilstander i spesifiserte populasjoner, med eksplisitt design, sammenligningsgrunnlag og overførbarhet.",
+          "core_claim_or_mechanism": "Observerte populasjonsmønstre kan informere om risiko og mulige årsaker når tidsrekkefølge, sammenligning, confounding, seleksjon, informasjonsskjevhet og tilfeldighet vurderes i samme inferenskjede.",
+          "assumptions_or_preconditions": ["Populasjon, eksponering, utfall, tidsvindu og sammenligningsgruppe må være operasjonalisert slik at assosiasjonen har en bestemt estimand eller fortolkning.", "Måling, inklusjon, frafall og relevante confoundere må være dokumentert nok til at alternative forklaringer kan undersøkes."],
+          "evidence_or_observable_basis": "Evidensen består av populasjonsdata, studiedesign, tidsrekkefølge, sammenligningsgrupper, effektmål, usikkerhet, sensitivitetsanalyser og analyser av selection bias, information bias og confounding.",
+          "limitations": ["En statistisk assosiasjon eller lav p-verdi etablerer ikke alene årsak, klinisk betydning eller virkning for et bestemt individ.", "Resultater kan ha begrenset overførbarhet når populasjon, behandling, utfallsmål, oppfølging, praksis eller tidsperiode avviker fra bruksområdet."],
+          "rival_or_alternative": "Økologisk risikoramme er alternativet når analyseenheten er eksponeringsveier, stressorer og endepunkter i flernivå-miljøsystemer fremfor helsemønstre i en definert menneskepopulasjon.",
+          "what_it_explains_or_interprets": "Rammeverket forklarer hvilke design- og biasbetingelser som må være oppfylt før populasjonsmønstre kan tolkes kausalt eller brukes til folkehelsebeslutninger.",
+          "interpretive_consequence": "Medisinsk evidens holdes på populasjons- og studiedesignnivå, med eksplisitt avstand til diagnose, individuell prognose eller behandlingsråd.",
+          "scholarly_source": {"source_id": "vit1-41-cdc-principles-epi", "authority_class": "national_public_health_authority", "source_role": "CDCs epidemiologiske læremateriale definerer feltet som systematisk, datadrevet studie av fordeling og determinanter i spesifiserte populasjoner.", "use_limit": "Kilden gir generell epidemiologisk ramme og kan ikke brukes til individuell diagnose, behandlingsvalg eller kausal konklusjon i en konkret studie uten design- og biasanalyse."},
+          "evidence_binding": {"module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/08-natur-medisin-miljo.json", "section_id": "vit1-natur-2", "paragraph_index": 0, "claim_id": "vit1-74", "source_id": "vit1-41-cdc-principles-epi"},
+          "content_bindings": [
+            {"role": "mechanism", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/08-natur-medisin-miljo.json", "section_id": "vit1-natur-2", "paragraph_index": 0},
+            {"role": "evidence", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/08-natur-medisin-miljo.json", "section_id": "vit1-natur-2", "paragraph_index": 1},
+            {"role": "limitation_or_alternative", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/08-natur-medisin-miljo.json", "section_id": "vit1-natur-2", "paragraph_index": 2}
+          ]
+        },
+        {
+          "id": "vit-ecological-risk-system",
+          "model_kind": "systems_risk_framework",
+          "model_name": "Økologisk system- og risikokarakterisering",
+          "emne_ids": ["em_vit_okologi_system", "em_vit_systemtenkning", "em_vit_miljo_okologi_system"],
+          "scope": "Rammeverket brukes når stressorer, eksponeringsveier, økologiske enheter, endepunkter, relasjoner, tidsforsinkelser og analysenivåer kan avgrenses i et dokumentert miljøsystem.",
+          "core_claim_or_mechanism": "Systemanalyse blir testbar når grense, endepunkter og konseptuell modell er eksplisitte; risiko karakteriseres gjennom koblingen mellom eksponering, effekt, usikkerhet og hvilke økologiske verdier som faktisk vurderes.",
+          "assumptions_or_preconditions": ["Systemgrense, rom- og tidsskala, stressorer, eksponeringsveier og beskyttelsesverdige endepunkter må velges og begrunnes før analyse.", "Forbindelser, feedback og overføring mellom individ-, populasjons-, samfunns- og økosystemnivå må formuleres som testbare relasjoner."],
+          "evidence_or_observable_basis": "Observerbart grunnlag er målt eksponering, responsdata, konseptuelle modeller, analyser av koblinger og tidsforsinkelser, usikkerhetskarakterisering og separate estimater på relevante biologiske nivåer.",
+          "limitations": ["Å inkludere mange variable uten begrunnet grense gjør ikke systemmodellen mer sann og kan skjule hvilke relasjoner som faktisk er identifisert.", "Respons på individnivå kan ikke automatisk overføres til bestand eller økosystem, og risikokarakterisering bestemmer ikke alene hvilken politikk som bør velges."],
+          "rival_or_alternative": "Epidemiologisk populasjonsinferens er alternativet når spørsmålet gjelder helserelaterte utfall og determinanter i definerte menneskepopulasjoner fremfor flernivå økologiske endepunkter.",
+          "what_it_explains_or_interprets": "Rammeverket forklarer hvordan miljømessig evidens kan organiseres rundt avgrensede enheter og eksponeringsveier uten å redusere systemtenkning til påstanden om at alt henger sammen.",
+          "interpretive_consequence": "Miljøprosaen skiller vitenskapelig risikokarakterisering fra normative beslutningsregler og krever at usikkerhet, nivåoverføring og systemgrense forblir synlige.",
+          "scholarly_source": {"source_id": "vit1-48-epa-ecological-risk", "authority_class": "national_scientific_authority", "source_role": "EPAs økologiske risikoramme dokumenterer problemformulering, endepunkter, stressorer, eksponeringsveier, konseptuelle modeller, analyse og risikokarakterisering.", "use_limit": "Rammeverket organiserer vitenskapelig risikovurdering, men velger ikke samfunnets beskyttelsesnivå eller politikk og erstatter ikke lokale eksponerings- og effektdata."},
+          "evidence_binding": {"module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/08-natur-medisin-miljo.json", "section_id": "vit1-natur-6", "paragraph_index": 0, "claim_id": "vit1-82", "source_id": "vit1-48-epa-ecological-risk"},
+          "content_bindings": [
+            {"role": "mechanism", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/08-natur-medisin-miljo.json", "section_id": "vit1-natur-6", "paragraph_index": 0},
+            {"role": "evidence", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/08-natur-medisin-miljo.json", "section_id": "vit1-natur-6", "paragraph_index": 1},
+            {"role": "limitation_or_alternative", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/08-natur-medisin-miljo.json", "section_id": "vit1-natur-6", "paragraph_index": 2}
+          ]
+        }
+      ]
+    },
+    {
+      "domain_id": "samfunn_makt_etikk",
+      "comparison": {
+        "model_object_ids": ["vit-expertise-decision-boundary", "vit-calibrated-risk-uncertainty"],
+        "interpretive_consequence": "Ekspertise–beslutningsgrensen skiller faglig vurdering av evidens fra legitimt valg mellom verdier og fordelinger, mens kalibrert risiko–usikkerhet skiller sannsynlighet, konsekvens, evidensstyrke og kunnskapshull. Sammen viser de hvordan forskning kan være handlingsrelevant uten å skjule normative valg eller late som usikkerhet er eliminert."
+      },
+      "model_objects": [
+        {
+          "id": "vit-expertise-decision-boundary",
+          "model_kind": "science_governance_framework",
+          "model_name": "Ekspertise–evidens–beslutningsgrensen",
+          "emne_ids": ["em_vit_ekspertmakt", "em_vit_samfunnsrolle"],
+          "scope": "Rammeverket brukes når eksperter eller fagmiljøer vurderer evidens i samfunnsspørsmål der anbefalinger samtidig berører verdier, rettigheter, kostnader, fordelinger eller politiske mål.",
+          "core_claim_or_mechanism": "Ekspertise gir asymmetrisk kompetanse til å vurdere metode og litteratur, men beslutningsmandat følger ikke automatisk; overgangen fra empirisk konklusjon til normativ anbefaling må gjøres eksplisitt.",
+          "assumptions_or_preconditions": ["Det må avklares hvilket fagfelt eksperten faktisk behersker, hvilket evidensgrunnlag som brukes, og om utsagnet er funn, prognose eller normativ anbefaling.", "Alternative faglige vurderinger, usikkerhet, interesser og verdibetingede premisser må være synlige nok til offentlig og institusjonell etterprøving."],
+          "evidence_or_observable_basis": "Grunnlaget er dokumentert fagkompetanse, sporbare kilder og metoder, eksplisitte usikkerheter, opplyste interesser, motargumenter og tydelig separasjon mellom empiriske og normative premisser.",
+          "limitations": ["En ekspert kan ta feil uten at ekspertise er irrelevant, og offentlig motstand viser ikke i seg selv at faglig konsensus er svak.", "Å skille nivåene gjør ikke verdier uviktige; det viser nettopp hvor evidens slutter og legitime rettighets-, kostnads- eller fordelingsvalg begynner."],
+          "rival_or_alternative": "Kalibrert risiko–usikkerhet er alternativet når aktør- og mandatgrensen er avklart, men spørsmålet gjelder hvordan styrken, sannsynligheten og restusikkerheten i selve vurderingen skal uttrykkes.",
+          "what_it_explains_or_interprets": "Rammeverket forklarer hvordan vitenskapelig autoritet kan bidra til samfunnsbeslutninger uten å bli et beslutningsmonopol, og hvordan begrunnet tillit kan kombineres med demokratisk ansvar.",
+          "interpretive_consequence": "Ekspertmakt analyseres gjennom evidens, mandat og synlige normative ledd, ikke som et valg mellom ukritisk autoritetstro og forestillingen om at alle vurderinger er like faglige.",
+          "scholarly_source": {"source_id": "vit1-28-nent-2024", "authority_class": "national_research_ethics_authority", "source_role": "NENTs forskningsetiske retningslinjer kobler vitenskapelig integritet, samfunnsrolle, offentlig samtale og organisatorisk ansvar i naturvitenskap og teknologi.", "use_limit": "Retningslinjene gir normativt og institusjonelt rammeverk, men avgjør ikke alene en konkret politisk beslutning eller den empiriske sannheten i et bestemt forskningsresultat."},
+          "evidence_binding": {"module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/06-samfunn-makt-etikk.json", "section_id": "vit1-samfunn-1", "paragraph_index": 0, "claim_id": "vit1-47", "source_id": "vit1-28-nent-2024"},
+          "content_bindings": [
+            {"role": "mechanism", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/06-samfunn-makt-etikk.json", "section_id": "vit1-samfunn-1", "paragraph_index": 0},
+            {"role": "evidence", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/06-samfunn-makt-etikk.json", "section_id": "vit1-samfunn-1", "paragraph_index": 1},
+            {"role": "limitation_or_alternative", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/06-samfunn-makt-etikk.json", "section_id": "vit1-samfunn-1", "paragraph_index": 2}
+          ]
+        },
+        {
+          "id": "vit-calibrated-risk-uncertainty",
+          "model_kind": "risk_evidence_framework",
+          "model_name": "Kalibrert risiko- og usikkerhetsvurdering",
+          "emne_ids": ["em_vit_risiko_usikkerhet"],
+          "scope": "Rammeverket brukes når mulige utfall, sannsynlighet, eksponering, konsekvens, sårbarhet, evidensstyrke, faglig enighet og kunnskapshull må kommuniseres i en beslutningsrelevant vurdering.",
+          "core_claim_or_mechanism": "Risiko og usikkerhet er forskjellige dimensjoner; kalibrert språk knytter vurderingens styrke til evidens og enighet og uttrykker sannsynlighet uten å komprimere alt til merkelapper som trygt eller farlig.",
+          "assumptions_or_preconditions": ["Utfall, eksponering, konsekvens og relevant tids- eller populasjonsramme må spesifiseres før sannsynlighet og usikkerhet kan gis meningsfull tolkning.", "Confidence- og likelihood-uttrykk må brukes konsekvent og knyttes til eksplisitt evidens, faglig enighet og de faktorene som driver restusikkerhet."],
+          "evidence_or_observable_basis": "Grunnlaget er dokumenterte datasett, modeller, scenarioer, ekspertvurderinger, kalibrerte sannsynlighetsuttrykk, evidensstyrke, enighet og eksplisitte kunnskapshull eller sensitiviteter.",
+          "limitations": ["Kalibrert språk kan gi falsk presisjon hvis kategoriene ikke er støttet av transparent evidensvurdering eller hvis scenarioforutsetningene skjules.", "Vitenskapelig risikokarakterisering bestemmer ikke alene akseptabel risiko, kostnadsfordeling, rettigheter eller om føre-var-hensyn bør dominere beslutningen."],
+          "rival_or_alternative": "Ekspertise–beslutningsgrensen er alternativet når usikkerheten er godt karakterisert, men spørsmålet gjelder hvem som har mandat til å kombinere evidensen med verdier og fordelingshensyn.",
+          "what_it_explains_or_interprets": "Rammeverket forklarer hvordan sterk, svak og betinget kunnskap kan kommuniseres sammenlignbart og hvorfor restusikkerhet verken betyr ignoranse eller tillater skjult skråsikkerhet.",
+          "interpretive_consequence": "Risikoavsnittet blir en eksplisitt evidens- og usikkerhetsanalyse som kan informere handling uten å forveksle vitenskapelig karakterisering med den endelige normative beslutningen.",
+          "scholarly_source": {"source_id": "vit1-32-ipcc-uncertainty", "authority_class": "intergovernmental_scientific_assessment", "source_role": "IPCCs veiledning dokumenterer konsistent, kalibrert vurdering og kommunikasjon av evidens, faglig enighet, confidence og likelihood i vitenskapelige synteser.", "use_limit": "Veiledningen strukturerer usikkerhetskommunikasjon, men kan ikke erstatte datagrunnlag, modellkritikk eller normative beslutninger i en konkret risiko- eller politikksak."},
+          "evidence_binding": {"module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/06-samfunn-makt-etikk.json", "section_id": "vit1-samfunn-4", "paragraph_index": 1, "claim_id": "vit1-55", "source_id": "vit1-32-ipcc-uncertainty"},
+          "content_bindings": [
+            {"role": "mechanism", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/06-samfunn-makt-etikk.json", "section_id": "vit1-samfunn-4", "paragraph_index": 0},
+            {"role": "evidence", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/06-samfunn-makt-etikk.json", "section_id": "vit1-samfunn-4", "paragraph_index": 1},
+            {"role": "limitation_or_alternative", "module_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/06-samfunn-makt-etikk.json", "section_id": "vit1-samfunn-4", "paragraph_index": 2}
+          ]
+        }
+      ]
+    }
+  ]
+}

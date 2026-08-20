@@ -10,12 +10,15 @@ on:
       - 'data/fagverk/subject_status.json'
       - 'reports/fagverk/vitenskap-holistic-university-breadth-completion-audit.json'
       - 'reports/fagverk/vitenskap-holistic-quality-review-audit.json'
+      - 'reports/fagverk/vitenskap-theory-integrity-audit.json'
       - 'reports/fagverk/vitenskap-*-coverage-audit.json'
       - 'scripts/audit-fagverk-vitenskap-holistic-university-breadth-completion.mjs'
       - 'scripts/audit-fagverk-vitenskap-holistic-quality-review.mjs'
+      - 'tools/audit-vitenskap-theory-integrity.mjs'
       - 'scripts/audit-fagverk-vitenskap-*-coverage.mjs'
       - 'tests/fagverk-vitenskap-holistic-university-breadth-completion.test.mjs'
       - 'tests/fagverk-vitenskap-holistic-quality-review.test.mjs'
+      - 'tests/vitenskap-theory-integrity.test.mjs'
       - 'tests/fagverk-vitenskap-*-coverage.test.mjs'
       - '.github/workflows/fagverk-vitenskap-holistic-university-breadth-completion.yml'
   push:
@@ -28,12 +31,15 @@ on:
       - 'data/fagverk/subject_status.json'
       - 'reports/fagverk/vitenskap-holistic-university-breadth-completion-audit.json'
       - 'reports/fagverk/vitenskap-holistic-quality-review-audit.json'
+      - 'reports/fagverk/vitenskap-theory-integrity-audit.json'
       - 'reports/fagverk/vitenskap-*-coverage-audit.json'
       - 'scripts/audit-fagverk-vitenskap-holistic-university-breadth-completion.mjs'
       - 'scripts/audit-fagverk-vitenskap-holistic-quality-review.mjs'
+      - 'tools/audit-vitenskap-theory-integrity.mjs'
       - 'scripts/audit-fagverk-vitenskap-*-coverage.mjs'
       - 'tests/fagverk-vitenskap-holistic-university-breadth-completion.test.mjs'
       - 'tests/fagverk-vitenskap-holistic-quality-review.test.mjs'
+      - 'tests/vitenskap-theory-integrity.test.mjs'
       - 'tests/fagverk-vitenskap-*-coverage.test.mjs'
       - '.github/workflows/fagverk-vitenskap-holistic-university-breadth-completion.yml'
   workflow_dispatch:
@@ -56,8 +62,13 @@ jobs:
           if [ -f data/fag/vitenskap/vitenskap_holistic_quality_review_v1.json ]; then
             node --check scripts/audit-fagverk-vitenskap-holistic-quality-review.mjs
             node scripts/audit-fagverk-vitenskap-holistic-quality-review.mjs
-            node --test tests/fagverk-vitenskap-holistic-quality-review.test.mjs
+          node --test tests/fagverk-vitenskap-holistic-quality-review.test.mjs
           fi
+      - name: Verify strict theory integrity across all six canonical fields
+        run: |
+          node --check tools/audit-vitenskap-theory-integrity.mjs
+          node tools/audit-vitenskap-theory-integrity.mjs
+          node --test tests/vitenskap-theory-integrity.test.mjs
       - name: Preserve substantive editorial coverage gates
         run: |
           node --test tests/fagverk-vitenskap-methods-models-coverage.test.mjs
