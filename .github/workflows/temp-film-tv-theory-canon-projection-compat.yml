@@ -1,0 +1,42 @@
+name: TEMP Film TV theory canon projection compatibility
+on:
+  push:
+    branches:
+      - agent/film-tv-generated-determinism-repair
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Make theory canon reader projection-shape compatible
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('scripts/audit-fagverk-film-tv-theory-canon.mjs')
+          s = p.read_text()
+          old = """          const claimIds=paragraphClaimIds[index]||[];\n          assert(Array.isArray(claimIds)&&claimIds.length>=1,`Prose-avsnitt mangler claim-binding: ${moduleFile}/${section.id}/${index}`);"""
+          new = """          const rawClaimIds=paragraphClaimIds[index];\n          const claimIds=Array.isArray(rawClaimIds)?rawClaimIds:(typeof rawClaimIds==='string'&&rawClaimIds.length>=1?[rawClaimIds]:[]);\n          assert(claimIds.length>=1,`Prose-avsnitt mangler claim-binding: ${moduleFile}/${section.id}/${index}`);"""
+          if s.count(old) != 1:
+              raise SystemExit(f'expected exactly one target, found {s.count(old)}')
+          p.write_text(s.replace(old, new))
+          PY
+      - name: Verify focused Film/TV theory compatibility
+        run: |
+          node scripts/audit-fagverk-film-tv-theory-canon.mjs
+          node --test tests/fagverk-film-tv-theory-canon.test.mjs
+      - name: Commit compatibility fix and remove temporary workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/audit-fagverk-film-tv-theory-canon.mjs
+          rm .github/workflows/temp-film-tv-theory-canon-projection-compat.yml
+          git add .github/workflows/temp-film-tv-theory-canon-projection-compat.yml
+          git commit -m "fix(film-tv): read canonical paragraph claim projections"
+          git push origin HEAD:${GITHUB_REF_NAME}
