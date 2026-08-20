@@ -592,3 +592,87 @@ test("Språkatlas → Places bruker canonical manifest og sentral kartnavigasjon
   assert.match(contract, /lokale profiler matches bare via eksplisitt.*atlas_local_ids/i);
 });
 // /SPRÅKATLAS → PLACES V1
+
+// SPRÅKATLAS → PLACES V2 DOCUMENTED COVERAGE
+test("Språkatlas → Places v2 gir alle evidence_materialized-profiler et eksplisitt area-Place-spor uten å kopiere evidensen", () => {
+  const atlas = json("data/leksikon/sprak/norge_atlas_v1.json");
+  const places = loadPlacesById();
+  const linksByLocalId = new Map();
+
+  for (const [placeId, relative] of Object.entries(languageManifest.place_files || {})) {
+    const article = json(relative);
+    for (const localId of article.atlas_local_ids || []) {
+      if (!linksByLocalId.has(localId)) linksByLocalId.set(localId, []);
+      linksByLocalId.get(localId).push({ placeId, article });
+    }
+  }
+
+  const materialized = (atlas.local_varieties || []).filter(row => row.profile_status === "evidence_materialized");
+  assert.equal(materialized.length, 15, "v2-baselinen skal ha 15 evidensmaterialiserte lokale profiler");
+
+  for (const profile of materialized) {
+    const links = linksByLocalId.get(profile.id) || [];
+    assert.ok(links.length >= 1, `${profile.id}: evidence_materialized-profil mangler eksplisitt Place-spor`);
+    for (const { placeId } of links) {
+      const place = places.get(placeId);
+      assert.ok(place, `${profile.id}: lenket Place ${placeId} finnes ikke canonical`);
+      assert.equal(place.placeScope, "area", `${profile.id}: lokalt talemål skal bare kobles til canonical area-Place`);
+    }
+  }
+
+  const expectedV2 = new Map([
+  [
+    "kristiansand",
+    "kristiansand_local_speech"
+  ],
+  [
+    "stavanger",
+    "stavanger_local_speech"
+  ],
+  [
+    "voss",
+    "voss_local_speech"
+  ],
+  [
+    "bodo",
+    "bodo_local_speech"
+  ],
+  [
+    "tromso",
+    "tromso_local_speech"
+  ],
+  [
+    "hammerfest",
+    "hammerfest_local_speech"
+  ],
+  [
+    "tana",
+    "tana_norwegian_local_speech"
+  ],
+  [
+    "hattfjelldal",
+    "hattfjelldal_local_speech"
+  ],
+  [
+    "soemna",
+    "soemna_local_speech"
+  ]
+]);
+  for (const [placeId, localId] of expectedV2) {
+    const relative = languageManifest.place_files?.[placeId];
+    assert.ok(relative, `${placeId}: v2 språkfil mangler i manifest`);
+    const article = json(relative);
+    assert.deepEqual(article.atlas_local_ids, [localId], `${placeId}: feil lokal atlasprofil`);
+    assert.equal((article.entries || []).length, 0, `${placeId}: atlasbelegg skal ikke dupliseres i Place-språkfilen`);
+    assert.equal(places.get(placeId)?.placeScope, "area", `${placeId}: v2 Place må være områdeeid`);
+  }
+
+  const immature = new Set((atlas.local_varieties || [])
+    .filter(row => row.profile_status !== "evidence_materialized")
+    .map(row => row.id));
+  for (const localId of linksByLocalId.keys()) {
+    assert.ok(!immature.has(localId), `${localId}: ikke-materialisert profil skal ikke få Place-spor i documented coverage`);
+  }
+});
+// /SPRÅKATLAS → PLACES V2 DOCUMENTED COVERAGE
+
