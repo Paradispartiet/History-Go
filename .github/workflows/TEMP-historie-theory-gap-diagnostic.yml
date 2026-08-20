@@ -1,4 +1,4 @@
-name: TEMP Historie hand-built theory proof diagnostic
+name: TEMP Historie legacy module theory proof diagnostic
 
 on:
   pull_request:
@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Measure hand-built prose and claim bindings
+      - name: Measure existing legacy module-level theory proof
         run: |
           node <<'NODE'
           const fs=require('fs');
@@ -27,8 +27,9 @@ jobs:
           const norm=v=>String(v||'').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9æøå]+/g,' ').replace(/\s+/g,' ').trim();
           const stop=new Set(['og','eller','som','for','med','til','fra','ved','mot','uten','etter','under','over','mellom','gjennom','den','det','de','en','et','av','på','i','er','var','blir','kan','skal','må','samt','slik','hvordan','historisk','historiske','historie','analytisk','analyse','analyserer','forklarer','undersøker','modellen','modell']);
           const tokens=v=>uniq(norm(v).split(/\s+/).filter(t=>t.length>=4&&!stop.has(t)));
-          const binding=(ref,prose)=>{const r=tokens(ref),p=new Set(tokens(prose)),m=r.filter(t=>p.has(t));return {matched:m.length,total:r.length,ratio:r.length?Math.round(m.length/r.length*1000)/1000:0,tokens:m};};
+          const binding=(ref,prose)=>{const r=tokens(ref),p=new Set(tokens(prose)),m=r.filter(t=>p.has(t));return {matched:m.length,total:r.length,ratio:r.length?Math.round(m.length/r.length*1000)/1000:0};};
           const theories=read('data/fag/historie/theory_objects_historie_canonical_v5_5.json');
+          const theoryById=new Map(theories.map(t=>[t.theory_id,t]));
           const evidence=read('data/fag/historie/theory_evidence_historie_canonical_v1.json');
           const evidenceByTheory=new Map(A(evidence.entries).map(e=>[e.theory_id,e]));
           const registry=read('data/fagverk/fagverk_registry.json');
@@ -36,30 +37,27 @@ jobs:
           for(const chapterRow of A(registry?.subjects?.historie?.chapters)){
             const chapter=read(chapterRow.file);
             const modules=A(chapter.moduleFiles).map(file=>({file,doc:read(file)}));
-            const sections=modules.flatMap(({file,doc})=>A(doc.sections).map(s=>({file,...s})));
-            if(sections.some(s=>s.emneId))continue;
-            const prose=sections.flatMap(s=>A(s.paragraphs)).join(' ');
-            const chapterClaims=new Set(sections.flatMap(s=>A(s.paragraphClaimIds).flat()).filter(Boolean));
-            const fieldTheories=theories.filter(t=>A(t.explanatory_scope).includes(chapterRow.primary_domain_id));
-            const matches=fieldTheories.map(t=>{
-              const d=binding(t.definition,prose);
-              const limits=A(t.limitations).map(l=>binding(l,prose)).sort((a,b)=>b.ratio-a.ratio||b.matched-a.matched);
-              const e=evidenceByTheory.get(t.theory_id);
-              const claimIds=A(e?.claim_ids);
-              const matchedClaims=claimIds.filter(id=>chapterClaims.has(id));
-              const sectionEvidence=sections.map(s=>{
-                const sectionProse=A(s.paragraphs).join(' ');
-                const db=binding(t.definition,sectionProse);
-                const lb=A(t.limitations).map(l=>binding(l,sectionProse)).sort((a,b)=>b.ratio-a.ratio||b.matched-a.matched)[0]||null;
-                const sectionClaims=new Set(A(s.paragraphClaimIds).flat().filter(Boolean));
-                const claims=claimIds.filter(id=>sectionClaims.has(id));
-                return {file:s.file,section_id:s.id,definition_ratio:db.ratio,definition_matched:db.matched,best_limitation_ratio:lb?.ratio||0,best_limitation_matched:lb?.matched||0,claim_ids:claims};
-              }).filter(r=>r.definition_matched>=2||r.best_limitation_matched>=2||r.claim_ids.length).sort((a,b)=>(b.claim_ids.length-a.claim_ids.length)||(b.definition_ratio-a.definition_ratio)||(b.best_limitation_ratio-a.best_limitation_ratio));
-              return {theory_id:t.theory_id,label:t.label,definition:d,best_limitation:limits[0]||null,evidence_claim_count:claimIds.length,matched_claim_ids:matchedClaims,sections:sectionEvidence.slice(0,4)};
-            });
-            rows.push({field:chapterRow.primary_domain_id,chapter_file:chapterRow.file,chapter_emne_ids:A(chapter.emne_ids),section_count:sections.length,chapter_claim_count:chapterClaims.size,theory_count:fieldTheories.length,matches});
+            const allSections=modules.flatMap(({doc})=>A(doc.sections));
+            if(allSections.some(s=>s.emneId))continue;
+            const expected=theories.filter(t=>A(t.explanatory_scope).includes(chapterRow.primary_domain_id)).map(t=>t.theory_id);
+            const declared=uniq(modules.flatMap(({doc})=>A(doc.theoryEvidenceIds)));
+            const moduleRows=[];
+            for(const {file,doc} of modules){
+              const prose=A(doc.sections).flatMap(s=>A(s.paragraphs)).join(' ');
+              const moduleClaims=uniq(A(doc.claimIds));
+              const tids=uniq(A(doc.theoryEvidenceIds));
+              const proofs=tids.map(id=>{
+                const t=theoryById.get(id),e=evidenceByTheory.get(id);
+                const d=t?binding(t.definition,prose):null;
+                const limitations=t?A(t.limitations).map(x=>binding(x,prose)).sort((a,b)=>b.ratio-a.ratio||b.matched-a.matched):[];
+                const matchedClaims=A(e?.claim_ids).filter(cid=>moduleClaims.includes(cid));
+                return {theory_id:id,known_theory:!!t,definition:d,best_limitation:limitations[0]||null,module_claim_count:moduleClaims.length,evidence_claim_count:A(e?.claim_ids).length,matched_claim_ids:matchedClaims};
+              });
+              moduleRows.push({file,theoryEvidenceIds:tids,claimIds:moduleClaims,proofs});
+            }
+            rows.push({field:chapterRow.primary_domain_id,expected_count:expected.length,declared_count:declared.length,missing:expected.filter(id=>!declared.includes(id)),extra:declared.filter(id=>!expected.includes(id)),modules:moduleRows});
           }
-          console.log('HAND_BUILT_PROOF='+JSON.stringify(rows));
-          const flat=rows.flatMap(r=>r.matches.map(m=>({field:r.field,...m})));
-          console.log('SUMMARY='+JSON.stringify({theories:flat.length,with_claim_match:flat.filter(x=>x.matched_claim_ids.length).length,definition_ge_045:flat.filter(x=>x.definition.ratio>=0.45&&x.definition.matched>=5).length,limitation_ge_04:flat.filter(x=>x.best_limitation&&x.best_limitation.ratio>=0.4&&x.best_limitation.matched>=4).length,strong_all_three:flat.filter(x=>x.matched_claim_ids.length&&x.definition.ratio>=0.45&&x.definition.matched>=5&&x.best_limitation&&x.best_limitation.ratio>=0.4&&x.best_limitation.matched>=4).length,no_claim_match:flat.filter(x=>!x.matched_claim_ids.length).map(x=>x.theory_id)}));
+          const proofs=rows.flatMap(r=>r.modules.flatMap(m=>m.proofs.map(p=>({field:r.field,file:m.file,...p}))));
+          console.log('LEGACY_MODULE_PROOF='+JSON.stringify(rows));
+          console.log('SUMMARY='+JSON.stringify({fields:rows.length,expected_theories:rows.reduce((n,r)=>n+r.expected_count,0),declared_theories:uniq(rows.flatMap(r=>r.modules.flatMap(m=>m.theoryEvidenceIds))).length,missing_theories:rows.flatMap(r=>r.missing),proof_rows:proofs.length,with_claim_match:proofs.filter(p=>p.matched_claim_ids.length).length,definition_ge_045:proofs.filter(p=>p.definition&&p.definition.ratio>=0.45&&p.definition.matched>=5).length,limitation_ge_04:proofs.filter(p=>p.best_limitation&&p.best_limitation.ratio>=0.4&&p.best_limitation.matched>=4).length,strong_all_three:proofs.filter(p=>p.matched_claim_ids.length&&p.definition&&p.definition.ratio>=0.45&&p.definition.matched>=5&&p.best_limitation&&p.best_limitation.ratio>=0.4&&p.best_limitation.matched>=4).length}));
           NODE
