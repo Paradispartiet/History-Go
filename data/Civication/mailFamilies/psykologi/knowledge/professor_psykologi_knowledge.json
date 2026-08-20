@@ -1,0 +1,43 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "professor_psykologi",
+  "mail_type": "knowledge",
+  "families": [{
+    "id": "akademisk_makt_og_kreditering",
+    "purpose": "Gjøre skillet mellom akademisk ledelse, faglig frihet, bidrag og hierarkisk makt eksplisitt i en konkret krediteringssituasjon.",
+    "learning_focus": ["akademisk_frihet", "kreditering", "maktasymmetri"],
+    "mails": [{
+      "id": "psykologi_professor_psykologi_knowledge_makt_001",
+      "mail_type": "knowledge",
+      "mail_family": "akademisk_makt_og_kreditering",
+      "role_scope": "professor_psykologi",
+      "phase": "mid",
+      "day_phase": "afternoon",
+      "priority": 140,
+      "cooldown": 3,
+      "repeatable": false,
+      "stage": "stable",
+      "from": "Ph.d.-kandidaten",
+      "people_ref": "psykologi_professor_psykologi_phd_kandidat",
+      "place_id": "psykologi_professor_psykologi_veiledningsrom",
+      "subject": "Er veilederrollen nok til å eie bidraget?",
+      "summary": "Kandidaten spør om professorens veileder- og prosjektlederrolle i seg selv gir rett til faglig eierskap eller kreditering for kandidatens idé.",
+      "purpose": "Teste om professoren kan formulere at senioritet og ledelsesansvar ikke automatisk er det samme som intellektuelt bidrag.",
+      "stakes": "Uklare normer kan gjøre hierarki til skjult fordelingsmekanisme og samtidig gjøre reelt leder- og veiledningsarbeid usynlig.",
+      "situation": ["Professoren har gitt omfattende veiledning, men kandidaten formulerte den konkrete ideen og første analysestrategien.", "Prosjektledelse, veiledning og intellektuelt bidrag er ulike typer arbeid som kan dokumenteres hver for seg.", "Faglig frihet gir rom for uenighet og forskning, men er ikke en eiendomsrett til underordnedes ideer eller resultater."],
+      "task_domain": "akademisk_makt_og_bidrag",
+      "task_kind": "knowledge",
+      "competency": "akademisk_kultur",
+      "pressure": "hierarki_som_standard",
+      "choice_axis": "bidragsbasert_kreditering_vs_statusbasert_kreditering",
+      "consequence_axis": "rettferdig_faglig_eierskap_vs_stille_tillitsbrudd",
+      "narrative_arc": "fra_tittelbasert_antakelse_til_dokumentert_bidrag",
+      "choices": [
+        {"id": "A", "label": "Skill rollene og dokumenter faktiske bidrag", "reply": "Veiledning og prosjektledelse er viktige bidrag, men de gjør ikke automatisk ideen til min. Vi beskriver hva hver av oss faktisk har bidratt med og avtaler kreditering derfra.", "effect": 1, "tags": ["contribution_based_credit", "academic_power", "transparency"], "feedback": "Du gjør både professorens og kandidatens arbeid synlig uten å la rang avgjøre eierskap.", "effects": {"stats": {"quality": 2, "trust": 3, "risk": -2, "status": 0}}},
+        {"id": "B", "label": "La senioritet og prosjektansvar avgjøre", "reply": "Som veileder og prosjektleder har jeg det overordnede faglige ansvaret, så det er naturlig at slike ideer inngår som mine eller gruppens bidrag.", "effect": -1, "tags": ["status_based_credit", "power_abuse"], "feedback": "Du blander ansvar for rammen med eierskap til det konkrete faglige bidraget.", "effects": {"stats": {"status": 1, "quality": -2, "trust": -3, "risk": 2}}}
+      ]
+    }]
+  }]
+}

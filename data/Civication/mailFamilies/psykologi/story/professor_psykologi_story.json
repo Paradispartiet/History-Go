@@ -1,0 +1,43 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "professor_psykologi",
+  "mail_type": "story",
+  "families": [{
+    "id": "etterprovbar_fagmiljoprioritering",
+    "purpose": "Samle forskning, undervisning, veiledning, kreditering og kritikkultur i en begrunnet prioritering for fagmiljøet.",
+    "learning_focus": ["forskningsledelse", "utdanningskvalitet", "akademisk_kultur"],
+    "mails": [{
+      "id": "psykologi_professor_psykologi_story_prioritering_001",
+      "mail_type": "story",
+      "mail_family": "etterprovbar_fagmiljoprioritering",
+      "role_scope": "professor_psykologi",
+      "phase": "climax",
+      "day_phase": "day_end",
+      "priority": 130,
+      "cooldown": 5,
+      "repeatable": false,
+      "stage": "stable",
+      "from": "Instituttlederen",
+      "people_ref": "psykologi_professor_psykologi_instituttleder",
+      "place_id": "psykologi_professor_psykologi_fagmiljo",
+      "subject": "Gi én prioritering for neste faglige periode",
+      "summary": "Etter en dag med krediteringsspørsmål, veiledningspress, programkritikk og et dokumentert undervisningsgap ber instituttlederen professoren foreslå neste prioritering.",
+      "purpose": "Teste om professoren kan gi faglig retning uten å gjøre andres eierskap, kritikk, undervisningskvalitet eller ressursgrenser usynlige.",
+      "stakes": "En enkel produktivitetsplan kan se handlekraftig ut, men forsterke de samme makt- og kvalitetsproblemene; en uforpliktende balanseformulering kan samtidig la alt fortsette som før.",
+      "situation": ["Den kritiske reanalysen tilsier en avgrenset justering, ikke at hele forskningsprogrammet forkastes.", "Undervisningsdata viser ett konkret læringsgap som kan adresseres målrettet.", "Kandidatens bidrag og kreditering må avklares uavhengig av søknadens tidsplan, og større ressursvalg ligger hos instituttleder."],
+      "task_domain": "fagmiljoprioritering",
+      "task_kind": "story",
+      "competency": "helhetlig_fagledelse",
+      "pressure": "synlig_produktivitet_vs_kvalitet",
+      "choice_axis": "avgrenset_etterprovbar_prioritering_vs_volumstyrt_totalpakke",
+      "consequence_axis": "korrigerbart_fagmiljo_vs_statusdrevet_kvalitetsgjeld",
+      "narrative_arc": "fra_konkurrerende_krav_til_mandatklar_prioritering",
+      "choices": [
+        {"id": "A", "label": "Prioriter korreksjon, læringsgap og tydelig eierskap", "reply": "Neste periode skal vi først oppdatere programmet der reanalysen faktisk endrer evidensen, rette det dokumenterte læringsgapet og låse bidragsavklaringer før søknader. Jeg ber instituttleder synliggjøre kapasitetsvalgene dette krever.", "effect": 1, "tags": ["bounded_priority", "self_correction", "teaching_quality", "credit"], "feedback": "Du gir retning som kan etterprøves, og lar både makt, evidens og kapasitet være synlige premisser.", "effects": {"stats": {"quality": 3, "trust": 3, "risk": -2, "status": 1}}},
+        {"id": "B", "label": "Maksimer søknader og publisering, ta resten løpende", "reply": "Vi må holde momentet oppe. Søknad og publikasjoner får førsteprioritet; undervisning, kreditering og reanalyse håndteres innenfor eksisterende kapasitet underveis.", "effect": -1, "tags": ["volume_priority", "hidden_quality_debt", "status_pressure"], "feedback": "Du gjør de mindre statusbærende kvalitetsproblemene til usynlig restarbeid og gjentar dagens konflikt i neste periode.", "effects": {"stats": {"status": 2, "quality": -3, "trust": -3, "risk": 3}}}
+      ]
+    }]
+  }]
+}

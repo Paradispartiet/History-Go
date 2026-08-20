@@ -1,0 +1,44 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "professor_psykologi",
+  "mail_type": "conflict",
+  "families": [{
+    "id": "kritikk_av_eget_program",
+    "purpose": "Teste om en professor lar metode og data avgjøre når en yngre forsker utfordrer et program professoren selv har bygget status på.",
+    "learning_focus": ["faglig_makt", "reanalyse", "forskningsintegritet"],
+    "mails": [{
+      "id": "psykologi_professor_psykologi_conflict_programkritikk_001",
+      "mail_type": "conflict",
+      "mail_family": "kritikk_av_eget_program",
+      "role_scope": "professor_psykologi",
+      "phase": "early",
+      "day_phase": "midday",
+      "priority": 143,
+      "cooldown": 4,
+      "repeatable": false,
+      "stage": "stable",
+      "from": "En yngre forsker",
+      "people_ref": "psykologi_professor_psykologi_yngre_forsker",
+      "place_id": "psykologi_professor_psykologi_fagmiljo",
+      "subject": "Reanalysen svekker hovedforklaringen vår",
+      "summary": "En yngre forsker har reanalysert et sentralt datasett med en forhåndsbegrunnet alternativ modell, og resultatet svekker en forklaring professoren lenge har forsvart.",
+      "purpose": "Teste om professoren vurderer reanalysen på metode og evidens i stedet for å bruke senioritet, omdømme eller programhistorikk som filter.",
+      "stakes": "Hvis kritikk blir dyrt for yngre forskere, mister miljøet signaler som kunne korrigert et helt forskningsprogram; hvis enhver alternativ analyse behandles som avgjørende, kan programmet endres på for svakt grunnlag.",
+      "situation": ["Reanalysen bruker samme rådata, men en modell forskeren begrunnet før resultatene ble beregnet.", "Effekten blir svakere og mer usikker, men ikke nødvendigvis null.", "Professoren har publisert og hentet finansiering på den opprinnelige forklaringen, mens den yngre forskeren er avhengig av miljøet for videre karriere."],
+      "task_domain": "programkritikk_og_reanalyse",
+      "task_kind": "conflict",
+      "competency": "forskningsledelse",
+      "pressure": "status_og_programlojalitet",
+      "choice_axis": "apen_reanalyse_vs_statusforsvar",
+      "consequence_axis": "korrigerbart_fagmiljo_vs_selvsensur",
+      "narrative_arc": "fra_trussel_mot_program_til_etterprovbar_kritikk",
+      "thread_key": "psykologi_professor_psykologi_programkritikk_001",
+      "choices": [
+        {"id": "A", "label": "Reproduser reanalysen og gjør uenigheten eksplisitt", "reply": "Vi går gjennom modellvalget og reproduksjonen sammen, dokumenterer hva som faktisk endres, og lar resultatet inngå i neste programvurdering uavhengig av hvem som eier den opprinnelige teorien.", "effect": 1, "tags": ["open_critique", "reanalysis", "epistemic_humility"], "feedback": "Du gjør kritikk til en metodisk oppgave og reduserer kostnaden ved å utfordre seniorens eget program.", "effects": {"stats": {"quality": 3, "trust": 2, "risk": -2, "status": 0}}},
+        {"id": "B", "label": "Be om at analysen legges bort til mer data finnes", "reply": "Denne modellen avviker fra programmet vårt og kan skape unødig støy. Vi venter med den til vi har et nytt datasett.", "effect": -1, "tags": ["status_defense", "suppressed_critique", "hierarchy"], "feedback": "Du bruker et legitimt krav om mer evidens asymmetrisk: den kritiske analysen må bevise mer enn programmet den utfordrer.", "effects": {"stats": {"status": 1, "quality": -3, "trust": -3, "risk": 3}}}
+      ]
+    }]
+  }]
+}

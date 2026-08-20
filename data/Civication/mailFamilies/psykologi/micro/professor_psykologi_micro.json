@@ -1,0 +1,43 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "professor_psykologi",
+  "mail_type": "micro",
+  "families": [{
+    "id": "gjennomsnitt_og_skjult_laeringsgap",
+    "purpose": "Oppdage når et samlet undervisningsgjennomsnitt skjuler en studentgruppe som systematisk ikke når læringsmålet.",
+    "learning_focus": ["utdanningskvalitet", "måling", "fordelingsblikk"],
+    "mails": [{
+      "id": "psykologi_professor_psykologi_micro_laeringsgap_001",
+      "mail_type": "micro",
+      "mail_family": "gjennomsnitt_og_skjult_laeringsgap",
+      "role_scope": "professor_psykologi",
+      "phase": "advanced",
+      "day_phase": "afternoon",
+      "priority": 136,
+      "cooldown": 3,
+      "repeatable": false,
+      "stage": "stable",
+      "from": "Undervisningskoordinatoren",
+      "people_ref": "psykologi_professor_psykologi_undervisningskoordinator",
+      "place_id": "psykologi_professor_psykologi_undervisningsverksted",
+      "subject": "Gjennomsnittet er grønt, men ett læringsmål svikter",
+      "summary": "Emnet har godt samlet snitt, men oppgave- og sensordata viser at en tydelig avgrenset studentgruppe gjentatte ganger ikke mestrer ett sentralt læringsmål.",
+      "purpose": "Teste om professoren undersøker fordelingen bak aggregatet før det konkluderes med at undervisningen fungerer godt nok.",
+      "stakes": "Et grønt gjennomsnitt kan gjøre et stabilt læringsgap usynlig; en overreaksjon på små undergrupper kan samtidig føre til tiltak uten robust grunnlag.",
+      "situation": ["Mønsteret finnes i to kull og i mer enn én vurderingsform.", "Gruppen er definert gjennom læringsmønster, ikke sensitive personkjennetegn.", "Dataene peker på et spesifikt læringsmål og en bestemt undervisningssekvens som kan undersøkes nærmere."],
+      "task_domain": "undervisningsdata_og_laeringsgap",
+      "task_kind": "micro",
+      "competency": "utdanningskvalitet",
+      "pressure": "gront_gjennomsnitt",
+      "choice_axis": "undersok_fordeling_og_laeringsmal_vs_stopp_ved_aggregat",
+      "consequence_axis": "malrettet_forbedring_vs_skjult_gap",
+      "narrative_arc": "fra_godt_snitt_til_presist_laeringssporsmal",
+      "choices": [
+        {"id": "A", "label": "Bryt ned resultatet og test undervisningssekvensen", "reply": "Vi undersøker hvilket steg i undervisningen og vurderingen som henger sammen med gapet, og prøver et avgrenset tiltak før vi konkluderer bredt.", "effect": 1, "tags": ["disaggregated_evidence", "teaching_quality", "bounded_improvement"], "feedback": "Du bruker aggregatet som startpunkt, ikke sluttpunkt, og holder tiltaket proporsjonalt med evidensen.", "effects": {"stats": {"quality": 2, "trust": 1, "risk": -2, "energy": -1}}},
+        {"id": "B", "label": "Behold emnet siden totalsnittet er godt", "reply": "Helhetsresultatet er sterkt nok. Vi bør ikke bruke tid på å optimalisere for et mindre avvik når emnet samlet fungerer.", "effect": -1, "tags": ["aggregate_blindness", "hidden_gap"], "feedback": "Du lar et godt gjennomsnitt skjule et gjentatt problem i et eksplisitt læringsmål.", "effects": {"stats": {"status": 1, "quality": -2, "trust": -1, "risk": 2}}}
+      ]
+    }]
+  }]
+}

@@ -1,0 +1,29 @@
+{
+  "schema": "civication_mail_plan_v1",
+  "version": 1,
+  "id": "psykologi_professor_psykologi_v1",
+  "category": "psykologi",
+  "role_scope": "professor_psykologi",
+  "title": "Professor (psykologi)",
+  "description": "En professordag fra kreditering og selvstendig veiledning til åpen kritikk av eget forskningsprogram og en samlet prioritering av forskning, undervisning og fagmiljø.",
+  "arc": {
+    "from": "En professor som møter legitimt press for søknader, publisering, rask kandidatframdrift og høy undervisningskapasitet.",
+    "to": "En professor som bruker senioritet til å åpne kritikk, beskytte andres faglige eierskap og prioritere dokumenterbar kvalitet på tvers av forskning og utdanning.",
+    "core_questions": ["Hvem eier ideen og bidraget?", "Bygger veiledningen selvstendighet eller avhengighet?", "Kan miljøet korrigere professorens eget program?", "Hvilken kvalitet blir usynlig når kalenderen styrer?"]
+  },
+  "outcome_rules": {
+    "fired": {"stability_values": ["FIRED"], "strikes_gte": 3, "score_lte": -3},
+    "promoted": {"completion_ratio_gte": 1, "score_gte": 2, "strikes_lte": 0, "allow_warning": false},
+    "stagnated": {"autonomy_delta": -10, "stability": "STAGNATED", "add_branch_flags": ["career_stagnated", "psykologi_professor_statusforsvar", "academic_power_pressure"]}
+  },
+  "sequence": [
+    {"step": 1, "type": "job", "phase": "intro", "step_goal": "Avklare bidrag, eierskap og kreditering før en kandidatidé bygges inn i professorens søknad.", "allowed_families": ["kreditering_for_soknad"], "fallback_types": ["knowledge", "people", "micro"]},
+    {"step": 2, "type": "people", "phase": "early", "step_goal": "Veilede kandidaten fram til et begrunnet metodevalg uten å overta beslutningen for å spare tid.", "allowed_families": ["veiledning_og_selvstendighet"], "fallback_types": ["job", "knowledge", "conflict"]},
+    {"step": 3, "type": "conflict", "phase": "early", "step_goal": "Møte en reanalyse som utfordrer professorens eget forskningsprogram uten å bruke senioritet som filter.", "allowed_families": ["kritikk_av_eget_program"], "fallback_types": ["people", "knowledge", "job"]},
+    {"step": 4, "type": "knowledge", "phase": "mid", "step_goal": "Skille faglig ledelse, akademisk frihet og makt fra rett til andres ideer, resultater eller lojalitet.", "allowed_families": ["akademisk_makt_og_kreditering"], "fallback_types": ["micro", "people", "job"]},
+    {"step": 5, "type": "event", "phase": "mid", "step_goal": "Håndtere søknadsfrist og et dokumentert undervisningsproblem uten å gjøre undervisning til resttid.", "allowed_families": ["soknadsfrist_og_utdanningskvalitet"], "fallback_types": ["conflict", "people", "knowledge"]},
+    {"step": 6, "type": "micro", "phase": "advanced", "step_goal": "Oppdage at et godt gjennomsnitt skjuler en studentgruppe som ikke når læringsmålet.", "allowed_families": ["gjennomsnitt_og_skjult_laeringsgap"], "fallback_types": ["knowledge", "event", "people"]},
+    {"step": 7, "type": "followup", "phase": "mastery", "step_goal": "La en robust reanalyse endre forskningsprogrammets prioritering og gi kritikeren reell faglig plass.", "allowed_families": ["reanalyse_og_programendring"], "fallback_types": ["consequence", "story", "knowledge"]},
+    {"step": 8, "type": "story", "phase": "climax", "step_goal": "Gi en samlet prioritering som gjør forskning, undervisning, veiledning, kreditering og usikkerhet synlige samtidig.", "allowed_families": ["etterprovbar_fagmiljoprioritering"], "fallback_types": ["consequence", "event", "knowledge"]}
+  ]
+}

@@ -208,6 +208,15 @@
     "data/Civication/mailFamilies/psykologi/followup/forsker_psykologi_followup.json",
     "data/Civication/mailFamilies/psykologi/knowledge/forsker_psykologi_knowledge.json",
     "data/Civication/mailFamilies/psykologi/consequence/forsker_psykologi_consequence.json",
+    "data/Civication/mailFamilies/psykologi/job/professor_psykologi_job.json",
+    "data/Civication/mailFamilies/psykologi/people/professor_psykologi_people.json",
+    "data/Civication/mailFamilies/psykologi/story/professor_psykologi_story.json",
+    "data/Civication/mailFamilies/psykologi/conflict/professor_psykologi_conflict.json",
+    "data/Civication/mailFamilies/psykologi/event/professor_psykologi_event.json",
+    "data/Civication/mailFamilies/psykologi/micro/professor_psykologi_micro.json",
+    "data/Civication/mailFamilies/psykologi/followup/professor_psykologi_followup.json",
+    "data/Civication/mailFamilies/psykologi/knowledge/professor_psykologi_knowledge.json",
+    "data/Civication/mailFamilies/psykologi/consequence/professor_psykologi_consequence.json",
     "data/Civication/mailFamilies/psykologi/job/psykologi_miljoarbeid_job.json",
     "data/Civication/mailFamilies/psykologi/people/psykologi_miljoarbeid_people.json",
     "data/Civication/mailFamilies/psykologi/conflict/psykologi_miljoarbeid_conflict.json",
@@ -128482,6 +128491,1273 @@
       "category": "psykologi",
       "compatibility_projection": {
         "category": "psykologi",
+        "choice_axis": "apen_reanalyse_vs_statusforsvar",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "quality": 3,
+                "risk": -2,
+                "status": 0,
+                "trust": 2
+              }
+            },
+            "feedback": "Du gjør kritikk til en metodisk oppgave og reduserer kostnaden ved å utfordre seniorens eget program.",
+            "id": "A",
+            "label": "Reproduser reanalysen og gjør uenigheten eksplisitt",
+            "reply": "Vi går gjennom modellvalget og reproduksjonen sammen, dokumenterer hva som faktisk endres, og lar resultatet inngå i neste programvurdering uavhengig av hvem som eier den opprinnelige teorien.",
+            "tags": [
+              "open_critique",
+              "reanalysis",
+              "epistemic_humility"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -3,
+                "risk": 3,
+                "status": 1,
+                "trust": -3
+              }
+            },
+            "feedback": "Du bruker et legitimt krav om mer evidens asymmetrisk: den kritiske analysen må bevise mer enn programmet den utfordrer.",
+            "id": "B",
+            "label": "Be om at analysen legges bort til mer data finnes",
+            "reply": "Denne modellen avviker fra programmet vårt og kan skape unødig støy. Vi venter med den til vi har et nytt datasett.",
+            "tags": [
+              "status_defense",
+              "suppressed_critique",
+              "hierarchy"
+            ]
+          }
+        ],
+        "competency": "forskningsledelse",
+        "consequence_axis": "korrigerbart_fagmiljo_vs_selvsensur",
+        "cooldown": 4,
+        "day_phase": "midday",
+        "from": "En yngre forsker",
+        "id": "psykologi_professor_psykologi_conflict_programkritikk_001",
+        "mail_family": "kritikk_av_eget_program",
+        "mail_type": "conflict",
+        "narrative_arc": "fra_trussel_mot_program_til_etterprovbar_kritikk",
+        "people_ref": "psykologi_professor_psykologi_yngre_forsker",
+        "phase": "early",
+        "place_id": "psykologi_professor_psykologi_fagmiljo",
+        "pressure": "status_og_programlojalitet",
+        "priority": 143,
+        "purpose": "Teste om professoren vurderer reanalysen på metode og evidens i stedet for å bruke senioritet, omdømme eller programhistorikk som filter.",
+        "repeatable": false,
+        "role_scope": "professor_psykologi",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/conflict/professor_psykologi_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Reanalysen bruker samme rådata, men en modell forskeren begrunnet før resultatene ble beregnet.",
+          "Effekten blir svakere og mer usikker, men ikke nødvendigvis null.",
+          "Professoren har publisert og hentet finansiering på den opprinnelige forklaringen, mens den yngre forskeren er avhengig av miljøet for videre karriere."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis kritikk blir dyrt for yngre forskere, mister miljøet signaler som kunne korrigert et helt forskningsprogram; hvis enhver alternativ analyse behandles som avgjørende, kan programmet endres på for svakt grunnlag.",
+        "subject": "Reanalysen svekker hovedforklaringen vår",
+        "summary": "En yngre forsker har reanalysert et sentralt datasett med en forhåndsbegrunnet alternativ modell, og resultatet svekker en forklaring professoren lenge har forsvart.",
+        "task_domain": "programkritikk_og_reanalyse",
+        "task_kind": "conflict",
+        "thread_key": "psykologi_professor_psykologi_programkritikk_001"
+      },
+      "id": "psykologi_professor_psykologi_conflict_programkritikk_001",
+      "mail_type": "conflict",
+      "role_scope": "professor_psykologi",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gjør kritikk til en metodisk oppgave og reduserer kostnaden ved å utfordre seniorens eget program.",
+            "id": "A",
+            "label": "Reproduser reanalysen og gjør uenigheten eksplisitt",
+            "reply": "Vi går gjennom modellvalget og reproduksjonen sammen, dokumenterer hva som faktisk endres, og lar resultatet inngå i neste programvurdering uavhengig av hvem som eier den opprinnelige teorien."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du bruker et legitimt krav om mer evidens asymmetrisk: den kritiske analysen må bevise mer enn programmet den utfordrer.",
+            "id": "B",
+            "label": "Be om at analysen legges bort til mer data finnes",
+            "reply": "Denne modellen avviker fra programmet vårt og kan skape unødig støy. Vi venter med den til vi har et nytt datasett."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Reanalysen bruker samme rådata, men en modell forskeren begrunnet før resultatene ble beregnet.",
+            "Effekten blir svakere og mer usikker, men ikke nødvendigvis null.",
+            "Professoren har publisert og hentet finansiering på den opprinnelige forklaringen, mens den yngre forskeren er avhengig av miljøet for videre karriere."
+          ],
+          "subject": "Reanalysen svekker hovedforklaringen vår",
+          "summary": "En yngre forsker har reanalysert et sentralt datasett med en forhåndsbegrunnet alternativ modell, og resultatet svekker en forklaring professoren lenge har forsvart."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "psykologi_professor_psykologi_conflict_programkritikk_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "psykologi_professor_psykologi_fagmiljo",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "psykologi_professor_psykologi_conflict_programkritikk_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/conflict/professor_psykologi_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "psykologi_professor_psykologi_programkritikk_001",
+        "version": 1
+      },
+      "source_hash": "400954552ab4f6084bcc2a383ca91973631557115d145d24e4152a26d16faa6f",
+      "source_path": "data/Civication/mailFamilies/psykologi/conflict/professor_psykologi_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "bygg_fast_kritikkstruktur_vs_stol_pa_egen_apenhet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "quality": 3,
+                "risk": -2,
+                "status": 1,
+                "trust": 3
+              }
+            },
+            "feedback": "Du gjør åpenhet mindre avhengig av professorens personlige stil og mer til en egenskap ved miljøet.",
+            "id": "A",
+            "label": "Bygg faste rom for uenighet og uavhengig vurdering",
+            "reply": "Vi legger inn faste reanalyse- og kritikkmøter, tydeliggjør at programstatus ikke avgjør taletid, og sørger for uavhengig støtte når habilitet eller veiledningsmakt gjør vanlig uenighet vanskelig.",
+            "tags": [
+              "critique_structure",
+              "independence",
+              "academic_culture"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 2,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Du gjør kritikkens trygghet avhengig av samme seniorrelasjon som skaper kostnaden ved å kritisere.",
+            "id": "B",
+            "label": "Be gruppen si fra direkte til deg",
+            "reply": "Døren min er åpen, og alle vet at de kan komme til meg hvis de er uenige. Vi trenger ikke flere strukturer rundt vanlig faglig diskusjon.",
+            "tags": [
+              "person_dependent_culture",
+              "power_blindness"
+            ]
+          }
+        ],
+        "competency": "akademisk_kultur",
+        "consequence_axis": "lavere_kritikkostnad_vs_personavhengig_kultur",
+        "cooldown": 5,
+        "day_phase": "day_end",
+        "from": "Instituttlederen",
+        "id": "psykologi_professor_psykologi_consequence_programkritikk_001",
+        "mail_family": "kritikkultur_som_senere_konsekvens",
+        "mail_type": "consequence",
+        "narrative_arc": "fra_enkeltsak_til_varig_kritikkultur",
+        "people_ref": "psykologi_professor_psykologi_instituttleder",
+        "phase": "climax",
+        "place_id": "psykologi_professor_psykologi_fagmiljo",
+        "pressure": "personlig_tillit_vs_systemstruktur",
+        "priority": 132,
+        "purpose": "Teste om professoren bygger en varig struktur for kritikk i stedet for å behandle saken som et enkeltstående personspørsmål.",
+        "repeatable": false,
+        "role_scope": "professor_psykologi",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/consequence/professor_psykologi_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Reanalysen er nå vurdert som faglig relevant og har ført til en avgrenset programjustering.",
+          "Flere yngre forskere sier at terskelen for å ta opp uenighet avhenger av hvem som leder møtet.",
+          "Instituttlederen kan støtte strukturelle tiltak, men professoren må selv endre praksis i eget fagmiljø."
+        ],
+        "stage": "stable",
+        "stakes": "Et miljø som bare er åpent når senioren selv inviterer til det, er fortsatt sårbart; en tung kontrollstruktur kan samtidig gjøre vanlig faglig uenighet unødvendig byråkratisk.",
+        "subject": "Miljøet må tåle at seniorene blir korrigert",
+        "summary": "Instituttlederen ber om en oppfølging etter at programkritikken har vist hvor avhengig forskningskulturen er av at yngre forskere faktisk kan utfordre etablerte seniorer.",
+        "task_domain": "kritikkultur_og_forskningsledelse",
+        "task_kind": "consequence",
+        "thread_key": "psykologi_professor_psykologi_programkritikk_001"
+      },
+      "id": "psykologi_professor_psykologi_consequence_programkritikk_001",
+      "mail_type": "consequence",
+      "role_scope": "professor_psykologi",
+      "scene": {
+        "arc_stage": "climax",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gjør åpenhet mindre avhengig av professorens personlige stil og mer til en egenskap ved miljøet.",
+            "id": "A",
+            "label": "Bygg faste rom for uenighet og uavhengig vurdering",
+            "reply": "Vi legger inn faste reanalyse- og kritikkmøter, tydeliggjør at programstatus ikke avgjør taletid, og sørger for uavhengig støtte når habilitet eller veiledningsmakt gjør vanlig uenighet vanskelig."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør kritikkens trygghet avhengig av samme seniorrelasjon som skaper kostnaden ved å kritisere.",
+            "id": "B",
+            "label": "Be gruppen si fra direkte til deg",
+            "reply": "Døren min er åpen, og alle vet at de kan komme til meg hvis de er uenige. Vi trenger ikke flere strukturer rundt vanlig faglig diskusjon."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Reanalysen er nå vurdert som faglig relevant og har ført til en avgrenset programjustering.",
+            "Flere yngre forskere sier at terskelen for å ta opp uenighet avhenger av hvem som leder møtet.",
+            "Instituttlederen kan støtte strukturelle tiltak, men professoren må selv endre praksis i eget fagmiljø."
+          ],
+          "subject": "Miljøet må tåle at seniorene blir korrigert",
+          "summary": "Instituttlederen ber om en oppfølging etter at programkritikken har vist hvor avhengig forskningskulturen er av at yngre forskere faktisk kan utfordre etablerte seniorer."
+        },
+        "day_phase": "day_end",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "psykologi_professor_psykologi_consequence_programkritikk_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "psykologi_professor_psykologi_fagmiljo",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "psykologi_professor_psykologi_consequence_programkritikk_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/consequence/professor_psykologi_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "psykologi_professor_psykologi_programkritikk_001",
+        "version": 1
+      },
+      "source_hash": "652f2d587404c6856bf0fa4ff1586e745e8be0d83f4f5575fb53f3e84946d659",
+      "source_path": "data/Civication/mailFamilies/psykologi/consequence/professor_psykologi_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "avgrenset_kvalitetsplan_med_ressursavklaring_vs_undervisning_som_resttid",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -2,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Du gjør prioriteringen synlig og beskytter både søknaden og studentenes dokumenterte læringsbehov uten falsk kapasitetsoptimisme.",
+            "id": "A",
+            "label": "Avgrens redesign og løft kapasitetsbehovet",
+            "reply": "Vi retter først delen som er tydeligst knyttet til læringsgapet, fordeler arbeidet, og jeg løfter ressurskonflikten til instituttleder i stedet for å late som begge oppgaver får full kapasitet.",
+            "tags": [
+              "teaching_quality",
+              "capacity",
+              "transparent_priority"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -3,
+                "risk": 2,
+                "status": 2,
+                "trust": -2
+              }
+            },
+            "feedback": "Du gjør et dokumentert kvalitetsproblem til restarbeid fordi forskningsfristen er mer synlig og statusbærende.",
+            "id": "B",
+            "label": "Utsett emnearbeidet til etter søknaden",
+            "reply": "Søknaden har høyest strategisk verdi. Emnet får gå som før denne runden, så ser vi på læringsdataene senere.",
+            "tags": [
+              "teaching_as_residual",
+              "capacity_blindness"
+            ]
+          }
+        ],
+        "competency": "utdanningskvalitet",
+        "consequence_axis": "baerekraftig_kvalitet_vs_gjentatt_laeringsproblem",
+        "cooldown": 3,
+        "day_phase": "afternoon",
+        "from": "Undervisningskoordinatoren",
+        "id": "psykologi_professor_psykologi_event_undervisning_001",
+        "mail_family": "soknadsfrist_og_utdanningskvalitet",
+        "mail_type": "event",
+        "narrative_arc": "fra_kalenderkollisjon_til_synlig_prioritering",
+        "people_ref": "psykologi_professor_psykologi_undervisningskoordinator",
+        "phase": "mid",
+        "place_id": "psykologi_professor_psykologi_undervisningsverksted",
+        "pressure": "soknadsfrist_vs_undervisningskvalitet",
+        "priority": 138,
+        "purpose": "Teste om professoren behandler undervisningskvalitet som en kjerneoppgave og gjør kapasitet og delegering eksplisitt.",
+        "repeatable": false,
+        "role_scope": "professor_psykologi",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/event/professor_psykologi_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Problemet er dokumentert gjennom flere datakilder, ikke bare én studentkommentar.",
+          "Søknaden har en ekstern frist som ikke kan flyttes.",
+          "Instituttlederen eier eventuelle større ressursomprioriteringer, mens professoren kan avgrense, delegere og foreslå en forsvarlig plan."
+        ],
+        "stage": "stable",
+        "stakes": "Å skyve emnet kan beskytte søknaden kortsiktig, men la et dokumentert læringsproblem fortsette; å stoppe all forskning er heller ikke en bærekraftig prioritering.",
+        "subject": "Emnet trenger redesign samme uke som søknadsfristen",
+        "summary": "Studentdata og sensortilbakemeldinger viser at et sentralt læringsmål ikke nås godt nok, samtidig som forskningsgruppen har en stor søknadsfrist.",
+        "task_domain": "forskning_og_utdanningsprioritering",
+        "task_kind": "event"
+      },
+      "id": "psykologi_professor_psykologi_event_undervisning_001",
+      "mail_type": "event",
+      "role_scope": "professor_psykologi",
+      "scene": {
+        "arc_stage": "mid",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gjør prioriteringen synlig og beskytter både søknaden og studentenes dokumenterte læringsbehov uten falsk kapasitetsoptimisme.",
+            "id": "A",
+            "label": "Avgrens redesign og løft kapasitetsbehovet",
+            "reply": "Vi retter først delen som er tydeligst knyttet til læringsgapet, fordeler arbeidet, og jeg løfter ressurskonflikten til instituttleder i stedet for å late som begge oppgaver får full kapasitet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør et dokumentert kvalitetsproblem til restarbeid fordi forskningsfristen er mer synlig og statusbærende.",
+            "id": "B",
+            "label": "Utsett emnearbeidet til etter søknaden",
+            "reply": "Søknaden har høyest strategisk verdi. Emnet får gå som før denne runden, så ser vi på læringsdataene senere."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Problemet er dokumentert gjennom flere datakilder, ikke bare én studentkommentar.",
+            "Søknaden har en ekstern frist som ikke kan flyttes.",
+            "Instituttlederen eier eventuelle større ressursomprioriteringer, mens professoren kan avgrense, delegere og foreslå en forsvarlig plan."
+          ],
+          "subject": "Emnet trenger redesign samme uke som søknadsfristen",
+          "summary": "Studentdata og sensortilbakemeldinger viser at et sentralt læringsmål ikke nås godt nok, samtidig som forskningsgruppen har en stor søknadsfrist."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "psykologi_professor_psykologi_event_undervisning_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "psykologi_professor_psykologi_undervisningsverksted",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "psykologi_professor_psykologi_event_undervisning_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/event/professor_psykologi_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "professor_psykologi.mail.psykologi_professor_psykologi_event_undervisning_001",
+        "version": 1
+      },
+      "source_hash": "acc834c1318f997b5f2232c5fbd2962de7723ffcf68aaea4bb5105834812b102",
+      "source_path": "data/Civication/mailFamilies/psykologi/event/professor_psykologi_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "oppdater_program_og_krediter_kritikk_vs_minimer_avviket",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "quality": 3,
+                "risk": -2,
+                "status": 1,
+                "trust": 3
+              }
+            },
+            "feedback": "Du lar kritikken endre både kunnskapsstatus og arbeidsprogram uten å overdrive hva den beviser.",
+            "id": "A",
+            "label": "Oppdater programmet og gi kritikken synlig plass",
+            "reply": "Vi justerer hovedpåstanden, prioriterer en studie som skiller forklaringene bedre, og lar reanalysen presenteres som en del av programmets korreksjon — med tydelig kreditering.",
+            "tags": [
+              "program_revision",
+              "credit",
+              "self_correction"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 2,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Du anerkjenner avviket språklig, men beskytter programmet mot den praktiske konsekvensen av evidensen.",
+            "id": "B",
+            "label": "Nevn usikkerheten, men behold programmet uendret",
+            "reply": "Vi kan legge inn en begrensningssetning, men det er for tidlig å endre søknader, seminarer eller prioriteringer rundt én reanalyse.",
+            "tags": [
+              "symbolic_correction",
+              "status_quo_bias"
+            ]
+          }
+        ],
+        "competency": "forskningsledelse",
+        "consequence_axis": "korrigerbar_kunnskap_vs_institusjonalisert_statusforsvar",
+        "cooldown": 4,
+        "day_phase": "afternoon",
+        "from": "Den yngre forskeren",
+        "id": "psykologi_professor_psykologi_followup_programkritikk_001",
+        "mail_family": "reanalyse_og_programendring",
+        "mail_type": "followup",
+        "narrative_arc": "fra_reprodusert_kritikk_til_programendring",
+        "people_ref": "psykologi_professor_psykologi_yngre_forsker",
+        "phase": "mastery",
+        "place_id": "psykologi_professor_psykologi_fagmiljo",
+        "pressure": "kontinuitet_og_omdomme",
+        "priority": 134,
+        "purpose": "Teste om professoren lar robust kritikk endre programprioritering, kommunikasjon og hvem som får faglig plass i neste steg.",
+        "repeatable": false,
+        "role_scope": "professor_psykologi",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/followup/professor_psykologi_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Reproduksjonen bekrefter svakere effekt og større usikkerhet, men ikke at all tidligere forskning er ugyldig.",
+          "Den yngre forskeren har dokumentert analysevalg og begrensninger åpent.",
+          "Neste søknad og seminarprogram kan oppdateres før de låses."
+        ],
+        "stage": "stable",
+        "stakes": "Å ignorere en reprodusert utfordring beskytter kortsiktig kontinuitet, men gjør programmet mindre korrigerbart; å forkaste hele programmet ville gå lenger enn evidensen bærer.",
+        "subject": "Reanalysen holder etter reproduksjon",
+        "summary": "En uavhengig gjennomgang i gruppen reproduserer hovedtrekket i den kritiske reanalysen: den etablerte forklaringen er mer usikker enn programmet tidligere har kommunisert.",
+        "task_domain": "programrevisjon",
+        "task_kind": "followup",
+        "thread_key": "psykologi_professor_psykologi_programkritikk_001"
+      },
+      "id": "psykologi_professor_psykologi_followup_programkritikk_001",
+      "mail_type": "followup",
+      "role_scope": "professor_psykologi",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du lar kritikken endre både kunnskapsstatus og arbeidsprogram uten å overdrive hva den beviser.",
+            "id": "A",
+            "label": "Oppdater programmet og gi kritikken synlig plass",
+            "reply": "Vi justerer hovedpåstanden, prioriterer en studie som skiller forklaringene bedre, og lar reanalysen presenteres som en del av programmets korreksjon — med tydelig kreditering."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du anerkjenner avviket språklig, men beskytter programmet mot den praktiske konsekvensen av evidensen.",
+            "id": "B",
+            "label": "Nevn usikkerheten, men behold programmet uendret",
+            "reply": "Vi kan legge inn en begrensningssetning, men det er for tidlig å endre søknader, seminarer eller prioriteringer rundt én reanalyse."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Reproduksjonen bekrefter svakere effekt og større usikkerhet, men ikke at all tidligere forskning er ugyldig.",
+            "Den yngre forskeren har dokumentert analysevalg og begrensninger åpent.",
+            "Neste søknad og seminarprogram kan oppdateres før de låses."
+          ],
+          "subject": "Reanalysen holder etter reproduksjon",
+          "summary": "En uavhengig gjennomgang i gruppen reproduserer hovedtrekket i den kritiske reanalysen: den etablerte forklaringen er mer usikker enn programmet tidligere har kommunisert."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "psykologi_professor_psykologi_followup_programkritikk_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "psykologi_professor_psykologi_fagmiljo",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "psykologi_professor_psykologi_followup_programkritikk_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/followup/professor_psykologi_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "psykologi_professor_psykologi_programkritikk_001",
+        "version": 1
+      },
+      "source_hash": "9bcf361ad33e11b133555f237e03f5fb074d4aa3a641c70a419e6559e42c8b2e",
+      "source_path": "data/Civication/mailFamilies/psykologi/followup/professor_psykologi_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "avklart_bidrag_og_kreditering_vs_hierarkisk_absorpsjon",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Du gjør maktforholdet synlig før prosjektlogikken kan gjøre kandidatens bidrag vanskelig å spore.",
+            "id": "A",
+            "label": "Avklar bidrag og rolle før teksten bygges videre",
+            "reply": "Vi dokumenterer hva som er ditt bidrag, hvilken rolle du ønsker i prosjektet og hvordan kreditering og eventuelt forfatterskap skal vurderes før ideen går inn i søknaden.",
+            "tags": [
+              "credit",
+              "mentorship",
+              "research_integrity"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 2,
+                "status": 1,
+                "trust": -3
+              }
+            },
+            "feedback": "Du lar tidsfrist og senioritet definere eierskap før kandidatens bidrag er avklart.",
+            "id": "B",
+            "label": "Bruk ideen som gruppens og avklar senere",
+            "reply": "Dette er innenfor prosjektets tema, så jeg bygger ideen inn nå og så finner vi en passende takk eller rolle hvis søknaden går gjennom.",
+            "tags": [
+              "credit_capture",
+              "hierarchy",
+              "integrity_risk"
+            ]
+          }
+        ],
+        "competency": "forskningsintegritet",
+        "consequence_axis": "faglig_eierskap_vs_tillitsbrudd",
+        "cooldown": 2,
+        "day_phase": "morning",
+        "from": "Ph.d.-kandidaten",
+        "id": "psykologi_professor_psykologi_job_kreditering_001",
+        "mail_family": "kreditering_for_soknad",
+        "mail_type": "job",
+        "narrative_arc": "fra_god_ide_til_etterprovbar_bidragsavtale",
+        "people_ref": "psykologi_professor_psykologi_phd_kandidat",
+        "phase": "intro",
+        "place_id": "psykologi_professor_psykologi_veiledningsrom",
+        "pressure": "soknadsfrist_og_hierarki",
+        "priority": 150,
+        "purpose": "Teste om professoren avklarer bidrag og kreditering før hierarki, tidspress og prosjektstruktur gjør eierskapet uklart.",
+        "repeatable": false,
+        "role_scope": "professor_psykologi",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/job/professor_psykologi_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Ideen oppsto i kandidatens avhandlingsarbeid og er dokumentert i tidligere veiledningsnotater.",
+          "Professoren leder søknaden, men lederrollen avgjør ikke hvem som har skapt det faglige bidraget.",
+          "Det er fortsatt tid til å avklare medvirkning, ansvar og kreditering før teksten låses."
+        ],
+        "stage": "stable",
+        "stakes": "Uavklart bruk kan gi søknaden fart, men svekke kandidatens faglige eierskap og gjøre senere forfatterskap og ansvar konfliktfylt.",
+        "subject": "Ideen fra avhandlingen passer inn i søknaden",
+        "summary": "En ph.d.-kandidat har utviklet en idé og et analytisk grep som kan bli sentralt i en stor søknad professoren leder.",
+        "task_domain": "kreditering_og_soknad",
+        "task_kind": "job"
+      },
+      "id": "psykologi_professor_psykologi_job_kreditering_001",
+      "mail_type": "job",
+      "role_scope": "professor_psykologi",
+      "scene": {
+        "arc_stage": "intro",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gjør maktforholdet synlig før prosjektlogikken kan gjøre kandidatens bidrag vanskelig å spore.",
+            "id": "A",
+            "label": "Avklar bidrag og rolle før teksten bygges videre",
+            "reply": "Vi dokumenterer hva som er ditt bidrag, hvilken rolle du ønsker i prosjektet og hvordan kreditering og eventuelt forfatterskap skal vurderes før ideen går inn i søknaden."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du lar tidsfrist og senioritet definere eierskap før kandidatens bidrag er avklart.",
+            "id": "B",
+            "label": "Bruk ideen som gruppens og avklar senere",
+            "reply": "Dette er innenfor prosjektets tema, så jeg bygger ideen inn nå og så finner vi en passende takk eller rolle hvis søknaden går gjennom."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Ideen oppsto i kandidatens avhandlingsarbeid og er dokumentert i tidligere veiledningsnotater.",
+            "Professoren leder søknaden, men lederrollen avgjør ikke hvem som har skapt det faglige bidraget.",
+            "Det er fortsatt tid til å avklare medvirkning, ansvar og kreditering før teksten låses."
+          ],
+          "subject": "Ideen fra avhandlingen passer inn i søknaden",
+          "summary": "En ph.d.-kandidat har utviklet en idé og et analytisk grep som kan bli sentralt i en stor søknad professoren leder."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "psykologi_professor_psykologi_job_kreditering_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "psykologi_professor_psykologi_veiledningsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "psykologi_professor_psykologi_job_kreditering_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/job/professor_psykologi_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "professor_psykologi.mail.psykologi_professor_psykologi_job_kreditering_001",
+        "version": 1
+      },
+      "source_hash": "9c67896bd6fa92bc3c0aa4ab9585db0dfabb32e4f983d2177135cfe70b4017dc",
+      "source_path": "data/Civication/mailFamilies/psykologi/job/professor_psykologi_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "bidragsbasert_kreditering_vs_statusbasert_kreditering",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "quality": 2,
+                "risk": -2,
+                "status": 0,
+                "trust": 3
+              }
+            },
+            "feedback": "Du gjør både professorens og kandidatens arbeid synlig uten å la rang avgjøre eierskap.",
+            "id": "A",
+            "label": "Skill rollene og dokumenter faktiske bidrag",
+            "reply": "Veiledning og prosjektledelse er viktige bidrag, men de gjør ikke automatisk ideen til min. Vi beskriver hva hver av oss faktisk har bidratt med og avtaler kreditering derfra.",
+            "tags": [
+              "contribution_based_credit",
+              "academic_power",
+              "transparency"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 2,
+                "status": 1,
+                "trust": -3
+              }
+            },
+            "feedback": "Du blander ansvar for rammen med eierskap til det konkrete faglige bidraget.",
+            "id": "B",
+            "label": "La senioritet og prosjektansvar avgjøre",
+            "reply": "Som veileder og prosjektleder har jeg det overordnede faglige ansvaret, så det er naturlig at slike ideer inngår som mine eller gruppens bidrag.",
+            "tags": [
+              "status_based_credit",
+              "power_abuse"
+            ]
+          }
+        ],
+        "competency": "akademisk_kultur",
+        "consequence_axis": "rettferdig_faglig_eierskap_vs_stille_tillitsbrudd",
+        "cooldown": 3,
+        "day_phase": "afternoon",
+        "from": "Ph.d.-kandidaten",
+        "id": "psykologi_professor_psykologi_knowledge_makt_001",
+        "mail_family": "akademisk_makt_og_kreditering",
+        "mail_type": "knowledge",
+        "narrative_arc": "fra_tittelbasert_antakelse_til_dokumentert_bidrag",
+        "people_ref": "psykologi_professor_psykologi_phd_kandidat",
+        "phase": "mid",
+        "place_id": "psykologi_professor_psykologi_veiledningsrom",
+        "pressure": "hierarki_som_standard",
+        "priority": 140,
+        "purpose": "Teste om professoren kan formulere at senioritet og ledelsesansvar ikke automatisk er det samme som intellektuelt bidrag.",
+        "repeatable": false,
+        "role_scope": "professor_psykologi",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/knowledge/professor_psykologi_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Professoren har gitt omfattende veiledning, men kandidaten formulerte den konkrete ideen og første analysestrategien.",
+          "Prosjektledelse, veiledning og intellektuelt bidrag er ulike typer arbeid som kan dokumenteres hver for seg.",
+          "Faglig frihet gir rom for uenighet og forskning, men er ikke en eiendomsrett til underordnedes ideer eller resultater."
+        ],
+        "stage": "stable",
+        "stakes": "Uklare normer kan gjøre hierarki til skjult fordelingsmekanisme og samtidig gjøre reelt leder- og veiledningsarbeid usynlig.",
+        "subject": "Er veilederrollen nok til å eie bidraget?",
+        "summary": "Kandidaten spør om professorens veileder- og prosjektlederrolle i seg selv gir rett til faglig eierskap eller kreditering for kandidatens idé.",
+        "task_domain": "akademisk_makt_og_bidrag",
+        "task_kind": "knowledge"
+      },
+      "id": "psykologi_professor_psykologi_knowledge_makt_001",
+      "mail_type": "knowledge",
+      "role_scope": "professor_psykologi",
+      "scene": {
+        "arc_stage": "mid",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gjør både professorens og kandidatens arbeid synlig uten å la rang avgjøre eierskap.",
+            "id": "A",
+            "label": "Skill rollene og dokumenter faktiske bidrag",
+            "reply": "Veiledning og prosjektledelse er viktige bidrag, men de gjør ikke automatisk ideen til min. Vi beskriver hva hver av oss faktisk har bidratt med og avtaler kreditering derfra."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du blander ansvar for rammen med eierskap til det konkrete faglige bidraget.",
+            "id": "B",
+            "label": "La senioritet og prosjektansvar avgjøre",
+            "reply": "Som veileder og prosjektleder har jeg det overordnede faglige ansvaret, så det er naturlig at slike ideer inngår som mine eller gruppens bidrag."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Professoren har gitt omfattende veiledning, men kandidaten formulerte den konkrete ideen og første analysestrategien.",
+            "Prosjektledelse, veiledning og intellektuelt bidrag er ulike typer arbeid som kan dokumenteres hver for seg.",
+            "Faglig frihet gir rom for uenighet og forskning, men er ikke en eiendomsrett til underordnedes ideer eller resultater."
+          ],
+          "subject": "Er veilederrollen nok til å eie bidraget?",
+          "summary": "Kandidaten spør om professorens veileder- og prosjektlederrolle i seg selv gir rett til faglig eierskap eller kreditering for kandidatens idé."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "psykologi_professor_psykologi_knowledge_makt_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "psykologi_professor_psykologi_veiledningsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "psykologi_professor_psykologi_knowledge_makt_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/knowledge/professor_psykologi_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "professor_psykologi.mail.psykologi_professor_psykologi_knowledge_makt_001",
+        "version": 1
+      },
+      "source_hash": "eca4da4b11a87f2103ea23247c6882db04985444c82d7884b952e309286679c6",
+      "source_path": "data/Civication/mailFamilies/psykologi/knowledge/professor_psykologi_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "undersok_fordeling_og_laeringsmal_vs_stopp_ved_aggregat",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 1
+              }
+            },
+            "feedback": "Du bruker aggregatet som startpunkt, ikke sluttpunkt, og holder tiltaket proporsjonalt med evidensen.",
+            "id": "A",
+            "label": "Bryt ned resultatet og test undervisningssekvensen",
+            "reply": "Vi undersøker hvilket steg i undervisningen og vurderingen som henger sammen med gapet, og prøver et avgrenset tiltak før vi konkluderer bredt.",
+            "tags": [
+              "disaggregated_evidence",
+              "teaching_quality",
+              "bounded_improvement"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 2,
+                "status": 1,
+                "trust": -1
+              }
+            },
+            "feedback": "Du lar et godt gjennomsnitt skjule et gjentatt problem i et eksplisitt læringsmål.",
+            "id": "B",
+            "label": "Behold emnet siden totalsnittet er godt",
+            "reply": "Helhetsresultatet er sterkt nok. Vi bør ikke bruke tid på å optimalisere for et mindre avvik når emnet samlet fungerer.",
+            "tags": [
+              "aggregate_blindness",
+              "hidden_gap"
+            ]
+          }
+        ],
+        "competency": "utdanningskvalitet",
+        "consequence_axis": "malrettet_forbedring_vs_skjult_gap",
+        "cooldown": 3,
+        "day_phase": "afternoon",
+        "from": "Undervisningskoordinatoren",
+        "id": "psykologi_professor_psykologi_micro_laeringsgap_001",
+        "mail_family": "gjennomsnitt_og_skjult_laeringsgap",
+        "mail_type": "micro",
+        "narrative_arc": "fra_godt_snitt_til_presist_laeringssporsmal",
+        "people_ref": "psykologi_professor_psykologi_undervisningskoordinator",
+        "phase": "advanced",
+        "place_id": "psykologi_professor_psykologi_undervisningsverksted",
+        "pressure": "gront_gjennomsnitt",
+        "priority": 136,
+        "purpose": "Teste om professoren undersøker fordelingen bak aggregatet før det konkluderes med at undervisningen fungerer godt nok.",
+        "repeatable": false,
+        "role_scope": "professor_psykologi",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/micro/professor_psykologi_micro.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Mønsteret finnes i to kull og i mer enn én vurderingsform.",
+          "Gruppen er definert gjennom læringsmønster, ikke sensitive personkjennetegn.",
+          "Dataene peker på et spesifikt læringsmål og en bestemt undervisningssekvens som kan undersøkes nærmere."
+        ],
+        "stage": "stable",
+        "stakes": "Et grønt gjennomsnitt kan gjøre et stabilt læringsgap usynlig; en overreaksjon på små undergrupper kan samtidig føre til tiltak uten robust grunnlag.",
+        "subject": "Gjennomsnittet er grønt, men ett læringsmål svikter",
+        "summary": "Emnet har godt samlet snitt, men oppgave- og sensordata viser at en tydelig avgrenset studentgruppe gjentatte ganger ikke mestrer ett sentralt læringsmål.",
+        "task_domain": "undervisningsdata_og_laeringsgap",
+        "task_kind": "micro"
+      },
+      "id": "psykologi_professor_psykologi_micro_laeringsgap_001",
+      "mail_type": "micro",
+      "role_scope": "professor_psykologi",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du bruker aggregatet som startpunkt, ikke sluttpunkt, og holder tiltaket proporsjonalt med evidensen.",
+            "id": "A",
+            "label": "Bryt ned resultatet og test undervisningssekvensen",
+            "reply": "Vi undersøker hvilket steg i undervisningen og vurderingen som henger sammen med gapet, og prøver et avgrenset tiltak før vi konkluderer bredt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du lar et godt gjennomsnitt skjule et gjentatt problem i et eksplisitt læringsmål.",
+            "id": "B",
+            "label": "Behold emnet siden totalsnittet er godt",
+            "reply": "Helhetsresultatet er sterkt nok. Vi bør ikke bruke tid på å optimalisere for et mindre avvik når emnet samlet fungerer."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Mønsteret finnes i to kull og i mer enn én vurderingsform.",
+            "Gruppen er definert gjennom læringsmønster, ikke sensitive personkjennetegn.",
+            "Dataene peker på et spesifikt læringsmål og en bestemt undervisningssekvens som kan undersøkes nærmere."
+          ],
+          "subject": "Gjennomsnittet er grønt, men ett læringsmål svikter",
+          "summary": "Emnet har godt samlet snitt, men oppgave- og sensordata viser at en tydelig avgrenset studentgruppe gjentatte ganger ikke mestrer ett sentralt læringsmål."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "psykologi_professor_psykologi_micro_laeringsgap_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "psykologi_professor_psykologi_undervisningsverksted",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "psykologi_professor_psykologi_micro_laeringsgap_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/micro/professor_psykologi_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "professor_psykologi.mail.psykologi_professor_psykologi_micro_laeringsgap_001",
+        "version": 1
+      },
+      "source_hash": "fe885f6419b515caedbf7cf823bd2a5a87f7e3d75497414ebc0203631bc1c663",
+      "source_path": "data/Civication/mailFamilies/psykologi/micro/professor_psykologi_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "strukturert_veiledning_vs_overtatt_beslutning",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -1,
+                "trust": 2
+              }
+            },
+            "feedback": "Du bruker senioriteten til å skjerpe kandidatens argument uten å gjøre beslutningen til din.",
+            "id": "A",
+            "label": "Be kandidaten begrunne valget og test antakelsene",
+            "reply": "Lag en kort sammenligning av antakelser, konsekvenser og robusthet for begge alternativene. Jeg utfordrer begrunnelsen din, men du skal eie metodevalget og dokumentere hvorfor.",
+            "tags": [
+              "mentorship",
+              "independence",
+              "method_reasoning"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 1,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Du får framdrift nå, men flytter metodeansvaret oppover i hierarkiet og gjør kandidatens selvstendige begrunnelse svakere.",
+            "id": "B",
+            "label": "Velg analysen for kandidaten",
+            "reply": "Bruk alternativ A. Det er det jeg ville gjort, og vi har ikke tid til å bruke mer av møtet på dette.",
+            "tags": [
+              "dependency",
+              "authority_substitution"
+            ]
+          }
+        ],
+        "competency": "veiledning",
+        "consequence_axis": "selvstendig_dommecraft_vs_veilederavhengighet",
+        "cooldown": 3,
+        "day_phase": "midday",
+        "from": "Ph.d.-kandidaten",
+        "id": "psykologi_professor_psykologi_people_veiledning_001",
+        "mail_family": "veiledning_og_selvstendighet",
+        "mail_type": "people",
+        "narrative_arc": "fra_fasitonske_til_begrunnet_eget_valg",
+        "people_ref": "psykologi_professor_psykologi_phd_kandidat",
+        "phase": "early",
+        "place_id": "psykologi_professor_psykologi_veiledningsrom",
+        "pressure": "framdrift_vs_selvstendighet",
+        "priority": 145,
+        "purpose": "Teste om veiledning gir struktur og kritiske spørsmål uten å erstatte kandidatens eget begrunnede metodevalg.",
+        "repeatable": false,
+        "role_scope": "professor_psykologi",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/people/professor_psykologi_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Begge analysevalg kan forsvares, men de bygger på ulike antakelser.",
+          "Kandidaten har tilgang til nødvendig metodegrunnlag og trenger ikke professorens formelle beslutningsmyndighet.",
+          "Veiledningsrelasjonen er asymmetrisk, så et direkte svar kan oppleves som et krav selv om det formuleres som råd."
+        ],
+        "stage": "stable",
+        "stakes": "Et raskt svar kan spare tid, men gjøre kandidaten mer avhengig av veilederen og svekke eierskapet til beslutningen som senere skal forsvares.",
+        "subject": "Kan du bare si hvilken analyse jeg skal velge?",
+        "summary": "Kandidaten står mellom to forsvarlige analysevalg og ber professoren bestemme for å holde framdriften.",
+        "task_domain": "veiledning_og_metodevalg",
+        "task_kind": "people"
+      },
+      "id": "psykologi_professor_psykologi_people_veiledning_001",
+      "mail_type": "people",
+      "role_scope": "professor_psykologi",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du bruker senioriteten til å skjerpe kandidatens argument uten å gjøre beslutningen til din.",
+            "id": "A",
+            "label": "Be kandidaten begrunne valget og test antakelsene",
+            "reply": "Lag en kort sammenligning av antakelser, konsekvenser og robusthet for begge alternativene. Jeg utfordrer begrunnelsen din, men du skal eie metodevalget og dokumentere hvorfor."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du får framdrift nå, men flytter metodeansvaret oppover i hierarkiet og gjør kandidatens selvstendige begrunnelse svakere.",
+            "id": "B",
+            "label": "Velg analysen for kandidaten",
+            "reply": "Bruk alternativ A. Det er det jeg ville gjort, og vi har ikke tid til å bruke mer av møtet på dette."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Begge analysevalg kan forsvares, men de bygger på ulike antakelser.",
+            "Kandidaten har tilgang til nødvendig metodegrunnlag og trenger ikke professorens formelle beslutningsmyndighet.",
+            "Veiledningsrelasjonen er asymmetrisk, så et direkte svar kan oppleves som et krav selv om det formuleres som råd."
+          ],
+          "subject": "Kan du bare si hvilken analyse jeg skal velge?",
+          "summary": "Kandidaten står mellom to forsvarlige analysevalg og ber professoren bestemme for å holde framdriften."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "psykologi_professor_psykologi_people_veiledning_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "psykologi_professor_psykologi_veiledningsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "psykologi_professor_psykologi_people_veiledning_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/people/professor_psykologi_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "professor_psykologi.mail.psykologi_professor_psykologi_people_veiledning_001",
+        "version": 1
+      },
+      "source_hash": "74932257f7c5a4717d45eca874fdf0bdb7a0cb17507e19f66b5d197b68cb3593",
+      "source_path": "data/Civication/mailFamilies/psykologi/people/professor_psykologi_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "avgrenset_etterprovbar_prioritering_vs_volumstyrt_totalpakke",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "quality": 3,
+                "risk": -2,
+                "status": 1,
+                "trust": 3
+              }
+            },
+            "feedback": "Du gir retning som kan etterprøves, og lar både makt, evidens og kapasitet være synlige premisser.",
+            "id": "A",
+            "label": "Prioriter korreksjon, læringsgap og tydelig eierskap",
+            "reply": "Neste periode skal vi først oppdatere programmet der reanalysen faktisk endrer evidensen, rette det dokumenterte læringsgapet og låse bidragsavklaringer før søknader. Jeg ber instituttleder synliggjøre kapasitetsvalgene dette krever.",
+            "tags": [
+              "bounded_priority",
+              "self_correction",
+              "teaching_quality",
+              "credit"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -3,
+                "risk": 3,
+                "status": 2,
+                "trust": -3
+              }
+            },
+            "feedback": "Du gjør de mindre statusbærende kvalitetsproblemene til usynlig restarbeid og gjentar dagens konflikt i neste periode.",
+            "id": "B",
+            "label": "Maksimer søknader og publisering, ta resten løpende",
+            "reply": "Vi må holde momentet oppe. Søknad og publikasjoner får førsteprioritet; undervisning, kreditering og reanalyse håndteres innenfor eksisterende kapasitet underveis.",
+            "tags": [
+              "volume_priority",
+              "hidden_quality_debt",
+              "status_pressure"
+            ]
+          }
+        ],
+        "competency": "helhetlig_fagledelse",
+        "consequence_axis": "korrigerbart_fagmiljo_vs_statusdrevet_kvalitetsgjeld",
+        "cooldown": 5,
+        "day_phase": "day_end",
+        "from": "Instituttlederen",
+        "id": "psykologi_professor_psykologi_story_prioritering_001",
+        "mail_family": "etterprovbar_fagmiljoprioritering",
+        "mail_type": "story",
+        "narrative_arc": "fra_konkurrerende_krav_til_mandatklar_prioritering",
+        "people_ref": "psykologi_professor_psykologi_instituttleder",
+        "phase": "climax",
+        "place_id": "psykologi_professor_psykologi_fagmiljo",
+        "pressure": "synlig_produktivitet_vs_kvalitet",
+        "priority": 130,
+        "purpose": "Teste om professoren kan gi faglig retning uten å gjøre andres eierskap, kritikk, undervisningskvalitet eller ressursgrenser usynlige.",
+        "repeatable": false,
+        "role_scope": "professor_psykologi",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/story/professor_psykologi_story.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den kritiske reanalysen tilsier en avgrenset justering, ikke at hele forskningsprogrammet forkastes.",
+          "Undervisningsdata viser ett konkret læringsgap som kan adresseres målrettet.",
+          "Kandidatens bidrag og kreditering må avklares uavhengig av søknadens tidsplan, og større ressursvalg ligger hos instituttleder."
+        ],
+        "stage": "stable",
+        "stakes": "En enkel produktivitetsplan kan se handlekraftig ut, men forsterke de samme makt- og kvalitetsproblemene; en uforpliktende balanseformulering kan samtidig la alt fortsette som før.",
+        "subject": "Gi én prioritering for neste faglige periode",
+        "summary": "Etter en dag med krediteringsspørsmål, veiledningspress, programkritikk og et dokumentert undervisningsgap ber instituttlederen professoren foreslå neste prioritering.",
+        "task_domain": "fagmiljoprioritering",
+        "task_kind": "story"
+      },
+      "id": "psykologi_professor_psykologi_story_prioritering_001",
+      "mail_type": "story",
+      "role_scope": "professor_psykologi",
+      "scene": {
+        "arc_stage": "climax",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gir retning som kan etterprøves, og lar både makt, evidens og kapasitet være synlige premisser.",
+            "id": "A",
+            "label": "Prioriter korreksjon, læringsgap og tydelig eierskap",
+            "reply": "Neste periode skal vi først oppdatere programmet der reanalysen faktisk endrer evidensen, rette det dokumenterte læringsgapet og låse bidragsavklaringer før søknader. Jeg ber instituttleder synliggjøre kapasitetsvalgene dette krever."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør de mindre statusbærende kvalitetsproblemene til usynlig restarbeid og gjentar dagens konflikt i neste periode.",
+            "id": "B",
+            "label": "Maksimer søknader og publisering, ta resten løpende",
+            "reply": "Vi må holde momentet oppe. Søknad og publikasjoner får førsteprioritet; undervisning, kreditering og reanalyse håndteres innenfor eksisterende kapasitet underveis."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den kritiske reanalysen tilsier en avgrenset justering, ikke at hele forskningsprogrammet forkastes.",
+            "Undervisningsdata viser ett konkret læringsgap som kan adresseres målrettet.",
+            "Kandidatens bidrag og kreditering må avklares uavhengig av søknadens tidsplan, og større ressursvalg ligger hos instituttleder."
+          ],
+          "subject": "Gi én prioritering for neste faglige periode",
+          "summary": "Etter en dag med krediteringsspørsmål, veiledningspress, programkritikk og et dokumentert undervisningsgap ber instituttlederen professoren foreslå neste prioritering."
+        },
+        "day_phase": "day_end",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "psykologi_professor_psykologi_story_prioritering_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "psykologi_professor_psykologi_fagmiljo",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "psykologi_professor_psykologi_story_prioritering_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/story/professor_psykologi_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "professor_psykologi.mail.psykologi_professor_psykologi_story_prioritering_001",
+        "version": 1
+      },
+      "source_hash": "45a5e57b4f3ab614d322772e3845d5aca8f4569443e2d8904bbe61af18b68bbe",
+      "source_path": "data/Civication/mailFamilies/psykologi/story/professor_psykologi_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
         "choice_axis": "tydelig_grense_og_delt_ansvar_vs_umandatert_hemmelighold",
         "choices": [
           {
@@ -154964,7 +156240,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "872e7172a3f3bd673c737400bb0d68e2bcfda7d82ec93f6ba5774656f8863fde",
+  "registry_hash": "923f6d029eedb28215b68a97370c147be35a4c7ef770bac6d9e46182a99fb34f",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -155855,6 +157131,17 @@
       "psykologi_forsker_psykologi_knowledge_planlagt_utforskende_001",
       "psykologi_forsker_psykologi_consequence_robusthet_001"
     ],
+    "psykologi/professor_psykologi": [
+      "psykologi_professor_psykologi_job_kreditering_001",
+      "psykologi_professor_psykologi_people_veiledning_001",
+      "psykologi_professor_psykologi_story_prioritering_001",
+      "psykologi_professor_psykologi_conflict_programkritikk_001",
+      "psykologi_professor_psykologi_event_undervisning_001",
+      "psykologi_professor_psykologi_micro_laeringsgap_001",
+      "psykologi_professor_psykologi_followup_programkritikk_001",
+      "psykologi_professor_psykologi_knowledge_makt_001",
+      "psykologi_professor_psykologi_consequence_programkritikk_001"
+    ],
     "psykologi/psykologi_miljoarbeid": [
       "psykologi_miljoarbeid_job_vaktstart",
       "psykologi_miljoarbeid_people_autonomi",
@@ -156091,11 +157378,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 264,
+    "compiled_source_file_count": 273,
     "ignored_source_file_count": 1,
-    "input_file_count": 265,
-    "role_count": 35,
-    "scene_count": 1027,
+    "input_file_count": 274,
+    "role_count": 36,
+    "scene_count": 1036,
     "shadowed_duplicate_count": 0
   },
   "version": 1
