@@ -32,7 +32,7 @@ test("v3 derives marker rows only from explicit canonical atlas relations", () =
   assert.match(runtime, /if \(kind === "region"\) return list\(row\?\.regionIds\)\.includes\(id\)/);
   assert.match(runtime, /row\?\.place\?\.lon \?\? row\?\.place\?\.lng/);
   assert.doesNotMatch(runtime, /nearest|haversine|distanceTo|geograph.*infer|region.*contains.*coordinate/i);
-  assert.match(language, /data-atlas-place-selection/);
+  assert.match(language, /host\.dataset\.atlasPlaceSelection = selectionId/);
   assert.match(runtime, /data-atlas-place-selection/);
   assert.match(runtime, /MutationObserver/);
 });
