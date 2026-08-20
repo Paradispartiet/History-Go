@@ -18,12 +18,32 @@ jobs:
       - name: Validate existing Politikk quality layers
         run: |
           node --check tools/probe-politikk-theory-integrity.mjs
+          node --check tools/audit-politikk-theory-integrity.mjs
+          node --check tools/temp-reconcile-politikk-theory-integrity.mjs
           node scripts/audit-politikk-subject-quality.mjs
           node scripts/audit-politikk-thinker-integrity.mjs
-      - name: Run read-only 13-field strict probe
-        run: node tools/probe-politikk-theory-integrity.mjs
-      - name: Upload diagnostic evidence
+      - name: Validate permanent Politikk strict gate
+        run: |
+          node tools/probe-politikk-theory-integrity.mjs
+          node tools/audit-politikk-theory-integrity.mjs --write-report --no-check-report
+          node --test tests/politikk-theory-integrity.test.mjs
+      - name: Materialize current shared 15-of-18 reconciliation
+        run: |
+          node tools/temp-reconcile-politikk-theory-integrity.mjs
+          node --check scripts/audit-fagverk-theory-integrity.mjs
+          node scripts/audit-fagverk-theory-integrity.mjs --write-report --no-check-report
+          node --test tests/fagverk-theory-integrity.test.mjs
+          node --test tests/politikk-theory-integrity.test.mjs
+      - name: Upload reconciliation evidence
         uses: actions/upload-artifact@v4
         with:
-          name: politikk-theory-integrity-probe
-          path: /tmp/politikk-theory-integrity-probe.json
+          name: politikk-theory-integrity-reconciliation
+          path: |
+            /tmp/politikk-theory-integrity-probe.json
+            reports/fagverk/politikk-theory-integrity-audit.json
+            data/fag/fagverk_theory_integrity_evidence_v1.json
+            scripts/audit-fagverk-theory-integrity.mjs
+            tests/fagverk-theory-integrity.test.mjs
+            .github/workflows/fagverk-theory-integrity.yml
+            .github/workflows/politikk-subject-quality.yml
+            reports/fagverk/fagverk-theory-integrity-audit.json
