@@ -48,28 +48,11 @@
       <a href="index.html" class="back-link" aria-label="Til kartet">←</a>
       <a href="index.html" class="brand" aria-label="History Go"><img src="bilder/logo_historygo.PNG" class="brand-logo" alt="History Go"></a>
     </div>
-
-    <section class="profile-section profile-hero profile-hero-v2" id="profileCard" aria-label="Brukeridentitet">
-      <div class="profile-hero-v2-inner">
-        <div class="profile-identity-block">
-          <div class="profile-hero-copy">
-            <div id="profileName" class="profile-name-line" aria-live="polite">Gjest</div>
-            <div class="profile-header-status" role="list" aria-label="Rask status">
-              <div class="profile-stat-card" role="listitem" title="Steder"><span class="profile-stat-icon" aria-hidden="true">⌖</span><span id="statVisited" class="profile-stat-value">0</span></div>
-              <div class="profile-stat-card" role="listitem" title="Quiz"><span class="profile-stat-icon" aria-hidden="true">?</span><span id="statQuizzes" class="profile-stat-value">0</span></div>
-              <div class="profile-stat-card" role="listitem" title="Streak"><span class="profile-stat-icon" aria-hidden="true">↗</span><span id="statStreak" class="profile-stat-value">0</span></div>
-              <div class="profile-stat-card profile-pc" role="listitem" title="ParadiseCoin"><span class="profile-stat-icon" aria-hidden="true">PC</span><span id="pcValue" class="profile-stat-value">0</span></div>
-            </div>
-            <div class="profile-hero-actions-v2">
-              <button id="editProfileBtn" class="btn profile-icon-button profile-edit-button" type="button" aria-label="Innstillinger" title="Innstillinger">⚙</button>
-              <button id="btnOpenAHA" class="btn profile-login-button" type="button">Logg inn</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="actions"><button id="btnSeeMap" class="iconbtn profile-header-map-button" type="button" aria-label="Se samlingen på kartet" title="Se samlingen på kartet">⌖</button></div>
+    <div class="actions profile-header-actions">
+      <button id="editProfileBtn" class="iconbtn profile-edit-button" type="button" aria-label="Innstillinger" title="Innstillinger">⚙</button>
+      <button id="btnOpenAHA" class="profile-login-button" type="button">Logg inn</button>
+      <button id="btnSeeMap" class="iconbtn profile-header-map-button" type="button" aria-label="Se samlingen på kartet" title="Se samlingen på kartet">⌖</button>
+    </div>
   </header>
 
   <main id="profileMain" class="profile-dashboard profile-dashboard-v2">
@@ -86,6 +69,25 @@
 
       <section class="profile-tab-panels">
         <div class="profile-tab-panel is-active" data-panel="oversikt">
+          <section class="collection-home-hero" data-personal-collection-hero="1" aria-labelledby="collectionHeroTitle">
+            <div class="collection-home-copy">
+              <span class="collection-kicker">Min samling · <strong id="profileName" aria-live="polite">Gjest</strong></span>
+              <h1 id="collectionHeroTitle">Det du har oppdaget.<br>Samlet på ett sted.</h1>
+              <p>Steder, kunnskap, mennesker og merker du har bygget opp i History Go. Samlingen viser hva du har funnet, hvor det kommer fra og hvilke sammenhenger som finnes mellom delene.</p>
+              <div class="collection-home-actions">
+                <a class="collection-action primary" href="index.html?nextup=1">Fortsett å utforske</a>
+                <button class="collection-action" type="button" data-collection-map>Se samlingen på kartet</button>
+                <button class="collection-action" type="button" data-collection-aha-button>Utforsk med AHA</button>
+              </div>
+              <div class="profile-legacy-status-contract" hidden aria-hidden="true"><span id="statQuizzes">0</span><span id="statStreak">0</span><span id="pcValue">0</span></div>
+            </div>
+            <div class="collection-home-metrics" aria-label="Samlingen din">
+              <div class="collection-metric"><strong id="statVisited">0</strong><span>steder</span></div>
+              <div class="collection-metric"><strong data-collection-count="knowledge">0</strong><span>kunnskapsenheter</span></div>
+              <div class="collection-metric"><strong data-collection-count="people">0</strong><span>personer</span></div>
+              <div class="collection-metric"><strong data-collection-count="badges">0</strong><span>merker</span></div>
+            </div>
+          </section>
           <div class="profile-dashboard-grid">
             <section class="profile-section profile-focus-card" id="latestKnowledgeSection">
               <div class="section-head profile-journey-head"><h2>Fortsett reisen</h2><a class="secondary profile-icon-button profile-journey-map-button" href="index.html?nextup=1" aria-label="Åpne Next Up på kartet" title="Åpne Next Up på kartet">→</a><span class="section-meta">Next Up velges i ➜-popupen i footeren på hovedkartet.</span></div>
@@ -104,9 +106,9 @@
 
         <div class="profile-tab-panel" data-panel="samling">
           <section class="profile-section profile-strip" id="timelineSection"><div class="section-head"><h2>Reisen din</h2><div id="timelineProgressText" class="section-meta timeline-progress-text"></div></div><div class="timeline-progress"><div id="timelineProgressBar" class="timeline-progress-bar"></div></div><div id="timelineBody" class="timeline-body"></div></section>
-          <section class="profile-section profile-collection-showcase" id="collectionCardsSection"><div class="section-head"><h2>Stedssamlingen</h2><span class="section-meta">Besøkte og låste steder</span></div><div id="collectionCardsBody" class="collection-cards-body"></div><details class="profile-detail-box"><summary>Vis detaljert stedsliste</summary><div id="collectionGrid" class="profile-detail-list"></div></details></section>
+          <section class="profile-section profile-collection-showcase" id="collectionCardsSection"><div class="section-head"><h2>Stedssamlingen</h2><span class="section-meta">Besøkte og låste steder</span></div><div id="collectionGeography" class="collection-geography" aria-label="Geografisk fordeling"></div><div id="collectionCardsBody" class="collection-cards-body"></div><details class="profile-detail-box"><summary>Vis detaljert stedsliste</summary><div id="collectionGrid" class="profile-detail-list"></div></details></section>
           <section class="profile-section" id="musicCollectionSection"><div class="section-head"><h2>Musikk</h2><span class="section-meta" id="musicCollectionMeta">Artister og sanger fra AHA Music</span></div><div id="musicCollectionBody" class="profile-detail-list"></div></section>
-          <div class="profile-grid-2"><section class="profile-section"><div class="section-head"><h2>Personer</h2><span class="section-meta">Mennesker du har oppdaget</span></div><div id="peopleGrid"></div></section><section class="profile-section"><div class="section-head"><h2>Mine bidrag</h2><span class="section-meta">Notater og refleksjoner</span></div><p class="muted">Dine egne bidrag ligger i det eksisterende notatsystemet.</p><a class="link-small" href="notater.html">Åpne mine notater →</a></section></div>
+          <div class="profile-grid-2"><section class="profile-section" id="peopleLibrary"><div class="section-head"><div><h2>Personbiblioteket</h2><span class="section-meta" data-people-library-meta>Mennesker du har oppdaget</span></div><label class="collection-library-search">Søk <input type="search" data-people-library-search placeholder="Finn en person"></label></div><div id="peopleGrid"></div></section><section class="profile-section"><div class="section-head"><h2>Mine bidrag</h2><span class="section-meta">Notater og refleksjoner</span></div><p class="muted">Dine egne bidrag ligger i det eksisterende notatsystemet.</p><a class="link-small" href="notater.html">Åpne mine notater →</a></section></div>
         </div>
 
         <div class="profile-tab-panel" data-panel="kunnskap">
@@ -120,7 +122,7 @@
           <section class="profile-section"><div class="section-head"><h2>Kunnskapen min</h2><span class="section-meta">Én canonical Knowledge V2-opplevelse</span></div><p class="muted">Se kunnskapsenheter, fag, begreper, språkspor, kilder og provenance i samme personlige samling.</p><a class="collection-action primary" href="knowledge.html">Åpne kunnskapen min</a></section>
         </div>
 
-        <div class="profile-tab-panel" data-panel="merker"><section class="profile-section"><div class="section-head"><h2>Mine merker</h2><span class="section-meta">Det du har oppnådd</span></div><div id="merits"></div><div class="profile-subaction"><a href="merker/merker.html" class="link-small">Se alle merke-kategorier →</a></div></section></div>
+        <div class="profile-tab-panel" data-panel="merker"><section class="profile-section" id="badgeLibrary"><div class="section-head"><div><h2>Merkebiblioteket</h2><span class="section-meta" data-badge-library-meta>Det du har oppnådd</span></div><label class="collection-library-search">Søk <input type="search" data-badge-library-search placeholder="Finn et merke"></label></div><div id="merits"></div><div class="profile-subaction"><a href="merker/merker.html" class="link-small">Utforsk alle merke-kategorier →</a></div></section></div>
 
         <div class="profile-tab-panel" data-panel="civication"><section class="profile-section"><div class="section-head"><h2>Spill</h2><span class="section-meta">History Go-universet</span></div><div class="profile-games-grid"><a class="profile-game-card" href="Civication.html"><span class="profile-game-title">Civication</span></a><a class="profile-game-card" href="https://paradispartiet.github.io/HistoryGo-FootballManager/" target="_blank" rel="noopener noreferrer"><span class="profile-game-title">HG Football Manager</span></a><a class="profile-game-card" href="https://paradispartiet.github.io/HG_Film_Producer/" target="_blank" rel="noopener noreferrer"><span class="profile-game-title">HG Film Producer</span></a></div></section></div>
 

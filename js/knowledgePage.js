@@ -132,12 +132,34 @@
     return unique(candidates.map(safeHttpsUrl).filter(Boolean));
   }
 
+  function entryPlaceIds(entry) {
+    const source = entry?.source || {};
+    const geo = entry?.atlas_provenance?.geographic_scope || {};
+    return unique([
+      source.place_id,
+      ...(Array.isArray(source.place_ids) ? source.place_ids : []),
+      ...(Array.isArray(source.related_place_ids) ? source.related_place_ids : []),
+      ...(Array.isArray(entry?.place_ids) ? entry.place_ids : []),
+      ...(Array.isArray(entry?.related_place_ids) ? entry.related_place_ids : []),
+      ...(Array.isArray(geo.place_ids) ? geo.place_ids : []),
+      source.target_type === "place" ? source.target_id : ""
+    ]);
+  }
+
   function entryPlaceId(entry) {
-    return s(
-      entry?.source?.place_id
-      || entry?.atlas_provenance?.geographic_scope?.place_ids?.[0]
-      || ""
-    );
+    return entryPlaceIds(entry)[0] || "";
+  }
+
+  function entryPersonIds(entry) {
+    const source = entry?.source || {};
+    return unique([
+      source.person_id,
+      ...(Array.isArray(source.person_ids) ? source.person_ids : []),
+      ...(Array.isArray(source.related_person_ids) ? source.related_person_ids : []),
+      ...(Array.isArray(entry?.person_ids) ? entry.person_ids : []),
+      ...(Array.isArray(entry?.related_person_ids) ? entry.related_person_ids : []),
+      source.target_type === "person" ? source.target_id : ""
+    ]);
   }
 
   function provenanceRows(entry) {
@@ -319,9 +341,11 @@
     const concepts = Array.isArray(entry?.concepts) ? entry.concepts : [];
     const provenance = provenanceRows(entry);
     const urls = sourceUrls(entry);
-    const placeId = entryPlaceId(entry);
+    const placeIds = entryPlaceIds(entry);
+    const personIds = entryPersonIds(entry);
+    const entryId = s(entry?.id || entry?.knowledge_unit_id);
     return `
-      <article class="kv2-entry" data-knowledge-entry-id="${esc(entry?.id || entry?.knowledge_unit_id || "")}">
+      <article class="kv2-entry" id="knowledge-entry-${esc(entryId)}" data-knowledge-entry-id="${esc(entryId)}">
         <div class="kv2-entry-head">
           <strong>${esc(entry?.topic || "Kunnskap")}</strong>
           <span>${esc(dimensionLabel(entry))}</span>
@@ -336,13 +360,15 @@
               ? `<span>Samlet språkspor</span>`
               : `<span class="kv2-warning-text">Ikke plassert i emne</span>`}
         </div>
-        ${provenance.length || urls.length || placeId ? `
+        ${provenance.length || urls.length || placeIds.length || personIds.length ? `
           <div class="knowledge-entry-provenance">
             <div class="knowledge-entry-provenance-row">
               ${provenance.map(([label, value]) => `<span><strong>${esc(label)}:</strong> ${esc(Array.isArray(value) ? value.join(" · ") : value)}</span>`).join("")}
             </div>
             <div class="knowledge-entry-actions">
-              ${placeId ? `<a href="index.html?collectionPlace=${encodeURIComponent(placeId)}">Vis stedet på kartet</a>` : ""}
+              ${placeIds.map((placeId, index) => `<a href="index.html?collectionPlace=${encodeURIComponent(placeId)}">${placeIds.length > 1 ? `Sted ${index + 1}` : "Vis stedet"} på kartet</a>`).join("")}
+              ${personIds.map((personId, index) => `<a href="profile.html?collectionPerson=${encodeURIComponent(personId)}">${personIds.length > 1 ? `Person ${index + 1}` : "Åpne relatert person"}</a>`).join("")}
+              ${entryId ? `<a href="profile.html?collectionRelation=${encodeURIComponent(entryId)}">Utforsk sammenhenger</a>` : ""}
               ${urls.map((url, index) => `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">Kilde${urls.length > 1 ? ` ${index + 1}` : ""} ↗</a>`).join("")}
             </div>
           </div>` : ""}
@@ -542,6 +568,17 @@
     else renderRouteError(activeSubjectId);
   }
 
+  function focusRequestedEntry() {
+    const entryId = s(new URLSearchParams(location.search).get("entry"));
+    if (!entryId) return;
+    const entry = document.querySelector(`[data-knowledge-entry-id="${CSS.escape(entryId)}"]`);
+    if (!(entry instanceof HTMLElement)) return;
+    const parent = entry.closest("details");
+    if (parent instanceof HTMLDetailsElement) parent.open = true;
+    entry.classList.add("is-collection-focus");
+    entry.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
   function bindSearch() {
     const input = document.getElementById("knowledgeSearch");
     if (!(input instanceof HTMLInputElement)) return;
@@ -590,9 +627,15 @@
     try {
       activeProfile = await window.HGKnowledgeV2.buildProfile();
       window.hgKnowledgeProfileV2 = activeProfile;
+      const requestedEntryId = s(params.get("entry"));
+      if (requestedEntryId && !activeCollectionId && !activeSubjectId) {
+        const requestedEntry = allEntries(activeProfile).find((entry) => s(entry?.id || entry?.knowledge_unit_id) === requestedEntryId);
+        activeSubjectId = s(requestedEntry?._subject_id);
+      }
       renderSummary(activeProfile);
       renderSubjectNav(activeProfile, activeSubjectId, activeCollectionId);
       renderCurrentView();
+      window.setTimeout(focusRequestedEntry, 0);
       bindSearch();
       window.HGKnowledgeV2.renderQuizMemoryOverview?.(activeProfile);
       if (loading) loading.hidden = true;

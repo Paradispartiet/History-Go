@@ -10,6 +10,7 @@ const classic = read("knowledge-profile.html");
 const collectionRuntime = read("js/ui/personal-collection-v1.js");
 const mapBridge = read("js/ui/personal-collection-map-bridge.js");
 const knowledgeRuntime = read("js/knowledgePage.js");
+const profileRuntime = read("js/profile.js");
 const nextUp = read("js/nextUpRuntime.js");
 const config = read("js/config.js");
 const css = read("css/personal-collection-v1.css");
@@ -28,7 +29,7 @@ test("profile.html is the canonical Min samling home", () => {
   assert.match(profile, /data-tab="merker"[^>]*>Merker/);
   assert.match(profile, /js\/ui\/personal-collection-v1\.js/);
   assert.match(profile, /css\/personal-collection-v1\.css/);
-  assert.match(collectionRuntime, /Det du har oppdaget\.<br>Samlet på ett sted\./);
+  assert.match(profile, /Det du har oppdaget\.<br>Samlet på ett sted\./);
   assert.match(collectionRuntime, /visited_places/);
   assert.match(collectionRuntime, /people_collected/);
   assert.match(collectionRuntime, /hg_knowledge_entries_v2/);
@@ -81,6 +82,67 @@ test("Knowledge keeps language atlas, source and place provenance", () => {
   assert.match(knowledgeRuntime, /collectionPlace/);
   assert.match(mapBridge, /HGMapView\?\.openPlace/);
   assert.match(mapBridge, /openPlaceCard/);
+});
+
+test("the collection hero owns identity, collection metrics and the three primary actions", () => {
+  assert.match(profile, /data-personal-collection-hero="1"/);
+  assert.match(profile, /Min samling · <strong id="profileName"/);
+  assert.match(profile, /data-collection-count="knowledge"/);
+  assert.match(profile, /data-collection-count="people"/);
+  assert.match(profile, /data-collection-count="badges"/);
+  assert.match(profile, /data-collection-map/);
+  assert.match(profile, /data-collection-aha-button/);
+  assert.doesNotMatch(profile, /site-header[\s\S]{0,1600}id="profileCard"/);
+});
+
+test("Nylig samlet spans the four canonical collection object types", () => {
+  assert.match(collectionRuntime, /Nylig samlet/);
+  assert.match(collectionRuntime, /recentCard\("place"/);
+  assert.match(collectionRuntime, /recentCard\("person"/);
+  assert.match(collectionRuntime, /recentCard\("knowledge"/);
+  assert.match(collectionRuntime, /recentCard\("badge"/);
+  assert.match(collectionRuntime, /hg_groundhopper_stats_v1/);
+  assert.match(collectionRuntime, /hg_knowledge_entries_v2/);
+  assert.match(collectionRuntime, /people_collected/);
+  assert.match(collectionRuntime, /merits_by_category/);
+});
+
+test("people and badges have filterable libraries with canonical object actions", () => {
+  assert.match(profile, /id="peopleLibrary"/);
+  assert.match(profile, /data-people-library-search/);
+  assert.match(profile, /id="badgeLibrary"/);
+  assert.match(profile, /data-badge-library-search/);
+  assert.match(collectionRuntime, /data-person=/);
+  assert.match(collectionRuntime, /data-badge-id=/);
+  assert.match(collectionRuntime, /collectionPerson/);
+  assert.match(collectionRuntime, /collectionBadge/);
+});
+
+test("canonical relation paths can include places, people, knowledge, subjects and earned badges", () => {
+  assert.match(collectionRuntime, /explicitPlaceIds/);
+  assert.match(collectionRuntime, /explicitPersonIds/);
+  assert.match(collectionRuntime, /badgeForSubject/);
+  assert.match(collectionRuntime, /data-node-kind="\$\{kind\}"/);
+  assert.match(collectionRuntime, /collectionRelation/);
+  assert.match(collectionRuntime, /Hver sti bruker bare eksplisitte/);
+  assert.doesNotMatch(collectionRuntime, /distance|nearest|nearby/i);
+});
+
+test("knowledge units expose every explicit place, related people and relationship exploration", () => {
+  assert.match(knowledgeRuntime, /function entryPlaceIds/);
+  assert.match(knowledgeRuntime, /function entryPersonIds/);
+  assert.match(knowledgeRuntime, /placeIds\.map/);
+  assert.match(knowledgeRuntime, /personIds\.map/);
+  assert.match(knowledgeRuntime, /Utforsk sammenhenger/);
+  assert.match(knowledgeRuntime, /focusRequestedEntry/);
+});
+
+test("the collection shows explicit geographic subtotals and uses a mint profile map marker", () => {
+  assert.match(profile, /id="collectionGeography"/);
+  assert.match(collectionRuntime, /address\?\.city/);
+  assert.match(collectionRuntime, /Uten områdemetadata/);
+  assert.match(profileRuntime, /color: "#a8d8c7"/);
+  assert.doesNotMatch(profileRuntime.slice(profileRuntime.indexOf("function updateProfileMarkers"), profileRuntime.indexOf("function catColor")), /#ffd700|#f6c800/i);
 });
 
 test("AHA remains the existing History Go import boundary", () => {
