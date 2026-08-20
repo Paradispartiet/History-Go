@@ -12,6 +12,7 @@ import { auditByTheoryIntegrity } from '../tools/audit-by-theory-integrity.mjs';
 import { auditKunstTheoryIntegrity } from '../tools/audit-kunst-theory-integrity.mjs';
 import { auditMediaTheoryIntegrity } from '../tools/audit-media-theory-integrity.mjs';
 import { auditMusikkTheoryIntegrity } from '../tools/audit-musikk-theory-integrity.mjs';
+import { auditLitteraturTheoryIntegrity } from '../tools/audit-litteratur-theory-integrity.mjs';
 
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const CONTRACT='data/fag/fagverk_theory_quality_contract_v1.json';
@@ -31,7 +32,8 @@ const RUNNERS={
   by:()=>auditByTheoryIntegrity(),
   kunst:()=>auditKunstTheoryIntegrity(),
   media:()=>auditMediaTheoryIntegrity(),
-  musikk:()=>auditMusikkTheoryIntegrity()
+  musikk:()=>auditMusikkTheoryIntegrity(),
+  litteratur:()=>auditLitteraturTheoryIntegrity()
 };
 
 const STRICT_KEYS=[
@@ -108,6 +110,9 @@ export function auditFagverkTheoryIntegrity({writeReport=false,checkReport=true}
   const musikkAdapter=adapterById.get('musikk');
   assert(musikkAdapter?.proof_scope==='structured_subject_gate','Musikk må bruke permanent structured subject gate etter 8-felts reconciliation');
   assert(allVerified(musikkAdapter?.existing_gate_proves),'Musikk structured subject gate må dokumentere alle strict proof-dimensjoner');
+  const litteraturAdapter=adapterById.get('litteratur');
+  assert(litteraturAdapter?.proof_scope==='structured_subject_gate','Litteratur må bruke permanent structured subject gate etter 28-felts reconciliation');
+  assert(allVerified(litteraturAdapter?.existing_gate_proves),'Litteratur structured subject gate må dokumentere alle strict proof-dimensjoner');
 
   const baselineById=new Map(baseline.subjects.map(s=>[s.id,s]));
   const subjects=contract.subjects.map(entry=>{

@@ -15,6 +15,7 @@ on:
       - 'reports/fagverk/media-theory-integrity-audit.json'
       - 'reports/fagverk/musikk-subject-audit.json'
       - 'reports/fagverk/musikk-theory-integrity-audit.json'
+      - 'reports/fagverk/litteratur-theory-integrity-audit.json'
       - 'reports/historie-theory-evidence/**'
       - 'scripts/audit-fagverk-theory-integrity.mjs'
       - 'scripts/audit-fagverk-theory-quality.mjs'
@@ -30,10 +31,12 @@ on:
       - 'tools/audit-kunst-theory-integrity.mjs'
       - 'tools/audit-media-theory-integrity.mjs'
       - 'tools/audit-musikk-theory-integrity.mjs'
+      - 'tools/audit-litteratur-theory-integrity.mjs'
       - 'tests/by-theory-integrity.test.mjs'
       - 'tests/kunst-theory-integrity.test.mjs'
       - 'tests/media-theory-integrity.test.mjs'
       - 'tests/musikk-theory-integrity.test.mjs'
+      - 'tests/litteratur-theory-integrity.test.mjs'
       - 'tests/fagverk-documentation-contract.test.mjs'
       - 'tests/fagverk-theory-integrity.test.mjs'
       - '.github/workflows/fagverk-theory-integrity.yml'
@@ -53,6 +56,7 @@ on:
       - 'reports/fagverk/media-theory-integrity-audit.json'
       - 'reports/fagverk/musikk-subject-audit.json'
       - 'reports/fagverk/musikk-theory-integrity-audit.json'
+      - 'reports/fagverk/litteratur-theory-integrity-audit.json'
       - 'reports/historie-theory-evidence/**'
       - 'scripts/audit-fagverk-theory-integrity.mjs'
       - 'scripts/audit-fagverk-theory-quality.mjs'
@@ -68,10 +72,12 @@ on:
       - 'tools/audit-kunst-theory-integrity.mjs'
       - 'tools/audit-media-theory-integrity.mjs'
       - 'tools/audit-musikk-theory-integrity.mjs'
+      - 'tools/audit-litteratur-theory-integrity.mjs'
       - 'tests/by-theory-integrity.test.mjs'
       - 'tests/kunst-theory-integrity.test.mjs'
       - 'tests/media-theory-integrity.test.mjs'
       - 'tests/musikk-theory-integrity.test.mjs'
+      - 'tests/litteratur-theory-integrity.test.mjs'
       - 'tests/fagverk-documentation-contract.test.mjs'
       - 'tests/fagverk-theory-integrity.test.mjs'
       - '.github/workflows/fagverk-theory-integrity.yml'
@@ -95,10 +101,12 @@ jobs:
           node --check tools/audit-kunst-theory-integrity.mjs
           node --check tools/audit-media-theory-integrity.mjs
           node --check tools/audit-musikk-theory-integrity.mjs
+          node --check tools/audit-litteratur-theory-integrity.mjs
           node scripts/audit-fagverk-theory-integrity.mjs
           node --test tests/by-theory-integrity.test.mjs
           node --test tests/kunst-theory-integrity.test.mjs
           node --test tests/media-theory-integrity.test.mjs
           node --test tests/musikk-theory-integrity.test.mjs
+          node --test tests/litteratur-theory-integrity.test.mjs
           node --test tests/fagverk-theory-integrity.test.mjs
           node --test tests/fagverk-documentation-contract.test.mjs

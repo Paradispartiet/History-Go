@@ -248,6 +248,30 @@
         "anti_trivia_rule": "verified",
         "universal_subject_scope": "verified"
       }
+    },
+    {
+      "subject_id": "litteratur",
+      "proof_scope": "structured_subject_gate",
+      "audit_script": "tools/audit-litteratur-theory-integrity.mjs",
+      "test": "tests/litteratur-theory-integrity.test.mjs",
+      "workflow": ".github/workflows/fagverk-theory-integrity.yml",
+      "evidence_files": [
+        "data/fag/litteratur/litteraturvitenskap_canonical_v1/index.json",
+        "data/fag/litteratur/litteraturvitenskap_canonical_v1/coverage_contract_v1.json",
+        "reports/fagverk/litteratur-theory-integrity-audit.json"
+      ],
+      "existing_gate_proves": {
+        "canonical_field_coverage": "verified",
+        "structured_scope_mechanism": "verified",
+        "limitations": "verified",
+        "rival_or_alternative": "verified",
+        "person_work_binding": "verified",
+        "scholarly_source_quality": "verified",
+        "claim_or_content_binding": "verified",
+        "actual_prose_binding": "verified",
+        "anti_trivia_rule": "verified",
+        "universal_subject_scope": "verified"
+      }
     }
   ]
 }
