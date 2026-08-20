@@ -13,9 +13,9 @@ const path = require("path");
 const ROOT = path.join(__dirname, "..");
 const html = fs.readFileSync(path.join(ROOT, "Civication.html"), "utf8");
 
-// --- 1. Statiske script-tags: Min dag-modulen + shell-loaderen ---
-// Min dag-scriptene rendrer primærpanelet raskt og uavhengig; shell-loaderen
-// injiserer resten av skallkjeden og vekker boot.
+// --- 1. Statiske script-tags: Min dag-modulen + romlig dagsbro + shell-loader ---
+// Min dag-scriptene rendrer primærpanelet raskt og uavhengig; Spatial Day Bridge
+// projiserer samme day/mail-sannhet på kartet; shell-loaderen injiserer resten.
 const STATIC_SCRIPTS = [
   "js/Civication/civicationV2Config.js",
   "js/Civication/core/CivicationStorageAdapter.js",
@@ -27,6 +27,7 @@ const STATIC_SCRIPTS = [
   "js/Civication/lifestory/lifestoryShellBridge.js",
   "js/Civication/ui/CivicationLifestoryActions.js",
   "js/Civication/ui/CivicationLifestoryUI.js",
+  "js/Civication/systems/civicationSpatialDayBridge.js",
   "js/Civication/civicationShellLoader.js"
 ];
 
@@ -34,7 +35,7 @@ const loadedScripts = [...html.matchAll(/<script src="([^"]+)"><\/script>/g)].ma
 assert.deepStrictEqual(
   loadedScripts,
   STATIC_SCRIPTS,
-  "Civication.html skal laste Min dag-modulen + shell-loaderen, i denne rekkefølgen"
+  "Civication.html skal laste Min dag + romlig dagsbro + shell-loader, i denne rekkefølgen"
 );
 
 // config står først (setter flagget), shell-loaderen sist.
