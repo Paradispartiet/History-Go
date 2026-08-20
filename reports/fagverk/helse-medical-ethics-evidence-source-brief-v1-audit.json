@@ -1,0 +1,69 @@
+{
+  "schema": "history_go_health_medical_ethics_evidence_source_brief_v1_audit",
+  "version": "1.0.0",
+  "updated_at": "2026-08-21",
+  "status": "high_quality_source_brief_ready_for_fulltext_not_scientific_completion",
+  "subject_id": "helse",
+  "summary": {
+    "canonical_emne_count": 1,
+    "topic_count": 8,
+    "source_count": 14,
+    "scenario_count": 6,
+    "planned_claim_count": 32,
+    "proposed_module_count": 4,
+    "registered_chapter_count_delta": 0,
+    "expanded_fagverk_strictly_proven": 18,
+    "expanded_fagverk_target": 20
+  },
+  "gates": {
+    "exact_canonical_health_owner": true,
+    "all_topic_methods_resolve": true,
+    "all_sources_inspectable_https": true,
+    "every_source_used": true,
+    "every_source_reference_resolves": true,
+    "authority_types_are_diverse": true,
+    "all_topics_have_boundaries_methods_sources_and_claims": true,
+    "all_planned_claim_ids_unique": true,
+    "no_planned_claim_overstated_as_verified": true,
+    "every_planned_claim_has_resolving_sources": true,
+    "scenarios_are_non_individualizing_and_source_bound": true,
+    "module_order_covers_every_topic_once": true,
+    "clinical_research_legal_and_method_boundaries_explicit": true,
+    "philosophy_science_and_politics_overlap_boundaries_explicit": true,
+    "blocking_safety_contract_present": true,
+    "no_individual_medical_or_legal_advice": true,
+    "chapter_remains_unregistered": true,
+    "status_remains_honest_foundation_only": true,
+    "strict_completion_not_claimed": true
+  },
+  "quality_assessment": {
+    "correctness_and_evidence": {
+      "score": 5,
+      "evidence": "Kildene er inspiserte primær-, lov-, myndighets- eller autoritative metodekilder med konkrete source locations og eksplisitt autoritetstype."
+    },
+    "coverage_and_completion": {
+      "score": 5,
+      "evidence": "Åtte faglige spor dekker klinisk etikk, forskningsetikk, evidens, samvalg, rettferdighet og profesjonsansvar uten å late som de øvrige elleve helsedomenene er produsert."
+    },
+    "editorial_and_scientific_quality": {
+      "score": 5,
+      "evidence": "Briefen skiller deskriptiv evidens fra normativ anbefaling, klinikk fra forskning og lov fra etikk, og planlegger rivaliserende hensyn og begrensninger."
+    },
+    "technical_integrity": {
+      "score": 4,
+      "evidence": "Deterministisk generator, test og audit låser alle referanser; ekstern URL-tilgjengelighet er kontrollert redaksjonelt i denne PR-en, men ikke nettverkstestet i CI."
+    },
+    "safety_and_responsibility": {
+      "score": 5,
+      "evidence": "Eksisterende blokkerende sikkerhetskontrakt håndheves, og briefen forbyr individråd, diagnose, prognose, triage og juridiske enkeltavgjørelser."
+    },
+    "maintainability_and_auditability": {
+      "score": 5,
+      "evidence": "Manifest, inventory, registry, status, brief og rapport bygges deterministisk, med registreringsport som forblir lukket til claimsporet fulltekst er grønn."
+    },
+    "total": 29,
+    "maximum": 30,
+    "conclusion": "high_quality_source_brief_ready_for_fulltext_not_scientific_completion"
+  },
+  "next_gate": "produce_full_chapter_claims_and_inspectable_sources_for_medisinsk_etikk_evidens"
+}
