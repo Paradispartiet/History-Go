@@ -11,6 +11,8 @@ on:
       - 'reports/fagverk/by-theory-integrity-audit.json'
       - 'reports/fagverk/kunst-complete-audit.json'
       - 'reports/fagverk/kunst-theory-integrity-audit.json'
+      - 'reports/fagverk/media-complete-audit.json'
+      - 'reports/fagverk/media-theory-integrity-audit.json'
       - 'reports/historie-theory-evidence/**'
       - 'scripts/audit-fagverk-theory-integrity.mjs'
       - 'scripts/audit-fagverk-theory-quality.mjs'
@@ -18,12 +20,15 @@ on:
       - 'scripts/audit-fagverk-religion-theory-canon.mjs'
       - 'scripts/audit-fagverk-scenekunst-theory-canon.mjs'
       - 'scripts/audit-fagverk-kunst-complete.mjs'
+      - 'scripts/audit-fagverk-media-complete.mjs'
       - 'scripts/audit-subkultur-theory-attribution-v1.mjs'
       - 'tools/audit-historie-theory-integrity.mjs'
       - 'tools/audit-by-theory-integrity.mjs'
       - 'tools/audit-kunst-theory-integrity.mjs'
+      - 'tools/audit-media-theory-integrity.mjs'
       - 'tests/by-theory-integrity.test.mjs'
       - 'tests/kunst-theory-integrity.test.mjs'
+      - 'tests/media-theory-integrity.test.mjs'
       - 'tests/fagverk-documentation-contract.test.mjs'
       - 'tests/fagverk-theory-integrity.test.mjs'
       - '.github/workflows/fagverk-theory-integrity.yml'
@@ -39,6 +44,8 @@ on:
       - 'reports/fagverk/by-theory-integrity-audit.json'
       - 'reports/fagverk/kunst-complete-audit.json'
       - 'reports/fagverk/kunst-theory-integrity-audit.json'
+      - 'reports/fagverk/media-complete-audit.json'
+      - 'reports/fagverk/media-theory-integrity-audit.json'
       - 'reports/historie-theory-evidence/**'
       - 'scripts/audit-fagverk-theory-integrity.mjs'
       - 'scripts/audit-fagverk-theory-quality.mjs'
@@ -46,12 +53,15 @@ on:
       - 'scripts/audit-fagverk-religion-theory-canon.mjs'
       - 'scripts/audit-fagverk-scenekunst-theory-canon.mjs'
       - 'scripts/audit-fagverk-kunst-complete.mjs'
+      - 'scripts/audit-fagverk-media-complete.mjs'
       - 'scripts/audit-subkultur-theory-attribution-v1.mjs'
       - 'tools/audit-historie-theory-integrity.mjs'
       - 'tools/audit-by-theory-integrity.mjs'
       - 'tools/audit-kunst-theory-integrity.mjs'
+      - 'tools/audit-media-theory-integrity.mjs'
       - 'tests/by-theory-integrity.test.mjs'
       - 'tests/kunst-theory-integrity.test.mjs'
+      - 'tests/media-theory-integrity.test.mjs'
       - 'tests/fagverk-documentation-contract.test.mjs'
       - 'tests/fagverk-theory-integrity.test.mjs'
       - '.github/workflows/fagverk-theory-integrity.yml'
@@ -73,8 +83,10 @@ jobs:
           node --check scripts/audit-fagverk-theory-integrity.mjs
           node --check tools/audit-by-theory-integrity.mjs
           node --check tools/audit-kunst-theory-integrity.mjs
+          node --check tools/audit-media-theory-integrity.mjs
           node scripts/audit-fagverk-theory-integrity.mjs
           node --test tests/by-theory-integrity.test.mjs
           node --test tests/kunst-theory-integrity.test.mjs
+          node --test tests/media-theory-integrity.test.mjs
           node --test tests/fagverk-theory-integrity.test.mjs
           node --test tests/fagverk-documentation-contract.test.mjs

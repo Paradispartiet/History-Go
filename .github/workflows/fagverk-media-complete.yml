@@ -9,7 +9,9 @@ on:
       - 'data/fagverk/subject_status.json'
       - 'data/fagverk/fagverk_release.json'
       - 'scripts/audit-fagverk-media-*.mjs'
+      - 'tools/audit-media-theory-integrity.mjs'
       - 'tests/fagverk-media-*.test.mjs'
+      - 'tests/media-theory-integrity.test.mjs'
       - 'reports/fagverk/media-*-audit.json'
       - '.github/workflows/fagverk-media-complete.yml'
   workflow_dispatch:
@@ -26,5 +28,8 @@ jobs:
         with:
           node-version: 22
       - run: node scripts/audit-fagverk-media-complete.mjs
+      - run: node --check tools/audit-media-theory-integrity.mjs
+      - run: node tools/audit-media-theory-integrity.mjs
+      - run: node --test tests/media-theory-integrity.test.mjs
       - run: node --test tests/fagverk-media-*.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-subject-inventory.test.mjs
       - run: node scripts/build-fagverk-release-manifest.mjs --check
