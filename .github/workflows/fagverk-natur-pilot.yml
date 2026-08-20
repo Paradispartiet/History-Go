@@ -19,10 +19,12 @@ on:
       - 'scripts/materialize-natur-biology-phase-2.mjs'
       - 'scripts/audit-natur-universal-coverage.mjs'
       - 'scripts/audit-fagverk-natur-pilot.mjs'
+      - 'tools/audit-natur-theory-integrity.mjs'
       - 'tests/fagverk-subject-inventory.test.mjs'
       - 'tests/fagverk-general-engine.test.mjs'
       - 'tests/natur-universal-coverage.test.mjs'
       - 'tests/fagverk-natur-pilot.test.mjs'
+      - 'tests/natur-theory-integrity.test.mjs'
       - 'reports/fagverk/**'
       - '.github/workflows/fagverk-natur-pilot.yml'
   push:
@@ -34,8 +36,10 @@ on:
       - 'scripts/materialize-natur-biology-phase-2.mjs'
       - 'scripts/audit-natur-universal-coverage.mjs'
       - 'scripts/audit-fagverk-natur-pilot.mjs'
+      - 'tools/audit-natur-theory-integrity.mjs'
       - 'tests/natur-universal-coverage.test.mjs'
       - 'tests/fagverk-natur-pilot.test.mjs'
+      - 'tests/natur-theory-integrity.test.mjs'
       - 'reports/fagverk/**'
       - '.github/workflows/fagverk-natur-pilot.yml'
   workflow_dispatch:
@@ -59,13 +63,16 @@ jobs:
           node --check scripts/materialize-natur-biology-phase-2.mjs
           node --check scripts/audit-natur-universal-coverage.mjs
           node --check scripts/audit-fagverk-natur-pilot.mjs
+          node --check tools/audit-natur-theory-integrity.mjs
           node scripts/audit-fagverk-subject-inventory.mjs
           node scripts/audit-fagverk-general-engine.mjs
           node scripts/audit-natur-universal-coverage.mjs
           node scripts/audit-fagverk-natur-pilot.mjs
+          node tools/audit-natur-theory-integrity.mjs
       - name: Validate Fagverk and Nature contracts
         run: |
           node --test tests/fagverk-subject-inventory.test.mjs
           node --test tests/fagverk-general-engine.test.mjs
           node --test tests/natur-universal-coverage.test.mjs
           node --test tests/fagverk-natur-pilot.test.mjs
+          node --test tests/natur-theory-integrity.test.mjs
