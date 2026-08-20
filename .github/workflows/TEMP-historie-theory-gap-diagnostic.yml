@@ -1,13 +1,10 @@
-name: TEMP Historie legacy emne theory mapping diagnostic
+name: TEMP Historie legacy mapping schema diagnostic
 
 on:
   pull_request:
     paths:
       - '.github/workflows/TEMP-historie-theory-gap-diagnostic.yml'
       - 'data/fag/historie/**'
-      - 'data/fagverk/historie/**'
-      - 'data/fagverk/fagverk_registry.json'
-      - 'tools/audit-historie-theory-integrity.mjs'
 
 permissions:
   contents: read
@@ -17,26 +14,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Resolve canonical emne to theory hook mappings for legacy fields
+      - name: Inspect actual emnemapping schema
         run: |
           node <<'NODE'
           const fs=require('fs');
-          const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
-          const A=v=>Array.isArray(v)?v:[];
-          const pensum=read('data/fag/historie/historiepensum_canonical_v4_5.json');
-          const mappings=read('data/fag/historie/emnemapping_historie_canonical_v4_5.json');
-          const theories=read('data/fag/historie/theory_objects_historie_canonical_v5_5.json');
-          const tByHook=new Map(theories.map(t=>[t.source_hook_id,t]));
-          const wanted=new Set(['his_tid_periodisering','his_kilder_arkiv_spor','his_makt_stat_institusjoner']);
-          const out=[];
-          for(const d of A(pensum.domains).filter(d=>wanted.has(d.domain_id))){
-            const emnes=d.emne_ids.map(id=>{
-              const row=A(mappings).find(r=>r.emne_id===id)||{};
-              const hooks=A(row.mappings).map(m=>m.gren_key||m.hook_id||m.topic_hook_id||m.hook||m.id).filter(Boolean);
-              const canonicalHooks=hooks.filter(h=>d.hook_ids.includes(h));
-              return {emne_id:id,mapping_count:A(row.mappings).length,hooks,canonical_hooks:canonicalHooks,theory_ids:canonicalHooks.map(h=>tByHook.get(h)?.theory_id).filter(Boolean)};
-            });
-            out.push({field:d.domain_id,emnes});
+          const m=JSON.parse(fs.readFileSync('data/fag/historie/emnemapping_historie_canonical_v4_5.json','utf8'));
+          const ids=['em_his_tid_periodisering_epoker','em_his_kildekritikk_arkiv_spor','em_his_stat_institusjoner'];
+          for(const id of ids){
+            const row=m.find(r=>r.emne_id===id);
+            console.log(id+'='+JSON.stringify(row));
           }
-          console.log('LEGACY_EMNE_THEORY_MAP='+JSON.stringify(out));
           NODE
