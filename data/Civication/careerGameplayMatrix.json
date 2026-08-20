@@ -11,11 +11,11 @@
     "support_worlds": 1,
     "statuses": {
       "reference_complete": 5,
-      "playable": 21,
+      "playable": 22,
       "partial": 0,
-      "architecture_only": 59
+      "architecture_only": 58
     },
-    "runtime_gate_pass": 26,
+    "runtime_gate_pass": 27,
     "life_story_complete": 13,
     "component_debt": {
       "entry": {
@@ -24,13 +24,13 @@
         "missing": 0
       },
       "day_one": {
-        "complete": 26,
+        "complete": 27,
         "partial": 0,
-        "missing": 59
+        "missing": 58
       },
       "workday_loop": {
-        "complete": 26,
-        "partial": 52,
+        "complete": 27,
+        "partial": 51,
         "missing": 7
       },
       "practice_stories": {
@@ -39,19 +39,19 @@
         "missing": 0
       },
       "people": {
-        "complete": 21,
+        "complete": 22,
         "partial": 12,
-        "missing": 52
+        "missing": 51
       },
       "places": {
-        "complete": 26,
+        "complete": 27,
         "partial": 0,
-        "missing": 59
+        "missing": 58
       },
       "mail": {
-        "complete": 26,
+        "complete": 27,
         "partial": 0,
-        "missing": 59
+        "missing": 58
       },
       "knowledge": {
         "complete": 27,
@@ -69,14 +69,14 @@
         "missing": 0
       },
       "consequences": {
-        "complete": 26,
+        "complete": 27,
         "partial": 0,
-        "missing": 59
+        "missing": 58
       },
       "performance": {
-        "complete": 23,
+        "complete": 24,
         "partial": 3,
-        "missing": 59
+        "missing": 58
       },
       "economy": {
         "complete": 85,
@@ -84,13 +84,13 @@
         "missing": 0
       },
       "progression": {
-        "complete": 23,
-        "partial": 13,
+        "complete": 24,
+        "partial": 12,
         "missing": 49
       },
       "exit": {
-        "complete": 23,
-        "partial": 13,
+        "complete": 24,
+        "partial": 12,
         "missing": 49
       }
     }
@@ -6392,7 +6392,8 @@
         },
         "role_tests": [
           "tests/civication-media-life-career-split.test.js",
-          "tests/civication-media-redaksjon-rollout-playability.test.js"
+          "tests/civication-media-redaksjon-rollout-playability.test.js",
+          "tests/civication-media-redaksjonell-ledelse-rollout-playability.test.js"
         ],
         "life_story": null
       },
@@ -6412,7 +6413,8 @@
             "evidence": [
               "data/Civication/mailPlans/media/media_redaksjon_plan.json",
               "tests/civication-media-life-career-split.test.js",
-              "tests/civication-media-redaksjon-rollout-playability.test.js"
+              "tests/civication-media-redaksjon-rollout-playability.test.js",
+              "tests/civication-media-redaksjonell-ledelse-rollout-playability.test.js"
             ],
             "note": "Role plan and role-specific test prove a first playable day."
           },
@@ -6423,7 +6425,8 @@
               "data/Civication/mailPlans/media/media_redaksjon_plan.json",
               "data/Civication/workGrammars/media/media_redaksjon.json",
               "tests/civication-media-life-career-split.test.js",
-              "tests/civication-media-redaksjon-rollout-playability.test.js"
+              "tests/civication-media-redaksjon-rollout-playability.test.js",
+              "tests/civication-media-redaksjonell-ledelse-rollout-playability.test.js"
             ],
             "note": "Repeatable work content is connected to a tested plan."
           },
@@ -6510,7 +6513,8 @@
               "data/Civication/mailFamilies/media/consequence/media_redaksjon_consequence.json",
               "data/Civication/mailFamilies/media/followup/media_redaksjon_followup.json",
               "tests/civication-media-life-career-split.test.js",
-              "tests/civication-media-redaksjon-rollout-playability.test.js"
+              "tests/civication-media-redaksjon-rollout-playability.test.js",
+              "tests/civication-media-redaksjonell-ledelse-rollout-playability.test.js"
             ],
             "note": "Later consequence/follow-up path is role-tested."
           },
@@ -6520,7 +6524,8 @@
               "data/Civication/mailPlans/media/media_redaksjon_plan.json",
               "tests/civication-career-outcomes.test.js",
               "tests/civication-media-life-career-split.test.js",
-              "tests/civication-media-redaksjon-rollout-playability.test.js"
+              "tests/civication-media-redaksjon-rollout-playability.test.js",
+              "tests/civication-media-redaksjonell-ledelse-rollout-playability.test.js"
             ],
             "note": "Positive and negative outcomes are defined and role-tested."
           },
@@ -6619,6 +6624,7 @@
       "category": "media",
       "role_scope": "media_redaksjonell_ledelse",
       "declared_by": [
+        "mailPlan",
         "workGrammar"
       ],
       "badge_titles": [
@@ -6632,7 +6638,7 @@
         "media_redaktor",
         "media_sjefredaktor"
       ],
-      "status": "architecture_only",
+      "status": "playable",
       "artifacts": {
         "role_models": [
           "data/Civication/roleModels/media/nyhetsleder.json",
@@ -6641,47 +6647,48 @@
         ],
         "work_grammar": "data/Civication/workGrammars/media/media_redaksjonell_ledelse.json",
         "shared_work_grammars": [],
-        "mail_plan": null,
+        "mail_plan": "data/Civication/mailPlans/media/media_redaksjonell_ledelse_plan.json",
         "mail_families": {
           "job": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/media/job/media_redaksjonell_ledelse_job.json",
+            "count": 1
           },
           "people": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/media/people/media_redaksjonell_ledelse_people.json",
+            "count": 1
           },
           "conflict": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/media/conflict/media_redaksjonell_ledelse_conflict.json",
+            "count": 1
           },
           "story": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/media/story/media_redaksjonell_ledelse_story.json",
+            "count": 1
           },
           "event": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/media/event/media_redaksjonell_ledelse_event.json",
+            "count": 1
           },
           "micro": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/media/micro/media_redaksjonell_ledelse_micro.json",
+            "count": 1
           },
           "followup": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/media/followup/media_redaksjonell_ledelse_followup.json",
+            "count": 1
           },
           "knowledge": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/media/knowledge/media_redaksjonell_ledelse_knowledge.json",
+            "count": 1
           },
           "consequence": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/media/consequence/media_redaksjonell_ledelse_consequence.json",
+            "count": 1
           }
         },
         "role_tests": [
-          "tests/civication-media-life-career-split.test.js"
+          "tests/civication-media-life-career-split.test.js",
+          "tests/civication-media-redaksjonell-ledelse-rollout-playability.test.js"
         ],
         "life_story": null
       },
@@ -6697,16 +6704,24 @@
             "note": "3 linked career title(s) have an offer policy and gate."
           },
           "day_one": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No day-one structure."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/media/media_redaksjonell_ledelse_plan.json",
+              "tests/civication-media-life-career-split.test.js",
+              "tests/civication-media-redaksjonell-ledelse-rollout-playability.test.js"
+            ],
+            "note": "Role plan and role-specific test prove a first playable day."
           },
           "workday_loop": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/workGrammars/media/media_redaksjonell_ledelse.json"
+              "data/Civication/mailFamilies/media/job/media_redaksjonell_ledelse_job.json",
+              "data/Civication/mailPlans/media/media_redaksjonell_ledelse_plan.json",
+              "data/Civication/workGrammars/media/media_redaksjonell_ledelse.json",
+              "tests/civication-media-life-career-split.test.js",
+              "tests/civication-media-redaksjonell-ledelse-rollout-playability.test.js"
             ],
-            "note": "Work-loop content exists, but the complete repeatable runtime path is not proven."
+            "note": "Repeatable work content is connected to a tested plan."
           },
           "practice_stories": {
             "level": "partial",
@@ -6717,24 +6732,47 @@
             "note": "3 FWG stories and 0 registered practice week(s)."
           },
           "people": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No work-world people layer."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/media/people/media_redaksjonell_ledelse_people.json",
+              "data/Civication/roleModels/media/nyhetsleder.json",
+              "data/Civication/roleModels/media/redaktor.json",
+              "data/Civication/roleModels/media/sjefredaktor.json",
+              "data/Civication/workGrammars/media/media_redaksjonell_ledelse.json"
+            ],
+            "note": "Named/typed work relationships are used by people mails."
           },
           "places": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No concrete workplace or work surface declaration."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/roleModels/media/nyhetsleder.json",
+              "data/Civication/roleModels/media/redaktor.json",
+              "data/Civication/roleModels/media/sjefredaktor.json",
+              "data/Civication/workGrammars/media/media_redaksjonell_ledelse.json"
+            ],
+            "note": "3 place/working-surface declarations."
           },
           "mail": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No role mail/event generation."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/media/conflict/media_redaksjonell_ledelse_conflict.json",
+              "data/Civication/mailFamilies/media/consequence/media_redaksjonell_ledelse_consequence.json",
+              "data/Civication/mailFamilies/media/event/media_redaksjonell_ledelse_event.json",
+              "data/Civication/mailFamilies/media/followup/media_redaksjonell_ledelse_followup.json",
+              "data/Civication/mailFamilies/media/job/media_redaksjonell_ledelse_job.json",
+              "data/Civication/mailFamilies/media/knowledge/media_redaksjonell_ledelse_knowledge.json",
+              "data/Civication/mailFamilies/media/micro/media_redaksjonell_ledelse_micro.json",
+              "data/Civication/mailFamilies/media/people/media_redaksjonell_ledelse_people.json",
+              "data/Civication/mailFamilies/media/story/media_redaksjonell_ledelse_story.json",
+              "data/Civication/mailPlans/media/media_redaksjonell_ledelse_plan.json"
+            ],
+            "note": "9/9 standard mail types plus tested plan/practice coverage."
           },
           "knowledge": {
             "level": "complete",
             "evidence": [
               "data/Civication/jobKnowledgeRequirements.json",
+              "data/Civication/mailFamilies/media/knowledge/media_redaksjonell_ledelse_knowledge.json",
               "data/Civication/roleModels/media/nyhetsleder.json",
               "data/Civication/roleModels/media/redaktor.json",
               "data/Civication/roleModels/media/sjefredaktor.json",
@@ -6763,14 +6801,24 @@
             "note": "Explicit authority boundary exists."
           },
           "consequences": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No consequence model."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/media/consequence/media_redaksjonell_ledelse_consequence.json",
+              "data/Civication/mailFamilies/media/followup/media_redaksjonell_ledelse_followup.json",
+              "tests/civication-media-life-career-split.test.js",
+              "tests/civication-media-redaksjonell-ledelse-rollout-playability.test.js"
+            ],
+            "note": "Later consequence/follow-up path is role-tested."
           },
           "performance": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No performance evaluation."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/media/media_redaksjonell_ledelse_plan.json",
+              "tests/civication-career-outcomes.test.js",
+              "tests/civication-media-life-career-split.test.js",
+              "tests/civication-media-redaksjonell-ledelse-rollout-playability.test.js"
+            ],
+            "note": "Positive and negative outcomes are defined and role-tested."
           },
           "economy": {
             "level": "complete",
@@ -6782,40 +6830,46 @@
             "note": "Exact salary exists for all 3 linked career title(s)."
           },
           "progression": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
+              "data/Civication/mailPlans/media/media_redaksjonell_ledelse_plan.json",
               "data/Civication/roleModels/media/nyhetsleder.json",
               "data/Civication/roleModels/media/redaktor.json",
               "data/Civication/roleModels/media/sjefredaktor.json",
-              "data/Civication/workGrammars/media/media_redaksjonell_ledelse.json"
+              "data/Civication/workGrammars/media/media_redaksjonell_ledelse.json",
+              "tests/civication-career-outcomes.test.js"
             ],
-            "note": "Progression exists as content or outcome, not a complete transition path."
+            "note": "Career path and positive runtime outcome are both present."
           },
           "exit": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
+              "data/Civication/mailPlans/media/media_redaksjonell_ledelse_plan.json",
               "data/Civication/roleModels/media/nyhetsleder.json",
               "data/Civication/roleModels/media/redaktor.json",
-              "data/Civication/roleModels/media/sjefredaktor.json"
+              "data/Civication/roleModels/media/sjefredaktor.json",
+              "tests/civication-career-outcomes.test.js"
             ],
-            "note": "Exit exists as content or outcome, not a complete transition path."
+            "note": "Exit destinations and negative runtime outcome are both present."
           }
         },
-        "runtime_gate": false,
-        "missing_components": [
+        "runtime_gate": true,
+        "missing_components": [],
+        "complete_components": [
+          "entry",
           "day_one",
+          "workday_loop",
           "people",
           "places",
           "mail",
-          "consequences",
-          "performance"
-        ],
-        "complete_components": [
-          "entry",
           "knowledge",
           "quality_axes",
           "authority",
-          "economy"
+          "consequences",
+          "performance",
+          "economy",
+          "progression",
+          "exit"
         ],
         "practice_story_count": 3,
         "practice_weeks": [],
