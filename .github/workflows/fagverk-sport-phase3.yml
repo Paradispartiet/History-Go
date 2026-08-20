@@ -16,11 +16,13 @@ on:
       - "scripts/audit-fagverk-subject-inventory.mjs"
       - "scripts/audit-fagverk-general-engine.mjs"
       - "scripts/audit-fagverk-sport-phase3.mjs"
+      - "tools/audit-sport-theory-integrity.mjs"
       - "scripts/materialize-sport-complete.mjs"
       - "scripts/build-fagverk-release-manifest.mjs"
       - "tests/fagverk-subject-inventory.test.mjs"
       - "tests/fagverk-general-engine.test.mjs"
       - "tests/fagverk-sport-phase3.test.mjs"
+      - "tests/sport-theory-integrity.test.mjs"
       - "tests/fagverk-release-manifest.test.mjs"
       - "reports/fagverk/**"
       - ".github/workflows/fagverk-sport-phase3.yml"
@@ -31,8 +33,10 @@ on:
       - "data/badges/sport.json"
       - "data/fagverk/**"
       - "scripts/audit-fagverk-sport-phase3.mjs"
+      - "tools/audit-sport-theory-integrity.mjs"
       - "scripts/materialize-sport-complete.mjs"
       - "tests/fagverk-sport-phase3.test.mjs"
+      - "tests/sport-theory-integrity.test.mjs"
       - "reports/fagverk/**"
       - ".github/workflows/fagverk-sport-phase3.yml"
   workflow_dispatch:
@@ -52,14 +56,17 @@ jobs:
       - name: Validate syntax and deterministic reports
         run: |
           node --check scripts/audit-fagverk-sport-phase3.mjs
+          node --check tools/audit-sport-theory-integrity.mjs
           node --check scripts/materialize-sport-complete.mjs
           node scripts/audit-fagverk-subject-inventory.mjs
           node scripts/audit-fagverk-general-engine.mjs
           node scripts/audit-fagverk-sport-phase3.mjs
+          node tools/audit-sport-theory-integrity.mjs
           node scripts/build-fagverk-release-manifest.mjs --check
       - name: Validate Fagverk and Sport contracts
         run: |
           node --test tests/fagverk-subject-inventory.test.mjs
           node --test tests/fagverk-general-engine.test.mjs
           node --test tests/fagverk-sport-phase3.test.mjs
+          node --test tests/sport-theory-integrity.test.mjs
           node --test tests/fagverk-release-manifest.test.mjs
