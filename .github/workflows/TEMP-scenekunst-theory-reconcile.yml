@@ -1,0 +1,40 @@
+name: TEMP Scenekunst theory reconciliation
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  reconcile:
+    if: github.event.pull_request.number == 5135 && github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify Scenekunst strict theory proof
+        run: |
+          node --check scripts/audit-fagverk-scenekunst-theory-canon.mjs
+          node scripts/audit-fagverk-scenekunst-theory-canon.mjs
+          node --test tests/fagverk-scenekunst-theory-canon.test.mjs
+      - name: Write global theory integrity report
+        run: node scripts/audit-fagverk-theory-integrity.mjs --write-report --no-check-report
+      - name: Verify global theory integrity audit
+        run: node scripts/audit-fagverk-theory-integrity.mjs
+      - name: Test global theory integrity
+        run: node --test tests/fagverk-theory-integrity.test.mjs
+      - name: Commit generated reconciliation
+        run: |
+          git add reports/fagverk/fagverk-theory-integrity-audit.json
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git diff --cached --quiet && exit 0
+          git commit -m "reconcile(fagverk): materialize Scenekunst strict proof"
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
