@@ -1,4 +1,4 @@
-name: TEMP Historie hand-built theory prose diagnostic
+name: TEMP Historie hand-built theory proof diagnostic
 
 on:
   pull_request:
@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Measure hand-built field prose against canonical theory objects
+      - name: Measure hand-built prose and claim bindings
         run: |
           node <<'NODE'
           const fs=require('fs');
@@ -29,22 +29,37 @@ jobs:
           const tokens=v=>uniq(norm(v).split(/\s+/).filter(t=>t.length>=4&&!stop.has(t)));
           const binding=(ref,prose)=>{const r=tokens(ref),p=new Set(tokens(prose)),m=r.filter(t=>p.has(t));return {matched:m.length,total:r.length,ratio:r.length?Math.round(m.length/r.length*1000)/1000:0,tokens:m};};
           const theories=read('data/fag/historie/theory_objects_historie_canonical_v5_5.json');
+          const evidence=read('data/fag/historie/theory_evidence_historie_canonical_v1.json');
+          const evidenceByTheory=new Map(A(evidence.entries).map(e=>[e.theory_id,e]));
           const registry=read('data/fagverk/fagverk_registry.json');
           const rows=[];
           for(const chapterRow of A(registry?.subjects?.historie?.chapters)){
             const chapter=read(chapterRow.file);
-            const modules=A(chapter.moduleFiles).map(read);
-            const sections=modules.flatMap(m=>A(m.sections));
-            const emneSections=sections.filter(s=>s.emneId);
-            if(emneSections.length)continue;
+            const modules=A(chapter.moduleFiles).map(file=>({file,doc:read(file)}));
+            const sections=modules.flatMap(({file,doc})=>A(doc.sections).map(s=>({file,...s})));
+            if(sections.some(s=>s.emneId))continue;
             const prose=sections.flatMap(s=>A(s.paragraphs)).join(' ');
+            const chapterClaims=new Set(sections.flatMap(s=>A(s.paragraphClaimIds).flat()).filter(Boolean));
             const fieldTheories=theories.filter(t=>A(t.explanatory_scope).includes(chapterRow.primary_domain_id));
             const matches=fieldTheories.map(t=>{
               const d=binding(t.definition,prose);
               const limits=A(t.limitations).map(l=>binding(l,prose)).sort((a,b)=>b.ratio-a.ratio||b.matched-a.matched);
-              return {theory_id:t.theory_id,label:t.label,definition:d,best_limitation:limits[0]||null};
-            }).sort((a,b)=>b.definition.ratio-a.definition.ratio||b.definition.matched-a.definition.matched);
-            rows.push({field:chapterRow.primary_domain_id,section_count:sections.length,paragraph_count:sections.reduce((n,s)=>n+A(s.paragraphs).length,0),theory_count:fieldTheories.length,matches});
+              const e=evidenceByTheory.get(t.theory_id);
+              const claimIds=A(e?.claim_ids);
+              const matchedClaims=claimIds.filter(id=>chapterClaims.has(id));
+              const sectionEvidence=sections.map(s=>{
+                const sectionProse=A(s.paragraphs).join(' ');
+                const db=binding(t.definition,sectionProse);
+                const lb=A(t.limitations).map(l=>binding(l,sectionProse)).sort((a,b)=>b.ratio-a.ratio||b.matched-a.matched)[0]||null;
+                const sectionClaims=new Set(A(s.paragraphClaimIds).flat().filter(Boolean));
+                const claims=claimIds.filter(id=>sectionClaims.has(id));
+                return {file:s.file,section_id:s.id,definition_ratio:db.ratio,definition_matched:db.matched,best_limitation_ratio:lb?.ratio||0,best_limitation_matched:lb?.matched||0,claim_ids:claims};
+              }).filter(r=>r.definition_matched>=2||r.best_limitation_matched>=2||r.claim_ids.length).sort((a,b)=>(b.claim_ids.length-a.claim_ids.length)||(b.definition_ratio-a.definition_ratio)||(b.best_limitation_ratio-a.best_limitation_ratio));
+              return {theory_id:t.theory_id,label:t.label,definition:d,best_limitation:limits[0]||null,evidence_claim_count:claimIds.length,matched_claim_ids:matchedClaims,sections:sectionEvidence.slice(0,4)};
+            });
+            rows.push({field:chapterRow.primary_domain_id,chapter_file:chapterRow.file,chapter_emne_ids:A(chapter.emne_ids),section_count:sections.length,chapter_claim_count:chapterClaims.size,theory_count:fieldTheories.length,matches});
           }
-          console.log('HAND_BUILT_FIELDS='+JSON.stringify(rows));
+          console.log('HAND_BUILT_PROOF='+JSON.stringify(rows));
+          const flat=rows.flatMap(r=>r.matches.map(m=>({field:r.field,...m})));
+          console.log('SUMMARY='+JSON.stringify({theories:flat.length,with_claim_match:flat.filter(x=>x.matched_claim_ids.length).length,definition_ge_045:flat.filter(x=>x.definition.ratio>=0.45&&x.definition.matched>=5).length,limitation_ge_04:flat.filter(x=>x.best_limitation&&x.best_limitation.ratio>=0.4&&x.best_limitation.matched>=4).length,strong_all_three:flat.filter(x=>x.matched_claim_ids.length&&x.definition.ratio>=0.45&&x.definition.matched>=5&&x.best_limitation&&x.best_limitation.ratio>=0.4&&x.best_limitation.matched>=4).length,no_claim_match:flat.filter(x=>!x.matched_claim_ids.length).map(x=>x.theory_id)}));
           NODE
