@@ -18,20 +18,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Validate read-only probe
+      - name: Validate permanent strict gate before promotion
         run: |
-          node --check tools/probe-litteratur-theory-integrity.mjs
-          node --check tools/probe-litteratur-attribution-candidates.mjs
-          node --check tools/probe-litteratur-source-attribution-inventory.mjs
-          node --test tests/litteratur-theory-integrity-probe-smoke.test.mjs
-          node tools/probe-litteratur-theory-integrity.mjs | tee /tmp/litteratur-theory-integrity-probe.json
-          node tools/probe-litteratur-attribution-candidates.mjs | tee /tmp/litteratur-attribution-candidates.json
-          node tools/probe-litteratur-source-attribution-inventory.mjs | tee /tmp/litteratur-source-attribution-inventory.json
-      - name: Upload probe result
+          node --check tools/audit-litteratur-theory-integrity.mjs
+          node --test tests/litteratur-theory-integrity.test.mjs
+          node tools/audit-litteratur-theory-integrity.mjs --write-report --no-check-report | tee /tmp/litteratur-theory-integrity-audit.json
+      - name: Upload strict-gate candidate report
         uses: actions/upload-artifact@v4
         with:
           name: litteratur-theory-integrity-probe
-          path: |
-            /tmp/litteratur-theory-integrity-probe.json
-            /tmp/litteratur-attribution-candidates.json
-            /tmp/litteratur-source-attribution-inventory.json
+          path: /tmp/litteratur-theory-integrity-audit.json
