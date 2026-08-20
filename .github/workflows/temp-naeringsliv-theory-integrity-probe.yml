@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   probe:
@@ -28,14 +28,23 @@ jobs:
           node scripts/audit-fagverk-theory-integrity.mjs --write-report --no-check-report
           node --test tests/fagverk-theory-integrity.test.mjs
           node --test tests/naeringsliv-theory-integrity.test.mjs
-      - name: Upload exact permanent reconciliation files
-        uses: actions/upload-artifact@v4
-        with:
-          name: naeringsliv-global-theory-reconciliation
-          path: |
-            data/fag/fagverk_theory_integrity_evidence_v1.json
-            scripts/audit-fagverk-theory-integrity.mjs
-            tests/fagverk-theory-integrity.test.mjs
-            .github/workflows/fagverk-theory-integrity.yml
-            .github/workflows/naeringsliv-subject-quality.yml
+      - name: Commit exact permanent reconciliation and remove TEMP
+        env:
+          HEAD_BRANCH: ${{ github.head_ref }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- \
+            data/fag/fagverk_theory_integrity_evidence_v1.json \
+            scripts/audit-fagverk-theory-integrity.mjs \
+            tests/fagverk-theory-integrity.test.mjs \
+            .github/workflows/fagverk-theory-integrity.yml \
+            .github/workflows/naeringsliv-subject-quality.yml \
             reports/fagverk/fagverk-theory-integrity-audit.json
+          git rm -- \
+            .github/workflows/temp-naeringsliv-theory-integrity-probe.yml \
+            tools/probe-naeringsliv-theory-integrity.mjs \
+            tools/temp-reconcile-naeringsliv-theory-integrity.mjs
+          git diff --cached --check
+          git commit -m "Finalize Næringsliv strict theory integrity reconciliation"
+          git push origin HEAD:${HEAD_BRANCH}
