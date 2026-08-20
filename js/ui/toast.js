@@ -154,6 +154,23 @@ function showToast(msg, ms = null, options = null) {
   showToastNow(msg, normalized.ms, normalized.options);
 }
 
+function ensureCivicationModeOverlay() {
+  if (!document.body?.classList.contains("hg-app")) return false;
+  try {
+    if (!localStorage.getItem("hg_civication_mode_v1")) return false;
+  } catch {
+    return false;
+  }
+  if (document.querySelector('script[data-hg-civication-mode="1"]')) return true;
+
+  const script = document.createElement("script");
+  script.src = "js/integrations/civication-history-go-mode.js";
+  script.async = true;
+  script.dataset.hgCivicationMode = "1";
+  document.head.appendChild(script);
+  return true;
+}
+
 const earlyToastQueue = Array.isArray(window.__HG_EARLY_TOAST_QUEUE__)
   ? window.__HG_EARLY_TOAST_QUEUE__.splice(0)
   : [];
@@ -168,4 +185,11 @@ window.API.showToast = showToast;
 
 earlyToastQueue.forEach((args) => {
   if (Array.isArray(args)) showToast(...args);
+});
+
+// Civication-modus er et valgfritt overlay og lastes bare når Civication har
+// opprettet en aktiv session før navigasjon til index.html.
+ensureCivicationModeOverlay();
+window.addEventListener("storage", (event) => {
+  if (event?.key === "hg_civication_mode_v1" && event.newValue) ensureCivicationModeOverlay();
 });

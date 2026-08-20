@@ -9,9 +9,31 @@
 (function () {
   "use strict";
 
+  const SESSION_KEY = "hg_civication_mode_v1";
+
   function clean(value) {
     const text = value == null ? "" : String(value).trim();
     return text || null;
+  }
+
+  function shallowObject(value) {
+    return value && typeof value === "object" && !Array.isArray(value) ? { ...value } : {};
+  }
+
+  function currentReturnHref() {
+    try {
+      const href = String(window.location?.href || "");
+      const url = new URL(href, "https://history-go.local/");
+      const name = url.pathname.split("/").filter(Boolean).pop() || "";
+      if (name.toLowerCase() === "civication.html") {
+        return `Civication.html${url.search || ""}${url.hash || ""}`;
+      }
+    } catch {}
+    return "Civication.html";
+  }
+
+  function roleField(task, payload, context, snake, camel) {
+    return clean(task?.[snake]) || clean(task?.[camel]) || clean(payload?.[snake]) || clean(payload?.[camel]) || clean(context?.[snake]) || clean(context?.[camel]);
   }
 
   // Bygg { href, label, target_type } fra en normalisert History Go task_payload, eller null.
@@ -65,9 +87,66 @@
     return null;
   }
 
-  function go(payload) {
+  function startSession(taskOrPayload) {
+    const task = taskOrPayload && typeof taskOrPayload === "object" ? taskOrPayload : null;
+    if (!task) return null;
+    const payload = task.task_payload && typeof task.task_payload === "object" ? task.task_payload : task;
+    const link = resolve(payload);
+    if (!link) return null;
+
+    const context = shallowObject(payload.return_context);
+    const now = Date.now();
+    const session = {
+      version: 1,
+      active: true,
+      started_at: new Date(now).toISOString(),
+      started_ts: now,
+      task_id: clean(task.id || task.task_id) || "",
+      mail_id: clean(task.mail_id || context.mail_id) || "",
+      role_id: roleField(task, payload, context, "role_id", "roleId") || "",
+      role_label: roleField(task, payload, context, "role_label", "roleLabel") || "",
+      life_role_id: roleField(task, payload, context, "life_role_id", "lifeRoleId") || "",
+      life_role_label: roleField(task, payload, context, "life_role_label", "lifeRoleLabel") || "",
+      world_id: roleField(task, payload, context, "world_id", "worldId") || "",
+      title: clean(payload.title) || "Civication-oppdrag",
+      description: clean(payload.description) || "",
+      target_type: clean(payload.target_type) || "",
+      target_id: clean(payload.target_id) || "",
+      place_id: clean(payload.place_id) || "",
+      quiz_id: clean(payload.quiz_id) || "",
+      category_id: clean(payload.category_id) || "",
+      emne_id: clean(payload.emne_id) || "",
+      debate_id: clean(payload.debate_id) || "",
+      conflict_id: clean(payload.conflict_id) || "",
+      unlock_id: clean(payload.unlock_id) || "",
+      required_kind: clean(payload.required_kind) || "",
+      completion_mode: clean(payload.completion_mode) || "",
+      return_href: currentReturnHref(),
+      return_context: context,
+      expanded: false,
+      payload: { ...payload }
+    };
+
+    try {
+      localStorage.setItem(SESSION_KEY, JSON.stringify(session));
+      try {
+        window.dispatchEvent?.(new CustomEvent("civi:historyGoSessionStarted", {
+          detail: { task_id: session.task_id || null, target_type: session.target_type, target_id: session.target_id || null }
+        }));
+      } catch {}
+      return session;
+    } catch {
+      return null;
+    }
+  }
+
+  function go(taskOrPayload) {
+    const payload = taskOrPayload?.task_payload && typeof taskOrPayload.task_payload === "object"
+      ? taskOrPayload.task_payload
+      : taskOrPayload;
     const link = resolve(payload);
     if (!link) return false;
+    startSession(taskOrPayload);
     try {
       window.location.href = link.href;
       return true;
@@ -88,6 +167,14 @@
       }
     }
     return null;
+  }
+
+  function findTaskById(taskId) {
+    const wanted = clean(taskId);
+    const engine = window.CivicationTaskEngine;
+    if (!wanted || !engine?.findOpenHistoryGoTasks) return null;
+    const tasks = engine.findOpenHistoryGoTasks();
+    return tasks.find(function (task) { return clean(task?.id) === wanted; }) || null;
   }
 
   function actionHtml(task) {
@@ -145,6 +232,9 @@
     const href = decodeURIComponent(btn.getAttribute("data-civi-hg-deeplink") || "");
     if (!href) return;
     ev.preventDefault();
+    const taskId = decodeURIComponent(btn.getAttribute("data-task-id") || "");
+    const task = findTaskById(taskId) || pickPendingTask();
+    if (task) startSession(task);
     try { window.location.href = href; } catch {}
   }
 
@@ -164,9 +254,12 @@
   }
 
   window.CivicationHistoryGoDeepLink = {
+    SESSION_KEY,
     resolve,
+    startSession,
     go,
     actionHtml,
-    pickPendingTask
+    pickPendingTask,
+    findTaskById
   };
 })();
