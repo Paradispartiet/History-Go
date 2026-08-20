@@ -22,10 +22,13 @@ jobs:
         run: |
           node --check tools/probe-kunst-theory-integrity.mjs
           node --check tools/audit-kunst-theory-integrity.mjs
+          node --check scripts/audit-fagverk-theory-integrity.mjs
           node --test tests/kunst-theory-integrity-probe-smoke.test.mjs
           node tools/probe-kunst-theory-integrity.mjs > /tmp/kunst-theory-integrity-probe.json
           node tools/audit-kunst-theory-integrity.mjs --write-report --no-check-report
           node --test tests/kunst-theory-integrity.test.mjs
+          node scripts/audit-fagverk-theory-integrity.mjs --write-report --no-check-report
+          node --test tests/fagverk-theory-integrity.test.mjs
       - name: Upload reconciliation results
         uses: actions/upload-artifact@v4
         with:
@@ -33,3 +36,4 @@ jobs:
           path: |
             /tmp/kunst-theory-integrity-probe.json
             reports/fagverk/kunst-theory-integrity-audit.json
+            reports/fagverk/fagverk-theory-integrity-audit.json
