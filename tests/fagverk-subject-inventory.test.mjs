@@ -249,7 +249,7 @@ test('Helse og Utdanning har konsistent foundation med dokumentert Helse-fremdri
     assert.equal(
       subjectStatus.nextGate,
       id === 'helse'
-        ? 'medical_ethics_evidence_full_chapter_complete_next_domain_source_brief'
+        ? 'anatomy_physiology_source_brief_complete_full_chapter_production'
         : 'first_source_brief_after_repository_reconciliation'
     );
   }

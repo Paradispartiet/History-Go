@@ -8,6 +8,7 @@ const CHAPTER_ID = 'medisinsk-etikk-evidens-og-ansvarlig-beslutning';
 const CHAPTER_DIR = `data/fagverk/helse/${CHAPTER_ID}`;
 const INPUT_GATE = 'medical_ethics_evidence_source_brief_complete_full_chapter_production';
 const OUTPUT_GATE = 'medical_ethics_evidence_full_chapter_complete_next_domain_source_brief';
+const NEXT_SOURCE_GATE = 'anatomy_physiology_source_brief_complete_full_chapter_production';
 const P = Object.freeze({
   sourceBrief: 'data/fag/helse/medical_ethics_evidence_source_claim_brief_v1.json',
   safety: 'data/fag/helse/clinical_safety_contract_helse_v1.json',
@@ -91,7 +92,8 @@ function build() {
   const registry = read(P.registry); const inventory = read(P.inventory); const status = read(P.status);
   const portal = read(P.portal); const pensum = read(P.pensum); const emner = read(P.emner); const methods = read(P.methods);
   const healthStatus = status.subjects.find((row) => row.id === 'helse');
-  assert([INPUT_GATE, OUTPUT_GATE].includes(healthStatus.nextGate), `Feil input gate: ${healthStatus.nextGate}`);
+  assert([INPUT_GATE, OUTPUT_GATE, NEXT_SOURCE_GATE].includes(healthStatus.nextGate), `Feil input gate: ${healthStatus.nextGate}`);
+  const metadataHasProgressed = healthStatus.nextGate === NEXT_SOURCE_GATE;
   assert(sourceBrief.runtime_registration.registered === false, 'Source brief må være uregistrert før fulltekst');
   assert(safety.status === 'blocking' && safety.forbidden.length >= 4, 'Klinisk sikkerhetskontrakt mangler');
   const topics = sourceBrief.topic_briefs; const planned = topics.flatMap((topic) => topic.planned_claims);
@@ -148,6 +150,7 @@ function build() {
   write(P.claims, { schema: 'history_go_fagverk_chapter_claims_v1', version: '1.0.0', subject_id: 'helse', chapter_id: CHAPTER_ID, sourceBriefFile: P.sourceBrief, sources, claims });
   write(P.assessment, assessment); write(P.brief, chapterBrief); write(P.chapter, chapter);
 
+  if (!metadataHasProgressed) {
   manifest.helse.status = 'active_foundation'; manifest.helse.chapters = [P.chapter];
   const inv = inventory.subjects.find((row) => row.id === 'helse'); inv.optionalManifestFields = [...new Set([...inv.optionalManifestFields, 'chapters'])];
   const reg = registry.subjects.helse; reg.canonicalModel.firstFulltextChapter = P.chapter; reg.canonicalModel.note = 'Første source-first-enhet er fulltekstmaterialisert med 8 seksjoner, 32 claimsporede avsnitt, 32 verifiserte claims, 14 inspiserbare autoritative kilder og blokkerende klinisk sikkerhetsaudit. Dette er én av 12 domener og ikke faglig sluttføring.';
@@ -168,6 +171,7 @@ function build() {
     for (const id of chapter.method_ids) raw = raw.replace(new RegExp(`("method_id"\\s*:\\s*"${id}"[\\s\\S]*?"canonical_status"\\s*:\\s*")(?:planned|materialized)(")`), '$1materialized$2');
     return raw;
   });
+  }
   return { topics: topics.length, sources: sources.length, claims: claims.length, paragraphs: planned.length, questions: assessments.length, modules: moduleData.length };
 }
 
