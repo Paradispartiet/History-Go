@@ -105,11 +105,12 @@ Min samling og Knowledge bruker samme personlige designspråk:
 - mørk, rolig bakgrunn;
 - nøytrale flater og diskrete borders;
 - lys typografi;
-- myk grønn/mint som generell interaksjonsaccent;
+- dempet, varm History Go-gull som generell interaksjonsaccent;
 - fagfarger kan fortsatt brukes når fargen har semantisk betydning;
-- History Go-gult er ikke global accent på disse flatene.
+- gull brukes konsentrert på handling, fokus og progresjon, ikke som et sterkt flatebelegg;
+- turkis/mint og den gamle neon-gule behandlingen er ikke globale accenter på disse flatene.
 
-Profilkartets samlingsmarkør og alle legacy-detaljer som fortsatt kan vises inne på profilflaten overstyres til samme mint-/graphite-språk. Den kompakte gamle identitetsheaderen er fjernet; navn, samlingstall, kart og AHA ligger i collection-heroen, mens toppbaren bare håndterer global navigasjon og kontovalg.
+Profilkartets samlingsmarkør og alle legacy-detaljer som fortsatt kan vises inne på profilflaten overstyres til samme dempede gull-/graphite-språk. Fanelinjen ligger direkte og kant-i-kant under toppbaren, uten en konkurrerende flytende pille. Den kompakte gamle identitetsheaderen er fjernet; navn, samlingstall, kart og AHA ligger i collection-heroen, mens toppbaren bare håndterer global navigasjon og kontovalg.
 
 Spill, Social Meet og profil/personvern beholdes, men ligger sekundært under `Mer` i den brukerrettede navigasjonen.
 
@@ -126,8 +127,9 @@ Permanent test skal låse at:
 7. retur til Next Up bruker den eksisterende `#pcNextUpBtn` / `#footerNextUpPanel`;
 8. AHA-grensen gjenbrukes uten ny eksportkontrakt;
 9. Social Meet/personvernkontraktene bevares;
-10. den nye personlige designflaten bruker ikke History Go-gult som global accent.
+10. den nye personlige designflaten bruker dempet History Go-gull uten turkis eller neon-gul flatebehandling.
 11. `Nylig samlet` leser de fire eksisterende canonical eierne;
 12. relasjonsstier bruker bare eksplisitte ID-er;
 13. Person- og merkebibliotek åpner eksisterende objektvisninger;
 14. profilkartets markør bruker Min samling-accenten.
+15. Spill-fanen og panelet bruker samme canonical `spill`-nøkkel og viser spillregisteret.

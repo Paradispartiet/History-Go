@@ -27,6 +27,7 @@ test("profile.html is the canonical Min samling home", () => {
   assert.match(profile, /data-tab="samling"[^>]*>Samling/);
   assert.match(profile, /data-tab="kunnskap"[^>]*>Kunnskap/);
   assert.match(profile, /data-tab="merker"[^>]*>Merker/);
+  assert.match(profile, /<\/header>\s*<nav class="profile-tabs"/);
   assert.match(profile, /js\/ui\/personal-collection-v1\.js/);
   assert.match(profile, /css\/personal-collection-v1\.css/);
   assert.match(profile, /Det du har oppdaget\.<br>Samlet på ett sted\./);
@@ -137,11 +138,11 @@ test("knowledge units expose every explicit place, related people and relationsh
   assert.match(knowledgeRuntime, /focusRequestedEntry/);
 });
 
-test("the collection shows explicit geographic subtotals and uses a mint profile map marker", () => {
+test("the collection shows explicit geographic subtotals and uses the restrained gold map marker", () => {
   assert.match(profile, /id="collectionGeography"/);
   assert.match(collectionRuntime, /address\?\.city/);
   assert.match(collectionRuntime, /Uten områdemetadata/);
-  assert.match(profileRuntime, /color: "#a8d8c7"/);
+  assert.match(profileRuntime, /color: "#d8b24f"/);
   assert.doesNotMatch(profileRuntime.slice(profileRuntime.indexOf("function updateProfileMarkers"), profileRuntime.indexOf("function catColor")), /#ffd700|#f6c800/i);
 });
 
@@ -164,9 +165,18 @@ test("Social Meet and privacy remain available as secondary profile functionalit
   assert.match(collectionRuntime, /\["socialmeet", "Social Meet"\]/);
 });
 
-test("the new personal surfaces do not use History Go yellow as global accent", () => {
+test("the new personal surfaces use restrained History Go gold without turquoise or neon yellow", () => {
   assert.doesNotMatch(css, /#f6c800|#ffd700|rgba\(246\s*,\s*200\s*,\s*0/i);
-  assert.match(css, /--pc-accent:#a8d8c7/);
+  assert.doesNotMatch(css, /#a8d8c7|#78bca5|rgba\(168\s*,\s*216\s*,\s*199/i);
+  assert.match(css, /--pc-accent:#d8b24f/);
   assert.match(css, /--kv2-accent:var\(--pc-accent\)/);
-  assert.match(docs, /gult er ikke global accent/i);
+  assert.match(docs, /dempet, varm History Go-gull/i);
+});
+
+test("Spill uses one canonical tab key and keeps the independent game registry visible", () => {
+  assert.match(profile, /data-tab="spill"[^>]*>Spill/);
+  assert.match(profile, /data-panel="spill"><section class="profile-section profile-games-section"/);
+  assert.match(profile, /class="profile-games-grid"/);
+  assert.doesNotMatch(profile, /data-(?:tab|panel)="civication"/);
+  assert.match(collectionRuntime, /\["spill", "Spill"\]/);
 });
