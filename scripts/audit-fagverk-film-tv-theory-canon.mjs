@@ -44,8 +44,9 @@ function buildActualProseBindings(chapters){
 
         paragraphs.forEach((paragraph,index)=>{
           assert(typeof paragraph==='string'&&paragraph.trim().length>=80,`For tynt prose-avsnitt: ${moduleFile}/${section.id}/${index}`);
-          const claimIds=paragraphClaimIds[index]||[];
-          assert(Array.isArray(claimIds)&&claimIds.length>=1,`Prose-avsnitt mangler claim-binding: ${moduleFile}/${section.id}/${index}`);
+          const rawClaimIds=paragraphClaimIds[index];
+          const claimIds=Array.isArray(rawClaimIds)?rawClaimIds:(typeof rawClaimIds==='string'&&rawClaimIds.length>=1?[rawClaimIds]:[]);
+          assert(claimIds.length>=1,`Prose-avsnitt mangler claim-binding: ${moduleFile}/${section.id}/${index}`);
           proseParagraphCount++;
 
           for(const claimId of claimIds){
