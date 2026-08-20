@@ -1,0 +1,51 @@
+name: TEMP Civication Media newsroom materialize
+
+on:
+  push:
+    branches:
+      - agent/civication-media-redaksjon-rollout
+    paths:
+      - '.github/workflows/temp-civication-media-redaksjon-materialize.yml'
+      - 'data/Civication/workGrammars/media/media_redaksjon.json'
+      - 'data/Civication/mailPlans/media/media_redaksjon_plan.json'
+      - 'data/Civication/mailFamilies/media/**/media_redaksjon_*.json'
+      - 'tests/civication-media-redaksjon-rollout-playability.test.js'
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    env:
+      LOCK_SHA: ${{ github.sha }}
+      BRANCH_NAME: agent/civication-media-redaksjon-rollout
+    steps:
+      - name: Checkout locked head
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ env.LOCK_SHA }}
+      - name: Materialize and verify Media newsroom
+        run: |
+          set -euo pipefail
+          node scripts/build-civication-scene-registry.mjs --write
+          node scripts/audit-civication-career-gameplay.mjs --write
+          node tests/civication-media-redaksjon-rollout-playability.test.js
+          node tests/civication-career-gameplay-matrix.test.js
+          git diff --check
+      - name: Commit generated projections on locked branch
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$LOCK_SHA"
+          git fetch origin "$BRANCH_NAME"
+          test "$(git rev-parse "origin/$BRANCH_NAME")" = "$LOCK_SHA"
+          git add data/Civication/compiledSceneRegistryV1.json data/Civication/careerGameplayMatrix.json reports/civication-career-gameplay-matrix.md
+          staged="$(git diff --cached --name-only)"
+          test -n "$staged"
+          unexpected="$(printf '%s\n' "$staged" | grep -Ev '^(data/Civication/compiledSceneRegistryV1.json|data/Civication/careerGameplayMatrix.json|reports/civication-career-gameplay-matrix.md)$' || true)"
+          test -z "$unexpected"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Materialize Media newsroom gameplay projections"
+          git push origin "HEAD:$BRANCH_NAME"
