@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Derive all scholarly-field and thinker attribution gaps
+      - name: Derive all scholarly-field and canonical thinker attribution gaps
         run: |
           node <<'NODE'
           const fs=require('fs');
@@ -28,6 +28,7 @@ jobs:
           const isAcademic=s=>['academic_monograph','academic_secondary_monograph','peer_reviewed_journal_article'].includes(s?.source_type);
           const isInlineAcademic=s=>['scholarly_book','academic_monograph','academic_secondary_monograph','peer_reviewed_journal_article'].includes(s?.type||s?.source_type);
           const theories=read('data/fag/historie/theory_objects_historie_canonical_v5_5.json');
+          const pensum=read('data/fag/historie/historiepensum_canonical_v4_5.json');
           const attribution=read('data/fag/historie/theory_attribution_historie_canonical_v1.json');
           const historiography=read('data/fag/historie/historiography_evidence_historie_v1.json');
           const registry=read('data/fagverk/fagverk_registry.json');
@@ -50,10 +51,14 @@ jobs:
             scholarly.push({field:row.primary_domain_id,canonical:canonical.length,inline:inline.size,total:canonical.length+inline.size,inline_limitations:limitationCount,inline_sources:[...inline.values()].map(s=>s.label||s.title)});
           }
           const usedThinkers=[...new Set(theories.flatMap(t=>A(t.thinker_ids)))].sort();
+          const canonicalByField=A(pensum.domains).map(d=>({field:d.domain_id,thinkers:A(d.canonical_thinker_ids),norwegian:A(d.norwegian_thinker_ids)}));
+          const canonicalThinkers=[...new Set(canonicalByField.flatMap(d=>d.thinkers))].sort();
           const attributed=new Set(A(attribution.thinkers).map(t=>t.thinker_id));
-          const missingThinkers=usedThinkers.filter(id=>!attributed.has(id));
+          const missingCanonical=canonicalThinkers.filter(id=>!attributed.has(id));
           console.log('SCHOLARLY_FIELD_GAPS='+JSON.stringify(scholarly.filter(r=>r.total<2)));
           console.log('SCHOLARLY_FIELD_MATRIX='+JSON.stringify(scholarly));
-          console.log('REQUIRED_THINKERS_COUNT='+usedThinkers.length);
-          console.log('MISSING_THINKERS='+JSON.stringify(missingThinkers));
+          console.log('ALL_THEORY_METADATA_THINKERS_COUNT='+usedThinkers.length);
+          console.log('CANONICAL_THINKERS_BY_FIELD='+JSON.stringify(canonicalByField));
+          console.log('CANONICAL_THINKERS_COUNT='+canonicalThinkers.length);
+          console.log('MISSING_CANONICAL_THINKERS='+JSON.stringify(missingCanonical));
           NODE
