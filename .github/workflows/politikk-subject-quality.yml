@@ -18,6 +18,9 @@ on:
       - 'data/fagverk/**'
       - 'scripts/audit-politikk-subject-quality.mjs'
       - 'scripts/audit-politikk-thinker-integrity.mjs'
+      - 'tools/audit-politikk-theory-integrity.mjs'
+      - 'tests/politikk-theory-integrity.test.mjs'
+      - 'reports/fagverk/politikk-theory-integrity-audit.json'
       - 'scripts/audit-politikk-chapter-regimer-institusjoner.mjs'
       - 'scripts/audit-politikk-chapter-valg-partier-velgeratferd.mjs'
       - 'scripts/audit-politikk-chapter-offentlig-politikk-beslutning-implementering.mjs'
@@ -81,6 +84,9 @@ on:
       - 'data/fagverk/**'
       - 'scripts/audit-politikk-subject-quality.mjs'
       - 'scripts/audit-politikk-thinker-integrity.mjs'
+      - 'tools/audit-politikk-theory-integrity.mjs'
+      - 'tests/politikk-theory-integrity.test.mjs'
+      - 'reports/fagverk/politikk-theory-integrity-audit.json'
       - 'scripts/audit-politikk-chapter-regimer-institusjoner.mjs'
       - 'scripts/audit-politikk-chapter-valg-partier-velgeratferd.mjs'
       - 'scripts/audit-politikk-chapter-offentlig-politikk-beslutning-implementering.mjs'
@@ -144,6 +150,7 @@ jobs:
           node --check tools/build-politikk-concept-editorial-reviews.mjs
           node --check tools/validate-politikk-curriculum-architecture.mjs
           node --check scripts/audit-politikk-thinker-integrity.mjs
+          node --check tools/audit-politikk-theory-integrity.mjs
           node --check scripts/audit-politikk-chapter-regimer-institusjoner.mjs
           node --check scripts/audit-politikk-chapter-valg-partier-velgeratferd.mjs
           node --check scripts/audit-politikk-chapter-offentlig-politikk-beslutning-implementering.mjs
@@ -160,6 +167,7 @@ jobs:
           node --check scripts/audit-politikk-chapter-parlamentarisme.mjs
           node scripts/audit-politikk-subject-quality.mjs
           node scripts/audit-politikk-thinker-integrity.mjs
+          node tools/audit-politikk-theory-integrity.mjs
           node scripts/audit-politikk-chapter-regimer-institusjoner.mjs
           node scripts/audit-politikk-chapter-valg-partier-velgeratferd.mjs
           node scripts/audit-politikk-chapter-offentlig-politikk-beslutning-implementering.mjs
@@ -177,6 +185,7 @@ jobs:
           node tools/build-politikk-concept-editorial-reviews.mjs --check
           node tools/validate-politikk-curriculum-architecture.mjs
           node --test tests/politikk-subject-quality.test.mjs tests/politikk-thinker-integrity.test.mjs tests/politikk-chapter-regimer-institusjoner.test.mjs tests/politikk-chapter-valg-partier-velgeratferd.test.mjs tests/politikk-chapter-offentlig-politikk-beslutning-implementering.test.mjs tests/politikk-chapter-internasjonal-politikk-sikkerhet-samarbeid.test.mjs tests/politikk-chapter-politisk-okonomi-stat-marked.test.mjs tests/politikk-chapter-statsvitenskapelig-metode-og-sammenligning.test.mjs tests/politikk-chapter-norsk-politikk-eos-eu-flernivastyring.test.mjs tests/politikk-chapter-rett-lov-rettssikkerhet.test.mjs tests/politikk-chapter-fordeling-velferd-ulikhet.test.mjs tests/politikk-chapter-konflikt-makt-sivilsamfunn.test.mjs tests/politikk-chapter-normer-identitet-hverdagsliv.test.mjs tests/politikk-chapter-forvaltning.test.mjs tests/politikk-chapter-parlamentarisme.test.mjs
+          node --test tests/politikk-theory-integrity.test.mjs
           node --test tests/politikk-curriculum-architecture.test.mjs tests/politikk-fag-integration.test.mjs
           node scripts/audit-fagverk-general-engine.mjs
           node scripts/audit-fagverk-subject-inventory.mjs
