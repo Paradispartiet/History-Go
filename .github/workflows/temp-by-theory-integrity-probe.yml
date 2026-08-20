@@ -18,13 +18,16 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Validate diagnostic and permanent audit
+      - name: Validate diagnostic and permanent audits
         run: |
           node --check tools/probe-by-theory-integrity.mjs
           node --check tools/audit-by-theory-integrity.mjs
+          node --check scripts/audit-fagverk-theory-integrity.mjs
           node --test tests/by-theory-integrity-probe-smoke.test.mjs
+          node --test tests/by-theory-integrity.test.mjs
           node tools/probe-by-theory-integrity.mjs > /tmp/by-theory-integrity-probe.json
           node tools/audit-by-theory-integrity.mjs --write-report --no-check-report
+          node scripts/audit-fagverk-theory-integrity.mjs --write-report --no-check-report
       - name: Upload reconciliation results
         uses: actions/upload-artifact@v4
         with:
@@ -32,3 +35,4 @@ jobs:
           path: |
             /tmp/by-theory-integrity-probe.json
             reports/fagverk/by-theory-integrity-audit.json
+            reports/fagverk/fagverk-theory-integrity-audit.json
