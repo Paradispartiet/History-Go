@@ -25,9 +25,8 @@ jobs:
         run: node tools/temp-reconcile-teknologi-theory-integrity.mjs
       - name: Verify generated tree
         run: git diff --check
-      - name: Commit validated permanent tree and remove TEMP files
+      - name: Commit validated non-workflow files
         run: |
-          rm .github/workflows/temp-teknologi-theory-integrity.yml
           rm tools/temp-reconcile-teknologi-theory-integrity.mjs
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -36,14 +35,11 @@ jobs:
             tests/teknologi-theory-integrity.test.mjs \
             data/fag/teknologi/theory_integrity_bindings_teknologi_v1.json \
             reports/fagverk/teknologi-theory-integrity-audit.json \
-            .github/workflows/teknologi-scientific-quality.yml \
             data/fag/fagverk_theory_integrity_evidence_v1.json \
             scripts/audit-fagverk-theory-integrity.mjs \
             tests/fagverk-theory-integrity.test.mjs \
-            .github/workflows/fagverk-theory-integrity.yml \
             reports/fagverk/fagverk-theory-integrity-audit.json \
-            .github/workflows/temp-teknologi-theory-integrity.yml \
             tools/temp-reconcile-teknologi-theory-integrity.mjs
           git diff --cached --check
-          git commit -m "Prove Teknologi strict theory integrity"
+          git commit -m "Materialize Teknologi strict theory proof"
           git push origin HEAD:${{ github.head_ref }}
