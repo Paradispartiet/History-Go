@@ -19,6 +19,7 @@ import { auditPsykologiTheoryIntegrity } from '../tools/audit-psykologi-theory-i
 import { auditSportTheoryIntegrity } from '../tools/audit-sport-theory-integrity.mjs';
 import { auditVitenskapTheoryIntegrity } from '../tools/audit-vitenskap-theory-integrity.mjs';
 import { auditPolitikkTheoryIntegrity } from '../tools/audit-politikk-theory-integrity.mjs';
+import { auditFilosofiTheoryIntegrity } from '../tools/audit-filosofi-theory-integrity.mjs';
 
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const CONTRACT='data/fag/fagverk_theory_quality_contract_v1.json';
@@ -45,7 +46,8 @@ const RUNNERS={
   psykologi:()=>auditPsykologiTheoryIntegrity(),
   sport:()=>auditSportTheoryIntegrity(),
   vitenskap:()=>auditVitenskapTheoryIntegrity(),
-  politikk:()=>auditPolitikkTheoryIntegrity()
+  politikk:()=>auditPolitikkTheoryIntegrity(),
+  filosofi:()=>auditFilosofiTheoryIntegrity()
 };
 
 const STRICT_KEYS=[
@@ -143,6 +145,9 @@ export function auditFagverkTheoryIntegrity({writeReport=false,checkReport=true}
   const politikkAdapter=adapterById.get('politikk');
   assert(politikkAdapter?.proof_scope==='structured_subject_gate','Politikk må bruke permanent structured subject gate etter 13-felts reconciliation');
   assert(allVerified(politikkAdapter?.existing_gate_proves),'Politikk structured subject gate må dokumentere alle strict proof-dimensjoner');
+  const filosofiAdapter=adapterById.get('filosofi');
+  assert(filosofiAdapter?.proof_scope==='structured_subject_gate','Filosofi må bruke permanent structured subject gate etter 22-felts reconciliation');
+  assert(allVerified(filosofiAdapter?.existing_gate_proves),'Filosofi structured subject gate må dokumentere alle strict proof-dimensjoner');
 
   const baselineById=new Map(baseline.subjects.map(s=>[s.id,s]));
   const subjects=contract.subjects.map(entry=>{
