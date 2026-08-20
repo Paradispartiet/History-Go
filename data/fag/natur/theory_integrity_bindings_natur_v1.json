@@ -1,0 +1,420 @@
+{
+  "schema": "history_go_natur_theory_integrity_bindings_v1",
+  "version": "1.0.0",
+  "status": "canonical",
+  "subject_id": "natur",
+  "profile": "model_evidence",
+  "completion_status_read_only": true,
+  "content_mutation": false,
+  "production_rule": "Modellnavn er proveniens, ikke trivia. Strict proof krever at hvert canonicalt hovedfelt binder to relevante modeller, mekanismer eller prinsipper til canonicalt hook og emne, faglig passende kilde, konkret virkeomraade, reelle begrensninger og faktisk kapittelprosa der modellen faar analytisk betydning.",
+  "fields": [
+    {
+      "domain_id": "okosystem_mangfold_habitat",
+      "comparison": {"model_object_ids": ["natur-food-web-energy-matter", "natur-diversity-resilience"], "interpretive_consequence": "Næringsnettmodellen forklarer hvordan energi, stoff og indirekte effekter forplanter seg mellom arter, mens resiliensmodellen undersøker om mangfold og funksjon opprettholdes gjennom forstyrrelse. Sammen hindrer de at artsantall alene brukes som mål på økologisk stabilitet."},
+      "model_objects": [
+        {
+          "id": "natur-food-web-energy-matter", "model_kind": "mechanism", "model_name": "Næringsnett med energiflyt og stoffkretsløp", "hook_id": "naringsnett", "emne_id": "em_natur_okosystem_nettverk",
+          "scope": "Modellen brukes på avgrensede økosystemer der produsenter, konsumenter og nedbrytere kan knyttes i dokumenterte trofiske forbindelser og stoffstrømmer.",
+          "core_claim_or_mechanism": "Energi overføres og tapes gjennom trofiske nivåer, mens grunnstoffer sirkulerer; endring i én bestand kan derfor gi direkte og indirekte effekter i nettverket.",
+          "limitations": ["Et næringsnett er en forenkling som avhenger av rom, årstid og hvilke interaksjoner som faktisk er målt.", "Tap av én art gir ikke samme effekt i alle systemer fordi funksjonell overlapp og reorganisering varierer."],
+          "rival_or_alternative": "Mangfold–resiliens-modellen er alternativet når spørsmålet gjelder systemets respons etter forstyrrelse, ikke selve retningen på energi- og stoffstrømmene.",
+          "interpretive_consequence": "Kapittelprosaen leses som en mekanisme for forplantede effekter, men uten å gjøre ett kartlagt nettverk til en tidløs eller komplett beskrivelse av økosystemet.",
+          "scholarly_source": {"label": "IPBES – Global Assessment Report on Biodiversity and Ecosystem Services", "url": "https://doi.org/10.5281/zenodo.3831673", "authority_class": "intergovernmental_scientific_assessment", "source_role": "Gir vurdert globalt kunnskapsgrunnlag for sammenhenger mellom biologisk mangfold, økosystemfunksjon og endringsdrivere.", "use_limit": "Brukes som syntesekilde for generelle sammenhenger, ikke som lokalt artsinventar eller bevis for én bestemt årsakskjede."},
+          "content_bindings": [
+            {"role": "mechanism", "chapter_file": "data/fagverk/natur/okosystem_mangfold_habitat.json", "section_id": "naringsnett-og-kretslop", "paragraph_index": 0},
+            {"role": "limitation", "chapter_file": "data/fagverk/natur/okosystem_mangfold_habitat.json", "section_id": "naringsnett-og-kretslop", "paragraph_index": 2},
+            {"role": "alternative", "chapter_file": "data/fagverk/natur/okosystem_mangfold_habitat.json", "section_id": "biologisk-mangfold", "paragraph_index": 1}
+          ]
+        },
+        {
+          "id": "natur-diversity-resilience", "model_kind": "causal_framework", "model_name": "Mangfold–resiliens-rammeverket", "hook_id": "naringsnett", "emne_id": "em_natur_biodiversitet_resiliens",
+          "scope": "Rammeverket brukes når genetisk, artsmessig og økosystembasert mangfold må holdes fra hverandre og knyttes til målbar motstand, gjenoppretting eller funksjon.",
+          "core_claim_or_mechanism": "Ulike mangfoldskomponenter kan gi funksjonell overlapp og alternative responsveier, men resiliens følger ikke mekanisk av høyt artsantall alene.",
+          "limitations": ["Resiliens må defineres for en bestemt funksjon, forstyrrelse, romlig skala og tidshorisont.", "Et stabilt system kan bevare en uønsket tilstand, og høyt lokalt artsantall kan skjule tap på større skala."],
+          "rival_or_alternative": "Næringsnettmodellen er alternativet når analysen skal identifisere konkrete trofiske forbindelser og indirekte effekter fremfor systemets gjenopprettingsevne.",
+          "interpretive_consequence": "Mangfoldsavsnittet blir et flerleddet resiliensargument med uttrykkelige skala- og tidsvilkår, ikke en enkel påstand om at flere arter alltid betyr større stabilitet.",
+          "scholarly_source": {"label": "Artsdatabanken – Norsk rødliste for naturtyper 2025", "url": "https://lister.artsdatabanken.no/naturtyper/2025", "authority_class": "national_scientific_authority", "source_role": "Gir nasjonalt vurderte naturtypekategorier og dokumentasjon av tilstand, risiko og påvirkningsfaktorer.", "use_limit": "Brukes til vurdert naturtypekunnskap i Norge, ikke som universell modell for alle økosystemers stabilitet eller lokale artsforekomster."},
+          "content_bindings": [
+            {"role": "mechanism", "chapter_file": "data/fagverk/natur/okosystem_mangfold_habitat.json", "section_id": "biologisk-mangfold", "paragraph_index": 0},
+            {"role": "limitation", "chapter_file": "data/fagverk/natur/okosystem_mangfold_habitat.json", "section_id": "biologisk-mangfold", "paragraph_index": 2},
+            {"role": "alternative", "chapter_file": "data/fagverk/natur/okosystem_mangfold_habitat.json", "section_id": "naringsnett-og-kretslop", "paragraph_index": 1}
+          ]
+        }
+      ]
+    },
+    {
+      "domain_id": "artskunnskap_systematikk",
+      "comparison": {"model_object_ids": ["natur-integrative-species-concepts", "natur-phylogenetic-homology"], "interpretive_consequence": "Integrativ artsavgrensning sammenholder flere artsbegreper og datatyper, mens fylogenetisk analyse tester slektskap gjennom karakterer og alternative trær. Sammen viser de hvorfor navn, avgrensning og slektskap er beslektede, men ikke identiske slutninger."},
+      "model_objects": [
+        {
+          "id": "natur-integrative-species-concepts", "model_kind": "classification_framework", "model_name": "Integrativ artsavgrensning", "hook_id": "artsbegreper", "emne_id": "em_natur_artsbegreper_avgrensning",
+          "scope": "Rammeverket brukes ved artsavgrensning der reproduksjon, morfologi, økologi, geografi og genetiske data kan gi delvis sammenfallende eller motstridende signaler.",
+          "core_claim_or_mechanism": "Biologiske, morfologiske, fylogenetiske og økologiske artsbegreper operasjonaliserer ulike egenskaper; robust avgrensning krever eksplisitt sammenstilling av evidensen.",
+          "limitations": ["Det biologiske artsbegrepet er vanskelig å anvende på fossiler, aseksuelle organismer og geografisk adskilte bestander.", "DNA-likhet alene fastsetter ikke en universell artsgrense og påvirkes av markørvalg, referansebibliotek og hybridisering."],
+          "rival_or_alternative": "Fylogenetisk karakteranalyse er alternativet når spørsmålet gjelder slektskapsmønster mellom avgrensede grupper, ikke hvilken operasjonell artsgrense som bør brukes.",
+          "interpretive_consequence": "Artskapittelet blir en eksplisitt konkurranseprøving av artsbegreper og datatyper, slik at uenighet synliggjøres som metodevalg fremfor navnetrivia.",
+          "scholarly_source": {"label": "NCBI – Taxonomy Database", "url": "https://www.ncbi.nlm.nih.gov/taxonomy", "authority_class": "national_scientific_authority", "source_role": "Gir kuratert taksonomisk infrastruktur og stabile identifikatorer for biologiske databaser og sekvensposter.", "use_limit": "Taksonomisk databaseføring dokumenterer navn og relasjoner i registeret, men avgjør ikke alene omstridte artsgrenser eller lokal bestemmelse."},
+          "content_bindings": [
+            {"role": "mechanism", "chapter_file": "data/fagverk/natur/artskunnskap_systematikk.json", "section_id": "artsbegreper", "paragraph_index": 0},
+            {"role": "limitation", "chapter_file": "data/fagverk/natur/artskunnskap_systematikk.json", "section_id": "dna-og-usikkerhet", "paragraph_index": 1},
+            {"role": "alternative", "chapter_file": "data/fagverk/natur/artskunnskap_systematikk.json", "section_id": "artsbegreper", "paragraph_index": 1}
+          ]
+        },
+        {
+          "id": "natur-phylogenetic-homology", "model_kind": "classification_framework", "model_name": "Fylogenetisk tre med homologi-testing", "hook_id": "fylogenetiske_traer", "emne_id": "em_natur_fylogeni_slektskap",
+          "scope": "Modellen brukes til å teste hypoteser om slektskap når karakterer eller sekvenser kan kodes, sammenlignes og analyseres under oppgitte antakelser.",
+          "core_claim_or_mechanism": "Delte avledede homologier støtter grupperinger på et tre, mens analogier og konvergens kan ligne uten å dokumentere felles avstamning.",
+          "limitations": ["Treets topologi avhenger av utvalg, karakterkoding, modell og behandling av manglende data.", "Et fylogenetisk tre er en evidensbetinget hypotese og viser ikke automatisk direkte forfedre eller uforanderlige artsgrenser."],
+          "rival_or_alternative": "Integrativ artsavgrensning er alternativet når hovedproblemet er å avgrense enheter med motstridende morfologiske, reproduktive og genetiske data.",
+          "interpretive_consequence": "Trefiguren leses som et testbart resultat av karakter- og modellvalg; homologi må argumenteres, og alternative trær forblir synlige når evidensen er svak.",
+          "scholarly_source": {"label": "Artsdatabanken – DNA-strekkoding i Artsprosjektet", "url": "https://artsdatabanken.no/aktuelt-og-innsikt/artsprosjektet", "authority_class": "national_scientific_authority", "source_role": "Dokumenterer nasjonal bruk av DNA-strekkoding sammen med taksonomisk ekspertise og referansemateriale.", "use_limit": "Brukes som institusjonell dokumentasjon av metode og infrastruktur, ikke som bevis for at én markør alltid løser artsavgrensning."},
+          "content_bindings": [
+            {"role": "mechanism", "chapter_file": "data/fagverk/natur/artskunnskap_systematikk.json", "section_id": "fylogeni-og-karakterer", "paragraph_index": 0},
+            {"role": "limitation", "chapter_file": "data/fagverk/natur/artskunnskap_systematikk.json", "section_id": "fylogeni-og-karakterer", "paragraph_index": 2},
+            {"role": "alternative", "chapter_file": "data/fagverk/natur/artskunnskap_systematikk.json", "section_id": "fylogeni-og-karakterer", "paragraph_index": 1}
+          ]
+        }
+      ]
+    },
+    {
+      "domain_id": "evolusjon_biologisk_mangfold",
+      "comparison": {"model_object_ids": ["natur-selection-drift-gene-flow", "natur-speciation-gene-flow-barriers"], "interpretive_consequence": "Populasjonsmodellen skiller seleksjon fra drift og genflyt innen og mellom bestander, mens artsdannelsesmodellen undersøker hvordan redusert genflyt og barrierer kan gjøre divergens varig. Sammen forhindrer de at all endring kalles tilpasning eller at artsdannelse fremstilles som ett øyeblikk."},
+      "model_objects": [
+        {
+          "id": "natur-selection-drift-gene-flow", "model_kind": "mechanism", "model_name": "Populasjonsgenetisk mekanismemodell", "hook_id": "naturlig_seleksjon", "emne_id": "em_natur_naturlig_seksuell_seleksjon_tilpasning",
+          "scope": "Modellen brukes på endringer i allelfrekvenser over generasjoner når fitnessforskjeller, bestandsstørrelse, migrasjon og tilfeldighet kan vurderes separat.",
+          "core_claim_or_mechanism": "Naturlig seleksjon gir systematiske fitnessforskjeller, genetisk drift gir stokastiske endringer, og genflyt flytter varianter mellom bestander.",
+          "limitations": ["Et observert frekvensskifte identifiserer ikke mekanismen uten design som skiller seleksjon, drift og migrasjon.", "Tilpasningsfortellinger må teste arvelighet og fitness og kan ikke utledes bare fra at en egenskap virker hensiktsmessig."],
+          "rival_or_alternative": "Artsdannelsesmodellen er alternativet når spørsmålet gjelder varig divergens og reproduktiv isolasjon, ikke bare frekvensendring innen bestander.",
+          "interpretive_consequence": "Mekanismeavsnittet blir en differensialdiagnose mellom seleksjon, drift og genflyt, slik at tilpasning bare hevdes når observerbar evidens skiller alternativene.",
+          "scholarly_source": {"label": "OpenStax Biology 2e – Population Genetics", "url": "https://openstax.org/books/biology-2e/pages/19-2-population-genetics", "authority_class": "scholarly_textbook", "source_role": "Gir fagfellevurdert læreboksyntese av Hardy–Weinberg-forutsetninger og evolusjonære mekanismer i populasjoner.", "use_limit": "Brukes til etablert mekanismegrunnlag, men erstatter ikke arts- og stedsspesifikke data eller estimering av parameterverdier."},
+          "content_bindings": [
+            {"role": "mechanism", "chapter_file": "data/fagverk/natur/evolusjon_biologisk_mangfold.json", "section_id": "mekanismer", "paragraph_index": 0},
+            {"role": "limitation", "chapter_file": "data/fagverk/natur/evolusjon_biologisk_mangfold.json", "section_id": "mekanismer", "paragraph_index": 2},
+            {"role": "alternative", "chapter_file": "data/fagverk/natur/evolusjon_biologisk_mangfold.json", "section_id": "mekanismer", "paragraph_index": 1}
+          ]
+        },
+        {
+          "id": "natur-speciation-gene-flow-barriers", "model_kind": "causal_framework", "model_name": "Artsdannelse gjennom divergens og isolasjon", "hook_id": "artsdannelse_isolasjon", "emne_id": "em_natur_artsdannelse_reproduktiv_isolasjon",
+          "scope": "Rammeverket brukes når divergens mellom populasjoner kan knyttes til redusert genflyt, pre- eller postzygotiske barrierer og historisk-geografisk kontekst.",
+          "core_claim_or_mechanism": "Redusert genflyt gjør at seleksjon, drift og mutasjon kan øke divergens; reproduktive barrierer kan deretter opprettholde forskjeller ved kontakt.",
+          "limitations": ["Artsdannelse er ofte gradvis og hybridisering kan fortsette, slik at isolasjon sjelden er et rent binært mål.", "Likhet i mønster alene skiller ikke allopatrisk, sympatrisk eller økologisk divergens uten tids- og mekanismedata."],
+          "rival_or_alternative": "Populasjonsmodellen er alternativet når endringene kan forklares som seleksjon, drift eller genflyt uten at varig reproduktiv isolasjon er dokumentert.",
+          "interpretive_consequence": "Artsdannelsesavsnittet leses som en kjede av testbare mellomledd fra genflyt til barrierer, ikke som en teleologisk overgang fra variant til ny art.",
+          "scholarly_source": {"label": "Understanding Evolution – Causes of Speciation", "url": "https://evolution.berkeley.edu/evolution-101/speciation/causes-of-speciation/", "authority_class": "university_science_outreach", "source_role": "Gir universitetets kvalitetssikrede syntese av geografiske, økologiske og reproduktive mekanismer i artsdannelse.", "use_limit": "Brukes som mekanismeoversikt og undervisningskilde, ikke som primærdata for ett bestemt artskompleks eller én tidslinje."},
+          "content_bindings": [
+            {"role": "mechanism", "chapter_file": "data/fagverk/natur/evolusjon_biologisk_mangfold.json", "section_id": "artsdannelse", "paragraph_index": 0},
+            {"role": "limitation", "chapter_file": "data/fagverk/natur/evolusjon_biologisk_mangfold.json", "section_id": "artsdannelse", "paragraph_index": 2},
+            {"role": "alternative", "chapter_file": "data/fagverk/natur/evolusjon_biologisk_mangfold.json", "section_id": "artsdannelse", "paragraph_index": 1}
+          ]
+        }
+      ]
+    },
+    {
+      "domain_id": "botanikk_vegetasjon",
+      "comparison": {"model_object_ids": ["natur-plant-water-source-sink", "natur-photosynthesis-carbon-balance"], "interpretive_consequence": "Transportmodellen forklarer vannpotensial, xylem og kilde–sluk-relasjoner, mens karbonbalansemodellen skiller fotosyntese, respirasjon og netto produksjon. Sammen viser de hvorfor plantevekst begrenses både av transport og energibudsjett, uten å redusere planten til én flaskehals."},
+      "model_objects": [
+        {
+          "id": "natur-plant-water-source-sink", "model_kind": "mechanism", "model_name": "Vannpotensial og kilde–sluk-transport", "hook_id": "stengel_transport", "emne_id": "em_natur_rot_stengel_blad_transport",
+          "scope": "Modellen brukes på karplanter der opptak, vannpotensial, transpirasjon, xylemtransport og floemets kilde–sluk-forhold kan skilles analytisk.",
+          "core_claim_or_mechanism": "Vann beveges langs potensialgradienter og trekkes i xylemet ved transpirasjon, mens assimilater fordeles i floemet fra kilder til skiftende sluk.",
+          "limitations": ["Transporthastighet avhenger av anatomi, jordvann, temperatur, luftfuktighet og planteart og kan ikke generaliseres fra ett mål.", "Stomatal åpning gir en reguleringskonflikt mellom karbonopptak og vanntap, ikke en kostnadsfri optimalisering."],
+          "rival_or_alternative": "Karbonbalansemodellen er alternativet når hovedspørsmålet gjelder netto produksjon og energibudsjett fremfor fysisk transport av vann og assimilater.",
+          "interpretive_consequence": "Transportavsnittet blir en koblet gradient- og fordelingsmekanisme der målt vekst ikke automatisk avslører om vann, ledningskapasitet eller slukstyrke var begrensende.",
+          "scholarly_source": {"label": "OpenStax Biology 2e – Transport of Water and Solutes in Plants", "url": "https://openstax.org/books/biology-2e/pages/30-5-transport-of-water-and-solutes-in-plants", "authority_class": "scholarly_textbook", "source_role": "Gir fagfellevurdert læreboksyntese av vannpotensial, transpirasjon, xylem og floemtransport i planter.", "use_limit": "Brukes til generelle mekanismer og begreper, ikke til artsbestemte transporthastigheter eller feltestimat uten lokale data."},
+          "content_bindings": [
+            {"role": "mechanism", "chapter_file": "data/fagverk/natur/botanikk_vegetasjon.json", "section_id": "transport-og-gassutveksling", "paragraph_index": 0},
+            {"role": "limitation", "chapter_file": "data/fagverk/natur/botanikk_vegetasjon.json", "section_id": "transport-og-gassutveksling", "paragraph_index": 2},
+            {"role": "alternative", "chapter_file": "data/fagverk/natur/botanikk_vegetasjon.json", "section_id": "transport-og-gassutveksling", "paragraph_index": 1}
+          ]
+        },
+        {
+          "id": "natur-photosynthesis-carbon-balance", "model_kind": "causal_framework", "model_name": "Fotosyntese–respirasjon-karbonbalanse", "hook_id": "fotosyntese_respirasjon", "emne_id": "em_natur_fotosyntese_respirasjon",
+          "scope": "Rammeverket brukes på planteproduksjon når brutto fotosyntese, respirasjonskostnader, lagring, vekst og miljøbegrensninger kan holdes fra hverandre.",
+          "core_claim_or_mechanism": "Fotosyntesen binder lysenergi i organisk stoff, mens respirasjon frigjør energi; netto produksjon er differansen etter organismens egne kostnader.",
+          "limitations": ["Netto produksjon varierer med lys, temperatur, vann, næring, utviklingsstadium og måleperiode.", "Vekst styres av samvirkende hormoner og ressurser, så ett signal eller én fotosyntesemåling gir ikke full årsaksforklaring."],
+          "rival_or_alternative": "Transportmodellen er alternativet når karbonbalansen er kjent, men vann-, mineral- eller assimilattransport kan være den operative begrensningen.",
+          "interpretive_consequence": "Energiavsnittet leses som et eksplisitt budsjett der brutto binding ikke forveksles med netto vekst, og regulering behandles som samvirke fremfor én lineær bryter.",
+          "scholarly_source": {"label": "OpenStax Biology 2e – The Plant Body", "url": "https://openstax.org/books/biology-2e/pages/30-1-the-plant-body", "authority_class": "scholarly_textbook", "source_role": "Gir fagfellevurdert lærebokgrunnlag for planteorganer, vev og funksjonell organisering som ramme for vekst.", "use_limit": "Brukes til generell struktur–funksjon-syntese, ikke som primærkilde for økofysiologiske responser hos en bestemt art."},
+          "content_bindings": [
+            {"role": "mechanism", "chapter_file": "data/fagverk/natur/botanikk_vegetasjon.json", "section_id": "energi-og-vekst", "paragraph_index": 0},
+            {"role": "limitation", "chapter_file": "data/fagverk/natur/botanikk_vegetasjon.json", "section_id": "energi-og-vekst", "paragraph_index": 2},
+            {"role": "alternative", "chapter_file": "data/fagverk/natur/botanikk_vegetasjon.json", "section_id": "energi-og-vekst", "paragraph_index": 1}
+          ]
+        }
+      ]
+    },
+    {
+      "domain_id": "zoologi_dyreliv",
+      "comparison": {"model_object_ids": ["natur-animal-body-plan", "natur-proximate-ultimate-behaviour"], "interpretive_consequence": "Kroppsplanmodellen sammenligner strukturelle trekk og deres fylogenetiske og funksjonelle betydning, mens atferdsmodellen skiller observerbar handling fra proksimate og ultimate forklaringer. Sammen holder morfologisk mulighetsrom og situert atferd analytisk adskilt."},
+      "model_objects": [
+        {
+          "id": "natur-animal-body-plan", "model_kind": "classification_framework", "model_name": "Komparativ kroppsplanmodell", "hook_id": "dyrerikets_kroppsplaner", "emne_id": "em_natur_dyrerikets_kroppsplaner",
+          "scope": "Modellen brukes til å sammenligne dyr gjennom symmetri, vevslag, kroppshule, segmentering og utvikling uten å rangere gruppene som høyere eller lavere.",
+          "core_claim_or_mechanism": "Kroppsplantrekk avgrenser funksjonelle muligheter og støtter fylogenetiske hypoteser, men like løsninger kan også oppstå ved konvergens.",
+          "limitations": ["Ett morfologisk trekk er sjelden nok til å fastslå slektskap fordi homoplasi, reduksjon og utviklingsvariasjon forekommer.", "Funksjonelle forskjeller mellom radial og bilateral symmetri er kontekstavhengige og uttrykker ikke en evolusjonær rangstige."],
+          "rival_or_alternative": "Atferdsmodellen er alternativet når variasjonen gjelder hva dyret gjør i en situasjon og hvilke mekanismer eller seleksjonshistorier som forklarer handlingen.",
+          "interpretive_consequence": "Kroppsplanavsnittet blir en eksplisitt sammenligningsmodell med fylogenetiske alternativer, ikke en katalog som gjør likhet til slektskap eller kompleksitet til verdi.",
+          "scholarly_source": {"label": "OpenStax Biology 2e – Features Used to Classify Animals", "url": "https://openstax.org/books/biology-2e/pages/27-2-features-used-to-classify-animals", "authority_class": "scholarly_textbook", "source_role": "Gir fagfellevurdert læreboksyntese av kroppsplantrekk, embryologi og karakterer brukt i dyreklassifikasjon.", "use_limit": "Brukes til etablerte sammenligningsdimensjoner, men erstatter ikke oppdatert fylogenetisk analyse for omstridte grupper."},
+          "content_bindings": [
+            {"role": "mechanism", "chapter_file": "data/fagverk/natur/zoologi_dyreliv.json", "section_id": "kroppsplaner", "paragraph_index": 0},
+            {"role": "limitation", "chapter_file": "data/fagverk/natur/zoologi_dyreliv.json", "section_id": "kroppsplaner", "paragraph_index": 2},
+            {"role": "alternative", "chapter_file": "data/fagverk/natur/zoologi_dyreliv.json", "section_id": "kroppsplaner", "paragraph_index": 1}
+          ]
+        },
+        {
+          "id": "natur-proximate-ultimate-behaviour", "model_kind": "causal_framework", "model_name": "Proksimat–ultimat atferdsanalyse", "hook_id": "dyreatferd_observasjon", "emne_id": "em_natur_dyreatferd_formering_tilpasning",
+          "scope": "Rammeverket brukes på systematisk observert atferd der utløsere, utvikling, funksjon og evolusjonshistorie formuleres som forskjellige spørsmål.",
+          "core_claim_or_mechanism": "Proksimate forklaringer undersøker mekanisme og utvikling, mens ultimate forklaringer undersøker selektiv funksjon og historie; nivåene utfyller hverandre.",
+          "limitations": ["Et etogram registrerer definerte handlinger, men utvalg, observatøreffekt og tidsvindu begrenser hva som kan sluttes.", "At en atferd har en mulig funksjon dokumenterer ikke intensjon eller at dagens miljø opprettholder samme seleksjonspress."],
+          "rival_or_alternative": "Kroppsplanmodellen er alternativet når spørsmålet gjelder strukturelle og fylogenetiske begrensninger fremfor handlingsmønster og forklaringsnivå.",
+          "interpretive_consequence": "Atferdsavsnittet krever observasjon før fortolkning og holder mekanisme, utvikling, funksjon og historie fra hverandre, slik at hensiktsfortellinger ikke blir evidens.",
+          "scholarly_source": {"label": "OpenStax Biology 2e – Chordates and Vertebrates", "url": "https://openstax.org/books/biology-2e/pages/29-1-chordates", "authority_class": "scholarly_textbook", "source_role": "Gir fagfellevurdert læreboksyntese av virveldyrstruktur, utvikling og evolusjon som bakgrunn for atferdsanalyse.", "use_limit": "Brukes som zoologisk bakgrunn, ikke som direkte empirisk dokumentasjon av en bestemt arts atferd eller seleksjonshistorie."},
+          "content_bindings": [
+            {"role": "mechanism", "chapter_file": "data/fagverk/natur/zoologi_dyreliv.json", "section_id": "atferd", "paragraph_index": 1},
+            {"role": "limitation", "chapter_file": "data/fagverk/natur/zoologi_dyreliv.json", "section_id": "atferd", "paragraph_index": 2},
+            {"role": "alternative", "chapter_file": "data/fagverk/natur/zoologi_dyreliv.json", "section_id": "atferd", "paragraph_index": 0}
+          ]
+        }
+      ]
+    },
+    {
+      "domain_id": "sopp_lav_mikroorganismer",
+      "comparison": {"model_object_ids": ["natur-lichen-symbiosis-indicator", "natur-microbial-metabolism-redox"], "interpretive_consequence": "Lavmodellen analyserer partnerskap og indikatorrespons på miljø, mens metabolisme–redoks-modellen forklarer hvordan mikroorganismer driver stoffomsetning under ulike elektron- og energibetingelser. Sammen skiller de organismen som observert indikator fra prosessen som biogeokjemisk motor."},
+      "model_objects": [
+        {
+          "id": "natur-lichen-symbiosis-indicator", "model_kind": "causal_framework", "model_name": "Lavsymbiose og bioindikasjon", "hook_id": "lav_symbiose", "emne_id": "em_natur_lav_symbiose_og_indikasjon",
+          "scope": "Rammeverket brukes på lav som partnerskap mellom sopp og fotobiont og som mulig miljøindikator når art, substrat, klima og eksponering er kontrollert.",
+          "core_claim_or_mechanism": "Partnerne skaper en funksjonell thallus gjennom utveksling av karbon, vann, mineraler og beskyttelse; respons på miljø kan gi indikatorverdi.",
+          "limitations": ["Lavbestemmelse kan kreve kjemi eller mikroskopi, og morfologi alene gir ikke alltid sikker art.", "Indikatorrespons påvirkes av substrat, fuktighet, alder og spredning og kan ikke tilskrives én forurensningsfaktor uten kontroll."],
+          "rival_or_alternative": "Mikrobiell metabolisme er alternativet når spørsmålet gjelder stoffomsetning og redoksprosesser fremfor partnerskapets form og indikatorrespons.",
+          "interpretive_consequence": "Lavavsnittet blir en mekanistisk symbiose- og indikatoranalyse med eksplisitte forvekslingsfaktorer, ikke en enkel likning mellom forekomst og luftkvalitet.",
+          "scholarly_source": {"label": "OpenStax Biology 2e – Fungi", "url": "https://openstax.org/books/biology-2e/pages/24-introduction", "authority_class": "scholarly_textbook", "source_role": "Gir fagfellevurdert læreboksyntese av soppbiologi, symbioser, livssykluser og økologiske roller.", "use_limit": "Brukes til generelle sopp- og lavmekanismer, ikke som lokal bestemmelsesnøkkel eller spesifikk forurensningskalibrering."},
+          "content_bindings": [
+            {"role": "mechanism", "chapter_file": "data/fagverk/natur/sopp_lav_mikroorganismer.json", "section_id": "lav", "paragraph_index": 0},
+            {"role": "limitation", "chapter_file": "data/fagverk/natur/sopp_lav_mikroorganismer.json", "section_id": "lav", "paragraph_index": 2},
+            {"role": "alternative", "chapter_file": "data/fagverk/natur/sopp_lav_mikroorganismer.json", "section_id": "lav", "paragraph_index": 1}
+          ]
+        },
+        {
+          "id": "natur-microbial-metabolism-redox", "model_kind": "mechanism", "model_name": "Mikrobiell metabolisme og redoksgradienter", "hook_id": "mikrobiell_metabolisme", "emne_id": "em_natur_mikrobiell_metabolisme_og_kretslop",
+          "scope": "Modellen brukes når bakterier og arkeer omsetter karbon, nitrogen, svovel eller andre stoffer under dokumenterte energi-, elektron- og oksygenbetingelser.",
+          "core_claim_or_mechanism": "Mikroorganismer kobler elektrondonorer og -akseptorer i metabolske veier, og redoksforhold avgjør hvilke prosesser som er energetisk mulige.",
+          "limitations": ["Påviste gener viser metabolsk potensial, men ikke nødvendigvis uttrykk, aktivitet eller prosesshastighet i miljøet.", "Mikrobielle samfunn er heterogene, og taksonomisk tilstedeværelse alene identifiserer ikke organismens funksjon i situasjonen."],
+          "rival_or_alternative": "Lavsymbiosemodellen er alternativet når analysen gjelder et identifiserbart partnerskap og miljørespons, ikke usynlige metabolske flukser i et samfunn.",
+          "interpretive_consequence": "Prokaryotavsnittet leses som en betinget energi- og redoksmekanisme der potensial, aktivitet og målt stoffstrøm holdes fra hverandre.",
+          "scholarly_source": {"label": "OpenStax Biology 2e – Prokaryotic Metabolism", "url": "https://openstax.org/books/biology-2e/pages/22-3-prokaryotic-metabolism", "authority_class": "scholarly_textbook", "source_role": "Gir fagfellevurdert læreboksyntese av energikilder, elektronakseptorer og metabolsk mangfold hos prokaryoter.", "use_limit": "Brukes til etablert mekanismegrunnlag, men dokumenterer ikke aktivitet eller prosesshastighet i et bestemt miljø uten målinger."},
+          "content_bindings": [
+            {"role": "mechanism", "chapter_file": "data/fagverk/natur/sopp_lav_mikroorganismer.json", "section_id": "prokaryoter", "paragraph_index": 1},
+            {"role": "limitation", "chapter_file": "data/fagverk/natur/sopp_lav_mikroorganismer.json", "section_id": "prokaryoter", "paragraph_index": 2},
+            {"role": "alternative", "chapter_file": "data/fagverk/natur/sopp_lav_mikroorganismer.json", "section_id": "prokaryoter", "paragraph_index": 0}
+          ]
+        }
+      ]
+    },
+    {
+      "domain_id": "organismebiologi_fysiologi",
+      "comparison": {"model_object_ids": ["natur-diffusion-circulation-bottleneck", "natur-homeostasis-feedback"], "interpretive_consequence": "Transportmodellen følger diffusjon, respirasjonsflate og sirkulasjon som seriekoblede flaskehalser, mens homeostasemodellen forklarer dynamisk regulering rundt skiftende settpunkter. Sammen skiller de fysisk leveringskapasitet fra organismens reguleringsrespons."},
+      "model_objects": [
+        {
+          "id": "natur-diffusion-circulation-bottleneck", "model_kind": "mechanism", "model_name": "Diffusjon–sirkulasjon-flaskehals", "hook_id": "gassutveksling", "emne_id": "em_natur_gassutveksling_sirkulasjon_transport",
+          "scope": "Modellen brukes på organismer der diffusjonsavstand, overflate, partialtrykksgradient og åpen eller lukket sirkulasjon kan knyttes til transportkapasitet.",
+          "core_claim_or_mechanism": "Gass diffunderer over respiratoriske flater langs gradienter, og sirkulasjon opprettholder transporten; svakeste ledd kan begrense samlet leveranse.",
+          "limitations": ["Transportkapasitet avhenger av kroppsstørrelse, aktivitet, temperatur, medium og anatomisk utforming.", "En målt flaskehals i én situasjon betyr ikke at samme ledd begrenser ved andre belastninger eller utviklingsstadier."],
+          "rival_or_alternative": "Homeostasemodellen er alternativet når spørsmålet gjelder hvordan reguleringssløyfer kompenserer for endring, ikke hvilken fysisk transportetappe som begrenser.",
+          "interpretive_consequence": "Transportavsnittet blir en kjede av målbare gradienter og kapasiteter, slik at lav ytelse ikke automatisk tilskrives lunge, sirkulasjon eller celle uten leddvis evidens.",
+          "scholarly_source": {"label": "OpenStax Biology 2e – Gas Exchange across Respiratory Surfaces", "url": "https://openstax.org/books/biology-2e/pages/39-2-gas-exchange-across-respiratory-surfaces", "authority_class": "scholarly_textbook", "source_role": "Gir fagfellevurdert læreboksyntese av diffusjon, gassutvekslingsflater, ventilasjon og partialtrykksgradienter.", "use_limit": "Brukes til generelle fysiologiske mekanismer, ikke til diagnose eller artsbestemte kapasitetsverdier uten empiriske målinger."},
+          "content_bindings": [
+            {"role": "mechanism", "chapter_file": "data/fagverk/natur/organismebiologi_fysiologi.json", "section_id": "transport", "paragraph_index": 0},
+            {"role": "limitation", "chapter_file": "data/fagverk/natur/organismebiologi_fysiologi.json", "section_id": "transport", "paragraph_index": 2},
+            {"role": "alternative", "chapter_file": "data/fagverk/natur/organismebiologi_fysiologi.json", "section_id": "transport", "paragraph_index": 1}
+          ]
+        },
+        {
+          "id": "natur-homeostasis-feedback", "model_kind": "causal_framework", "model_name": "Dynamisk homeostase med negativ tilbakekobling", "hook_id": "homeostase_toleranse", "emne_id": "em_natur_reproduksjon_homeostase_toleranse",
+          "scope": "Rammeverket brukes på regulerte fysiologiske variabler når sensor, kontrollsignal, effektor, responskapasitet og miljøbelastning kan identifiseres.",
+          "core_claim_or_mechanism": "Negativ tilbakekobling motvirker avvik gjennom sensor- og effektorledd, men settpunkt, toleranse og kapasitet kan endres med tilstand og miljø.",
+          "limitations": ["Homeostase betyr ikke konstant verdi; normale områder, døgnrytme, utvikling og allostatiske skift må spesifiseres.", "Regulering kan svikte når belastningen overskrider kapasitet, og samme observasjon kan skyldes endret inntak, tap eller produksjon."],
+          "rival_or_alternative": "Transportmodellen er alternativet når reguleringssignalet fungerer, men diffusjon eller sirkulasjon setter den fysiske grensen for responsen.",
+          "interpretive_consequence": "Homeostaseavsnittet leses som en dynamisk, kapasitetsbegrenset tilbakekoblingssløyfe og ikke som en metafor om at kroppen alltid vender tilbake til én fast normalverdi.",
+          "scholarly_source": {"label": "OpenStax Biology 2e – Homeostasis", "url": "https://openstax.org/books/biology-2e/pages/33-3-homeostasis", "authority_class": "scholarly_textbook", "source_role": "Gir fagfellevurdert læreboksyntese av negativ tilbakekobling, effektorer og regulering av indre miljø.", "use_limit": "Brukes til grunnmekanismen, men erstatter ikke variabel-, arts- eller tilstandsspesifikke normalområder og klinisk evidens."},
+          "content_bindings": [
+            {"role": "mechanism", "chapter_file": "data/fagverk/natur/organismebiologi_fysiologi.json", "section_id": "homeostase", "paragraph_index": 2},
+            {"role": "limitation", "chapter_file": "data/fagverk/natur/organismebiologi_fysiologi.json", "section_id": "homeostase", "paragraph_index": 1},
+            {"role": "alternative", "chapter_file": "data/fagverk/natur/organismebiologi_fysiologi.json", "section_id": "homeostase", "paragraph_index": 0}
+          ]
+        }
+      ]
+    },
+    {
+      "domain_id": "vann_hydrologi_kretslop",
+      "comparison": {"model_object_ids": ["natur-catchment-water-balance", "natur-water-quality-multiple-stressors"], "interpretive_consequence": "Nedbørfeltmodellen gjør lagring, avrenning, infiltrasjon og flom til et romlig vannbudsjett, mens vannkvalitetsmodellen skiller kjemiske, fysiske og biologiske responsledd. Sammen viser de hvorfor vannmengde og økologisk kvalitet må kobles uten å behandles som samme variabel."},
+      "model_objects": [
+        {
+          "id": "natur-catchment-water-balance", "model_kind": "causal_framework", "model_name": "Nedbørfeltets vannbalanse", "hook_id": "elv_som_system", "emne_id": "em_natur_elver_bekker_vassdrag",
+          "scope": "Modellen brukes på avgrensede nedbørfelt der nedbør, fordamping, infiltrasjon, lagring, avrenning og vannføring kan sammenstilles over samme periode.",
+          "core_claim_or_mechanism": "Nedbør fordeles mellom lagre og flukser; terreng, jord, vegetasjon og tette flater former responstid, flomtopp og erosjon nedstrøms.",
+          "limitations": ["En punktmåling representerer ikke automatisk hele nedbørfeltet, og valgt tidsoppløsning kan skjule raske hendelser.", "Lik vannføring kan oppstå fra ulike kombinasjoner av lagring og tilførsel, så årsaken krever flere målestasjoner eller sporstoffer."],
+          "rival_or_alternative": "Vannkvalitetsmodellen er alternativet når hovedspørsmålet gjelder stoffkonsentrasjoner og biologisk tilstand fremfor volum, lagring og strømning.",
+          "interpretive_consequence": "Kretsløpsavsnittet blir et avgrenset massebudsjett på nedbørfeltskala, slik at enkeltmålinger og urbane flomtopper ikke generaliseres uten tid-, areal- og lagringsdata.",
+          "scholarly_source": {"label": "NVE – Vannets kretsløp", "url": "https://www.nve.no/vann-og-vassdrag/vannets-kretsloep/", "authority_class": "national_scientific_authority", "source_role": "Gir nasjonal hydrologisk fagmyndighets forklaring av vannkretsløp, lagring og strømning i norske forhold.", "use_limit": "Brukes til hydrologisk mekanisme og begreper, ikke som lokalt vannbudsjett uten feltdata og avgrenset tidsperiode."},
+          "content_bindings": [
+            {"role": "mechanism", "chapter_file": "data/fagverk/natur/vann_hydrologi_kretslop.json", "section_id": "vannets-kretslop", "paragraph_index": 0},
+            {"role": "limitation", "chapter_file": "data/fagverk/natur/vann_hydrologi_kretslop.json", "section_id": "vannets-kretslop", "paragraph_index": 2},
+            {"role": "alternative", "chapter_file": "data/fagverk/natur/vann_hydrologi_kretslop.json", "section_id": "vannforing-flom-erosjon", "paragraph_index": 2}
+          ]
+        },
+        {
+          "id": "natur-water-quality-multiple-stressors", "model_kind": "causal_framework", "model_name": "Vannkvalitet med multiple påvirkninger", "hook_id": "vannkvalitet", "emne_id": "em_natur_vannkvalitet_forurensning",
+          "scope": "Rammeverket brukes når fysiske, kjemiske og biologiske indikatorer kan knyttes til kilder, transportveier, eksponering og økologisk respons i samme vannforekomst.",
+          "core_claim_or_mechanism": "Konsentrasjon og biologisk effekt formes av tilførsel, fortynning, binding, nedbrytning og eksponering; flere påvirkninger kan virke samtidig.",
+          "limitations": ["Samme konsentrasjon kan skyldes ulik last og vannføring, og en grenseverdi alene identifiserer ikke kilden.", "Biologisk respons integrerer tid og samvirkende stressorer, men er ofte mindre spesifikk enn en kjemisk måling."],
+          "rival_or_alternative": "Nedbørfeltets vannbalanse er alternativet når spørsmålet først må forklare volum, fortynning og transport før kvalitet og biologisk effekt kan tolkes.",
+          "interpretive_consequence": "Vannkvalitetsavsnittet blir en flerindikatoranalyse som kombinerer kjemi og biologi, samtidig som konsentrasjon holdes fra last og korrelasjon fra kildebevis.",
+          "scholarly_source": {"label": "NVE – Hydrologiske data", "url": "https://www.nve.no/vann-og-vassdrag/hydrologiske-data/", "authority_class": "national_scientific_authority", "source_role": "Gir fagmyndighetens dokumentasjon av hydrologiske måleserier og datagrunnlag som trengs for mengde- og kvalitetsfortolkning.", "use_limit": "Hydrologiske data brukes som kontekst for transport og fortynning, ikke som direkte mål på kjemisk eller biologisk vannkvalitet."},
+          "content_bindings": [
+            {"role": "mechanism", "chapter_file": "data/fagverk/natur/vann_hydrologi_kretslop.json", "section_id": "vannkvalitet", "paragraph_index": 0},
+            {"role": "limitation", "chapter_file": "data/fagverk/natur/vann_hydrologi_kretslop.json", "section_id": "vannkvalitet", "paragraph_index": 2},
+            {"role": "alternative", "chapter_file": "data/fagverk/natur/vann_hydrologi_kretslop.json", "section_id": "vannkvalitet", "paragraph_index": 1}
+          ]
+        }
+      ]
+    },
+    {
+      "domain_id": "klima_energi_resiliens",
+      "comparison": {"model_object_ids": ["natur-radiative-carbon-balance", "natur-risk-hazard-exposure-vulnerability"], "interpretive_consequence": "Energi–karbonmodellen forklarer strålingspådriv og lager–fluks-forhold i klimasystemet, mens risikomodellen kobler fare til eksponering og sårbarhet. Sammen skiller de fysisk klimamekanisme fra samfunnets differensierte konsekvens og tilpasningskapasitet."},
+      "model_objects": [
+        {
+          "id": "natur-radiative-carbon-balance", "model_kind": "causal_framework", "model_name": "Strålings- og karbonbalanse", "hook_id": "karbon_energiflyt", "emne_id": "em_natur_karbon_energi_klima",
+          "scope": "Rammeverket brukes på klimasystemet når innkommende og utgående stråling, drivhusgasser, karbonlagre og flukser kan holdes fra hverandre.",
+          "core_claim_or_mechanism": "Drivhusgasser endrer strålingsbalansen, mens karbon flyttes mellom atmosfære, hav, biosfære og geologiske lagre med ulike tidsskalaer.",
+          "limitations": ["Karbonlager og karbonfluks er ulike størrelser, og stor beholdning betyr ikke nødvendigvis stor årlig endring.", "Klimafølsomhet, tilbakekoblinger og regional respons har usikkerhet som må uttrykkes med scenario og tidsrom."],
+          "rival_or_alternative": "Fare–eksponering–sårbarhet er alternativet når spørsmålet gjelder hvem eller hva som rammes, ikke den fysiske årsaken til klimaendringen.",
+          "interpretive_consequence": "Energiavsnittet blir et eksplisitt balanse- og lagerregnskap som hindrer sammenblanding av energiarter, utslipp, konsentrasjon og regional risiko.",
+          "scholarly_source": {"label": "IPCC – Climate Change 2023: Synthesis Report", "url": "https://www.ipcc.ch/report/ar6/syr/", "authority_class": "intergovernmental_scientific_assessment", "source_role": "Gir internasjonalt vurdert syntese av fysisk klimakunnskap, virkninger, utslippsbaner og usikkerhet.", "use_limit": "Brukes for vurderte globale og regionale sammenhenger, ikke som stedsnøyaktig prognose eller erstatning for lokale data."},
+          "content_bindings": [
+            {"role": "mechanism", "chapter_file": "data/fagverk/natur/klima_energi_resiliens.json", "section_id": "energi-og-karbon", "paragraph_index": 0},
+            {"role": "limitation", "chapter_file": "data/fagverk/natur/klima_energi_resiliens.json", "section_id": "energi-og-karbon", "paragraph_index": 2},
+            {"role": "alternative", "chapter_file": "data/fagverk/natur/klima_energi_resiliens.json", "section_id": "energi-og-karbon", "paragraph_index": 1}
+          ]
+        },
+        {
+          "id": "natur-risk-hazard-exposure-vulnerability", "model_kind": "causal_framework", "model_name": "Fare–eksponering–sårbarhet", "hook_id": "sarbarhet", "emne_id": "em_natur_vippepunkt_sarbarhet",
+          "scope": "Rammeverket brukes på klimarisiko når fysisk fare, eksponerte verdier, følsomhet, tilpasningskapasitet og tidsavgrenset scenario kan beskrives separat.",
+          "core_claim_or_mechanism": "Risiko oppstår i samvirket mellom fare, eksponering og sårbarhet; samme fysiske hendelse kan derfor gi svært ulike konsekvenser.",
+          "limitations": ["Sårbarhet er kontekstavhengig og endres med infrastruktur, ressurser, styring og sosial ulikhet.", "Scenarioer er betingede framskrivninger med antakelser, ikke forutsigelser av ett sikkert lokalt utfall."],
+          "rival_or_alternative": "Strålings- og karbonbalansen er alternativet når analysen skal forklare den fysiske klimadriveren fremfor fordelingen av konsekvens og kapasitet.",
+          "interpretive_consequence": "Risikodelen leses som et flerleddet, scenariobundet argument, slik at farekart ikke behandles som ferdige konsekvenskart og sårbarhet ikke naturaliseres.",
+          "scholarly_source": {"label": "Norsk klimaservicesenter – klimaframskrivninger", "url": "https://klimaservicesenter.no/climateprojections", "authority_class": "national_scientific_authority", "source_role": "Gir kvalitetssikrede norske klimaframskrivninger med scenario-, variabel- og usikkerhetsinformasjon for tilpasningsarbeid.", "use_limit": "Brukes som betinget klimagrunnlag; lokal konsekvens krever egne data om eksponering, sårbarhet og beslutningshorisont."},
+          "content_bindings": [
+            {"role": "mechanism", "chapter_file": "data/fagverk/natur/klima_energi_resiliens.json", "section_id": "fare-eksponering-sarbarhet", "paragraph_index": 0},
+            {"role": "limitation", "chapter_file": "data/fagverk/natur/klima_energi_resiliens.json", "section_id": "fare-eksponering-sarbarhet", "paragraph_index": 2},
+            {"role": "alternative", "chapter_file": "data/fagverk/natur/klima_energi_resiliens.json", "section_id": "fare-eksponering-sarbarhet", "paragraph_index": 1}
+          ]
+        }
+      ]
+    },
+    {
+      "domain_id": "geologi_landskap_tid",
+      "comparison": {"model_object_ids": ["natur-plate-tectonics-evidence", "natur-relative-radiometric-time"], "interpretive_consequence": "Platetektonikkmodellen forklarer indre prosesser gjennom bevegelser, grenser og flere uavhengige evidenstyper, mens dateringsmodellen ordner hendelser relativt og kalibrerer alder radiometrisk. Sammen kobler de prosess til tid uten å gjøre kartmønster eller ett isotoptall selvforklarende."},
+      "model_objects": [
+        {
+          "id": "natur-plate-tectonics-evidence", "model_kind": "causal_framework", "model_name": "Platetektonisk prosessmodell", "hook_id": "platetektonikk", "emne_id": "em_natur_platetektonikk_plategrenser",
+          "scope": "Modellen brukes på jordens indre og overflate når seismikk, bergarter, deformasjon, vulkanisme og platebevegelse kan sammenstilles geografisk.",
+          "core_claim_or_mechanism": "Litosfæreplater beveger seg over en deformerbar mantel, og konvergerende, divergerende og transformgrenser produserer ulike prosessmønstre.",
+          "limitations": ["Jordens indre observeres hovedsakelig indirekte, og tolkning av seismiske data avhenger av fysiske modeller.", "Ett kartmønster eller én bergartstype identifiserer ikke alene plategrense eller hendelsesforløp uten flere evidenstyper."],
+          "rival_or_alternative": "Geologisk datering er alternativet når spørsmålet gjelder rekkefølge og alder på hendelser fremfor den dynamiske prosessen som skapte dem.",
+          "interpretive_consequence": "Indre-prosessavsnittet blir en konsiliensanalyse der seismikk, struktur og materiale må støtte samme modell, fremfor at plateetiketten fungerer som ferdig forklaring.",
+          "scholarly_source": {"label": "OpenStax Astronomy 2e – Earth’s Crust", "url": "https://openstax.org/books/astronomy-2e/pages/8-2-earths-crust", "authority_class": "scholarly_textbook", "source_role": "Gir fagfellevurdert læreboksyntese av jordskorpe, mantel, plater og geofysiske observasjoner.", "use_limit": "Brukes til generell prosessmodell, ikke som regional geologisk kartlegging eller detaljert geodynamisk inversjon."},
+          "content_bindings": [
+            {"role": "mechanism", "chapter_file": "data/fagverk/natur/geologi_naturhistorie_v5_3.json", "section_id": "indre", "paragraph_index": 1},
+            {"role": "limitation", "chapter_file": "data/fagverk/natur/geologi_naturhistorie_v5_3.json", "section_id": "indre", "paragraph_index": 2},
+            {"role": "alternative", "chapter_file": "data/fagverk/natur/geologi_naturhistorie_v5_3.json", "section_id": "indre", "paragraph_index": 0}
+          ]
+        },
+        {
+          "id": "natur-relative-radiometric-time", "model_kind": "law_or_principle", "model_name": "Relativ og radiometrisk geologisk datering", "hook_id": "radiometrisk_datering", "emne_id": "em_natur_stratigrafi_geologisk_tid_datering",
+          "scope": "Rammeverket brukes på lag, skjærende strukturer, fossiler og isotopsystemer når prøvens kontekst, lukking og måleusikkerhet er dokumentert.",
+          "core_claim_or_mechanism": "Relativ datering ordner hendelser med stratigrafiske prinsipper, mens radioaktivt henfall kan kalibrere tid når isotopsystemets forutsetninger holder.",
+          "limitations": ["Radiometrisk alder gjelder et bestemt mineral- og hendelsessystem og kan påvirkes av arv, omkrystallisering eller senere åpning.", "Relativ rekkefølge gir ikke varighet, og ett absolutt tall daterer ikke automatisk alle lag eller hendelser i området."],
+          "rival_or_alternative": "Platetektonikkmodellen er alternativet når alder og rekkefølge er etablert, men den fysiske prosessen bak deformasjon, magmatisme eller bassengdannelse skal forklares.",
+          "interpretive_consequence": "Tidsavsnittet blir en eksplisitt kobling mellom relativ orden, isotopforutsetninger og usikkerhet, slik at tallfestet alder ikke løsrives fra prøvens geologiske hendelse.",
+          "scholarly_source": {"label": "OpenStax Concepts of Biology – Geological Time", "url": "https://openstax.org/books/concepts-biology/pages/b-geological-time", "authority_class": "scholarly_textbook", "source_role": "Gir fagfellevurdert læreboksyntese av stratigrafiske prinsipper, geologisk tid og radiometrisk datering.", "use_limit": "Brukes til prinsipper og tidsskala, ikke som laboratoriedokumentasjon for en bestemt prøve eller lokal lagfølge."},
+          "content_bindings": [
+            {"role": "mechanism", "chapter_file": "data/fagverk/natur/geologi_naturhistorie_v5_3.json", "section_id": "tid", "paragraph_index": 1},
+            {"role": "limitation", "chapter_file": "data/fagverk/natur/geologi_naturhistorie_v5_3.json", "section_id": "tid", "paragraph_index": 2},
+            {"role": "alternative", "chapter_file": "data/fagverk/natur/geologi_naturhistorie_v5_3.json", "section_id": "tid", "paragraph_index": 0}
+          ]
+        }
+      ]
+    },
+    {
+      "domain_id": "urban_okologi_gronnstruktur",
+      "comparison": {"model_object_ids": ["natur-structural-functional-connectivity", "natur-urban-ecosystem-services-tradeoffs"], "interpretive_consequence": "Konnektivitetsmodellen tester om fysisk sammenheng faktisk gir bevegelse for bestemte arter, mens økosystemtjenestemodellen vurderer flere funksjoner, tilganger og konflikter i park og grønnstruktur. Sammen hindrer de at grønt areal automatisk likestilles med økologisk virkning eller rettferdig nytte."},
+      "model_objects": [
+        {
+          "id": "natur-structural-functional-connectivity", "model_kind": "causal_framework", "model_name": "Strukturell og funksjonell konnektivitet", "hook_id": "gronne_korridorer", "emne_id": "em_natur_gronnstruktur_korridorer",
+          "scope": "Rammeverket brukes på urbane habitatnettverk når avstand, barrierer, habitatkvalitet og faktisk bevegelse kan vurderes for en bestemt art og livsfase.",
+          "core_claim_or_mechanism": "Strukturell sammenheng beskriver landskapsmønster, mens funksjonell konnektivitet beskriver organismers realiserte eller mulige bevegelse gjennom mønsteret.",
+          "limitations": ["En grønn stripe er ikke nødvendigvis en fungerende korridor for alle arter, livsstadier eller årstider.", "Konnektivitet avhenger av målart, avstand, matrise, dødelighet og habitatkvalitet og kan ikke måles med areal alene."],
+          "rival_or_alternative": "Økosystemtjenestemodellen er alternativet når spørsmålet gjelder mikroklima, overvann, helse eller sosial tilgang fremfor artsbevegelse.",
+          "interpretive_consequence": "Korridoravsnittet blir en artsspesifikk test av funksjonell forbindelse, slik at planens grønne geometri ikke i seg selv regnes som dokumentert økologisk effekt.",
+          "scholarly_source": {"label": "EU-kommisjonen – Green infrastructure", "url": "https://environment.ec.europa.eu/topics/nature-and-biodiversity/green-infrastructure_en", "authority_class": "intergovernmental_scientific_assessment", "source_role": "Gir europeisk fag- og policygrunnlag for strategisk nettverk av naturarealer og økosystemfunksjoner.", "use_limit": "Brukes til ramme og definisjoner, ikke som empirisk bevis for at en bestemt lokal korridor fungerer for en valgt art."},
+          "content_bindings": [
+            {"role": "mechanism", "chapter_file": "data/fagverk/natur/urban_okologi_gronnstruktur.json", "section_id": "gronnstruktur-og-konnektivitet", "paragraph_index": 0},
+            {"role": "limitation", "chapter_file": "data/fagverk/natur/urban_okologi_gronnstruktur.json", "section_id": "gronnstruktur-og-konnektivitet", "paragraph_index": 2},
+            {"role": "alternative", "chapter_file": "data/fagverk/natur/urban_okologi_gronnstruktur.json", "section_id": "gronnstruktur-og-konnektivitet", "paragraph_index": 1}
+          ]
+        },
+        {
+          "id": "natur-urban-ecosystem-services-tradeoffs", "model_kind": "causal_framework", "model_name": "Urbane økosystemtjenester og avveiinger", "hook_id": "park_som_okosystem", "emne_id": "em_natur_okosystemtjenester",
+          "scope": "Rammeverket brukes på parker og grønnstruktur når regulering av varme og overvann, habitat, rekreasjon, helse, tilgang og driftskostnader vurderes samtidig.",
+          "core_claim_or_mechanism": "Vegetasjon og jord kan endre skygge, evapotranspirasjon, infiltrasjon og oppholdskvalitet, men nytte avhenger av utforming, tilstand og tilgang.",
+          "limitations": ["Effekt på temperatur og overvann varierer med vegetasjon, jord, vær, skala og vedlikehold.", "Helse- og rekreasjonsgevinst kan ikke utledes fra grønt areal alene fordi kvalitet, tilgjengelighet og fortrengning påvirker utfallet."],
+          "rival_or_alternative": "Konnektivitetsmodellen er alternativet når analysen gjelder habitatnettverk og artsbevegelse fremfor menneskelig nytte og flere urbane funksjoner.",
+          "interpretive_consequence": "Parkavsnittet blir en flerfunksjonell avveiingsanalyse der økologisk effekt, bruk og fordeling må måles separat fremfor å summeres som ubetinget grønn gevinst.",
+          "scholarly_source": {"label": "EU-kommisjonen – Urban Nature Platform", "url": "https://environment.ec.europa.eu/topics/urban-environment/urban-nature-platform_en", "authority_class": "intergovernmental_scientific_assessment", "source_role": "Gir europeisk kunnskaps- og planramme for urbane naturplaner, biodiversitet, klimatilpasning og sosial bruk.", "use_limit": "Brukes som sammenlignbar planramme, ikke som stedsbestemt effektstudie eller dokumentasjon av rettferdig tilgang."},
+          "content_bindings": [
+            {"role": "mechanism", "chapter_file": "data/fagverk/natur/urban_okologi_gronnstruktur.json", "section_id": "mikroklima-overvann-og-helse", "paragraph_index": 0},
+            {"role": "limitation", "chapter_file": "data/fagverk/natur/urban_okologi_gronnstruktur.json", "section_id": "mikroklima-overvann-og-helse", "paragraph_index": 2},
+            {"role": "alternative", "chapter_file": "data/fagverk/natur/urban_okologi_gronnstruktur.json", "section_id": "mikroklima-overvann-og-helse", "paragraph_index": 1}
+          ]
+        }
+      ]
+    },
+    {
+      "domain_id": "miljopavirkning_forvaltning_regenerasjon",
+      "comparison": {"model_object_ids": ["natur-source-pathway-receptor-effect", "natur-restoration-reference-trajectory"], "interpretive_consequence": "Kilde–vei–mottaker-modellen tester årsakskjeden fra påvirkning til effekt, mens restaureringsmodellen definerer referanse, mål, tiltak og etterprøvbar utviklingsbane. Sammen kobler de diagnose til handling uten å forveksle samvariasjon med årsak eller tiltak med dokumentert gjenoppretting."},
+      "model_objects": [
+        {
+          "id": "natur-source-pathway-receptor-effect", "model_kind": "causal_framework", "model_name": "Kilde–spredningsvei–mottaker–effekt", "hook_id": "forurensning", "emne_id": "em_natur_vannkvalitet_forurensning",
+          "scope": "Rammeverket brukes på miljøpåvirkning når kilde, transport- eller eksponeringsvei, mottaker, dose, respons og alternative forklaringer kan dokumenteres.",
+          "core_claim_or_mechanism": "En årsakspåstand krever en sammenhengende kjede fra utslipp eller inngrep via spredning og eksponering til biologisk eller fysisk effekt.",
+          "limitations": ["Samtidig forekomst eller romlig samvariasjon dokumenterer ikke spredningsvei, dose eller årsak alene.", "Flere kilder og stressorer kan gi samme respons, og manglende data må skilles fra dokumentert fravær av påvirkning."],
+          "rival_or_alternative": "Restaureringsmodellen er alternativet når årsakskjeden er tilstrekkelig diagnostisert og spørsmålet gjelder mål, tiltak, referanse og oppfølging.",
+          "interpretive_consequence": "Påvirkningsavsnittet blir en eksplisitt kausalkjede med alternative forklaringer og tidsmønster, ikke en liste der funn nær en mulig kilde automatisk blir kildebevis.",
+          "scholarly_source": {"label": "Miljødirektoratet – Naturrestaurering i Norge", "url": "https://www.miljodirektoratet.no/ansvarsomrader/arter-naturtyper/naturrestaurering/", "authority_class": "national_scientific_authority", "source_role": "Gir norsk fagmyndighets ramme for påvirkningsdiagnose, naturrestaurering, prioritering og oppfølging.", "use_limit": "Brukes til nasjonal fag- og forvaltningsramme, ikke som effektbevis for ett tiltak uten førdata, referanse og overvåking."},
+          "content_bindings": [
+            {"role": "mechanism", "chapter_file": "data/fagverk/natur/miljopavirkning_forvaltning_regenerasjon.json", "section_id": "fra-kilde-til-konsekvens", "paragraph_index": 0},
+            {"role": "limitation", "chapter_file": "data/fagverk/natur/miljopavirkning_forvaltning_regenerasjon.json", "section_id": "fra-kilde-til-konsekvens", "paragraph_index": 2},
+            {"role": "alternative", "chapter_file": "data/fagverk/natur/miljopavirkning_forvaltning_regenerasjon.json", "section_id": "fra-kilde-til-konsekvens", "paragraph_index": 1}
+          ]
+        },
+        {
+          "id": "natur-restoration-reference-trajectory", "model_kind": "causal_framework", "model_name": "Restaurering med referanse og utviklingsbane", "hook_id": "restaurering", "emne_id": "em_natur_forstyrrelse_regenerasjon",
+          "scope": "Rammeverket brukes på restaurering når referanseøkosystem, degraderingsårsak, mål, tiltak, spontan regenerasjon, indikatorer og tidshorisont er eksplisitte.",
+          "core_claim_or_mechanism": "Restaurering fjerner eller reduserer årsaker og støtter en ønsket økologisk utviklingsbane; resultat vurderes mot mål og referanse over tid.",
+          "limitations": ["Historisk tilstand kan være utilgjengelig eller uegnet under nytt klima, så referansen må begrunnes og kan være sammensatt.", "Tiltak er ikke effekt: spontan regenerasjon, aktiv restaurering og fortsatt skjøtsel må sammenlignes med overvåking og kontroll."],
+          "rival_or_alternative": "Kilde–spredningsvei–mottaker-modellen er alternativet når rotårsak og eksponeringskjede fortsatt er usikker og må avklares før tiltak velges.",
+          "interpretive_consequence": "Restaureringsavsnittet blir en etterprøvbar hypotese om utviklingsbane med referanse, rotårsak og indikatorer, ikke en etikett som gjør ethvert grønt tiltak vellykket.",
+          "scholarly_source": {"label": "UN Decade on Ecosystem Restoration – Principles for ecosystem restoration", "url": "https://www.decadeonrestoration.org/publications/principles-ecosystem-restoration-guide-united-nations-decade-2021-2030", "authority_class": "intergovernmental_restoration_standard", "source_role": "Gir internasjonalt utviklede prinsipper for inkluderende, målrettet, kunnskapsbasert og overvåket økosystemrestaurering.", "use_limit": "Brukes som normativ og faglig prosessstandard, ikke som dokumentasjon av lokal økologisk effekt eller én universell referansetilstand."},
+          "content_bindings": [
+            {"role": "mechanism", "chapter_file": "data/fagverk/natur/miljopavirkning_forvaltning_regenerasjon.json", "section_id": "vern-restaurering-regenerasjon", "paragraph_index": 0},
+            {"role": "limitation", "chapter_file": "data/fagverk/natur/miljopavirkning_forvaltning_regenerasjon.json", "section_id": "vern-restaurering-regenerasjon", "paragraph_index": 2},
+            {"role": "alternative", "chapter_file": "data/fagverk/natur/miljopavirkning_forvaltning_regenerasjon.json", "section_id": "vern-restaurering-regenerasjon", "paragraph_index": 1}
+          ]
+        }
+      ]
+    }
+  ]
+}

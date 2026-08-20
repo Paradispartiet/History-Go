@@ -1,0 +1,43 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "forsker_psykologi",
+  "mail_type": "event",
+  "families": [{
+    "id": "frist_data_og_personvern",
+    "purpose": "Håndtere leveransepress uten å hoppe over datakvalitet, dataminimering eller avklaring av trygg deling.",
+    "learning_focus": ["personvern", "dataminimering", "forskningsetikk", "friststyring"],
+    "mails": [{
+      "id": "psykologi_forsker_psykologi_event_frist_data_001",
+      "mail_type": "event",
+      "mail_family": "frist_data_og_personvern",
+      "role_scope": "forsker_psykologi",
+      "phase": "mid",
+      "day_phase": "afternoon",
+      "priority": 138,
+      "cooldown": 3,
+      "repeatable": false,
+      "stage": "stable",
+      "from": "Prosjektlederen",
+      "people_ref": "psykologi_forsker_psykologi_personvernradgiver",
+      "place_id": "psykologi_forsker_psykologi_prosjektmote",
+      "subject": "Partneren vil ha datauttrekket innen fredag",
+      "summary": "En samarbeidspartner ber om et tidlig datauttrekk og en foreløpig konklusjon før siste kvalitetskontroll og avklaring av dataminimering og trygg deling er ferdig.",
+      "purpose": "Teste om forskeren kan levere noe nyttig innen fristen uten å gjøre prosjektfrist til unntak fra datakvalitet eller personvern.",
+      "stakes": "Et raskt råuttrekk kan spre mer informasjon enn nødvendig og låse en konklusjon før datagrunnlaget er kontrollert.",
+      "situation": ["Partneren har et legitimt behov for framdriftsinformasjon, men trenger ikke rådata for å få en status.", "Prosjektets rådgiver har ennå ikke bekreftet at det foreslåtte uttrekket er tilstrekkelig minimert for formålet.", "Den siste kvalitetskontrollen kan fortsatt endre enkelte estimater, så enhver tidlig konklusjon må merkes foreløpig."],
+      "task_domain": "forskningsdata_og_leveranse",
+      "task_kind": "event",
+      "competency": "forskningsetikk_og_personvern",
+      "pressure": "ekstern_frist",
+      "choice_axis": "avgrenset_trygg_leveranse_vs_radata_for_framdrift",
+      "consequence_axis": "kontrollert_databruk_vs_personvern_og_kvalitetsrisiko",
+      "narrative_arc": "fra_fristpress_til_formalsavgrenset_og_trygg_statusleveranse",
+      "choices": [
+        {"id": "A", "label": "Lever en minimert foreløpig status", "reply": "Jeg sender en tydelig foreløpig status uten rådata, ferdigstiller kvalitetskontrollen og avklarer behandlingsgrunnlag, dataminimering og sikker deling før et eventuelt uttrekk.", "effect": 1, "tags": ["data_minimization", "privacy", "bounded_delivery"], "feedback": "Du møter partnerens informasjonsbehov uten å bruke fristen som grunn til å omgå kontrollene som beskytter både deltakere og evidens.", "effects": {"stats": {"quality": 2, "trust": 2, "risk": -2, "energy": -1}}},
+        {"id": "B", "label": "Send råuttrekket nå", "reply": "Vi må holde framdriften; jeg sender uttrekket og rydder dataminimering og dokumentasjon etterpå.", "effect": -1, "tags": ["privacy_risk", "data_overcollection", "deadline_pressure"], "feedback": "Du lar prosjektfristen overstyre en uavklart databruk og gjør både personvern- og kvalitetsrisiko større.", "effects": {"stats": {"status": 1, "quality": -2, "trust": -3, "risk": 3}}}
+      ]
+    }]
+  }]
+}

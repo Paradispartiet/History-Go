@@ -1,0 +1,43 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "forsker_psykologi",
+  "mail_type": "people",
+  "families": [{
+    "id": "metodekritikk_og_datakvalitet",
+    "purpose": "Gjøre kollegial metodekritikk til en konkret beslutning om hva datakvaliteten tillater av analyse og konklusjon.",
+    "learning_focus": ["datakvalitet", "måling", "kollegial_kritikk"],
+    "mails": [{
+      "id": "psykologi_forsker_psykologi_people_metodekritikk_001",
+      "mail_type": "people",
+      "mail_family": "metodekritikk_og_datakvalitet",
+      "role_scope": "forsker_psykologi",
+      "phase": "early",
+      "day_phase": "forenoon",
+      "priority": 146,
+      "cooldown": 3,
+      "repeatable": false,
+      "stage": "stable",
+      "from": "Metodekollegaen",
+      "people_ref": "psykologi_forsker_psykologi_metodekollega",
+      "place_id": "psykologi_forsker_psykologi_prosjektmote",
+      "subject": "Denne målingen er svakere i én del av utvalget",
+      "summary": "En metodekollega viser at en sentral variabel har svakere målekvalitet i en avgrenset del av utvalget og foreslår en forhåndsdefinert sensitivitetsanalyse.",
+      "purpose": "Teste om forskeren lar relevant metodekritikk påvirke analysen uten å skjule begrensningen eller gjøre den større enn dokumentert.",
+      "stakes": "Å ignorere svakere målekvalitet kan gi for sterk konklusjon; å forkaste hele datasettet uten analyse kan være like lite begrunnet.",
+      "situation": ["Avviket gjelder målekvalitet, ikke identiteten til enkeltpersoner i datasettet.", "Kollegaen kan vise hvilket delutvalg og hvilken måleegenskap som er berørt.", "En sensitivitetsanalyse kan avgrenses før hovedresultatet fortolkes."],
+      "task_domain": "datakvalitet_og_maling",
+      "task_kind": "people",
+      "competency": "datakvalitetssikring",
+      "pressure": "tempo_vs_metodekritikk",
+      "choice_axis": "avgrenset_sensitivitetsanalyse_vs_ignorert_malesvakhet",
+      "consequence_axis": "kalibrert_konklusjon_vs_skjult_usikkerhet",
+      "narrative_arc": "fra_kollegial_innvending_til_testbar_datakvalitetsbeslutning",
+      "choices": [
+        {"id": "A", "label": "Definer sensitivitetsanalysen og dokumenter begrensningen", "reply": "Vi spesifiserer analysen før fortolkningen, dokumenterer hvorfor den trengs og viser om konklusjonen endrer seg når den svakere målingen håndteres.", "effect": 1, "tags": ["method_critique", "sensitivity_analysis", "measurement_quality"], "feedback": "Du gjør kritikken produktiv og lar leseren se hvor robust hovedkonklusjonen faktisk er.", "effects": {"stats": {"quality": 2, "trust": 2, "risk": -1, "energy": -1}}},
+        {"id": "B", "label": "Fortsett uten ekstra analyse", "reply": "Forskjellen er upraktisk nå; vi holder oss til opprinnelig framdrift og nevner det eventuelt senere.", "effect": -1, "tags": ["ignored_quality_signal", "deadline_pressure"], "feedback": "Du bevarer tempoet, men gjør en kjent begrensning usynlig i selve evidensvurderingen.", "effects": {"stats": {"status": 1, "quality": -2, "trust": -2, "risk": 2}}}
+      ]
+    }]
+  }]
+}

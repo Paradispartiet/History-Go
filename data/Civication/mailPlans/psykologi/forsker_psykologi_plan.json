@@ -1,0 +1,29 @@
+{
+  "schema": "civication_mail_plan_v1",
+  "version": 1,
+  "id": "psykologi_forsker_psykologi_v1",
+  "category": "psykologi",
+  "role_scope": "forsker_psykologi",
+  "title": "Forsker (psykologi)",
+  "description": "En forskningsdag fra forhåndsdefinert analyse og datakvalitet til åpen rapportering av nullfunn, utforskende analyser, robusthet og usikkerhet.",
+  "arc": {
+    "from": "En forsker som møter legitimt press for framdrift, tydelige funn og anvendbare leveranser.",
+    "to": "En forsker som holder sporbarheten fra spørsmål til data til konklusjon intakt, også når nullfunn, analyseavvik og usikkerhet gjør fortellingen mindre enkel.",
+    "core_questions": ["Hva var planlagt før resultatene var kjent?", "Hva tåler datakvaliteten faktisk å si?", "Hvordan skal utforskende funn merkes?", "Hvilken usikkerhet må følge konklusjonen videre?"]
+  },
+  "outcome_rules": {
+    "fired": {"stability_values": ["FIRED"], "strikes_gte": 3, "score_lte": -3},
+    "promoted": {"completion_ratio_gte": 1, "score_gte": 2, "strikes_lte": 0, "allow_warning": false},
+    "stagnated": {"autonomy_delta": -10, "stability": "STAGNATED", "add_branch_flags": ["career_stagnated", "psykologi_forsker_resultatpress", "research_integrity_pressure"]}
+  },
+  "sequence": [
+    {"step": 1, "type": "job", "phase": "intro", "step_goal": "Låse hovedspørsmål, primærutfall og analyseplan før resultatene åpnes.", "allowed_families": ["analyseplan_for_resultat"], "fallback_types": ["knowledge", "people", "micro"]},
+    {"step": 2, "type": "people", "phase": "early", "step_goal": "Ta metodekritikk på datakvalitet inn i den faktiske analysebeslutningen.", "allowed_families": ["metodekritikk_og_datakvalitet"], "fallback_types": ["job", "knowledge", "conflict"]},
+    {"step": 3, "type": "conflict", "phase": "early", "step_goal": "Skille planlagt hovedanalyse fra et sterkere resultat som først oppstår etter innsyn i data.", "allowed_families": ["sterkere_resultat_etter_data"], "fallback_types": ["people", "knowledge", "job"]},
+    {"step": 4, "type": "knowledge", "phase": "mid", "step_goal": "Bruke begrepene planlagt og utforskende analyse korrekt og etterprøvbart.", "allowed_families": ["planlagt_vs_utforskende"], "fallback_types": ["micro", "job", "people"]},
+    {"step": 5, "type": "event", "phase": "mid", "step_goal": "Håndtere leveransefrist uten å hoppe over datakvalitet, dataminimering eller avklaring av trygg deling.", "allowed_families": ["frist_data_og_personvern"], "fallback_types": ["conflict", "people", "knowledge"]},
+    {"step": 6, "type": "micro", "phase": "advanced", "step_goal": "Oppdage når en teknisk korrekt figur gjør usikkerhet og robusthet vanskeligere å se.", "allowed_families": ["figur_og_usikkerhet"], "fallback_types": ["knowledge", "job", "people"]},
+    {"step": 7, "type": "followup", "phase": "mastery", "step_goal": "La en svakere sensitivitetsanalyse endre konklusjonen og dokumentere analyseavviket.", "allowed_families": ["analyseavvik_og_robusthet"], "fallback_types": ["consequence", "story", "knowledge"]},
+    {"step": 8, "type": "story", "phase": "climax", "step_goal": "Levere en sluttrapport som skiller hovedfunn, nullfunn, utforskende funn og gjenværende usikkerhet.", "allowed_families": ["etterprovbar_sluttrapport"], "fallback_types": ["consequence", "event", "knowledge"]}
+  ]
+}

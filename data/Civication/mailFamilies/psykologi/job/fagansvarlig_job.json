@@ -1,0 +1,43 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "fagansvarlig",
+  "mail_type": "job",
+  "families": [{
+    "id": "gjentatt_avvik_og_arbeidsflyt",
+    "purpose": "Gjøre et tilbakevendende avvik til et spørsmål om arbeidsflyt, barrierer og ansvar før tiltak velges.",
+    "learning_focus": ["systemlaering", "avviksanalyse", "pasientsikkerhet"],
+    "mails": [{
+      "id": "psykologi_fagansvarlig_job_avvik_001",
+      "mail_type": "job",
+      "mail_family": "gjentatt_avvik_og_arbeidsflyt",
+      "role_scope": "fagansvarlig",
+      "phase": "intro",
+      "day_phase": "morning",
+      "priority": 150,
+      "cooldown": 2,
+      "repeatable": false,
+      "stage": "stable",
+      "from": "Kvalitetsrådgiveren",
+      "people_ref": "psykologi_fagansvarlig_kvalitetsradgiver",
+      "place_id": "psykologi_fagansvarlig_kvalitetsrom",
+      "subject": "Samme avvik, ny medarbeider",
+      "summary": "Et avvik som ble lukket med påminnelse og prosedyreendring, har oppstått igjen med en annen medarbeider i samme overgang mellom to arbeidsledd.",
+      "purpose": "Teste om fagansvarlig undersøker hvorfor riktig handling er vanskelig før ansvaret legges på enkeltpersonen.",
+      "stakes": "Rask individuell korrigering kan lukke saken på papiret, mens den samme systemrisikoen blir stående.",
+      "situation": ["Hendelsene gjelder ulike medarbeidere og ingen pasientidentifiserbare opplysninger er tatt inn i saken.", "Begge oppsto når informasjon skulle flyttes mellom to arbeidsflater.", "Den reviderte prosedyren beskriver målet, men ikke hvem som kontrollerer at overføringen er fullført."],
+      "task_domain": "avvik_og_systemlaering",
+      "task_kind": "job",
+      "competency": "avviksanalyse",
+      "pressure": "rask_lukking",
+      "choice_axis": "arbeidsflytanalyse_vs_individforklaring",
+      "consequence_axis": "varig_barriere_vs_gjentatt_avvik",
+      "narrative_arc": "fra_gjentakelse_til_avgrenset_systemsporsmal",
+      "choices": [
+        {"id": "A", "label": "Kartlegg overgangen før tiltak velges", "reply": "Jeg sammenholder hendelsesforløpene, avklarer ansvarspunktet og undersøker hva som gjør kontrollsteget vanskelig før vi prøver et avgrenset tiltak.", "effect": 1, "tags": ["system_learning", "workflow", "bounded_action"], "feedback": "Du beholder individuelt ansvar, men undersøker mønsteret som kan forklare hvorfor flere møter samme barriere.", "effects": {"stats": {"quality": 2, "trust": 1, "risk": -2, "energy": -1}}},
+        {"id": "B", "label": "Send ny påminnelse til hele gruppen", "reply": "Prosedyren er tydelig nok; jeg minner alle om at manglende overføring får konsekvenser.", "effect": -1, "tags": ["blame", "paper_compliance"], "feedback": "Du gjør lukking synlig, men lærer ingenting om overgangen der feilen gjentas.", "effects": {"stats": {"status": 1, "quality": -2, "trust": -2, "risk": 2}}}
+      ]
+    }]
+  }]
+}

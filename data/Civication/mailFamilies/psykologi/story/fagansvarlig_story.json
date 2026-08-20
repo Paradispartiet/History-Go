@@ -1,0 +1,43 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "fagansvarlig",
+  "mail_type": "story",
+  "families": [{
+    "id": "begrunnet_kvalitetsretning",
+    "purpose": "Samle avvik, kapasitet, kompetanse, myndighet og usikkerhet i en etterprøvbar kvalitetsanbefaling.",
+    "learning_focus": ["helhetsdommekraft", "kvalitetsforbedring", "mandatklarhet"],
+    "mails": [{
+      "id": "psykologi_fagansvarlig_story_retning_001",
+      "mail_type": "story",
+      "mail_family": "begrunnet_kvalitetsretning",
+      "role_scope": "fagansvarlig",
+      "phase": "climax",
+      "day_phase": "day_end",
+      "priority": 130,
+      "cooldown": 5,
+      "repeatable": false,
+      "stage": "stable",
+      "from": "Forbedringsrådet",
+      "people_ref": "psykologi_fagansvarlig_leder",
+      "place_id": "psykologi_fagansvarlig_forbedringsrad",
+      "subject": "Gi én retning for neste forbedringsperiode",
+      "summary": "Rådet ber om en anbefaling etter en dag med gjentatt avvik, ujevn implementering, veiledningspress og en indikator som skjulte forsinkelse.",
+      "purpose": "Teste om fagansvarlig kan gi retning uten å gjøre usikkerhet, ressursbehov eller myndighetsgrenser usynlige.",
+      "stakes": "En for bred anbefaling kan skape ny papiretterlevelse; en vag oppsummering kan la kjent systemrisiko fortsette.",
+      "situation": ["Arbeidsflyten peker mot et uklart kontrollpunkt, men årsaksbildet er ikke endelig fastslått.", "Ny anbefaling krever opplæring og lederbeslutning om kapasitet.", "Ingen del av rådet gir Civication-tittelen lovregulert eller klinisk beslutningsmyndighet."],
+      "task_domain": "kvalitetsretning",
+      "task_kind": "story",
+      "competency": "helhetsdommekraft",
+      "pressure": "krav_om_enkel_losning",
+      "choice_axis": "avgrenset_etterprovbar_retning_vs_totalpakke_med_falsk_sikkerhet",
+      "consequence_axis": "laerbar_forbedring_vs_ny_lukkekultur",
+      "narrative_arc": "fra_spredte_signaler_til_mandatklar_anbefaling",
+      "choices": [
+        {"id": "A", "label": "Anbefal ett avgrenset forsøk med tydelige eiere", "reply": "Jeg anbefaler at vi tester kontrollpunktet i arbeidsflyten, gir nødvendig opplæring, måler både rettidighet og bivirkning og lar ledelsen eie kapasitet mens kliniske og lovregulerte spørsmål blir hos riktig myndighet.", "effect": 1, "tags": ["bounded_improvement", "uncertainty", "authority_boundary"], "feedback": "Du gir en handlingsbar retning og viser hva anbefalingen bygger på, krever og ikke avgjør.", "effects": {"stats": {"quality": 3, "trust": 2, "risk": -2, "status": 1}}},
+        {"id": "B", "label": "Lov full standardisering innen neste uke", "reply": "Jeg anbefaler én obligatorisk prosedyre for alle og bruker fullføringsgraden som bevis på at risikoen er fjernet.", "effect": -1, "tags": ["false_certainty", "paper_compliance", "authority_overreach"], "feedback": "Du lover mer enn dataene viser og gjør kapasitet, skjønn og myndighet til usynlige forutsetninger.", "effects": {"stats": {"status": 1, "quality": -3, "trust": -2, "risk": 3}}}
+      ]
+    }]
+  }]
+}

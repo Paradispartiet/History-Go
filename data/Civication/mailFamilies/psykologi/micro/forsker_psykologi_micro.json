@@ -1,0 +1,43 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "forsker_psykologi",
+  "mail_type": "micro",
+  "families": [{
+    "id": "figur_og_usikkerhet",
+    "purpose": "Oppdage når en teknisk korrekt visualisering gjør usikkerhet og robusthet vanskeligere å se enn selve punktestimatet.",
+    "learning_focus": ["vitenskapelig_formidling", "usikkerhet", "robusthet"],
+    "mails": [{
+      "id": "psykologi_forsker_psykologi_micro_figur_usikkerhet_001",
+      "mail_type": "micro",
+      "mail_family": "figur_og_usikkerhet",
+      "role_scope": "forsker_psykologi",
+      "phase": "advanced",
+      "day_phase": "afternoon",
+      "priority": 136,
+      "cooldown": 3,
+      "repeatable": false,
+      "stage": "stable",
+      "from": "Metodekollegaen",
+      "people_ref": "psykologi_forsker_psykologi_metodekollega",
+      "place_id": "psykologi_forsker_psykologi_analyserom",
+      "subject": "Figuren er riktig, men usikkerheten forsvinner",
+      "summary": "En figur viser korrekt punktestimat, men skala og utforming gjør konfidensintervallet og forskjellen mellom hoved- og sensitivitetsanalyse vanskelig å oppfatte.",
+      "purpose": "Teste om forskeren behandler visuell tydelighet som en del av evidensformidlingen, ikke bare som presentasjon.",
+      "stakes": "En teknisk korrekt figur kan fortsatt gi et systematisk sterkere inntrykk av funnet enn analysene bærer.",
+      "situation": ["Punktestimatet er korrekt gjengitt.", "Usikkerhetsintervallet er bredt nok til å være viktig for fortolkningen.", "Sensitivitetsanalysen gir et svakere estimat og er relevant for hvor robust konklusjonen er."],
+      "task_domain": "vitenskapelig_visualisering",
+      "task_kind": "micro",
+      "competency": "vitenskapelig_skriving",
+      "pressure": "tydelig_budskap",
+      "choice_axis": "synlig_usikkerhet_vs_visuell_sikkerhet",
+      "consequence_axis": "kalibrert_forstaelse_vs_overdrevet_effektinntrykk",
+      "narrative_arc": "fra_pen_figur_til_etterprovbar_visualisering",
+      "choices": [
+        {"id": "A", "label": "Vis intervallet og robusthetsforskjellen tydelig", "reply": "Jeg justerer skalaen, gjør usikkerhetsintervallet lesbart og viser sensitivitetsresultatet eller forklarer forskjellen direkte i figurteksten.", "effect": 1, "tags": ["uncertainty", "transparent_visualization", "robustness"], "feedback": "Du lar figuren kommunisere både signalet og grensene for hvor sikkert signalet er.", "effects": {"stats": {"quality": 2, "trust": 1, "risk": -1, "energy": -1}}},
+        {"id": "B", "label": "Behold den tydeligste figuren", "reply": "Tallene er teknisk riktige, så vi beholder den enkleste figuren uten å fremheve intervallet eller robusthetsforskjellen.", "effect": -1, "tags": ["visual_overstatement", "uncertainty_hiding"], "feedback": "Du bruker teknisk korrekthet som dekning for en framstilling som gjør evidensen sterkere i praksis enn den er.", "effects": {"stats": {"status": 1, "quality": -2, "trust": -2, "risk": 2}}}
+      ]
+    }]
+  }]
+}

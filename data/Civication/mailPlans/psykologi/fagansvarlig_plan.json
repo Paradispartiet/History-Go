@@ -1,0 +1,29 @@
+{
+  "schema": "civication_mail_plan_v1",
+  "version": 1,
+  "id": "psykologi_fagansvarlig_v1",
+  "category": "psykologi",
+  "role_scope": "fagansvarlig",
+  "title": "Fagansvarlig",
+  "description": "En arbeidsbue fra gjentatt avvik til avgrenset systemlæring, trygg veiledning, tydelig myndighet og etterprøvbar forbedring.",
+  "arc": {
+    "from": "En fagansvarlig som møter press om å lukke avvik, kontrollere fagfolk og gi autoritative svar raskt.",
+    "to": "En fagansvarlig som skiller system, individ, skjønn og myndighet og gjør forbedring mulig uten å overta kliniske eller lovregulerte beslutninger.",
+    "core_questions": ["Hva i arbeidsflyten gjør riktig handling vanskelig?", "Hvordan kan veiledning bevare både læring og ansvar?", "Hvem har faktisk myndighet til denne beslutningen?", "Hva viser forbedringsmålingen, og hva viser den ikke?"]
+  },
+  "outcome_rules": {
+    "fired": {"stability_values": ["FIRED"], "strikes_gte": 3, "score_lte": -3},
+    "promoted": {"completion_ratio_gte": 1, "score_gte": 2, "strikes_lte": 0, "allow_warning": false},
+    "stagnated": {"autonomy_delta": -10, "stability": "STAGNATED", "add_branch_flags": ["career_stagnated", "psykologi_fagansvarlig_lukkekultur", "quality_portfolio_pressure"]}
+  },
+  "sequence": [
+    {"step": 1, "type": "job", "phase": "intro", "step_goal": "Kartlegge et gjentatt avvik som arbeidsflyt før tiltak velges.", "allowed_families": ["gjentatt_avvik_og_arbeidsflyt"], "fallback_types": ["knowledge", "people", "micro"]},
+    {"step": 2, "type": "people", "phase": "early", "step_goal": "Avklare hvordan lokal prosedyre og individuelt faglig skjønn skal virke sammen.", "allowed_families": ["prosedyre_og_klinisk_skjonn"], "fallback_types": ["job", "conflict", "knowledge"]},
+    {"step": 3, "type": "conflict", "phase": "early", "step_goal": "Beskytte veiledning som læringsrom når ledelsen ønsker prestasjonsdata.", "allowed_families": ["veiledning_og_kontrollpress"], "fallback_types": ["people", "event", "job"]},
+    {"step": 4, "type": "knowledge", "phase": "mid", "step_goal": "Skille lokal fagrolle fra lovregulert og klinisk myndighet.", "allowed_families": ["rolle_og_myndighetsgrense"], "fallback_types": ["micro", "people", "job"]},
+    {"step": 5, "type": "event", "phase": "mid", "step_goal": "Innføre en ny anbefaling med realistisk opplæring, kapasitet og tilbakemelding.", "allowed_families": ["anbefaling_og_implementeringskapasitet"], "fallback_types": ["job", "conflict", "people"]},
+    {"step": 6, "type": "micro", "phase": "advanced", "step_goal": "Oppdage at en grønn indikator skjuler forsinket oppfølging.", "allowed_families": ["gronn_indikator_og_skjult_forsinkelse"], "fallback_types": ["knowledge", "job", "people"]},
+    {"step": 7, "type": "followup", "phase": "mastery", "step_goal": "Prøve et avgrenset barrierefjernende tiltak med tydelig ansvar og vurderingspunkt.", "allowed_families": ["avvikstiltak_og_systemlaering"], "fallback_types": ["consequence", "people", "story"]},
+    {"step": 8, "type": "story", "phase": "climax", "step_goal": "Gi en etterprøvbar kvalitetsanbefaling med synlig usikkerhet, mandat og ressursbehov.", "allowed_families": ["begrunnet_kvalitetsretning"], "fallback_types": ["consequence", "event", "knowledge"]}
+  ]
+}
