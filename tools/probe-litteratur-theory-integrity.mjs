@@ -12,21 +12,11 @@ const json=p=>JSON.parse(fs.readFileSync(abs(p),'utf8'));
 const text=v=>String(v??'').trim();
 const norm=v=>text(v).toLocaleLowerCase('nb-NO').normalize('NFKD').replace(/\p{M}/gu,'');
 const unique=xs=>[...new Set(xs.filter(Boolean))];
-const ALT=/\b(alternativ|rivaliser|konkurrer|motles|motmodell|kontrast|annen forklaring|andre forklaringer|sammenlign|vs\.?|spenning|uenig|motstrid)\b/iu;
-const LIMIT=/\b(inferensgrense|kildegrense|begrens|kan ikke|ikke alene|ikke automatisk|usikker|usikkerhet|forbehold|avgrens|rekkevidde|krever .*kilde|uten .*data|ikke dokumenter)\b/iu;
-const THEORY=/\b(teori|teoretisk|modell|perspektiv|kritikk|analyse|hermeneut|formalisme|struktural|semiot|narratolog|resepsjon|diskurs|dekonstruksjon|psykoanal|fenomenolog|marxis|feminis|queer|postkolon|dekolon|okokrit|kognitiv|empirisk|intertekst|paratekst)\b/iu;
+const ALT=/\b(?:alternativ\p{L}*|rivaliser\p{L}*|konkurrer\p{L}*|motles\p{L}*|motmodell\p{L}*|kontrast\p{L}*|annen forklaring|andre forklaringer|sammenlign\p{L}*|vs\.?|spenning\p{L}*|uenig\p{L}*|motstrid\p{L}*)/iu;
+const LIMIT=/\b(?:inferensgrense\p{L}*|kildegrense\p{L}*|begrens\p{L}*|kan ikke|ikke alene|ikke automatisk|usikker\p{L}*|forbehold\p{L}*|avgrens\p{L}*|rekkevidde\p{L}*|krever [^.?!]*kilde|uten [^.?!]*data|ikke dokumenter\p{L}*)/iu;
+const THEORY=/\b(?:teori\p{L}*|modell\p{L}*|perspektiv\p{L}*|kritikk\p{L}*|analyse\p{L}*|hermeneut\p{L}*|formalisme\p{L}*|struktural\p{L}*|semiot\p{L}*|narratolog\p{L}*|resepsjon\p{L}*|diskurs\p{L}*|dekonstruksjon\p{L}*|psykoanal\p{L}*|fenomenolog\p{L}*|marxis\p{L}*|feminis\p{L}*|queer\p{L}*|postkolon\p{L}*|dekolon\p{L}*|okokrit\p{L}*|kognitiv\p{L}*|empirisk\p{L}*|intertekst\p{L}*|paratekst\p{L}*)/iu;
 const ACADEMIC=/(university|universitet|cambridge|oxford|routledge|wiley|blackwell|springer|palgrave|harvard|yale|columbia|johns hopkins|uchicago|press|museum|archive|arkiv|library|bibliotek|institute|institutt|foundation|forskn)/iu;
 const PERSON_CONTRIB=/\b([A-ZÆØÅ][\p{L}.'’-]{2,})(?:s|’s|')\s+(begrep|teori|modell|metode|analyse|lesning|bidrag|skille|diskursanalyse|supplementanalyse|segmentering|narratologi|poetikk|kritikk)\b/u;
-
-function refs(value,out=[]){
-  if(Array.isArray(value)){for(const item of value)refs(item,out);return out;}
-  if(!value||typeof value!=='object')return out;
-  for(const [k,v] of Object.entries(value)){
-    if(['paragraphClaimIds','keyPointClaimIds','claimIds'].includes(k)&&Array.isArray(v))out.push(...v.flat(Infinity).map(text).filter(Boolean));
-    else refs(v,out);
-  }
-  return out;
-}
 
 function loadArea(area){
   const chapterPath=`${BASE}/foundation_texts/${area.id}.json`;
@@ -63,11 +53,17 @@ function loadArea(area){
     fulfillment=json(`${BASE}/${contract.fulfillmentSchema.requiredFile}`);
   }
   const theoryEvidencePointers=fulfillment?.topicEvidence?.flatMap(row=>Object.values(row.theoryEvidence||{}))||[];
-  const theoryParagraphs=paragraphs.filter(p=>THEORY.test(p.text));
+  const theoryParagraphs=paragraphs.filter(p=>THEORY.test(norm(p.text)));
   const altParagraphs=paragraphs.filter(p=>ALT.test(norm(p.text)));
   const limitParagraphs=paragraphs.filter(p=>LIMIT.test(norm(p.text)));
   const directPersonBindings=unique(personBindings.map(x=>`${x.personToken}|${x.contribution}|${x.claimId}`));
-  const commonPass=verifiedClaims.length>=4&&academicSources.length>=2&&altParagraphs.length>=2&&limitParagraphs.length>=2&&theoryParagraphs.length>=2;
+  const proofDimensionGaps=[];
+  if(verifiedClaims.length<4)proofDimensionGaps.push('verified_prose_bound_claims');
+  if(academicSources.length<2)proofDimensionGaps.push('academic_used_sources');
+  if(theoryParagraphs.length<2)proofDimensionGaps.push('theory_bearing_prose');
+  if(altParagraphs.length<2)proofDimensionGaps.push('alternative_or_rival_prose');
+  if(limitParagraphs.length<2)proofDimensionGaps.push('limitation_or_inference_prose');
+  const commonPass=proofDimensionGaps.length===0;
   let diagnosticStatus='possible_content_or_other_proof_gap';
   if(commonPass&&directPersonBindings.length>=2)diagnosticStatus='direct_strict_candidate';
   else if(commonPass)diagnosticStatus='attribution_reconciliation_needed';
@@ -85,6 +81,7 @@ function loadArea(area){
     alternativeOrRivalParagraphs:altParagraphs.length,
     limitationOrInferenceParagraphs:limitParagraphs.length,
     directPersonContributionBindings:directPersonBindings.length,
+    proofDimensionGaps,
     personBindingExamples:personBindings.slice(0,4),
     diagnosticStatus
   };
@@ -106,7 +103,8 @@ export function probeLitteraturTheoryIntegrity(){
       chapterOverviewAreas:areas.filter(a=>!a.fullFieldContract).length,
       directStrictCandidates:counts('direct_strict_candidate'),
       attributionReconciliationNeeded:counts('attribution_reconciliation_needed'),
-      possibleContentOrOtherProofGaps:counts('possible_content_or_other_proof_gap')
+      possibleContentOrOtherProofGaps:counts('possible_content_or_other_proof_gap'),
+      fieldsWithNonAttributionProofGaps:areas.filter(a=>a.proofDimensionGaps.length>0).length
     },
     areas
   };
