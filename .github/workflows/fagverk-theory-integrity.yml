@@ -11,6 +11,7 @@ on:
       - 'reports/fagverk/by-theory-integrity-audit.json'
       - 'reports/fagverk/kunst-complete-audit.json'
       - 'reports/fagverk/kunst-theory-integrity-audit.json'
+      - 'reports/fagverk/litteratur-theory-integrity-audit.json'
       - 'reports/historie-theory-evidence/**'
       - 'scripts/audit-fagverk-theory-integrity.mjs'
       - 'scripts/audit-fagverk-theory-quality.mjs'
@@ -22,8 +23,10 @@ on:
       - 'tools/audit-historie-theory-integrity.mjs'
       - 'tools/audit-by-theory-integrity.mjs'
       - 'tools/audit-kunst-theory-integrity.mjs'
+      - 'tools/audit-litteratur-theory-integrity.mjs'
       - 'tests/by-theory-integrity.test.mjs'
       - 'tests/kunst-theory-integrity.test.mjs'
+      - 'tests/litteratur-theory-integrity.test.mjs'
       - 'tests/fagverk-documentation-contract.test.mjs'
       - 'tests/fagverk-theory-integrity.test.mjs'
       - '.github/workflows/fagverk-theory-integrity.yml'
@@ -39,6 +42,7 @@ on:
       - 'reports/fagverk/by-theory-integrity-audit.json'
       - 'reports/fagverk/kunst-complete-audit.json'
       - 'reports/fagverk/kunst-theory-integrity-audit.json'
+      - 'reports/fagverk/litteratur-theory-integrity-audit.json'
       - 'reports/historie-theory-evidence/**'
       - 'scripts/audit-fagverk-theory-integrity.mjs'
       - 'scripts/audit-fagverk-theory-quality.mjs'
@@ -50,8 +54,10 @@ on:
       - 'tools/audit-historie-theory-integrity.mjs'
       - 'tools/audit-by-theory-integrity.mjs'
       - 'tools/audit-kunst-theory-integrity.mjs'
+      - 'tools/audit-litteratur-theory-integrity.mjs'
       - 'tests/by-theory-integrity.test.mjs'
       - 'tests/kunst-theory-integrity.test.mjs'
+      - 'tests/litteratur-theory-integrity.test.mjs'
       - 'tests/fagverk-documentation-contract.test.mjs'
       - 'tests/fagverk-theory-integrity.test.mjs'
       - '.github/workflows/fagverk-theory-integrity.yml'
@@ -73,8 +79,10 @@ jobs:
           node --check scripts/audit-fagverk-theory-integrity.mjs
           node --check tools/audit-by-theory-integrity.mjs
           node --check tools/audit-kunst-theory-integrity.mjs
+          node --check tools/audit-litteratur-theory-integrity.mjs
           node scripts/audit-fagverk-theory-integrity.mjs
           node --test tests/by-theory-integrity.test.mjs
           node --test tests/kunst-theory-integrity.test.mjs
+          node --test tests/litteratur-theory-integrity.test.mjs
           node --test tests/fagverk-theory-integrity.test.mjs
           node --test tests/fagverk-documentation-contract.test.mjs
