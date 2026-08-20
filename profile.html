@@ -98,7 +98,7 @@
               </div>
             </section>
             <section class="profile-section" id="conceptsSection"><div class="section-head"><h2>Begrepene dine</h2><span class="section-meta" id="conceptsMeta">Fra det du faktisk har lært</span></div><div id="conceptsList" class="concepts-list" aria-live="polite"></div><div id="conceptsEmpty" class="concepts-empty" style="display:none;">Ingen begreper logget ennå.</div></section>
-            <section class="profile-section knowledge-match-section" id="knowledgeMatchSection"><div class="section-head"><h2>Kunnskapskoblinger</h2><span class="section-meta">Konseptuelt overlapp, ikke posisjon</span></div><div id="knowledge-match-list" aria-live="polite"></div></section>
+            <section class="profile-section knowledge-match-section" id="knowledgeMatchSection"><div class="section-head"><h2>Kunnskapskoblinger</h2><span class="section-meta">Konseptuelt overlapp, ikke lokasjon</span></div><div id="knowledge-match-list" aria-live="polite"></div></section>
           </div>
         </div>
 
@@ -123,11 +123,40 @@
         <div class="profile-tab-panel" data-panel="merker"><section class="profile-section"><div class="section-head"><h2>Mine merker</h2><span class="section-meta">Det du har oppnådd</span></div><div id="merits"></div><div class="profile-subaction"><a href="merker/merker.html" class="link-small">Se alle merke-kategorier →</a></div></section></div>
 
         <div class="profile-tab-panel" data-panel="civication"><section class="profile-section"><div class="section-head"><h2>Spill</h2><span class="section-meta">History Go-universet</span></div><div class="profile-games-grid"><a class="profile-game-card" href="Civication.html"><span class="profile-game-title">Civication</span></a><a class="profile-game-card" href="https://paradispartiet.github.io/HistoryGo-FootballManager/" target="_blank" rel="noopener noreferrer"><span class="profile-game-title">HG Football Manager</span></a><a class="profile-game-card" href="https://paradispartiet.github.io/HG_Film_Producer/" target="_blank" rel="noopener noreferrer"><span class="profile-game-title">HG Film Producer</span></a></div></section></div>
-        <div class="profile-tab-panel" data-panel="socialmeet"><section class="profile-section"><div class="section-head"><h2>Social Meet</h2><span class="section-meta">Privat sosial læring</span></div><p class="muted">Social Meet er fortsatt tilgjengelig som et sekundært lag. Kunnskapskoblinger på oversikten bruker konseptuelt overlapp, ikke live-posisjon.</p><div id="spotmeeting-inbox"></div></section></div>
-        <div class="profile-tab-panel" data-panel="profilvalg"><section class="profile-section"><div class="section-head"><h2>Profilvalg og personvern</h2></div><p class="muted">Bruk innstillingsknappen øverst for profil, innlogging og lokale valg.</p><button class="collection-action" type="button" onclick="document.getElementById('editProfileBtn')?.click()">Åpne innstillinger</button></section></div>
+
+        <div class="profile-tab-panel" data-panel="socialmeet">
+          <section class="profile-section knowledge-match-section profile-social-stack" id="profileSocialLayer" aria-label="Social Meet">
+            <div class="section-head"><h2>Social Meet</h2><span class="section-meta">Kunnskapsmøter, læringssirkler og sosial læringshistorikk.</span></div>
+            <p class="muted">Personvern styres i ⚙ Innstillinger.</p>
+            <div id="miniProfile" class="social-mini-profile-anchor">MiniProfile</div>
+            <div id="meet-invite-inbox" aria-live="polite"></div>
+            <div id="spotmeeting-inbox" aria-live="polite"></div>
+            <div id="confirmed-meets" aria-live="polite"></div>
+            <div id="social-progression" aria-live="polite"></div>
+            <div id="learning-circles" aria-live="polite"></div>
+            <div id="circle-activity" aria-live="polite"></div>
+            <div id="social-history" aria-live="polite"></div>
+            <div id="hg-social-smoke-panel"></div>
+          </section>
+        </div>
+
+        <div class="profile-tab-panel" data-panel="profilvalg">
+          <div class="profile-grid-2">
+            <section class="profile-section" id="notesSection"><div class="section-head"><h2>Mine notater</h2></div><div class="profile-subaction"><a href="notater.html" class="link-small">Åpne notatboken →</a></div></section>
+            <section class="profile-section" id="languageSection"><div class="section-head"><h2>Språk</h2></div><div class="profile-action-row"><label for="languageSelect">Språk</label><select id="languageSelect" aria-label="Language"><option value="ar">العربية</option><option value="bn">বাংলা</option><option value="de">Deutsch</option><option value="en">English</option><option value="es">Español</option><option value="fr">Français</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="it">Italiano</option><option value="ja">日本語</option><option value="ko">한국어</option><option value="nb">Norsk</option><option value="pt">Português</option><option value="ru">Русский</option><option value="sw">Kiswahili</option><option value="tr">Türkçe</option><option value="ur">اردو</option><option value="zh-Hans">中文</option></select></div></section>
+          </div>
+          <section class="profile-section" id="actions"><div class="section-head"><h2>Profilvalg</h2></div><div class="profile-action-row"><button id="editProfileBtnBottom" class="collection-action" type="button" onclick="document.getElementById('editProfileBtn')?.click()">Åpne innstillinger</button></div></section>
+        </div>
       </section>
     </div>
   </main>
+
+  <div id="profileSettingsSocialMount" hidden>
+    <section class="profile-section knowledge-match-section profile-privacy-stack" id="profilePrivacyLayer" aria-label="Personverninnstillinger">
+      <div class="section-head"><h2>Personvern</h2><span class="section-meta">Kunnskapsgraf og synlighet for Social Meet.</span></div>
+      <div id="social-privacy-settings" aria-live="polite"></div>
+    </section>
+  </div>
 
   <footer class="site-footer" aria-label="Bunntekst"><div class="site-footer-inner"><span class="site-footer-brand">History Go</span><nav class="site-footer-links"><a href="index.html">Kart</a><a href="knowledge.html">Kunnskap</a><a href="merker/merker.html">Merker</a></nav></div></footer>
 
@@ -152,9 +181,79 @@
   <script src="dist/web/hgModeration.js"></script>
   <script src="js/hgSocialGuards.js"></script>
   <script src="js/knowledgeMatch.js"></script>
+  <script src="js/social/HGSocialMeetSupabaseClient.js"></script>
+  <script src="js/social/HGSocialMeetAdapter.js"></script>
   <script src="js/social/HGSpotmeeting.js"></script>
   <script src="js/profile.js"></script>
   <script src="js/ui/personal-collection-v1.js"></script>
+  <script>
+(function(){
+  function escapeSpotmeetingHTML(value){
+    return String(value == null ? '' : value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+  function formatSpotmeetingTime(value){
+    if(!value) return '';
+    var date = new Date(value);
+    if(Number.isNaN(date.getTime())) return String(value);
+    return date.toLocaleString('nb-NO', { dateStyle: 'short', timeStyle: 'short' });
+  }
+  function spotmeetingStatusLabel(status){
+    return ({pending:'Venter på svar',accepted:'Avtalt',completed:'Gjennomført',declined:'Avslått eller avbrutt',cancelled:'Avslått eller avbrutt'})[status] || status || 'Ukjent';
+  }
+  function isCurrentSpotmeetingCreator(invite){
+    var current = String(window.HG_CURRENT_USER_ID || window.currentUserId || 'me');
+    return !invite.createdByUserId || String(invite.createdByUserId) === current;
+  }
+  function renderSpotmeetingCard(invite){
+    var context = invite.context || {};
+    var target = invite.targetDisplayName || invite.displayName || invite.targetUserDisplayName || invite.targetUserId || 'Ukjent deltaker';
+    var time = invite.updatedAt || invite.createdAt;
+    var meta = [context.contextType || 'kunnskapsmøte', target, time ? formatSpotmeetingTime(time) : ''].filter(Boolean).join(' · ');
+    var actions = [];
+    if(invite.status === 'pending'){
+      actions.push('<button type="button" data-spotmeeting-action="accept" data-spotmeeting-invite-id="'+escapeSpotmeetingHTML(invite.inviteId)+'">Godta</button>');
+      actions.push('<button type="button" data-spotmeeting-action="decline" data-spotmeeting-invite-id="'+escapeSpotmeetingHTML(invite.inviteId)+'">Avslå</button>');
+      if(isCurrentSpotmeetingCreator(invite)) actions.push('<button type="button" data-spotmeeting-action="cancel" data-spotmeeting-invite-id="'+escapeSpotmeetingHTML(invite.inviteId)+'">Avbryt forslag</button>');
+    } else if(invite.status === 'accepted'){
+      actions.push('<button type="button" data-spotmeeting-action="complete" data-spotmeeting-invite-id="'+escapeSpotmeetingHTML(invite.inviteId)+'">Marker som gjennomført</button>');
+      actions.push('<button type="button" data-spotmeeting-action="cancel" data-spotmeeting-invite-id="'+escapeSpotmeetingHTML(invite.inviteId)+'">Avbryt forslag</button>');
+    }
+    return '<article class="spotmeeting-invite-card" data-spotmeeting-card data-spotmeeting-status="'+escapeSpotmeetingHTML(invite.status)+'"><div class="spotmeeting-card-main"><h4 class="spotmeeting-card-title">'+escapeSpotmeetingHTML(context.title || 'Uten tittel')+'</h4><p class="spotmeeting-card-meta">'+escapeSpotmeetingHTML(meta)+'</p><p class="spotmeeting-card-preset">'+escapeSpotmeetingHTML(invite.presetLabel || invite.presetMessageId || 'Ukjent forhåndsvalg')+'</p></div>'+(actions.length ? '<div class="spotmeeting-invite-actions">'+actions.join(' ')+'</div>' : '<p class="spotmeeting-card-readonly"><small>'+escapeSpotmeetingHTML(spotmeetingStatusLabel(invite.status))+'</small></p>')+'</article>';
+  }
+  function renderSpotmeetingGroup(title, items){
+    var cards = (items || []).map(renderSpotmeetingCard).join('');
+    return '<section class="spotmeeting-inbox-group" data-spotmeeting-group="'+escapeSpotmeetingHTML(title)+'"><h3>'+escapeSpotmeetingHTML(title)+' ('+(items || []).length+')</h3>'+(cards || '<p class="spotmeeting-group-empty">Ingen forslag her.</p>')+'</section>';
+  }
+  function spotmeetingInboxIsEmpty(inbox){
+    return !(inbox.pending || []).length && !(inbox.accepted || []).length && !(inbox.completed || []).length && !(inbox.declinedCancelled || []).length && !(inbox.declined || []).length && !(inbox.cancelled || []).length;
+  }
+  function renderSpotmeetingInbox(){
+    var el=document.getElementById("spotmeeting-inbox");
+    var api=window.HG_Spotmeeting;
+    if(!el||!api) return;
+    var inbox=api.getSpotmeetingInbox();
+    var declinedCancelled = inbox.declinedCancelled || [].concat(inbox.declined || [], inbox.cancelled || []);
+    el.innerHTML='';
+    var section=document.createElement('section');
+    section.className='profile-section spotmeeting-inbox-section';
+    section.innerHTML='<h2>HG Spotmeeting</h2><p>Frivillige kunnskapsmøter basert på læring, ruter, observasjoner og tema.</p><p class="spotmeeting-helper">Kunnskapsmøter bruker bare forhåndsvalg, ikke fritekst.</p><p class="spotmeeting-helper">Du deler ikke posisjon eller live-status.</p>'+(spotmeetingInboxIsEmpty(inbox) ? '<div class="spotmeeting-empty" data-spotmeeting-empty><strong>Ingen kunnskapsmøter ennå.</strong><span>Send et forslag fra et stedskort.</span></div>' : '')+renderSpotmeetingGroup('Venter på svar', inbox.pending)+renderSpotmeetingGroup('Avtalt', inbox.accepted)+renderSpotmeetingGroup('Gjennomført', inbox.completed)+renderSpotmeetingGroup('Avslått eller avbrutt', declinedCancelled)+'<h3>Personvernkontroll</h3><ul>'+inbox.privacyChecklist.map(function(x){return '<li>'+escapeSpotmeetingHTML(x)+'</li>';}).join('')+'</ul>';
+    el.appendChild(section);
+  }
+  document.addEventListener('click', function(event){
+    var button = event.target && event.target.closest && event.target.closest('[data-spotmeeting-action][data-spotmeeting-invite-id]');
+    if(!button || !document.getElementById('spotmeeting-inbox')?.contains(button)) return;
+    var api = window.HG_Spotmeeting;
+    if(!api) return;
+    var id = button.getAttribute('data-spotmeeting-invite-id');
+    var action = button.getAttribute('data-spotmeeting-action');
+    var methods = {accept:'acceptSpotmeetingInvite', decline:'declineSpotmeetingInvite', cancel:'cancelSpotmeetingInvite', complete:'confirmSpotmeetingCompleted'};
+    var method = methods[action];
+    if(method && api[method]){api[method](id);renderSpotmeetingInbox();}
+  });
+  window.renderSpotmeetingInbox = renderSpotmeetingInbox;
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', renderSpotmeetingInbox); else renderSpotmeetingInbox();
+})();
+  </script>
   <script>
     document.getElementById("btnSeeMap")?.addEventListener("click", () => document.body.classList.add("map-only"));
     document.getElementById("btnExitMap")?.addEventListener("click", () => document.body.classList.remove("map-only"));
