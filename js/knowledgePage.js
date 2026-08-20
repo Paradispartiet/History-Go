@@ -3,6 +3,7 @@
   "use strict";
 
   const LANGUAGE_COLLECTION_ID = "language";
+  const AHA_URL = "https://paradispartiet.github.io/AHA-EchoNet/?source=historygo&intent=collection";
   const SUBJECT_ICONS = Object.freeze({
     historie: "⌛",
     vitenskap: "✦",
@@ -26,6 +27,11 @@
     pronunciation: "Uttale",
     place_name: "Stedsnavn",
     language_history: "Språkhistorie",
+    structural_feature: "Strukturelt trekk",
+    social_variation: "Sosial variasjon",
+    language_change: "Språkendring",
+    contact_history: "Kontakt-/språkhistorie",
+    corpus_basis: "Korpusgrunnlag",
     term: "Begrep"
   });
 
@@ -72,7 +78,9 @@
   }
 
   function isLanguageEntry(entry) {
-    return s(entry?.source?.type) === "language_lexicon"
+    const sourceType = s(entry?.source?.type);
+    return sourceType === "language_lexicon"
+      || sourceType === "language_atlas"
       || s(entry?.collection_kind) === LANGUAGE_COLLECTION_ID
       || s(entry?.kind) === LANGUAGE_COLLECTION_ID;
   }
@@ -85,6 +93,10 @@
 
   function sourceLabel(entry) {
     const source = entry?.source || {};
+    if (s(source.type) === "language_atlas") {
+      const profile = source.atlas_profile_id || entry?.atlas_provenance?.atlas_profile_name || entry?.atlas_provenance?.atlas_profile_id;
+      return profile ? `Språkatlas · ${humanizeId(profile)}` : "Språkatlas";
+    }
     if (s(source.type) === "language_lexicon") {
       const target = source.place_id || source.target_id;
       return target ? `Språk · ${humanizeId(target)}` : "Språkleksikon";
@@ -94,6 +106,54 @@
     if (source.target_id) return `Kilde · ${humanizeId(source.target_id)}`;
     if (source.quiz_id) return `Quiz · ${humanizeId(source.quiz_id)}`;
     return source.type === "legacy_quiz_knowledge" ? "Eldre quizkunnskap" : "Knowledge";
+  }
+
+  function safeHttpsUrl(value) {
+    const raw = s(value);
+    if (!raw) return "";
+    try {
+      const parsed = new URL(raw, location.origin);
+      return parsed.protocol === "https:" ? parsed.href : "";
+    } catch {
+      return "";
+    }
+  }
+
+  function unique(values) {
+    return [...new Set((Array.isArray(values) ? values : []).map(s).filter(Boolean))];
+  }
+
+  function sourceUrls(entry) {
+    const candidates = [
+      ...(Array.isArray(entry?.sources) ? entry.sources : []).map((row) => typeof row === "string" ? row : row?.url),
+      ...(Array.isArray(entry?.source?.source_urls) ? entry.source.source_urls : []),
+      ...(Array.isArray(entry?.atlas_provenance?.source_urls) ? entry.atlas_provenance.source_urls : [])
+    ];
+    return unique(candidates.map(safeHttpsUrl).filter(Boolean));
+  }
+
+  function entryPlaceId(entry) {
+    return s(
+      entry?.source?.place_id
+      || entry?.atlas_provenance?.geographic_scope?.place_ids?.[0]
+      || ""
+    );
+  }
+
+  function provenanceRows(entry) {
+    const source = entry?.source || {};
+    const atlas = entry?.atlas_provenance || {};
+    const geo = atlas?.geographic_scope || {};
+    return [
+      ["Fag", entry?._subject_label || entry?.subject_id || entry?.fagkart_category_id],
+      ["Sted", source.place_id || geo.place_names?.[0] || ""],
+      ["Atlasprofil", atlas.atlas_profile_name || atlas.atlas_profile_id || source.atlas_profile_id || ""],
+      ["Belegg", atlas.evidence_label || atlas.feature_evidence_id || source.feature_evidence_id || source.unit_id || ""],
+      ["Tid", atlas.time_scope || entry?.historical_period || ""],
+      ["Verifisert", atlas.evidence_last_verified || ""],
+      ["Kilde-eier", atlas.owner || source.type || ""],
+      ["Kildedata", source.source_file || ""]
+    ].filter(([, value]) => Array.isArray(value) ? value.length : Boolean(s(value)));
   }
 
   function renderSummary(profile) {
@@ -202,14 +262,17 @@
   function renderLanguageCollectionCard(profile) {
     const entries = languageEntries(profile);
     if (!entries.length) return "";
-    const places = new Set(entries.map((entry) => s(entry?.source?.place_id || entry?.source?.target_id)).filter(Boolean));
+    const places = new Set(entries.flatMap((entry) => [
+      entryPlaceId(entry),
+      s(entry?.source?.atlas_profile_id)
+    ]).filter(Boolean));
     return `
       <section class="kv2-panel">
         <div class="kv2-panel-head"><div><span class="kv2-eyebrow">Samling</span><h2>Språk</h2></div></div>
         <a class="kv2-subject-row" href="${collectionHref(LANGUAGE_COLLECTION_ID)}">
           <div class="kv2-subject-row-main">
             <div class="kv2-subject-row-title"><span aria-hidden="true">Aa</span><strong>Språksamlingen din</strong></div>
-            <p>${entries.length} ${entries.length === 1 ? "språkspor" : "språkspor"} fra ${places.size} ${places.size === 1 ? "sted" : "steder"}</p>
+            <p>${entries.length} ${entries.length === 1 ? "språkspor" : "språkspor"} fra ${places.size} ${places.size === 1 ? "sted/profil" : "steder/profiler"}</p>
           </div>
           <strong class="kv2-subject-row-count">${entries.length}</strong>
         </a>
@@ -254,8 +317,11 @@
   function renderEntry(entry) {
     const emneIds = Array.isArray(entry?.resolved_emne_ids) ? entry.resolved_emne_ids : [];
     const concepts = Array.isArray(entry?.concepts) ? entry.concepts : [];
+    const provenance = provenanceRows(entry);
+    const urls = sourceUrls(entry);
+    const placeId = entryPlaceId(entry);
     return `
-      <article class="kv2-entry">
+      <article class="kv2-entry" data-knowledge-entry-id="${esc(entry?.id || entry?.knowledge_unit_id || "")}">
         <div class="kv2-entry-head">
           <strong>${esc(entry?.topic || "Kunnskap")}</strong>
           <span>${esc(dimensionLabel(entry))}</span>
@@ -270,6 +336,16 @@
               ? `<span>Samlet språkspor</span>`
               : `<span class="kv2-warning-text">Ikke plassert i emne</span>`}
         </div>
+        ${provenance.length || urls.length || placeId ? `
+          <div class="knowledge-entry-provenance">
+            <div class="knowledge-entry-provenance-row">
+              ${provenance.map(([label, value]) => `<span><strong>${esc(label)}:</strong> ${esc(Array.isArray(value) ? value.join(" · ") : value)}</span>`).join("")}
+            </div>
+            <div class="knowledge-entry-actions">
+              ${placeId ? `<a href="index.html?collectionPlace=${encodeURIComponent(placeId)}">Vis stedet på kartet</a>` : ""}
+              ${urls.map((url, index) => `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">Kilde${urls.length > 1 ? ` ${index + 1}` : ""} ↗</a>`).join("")}
+            </div>
+          </div>` : ""}
       </article>
     `;
   }
@@ -299,7 +375,7 @@
         </summary>
         <div class="kv2-emne-body">
           ${emne.description ? `<p class="kv2-muted">${esc(emne.description)}</p>` : ""}
-          ${emne.entries.map(renderEntry).join("")}
+          ${emne.entries.map((entry) => renderEntry({ ...entry, _subject_id: subject?.subject_id, _subject_label: subject?.label })).join("")}
         </div>
       </details>
     `).join("")}</div>`;
@@ -347,7 +423,7 @@
 
       ${unresolvedEntries.length ? `<section class="kv2-panel">
         <div class="kv2-panel-head"><div><span class="kv2-eyebrow">Uplassert</span><h2>Mangler emnekobling</h2></div><span class="kv2-panel-meta">Disse er ikke tapt. De venter på en sikker kobling.</span></div>
-        <div class="kv2-unresolved-list">${unresolvedEntries.map(renderEntry).join("")}</div>
+        <div class="kv2-unresolved-list">${unresolvedEntries.map((entry) => renderEntry({ ...entry, _subject_id: subject?.subject_id, _subject_label: subject?.label })).join("")}</div>
       </section>` : ""}
     `;
   }
@@ -355,7 +431,10 @@
   function groupLanguageEntriesByPlace(entries) {
     const groups = new Map();
     entries.forEach((entry) => {
-      const placeId = s(entry?.source?.place_id || entry?.source?.target_id) || "ukjent_sted";
+      const placeId = entryPlaceId(entry)
+        || s(entry?.source?.atlas_profile_id)
+        || s(entry?.source?.target_id)
+        || "ukjent_sted";
       const rows = groups.get(placeId) || [];
       rows.push(entry);
       groups.set(placeId, rows);
@@ -374,19 +453,19 @@
 
     root.innerHTML = `
       <section class="kv2-panel kv2-subject-hero">
-        <a class="kv2-back" href="knowledge.html">← Hele minnekammeret</a>
+        <a class="kv2-back" href="knowledge.html">← All kunnskap</a>
         <span class="kv2-eyebrow">Aa Samling</span>
         <h2>Språksamlingen din</h2>
-        <p class="kv2-muted">Ord, uttrykk, dialekttrekk, stedsnavn og andre dokumenterte språkspor du har samlet på steder i History Go.</p>
+        <p class="kv2-muted">Ord, uttrykk, dialekttrekk, språkendring og andre dokumenterte språkspor du eksplisitt har samlet i History Go.</p>
         <div class="kv2-subject-metrics">
           <span>${entries.length} ${entries.length === 1 ? "språkspor" : "språkspor"}</span>
-          <span>${groups.length} ${groups.length === 1 ? "sted" : "steder"}</span>
+          <span>${groups.length} ${groups.length === 1 ? "sted/profil" : "steder/profiler"}</span>
           <span>${dimensions.size} ${dimensions.size === 1 ? "type" : "typer"}</span>
         </div>
       </section>
 
       <section class="kv2-panel">
-        <div class="kv2-panel-head"><div><span class="kv2-eyebrow">Steder</span><h2>Språk du har samlet</h2></div></div>
+        <div class="kv2-panel-head"><div><span class="kv2-eyebrow">Proveniens</span><h2>Språk du har samlet</h2></div><span class="kv2-panel-meta">Atlasprofilen eller Språkleksikonet beholder eierskapet til kildedataene.</span></div>
         ${groups.length ? `<div class="kv2-emne-list">${groups.map((group, index) => `
           <details class="kv2-emne" ${index === 0 ? "open" : ""}>
             <summary>
@@ -408,6 +487,10 @@
       entry?.dimension,
       entry?.collection_kind,
       entry?.source?.type,
+      entry?.source?.place_id,
+      entry?.source?.atlas_profile_id,
+      entry?.atlas_provenance?.atlas_profile_name,
+      entry?.atlas_provenance?.evidence_label,
       sourceLabel(entry),
       ...(entry?.concepts || []),
       ...(entry?.tags || []),
@@ -429,13 +512,7 @@
         <div class="kv2-panel-head">
           <div><span class="kv2-eyebrow">Søk</span><h2>${matches.length} treff på «${esc(rawQuery)}»</h2></div>
         </div>
-        ${matches.length ? `<div class="kv2-search-results">${matches.map((entry) => `
-          <article class="kv2-search-result">
-            <span class="kv2-search-meta">${esc(entry._subject_label)} · ${esc(sourceLabel(entry))}</span>
-            <a href="${entryHref(entry)}">${esc(entry.topic || "Kunnskap")}</a>
-            <p>${esc(entry.text || "")}</p>
-          </article>
-        `).join("")}</div>` : `<p class="kv2-empty">Ingen kunnskap matcher søket.</p>`}
+        ${matches.length ? `<div class="kv2-search-results">${matches.map(renderEntry).join("")}</div>` : `<p class="kv2-empty">Ingen kunnskap matcher søket.</p>`}
       </section>
     `;
   }
@@ -475,12 +552,31 @@
     });
   }
 
+  async function openAhaCollection() {
+    let state = null;
+    try { state = await window.HistoryGoAHAAuth?.refresh?.(); } catch {}
+    if (!state?.signed_in) {
+      if (typeof window.HGUserProfile?.openLoginPopup === "function") {
+        window.HGUserProfile.openLoginPopup();
+        return;
+      }
+      if (typeof window.HistoryGoAHAAuth?.openAhaLogin === "function") {
+        window.HistoryGoAHAAuth.openAhaLogin();
+        return;
+      }
+    }
+    try { window.exportHistoryGoData?.(); } catch {}
+    location.href = AHA_URL;
+  }
+
   async function boot() {
     const loading = document.getElementById("knowledgeLoading");
     const error = document.getElementById("knowledgeError");
     const params = new URLSearchParams(location.search);
     activeCollectionId = s(params.get("collection"));
     activeSubjectId = activeCollectionId ? "" : s(params.get("subject"));
+
+    document.querySelector("[data-knowledge-aha]")?.addEventListener("click", () => void openAhaCollection());
 
     if (!window.HGKnowledgeV2?.buildProfile) {
       if (loading) loading.hidden = true;

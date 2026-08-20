@@ -1,0 +1,51 @@
+name: Personal collection checks
+
+on:
+  pull_request:
+    paths:
+      - 'profile.html'
+      - 'knowledge.html'
+      - 'knowledge-profile.html'
+      - 'css/personal-collection-v1.css'
+      - 'js/ui/personal-collection-v1.js'
+      - 'js/ui/personal-collection-map-bridge.js'
+      - 'js/knowledgePage.js'
+      - 'js/config.js'
+      - 'js/nextUpRuntime.js'
+      - 'js/aha.js'
+      - 'docs/PERSONAL_COLLECTION_V1.md'
+      - 'tests/personal-collection-v1.test.mjs'
+      - 'tests/social-meet-spotmeeting-browser-smoke.test.js'
+      - '.github/workflows/personal-collection-checks.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  personal-collection:
+    name: Min samling v1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Check personal collection runtimes
+        run: |
+          node --check js/ui/personal-collection-v1.js
+          node --check js/ui/personal-collection-map-bridge.js
+          node --check js/knowledgePage.js
+
+      - name: Test Min samling contract
+        run: node --test tests/personal-collection-v1.test.mjs
+
+      - name: Install test dependencies
+        run: npm ci
+
+      - name: Preserve Social Meet profile contract
+        run: node tests/social-meet-spotmeeting-browser-smoke.test.js
