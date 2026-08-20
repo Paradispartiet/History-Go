@@ -203,7 +203,6 @@ jobs:
       - name: Build and verify full place image backlog
         run: node scripts/audit-place-images.mjs --mode=all --report=reports/place-image-audit.json --verify-summary=data/places/place_image_backlog_summary.json
       - name: Upload place image backlog
-        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: place-image-audit
