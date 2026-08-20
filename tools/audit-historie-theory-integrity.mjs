@@ -12,6 +12,7 @@ const list=v=>Array.isArray(v)?v:[];
 const unique=xs=>[...new Set(xs.filter(Boolean))];
 const norm=v=>String(v||'').toLocaleLowerCase('nb-NO').replace(/\s+/g,' ').trim();
 const isAcademic=s=>['academic_monograph','academic_secondary_monograph','peer_reviewed_journal_article'].includes(s?.source_type);
+const isInlineAcademic=s=>['scholarly_book','academic_monograph','academic_secondary_monograph','peer_reviewed_journal_article'].includes(s?.type||s?.source_type);
 
 export function auditHistoryTheoryIntegrity(){
   const pensum=readJson('data/fag/historie/historiepensum_canonical_v4_5.json');
@@ -33,7 +34,7 @@ export function auditHistoryTheoryIntegrity(){
   assert.equal(pensum.scope,'universal','Historiepensum må deklarere universelt faglig scope');
   assert.equal(domains.length,23,'Historie strict theory proof krever 23 canonicale fagfelt');
   assert.equal(domainIds.size,23,'Historie canonicale fagfelt må være unike');
-  assert.ok(domains.every(d=>d.canonical_status==='canonical'&&d.status==='complete_revised'), 'Alle 23 Historie-felt må være canonical complete_revised');
+  assert.ok(domains.every(d=>d.canonical_status==='canonical'&&d.status==='complete_revised'),'Alle 23 Historie-felt må være canonical complete_revised');
 
   assert.equal(theories.length,230,'Historie strict theory proof krever 230 canonicale teoriobjekter');
   const theoryById=new Map(theories.map(t=>[t.theory_id,t]));
@@ -58,7 +59,12 @@ export function auditHistoryTheoryIntegrity(){
   const evidenceByTheory=new Map(list(theoryEvidence.entries).map(e=>[e.theory_id,e]));
   assert.equal(evidenceByTheory.size,230,'Theory evidence registry skal dekke 230 unike theory IDs');
   for(const t of theories){
-    const e=evidenceByTheory.get(t.theory_id);assert.ok(e,`Theory mangler evidence entry: ${t.theory_id}`);assert.equal(e.status,'evidence_ready',`Theory evidence ikke ready: ${t.theory_id}`);assert.ok(list(e.claim_ids).length>=1&&list(e.source_ids).length>=1,`Theory evidence mangler claim/source-binding: ${t.theory_id}`);assert.ok(norm(e.rationale).length>=80,`Theory evidence mangler rationale: ${t.theory_id}`);assert.ok(list(e.limitations).length>=1&&list(e.alternative_interpretations).length>=1&&list(e.disconfirmation_conditions).length>=1,`Theory evidence mangler kritisk avgrensning: ${t.theory_id}`);
+    const e=evidenceByTheory.get(t.theory_id);
+    assert.ok(e,`Theory mangler evidence entry: ${t.theory_id}`);
+    assert.equal(e.status,'evidence_ready',`Theory evidence ikke ready: ${t.theory_id}`);
+    assert.ok(list(e.claim_ids).length>=1&&list(e.source_ids).length>=1,`Theory evidence mangler claim/source-binding: ${t.theory_id}`);
+    assert.ok(norm(e.rationale).length>=80,`Theory evidence mangler rationale: ${t.theory_id}`);
+    assert.ok(list(e.limitations).length>=1&&list(e.alternative_interpretations).length>=1&&list(e.disconfirmation_conditions).length>=1,`Theory evidence mangler kritisk avgrensning: ${t.theory_id}`);
     assert.equal(e.universalization_status,'provisional_not_universal',`Per-theory evidens skal ikke feilaktig erklære universell sannhet: ${t.theory_id}`);
   }
 
@@ -85,40 +91,64 @@ export function auditHistoryTheoryIntegrity(){
   const fulltextTheoryIds=new Set(),fulltextEmneIds=new Set(),fulltextFieldIds=new Set();
   let theoryBoundSections=0,claimBoundSections=0,fieldScholarlyCount=0;
   for(const row of chapters){
-    assert.ok(domainIds.has(row.primary_domain_id),`Registrert Historie-kapittel har ukjent felt: ${row.primary_domain_id}`);fulltextFieldIds.add(row.primary_domain_id);
+    assert.ok(domainIds.has(row.primary_domain_id),`Registrert Historie-kapittel har ukjent felt: ${row.primary_domain_id}`);
+    fulltextFieldIds.add(row.primary_domain_id);
     const chapter=readJson(row.file);
     const fieldSourceIds=new Set(list(chapter.narrativeArchitecture?.historiographyEvidenceSourceIds));
     const fieldCoverage=historiographyByField.get(row.primary_domain_id);
     for(const sid of list(fieldCoverage?.source_ids))fieldSourceIds.add(sid);
+    const inlineAcademicSources=new Map();
+    let inlineSourceLimitations=0;
     for(const modulePath of list(chapter.moduleFiles)){
       const module=readJson(modulePath);
       for(const sid of list(module.historiographyEvidence?.sourceIds))fieldSourceIds.add(sid);
+      inlineSourceLimitations+=list(module.sourceLimitations).filter(v=>norm(v).length>=45).length;
+      for(const source of list(module.sources)){
+        if(!isInlineAcademic(source))continue;
+        assert.ok(norm(source.label||source.title).length>=12,`${modulePath}: scholarly-kilde mangler bibliografisk label`);
+        assert.ok(/^https:\/\/\S+$/i.test(String(source.url||'')),`${modulePath}: scholarly-kilde mangler direkte https-locator (${source.label||source.title||'ukjent'})`);
+        inlineAcademicSources.set(`${norm(source.label||source.title)}|${source.url}`,source);
+      }
       for(const sec of list(module.sections)){
         if(!sec.emneId)continue;
-        fulltextEmneIds.add(sec.emneId);theoryBoundSections++;
+        fulltextEmneIds.add(sec.emneId);
+        theoryBoundSections++;
         assert.ok(sec.theoryId,`${modulePath}/${sec.id}: canonical emneseksjon mangler theoryId`);
-        const theory=theoryById.get(sec.theoryId);assert.ok(theory,`${modulePath}/${sec.id}: ukjent theoryId ${sec.theoryId}`);fulltextTheoryIds.add(sec.theoryId);
-        const paragraphs=list(sec.paragraphs).map(norm);assert.ok(paragraphs.length>=5&&paragraphs.every(p=>p.length>=80),`${modulePath}/${sec.id}: theory-bound fulltekst er for tynn`);
+        const theory=theoryById.get(sec.theoryId);
+        assert.ok(theory,`${modulePath}/${sec.id}: ukjent theoryId ${sec.theoryId}`);
+        fulltextTheoryIds.add(sec.theoryId);
+        const paragraphs=list(sec.paragraphs).map(norm);
+        assert.ok(paragraphs.length>=5&&paragraphs.every(p=>p.length>=80),`${modulePath}/${sec.id}: theory-bound fulltekst er for tynn`);
         const joined=paragraphs.join(' ');
-        const definition=norm(theory.definition);assert.ok(joined.includes(definition),`${modulePath}/${sec.id}: theory-definition er ikke faktisk brukt i canonical prosa (${theory.theory_id})`);
+        const definition=norm(theory.definition);
+        assert.ok(joined.includes(definition),`${modulePath}/${sec.id}: theory-definition er ikke faktisk brukt i canonical prosa (${theory.theory_id})`);
         assert.ok(list(theory.limitations).some(l=>joined.includes(norm(l))),`${modulePath}/${sec.id}: theory-begrensning er ikke faktisk brukt i canonical prosa (${theory.theory_id})`);
-        const traceTypes=list(sec.paragraphTraceTypes),claimRows=list(sec.paragraphClaimIds);assert.equal(traceTypes.length,paragraphs.length,`${modulePath}/${sec.id}: paragraphTraceTypes mismatch`);assert.equal(claimRows.length,paragraphs.length,`${modulePath}/${sec.id}: paragraphClaimIds mismatch`);
-        const claimIds=unique(claimRows.flat());const evidence=evidenceByTheory.get(theory.theory_id);assert.ok(claimIds.some(id=>list(evidence.claim_ids).includes(id)),`${modulePath}/${sec.id}: theory fulltekst mangler claim fra theory-evidence entry`);assert.ok(traceTypes.includes('claim_supported'),`${modulePath}/${sec.id}: theory fulltekst mangler claim_supported prose`);claimBoundSections++;
+        const traceTypes=list(sec.paragraphTraceTypes),claimRows=list(sec.paragraphClaimIds);
+        assert.equal(traceTypes.length,paragraphs.length,`${modulePath}/${sec.id}: paragraphTraceTypes mismatch`);
+        assert.equal(claimRows.length,paragraphs.length,`${modulePath}/${sec.id}: paragraphClaimIds mismatch`);
+        const claimIds=unique(claimRows.flat());
+        const evidence=evidenceByTheory.get(theory.theory_id);
+        assert.ok(claimIds.some(id=>list(evidence.claim_ids).includes(id)),`${modulePath}/${sec.id}: theory fulltekst mangler claim fra theory-evidence entry`);
+        assert.ok(traceTypes.includes('claim_supported'),`${modulePath}/${sec.id}: theory fulltekst mangler claim_supported prose`);
+        claimBoundSections++;
       }
     }
-    const academicFieldSources=[...fieldSourceIds].map(id=>historiographyById.get(id)).filter(Boolean).filter(isAcademic);
-    assert.ok(academicFieldSources.length>=2,`${row.primary_domain_id}: canonical field mangler minst to akademiske historiografikilder`);fieldScholarlyCount++;
+    const canonicalAcademic=[...fieldSourceIds].map(id=>historiographyById.get(id)).filter(Boolean).filter(isAcademic);
+    const scholarlyEvidenceCount=canonicalAcademic.length+inlineAcademicSources.size;
+    assert.ok(scholarlyEvidenceCount>=2,`${row.primary_domain_id}: canonical field mangler minst to eksplisitte akademiske/scholarly kilder`);
+    if(inlineAcademicSources.size>0)assert.ok(inlineSourceLimitations>=1,`${row.primary_domain_id}: inline scholarly-kilder mangler feltspesifikk kildebegrensning`);
+    fieldScholarlyCount++;
   }
   assert.equal(fulltextFieldIds.size,23,'Actual canonical fulltekst skal dekke 23/23 Historie-felt');
   assert.equal(fulltextEmneIds.size,230,'Actual canonical fulltekst skal dekke 230/230 canonicale emner');
   assert.equal(fulltextTheoryIds.size,230,`Actual canonical fulltekst mangler theory objects: ${theories.filter(t=>!fulltextTheoryIds.has(t.theory_id)).map(t=>t.theory_id).sort().join(', ')}`);
   assert.equal(theoryBoundSections,230,'Historie skal ha 230 theory-bound canonicale emneseksjoner');
   assert.equal(claimBoundSections,230,'Historie skal ha claim-sporet theory-prosa i 230/230 emneseksjoner');
-  assert.equal(fieldScholarlyCount,23,'23/23 Historie-felt skal ha akademisk historiografi');
+  assert.equal(fieldScholarlyCount,23,'23/23 Historie-felt skal ha eksplisitt scholarly kildegrunnlag');
 
   const forbidden=list(quizRules.hard_rules?.forbidden_generation_patterns).join(' ').toLocaleLowerCase('en');
   const validatorRules=list(quizRules.validator_additions).join(' ').toLocaleLowerCase('en');
-  assert.ok(forbidden.includes('theory lists')&&forbidden.includes('generic history-theory'), 'Historie quiz-regler må eksplisitt blokkere theory-list/name-only generering');
+  assert.ok(forbidden.includes('theory lists')&&forbidden.includes('generic history-theory'),'Historie quiz-regler må eksplisitt blokkere theory-list/name-only generering');
   assert.equal(quizRules.normal_opening_contract?.sets?.['1']?.theory_names_forbidden,true);
   assert.equal(quizRules.normal_opening_contract?.sets?.['2']?.theory_names_forbidden,true);
   assert.ok(Number(quizRules.normal_opening_contract?.theory_begins_from_set)>=4,'Teori skal ikke introduseres før kilde/stedsgrunnlag er etablert');
@@ -131,9 +161,16 @@ export function auditHistoryTheoryIntegrity(){
   const requiredThinkers=new Set(theories.flatMap(t=>list(t.thinker_ids)));
   const attributionById=new Map();
   for(const row of list(attribution.thinkers)){
-    assert.ok(row.thinker_id&&!attributionById.has(row.thinker_id),`Manglende/duplikat thinker attribution: ${row.thinker_id}`);attributionById.set(row.thinker_id,row);
-    assert.ok(norm(row.name).length>=3,`Thinker attribution mangler navn: ${row.thinker_id}`);assert.ok(norm(row.contribution).length>=80,`Thinker attribution mangler substansielt forskningsbidrag: ${row.thinker_id}`);assert.ok(list(row.works).length>=1,`Thinker attribution mangler konkret verk: ${row.thinker_id}`);
-    for(const work of list(row.works)){assert.ok(norm(work.title).length>=4,`Thinker work mangler tittel: ${row.thinker_id}`);assert.ok(norm(work.contribution).length>=60,`Thinker work mangler konkret bidrag: ${row.thinker_id}/${work.title}`);assert.ok(norm(work.scholarly_locator).length>=12,`Thinker work mangler scholarly locator: ${row.thinker_id}/${work.title}`);}
+    assert.ok(row.thinker_id&&!attributionById.has(row.thinker_id),`Manglende/duplikat thinker attribution: ${row.thinker_id}`);
+    attributionById.set(row.thinker_id,row);
+    assert.ok(norm(row.name).length>=3,`Thinker attribution mangler navn: ${row.thinker_id}`);
+    assert.ok(norm(row.contribution).length>=80,`Thinker attribution mangler substansielt forskningsbidrag: ${row.thinker_id}`);
+    assert.ok(list(row.works).length>=1,`Thinker attribution mangler konkret verk: ${row.thinker_id}`);
+    for(const work of list(row.works)){
+      assert.ok(norm(work.title).length>=4,`Thinker work mangler tittel: ${row.thinker_id}`);
+      assert.ok(norm(work.contribution).length>=60,`Thinker work mangler konkret bidrag: ${row.thinker_id}/${work.title}`);
+      assert.ok(norm(work.scholarly_locator).length>=12,`Thinker work mangler scholarly locator: ${row.thinker_id}/${work.title}`);
+    }
   }
   const missingThinkers=[...requiredThinkers].filter(id=>!attributionById.has(id)).sort();
   const extraThinkers=[...attributionById.keys()].filter(id=>!requiredThinkers.has(id)).sort();
@@ -145,5 +182,6 @@ export function auditHistoryTheoryIntegrity(){
 }
 
 if(process.argv[1]===fileURLToPath(import.meta.url)){
-  try{console.log(JSON.stringify(auditHistoryTheoryIntegrity(),null,2));}catch(error){console.error(`Historie strict theory integrity FEIL: ${error.message}`);process.exitCode=1;}
+  try{console.log(JSON.stringify(auditHistoryTheoryIntegrity(),null,2));}
+  catch(error){console.error(`Historie strict theory integrity FEIL: ${error.message}`);process.exitCode=1;}
 }
