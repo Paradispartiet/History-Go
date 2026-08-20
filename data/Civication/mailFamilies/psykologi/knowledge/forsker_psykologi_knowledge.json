@@ -1,0 +1,43 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "forsker_psykologi",
+  "mail_type": "knowledge",
+  "families": [{
+    "id": "planlagt_vs_utforskende",
+    "purpose": "Lære at en analyse kan være faglig interessant og legitim samtidig som tidspunktet gjør at den må behandles som utforskende.",
+    "learning_focus": ["konfirmatorisk_vs_utforskende", "inferens", "forskningsintegritet"],
+    "mails": [{
+      "id": "psykologi_forsker_psykologi_knowledge_planlagt_utforskende_001",
+      "mail_type": "knowledge",
+      "mail_family": "planlagt_vs_utforskende",
+      "role_scope": "forsker_psykologi",
+      "phase": "mid",
+      "day_phase": "afternoon",
+      "priority": 141,
+      "cooldown": 3,
+      "repeatable": false,
+      "stage": "stable",
+      "from": "Metodekollegaen",
+      "people_ref": "psykologi_forsker_psykologi_metodekollega",
+      "place_id": "psykologi_forsker_psykologi_analyserom",
+      "subject": "Er denne analysen bekreftende eller utforskende?",
+      "summary": "Analysevalget ble valgt etter at mønsteret i dataene var kjent; det kan fortsatt være et nyttig funn, men evidensstatusen avhenger av når og hvorfor valget ble gjort.",
+      "purpose": "Teste om forskeren forstår at plausibel metode ikke gjør en post hoc hypotese til en forhåndsdefinert test.",
+      "stakes": "Feil merking kan gjøre et foreløpig mønster til falsk sikkerhet; korrekt merking gjør funnet mulig å teste videre.",
+      "situation": ["Den nye analysen bruker et faglig forståelig mål og en legitim metode.", "Valget oppsto først etter at forskeren hadde sett hovedmønsteret i dataene.", "Ingen av alternativene gir forskerrollen klinisk myndighet eller grunnlag for diagnose eller behandling."],
+      "task_domain": "inferens_og_analysehistorikk",
+      "task_kind": "knowledge",
+      "competency": "analyse_og_inferens",
+      "pressure": "behov_for_sikker_konklusjon",
+      "choice_axis": "korrekt_evidensmerking_vs_post_hoc_bekreftelse",
+      "consequence_axis": "testbar_ny_hypotese_vs_falsk_sikkerhet",
+      "narrative_arc": "fra_lovende_post_hoc_funn_til_riktig_kunnskapsstatus",
+      "choices": [
+        {"id": "A", "label": "Merk analysen utforskende og foreslå ny test", "reply": "Analysen er interessant, men siden den ble valgt etter resultatinnsyn merker vi den utforskende og beskriver hvordan hypotesen kan testes på nye data.", "effect": 1, "tags": ["exploratory_analysis", "replication", "research_integrity"], "feedback": "Du bevarer funnets verdi uten å overdrive evidensen og gjør neste test tydelig.", "effects": {"stats": {"quality": 2, "trust": 2, "risk": -1, "energy": -1}}},
+        {"id": "B", "label": "Kall den bekreftende fordi metoden er plausibel", "reply": "Metoden er faglig fornuftig, så vi omtaler analysen som bekreftelse av hypotesen uten å fremheve at valget kom etter resultatinnsyn.", "effect": -1, "tags": ["harking", "false_certainty"], "feedback": "Du forveksler metodisk plausibilitet med forhåndsdefinert evidens og gjør analysehistorikken usynlig.", "effects": {"stats": {"status": 1, "quality": -3, "trust": -2, "risk": 3}}}
+      ]
+    }]
+  }]
+}
