@@ -221,6 +221,33 @@
         "anti_trivia_rule": "verified",
         "universal_subject_scope": "verified"
       }
+    },
+    {
+      "subject_id": "musikk",
+      "proof_scope": "structured_subject_gate",
+      "audit_script": "tools/audit-musikk-theory-integrity.mjs",
+      "test": "tests/musikk-theory-integrity.test.mjs",
+      "workflow": ".github/workflows/fagverk-musikk.yml",
+      "evidence_files": [
+        "data/fag/musikk/musikkvitenskap_canonical_v1/index.json",
+        "data/fag/musikk/musikkvitenskap_canonical_v1/theory_and_debates_v1.json",
+        "data/fag/musikk/musikkvitenskap_canonical_v1/theory_integrity_bindings_v1.json",
+        "data/fagverk/fagverk_registry.json",
+        "reports/fagverk/musikk-subject-audit.json",
+        "reports/fagverk/musikk-theory-integrity-audit.json"
+      ],
+      "existing_gate_proves": {
+        "canonical_field_coverage": "verified",
+        "structured_scope_mechanism": "verified",
+        "limitations": "verified",
+        "rival_or_alternative": "verified",
+        "person_work_binding": "verified",
+        "scholarly_source_quality": "verified",
+        "claim_or_content_binding": "verified",
+        "actual_prose_binding": "verified",
+        "anti_trivia_rule": "verified",
+        "universal_subject_scope": "verified"
+      }
     }
   ]
 }

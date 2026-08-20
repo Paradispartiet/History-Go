@@ -37,6 +37,8 @@ on:
       - 'tools/validate-musikk-fulltext-evidence-v1.mjs'
       - 'tools/validate-musikk-subject-pathway-v1.mjs'
       - 'tools/validate-musikk-subject-pathway-source-metadata-v1.mjs'
+      - 'tools/audit-musikk-theory-integrity.mjs'
+      - 'tests/musikk-theory-integrity.test.mjs'
       - 'tests/fagverk-subject-inventory.test.mjs'
       - 'tests/fagverk-general-engine.test.mjs'
       - 'tests/fagverk-musikk.test.mjs'
@@ -63,6 +65,7 @@ jobs:
           node --check js/fagverk-subject-model.js
           node --check scripts/audit-fagverk-general-engine.mjs
           node --check scripts/audit-fagverk-musikk.mjs
+          node --check tools/audit-musikk-theory-integrity.mjs
           node --check tools/build-musikk-melody-subject-pathway-v1.mjs
           node --check tools/build-musikk-harmony-subject-pathway-v1.mjs
           node --check tools/build-musikk-form-subject-pathway-v1.mjs
@@ -84,6 +87,7 @@ jobs:
           node scripts/audit-fagverk-subject-inventory.mjs
           node scripts/audit-fagverk-general-engine.mjs
           node scripts/audit-fagverk-musikk.mjs
+          node tools/audit-musikk-theory-integrity.mjs
       - name: Validate Musikk canonical scientific package
         run: |
           node tools/validate-musikk-emner-fagdybde-v2.mjs
@@ -96,3 +100,4 @@ jobs:
           node --test tests/fagverk-subject-inventory.test.mjs
           node --test tests/fagverk-general-engine.test.mjs
           node --test tests/fagverk-musikk.test.mjs
+          node --test tests/musikk-theory-integrity.test.mjs
