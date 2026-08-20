@@ -10,6 +10,15 @@ on:
       - 'data/Civication/mailPlans/media/media_redaksjon_plan.json'
       - 'data/Civication/mailFamilies/media/**/media_redaksjon_*.json'
       - 'tests/civication-media-redaksjon-rollout-playability.test.js'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/temp-civication-media-redaksjon-materialize.yml'
+      - 'data/Civication/workGrammars/media/media_redaksjon.json'
+      - 'data/Civication/mailPlans/media/media_redaksjon_plan.json'
+      - 'data/Civication/mailFamilies/media/**/media_redaksjon_*.json'
+      - 'tests/civication-media-redaksjon-rollout-playability.test.js'
 
 permissions:
   contents: write
@@ -18,7 +27,7 @@ jobs:
   materialize:
     runs-on: ubuntu-latest
     env:
-      LOCK_SHA: ${{ github.sha }}
+      LOCK_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
       BRANCH_NAME: agent/civication-media-redaksjon-rollout
     steps:
       - name: Checkout locked head
