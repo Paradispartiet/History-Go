@@ -52,6 +52,15 @@
     "data/Civication/mailFamilies/film_tv/followup/produksjonsassistent_followup.json",
     "data/Civication/mailFamilies/film_tv/knowledge/produksjonsassistent_knowledge.json",
     "data/Civication/mailFamilies/film_tv/consequence/produksjonsassistent_consequence.json",
+    "data/Civication/mailFamilies/media/job/media_redaksjon_job.json",
+    "data/Civication/mailFamilies/media/people/media_redaksjon_people.json",
+    "data/Civication/mailFamilies/media/story/media_redaksjon_story.json",
+    "data/Civication/mailFamilies/media/conflict/media_redaksjon_conflict.json",
+    "data/Civication/mailFamilies/media/event/media_redaksjon_event.json",
+    "data/Civication/mailFamilies/media/micro/media_redaksjon_micro.json",
+    "data/Civication/mailFamilies/media/followup/media_redaksjon_followup.json",
+    "data/Civication/mailFamilies/media/knowledge/media_redaksjon_knowledge.json",
+    "data/Civication/mailFamilies/media/consequence/media_redaksjon_consequence.json",
     "data/Civication/mailFamilies/naeringsliv/job/administrasjonsmedarbeider_job.json",
     "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json",
     "data/Civication/mailFamilies/naeringsliv/story/administrasjonsmedarbeider_story.json",
@@ -24266,6 +24275,1114 @@
       },
       "source_hash": "cc8f3491b00652d8cac5b5f91d523604aaa42eab3f25e4c21abe3bd672d7e8d7",
       "source_path": "data/Civication/mailFamilies/film_tv/people/produksjonsassistent_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "media",
+      "compatibility_projection": {
+        "category": "media",
+        "choice_axis": "egen_verifikasjon_vs_sirkulaer_bekreftelse",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du skiller markedssignalet fra kildebelegget og beholder kontroll på egen standard.",
+            "id": "A",
+            "label": "Behandle konkurrenten som signal, ikke bekreftelse",
+            "reply": "Konkurrentens publisering endrer tempoet, ikke beleggstatusen. Vi avgrenser og venter på egen bekreftelse.",
+            "tags": [
+              "independence",
+              "verification",
+              "precision"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Lik publisering er ikke nødvendigvis uavhengig bekreftelse; dere kan dele samme feil.",
+            "id": "B",
+            "label": "Matche fordi to redaksjoner nå sier det samme",
+            "reply": "Når konkurrenten også har det, kan vi gå med samme konklusjon nå.",
+            "tags": [
+              "circular_confirmation",
+              "speed"
+            ]
+          }
+        ],
+        "competency": "kildekritikk",
+        "consequence_axis": "troverdighet_vs_felles_feil",
+        "cooldown": 3,
+        "from": "Deskredaktøren",
+        "id": "media_redaksjon_conflict_konkurrent_001",
+        "mail_family": "redaksjon_tempo_vs_belegg",
+        "mail_type": "conflict",
+        "narrative_arc": "konkurransepress_tester_metoden",
+        "people_ref": "media_deskredaktor",
+        "phase": "early",
+        "place_id": "vg_huset",
+        "pressure": "konkurranse_og_trafikk",
+        "priority": 95,
+        "purpose": "Teste om en annen redaksjons publisering blir behandlet som dokumentasjon eller bare som nytt press.",
+        "repeatable": false,
+        "role_scope": "media_redaksjon",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/media/conflict/media_redaksjon_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Konkurrenten oppgir ingen ny dokumentasjon.",
+          "Din egen andre kilde har ennå ikke svart.",
+          "Desken kan avgrense tittelen hvis du er tydelig på hva som mangler."
+        ],
+        "stage": "stable",
+        "stakes": "Å matche kan gi trafikk og tempo, men to redaksjoner kan bygge på samme svake kilde. Egen verifikasjon beskytter både saken og publikum.",
+        "subject": "Konkurrenten har publisert – skal vi matche?",
+        "summary": "En konkurrent går ut med den ubekreftede detaljen som din kilde også hevder. Desken spør om det nå er nok til å publisere samme konklusjon.",
+        "task_domain": "publiseringsvurdering",
+        "task_kind": "conflict"
+      },
+      "id": "media_redaksjon_conflict_konkurrent_001",
+      "mail_type": "conflict",
+      "role_scope": "media_redaksjon",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du skiller markedssignalet fra kildebelegget og beholder kontroll på egen standard.",
+            "id": "A",
+            "label": "Behandle konkurrenten som signal, ikke bekreftelse",
+            "reply": "Konkurrentens publisering endrer tempoet, ikke beleggstatusen. Vi avgrenser og venter på egen bekreftelse."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Lik publisering er ikke nødvendigvis uavhengig bekreftelse; dere kan dele samme feil.",
+            "id": "B",
+            "label": "Matche fordi to redaksjoner nå sier det samme",
+            "reply": "Når konkurrenten også har det, kan vi gå med samme konklusjon nå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Konkurrenten oppgir ingen ny dokumentasjon.",
+            "Din egen andre kilde har ennå ikke svart.",
+            "Desken kan avgrense tittelen hvis du er tydelig på hva som mangler."
+          ],
+          "subject": "Konkurrenten har publisert – skal vi matche?",
+          "summary": "En konkurrent går ut med den ubekreftede detaljen som din kilde også hevder. Desken spør om det nå er nok til å publisere samme konklusjon."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "media_redaksjon_conflict_konkurrent_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "vg_huset",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "media_redaksjon_conflict_konkurrent_001",
+          "source_path": "data/Civication/mailFamilies/media/conflict/media_redaksjon_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "media_redaksjon.mail.media_redaksjon_conflict_konkurrent_001",
+        "version": 1
+      },
+      "source_hash": "179b1284728c1e6a75f2ecf149399268fc992c43c0b40ea912fec66d7c0dee9b",
+      "source_path": "data/Civication/mailFamilies/media/conflict/media_redaksjon_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "media",
+      "compatibility_projection": {
+        "category": "media",
+        "choice_axis": "apen_laringslogg_vs_defensiv_forklaring",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Etterspillet blir en læringssløyfe som styrker neste arbeidsdag.",
+            "id": "A",
+            "label": "Dokumenter hva som ble kontrollert, endret og lært",
+            "reply": "Jeg legger fram kilde- og versjonssporet, hva vi endret, og hvilket kontrollpunkt som skal være tydeligere neste gang.",
+            "tags": [
+              "accountability",
+              "learning",
+              "trust"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du gjør systempress til unnskyldning og lar samme svakhet bli liggende i arbeidsmåten.",
+            "id": "B",
+            "label": "Forklar at tempoet gjorde feilen uunngåelig",
+            "reply": "Dette var en rask nyhetssituasjon; slike detaljer kan ikke alltid avklares før publisering.",
+            "tags": [
+              "defensiveness",
+              "repeat_risk"
+            ]
+          }
+        ],
+        "competency": "rettelseskvalitet",
+        "consequence_axis": "langsiktig_tillit_vs_gjentatt_metodesvikt",
+        "cooldown": 4,
+        "from": "Deskredaktøren",
+        "id": "media_redaksjon_consequence_verifisering_001",
+        "mail_family": "redaksjon_rettelse_og_oppfolging",
+        "mail_type": "consequence",
+        "narrative_arc": "verifikasjon_blir_redaksjonell_hukommelse",
+        "people_ref": "media_deskredaktor",
+        "phase": "mastery",
+        "place_id": "vg_huset",
+        "pressure": "omdomme_og_internt_ansvar",
+        "priority": 92,
+        "purpose": "Koble tidligere metodevalg til senere redaksjonell tillit og arbeidsmessig ansvar.",
+        "repeatable": false,
+        "role_scope": "media_redaksjon",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/media/consequence/media_redaksjon_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Kilder og publikum sammenligner første og oppdatert versjon.",
+          "Vaktsjefen gjennomgår beslutningssporet.",
+          "Neste lignende sak vil bli vurdert i lys av hvordan denne ble håndtert."
+        ],
+        "stage": "stable",
+        "stakes": "Konsekvensen handler ikke bare om én formulering, men om hvorvidt redaksjonen kan vise hvordan den visste det den skrev og hvordan den korrigerte seg.",
+        "subject": "Etterspillet: hvordan redaksjonen håndterte usikkerheten",
+        "summary": "Saken er ute og etterspillet viser om redaksjonen beholdt sporbarhet gjennom verifikasjon og rettelse, eller om en for sterk formulering nå må forsvares offentlig.",
+        "task_domain": "etterspill_og_ansvar",
+        "task_kind": "consequence",
+        "thread_key": "media_redaksjon_verifikasjon_001"
+      },
+      "id": "media_redaksjon_consequence_verifisering_001",
+      "mail_type": "consequence",
+      "role_scope": "media_redaksjon",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Etterspillet blir en læringssløyfe som styrker neste arbeidsdag.",
+            "id": "A",
+            "label": "Dokumenter hva som ble kontrollert, endret og lært",
+            "reply": "Jeg legger fram kilde- og versjonssporet, hva vi endret, og hvilket kontrollpunkt som skal være tydeligere neste gang."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør systempress til unnskyldning og lar samme svakhet bli liggende i arbeidsmåten.",
+            "id": "B",
+            "label": "Forklar at tempoet gjorde feilen uunngåelig",
+            "reply": "Dette var en rask nyhetssituasjon; slike detaljer kan ikke alltid avklares før publisering."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Kilder og publikum sammenligner første og oppdatert versjon.",
+            "Vaktsjefen gjennomgår beslutningssporet.",
+            "Neste lignende sak vil bli vurdert i lys av hvordan denne ble håndtert."
+          ],
+          "subject": "Etterspillet: hvordan redaksjonen håndterte usikkerheten",
+          "summary": "Saken er ute og etterspillet viser om redaksjonen beholdt sporbarhet gjennom verifikasjon og rettelse, eller om en for sterk formulering nå må forsvares offentlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "media_redaksjon_consequence_verifisering_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "vg_huset",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "media_redaksjon_consequence_verifisering_001",
+          "source_path": "data/Civication/mailFamilies/media/consequence/media_redaksjon_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "media_redaksjon_verifikasjon_001",
+        "version": 1
+      },
+      "source_hash": "c9e91f9232f878faaee9c250d8637094e54ba65adc7d59210ed76a7f2423aed5",
+      "source_path": "data/Civication/mailFamilies/media/consequence/media_redaksjon_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "media",
+      "compatibility_projection": {
+        "category": "media",
+        "choice_axis": "oppdatere_premiss_vs_beholde_vinkel",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du lar ny dokumentasjon endre historien i stedet for å tvinge historien til å overleve dokumentasjonen.",
+            "id": "A",
+            "label": "Stopp utkastet og bygg tittelen på nyeste dokument",
+            "reply": "Vi stopper den gamle konklusjonen, oppdaterer tittel og ingress og markerer hva som faktisk er endret.",
+            "tags": [
+              "update",
+              "version_control",
+              "precision"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du beskytter et gammelt premiss ved å gjemme det viktigste nye faktumet i detaljene.",
+            "id": "B",
+            "label": "Behold vinkelen og legg dokumentet inn som forbehold nederst",
+            "reply": "Vi beholder tittelen og forklarer utsettelsen lenger ned i saken.",
+            "tags": [
+              "angle_lock",
+              "misleading"
+            ]
+          }
+        ],
+        "competency": "versjonskontroll",
+        "consequence_axis": "presisjon_vs_misvisende_publisering",
+        "cooldown": 3,
+        "from": "Deskredaktøren",
+        "id": "media_redaksjon_event_dokument_001",
+        "mail_family": "redaksjon_ny_opplysning",
+        "mail_type": "event",
+        "narrative_arc": "ny_evidens_endrer_saken",
+        "people_ref": "media_deskredaktor",
+        "phase": "mid",
+        "place_id": "nrk_huset_marienlyst",
+        "pressure": "sen_dokumentendring",
+        "priority": 100,
+        "purpose": "Teste om spilleren stopper og oppdaterer premisset når ny dokumentasjon kommer sent.",
+        "repeatable": false,
+        "role_scope": "media_redaksjon",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/media/event/media_redaksjon_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Det nye dokumentet er datert senere enn materialet i første utkast.",
+          "Hovedpoenget i saken er fortsatt relevant, men konklusjonen må endres.",
+          "Publiseringsvinduet er i ferd med å lukkes."
+        ],
+        "stage": "stable",
+        "stakes": "Å beholde gammel vinkel sparer minutter, men gjør teksten misvisende. Å oppdatere krever ny tittel, ingress og kildekontroll.",
+        "subject": "Nytt dokument: premisset har flyttet seg",
+        "summary": "Et nytt saksdokument viser at beslutningen ikke er endelig, men utsatt. Utkastet ditt sier fortsatt at den er omgjort.",
+        "task_domain": "oppdatering_og_versjon",
+        "task_kind": "event"
+      },
+      "id": "media_redaksjon_event_dokument_001",
+      "mail_type": "event",
+      "role_scope": "media_redaksjon",
+      "scene": {
+        "arc_stage": "mid",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du lar ny dokumentasjon endre historien i stedet for å tvinge historien til å overleve dokumentasjonen.",
+            "id": "A",
+            "label": "Stopp utkastet og bygg tittelen på nyeste dokument",
+            "reply": "Vi stopper den gamle konklusjonen, oppdaterer tittel og ingress og markerer hva som faktisk er endret."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du beskytter et gammelt premiss ved å gjemme det viktigste nye faktumet i detaljene.",
+            "id": "B",
+            "label": "Behold vinkelen og legg dokumentet inn som forbehold nederst",
+            "reply": "Vi beholder tittelen og forklarer utsettelsen lenger ned i saken."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Det nye dokumentet er datert senere enn materialet i første utkast.",
+            "Hovedpoenget i saken er fortsatt relevant, men konklusjonen må endres.",
+            "Publiseringsvinduet er i ferd med å lukkes."
+          ],
+          "subject": "Nytt dokument: premisset har flyttet seg",
+          "summary": "Et nytt saksdokument viser at beslutningen ikke er endelig, men utsatt. Utkastet ditt sier fortsatt at den er omgjort."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "media_redaksjon_event_dokument_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "nrk_huset_marienlyst",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "media_redaksjon_event_dokument_001",
+          "source_path": "data/Civication/mailFamilies/media/event/media_redaksjon_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "media_redaksjon.mail.media_redaksjon_event_dokument_001",
+        "version": 1
+      },
+      "source_hash": "40adc568b910dffd444f17bfcc3bfd03202508fbe17260f7f8074984a0f5b816",
+      "source_path": "data/Civication/mailFamilies/media/event/media_redaksjon_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "media",
+      "compatibility_projection": {
+        "category": "media",
+        "choice_axis": "synlig_korrigering_vs_vinkelvern",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du behandler oppdatering som en del av journalistikken, ikke som et nederlag.",
+            "id": "A",
+            "label": "Oppdater tydelig og forklar hva den nye bekreftelsen endrer",
+            "reply": "Vi avgrenser detaljen, oppdaterer saken synlig og skiller hva som fortsatt står fra hva som er korrigert.",
+            "tags": [
+              "followup",
+              "correction",
+              "trust"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du lar den mest synlige formuleringen beholde en sikkerhet den nye kilden nettopp har svekket.",
+            "id": "B",
+            "label": "La den gamle formuleringen stå og legg nyansen nederst",
+            "reply": "Hovedsaken er fortsatt riktig, så vi legger den nye nyansen i slutten uten å endre toppen.",
+            "tags": [
+              "angle_protection",
+              "correction_risk"
+            ]
+          }
+        ],
+        "competency": "rettelseskvalitet",
+        "consequence_axis": "tillit_vs_forsvar_av_feil",
+        "cooldown": 3,
+        "from": "Vaktsjefen",
+        "id": "media_redaksjon_followup_verifisering_001",
+        "mail_family": "redaksjon_rettelse_og_oppfolging",
+        "mail_type": "followup",
+        "narrative_arc": "fra_publisering_til_ansvarlig_oppfolging",
+        "people_ref": "media_vaktsjef",
+        "phase": "mastery",
+        "place_id": "aftenposten_akersgata",
+        "pressure": "prestisje_etter_publisering",
+        "priority": 88,
+        "purpose": "Teste om spilleren bruker oppfølgingen til å justere saken synlig og presist.",
+        "repeatable": false,
+        "role_scope": "media_redaksjon",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/media/followup/media_redaksjon_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den nye kilden er uavhengig av første kilde.",
+          "Hovedsaken står, men én sentral detalj må avgrenses.",
+          "Publikum kan allerede ha sett den tidligere formuleringen."
+        ],
+        "stage": "stable",
+        "stakes": "En ryddig oppdatering kan styrke tilliten; å beskytte den opprinnelige vinkelen kan gjøre en avklart feil til et redaksjonelt valg.",
+        "subject": "Andre kilde svarer – nå må vi låse hva som endres",
+        "summary": "Den uavhengige kilden svarer etter første publiseringsvurdering. Svaret bekrefter deler av saken, men avviser den mest bastante detaljen.",
+        "task_domain": "oppfolging_og_rettelse",
+        "task_kind": "followup",
+        "thread_key": "media_redaksjon_verifikasjon_001"
+      },
+      "id": "media_redaksjon_followup_verifisering_001",
+      "mail_type": "followup",
+      "role_scope": "media_redaksjon",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du behandler oppdatering som en del av journalistikken, ikke som et nederlag.",
+            "id": "A",
+            "label": "Oppdater tydelig og forklar hva den nye bekreftelsen endrer",
+            "reply": "Vi avgrenser detaljen, oppdaterer saken synlig og skiller hva som fortsatt står fra hva som er korrigert."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du lar den mest synlige formuleringen beholde en sikkerhet den nye kilden nettopp har svekket.",
+            "id": "B",
+            "label": "La den gamle formuleringen stå og legg nyansen nederst",
+            "reply": "Hovedsaken er fortsatt riktig, så vi legger den nye nyansen i slutten uten å endre toppen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den nye kilden er uavhengig av første kilde.",
+            "Hovedsaken står, men én sentral detalj må avgrenses.",
+            "Publikum kan allerede ha sett den tidligere formuleringen."
+          ],
+          "subject": "Andre kilde svarer – nå må vi låse hva som endres",
+          "summary": "Den uavhengige kilden svarer etter første publiseringsvurdering. Svaret bekrefter deler av saken, men avviser den mest bastante detaljen."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "media_redaksjon_followup_verifisering_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "aftenposten_akersgata",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "media_redaksjon_followup_verifisering_001",
+          "source_path": "data/Civication/mailFamilies/media/followup/media_redaksjon_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "media_redaksjon_verifikasjon_001",
+        "version": 1
+      },
+      "source_hash": "3dddb5a344ec2a0646fc4fe802d826535f7f2ec05636ff387f719bbc97b7545f",
+      "source_path": "data/Civication/mailFamilies/media/followup/media_redaksjon_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "media",
+      "compatibility_projection": {
+        "category": "media",
+        "choice_axis": "uavhengig_bekreftelse_vs_forsprang",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du gjør statusen tregere, men etterprøvbar.",
+            "id": "A",
+            "label": "Lås dokumentasjonen og hent uavhengig bekreftelse",
+            "reply": "Jeg skiller det dokumenterte fra kildepåstanden og henter en uavhengig bekreftelse før vi skriver konklusjonen som faktum.",
+            "tags": [
+              "verification",
+              "source_criticism",
+              "mandate"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Reservasjonen er svakere enn den kategoriske hovedpåstanden og flytter risikoen ut til publikum.",
+            "id": "B",
+            "label": "Publiser hovedpåstanden med en løs reservasjon",
+            "reply": "Vi går med hovedpåstanden nå og skriver at detaljene ikke er endelig avklart.",
+            "tags": [
+              "speed",
+              "verification_risk"
+            ]
+          }
+        ],
+        "competency": "verifikasjon",
+        "consequence_axis": "redaksjonell_tillit_vs_feilrisiko",
+        "cooldown": 2,
+        "from": "Vaktsjefen",
+        "id": "media_redaksjon_job_verifisering_001",
+        "mail_family": "redaksjon_verifikasjon",
+        "mail_type": "job",
+        "narrative_arc": "fra_pastand_til_dokumentert_sak",
+        "people_ref": "media_vaktsjef",
+        "phase": "morning",
+        "place_id": "vg_huset",
+        "pressure": "publiseringstempo",
+        "priority": 110,
+        "purpose": "Teste om spilleren skiller påstand fra dokumentasjon før første publiseringsvalg.",
+        "repeatable": false,
+        "role_scope": "media_redaksjon",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/media/job/media_redaksjon_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Kilden kjenner saken godt, men har egeninteresse i utfallet.",
+          "Dokumentet bekrefter prosessen, men ikke hele konklusjonen.",
+          "En annen redaksjon ser ut til å arbeide med samme sak."
+        ],
+        "stage": "stable",
+        "stakes": "Rask publisering kan gi forsprang, men en kategorisk formulering uten uavhengig belegg kan tvinge fram rettelse og svekke tilliten.",
+        "subject": "Vi har saken – men hva er faktisk bekreftet?",
+        "summary": "En kilde hevder at en offentlig beslutning er endret, mens dokumentet du har bare bekrefter deler av påstanden. Vaktsjefen trenger en publiserbar status.",
+        "task_domain": "kildearbeid_og_verifikasjon",
+        "task_kind": "job"
+      },
+      "id": "media_redaksjon_job_verifisering_001",
+      "mail_type": "job",
+      "role_scope": "media_redaksjon",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gjør statusen tregere, men etterprøvbar.",
+            "id": "A",
+            "label": "Lås dokumentasjonen og hent uavhengig bekreftelse",
+            "reply": "Jeg skiller det dokumenterte fra kildepåstanden og henter en uavhengig bekreftelse før vi skriver konklusjonen som faktum."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Reservasjonen er svakere enn den kategoriske hovedpåstanden og flytter risikoen ut til publikum.",
+            "id": "B",
+            "label": "Publiser hovedpåstanden med en løs reservasjon",
+            "reply": "Vi går med hovedpåstanden nå og skriver at detaljene ikke er endelig avklart."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Kilden kjenner saken godt, men har egeninteresse i utfallet.",
+            "Dokumentet bekrefter prosessen, men ikke hele konklusjonen.",
+            "En annen redaksjon ser ut til å arbeide med samme sak."
+          ],
+          "subject": "Vi har saken – men hva er faktisk bekreftet?",
+          "summary": "En kilde hevder at en offentlig beslutning er endret, mens dokumentet du har bare bekrefter deler av påstanden. Vaktsjefen trenger en publiserbar status."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "media_redaksjon_job_verifisering_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "vg_huset",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "media_redaksjon_job_verifisering_001",
+          "source_path": "data/Civication/mailFamilies/media/job/media_redaksjon_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "media_redaksjon.mail.media_redaksjon_job_verifisering_001",
+        "version": 1
+      },
+      "source_hash": "3b73160632786aec5575510d586b27ddad17fae23b163d6aa05ac8359dd50d8d",
+      "source_path": "data/Civication/mailFamilies/media/job/media_redaksjon_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "media",
+      "compatibility_projection": {
+        "category": "media",
+        "choice_axis": "skille_bevislag_vs_samle_til_en_fortelling",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Metoden blir synlig i teksten og viser nøyaktig hvor sikker hvert ledd er.",
+            "id": "A",
+            "label": "Merk hva dere så, hva kilden hevder og hva dokumentet viser",
+            "reply": "Vi skriver observasjonen som vår, attribuerer påstanden og bruker referatet bare til det referatet faktisk dokumenterer.",
+            "tags": [
+              "knowledge",
+              "attribution",
+              "evidence"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du gjør samsvar mellom ulike kildetyper til mer dokumentasjon enn materialet faktisk gir.",
+            "id": "B",
+            "label": "Skriv den samlede konklusjonen fordi delene peker samme vei",
+            "reply": "Alle tre lag peker i samme retning, så vi kan formulere den samlede konklusjonen uten å skille dem.",
+            "tags": [
+              "overclaim",
+              "evidence_blur"
+            ]
+          }
+        ],
+        "competency": "kildekritikk",
+        "consequence_axis": "kunnskapspresisjon_vs_overkonklusjon",
+        "cooldown": 3,
+        "from": "Reporterkollegaen",
+        "id": "media_redaksjon_knowledge_kildelag_001",
+        "mail_family": "redaksjon_attribusjon_og_kildekritikk",
+        "mail_type": "knowledge",
+        "narrative_arc": "metoden_blir_en_del_av_spraket",
+        "people_ref": "media_reporterkollega",
+        "phase": "mid",
+        "place_id": "nrk_huset_marienlyst",
+        "pressure": "forenklingspress",
+        "priority": 78,
+        "purpose": "Teste situert forståelse av forskjellen mellom observasjon, påstand og dokumentasjon.",
+        "repeatable": false,
+        "role_scope": "media_redaksjon",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/media/knowledge/media_redaksjon_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Dere har selv observert at møtet fant sted.",
+          "En deltaker hevder at utfallet allerede var bestemt.",
+          "Referatet dokumenterer diskusjonen, men ikke den påståtte forhåndsavgjørelsen."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis bevislagene blandes, blir teksten sikrere enn materialet. Hvis de skilles, kan redaksjonen formulere presist og vite hva som fortsatt må kontrolleres.",
+        "subject": "Hva ligger i hvilket bevislag?",
+        "summary": "Kollegaen har samlet en egen observasjon, en kildepåstand og et dokumentutdrag, men utkastet blander de tre til én sikker konklusjon.",
+        "task_domain": "kildekritikk_og_bevislag",
+        "task_kind": "knowledge"
+      },
+      "id": "media_redaksjon_knowledge_kildelag_001",
+      "mail_type": "knowledge",
+      "role_scope": "media_redaksjon",
+      "scene": {
+        "arc_stage": "mid",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Metoden blir synlig i teksten og viser nøyaktig hvor sikker hvert ledd er.",
+            "id": "A",
+            "label": "Merk hva dere så, hva kilden hevder og hva dokumentet viser",
+            "reply": "Vi skriver observasjonen som vår, attribuerer påstanden og bruker referatet bare til det referatet faktisk dokumenterer."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør samsvar mellom ulike kildetyper til mer dokumentasjon enn materialet faktisk gir.",
+            "id": "B",
+            "label": "Skriv den samlede konklusjonen fordi delene peker samme vei",
+            "reply": "Alle tre lag peker i samme retning, så vi kan formulere den samlede konklusjonen uten å skille dem."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Dere har selv observert at møtet fant sted.",
+            "En deltaker hevder at utfallet allerede var bestemt.",
+            "Referatet dokumenterer diskusjonen, men ikke den påståtte forhåndsavgjørelsen."
+          ],
+          "subject": "Hva ligger i hvilket bevislag?",
+          "summary": "Kollegaen har samlet en egen observasjon, en kildepåstand og et dokumentutdrag, men utkastet blander de tre til én sikker konklusjon."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "media_redaksjon_knowledge_kildelag_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "nrk_huset_marienlyst",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "media_redaksjon_knowledge_kildelag_001",
+          "source_path": "data/Civication/mailFamilies/media/knowledge/media_redaksjon_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "media_redaksjon.mail.media_redaksjon_knowledge_kildelag_001",
+        "version": 1
+      },
+      "source_hash": "85a3f31262e2bd0f0fb07c3d52f8ddbc9139e0da13ff09495a64de9f1bd9132d",
+      "source_path": "data/Civication/mailFamilies/media/knowledge/media_redaksjon_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "media",
+      "compatibility_projection": {
+        "category": "media",
+        "choice_axis": "presis_attribusjon_vs_glatt_formulering",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Leseren kan skille kildens vurdering fra det redaksjonen kan dokumentere.",
+            "id": "A",
+            "label": "Attribuer vurderingen til kilden",
+            "reply": "Jeg skriver tydelig hvem som vurderer dette og lar dokumenterte fakta stå separat.",
+            "tags": [
+              "attribution",
+              "precision"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Flyten blir enklere, men kildens vurdering skifter rolle til redaksjonelt faktum.",
+            "id": "B",
+            "label": "Behold den glatte formuleringen for bedre flyt",
+            "reply": "Det blir tungt med kildehenvisningen her; jeg lar setningen stå som den er.",
+            "tags": [
+              "smoothness",
+              "attribution_risk"
+            ]
+          }
+        ],
+        "competency": "attribusjon",
+        "consequence_axis": "etterprovbarhet_vs_faktualitetsglidning",
+        "cooldown": 2,
+        "from": "Deskredaktøren",
+        "id": "media_redaksjon_micro_attribusjon_001",
+        "mail_family": "redaksjon_siste_kontroll",
+        "mail_type": "micro",
+        "narrative_arc": "siste_kontroll_beskytter_tilliten",
+        "people_ref": "media_deskredaktor",
+        "phase": "advanced",
+        "place_id": "vg_huset",
+        "pressure": "siste_minutt",
+        "priority": 64,
+        "purpose": "Teste om små språklige grep bevarer forskjellen mellom påstand og dokumentert faktum.",
+        "repeatable": true,
+        "role_scope": "media_redaksjon",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/media/micro/media_redaksjon_micro.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Setningen bygger på en muntlig kilde.",
+          "Dokumentene bekrefter bakgrunnen, men ikke selve vurderingen.",
+          "Publisering kan skje straks linjen er avklart."
+        ],
+        "stage": "stable",
+        "stakes": "En enkelt manglende attribusjon kan endre hvordan hele saken leses og hvem som bærer påstanden.",
+        "subject": "Én linje før publisering: hvem sier dette?",
+        "summary": "Ingressen presenterer en omstridt vurdering som faktum. Desken ber deg avgjøre om setningen skal attribueres eller omskrives.",
+        "task_domain": "sprak_og_attribusjon",
+        "task_kind": "micro"
+      },
+      "id": "media_redaksjon_micro_attribusjon_001",
+      "mail_type": "micro",
+      "role_scope": "media_redaksjon",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Leseren kan skille kildens vurdering fra det redaksjonen kan dokumentere.",
+            "id": "A",
+            "label": "Attribuer vurderingen til kilden",
+            "reply": "Jeg skriver tydelig hvem som vurderer dette og lar dokumenterte fakta stå separat."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Flyten blir enklere, men kildens vurdering skifter rolle til redaksjonelt faktum.",
+            "id": "B",
+            "label": "Behold den glatte formuleringen for bedre flyt",
+            "reply": "Det blir tungt med kildehenvisningen her; jeg lar setningen stå som den er."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Setningen bygger på en muntlig kilde.",
+            "Dokumentene bekrefter bakgrunnen, men ikke selve vurderingen.",
+            "Publisering kan skje straks linjen er avklart."
+          ],
+          "subject": "Én linje før publisering: hvem sier dette?",
+          "summary": "Ingressen presenterer en omstridt vurdering som faktum. Desken ber deg avgjøre om setningen skal attribueres eller omskrives."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "media_redaksjon_micro_attribusjon_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "vg_huset",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "media_redaksjon_micro_attribusjon_001",
+          "source_path": "data/Civication/mailFamilies/media/micro/media_redaksjon_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "media_redaksjon.mail.media_redaksjon_micro_attribusjon_001",
+        "version": 1
+      },
+      "source_hash": "e4df6b91ba2a274eeb6b562dea6898a0de97f71e7cb691dd9b9d358ec0489a60",
+      "source_path": "data/Civication/mailFamilies/media/micro/media_redaksjon_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "media",
+      "compatibility_projection": {
+        "category": "media",
+        "choice_axis": "presis_usikkerhet_vs_overtrygg_status",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Vaktsjefen kan prioritere uten å arve skjult usikkerhet.",
+            "id": "A",
+            "label": "Skill tydelig mellom sikkert, usikkert og neste kontroll",
+            "reply": "Sikkert: dokumentet bekrefter prosessen. Usikkert: kildens konklusjon. Neste grep: uavhengig bekreftelse før kategorisk tittel.",
+            "tags": [
+              "people",
+              "clarity",
+              "verification"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du flytter en uavklart antakelse inn i hele redaksjonens beslutningsgrunnlag.",
+            "id": "B",
+            "label": "Oppsummer saken som i praksis bekreftet",
+            "reply": "Det meste peker samme vei; vi kan behandle saken som bekreftet mens jeg rydder detaljene.",
+            "tags": [
+              "overconfidence",
+              "coordination_risk"
+            ]
+          }
+        ],
+        "competency": "mandatklarhet",
+        "consequence_axis": "felles_situasjonsforstaelse_vs_feilprioritering",
+        "cooldown": 2,
+        "from": "Vaktsjefen",
+        "id": "media_redaksjon_people_vaktsjef_001",
+        "mail_family": "redaksjon_vaktsjef_og_desk",
+        "mail_type": "people",
+        "narrative_arc": "fra_individuelt_funn_til_felles_redaksjonell_status",
+        "people_ref": "media_vaktsjef",
+        "phase": "early",
+        "place_id": "vg_huset",
+        "pressure": "deskfrist",
+        "priority": 85,
+        "purpose": "Teste presis intern statuskommunikasjon uten å gjøre usikkerhet til svakhet.",
+        "repeatable": false,
+        "role_scope": "media_redaksjon",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/media/people/media_redaksjon_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Desken venter på en tittel og ingress.",
+          "Én opplysning er dokumentert, én er kildebasert og én er fortsatt antakelse.",
+          "Vaktsjefen trenger beslutningsgrunnlag, ikke optimisme."
+        ],
+        "stage": "stable",
+        "stakes": "En uklar status kan få andre til å behandle antakelser som fakta; en presis status gjør det mulig å prioritere riktig.",
+        "subject": "Gi meg tre linjer: sikkert, usikkert, neste grep",
+        "summary": "Vaktsjefen vil vite nøyaktig hva redaksjonen kan stå inne for før desken låser vinkelen.",
+        "task_domain": "redaksjonell_koordinering",
+        "task_kind": "people"
+      },
+      "id": "media_redaksjon_people_vaktsjef_001",
+      "mail_type": "people",
+      "role_scope": "media_redaksjon",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Vaktsjefen kan prioritere uten å arve skjult usikkerhet.",
+            "id": "A",
+            "label": "Skill tydelig mellom sikkert, usikkert og neste kontroll",
+            "reply": "Sikkert: dokumentet bekrefter prosessen. Usikkert: kildens konklusjon. Neste grep: uavhengig bekreftelse før kategorisk tittel."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du flytter en uavklart antakelse inn i hele redaksjonens beslutningsgrunnlag.",
+            "id": "B",
+            "label": "Oppsummer saken som i praksis bekreftet",
+            "reply": "Det meste peker samme vei; vi kan behandle saken som bekreftet mens jeg rydder detaljene."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Desken venter på en tittel og ingress.",
+            "Én opplysning er dokumentert, én er kildebasert og én er fortsatt antakelse.",
+            "Vaktsjefen trenger beslutningsgrunnlag, ikke optimisme."
+          ],
+          "subject": "Gi meg tre linjer: sikkert, usikkert, neste grep",
+          "summary": "Vaktsjefen vil vite nøyaktig hva redaksjonen kan stå inne for før desken låser vinkelen."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "media_redaksjon_people_vaktsjef_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "vg_huset",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "media_redaksjon_people_vaktsjef_001",
+          "source_path": "data/Civication/mailFamilies/media/people/media_redaksjon_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "media_redaksjon.mail.media_redaksjon_people_vaktsjef_001",
+        "version": 1
+      },
+      "source_hash": "ad9d1f78bedc92a9e63e616775ab64693ac4251dad935bb5febaaa85faa2555e",
+      "source_path": "data/Civication/mailFamilies/media/people/media_redaksjon_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "media",
+      "compatibility_projection": {
+        "category": "media",
+        "choice_axis": "selvstendig_kontekst_vs_kildens_rammesetting",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du bruker funnet uten å overta kildens fortelling ukritisk.",
+            "id": "A",
+            "label": "Bruk dokumentet, men bygg egen kontekst og motstemme",
+            "reply": "Dokumentet er relevant, men vi må forklare utvalget, motivet og hente den delen som nyanserer bildet.",
+            "tags": [
+              "context",
+              "source_motive",
+              "independence"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du gjør autentisitet til et argument for kildens fortolkning, ikke bare for dokumentets ekthet.",
+            "id": "B",
+            "label": "La eksklusiviteten bære saken slik kilden presenterer den",
+            "reply": "Materialet er ekte og eksklusivt; vi går med rammen kilden har gitt oss.",
+            "tags": [
+              "exclusivity",
+              "source_capture"
+            ]
+          }
+        ],
+        "competency": "kildekritikk",
+        "consequence_axis": "redaksjonell_uavhengighet_vs_instrumentalisering",
+        "cooldown": 4,
+        "from": "Reporterkollegaen",
+        "id": "media_redaksjon_story_kilde_001",
+        "mail_family": "redaksjon_tillit_som_praksis",
+        "mail_type": "story",
+        "narrative_arc": "tillit_bygges_gjennom_selvstendig_vurdering",
+        "people_ref": "media_reporterkollega",
+        "phase": "climax",
+        "place_id": "aftenposten_akersgata",
+        "pressure": "eksklusivitet_og_narrativ",
+        "priority": 72,
+        "purpose": "Flytte spilleren fra enkel sann/usann-tenkning til kildekritikk der motiv, relevans og dokumentasjon vurderes samtidig.",
+        "repeatable": false,
+        "role_scope": "media_redaksjon",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/media/story/media_redaksjon_story.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Dokumentet er autentisk.",
+          "Kilden har direkte interesse i konflikten.",
+          "Et utelatt avsnitt nyanserer hva dokumentet betyr."
+        ],
+        "stage": "stable",
+        "stakes": "En sann opplysning kan fortsatt bli misvisende hvis kildens utvalg og timing skjuler nødvendig kontekst.",
+        "subject": "Kilden ga oss noe sant – men hvorfor akkurat nå?",
+        "summary": "Materialet er ekte, men kilden har valgt tidspunkt og utsnitt for å påvirke en konflikt. Kollegan spør hvordan dere skal bruke funnet uten å bli kildens distribusjonsledd.",
+        "task_domain": "kildemotiv_og_kontekst",
+        "task_kind": "story"
+      },
+      "id": "media_redaksjon_story_kilde_001",
+      "mail_type": "story",
+      "role_scope": "media_redaksjon",
+      "scene": {
+        "arc_stage": "climax",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du bruker funnet uten å overta kildens fortelling ukritisk.",
+            "id": "A",
+            "label": "Bruk dokumentet, men bygg egen kontekst og motstemme",
+            "reply": "Dokumentet er relevant, men vi må forklare utvalget, motivet og hente den delen som nyanserer bildet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør autentisitet til et argument for kildens fortolkning, ikke bare for dokumentets ekthet.",
+            "id": "B",
+            "label": "La eksklusiviteten bære saken slik kilden presenterer den",
+            "reply": "Materialet er ekte og eksklusivt; vi går med rammen kilden har gitt oss."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Dokumentet er autentisk.",
+            "Kilden har direkte interesse i konflikten.",
+            "Et utelatt avsnitt nyanserer hva dokumentet betyr."
+          ],
+          "subject": "Kilden ga oss noe sant – men hvorfor akkurat nå?",
+          "summary": "Materialet er ekte, men kilden har valgt tidspunkt og utsnitt for å påvirke en konflikt. Kollegan spør hvordan dere skal bruke funnet uten å bli kildens distribusjonsledd."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "media_redaksjon_story_kilde_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "aftenposten_akersgata",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "media_redaksjon_story_kilde_001",
+          "source_path": "data/Civication/mailFamilies/media/story/media_redaksjon_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "media_redaksjon.mail.media_redaksjon_story_kilde_001",
+        "version": 1
+      },
+      "source_hash": "0c59ad7c32b2b864062447cf923d975cea7c4afd4b935d61d4ab7b00c4184961",
+      "source_path": "data/Civication/mailFamilies/media/story/media_redaksjon_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -146802,7 +147919,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "ac84c2e10e865da7b4eb3775c5d76bff4936178e730d2e18510753332097d03a",
+  "registry_hash": "49353fabfade39c321de79829e82acce0dbac722046801de322cc638d093dcbb",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -146986,6 +148103,17 @@
       "film_tv_pa_followup_sideinngang_status",
       "film_tv_pa_knowledge_apen_kontaktliste",
       "film_tv_pa_consequence_transport_motte_feil"
+    ],
+    "media/media_redaksjon": [
+      "media_redaksjon_job_verifisering_001",
+      "media_redaksjon_people_vaktsjef_001",
+      "media_redaksjon_story_kilde_001",
+      "media_redaksjon_conflict_konkurrent_001",
+      "media_redaksjon_event_dokument_001",
+      "media_redaksjon_micro_attribusjon_001",
+      "media_redaksjon_followup_verifisering_001",
+      "media_redaksjon_knowledge_kildelag_001",
+      "media_redaksjon_consequence_verifisering_001"
     ],
     "naeringsliv/administrasjonsmedarbeider": [
       "job_administrasjonsmedarbeider_week1_voucher_without_owner",
@@ -147852,11 +148980,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 201,
+    "compiled_source_file_count": 210,
     "ignored_source_file_count": 1,
-    "input_file_count": 202,
-    "role_count": 28,
-    "scene_count": 964,
+    "input_file_count": 211,
+    "role_count": 29,
+    "scene_count": 973,
     "shadowed_duplicate_count": 0
   },
   "version": 1
