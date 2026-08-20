@@ -1,0 +1,43 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "fagansvarlig",
+  "mail_type": "event",
+  "families": [{
+    "id": "anbefaling_og_implementeringskapasitet",
+    "purpose": "Gjøre en ny faglig anbefaling gjennomførbar med opplæring, støtte, kapasitet og tilbakemelding.",
+    "learning_focus": ["implementering", "kompetanse", "friststyring"],
+    "mails": [{
+      "id": "psykologi_fagansvarlig_event_implementering_001",
+      "mail_type": "event",
+      "mail_family": "anbefaling_og_implementeringskapasitet",
+      "role_scope": "fagansvarlig",
+      "phase": "mid",
+      "day_phase": "afternoon",
+      "priority": 138,
+      "cooldown": 3,
+      "repeatable": false,
+      "stage": "stable",
+      "from": "Den organisatoriske lederen",
+      "people_ref": "psykologi_fagansvarlig_leder",
+      "place_id": "psykologi_fagansvarlig_forbedringsrad",
+      "subject": "Ny anbefaling skal gjelde fra mandag",
+      "summary": "En ny faglig anbefaling skal innføres raskt, men arbeidsplanen har verken avsatt opplæringstid eller støtte til vanskelige tilfeller.",
+      "purpose": "Teste om fagansvarlig skiller publisert anbefaling fra faktisk implementert kompetanse og arbeidsflyt.",
+      "stakes": "En dato kan gi synlig framdrift samtidig som ulik forståelse, improvisasjon og skjult risiko øker.",
+      "situation": ["Anbefalingen endrer et kjent arbeidssteg, men er ikke klinisk rådgivning til spilleren.", "To team har ulik erfaring med metoden som kreves.", "Lederen, ikke fagansvarlig alene, eier beslutninger om tid og bemanning."],
+      "task_domain": "implementering",
+      "task_kind": "event",
+      "competency": "kompetanseplan",
+      "pressure": "kalenderstyrt_innforing",
+      "choice_axis": "trinnvis_implementering_med_stotte_vs_dato_som_etterlevelse",
+      "consequence_axis": "robust_praksis_vs_skjult_variasjon",
+      "narrative_arc": "fra_ny_anbefaling_til_realistisk_innforingsplan",
+      "choices": [
+        {"id": "A", "label": "Fase inn med trening og tilbakemeldingspunkt", "reply": "Jeg kartlegger kompetansegapet, foreslår en kort pilot med støtte og lar ledelsen beslutte nødvendig kapasitet før full innføring.", "effect": 1, "tags": ["implementation", "capacity", "feedback_loop"], "feedback": "Du gjør gjennomføring til mer enn publisering og plasserer ressursbeslutningen riktig.", "effects": {"stats": {"quality": 2, "trust": 1, "risk": -2, "energy": -1}}},
+        {"id": "B", "label": "Bekreft datoen og send dokumentet", "reply": "Anbefalingen er tydelig; jeg distribuerer den og måler hvem som har kvittert innen mandag.", "effect": -1, "tags": ["paper_implementation", "capacity_blindness"], "feedback": "Du måler mottak, men ikke forståelse, ferdighet eller om arbeidsflyten faktisk tåler endringen.", "effects": {"stats": {"status": 1, "quality": -2, "trust": -1, "risk": 2}}}
+      ]
+    }]
+  }]
+}

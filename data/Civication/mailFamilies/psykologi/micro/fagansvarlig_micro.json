@@ -1,0 +1,43 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "fagansvarlig",
+  "mail_type": "micro",
+  "families": [{
+    "id": "gronn_indikator_og_skjult_forsinkelse",
+    "purpose": "Oppdage når en grønn prosessindikator skjuler en relevant forsinkelse i arbeidsflyten.",
+    "learning_focus": ["indikatorforstaelse", "malekvalitet", "systemlaering"],
+    "mails": [{
+      "id": "psykologi_fagansvarlig_micro_indikator_001",
+      "mail_type": "micro",
+      "mail_family": "gronn_indikator_og_skjult_forsinkelse",
+      "role_scope": "fagansvarlig",
+      "phase": "advanced",
+      "day_phase": "afternoon",
+      "priority": 134,
+      "cooldown": 3,
+      "repeatable": false,
+      "stage": "stable",
+      "from": "Kvalitetsrådgiveren",
+      "people_ref": "psykologi_fagansvarlig_kvalitetsradgiver",
+      "place_id": "psykologi_fagansvarlig_kvalitetsrom",
+      "subject": "100 prosent fullført, men oppfølgingen kom sent",
+      "summary": "Dashbordet er grønt fordi alle skjemaer ble fullført, mens tidsstemplene viser at flere oppfølginger skjedde etter det avtalte vinduet.",
+      "purpose": "Teste om fagansvarlig undersøker teller, nevner, tidsvindu og arbeidsflyt før indikatoren brukes som kvalitetsbevis.",
+      "stakes": "En pen indikator kan stanse videre undersøkelse selv om den ikke måler den kvaliteten rådet tror den måler.",
+      "situation": ["Fullføringsgraden teller alle skjemaer som til slutt ble lukket.", "Dashbordet viser ikke tidsvinduet i hovedvisningen.", "Materialet er aggregert og inneholder ikke pasientidentifiserbare data."],
+      "task_domain": "kvalitetsindikator",
+      "task_kind": "micro",
+      "competency": "indikatorforstaelse",
+      "pressure": "gronn_status",
+      "choice_axis": "maledefinisjon_og_tidsvindu_vs_dashbordfarge",
+      "consequence_axis": "gyldig_styringssignal_vs_falsk_trygghet",
+      "narrative_arc": "fra_gronn_rute_til_presist_malesporsmal",
+      "choices": [
+        {"id": "A", "label": "Vis rettidighet ved siden av fullføring", "reply": "Jeg beholder fullføringsgraden, legger til avtalt tidsvindu og undersøker hvor forsinkelsen oppstår før vi kaller utviklingen en forbedring.", "effect": 1, "tags": ["measurement_validity", "timeliness", "workflow"], "feedback": "Du gjør indikatorens begrensning synlig uten å forkaste den informasjonen den faktisk gir.", "effects": {"stats": {"quality": 2, "trust": 1, "risk": -1, "energy": -1}}},
+        {"id": "B", "label": "Rapporter grønn måloppnåelse", "reply": "Alle saker er fullført, så jeg bekrefter at målet er nådd og lukker forbedringspunktet.", "effect": -1, "tags": ["metric_fixation", "false_reassurance"], "feedback": "Du lar definisjonen skjule at oppfølgingen kom senere enn den skulle.", "effects": {"stats": {"status": 1, "quality": -2, "trust": -1, "risk": 2}}}
+      ]
+    }]
+  }]
+}
