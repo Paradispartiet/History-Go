@@ -1,8 +1,9 @@
 {
-  "schema": "civication_scenario_people_category_v1",
-  "version": 1,
+  "schema": "civication_scenario_people_category_v2",
+  "version": 2,
   "category": "religion",
   "generated_by": "scripts/build-civication-scenario-people-index.mts",
+  "storage_model": "category_pool_plus_role_deltas",
   "sources": [
     "data/Civication/historyPeople_index.json",
     "data/Civication/roleModels/manifest.json",
@@ -14,15 +15,44 @@
     "strong": "Sterk scenariorelevans; innebærer ikke nødvendigvis identisk yrkesrolle.",
     "contextual": "Samme faglige kontekst; kunnskaps-/oppgavekandidat, ikke rollelikhet eller NPC-persona."
   },
-  "people_available_in_category": 3,
+  "people_pool": {
+    "existing_place_people": [
+      {
+        "person_id": "etne_kyrkjelydsmiljoet",
+        "name": "Kyrkjelydsmiljøet i Etne kyrkje",
+        "person_category": "religion",
+        "place_id": "etne_kyrkje",
+        "year": 2013
+      },
+      {
+        "person_id": "frette_bedehus_og_kapellmiljoet",
+        "name": "Bedehus- og kapellmiljøet på Frette",
+        "person_category": "religion",
+        "place_id": "frette_kapell",
+        "year": 1910
+      },
+      {
+        "person_id": "skanevik_kyrkjelydsmiljoet",
+        "name": "Kyrkjelydsmiljøet i Skånevik kyrkje",
+        "person_category": "religion",
+        "place_id": "skanevik_kyrkje",
+        "year": 1900
+      }
+    ],
+    "existing_other_people": []
+  },
   "cross_category_existing_references": [],
   "missing_people_candidates": [
     {
       "id": "lea_arkivar",
       "name": "lea_arkivar",
       "category": "religion",
-      "reason": "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen.",
-      "source": "data/Civication/roleModels/religion/religion_forskning.json",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/religion/religion_forskning.json"
+      ],
       "scenario_roles": [
         "religion_forskning"
       ],
@@ -32,8 +62,12 @@
       "id": "mina_prosjektleder",
       "name": "mina_prosjektleder",
       "category": "religion",
-      "reason": "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen.",
-      "source": "data/Civication/roleModels/religion/religion_forskning.json",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/religion/religion_forskning.json"
+      ],
       "scenario_roles": [
         "religion_forskning"
       ],
@@ -43,8 +77,12 @@
       "id": "oskar_forskningsetikk",
       "name": "oskar_forskningsetikk",
       "category": "religion",
-      "reason": "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen.",
-      "source": "data/Civication/roleModels/religion/religion_forskning.json",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/religion/religion_forskning.json"
+      ],
       "scenario_roles": [
         "religion_forskning"
       ],
@@ -54,8 +92,12 @@
       "id": "sara_metodekollega",
       "name": "sara_metodekollega",
       "category": "religion",
-      "reason": "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen.",
-      "source": "data/Civication/roleModels/religion/religion_forskning.json",
+      "reasons": [
+        "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen."
+      ],
+      "sources": [
+        "data/Civication/roleModels/religion/religion_forskning.json"
+      ],
       "scenario_roles": [
         "religion_forskning"
       ],
@@ -68,40 +110,28 @@
       "role_scope": "religion_forskning",
       "title": "Religion – forskning",
       "source": "data/Civication/roleModels/religion/religion_forskning.json",
-      "match_tokens": [
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
         "forskning"
       ],
-      "existing_place_people": [
-        {
-          "person_id": "etne_kyrkjelydsmiljoet",
-          "name": "Kyrkjelydsmiljøet i Etne kyrkje",
-          "fit": "contextual",
-          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
-          "person_category": "religion",
-          "place_id": "etne_kyrkje",
-          "year": 2013
-        },
-        {
-          "person_id": "frette_bedehus_og_kapellmiljoet",
-          "name": "Bedehus- og kapellmiljøet på Frette",
-          "fit": "contextual",
-          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
-          "person_category": "religion",
-          "place_id": "frette_kapell",
-          "year": 1910
-        },
-        {
-          "person_id": "skanevik_kyrkjelydsmiljoet",
-          "name": "Kyrkjelydsmiljøet i Skånevik kyrkje",
-          "fit": "contextual",
-          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
-          "person_category": "religion",
-          "place_id": "skanevik_kyrkje",
-          "year": 1900
-        }
-      ],
-      "existing_other_people": [],
-      "excluded_people": []
+      "resolved_counts": {
+        "total": 3,
+        "existing_place_people": 3,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 0,
+        "contextual": 3,
+        "excluded": 0
+      }
     }
   ]
 }

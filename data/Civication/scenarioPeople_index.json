@@ -1,31 +1,48 @@
 {
-  "schema": "civication_scenario_people_index_v1",
-  "version": 1,
+  "schema": "civication_scenario_people_index_v2",
+  "version": 2,
   "generated_by": "scripts/build-civication-scenario-people-index.mts",
   "people_source": "data/Civication/historyPeople_index.json",
   "role_models_source": "data/Civication/roleModels/manifest.json",
   "overrides_source": "data/Civication/scenarioPeople/overrides.json",
+  "storage_model": "category_pool_plus_role_deltas",
   "note": "GENERERT. Reelle personer er faktabaserte kunnskaps-/oppgavemål, ikke frie NPC-personaer.",
   "summary": {
     "history_people_count": 1402,
-    "role_count": 248,
+    "role_model_file_count": 248,
+    "canonical_role_count": 246,
+    "shadowed_role_model_count": 2,
     "category_count": 17,
-    "assignment_count": 22500,
-    "existing_place_assignment_count": 22500,
-    "existing_other_assignment_count": 0,
-    "direct_assignment_count": 5,
-    "strong_assignment_count": 634,
-    "contextual_assignment_count": 21861,
-    "missing_people_candidate_count": 136,
+    "resolved_assignment_count": 22458,
+    "resolved_existing_place_assignment_count": 22458,
+    "resolved_existing_other_assignment_count": 0,
+    "resolved_direct_assignment_count": 5,
+    "resolved_strong_assignment_count": 634,
+    "resolved_contextual_assignment_count": 21819,
+    "missing_people_candidate_count": 127,
     "excluded_assignment_count": 1
   },
+  "shadowed_role_models": [
+    {
+      "role_id": "psykologi_miljoarbeider",
+      "kept": "data/Civication/roleModels/psykologi/psykologi_miljoarbeid.json",
+      "shadowed": "data/Civication/roleModels/psykologi/samtalepartner.json"
+    },
+    {
+      "role_id": "subkultur_kulturhusvert",
+      "kept": "data/Civication/roleModels/subkultur/observor.json",
+      "shadowed": "data/Civication/roleModels/subkultur/subkultur_arrangementsdrift.json"
+    }
+  ],
   "categories": {
     "by": {
       "file": "data/Civication/scenarioPeople/generated/by.json",
       "role_count": 16,
-      "people_available_in_category": 78,
+      "people_pool_count": 78,
+      "existing_place_people_count": 78,
+      "existing_other_people_count": 0,
       "cross_category_existing_reference_count": 0,
-      "missing_people_candidate_count": 22,
+      "missing_people_candidate_count": 20,
       "roles": [
         "by_arealplanlegger",
         "by_arkitekt",
@@ -48,7 +65,9 @@
     "film_tv": {
       "file": "data/Civication/scenarioPeople/generated/film_tv.json",
       "role_count": 15,
-      "people_available_in_category": 24,
+      "people_pool_count": 24,
+      "existing_place_people_count": 24,
+      "existing_other_people_count": 0,
       "cross_category_existing_reference_count": 0,
       "missing_people_candidate_count": 8,
       "roles": [
@@ -72,7 +91,9 @@
     "historie": {
       "file": "data/Civication/scenarioPeople/generated/historie.json",
       "role_count": 20,
-      "people_available_in_category": 228,
+      "people_pool_count": 228,
+      "existing_place_people_count": 228,
+      "existing_other_people_count": 0,
       "cross_category_existing_reference_count": 0,
       "missing_people_candidate_count": 0,
       "roles": [
@@ -101,7 +122,9 @@
     "kunst": {
       "file": "data/Civication/scenarioPeople/generated/kunst.json",
       "role_count": 14,
-      "people_available_in_category": 84,
+      "people_pool_count": 84,
+      "existing_place_people_count": 84,
+      "existing_other_people_count": 0,
       "cross_category_existing_reference_count": 0,
       "missing_people_candidate_count": 0,
       "roles": [
@@ -124,7 +147,9 @@
     "litteratur": {
       "file": "data/Civication/scenarioPeople/generated/litteratur.json",
       "role_count": 17,
-      "people_available_in_category": 172,
+      "people_pool_count": 172,
+      "existing_place_people_count": 172,
+      "existing_other_people_count": 0,
       "cross_category_existing_reference_count": 0,
       "missing_people_candidate_count": 0,
       "roles": [
@@ -150,7 +175,9 @@
     "media": {
       "file": "data/Civication/scenarioPeople/generated/media.json",
       "role_count": 27,
-      "people_available_in_category": 31,
+      "people_pool_count": 31,
+      "existing_place_people_count": 31,
+      "existing_other_people_count": 0,
       "cross_category_existing_reference_count": 0,
       "missing_people_candidate_count": 12,
       "roles": [
@@ -186,7 +213,9 @@
     "musikk": {
       "file": "data/Civication/scenarioPeople/generated/musikk.json",
       "role_count": 15,
-      "people_available_in_category": 124,
+      "people_pool_count": 124,
+      "existing_place_people_count": 124,
+      "existing_other_people_count": 0,
       "cross_category_existing_reference_count": 0,
       "missing_people_candidate_count": 16,
       "roles": [
@@ -210,9 +239,11 @@
     "naeringsliv": {
       "file": "data/Civication/scenarioPeople/generated/naeringsliv.json",
       "role_count": 24,
-      "people_available_in_category": 81,
+      "people_pool_count": 81,
+      "existing_place_people_count": 81,
+      "existing_other_people_count": 0,
       "cross_category_existing_reference_count": 0,
-      "missing_people_candidate_count": 33,
+      "missing_people_candidate_count": 30,
       "roles": [
         "naer_avdelingsleder",
         "naer_controller",
@@ -243,7 +274,9 @@
     "natur": {
       "file": "data/Civication/scenarioPeople/generated/natur.json",
       "role_count": 16,
-      "people_available_in_category": 22,
+      "people_pool_count": 22,
+      "existing_place_people_count": 22,
+      "existing_other_people_count": 0,
       "cross_category_existing_reference_count": 0,
       "missing_people_candidate_count": 0,
       "roles": [
@@ -268,7 +301,9 @@
     "politikk": {
       "file": "data/Civication/scenarioPeople/generated/politikk.json",
       "role_count": 16,
-      "people_available_in_category": 114,
+      "people_pool_count": 114,
+      "existing_place_people_count": 114,
+      "existing_other_people_count": 0,
       "cross_category_existing_reference_count": 0,
       "missing_people_candidate_count": 0,
       "roles": [
@@ -292,8 +327,10 @@
     },
     "psykologi": {
       "file": "data/Civication/scenarioPeople/generated/psykologi.json",
-      "role_count": 14,
-      "people_available_in_category": 5,
+      "role_count": 13,
+      "people_pool_count": 5,
+      "existing_place_people_count": 5,
+      "existing_other_people_count": 0,
       "cross_category_existing_reference_count": 0,
       "missing_people_candidate_count": 12,
       "roles": [
@@ -301,7 +338,6 @@
         "psykologi_fagansvarlig",
         "psykologi_forsker_psykologi",
         "psykologi_klinikkleder",
-        "psykologi_miljoarbeider",
         "psykologi_miljoarbeider",
         "psykologi_miljoassistent",
         "psykologi_professor_psykologi",
@@ -316,7 +352,9 @@
     "religion": {
       "file": "data/Civication/scenarioPeople/generated/religion.json",
       "role_count": 1,
-      "people_available_in_category": 3,
+      "people_pool_count": 3,
+      "existing_place_people_count": 3,
+      "existing_other_people_count": 0,
       "cross_category_existing_reference_count": 0,
       "missing_people_candidate_count": 4,
       "roles": [
@@ -326,7 +364,9 @@
     "sosial_laering": {
       "file": "data/Civication/scenarioPeople/generated/sosial_laering.json",
       "role_count": 1,
-      "people_available_in_category": 0,
+      "people_pool_count": 0,
+      "existing_place_people_count": 0,
+      "existing_other_people_count": 0,
       "cross_category_existing_reference_count": 0,
       "missing_people_candidate_count": 10,
       "roles": [
@@ -336,7 +376,9 @@
     "sport": {
       "file": "data/Civication/scenarioPeople/generated/sport.json",
       "role_count": 14,
-      "people_available_in_category": 323,
+      "people_pool_count": 323,
+      "existing_place_people_count": 323,
+      "existing_other_people_count": 0,
       "cross_category_existing_reference_count": 0,
       "missing_people_candidate_count": 15,
       "roles": [
@@ -358,16 +400,17 @@
     },
     "subkultur": {
       "file": "data/Civication/scenarioPeople/generated/subkultur.json",
-      "role_count": 12,
-      "people_available_in_category": 37,
+      "role_count": 11,
+      "people_pool_count": 37,
+      "existing_place_people_count": 37,
+      "existing_other_people_count": 0,
       "cross_category_existing_reference_count": 0,
-      "missing_people_candidate_count": 4,
+      "missing_people_candidate_count": 0,
       "roles": [
         "subkultur_arrangementscrew",
         "subkultur_arrangementsplanlegger",
         "subkultur_booking_innholdskoordinator",
         "subkultur_kulturarena_ledelse",
-        "subkultur_kulturhusvert",
         "subkultur_kulturhusvert",
         "subkultur_kulturkonsulent",
         "subkultur_kulturmedarbeider",
@@ -380,7 +423,9 @@
     "teater": {
       "file": "data/Civication/scenarioPeople/generated/teater.json",
       "role_count": 13,
-      "people_available_in_category": 0,
+      "people_pool_count": 0,
+      "existing_place_people_count": 0,
+      "existing_other_people_count": 0,
       "cross_category_existing_reference_count": 0,
       "missing_people_candidate_count": 0,
       "roles": [
@@ -402,7 +447,9 @@
     "vitenskap": {
       "file": "data/Civication/scenarioPeople/generated/vitenskap.json",
       "role_count": 13,
-      "people_available_in_category": 29,
+      "people_pool_count": 29,
+      "existing_place_people_count": 29,
+      "existing_other_people_count": 0,
       "cross_category_existing_reference_count": 0,
       "missing_people_candidate_count": 0,
       "roles": [

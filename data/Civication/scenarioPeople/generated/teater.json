@@ -1,8 +1,9 @@
 {
-  "schema": "civication_scenario_people_category_v1",
-  "version": 1,
+  "schema": "civication_scenario_people_category_v2",
+  "version": 2,
   "category": "teater",
   "generated_by": "scripts/build-civication-scenario-people-index.mts",
+  "storage_model": "category_pool_plus_role_deltas",
   "sources": [
     "data/Civication/historyPeople_index.json",
     "data/Civication/roleModels/manifest.json",
@@ -14,7 +15,10 @@
     "strong": "Sterk scenariorelevans; innebærer ikke nødvendigvis identisk yrkesrolle.",
     "contextual": "Samme faglige kontekst; kunnskaps-/oppgavekandidat, ikke rollelikhet eller NPC-persona."
   },
-  "people_available_in_category": 0,
+  "people_pool": {
+    "existing_place_people": [],
+    "existing_other_people": []
+  },
   "cross_category_existing_references": [],
   "missing_people_candidates": [],
   "roles": [
@@ -23,160 +27,368 @@
       "role_scope": "ensemblemedlem",
       "title": "Ensemblemedlem",
       "source": "data/Civication/roleModels/teater/ensemblemedlem.json",
-      "match_tokens": [
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
         "ensemblemedlem"
       ],
-      "existing_place_people": [],
-      "existing_other_people": [],
-      "excluded_people": []
+      "resolved_counts": {
+        "total": 0,
+        "existing_place_people": 0,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 0,
+        "contextual": 0,
+        "excluded": 0
+      }
     },
     {
       "role_id": "teater_fast_publikummer",
       "role_scope": "fast_publikummer",
       "title": "Fast publikummer",
       "source": "data/Civication/roleModels/teater/fast_publikummer.json",
-      "match_tokens": [
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
         "publikummer"
       ],
-      "existing_place_people": [],
-      "existing_other_people": [],
-      "excluded_people": []
+      "resolved_counts": {
+        "total": 0,
+        "existing_place_people": 0,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 0,
+        "contextual": 0,
+        "excluded": 0
+      }
     },
     {
       "role_id": "teater_hovedrolleinnehaver",
       "role_scope": "hovedrolleinnehaver",
       "title": "Hovedrolleinnehaver",
       "source": "data/Civication/roleModels/teater/hovedrolleinnehaver.json",
-      "match_tokens": [
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
         "hovedrolleinnehaver"
       ],
-      "existing_place_people": [],
-      "existing_other_people": [],
-      "excluded_people": []
+      "resolved_counts": {
+        "total": 0,
+        "existing_place_people": 0,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 0,
+        "contextual": 0,
+        "excluded": 0
+      }
     },
     {
       "role_id": "teater_kjent_scenenavn",
       "role_scope": "kjent_scenenavn",
       "title": "Kjent scenenavn",
       "source": "data/Civication/roleModels/teater/kjent_scenenavn.json",
-      "match_tokens": [
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
         "kjent",
         "scenenavn"
       ],
-      "existing_place_people": [],
-      "existing_other_people": [],
-      "excluded_people": []
+      "resolved_counts": {
+        "total": 0,
+        "existing_place_people": 0,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 0,
+        "contextual": 0,
+        "excluded": 0
+      }
     },
     {
       "role_id": "teater_prisvinnende_scenekunstner",
       "role_scope": "prisvinnende_scenekunstner",
       "title": "Prisvinnende scenekunstner",
       "source": "data/Civication/roleModels/teater/prisvinnende_scenekunstner.json",
-      "match_tokens": [
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
         "scenekunstner"
       ],
-      "existing_place_people": [],
-      "existing_other_people": [],
-      "excluded_people": []
+      "resolved_counts": {
+        "total": 0,
+        "existing_place_people": 0,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 0,
+        "contextual": 0,
+        "excluded": 0
+      }
     },
     {
       "role_id": "teater_produksjonsmedarbeider",
       "role_scope": "produksjonsmedarbeider",
       "title": "Produksjonsmedarbeider",
       "source": "data/Civication/roleModels/teater/produksjonsmedarbeider.json",
-      "match_tokens": [
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
         "produksjonsmedarbeider"
       ],
-      "existing_place_people": [],
-      "existing_other_people": [],
-      "excluded_people": []
+      "resolved_counts": {
+        "total": 0,
+        "existing_place_people": 0,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 0,
+        "contextual": 0,
+        "excluded": 0
+      }
     },
     {
       "role_id": "teater_publikum",
       "role_scope": "publikum",
       "title": "Publikum",
       "source": "data/Civication/roleModels/teater/publikum.json",
-      "match_tokens": [
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
         "publikum"
       ],
-      "existing_place_people": [],
-      "existing_other_people": [],
-      "excluded_people": []
+      "resolved_counts": {
+        "total": 0,
+        "existing_place_people": 0,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 0,
+        "contextual": 0,
+        "excluded": 0
+      }
     },
     {
       "role_id": "teater_regissor_teater",
       "role_scope": "regissor_teater",
       "title": "Regissør (teater)",
       "source": "data/Civication/roleModels/teater/regissor_teater.json",
-      "match_tokens": [
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
         "regissor",
         "regissør",
         "teater"
       ],
-      "existing_place_people": [],
-      "existing_other_people": [],
-      "excluded_people": []
+      "resolved_counts": {
+        "total": 0,
+        "existing_place_people": 0,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 0,
+        "contextual": 0,
+        "excluded": 0
+      }
     },
     {
       "role_id": "teater_sceneassistent",
       "role_scope": "sceneassistent",
       "title": "Sceneassistent",
       "source": "data/Civication/roleModels/teater/sceneassistent.json",
-      "match_tokens": [
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
         "sceneassistent"
       ],
-      "existing_place_people": [],
-      "existing_other_people": [],
-      "excluded_people": []
+      "resolved_counts": {
+        "total": 0,
+        "existing_place_people": 0,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 0,
+        "contextual": 0,
+        "excluded": 0
+      }
     },
     {
       "role_id": "teater_scenestjerne",
       "role_scope": "scenestjerne",
       "title": "Scenestjerne",
       "source": "data/Civication/roleModels/teater/scenestjerne.json",
-      "match_tokens": [
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
         "scenestjerne"
       ],
-      "existing_place_people": [],
-      "existing_other_people": [],
-      "excluded_people": []
+      "resolved_counts": {
+        "total": 0,
+        "existing_place_people": 0,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 0,
+        "contextual": 0,
+        "excluded": 0
+      }
     },
     {
       "role_id": "teater_scenisk_ikon",
       "role_scope": "scenisk_ikon",
       "title": "Scenisk ikon",
       "source": "data/Civication/roleModels/teater/scenisk_ikon.json",
-      "match_tokens": [
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
         "ikon",
         "scenisk"
       ],
-      "existing_place_people": [],
-      "existing_other_people": [],
-      "excluded_people": []
+      "resolved_counts": {
+        "total": 0,
+        "existing_place_people": 0,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 0,
+        "contextual": 0,
+        "excluded": 0
+      }
     },
     {
       "role_id": "teater_skuespiller",
       "role_scope": "skuespiller",
       "title": "Skuespiller",
       "source": "data/Civication/roleModels/teater/skuespiller.json",
-      "match_tokens": [
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
         "skuespiller"
       ],
-      "existing_place_people": [],
-      "existing_other_people": [],
-      "excluded_people": []
+      "resolved_counts": {
+        "total": 0,
+        "existing_place_people": 0,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 0,
+        "contextual": 0,
+        "excluded": 0
+      }
     },
     {
       "role_id": "teater_teatergjenger",
       "role_scope": "teatergjenger",
       "title": "Teatergjenger",
       "source": "data/Civication/roleModels/teater/teatergjenger.json",
-      "match_tokens": [
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
         "teatergjenger"
       ],
-      "existing_place_people": [],
-      "existing_other_people": [],
-      "excluded_people": []
+      "resolved_counts": {
+        "total": 0,
+        "existing_place_people": 0,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 0,
+        "contextual": 0,
+        "excluded": 0
+      }
     }
   ]
 }
