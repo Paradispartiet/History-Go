@@ -15,6 +15,7 @@ const P={
 };
 const isScholarly=s=>/peer_reviewed|scholarly|academic|ethnographic/i.test(s?.source_type||'');
 const nonTrivial=s=>typeof s==='string'&&s.trim().length>=40;
+const norm=s=>(s||'').toLocaleLowerCase('nb-NO').replace(/\s+/g,' ').trim();
 export function auditSubkulturTheoryAttribution(){
  const theories=json(P.theories),sourcesDoc=json(P.sources),a=json(P.attribution),pensum=json(P.pensum),claimsDoc=json(P.claims),linksDoc=json(P.links),emner=json(P.emner);
  const sourceById=new Map(sourcesDoc.sources.map(s=>[s.source_id,s])),claimById=new Map(claimsDoc.claims.map(c=>[c.claim_id,c])),emneById=new Map(emner.map(e=>[e.emne_id,e])),attrBySource=new Map(),linksByTheorySource=new Map();
@@ -40,7 +41,7 @@ export function auditSubkulturTheoryAttribution(){
   const scholarlyCount=sources.filter(isScholarly).length;assert(scholarlyCount>=2&&scholarlyCount>=Math.ceil(sources.length/2),`Theory mangler scholarly kjerne/flertall: ${t.theory_id} (${scholarlyCount}/${sources.length})`);scholarlyCoreTheoryCount++;
   const attributed=t.source_ids.filter(id=>attrBySource.has(id));if(attributed.length<2)unattributed.push(t.theory_id);
   assert(t.claim_ids?.length>=2,`Theory mangler claim-binding: ${t.theory_id}`);const claims=t.claim_ids.map(id=>{const c=claimById.get(id);assert(c,`Ukjent theory claim ${t.theory_id}/${id}`);assert(c.theory_id===t.theory_id,`Claim/theory mismatch ${id}`);assert(c.domain_id===t.domain_id&&c.emne_ids?.length===1&&c.emne_ids[0]===emneId,`Claim scope mismatch ${id}`);assert(nonTrivial(c.statement)&&c.source_ids?.length>=1,`Tynn theory claim ${id}`);return c;});
-  const definitionClaim=claims.find(c=>c.claim_type==='theory_definition_and_mechanism');const boundaryClaim=claims.find(c=>c.claim_type==='theory_boundary_and_critique');assert(definitionClaim&&boundaryClaim,`Theory mangler definition/boundary claim-paret: ${t.theory_id}`);assert(definitionClaim.statement.includes(emne.definition)&&definitionClaim.statement.includes(emne.mechanism),`Definition/mechanism claim er ikke faktisk bundet til canonical emneprosa: ${t.theory_id}`);assert(boundaryClaim.statement.includes(emne.limitation),`Boundary claim er ikke faktisk bundet til canonical begrensningsprosa: ${t.theory_id}`);
+  const definitionClaim=claims.find(c=>c.claim_type==='theory_definition_and_mechanism');const boundaryClaim=claims.find(c=>c.claim_type==='theory_boundary_and_critique');assert(definitionClaim&&boundaryClaim,`Theory mangler definition/boundary claim-paret: ${t.theory_id}`);const definitionText=norm(definitionClaim.statement),boundaryText=norm(boundaryClaim.statement);assert(definitionText.includes(norm(emne.definition))&&definitionText.includes(norm(emne.mechanism)),`Definition/mechanism claim er ikke faktisk bundet til canonical emneprosa: ${t.theory_id}`);assert(boundaryText.includes(norm(emne.limitation)),`Boundary claim er ikke faktisk bundet til canonical begrensningsprosa: ${t.theory_id}`);
   for(const sid of t.source_ids){const matches=linksByTheorySource.get(`${t.theory_id}::${sid}`)||[];assert(matches.some(l=>t.claim_ids.includes(l.claim_id)&&['conceptual_support','critical_boundary'].includes(l.support_type)&&nonTrivial(l.inference_boundary)),`Theory source mangler source→claim evidence-link: ${t.theory_id}/${sid}`);claimBoundSourceCount++;}
   proseBoundTheoryCount++;
  }
