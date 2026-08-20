@@ -42,6 +42,7 @@ jobs:
             .github/workflows/fagverk-theory-integrity.yml \
             .github/workflows/naeringsliv-subject-quality.yml \
             reports/fagverk/fagverk-theory-integrity-audit.json
+          git reset --hard HEAD
           git fetch origin "+refs/heads/${HEAD_BRANCH}:refs/remotes/origin/${HEAD_BRANCH}"
           git fetch origin "${BASE_SHA}"
           git checkout -B finalize "refs/remotes/origin/${HEAD_BRANCH}"
