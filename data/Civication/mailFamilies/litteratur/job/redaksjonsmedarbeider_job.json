@@ -1,0 +1,65 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "litteratur",
+  "role_scope": "redaksjonsmedarbeider",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "manusmottak_og_versjonsgrunnlag",
+      "purpose": "Gjøre korrekt manusversjon, beslutningseier og frist til et eksplisitt startpunkt for arbeidsdagen.",
+      "learning_focus": ["versjonssporbarhet", "friststyring", "mandatklarhet"],
+      "mails": [
+        {
+          "id": "litteratur_redaksjonsmedarbeider_job_versjon_001",
+          "mail_type": "job",
+          "mail_family": "manusmottak_og_versjonsgrunnlag",
+          "role_scope": "redaksjonsmedarbeider",
+          "phase": "intro",
+          "day_phase": "morning",
+          "priority": 115,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Ansvarlig bokredaktør",
+          "people_ref": "litteratur_ansvarlig_redaktor",
+          "place_id": "litteratur_manusdesk",
+          "subject": "To filer heter endelig manus",
+          "summary": "Forfatteren har sendt en ny fil etter at redaktøren godkjente en tidligere versjon, og produksjonen trenger ett autoritativt arbeidsgrunnlag.",
+          "purpose": "Teste om medarbeideren låser versjon og beslutningsspor før oppgaver fordeles.",
+          "stakes": "Hvis filnavn eller sendetid brukes som godkjenning, kan redaksjon, forfatter og produksjon begynne dagen på ulike tekster.",
+          "situation": [
+            "Redaktørens godkjenningsmelding viser til versjon 12.",
+            "En fil merket versjon 13 kom senere uten beskrivelse av endringene.",
+            "Produksjonskoordinatoren venter på beskjed før satsarbeidet starter."
+          ],
+          "task_domain": "manusmottak_og_versjonskontroll",
+          "task_kind": "job",
+          "competency": "versjonssporbarhet",
+          "pressure": "morgenfrist",
+          "choice_axis": "verifisert_arbeidsgrunnlag_vs_antatt_siste_fil",
+          "consequence_axis": "felles_tekstgrunnlag_vs_skjult_versjonsfeil",
+          "narrative_arc": "fra_tvetydig_mottak_til_lost_arbeidsversjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Hold versjon 12 og be om eksplisitt avklaring",
+              "reply": "Jeg registrerer versjon 12 som gjeldende til redaktør og forfatter har forklart og godkjent endringene i versjon 13.",
+              "effect": 1,
+              "tags": ["traceability", "clarification", "mandate"],
+              "feedback": "Produksjonen får ett dokumentert arbeidsgrunnlag uten at du later som du eier godkjenningen."
+            },
+            {
+              "id": "B",
+              "label": "Bruk versjon 13 fordi den kom sist",
+              "reply": "Den nyeste filen må være den riktige. Jeg sender versjon 13 videre og rydder avklaringen senere.",
+              "effect": -1,
+              "tags": ["assumption", "version_risk"],
+              "feedback": "Du gjør kronologi til redaksjonell godkjenning og sprer en uavklart tekst."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

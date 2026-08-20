@@ -61,6 +61,15 @@
     "data/Civication/mailFamilies/film_tv/followup/produksjonsassistent_followup.json",
     "data/Civication/mailFamilies/film_tv/knowledge/produksjonsassistent_knowledge.json",
     "data/Civication/mailFamilies/film_tv/consequence/produksjonsassistent_consequence.json",
+    "data/Civication/mailFamilies/litteratur/job/redaksjonsmedarbeider_job.json",
+    "data/Civication/mailFamilies/litteratur/people/redaksjonsmedarbeider_people.json",
+    "data/Civication/mailFamilies/litteratur/story/redaksjonsmedarbeider_story.json",
+    "data/Civication/mailFamilies/litteratur/conflict/redaksjonsmedarbeider_conflict.json",
+    "data/Civication/mailFamilies/litteratur/event/redaksjonsmedarbeider_event.json",
+    "data/Civication/mailFamilies/litteratur/micro/redaksjonsmedarbeider_micro.json",
+    "data/Civication/mailFamilies/litteratur/followup/redaksjonsmedarbeider_followup.json",
+    "data/Civication/mailFamilies/litteratur/knowledge/redaksjonsmedarbeider_knowledge.json",
+    "data/Civication/mailFamilies/litteratur/consequence/redaksjonsmedarbeider_consequence.json",
     "data/Civication/mailFamilies/media/job/media_redaksjon_job.json",
     "data/Civication/mailFamilies/media/people/media_redaksjon_people.json",
     "data/Civication/mailFamilies/media/story/media_redaksjon_story.json",
@@ -25402,6 +25411,1124 @@
       },
       "source_hash": "cc8f3491b00652d8cac5b5f91d523604aaa42eab3f25e4c21abe3bd672d7e8d7",
       "source_path": "data/Civication/mailFamilies/film_tv/people/produksjonsassistent_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "litteratur",
+      "compatibility_projection": {
+        "category": "litteratur",
+        "choice_axis": "sporbar_avklaring_vs_skjult_overstyring",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Beslutningen kan tas av riktig rolle på et felles og synlig grunnlag.",
+            "id": "A",
+            "label": "Lag konsekvensoversikt og løft beslutningen",
+            "reply": "Jeg logger endringen, ber produksjonen beskrive hvilke leveranser som påvirkes og legger både tekstbegrunnelsen og tidskonsekvensen fram for ansvarlig redaktør.",
+            "tags": [
+              "author_autonomy",
+              "escalation",
+              "planning"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du gjør produksjonsplanen til en redaksjonell avgjørelse du ikke eier.",
+            "id": "B",
+            "label": "Avvis endringen for å holde fristen",
+            "reply": "Satsen har startet, så vi kan ikke flytte kapitlet. Forfatteren må beholde den godkjente strukturen.",
+            "tags": [
+              "hidden_authority",
+              "schedule_pressure"
+            ]
+          }
+        ],
+        "competency": "redaksjonell_koordinering",
+        "consequence_axis": "tekstlig_integritet_og_realistisk_plan_vs_tillitstap",
+        "cooldown": 3,
+        "day_phase": "workday",
+        "from": "Produksjonskoordinatoren",
+        "id": "litteratur_redaksjonsmedarbeider_conflict_endring_001",
+        "mail_family": "sen_endring_og_mandat",
+        "mail_type": "conflict",
+        "narrative_arc": "fra_sen_endring_til_avklart_tekst_og_produksjonsvalg",
+        "people_ref": "litteratur_produksjonskoordinator",
+        "phase": "early",
+        "place_id": "litteratur_manusdesk",
+        "pressure": "frist_og_omarbeid",
+        "priority": 105,
+        "purpose": "Teste om medarbeideren synliggjør både tekstlig eierskap, produksjonskostnad og korrekt beslutningseier.",
+        "repeatable": false,
+        "role_scope": "redaksjonsmedarbeider",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/litteratur/conflict/redaksjonsmedarbeider_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Endringen påvirker sidereferanser og innholdsfortegnelse.",
+          "Forfatteren har forklart hvorfor flyttingen er viktig for verkets struktur.",
+          "Ansvarlig redaktør har ikke vurdert endringen eller den nye tidsplanen."
+        ],
+        "stage": "stable",
+        "stakes": "Å avvise endringen beskytter planen ved å overstyre forfatteren; å sende den rett inn skjuler konsekvensene og beslutningsansvaret.",
+        "subject": "Den sene endringen treffer satsen",
+        "summary": "Forfatteren vil flytte et helt kapittel etter at satsen er startet, mens produksjonen ber om enten avslag eller umiddelbar godkjenning.",
+        "task_domain": "sen_manusendring",
+        "task_kind": "conflict"
+      },
+      "id": "litteratur_redaksjonsmedarbeider_conflict_endring_001",
+      "mail_type": "conflict",
+      "role_scope": "redaksjonsmedarbeider",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Beslutningen kan tas av riktig rolle på et felles og synlig grunnlag.",
+            "id": "A",
+            "label": "Lag konsekvensoversikt og løft beslutningen",
+            "reply": "Jeg logger endringen, ber produksjonen beskrive hvilke leveranser som påvirkes og legger både tekstbegrunnelsen og tidskonsekvensen fram for ansvarlig redaktør."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør produksjonsplanen til en redaksjonell avgjørelse du ikke eier.",
+            "id": "B",
+            "label": "Avvis endringen for å holde fristen",
+            "reply": "Satsen har startet, så vi kan ikke flytte kapitlet. Forfatteren må beholde den godkjente strukturen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Endringen påvirker sidereferanser og innholdsfortegnelse.",
+            "Forfatteren har forklart hvorfor flyttingen er viktig for verkets struktur.",
+            "Ansvarlig redaktør har ikke vurdert endringen eller den nye tidsplanen."
+          ],
+          "subject": "Den sene endringen treffer satsen",
+          "summary": "Forfatteren vil flytte et helt kapittel etter at satsen er startet, mens produksjonen ber om enten avslag eller umiddelbar godkjenning."
+        },
+        "day_phase": "workday",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "litteratur_redaksjonsmedarbeider_conflict_endring_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "litteratur_manusdesk",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "litteratur_redaksjonsmedarbeider_conflict_endring_001",
+          "source_path": "data/Civication/mailFamilies/litteratur/conflict/redaksjonsmedarbeider_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "redaksjonsmedarbeider.mail.litteratur_redaksjonsmedarbeider_conflict_endring_001",
+        "version": 1
+      },
+      "source_hash": "3ce49e66628bb710ec4a7d956368153195e7e95a198c525731547158c57974a3",
+      "source_path": "data/Civication/mailFamilies/litteratur/conflict/redaksjonsmedarbeider_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "litteratur",
+      "compatibility_projection": {
+        "category": "litteratur",
+        "choice_axis": "dokumentert_laring_vs_defensiv_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Feilen blir til en etterprøvbar forbedring i stedet for en muntlig advarsel.",
+            "id": "A",
+            "label": "Dokumenter årsaken og endre kontrollpunktet",
+            "reply": "Jeg knytter alle produksjonsleveranser til en godkjenningsreferanse, dokumenterer hva avviket traff og viser hvem som bekrefter neste versjonslås.",
+            "tags": [
+              "learning",
+              "control_point",
+              "accountability"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du lar arbeidsmåten som skapte feilen stå uendret.",
+            "id": "B",
+            "label": "Lukk fordi ingen offentlig feil oppstod",
+            "reply": "Vi fanget filen før utgivelse, så en kort beskjed om å være mer oppmerksom neste gang er tilstrekkelig.",
+            "tags": [
+              "defensiveness",
+              "repeat_risk"
+            ]
+          }
+        ],
+        "competency": "redaksjonell_integritet",
+        "consequence_axis": "lavere_gjentakelsesrisiko_vs_samme_systemsvakhet",
+        "cooldown": 4,
+        "day_phase": "day_end",
+        "from": "Ansvarlig bokredaktør",
+        "id": "litteratur_redaksjonsmedarbeider_consequence_versjon_001",
+        "mail_family": "feilversjon_korrigering_og_laring",
+        "mail_type": "consequence",
+        "narrative_arc": "fra_feilversjon_til_forbedret_redaksjonell_hukommelse",
+        "people_ref": "litteratur_ansvarlig_redaktor",
+        "phase": "mastery",
+        "place_id": "litteratur_versjonsarkiv",
+        "pressure": "lukke_saken_raskt",
+        "priority": 92,
+        "purpose": "Koble et tidligere versjonsvalg til dokumentert redaksjonell læring.",
+        "repeatable": false,
+        "role_scope": "redaksjonsmedarbeider",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/litteratur/consequence/redaksjonsmedarbeider_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Mottakerlisten kan sammenholdes med bekreftede erstatninger.",
+          "Avviket kan spores til at filnavn ble brukt i stedet for godkjenningsreferanse.",
+          "Neste manus går inn i produksjon den kommende uken."
+        ],
+        "stage": "stable",
+        "stakes": "Uten et korrigert arbeidsmønster blir dagens redning bare flaks, og samme feil kan gjenta seg under neste frist.",
+        "subject": "Avviket viser om versjonssystemet virker",
+        "summary": "Etterkontrollen viser om feilversjonen er trukket tilbake overalt og om neste manuslevering har fått et tydeligere kontrollpunkt.",
+        "task_domain": "etterkontroll_og_laring",
+        "task_kind": "consequence",
+        "thread_key": "litteratur_redaksjonsmedarbeider_versjon_001"
+      },
+      "id": "litteratur_redaksjonsmedarbeider_consequence_versjon_001",
+      "mail_type": "consequence",
+      "role_scope": "redaksjonsmedarbeider",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Feilen blir til en etterprøvbar forbedring i stedet for en muntlig advarsel.",
+            "id": "A",
+            "label": "Dokumenter årsaken og endre kontrollpunktet",
+            "reply": "Jeg knytter alle produksjonsleveranser til en godkjenningsreferanse, dokumenterer hva avviket traff og viser hvem som bekrefter neste versjonslås."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du lar arbeidsmåten som skapte feilen stå uendret.",
+            "id": "B",
+            "label": "Lukk fordi ingen offentlig feil oppstod",
+            "reply": "Vi fanget filen før utgivelse, så en kort beskjed om å være mer oppmerksom neste gang er tilstrekkelig."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Mottakerlisten kan sammenholdes med bekreftede erstatninger.",
+            "Avviket kan spores til at filnavn ble brukt i stedet for godkjenningsreferanse.",
+            "Neste manus går inn i produksjon den kommende uken."
+          ],
+          "subject": "Avviket viser om versjonssystemet virker",
+          "summary": "Etterkontrollen viser om feilversjonen er trukket tilbake overalt og om neste manuslevering har fått et tydeligere kontrollpunkt."
+        },
+        "day_phase": "day_end",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "litteratur_redaksjonsmedarbeider_consequence_versjon_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "litteratur_versjonsarkiv",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "litteratur_redaksjonsmedarbeider_consequence_versjon_001",
+          "source_path": "data/Civication/mailFamilies/litteratur/consequence/redaksjonsmedarbeider_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "litteratur_redaksjonsmedarbeider_versjon_001",
+        "version": 1
+      },
+      "source_hash": "bec1a0152f71bcd7f99a78e8dc4d30643da7f72e0f88d48d6fe2c45a6532990b",
+      "source_path": "data/Civication/mailFamilies/litteratur/consequence/redaksjonsmedarbeider_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "litteratur",
+      "compatibility_projection": {
+        "category": "litteratur",
+        "choice_axis": "kontrollert_stopp_vs_uverifisert_hurtigretting",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Avviket blir rettet på et dokumentert grunnlag før filen går videre.",
+            "id": "A",
+            "label": "Stans levering og sammenlign kildene",
+            "reply": "Vi setter levering på vent, identifiserer når avsnittet falt ut og lar redaktør og produksjon bekrefte korrigert fil mot godkjent manus.",
+            "tags": [
+              "stop_the_line",
+              "comparison",
+              "traceability"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du endrer produksjonsfilen uten godkjenning og lar årsaken til avviket være ukjent.",
+            "id": "B",
+            "label": "Lim inn avsnittet og behold leveringstiden",
+            "reply": "Jeg kopierer avsnittet fra manus inn i satsfilen nå, så kan vi finne årsaken etter levering.",
+            "tags": [
+              "quick_fix",
+              "unverified_change"
+            ]
+          }
+        ],
+        "competency": "redaksjonell_presisjon",
+        "consequence_axis": "korrekt_tekst_og_sporbarhet_vs_ny_feil",
+        "cooldown": 3,
+        "day_phase": "afternoon",
+        "from": "Korrekturleseren",
+        "id": "litteratur_redaksjonsmedarbeider_event_avvik_001",
+        "mail_family": "produksjonsavvik_og_replanlegging",
+        "mail_type": "event",
+        "narrative_arc": "fra_oppdaget_avvik_til_verifisert_produksjonsfil",
+        "people_ref": "litteratur_korrekturleser",
+        "phase": "mid",
+        "place_id": "litteratur_produksjonsmote",
+        "pressure": "levering_samme_dag",
+        "priority": 98,
+        "purpose": "Teste om medarbeideren behandler avviket som et sporingsproblem før noen gjetter hva teksten skal være.",
+        "repeatable": false,
+        "role_scope": "redaksjonsmedarbeider",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/litteratur/event/redaksjonsmedarbeider_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Godkjent manus inneholder avsnittet.",
+          "Satsfilens endringslogg forklarer ikke hvorfor det er borte.",
+          "Redaktør og produksjonskoordinator kan delta i en kort avklaring før levering."
+        ],
+        "stage": "stable",
+        "stakes": "En rask innliming kan skjule hvordan avviket oppstod og introdusere en ny feil; å ignorere det sender en ufullstendig bok videre.",
+        "subject": "Et avsnitt mangler i korrekturfilen",
+        "summary": "Korrekturleseren finner at et helt avsnitt fra godkjent manus ikke finnes i den satsede filen, og levering er planlagt samme ettermiddag.",
+        "task_domain": "produksjonsavvik",
+        "task_kind": "event"
+      },
+      "id": "litteratur_redaksjonsmedarbeider_event_avvik_001",
+      "mail_type": "event",
+      "role_scope": "redaksjonsmedarbeider",
+      "scene": {
+        "arc_stage": "mid",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Avviket blir rettet på et dokumentert grunnlag før filen går videre.",
+            "id": "A",
+            "label": "Stans levering og sammenlign kildene",
+            "reply": "Vi setter levering på vent, identifiserer når avsnittet falt ut og lar redaktør og produksjon bekrefte korrigert fil mot godkjent manus."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du endrer produksjonsfilen uten godkjenning og lar årsaken til avviket være ukjent.",
+            "id": "B",
+            "label": "Lim inn avsnittet og behold leveringstiden",
+            "reply": "Jeg kopierer avsnittet fra manus inn i satsfilen nå, så kan vi finne årsaken etter levering."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Godkjent manus inneholder avsnittet.",
+            "Satsfilens endringslogg forklarer ikke hvorfor det er borte.",
+            "Redaktør og produksjonskoordinator kan delta i en kort avklaring før levering."
+          ],
+          "subject": "Et avsnitt mangler i korrekturfilen",
+          "summary": "Korrekturleseren finner at et helt avsnitt fra godkjent manus ikke finnes i den satsede filen, og levering er planlagt samme ettermiddag."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "litteratur_redaksjonsmedarbeider_event_avvik_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "litteratur_produksjonsmote",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "litteratur_redaksjonsmedarbeider_event_avvik_001",
+          "source_path": "data/Civication/mailFamilies/litteratur/event/redaksjonsmedarbeider_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "redaksjonsmedarbeider.mail.litteratur_redaksjonsmedarbeider_event_avvik_001",
+        "version": 1
+      },
+      "source_hash": "f6d121e47187410ae021781a07413f0384766f4a76771a4a68611b8b49526c0d",
+      "source_path": "data/Civication/mailFamilies/litteratur/event/redaksjonsmedarbeider_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "litteratur",
+      "compatibility_projection": {
+        "category": "litteratur",
+        "choice_axis": "full_mottakerkontroll_vs_minimal_filerstatning",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Korrigeringen følger versjonen gjennom hele produksjonskjeden.",
+            "id": "A",
+            "label": "Kartlegg mottakere og erstatt alle avledede filer",
+            "reply": "Jeg samler mottakerlisten, markerer feilversjonen som trukket tilbake og får bekreftet at hver avledet fil enten er erstattet eller kontrollert mot korrekt manus.",
+            "tags": [
+              "recall",
+              "recipient_control",
+              "traceability"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du mangler bevis for at alle mottakere og avledede filer faktisk er korrigert.",
+            "id": "B",
+            "label": "Erstatt hovedfilen og lukk avviket",
+            "reply": "Hovedfilen er nå riktig, så vi kan lukke avviket og be de andre bruke siste vedlegg.",
+            "tags": [
+              "partial_fix",
+              "residual_risk"
+            ]
+          }
+        ],
+        "competency": "versjonssporbarhet",
+        "consequence_axis": "helhetlig_korrigering_vs_restfeil_i_produksjonen",
+        "cooldown": 4,
+        "day_phase": "evening",
+        "from": "Produksjonskoordinatoren",
+        "id": "litteratur_redaksjonsmedarbeider_followup_versjon_001",
+        "mail_family": "feilversjon_korrigering_og_laring",
+        "mail_type": "followup",
+        "narrative_arc": "fra_stoppet_feilfil_til_kontrollert_korrigeringsspor",
+        "people_ref": "litteratur_produksjonskoordinator",
+        "phase": "mastery",
+        "place_id": "litteratur_versjonsarkiv",
+        "pressure": "rask_lukking",
+        "priority": 94,
+        "purpose": "Teste om korrigeringen dekker hele distribusjonssporet og ikke bare den sentrale filen.",
+        "repeatable": false,
+        "role_scope": "redaksjonsmedarbeider",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/litteratur/followup/redaksjonsmedarbeider_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Produksjonen har bekreftet at hovedfilen er stoppet.",
+          "E-postloggen viser at korrekturleser og omslagsarbeid også mottok utdrag.",
+          "Det finnes ennå ingen samlet oversikt over avledede filer."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis bare hovedfilen erstattes, kan korrektur, omslagstekst eller eksterne leveranser fortsatt bygge på den feilaktige versjonen.",
+        "subject": "Feilversjonen ble stoppet – hvem fikk den?",
+        "summary": "En eldre manusfil ble sendt til sats, men stanset før ferdig levering. Nå må alle kopier, mottakere og avledede filer identifiseres.",
+        "task_domain": "korrigering_og_distribusjonsspor",
+        "task_kind": "followup",
+        "thread_key": "litteratur_redaksjonsmedarbeider_versjon_001"
+      },
+      "id": "litteratur_redaksjonsmedarbeider_followup_versjon_001",
+      "mail_type": "followup",
+      "role_scope": "redaksjonsmedarbeider",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Korrigeringen følger versjonen gjennom hele produksjonskjeden.",
+            "id": "A",
+            "label": "Kartlegg mottakere og erstatt alle avledede filer",
+            "reply": "Jeg samler mottakerlisten, markerer feilversjonen som trukket tilbake og får bekreftet at hver avledet fil enten er erstattet eller kontrollert mot korrekt manus."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du mangler bevis for at alle mottakere og avledede filer faktisk er korrigert.",
+            "id": "B",
+            "label": "Erstatt hovedfilen og lukk avviket",
+            "reply": "Hovedfilen er nå riktig, så vi kan lukke avviket og be de andre bruke siste vedlegg."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Produksjonen har bekreftet at hovedfilen er stoppet.",
+            "E-postloggen viser at korrekturleser og omslagsarbeid også mottok utdrag.",
+            "Det finnes ennå ingen samlet oversikt over avledede filer."
+          ],
+          "subject": "Feilversjonen ble stoppet – hvem fikk den?",
+          "summary": "En eldre manusfil ble sendt til sats, men stanset før ferdig levering. Nå må alle kopier, mottakere og avledede filer identifiseres."
+        },
+        "day_phase": "evening",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "litteratur_redaksjonsmedarbeider_followup_versjon_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "litteratur_versjonsarkiv",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "litteratur_redaksjonsmedarbeider_followup_versjon_001",
+          "source_path": "data/Civication/mailFamilies/litteratur/followup/redaksjonsmedarbeider_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "litteratur_redaksjonsmedarbeider_versjon_001",
+        "version": 1
+      },
+      "source_hash": "b9e4dc2aa7c2865aeda947565dc517db3d4b8e2e249a35f183ba2eb6326bb874",
+      "source_path": "data/Civication/mailFamilies/litteratur/followup/redaksjonsmedarbeider_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "litteratur",
+      "compatibility_projection": {
+        "category": "litteratur",
+        "choice_axis": "verifisert_arbeidsgrunnlag_vs_antatt_siste_fil",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Produksjonen får ett dokumentert arbeidsgrunnlag uten at du later som du eier godkjenningen.",
+            "id": "A",
+            "label": "Hold versjon 12 og be om eksplisitt avklaring",
+            "reply": "Jeg registrerer versjon 12 som gjeldende til redaktør og forfatter har forklart og godkjent endringene i versjon 13.",
+            "tags": [
+              "traceability",
+              "clarification",
+              "mandate"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du gjør kronologi til redaksjonell godkjenning og sprer en uavklart tekst.",
+            "id": "B",
+            "label": "Bruk versjon 13 fordi den kom sist",
+            "reply": "Den nyeste filen må være den riktige. Jeg sender versjon 13 videre og rydder avklaringen senere.",
+            "tags": [
+              "assumption",
+              "version_risk"
+            ]
+          }
+        ],
+        "competency": "versjonssporbarhet",
+        "consequence_axis": "felles_tekstgrunnlag_vs_skjult_versjonsfeil",
+        "cooldown": 2,
+        "day_phase": "morning",
+        "from": "Ansvarlig bokredaktør",
+        "id": "litteratur_redaksjonsmedarbeider_job_versjon_001",
+        "mail_family": "manusmottak_og_versjonsgrunnlag",
+        "mail_type": "job",
+        "narrative_arc": "fra_tvetydig_mottak_til_lost_arbeidsversjon",
+        "people_ref": "litteratur_ansvarlig_redaktor",
+        "phase": "intro",
+        "place_id": "litteratur_manusdesk",
+        "pressure": "morgenfrist",
+        "priority": 115,
+        "purpose": "Teste om medarbeideren låser versjon og beslutningsspor før oppgaver fordeles.",
+        "repeatable": false,
+        "role_scope": "redaksjonsmedarbeider",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/litteratur/job/redaksjonsmedarbeider_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Redaktørens godkjenningsmelding viser til versjon 12.",
+          "En fil merket versjon 13 kom senere uten beskrivelse av endringene.",
+          "Produksjonskoordinatoren venter på beskjed før satsarbeidet starter."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis filnavn eller sendetid brukes som godkjenning, kan redaksjon, forfatter og produksjon begynne dagen på ulike tekster.",
+        "subject": "To filer heter endelig manus",
+        "summary": "Forfatteren har sendt en ny fil etter at redaktøren godkjente en tidligere versjon, og produksjonen trenger ett autoritativt arbeidsgrunnlag.",
+        "task_domain": "manusmottak_og_versjonskontroll",
+        "task_kind": "job"
+      },
+      "id": "litteratur_redaksjonsmedarbeider_job_versjon_001",
+      "mail_type": "job",
+      "role_scope": "redaksjonsmedarbeider",
+      "scene": {
+        "arc_stage": "intro",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Produksjonen får ett dokumentert arbeidsgrunnlag uten at du later som du eier godkjenningen.",
+            "id": "A",
+            "label": "Hold versjon 12 og be om eksplisitt avklaring",
+            "reply": "Jeg registrerer versjon 12 som gjeldende til redaktør og forfatter har forklart og godkjent endringene i versjon 13."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør kronologi til redaksjonell godkjenning og sprer en uavklart tekst.",
+            "id": "B",
+            "label": "Bruk versjon 13 fordi den kom sist",
+            "reply": "Den nyeste filen må være den riktige. Jeg sender versjon 13 videre og rydder avklaringen senere."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Redaktørens godkjenningsmelding viser til versjon 12.",
+            "En fil merket versjon 13 kom senere uten beskrivelse av endringene.",
+            "Produksjonskoordinatoren venter på beskjed før satsarbeidet starter."
+          ],
+          "subject": "To filer heter endelig manus",
+          "summary": "Forfatteren har sendt en ny fil etter at redaktøren godkjente en tidligere versjon, og produksjonen trenger ett autoritativt arbeidsgrunnlag."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "litteratur_redaksjonsmedarbeider_job_versjon_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "litteratur_manusdesk",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "litteratur_redaksjonsmedarbeider_job_versjon_001",
+          "source_path": "data/Civication/mailFamilies/litteratur/job/redaksjonsmedarbeider_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "redaksjonsmedarbeider.mail.litteratur_redaksjonsmedarbeider_job_versjon_001",
+        "version": 1
+      },
+      "source_hash": "a24e139916cea3972bab9bc5e2aa9c0325cdd22a8a9ce0f497715818648be26a",
+      "source_path": "data/Civication/mailFamilies/litteratur/job/redaksjonsmedarbeider_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "litteratur",
+      "compatibility_projection": {
+        "category": "litteratur",
+        "choice_axis": "dokumentert_status_og_eskalering_vs_antatt_tillatelse",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du holder fakta, juridisk vurdering og beslutningsmyndighet adskilt.",
+            "id": "A",
+            "label": "Merk status som uavklart og eskaler",
+            "reply": "Jeg registrerer at forespørselen er sendt, men at tillatelsen ikke er dokumentert, og løfter saken til ansvarlig redaktør eller rettighetsansvarlig før produksjonsbeslutningen.",
+            "tags": [
+              "documentation",
+              "rights",
+              "escalation"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du gjør fravær av svar til en avklaring som dokumentasjonen ikke viser.",
+            "id": "B",
+            "label": "Regn stillheten som aksept foreløpig",
+            "reply": "Forespørselen er sendt uten innsigelse, så utdraget kan stå til noen eventuelt svarer.",
+            "tags": [
+              "assumed_permission",
+              "rights_risk"
+            ]
+          }
+        ],
+        "competency": "dokumentasjonskontroll",
+        "consequence_axis": "ansvarlig_avklaring_vs_rettighetsrisiko",
+        "cooldown": 3,
+        "day_phase": "workday",
+        "from": "Ansvarlig bokredaktør",
+        "id": "litteratur_redaksjonsmedarbeider_knowledge_rettighet_001",
+        "mail_family": "rettighetsspor_og_eskalering",
+        "mail_type": "knowledge",
+        "narrative_arc": "fra_manglende_dokumentasjon_til_tydelig_avklaringsspor",
+        "people_ref": "litteratur_ansvarlig_redaktor",
+        "phase": "mid",
+        "place_id": "litteratur_versjonsarkiv",
+        "pressure": "produksjonsfrist",
+        "priority": 90,
+        "purpose": "Teste om medarbeideren skiller registrert forespørsel fra dokumentert avklaring og eskalerer uten å foreta en juridisk vurdering.",
+        "repeatable": false,
+        "role_scope": "redaksjonsmedarbeider",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/litteratur/knowledge/redaksjonsmedarbeider_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Utdraget er tydelig merket i manus.",
+          "E-posten i saksmappen dokumenterer bare en sendt forespørsel.",
+          "Produksjonen trenger beskjed om utdraget kan stå i arbeidsfilen."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis forespørselen behandles som tillatelse, kan uavklart materiale gå videre; hvis medarbeideren selv avgjør rettighetsspørsmålet, overskrides mandatet.",
+        "subject": "Tillatelsen ligger ikke i saksmappen",
+        "summary": "Manuset gjengir et lengre tredjepartsmateriale, men saksmappen viser bare at forfatteren har bedt om tillatelse – ikke at den er gitt.",
+        "task_domain": "dokumentasjon_og_rettighetsspor",
+        "task_kind": "knowledge"
+      },
+      "id": "litteratur_redaksjonsmedarbeider_knowledge_rettighet_001",
+      "mail_type": "knowledge",
+      "role_scope": "redaksjonsmedarbeider",
+      "scene": {
+        "arc_stage": "mid",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du holder fakta, juridisk vurdering og beslutningsmyndighet adskilt.",
+            "id": "A",
+            "label": "Merk status som uavklart og eskaler",
+            "reply": "Jeg registrerer at forespørselen er sendt, men at tillatelsen ikke er dokumentert, og løfter saken til ansvarlig redaktør eller rettighetsansvarlig før produksjonsbeslutningen."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør fravær av svar til en avklaring som dokumentasjonen ikke viser.",
+            "id": "B",
+            "label": "Regn stillheten som aksept foreløpig",
+            "reply": "Forespørselen er sendt uten innsigelse, så utdraget kan stå til noen eventuelt svarer."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Utdraget er tydelig merket i manus.",
+            "E-posten i saksmappen dokumenterer bare en sendt forespørsel.",
+            "Produksjonen trenger beskjed om utdraget kan stå i arbeidsfilen."
+          ],
+          "subject": "Tillatelsen ligger ikke i saksmappen",
+          "summary": "Manuset gjengir et lengre tredjepartsmateriale, men saksmappen viser bare at forfatteren har bedt om tillatelse – ikke at den er gitt."
+        },
+        "day_phase": "workday",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "litteratur_redaksjonsmedarbeider_knowledge_rettighet_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "litteratur_versjonsarkiv",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "litteratur_redaksjonsmedarbeider_knowledge_rettighet_001",
+          "source_path": "data/Civication/mailFamilies/litteratur/knowledge/redaksjonsmedarbeider_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "redaksjonsmedarbeider.mail.litteratur_redaksjonsmedarbeider_knowledge_rettighet_001",
+        "version": 1
+      },
+      "source_hash": "63cebeb15c159ce7e42caf27e7d811f45560482ec222a9f262ff0e9f0a047af5",
+      "source_path": "data/Civication/mailFamilies/litteratur/knowledge/redaksjonsmedarbeider_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "litteratur",
+      "compatibility_projection": {
+        "category": "litteratur",
+        "choice_axis": "sporbar_formulering_vs_antatt_nyeste_metadata",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Et lite avvik stoppes før det blir tre ulike offentlige versjoner.",
+            "id": "A",
+            "label": "Marker avviket og be om én godkjent formulering",
+            "reply": "Jeg holder begge flater tilbake til ansvarlig redaktør har bekreftet undertittelen, og oppdaterer deretter omslag, metadata og logg samlet.",
+            "tags": [
+              "metadata",
+              "approval",
+              "consistency"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du gjør endringstidspunkt til godkjenning og overskriver det eneste dokumenterte beslutningssporet.",
+            "id": "B",
+            "label": "Bruk den nyeste metadatafilen",
+            "reply": "Metadataarket er sist endret, så jeg bruker den formuleringen også på omslaget.",
+            "tags": [
+              "timestamp_assumption",
+              "metadata_risk"
+            ]
+          }
+        ],
+        "competency": "redaksjonell_presisjon",
+        "consequence_axis": "konsistent_utgivelse_vs_synlig_metadatafeil",
+        "cooldown": 2,
+        "day_phase": "afternoon",
+        "from": "Produksjonskoordinatoren",
+        "id": "litteratur_redaksjonsmedarbeider_micro_undertittel_001",
+        "mail_family": "siste_sporbarhetskontroll",
+        "mail_type": "micro",
+        "narrative_arc": "fra_lite_metadataavvik_til_felles_godkjent_formulering",
+        "people_ref": "litteratur_produksjonskoordinator",
+        "phase": "advanced",
+        "place_id": "litteratur_versjonsarkiv",
+        "pressure": "siste_kontroll",
+        "priority": 78,
+        "purpose": "Teste om medarbeideren bruker et lite avvik til å avklare autoritativ formulering før distribusjon.",
+        "repeatable": false,
+        "role_scope": "redaksjonsmedarbeider",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/litteratur/micro/redaksjonsmedarbeider_micro.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Omslagsarket bruker undertittelen fra et tidligere møte.",
+          "Metadataarket bruker en nyere formulering.",
+          "Bare den eldre formuleringen har en eksplisitt godkjenningsreferanse."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis én variant velges ut fra filrekkefølge, kan omslag, katalogdata og bokblokk bli inkonsistente.",
+        "subject": "To undertitler i samme leveranse",
+        "summary": "Omslagsarket og bokmetadataene viser ulike undertitler, mens beslutningsloggen bare dokumenterer den ene.",
+        "task_domain": "metadata_og_filkontroll",
+        "task_kind": "micro"
+      },
+      "id": "litteratur_redaksjonsmedarbeider_micro_undertittel_001",
+      "mail_type": "micro",
+      "role_scope": "redaksjonsmedarbeider",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Et lite avvik stoppes før det blir tre ulike offentlige versjoner.",
+            "id": "A",
+            "label": "Marker avviket og be om én godkjent formulering",
+            "reply": "Jeg holder begge flater tilbake til ansvarlig redaktør har bekreftet undertittelen, og oppdaterer deretter omslag, metadata og logg samlet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør endringstidspunkt til godkjenning og overskriver det eneste dokumenterte beslutningssporet.",
+            "id": "B",
+            "label": "Bruk den nyeste metadatafilen",
+            "reply": "Metadataarket er sist endret, så jeg bruker den formuleringen også på omslaget."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Omslagsarket bruker undertittelen fra et tidligere møte.",
+            "Metadataarket bruker en nyere formulering.",
+            "Bare den eldre formuleringen har en eksplisitt godkjenningsreferanse."
+          ],
+          "subject": "To undertitler i samme leveranse",
+          "summary": "Omslagsarket og bokmetadataene viser ulike undertitler, mens beslutningsloggen bare dokumenterer den ene."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "litteratur_redaksjonsmedarbeider_micro_undertittel_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "litteratur_versjonsarkiv",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "litteratur_redaksjonsmedarbeider_micro_undertittel_001",
+          "source_path": "data/Civication/mailFamilies/litteratur/micro/redaksjonsmedarbeider_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "redaksjonsmedarbeider.mail.litteratur_redaksjonsmedarbeider_micro_undertittel_001",
+        "version": 1
+      },
+      "source_hash": "b4e64fad695640033d69934aa88d5fc1fb290fe06c1945473db3c65446b085d3",
+      "source_path": "data/Civication/mailFamilies/litteratur/micro/redaksjonsmedarbeider_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "litteratur",
+      "compatibility_projection": {
+        "category": "litteratur",
+        "choice_axis": "presis_status_vs_beroligende_overlofte",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Forfatteren får en brukbar status uten at du overtar redaktørens myndighet.",
+            "id": "A",
+            "label": "Bekreft mottak og navngi hvem som beslutter",
+            "reply": "Slutten er mottatt og loggført, men ikke godkjent ennå. Ansvarlig redaktør vurderer den; korrekturen venter til vi har en eksplisitt beslutning.",
+            "tags": [
+              "clarity",
+              "mandate",
+              "author_contact"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Din foreløpige vurdering kan nå fungere som en godkjenning du ikke har mandat til å gi.",
+            "id": "B",
+            "label": "Si at den ser grei ut",
+            "reply": "Den ser grei ut fra min side, så korrekturen kan begynne mens redaktøren ser nærmere på den.",
+            "tags": [
+              "overpromise",
+              "authority_risk"
+            ]
+          }
+        ],
+        "competency": "mandatklarhet",
+        "consequence_axis": "felles_forstaelse_vs_falsk_godkjenning",
+        "cooldown": 2,
+        "day_phase": "forenoon",
+        "from": "Forfatteren",
+        "id": "litteratur_redaksjonsmedarbeider_people_status_001",
+        "mail_family": "rolleavklaring_og_felles_status",
+        "mail_type": "people",
+        "narrative_arc": "fra_statussporsmal_til_tydelig_beslutningslinje",
+        "people_ref": "litteratur_forfatter",
+        "phase": "early",
+        "place_id": "litteratur_manusdesk",
+        "pressure": "forventning_om_raskt_svar",
+        "priority": 95,
+        "purpose": "Teste om medarbeideren skiller mottak, vurdering og beslutning i kommunikasjonen.",
+        "repeatable": false,
+        "role_scope": "redaksjonsmedarbeider",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/litteratur/people/redaksjonsmedarbeider_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den nye slutten er registrert i versjonsloggen.",
+          "Redaktøren har bekreftet mottak, men ikke vurdering.",
+          "Forfatteren må vite om korrekturen skal vente."
+        ],
+        "stage": "stable",
+        "stakes": "Et vennlig, men upresist ja kan bli tolket som redaksjonell godkjenning og flytte produksjonen uten mandat.",
+        "subject": "Er den nye slutten godkjent?",
+        "summary": "Forfatteren trenger en rask status, men ansvarlig redaktør har bare bekreftet mottak og ikke tatt stilling til den nye slutten.",
+        "task_domain": "forfatterkontakt_og_status",
+        "task_kind": "people"
+      },
+      "id": "litteratur_redaksjonsmedarbeider_people_status_001",
+      "mail_type": "people",
+      "role_scope": "redaksjonsmedarbeider",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Forfatteren får en brukbar status uten at du overtar redaktørens myndighet.",
+            "id": "A",
+            "label": "Bekreft mottak og navngi hvem som beslutter",
+            "reply": "Slutten er mottatt og loggført, men ikke godkjent ennå. Ansvarlig redaktør vurderer den; korrekturen venter til vi har en eksplisitt beslutning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Din foreløpige vurdering kan nå fungere som en godkjenning du ikke har mandat til å gi.",
+            "id": "B",
+            "label": "Si at den ser grei ut",
+            "reply": "Den ser grei ut fra min side, så korrekturen kan begynne mens redaktøren ser nærmere på den."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den nye slutten er registrert i versjonsloggen.",
+            "Redaktøren har bekreftet mottak, men ikke vurdering.",
+            "Forfatteren må vite om korrekturen skal vente."
+          ],
+          "subject": "Er den nye slutten godkjent?",
+          "summary": "Forfatteren trenger en rask status, men ansvarlig redaktør har bare bekreftet mottak og ikke tatt stilling til den nye slutten."
+        },
+        "day_phase": "forenoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "litteratur_redaksjonsmedarbeider_people_status_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "litteratur_manusdesk",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "litteratur_redaksjonsmedarbeider_people_status_001",
+          "source_path": "data/Civication/mailFamilies/litteratur/people/redaksjonsmedarbeider_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "redaksjonsmedarbeider.mail.litteratur_redaksjonsmedarbeider_people_status_001",
+        "version": 1
+      },
+      "source_hash": "d535a767e57c0f2d65d71817d15b5bb30935aac7fe4cdfabf68c594240fe68c8",
+      "source_path": "data/Civication/mailFamilies/litteratur/people/redaksjonsmedarbeider_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "litteratur",
+      "compatibility_projection": {
+        "category": "litteratur",
+        "choice_axis": "sporbar_samhandling_vs_usynlig_brannslukking",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du beskriver kvalitet som en arbeidsform teamet kan gjenta og kontrollere.",
+            "id": "A",
+            "label": "Gjør det felles beslutningssporet til resultatet",
+            "reply": "Dagens resultat er at alle vet hvilken tekst som gjelder, hva som er uavklart og hvem som beslutter neste steg.",
+            "tags": [
+              "professional_practice",
+              "shared_status",
+              "integrity"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du gjør systemkvalitet avhengig av usynlig individuell brannslukking.",
+            "id": "B",
+            "label": "Fremhev hvor mange problemer du løste alene",
+            "reply": "Jeg fikk reddet leveransen ved å ordne de fleste feilene selv før noen andre trengte å se dem.",
+            "tags": [
+              "hidden_work",
+              "single_point_failure"
+            ]
+          }
+        ],
+        "competency": "redaksjonell_integritet",
+        "consequence_axis": "tillit_og_baerekraftig_flyt_vs_personavhengig_feilretting",
+        "cooldown": 5,
+        "day_phase": "day_end",
+        "from": "Ansvarlig bokredaktør",
+        "id": "litteratur_redaksjonsmedarbeider_story_arbeidsdag_001",
+        "mail_family": "sporbarhet_som_redaksjonell_praksis",
+        "mail_type": "story",
+        "narrative_arc": "fra_enkelte_kontroller_til_sammenhengende_redaksjonell_praksis",
+        "people_ref": "litteratur_ansvarlig_redaktor",
+        "phase": "climax",
+        "place_id": "litteratur_produksjonsmote",
+        "pressure": "synlig_produksjonsresultat",
+        "priority": 90,
+        "purpose": "Knytte de enkelte kontrollene sammen til en troverdig redaksjonell yrkespraksis.",
+        "repeatable": false,
+        "role_scope": "redaksjonsmedarbeider",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/litteratur/story/redaksjonsmedarbeider_story.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den godkjente manusversjonen er entydig merket og distribuert.",
+          "Åpne rettighets- og tekstspørsmål har navngitte beslutningseiere.",
+          "Produksjonsplanen viser både ny frist og hva som fortsatt må kontrolleres."
+        ],
+        "stage": "stable",
+        "stakes": "Rollen lykkes ikke ved å gjøre flest mulig endringer selv, men ved å holde tekst, ansvar og leveranser konsistente uten å skjule usikkerhet.",
+        "subject": "Dagen da alle arbeidet på samme bok",
+        "summary": "Redaksjon, forfatter, korrektur og produksjon avslutter dagen med samme manusversjon, avklarte åpne spørsmål og et synlig beslutningsspor.",
+        "task_domain": "yrkespraksis_og_redaksjonell_integritet",
+        "task_kind": "story"
+      },
+      "id": "litteratur_redaksjonsmedarbeider_story_arbeidsdag_001",
+      "mail_type": "story",
+      "role_scope": "redaksjonsmedarbeider",
+      "scene": {
+        "arc_stage": "climax",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du beskriver kvalitet som en arbeidsform teamet kan gjenta og kontrollere.",
+            "id": "A",
+            "label": "Gjør det felles beslutningssporet til resultatet",
+            "reply": "Dagens resultat er at alle vet hvilken tekst som gjelder, hva som er uavklart og hvem som beslutter neste steg."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør systemkvalitet avhengig av usynlig individuell brannslukking.",
+            "id": "B",
+            "label": "Fremhev hvor mange problemer du løste alene",
+            "reply": "Jeg fikk reddet leveransen ved å ordne de fleste feilene selv før noen andre trengte å se dem."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den godkjente manusversjonen er entydig merket og distribuert.",
+            "Åpne rettighets- og tekstspørsmål har navngitte beslutningseiere.",
+            "Produksjonsplanen viser både ny frist og hva som fortsatt må kontrolleres."
+          ],
+          "subject": "Dagen da alle arbeidet på samme bok",
+          "summary": "Redaksjon, forfatter, korrektur og produksjon avslutter dagen med samme manusversjon, avklarte åpne spørsmål og et synlig beslutningsspor."
+        },
+        "day_phase": "day_end",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "litteratur_redaksjonsmedarbeider_story_arbeidsdag_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "litteratur_produksjonsmote",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "litteratur_redaksjonsmedarbeider_story_arbeidsdag_001",
+          "source_path": "data/Civication/mailFamilies/litteratur/story/redaksjonsmedarbeider_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "redaksjonsmedarbeider.mail.litteratur_redaksjonsmedarbeider_story_arbeidsdag_001",
+        "version": 1
+      },
+      "source_hash": "7d4f3d85fa41af83ec6298e060e3f33bd7d8e0c30509528a19edadab122e6225",
+      "source_path": "data/Civication/mailFamilies/litteratur/story/redaksjonsmedarbeider_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -150161,7 +151288,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "dfe2ebcb93b77b23b8e2a02fa30be6f21f68e584913eec79f1c90d6f01f8b8b3",
+  "registry_hash": "f2c3a2d2385d50e52782e448192f8d6290eecf391fea7cf8582814d9d1ebc10a",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -150356,6 +151483,17 @@
       "film_tv_pa_followup_sideinngang_status",
       "film_tv_pa_knowledge_apen_kontaktliste",
       "film_tv_pa_consequence_transport_motte_feil"
+    ],
+    "litteratur/redaksjonsmedarbeider": [
+      "litteratur_redaksjonsmedarbeider_job_versjon_001",
+      "litteratur_redaksjonsmedarbeider_people_status_001",
+      "litteratur_redaksjonsmedarbeider_story_arbeidsdag_001",
+      "litteratur_redaksjonsmedarbeider_conflict_endring_001",
+      "litteratur_redaksjonsmedarbeider_event_avvik_001",
+      "litteratur_redaksjonsmedarbeider_micro_undertittel_001",
+      "litteratur_redaksjonsmedarbeider_followup_versjon_001",
+      "litteratur_redaksjonsmedarbeider_knowledge_rettighet_001",
+      "litteratur_redaksjonsmedarbeider_consequence_versjon_001"
     ],
     "media/media_redaksjon": [
       "media_redaksjon_job_verifisering_001",
@@ -151244,11 +152382,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 228,
+    "compiled_source_file_count": 237,
     "ignored_source_file_count": 1,
-    "input_file_count": 229,
-    "role_count": 31,
-    "scene_count": 991,
+    "input_file_count": 238,
+    "role_count": 32,
+    "scene_count": 1000,
     "shadowed_duplicate_count": 0
   },
   "version": 1

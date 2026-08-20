@@ -1,0 +1,65 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "litteratur",
+  "role_scope": "redaksjonsmedarbeider",
+  "mail_type": "event",
+  "families": [
+    {
+      "id": "produksjonsavvik_og_replanlegging",
+      "purpose": "Teste om et avvik mellom godkjent manus og korrekturfil utløser kontrollert stopp og ny plan.",
+      "learning_focus": ["avvikshåndtering", "tekstkontroll", "friststyring"],
+      "mails": [
+        {
+          "id": "litteratur_redaksjonsmedarbeider_event_avvik_001",
+          "mail_type": "event",
+          "mail_family": "produksjonsavvik_og_replanlegging",
+          "role_scope": "redaksjonsmedarbeider",
+          "phase": "mid",
+          "day_phase": "afternoon",
+          "priority": 98,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Korrekturleseren",
+          "people_ref": "litteratur_korrekturleser",
+          "place_id": "litteratur_produksjonsmote",
+          "subject": "Et avsnitt mangler i korrekturfilen",
+          "summary": "Korrekturleseren finner at et helt avsnitt fra godkjent manus ikke finnes i den satsede filen, og levering er planlagt samme ettermiddag.",
+          "purpose": "Teste om medarbeideren behandler avviket som et sporingsproblem før noen gjetter hva teksten skal være.",
+          "stakes": "En rask innliming kan skjule hvordan avviket oppstod og introdusere en ny feil; å ignorere det sender en ufullstendig bok videre.",
+          "situation": [
+            "Godkjent manus inneholder avsnittet.",
+            "Satsfilens endringslogg forklarer ikke hvorfor det er borte.",
+            "Redaktør og produksjonskoordinator kan delta i en kort avklaring før levering."
+          ],
+          "task_domain": "produksjonsavvik",
+          "task_kind": "event",
+          "competency": "redaksjonell_presisjon",
+          "pressure": "levering_samme_dag",
+          "choice_axis": "kontrollert_stopp_vs_uverifisert_hurtigretting",
+          "consequence_axis": "korrekt_tekst_og_sporbarhet_vs_ny_feil",
+          "narrative_arc": "fra_oppdaget_avvik_til_verifisert_produksjonsfil",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Stans levering og sammenlign kildene",
+              "reply": "Vi setter levering på vent, identifiserer når avsnittet falt ut og lar redaktør og produksjon bekrefte korrigert fil mot godkjent manus.",
+              "effect": 1,
+              "tags": ["stop_the_line", "comparison", "traceability"],
+              "feedback": "Avviket blir rettet på et dokumentert grunnlag før filen går videre."
+            },
+            {
+              "id": "B",
+              "label": "Lim inn avsnittet og behold leveringstiden",
+              "reply": "Jeg kopierer avsnittet fra manus inn i satsfilen nå, så kan vi finne årsaken etter levering.",
+              "effect": -1,
+              "tags": ["quick_fix", "unverified_change"],
+              "feedback": "Du endrer produksjonsfilen uten godkjenning og lar årsaken til avviket være ukjent."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

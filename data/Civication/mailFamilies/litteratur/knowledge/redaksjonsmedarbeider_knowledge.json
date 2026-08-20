@@ -1,0 +1,65 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "litteratur",
+  "role_scope": "redaksjonsmedarbeider",
+  "mail_type": "knowledge",
+  "families": [
+    {
+      "id": "rettighetsspor_og_eskalering",
+      "purpose": "Gjøre dokumentasjon og eskalering til praktisk kunnskap når et manus bruker materiale med uavklart tillatelse.",
+      "learning_focus": ["rettighetsspor", "dokumentasjon", "mandatgrense"],
+      "mails": [
+        {
+          "id": "litteratur_redaksjonsmedarbeider_knowledge_rettighet_001",
+          "mail_type": "knowledge",
+          "mail_family": "rettighetsspor_og_eskalering",
+          "role_scope": "redaksjonsmedarbeider",
+          "phase": "mid",
+          "day_phase": "workday",
+          "priority": 90,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Ansvarlig bokredaktør",
+          "people_ref": "litteratur_ansvarlig_redaktor",
+          "place_id": "litteratur_versjonsarkiv",
+          "subject": "Tillatelsen ligger ikke i saksmappen",
+          "summary": "Manuset gjengir et lengre tredjepartsmateriale, men saksmappen viser bare at forfatteren har bedt om tillatelse – ikke at den er gitt.",
+          "purpose": "Teste om medarbeideren skiller registrert forespørsel fra dokumentert avklaring og eskalerer uten å foreta en juridisk vurdering.",
+          "stakes": "Hvis forespørselen behandles som tillatelse, kan uavklart materiale gå videre; hvis medarbeideren selv avgjør rettighetsspørsmålet, overskrides mandatet.",
+          "situation": [
+            "Utdraget er tydelig merket i manus.",
+            "E-posten i saksmappen dokumenterer bare en sendt forespørsel.",
+            "Produksjonen trenger beskjed om utdraget kan stå i arbeidsfilen."
+          ],
+          "task_domain": "dokumentasjon_og_rettighetsspor",
+          "task_kind": "knowledge",
+          "competency": "dokumentasjonskontroll",
+          "pressure": "produksjonsfrist",
+          "choice_axis": "dokumentert_status_og_eskalering_vs_antatt_tillatelse",
+          "consequence_axis": "ansvarlig_avklaring_vs_rettighetsrisiko",
+          "narrative_arc": "fra_manglende_dokumentasjon_til_tydelig_avklaringsspor",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Merk status som uavklart og eskaler",
+              "reply": "Jeg registrerer at forespørselen er sendt, men at tillatelsen ikke er dokumentert, og løfter saken til ansvarlig redaktør eller rettighetsansvarlig før produksjonsbeslutningen.",
+              "effect": 1,
+              "tags": ["documentation", "rights", "escalation"],
+              "feedback": "Du holder fakta, juridisk vurdering og beslutningsmyndighet adskilt."
+            },
+            {
+              "id": "B",
+              "label": "Regn stillheten som aksept foreløpig",
+              "reply": "Forespørselen er sendt uten innsigelse, så utdraget kan stå til noen eventuelt svarer.",
+              "effect": -1,
+              "tags": ["assumed_permission", "rights_risk"],
+              "feedback": "Du gjør fravær av svar til en avklaring som dokumentasjonen ikke viser."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
