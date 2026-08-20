@@ -1,0 +1,65 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "litteratur",
+  "role_scope": "redaktor_bok",
+  "mail_type": "micro",
+  "families": [
+    {
+      "id": "stemme_og_lokal_redigering",
+      "purpose": "Fange når en liten språklig standardisering gjentas så konsekvent at fortellerstemmens sosiale og rytmiske særpreg svekkes.",
+      "learning_focus": ["nærlesing", "forfatterstemme", "lokal_redigering"],
+      "mails": [
+        {
+          "id": "litteratur_redaktor_bok_micro_stemme_001",
+          "mail_type": "micro",
+          "mail_family": "stemme_og_lokal_redigering",
+          "role_scope": "redaktor_bok",
+          "phase": "advanced",
+          "day_phase": "afternoon",
+          "priority": 108,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Forfatteren",
+          "people_ref": "litteratur_redaktor_forfatter",
+          "place_id": "litteratur_redaktor_manusrom",
+          "subject": "Alle de korte setningene er blitt bundet sammen",
+          "summary": "I detaljredigeringen har flere korte setninger blitt slått sammen for bedre flyt, men mønsteret var sterkest i kapitlene der fortelleren mister kontroll.",
+          "purpose": "Teste om redaktøren gransker en lokal forbedring som mulig meningsbærende tap før endringen skaleres.",
+          "stakes": "En grammatisk glattere tekst kan bli litterært svakere dersom rytmen bar informasjon om fortellerens tilstand.",
+          "situation": [
+            "De korte setningene følger en tydelig økning gjennom tre kapitler.",
+            "Sammenslåingene gjør hvert avsnitt lettere å lese isolert.",
+            "Forfatteren sier rytmen var bevisst, men har ikke forklart funksjonen tidligere."
+          ],
+          "task_domain": "nærlesing_og_stemmekontroll",
+          "task_kind": "micro",
+          "competency": "manusvurdering",
+          "pressure": "effektiv_språkvask",
+          "choice_axis": "funksjonell_nærlesing_vs_automatisk_standardisering",
+          "consequence_axis": "bevart_fortellerfunksjon_vs_glattet_særpreg",
+          "narrative_arc": "fra_liten_språkendring_til_synlig_forståelse_av_rytme_som_mening",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Tilbakestill et utvalg og sammenlign funksjonen",
+              "reply": "Jeg tilbakestiller endringene i ett representativt avsnitt og vurderer rytme, forståelighet og fortellerfunksjon med forfatteren før mønsteret redigeres videre.",
+              "effect": 1,
+              "tags": ["close_reading", "voice", "reversible_test"],
+              "feedback": "Du gjør redigeringen reversibel og prøver om det språklige avviket faktisk bærer mening."
+            },
+            {
+              "id": "B",
+              "label": "Behold sammenslåingene for jevn flyt",
+              "reply": "Rytmen er mer profesjonell og lesbar nå, så jeg lar endringene stå gjennom hele partiet.",
+              "effect": -1,
+              "tags": ["style_normalization", "voice_loss"],
+              "feedback": "Du bruker én norm for flyt og overser at ujevnheten kan være en del av fortellerens form."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
