@@ -45,6 +45,15 @@
     "data/Civication/mailFamilies/by/followup/by_saksbehandler_followup.json",
     "data/Civication/mailFamilies/by/knowledge/by_saksbehandler_knowledge.json",
     "data/Civication/mailFamilies/by/consequence/by_saksbehandler_consequence.json",
+    "data/Civication/mailFamilies/film_tv/job/kurator_film_tv_job.json",
+    "data/Civication/mailFamilies/film_tv/people/kurator_film_tv_people.json",
+    "data/Civication/mailFamilies/film_tv/story/kurator_film_tv_story.json",
+    "data/Civication/mailFamilies/film_tv/conflict/kurator_film_tv_conflict.json",
+    "data/Civication/mailFamilies/film_tv/event/kurator_film_tv_event.json",
+    "data/Civication/mailFamilies/film_tv/micro/kurator_film_tv_micro.json",
+    "data/Civication/mailFamilies/film_tv/followup/kurator_film_tv_followup.json",
+    "data/Civication/mailFamilies/film_tv/knowledge/kurator_film_tv_knowledge.json",
+    "data/Civication/mailFamilies/film_tv/consequence/kurator_film_tv_consequence.json",
     "data/Civication/mailFamilies/film_tv/job/produksjonsassistent_job.json",
     "data/Civication/mailFamilies/film_tv/people/produksjonsassistent_people.json",
     "data/Civication/mailFamilies/film_tv/conflict/produksjonsassistent_conflict.json",
@@ -23307,6 +23316,1115 @@
       },
       "source_hash": "ce37cf2491edc2c1e5b3c5eb94ba63a49099b0051573ad9e3e7b97c209d777ed",
       "source_path": "data/Civication/mailFamilies/by/story/by_saksbehandler_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "fail_closed_vs_annonser_forst",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du beskytter både programmet og publikum mot en rettighet som ennå ikke finnes.",
+            "id": "A",
+            "label": "Hold verket betinget til avtalen er bekreftet",
+            "reply": "Vi merker filmen som ikke bekreftet og låser en reserve før vi annonserer.",
+            "tags": [
+              "rights",
+              "traceability",
+              "fallback"
+            ]
+          },
+          {
+            "effect": -2,
+            "feedback": "Du gjør et uavklart vilkår til et offentlig løfte.",
+            "id": "B",
+            "label": "Annonsér og forvent at papirene ordner seg",
+            "reply": "Kopien er jo tilgjengelig, så vi går ut med filmen og rydder avtalen etterpå.",
+            "tags": [
+              "rights_risk",
+              "deadline"
+            ]
+          }
+        ],
+        "competency": "rettighetssikkerhet",
+        "consequence_axis": "rettighetssikkerhet_vs_programrisiko",
+        "cooldown": 4,
+        "from": "Rettighetskoordinator",
+        "id": "film_tv_kurator_conflict_rettigheter_001",
+        "mail_family": "kurator_rettighetskonflikt",
+        "mail_type": "conflict",
+        "narrative_arc": "fra_onskeverk_til_bekreftet_visning",
+        "people_ref": "film_tv_rettighetskoordinator",
+        "phase": "workday",
+        "place_id": "cinemateket_oslo",
+        "pressure": "annonseringsfrist",
+        "priority": 105,
+        "purpose": "Teste om spilleren skiller fysisk tilgang fra juridisk visningsrett.",
+        "repeatable": false,
+        "role_scope": "kurator_film_tv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/conflict/kurator_film_tv_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "En restaurert kopi er tilgjengelig fra et samarbeidende arkiv.",
+          "Rettighetshaver har ikke bekreftet vilkårene skriftlig.",
+          "Kommunikasjonsteamet trenger endelig programtittel før arbeidsdagen slutter."
+        ],
+        "stage": "stable",
+        "stakes": "En prematur annonsering kan skape forventninger og kostnader uten at institusjonen faktisk har rett til å vise filmen.",
+        "subject": "Kopien finnes – men tillatelsen er ikke på plass",
+        "summary": "Arkivet kan levere en restaurert kopi, men den skriftlige visningstillatelsen mangler og programfristen er i dag.",
+        "task_domain": "rettigheter_og_visning",
+        "task_kind": "conflict"
+      },
+      "id": "film_tv_kurator_conflict_rettigheter_001",
+      "mail_type": "conflict",
+      "role_scope": "kurator_film_tv",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du beskytter både programmet og publikum mot en rettighet som ennå ikke finnes.",
+            "id": "A",
+            "label": "Hold verket betinget til avtalen er bekreftet",
+            "reply": "Vi merker filmen som ikke bekreftet og låser en reserve før vi annonserer."
+          },
+          {
+            "effects": {
+              "score_delta": -2
+            },
+            "feedback": "Du gjør et uavklart vilkår til et offentlig løfte.",
+            "id": "B",
+            "label": "Annonsér og forvent at papirene ordner seg",
+            "reply": "Kopien er jo tilgjengelig, så vi går ut med filmen og rydder avtalen etterpå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "En restaurert kopi er tilgjengelig fra et samarbeidende arkiv.",
+            "Rettighetshaver har ikke bekreftet vilkårene skriftlig.",
+            "Kommunikasjonsteamet trenger endelig programtittel før arbeidsdagen slutter."
+          ],
+          "subject": "Kopien finnes – men tillatelsen er ikke på plass",
+          "summary": "Arkivet kan levere en restaurert kopi, men den skriftlige visningstillatelsen mangler og programfristen er i dag."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_kurator_conflict_rettigheter_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "cinemateket_oslo",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_kurator_conflict_rettigheter_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/conflict/kurator_film_tv_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "kurator_film_tv.mail.film_tv_kurator_conflict_rettigheter_001",
+        "version": 1
+      },
+      "source_hash": "69ff8f00d5d7ce9460dafc9cafa7fa7f9987d187a90728ad6aad204f31b1739e",
+      "source_path": "data/Civication/mailFamilies/film_tv/conflict/kurator_film_tv_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "dokumenter_og_rett_avvik_vs_forklar_bort",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du gjør etterkontroll til en del av kuratorisk kvalitet.",
+            "id": "A",
+            "label": "Dokumenter status og rett eventuelle avvik",
+            "reply": "Jeg sammenholder avtalen, programarket og det som faktisk ble publisert, og retter avvik før neste runde.",
+            "tags": [
+              "consequence",
+              "trust",
+              "rights"
+            ]
+          },
+          {
+            "effect": -2,
+            "feedback": "Du måler kvalitet bare i om kvelden gikk, ikke i om institusjonen kan stole på prosessen.",
+            "id": "B",
+            "label": "Behandle avvik som ubetydelige hvis visningen gikk bra",
+            "reply": "Publikum fikk en god kveld, så små forskjeller mellom logg og program trenger ikke mer arbeid.",
+            "tags": [
+              "trust_risk",
+              "rights_risk"
+            ]
+          }
+        ],
+        "competency": "rettighetssikkerhet",
+        "consequence_axis": "institusjonell_tillit_vs_tillitstap",
+        "cooldown": 8,
+        "from": "Programansvarlig",
+        "id": "film_tv_kurator_consequence_rettigheter_001",
+        "mail_family": "kurator_rettighetskonsekvens",
+        "mail_type": "consequence",
+        "narrative_arc": "fra_dagens_valg_til_senere_programtillit",
+        "people_ref": "film_tv_programansvarlig",
+        "phase": "day_end",
+        "place_id": "cinemateket_oslo",
+        "pressure": "etterkontroll",
+        "priority": 95,
+        "purpose": "Gjøre rettighets- og sporbarhetsvalg til en senere institusjonell konsekvens.",
+        "repeatable": false,
+        "role_scope": "kurator_film_tv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/consequence/kurator_film_tv_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Rettighetsloggen viser hva som faktisk ble bekreftet.",
+          "Programteksten og intern status kan sammenlignes med loggen.",
+          "Neste programrunde avhenger av om arbeidsmåten var pålitelig."
+        ],
+        "stage": "stable",
+        "stakes": "God dokumentasjon gir handlingsrom; avvik mellom avtale og publisert program kan utløse stopp, ekstraarbeid og tillitstap.",
+        "subject": "Dagens programstatus blir morgendagens tillit",
+        "summary": "Programansvarlig går gjennom rettighetsloggen og ser om dagens offentlige program samsvarer med de dokumenterte vilkårene.",
+        "task_domain": "programansvar_og_konsekvens",
+        "task_kind": "consequence",
+        "thread_key": "film_tv_kurator_rettigheter_001"
+      },
+      "id": "film_tv_kurator_consequence_rettigheter_001",
+      "mail_type": "consequence",
+      "role_scope": "kurator_film_tv",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gjør etterkontroll til en del av kuratorisk kvalitet.",
+            "id": "A",
+            "label": "Dokumenter status og rett eventuelle avvik",
+            "reply": "Jeg sammenholder avtalen, programarket og det som faktisk ble publisert, og retter avvik før neste runde."
+          },
+          {
+            "effects": {
+              "score_delta": -2
+            },
+            "feedback": "Du måler kvalitet bare i om kvelden gikk, ikke i om institusjonen kan stole på prosessen.",
+            "id": "B",
+            "label": "Behandle avvik som ubetydelige hvis visningen gikk bra",
+            "reply": "Publikum fikk en god kveld, så små forskjeller mellom logg og program trenger ikke mer arbeid."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Rettighetsloggen viser hva som faktisk ble bekreftet.",
+            "Programteksten og intern status kan sammenlignes med loggen.",
+            "Neste programrunde avhenger av om arbeidsmåten var pålitelig."
+          ],
+          "subject": "Dagens programstatus blir morgendagens tillit",
+          "summary": "Programansvarlig går gjennom rettighetsloggen og ser om dagens offentlige program samsvarer med de dokumenterte vilkårene."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_kurator_consequence_rettigheter_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "cinemateket_oslo",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_kurator_consequence_rettigheter_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/consequence/kurator_film_tv_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "film_tv_kurator_rettigheter_001",
+        "version": 1
+      },
+      "source_hash": "af0a7e61530714e84c6f1c22e437cea5ddb4613c9670bdc16b96b2ebfd59fafe",
+      "source_path": "data/Civication/mailFamilies/film_tv/consequence/kurator_film_tv_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "revider_programlogikk_vs_fyll_hullet",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du endrer programmet uten å late som ingenting har skjedd.",
+            "id": "A",
+            "label": "Revider serien rundt det verkbare premisset",
+            "reply": "Jeg velger reserven som fortsatt svarer på hovedspørsmålet og oppdaterer begrunnelsen og programteksten.",
+            "tags": [
+              "programming",
+              "fallback",
+              "traceability"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du redder tittelen på plakaten, men svekker seriens indre logikk.",
+            "id": "B",
+            "label": "Ta den mest publikumsvennlige reserven",
+            "reply": "Vi trenger å fylle plassen raskt; det kjente reserveverket får fungere som erstatning.",
+            "tags": [
+              "deadline",
+              "coherence_risk"
+            ]
+          }
+        ],
+        "competency": "programmering",
+        "consequence_axis": "sammenheng_vs_tidsbesparelse",
+        "cooldown": 4,
+        "from": "Programansvarlig",
+        "id": "film_tv_kurator_event_programendring_001",
+        "mail_family": "kurator_programhendelse",
+        "mail_type": "event",
+        "narrative_arc": "fra_planbrudd_til_begrunnet_revisjon",
+        "people_ref": "film_tv_programansvarlig",
+        "phase": "workday",
+        "place_id": "cinemateket_oslo",
+        "pressure": "fast_visningsdato",
+        "priority": 85,
+        "purpose": "Teste om spilleren kan revidere en kuratorisk idé uten å skjule at premissene har endret seg.",
+        "repeatable": false,
+        "role_scope": "kurator_film_tv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/event/kurator_film_tv_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Hovedverket kan ikke vises på den planlagte datoen.",
+          "To reserveverk er rettighetsklarert.",
+          "Bare ett av reserveverkene svarer på seriens opprinnelige hovedspørsmål."
+        ],
+        "stage": "stable",
+        "stakes": "En rask erstatning kan holde datoen, men ødelegge sammenhengen hvis den bare fyller et tomrom.",
+        "subject": "Hovedverket faller ut av serien",
+        "summary": "Rettighetshaver trekker visningsmuligheten for hovedverket etter at resten av serien er utviklet rundt det.",
+        "task_domain": "programmering_og_avvik",
+        "task_kind": "event"
+      },
+      "id": "film_tv_kurator_event_programendring_001",
+      "mail_type": "event",
+      "role_scope": "kurator_film_tv",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du endrer programmet uten å late som ingenting har skjedd.",
+            "id": "A",
+            "label": "Revider serien rundt det verkbare premisset",
+            "reply": "Jeg velger reserven som fortsatt svarer på hovedspørsmålet og oppdaterer begrunnelsen og programteksten."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du redder tittelen på plakaten, men svekker seriens indre logikk.",
+            "id": "B",
+            "label": "Ta den mest publikumsvennlige reserven",
+            "reply": "Vi trenger å fylle plassen raskt; det kjente reserveverket får fungere som erstatning."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Hovedverket kan ikke vises på den planlagte datoen.",
+            "To reserveverk er rettighetsklarert.",
+            "Bare ett av reserveverkene svarer på seriens opprinnelige hovedspørsmål."
+          ],
+          "subject": "Hovedverket faller ut av serien",
+          "summary": "Rettighetshaver trekker visningsmuligheten for hovedverket etter at resten av serien er utviklet rundt det."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_kurator_event_programendring_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "cinemateket_oslo",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_kurator_event_programendring_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/event/kurator_film_tv_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "kurator_film_tv.mail.film_tv_kurator_event_programendring_001",
+        "version": 1
+      },
+      "source_hash": "80cb882e93a2347e4be5d455ceb29fd513f841fc0ddac110767c37181cbb8ee0",
+      "source_path": "data/Civication/mailFamilies/film_tv/event/kurator_film_tv_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "oppdater_etter_vilkar_vs_behold_opprinnelig_plan",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du gjør avtalen til faktisk programstatus.",
+            "id": "A",
+            "label": "Oppdater program og kommunikasjon etter vilkåret",
+            "reply": "Vi låser den godkjente kopien, tar ut tilleggsmaterialet og oppdaterer teksten før publisering.",
+            "tags": [
+              "rights",
+              "followup",
+              "traceability"
+            ]
+          },
+          {
+            "effect": -2,
+            "feedback": "Du erstatter et eksplisitt vilkår med din egen tolkning.",
+            "id": "B",
+            "label": "Behold tilleggsmaterialet fordi det ikke er hovedverket",
+            "reply": "Vilkåret gjelder sikkert bare selve filmen; vi lar introduksjonsfilmen stå.",
+            "tags": [
+              "rights_risk",
+              "assumption"
+            ]
+          }
+        ],
+        "competency": "rettighetssikkerhet",
+        "consequence_axis": "avtalelojalitet_vs_bruddrisiko",
+        "cooldown": 5,
+        "from": "Rettighetskoordinator",
+        "id": "film_tv_kurator_followup_rettigheter_001",
+        "mail_family": "kurator_rettighetsoppfolging",
+        "mail_type": "followup",
+        "narrative_arc": "fra_betinget_program_til_dokumentert_visning",
+        "people_ref": "film_tv_rettighetskoordinator",
+        "phase": "afternoon",
+        "place_id": "cinemateket_oslo",
+        "pressure": "siste_lasing",
+        "priority": 75,
+        "purpose": "Teste om spilleren oppdaterer programmet etter faktiske vilkår i stedet for den opprinnelige antakelsen.",
+        "repeatable": false,
+        "role_scope": "kurator_film_tv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/followup/kurator_film_tv_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Hovedfilmen er nå rettighetsklarert.",
+          "Tillatelsen gjelder en bestemt kopi og et avgrenset programoppsett.",
+          "Kommunikasjonsteksten ble skrevet før vilkåret kom."
+        ],
+        "stage": "stable",
+        "stakes": "Programmet kan nå gjennomføres, men bare dersom den offentlige planen samsvarer med avtalen.",
+        "subject": "Tillatelsen kom – med et vilkår vi ikke hadde planlagt",
+        "summary": "Rettighetshaver godkjenner visningen, men bare i en bestemt kopi og uten den ekstra introduksjonsfilmen du hadde planlagt.",
+        "task_domain": "rettigheter_og_oppfolging",
+        "task_kind": "followup",
+        "thread_key": "film_tv_kurator_rettigheter_001"
+      },
+      "id": "film_tv_kurator_followup_rettigheter_001",
+      "mail_type": "followup",
+      "role_scope": "kurator_film_tv",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gjør avtalen til faktisk programstatus.",
+            "id": "A",
+            "label": "Oppdater program og kommunikasjon etter vilkåret",
+            "reply": "Vi låser den godkjente kopien, tar ut tilleggsmaterialet og oppdaterer teksten før publisering."
+          },
+          {
+            "effects": {
+              "score_delta": -2
+            },
+            "feedback": "Du erstatter et eksplisitt vilkår med din egen tolkning.",
+            "id": "B",
+            "label": "Behold tilleggsmaterialet fordi det ikke er hovedverket",
+            "reply": "Vilkåret gjelder sikkert bare selve filmen; vi lar introduksjonsfilmen stå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Hovedfilmen er nå rettighetsklarert.",
+            "Tillatelsen gjelder en bestemt kopi og et avgrenset programoppsett.",
+            "Kommunikasjonsteksten ble skrevet før vilkåret kom."
+          ],
+          "subject": "Tillatelsen kom – med et vilkår vi ikke hadde planlagt",
+          "summary": "Rettighetshaver godkjenner visningen, men bare i en bestemt kopi og uten den ekstra introduksjonsfilmen du hadde planlagt."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_kurator_followup_rettigheter_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "cinemateket_oslo",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_kurator_followup_rettigheter_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/followup/kurator_film_tv_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "film_tv_kurator_rettigheter_001",
+        "version": 1
+      },
+      "source_hash": "0a93028e55efeb10d2c0786f2a74f8ec0921221c81a2832d013bacb26df06fc3",
+      "source_path": "data/Civication/mailFamilies/film_tv/followup/kurator_film_tv_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "eksplisitte_kriterier_vs_kjent_navn",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du gjør utvalget etterprøvbart og kan forklare både valg og fravalg.",
+            "id": "A",
+            "label": "Lås kriteriene før du velger",
+            "reply": "Jeg skriver ned hvilke spørsmål serien skal svare på og vurderer alle fire verk mot de samme kriteriene.",
+            "tags": [
+              "curation",
+              "criteria",
+              "breadth"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du får en enkel start, men lar ett navn definere programmet før premisset er testet.",
+            "id": "B",
+            "label": "Start med det sikreste publikumsnavnet",
+            "reply": "Jeg setter inn det kjente verket først og former resten av programmet rundt det.",
+            "tags": [
+              "audience",
+              "canon_risk"
+            ]
+          }
+        ],
+        "competency": "kuratorisk_begrunnelse",
+        "consequence_axis": "programbredde_vs_kortsiktig_trekkraft",
+        "cooldown": 2,
+        "from": "Programansvarlig",
+        "id": "film_tv_kurator_job_programutvalg_001",
+        "mail_family": "kurator_programutvalg",
+        "mail_type": "job",
+        "narrative_arc": "fra_ide_til_begrunnet_program",
+        "people_ref": "film_tv_programansvarlig",
+        "phase": "morning",
+        "place_id": "cinemateket_oslo",
+        "pressure": "publikumsforventning",
+        "priority": 110,
+        "purpose": "Teste om spilleren gjør kuratoriske kriterier eksplisitte før programmet låses.",
+        "repeatable": false,
+        "role_scope": "kurator_film_tv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/job/kurator_film_tv_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Serien skal undersøke hvordan filmhistorie blir husket og glemt.",
+          "Ett kjent verk vil sannsynligvis fylle salen.",
+          "Et mindre synlig verk tilfører et perspektiv som ellers mangler."
+        ],
+        "stage": "stable",
+        "stakes": "Et kjent verk kan styrke oppslutningen, men et ubegrunnet valg kan gjøre programideen smalere og vanskeligere å forsvare.",
+        "subject": "Vi trenger et utvalg som kan forsvares",
+        "summary": "Du har plass til tre verk i en serie om filmminne, men fire sterke kandidater og bare ett av dem er et åpenbart publikumstrekkplaster.",
+        "task_domain": "programmering_og_verkutvalg",
+        "task_kind": "job"
+      },
+      "id": "film_tv_kurator_job_programutvalg_001",
+      "mail_type": "job",
+      "role_scope": "kurator_film_tv",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gjør utvalget etterprøvbart og kan forklare både valg og fravalg.",
+            "id": "A",
+            "label": "Lås kriteriene før du velger",
+            "reply": "Jeg skriver ned hvilke spørsmål serien skal svare på og vurderer alle fire verk mot de samme kriteriene."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du får en enkel start, men lar ett navn definere programmet før premisset er testet.",
+            "id": "B",
+            "label": "Start med det sikreste publikumsnavnet",
+            "reply": "Jeg setter inn det kjente verket først og former resten av programmet rundt det."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Serien skal undersøke hvordan filmhistorie blir husket og glemt.",
+            "Ett kjent verk vil sannsynligvis fylle salen.",
+            "Et mindre synlig verk tilfører et perspektiv som ellers mangler."
+          ],
+          "subject": "Vi trenger et utvalg som kan forsvares",
+          "summary": "Du har plass til tre verk i en serie om filmminne, men fire sterke kandidater og bare ett av dem er et åpenbart publikumstrekkplaster."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_kurator_job_programutvalg_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "cinemateket_oslo",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_kurator_job_programutvalg_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/job/kurator_film_tv_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "kurator_film_tv.mail.film_tv_kurator_job_programutvalg_001",
+        "version": 1
+      },
+      "source_hash": "63631069cc1951e3cd05688bfb1d13e3aa0374f8108e344c9399a9661941f817",
+      "source_path": "data/Civication/mailFamilies/film_tv/job/kurator_film_tv_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "skill_bevaring_tilgang_visning_vs_slutt_alt_sammen",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du bruker fagkunnskap som praktisk beslutningsstøtte.",
+            "id": "A",
+            "label": "Skill de tre lagene før du går videre",
+            "reply": "At filmen er bevart og tilgjengelig for undersøkelse betyr ikke at offentlig visning er klarert; vi sjekker rettighet og visningskopi separat.",
+            "tags": [
+              "knowledge",
+              "archive",
+              "rights"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du gjør teknisk tilgang til en juridisk og kuratorisk konklusjon.",
+            "id": "B",
+            "label": "Behandle arkivtilgang som visningsklarering",
+            "reply": "Når arkivet allerede kan levere filen, må den i praksis være klar for visning.",
+            "tags": [
+              "knowledge_gap",
+              "rights_risk"
+            ]
+          }
+        ],
+        "competency": "verkforstaelse",
+        "consequence_axis": "faglig_presisjon_vs_rettighetsfeil",
+        "cooldown": 4,
+        "from": "Filmarkivaren",
+        "id": "film_tv_kurator_knowledge_bevaring_tilgang_001",
+        "mail_family": "kurator_kunnskap_i_praksis",
+        "mail_type": "knowledge",
+        "narrative_arc": "fra_arkivfunn_til_riktig_visningsgrunnlag",
+        "people_ref": "film_tv_arkivar",
+        "phase": "forenoon",
+        "place_id": "cinemateket_oslo",
+        "pressure": "begrepsforenkling",
+        "priority": 80,
+        "purpose": "Teste skillet mellom bevaring, fysisk/digital tilgang og visningsrett.",
+        "repeatable": false,
+        "role_scope": "kurator_film_tv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/knowledge/kurator_film_tv_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Arkivet har en bevart kopi.",
+          "Kopien kan undersøkes av fagpersoner.",
+          "Offentlig visning krever fortsatt riktig rettighets- og kopiavklaring."
+        ],
+        "stage": "stable",
+        "stakes": "Feil begrepsbruk kan gjøre at en arkivressurs behandles som en ferdig visningsavtale.",
+        "subject": "Arkivet har filmen – betyr det at vi kan vise den?",
+        "summary": "En kollega antar at en bevart og digitalisert film automatisk er tilgjengelig for offentlig visning.",
+        "task_domain": "filmarv_og_rettigheter",
+        "task_kind": "knowledge"
+      },
+      "id": "film_tv_kurator_knowledge_bevaring_tilgang_001",
+      "mail_type": "knowledge",
+      "role_scope": "kurator_film_tv",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du bruker fagkunnskap som praktisk beslutningsstøtte.",
+            "id": "A",
+            "label": "Skill de tre lagene før du går videre",
+            "reply": "At filmen er bevart og tilgjengelig for undersøkelse betyr ikke at offentlig visning er klarert; vi sjekker rettighet og visningskopi separat."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør teknisk tilgang til en juridisk og kuratorisk konklusjon.",
+            "id": "B",
+            "label": "Behandle arkivtilgang som visningsklarering",
+            "reply": "Når arkivet allerede kan levere filen, må den i praksis være klar for visning."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Arkivet har en bevart kopi.",
+            "Kopien kan undersøkes av fagpersoner.",
+            "Offentlig visning krever fortsatt riktig rettighets- og kopiavklaring."
+          ],
+          "subject": "Arkivet har filmen – betyr det at vi kan vise den?",
+          "summary": "En kollega antar at en bevart og digitalisert film automatisk er tilgjengelig for offentlig visning."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_kurator_knowledge_bevaring_tilgang_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "cinemateket_oslo",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_kurator_knowledge_bevaring_tilgang_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/knowledge/kurator_film_tv_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "kurator_film_tv.mail.film_tv_kurator_knowledge_bevaring_tilgang_001",
+        "version": 1
+      },
+      "source_hash": "8f05e8600c06ac3d225d96f2f788d345d4846fab8dd449cb35ef0164e8965578",
+      "source_path": "data/Civication/mailFamilies/film_tv/knowledge/kurator_film_tv_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "presiser_metadata_vs_la_det_sta",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du stopper en liten uklarhet før den blir en offentlig feil.",
+            "id": "A",
+            "label": "Skill premiere og restaurering eksplisitt",
+            "reply": "Jeg retter feltene og skriver hvilken versjon vi faktisk skal vise.",
+            "tags": [
+              "metadata",
+              "archive",
+              "precision"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du sparer et minutt nå og gjør neste arbeidsledd mer usikkert.",
+            "id": "B",
+            "label": "La årstallet stå til programteksten er ferdig",
+            "reply": "Alle skjønner hvilken film vi mener; vi kan rydde metadata senere.",
+            "tags": [
+              "metadata_risk",
+              "delay"
+            ]
+          }
+        ],
+        "competency": "verkforstaelse",
+        "consequence_axis": "sporbarhet_vs_feilspredning",
+        "cooldown": 2,
+        "from": "Filmarkivaren",
+        "id": "film_tv_kurator_micro_metadata_001",
+        "mail_family": "kurator_mikrovalg",
+        "mail_type": "micro",
+        "narrative_arc": "fra_liten_uklarhet_til_ren_programdata",
+        "people_ref": "film_tv_arkivar",
+        "phase": "forenoon",
+        "place_id": "cinemateket_oslo",
+        "pressure": "småfeil_under_tidspress",
+        "priority": 55,
+        "purpose": "Teste om spilleren rydder metadata før feilen sprer seg.",
+        "repeatable": false,
+        "role_scope": "kurator_film_tv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/micro/kurator_film_tv_micro.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Verket har originalt premiereår og et senere restaureringsår.",
+          "Begge årstallene er relevante, men betyr ulike ting.",
+          "Programarket brukes av flere personer senere i dagen."
+        ],
+        "stage": "stable",
+        "stakes": "En liten metadatafeil kan forplante seg til programtekst, nettside og introduksjon.",
+        "subject": "To versjoner av samme film står i programarket",
+        "summary": "Programarket blander restaureringsår og opprinnelig premiereår, slik at formidlingen ser ut til å beskrive to forskjellige verk.",
+        "task_domain": "programdata_og_sporbarhet",
+        "task_kind": "micro"
+      },
+      "id": "film_tv_kurator_micro_metadata_001",
+      "mail_type": "micro",
+      "role_scope": "kurator_film_tv",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du stopper en liten uklarhet før den blir en offentlig feil.",
+            "id": "A",
+            "label": "Skill premiere og restaurering eksplisitt",
+            "reply": "Jeg retter feltene og skriver hvilken versjon vi faktisk skal vise."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du sparer et minutt nå og gjør neste arbeidsledd mer usikkert.",
+            "id": "B",
+            "label": "La årstallet stå til programteksten er ferdig",
+            "reply": "Alle skjønner hvilken film vi mener; vi kan rydde metadata senere."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Verket har originalt premiereår og et senere restaureringsår.",
+            "Begge årstallene er relevante, men betyr ulike ting.",
+            "Programarket brukes av flere personer senere i dagen."
+          ],
+          "subject": "To versjoner av samme film står i programarket",
+          "summary": "Programarket blander restaureringsår og opprinnelig premiereår, slik at formidlingen ser ut til å beskrive to forskjellige verk."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_kurator_micro_metadata_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "cinemateket_oslo",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_kurator_micro_metadata_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/micro/kurator_film_tv_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "kurator_film_tv.mail.film_tv_kurator_micro_metadata_001",
+        "version": 1
+      },
+      "source_hash": "b1e1adf8366edec48fba9d6a351279d3f3aea129f860b196b320af955a9669fb",
+      "source_path": "data/Civication/mailFamilies/film_tv/micro/kurator_film_tv_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "reviderbarhet_vs_forsvare_eget_utvalg",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du gjør uenigheten til en kontroll av programmet, ikke en kamp om smak.",
+            "id": "A",
+            "label": "Test kritikken mot premisset",
+            "reply": "La oss sjekke hvert verk mot det vi faktisk lover publikum og endre enten teksten eller utvalget der de ikke stemmer.",
+            "tags": [
+              "collaboration",
+              "breadth",
+              "precision"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du beskytter eierskapet, men lar en dokumentert mismatch bli stående.",
+            "id": "B",
+            "label": "Forsvar utvalget som kuratorens prerogativ",
+            "reply": "Jeg står for utvalget; teksten får heller gjøre begrunnelsen tydeligere.",
+            "tags": [
+              "status",
+              "blind_spot"
+            ]
+          }
+        ],
+        "competency": "bredde_og_representasjon",
+        "consequence_axis": "faglig_tillit_vs_laste_blindsoner",
+        "cooldown": 3,
+        "from": "Formidleren",
+        "id": "film_tv_kurator_people_programsamtale_001",
+        "mail_family": "kurator_programsamtale",
+        "mail_type": "people",
+        "narrative_arc": "fra_eget_utvalg_til_felles_kvalitetssikring",
+        "people_ref": "film_tv_formidler",
+        "phase": "forenoon",
+        "place_id": "cinemateket_oslo",
+        "pressure": "eierskap_til_egen_ide",
+        "priority": 90,
+        "purpose": "Teste om spilleren tåler faglig motstand og undersøker blindsoner.",
+        "repeatable": false,
+        "role_scope": "kurator_film_tv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/people/kurator_film_tv_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Programteksten bruker ord som «mangfold» og «flere perspektiver».",
+          "Det faktiske utvalget er mer homogent enn teksten antyder.",
+          "Det finnes en alternativ film som passer premisset, men er mindre kjent."
+        ],
+        "stage": "stable",
+        "stakes": "En defensiv reaksjon kan gjøre både programmet og formidlingen mindre presis.",
+        "subject": "Programteksten gjør utvalget smalere enn du tror",
+        "summary": "Formidleren mener at programteksten lover bredde, mens to av tre verk kommer fra samme tradisjon og samme type kanon.",
+        "task_domain": "programmering_og_samarbeid",
+        "task_kind": "people"
+      },
+      "id": "film_tv_kurator_people_programsamtale_001",
+      "mail_type": "people",
+      "role_scope": "kurator_film_tv",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gjør uenigheten til en kontroll av programmet, ikke en kamp om smak.",
+            "id": "A",
+            "label": "Test kritikken mot premisset",
+            "reply": "La oss sjekke hvert verk mot det vi faktisk lover publikum og endre enten teksten eller utvalget der de ikke stemmer."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du beskytter eierskapet, men lar en dokumentert mismatch bli stående.",
+            "id": "B",
+            "label": "Forsvar utvalget som kuratorens prerogativ",
+            "reply": "Jeg står for utvalget; teksten får heller gjøre begrunnelsen tydeligere."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Programteksten bruker ord som «mangfold» og «flere perspektiver».",
+            "Det faktiske utvalget er mer homogent enn teksten antyder.",
+            "Det finnes en alternativ film som passer premisset, men er mindre kjent."
+          ],
+          "subject": "Programteksten gjør utvalget smalere enn du tror",
+          "summary": "Formidleren mener at programteksten lover bredde, mens to av tre verk kommer fra samme tradisjon og samme type kanon."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_kurator_people_programsamtale_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "cinemateket_oslo",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_kurator_people_programsamtale_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/people/kurator_film_tv_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "kurator_film_tv.mail.film_tv_kurator_people_programsamtale_001",
+        "version": 1
+      },
+      "source_hash": "04c813394e368d14dc4bac6a7982e7808f0da67c39da7d6ff18db4cc7d2ff6b7",
+      "source_path": "data/Civication/mailFamilies/film_tv/people/kurator_film_tv_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "historisk_skille_vs_samtidsgjoring",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du beholder både den etiske vurderingen og den historiske forskjellen.",
+            "id": "A",
+            "label": "Skill samtid, dokumentasjon og dagens vurdering",
+            "reply": "Jeg skriver om slik at vi først beskriver hva kildene viser om samtiden, og deretter markerer vår nåværende vurdering.",
+            "tags": [
+              "history",
+              "context",
+              "precision"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du gjør teksten enklere, men historisk svakere.",
+            "id": "B",
+            "label": "Behold den tydeligste moralske formuleringen",
+            "reply": "Publikum trenger en klar inngang, så vi lar dagens vurdering stå som hovedforklaring.",
+            "tags": [
+              "presentism",
+              "simplification"
+            ]
+          }
+        ],
+        "competency": "kontekstpresisjon",
+        "consequence_axis": "forstaelse_vs_anakronisme",
+        "cooldown": 6,
+        "from": "Filmarkivaren",
+        "id": "film_tv_kurator_story_kontekst_001",
+        "mail_family": "kurator_programhistorie",
+        "mail_type": "story",
+        "narrative_arc": "fra_verk_til_historisk_kontekst",
+        "people_ref": "film_tv_arkivar",
+        "phase": "afternoon",
+        "place_id": "cinemateket_oslo",
+        "pressure": "forenkling",
+        "priority": 70,
+        "purpose": "Teste historisk presisjon i kuratorisk kontekst.",
+        "repeatable": false,
+        "role_scope": "kurator_film_tv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/story/kurator_film_tv_story.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Arkivmaterialet dokumenterer flere samtidige reaksjoner, ikke én enhetlig respons.",
+          "Dagens etiske vurdering er viktig, men er ikke det samme som historisk beskrivelse.",
+          "Introduksjonen skal være kort nok til en faktisk visning."
+        ],
+        "stage": "stable",
+        "stakes": "En elegant, men anakronistisk introduksjon kan gjøre publikums forståelse dårligere.",
+        "subject": "Introduksjonen blander verkets samtid og vår vurdering",
+        "summary": "Utkastet til introduksjon beskriver et kontroversielt historisk trekk som om samtidens publikum vurderte det på samme måte som vi gjør i dag.",
+        "task_domain": "kontekst_og_formidling",
+        "task_kind": "story"
+      },
+      "id": "film_tv_kurator_story_kontekst_001",
+      "mail_type": "story",
+      "role_scope": "kurator_film_tv",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du beholder både den etiske vurderingen og den historiske forskjellen.",
+            "id": "A",
+            "label": "Skill samtid, dokumentasjon og dagens vurdering",
+            "reply": "Jeg skriver om slik at vi først beskriver hva kildene viser om samtiden, og deretter markerer vår nåværende vurdering."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør teksten enklere, men historisk svakere.",
+            "id": "B",
+            "label": "Behold den tydeligste moralske formuleringen",
+            "reply": "Publikum trenger en klar inngang, så vi lar dagens vurdering stå som hovedforklaring."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Arkivmaterialet dokumenterer flere samtidige reaksjoner, ikke én enhetlig respons.",
+            "Dagens etiske vurdering er viktig, men er ikke det samme som historisk beskrivelse.",
+            "Introduksjonen skal være kort nok til en faktisk visning."
+          ],
+          "subject": "Introduksjonen blander verkets samtid og vår vurdering",
+          "summary": "Utkastet til introduksjon beskriver et kontroversielt historisk trekk som om samtidens publikum vurderte det på samme måte som vi gjør i dag."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_kurator_story_kontekst_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "cinemateket_oslo",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_kurator_story_kontekst_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/story/kurator_film_tv_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "kurator_film_tv.mail.film_tv_kurator_story_kontekst_001",
+        "version": 1
+      },
+      "source_hash": "51314d11d16a76b967e11a1534c8e9460621f2d315e66e052a3f4463a7db7aee",
+      "source_path": "data/Civication/mailFamilies/film_tv/story/kurator_film_tv_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -147919,7 +149037,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "49353fabfade39c321de79829e82acce0dbac722046801de322cc638d093dcbb",
+  "registry_hash": "1d5d0a9c9d40a0a2850e3a03d1e791b0c3e3ab6c11cd12648be7fc6279b11cb2",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -148094,6 +149212,17 @@
       "by_saksbehandler_followup_hoyde_001",
       "by_saksbehandler_knowledge_likebehandling_001",
       "by_saksbehandler_consequence_klage_001"
+    ],
+    "film_tv/kurator_film_tv": [
+      "film_tv_kurator_job_programutvalg_001",
+      "film_tv_kurator_people_programsamtale_001",
+      "film_tv_kurator_story_kontekst_001",
+      "film_tv_kurator_conflict_rettigheter_001",
+      "film_tv_kurator_event_programendring_001",
+      "film_tv_kurator_micro_metadata_001",
+      "film_tv_kurator_followup_rettigheter_001",
+      "film_tv_kurator_knowledge_bevaring_tilgang_001",
+      "film_tv_kurator_consequence_rettigheter_001"
     ],
     "film_tv/produksjonsassistent": [
       "film_tv_pa_job_to_call_sheet",
@@ -148980,11 +150109,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 210,
+    "compiled_source_file_count": 219,
     "ignored_source_file_count": 1,
-    "input_file_count": 211,
-    "role_count": 29,
-    "scene_count": 973,
+    "input_file_count": 220,
+    "role_count": 30,
+    "scene_count": 982,
     "shadowed_duplicate_count": 0
   },
   "version": 1
