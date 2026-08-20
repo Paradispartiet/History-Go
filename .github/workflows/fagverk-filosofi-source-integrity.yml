@@ -6,6 +6,9 @@ on:
       - 'data/fag/filosofi/**'
       - 'data/fagverk/filosofi/**'
       - 'tests/fagverk-filosofi-source-integrity.test.mjs'
+      - 'tests/filosofi-theory-integrity.test.mjs'
+      - 'tools/audit-filosofi-theory-integrity.mjs'
+      - 'reports/fagverk/filosofi-theory-integrity-audit.json'
       - '.github/workflows/fagverk-filosofi-source-integrity.yml'
   push:
     branches:
@@ -14,6 +17,9 @@ on:
       - 'data/fag/filosofi/**'
       - 'data/fagverk/filosofi/**'
       - 'tests/fagverk-filosofi-source-integrity.test.mjs'
+      - 'tests/filosofi-theory-integrity.test.mjs'
+      - 'tools/audit-filosofi-theory-integrity.mjs'
+      - 'reports/fagverk/filosofi-theory-integrity-audit.json'
       - '.github/workflows/fagverk-filosofi-source-integrity.yml'
 
 permissions:
@@ -31,4 +37,8 @@ jobs:
         with:
           node-version: '22'
       - name: Audit Philosophy source integrity
-        run: node --test tests/fagverk-filosofi-source-integrity.test.mjs
+        run: |
+          node --check tools/audit-filosofi-theory-integrity.mjs
+          node tools/audit-filosofi-theory-integrity.mjs
+          node --test tests/fagverk-filosofi-source-integrity.test.mjs
+          node --test tests/filosofi-theory-integrity.test.mjs

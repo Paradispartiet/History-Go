@@ -24,6 +24,9 @@ on:
       - "tests/fagverk-filosofi-editorial-style.test.mjs"
       - "tests/fagverk-filosofi-university-depth.test.mjs"
       - "tests/fagverk-filosofi-final-quality.test.mjs"
+      - "tests/fagverk-filosofi-field-coverage.test.mjs"
+      - "tests/filosofi-theory-integrity.test.mjs"
+      - "tools/audit-filosofi-theory-integrity.mjs"
       - "tests/fagverk-release-manifest.test.mjs"
       - "reports/fagverk/**"
       - "reports/filosofi-final-quality-qa.md"
@@ -40,6 +43,9 @@ on:
       - "tests/fagverk-filosofi-editorial-style.test.mjs"
       - "tests/fagverk-filosofi-university-depth.test.mjs"
       - "tests/fagverk-filosofi-final-quality.test.mjs"
+      - "tests/fagverk-filosofi-field-coverage.test.mjs"
+      - "tests/filosofi-theory-integrity.test.mjs"
+      - "tools/audit-filosofi-theory-integrity.mjs"
       - "reports/fagverk/**"
       - "reports/filosofi-final-quality-qa.md"
       - ".github/workflows/fagverk-filosofi-phase3.yml"
@@ -62,9 +68,11 @@ jobs:
       - name: Validate syntax and deterministic reports
         run: |
           node --check scripts/audit-fagverk-filosofi-phase3.mjs
+          node --check tools/audit-filosofi-theory-integrity.mjs
           node scripts/audit-fagverk-subject-inventory.mjs
           node scripts/audit-fagverk-general-engine.mjs
           node scripts/audit-fagverk-filosofi-phase3.mjs
+          node tools/audit-filosofi-theory-integrity.mjs
           node scripts/build-fagverk-release-manifest.mjs --check
       - name: Validate shared Fagverk and Philosophy contracts
         run: |
@@ -76,4 +84,6 @@ jobs:
             tests/fagverk-filosofi-complete.test.mjs \
             tests/fagverk-filosofi-editorial-style.test.mjs \
             tests/fagverk-filosofi-university-depth.test.mjs \
-            tests/fagverk-filosofi-final-quality.test.mjs
+            tests/fagverk-filosofi-final-quality.test.mjs \
+            tests/fagverk-filosofi-field-coverage.test.mjs
+          node --test tests/filosofi-theory-integrity.test.mjs
