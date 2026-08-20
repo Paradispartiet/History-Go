@@ -12,7 +12,7 @@ test('første Helse-source brief bevarer historisk planstatus etter kontrollert 
   assert.equal(brief.subject_id, 'helse');
   assert.equal(brief.scope.primary_domain_id, 'medisinsk_etikk_evidens');
   assert.equal(brief.runtime_registration.registered, false);
-  assert.equal(read('data/fagverk/fagverk_registry.json').subjects.helse.chapters.length, 1);
+  assert.equal(read('data/fagverk/fagverk_registry.json').subjects.helse.chapters.length, 2);
   assert.equal(report.summary.registered_chapter_count_delta, 0);
   assert.equal(report.summary.expanded_fagverk_strictly_proven, 18);
   assert.equal(report.summary.expanded_fagverk_target, 20);
@@ -23,7 +23,7 @@ test('første Helse-source brief bevarer historisk planstatus etter kontrollert 
     [healthStatus.navigationStatus, healthStatus.assessmentStatus, healthStatus.editorialStatus],
     ['materialized', 'audited', 'chapters_in_progress']
   );
-  assert.equal(healthStatus.nextGate, 'anatomy_physiology_source_brief_complete_full_chapter_production');
+  assert.equal(healthStatus.nextGate, 'anatomy_physiology_full_chapter_complete_next_domain_source_brief');
   assert.ok(manifest.helse.sourceClaimBriefs.includes('data/fag/helse/medical_ethics_evidence_source_claim_brief_v1.json'));
   assert.ok(inventory.subjects.find((row) => row.id === 'helse').optionalManifestFields.includes('sourceClaimBriefs'));
 });

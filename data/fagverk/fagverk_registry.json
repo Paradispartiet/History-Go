@@ -4134,14 +4134,15 @@
         "schemaFamily": "foundation_v1",
         "sourceOfTruth": true,
         "firstSourceClaimBrief": "data/fag/helse/medical_ethics_evidence_source_claim_brief_v1.json",
-        "note": "To source-first-enheter er dokumentert: medisinsk etikk/evidens er fulltekstmaterialisert, mens anatomi/fysiologi har 14 inspiserte terminologi-, profesjons-, lærebok- og biomedisinske kilder, 8 faglige spor, 6 ikke-individualiserende scenarioer og 32 claimplaner. Anatomi/fysiologi er ikke registrert som kapittel.",
+        "note": "To Helse-domener er fulltekstmaterialisert: medisinsk etikk/evidens og anatomi/fysiologi. Anatomi/fysiologi har 8 seksjoner, 32 claimsporede avsnitt, 32 verifiserte claims, 14 inspiserbare kilder og 8 vurderingsoppgaver. Ti domener og strict proof gjenstår.",
         "firstFulltextChapter": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning.json",
-        "secondSourceClaimBrief": "data/fag/helse/anatomy_physiology_source_claim_brief_v1.json"
+        "secondSourceClaimBrief": "data/fag/helse/anatomy_physiology_source_claim_brief_v1.json",
+        "secondFulltextChapter": "data/fagverk/helse/anatomi-fysiologi-struktur-funksjon-og-regulering.json"
       },
       "editorialPlan": {
         "targetDomainCount": 12,
         "completedSourceBriefCount": 2,
-        "registeredChapterCount": 1,
+        "registeredChapterCount": 2,
         "completionRequirements": [
           "all_canonical_domains_covered",
           "source_first_claim_trace_complete",
@@ -4149,7 +4150,7 @@
           "fulltext_and_assessment_audits_green",
           "strict_theory_integrity_green"
         ],
-        "nextGate": "produce_full_chapter_claims_and_inspectable_sources_for_anatomi_fysiologi"
+        "nextGate": "produce_next_domain_source_brief_after_anatomy_physiology_fulltext"
       },
       "chapters": [
         {
@@ -4164,6 +4165,20 @@
           "claimsFile": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning/claims.json",
           "briefFile": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning/brief.json",
           "assessmentFile": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning/assessment.json",
+          "safetyContractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json"
+        },
+        {
+          "id": "anatomi-fysiologi-struktur-funksjon-og-regulering",
+          "title": "Anatomi og fysiologi: struktur, funksjon og regulering",
+          "subtitle": "Fra anatomisk referanseramme og membrantransport til homeostase, nerve–muskel, oksygentransport, nyre og endokrin integrasjon",
+          "file": "data/fagverk/helse/anatomi-fysiologi-struktur-funksjon-og-regulering.json",
+          "primary_domain_id": "anatomi_fysiologi",
+          "emne_ids": [
+            "em_helse_anatomi_fysiologi"
+          ],
+          "claimsFile": "data/fagverk/helse/anatomi-fysiologi-struktur-funksjon-og-regulering/claims.json",
+          "briefFile": "data/fagverk/helse/anatomi-fysiologi-struktur-funksjon-og-regulering/brief.json",
+          "assessmentFile": "data/fagverk/helse/anatomi-fysiologi-struktur-funksjon-og-regulering/assessment.json",
           "safetyContractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json"
         }
       ]

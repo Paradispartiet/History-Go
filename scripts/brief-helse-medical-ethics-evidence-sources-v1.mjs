@@ -12,6 +12,7 @@ const INPUT_GATE = 'first_source_brief_after_repository_reconciliation';
 const OUTPUT_GATE = 'medical_ethics_evidence_source_brief_complete_full_chapter_production';
 const FULLTEXT_GATE = 'medical_ethics_evidence_full_chapter_complete_next_domain_source_brief';
 const NEXT_SOURCE_GATE = 'anatomy_physiology_source_brief_complete_full_chapter_production';
+const NEXT_FULLTEXT_GATE = 'anatomy_physiology_full_chapter_complete_next_domain_source_brief';
 const UNIT_ID = 'medisinsk-etikk-evidens-og-ansvarlig-beslutning';
 const CANONICAL_EMNE_ID = 'em_helse_medisinsk_etikk_evidens';
 
@@ -463,7 +464,7 @@ export function buildHealthMedicalEthicsEvidenceSourceBriefV1() {
   status.updatedAt = DATE;
   const healthStatus = status.subjects.find((row) => row.id === 'helse');
   assert(healthStatus, 'Subject status mangler Helse');
-  assert([INPUT_GATE, OUTPUT_GATE, FULLTEXT_GATE, NEXT_SOURCE_GATE].includes(healthStatus.nextGate), `Uventet Helse-port: ${healthStatus.nextGate}`);
+  assert([INPUT_GATE, OUTPUT_GATE, FULLTEXT_GATE, NEXT_SOURCE_GATE, NEXT_FULLTEXT_GATE].includes(healthStatus.nextGate), `Uventet Helse-port: ${healthStatus.nextGate}`);
   healthStatus.navigationStatus = 'planned';
   healthStatus.assessmentStatus = 'pending';
   healthStatus.editorialStatus = 'not_started';

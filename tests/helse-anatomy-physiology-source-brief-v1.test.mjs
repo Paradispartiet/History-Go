@@ -1,20 +1,23 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import { auditHealthAnatomyPhysiologySourceBriefV1 } from '../scripts/brief-helse-anatomy-physiology-sources-v1.mjs';
+const read = (file) => JSON.parse(fs.readFileSync(new URL(`../${file}`, import.meta.url), 'utf8'));
 
 test('anatomi/fysiologi-briefen er source-first og ikke feilregistrert som fulltekst', () => {
   const { brief, report, registry, status, manifest } = auditHealthAnatomyPhysiologySourceBriefV1();
   assert.equal(brief.scope.primary_domain_id, 'anatomi_fysiologi');
   assert.equal(brief.runtime_registration.registered, false);
-  assert.equal(registry.subjects.helse.chapters.length, 1);
-  assert.ok(!registry.subjects.helse.chapters.some((row) => row.id === brief.future_chapter_id));
+  const currentRegistry = read('data/fagverk/fagverk_registry.json').subjects.helse;
+  assert.equal(currentRegistry.chapters.length, 2);
+  assert.equal(currentRegistry.chapters.filter((row) => row.id === brief.future_chapter_id).length, 1);
   assert.deepEqual(manifest.helse.sourceClaimBriefs, [
     'data/fag/helse/medical_ethics_evidence_source_claim_brief_v1.json',
     'data/fag/helse/anatomy_physiology_source_claim_brief_v1.json'
   ]);
-  const health = status.subjects.find((row) => row.id === 'helse');
+  const health = read('data/fagverk/subject_status.json').subjects.find((row) => row.id === 'helse');
   assert.deepEqual([health.navigationStatus, health.assessmentStatus, health.editorialStatus], ['materialized', 'audited', 'chapters_in_progress']);
-  assert.equal(health.nextGate, 'anatomy_physiology_source_brief_complete_full_chapter_production');
+  assert.equal(health.nextGate, 'anatomy_physiology_full_chapter_complete_next_domain_source_brief');
   assert.ok(Object.values(report.gates).every(Boolean));
 });
 

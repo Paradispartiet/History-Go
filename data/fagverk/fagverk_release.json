@@ -11,7 +11,7 @@
     "schema": "history_go_fagverk_registry_v1",
     "version": "3.14.0",
     "updated_at": "2026-08-21",
-    "content_sha256": "778ea9aff76c02dc00627a2497c1a081bc7e3503e9d9c5150ef79446ec5fc56e"
+    "content_sha256": "f4b17e6a9ca3a6d0181992f2004ae4bcf1af6287f6fd8381578d8532a6e49859"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,18 +27,18 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "9cbf2d7cc808789c4f9b166a354ee128aeedddc428dd8006db7c1d71e53ce02e"
+    "content_sha256": "de63f58ba50e0ac69b7891c5189e5e11e67b20ea22b0c374fbf7c94705e93575"
   },
   "summary": {
     "subject_count": 20,
     "root_subject_count": 19,
     "specialization_count": 1,
     "chapter_subject_count": 16,
-    "chapter_count": 164,
-    "module_file_count": 397,
-    "package_file_count": 223,
-    "chapter_referenced_file_count": 758,
-    "referenced_file_count": 935,
+    "chapter_count": 165,
+    "module_file_count": 401,
+    "package_file_count": 224,
+    "chapter_referenced_file_count": 765,
+    "referenced_file_count": 942,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -1033,9 +1033,9 @@
         "supersetQuizMal"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 11,
+      "package_file_count": 12,
       "required_package_file_count": 4,
-      "optional_package_file_count": 7,
+      "optional_package_file_count": 8,
       "package_files": [
         {
           "path": "data/fag/helse/anatomy_physiology_source_claim_brief_v1.json",
@@ -1071,7 +1071,7 @@
             "emner"
           ],
           "exists": true,
-          "content_sha256": "94135f707f73601e01781bc6e2dacd0aaffcf09f7c1937bef4ab4c275e2bacb4"
+          "content_sha256": "cb2ebe090e888aa1bc63114ecd8cc400ed6ffa2beb58aa27273d527ad04a83b0"
         },
         {
           "path": "data/fag/helse/fagkart_helse_canonical_v1.json",
@@ -1095,7 +1095,7 @@
             "pensum"
           ],
           "exists": true,
-          "content_sha256": "f9a224d2ca4046df9563a5a35255a26f880bd149fad9f150442dfbde86e8cca4"
+          "content_sha256": "bdc05ad0d44dc19494bf5af38ffc404ad8a7bea8034028093ac0a68bb0812aa4"
         },
         {
           "path": "data/fag/helse/medical_ethics_evidence_source_claim_brief_v1.json",
@@ -1119,7 +1119,7 @@
             "methods"
           ],
           "exists": true,
-          "content_sha256": "b85307380255f95ed76ae840850a3cc746c57e73a1f401d3727555969967faa2"
+          "content_sha256": "72602969a0501f68566c4baed89620827175454cd5a4dd0454863c03ada5d713"
         },
         {
           "path": "data/fag/helse/supersetQUIZMAL_helse.json",
@@ -1132,6 +1132,18 @@
           ],
           "exists": true,
           "content_sha256": "7c5dc1a8d0329ba1b5f6adfc2a92c41551e3e5c0cb91493ca6447f1b1ed4215d"
+        },
+        {
+          "path": "data/fagverk/helse/anatomi-fysiologi-struktur-funksjon-og-regulering.json",
+          "required": false,
+          "fields": [
+            "chapters"
+          ],
+          "key_paths": [
+            "chapters[1]"
+          ],
+          "exists": true,
+          "content_sha256": "5fa3705b9df0c8229f60d2c0491e97ae6586dc7eccc4980472fce96f2c110a8b"
         },
         {
           "path": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning.json",
@@ -1170,20 +1182,20 @@
           "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
         }
       ],
-      "package_content_sha256": "12dd524f8af42bb2b5484e27f77ef6a517da8b3ff6325a3304e95d2de923ef29",
-      "chapter_count": 1,
-      "module_file_count": 4,
-      "brief_file_count": 1,
-      "claims_file_count": 1,
-      "chapter_referenced_file_count": 7,
-      "chapter_content_sha256": "7ec57b73412098d7aae205cb7c3fe2a79126087e9b2a337c1f6db85030b32bf8",
-      "referenced_file_count": 17,
+      "package_content_sha256": "2bd3a878d47afd321590bb4622862fd721143f71553f66fce788f7b87425bddc",
+      "chapter_count": 2,
+      "module_file_count": 8,
+      "brief_file_count": 2,
+      "claims_file_count": 2,
+      "chapter_referenced_file_count": 14,
+      "chapter_content_sha256": "33be946e4e6a1d9ab4b36e792880e7d9d7f0bee7a8d21e15222fd7fd2f55086c",
+      "referenced_file_count": 24,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "aeeb2b8351ee9d13382f5adeddd2eb8133ec92e31a7b6fcc6923057bad898282",
-      "content_sha256": "189844a69c669bfda79789453c8ee0667688306ab18a41c1bc14996667580b23",
+      "structure_sha256": "721453994a9b4ba76811f0a4619c7609223d2b9879efdfd80cf63660edc8c002",
+      "content_sha256": "c4e4ecab2b10a86f8e95acec488f5e3e6fd64b3444089a4a46e388018e9dc980",
       "chapters": [
         {
           "chapter_id": "medisinsk-etikk-evidens-og-ansvarlig-beslutning",
@@ -1192,6 +1204,14 @@
           "module_file_count": 4,
           "referenced_file_count": 7,
           "content_sha256": "7ec57b73412098d7aae205cb7c3fe2a79126087e9b2a337c1f6db85030b32bf8"
+        },
+        {
+          "chapter_id": "anatomi-fysiologi-struktur-funksjon-og-regulering",
+          "title": "Anatomi og fysiologi: struktur, funksjon og regulering",
+          "file": "data/fagverk/helse/anatomi-fysiologi-struktur-funksjon-og-regulering.json",
+          "module_file_count": 4,
+          "referenced_file_count": 7,
+          "content_sha256": "d896b4b5c61e59dbad5619139dbad61320b9d58fcc65091313f3aa5bb87f0832"
         }
       ]
     },
@@ -5173,5 +5193,5 @@
       ]
     }
   },
-  "release_sha256": "6085a78a8073d6deea24b944da6d80b5a7ca0233758f7c6a5264a0203debaffe"
+  "release_sha256": "88459a64c0911e6989ebde6c40e7b2e0a4f5e498dcb3acf2a18d791c994040ec"
 }

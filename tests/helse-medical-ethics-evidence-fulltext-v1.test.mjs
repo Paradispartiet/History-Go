@@ -16,7 +16,7 @@ test('Helse er materialisert og audited uten prematur faglig completion', () => 
   const status = read('data/fagverk/subject_status.json').subjects.find((row) => row.id === 'helse');
   const registry = read('data/fagverk/fagverk_registry.json').subjects.helse;
   assert.deepEqual([status.navigationStatus, status.assessmentStatus, status.editorialStatus], ['materialized', 'audited', 'chapters_in_progress']);
-  assert.equal(registry.chapters.length, 1);
+  assert.equal(registry.chapters.filter((row) => row.id === 'medisinsk-etikk-evidens-og-ansvarlig-beslutning').length, 1);
   assert.equal(registry.editorialPlan.targetDomainCount, 12);
   assert.notEqual(status.editorialStatus, 'complete');
 });
