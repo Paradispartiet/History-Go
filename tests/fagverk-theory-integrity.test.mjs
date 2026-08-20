@@ -15,8 +15,8 @@ test('baseline strong blir ikke feilaktig oppgradert uten strict proof', () => {
   const r=auditFagverkTheoryIntegrity();
   assert.equal(r.status,'strict_audit_open_evidence_gaps');
   assert.equal(r.strictCompletionGateReady,false);
-  assert.equal(r.summary.strictly_proven,1);
-  assert.equal(r.summary.structured_subject_gate_not_strict,3);
+  assert.equal(r.summary.strictly_proven,2);
+  assert.equal(r.summary.structured_subject_gate_not_strict,2);
   assert.equal(r.summary.partial_strict_evidence,1);
   assert.equal(r.summary.baseline_only_strict_proof_missing,13);
 });
@@ -34,8 +34,8 @@ test('eksisterende subject-gates beholdes med presise restbevis', () => {
   const byId=new Map(r.subjects.map(s=>[s.id,s]));
   assert.equal(byId.get('film_tv').integrityStatus,'strictly_proven');
   assert.deepEqual(byId.get('film_tv').missingStrictProof,[]);
-  assert.equal(byId.get('religion').integrityStatus,'structured_subject_gate_not_strict');
-  assert.ok(byId.get('religion').missingStrictProof.includes('actual_prose_binding'));
+  assert.equal(byId.get('religion').integrityStatus,'strictly_proven');
+  assert.deepEqual(byId.get('religion').missingStrictProof,[]);
   assert.equal(byId.get('scenekunst').integrityStatus,'structured_subject_gate_not_strict');
   assert.ok(byId.get('scenekunst').missingStrictProof.includes('canonical_field_coverage'));
   assert.equal(byId.get('subkultur').integrityStatus,'structured_subject_gate_not_strict');
@@ -46,6 +46,7 @@ test('eksisterende subject-gates beholdes med presise restbevis', () => {
 test('completion-status er read-only i theory integrity programmet', () => {
   const r=auditFagverkTheoryIntegrity();
   assert.equal(r.rules.completionStatusReadOnly,true);
-  assert.equal(r.proofReconciliationQueue.length,17);
+  assert.equal(r.proofReconciliationQueue.length,16);
   assert.ok(!r.proofReconciliationQueue.includes('film_tv'));
+  assert.ok(!r.proofReconciliationQueue.includes('religion'));
 });
