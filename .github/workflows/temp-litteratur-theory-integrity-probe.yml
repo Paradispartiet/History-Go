@@ -18,13 +18,18 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Validate permanent strict gate before promotion
+      - name: Validate permanent Litteratur and global strict gates
         run: |
           node --check tools/audit-litteratur-theory-integrity.mjs
-          node --test tests/litteratur-theory-integrity.test.mjs
+          node --check scripts/audit-fagverk-theory-integrity.mjs
           node tools/audit-litteratur-theory-integrity.mjs --write-report --no-check-report | tee /tmp/litteratur-theory-integrity-audit.json
-      - name: Upload strict-gate candidate report
+          node scripts/audit-fagverk-theory-integrity.mjs --write-report --no-check-report | tee /tmp/fagverk-theory-integrity-audit.json
+          node --test tests/litteratur-theory-integrity.test.mjs
+          node --test tests/fagverk-theory-integrity.test.mjs
+      - name: Upload strict-gate candidate reports
         uses: actions/upload-artifact@v4
         with:
           name: litteratur-theory-integrity-probe
-          path: /tmp/litteratur-theory-integrity-audit.json
+          path: |
+            /tmp/litteratur-theory-integrity-audit.json
+            /tmp/fagverk-theory-integrity-audit.json
