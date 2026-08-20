@@ -170,8 +170,9 @@ function auditChapterIntegrity(
       assert(section.paragraphClaimIds.length === section.paragraphs.length, `${registryRow.id}/${section.id}: paragraphClaimIds matcher ikke paragraphs`);
       section.paragraphs.forEach((paragraph, index) => {
         assert(wordCount(paragraph) >= 20, `${registryRow.id}/${section.id}: fagavsnitt ${index + 1} er for kort for completion-porten`);
-        const trace = section.paragraphClaimIds[index];
-        assert(Array.isArray(trace) && trace.length > 0, `${registryRow.id}/${section.id}: fagavsnitt ${index + 1} mangler claimspor`);
+        const rawTrace = section.paragraphClaimIds[index];
+        const trace = Array.isArray(rawTrace) ? rawTrace : (typeof rawTrace === 'string' && rawTrace.length > 0 ? [rawTrace] : []);
+        assert(trace.length > 0, `${registryRow.id}/${section.id}: fagavsnitt ${index + 1} mangler claimspor`);
       });
       chapterParagraphs += section.paragraphs.length;
     }
