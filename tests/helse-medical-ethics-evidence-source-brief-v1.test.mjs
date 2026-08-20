@@ -1,26 +1,29 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import { auditHealthMedicalEthicsEvidenceSourceBriefV1 } from '../scripts/brief-helse-medical-ethics-evidence-sources-v1.mjs';
 
-test('første Helse-enhet er source-first, kildebundet og ikke feilregistrert som fulltekst', () => {
+const read = (file) => JSON.parse(fs.readFileSync(new URL(`../${file}`, import.meta.url), 'utf8'));
+
+test('første Helse-source brief bevarer historisk planstatus etter kontrollert fulltekstregistrering', () => {
   const result = auditHealthMedicalEthicsEvidenceSourceBriefV1();
-  const { brief, report, registry, status, manifest, inventory } = result;
+  const { brief, report, manifest, inventory } = result;
 
   assert.equal(brief.subject_id, 'helse');
   assert.equal(brief.scope.primary_domain_id, 'medisinsk_etikk_evidens');
   assert.equal(brief.runtime_registration.registered, false);
-  assert.equal(registry.subjects.helse.chapters.length, 0);
+  assert.equal(read('data/fagverk/fagverk_registry.json').subjects.helse.chapters.length, 1);
   assert.equal(report.summary.registered_chapter_count_delta, 0);
   assert.equal(report.summary.expanded_fagverk_strictly_proven, 18);
   assert.equal(report.summary.expanded_fagverk_target, 20);
   assert.ok(Object.values(report.gates).every(Boolean));
 
-  const healthStatus = status.subjects.find((row) => row.id === 'helse');
+  const healthStatus = read('data/fagverk/subject_status.json').subjects.find((row) => row.id === 'helse');
   assert.deepEqual(
     [healthStatus.navigationStatus, healthStatus.assessmentStatus, healthStatus.editorialStatus],
-    ['planned', 'pending', 'not_started']
+    ['materialized', 'audited', 'chapters_in_progress']
   );
-  assert.equal(healthStatus.nextGate, 'medical_ethics_evidence_source_brief_complete_full_chapter_production');
+  assert.equal(healthStatus.nextGate, 'medical_ethics_evidence_full_chapter_complete_next_domain_source_brief');
   assert.deepEqual(manifest.helse.sourceClaimBriefs, ['data/fag/helse/medical_ethics_evidence_source_claim_brief_v1.json']);
   assert.ok(inventory.subjects.find((row) => row.id === 'helse').optionalManifestFields.includes('sourceClaimBriefs'));
 });

@@ -1,0 +1,577 @@
+{
+  "schema": "history_go_fagverk_chapter_claims_v1",
+  "version": "1.0.0",
+  "subject_id": "helse",
+  "chapter_id": "medisinsk-etikk-evidens-og-ansvarlig-beslutning",
+  "sourceBriefFile": "data/fag/helse/medical_ethics_evidence_source_claim_brief_v1.json",
+  "sources": [
+    {
+      "id": "hme01-wma-helsinki-2024",
+      "publisher": "World Medical Association",
+      "title": "WMA Declaration of Helsinki – Ethical Principles for Medical Research Involving Human Participants",
+      "url": "https://www.wma.net/policies-post/wma-declaration-of-helsinki/",
+      "type": "international-research-ethics-declaration",
+      "evidence_role": "international-ethics-primary-source",
+      "source_location": "2024 text, paragraphs 6–10, 16–23, 25–36: rights, fair inclusion, risk–benefit assessment, scientific validity, independent review, consent, registration and dissemination.",
+      "retrieval_status": "verified_2026-08-21",
+      "label": "World Medical Association – WMA Declaration of Helsinki – Ethical Principles for Medical Research Involving Human Participants"
+    },
+    {
+      "id": "hme02-wma-medical-ethics-code",
+      "publisher": "World Medical Association",
+      "title": "WMA International Code of Medical Ethics",
+      "url": "https://www.wma.net/policies-post/wma-international-code-of-medical-ethics/",
+      "type": "international-professional-ethics-code",
+      "evidence_role": "professional-ethics-primary-source",
+      "source_location": "Duties to the patient and general duties: dignity, autonomy, informed consent, benefit–harm balance, professional judgement and disclosure or management of conflicts of interest.",
+      "retrieval_status": "verified_2026-08-21",
+      "label": "World Medical Association – WMA International Code of Medical Ethics"
+    },
+    {
+      "id": "hme03-belmont-report",
+      "publisher": "US Department of Health and Human Services, Office for Human Research Protections",
+      "title": "The Belmont Report",
+      "url": "https://www.hhs.gov/ohrp/regulations-and-policy/belmont-report/read-the-belmont-report/index.html",
+      "type": "research-ethics-commission-report",
+      "evidence_role": "foundational-research-ethics-primary-source",
+      "source_location": "Part B and Part C: respect for persons, beneficence and justice, applied through informed consent, risk–benefit assessment and selection of research participants.",
+      "retrieval_status": "verified_2026-08-21",
+      "label": "US Department of Health and Human Services, Office for Human Research Protections – The Belmont Report"
+    },
+    {
+      "id": "hme04-cioms-2016",
+      "publisher": "Council for International Organizations of Medical Sciences",
+      "title": "International Ethical Guidelines for Health-related Research Involving Humans",
+      "url": "https://cioms.ch/publications/product/international-ethical-guidelines-for-health-related-research-involving-humans/",
+      "type": "international-health-research-guideline",
+      "evidence_role": "international-research-ethics-guidance",
+      "source_location": "2016 guidelines and commentaries on social value, scientific validity, fair selection, vulnerable situations, informed consent, ethics review and public accountability.",
+      "retrieval_status": "verified_2026-08-21",
+      "label": "Council for International Organizations of Medical Sciences – International Ethical Guidelines for Health-related Research Involving Humans"
+    },
+    {
+      "id": "hme05-no-health-research-act",
+      "publisher": "Lovdata",
+      "title": "Lov om medisinsk og helsefaglig forskning (helseforskningsloven)",
+      "url": "https://lovdata.no/lov/2008-06-20-44",
+      "type": "norwegian-statute",
+      "evidence_role": "national-research-law-primary-source",
+      "source_location": "Current consolidated law: purpose, organization and prior ethics review of health research, consent and special safeguards for research participants.",
+      "retrieval_status": "verified_2026-08-21",
+      "label": "Lovdata – Lov om medisinsk og helsefaglig forskning (helseforskningsloven)"
+    },
+    {
+      "id": "hme06-no-patient-rights-act",
+      "publisher": "Lovdata",
+      "title": "Lov om pasient- og brukerrettigheter (pasient- og brukerrettighetsloven)",
+      "url": "https://lovdata.no/lov/1999-07-02-63",
+      "type": "norwegian-statute",
+      "evidence_role": "national-patient-rights-law-primary-source",
+      "source_location": "Current consolidated law, chapters 3 and 4: participation and adapted information, consent as the main rule, withdrawal and rules concerning decision-making capacity and representation.",
+      "retrieval_status": "verified_2026-08-21",
+      "label": "Lovdata – Lov om pasient- og brukerrettigheter (pasient- og brukerrettighetsloven)"
+    },
+    {
+      "id": "hme07-no-health-personnel-act",
+      "publisher": "Lovdata",
+      "title": "Lov om helsepersonell m.v. (helsepersonelloven)",
+      "url": "https://lovdata.no/lov/1999-07-02-64",
+      "type": "norwegian-statute",
+      "evidence_role": "national-professional-law-primary-source",
+      "source_location": "Current consolidated law, section 4 and related duties: professionally responsible and caring practice within qualifications, with referral or collaboration when necessary.",
+      "retrieval_status": "verified_2026-08-21",
+      "label": "Lovdata – Lov om helsepersonell m.v. (helsepersonelloven)"
+    },
+    {
+      "id": "hme08-cochrane-grade",
+      "publisher": "Cochrane",
+      "title": "Cochrane Handbook, Chapter 14: Summary of findings and certainty of evidence",
+      "url": "https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-14",
+      "type": "systematic-review-methods-handbook",
+      "evidence_role": "evidence-synthesis-method",
+      "source_location": "Sections 14.1–14.3: relative and absolute effects, outcome-specific certainty and the GRADE domains risk of bias, inconsistency, indirectness, imprecision and publication bias.",
+      "retrieval_status": "verified_2026-08-21",
+      "label": "Cochrane – Cochrane Handbook, Chapter 14: Summary of findings and certainty of evidence"
+    },
+    {
+      "id": "hme09-who-guideline-handbook",
+      "publisher": "World Health Organization",
+      "title": "WHO handbook for guideline development, second edition",
+      "url": "https://iris.who.int/handle/10665/145714",
+      "type": "international-guideline-methods-handbook",
+      "evidence_role": "evidence-to-decision-method",
+      "source_location": "Guideline-development process and evidence-to-recommendation considerations: certainty, benefits and harms, values, resources, equity, acceptability and feasibility.",
+      "retrieval_status": "verified_2026-08-21",
+      "label": "World Health Organization – WHO handbook for guideline development, second edition"
+    },
+    {
+      "id": "hme10-nice-shared-decision",
+      "publisher": "National Institute for Health and Care Excellence",
+      "title": "Shared decision making – recommendations (NG197)",
+      "url": "https://www.nice.org.uk/guidance/ng197/chapter/recommendations",
+      "type": "national-clinical-guideline",
+      "evidence_role": "shared-decision-guideline",
+      "source_location": "Recommendations on making shared decision making routine, discussing options and no-change alternatives, communicating benefits, risks and consequences, and supporting deliberation.",
+      "retrieval_status": "verified_2026-08-21",
+      "label": "National Institute for Health and Care Excellence – Shared decision making – recommendations (NG197)"
+    },
+    {
+      "id": "hme11-helsenorge-shared-decision",
+      "publisher": "Helsenorge",
+      "title": "Hva er samvalg?",
+      "url": "https://www.helsenorge.no/samvalg/hva-er-samvalg/",
+      "type": "national-patient-information",
+      "evidence_role": "patient-facing-decision-guidance",
+      "source_location": "Patient-facing explanation of comparing offered investigation or treatment alternatives through benefits, disadvantages and what matters to the patient.",
+      "retrieval_status": "verified_2026-08-21",
+      "label": "Helsenorge – Hva er samvalg?"
+    },
+    {
+      "id": "hme12-helsed-kunnskapsbasert-praksis",
+      "publisher": "Helsedirektoratet",
+      "title": "Kunnskapsbasert praksis",
+      "url": "https://www.helsedirektoratet.no/veiledere/rehabilitering-habilitering-individuell-plan-og-koordinator/god-kvalitet-og-faglig-forsvarlighet-innen-koordinering-habilitering-og-rehabilitering/kunnskapsbasert-praksis",
+      "type": "national-professional-guidance",
+      "evidence_role": "knowledge-integration-guidance",
+      "source_location": "Guidance on integrating research-based knowledge with experience-based knowledge and users’ needs, followed by evaluation of practice.",
+      "retrieval_status": "verified_2026-08-21",
+      "label": "Helsedirektoratet – Kunnskapsbasert praksis"
+    },
+    {
+      "id": "hme13-helsed-prioritization",
+      "publisher": "Helsedirektoratet",
+      "title": "Prioritering i helse- og omsorgstjenesten",
+      "url": "https://www.helsedirektoratet.no/forebygging-diagnose-og-behandling/organisering-og-tjenestetilbud/prioritering-i-helsetjenesten",
+      "type": "national-prioritization-guidance",
+      "evidence_role": "public-priority-guidance",
+      "source_location": "Current national description of the three prioritization criteria benefit, resources and severity and their use across publicly funded health and care services.",
+      "retrieval_status": "verified_2026-08-21",
+      "label": "Helsedirektoratet – Prioritering i helse- og omsorgstjenesten"
+    },
+    {
+      "id": "hme14-no-prioritization-white-paper",
+      "publisher": "Helse- og omsorgsdepartementet",
+      "title": "Meld. St. 21 (2024–2025) Helse for alle – Rettferdig prioritering i vår felles helsetjeneste",
+      "url": "https://www.regjeringen.no/no/dokumenter/meld.-st.-21-20242025/id3096827/",
+      "type": "norwegian-government-white-paper",
+      "evidence_role": "public-priority-policy-primary-source",
+      "source_location": "Goals and principles for equitable and timely access, legitimacy, transparency, sustainability and the cross-service criteria benefit, resources and severity.",
+      "retrieval_status": "verified_2026-08-21",
+      "label": "Helse- og omsorgsdepartementet – Meld. St. 21 (2024–2025) Helse for alle – Rettferdig prioritering i vår felles helsetjeneste"
+    }
+  ],
+  "claims": [
+    {
+      "id": "hme-01-01",
+      "claim": "Rett til informasjon og medvirkning innebærer ikke plikt til å godta et bestemt alternativ.",
+      "source_ids": [
+        "hme02-wma-medical-ethics-code",
+        "hme06-no-patient-rights-act",
+        "hme10-nice-shared-decision",
+        "hme11-helsenorge-shared-decision"
+      ],
+      "classification": "verified_authoritative_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "hme-01-02",
+      "claim": "Informasjon er ikke tilstrekkelig bare fordi den er gitt.",
+      "source_ids": [
+        "hme02-wma-medical-ethics-code",
+        "hme06-no-patient-rights-act",
+        "hme10-nice-shared-decision",
+        "hme11-helsenorge-shared-decision"
+      ],
+      "classification": "verified_authoritative_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "hme-01-03",
+      "claim": "Samvalg kombinerer forskningskunnskap og profesjonell vurdering med det som er viktig for pasienten når flere forsvarlige alternativer finnes.",
+      "source_ids": [
+        "hme02-wma-medical-ethics-code",
+        "hme06-no-patient-rights-act",
+        "hme10-nice-shared-decision",
+        "hme11-helsenorge-shared-decision"
+      ],
+      "classification": "verified_authoritative_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "hme-01-04",
+      "claim": "Samtykke er formålsavgrenset og kan trekkes tilbake.",
+      "source_ids": [
+        "hme02-wma-medical-ethics-code",
+        "hme06-no-patient-rights-act",
+        "hme10-nice-shared-decision",
+        "hme11-helsenorge-shared-decision"
+      ],
+      "classification": "verified_authoritative_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "hme-02-01",
+      "claim": "Beslutningskapasitet må knyttes til den konkrete beslutningen, informasjonen og situasjonen, ikke gjøres til en varig merkelapp for hele personen.",
+      "source_ids": [
+        "hme01-wma-helsinki-2024",
+        "hme04-cioms-2016",
+        "hme05-no-health-research-act",
+        "hme06-no-patient-rights-act"
+      ],
+      "classification": "verified_authoritative_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "hme-02-02",
+      "claim": "Behov for støtte eller representasjon opphever ikke den berørtes status som deltaker i beslutningen.",
+      "source_ids": [
+        "hme01-wma-helsinki-2024",
+        "hme04-cioms-2016",
+        "hme05-no-health-research-act",
+        "hme06-no-patient-rights-act"
+      ],
+      "classification": "verified_authoritative_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "hme-02-03",
+      "claim": "Sårbarhet kan oppstå gjennom sykdom, avhengighet, institusjonsmakt, språk, økonomi eller forskningssituasjon og må undersøkes konkret.",
+      "source_ids": [
+        "hme01-wma-helsinki-2024",
+        "hme04-cioms-2016",
+        "hme05-no-health-research-act",
+        "hme06-no-patient-rights-act"
+      ],
+      "classification": "verified_authoritative_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "hme-02-04",
+      "claim": "Et gyldig rettslig samtykkegrunnlag avslutter ikke den etiske vurderingen.",
+      "source_ids": [
+        "hme01-wma-helsinki-2024",
+        "hme04-cioms-2016",
+        "hme05-no-health-research-act",
+        "hme06-no-patient-rights-act"
+      ],
+      "classification": "verified_authoritative_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "hme-03-01",
+      "claim": "Forventet nytte er en fremoverskuende vurdering, mens dokumentert effekt beskriver hva data støtter under bestemte betingelser.",
+      "source_ids": [
+        "hme01-wma-helsinki-2024",
+        "hme02-wma-medical-ethics-code",
+        "hme03-belmont-report",
+        "hme09-who-guideline-handbook"
+      ],
+      "classification": "verified_authoritative_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "hme-03-02",
+      "claim": "Risiko og byrde skal ikke bare beskrives ved oppstart, men reduseres, overvåkes og revurderes når ny informasjon kommer.",
+      "source_ids": [
+        "hme01-wma-helsinki-2024",
+        "hme02-wma-medical-ethics-code",
+        "hme03-belmont-report",
+        "hme09-who-guideline-handbook"
+      ],
+      "classification": "verified_authoritative_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "hme-03-03",
+      "claim": "Klinisk virksomhet retter seg mot den aktuelle pasientens helsehjelp, mens forskning har som særskilt formål å utvikle generaliserbar kunnskap.",
+      "source_ids": [
+        "hme01-wma-helsinki-2024",
+        "hme02-wma-medical-ethics-code",
+        "hme03-belmont-report",
+        "hme09-who-guideline-handbook"
+      ],
+      "classification": "verified_authoritative_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "hme-03-04",
+      "claim": "En gjennomsnittlig gevinst kan skjule ulike utfall, skader og fordelinger mellom deltakere.",
+      "source_ids": [
+        "hme01-wma-helsinki-2024",
+        "hme02-wma-medical-ethics-code",
+        "hme03-belmont-report",
+        "hme09-who-guideline-handbook"
+      ],
+      "classification": "verified_authoritative_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "hme-04-01",
+      "claim": "Metodisk svak forskning kan være etisk problematisk fordi deltakere utsettes for inngrep eller byrde uten rimelig utsikt til pålitelig kunnskap.",
+      "source_ids": [
+        "hme01-wma-helsinki-2024",
+        "hme03-belmont-report",
+        "hme04-cioms-2016",
+        "hme05-no-health-research-act"
+      ],
+      "classification": "verified_authoritative_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "hme-04-02",
+      "claim": "Forskeren beholder ansvar for protokoll og gjennomføring, mens en uavhengig forskningsetisk komité vurderer prosjektet før oppstart og kan kreve oppfølging.",
+      "source_ids": [
+        "hme01-wma-helsinki-2024",
+        "hme03-belmont-report",
+        "hme04-cioms-2016",
+        "hme05-no-health-research-act"
+      ],
+      "classification": "verified_authoritative_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "hme-04-03",
+      "claim": "En etterprøvbar forskningskjede forbinder problemstilling, design, utvalg, risiko, personvern, finansiering, interesser, analyseplan og rapportering.",
+      "source_ids": [
+        "hme01-wma-helsinki-2024",
+        "hme03-belmont-report",
+        "hme04-cioms-2016",
+        "hme05-no-health-research-act"
+      ],
+      "classification": "verified_authoritative_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "hme-04-04",
+      "claim": "Forhåndsregistrering og offentliggjøring av negative, uklare og positive resultater reduserer selektiv synlighet av forskning.",
+      "source_ids": [
+        "hme01-wma-helsinki-2024",
+        "hme03-belmont-report",
+        "hme04-cioms-2016",
+        "hme05-no-health-research-act"
+      ],
+      "classification": "verified_authoritative_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "hme-05-01",
+      "claim": "Effektstørrelse og evidenssikkerhet svarer på forskjellige spørsmål.",
+      "source_ids": [
+        "hme01-wma-helsinki-2024",
+        "hme08-cochrane-grade",
+        "hme09-who-guideline-handbook",
+        "hme12-helsed-kunnskapsbasert-praksis"
+      ],
+      "classification": "verified_authoritative_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "hme-05-02",
+      "claim": "GRADE vurderer om risiko for bias, inkonsistens, indirekthet, upresisjon og publikasjonsbias svekker tilliten til et effektestimat.",
+      "source_ids": [
+        "hme01-wma-helsinki-2024",
+        "hme08-cochrane-grade",
+        "hme09-who-guideline-handbook",
+        "hme12-helsed-kunnskapsbasert-praksis"
+      ],
+      "classification": "verified_authoritative_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "hme-05-03",
+      "claim": "Gjennomsnittseffekt i én studiepopulasjon fastslår ikke effekten i en annen populasjon eller tjeneste.",
+      "source_ids": [
+        "hme01-wma-helsinki-2024",
+        "hme08-cochrane-grade",
+        "hme09-who-guideline-handbook",
+        "hme12-helsed-kunnskapsbasert-praksis"
+      ],
+      "classification": "verified_authoritative_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "hme-05-04",
+      "claim": "En anbefaling bygger på mer enn effektestimat og evidenssikkerhet.",
+      "source_ids": [
+        "hme01-wma-helsinki-2024",
+        "hme08-cochrane-grade",
+        "hme09-who-guideline-handbook",
+        "hme12-helsed-kunnskapsbasert-praksis"
+      ],
+      "classification": "verified_authoritative_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "hme-06-01",
+      "claim": "Kunnskapsbasert praksis integrerer forskningsbasert kunnskap, erfaringskunnskap og brukerens behov i en konkret faglig prosess.",
+      "source_ids": [
+        "hme06-no-patient-rights-act",
+        "hme10-nice-shared-decision",
+        "hme11-helsenorge-shared-decision",
+        "hme12-helsed-kunnskapsbasert-praksis"
+      ],
+      "classification": "verified_authoritative_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "hme-06-02",
+      "claim": "Når flere alternativer er faglig forsvarlige, kan mennesker vekte gevinst, bivirkning, tidsbruk og belastning forskjellig.",
+      "source_ids": [
+        "hme06-no-patient-rights-act",
+        "hme10-nice-shared-decision",
+        "hme11-helsenorge-shared-decision",
+        "hme12-helsed-kunnskapsbasert-praksis"
+      ],
+      "classification": "verified_authoritative_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "hme-06-03",
+      "claim": "Tallfestet risiko må kommuniseres med samme nevner, samme tidsrom og tydelig sammenligningsgrunnlag.",
+      "source_ids": [
+        "hme06-no-patient-rights-act",
+        "hme10-nice-shared-decision",
+        "hme11-helsenorge-shared-decision",
+        "hme12-helsed-kunnskapsbasert-praksis"
+      ],
+      "classification": "verified_authoritative_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "hme-06-04",
+      "claim": "Å synliggjøre usikkerhet betyr å forklare hva som er sikkert, hva som er usikkert og hvilke konsekvenser dette har for valget.",
+      "source_ids": [
+        "hme06-no-patient-rights-act",
+        "hme10-nice-shared-decision",
+        "hme11-helsenorge-shared-decision",
+        "hme12-helsed-kunnskapsbasert-praksis"
+      ],
+      "classification": "verified_authoritative_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "hme-07-01",
+      "claim": "Lik behandling er ikke alltid rettferdig behandling når behov, alvorlighet og forventet nytte varierer.",
+      "source_ids": [
+        "hme03-belmont-report",
+        "hme04-cioms-2016",
+        "hme13-helsed-prioritization",
+        "hme14-no-prioritization-white-paper"
+      ],
+      "classification": "verified_authoritative_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "hme-07-02",
+      "claim": "Rettferdighet gjelder både hvem som bærer byrder og hvem som får tilgang til gevinster.",
+      "source_ids": [
+        "hme03-belmont-report",
+        "hme04-cioms-2016",
+        "hme13-helsed-prioritization",
+        "hme14-no-prioritization-white-paper"
+      ],
+      "classification": "verified_authoritative_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "hme-07-03",
+      "claim": "Det norske prioriteringsrammeverket vurderer nytte, ressursbruk og alvorlighet samlet.",
+      "source_ids": [
+        "hme03-belmont-report",
+        "hme04-cioms-2016",
+        "hme13-helsed-prioritization",
+        "hme14-no-prioritization-white-paper"
+      ],
+      "classification": "verified_authoritative_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "hme-07-04",
+      "claim": "Åpen prosess, offentlig begrunnelse og mulighet for kontroll kan styrke legitimiteten til vanskelige prioriteringer.",
+      "source_ids": [
+        "hme03-belmont-report",
+        "hme04-cioms-2016",
+        "hme13-helsed-prioritization",
+        "hme14-no-prioritization-white-paper"
+      ],
+      "classification": "verified_authoritative_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "hme-08-01",
+      "claim": "Faglig skjønn er nødvendig når kunnskap, regler og situasjon må sammenholdes, men skjønn er ikke ubegrunnet autoritet.",
+      "source_ids": [
+        "hme01-wma-helsinki-2024",
+        "hme02-wma-medical-ethics-code",
+        "hme07-no-health-personnel-act"
+      ],
+      "classification": "verified_authoritative_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "hme-08-02",
+      "claim": "Forsvarlig praksis krever at helsepersonell arbeider innenfor egne kvalifikasjoner og innhenter bistand eller henviser når det er nødvendig.",
+      "source_ids": [
+        "hme01-wma-helsinki-2024",
+        "hme02-wma-medical-ethics-code",
+        "hme07-no-health-personnel-act"
+      ],
+      "classification": "verified_authoritative_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "hme-08-03",
+      "claim": "En interessekonflikt er en risiko for at en sekundær interesse påvirker faglig vurdering; den er ikke i seg selv bevis på uredelighet.",
+      "source_ids": [
+        "hme01-wma-helsinki-2024",
+        "hme02-wma-medical-ethics-code",
+        "hme07-no-health-personnel-act"
+      ],
+      "classification": "verified_authoritative_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "hme-08-04",
+      "claim": "Samtykke overfører ikke institusjonens eller profesjonens ansvar for forsvarlighet, personvern og deltakervern til den som samtykker.",
+      "source_ids": [
+        "hme01-wma-helsinki-2024",
+        "hme02-wma-medical-ethics-code",
+        "hme07-no-health-personnel-act"
+      ],
+      "classification": "verified_authoritative_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-21"
+    }
+  ]
+}

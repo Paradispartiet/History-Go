@@ -39,15 +39,17 @@ test('Auditerte fag har dokumentert og statusriktig fremdrift gjennom den genere
   const audited = s.subjects.filter((x) => x.assessmentStatus === 'audited');
   assert.deepEqual(audited.map((x) => x.id), [
     'by', 'historie', 'kunst', 'litteratur', 'media', 'musikk', 'naeringsliv', 'natur',
-    'politikk', 'psykologi', 'religion', 'scenekunst', 'sport', 'subkultur', 'vitenskap',
+    'politikk', 'psykologi', 'helse', 'religion', 'scenekunst', 'sport', 'subkultur', 'vitenskap',
     'filosofi', 'film_tv'
   ]);
-  for (const id of ['helse', 'utdanning']) {
+  for (const id of ['utdanning']) {
     const subject = s.subjects.find((x) => x.id === id);
     assert.equal(subject.navigationStatus, 'planned');
     assert.equal(subject.assessmentStatus, 'pending');
     assert.equal(subject.editorialStatus, 'not_started');
   }
+  const helse = s.subjects.find((x) => x.id === 'helse');
+  assert.deepEqual([helse.navigationStatus, helse.assessmentStatus, helse.editorialStatus], ['materialized', 'audited', 'chapters_in_progress']);
   for (const id of audited.map((x) => x.id)) {
     const subject = s.subjects.find((x) => x.id === id);
     assert.equal(subject.navigationStatus, 'materialized');
@@ -212,7 +214,7 @@ test('19+1-utvidelsen låser seks eksplisitte canonicale underkategorier', () =>
   assert.equal(c.labels.litteratur, 'Språk & litteratur');
 });
 
-test('Helse og Utdanning har konsistent foundation uten å påstå produksjonsferdig innhold', () => {
+test('Helse og Utdanning har konsistent foundation med dokumentert Helse-fremdrift uten prematur completion', () => {
   const manifest = readJson('data/fag/fag_manifest.json');
   const status = readJson('data/fagverk/subject_status.json');
   const reconciliation = readJson('reports/fagverk/fagverk-expansion-19-plus-1-reconciliation-v1.json');
@@ -226,26 +228,28 @@ test('Helse og Utdanning har konsistent foundation uten å påstå produksjonsfe
     const quizProfile = readJson(`data/fag/${entry.supersetQuizMal}`);
     const subjectStatus = status.subjects.find((subject) => subject.id === id);
 
-    assert.equal(entry.status, 'expansion_foundation');
+    assert.equal(entry.status, id === 'helse' ? 'active_foundation' : 'expansion_foundation');
     assert.equal(pensum.subject_id, id);
-    assert.equal(pensum.status, 'canonical_expansion_foundation');
+    assert.equal(pensum.status, id === 'helse' ? 'active_foundation' : 'canonical_expansion_foundation');
     assert.equal(pensum.complete_ready, false);
     assert.deepEqual(pensum.domain_order, pensum.domains.map((domain) => domain.domain_id));
     assert.deepEqual(emner.map((emne) => emne.domain), pensum.domain_order);
     assert.deepEqual(fagkart.categories.map((category) => category.id), pensum.domain_order);
-    assert.ok(emner.every((emne) => emne.subject_id === id && emne.status === 'planned'));
+    assert.ok(emner.every((emne) => emne.subject_id === id));
+    assert.equal(emner.filter((emne) => emne.status === 'materialized').length, id === 'helse' ? 1 : 0);
+    assert.ok(emner.every((emne) => ['planned', 'materialized'].includes(emne.status)));
     const methodIds = new Set(methods.methods.map((method) => method.method_id));
     assert.ok(emner.flatMap((emne) => emne.method_ids).every((methodId) => methodIds.has(methodId)));
-    assert.ok(methods.methods.every((method) => method.canonical_status === 'planned'));
+    assert.ok(methods.methods.every((method) => ['planned', 'materialized'].includes(method.canonical_status)));
     assert.equal(quizProfile.status, 'canonical_category_profile');
     assert.equal(quizProfile.governance.authority, 'category_content_only');
-    assert.equal(subjectStatus.navigationStatus, 'planned');
-    assert.equal(subjectStatus.assessmentStatus, 'pending');
-    assert.equal(subjectStatus.editorialStatus, 'not_started');
+    assert.equal(subjectStatus.navigationStatus, id === 'helse' ? 'materialized' : 'planned');
+    assert.equal(subjectStatus.assessmentStatus, id === 'helse' ? 'audited' : 'pending');
+    assert.equal(subjectStatus.editorialStatus, id === 'helse' ? 'chapters_in_progress' : 'not_started');
     assert.equal(
       subjectStatus.nextGate,
       id === 'helse'
-        ? 'medical_ethics_evidence_source_brief_complete_full_chapter_production'
+        ? 'medical_ethics_evidence_full_chapter_complete_next_domain_source_brief'
         : 'first_source_brief_after_repository_reconciliation'
     );
   }

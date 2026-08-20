@@ -10,6 +10,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DATE = '2026-08-21';
 const INPUT_GATE = 'first_source_brief_after_repository_reconciliation';
 const OUTPUT_GATE = 'medical_ethics_evidence_source_brief_complete_full_chapter_production';
+const FULLTEXT_GATE = 'medical_ethics_evidence_full_chapter_complete_next_domain_source_brief';
 const UNIT_ID = 'medisinsk-etikk-evidens-og-ansvarlig-beslutning';
 const CANONICAL_EMNE_ID = 'em_helse_medisinsk_etikk_evidens';
 
@@ -461,7 +462,7 @@ export function buildHealthMedicalEthicsEvidenceSourceBriefV1() {
   status.updatedAt = DATE;
   const healthStatus = status.subjects.find((row) => row.id === 'helse');
   assert(healthStatus, 'Subject status mangler Helse');
-  assert([INPUT_GATE, OUTPUT_GATE].includes(healthStatus.nextGate), `Uventet Helse-port: ${healthStatus.nextGate}`);
+  assert([INPUT_GATE, OUTPUT_GATE, FULLTEXT_GATE].includes(healthStatus.nextGate), `Uventet Helse-port: ${healthStatus.nextGate}`);
   healthStatus.navigationStatus = 'planned';
   healthStatus.assessmentStatus = 'pending';
   healthStatus.editorialStatus = 'not_started';
@@ -532,6 +533,8 @@ export function buildHealthMedicalEthicsEvidenceSourceBriefV1() {
 }
 
 export function auditHealthMedicalEthicsEvidenceSourceBriefV1({ writeFiles = false, checkFiles = true } = {}) {
+  const currentHealthGate = read(P.status).subjects.find((row) => row.id === 'helse')?.nextGate;
+  const fulltextHasProgressed = currentHealthGate === FULLTEXT_GATE;
   const built = buildHealthMedicalEthicsEvidenceSourceBriefV1();
   const outputs = {
     [P.brief]: built.brief,
@@ -543,7 +546,10 @@ export function auditHealthMedicalEthicsEvidenceSourceBriefV1({ writeFiles = fal
   };
   if (writeFiles) for (const [file, value] of Object.entries(outputs)) write(file, value);
   if (checkFiles) {
-    for (const [file, value] of Object.entries(outputs)) {
+    const checkedOutputs = fulltextHasProgressed
+      ? { [P.brief]: built.brief, [P.report]: built.report }
+      : outputs;
+    for (const [file, value] of Object.entries(checkedOutputs)) {
       assert(fs.existsSync(path.join(ROOT, file)), `${file} mangler`);
       assert(isDeepStrictEqual(read(file), value), `${file} er utdatert`);
     }
