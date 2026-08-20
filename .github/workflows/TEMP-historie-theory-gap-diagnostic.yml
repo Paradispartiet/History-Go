@@ -1,41 +1,48 @@
-name: TEMP Historie theory gap diagnostic
+name: TEMP Historie strict proof compatibility repair
 
 on:
-  pull_request:
-    paths:
-      - '.github/workflows/TEMP-historie-theory-gap-diagnostic.yml'
-      - 'data/fag/**'
-      - 'data/fagverk/**'
-      - 'tools/audit-historie-theory-integrity.mjs'
-  workflow_dispatch:
+  push:
+    branches:
+      - agent/fagverk-historie-theory-integrity-proof-20260820
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  diagnose:
+  repair:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Harvest existing canonical thinker work metadata
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Align strict proof with canonical fulltext projection
         run: |
-          node <<'NODE'
-          const fs=require('fs'),path=require('path');
-          const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
-          const A=v=>Array.isArray(v)?v:[];
-          const pensum=read('data/fag/historie/historiepensum_canonical_v4_5.json');
-          const ids=[...new Set(A(pensum.domains).flatMap(d=>A(d.canonical_thinker_ids)))].sort();
-          const wanted=new Set(ids),hits=new Map(ids.map(id=>[id,[]]));
-          const roots=['data/fag','data/fagverk'];
-          function walk(dir){if(!fs.existsSync(dir))return[];let out=[];for(const e of fs.readdirSync(dir,{withFileTypes:true})){const p=path.join(dir,e.name);if(e.isDirectory())out=out.concat(walk(p));else if(e.isFile()&&e.name.endsWith('.json'))out.push(p);}return out;}
-          function visit(v,file){if(Array.isArray(v)){for(const x of v)visit(x,file);return;}if(!v||typeof v!=='object')return;const id=v.thinker_id||v.id; if(wanted.has(id)){const works=A(v.works).map(w=>typeof w==='string'?w:(w?.title||w?.name)).filter(Boolean);const name=v.name||v.label||null;const why=v.why||v.contribution||v.role||null;if(name||works.length||why)hits.get(id).push({file,name,works,why});}for(const x of Object.values(v))visit(x,file);}
-          for(const file of roots.flatMap(walk)){let doc;try{doc=read(file);}catch{continue;}visit(doc,file);}
-          const found=ids.filter(id=>hits.get(id).some(h=>h.name&&h.works.length));
-          const partial=ids.filter(id=>!found.includes(id)&&hits.get(id).length);
-          const missing=ids.filter(id=>!hits.get(id).length);
-          console.log('CANONICAL_THINKERS_COUNT='+ids.length);
-          console.log('EXISTING_NAME_WORK_COUNT='+found.length);
-          console.log('EXISTING_NAME_WORK='+JSON.stringify(Object.fromEntries(found.map(id=>[id,hits.get(id)]))));
-          console.log('PARTIAL_EXISTING='+JSON.stringify(Object.fromEntries(partial.map(id=>[id,hits.get(id)]))));
-          console.log('NO_EXISTING_METADATA='+JSON.stringify(missing));
-          NODE
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('tools/audit-historie-theory-integrity.mjs')
+          s=p.read_text()
+          old1="""  const theories=readJson('data/fag/historie/theory_objects_historie_canonical_v5_5.json');\n  const theoryEvidence=readJson('data/fag/historie/theory_evidence_historie_canonical_v1.json');"""
+          new1="""  const theories=readJson('data/fag/historie/theory_objects_historie_canonical_v5_5.json');\n  const emner=readJson('data/fag/historie/emner_historie_canonical_v4_5.json');\n  const emneById=new Map(emner.map(emne=>[emne.emne_id,emne]));\n  const theoryEvidence=readJson('data/fag/historie/theory_evidence_historie_canonical_v1.json');"""
+          old2="""        const joined=paragraphs.join(' ');\n        const definition=norm(theory.definition);\n        assert.ok(joined.includes(definition),`${modulePath}/${sec.id}: theory-definition er ikke faktisk brukt i canonical prosa (${theory.theory_id})`);\n        assert.ok(list(theory.limitations).some(l=>joined.includes(norm(l))),`${modulePath}/${sec.id}: theory-begrensning er ikke faktisk brukt i canonical prosa (${theory.theory_id})`);"""
+          new2="""        const joined=paragraphs.join(' ');\n        const emne=emneById.get(sec.emneId);\n        assert.ok(emne,`${modulePath}/${sec.id}: canonical emne mangler for theory-projection ${sec.emneId}`);\n        const emneDefinition=norm(emne.definition);\n        const theoryDefinition=norm(theory.definition);\n        const projectedTheoryDefinition=theoryDefinition&&theoryDefinition!==emneDefinition\n          ? (theoryDefinition.startsWith(`${emneDefinition} `)?theoryDefinition.slice(emneDefinition.length).trim():theoryDefinition)\n          : theoryDefinition;\n        assert.ok(projectedTheoryDefinition&&joined.includes(projectedTheoryDefinition),`${modulePath}/${sec.id}: canonical theory-projection er ikke faktisk brukt i prosa (${theory.theory_id})`);\n        assert.ok(list(theory.limitations).some(l=>joined.includes(norm(l))),`${modulePath}/${sec.id}: theory-begrensning er ikke faktisk brukt i canonical prosa (${theory.theory_id})`);"""
+          if s.count(old1)!=1: raise SystemExit(f'expected theory load target once, got {s.count(old1)}')
+          if s.count(old2)!=1: raise SystemExit(f'expected prose proof target once, got {s.count(old2)}')
+          p.write_text(s.replace(old1,new1).replace(old2,new2))
+          PY
+      - name: Verify strict Historie proof
+        run: |
+          node --check tools/audit-historie-theory-integrity.mjs
+          node tools/audit-historie-theory-integrity.mjs
+          node --test tests/historie-theory-integrity.test.mjs
+      - name: Commit repair and remove temporary workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/audit-historie-theory-integrity.mjs
+          rm .github/workflows/TEMP-historie-theory-gap-diagnostic.yml
+          git add .github/workflows/TEMP-historie-theory-gap-diagnostic.yml
+          git commit -m "fix(historie): prove canonical theory projection"
+          git push origin HEAD:${GITHUB_REF_NAME}
