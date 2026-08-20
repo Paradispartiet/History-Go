@@ -1445,7 +1445,7 @@ function updateProfileMarkers() {
   PLACES.filter(p => visitedIds.has(String(p?.id || "").trim())).forEach(p => {
     const mk = L.circleMarker([p.lat, p.lon], {
       radius: 9,
-      color: "#ffd700",
+      color: "#a8d8c7",
       weight: 2,
       fillColor: lighten(catColor(p.category), 0.35),
       fillOpacity: 1

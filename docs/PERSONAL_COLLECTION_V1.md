@@ -68,9 +68,25 @@ En Knowledge-enhet viser tilgjengelig provenance, blant annet:
 
 ## Sammenhenger
 
-Oversikten kan fremheve faktiske koblinger i brukerens samling. v1 bruker konservativt eksisterende `source.place_id` og fagkobling fra Knowledge V2. Dette er en presentasjon av provenance, ikke en ny relasjonsdatabase.
+Oversikten fremhever klikkbare, faktiske relasjonsstier i brukerens samling. Den bruker konservativt eksplisitte Place-/Person-ID-er, Knowledge V2-fagkobling og et opptjent merit med samme canonical fag-/kategori-ID. Dette er en presentasjon av provenance, ikke en ny relasjonsdatabase.
 
-Senere utvidelser kan bruke flere eksplisitte canonical relasjoner, men må fortsatt avstå fra geografisk eller faglig inferens uten databelegg.
+En sti kan derfor vise deler av:
+
+- sted;
+- eksplisitt relatert person;
+- kunnskapsenhet;
+- fag;
+- opptjent merke.
+
+Manglende ledd skjules. Flaten fyller aldri et hull med nærhet, navnelikhet eller geografisk/faglig gjetning. Alle synlige noder kan åpnes i den eksisterende Place-, Person-, Knowledge- eller merkevisningen.
+
+Knowledge-enheter viser alle eksplisitte Place-ID-er og Person-ID-er som finnes i enhetens canonical felter. `Utforsk sammenhenger` returnerer til den filtrerte stien på Min samling.
+
+## Nylig samlet og biblioteker
+
+`Nylig samlet` viser siste tilgjengelige objekt fra hver av de fire canonical delene: sted, person, kunnskap og merke. Når lagret tid finnes brukes den; ellers brukes den eksisterende, stabile rekkefølgen i eierens datastruktur. Det opprettes ingen aktivitetslogg for å drive seksjonen.
+
+Personer og merker har søkbare bibliotekflater. Objektklikk gjenbruker eksisterende Person-popup og merke-modal. Stedssamlingen viser geografiske delsummer bare fra eksplisitt by-, kommune-, region- eller landsmetadata på canonical Place.
 
 ## AHA
 
@@ -93,6 +109,8 @@ Min samling og Knowledge bruker samme personlige designspråk:
 - fagfarger kan fortsatt brukes når fargen har semantisk betydning;
 - History Go-gult er ikke global accent på disse flatene.
 
+Profilkartets samlingsmarkør og alle legacy-detaljer som fortsatt kan vises inne på profilflaten overstyres til samme mint-/graphite-språk. Den kompakte gamle identitetsheaderen er fjernet; navn, samlingstall, kart og AHA ligger i collection-heroen, mens toppbaren bare håndterer global navigasjon og kontovalg.
+
 Spill, Social Meet og profil/personvern beholdes, men ligger sekundært under `Mer` i den brukerrettede navigasjonen.
 
 ## Regresjonskrav
@@ -109,3 +127,7 @@ Permanent test skal låse at:
 8. AHA-grensen gjenbrukes uten ny eksportkontrakt;
 9. Social Meet/personvernkontraktene bevares;
 10. den nye personlige designflaten bruker ikke History Go-gult som global accent.
+11. `Nylig samlet` leser de fire eksisterende canonical eierne;
+12. relasjonsstier bruker bare eksplisitte ID-er;
+13. Person- og merkebibliotek åpner eksisterende objektvisninger;
+14. profilkartets markør bruker Min samling-accenten.
