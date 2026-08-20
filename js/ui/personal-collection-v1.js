@@ -126,7 +126,10 @@
     const panel = type === "badge" ? "merker" : "samling";
     const selector = type === "badge" ? `[data-badge-id="${CSS.escape(key)}"]` : `[data-person="${CSS.escape(key)}"]`;
     activatePanel(panel);
-    global.setTimeout(() => document.querySelector(selector)?.click(), 40);
+    global.setTimeout(() => {
+      const target = document.querySelector(selector);
+      if (target instanceof HTMLElement) target.click();
+    }, 40);
   }
 
   function renderHomeHero() {
