@@ -1,0 +1,73 @@
+{
+  "id": "helse",
+  "name": "Helse & medisin",
+  "icon": "⚕️",
+  "color": "#0B7A75",
+  "secondaryColor": "#073B4C",
+  "description": "For kildebasert læring om kropp, sykdom, forebygging, behandling, helsetjenester, evidens og medisinsk etikk — uten individuell diagnostikk eller behandlingsråd.",
+  "status": "expansion_foundation",
+  "tiers": [
+    {
+      "label": "Helseutforsker",
+      "threshold": 5,
+      "life_position": {
+        "id": "helseutforsker",
+        "label": "Helseutforsker",
+        "kind": "knowledge_identity",
+        "employment_independent": true,
+        "description": "Du utforsker hvordan kropp, helse og helsetjenester kan forstås uten å gjøre læring til individuell diagnostikk.",
+        "hooks": ["kropp_og_helse", "kildekritikk", "autoritetsskranke"]
+      }
+    },
+    {
+      "label": "Evidensleser",
+      "threshold": 25,
+      "life_position": {
+        "id": "evidensleser",
+        "label": "Evidensleser",
+        "kind": "evidence_literacy",
+        "employment_independent": true,
+        "description": "Du sammenligner helsepåstander, studiedesign og usikkerhet før du trekker generelle konklusjoner om hva kunnskapen støtter.",
+        "hooks": ["studiedesign", "usikkerhet", "kildekonflikt"]
+      }
+    },
+    {
+      "label": "Folkehelseblikk",
+      "threshold": 60,
+      "life_position": {
+        "id": "folkehelseblikk",
+        "label": "Folkehelseblikk",
+        "kind": "public_health_perspective",
+        "employment_independent": true,
+        "description": "Du ser etter hvordan levekår, forebygging og systemvalg former helse i befolkninger fremfor å forklare alt individuelt.",
+        "hooks": ["levekår", "forebygging", "systemvalg"]
+      }
+    },
+    {
+      "label": "Omsorgsetiker",
+      "threshold": 150,
+      "life_position": {
+        "id": "omsorgsetiker",
+        "label": "Omsorgsetiker",
+        "kind": "ethics_identity",
+        "employment_independent": true,
+        "description": "Du gransker hensyn til autonomi, skade, rettferdighet og omsorg uten å hevde klinisk myndighet eller behandlerrolle.",
+        "hooks": ["autonomi", "rettferdighet", "vanskelig_avveiing"]
+      }
+    }
+  ],
+  "sub": [
+    "medisin_helsevitenskap",
+    "anatomi_fysiologi",
+    "sykdom_patofysiologi",
+    "klinisk_medisin",
+    "folkehelse_epidemiologi",
+    "mikrobiologi_infeksjon",
+    "farmakologi",
+    "ernaering_metabolisme",
+    "psykisk_helse",
+    "rehabilitering_funksjon",
+    "helsetjenester_helseokonomi",
+    "medisinsk_etikk_evidens"
+  ]
+}

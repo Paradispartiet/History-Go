@@ -3,7 +3,7 @@
 
 export const OFFICIAL_HISTORY_GO_CATEGORIES = [
   "by", "historie", "kunst", "litteratur", "media", "musikk",
-  "naeringsliv", "natur", "politikk", "psykologi", "religion",
+  "naeringsliv", "natur", "politikk", "psykologi", "helse", "utdanning", "religion",
   "scenekunst", "sport", "subkultur", "vitenskap",
   "filosofi", "film_tv"
 ] as const;

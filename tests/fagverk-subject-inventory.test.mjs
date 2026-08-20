@@ -8,11 +8,11 @@ import { auditRepository, buildBaselineReport } from '../scripts/audit-fagverk-s
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const readJson = (p) => JSON.parse(fs.readFileSync(path.join(root, p), 'utf8'));
 
-test('inventaret dekker 17 toppfag, Teknologi-spesialiseringen og alle required core-filer', () => {
+test('inventaret dekker 19 toppfag, Teknologi-spesialiseringen og alle required core-filer', () => {
   const r = auditRepository();
-  assert.equal(r.subjectCount, 17);
+  assert.equal(r.subjectCount, 19);
   assert.equal(r.specializationCount, 1);
-  assert.equal(r.coreFileAudit.length, 72);
+  assert.equal(r.coreFileAudit.length, 80);
   assert.equal(r.report.summary.schemaFamilyCount, 4);
 });
 
@@ -42,6 +42,12 @@ test('Auditerte fag har dokumentert og statusriktig fremdrift gjennom den genere
     'politikk', 'psykologi', 'religion', 'scenekunst', 'sport', 'subkultur', 'vitenskap',
     'filosofi', 'film_tv'
   ]);
+  for (const id of ['helse', 'utdanning']) {
+    const subject = s.subjects.find((x) => x.id === id);
+    assert.equal(subject.navigationStatus, 'planned');
+    assert.equal(subject.assessmentStatus, 'pending');
+    assert.equal(subject.editorialStatus, 'not_started');
+  }
   for (const id of audited.map((x) => x.id)) {
     const subject = s.subjects.find((x) => x.id === id);
     assert.equal(subject.navigationStatus, 'materialized');
@@ -188,4 +194,63 @@ test('pilotsettet dekker fire schemafamilier uten å gjøre Teknologi til toppfa
   assert.ok(m.vitenskap.specializations.teknologi);
   assert.equal(m.teknologi, undefined);
   assert.equal(new Set([...pilots.map((x) => x.schemaFamily), t.schemaFamily]).size, 4);
+});
+
+test('19+1-utvidelsen låser seks eksplisitte canonicale underkategorier', () => {
+  const c = readJson('data/categories/category_contract.json');
+  const rows = Object.entries(c.canonicalSubcategories).flatMap(([owner, items]) =>
+    items.map((item) => `${owner}/${item.id}`)
+  );
+  assert.deepEqual(rows, [
+    'natur/geografi',
+    'litteratur/sprak_lingvistikk',
+    'politikk/juss_rettsvitenskap',
+    'politikk/sosiologi_antropologi',
+    'helse/medisin_helsevitenskap',
+    'utdanning/pedagogikk_utdanningsvitenskap'
+  ]);
+  assert.equal(c.labels.litteratur, 'Språk & litteratur');
+});
+
+test('Helse og Utdanning har konsistent foundation uten å påstå produksjonsferdig innhold', () => {
+  const manifest = readJson('data/fag/fag_manifest.json');
+  const status = readJson('data/fagverk/subject_status.json');
+  const reconciliation = readJson('reports/fagverk/fagverk-expansion-19-plus-1-reconciliation-v1.json');
+
+  for (const id of ['helse', 'utdanning']) {
+    const entry = manifest[id];
+    const pensum = readJson(`data/fag/${entry.pensum}`);
+    const emner = readJson(`data/fag/${entry.emner}`);
+    const fagkart = readJson(`data/fag/${entry.fagkart}`);
+    const methods = readJson(`data/fag/${entry.methods}`);
+    const quizProfile = readJson(`data/fag/${entry.supersetQuizMal}`);
+    const subjectStatus = status.subjects.find((subject) => subject.id === id);
+
+    assert.equal(entry.status, 'expansion_foundation');
+    assert.equal(pensum.subject_id, id);
+    assert.equal(pensum.status, 'canonical_expansion_foundation');
+    assert.equal(pensum.complete_ready, false);
+    assert.deepEqual(pensum.domain_order, pensum.domains.map((domain) => domain.domain_id));
+    assert.deepEqual(emner.map((emne) => emne.domain), pensum.domain_order);
+    assert.deepEqual(fagkart.categories.map((category) => category.id), pensum.domain_order);
+    assert.ok(emner.every((emne) => emne.subject_id === id && emne.status === 'planned'));
+    const methodIds = new Set(methods.methods.map((method) => method.method_id));
+    assert.ok(emner.flatMap((emne) => emne.method_ids).every((methodId) => methodIds.has(methodId)));
+    assert.ok(methods.methods.every((method) => method.canonical_status === 'planned'));
+    assert.equal(quizProfile.status, 'canonical_category_profile');
+    assert.equal(quizProfile.governance.authority, 'category_content_only');
+    assert.equal(subjectStatus.navigationStatus, 'planned');
+    assert.equal(subjectStatus.assessmentStatus, 'pending');
+    assert.equal(subjectStatus.editorialStatus, 'not_started');
+    assert.equal(subjectStatus.nextGate, 'first_source_brief_after_repository_reconciliation');
+  }
+
+  const safety = readJson(`data/fag/${manifest.helse.safetyContract}`);
+  assert.equal(safety.status, 'blocking');
+  assert.ok(safety.forbidden.some((rule) => /individuell diagnose/u.test(rule)));
+  assert.ok(safety.forbidden.some((rule) => /behandlings-/u.test(rule)));
+  assert.equal(reconciliation.status, 'authority_audit_complete_foundation_only');
+  assert.equal(reconciliation.audited_main_sha, '2ab7e737d1c5f0109f5e5259c88d7dfd20ccae53');
+  assert.equal(reconciliation.expanded_target.strictly_proven_at_foundation, 18);
+  assert.deepEqual(reconciliation.expanded_target.expansion_production_queue, ['helse', 'utdanning']);
 });

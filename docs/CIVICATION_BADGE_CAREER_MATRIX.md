@@ -1,13 +1,13 @@
 # Civication Badge Career Matrix — audit snapshot
 
-Audit snapshot 2026-08-13. The canonical, machine-readable 266-tier matrix is `data/Civication/badgeCareerAuditPolicy.json`. `scripts/civication-badge-career-matrix.mjs` expands it with live `role_scope`, roleModel/FWG, Life Story and salary data from the repository.
+Audit snapshot 2026-08-20. The canonical, machine-readable 274-tier matrix is `data/Civication/badgeCareerAuditPolicy.json`. `scripts/civication-badge-career-matrix.mjs` expands it with live `role_scope`, roleModel/FWG, Life Story and salary data from the repository.
 
 ## Total
 
-- 17 canonical badges / 266 tiers
+- 19 canonical badges / 274 tiers
 - 93 keep/direct
 - 95 keep with qualification/authorization/appointment gate
-- 63 replace
+- 71 replace
 - 15 review
 - 214 exact salary gaps in the current canonical badge tiers. Psychology is now the first canonical badge with all 13 current tiers explicitly covered by its salary rule; missing salary elsewhere remains audit debt and is not interpolated.
 - FWG-backed tier/runtime bindings now include the four Psychology entry jobs through shared `psykologi_miljoarbeid`, in addition to the existing By and Næringsliv bindings.
@@ -34,6 +34,10 @@ Audit snapshot 2026-08-13. The canonical, machine-readable 266-tier matrix is `d
 | film_tv | 15 | 9 | 0 | 0 | 6 |
 | media | 15 | 6 | 2 | 2 | 5 |
 | psykologi | 13 | 0 | 0 | 6 | 7 |
+| helse | 4 | 4 | 0 | 0 | 0 |
+| utdanning | 4 | 4 | 0 | 0 | 0 |
+
+Helse and Utdanning are expansion foundations only. Their eight tiers are employment-independent learning identities with no career offer; clinical, teaching and leadership roles remain fail-closed until separate qualification and authority contracts exist.
 
 ## First remediation complete: Psykologi entry ladder
 
@@ -64,7 +68,7 @@ The entry ladder is no longer career-debt. The next Psychology-specific audit ta
 ## Permanent sources
 
 - `data/badges/index.json` and `data/badges/*.json`: canonical tier labels and thresholds.
-- `data/Civication/badgeCareerAuditPolicy.json`: explicit classification/action/gate for all 266 tiers.
+- `data/Civication/badgeCareerAuditPolicy.json`: explicit classification/action/gate for all 274 tiers.
 - `data/Civication/badgeRoleMappings.json`: current shared `role_scope` mappings.
 - `data/Civication/roleModels/manifest.json` and `data/Civication/workGrammars/`: roleModel/FWG coverage.
 - `data/Civication/lifestory/manifest.json`: active Life Story bindings.

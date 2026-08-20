@@ -9,7 +9,8 @@ Denne mappen eier ikke fagarkitekturen eller betydningen av ferdigstatusene. Den
 
 ## Rapporter
 
-- `subject-baseline.json` — levende projeksjon av 17 toppfag, én Teknologi-spesialisering, fire schemafamilier, 72 required kjernefiler og gjeldende navigasjons-, audit- og redaksjonell status.
+- `subject-baseline.json` — levende projeksjon av 19 toppfag, én Teknologi-spesialisering, fire schemafamilier, 80 required kjernefiler og gjeldende navigasjons-, audit- og redaksjonell status.
+- `fagverk-expansion-19-plus-1-reconciliation-v1.json` — source-first authority-audit for to nye toppfag og seks eksplisitte underkategorier; skiller reuse, senere move, secondary-link og dokumenterte produksjonshull uten å slette eller duplisere innhold.
 - `general-engine-audit.json` — evidens for den felles fagsidemotoren, manifest-first lasting, adaptergrensen, normalisert modell og fravær av politikkfallback.
 - `kunst-phase3-audit.json` — levende strukturgate for Kunst: seks canonicale fagområder, 21 aktive emner, 21 metoder, 21 mappinger og 60 hooks uten syntetiske fagområder; registrerte kapitler telles eksplisitt.
 - `kunst-felt-institusjon-phase4-audit.json` — første Kunst-kapittelgate: Felt og institusjon 4/4 med tre moduler, ni seksjoner, 27 claimsporede fagavsnitt, 21 verifiserte claims, 16 inspiserbare primærkilder og fire canonicale Oslo-case.

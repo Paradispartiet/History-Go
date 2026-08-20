@@ -1,7 +1,7 @@
 {
   "schema": "civication_life_position_catalog_v1",
-  "version": 1,
-  "reviewed_at": "2026-08-13",
+  "version": 2,
+  "reviewed_at": "2026-08-20",
   "principles": [
     "Livsposisjoner er selvvalgte og uavhengige av formell jobb.",
     "Badge-poeng åpner valgmuligheter, men tildeler aldri identitet automatisk.",
@@ -208,6 +208,30 @@
         {"id":"kommentarfeltveteran","label":"Kommentarfeltveteran","threshold":15,"kind":"alternative_life_status","description":"Du kjenner rytmen, språkbruken og fellene i offentlige kommentarfelt.","hooks":["kommentarer","debatt","konflikt"]},
         {"id":"medievaktbikkje","label":"Medievaktbikkje","threshold":40,"kind":"practice_identity","description":"Du følger hvem som setter saker, hvem som mangler og hvordan framing endrer en historie.","hooks":["mediekritikk","kilder","korrigering"]},
         {"id":"debattant","label":"Debattant","threshold":85,"kind":"reputation_status","description":"Du deltar jevnlig i offentlig debatt og begynner å bli gjenkjent for standpunkter og stil.","hooks":["offentlighet","nettverk","motbor"]}
+      ]
+    },
+    {
+      "badge_id": "helse",
+      "shape": "expansion_foundation_nonclinical",
+      "career_assessment": "Grunnmuren åpner bare selvvalgte kunnskaps- og refleksjonsidentiteter; den gir ingen klinisk autoritet, diagnostikk, behandlingsrolle eller helsejobb.",
+      "job_next_moves": ["Hold alle helseprofesjoner stengt til egne kvalifikasjons-, autorisasjons- og arbeidsgiverkontrakter er dokumentert og revidert."],
+      "positions": [
+        {"id":"helseutforsker","label":"Helseutforsker","threshold":5,"kind":"knowledge_identity","description":"Du utforsker hvordan kropp, helse og helsetjenester kan forstås uten å gjøre læring til individuell diagnostikk.","hooks":["kropp_og_helse","kildekritikk","autoritetsskranke"]},
+        {"id":"evidensleser","label":"Evidensleser","threshold":25,"kind":"evidence_literacy","description":"Du sammenligner helsepåstander, studiedesign og usikkerhet før du trekker generelle konklusjoner om hva kunnskapen støtter.","hooks":["studiedesign","usikkerhet","kildekonflikt"]},
+        {"id":"folkehelseblikk","label":"Folkehelseblikk","threshold":60,"kind":"public_health_perspective","description":"Du ser etter hvordan levekår, forebygging og systemvalg former helse i befolkninger fremfor å forklare alt individuelt.","hooks":["levekår","forebygging","systemvalg"]},
+        {"id":"omsorgsetiker","label":"Omsorgsetiker","threshold":150,"kind":"ethics_identity","description":"Du gransker hensyn til autonomi, skade, rettferdighet og omsorg uten å hevde klinisk myndighet eller behandlerrolle.","hooks":["autonomi","rettferdighet","vanskelig_avveiing"]}
+      ]
+    },
+    {
+      "badge_id": "utdanning",
+      "shape": "expansion_foundation_learning",
+      "career_assessment": "Grunnmuren åpner bare selvvalgte kunnskaps- og refleksjonsidentiteter; den gir ingen lærer-, leder- eller annen profesjonsmyndighet.",
+      "job_next_moves": ["Hold lærer-, skoleleder- og andre utdanningsjobber stengt til kvalifikasjons-, ansettelses- og institusjonskontrakter er dokumentert og revidert."],
+      "positions": [
+        {"id":"laeringsutforsker","label":"Læringsutforsker","threshold":5,"kind":"knowledge_identity","description":"Du undersøker hvordan mennesker lærer i ulike aldre, miljøer og situasjoner uten å påta deg lærer- eller behandlerautoritet.","hooks":["laering","nysgjerrighet","ulik_forklaring"]},
+        {"id":"klasseromsobservator","label":"Klasseromsobservatør","threshold":25,"kind":"observation_identity","description":"Du legger merke til hvordan rom, relasjoner, oppgaver og forventninger påvirker deltakelse og læring i undervisning.","hooks":["klasserom","deltakelse","observasjon"]},
+        {"id":"didaktisk_tenker","label":"Didaktisk tenker","threshold":60,"kind":"didactic_reflection","description":"Du vurderer sammenhengen mellom mål, innhold, arbeidsmåter og vurdering når kunnskap skal formidles eller læres.","hooks":["maal_og_innhold","arbeidsmaate","vurdering"]},
+        {"id":"utdanningskritiker","label":"Utdanningskritiker","threshold":150,"kind":"public_education_analysis","description":"Du gransker hvordan institusjoner, politikk og ulikhet former utdanning uten å gjøre Badge-poeng til profesjonskvalifikasjon.","hooks":["institusjoner","ulikhet","reformdebatt"]}
       ]
     },
     {

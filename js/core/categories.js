@@ -14,9 +14,11 @@
     { id: "by", name: "By & arkitektur", icon: "\u{1F3D9}\uFE0F", color: "#A1917E", secondaryColor: "#3C3731", scope: "runtime_domain" },
     { id: "politikk", name: "Politikk & samfunn", icon: "\u{1F3DB}\uFE0F", color: "#103E71", secondaryColor: "#114A84", scope: "runtime_domain" },
     { id: "subkultur", name: "Subkultur", icon: "\u{1F9F7}", color: "#292625", secondaryColor: "#E78847", scope: "runtime_domain" },
-    { id: "litteratur", name: "Litteratur", icon: "\u{1F4DA}", color: "#E1BE70", secondaryColor: "#C0964A", scope: "runtime_domain" },
+    { id: "litteratur", name: "Spr\xE5k & litteratur", icon: "\u{1F4DA}", color: "#E1BE70", secondaryColor: "#C0964A", scope: "runtime_domain", aliases: ["Litteratur"] },
     { id: "naeringsliv", name: "\xD8konomi og n\xE6ringsliv", icon: "\u{1F3ED}", color: "#0E3290", secondaryColor: "#AFB0B0", scope: "runtime_domain", aliases: ["N\xE6ringsliv", "N\xE6ringsliv & industri", "\xD8konomi", "\xD8konomi & n\xE6ringsliv"] },
     { id: "psykologi", name: "Psykologi", icon: "\u{1F9E0}", color: "#06d6a0", scope: "runtime_domain" },
+    { id: "helse", name: "Helse & medisin", icon: "\u2695\uFE0F", color: "#0B7A75", secondaryColor: "#073B4C", scope: "runtime_domain", aliases: ["Helse", "Medisin", "Medicine", "Health"] },
+    { id: "utdanning", name: "Skole & utdanning", icon: "\u{1F393}", color: "#8A5A00", secondaryColor: "#3D2C0F", scope: "runtime_domain", aliases: ["Skole", "Utdanning", "Education"] },
     { id: "film_tv", name: "Film & TV", icon: "\u{1F39E}\uFE0F", color: "#6c757d", scope: "runtime_domain" },
     { id: "media", name: "Medier", icon: "\u{1F5DE}\uFE0F", color: "#22B8B5", secondaryColor: "#123B4A", scope: "runtime_domain" }
   ];
@@ -37,7 +39,12 @@
     technology: "vitenskap",
     tech: "vitenskap",
     it: "vitenskap",
-    informasjonsteknologi: "vitenskap"
+    informasjonsteknologi: "vitenskap",
+    health: "helse",
+    medicine: "helse",
+    medisin: "helse",
+    education: "utdanning",
+    skole: "utdanning"
   });
   function canonicalCategoryId(value) {
     const normalized = norm(value).toLowerCase();

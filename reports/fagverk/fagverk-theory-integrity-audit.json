@@ -1,11 +1,11 @@
 {
   "schema": "history_go_fagverk_theory_integrity_audit_v1",
   "version": "1.0.0",
-  "status": "strict_audit_complete",
+  "status": "strict_audit_open_evidence_gaps",
   "scope": {
-    "topLevelSubjects": 17,
+    "topLevelSubjects": 19,
     "nestedSpecializations": 1,
-    "totalAudited": 18
+    "totalAudited": 20
   },
   "rules": {
     "baselineStrongDoesNotEqualStrictProof": true,
@@ -21,11 +21,21 @@
     "strictly_proven": 18,
     "structured_subject_gate_not_strict": 0,
     "partial_strict_evidence": 0,
-    "baseline_only_strict_proof_missing": 0,
+    "baseline_only_strict_proof_missing": 2,
     "substantive_content_gaps_proven": 0
   },
-  "strictCompletionGateReady": true,
+  "strictCompletionGateReady": false,
+  "historicalBaseline": {
+    "topLevelSubjects": 17,
+    "nestedSpecializations": 1,
+    "totalAudited": 18,
+    "strictlyProven": 18
+  },
   "proofReconciliationQueue": [],
+  "expansionProductionQueue": [
+    "helse",
+    "utdanning"
+  ],
   "contentRepairQueue": [],
   "subjects": [
     {
@@ -146,6 +156,52 @@
       "integrityStatus": "strictly_proven",
       "evidenceAdapter": "structured_subject_gate",
       "missingStrictProof": [],
+      "substantiveContentGap": false
+    },
+    {
+      "id": "helse",
+      "topLevel": true,
+      "parentSubject": null,
+      "profile": "hybrid",
+      "editorialStatus": "not_started",
+      "baseline": "theory_quality_gap",
+      "integrityStatus": "baseline_only_strict_proof_missing",
+      "evidenceAdapter": null,
+      "missingStrictProof": [
+        "canonical_field_coverage",
+        "structured_scope_mechanism",
+        "limitations",
+        "rival_or_alternative",
+        "person_work_binding",
+        "scholarly_source_quality",
+        "claim_or_content_binding",
+        "actual_prose_binding",
+        "anti_trivia_rule",
+        "universal_subject_scope"
+      ],
+      "substantiveContentGap": false
+    },
+    {
+      "id": "utdanning",
+      "topLevel": true,
+      "parentSubject": null,
+      "profile": "theorist_rival",
+      "editorialStatus": "not_started",
+      "baseline": "theory_quality_gap",
+      "integrityStatus": "baseline_only_strict_proof_missing",
+      "evidenceAdapter": null,
+      "missingStrictProof": [
+        "canonical_field_coverage",
+        "structured_scope_mechanism",
+        "limitations",
+        "rival_or_alternative",
+        "person_work_binding",
+        "scholarly_source_quality",
+        "claim_or_content_binding",
+        "actual_prose_binding",
+        "anti_trivia_rule",
+        "universal_subject_scope"
+      ],
       "substantiveContentGap": false
     },
     {

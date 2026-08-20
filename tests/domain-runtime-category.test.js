@@ -14,26 +14,26 @@ const contract = JSON.parse(fs.readFileSync("data/categories/category_contract.j
 const registryWindow = runBrowserScript("js/DomainRegistry.js");
 const registry = registryWindow.DomainRegistry;
 
-assert.equal(registry.toFagSubjectId("populaerkultur"), "popkultur");
-assert.equal(registry.toFagSubjectId("popkultur"), "popkultur");
-assert.equal(registry.toRuntimeCategoryId("popkultur"), "populaerkultur");
-assert.equal(registry.toRuntimeCategoryId("populaerkultur"), "populaerkultur");
+assert.equal(registry.toFagSubjectId("populaerkultur"), "media");
+assert.equal(registry.toFagSubjectId("popkultur"), "media");
+assert.equal(registry.toRuntimeCategoryId("popkultur"), "media");
+assert.equal(registry.toRuntimeCategoryId("populaerkultur"), "media");
 assert.equal(registry.toFagSubjectId("teater"), "scenekunst");
 assert.equal(registry.toRuntimeCategoryId("teater"), "scenekunst");
 assert.equal(registry.toFagSubjectId("film"), "film_tv");
 assert.equal(registry.toRuntimeCategoryId("film"), "film_tv");
 assert.equal(registry.toFagSubjectId("journalistikk"), "media");
 assert.equal(registry.toRuntimeCategoryId("journalistikk"), "media");
-assert.deepEqual(registry.list().slice().sort(), contract.fagSubjects.slice().sort());
-assert.deepEqual(registry.listRuntimeCategories().slice().sort(), contract.runtimeCategories.slice().sort());
+assert.deepEqual([...registry.list()].sort(), contract.fagSubjects.slice().sort());
+assert.deepEqual([...registry.listRuntimeCategories()].sort(), contract.runtimeCategories.slice().sort());
 
 assert.equal(
   registry.file("quiz", "popkultur"),
-  "data/quiz/quiz_populaerkultur.json"
+  "data/quiz/quiz_media.json"
 );
 assert.equal(
   registry.file("quiz", "populaerkultur"),
-  "data/quiz/quiz_populaerkultur.json"
+  "data/quiz/quiz_media.json"
 );
 assert.equal(
   registry.file("quiz", "teater"),
@@ -43,20 +43,20 @@ assert.equal(
 const runtimeWindow = runBrowserScript("js/core/domainRuntime.js", {
   DomainRegistry: registry
 });
-assert.equal(runtimeWindow.HGDomainRuntime.toRuntimeCategoryId("popkultur"), "populaerkultur");
+assert.equal(runtimeWindow.HGDomainRuntime.toRuntimeCategoryId("popkultur"), "media");
 assert.equal(runtimeWindow.HGDomainRuntime.toRuntimeCategoryId("teater"), "scenekunst");
 assert.deepEqual(
   JSON.parse(JSON.stringify(runtimeWindow.HGDomainRuntime.normalizeCategoryMap({
     popkultur: { points: 2 }
   }))),
-  { populaerkultur: { points: 2 } }
+  { media: { points: 2 } }
 );
 assert.deepEqual(
   JSON.parse(JSON.stringify(runtimeWindow.HGDomainRuntime.normalizeCategoryMap({
     popkultur: { points: 2 },
     populaerkultur: { points: 3 }
   }))),
-  { populaerkultur: { points: 5 } }
+  { media: { points: 5 } }
 );
 assert.deepEqual(Object.keys(runtimeWindow.HGDomainRuntime).sort(), [
   "normalizeCategoryMap",

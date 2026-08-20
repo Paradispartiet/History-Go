@@ -11,7 +11,7 @@ const index = readJson('data/badges/index.json');
 const badges = index.files.map((rel) => readJson(rel));
 const catalog = readJson('data/Civication/lifePositionCatalog.json');
 
-assert.strictEqual(badges.length, 17, 'canonical Badge-register skal fortsatt ha 17 Badges');
+assert.strictEqual(badges.length, 19, 'canonical Badge-register skal ha 19 Badges etter fagverksutvidelsen');
 assert.strictEqual(catalog.schema, 'civication_life_position_catalog_v1');
 assert.ok(Array.isArray(catalog.principles) && catalog.principles.length >= 5,
   'livsposisjonskatalogen skal forklare selvvalg, jobbskille og autoritetsgrenser');
@@ -24,7 +24,7 @@ const badgeIds = badges.map((badge) => badge.id);
 const profileIds = catalog.badges.map((profile) => profile.badge_id);
 assert.deepStrictEqual(new Set(profileIds), new Set(badgeIds),
   'alle og bare canonicale Badges skal ha en livsprofil');
-assert.strictEqual(new Set(profileIds).size, 17, 'hver Badge skal ha nøyaktig én livsprofil');
+assert.strictEqual(new Set(profileIds).size, 19, 'hver Badge skal ha nøyaktig én livsprofil');
 
 for (const profile of catalog.badges) {
   const badge = badges.find((entry) => entry.id === profile.badge_id);
