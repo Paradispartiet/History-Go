@@ -4,23 +4,6 @@ on:
   push:
     branches:
       - agent/fagverk-by-theory-integrity-proof-20260820
-    paths:
-      - 'tools/probe-by-theory-integrity.mjs'
-      - 'tests/by-theory-integrity-probe-smoke.test.mjs'
-      - '.github/workflows/temp-by-theory-integrity-probe.yml'
-      - 'data/fag/by/**'
-      - 'data/fagverk/by/**'
-      - 'data/fagverk/fagverk_registry.json'
-      - 'scripts/audit-fagverk-by-complete.mjs'
-  pull_request:
-    paths:
-      - 'tools/probe-by-theory-integrity.mjs'
-      - 'tests/by-theory-integrity-probe-smoke.test.mjs'
-      - '.github/workflows/temp-by-theory-integrity-probe.yml'
-      - 'data/fag/by/**'
-      - 'data/fagverk/by/**'
-      - 'data/fagverk/fagverk_registry.json'
-      - 'scripts/audit-fagverk-by-complete.mjs'
   workflow_dispatch:
 
 permissions:
@@ -34,14 +17,17 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Check probe syntax
-        run: node --check tools/probe-by-theory-integrity.mjs
-      - name: Run probe smoke test
-        run: node --test tests/by-theory-integrity-probe-smoke.test.mjs
-      - name: Run read-only By strict-proof probe
-        run: node tools/probe-by-theory-integrity.mjs | tee /tmp/by-theory-integrity-probe.json
-      - name: Upload probe result
+      - name: Validate diagnostic and permanent audit
+        run: |
+          node --check tools/probe-by-theory-integrity.mjs
+          node --check tools/audit-by-theory-integrity.mjs
+          node --test tests/by-theory-integrity-probe-smoke.test.mjs
+          node tools/probe-by-theory-integrity.mjs > /tmp/by-theory-integrity-probe.json
+          node tools/audit-by-theory-integrity.mjs --write-report --no-check-report
+      - name: Upload reconciliation results
         uses: actions/upload-artifact@v4
         with:
-          name: by-theory-integrity-probe
-          path: /tmp/by-theory-integrity-probe.json
+          name: by-theory-integrity-reconciliation
+          path: |
+            /tmp/by-theory-integrity-probe.json
+            reports/fagverk/by-theory-integrity-audit.json
