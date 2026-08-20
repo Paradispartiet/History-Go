@@ -1,9 +1,13 @@
 name: TEMP Historie hand-built theory prose diagnostic
 
 on:
-  push:
-    branches:
-      - agent/fagverk-historie-theory-integrity-proof-20260820
+  pull_request:
+    paths:
+      - '.github/workflows/TEMP-historie-theory-gap-diagnostic.yml'
+      - 'data/fag/historie/**'
+      - 'data/fagverk/historie/**'
+      - 'data/fagverk/fagverk_registry.json'
+      - 'tools/audit-historie-theory-integrity.mjs'
 
 permissions:
   contents: read
