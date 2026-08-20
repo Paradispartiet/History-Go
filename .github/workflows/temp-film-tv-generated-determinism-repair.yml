@@ -1,0 +1,50 @@
+name: TEMP Film TV generated determinism repair
+on:
+  push:
+    branches:
+      - agent/film-tv-generated-determinism-repair
+permissions:
+  contents: write
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Regenerate only the two affected Film/TV projections
+        run: |
+          node scripts/brief-film-tv-archive-preservation-access-authenticity-sources-v1.mjs --write
+          node --input-type=module -e "import('./scripts/materialize-film-tv-archive-preservation-access-authenticity-fulltext-v1.mjs').then(m => m.materializeFilmTvArchivePreservationAccessAuthenticityFulltextV1())"
+          node scripts/audit-film-tv-archive-preservation-access-authenticity-fulltext-v1.mjs --write-report
+          node scripts/brief-film-tv-location-production-place-ethics-sources-v1.mjs --write
+          node scripts/materialize-film-tv-location-production-place-ethics-fulltext-v1.mjs
+          node scripts/audit-film-tv-location-production-place-ethics-fulltext-v1.mjs --write-report
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/audit-fagverk-general-engine.mjs --write-report
+          node scripts/audit-fagverk-film-tv-phase3.mjs --write-report
+      - name: Enforce generated-only scope
+        run: |
+          changed="$(git diff --name-only)"
+          printf '%s\n' "$changed"
+          bad="$(printf '%s\n' "$changed" | grep -Ev '^(data/fagverk/film_tv/(arkiv-bevaring-tilgang-og-autentisitet|location-produksjon-og-stedsetikk)/[^/]+\.json|data/fagverk/fagverk_release\.json)$' || true)"
+          if [ -n "$bad" ]; then
+            echo "Unexpected generated drift:"
+            printf '%s\n' "$bad"
+            exit 1
+          fi
+      - name: Commit regenerated projections and remove temporary workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            data/fagverk/film_tv/arkiv-bevaring-tilgang-og-autentisitet \
+            data/fagverk/film_tv/location-produksjon-og-stedsetikk \
+            data/fagverk/fagverk_release.json
+          rm .github/workflows/temp-film-tv-generated-determinism-repair.yml
+          git add .github/workflows/temp-film-tv-generated-determinism-repair.yml
+          git commit -m "chore(film-tv): rematerialize deterministic modules"
+          git push origin HEAD:${GITHUB_REF_NAME}
