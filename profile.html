@@ -2,10 +2,10 @@
 <html lang="nb" dir="ltr">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Min profil | History Go</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Min samling | History Go</title>
+  <meta name="description" content="Din personlige History Go-samling: steder, kunnskap, personer, merker og egne bidrag.">
 
-  <!-- App CSS -->
   <link rel="stylesheet" href="css/theme.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css">
@@ -17,95 +17,51 @@
   <link rel="stylesheet" href="css/effects.css">
   <link rel="stylesheet" href="css/profile.css">
   <link rel="stylesheet" href="css/profile-dashboard.css">
-  <link rel="stylesheet" href="css/caravan-profile.css">
-
-  <!-- Leaflet CSS (kun hvis du faktisk bruker Leaflet på profile.html) -->
-  <link rel="stylesheet"
-        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        crossorigin="" />
-
-  <!-- Popup-system -->
+  <link rel="stylesheet" href="css/personal-collection-v1.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
   <script src="js/ui/popup-utils.js"></script>
 </head>
-  
-
 <body class="profile-page">
-
-  <!-- ============================= -->
-  <!-- ⭐ KARTET BAK ALT (ALLTID PÅ) -->
-  <!-- ============================= -->
-  <div id="map" aria-label="Kart"></div>
-
+  <div id="map" aria-label="Kart over steder i samlingen"></div>
   <div class="map-controls">
     <button id="btnCenter" title="Sentrer">⌖</button>
     <button id="btnExitMap" title="Lukk kart">✕</button>
   </div>
-
-  <!-- Toast -->
   <div id="toast"></div>
 
-<!-- ========================================================= -->
-<!-- BADGE MODAL – NY STOR VERSJON MED STICKY HEADER           -->
-<!-- ========================================================= -->
-<div id="badgeModal" class="modal" aria-hidden="true" style="display:none;">
-  <div class="modal-inner">
-
-    <!-- STICKY HEADER -->
-    <div class="badge-modal-header">
-      <button class="close-btn">✕</button>
-
-      <img class="badge-img" src="" alt="Merke">
-      <h2 class="badge-title"></h2>
-
-      <div class="badge-level"></div>
-      <div class="badge-progress-text"></div>
-
-      <div class="badge-progress">
-        <div class="badge-progress-bar"></div>
+  <div id="badgeModal" class="modal" aria-hidden="true" style="display:none;">
+    <div class="modal-inner">
+      <div class="badge-modal-header">
+        <button class="close-btn" type="button" aria-label="Lukk">✕</button>
+        <img class="badge-img" src="" alt="Merke">
+        <h2 class="badge-title"></h2>
+        <div class="badge-level"></div>
+        <div class="badge-progress-text"></div>
+        <div class="badge-progress"><div class="badge-progress-bar"></div></div>
       </div>
+      <div class="badge-modal-body"><ul class="badge-quizzes"></ul></div>
     </div>
-
-    <!-- INNHOLD SOM SCROLLER -->
-    <div class="badge-modal-body">
-      <ul class="badge-quizzes"></ul>
-    </div>
-
   </div>
-</div>
-  <!-- HEADER -->
+
   <header class="site-header">
     <div class="profile-header-left">
-      <a href="index.html" class="back-link" aria-label="Til forsiden">←</a>
-      <div class="brand" aria-label="Min profil">
-        <img src="bilder/logo_historygo.PNG" class="brand-logo" alt="History Go">
-      </div>
+      <a href="index.html" class="back-link" aria-label="Til kartet">←</a>
+      <a href="index.html" class="brand" aria-label="History Go"><img src="bilder/logo_historygo.PNG" class="brand-logo" alt="History Go"></a>
     </div>
 
-    <section class="profile-section profile-hero profile-hero-v2" id="profileCard">
+    <section class="profile-section profile-hero profile-hero-v2" id="profileCard" aria-label="Brukeridentitet">
       <div class="profile-hero-v2-inner">
         <div class="profile-identity-block">
           <div class="profile-hero-copy">
             <div id="profileName" class="profile-name-line" aria-live="polite">Gjest</div>
-            <div class="profile-header-status" role="list" aria-label="Profilstatus">
-              <div class="profile-stat-card" role="listitem" aria-label="0 steder" title="Antall steder du har låst opp.">
-                <span class="profile-stat-icon" aria-hidden="true">📍</span>
-                <span id="statVisited" class="profile-stat-value">0</span>
-              </div>
-              <div class="profile-stat-card" role="listitem" aria-label="0 quizsett" title="Antall fullførte quizenheter. Set-baserte quizer teller per sett.">
-                <span class="profile-stat-icon" aria-hidden="true">?</span>
-                <span id="statQuizzes" class="profile-stat-value">0</span>
-              </div>
-              <div class="profile-stat-card" role="listitem" aria-label="0 streak" title="Antall dager på rad med aktivitet.">
-                <span class="profile-stat-icon" aria-hidden="true">🔥</span>
-                <span id="statStreak" class="profile-stat-value">0</span>
-              </div>
-              <div class="profile-stat-card profile-pc" role="listitem" aria-label="0 PC" title="ParadiseCoin-saldoen din.">
-                <span class="profile-stat-icon" aria-hidden="true">🖥️</span>
-                <span id="pcValue" class="profile-stat-value">0</span>
-              </div>
+            <div class="profile-header-status" role="list" aria-label="Rask status">
+              <div class="profile-stat-card" role="listitem" title="Steder"><span class="profile-stat-icon" aria-hidden="true">⌖</span><span id="statVisited" class="profile-stat-value">0</span></div>
+              <div class="profile-stat-card" role="listitem" title="Quiz"><span class="profile-stat-icon" aria-hidden="true">?</span><span id="statQuizzes" class="profile-stat-value">0</span></div>
+              <div class="profile-stat-card" role="listitem" title="Streak"><span class="profile-stat-icon" aria-hidden="true">↗</span><span id="statStreak" class="profile-stat-value">0</span></div>
+              <div class="profile-stat-card profile-pc" role="listitem" title="ParadiseCoin"><span class="profile-stat-icon" aria-hidden="true">PC</span><span id="pcValue" class="profile-stat-value">0</span></div>
             </div>
             <div class="profile-hero-actions-v2">
-              <button id="editProfileBtn" class="btn profile-icon-button profile-edit-button" type="button" aria-label="Endre profil" title="Endre profil">⚙️</button>
+              <button id="editProfileBtn" class="btn profile-icon-button profile-edit-button" type="button" aria-label="Innstillinger" title="Innstillinger">⚙</button>
               <button id="btnOpenAHA" class="btn profile-login-button" type="button">Logg inn</button>
             </div>
           </div>
@@ -113,462 +69,95 @@
       </div>
     </section>
 
-    <div class="actions">
-      <button id="btnSeeMap" class="iconbtn profile-header-map-button" type="button" aria-label="Se kart" title="Se kart" data-hg-i18n-aria-label="ui.attr.mapMode" data-hg-i18n-title="ui.attr.mapMode" data-i18n="ui.map.show">
-        <span data-i18n-icon="map" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="3.2"></circle><path d="M12 3v5M12 16v5M3 12h5M16 12h5"></path></svg></span>
-      </button>
-    </div>
+    <div class="actions"><button id="btnSeeMap" class="iconbtn profile-header-map-button" type="button" aria-label="Se samlingen på kartet" title="Se samlingen på kartet">⌖</button></div>
   </header>
 
+  <main id="profileMain" class="profile-dashboard profile-dashboard-v2">
+    <div class="profile-shell">
+      <nav class="profile-tabs" role="tablist" aria-label="Min samling">
+        <button class="profile-tab is-active" role="tab" aria-selected="true" data-tab="oversikt">Oversikt</button>
+        <button class="profile-tab" role="tab" aria-selected="false" data-tab="samling">Samling</button>
+        <button class="profile-tab" role="tab" aria-selected="false" data-tab="kunnskap">Kunnskap</button>
+        <button class="profile-tab" role="tab" aria-selected="false" data-tab="merker">Merker</button>
+        <button class="profile-tab" role="tab" aria-selected="false" data-tab="civication">Spill</button>
+        <button class="profile-tab" role="tab" aria-selected="false" data-tab="socialmeet">Social Meet</button>
+        <button class="profile-tab" role="tab" aria-selected="false" data-tab="profilvalg">Profilvalg</button>
+      </nav>
 
-  <!-- ===================== -->
-  <!-- INNHOLD (DASHBOARD)   -->
-  <!-- ===================== -->
-<main id="profileMain" class="profile-dashboard profile-dashboard-v2">
-  <div class="profile-shell">
+      <section class="profile-tab-panels">
+        <div class="profile-tab-panel is-active" data-panel="oversikt">
+          <div class="profile-dashboard-grid">
+            <section class="profile-section profile-focus-card" id="latestKnowledgeSection">
+              <div class="section-head profile-journey-head"><h2>Fortsett reisen</h2><a class="secondary profile-icon-button profile-journey-map-button" href="index.html?nextup=1" aria-label="Åpne Next Up på kartet" title="Åpne Next Up på kartet">→</a><span class="section-meta">Next Up velges i ➜-popupen i footeren på hovedkartet.</span></div>
+              <div class="profile-focus-body">
+                <div id="nextUpProfileCard" class="nextup-profile-card" style="display:none;"><div class="nextup-profile-title">Next Up</div><div id="nextUpProfileMeta" class="nextup-profile-meta"></div><div id="nextUpProfileChoices" class="nextup-profile-choice-row"></div><div id="nextUpProfilePath" class="nextup-profile-path"></div></div>
+                <div id="latestKnowledgeBox" class="latest-knowledge-box" style="display:none;"><div class="lk-topic" id="lkTopic"></div><div class="lk-text" id="lkText"></div><div class="lk-category" id="lkCategory"></div></div>
+                <div id="latestTriviaBox" class="latest-trivia-box" style="display:none;"><div class="lt-topic" id="ltTopic"></div><div class="lt-category" id="ltCategory"></div></div>
+                <div id="nextWhySection" class="latest-knowledge-box" style="display:none;"><div class="lk-topic">Hvorfor dette nå</div><div class="lk-text" id="nextWhyText"></div></div>
+                <div id="ahaSummary" class="latest-knowledge-box" style="display:none;"><div class="lk-topic" id="ahaTopConcept"></div><div class="lk-category" id="ahaTopMeta"></div></div>
+              </div>
+            </section>
+            <section class="profile-section" id="conceptsSection"><div class="section-head"><h2>Begrepene dine</h2><span class="section-meta" id="conceptsMeta">Fra det du faktisk har lært</span></div><div id="conceptsList" class="concepts-list" aria-live="polite"></div><div id="conceptsEmpty" class="concepts-empty" style="display:none;">Ingen begreper logget ennå.</div></section>
+            <section class="profile-section knowledge-match-section" id="knowledgeMatchSection"><div class="section-head"><h2>Kunnskapskoblinger</h2><span class="section-meta">Konseptuelt overlapp, ikke posisjon</span></div><div id="knowledge-match-list" aria-live="polite"></div></section>
+          </div>
+        </div>
 
-    <nav class="profile-tabs" role="tablist" aria-label="Profilfaner">
-      <button class="profile-tab is-active" role="tab" aria-selected="true" data-tab="oversikt">Oversikt</button>
-      <button class="profile-tab" role="tab" aria-selected="false" data-tab="samling">Samling</button>
-      <button class="profile-tab" role="tab" aria-selected="false" data-tab="merker">Merker</button>
-      <button class="profile-tab" role="tab" aria-selected="false" data-tab="kunnskap">Kunnskap</button>
-      <button class="profile-tab" role="tab" aria-selected="false" data-tab="civication">Spill</button>
-      <button class="profile-tab" role="tab" aria-selected="false" data-tab="socialmeet">Social Meet</button>
-      <button class="profile-tab" role="tab" aria-selected="false" data-tab="profilvalg">Profilvalg</button>
-    </nav>
+        <div class="profile-tab-panel" data-panel="samling">
+          <section class="profile-section profile-strip" id="timelineSection"><div class="section-head"><h2>Reisen din</h2><div id="timelineProgressText" class="section-meta timeline-progress-text"></div></div><div class="timeline-progress"><div id="timelineProgressBar" class="timeline-progress-bar"></div></div><div id="timelineBody" class="timeline-body"></div></section>
+          <section class="profile-section profile-collection-showcase" id="collectionCardsSection"><div class="section-head"><h2>Stedssamlingen</h2><span class="section-meta">Besøkte og låste steder</span></div><div id="collectionCardsBody" class="collection-cards-body"></div><details class="profile-detail-box"><summary>Vis detaljert stedsliste</summary><div id="collectionGrid" class="profile-detail-list"></div></details></section>
+          <section class="profile-section" id="musicCollectionSection"><div class="section-head"><h2>Musikk</h2><span class="section-meta" id="musicCollectionMeta">Artister og sanger fra AHA Music</span></div><div id="musicCollectionBody" class="profile-detail-list"></div></section>
+          <div class="profile-grid-2"><section class="profile-section"><div class="section-head"><h2>Personer</h2><span class="section-meta">Mennesker du har oppdaget</span></div><div id="peopleGrid"></div></section><section class="profile-section"><div class="section-head"><h2>Mine bidrag</h2><span class="section-meta">Notater og refleksjoner</span></div><p class="muted">Dine egne bidrag ligger i det eksisterende notatsystemet.</p><a class="link-small" href="notater.html">Åpne mine notater →</a></section></div>
+        </div>
 
-    <section class="profile-tab-panels">
-      <div class="profile-tab-panel is-active" data-panel="oversikt">
-        <div class="profile-dashboard-grid">
-          <section class="profile-section profile-focus-card" id="latestKnowledgeSection"> <div class="section-head profile-journey-head"><h2 data-i18n="ui.profile.continueJourney" data-hg-i18n-text="ui.profile.continueJourney" data-hg-i18n-text-value="Fortsett reisen">Fortsett reisen</h2><button class="secondary profile-icon-button profile-journey-map-button" type="button" aria-label="Fortsett på kartet" title="Fortsett på kartet" onclick="window.location.href='index.html'">→</button><span class="section-meta">Neste retning, siste kunnskap og AHA-spor.</span></div>
-            <div class="profile-focus-body">
-              <div id="nextUpProfileCard" class="nextup-profile-card" style="display:none;"><div class="nextup-profile-title">Din retning nå</div><div id="nextUpProfileMeta" class="nextup-profile-meta"></div><div id="nextUpProfileChoices" class="nextup-profile-choice-row"></div><div id="nextUpProfilePath" class="nextup-profile-path"></div></div>
-              <div id="latestKnowledgeBox" class="latest-knowledge-box" style="display:none;"><div class="lk-topic" id="lkTopic"></div><div class="lk-text" id="lkText"></div><div class="lk-category" id="lkCategory"></div></div>
-              <div id="latestTriviaBox" class="latest-trivia-box" style="display:none;"><div class="lt-topic" id="ltTopic"></div><div class="lt-category" id="ltCategory"></div></div>
-              <div id="nextWhySection" class="latest-knowledge-box" style="display:none;"><div class="lk-topic">Hvorfor dette nå</div><div class="lk-text" id="nextWhyText"></div></div>
-              <div id="ahaSummary" class="latest-knowledge-box" style="display:none;"><div class="lk-topic" id="ahaTopConcept"></div><div class="lk-category" id="ahaTopMeta"></div></div>
-            </div>
+        <div class="profile-tab-panel" data-panel="kunnskap">
+          <section class="profile-section knowledge-engine-panel" id="knowledgeEnginePanel">
+            <div class="section-head"><h2>Kunnskapsmotor</h2><span class="section-meta" id="knowledgeEngineMeta">Fag, emner og progresjon</span></div>
+            <div id="knowledgeEngineSummary" class="knowledge-engine-summary"></div>
+            <div id="knowledgeEngineSubjects" class="knowledge-engine-subjects"></div>
+            <div id="knowledgeEngineRecommendations" class="knowledge-engine-recommendations"></div>
+            <details class="profile-detail-box knowledge-engine-details"><summary>Vis signalforklaring</summary><div id="knowledgeEngineSignals" class="knowledge-engine-signals"></div></details>
           </section>
-          <section class="profile-section" id="conceptsSection"><div class="section-head"><h2>Kunnskapsprofil</h2><span class="section-meta" id="conceptsMeta">Fra riktige quiz-svar</span></div><div id="conceptsList" class="concepts-list" aria-live="polite"></div><div id="conceptsEmpty" class="concepts-empty" style="display:none;">Ingen begreper logget ennå.</div></section>
-          <section class="profile-section knowledge-match-section" id="knowledgeMatchSection"><div class="section-head"><h2>Knowledge Matches</h2><span class="section-meta">Kunnskapsoverlapp, ikke lokasjon</span></div><div id="knowledge-match-list" aria-live="polite"></div></section>
-          <section class="profile-section caravan-profile-section" id="caravanProfileSection"><div class="section-head"><h2>Karavane</h2><span class="section-meta">Read-only reiseoppsummering fra lokal Karavane-progresjon</span></div><div id="caravanProfileSummary" aria-live="polite"><p class="muted">Laster karavaneoppsummering …</p></div></section>
-        </div>
-      </div>
-
-      <div class="profile-tab-panel" data-panel="samling">
-        <section class="profile-section profile-strip" id="timelineSection"><div class="section-head"><h2>Tidslinje</h2><div id="timelineProgressText" class="section-meta timeline-progress-text"></div></div><div class="timeline-progress"><div id="timelineProgressBar" class="timeline-progress-bar"></div></div><div id="timelineBody" class="timeline-body"></div></section>
-        <section class="profile-section profile-collection-showcase" id="collectionCardsSection"><div class="section-head"><h2>Kortsamling</h2></div><div id="collectionCardsBody" class="collection-cards-body"></div><details class="profile-detail-box"><summary>Vis detaljert stedsliste</summary><div id="collectionGrid" class="profile-detail-list"></div></details></section>
-        <section class="profile-section" id="musicCollectionSection"><div class="section-head"><h2>Musikk</h2><span class="section-meta" id="musicCollectionMeta">Artister og sanger fra AHA Music</span></div><div id="musicCollectionBody" class="profile-detail-list"></div></section>
-        <div class="profile-grid-2">
-          <section class="profile-section"><div class="section-head"><h2>Steder</h2></div><div id="collectionGridCloneHint" class="muted">Detaljert stedsliste ligger i kortsamling over.</div></section>
-          <section class="profile-section"><div class="section-head"><h2>Personer</h2></div><div id="peopleGrid"></div></section>
-        </div>
-      </div>
-
-      <div class="profile-tab-panel" data-panel="merker"><section class="profile-section"><div class="section-head"><h2>Mine merker</h2></div><div id="merits"></div><div class="profile-subaction"><a href="merker/merker.html" class="link-small">→ Se alle merke-kategorier</a></div></section></div>
-
-      <div class="profile-tab-panel" data-panel="kunnskap">
-        <section class="profile-section knowledge-engine-panel" id="knowledgeEnginePanel">
-          <div class="section-head">
-            <h2>Kunnskapsmotor</h2>
-            <span class="section-meta" id="knowledgeEngineMeta">Analyserer fag, emner og progresjon</span>
-          </div>
-          <div id="knowledgeEngineSummary" class="knowledge-engine-summary"></div>
-          <div id="knowledgeEngineSubjects" class="knowledge-engine-subjects"></div>
-          <div id="knowledgeEngineRecommendations" class="knowledge-engine-recommendations"></div>
-          <details class="profile-detail-box knowledge-engine-details">
-            <summary>Vis signalforklaring</summary>
-            <div id="knowledgeEngineSignals" class="knowledge-engine-signals"></div>
-          </details>
-        </section>
-        <div class="profile-grid-2">
-          <section class="profile-section">
-            <div class="section-head"><h2>Kunnskapsprofil</h2></div>
-            <p class="muted">Kunnskapsprofil, begreper og siste innsikt vises i Oversikt-fanen for rask én-skjerms status.</p>
-            <div class="profile-subaction"><a href="knowledge.html" class="link-small">→ Åpne kunnskapssiden</a></div>
-          </section>
-          <section class="profile-section">
-            <div class="section-head"><h2>AHA og retning</h2></div>
-            <p class="muted">Siste kunnskap, trivia og neste retning holdes oppdatert automatisk i oversiktspanelet.</p>
-          </section>
-        </div>
-      </div>
-
-      <div class="profile-tab-panel" data-panel="civication">
-        <section class="profile-section profile-games-section" aria-labelledby="profileGamesTitle">
-          <div class="section-head">
-            <h2 id="profileGamesTitle">Spill</h2>
-            <span class="section-meta">Snarveier til spillene i History Go-universet.</span>
-          </div>
-          <section class="profile-games-grid" aria-label="Spill i History Go-universet">
-            <a class="profile-game-card" href="https://paradispartiet.github.io/HistoryGo-FootballManager/" target="_blank" rel="noopener noreferrer">
-              <span class="profile-game-heading">
-                <span class="profile-game-icon" aria-hidden="true">⚽</span>
-                <span class="profile-game-title">HG Football Manager</span>
-              </span>
-              <span class="profile-game-stats" aria-label="0 spillere, 0 formasjoner, 0 grounds">
-                <span><strong>0</strong> spillere</span>
-                <span><strong>0</strong> formasjoner</span>
-                <span><strong>0</strong> grounds</span>
-              </span>
-            </a>
-
-            <a class="profile-game-card" href="https://paradispartiet.github.io/HG_Film_Producer/" target="_blank" rel="noopener noreferrer">
-              <span class="profile-game-heading">
-                <span class="profile-game-icon" aria-hidden="true">🎬</span>
-                <span class="profile-game-title">HG Film Producer</span>
-              </span>
-              <span class="profile-game-stats" aria-label="0 locations, 0 historier, 0 prosjekter">
-                <span><strong>0</strong> locations</span>
-                <span><strong>0</strong> historier</span>
-                <span><strong>0</strong> prosjekter</span>
-              </span>
-            </a>
-          </section>
-        </section>
-
-        <div class="profile-grid-2">
-          <section class="profile-section" id="civicationSection">
-        <div class="section-head">
-          <h2>🏛️ Civication</h2>
-          <span class="section-meta">Rolle, økonomi og status som eget lag under History Go.</span>
+          <section class="profile-section"><div class="section-head"><h2>Kunnskapen min</h2><span class="section-meta">Én canonical Knowledge V2-opplevelse</span></div><p class="muted">Se kunnskapsenheter, fag, begreper, språkspor, kilder og provenance i samme personlige samling.</p><a class="collection-action primary" href="knowledge.html">Åpne kunnskapen min</a></section>
         </div>
 
-        <p class="muted">
-          Jobbrollen din er knyttet til merker (kategorier). Du får tilbud, tar rollen, og må vedlikeholde den med relevante quizzer og besøk.
-        </p>
+        <div class="profile-tab-panel" data-panel="merker"><section class="profile-section"><div class="section-head"><h2>Mine merker</h2><span class="section-meta">Det du har oppnådd</span></div><div id="merits"></div><div class="profile-subaction"><a href="merker/merker.html" class="link-small">Se alle merke-kategorier →</a></div></section></div>
 
-        <div class="latest-knowledge-box" id="civicationCard">
-          <div class="lk-topic" id="civiRoleTitle">Rolle: —</div>
-          <div class="lk-category" id="civiRoleDetails">Status: —</div>
-
-          <div class="lk-category" id="civiSalaryLine">Lønn: —</div>
-          <div class="lk-category" id="civiMeritLine">Merit: —</div>
-          <div class="lk-category" id="civiBurnoutStatus" style="display:none;"></div>
-        </div>
-
-        <div class="latest-knowledge-box" id="civiOfferBox" style="margin-top:10px; display:none;">
-          <div class="lk-topic" id="civiOfferTitle">🧾 Nytt jobbtilbud</div>
-          <div class="lk-category" id="civiOfferMeta">—</div>
-
-          <div class="profile-subaction" style="margin-top:10px;">
-            <a href="/History-Go/Civication.html" class="btn">Åpne Civication</a>
-          </div>
-        </div>
-
-        <div class="latest-knowledge-box" id="civiShopBox" style="margin-top:10px; display:none;">
-          <div class="lk-topic">🪙 PC balance: <span id="civiPcBalance">0</span></div>
-          <div class="lk-category" id="civiShopHint">—</div>
-
-          <div id="civiShopPacks" style="display:flex; flex-direction:column; gap:8px; margin-top:10px;"></div>
-
-          <div style="margin-top:10px;">
-            <div class="lk-category">Stil-tags (inventory):</div>
-            <div id="civiStyleCounts" class="lk-category">—</div>
-          </div>
-        </div>
-
-        <div class="latest-knowledge-box" id="civiInboxBox" style="margin-top:10px; display:none;">
-          <div class="lk-topic" id="civiMailSubject">📬 —</div>
-          <div class="lk-category" id="civiMailText">—</div>
-
-          <div class="profile-subaction" id="civiMailChoices" style="display:flex; flex-direction:column; gap:8px; margin-top:10px;">
-            <button id="civiChoiceA" class="btn" style="display:none;"></button>
-            <button id="civiChoiceB" class="btn" style="display:none;"></button>
-            <button id="civiChoiceC" class="btn" style="display:none;"></button>
-            <button id="civiChoiceOK" class="btn" style="display:none;">OK</button>
-          </div>
-
-          <div class="lk-category" id="civiMailFeedback" style="margin-top:10px; display:none;"></div>
-        </div>
-
-        <div class="profile-subaction" style="display:flex; gap:10px; flex-wrap:wrap;">
-          <a id="btnCiviOpen" class="btn" href="/History-Go/Civication.html">Åpne Civication</a>
-          <button id="btnCiviRanking" class="btn" disabled>Ranking (kommer)</button>
-          <button id="btnCiviWorld" class="btn" disabled>Min verden (kommer)</button>
-        </div>
+        <div class="profile-tab-panel" data-panel="civication"><section class="profile-section"><div class="section-head"><h2>Spill</h2><span class="section-meta">History Go-universet</span></div><div class="profile-games-grid"><a class="profile-game-card" href="Civication.html"><span class="profile-game-title">Civication</span></a><a class="profile-game-card" href="https://paradispartiet.github.io/HistoryGo-FootballManager/" target="_blank" rel="noopener noreferrer"><span class="profile-game-title">HG Football Manager</span></a><a class="profile-game-card" href="https://paradispartiet.github.io/HG_Film_Producer/" target="_blank" rel="noopener noreferrer"><span class="profile-game-title">HG Film Producer</span></a></div></section></div>
+        <div class="profile-tab-panel" data-panel="socialmeet"><section class="profile-section"><div class="section-head"><h2>Social Meet</h2><span class="section-meta">Privat sosial læring</span></div><p class="muted">Social Meet er fortsatt tilgjengelig som et sekundært lag. Kunnskapskoblinger på oversikten bruker konseptuelt overlapp, ikke live-posisjon.</p><div id="spotmeeting-inbox"></div></section></div>
+        <div class="profile-tab-panel" data-panel="profilvalg"><section class="profile-section"><div class="section-head"><h2>Profilvalg og personvern</h2></div><p class="muted">Bruk innstillingsknappen øverst for profil, innlogging og lokale valg.</p><button class="collection-action" type="button" onclick="document.getElementById('editProfileBtn')?.click()">Åpne innstillinger</button></section></div>
       </section>
-          <section class="profile-section groundhopper-profile-panel" id="groundhopperProfilePanel">
-            <div class="section-head"><h2>Groundhopper</h2></div>
-            <p class="muted groundhopper-ingress">Samle sportssteder du har besøkt. Stadioner, baner, haller og historiske idrettssteder teller med.</p>
-            <p id="groundhopperEmpty" class="muted" style="display:none;">Ingen grounds besøkt ennå. Sportssteder låses opp når du besøker stedet eller fullfører relevant quiz.</p>
-            <div id="groundhopperBody" style="display:none;">
-              <div class="groundhopper-topline" id="groundhopperTopline"></div>
-              <div class="groundhopper-stat-grid" id="groundhopperStatGrid"></div>
-              <div class="groundhopper-line" id="groundhopperClubsLine">Klubber samlet: 0</div>
-              <div class="groundhopper-line" id="groundhopperLastVisited">Sist besøkt: —</div>
-              <div class="groundhopper-achievements" id="groundhopperAchievements"></div>
-              <div class="groundhopper-recent">
-                <div class="groundhopper-recent-title">Siste grounds</div>
-                <ul id="groundhopperRecentList"></ul>
-              </div>
-              <div class="groundhopper-recent">
-                <div class="groundhopper-recent-title">Mine besøkte grounds</div>
-                <div id="groundhopperVisitedHint" class="muted"></div>
-                <ul id="groundhopperVisitedList"></ul>
-              </div>
-            </div>
-          </section>
-        </div>
-      </div>
+    </div>
+  </main>
 
-      <div class="profile-tab-panel" data-panel="socialmeet">
-        <section class="profile-section knowledge-match-section profile-social-stack" id="profileSocialLayer" aria-label="Social Meet">
-          <div class="section-head">
-            <h2>Social Meet</h2>
-            <span class="section-meta">Kunnskapsmøter, læringssirkler og sosial læringshistorikk.</span>
-          </div>
-          <p class="muted">Personvern styres i ⚙️ Innstillinger.</p>
-          <div id="miniProfile" class="social-mini-profile-anchor">MiniProfile</div>
-          <div id="meet-invite-inbox" aria-live="polite"></div>
-          <div id="spotmeeting-inbox" aria-live="polite"></div>
-          <div id="confirmed-meets" aria-live="polite"></div>
-          <div id="social-progression" aria-live="polite"></div>
-          <div id="learning-circles" aria-live="polite"></div>
-          <div id="circle-activity" aria-live="polite"></div>
-          <div id="social-history" aria-live="polite"></div>
-          <div id="hg-social-smoke-panel"></div>
-        </section>
-      </div>
+  <footer class="site-footer" aria-label="Bunntekst"><div class="site-footer-inner"><span class="site-footer-brand">History Go</span><nav class="site-footer-links"><a href="index.html">Kart</a><a href="knowledge.html">Kunnskap</a><a href="merker/merker.html">Merker</a></nav></div></footer>
 
-      <div class="profile-tab-panel" data-panel="profilvalg">
-        <div class="profile-grid-2">
-          <section class="profile-section" id="notesSection">
-            <div class="section-head"><h2>Mine notater</h2></div>
-            <div class="profile-subaction"><a href="notater.html" class="link-small">→ Åpne notatboken</a></div>
-          </section>
-          <section class="profile-section" id="languageSection">
-            <div class="section-head"><h2 data-i18n="ui.language.label">Språk</h2></div>
-            <div class="profile-action-row"><label for="languageSelect" data-i18n="ui.language.label">Språk</label><select id="languageSelect" aria-label="Language">
-              <option value="ar">العربية</option><option value="bn">বাংলা</option><option value="de">Deutsch</option><option value="en">English</option><option value="es">Español</option><option value="fr">Français</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="it">Italiano</option><option value="ja">日本語</option><option value="ko">한국어</option><option value="nb">Norsk</option><option value="pt">Português</option><option value="ru">Русский</option><option value="sw">Kiswahili</option><option value="tr">Türkçe</option><option value="ur">اردو</option><option value="zh-Hans">中文</option>
-            </select></div>
-          </section>
-        </div>
-        <section class="profile-section" id="actions"><div class="section-head"><h2>Profilvalg</h2></div><div class="profile-action-row"><button id="editProfileBtnBottom" class="btn" onclick="document.getElementById('editProfileBtn')?.click()">Åpne innstillinger</button></div></section>
-      </div>
-    </section>
-  </div>
-</main>
-<div id="profileSettingsSocialMount" hidden>
-  <section class="profile-section knowledge-match-section profile-privacy-stack" id="profilePrivacyLayer" aria-label="Personverninnstillinger">
-    <div class="section-head"><h2>Personvern</h2><span class="section-meta">Kunnskapsgraf og synlighet for Social Meet.</span></div>
-    <div id="social-privacy-settings" aria-live="polite"></div>
-  </section>
-</div>
-
-
-<footer class="site-footer" aria-label="Bunntekst">
-  <div class="site-footer-inner">
-    <span class="site-footer-brand">History Go</span>
-    <nav class="site-footer-links" aria-label="Profilside-lenker">
-      <a href="index.html">Kart</a>
-      <a href="knowledge.html">Kunnskap</a>
-      <a href="merker/merker.html">Merker</a>
-    </nav>
-  </div>
-</footer>
-
-
-  <!-- ===================== -->
-  <!-- LEAFLET BIBLIOTEK     -->
-  <!-- ===================== -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-
-
-  <!-- ===================== -->
-  <!-- PROFILMOTOR          -->
-  <!-- ===================== -->
-<!-- ===================================================== -->
-<!-- Base system -->
-<!-- ===================================================== -->
-
-<script src="js/i18n.js"></script>
-<script src="js/learningLog.js"></script>
-<script src="js/aha.js"></script>
-<script src="js/integrations/aha-music.js"></script>
-<script src="js/profileIdentity.js"></script>
-<script src="js/historyGoGameRegistry.js"></script>
-<script src="dist/web/knowledge.js"></script>
-<script src="dist/web/trivia.js"></script>
-<script src="dist/web/hgInsights.js"></script>
-<script src="js/dataHub.js"></script>
-<script src="js/epoker-runtime.js"></script>
-<script src="js/time-resolver.js"></script>
-<script src="js/DomainRegistry.js"></script>
-<!-- Migrert til TS ESM, bundlet med esbuild (npm run build:web); publiserer fortsatt window.FagHealthReport -->
-<script src="dist/web/fagHealthReport.js"></script>
-<script src="dist/web/courses.js"></script>
-<!-- Migrert til TS ESM, bundlet med esbuild (npm run build:web); publiserer fortsatt window.HGKnowledgeEngine -->
-<script src="dist/web/hgKnowledgeEngine.js"></script>
-<!-- Migrert til TS ESM, bundlet med esbuild (npm run build:web); publiserer fortsatt sine window-globaler -->
-<script src="dist/web/hgSocialPrivacy.js"></script>
-<script src="dist/web/hgModeration.js"></script>
-<script src="js/hgSocialGuards.js"></script>
-<script src="js/knowledgeMatch.js"></script>
-<script src="js/social/HGSocialMeetSupabaseClient.js"></script>
-<script src="js/social/HGSocialMeetAdapter.js"></script>
-<script src="js/social/HGSpotmeeting.js"></script>
-<script src="js/caravan-loader.js"></script>
-<script src="js/caravan-progress.js"></script>
-<script src="js/caravan-event-log.js"></script>
-<script src="js/caravan-consequences.js"></script>
-<script src="js/caravan-resources.js"></script>
-<script src="js/caravan-diary.js"></script>
-<script src="js/caravan-badges.js"></script>
-<script src="js/caravan-profile.js"></script>
-
-<!-- ===================================================== -->
-<!-- Civication system -->
-<!-- ===================================================== -->
-
-<!-- State -->
-<script src="js/Civication/core/civicationState.js"></script>
-
-<!-- Tier logic -->
-<script src="js/Civication/tiersCivi.js"></script>
-
-<script src="js/Civication/core/civicationJobs.js"></script>
-
-<!-- Jobs / merits (ligger i Civication-mappen) -->
-<script src="js/Civication/merits-and-jobs.js"></script>
-
-<!-- Engines -->
-<script src="js/Civication/core/civicationEconomyEngine.js"></script>
-<script src="js/Civication/civicationObligationEngine.js"></script>
-<script src="js/Civication/core/civicationEventEngine.js"></script>
-<script src="js/Civication/capitalEngine.js"></script>
-<script src="js/Civication/capitalMaintenanceEngine.js"></script>
-
-<!-- Identity -->
-<script src="js/Civication/identityCore.js"></script>
-<script src="js/Civication/identityCompass.js"></script>
-<script src="js/Civication/identityEngine.js"></script>
-
-<!-- Psyche -->
-<script src="js/Civication/core/CivicationPsyche.js"></script>
-
-<!-- Lifestyle / commercial -->
-<script src="js/Civication/civiLifestyle.js"></script>
-<script src="js/Civication/civicationCommercial.js"></script>
-
-<!-- Home / public -->
-<script src="js/Civication/ui/CivicationHome.js"></script>
-<script src="js/Civication/ui/CivicationPublicLayer.js"></script>
-<script src="js/Civication/ui/CivicationMap.js"></script>
-
-<!-- UI -->
-<script src="js/Civication/systems/civicationCareerRoleResolver.js"></script>
-<script src="js/Civication/systems/civicationRolePackDepth.js"></script>
-<script src="js/Civication/ui/CivicationUI.js"></script>
-
-<!-- ===================================================== -->
-<!-- Profile LAST -->
-<!-- ===================================================== -->
-
-<script src="js/profile.js"></script>
-<script>
-(function(){
-  function escapeSpotmeetingHTML(value){
-    return String(value == null ? '' : value)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#39;');
-  }
-  function formatSpotmeetingTime(value){
-    if(!value) return '';
-    var date = new Date(value);
-    if(Number.isNaN(date.getTime())) return String(value);
-    return date.toLocaleString('nb-NO', { dateStyle: 'short', timeStyle: 'short' });
-  }
-  function spotmeetingStatusLabel(status){
-    return ({pending:'Venter på svar',accepted:'Avtalt',completed:'Gjennomført',declined:'Avslått eller avbrutt',cancelled:'Avslått eller avbrutt'})[status] || status || 'Ukjent';
-  }
-  function isCurrentSpotmeetingCreator(invite){
-    var current = String(window.HG_CURRENT_USER_ID || window.currentUserId || 'me');
-    return !invite.createdByUserId || String(invite.createdByUserId) === current;
-  }
-  function renderSpotmeetingCard(invite){
-    var context = invite.context || {};
-    var target = invite.targetDisplayName || invite.displayName || invite.targetUserDisplayName || invite.targetUserId || 'Ukjent deltaker';
-    var time = invite.updatedAt || invite.createdAt;
-    var meta = [context.contextType || 'kunnskapsmøte', target, time ? formatSpotmeetingTime(time) : ''].filter(Boolean).join(' · ');
-    var actions = [];
-    if(invite.status === 'pending'){
-      actions.push('<button type="button" data-spotmeeting-action="accept" data-spotmeeting-invite-id="'+escapeSpotmeetingHTML(invite.inviteId)+'">Godta</button>');
-      actions.push('<button type="button" data-spotmeeting-action="decline" data-spotmeeting-invite-id="'+escapeSpotmeetingHTML(invite.inviteId)+'">Avslå</button>');
-      if(isCurrentSpotmeetingCreator(invite)) actions.push('<button type="button" data-spotmeeting-action="cancel" data-spotmeeting-invite-id="'+escapeSpotmeetingHTML(invite.inviteId)+'">Avbryt forslag</button>');
-    } else if(invite.status === 'accepted'){
-      actions.push('<button type="button" data-spotmeeting-action="complete" data-spotmeeting-invite-id="'+escapeSpotmeetingHTML(invite.inviteId)+'">Marker som gjennomført</button>');
-      actions.push('<button type="button" data-spotmeeting-action="cancel" data-spotmeeting-invite-id="'+escapeSpotmeetingHTML(invite.inviteId)+'">Avbryt forslag</button>');
-    }
-    return '<article class="spotmeeting-invite-card" data-spotmeeting-card data-spotmeeting-status="'+escapeSpotmeetingHTML(invite.status)+'">' +
-      '<div class="spotmeeting-card-main">' +
-        '<h4 class="spotmeeting-card-title">'+escapeSpotmeetingHTML(context.title || 'Uten tittel')+'</h4>' +
-        '<p class="spotmeeting-card-meta">'+escapeSpotmeetingHTML(meta)+'</p>' +
-        '<p class="spotmeeting-card-preset">'+escapeSpotmeetingHTML(invite.presetLabel || invite.presetMessageId || 'Ukjent forhåndsvalg')+'</p>' +
-      '</div>' +
-      (actions.length ? '<div class="spotmeeting-invite-actions">'+actions.join(' ')+'</div>' : '<p class="spotmeeting-card-readonly"><small>'+escapeSpotmeetingHTML(spotmeetingStatusLabel(invite.status))+'</small></p>') +
-      '</article>';
-  }
-  function renderSpotmeetingGroup(title, items){
-    var cards = (items || []).map(renderSpotmeetingCard).join('');
-    return '<section class="spotmeeting-inbox-group" data-spotmeeting-group="'+escapeSpotmeetingHTML(title)+'"><h3>'+escapeSpotmeetingHTML(title)+' ('+(items || []).length+')</h3>' +
-      (cards || '<p class="spotmeeting-group-empty">Ingen forslag her.</p>') + '</section>';
-  }
-  function spotmeetingInboxIsEmpty(inbox){
-    return !(inbox.pending || []).length && !(inbox.accepted || []).length && !(inbox.completed || []).length && !(inbox.declinedCancelled || []).length && !(inbox.declined || []).length && !(inbox.cancelled || []).length;
-  }
-  function renderSpotmeetingInbox(){
-    var el=document.getElementById("spotmeeting-inbox");
-    var api=window.HG_Spotmeeting;
-    if(!el||!api) return;
-    var inbox=api.getSpotmeetingInbox();
-    var declinedCancelled = inbox.declinedCancelled || [].concat(inbox.declined || [], inbox.cancelled || []);
-    el.innerHTML='';
-    var section=document.createElement('section');
-    section.className='profile-section spotmeeting-inbox-section';
-    section.innerHTML='<h2>HG Spotmeeting</h2>' +
-      '<p>Frivillige kunnskapsmøter basert på læring, ruter, observasjoner og tema.</p>' +
-      '<p class="spotmeeting-helper">Kunnskapsmøter bruker bare forhåndsvalg, ikke fritekst.</p>' +
-      '<p class="spotmeeting-helper">Du deler ikke posisjon eller live-status.</p>' +
-      (spotmeetingInboxIsEmpty(inbox) ? '<div class="spotmeeting-empty" data-spotmeeting-empty><strong>Ingen kunnskapsmøter ennå.</strong><span>Send et forslag fra et stedskort.</span></div>' : '') +
-      renderSpotmeetingGroup('Venter på svar', inbox.pending) +
-      renderSpotmeetingGroup('Avtalt', inbox.accepted) +
-      renderSpotmeetingGroup('Gjennomført', inbox.completed) +
-      renderSpotmeetingGroup('Avslått eller avbrutt', declinedCancelled) +
-      '<h3>Personvernkontroll</h3><ul>'+inbox.privacyChecklist.map(function(x){return '<li>'+escapeSpotmeetingHTML(x)+'</li>';}).join('')+'</ul>';
-    el.appendChild(section);
-  }
-  document.addEventListener('click', function(event){
-    var button = event.target && event.target.closest && event.target.closest('[data-spotmeeting-action][data-spotmeeting-invite-id]');
-    if(!button || !document.getElementById('spotmeeting-inbox')?.contains(button)) return;
-    var api = window.HG_Spotmeeting;
-    if(!api) return;
-    var id = button.getAttribute('data-spotmeeting-invite-id');
-    var action = button.getAttribute('data-spotmeeting-action');
-    var methods = {accept:'acceptSpotmeetingInvite', decline:'declineSpotmeetingInvite', cancel:'cancelSpotmeetingInvite', complete:'confirmSpotmeetingCompleted'};
-    var method = methods[action];
-    if(method && api[method]){
-      api[method](id);
-      renderSpotmeetingInbox();
-    }
-  });
-  window.renderSpotmeetingInbox = renderSpotmeetingInbox;
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', renderSpotmeetingInbox); else renderSpotmeetingInbox();
-})();
-</script>
-  
-  <!-- Kart-modus -->
+  <script src="js/i18n.js"></script>
+  <script src="js/learningLog.js"></script>
+  <script src="js/aha.js"></script>
+  <script src="js/integrations/aha-music.js"></script>
+  <script src="js/profileIdentity.js"></script>
+  <script src="js/historyGoGameRegistry.js"></script>
+  <script src="dist/web/knowledge.js"></script>
+  <script src="dist/web/trivia.js"></script>
+  <script src="dist/web/hgInsights.js"></script>
+  <script src="js/dataHub.js"></script>
+  <script src="js/epoker-runtime.js"></script>
+  <script src="js/time-resolver.js"></script>
+  <script src="js/DomainRegistry.js"></script>
+  <script src="dist/web/fagHealthReport.js"></script>
+  <script src="dist/web/courses.js"></script>
+  <script src="dist/web/hgKnowledgeEngine.js"></script>
+  <script src="dist/web/hgSocialPrivacy.js"></script>
+  <script src="dist/web/hgModeration.js"></script>
+  <script src="js/hgSocialGuards.js"></script>
+  <script src="js/knowledgeMatch.js"></script>
+  <script src="js/social/HGSpotmeeting.js"></script>
+  <script src="js/profile.js"></script>
+  <script src="js/ui/personal-collection-v1.js"></script>
   <script>
-    document.getElementById("btnSeeMap")?.addEventListener("click", () => {
-      document.body.classList.add("map-only");
-    });
-    document.getElementById("btnExitMap")?.addEventListener("click", () => {
-      document.body.classList.remove("map-only");
-    });
+    document.getElementById("btnSeeMap")?.addEventListener("click", () => document.body.classList.add("map-only"));
+    document.getElementById("btnExitMap")?.addEventListener("click", () => document.body.classList.remove("map-only"));
   </script>
-
 </body>
 </html>
