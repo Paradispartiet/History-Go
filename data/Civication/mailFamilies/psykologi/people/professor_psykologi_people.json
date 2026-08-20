@@ -1,0 +1,43 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "professor_psykologi",
+  "mail_type": "people",
+  "families": [{
+    "id": "veiledning_og_selvstendighet",
+    "purpose": "Bygge kandidatens egen forskerdømmekraft når professoren kan spare tid ved å gi fasiten.",
+    "learning_focus": ["veiledning", "selvstendighet", "maktasymmetri"],
+    "mails": [{
+      "id": "psykologi_professor_psykologi_people_veiledning_001",
+      "mail_type": "people",
+      "mail_family": "veiledning_og_selvstendighet",
+      "role_scope": "professor_psykologi",
+      "phase": "early",
+      "day_phase": "midday",
+      "priority": 145,
+      "cooldown": 3,
+      "repeatable": false,
+      "stage": "stable",
+      "from": "Ph.d.-kandidaten",
+      "people_ref": "psykologi_professor_psykologi_phd_kandidat",
+      "place_id": "psykologi_professor_psykologi_veiledningsrom",
+      "subject": "Kan du bare si hvilken analyse jeg skal velge?",
+      "summary": "Kandidaten står mellom to forsvarlige analysevalg og ber professoren bestemme for å holde framdriften.",
+      "purpose": "Teste om veiledning gir struktur og kritiske spørsmål uten å erstatte kandidatens eget begrunnede metodevalg.",
+      "stakes": "Et raskt svar kan spare tid, men gjøre kandidaten mer avhengig av veilederen og svekke eierskapet til beslutningen som senere skal forsvares.",
+      "situation": ["Begge analysevalg kan forsvares, men de bygger på ulike antakelser.", "Kandidaten har tilgang til nødvendig metodegrunnlag og trenger ikke professorens formelle beslutningsmyndighet.", "Veiledningsrelasjonen er asymmetrisk, så et direkte svar kan oppleves som et krav selv om det formuleres som råd."],
+      "task_domain": "veiledning_og_metodevalg",
+      "task_kind": "people",
+      "competency": "veiledning",
+      "pressure": "framdrift_vs_selvstendighet",
+      "choice_axis": "strukturert_veiledning_vs_overtatt_beslutning",
+      "consequence_axis": "selvstendig_dommecraft_vs_veilederavhengighet",
+      "narrative_arc": "fra_fasitonske_til_begrunnet_eget_valg",
+      "choices": [
+        {"id": "A", "label": "Be kandidaten begrunne valget og test antakelsene", "reply": "Lag en kort sammenligning av antakelser, konsekvenser og robusthet for begge alternativene. Jeg utfordrer begrunnelsen din, men du skal eie metodevalget og dokumentere hvorfor.", "effect": 1, "tags": ["mentorship", "independence", "method_reasoning"], "feedback": "Du bruker senioriteten til å skjerpe kandidatens argument uten å gjøre beslutningen til din.", "effects": {"stats": {"quality": 2, "trust": 2, "risk": -1, "energy": -1}}},
+        {"id": "B", "label": "Velg analysen for kandidaten", "reply": "Bruk alternativ A. Det er det jeg ville gjort, og vi har ikke tid til å bruke mer av møtet på dette.", "effect": -1, "tags": ["dependency", "authority_substitution"], "feedback": "Du får framdrift nå, men flytter metodeansvaret oppover i hierarkiet og gjør kandidatens selvstendige begrunnelse svakere.", "effects": {"stats": {"status": 1, "quality": -2, "trust": -2, "risk": 1}}}
+      ]
+    }]
+  }]
+}
