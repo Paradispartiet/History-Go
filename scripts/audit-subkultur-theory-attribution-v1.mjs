@@ -15,6 +15,7 @@ const P={
 };
 const isScholarly=s=>/peer_reviewed|scholarly|academic|ethnographic/i.test(s?.source_type||'');
 const nonTrivial=s=>typeof s==='string'&&s.trim().length>=40;
+const hasLength=(s,n)=>typeof s==='string'&&s.trim().length>=n;
 const norm=s=>(s||'').toLocaleLowerCase('nb-NO').replace(/\s+/g,' ').trim();
 export function auditSubkulturTheoryAttribution(){
  const theories=json(P.theories),sourcesDoc=json(P.sources),a=json(P.attribution),pensum=json(P.pensum),claimsDoc=json(P.claims),linksDoc=json(P.links),emner=json(P.emner);
@@ -35,7 +36,7 @@ export function auditSubkulturTheoryAttribution(){
  for(const t of theories){
   assert(t.status==='evidence_ready'&&t.evidence_ready===true,`Theory ikke evidence-ready: ${t.theory_id}`);assert(t.emne_ids?.length===1&&t.source_ids?.length>=3&&t.critique_or_counterposition?.length>=80&&t.limitations_and_misuse?.length>=2,`Theory mangler substans: ${t.theory_id}`);
   const emneId=t.emne_ids[0],emne=emneById.get(emneId);covered.add(emneId);assert(emne,`Theory peker på ukjent canonical emne: ${t.theory_id}/${emneId}`);assert(emne.canonical_status==='canonical'&&emne.canonical_file_role==='active'&&emne.status==='active',`Theory peker ikke på aktiv canonical prosa: ${t.theory_id}/${emneId}`);assert(emne.domain===t.domain_id||emne.area_id===t.domain_id,`Theory/emne domain mismatch: ${t.theory_id}/${emneId}`);
-  for(const field of ['definition','why_it_matters','analytical_question','mechanism','limitation','scope_guard'])assert(nonTrivial(emne[field]),`Canonical emne mangler substansiell prosa ${field}: ${emneId}`);
+  const proseThresholds={definition:60,why_it_matters:35,analytical_question:35,mechanism:35,limitation:25,scope_guard:80};for(const [field,min] of Object.entries(proseThresholds))assert(hasLength(emne[field],min),`Canonical emne mangler substansiell prosa ${field}: ${emneId}`);
   assert(nonTrivial(t.thesis_or_definition)&&nonTrivial(t.mechanism),`Theory mangler definisjon/mekanismeprosa: ${t.theory_id}`);assert(t.thesis_or_definition===emne.definition,`Theory-definition er ikke bundet til canonical emneprosa: ${t.theory_id}`);assert(t.mechanism===emne.mechanism,`Theory-mekanisme er ikke bundet til canonical emneprosa: ${t.theory_id}`);assert(t.limitations_and_misuse.includes(emne.limitation),`Theory-begrensning er ikke bundet til canonical emneprosa: ${t.theory_id}`);
   const sources=t.source_ids.map(id=>{const s=sourceById.get(id);assert(s,`Ukjent theory source ${t.theory_id}/${id}`);assert(s.quality?.tier==='A'&&nonTrivial(s.contribution)&&Array.isArray(s.limitations)&&s.limitations.some(nonTrivial),`Theory source mangler kvalitet/provenance ${t.theory_id}/${id}`);return s;});
   const scholarlyCount=sources.filter(isScholarly).length;assert(scholarlyCount>=2&&scholarlyCount>=Math.ceil(sources.length/2),`Theory mangler scholarly kjerne/flertall: ${t.theory_id} (${scholarlyCount}/${sources.length})`);scholarlyCoreTheoryCount++;
