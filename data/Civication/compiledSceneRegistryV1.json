@@ -199,6 +199,15 @@
     "data/Civication/mailFamilies/psykologi/followup/fagansvarlig_followup.json",
     "data/Civication/mailFamilies/psykologi/knowledge/fagansvarlig_knowledge.json",
     "data/Civication/mailFamilies/psykologi/consequence/fagansvarlig_consequence.json",
+    "data/Civication/mailFamilies/psykologi/job/forsker_psykologi_job.json",
+    "data/Civication/mailFamilies/psykologi/people/forsker_psykologi_people.json",
+    "data/Civication/mailFamilies/psykologi/story/forsker_psykologi_story.json",
+    "data/Civication/mailFamilies/psykologi/conflict/forsker_psykologi_conflict.json",
+    "data/Civication/mailFamilies/psykologi/event/forsker_psykologi_event.json",
+    "data/Civication/mailFamilies/psykologi/micro/forsker_psykologi_micro.json",
+    "data/Civication/mailFamilies/psykologi/followup/forsker_psykologi_followup.json",
+    "data/Civication/mailFamilies/psykologi/knowledge/forsker_psykologi_knowledge.json",
+    "data/Civication/mailFamilies/psykologi/consequence/forsker_psykologi_consequence.json",
     "data/Civication/mailFamilies/psykologi/job/psykologi_miljoarbeid_job.json",
     "data/Civication/mailFamilies/psykologi/people/psykologi_miljoarbeid_people.json",
     "data/Civication/mailFamilies/psykologi/conflict/psykologi_miljoarbeid_conflict.json",
@@ -127205,6 +127214,1274 @@
       "category": "psykologi",
       "compatibility_projection": {
         "category": "psykologi",
+        "choice_axis": "apen_utforskning_vs_etterrasjonalisert_hovedanalyse",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "quality": 2,
+                "risk": -2,
+                "status": 0,
+                "trust": 2
+              }
+            },
+            "feedback": "Du lar det interessante funnet leve videre uten å gi det en evidensstatus det ikke har opptjent.",
+            "id": "A",
+            "label": "Behold hovedanalysen og merk den nye som utforskende",
+            "reply": "Vi rapporterer hovedanalysen som planlagt og viser det nye funnet separat som utforskende, med tidspunktet og begrunnelsen for analysevalget synlig.",
+            "tags": [
+              "research_integrity",
+              "exploratory_label",
+              "traceability"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -3,
+                "risk": 3,
+                "status": 2,
+                "trust": -3
+              }
+            },
+            "feedback": "Du gjør et post hoc valg usynlig og får evidensen til å se mer forhåndsdefinert ut enn den var.",
+            "id": "B",
+            "label": "Gjør den sterke analysen til hovedanalysen",
+            "reply": "Metoden er faglig forsvarlig, så vi kan presentere den som hovedsporet uten å fremheve når valget ble gjort.",
+            "tags": [
+              "harking",
+              "selective_reporting",
+              "result_pressure"
+            ]
+          }
+        ],
+        "competency": "forskningsintegritet",
+        "consequence_axis": "sporbart_funn_vs_overdrevet_evidens",
+        "cooldown": 4,
+        "day_phase": "midday",
+        "from": "Prosjektlederen",
+        "id": "psykologi_forsker_psykologi_conflict_sterkere_resultat_001",
+        "mail_family": "sterkere_resultat_etter_data",
+        "mail_type": "conflict",
+        "narrative_arc": "fra_attraktivt_post_hoc_funn_til_korrekt_evidensstatus",
+        "people_ref": "psykologi_forsker_psykologi_prosjektleder",
+        "phase": "early",
+        "place_id": "psykologi_forsker_psykologi_prosjektmote",
+        "pressure": "resultatpress",
+        "priority": 144,
+        "purpose": "Teste om forskeren bevarer skillet mellom planlagt og utforskende analyse når et post hoc resultat er mer attraktivt.",
+        "repeatable": false,
+        "role_scope": "forsker_psykologi",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/conflict/forsker_psykologi_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den opprinnelige hovedanalysen er allerede gjennomført og dokumentert.",
+          "Det alternative grepet er faglig mulig, men ble valgt etter at resultatmønsteret var kjent.",
+          "Prosjektlederen eier framdrift og leveranse, ikke retten til å omskrive evidenshistorikken."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis analysehistorikken omskrives, kan leseren feilaktig behandle et utforskende funn som en forhåndsdefinert test.",
+        "subject": "Denne analysen gir endelig den tydelige effekten",
+        "summary": "Et alternativt analysegrep som ble prøvd etter at hovedresultatet var kjent, gir en sterkere effekt og passer prosjektets forventede fortelling bedre.",
+        "task_domain": "analyse_og_rapportering",
+        "task_kind": "conflict",
+        "thread_key": "psykologi_forsker_psykologi_analyseintegritet_001"
+      },
+      "id": "psykologi_forsker_psykologi_conflict_sterkere_resultat_001",
+      "mail_type": "conflict",
+      "role_scope": "forsker_psykologi",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du lar det interessante funnet leve videre uten å gi det en evidensstatus det ikke har opptjent.",
+            "id": "A",
+            "label": "Behold hovedanalysen og merk den nye som utforskende",
+            "reply": "Vi rapporterer hovedanalysen som planlagt og viser det nye funnet separat som utforskende, med tidspunktet og begrunnelsen for analysevalget synlig."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør et post hoc valg usynlig og får evidensen til å se mer forhåndsdefinert ut enn den var.",
+            "id": "B",
+            "label": "Gjør den sterke analysen til hovedanalysen",
+            "reply": "Metoden er faglig forsvarlig, så vi kan presentere den som hovedsporet uten å fremheve når valget ble gjort."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den opprinnelige hovedanalysen er allerede gjennomført og dokumentert.",
+            "Det alternative grepet er faglig mulig, men ble valgt etter at resultatmønsteret var kjent.",
+            "Prosjektlederen eier framdrift og leveranse, ikke retten til å omskrive evidenshistorikken."
+          ],
+          "subject": "Denne analysen gir endelig den tydelige effekten",
+          "summary": "Et alternativt analysegrep som ble prøvd etter at hovedresultatet var kjent, gir en sterkere effekt og passer prosjektets forventede fortelling bedre."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "psykologi_forsker_psykologi_conflict_sterkere_resultat_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "psykologi_forsker_psykologi_prosjektmote",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "psykologi_forsker_psykologi_conflict_sterkere_resultat_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/conflict/forsker_psykologi_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "psykologi_forsker_psykologi_analyseintegritet_001",
+        "version": 1
+      },
+      "source_hash": "22138de7048eff0d8783b053f149056b96741e6eb9be9df853cb01c017c544de",
+      "source_path": "data/Civication/mailFamilies/psykologi/conflict/forsker_psykologi_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "kalibrert_anvendelse_vs_sterkeste_forste_budskap",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "quality": 2,
+                "risk": -2,
+                "status": 1,
+                "trust": 2
+              }
+            },
+            "feedback": "Du oversetter robusthetsinformasjonen til en konkret grense for bruk og gjør videre kunnskapsbehov tydelig.",
+            "id": "A",
+            "label": "Avgrens hva funnet kan brukes til",
+            "reply": "Funnene kan støtte en foreløpig hypotese og videre utprøving, men robusthetstesten gjør at vi ikke bør behandle effektstørrelsen som etablert eller generalisere lenger enn utvalget og designet bærer.",
+            "tags": [
+              "calibrated_use",
+              "uncertainty",
+              "replication"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -3,
+                "risk": 3,
+                "status": 2,
+                "trust": -3
+              }
+            },
+            "feedback": "Du lar mottakerens behov for et enkelt svar overstyre den usikkerheten prosjektet allerede har dokumentert.",
+            "id": "B",
+            "label": "Hold fast ved den sterke første formuleringen",
+            "reply": "Hovedanalysen var tydeligst, så partneren kan bruke den første konklusjonen; sensitivitetsanalysen er mest en metodisk detalj.",
+            "tags": [
+              "false_certainty",
+              "robustness_buried",
+              "overgeneralization"
+            ]
+          }
+        ],
+        "competency": "ansvarlig_forskningsformidling",
+        "consequence_axis": "forsvarlig_bruk_vs_overfort_falsk_sikkerhet",
+        "cooldown": 5,
+        "day_phase": "day_end",
+        "from": "Den eksterne partneren",
+        "id": "psykologi_forsker_psykologi_consequence_robusthet_001",
+        "mail_family": "robusthet_som_konsekvens",
+        "mail_type": "consequence",
+        "narrative_arc": "fra_robusthetsfunn_til_avgrenset_anvendelse",
+        "people_ref": "psykologi_forsker_psykologi_partner",
+        "phase": "climax",
+        "place_id": "psykologi_forsker_psykologi_analyserom",
+        "pressure": "behov_for_handlingsgrunnlag",
+        "priority": 128,
+        "purpose": "Teste om forskeren lar den dokumenterte robustheten få en reell konsekvens for anvendelsen av resultatet.",
+        "repeatable": false,
+        "role_scope": "forsker_psykologi",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/consequence/forsker_psykologi_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Partneren ber om kunnskapsgrunnlag, ikke klinisk diagnose, behandling eller lovregulert beslutningsmyndighet.",
+          "Hovedanalysen peker i én retning, men sensitivitetsanalysen viser en mindre stabil effektstørrelse.",
+          "Rapporten kan fortsatt presisere både anvendelsesrom, usikkerhet og behov for ny testing."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis usikkerheten nedtones når resultatet tas i bruk, kan et foreløpig forskningsfunn bli behandlet som sterkere beslutningsgrunnlag enn studien støtter.",
+        "subject": "Hvor sikkert kan vi bruke dette funnet?",
+        "summary": "Partneren har sett at sensitivitetsanalysen gir svakere effekt enn den første hovedfiguren og ber om en presis avgrensning av hva funnet kan brukes som grunnlag for.",
+        "task_domain": "anvendelse_av_forskningsfunn",
+        "task_kind": "consequence",
+        "thread_key": "psykologi_forsker_psykologi_analyseintegritet_001"
+      },
+      "id": "psykologi_forsker_psykologi_consequence_robusthet_001",
+      "mail_type": "consequence",
+      "role_scope": "forsker_psykologi",
+      "scene": {
+        "arc_stage": "climax",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du oversetter robusthetsinformasjonen til en konkret grense for bruk og gjør videre kunnskapsbehov tydelig.",
+            "id": "A",
+            "label": "Avgrens hva funnet kan brukes til",
+            "reply": "Funnene kan støtte en foreløpig hypotese og videre utprøving, men robusthetstesten gjør at vi ikke bør behandle effektstørrelsen som etablert eller generalisere lenger enn utvalget og designet bærer."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du lar mottakerens behov for et enkelt svar overstyre den usikkerheten prosjektet allerede har dokumentert.",
+            "id": "B",
+            "label": "Hold fast ved den sterke første formuleringen",
+            "reply": "Hovedanalysen var tydeligst, så partneren kan bruke den første konklusjonen; sensitivitetsanalysen er mest en metodisk detalj."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Partneren ber om kunnskapsgrunnlag, ikke klinisk diagnose, behandling eller lovregulert beslutningsmyndighet.",
+            "Hovedanalysen peker i én retning, men sensitivitetsanalysen viser en mindre stabil effektstørrelse.",
+            "Rapporten kan fortsatt presisere både anvendelsesrom, usikkerhet og behov for ny testing."
+          ],
+          "subject": "Hvor sikkert kan vi bruke dette funnet?",
+          "summary": "Partneren har sett at sensitivitetsanalysen gir svakere effekt enn den første hovedfiguren og ber om en presis avgrensning av hva funnet kan brukes som grunnlag for."
+        },
+        "day_phase": "day_end",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "psykologi_forsker_psykologi_consequence_robusthet_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "psykologi_forsker_psykologi_analyserom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "psykologi_forsker_psykologi_consequence_robusthet_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/consequence/forsker_psykologi_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "psykologi_forsker_psykologi_analyseintegritet_001",
+        "version": 1
+      },
+      "source_hash": "84415f683a82c0e47d9fcdbcfda07d92343a62a9b64aa6a5fde843496932e614",
+      "source_path": "data/Civication/mailFamilies/psykologi/consequence/forsker_psykologi_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "avgrenset_trygg_leveranse_vs_radata_for_framdrift",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Du møter partnerens informasjonsbehov uten å bruke fristen som grunn til å omgå kontrollene som beskytter både deltakere og evidens.",
+            "id": "A",
+            "label": "Lever en minimert foreløpig status",
+            "reply": "Jeg sender en tydelig foreløpig status uten rådata, ferdigstiller kvalitetskontrollen og avklarer behandlingsgrunnlag, dataminimering og sikker deling før et eventuelt uttrekk.",
+            "tags": [
+              "data_minimization",
+              "privacy",
+              "bounded_delivery"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -3
+              }
+            },
+            "feedback": "Du lar prosjektfristen overstyre en uavklart databruk og gjør både personvern- og kvalitetsrisiko større.",
+            "id": "B",
+            "label": "Send råuttrekket nå",
+            "reply": "Vi må holde framdriften; jeg sender uttrekket og rydder dataminimering og dokumentasjon etterpå.",
+            "tags": [
+              "privacy_risk",
+              "data_overcollection",
+              "deadline_pressure"
+            ]
+          }
+        ],
+        "competency": "forskningsetikk_og_personvern",
+        "consequence_axis": "kontrollert_databruk_vs_personvern_og_kvalitetsrisiko",
+        "cooldown": 3,
+        "day_phase": "afternoon",
+        "from": "Prosjektlederen",
+        "id": "psykologi_forsker_psykologi_event_frist_data_001",
+        "mail_family": "frist_data_og_personvern",
+        "mail_type": "event",
+        "narrative_arc": "fra_fristpress_til_formalsavgrenset_og_trygg_statusleveranse",
+        "people_ref": "psykologi_forsker_psykologi_personvernradgiver",
+        "phase": "mid",
+        "place_id": "psykologi_forsker_psykologi_prosjektmote",
+        "pressure": "ekstern_frist",
+        "priority": 138,
+        "purpose": "Teste om forskeren kan levere noe nyttig innen fristen uten å gjøre prosjektfrist til unntak fra datakvalitet eller personvern.",
+        "repeatable": false,
+        "role_scope": "forsker_psykologi",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/event/forsker_psykologi_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Partneren har et legitimt behov for framdriftsinformasjon, men trenger ikke rådata for å få en status.",
+          "Prosjektets rådgiver har ennå ikke bekreftet at det foreslåtte uttrekket er tilstrekkelig minimert for formålet.",
+          "Den siste kvalitetskontrollen kan fortsatt endre enkelte estimater, så enhver tidlig konklusjon må merkes foreløpig."
+        ],
+        "stage": "stable",
+        "stakes": "Et raskt råuttrekk kan spre mer informasjon enn nødvendig og låse en konklusjon før datagrunnlaget er kontrollert.",
+        "subject": "Partneren vil ha datauttrekket innen fredag",
+        "summary": "En samarbeidspartner ber om et tidlig datauttrekk og en foreløpig konklusjon før siste kvalitetskontroll og avklaring av dataminimering og trygg deling er ferdig.",
+        "task_domain": "forskningsdata_og_leveranse",
+        "task_kind": "event"
+      },
+      "id": "psykologi_forsker_psykologi_event_frist_data_001",
+      "mail_type": "event",
+      "role_scope": "forsker_psykologi",
+      "scene": {
+        "arc_stage": "mid",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du møter partnerens informasjonsbehov uten å bruke fristen som grunn til å omgå kontrollene som beskytter både deltakere og evidens.",
+            "id": "A",
+            "label": "Lever en minimert foreløpig status",
+            "reply": "Jeg sender en tydelig foreløpig status uten rådata, ferdigstiller kvalitetskontrollen og avklarer behandlingsgrunnlag, dataminimering og sikker deling før et eventuelt uttrekk."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du lar prosjektfristen overstyre en uavklart databruk og gjør både personvern- og kvalitetsrisiko større.",
+            "id": "B",
+            "label": "Send råuttrekket nå",
+            "reply": "Vi må holde framdriften; jeg sender uttrekket og rydder dataminimering og dokumentasjon etterpå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Partneren har et legitimt behov for framdriftsinformasjon, men trenger ikke rådata for å få en status.",
+            "Prosjektets rådgiver har ennå ikke bekreftet at det foreslåtte uttrekket er tilstrekkelig minimert for formålet.",
+            "Den siste kvalitetskontrollen kan fortsatt endre enkelte estimater, så enhver tidlig konklusjon må merkes foreløpig."
+          ],
+          "subject": "Partneren vil ha datauttrekket innen fredag",
+          "summary": "En samarbeidspartner ber om et tidlig datauttrekk og en foreløpig konklusjon før siste kvalitetskontroll og avklaring av dataminimering og trygg deling er ferdig."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "psykologi_forsker_psykologi_event_frist_data_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "psykologi_forsker_psykologi_prosjektmote",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "psykologi_forsker_psykologi_event_frist_data_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/event/forsker_psykologi_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "forsker_psykologi.mail.psykologi_forsker_psykologi_event_frist_data_001",
+        "version": 1
+      },
+      "source_hash": "e6619a91a2ca7756150e36809e7a7eef903ce16e156433401af6c51c04d6574b",
+      "source_path": "data/Civication/mailFamilies/psykologi/event/forsker_psykologi_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "oppdatert_konklusjon_vs_robusthet_i_vedlegg",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "quality": 2,
+                "risk": -2,
+                "status": 0,
+                "trust": 2
+              }
+            },
+            "feedback": "Du gjør robusthet til del av evidensen som leseren møter, ikke bare dokumentasjon i bakgrunnen.",
+            "id": "A",
+            "label": "Oppdater konklusjonen og hovedteksten",
+            "reply": "Vi viser sensitivitetsanalysen der hovedfunnet fortolkes og nedjusterer styrken i konklusjonen slik at den gjenspeiler hvor robust effekten faktisk er.",
+            "tags": [
+              "robustness",
+              "calibrated_claim",
+              "traceability"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 2,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Du rapporterer teknisk sett analysen, men lar ikke den relevante usikkerheten påvirke påstanden den faktisk gjelder.",
+            "id": "B",
+            "label": "Legg analysen i vedlegget uten å endre konklusjonen",
+            "reply": "Vi rapporterer testen for transparens, men beholder hovedtekstens sterke formulering siden hovedanalysen fortsatt er signifikant.",
+            "tags": [
+              "selective_emphasis",
+              "robustness_buried"
+            ]
+          }
+        ],
+        "competency": "analyse_og_inferens",
+        "consequence_axis": "kalibrert_evidens_vs_overdrevet_hovedfunn",
+        "cooldown": 4,
+        "day_phase": "evening",
+        "from": "Metodekollegaen",
+        "id": "psykologi_forsker_psykologi_followup_analyseavvik_001",
+        "mail_family": "analyseavvik_og_robusthet",
+        "mail_type": "followup",
+        "narrative_arc": "fra_sensitivitetsresultat_til_revidert_fortolkning",
+        "people_ref": "psykologi_forsker_psykologi_metodekollega",
+        "phase": "mastery",
+        "place_id": "psykologi_forsker_psykologi_prosjektmote",
+        "pressure": "bevare_hovedhistorien",
+        "priority": 133,
+        "purpose": "Teste om forskeren lar robusthetsinformasjon påvirke konklusjonen i stedet for å behandle den som et teknisk vedlegg.",
+        "repeatable": false,
+        "role_scope": "forsker_psykologi",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/followup/forsker_psykologi_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Sensitivitetsanalysen ble definert på grunn av en dokumentert målesvakhet.",
+          "Resultatet opphever ikke hovedanalysen, men viser at effektstørrelsen er mindre stabil enn først antatt.",
+          "Analyseavviket og begrunnelsen kan dokumenteres uten personidentifiserbare data."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis en relevant robusthetstest skjules i bakgrunnen, kan hovedteksten gi større sikkerhet enn den samlede analysen støtter.",
+        "subject": "Sensitivitetsanalysen svekker effekten",
+        "summary": "Den avtalte sensitivitetsanalysen gir en klart svakere effekt enn hovedanalysen, selv om retningen er den samme.",
+        "task_domain": "robusthet_og_fortolkning",
+        "task_kind": "followup",
+        "thread_key": "psykologi_forsker_psykologi_analyseintegritet_001"
+      },
+      "id": "psykologi_forsker_psykologi_followup_analyseavvik_001",
+      "mail_type": "followup",
+      "role_scope": "forsker_psykologi",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gjør robusthet til del av evidensen som leseren møter, ikke bare dokumentasjon i bakgrunnen.",
+            "id": "A",
+            "label": "Oppdater konklusjonen og hovedteksten",
+            "reply": "Vi viser sensitivitetsanalysen der hovedfunnet fortolkes og nedjusterer styrken i konklusjonen slik at den gjenspeiler hvor robust effekten faktisk er."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du rapporterer teknisk sett analysen, men lar ikke den relevante usikkerheten påvirke påstanden den faktisk gjelder.",
+            "id": "B",
+            "label": "Legg analysen i vedlegget uten å endre konklusjonen",
+            "reply": "Vi rapporterer testen for transparens, men beholder hovedtekstens sterke formulering siden hovedanalysen fortsatt er signifikant."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Sensitivitetsanalysen ble definert på grunn av en dokumentert målesvakhet.",
+            "Resultatet opphever ikke hovedanalysen, men viser at effektstørrelsen er mindre stabil enn først antatt.",
+            "Analyseavviket og begrunnelsen kan dokumenteres uten personidentifiserbare data."
+          ],
+          "subject": "Sensitivitetsanalysen svekker effekten",
+          "summary": "Den avtalte sensitivitetsanalysen gir en klart svakere effekt enn hovedanalysen, selv om retningen er den samme."
+        },
+        "day_phase": "evening",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "psykologi_forsker_psykologi_followup_analyseavvik_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "psykologi_forsker_psykologi_prosjektmote",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "psykologi_forsker_psykologi_followup_analyseavvik_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/followup/forsker_psykologi_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "psykologi_forsker_psykologi_analyseintegritet_001",
+        "version": 1
+      },
+      "source_hash": "67ff878dc93c41ecd2e8bd1a9a9210b2a62144d194263d9214d11bf9876b442b",
+      "source_path": "data/Civication/mailFamilies/psykologi/followup/forsker_psykologi_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "forhandsdefinert_hovedspor_vs_resultatstyrt_fleksibilitet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 1
+              }
+            },
+            "feedback": "Du gjør det mulig å skille det opprinnelige evidenssporet fra senere begrunnede eller utforskende valg.",
+            "id": "A",
+            "label": "Lås primærutfall og hovedanalyse nå",
+            "reply": "Jeg dokumenterer primærutfall, hovedmodell og hvilke avvik som eventuelt kan bli nødvendige før vi åpner resultatene.",
+            "tags": [
+              "preregistration",
+              "traceability",
+              "research_integrity"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 2,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Fleksibiliteten kan være praktisk, men tidspunktet gjør hovedresultatet mindre etterprøvbart som forhåndsdefinert test.",
+            "id": "B",
+            "label": "Behold alle analysevalg åpne",
+            "reply": "Vi ser først hva dataene viser og velger deretter kombinasjonen som gir den tydeligste historien.",
+            "tags": [
+              "researcher_degrees_of_freedom",
+              "result_pressure"
+            ]
+          }
+        ],
+        "competency": "forskningsdesign",
+        "consequence_axis": "etterprovbar_evidens_vs_uklar_analysehistorikk",
+        "cooldown": 2,
+        "day_phase": "morning",
+        "from": "Prosjektlederen",
+        "id": "psykologi_forsker_psykologi_job_analyseplan_001",
+        "mail_family": "analyseplan_for_resultat",
+        "mail_type": "job",
+        "narrative_arc": "fra_apent_analyserom_til_sporbart_hovedspor",
+        "people_ref": "psykologi_forsker_psykologi_prosjektleder",
+        "phase": "intro",
+        "place_id": "psykologi_forsker_psykologi_analyserom",
+        "pressure": "framdrift_for_resultat",
+        "priority": 150,
+        "purpose": "Teste om forskeren etablerer et etterprøvbart hovedspor før resultatene kan påvirke analysevalgene.",
+        "repeatable": false,
+        "role_scope": "forsker_psykologi",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/job/forsker_psykologi_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Prosjektets forskningsspørsmål er fastlagt, men primærutfall og hovedmodell er ikke entydig låst.",
+          "Ingen resultattabeller er åpnet ennå, så tidspunktet for beslutningen kan fortsatt dokumenteres tydelig.",
+          "Arbeidsflaten inneholder bare avidentifiserte analysevariabler og ingen deltakeridentifiserbare opplysninger."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis hovedanalysen først velges etter at resultatene er synlige, blir det vanskeligere å vite hvor mye evidens det sterke funnet faktisk bærer.",
+        "subject": "Lås hovedanalysen før vi åpner resultatene",
+        "summary": "Datasettet er klart for hovedanalysen, men analyseplanen åpner fortsatt for flere utfallsmål og modellvalg uten at ett hovedspor er definert.",
+        "task_domain": "forskningsdesign_og_analyseplan",
+        "task_kind": "job"
+      },
+      "id": "psykologi_forsker_psykologi_job_analyseplan_001",
+      "mail_type": "job",
+      "role_scope": "forsker_psykologi",
+      "scene": {
+        "arc_stage": "intro",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gjør det mulig å skille det opprinnelige evidenssporet fra senere begrunnede eller utforskende valg.",
+            "id": "A",
+            "label": "Lås primærutfall og hovedanalyse nå",
+            "reply": "Jeg dokumenterer primærutfall, hovedmodell og hvilke avvik som eventuelt kan bli nødvendige før vi åpner resultatene."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Fleksibiliteten kan være praktisk, men tidspunktet gjør hovedresultatet mindre etterprøvbart som forhåndsdefinert test.",
+            "id": "B",
+            "label": "Behold alle analysevalg åpne",
+            "reply": "Vi ser først hva dataene viser og velger deretter kombinasjonen som gir den tydeligste historien."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Prosjektets forskningsspørsmål er fastlagt, men primærutfall og hovedmodell er ikke entydig låst.",
+            "Ingen resultattabeller er åpnet ennå, så tidspunktet for beslutningen kan fortsatt dokumenteres tydelig.",
+            "Arbeidsflaten inneholder bare avidentifiserte analysevariabler og ingen deltakeridentifiserbare opplysninger."
+          ],
+          "subject": "Lås hovedanalysen før vi åpner resultatene",
+          "summary": "Datasettet er klart for hovedanalysen, men analyseplanen åpner fortsatt for flere utfallsmål og modellvalg uten at ett hovedspor er definert."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "psykologi_forsker_psykologi_job_analyseplan_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "psykologi_forsker_psykologi_analyserom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "psykologi_forsker_psykologi_job_analyseplan_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/job/forsker_psykologi_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "forsker_psykologi.mail.psykologi_forsker_psykologi_job_analyseplan_001",
+        "version": 1
+      },
+      "source_hash": "7ec53310ad3377f8373c3be5987b30c02a46138c2c076311ae5089b330ec95af",
+      "source_path": "data/Civication/mailFamilies/psykologi/job/forsker_psykologi_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "korrekt_evidensmerking_vs_post_hoc_bekreftelse",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -1,
+                "trust": 2
+              }
+            },
+            "feedback": "Du bevarer funnets verdi uten å overdrive evidensen og gjør neste test tydelig.",
+            "id": "A",
+            "label": "Merk analysen utforskende og foreslå ny test",
+            "reply": "Analysen er interessant, men siden den ble valgt etter resultatinnsyn merker vi den utforskende og beskriver hvordan hypotesen kan testes på nye data.",
+            "tags": [
+              "exploratory_analysis",
+              "replication",
+              "research_integrity"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -3,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Du forveksler metodisk plausibilitet med forhåndsdefinert evidens og gjør analysehistorikken usynlig.",
+            "id": "B",
+            "label": "Kall den bekreftende fordi metoden er plausibel",
+            "reply": "Metoden er faglig fornuftig, så vi omtaler analysen som bekreftelse av hypotesen uten å fremheve at valget kom etter resultatinnsyn.",
+            "tags": [
+              "harking",
+              "false_certainty"
+            ]
+          }
+        ],
+        "competency": "analyse_og_inferens",
+        "consequence_axis": "testbar_ny_hypotese_vs_falsk_sikkerhet",
+        "cooldown": 3,
+        "day_phase": "afternoon",
+        "from": "Metodekollegaen",
+        "id": "psykologi_forsker_psykologi_knowledge_planlagt_utforskende_001",
+        "mail_family": "planlagt_vs_utforskende",
+        "mail_type": "knowledge",
+        "narrative_arc": "fra_lovende_post_hoc_funn_til_riktig_kunnskapsstatus",
+        "people_ref": "psykologi_forsker_psykologi_metodekollega",
+        "phase": "mid",
+        "place_id": "psykologi_forsker_psykologi_analyserom",
+        "pressure": "behov_for_sikker_konklusjon",
+        "priority": 141,
+        "purpose": "Teste om forskeren forstår at plausibel metode ikke gjør en post hoc hypotese til en forhåndsdefinert test.",
+        "repeatable": false,
+        "role_scope": "forsker_psykologi",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/knowledge/forsker_psykologi_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den nye analysen bruker et faglig forståelig mål og en legitim metode.",
+          "Valget oppsto først etter at forskeren hadde sett hovedmønsteret i dataene.",
+          "Ingen av alternativene gir forskerrollen klinisk myndighet eller grunnlag for diagnose eller behandling."
+        ],
+        "stage": "stable",
+        "stakes": "Feil merking kan gjøre et foreløpig mønster til falsk sikkerhet; korrekt merking gjør funnet mulig å teste videre.",
+        "subject": "Er denne analysen bekreftende eller utforskende?",
+        "summary": "Analysevalget ble valgt etter at mønsteret i dataene var kjent; det kan fortsatt være et nyttig funn, men evidensstatusen avhenger av når og hvorfor valget ble gjort.",
+        "task_domain": "inferens_og_analysehistorikk",
+        "task_kind": "knowledge"
+      },
+      "id": "psykologi_forsker_psykologi_knowledge_planlagt_utforskende_001",
+      "mail_type": "knowledge",
+      "role_scope": "forsker_psykologi",
+      "scene": {
+        "arc_stage": "mid",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du bevarer funnets verdi uten å overdrive evidensen og gjør neste test tydelig.",
+            "id": "A",
+            "label": "Merk analysen utforskende og foreslå ny test",
+            "reply": "Analysen er interessant, men siden den ble valgt etter resultatinnsyn merker vi den utforskende og beskriver hvordan hypotesen kan testes på nye data."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du forveksler metodisk plausibilitet med forhåndsdefinert evidens og gjør analysehistorikken usynlig.",
+            "id": "B",
+            "label": "Kall den bekreftende fordi metoden er plausibel",
+            "reply": "Metoden er faglig fornuftig, så vi omtaler analysen som bekreftelse av hypotesen uten å fremheve at valget kom etter resultatinnsyn."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den nye analysen bruker et faglig forståelig mål og en legitim metode.",
+            "Valget oppsto først etter at forskeren hadde sett hovedmønsteret i dataene.",
+            "Ingen av alternativene gir forskerrollen klinisk myndighet eller grunnlag for diagnose eller behandling."
+          ],
+          "subject": "Er denne analysen bekreftende eller utforskende?",
+          "summary": "Analysevalget ble valgt etter at mønsteret i dataene var kjent; det kan fortsatt være et nyttig funn, men evidensstatusen avhenger av når og hvorfor valget ble gjort."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "psykologi_forsker_psykologi_knowledge_planlagt_utforskende_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "psykologi_forsker_psykologi_analyserom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "psykologi_forsker_psykologi_knowledge_planlagt_utforskende_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/knowledge/forsker_psykologi_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "forsker_psykologi.mail.psykologi_forsker_psykologi_knowledge_planlagt_utforskende_001",
+        "version": 1
+      },
+      "source_hash": "f0fb5043cac79c1c3d44f2c76a0f7e8c6638aada5c92e90f7431fb3b8be101f7",
+      "source_path": "data/Civication/mailFamilies/psykologi/knowledge/forsker_psykologi_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "synlig_usikkerhet_vs_visuell_sikkerhet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -1,
+                "trust": 1
+              }
+            },
+            "feedback": "Du lar figuren kommunisere både signalet og grensene for hvor sikkert signalet er.",
+            "id": "A",
+            "label": "Vis intervallet og robusthetsforskjellen tydelig",
+            "reply": "Jeg justerer skalaen, gjør usikkerhetsintervallet lesbart og viser sensitivitetsresultatet eller forklarer forskjellen direkte i figurteksten.",
+            "tags": [
+              "uncertainty",
+              "transparent_visualization",
+              "robustness"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 2,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Du bruker teknisk korrekthet som dekning for en framstilling som gjør evidensen sterkere i praksis enn den er.",
+            "id": "B",
+            "label": "Behold den tydeligste figuren",
+            "reply": "Tallene er teknisk riktige, så vi beholder den enkleste figuren uten å fremheve intervallet eller robusthetsforskjellen.",
+            "tags": [
+              "visual_overstatement",
+              "uncertainty_hiding"
+            ]
+          }
+        ],
+        "competency": "vitenskapelig_skriving",
+        "consequence_axis": "kalibrert_forstaelse_vs_overdrevet_effektinntrykk",
+        "cooldown": 3,
+        "day_phase": "afternoon",
+        "from": "Metodekollegaen",
+        "id": "psykologi_forsker_psykologi_micro_figur_usikkerhet_001",
+        "mail_family": "figur_og_usikkerhet",
+        "mail_type": "micro",
+        "narrative_arc": "fra_pen_figur_til_etterprovbar_visualisering",
+        "people_ref": "psykologi_forsker_psykologi_metodekollega",
+        "phase": "advanced",
+        "place_id": "psykologi_forsker_psykologi_analyserom",
+        "pressure": "tydelig_budskap",
+        "priority": 136,
+        "purpose": "Teste om forskeren behandler visuell tydelighet som en del av evidensformidlingen, ikke bare som presentasjon.",
+        "repeatable": false,
+        "role_scope": "forsker_psykologi",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/micro/forsker_psykologi_micro.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Punktestimatet er korrekt gjengitt.",
+          "Usikkerhetsintervallet er bredt nok til å være viktig for fortolkningen.",
+          "Sensitivitetsanalysen gir et svakere estimat og er relevant for hvor robust konklusjonen er."
+        ],
+        "stage": "stable",
+        "stakes": "En teknisk korrekt figur kan fortsatt gi et systematisk sterkere inntrykk av funnet enn analysene bærer.",
+        "subject": "Figuren er riktig, men usikkerheten forsvinner",
+        "summary": "En figur viser korrekt punktestimat, men skala og utforming gjør konfidensintervallet og forskjellen mellom hoved- og sensitivitetsanalyse vanskelig å oppfatte.",
+        "task_domain": "vitenskapelig_visualisering",
+        "task_kind": "micro"
+      },
+      "id": "psykologi_forsker_psykologi_micro_figur_usikkerhet_001",
+      "mail_type": "micro",
+      "role_scope": "forsker_psykologi",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du lar figuren kommunisere både signalet og grensene for hvor sikkert signalet er.",
+            "id": "A",
+            "label": "Vis intervallet og robusthetsforskjellen tydelig",
+            "reply": "Jeg justerer skalaen, gjør usikkerhetsintervallet lesbart og viser sensitivitetsresultatet eller forklarer forskjellen direkte i figurteksten."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du bruker teknisk korrekthet som dekning for en framstilling som gjør evidensen sterkere i praksis enn den er.",
+            "id": "B",
+            "label": "Behold den tydeligste figuren",
+            "reply": "Tallene er teknisk riktige, så vi beholder den enkleste figuren uten å fremheve intervallet eller robusthetsforskjellen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Punktestimatet er korrekt gjengitt.",
+            "Usikkerhetsintervallet er bredt nok til å være viktig for fortolkningen.",
+            "Sensitivitetsanalysen gir et svakere estimat og er relevant for hvor robust konklusjonen er."
+          ],
+          "subject": "Figuren er riktig, men usikkerheten forsvinner",
+          "summary": "En figur viser korrekt punktestimat, men skala og utforming gjør konfidensintervallet og forskjellen mellom hoved- og sensitivitetsanalyse vanskelig å oppfatte."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "psykologi_forsker_psykologi_micro_figur_usikkerhet_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "psykologi_forsker_psykologi_analyserom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "psykologi_forsker_psykologi_micro_figur_usikkerhet_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/micro/forsker_psykologi_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "forsker_psykologi.mail.psykologi_forsker_psykologi_micro_figur_usikkerhet_001",
+        "version": 1
+      },
+      "source_hash": "e9091b99df2fc1e7ea75241ac9a4342a4a077aba8b4e6c5f3fc7ba1c6b696a48",
+      "source_path": "data/Civication/mailFamilies/psykologi/micro/forsker_psykologi_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "avgrenset_sensitivitetsanalyse_vs_ignorert_malesvakhet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -1,
+                "trust": 2
+              }
+            },
+            "feedback": "Du gjør kritikken produktiv og lar leseren se hvor robust hovedkonklusjonen faktisk er.",
+            "id": "A",
+            "label": "Definer sensitivitetsanalysen og dokumenter begrensningen",
+            "reply": "Vi spesifiserer analysen før fortolkningen, dokumenterer hvorfor den trengs og viser om konklusjonen endrer seg når den svakere målingen håndteres.",
+            "tags": [
+              "method_critique",
+              "sensitivity_analysis",
+              "measurement_quality"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 2,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Du bevarer tempoet, men gjør en kjent begrensning usynlig i selve evidensvurderingen.",
+            "id": "B",
+            "label": "Fortsett uten ekstra analyse",
+            "reply": "Forskjellen er upraktisk nå; vi holder oss til opprinnelig framdrift og nevner det eventuelt senere.",
+            "tags": [
+              "ignored_quality_signal",
+              "deadline_pressure"
+            ]
+          }
+        ],
+        "competency": "datakvalitetssikring",
+        "consequence_axis": "kalibrert_konklusjon_vs_skjult_usikkerhet",
+        "cooldown": 3,
+        "day_phase": "forenoon",
+        "from": "Metodekollegaen",
+        "id": "psykologi_forsker_psykologi_people_metodekritikk_001",
+        "mail_family": "metodekritikk_og_datakvalitet",
+        "mail_type": "people",
+        "narrative_arc": "fra_kollegial_innvending_til_testbar_datakvalitetsbeslutning",
+        "people_ref": "psykologi_forsker_psykologi_metodekollega",
+        "phase": "early",
+        "place_id": "psykologi_forsker_psykologi_prosjektmote",
+        "pressure": "tempo_vs_metodekritikk",
+        "priority": 146,
+        "purpose": "Teste om forskeren lar relevant metodekritikk påvirke analysen uten å skjule begrensningen eller gjøre den større enn dokumentert.",
+        "repeatable": false,
+        "role_scope": "forsker_psykologi",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/people/forsker_psykologi_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Avviket gjelder målekvalitet, ikke identiteten til enkeltpersoner i datasettet.",
+          "Kollegaen kan vise hvilket delutvalg og hvilken måleegenskap som er berørt.",
+          "En sensitivitetsanalyse kan avgrenses før hovedresultatet fortolkes."
+        ],
+        "stage": "stable",
+        "stakes": "Å ignorere svakere målekvalitet kan gi for sterk konklusjon; å forkaste hele datasettet uten analyse kan være like lite begrunnet.",
+        "subject": "Denne målingen er svakere i én del av utvalget",
+        "summary": "En metodekollega viser at en sentral variabel har svakere målekvalitet i en avgrenset del av utvalget og foreslår en forhåndsdefinert sensitivitetsanalyse.",
+        "task_domain": "datakvalitet_og_maling",
+        "task_kind": "people"
+      },
+      "id": "psykologi_forsker_psykologi_people_metodekritikk_001",
+      "mail_type": "people",
+      "role_scope": "forsker_psykologi",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gjør kritikken produktiv og lar leseren se hvor robust hovedkonklusjonen faktisk er.",
+            "id": "A",
+            "label": "Definer sensitivitetsanalysen og dokumenter begrensningen",
+            "reply": "Vi spesifiserer analysen før fortolkningen, dokumenterer hvorfor den trengs og viser om konklusjonen endrer seg når den svakere målingen håndteres."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du bevarer tempoet, men gjør en kjent begrensning usynlig i selve evidensvurderingen.",
+            "id": "B",
+            "label": "Fortsett uten ekstra analyse",
+            "reply": "Forskjellen er upraktisk nå; vi holder oss til opprinnelig framdrift og nevner det eventuelt senere."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Avviket gjelder målekvalitet, ikke identiteten til enkeltpersoner i datasettet.",
+            "Kollegaen kan vise hvilket delutvalg og hvilken måleegenskap som er berørt.",
+            "En sensitivitetsanalyse kan avgrenses før hovedresultatet fortolkes."
+          ],
+          "subject": "Denne målingen er svakere i én del av utvalget",
+          "summary": "En metodekollega viser at en sentral variabel har svakere målekvalitet i en avgrenset del av utvalget og foreslår en forhåndsdefinert sensitivitetsanalyse."
+        },
+        "day_phase": "forenoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "psykologi_forsker_psykologi_people_metodekritikk_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "psykologi_forsker_psykologi_prosjektmote",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "psykologi_forsker_psykologi_people_metodekritikk_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/people/forsker_psykologi_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "forsker_psykologi.mail.psykologi_forsker_psykologi_people_metodekritikk_001",
+        "version": 1
+      },
+      "source_hash": "b7828727ae8dd84e5afbf25308a57120f96db849789cd335a807b33884324cd5",
+      "source_path": "data/Civication/mailFamilies/psykologi/people/forsker_psykologi_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "evidensdelt_sluttrapport_vs_sammenslatt_sterk_fortelling",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "quality": 3,
+                "risk": -2,
+                "status": 1,
+                "trust": 2
+              }
+            },
+            "feedback": "Du gir en tydelig konklusjon uten å skjule at tydelighet og sikkerhet er to forskjellige ting.",
+            "id": "A",
+            "label": "Skill hovedfunn, nullfunn og utforskende funn",
+            "reply": "Jeg strukturerer konklusjonen etter evidensstatus: hva hovedanalysen viser, hva den ikke viser, hva som er utforskende, hva robusthetstestene endrer og hva en ny studie må undersøke.",
+            "tags": [
+              "transparent_reporting",
+              "null_findings",
+              "exploratory_label",
+              "robustness"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -3,
+                "risk": 3,
+                "status": 2,
+                "trust": -3
+              }
+            },
+            "feedback": "Du gjør en mer salgbar rapport, men kunnskapsgrunnlaget mister sporbarheten som skulle gjøre det etterprøvbart.",
+            "id": "B",
+            "label": "Bygg rapporten rundt det sterkeste funnet",
+            "reply": "Vi bruker det utforskende resultatet som hovedbudskap, toner ned nullfunnet og lar robusthetsdetaljene stå i metodevedlegget.",
+            "tags": [
+              "selective_reporting",
+              "story_over_evidence",
+              "false_certainty"
+            ]
+          }
+        ],
+        "competency": "vitenskapelig_skriving",
+        "consequence_axis": "etterprovbar_kunnskap_vs_varig_overdrivelse",
+        "cooldown": 5,
+        "day_phase": "day_end",
+        "from": "Prosjektlederen",
+        "id": "psykologi_forsker_psykologi_story_sluttrapport_001",
+        "mail_family": "etterprovbar_sluttrapport",
+        "mail_type": "story",
+        "narrative_arc": "fra_sammensatt_resultatbilde_til_kalibrert_sluttrapport",
+        "people_ref": "psykologi_forsker_psykologi_prosjektleder",
+        "phase": "climax",
+        "place_id": "psykologi_forsker_psykologi_manusverksted",
+        "pressure": "krav_om_enkel_konklusjon",
+        "priority": 130,
+        "purpose": "Teste om forskeren kan gi en nyttig avslutning uten å slå sammen ulike evidensnivåer til én sterkere historie.",
+        "repeatable": false,
+        "role_scope": "forsker_psykologi",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/story/forsker_psykologi_story.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Hovedanalysen og analyseplanen er tilgjengelige og kan rapporteres sammen.",
+          "Det utforskende funnet kan være verdt en ny studie, men ble valgt etter resultatinnsyn.",
+          "Sensitivitetsanalysen viser at effektstørrelsen er mindre robust enn den første figuren antydet."
+        ],
+        "stage": "stable",
+        "stakes": "Sluttrapporten kan bli prosjektets varige kunnskapsgrunnlag; feil evidensmerking kan derfor leve videre lenge etter at analysehistorikken er glemt.",
+        "subject": "Vi trenger én konklusjon til sluttrapporten",
+        "summary": "Den planlagte hovedanalysen er svak, en utforskende analyse er interessant, og sensitivitetsanalysen reduserer effektstørrelsen ytterligere.",
+        "task_domain": "vitenskapelig_rapportering",
+        "task_kind": "story"
+      },
+      "id": "psykologi_forsker_psykologi_story_sluttrapport_001",
+      "mail_type": "story",
+      "role_scope": "forsker_psykologi",
+      "scene": {
+        "arc_stage": "climax",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gir en tydelig konklusjon uten å skjule at tydelighet og sikkerhet er to forskjellige ting.",
+            "id": "A",
+            "label": "Skill hovedfunn, nullfunn og utforskende funn",
+            "reply": "Jeg strukturerer konklusjonen etter evidensstatus: hva hovedanalysen viser, hva den ikke viser, hva som er utforskende, hva robusthetstestene endrer og hva en ny studie må undersøke."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør en mer salgbar rapport, men kunnskapsgrunnlaget mister sporbarheten som skulle gjøre det etterprøvbart.",
+            "id": "B",
+            "label": "Bygg rapporten rundt det sterkeste funnet",
+            "reply": "Vi bruker det utforskende resultatet som hovedbudskap, toner ned nullfunnet og lar robusthetsdetaljene stå i metodevedlegget."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Hovedanalysen og analyseplanen er tilgjengelige og kan rapporteres sammen.",
+            "Det utforskende funnet kan være verdt en ny studie, men ble valgt etter resultatinnsyn.",
+            "Sensitivitetsanalysen viser at effektstørrelsen er mindre robust enn den første figuren antydet."
+          ],
+          "subject": "Vi trenger én konklusjon til sluttrapporten",
+          "summary": "Den planlagte hovedanalysen er svak, en utforskende analyse er interessant, og sensitivitetsanalysen reduserer effektstørrelsen ytterligere."
+        },
+        "day_phase": "day_end",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "psykologi_forsker_psykologi_story_sluttrapport_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "psykologi_forsker_psykologi_manusverksted",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "psykologi_forsker_psykologi_story_sluttrapport_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/story/forsker_psykologi_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "forsker_psykologi.mail.psykologi_forsker_psykologi_story_sluttrapport_001",
+        "version": 1
+      },
+      "source_hash": "139ddbcfd85c22f7650936e74d805488f5cd17923d71ca3b0923816434ac8d41",
+      "source_path": "data/Civication/mailFamilies/psykologi/story/forsker_psykologi_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
         "choice_axis": "tydelig_grense_og_delt_ansvar_vs_umandatert_hemmelighold",
         "choices": [
           {
@@ -153687,7 +154964,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "08d8ad2165a9cf02795139b3bfa674ab5010c7d697857470d4a2f0ca8b41c2e6",
+  "registry_hash": "872e7172a3f3bd673c737400bb0d68e2bcfda7d82ec93f6ba5774656f8863fde",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -154567,6 +155844,17 @@
       "psykologi_fagansvarlig_knowledge_myndighet_001",
       "psykologi_fagansvarlig_consequence_avvik_001"
     ],
+    "psykologi/forsker_psykologi": [
+      "psykologi_forsker_psykologi_job_analyseplan_001",
+      "psykologi_forsker_psykologi_people_metodekritikk_001",
+      "psykologi_forsker_psykologi_story_sluttrapport_001",
+      "psykologi_forsker_psykologi_conflict_sterkere_resultat_001",
+      "psykologi_forsker_psykologi_event_frist_data_001",
+      "psykologi_forsker_psykologi_micro_figur_usikkerhet_001",
+      "psykologi_forsker_psykologi_followup_analyseavvik_001",
+      "psykologi_forsker_psykologi_knowledge_planlagt_utforskende_001",
+      "psykologi_forsker_psykologi_consequence_robusthet_001"
+    ],
     "psykologi/psykologi_miljoarbeid": [
       "psykologi_miljoarbeid_job_vaktstart",
       "psykologi_miljoarbeid_people_autonomi",
@@ -154803,11 +156091,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 255,
+    "compiled_source_file_count": 264,
     "ignored_source_file_count": 1,
-    "input_file_count": 256,
-    "role_count": 34,
-    "scene_count": 1018,
+    "input_file_count": 265,
+    "role_count": 35,
+    "scene_count": 1027,
     "shadowed_duplicate_count": 0
   },
   "version": 1

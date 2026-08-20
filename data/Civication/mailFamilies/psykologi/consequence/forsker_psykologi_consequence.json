@@ -1,0 +1,44 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "forsker_psykologi",
+  "mail_type": "consequence",
+  "families": [{
+    "id": "robusthet_som_konsekvens",
+    "purpose": "La en senere mottaker møte den praktiske konsekvensen av at robusthet enten ble synliggjort eller nedtonet i forskningsrapporteringen.",
+    "learning_focus": ["konsekvenser", "robusthet", "ansvarlig_formidling"],
+    "mails": [{
+      "id": "psykologi_forsker_psykologi_consequence_robusthet_001",
+      "mail_type": "consequence",
+      "mail_family": "robusthet_som_konsekvens",
+      "role_scope": "forsker_psykologi",
+      "phase": "climax",
+      "day_phase": "day_end",
+      "priority": 128,
+      "cooldown": 5,
+      "repeatable": false,
+      "stage": "stable",
+      "from": "Den eksterne partneren",
+      "people_ref": "psykologi_forsker_psykologi_partner",
+      "place_id": "psykologi_forsker_psykologi_analyserom",
+      "subject": "Hvor sikkert kan vi bruke dette funnet?",
+      "summary": "Partneren har sett at sensitivitetsanalysen gir svakere effekt enn den første hovedfiguren og ber om en presis avgrensning av hva funnet kan brukes som grunnlag for.",
+      "purpose": "Teste om forskeren lar den dokumenterte robustheten få en reell konsekvens for anvendelsen av resultatet.",
+      "stakes": "Hvis usikkerheten nedtones når resultatet tas i bruk, kan et foreløpig forskningsfunn bli behandlet som sterkere beslutningsgrunnlag enn studien støtter.",
+      "situation": ["Partneren ber om kunnskapsgrunnlag, ikke klinisk diagnose, behandling eller lovregulert beslutningsmyndighet.", "Hovedanalysen peker i én retning, men sensitivitetsanalysen viser en mindre stabil effektstørrelse.", "Rapporten kan fortsatt presisere både anvendelsesrom, usikkerhet og behov for ny testing."],
+      "thread_key": "psykologi_forsker_psykologi_analyseintegritet_001",
+      "task_domain": "anvendelse_av_forskningsfunn",
+      "task_kind": "consequence",
+      "competency": "ansvarlig_forskningsformidling",
+      "pressure": "behov_for_handlingsgrunnlag",
+      "choice_axis": "kalibrert_anvendelse_vs_sterkeste_forste_budskap",
+      "consequence_axis": "forsvarlig_bruk_vs_overfort_falsk_sikkerhet",
+      "narrative_arc": "fra_robusthetsfunn_til_avgrenset_anvendelse",
+      "choices": [
+        {"id": "A", "label": "Avgrens hva funnet kan brukes til", "reply": "Funnene kan støtte en foreløpig hypotese og videre utprøving, men robusthetstesten gjør at vi ikke bør behandle effektstørrelsen som etablert eller generalisere lenger enn utvalget og designet bærer.", "effect": 1, "tags": ["calibrated_use", "uncertainty", "replication"], "feedback": "Du oversetter robusthetsinformasjonen til en konkret grense for bruk og gjør videre kunnskapsbehov tydelig.", "effects": {"stats": {"quality": 2, "trust": 2, "risk": -2, "status": 1}}},
+        {"id": "B", "label": "Hold fast ved den sterke første formuleringen", "reply": "Hovedanalysen var tydeligst, så partneren kan bruke den første konklusjonen; sensitivitetsanalysen er mest en metodisk detalj.", "effect": -1, "tags": ["false_certainty", "robustness_buried", "overgeneralization"], "feedback": "Du lar mottakerens behov for et enkelt svar overstyre den usikkerheten prosjektet allerede har dokumentert.", "effects": {"stats": {"status": 2, "quality": -3, "trust": -3, "risk": 3}}}
+      ]
+    }]
+  }]
+}

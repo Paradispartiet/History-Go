@@ -1,0 +1,43 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "forsker_psykologi",
+  "mail_type": "story",
+  "families": [{
+    "id": "etterprovbar_sluttrapport",
+    "purpose": "Samle planlagt hovedanalyse, nullfunn, utforskende funn og robusthet i en sluttrapport der evidensstatusen er synlig.",
+    "learning_focus": ["vitenskapelig_skriving", "nullfunn", "åpen_forskning", "helhetsdommekraft"],
+    "mails": [{
+      "id": "psykologi_forsker_psykologi_story_sluttrapport_001",
+      "mail_type": "story",
+      "mail_family": "etterprovbar_sluttrapport",
+      "role_scope": "forsker_psykologi",
+      "phase": "climax",
+      "day_phase": "day_end",
+      "priority": 130,
+      "cooldown": 5,
+      "repeatable": false,
+      "stage": "stable",
+      "from": "Prosjektlederen",
+      "people_ref": "psykologi_forsker_psykologi_prosjektleder",
+      "place_id": "psykologi_forsker_psykologi_manusverksted",
+      "subject": "Vi trenger én konklusjon til sluttrapporten",
+      "summary": "Den planlagte hovedanalysen er svak, en utforskende analyse er interessant, og sensitivitetsanalysen reduserer effektstørrelsen ytterligere.",
+      "purpose": "Teste om forskeren kan gi en nyttig avslutning uten å slå sammen ulike evidensnivåer til én sterkere historie.",
+      "stakes": "Sluttrapporten kan bli prosjektets varige kunnskapsgrunnlag; feil evidensmerking kan derfor leve videre lenge etter at analysehistorikken er glemt.",
+      "situation": ["Hovedanalysen og analyseplanen er tilgjengelige og kan rapporteres sammen.", "Det utforskende funnet kan være verdt en ny studie, men ble valgt etter resultatinnsyn.", "Sensitivitetsanalysen viser at effektstørrelsen er mindre robust enn den første figuren antydet."],
+      "task_domain": "vitenskapelig_rapportering",
+      "task_kind": "story",
+      "competency": "vitenskapelig_skriving",
+      "pressure": "krav_om_enkel_konklusjon",
+      "choice_axis": "evidensdelt_sluttrapport_vs_sammenslatt_sterk_fortelling",
+      "consequence_axis": "etterprovbar_kunnskap_vs_varig_overdrivelse",
+      "narrative_arc": "fra_sammensatt_resultatbilde_til_kalibrert_sluttrapport",
+      "choices": [
+        {"id": "A", "label": "Skill hovedfunn, nullfunn og utforskende funn", "reply": "Jeg strukturerer konklusjonen etter evidensstatus: hva hovedanalysen viser, hva den ikke viser, hva som er utforskende, hva robusthetstestene endrer og hva en ny studie må undersøke.", "effect": 1, "tags": ["transparent_reporting", "null_findings", "exploratory_label", "robustness"], "feedback": "Du gir en tydelig konklusjon uten å skjule at tydelighet og sikkerhet er to forskjellige ting.", "effects": {"stats": {"quality": 3, "trust": 2, "risk": -2, "status": 1}}},
+        {"id": "B", "label": "Bygg rapporten rundt det sterkeste funnet", "reply": "Vi bruker det utforskende resultatet som hovedbudskap, toner ned nullfunnet og lar robusthetsdetaljene stå i metodevedlegget.", "effect": -1, "tags": ["selective_reporting", "story_over_evidence", "false_certainty"], "feedback": "Du gjør en mer salgbar rapport, men kunnskapsgrunnlaget mister sporbarheten som skulle gjøre det etterprøvbart.", "effects": {"stats": {"status": 2, "quality": -3, "trust": -3, "risk": 3}}}
+      ]
+    }]
+  }]
+}

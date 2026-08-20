@@ -1,0 +1,43 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "forsker_psykologi",
+  "mail_type": "job",
+  "families": [{
+    "id": "analyseplan_for_resultat",
+    "purpose": "Låse hovedspørsmål, primærutfall og analysevalg før resultatene blir kjent, slik at senere endringer kan spores.",
+    "learning_focus": ["forskningsdesign", "analyseplan", "sporbarhet"],
+    "mails": [{
+      "id": "psykologi_forsker_psykologi_job_analyseplan_001",
+      "mail_type": "job",
+      "mail_family": "analyseplan_for_resultat",
+      "role_scope": "forsker_psykologi",
+      "phase": "intro",
+      "day_phase": "morning",
+      "priority": 150,
+      "cooldown": 2,
+      "repeatable": false,
+      "stage": "stable",
+      "from": "Prosjektlederen",
+      "people_ref": "psykologi_forsker_psykologi_prosjektleder",
+      "place_id": "psykologi_forsker_psykologi_analyserom",
+      "subject": "Lås hovedanalysen før vi åpner resultatene",
+      "summary": "Datasettet er klart for hovedanalysen, men analyseplanen åpner fortsatt for flere utfallsmål og modellvalg uten at ett hovedspor er definert.",
+      "purpose": "Teste om forskeren etablerer et etterprøvbart hovedspor før resultatene kan påvirke analysevalgene.",
+      "stakes": "Hvis hovedanalysen først velges etter at resultatene er synlige, blir det vanskeligere å vite hvor mye evidens det sterke funnet faktisk bærer.",
+      "situation": ["Prosjektets forskningsspørsmål er fastlagt, men primærutfall og hovedmodell er ikke entydig låst.", "Ingen resultattabeller er åpnet ennå, så tidspunktet for beslutningen kan fortsatt dokumenteres tydelig.", "Arbeidsflaten inneholder bare avidentifiserte analysevariabler og ingen deltakeridentifiserbare opplysninger."],
+      "task_domain": "forskningsdesign_og_analyseplan",
+      "task_kind": "job",
+      "competency": "forskningsdesign",
+      "pressure": "framdrift_for_resultat",
+      "choice_axis": "forhandsdefinert_hovedspor_vs_resultatstyrt_fleksibilitet",
+      "consequence_axis": "etterprovbar_evidens_vs_uklar_analysehistorikk",
+      "narrative_arc": "fra_apent_analyserom_til_sporbart_hovedspor",
+      "choices": [
+        {"id": "A", "label": "Lås primærutfall og hovedanalyse nå", "reply": "Jeg dokumenterer primærutfall, hovedmodell og hvilke avvik som eventuelt kan bli nødvendige før vi åpner resultatene.", "effect": 1, "tags": ["preregistration", "traceability", "research_integrity"], "feedback": "Du gjør det mulig å skille det opprinnelige evidenssporet fra senere begrunnede eller utforskende valg.", "effects": {"stats": {"quality": 2, "trust": 1, "risk": -2, "energy": -1}}},
+        {"id": "B", "label": "Behold alle analysevalg åpne", "reply": "Vi ser først hva dataene viser og velger deretter kombinasjonen som gir den tydeligste historien.", "effect": -1, "tags": ["researcher_degrees_of_freedom", "result_pressure"], "feedback": "Fleksibiliteten kan være praktisk, men tidspunktet gjør hovedresultatet mindre etterprøvbart som forhåndsdefinert test.", "effects": {"stats": {"status": 1, "quality": -2, "trust": -2, "risk": 2}}}
+      ]
+    }]
+  }]
+}

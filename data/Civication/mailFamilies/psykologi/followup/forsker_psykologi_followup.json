@@ -1,0 +1,44 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "forsker_psykologi",
+  "mail_type": "followup",
+  "families": [{
+    "id": "analyseavvik_og_robusthet",
+    "purpose": "Følge opp analyseavvik med en dokumentert robusthetsvurdering som faktisk får påvirke fortolkningen.",
+    "learning_focus": ["sensitivitetsanalyse", "analyseavvik", "robusthet"],
+    "mails": [{
+      "id": "psykologi_forsker_psykologi_followup_analyseavvik_001",
+      "mail_type": "followup",
+      "mail_family": "analyseavvik_og_robusthet",
+      "role_scope": "forsker_psykologi",
+      "phase": "mastery",
+      "day_phase": "evening",
+      "priority": 133,
+      "cooldown": 4,
+      "repeatable": false,
+      "stage": "stable",
+      "from": "Metodekollegaen",
+      "people_ref": "psykologi_forsker_psykologi_metodekollega",
+      "place_id": "psykologi_forsker_psykologi_prosjektmote",
+      "subject": "Sensitivitetsanalysen svekker effekten",
+      "summary": "Den avtalte sensitivitetsanalysen gir en klart svakere effekt enn hovedanalysen, selv om retningen er den samme.",
+      "purpose": "Teste om forskeren lar robusthetsinformasjon påvirke konklusjonen i stedet for å behandle den som et teknisk vedlegg.",
+      "stakes": "Hvis en relevant robusthetstest skjules i bakgrunnen, kan hovedteksten gi større sikkerhet enn den samlede analysen støtter.",
+      "situation": ["Sensitivitetsanalysen ble definert på grunn av en dokumentert målesvakhet.", "Resultatet opphever ikke hovedanalysen, men viser at effektstørrelsen er mindre stabil enn først antatt.", "Analyseavviket og begrunnelsen kan dokumenteres uten personidentifiserbare data."],
+      "thread_key": "psykologi_forsker_psykologi_analyseintegritet_001",
+      "task_domain": "robusthet_og_fortolkning",
+      "task_kind": "followup",
+      "competency": "analyse_og_inferens",
+      "pressure": "bevare_hovedhistorien",
+      "choice_axis": "oppdatert_konklusjon_vs_robusthet_i_vedlegg",
+      "consequence_axis": "kalibrert_evidens_vs_overdrevet_hovedfunn",
+      "narrative_arc": "fra_sensitivitetsresultat_til_revidert_fortolkning",
+      "choices": [
+        {"id": "A", "label": "Oppdater konklusjonen og hovedteksten", "reply": "Vi viser sensitivitetsanalysen der hovedfunnet fortolkes og nedjusterer styrken i konklusjonen slik at den gjenspeiler hvor robust effekten faktisk er.", "effect": 1, "tags": ["robustness", "calibrated_claim", "traceability"], "feedback": "Du gjør robusthet til del av evidensen som leseren møter, ikke bare dokumentasjon i bakgrunnen.", "effects": {"stats": {"quality": 2, "trust": 2, "risk": -2, "status": 0}}},
+        {"id": "B", "label": "Legg analysen i vedlegget uten å endre konklusjonen", "reply": "Vi rapporterer testen for transparens, men beholder hovedtekstens sterke formulering siden hovedanalysen fortsatt er signifikant.", "effect": -1, "tags": ["selective_emphasis", "robustness_buried"], "feedback": "Du rapporterer teknisk sett analysen, men lar ikke den relevante usikkerheten påvirke påstanden den faktisk gjelder.", "effects": {"stats": {"status": 1, "quality": -2, "trust": -2, "risk": 2}}}
+      ]
+    }]
+  }]
+}
