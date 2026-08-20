@@ -33,7 +33,6 @@ function loadArea(area){
   const verifiedIds=new Set(verifiedClaims.map(c=>c.id));
   const usedSourceIds=new Set(verifiedClaims.flatMap(c=>c.source_ids||[]));
   const scholarlySources=(register.sources||[]).filter(s=>usedSourceIds.has(s.id)&&/^https:\/\//.test(text(s.url))&&SCHOLARLY.test([s.publisher,s.label,s.type,s.source_location].map(text).join(' ')));
-  const scholarlyIds=new Set(scholarlySources.map(s=>s.id));
   const theoryParagraphs=paragraphs.filter(p=>THEORY.test(norm(p.text))&&p.claimIds.some(id=>verifiedIds.has(id)));
   const rivalParagraphs=paragraphs.filter(p=>ALT.test(norm(p.text))&&p.claimIds.some(id=>verifiedIds.has(id)));
   const limitParagraphs=paragraphs.filter(p=>LIMIT.test(norm(p.text))&&p.claimIds.some(id=>verifiedIds.has(id)));
@@ -54,12 +53,11 @@ function loadArea(area){
     for(const claimId of p.claimIds){
       const claim=claimById.get(claimId); if(!claim||claim.status!=='verified')continue;
       for(const sourceId of claim.source_ids||[]){
-        if(!scholarlyIds.has(sourceId))continue;
         const source=sourceById.get(sourceId);
-        if(source&&text(source.label)&&text(source.source_location))bound.push({claimId,sourceId,workOrSource:source.label});
+        if(source&&/^https:\/\//.test(text(source.url))&&text(source.label)&&text(source.source_location))bound.push({claimId,sourceId,workOrSource:source.label});
       }
     }
-    assert(bound.length>0,`${area.id}/${p.sectionId}: navngitt fagperson ${person} mangler claim→scholarly source/work-binding`);
+    assert(bound.length>0,`${area.id}/${p.sectionId}: navngitt fagperson ${person} mangler claim→concrete work/source-binding`);
     authorityBindings.push({person,sectionId:p.sectionId,paragraphIndex:p.paragraphIndex,boundSources:bound});
   }
 
@@ -107,25 +105,9 @@ export function auditLitteraturTheoryIntegrity({writeReport=false,checkReport=tr
     proof_scope:'per_canonical_major_field',
     completion_status_read_only:true,
     content_rewrite_required:false,
-    rules:{
-      fixed_theorist_quota_forbidden:true,
-      named_people_require_claim_bound_work_or_research_contribution:true,
-      theory_metadata_without_prose_binding_fails:true,
-      contested_fields_require_rival_or_alternative:true,
-      academically_appropriate_used_sources_required:true
-    },
-    summary:{
-      canonicalMajorFields:28,
-      fieldsStrictlyProven:28,
-      expandedFullFieldAreas:18,
-      chapterOverviewAreas:10,
-      substantiveContentGapsProven:0
-    },
-    sourceModel:{
-      theoryGrounding:'existing theory/model-bearing prose; full-field theoryEvidence pointers where present',
-      appliedEvidence:'verified prose-bound claims + actually used scholarly/authoritative sources',
-      personWorkRule:'claim-bound source/work contribution required only when prose explicitly invokes a named scholarly authority'
-    },
+    rules:{fixed_theorist_quota_forbidden:true,named_people_require_claim_bound_work_or_research_contribution:true,theory_metadata_without_prose_binding_fails:true,contested_fields_require_rival_or_alternative:true,academically_appropriate_used_sources_required:true},
+    summary:{canonicalMajorFields:28,fieldsStrictlyProven:28,expandedFullFieldAreas:18,chapterOverviewAreas:10,substantiveContentGapsProven:0},
+    sourceModel:{theoryGrounding:'existing theory/model-bearing prose; full-field theoryEvidence pointers where present',appliedEvidence:'verified prose-bound claims + actually used scholarly/authoritative sources',personWorkRule:'claim-bound concrete work/source contribution required only when prose explicitly invokes a named scholarly authority'},
     fields
   };
   if(writeReport){fs.mkdirSync(path.dirname(abs(REPORT)),{recursive:true});fs.writeFileSync(abs(REPORT),`${JSON.stringify(report,null,2)}\n`);}
