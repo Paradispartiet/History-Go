@@ -5,7 +5,7 @@
 
   const AHA_URL = "https://paradispartiet.github.io/AHA-EchoNet/?source=historygo&intent=collection";
   const SECONDARY_PANELS = [
-    ["civication", "Spill"],
+    ["spill", "Spill"],
     ["socialmeet", "Social Meet"],
     ["profilvalg", "Profilvalg og personvern"]
   ];
@@ -416,7 +416,7 @@
       trigger?.classList.add("is-active");
       trigger?.setAttribute("aria-expanded", "false");
     }));
-    tabs.querySelectorAll('.profile-tab:not([data-tab="civication"]):not([data-tab="socialmeet"]):not([data-tab="profilvalg"])').forEach(tab => tab.addEventListener("click", () => trigger?.classList.remove("is-active")));
+    tabs.querySelectorAll('.profile-tab:not([data-tab="spill"]):not([data-tab="socialmeet"]):not([data-tab="profilvalg"])').forEach(tab => tab.addEventListener("click", () => trigger?.classList.remove("is-active")));
     document.addEventListener("click", event => {
       if (!(event.target instanceof Node) || !wrap.contains(event.target)) {
         wrap.classList.remove("is-open");
