@@ -1,7 +1,7 @@
 {
   "schema": "history_go_fagverk_registry_v1",
-  "version": "3.13.0",
-  "updatedAt": "2026-08-18",
+  "version": "3.14.0",
+  "updatedAt": "2026-08-21",
   "placePage": {
     "route": "fagverk-sted.html?place={placeId}",
     "genericForAllCanonicalPlaces": true,
@@ -4125,6 +4125,31 @@
         ],
         "nextGate": "maintenance_source_refresh_and_place_case_expansion"
       }
+    },
+    "helse": {
+      "title": "Helse & medisin",
+      "description": "Et kilde- og sikkerhetsstyrt fagverk om kropp, sykdom, klinikk, folkehelse, epidemiologi, infeksjon, legemidler, ernæring, psykisk helse, rehabilitering, helsetjenester, helseøkonomi, medisinsk etikk og evidens. Faget underviser generelle prinsipper og gir aldri individuell diagnose, prognose, triage eller behandlingsanbefaling.",
+      "canonicalModel": {
+        "manifest": "data/fag/fag_manifest.json",
+        "schemaFamily": "foundation_v1",
+        "sourceOfTruth": true,
+        "firstSourceClaimBrief": "data/fag/helse/medical_ethics_evidence_source_claim_brief_v1.json",
+        "note": "Første source-first-enhet er avgrenset til medisinsk etikk og evidens: 14 inspiserte primær-, myndighets- og metodekilder, 8 faglige spor, 6 ikke-individualiserende beslutningsscenarioer og 32 claimplaner. Planlagte claims er ikke verifiserte fulltekstclaims, og Helse er fortsatt ikke materialisert eller strict-proven."
+      },
+      "editorialPlan": {
+        "targetDomainCount": 12,
+        "completedSourceBriefCount": 1,
+        "registeredChapterCount": 0,
+        "completionRequirements": [
+          "all_canonical_domains_covered",
+          "source_first_claim_trace_complete",
+          "clinical_safety_contract_green",
+          "fulltext_and_assessment_audits_green",
+          "strict_theory_integrity_green"
+        ],
+        "nextGate": "produce_full_chapter_claims_and_inspectable_sources_for_medisinsk_etikk_evidens"
+      },
+      "chapters": []
     }
   },
   "placeLinks": {

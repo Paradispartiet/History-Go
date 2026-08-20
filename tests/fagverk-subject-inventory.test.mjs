@@ -242,7 +242,12 @@ test('Helse og Utdanning har konsistent foundation uten å påstå produksjonsfe
     assert.equal(subjectStatus.navigationStatus, 'planned');
     assert.equal(subjectStatus.assessmentStatus, 'pending');
     assert.equal(subjectStatus.editorialStatus, 'not_started');
-    assert.equal(subjectStatus.nextGate, 'first_source_brief_after_repository_reconciliation');
+    assert.equal(
+      subjectStatus.nextGate,
+      id === 'helse'
+        ? 'medical_ethics_evidence_source_brief_complete_full_chapter_production'
+        : 'first_source_brief_after_repository_reconciliation'
+    );
   }
 
   const safety = readJson(`data/fag/${manifest.helse.safetyContract}`);
