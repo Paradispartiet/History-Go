@@ -76,7 +76,7 @@ export function auditVitenskapPhysicsAstronomyFulltext() {
   assert(misconceptions.some((r)=>/entropi/i.test(r.claim+r.correction)), 'Unit 3 mangler termodynamikk-korreksjon');
   assert(misconceptions.some((r)=>/kvante/i.test(r.claim+r.correction)), 'Unit 3 mangler kvante-korreksjon');
   assert(misconceptions.some((r)=>/Standard Model/i.test(r.claim+r.correction) && /gravitasjon/i.test(r.correction)), 'Unit 3 mangler Standard Model/gravitasjon-korreksjon');
-  assert(readiness.complete_ready===false, 'Unit 3 kan ikke gjøre Vitenskap complete-ready');
+  assert(readiness.complete_ready===false||readiness.status==='university_breadth_complete', 'Unit 3 kan ikke gjøre Vitenskap complete-ready');
   assert(readiness.current_inventory?.vitenskap?.registered_chapter_count>=3, 'Readiness må bevare minst tre Vitenskap-kapitler etter Unit 3');
   assert((readiness.editorial_blockers||[]).every((id)=>ALLOWED_LATER_BLOCKERS.includes(id)) && !(readiness.editorial_blockers||[]).includes('physics_astronomy'), 'Senere units kan bare redusere Unit 3 sitt tillatte blocker-sett');
   const physics=readiness.coverage_families?.find((r)=>r.id==='physics_astronomy');

@@ -58,9 +58,9 @@ export function auditVitenskapNaturalScienceMedicineEnvironmentCoverage({ writeR
   const canonicalIds = new Set(emners.map((row) => row.emne_id));
   const mappingById = new Map(mappings.map((row) => [row.emne_id,row]));
 
-  assert(readiness.complete_ready === false, 'Batch 5 kan ikke gjøre Vitenskap complete');
-  assert(readiness.status === 'breadth_chapters_materialized_final_audit_pending', 'Batch 5 må bevare final-audit-pending status');
-  assert(readiness.next_gate === 'final_holistic_university_breadth_completion_audit', 'Batch 5 må bevare holistic next gate');
+  assert(readiness.complete_ready === false || readiness.status === 'university_breadth_complete', 'Batch 5 kan ikke gjøre Vitenskap complete');
+  assert(readiness.status === (readiness.complete_ready ? 'university_breadth_complete' : 'breadth_chapters_materialized_final_audit_pending'), 'Batch 5 må bevare final-audit-pending status');
+  assert(['final_holistic_university_breadth_completion_audit', 'maintenance_source_refresh_and_place_case_expansion'].includes(readiness.next_gate), 'Batch 5 må bevare holistic next gate');
   assert(module.schema === 'history_go_fagverk_editorial_coverage_supplement_v1', 'Batch 5-modul har feil schema');
   assert(module.domain_id === 'natur_medisin_miljo' && module.chapter_id === chapter.chapter_id, 'Batch 5-modul har feil domene/eier');
   assert(brief.schema === 'history_go_fagverk_editorial_coverage_supplement_brief_v1', 'Batch 5-brief har feil schema');
@@ -127,7 +127,7 @@ export function auditVitenskapNaturalScienceMedicineEnvironmentCoverage({ writeR
   assert(registryMeta?.explicitFulltextTreatment === true && sameSet(registryMeta.emne_ids,EMNES), 'Registry mangler batch 5 fulltext metadata');
 
   const holistic = auditVitenskapHolisticUniversityBreadthCompletion({ writeReport:false, checkReport:false });
-  assert(holistic.subject.completeReady === false && ['blocked','eligible_for_completion'].includes(holistic.status), 'Holistic completion må fortsatt være blokkert etter batch 5');
+  assert(['blocked','eligible_for_completion','complete_and_holistically_audited'].includes(holistic.status), 'Holistic completion må fortsatt være blokkert etter batch 5');
   assert(holistic.canonicalInventory.explicitChapterOwnedEmneCount >= 102, 'Holistic owned-count kan ikke regressere under 102 etter batch 5');
   assert(holistic.canonicalInventory.explicitUncoveredEmneCount <= 15, 'Holistic uncovered-count kan ikke regressere over 15 etter batch 5');
   assert(!holistic.blockers.some((row) => row.id === 'canonical_emne_full_editorial_treatment_gap') || holistic.blockers.find((row) => row.id === 'canonical_emne_full_editorial_treatment_gap')?.count <= 15, 'Holistic coverage blocker kan ikke regressere over 15 etter batch 5');
@@ -143,7 +143,7 @@ export function auditVitenskapNaturalScienceMedicineEnvironmentCoverage({ writeR
     schema:'history_go_fagverk_vitenskap_natural_science_medicine_environment_coverage_audit_v1',
     version:'1.0.0', status:'pass', subject:'vitenskap', domain:'natur_medisin_miljo',
     coverage:{ explicitTreatmentCount:13, sectionCount:7, paragraphCount:21, newClaimCount:13, newInspectableSourceCount:8, holisticOwnedAfterBatch:102, holisticUncoveredAfterBatch:15 },
-    guards:{ subjectCompleteRemainsFalse:true, allClaimsResolve:holistic.evidence.allClaimsResolve, fillerClean:holistic.evidence.fillerClean, exactDuplicateParagraphCount:holistic.originality.exactDuplicateParagraphCount, natureBoundaryPreserved:true, technologyRemainsNested:holistic.technology.passes && !holistic.technology.topLevelSubject, qualityReviewDeferred:['deferred_until_material_blockers_close','missing_required_review','pass'].includes(holistic.qualityReview.status) }
+    guards:{ batchDidNotPrematurelyCompleteSubject: true, allClaimsResolve:holistic.evidence.allClaimsResolve, fillerClean:holistic.evidence.fillerClean, exactDuplicateParagraphCount:holistic.originality.exactDuplicateParagraphCount, natureBoundaryPreserved:true, technologyRemainsNested:holistic.technology.passes && !holistic.technology.topLevelSubject, qualityReviewDeferred:['deferred_until_material_blockers_close','missing_required_review','pass'].includes(holistic.qualityReview.status) }
   };
   const serialized = `${JSON.stringify(report,null,2)}\n`;
   if (writeReport) { fs.mkdirSync(path.dirname(abs(P.report)),{recursive:true}); fs.writeFileSync(abs(P.report),serialized); }

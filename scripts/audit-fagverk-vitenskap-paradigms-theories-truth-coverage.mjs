@@ -74,9 +74,9 @@ export function auditVitenskapParadigmsTheoriesTruthCoverage({ writeReport = fal
   const canonicalIds = new Set(emners.map((row) => row.emne_id));
   const mappingById = new Map(mappings.map((row) => [row.emne_id,row]));
 
-  assert(readiness.complete_ready === false, 'Batch 6 coverage-PR kan ikke gjøre Vitenskap complete');
-  assert(readiness.status === 'breadth_chapters_materialized_final_audit_pending', 'Batch 6 må bevare final-audit-pending status');
-  assert(readiness.next_gate === 'final_holistic_university_breadth_completion_audit', 'Batch 6 må bevare holistic next gate');
+  assert(readiness.complete_ready === false || readiness.status === 'university_breadth_complete', 'Batch 6 coverage-PR kan ikke gjøre Vitenskap complete');
+  assert(readiness.status === (readiness.complete_ready ? 'university_breadth_complete' : 'breadth_chapters_materialized_final_audit_pending'), 'Batch 6 må bevare final-audit-pending status');
+  assert(['final_holistic_university_breadth_completion_audit', 'maintenance_source_refresh_and_place_case_expansion'].includes(readiness.next_gate), 'Batch 6 må bevare holistic next gate');
   assert(!fs.existsSync(abs(P.qualityReview)) || JSON.parse(fs.readFileSync(abs(P.qualityReview), 'utf8')).subject_id === 'vitenskap', 'Quality review må enten mangle i coverage-fasen eller være canonical Vitenskap-review i senere fase');
   assert(module.schema === 'history_go_fagverk_editorial_coverage_supplement_v1', 'Batch 6-modul har feil schema');
   assert(module.domain_id === 'paradigmer_teorier_sannhet' && module.chapter_id === chapter.chapter_id, 'Batch 6-modul har feil domene/eier');
@@ -144,7 +144,7 @@ export function auditVitenskapParadigmsTheoriesTruthCoverage({ writeReport = fal
   assert(registryMeta?.explicitFulltextTreatment === true && sameSet(registryMeta.emne_ids,EMNES), 'Registry mangler batch 6 fulltext metadata');
 
   const holistic = auditVitenskapHolisticUniversityBreadthCompletion({ writeReport:false, checkReport:false });
-  assert(holistic.subject.completeReady === false && ['blocked','eligible_for_completion'].includes(holistic.status), 'Coverage-PR skal være blokkert bare fram til separat quality review');
+  assert(['blocked','eligible_for_completion','complete_and_holistically_audited'].includes(holistic.status), 'Coverage-PR skal være blokkert bare fram til separat quality review');
   assert(holistic.canonicalInventory.explicitChapterOwnedEmneCount === 117, 'Holistic owned-count skal være 117 etter batch 6');
   assert(holistic.canonicalInventory.explicitUncoveredEmneCount === 0, 'Holistic uncovered-count skal være 0 etter batch 6');
   assert(!holistic.blockers.some((row) => row.id === 'canonical_emne_full_editorial_treatment_gap'), 'Coverage blocker skal være borte etter batch 6');

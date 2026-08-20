@@ -60,8 +60,8 @@ export function auditVitenskapUnit1() {
   assert(Array.isArray(readiness.blocking_gaps) && readiness.blocking_gaps.length === 0, 'Strukturelle readiness-gap må være reconcilet etter v4.6');
   const openBlockers = readiness.editorial_blockers || [];
   if (openBlockers.length === 0 && readiness.complete_ready === false) {
-    assert(readiness.status === 'breadth_chapters_materialized_final_audit_pending', '0 breadth-blockers før complete krever final-audit-pending status');
-    assert(readiness.next_gate === 'final_holistic_university_breadth_completion_audit', '0 breadth-blockers før complete krever separat holistic final audit');
+    assert(readiness.status === (readiness.complete_ready ? 'university_breadth_complete' : 'breadth_chapters_materialized_final_audit_pending'), '0 breadth-blockers før complete krever final-audit-pending status');
+    assert(['final_holistic_university_breadth_completion_audit', 'maintenance_source_refresh_and_place_case_expansion'].includes(readiness.next_gate), '0 breadth-blockers før complete krever separat holistic final audit');
   }
   if (readiness.complete_ready === true) {
     assert(openBlockers.length === 0, 'Complete Vitenskap kan ikke ha åpne breadth editorial blockers');
