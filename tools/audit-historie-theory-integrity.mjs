@@ -14,6 +14,28 @@ const norm=v=>String(v||'').toLocaleLowerCase('nb-NO').replace(/\s+/g,' ').trim(
 const isAcademic=s=>['academic_monograph','academic_secondary_monograph','peer_reviewed_journal_article'].includes(s?.source_type);
 const isInlineAcademic=s=>['scholarly_book','academic_monograph','academic_secondary_monograph','peer_reviewed_journal_article'].includes(s?.type||s?.source_type);
 
+function visit(value,callback){
+  if(Array.isArray(value)){for(const item of value)visit(item,callback);return;}
+  if(!value||typeof value!=='object')return;
+  callback(value);
+  for(const child of Object.values(value))visit(child,callback);
+}
+
+function existingCanonicalThinkerEvidence(canonicalThinkerIds){
+  const wanted=new Set(canonicalThinkerIds);
+  const matches=new Map(canonicalThinkerIds.map(id=>[id,[]]));
+  const fagkart=readJson('data/fag/historie/fagkart_historie_canonical_v4_5.json');
+  visit(fagkart,row=>{
+    const id=row.thinker_id||row.id;
+    if(!wanted.has(id))return;
+    const name=row.name||row.label;
+    const works=list(row.works).map(work=>typeof work==='string'?work:(work?.title||work?.name)).filter(Boolean);
+    const contribution=row.why||row.contribution||row.role;
+    if(name&&works.length&&norm(contribution).length>=20)matches.get(id).push({name,works,contribution});
+  });
+  return matches;
+}
+
 export function auditHistoryTheoryIntegrity(){
   const pensum=readJson('data/fag/historie/historiepensum_canonical_v4_5.json');
   const theories=readJson('data/fag/historie/theory_objects_historie_canonical_v5_5.json');
@@ -76,6 +98,33 @@ export function auditHistoryTheoryIntegrity(){
   assert.equal(universal.inventory?.domains,23);
   assert.equal(universal.inventory?.theories,230);
 
+  assert.equal(attribution.schema,'history_go_historie_theory_attribution_v1');
+  assert.equal(attribution.subject_id,'historie');
+  assert.equal(attribution.status,'strict_proof_bridge_ready');
+  assert.equal(attribution.rules?.name_only_trivia_forbidden,true);
+  assert.equal(attribution.rules?.frozen_theory_objects_read_only,true);
+  assert.equal(attribution.rules?.existing_thinker_work_evidence_from_fagkart,true);
+  assert.equal(attribution.rules?.supplement_only_when_existing_binding_missing,true);
+  assert.equal(attribution.rules?.minimum_named_people_or_works_per_major_field,4);
+
+  const bridgeById=new Map();
+  for(const source of list(attribution.scholarly_bridge_sources)){
+    assert.ok(source.source_id&&!bridgeById.has(source.source_id),`Manglende/duplisert scholarly bridge source: ${source.source_id}`);
+    bridgeById.set(source.source_id,source);
+    assert.ok(isAcademic(source),`${source.source_id}: scholarly bridge må være akademisk monografi eller fagfellevurdert artikkel`);
+    assert.ok(list(source.authors).length>=1&&norm(source.title).length>=8&&norm(source.publisher).length>=4,`${source.source_id}: scholarly bridge mangler bibliografisk provenance`);
+    assert.ok(Number.isInteger(source.year)&&source.year>=1800,`${source.source_id}: scholarly bridge har ugyldig år`);
+    assert.ok(/^https:\/\/\S+$/i.test(String(source.scholarly_locator||'')),`${source.source_id}: scholarly bridge mangler direkte https-locator`);
+    assert.ok(norm(source.source_location).length>=45,`${source.source_id}: scholarly bridge mangler konkret source_location`);
+    assert.ok(norm(source.authority).length>=55,`${source.source_id}: scholarly bridge mangler autoritetsbegrunnelse`);
+    assert.ok(norm(source.limitations).length>=55,`${source.source_id}: scholarly bridge mangler eksplisitt begrensning`);
+  }
+  for(const [field,sourceIds] of Object.entries(attribution.field_scholarly_bridge||{})){
+    assert.ok(domainIds.has(field),`Scholarly bridge peker på ukjent Historie-felt: ${field}`);
+    assert.equal(unique(list(sourceIds)).length,list(sourceIds).length,`${field}: dupliserte scholarly bridge source IDs`);
+    for(const sourceId of list(sourceIds))assert.ok(bridgeById.has(sourceId),`${field}: ukjent scholarly bridge source ${sourceId}`);
+  }
+
   const historiographyById=new Map(list(historiography.sources).map(s=>[s.source_id,s]));
   const historiographyByField=new Map(list(historiography.coverage).map(c=>[c.domain_id,c]));
   assert.equal(historiography.subject_id,'historie');
@@ -90,6 +139,7 @@ export function auditHistoryTheoryIntegrity(){
   assert.equal(chapters.length,23,'Historie registry skal ha 23 fulltekstkapitler');
   const fulltextTheoryIds=new Set(),fulltextEmneIds=new Set(),fulltextFieldIds=new Set();
   let theoryBoundSections=0,claimBoundSections=0,fieldScholarlyCount=0;
+  const scholarlyFieldMatrix=[];
   for(const row of chapters){
     assert.ok(domainIds.has(row.primary_domain_id),`Registrert Historie-kapittel har ukjent felt: ${row.primary_domain_id}`);
     fulltextFieldIds.add(row.primary_domain_id);
@@ -134,9 +184,11 @@ export function auditHistoryTheoryIntegrity(){
       }
     }
     const canonicalAcademic=[...fieldSourceIds].map(id=>historiographyById.get(id)).filter(Boolean).filter(isAcademic);
-    const scholarlyEvidenceCount=canonicalAcademic.length+inlineAcademicSources.size;
+    const bridgeAcademic=unique(list(attribution.field_scholarly_bridge?.[row.primary_domain_id])).map(id=>bridgeById.get(id)).filter(Boolean);
+    const scholarlyEvidenceCount=canonicalAcademic.length+inlineAcademicSources.size+bridgeAcademic.length;
     assert.ok(scholarlyEvidenceCount>=2,`${row.primary_domain_id}: canonical field mangler minst to eksplisitte akademiske/scholarly kilder`);
     if(inlineAcademicSources.size>0)assert.ok(inlineSourceLimitations>=1,`${row.primary_domain_id}: inline scholarly-kilder mangler feltspesifikk kildebegrensning`);
+    scholarlyFieldMatrix.push({field:row.primary_domain_id,canonical:canonicalAcademic.length,inline:inlineAcademicSources.size,bridge:bridgeAcademic.length,total:scholarlyEvidenceCount});
     fieldScholarlyCount++;
   }
   assert.equal(fulltextFieldIds.size,23,'Actual canonical fulltekst skal dekke 23/23 Historie-felt');
@@ -154,31 +206,55 @@ export function auditHistoryTheoryIntegrity(){
   assert.ok(Number(quizRules.normal_opening_contract?.theory_begins_from_set)>=4,'Teori skal ikke introduseres før kilde/stedsgrunnlag er etablert');
   assert.ok(validatorRules.includes('theory overreach'),'Historie validator må flagge theory overreach');
 
-  assert.equal(attribution.schema,'history_go_historie_theory_attribution_v1');
-  assert.equal(attribution.subject_id,'historie');
-  assert.equal(attribution.rules?.name_only_trivia_forbidden,true);
-  assert.equal(attribution.rules?.frozen_theory_objects_read_only,true);
-  const requiredThinkers=new Set(theories.flatMap(t=>list(t.thinker_ids)));
-  const attributionById=new Map();
-  for(const row of list(attribution.thinkers)){
-    assert.ok(row.thinker_id&&!attributionById.has(row.thinker_id),`Manglende/duplikat thinker attribution: ${row.thinker_id}`);
-    attributionById.set(row.thinker_id,row);
-    assert.ok(norm(row.name).length>=3,`Thinker attribution mangler navn: ${row.thinker_id}`);
-    assert.ok(norm(row.contribution).length>=80,`Thinker attribution mangler substansielt forskningsbidrag: ${row.thinker_id}`);
-    assert.ok(list(row.works).length>=1,`Thinker attribution mangler konkret verk: ${row.thinker_id}`);
+  const canonicalThinkerIds=unique(domains.flatMap(domain=>list(domain.canonical_thinker_ids))).sort();
+  assert.equal(canonicalThinkerIds.length,112,'Historie forventer 112 unike canonicale field-level thinker anchors');
+  const existingThinkers=existingCanonicalThinkerEvidence(canonicalThinkerIds);
+  const supplementById=new Map();
+  for(const row of list(attribution.thinker_supplements)){
+    assert.ok(row.thinker_id&&!supplementById.has(row.thinker_id),`Manglende/duplikat thinker supplement: ${row.thinker_id}`);
+    supplementById.set(row.thinker_id,row);
+    assert.ok(norm(row.name).length>=3,`Thinker supplement mangler navn: ${row.thinker_id}`);
+    assert.ok(norm(row.contribution).length>=80,`Thinker supplement mangler substansielt forskningsbidrag: ${row.thinker_id}`);
+    assert.ok(list(row.works).length>=1,`Thinker supplement mangler konkret verk: ${row.thinker_id}`);
     for(const work of list(row.works)){
       assert.ok(norm(work.title).length>=4,`Thinker work mangler tittel: ${row.thinker_id}`);
       assert.ok(norm(work.contribution).length>=60,`Thinker work mangler konkret bidrag: ${row.thinker_id}/${work.title}`);
-      assert.ok(norm(work.scholarly_locator).length>=12,`Thinker work mangler scholarly locator: ${row.thinker_id}/${work.title}`);
+      assert.ok(/^https:\/\/\S+$/i.test(String(work.scholarly_locator||'')),`Thinker work mangler scholarly https-locator: ${row.thinker_id}/${work.title}`);
     }
   }
-  const missingThinkers=[...requiredThinkers].filter(id=>!attributionById.has(id)).sort();
-  const extraThinkers=[...attributionById.keys()].filter(id=>!requiredThinkers.has(id)).sort();
-  assert.deepEqual(extraThinkers,[],`Attribution registry har thinkers som ikke brukes av canonical theory objects: ${extraThinkers.join(', ')}`);
-  assert.deepEqual(missingThinkers,[],`Historie person_work_binding mangler thinker IDs (${missingThinkers.length}): ${missingThinkers.join(', ')}`);
-  assert.equal(attributionById.size,requiredThinkers.size,'Alle navngitte Historie-thinkers skal ha work/contribution-attribusjon');
+  const extras=[...supplementById.keys()].filter(id=>!canonicalThinkerIds.includes(id)).sort();
+  assert.deepEqual(extras,[],`Thinker supplement har ID som ikke er canonical field anchor: ${extras.join(', ')}`);
+  const existingResolved=canonicalThinkerIds.filter(id=>list(existingThinkers.get(id)).length>0);
+  const missingExisting=canonicalThinkerIds.filter(id=>!existingResolved.includes(id));
+  for(const id of supplementById.keys())assert.ok(missingExisting.includes(id),`Supplement dupliserer eksisterende frozen thinker/work-evidens: ${id}`);
+  const unresolved=canonicalThinkerIds.filter(id=>!existingResolved.includes(id)&&!supplementById.has(id));
+  assert.deepEqual(unresolved,[],`Historie person_work_binding mangler canonical thinker IDs (${unresolved.length}): ${unresolved.join(', ')}`);
+  for(const domain of domains){
+    const ids=unique(list(domain.canonical_thinker_ids));
+    assert.ok(ids.length>=4,`${domain.domain_id}: trenger minst fire canonical thinker/work-ankre`);
+    assert.ok(ids.every(id=>canonicalThinkerIds.includes(id)),`${domain.domain_id}: ukjent canonical thinker ID`);
+    const resolved=ids.filter(id=>list(existingThinkers.get(id)).length>0||supplementById.has(id));
+    assert.ok(resolved.length>=4,`${domain.domain_id}: færre enn fire substansielt bundne thinker/work-ankre`);
+  }
+  const personWorkBoundCount=existingResolved.length+supplementById.size;
+  assert.equal(personWorkBoundCount,112,'Alle 112 canonicale field-level thinker anchors skal ha name/work/contribution-binding');
 
-  return {status:'STRICTLY_PROVEN',canonicalFieldCount:23,theoryCount:230,universalCoverageCells:58,theoryEvidenceReadyCount:230,fulltextTheoryCount:fulltextTheoryIds.size,theoryBoundSectionCount:theoryBoundSections,fieldScholarlyCount,thinkerCount:requiredThinkers.size,attributedThinkerCount:attributionById.size,antiTrivia:true};
+  return {
+    status:'STRICTLY_PROVEN',
+    canonicalFieldCount:23,
+    theoryCount:230,
+    universalCoverageCells:58,
+    theoryEvidenceReadyCount:230,
+    fulltextTheoryCount:fulltextTheoryIds.size,
+    theoryBoundSectionCount:theoryBoundSections,
+    fieldScholarlyCount,
+    scholarlyFieldMatrix,
+    canonicalThinkerCount:canonicalThinkerIds.length,
+    existingThinkerWorkCount:existingResolved.length,
+    supplementalThinkerWorkCount:supplementById.size,
+    personWorkBoundCount,
+    antiTrivia:true
+  };
 }
 
 if(process.argv[1]===fileURLToPath(import.meta.url)){
