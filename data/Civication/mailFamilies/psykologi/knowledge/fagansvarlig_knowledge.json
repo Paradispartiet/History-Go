@@ -1,0 +1,43 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "fagansvarlig",
+  "mail_type": "knowledge",
+  "families": [{
+    "id": "rolle_og_myndighetsgrense",
+    "purpose": "Skille arbeidsgiveroppnevnt lokal fagrolle fra lovregulert faglig ansvar og individuell klinisk myndighet.",
+    "learning_focus": ["myndighet", "profesjonsgrenser", "eskalering"],
+    "mails": [{
+      "id": "psykologi_fagansvarlig_knowledge_myndighet_001",
+      "mail_type": "knowledge",
+      "mail_family": "rolle_og_myndighetsgrense",
+      "role_scope": "fagansvarlig",
+      "phase": "mid",
+      "day_phase": "afternoon",
+      "priority": 140,
+      "cooldown": 4,
+      "repeatable": false,
+      "stage": "stable",
+      "from": "Den organisatoriske lederen",
+      "people_ref": "psykologi_fagansvarlig_leder",
+      "place_id": "psykologi_fagansvarlig_kvalitetsrom",
+      "subject": "Kan du godkjenne dette som faglig ansvarlig?",
+      "summary": "En sak sendes til deg for endelig godkjenning fordi stillingstittelen din oppfattes som formell klinisk og lovregulert myndighet.",
+      "purpose": "Teste om spilleren bruker den eksplisitte myndighetsgrensen og eskalerer til riktig kvalifisert og utpekt beslutningseier.",
+      "stakes": "En autoritativ signatur kan skjule at verken kompetansegrunnlag, individuell klinisk rolle eller formell utpeking er avklart.",
+      "situation": ["Civication-rollen er arbeidsgiveroppnevnt lokal fag- og kvalitetskoordinering.", "Tittelen gir ikke i seg selv myndighet etter psykisk helsevernloven.", "Saken må håndteres av den som faktisk har relevant kvalifikasjon, klinisk mandat og eventuell formell utpeking."],
+      "task_domain": "rolle_og_myndighetsavklaring",
+      "task_kind": "knowledge",
+      "competency": "myndighetsforstaelse",
+      "pressure": "autoritativ_tittel",
+      "choice_axis": "verifisert_mandat_og_eskalering_vs_tittelbasert_beslutning",
+      "consequence_axis": "riktig_beslutningseier_vs_kompetanseoverskridelse",
+      "narrative_arc": "fra_tittelantakelse_til_formell_rolleavklaring",
+      "choices": [
+        {"id": "A", "label": "Avklar mandatet og send saken til riktig eier", "reply": "Min lokale fagrolle gir ikke denne myndigheten. Jeg dokumenterer grensen og sørger for vurdering hos den som har relevant kompetanse, klinisk ansvar og eventuell formell utpeking.", "effect": 1, "tags": ["authority_boundary", "escalation", "role_clarity"], "feedback": "Du bruker faglig status til å plassere beslutningen riktig, ikke til å utvide egen myndighet.", "effects": {"stats": {"quality": 2, "trust": 2, "risk": -3, "status": 0}}},
+        {"id": "B", "label": "Godkjenn fordi du er fagansvarlig", "reply": "Tittelen min viser at jeg har det overordnede fagansvaret, så jeg signerer for å unngå forsinkelse.", "effect": -1, "tags": ["authority_overreach", "legal_boundary"], "feedback": "Du forveksler en lokal tittel med klinisk og lovregulert myndighet.", "effects": {"stats": {"status": 1, "quality": -3, "trust": -2, "risk": 4}}}
+      ]
+    }]
+  }]
+}

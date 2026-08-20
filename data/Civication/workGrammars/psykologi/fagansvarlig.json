@@ -1,15 +1,73 @@
 {
-  "schema":"civication_work_grammar_v1",
-  "version":1,
-  "category":"psykologi",
-  "role_scope":"fagansvarlig",
-  "role_id":"psykologi_fagansvarlig",
-  "title":"Fagansvarlig",
-  "badge_binding":{"badge_category":"psykologi","badge_id":"psykologi","badge_name":"Psykologi","tier_label":"Fagansvarlig","tier_threshold":190,"badge_titles":["Fagansvarlig"],"progression_from":["Spesialistpsykolog"],"progression_to":["Klinikkleder"]},
-  "evidence":{"registry":"data/Civication/psychologyClinicalCareerEvidence.json","source_refs":["helsedirektoratet_faglig_ansvarlig_boundary"]},
-  "fag_bindings":{"primary_subjects":["psykologi"],"category_files":["data/Civication/roleModels/psykologi/fagansvarlig.json"],"required_concepts":["kvalitetsforbedring","systemlaering","veiledning","implementering","profesjonsgrenser","myndighet","pasientsikkerhet"],"methods":["avviksanalyse","forbedringsarbeid","prosedyregjennomgang","kompetanseplan","veiledningsstruktur","rolleavklaring"]},
-  "work_identity":{"one_sentence":"Fagansvarlig holder fag, kvalitet og kompetansearbeid sammen uten a late som lokal fagledelse er det samme som individuell klinisk eller lovbestemt myndighet.","hidden_responsibility":"A gjore systemfeil synlige nok til at organisasjonen kan lære, samtidig som ansvar plasseres riktig.","status_tension":"Rollen forventes a ha svar, men noen av de viktigste svarene er hvem som faktisk har myndighet og kompetanse til a beslutte.","core_pressure":"kvalitet_vs_formell_etterlevelse","work_rhythm":["folde opp kvalitetsdata og avvik","revidere prosedyrer","planlegge fagmoter og veiledning","stotte implementering","avklare roller og kompetanse","eskalere systemrisiko"]},
-  "authority_boundary":{"may":["koordinere fag- og kvalitetsarbeid innen arbeidsgiverens mandat","utvikle prosedyrer, veiledningsstruktur og kompetansetiltak","analysere avvik og foresla systemforbedringer","ettersporre faglige begrunnelser","eskalere saker til riktig klinisk, juridisk eller ledelsesmessig myndighet"],"may_not":["framstille Civication-tittelen som lovens faglig ansvarlig etter psykisk helsevernloven","fatte lovregulerte vedtak uten særskilt kvalifikasjon, praksis og utpeking","diagnostisere eller behandle uten separat profesjonskompetanse og klinisk mandat","erstatte klinikerens individuelle ansvar med en lokal prosedyre"],"escalate_when":["et sporsmal krever lovregulert klinisk myndighet","et avvik viser systemrisiko utover eget mandat","kompetansegapet ikke kan loses med lokal veiledning","ledelsesbeslutning om ressurser eller bemanning er nodvendig"]},
-  "story_world":{"simulation_promise":"Du opplever hvordan fagledelse blir god nar den skaper laering og tydelige grenser, og svak nar prosedyrer brukes til a lukke problemer.","everyday_world":"Dagen bestar av avvik, fagmoter, veiledningsplaner, prosedyresporsmal, implementering og korte avklaringer om hvem som faktisk eier en beslutning.","hidden_complexity":"Et system kan oppfylle formelle krav og fortsatt produsere samme feil igjen hvis ingen undersoker arbeidsflyten bak avviket.","recurring_situations":["en prosedyre finnes men folges ikke i praksis","veiledning brukes som prestasjonskontroll","et avvik plasseres hos en enkeltperson selv om arbeidsflyten er svak","kolleger forventer juridisk myndighet fra en lokal tittel","en ny faglig anbefaling innfores uten kapasitet til opplaring"],"small_story_seeds":["et lukket avvik dukker opp igjen med en annen ansatt","en veileder slutter a ta opp usikkerhet fordi lederen sitter i rommet","to profesjoner tolker samme prosedyre ulikt"],"relationship_web":[{"who":"kliniker","relation":"fagperson i tjenesten","wants":"tydelige rammer og faglig rom","creates":"balanse mellom standard og skjønn","tension":"standard_vs_faglig_skjonn"},{"who":"leder","relation":"organisatorisk ansvarlig","wants":"kontroll og dokumenterbar forbedring","creates":"press for rask lukking","tension":"rapportering_vs_laering"},{"who":"kvalitetsradgiver","relation":"forbedringspartner","wants":"systematikk og sporbarhet","creates":"krav om etterproving","tension":"tempo_vs_grunnarbeid"}],"knowledge_in_practice":[{"concept":"systemlaering","practical_scene":"samme type avvik skjer med ulike ansatte","what_player_must_notice":"gjentakelsen peker mot mer enn individfeil","bad_misread":"stram inn instruksen enda en gang","good_use":"kartlegg arbeidsflyt, barrierer og hvorfor riktig handling er vanskelig"},{"concept":"myndighet","practical_scene":"noen ber deg fatte et klinisk vedtak","what_player_must_notice":"stillingstittel og lovkompetanse er ikke det samme","bad_misread":"hoy faglig status er nok","good_use":"avklar hvem som har riktig kvalifikasjon og formell utpeking"}]},
-  "practice_stories":[{"id":"avviket_som_kom_tilbake","title":"Avviket som kom tilbake","setup":"Et avvik som ble lukket med ny prosedyre oppstar pa nytt.","decision":"Undersok systemet eller behandle det som nytt enkeltbrudd.","learning":"Varig kvalitet krever laering fra arbeidsflyten."},{"id":"veiledningsrommet","title":"Veiledningsrommet","setup":"Ledelsen vil bruke veiledning til produksjonsoppfolging.","decision":"Beskytt laeringsrommet eller gjore det til kontrollarena.","learning":"Veiledning mister verdi nar usikkerhet blir risikabelt a vise."},{"id":"feil_myndighet","title":"Feil myndighet","setup":"En krevende sak sendes til deg fordi tittelen din hores autoritativ ut.","decision":"Avklar og eskaler eller ta beslutningen selv.","learning":"God fagledelse kjenner den juridiske grensen."},{"id":"prosedyren_som_ikke_passer","title":"Prosedyren som ikke passer","setup":"En standard gir lik praksis men skaper problem i enkelte situasjoner.","decision":"Bygg begrunnet unntakslogikk eller krev blind etterlevelse.","learning":"Kvalitet er mer enn likhet."}]
+  "schema": "civication_work_grammar_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "fagansvarlig",
+  "role_id": "psykologi_fagansvarlig",
+  "title": "Fagansvarlig",
+  "badge_binding": {"badge_category": "psykologi", "badge_id": "psykologi", "badge_name": "Psykologi", "tier_label": "Fagansvarlig", "tier_threshold": 190, "badge_titles": ["Fagansvarlig"], "progression_from": ["Spesialistpsykolog"], "progression_to": ["Klinikkleder"]},
+  "evidence": {"registry": "data/Civication/psychologyClinicalCareerEvidence.json", "source_refs": ["helsedirektoratet_faglig_ansvarlig_boundary"]},
+  "fag_bindings": {
+    "primary_subjects": ["psykologi"],
+    "category_files": ["data/Civication/roleModels/psykologi/fagansvarlig.json"],
+    "required_concepts": ["kvalitetsforbedring", "systemlaering", "veiledning", "implementering", "profesjonsgrenser", "myndighet", "pasientsikkerhet"],
+    "methods": ["avviksanalyse", "forbedringsarbeid", "prosedyregjennomgang", "kompetanseplan", "veiledningsstruktur", "rolleavklaring"]
+  },
+  "work_identity": {
+    "one_sentence": "Fagansvarlig holder fag, kvalitet og kompetansearbeid sammen uten å late som lokal fagledelse er det samme som individuell klinisk eller lovbestemt myndighet.",
+    "hidden_responsibility": "Å gjøre systemfeil synlige nok til at organisasjonen kan lære, samtidig som ansvar plasseres riktig.",
+    "status_tension": "Rollen forventes å ha svar, men noen av de viktigste svarene er hvem som faktisk har myndighet og kompetanse til å beslutte.",
+    "core_pressure": "kvalitet_vs_formell_etterlevelse",
+    "work_rhythm": ["folde opp kvalitetsdata og avvik", "revidere prosedyrer", "planlegge fagmøter og veiledning", "støtte implementering", "avklare roller og kompetanse", "eskalere systemrisiko"]
+  },
+  "authority_boundary": {
+    "may": ["koordinere fag- og kvalitetsarbeid innen arbeidsgiverens mandat", "utvikle prosedyrer, veiledningsstruktur og kompetansetiltak", "analysere avvik og foreslå systemforbedringer", "etterspørre faglige begrunnelser", "eskalere saker til riktig klinisk, juridisk eller ledelsesmessig myndighet"],
+    "may_not": ["framstille Civication-tittelen som lovens faglig ansvarlig etter psykisk helsevernloven", "fatte lovregulerte vedtak uten særskilt kvalifikasjon, praksis og utpeking", "diagnostisere eller behandle uten separat profesjonskompetanse og klinisk mandat", "erstatte klinikerens individuelle ansvar med en lokal prosedyre"],
+    "escalate_when": ["et spørsmål krever lovregulert klinisk myndighet", "et avvik viser systemrisiko utover eget mandat", "kompetansegapet ikke kan løses med lokal veiledning", "ledelsesbeslutning om ressurser eller bemanning er nødvendig"]
+  },
+  "story_world": {
+    "simulation_promise": "Du opplever hvordan fagledelse blir god når den skaper læring og tydelige grenser, og svak når prosedyrer brukes til å lukke problemer.",
+    "everyday_world": "Dagen består av avvik, fagmøter, veiledningsplaner, prosedyrespørsmål, implementering og korte avklaringer om hvem som faktisk eier en beslutning.",
+    "hidden_complexity": "Et system kan oppfylle formelle krav og fortsatt produsere samme feil igjen hvis ingen undersøker arbeidsflyten bak avviket.",
+    "recurring_situations": ["en prosedyre finnes men følges ikke i praksis", "veiledning brukes som prestasjonskontroll", "et avvik plasseres hos en enkeltperson selv om arbeidsflyten er svak", "kolleger forventer juridisk myndighet fra en lokal tittel", "en ny faglig anbefaling innføres uten kapasitet til opplæring"],
+    "small_story_seeds": ["et lukket avvik dukker opp igjen med en annen ansatt", "en veileder slutter å ta opp usikkerhet fordi lederen sitter i rommet", "to profesjoner tolker samme prosedyre ulikt"],
+    "relationship_web": [
+      {"who": "kliniker", "relation": "fagperson i tjenesten", "wants": "tydelige rammer og faglig rom", "creates": "balanse mellom standard og skjønn", "tension": "standard_vs_faglig_skjonn"},
+      {"who": "leder", "relation": "organisatorisk ansvarlig", "wants": "kontroll og dokumenterbar forbedring", "creates": "press for rask lukking", "tension": "rapportering_vs_laering"},
+      {"who": "kvalitetsrådgiver", "relation": "forbedringspartner", "wants": "systematikk og sporbarhet", "creates": "krav om etterprøving", "tension": "tempo_vs_grunnarbeid"}
+    ],
+    "knowledge_in_practice": [
+      {"concept": "systemlæring", "practical_scene": "samme type avvik skjer med ulike ansatte", "what_player_must_notice": "gjentakelsen peker mot mer enn individfeil", "bad_misread": "stram inn instruksen enda en gang", "good_use": "kartlegg arbeidsflyt, barrierer og hvorfor riktig handling er vanskelig"},
+      {"concept": "myndighet", "practical_scene": "noen ber deg fatte et klinisk vedtak", "what_player_must_notice": "stillingstittel og lovkompetanse er ikke det samme", "bad_misread": "høy faglig status er nok", "good_use": "avklar hvem som har riktig kvalifikasjon og formell utpeking"}
+    ]
+  },
+  "actor_grammar": [
+    {"id": "psykologi_fagansvarlig_kliniker", "role": "kliniker", "function": "utøver individuelt faglig ansvar og trenger standarder som gir rom for begrunnet skjønn"},
+    {"id": "psykologi_fagansvarlig_leder", "role": "organisatorisk leder", "function": "eier bemanning, ressurser og styringsbeslutninger som ligger utenfor den fagansvarliges delegerte mandat"},
+    {"id": "psykologi_fagansvarlig_kvalitetsradgiver", "role": "kvalitetsrådgiver", "function": "bidrar med avviksdata og forbedringsmetode uten å gjøre indikatorer til hele virkeligheten"},
+    {"id": "psykologi_fagansvarlig_veileder", "role": "veileder", "function": "beskytter et læringsrom der usikkerhet kan undersøkes uten å bli brukt som skjult prestasjonskontroll"}
+  ],
+  "work_loops": [
+    "samle avvik, kvalitetsdata og praksiserfaring før problemet avgrenses",
+    "skille individhandling, arbeidsflyt, kapasitet og myndighet i årsaksbildet",
+    "prøve et avgrenset forbedringstiltak med ansvar, støtte og vurderingspunkt",
+    "evaluere virkning og bivirkning uten å overtolke enkeltmålinger",
+    "eskalere kliniske, juridiske og ressursmessige beslutninger til riktig eier"
+  ],
+  "place_grammar": [
+    {"place_id": "psykologi_fagansvarlig_kvalitetsrom", "kind": "fictionalized_work_surface", "function": "arbeidsflate for å sammenholde avvik, arbeidsflyt, kompetanse og målekvalitet uten pasientidentifiserbare opplysninger", "mail_types": ["job", "knowledge", "micro", "consequence"]},
+    {"place_id": "psykologi_fagansvarlig_veiledningsrom", "kind": "fictionalized_work_surface", "function": "avgrenset læringsflate for profesjonell usikkerhet, faglig skjønn og rolleavklaring", "mail_types": ["people", "conflict", "followup"]},
+    {"place_id": "psykologi_fagansvarlig_forbedringsrad", "kind": "fictionalized_work_surface", "function": "beslutningsflate der implementering, kapasitet, myndighet, risiko og læring legges åpent ved siden av hverandre", "mail_types": ["event", "story", "conflict"]}
+  ],
+  "mail_generation_contract": {
+    "required_mail_types": ["job", "people", "conflict", "story", "event", "micro", "followup", "knowledge", "consequence"],
+    "required_axes": ["choice_axis", "consequence_axis", "narrative_arc"],
+    "work_surface_policy": "fictionalized_work_surfaces_are_not_claims_about_specific_employers"
+  },
+  "practice_stories": [
+    {"id": "avviket_som_kom_tilbake", "title": "Avviket som kom tilbake", "setup": "Et avvik som ble lukket med ny prosedyre oppstår på nytt.", "decision": "Undersøk systemet eller behandle det som nytt enkeltbrudd.", "learning": "Varig kvalitet krever læring fra arbeidsflyten."},
+    {"id": "veiledningsrommet", "title": "Veiledningsrommet", "setup": "Ledelsen vil bruke veiledning til produksjonsoppfølging.", "decision": "Beskytt læringsrommet eller gjør det til kontrollarena.", "learning": "Veiledning mister verdi når usikkerhet blir risikabelt å vise."},
+    {"id": "feil_myndighet", "title": "Feil myndighet", "setup": "En krevende sak sendes til deg fordi tittelen din høres autoritativ ut.", "decision": "Avklar og eskaler eller ta beslutningen selv.", "learning": "God fagledelse kjenner den juridiske grensen."},
+    {"id": "prosedyren_som_ikke_passer", "title": "Prosedyren som ikke passer", "setup": "En standard gir lik praksis men skaper problem i enkelte situasjoner.", "decision": "Bygg begrunnet unntakslogikk eller krev blind etterlevelse.", "learning": "Kvalitet er mer enn likhet."}
+  ]
 }

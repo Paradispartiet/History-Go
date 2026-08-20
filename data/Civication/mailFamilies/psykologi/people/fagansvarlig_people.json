@@ -1,0 +1,43 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "fagansvarlig",
+  "mail_type": "people",
+  "families": [{
+    "id": "prosedyre_og_klinisk_skjonn",
+    "purpose": "Avklare hvordan en lokal minimumsstandard kan støtte praksis uten å erstatte klinikerens individuelle ansvar.",
+    "learning_focus": ["profesjonsgrenser", "faglig_skjonn", "rolleavklaring"],
+    "mails": [{
+      "id": "psykologi_fagansvarlig_people_skjonn_001",
+      "mail_type": "people",
+      "mail_family": "prosedyre_og_klinisk_skjonn",
+      "role_scope": "fagansvarlig",
+      "phase": "early",
+      "day_phase": "midday",
+      "priority": 145,
+      "cooldown": 3,
+      "repeatable": false,
+      "stage": "stable",
+      "from": "En kliniker",
+      "people_ref": "psykologi_fagansvarlig_kliniker",
+      "place_id": "psykologi_fagansvarlig_veiledningsrom",
+      "subject": "Betyr prosedyren at skjønnet mitt ikke gjelder?",
+      "summary": "En kliniker peker på en situasjon der lokal prosedyre og den konkrete faglige vurderingen trekker i ulike retninger.",
+      "purpose": "Teste om fagansvarlig skiller minimumsstandard, begrunnet avvik og individuelt profesjonsansvar.",
+      "stakes": "Blind etterlevelse kan gjøre prosedyren utrygg; grenseløs skjønnsfrihet kan gjøre praksis uforutsigbar og umulig å lære av.",
+      "situation": ["Prosedyren er lokal og beskriver en normal arbeidsflyt, ikke en lovregulert beslutning.", "Klinikeren har særskilt profesjonskompetanse og beholder ansvar for sin vurdering.", "Avvik fra standarden kan dokumenteres og løftes tilbake til prosedyregjennomgang uten pasientdetaljer i læringsmaterialet."],
+      "task_domain": "prosedyre_og_faglig_skjonn",
+      "task_kind": "people",
+      "competency": "rolleavklaring",
+      "pressure": "lik_praksis_vs_individuell_vurdering",
+      "choice_axis": "minimumsstandard_med_begrunnelse_vs_blind_etterlevelse",
+      "consequence_axis": "laerbart_skjonn_vs_skjult_avvik",
+      "narrative_arc": "fra_tilsynelatende_motsetning_til_tydelig_ansvarsdeling",
+      "choices": [
+        {"id": "A", "label": "Avklar standarden og dokumenter begrunnet avvik", "reply": "Prosedyren setter en minimumsramme, men overtar ikke ditt kliniske ansvar. Begrunn vurderingen, eskaler hvis myndighet eller risiko krever det, og la oss bruke mønsteret i neste prosedyregjennomgang.", "effect": 1, "tags": ["professional_judgment", "boundary", "learning"], "feedback": "Du gjør både ansvar, unntak og læringsvei synlige uten å gi kliniske råd i rollen.", "effects": {"stats": {"quality": 2, "trust": 2, "risk": -1, "energy": -1}}},
+        {"id": "B", "label": "Krev lik etterlevelse i alle tilfeller", "reply": "Min rolle er å sikre lik praksis, så prosedyren må følges selv når du vurderer situasjonen annerledes.", "effect": -1, "tags": ["authority_overreach", "blind_compliance"], "feedback": "Du gjør lokal fagledelse til erstatning for individuelt profesjonsansvar.", "effects": {"stats": {"status": 1, "quality": -2, "trust": -2, "risk": 2}}}
+      ]
+    }]
+  }]
+}

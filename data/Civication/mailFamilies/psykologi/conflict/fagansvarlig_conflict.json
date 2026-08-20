@@ -1,0 +1,43 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "fagansvarlig",
+  "mail_type": "conflict",
+  "families": [{
+    "id": "veiledning_og_kontrollpress",
+    "purpose": "Beskytte veiledning som læringsrom når organisatorisk ledelse etterspør individuell prestasjonsinformasjon.",
+    "learning_focus": ["veiledning", "konfidensialitet", "mandatklarhet"],
+    "mails": [{
+      "id": "psykologi_fagansvarlig_conflict_veiledning_001",
+      "mail_type": "conflict",
+      "mail_family": "veiledning_og_kontrollpress",
+      "role_scope": "fagansvarlig",
+      "phase": "early",
+      "day_phase": "midday",
+      "priority": 142,
+      "cooldown": 4,
+      "repeatable": false,
+      "stage": "stable",
+      "from": "Den organisatoriske lederen",
+      "people_ref": "psykologi_fagansvarlig_leder",
+      "place_id": "psykologi_fagansvarlig_veiledningsrom",
+      "subject": "Kan veiledningen gi oss en rangering?",
+      "summary": "Ledelsen vil bruke det som tas opp i veiledning til å rangere medarbeidere og målrette produksjonsoppfølging.",
+      "purpose": "Teste om fagansvarlig kan skille læringsarena, legitim ledelsesoppfølging og nødvendige eskaleringskanaler.",
+      "stakes": "Hvis profesjonell usikkerhet blir prestasjonsdata, kan risikosignaler forsvinne fra rommet; hvis all oppfølging avvises, kan reelle lederbehov bli stående uten kanal.",
+      "situation": ["Veiledningen ble etablert som lærings- og refleksjonsarena.", "Ledelsen har legitimt ansvar for arbeidsmiljø, kapasitet og ytelse.", "Alvorlige sikkerhets- eller pliktspørsmål må fortsatt håndteres i avtalte, separate kanaler."],
+      "task_domain": "veiledningsstruktur",
+      "task_kind": "conflict",
+      "competency": "mandatklarhet",
+      "pressure": "kontrollbehov",
+      "choice_axis": "beskyttet_laeringsrom_med_separate_kanaler_vs_skjult_kontroll",
+      "consequence_axis": "apen_usikkerhet_vs_stille_risiko",
+      "narrative_arc": "fra_kontrollkrav_til_legitim_kanaldeling",
+      "choices": [
+        {"id": "A", "label": "Skill veiledning fra prestasjonsoppfølging", "reply": "Jeg beskytter innholdet i læringsrommet, rapporterer avtalte mønstre på aggregert nivå og etablerer en separat lederkanal for kapasitet, ytelse og forhold som faktisk må eskaleres.", "effect": 1, "tags": ["learning_space", "confidentiality", "governance"], "feedback": "Du ivaretar både læring og legitimt lederansvar gjennom tydelige kanaler.", "effects": {"stats": {"quality": 2, "trust": 2, "risk": -2, "status": 0}}},
+        {"id": "B", "label": "Del hvem som viser mest usikkerhet", "reply": "Jeg kan oppsummere hvem som trenger mest støtte, slik at ledelsen får et raskt styringsgrunnlag.", "effect": -1, "tags": ["surveillance", "trust_breach"], "feedback": "Du gjør åpen faglig usikkerhet risikabel og svekker selve datagrunnlaget veiledningen skulle skape.", "effects": {"stats": {"status": 1, "quality": -2, "trust": -3, "risk": 2}}}
+      ]
+    }]
+  }]
+}

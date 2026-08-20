@@ -1,0 +1,44 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "fagansvarlig",
+  "mail_type": "followup",
+  "families": [{
+    "id": "avvikstiltak_og_systemlaering",
+    "purpose": "Følge det gjentatte avviket til et avgrenset forsøk som fjerner en barriere uten å frikjenne eller forhåndsdømme enkeltpersoner.",
+    "learning_focus": ["forbedringsarbeid", "ansvarsdeling", "sporbarhet"],
+    "mails": [{
+      "id": "psykologi_fagansvarlig_followup_avvik_001",
+      "mail_type": "followup",
+      "mail_family": "avvikstiltak_og_systemlaering",
+      "role_scope": "fagansvarlig",
+      "thread_key": "psykologi_fagansvarlig_avvik_001",
+      "phase": "mastery",
+      "day_phase": "afternoon",
+      "priority": 128,
+      "cooldown": 4,
+      "repeatable": false,
+      "stage": "stable",
+      "from": "Kvalitetsrådgiveren",
+      "people_ref": "psykologi_fagansvarlig_kvalitetsradgiver",
+      "place_id": "psykologi_fagansvarlig_veiledningsrom",
+      "subject": "Vi fant et uklart kontrollpunkt – hva prøver vi?",
+      "summary": "Kartleggingen viser at to arbeidsledd antar at det andre bekrefter overføringen, men den viser ikke alene at dette forklarer alle hendelsene.",
+      "purpose": "Teste om fagansvarlig lager et målbart, reversibelt tiltak med eier og vurderingspunkt.",
+      "stakes": "Et for stort tiltak kan forstyrre praksis og skjule hva som virket; ingen handling lar kjent svakhet stå.",
+      "situation": ["Kontrollansvaret er uklart i både verktøy og prosedyre.", "Det finnes fortsatt variasjon i hendelsesforløpene.", "Et kort forsøk kan gjennomføres med aggregerte målinger og uten pasientidentifiserbart læringsmateriale."],
+      "task_domain": "forbedringsforsok",
+      "task_kind": "followup",
+      "competency": "forbedringsarbeid",
+      "pressure": "los_alt_med_en_gang",
+      "choice_axis": "avgrenset_barrieretest_vs_total_prosedyreomlegging",
+      "consequence_axis": "tolkbar_laering_vs_uoversiktlig_endring",
+      "narrative_arc": "fra_arbeidsflytfunn_til_testbart_tiltak",
+      "choices": [
+        {"id": "A", "label": "Prøv ett tydelig kontrollpunkt", "reply": "Vi gir ett arbeidsledd eksplisitt bekreftelsesansvar i en avgrenset periode, støtter teamet og vurderer rettidighet, avvik og uønskede bivirkninger før videre beslutning.", "effect": 1, "tags": ["small_test", "ownership", "measurement"], "feedback": "Du gjør tiltaket mulig å gjennomføre, vurdere og reversere uten å overclaim årsak.", "effects": {"stats": {"quality": 2, "trust": 1, "risk": -2, "energy": -1}}},
+        {"id": "B", "label": "Skriv om hele prosedyren straks", "reply": "Funnene er tydelige nok; jeg endrer alle arbeidsledd og krever ny kvittering fra alle.", "effect": -1, "tags": ["overcorrection", "causal_overclaim"], "feedback": "Du endrer flere forhold samtidig og mister muligheten til å vite om kontrollpunktet faktisk var barrieren.", "effects": {"stats": {"status": 1, "quality": -2, "trust": -1, "risk": 2}}}
+      ]
+    }]
+  }]
+}

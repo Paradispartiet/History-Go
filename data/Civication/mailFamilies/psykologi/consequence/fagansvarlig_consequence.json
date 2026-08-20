@@ -1,0 +1,44 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "fagansvarlig",
+  "mail_type": "consequence",
+  "families": [{
+    "id": "avvikstiltak_og_systemlaering",
+    "purpose": "Tolke resultatet av kontrollpunktet proporsjonalt og velge neste forbedringssteg uten å erklære årsaken endelig bevist.",
+    "learning_focus": ["konsekvens", "systemlaering", "usikkerhet"],
+    "mails": [{
+      "id": "psykologi_fagansvarlig_consequence_avvik_001",
+      "mail_type": "consequence",
+      "mail_family": "avvikstiltak_og_systemlaering",
+      "role_scope": "fagansvarlig",
+      "thread_key": "psykologi_fagansvarlig_avvik_001",
+      "phase": "mastery",
+      "day_phase": "day_end",
+      "priority": 126,
+      "cooldown": 4,
+      "repeatable": false,
+      "stage": "stable",
+      "from": "Kvalitetsrådgiveren",
+      "people_ref": "psykologi_fagansvarlig_kvalitetsradgiver",
+      "place_id": "psykologi_fagansvarlig_kvalitetsrom",
+      "subject": "Færre forsinkelser – men én ny flaskehals",
+      "summary": "I forsøksperioden ble overføringen oftere bekreftet innen fristen, samtidig som enkelte saker ventet lenger når den utpekte kontrolløren var opptatt.",
+      "purpose": "Teste om fagansvarlig beholder både forbedringen, bivirkningen og usikkerheten i neste beslutning.",
+      "stakes": "En seierserklæring kan standardisere en ny flaskehals; full forkastelse kan miste et tiltak som faktisk forbedret rettidigheten.",
+      "situation": ["Rettidigheten bedret seg i den avgrensede perioden.", "Datamengden er liten og andre samtidige forhold kan ha påvirket resultatet.", "Den nye flaskehalsen oppsto når én funksjon manglet reservekapasitet."],
+      "task_domain": "etterkontroll_og_systemlaering",
+      "task_kind": "consequence",
+      "competency": "proporsjonal_tolkning",
+      "pressure": "bevise_at_tiltaket_virket",
+      "choice_axis": "blandet_resultat_med_neste_test_vs_forhastet_kausalitet",
+      "consequence_axis": "robust_barriere_vs_flyttet_risiko",
+      "narrative_arc": "fra_forbedret_maling_til_avgrenset_neste_beslutning",
+      "choices": [
+        {"id": "A", "label": "Behold kontrollpunktet og test reservekapasitet", "reply": "Resultatet støtter at tydelig eierskap kan bedre rettidighet, men beviser ikke hele årsaken. Jeg dokumenterer begrensningen og tester en reservefunksjon før varig standardisering.", "effect": 1, "tags": ["proportional_inference", "side_effect", "next_test"], "feedback": "Du bruker læringen uten å skjule liten datamengde eller flyttet risiko.", "effects": {"stats": {"quality": 3, "trust": 2, "risk": -2, "energy": -1}}},
+        {"id": "B", "label": "Erklær arbeidsflyten løst", "reply": "Færre forsinkelser viser at vi fant årsaken. Jeg standardiserer løsningen og lukker avvikstråden.", "effect": -1, "tags": ["causal_overclaim", "premature_closure"], "feedback": "Du gjør et lovende, blandet forsøk til sikkert årsaksbevis og overser den nye flaskehalsen.", "effects": {"stats": {"status": 1, "quality": -3, "trust": -1, "risk": 3}}}
+      ]
+    }]
+  }]
+}
