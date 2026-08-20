@@ -31,6 +31,7 @@ on:
       - "scripts/materialize-psykologi-traume-krise-resiliens-omsorg-phase4.mjs"
       - "scripts/audit-fagverk-psykologi-traume-krise-resiliens-omsorg-phase4.mjs"
       - "scripts/audit-fagverk-psykologi-complete.mjs"
+      - "tools/audit-psykologi-theory-integrity.mjs"
       - "scripts/audit-fagverk-psykologi-biological-university.mjs"
       - "scripts/audit-fagverk-psykologi-cognitive-university.mjs"
       - "scripts/audit-fagverk-psykologi-developmental-university.mjs"
@@ -57,6 +58,7 @@ on:
       - "tests/fagverk-psykologi-sosialpsykologi-normalitet-stigma-phase4.test.mjs"
       - "tests/fagverk-psykologi-traume-krise-resiliens-omsorg-phase4.test.mjs"
       - "tests/fagverk-psykologi-complete.test.mjs"
+      - "tests/psykologi-theory-integrity.test.mjs"
       - "tests/fagverk-psykologi-biological-university.test.mjs"
       - "tests/fagverk-psykologi-cognitive-university.test.mjs"
       - "tests/fagverk-psykologi-developmental-university.test.mjs"
@@ -92,6 +94,7 @@ on:
       - "scripts/materialize-psykologi-traume-krise-resiliens-omsorg-phase4.mjs"
       - "scripts/audit-fagverk-psykologi-traume-krise-resiliens-omsorg-phase4.mjs"
       - "scripts/audit-fagverk-psykologi-complete.mjs"
+      - "tools/audit-psykologi-theory-integrity.mjs"
       - "scripts/audit-fagverk-psykologi-biological-university.mjs"
       - "scripts/audit-fagverk-psykologi-cognitive-university.mjs"
       - "scripts/audit-fagverk-psykologi-developmental-university.mjs"
@@ -115,6 +118,7 @@ on:
       - "tests/fagverk-psykologi-sosialpsykologi-normalitet-stigma-phase4.test.mjs"
       - "tests/fagverk-psykologi-traume-krise-resiliens-omsorg-phase4.test.mjs"
       - "tests/fagverk-psykologi-complete.test.mjs"
+      - "tests/psykologi-theory-integrity.test.mjs"
       - "tests/fagverk-psykologi-biological-university.test.mjs"
       - "tests/fagverk-psykologi-cognitive-university.test.mjs"
       - "tests/fagverk-psykologi-developmental-university.test.mjs"
@@ -171,6 +175,7 @@ jobs:
           node --check scripts/audit-fagverk-psykologi-sosialpsykologi-normalitet-stigma-phase4.mjs
           node --check scripts/audit-fagverk-psykologi-traume-krise-resiliens-omsorg-phase4.mjs
           node --check scripts/audit-fagverk-psykologi-complete.mjs
+          node --check tools/audit-psykologi-theory-integrity.mjs
           node --check scripts/audit-fagverk-psykologi-biological-university.mjs
           node --check scripts/audit-fagverk-psykologi-cognitive-university.mjs
           node --check scripts/audit-fagverk-psykologi-developmental-university.mjs
@@ -206,6 +211,7 @@ jobs:
           node scripts/audit-fagverk-psykologi-sosialpsykologi-normalitet-stigma-phase4.mjs --write-report
           node scripts/audit-fagverk-psykologi-traume-krise-resiliens-omsorg-phase4.mjs --write-report
           node scripts/audit-fagverk-psykologi-complete.mjs --write-report
+          node tools/audit-psykologi-theory-integrity.mjs --write-report
           node scripts/audit-fagverk-psykologi-biological-university.mjs --write-report
           node scripts/audit-fagverk-psykologi-cognitive-university.mjs --write-report
           node scripts/audit-fagverk-psykologi-developmental-university.mjs --write-report
@@ -239,6 +245,7 @@ jobs:
           node --test tests/fagverk-psykologi-sosialpsykologi-normalitet-stigma-phase4.test.mjs
           node --test tests/fagverk-psykologi-traume-krise-resiliens-omsorg-phase4.test.mjs
           node --test tests/fagverk-psykologi-complete.test.mjs
+          node --test tests/psykologi-theory-integrity.test.mjs
           node --test tests/fagverk-psykologi-biological-university.test.mjs
           node --test tests/fagverk-psykologi-cognitive-university.test.mjs
           node --test tests/fagverk-psykologi-developmental-university.test.mjs
@@ -288,6 +295,7 @@ jobs:
           node scripts/audit-fagverk-psykologi-sosialpsykologi-normalitet-stigma-phase4.mjs
           node scripts/audit-fagverk-psykologi-traume-krise-resiliens-omsorg-phase4.mjs
           node scripts/audit-fagverk-psykologi-complete.mjs
+          node tools/audit-psykologi-theory-integrity.mjs
           node scripts/audit-fagverk-psykologi-biological-university.mjs
           node scripts/audit-fagverk-psykologi-cognitive-university.mjs
           node scripts/audit-fagverk-psykologi-developmental-university.mjs

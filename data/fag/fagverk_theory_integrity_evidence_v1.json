@@ -328,6 +328,62 @@
         "anti_trivia_rule": "verified",
         "universal_subject_scope": "verified"
       }
+    },
+    {
+      "subject_id": "psykologi",
+      "proof_scope": "structured_subject_gate",
+      "audit_script": "tools/audit-psykologi-theory-integrity.mjs",
+      "test": "tests/psykologi-theory-integrity.test.mjs",
+      "workflow": ".github/workflows/fagverk-psykologi-phase3.yml",
+      "evidence_files": [
+        "data/fag/psykologi/fagkart_psykologi_canonical_v4_5.json",
+        "data/fag/psykologi/theory_integrity_bindings_psykologi_v1.json",
+        "data/fagverk/fagverk_registry.json",
+        "reports/fagverk/psykologi-complete-audit.json",
+        "reports/fagverk/psykologi-theory-integrity-audit.json"
+      ],
+      "existing_gate_proves": {
+        "canonical_field_coverage": "verified",
+        "structured_scope_mechanism": "verified",
+        "limitations": "verified",
+        "rival_or_alternative": "verified",
+        "person_work_binding": "verified",
+        "scholarly_source_quality": "verified",
+        "claim_or_content_binding": "verified",
+        "actual_prose_binding": "verified",
+        "anti_trivia_rule": "verified",
+        "universal_subject_scope": "verified"
+      }
+    },
+    {
+      "subject_id": "sport",
+      "proof_scope": "structured_subject_gate",
+      "audit_script": "tools/audit-sport-theory-integrity.mjs",
+      "test": "tests/sport-theory-integrity.test.mjs",
+      "workflow": ".github/workflows/fagverk-sport-phase3.yml",
+      "evidence_files": [
+        "data/fag/sport/sportpensum_canonical_v4_5.json",
+        "data/fag/sport/theory_units_sport_canonical_v6.json",
+        "data/fag/sport/theory_integrity_bindings_sport_v1.json",
+        "data/fagverk/sport/sport_article_registry_v1.json",
+        "data/fagverk/fagverk_registry.json",
+        "reports/fagverk/sport-phase3-audit.json",
+        "reports/fagverk/sport-editorial-depth-audit.json",
+        "reports/fagverk/sport-scientific-quality-audit.json",
+        "reports/fagverk/sport-theory-integrity-audit.json"
+      ],
+      "existing_gate_proves": {
+        "canonical_field_coverage": "verified",
+        "structured_scope_mechanism": "verified",
+        "limitations": "verified",
+        "rival_or_alternative": "verified",
+        "person_work_binding": "verified",
+        "scholarly_source_quality": "verified",
+        "claim_or_content_binding": "verified",
+        "actual_prose_binding": "verified",
+        "anti_trivia_rule": "verified",
+        "universal_subject_scope": "verified"
+      }
     }
   ]
 }

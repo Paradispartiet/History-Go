@@ -18,6 +18,8 @@ on:
       - 'reports/fagverk/litteratur-theory-integrity-audit.json'
       - 'reports/fagverk/natur-theory-integrity-audit.json'
       - 'reports/fagverk/naeringsliv-theory-integrity-audit.json'
+      - 'reports/fagverk/psykologi-theory-integrity-audit.json'
+      - 'reports/fagverk/sport-theory-integrity-audit.json'
       - 'reports/historie-theory-evidence/**'
       - 'scripts/audit-fagverk-theory-integrity.mjs'
       - 'scripts/audit-fagverk-theory-quality.mjs'
@@ -36,6 +38,8 @@ on:
       - 'tools/audit-litteratur-theory-integrity.mjs'
       - 'tools/audit-natur-theory-integrity.mjs'
       - 'tools/audit-naeringsliv-theory-integrity.mjs'
+      - 'tools/audit-psykologi-theory-integrity.mjs'
+      - 'tools/audit-sport-theory-integrity.mjs'
       - 'tests/by-theory-integrity.test.mjs'
       - 'tests/kunst-theory-integrity.test.mjs'
       - 'tests/media-theory-integrity.test.mjs'
@@ -43,6 +47,8 @@ on:
       - 'tests/litteratur-theory-integrity.test.mjs'
       - 'tests/natur-theory-integrity.test.mjs'
       - 'tests/naeringsliv-theory-integrity.test.mjs'
+      - 'tests/psykologi-theory-integrity.test.mjs'
+      - 'tests/sport-theory-integrity.test.mjs'
       - 'tests/fagverk-documentation-contract.test.mjs'
       - 'tests/fagverk-theory-integrity.test.mjs'
       - '.github/workflows/fagverk-theory-integrity.yml'
@@ -65,6 +71,8 @@ on:
       - 'reports/fagverk/litteratur-theory-integrity-audit.json'
       - 'reports/fagverk/natur-theory-integrity-audit.json'
       - 'reports/fagverk/naeringsliv-theory-integrity-audit.json'
+      - 'reports/fagverk/psykologi-theory-integrity-audit.json'
+      - 'reports/fagverk/sport-theory-integrity-audit.json'
       - 'reports/historie-theory-evidence/**'
       - 'scripts/audit-fagverk-theory-integrity.mjs'
       - 'scripts/audit-fagverk-theory-quality.mjs'
@@ -83,6 +91,8 @@ on:
       - 'tools/audit-litteratur-theory-integrity.mjs'
       - 'tools/audit-natur-theory-integrity.mjs'
       - 'tools/audit-naeringsliv-theory-integrity.mjs'
+      - 'tools/audit-psykologi-theory-integrity.mjs'
+      - 'tools/audit-sport-theory-integrity.mjs'
       - 'tests/by-theory-integrity.test.mjs'
       - 'tests/kunst-theory-integrity.test.mjs'
       - 'tests/media-theory-integrity.test.mjs'
@@ -90,6 +100,8 @@ on:
       - 'tests/litteratur-theory-integrity.test.mjs'
       - 'tests/natur-theory-integrity.test.mjs'
       - 'tests/naeringsliv-theory-integrity.test.mjs'
+      - 'tests/psykologi-theory-integrity.test.mjs'
+      - 'tests/sport-theory-integrity.test.mjs'
       - 'tests/fagverk-documentation-contract.test.mjs'
       - 'tests/fagverk-theory-integrity.test.mjs'
       - '.github/workflows/fagverk-theory-integrity.yml'
@@ -116,6 +128,8 @@ jobs:
           node --check tools/audit-litteratur-theory-integrity.mjs
           node --check tools/audit-natur-theory-integrity.mjs
           node --check tools/audit-naeringsliv-theory-integrity.mjs
+          node --check tools/audit-psykologi-theory-integrity.mjs
+          node --check tools/audit-sport-theory-integrity.mjs
           node scripts/audit-fagverk-theory-integrity.mjs
           node --test tests/by-theory-integrity.test.mjs
           node --test tests/kunst-theory-integrity.test.mjs
@@ -124,5 +138,7 @@ jobs:
           node --test tests/litteratur-theory-integrity.test.mjs
           node --test tests/natur-theory-integrity.test.mjs
           node --test tests/naeringsliv-theory-integrity.test.mjs
+          node --test tests/psykologi-theory-integrity.test.mjs
+          node --test tests/sport-theory-integrity.test.mjs
           node --test tests/fagverk-theory-integrity.test.mjs
           node --test tests/fagverk-documentation-contract.test.mjs
