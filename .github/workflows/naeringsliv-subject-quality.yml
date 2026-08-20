@@ -7,6 +7,7 @@ on:
       - 'data/badges/naeringsliv.json'
       - 'data/fagverk/**'
       - 'tools/validate-okonomi-naeringsliv-*.mjs'
+      - 'tools/audit-naeringsliv-theory-integrity.mjs'
       - 'scripts/audit-naeringsliv-*.mjs'
       - 'tests/naeringsliv-*.test.mjs'
       - 'tests/fagverk-subject-inventory.test.mjs'
@@ -22,6 +23,7 @@ on:
       - 'data/badges/naeringsliv.json'
       - 'data/fagverk/**'
       - 'tools/validate-okonomi-naeringsliv-*.mjs'
+      - 'tools/audit-naeringsliv-theory-integrity.mjs'
       - 'scripts/audit-naeringsliv-*.mjs'
       - 'tests/naeringsliv-*.test.mjs'
       - 'tests/fagverk-subject-inventory.test.mjs'
@@ -45,6 +47,7 @@ jobs:
       - name: Validate Økonomi og næringsliv quality contracts
         run: |
           node --check scripts/audit-naeringsliv-subject-quality.mjs
+          node --check tools/audit-naeringsliv-theory-integrity.mjs
           node --check scripts/materialize-naeringsliv-specialization-chapters.mjs
           node --check scripts/audit-naeringsliv-specialization-chapters.mjs
           for audit in scripts/audit-naeringsliv-chapter-*.mjs; do
@@ -58,6 +61,7 @@ jobs:
           node tools/validate-okonomi-naeringsliv-emnerevisjon.mjs
           node tools/validate-okonomi-naeringsliv-handelshogskole.mjs
           node scripts/audit-naeringsliv-subject-quality.mjs
+          node tools/audit-naeringsliv-theory-integrity.mjs
           node scripts/audit-naeringsliv-source-maintenance.mjs
           node scripts/audit-naeringsliv-specialization-chapters.mjs
           node --test tests/naeringsliv-*.test.mjs
