@@ -1,0 +1,43 @@
+name: Civication scenario People
+
+on:
+  pull_request:
+    paths:
+      - 'data/Civication/historyPeople_index.json'
+      - 'data/Civication/roleModels/**'
+      - 'data/Civication/scenarioPeople/**'
+      - 'data/Civication/scenarioPeople_index.json'
+      - 'data/fag/**/theory_integrity_bindings*.json'
+      - 'scripts/build-civication-scenario-people-index.mts'
+      - 'tests/civication-scenario-people.test.mjs'
+      - 'docs/CIVICATION_SCENARIO_PEOPLE.md'
+      - '.github/workflows/civication-scenario-people.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'data/Civication/historyPeople_index.json'
+      - 'data/Civication/roleModels/**'
+      - 'data/Civication/scenarioPeople/**'
+      - 'data/Civication/scenarioPeople_index.json'
+      - 'data/fag/**/theory_integrity_bindings*.json'
+      - 'scripts/build-civication-scenario-people-index.mts'
+      - 'tests/civication-scenario-people.test.mjs'
+      - 'docs/CIVICATION_SCENARIO_PEOPLE.md'
+      - '.github/workflows/civication-scenario-people.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify generated scenario People catalog
+        run: node --experimental-strip-types scripts/build-civication-scenario-people-index.mts --check
+      - name: Test scenario People invariants
+        run: node --test tests/civication-scenario-people.test.mjs
