@@ -1,4 +1,4 @@
-name: TEMP Historie legacy theory section ranking
+name: TEMP Historie legacy bridge candidate proof
 
 on:
   pull_request:
@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Rank existing legacy prose for each canonical theory
+      - name: Validate explicit legacy bridge candidate against actual prose
         run: |
           node <<'NODE'
           const fs=require('fs');
@@ -26,33 +26,87 @@ jobs:
           const stop=new Set(['og','eller','som','for','med','til','fra','ved','mot','uten','etter','under','over','mellom','gjennom','den','det','de','en','et','av','på','i','er','var','blir','kan','skal','må','samt','slik','hvordan','historisk','historiske','historie','analytisk','analyse','analyserer','forklarer','undersøker','modellen','modell']);
           const toks=v=>uniq(norm(v).split(/\s+/).filter(t=>t.length>=4&&!stop.has(t)));
           const bind=(ref,prose)=>{const r=toks(ref),p=new Set(toks(prose)),m=r.filter(t=>p.has(t));return {m:m.length,n:r.length,r:r.length?m.length/r.length:0};};
-          const pensum=read('data/fag/historie/historiepensum_canonical_v4_5.json');
-          const mapping=read('data/fag/historie/emnemapping_historie_canonical_v4_5.json');
           const theories=read('data/fag/historie/theory_objects_historie_canonical_v5_5.json');
           const evidence=read('data/fag/historie/theory_evidence_historie_canonical_v1.json');
-          const eById=new Map(A(evidence.entries).map(e=>[e.theory_id,e]));
+          const mapping=read('data/fag/historie/emnemapping_historie_canonical_v4_5.json');
+          const pensum=read('data/fag/historie/historiepensum_canonical_v4_5.json');
           const registry=read('data/fagverk/fagverk_registry.json');
-          const wanted=new Set(['his_tid_periodisering','his_kilder_arkiv_spor','his_makt_stat_institusjoner']);
-          for(const field of wanted){
-            const d=A(pensum.domains).find(x=>x.domain_id===field);
-            const row=A(registry.subjects.historie.chapters).find(x=>x.primary_domain_id===field);
-            const chapter=read(row.file);
-            const secs=A(chapter.moduleFiles).flatMap(file=>A(read(file).sections).map(s=>({file,id:s.id,title:s.title||'',prose:A(s.paragraphs).join(' ')})));
-            for(const t of theories.filter(t=>A(t.explanatory_scope).includes(field))){
-              const emnes=A(mapping).filter(m=>d.emne_ids.includes(m.emne_id)&&A(m.mappings).some(x=>x.topic_hook===t.source_hook_id)).map(m=>m.emne_id);
-              const hookRows=A(mapping).flatMap(m=>A(m.mappings)).filter(x=>x.topic_hook===t.source_hook_id);
-              const hookTitle=hookRows[0]?.topic_hook_tittel||t.source_hook_id;
-              const ev=eById.get(t.theory_id)||{};
-              const ranked=secs.map(s=>{
-                const text=`${s.title} ${s.prose}`;
-                const label=bind(`${t.label||''} ${hookTitle}`,text);
-                const def=bind(t.definition,text);
-                const lim=A(t.limitations).map(x=>bind(x,text)).sort((a,b)=>b.r-a.r||b.m-a.m)[0]||{m:0,n:0,r:0};
-                const rat=bind(ev.rationale||'',text);
-                const score=label.m*4+def.m*2+lim.m*2+rat.m;
-                return {file:s.file,section:s.id,score,label_m:label.m,def_m:def.m,def_r:+def.r.toFixed(3),lim_m:lim.m,lim_r:+lim.r.toFixed(3),rationale_m:rat.m};
-              }).sort((a,b)=>b.score-a.score||b.def_r-a.def_r||b.lim_r-a.lim_r).slice(0,3);
-              console.log(JSON.stringify({field,theory_id:t.theory_id,hook:t.source_hook_id,emne_ids:emnes,top:ranked}));
+          const eById=new Map(A(evidence.entries).map(e=>[e.theory_id,e]));
+          const tById=new Map(theories.map(t=>[t.theory_id,t]));
+          const spec={
+            his_tid_periodisering:{
+              theory_his_periodisering_epoker:[['data/fagverk/historie/historisk_tid_periodisering/01-grunnlag.json','kronologi-periodisering'],['data/fagverk/historie/historisk_tid_periodisering/02-caser-og-fordypning.json','fire-bruddpunkter']],
+              theory_his_brudd_kontinuitet:[['data/fagverk/historie/historisk_tid_periodisering/01-grunnlag.json','brudd-kontinuitet'],['data/fagverk/historie/historisk_tid_periodisering/03-anvendelse.json','arbeidsrekkefolge']],
+              theory_his_tidslag_samtidighet:[['data/fagverk/historie/historisk_tid_periodisering/02-caser-og-fordypning.json','historiske-lag'],['data/fagverk/historie/historisk_tid_periodisering/02-caser-og-fordypning.json','fire-bruddpunkter']],
+              theory_his_lang_varighet_strukturer:[['data/fagverk/historie/historisk_tid_periodisering/01-grunnlag.json','tidsskalaer'],['data/fagverk/historie/historisk_tid_periodisering/02-caser-og-fordypning.json','historiske-lag']],
+              theory_his_hendelse_prosess:[['data/fagverk/historie/historisk_tid_periodisering/01-grunnlag.json','tidsskalaer'],['data/fagverk/historie/historisk_tid_periodisering/02-caser-og-fordypning.json','fire-bruddpunkter']],
+              theory_his_rytmer_tempo:[['data/fagverk/historie/historisk_tid_periodisering/01-grunnlag.json','tidsskalaer'],['data/fagverk/historie/historisk_tid_periodisering/02-caser-og-fordypning.json','historiske-lag'],['data/fagverk/historie/historisk_tid_periodisering/02-caser-og-fordypning.json','fire-bruddpunkter']],
+              theory_his_erfaringsrom_forventningshorisont:[['data/fagverk/historie/historisk_tid_periodisering/02-caser-og-fordypning.json','fire-bruddpunkter'],['data/fagverk/historie/historisk_tid_periodisering/03-anvendelse.json','samtid-ettertid']],
+              theory_his_kronologi_datering:[['data/fagverk/historie/historisk_tid_periodisering/01-grunnlag.json','datering-usikkerhet'],['data/fagverk/historie/historisk_tid_periodisering/01-grunnlag.json','kronologi-periodisering']],
+              theory_his_anakronisme_begrepsbruk:[['data/fagverk/historie/historisk_tid_periodisering/02-caser-og-fordypning.json','anakronisme-begreper']],
+              theory_his_samtid_ettertid_fortelling:[['data/fagverk/historie/historisk_tid_periodisering/03-anvendelse.json','samtid-ettertid'],['data/fagverk/historie/historisk_tid_periodisering/02-caser-og-fordypning.json','fire-bruddpunkter']]
+            },
+            his_kilder_arkiv_spor:{
+              theory_his_kildekritikk:[['data/fagverk/historie/kilder_arkiv_spor/01-kildekritikk-og-proveniens.json','kilden-som-produkt'],['data/fagverk/historie/kilder_arkiv_spor/01-kildekritikk-og-proveniens.json','pastand-korroborering']],
+              theory_his_spor_materialitet:[['data/fagverk/historie/kilder_arkiv_spor/02-kildeformer-og-caser.json','materielle-arkeologiske-spor']],
+              theory_his_arkiv_makt_orden:[['data/fagverk/historie/kilder_arkiv_spor/03-arkivtaushet-og-anvendelse.json','arkiv-orden-makt']],
+              theory_his_taushet_fravaer:[['data/fagverk/historie/kilder_arkiv_spor/03-arkivtaushet-og-anvendelse.json','taushet-fravaer']],
+              theory_his_dokument_autentisitet:[['data/fagverk/historie/kilder_arkiv_spor/02-kildeformer-og-caser.json','dokument-autentisitet'],['data/fagverk/historie/kilder_arkiv_spor/01-kildekritikk-og-proveniens.json','proveniens-bevaring']],
+              theory_his_skrift_lesning:[['data/fagverk/historie/kilder_arkiv_spor/02-kildeformer-og-caser.json','dokument-autentisitet']],
+              theory_his_serielle_kilder:[['data/fagverk/historie/kilder_arkiv_spor/02-kildeformer-og-caser.json','serielle-digitale-kilder']],
+              theory_his_visuelle_kilder:[['data/fagverk/historie/kilder_arkiv_spor/02-kildeformer-og-caser.json','visuelle-kilder']],
+              theory_his_muntlige_kilder:[['data/fagverk/historie/kilder_arkiv_spor/02-kildeformer-og-caser.json','muntlige-kilder']],
+              theory_his_digitale_kilder:[['data/fagverk/historie/kilder_arkiv_spor/02-kildeformer-og-caser.json','serielle-digitale-kilder'],['data/fagverk/historie/kilder_arkiv_spor/01-kildekritikk-og-proveniens.json','proveniens-bevaring']]
+            },
+            his_makt_stat_institusjoner:{
+              theory_his_institusjonsbygging_funksjon:[['data/fagverk/historie/makt_stat_institusjoner/01-mandat-kompetanse-kapasitet.json','stat-institusjon'],['data/fagverk/historie/makt_stat_institusjoner/03-legitimitet-anvendelse.json','institusjonsbygging-endring']],
+              theory_his_embetsverk_byrakrati:[['data/fagverk/historie/makt_stat_institusjoner/01-mandat-kompetanse-kapasitet.json','beslutningskjede'],['data/fagverk/historie/makt_stat_institusjoner/03-legitimitet-anvendelse.json','institusjonsbygging-endring']],
+              theory_his_beslutningskjede_kompetanse:[['data/fagverk/historie/makt_stat_institusjoner/01-mandat-kompetanse-kapasitet.json','mandat-kompetanse'],['data/fagverk/historie/makt_stat_institusjoner/01-mandat-kompetanse-kapasitet.json','beslutningskjede']],
+              theory_his_statlig_kapasitet_ressurser:[['data/fagverk/historie/makt_stat_institusjoner/01-mandat-kompetanse-kapasitet.json','kapasitet-ressurser']],
+              theory_his_rettigheter_borgerskap_forvaltning:[['data/fagverk/historie/makt_stat_institusjoner/02-rett-kontroll-krise.json','rettigheter-borgerskap']],
+              theory_his_lov_domstol_rettsstat:[['data/fagverk/historie/makt_stat_institusjoner/02-rett-kontroll-krise.json','lov-domstol-rettsstat']],
+              theory_his_politi_fengsel_straff:[['data/fagverk/historie/makt_stat_institusjoner/02-rett-kontroll-krise.json','politi-straff-kontroll']],
+              theory_his_register_overvakning_disiplin:[['data/fagverk/historie/makt_stat_institusjoner/02-rett-kontroll-krise.json','politi-straff-kontroll'],['data/fagverk/historie/makt_stat_institusjoner/01-mandat-kompetanse-kapasitet.json','kapasitet-ressurser']],
+              theory_his_krise_unntak_kontinuitet:[['data/fagverk/historie/makt_stat_institusjoner/02-rett-kontroll-krise.json','krise-unntak-rettsoppgjor']],
+              theory_his_rettsoppgjor_legitimitet_minne:[['data/fagverk/historie/makt_stat_institusjoner/02-rett-kontroll-krise.json','krise-unntak-rettsoppgjor'],['data/fagverk/historie/makt_stat_institusjoner/03-legitimitet-anvendelse.json','representasjon-legitimitet']]
             }
+          };
+          const failures=[],rows=[];
+          for(const [field,byTheory] of Object.entries(spec)){
+            const d=A(pensum.domains).find(x=>x.domain_id===field);
+            const chapterRow=A(registry.subjects.historie.chapters).find(x=>x.primary_domain_id===field);
+            const chapter=read(chapterRow.file);
+            const allowed=new Set(A(chapter.moduleFiles));
+            const coveredEmnes=new Set();
+            for(const [tid,refs] of Object.entries(byTheory)){
+              const t=tById.get(tid),ev=eById.get(tid);
+              if(!t||!ev){failures.push(`${tid}: missing theory/evidence`);continue;}
+              if(!A(t.explanatory_scope).includes(field))failures.push(`${tid}: field scope mismatch`);
+              const emnes=A(mapping).filter(m=>d.emne_ids.includes(m.emne_id)&&A(m.mappings).some(x=>x.topic_hook===t.source_hook_id)).map(m=>m.emne_id);
+              if(!emnes.length)failures.push(`${tid}: no canonical emne mapping`);
+              emnes.forEach(id=>coveredEmnes.add(id));
+              const hookTitle=A(mapping).flatMap(m=>A(m.mappings)).find(x=>x.topic_hook===t.source_hook_id)?.topic_hook_tittel||t.source_hook_id;
+              const chunks=[];
+              for(const [file,sid] of refs){
+                if(!allowed.has(file))failures.push(`${tid}: unregistered module ${file}`);
+                const sec=A(read(file).sections).find(s=>s.id===sid);
+                if(!sec){failures.push(`${tid}: missing section ${sid}`);continue;}
+                chunks.push(`${sec.title||''} ${A(sec.paragraphs).join(' ')}`);
+              }
+              const prose=chunks.join(' ');
+              const label=bind(`${t.label||''} ${hookTitle}`,prose);
+              const def=bind(t.definition,prose);
+              const lim=A(t.limitations).map(x=>bind(x,prose)).sort((a,b)=>b.r-a.r||b.m-a.m)[0]||{m:0,n:0,r:0};
+              const rat=bind(ev.rationale||'',prose);
+              const pass=prose.length>=240&&rat.m>=1&&((label.m>=1&&(def.m>=1||lim.m>=2))||(def.m>=3&&lim.m>=2)||(def.m>=4));
+              if(!pass)failures.push(`${tid}: weak prose binding label=${label.m} def=${def.m}/${def.n} lim=${lim.m}/${lim.n} rationale=${rat.m}`);
+              rows.push({field,theory_id:tid,emne_ids:emnes,refs,label_m:label.m,def_m:def.m,def_r:+def.r.toFixed(3),lim_m:lim.m,lim_r:+lim.r.toFixed(3),rationale_m:rat.m,claim_count:A(ev.claim_ids).length,pass});
+            }
+            const missing=d.emne_ids.filter(id=>!coveredEmnes.has(id));
+            if(missing.length)failures.push(`${field}: canonical emne union missing ${missing.join(',')}`);
+            if(Object.keys(byTheory).length!==10)failures.push(`${field}: expected 10 bridge theories`);
           }
+          console.log('CANDIDATE='+JSON.stringify(rows));
+          console.log('SUMMARY='+JSON.stringify({rows:rows.length,passed:rows.filter(r=>r.pass).length,failures}));
+          if(failures.length)process.exitCode=1;
           NODE
