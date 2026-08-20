@@ -1,20 +1,18 @@
 // js/Civication/ui/CivicationHistoryGoDeepLink.js
-// CivicationHistoryGoDeepLink — companion til completion-bridgen (PR 1 fra task-schema-docen).
-// Leser en normalisert task_payload og viser en «Gå til History Go»-handling i arbeidsdags-/
-// innbokspanelet som sender spilleren til riktig flate i hovedappen.
-// index.html-ruter: #/map, #/place/:id, #/quiz/:id (se js/router/AppRouter.js). Civication.html
-// er en egen side, så navigasjon skjer via window.location -> index.html#/...
-// Returnerer null for modes uten en trygg rute (debatt, person/kunnskap uten quiz) — vi viser
-// aldri en død lenke. Se docs/CIVICATION_HISTORY_GO_COMPLETION_BRIDGE.md.
+// CivicationHistoryGoDeepLink — companion til completion-bridgen.
+// Leser en normalisert task_payload, oppretter en midlertidig Civication-session i
+// delt localStorage og sender spilleren til riktig History Go-flate. Sessionen
+// brukes av History Go sitt Civication-modus-overlay og fjernes ved retur.
 (function () {
   "use strict";
+
+  const SESSION_KEY = "hg_civication_mode_v1";
 
   function clean(value) {
     const text = value == null ? "" : String(value).trim();
     return text || null;
   }
 
-  // Bygg { href, label, target_type } fra en normalisert History Go task_payload, eller null.
   function resolve(payload) {
     const p = payload && typeof payload === "object" ? payload : null;
     if (!p) return null;
@@ -60,14 +58,104 @@
       }
     }
 
-    // person/knowledge uten quiz, eller manglende id -> ingen trygg rute.
     void personId;
     return null;
   }
 
-  function go(payload) {
+  function currentCivicationHref() {
+    try {
+      const href = clean(window.location?.href);
+      if (!href) return "Civication.html";
+      const match = href.match(/(?:^|\/)(Civication\.html(?:[?#].*)?)$/i);
+      if (match) return match[1];
+      const url = new URL(href, "https://history-go.invalid/");
+      const file = String(url.pathname || "").split("/").filter(Boolean).pop();
+      if (String(file || "").toLowerCase() === "civication.html") {
+        return `Civication.html${url.search || ""}${url.hash || ""}`;
+      }
+    } catch {}
+    return "Civication.html";
+  }
+
+  function startSession(taskOrPayload) {
+    const task = taskOrPayload && typeof taskOrPayload === "object" && taskOrPayload.task_payload
+      ? taskOrPayload
+      : null;
+    const rawPayload = task ? task.task_payload : taskOrPayload;
+    if (!rawPayload || typeof rawPayload !== "object") return null;
+
+    const engine = window.CivicationTaskEngine;
+    const normalized = typeof engine?.normalizeHistoryGoTaskPayload === "function"
+      ? engine.normalizeHistoryGoTaskPayload(rawPayload)
+      : { ...rawPayload };
+    if (!resolve(normalized)) return null;
+
+    const returnContext = normalized.return_context && typeof normalized.return_context === "object"
+      ? { ...normalized.return_context }
+      : {};
+    const now = Date.now();
+    const taskId = clean(task?.id);
+    const mailId = clean(task?.mail_id || returnContext.mail_id);
+    const targetId = clean(normalized.target_id);
+    const roleId = clean(task?.role_id || task?.career_id || returnContext.role_id || returnContext.career_id);
+    const roleLabel = clean(task?.role_label || task?.career_name || returnContext.role_label || returnContext.career_name);
+    const lifeRoleId = clean(task?.life_role_id || returnContext.life_role_id);
+    const lifeRoleLabel = clean(task?.life_role_label || returnContext.life_role_label);
+
+    const session = {
+      version: 1,
+      active: true,
+      session_id: `civi_hg_${taskId || mailId || targetId || "task"}_${now}`,
+      started_at: new Date(now).toISOString(),
+      started_ts: now,
+      task_id: taskId,
+      mail_id: mailId,
+      role_id: roleId,
+      role_label: roleLabel,
+      life_role_id: lifeRoleId,
+      life_role_label: lifeRoleLabel,
+      world_id: clean(task?.world_id || returnContext.world_id || task?.career_id),
+      title: clean(normalized.title || task?.title) || "Civication-oppdrag",
+      description: clean(normalized.description || task?.description),
+      target_type: clean(normalized.target_type),
+      target_id: targetId,
+      place_id: clean(normalized.place_id),
+      person_id: clean(normalized.person_id),
+      quiz_id: clean(normalized.quiz_id),
+      category_id: clean(normalized.category_id),
+      emne_id: clean(normalized.emne_id),
+      debate_id: clean(normalized.debate_id),
+      conflict_id: clean(normalized.conflict_id),
+      unlock_id: clean(normalized.unlock_id),
+      required_kind: clean(normalized.required_kind),
+      completion_mode: clean(normalized.completion_mode),
+      return_href: currentCivicationHref(),
+      return_context: returnContext,
+      expanded: false,
+      payload: { ...rawPayload, ...normalized }
+    };
+
+    try {
+      localStorage.setItem(SESSION_KEY, JSON.stringify(session));
+      return session;
+    } catch {
+      return null;
+    }
+  }
+
+  function clearSession() {
+    try {
+      localStorage.removeItem(SESSION_KEY);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  function go(payload, task) {
     const link = resolve(payload);
     if (!link) return false;
+    startSession(task || payload);
     try {
       window.location.href = link.href;
       return true;
@@ -76,7 +164,6 @@
     }
   }
 
-  // Finn en åpen History Go-task hvis History Go-del ikke alt er gjort.
   function pickPendingTask() {
     const engine = window.CivicationTaskEngine;
     if (!engine?.findOpenHistoryGoTasks) return null;
@@ -145,6 +232,14 @@
     const href = decodeURIComponent(btn.getAttribute("data-civi-hg-deeplink") || "");
     if (!href) return;
     ev.preventDefault();
+
+    const taskId = decodeURIComponent(btn.getAttribute("data-task-id") || "");
+    const engine = window.CivicationTaskEngine;
+    const task = taskId && typeof engine?.getTaskById === "function"
+      ? engine.getTaskById(taskId)
+      : pickPendingTask();
+    if (task) startSession(task);
+
     try { window.location.href = href; } catch {}
   }
 
@@ -164,8 +259,11 @@
   }
 
   window.CivicationHistoryGoDeepLink = {
+    SESSION_KEY,
     resolve,
     go,
+    startSession,
+    clearSession,
     actionHtml,
     pickPendingTask
   };
