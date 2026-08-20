@@ -19,7 +19,7 @@ on:
           - full
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   audit:
@@ -30,9 +30,6 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-        with:
-          ref: agent/psykologi-people-places-quality
-          fetch-depth: 0
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -42,34 +39,6 @@ jobs:
 
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
-
-      - name: TEMP materialize manifests and History People index
-        run: |
-          node <<'NODE'
-          const fs = require('fs');
-          function add(manifestPath, entries) {
-            const json = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
-            if (!Array.isArray(json.files)) throw new Error(`${manifestPath} has no files[]`);
-            for (const entry of entries) if (!json.files.includes(entry)) json.files.push(entry);
-            fs.writeFileSync(manifestPath, JSON.stringify(json, null, 2) + '\n');
-          }
-          add('data/people/manifest.json', ['people/psykologi/oslo/people_psykologi_oslo.json']);
-          add('data/places/manifest.json', [
-            'places/psykologi/oslo/places_psykologi/nkvts_nydalen.json',
-            'places/psykologi/oslo/places_psykologi/nic_waals_institutt.json'
-          ]);
-          NODE
-          npm run civication:history-people:build
-
-      - name: TEMP commit materialized canonical files
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/people/manifest.json data/places/manifest.json data/Civication/historyPeople_index.json
-          if ! git diff --cached --quiet; then
-            git commit -m "Materialize Psychology people and places indexes"
-            git push origin HEAD:agent/psykologi-people-places-quality
-          fi
 
       - name: Resolve audit suite
         id: suite
@@ -85,7 +54,10 @@ jobs:
             const request = JSON.parse(fs.readFileSync('.github/audit-request.json', 'utf8'));
             suite = String(request.suite || '');
           }
-          if (!allowed.has(suite)) process.exit(1);
+          if (!allowed.has(suite)) {
+            console.error(`Unsupported audit suite: ${suite}`);
+            process.exit(1);
+          }
           fs.appendFileSync(process.env.GITHUB_OUTPUT, `suite=${suite}\n`);
           NODE
 
@@ -102,7 +74,6 @@ jobs:
                 npm run health:data
                 npm run audit:places-split-manifest-sync
                 npm run audit:people-of-places
-                npm run civication:history-people:check
                 npm run audit:quiz-manifest:v2
                 ;;
               coordinates)
@@ -112,12 +83,33 @@ jobs:
                 ;;
               quiz)
                 npm run audit:quiz-manifest:v2
+                npm run audit:quiz-content
+                npm run audit:quiz-templates
+                npm run audit:quiz-production-context
+                npm run audit:quiz-progression
+                npm run audit:quiz-theory-binding
+                npm run test:quiz-content-audit
+                npm run test:quiz-production
+                npm run health:data
                 ;;
               full)
                 npm run tools:check
                 ;;
             esac
           } 2>&1 | tee reports/remote-audit.log
+
+      - name: Add audit summary
+        if: always()
+        env:
+          AUDIT_SUITE: ${{ steps.suite.outputs.suite }}
+        run: |
+          {
+            echo "## Remote repository audit"
+            echo
+            echo "Suite: \`$AUDIT_SUITE\`"
+            echo
+            echo "This audit ran on GitHub Actions and did not depend on a local clone."
+          } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Upload audit reports
         if: always()
