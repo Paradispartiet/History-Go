@@ -6,11 +6,13 @@
   "summary": {
     "discovered_worlds": 89,
     "work_worlds": 88,
+    "career_worlds": 85,
+    "noncareer_worlds": 3,
     "support_worlds": 1,
     "statuses": {
       "reference_complete": 5,
       "playable": 19,
-      "partial": 3,
+      "partial": 0,
       "architecture_only": 61
     },
     "runtime_gate_pass": 24,
@@ -18,77 +20,77 @@
     "component_debt": {
       "entry": {
         "complete": 85,
-        "partial": 2,
-        "missing": 1
+        "partial": 0,
+        "missing": 0
       },
       "day_one": {
-        "complete": 25,
-        "partial": 2,
+        "complete": 24,
+        "partial": 0,
         "missing": 61
       },
       "workday_loop": {
-        "complete": 25,
-        "partial": 56,
+        "complete": 24,
+        "partial": 54,
         "missing": 7
       },
       "practice_stories": {
-        "complete": 12,
+        "complete": 11,
         "partial": 74,
-        "missing": 2
+        "missing": 0
       },
       "people": {
         "complete": 19,
-        "partial": 13,
-        "missing": 56
+        "partial": 12,
+        "missing": 54
       },
       "places": {
         "complete": 24,
         "partial": 0,
-        "missing": 64
+        "missing": 61
       },
       "mail": {
-        "complete": 25,
-        "partial": 2,
+        "complete": 24,
+        "partial": 0,
         "missing": 61
       },
       "knowledge": {
         "complete": 26,
-        "partial": 22,
+        "partial": 19,
         "missing": 40
       },
       "quality_axes": {
         "complete": 85,
-        "partial": 3,
+        "partial": 0,
         "missing": 0
       },
       "authority": {
         "complete": 83,
-        "partial": 4,
-        "missing": 1
+        "partial": 2,
+        "missing": 0
       },
       "consequences": {
-        "complete": 25,
-        "partial": 2,
+        "complete": 24,
+        "partial": 0,
         "missing": 61
       },
       "performance": {
-        "complete": 22,
-        "partial": 5,
+        "complete": 21,
+        "partial": 3,
         "missing": 61
       },
       "economy": {
         "complete": 85,
-        "partial": 3,
+        "partial": 0,
         "missing": 0
       },
       "progression": {
         "complete": 21,
-        "partial": 17,
+        "partial": 14,
         "missing": 50
       },
       "exit": {
         "complete": 21,
-        "partial": 17,
+        "partial": 14,
         "missing": 50
       }
     }
@@ -7508,7 +7510,7 @@
         "arbeider",
         "naer_arbeider"
       ],
-      "status": "partial",
+      "status": "not_applicable",
       "artifacts": {
         "role_models": [],
         "work_grammar": null,
@@ -7557,6 +7559,8 @@
           "tests/civication-administrasjonsmedarbeider-rollout-playability.test.js",
           "tests/civication-administrasjonsmedarbeider-second-week-praksisfortellinger.test.js",
           "tests/civication-administrasjonsmedarbeider-two-week-flow.test.js",
+          "tests/civication-career-gameplay-matrix.test.js",
+          "tests/civication-career-noncareer-reconciliation.test.js",
           "tests/civication-career-outcome-reachability.test.js",
           "tests/civication-career-outcome-view-model.test.js",
           "tests/civication-career-rolemodel-ownership.test.js",
@@ -7596,6 +7600,8 @@
               "tests/civication-administrasjonsmedarbeider-rollout-playability.test.js",
               "tests/civication-administrasjonsmedarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-administrasjonsmedarbeider-two-week-flow.test.js",
+              "tests/civication-career-gameplay-matrix.test.js",
+              "tests/civication-career-noncareer-reconciliation.test.js",
               "tests/civication-career-outcome-reachability.test.js",
               "tests/civication-career-outcome-view-model.test.js",
               "tests/civication-career-rolemodel-ownership.test.js",
@@ -7629,6 +7635,8 @@
               "tests/civication-administrasjonsmedarbeider-rollout-playability.test.js",
               "tests/civication-administrasjonsmedarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-administrasjonsmedarbeider-two-week-flow.test.js",
+              "tests/civication-career-gameplay-matrix.test.js",
+              "tests/civication-career-noncareer-reconciliation.test.js",
               "tests/civication-career-outcome-reachability.test.js",
               "tests/civication-career-outcome-view-model.test.js",
               "tests/civication-career-rolemodel-ownership.test.js",
@@ -7714,6 +7722,8 @@
               "tests/civication-administrasjonsmedarbeider-rollout-playability.test.js",
               "tests/civication-administrasjonsmedarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-administrasjonsmedarbeider-two-week-flow.test.js",
+              "tests/civication-career-gameplay-matrix.test.js",
+              "tests/civication-career-noncareer-reconciliation.test.js",
               "tests/civication-career-outcome-reachability.test.js",
               "tests/civication-career-outcome-view-model.test.js",
               "tests/civication-career-rolemodel-ownership.test.js",
@@ -7746,6 +7756,8 @@
               "tests/civication-administrasjonsmedarbeider-rollout-playability.test.js",
               "tests/civication-administrasjonsmedarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-administrasjonsmedarbeider-two-week-flow.test.js",
+              "tests/civication-career-gameplay-matrix.test.js",
+              "tests/civication-career-noncareer-reconciliation.test.js",
               "tests/civication-career-outcome-reachability.test.js",
               "tests/civication-career-outcome-view-model.test.js",
               "tests/civication-career-outcomes.test.js",
@@ -7819,6 +7831,15 @@
           "exact_titles": 0,
           "rows": []
         }
+      },
+      "career_exclusion": {
+        "classification": "unbound_legacy_role",
+        "reason": "Arbeider-innholdet beholdes, men #5109 fjernet den feilaktige Fagarbeider-jobb-, rollemodell- og lønnseierskapen. Rollen har ingen egen canonical Badge career title og skal derfor ikke stå som career-rollout-gjeld.",
+        "authority_refs": [
+          "data/Civication/badgeRoleMappings.json",
+          "tests/civication-career-rolemodel-ownership.test.js"
+        ],
+        "content_status_before_exclusion": "partial"
       }
     },
     {
@@ -9044,6 +9065,7 @@
         },
         "role_tests": [
           "tests/civication-brand-employer-bridge.test.js",
+          "tests/civication-career-noncareer-reconciliation.test.js",
           "tests/civication-career-outcome-reachability.test.js",
           "tests/civication-career-role-resolver.test.js",
           "tests/civication-career-rolemodel-ownership.test.js",
@@ -9076,6 +9098,7 @@
             "evidence": [
               "data/Civication/mailPlans/naeringsliv/fagarbeider_plan.json",
               "tests/civication-brand-employer-bridge.test.js",
+              "tests/civication-career-noncareer-reconciliation.test.js",
               "tests/civication-career-outcome-reachability.test.js",
               "tests/civication-career-role-resolver.test.js",
               "tests/civication-career-rolemodel-ownership.test.js",
@@ -9099,6 +9122,7 @@
               "data/Civication/mailPlans/naeringsliv/fagarbeider_plan.json",
               "data/Civication/workGrammars/naeringsliv/naeringsliv_fag_og_produksjon.json",
               "tests/civication-brand-employer-bridge.test.js",
+              "tests/civication-career-noncareer-reconciliation.test.js",
               "tests/civication-career-outcome-reachability.test.js",
               "tests/civication-career-role-resolver.test.js",
               "tests/civication-career-rolemodel-ownership.test.js",
@@ -9187,6 +9211,7 @@
             "level": "complete",
             "evidence": [
               "tests/civication-brand-employer-bridge.test.js",
+              "tests/civication-career-noncareer-reconciliation.test.js",
               "tests/civication-career-outcome-reachability.test.js",
               "tests/civication-career-role-resolver.test.js",
               "tests/civication-career-rolemodel-ownership.test.js",
@@ -17501,7 +17526,7 @@
       "role_ids": [
         "sport_kaptein"
       ],
-      "status": "partial",
+      "status": "not_applicable",
       "artifacts": {
         "role_models": [
           "data/Civication/roleModels/sport/kaptein.json"
@@ -17547,7 +17572,10 @@
             "count": 0
           }
         },
-        "role_tests": [],
+        "role_tests": [
+          "tests/civication-career-gameplay-matrix.test.js",
+          "tests/civication-career-noncareer-reconciliation.test.js"
+        ],
         "life_story": null
       },
       "audit": {
@@ -17560,11 +17588,13 @@
             "note": "Badge binding exists, but a complete offer/gate path is not proven for every linked title."
           },
           "day_one": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/mailPlans/sport/sport_kaptein_plan.json"
+              "data/Civication/mailPlans/sport/sport_kaptein_plan.json",
+              "tests/civication-career-gameplay-matrix.test.js",
+              "tests/civication-career-noncareer-reconciliation.test.js"
             ],
-            "note": "Day-one structure exists without a complete role-specific runtime proof."
+            "note": "Role plan and role-specific test prove a first playable day."
           },
           "workday_loop": {
             "level": "partial",
@@ -17626,11 +17656,14 @@
             "note": "Consequence content exists without the full role-specific follow-up proof."
           },
           "performance": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/mailPlans/sport/sport_kaptein_plan.json"
+              "data/Civication/mailPlans/sport/sport_kaptein_plan.json",
+              "tests/civication-career-gameplay-matrix.test.js",
+              "tests/civication-career-noncareer-reconciliation.test.js",
+              "tests/civication-career-outcomes.test.js"
             ],
-            "note": "Performance signals/outcomes exist without a complete tested evaluation."
+            "note": "Positive and negative outcomes are defined and role-tested."
           },
           "economy": {
             "level": "partial",
@@ -17640,20 +17673,22 @@
             "note": "Category salary exists, but 0 linked title(s) lack an exact salary entry."
           },
           "progression": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/sport/sport_kaptein_plan.json",
-              "data/Civication/roleModels/sport/kaptein.json"
+              "data/Civication/roleModels/sport/kaptein.json",
+              "tests/civication-career-outcomes.test.js"
             ],
-            "note": "Progression exists as content or outcome, not a complete transition path."
+            "note": "Career path and positive runtime outcome are both present."
           },
           "exit": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/sport/sport_kaptein_plan.json",
-              "data/Civication/roleModels/sport/kaptein.json"
+              "data/Civication/roleModels/sport/kaptein.json",
+              "tests/civication-career-outcomes.test.js"
             ],
-            "note": "Exit exists as content or outcome, not a complete transition path."
+            "note": "Exit destinations and negative runtime outcome are both present."
           }
         },
         "runtime_gate": false,
@@ -17662,7 +17697,12 @@
           "people",
           "places"
         ],
-        "complete_components": [],
+        "complete_components": [
+          "day_one",
+          "performance",
+          "progression",
+          "exit"
+        ],
         "practice_story_count": 0,
         "practice_weeks": [],
         "reference_depth": 0,
@@ -17682,6 +17722,16 @@
             }
           ]
         }
+      },
+      "career_exclusion": {
+        "classification": "life_position_not_job",
+        "reason": "Kaptein er canonical Sport life_position, employment-independent og uttrykkelig ikke et jobbtilbud eller eget lønnsbånd.",
+        "authority_refs": [
+          "data/badges/sport.json",
+          "data/Civication/sportCareerLifeEvidence.json",
+          "tests/civication-sport-life-career-split.test.js"
+        ],
+        "content_status_before_exclusion": "partial"
       }
     },
     {
@@ -17701,7 +17751,7 @@
         "sport_idrettslegende",
         "sport_legende"
       ],
-      "status": "partial",
+      "status": "not_applicable",
       "artifacts": {
         "role_models": [
           "data/Civication/roleModels/sport/idrettslegende.json"
@@ -17747,7 +17797,10 @@
             "count": 0
           }
         },
-        "role_tests": [],
+        "role_tests": [
+          "tests/civication-career-gameplay-matrix.test.js",
+          "tests/civication-career-noncareer-reconciliation.test.js"
+        ],
         "life_story": null
       },
       "audit": {
@@ -17760,11 +17813,13 @@
             "note": "Badge binding exists, but a complete offer/gate path is not proven for every linked title."
           },
           "day_one": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/mailPlans/sport/sport_legende_plan.json"
+              "data/Civication/mailPlans/sport/sport_legende_plan.json",
+              "tests/civication-career-gameplay-matrix.test.js",
+              "tests/civication-career-noncareer-reconciliation.test.js"
             ],
-            "note": "Day-one structure exists without a complete role-specific runtime proof."
+            "note": "Role plan and role-specific test prove a first playable day."
           },
           "workday_loop": {
             "level": "partial",
@@ -17826,11 +17881,14 @@
             "note": "Consequence content exists without the full role-specific follow-up proof."
           },
           "performance": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/mailPlans/sport/sport_legende_plan.json"
+              "data/Civication/mailPlans/sport/sport_legende_plan.json",
+              "tests/civication-career-gameplay-matrix.test.js",
+              "tests/civication-career-noncareer-reconciliation.test.js",
+              "tests/civication-career-outcomes.test.js"
             ],
-            "note": "Performance signals/outcomes exist without a complete tested evaluation."
+            "note": "Positive and negative outcomes are defined and role-tested."
           },
           "economy": {
             "level": "partial",
@@ -17840,20 +17898,22 @@
             "note": "Category salary exists, but 0 linked title(s) lack an exact salary entry."
           },
           "progression": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/sport/sport_legende_plan.json",
-              "data/Civication/roleModels/sport/idrettslegende.json"
+              "data/Civication/roleModels/sport/idrettslegende.json",
+              "tests/civication-career-outcomes.test.js"
             ],
-            "note": "Progression exists as content or outcome, not a complete transition path."
+            "note": "Career path and positive runtime outcome are both present."
           },
           "exit": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/sport/sport_legende_plan.json",
-              "data/Civication/roleModels/sport/idrettslegende.json"
+              "data/Civication/roleModels/sport/idrettslegende.json",
+              "tests/civication-career-outcomes.test.js"
             ],
-            "note": "Exit exists as content or outcome, not a complete transition path."
+            "note": "Exit destinations and negative runtime outcome are both present."
           }
         },
         "runtime_gate": false,
@@ -17862,7 +17922,12 @@
           "people",
           "places"
         ],
-        "complete_components": [],
+        "complete_components": [
+          "day_one",
+          "performance",
+          "progression",
+          "exit"
+        ],
         "practice_story_count": 0,
         "practice_weeks": [],
         "reference_depth": 0,
@@ -17900,6 +17965,16 @@
             }
           ]
         }
+      },
+      "career_exclusion": {
+        "classification": "life_position_not_job",
+        "reason": "Olympisk Mester, Idrettsstjerne og Idrettslegende er canonical Sport life/status tiers, employment-independent og uttrykkelig ikke jobbtilbud eller lønnsbånd.",
+        "authority_refs": [
+          "data/badges/sport.json",
+          "data/Civication/sportCareerLifeEvidence.json",
+          "tests/civication-sport-life-career-split.test.js"
+        ],
+        "content_status_before_exclusion": "partial"
       }
     },
     {
@@ -21206,6 +21281,82 @@
           ]
         }
       }
+    }
+  ],
+  "noncareer_worlds": [
+    {
+      "key": "naeringsliv/arbeider",
+      "category": "naeringsliv",
+      "role_scope": "arbeider",
+      "declared_by": [
+        "badgeRoleMappings",
+        "mailPlan",
+        "practiceRegistry"
+      ],
+      "badge_titles": [],
+      "role_ids": [
+        "arbeider",
+        "naer_arbeider"
+      ],
+      "career_status": "not_applicable",
+      "classification": "unbound_legacy_role",
+      "reason": "Arbeider-innholdet beholdes, men #5109 fjernet den feilaktige Fagarbeider-jobb-, rollemodell- og lønnseierskapen. Rollen har ingen egen canonical Badge career title og skal derfor ikke stå som career-rollout-gjeld.",
+      "authority_refs": [
+        "data/Civication/badgeRoleMappings.json",
+        "tests/civication-career-rolemodel-ownership.test.js"
+      ],
+      "content_status_before_exclusion": "partial"
+    },
+    {
+      "key": "sport/sport_kaptein",
+      "category": "sport",
+      "role_scope": "sport_kaptein",
+      "declared_by": [
+        "badgeRoleMappings",
+        "mailPlan"
+      ],
+      "badge_titles": [
+        "Kaptein"
+      ],
+      "role_ids": [
+        "sport_kaptein"
+      ],
+      "career_status": "not_applicable",
+      "classification": "life_position_not_job",
+      "reason": "Kaptein er canonical Sport life_position, employment-independent og uttrykkelig ikke et jobbtilbud eller eget lønnsbånd.",
+      "authority_refs": [
+        "data/badges/sport.json",
+        "data/Civication/sportCareerLifeEvidence.json",
+        "tests/civication-sport-life-career-split.test.js"
+      ],
+      "content_status_before_exclusion": "partial"
+    },
+    {
+      "key": "sport/sport_legende",
+      "category": "sport",
+      "role_scope": "sport_legende",
+      "declared_by": [
+        "badgeRoleMappings",
+        "mailPlan"
+      ],
+      "badge_titles": [
+        "Idrettslegende",
+        "Idrettsstjerne",
+        "Olympisk Mester"
+      ],
+      "role_ids": [
+        "sport_idrettslegende",
+        "sport_legende"
+      ],
+      "career_status": "not_applicable",
+      "classification": "life_position_not_job",
+      "reason": "Olympisk Mester, Idrettsstjerne og Idrettslegende er canonical Sport life/status tiers, employment-independent og uttrykkelig ikke jobbtilbud eller lønnsbånd.",
+      "authority_refs": [
+        "data/badges/sport.json",
+        "data/Civication/sportCareerLifeEvidence.json",
+        "tests/civication-sport-life-career-split.test.js"
+      ],
+      "content_status_before_exclusion": "partial"
     }
   ],
   "support_worlds": [
