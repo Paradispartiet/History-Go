@@ -1,0 +1,228 @@
+/* History Go — Personal Collection v1
+   Shared visual language for profile.html and knowledge.html.
+   Yellow is not a global UI accent here; subject colours may still carry semantic meaning. */
+
+:root{
+  --pc-bg:#07090c;
+  --pc-surface:#0e1217;
+  --pc-surface-raised:#131820;
+  --pc-surface-soft:rgba(255,255,255,.045);
+  --pc-line:rgba(255,255,255,.105);
+  --pc-line-strong:rgba(255,255,255,.2);
+  --pc-text:#f5f7f8;
+  --pc-muted:rgba(235,241,244,.62);
+  --pc-dim:rgba(235,241,244,.4);
+  --pc-accent:#a8d8c7;
+  --pc-accent-ink:#07110d;
+  --pc-radius:22px;
+  --pc-radius-small:15px;
+  --pc-shadow:0 20px 56px rgba(0,0,0,.32);
+}
+
+body.profile-page,
+body.knowledge-v2-page{
+  background:var(--pc-bg)!important;
+  color:var(--pc-text)!important;
+}
+
+/* ---------- profile: identity / collection hero ---------- */
+.profile-page .site-header{
+  background:rgba(7,9,12,.94)!important;
+  border-bottom:1px solid var(--pc-line)!important;
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+}
+
+.profile-page .site-header .profile-hero-v2,
+.profile-page .site-header .profile-section{
+  background:transparent!important;
+}
+
+.profile-page .profile-hero-v2-inner{padding:7px 10px!important}
+.profile-page .profile-hero-copy{gap:9px!important}
+.profile-page #profileName{color:var(--pc-text)!important}
+.profile-collection-title-stack{display:grid;gap:1px;min-width:0}
+.profile-collection-eyebrow{font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;color:var(--pc-muted);font-weight:800}
+.profile-collection-subtitle{font-size:.72rem;color:var(--pc-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.profile-page .profile-header-status .profile-stat-card{
+  background:var(--pc-surface-soft)!important;
+  border-color:var(--pc-line)!important;
+  box-shadow:none!important;
+}
+.profile-page .profile-header-status .profile-stat-value{
+  background:rgba(255,255,255,.92)!important;
+  color:#0b0e12!important;
+}
+.profile-page .profile-login-button,
+.profile-page .profile-edit-button,
+.profile-page .profile-header-map-button{
+  background:var(--pc-surface-soft)!important;
+  color:var(--pc-text)!important;
+  border-color:var(--pc-line)!important;
+  box-shadow:none!important;
+}
+
+/* ---------- profile: navigation ---------- */
+.profile-dashboard-v2 .profile-shell{gap:14px!important}
+.profile-page .profile-tabs{
+  position:sticky;
+  top:58px;
+  z-index:18;
+  display:flex;
+  gap:5px!important;
+  padding:7px!important;
+  border:1px solid var(--pc-line)!important;
+  border-radius:999px!important;
+  background:rgba(10,13,17,.92)!important;
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+.profile-page .profile-tabs::-webkit-scrollbar{display:none}
+.profile-page .profile-tab{
+  flex:0 0 auto;
+  border:0!important;
+  border-radius:999px!important;
+  background:transparent!important;
+  color:var(--pc-muted)!important;
+  min-height:36px;
+  padding:8px 13px!important;
+  font-weight:800;
+}
+.profile-page .profile-tab.is-active{
+  background:#f3f5f5!important;
+  color:#090c10!important;
+  box-shadow:none!important;
+}
+.profile-page .profile-tab[data-tab="civication"],
+.profile-page .profile-tab[data-tab="socialmeet"],
+.profile-page .profile-tab[data-tab="profilvalg"]{display:none!important}
+
+.profile-more-wrap{position:relative;flex:0 0 auto;margin-left:auto}
+.profile-more-trigger{
+  min-height:36px;padding:8px 13px;border:0;border-radius:999px;background:transparent;color:var(--pc-muted);font:inherit;font-weight:800;cursor:pointer
+}
+.profile-more-trigger.is-active{background:#f3f5f5;color:#090c10}
+.profile-more-menu{
+  position:absolute;right:0;top:calc(100% + 8px);z-index:40;min-width:190px;padding:7px;border:1px solid var(--pc-line);border-radius:16px;background:#11161c;box-shadow:var(--pc-shadow);display:none
+}
+.profile-more-wrap.is-open .profile-more-menu{display:grid;gap:3px}
+.profile-more-menu button{border:0;border-radius:11px;background:transparent;color:var(--pc-text);text-align:left;padding:10px 11px;font:inherit;cursor:pointer}
+.profile-more-menu button:hover,.profile-more-menu button:focus-visible{background:rgba(255,255,255,.07);outline:none}
+
+/* ---------- profile: surfaces ---------- */
+.profile-dashboard-v2 .profile-section,
+.profile-page .collection-overview-card,
+.profile-page .collection-relationship-card,
+.profile-page .collection-aha-card{
+  background:linear-gradient(180deg,var(--pc-surface),#0b0f14)!important;
+  border:1px solid var(--pc-line)!important;
+  border-radius:var(--pc-radius)!important;
+  box-shadow:var(--pc-shadow)!important;
+}
+.profile-dashboard-v2 .profile-section{padding:18px!important}
+.profile-dashboard-v2 .section-head h2{color:var(--pc-text)!important}
+.profile-dashboard-v2 .section-meta,.profile-page .muted{color:var(--pc-muted)!important}
+
+.collection-home-hero{
+  display:grid;grid-template-columns:minmax(0,1.2fr) minmax(270px,.8fr);gap:14px;align-items:stretch;margin-bottom:14px
+}
+.collection-home-copy{padding:22px;border:1px solid var(--pc-line);border-radius:var(--pc-radius);background:radial-gradient(circle at 8% 0%,rgba(168,216,199,.1),transparent 32%),var(--pc-surface)}
+.collection-home-copy .collection-kicker{display:block;margin-bottom:7px;color:var(--pc-muted);font-size:.7rem;text-transform:uppercase;letter-spacing:.14em;font-weight:800}
+.collection-home-copy h1{margin:0;font-size:clamp(2rem,5vw,4.4rem);line-height:.94;letter-spacing:-.055em}
+.collection-home-copy p{margin:13px 0 0;max-width:620px;color:var(--pc-muted);line-height:1.5}
+.collection-home-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.collection-action{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:9px 14px;border:1px solid var(--pc-line-strong);border-radius:999px;background:transparent;color:var(--pc-text);font:inherit;font-weight:800;text-decoration:none;cursor:pointer}
+.collection-action.primary{background:var(--pc-accent);border-color:var(--pc-accent);color:var(--pc-accent-ink)}
+.collection-action:hover,.collection-action:focus-visible{border-color:rgba(255,255,255,.45);outline:none}
+
+.collection-home-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--pc-line);border-left:1px solid var(--pc-line);border-radius:var(--pc-radius);overflow:hidden;background:var(--pc-surface)}
+.collection-metric{display:flex;flex-direction:column;justify-content:space-between;gap:10px;min-height:104px;padding:15px;border-right:1px solid var(--pc-line);border-bottom:1px solid var(--pc-line)}
+.collection-metric strong{font-size:clamp(1.8rem,4vw,2.7rem);letter-spacing:-.05em}
+.collection-metric span{font-size:.77rem;color:var(--pc-muted)}
+
+.collection-overview-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-bottom:14px}
+.collection-overview-card{padding:15px!important;box-shadow:none!important;text-decoration:none;color:inherit;min-width:0}
+.collection-overview-card span{display:block;color:var(--pc-muted);font-size:.75rem}
+.collection-overview-card strong{display:block;margin-top:8px;font-size:1.75rem;letter-spacing:-.04em}
+.collection-overview-card small{display:block;margin-top:6px;color:var(--pc-dim);line-height:1.3}
+
+.collection-relationship-card,.collection-aha-card{padding:18px!important;margin-bottom:14px;box-shadow:none!important}
+.collection-relationship-card h2,.collection-aha-card h2{margin:0 0 6px;font-size:1.25rem}
+.collection-relationship-card>p,.collection-aha-card>p{margin:0;color:var(--pc-muted);line-height:1.45}
+.collection-relationship-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:13px}
+.collection-relationship{padding:12px;border:1px solid var(--pc-line);border-radius:var(--pc-radius-small);background:var(--pc-surface-soft)}
+.collection-relationship strong{display:block;margin-bottom:4px}
+.collection-relationship span{color:var(--pc-muted);font-size:.8rem;line-height:1.4}
+.collection-aha-card{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:18px;background:radial-gradient(circle at 95% 10%,rgba(168,216,199,.08),transparent 30%),var(--pc-surface)!important}
+
+/* canonical NextUp is the footer popup on index.html; profile only shows compact status */
+.profile-page .profile-focus-card{min-height:0!important}
+.profile-page .nextup-profile-card{
+  background:var(--pc-surface-soft)!important;border:1px solid var(--pc-line)!important;color:var(--pc-text)!important;border-radius:16px!important;padding:13px!important
+}
+.profile-page .nextup-profile-title{color:var(--pc-text)!important;font-size:.9rem!important}
+.profile-page #nextUpProfileMeta,.profile-page #nextUpProfileChoices{display:none!important}
+.profile-nextup-canonical-note{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:9px;color:var(--pc-muted);font-size:.8rem}
+
+/* remove old global yellow decorations from the personal area */
+.profile-dashboard-v2 .knowledge-engine-bar-fill,
+.profile-dashboard-v2 .timeline-progress-bar{background:var(--pc-accent)!important}
+.profile-dashboard-v2 .timeline-card img{border-color:var(--pc-line-strong)!important}
+.profile-dashboard-v2 .nextup-profile-card{border-color:var(--pc-line)!important}
+.profile-dashboard-v2 .profile-pill.gold{background:var(--pc-surface-soft)!important;border-color:var(--pc-line)!important;color:var(--pc-text)!important}
+.profile-page .btn:not(.profile-login-button),
+.profile-page button.btn{--accent-color:var(--pc-accent)}
+
+/* ---------- knowledge: same personal collection language ---------- */
+body.knowledge-v2-page{
+  --kv2-bg:var(--pc-bg)!important;
+  --kv2-surface:var(--pc-surface)!important;
+  --kv2-surface-2:var(--pc-surface-raised)!important;
+  --kv2-line:var(--pc-line)!important;
+  --kv2-line-strong:var(--pc-line-strong)!important;
+  --kv2-text:var(--pc-text)!important;
+  --kv2-muted:var(--pc-muted)!important;
+  --kv2-dim:var(--pc-dim)!important;
+  --kv2-accent:var(--pc-accent)!important;
+}
+.knowledge-v2-page .kv2-appbar{background:rgba(7,9,12,.94)!important;border-bottom-color:var(--pc-line)!important}
+.knowledge-v2-page .kv2-icon-link,.knowledge-v2-page .kv2-search,.knowledge-v2-page .kv2-subject-pill{border-radius:999px!important}
+.knowledge-v2-page .kv2-panel,.knowledge-v2-page .kv2-stat{border-color:var(--pc-line)!important;background:var(--pc-surface)!important}
+.knowledge-v2-page .kv2-panel{border-radius:var(--pc-radius)!important;box-shadow:0 16px 42px rgba(0,0,0,.22)}
+.knowledge-v2-page .kv2-summary{border-radius:var(--pc-radius);overflow:hidden}
+.knowledge-v2-page .kv2-subject-pill.is-active{background:#f3f5f5!important;border-color:#f3f5f5!important;color:#090c10!important}
+.knowledge-v2-page .kv2-progress span{background:var(--pc-accent)!important}
+.knowledge-v2-page .kv2-warning{border-left-color:var(--pc-accent)!important;background:rgba(168,216,199,.055)!important;color:#d9eee6!important}
+.knowledge-v2-page .kv2-toolbar{background:rgba(7,9,12,.95)!important}
+.knowledge-v2-page .kv2-entry{padding:15px 0!important}
+.knowledge-entry-provenance{display:grid;gap:7px;margin-top:4px;padding:11px;border:1px solid var(--pc-line);border-radius:13px;background:var(--pc-surface-soft)}
+.knowledge-entry-provenance-row{display:flex;flex-wrap:wrap;gap:6px 12px;color:var(--pc-muted);font-size:.75rem}
+.knowledge-entry-actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:2px}
+.knowledge-entry-actions a,.knowledge-entry-actions button{display:inline-flex;align-items:center;min-height:32px;padding:6px 10px;border:1px solid var(--pc-line-strong);border-radius:999px;background:transparent;color:var(--pc-text);font:inherit;font-size:.75rem;text-decoration:none;cursor:pointer}
+.knowledge-entry-actions a:hover,.knowledge-entry-actions button:hover{border-color:rgba(255,255,255,.46)}
+.knowledge-v2-page .kv2-footer{border-top:1px solid var(--pc-line);color:var(--pc-muted)}
+
+@media (max-width:900px){
+  .collection-home-hero{grid-template-columns:1fr}
+  .collection-overview-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .collection-overview-card:last-child{grid-column:1/-1}
+  .collection-relationship-list{grid-template-columns:1fr}
+  .collection-aha-card{grid-template-columns:1fr}
+}
+
+@media (max-width:640px){
+  .profile-page .site-header{gap:5px!important}
+  .profile-page .profile-header-status{display:none!important}
+  .profile-page .profile-tabs{top:55px;border-radius:16px!important}
+  .profile-dashboard-v2 .profile-section{padding:14px!important}
+  .collection-home-copy{padding:18px}
+  .collection-home-copy h1{font-size:2.45rem}
+  .collection-home-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .collection-metric{min-height:88px;padding:12px}
+  .collection-overview-grid{grid-template-columns:1fr 1fr}
+  .collection-overview-card:last-child{grid-column:1/-1}
+  .knowledge-v2-shell{width:min(100% - 20px,1060px)!important}
+}
