@@ -19,17 +19,29 @@ Synksjekk:
 
 `node --experimental-strip-types scripts/build-civication-scenario-people-index.mts --check`
 
+## Lagringsmodell: komplett dekning uten kartesisk duplisering
+
+Alle People i samme canonicale fagkategori er relevante som minimum `contextual` kunnskaps-/oppgavekandidater for alle roller i faget. Å skrive hele People-listen på nytt under hver rolle ville derfor duplisere titusenvis av identiske oppføringer.
+
+Katalogen bruker i stedet `category_pool_plus_role_deltas`:
+
+- `people_pool.existing_place_people` – hele fagets eksisterende People med canonical `placeId`, lagret én gang.
+- `people_pool.existing_other_people` – hele fagets øvrige eksisterende People, lagret én gang.
+- `cross_category_existing_references` – eksisterende People fra andre kategorier som er eksplisitt relevante via canonical theory-binding.
+- hver rolle arver disse poolene og lagrer bare `direct_person_ids`, `strong_person_ids`, `additional_existing_people` og `excluded_people`.
+
+Dermed er den **resolved** listen per scenario fullstendig, men repoet slipper å lagre den samme personen på nytt for hver rolle. `resolved_counts` under rollen viser den ferdig oppløste dekningen.
+
 ## De fire listene
 
-Hver rolle får:
+Når en rolle resolves, får den:
 
 1. `existing_place_people` – eksisterende People som har en canonical `placeId`. Generatoren kopierer place-ID-en fra People og kan aldri finne på en ny stedstilknytning.
-2. `existing_other_people` – eksisterende People uten place-ID, eller eksisterende personer i en annen People-kategori som er eksplisitt relevante gjennom canonical theory-/roleModel-reference.
+2. `existing_other_people` – eksisterende People uten place-ID, pluss eksplisitt relevante eksisterende personer fra annen People-kategori.
 3. `excluded_people` – personer som ellers ville blitt fanget av fagkonteksten, men som eksplisitt ikke skal brukes i akkurat denne rollen.
+4. `missing_people_candidates` – canonicale theory-/roleModel-personreferanser som ikke finnes i People ennå. Disse ligger på kategorinivå med `scenario_roles` som viser hvilke scenarioer de gjelder.
 
-På kategorinivå finnes i tillegg:
-
-4. `missing_people_candidates` – canonicale theory-/roleModel-personreferanser som ikke finnes i People ennå. Dette er en arbeidsliste, ikke automatisk autorisasjon til å opprette personen. Kandidaten må kildeverifiseres og få dokumentert stedstilknytning før eventuell materialisering.
+`missing_people_candidates` er en arbeidsliste, ikke automatisk autorisasjon til å opprette personen. Kandidaten må kildeverifiseres og få dokumentert stedstilknytning før eventuell materialisering.
 
 ## Fit-nivåer
 
@@ -53,11 +65,15 @@ Reglene i `docs/FACTUALITY_CONTRACT.md` og `docs/CIVICATION_HISTORY_GO_TASK_SCHE
 
 Generatoren går gjennom alle `theory_integrity_bindings*.json` under `data/fag/` og henter personbundne `theorist`-referanser. Hvis personen ikke finnes i `historyPeople_index.json` på ID eller normalisert navn, havner vedkommende i `missing_people_candidates` for faget. Det samme gjelder eksplisitte `related_people` og `required_knowledge.people_connections` i roleModels.
 
-Dette betyr at en ny teoretiker/forsker som gjøres canonical i Fagverket automatisk blir synlig som People-gap dersom personen ennå ikke er materialisert.
+Kandidater dedupliseres, men beholder alle `sources`, `reasons` og `scenario_roles`. En ny teoretiker/forsker som gjøres canonical i Fagverket blir dermed automatisk synlig som People-gap dersom personen ennå ikke er materialisert.
+
+## Doble roleModel-filer
+
+Manifestet kan inneholde eldre filer som resolve til samme canonicale `role_id`. Generatoren beholder første manifestforekomst deterministisk og registrerer resten i `shadowed_role_models` i indeksen. Scenario-katalogen får derfor én canonical rad per `role_id`, ikke doble scenarioer.
 
 ## Genererte filer
 
-- `data/Civication/scenarioPeople/generated/<category>.json` – komplette personlister per rolle.
-- `data/Civication/scenarioPeople_index.json` – kompakt runtime-/audit-indeks med summer og filpekere.
+- `data/Civication/scenarioPeople/generated/<category>.json` – fagets People-pool, mangelkandidater og rolle-deltaer.
+- `data/Civication/scenarioPeople_index.json` – kompakt runtime-/audit-indeks med summer, shadowed roleModels og filpekere.
 
 Genererte filer skal aldri redigeres for hånd. Endre People-canon, roleModel, theory-binding eller `overrides.json`, og regenerer.
