@@ -1,4 +1,4 @@
-name: TEMP Historie legacy module theory proof diagnostic
+name: TEMP Historie legacy emne theory mapping diagnostic
 
 on:
   pull_request:
@@ -17,47 +17,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Measure existing legacy module-level theory proof
+      - name: Resolve canonical emne to theory hook mappings for legacy fields
         run: |
           node <<'NODE'
           const fs=require('fs');
           const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
           const A=v=>Array.isArray(v)?v:[];
-          const uniq=xs=>[...new Set(xs.filter(Boolean))];
-          const norm=v=>String(v||'').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9æøå]+/g,' ').replace(/\s+/g,' ').trim();
-          const stop=new Set(['og','eller','som','for','med','til','fra','ved','mot','uten','etter','under','over','mellom','gjennom','den','det','de','en','et','av','på','i','er','var','blir','kan','skal','må','samt','slik','hvordan','historisk','historiske','historie','analytisk','analyse','analyserer','forklarer','undersøker','modellen','modell']);
-          const tokens=v=>uniq(norm(v).split(/\s+/).filter(t=>t.length>=4&&!stop.has(t)));
-          const binding=(ref,prose)=>{const r=tokens(ref),p=new Set(tokens(prose)),m=r.filter(t=>p.has(t));return {matched:m.length,total:r.length,ratio:r.length?Math.round(m.length/r.length*1000)/1000:0};};
+          const pensum=read('data/fag/historie/historiepensum_canonical_v4_5.json');
+          const mappings=read('data/fag/historie/emnemapping_historie_canonical_v4_5.json');
           const theories=read('data/fag/historie/theory_objects_historie_canonical_v5_5.json');
-          const theoryById=new Map(theories.map(t=>[t.theory_id,t]));
-          const evidence=read('data/fag/historie/theory_evidence_historie_canonical_v1.json');
-          const evidenceByTheory=new Map(A(evidence.entries).map(e=>[e.theory_id,e]));
-          const registry=read('data/fagverk/fagverk_registry.json');
-          const rows=[];
-          for(const chapterRow of A(registry?.subjects?.historie?.chapters)){
-            const chapter=read(chapterRow.file);
-            const modules=A(chapter.moduleFiles).map(file=>({file,doc:read(file)}));
-            const allSections=modules.flatMap(({doc})=>A(doc.sections));
-            if(allSections.some(s=>s.emneId))continue;
-            const expected=theories.filter(t=>A(t.explanatory_scope).includes(chapterRow.primary_domain_id)).map(t=>t.theory_id);
-            const declared=uniq(modules.flatMap(({doc})=>A(doc.theoryEvidenceIds)));
-            const moduleRows=[];
-            for(const {file,doc} of modules){
-              const prose=A(doc.sections).flatMap(s=>A(s.paragraphs)).join(' ');
-              const moduleClaims=uniq(A(doc.claimIds));
-              const tids=uniq(A(doc.theoryEvidenceIds));
-              const proofs=tids.map(id=>{
-                const t=theoryById.get(id),e=evidenceByTheory.get(id);
-                const d=t?binding(t.definition,prose):null;
-                const limitations=t?A(t.limitations).map(x=>binding(x,prose)).sort((a,b)=>b.ratio-a.ratio||b.matched-a.matched):[];
-                const matchedClaims=A(e?.claim_ids).filter(cid=>moduleClaims.includes(cid));
-                return {theory_id:id,known_theory:!!t,definition:d,best_limitation:limitations[0]||null,module_claim_count:moduleClaims.length,evidence_claim_count:A(e?.claim_ids).length,matched_claim_ids:matchedClaims};
-              });
-              moduleRows.push({file,theoryEvidenceIds:tids,claimIds:moduleClaims,proofs});
-            }
-            rows.push({field:chapterRow.primary_domain_id,expected_count:expected.length,declared_count:declared.length,missing:expected.filter(id=>!declared.includes(id)),extra:declared.filter(id=>!expected.includes(id)),modules:moduleRows});
+          const tByHook=new Map(theories.map(t=>[t.source_hook_id,t]));
+          const wanted=new Set(['his_tid_periodisering','his_kilder_arkiv_spor','his_makt_stat_institusjoner']);
+          const out=[];
+          for(const d of A(pensum.domains).filter(d=>wanted.has(d.domain_id))){
+            const emnes=d.emne_ids.map(id=>{
+              const row=A(mappings).find(r=>r.emne_id===id)||{};
+              const hooks=A(row.mappings).map(m=>m.gren_key||m.hook_id||m.topic_hook_id||m.hook||m.id).filter(Boolean);
+              const canonicalHooks=hooks.filter(h=>d.hook_ids.includes(h));
+              return {emne_id:id,mapping_count:A(row.mappings).length,hooks,canonical_hooks:canonicalHooks,theory_ids:canonicalHooks.map(h=>tByHook.get(h)?.theory_id).filter(Boolean)};
+            });
+            out.push({field:d.domain_id,emnes});
           }
-          const proofs=rows.flatMap(r=>r.modules.flatMap(m=>m.proofs.map(p=>({field:r.field,file:m.file,...p}))));
-          console.log('LEGACY_MODULE_PROOF='+JSON.stringify(rows));
-          console.log('SUMMARY='+JSON.stringify({fields:rows.length,expected_theories:rows.reduce((n,r)=>n+r.expected_count,0),declared_theories:uniq(rows.flatMap(r=>r.modules.flatMap(m=>m.theoryEvidenceIds))).length,missing_theories:rows.flatMap(r=>r.missing),proof_rows:proofs.length,with_claim_match:proofs.filter(p=>p.matched_claim_ids.length).length,definition_ge_045:proofs.filter(p=>p.definition&&p.definition.ratio>=0.45&&p.definition.matched>=5).length,limitation_ge_04:proofs.filter(p=>p.best_limitation&&p.best_limitation.ratio>=0.4&&p.best_limitation.matched>=4).length,strong_all_three:proofs.filter(p=>p.matched_claim_ids.length&&p.definition&&p.definition.ratio>=0.45&&p.definition.matched>=5&&p.best_limitation&&p.best_limitation.ratio>=0.4&&p.best_limitation.matched>=4).length}));
+          console.log('LEGACY_EMNE_THEORY_MAP='+JSON.stringify(out));
           NODE
