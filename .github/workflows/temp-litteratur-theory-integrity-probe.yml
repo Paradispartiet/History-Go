@@ -21,10 +21,14 @@ jobs:
       - name: Validate read-only probe
         run: |
           node --check tools/probe-litteratur-theory-integrity.mjs
+          node --check tools/probe-litteratur-attribution-candidates.mjs
           node --test tests/litteratur-theory-integrity-probe-smoke.test.mjs
           node tools/probe-litteratur-theory-integrity.mjs | tee /tmp/litteratur-theory-integrity-probe.json
+          node tools/probe-litteratur-attribution-candidates.mjs | tee /tmp/litteratur-attribution-candidates.json
       - name: Upload probe result
         uses: actions/upload-artifact@v4
         with:
           name: litteratur-theory-integrity-probe
-          path: /tmp/litteratur-theory-integrity-probe.json
+          path: |
+            /tmp/litteratur-theory-integrity-probe.json
+            /tmp/litteratur-attribution-candidates.json
