@@ -1,0 +1,43 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "professor_psykologi",
+  "mail_type": "event",
+  "families": [{
+    "id": "soknadsfrist_og_utdanningskvalitet",
+    "purpose": "Prioritere reell undervisningskvalitet når en stor søknadsfrist konkurrerer om samme professor- og teamkapasitet.",
+    "learning_focus": ["utdanningskvalitet", "prioritering", "kapasitet"],
+    "mails": [{
+      "id": "psykologi_professor_psykologi_event_undervisning_001",
+      "mail_type": "event",
+      "mail_family": "soknadsfrist_og_utdanningskvalitet",
+      "role_scope": "professor_psykologi",
+      "phase": "mid",
+      "day_phase": "afternoon",
+      "priority": 138,
+      "cooldown": 3,
+      "repeatable": false,
+      "stage": "stable",
+      "from": "Undervisningskoordinatoren",
+      "people_ref": "psykologi_professor_psykologi_undervisningskoordinator",
+      "place_id": "psykologi_professor_psykologi_undervisningsverksted",
+      "subject": "Emnet trenger redesign samme uke som søknadsfristen",
+      "summary": "Studentdata og sensortilbakemeldinger viser at et sentralt læringsmål ikke nås godt nok, samtidig som forskningsgruppen har en stor søknadsfrist.",
+      "purpose": "Teste om professoren behandler undervisningskvalitet som en kjerneoppgave og gjør kapasitet og delegering eksplisitt.",
+      "stakes": "Å skyve emnet kan beskytte søknaden kortsiktig, men la et dokumentert læringsproblem fortsette; å stoppe all forskning er heller ikke en bærekraftig prioritering.",
+      "situation": ["Problemet er dokumentert gjennom flere datakilder, ikke bare én studentkommentar.", "Søknaden har en ekstern frist som ikke kan flyttes.", "Instituttlederen eier eventuelle større ressursomprioriteringer, mens professoren kan avgrense, delegere og foreslå en forsvarlig plan."],
+      "task_domain": "forskning_og_utdanningsprioritering",
+      "task_kind": "event",
+      "competency": "utdanningskvalitet",
+      "pressure": "soknadsfrist_vs_undervisningskvalitet",
+      "choice_axis": "avgrenset_kvalitetsplan_med_ressursavklaring_vs_undervisning_som_resttid",
+      "consequence_axis": "baerekraftig_kvalitet_vs_gjentatt_laeringsproblem",
+      "narrative_arc": "fra_kalenderkollisjon_til_synlig_prioritering",
+      "choices": [
+        {"id": "A", "label": "Avgrens redesign og løft kapasitetsbehovet", "reply": "Vi retter først delen som er tydeligst knyttet til læringsgapet, fordeler arbeidet, og jeg løfter ressurskonflikten til instituttleder i stedet for å late som begge oppgaver får full kapasitet.", "effect": 1, "tags": ["teaching_quality", "capacity", "transparent_priority"], "feedback": "Du gjør prioriteringen synlig og beskytter både søknaden og studentenes dokumenterte læringsbehov uten falsk kapasitetsoptimisme.", "effects": {"stats": {"quality": 2, "trust": 2, "risk": -2, "energy": -2}}},
+        {"id": "B", "label": "Utsett emnearbeidet til etter søknaden", "reply": "Søknaden har høyest strategisk verdi. Emnet får gå som før denne runden, så ser vi på læringsdataene senere.", "effect": -1, "tags": ["teaching_as_residual", "capacity_blindness"], "feedback": "Du gjør et dokumentert kvalitetsproblem til restarbeid fordi forskningsfristen er mer synlig og statusbærende.", "effects": {"stats": {"status": 2, "quality": -3, "trust": -2, "risk": 2}}}
+      ]
+    }]
+  }]
+}
