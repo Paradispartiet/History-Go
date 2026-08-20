@@ -6,6 +6,16 @@ on:
       - agent/fagverk-by-theory-integrity-proof-20260820
     paths:
       - 'tools/probe-by-theory-integrity.mjs'
+      - 'tests/by-theory-integrity-probe-smoke.test.mjs'
+      - '.github/workflows/temp-by-theory-integrity-probe.yml'
+      - 'data/fag/by/**'
+      - 'data/fagverk/by/**'
+      - 'data/fagverk/fagverk_registry.json'
+      - 'scripts/audit-fagverk-by-complete.mjs'
+  pull_request:
+    paths:
+      - 'tools/probe-by-theory-integrity.mjs'
+      - 'tests/by-theory-integrity-probe-smoke.test.mjs'
       - '.github/workflows/temp-by-theory-integrity-probe.yml'
       - 'data/fag/by/**'
       - 'data/fagverk/by/**'
@@ -26,6 +36,8 @@ jobs:
           node-version: 22
       - name: Check probe syntax
         run: node --check tools/probe-by-theory-integrity.mjs
+      - name: Run probe smoke test
+        run: node --test tests/by-theory-integrity-probe-smoke.test.mjs
       - name: Run read-only By strict-proof probe
         run: node tools/probe-by-theory-integrity.mjs | tee /tmp/by-theory-integrity-probe.json
       - name: Upload probe result
