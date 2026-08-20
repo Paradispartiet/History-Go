@@ -99,6 +99,14 @@ Normalisering returnerer et objekt med faste nøkler. Manglende felt blir `null`
 }
 ```
 
+#### Faktisitetsgrense for virkelige personer
+
+`history_go_person` kan peke direkte på en virkelig historisk eller offentlig person når `person_id` finnes i canonical People-data og oppgaven bare ber spilleren åpne, lese eller quize kildeforankret kunnskap om personen. Virkelige personer er dermed førsteklasses kunnskaps- og oppgavemål, ikke bare bakgrunnsreferanser.
+
+En slik payload gjør **ikke** personen til en Civication-NPC. Civication skal ikke generere fri dialog, oppdiktede e-poster eller meldinger, private tanker eller motiver, fiktive relasjoner eller løpende drama i den virkelige personens navn. Når en oppgave trenger denne typen narrativ aktør, skal avsenderen eller NPC-en være fiktiv eller tydelig fiksjonalisert, mens `history_go_person` peker separat på den virkelige personen som faktamål.
+
+Profesjon, rolle og person–sted-kobling skal tas fra kildeforankrede People-data og må ikke utvides av Civication-konteksten. Et psykologi-forløp gjør for eksempel ikke en psykiater til psykolog, og en tematisk relevant institusjon er ikke i seg selv bevis for en stedstilknytning. `docs/FACTUALITY_CONTRACT.md` er overordnet for disse grensene.
+
 ### 3. Kunnskaps-/quizoppgave
 
 - `task_kind`: `history_go_knowledge`
