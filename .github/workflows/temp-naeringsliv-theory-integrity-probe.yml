@@ -1,0 +1,29 @@
+name: TEMP Næringsliv theory integrity probe
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate existing Næringsliv quality layers
+        run: |
+          node --check tools/probe-naeringsliv-theory-integrity.mjs
+          node scripts/audit-naeringsliv-subject-quality.mjs
+          node tools/validate-okonomi-naeringsliv-universitetskvalitet.mjs
+      - name: Run read-only strict theory probe
+        run: node tools/probe-naeringsliv-theory-integrity.mjs
+      - name: Upload probe result
+        uses: actions/upload-artifact@v4
+        with:
+          name: naeringsliv-theory-integrity-probe
+          path: /tmp/naeringsliv-theory-integrity-probe.json
