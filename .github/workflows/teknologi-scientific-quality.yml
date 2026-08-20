@@ -14,6 +14,9 @@ on:
       - 'data/knowledge/*.generated.json'
       - 'scripts/knowledge-canonical-data.mts'
       - 'scripts/validate-teknologi-editorial-v3.mjs'
+      - 'tools/audit-teknologi-theory-integrity.mjs'
+      - 'tests/teknologi-theory-integrity.test.mjs'
+      - 'reports/fagverk/teknologi-theory-integrity-audit.json'
       - 'tools/build-teknologi-evidence-v2_3.mjs'
       - 'tools/build-teknologi-editorial-v3.mjs'
       - 'tools/validate-teknologi-quality-v2_1.mjs'
@@ -67,6 +70,12 @@ jobs:
       - name: Validate editorial canonical integration V3
         run: node scripts/validate-teknologi-editorial-v3.mjs
 
+      - name: Validate strict Technology theory integrity
+        run: |
+          node --check tools/audit-teknologi-theory-integrity.mjs
+          node tools/audit-teknologi-theory-integrity.mjs
+          node --test tests/teknologi-theory-integrity.test.mjs
+
       - name: Upload scientific quality reports
         if: always()
         uses: actions/upload-artifact@v4
@@ -77,4 +86,5 @@ jobs:
             reports/teknologi-ontology-depth-validation.json
             reports/teknologi-evidence-production-validation.json
             reports/teknologi-editorial-v3-validation.json
+            reports/fagverk/teknologi-theory-integrity-audit.json
           if-no-files-found: error

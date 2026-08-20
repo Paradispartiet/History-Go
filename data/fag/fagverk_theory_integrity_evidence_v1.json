@@ -471,6 +471,36 @@
         "anti_trivia_rule": "verified",
         "universal_subject_scope": "verified"
       }
+    },
+    {
+      "subject_id": "teknologi",
+      "proof_scope": "structured_subject_gate",
+      "audit_script": "tools/audit-teknologi-theory-integrity.mjs",
+      "test": "tests/teknologi-theory-integrity.test.mjs",
+      "workflow": ".github/workflows/teknologi-scientific-quality.yml",
+      "evidence_files": [
+        "data/fag/teknologi/teknologipensum_canonical_v3.json",
+        "data/fag/teknologi/emner_teknologi_canonical_v3.json",
+        "data/fag/teknologi/fagkart_teknologi_canonical_v3.json",
+        "data/fag/teknologi/methods_teknologi_canonical_v3.json",
+        "data/fag/teknologi/teknologi_scientific_v2/theory_quality_registry_v2_1.json",
+        "data/fag/teknologi/teknologi_scientific_v2/source_registry_v2_3.json",
+        "data/fag/teknologi/theory_integrity_bindings_teknologi_v1.json",
+        "reports/teknologi-editorial-v3-validation.json",
+        "reports/fagverk/teknologi-theory-integrity-audit.json"
+      ],
+      "existing_gate_proves": {
+        "canonical_field_coverage": "verified",
+        "structured_scope_mechanism": "verified",
+        "limitations": "verified",
+        "rival_or_alternative": "verified",
+        "person_work_binding": "verified",
+        "scholarly_source_quality": "verified",
+        "claim_or_content_binding": "verified",
+        "actual_prose_binding": "verified",
+        "anti_trivia_rule": "verified",
+        "universal_subject_scope": "verified"
+      }
     }
   ]
 }

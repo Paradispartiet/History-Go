@@ -13,12 +13,12 @@ test('strict theory integrity audit dekker 17 toppfag og Teknologi nested', () =
 
 test('baseline strong blir ikke feilaktig oppgradert uten strict proof', () => {
   const r=auditFagverkTheoryIntegrity();
-  assert.equal(r.status,'strict_audit_open_evidence_gaps');
-  assert.equal(r.strictCompletionGateReady,false);
-  assert.equal(r.summary.strictly_proven,17);
+  assert.equal(r.status,'strict_audit_complete');
+  assert.equal(r.strictCompletionGateReady,true);
+  assert.equal(r.summary.strictly_proven,18);
   assert.equal(r.summary.structured_subject_gate_not_strict,0);
   assert.equal(r.summary.partial_strict_evidence,0);
-  assert.equal(r.summary.baseline_only_strict_proof_missing,1);
+  assert.equal(r.summary.baseline_only_strict_proof_missing,0);
 });
 
 test('manglende strict proof blir ikke feiltolket som innholdshull', () => {
@@ -29,19 +29,19 @@ test('manglende strict proof blir ikke feiltolket som innholdshull', () => {
   assert.ok(r.subjects.every(s=>s.substantiveContentGap===false));
 });
 
-test('alle reconciled subject-gates, inkludert Politikk og Filosofi, er field-level strictly proven', () => {
+test('alle 18 subject-gates, inkludert Filosofi og nested Teknologi, er field-level strictly proven', () => {
   const r=auditFagverkTheoryIntegrity();
   const byId=new Map(r.subjects.map(s=>[s.id,s]));
-  for(const id of ['film_tv','religion','subkultur','scenekunst','historie','by','kunst','media','musikk','litteratur','natur','naeringsliv','psykologi','sport','vitenskap','politikk','filosofi']){
+  for(const id of ['film_tv','religion','subkultur','scenekunst','historie','by','kunst','media','musikk','litteratur','natur','naeringsliv','psykologi','sport','vitenskap','politikk','filosofi','teknologi']){
     assert.equal(byId.get(id).integrityStatus,'strictly_proven');
     assert.deepEqual(byId.get(id).missingStrictProof,[]);
     assert.equal(byId.get(id).evidenceAdapter,'structured_subject_gate');
   }
 });
 
-test('completion-status er read-only og proof-køen er redusert til Teknologi', () => {
+test('completion-status er read-only og proof-køen er tom', () => {
   const r=auditFagverkTheoryIntegrity();
   assert.equal(r.rules.completionStatusReadOnly,true);
-  assert.deepEqual(r.proofReconciliationQueue,['teknologi']);
-  for(const id of ['film_tv','religion','subkultur','scenekunst','historie','by','kunst','media','musikk','litteratur','natur','naeringsliv','psykologi','sport','vitenskap','politikk','filosofi'])assert.ok(!r.proofReconciliationQueue.includes(id));
+  assert.deepEqual(r.proofReconciliationQueue,[]);
+  for(const id of ['film_tv','religion','subkultur','scenekunst','historie','by','kunst','media','musikk','litteratur','natur','naeringsliv','psykologi','sport','vitenskap','politikk','filosofi','teknologi'])assert.ok(!r.proofReconciliationQueue.includes(id));
 });

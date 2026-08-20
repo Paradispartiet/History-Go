@@ -1,0 +1,1635 @@
+{
+  "schema": "history_go_teknologi_theory_integrity_bindings_v1",
+  "version": "1.0.0",
+  "status": "read_only_proof_sidecar",
+  "subject_id": "teknologi",
+  "profile": "hybrid",
+  "parent_subject": "vitenskap",
+  "completion_status_read_only": true,
+  "content_mutation": false,
+  "proof_rule": "Strict proof is derived from the active Technology V3 canonical emne prose plus the V2 scientific theory, thinker/work and source layers. The sidecar adds no subject claims and is reproducible from those sources.",
+  "source_files": [
+    "data/fag/teknologi/teknologi_scientific_v2/index.json",
+    "data/fag/teknologi/fagkart_teknologi_canonical_v3.json",
+    "data/fag/teknologi/emner_teknologi_canonical_v3.json",
+    "data/fag/teknologi/methods_teknologi_canonical_v3.json",
+    "data/fag/teknologi/teknologi_scientific_v2/theory_quality_registry_v2_1.json",
+    "data/fag/teknologi/teknologi_scientific_v2/source_registry_v2_3.json",
+    "data/fag/teknologi/editorial_contract_teknologi_v3.json",
+    "reports/teknologi-editorial-v3-validation.json"
+  ],
+  "fields": [
+    {
+      "area_id": "algoritmer_data_ai",
+      "emne_ids": [
+        "em_tek_ai_evaluering_styring_ansvar",
+        "em_tek_algoritmer_datastrukturer_kompleksitet",
+        "em_tek_data_kvalitet_representasjon",
+        "em_tek_maskinlaering_trening_generalisering"
+      ],
+      "theory_ids": [
+        "teori_tek_beregningskompleksitet",
+        "teori_tek_statistisk_laering"
+      ],
+      "hook_ids": [
+        "hook_tek_algoritmer_data_ai_feil",
+        "hook_tek_algoritmer_data_ai_mekanisme",
+        "hook_tek_algoritmer_data_ai_virkning"
+      ],
+      "comparison_basis": [
+        "oppgave og målvariabel",
+        "datasplitt og tidsperiode",
+        "baseline",
+        "brukskontekst og feilkostnad"
+      ],
+      "theory_bindings": [
+        {
+          "theory_id": "teori_tek_beregningskompleksitet",
+          "canonical_emne_ids": [
+            "em_tek_algoritmer_datastrukturer_kompleksitet"
+          ],
+          "thinker_work_bindings": [
+            {
+              "thinker_id": "muhammad_al_khwarizmi",
+              "name": "Muḥammad al-Khwārizmī",
+              "work": "The Compendious Book on Calculation by Completion and Balancing",
+              "role": "systematiske beregningsmetoder og algebra"
+            },
+            {
+              "thinker_id": "alan_turing",
+              "name": "Alan Turing",
+              "work": "On Computable Numbers",
+              "role": "beregnbarhet og maskinintelligens"
+            },
+            {
+              "thinker_id": "donald_knuth",
+              "name": "Donald Knuth",
+              "work": "The Art of Computer Programming",
+              "role": "analyse av algoritmer og programmeringskunst"
+            },
+            {
+              "thinker_id": "judea_pearl",
+              "name": "Judea Pearl",
+              "work": "Causality",
+              "role": "kausal modellering og probabilistisk AI"
+            },
+            {
+              "thinker_id": "fei_fei_li",
+              "name": "Fei-Fei Li",
+              "work": "ImageNet",
+              "role": "datasett, visuell læring og menneskesentrert AI"
+            }
+          ],
+          "scholarly_source_ids": [
+            "src_tek_hastie_2009",
+            "src_tek_nist_ai_rmf_2023",
+            "src_tek_pearl_2009"
+          ],
+          "prose_binding_fields": [
+            "definition",
+            "why_it_matters",
+            "learning_outcomes",
+            "canonical_mechanisms",
+            "mandatory_failure_modes",
+            "misconceptions",
+            "boundary_note",
+            "assessment_prompt"
+          ]
+        },
+        {
+          "theory_id": "teori_tek_statistisk_laering",
+          "canonical_emne_ids": [
+            "em_tek_ai_evaluering_styring_ansvar",
+            "em_tek_data_kvalitet_representasjon",
+            "em_tek_maskinlaering_trening_generalisering"
+          ],
+          "thinker_work_bindings": [
+            {
+              "thinker_id": "muhammad_al_khwarizmi",
+              "name": "Muḥammad al-Khwārizmī",
+              "work": "The Compendious Book on Calculation by Completion and Balancing",
+              "role": "systematiske beregningsmetoder og algebra"
+            },
+            {
+              "thinker_id": "alan_turing",
+              "name": "Alan Turing",
+              "work": "On Computable Numbers",
+              "role": "beregnbarhet og maskinintelligens"
+            },
+            {
+              "thinker_id": "donald_knuth",
+              "name": "Donald Knuth",
+              "work": "The Art of Computer Programming",
+              "role": "analyse av algoritmer og programmeringskunst"
+            },
+            {
+              "thinker_id": "judea_pearl",
+              "name": "Judea Pearl",
+              "work": "Causality",
+              "role": "kausal modellering og probabilistisk AI"
+            },
+            {
+              "thinker_id": "fei_fei_li",
+              "name": "Fei-Fei Li",
+              "work": "ImageNet",
+              "role": "datasett, visuell læring og menneskesentrert AI"
+            }
+          ],
+          "scholarly_source_ids": [
+            "src_tek_hastie_2009",
+            "src_tek_nist_ai_rmf_2023",
+            "src_tek_pearl_2009"
+          ],
+          "prose_binding_fields": [
+            "definition",
+            "why_it_matters",
+            "learning_outcomes",
+            "canonical_mechanisms",
+            "mandatory_failure_modes",
+            "misconceptions",
+            "boundary_note",
+            "assessment_prompt"
+          ]
+        }
+      ]
+    },
+    {
+      "area_id": "datamaskiner_operativsystemer",
+      "emne_ids": [
+        "em_tek_digital_logikk_og_representasjon",
+        "em_tek_operativsystemer_prosesser_ressurser",
+        "em_tek_prosessor_minne_arkitektur",
+        "em_tek_samtidighet_lagring_og_i_o"
+      ],
+      "theory_ids": [
+        "teori_tek_abstraksjonsstakk_datamaskin",
+        "teori_tek_lagret_program_arkitektur"
+      ],
+      "hook_ids": [
+        "hook_tek_datamaskiner_operativsystemer_feil",
+        "hook_tek_datamaskiner_operativsystemer_mekanisme",
+        "hook_tek_datamaskiner_operativsystemer_virkning"
+      ],
+      "comparison_basis": [
+        "arbeidslast",
+        "maskin- og OS-versjon",
+        "ressursgrenser",
+        "ytelsesmetrikk"
+      ],
+      "theory_bindings": [
+        {
+          "theory_id": "teori_tek_abstraksjonsstakk_datamaskin",
+          "canonical_emne_ids": [
+            "em_tek_operativsystemer_prosesser_ressurser",
+            "em_tek_prosessor_minne_arkitektur",
+            "em_tek_samtidighet_lagring_og_i_o"
+          ],
+          "thinker_work_bindings": [
+            {
+              "thinker_id": "charles_babbage",
+              "name": "Charles Babbage",
+              "work": "On the Economy of Machinery and Manufactures",
+              "role": "programmerbar mekanisk beregning"
+            },
+            {
+              "thinker_id": "ada_lovelace",
+              "name": "Ada Lovelace",
+              "work": "Notes on the Analytical Engine",
+              "role": "programmering og analyse av den analytiske maskinen"
+            },
+            {
+              "thinker_id": "john_von_neumann",
+              "name": "John von Neumann",
+              "work": "First Draft of a Report on the EDVAC",
+              "role": "lagret-program-arkitektur"
+            },
+            {
+              "thinker_id": "grace_hopper",
+              "name": "Grace Hopper",
+              "work": "The Education of a Computer",
+              "role": "kompilatorer og programmeringsspråk"
+            },
+            {
+              "thinker_id": "maurice_wilkes",
+              "name": "Maurice Wilkes",
+              "work": "Automatic Digital Computers",
+              "role": "lagret-program-datamaskiner og mikroprogrammering"
+            }
+          ],
+          "scholarly_source_ids": [
+            "src_tek_amdahl_1967",
+            "src_tek_hennessy_patterson_2019",
+            "src_tek_riscv_unpriv_20191213"
+          ],
+          "prose_binding_fields": [
+            "definition",
+            "why_it_matters",
+            "learning_outcomes",
+            "canonical_mechanisms",
+            "mandatory_failure_modes",
+            "misconceptions",
+            "boundary_note",
+            "assessment_prompt"
+          ]
+        },
+        {
+          "theory_id": "teori_tek_lagret_program_arkitektur",
+          "canonical_emne_ids": [
+            "em_tek_digital_logikk_og_representasjon"
+          ],
+          "thinker_work_bindings": [
+            {
+              "thinker_id": "charles_babbage",
+              "name": "Charles Babbage",
+              "work": "On the Economy of Machinery and Manufactures",
+              "role": "programmerbar mekanisk beregning"
+            },
+            {
+              "thinker_id": "ada_lovelace",
+              "name": "Ada Lovelace",
+              "work": "Notes on the Analytical Engine",
+              "role": "programmering og analyse av den analytiske maskinen"
+            },
+            {
+              "thinker_id": "john_von_neumann",
+              "name": "John von Neumann",
+              "work": "First Draft of a Report on the EDVAC",
+              "role": "lagret-program-arkitektur"
+            },
+            {
+              "thinker_id": "grace_hopper",
+              "name": "Grace Hopper",
+              "work": "The Education of a Computer",
+              "role": "kompilatorer og programmeringsspråk"
+            },
+            {
+              "thinker_id": "maurice_wilkes",
+              "name": "Maurice Wilkes",
+              "work": "Automatic Digital Computers",
+              "role": "lagret-program-datamaskiner og mikroprogrammering"
+            }
+          ],
+          "scholarly_source_ids": [
+            "src_tek_amdahl_1967",
+            "src_tek_hennessy_patterson_2019",
+            "src_tek_riscv_unpriv_20191213"
+          ],
+          "prose_binding_fields": [
+            "definition",
+            "why_it_matters",
+            "learning_outcomes",
+            "canonical_mechanisms",
+            "mandatory_failure_modes",
+            "misconceptions",
+            "boundary_note",
+            "assessment_prompt"
+          ]
+        }
+      ]
+    },
+    {
+      "area_id": "elektronikk_signaler_regulering",
+      "emne_ids": [
+        "em_tek_innebygde_systemer_sanntid",
+        "em_tek_kretser_komponenter_og_maling",
+        "em_tek_regulering_tilbakemelding_stabilitet",
+        "em_tek_signaler_sensorer_og_stoy"
+      ],
+      "theory_ids": [
+        "teori_tek_lukket_reguleringssloyfe",
+        "teori_tek_signal_og_informasjonskjede"
+      ],
+      "hook_ids": [
+        "hook_tek_elektronikk_signaler_regulering_feil",
+        "hook_tek_elektronikk_signaler_regulering_mekanisme",
+        "hook_tek_elektronikk_signaler_regulering_virkning"
+      ],
+      "comparison_basis": [
+        "signalområde",
+        "båndbredde",
+        "samplingfrekvens",
+        "drifts- og støymiljø"
+      ],
+      "theory_bindings": [
+        {
+          "theory_id": "teori_tek_lukket_reguleringssloyfe",
+          "canonical_emne_ids": [
+            "em_tek_kretser_komponenter_og_maling",
+            "em_tek_regulering_tilbakemelding_stabilitet"
+          ],
+          "thinker_work_bindings": [
+            {
+              "thinker_id": "georg_ohm",
+              "name": "Georg Ohm",
+              "work": "Die galvanische Kette, mathematisch bearbeitet",
+              "role": "elektriske kretser og sammenheng mellom spenning, strøm og motstand"
+            },
+            {
+              "thinker_id": "james_clerk_maxwell",
+              "name": "James Clerk Maxwell",
+              "work": "A Treatise on Electricity and Magnetism",
+              "role": "elektromagnetisk feltteori"
+            },
+            {
+              "thinker_id": "claude_shannon",
+              "name": "Claude Shannon",
+              "work": "A Mathematical Theory of Communication",
+              "role": "informasjonsteori og digitale kretser"
+            },
+            {
+              "thinker_id": "hendrik_bode",
+              "name": "Hendrik Wade Bode",
+              "work": "Network Analysis and Feedback Amplifier Design",
+              "role": "frekvensrespons og regulering"
+            },
+            {
+              "thinker_id": "rudolf_kalman",
+              "name": "Rudolf E. Kálmán",
+              "work": "A New Approach to Linear Filtering and Prediction Problems",
+              "role": "tilstandsestimering og regulering"
+            }
+          ],
+          "scholarly_source_ids": [
+            "src_tek_ieee_1057_2017",
+            "src_tek_ogata_2010",
+            "src_tek_shannon_1948"
+          ],
+          "prose_binding_fields": [
+            "definition",
+            "why_it_matters",
+            "learning_outcomes",
+            "canonical_mechanisms",
+            "mandatory_failure_modes",
+            "misconceptions",
+            "boundary_note",
+            "assessment_prompt"
+          ]
+        },
+        {
+          "theory_id": "teori_tek_signal_og_informasjonskjede",
+          "canonical_emne_ids": [
+            "em_tek_innebygde_systemer_sanntid",
+            "em_tek_signaler_sensorer_og_stoy"
+          ],
+          "thinker_work_bindings": [
+            {
+              "thinker_id": "georg_ohm",
+              "name": "Georg Ohm",
+              "work": "Die galvanische Kette, mathematisch bearbeitet",
+              "role": "elektriske kretser og sammenheng mellom spenning, strøm og motstand"
+            },
+            {
+              "thinker_id": "james_clerk_maxwell",
+              "name": "James Clerk Maxwell",
+              "work": "A Treatise on Electricity and Magnetism",
+              "role": "elektromagnetisk feltteori"
+            },
+            {
+              "thinker_id": "claude_shannon",
+              "name": "Claude Shannon",
+              "work": "A Mathematical Theory of Communication",
+              "role": "informasjonsteori og digitale kretser"
+            },
+            {
+              "thinker_id": "hendrik_bode",
+              "name": "Hendrik Wade Bode",
+              "work": "Network Analysis and Feedback Amplifier Design",
+              "role": "frekvensrespons og regulering"
+            },
+            {
+              "thinker_id": "rudolf_kalman",
+              "name": "Rudolf E. Kálmán",
+              "work": "A New Approach to Linear Filtering and Prediction Problems",
+              "role": "tilstandsestimering og regulering"
+            }
+          ],
+          "scholarly_source_ids": [
+            "src_tek_ieee_1057_2017",
+            "src_tek_ogata_2010",
+            "src_tek_shannon_1948"
+          ],
+          "prose_binding_fields": [
+            "definition",
+            "why_it_matters",
+            "learning_outcomes",
+            "canonical_mechanisms",
+            "mandatory_failure_modes",
+            "misconceptions",
+            "boundary_note",
+            "assessment_prompt"
+          ]
+        }
+      ]
+    },
+    {
+      "area_id": "materialer_produksjon",
+      "emne_ids": [
+        "em_tek_livslop_reparasjon_sirkularitet",
+        "em_tek_materialstruktur_og_egenskaper",
+        "em_tek_produksjonsprosesser_toleranser_kvalitet",
+        "em_tek_utmattelse_brudd_korrosjon"
+      ],
+      "theory_ids": [
+        "teori_tek_ashby_materialvalg",
+        "teori_tek_statistisk_prosesskontroll"
+      ],
+      "hook_ids": [
+        "hook_tek_materialer_produksjon_feil",
+        "hook_tek_materialer_produksjon_mekanisme",
+        "hook_tek_materialer_produksjon_virkning"
+      ],
+      "comparison_basis": [
+        "funksjon og last",
+        "materialtilstand",
+        "produksjonsvolum",
+        "livsløpsgrense"
+      ],
+      "theory_bindings": [
+        {
+          "theory_id": "teori_tek_ashby_materialvalg",
+          "canonical_emne_ids": [
+            "em_tek_materialstruktur_og_egenskaper",
+            "em_tek_utmattelse_brudd_korrosjon"
+          ],
+          "thinker_work_bindings": [
+            {
+              "thinker_id": "henry_bessemer",
+              "name": "Henry Bessemer",
+              "work": "Bessemer process",
+              "role": "industriell stålproduksjon"
+            },
+            {
+              "thinker_id": "cyril_stanley_smith",
+              "name": "Cyril Stanley Smith",
+              "work": "A History of Metallography",
+              "role": "metallurgi, struktur og teknologihistorie"
+            },
+            {
+              "thinker_id": "alan_arnold_griffith",
+              "name": "Alan Arnold Griffith",
+              "work": "The Phenomena of Rupture and Flow in Solids",
+              "role": "sprøbrudd og sprekkmekanikk"
+            },
+            {
+              "thinker_id": "w_edwards_deming",
+              "name": "W. Edwards Deming",
+              "work": "Out of the Crisis",
+              "role": "statistisk kvalitetsstyring"
+            },
+            {
+              "thinker_id": "michael_f_ashby",
+              "name": "Michael F. Ashby",
+              "work": "Materials Selection in Mechanical Design",
+              "role": "systematisk materialvalg"
+            }
+          ],
+          "scholarly_source_ids": [
+            "src_tek_ashby_2017",
+            "src_tek_astm_e647_2015",
+            "src_tek_iso_22514_2_2017"
+          ],
+          "prose_binding_fields": [
+            "definition",
+            "why_it_matters",
+            "learning_outcomes",
+            "canonical_mechanisms",
+            "mandatory_failure_modes",
+            "misconceptions",
+            "boundary_note",
+            "assessment_prompt"
+          ]
+        },
+        {
+          "theory_id": "teori_tek_statistisk_prosesskontroll",
+          "canonical_emne_ids": [
+            "em_tek_livslop_reparasjon_sirkularitet",
+            "em_tek_produksjonsprosesser_toleranser_kvalitet"
+          ],
+          "thinker_work_bindings": [
+            {
+              "thinker_id": "henry_bessemer",
+              "name": "Henry Bessemer",
+              "work": "Bessemer process",
+              "role": "industriell stålproduksjon"
+            },
+            {
+              "thinker_id": "cyril_stanley_smith",
+              "name": "Cyril Stanley Smith",
+              "work": "A History of Metallography",
+              "role": "metallurgi, struktur og teknologihistorie"
+            },
+            {
+              "thinker_id": "alan_arnold_griffith",
+              "name": "Alan Arnold Griffith",
+              "work": "The Phenomena of Rupture and Flow in Solids",
+              "role": "sprøbrudd og sprekkmekanikk"
+            },
+            {
+              "thinker_id": "w_edwards_deming",
+              "name": "W. Edwards Deming",
+              "work": "Out of the Crisis",
+              "role": "statistisk kvalitetsstyring"
+            },
+            {
+              "thinker_id": "michael_f_ashby",
+              "name": "Michael F. Ashby",
+              "work": "Materials Selection in Mechanical Design",
+              "role": "systematisk materialvalg"
+            }
+          ],
+          "scholarly_source_ids": [
+            "src_tek_ashby_2017",
+            "src_tek_astm_e647_2015",
+            "src_tek_iso_22514_2_2017"
+          ],
+          "prose_binding_fields": [
+            "definition",
+            "why_it_matters",
+            "learning_outcomes",
+            "canonical_mechanisms",
+            "mandatory_failure_modes",
+            "misconceptions",
+            "boundary_note",
+            "assessment_prompt"
+          ]
+        }
+      ]
+    },
+    {
+      "area_id": "mekanikk_energi_maskiner",
+      "emne_ids": [
+        "em_tek_mekanikk_kraft_bevegelse",
+        "em_tek_motorer_turbiner_og_pumper",
+        "em_tek_termodynamikk_varme_arbeid",
+        "em_tek_virkningsgrad_tap_og_eksergi"
+      ],
+      "theory_ids": [
+        "teori_tek_energiomformingskjede",
+        "teori_tek_termodynamisk_kretsprosess"
+      ],
+      "hook_ids": [
+        "hook_tek_mekanikk_energi_maskiner_feil",
+        "hook_tek_mekanikk_energi_maskiner_mekanisme",
+        "hook_tek_mekanikk_energi_maskiner_virkning"
+      ],
+      "comparison_basis": [
+        "nyttig funksjon",
+        "lastprofil",
+        "driftspunkt",
+        "systemgrense"
+      ],
+      "theory_bindings": [
+        {
+          "theory_id": "teori_tek_energiomformingskjede",
+          "canonical_emne_ids": [
+            "em_tek_mekanikk_kraft_bevegelse",
+            "em_tek_termodynamikk_varme_arbeid",
+            "em_tek_virkningsgrad_tap_og_eksergi"
+          ],
+          "thinker_work_bindings": [
+            {
+              "thinker_id": "james_watt",
+              "name": "James Watt",
+              "work": "Separate condenser patent",
+              "role": "dampmaskiner, regulering og virkningsgrad"
+            },
+            {
+              "thinker_id": "sadi_carnot",
+              "name": "Sadi Carnot",
+              "work": "Reflections on the Motive Power of Fire",
+              "role": "varmekraftmaskiners teoretiske grenser"
+            },
+            {
+              "thinker_id": "james_prescott_joule",
+              "name": "James Prescott Joule",
+              "work": "On the Mechanical Equivalent of Heat",
+              "role": "sammenhengen mellom arbeid og varme"
+            },
+            {
+              "thinker_id": "rudolf_clausius",
+              "name": "Rudolf Clausius",
+              "work": "The Mechanical Theory of Heat",
+              "role": "termodynamikk og entropi"
+            },
+            {
+              "thinker_id": "charles_parsons",
+              "name": "Charles Algernon Parsons",
+              "work": "Compound steam turbine",
+              "role": "dampturbinen og kraftproduksjon"
+            }
+          ],
+          "scholarly_source_ids": [
+            "src_tek_asme_ptc_19_1_2018",
+            "src_tek_iso_5151_2017",
+            "src_tek_moran_shapiro_2018"
+          ],
+          "prose_binding_fields": [
+            "definition",
+            "why_it_matters",
+            "learning_outcomes",
+            "canonical_mechanisms",
+            "mandatory_failure_modes",
+            "misconceptions",
+            "boundary_note",
+            "assessment_prompt"
+          ]
+        },
+        {
+          "theory_id": "teori_tek_termodynamisk_kretsprosess",
+          "canonical_emne_ids": [
+            "em_tek_motorer_turbiner_og_pumper"
+          ],
+          "thinker_work_bindings": [
+            {
+              "thinker_id": "james_watt",
+              "name": "James Watt",
+              "work": "Separate condenser patent",
+              "role": "dampmaskiner, regulering og virkningsgrad"
+            },
+            {
+              "thinker_id": "sadi_carnot",
+              "name": "Sadi Carnot",
+              "work": "Reflections on the Motive Power of Fire",
+              "role": "varmekraftmaskiners teoretiske grenser"
+            },
+            {
+              "thinker_id": "james_prescott_joule",
+              "name": "James Prescott Joule",
+              "work": "On the Mechanical Equivalent of Heat",
+              "role": "sammenhengen mellom arbeid og varme"
+            },
+            {
+              "thinker_id": "rudolf_clausius",
+              "name": "Rudolf Clausius",
+              "work": "The Mechanical Theory of Heat",
+              "role": "termodynamikk og entropi"
+            },
+            {
+              "thinker_id": "charles_parsons",
+              "name": "Charles Algernon Parsons",
+              "work": "Compound steam turbine",
+              "role": "dampturbinen og kraftproduksjon"
+            }
+          ],
+          "scholarly_source_ids": [
+            "src_tek_asme_ptc_19_1_2018",
+            "src_tek_iso_5151_2017",
+            "src_tek_moran_shapiro_2018"
+          ],
+          "prose_binding_fields": [
+            "definition",
+            "why_it_matters",
+            "learning_outcomes",
+            "canonical_mechanisms",
+            "mandatory_failure_modes",
+            "misconceptions",
+            "boundary_note",
+            "assessment_prompt"
+          ]
+        }
+      ]
+    },
+    {
+      "area_id": "menneske_teknologi_hci",
+      "emne_ids": [
+        "em_tek_interaksjonsdesign_og_brukbarhet",
+        "em_tek_menneskelige_faktorer_og_arbeid",
+        "em_tek_sosiotekniske_systemer_automatisering",
+        "em_tek_tilgjengelighet_universell_utforming"
+      ],
+      "theory_ids": [
+        "teori_tek_distribuert_kognisjon",
+        "teori_tek_menneskesentrert_design"
+      ],
+      "hook_ids": [
+        "hook_tek_menneske_teknologi_hci_feil",
+        "hook_tek_menneske_teknologi_hci_mekanisme",
+        "hook_tek_menneske_teknologi_hci_virkning"
+      ],
+      "comparison_basis": [
+        "brukergruppe og oppgave",
+        "kontekst og hjelpemidler",
+        "erfaringsnivå",
+        "feilkonsekvens"
+      ],
+      "theory_bindings": [
+        {
+          "theory_id": "teori_tek_distribuert_kognisjon",
+          "canonical_emne_ids": [
+            "em_tek_sosiotekniske_systemer_automatisering"
+          ],
+          "thinker_work_bindings": [
+            {
+              "thinker_id": "donald_norman",
+              "name": "Donald Norman",
+              "work": "The Design of Everyday Things",
+              "role": "menneskesentrert design og handlingsforståelse"
+            },
+            {
+              "thinker_id": "lucy_suchman",
+              "name": "Lucy Suchman",
+              "work": "Plans and Situated Actions",
+              "role": "situert handling og menneske–maskin-samspill"
+            },
+            {
+              "thinker_id": "ben_shneiderman",
+              "name": "Ben Shneiderman",
+              "work": "Designing the User Interface",
+              "role": "direkte manipulasjon og interaksjonsdesign"
+            },
+            {
+              "thinker_id": "jakob_nielsen",
+              "name": "Jakob Nielsen",
+              "work": "Usability Engineering",
+              "role": "brukbarhetsmetoder og heuristikker"
+            },
+            {
+              "thinker_id": "john_m_carroll",
+              "name": "John M. Carroll",
+              "work": "Making Use",
+              "role": "scenario-basert design og HCI"
+            }
+          ],
+          "scholarly_source_ids": [
+            "src_tek_endsley_1995",
+            "src_tek_iso_9241_210_2019",
+            "src_tek_wcag_2_2_2023"
+          ],
+          "prose_binding_fields": [
+            "definition",
+            "why_it_matters",
+            "learning_outcomes",
+            "canonical_mechanisms",
+            "mandatory_failure_modes",
+            "misconceptions",
+            "boundary_note",
+            "assessment_prompt"
+          ]
+        },
+        {
+          "theory_id": "teori_tek_menneskesentrert_design",
+          "canonical_emne_ids": [
+            "em_tek_interaksjonsdesign_og_brukbarhet",
+            "em_tek_menneskelige_faktorer_og_arbeid",
+            "em_tek_tilgjengelighet_universell_utforming"
+          ],
+          "thinker_work_bindings": [
+            {
+              "thinker_id": "donald_norman",
+              "name": "Donald Norman",
+              "work": "The Design of Everyday Things",
+              "role": "menneskesentrert design og handlingsforståelse"
+            },
+            {
+              "thinker_id": "lucy_suchman",
+              "name": "Lucy Suchman",
+              "work": "Plans and Situated Actions",
+              "role": "situert handling og menneske–maskin-samspill"
+            },
+            {
+              "thinker_id": "ben_shneiderman",
+              "name": "Ben Shneiderman",
+              "work": "Designing the User Interface",
+              "role": "direkte manipulasjon og interaksjonsdesign"
+            },
+            {
+              "thinker_id": "jakob_nielsen",
+              "name": "Jakob Nielsen",
+              "work": "Usability Engineering",
+              "role": "brukbarhetsmetoder og heuristikker"
+            },
+            {
+              "thinker_id": "john_m_carroll",
+              "name": "John M. Carroll",
+              "work": "Making Use",
+              "role": "scenario-basert design og HCI"
+            }
+          ],
+          "scholarly_source_ids": [
+            "src_tek_endsley_1995",
+            "src_tek_iso_9241_210_2019",
+            "src_tek_wcag_2_2_2023"
+          ],
+          "prose_binding_fields": [
+            "definition",
+            "why_it_matters",
+            "learning_outcomes",
+            "canonical_mechanisms",
+            "mandatory_failure_modes",
+            "misconceptions",
+            "boundary_note",
+            "assessment_prompt"
+          ]
+        }
+      ]
+    },
+    {
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "emne_ids": [
+        "em_tek_distribuerte_systemer_sky",
+        "em_tek_infrastruktur_robusthet_hendelser",
+        "em_tek_kryptografi_identitet_tilgang",
+        "em_tek_nettverkslag_protokoller_ruting"
+      ],
+      "theory_ids": [
+        "teori_tek_ende_til_ende_prinsippet",
+        "teori_tek_forsvar_i_dybden"
+      ],
+      "hook_ids": [
+        "hook_tek_nettverk_cybersikkerhet_infrastruktur_feil",
+        "hook_tek_nettverk_cybersikkerhet_infrastruktur_mekanisme",
+        "hook_tek_nettverk_cybersikkerhet_infrastruktur_virkning"
+      ],
+      "comparison_basis": [
+        "tjeneste og trusselmodell",
+        "topologi og skala",
+        "latenstid og tilgjengelighetskrav",
+        "sikkerhetsforutsetninger"
+      ],
+      "theory_bindings": [
+        {
+          "theory_id": "teori_tek_ende_til_ende_prinsippet",
+          "canonical_emne_ids": [
+            "em_tek_distribuerte_systemer_sky",
+            "em_tek_nettverkslag_protokoller_ruting"
+          ],
+          "thinker_work_bindings": [
+            {
+              "thinker_id": "vint_cerf",
+              "name": "Vint Cerf",
+              "work": "A Protocol for Packet Network Intercommunication",
+              "role": "internettprotokoller"
+            },
+            {
+              "thinker_id": "robert_kahn",
+              "name": "Robert E. Kahn",
+              "work": "A Protocol for Packet Network Intercommunication",
+              "role": "pakkeformidling og internettarkitektur"
+            },
+            {
+              "thinker_id": "radia_perlman",
+              "name": "Radia Perlman",
+              "work": "Interconnections",
+              "role": "nettverksbroer og robust ruting"
+            },
+            {
+              "thinker_id": "whitfield_diffie",
+              "name": "Whitfield Diffie",
+              "work": "New Directions in Cryptography",
+              "role": "offentlig-nøkkel-kryptografi"
+            },
+            {
+              "thinker_id": "leslie_lamport",
+              "name": "Leslie Lamport",
+              "work": "Time, Clocks, and the Ordering of Events in a Distributed System",
+              "role": "distribuerte systemer, klokker og konsensus"
+            }
+          ],
+          "scholarly_source_ids": [
+            "src_tek_gilbert_lynch_2002",
+            "src_tek_nist_sp_800_207",
+            "src_tek_rfc_8200",
+            "src_tek_rfc_8446"
+          ],
+          "prose_binding_fields": [
+            "definition",
+            "why_it_matters",
+            "learning_outcomes",
+            "canonical_mechanisms",
+            "mandatory_failure_modes",
+            "misconceptions",
+            "boundary_note",
+            "assessment_prompt"
+          ]
+        },
+        {
+          "theory_id": "teori_tek_forsvar_i_dybden",
+          "canonical_emne_ids": [
+            "em_tek_infrastruktur_robusthet_hendelser",
+            "em_tek_kryptografi_identitet_tilgang"
+          ],
+          "thinker_work_bindings": [
+            {
+              "thinker_id": "vint_cerf",
+              "name": "Vint Cerf",
+              "work": "A Protocol for Packet Network Intercommunication",
+              "role": "internettprotokoller"
+            },
+            {
+              "thinker_id": "robert_kahn",
+              "name": "Robert E. Kahn",
+              "work": "A Protocol for Packet Network Intercommunication",
+              "role": "pakkeformidling og internettarkitektur"
+            },
+            {
+              "thinker_id": "radia_perlman",
+              "name": "Radia Perlman",
+              "work": "Interconnections",
+              "role": "nettverksbroer og robust ruting"
+            },
+            {
+              "thinker_id": "whitfield_diffie",
+              "name": "Whitfield Diffie",
+              "work": "New Directions in Cryptography",
+              "role": "offentlig-nøkkel-kryptografi"
+            },
+            {
+              "thinker_id": "leslie_lamport",
+              "name": "Leslie Lamport",
+              "work": "Time, Clocks, and the Ordering of Events in a Distributed System",
+              "role": "distribuerte systemer, klokker og konsensus"
+            }
+          ],
+          "scholarly_source_ids": [
+            "src_tek_gilbert_lynch_2002",
+            "src_tek_nist_sp_800_207",
+            "src_tek_rfc_8200",
+            "src_tek_rfc_8446"
+          ],
+          "prose_binding_fields": [
+            "definition",
+            "why_it_matters",
+            "learning_outcomes",
+            "canonical_mechanisms",
+            "mandatory_failure_modes",
+            "misconceptions",
+            "boundary_note",
+            "assessment_prompt"
+          ]
+        }
+      ]
+    },
+    {
+      "area_id": "programvareteknikk",
+      "emne_ids": [
+        "em_tek_drift_observerbarhet_vedlikehold",
+        "em_tek_modularitet_arkitektur_api",
+        "em_tek_programmeringsparadigmer_abstraksjon",
+        "em_tek_testing_verifikasjon_korrekthet"
+      ],
+      "theory_ids": [
+        "teori_tek_informasjonsskjuling",
+        "teori_tek_kontinuerlig_programvarelivslop"
+      ],
+      "hook_ids": [
+        "hook_tek_programvareteknikk_feil",
+        "hook_tek_programvareteknikk_mekanisme",
+        "hook_tek_programvareteknikk_virkning"
+      ],
+      "comparison_basis": [
+        "versjon og konfigurasjon",
+        "arbeidslast",
+        "driftsmiljø",
+        "tjenestenivå"
+      ],
+      "theory_bindings": [
+        {
+          "theory_id": "teori_tek_informasjonsskjuling",
+          "canonical_emne_ids": [
+            "em_tek_modularitet_arkitektur_api",
+            "em_tek_programmeringsparadigmer_abstraksjon",
+            "em_tek_testing_verifikasjon_korrekthet"
+          ],
+          "thinker_work_bindings": [
+            {
+              "thinker_id": "edsger_dijkstra",
+              "name": "Edsger W. Dijkstra",
+              "work": "A Discipline of Programming",
+              "role": "strukturert programmering og programkorrekthet"
+            },
+            {
+              "thinker_id": "david_parnas",
+              "name": "David Parnas",
+              "work": "On the Criteria To Be Used in Decomposing Systems into Modules",
+              "role": "informasjonsskjuling og modularitet"
+            },
+            {
+              "thinker_id": "barbara_liskov",
+              "name": "Barbara Liskov",
+              "work": "Data Abstraction and Hierarchy",
+              "role": "dataabstraksjon og substitusjon"
+            },
+            {
+              "thinker_id": "fred_brooks",
+              "name": "Frederick P. Brooks Jr.",
+              "work": "The Mythical Man-Month",
+              "role": "programvareprosjekter og kompleksitet"
+            },
+            {
+              "thinker_id": "margaret_hamilton",
+              "name": "Margaret Hamilton",
+              "work": "Apollo Guidance Software",
+              "role": "programvareteknikk og høyintegritetssystemer"
+            }
+          ],
+          "scholarly_source_ids": [
+            "src_tek_beyer_sre_2016",
+            "src_tek_meyer_1997",
+            "src_tek_parnas_1972"
+          ],
+          "prose_binding_fields": [
+            "definition",
+            "why_it_matters",
+            "learning_outcomes",
+            "canonical_mechanisms",
+            "mandatory_failure_modes",
+            "misconceptions",
+            "boundary_note",
+            "assessment_prompt"
+          ]
+        },
+        {
+          "theory_id": "teori_tek_kontinuerlig_programvarelivslop",
+          "canonical_emne_ids": [
+            "em_tek_drift_observerbarhet_vedlikehold"
+          ],
+          "thinker_work_bindings": [
+            {
+              "thinker_id": "edsger_dijkstra",
+              "name": "Edsger W. Dijkstra",
+              "work": "A Discipline of Programming",
+              "role": "strukturert programmering og programkorrekthet"
+            },
+            {
+              "thinker_id": "david_parnas",
+              "name": "David Parnas",
+              "work": "On the Criteria To Be Used in Decomposing Systems into Modules",
+              "role": "informasjonsskjuling og modularitet"
+            },
+            {
+              "thinker_id": "barbara_liskov",
+              "name": "Barbara Liskov",
+              "work": "Data Abstraction and Hierarchy",
+              "role": "dataabstraksjon og substitusjon"
+            },
+            {
+              "thinker_id": "fred_brooks",
+              "name": "Frederick P. Brooks Jr.",
+              "work": "The Mythical Man-Month",
+              "role": "programvareprosjekter og kompleksitet"
+            },
+            {
+              "thinker_id": "margaret_hamilton",
+              "name": "Margaret Hamilton",
+              "work": "Apollo Guidance Software",
+              "role": "programvareteknikk og høyintegritetssystemer"
+            }
+          ],
+          "scholarly_source_ids": [
+            "src_tek_beyer_sre_2016",
+            "src_tek_meyer_1997",
+            "src_tek_parnas_1972"
+          ],
+          "prose_binding_fields": [
+            "definition",
+            "why_it_matters",
+            "learning_outcomes",
+            "canonical_mechanisms",
+            "mandatory_failure_modes",
+            "misconceptions",
+            "boundary_note",
+            "assessment_prompt"
+          ]
+        }
+      ]
+    },
+    {
+      "area_id": "robotikk_automatisering",
+      "emne_ids": [
+        "em_tek_aktuatorer_kinematikk_bevegelse",
+        "em_tek_automasjon_planlegging_og_kontroll",
+        "em_tek_menneske_robot_sikkerhet",
+        "em_tek_robotpersepsjon_lokalisering"
+      ],
+      "theory_ids": [
+        "teori_tek_grader_av_automatisering",
+        "teori_tek_sense_plan_act_og_subsumpsjon"
+      ],
+      "hook_ids": [
+        "hook_tek_robotikk_automatisering_feil",
+        "hook_tek_robotikk_automatisering_mekanisme",
+        "hook_tek_robotikk_automatisering_virkning"
+      ],
+      "comparison_basis": [
+        "oppgave og miljø",
+        "autonominivå",
+        "sikkerhetssone",
+        "menneskelig kontroll"
+      ],
+      "theory_bindings": [
+        {
+          "theory_id": "teori_tek_grader_av_automatisering",
+          "canonical_emne_ids": [
+            "em_tek_menneske_robot_sikkerhet"
+          ],
+          "thinker_work_bindings": [
+            {
+              "thinker_id": "george_devol",
+              "name": "George Devol",
+              "work": "Programmed Article Transfer patent",
+              "role": "programmerbar industrirobot"
+            },
+            {
+              "thinker_id": "joseph_engelberger",
+              "name": "Joseph Engelberger",
+              "work": "Robotics in Practice",
+              "role": "industriell robotikk og innføring i produksjon"
+            },
+            {
+              "thinker_id": "rodney_brooks",
+              "name": "Rodney Brooks",
+              "work": "A Robust Layered Control System for a Mobile Robot",
+              "role": "subsumpsjonsarkitektur og situert robotikk"
+            },
+            {
+              "thinker_id": "ruzena_bajcsy",
+              "name": "Ruzena Bajcsy",
+              "work": "Active Perception",
+              "role": "aktiv persepsjon og robotikk"
+            },
+            {
+              "thinker_id": "cynthia_breazeal",
+              "name": "Cynthia Breazeal",
+              "work": "Designing Sociable Robots",
+              "role": "sosial robotikk og menneske–robot-samspill"
+            }
+          ],
+          "scholarly_source_ids": [
+            "src_tek_iso_10218_1_2011",
+            "src_tek_sheridan_verplank_1978",
+            "src_tek_thrun_2005"
+          ],
+          "prose_binding_fields": [
+            "definition",
+            "why_it_matters",
+            "learning_outcomes",
+            "canonical_mechanisms",
+            "mandatory_failure_modes",
+            "misconceptions",
+            "boundary_note",
+            "assessment_prompt"
+          ]
+        },
+        {
+          "theory_id": "teori_tek_sense_plan_act_og_subsumpsjon",
+          "canonical_emne_ids": [
+            "em_tek_aktuatorer_kinematikk_bevegelse",
+            "em_tek_automasjon_planlegging_og_kontroll",
+            "em_tek_robotpersepsjon_lokalisering"
+          ],
+          "thinker_work_bindings": [
+            {
+              "thinker_id": "george_devol",
+              "name": "George Devol",
+              "work": "Programmed Article Transfer patent",
+              "role": "programmerbar industrirobot"
+            },
+            {
+              "thinker_id": "joseph_engelberger",
+              "name": "Joseph Engelberger",
+              "work": "Robotics in Practice",
+              "role": "industriell robotikk og innføring i produksjon"
+            },
+            {
+              "thinker_id": "rodney_brooks",
+              "name": "Rodney Brooks",
+              "work": "A Robust Layered Control System for a Mobile Robot",
+              "role": "subsumpsjonsarkitektur og situert robotikk"
+            },
+            {
+              "thinker_id": "ruzena_bajcsy",
+              "name": "Ruzena Bajcsy",
+              "work": "Active Perception",
+              "role": "aktiv persepsjon og robotikk"
+            },
+            {
+              "thinker_id": "cynthia_breazeal",
+              "name": "Cynthia Breazeal",
+              "work": "Designing Sociable Robots",
+              "role": "sosial robotikk og menneske–robot-samspill"
+            }
+          ],
+          "scholarly_source_ids": [
+            "src_tek_iso_10218_1_2011",
+            "src_tek_sheridan_verplank_1978",
+            "src_tek_thrun_2005"
+          ],
+          "prose_binding_fields": [
+            "definition",
+            "why_it_matters",
+            "learning_outcomes",
+            "canonical_mechanisms",
+            "mandatory_failure_modes",
+            "misconceptions",
+            "boundary_note",
+            "assessment_prompt"
+          ]
+        }
+      ]
+    },
+    {
+      "area_id": "systemer_arkitektur_palitelighet",
+      "emne_ids": [
+        "em_tek_arkitektur_komponenter_grensesnitt",
+        "em_tek_palitelighet_redundans_vedlikehold",
+        "em_tek_sikkerhet_ulykker_og_barrierer",
+        "em_tek_systemtenkning_og_grenser"
+      ],
+      "theory_ids": [
+        "teori_tek_stamp_sikkerhetsmodell",
+        "teori_tek_systemteknisk_v_modell"
+      ],
+      "hook_ids": [
+        "hook_tek_systemer_arkitektur_palitelighet_feil",
+        "hook_tek_systemer_arkitektur_palitelighet_mekanisme",
+        "hook_tek_systemer_arkitektur_palitelighet_virkning"
+      ],
+      "comparison_basis": [
+        "oppdrag og driftsmiljø",
+        "systemgrense",
+        "kritikalitet",
+        "akseptkriterier"
+      ],
+      "theory_bindings": [
+        {
+          "theory_id": "teori_tek_stamp_sikkerhetsmodell",
+          "canonical_emne_ids": [
+            "em_tek_arkitektur_komponenter_grensesnitt",
+            "em_tek_sikkerhet_ulykker_og_barrierer"
+          ],
+          "thinker_work_bindings": [
+            {
+              "thinker_id": "ludwig_von_bertalanffy",
+              "name": "Ludwig von Bertalanffy",
+              "work": "General System Theory",
+              "role": "generell systemteori"
+            },
+            {
+              "thinker_id": "norbert_wiener",
+              "name": "Norbert Wiener",
+              "work": "Cybernetics",
+              "role": "kybernetikk, kontroll og kommunikasjon"
+            },
+            {
+              "thinker_id": "nancy_leveson",
+              "name": "Nancy Leveson",
+              "work": "Engineering a Safer World",
+              "role": "systemisk sikkerhet og ulykkesmodeller"
+            },
+            {
+              "thinker_id": "donella_meadows",
+              "name": "Donella Meadows",
+              "work": "Thinking in Systems",
+              "role": "systemdynamikk og inngrepspunkter"
+            },
+            {
+              "thinker_id": "john_gall",
+              "name": "John Gall",
+              "work": "Systemantics",
+              "role": "komplekse systemers oppførsel og designgrenser"
+            }
+          ],
+          "scholarly_source_ids": [
+            "src_tek_iso_iec_ieee_15288_2015",
+            "src_tek_leveson_2011",
+            "src_tek_nrc_three_mile_island_1979"
+          ],
+          "prose_binding_fields": [
+            "definition",
+            "why_it_matters",
+            "learning_outcomes",
+            "canonical_mechanisms",
+            "mandatory_failure_modes",
+            "misconceptions",
+            "boundary_note",
+            "assessment_prompt"
+          ]
+        },
+        {
+          "theory_id": "teori_tek_systemteknisk_v_modell",
+          "canonical_emne_ids": [
+            "em_tek_palitelighet_redundans_vedlikehold",
+            "em_tek_systemtenkning_og_grenser"
+          ],
+          "thinker_work_bindings": [
+            {
+              "thinker_id": "ludwig_von_bertalanffy",
+              "name": "Ludwig von Bertalanffy",
+              "work": "General System Theory",
+              "role": "generell systemteori"
+            },
+            {
+              "thinker_id": "norbert_wiener",
+              "name": "Norbert Wiener",
+              "work": "Cybernetics",
+              "role": "kybernetikk, kontroll og kommunikasjon"
+            },
+            {
+              "thinker_id": "nancy_leveson",
+              "name": "Nancy Leveson",
+              "work": "Engineering a Safer World",
+              "role": "systemisk sikkerhet og ulykkesmodeller"
+            },
+            {
+              "thinker_id": "donella_meadows",
+              "name": "Donella Meadows",
+              "work": "Thinking in Systems",
+              "role": "systemdynamikk og inngrepspunkter"
+            },
+            {
+              "thinker_id": "john_gall",
+              "name": "John Gall",
+              "work": "Systemantics",
+              "role": "komplekse systemers oppførsel og designgrenser"
+            }
+          ],
+          "scholarly_source_ids": [
+            "src_tek_iso_iec_ieee_15288_2015",
+            "src_tek_leveson_2011",
+            "src_tek_nrc_three_mile_island_1979"
+          ],
+          "prose_binding_fields": [
+            "definition",
+            "why_it_matters",
+            "learning_outcomes",
+            "canonical_mechanisms",
+            "mandatory_failure_modes",
+            "misconceptions",
+            "boundary_note",
+            "assessment_prompt"
+          ]
+        }
+      ]
+    },
+    {
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "emne_ids": [
+        "em_tek_risiko_baerekraft_omstilling",
+        "em_tek_standarder_infrastruktur_interoperabilitet",
+        "em_tek_teknologi_makt_etikk_ansvar",
+        "em_tek_teknologihistorie_sti_og_innelasing"
+      ],
+      "theory_ids": [
+        "teori_tek_sosiotekniske_forestillinger",
+        "teori_tek_store_tekniske_systemer"
+      ],
+      "hook_ids": [
+        "hook_tek_teknologihistorie_sts_risiko_baerekraft_feil",
+        "hook_tek_teknologihistorie_sts_risiko_baerekraft_mekanisme",
+        "hook_tek_teknologihistorie_sts_risiko_baerekraft_virkning"
+      ],
+      "comparison_basis": [
+        "funksjon og tidsperiode",
+        "geografisk og institusjonell systemgrense",
+        "alternativer som faktisk var tilgjengelige",
+        "livsløp og fordelingsvirkning"
+      ],
+      "theory_bindings": [
+        {
+          "theory_id": "teori_tek_sosiotekniske_forestillinger",
+          "canonical_emne_ids": [
+            "em_tek_risiko_baerekraft_omstilling",
+            "em_tek_teknologi_makt_etikk_ansvar"
+          ],
+          "thinker_work_bindings": [
+            {
+              "thinker_id": "thomas_p_hughes",
+              "name": "Thomas P. Hughes",
+              "work": "Networks of Power",
+              "role": "store tekniske systemer og systembyggere"
+            },
+            {
+              "thinker_id": "langdon_winner",
+              "name": "Langdon Winner",
+              "work": "The Whale and the Reactor",
+              "role": "teknologi, politikk og makt"
+            },
+            {
+              "thinker_id": "ruth_schwartz_cowan",
+              "name": "Ruth Schwartz Cowan",
+              "work": "More Work for Mother",
+              "role": "husholdningsteknologi og arbeidsdeling"
+            },
+            {
+              "thinker_id": "sheila_jasanoff",
+              "name": "Sheila Jasanoff",
+              "work": "The Ethics of Invention",
+              "role": "vitenskap, teknologi, styring og sosiotekniske forestillinger"
+            },
+            {
+              "thinker_id": "carl_mitcham",
+              "name": "Carl Mitcham",
+              "work": "Thinking through Technology",
+              "role": "teknologifilosofi, etikk og ingeniøransvar"
+            }
+          ],
+          "scholarly_source_ids": [
+            "src_tek_bijker_hughes_pinch_1987",
+            "src_tek_geels_2002",
+            "src_tek_hughes_1983",
+            "src_tek_iso_14040_2006"
+          ],
+          "prose_binding_fields": [
+            "definition",
+            "why_it_matters",
+            "learning_outcomes",
+            "canonical_mechanisms",
+            "mandatory_failure_modes",
+            "misconceptions",
+            "boundary_note",
+            "assessment_prompt"
+          ]
+        },
+        {
+          "theory_id": "teori_tek_store_tekniske_systemer",
+          "canonical_emne_ids": [
+            "em_tek_risiko_baerekraft_omstilling",
+            "em_tek_standarder_infrastruktur_interoperabilitet",
+            "em_tek_teknologi_makt_etikk_ansvar",
+            "em_tek_teknologihistorie_sti_og_innelasing"
+          ],
+          "thinker_work_bindings": [
+            {
+              "thinker_id": "thomas_p_hughes",
+              "name": "Thomas P. Hughes",
+              "work": "Networks of Power",
+              "role": "store tekniske systemer og systembyggere"
+            },
+            {
+              "thinker_id": "langdon_winner",
+              "name": "Langdon Winner",
+              "work": "The Whale and the Reactor",
+              "role": "teknologi, politikk og makt"
+            },
+            {
+              "thinker_id": "ruth_schwartz_cowan",
+              "name": "Ruth Schwartz Cowan",
+              "work": "More Work for Mother",
+              "role": "husholdningsteknologi og arbeidsdeling"
+            },
+            {
+              "thinker_id": "sheila_jasanoff",
+              "name": "Sheila Jasanoff",
+              "work": "The Ethics of Invention",
+              "role": "vitenskap, teknologi, styring og sosiotekniske forestillinger"
+            },
+            {
+              "thinker_id": "carl_mitcham",
+              "name": "Carl Mitcham",
+              "work": "Thinking through Technology",
+              "role": "teknologifilosofi, etikk og ingeniøransvar"
+            }
+          ],
+          "scholarly_source_ids": [
+            "src_tek_bijker_hughes_pinch_1987",
+            "src_tek_geels_2002",
+            "src_tek_hughes_1983",
+            "src_tek_iso_14040_2006"
+          ],
+          "prose_binding_fields": [
+            "definition",
+            "why_it_matters",
+            "learning_outcomes",
+            "canonical_mechanisms",
+            "mandatory_failure_modes",
+            "misconceptions",
+            "boundary_note",
+            "assessment_prompt"
+          ]
+        }
+      ]
+    },
+    {
+      "area_id": "teknologivitenskap_design",
+      "emne_ids": [
+        "em_tek_design_under_begrensninger",
+        "em_tek_ingeniorprosess_krav_og_design",
+        "em_tek_prototyper_forsok_og_validering",
+        "em_tek_teknologisk_kunnskap_og_artefakter"
+      ],
+      "theory_ids": [
+        "teori_tek_designvitenskap",
+        "teori_tek_funksjon_atferd_struktur"
+      ],
+      "hook_ids": [
+        "hook_tek_teknologivitenskap_design_feil",
+        "hook_tek_teknologivitenskap_design_mekanisme",
+        "hook_tek_teknologivitenskap_design_virkning"
+      ],
+      "comparison_basis": [
+        "funksjon",
+        "brukskontekst",
+        "modenhetsnivå",
+        "kostnads- og tidsramme"
+      ],
+      "theory_bindings": [
+        {
+          "theory_id": "teori_tek_designvitenskap",
+          "canonical_emne_ids": [
+            "em_tek_prototyper_forsok_og_validering",
+            "em_tek_teknologisk_kunnskap_og_artefakter"
+          ],
+          "thinker_work_bindings": [
+            {
+              "thinker_id": "herbert_simon",
+              "name": "Herbert A. Simon",
+              "work": "The Sciences of the Artificial",
+              "role": "designvitenskap og problemløsning"
+            },
+            {
+              "thinker_id": "walter_vincenti",
+              "name": "Walter G. Vincenti",
+              "work": "What Engineers Know and How They Know It",
+              "role": "ingeniørkunnskap og designpraksis"
+            },
+            {
+              "thinker_id": "henry_petroski",
+              "name": "Henry Petroski",
+              "work": "To Engineer Is Human",
+              "role": "feil, designhistorie og ingeniørpraksis"
+            },
+            {
+              "thinker_id": "donald_schon",
+              "name": "Donald Schön",
+              "work": "The Reflective Practitioner",
+              "role": "reflekterende praksis i design og profesjoner"
+            },
+            {
+              "thinker_id": "w_brian_arthur",
+              "name": "W. Brian Arthur",
+              "work": "The Nature of Technology",
+              "role": "teknologiers struktur, kombinasjon og evolusjon"
+            }
+          ],
+          "scholarly_source_ids": [
+            "src_tek_nasa_se_handbook_2016",
+            "src_tek_ulrich_eppinger_2020"
+          ],
+          "prose_binding_fields": [
+            "definition",
+            "why_it_matters",
+            "learning_outcomes",
+            "canonical_mechanisms",
+            "mandatory_failure_modes",
+            "misconceptions",
+            "boundary_note",
+            "assessment_prompt"
+          ]
+        },
+        {
+          "theory_id": "teori_tek_funksjon_atferd_struktur",
+          "canonical_emne_ids": [
+            "em_tek_design_under_begrensninger",
+            "em_tek_ingeniorprosess_krav_og_design"
+          ],
+          "thinker_work_bindings": [
+            {
+              "thinker_id": "herbert_simon",
+              "name": "Herbert A. Simon",
+              "work": "The Sciences of the Artificial",
+              "role": "designvitenskap og problemløsning"
+            },
+            {
+              "thinker_id": "walter_vincenti",
+              "name": "Walter G. Vincenti",
+              "work": "What Engineers Know and How They Know It",
+              "role": "ingeniørkunnskap og designpraksis"
+            },
+            {
+              "thinker_id": "henry_petroski",
+              "name": "Henry Petroski",
+              "work": "To Engineer Is Human",
+              "role": "feil, designhistorie og ingeniørpraksis"
+            },
+            {
+              "thinker_id": "donald_schon",
+              "name": "Donald Schön",
+              "work": "The Reflective Practitioner",
+              "role": "reflekterende praksis i design og profesjoner"
+            },
+            {
+              "thinker_id": "w_brian_arthur",
+              "name": "W. Brian Arthur",
+              "work": "The Nature of Technology",
+              "role": "teknologiers struktur, kombinasjon og evolusjon"
+            }
+          ],
+          "scholarly_source_ids": [
+            "src_tek_nasa_se_handbook_2016",
+            "src_tek_ulrich_eppinger_2020"
+          ],
+          "prose_binding_fields": [
+            "definition",
+            "why_it_matters",
+            "learning_outcomes",
+            "canonical_mechanisms",
+            "mandatory_failure_modes",
+            "misconceptions",
+            "boundary_note",
+            "assessment_prompt"
+          ]
+        }
+      ]
+    }
+  ]
+}
