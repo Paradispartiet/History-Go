@@ -1,21 +1,83 @@
 {
-  "schema":"civication_work_grammar_v1",
-  "version":1,
-  "category":"media",
-  "role_scope":"media_redaksjon",
-  "role_id":"media_redaksjon",
-  "badge_binding":{"badge_id":"media","badge_titles":["Journalist","Reporter","Redaksjonsmedarbeider"],"tier_thresholds":[60,85,115]},
-  "work_world":"Redaksjonelt arbeid fra kildearbeid, intervju og feltobservasjon til verifisering, redigering og publiseringsflyt. Rollen produserer journalistikk innen et faktisk redaksjonelt mandat, men har ikke overordnet publiseringsmyndighet bare fordi Badge-status øker.",
-  "authority_boundary":{
-    "can":["innhente og kontrollere opplysninger","intervjue kilder og dokumentere observasjoner","skrive, redigere og kvalitetssikre journalistisk materiale innen oppdraget","foreslå rettelser, oppfølging og publiseringsgrep"],
-    "cannot":["gi seg selv redaktøransvar eller arbeidsgiverfullmakt","publisere utenfor faktisk redaksjonell arbeidsflyt når godkjenning kreves","behandle omdømme eller Badge-status som kildebelegg","garantere kildevern, anonymitet eller juridiske utfall utover gjeldende redaksjonelle rutiner"]
+  "schema": "civication_work_grammar_v1",
+  "version": 1,
+  "category": "media",
+  "role_scope": "media_redaksjon",
+  "role_id": "media_redaksjon",
+  "badge_binding": {
+    "badge_id": "media",
+    "badge_titles": ["Journalist", "Reporter", "Redaksjonsmedarbeider"],
+    "tier_thresholds": [60, 85, 115]
   },
-  "work_loops":["avklar problemstilling, publikum og redaksjonelt mandat","bygg kildegrunnlag med tydelig skille mellom observasjon, påstand og dokumentasjon","verifiser vesentlige opplysninger og søk relevante motstemmer","skriv eller rediger med presis attribusjon og kontekst","løft tvil, rettelser og publiseringsrisiko til riktig redaksjonelt nivå"],
-  "practice_stories":[
-    {"id":"hast_vs_verifikasjon","title":"Publiseringspress før fakta er klare","problem":"En sak utvikler seg raskt, men et sentralt faktum er fortsatt bare bekreftet av én kilde.","good_practice":"Merk usikkerheten, arbeid videre med uavhengig bekreftelse og ikke gjør fart til erstatning for verifikasjon."},
-    {"id":"kilde_med_egeninteresse","title":"Kilden har mye å vinne","problem":"En godt informert kilde tilbyr eksklusive opplysninger som samtidig tjener kildens egen konflikt.","good_practice":"Kontroller motiv, dokumentasjon og motkilder før opplysningene gis større tyngde."},
-    {"id":"privatliv_vs_offentlig_interesse","title":"Detaljen er sann, men er den relevant?","problem":"En privat detalj gjør saken mer dramatisk, men bidrar lite til sakens offentlige betydning.","good_practice":"Vurder nødvendighet og skade opp mot reell offentlig interesse, ikke bare oppmerksomhetspotensial."},
-    {"id":"feil_etter_publisering","title":"En feil blir oppdaget","problem":"Et publisert faktum viser seg å være feil.","good_practice":"Varsle redaksjonelt ansvarlig, korriger tydelig og spor hvordan feilen oppstod slik at arbeidsmåten kan forbedres."}
+  "work_world": "Redaksjonelt arbeid fra kildearbeid, intervju og feltobservasjon til verifisering, redigering og publiseringsflyt. Rollen produserer journalistikk innen et faktisk redaksjonelt mandat, men har ikke overordnet publiseringsmyndighet bare fordi Badge-status øker.",
+  "authority_boundary": {
+    "can": [
+      "innhente og kontrollere opplysninger",
+      "intervjue kilder og dokumentere observasjoner",
+      "skrive, redigere og kvalitetssikre journalistisk materiale innen oppdraget",
+      "foreslå rettelser, oppfølging og publiseringsgrep"
+    ],
+    "cannot": [
+      "gi seg selv redaktøransvar eller arbeidsgiverfullmakt",
+      "publisere utenfor faktisk redaksjonell arbeidsflyt når godkjenning kreves",
+      "behandle omdømme eller Badge-status som kildebelegg",
+      "garantere kildevern, anonymitet eller juridiske utfall utover gjeldende redaksjonelle rutiner"
+    ]
+  },
+  "work_loops": [
+    "avklar problemstilling, publikum og redaksjonelt mandat",
+    "bygg kildegrunnlag med tydelig skille mellom observasjon, påstand og dokumentasjon",
+    "verifiser vesentlige opplysninger og søk relevante motstemmer",
+    "skriv eller rediger med presis attribusjon og kontekst",
+    "løft tvil, rettelser og publiseringsrisiko til riktig redaksjonelt nivå"
   ],
-  "quality_axes":["kildekritikk","verifikasjon","attribusjon","relevans_og_kontekst","rettelseskvalitet","mandatklarhet"]
+  "story_world": {
+    "simulation_promise": "Du opplever hvordan en redaksjon gjør ufullstendige opplysninger til etterprøvbar journalistikk uten at tempo, trafikk eller prestisje får erstatte dokumentasjon.",
+    "everyday_world": "Arbeidsdagen veksler mellom desk, telefon, felt, dokumenter, versjoner og korte avklaringer med vaktsjef og kolleger. Det avgjørende er ikke bare å finne noe interessant, men å vite hva som faktisk er bekreftet før det publiseres.",
+    "hidden_complexity": "Utenfra ser redaksjonelt arbeid ut som å skrive raskt. Innenfra er det kontinuerlig kildekritikk, motstemmer, attribusjon, versjonskontroll, personvern og eskalering av tvil før publisering.",
+    "recurring_situations": [
+      "en vesentlig opplysning har bare én kilde",
+      "en kilde med egeninteresse tilbyr eksklusivt materiale",
+      "en sen dokumentoppdatering endrer premisset",
+      "en formulering går lenger enn dokumentasjonen",
+      "en feil oppdages etter publisering og må rettes tydelig"
+    ],
+    "small_story_seeds": [
+      "en ekstra telefon før publisering avkrefter hovedpåstanden",
+      "en presis attribusjon redder en ellers svak formulering",
+      "en prematur publisering utløser rettelse og tap av redaksjonell tillit"
+    ],
+    "relationship_web": [
+      {"who": "media_vaktsjef", "relation": "vaktsjef og nærmeste beslutningspunkt", "wants": "rask framdrift uten at redaksjonen publiserer svakere enn den kan forsvare", "creates": "tidspress og krav om tydelig status", "tension": "tempo_vs_verifikasjon"},
+      {"who": "media_deskredaktor", "relation": "deskredaktør og kvalitetssikringspunkt", "wants": "presis attribusjon, kontekst og ryddig versjon", "creates": "friksjon når formuleringen er sterkere enn belegget", "tension": "slagkraft_vs_presisjon"},
+      {"who": "media_reporterkollega", "relation": "reporterkollega", "wants": "dele funn og få saken over målstreken", "creates": "samarbeid, men også risiko for at antakelser smitter mellom arbeidsstrømmer", "tension": "lagtempo_vs_uavhengig_kontroll"},
+      {"who": "media_kilde", "relation": "kilde med informasjon og egne interesser", "wants": "bli forstått og påvirke hvordan opplysningene brukes", "creates": "informasjon, men også motiv- og verifikasjonsrisiko", "tension": "tilgang_vs_kildekritikk"}
+    ],
+    "knowledge_in_practice": [
+      {"concept": "verifikasjon", "practical_scene": "en påstand er bekreftet av én interessert kilde", "what_player_must_notice": "hva som er observert, dokumentert og fortsatt ubekreftet", "bad_misread": "nærhet til saken er det samme som uavhengig bekreftelse", "good_use": "søke dokumentasjon eller en uavhengig kilde før kategorisk formulering"},
+      {"concept": "attribusjon", "practical_scene": "et dokument og en muntlig kilde beskriver samme hendelse forskjellig", "what_player_must_notice": "hvem som hevder hva og hvilket belegg hver formulering har", "bad_misread": "skrive uenighet om til ett sikkert faktum", "good_use": "attribuere presist og synliggjøre hva som er omstridt"},
+      {"concept": "rettelse", "practical_scene": "en publisert detalj viser seg å være feil", "what_player_must_notice": "feilens betydning, spredning og hvordan publikum kan forstå den", "bad_misread": "endre teksten stille fordi feilen virker liten", "good_use": "varsle ansvarlig, korrigere tydelig og dokumentere årsaken"}
+    ],
+    "emotional_costs": ["uro når publiseringsfristen nærmer seg før fakta er låst", "ansvar når en formulering kan skade noen", "frustrasjon når godt kildearbeid tar lengre tid enn trafikklogikken tåler"],
+    "status_illusions": ["Utenfra: den som skriver saken eier publiseringen. Innenfra: publiseringsmyndighet følger faktisk redaksjonelt mandat.", "Utenfra: raskest er best. Innenfra: den viktigste gevinsten er ofte feilen du hindret før noen så den."],
+    "player_learning_arc": ["Først leter spilleren etter en tydelig sak.", "Så lærer spilleren å skille påstand, observasjon og dokumentasjon.", "Deretter blir motstemmer, attribusjon og versjonsspor en del av selve tempoet.", "Til slutt forstår spilleren at redaksjonell tillit bygges gjennom det man velger å vente med, avgrense og rette."]
+  },
+  "actor_grammar": [
+    {"id": "media_vaktsjef", "role": "vaktsjef", "function": "prioriterer arbeidsflyt og avklarer hva som må løftes før publisering"},
+    {"id": "media_deskredaktor", "role": "deskredaktør", "function": "kontrollerer språk, attribusjon, kontekst og publiseringsklarhet"},
+    {"id": "media_reporterkollega", "role": "reporterkollega", "function": "deler feltfunn og samarbeider om verifikasjon"},
+    {"id": "media_kilde", "role": "kilde", "function": "gir informasjon som må vurderes mot motiv, dokumentasjon og motkilder"}
+  ],
+  "place_grammar": [
+    {"place_id": "vg_huset", "function": "tabloid og digital nyhetsdesk med kontinuerlig publiseringsflyt", "mail_types": ["job", "people", "conflict", "micro", "consequence"]},
+    {"place_id": "nrk_huset_marienlyst", "function": "kringkastingsredaksjon for kildearbeid, nyhetsproduksjon og desk", "mail_types": ["job", "event", "knowledge", "story"]},
+    {"place_id": "aftenposten_akersgata", "function": "avisredaksjon og historisk pressearbeidsflate", "mail_types": ["job", "story", "followup"]}
+  ],
+  "practice_stories": [
+    {"id": "hast_vs_verifikasjon", "title": "Publiseringspress før fakta er klare", "problem": "En sak utvikler seg raskt, men et sentralt faktum er fortsatt bare bekreftet av én kilde.", "good_practice": "Merk usikkerheten, arbeid videre med uavhengig bekreftelse og ikke gjør fart til erstatning for verifikasjon."},
+    {"id": "kilde_med_egeninteresse", "title": "Kilden har mye å vinne", "problem": "En godt informert kilde tilbyr eksklusive opplysninger som samtidig tjener kildens egen konflikt.", "good_practice": "Kontroller motiv, dokumentasjon og motkilder før opplysningene gis større tyngde."},
+    {"id": "privatliv_vs_offentlig_interesse", "title": "Detaljen er sann, men er den relevant?", "problem": "En privat detalj gjør saken mer dramatisk, men bidrar lite til sakens offentlige betydning.", "good_practice": "Vurder nødvendighet og skade opp mot reell offentlig interesse, ikke bare oppmerksomhetspotensial."},
+    {"id": "feil_etter_publisering", "title": "En feil blir oppdaget", "problem": "Et publisert faktum viser seg å være feil.", "good_practice": "Varsle redaksjonelt ansvarlig, korriger tydelig og spor hvordan feilen oppstod slik at arbeidsmåten kan forbedres."}
+  ],
+  "quality_axes": ["kildekritikk", "verifikasjon", "attribusjon", "relevans_og_kontekst", "rettelseskvalitet", "mandatklarhet"]
 }
