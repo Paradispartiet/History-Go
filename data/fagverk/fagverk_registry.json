@@ -4134,12 +4134,13 @@
         "schemaFamily": "foundation_v1",
         "sourceOfTruth": true,
         "firstSourceClaimBrief": "data/fag/helse/medical_ethics_evidence_source_claim_brief_v1.json",
-        "note": "Første source-first-enhet er avgrenset til medisinsk etikk og evidens: 14 inspiserte primær-, myndighets- og metodekilder, 8 faglige spor, 6 ikke-individualiserende beslutningsscenarioer og 32 claimplaner. Planlagte claims er ikke verifiserte fulltekstclaims, og Helse er fortsatt ikke materialisert eller strict-proven."
+        "note": "Første source-first-enhet er fulltekstmaterialisert med 8 seksjoner, 32 claimsporede avsnitt, 32 verifiserte claims, 14 inspiserbare autoritative kilder og blokkerende klinisk sikkerhetsaudit. Dette er én av 12 domener og ikke faglig sluttføring.",
+        "firstFulltextChapter": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning.json"
       },
       "editorialPlan": {
         "targetDomainCount": 12,
         "completedSourceBriefCount": 1,
-        "registeredChapterCount": 0,
+        "registeredChapterCount": 1,
         "completionRequirements": [
           "all_canonical_domains_covered",
           "source_first_claim_trace_complete",
@@ -4147,9 +4148,24 @@
           "fulltext_and_assessment_audits_green",
           "strict_theory_integrity_green"
         ],
-        "nextGate": "produce_full_chapter_claims_and_inspectable_sources_for_medisinsk_etikk_evidens"
+        "nextGate": "produce_next_domain_source_brief_after_medical_ethics_evidence_fulltext"
       },
-      "chapters": []
+      "chapters": [
+        {
+          "id": "medisinsk-etikk-evidens-og-ansvarlig-beslutning",
+          "title": "Medisinsk etikk, evidens og ansvarlig beslutning",
+          "subtitle": "Fra informasjon og samtykke til forskningsetikk, evidenssikkerhet, samvalg, prioritering og profesjonsansvar",
+          "file": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning.json",
+          "primary_domain_id": "medisinsk_etikk_evidens",
+          "emne_ids": [
+            "em_helse_medisinsk_etikk_evidens"
+          ],
+          "claimsFile": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning/claims.json",
+          "briefFile": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning/brief.json",
+          "assessmentFile": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning/assessment.json",
+          "safetyContractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json"
+        }
+      ]
     }
   },
   "placeLinks": {

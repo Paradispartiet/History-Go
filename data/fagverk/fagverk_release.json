@@ -11,14 +11,14 @@
     "schema": "history_go_fagverk_registry_v1",
     "version": "3.14.0",
     "updated_at": "2026-08-21",
-    "content_sha256": "f769d19cc2cfc61b4c8b314f49b6edbe9481da78f16d23ef8025c15d9315b40f"
+    "content_sha256": "aa4229e8ceab67a9d4b8aa2695e9d62a17c96296dd5e45c55d2e6a2d447c5585"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
     "schema": "history_go_fagverk_subject_inventory_v1",
     "version": "1.12.0",
     "updated_at": "2026-08-20",
-    "content_sha256": "d34419567e73793504baa22ff493b2472b5b8740dac173f375c5bed87ca13cdc",
+    "content_sha256": "5cefdaa14b36c1c8962b96e132766e0ca4cba8ddfe1e64c079da0935decf2c6f",
     "root_subject_count": 19,
     "specialization_count": 1
   },
@@ -27,18 +27,18 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "5acfd29995821c9dcddba6ef3f3b4dbc05b46dd9a2859e2f86f650ae22a8fb61"
+    "content_sha256": "1ec13e535696f236f17a5e7c3f6e5362594cc56a4f5078a72ae769e1f960c3a8"
   },
   "summary": {
     "subject_count": 20,
     "root_subject_count": 19,
     "specialization_count": 1,
-    "chapter_subject_count": 15,
-    "chapter_count": 163,
-    "module_file_count": 393,
-    "package_file_count": 221,
-    "chapter_referenced_file_count": 751,
-    "referenced_file_count": 927,
+    "chapter_subject_count": 16,
+    "chapter_count": 164,
+    "module_file_count": 397,
+    "package_file_count": 222,
+    "chapter_referenced_file_count": 758,
+    "referenced_file_count": 934,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -1003,7 +1003,7 @@
       "schema_family": "foundation_v1",
       "pilot": false,
       "package_status": "complete",
-      "chapter_status": "not_materialized",
+      "chapter_status": "materialized",
       "required_manifest_fields": [
         "pensum",
         "emner",
@@ -1016,9 +1016,11 @@
         "status",
         "quizStandard",
         "quizQuestionSchema",
-        "sourceClaimBriefs"
+        "sourceClaimBriefs",
+        "chapters"
       ],
       "present_manifest_fields": [
+        "chapters",
         "emner",
         "fagkart",
         "methods",
@@ -1031,9 +1033,9 @@
         "supersetQuizMal"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 9,
+      "package_file_count": 10,
       "required_package_file_count": 4,
-      "optional_package_file_count": 5,
+      "optional_package_file_count": 6,
       "package_files": [
         {
           "path": "data/fag/helse/clinical_safety_contract_helse_v1.json",
@@ -1057,7 +1059,7 @@
             "emner"
           ],
           "exists": true,
-          "content_sha256": "ee532dca06a5d1ce25b245e59e441ce248180ed903918696ab69d711d86ff487"
+          "content_sha256": "94135f707f73601e01781bc6e2dacd0aaffcf09f7c1937bef4ab4c275e2bacb4"
         },
         {
           "path": "data/fag/helse/fagkart_helse_canonical_v1.json",
@@ -1081,7 +1083,7 @@
             "pensum"
           ],
           "exists": true,
-          "content_sha256": "c14bf851a4e8afc83227dbd13f16c0bd437df94e75be8f81aff267675116f415"
+          "content_sha256": "f9a224d2ca4046df9563a5a35255a26f880bd149fad9f150442dfbde86e8cca4"
         },
         {
           "path": "data/fag/helse/medical_ethics_evidence_source_claim_brief_v1.json",
@@ -1105,7 +1107,7 @@
             "methods"
           ],
           "exists": true,
-          "content_sha256": "48fdf129d3c710dba6cf596f84e811ad7dfa3b3aaa5dd85d22ae872d875cb432"
+          "content_sha256": "b85307380255f95ed76ae840850a3cc746c57e73a1f401d3727555969967faa2"
         },
         {
           "path": "data/fag/helse/supersetQUIZMAL_helse.json",
@@ -1118,6 +1120,18 @@
           ],
           "exists": true,
           "content_sha256": "7c5dc1a8d0329ba1b5f6adfc2a92c41551e3e5c0cb91493ca6447f1b1ed4215d"
+        },
+        {
+          "path": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning.json",
+          "required": false,
+          "fields": [
+            "chapters"
+          ],
+          "key_paths": [
+            "chapters[0]"
+          ],
+          "exists": true,
+          "content_sha256": "bee7d1170c59236e1a6f333887ae8386ede34a8c2466eef4cc5cc01d9e9a2bfd"
         },
         {
           "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
@@ -1144,21 +1158,30 @@
           "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
         }
       ],
-      "package_content_sha256": "1c44260d3c7ed3fc387b1ee6e5a67d85647add2318ef59478b98ea1c406e1aee",
-      "chapter_count": 0,
-      "module_file_count": 0,
-      "brief_file_count": 0,
-      "claims_file_count": 0,
-      "chapter_referenced_file_count": 0,
-      "chapter_content_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-      "referenced_file_count": 9,
+      "package_content_sha256": "97def0c81180a0229bf80cf4a58b1f7bf5712faf7edd3f13400f2138c37c2ab7",
+      "chapter_count": 1,
+      "module_file_count": 4,
+      "brief_file_count": 1,
+      "claims_file_count": 1,
+      "chapter_referenced_file_count": 7,
+      "chapter_content_sha256": "7ec57b73412098d7aae205cb7c3fe2a79126087e9b2a337c1f6db85030b32bf8",
+      "referenced_file_count": 16,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "c5cea58f3d307dbf6288950113cadc6228fd5f65afb909a26072771d37545c98",
-      "content_sha256": "1c44260d3c7ed3fc387b1ee6e5a67d85647add2318ef59478b98ea1c406e1aee",
-      "chapters": []
+      "structure_sha256": "c9fc82a4daae0551ef0df289134c7be8dd3feb499fbc272be27cb0d14689d4be",
+      "content_sha256": "9be9705af16eb7500e315a6dc59eb89923f0a9a4f605320118c36a5113550b6b",
+      "chapters": [
+        {
+          "chapter_id": "medisinsk-etikk-evidens-og-ansvarlig-beslutning",
+          "title": "Medisinsk etikk, evidens og ansvarlig beslutning",
+          "file": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning.json",
+          "module_file_count": 4,
+          "referenced_file_count": 7,
+          "content_sha256": "7ec57b73412098d7aae205cb7c3fe2a79126087e9b2a337c1f6db85030b32bf8"
+        }
+      ]
     },
     "historie": {
       "title": "Historie",
@@ -5138,5 +5161,5 @@
       ]
     }
   },
-  "release_sha256": "e41293c4de602aa001580485f0270afc6b2b7a86dbc36317ae20d0779bfb3835"
+  "release_sha256": "a0adc5e7e76da1ef87e02305a3e9815c503946a5ee1e2ee8897565a7b31ae0d6"
 }

@@ -18,7 +18,7 @@ test('historisk 18/18 strict bevares uten å feilmerke de nye fagene', () => {
   assert.equal(r.summary.structured_subject_gate_not_strict,0);
   assert.equal(r.summary.partial_strict_evidence,0);
   assert.equal(r.summary.baseline_only_strict_proof_missing,2);
-  assert.deepEqual(r.expansionProductionQueue,['helse','utdanning']);
+  assert.deepEqual(r.expansionProductionQueue,['utdanning']);
 });
 
 test('manglende strict proof blir ikke feiltolket som innholdshull', () => {
@@ -39,9 +39,10 @@ test('alle 18 subject-gates, inkludert Filosofi og nested Teknologi, er field-le
   }
 });
 
-test('completion-status er read-only og bare expansion-køen er åpen', () => {
+test('completion-status er read-only og Helse står eksplisitt i strict proof-kø', () => {
   const r=auditFagverkTheoryIntegrity();
   assert.equal(r.rules.completionStatusReadOnly,true);
-  assert.deepEqual(r.proofReconciliationQueue,[]);
+  assert.deepEqual(r.proofReconciliationQueue,['helse']);
+  assert.deepEqual(r.expansionProductionQueue,['utdanning']);
   for(const id of ['film_tv','religion','subkultur','scenekunst','historie','by','kunst','media','musikk','litteratur','natur','naeringsliv','psykologi','sport','vitenskap','politikk','filosofi','teknologi'])assert.ok(!r.proofReconciliationQueue.includes(id));
 });
