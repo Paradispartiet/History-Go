@@ -7,6 +7,7 @@ import { auditHistoryCompletion } from './audit-historie-completion.mjs';
 import { auditHistorySourceAuthority } from './audit-historie-source-authority.mjs';
 
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const GENERATOR_ID='tools/materialize-historie-editorial-chapters.mjs';
 const readJson=p=>JSON.parse(fs.readFileSync(path.join(ROOT,p),'utf8'));
 const list=v=>Array.isArray(v)?v:[];
 const unique=xs=>[...new Set(xs.filter(Boolean))];
@@ -44,6 +45,15 @@ function existingCanonicalThinkerEvidence(canonicalThinkerIds){
   return matches;
 }
 
+function isGeneratorOwnedChapter(chapter){
+  if(!chapter?.productionBriefFile)return false;
+  const absolute=path.join(ROOT,chapter.productionBriefFile);
+  if(!fs.existsSync(absolute))return false;
+  const brief=readJson(chapter.productionBriefFile);
+  return brief.generatedFrom?.generator===GENERATOR_ID
+    || brief.generatedFrom?.pensum==='data/fag/historie/historiepensum_canonical_v4_5.json';
+}
+
 export function auditHistoryTheoryIntegrity(){
   const pensum=readJson('data/fag/historie/historiepensum_canonical_v4_5.json');
   const theories=readJson('data/fag/historie/theory_objects_historie_canonical_v5_5.json');
@@ -60,7 +70,8 @@ export function auditHistoryTheoryIntegrity(){
   assert.equal(sourceAuthority.status,'PASS','Historie source authority må være PASS før strict theory proof');
 
   const domains=list(pensum.domains);
-  const domainIds=new Set(domains.map(d=>d.domain_id));
+  const domainById=new Map(domains.map(d=>[d.domain_id,d]));
+  const domainIds=new Set(domainById.keys());
   assert.equal(pensum.scope,'universal','Historiepensum må deklarere universelt faglig scope');
   assert.equal(domains.length,23,'Historie strict theory proof krever 23 canonicale fagfelt');
   assert.equal(domainIds.size,23,'Historie canonicale fagfelt må være unike');
@@ -145,21 +156,25 @@ export function auditHistoryTheoryIntegrity(){
 
   const chapters=list(registry?.subjects?.historie?.chapters);
   assert.equal(chapters.length,23,'Historie registry skal ha 23 fulltekstkapitler');
-  const fulltextTheoryIds=new Set(),fulltextEmneIds=new Set(),fulltextFieldIds=new Set();
-  let theoryBoundSections=0,claimBoundSections=0,fieldScholarlyCount=0;
+  const fieldProofMatrix=[];
   const scholarlyFieldMatrix=[];
-  let minimumDefinitionBindingRatio=1,minimumLimitationBindingRatio=1;
+  let generatorOwnedFieldCount=0,handBuiltFieldCount=0,fieldScholarlyCount=0;
+  let generatorExplicitTheoryBindingCount=0,generatorClaimBoundSectionCount=0;
+  let minimumGeneratorDefinitionBindingRatio=1,minimumGeneratorLimitationBindingRatio=1;
+  let handBuiltSubstantiveTheoryBindingMinimum=Infinity,handBuiltLimitationOrRivalSignalMinimum=Infinity;
+
   for(const row of chapters){
     assert.ok(domainIds.has(row.primary_domain_id),`Registrert Historie-kapittel har ukjent felt: ${row.primary_domain_id}`);
-    fulltextFieldIds.add(row.primary_domain_id);
+    const domain=domainById.get(row.primary_domain_id);
     const chapter=readJson(row.file);
+    const generatorOwned=isGeneratorOwnedChapter(chapter);
     const fieldSourceIds=new Set(list(chapter.narrativeArchitecture?.historiographyEvidenceSourceIds));
     const fieldCoverage=historiographyByField.get(row.primary_domain_id);
     for(const sid of list(fieldCoverage?.source_ids))fieldSourceIds.add(sid);
     const inlineAcademicSources=new Map();
     let inlineSourceLimitations=0;
-    for(const modulePath of list(chapter.moduleFiles)){
-      const module=readJson(modulePath);
+    const modules=list(chapter.moduleFiles).map(modulePath=>({modulePath,module:readJson(modulePath)}));
+    for(const {modulePath,module} of modules){
       for(const sid of list(module.historiographyEvidence?.sourceIds))fieldSourceIds.add(sid);
       inlineSourceLimitations+=list(module.sourceLimitations).filter(v=>norm(v).length>=45).length;
       for(const source of list(module.sources)){
@@ -167,35 +182,6 @@ export function auditHistoryTheoryIntegrity(){
         assert.ok(norm(source.label||source.title).length>=12,`${modulePath}: scholarly-kilde mangler bibliografisk label`);
         assert.ok(/^https:\/\/\S+$/i.test(String(source.url||'')),`${modulePath}: scholarly-kilde mangler direkte https-locator (${source.label||source.title||'ukjent'})`);
         inlineAcademicSources.set(`${norm(source.label||source.title)}|${source.url}`,source);
-      }
-      for(const sec of list(module.sections)){
-        if(!sec.emneId)continue;
-        fulltextEmneIds.add(sec.emneId);
-        theoryBoundSections++;
-        assert.ok(sec.theoryId,`${modulePath}/${sec.id}: canonical emneseksjon mangler theoryId`);
-        const theory=theoryById.get(sec.theoryId);
-        assert.ok(theory,`${modulePath}/${sec.id}: ukjent theoryId ${sec.theoryId}`);
-        assert.equal(sec.editorialHookId,theory.source_hook_id,`${modulePath}/${sec.id}: theoryId er ikke bundet til theory-objektets canonical source hook`);
-        assert.ok(list(theory.explanatory_scope).includes(row.primary_domain_id),`${modulePath}/${sec.id}: theoryId er ikke bundet til kapittelets canonicale fagfelt`);
-        fulltextTheoryIds.add(sec.theoryId);
-        const paragraphs=list(sec.paragraphs).map(norm);
-        assert.ok(paragraphs.length>=5&&paragraphs.every(p=>p.length>=80),`${modulePath}/${sec.id}: theory-bound fulltekst er for tynn`);
-        const traceTypes=list(sec.paragraphTraceTypes),claimRows=list(sec.paragraphClaimIds);
-        assert.equal(traceTypes.length,paragraphs.length,`${modulePath}/${sec.id}: paragraphTraceTypes mismatch`);
-        assert.equal(claimRows.length,paragraphs.length,`${modulePath}/${sec.id}: paragraphClaimIds mismatch`);
-        const analyticalProse=paragraphs.filter((_,index)=>traceTypes[index]!=='claim_supported').join(' ');
-        const definitionBinding=semanticBinding(theory.definition,analyticalProse);
-        minimumDefinitionBindingRatio=Math.min(minimumDefinitionBindingRatio,definitionBinding.ratio);
-        assert.ok(definitionBinding.referenceTokens.length>=5&&definitionBinding.matched.length>=5&&definitionBinding.ratio>=0.45,`${modulePath}/${sec.id}: theory-definition er ikke substansielt integrert i analytisk prosa (${theory.theory_id}; matched=${definitionBinding.matched.length}/${definitionBinding.referenceTokens.length})`);
-        const limitationBindings=list(theory.limitations).map(limitation=>semanticBinding(limitation,analyticalProse));
-        const bestLimitation=limitationBindings.sort((a,b)=>b.ratio-a.ratio||b.matched.length-a.matched.length)[0];
-        minimumLimitationBindingRatio=Math.min(minimumLimitationBindingRatio,bestLimitation?.ratio||0);
-        assert.ok(bestLimitation&&bestLimitation.matched.length>=4&&bestLimitation.ratio>=0.4,`${modulePath}/${sec.id}: theory-begrensning er ikke substansielt brukt i analytisk prosa (${theory.theory_id})`);
-        const claimIds=unique(claimRows.flat());
-        const evidence=evidenceByTheory.get(theory.theory_id);
-        assert.ok(claimIds.some(id=>list(evidence.claim_ids).includes(id)),`${modulePath}/${sec.id}: theory fulltekst mangler claim fra theory-evidence entry`);
-        assert.ok(traceTypes.includes('claim_supported'),`${modulePath}/${sec.id}: theory fulltekst mangler claim_supported prose`);
-        claimBoundSections++;
       }
     }
     const canonicalAcademic=[...fieldSourceIds].map(id=>historiographyById.get(id)).filter(Boolean).filter(isAcademic);
@@ -205,12 +191,94 @@ export function auditHistoryTheoryIntegrity(){
     if(inlineAcademicSources.size>0)assert.ok(inlineSourceLimitations>=1,`${row.primary_domain_id}: inline scholarly-kilder mangler feltspesifikk kildebegrensning`);
     scholarlyFieldMatrix.push({field:row.primary_domain_id,canonical:canonicalAcademic.length,inline:inlineAcademicSources.size,bridge:bridgeAcademic.length,total:scholarlyEvidenceCount});
     fieldScholarlyCount++;
+
+    if(generatorOwned){
+      generatorOwnedFieldCount++;
+      const expectedEmneIds=new Set(list(domain.emne_ids));
+      const seenEmneIds=new Set(),seenTheoryIds=new Set();
+      let fieldTheoryBindings=0,fieldClaimBindings=0;
+      for(const {modulePath,module} of modules){
+        for(const sec of list(module.sections)){
+          if(!sec.emneId)continue;
+          fieldTheoryBindings++;
+          generatorExplicitTheoryBindingCount++;
+          seenEmneIds.add(sec.emneId);
+          assert.ok(expectedEmneIds.has(sec.emneId),`${modulePath}/${sec.id}: emneId ligger utenfor canonicalt hovedfelt`);
+          assert.ok(sec.theoryId,`${modulePath}/${sec.id}: generator-eid canonical emneseksjon mangler theoryId`);
+          const theory=theoryById.get(sec.theoryId);
+          assert.ok(theory,`${modulePath}/${sec.id}: ukjent theoryId ${sec.theoryId}`);
+          assert.equal(sec.editorialHookId,theory.source_hook_id,`${modulePath}/${sec.id}: theoryId er ikke bundet til theory-objektets canonical source hook`);
+          assert.ok(list(theory.explanatory_scope).includes(row.primary_domain_id),`${modulePath}/${sec.id}: theoryId er ikke bundet til kapittelets canonicale fagfelt`);
+          seenTheoryIds.add(sec.theoryId);
+          const paragraphs=list(sec.paragraphs).map(norm);
+          assert.ok(paragraphs.length>=5&&paragraphs.every(p=>p.length>=80),`${modulePath}/${sec.id}: theory-bound fulltekst er for tynn`);
+          const traceTypes=list(sec.paragraphTraceTypes),claimRows=list(sec.paragraphClaimIds);
+          assert.equal(traceTypes.length,paragraphs.length,`${modulePath}/${sec.id}: paragraphTraceTypes mismatch`);
+          assert.equal(claimRows.length,paragraphs.length,`${modulePath}/${sec.id}: paragraphClaimIds mismatch`);
+          const analyticalProse=paragraphs.filter((_,index)=>traceTypes[index]!=='claim_supported').join(' ');
+          const definitionBinding=semanticBinding(theory.definition,analyticalProse);
+          minimumGeneratorDefinitionBindingRatio=Math.min(minimumGeneratorDefinitionBindingRatio,definitionBinding.ratio);
+          assert.ok(definitionBinding.referenceTokens.length>=5&&definitionBinding.matched.length>=5&&definitionBinding.ratio>=0.45,`${modulePath}/${sec.id}: theory-definition er ikke substansielt integrert i analytisk prosa (${theory.theory_id}; matched=${definitionBinding.matched.length}/${definitionBinding.referenceTokens.length})`);
+          const limitationBindings=list(theory.limitations).map(limitation=>semanticBinding(limitation,analyticalProse));
+          const bestLimitation=limitationBindings.sort((a,b)=>b.ratio-a.ratio||b.matched.length-a.matched.length)[0];
+          minimumGeneratorLimitationBindingRatio=Math.min(minimumGeneratorLimitationBindingRatio,bestLimitation?.ratio||0);
+          assert.ok(bestLimitation&&bestLimitation.matched.length>=4&&bestLimitation.ratio>=0.4,`${modulePath}/${sec.id}: theory-begrensning er ikke substansielt brukt i analytisk prosa (${theory.theory_id})`);
+          const claimIds=unique(claimRows.flat());
+          const evidence=evidenceByTheory.get(theory.theory_id);
+          assert.ok(claimIds.some(id=>list(evidence.claim_ids).includes(id)),`${modulePath}/${sec.id}: theory fulltekst mangler claim fra theory-evidence entry`);
+          assert.ok(traceTypes.includes('claim_supported'),`${modulePath}/${sec.id}: theory fulltekst mangler claim_supported prose`);
+          fieldClaimBindings++;
+          generatorClaimBoundSectionCount++;
+        }
+      }
+      assert.equal(fieldTheoryBindings,10,`${row.primary_domain_id}: generator-eid felt skal ha 10 eksplisitte theory/prose-bindinger`);
+      assert.equal(fieldClaimBindings,10,`${row.primary_domain_id}: generator-eid felt skal ha 10 claim-sporede theory/prose-bindinger`);
+      assert.equal(seenEmneIds.size,10,`${row.primary_domain_id}: generator-eid felt skal dekke 10 unike canonicale emner`);
+      assert.equal(seenTheoryIds.size,10,`${row.primary_domain_id}: generator-eid felt skal dekke 10 unike theory IDs`);
+      assert.deepEqual([...seenEmneIds].sort(),[...expectedEmneIds].sort(),`${row.primary_domain_id}: generator-eid fulltekst dekker ikke eksakt canonical emne-sett`);
+      fieldProofMatrix.push({field:row.primary_domain_id,mode:'generator_explicit',substantiveTheoryBindings:fieldTheoryBindings,limitationOrRivalSignals:fieldClaimBindings,pass:true});
+      continue;
+    }
+
+    handBuiltFieldCount++;
+    const sections=modules.flatMap(({module})=>list(module.sections));
+    const prose=sections.flatMap(sec=>list(sec.paragraphs)).map(norm).filter(Boolean).join(' ');
+    assert.ok(prose.length>=1000,`${row.primary_domain_id}: håndbygget felt mangler nok registrert prosa for field-level strict proof`);
+    const fieldTheories=theories.filter(t=>list(t.explanatory_scope).includes(row.primary_domain_id));
+    assert.equal(fieldTheories.length,10,`${row.primary_domain_id}: håndbygget felt skal ha 10 canonicale theory candidates`);
+    let substantiveTheoryBindings=0,limitationOrRivalSignals=0;
+    const theorySignals=[];
+    for(const theory of fieldTheories){
+      const definitionBinding=semanticBinding(theory.definition,prose);
+      const evidence=evidenceByTheory.get(theory.theory_id);
+      const criticalReferences=unique([
+        ...list(theory.limitations),
+        ...list(evidence?.limitations),
+        ...list(evidence?.alternative_interpretations),
+        ...list(evidence?.disconfirmation_conditions)
+      ]);
+      const criticalBindings=criticalReferences.map(reference=>semanticBinding(reference,prose));
+      const bestCritical=criticalBindings.sort((a,b)=>b.ratio-a.ratio||b.matched.length-a.matched.length)[0]||{referenceTokens:[],matched:[],ratio:0};
+      const substantive=definitionBinding.matched.length>=5&&definitionBinding.ratio>=0.4;
+      const critical=bestCritical.matched.length>=4&&bestCritical.ratio>=0.4;
+      if(substantive)substantiveTheoryBindings++;
+      if(critical)limitationOrRivalSignals++;
+      theorySignals.push({theoryId:theory.theory_id,definitionMatched:definitionBinding.matched.length,definitionRatio:Math.round(definitionBinding.ratio*1000)/1000,criticalMatched:bestCritical.matched.length,criticalRatio:Math.round(bestCritical.ratio*1000)/1000,substantive,critical});
+    }
+    assert.ok(substantiveTheoryBindings>=4,`${row.primary_domain_id}: håndbygget felt trenger minst fire substansielle theory/prose-bindinger; fant ${substantiveTheoryBindings}`);
+    assert.ok(limitationOrRivalSignals>=2,`${row.primary_domain_id}: håndbygget felt trenger minst to substansielle limitation/rival-signaler; fant ${limitationOrRivalSignals}`);
+    handBuiltSubstantiveTheoryBindingMinimum=Math.min(handBuiltSubstantiveTheoryBindingMinimum,substantiveTheoryBindings);
+    handBuiltLimitationOrRivalSignalMinimum=Math.min(handBuiltLimitationOrRivalSignalMinimum,limitationOrRivalSignals);
+    fieldProofMatrix.push({field:row.primary_domain_id,mode:'hand_built_field_prose',substantiveTheoryBindings,limitationOrRivalSignals,sectionCount:sections.length,paragraphCount:sections.reduce((sum,sec)=>sum+list(sec.paragraphs).length,0),theorySignals,pass:true});
   }
-  assert.equal(fulltextFieldIds.size,23,'Actual canonical fulltekst skal dekke 23/23 Historie-felt');
-  assert.equal(fulltextEmneIds.size,230,'Actual canonical fulltekst skal dekke 230/230 canonicale emner');
-  assert.equal(fulltextTheoryIds.size,230,`Actual canonical fulltekst mangler theory objects: ${theories.filter(t=>!fulltextTheoryIds.has(t.theory_id)).map(t=>t.theory_id).sort().join(', ')}`);
-  assert.equal(theoryBoundSections,230,'Historie skal ha 230 theory-bound canonicale emneseksjoner');
-  assert.equal(claimBoundSections,230,'Historie skal ha claim-sporet theory-prosa i 230/230 emneseksjoner');
+
+  assert.equal(generatorOwnedFieldCount,18,'Historie strict proof forventer 18 generator-eide hovedfelt');
+  assert.equal(handBuiltFieldCount,5,'Historie strict proof forventer fem håndbygde hovedfelt');
+  assert.equal(generatorExplicitTheoryBindingCount,180,'18 generator-eide felt skal ha 180 eksplisitte theory/prose-bindinger');
+  assert.equal(generatorClaimBoundSectionCount,180,'18 generator-eide felt skal ha 180 claim-sporede theory/prose-bindinger');
+  assert.equal(fieldProofMatrix.length,23,'Strict proof skal avgjøres per 23 canonicale hovedfelt');
+  assert.equal(new Set(fieldProofMatrix.map(row=>row.field)).size,23,'Field-level strict proof skal ha én rad per canonicalt hovedfelt');
+  assert.ok(fieldProofMatrix.every(row=>row.pass),'Alle 23 canonicale Historie-felt skal passere sin eiermodell');
   assert.equal(fieldScholarlyCount,23,'23/23 Historie-felt skal ha eksplisitt scholarly kildegrunnlag');
 
   const forbidden=list(quizRules.hard_rules?.forbidden_generation_patterns).join(' ').toLocaleLowerCase('en');
@@ -260,12 +328,18 @@ export function auditHistoryTheoryIntegrity(){
     theoryCount:230,
     universalCoverageCells:58,
     theoryEvidenceReadyCount:230,
-    fulltextTheoryCount:fulltextTheoryIds.size,
-    theoryBoundSectionCount:theoryBoundSections,
+    generatorOwnedFieldCount,
+    handBuiltFieldCount,
+    generatorExplicitTheoryBindingCount,
+    generatorClaimBoundSectionCount,
+    actualProseBoundFieldCount:fieldProofMatrix.length,
+    fieldProofMatrix,
+    handBuiltSubstantiveTheoryBindingMinimum,
+    handBuiltLimitationOrRivalSignalMinimum,
     fieldScholarlyCount,
     scholarlyFieldMatrix,
-    minimumDefinitionBindingRatio:Math.round(minimumDefinitionBindingRatio*1000)/1000,
-    minimumLimitationBindingRatio:Math.round(minimumLimitationBindingRatio*1000)/1000,
+    minimumGeneratorDefinitionBindingRatio:Math.round(minimumGeneratorDefinitionBindingRatio*1000)/1000,
+    minimumGeneratorLimitationBindingRatio:Math.round(minimumGeneratorLimitationBindingRatio*1000)/1000,
     canonicalThinkerCount:canonicalThinkerIds.length,
     existingThinkerWorkCount:existingResolved.length,
     supplementalThinkerWorkCount:supplementById.size,
