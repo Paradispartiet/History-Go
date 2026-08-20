@@ -1,0 +1,425 @@
+name: TEMP Språkatlas map v3 final materializer
+
+on:
+  push:
+    branches:
+      - agent/sprakatlas-map-experience-v3-final
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/sprakatlas-map-experience-v3-final
+          fetch-depth: 0
+
+      - name: Materialize permanent v3 files
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+
+          const read = path => fs.readFileSync(path, 'utf8');
+          const write = (path, content) => fs.writeFileSync(path, content);
+
+          // Load v3 immediately after the canonical map runtime. It remains a presentation layer.
+          {
+            const path = 'js/app.js';
+            let content = read(path);
+            const anchor = '    await safeRun("loadMap", () => loadScriptOnce("js/map.js"));\n';
+            const addition = '    await safeRun("loadSprakatlasMapExperienceV3", () => loadScriptOnce("js/ui/sprakatlas-map-experience-v3.js"));\n';
+            if (!content.includes(addition.trim())) {
+              if (!content.includes(anchor)) throw new Error('js/app.js: canonical map loader anchor missing');
+              content = content.replace(anchor, anchor + addition);
+              write(path, content);
+            }
+          }
+
+          // Emit one canonical UI event only after the explicit atlas→Place list has rendered.
+          // v3 consumes the same selection; it never infers its own relation set.
+          {
+            const path = 'js/ui/place-language-layer.js';
+            let content = read(path);
+            const anchor = '    host.innerHTML = renderAtlasPlaceLinks(rows, currentPlaceId);\n';
+            const addition = `    global.dispatchEvent?.(new CustomEvent("hg:place-language-atlas-ready", {\n      detail: {\n        selectionId,\n        placeIds: rows.map(row => text(row?.placeId)).filter(Boolean)\n      }\n    }));\n`;
+            if (!content.includes('hg:place-language-atlas-ready')) {
+              if (!content.includes(anchor)) throw new Error('place-language-layer: rendered atlas list anchor missing');
+              content = content.replace(anchor, anchor + addition);
+              write(path, content);
+            }
+          }
+
+          const runtime = String.raw`// js/ui/sprakatlas-map-experience-v3.js
+// Transient map presentation for explicit Språkatlas → canonical Place relations.
+// No language data, coordinates or ownership are created here.
+(function installSprakatlasMapExperienceV3(global) {
+  "use strict";
+
+  const INSTALL_FLAG = "__HG_SPRAKATLAS_MAP_EXPERIENCE_V3_INSTALLED__";
+  const STYLE_ID = "hg-sprakatlas-map-v3-style";
+  if (global[INSTALL_FLAG]) return;
+  global[INSTALL_FLAG] = true;
+
+  const markers = new Map();
+  let activeSelectionId = "";
+  let activeRows = [];
+  let syncToken = 0;
+
+  const text = value => String(value == null ? "" : value).trim();
+  const list = value => Array.isArray(value) ? value : [];
+
+  function atlasItemKind(atlas, selectionId) {
+    const id = text(selectionId);
+    if (!id) return "";
+    if (list(atlas?.local_varieties).some(row => text(row?.id) === id)) return "local";
+    if (list(atlas?.dialect_regions).some(row => text(row?.id) === id)) return "region";
+    if (list(atlas?.macro_regions).some(row => text(row?.id) === id)) return "macro";
+    return "";
+  }
+
+  function rowsForSelection(rows, atlas, selectionId) {
+    const id = text(selectionId);
+    const kind = atlasItemKind(atlas, id);
+    if (!id || !kind) return [];
+
+    const regionById = new Map(list(atlas?.dialect_regions).map(region => [text(region?.id), region]));
+    return list(rows).filter(row => {
+      if (kind === "local") return list(row?.localIds).includes(id);
+      if (kind === "region") return list(row?.regionIds).includes(id);
+      return list(row?.regionIds).includes(id)
+        || list(row?.regionIds).some(regionId => text(regionById.get(text(regionId))?.macro_region_id) === id);
+    });
+  }
+
+  function coordinateFor(row) {
+    const lat = Number(row?.place?.lat);
+    // Canonical History GO Places use lon. lng is accepted only as a legacy runtime fallback.
+    const lon = Number(row?.place?.lon ?? row?.place?.lng);
+    return Number.isFinite(lat) && Number.isFinite(lon) ? { lat, lon } : null;
+  }
+
+  function ensureStyle() {
+    if (document.getElementById(STYLE_ID)) return;
+    const style = document.createElement("style");
+    style.id = STYLE_ID;
+    style.textContent = [
+      ".hg-sprakatlas-map-marker{width:28px;height:28px;padding:0;border:3px solid #fff;border-radius:999px;background:#f6c800;box-shadow:0 0 0 3px rgba(24,33,26,.72),0 4px 14px rgba(0,0,0,.36);cursor:pointer;position:relative;}",
+      ".hg-sprakatlas-map-marker::after{content:'';position:absolute;inset:7px;border-radius:999px;background:#18211a;}",
+      ".hg-sprakatlas-map-marker:hover,.hg-sprakatlas-map-marker:focus-visible{outline:4px solid rgba(246,200,0,.3);outline-offset:3px;}",
+      ".hg-sprakatlas-map-action{display:inline-flex;align-items:center;justify-content:center;min-height:40px;margin-top:10px;padding:9px 13px;border:1px solid rgba(24,33,26,.25);border-radius:999px;background:#18211a;color:#fff;font:inherit;font-weight:700;cursor:pointer;}",
+      ".hg-sprakatlas-map-action:hover,.hg-sprakatlas-map-action:focus-visible{background:#263529;outline:2px solid rgba(24,33,26,.18);outline-offset:2px;}"
+    ].join("");
+    document.head.appendChild(style);
+  }
+
+  function clearMarkers() {
+    for (const marker of markers.values()) {
+      try { marker.remove(); } catch {}
+    }
+    markers.clear();
+  }
+
+  function openCanonicalPlace(placeId) {
+    const id = text(placeId);
+    if (!id) return false;
+    return Boolean(global.HGMapView?.openPlace?.(id));
+  }
+
+  function addMarker(row) {
+    const coordinate = coordinateFor(row);
+    const map = global.HGMap?.getMap?.();
+    const Marker = global.maplibregl?.Marker;
+    if (!coordinate || !map || typeof Marker !== "function") return null;
+
+    ensureStyle();
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "hg-sprakatlas-map-marker";
+    button.dataset.sprakatlasMapPlace = text(row?.placeId);
+    button.setAttribute("aria-label", `Åpne ${text(row?.place?.name || row?.placeId)} fra Språkatlas`);
+    button.addEventListener("click", event => {
+      event.preventDefault();
+      event.stopPropagation();
+      openCanonicalPlace(row?.placeId);
+    });
+
+    const marker = new Marker({ element: button, anchor: "bottom" })
+      .setLngLat([coordinate.lon, coordinate.lat])
+      .addTo(map);
+    markers.set(text(row?.placeId), marker);
+    return marker;
+  }
+
+  function renderMarkers(rows) {
+    clearMarkers();
+    for (const row of list(rows)) addMarker(row);
+  }
+
+  function fitMapToRows(rows) {
+    const map = global.HGMap?.getMap?.();
+    const coordinates = list(rows).map(coordinateFor).filter(Boolean);
+    if (!map || !coordinates.length) return false;
+
+    if (coordinates.length === 1) {
+      const coordinate = coordinates[0];
+      const currentZoom = Number(map.getZoom?.());
+      const zoom = Number.isFinite(currentZoom) ? Math.max(9, Math.min(12, currentZoom)) : 10;
+      map.flyTo?.({ center: [coordinate.lon, coordinate.lat], zoom, duration: 650 });
+      return true;
+    }
+
+    let minLon = Infinity;
+    let minLat = Infinity;
+    let maxLon = -Infinity;
+    let maxLat = -Infinity;
+    for (const coordinate of coordinates) {
+      minLon = Math.min(minLon, coordinate.lon);
+      minLat = Math.min(minLat, coordinate.lat);
+      maxLon = Math.max(maxLon, coordinate.lon);
+      maxLat = Math.max(maxLat, coordinate.lat);
+    }
+    map.fitBounds?.([[minLon, minLat], [maxLon, maxLat]], {
+      padding: { top: 80, bottom: 90, left: 48, right: 48 },
+      maxZoom: 13,
+      duration: 650
+    });
+    return true;
+  }
+
+  function mapActionLabel(count) {
+    return count === 1 ? "Vis stedet på kartet" : `Vis ${count} steder på kartet`;
+  }
+
+  function syncMapAction(selectionId, rows) {
+    const id = text(selectionId);
+    const hosts = [...document.querySelectorAll("[data-atlas-place-selection]")]
+      .filter(host => text(host.getAttribute("data-atlas-place-selection")) === id);
+    for (const host of hosts) {
+      host.querySelectorAll("[data-sprakatlas-show-map]").forEach(button => button.remove());
+      if (!rows.length) continue;
+      ensureStyle();
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "hg-sprakatlas-map-action";
+      button.dataset.sprakatlasShowMap = id;
+      button.textContent = mapActionLabel(rows.length);
+      host.appendChild(button);
+    }
+  }
+
+  async function resolveRows(selectionId) {
+    const languageLayer = global.HGLanguageLayer;
+    if (!languageLayer?.loadAtlas || !languageLayer?.loadAtlasPlaceLinks) return { atlas: null, rows: [] };
+    const [atlas, allRows] = await Promise.all([
+      languageLayer.loadAtlas(),
+      languageLayer.loadAtlasPlaceLinks()
+    ]);
+    if (!atlas) return { atlas: null, rows: [] };
+    const rows = rowsForSelection(allRows, atlas, selectionId).filter(row => coordinateFor(row));
+    return { atlas, rows };
+  }
+
+  async function highlightSelection(selectionId, options = {}) {
+    const id = text(selectionId);
+    if (!id) return [];
+    const token = ++syncToken;
+    const { rows } = await resolveRows(id);
+    if (token !== syncToken) return [];
+
+    activeSelectionId = id;
+    activeRows = rows;
+    renderMarkers(rows);
+    syncMapAction(id, rows);
+
+    if (options.fit === true && rows.length) {
+      global.HGMapView?.showMap?.();
+      global.HGMap?.resize?.();
+      const fit = () => fitMapToRows(rows);
+      if (typeof global.requestAnimationFrame === "function") global.requestAnimationFrame(fit);
+      else global.setTimeout?.(fit, 0);
+    }
+
+    global.dispatchEvent?.(new CustomEvent("hg:sprakatlas-map-focus", {
+      detail: { selectionId: id, placeIds: rows.map(row => text(row?.placeId)).filter(Boolean) }
+    }));
+    return rows;
+  }
+
+  function clear() {
+    ++syncToken;
+    activeSelectionId = "";
+    activeRows = [];
+    clearMarkers();
+  }
+
+  global.addEventListener?.("hg:place-language-atlas-ready", event => {
+    const selectionId = text(event?.detail?.selectionId);
+    if (selectionId) void highlightSelection(selectionId);
+  });
+
+  document.addEventListener("click", event => {
+    const target = event.target instanceof Element ? event.target : null;
+    const button = target?.closest?.("[data-sprakatlas-show-map]");
+    if (!button) return;
+    const selectionId = text(button.getAttribute("data-sprakatlas-show-map"));
+    if (!selectionId) return;
+    event.preventDefault();
+    event.stopPropagation();
+    void highlightSelection(selectionId, { fit: true });
+  });
+
+  global.HGSprakatlasMapExperienceV3 = Object.freeze({
+    rowsForSelection,
+    coordinateFor,
+    highlightSelection,
+    fitMapToRows,
+    clear,
+    getActiveSelectionId: () => activeSelectionId,
+    getVisiblePlaceIds: () => activeRows.map(row => text(row?.placeId)).filter(Boolean)
+  });
+})(window);
+`;
+          write('js/ui/sprakatlas-map-experience-v3.js', runtime);
+
+          const test = String.raw`import test from "node:test";
+import assert from "node:assert/strict";
+import fs from "node:fs";
+
+const read = path => fs.readFileSync(path, "utf8");
+const json = path => JSON.parse(read(path));
+const text = value => String(value == null ? "" : value).trim();
+
+const runtime = read("js/ui/sprakatlas-map-experience-v3.js");
+const app = read("js/app.js");
+const language = read("js/ui/place-language-layer.js");
+const docs = read("docs/SPRAKLEKSIKON.md");
+const workflow = read(".github/workflows/language-layer-checks.yml");
+const manifest = json("data/leksikon/sprak/manifest.json");
+const atlas = json("data/leksikon/sprak/norge_atlas_v1.json");
+
+test("Språkatlas map v3 is loaded as a presentation layer on the canonical map", () => {
+  assert.match(app, /loadMap[\s\S]{0,180}loadSprakatlasMapExperienceV3[\s\S]{0,160}sprakatlas-map-experience-v3\.js/);
+  assert.match(runtime, /HGMap\?\.getMap/);
+  assert.match(runtime, /maplibregl\?\.Marker/);
+  assert.match(runtime, /HGMapView\?\.openPlace/);
+  assert.match(runtime, /HGMapView\?\.showMap/);
+  assert.match(runtime, /map\.flyTo/);
+  assert.match(runtime, /map\.fitBounds/);
+});
+
+test("map selection is derived only from explicit canonical atlas relations", () => {
+  assert.match(runtime, /if \(kind === "local"\) return list\(row\?\.localIds\)\.includes\(id\)/);
+  assert.match(runtime, /if \(kind === "region"\) return list\(row\?\.regionIds\)\.includes\(id\)/);
+  assert.match(runtime, /row\?\.place\?\.lon \?\? row\?\.place\?\.lng/);
+  assert.doesNotMatch(runtime, /nearest|haversine|distanceTo|geograph.*infer|region.*contains.*coordinate/i);
+  assert.match(language, /hg:place-language-atlas-ready/);
+  assert.match(language, /placeIds: rows\.map\(row => text\(row\?\.placeId\)\)/);
+});
+
+test("documented_seed profiles remain outside product map links", () => {
+  const linkedLocalIds = new Set();
+  for (const relative of Object.values(manifest.place_files || {})) {
+    const article = json(relative);
+    for (const id of article.atlas_local_ids || []) linkedLocalIds.add(text(id));
+  }
+  const seeds = (atlas.local_varieties || []).filter(row => row.profile_status === "documented_seed");
+  assert.ok(seeds.length >= 1, "expected documented_seed research queue");
+  for (const seed of seeds) {
+    assert.equal(linkedLocalIds.has(text(seed.id)), false, `${seed.id}: documented_seed must not gain an inferred Place link`);
+  }
+});
+
+test("the existing list remains canonical navigation and v3 adds a map action", () => {
+  assert.match(language, /data-atlas-open-place/);
+  assert.match(language, /HGMapView\?\.openPlace/);
+  assert.match(runtime, /data-sprakatlas-show-map/);
+  assert.match(runtime, /Vis stedet på kartet/);
+  assert.match(runtime, /Vis \$\{count\} steder på kartet/);
+  assert.match(docs, /Språkatlas → kartopplevelse v3/);
+});
+
+test("language CI owns v3 syntax and regression checks", () => {
+  assert.match(workflow, /js\/ui\/sprakatlas-map-experience-v3\.js/);
+  assert.match(workflow, /node --check js\/ui\/sprakatlas-map-experience-v3\.js/);
+  assert.match(workflow, /tests\/sprakatlas-map-v3\.test\.mjs/);
+});
+`;
+          write('tests/sprakatlas-map-v3.test.mjs', test);
+
+          // Extend the permanent language-layer CI without weakening any existing gate.
+          {
+            const path = '.github/workflows/language-layer-checks.yml';
+            let content = read(path);
+            if (!content.includes("'js/ui/sprakatlas-map-experience-v3.js'")) {
+              const anchor = "      - 'js/ui/place-language-layer.js'\n";
+              if (!content.includes(anchor)) throw new Error('language workflow path anchor missing');
+              content = content.replace(anchor, anchor + "      - 'js/ui/sprakatlas-map-experience-v3.js'\n");
+            }
+            if (!content.includes("'tests/sprakatlas-map-v3.test.mjs'")) {
+              const anchor = "      - 'tests/place-language-layer.test.mjs'\n";
+              if (!content.includes(anchor)) throw new Error('language workflow test path anchor missing');
+              content = content.replace(anchor, anchor + "      - 'tests/sprakatlas-map-v3.test.mjs'\n");
+            }
+            if (!content.includes('node --check js/ui/sprakatlas-map-experience-v3.js')) {
+              const anchor = '          node --check js/ui/place-language-layer.js\n';
+              if (!content.includes(anchor)) throw new Error('language workflow syntax anchor missing');
+              content = content.replace(anchor, anchor + '          node --check js/ui/sprakatlas-map-experience-v3.js\n');
+            }
+            const oldTests = '        run: node --test tests/place-language-layer.test.mjs tests/place-language-dialect-scope.test.mjs tests/place-popup-direct-tabs.test.mjs\n';
+            const newTests = '        run: node --test tests/place-language-layer.test.mjs tests/place-language-dialect-scope.test.mjs tests/sprakatlas-map-v3.test.mjs tests/place-popup-direct-tabs.test.mjs\n';
+            if (!content.includes('tests/sprakatlas-map-v3.test.mjs tests/place-popup-direct-tabs.test.mjs')) {
+              if (!content.includes(oldTests)) throw new Error('language workflow test command anchor missing');
+              content = content.replace(oldTests, newTests);
+            }
+            write(path, content);
+          }
+
+          // Append the product contract; no canonical language data are altered.
+          {
+            const path = 'docs/SPRAKLEKSIKON.md';
+            let content = read(path);
+            if (!content.includes('<!-- SPRÅKATLAS_MAP_V3_START -->')) {
+              content += String.raw`
+
+<!-- SPRÅKATLAS_MAP_V3_START -->
+## Språkatlas → kartopplevelse v3
+
+Når en lokal talemålsprofil, dialektregion eller makroregion velges i Språkatlaset, markerer History Go de **allerede eksplisitt koblede canonical Places** på hovedkartet. Dette er et transient presentasjonslag over den eksisterende kartmotoren. Det oppretter ingen nye språkdata, koordinater, Places, kartdatabase eller atlasrelasjoner.
+
+For lokale profiler er regelen hard: et kartpunkt kommer bare fra et språk-Place som eksplisitt har profilens ID i `atlas_local_ids`. Region- og makrofokus bygger tilsvarende bare på canonical `atlas_region_ids`. Runtime får ikke finne nærmeste Place, gjette fra koordinater eller arve et sted fra en bred dialektregion.
+
+Den eksisterende listen **«Utforsk steder med dokumenterte språkspor»** består som tekstlig og tastaturvennlig navigasjon. Når listen har treff får den i tillegg **«Vis stedet på kartet»** eller **«Vis N steder på kartet»**. Ett dokumentert sted sentreres; flere får et felles kartutsnitt. Både atlaslisten og de transiente markørene åpner canonical Place gjennom `HGMapView.openPlace()` og dermed vanlig PlaceCard.
+
+Place → **«Se talemålet i Språkatlas»** går gjennom samme atlas-seleksjon og utløser derfor samme kartmarkering. En ny atlas-seleksjon erstatter forrige transient markørsett. Profiler uten eksplisitte Place-spor får ingen konstruerte kartpunkter.
+
+Dialekteierskapet endres ikke: bare `placeScope: "area"` kan eie dialektinnhold, og konkrete `local_varieties[].feature_evidence` forblir eid av atlasprofilen og kopieres ikke til Place-data.
+<!-- SPRÅKATLAS_MAP_V3_END -->
+`;
+              write(path, content);
+            }
+          }
+          NODE
+
+      - name: Verify permanent v3 gates
+        shell: bash
+        run: |
+          git diff --check
+          node --check js/ui/place-language-layer.js
+          node --check js/ui/sprakatlas-map-experience-v3.js
+          node --test tests/place-language-layer.test.mjs tests/place-language-dialect-scope.test.mjs tests/sprakatlas-map-v3.test.mjs tests/place-popup-direct-tabs.test.mjs
+
+      - name: Commit permanent v3 and remove this materializer
+        shell: bash
+        run: |
+          rm -f .github/workflows/temp-sprakatlas-map-v3-final.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- js/app.js js/ui/place-language-layer.js js/ui/sprakatlas-map-experience-v3.js tests/sprakatlas-map-v3.test.mjs docs/SPRAKLEKSIKON.md .github/workflows/language-layer-checks.yml .github/workflows/temp-sprakatlas-map-v3-final.yml
+          git diff --cached --check
+          git commit -m "Build Språkatlas map experience v3"
+          git push origin HEAD:agent/sprakatlas-map-experience-v3-final
