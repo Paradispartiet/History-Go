@@ -77,7 +77,6 @@
       ],
       "existing_gate_proves": {
         "canonical_field_coverage": "verified",
-        "canonical_emne_coverage": "verified",
         "structured_scope_mechanism": "verified",
         "limitations": "verified",
         "rival_or_alternative": "verified",
@@ -86,7 +85,8 @@
         "claim_or_content_binding": "verified",
         "actual_prose_binding": "verified",
         "anti_trivia_rule": "verified",
-        "universal_subject_scope": "verified"
+        "universal_subject_scope": "verified",
+        "canonical_emne_coverage": "verified"
       }
     },
     {
@@ -119,22 +119,30 @@
     },
     {
       "subject_id": "historie",
-      "proof_scope": "partial_evidence_pilot",
-      "audit_script": "tools/validate-historie-theory-evidence.mjs",
+      "proof_scope": "structured_subject_gate",
+      "audit_script": "tools/audit-historie-theory-integrity.mjs",
+      "test": "tests/historie-theory-integrity.test.mjs",
+      "workflow": ".github/workflows/fagverk-historie.yml",
       "evidence_files": [
-        "data/fag/historie/theory_evidence_historie_contract_v1.json",
+        "data/fag/historie/theory_objects_historie_canonical_v5_5.json",
         "data/fag/historie/theory_evidence_historie_canonical_v1.json",
-        "reports/historie-theory-evidence/history-theory-evidence-foundation-v1.json"
+        "data/fag/historie/theory_attribution_historie_canonical_v1.json",
+        "data/fag/historie/historiography_evidence_historie_v1.json",
+        "data/fag/historie/quiz_generator_rules_historie_v5_1_source_priority_patch.json",
+        "data/fagverk/fagverk_registry.json",
+        "reports/historie-universal-coverage/historie-universal-coverage.json"
       ],
       "existing_gate_proves": {
+        "canonical_field_coverage": "verified",
         "structured_scope_mechanism": "verified",
         "limitations": "verified",
         "rival_or_alternative": "verified",
+        "person_work_binding": "verified",
+        "scholarly_source_quality": "verified",
         "claim_or_content_binding": "verified",
-        "actual_prose_binding": "not_verified_by_current_gate",
-        "person_work_binding": "not_verified_by_current_gate",
-        "scholarly_source_quality": "not_verified_by_current_gate",
-        "universal_subject_scope": "explicitly_provisional_not_universal"
+        "actual_prose_binding": "verified",
+        "anti_trivia_rule": "verified",
+        "universal_subject_scope": "verified"
       }
     }
   ]
