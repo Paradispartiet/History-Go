@@ -1,0 +1,65 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "litteratur",
+  "role_scope": "redaktor_bok",
+  "mail_type": "story",
+  "families": [
+    {
+      "id": "begrunnet_redaksjonell_retning",
+      "purpose": "Avrunde arbeidsbuen med en anbefaling som gjør tekstgrunnlag, usikkerhet, forfatterens prosjekt og forlagets rammer synlige samtidig.",
+      "learning_focus": ["helhetsdømmekraft", "redaksjonell_integritet", "profesjonell_praksis"],
+      "mails": [
+        {
+          "id": "litteratur_redaktor_bok_story_retning_001",
+          "mail_type": "story",
+          "mail_family": "begrunnet_redaksjonell_retning",
+          "role_scope": "redaktor_bok",
+          "phase": "climax",
+          "day_phase": "day_end",
+          "priority": 120,
+          "cooldown": 5,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Redaksjonssjefen",
+          "people_ref": "litteratur_redaksjonssjef",
+          "place_id": "litteratur_redaktor_utgivelsesrad",
+          "subject": "Hva er den redaksjonelle anbefalingen nå?",
+          "summary": "Etter helhetslesing, forfatterdialog, prøvelesning og markedssamtale skal redaktøren anbefale neste prosjektfase uten å late som all usikkerhet er borte.",
+          "purpose": "Knytte dagens vurderinger sammen til troverdig redaksjonell yrkespraksis fremfor en serie isolerte tekstinngrep.",
+          "stakes": "En vag anbefaling flytter skjulte antakelser videre; en skråsikker anbefaling kan gjøre redaktørens foretrukne versjon til en beslutning uten riktig mandat.",
+          "situation": [
+            "Manusets særpreg og sentrale strukturproblem er dokumentert med konkrete tekststeder.",
+            "Forfatteren har akseptert et avgrenset strukturprøvearbeid, men ikke en full omskriving.",
+            "Målgruppe- og produksjonsrisiko er synliggjort med eksplisitt usikkerhet."
+          ],
+          "task_domain": "redaksjonell_anbefaling_og_portefolje",
+          "task_kind": "story",
+          "competency": "helhetsdømmekraft",
+          "pressure": "behov_for_entydig_beslutning",
+          "choice_axis": "begrunnet_anbefaling_med_usikkerhet_vs_skråsikker_smak",
+          "consequence_axis": "etterprovbart_neste_steg_vs_skjult_beslutningsmakt",
+          "narrative_arc": "fra_spredte_vurderinger_til_sammenhengende_redaksjonell_retning",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Anbefal et avgrenset utviklingssteg",
+              "reply": "Jeg anbefaler én strukturprøve før endelig porteføljevalg. Notatet viser hva prøven skal undersøke, hva som må bevares og hvilke litterære, målgruppe- og produksjonsusikkerheter som fortsatt står åpne.",
+              "effect": 1,
+              "tags": ["bounded_next_step", "uncertainty", "editorial_integrity"],
+              "feedback": "Anbefalingen er tydelig nok til handling og ærlig nok til at andre kan etterprøve beslutningsgrunnlaget."
+            },
+            {
+              "id": "B",
+              "label": "Anbefal full omskriving som eneste vei",
+              "reply": "Prosjektet bør bare gå videre dersom forfatteren følger strukturretningen jeg har skissert og gjør slutten tydeligere.",
+              "effect": -1,
+              "tags": ["editorial_overreach", "false_certainty"],
+              "feedback": "Du skjuler både alternative løsninger og usikkerheten bak en personlig redaksjonell fasit."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

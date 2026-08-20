@@ -1,0 +1,65 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "litteratur",
+  "role_scope": "redaktor_bok",
+  "mail_type": "conflict",
+  "families": [
+    {
+      "id": "markedspress_og_litteraer_integritet",
+      "purpose": "Teste om målgruppe- og markedsinnspill behandles som relevant kunnskap uten å bli forkledd som tekstfaglig nødvendighet.",
+      "learning_focus": ["portefoljedømmekraft", "litteraer_integritet", "mandatklarhet"],
+      "mails": [
+        {
+          "id": "litteratur_redaktor_bok_conflict_slutt_001",
+          "mail_type": "conflict",
+          "mail_family": "markedspress_og_litteraer_integritet",
+          "role_scope": "redaktor_bok",
+          "phase": "early",
+          "day_phase": "workday",
+          "priority": 135,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Markedsansvarlig",
+          "people_ref": "litteratur_markedsansvarlig",
+          "place_id": "litteratur_redaktor_utgivelsesrad",
+          "subject": "Kan slutten bli mer entydig før presentasjonen?",
+          "summary": "Markedsansvarlig mener den åpne slutten vil gjøre boken vanskeligere å posisjonere og ber redaktøren få forfatteren til å skrive en tydelig forsoning.",
+          "purpose": "Teste om redaktøren skiller en reell salgsrisiko fra en påstand om at teksten litterært må endres.",
+          "stakes": "Å avvise markedskunnskap beskytter ikke nødvendigvis boken, men å gjøre prognosen til tekstfaglig fasit kan bryte verkets grunnleggende prosjekt.",
+          "situation": [
+            "Den åpne slutten følger manusets etablerte usikkerhet om hovedpersonens motiv.",
+            "Sammenlignbare titler har gitt blandede, ikke entydige, markedssignaler.",
+            "Redaksjonssjefen eier den endelige portefølje- og publiseringsbeslutningen."
+          ],
+          "task_domain": "marked_og_redaksjonell_retning",
+          "task_kind": "conflict",
+          "competency": "portefoljedømmekraft",
+          "pressure": "presentasjon_og_salgsforventning",
+          "choice_axis": "apen_avveiing_vs_markedsargument_som_fasit",
+          "consequence_axis": "informert_portefoljevalg_vs_skjult_omforming_av_verket",
+          "narrative_arc": "fra_krav_om_entydighet_til_synlig_litteraer_og_kommersiell_avveiing",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Legg risiko og verkets prosjekt side ved side",
+              "reply": "Jeg beskriver posisjoneringsrisikoen som usikker, viser hva en lukket slutt vil endre i verket og ber redaksjonssjefen ta porteføljevalget på det samlede grunnlaget.",
+              "effect": 1,
+              "tags": ["portfolio_judgment", "market_uncertainty", "mandate"],
+              "feedback": "Du tar markedskunnskapen på alvor uten å kamuflere et forlagsvalg som litterær nødvendighet."
+            },
+            {
+              "id": "B",
+              "label": "Be forfatteren skrive en tydelig forsoning",
+              "reply": "For å nå leserne trenger boken en klarere slutt, så jeg gjør forsoningen til neste redaksjonelle krav.",
+              "effect": -1,
+              "tags": ["market_as_truth", "author_project_risk"],
+              "feedback": "Du gjør en usikker markedsantakelse til et tekstkrav og skjuler hvem som faktisk velger risikoen."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

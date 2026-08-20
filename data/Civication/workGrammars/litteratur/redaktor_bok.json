@@ -8,6 +8,17 @@
   "work_world":"Utvikling av bokmanus og forfatterprosjekter gjennom redaksjonelle vurderinger, tilbakemeldinger, prioritering og koordinering mot publisering.",
   "authority_boundary":{"can":["vurdere og utvikle manus innen redaksjonelt mandat","gi tydelige redaksjonelle anbefalinger","koordinere bokprosjekter gjennom avtalte redaksjonelle steg"],"cannot":["love publisering uten fullmakt","presentere egen smak som objektiv fasit","overta forfatterens stemme eller skjule vesentlige endringspremisser"]},
   "work_loops":["les manus som helhet og identifiser prosjektets kjerne","prioriter de viktigste redaksjonelle problemene før detaljarbeid","gi begrunnede tilbakemeldinger og avklar uenighet med forfatteren","følg prosjektet gjennom avtalte redaksjonelle steg"],
+  "actor_grammar":[
+    {"id":"litteratur_redaktor_forfatter","role":"forfatter","function":"eier teksten og skal kunne skille redaktørens observasjoner, råd, krav og beslutninger fra hverandre"},
+    {"id":"litteratur_redaksjonssjef","role":"redaksjonssjef","function":"eier portefølje-, kontrakts- og publiseringsbeslutninger som ligger utenfor bokredaktørens delegerte mandat"},
+    {"id":"litteratur_markedsansvarlig","role":"markedsansvarlig","function":"bidrar med målgruppe- og posisjoneringskunnskap uten å gjøre markedsforventning til tekstfaglig fasit"},
+    {"id":"litteratur_produksjonsansvarlig","role":"produksjonsansvarlig","function":"synliggjør hvordan redaksjonelle valg påvirker omfang, frist og produksjonsløp"}
+  ],
+  "place_grammar":[
+    {"place_id":"litteratur_redaktor_manusrom","kind":"fictionalized_work_surface","function":"arbeidsflate for helhetslesing, vurderingsnotat og prioritering av manusets viktigste redaksjonelle spørsmål","mail_types":["job","knowledge","micro"]},
+    {"place_id":"litteratur_redaktor_forfattermote","kind":"fictionalized_work_surface","function":"avgrenset samtaleflate der redaktør og forfatter prøver vurderinger mot verkets prosjekt uten å viske ut tekstens eierskap","mail_types":["people","conflict","followup","consequence"]},
+    {"place_id":"litteratur_redaktor_utgivelsesrad","kind":"fictionalized_work_surface","function":"beslutningsflate for å legge litterær vurdering, målgruppe, risiko, mandat og produksjonskonsekvenser åpent ved siden av hverandre","mail_types":["event","story","conflict"]}
+  ],
   "practice_stories":[
     {"id":"sterkt_manus","title":"Sterkt manus","problem":"Et særpreget manus utfordrer redaksjonens vante forventninger.","good_practice":"Gjør litterær vurdering og interne prioriteringer eksplisitte i stedet for å blande dem sammen."},
     {"id":"stor_omskriving","title":"Stor omskriving","problem":"Du mener strukturen må endres kraftig, men forfatteren er uenig.","good_practice":"Begrunn problemet før løsningen, avklar mål og la forfatteren eie den endelige teksten innen avtalte rammer."},
@@ -15,5 +26,10 @@
     {"id":"kort_frist","title":"Kort frist","problem":"Publiseringsplanen presser frem en beslutning før manusproblemene er ordentlig avklart.","good_practice":"Synliggjør kvalitetsrisikoen og prioriter de mest avgjørende spørsmålene fremfor å skjule dem."},
     {"id":"ny_retning","title":"Ny retning","problem":"Redaksjonen ønsker å trekke boka bort fra forfatterens opprinnelige prosjekt.","good_practice":"Skilj redaksjonens prioritering fra tekstfaglig nødvendighet og gjør avveiningen tydelig for forfatteren."}
   ],
-  "quality_axes":["manusforståelse","forfatterautonomi","redaksjonell_begrunnelse","helhetsdømmekraft","mandatklarhet"]
+  "quality_axes":["manusforståelse","forfatterautonomi","redaksjonell_begrunnelse","helhetsdømmekraft","mandatklarhet"],
+  "mail_generation_contract":{
+    "required_mail_types":["job","people","conflict","story","event","micro","followup","knowledge","consequence"],
+    "required_axes":["choice_axis","consequence_axis","narrative_arc"],
+    "work_surface_policy":"fictionalized_work_surfaces_are_not_claims_about_specific_employers"
+  }
 }

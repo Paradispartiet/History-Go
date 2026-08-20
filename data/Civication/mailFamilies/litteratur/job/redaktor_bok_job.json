@@ -1,0 +1,65 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "litteratur",
+  "role_scope": "redaktor_bok",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "helhetslesing_og_redaksjonell_prioritering",
+      "purpose": "Gjøre manusets prosjekt, tekstlige funn og redaktørens prioritering til tre synlige ledd i den første vurderingen.",
+      "learning_focus": ["manusforståelse", "redaksjonell_begrunnelse", "helhetsdømmekraft"],
+      "mails": [
+        {
+          "id": "litteratur_redaktor_bok_job_helhetslesing_001",
+          "mail_type": "job",
+          "mail_family": "helhetslesing_og_redaksjonell_prioritering",
+          "role_scope": "redaktor_bok",
+          "phase": "intro",
+          "day_phase": "morning",
+          "priority": 150,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Redaksjonssjefen",
+          "people_ref": "litteratur_redaksjonssjef",
+          "place_id": "litteratur_redaktor_manusrom",
+          "subject": "Vurderingsnotatet må skille funn fra løsning",
+          "summary": "Et særpreget manus har en sterk fortellerstemme, men skifter perspektiv så sent at leseren mangler nødvendig orientering gjennom store deler av teksten.",
+          "purpose": "Teste om redaktøren prioriterer et dokumentert helhetsproblem før lokale inngrep og markedskonklusjoner.",
+          "stakes": "Hvis førsteinntrykk, tekstfunn og anbefaling blandes sammen, kan redaktørens smak fremstå som en nødvendig løsning og styre hele prosjektet for tidlig.",
+          "situation": [
+            "Perspektivskiftet forklarer tidligere tvetydigheter når det først kommer.",
+            "Tre prøvelesere har stoppet på ulike steder før skiftet, men av forskjellige grunner.",
+            "Manuset har en konsekvent stil som kan svekkes av omfattende forklaringstekst."
+          ],
+          "task_domain": "helhetsvurdering_av_manus",
+          "task_kind": "job",
+          "competency": "manusvurdering",
+          "pressure": "rask_portefoljevurdering",
+          "choice_axis": "etterprovbar_problemforstaelse_vs_forhastet_losning",
+          "consequence_axis": "presis_utviklingsretning_vs_smakstyrt_omskriving",
+          "narrative_arc": "fra_sammensatt_forsteinntrykk_til_prioritert_redaksjonelt_sporsmal",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Beskriv mønsteret og prøv flere forklaringer",
+              "reply": "Jeg dokumenterer hvor orienteringen svikter, hva skiftet senere løser og hvilke alternative grep som kan testes uten å forklare bort fortellerstemmen.",
+              "effect": 1,
+              "tags": ["textual_evidence", "hypothesis", "editorial_judgment"],
+              "feedback": "Du gjør problemet etterprøvbart og holder løsningen åpen til forfatterens prosjekt er tydeligere avklart."
+            },
+            {
+              "id": "B",
+              "label": "Krev at perspektivskiftet flyttes frem",
+              "reply": "Leseren må forstå premisset tidligere, så jeg gjør et tidlig perspektivskifte til hovedkravet i notatet.",
+              "effect": -1,
+              "tags": ["premature_solution", "editorial_taste"],
+              "feedback": "Du gjør én mulig løsning til fasit før du har vist at den bevarer det manuset faktisk forsøker å oppnå."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
