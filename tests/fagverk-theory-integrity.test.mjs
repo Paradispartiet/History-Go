@@ -15,9 +15,9 @@ test('baseline strong blir ikke feilaktig oppgradert uten strict proof', () => {
   const r=auditFagverkTheoryIntegrity();
   assert.equal(r.status,'strict_audit_open_evidence_gaps');
   assert.equal(r.strictCompletionGateReady,false);
-  assert.equal(r.summary.strictly_proven,4);
+  assert.equal(r.summary.strictly_proven,5);
   assert.equal(r.summary.structured_subject_gate_not_strict,0);
-  assert.equal(r.summary.partial_strict_evidence,1);
+  assert.equal(r.summary.partial_strict_evidence,0);
   assert.equal(r.summary.baseline_only_strict_proof_missing,13);
 });
 
@@ -29,27 +29,19 @@ test('manglende strict proof blir ikke feiltolket som innholdshull', () => {
   assert.ok(r.subjects.every(s=>s.substantiveContentGap===false));
 });
 
-test('eksisterende subject-gates beholdes med presise restbevis', () => {
+test('eksisterende subject-gates beholdes og Historie er field-level strictly proven', () => {
   const r=auditFagverkTheoryIntegrity();
   const byId=new Map(r.subjects.map(s=>[s.id,s]));
-  assert.equal(byId.get('film_tv').integrityStatus,'strictly_proven');
-  assert.deepEqual(byId.get('film_tv').missingStrictProof,[]);
-  assert.equal(byId.get('religion').integrityStatus,'strictly_proven');
-  assert.deepEqual(byId.get('religion').missingStrictProof,[]);
-  assert.equal(byId.get('subkultur').integrityStatus,'strictly_proven');
-  assert.deepEqual(byId.get('subkultur').missingStrictProof,[]);
-  assert.equal(byId.get('scenekunst').integrityStatus,'strictly_proven');
-  assert.deepEqual(byId.get('scenekunst').missingStrictProof,[]);
-  assert.equal(byId.get('historie').integrityStatus,'partial_strict_evidence');
-  assert.ok(byId.get('historie').missingStrictProof.includes('universal_subject_scope'));
+  for(const id of ['film_tv','religion','subkultur','scenekunst','historie']){
+    assert.equal(byId.get(id).integrityStatus,'strictly_proven');
+    assert.deepEqual(byId.get(id).missingStrictProof,[]);
+    assert.equal(byId.get(id).evidenceAdapter,'structured_subject_gate');
+  }
 });
 
-test('completion-status er read-only i theory integrity programmet', () => {
+test('completion-status er read-only og proof-køen er redusert til 13', () => {
   const r=auditFagverkTheoryIntegrity();
   assert.equal(r.rules.completionStatusReadOnly,true);
-  assert.equal(r.proofReconciliationQueue.length,14);
-  assert.ok(!r.proofReconciliationQueue.includes('film_tv'));
-  assert.ok(!r.proofReconciliationQueue.includes('religion'));
-  assert.ok(!r.proofReconciliationQueue.includes('subkultur'));
-  assert.ok(!r.proofReconciliationQueue.includes('scenekunst'));
+  assert.equal(r.proofReconciliationQueue.length,13);
+  for(const id of ['film_tv','religion','subkultur','scenekunst','historie'])assert.ok(!r.proofReconciliationQueue.includes(id));
 });

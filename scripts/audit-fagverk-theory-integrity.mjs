@@ -7,6 +7,7 @@ import { auditFilmTvTheoryCanon } from './audit-fagverk-film-tv-theory-canon.mjs
 import { auditReligionTheoryCanon } from './audit-fagverk-religion-theory-canon.mjs';
 import { auditScenekunstTheoryCanon } from './audit-fagverk-scenekunst-theory-canon.mjs';
 import { auditSubkulturTheoryAttribution } from './audit-subkultur-theory-attribution-v1.mjs';
+import { auditHistoryTheoryIntegrity } from '../tools/audit-historie-theory-integrity.mjs';
 
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const CONTRACT='data/fag/fagverk_theory_quality_contract_v1.json';
@@ -21,7 +22,8 @@ const RUNNERS={
   film_tv:()=>auditFilmTvTheoryCanon(),
   religion:()=>auditReligionTheoryCanon(),
   scenekunst:()=>auditScenekunstTheoryCanon(),
-  subkultur:()=>auditSubkulturTheoryAttribution()
+  subkultur:()=>auditSubkulturTheoryAttribution(),
+  historie:()=>auditHistoryTheoryIntegrity()
 };
 
 const STRICT_KEYS=[
@@ -39,6 +41,7 @@ const STRICT_KEYS=[
 const satisfied=value=>value==='verified'||String(value||'').startsWith('not_applicable_');
 const allVerified=dimensions=>STRICT_KEYS.every(k=>satisfied(dimensions?.[k]));
 const evidenceGaps=dimensions=>STRICT_KEYS.filter(k=>!satisfied(dimensions?.[k]));
+const strongRunnerStatus=status=>status==='STRICTLY_PROVEN'||/^strong_theory_(canon|attribution)$/.test(status||'');
 
 export function auditFagverkTheoryIntegrity({writeReport=false,checkReport=true}={}){
   const contract=json(CONTRACT), evidence=json(EVIDENCE);
@@ -79,15 +82,12 @@ export function auditFagverkTheoryIntegrity({writeReport=false,checkReport=true}
   for(const [id,runner] of Object.entries(RUNNERS)){
     assert(adapterById.has(id),`Permanent subject gate mangler evidence adapter: ${id}`);
     const result=runner();
-    assert(/^strong_theory_(canon|attribution)$/.test(result.status),`Subject theory gate er ikke sterk: ${id}/${result.status}`);
+    assert(strongRunnerStatus(result.status),`Subject theory gate er ikke sterk: ${id}/${result.status}`);
   }
 
   const historyAdapter=adapterById.get('historie');
-  assert(historyAdapter?.proof_scope==='partial_evidence_pilot','Historie må registreres som eksplisitt pilot inntil universalitetsgrensen er løst');
-  const historyReport=json('reports/historie-theory-evidence/history-theory-evidence-foundation-v1.json');
-  assert(historyReport.status==='PASSED','Historie theory evidence pilot må være grønn');
-  assert((historyReport.entries||[]).length>0,'Historie theory evidence pilot er tom');
-  assert((historyReport.entries||[]).every(e=>e.universalization_status==='provisional_not_universal'),'Historie-piloten skal ikke feiltolkes som universell teoriport');
+  assert(historyAdapter?.proof_scope==='structured_subject_gate','Historie må bruke permanent structured subject gate etter 23-felts reconciliation');
+  assert(allVerified(historyAdapter?.existing_gate_proves),'Historie structured subject gate må dokumentere alle strict proof-dimensjoner');
 
   const baselineById=new Map(baseline.subjects.map(s=>[s.id,s]));
   const subjects=contract.subjects.map(entry=>{
