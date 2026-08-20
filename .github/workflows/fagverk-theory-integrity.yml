@@ -23,6 +23,7 @@ on:
       - 'reports/fagverk/vitenskap-theory-integrity-audit.json'
       - 'reports/fagverk/politikk-theory-integrity-audit.json'
       - 'reports/fagverk/filosofi-theory-integrity-audit.json'
+      - 'reports/fagverk/teknologi-theory-integrity-audit.json'
       - 'reports/historie-theory-evidence/**'
       - 'scripts/audit-fagverk-theory-integrity.mjs'
       - 'scripts/audit-fagverk-theory-quality.mjs'
@@ -46,6 +47,7 @@ on:
       - 'tools/audit-vitenskap-theory-integrity.mjs'
       - 'tools/audit-politikk-theory-integrity.mjs'
       - 'tools/audit-filosofi-theory-integrity.mjs'
+      - 'tools/audit-teknologi-theory-integrity.mjs'
       - 'tests/by-theory-integrity.test.mjs'
       - 'tests/kunst-theory-integrity.test.mjs'
       - 'tests/media-theory-integrity.test.mjs'
@@ -58,6 +60,7 @@ on:
       - 'tests/vitenskap-theory-integrity.test.mjs'
       - 'tests/politikk-theory-integrity.test.mjs'
       - 'tests/filosofi-theory-integrity.test.mjs'
+      - 'tests/teknologi-theory-integrity.test.mjs'
       - 'tests/fagverk-documentation-contract.test.mjs'
       - 'tests/fagverk-theory-integrity.test.mjs'
       - '.github/workflows/fagverk-theory-integrity.yml'
@@ -85,6 +88,7 @@ on:
       - 'reports/fagverk/vitenskap-theory-integrity-audit.json'
       - 'reports/fagverk/politikk-theory-integrity-audit.json'
       - 'reports/fagverk/filosofi-theory-integrity-audit.json'
+      - 'reports/fagverk/teknologi-theory-integrity-audit.json'
       - 'reports/historie-theory-evidence/**'
       - 'scripts/audit-fagverk-theory-integrity.mjs'
       - 'scripts/audit-fagverk-theory-quality.mjs'
@@ -108,6 +112,7 @@ on:
       - 'tools/audit-vitenskap-theory-integrity.mjs'
       - 'tools/audit-politikk-theory-integrity.mjs'
       - 'tools/audit-filosofi-theory-integrity.mjs'
+      - 'tools/audit-teknologi-theory-integrity.mjs'
       - 'tests/by-theory-integrity.test.mjs'
       - 'tests/kunst-theory-integrity.test.mjs'
       - 'tests/media-theory-integrity.test.mjs'
@@ -120,6 +125,7 @@ on:
       - 'tests/vitenskap-theory-integrity.test.mjs'
       - 'tests/politikk-theory-integrity.test.mjs'
       - 'tests/filosofi-theory-integrity.test.mjs'
+      - 'tests/teknologi-theory-integrity.test.mjs'
       - 'tests/fagverk-documentation-contract.test.mjs'
       - 'tests/fagverk-theory-integrity.test.mjs'
       - '.github/workflows/fagverk-theory-integrity.yml'
@@ -151,6 +157,7 @@ jobs:
           node --check tools/audit-vitenskap-theory-integrity.mjs
           node --check tools/audit-politikk-theory-integrity.mjs
           node --check tools/audit-filosofi-theory-integrity.mjs
+          node --check tools/audit-teknologi-theory-integrity.mjs
           node scripts/audit-fagverk-theory-integrity.mjs
           node --test tests/by-theory-integrity.test.mjs
           node --test tests/kunst-theory-integrity.test.mjs
@@ -164,5 +171,6 @@ jobs:
           node --test tests/vitenskap-theory-integrity.test.mjs
           node --test tests/politikk-theory-integrity.test.mjs
           node --test tests/filosofi-theory-integrity.test.mjs
+          node --test tests/teknologi-theory-integrity.test.mjs
           node --test tests/fagverk-theory-integrity.test.mjs
           node --test tests/fagverk-documentation-contract.test.mjs
