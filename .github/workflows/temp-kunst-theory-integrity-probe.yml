@@ -4,23 +4,7 @@ on:
   push:
     branches:
       - agent/fagverk-kunst-theory-integrity-proof-20260820
-    paths:
-      - 'tools/probe-kunst-theory-integrity.mjs'
-      - 'tests/kunst-theory-integrity-probe-smoke.test.mjs'
-      - '.github/workflows/temp-kunst-theory-integrity-probe.yml'
-      - 'data/fag/kunst/**'
-      - 'data/fagverk/kunst/**'
-      - 'data/fagverk/fagverk_registry.json'
-      - 'scripts/audit-fagverk-kunst-complete.mjs'
   pull_request:
-    paths:
-      - 'tools/probe-kunst-theory-integrity.mjs'
-      - 'tests/kunst-theory-integrity-probe-smoke.test.mjs'
-      - '.github/workflows/temp-kunst-theory-integrity-probe.yml'
-      - 'data/fag/kunst/**'
-      - 'data/fagverk/kunst/**'
-      - 'data/fagverk/fagverk_registry.json'
-      - 'scripts/audit-fagverk-kunst-complete.mjs'
   workflow_dispatch:
 
 permissions:
@@ -34,14 +18,18 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Check probe syntax
-        run: node --check tools/probe-kunst-theory-integrity.mjs
-      - name: Run probe smoke test
-        run: node --test tests/kunst-theory-integrity-probe-smoke.test.mjs
-      - name: Run read-only Kunst strict-proof probe
-        run: node tools/probe-kunst-theory-integrity.mjs | tee /tmp/kunst-theory-integrity-probe.json
-      - name: Upload probe result
+      - name: Validate diagnostic and permanent Kunst gates
+        run: |
+          node --check tools/probe-kunst-theory-integrity.mjs
+          node --check tools/audit-kunst-theory-integrity.mjs
+          node --test tests/kunst-theory-integrity-probe-smoke.test.mjs
+          node tools/probe-kunst-theory-integrity.mjs > /tmp/kunst-theory-integrity-probe.json
+          node tools/audit-kunst-theory-integrity.mjs --write-report --no-check-report
+          node --test tests/kunst-theory-integrity.test.mjs
+      - name: Upload reconciliation results
         uses: actions/upload-artifact@v4
         with:
-          name: kunst-theory-integrity-probe
-          path: /tmp/kunst-theory-integrity-probe.json
+          name: kunst-theory-integrity-reconciliation
+          path: |
+            /tmp/kunst-theory-integrity-probe.json
+            reports/fagverk/kunst-theory-integrity-audit.json
