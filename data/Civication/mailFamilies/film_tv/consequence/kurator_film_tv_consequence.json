@@ -1,0 +1,65 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "kurator_film_tv",
+  "mail_type": "consequence",
+  "families": [
+    {
+      "id": "kurator_rettighetskonsekvens",
+      "purpose": "La et tidligere rettighetsvalg få en synlig senere konsekvens for tillit og programstabilitet.",
+      "learning_focus": ["konsekvens", "rettigheter", "institusjonell_tillit"],
+      "mails": [
+        {
+          "role_scope": "kurator_film_tv",
+          "place_id": "cinemateket_oslo",
+          "repeatable": false,
+          "stage": "stable",
+          "id": "film_tv_kurator_consequence_rettigheter_001",
+          "mail_type": "consequence",
+          "mail_family": "kurator_rettighetskonsekvens",
+          "phase": "day_end",
+          "priority": 95,
+          "cooldown": 8,
+          "from": "Programansvarlig",
+          "people_ref": "film_tv_programansvarlig",
+          "thread_key": "film_tv_kurator_rettigheter_001",
+          "subject": "Dagens programstatus blir morgendagens tillit",
+          "summary": "Programansvarlig går gjennom rettighetsloggen og ser om dagens offentlige program samsvarer med de dokumenterte vilkårene.",
+          "purpose": "Gjøre rettighets- og sporbarhetsvalg til en senere institusjonell konsekvens.",
+          "stakes": "God dokumentasjon gir handlingsrom; avvik mellom avtale og publisert program kan utløse stopp, ekstraarbeid og tillitstap.",
+          "situation": [
+            "Rettighetsloggen viser hva som faktisk ble bekreftet.",
+            "Programteksten og intern status kan sammenlignes med loggen.",
+            "Neste programrunde avhenger av om arbeidsmåten var pålitelig."
+          ],
+          "task_domain": "programansvar_og_konsekvens",
+          "task_kind": "consequence",
+          "competency": "rettighetssikkerhet",
+          "pressure": "etterkontroll",
+          "choice_axis": "dokumenter_og_rett_avvik_vs_forklar_bort",
+          "consequence_axis": "institusjonell_tillit_vs_tillitstap",
+          "narrative_arc": "fra_dagens_valg_til_senere_programtillit",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Dokumenter status og rett eventuelle avvik",
+              "reply": "Jeg sammenholder avtalen, programarket og det som faktisk ble publisert, og retter avvik før neste runde.",
+              "effect": 1,
+              "tags": ["consequence", "trust", "rights"],
+              "feedback": "Du gjør etterkontroll til en del av kuratorisk kvalitet."
+            },
+            {
+              "id": "B",
+              "label": "Behandle avvik som ubetydelige hvis visningen gikk bra",
+              "reply": "Publikum fikk en god kveld, så små forskjeller mellom logg og program trenger ikke mer arbeid.",
+              "effect": -2,
+              "tags": ["trust_risk", "rights_risk"],
+              "feedback": "Du måler kvalitet bare i om kvelden gikk, ikke i om institusjonen kan stole på prosessen."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

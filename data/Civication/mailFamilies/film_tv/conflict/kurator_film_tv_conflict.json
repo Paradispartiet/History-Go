@@ -1,0 +1,64 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "kurator_film_tv",
+  "mail_type": "conflict",
+  "families": [
+    {
+      "id": "kurator_rettighetskonflikt",
+      "purpose": "Holde programmet fail-closed når rettigheter og visningsvilkår ikke er bekreftet.",
+      "learning_focus": ["rettighetssikkerhet", "sporbarhet", "mandat"],
+      "mails": [
+        {
+          "role_scope": "kurator_film_tv",
+          "place_id": "cinemateket_oslo",
+          "repeatable": false,
+          "stage": "stable",
+          "id": "film_tv_kurator_conflict_rettigheter_001",
+          "mail_type": "conflict",
+          "mail_family": "kurator_rettighetskonflikt",
+          "phase": "workday",
+          "priority": 105,
+          "cooldown": 4,
+          "from": "Rettighetskoordinator",
+          "people_ref": "film_tv_rettighetskoordinator",
+          "subject": "Kopien finnes – men tillatelsen er ikke på plass",
+          "summary": "Arkivet kan levere en restaurert kopi, men den skriftlige visningstillatelsen mangler og programfristen er i dag.",
+          "purpose": "Teste om spilleren skiller fysisk tilgang fra juridisk visningsrett.",
+          "stakes": "En prematur annonsering kan skape forventninger og kostnader uten at institusjonen faktisk har rett til å vise filmen.",
+          "situation": [
+            "En restaurert kopi er tilgjengelig fra et samarbeidende arkiv.",
+            "Rettighetshaver har ikke bekreftet vilkårene skriftlig.",
+            "Kommunikasjonsteamet trenger endelig programtittel før arbeidsdagen slutter."
+          ],
+          "task_domain": "rettigheter_og_visning",
+          "task_kind": "conflict",
+          "competency": "rettighetssikkerhet",
+          "pressure": "annonseringsfrist",
+          "choice_axis": "fail_closed_vs_annonser_forst",
+          "consequence_axis": "rettighetssikkerhet_vs_programrisiko",
+          "narrative_arc": "fra_onskeverk_til_bekreftet_visning",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Hold verket betinget til avtalen er bekreftet",
+              "reply": "Vi merker filmen som ikke bekreftet og låser en reserve før vi annonserer.",
+              "effect": 1,
+              "tags": ["rights", "traceability", "fallback"],
+              "feedback": "Du beskytter både programmet og publikum mot en rettighet som ennå ikke finnes."
+            },
+            {
+              "id": "B",
+              "label": "Annonsér og forvent at papirene ordner seg",
+              "reply": "Kopien er jo tilgjengelig, så vi går ut med filmen og rydder avtalen etterpå.",
+              "effect": -2,
+              "tags": ["rights_risk", "deadline"],
+              "feedback": "Du gjør et uavklart vilkår til et offentlig løfte."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

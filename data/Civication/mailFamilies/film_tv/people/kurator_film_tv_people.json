@@ -1,0 +1,64 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "kurator_film_tv",
+  "mail_type": "people",
+  "families": [
+    {
+      "id": "kurator_programsamtale",
+      "purpose": "Bruke faglig uenighet som kontroll av premiss og blindsoner.",
+      "learning_focus": ["samarbeid", "bredde_og_representasjon", "mandat"],
+      "mails": [
+        {
+          "role_scope": "kurator_film_tv",
+          "place_id": "cinemateket_oslo",
+          "repeatable": false,
+          "stage": "stable",
+          "id": "film_tv_kurator_people_programsamtale_001",
+          "mail_type": "people",
+          "mail_family": "kurator_programsamtale",
+          "phase": "forenoon",
+          "priority": 90,
+          "cooldown": 3,
+          "from": "Formidleren",
+          "people_ref": "film_tv_formidler",
+          "subject": "Programteksten gjør utvalget smalere enn du tror",
+          "summary": "Formidleren mener at programteksten lover bredde, mens to av tre verk kommer fra samme tradisjon og samme type kanon.",
+          "purpose": "Teste om spilleren tåler faglig motstand og undersøker blindsoner.",
+          "stakes": "En defensiv reaksjon kan gjøre både programmet og formidlingen mindre presis.",
+          "situation": [
+            "Programteksten bruker ord som «mangfold» og «flere perspektiver».",
+            "Det faktiske utvalget er mer homogent enn teksten antyder.",
+            "Det finnes en alternativ film som passer premisset, men er mindre kjent."
+          ],
+          "task_domain": "programmering_og_samarbeid",
+          "task_kind": "people",
+          "competency": "bredde_og_representasjon",
+          "pressure": "eierskap_til_egen_ide",
+          "choice_axis": "reviderbarhet_vs_forsvare_eget_utvalg",
+          "consequence_axis": "faglig_tillit_vs_laste_blindsoner",
+          "narrative_arc": "fra_eget_utvalg_til_felles_kvalitetssikring",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Test kritikken mot premisset",
+              "reply": "La oss sjekke hvert verk mot det vi faktisk lover publikum og endre enten teksten eller utvalget der de ikke stemmer.",
+              "effect": 1,
+              "tags": ["collaboration", "breadth", "precision"],
+              "feedback": "Du gjør uenigheten til en kontroll av programmet, ikke en kamp om smak."
+            },
+            {
+              "id": "B",
+              "label": "Forsvar utvalget som kuratorens prerogativ",
+              "reply": "Jeg står for utvalget; teksten får heller gjøre begrunnelsen tydeligere.",
+              "effect": -1,
+              "tags": ["status", "blind_spot"],
+              "feedback": "Du beskytter eierskapet, men lar en dokumentert mismatch bli stående."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

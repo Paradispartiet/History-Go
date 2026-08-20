@@ -1,0 +1,64 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "kurator_film_tv",
+  "mail_type": "event",
+  "families": [
+    {
+      "id": "kurator_programhendelse",
+      "purpose": "Revidere programmet sporbar når tilgjengelighet eller kontekst endres.",
+      "learning_focus": ["programmering", "beslutningslogg", "reserveplan"],
+      "mails": [
+        {
+          "role_scope": "kurator_film_tv",
+          "place_id": "cinemateket_oslo",
+          "repeatable": false,
+          "stage": "stable",
+          "id": "film_tv_kurator_event_programendring_001",
+          "mail_type": "event",
+          "mail_family": "kurator_programhendelse",
+          "phase": "workday",
+          "priority": 85,
+          "cooldown": 4,
+          "from": "Programansvarlig",
+          "people_ref": "film_tv_programansvarlig",
+          "subject": "Hovedverket faller ut av serien",
+          "summary": "Rettighetshaver trekker visningsmuligheten for hovedverket etter at resten av serien er utviklet rundt det.",
+          "purpose": "Teste om spilleren kan revidere en kuratorisk idé uten å skjule at premissene har endret seg.",
+          "stakes": "En rask erstatning kan holde datoen, men ødelegge sammenhengen hvis den bare fyller et tomrom.",
+          "situation": [
+            "Hovedverket kan ikke vises på den planlagte datoen.",
+            "To reserveverk er rettighetsklarert.",
+            "Bare ett av reserveverkene svarer på seriens opprinnelige hovedspørsmål."
+          ],
+          "task_domain": "programmering_og_avvik",
+          "task_kind": "event",
+          "competency": "programmering",
+          "pressure": "fast_visningsdato",
+          "choice_axis": "revider_programlogikk_vs_fyll_hullet",
+          "consequence_axis": "sammenheng_vs_tidsbesparelse",
+          "narrative_arc": "fra_planbrudd_til_begrunnet_revisjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Revider serien rundt det verkbare premisset",
+              "reply": "Jeg velger reserven som fortsatt svarer på hovedspørsmålet og oppdaterer begrunnelsen og programteksten.",
+              "effect": 1,
+              "tags": ["programming", "fallback", "traceability"],
+              "feedback": "Du endrer programmet uten å late som ingenting har skjedd."
+            },
+            {
+              "id": "B",
+              "label": "Ta den mest publikumsvennlige reserven",
+              "reply": "Vi trenger å fylle plassen raskt; det kjente reserveverket får fungere som erstatning.",
+              "effect": -1,
+              "tags": ["deadline", "coherence_risk"],
+              "feedback": "Du redder tittelen på plakaten, men svekker seriens indre logikk."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
