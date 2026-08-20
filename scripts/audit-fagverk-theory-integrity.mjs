@@ -20,6 +20,7 @@ import { auditSportTheoryIntegrity } from '../tools/audit-sport-theory-integrity
 import { auditVitenskapTheoryIntegrity } from '../tools/audit-vitenskap-theory-integrity.mjs';
 import { auditPolitikkTheoryIntegrity } from '../tools/audit-politikk-theory-integrity.mjs';
 import { auditFilosofiTheoryIntegrity } from '../tools/audit-filosofi-theory-integrity.mjs';
+import { auditTechnologyTheoryIntegrity } from '../tools/audit-teknologi-theory-integrity.mjs';
 
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const CONTRACT='data/fag/fagverk_theory_quality_contract_v1.json';
@@ -47,7 +48,8 @@ const RUNNERS={
   sport:()=>auditSportTheoryIntegrity(),
   vitenskap:()=>auditVitenskapTheoryIntegrity(),
   politikk:()=>auditPolitikkTheoryIntegrity(),
-  filosofi:()=>auditFilosofiTheoryIntegrity()
+  filosofi:()=>auditFilosofiTheoryIntegrity(),
+  teknologi:()=>auditTechnologyTheoryIntegrity()
 };
 
 const STRICT_KEYS=[
@@ -148,6 +150,9 @@ export function auditFagverkTheoryIntegrity({writeReport=false,checkReport=true}
   const filosofiAdapter=adapterById.get('filosofi');
   assert(filosofiAdapter?.proof_scope==='structured_subject_gate','Filosofi må bruke permanent structured subject gate etter 22-felts reconciliation');
   assert(allVerified(filosofiAdapter?.existing_gate_proves),'Filosofi structured subject gate må dokumentere alle strict proof-dimensjoner');
+  const teknologiAdapter=adapterById.get('teknologi');
+  assert(teknologiAdapter?.proof_scope==='structured_subject_gate','Teknologi må bruke permanent structured subject gate etter 12-felts reconciliation');
+  assert(allVerified(teknologiAdapter?.existing_gate_proves),'Teknologi structured subject gate må dokumentere alle strict proof-dimensjoner');
 
   const baselineById=new Map(baseline.subjects.map(s=>[s.id,s]));
   const subjects=contract.subjects.map(entry=>{
@@ -176,7 +181,7 @@ export function auditFagverkTheoryIntegrity({writeReport=false,checkReport=true}
   const report={
     schema:'history_go_fagverk_theory_integrity_audit_v1',
     version:'1.0.0',
-    status:'strict_audit_open_evidence_gaps',
+    status:subjects.every(s=>s.integrityStatus==='strictly_proven')?'strict_audit_complete':'strict_audit_open_evidence_gaps',
     scope:{topLevelSubjects:17,nestedSpecializations:1,totalAudited:18},
     rules:{
       baselineStrongDoesNotEqualStrictProof:true,
