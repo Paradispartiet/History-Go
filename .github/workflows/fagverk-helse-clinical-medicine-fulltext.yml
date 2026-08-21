@@ -1,0 +1,69 @@
+name: Fagverk Helse clinical medicine fulltext
+
+on:
+  pull_request:
+    paths:
+      - 'data/fag/helse/**'
+      - 'data/fag/fag_manifest.json'
+      - 'data/fagverk/helse/**'
+      - 'data/fagverk/fagverk_registry.json'
+      - 'data/fagverk/fagverk_release.json'
+      - 'data/fagverk/subject_inventory.json'
+      - 'data/fagverk/subject_status.json'
+      - 'reports/fagverk/helse-clinical-medicine-fulltext-v1-audit.json'
+      - 'reports/fagverk/general-engine-audit.json'
+      - 'reports/fagverk/fagverk-theory-quality-audit.json'
+      - 'reports/fagverk/fagverk-theory-integrity-audit.json'
+      - 'scripts/*helse-clinical-medicine*'
+      - 'scripts/audit-helse-cumulative-progress-v1.mjs'
+      - 'tests/helse-clinical-medicine-fulltext-v1.test.mjs'
+      - 'tests/helse-cumulative-progress-v1.test.mjs'
+      - '.github/workflows/fagverk-helse-clinical-medicine-fulltext.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'data/fag/helse/**'
+      - 'data/fagverk/helse/**'
+      - 'data/fagverk/fagverk_registry.json'
+      - 'data/fagverk/subject_status.json'
+      - 'data/fagverk/fagverk_release.json'
+      - 'reports/fagverk/helse-clinical-medicine-fulltext-v1-audit.json'
+      - 'reports/fagverk/general-engine-audit.json'
+      - 'reports/fagverk/fagverk-theory-quality-audit.json'
+      - 'reports/fagverk/fagverk-theory-integrity-audit.json'
+      - 'scripts/*helse-clinical-medicine*'
+      - 'tests/helse-clinical-medicine-fulltext-v1.test.mjs'
+      - '.github/workflows/fagverk-helse-clinical-medicine-fulltext.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - run: node scripts/brief-helse-clinical-medicine-sources-v1.mjs
+      - id: fulltext_gate
+        shell: bash
+        run: |
+          if [[ -f scripts/materialize-helse-clinical-medicine-fulltext-v1.mjs && -f scripts/audit-helse-clinical-medicine-fulltext-v1.mjs && -f tests/helse-clinical-medicine-fulltext-v1.test.mjs ]]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "Bootstrap only: clinical medicine fulltext materializer/audit/test not present yet."
+          fi
+      - if: steps.fulltext_gate.outputs.ready == 'true'
+        run: node scripts/materialize-helse-clinical-medicine-fulltext-v1.mjs
+      - if: steps.fulltext_gate.outputs.ready == 'true'
+        run: node scripts/audit-helse-clinical-medicine-fulltext-v1.mjs
+      - run: node scripts/audit-helse-cumulative-progress-v1.mjs
+      - run: node scripts/audit-fagverk-subject-inventory.mjs
+      - run: node scripts/audit-fagverk-general-engine.mjs
+      - run: node scripts/audit-fagverk-theory-quality.mjs
+      - run: node scripts/audit-fagverk-theory-integrity.mjs
+      - run: node scripts/build-fagverk-release-manifest.mjs --check
+      - if: steps.fulltext_gate.outputs.ready == 'true'
+        run: node --test tests/helse-clinical-medicine-fulltext-v1.test.mjs tests/helse-cumulative-progress-v1.test.mjs tests/fagverk-subject-inventory.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-release-manifest.test.mjs
