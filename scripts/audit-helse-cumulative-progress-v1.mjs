@@ -11,8 +11,13 @@ const assert = (v, m) => { if (!v) throw new Error(m); };
 const UNITS = [
   { id: 'medisinsk-etikk-evidens-og-ansvarlig-beslutning', source: 'data/fag/helse/medical_ethics_evidence_source_claim_brief_v1.json' },
   { id: 'anatomi-fysiologi-struktur-funksjon-og-regulering', source: 'data/fag/helse/anatomy_physiology_source_claim_brief_v1.json' },
-  { id: 'sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt', source: 'data/fag/helse/disease_pathophysiology_source_claim_brief_v1.json' }
+  { id: 'sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt', source: 'data/fag/helse/disease_pathophysiology_source_claim_brief_v1.json' },
+  { id: 'klinisk-medisin-informasjon-testing-beslutning-og-oppfolging', source: 'data/fag/helse/clinical_medicine_source_claim_brief_v1.json' }
 ];
+const GATES = {
+  3: 'disease_pathophysiology_full_chapter_complete_next_domain_source_brief',
+  4: 'clinical_medicine_full_chapter_complete_next_domain_source_brief'
+};
 
 export function auditHealthCumulativeProgressV1() {
   const registry = read('data/fagverk/fagverk_registry.json').subjects.helse;
@@ -21,12 +26,16 @@ export function auditHealthCumulativeProgressV1() {
   const safety = read('data/fag/helse/clinical_safety_contract_helse_v1.json');
   assert(safety.status === 'blocking', 'Klinisk sikkerhetskontrakt må være blocking');
   assert(registry.editorialPlan.targetDomainCount === 12, 'Helse skal ha 12 planlagte domener');
-  assert(registry.editorialPlan.registeredChapterCount === 3 && registry.chapters.length >= 3, 'Kumulativ Helse-status skal være 3/12');
-  assert(status.navigationStatus === 'materialized' && status.assessmentStatus === 'audited' && status.editorialStatus === 'chapters_in_progress', 'Kumulativ status feiler');
-  assert(status.nextGate === 'disease_pathophysiology_full_chapter_complete_next_domain_source_brief', 'Feil kumulativ nextGate');
 
+  const completed = registry.editorialPlan.registeredChapterCount;
+  assert([3, 4].includes(completed), `Kumulativ Helse-status skal være 3/12 eller 4/12, fikk ${completed}/12`);
+  assert(registry.chapters.length >= completed, 'Registry mangler registrerte Helse-kapitler');
+  assert(status.navigationStatus === 'materialized' && status.assessmentStatus === 'audited' && status.editorialStatus === 'chapters_in_progress', 'Kumulativ status feiler');
+  assert(status.nextGate === GATES[completed], `Feil kumulativ nextGate for ${completed}/12`);
+
+  const activeUnits = UNITS.slice(0, completed);
   const summaries = [];
-  for (const unit of UNITS) {
+  for (const unit of activeUnits) {
     const chapterFile = `data/fagverk/helse/${unit.id}.json`;
     const dir = `data/fagverk/helse/${unit.id}`;
     const chapter = read(chapterFile), claims = read(`${dir}/claims.json`), brief = read(`${dir}/brief.json`), assessment = read(`${dir}/assessment.json`), source = read(unit.source);
@@ -43,12 +52,12 @@ export function auditHealthCumulativeProgressV1() {
     assert(brief.safety?.individualDiagnosis === false && brief.safety?.individualTreatmentAdvice === false, `${unit.id}: sikkerhetsgrense feiler`);
     assert(registry.chapters.filter((x) => x.id === unit.id && x.file === chapterFile).length === 1, `${unit.id}: registrybinding feiler`);
     assert(manifest.chapters?.includes(chapterFile), `${unit.id}: manifest mangler kapittel`);
+    assert(manifest.sourceClaimBriefs?.includes(unit.source), `${unit.id}: source brief mangler i manifest`);
     summaries.push({ id: unit.id, modules: 4, sections: 8, paragraphs: 32, claims: 32, sources: 14, questions: 8 });
   }
 
-  assert(manifest.sourceClaimBriefs?.includes(UNITS[2].source), 'Domene 3 source brief mangler i manifest');
-  assert(status.editorialStatus !== 'complete', '3/12 kan ikke være complete');
-  return { subject_id: 'helse', completedDomains: 3, targetDomains: 12, strictCompletionClaimed: false, units: summaries };
+  assert(status.editorialStatus !== 'complete', `${completed}/12 kan ikke være complete`);
+  return { subject_id: 'helse', completedDomains: completed, targetDomains: 12, strictCompletionClaimed: false, units: summaries };
 }
 
 try { const r = auditHealthCumulativeProgressV1(); console.log(`Helse kumulativ audit OK: ${r.completedDomains}/${r.targetDomains} domener, ${r.units.reduce((n, u) => n + u.claims, 0)} verifiserte claims.`); }
