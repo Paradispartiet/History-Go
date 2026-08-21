@@ -1,0 +1,44 @@
+name: Fagverk Helse disease pathophysiology source brief
+
+on:
+  pull_request:
+    paths:
+      - 'data/fag/helse/disease_pathophysiology_source_claim_brief_v1.json'
+      - 'data/fag/fag_manifest.json'
+      - 'data/fagverk/fagverk_registry.json'
+      - 'data/fagverk/fagverk_release.json'
+      - 'data/fagverk/subject_inventory.json'
+      - 'data/fagverk/subject_status.json'
+      - 'reports/fagverk/helse-disease-pathophysiology-source-brief-v1-audit.json'
+      - 'scripts/brief-helse-disease-pathophysiology-sources-v1.mjs'
+      - 'scripts/brief-helse-anatomy-physiology-sources-v1.mjs'
+      - 'scripts/materialize-helse-anatomy-physiology-fulltext-v1.mjs'
+      - 'tests/helse-disease-pathophysiology-source-brief-v1.test.mjs'
+      - '.github/workflows/fagverk-helse-disease-pathophysiology-source-brief.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'data/fag/helse/disease_pathophysiology_source_claim_brief_v1.json'
+      - 'scripts/brief-helse-disease-pathophysiology-sources-v1.mjs'
+      - 'tests/helse-disease-pathophysiology-source-brief-v1.test.mjs'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/brief-helse-disease-pathophysiology-sources-v1.mjs
+      - run: node scripts/materialize-helse-anatomy-physiology-fulltext-v1.mjs
+      - run: node scripts/audit-helse-anatomy-physiology-fulltext-v1.mjs
+      - run: node scripts/brief-helse-anatomy-physiology-sources-v1.mjs
+      - run: node scripts/materialize-helse-medical-ethics-evidence-fulltext-v1.mjs
+      - run: node scripts/audit-helse-medical-ethics-evidence-fulltext-v1.mjs
+      - run: node scripts/audit-fagverk-subject-inventory.mjs
+      - run: node scripts/build-fagverk-release-manifest.mjs --check
+      - run: node --test tests/helse-disease-pathophysiology-source-brief-v1.test.mjs tests/helse-anatomy-physiology-source-brief-v1.test.mjs tests/helse-anatomy-physiology-fulltext-v1.test.mjs tests/helse-medical-ethics-evidence-fulltext-v1.test.mjs tests/fagverk-subject-inventory.test.mjs tests/fagverk-release-manifest.test.mjs
