@@ -1,0 +1,759 @@
+{
+  "schema": "history_go_health_public_health_source_claim_brief_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-21",
+  "status": "source_claim_brief_complete_full_chapter_next",
+  "subject_id": "helse",
+  "planned_unit_id": "folkehelse-populasjon-determinanter-forebygging-og-ulikhet",
+  "future_chapter_id": "folkehelse-populasjon-determinanter-forebygging-og-ulikhet",
+  "runtime_registration": {
+    "registered": false,
+    "allowed_before_full_chapter_gate": false
+  },
+  "metadata_registration": {
+    "deferred_until_fulltext": true,
+    "global_status_mutation_in_source_brief": false,
+    "release_mutation_in_source_brief": false
+  },
+  "scope": {
+    "title": "Folkehelse: populasjon, determinanter, forebygging og ulikhet",
+    "primary_domain_id": "folkehelse",
+    "canonical_emne_id": "em_helse_folkehelse",
+    "ownership": "Helse eier her folkehelse som befolkningsrettet analyse og handling: determinanter, gradienter, forebyggingsstrategier, overvåking, evaluering og tverrsektoriell politikk. Epidemiologi eier den dypere design- og kausalmetodikken; Klinisk medisin eier individrettet diagnostikk og behandling; Helsevesen/helseøkonomi eier tjenesteorganisering og prioritering. Enheten gjør aldri gruppedata til individprediksjon eller individråd.",
+    "included": [
+      "befolkningshelse, fordelinger, determinanter og helseulikhet",
+      "helsefremming, forebygging, populasjons- og høyrisikostrategier",
+      "overvåking, survey-usikkerhet, program-evaluering, komplekse tiltak og Health in All Policies"
+    ],
+    "excluded": [
+      "individuell diagnose, prognose, triage, behandling eller risikoberegning",
+      "detaljert epidemiologisk studiedesign som tilhører Epidemiologi-domene",
+      "individuell genetisk, laboratorie- eller bildefortolkning",
+      "partipolitisk anbefaling eller påstand om at ett offentlig tiltak alltid er riktig"
+    ]
+  },
+  "source_policy": {
+    "authoritative_sources_first": true,
+    "population_distribution_is_not_individual_prediction": true,
+    "group_gradient_is_not_biological_determinism": true,
+    "health_promotion_is_not_clinical_treatment": true,
+    "population_strategy_is_not_individual_treatment_advice": true,
+    "surveillance_is_not_causal_proof": true,
+    "survey_estimate_depends_on_sampling_nonresponse_and_measurement": true,
+    "weighting_cannot_remove_unknown_nonresponse_bias": true,
+    "program_evaluation_is_not_identical_to_research_surveillance_or_monitoring": true,
+    "observed_change_is_not_automatically_intervention_effect": true,
+    "transferability_requires_context_applicability_analysis": true,
+    "planned_claim_is_not_verified_claim": true,
+    "fulltext_requires_reciprocal_paragraph_claim_trace": true,
+    "no_individual_medical_advice": true,
+    "sources_verified_at": "2026-08-21"
+  },
+  "allowed_method_ids": [
+    "met_helse_populasjonsanalyse",
+    "met_helse_ulikhetsanalyse"
+  ],
+  "sources": [
+    {
+      "id": "hph01-who-sdoh-equity-2025",
+      "publisher": "World Health Organization",
+      "title": "World report on social determinants of health equity",
+      "url": "https://www.who.int/publications/i/item/9789240107588",
+      "type": "international-evidence-and-policy-report",
+      "evidence_role": "social-determinants-health-equity-framework",
+      "source_location": "Overview and report action framework: conditions in which people are born, grow, live, work and age; access to power, money and resources; avoidable and unjust health gaps; coordinated action on determinants.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hph02-who-health-promotion",
+      "publisher": "World Health Organization",
+      "title": "Health promotion",
+      "url": "https://www.who.int/health-topics/health-promotion",
+      "type": "international-public-health-framework",
+      "evidence_role": "health-promotion-definition-and-strategy",
+      "source_location": "Overview and Ottawa Charter lineage: health promotion enables people to increase control over health; core strategies include advocate, enable and mediate across sectors.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hph03-who-hiap",
+      "publisher": "World Health Organization",
+      "title": "Health in all policies: Helsinki statement. Framework for country action",
+      "url": "https://www.who.int/publications/i/item/9789241506908",
+      "type": "international-policy-framework",
+      "evidence_role": "intersectoral-policy-and-health-equity-framework",
+      "source_location": "Framework overview: policy coherence, accountability for health impacts, health determinants, equity and intersectoral action at national and local levels.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hph04-cdc-surveillance",
+      "publisher": "Centers for Disease Control and Prevention",
+      "title": "Lexicon, Definitions, and Conceptual Framework for Public Health Surveillance",
+      "url": "https://www.cdc.gov/mmwr/preview/mmwrhtml/su6103a3.htm",
+      "type": "federal-public-health-surveillance-framework",
+      "evidence_role": "surveillance-definition-and-use",
+      "source_location": "Current surveillance definition and principles: ongoing systematic collection, analysis, interpretation, dissemination and application of health data for prevention and control.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hph05-cdc-program-evaluation",
+      "publisher": "Centers for Disease Control and Prevention",
+      "title": "CDC Program Evaluation Framework, 2024",
+      "url": "https://www.cdc.gov/mmwr/volumes/73/rr/rr7306a1.htm",
+      "type": "federal-program-evaluation-framework",
+      "evidence_role": "public-health-program-evaluation",
+      "source_location": "Introduction and framework: evaluation differs in purpose from research, surveillance and performance monitoring; six steps, evaluation standards, context, implementation, intended and unintended effects.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hph06-community-guide-methods",
+      "publisher": "The Community Guide / Community Preventive Services Task Force",
+      "title": "Methods Manual for Community Guide Systematic Reviews",
+      "url": "https://www.thecommunityguide.org/pages/methods-manual.html",
+      "type": "systematic-review-methods-manual",
+      "evidence_role": "population-intervention-effectiveness-synthesis",
+      "source_location": "Methods manual overview and effectiveness-review methods: transparent systematic review process, intervention definitions, analytic frameworks, applicability and economic evidence.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hph07-bmj-mrc-complex-interventions",
+      "publisher": "BMJ / Medical Research Council",
+      "title": "A new framework for developing and evaluating complex interventions: update of Medical Research Council guidance",
+      "url": "https://www.bmj.com/content/374/bmj.n2061",
+      "type": "peer-reviewed-methods-framework",
+      "evidence_role": "complex-intervention-development-evaluation",
+      "source_location": "Framework for complex interventions: context, programme theory, stakeholder perspectives, key uncertainties, refinement, implementation and evaluation across iterative phases.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hph08-rose-sick-individuals-populations",
+      "publisher": "International Journal of Epidemiology / PubMed",
+      "title": "Sick individuals and sick populations",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3872850/",
+      "type": "classic-peer-reviewed-public-health-theory",
+      "evidence_role": "population-versus-high-risk-prevention-strategy",
+      "source_location": "Abstract: determinants of individual cases differ from determinants of incidence; high-risk and population approaches address different prevention questions.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hph09-nasem-health-equity",
+      "publisher": "National Academies of Sciences, Engineering, and Medicine",
+      "title": "Communities in Action: Pathways to Health Equity",
+      "url": "https://www.nationalacademies.org/read/24624/chapter",
+      "type": "national-academies-consensus-report",
+      "evidence_role": "health-equity-social-determinants-community-action",
+      "source_location": "Definitions and chapters 1–6: health equity, health disparities, root causes, social determinants, community action and public policy.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hph10-fhi-national-public-health-survey-2025",
+      "publisher": "Folkehelseinstituttet",
+      "title": "Den nasjonale folkehelseundersøkelsen 2025: Fremgangsmåte og utvalgte resultater",
+      "url": "https://www.fhi.no/publ/2026/den-nasjonale-folkehelseundersokelsen-2025-fremgangsmate-og-utvalgte-resultater/",
+      "type": "national-population-health-survey-report",
+      "evidence_role": "norwegian-population-measurement-and-health-gradient",
+      "source_location": "Methods, main messages and discussion: sampling, self-report, under-representation, social gradients, between-group versus between-county differences and limits on interpretation.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hph11-fhi-public-health-challenges-2026",
+      "publisher": "Folkehelseinstituttet",
+      "title": "Folkehelserapportens temautgave 2026 – sammendrag",
+      "url": "https://www.fhi.no/he/fr/temautgave-2026-viktigste-folkehelseutfordringene/om-rapporten/sammendrag/",
+      "type": "national-public-health-status-report",
+      "evidence_role": "norwegian-population-health-priorities",
+      "source_location": "Summary: population ageing, social health inequality, disease burden, prevention priorities and societal conditions affecting present and future public health.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hph12-who-commercial-determinants",
+      "publisher": "World Health Organization",
+      "title": "Commercial determinants of health",
+      "url": "https://www.who.int/news-room/fact-sheets/detail/commercial-determinants-of-health",
+      "type": "international-public-health-fact-sheet",
+      "evidence_role": "commercial-and-structural-determinants",
+      "source_location": "Overview: commercial conditions, actions and omissions can affect health through products, practices and wider economic and policy environments.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hph13-who-healthy-settings",
+      "publisher": "World Health Organization",
+      "title": "Healthy settings",
+      "url": "https://www.who.int/teams/health-promotion/enhanced-wellbeing/healthy-settings",
+      "type": "international-health-promotion-framework",
+      "evidence_role": "settings-based-health-promotion",
+      "source_location": "Overview: health is created in everyday settings; settings approaches integrate action across risk factors through whole-system and multidisciplinary methods.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hph14-fhi-survey-weighting",
+      "publisher": "Folkehelseinstituttet",
+      "title": "Folkehelseundersøkelsen i Akershus 2025: Fremgangsmåte og utvalgte resultater",
+      "url": "https://www.fhi.no/contentassets/a832d8f013e24e33a117361c85a345fe/folkehelseundersokelsenakershus2025.pdf",
+      "type": "national-survey-methods-report",
+      "evidence_role": "sampling-weighting-nonresponse-boundary",
+      "source_location": "Methods section 2.4: survey weighting can adjust for known differences but cannot eliminate uncertainty when nonparticipants differ in unknown ways; analyses use survey-aware methods.",
+      "retrieval_status": "verified_2026-08-21"
+    }
+  ],
+  "decision_scenarios": [
+    {
+      "id": "scenario-national-average-hidden-gradient",
+      "title": "Samme nasjonale gjennomsnitt, ulike gruppefordelinger",
+      "purpose": "Sammenligne to hypotetiske befolkninger med likt gjennomsnitt, men ulik sosial fordeling, uten å predikere helse for enkeltpersoner.",
+      "source_ids": [
+        "hph10-fhi-national-public-health-survey-2025",
+        "hph01-who-sdoh-equity-2025",
+        "hph09-nasem-health-equity"
+      ]
+    },
+    {
+      "id": "scenario-high-risk-versus-population",
+      "title": "Høyrisikotiltak eller populasjonstiltak",
+      "purpose": "Sammenligne mål, styrker og begrensninger ved to hypotetiske forebyggingsstrategier uten å identifisere hvem som bør behandles.",
+      "source_ids": [
+        "hph08-rose-sick-individuals-populations",
+        "hph06-community-guide-methods",
+        "hph02-who-health-promotion"
+      ]
+    },
+    {
+      "id": "scenario-survey-nonresponse",
+      "title": "Lav deltakelse i en befolkningsundersøkelse",
+      "purpose": "Analysere hvordan frafall, vekting og ukjente forskjeller kan påvirke et populasjonsestimat uten å omgjøre surveydata til individrisiko.",
+      "source_ids": [
+        "hph10-fhi-national-public-health-survey-2025",
+        "hph14-fhi-survey-weighting",
+        "hph04-cdc-surveillance"
+      ]
+    },
+    {
+      "id": "scenario-after-before-program",
+      "title": "Et helseutfall bedres etter et program",
+      "purpose": "Skille tidsmessig endring fra kausal tiltakseffekt og identifisere behov for sammenligning, kontekst og alternative forklaringer.",
+      "source_ids": [
+        "hph05-cdc-program-evaluation",
+        "hph06-community-guide-methods",
+        "hph07-bmj-mrc-complex-interventions"
+      ]
+    },
+    {
+      "id": "scenario-universal-policy-equity",
+      "title": "Et universelt tiltak når grupper ulikt",
+      "purpose": "Vurdere hypotetiske forskjeller i rekkevidde, opptak og effekt mellom grupper uten å anta at universell politikk automatisk reduserer ulikhet.",
+      "source_ids": [
+        "hph01-who-sdoh-equity-2025",
+        "hph09-nasem-health-equity",
+        "hph03-who-hiap"
+      ]
+    },
+    {
+      "id": "scenario-complex-intervention-transfer",
+      "title": "Et tiltak skal flyttes til en ny kommune",
+      "purpose": "Analysere hvilke kontekst-, implementerings- og befolkningsforskjeller som må vurderes før resultater fra ett sted antas å overføres til et annet.",
+      "source_ids": [
+        "hph07-bmj-mrc-complex-interventions",
+        "hph06-community-guide-methods",
+        "hph13-who-healthy-settings"
+      ]
+    }
+  ],
+  "topic_briefs": [
+    {
+      "id": "populasjon-individ-og-fordeling",
+      "title": "Populasjon, individ, fordeling og folkehelse",
+      "method_ids": [
+        "met_helse_populasjonsanalyse"
+      ],
+      "source_ids": [
+        "hph04-cdc-surveillance",
+        "hph08-rose-sick-individuals-populations",
+        "hph10-fhi-national-public-health-survey-2025",
+        "hph11-fhi-public-health-challenges-2026"
+      ],
+      "boundary": "Populasjonsmål beskriver mønstre og fordelinger i grupper; de brukes ikke til å forutsi helseutfall for en konkret person.",
+      "planned_claims": [
+        {
+          "id": "hph-01-01",
+          "focus": "definere folkehelse som analyse og handling på befolkningsnivå heller enn klinisk vurdering av enkeltpersoner",
+          "status": "planned_requires_fulltext_verification",
+          "source_ids": [
+            "hph04-cdc-surveillance",
+            "hph10-fhi-national-public-health-survey-2025",
+            "hph11-fhi-public-health-challenges-2026"
+          ]
+        },
+        {
+          "id": "hph-01-02",
+          "focus": "skille determinanter for enkeltkasus fra determinanter for forekomst og fordeling i en populasjon",
+          "status": "planned_requires_fulltext_verification",
+          "source_ids": [
+            "hph08-rose-sick-individuals-populations",
+            "hph04-cdc-surveillance",
+            "hph09-nasem-health-equity"
+          ]
+        },
+        {
+          "id": "hph-01-03",
+          "focus": "vise hvorfor et nasjonalt gjennomsnitt kan skjule store forskjeller mellom sosiale og demografiske grupper",
+          "status": "planned_requires_fulltext_verification",
+          "source_ids": [
+            "hph10-fhi-national-public-health-survey-2025",
+            "hph01-who-sdoh-equity-2025",
+            "hph09-nasem-health-equity"
+          ]
+        },
+        {
+          "id": "hph-01-04",
+          "focus": "skille beskrivelse av befolkningsfordeling fra individuell prognose, diagnose eller risikoberegning",
+          "status": "planned_requires_fulltext_verification",
+          "source_ids": [
+            "hph04-cdc-surveillance",
+            "hph08-rose-sick-individuals-populations",
+            "hph10-fhi-national-public-health-survey-2025"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "determinanter-gradienter-og-helseulikhet",
+      "title": "Determinanter, gradienter, helseulikhet og rettferdighet",
+      "method_ids": [
+        "met_helse_ulikhetsanalyse",
+        "met_helse_populasjonsanalyse"
+      ],
+      "source_ids": [
+        "hph01-who-sdoh-equity-2025",
+        "hph09-nasem-health-equity",
+        "hph10-fhi-national-public-health-survey-2025",
+        "hph12-who-commercial-determinants"
+      ],
+      "boundary": "Sosiale gradienter og determinanter beskrives som populasjonsmønstre og mulige årsakskjeder; gruppetilhørighet gjøres aldri til biologisk skjebne eller individprediksjon.",
+      "planned_claims": [
+        {
+          "id": "hph-02-01",
+          "focus": "definere sosiale determinanter som betingelser og ressursfordeling som kan forme helse på tvers av livsløpet",
+          "status": "planned_requires_fulltext_verification",
+          "source_ids": [
+            "hph01-who-sdoh-equity-2025",
+            "hph09-nasem-health-equity",
+            "hph12-who-commercial-determinants"
+          ]
+        },
+        {
+          "id": "hph-02-02",
+          "focus": "forklare sosial gradient i helse uten å redusere statistiske gruppemønstre til egenskaper ved enkeltpersoner",
+          "status": "planned_requires_fulltext_verification",
+          "source_ids": [
+            "hph01-who-sdoh-equity-2025",
+            "hph10-fhi-national-public-health-survey-2025",
+            "hph09-nasem-health-equity"
+          ]
+        },
+        {
+          "id": "hph-02-03",
+          "focus": "skille ulikhet som observert forskjell fra inequity eller urettferdig og unngåelig forskjell som normativt og analytisk sterkere begrep",
+          "status": "planned_requires_fulltext_verification",
+          "source_ids": [
+            "hph01-who-sdoh-equity-2025",
+            "hph09-nasem-health-equity",
+            "hph03-who-hiap"
+          ]
+        },
+        {
+          "id": "hph-02-04",
+          "focus": "inkludere kommersielle, politiske og strukturelle forhold blant helsebestemmende betingelser uten å hevde én universell årsak",
+          "status": "planned_requires_fulltext_verification",
+          "source_ids": [
+            "hph12-who-commercial-determinants",
+            "hph01-who-sdoh-equity-2025",
+            "hph03-who-hiap"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "helsefremming-forebygging-og-settings",
+      "title": "Helsefremming, forebygging og hverdagsarenaer",
+      "method_ids": [
+        "met_helse_ulikhetsanalyse"
+      ],
+      "source_ids": [
+        "hph02-who-health-promotion",
+        "hph13-who-healthy-settings",
+        "hph01-who-sdoh-equity-2025",
+        "hph03-who-hiap"
+      ],
+      "boundary": "Helsefremming og forebygging beskrives som populasjons- og samfunnsstrategier; de erstatter ikke klinisk behandling av en konkret person.",
+      "planned_claims": [
+        {
+          "id": "hph-03-01",
+          "focus": "skille helsefremming som økt kontroll over helseforutsetninger fra behandling av etablert sykdom",
+          "status": "planned_requires_fulltext_verification",
+          "source_ids": [
+            "hph02-who-health-promotion",
+            "hph13-who-healthy-settings",
+            "hph03-who-hiap"
+          ]
+        },
+        {
+          "id": "hph-03-02",
+          "focus": "forklare hvorfor forebygging kan rette seg mot eksponeringer, miljøer, regler og ressurser og ikke bare individuell atferd",
+          "status": "planned_requires_fulltext_verification",
+          "source_ids": [
+            "hph02-who-health-promotion",
+            "hph13-who-healthy-settings",
+            "hph01-who-sdoh-equity-2025"
+          ]
+        },
+        {
+          "id": "hph-03-03",
+          "focus": "vise hvordan settings-tilnærminger ser skole, arbeid, nærmiljø og andre arenaer som systemer der helse skapes og begrenses",
+          "status": "planned_requires_fulltext_verification",
+          "source_ids": [
+            "hph13-who-healthy-settings",
+            "hph02-who-health-promotion",
+            "hph03-who-hiap"
+          ]
+        },
+        {
+          "id": "hph-03-04",
+          "focus": "skille informasjonstiltak fra strukturelle tiltak og forklare at tiltak kan ha ulike effekter på tvers av grupper",
+          "status": "planned_requires_fulltext_verification",
+          "source_ids": [
+            "hph01-who-sdoh-equity-2025",
+            "hph02-who-health-promotion",
+            "hph09-nasem-health-equity"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "populasjonsstrategi-og-hoyrisikostrategi",
+      "title": "Populasjonsstrategi, høyrisikostrategi og forebyggingsparadokset",
+      "method_ids": [
+        "met_helse_populasjonsanalyse",
+        "met_helse_ulikhetsanalyse"
+      ],
+      "source_ids": [
+        "hph08-rose-sick-individuals-populations",
+        "hph06-community-guide-methods",
+        "hph01-who-sdoh-equity-2025",
+        "hph09-nasem-health-equity"
+      ],
+      "boundary": "Strategier sammenlignes på populasjonsnivå; høyrisikostrategi brukes ikke til å identifisere eller anbefale tiltak for konkrete personer.",
+      "planned_claims": [
+        {
+          "id": "hph-04-01",
+          "focus": "skille høyrisikostrategi som målretter utsatte grupper fra populasjonsstrategi som søker å endre årsaker til forekomst",
+          "status": "planned_requires_fulltext_verification",
+          "source_ids": [
+            "hph08-rose-sick-individuals-populations",
+            "hph06-community-guide-methods",
+            "hph09-nasem-health-equity"
+          ]
+        },
+        {
+          "id": "hph-04-02",
+          "focus": "forklare forebyggingsparadokset som at stor samlet gevinst kan komme fra små endringer hos mange",
+          "status": "planned_requires_fulltext_verification",
+          "source_ids": [
+            "hph08-rose-sick-individuals-populations",
+            "hph06-community-guide-methods",
+            "hph02-who-health-promotion"
+          ]
+        },
+        {
+          "id": "hph-04-03",
+          "focus": "vise hvorfor populasjons- og høyrisikostrategier kan være komplementære og vurderes mot effekt, byrde og fordelingsvirkninger",
+          "status": "planned_requires_fulltext_verification",
+          "source_ids": [
+            "hph08-rose-sick-individuals-populations",
+            "hph01-who-sdoh-equity-2025",
+            "hph06-community-guide-methods"
+          ]
+        },
+        {
+          "id": "hph-04-04",
+          "focus": "analysere hvordan universelle tiltak kan påvirke ulikhet ulikt avhengig av tilgang, opptak, eksponering og gjennomføring",
+          "status": "planned_requires_fulltext_verification",
+          "source_ids": [
+            "hph01-who-sdoh-equity-2025",
+            "hph09-nasem-health-equity",
+            "hph06-community-guide-methods"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "overvaking-maling-utvalg-og-usikkerhet",
+      "title": "Overvåking, måling, utvalg, vekting og usikkerhet",
+      "method_ids": [
+        "met_helse_populasjonsanalyse",
+        "met_helse_ulikhetsanalyse"
+      ],
+      "source_ids": [
+        "hph04-cdc-surveillance",
+        "hph10-fhi-national-public-health-survey-2025",
+        "hph14-fhi-survey-weighting",
+        "hph05-cdc-program-evaluation"
+      ],
+      "boundary": "Befolkningsestimater tolkes med usikkerhet, seleksjon og målefeil; survey- eller registerdata brukes ikke som diagnostikk for enkeltpersoner.",
+      "planned_claims": [
+        {
+          "id": "hph-05-01",
+          "focus": "definere folkehelseovervåking som løpende systematisk innsamling, analyse, tolkning, formidling og bruk av data",
+          "status": "planned_requires_fulltext_verification",
+          "source_ids": [
+            "hph04-cdc-surveillance",
+            "hph05-cdc-program-evaluation",
+            "hph10-fhi-national-public-health-survey-2025"
+          ]
+        },
+        {
+          "id": "hph-05-02",
+          "focus": "skille prevalens, rate og andre populasjonsmål fra egenskaper eller risiko hos en konkret person",
+          "status": "planned_requires_fulltext_verification",
+          "source_ids": [
+            "hph04-cdc-surveillance",
+            "hph10-fhi-national-public-health-survey-2025",
+            "hph08-rose-sick-individuals-populations"
+          ]
+        },
+        {
+          "id": "hph-05-03",
+          "focus": "forklare hvordan utvalg, frafall, selvrapport og vekting påvirker representativitet og usikkerhet",
+          "status": "planned_requires_fulltext_verification",
+          "source_ids": [
+            "hph10-fhi-national-public-health-survey-2025",
+            "hph14-fhi-survey-weighting",
+            "hph04-cdc-surveillance"
+          ]
+        },
+        {
+          "id": "hph-05-04",
+          "focus": "vise at vekting kan redusere kjente skjevheter men ikke eliminere ukjente forskjeller mellom deltakere og ikke-deltakere",
+          "status": "planned_requires_fulltext_verification",
+          "source_ids": [
+            "hph14-fhi-survey-weighting",
+            "hph10-fhi-national-public-health-survey-2025",
+            "hph04-cdc-surveillance"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "effekt-evaluering-og-evidenssyntese",
+      "title": "Effekt, evaluering, evidenssyntese og fordelingsvirkninger",
+      "method_ids": [
+        "met_helse_populasjonsanalyse",
+        "met_helse_ulikhetsanalyse"
+      ],
+      "source_ids": [
+        "hph05-cdc-program-evaluation",
+        "hph06-community-guide-methods",
+        "hph07-bmj-mrc-complex-interventions",
+        "hph01-who-sdoh-equity-2025"
+      ],
+      "boundary": "Evaluering vurderer programmer og tiltak i definerte populasjoner og kontekster; funn oversettes ikke automatisk til individråd eller universell kausal sikkerhet.",
+      "planned_claims": [
+        {
+          "id": "hph-06-01",
+          "focus": "skille program-evaluering fra forskning, overvåking og løpende resultatmonitorering etter formål og spørsmål",
+          "status": "planned_requires_fulltext_verification",
+          "source_ids": [
+            "hph05-cdc-program-evaluation",
+            "hph04-cdc-surveillance",
+            "hph07-bmj-mrc-complex-interventions"
+          ]
+        },
+        {
+          "id": "hph-06-02",
+          "focus": "vurdere effekt sammen med implementering, kontekst, utilsiktede virkninger og fordelingsvirkninger",
+          "status": "planned_requires_fulltext_verification",
+          "source_ids": [
+            "hph05-cdc-program-evaluation",
+            "hph07-bmj-mrc-complex-interventions",
+            "hph01-who-sdoh-equity-2025"
+          ]
+        },
+        {
+          "id": "hph-06-03",
+          "focus": "forklare hvordan systematiske oversikter i folkehelse må definere tiltak, populasjon, utfall, evidenskvalitet og anvendbarhet",
+          "status": "planned_requires_fulltext_verification",
+          "source_ids": [
+            "hph06-community-guide-methods",
+            "hph07-bmj-mrc-complex-interventions",
+            "hph05-cdc-program-evaluation"
+          ]
+        },
+        {
+          "id": "hph-06-04",
+          "focus": "skille observert endring etter et tiltak fra kausal tiltakseffekt og kreve design, sammenligning og alternative forklaringer",
+          "status": "planned_requires_fulltext_verification",
+          "source_ids": [
+            "hph05-cdc-program-evaluation",
+            "hph06-community-guide-methods",
+            "hph07-bmj-mrc-complex-interventions"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "komplekse-tiltak-implementering-og-kontekst",
+      "title": "Komplekse tiltak, implementering, mekanismer og kontekst",
+      "method_ids": [
+        "met_helse_populasjonsanalyse",
+        "met_helse_ulikhetsanalyse"
+      ],
+      "source_ids": [
+        "hph07-bmj-mrc-complex-interventions",
+        "hph05-cdc-program-evaluation",
+        "hph06-community-guide-methods",
+        "hph13-who-healthy-settings"
+      ],
+      "boundary": "Kompleksitet brukes som analytisk egenskap ved tiltak og systemer; en virkningsmekanisme antas ikke å være lik i alle kontekster eller grupper.",
+      "planned_claims": [
+        {
+          "id": "hph-07-01",
+          "focus": "forklare at komplekse folkehelsetiltak kan ha flere komponenter, aktører, mekanismer og kontekstbetingelser",
+          "status": "planned_requires_fulltext_verification",
+          "source_ids": [
+            "hph07-bmj-mrc-complex-interventions",
+            "hph13-who-healthy-settings",
+            "hph05-cdc-program-evaluation"
+          ]
+        },
+        {
+          "id": "hph-07-02",
+          "focus": "skille programteori og antatt mekanisme fra empirisk demonstrert effekt",
+          "status": "planned_requires_fulltext_verification",
+          "source_ids": [
+            "hph07-bmj-mrc-complex-interventions",
+            "hph05-cdc-program-evaluation",
+            "hph06-community-guide-methods"
+          ]
+        },
+        {
+          "id": "hph-07-03",
+          "focus": "inkludere implementeringsgrad, tilpasning, rekkevidde og kontekst når et tiltaks resultater tolkes",
+          "status": "planned_requires_fulltext_verification",
+          "source_ids": [
+            "hph07-bmj-mrc-complex-interventions",
+            "hph05-cdc-program-evaluation",
+            "hph06-community-guide-methods"
+          ]
+        },
+        {
+          "id": "hph-07-04",
+          "focus": "vise hvorfor overførbarhet krever sammenligning av kontekst, målgruppe, system og ressursbetingelser",
+          "status": "planned_requires_fulltext_verification",
+          "source_ids": [
+            "hph07-bmj-mrc-complex-interventions",
+            "hph06-community-guide-methods",
+            "hph13-who-healthy-settings"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "politikk-styring-og-health-in-all-policies",
+      "title": "Politikk, styring, Health in All Policies og ansvar",
+      "method_ids": [
+        "met_helse_ulikhetsanalyse",
+        "met_helse_populasjonsanalyse"
+      ],
+      "source_ids": [
+        "hph03-who-hiap",
+        "hph01-who-sdoh-equity-2025",
+        "hph09-nasem-health-equity",
+        "hph12-who-commercial-determinants"
+      ],
+      "boundary": "Politikkanalyse vurderer forventede og observerte helseeffekter og fordelingsvirkninger; den gjør ikke én politisk løsning til medisinsk nødvendighet.",
+      "planned_claims": [
+        {
+          "id": "hph-08-01",
+          "focus": "forklare Health in All Policies som systematisk vurdering av helse- og equity-konsekvenser i politikk også utenfor helsesektoren",
+          "status": "planned_requires_fulltext_verification",
+          "source_ids": [
+            "hph03-who-hiap",
+            "hph01-who-sdoh-equity-2025",
+            "hph09-nasem-health-equity"
+          ]
+        },
+        {
+          "id": "hph-08-02",
+          "focus": "vise hvorfor transport, bolig, utdanning, arbeid, skatt, miljø og kommersielle forhold kan påvirke befolkningshelse",
+          "status": "planned_requires_fulltext_verification",
+          "source_ids": [
+            "hph03-who-hiap",
+            "hph01-who-sdoh-equity-2025",
+            "hph12-who-commercial-determinants"
+          ]
+        },
+        {
+          "id": "hph-08-03",
+          "focus": "skille policy-intensjon fra implementering, faktisk eksponering, helseutfall og fordelingsvirkninger",
+          "status": "planned_requires_fulltext_verification",
+          "source_ids": [
+            "hph03-who-hiap",
+            "hph05-cdc-program-evaluation",
+            "hph07-bmj-mrc-complex-interventions"
+          ]
+        },
+        {
+          "id": "hph-08-04",
+          "focus": "forklare at folkehelseprioritering krever synliggjøring av evidens, usikkerhet, berørte grupper, mulige gevinster, skade og trade-offs",
+          "status": "planned_requires_fulltext_verification",
+          "source_ids": [
+            "hph01-who-sdoh-equity-2025",
+            "hph09-nasem-health-equity",
+            "hph03-who-hiap"
+          ]
+        }
+      ]
+    }
+  ],
+  "production_requirements": {
+    "proposed_module_count": 4,
+    "required_topic_count": 8,
+    "planned_claim_count": 32,
+    "required_assessment_question_count": 8,
+    "minimum_sources_per_claim": 3,
+    "minimum_words_per_fulltext_paragraph": 25,
+    "all_sources_must_be_used": true,
+    "paragraph_claim_trace_one_to_one": true,
+    "clinical_safety_contract_is_blocking": true,
+    "no_person_specific_scenario": true
+  },
+  "fulltext_structure": [
+    {
+      "module_id": "01-populasjon-determinanter-og-ulikhet",
+      "topic_ids": [
+        "populasjon-individ-og-fordeling",
+        "determinanter-gradienter-og-helseulikhet"
+      ]
+    },
+    {
+      "module_id": "02-helsefremming-og-forebyggingsstrategier",
+      "topic_ids": [
+        "helsefremming-forebygging-og-settings",
+        "populasjonsstrategi-og-hoyrisikostrategi"
+      ]
+    },
+    {
+      "module_id": "03-overvaking-og-evaluering",
+      "topic_ids": [
+        "overvaking-maling-utvalg-og-usikkerhet",
+        "effekt-evaluering-og-evidenssyntese"
+      ]
+    },
+    {
+      "module_id": "04-komplekse-tiltak-og-politikk",
+      "topic_ids": [
+        "komplekse-tiltak-implementering-og-kontekst",
+        "politikk-styring-og-health-in-all-policies"
+      ]
+    }
+  ],
+  "next_gate": "public_health_source_brief_complete_full_chapter_production"
+}
