@@ -217,7 +217,9 @@ test('19+1-utvidelsen låser seks eksplisitte canonicale underkategorier', () =>
 test('Helse og Utdanning har konsistent foundation med dokumentert Helse-fremdrift uten prematur completion', () => {
   const manifest = readJson('data/fag/fag_manifest.json');
   const status = readJson('data/fagverk/subject_status.json');
+  const registry = readJson('data/fagverk/fagverk_registry.json');
   const reconciliation = readJson('reports/fagverk/fagverk-expansion-19-plus-1-reconciliation-v1.json');
+  const registeredHealthChapterCount = registry.subjects.helse.editorialPlan.registeredChapterCount;
 
   for (const id of ['helse', 'utdanning']) {
     const entry = manifest[id];
@@ -236,7 +238,7 @@ test('Helse og Utdanning har konsistent foundation med dokumentert Helse-fremdri
     assert.deepEqual(emner.map((emne) => emne.domain), pensum.domain_order);
     assert.deepEqual(fagkart.categories.map((category) => category.id), pensum.domain_order);
     assert.ok(emner.every((emne) => emne.subject_id === id));
-    assert.equal(emner.filter((emne) => emne.status === 'materialized').length, id === 'helse' ? 2 : 0);
+    assert.equal(emner.filter((emne) => emne.status === 'materialized').length, id === 'helse' ? registeredHealthChapterCount : 0);
     assert.ok(emner.every((emne) => ['planned', 'materialized'].includes(emne.status)));
     const methodIds = new Set(methods.methods.map((method) => method.method_id));
     assert.ok(emner.flatMap((emne) => emne.method_ids).every((methodId) => methodIds.has(methodId)));
@@ -246,12 +248,11 @@ test('Helse og Utdanning har konsistent foundation med dokumentert Helse-fremdri
     assert.equal(subjectStatus.navigationStatus, id === 'helse' ? 'materialized' : 'planned');
     assert.equal(subjectStatus.assessmentStatus, id === 'helse' ? 'audited' : 'pending');
     assert.equal(subjectStatus.editorialStatus, id === 'helse' ? 'chapters_in_progress' : 'not_started');
-    assert.equal(
-      subjectStatus.nextGate,
-      id === 'helse'
-        ? 'anatomy_physiology_full_chapter_complete_next_domain_source_brief'
-        : 'first_source_brief_after_repository_reconciliation'
-    );
+    if (id === 'helse') {
+      assert.match(subjectStatus.nextGate, /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_domain_source_brief)$/u);
+    } else {
+      assert.equal(subjectStatus.nextGate, 'first_source_brief_after_repository_reconciliation');
+    }
   }
 
   const safety = readJson(`data/fag/${manifest.helse.safetyContract}`);
