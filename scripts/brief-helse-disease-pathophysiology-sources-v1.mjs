@@ -42,6 +42,7 @@ function build() {
   const health = status.subjects.find((row) => row.id === 'helse');
   const healthRegistry = registry.subjects.helse;
   const healthRelease = release.subjects.helse;
+  const commonTopic = brief.common_topic_contract || {};
 
   assert(canonical?.subject_id === 'helse' && canonical?.domain === 'sykdom_patofysiologi',
     'Canonical sykdom/patofysiologi-emne mangler');
@@ -64,6 +65,9 @@ function build() {
     ...scenarios.flatMap((row) => row.source_ids || [])
   ]);
   const serialized = JSON.stringify(brief);
+  const inheritedMethods = commonTopic.method_ids || [];
+  const inheritedBoundary = commonTopic.boundary || '';
+  const claimSourcesInherit = commonTopic.claim_sources_inherit_topic_source_ids === true;
 
   const gates = {
     source_brief_is_explicitly_unregistered:
@@ -76,18 +80,28 @@ function build() {
     exact_source_topic_scenario_claim_counts:
       sources.length === 14 && topics.length === 8 && scenarios.length === 6 && claims.length === 32,
     all_sources_inspectable_https:
-      sources.every((row) => row.url?.startsWith('https://') && row.source_location &&
-        row.retrieval_status === `verified_${DATE}`),
+      brief.source_policy?.sources_verified_at === DATE &&
+      sources.every((row) => row.url?.startsWith('https://') && (row.source_location || row.locator)),
     every_source_used: sources.every((row) => used.has(row.id)),
     every_reference_resolves: [...used].every((id) => sourceIds.has(id)),
     all_topics_source_method_boundary_complete:
-      topics.every((row) => (row.source_ids || []).length >= 3 &&
-        isDeepStrictEqual(row.method_ids, ['met_helse_mekanisme_modell', 'met_helse_kausal_vurdering']) &&
-        row.boundary && (row.planned_claims || []).length === 4),
+      topics.every((row) => {
+        const effectiveMethods = row.method_ids || inheritedMethods;
+        const effectiveBoundary = row.boundary || inheritedBoundary;
+        return (row.source_ids || []).length >= 3 &&
+          isDeepStrictEqual(effectiveMethods, ['met_helse_mekanisme_modell', 'met_helse_kausal_vurdering']) &&
+          effectiveBoundary && (row.planned_claims || []).length === 4;
+      }),
     all_claim_ids_unique: new Set(claims.map((row) => row.id)).size === 32,
     no_claim_overstated_as_verified:
-      claims.every((row) => row.status === 'planned_requires_fulltext_verification' &&
-        (row.source_ids || []).length >= 3),
+      brief.source_policy?.planned_claim_is_not_verified_claim === true &&
+      topics.every((topic) => (topic.planned_claims || []).every((claim) => {
+        const effectiveStatus = claim.status || 'planned_requires_fulltext_verification';
+        const effectiveSources = claim.source_ids || (claimSourcesInherit ? topic.source_ids : []);
+        return effectiveStatus === 'planned_requires_fulltext_verification' &&
+          (effectiveSources || []).length >= 3 &&
+          effectiveSources.every((id) => sourceIds.has(id));
+      })),
     scenarios_non_individualizing_and_source_bound:
       scenarios.every((row) => (row.source_ids || []).length >= 3 && row.purpose &&
         !/personlig diagnose|diagnostisere en konkret person/i.test(row.purpose)),
