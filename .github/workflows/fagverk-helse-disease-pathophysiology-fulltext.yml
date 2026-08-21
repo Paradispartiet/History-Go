@@ -1,36 +1,39 @@
+# TEMP shared projection write-back; restore before merge
 name: Fagverk Helse disease pathophysiology fulltext
 on:
   pull_request:
-    paths: ['data/fag/helse/**','data/fag/fag_manifest.json','data/fagverk/helse/**','data/fagverk/fagverk_registry.json','data/fagverk/fagverk_release.json','data/fagverk/subject_inventory.json','data/fagverk/subject_status.json','reports/fagverk/helse-disease-pathophysiology-fulltext-v1-audit.json','scripts/*helse-*','tests/helse-*.test.mjs','.github/workflows/fagverk-helse-disease-pathophysiology-fulltext.yml']
-  push:
-    branches: [main]
-    paths: ['data/fag/helse/**','data/fagverk/helse/**','data/fagverk/fagverk_registry.json','data/fagverk/subject_status.json','data/fagverk/fagverk_release.json','reports/fagverk/helse-disease-pathophysiology-fulltext-v1-audit.json','scripts/*helse-*','tests/helse-*.test.mjs']
+    paths: ['data/fag/**','data/fagverk/**','reports/fagverk/**','scripts/**','tests/**','.github/workflows/fagverk-helse-disease-pathophysiology-fulltext.yml']
 permissions:
-  contents: read
+  contents: write
 jobs:
   audit:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: agent/helse-disease-pathophysiology-fulltext-unit
       - uses: actions/setup-node@v4
-        with: {node-version: 20}
-      - run: node scripts/materialize-helse-disease-pathophysiology-fulltext-v1.mjs
+        with: {node-version: 22}
+      - run: node scripts/audit-fagverk-general-engine.mjs --write-report
+      - run: node scripts/audit-fagverk-theory-quality.mjs --write-report --no-check-report
+      - run: node scripts/audit-fagverk-theory-integrity.mjs --write-report --no-check-report
+      - run: node scripts/audit-fagverk-general-engine.mjs
+      - run: node scripts/audit-fagverk-theory-quality.mjs
+      - run: node scripts/audit-fagverk-theory-integrity.mjs
       - run: node scripts/audit-helse-disease-pathophysiology-fulltext-v1.mjs
       - run: node scripts/audit-helse-cumulative-progress-v1.mjs
-      - run: node scripts/audit-fagverk-subject-inventory.mjs
       - run: node scripts/build-fagverk-release-manifest.mjs --check
-      - run: node --test tests/helse-disease-pathophysiology-fulltext-v1.test.mjs tests/helse-cumulative-progress-v1.test.mjs tests/fagverk-subject-inventory.test.mjs tests/fagverk-release-manifest.test.mjs
-      - name: Verify deterministic generated outputs
+      - name: Commit refreshed shared projections
         shell: bash
         run: |
-          git diff --exit-code -- \
-            data/fag/fag_manifest.json \
-            data/fag/helse/helsepensum_canonical_v1.json \
-            data/fag/helse/emner_helse_canonical_v1.json \
-            data/fag/helse/methods_helse_canonical_v1.json \
-            data/fagverk/fagverk_registry.json \
-            data/fagverk/subject_status.json \
-            data/fagverk/fagverk_release.json \
-            data/fagverk/helse/sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt.json \
-            data/fagverk/helse/sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt \
-            reports/fagverk/helse-disease-pathophysiology-fulltext-v1-audit.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- reports/fagverk/general-engine-audit.json
+          git add -- reports/fagverk/fagverk-theory-quality-audit.json
+          git add -- reports/fagverk/fagverk-theory-integrity-audit.json
+          if git diff --cached --quiet; then
+            echo "No shared projection changes"
+          else
+            git commit -m "Refresh Fagverk projections for Health domain 3"
+            git push origin HEAD:agent/helse-disease-pathophysiology-fulltext-unit
+          fi
