@@ -45,7 +45,6 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: {node-version: 22}
-      - run: node scripts/brief-helse-clinical-medicine-sources-v1.mjs
       - id: fulltext_gate
         shell: bash
         run: |
@@ -55,6 +54,8 @@ jobs:
             echo "ready=false" >> "$GITHUB_OUTPUT"
             echo "Bootstrap only: clinical medicine fulltext materializer/audit/test not present yet."
           fi
+      - if: steps.fulltext_gate.outputs.ready != 'true'
+        run: node scripts/brief-helse-clinical-medicine-sources-v1.mjs
       - if: steps.fulltext_gate.outputs.ready == 'true'
         run: node scripts/materialize-helse-clinical-medicine-fulltext-v1.mjs
       - if: steps.fulltext_gate.outputs.ready == 'true'
