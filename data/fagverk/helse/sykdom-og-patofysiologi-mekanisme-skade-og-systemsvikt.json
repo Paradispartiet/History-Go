@@ -1,0 +1,140 @@
+{
+  "schema": "history_go_fagverk_chapter_v1",
+  "version": "1.0.0",
+  "subject": "helse",
+  "subject_id": "helse",
+  "id": "sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt",
+  "chapter_id": "sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt",
+  "primary_domain_id": "sykdom_patofysiologi",
+  "editorialStatus": "chapter_ready",
+  "claimTraceRequired": true,
+  "sourceFirst": true,
+  "emne_ids": [
+    "em_helse_sykdom_patofysiologi"
+  ],
+  "method_ids": [
+    "met_helse_mekanisme_modell",
+    "met_helse_kausal_vurdering"
+  ],
+  "title": "Sykdom og patofysiologi: mekanisme, skade og systemsvikt",
+  "subtitle": "Fra cellestress, inflammasjon og immunologisk dysregulering til sirkulasjonssvikt, genetisk sårbarhet, kreftbiologi og biomarkørgrenser",
+  "lead": "Kapittelet forklarer generelle sykdomsmekanismer og deres evidensgrenser. Det skiller mekanisme, risiko, biomarkør, fenotype, diagnose og prognose, og gir aldri individuell diagnose, prognose, triage, genetisk risikoberegning eller behandlingsanbefaling.",
+  "learningObjectives": [
+    "Sykdom, mekanisme og kausal kjede",
+    "Cellestress, adaptasjon, skade og celledød",
+    "Inflammasjon, oppløsning, reparasjon og fibrose",
+    "Immunologisk dysregulering, toleranse og vevsskade",
+    "Sirkulasjonsforstyrrelse, trombose, ødem og sjokk",
+    "Genetisk sårbarhet, variant, penetrans og gen–miljø",
+    "Kreft som flertrinns patobiologi",
+    "Biomarkører, fenotype, reserve og systemsvikt"
+  ],
+  "diagnosticQuestions": [
+    {
+      "question": "Hva kan en statistisk assosiasjon alene dokumentere?",
+      "answer": "En kausal sykdomsmodell må angi etterprøvbare ledd fra påvirkning eller biologisk variasjon via mekanismer til vevs- eller systemkonsekvenser. En observert assosiasjon kan være forenlig med årsak, men kan også skyldes omvendt retning, felles årsaker eller andre skjevheter og er derfor ikke i seg selv et mekanismebevis."
+    },
+    {
+      "question": "Hva skiller apoptose fra typisk nekrose i denne modellen?",
+      "answer": "Nekrose er typisk forbundet med tap av membranintegritet, celleinnhold som lekker ut og en vevsreaksjon, mens apoptose er en regulert demontering av cellen gjennom organiserte signalveier og proteaser. Dette er viktige kontraster, men biologisk celledød omfatter også andre regulerte former, så nekrose og apoptose er ikke en uttømmende todeling."
+    },
+    {
+      "question": "Hvordan bør fasene i vevsreparasjon forstås?",
+      "answer": "Vevsreparasjon kan beskrives gjennom hemostase, inflammasjon, proliferasjon og remodellering, men fasene overlapper i tid og regulerer hverandre gjensidig. Fremstillingen er derfor en prosessmodell og ikke en rigid tidsplan; vevstype, skadeomfang, blodforsyning og lokal signalering påvirker forløpet."
+    },
+    {
+      "question": "Hvilket skille er korrekt?",
+      "answer": "Infeksjon viser til en biologisk interaksjon med en mikroorganisme, inflammasjon er vertens vevsrespons, og immunmediert skade er skade som utføres eller forsterkes av immunologiske mekanismer. Prosessene kan opptre samtidig, men inflammasjon og immunskade kan også forekomme uten infeksjon og begrepene er derfor ikke synonymer."
+    }
+  ],
+  "relatedPlaces": [
+    {
+      "id": "institutt-for-klinisk-medisin-uio",
+      "name": "Institutt for klinisk medisin, Universitetet i Oslo",
+      "role": "Knytte generell patofysiologi og sykdomsmekanisme til forsknings- og undervisningspraksis uten pasienttolkning."
+    },
+    {
+      "id": "rikshospitalet-patologi",
+      "name": "Rikshospitalet",
+      "role": "Analysere vev, inflammasjon og systemsvikt som generelle mekanistiske modeller uten å vurdere konkrete prøver."
+    },
+    {
+      "id": "kreftregisteret",
+      "name": "Kreftregisteret",
+      "role": "Skille populasjonsdata og biomarkører fra mekanistiske og individkliniske slutninger."
+    }
+  ],
+  "workCases": [
+    {
+      "id": "scenario-causal-chain",
+      "title": "Fra eksponering til vevsskade",
+      "purpose": "Bygge og kritisere en generell kausal kjede uten å diagnostisere en person.",
+      "source_ids": [
+        "hdp01-ncbi-cell-injury-necrosis",
+        "hdp09-nhgri-genetic-disorders",
+        "hdp13-fda-nih-best"
+      ]
+    },
+    {
+      "id": "scenario-cell-death",
+      "title": "To ulike former for celledød",
+      "purpose": "Skille reversibel skade, nekrose og apoptose ut fra mekanisme og morfologisk grense.",
+      "source_ids": [
+        "hdp01-ncbi-cell-injury-necrosis",
+        "hdp02-ncbi-apoptosis-cell-death",
+        "hdp03-ncbi-pathology-inflammation"
+      ]
+    },
+    {
+      "id": "scenario-inflammation-repair",
+      "title": "Inflammasjon som både forsvar og skade",
+      "purpose": "Følge overgangen fra skade via inflammasjon til oppløsning, reparasjon eller fibrose.",
+      "source_ids": [
+        "hdp03-ncbi-pathology-inflammation",
+        "hdp04-ncbi-wound-healing",
+        "hdp14-ncbi-chronic-inflammation"
+      ]
+    },
+    {
+      "id": "scenario-thrombosis-shock",
+      "title": "Fra lokal sirkulasjonsforstyrrelse til systemsvikt",
+      "purpose": "Skille trombose, ødem, hypoperfusjon og sjokk som mekanistiske ledd og alternative forløp.",
+      "source_ids": [
+        "hdp06-ncbi-virchow-triad",
+        "hdp07-ncbi-shock",
+        "hdp08-ncbi-edema"
+      ]
+    },
+    {
+      "id": "scenario-genetic-risk",
+      "title": "Patogen variant uten deterministisk skjebne",
+      "purpose": "Skille variant, penetrans, sårbarhet og miljøbidrag uten individuell risikoberegning.",
+      "source_ids": [
+        "hdp09-nhgri-genetic-disorders",
+        "hdp10-nhgri-pathogenic-variant",
+        "hdp11-nhgri-susceptibility"
+      ]
+    },
+    {
+      "id": "scenario-biomarker-mechanism",
+      "title": "En biomarkør endrer seg",
+      "purpose": "Avgjøre hva et biomarkørfunn kan støtte og hva det ikke beviser om mekanisme, diagnose eller prognose.",
+      "source_ids": [
+        "hdp07-ncbi-shock",
+        "hdp12-nci-what-is-cancer",
+        "hdp13-fda-nih-best"
+      ]
+    }
+  ],
+  "moduleFiles": [
+    "data/fagverk/helse/sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt/01-mekanisme-celleskade-og-inflammasjon.json",
+    "data/fagverk/helse/sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt/02-immunologi-sirkulasjon-og-systemsvikt.json",
+    "data/fagverk/helse/sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt/03-genetisk-sarbarhet-og-kreft.json",
+    "data/fagverk/helse/sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt/04-biomarkorer-fenotype-og-kausal-tolkning.json"
+  ],
+  "briefFile": "data/fagverk/helse/sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt/brief.json",
+  "claimsFile": "data/fagverk/helse/sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt/claims.json",
+  "assessmentFile": "data/fagverk/helse/sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt/assessment.json",
+  "sourceBriefFile": "data/fag/helse/disease_pathophysiology_source_claim_brief_v1.json",
+  "safetyContractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json"
+}

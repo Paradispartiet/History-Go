@@ -1,0 +1,43 @@
+{
+  "schema": "history_go_fagverk_chapter_brief_v1",
+  "version": "1.0.0",
+  "subject_id": "helse",
+  "chapter_id": "sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt",
+  "primary_domain_id": "sykdom_patofysiologi",
+  "purpose": "Bygge mekanistisk forståelse av sykdomsprosesser fra celleskade og inflammasjon til sirkulasjonssvikt, genetisk sårbarhet, kreftbiologi og biomarkørgrenser uten individuell klinisk vurdering.",
+  "sourceStrategy": {
+    "sourceBriefFile": "data/fag/helse/disease_pathophysiology_source_claim_brief_v1.json",
+    "externalSourceCount": 14,
+    "paragraphLevelClaimTrace": true,
+    "everyPlannedClaimResolved": true,
+    "allUsedSourcesInspectable": true
+  },
+  "requiredCriticalDistinctions": [
+    "mekanisme vs assosiasjon",
+    "risikofaktor vs årsak",
+    "biomarkør vs mekanisme og diagnose",
+    "reversibel vs irreversibel celleskade",
+    "nekrose vs apoptose",
+    "infeksjon vs inflammasjon vs immunskade",
+    "trombose vs ødem vs sjokk",
+    "genetisk sårbarhet vs deterministisk utfall",
+    "driver vs passasjer",
+    "lokal skade vs systemsvikt"
+  ],
+  "safety": {
+    "contractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json",
+    "individualDiagnosis": false,
+    "individualImageOrTestInterpretation": false,
+    "individualPrognosis": false,
+    "individualTreatmentAdvice": false,
+    "individualGeneticRiskCalculation": false
+  },
+  "qa": {
+    "topicCoverage": "8/8",
+    "plannedClaimResolution": "32/32",
+    "moduleCount": 4,
+    "sectionCount": 8,
+    "paragraphCount": 32,
+    "assessmentQuestionCount": 8
+  }
+}
