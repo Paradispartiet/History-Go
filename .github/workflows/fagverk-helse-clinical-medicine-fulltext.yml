@@ -67,3 +67,22 @@ jobs:
       - run: node scripts/build-fagverk-release-manifest.mjs --check
       - if: steps.fulltext_gate.outputs.ready == 'true'
         run: node --test tests/helse-clinical-medicine-fulltext-v1.test.mjs tests/helse-cumulative-progress-v1.test.mjs tests/fagverk-subject-inventory.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-release-manifest.test.mjs
+      - name: Verify deterministic generated outputs
+        if: steps.fulltext_gate.outputs.ready == 'true'
+        shell: bash
+        run: |
+          git diff --exit-code -- \
+            data/fag/fag_manifest.json \
+            data/fag/helse/helsepensum_canonical_v1.json \
+            data/fag/helse/emner_helse_canonical_v1.json \
+            data/fag/helse/methods_helse_canonical_v1.json \
+            data/fagverk/fagverk_registry.json \
+            data/fagverk/subject_inventory.json \
+            data/fagverk/subject_status.json \
+            data/fagverk/fagverk_release.json \
+            data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging.json \
+            data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging \
+            reports/fagverk/helse-clinical-medicine-fulltext-v1-audit.json \
+            reports/fagverk/general-engine-audit.json \
+            reports/fagverk/fagverk-theory-quality-audit.json \
+            reports/fagverk/fagverk-theory-integrity-audit.json
