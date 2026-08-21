@@ -1,0 +1,120 @@
+{
+  "schema": "history_go_fagverk_health_module_v1",
+  "version": "1.0.0",
+  "id": "02-sannsynlighet-maling-og-usikkerhet",
+  "title": "Sannsynlighet, måling og usikkerhet",
+  "sections": [
+    {
+      "id": "hcm-pretest-posttest-og-beslutningsterskler",
+      "title": "Pretest, posttest, sannsynlighet og beslutningsterskler",
+      "topic_id": "pretest-posttest-og-beslutningsterskler",
+      "emne_ids": [
+        "em_helse_klinisk_medisin"
+      ],
+      "method_ids": [
+        "met_helse_diagnostisk_testvurdering"
+      ],
+      "boundary": "Sannsynlighetsoppdatering læres med hypotetiske populasjoner og regneeksempler; ingen sannsynlighet beregnes for en virkelig person.",
+      "paragraphIds": [
+        "hcm-p-03-01",
+        "hcm-p-03-02",
+        "hcm-p-03-03",
+        "hcm-p-03-04"
+      ],
+      "paragraphs": [
+        "Pretest-sannsynlighet uttrykker hvor plausibel en måltilstand er før et bestemt testresultat foreligger, basert på den relevante populasjonen og tilgjengelig informasjon. Sensitivitet og spesifisitet beskriver derimot testytelse betinget på tilstandsstatus og er derfor andre størrelser enn pretest-sannsynlighet.",
+        "En likelihood ratio uttrykker hvor mye mer eller mindre sannsynlig et bestemt testresultat er blant personer med måltilstanden enn blant personer uten den. Den kan brukes til å oppdatere odds fra pretest til posttest, men posttest-sannsynlighet er fortsatt en sannsynlighet og ikke en diagnose.",
+        "Positiv og negativ prediktiv verdi beskriver sannsynligheten for måltilstand gitt henholdsvis et positivt eller negativt testresultat i en bestemt populasjon. Verdiene endres når prevalens eller annen utgangssannsynlighet endres, selv om testens sensitivitet og spesifisitet ellers er uendret.",
+        "En beslutningsterskel er et handlingspunkt som avhenger av forventede konsekvenser, tilgjengelige alternativer, usikkerhet og verdsetting av mulige nytte- og skadeutfall. Terskelen er derfor ikke en biologisk sannhetsgrense og må ikke forveksles med at en sykdom plutselig blir objektivt til stede ved ett tall."
+      ],
+      "paragraphClaimIds": [
+        [
+          "hcm-03-01"
+        ],
+        [
+          "hcm-03-02"
+        ],
+        [
+          "hcm-03-03"
+        ],
+        [
+          "hcm-03-04"
+        ]
+      ],
+      "keyPoints": [
+        "skille pretest-sannsynlighet fra testens sensitivitet og spesifisitet",
+        "skille beslutningsterskel fra biologisk sannhet og vise at terskler uttrykker konsekvenser, alternativer og usikkerhet"
+      ],
+      "keyPointClaimIds": [
+        [
+          "hcm-03-01"
+        ],
+        [
+          "hcm-03-04"
+        ]
+      ],
+      "source_ids": [
+        "hcm01-nasem-diagnostic-process",
+        "hcm02-fda-diagnostic-test-guidance",
+        "hcm03-ahrq-medical-test-methods",
+        "hcm14-ncbi-clinical-methods-laboratory"
+      ]
+    },
+    {
+      "id": "hcm-maling-referanseintervall-og-usikkerhet",
+      "title": "Måling, referanseintervall, biologisk variasjon og usikkerhet",
+      "topic_id": "maling-referanseintervall-og-usikkerhet",
+      "emne_ids": [
+        "em_helse_klinisk_medisin"
+      ],
+      "method_ids": [
+        "met_helse_diagnostisk_testvurdering"
+      ],
+      "boundary": "Laboratoriemål brukes til å lære måling og usikkerhet; et konkret avvik tolkes aldri som sykdom eller som grunnlag for råd.",
+      "paragraphIds": [
+        "hcm-p-04-01",
+        "hcm-p-04-02",
+        "hcm-p-04-03",
+        "hcm-p-04-04"
+      ],
+      "paragraphs": [
+        "En laboratorie- eller måleverdi er et observert estimat av en underliggende biologisk størrelse, ikke størrelsen selv uten feil. Analytisk variasjon kommer fra måleprosessen, mens biologisk variasjon kan oppstå innen og mellom individer; begge påvirker hvordan forskjeller og endringer kan forstås.",
+        "Et populasjonsbasert referanseintervall beskriver fordelingen av en målt størrelse i en definert referansegruppe. En klinisk beslutningsgrense er derimot valgt fordi ulike verdier får betydning for klassifikasjon eller handling, og ingen av begrepene er automatisk identisk med en sykdomsdefinisjon.",
+        "En verdi utenfor et referanseintervall kan forekomme hos personer uten den aktuelle sykdommen, og en verdi innenfor intervallet kan forekomme hos personer som likevel har sykdom. Referanseavvik er derfor verken nødvendig eller tilstrekkelig for diagnose uten en validert klinisk tolkningsramme.",
+        "Serielle målinger må tolkes i lys av analytisk usikkerhet, biologisk variasjon, hvor lang tid som har gått og hvilken klinisk eller forskningsmessig kontekst målingen inngår i. En numerisk endring er ikke automatisk en reell biologisk endring eller et bevis på effekt, skade eller sykdomsutvikling."
+      ],
+      "paragraphClaimIds": [
+        [
+          "hcm-04-01"
+        ],
+        [
+          "hcm-04-02"
+        ],
+        [
+          "hcm-04-03"
+        ],
+        [
+          "hcm-04-04"
+        ]
+      ],
+      "keyPoints": [
+        "skille måleverdi fra underliggende biologisk størrelse og inkludere analytisk og biologisk variasjon",
+        "vise hvorfor serielle endringer må vurderes mot måleusikkerhet, biologisk variasjon, tidsforløp og klinisk kontekst"
+      ],
+      "keyPointClaimIds": [
+        [
+          "hcm-04-01"
+        ],
+        [
+          "hcm-04-04"
+        ]
+      ],
+      "source_ids": [
+        "hcm02-fda-diagnostic-test-guidance",
+        "hcm03-ahrq-medical-test-methods",
+        "hcm13-pubmed-biological-variation",
+        "hcm14-ncbi-clinical-methods-laboratory"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schema": "history_go_fagverk_chapter_brief_v1",
+  "version": "1.0.0",
+  "subject_id": "helse",
+  "chapter_id": "klinisk-medisin-informasjon-testing-beslutning-og-oppfolging",
+  "primary_domain_id": "klinisk_medisin",
+  "purpose": "Lære generelle kliniske prinsipper for informasjonsinnhenting, testvurdering, sannsynlighetsoppdatering, behandlingsevidens, oppfølging og samvalg uten å diagnostisere eller behandle en konkret person.",
+  "sourceStrategy": {
+    "sourceBriefFile": "data/fag/helse/clinical_medicine_source_claim_brief_v1.json",
+    "externalSourceCount": 14,
+    "paragraphLevelClaimTrace": true,
+    "everyPlannedClaimResolved": true,
+    "allUsedSourcesInspectable": true
+  },
+  "requiredCriticalDistinctions": [
+    "rå klinisk informasjon vs problemrepresentasjon vs diagnose",
+    "sensitivitet og spesifisitet vs prediktive verdier",
+    "referansestandard vs ren testoverensstemmelse",
+    "pretest vs posttest sannsynlighet",
+    "referanseintervall vs klinisk beslutningsgrense og sykdomsdefinisjon",
+    "diagnostisk usikkerhet vs tilfeldig gjetning",
+    "relativ vs absolutt behandlingseffekt",
+    "estimand vs vag behandlingseffekt",
+    "intern validitet vs overførbarhet",
+    "effektmonitorering vs skademonitorering vs ny diagnostisk utredning",
+    "evidens vs verdier og preferanser"
+  ],
+  "safety": {
+    "contractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json",
+    "individualDiagnosis": false,
+    "individualDifferentialDiagnosis": false,
+    "individualTestOrImageInterpretation": false,
+    "individualPrognosis": false,
+    "individualTreatmentAdvice": false,
+    "individualDosing": false,
+    "individualGeneticRiskCalculation": false
+  },
+  "qa": {
+    "topicCoverage": "8/8",
+    "plannedClaimResolution": "32/32",
+    "moduleCount": 4,
+    "sectionCount": 8,
+    "paragraphCount": 32,
+    "assessmentQuestionCount": 8
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "schema": "history_go_fagverk_chapter_v1",
+  "version": "1.0.0",
+  "subject": "helse",
+  "subject_id": "helse",
+  "id": "klinisk-medisin-informasjon-testing-beslutning-og-oppfolging",
+  "chapter_id": "klinisk-medisin-informasjon-testing-beslutning-og-oppfolging",
+  "primary_domain_id": "klinisk_medisin",
+  "editorialStatus": "chapter_ready",
+  "claimTraceRequired": true,
+  "sourceFirst": true,
+  "emne_ids": [
+    "em_helse_klinisk_medisin"
+  ],
+  "method_ids": [
+    "met_helse_diagnostisk_testvurdering",
+    "met_helse_klinisk_studievurdering"
+  ],
+  "title": "Klinisk medisin: informasjon, testing, beslutning og oppfølging",
+  "subtitle": "Fra klinisk informasjonsstruktur og diagnostisk testvurdering til behandlingsevidens, monitorering, samvalg og revurdering",
+  "lead": "Kapittelet lærer generelle kliniske resonnerings- og evidensprinsipper og gir aldri individuell diagnose, differensialdiagnose, prognose, triage, prøve- eller bildetolkning, behandlingsanbefaling eller dosering.",
+  "learningObjectives": [
+    "Klinisk informasjon, problemrepresentasjon og arbeidshypoteser",
+    "Diagnostisk testytelse, referansestandard og bias",
+    "Pretest, posttest, sannsynlighet og beslutningsterskler",
+    "Måling, referanseintervall, biologisk variasjon og usikkerhet",
+    "Differensialdiagnostikk, kalibrering og diagnostisk sikkerhet",
+    "Behandlingseffekt, skade, estimand og overførbarhet",
+    "Oppfølging, monitorering, behandlingsbyrde og revurdering",
+    "Samvalg, dokumentasjon, usikkerhet og plan"
+  ],
+  "diagnosticQuestions": [
+    {
+      "question": "Hva skiller best rå klinisk informasjon, en problemrepresentasjon og en diagnose?",
+      "answer": "Rå klinisk informasjon består av enkeltopplysninger som symptombeskrivelser, observasjoner, undersøkelsesfunn og testresultater. En problemrepresentasjon komprimerer utvalgte opplysninger til en arbeidbar faglig oppsummering, mens en diagnose er en senere fortolkende konklusjon som krever samlet evidens og kan revideres."
+    },
+    {
+      "question": "Hva beskriver sensitivitet og spesifisitet mest presist?",
+      "answer": "Sensitivitet beskriver hvor stor andel av dem som har den definerte tilstanden etter en relevant referansestandard som får positivt testresultat, mens spesifisitet beskriver andelen uten tilstanden som får negativt resultat. Begge målene er knyttet til definert test, terskel, referansestandard og studiepopulasjon."
+    },
+    {
+      "question": "Hvorfor kan prediktive verdier endres selv om sensitivitet og spesifisitet er uendret?",
+      "answer": "Positiv og negativ prediktiv verdi beskriver sannsynligheten for måltilstand gitt henholdsvis et positivt eller negativt testresultat i en bestemt populasjon. Verdiene endres når prevalens eller annen utgangssannsynlighet endres, selv om testens sensitivitet og spesifisitet ellers er uendret."
+    },
+    {
+      "question": "Hva kan man generelt konkludere når en måleverdi ligger utenfor et referanseintervall?",
+      "answer": "En verdi utenfor et referanseintervall kan forekomme hos personer uten den aktuelle sykdommen, og en verdi innenfor intervallet kan forekomme hos personer som likevel har sykdom. Referanseavvik er derfor verken nødvendig eller tilstrekkelig for diagnose uten en validert klinisk tolkningsramme."
+    }
+  ],
+  "relatedPlaces": [
+    {
+      "id": "institutt-for-klinisk-medisin-uio",
+      "name": "Institutt for klinisk medisin, Universitetet i Oslo",
+      "role": "Knytte klinisk resonnering, testvurdering og studietolkning til generell forsknings- og undervisningspraksis uten individråd."
+    },
+    {
+      "id": "rikshospitalet-patologi",
+      "name": "Rikshospitalet",
+      "role": "Bruke test-, måle- og oppfølgingsbegreper som generelle fagmodeller uten å tolke konkrete prøver eller pasientforløp."
+    },
+    {
+      "id": "kreftregisteret",
+      "name": "Kreftregisteret",
+      "role": "Skille populasjons- og studieevidens fra individuell klinisk beslutning og illustrere behovet for overførbarhetsvurdering."
+    }
+  ],
+  "workCases": [
+    {
+      "id": "scenario-same-test-different-pretest",
+      "title": "Samme test, ulik utgangssannsynlighet",
+      "purpose": "Sammenligne hvordan den samme testytelsen gir ulike posttest-sannsynligheter i to hypotetiske populasjoner uten å beregne risiko for en virkelig person.",
+      "source_ids": [
+        "hcm02-fda-diagnostic-test-guidance",
+        "hcm03-ahrq-medical-test-methods",
+        "hcm14-ncbi-clinical-methods-laboratory"
+      ]
+    },
+    {
+      "id": "scenario-discordant-clinical-data",
+      "title": "Et testresultat passer dårlig med resten av informasjonen",
+      "purpose": "Analysere generelt hvordan historie, undersøkelse, testkvalitet, referansestandard og alternative hypoteser bør holdes åpne ved diskordans.",
+      "source_ids": [
+        "hcm01-nasem-diagnostic-process",
+        "hcm02-fda-diagnostic-test-guidance",
+        "hcm04-ahrq-calibrate-dx",
+        "hcm06-who-diagnostic-safety"
+      ]
+    },
+    {
+      "id": "scenario-reference-interval",
+      "title": "En måleverdi ligger like utenfor et referanseintervall",
+      "purpose": "Skille referanseintervall, biologisk og analytisk variasjon, klinisk beslutningsgrense og diagnose uten å tolke en konkret prøve.",
+      "source_ids": [
+        "hcm02-fda-diagnostic-test-guidance",
+        "hcm13-pubmed-biological-variation",
+        "hcm14-ncbi-clinical-methods-laboratory"
+      ]
+    },
+    {
+      "id": "scenario-differential-update",
+      "title": "Tre arbeidshypoteser og én ny opplysning",
+      "purpose": "Oppdatere en generell differensialdiagnostisk modell og vise hvordan diagnostisk sikkerhet krever re-evaluering, kommunikasjon og læring.",
+      "source_ids": [
+        "hcm01-nasem-diagnostic-process",
+        "hcm04-ahrq-calibrate-dx",
+        "hcm05-ahrq-measure-dx",
+        "hcm06-who-diagnostic-safety"
+      ]
+    },
+    {
+      "id": "scenario-relative-absolute-effect",
+      "title": "Stor relativ effekt, liten absolutt forskjell",
+      "purpose": "Skille relativ effekt, absolutt effekt, baseline-risiko, usikkerhet og skade i et hypotetisk randomisert forsøk uten behandlingsråd.",
+      "source_ids": [
+        "hcm10-cochrane-interpretation",
+        "hcm11-fda-ich-e9r1",
+        "hcm12-consort-2025"
+      ]
+    },
+    {
+      "id": "scenario-followup-plan",
+      "title": "Oppfølging når effekt og skade fortsatt er usikre",
+      "purpose": "Utforme en generell modell for mål, monitorering, behandlingsbyrde, revurdering og dokumentasjon uten å foreskrive tiltak til en konkret person.",
+      "source_ids": [
+        "hcm07-nice-shared-decision",
+        "hcm08-nice-medicines-optimisation",
+        "hcm09-nice-multimorbidity",
+        "hcm10-cochrane-interpretation"
+      ]
+    }
+  ],
+  "moduleFiles": [
+    "data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging/01-klinisk-informasjon-og-testing.json",
+    "data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging/02-sannsynlighet-maling-og-usikkerhet.json",
+    "data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging/03-diagnostisk-sikkerhet-og-behandlingsevidens.json",
+    "data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging/04-oppfolging-samvalg-og-plan.json"
+  ],
+  "briefFile": "data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging/brief.json",
+  "claimsFile": "data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging/claims.json",
+  "assessmentFile": "data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging/assessment.json",
+  "sourceBriefFile": "data/fag/helse/clinical_medicine_source_claim_brief_v1.json",
+  "safetyContractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json"
+}
