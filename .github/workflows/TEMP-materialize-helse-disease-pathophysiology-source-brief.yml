@@ -9,6 +9,13 @@ on:
       - 'tests/helse-disease-pathophysiology-source-brief-v1.test.mjs'
       - '.github/workflows/fagverk-helse-disease-pathophysiology-source-brief.yml'
       - '.github/workflows/TEMP-materialize-helse-disease-pathophysiology-source-brief.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/brief-helse-disease-pathophysiology-sources-v1.mjs'
+      - 'tests/helse-disease-pathophysiology-source-brief-v1.test.mjs'
+      - '.github/workflows/fagverk-helse-disease-pathophysiology-source-brief.yml'
+      - '.github/workflows/TEMP-materialize-helse-disease-pathophysiology-source-brief.yml'
 
 permissions:
   contents: write
