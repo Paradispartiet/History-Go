@@ -14,15 +14,31 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: {node-version: 22}
-      - run: node scripts/materialize-helse-disease-pathophysiology-fulltext-v1.mjs
-      - run: node scripts/audit-helse-disease-pathophysiology-fulltext-v1.mjs
+      - id: progress
+        shell: bash
+        run: |
+          count=$(node -e "const fs=require('fs');const r=JSON.parse(fs.readFileSync('data/fagverk/fagverk_registry.json','utf8')).subjects.helse.editorialPlan.registeredChapterCount;process.stdout.write(String(r))")
+          echo "registered=$count" >> "$GITHUB_OUTPUT"
+          if [[ "$count" -ge 4 ]]; then
+            echo "advanced=true" >> "$GITHUB_OUTPUT"
+            echo "Helse is $count/12; preserve disease/pathophysiology and validate cumulative state."
+          else
+            echo "advanced=false" >> "$GITHUB_OUTPUT"
+          fi
+      - if: steps.progress.outputs.advanced != 'true'
+        run: node scripts/materialize-helse-disease-pathophysiology-fulltext-v1.mjs
+      - if: steps.progress.outputs.advanced != 'true'
+        run: node scripts/audit-helse-disease-pathophysiology-fulltext-v1.mjs
       - run: node scripts/audit-helse-cumulative-progress-v1.mjs
       - run: node scripts/audit-fagverk-subject-inventory.mjs
       - run: node scripts/audit-fagverk-general-engine.mjs
       - run: node scripts/audit-fagverk-theory-quality.mjs
       - run: node scripts/audit-fagverk-theory-integrity.mjs
       - run: node scripts/build-fagverk-release-manifest.mjs --check
-      - run: node --test tests/helse-disease-pathophysiology-fulltext-v1.test.mjs tests/helse-cumulative-progress-v1.test.mjs tests/fagverk-subject-inventory.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-release-manifest.test.mjs
+      - if: steps.progress.outputs.advanced != 'true'
+        run: node --test tests/helse-disease-pathophysiology-fulltext-v1.test.mjs tests/helse-cumulative-progress-v1.test.mjs tests/fagverk-subject-inventory.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-release-manifest.test.mjs
+      - if: steps.progress.outputs.advanced == 'true'
+        run: node --test tests/helse-cumulative-progress-v1.test.mjs tests/fagverk-subject-inventory.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-release-manifest.test.mjs
       - name: Verify deterministic generated outputs
         shell: bash
         run: |

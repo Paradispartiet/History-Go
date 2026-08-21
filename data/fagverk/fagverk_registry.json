@@ -4134,17 +4134,19 @@
         "schemaFamily": "foundation_v1",
         "sourceOfTruth": true,
         "firstSourceClaimBrief": "data/fag/helse/medical_ethics_evidence_source_claim_brief_v1.json",
-        "note": "Tre Helse-domener er fulltekstmaterialisert: medisinsk etikk/evidens, anatomi/fysiologi og sykdom/patofysiologi. Domene 3 har 8 seksjoner, 32 claimsporede avsnitt, 32 verifiserte claims, 14 inspiserbare kilder og 8 vurderingsoppgaver. Ni domener og strict proof gjenstår.",
+        "note": "Fire Helse-domener er fulltekstmaterialisert: medisinsk etikk/evidens, anatomi/fysiologi, sykdom/patofysiologi og klinisk medisin. Domene 4 har 8 seksjoner, 32 claimsporede avsnitt, 32 verifiserte claims, 14 inspiserbare kilder og 8 vurderingsoppgaver. Åtte domener og strict proof gjenstår.",
         "firstFulltextChapter": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning.json",
         "secondSourceClaimBrief": "data/fag/helse/anatomy_physiology_source_claim_brief_v1.json",
         "secondFulltextChapter": "data/fagverk/helse/anatomi-fysiologi-struktur-funksjon-og-regulering.json",
         "thirdSourceClaimBrief": "data/fag/helse/disease_pathophysiology_source_claim_brief_v1.json",
-        "thirdFulltextChapter": "data/fagverk/helse/sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt.json"
+        "thirdFulltextChapter": "data/fagverk/helse/sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt.json",
+        "fourthSourceClaimBrief": "data/fag/helse/clinical_medicine_source_claim_brief_v1.json",
+        "fourthFulltextChapter": "data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging.json"
       },
       "editorialPlan": {
         "targetDomainCount": 12,
-        "completedSourceBriefCount": 3,
-        "registeredChapterCount": 3,
+        "completedSourceBriefCount": 4,
+        "registeredChapterCount": 4,
         "completionRequirements": [
           "all_canonical_domains_covered",
           "source_first_claim_trace_complete",
@@ -4152,7 +4154,7 @@
           "fulltext_and_assessment_audits_green",
           "strict_theory_integrity_green"
         ],
-        "nextGate": "produce_next_domain_source_brief_after_disease_pathophysiology_fulltext"
+        "nextGate": "produce_next_domain_source_brief_after_clinical_medicine_fulltext"
       },
       "chapters": [
         {
@@ -4195,6 +4197,20 @@
           "claimsFile": "data/fagverk/helse/sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt/claims.json",
           "briefFile": "data/fagverk/helse/sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt/brief.json",
           "assessmentFile": "data/fagverk/helse/sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt/assessment.json",
+          "safetyContractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json"
+        },
+        {
+          "id": "klinisk-medisin-informasjon-testing-beslutning-og-oppfolging",
+          "title": "Klinisk medisin: informasjon, testing, beslutning og oppfølging",
+          "subtitle": "Fra klinisk informasjonsstruktur og diagnostisk testvurdering til behandlingsevidens, monitorering, samvalg og revurdering",
+          "file": "data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging.json",
+          "primary_domain_id": "klinisk_medisin",
+          "emne_ids": [
+            "em_helse_klinisk_medisin"
+          ],
+          "claimsFile": "data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging/claims.json",
+          "briefFile": "data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging/brief.json",
+          "assessmentFile": "data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging/assessment.json",
           "safetyContractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json"
         }
       ]

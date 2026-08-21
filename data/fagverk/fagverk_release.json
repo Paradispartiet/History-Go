@@ -11,7 +11,7 @@
     "schema": "history_go_fagverk_registry_v1",
     "version": "3.14.0",
     "updated_at": "2026-08-21",
-    "content_sha256": "f25be35dcc1d8ffc1a11f68c2996691eab5055c7a7620b001505166679e6588d"
+    "content_sha256": "8fa90c48d277ca637ae289c872ca78b3b9ce1356eaff50d98feb09968e4fa486"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,18 +27,18 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "7f4ef17725a3965ae752515debd475d7c7e9035e654ded3da96795952df2b31d"
+    "content_sha256": "dfd025947935e08f265961d3ffde6b1801b83f2a9c3a220171b29d3d4cd1f9d0"
   },
   "summary": {
     "subject_count": 20,
     "root_subject_count": 19,
     "specialization_count": 1,
     "chapter_subject_count": 16,
-    "chapter_count": 166,
-    "module_file_count": 405,
-    "package_file_count": 226,
-    "chapter_referenced_file_count": 772,
-    "referenced_file_count": 950,
+    "chapter_count": 167,
+    "module_file_count": 409,
+    "package_file_count": 228,
+    "chapter_referenced_file_count": 779,
+    "referenced_file_count": 958,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -1033,9 +1033,9 @@
         "supersetQuizMal"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 14,
+      "package_file_count": 16,
       "required_package_file_count": 4,
-      "optional_package_file_count": 10,
+      "optional_package_file_count": 12,
       "package_files": [
         {
           "path": "data/fag/helse/anatomy_physiology_source_claim_brief_v1.json",
@@ -1048,6 +1048,18 @@
           ],
           "exists": true,
           "content_sha256": "d605812d16c44c40aa012990192c27ea1478fde4a04e14a40e4337e42e30c16f"
+        },
+        {
+          "path": "data/fag/helse/clinical_medicine_source_claim_brief_v1.json",
+          "required": false,
+          "fields": [
+            "sourceClaimBriefs"
+          ],
+          "key_paths": [
+            "sourceClaimBriefs[3]"
+          ],
+          "exists": true,
+          "content_sha256": "48608c1385af214fd2fdd0031ea3fa4ec9dcf8dba89a11fbd1f1e86b917bc617"
         },
         {
           "path": "data/fag/helse/clinical_safety_contract_helse_v1.json",
@@ -1083,7 +1095,7 @@
             "emner"
           ],
           "exists": true,
-          "content_sha256": "4dffd32da21f76be668323c16f503e0e74d3210e8b13e8c270fd3d1789da2596"
+          "content_sha256": "06c15c35fe38e17acc70cf3151fd72af9a5108cf3cd0979bca271d2e436cb94d"
         },
         {
           "path": "data/fag/helse/fagkart_helse_canonical_v1.json",
@@ -1107,7 +1119,7 @@
             "pensum"
           ],
           "exists": true,
-          "content_sha256": "6dcc9554cee739bcbcd2bbc9b7346f847e4ef0a21a0feb2c35f5f348ed8d549b"
+          "content_sha256": "e522e7524a082eac48dc07208707f92015ce2151fcc76006bb3dce606f00fc73"
         },
         {
           "path": "data/fag/helse/medical_ethics_evidence_source_claim_brief_v1.json",
@@ -1131,7 +1143,7 @@
             "methods"
           ],
           "exists": true,
-          "content_sha256": "2256a38b804998e47211be2e01d1346d9adb688b332ae377d850b01b997354c4"
+          "content_sha256": "187c48e7b4527bfb27ca4445aeb4567632fc4bacba35f2821dd821249615c699"
         },
         {
           "path": "data/fag/helse/supersetQUIZMAL_helse.json",
@@ -1156,6 +1168,18 @@
           ],
           "exists": true,
           "content_sha256": "5fa3705b9df0c8229f60d2c0491e97ae6586dc7eccc4980472fce96f2c110a8b"
+        },
+        {
+          "path": "data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging.json",
+          "required": false,
+          "fields": [
+            "chapters"
+          ],
+          "key_paths": [
+            "chapters[3]"
+          ],
+          "exists": true,
+          "content_sha256": "43239dbb85f8a90a39b23c2dd09e1bb3f81d0a8bf81259a77d40bd89db59b5bc"
         },
         {
           "path": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning.json",
@@ -1206,20 +1230,20 @@
           "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
         }
       ],
-      "package_content_sha256": "19e4bb655c1a475a5053c50272927e22612e343f1bb54464a678c4eb6d91d391",
-      "chapter_count": 3,
-      "module_file_count": 12,
-      "brief_file_count": 3,
-      "claims_file_count": 3,
-      "chapter_referenced_file_count": 21,
-      "chapter_content_sha256": "8285ef0f49ea7ec84de805800850918f959de305ff2a3806a3753231aca4fb8c",
-      "referenced_file_count": 32,
+      "package_content_sha256": "8928c50ead671c2c1920572ea788ac8fc8f89dd903c176cdcc52f4002f3e1c11",
+      "chapter_count": 4,
+      "module_file_count": 16,
+      "brief_file_count": 4,
+      "claims_file_count": 4,
+      "chapter_referenced_file_count": 28,
+      "chapter_content_sha256": "2f343b25b5b4e5cedd98ca7df8e84a3ac44f7b51e0710bf1042cdf2eba60127c",
+      "referenced_file_count": 40,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "8460d0cdf48c24616aae8e5a3f89e5306ca4866035a4db23a3149572ea7c697d",
-      "content_sha256": "9b268d639fc39e6121b048cebd3f5a710fa79e01a6e489e23b6e91ef69d74a5e",
+      "structure_sha256": "285f0a8c0c876aaafd2f63e7b43495454c8baddad8feca576720261e73fcb038",
+      "content_sha256": "3745c9adff31f094306354eeb3dac3392e76ccc56b6e1b9d6d5985ff0c177e19",
       "chapters": [
         {
           "chapter_id": "medisinsk-etikk-evidens-og-ansvarlig-beslutning",
@@ -1244,6 +1268,14 @@
           "module_file_count": 4,
           "referenced_file_count": 7,
           "content_sha256": "e8271d6abe1c861abd502f6c366f41f29a275bac2096f05a9e1349ec70840ea3"
+        },
+        {
+          "chapter_id": "klinisk-medisin-informasjon-testing-beslutning-og-oppfolging",
+          "title": "Klinisk medisin: informasjon, testing, beslutning og oppfølging",
+          "file": "data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging.json",
+          "module_file_count": 4,
+          "referenced_file_count": 7,
+          "content_sha256": "e2ae903dba4f77488c000514d5310c83270ce464950c895cb1589cc99137f7d6"
         }
       ]
     },
@@ -5225,5 +5257,5 @@
       ]
     }
   },
-  "release_sha256": "55e5bdbcdad3de7347869c7669176fd0cc53e51790f2c82cd2bd5ef5837b9ee7"
+  "release_sha256": "2e82e0dc28034f23f5ef88dbe5f698d7bf688fb9e0c283a655a82d44ad9a6332"
 }

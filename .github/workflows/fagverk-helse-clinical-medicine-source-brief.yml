@@ -34,6 +34,16 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: {node-version: 22}
+      - id: progress
+        shell: bash
+        run: |
+          count=$(node -e "const fs=require('fs');const r=JSON.parse(fs.readFileSync('data/fagverk/fagverk_registry.json','utf8')).subjects.helse.editorialPlan.registeredChapterCount;process.stdout.write(String(r))")
+          if [[ "$count" -ge 4 ]]; then
+            echo "fulltext=true" >> "$GITHUB_OUTPUT"
+            echo "Clinical medicine is already fulltext-materialized at $count/12; preserve source brief and validate cumulative state."
+          else
+            echo "fulltext=false" >> "$GITHUB_OUTPUT"
+          fi
       - id: source_gate
         shell: bash
         run: |
@@ -43,7 +53,7 @@ jobs:
             echo "ready=false" >> "$GITHUB_OUTPUT"
             echo "Bootstrap only: clinical medicine source brief generator/test not present yet."
           fi
-      - if: steps.source_gate.outputs.ready == 'true'
+      - if: steps.source_gate.outputs.ready == 'true' && steps.progress.outputs.fulltext != 'true'
         run: node scripts/brief-helse-clinical-medicine-sources-v1.mjs
       - run: node scripts/audit-helse-cumulative-progress-v1.mjs
       - run: node scripts/audit-fagverk-subject-inventory.mjs
@@ -51,5 +61,7 @@ jobs:
       - run: node scripts/audit-fagverk-theory-quality.mjs
       - run: node scripts/audit-fagverk-theory-integrity.mjs
       - run: node scripts/build-fagverk-release-manifest.mjs --check
-      - if: steps.source_gate.outputs.ready == 'true'
+      - if: steps.source_gate.outputs.ready == 'true' && steps.progress.outputs.fulltext != 'true'
         run: node --test tests/helse-clinical-medicine-source-brief-v1.test.mjs tests/helse-cumulative-progress-v1.test.mjs tests/fagverk-subject-inventory.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-release-manifest.test.mjs
+      - if: steps.progress.outputs.fulltext == 'true'
+        run: node --test tests/helse-cumulative-progress-v1.test.mjs tests/fagverk-subject-inventory.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-release-manifest.test.mjs

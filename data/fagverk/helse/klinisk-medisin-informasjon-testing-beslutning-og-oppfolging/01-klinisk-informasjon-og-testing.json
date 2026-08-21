@@ -1,0 +1,120 @@
+{
+  "schema": "history_go_fagverk_health_module_v1",
+  "version": "1.0.0",
+  "id": "01-klinisk-informasjon-og-testing",
+  "title": "Klinisk informasjon og testing",
+  "sections": [
+    {
+      "id": "hcm-klinisk-informasjon-og-problemrepresentasjon",
+      "title": "Klinisk informasjon, problemrepresentasjon og arbeidshypoteser",
+      "topic_id": "klinisk-informasjon-og-problemrepresentasjon",
+      "emne_ids": [
+        "em_helse_klinisk_medisin"
+      ],
+      "method_ids": [
+        "met_helse_diagnostisk_testvurdering"
+      ],
+      "boundary": "Historie, undersøkelse, tester og konsultasjoner behandles som komplementære informasjonskilder i en iterativ modell; ingen opplysning eller lærebokalgoritme brukes til å diagnostisere en konkret person.",
+      "paragraphIds": [
+        "hcm-p-01-01",
+        "hcm-p-01-02",
+        "hcm-p-01-03",
+        "hcm-p-01-04"
+      ],
+      "paragraphs": [
+        "Rå klinisk informasjon består av enkeltopplysninger som symptombeskrivelser, observasjoner, undersøkelsesfunn og testresultater. En problemrepresentasjon komprimerer utvalgte opplysninger til en arbeidbar faglig oppsummering, mens en diagnose er en senere fortolkende konklusjon som krever samlet evidens og kan revideres.",
+        "Diagnostisk arbeid er en iterativ prosess der informasjon innhentes, vurderes og integreres over tid. Nye opplysninger kan styrke, svekke eller omforme tidligere arbeidshypoteser, slik at diagnostikk ikke bør fremstilles som én enkelt test eller et lineært engangstrinn.",
+        "Sykehistorie, fysisk undersøkelse, diagnostiske tester og relevante konsultasjoner gir ulike typer informasjon og har forskjellige feilkilder. De bør derfor vurderes i sammenheng, fordi samsvar eller diskordans mellom informasjonskildene kan endre hvilke arbeidshypoteser som fortsatt er plausible.",
+        "Diagnostisk usikkerhet er ikke det samme som tilfeldig gjetning. En faglig håndtert usikkerhet gjør arbeidshypoteser eksplisitte, knytter dem til tilgjengelig evidens, beskriver hva som fortsatt er ukjent og åpner for systematisk oppdatering når ny informasjon blir tilgjengelig."
+      ],
+      "paragraphClaimIds": [
+        [
+          "hcm-01-01"
+        ],
+        [
+          "hcm-01-02"
+        ],
+        [
+          "hcm-01-03"
+        ],
+        [
+          "hcm-01-04"
+        ]
+      ],
+      "keyPoints": [
+        "skille rå klinisk informasjon fra en komprimert problemrepresentasjon og fra en endelig diagnose",
+        "skille diagnostisk usikkerhet fra tilfeldig gjetning ved å kreve eksplisitte hypoteser, evidens og oppdatering"
+      ],
+      "keyPointClaimIds": [
+        [
+          "hcm-01-01"
+        ],
+        [
+          "hcm-01-04"
+        ]
+      ],
+      "source_ids": [
+        "hcm01-nasem-diagnostic-process",
+        "hcm04-ahrq-calibrate-dx",
+        "hcm06-who-diagnostic-safety",
+        "hcm14-ncbi-clinical-methods-laboratory"
+      ]
+    },
+    {
+      "id": "hcm-diagnostisk-testytelse-og-referansestandard",
+      "title": "Diagnostisk testytelse, referansestandard og bias",
+      "topic_id": "diagnostisk-testytelse-og-referansestandard",
+      "emne_ids": [
+        "em_helse_klinisk_medisin"
+      ],
+      "method_ids": [
+        "met_helse_diagnostisk_testvurdering"
+      ],
+      "boundary": "Testytelse beskrives for en definert tilstand, referansestandard og tiltenkt populasjon; testytelse er ikke det samme som en individuell diagnose.",
+      "paragraphIds": [
+        "hcm-p-02-01",
+        "hcm-p-02-02",
+        "hcm-p-02-03",
+        "hcm-p-02-04"
+      ],
+      "paragraphs": [
+        "Sensitivitet beskriver hvor stor andel av dem som har den definerte tilstanden etter en relevant referansestandard som får positivt testresultat, mens spesifisitet beskriver andelen uten tilstanden som får negativt resultat. Begge målene er knyttet til definert test, terskel, referansestandard og studiepopulasjon.",
+        "Diagnostisk nøyaktighet krever sammenligning mot en referansestandard som så godt som mulig klassifiserer måltilstanden uavhengig av testen som evalueres. Ren overensstemmelse mellom to tester uten en slik standard kan måle likhet, men viser ikke alene hvilken test som klassifiserer tilstanden riktig.",
+        "Estimert testytelse påvirkes av hvem som inkluderes, sykdomsspekter, alvorlighetsgrad, alternative tilstander, setting og hvordan deltakere selekteres. En sensitivitet eller spesifisitet fra ett studieutvalg kan derfor ikke uten videre antas å være identisk i en annen tiltenkt brukspopulasjon.",
+        "Feil i referansestandarden kan feilklassifisere måltilstanden, verifikasjonsbias kan oppstå når ikke alle får samme eller uavhengig bekreftelse, og inkorporasjonsbias kan oppstå når indekstesten inngår i selve referansen. Slike skjevheter kan systematisk forvrenge estimerte mål på diagnostisk ytelse."
+      ],
+      "paragraphClaimIds": [
+        [
+          "hcm-02-01"
+        ],
+        [
+          "hcm-02-02"
+        ],
+        [
+          "hcm-02-03"
+        ],
+        [
+          "hcm-02-04"
+        ]
+      ],
+      "keyPoints": [
+        "definere sensitivitet og spesifisitet som parvise ytelsesmål mot en relevant referansestandard",
+        "vise hvordan referansestandardfeil, verifikasjonsbias og inkorporasjonsbias kan forvrenge testestimater"
+      ],
+      "keyPointClaimIds": [
+        [
+          "hcm-02-01"
+        ],
+        [
+          "hcm-02-04"
+        ]
+      ],
+      "source_ids": [
+        "hcm01-nasem-diagnostic-process",
+        "hcm02-fda-diagnostic-test-guidance",
+        "hcm03-ahrq-medical-test-methods",
+        "hcm14-ncbi-clinical-methods-laboratory"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,193 @@
+{
+  "schema": "history_go_fagverk_health_chapter_assessment_v1",
+  "version": "1.0.0",
+  "subject_id": "helse",
+  "chapter_id": "klinisk-medisin-informasjon-testing-beslutning-og-oppfolging",
+  "status": "audited",
+  "questions": [
+    {
+      "id": "helse-hcm-q01",
+      "question": "Hva skiller best rå klinisk informasjon, en problemrepresentasjon og en diagnose?",
+      "options": [
+        "De er tre navn på det samme",
+        "Rådata er enkeltopplysninger, problemrepresentasjonen er en faglig komprimering, og diagnosen er en senere fortolkende konklusjon",
+        "Problemrepresentasjonen er alltid mer sikker enn en diagnose",
+        "En diagnose kan fastsettes uten samlet evidens"
+      ],
+      "answer": "Rådata er enkeltopplysninger, problemrepresentasjonen er en faglig komprimering, og diagnosen er en senere fortolkende konklusjon",
+      "answerIndex": 1,
+      "question_type": "analysis",
+      "difficulty": "medium",
+      "emne_id": "em_helse_klinisk_medisin",
+      "claim_id": "hcm-01-01",
+      "source": [
+        "hcm01-nasem-diagnostic-process",
+        "hcm04-ahrq-calibrate-dx",
+        "hcm14-ncbi-clinical-methods-laboratory"
+      ],
+      "knowledge": "Rå klinisk informasjon består av enkeltopplysninger som symptombeskrivelser, observasjoner, undersøkelsesfunn og testresultater. En problemrepresentasjon komprimerer utvalgte opplysninger til en arbeidbar faglig oppsummering, mens en diagnose er en senere fortolkende konklusjon som krever samlet evidens og kan revideres.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hcm-q02",
+      "question": "Hva beskriver sensitivitet og spesifisitet mest presist?",
+      "options": [
+        "Prediktive verdier for enhver populasjon",
+        "Parvise mål på testytelse mot en definert referansestandard og terskel",
+        "Sannsynligheten for sykdom hos én bestemt person",
+        "Graden av enighet mellom to vilkårlige tester"
+      ],
+      "answer": "Parvise mål på testytelse mot en definert referansestandard og terskel",
+      "answerIndex": 1,
+      "question_type": "analysis",
+      "difficulty": "medium",
+      "emne_id": "em_helse_klinisk_medisin",
+      "claim_id": "hcm-02-01",
+      "source": [
+        "hcm02-fda-diagnostic-test-guidance",
+        "hcm03-ahrq-medical-test-methods",
+        "hcm14-ncbi-clinical-methods-laboratory"
+      ],
+      "knowledge": "Sensitivitet beskriver hvor stor andel av dem som har den definerte tilstanden etter en relevant referansestandard som får positivt testresultat, mens spesifisitet beskriver andelen uten tilstanden som får negativt resultat. Begge målene er knyttet til definert test, terskel, referansestandard og studiepopulasjon.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hcm-q03",
+      "question": "Hvorfor kan prediktive verdier endres selv om sensitivitet og spesifisitet er uendret?",
+      "options": [
+        "Fordi prediktive verdier avhenger av prevalens eller annen utgangssannsynlighet i populasjonen",
+        "Fordi sensitivitet alltid øker med prevalens",
+        "Fordi spesifisitet alltid faller med prevalens",
+        "Fordi prediktiv verdi er det samme som referanseintervall"
+      ],
+      "answer": "Fordi prediktive verdier avhenger av prevalens eller annen utgangssannsynlighet i populasjonen",
+      "answerIndex": 0,
+      "question_type": "analysis",
+      "difficulty": "medium",
+      "emne_id": "em_helse_klinisk_medisin",
+      "claim_id": "hcm-03-03",
+      "source": [
+        "hcm02-fda-diagnostic-test-guidance",
+        "hcm03-ahrq-medical-test-methods",
+        "hcm14-ncbi-clinical-methods-laboratory"
+      ],
+      "knowledge": "Positiv og negativ prediktiv verdi beskriver sannsynligheten for måltilstand gitt henholdsvis et positivt eller negativt testresultat i en bestemt populasjon. Verdiene endres når prevalens eller annen utgangssannsynlighet endres, selv om testens sensitivitet og spesifisitet ellers er uendret.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hcm-q04",
+      "question": "Hva kan man generelt konkludere når en måleverdi ligger utenfor et referanseintervall?",
+      "options": [
+        "At en bestemt diagnose er bekreftet",
+        "At sykdom sikkert er fraværende",
+        "At avviket må tolkes i en validert ramme fordi referanseavvik alene verken er nødvendig eller tilstrekkelig for diagnose",
+        "At behandling bør startes"
+      ],
+      "answer": "At avviket må tolkes i en validert ramme fordi referanseavvik alene verken er nødvendig eller tilstrekkelig for diagnose",
+      "answerIndex": 2,
+      "question_type": "analysis",
+      "difficulty": "hard",
+      "emne_id": "em_helse_klinisk_medisin",
+      "claim_id": "hcm-04-03",
+      "source": [
+        "hcm02-fda-diagnostic-test-guidance",
+        "hcm13-pubmed-biological-variation",
+        "hcm14-ncbi-clinical-methods-laboratory"
+      ],
+      "knowledge": "En verdi utenfor et referanseintervall kan forekomme hos personer uten den aktuelle sykdommen, og en verdi innenfor intervallet kan forekomme hos personer som likevel har sykdom. Referanseavvik er derfor verken nødvendig eller tilstrekkelig for diagnose uten en validert klinisk tolkningsramme.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hcm-q05",
+      "question": "Hvorfor skal en arbeidshypotese kunne revideres?",
+      "options": [
+        "Fordi nye data kan endre hvor plausible alternative forklaringer er",
+        "Fordi den første forklaringen aldri kan være riktig",
+        "Fordi tester alltid overstyrer sykehistorie og undersøkelse",
+        "Fordi usikkerhet betyr tilfeldig gjetning"
+      ],
+      "answer": "Fordi nye data kan endre hvor plausible alternative forklaringer er",
+      "answerIndex": 0,
+      "question_type": "analysis",
+      "difficulty": "hard",
+      "emne_id": "em_helse_klinisk_medisin",
+      "claim_id": "hcm-05-01",
+      "source": [
+        "hcm01-nasem-diagnostic-process",
+        "hcm04-ahrq-calibrate-dx",
+        "hcm06-who-diagnostic-safety"
+      ],
+      "knowledge": "En arbeidshypotese er foreløpig og bør kunne revideres når ny informasjon endrer den relative plausibiliteten til alternative forklaringer. Å låse seg til første forklaring gjør diagnostikken mindre responsiv på diskordante data, mens eksplisitt oppdatering gjør begrunnelsen etterprøvbar.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hcm-q06",
+      "question": "Hvorfor er en stor relativ behandlingseffekt ikke nok til å beskrive absolutt nytte?",
+      "options": [
+        "Fordi absolutt effekt også avhenger av baseline-risiko og tidsramme",
+        "Fordi relativ effekt aldri kan estimeres",
+        "Fordi absolutt effekt alltid er større enn relativ effekt",
+        "Fordi konfidensintervaller bare brukes ved diagnostiske tester"
+      ],
+      "answer": "Fordi absolutt effekt også avhenger av baseline-risiko og tidsramme",
+      "answerIndex": 0,
+      "question_type": "analysis",
+      "difficulty": "hard",
+      "emne_id": "em_helse_klinisk_medisin",
+      "claim_id": "hcm-06-01",
+      "source": [
+        "hcm10-cochrane-interpretation",
+        "hcm11-fda-ich-e9r1",
+        "hcm12-consort-2025"
+      ],
+      "knowledge": "Relative effektmål beskriver forholdet mellom utfall i sammenlignede grupper, mens absolutte effektmål beskriver forskjellen i faktisk hendelsesrisiko eller rate. Den absolutte nytten avhenger derfor av baseline-risiko og tidsramme, og en stor relativ effekt kan samtidig gi en liten absolutt forskjell.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hcm-q07",
+      "question": "Hva kjennetegner faglig planlagt oppfølging fremfor passiv registrering?",
+      "options": [
+        "Bare flere målinger",
+        "En forhåndsdefinert kobling mellom mål, observasjon, effekt, skade og revurdering",
+        "At alle tiltak fortsetter uendret",
+        "At oppfølging alltid erstatter ny diagnostisk utredning"
+      ],
+      "answer": "En forhåndsdefinert kobling mellom mål, observasjon, effekt, skade og revurdering",
+      "answerIndex": 1,
+      "question_type": "analysis",
+      "difficulty": "hard",
+      "emne_id": "em_helse_klinisk_medisin",
+      "claim_id": "hcm-07-01",
+      "source": [
+        "hcm08-nice-medicines-optimisation",
+        "hcm09-nice-multimorbidity",
+        "hcm10-cochrane-interpretation"
+      ],
+      "knowledge": "Oppfølging kan modelleres som en planlagt kontrollsløyfe der mål og forventede utfall defineres, relevante observasjoner samles, effekt og skade vurderes og planen revurderes ved ny informasjon. Uten slike forhåndsdefinerte koblinger blir oppfølging lett passiv registrering uten tydelig beslutningsgrunnlag.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hcm-q08",
+      "question": "Hva bør holdes tydelig fra hverandre i samvalg?",
+      "options": [
+        "Evidens om alternativenes konsekvenser og personens verdier og preferanser",
+        "Sensitivitet og spesifisitet",
+        "Referansestandard og testresultat",
+        "Randomisering og frafall"
+      ],
+      "answer": "Evidens om alternativenes konsekvenser og personens verdier og preferanser",
+      "answerIndex": 0,
+      "question_type": "analysis",
+      "difficulty": "hard",
+      "emne_id": "em_helse_klinisk_medisin",
+      "claim_id": "hcm-08-01",
+      "source": [
+        "hcm07-nice-shared-decision",
+        "hcm09-nice-multimorbidity",
+        "hcm10-cochrane-interpretation"
+      ],
+      "knowledge": "Evidens kan beskrive sannsynlige fordeler, ulemper og usikkerheter ved ulike alternativer, mens en persons verdier og preferanser beskriver hvordan disse konsekvensene vurderes. En ansvarlig beslutningsprosess må holde kunnskapsgrunnlaget og verdidimensjonen tydelig atskilt samtidig som begge gjøres synlige.",
+      "safety_mode": "general_non_individualizing"
+    }
+  ]
+}
