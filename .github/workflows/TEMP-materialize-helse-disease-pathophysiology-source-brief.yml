@@ -1,0 +1,49 @@
+name: TEMP materialize Helse disease pathophysiology source brief
+
+on:
+  push:
+    branches:
+      - agent/helse-disease-pathophysiology-source-unit
+    paths:
+      - 'scripts/brief-helse-disease-pathophysiology-sources-v1.mjs'
+      - 'tests/helse-disease-pathophysiology-source-brief-v1.test.mjs'
+      - '.github/workflows/fagverk-helse-disease-pathophysiology-source-brief.yml'
+      - '.github/workflows/TEMP-materialize-helse-disease-pathophysiology-source-brief.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/helse-disease-pathophysiology-source-unit
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/brief-helse-disease-pathophysiology-sources-v1.mjs --write
+      - run: node scripts/build-fagverk-release-manifest.mjs
+      - run: node scripts/brief-helse-disease-pathophysiology-sources-v1.mjs
+      - run: node scripts/audit-fagverk-subject-inventory.mjs
+      - run: node scripts/build-fagverk-release-manifest.mjs --check
+      - run: node --test tests/helse-disease-pathophysiology-source-brief-v1.test.mjs tests/fagverk-subject-inventory.test.mjs tests/fagverk-release-manifest.test.mjs
+      - name: Commit generated source-first outputs
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- data/fag/helse/disease_pathophysiology_source_claim_brief_v1.json
+          git add -- data/fag/fag_manifest.json
+          git add -- data/fagverk/subject_inventory.json
+          git add -- data/fagverk/fagverk_registry.json
+          git add -- data/fagverk/subject_status.json
+          git add -- data/fagverk/fagverk_release.json
+          git add -- reports/fagverk/helse-disease-pathophysiology-source-brief-v1-audit.json
+          if git diff --cached --quiet; then
+            echo "No generated changes"
+          else
+            git commit -m "Materialize disease pathophysiology source brief"
+            git push origin HEAD:agent/helse-disease-pathophysiology-source-unit
+          fi
