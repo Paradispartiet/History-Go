@@ -32,12 +32,25 @@ test('briefen låser mekanisme, kausalitet, biomarkørgrense og klinisk sikkerhe
     auditHealthDiseasePathophysiologySourceBriefV1();
 
   assert.deepEqual([sources.length, topics.length, scenarios.length, claims.length], [14, 8, 6, 32]);
-  assert.ok(claims.every((row) =>
-    row.status === 'planned_requires_fulltext_verification' && row.source_ids.length >= 3));
+  assert.equal(brief.common_topic_contract.claim_sources_inherit_topic_source_ids, true);
+  assert.deepEqual(
+    brief.common_topic_contract.method_ids,
+    ['met_helse_mekanisme_modell', 'met_helse_kausal_vurdering']
+  );
+  for (const topic of topics) {
+    const effectiveMethods = topic.method_ids || brief.common_topic_contract.method_ids;
+    const effectiveBoundary = topic.boundary || brief.common_topic_contract.boundary;
+    assert.deepEqual(effectiveMethods, ['met_helse_mekanisme_modell', 'met_helse_kausal_vurdering']);
+    assert.ok(effectiveBoundary);
+    for (const claim of topic.planned_claims) {
+      assert.equal(claim.status || 'planned_requires_fulltext_verification', 'planned_requires_fulltext_verification');
+      assert.ok((claim.source_ids || topic.source_ids).length >= 3);
+    }
+  }
   assert.equal(new Set(claims.map((row) => row.id)).size, 32);
-  assert.equal(brief.source_policy.causal_mechanism_must_not_be_inferred_from_association_alone, true);
-  assert.equal(brief.source_policy.biomarker_is_not_mechanism_or_diagnosis_by_itself, true);
-  assert.equal(brief.source_policy.genetic_risk_is_not_deterministic_without_appropriate_evidence, true);
+  assert.equal(brief.source_policy.association_is_not_causal_mechanism, true);
+  assert.equal(brief.source_policy.biomarker_is_not_mechanism_or_diagnosis, true);
+  assert.equal(brief.source_policy.genetic_risk_is_not_deterministic_without_evidence, true);
   assert.equal(brief.production_requirements.clinical_safety_contract_is_blocking, true);
   assert.equal(report.quality_assessment.total, 29);
   assert.deepEqual(
