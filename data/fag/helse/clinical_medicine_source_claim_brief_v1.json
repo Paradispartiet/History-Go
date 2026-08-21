@@ -1,0 +1,358 @@
+{
+  "schema": "history_go_health_clinical_medicine_source_claim_brief_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-21",
+  "status": "source_claim_brief_complete_full_chapter_next",
+  "subject_id": "helse",
+  "planned_unit_id": "klinisk-medisin-informasjon-testing-beslutning-og-oppfolging",
+  "future_chapter_id": "klinisk-medisin-informasjon-testing-beslutning-og-oppfolging",
+  "runtime_registration": {
+    "registered": false,
+    "allowed_before_full_chapter_gate": false
+  },
+  "metadata_registration": {
+    "deferred_until_fulltext": true,
+    "global_status_mutation_in_source_brief": false,
+    "release_mutation_in_source_brief": false
+  },
+  "scope": {
+    "title": "Klinisk medisin: informasjon, testing, beslutning og oppfølging",
+    "primary_domain_id": "klinisk_medisin",
+    "canonical_emne_id": "em_helse_klinisk_medisin",
+    "ownership": "Helse eier generelle prinsipper for klinisk informasjonsinnhenting, diagnostisk testvurdering, behandlingsstudier, oppfølging og klinisk sikkerhet. Sykdom/patofysiologi eier sykdomsmekanismer; Epidemiologi eier populasjonsdesign og kausal analyse; Medisinsk etikk/evidens eier normativ etikk og samtykketeori. Denne enheten gir aldri en konkret person diagnose, prognose, triage eller behandlingsråd.",
+    "included": [
+      "klinisk informasjon, problemrepresentasjon og arbeidshypoteser",
+      "diagnostisk testytelse, referansestandard, pretest/posttest og måleusikkerhet",
+      "differensialdiagnostikk, diagnostisk sikkerhet, behandlingsevidens, oppfølging og samvalg"
+    ],
+    "excluded": [
+      "individuell diagnose, differensialdiagnose eller sannsynlighetsberegning for en konkret person",
+      "akutt triage eller råd om når en konkret person skal søke helsehjelp",
+      "individuell prøve-, bilde- eller genetisk tolkning",
+      "individuell behandlingsanbefaling, legemiddelvalg eller dosering"
+    ]
+  },
+  "source_policy": {
+    "authoritative_sources_first": true,
+    "test_result_is_not_diagnosis": true,
+    "sensitivity_specificity_are_not_predictive_values": true,
+    "predictive_value_depends_on_pretest_probability_and_population": true,
+    "reference_interval_is_not_disease_boundary": true,
+    "agreement_with_non_reference_standard_is_not_accuracy": true,
+    "relative_effect_is_not_absolute_benefit": true,
+    "trial_result_is_not_individual_treatment_advice": true,
+    "planned_claim_is_not_verified_claim": true,
+    "fulltext_requires_reciprocal_paragraph_claim_trace": true,
+    "no_individual_medical_advice": true,
+    "sources_verified_at": "2026-08-21"
+  },
+  "allowed_method_ids": [
+    "met_helse_diagnostisk_testvurdering",
+    "met_helse_klinisk_studievurdering"
+  ],
+  "sources": [
+    {
+      "id": "hcm01-nasem-diagnostic-process",
+      "publisher": "National Academies of Sciences, Engineering, and Medicine",
+      "title": "Improving Diagnosis in Health Care – Chapter 2: The Diagnostic Process",
+      "url": "https://www.nationalacademies.org/read/21794/chapter/4",
+      "type": "national-academies-consensus-report",
+      "evidence_role": "diagnostic-process-framework",
+      "source_location": "Chapter 2: iterative information gathering, history/interview, physical examination, diagnostic testing, consultation, hypothesis generation and updating prior probabilities.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hcm02-fda-diagnostic-test-guidance",
+      "publisher": "U.S. Food and Drug Administration",
+      "title": "Statistical Guidance on Reporting Results from Studies Evaluating Diagnostic Tests",
+      "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/statistical-guidance-reporting-results-studies-evaluating-diagnostic-tests-guidance-industry-and-fda",
+      "type": "regulatory-diagnostic-test-guidance",
+      "evidence_role": "diagnostic-accuracy-and-reference-standard-guidance",
+      "source_location": "Sections 3–5 and appendices: intended-use population, reference standards, sensitivity/specificity, likelihood ratios, predictive values, bias, agreement and confidence intervals.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hcm03-ahrq-medical-test-methods",
+      "publisher": "Agency for Healthcare Research and Quality / NCBI Bookshelf",
+      "title": "Methods Guide for Medical Test Reviews",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK98241/",
+      "type": "federal-methods-guide",
+      "evidence_role": "medical-test-evidence-synthesis-methods",
+      "source_location": "Introduction and core chapters: medical tests depend on clinical context, prior information, provider skill, downstream actions and patient-relevant outcomes; test evidence must be assembled across linked evidence.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hcm04-ahrq-calibrate-dx",
+      "publisher": "Agency for Healthcare Research and Quality",
+      "title": "Calibrate Dx: A Resource To Improve Diagnostic Decisions",
+      "url": "https://www.ahrq.gov/diagnostic-safety/tools/calibrate-dx.html",
+      "type": "federal-diagnostic-safety-toolkit",
+      "evidence_role": "diagnostic-calibration-and-learning",
+      "source_location": "Parts 1–4 overview: diagnostic calibration, case selection, review and reflection, debrief, improvement strategies and longitudinal reassessment.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hcm05-ahrq-measure-dx",
+      "publisher": "Agency for Healthcare Research and Quality",
+      "title": "Measure Dx: A Resource To Identify, Analyze, and Learn From Diagnostic Safety Events",
+      "url": "https://www.ahrq.gov/diagnostic-safety/tools/measure-dx.html",
+      "type": "federal-diagnostic-safety-toolkit",
+      "evidence_role": "diagnostic-event-measurement-and-learning",
+      "source_location": "Resource overview and four-part guide: readiness, measurement strategies, case review, analysis and learning from diagnostic safety events.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hcm06-who-diagnostic-safety",
+      "publisher": "World Health Organization",
+      "title": "World Patient Safety Day 2024 – Improving diagnosis for patient safety",
+      "url": "https://www.who.int/campaigns/world-patient-safety-day/world-patient-safety-day-2024",
+      "type": "international-patient-safety-framework",
+      "evidence_role": "diagnostic-safety-process-framework",
+      "source_location": "Campaign key messages: diagnosis is iterative across presentation, history/examination, testing, result review, communication, collaboration, diagnosis/treatment plan, follow-up and re-evaluation; errors can arise at any stage.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hcm07-nice-shared-decision",
+      "publisher": "National Institute for Health and Care Excellence",
+      "title": "Shared decision making – NG197 recommendations",
+      "url": "https://www.nice.org.uk/guidance/ng197/chapter/recommendations",
+      "type": "national-clinical-guideline",
+      "evidence_role": "risk-benefit-option-communication-guidance",
+      "source_location": "Recommendations 1.2.8–1.2.11 and definitions: tests/treatments/options, risks, benefits, consequences, no treatment/no change, teach-back and values-based decisions.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hcm08-nice-medicines-optimisation",
+      "publisher": "National Institute for Health and Care Excellence",
+      "title": "Medicines optimisation: the safe and effective use of medicines to enable the best possible outcomes – NG5 recommendations",
+      "url": "https://www.nice.org.uk/guidance/ng5/chapter/recommendations",
+      "type": "national-clinical-guideline",
+      "evidence_role": "monitoring-medication-review-and-safety-guidance",
+      "source_location": "Sections 1.1 and 1.4: medication-safety incidents, structured medication review, effectiveness, appropriateness, adverse reactions and monitoring needs.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hcm09-nice-multimorbidity",
+      "publisher": "National Institute for Health and Care Excellence",
+      "title": "Multimorbidity: clinical assessment and management – NG56 recommendations",
+      "url": "https://www.nice.org.uk/guidance/ng56/chapter/Recommendations",
+      "type": "national-clinical-guideline",
+      "evidence_role": "applicability-treatment-burden-and-followup-guidance",
+      "source_location": "Recommendations 1.1.2–1.1.4 and 1.5–1.6: limits of single-condition evidence, treatment burden, benefits/harms, trial populations, goals, medication/treatment review and follow-up planning.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hcm10-cochrane-interpretation",
+      "publisher": "Cochrane",
+      "title": "Cochrane Handbook Chapter 15: Interpreting results and drawing conclusions",
+      "url": "https://training.cochrane.org/handbook/current/chapter-15",
+      "type": "systematic-review-methods-handbook",
+      "evidence_role": "relative-absolute-effect-and-certainty-interpretation",
+      "source_location": "Sections 15.1 and 15.4: relative and absolute effects, baseline risk, risk differences, NNT, confidence intervals, certainty and limits on healthcare recommendations.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hcm11-fda-ich-e9r1",
+      "publisher": "U.S. Food and Drug Administration / ICH",
+      "title": "E9(R1) Statistical Principles for Clinical Trials: Addendum on Estimands and Sensitivity Analysis",
+      "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/e9r1-statistical-principles-clinical-trials-addendum-estimands-and-sensitivity-analysis-clinical",
+      "type": "international-regulatory-clinical-trial-guidance",
+      "evidence_role": "clinical-trial-estimand-and-robustness-guidance",
+      "source_location": "Framework for aligning trial objectives, estimands, design, conduct, analysis, interpretation and sensitivity analyses so treatment effects are not misunderstood.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hcm12-consort-2025",
+      "publisher": "CONSORT Group / BMJ",
+      "title": "CONSORT 2025 statement: updated guideline for reporting randomised trials",
+      "url": "https://www.bmj.com/content/389/bmj-2024-081123",
+      "type": "peer-reviewed-reporting-guideline",
+      "evidence_role": "randomized-trial-transparency-framework",
+      "source_location": "CONSORT 2025 30-item checklist and flow diagram: transparent reporting of randomisation, interventions, outcomes, harms, participant flow, analysis and results needed for valid appraisal.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hcm13-pubmed-biological-variation",
+      "publisher": "PubMed / Practical Laboratory Medicine",
+      "title": "Biological variation: Understanding why it is so important?",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33490349/",
+      "type": "peer-reviewed-laboratory-medicine-review",
+      "evidence_role": "reference-and-biological-variation-boundary",
+      "source_location": "Review abstract and full-text record: reference can be population-based, a clinical decision point or prior individual results; biological variation matters for interpreting change and laboratory quality.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hcm14-ncbi-clinical-methods-laboratory",
+      "publisher": "NCBI Bookshelf / Clinical Methods",
+      "title": "Use of the Laboratory",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK372/",
+      "type": "clinical-methods-textbook-chapter",
+      "evidence_role": "pretest-probability-and-laboratory-interpretation",
+      "source_location": "Chapter 5: probabilistic diagnosis, limited hypothesis sets, updating relative probabilities with history, physical examination and diagnostic tests, and risks of unnecessary or misinterpreted testing.",
+      "retrieval_status": "verified_2026-08-21"
+    }
+  ],
+  "decision_scenarios": [
+    {
+      "id": "scenario-same-test-different-pretest",
+      "title": "Samme test, ulik utgangssannsynlighet",
+      "purpose": "Sammenligne hvordan den samme testytelsen gir ulike posttest-sannsynligheter i to hypotetiske populasjoner uten å beregne risiko for en virkelig person.",
+      "source_ids": ["hcm02-fda-diagnostic-test-guidance", "hcm03-ahrq-medical-test-methods", "hcm14-ncbi-clinical-methods-laboratory"]
+    },
+    {
+      "id": "scenario-discordant-clinical-data",
+      "title": "Et testresultat passer dårlig med resten av informasjonen",
+      "purpose": "Analysere generelt hvordan historie, undersøkelse, testkvalitet, referansestandard og alternative hypoteser bør holdes åpne ved diskordans.",
+      "source_ids": ["hcm01-nasem-diagnostic-process", "hcm02-fda-diagnostic-test-guidance", "hcm04-ahrq-calibrate-dx", "hcm06-who-diagnostic-safety"]
+    },
+    {
+      "id": "scenario-reference-interval",
+      "title": "En måleverdi ligger like utenfor et referanseintervall",
+      "purpose": "Skille referanseintervall, biologisk og analytisk variasjon, klinisk beslutningsgrense og diagnose uten å tolke en konkret prøve.",
+      "source_ids": ["hcm02-fda-diagnostic-test-guidance", "hcm13-pubmed-biological-variation", "hcm14-ncbi-clinical-methods-laboratory"]
+    },
+    {
+      "id": "scenario-differential-update",
+      "title": "Tre arbeidshypoteser og én ny opplysning",
+      "purpose": "Oppdatere en generell differensialdiagnostisk modell og vise hvordan diagnostisk sikkerhet krever re-evaluering, kommunikasjon og læring.",
+      "source_ids": ["hcm01-nasem-diagnostic-process", "hcm04-ahrq-calibrate-dx", "hcm05-ahrq-measure-dx", "hcm06-who-diagnostic-safety"]
+    },
+    {
+      "id": "scenario-relative-absolute-effect",
+      "title": "Stor relativ effekt, liten absolutt forskjell",
+      "purpose": "Skille relativ effekt, absolutt effekt, baseline-risiko, usikkerhet og skade i et hypotetisk randomisert forsøk uten behandlingsråd.",
+      "source_ids": ["hcm10-cochrane-interpretation", "hcm11-fda-ich-e9r1", "hcm12-consort-2025"]
+    },
+    {
+      "id": "scenario-followup-plan",
+      "title": "Oppfølging når effekt og skade fortsatt er usikre",
+      "purpose": "Utforme en generell modell for mål, monitorering, behandlingsbyrde, revurdering og dokumentasjon uten å foreskrive tiltak til en konkret person.",
+      "source_ids": ["hcm07-nice-shared-decision", "hcm08-nice-medicines-optimisation", "hcm09-nice-multimorbidity", "hcm10-cochrane-interpretation"]
+    }
+  ],
+  "topic_briefs": [
+    {
+      "id": "klinisk-informasjon-og-problemrepresentasjon",
+      "title": "Klinisk informasjon, problemrepresentasjon og arbeidshypoteser",
+      "method_ids": ["met_helse_diagnostisk_testvurdering"],
+      "source_ids": ["hcm01-nasem-diagnostic-process", "hcm04-ahrq-calibrate-dx", "hcm06-who-diagnostic-safety", "hcm14-ncbi-clinical-methods-laboratory"],
+      "boundary": "Historie, undersøkelse, tester og konsultasjoner behandles som komplementære informasjonskilder i en iterativ modell; ingen opplysning eller lærebokalgoritme brukes til å diagnostisere en konkret person.",
+      "planned_claims": [
+        {"id":"hcm-01-01","focus":"skille rå klinisk informasjon fra en komprimert problemrepresentasjon og fra en endelig diagnose","status":"planned_requires_fulltext_verification","source_ids":["hcm01-nasem-diagnostic-process","hcm04-ahrq-calibrate-dx","hcm14-ncbi-clinical-methods-laboratory"]},
+        {"id":"hcm-01-02","focus":"forklare diagnostikk som iterativ innhenting, integrasjon og tolkning av informasjon over tid","status":"planned_requires_fulltext_verification","source_ids":["hcm01-nasem-diagnostic-process","hcm06-who-diagnostic-safety","hcm14-ncbi-clinical-methods-laboratory"]},
+        {"id":"hcm-01-03","focus":"vise hvorfor historie, fysisk undersøkelse, testresultater og konsultasjoner må vurderes i sammenheng og kan endre arbeidshypoteser","status":"planned_requires_fulltext_verification","source_ids":["hcm01-nasem-diagnostic-process","hcm04-ahrq-calibrate-dx","hcm14-ncbi-clinical-methods-laboratory"]},
+        {"id":"hcm-01-04","focus":"skille diagnostisk usikkerhet fra tilfeldig gjetning ved å kreve eksplisitte hypoteser, evidens og oppdatering","status":"planned_requires_fulltext_verification","source_ids":["hcm01-nasem-diagnostic-process","hcm04-ahrq-calibrate-dx","hcm06-who-diagnostic-safety"]}
+      ]
+    },
+    {
+      "id": "diagnostisk-testytelse-og-referansestandard",
+      "title": "Diagnostisk testytelse, referansestandard og bias",
+      "method_ids": ["met_helse_diagnostisk_testvurdering"],
+      "source_ids": ["hcm01-nasem-diagnostic-process", "hcm02-fda-diagnostic-test-guidance", "hcm03-ahrq-medical-test-methods", "hcm14-ncbi-clinical-methods-laboratory"],
+      "boundary": "Testytelse beskrives for en definert tilstand, referansestandard og tiltenkt populasjon; testytelse er ikke det samme som en individuell diagnose.",
+      "planned_claims": [
+        {"id":"hcm-02-01","focus":"definere sensitivitet og spesifisitet som parvise ytelsesmål mot en relevant referansestandard","status":"planned_requires_fulltext_verification","source_ids":["hcm02-fda-diagnostic-test-guidance","hcm03-ahrq-medical-test-methods","hcm14-ncbi-clinical-methods-laboratory"]},
+        {"id":"hcm-02-02","focus":"skille diagnostisk nøyaktighet mot referansestandard fra ren overensstemmelse mot en ikke-referansestandard","status":"planned_requires_fulltext_verification","source_ids":["hcm02-fda-diagnostic-test-guidance","hcm03-ahrq-medical-test-methods","hcm01-nasem-diagnostic-process"]},
+        {"id":"hcm-02-03","focus":"forklare hvorfor tiltenkt brukspopulasjon, spektrum og seleksjon påvirker estimert testytelse og generaliserbarhet","status":"planned_requires_fulltext_verification","source_ids":["hcm02-fda-diagnostic-test-guidance","hcm03-ahrq-medical-test-methods","hcm01-nasem-diagnostic-process"]},
+        {"id":"hcm-02-04","focus":"vise hvordan referansestandardfeil, verifikasjonsbias og inkorporasjonsbias kan forvrenge testestimater","status":"planned_requires_fulltext_verification","source_ids":["hcm02-fda-diagnostic-test-guidance","hcm03-ahrq-medical-test-methods","hcm14-ncbi-clinical-methods-laboratory"]}
+      ]
+    },
+    {
+      "id": "pretest-posttest-og-beslutningsterskler",
+      "title": "Pretest, posttest, sannsynlighet og beslutningsterskler",
+      "method_ids": ["met_helse_diagnostisk_testvurdering"],
+      "source_ids": ["hcm01-nasem-diagnostic-process", "hcm02-fda-diagnostic-test-guidance", "hcm03-ahrq-medical-test-methods", "hcm14-ncbi-clinical-methods-laboratory"],
+      "boundary": "Sannsynlighetsoppdatering læres med hypotetiske populasjoner og regneeksempler; ingen sannsynlighet beregnes for en virkelig person.",
+      "planned_claims": [
+        {"id":"hcm-03-01","focus":"skille pretest-sannsynlighet fra testens sensitivitet og spesifisitet","status":"planned_requires_fulltext_verification","source_ids":["hcm01-nasem-diagnostic-process","hcm02-fda-diagnostic-test-guidance","hcm14-ncbi-clinical-methods-laboratory"]},
+        {"id":"hcm-03-02","focus":"forklare likelihood ratio som kobling mellom testresultat og endring fra pretest til posttest uten å gjøre resultatet til diagnose","status":"planned_requires_fulltext_verification","source_ids":["hcm02-fda-diagnostic-test-guidance","hcm03-ahrq-medical-test-methods","hcm14-ncbi-clinical-methods-laboratory"]},
+        {"id":"hcm-03-03","focus":"vise hvorfor positive og negative prediktive verdier varierer med prevalens og utgangssannsynlighet","status":"planned_requires_fulltext_verification","source_ids":["hcm02-fda-diagnostic-test-guidance","hcm03-ahrq-medical-test-methods","hcm14-ncbi-clinical-methods-laboratory"]},
+        {"id":"hcm-03-04","focus":"skille beslutningsterskel fra biologisk sannhet og vise at terskler uttrykker konsekvenser, alternativer og usikkerhet","status":"planned_requires_fulltext_verification","source_ids":["hcm01-nasem-diagnostic-process","hcm03-ahrq-medical-test-methods","hcm14-ncbi-clinical-methods-laboratory"]}
+      ]
+    },
+    {
+      "id": "maling-referanseintervall-og-usikkerhet",
+      "title": "Måling, referanseintervall, biologisk variasjon og usikkerhet",
+      "method_ids": ["met_helse_diagnostisk_testvurdering"],
+      "source_ids": ["hcm02-fda-diagnostic-test-guidance", "hcm03-ahrq-medical-test-methods", "hcm13-pubmed-biological-variation", "hcm14-ncbi-clinical-methods-laboratory"],
+      "boundary": "Laboratoriemål brukes til å lære måling og usikkerhet; et konkret avvik tolkes aldri som sykdom eller som grunnlag for råd.",
+      "planned_claims": [
+        {"id":"hcm-04-01","focus":"skille måleverdi fra underliggende biologisk størrelse og inkludere analytisk og biologisk variasjon","status":"planned_requires_fulltext_verification","source_ids":["hcm03-ahrq-medical-test-methods","hcm13-pubmed-biological-variation","hcm14-ncbi-clinical-methods-laboratory"]},
+        {"id":"hcm-04-02","focus":"skille populasjonsbasert referanseintervall fra klinisk beslutningsgrense og sykdomsdefinisjon","status":"planned_requires_fulltext_verification","source_ids":["hcm02-fda-diagnostic-test-guidance","hcm13-pubmed-biological-variation","hcm14-ncbi-clinical-methods-laboratory"]},
+        {"id":"hcm-04-03","focus":"forklare hvorfor en verdi utenfor et referanseintervall verken er nødvendig eller tilstrekkelig for diagnose","status":"planned_requires_fulltext_verification","source_ids":["hcm02-fda-diagnostic-test-guidance","hcm13-pubmed-biological-variation","hcm14-ncbi-clinical-methods-laboratory"]},
+        {"id":"hcm-04-04","focus":"vise hvorfor serielle endringer må vurderes mot måleusikkerhet, biologisk variasjon, tidsforløp og klinisk kontekst","status":"planned_requires_fulltext_verification","source_ids":["hcm03-ahrq-medical-test-methods","hcm13-pubmed-biological-variation","hcm14-ncbi-clinical-methods-laboratory"]}
+      ]
+    },
+    {
+      "id": "differensialdiagnostikk-og-diagnostisk-sikkerhet",
+      "title": "Differensialdiagnostikk, kalibrering og diagnostisk sikkerhet",
+      "method_ids": ["met_helse_diagnostisk_testvurdering"],
+      "source_ids": ["hcm01-nasem-diagnostic-process", "hcm04-ahrq-calibrate-dx", "hcm05-ahrq-measure-dx", "hcm06-who-diagnostic-safety"],
+      "boundary": "Differensialdiagnostikk behandles som generell struktur for hypoteser, oppdatering og sikkerhetslæring; ingen sykdom rangeres for en konkret person.",
+      "planned_claims": [
+        {"id":"hcm-05-01","focus":"forklare hvorfor en arbeidshypotese skal kunne revideres når nye data kommer og ikke låses til første forklaring","status":"planned_requires_fulltext_verification","source_ids":["hcm01-nasem-diagnostic-process","hcm04-ahrq-calibrate-dx","hcm06-who-diagnostic-safety"]},
+        {"id":"hcm-05-02","focus":"skille diagnostisk kalibrering mellom selvtillit og faktisk treffsikkerhet fra generell faglig selvsikkerhet","status":"planned_requires_fulltext_verification","source_ids":["hcm04-ahrq-calibrate-dx","hcm05-ahrq-measure-dx","hcm01-nasem-diagnostic-process"]},
+        {"id":"hcm-05-03","focus":"vise at diagnostiske feil kan oppstå i informasjonsinnhenting, tolkning, kommunikasjon, koordinering, testing og oppfølging","status":"planned_requires_fulltext_verification","source_ids":["hcm05-ahrq-measure-dx","hcm06-who-diagnostic-safety","hcm01-nasem-diagnostic-process"]},
+        {"id":"hcm-05-04","focus":"forklare systematisk læring fra forsinkede, feilaktige eller oversette diagnoser uten å redusere dem til individuell kognitiv feil","status":"planned_requires_fulltext_verification","source_ids":["hcm04-ahrq-calibrate-dx","hcm05-ahrq-measure-dx","hcm06-who-diagnostic-safety"]}
+      ]
+    },
+    {
+      "id": "behandlingseffekt-skade-og-overforbarhet",
+      "title": "Behandlingseffekt, skade, estimand og overførbarhet",
+      "method_ids": ["met_helse_klinisk_studievurdering"],
+      "source_ids": ["hcm09-nice-multimorbidity", "hcm10-cochrane-interpretation", "hcm11-fda-ich-e9r1", "hcm12-consort-2025"],
+      "boundary": "Behandlingsstudier brukes til å lære effektmål og gyldighet; ingen studiedata oversettes direkte til hva en konkret person bør gjøre.",
+      "planned_claims": [
+        {"id":"hcm-06-01","focus":"skille relativ effekt fra absolutt effekt og vise avhengigheten av baseline-risiko og tidsramme","status":"planned_requires_fulltext_verification","source_ids":["hcm10-cochrane-interpretation","hcm11-fda-ich-e9r1","hcm12-consort-2025"]},
+        {"id":"hcm-06-02","focus":"skille estimand og estimert behandlingseffekt fra en vag påstand om at en behandling virker","status":"planned_requires_fulltext_verification","source_ids":["hcm11-fda-ich-e9r1","hcm12-consort-2025","hcm10-cochrane-interpretation"]},
+        {"id":"hcm-06-03","focus":"vurdere effekt og skade sammen med konfidensintervall, frafall, interkurrente hendelser og rapporteringsfullstendighet","status":"planned_requires_fulltext_verification","source_ids":["hcm10-cochrane-interpretation","hcm11-fda-ich-e9r1","hcm12-consort-2025"]},
+        {"id":"hcm-06-04","focus":"skille intern validitet fra overførbarhet til populasjoner som skiller seg fra studieutvalget, særlig ved multimorbiditet","status":"planned_requires_fulltext_verification","source_ids":["hcm09-nice-multimorbidity","hcm10-cochrane-interpretation","hcm12-consort-2025"]}
+      ]
+    },
+    {
+      "id": "oppfolging-monitorering-og-behandlingsbyrde",
+      "title": "Oppfølging, monitorering, behandlingsbyrde og revurdering",
+      "method_ids": ["met_helse_klinisk_studievurdering", "met_helse_diagnostisk_testvurdering"],
+      "source_ids": ["hcm07-nice-shared-decision", "hcm08-nice-medicines-optimisation", "hcm09-nice-multimorbidity", "hcm10-cochrane-interpretation"],
+      "boundary": "Oppfølging modelleres som generelle kontrollsløyfer for mål, effekt, skade og ny informasjon; ingen konkret monitoreringsplan eller legemiddelråd gis.",
+      "planned_claims": [
+        {"id":"hcm-07-01","focus":"forklare oppfølging som en forhåndsdefinert sløyfe mellom mål, observasjon, effekt, skade og revurdering","status":"planned_requires_fulltext_verification","source_ids":["hcm08-nice-medicines-optimisation","hcm09-nice-multimorbidity","hcm10-cochrane-interpretation"]},
+        {"id":"hcm-07-02","focus":"skille monitorering av effekt fra monitorering av skade og fra ny diagnostisk utredning","status":"planned_requires_fulltext_verification","source_ids":["hcm07-nice-shared-decision","hcm08-nice-medicines-optimisation","hcm09-nice-multimorbidity"]},
+        {"id":"hcm-07-03","focus":"inkludere behandlingsbyrde, polyfarmasi, avtaler og koordinering som klinisk relevante konsekvenser og ikke bare bivirkninger","status":"planned_requires_fulltext_verification","source_ids":["hcm08-nice-medicines-optimisation","hcm09-nice-multimorbidity","hcm07-nice-shared-decision"]},
+        {"id":"hcm-07-04","focus":"vise hvorfor endring eller stopp av et tiltak krever planlagt observasjon og revurdering av effekt og skade","status":"planned_requires_fulltext_verification","source_ids":["hcm08-nice-medicines-optimisation","hcm09-nice-multimorbidity","hcm10-cochrane-interpretation"]}
+      ]
+    },
+    {
+      "id": "samvalg-dokumentasjon-og-plan",
+      "title": "Samvalg, dokumentasjon, usikkerhet og plan",
+      "method_ids": ["met_helse_klinisk_studievurdering", "met_helse_diagnostisk_testvurdering"],
+      "source_ids": ["hcm01-nasem-diagnostic-process", "hcm07-nice-shared-decision", "hcm09-nice-multimorbidity", "hcm10-cochrane-interpretation"],
+      "boundary": "Enheten lærer hvordan evidens, usikkerhet, alternativer og oppfølging kan dokumenteres og kommuniseres; normativ samtykketeori forblir eid av medisinsk etikk/evidens.",
+      "planned_claims": [
+        {"id":"hcm-08-01","focus":"skille evidens om alternativer fra personens verdier og preferanser, og vise at begge må være synlige i en beslutningsprosess","status":"planned_requires_fulltext_verification","source_ids":["hcm07-nice-shared-decision","hcm09-nice-multimorbidity","hcm10-cochrane-interpretation"]},
+        {"id":"hcm-08-02","focus":"inkludere alternativet ingen behandling eller ingen endring når det er et reelt alternativ, uten å fremstille ett alternativ som automatisk riktig","status":"planned_requires_fulltext_verification","source_ids":["hcm07-nice-shared-decision","hcm09-nice-multimorbidity","hcm10-cochrane-interpretation"]},
+        {"id":"hcm-08-03","focus":"forklare hvorfor forståelse bør kontrolleres og usikkerhet kommuniseres eksplisitt fremfor å skjules bak tekniske tall","status":"planned_requires_fulltext_verification","source_ids":["hcm01-nasem-diagnostic-process","hcm07-nice-shared-decision","hcm10-cochrane-interpretation"]},
+        {"id":"hcm-08-04","focus":"beskrive en generell dokumentert plan med arbeidshypotese eller mål, valgt handling, ansvar, oppfølging og kriterier for revurdering","status":"planned_requires_fulltext_verification","source_ids":["hcm01-nasem-diagnostic-process","hcm07-nice-shared-decision","hcm09-nice-multimorbidity"]}
+      ]
+    }
+  ],
+  "proposed_module_order": [
+    {"id":"klinisk-informasjon-og-testing","topic_ids":["klinisk-informasjon-og-problemrepresentasjon","diagnostisk-testytelse-og-referansestandard"]},
+    {"id":"sannsynlighet-maling-og-usikkerhet","topic_ids":["pretest-posttest-og-beslutningsterskler","maling-referanseintervall-og-usikkerhet"]},
+    {"id":"diagnostisk-sikkerhet-og-behandlingsevidens","topic_ids":["differensialdiagnostikk-og-diagnostisk-sikkerhet","behandlingseffekt-skade-og-overforbarhet"]},
+    {"id":"oppfolging-samvalg-og-plan","topic_ids":["oppfolging-monitorering-og-behandlingsbyrde","samvalg-dokumentasjon-og-plan"]}
+  ],
+  "production_requirements": {
+    "minimum_verified_claims": 32,
+    "every_planned_claim_must_be_verified_rewritten_or_rejected": true,
+    "every_used_source_must_support_at_least_one_final_claim": true,
+    "paragraph_claim_trace_required": true,
+    "reciprocal_claim_paragraph_trace_required": true,
+    "test_performance_pretest_posttest_reference_interval_and_diagnosis_must_remain_distinct": true,
+    "relative_and_absolute_treatment_effect_must_remain_distinct": true,
+    "no_person_specific_scenario": true,
+    "clinical_safety_contract_is_blocking": true,
+    "chapter_registration_only_after_fulltext_claim_source_audit": true
+  },
+  "next_gate": "produce_full_chapter_claims_and_inspectable_sources_for_klinisk_medisin"
+}
