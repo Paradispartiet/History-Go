@@ -1,0 +1,193 @@
+{
+  "schema": "history_go_fagverk_health_chapter_assessment_v1",
+  "version": "1.0.0",
+  "subject_id": "helse",
+  "chapter_id": "sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt",
+  "status": "audited",
+  "questions": [
+    {
+      "id": "helse-hdp-q01",
+      "question": "Hva kan en statistisk assosiasjon alene dokumentere?",
+      "options": [
+        "En full kausal mekanisme",
+        "At to størrelser samvarierer i det undersøkte materialet",
+        "En individuell diagnose",
+        "At en risikofaktor er nødvendig årsak"
+      ],
+      "answer": "At to størrelser samvarierer i det undersøkte materialet",
+      "answerIndex": 1,
+      "question_type": "analysis",
+      "difficulty": "medium",
+      "emne_id": "em_helse_sykdom_patofysiologi",
+      "claim_id": "hdp-01-02",
+      "source": [
+        "hdp01-ncbi-cell-injury-necrosis",
+        "hdp09-nhgri-genetic-disorders",
+        "hdp13-fda-nih-best"
+      ],
+      "knowledge": "En kausal sykdomsmodell må angi etterprøvbare ledd fra påvirkning eller biologisk variasjon via mekanismer til vevs- eller systemkonsekvenser. En observert assosiasjon kan være forenlig med årsak, men kan også skyldes omvendt retning, felles årsaker eller andre skjevheter og er derfor ikke i seg selv et mekanismebevis.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hdp-q02",
+      "question": "Hva skiller apoptose fra typisk nekrose i denne modellen?",
+      "options": [
+        "Apoptose er regulert celledemontering, mens nekrose ofte innebærer membrantap og vevsreaksjon",
+        "Apoptose skjer bare ved infeksjon",
+        "Nekrose er alltid reversibel",
+        "De er synonymer"
+      ],
+      "answer": "Apoptose er regulert celledemontering, mens nekrose ofte innebærer membrantap og vevsreaksjon",
+      "answerIndex": 0,
+      "question_type": "analysis",
+      "difficulty": "medium",
+      "emne_id": "em_helse_sykdom_patofysiologi",
+      "claim_id": "hdp-02-02",
+      "source": [
+        "hdp01-ncbi-cell-injury-necrosis",
+        "hdp02-ncbi-apoptosis-cell-death",
+        "hdp04-ncbi-wound-healing"
+      ],
+      "knowledge": "Nekrose er typisk forbundet med tap av membranintegritet, celleinnhold som lekker ut og en vevsreaksjon, mens apoptose er en regulert demontering av cellen gjennom organiserte signalveier og proteaser. Dette er viktige kontraster, men biologisk celledød omfatter også andre regulerte former, så nekrose og apoptose er ikke en uttømmende todeling.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hdp-q03",
+      "question": "Hvordan bør fasene i vevsreparasjon forstås?",
+      "options": [
+        "Som helt separate døgn",
+        "Som overlappende og gjensidig regulerende prosesser",
+        "Som ett enkelt signal",
+        "Som en individuell behandlingsplan"
+      ],
+      "answer": "Som overlappende og gjensidig regulerende prosesser",
+      "answerIndex": 1,
+      "question_type": "analysis",
+      "difficulty": "medium",
+      "emne_id": "em_helse_sykdom_patofysiologi",
+      "claim_id": "hdp-03-03",
+      "source": [
+        "hdp03-ncbi-pathology-inflammation",
+        "hdp04-ncbi-wound-healing",
+        "hdp14-ncbi-chronic-inflammation"
+      ],
+      "knowledge": "Vevsreparasjon kan beskrives gjennom hemostase, inflammasjon, proliferasjon og remodellering, men fasene overlapper i tid og regulerer hverandre gjensidig. Fremstillingen er derfor en prosessmodell og ikke en rigid tidsplan; vevstype, skadeomfang, blodforsyning og lokal signalering påvirker forløpet.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hdp-q04",
+      "question": "Hvilket skille er korrekt?",
+      "options": [
+        "Infeksjon og inflammasjon er synonymer",
+        "Inflammasjon er vertens respons og kan forekomme uten infeksjon",
+        "All immunskade skyldes mikrober",
+        "Infeksjon betyr autoimmunitet"
+      ],
+      "answer": "Inflammasjon er vertens respons og kan forekomme uten infeksjon",
+      "answerIndex": 1,
+      "question_type": "analysis",
+      "difficulty": "hard",
+      "emne_id": "em_helse_sykdom_patofysiologi",
+      "claim_id": "hdp-04-04",
+      "source": [
+        "hdp03-ncbi-pathology-inflammation",
+        "hdp05-ncbi-immune-response",
+        "hdp14-ncbi-chronic-inflammation"
+      ],
+      "knowledge": "Infeksjon viser til en biologisk interaksjon med en mikroorganisme, inflammasjon er vertens vevsrespons, og immunmediert skade er skade som utføres eller forsterkes av immunologiske mekanismer. Prosessene kan opptre samtidig, men inflammasjon og immunskade kan også forekomme uten infeksjon og begrepene er derfor ikke synonymer.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hdp-q05",
+      "question": "Hva inngår i Virchows triade?",
+      "options": [
+        "Karvegg, blodstrøm og koagulasjonstilbøyelighet",
+        "Bare blodtrykk",
+        "Bare oksygenmetning",
+        "Gen, hormon og reseptor"
+      ],
+      "answer": "Karvegg, blodstrøm og koagulasjonstilbøyelighet",
+      "answerIndex": 0,
+      "question_type": "analysis",
+      "difficulty": "hard",
+      "emne_id": "em_helse_sykdom_patofysiologi",
+      "claim_id": "hdp-05-01",
+      "source": [
+        "hdp06-ncbi-virchow-triad",
+        "hdp07-ncbi-shock",
+        "hdp08-ncbi-edema"
+      ],
+      "knowledge": "Trombose kan analyseres gjennom Virchows triade: endring i karvegg eller endotel, unormal blodstrøm og økt koagulasjonstilbøyelighet. De tre komponentene virker ofte sammen, men deres relative betydning varierer mellom situasjoner, slik at triaden er en mekanistisk ramme og ikke en individuell risikoscore.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hdp-q06",
+      "question": "Hva følger av at en variant er klassifisert som patogen?",
+      "options": [
+        "At alle bærere får identisk sykdom",
+        "At varianten er sykdomsrelevant, men penetrans og kontekst kan påvirke fenotypen",
+        "At funnet er en individuell prognose",
+        "At varianten alltid er somatisk"
+      ],
+      "answer": "At varianten er sykdomsrelevant, men penetrans og kontekst kan påvirke fenotypen",
+      "answerIndex": 1,
+      "question_type": "analysis",
+      "difficulty": "hard",
+      "emne_id": "em_helse_sykdom_patofysiologi",
+      "claim_id": "hdp-06-02",
+      "source": [
+        "hdp09-nhgri-genetic-disorders",
+        "hdp10-nhgri-pathogenic-variant",
+        "hdp11-nhgri-susceptibility"
+      ],
+      "knowledge": "En patogen variant er klassifisert som sykdomsrelevant på grunnlag av evidens, men fenotypen kan fortsatt påvirkes av penetrans, ekspressivitet, alder og biologisk eller miljømessig kontekst. Begrepet patogen betyr derfor ikke automatisk at alle bærere utvikler samme sykdomsbilde eller forløp.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hdp-q07",
+      "question": "Hva er den beste forskjellen mellom driver og passasjer?",
+      "options": [
+        "Driver bidrar til selektert tumorbiologi; passasjer kan følge klonen uten dokumentert vekstfordel",
+        "Alle biomarkører er drivere",
+        "Passasjer betyr metastase",
+        "Driver betyr at behandling alltid virker"
+      ],
+      "answer": "Driver bidrar til selektert tumorbiologi; passasjer kan følge klonen uten dokumentert vekstfordel",
+      "answerIndex": 0,
+      "question_type": "analysis",
+      "difficulty": "hard",
+      "emne_id": "em_helse_sykdom_patofysiologi",
+      "claim_id": "hdp-07-03",
+      "source": [
+        "hdp02-ncbi-apoptosis-cell-death",
+        "hdp12-nci-what-is-cancer",
+        "hdp13-fda-nih-best"
+      ],
+      "knowledge": "En driverendring bidrar til den biologiske vekst- eller overlevelsesfordelen som selekteres i en tumor, mens et passasjerfunn kan følge med en klon uten dokumentert kausal betydning for veksten. En biomarkør kan være nyttig til klassifikasjon eller oppfølging uten at det alene beviser at markøren selv er den mekanistiske driveren.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hdp-q08",
+      "question": "Hva er riktig om en biomarkør?",
+      "options": [
+        "Målingen er automatisk sykdomsmekanismen",
+        "Den er en målbar egenskap med definert bruk, men er ikke i seg selv mekanismen",
+        "Den gir alltid sikker prognose",
+        "Den kan bare brukes ved kreft"
+      ],
+      "answer": "Den er en målbar egenskap med definert bruk, men er ikke i seg selv mekanismen",
+      "answerIndex": 1,
+      "question_type": "analysis",
+      "difficulty": "hard",
+      "emne_id": "em_helse_sykdom_patofysiologi",
+      "claim_id": "hdp-08-01",
+      "source": [
+        "hdp07-ncbi-shock",
+        "hdp08-ncbi-edema",
+        "hdp13-fda-nih-best"
+      ],
+      "knowledge": "En biomarkør er en definert, målbar egenskap som kan indikere en normal eller patologisk prosess eller en biologisk respons, og dens kategori avhenger av tiltenkt bruk som for eksempel risiko, diagnostikk, prognose eller monitorering. Målingen er likevel ikke identisk med den mekanismen som eventuelt produserer signalet.",
+      "safety_mode": "general_non_individualizing"
+    }
+  ]
+}

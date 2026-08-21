@@ -4134,15 +4134,17 @@
         "schemaFamily": "foundation_v1",
         "sourceOfTruth": true,
         "firstSourceClaimBrief": "data/fag/helse/medical_ethics_evidence_source_claim_brief_v1.json",
-        "note": "To Helse-domener er fulltekstmaterialisert: medisinsk etikk/evidens og anatomi/fysiologi. Anatomi/fysiologi har 8 seksjoner, 32 claimsporede avsnitt, 32 verifiserte claims, 14 inspiserbare kilder og 8 vurderingsoppgaver. Ti domener og strict proof gjenstår.",
+        "note": "Tre Helse-domener er fulltekstmaterialisert: medisinsk etikk/evidens, anatomi/fysiologi og sykdom/patofysiologi. Domene 3 har 8 seksjoner, 32 claimsporede avsnitt, 32 verifiserte claims, 14 inspiserbare kilder og 8 vurderingsoppgaver. Ni domener og strict proof gjenstår.",
         "firstFulltextChapter": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning.json",
         "secondSourceClaimBrief": "data/fag/helse/anatomy_physiology_source_claim_brief_v1.json",
-        "secondFulltextChapter": "data/fagverk/helse/anatomi-fysiologi-struktur-funksjon-og-regulering.json"
+        "secondFulltextChapter": "data/fagverk/helse/anatomi-fysiologi-struktur-funksjon-og-regulering.json",
+        "thirdSourceClaimBrief": "data/fag/helse/disease_pathophysiology_source_claim_brief_v1.json",
+        "thirdFulltextChapter": "data/fagverk/helse/sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt.json"
       },
       "editorialPlan": {
         "targetDomainCount": 12,
-        "completedSourceBriefCount": 2,
-        "registeredChapterCount": 2,
+        "completedSourceBriefCount": 3,
+        "registeredChapterCount": 3,
         "completionRequirements": [
           "all_canonical_domains_covered",
           "source_first_claim_trace_complete",
@@ -4150,7 +4152,7 @@
           "fulltext_and_assessment_audits_green",
           "strict_theory_integrity_green"
         ],
-        "nextGate": "produce_next_domain_source_brief_after_anatomy_physiology_fulltext"
+        "nextGate": "produce_next_domain_source_brief_after_disease_pathophysiology_fulltext"
       },
       "chapters": [
         {
@@ -4179,6 +4181,20 @@
           "claimsFile": "data/fagverk/helse/anatomi-fysiologi-struktur-funksjon-og-regulering/claims.json",
           "briefFile": "data/fagverk/helse/anatomi-fysiologi-struktur-funksjon-og-regulering/brief.json",
           "assessmentFile": "data/fagverk/helse/anatomi-fysiologi-struktur-funksjon-og-regulering/assessment.json",
+          "safetyContractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json"
+        },
+        {
+          "id": "sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt",
+          "title": "Sykdom og patofysiologi: mekanisme, skade og systemsvikt",
+          "subtitle": "Fra cellestress, inflammasjon og immunologisk dysregulering til sirkulasjonssvikt, genetisk sårbarhet, kreftbiologi og biomarkørgrenser",
+          "file": "data/fagverk/helse/sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt.json",
+          "primary_domain_id": "sykdom_patofysiologi",
+          "emne_ids": [
+            "em_helse_sykdom_patofysiologi"
+          ],
+          "claimsFile": "data/fagverk/helse/sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt/claims.json",
+          "briefFile": "data/fagverk/helse/sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt/brief.json",
+          "assessmentFile": "data/fagverk/helse/sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt/assessment.json",
           "safetyContractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json"
         }
       ]
