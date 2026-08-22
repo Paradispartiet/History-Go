@@ -1,0 +1,67 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "manusmedarbeider",
+  "mail_type": "conflict",
+  "families": [
+    {
+      "id": "manusmedarbeider_motstridende_notater",
+      "purpose": "La framdrift kollidere med behovet for én tydelig redaksjonell retning.",
+      "learning_focus": ["mandat", "prioritering", "konfliktsynliggjøring"],
+      "mails": [
+        {
+          "id": "film_tv_manus_conflict_motstridende_001",
+          "mail_type": "conflict",
+          "mail_family": "manusmedarbeider_motstridende_notater",
+          "role_scope": "manusmedarbeider",
+          "phase": "mid",
+          "day_phase": "forenoon",
+          "priority": 125,
+          "stage": "stable",
+          "from": "Nora, manusredaktør",
+          "people_ref": "nora_manusredaktor",
+          "person_id": "nora_manusredaktor",
+          "place_id": "manusrommet_produksjon",
+          "thread_key": "film_tv_manus_notatrunde_001",
+          "subject": "To notater peker i motsatt retning",
+          "summary": "Ett notat ber om tydeligere forklaring av konflikten, mens et annet ber om mer undertekst og færre forklarende replikker.",
+          "purpose": "Teste om spilleren gjør målkonflikten synlig fremfor å gjemme den i teksten.",
+          "stakes": "En skjult kompromissversjon kan tilfredsstille ingen og gjøre senere vurdering umulig.",
+          "situation": [
+            "Begge notatene gjelder samme samtale mellom hovedpersonen og søsteren.",
+            "Det finnes ingen registrert prioritet eller beslutningseier for konflikten.",
+            "Bordprøven nærmer seg, men manusmedarbeideren har ikke mandat til å velge prosjektets retning alene."
+          ],
+          "task_domain": "notater_og_utvikling",
+          "task_kind": "conflict",
+          "competency": "mandatklarhet",
+          "pressure": "motstridende_bestillinger",
+          "choice_axis": "synlig_konflikt_og_beslutning_vs_skjult_kompromiss",
+          "consequence_axis": "lesbar_retning_vs_omkamp",
+          "narrative_arc": "to_notater_en_beslutning",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Sett notatene opp mot hverandre og be Nora prioritere",
+              "reply": "Disse notatene kan ikke løses samtidig uten å velge hvor tydelig scenen skal være. Hvilken retning eier vi nå?",
+              "effect": 1,
+              "tags": ["authority", "clarity"],
+              "feedback": "Konflikten blir en beslutning hos riktig eier, ikke en skjult omskriving hos deg.",
+              "effects": {"stats": {"quality": 2, "trust": 1, "risk": -2, "energy": -1}}
+            },
+            {
+              "id": "B",
+              "label": "Skriv en mellomvariant som forsøker å gjøre begge deler",
+              "reply": "Jeg balanserer en kort forklaring med mer undertekst og sender versjonen videre.",
+              "effect": -1,
+              "tags": ["avoidance", "rework"],
+              "feedback": "Du flytter konflikten inn i teksten uten å avklare hvilken retning prosjektet faktisk vil ha.",
+              "effects": {"stats": {"energy": -1, "quality": -2, "risk": 3, "trust": -1}}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "manusmedarbeider",
+  "mail_type": "event",
+  "families": [
+    {
+      "id": "manusmedarbeider_bordproveendring",
+      "purpose": "Teste versjon og overlevering når bordprøvens rekkefølge endres.",
+      "learning_focus": ["overlevering", "versjon", "scenerekkefølge"],
+      "mails": [
+        {
+          "id": "film_tv_manus_event_bordprove_001",
+          "mail_type": "event",
+          "mail_family": "manusmedarbeider_bordproveendring",
+          "role_scope": "manusmedarbeider",
+          "phase": "workday",
+          "day_phase": "afternoon",
+          "priority": 115,
+          "stage": "stable",
+          "from": "Selma, scriptkoordinator",
+          "people_ref": "selma_scriptkoordinator",
+          "person_id": "selma_scriptkoordinator",
+          "place_id": "versjonsarkiv_manus",
+          "subject": "Bordprøven starter med scene 35",
+          "summary": "En skuespiller må gå tidlig, og de fire første scenene i bordprøven må bytte rekkefølge.",
+          "purpose": "Gjøre en praktisk tidsendring til et spørsmål om felles manusgrunnlag.",
+          "stakes": "Løse sider og muntlige beskjeder kan gjøre at deltakerne leser ulike versjoner.",
+          "situation": [
+            "Selma har bekreftet ny leserekkefølge med produksjonen.",
+            "Scene 35 finnes i to varianter etter dagens notatrunde.",
+            "Alle deltakere trenger samme pakke og en synlig liste over hva som er endret."
+          ],
+          "task_domain": "versjonskontroll",
+          "task_kind": "event",
+          "competency": "versjonssporbarhet",
+          "pressure": "bordprove_om_20_minutter",
+          "choice_axis": "samlet_pakke_og_mottak_vs_lose_sider",
+          "consequence_axis": "felles_lesning_vs_versjonsstoy",
+          "narrative_arc": "bordproven_endrer_rekkefolge",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Publiser én bordprøvepakke og hent bekreftelser",
+              "reply": "Jeg låser riktig scene 35, nummererer ny rekkefølge og ber deltakerne bekrefte at de åpner samme pakke.",
+              "effect": 1,
+              "tags": ["traceability", "coordination"],
+              "feedback": "Tidsendringen blir synlig uten å skape en ny versjonskonflikt.",
+              "effects": {"stats": {"quality": 2, "trust": 1, "risk": -2, "energy": -1}}
+            },
+            {
+              "id": "B",
+              "label": "Send de fire scenene enkeltvis i chatten",
+              "reply": "Jeg sender sidene i riktig rekkefølge nå og forklarer muntlig hvilken variant som gjelder.",
+              "effect": -1,
+              "tags": ["tempo", "version_risk"],
+              "feedback": "Materialet kommer raskt ut, men ingen kan se om alle åpner samme variant.",
+              "effects": {"stats": {"status": 1, "quality": -1, "risk": 3, "energy": -1}}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

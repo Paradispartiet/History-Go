@@ -1,1 +1,279 @@
-{"schema":"civication_work_grammar_v2","version":2,"category":"film_tv","role_scope":"manusmedarbeider","source":{"evidence":"data/Civication/filmTvCareerLifeEvidence.json"},"badge_binding":{"badge_id":"film_tv","badge_titles":["Manusmedarbeider"]},"task_families":["manuslesing","research","versjonskontroll","kontinuitet","notater_og_utvikling"],"work_loops":[{"id":"manusrunde","steps":["avklar_bestilling","les_helhet","identifiser_problem","dokumenter_notater","oppdater_canonical_versjon"]},{"id":"research","steps":["formuler_sporsmal","finn_kilder","skill_sikkert_fra_usikkert","foresla_justering","spor_endring"]}],"practice_stories":[{"id":"s1","setup":"To beslutningstakere gir motstridende manusnotater.","good":"Synliggjør konflikten og be beslutningseier avklare prioritet.","bad":"Forsøk å skjule begge retningene i samme omskriving."},{"id":"s2","setup":"En ny scene bryter karakterkontinuiteten.","good":"Vis nøyaktig hvor bruddet oppstår og foreslå alternativer.","bad":"La produksjonen oppdage det senere."},{"id":"s3","setup":"Researchgrunnlaget er usikkert.","good":"Merk usikkerheten og verifiser før detaljen låses.","bad":"Skriv detaljen som fakta fordi den virker plausibel."},{"id":"s4","setup":"Produksjonen bruker feil manusversjon.","good":"Etabler canonical versjon og varsle berørte ledd.","bad":"Send enda en fil uten tydelig versjonsstatus."},{"id":"s5","setup":"En omskriving gjør teksten glattere, men svekker stemmen.","good":"Beskriv problemet før løsningen og behold forfatterens eierskap.","bad":"Omskriv etter egen smak uten begrunnelse."}],"quality_axes":["dramaturgisk_presisjon","researchkvalitet","kontinuitet","versjonssporbarhet","forfattereierskap","mandatklarhet"],"authority_boundary":{"may_not":["godkjenne_endelig_manus_uten_mandat","overta_opphav_eller_kreditering","endre_rettighetsvilkar","presentere_usikker_research_som_fakta"]}}
+{
+  "schema": "civication_work_grammar_v2",
+  "version": 2,
+  "category": "film_tv",
+  "role_scope": "manusmedarbeider",
+  "source": {
+    "evidence": "data/Civication/filmTvCareerLifeEvidence.json"
+  },
+  "badge_binding": {
+    "badge_id": "film_tv",
+    "badge_titles": ["Manusmedarbeider"]
+  },
+  "task_families": [
+    "manuslesing",
+    "research",
+    "versjonskontroll",
+    "kontinuitet",
+    "notater_og_utvikling"
+  ],
+  "work_loops": [
+    {
+      "id": "manusrunde",
+      "steps": [
+        "avklar_bestilling_og_beslutningseier",
+        "les_helhet_for_detalj",
+        "skill_observasjon_fra_losningsforslag",
+        "spor_notat_og_beslutning",
+        "oppdater_canonical_versjon"
+      ]
+    },
+    {
+      "id": "research_og_kontinuitet",
+      "steps": [
+        "formuler_sporsmal",
+        "finn_kilde_eller_marker_apent",
+        "kontroller_karakter_og_tidslinje",
+        "foresla_avgrensede_alternativer",
+        "spor_endring_til_neste_gjennomlesning"
+      ]
+    }
+  ],
+  "task_grammar": [
+    {
+      "id": "prioriter_notatrunde",
+      "label": "Prioriter og begrunn manusnotater",
+      "task_type": "editorial_review",
+      "good_work": "Samler motstridende bestillinger, skiller problem fra løsning og får beslutningseier til å prioritere.",
+      "bad_work": "Skjuler flere retninger i én omskriving som ingen uttrykkelig har valgt.",
+      "mail_types": ["job", "conflict", "followup"]
+    },
+    {
+      "id": "kontroller_kontinuitet",
+      "label": "Kontroller karakter- og handlingskontinuitet",
+      "task_type": "continuity_review",
+      "good_work": "Peker på nøyaktig scene, kunnskapsnivå og tidslinjebrudd før endringen låses.",
+      "bad_work": "Retter lokal tekst uten å kontrollere hva endringen gjør med senere scener.",
+      "mail_types": ["story", "event", "consequence"]
+    },
+    {
+      "id": "verifiser_research",
+      "label": "Skill verifisert research fra åpne spørsmål",
+      "task_type": "source_review",
+      "good_work": "Beholder kilde, status og usikkerhet sammen med detaljen.",
+      "bad_work": "Lar en plausibel detalj bli produksjonsfakta uten sporbar støtte.",
+      "mail_types": ["micro", "knowledge"]
+    }
+  ],
+  "practice_stories": [
+    {
+      "id": "s1",
+      "setup": "To beslutningstakere gir motstridende manusnotater.",
+      "good": "Synliggjør konflikten og be beslutningseier avklare prioritet.",
+      "bad": "Forsøk å skjule begge retningene i samme omskriving."
+    },
+    {
+      "id": "s2",
+      "setup": "En ny scene bryter karakterkontinuiteten.",
+      "good": "Vis nøyaktig hvor bruddet oppstår og foreslå avgrensede alternativer.",
+      "bad": "La produksjonen oppdage det senere."
+    },
+    {
+      "id": "s3",
+      "setup": "Researchgrunnlaget er usikkert.",
+      "good": "Merk usikkerheten og verifiser før detaljen låses.",
+      "bad": "Skriv detaljen som fakta fordi den virker plausibel."
+    },
+    {
+      "id": "s4",
+      "setup": "Produksjonen bruker feil manusversjon.",
+      "good": "Etabler canonical versjon og varsle berørte ledd.",
+      "bad": "Send enda en fil uten tydelig versjonsstatus."
+    },
+    {
+      "id": "s5",
+      "setup": "En omskriving gjør teksten glattere, men svekker stemmen.",
+      "good": "Beskriv problemet før løsningen og behold forfatterens eierskap.",
+      "bad": "Omskriv etter egen smak uten begrunnelse."
+    }
+  ],
+  "actor_grammar": [
+    {
+      "actor_type": "manusredaktor",
+      "example_id": "nora_manusredaktor",
+      "function": "Prioriterer notatrunden og eier redaksjonelle avklaringer uten å overta forfatterens opphav.",
+      "can_send_mail_types": ["job", "conflict", "followup", "consequence"]
+    },
+    {
+      "actor_type": "manusforfatter",
+      "example_id": "elias_manusforfatter",
+      "function": "Eier tekstens stemme og trenger presise, etterprøvbare notater fremfor skjult omskriving.",
+      "can_send_mail_types": ["people", "story"]
+    },
+    {
+      "actor_type": "scriptkoordinator",
+      "example_id": "selma_scriptkoordinator",
+      "function": "Følger canonical versjon, scenerekkefølge og kontinuitet mot produksjonen.",
+      "can_send_mail_types": ["event", "consequence"]
+    },
+    {
+      "actor_type": "researchansvarlig",
+      "example_id": "maja_researchansvarlig",
+      "function": "Holder kilder, usikkerhet og produksjonsbehov adskilt og synlig.",
+      "can_send_mail_types": ["micro", "knowledge"]
+    }
+  ],
+  "place_grammar": [
+    {
+      "place_id": "manusrommet_produksjon",
+      "kind": "fictional_work_surface",
+      "function": "Notatrunder, høytlesning og redaksjonell prioritering.",
+      "mail_types": ["job", "people", "conflict", "story", "followup"]
+    },
+    {
+      "place_id": "versjonsarkiv_manus",
+      "kind": "fictional_work_surface",
+      "function": "Canonical manusversjon, endringslogg og mottaksbekreftelser.",
+      "mail_types": ["event", "consequence"]
+    },
+    {
+      "place_id": "researchbord_film_tv",
+      "kind": "fictional_work_surface",
+      "function": "Kilder, åpne faktaspørsmål og status for research.",
+      "mail_types": ["micro"]
+    },
+    {
+      "place_id": "cinemateket_oslo",
+      "kind": "canonical_history_go_place",
+      "function": "Read-only History Go-anker for filmhistorisk personkunnskap; ikke simulert arbeidssted.",
+      "mail_types": ["knowledge"]
+    }
+  ],
+  "conflict_grammar": [
+    {
+      "id": "stemme_vs_bestilling",
+      "axis": "forfatterstemme_vs_redaksjonell_bestilling",
+      "mail_families": ["manusmedarbeider_forfatterstemme"]
+    },
+    {
+      "id": "retning_vs_fremdrift",
+      "axis": "avklart_retning_vs_rask_omskriving",
+      "mail_families": ["manusmedarbeider_motstridende_notater"]
+    },
+    {
+      "id": "plausibilitet_vs_evidens",
+      "axis": "produksjonstempo_vs_kildesporbarhet",
+      "mail_families": ["manusmedarbeider_researchstatus", "manusmedarbeider_filmhistorie"]
+    }
+  ],
+  "solution_patterns": [
+    {
+      "id": "sporbar_note",
+      "steps": ["beskriv_observasjon", "forklar_risiko", "tilby_alternativer", "la_rett_eier_velge"],
+      "choice_tags": ["clarity", "authorship", "traceability"]
+    },
+    {
+      "id": "marker_usikkerhet",
+      "steps": ["registrer_kilde", "merk_status", "avgrens_bruk", "folges_opp_for_lasing"],
+      "choice_tags": ["research", "source_boundary"]
+    }
+  ],
+  "failure_patterns": [
+    {
+      "id": "skjult_omskriving",
+      "short_term_gain": "Notatrunden ser raskt ferdig ut.",
+      "long_term_risk": "Forfattereierskap, stemme og beslutningsspor blir uklare.",
+      "followup_hooks": ["manusmedarbeider_notatoppfolging", "manusmedarbeider_tabellproven"]
+    },
+    {
+      "id": "plausibel_detalj",
+      "short_term_gain": "Scenen kan sendes videre uten ventetid.",
+      "long_term_risk": "Produksjonen låser en udokumentert opplysning og må reparere senere.",
+      "followup_hooks": ["manusmedarbeider_researchstatus"]
+    }
+  ],
+  "knowledge_dependencies": [
+    {
+      "id": "notatstruktur",
+      "use": "Skille observasjon, problem, forslag og beslutning."
+    },
+    {
+      "id": "kontinuitetskart",
+      "use": "Kontrollere karakterkunnskap og hendelsesrekkefølge etter omskriving."
+    },
+    {
+      "id": "kildegrense",
+      "use": "Bruke filmhistorisk kontekst uten å gjøre den normativ for dagens manusvalg."
+    }
+  ],
+  "quality_axes": [
+    "dramaturgisk_presisjon",
+    "researchkvalitet",
+    "kontinuitet",
+    "versjonssporbarhet",
+    "forfattereierskap",
+    "mandatklarhet"
+  ],
+  "mail_generation_contract": {
+    "required_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
+    "required_axes": [
+      "choice_axis",
+      "consequence_axis",
+      "narrative_arc"
+    ],
+    "minimum_counts": {
+      "job": 1,
+      "people": 1,
+      "conflict": 1,
+      "story": 1,
+      "event": 1,
+      "micro": 1,
+      "followup": 1,
+      "knowledge": 1,
+      "consequence": 1
+    },
+    "factuality_policy": "current_production_people_and_work_surfaces_are_fictional; canonical_people_and_places_are_history_go_targets_only"
+  },
+  "day_one_contract": {
+    "opening_task": "Avklar canonical manusversjon og hvem som eier prioriteringen av motstridende notater.",
+    "required_decisions": [
+      "versjon",
+      "forfattereierskap",
+      "redaksjonell_prioritering",
+      "kontinuitet",
+      "researchstatus"
+    ],
+    "end_state": "Spilleren har levert en sporbar notatrunde, merket åpne spørsmål og sett en senere konsekvens av dagens valg."
+  },
+  "authority_boundary": {
+    "may": [
+      "analysere_og_prioritere_notater",
+      "kontrollere_kontinuitet_og_versjon",
+      "markere_researchstatus",
+      "foresla_avgrensede_alternativer",
+      "be_om_beslutning"
+    ],
+    "must_escalate_when": [
+      "motstridende_bestillinger_mangler_beslutningseier",
+      "opphav_kreditering_eller_rettigheter_berores",
+      "udokumentert_fakta_skal_lases_for_produksjon"
+    ],
+    "may_not": [
+      "godkjenne_endelig_manus_uten_mandat",
+      "overta_opphav_eller_kreditering",
+      "endre_rettighetsvilkar",
+      "presentere_usikker_research_som_fakta",
+      "bruke_historiske_personer_som_fiktive_beslutningstakere"
+    ]
+  }
+}
