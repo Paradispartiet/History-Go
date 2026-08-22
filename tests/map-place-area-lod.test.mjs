@@ -11,64 +11,65 @@ const json = relative => JSON.parse(read(relative));
 const source = read("js/map.ts");
 const legacy = read("js/map.js");
 const dist = read("dist/web/map.js");
+const buildIndex = read("tools/build_places_index.mts");
+const checkIndex = read("tools/check_places_index_sync.mts");
 
-test("kartets detalj-LOD bruker canonical placeScope=area og zoom 12", () => {
-  assert.match(source, /PLACE_DETAIL_MIN_ZOOM\s*=\s*12/);
+test("kart-LOD skiller semantisk placeScope fra avledet mapLod", () => {
   assert.match(source, /PLACE_SCOPE_AREA\s*=\s*"area"/);
-  assert.match(source, /place\?\.placeScope/);
-  assert.match(source, /isAreaPlace:\s*isAreaPlace\(p\) \? 1 : 0/);
-  assert.match(source, /\[">=", \["zoom"\], PLACE_DETAIL_MIN_ZOOM\]/);
-  assert.match(source, /\["==", \["get", "isAreaPlace"\], 1\]/);
+  assert.match(source, /PLACE_MAP_LOD_OVERVIEW\s*=\s*"overview"/);
+  assert.match(source, /PLACE_MAP_LOD_AREA\s*=\s*"area"/);
+  assert.match(source, /PLACE_MAP_LOD_DETAIL\s*=\s*"detail"/);
+  assert.match(source, /function getMapLod\(place\)/);
+  assert.match(source, /return isAreaPlace\(place\) \? PLACE_MAP_LOD_AREA : PLACE_MAP_LOD_DETAIL/);
 
   const areaFn = source.match(/function isAreaPlace\(place\) \{[\s\S]*?\n  \}/)?.[0] || "";
   assert.match(areaFn, /placeScope/);
   assert.doesNotMatch(areaFn, /coordRole|coordType|area_anchor|district_anchor/);
 });
 
-test("samme LOD-filter beskytter prikk, halo, label og klikkeflate", () => {
-  for (const layer of ["L_GLOW", "L_DOTS", "L_LAB", "L_HIT"]) {
-    const pattern = new RegExp(`id: ${layer},\\n\\s*filter: PLACE_ZOOM_LOD_FILTER`);
-    assert.match(source, pattern, `mangler LOD-filter på ${layer}`);
+test("places_index bevarer placeScope og materialiserer mapLod for områder", () => {
+  for (const code of [buildIndex, checkIndex]) {
+    assert.match(code, /placeScope/);
+    assert.match(code, /mapLod/);
+    assert.match(code, /placeScope === 'area'/);
+    assert.match(code, /out\.mapLod = 'area'/);
   }
-});
 
-test("eksplisitte område-Places har placeScope, mens geometriske area_anchor ikke arver scope", () => {
-  const manifest = json("data/places/manifest.json");
-  const byId = new Map();
-  for (const rel of manifest.files || []) {
-    const file = path.join(root, "data", rel);
-    const data = JSON.parse(fs.readFileSync(file, "utf8"));
-    const items = Array.isArray(data) ? data : Array.isArray(data?.places) ? data.places : [data];
-    for (const place of items) {
-      if (place?.id) byId.set(place.id, place);
-    }
-  }
-  const getPlace = id => {
+  const index = json("data/places/places_index.json");
+  const byId = new Map(index.map(place => [place.id, place]));
+  for (const id of ["sagene", "bjorvika", "torshov", "ullern", "skoyen"]) {
     const place = byId.get(id);
-    assert.ok(place, `mangler Place ${id} i canonical manifest`);
-    return place;
-  };
-
-  for (const id of ["sagene", "lisbon_alfama", "son_ladested", "etnesjoen_tettstad", "svartlamon_trondheim"]) {
-    assert.equal(getPlace(id).placeScope, "area", `${id}: mangler canonical area scope`);
+    assert.ok(place, "mangler " + id + " i places_index");
+    assert.equal(place.placeScope, "area", id + ": placeScope gikk tapt i runtime-index");
+    assert.equal(place.mapLod, "area", id + ": mapLod ble ikke materialisert");
   }
-  assert.notEqual(getPlace("st_hanshaugen_park").placeScope, "area", "park med area_anchor skal ikke bli område-Place automatisk");
-  assert.notEqual(getPlace("radhusplassen").placeScope, "area", "torg/plass med area_anchor skal ikke bli område-Place automatisk");
 });
 
-test("permanent scope-audit låser semantikk uten områdekvote", () => {
-  const audit = read("scripts/audit-place-scope.mjs");
-  assert.match(audit, /placeScope/);
-  assert.match(audit, /district_anchor/);
-  assert.match(audit, /boligomrade/);
-  assert.match(audit, /ladested/);
-  assert.doesNotMatch(audit, /minimum|min_count|quota/i);
+test("kartet har separate område- og detaljlag med gradvis detaljövergang", () => {
+  assert.match(source, /L_AREA_DOTS\s*=\s*"hg-place-areas-dots"/);
+  assert.match(source, /L_AREA_LAB\s*=\s*"hg-place-areas-label"/);
+  assert.match(source, /PLACE_DETAIL_MIN_ZOOM\s*=\s*11\.8/);
+  assert.match(source, /PLACE_DETAIL_HIT_MIN_ZOOM\s*=\s*12\.35/);
+  assert.match(source, /PLACE_DETAIL_LABEL_MIN_ZOOM\s*=\s*13\.15/);
+  assert.match(source, /getPlaceDetailVisibility/);
+  assert.match(source, /PLACE_DETAIL_FULL_ZOOM, 1\.0/);
+  assert.match(source, /filter: PLACE_AREA_LOD_FILTER/);
+  assert.match(source, /filter: PLACE_DETAIL_POINT_FILTER/);
+  assert.match(source, /filter: PLACE_DETAIL_HIT_FILTER/);
+  assert.match(source, /filter: PLACE_DETAIL_LABEL_FILTER/);
 });
 
-test("TypeScript source og begge committed runtime-builds inneholder område-LOD", () => {
+test("områdeetiketter prioriteres som eget symbol-lag og begge hit-lag er klikkbare", () => {
+  assert.match(source, /id: L_AREA_LAB,[\s\S]*?layout: getPlaceLabelLayout\(true\)/);
+  assert.match(source, /const hoverLayers = \[L_AREA_HIT, L_HIT\]\.filter\(hasLayer\)/);
+  assert.match(source, /PLACE_HIT_LAYERS = \[L_AREA_HIT, L_HIT/);
+  assert.match(source, /PLACE_HIT_PRIORITY = \[L_AREA_HIT, L_HIT/);
+});
+
+test("TypeScript source og committed runtime-builds inneholder LOD v2", () => {
   for (const [name, code] of [["source", source], ["legacy", legacy], ["dist", dist]]) {
-    assert.match(code, /isAreaPlace/, `${name}: mangler isAreaPlace`);
-    assert.match(code, /placeScope/, `${name}: mangler canonical placeScope`);
-    assert.match(code, /PLACE_DETAIL_MIN_ZOOM|12/, `${name}: mangler detaljzoom`);
+    assert.match(code, /hg-place-areas-dots/, name + ": mangler områdeprikker");
+    assert.match(code, /mapLod/, name + ": mangler mapLod");
+    assert.match(code, /11\.8/, name + ": mangler detaljfade-start");
   }
 });

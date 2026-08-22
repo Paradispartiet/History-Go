@@ -28,12 +28,25 @@
   const L_HIT  = "hg-places-hit";
   const L_DOTS = "hg-places-dots";
   const L_LAB  = "hg-places-label";
-  const PLACE_LABEL_MIN_ZOOM = 13.8;
-  const PLACE_DETAIL_MIN_ZOOM = 12;
+  const L_AREA_GLOW = "hg-place-areas-glow";
+  const L_AREA_HIT = "hg-place-areas-hit";
+  const L_AREA_DOTS = "hg-place-areas-dots";
+  const L_AREA_LAB = "hg-place-areas-label";
+  const PLACE_AREA_LABEL_MIN_ZOOM = 9.5;
+  const PLACE_DETAIL_MIN_ZOOM = 11.8;
+  const PLACE_DETAIL_HIT_MIN_ZOOM = 12.35;
+  const PLACE_DETAIL_LABEL_MIN_ZOOM = 13.15;
+  const PLACE_DETAIL_FULL_ZOOM = 13.0;
   const PLACE_SCOPE_AREA = "area";
-  const PLACE_ZOOM_LOD_FILTER: any = ["any", [">=", ["zoom"], PLACE_DETAIL_MIN_ZOOM], ["==", ["get", "isAreaPlace"], 1]];
-  const PLACE_HIT_LAYERS = [L_HIT, L_DOTS, L_LAB, L_GLOW];
-  const PLACE_HIT_PRIORITY = [L_HIT, L_DOTS, L_LAB, L_GLOW];
+  const PLACE_MAP_LOD_OVERVIEW = "overview";
+  const PLACE_MAP_LOD_AREA = "area";
+  const PLACE_MAP_LOD_DETAIL = "detail";
+  const PLACE_AREA_LOD_FILTER: any = ["in", ["get", "mapLod"], ["literal", [PLACE_MAP_LOD_OVERVIEW, PLACE_MAP_LOD_AREA]]];
+  const PLACE_DETAIL_POINT_FILTER: any = ["all", ["==", ["get", "mapLod"], PLACE_MAP_LOD_DETAIL], [">=", ["zoom"], PLACE_DETAIL_MIN_ZOOM]];
+  const PLACE_DETAIL_HIT_FILTER: any = ["all", ["==", ["get", "mapLod"], PLACE_MAP_LOD_DETAIL], [">=", ["zoom"], PLACE_DETAIL_HIT_MIN_ZOOM]];
+  const PLACE_DETAIL_LABEL_FILTER: any = ["all", ["==", ["get", "mapLod"], PLACE_MAP_LOD_DETAIL], [">=", ["zoom"], PLACE_DETAIL_LABEL_MIN_ZOOM]];
+  const PLACE_HIT_LAYERS = [L_AREA_HIT, L_HIT, L_AREA_DOTS, L_DOTS, L_AREA_LAB, L_LAB, L_AREA_GLOW, L_GLOW];
+  const PLACE_HIT_PRIORITY = [L_AREA_HIT, L_HIT, L_AREA_DOTS, L_DOTS, L_AREA_LAB, L_LAB, L_AREA_GLOW, L_GLOW];
   const PLACE_TAP_TOLERANCE_PX = 12;
   const PLACE_POINTER_MOVE_TOLERANCE_PX = 7;
   const PLACE_GESTURE_COOLDOWN_MS = 180;
@@ -615,7 +628,7 @@
 
   function removeIfExists() {
     if (!MAP) return;
-    [L_LAB, L_HIT, L_DOTS, L_GLOW].forEach(id => {
+    [L_AREA_LAB, L_LAB, L_AREA_HIT, L_HIT, L_AREA_DOTS, L_DOTS, L_AREA_GLOW, L_GLOW].forEach(id => {
       if (MAP.getLayer(id)) MAP.removeLayer(id);
     });
     if (MAP.getSource(SRC)) MAP.removeSource(SRC);
@@ -638,59 +651,147 @@
     return isStandardMapStyle() ? 2.4 : 1.8;
   }
 
-  function getPlaceGlowPaint() {
+  function getPlaceDetailVisibility() {
+    return [
+      "interpolate", ["linear"], ["zoom"],
+      PLACE_DETAIL_MIN_ZOOM, 0.0,
+      PLACE_DETAIL_FULL_ZOOM, 1.0
+    ];
+  }
+
+  function getPlaceGlowPaint(isArea = false) {
+    const radius = isArea
+      ? ["interpolate", ["linear"], ["zoom"], 7, 3.5, 9.5, 6, 12, 8.2, 16, 11.5, 18, 15]
+      : ["interpolate", ["linear"], ["zoom"], 10, 2, 12, 3, 14, 5, 16, 9, 18, 14];
+    const visibility = isArea ? 1 : getPlaceDetailVisibility();
+
     if (!isStandardMapStyle()) {
       return {
-        "circle-radius": ["interpolate", ["linear"], ["zoom"], 10, 2, 12, 3, 14, 5, 16, 9, 18, 14],
+        "circle-radius": radius,
         "circle-color": "rgba(0,0,0,0.12)",
+        "circle-opacity": ["*", 0.45, visibility],
         "circle-blur": 0.8
       };
     }
 
     return {
-      "circle-radius": ["interpolate", ["linear"], ["zoom"], 10, 5, 12, 7, 14, 9, 16, 13, 18, 18],
+      "circle-radius": isArea
+        ? radius
+        : ["interpolate", ["linear"], ["zoom"], 10, 5, 12, 7, 14, 9, 16, 13, 18, 18],
       "circle-color": ["get", "fill"],
       "circle-opacity": [
-        "case",
-        ["in", ["get", "coordinateTrust"], ["literal", ["review", "unknown"]]], 0.12,
-        0.24
+        "*",
+        [
+          "case",
+          ["in", ["get", "coordinateTrust"], ["literal", ["review", "unknown"]]], 0.12,
+          0.24
+        ],
+        visibility
       ],
       "circle-blur": 0.65
     };
   }
 
-  function getPlaceLabelPaint() {
+  function getPlaceLabelPaint(isArea = false) {
+    const opacity = isArea
+      ? [
+          "interpolate", ["linear"], ["zoom"],
+          PLACE_AREA_LABEL_MIN_ZOOM, 0.0,
+          PLACE_AREA_LABEL_MIN_ZOOM + 0.6, 0.86,
+          PLACE_AREA_LABEL_MIN_ZOOM + 1.2, 1.0
+        ]
+      : [
+          "interpolate", ["linear"], ["zoom"],
+          PLACE_DETAIL_LABEL_MIN_ZOOM, 0.0,
+          PLACE_DETAIL_LABEL_MIN_ZOOM + 0.8, 0.72,
+          PLACE_DETAIL_LABEL_MIN_ZOOM + 1.6, 1.0
+        ];
+
     if (!isStandardMapStyle()) {
       return {
         "text-color": "rgba(20,20,20,0.92)",
         "text-halo-color": "rgba(255,255,255,0.95)",
-        "text-halo-width": 1.4,
+        "text-halo-width": isArea ? 1.8 : 1.4,
         "text-halo-blur": 0.25,
-        "text-opacity": [
-          "interpolate", ["linear"], ["zoom"],
-          PLACE_LABEL_MIN_ZOOM, 0.0,
-          PLACE_LABEL_MIN_ZOOM + 1.2, 0.55,
-          PLACE_LABEL_MIN_ZOOM + 2.0, 1.0
-        ]
+        "text-opacity": opacity
       };
     }
 
     return {
       "text-color": "rgba(50,61,67,0.96)",
       "text-halo-color": "rgba(255,252,244,0.96)",
-      "text-halo-width": 1.7,
+      "text-halo-width": isArea ? 2.0 : 1.7,
       "text-halo-blur": 0.22,
-      "text-opacity": [
-        "interpolate", ["linear"], ["zoom"],
-        PLACE_LABEL_MIN_ZOOM - 0.2, 0.0,
-        PLACE_LABEL_MIN_ZOOM + 0.8, 0.74,
-        PLACE_LABEL_MIN_ZOOM + 1.6, 1.0
+      "text-opacity": opacity
+    };
+  }
+
+  function getPlaceDotPaint(isArea = false) {
+    return {
+      "circle-radius": isArea
+        ? [
+            "interpolate", ["linear"], ["zoom"],
+            7, ["+", 3.2, ["*", 0.25, ["get", "visited"]]],
+            9.5, ["+", 5.2, ["*", 0.35, ["get", "visited"]]],
+            12, ["+", 6.4, ["*", 0.45, ["get", "visited"]]],
+            16, ["+", 7.2, ["*", 0.7, ["get", "visited"]]],
+            18, ["+", 8.8, ["*", 0.9, ["get", "visited"]]]
+          ]
+        : [
+            "interpolate", ["linear"], ["zoom"],
+            10, ["+", 2.1, ["*", 0.4, ["get", "visited"]]],
+            12, ["+", 2.8, ["*", 0.6, ["get", "visited"]]],
+            14, ["+", 4.1, ["*", 0.8, ["get", "visited"]]],
+            16, ["+", 6.1, ["*", 1.0, ["get", "visited"]]],
+            18, ["+", 8.8, ["*", 1.3, ["get", "visited"]]]
+          ],
+      "circle-color": ["get", "fill"],
+      "circle-stroke-color": ["get", "border"],
+      "circle-stroke-width": isArea ? getPlaceMarkerStrokeWidth() + 0.5 : getPlaceMarkerStrokeWidth(),
+      "circle-opacity": [
+        "*",
+        [
+          "case",
+          ["in", ["get", "coordinateTrust"], ["literal", ["review", "unknown"]]], 0.58,
+          1
+        ],
+        isArea ? 1 : getPlaceDetailVisibility()
       ]
+    };
+  }
+
+  function getPlaceLabelLayout(isArea = false) {
+    return {
+      "text-field": ["get", "name"],
+      "text-font": ["Open Sans Semibold", "Arial Unicode MS Regular"],
+      "text-size": isArea
+        ? ["interpolate", ["linear"], ["zoom"], 9, 12.5, 12, 14.5, 16, 16.5, 18, 17.5]
+        : ["interpolate", ["linear"], ["zoom"], 11, 12, 14, 13, 18, 16],
+      "text-offset": [0, isArea ? 1.0 : 1.2],
+      "text-anchor": "top",
+      "text-allow-overlap": false,
+      "text-ignore-placement": false
+    };
+  }
+
+  function getPlaceHitPaint(isArea = false) {
+    return {
+      "circle-radius": isArea
+        ? ["interpolate", ["linear"], ["zoom"], 7, 11, 10, 13, 12, 16, 16, 20, 18, 24]
+        : ["interpolate", ["linear"], ["zoom"], 10, 9, 12, 11, 14, 14, 16, 18, 18, 23],
+      "circle-color": "rgba(0,0,0,0.01)",
+      "circle-opacity": 0.01
     };
   }
 
   function isAreaPlace(place) {
     return String(place?.placeScope || "").trim().toLowerCase() === PLACE_SCOPE_AREA;
+  }
+
+  function getMapLod(place) {
+    const explicit = String(place?.mapLod || "").trim().toLowerCase();
+    if ([PLACE_MAP_LOD_OVERVIEW, PLACE_MAP_LOD_AREA, PLACE_MAP_LOD_DETAIL].includes(explicit)) return explicit;
+    return isAreaPlace(place) ? PLACE_MAP_LOD_AREA : PLACE_MAP_LOD_DETAIL;
   }
 
   function drawPlaceMarkers() {
@@ -730,6 +831,7 @@
           name: p.name || "",
           visited: isVisited ? 1 : 0,
           isAreaPlace: isAreaPlace(p) ? 1 : 0,
+          mapLod: getMapLod(p),
           coordinateTrust,
           coordinateTrustNote: coordinateTrust === "review" || coordinateTrust === "unknown" ? "Koordinat trenger kontroll" : "",
           fill,
@@ -754,65 +856,69 @@
     MAP.addSource(SRC, { type: "geojson", data: fc });
 
     MAP.addLayer({
-      id: L_GLOW,
-      filter: PLACE_ZOOM_LOD_FILTER,
+      id: L_AREA_GLOW,
+      filter: PLACE_AREA_LOD_FILTER,
       type: "circle",
       source: SRC,
-      paint: getPlaceGlowPaint()
+      paint: getPlaceGlowPaint(true)
+    });
+
+    MAP.addLayer({
+      id: L_GLOW,
+      filter: PLACE_DETAIL_POINT_FILTER,
+      type: "circle",
+      source: SRC,
+      paint: getPlaceGlowPaint(false)
+    });
+
+    MAP.addLayer({
+      id: L_AREA_DOTS,
+      filter: PLACE_AREA_LOD_FILTER,
+      type: "circle",
+      source: SRC,
+      paint: getPlaceDotPaint(true)
     });
 
     MAP.addLayer({
       id: L_DOTS,
-      filter: PLACE_ZOOM_LOD_FILTER,
+      filter: PLACE_DETAIL_POINT_FILTER,
       type: "circle",
       source: SRC,
-      paint: {
-        "circle-radius": [
-          "interpolate", ["linear"], ["zoom"],
-          10, ["+", 2.1, ["*", 0.4, ["get", "visited"]]],
-          12, ["+", 2.8, ["*", 0.6, ["get", "visited"]]],
-          14, ["+", 4.1, ["*", 0.8, ["get", "visited"]]],
-          16, ["+", 6.1, ["*", 1.0, ["get", "visited"]]],
-          18, ["+", 8.8, ["*", 1.3, ["get", "visited"]]]
-        ],
-        "circle-color": ["get", "fill"],
-        "circle-stroke-color": ["get", "border"],
-        "circle-stroke-width": getPlaceMarkerStrokeWidth(),
-        "circle-opacity": [
-          "case",
-          ["in", ["get", "coordinateTrust"], ["literal", ["review", "unknown"]]], 0.58,
-          1
-        ]
-      }
+      paint: getPlaceDotPaint(false)
     });
 
     MAP.addLayer({
       id: L_LAB,
-      filter: PLACE_ZOOM_LOD_FILTER,
+      filter: PLACE_DETAIL_LABEL_FILTER,
       type: "symbol",
       source: SRC,
-      layout: {
-        "text-field": ["get", "name"],
-        "text-font": ["Open Sans Semibold", "Arial Unicode MS Regular"],
-        "text-size": ["interpolate", ["linear"], ["zoom"], 11, 12, 14, 13, 18, 16],
-        "text-offset": [0, 1.2],
-        "text-anchor": "top",
-        "text-allow-overlap": false,
-        "text-ignore-placement": false
-      },
-      paint: getPlaceLabelPaint()
+      layout: getPlaceLabelLayout(false),
+      paint: getPlaceLabelPaint(false)
+    });
+
+    MAP.addLayer({
+      id: L_AREA_LAB,
+      filter: PLACE_AREA_LOD_FILTER,
+      type: "symbol",
+      source: SRC,
+      layout: getPlaceLabelLayout(true),
+      paint: getPlaceLabelPaint(true)
     });
 
     MAP.addLayer({
       id: L_HIT,
-      filter: PLACE_ZOOM_LOD_FILTER,
+      filter: PLACE_DETAIL_HIT_FILTER,
       type: "circle",
       source: SRC,
-      paint: {
-        "circle-radius": ["interpolate", ["linear"], ["zoom"], 10, 9, 12, 11, 14, 14, 16, 18, 18, 23],
-        "circle-color": "rgba(0,0,0,0.01)",
-        "circle-opacity": 0.01
-      }
+      paint: getPlaceHitPaint(false)
+    });
+
+    MAP.addLayer({
+      id: L_AREA_HIT,
+      filter: PLACE_AREA_LOD_FILTER,
+      type: "circle",
+      source: SRC,
+      paint: getPlaceHitPaint(true)
     });
 
     bindPlaceLayerHandlers();
@@ -874,12 +980,14 @@
   }
 
   function bindPlaceLayerHandlers() {
-    if (!MAP || !hasLayer(L_HIT)) return;
+    if (!MAP || ![L_AREA_HIT, L_HIT].some(hasLayer)) return;
 
     if (MAP.__hgPlaceHandlers) {
       const prev = MAP.__hgPlaceHandlers;
-      MAP.off("mouseenter", L_HIT, prev.setPointer);
-      MAP.off("mouseleave", L_HIT, prev.clearPointer);
+      for (const layerId of (prev.hoverLayers || [L_HIT])) {
+        MAP.off("mouseenter", layerId, prev.setPointer);
+        MAP.off("mouseleave", layerId, prev.clearPointer);
+      }
       MAP.off("click", prev.handlePlaceClick);
       MAP.off("touchend", prev.handlePlaceClick);
       MAP.off("dragstart", prev.markMapGesture);
@@ -963,8 +1071,11 @@
       onPlaceClick(id);
     };
 
+    const hoverLayers = [L_AREA_HIT, L_HIT].filter(hasLayer);
+
     MAP.__hgPlaceHandlers = {
       canvas,
+      hoverLayers,
       setPointer,
       clearPointer,
       markMapGesture,
@@ -981,8 +1092,10 @@
     canvas.addEventListener("pointerup", handlePointerUp, { passive: true });
     canvas.addEventListener("pointercancel", handlePointerCancel, { passive: true });
 
-    MAP.on("mouseenter", L_HIT, setPointer);
-    MAP.on("mouseleave", L_HIT, clearPointer);
+    for (const layerId of hoverLayers) {
+      MAP.on("mouseenter", layerId, setPointer);
+      MAP.on("mouseleave", layerId, clearPointer);
+    }
     MAP.on("dragstart", markMapGesture);
     MAP.on("zoomstart", markMapGesture);
     MAP.on("rotatestart", markMapGesture);
@@ -995,7 +1108,7 @@
 
   function moveMarkersOnTop() {
     if (!MAP) return;
-    [L_GLOW, L_DOTS, L_LAB, L_HIT].forEach(id => {
+    [L_AREA_GLOW, L_GLOW, L_AREA_DOTS, L_DOTS, L_LAB, L_AREA_LAB, L_HIT, L_AREA_HIT].forEach(id => {
       if (MAP.getLayer(id)) MAP.moveLayer(id);
     });
   }
@@ -1020,6 +1133,7 @@
 
     getCoordinateTrust,
     isAreaPlace,
+    getMapLod,
 
     maybeDrawMarkers,
     refreshMarkers

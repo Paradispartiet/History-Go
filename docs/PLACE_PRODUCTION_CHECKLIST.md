@@ -1612,3 +1612,12 @@ Samlet: [ ] tydelig forskjellige samlinger  [ ] ingen kunstig Objects/Structures
 ## Hovedprinsippet
 
 > **Vi ferdigstiller ikke et sted ved å fylle flest mulig felt. Vi ferdigstiller det ved å følge riktig subsystemkontrakt for hvert relevant lag, produsere bare dokumenterbart innhold, teste hele spillerflaten og lukke stedet før vi går videre til det neste.**
+
+
+## Kart-LOD v2
+
+- `placeScope` beskriver hva et Place **er** semantisk. `placeScope: "area"` skal bare brukes for reelle område-Places.
+- `mapLod` beskriver hvordan Place-et prioriteres i kartet. Runtime-indeksen materialiserer `mapLod: "area"` automatisk fra canonical `placeScope: "area"` når ingen eksplisitt `mapLod` finnes.
+- Kartet har separate område- og detaljlag: områdeprikker/-navn er synlige på oversiktszoom, detaljprikker fader inn fra zoom 11,8, detalj-hitflate åpnes fra 12,35 og detaljetiketter fra 13,15.
+- Koordinatroller som `area_anchor` og `district_anchor` er geometri, ikke områdeeierskap, og skal aldri alene gjøre et Place til område.
+- `places_index.json` må bevare `placeScope` og avledet `mapLod`; sync- og kart-LOD-testene skal stoppe regresjoner.
