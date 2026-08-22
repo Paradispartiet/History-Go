@@ -54,9 +54,12 @@ test("kartet har separate område- og detaljlag med gradvis detaljövergang", ()
   assert.match(source, /getPlaceDetailVisibility/);
   assert.match(source, /PLACE_DETAIL_FULL_ZOOM, 1\.0/);
   assert.match(source, /filter: PLACE_AREA_LOD_FILTER/);
-  assert.match(source, /filter: PLACE_DETAIL_POINT_FILTER/);
-  assert.match(source, /filter: PLACE_DETAIL_HIT_FILTER/);
-  assert.match(source, /filter: PLACE_DETAIL_LABEL_FILTER/);
+  assert.match(source, /PLACE_DETAIL_LOD_FILTER/);
+  assert.match(source, /id: L_GLOW,[\s\S]*?minzoom: PLACE_DETAIL_MIN_ZOOM,[\s\S]*?filter: PLACE_DETAIL_LOD_FILTER/);
+  assert.match(source, /id: L_DOTS,[\s\S]*?minzoom: PLACE_DETAIL_MIN_ZOOM,[\s\S]*?filter: PLACE_DETAIL_LOD_FILTER/);
+  assert.match(source, /id: L_LAB,[\s\S]*?minzoom: PLACE_DETAIL_LABEL_MIN_ZOOM,[\s\S]*?filter: PLACE_DETAIL_LOD_FILTER/);
+  assert.match(source, /id: L_HIT,[\s\S]*?minzoom: PLACE_DETAIL_HIT_MIN_ZOOM,[\s\S]*?filter: PLACE_DETAIL_LOD_FILTER/);
+  assert.doesNotMatch(source, /PLACE_DETAIL_(?:POINT|HIT|LABEL)_FILTER/);
 });
 
 test("områdeetiketter prioriteres som eget symbol-lag og begge hit-lag er klikkbare", () => {

@@ -42,9 +42,7 @@
   const PLACE_MAP_LOD_AREA = "area";
   const PLACE_MAP_LOD_DETAIL = "detail";
   const PLACE_AREA_LOD_FILTER: any = ["in", ["get", "mapLod"], ["literal", [PLACE_MAP_LOD_OVERVIEW, PLACE_MAP_LOD_AREA]]];
-  const PLACE_DETAIL_POINT_FILTER: any = ["all", ["==", ["get", "mapLod"], PLACE_MAP_LOD_DETAIL], [">=", ["zoom"], PLACE_DETAIL_MIN_ZOOM]];
-  const PLACE_DETAIL_HIT_FILTER: any = ["all", ["==", ["get", "mapLod"], PLACE_MAP_LOD_DETAIL], [">=", ["zoom"], PLACE_DETAIL_HIT_MIN_ZOOM]];
-  const PLACE_DETAIL_LABEL_FILTER: any = ["all", ["==", ["get", "mapLod"], PLACE_MAP_LOD_DETAIL], [">=", ["zoom"], PLACE_DETAIL_LABEL_MIN_ZOOM]];
+  const PLACE_DETAIL_LOD_FILTER: any = ["==", ["get", "mapLod"], PLACE_MAP_LOD_DETAIL];
   const PLACE_HIT_LAYERS = [L_AREA_HIT, L_HIT, L_AREA_DOTS, L_DOTS, L_AREA_LAB, L_LAB, L_AREA_GLOW, L_GLOW];
   const PLACE_HIT_PRIORITY = [L_AREA_HIT, L_HIT, L_AREA_DOTS, L_DOTS, L_AREA_LAB, L_LAB, L_AREA_GLOW, L_GLOW];
   const PLACE_TAP_TOLERANCE_PX = 12;
@@ -865,7 +863,8 @@
 
     MAP.addLayer({
       id: L_GLOW,
-      filter: PLACE_DETAIL_POINT_FILTER,
+      minzoom: PLACE_DETAIL_MIN_ZOOM,
+      filter: PLACE_DETAIL_LOD_FILTER,
       type: "circle",
       source: SRC,
       paint: getPlaceGlowPaint(false)
@@ -881,7 +880,8 @@
 
     MAP.addLayer({
       id: L_DOTS,
-      filter: PLACE_DETAIL_POINT_FILTER,
+      minzoom: PLACE_DETAIL_MIN_ZOOM,
+      filter: PLACE_DETAIL_LOD_FILTER,
       type: "circle",
       source: SRC,
       paint: getPlaceDotPaint(false)
@@ -889,7 +889,8 @@
 
     MAP.addLayer({
       id: L_LAB,
-      filter: PLACE_DETAIL_LABEL_FILTER,
+      minzoom: PLACE_DETAIL_LABEL_MIN_ZOOM,
+      filter: PLACE_DETAIL_LOD_FILTER,
       type: "symbol",
       source: SRC,
       layout: getPlaceLabelLayout(false),
@@ -907,7 +908,8 @@
 
     MAP.addLayer({
       id: L_HIT,
-      filter: PLACE_DETAIL_HIT_FILTER,
+      minzoom: PLACE_DETAIL_HIT_MIN_ZOOM,
+      filter: PLACE_DETAIL_LOD_FILTER,
       type: "circle",
       source: SRC,
       paint: getPlaceHitPaint(false)
