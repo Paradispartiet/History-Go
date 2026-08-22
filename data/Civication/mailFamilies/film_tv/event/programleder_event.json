@@ -1,0 +1,14 @@
+{
+  "schema": "civication_mail_family_catalog_v1", "version": 1, "category": "film_tv", "role_scope": "programleder", "mail_type": "event",
+  "families": [{"id": "programleder_liveavvik", "purpose": "Teste programlederens publikumskontakt under et teknisk avvik uten mandatglidning.", "learning_focus": ["liveflyt", "beredskap", "rolleforstaelse"], "mails": [{
+    "id": "film_tv_program_event_liveavvik_001", "mail_type": "event", "mail_family": "programleder_liveavvik", "role_scope": "programleder", "phase": "workday", "day_phase": "afternoon", "priority": 116, "cooldown": 3, "repeatable": true, "stage": "stable",
+    "from": "Jonas, liveprodusent", "people_ref": "jonas_liveprodusent", "person_id": "jonas_liveprodusent", "place_id": "kontrollrom_program_film_tv",
+    "subject": "Innslaget er borte og kontrollrommet trenger nitti sekunder", "summary": "Et ferdig innslag kan ikke avspilles. Jonas ber deg holde sendingen trygg og forståelig mens kontrollrommet bytter kjøreplan.", "purpose": "Teste om programlederen fyller tid innen avtalt beredskap.", "stakes": "Uvarslet improvisasjon kan åpne nye temaer, overskride gjestegrenser eller kollidere med kontrollrommets løsning.",
+    "situation": ["Jonas har varslet nitti sekunders behov.", "Gjesten sitter fortsatt i studio.", "Briefen har to forhåndsavklarte reservespor som ikke berører sensitive temaer."],
+    "task_domain": "studio_og_liveflyt", "task_kind": "event", "competency": "timing", "pressure": "stillhet_vs_mandat", "choice_axis": "bruk_avklart_reservespor_vs_improviser_nytt_tema", "consequence_axis": "rolig_liveflyt_vs_nytt_redaksjonelt_avvik", "narrative_arc": "fra_plan_til_liveberedskap", "interaction_mode": "decision",
+    "choices": [
+      {"id": "A", "label": "Bruk reservespor én og følg Jonas sin tidsbeskjed", "reply": "Vi tar ett avtalt spørsmål mens kontrollrommet gjør klart neste del.", "effect": 1, "tags": ["preparedness", "coordination"], "feedback": "Publikum får sammenheng, og kontrollrommet beholder avvikseierskapet.", "effects": {"stats": {"quality": 2, "trust": 1, "risk": -2, "energy": -1}}},
+      {"id": "B", "label": "Start et nytt tema for å skape et minneverdig øyeblikk", "reply": "Vi har litt ekstra tid, så la oss gå inn i noe vi ikke har snakket om før.", "effect": -1, "tags": ["improvisation", "scope_risk"], "feedback": "Du løser teknisk ventetid med et uavklart redaksjonelt premiss.", "effects": {"stats": {"quality": -2, "trust": -1, "risk": 3, "status": 1}}}
+    ]
+  }]}]
+}

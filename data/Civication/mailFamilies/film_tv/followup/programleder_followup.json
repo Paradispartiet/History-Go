@@ -1,0 +1,14 @@
+{
+  "schema": "civication_mail_family_catalog_v1", "version": 1, "category": "film_tv", "role_scope": "programleder", "mail_type": "followup",
+  "families": [{"id": "programleder_gjesteoppfolging", "purpose": "La gjesten ta stilling til bruk etter den uventede betroelsen.", "learning_focus": ["oppfolging", "samtykke", "tillit"], "mails": [{
+    "id": "film_tv_program_followup_gjestegrense_001", "mail_type": "followup", "mail_family": "programleder_gjesteoppfolging", "role_scope": "programleder", "phase": "mastery", "day_phase": "evening", "priority": 104, "cooldown": 5, "repeatable": false, "stage": "stable",
+    "from": "Thea, gjestekoordinator", "people_ref": "thea_gjestekoordinator", "person_id": "thea_gjestekoordinator", "place_id": "studio_program_film_tv", "thread_key": "film_tv_program_gjestegrense_001",
+    "subject": "Gjesten har avklart hva som kan stå igjen", "summary": "Etter samtalen har gjesten godkjent én generell formulering om erfaringen, men ber om at den konkrete familiedetaljen ikke brukes i reprise eller klipp.", "purpose": "Teste om programlederen følger en differensiert avklaring gjennom alle bruksflater.", "stakes": "En muntlig enighet hjelper bare hvis redaksjonen registrerer hva som kan brukes hvor.",
+    "situation": ["Den generelle formuleringen ble sagt i det formelle opptaket.", "Den konkrete detaljen kom bare i lydprøven.", "Reprise- og klippeflater må få samme avgrensning."],
+    "task_domain": "redaksjonell_oppfolging", "task_kind": "followup", "competency": "publikumstillit", "pressure": "klippverdi_vs_avklart_bruk", "choice_axis": "registrer_presis_bruksgrense_vs_behandle_alt_som_godkjent", "consequence_axis": "etterprovbar_oppfolging_vs_sen_konflikt", "narrative_arc": "gjestens_grense_blir_testet", "interaction_mode": "decision",
+    "choices": [
+      {"id": "A", "label": "Registrer hva som kan brukes i sending, reprise og klipp", "reply": "Jeg skiller den godkjente formuleringen fra detaljen som skal holdes utenfor alle videre flater.", "effect": 1, "tags": ["consent", "handover"], "feedback": "Avklaringen blir operativ for hele redaksjonen, ikke bare et minne mellom to personer.", "effects": {"stats": {"trust": 2, "quality": 2, "risk": -3, "energy": -1}}},
+      {"id": "B", "label": "Noter at temaet er godkjent og la klipperen velge", "reply": "Gjesten sa ja til å omtale erfaringen, så redaksjonen kan bruke det som fungerer.", "effect": -1, "tags": ["scope_blur", "handover_risk"], "feedback": "Du visker ut forskjellen mellom en godkjent generell formulering og en tilbakeholdt detalj.", "effects": {"stats": {"trust": -3, "quality": -2, "risk": 3}}}
+    ]
+  }]}]
+}

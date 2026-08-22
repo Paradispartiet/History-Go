@@ -70,6 +70,15 @@
     "data/Civication/mailFamilies/film_tv/followup/produksjonsassistent_followup.json",
     "data/Civication/mailFamilies/film_tv/knowledge/produksjonsassistent_knowledge.json",
     "data/Civication/mailFamilies/film_tv/consequence/produksjonsassistent_consequence.json",
+    "data/Civication/mailFamilies/film_tv/job/programleder_job.json",
+    "data/Civication/mailFamilies/film_tv/people/programleder_people.json",
+    "data/Civication/mailFamilies/film_tv/story/programleder_story.json",
+    "data/Civication/mailFamilies/film_tv/conflict/programleder_conflict.json",
+    "data/Civication/mailFamilies/film_tv/event/programleder_event.json",
+    "data/Civication/mailFamilies/film_tv/micro/programleder_micro.json",
+    "data/Civication/mailFamilies/film_tv/followup/programleder_followup.json",
+    "data/Civication/mailFamilies/film_tv/knowledge/programleder_knowledge.json",
+    "data/Civication/mailFamilies/film_tv/consequence/programleder_consequence.json",
     "data/Civication/mailFamilies/litteratur/job/redaksjonsmedarbeider_job.json",
     "data/Civication/mailFamilies/litteratur/people/redaksjonsmedarbeider_people.json",
     "data/Civication/mailFamilies/litteratur/story/redaksjonsmedarbeider_story.json",
@@ -26738,6 +26747,1296 @@
       },
       "source_hash": "cc8f3491b00652d8cac5b5f91d523604aaa42eab3f25e4c21abe3bd672d7e8d7",
       "source_path": "data/Civication/mailFamilies/film_tv/people/produksjonsassistent_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "formuler_som_apent_sporsmal_vs_les_som_konklusjon",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "quality": 2,
+                "risk": -2,
+                "trust": 1
+              }
+            },
+            "feedback": "Åpningen beholder retning og markerer samtidig hva som skal undersøkes.",
+            "id": "A",
+            "label": "Gjør hypotesen til et åpent, presist spørsmål",
+            "reply": "Vi kan gjøre konflikten tydelig uten å påstå mer enn kilden bærer.",
+            "tags": [
+              "source_boundary",
+              "clarity"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Du legger ansvaret for redaksjonens faktasnarvei på gjesten.",
+            "id": "B",
+            "label": "Les konklusjonen og utfordre gjesten etterpå",
+            "reply": "Jeg bruker den skarpe formuleringen og lar gjesten korrigere oss i samtalen.",
+            "tags": [
+              "fact_risk",
+              "burden_shift"
+            ]
+          }
+        ],
+        "competency": "redaksjonell_integritet",
+        "consequence_axis": "troverdig_nysgjerrighet_vs_falsk_sikkerhet",
+        "cooldown": 3,
+        "day_phase": "forenoon",
+        "from": "Ingrid, redaksjonsleder",
+        "id": "film_tv_program_conflict_premiss_001",
+        "interaction_mode": "decision",
+        "mail_family": "programleder_skarpt_premiss",
+        "mail_type": "conflict",
+        "narrative_arc": "fra_brief_til_sending",
+        "people_ref": "ingrid_redaksjonsleder_program",
+        "person_id": "ingrid_redaksjonsleder_program",
+        "phase": "mid",
+        "place_id": "briefrom_program_film_tv",
+        "pressure": "skarphet_vs_kildestatus",
+        "priority": 125,
+        "purpose": "Teste om programlederen ber beslutningseieren velge en sannferdig formulering.",
+        "repeatable": false,
+        "role_scope": "programleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/conflict/programleder_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Hypotesen er redaksjonelt relevant.",
+          "Kilden dokumenterer ikke den bastante konklusjonen.",
+          "Ingrid kan endre premisset, men ikke gjøre en uverifisert påstand sann."
+        ],
+        "stage": "stable",
+        "stakes": "Programlederens stemme gjør formuleringen troverdig for publikum selv når kildestatusen er svak.",
+        "subject": "Åpningen blir tydeligere hvis hypotesen sies som konklusjon",
+        "summary": "Ingrid vil ha mer kraft i anslaget, men Amina har fortsatt bare indirekte støtte for den sentrale påstanden.",
+        "task_domain": "research_og_brief",
+        "task_kind": "conflict"
+      },
+      "id": "film_tv_program_conflict_premiss_001",
+      "mail_type": "conflict",
+      "role_scope": "programleder",
+      "scene": {
+        "arc_stage": "mid",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Åpningen beholder retning og markerer samtidig hva som skal undersøkes.",
+            "id": "A",
+            "label": "Gjør hypotesen til et åpent, presist spørsmål",
+            "reply": "Vi kan gjøre konflikten tydelig uten å påstå mer enn kilden bærer."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du legger ansvaret for redaksjonens faktasnarvei på gjesten.",
+            "id": "B",
+            "label": "Les konklusjonen og utfordre gjesten etterpå",
+            "reply": "Jeg bruker den skarpe formuleringen og lar gjesten korrigere oss i samtalen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Hypotesen er redaksjonelt relevant.",
+            "Kilden dokumenterer ikke den bastante konklusjonen.",
+            "Ingrid kan endre premisset, men ikke gjøre en uverifisert påstand sann."
+          ],
+          "subject": "Åpningen blir tydeligere hvis hypotesen sies som konklusjon",
+          "summary": "Ingrid vil ha mer kraft i anslaget, men Amina har fortsatt bare indirekte støtte for den sentrale påstanden."
+        },
+        "day_phase": "forenoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_program_conflict_premiss_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "briefrom_program_film_tv",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_program_conflict_premiss_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/conflict/programleder_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "programleder.mail.film_tv_program_conflict_premiss_001",
+        "version": 1
+      },
+      "source_hash": "df686fc8f34616ae6880cda6fb64b1a8cabeab39d5b2c2c4f401d4cd5694cf81",
+      "source_path": "data/Civication/mailFamilies/film_tv/conflict/programleder_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "rett_konkret_og_ta_ansvar_vs_formuler_vagt",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "quality": 3,
+                "risk": -3,
+                "status": -1,
+                "trust": 2
+              }
+            },
+            "feedback": "Publikum får både korrekt talltype og en tydelig forklaring på feilen.",
+            "id": "A",
+            "label": "Rett tallet konkret og si hva det faktisk måler",
+            "reply": "Vi sa antall ferdige produksjoner. Det riktige er antall søknader, og vi beklager feilen.",
+            "tags": [
+              "repair",
+              "accountability"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -3,
+                "risk": 2,
+                "status": 1,
+                "trust": -3
+              }
+            },
+            "feedback": "Du skjuler en konkret feil bak en vag formulering og lar publikum stå uten svar.",
+            "id": "B",
+            "label": "Si at tall kan tolkes ulikt",
+            "reply": "Det finnes flere måter å telle aktiviteten på, og bildet er derfor sammensatt.",
+            "tags": [
+              "avoidance",
+              "trust_risk"
+            ]
+          }
+        ],
+        "competency": "redaksjonell_integritet",
+        "consequence_axis": "reparert_tillit_vs_varig_usikkerhet",
+        "cooldown": 6,
+        "day_phase": "evening",
+        "from": "Jonas, liveprodusent",
+        "id": "film_tv_program_consequence_rettelse_001",
+        "interaction_mode": "decision",
+        "mail_family": "programleder_rettelse_i_sending",
+        "mail_type": "consequence",
+        "narrative_arc": "fra_brief_til_sending",
+        "people_ref": "jonas_liveprodusent",
+        "person_id": "jonas_liveprodusent",
+        "phase": "mastery",
+        "place_id": "kontrollrom_program_film_tv",
+        "pressure": "fasade_vs_apen_rettelse",
+        "priority": 100,
+        "purpose": "Teste om programlederen retter konkret og åpent uten å skyve ansvaret over på research eller gjest.",
+        "repeatable": false,
+        "role_scope": "programleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/consequence/programleder_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Canonical brief viser korrekt søknadstall.",
+          "Feil formulering ble lest på lufta.",
+          "Det er tid til én kort og presis rettelse før avslutning."
+        ],
+        "stage": "stable",
+        "stakes": "En tydelig rettelse koster noen sekunder; en vag bortforklaring gjør tillitsbruddet større.",
+        "subject": "Publikum spør hvilket tall som faktisk gjelder",
+        "summary": "Etter introduksjonen har flere seere reagert på forskjellen mellom antall søknader og antall ferdige produksjoner. Jonas trenger en kort rettelse før sendingen avsluttes.",
+        "task_domain": "redaksjonell_oppfolging",
+        "task_kind": "consequence"
+      },
+      "id": "film_tv_program_consequence_rettelse_001",
+      "mail_type": "consequence",
+      "role_scope": "programleder",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Publikum får både korrekt talltype og en tydelig forklaring på feilen.",
+            "id": "A",
+            "label": "Rett tallet konkret og si hva det faktisk måler",
+            "reply": "Vi sa antall ferdige produksjoner. Det riktige er antall søknader, og vi beklager feilen."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du skjuler en konkret feil bak en vag formulering og lar publikum stå uten svar.",
+            "id": "B",
+            "label": "Si at tall kan tolkes ulikt",
+            "reply": "Det finnes flere måter å telle aktiviteten på, og bildet er derfor sammensatt."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Canonical brief viser korrekt søknadstall.",
+            "Feil formulering ble lest på lufta.",
+            "Det er tid til én kort og presis rettelse før avslutning."
+          ],
+          "subject": "Publikum spør hvilket tall som faktisk gjelder",
+          "summary": "Etter introduksjonen har flere seere reagert på forskjellen mellom antall søknader og antall ferdige produksjoner. Jonas trenger en kort rettelse før sendingen avsluttes."
+        },
+        "day_phase": "evening",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_program_consequence_rettelse_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "kontrollrom_program_film_tv",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_program_consequence_rettelse_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/consequence/programleder_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "programleder.mail.film_tv_program_consequence_rettelse_001",
+        "version": 1
+      },
+      "source_hash": "41b3402b24fa2318945a591b2373099b49d0c1f54cea926ded61edd2ca12d1c2",
+      "source_path": "data/Civication/mailFamilies/film_tv/consequence/programleder_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "bruk_avklart_reservespor_vs_improviser_nytt_tema",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 1
+              }
+            },
+            "feedback": "Publikum får sammenheng, og kontrollrommet beholder avvikseierskapet.",
+            "id": "A",
+            "label": "Bruk reservespor én og følg Jonas sin tidsbeskjed",
+            "reply": "Vi tar ett avtalt spørsmål mens kontrollrommet gjør klart neste del.",
+            "tags": [
+              "preparedness",
+              "coordination"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -1
+              }
+            },
+            "feedback": "Du løser teknisk ventetid med et uavklart redaksjonelt premiss.",
+            "id": "B",
+            "label": "Start et nytt tema for å skape et minneverdig øyeblikk",
+            "reply": "Vi har litt ekstra tid, så la oss gå inn i noe vi ikke har snakket om før.",
+            "tags": [
+              "improvisation",
+              "scope_risk"
+            ]
+          }
+        ],
+        "competency": "timing",
+        "consequence_axis": "rolig_liveflyt_vs_nytt_redaksjonelt_avvik",
+        "cooldown": 3,
+        "day_phase": "afternoon",
+        "from": "Jonas, liveprodusent",
+        "id": "film_tv_program_event_liveavvik_001",
+        "interaction_mode": "decision",
+        "mail_family": "programleder_liveavvik",
+        "mail_type": "event",
+        "narrative_arc": "fra_plan_til_liveberedskap",
+        "people_ref": "jonas_liveprodusent",
+        "person_id": "jonas_liveprodusent",
+        "phase": "workday",
+        "place_id": "kontrollrom_program_film_tv",
+        "pressure": "stillhet_vs_mandat",
+        "priority": 116,
+        "purpose": "Teste om programlederen fyller tid innen avtalt beredskap.",
+        "repeatable": true,
+        "role_scope": "programleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/event/programleder_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Jonas har varslet nitti sekunders behov.",
+          "Gjesten sitter fortsatt i studio.",
+          "Briefen har to forhåndsavklarte reservespor som ikke berører sensitive temaer."
+        ],
+        "stage": "stable",
+        "stakes": "Uvarslet improvisasjon kan åpne nye temaer, overskride gjestegrenser eller kollidere med kontrollrommets løsning.",
+        "subject": "Innslaget er borte og kontrollrommet trenger nitti sekunder",
+        "summary": "Et ferdig innslag kan ikke avspilles. Jonas ber deg holde sendingen trygg og forståelig mens kontrollrommet bytter kjøreplan.",
+        "task_domain": "studio_og_liveflyt",
+        "task_kind": "event"
+      },
+      "id": "film_tv_program_event_liveavvik_001",
+      "mail_type": "event",
+      "role_scope": "programleder",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Publikum får sammenheng, og kontrollrommet beholder avvikseierskapet.",
+            "id": "A",
+            "label": "Bruk reservespor én og følg Jonas sin tidsbeskjed",
+            "reply": "Vi tar ett avtalt spørsmål mens kontrollrommet gjør klart neste del."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du løser teknisk ventetid med et uavklart redaksjonelt premiss.",
+            "id": "B",
+            "label": "Start et nytt tema for å skape et minneverdig øyeblikk",
+            "reply": "Vi har litt ekstra tid, så la oss gå inn i noe vi ikke har snakket om før."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Jonas har varslet nitti sekunders behov.",
+            "Gjesten sitter fortsatt i studio.",
+            "Briefen har to forhåndsavklarte reservespor som ikke berører sensitive temaer."
+          ],
+          "subject": "Innslaget er borte og kontrollrommet trenger nitti sekunder",
+          "summary": "Et ferdig innslag kan ikke avspilles. Jonas ber deg holde sendingen trygg og forståelig mens kontrollrommet bytter kjøreplan."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_program_event_liveavvik_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "kontrollrom_program_film_tv",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_program_event_liveavvik_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/event/programleder_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "programleder.mail.film_tv_program_event_liveavvik_001",
+        "version": 1
+      },
+      "source_hash": "ef967e767cd135d9317dde23b3d7016bed9ab8f9b3ae80549ae5f5521c132988",
+      "source_path": "data/Civication/mailFamilies/film_tv/event/programleder_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "registrer_presis_bruksgrense_vs_behandle_alt_som_godkjent",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -3,
+                "trust": 2
+              }
+            },
+            "feedback": "Avklaringen blir operativ for hele redaksjonen, ikke bare et minne mellom to personer.",
+            "id": "A",
+            "label": "Registrer hva som kan brukes i sending, reprise og klipp",
+            "reply": "Jeg skiller den godkjente formuleringen fra detaljen som skal holdes utenfor alle videre flater.",
+            "tags": [
+              "consent",
+              "handover"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "trust": -3
+              }
+            },
+            "feedback": "Du visker ut forskjellen mellom en godkjent generell formulering og en tilbakeholdt detalj.",
+            "id": "B",
+            "label": "Noter at temaet er godkjent og la klipperen velge",
+            "reply": "Gjesten sa ja til å omtale erfaringen, så redaksjonen kan bruke det som fungerer.",
+            "tags": [
+              "scope_blur",
+              "handover_risk"
+            ]
+          }
+        ],
+        "competency": "publikumstillit",
+        "consequence_axis": "etterprovbar_oppfolging_vs_sen_konflikt",
+        "cooldown": 5,
+        "day_phase": "evening",
+        "from": "Thea, gjestekoordinator",
+        "id": "film_tv_program_followup_gjestegrense_001",
+        "interaction_mode": "decision",
+        "mail_family": "programleder_gjesteoppfolging",
+        "mail_type": "followup",
+        "narrative_arc": "gjestens_grense_blir_testet",
+        "people_ref": "thea_gjestekoordinator",
+        "person_id": "thea_gjestekoordinator",
+        "phase": "mastery",
+        "place_id": "studio_program_film_tv",
+        "pressure": "klippverdi_vs_avklart_bruk",
+        "priority": 104,
+        "purpose": "Teste om programlederen følger en differensiert avklaring gjennom alle bruksflater.",
+        "repeatable": false,
+        "role_scope": "programleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/followup/programleder_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den generelle formuleringen ble sagt i det formelle opptaket.",
+          "Den konkrete detaljen kom bare i lydprøven.",
+          "Reprise- og klippeflater må få samme avgrensning."
+        ],
+        "stage": "stable",
+        "stakes": "En muntlig enighet hjelper bare hvis redaksjonen registrerer hva som kan brukes hvor.",
+        "subject": "Gjesten har avklart hva som kan stå igjen",
+        "summary": "Etter samtalen har gjesten godkjent én generell formulering om erfaringen, men ber om at den konkrete familiedetaljen ikke brukes i reprise eller klipp.",
+        "task_domain": "redaksjonell_oppfolging",
+        "task_kind": "followup",
+        "thread_key": "film_tv_program_gjestegrense_001"
+      },
+      "id": "film_tv_program_followup_gjestegrense_001",
+      "mail_type": "followup",
+      "role_scope": "programleder",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Avklaringen blir operativ for hele redaksjonen, ikke bare et minne mellom to personer.",
+            "id": "A",
+            "label": "Registrer hva som kan brukes i sending, reprise og klipp",
+            "reply": "Jeg skiller den godkjente formuleringen fra detaljen som skal holdes utenfor alle videre flater."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du visker ut forskjellen mellom en godkjent generell formulering og en tilbakeholdt detalj.",
+            "id": "B",
+            "label": "Noter at temaet er godkjent og la klipperen velge",
+            "reply": "Gjesten sa ja til å omtale erfaringen, så redaksjonen kan bruke det som fungerer."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den generelle formuleringen ble sagt i det formelle opptaket.",
+            "Den konkrete detaljen kom bare i lydprøven.",
+            "Reprise- og klippeflater må få samme avgrensning."
+          ],
+          "subject": "Gjesten har avklart hva som kan stå igjen",
+          "summary": "Etter samtalen har gjesten godkjent én generell formulering om erfaringen, men ber om at den konkrete familiedetaljen ikke brukes i reprise eller klipp."
+        },
+        "day_phase": "evening",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_program_followup_gjestegrense_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "studio_program_film_tv",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_program_followup_gjestegrense_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/followup/programleder_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "film_tv_program_gjestegrense_001",
+        "version": 1
+      },
+      "source_hash": "c9dd3abc6c4d9308f77b0cac20b8f9843dca0c7c03ad6b49a40c62d5ced3c4c7",
+      "source_path": "data/Civication/mailFamilies/film_tv/followup/programleder_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "merk_status_og_be_om_beslutning_vs_les_alt_som_fakta",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 1
+              }
+            },
+            "feedback": "Redaksjonen kan se hva den faktisk vet og hvem som må ta den siste beslutningen.",
+            "id": "A",
+            "label": "Merk hver linje og be Ingrid låse premisset",
+            "reply": "Jeg skiller bekreftet fakta, åpen hypotese og sitatgrense før vi låser introduksjonen.",
+            "tags": [
+              "verification",
+              "authority"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "trust": -1
+              }
+            },
+            "feedback": "En åpen hypotese går videre uten synlig status.",
+            "id": "B",
+            "label": "Behold formuleringene fordi åpningen trenger fart",
+            "reply": "Jeg leser briefen som den står og justerer hvis gjesten protesterer.",
+            "tags": [
+              "shortcut",
+              "fact_risk"
+            ]
+          }
+        ],
+        "competency": "faktapresisjon",
+        "consequence_axis": "sporbar_apning_vs_rettelsesrisiko",
+        "cooldown": 1,
+        "day_phase": "morning",
+        "from": "Ingrid, redaksjonsleder",
+        "id": "film_tv_program_job_brief_001",
+        "interaction_mode": "decision",
+        "mail_family": "programleder_intervjubrief",
+        "mail_type": "job",
+        "narrative_arc": "fra_brief_til_sending",
+        "people_ref": "ingrid_redaksjonsleder_program",
+        "person_id": "ingrid_redaksjonsleder_program",
+        "phase": "intro",
+        "place_id": "briefrom_program_film_tv",
+        "pressure": "sendetid_vs_verifisering",
+        "priority": 140,
+        "purpose": "Teste om programlederen skiller faktum, hypotese og avtalt premiss før opptak.",
+        "repeatable": false,
+        "role_scope": "programleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/job/programleder_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Amina har kilde til ett av tre utsagn.",
+          "Theas gjestenotat avgrenser hva sitatet kan brukes til.",
+          "Ingrid eier endelig premiss, men trenger en tydelig statusoversikt."
+        ],
+        "stage": "stable",
+        "stakes": "En skarp, men umerket hypotese kan bli presentert som fakta i åpningen.",
+        "subject": "Tre linjer i briefen har ulik faktastatus",
+        "summary": "Introduksjonen blander ett bekreftet tall, én redaksjonell hypotese og et sitat som gjestekoordinatoren ennå ikke har godkjent.",
+        "task_domain": "research_og_brief",
+        "task_kind": "job"
+      },
+      "id": "film_tv_program_job_brief_001",
+      "mail_type": "job",
+      "role_scope": "programleder",
+      "scene": {
+        "arc_stage": "intro",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Redaksjonen kan se hva den faktisk vet og hvem som må ta den siste beslutningen.",
+            "id": "A",
+            "label": "Merk hver linje og be Ingrid låse premisset",
+            "reply": "Jeg skiller bekreftet fakta, åpen hypotese og sitatgrense før vi låser introduksjonen."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "En åpen hypotese går videre uten synlig status.",
+            "id": "B",
+            "label": "Behold formuleringene fordi åpningen trenger fart",
+            "reply": "Jeg leser briefen som den står og justerer hvis gjesten protesterer."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Amina har kilde til ett av tre utsagn.",
+            "Theas gjestenotat avgrenser hva sitatet kan brukes til.",
+            "Ingrid eier endelig premiss, men trenger en tydelig statusoversikt."
+          ],
+          "subject": "Tre linjer i briefen har ulik faktastatus",
+          "summary": "Introduksjonen blander ett bekreftet tall, én redaksjonell hypotese og et sitat som gjestekoordinatoren ennå ikke har godkjent."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_program_job_brief_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "briefrom_program_film_tv",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_program_job_brief_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/job/programleder_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "programleder.mail.film_tv_program_job_brief_001",
+        "version": 1
+      },
+      "source_hash": "a4f9a47ed80d8aca2c6d2dc9279ed1e89391c3643190d273875df7c78b845190",
+      "source_path": "data/Civication/mailFamilies/film_tv/job/programleder_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "les_og_avgrens_kilden_vs_lan_historisk_autoritet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 1,
+                "trust": 1
+              }
+            },
+            "feedback": "Oppgaven fullføres bare gjennom registrert History Go-lesing av den canonicale personen.",
+            "id": "A",
+            "label": "Åpne profilen og noter hva kilden faktisk kan belyse",
+            "reply": "Jeg leser profilen som filmhistorie og formulerer spørsmål til vår produksjon uten å låne en ferdig intervjufasit.",
+            "tags": [
+              "history_go_person",
+              "source_boundary"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -3,
+                "risk": 2,
+                "trust": -1
+              }
+            },
+            "feedback": "Du gjør en faktaprofil til autoritet for et programvalg den ikke dokumenterer.",
+            "id": "B",
+            "label": "Bruk den historiske statusen som argument for én intervjustil",
+            "reply": "Jeg viser til filmhistorien for å lukke diskusjonen om hvordan samtalen bør føres.",
+            "tags": [
+              "authority_slippage",
+              "anachronism"
+            ]
+          }
+        ],
+        "competency": "faglig_kildebruk",
+        "consequence_axis": "filmhistorisk_bevissthet_vs_autoritetsglidning",
+        "cooldown": 5,
+        "day_phase": "evening",
+        "from": "Amina, researcher",
+        "id": "film_tv_program_knowledge_bang_hansen_001",
+        "interaction_mode": "task",
+        "mail_family": "programleder_filmformidling",
+        "mail_type": "knowledge",
+        "narrative_arc": "fra_historisk_formidler_til_bedre_sporsmal",
+        "people_ref": "amina_researcher_program",
+        "person_id": "amina_researcher_program",
+        "phase": "advanced",
+        "place_id": "cinemateket_oslo",
+        "pressure": "historisk_kontekst_vs_normativ_fasit",
+        "priority": 108,
+        "purpose": "Teste at en virkelig person og et canonical sted brukes som faktamål, ikke som fiktiv avsender eller redaksjonell autoritet.",
+        "repeatable": false,
+        "role_scope": "programleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/knowledge/programleder_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Pål Bang-Hansen finnes som canonical People-person i Film/TV-kategorien med tilknytning til Cinemateket i Oslo.",
+          "Oppgaven gjelder bare lesing av den kildeforankrede profilen i History Go.",
+          "Profilen skal brukes som filmhistorisk kontekst, ikke som dokumentasjon av rollen Programleder eller som fasit for dagens gjestesamtale."
+        ],
+        "stage": "stable",
+        "stakes": "Historisk innsikt kan skjerpe spørsmål om publikum og filmoffentlighet, men kan ikke avgjøre dagens premiss, gjestegrense eller intervjustil.",
+        "subject": "Filmhistorisk formidling gir kontekst, ikke en ferdig intervjustil",
+        "summary": "Amina ber deg lese History Go-profilen til Pål Bang-Hansen som kildeforankret kontekst om norsk filmformidling og holde den adskilt fra beslutningene i dagens fiktive program.",
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/people/film_tv/oslo/people_film_tv_oslo.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "film_tv_program_history_go_bang_hansen"
+        },
+        "task_domain": "filmhistorie",
+        "task_kind": "knowledge",
+        "task_payload": {
+          "completion_mode": "read_profile",
+          "description": "Les den canonicale profilen som filmhistorisk formidlingskontekst, ikke som norm for dagens programvalg.",
+          "person_id": "pal_bang_hansen",
+          "return_context": {
+            "mail_id": "film_tv_program_knowledge_bang_hansen_001",
+            "role_scope": "programleder",
+            "source": "civication"
+          },
+          "target_type": "person",
+          "task_kind": "history_go_person",
+          "title": "Les profilen til Pål Bang-Hansen"
+        }
+      },
+      "id": "film_tv_program_knowledge_bang_hansen_001",
+      "mail_type": "knowledge",
+      "role_scope": "programleder",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Oppgaven fullføres bare gjennom registrert History Go-lesing av den canonicale personen.",
+            "id": "A",
+            "label": "Åpne profilen og noter hva kilden faktisk kan belyse",
+            "reply": "Jeg leser profilen som filmhistorie og formulerer spørsmål til vår produksjon uten å låne en ferdig intervjufasit."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør en faktaprofil til autoritet for et programvalg den ikke dokumenterer.",
+            "id": "B",
+            "label": "Bruk den historiske statusen som argument for én intervjustil",
+            "reply": "Jeg viser til filmhistorien for å lukke diskusjonen om hvordan samtalen bør føres."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Pål Bang-Hansen finnes som canonical People-person i Film/TV-kategorien med tilknytning til Cinemateket i Oslo.",
+            "Oppgaven gjelder bare lesing av den kildeforankrede profilen i History Go.",
+            "Profilen skal brukes som filmhistorisk kontekst, ikke som dokumentasjon av rollen Programleder eller som fasit for dagens gjestesamtale."
+          ],
+          "subject": "Filmhistorisk formidling gir kontekst, ikke en ferdig intervjustil",
+          "summary": "Amina ber deg lese History Go-profilen til Pål Bang-Hansen som kildeforankret kontekst om norsk filmformidling og holde den adskilt fra beslutningene i dagens fiktive program."
+        },
+        "day_phase": "evening",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_program_knowledge_bang_hansen_001",
+        "interaction_mode": "task",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "cinemateket_oslo",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_program_knowledge_bang_hansen_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/knowledge/programleder_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/people/film_tv/oslo/people_film_tv_oslo.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "film_tv_program_history_go_bang_hansen"
+        },
+        "thread_id": "programleder.mail.film_tv_program_knowledge_bang_hansen_001",
+        "version": 1
+      },
+      "source_hash": "e5e5cde285f872564229e5bc6c8887db7dfcdade908737a0e8450fc5c43ab8b7",
+      "source_path": "data/Civication/mailFamilies/film_tv/knowledge/programleder_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "rett_canonical_brief_og_kort_vs_husk_det_muntlig",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2
+              }
+            },
+            "feedback": "Hele produksjonen arbeider videre fra samme korrigerte grunnlag.",
+            "id": "A",
+            "label": "Rett brief og stikkordskort og bekreft mottak",
+            "reply": "Jeg oppdaterer begge flatene til søknadstall og bruker den bekreftede uttalen.",
+            "tags": [
+              "traceability",
+              "correction"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 2
+              }
+            },
+            "feedback": "Feilen blir stående i to operative flater og kan fortsatt leses av andre.",
+            "id": "B",
+            "label": "La dokumentene stå og korriger deg selv på lufta",
+            "reply": "Jeg husker forskjellen når jeg leser introduksjonen.",
+            "tags": [
+              "memory_only",
+              "rework"
+            ]
+          }
+        ],
+        "competency": "faktapresisjon",
+        "consequence_axis": "samstemt_grunnlag_vs_dobbelt_feilspor",
+        "cooldown": 2,
+        "day_phase": "afternoon",
+        "from": "Amina, researcher",
+        "id": "film_tv_program_micro_faktalapp_001",
+        "interaction_mode": "decision",
+        "mail_family": "programleder_faktalapp",
+        "mail_type": "micro",
+        "narrative_arc": "fra_brief_til_sending",
+        "people_ref": "amina_researcher_program",
+        "person_id": "amina_researcher_program",
+        "phase": "workday",
+        "place_id": "briefrom_program_film_tv",
+        "pressure": "siste_minutt_vs_korreksjon",
+        "priority": 112,
+        "purpose": "Teste om små rettelser får en canonical plass i briefen.",
+        "repeatable": true,
+        "role_scope": "programleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/micro/programleder_micro.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Kilden skiller tydelig mellom søknader og ferdige produksjoner.",
+          "Feilen står i både introduksjon og stikkordskort.",
+          "Korrekt uttale er bekreftet direkte med gjestekoordinatoren."
+        ],
+        "stage": "stable",
+        "stakes": "Et feil tall gjentatt med trygg stemme blir vanskeligere å rydde opp i etter sending.",
+        "subject": "Tallet gjelder søknader, ikke ferdige produksjoner",
+        "summary": "Amina har oppdaget at introduksjonen bruker et søknadstall som om det var antall ferdige produksjoner, og har også lagt ved korrekt uttale av gjestens navn.",
+        "task_domain": "research_og_brief",
+        "task_kind": "micro"
+      },
+      "id": "film_tv_program_micro_faktalapp_001",
+      "mail_type": "micro",
+      "role_scope": "programleder",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Hele produksjonen arbeider videre fra samme korrigerte grunnlag.",
+            "id": "A",
+            "label": "Rett brief og stikkordskort og bekreft mottak",
+            "reply": "Jeg oppdaterer begge flatene til søknadstall og bruker den bekreftede uttalen."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Feilen blir stående i to operative flater og kan fortsatt leses av andre.",
+            "id": "B",
+            "label": "La dokumentene stå og korriger deg selv på lufta",
+            "reply": "Jeg husker forskjellen når jeg leser introduksjonen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Kilden skiller tydelig mellom søknader og ferdige produksjoner.",
+            "Feilen står i både introduksjon og stikkordskort.",
+            "Korrekt uttale er bekreftet direkte med gjestekoordinatoren."
+          ],
+          "subject": "Tallet gjelder søknader, ikke ferdige produksjoner",
+          "summary": "Amina har oppdaget at introduksjonen bruker et søknadstall som om det var antall ferdige produksjoner, og har også lagt ved korrekt uttale av gjestens navn."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_program_micro_faktalapp_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "briefrom_program_film_tv",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_program_micro_faktalapp_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/micro/programleder_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "programleder.mail.film_tv_program_micro_faktalapp_001",
+        "version": 1
+      },
+      "source_hash": "d24c87b508dd837443858bdb8cccc114e4ef98201e0b7bb286a10a181991cd58",
+      "source_path": "data/Civication/mailFamilies/film_tv/micro/programleder_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "bekreft_grensen_og_avtal_stoppunkt_vs_hold_muligheten_apen",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "quality": 1,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Thea kan gi gjesten en presis og etterprøvbar avtale.",
+            "id": "A",
+            "label": "Bekreft grensen og avtal et tydelig stoppunkt",
+            "reply": "Jeg holder familieforløpet utenfor og stanser for ny avklaring dersom gjesten selv åpner temaet.",
+            "tags": [
+              "consent",
+              "care"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -1,
+                "risk": 3,
+                "trust": -2
+              }
+            },
+            "feedback": "Du gjør en uttrykkelig grense om til en taktisk reserve.",
+            "id": "B",
+            "label": "Behold temaet som mulig oppfølging",
+            "reply": "Jeg spør ikke direkte, men bruker det dersom samtalen trenger mer nerve.",
+            "tags": [
+              "boundary_risk",
+              "sensation"
+            ]
+          }
+        ],
+        "competency": "omsorg_og_grensesetting",
+        "consequence_axis": "gjestetillit_vs_premissglidning",
+        "cooldown": 2,
+        "day_phase": "morning",
+        "from": "Thea, gjestekoordinator",
+        "id": "film_tv_program_people_gjestegrense_001",
+        "interaction_mode": "decision",
+        "mail_family": "programleder_gjesteavtale",
+        "mail_type": "people",
+        "narrative_arc": "gjestens_grense_blir_testet",
+        "people_ref": "thea_gjestekoordinator",
+        "person_id": "thea_gjestekoordinator",
+        "phase": "early",
+        "place_id": "studio_program_film_tv",
+        "pressure": "sterk_historie_vs_avtalt_premiss",
+        "priority": 132,
+        "purpose": "Teste om programlederen gjør grensen konkret før intervjuet.",
+        "repeatable": false,
+        "role_scope": "programleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/people/programleder_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Familieforløpet finnes i offentlig omtale.",
+          "Gjesten har uttrykkelig avgrenset dagens premiss.",
+          "Oppfølgingsspørsmål kan fortsatt bli nødvendige hvis gjesten selv åpner temaet."
+        ],
+        "stage": "stable",
+        "stakes": "En uklar grense kan gjøre gjesten utrygg og svekke både samtalen og senere samtykke.",
+        "subject": "Gjesten vil snakke om arbeidet, ikke familieforløpet",
+        "summary": "Thea har dokumentert at gjesten gjerne svarer om prosjektet, men ikke ønsker at et nylig familieforløp brukes som inngang.",
+        "task_domain": "intervju",
+        "task_kind": "people",
+        "thread_key": "film_tv_program_gjestegrense_001"
+      },
+      "id": "film_tv_program_people_gjestegrense_001",
+      "mail_type": "people",
+      "role_scope": "programleder",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Thea kan gi gjesten en presis og etterprøvbar avtale.",
+            "id": "A",
+            "label": "Bekreft grensen og avtal et tydelig stoppunkt",
+            "reply": "Jeg holder familieforløpet utenfor og stanser for ny avklaring dersom gjesten selv åpner temaet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør en uttrykkelig grense om til en taktisk reserve.",
+            "id": "B",
+            "label": "Behold temaet som mulig oppfølging",
+            "reply": "Jeg spør ikke direkte, men bruker det dersom samtalen trenger mer nerve."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Familieforløpet finnes i offentlig omtale.",
+            "Gjesten har uttrykkelig avgrenset dagens premiss.",
+            "Oppfølgingsspørsmål kan fortsatt bli nødvendige hvis gjesten selv åpner temaet."
+          ],
+          "subject": "Gjesten vil snakke om arbeidet, ikke familieforløpet",
+          "summary": "Thea har dokumentert at gjesten gjerne svarer om prosjektet, men ikke ønsker at et nylig familieforløp brukes som inngang."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_program_people_gjestegrense_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "studio_program_film_tv",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_program_people_gjestegrense_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/people/programleder_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "film_tv_program_gjestegrense_001",
+        "version": 1
+      },
+      "source_hash": "4987f9a01c9fc2cf6b6746e724b6bf3fd34d5cb24593af9f11caa141fb210159",
+      "source_path": "data/Civication/mailFamilies/film_tv/people/programleder_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "stans_og_avklar_bruk_vs_bygg_sporsmal_rundt_detaljen",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 1,
+                "risk": -3,
+                "trust": 2
+              }
+            },
+            "feedback": "Betroelsen blir et spørsmål om ny avklaring, ikke et automatisk programpoeng.",
+            "id": "A",
+            "label": "Stans og be Thea avklare hva som kan brukes",
+            "reply": "Det var en viktig opplysning, men vi bruker den ikke før gjesten har valgt premiss og omfang på nytt.",
+            "tags": [
+              "consent",
+              "pause"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -1,
+                "risk": 3,
+                "trust": -3
+              }
+            },
+            "feedback": "Du forsøker å omgå grensen uten å gjøre bruken tydelig for gjesten.",
+            "id": "B",
+            "label": "Skriv et indirekte spørsmål som lokker fram detaljen",
+            "reply": "Jeg spør bredt nok til at gjesten kan fortelle det samme på kamera.",
+            "tags": [
+              "covert_pressure",
+              "boundary_risk"
+            ]
+          }
+        ],
+        "competency": "gjestetillit",
+        "consequence_axis": "informert_deltakelse_vs_utnyttet_betroelse",
+        "cooldown": 4,
+        "day_phase": "forenoon",
+        "from": "Thea, gjestekoordinator",
+        "id": "film_tv_program_story_betroelse_001",
+        "interaction_mode": "decision",
+        "mail_family": "programleder_sensitiv_betroelse",
+        "mail_type": "story",
+        "narrative_arc": "gjestens_grense_blir_testet",
+        "people_ref": "thea_gjestekoordinator",
+        "person_id": "thea_gjestekoordinator",
+        "phase": "mid",
+        "place_id": "studio_program_film_tv",
+        "pressure": "sterkt_oyeblikk_vs_ny_avklaring",
+        "priority": 120,
+        "purpose": "Teste om programlederen skiller en betroelse fra publiserbart samtykke.",
+        "repeatable": false,
+        "role_scope": "programleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/story/programleder_story.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Uttalelsen kom før det formelle opptaket.",
+          "Gjesten tok selv opp temaet.",
+          "Det finnes ennå ingen ny avklaring om bruk i sending eller klipp."
+        ],
+        "stage": "stable",
+        "stakes": "Detaljen kan berike samtalen, men opptakssituasjonen og den tidligere grensen gjør videre bruk uavklart.",
+        "subject": "Gjesten nevnte familieforløpet i lydprøven",
+        "summary": "Under en uformell lydprøve fortalte gjesten en detalj som ville gitt et sterkt TV-øyeblikk, men som lå utenfor avtalt premiss.",
+        "task_domain": "intervju",
+        "task_kind": "story",
+        "thread_key": "film_tv_program_gjestegrense_001"
+      },
+      "id": "film_tv_program_story_betroelse_001",
+      "mail_type": "story",
+      "role_scope": "programleder",
+      "scene": {
+        "arc_stage": "mid",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Betroelsen blir et spørsmål om ny avklaring, ikke et automatisk programpoeng.",
+            "id": "A",
+            "label": "Stans og be Thea avklare hva som kan brukes",
+            "reply": "Det var en viktig opplysning, men vi bruker den ikke før gjesten har valgt premiss og omfang på nytt."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du forsøker å omgå grensen uten å gjøre bruken tydelig for gjesten.",
+            "id": "B",
+            "label": "Skriv et indirekte spørsmål som lokker fram detaljen",
+            "reply": "Jeg spør bredt nok til at gjesten kan fortelle det samme på kamera."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Uttalelsen kom før det formelle opptaket.",
+            "Gjesten tok selv opp temaet.",
+            "Det finnes ennå ingen ny avklaring om bruk i sending eller klipp."
+          ],
+          "subject": "Gjesten nevnte familieforløpet i lydprøven",
+          "summary": "Under en uformell lydprøve fortalte gjesten en detalj som ville gitt et sterkt TV-øyeblikk, men som lå utenfor avtalt premiss."
+        },
+        "day_phase": "forenoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_program_story_betroelse_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "studio_program_film_tv",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_program_story_betroelse_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/story/programleder_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "film_tv_program_gjestegrense_001",
+        "version": 1
+      },
+      "source_hash": "75fb0a6b9e340fe648c46ec47a9d5a558d47147ce9b8186fae09582ffdde379b",
+      "source_path": "data/Civication/mailFamilies/film_tv/story/programleder_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -158798,7 +160097,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "6ec730764695a2b11c6b691385c4b3b3dd757ac64a4420b8fbc1cab24224360e",
+  "registry_hash": "b8cfba08c3cc1ceb4eb78c6ca104333fcfb111b6ef60c5fbd3f936e16b602271",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -159004,6 +160303,17 @@
       "film_tv_pa_followup_sideinngang_status",
       "film_tv_pa_knowledge_apen_kontaktliste",
       "film_tv_pa_consequence_transport_motte_feil"
+    ],
+    "film_tv/programleder": [
+      "film_tv_program_job_brief_001",
+      "film_tv_program_people_gjestegrense_001",
+      "film_tv_program_story_betroelse_001",
+      "film_tv_program_conflict_premiss_001",
+      "film_tv_program_event_liveavvik_001",
+      "film_tv_program_micro_faktalapp_001",
+      "film_tv_program_followup_gjestegrense_001",
+      "film_tv_program_knowledge_bang_hansen_001",
+      "film_tv_program_consequence_rettelse_001"
     ],
     "litteratur/redaksjonsmedarbeider": [
       "litteratur_redaksjonsmedarbeider_job_versjon_001",
@@ -159958,11 +161268,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 291,
+    "compiled_source_file_count": 300,
     "ignored_source_file_count": 1,
-    "input_file_count": 292,
-    "role_count": 38,
-    "scene_count": 1054,
+    "input_file_count": 301,
+    "role_count": 39,
+    "scene_count": 1063,
     "shadowed_duplicate_count": 0
   },
   "version": 1

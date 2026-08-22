@@ -1,0 +1,14 @@
+{
+  "schema": "civication_mail_family_catalog_v1", "version": 1, "category": "film_tv", "role_scope": "programleder", "mail_type": "consequence",
+  "families": [{"id": "programleder_rettelse_i_sending", "purpose": "Koble tidligere faktasnarvei til en synlig og reparerbar publikumskostnad.", "learning_focus": ["rettelse", "ansvar", "publikumstillit"], "mails": [{
+    "id": "film_tv_program_consequence_rettelse_001", "mail_type": "consequence", "mail_family": "programleder_rettelse_i_sending", "role_scope": "programleder", "phase": "mastery", "day_phase": "evening", "priority": 100, "cooldown": 6, "repeatable": false, "stage": "stable",
+    "from": "Jonas, liveprodusent", "people_ref": "jonas_liveprodusent", "person_id": "jonas_liveprodusent", "place_id": "kontrollrom_program_film_tv",
+    "subject": "Publikum spør hvilket tall som faktisk gjelder", "summary": "Etter introduksjonen har flere seere reagert på forskjellen mellom antall søknader og antall ferdige produksjoner. Jonas trenger en kort rettelse før sendingen avsluttes.", "purpose": "Teste om programlederen retter konkret og åpent uten å skyve ansvaret over på research eller gjest.", "stakes": "En tydelig rettelse koster noen sekunder; en vag bortforklaring gjør tillitsbruddet større.",
+    "situation": ["Canonical brief viser korrekt søknadstall.", "Feil formulering ble lest på lufta.", "Det er tid til én kort og presis rettelse før avslutning."],
+    "task_domain": "redaksjonell_oppfolging", "task_kind": "consequence", "competency": "redaksjonell_integritet", "pressure": "fasade_vs_apen_rettelse", "choice_axis": "rett_konkret_og_ta_ansvar_vs_formuler_vagt", "consequence_axis": "reparert_tillit_vs_varig_usikkerhet", "narrative_arc": "fra_brief_til_sending", "interaction_mode": "decision",
+    "choices": [
+      {"id": "A", "label": "Rett tallet konkret og si hva det faktisk måler", "reply": "Vi sa antall ferdige produksjoner. Det riktige er antall søknader, og vi beklager feilen.", "effect": 1, "tags": ["repair", "accountability"], "feedback": "Publikum får både korrekt talltype og en tydelig forklaring på feilen.", "effects": {"stats": {"quality": 3, "trust": 2, "risk": -3, "status": -1}}},
+      {"id": "B", "label": "Si at tall kan tolkes ulikt", "reply": "Det finnes flere måter å telle aktiviteten på, og bildet er derfor sammensatt.", "effect": -1, "tags": ["avoidance", "trust_risk"], "feedback": "Du skjuler en konkret feil bak en vag formulering og lar publikum stå uten svar.", "effects": {"stats": {"quality": -3, "trust": -3, "risk": 2, "status": 1}}}
+    ]
+  }]}]
+}
