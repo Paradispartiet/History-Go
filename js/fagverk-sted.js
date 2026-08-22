@@ -18,6 +18,21 @@
     return values.map(text).filter((value) => value && !seen.has(value) && seen.add(value));
   }
 
+  function humanizeId(value) {
+    const normalized = text(value)
+      .replace(/^em_[a-z]+_/u, '')
+      .replaceAll('_', ' ')
+      .replace(/\s+/gu, ' ');
+    return normalized ? normalized.charAt(0).toUpperCase() + normalized.slice(1) : '';
+  }
+
+  function formatAddress(value) {
+    if (!value || typeof value !== 'object' || Array.isArray(value)) return text(value);
+    const streetLine = [value.street, value.number].map(text).filter(Boolean).join(' ');
+    const locality = [value.postcode, value.city].map(text).filter(Boolean).join(' ');
+    return [streetLine, locality].filter(Boolean).join(', ');
+  }
+
   function escapeHtml(value) {
     return String(value == null ? '' : value)
       .replaceAll('&', '&amp;')
@@ -65,7 +80,11 @@
       ...list(curated.emneIds),
       ...list(place?.emne_ids || place?.emneIds)
     ]);
-    const emner = emneIds.map((id) => ({ id, ...(registry?.emner?.[id] || {}) }));
+    const emner = emneIds.map((id) => ({
+      id,
+      title: humanizeId(id),
+      ...(registry?.emner?.[id] || {})
+    }));
     const subjects = unique([
       ...emner.map((emne) => emne.subject),
       ...list(curated.subjects),
@@ -83,6 +102,29 @@
       ...list(place?.tags)
     ]).slice(0, 24);
     return { curated, emner, subject, chapters, concepts };
+  }
+
+  function renderBadgePath(registry, model, place) {
+    const host = document.getElementById('fagverkPlaceBadgePath');
+    if (!host) return;
+    const badgeIds = unique(place?.underbadge_ids || place?.underbadgeIds || []);
+    const subject = registry?.subjects?.[model.subject] || {};
+    const subjectTitle = text(subject.title) || humanizeId(model.subject || placeCategory(place));
+    if (!subjectTitle && !badgeIds.length) {
+      host.hidden = true;
+      return;
+    }
+    const subjectLink = model.subject
+      ? `<a class="fagverk-case" href="fagverk-forside.html?subject=${encodeURIComponent(model.subject)}"><strong>${escapeHtml(subjectTitle)}</strong><span>Stedets primærfag</span><small>Åpne fagverket →</small></a>`
+      : '';
+    host.innerHTML = `
+      <p class="fagverk-kicker">Fra merke til fag</p>
+      <h2>Merke og fag</h2>
+      <p>Undermerkene viser hvilke deler av faget som er særlig relevante på dette stedet.</p>
+      <div class="fagverk-canonical-underbadges">${badgeIds.map((id) => `<a href="fagverk-forside.html?subject=${encodeURIComponent(model.subject)}&amp;underbadge=${encodeURIComponent(id)}">${escapeHtml(humanizeId(id))}</a>`).join('')}</div>
+      <div class="fagverk-canonical-domain-grid">${subjectLink}</div>
+    `;
+    host.hidden = false;
   }
 
   function defaultLenses(place) {
@@ -268,7 +310,7 @@
       const title = placeTitle(place, placeId, model.curated);
       document.title = `${title} – History Go Fagverk`;
       document.getElementById('fagverkPlaceTitle').textContent = title;
-      document.getElementById('fagverkPlaceMeta').textContent = [placeCategory(place), text(place?.period || place?.year), text(place?.address)].filter(Boolean).join(' · ');
+      document.getElementById('fagverkPlaceMeta').textContent = [placeCategory(place), text(place?.period || place?.year), formatAddress(place?.address)].filter(Boolean).join(' · ');
       document.getElementById('fagverkPlaceLead').textContent = text(model.curated.intro || place?.desc) || 'En egen fagverkside for stedet.';
       document.getElementById('fagverkPlaceMapLink').href = `index.html#/place/${encodeURIComponent(placeId)}`;
 
@@ -281,6 +323,7 @@
       }
 
       renderArticle(place);
+      renderBadgePath(registry, model, place);
       renderLenses(model, place);
       renderQuestions(model, place, title);
       renderChapters(registry, model, placeId);
