@@ -69,10 +69,10 @@ test('Eksisterende runtime dedupliserer Kilder og åpner eksterne lenker sikkert
   assert.match(runtime, /target="_blank" rel="noopener noreferrer"/);
 });
 
-test('Fasekortet lukker Lesespor, åpner Kilder og peker videre til Mer', () => {
+test('Fasekortet lukker Kilder og åpner direktefanefasen', () => {
   assert.match(report, /\| 6 \| Lesespor \| \*\*GODKJENT – PR #4658, merge `c78cb05353bfb61eb68fef74ee9f115dfacc3a8b`\*\* \|/);
   assert.match(report, /\| Kilder \| PASS – fase 7 \|/);
-  assert.match(report, /\| 7 \| Brukerrettede Kilder \| \*\*KLAR FOR REVIEW\*\* \|/);
-  assert.match(report, /\| 8 \| Mer \| IKKE STARTET \|/);
+  assert.match(report, /\| 7 \| Brukerrettede Kilder \| \*\*GODKJENT – PR #5184, merge `31af12e8852cca6d7c2da2ef2e5fdab480a287c2`\*\* \|/);
+  assert.match(report, /\| 8 \| Mer \| \*\*KLAR FOR REVIEW – DIREKTE FANER\*\* \|/);
   assert.match(report, /Ingen ny hovedflate eller runtimevariant er innført/);
 });

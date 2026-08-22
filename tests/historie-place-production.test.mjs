@@ -289,7 +289,7 @@ test('Gamle Aker chronology er kildebelagt og holder usikker datering og Story a
   const leksikon = JSON.parse(fs.readFileSync(path.join(root, 'data/leksikon/places/oslo/historie/leksikon_oslo_historie.json'), 'utf8'));
   const article = leksikon.find((entry) => entry.place_id === 'gamle_aker_kirke');
   assert.ok(article);
-  assert.equal(article.version, 2);
+  assert.equal(article.version, 3);
   assert.equal(article.chronology.length, 11);
   assert.equal(new Set(article.chronology.map((entry) => entry.id)).size, 11);
 

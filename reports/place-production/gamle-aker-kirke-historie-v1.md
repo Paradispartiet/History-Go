@@ -6,7 +6,7 @@
 - Manifest: `data/places/manifest.json`
 - Primærkategori: `historie`
 - Stedstype: stående middelalderkirke i fortsatt bruk
-- Status: **fase 7 – brukerrettede Kilder klare for review; stedet er ennå ikke samlet produksjonsklart**
+- Status: **fase 8 – Språk, Legg merke til, Betydning og Motpunkter klare for review; stedet er ennå ikke samlet produksjonsklart**
 
 ## Arbeidskort
 
@@ -72,7 +72,7 @@ Som ekstra pilotkontroll gjenbrukes tre gode ideer fra den lukkede, feilplassert
 | Nyheter | MANGLER | Ingen daterte, ferskverifiserte nyhets-/driftsrecords for stedet er funnet. |
 | Lesespor | MANGLER | Ingen eksplisitt stedskoblet, åpen Lesespor-pakke er funnet. |
 | Kilder | PASS – fase 7 | Fem brukerrettede kildegrupper og sju unike, navngitte HTTPS-lenker dekker identitet, bygningshistorie, dagens bruk, rehabilitering, kulturminnevern og bilder. Interne History Go-data er fjernet fra brukerflaten, og kildekonflikten om Thomas Blix-inventaret er synlig avgrenset. |
-| Mer | DELVIS | Leksikon har korte tolkningspunkter, men de mangler kilder. Ingen ferdig Språkleksikon-/observasjonspakke er dokumentert, og Wonderkammer skal ikke gjeninnføres som ny flate. |
+| Mer | PASS – fase 8 | Fem stedsspesifikke Språkleksikon-oppslag og tre kildebelagte spor hver for observasjon, betydning og motpunkt materialiseres som navngitte direktefaner. Det finnes ingen brukerrettet Mer-restfane. |
 
 ## Sanerings- og produksjonsplan
 
@@ -131,8 +131,8 @@ Bare én fase kan være aktiv om gangen. Hver godkjente fase skal merges og kont
 | 4 | Før/etter | **GODKJENT – PR #4654, merge `850c3b3332f857fb98593f36588bc46cfe6945eb`** |
 | 5 | Nyheter | **GODKJENT – PR #4656, merge `1ae7d30113134edc26394289a1afce0226f58246`** |
 | 6 | Lesespor | **GODKJENT – PR #4658, merge `c78cb05353bfb61eb68fef74ee9f115dfacc3a8b`** |
-| 7 | Brukerrettede Kilder | **KLAR FOR REVIEW** |
-| 8 | Mer | IKKE STARTET |
+| 7 | Brukerrettede Kilder | **GODKJENT – PR #5184, merge `31af12e8852cca6d7c2da2ef2e5fdab480a287c2`** |
+| 8 | Mer | **KLAR FOR REVIEW – DIREKTE FANER** |
 | 9 | Quizåpning 2 × 7 og Knowledge | IKKE STARTET |
 | 10 | People, Objects, Brands og Badges/rundinger | IKKE STARTET |
 | 11 | Full audit, UI-kontroll og produksjonsklarhetsavgjørelse | IKKE STARTET |
@@ -203,26 +203,38 @@ Bare én fase kan være aktiv om gangen. Hver godkjente fase skal merges og kont
 - Eksisterende popup-runtime samler place- og Leksikon-lenker med Før/etter-kildene, dedupliserer på URL og åpner eksterne lenker med `noopener noreferrer`. Ingen ny hovedflate eller runtimevariant er innført.
 - Interne rapporter, quizdata, Story-data, audits og research-notater eksponeres ikke som brukerrettede kilder. De tre usikre tradisjonene om trekirke, Olav Kyrre og tingsted forblir holdt tilbake.
 
+## Resultat i fase 8
+
+- Leksikonets hovedrecord er oppgradert til versjon 3 med tre «Legg merke til»-punkter, tre betydningspunkter og tre motpunkter. Alle tre sporene har sju HTTPS-kilder kontrollert 22. august 2026.
+- Observasjonene gjør besøket konkret: brukeren kan lese basilikaformen, apsiden, kalksteinen/fossilsporet og restaureringslagene i selve bygget uten å berøre sårbart murverk.
+- Betydningssporet kobler navnet Aker til norrønt `akr`, ortocerkalkstein til Oslofeltets geologi og rehabiliteringen til avveininger mellom fortsatt bruk, tilgjengelighet, energi, brannsikring og vern.
+- Motpunktene holder byggeåret usikkert, forklarer at det bare steininteriøret i stor grad er et resultat av restaureringen i 1950–1955, og avviser at bygningen alene beviser trekirke-, Olav Kyrre- eller tingstedstradisjonene.
+- Et canonicalt Språkleksikon med fem oppslag forklarer `Aker`, `ortocerkalkstein`, `basilika`, `apsis` og `krypt`. Hvert oppslag er koblet til `gamle_aker_kirke`, har stedskontekst og minst én navngitt HTTPS-kilde; arkitektur- og romordene har også en egen stedskilde.
+- Gamle Aker kirke er et enkeltsted uten `placeScope: "area"`. Dialektlaget er derfor eksplisitt N/A: språkfilen har `layer: "language"`, ingen `dialect_area` og ingen `dialect_feature`. Oslo-dialekt skal eies av et relevant område-Place, ikke kopieres inn i kirkebygget.
+- Fossilstoffet som ble avvist som Story i fase 3 er nå plassert hos riktige eiere: geologibegrepet ligger i Språkleksikon, mens den kildebelagte observasjonen og betydningen ligger i direktefanene. Ingen forklarende fossiltekst gjeninnføres som Story.
+- Knowledge, funfacts, relasjoner og fysiske Objects er vurdert og ikke lagt i denne fasen. Knowledge eies av quiz-/Knowledge-fasen, relasjoner eies av canonical relasjonsdata, og Objects krever egen identitets-, kilde- og bilderunde.
+- Eksisterende runtime materialiserer språk, observasjon, betydning og motpunkter som navngitte direktefaner i den horisontalt scrollbar fanestripen. Ingen ny hovedflate, Mer-restfane eller stedsspesifikk runtimevariant er innført.
+
 ## Aktivt filscope
 
-Fase 7 endrer bare:
+Fase 8 endrer bare:
 
-- canonical place-recordens `source_summary` og `externalLinks`;
-- Kilder-seksjonen i den eksisterende statiske Leksikon-siden;
-- en egen Kilder-regresjonspakke og faseforventningene i tidligere Gamle Aker-tester;
+- Gamle Aker-hovedrecordens `interpretation` i den manifestlastede Oslo/Historie-Leksikon-filen;
+- én ny stedsspesifikk Språkleksikon-fil og én manifestkobling;
+- en egen direktefane-/Språkleksikon-regresjonspakke og faseforventningen i Kilder-testen;
 - dette arbeidskortet.
 
-Ingen Story-, Lesespor-, People-, Quiz-, Knowledge-, manifest-, runtime-, bilde- eller koordinatfil endres i fase 7.
+Ingen canonical place-, Story-, Lesespor-, People-, Quiz-, Knowledge-, bilde-, koordinat- eller runtimefil endres i fase 8.
 
-## Ferdigport for fase 7
+## Ferdigport for fase 8
 
-Fase 7 kan godkjennes når:
+Fase 8 kan godkjennes når:
 
-1. `source_summary.safe_sources` består av brukerrettede eksterne kildegrupper og inneholder ingen interne History Go-data;
-2. nøyaktig sju `externalLinks` har unike, navngitte HTTPS-lenker, `lang: "nb"` og `verifiedAt: "2026-08-22"`;
-3. lenkene dekker faglig oversikt, offisiell stedsinformasjon, kulturminnevern, lokalhistorie, rehabiliteringsstatus og begge bildenes proveniens;
-4. den planlagte rehabiliteringsfasen i 2026–2027 presenteres som planlagt, ikke gjennomført;
-5. kildekonflikten mellom 1715 og 1725 er eksplisitt holdt tilbake fra sikre påstander;
-6. den statiske Leksikon-siden viser samme kontrollerte kildepakke og ingen interne produksjonsreferanser;
-7. eksisterende runtime dedupliserer lenkene og åpner dem sikkert uten en ny hovedflate;
-8. Kilder-regresjonstesten, tidligere Gamle Aker-fasetester og relevante data-/place-validatorer består.
+1. språkmanifestet kobler `gamle_aker_kirke` til én canonical språkfil med fem unike oppslag;
+2. hvert oppslag har presis betydning, stedsspesifikk kontekst, `linked_to`, minst tre tags og én inspectable HTTPS-kilde;
+3. språkfilen bruker et reelt `historie`-subject og de fire canonicale Historie-emnene;
+4. enkeltstedet inneholder ingen `layer: "dialect"`, `dialect_area` eller `dialect_feature`;
+5. Leksikonets observasjon, betydning og motpunkter har tre selvstendige, stedsspesifikke punkter hver og en felles kildepakke kontrollert 22. august 2026;
+6. fossil-/materialsporet får riktig språk- og observasjonseier uten å gjenoppstå som Story, funfact eller Object-filler;
+7. eksisterende runtime materialiserer Språk, Legg merke til, Betydning og Motpunkter som direktefaner og fjerner den interne Mer-stagingfanen;
+8. Språkleksikon-schema/-audit, direktefane-regresjoner, Leksikon-ID-kontroll og tidligere Gamle Aker-fasetester består.
