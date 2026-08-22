@@ -61,6 +61,6 @@ test('Nyheter bruker navngitte offisielle HTTPS-kilder og blir i riktig flate', 
 test('Fasekortet lukker Før/etter og holder senere popupfaser åpne', () => {
   assert.match(report, /\| 4 \| Før\/etter \| \*\*GODKJENT – PR #4654, merge `850c3b3332f857fb98593f36588bc46cfe6945eb`\*\* \|/);
   assert.match(report, /\| 5 \| Nyheter \| \*\*GODKJENT – PR #4656, merge `1ae7d30113134edc26394289a1afce0226f58246`\*\* \|/);
-  assert.match(report, /\| 6 \| Lesespor \| \*\*KLAR FOR REVIEW\*\* \|/);
+  assert.match(report, /\| 6 \| Lesespor \| \*\*GODKJENT – PR #4658, merge `c78cb05353bfb61eb68fef74ee9f115dfacc3a8b`\*\* \|/);
   assert.match(report, /sluttfasen 2026–2027 vises bare i Historie-kronologien/);
 });
