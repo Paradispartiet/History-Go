@@ -1,0 +1,161 @@
+{
+  "schema": "history_go_place_rounds_audit_v1",
+  "place_id": "gamle_aker_kirke",
+  "phase": 10,
+  "reviewed_at": "2026-08-22",
+  "status": "READY_FOR_REVIEW",
+  "contract": "data/places/README_place_rounds.md",
+  "rounds": {
+    "badge": {
+      "placement": "separate_header",
+      "ids": [
+        "middelalder",
+        "kulturminner_og_bevaring"
+      ],
+      "canonical_registry": "data/badges/historie.json",
+      "status": "PASS"
+    },
+    "content_round_ids": [
+      "people",
+      "objects",
+      "brands",
+      "related"
+    ],
+    "profile": "standard_historie",
+    "round_profile_override": false,
+    "status": "PASS"
+  },
+  "people": {
+    "included_ids": [
+      "heinrich_ernst_schirmer",
+      "wilhelm_von_hanno",
+      "torvald_moseid",
+      "dronning_maud"
+    ],
+    "count": 4,
+    "with_local_portrait": 1,
+    "with_intentional_design_fallback": 2,
+    "with_text_fallback": 1,
+    "broken_image_paths": 0,
+    "holdbacks": [
+      {
+        "id": "olav_kyrre",
+        "reason": "Tradisjonell og svak grunnleggelseskobling; beholdes som research-notat."
+      },
+      {
+        "id": "thomas_blix",
+        "reason": "Ingen canonical personprofil i manifestet; objektrollen er dokumentert uten å opprette en tynn personpost."
+      },
+      {
+        "id": "eivind_berggrav",
+        "reason": "Middels sterk sekundærkobling uten ferdig canonical personprofil."
+      },
+      {
+        "id": "haakon_vii_krigstid",
+        "reason": "Eksisterende profil er ikke redaksjonelt stedstilpasset Gamle Aker og holdes derfor ute av rundingen."
+      }
+    ],
+    "status": "PASS"
+  },
+  "objects": {
+    "included_ids": [
+      "gamle_aker_kirke_dopefont_1715",
+      "gamle_aker_kirke_prekestol_1715",
+      "gamle_aker_kirke_nattverd_altertavle"
+    ],
+    "count": 3,
+    "local_image_coverage": {
+      "required": 3,
+      "reviewed": 3,
+      "missing": 0,
+      "percent": 100
+    },
+    "source_policy": "Hvert objekt har en faglig identitetskilde og en inspectable CC BY-SA-bildeside.",
+    "exclusions": [
+      "Kirkebygget, tårnet, kalksteinen og fossilene er ikke duplisert som Objects.",
+      "Glassmaleriet er ikke materialisert uten et kontrollert lokalt objektbilde."
+    ],
+    "status": "PASS"
+  },
+  "brands": {
+    "included_ids": [
+      "zenisk",
+      "traad_as"
+    ],
+    "count": 2,
+    "logo_coverage": {
+      "required": 2,
+      "reviewed": 2,
+      "missing": 0,
+      "percent": 100
+    },
+    "candidates": [
+      {
+        "id": "zenisk",
+        "decision": "INCLUDE",
+        "score": 9,
+        "criteria": [
+          "identity_autonomy",
+          "recognition",
+          "distinctive_association",
+          "symbolic_or_visual_presence",
+          "repeatability_beyond_one_building"
+        ],
+        "place_role": "Lysdesign i rehabiliteringen, navngitt av Den norske kirke og Riksantikvaren."
+      },
+      {
+        "id": "traad_as",
+        "decision": "INCLUDE",
+        "score": 9,
+        "criteria": [
+          "identity_autonomy",
+          "recognition",
+          "distinctive_association",
+          "symbolic_or_visual_presence",
+          "repeatability_beyond_one_building"
+        ],
+        "place_role": "Utviklet det stedstilpassede lydkonseptet for kirken."
+      },
+      {
+        "id": "arkitektene_as",
+        "decision": "HOLD_BACK",
+        "reason": "Direkte arkitektrolle er dokumentert, men logo-/ordmerkeporten er ikke lukket med et verifisert lokalt asset."
+      },
+      {
+        "id": "nco_as",
+        "decision": "HOLD_BACK",
+        "reason": "Riksantikvaren navngir firmaet i prosjektgruppen, men konkret rolle, selvstendig score og logoport er ikke tilstrekkelig dokumentert."
+      },
+      {
+        "id": "kirkelig_fellesrad_i_oslo",
+        "decision": "EXCLUDE",
+        "reason": "Prosjekteier og offentlig/kirkelig institusjon i denne konteksten; brukes ikke som Brand-fyll."
+      }
+    ],
+    "status": "PASS"
+  },
+  "related": {
+    "ids": [
+      "damstredet_telthusbakken",
+      "var_frelsers_gravlund",
+      "st_hanshaugen_park",
+      "stensparken"
+    ],
+    "count": 4,
+    "all_resolve_to_canonical_places": true,
+    "status": "PASS"
+  },
+  "quality_score": {
+    "correctness_and_evidence": 5,
+    "coverage_and_completion": 5,
+    "editorial_quality": 5,
+    "technical_integrity": 5,
+    "safety_and_responsibility": 5,
+    "maintainability_and_verifiability": 4,
+    "total": 29,
+    "maximum": 30,
+    "minimum_each_passed": true,
+    "critical_findings": 0,
+    "conclusion": "HIGH_QUALITY_READY_FOR_REVIEW"
+  }
+}
