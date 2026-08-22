@@ -16,7 +16,7 @@ test('Gamle Aker har to daterte og stedsspesifikke Nyheter-notiser', () => {
   assert.ok(news.every(item => item.place_id === 'gamle_aker_kirke'));
   assert.ok(news.every(item => item.category === 'nyere_notis'));
   assert.deepEqual(news.map(item => item.year), [2024, 2025]);
-  assert.ok(news.every(item => item.source_checked_at === '2026-08-02'));
+  assert.ok(news.every(item => item.source_checked_at === '2026-08-22'));
   assert.ok(news.every(item => item.classification?.source_quality === 'official_primary'));
   assert.ok(news.every(item => item.classification?.quiz_use === 'none'));
 });

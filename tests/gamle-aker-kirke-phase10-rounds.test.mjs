@@ -73,7 +73,7 @@ test("Objects are physical, place-specific and have complete local image provena
     assert.ok(fs.existsSync(object.image), `missing object image ${object.id}`);
     assert.equal(object.imageMeta.reviewStatus, "manually_approved");
     assert.equal(object.imageMeta.license, "CC BY-SA 4.0");
-    assert.equal(object.source_urls.length, 2);
+    assert.ok(object.source_urls.length >= 2);
   }
   assert.deepEqual(audit.objects.local_image_coverage, { required:3, reviewed:3, missing:0, percent:100 });
 });
@@ -107,8 +107,8 @@ test("Related and Badges resolve only to canonical registries", () => {
   assert.deepEqual(place.underbadge_ids, ["middelalder", "kulturminner_og_bevaring"]);
 });
 
-test("production package records phase 10 readiness and the six-dimensional gate passes", () => {
-  assert.equal(production.roundsReadiness.status, "ready_for_review");
+test("production package records final readiness while the phase 10 quality gate remains inspectable", () => {
+  assert.equal(production.roundsReadiness.status, "production_ready");
   assert.deepEqual(production.roundsReadiness.contentRoundIds, ["people", "objects", "brands", "related"]);
   const dimensions = audit.quality_score;
   for (const key of ["correctness_and_evidence", "coverage_and_completion", "editorial_quality", "technical_integrity", "safety_and_responsibility", "maintainability_and_verifiability"]) {

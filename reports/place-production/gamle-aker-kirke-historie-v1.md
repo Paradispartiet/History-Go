@@ -6,7 +6,7 @@
 - Manifest: `data/places/manifest.json`
 - Primærkategori: `historie`
 - Stedstype: stående middelalderkirke i fortsatt bruk
-- Status: **fase 10 – People, Objects, Brands, Badges og Related klare for review; full audit i fase 11 gjenstår**
+- Status: **PRODUKSJONSKLAR – fase 11 PASS**
 
 ## Arbeidskort
 
@@ -134,8 +134,8 @@ Bare én fase kan være aktiv om gangen. Hver godkjente fase skal merges og kont
 | 7 | Brukerrettede Kilder | **GODKJENT – PR #5184, merge `31af12e8852cca6d7c2da2ef2e5fdab480a287c2`** |
 | 8 | Mer | **GODKJENT – PR #5186, merge `3bc252d347b3dd8561155bdbd49c354378401767`** |
 | 9 | Quizåpning 2 × 7 og Knowledge | **GODKJENT – PR #5188, merge `5c400fdb79fa16af7eb23fcd61c3e8b70ef8e01b`** |
-| 10 | People, Objects, Brands og Badges/rundinger | **KLAR FOR REVIEW – STANDARD 4+1, KILDE- OG BILDEKONTROLLERT** |
-| 11 | Full audit, UI-kontroll og produksjonsklarhetsavgjørelse | IKKE STARTET |
+| 10 | People, Objects, Brands og Badges/rundinger | **GODKJENT – PR #5189, merge `cccbd5261d3597539a2dd33f69e2b33b21aa8a9a`** |
+| 11 | Full audit, UI-kontroll og produksjonsklarhetsavgjørelse | **PASS – PRODUKSJONSKLAR, KLAR FOR REVIEW** |
 
 ## Resultat i fase 1
 
@@ -229,14 +229,29 @@ Bare én fase kan være aktiv om gangen. Hver godkjente fase skal merges og kont
 
 - People-rundingen har fire direkte, manifestlastede personkoblinger: Heinrich Ernst Schirmer og Wilhelm von Hanno for restaureringen i 1856–1861, Torvald Moseid for glassmaleriet fra 1955 og Dronning Maud for den dokumenterte oppbevaringen av sarkofagen i krypten 1940–1948.
 - Olav Kyrre holdes fortsatt tilbake som svak tradisjon. Thomas Blix materialiseres ikke som en tynn ny personprofil bare for å øke antallet; hans dokumenterte arbeid bæres i stedet av de fysiske objektene.
-- Objects-rundingen har tre identifiserbare gjenstander inne i kirken: døpefonten og prekestolen skåret av Thomas Blix i 1715, samt det bevarte nattverdsmaleriet fra altertavlen fra 1700-tallet. Hvert objekt har stedstekst, funnsted, fagkilde, lokalt bilde og inspectable CC BY-SA 4.0-proveniens.
+- Objects-rundingen har tre identifiserbare gjenstander inne i kirken: døpefonten og prekestolen skåret av Thomas Blix, samt det bevarte nattverdsmaleriet fra altertavlen fra 1700-tallet. Hvert objekt har stedstekst, funnsted, kildegrunnlag, lokalt bilde og inspectable CC BY-SA 4.0-proveniens. Fase 11 gjorde de to første objekt-ID-ene og tekstene årsnøytrale fordi kildene fortsatt spriker mellom 1715 og 1725.
 - Kirkebygget, tårnet, kalksteinen og fossilene er ikke duplisert som Objects. Torvald Moseids glassmaleri er faglig relevant, men holdes ute av Objects til et kontrollert, lokalt objektbilde finnes.
 - Brand-kandidatpasset har kontrollert moderne prosjektaktører, ikke bare eksisterende registertreff. Zenisk og TRÅD AS består Brand-definisjonen, har direkte dokumenterte roller ved stedet og 100 prosent lokal, offisiell logodekning. Arkitektene AS og Nco AS holdes tilbake fordi den ferdige logo-/rolleporten ikke er lukket; Kirkelig fellesråd brukes ikke som institusjonsfyll.
 - Fire canonicale nabosteder gir en virkelig Related-runde: Damstredet og Telthusbakken, Vår Frelsers gravlund, St. Hanshaugen park og Stensparken. Alle løser i `places_index` og gjør kirken til inngang til et rikere lokalt område.
 - Badges ligger fortsatt separat ved overskriften. `middelalder` og `kulturminner_og_bevaring` er kontrollert mot Historie-registeret, og innholdsrundingene følger standarden `people · objects · brands · related` uten `round_profile`-overstyring eller ny runtime.
 - Seksdelt kvalitetsport er 29/30: korrekthet/evidens 5, dekning 5, redaksjonell kvalitet 5, teknisk integritet 5, sikkerhet/ansvarlighet 5 og vedlikeholdbarhet/etterprøvbarhet 4. Ingen dimensjon er under 4 og ingen kritiske funn står åpne i faseomfanget.
 
-## Aktivt filscope
+## Resultat i fase 11
+
+- Hele stedschecklisten er gjennomgått på fersk `main` `cbf92f05df91dedc5d3ef60226cc9c01304ffd2a`. Description 4.2, Historie A–H, popupflater, quiz/Knowledge, rundinger, fagverk, onsite-handlinger, progresjon og relevante N/A-grenser er samlet i én maskinlesbar sluttaudit.
+- Sluttauditen fant og fjernet tre gamle parallelle sannhetslag fra place-recorden: `safe_facts`, `wonderkammer_seed` og `people_relations_seed`. Innholdet deres er allerede migrert til claims, chronology, Story, quiz/Knowledge, Språk, direktefaner og canonicale People-/Object-data; nytt Wonderkammer er ikke laget.
+- Den tidligere interne selvmotsigelsen om Thomas Blix-inventaret er lukket redaksjonelt. Object-ID-er og brukerrettet tekst oppgir ikke ett sikkert år, og både 1715- og 1725-kildene er synlige. Den statiske Leksikon-siden følger nå samme grense.
+- Den holdte trekirketradisjonen og den udokumenterte fylkeskirkeformuleringen er fjernet fra `history_layers`. Ingen research-only-påstand kan lekke inn i popupen via gamle felt.
+- Den faktiske popup-runtimeen er kjørt i Chromium på desktop (`1440 × 1000`) og mobil (`390 × 844`). Elleve navngitte faner rendres: Om, Historie, Fortellinger, Før/etter, Nyheter, Lesespor, Kilder, Legg merke til, Betydning, Motpunkter og Språk. Ingen brukerrettet Mer-fane finnes.
+- Samme Chromium-port åpner alle fanene, teller 11 chronology-punkter, én Story, to Før/etter-bilder, to notiser, tre Lesespor, tre observasjoner, tre betydningspunkter, tre motpunkter og fem språkoppføringer.
+- Standard 4+1 er verifisert i runtime: Badges ligger ved overskriften, mens Personer · Gjenstander · Brands · Relaterte steder viser 4 · 3 · 2 · 4 canonicale elementer. Ingen lokal `round_profile` eller ny runtimevariant er innført.
+- `fagverk-sted.html?place=gamle_aker_kirke` er åpnet i Chromium på desktop og mobil og viser riktig sted, hovedbilde, to underbadges, linser, spørsmål, kapitler, emner og brukerrettede kilder uten horisontal overflow.
+- Events har eksisterende tomtilstand og ingen oppdiktet hendelse. Tasks, Training, Play, offentlig hjemsted, nye unlocks, Bronse/Sølv/Gull og egen historisk rute er eksplisitt N/A. Social Meet, Kunnskapsmøte, Observer, Notat, navigasjon, NextUp, Nearby, besøk, favoritt og uavhengig quiz-/besøksprogresjon gjenbruker eksisterende eiere.
+- Seksdelt sluttport er 30/30: alle seks dimensjoner er 5, totalsummen er over kravet 27, og det står null kritiske funn eller andre blokkere åpne.
+
+Gamle Aker kirke er dermed samlet produksjonsklart. Målet er oppfylt uten nye hovedsystemer: ett kirkested gir en rik lokal opplevelse gjennom historie, materialspor, natur/geologi, Story, før/etter, nyheter, lesing, språk, quiz, People, Objects, Brands, nabosteder og fagverk.
+
+## Filscope i fase 10
 
 Fase 10 endrer bare:
 
