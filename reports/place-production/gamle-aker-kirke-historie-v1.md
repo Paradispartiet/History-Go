@@ -1,12 +1,12 @@
 # Gamle Aker kirke – Historie-sted V1
 
-- Dato: 2026-08-02
+- Dato: 2026-08-22
 - Place ID: `gamle_aker_kirke`
 - Canonical place-fil: `data/places/historie/oslo/places_historie/gamle_aker_kirke.json`
 - Manifest: `data/places/manifest.json`
 - Primærkategori: `historie`
 - Stedstype: stående middelalderkirke i fortsatt bruk
-- Status: **fase 6 – tre åpne og komplementære Lesespor klare for review; stedet er ennå ikke samlet produksjonsklart**
+- Status: **fase 7 – brukerrettede Kilder klare for review; stedet er ennå ikke samlet produksjonsklart**
 
 ## Arbeidskort
 
@@ -71,7 +71,7 @@ Som ekstra pilotkontroll gjenbrukes tre gode ideer fra den lukkede, feilplassert
 | Før/etter | MANGLER | Ingen canonical `for_na`-pakke eller kontrollert bildepar er funnet. |
 | Nyheter | MANGLER | Ingen daterte, ferskverifiserte nyhets-/driftsrecords for stedet er funnet. |
 | Lesespor | MANGLER | Ingen eksplisitt stedskoblet, åpen Lesespor-pakke er funnet. |
-| Kilder | IKKE GODKJENT | Leksikon `sources` er tom. `source_summary.safe_sources` består hovedsakelig av kildenavn og interne History Go-data, ikke en brukerrettet, deduplisert HTTPS-liste. |
+| Kilder | PASS – fase 7 | Fem brukerrettede kildegrupper og sju unike, navngitte HTTPS-lenker dekker identitet, bygningshistorie, dagens bruk, rehabilitering, kulturminnevern og bilder. Interne History Go-data er fjernet fra brukerflaten, og kildekonflikten om Thomas Blix-inventaret er synlig avgrenset. |
 | Mer | DELVIS | Leksikon har korte tolkningspunkter, men de mangler kilder. Ingen ferdig Språkleksikon-/observasjonspakke er dokumentert, og Wonderkammer skal ikke gjeninnføres som ny flate. |
 
 ## Sanerings- og produksjonsplan
@@ -130,8 +130,8 @@ Bare én fase kan være aktiv om gangen. Hver godkjente fase skal merges og kont
 | 3 | Story-review og eventuell episodeproduksjon | **GODKJENT – PR #4652, merge `8ce0bc33263dbbcc7581c9b8316f8a483c60143b`** |
 | 4 | Før/etter | **GODKJENT – PR #4654, merge `850c3b3332f857fb98593f36588bc46cfe6945eb`** |
 | 5 | Nyheter | **GODKJENT – PR #4656, merge `1ae7d30113134edc26394289a1afce0226f58246`** |
-| 6 | Lesespor | **KLAR FOR REVIEW** |
-| 7 | Brukerrettede Kilder | IKKE STARTET |
+| 6 | Lesespor | **GODKJENT – PR #4658, merge `c78cb05353bfb61eb68fef74ee9f115dfacc3a8b`** |
+| 7 | Brukerrettede Kilder | **KLAR FOR REVIEW** |
 | 8 | Mer | IKKE STARTET |
 | 9 | Quizåpning 2 × 7 og Knowledge | IKKE STARTET |
 | 10 | People, Objects, Brands og Badges/rundinger | IKKE STARTET |
@@ -193,25 +193,36 @@ Bare én fase kan være aktiv om gangen. Hver godkjente fase skal merges og kont
 - Ukjent publiseringsdato for Riksantikvarens case står ærlig som `date: null` og `year: null`; siden tillegges ikke et konstruert årstall.
 - Lesespor ligger bare i den canonicale Lesespor-modulen og vises gjennom den eksisterende stedfiltrerte rendereren. Ingen record er kopiert inn i Leksikon eller `externalLinks`.
 
+## Resultat i fase 7
+
+- `source_summary.safe_sources` er ryddet til fem brukerrettede kildegrupper for identitet/bygningshistorie, dagens bruk, rehabilitering/kulturminnevern og bildeproveniens.
+- Sju unike, navngitte `externalLinks` bruker HTTPS og dekker Store norske leksikon, Den norske kirke, Riksantikvaren, Oslo byleksikon og begge bildenes kildesider.
+- Alle sju lenker er kontrollert 22. august 2026. Rehabiliteringssiden skiller gjennomførte arbeider i 2023–2024 fra en planlagt sluttfase i 2026–2027.
+- Store norske leksikon oppgir 1715 for Thomas Blix-inventaret, mens Den norske kirke og Oslo byleksikon oppgir 1725. Kildekonflikten er lagt i `hold_back_sources` og på den statiske Leksikon-siden; ingen av årstallene presenteres som avklart i Kilder-flaten.
+- Den statiske Leksikon-sidens Kilder-seksjon bruker de samme sju eksterne inngangene. Lokalhistoriewiki og tre interne History Go-referanser er fjernet fra brukerflaten fordi de ikke inngikk i den kontrollerte kildepakken.
+- Eksisterende popup-runtime samler place- og Leksikon-lenker med Før/etter-kildene, dedupliserer på URL og åpner eksterne lenker med `noopener noreferrer`. Ingen ny hovedflate eller runtimevariant er innført.
+- Interne rapporter, quizdata, Story-data, audits og research-notater eksponeres ikke som brukerrettede kilder. De tre usikre tradisjonene om trekirke, Olav Kyrre og tingsted forblir holdt tilbake.
+
 ## Aktivt filscope
 
-Fase 6 endrer bare:
+Fase 7 endrer bare:
 
-- den eksisterende manifestlastede Oslo/Historie-filen i Lesespor-modulen;
-- en egen Lesespor-regresjonspakke;
+- canonical place-recordens `source_summary` og `externalLinks`;
+- Kilder-seksjonen i den eksisterende statiske Leksikon-siden;
+- en egen Kilder-regresjonspakke og faseforventningene i tidligere Gamle Aker-tester;
 - dette arbeidskortet.
 
-Ingen canonical place-, Leksikon-, Story-, People-, Quiz-, Knowledge-, manifest-, runtime-, bilde- eller produksjonsrapportfil endres i fase 6.
+Ingen Story-, Lesespor-, People-, Quiz-, Knowledge-, manifest-, runtime-, bilde- eller koordinatfil endres i fase 7.
 
-## Ferdigport for fase 6
+## Ferdigport for fase 7
 
-Fase 6 kan godkjennes når:
+Fase 7 kan godkjennes når:
 
-1. nøyaktig tre records har unike ID-er og bare `place_ids: ["gamle_aker_kirke"]`;
-2. alle tre bruker `access: "open"`, `rights: "link_only"` og `curation_status: "approved"`;
-3. kildene har canonical, recognized eller institutional kildekvalitet og inspectable HTTPS-lenker;
-4. Lesesporene utfyller hverandre med historisk oversikt, restaureringsbeslutninger og teknisk kulturminneforvaltning;
-5. ukjent dato bevares som `null`, og kjente datoer samsvarer med de publiserte sidene;
-6. ingen record lagrer artikkeltekst eller materialiseres i Leksikon, `externalLinks`, Story eller quiz;
-7. den eksisterende rendereren filtrerer på place-ID, avviser betalingsmurer og viser relevansnotatet;
-8. Lesespor-validator, Historie-rapport og PR-review består uten feil i stedskobling, tilgang eller kildeklassifisering.
+1. `source_summary.safe_sources` består av brukerrettede eksterne kildegrupper og inneholder ingen interne History Go-data;
+2. nøyaktig sju `externalLinks` har unike, navngitte HTTPS-lenker, `lang: "nb"` og `verifiedAt: "2026-08-22"`;
+3. lenkene dekker faglig oversikt, offisiell stedsinformasjon, kulturminnevern, lokalhistorie, rehabiliteringsstatus og begge bildenes proveniens;
+4. den planlagte rehabiliteringsfasen i 2026–2027 presenteres som planlagt, ikke gjennomført;
+5. kildekonflikten mellom 1715 og 1725 er eksplisitt holdt tilbake fra sikre påstander;
+6. den statiske Leksikon-siden viser samme kontrollerte kildepakke og ingen interne produksjonsreferanser;
+7. eksisterende runtime dedupliserer lenkene og åpner dem sikkert uten en ny hovedflate;
+8. Kilder-regresjonstesten, tidligere Gamle Aker-fasetester og relevante data-/place-validatorer består.
