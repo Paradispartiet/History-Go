@@ -2,7 +2,7 @@
 
 Dato: 2026-08-22
 Canonical place-ID: `var_frelsers_gravlund`  
-Status: **FASE 2 PASS – rik popup og lokal opplevelse låst**
+Status: **FASE 3 PASS – quiz, Knowledge og fagkobling låst**
 
 ## Stedsidentitet
 
@@ -27,8 +27,8 @@ Koordinaten beholdes uendret som en verifisert arealmarkør. Offisiell besøksad
 | Objects | Mangler canonical stedsobjekter | Tre fysiske objekter med bilde i fase 4 |
 | Brands | Mangler | Reelle forvalter-/nettverkskoblinger vurderes i fase 4 |
 | Related | Finnes bare som frø i profiler | Fire canonicale nabosteder i fase 4 |
-| Quiz | Ett sett, fem spørsmål | Erstattes med 4 × 7 i fase 3 |
-| Knowledge / Fagverk | Quizgenerert minimum; ingen målmanifest | Bygges og synkroniseres i fase 3 |
+| Quiz | Ett sett, fem spørsmål | Fire sett à sju: sted, kronologi, historiebruk og faglig sluttsett |
+| Knowledge / Fagverk | Quizgenerert minimum; ingen målmanifest | Canonical Knowledge-synk og mål i Historie-manifestet |
 | Natur | Generisk `nature_profile`, ingen artsdokumentasjon | Behold natur som stedsopplevelse; ingen rå artsliste |
 | Legacy-felter | `safe_facts`, Wonderkammer- og People-seeds | Klassifiseres og fjernes i sluttfasen |
 | QA | Eldre strukturkontroll med manuelle hull | Ny statisk og nettleserbasert sluttgate |
@@ -52,10 +52,10 @@ Koordinaten beholdes uendret som en verifisert arealmarkør. Offisiell besøksad
 
 1. **PASS** – identitet, kilder, v4.2-beskrivelse og Historie-case.
 2. **PASS** – popup: kronologi, Story, Før/etter, Kilder, Nyheter, Lesespor og Språk.
-3. **IKKE STARTET** – quiz 4 × 7, produksjonsbrief, kontekst, Knowledge og Fagverk.
+3. **PASS** – quiz 4 × 7, produksjonsbrief, kontekst, Knowledge og Fagverk.
 4. **IKKE STARTET** – kuraterte People, Objects, Brands og Related med bilder og round override.
 5. **IKKE STARTET** – onsite, progresjon, desktop/mobil, tilgjengelighet, legacy-opprydding og endelig 6-dimensjonal kvalitetsscore.
 
-## Kvalitetsstatus fase 2
+## Kvalitetsstatus fase 3
 
-Ingen kritiske blokkere for neste fase. Popupen har én tydelig historisk akse, en konkret episode, to daterte nyheter, tre lesespor og fire stedsspesifikke språkoppføringer. Før/nå-paret sammenligner landskapskarakter, ikke bestemte gravfelt: bildene har ulike kamerastandpunkt og det nyeste er fra 2008. Quiz, rundinger og full UI-kontroll må fortsatt bestå egne porter før stedet kan merkes produksjonsklart.
+Ingen kritiske blokkere for neste fase. Quizen har 28 unike, resolverte påstander fordelt på åpning, kronologi, historiebruk og sluttsett. De første 14 er stedlige spørsmål uten metode- eller teorispråk; siste sett bruker kildekritikk, sporlesning, sammenligning, Riegl og Nora etter at faktagrunnlaget er etablert. Canonical Knowledge og Fagverk-release er synkronisert. Rundinger og full UI-kontroll må fortsatt bestå egne porter før stedet kan merkes produksjonsklart.

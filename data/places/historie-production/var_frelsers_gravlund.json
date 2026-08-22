@@ -230,8 +230,20 @@
     "sourceIds": ["source_oslo_vfg_current", "source_snl_vfg"]
   },
   "quizOpening": {
-    "status": "N/A",
-    "rationale": "Quiz revideres i en egen senere produksjonsfase; denne fasen låser stedets identitet, kildegrunnlag og brukerrettede beskrivelse."
+    "status": "PASS",
+    "quizTargetId": "var_frelsers_gravlund",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/historie/var_frelsers_gravlund.json",
+    "productionContext": "data/quiz/production_context/historie/var_frelsers_gravlund.json",
+    "requiredInputs": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ]
   },
   "chronologyStories": {
     "status": "PASS",
@@ -246,7 +258,7 @@
     "D": { "status": "PASS", "evidenceRefs": ["caseRealizations.case_vfg_grense_klasse_minnelandskap.actors", "caseRealizations.case_vfg_grense_klasse_minnelandskap.conflictOrNegotiation"] },
     "E": { "status": "PASS", "evidenceRefs": ["sources", "caseRealizations.case_vfg_grense_klasse_minnelandskap.sourceComparison"] },
     "F": { "status": "PASS", "evidenceRefs": ["caseRealizations.case_vfg_grense_klasse_minnelandskap.comparativeScale", "caseRealizations.case_vfg_grense_klasse_minnelandskap.causationAndUncertainty", "presentTrace"] },
-    "G": { "status": "N/A", "rationale": "Quiz revideres i en egen produksjonsfase." },
+    "G": { "status": "PASS", "evidenceRefs": ["quizOpening", "sources", "historyTopics"] },
     "H": { "status": "PASS", "evidenceRefs": ["chronologyStories", "sources.source_oslo_wreaths_2026"] }
   },
   "review": {
