@@ -1,1 +1,63 @@
-{"schema":"civication_work_grammar_v2","version":2,"category":"film_tv","role_scope":"programleder","source":{"evidence":"data/Civication/filmTvCareerLifeEvidence.json"},"badge_binding":{"badge_id":"film_tv","badge_titles":["Programleder"]},"task_families":["research_og_brief","intervju","studio_og_liveflyt","publikumsformidling","redaksjonell_oppfolging"],"work_loops":[{"id":"program","steps":["les_brief","verifiser_grunnlag","forbered_sporsmal_og_overganger","gjennomfor","evaluer_og_folg_opp"]},{"id":"live_avvik","steps":["identifiser_avvik","hold_publikum_orientert","folg_redaksjonell_beslutning","beskytt_sikkerhet_og_personer","dokumenter_etterpa"]}],"practice_stories":[{"id":"s1","setup":"Et intervju mangler kontroll av et sentralt faktum.","good":"Få faktum verifisert eller formuler usikkerheten tydelig.","bad":"Presenter antakelsen som sikker fordi sendetiden nærmer seg."},{"id":"s2","setup":"Gjesten endrer premisset rett før opptak.","good":"Avklar hva som fortsatt kan dekkes redaksjonelt og juster briefen.","bad":"Late som ingenting og håpe intervjuet holder."},{"id":"s3","setup":"Direktesendingen får et teknisk avvik.","good":"Følg avtalt beredskap og kommuniser rolig innen mandat.","bad":"Improviser tekniske løsninger uten ansvar."},{"id":"s4","setup":"Din egen profil overskygger programmets tema.","good":"Flytt oppmerksomheten tilbake til innhold og gjest.","bad":"Bruk situasjonen til egen merkevarebygging."},{"id":"s5","setup":"En sårbar gjest deler mer enn planlagt.","good":"Følg redaksjonell og menneskelig omtanke og avklar videre bruk.","bad":"Utnytt øyeblikket fordi det gir sterk TV."}],"quality_axes":["faktapresisjon","intervjukvalitet","timing","publikumstillit","redaksjonell_integritet","omsorg_og_grensesetting"],"authority_boundary":{"may_not":["presentere_ubekreftet_som_fakta","love_redaksjonelle_utfall","overstyre_produksjons_eller_sikkerhetsansvar","bruke_synlighet_som_uinnskrenket_mandat"]}}
+{
+  "schema": "civication_work_grammar_v2",
+  "version": 2,
+  "category": "film_tv",
+  "role_scope": "programleder",
+  "source": {"evidence": "data/Civication/filmTvCareerLifeEvidence.json"},
+  "badge_binding": {"badge_id": "film_tv", "badge_titles": ["Programleder"]},
+  "task_families": ["research_og_brief", "intervju", "studio_og_liveflyt", "publikumsformidling", "redaksjonell_oppfolging"],
+  "work_loops": [
+    {"id": "program", "steps": ["les_brief", "verifiser_grunnlag", "forbered_sporsmal_og_overganger", "gjennomfor", "evaluer_og_folg_opp"]},
+    {"id": "live_avvik", "steps": ["identifiser_avvik", "hold_publikum_orientert", "folg_redaksjonell_beslutning", "beskytt_sikkerhet_og_personer", "dokumenter_etterpa"]}
+  ],
+  "practice_stories": [
+    {"id": "s1", "setup": "Et intervju mangler kontroll av et sentralt faktum.", "good": "Få faktum verifisert eller formuler usikkerheten tydelig.", "bad": "Presenter antakelsen som sikker fordi sendetiden nærmer seg."},
+    {"id": "s2", "setup": "Gjesten endrer premisset rett før opptak.", "good": "Avklar hva som fortsatt kan dekkes redaksjonelt og juster briefen.", "bad": "Late som ingenting og håpe intervjuet holder."},
+    {"id": "s3", "setup": "Direktesendingen får et teknisk avvik.", "good": "Følg avtalt beredskap og kommuniser rolig innen mandat.", "bad": "Improviser tekniske løsninger uten ansvar."},
+    {"id": "s4", "setup": "Din egen profil overskygger programmets tema.", "good": "Flytt oppmerksomheten tilbake til innhold og gjest.", "bad": "Bruk situasjonen til egen merkevarebygging."},
+    {"id": "s5", "setup": "En sårbar gjest deler mer enn planlagt.", "good": "Følg redaksjonell og menneskelig omtanke og avklar videre bruk.", "bad": "Utnytt øyeblikket fordi det gir sterk TV."}
+  ],
+  "task_grammar": [
+    {"id": "bygg_intervjubrief", "label": "Bygg og verifiser intervjubrief", "task_type": "interview_brief", "good_work": "Skiller bekreftede fakta, åpne spørsmål, avtalt premiss og beslutningseier før opptak.", "bad_work": "Gjør en antakelse til påstand fordi et skarpere premiss virker mer sendbart.", "mail_types": ["job", "conflict", "micro"]},
+    {"id": "forvalt_gjestegrense", "label": "Forvalt gjestens premiss og sensitivitet", "task_type": "guest_boundary", "good_work": "Stanser, avklarer og dokumenterer når intervjuet beveger seg utenfor det avtalte premisset.", "bad_work": "Bruker en uventet betroelse som ferdig innhold uten ny avklaring.", "mail_types": ["people", "story", "followup"]},
+    {"id": "handter_liveavvik", "label": "Håndter liveavvik innen rolle og kjøreplan", "task_type": "live_continuity", "good_work": "Holder publikum orientert, følger kontrollrommet og beskytter personer og sikkerhet.", "bad_work": "Improviserer et nytt redaksjonelt eller teknisk løp uten beslutningseier.", "mail_types": ["event", "consequence"]}
+  ],
+  "actor_grammar": [
+    {"actor_type": "redaksjonsleder", "example_id": "ingrid_redaksjonsleder_program", "function": "Eier redaksjonelt premiss, publisering og vesentlige endringer.", "can_send_mail_types": ["job", "conflict", "consequence"]},
+    {"actor_type": "liveprodusent", "example_id": "jonas_liveprodusent", "function": "Eier kjøreplan, kontrollromsbeskjeder og produksjonsavvik.", "can_send_mail_types": ["event", "consequence"]},
+    {"actor_type": "researcher", "example_id": "amina_researcher_program", "function": "Holder fakta, kilder og usikkerhet sporbare.", "can_send_mail_types": ["micro", "knowledge"]},
+    {"actor_type": "gjestekoordinator", "example_id": "thea_gjestekoordinator", "function": "Dokumenterer gjestens premiss, behov og grenser.", "can_send_mail_types": ["people", "story", "followup"]}
+  ],
+  "place_grammar": [
+    {"place_id": "briefrom_program_film_tv", "kind": "fictional_work_surface", "function": "Research, premiss, spørsmålsrekkefølge og redaksjonelle avklaringer.", "mail_types": ["job", "conflict", "micro"]},
+    {"place_id": "studio_program_film_tv", "kind": "fictional_work_surface", "function": "Opptak, gjestesamtale og publikumskontakt.", "mail_types": ["people", "story", "followup"]},
+    {"place_id": "kontrollrom_program_film_tv", "kind": "fictional_work_surface", "function": "Kjøreplan, tekniske avvik og livebeskjeder.", "mail_types": ["event", "consequence"]},
+    {"place_id": "cinemateket_oslo", "kind": "canonical_history_go_place", "function": "Read-only History Go-anker for filmhistorisk formidling; ikke simulert arbeidssted.", "mail_types": ["knowledge"]}
+  ],
+  "conflict_grammar": [
+    {"id": "skarphet_vs_faktagrunnlag", "pressure": "sendetid_og_profil", "must_remain_visible": ["kildestatus", "beslutningseier", "hva_publikum_far_presentert"]},
+    {"id": "sterkt_oyeblikk_vs_gjestegrense", "pressure": "sensasjon_og_tillit", "must_remain_visible": ["avtalt_premiss", "ny_avklaring", "redaksjonelt_ansvar"]}
+  ],
+  "solution_patterns": ["skill_bekreftet_fakta_fra_apne_sporsmal", "avklar_premissendring_for_videre_intervju", "bruk_kontrollrommets_beslutningslinje", "dokumenter_hva_som_skal_folges_opp"],
+  "failure_patterns": ["gjor_antakelse_til_fakta", "utnytter_sensitiv_betroelse", "improviserer_uten_mandat", "bruker_egen_synlighet_som_autoritet"],
+  "knowledge_dependencies": [
+    {"id": "intervjubrief", "use": "Skille premiss, verifiserte fakta, åpne spørsmål og oppfølging."},
+    {"id": "gjestegrense", "use": "Forstå hva som er avtalt og når ny avklaring er nødvendig."},
+    {"id": "liveberedskap", "use": "Holde publikum orientert uten å overta produksjons- eller sikkerhetsansvar."},
+    {"id": "kildegrense", "use": "Bruke filmhistorisk formidling som kontekst uten å gjøre den normativ."}
+  ],
+  "mail_generation_contract": {
+    "required_mail_types": ["job", "people", "conflict", "story", "event", "micro", "followup", "knowledge", "consequence"],
+    "actor_binding": "actor_grammar.example_id",
+    "place_binding": "place_grammar.place_id",
+    "task_binding": "task_grammar.id",
+    "forbid_generic_runtime_fallbacks": true
+  },
+  "day_one": {"entry_task": "bygg_intervjubrief", "decision_owner": "ingrid_redaksjonsleder_program", "first_work_surface": "briefrom_program_film_tv", "success_signal": "premiss_fakta_og_grenser_er_sporbare_for_opptak"},
+  "quality_axes": ["faktapresisjon", "intervjukvalitet", "timing", "publikumstillit", "redaksjonell_integritet", "omsorg_og_grensesetting"],
+  "authority_boundary": {
+    "may": ["forberede_og_gjennomfore_intervju", "holde_publikum_orientert", "be_om_redaksjonell_avklaring", "stanse_for_gjestegrense", "dokumentere_oppfolging"],
+    "must_escalate_when": ["sentrale_fakta_ikke_er_verifisert", "gjesten_endrer_sensitivt_premiss", "liveavvik_berorer_sikkerhet_eller_publisering"],
+    "may_not": ["presentere_ubekreftet_som_fakta", "love_redaksjonelle_utfall", "overstyre_produksjons_eller_sikkerhetsansvar", "bruke_synlighet_som_uinnskrenket_mandat", "bruke_historiske_personer_som_fiktive_beslutningstakere"]
+  }
+}

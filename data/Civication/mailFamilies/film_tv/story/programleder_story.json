@@ -1,0 +1,14 @@
+{
+  "schema": "civication_mail_family_catalog_v1", "version": 1, "category": "film_tv", "role_scope": "programleder", "mail_type": "story",
+  "families": [{"id": "programleder_sensitiv_betroelse", "purpose": "La gjestens grense møte en konkret, uventet betroelse før sending.", "learning_focus": ["lytting", "samtykke", "oppfolging"], "mails": [{
+    "id": "film_tv_program_story_betroelse_001", "mail_type": "story", "mail_family": "programleder_sensitiv_betroelse", "role_scope": "programleder", "phase": "mid", "day_phase": "forenoon", "priority": 120, "cooldown": 4, "repeatable": false, "stage": "stable",
+    "from": "Thea, gjestekoordinator", "people_ref": "thea_gjestekoordinator", "person_id": "thea_gjestekoordinator", "place_id": "studio_program_film_tv", "thread_key": "film_tv_program_gjestegrense_001",
+    "subject": "Gjesten nevnte familieforløpet i lydprøven", "summary": "Under en uformell lydprøve fortalte gjesten en detalj som ville gitt et sterkt TV-øyeblikk, men som lå utenfor avtalt premiss.", "purpose": "Teste om programlederen skiller en betroelse fra publiserbart samtykke.", "stakes": "Detaljen kan berike samtalen, men opptakssituasjonen og den tidligere grensen gjør videre bruk uavklart.",
+    "situation": ["Uttalelsen kom før det formelle opptaket.", "Gjesten tok selv opp temaet.", "Det finnes ennå ingen ny avklaring om bruk i sending eller klipp."],
+    "task_domain": "intervju", "task_kind": "story", "competency": "gjestetillit", "pressure": "sterkt_oyeblikk_vs_ny_avklaring", "choice_axis": "stans_og_avklar_bruk_vs_bygg_sporsmal_rundt_detaljen", "consequence_axis": "informert_deltakelse_vs_utnyttet_betroelse", "narrative_arc": "gjestens_grense_blir_testet", "interaction_mode": "decision",
+    "choices": [
+      {"id": "A", "label": "Stans og be Thea avklare hva som kan brukes", "reply": "Det var en viktig opplysning, men vi bruker den ikke før gjesten har valgt premiss og omfang på nytt.", "effect": 1, "tags": ["consent", "pause"], "feedback": "Betroelsen blir et spørsmål om ny avklaring, ikke et automatisk programpoeng.", "effects": {"stats": {"trust": 2, "quality": 1, "risk": -3, "energy": -1}}},
+      {"id": "B", "label": "Skriv et indirekte spørsmål som lokker fram detaljen", "reply": "Jeg spør bredt nok til at gjesten kan fortelle det samme på kamera.", "effect": -1, "tags": ["covert_pressure", "boundary_risk"], "feedback": "Du forsøker å omgå grensen uten å gjøre bruken tydelig for gjesten.", "effects": {"stats": {"trust": -3, "quality": -1, "risk": 3}}}
+    ]
+  }]}]
+}

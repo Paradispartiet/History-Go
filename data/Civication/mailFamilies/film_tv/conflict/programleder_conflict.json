@@ -1,0 +1,14 @@
+{
+  "schema": "civication_mail_family_catalog_v1", "version": 1, "category": "film_tv", "role_scope": "programleder", "mail_type": "conflict",
+  "families": [{"id": "programleder_skarpt_premiss", "purpose": "Synliggjøre konflikten mellom en skarp åpning og et uavklart faktagrunnlag.", "learning_focus": ["faktapresisjon", "redaksjonelt_mandat"], "mails": [{
+    "id": "film_tv_program_conflict_premiss_001", "mail_type": "conflict", "mail_family": "programleder_skarpt_premiss", "role_scope": "programleder", "phase": "mid", "day_phase": "forenoon", "priority": 125, "cooldown": 3, "repeatable": false, "stage": "stable",
+    "from": "Ingrid, redaksjonsleder", "people_ref": "ingrid_redaksjonsleder_program", "person_id": "ingrid_redaksjonsleder_program", "place_id": "briefrom_program_film_tv",
+    "subject": "Åpningen blir tydeligere hvis hypotesen sies som konklusjon", "summary": "Ingrid vil ha mer kraft i anslaget, men Amina har fortsatt bare indirekte støtte for den sentrale påstanden.", "purpose": "Teste om programlederen ber beslutningseieren velge en sannferdig formulering.", "stakes": "Programlederens stemme gjør formuleringen troverdig for publikum selv når kildestatusen er svak.",
+    "situation": ["Hypotesen er redaksjonelt relevant.", "Kilden dokumenterer ikke den bastante konklusjonen.", "Ingrid kan endre premisset, men ikke gjøre en uverifisert påstand sann."],
+    "task_domain": "research_og_brief", "task_kind": "conflict", "competency": "redaksjonell_integritet", "pressure": "skarphet_vs_kildestatus", "choice_axis": "formuler_som_apent_sporsmal_vs_les_som_konklusjon", "consequence_axis": "troverdig_nysgjerrighet_vs_falsk_sikkerhet", "narrative_arc": "fra_brief_til_sending", "interaction_mode": "decision",
+    "choices": [
+      {"id": "A", "label": "Gjør hypotesen til et åpent, presist spørsmål", "reply": "Vi kan gjøre konflikten tydelig uten å påstå mer enn kilden bærer.", "effect": 1, "tags": ["source_boundary", "clarity"], "feedback": "Åpningen beholder retning og markerer samtidig hva som skal undersøkes.", "effects": {"stats": {"quality": 2, "trust": 1, "risk": -2}}},
+      {"id": "B", "label": "Les konklusjonen og utfordre gjesten etterpå", "reply": "Jeg bruker den skarpe formuleringen og lar gjesten korrigere oss i samtalen.", "effect": -1, "tags": ["fact_risk", "burden_shift"], "feedback": "Du legger ansvaret for redaksjonens faktasnarvei på gjesten.", "effects": {"stats": {"quality": -2, "trust": -2, "risk": 3, "status": 1}}}
+    ]
+  }]}]
+}

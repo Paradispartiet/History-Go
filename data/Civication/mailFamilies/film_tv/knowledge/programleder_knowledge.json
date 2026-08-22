@@ -1,0 +1,64 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "programleder",
+  "mail_type": "knowledge",
+  "families": [{
+    "id": "programleder_filmformidling",
+    "purpose": "Koble rollen til canonical filmhistorisk formidling uten å gjøre historien til fasit for dagens intervju.",
+    "learning_focus": ["filmhistorie", "formidling", "kildegrense"],
+    "mails": [{
+      "id": "film_tv_program_knowledge_bang_hansen_001",
+      "mail_type": "knowledge",
+      "mail_family": "programleder_filmformidling",
+      "role_scope": "programleder",
+      "phase": "advanced",
+      "day_phase": "evening",
+      "priority": 108,
+      "cooldown": 5,
+      "repeatable": false,
+      "stage": "stable",
+      "from": "Amina, researcher",
+      "people_ref": "amina_researcher_program",
+      "person_id": "amina_researcher_program",
+      "place_id": "cinemateket_oslo",
+      "subject": "Filmhistorisk formidling gir kontekst, ikke en ferdig intervjustil",
+      "summary": "Amina ber deg lese History Go-profilen til Pål Bang-Hansen som kildeforankret kontekst om norsk filmformidling og holde den adskilt fra beslutningene i dagens fiktive program.",
+      "purpose": "Teste at en virkelig person og et canonical sted brukes som faktamål, ikke som fiktiv avsender eller redaksjonell autoritet.",
+      "stakes": "Historisk innsikt kan skjerpe spørsmål om publikum og filmoffentlighet, men kan ikke avgjøre dagens premiss, gjestegrense eller intervjustil.",
+      "situation": [
+        "Pål Bang-Hansen finnes som canonical People-person i Film/TV-kategorien med tilknytning til Cinemateket i Oslo.",
+        "Oppgaven gjelder bare lesing av den kildeforankrede profilen i History Go.",
+        "Profilen skal brukes som filmhistorisk kontekst, ikke som dokumentasjon av rollen Programleder eller som fasit for dagens gjestesamtale."
+      ],
+      "task_domain": "filmhistorie",
+      "task_kind": "knowledge",
+      "competency": "faglig_kildebruk",
+      "pressure": "historisk_kontekst_vs_normativ_fasit",
+      "choice_axis": "les_og_avgrens_kilden_vs_lan_historisk_autoritet",
+      "consequence_axis": "filmhistorisk_bevissthet_vs_autoritetsglidning",
+      "narrative_arc": "fra_historisk_formidler_til_bedre_sporsmal",
+      "interaction_mode": "task",
+      "task_contract": {
+        "task_id": "film_tv_program_history_go_bang_hansen",
+        "completion_rule": "history_go_payload_completed",
+        "failure_rule": "remain_open",
+        "evidence_refs": ["data/people/film_tv/oslo/people_film_tv_oslo.json"]
+      },
+      "task_payload": {
+        "task_kind": "history_go_person",
+        "target_type": "person",
+        "person_id": "pal_bang_hansen",
+        "completion_mode": "read_profile",
+        "title": "Les profilen til Pål Bang-Hansen",
+        "description": "Les den canonicale profilen som filmhistorisk formidlingskontekst, ikke som norm for dagens programvalg.",
+        "return_context": {"source": "civication", "mail_id": "film_tv_program_knowledge_bang_hansen_001", "role_scope": "programleder"}
+      },
+      "choices": [
+        {"id": "A", "label": "Åpne profilen og noter hva kilden faktisk kan belyse", "reply": "Jeg leser profilen som filmhistorie og formulerer spørsmål til vår produksjon uten å låne en ferdig intervjufasit.", "effect": 1, "tags": ["history_go_person", "source_boundary"], "feedback": "Oppgaven fullføres bare gjennom registrert History Go-lesing av den canonicale personen.", "effects": {"stats": {"quality": 1, "trust": 1, "energy": -1}}},
+        {"id": "B", "label": "Bruk den historiske statusen som argument for én intervjustil", "reply": "Jeg viser til filmhistorien for å lukke diskusjonen om hvordan samtalen bør føres.", "effect": -1, "tags": ["authority_slippage", "anachronism"], "feedback": "Du gjør en faktaprofil til autoritet for et programvalg den ikke dokumenterer.", "effects": {"stats": {"quality": -3, "trust": -1, "risk": 2}}}
+      ]
+    }]
+  }]
+}
