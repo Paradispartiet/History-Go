@@ -15,11 +15,11 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 
 ## Sammendrag
 
-- complete_reference_v2: 3
+- complete_reference_v2: 4
 - complete_reference: 0
 - playable_v1: 0
 - partial_pack: 24
-- role_model_only: 220
+- role_model_only: 219
 - generated_stub: 0
 - broken_mapping: 0
 - missing: 48
@@ -249,7 +249,7 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 | psykologi | psykologi_miljoarbeid | psykologi_miljoarbeider | Miljøarbeider | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | psykologi | psykologi_miljoarbeid | psykologi_miljoassistent | Miljøassistent | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | psykologi | professor_psykologi | psykologi_professor_psykologi | Professor (psykologi) | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
-| psykologi | psykolog | psykologi_psykolog | Psykolog | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
+| psykologi | psykolog | psykologi_psykolog | Psykolog | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | psykologi | psykologi_arbeids_og_karriereveiledning | psykologi_radgiver | Rådgiver | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | psykologi | psykologi_arbeids_og_karriereveiledning | psykologi_seniorradgiver | Seniorrådgiver | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | psykologi | psykologi_miljoarbeid | psykologi_sosialassistent | Sosialassistent | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
@@ -323,4 +323,3 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 | vitenskap | vitenskap_institusjonsledelse |  | vitenskap_institusjonsledelse | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | vitenskap | vitenskap_undervisning_og_forskning |  | vitenskap_undervisning_og_forskning | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | vitenskap | vitenskapelig_assistent | vitenskap_vitenskapelig_assistent | Vitenskapelig assistent | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
-

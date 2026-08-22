@@ -106,6 +106,66 @@
       {"concept":"taushetsplikt","practical_scene":"teamet ber om hele bakgrunnen","what_player_must_notice":"samarbeid krever relevans og grunnlag","bad_misread":"mer informasjon er alltid sikrere","good_use":"del det som er nodvendig og forklar grensen"}
     ]
   },
+  "actor_grammar": [
+    {
+      "actor_type": "pasient",
+      "example_id": "lea_pasient",
+      "function": "eier egne mål og erfaringer og skal ikke reduseres til formuleringen som brukes i behandlingsarbeidet",
+      "can_send_mail_types": ["people", "followup"]
+    },
+    {
+      "actor_type": "sykepleier",
+      "example_id": "amir_sykepleier",
+      "function": "bidrar med nødvendige observasjoner og trenger en tydelig avgrensning av hva teamet skal vite",
+      "can_send_mail_types": ["conflict", "event"]
+    },
+    {
+      "actor_type": "psykologspesialist",
+      "example_id": "ingrid_psykologspesialist",
+      "function": "gir veiledning og utfordrer for sikre konklusjoner uten å overta psykologens ansvar",
+      "can_send_mail_types": ["job", "story", "knowledge", "consequence"]
+    },
+    {
+      "actor_type": "seksjonsleder",
+      "example_id": "seksjonsleder",
+      "function": "eier kapasitet og drift, men kan ikke korte ned det kliniske grunnlaget ved å bestemme konklusjonen",
+      "can_send_mail_types": ["micro"]
+    }
+  ],
+  "work_loops": [
+    "avklar pasientens problemstilling og prioritet før foreløpige hypoteser prøves",
+    "skill mellom observasjon, pasientens egen beskrivelse og psykologens fortolkning",
+    "velg et avgrenset neste steg og dokumenter hva som fortsatt er usikkert",
+    "del bare nødvendig informasjon med riktig samarbeidspartner og gyldig grunnlag",
+    "revurder plan og risiko når nye opplysninger endrer beslutningsgrunnlaget",
+    "bruk veiledning eller eskalering når kompetanse, risiko eller myndighet krever det"
+  ],
+  "place_grammar": [
+    {
+      "place_id": "psykologisk_institutt_uio",
+      "kind": "canonical_history_go_place",
+      "function": "kildebelagt History Go-anker for norsk psykologihistorie; stedet er ikke simulert som behandlingssted",
+      "mail_types": ["knowledge"]
+    }
+  ],
+  "conflict_grammar": [
+    {
+      "id": "samhandling_vs_taushet",
+      "axis": "samhandling_vs_taushet",
+      "mail_families": ["psykolog_nodvendig_informasjon"]
+    }
+  ],
+  "day_one_contract": {
+    "opening_task": "revider en foreløpig formulering når nye opplysninger ikke passer",
+    "required_decisions": ["hypotese", "medvirkning", "informasjonsdeling", "risiko", "dokumentasjon"],
+    "end_state": "spilleren har dokumentert et avgrenset neste steg og hva som fortsatt må vurderes"
+  },
+  "mail_generation_contract": {
+    "required_mail_types": ["job", "people", "conflict", "story", "event", "micro", "followup", "knowledge", "consequence"],
+    "required_axes": ["choice_axis", "consequence_axis", "narrative_arc"],
+    "minimum_counts": {"job": 1, "people": 1, "conflict": 1, "story": 1, "event": 1, "micro": 1, "followup": 1, "knowledge": 1, "consequence": 1},
+    "factuality_policy": "clinical_work_surfaces_and_current_patients_are_fictional; canonical_people_and_places_are_history_go_targets_only"
+  },
   "practice_stories": [
     {"id":"hypotesen_som_ble_for_sikker","title":"Hypotesen som ble for sikker","setup":"En tidlig formulering forklarer mye, men nye opplysninger passer darlig.","decision":"Revider formuleringen eksplisitt eller press nye data inn i den gamle forklaringen.","learning":"Klinisk presisjon krever at hypoteser kan endres."},
     {"id":"planen_pasienten_ikke_eier","title":"Planen pasienten ikke eier","setup":"Behandlingsplanen er faglig ryddig, men pasienten beskriver et annet hovedproblem.","decision":"Reforhandle prioriteringen eller holde fast ved den opprinnelige planen.","learning":"Medvirkning er en del av behandlingskvaliteten."},

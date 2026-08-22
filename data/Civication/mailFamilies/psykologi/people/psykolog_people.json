@@ -1,0 +1,14 @@
+{
+  "schema": "civication_mail_family_catalog_v1", "version": 1, "category": "psykologi", "role_scope": "psykolog", "mail_type": "people",
+  "families": [{"id": "psykolog_felles_prioritet", "purpose": "Gjøre pasientens prioritet til et faktisk premiss for planen.", "learning_focus": ["medvirkning", "allianse", "behandlingsplan"], "mails": [{
+    "id": "psykolog_people_prioritet_001", "mail_type": "people", "mail_family": "psykolog_felles_prioritet", "role_scope": "psykolog", "thread_key": "psykolog_plan_001", "phase": "early", "day_phase": "forenoon", "priority": 145, "cooldown": 3, "repeatable": false, "stage": "stable",
+    "from": "Lea, pasient", "people_ref": "lea_pasient", "person_id": "lea_pasient", "subject": "Planen er ryddig, men begynner et annet sted", "summary": "Lea forstår utkastet, men sier at det viktigste hinderet i hverdagen ikke står først.",
+    "purpose": "Teste om medvirkning endrer prioriteringen og ikke bare dokumenteres som gjennomført.", "stakes": "En faglig plausibel plan kan miste både eierskap og virkning hvis den ikke møter det pasienten faktisk prøver å få til.",
+    "situation": ["Lea kan gjengi planen og har ikke avvist behandling.", "Hun beskriver et konkret hverdagsmål som må fungere før de andre tiltakene oppleves relevante.", "Det er mulig å reforhandle rekkefølgen uten å love et bestemt klinisk resultat."],
+    "task_domain": "behandlingsplan_og_medvirkning", "task_kind": "people", "competency": "terapeutisk_allianse", "pressure": "faglig_plan_vs_pasientens_prioritet", "choice_axis": "felles_prioritering_vs_formelt_samtykke", "consequence_axis": "eierskap_vs_frafall", "narrative_arc": "fra_plan_for_pasienten_til_plan_med_pasienten",
+    "choices": [
+      {"id": "A", "label": "Reforhandle første mål sammen med Lea", "reply": "La oss gjøre hverdagsmålet ditt til første vurderingspunkt og være tydelige på hva vi følger med på.", "effect": 1, "tags": ["shared_priority", "alliance"], "feedback": "Planen beholder faglig retning, men får et startpunkt Lea kan forklare som sitt eget.", "effects": {"stats": {"quality": 2, "trust": 3, "risk": -1, "energy": -1}}},
+      {"id": "B", "label": "Behold rekkefølgen og noter at Lea er hørt", "reply": "Jeg dokumenterer ønsket ditt, men planen bør gjennomføres i foreslått rekkefølge.", "effect": -1, "tags": ["formal_participation", "plan_ownership_lost"], "feedback": "Medvirkningen blir et journalpunkt uten å endre handlingen.", "effects": {"stats": {"quality": -2, "trust": -3, "risk": 1}}}
+    ]
+  }]}]
+}

@@ -1,0 +1,14 @@
+{
+  "schema": "civication_mail_family_catalog_v1", "version": 1, "category": "psykologi", "role_scope": "psykolog", "mail_type": "conflict",
+  "families": [{"id": "psykolog_nodvendig_informasjon", "purpose": "Avgrense teamdeling etter oppgave og nødvendig grunnlag.", "learning_focus": ["taushetsplikt", "samhandling", "rolleavklaring"], "mails": [{
+    "id": "psykolog_conflict_informasjon_001", "mail_type": "conflict", "mail_family": "psykolog_nodvendig_informasjon", "role_scope": "psykolog", "phase": "mid", "day_phase": "lunch", "priority": 140, "cooldown": 3, "repeatable": false, "stage": "stable",
+    "from": "Amir, sykepleier", "people_ref": "amir_sykepleier", "person_id": "amir_sykepleier", "subject": "Teamet vil ha hele bakgrunnen", "summary": "Amir trenger et trygt oppfølgingspunkt, mens møteinnkallingen ber om hele den private historien.",
+    "purpose": "Teste om psykologen deler det som er nødvendig uten å gjøre tverrfaglighet til grenseløs tilgang.", "stakes": "For lite informasjon kan gjøre oppfølgingen uklar; for mye kan krenke fortrolighet uten å forbedre handlingen.",
+    "situation": ["Amir har en konkret oppgave i oppfølgingen og trenger å vite hva som skal observeres og hvem som kontaktes ved endring.", "Flere detaljer i bakgrunnen påvirker ikke denne oppgaven.", "Delingen må følge virksomhetens gyldige grunnlag og kan avklares dersom rollen er uklar."],
+    "task_domain": "tverrfaglig_informasjonsdeling", "task_kind": "conflict", "competency": "tverrfaglig_samarbeid", "pressure": "samhandling_vs_taushet", "choice_axis": "oppgaverelevant_deling_vs_full_bakgrunn", "consequence_axis": "trygg_koordinering_vs_unodvendig_spredning", "narrative_arc": "fra_alt_eller_ingenting_til_avgrenset_samhandling",
+    "choices": [
+      {"id": "A", "label": "Del oppfølgingspunkt, tegn på endring og kontaktvei", "reply": "Jeg deler det som er nødvendig for oppgaven og avklarer grunnlaget før eventuelle flere opplysninger tas inn.", "effect": 1, "tags": ["necessary_information", "role_clarity"], "feedback": "Amir får et handlingsbart ansvar uten at hele historien blir arbeidsmateriale for alle.", "effects": {"stats": {"quality": 2, "trust": 2, "risk": -2, "energy": -1}}},
+      {"id": "B", "label": "Send hele bakgrunnen for sikkerhets skyld", "reply": "Det er tryggest at alle kjenner hele historien.", "effect": -1, "tags": ["over_disclosure", "boundary_failure"], "feedback": "Mengden informasjon øker, men relevans og gyldig grunnlag blir ikke tydeligere.", "effects": {"stats": {"quality": -3, "trust": -3, "risk": 3}}}
+    ]
+  }]}]
+}

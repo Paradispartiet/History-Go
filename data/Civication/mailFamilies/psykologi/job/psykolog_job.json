@@ -1,0 +1,14 @@
+{
+  "schema": "civication_mail_family_catalog_v1", "version": 1, "category": "psykologi", "role_scope": "psykolog", "mail_type": "job",
+  "families": [{"id": "psykolog_formulering_under_usikkerhet", "purpose": "Holde kliniske hypoteser åpne for motstridende informasjon.", "learning_focus": ["klinisk_usikkerhet", "utredning", "dokumentasjon"], "mails": [{
+    "id": "psykolog_job_formulering_001", "mail_type": "job", "mail_family": "psykolog_formulering_under_usikkerhet", "role_scope": "psykolog", "phase": "intro", "day_phase": "morning", "priority": 150, "cooldown": 2, "repeatable": false, "stage": "stable",
+    "from": "Ingrid, psykologspesialist", "people_ref": "ingrid_psykologspesialist", "person_id": "ingrid_psykologspesialist", "subject": "Den nye opplysningen passer ikke", "summary": "Et nytt samtalenotat utfordrer den foreløpige formuleringen du skulle bruke i dagens planmøte.",
+    "purpose": "Teste om psykologen skiller arbeidshypotese fra konklusjon.", "stakes": "En for sikker formulering kan styre både pasient og team mot feil neste steg.",
+    "situation": ["Den foreløpige formuleringen forklarer flere av vanskene som er beskrevet.", "Det nye notatet viser et mønster formuleringen ikke forklarer godt.", "Planmøtet begynner snart, men det finnes tid til å markere usikkerheten og avgrense hva som må undersøkes."],
+    "task_domain": "klinisk_formulering", "task_kind": "job", "competency": "klinisk_utredning", "pressure": "klinisk_presisjon_vs_tidskrav", "choice_axis": "reviderbar_hypotese_vs_tidlig_lukking", "consequence_axis": "etterprovbar_plan_vs_feilspor", "narrative_arc": "fra_ryddig_forklaring_til_reviderbart_sporsmal",
+    "choices": [
+      {"id": "A", "label": "Marker usikkerheten og avgrens neste undersøkelse", "reply": "Jeg beskriver hva hypotesen forklarer, hva som ikke passer, og hvilket spørsmål vi må undersøke før planen låses.", "effect": 1, "tags": ["hypothesis_revision", "bounded_action"], "feedback": "Planen blir mindre endelig, men mer presis og mulig å korrigere.", "effects": {"stats": {"quality": 3, "trust": 1, "risk": -2, "energy": -1}}},
+      {"id": "B", "label": "Behold formuleringen og legg opplysningen i et vedlegg", "reply": "Hovedbildet er tydelig nok til at formuleringen kan stå.", "effect": -1, "tags": ["premature_closure", "confirmation_bias"], "feedback": "Den avvikende opplysningen blir synlig, men får ingen reell virkning på beslutningen.", "effects": {"stats": {"status": 1, "quality": -3, "trust": -1, "risk": 3}}}
+    ]
+  }]}]
+}
