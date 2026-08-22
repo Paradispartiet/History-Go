@@ -57,9 +57,9 @@ test('Eksisterende Lesespor-renderer filtrerer på sted og avviser betalingsmure
   assert.match(runtime, /rel="noopener noreferrer"/);
 });
 
-test('Fasekortet lukker Nyheter og holder senere popupfaser åpne', () => {
+test('Fasekortet lukker Lesespor og åpner Kilder', () => {
   assert.match(report, /\| 5 \| Nyheter \| \*\*GODKJENT – PR #4656, merge `1ae7d30113134edc26394289a1afce0226f58246`\*\* \|/);
-  assert.match(report, /\| 6 \| Lesespor \| \*\*KLAR FOR REVIEW\*\* \|/);
-  assert.match(report, /\| 7 \| Brukerrettede Kilder \| IKKE STARTET \|/);
+  assert.match(report, /\| 6 \| Lesespor \| \*\*GODKJENT – PR #4658, merge `c78cb05353bfb61eb68fef74ee9f115dfacc3a8b`\*\* \|/);
+  assert.match(report, /\| 7 \| Brukerrettede Kilder \| \*\*KLAR FOR REVIEW\*\* \|/);
   assert.match(report, /Ingen record er kopiert inn i Leksikon eller `externalLinks`/);
 });
