@@ -1,8 +1,8 @@
 # Vår Frelsers gravlund – produksjonskort
 
-Dato: 2026-08-23  
+Dato: 2026-08-22
 Canonical place-ID: `var_frelsers_gravlund`  
-Status: **FASE 1 PASS – identitet, kilder og stedsbeskrivelse låst**
+Status: **FASE 2 PASS – rik popup og lokal opplevelse låst**
 
 ## Stedsidentitet
 
@@ -17,12 +17,12 @@ Koordinaten beholdes uendret som en verifisert arealmarkør. Offisiell besøksad
 | Identitet og koordinat | Canonical ID og `verified_geometry` finnes | Behold |
 | `desc` / `popupDesc` | Lang, navnetung tekst med udokumenterte eller utdaterte formuleringer | Omskrevet i fase 1 |
 | Historieproduksjon | Ingen v1-rapport | Ny canonical rapport i fase 1 |
-| Popupkronologi | Kort legacy-artikkel | Bygges i fase 2 |
-| Story | Én svak «historical»-oppføring uten episodekontrakt | Erstattes i fase 2 |
-| Før/etter | Mangler | Produseres bare med rettighetsklar historisk bildekilde |
-| Nyheter | Mangler | To daterte, offisielle notiser i fase 2 |
-| Lesespor | Mangler | Tre åpne, direkte leselenker i fase 2 |
-| Språk | Mangler | Stedsspesifikke navn og gravplassord i fase 2 |
+| Popupkronologi | Kort legacy-artikkel | 13 kildebelagte punkter fra 1805 til 2026 |
+| Story | Én svak «historical»-oppføring uten episodekontrakt | Episode om fem bekransninger 17. mai 2026 |
+| Før/etter | Manglet | To lokale, rettighetsklare bilder med eksplisitt kamerabegrensning |
+| Nyheter | Manglet | Vedtektsendring og krigshistorisk vandring i 2026 |
+| Lesespor | Manglet | Tre åpne, direkte og kuraterte leselenker |
+| Språk | Manglet | Fire lokale språkspor; ingen udokumentert dialekt |
 | People | Minst 15 koblinger, ujevn kvalitet og ingen kuratert stedsrunde | Kurateres i fase 4 |
 | Objects | Mangler canonical stedsobjekter | Tre fysiske objekter med bilde i fase 4 |
 | Brands | Mangler | Reelle forvalter-/nettverkskoblinger vurderes i fase 4 |
@@ -51,11 +51,11 @@ Koordinaten beholdes uendret som en verifisert arealmarkør. Offisiell besøksad
 ## Faseplan
 
 1. **PASS** – identitet, kilder, v4.2-beskrivelse og Historie-case.
-2. **IKKE STARTET** – popup: kronologi, Story, Før/etter, Kilder, Nyheter, Lesespor og Språk.
+2. **PASS** – popup: kronologi, Story, Før/etter, Kilder, Nyheter, Lesespor og Språk.
 3. **IKKE STARTET** – quiz 4 × 7, produksjonsbrief, kontekst, Knowledge og Fagverk.
 4. **IKKE STARTET** – kuraterte People, Objects, Brands og Related med bilder og round override.
 5. **IKKE STARTET** – onsite, progresjon, desktop/mobil, tilgjengelighet, legacy-opprydding og endelig 6-dimensjonal kvalitetsscore.
 
-## Kvalitetsstatus fase 1
+## Kvalitetsstatus fase 2
 
-Ingen kritiske blokkere for neste fase. Beskrivelsen har tydelig kontrollidé, fysisk forankring, klasseperspektiv, nåtidsspor og inferensgrenser. Senere faser må fortsatt bestå egne porter før stedet kan merkes produksjonsklart.
+Ingen kritiske blokkere for neste fase. Popupen har én tydelig historisk akse, en konkret episode, to daterte nyheter, tre lesespor og fire stedsspesifikke språkoppføringer. Før/nå-paret sammenligner landskapskarakter, ikke bestemte gravfelt: bildene har ulike kamerastandpunkt og det nyeste er fra 2008. Quiz, rundinger og full UI-kontroll må fortsatt bestå egne porter før stedet kan merkes produksjonsklart.
