@@ -1,0 +1,393 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "categoryId": "historie",
+  "targetId": "gamle_aker_kirke",
+  "reviewed_at": "2026-08-22",
+  "review_note": "Påstandene er kontrollert mot fagartikkel, offisiell kirkeinformasjon, kulturminneforvaltning, lokalhistorisk oppslagsverk og den løpende rehabiliteringssiden.",
+  "sources": {
+    "snl_gamle_aker": {
+      "url": "https://snl.no/Gamle_Aker_kirke",
+      "source_type": "scholarly_reference",
+      "review_status": "reviewed",
+      "review_note": "Brukt for arkitektur, materialer, bred dateringsusikkerhet, eierskap, branner, rivningsvedtak og restaureringer. Artikkelen understreker at det eksakte byggeåret er uavklart."
+    },
+    "kirken_gamle_aker": {
+      "url": "https://www.kirken.no/nn-NO/fellesrad/kirkeneioslo/menigheter/sthans/forsideoppslag/gamle-aker/",
+      "source_type": "official_place_information",
+      "review_status": "reviewed",
+      "review_note": "Brukt for dagens kirke, basilikaformen, krypten og menighetens dateringsintervall. Kilden formidler stedet og er ikke alene brukt til å avgjøre omstridt datering."
+    },
+    "riksantikvaren_gamle_aker": {
+      "url": "https://riksantikvaren.no/eksempelsamling/energieffektivisering/gamle-aker-med-ny-energi/",
+      "source_type": "heritage_authority",
+      "review_status": "reviewed",
+      "review_note": "Brukt for automatisk fredning, dagens bruk og avveiingene mellom vern, energi, tilgjengelighet og tekniske tiltak."
+    },
+    "oslo_byleksikon_gamle_aker": {
+      "url": "https://oslobyleksikon.no/side/Gamle_Aker_kirke",
+      "source_type": "local_history_reference",
+      "review_status": "reviewed",
+      "review_note": "Brukt som uavhengig lokalhistorisk kontroll av bygning, eierskap, branner og restaureringer. Enkeltår for inventar holdes utenfor quizen der kildene avviker."
+    },
+    "kirken_rehabilitering": {
+      "url": "https://www.kirken.no/sthans/rehabilitering",
+      "source_type": "official_current_project",
+      "review_status": "reviewed",
+      "review_note": "Brukt for utførte tiltak i 2023–2025 og planlagt fase i 2026–2027. Planlagt arbeid omtales ikke som fullført."
+    },
+    "snl_aker": {
+      "url": "https://snl.no/Aker",
+      "source_type": "scholarly_reference",
+      "review_status": "reviewed",
+      "review_note": "Brukt for stedsnavnet Aker fra norrønt akr, «åker», og koblingen mellom Store Aker og dagens kirkested."
+    },
+    "snl_ortocerkalkstein": {
+      "url": "https://snl.no/ortocerkalkstein",
+      "source_type": "scholarly_reference",
+      "review_status": "reviewed",
+      "review_note": "Brukt for fossilførende ortocerkalkstein og bergartens dokumenterte bruk i Gamle Aker kirke."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_middelalder_kirke_kongemakt",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_kirke_kloster_middelalder",
+      "em_his_middelalder_oslo",
+      "em_his_spor_materialitet",
+      "em_his_kulturminner_bevaring",
+      "em_his_kildekritikk_arkiv_spor",
+      "em_his_restaurering_autentisitet"
+    ],
+    "topic_hook_ids": [
+      "his_spor_materialitet",
+      "his_kildekritikk",
+      "his_bevaring_restaurering_autentisitet",
+      "his_middelalder_by_kirke"
+    ],
+    "method_ids": [
+      "met_sporlesning",
+      "met_kildekritikk",
+      "met_restaurerings_autentisitetsanalyse",
+      "met_kulturarvutvelgelsesanalyse"
+    ],
+    "thinker_ids": [
+      "carlo_ginzburg",
+      "marc_bloch",
+      "alois_riegl",
+      "sverre_bagge"
+    ],
+    "works": [
+      "Clues, Myths, and the Historical Method",
+      "The Historian's Craft",
+      "The Modern Cult of Monuments",
+      "From Viking Stronghold to Christian Kingdom"
+    ]
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/historie/gamle_aker_kirke_sets.json",
+      "data/knowledge/knowledge_units.generated.json",
+      "repository paths matching gamle_aker_kirke and quiz/sets"
+    ],
+    "active_before": {
+      "manifest_entries": 1,
+      "quiz_files": 1,
+      "sets": 1,
+      "questions": 5,
+      "knowledge_units": 9,
+      "duplicates_found": 0
+    },
+    "decisions": [
+      {
+        "existing_question_id": "gamle_aker_kirke_quiz_1",
+        "decision": "rewrite",
+        "rationale": "Beholder hovedpoenget om Oslos eldste stående bygning, men fjerner et kunstig årstall og gir inspectable kilde-ID."
+      },
+      {
+        "existing_question_id": "gamle_aker_kirke_quiz_2",
+        "decision": "merge",
+        "rationale": "Poenget om steinbygget fordeles på konkrete spørsmål om basilikaform, ortocerkalkstein og synlige spor."
+      },
+      {
+        "existing_question_id": "gamle_aker_kirke_quiz_3",
+        "decision": "rewrite",
+        "rationale": "Sammenligningen med ruinområdet beholdes som stedlig syntese i siste sett, ikke som tidlig ledende spørsmål."
+      },
+      {
+        "existing_question_id": "gamle_aker_kirke_quiz_4",
+        "decision": "move",
+        "rationale": "Eksplisitt sporlesning flyttes ut av normalåpningen og til sett 3 i tråd med global quizpolicy."
+      },
+      {
+        "existing_question_id": "gamle_aker_kirke_quiz_5",
+        "decision": "split",
+        "rationale": "Den brede syntesen deles i konkrete spørsmål om bruk, eierskap, restaurering og vern."
+      }
+    ],
+    "knowledge_migration": "De ni eksisterende quizgenererte Knowledge-enhetene erstattes eller gjenbrukes deterministisk av canonical Knowledge-synk etter at 3 × 7-pakken er skrevet. Ingen personlig brukerstate endres av datarevisjonen."
+  },
+  "profile_decision": {
+    "profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "justification": "Sju kontrollerte kilder og en rik kronologi bærer 21 selvstendige påstander om bygg, navn, materiale, eierskap, branner, rivningsstrid, restaurering og vern. Stoffet bærer én komplett åpning og ett fordypningssett, men ikke fire sett uten å gjenta samme bygnings- og bevaringshistorie."
+  },
+  "held_back_candidates": [
+    {
+      "candidate": "En eldre trekirke på stedet",
+      "reason": "Tradisjonen er ikke sterkt nok dokumentert til quizfasit."
+    },
+    {
+      "candidate": "Olav Kyrre som sikker grunnlegger",
+      "reason": "Bygningen og kildene gir ikke sikkert grunnlag for påstanden."
+    },
+    {
+      "candidate": "Et førkristent tingsted ved kirken",
+      "reason": "Påstanden holdes tilbake uten sterkere kildebelegg."
+    },
+    {
+      "candidate": "Thomas Blix-inventaret datert til ett sikkert år",
+      "reason": "Brukerrettede kilder oppgir både 1715 og 1725."
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_gamle_aker_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Gamle Aker kirke regnes som Oslos eldste stående bygning.",
+      "source_ids": ["snl_gamle_aker", "kirken_gamle_aker"],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_gamle_aker_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kirken er en treskipet basilika med høyere midtskip og lavere sideskip.",
+      "source_ids": ["snl_gamle_aker", "kirken_gamle_aker"],
+      "source_origin": "external",
+      "emne_id": "em_his_kirke_kloster_middelalder"
+    },
+    {
+      "claim_id": "claim_gamle_aker_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Koret avsluttes av en halvrund apsis mot øst.",
+      "source_ids": ["snl_gamle_aker", "kirken_gamle_aker"],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_gamle_aker_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Ortokerførende kalkstein i kirken kan inneholde synlige fossiler.",
+      "source_ids": ["snl_gamle_aker", "snl_ortocerkalkstein"],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_gamle_aker_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kildene daterer middelalderbygget innenfor et bredt spenn fra omkring 1080 til 1180, ikke til ett sikkert år.",
+      "source_ids": ["snl_gamle_aker", "kirken_gamle_aker"],
+      "source_origin": "external",
+      "emne_id": "em_his_middelalder_oslo"
+    },
+    {
+      "claim_id": "claim_gamle_aker_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Navnet Aker kommer av norrønt akr, «åker», og Store Aker lå ved dagens kirke.",
+      "source_ids": ["snl_aker"],
+      "source_origin": "external",
+      "emne_id": "em_his_middelalder_oslo"
+    },
+    {
+      "claim_id": "claim_gamle_aker_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Gamle Aker kirke er fortsatt et kirkerom i aktiv bruk.",
+      "source_ids": ["kirken_gamle_aker", "riksantikvaren_gamle_aker"],
+      "source_origin": "external",
+      "emne_id": "em_his_kirke_kloster_middelalder"
+    },
+    {
+      "claim_id": "claim_gamle_aker_08",
+      "order": 8,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Nonneseter kloster overtok kirken i 1186.",
+      "source_ids": ["snl_gamle_aker", "oslo_byleksikon_gamle_aker"],
+      "source_origin": "external",
+      "emne_id": "em_his_kirke_kloster_middelalder"
+    },
+    {
+      "claim_id": "claim_gamle_aker_09",
+      "order": 9,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Kirken ble skadet av brann i 1592.",
+      "source_ids": ["snl_gamle_aker", "oslo_byleksikon_gamle_aker"],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_gamle_aker_10",
+      "order": 10,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "En ny brann skadet kirken og inventaret i 1703.",
+      "source_ids": ["snl_gamle_aker", "oslo_byleksikon_gamle_aker"],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_gamle_aker_11",
+      "order": 11,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Aker herredsstyre vedtok riving i 1852, før Christiania kommune kjøpte kirken samme år.",
+      "source_ids": ["snl_gamle_aker", "oslo_byleksikon_gamle_aker"],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_gamle_aker_12",
+      "order": 12,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Heinrich Ernst Schirmer og Wilhelm von Hanno ledet restaureringen i 1858–1861.",
+      "source_ids": ["snl_gamle_aker", "riksantikvaren_gamle_aker"],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_gamle_aker_13",
+      "order": 13,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Restaureringen i 1950–1955 fjernet senere puss og formet det bare steinpreget i dagens kirkerom.",
+      "source_ids": ["snl_gamle_aker", "riksantikvaren_gamle_aker"],
+      "source_origin": "external",
+      "emne_id": "em_his_restaurering_autentisitet"
+    },
+    {
+      "claim_id": "claim_gamle_aker_14",
+      "order": 14,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Rehabiliteringen etter 2023 kombinerer vern med energi, brannsikring, tilgjengelighet og fortsatt bruk; sluttfasen i 2026–2027 er planlagt.",
+      "source_ids": ["riksantikvaren_gamle_aker", "kirken_rehabilitering"],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_gamle_aker_15",
+      "order": 15,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Middelaldermur, 1800-tallstårn og 1900-tallsinteriør gjør kirken til et bygg med flere tidslag, ikke et uendret middelalderrom.",
+      "source_ids": ["snl_gamle_aker", "riksantikvaren_gamle_aker"],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_gamle_aker_16",
+      "order": 16,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Ulike dateringsintervaller i fagartikkelen og menighetssiden viser hvorfor kilder må sammenlignes før ett år festes som fasit.",
+      "source_ids": ["snl_gamle_aker", "kirken_gamle_aker"],
+      "source_origin": "external",
+      "emne_id": "em_his_kildekritikk_arkiv_spor",
+      "guidance_basis": ["data/fag/historie/methods_historie_canonical_v4_5.json"]
+    },
+    {
+      "claim_id": "claim_gamle_aker_17",
+      "order": 17,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Arkitektur og murverk støtter en middelalderdatering, men slike spor gir ikke alene ett sikkert byggeår.",
+      "source_ids": ["snl_gamle_aker"],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet",
+      "guidance_basis": ["data/fag/historie/methods_historie_canonical_v4_5.json"]
+    },
+    {
+      "claim_id": "claim_gamle_aker_18",
+      "order": 18,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Små materielle spor kan støtte historiske slutninger uten å gjøre dem sikrere enn kildene tillater.",
+      "source_ids": ["snl_gamle_aker", "snl_ortocerkalkstein"],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet",
+      "guidance_basis": ["data/fag/historie/fagkart_historie_canonical_v4_5.json", "data/fag/historie/methods_historie_canonical_v4_5.json"],
+      "method_id": "met_sporlesning",
+      "topic_hook_id": "his_spor_materialitet",
+      "thinker_id": "carlo_ginzburg",
+      "work": "Clues, Myths, and the Historical Method"
+    },
+    {
+      "claim_id": "claim_gamle_aker_19",
+      "order": 19,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Det bare steininteriøret må vurderes som et restaureringsvalg fra 1900-tallet, ikke som en nøytral kopi av middelalderen.",
+      "source_ids": ["snl_gamle_aker", "riksantikvaren_gamle_aker"],
+      "source_origin": "external",
+      "emne_id": "em_his_restaurering_autentisitet",
+      "guidance_basis": ["data/fag/historie/fagkart_historie_canonical_v4_5.json", "data/fag/historie/methods_historie_canonical_v4_5.json"],
+      "method_id": "met_restaurerings_autentisitetsanalyse",
+      "topic_hook_id": "his_bevaring_restaurering_autentisitet",
+      "thinker_id": "alois_riegl",
+      "work": "The Modern Cult of Monuments"
+    },
+    {
+      "claim_id": "claim_gamle_aker_20",
+      "order": 20,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Dagens rehabilitering viser en reell avveiing mellom aldersverdi, bruksverdi og tekniske behov.",
+      "source_ids": ["riksantikvaren_gamle_aker", "kirken_rehabilitering"],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring",
+      "guidance_basis": ["data/fag/historie/fagkart_historie_canonical_v4_5.json", "data/fag/historie/methods_historie_canonical_v4_5.json"],
+      "method_id": "met_kulturarvutvelgelsesanalyse",
+      "topic_hook_id": "his_kulturminneutvelgelse_verdi",
+      "thinker_id": "alois_riegl",
+      "work": "The Modern Cult of Monuments"
+    },
+    {
+      "claim_id": "claim_gamle_aker_21",
+      "order": 21,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Gamle Aker viser at middelalderens Oslo-historie også omfatter kirkelig eierskap og gårdslandskap utenfor ruinområdet i Gamlebyen.",
+      "source_ids": ["snl_gamle_aker", "snl_aker", "kirken_gamle_aker"],
+      "source_origin": "external",
+      "emne_id": "em_his_middelalder_oslo",
+      "guidance_basis": ["data/fag/historie/fagkart_historie_canonical_v4_5.json"],
+      "method_id": "met_sporlesning",
+      "topic_hook_id": "his_middelalder_by_kirke",
+      "thinker_id": "sverre_bagge",
+      "work": "From Viking Stronghold to Christian Kingdom"
+    }
+  ]
+}
