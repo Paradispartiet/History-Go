@@ -73,6 +73,7 @@ test('Fasekortet lukker Kilder og åpner direktefanefasen', () => {
   assert.match(report, /\| 6 \| Lesespor \| \*\*GODKJENT – PR #4658, merge `c78cb05353bfb61eb68fef74ee9f115dfacc3a8b`\*\* \|/);
   assert.match(report, /\| Kilder \| PASS – fase 7 \|/);
   assert.match(report, /\| 7 \| Brukerrettede Kilder \| \*\*GODKJENT – PR #5184, merge `31af12e8852cca6d7c2da2ef2e5fdab480a287c2`\*\* \|/);
-  assert.match(report, /\| 8 \| Mer \| \*\*KLAR FOR REVIEW – DIREKTE FANER\*\* \|/);
+  assert.match(report, /\| 8 \| Mer \| \*\*GODKJENT – PR #5186, merge `3bc252d347b3dd8561155bdbd49c354378401767`\*\* \|/);
+  assert.match(report, /\| 9 \| Quizåpning 2 × 7 og Knowledge \| \*\*KLAR FOR REVIEW – 3 × 7, KNOWLEDGE-LINKET\*\* \|/);
   assert.match(report, /Ingen ny hovedflate eller runtimevariant er innført/);
 });

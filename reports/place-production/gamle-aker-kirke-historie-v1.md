@@ -6,7 +6,7 @@
 - Manifest: `data/places/manifest.json`
 - Primærkategori: `historie`
 - Stedstype: stående middelalderkirke i fortsatt bruk
-- Status: **fase 8 – Språk, Legg merke til, Betydning og Motpunkter klare for review; stedet er ennå ikke samlet produksjonsklart**
+- Status: **fase 9 – Quizåpning 2 × 7 og Knowledge klare for review; stedet er ennå ikke samlet produksjonsklart**
 
 ## Arbeidskort
 
@@ -132,8 +132,8 @@ Bare én fase kan være aktiv om gangen. Hver godkjente fase skal merges og kont
 | 5 | Nyheter | **GODKJENT – PR #4656, merge `1ae7d30113134edc26394289a1afce0226f58246`** |
 | 6 | Lesespor | **GODKJENT – PR #4658, merge `c78cb05353bfb61eb68fef74ee9f115dfacc3a8b`** |
 | 7 | Brukerrettede Kilder | **GODKJENT – PR #5184, merge `31af12e8852cca6d7c2da2ef2e5fdab480a287c2`** |
-| 8 | Mer | **KLAR FOR REVIEW – DIREKTE FANER** |
-| 9 | Quizåpning 2 × 7 og Knowledge | IKKE STARTET |
+| 8 | Mer | **GODKJENT – PR #5186, merge `3bc252d347b3dd8561155bdbd49c354378401767`** |
+| 9 | Quizåpning 2 × 7 og Knowledge | **KLAR FOR REVIEW – 3 × 7, KNOWLEDGE-LINKET** |
 | 10 | People, Objects, Brands og Badges/rundinger | IKKE STARTET |
 | 11 | Full audit, UI-kontroll og produksjonsklarhetsavgjørelse | IKKE STARTET |
 
@@ -215,26 +215,37 @@ Bare én fase kan være aktiv om gangen. Hver godkjente fase skal merges og kont
 - Knowledge, funfacts, relasjoner og fysiske Objects er vurdert og ikke lagt i denne fasen. Knowledge eies av quiz-/Knowledge-fasen, relasjoner eies av canonical relasjonsdata, og Objects krever egen identitets-, kilde- og bilderunde.
 - Eksisterende runtime materialiserer språk, observasjon, betydning og motpunkter som navngitte direktefaner i den horisontalt scrollbar fanestripen. Ingen ny hovedflate, Mer-restfane eller stedsspesifikk runtimevariant er innført.
 
+## Resultat i fase 9
+
+- Den eneste aktive Gamle Aker-quizen er revidert fra ett sett med fem spørsmål til canonical `narrow_3x7`: tre sett med sju spørsmål og 21 selvstendige, kildebelagte claims.
+- Sett 1 og 2 utgjør den absolutte normalåpningen på 2 × 7. Alle fjorten spørsmål er direkte spørsmål om bygg, arkitektur, materiale, navn, bruk, eierskap, branner, rivningsstrid og restaurering; ingen har `method_id`, `topic_hook_id`, `thinker_id` eller `theory_ref`.
+- Sett 3 innfører kildekritikk, sporlesning, restaurerings-/autentisitetsanalyse og kulturarvutvelgelse. Fire teoribindinger bruker Carlo Ginzburg, Alois Riegl og Sverre Bagge bare der teorien skjerper en konkret, eksternt kildebelagt situasjon.
+- Et reviewed `source_brief` samler sju åpne HTTPS-kilder, 21 ordnede claims, audit av de fem gamle spørsmålene, profilbegrunnelse og fire eksplisitt holdte kandidater. Trekirketradisjonen, Olav Kyrre, tingstedet og det motstridende Thomas Blix-året er ikke gjort til quizfasit.
+- Den genererte produksjonskonteksten dokumenterer hele manifestløste fagpakken, stedets canonical data, relevante relasjoner/Story, valgt pensum og en nøyaktig settplan. Profilen stoppes på tre sett fordi et fjerde ville gjenta samme bygnings- og bevaringshistorie.
+- Alle 21 spørsmål har stabilt læringsmål, evidenstype og feedbackgrunnlag. Canonical Knowledge-synk materialiserer 42 koblede Knowledge-enheter, 45 concepts og 8 terms for quizen; alle spørsmål har `knowledge_link_status: "linked"`.
+- Quizdata endrer ikke fysisk besøksstatus. Eksisterende quiz-, Knowledge- og progresjonsruntime brukes uten ny hovedflate, ny storage eller stedsspesifikk runtimevariant.
+
 ## Aktivt filscope
 
-Fase 8 endrer bare:
+Fase 9 endrer bare:
 
-- Gamle Aker-hovedrecordens `interpretation` i den manifestlastede Oslo/Historie-Leksikon-filen;
-- én ny stedsspesifikk Språkleksikon-fil og én manifestkobling;
-- en egen direktefane-/Språkleksikon-regresjonspakke og faseforventningen i Kilder-testen;
+- den eksisterende Gamle Aker-quizpakken og canonical Knowledge-registre som bygges deterministisk fra den;
+- Historie-fagmanifestets målresolver, ett reviewed `source_brief` og én generert `production_context`;
+- den eksisterende maskinlesbare Historie-produksjonsrapportens quizgate;
+- en egen quiz-/Knowledge-regresjonspakke og faseforventningen i direktefane-testen;
 - dette arbeidskortet.
 
-Ingen canonical place-, Story-, Lesespor-, People-, Quiz-, Knowledge-, bilde-, koordinat- eller runtimefil endres i fase 8.
+Ingen canonical place-, Story-, Lesespor-, People-, Object-, Brand-, bilde-, koordinat- eller runtimefil endres i fase 9.
 
-## Ferdigport for fase 8
+## Ferdigport for fase 9
 
-Fase 8 kan godkjennes når:
+Fase 9 kan godkjennes når:
 
-1. språkmanifestet kobler `gamle_aker_kirke` til én canonical språkfil med fem unike oppslag;
-2. hvert oppslag har presis betydning, stedsspesifikk kontekst, `linked_to`, minst tre tags og én inspectable HTTPS-kilde;
-3. språkfilen bruker et reelt `historie`-subject og de fire canonicale Historie-emnene;
-4. enkeltstedet inneholder ingen `layer: "dialect"`, `dialect_area` eller `dialect_feature`;
-5. Leksikonets observasjon, betydning og motpunkter har tre selvstendige, stedsspesifikke punkter hver og en felles kildepakke kontrollert 22. august 2026;
-6. fossil-/materialsporet får riktig språk- og observasjonseier uten å gjenoppstå som Story, funfact eller Object-filler;
-7. eksisterende runtime materialiserer Språk, Legg merke til, Betydning og Motpunkter som direktefaner og fjerner den interne Mer-stagingfanen;
-8. Språkleksikon-schema/-audit, direktefane-regresjoner, Leksikon-ID-kontroll og tidligere Gamle Aker-fasetester består.
+1. fagmanifestet løser Gamle Aker til ett reviewed kildegrunnlag, én inspectable produksjonskontekst og den ene aktive quizfilen;
+2. eksisterende quiz-audit dokumenterer 1 × 5-førtilstanden, ni gamle Knowledge-enheter og behold/omskriv/flytt/fjern-beslutningene;
+3. profilvalget er `narrow_3x7`, alle tre settene har sju spørsmål, og 21 claims dekker settplanen uten duplikatfyll;
+4. de første fjorten spørsmålene er normale og har ingen eksplisitt metode- eller teoribinding;
+5. alle spørsmål har gyldig svar, minst tre jevnbyrdige alternativer, claim-ID, eksterne kilde-ID-er, læringsmål, evidenstype og feedbackgrunnlag;
+6. metode og teori starter først i sett 3 og hver teoribinding har claim, emne, hook, kilde og konkret `why_it_helps`;
+7. canonical Knowledge-synk gir alle 21 spørsmål kjente Knowledge-, concept- og eventuelle term-ID-er uten kontraktfeil;
+8. quizinnholds-, produksjonskontekst-, progresjons-, teori-, Knowledge- og Historie-produksjonsauditene består.

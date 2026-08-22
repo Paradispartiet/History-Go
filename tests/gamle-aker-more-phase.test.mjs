@@ -72,7 +72,7 @@ test('Fossilsporet får riktig eier uten nytt Story-, funfact- eller Object-fill
     assert.equal(Object.hasOwn(main, key), false, `uventet direktefane-filler: ${key}`);
   }
   assert.deepEqual(main.artifacts, []);
-  assert.match(report, /uten å gjenoppstå som Story, funfact eller Object-filler/);
+  assert.match(report, /Ingen forklarende fossiltekst gjeninnføres som Story/);
 });
 
 test('Eksisterende runtime viser Språk og navngitte direktefaner uten Mer-restfane', () => {
@@ -87,9 +87,9 @@ test('Eksisterende runtime viser Språk og navngitte direktefaner uten Mer-restf
   assert.match(directTabsRuntime, /moreTab\?\.remove\(\)/);
 });
 
-test('Fasekortet lukker Kilder og åpner Quiz/Knowledge som neste arbeid', () => {
+test('Fasekortet bevarer godkjente direktefaner når Quiz/Knowledge går videre', () => {
   assert.match(report, /\| 7 \| Brukerrettede Kilder \| \*\*GODKJENT – PR #5184, merge `31af12e8852cca6d7c2da2ef2e5fdab480a287c2`\*\* \|/);
   assert.match(report, /\| Mer \| PASS – fase 8 \|/);
-  assert.match(report, /\| 8 \| Mer \| \*\*KLAR FOR REVIEW – DIREKTE FANER\*\* \|/);
-  assert.match(report, /\| 9 \| Quizåpning 2 × 7 og Knowledge \| IKKE STARTET \|/);
+  assert.match(report, /\| 8 \| Mer \| \*\*GODKJENT – PR #5186, merge `3bc252d347b3dd8561155bdbd49c354378401767`\*\* \|/);
+  assert.match(report, /\| 9 \| Quizåpning 2 × 7 og Knowledge \| \*\*KLAR FOR REVIEW – 3 × 7, KNOWLEDGE-LINKET\*\* \|/);
 });
