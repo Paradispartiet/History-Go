@@ -172,6 +172,6 @@ test('Historie-gaten og fasekortet lukker fase 8 og åpner rundingsfasen', () =>
   assert.equal(productionReport.gates.G.status, 'PASS');
   assert.ok(productionReport.gates.G.evidenceRefs.includes('quizOpening'));
   assert.match(report, /\| 8 \| Mer \| \*\*GODKJENT – PR #5186, merge `3bc252d347b3dd8561155bdbd49c354378401767`\*\* \|/);
-  assert.match(report, /\| 9 \| Quizåpning 2 × 7 og Knowledge \| \*\*KLAR FOR REVIEW – 3 × 7, KNOWLEDGE-LINKET\*\* \|/);
-  assert.match(report, /\| 10 \| People, Objects, Brands og Badges\/rundinger \| IKKE STARTET \|/);
+  assert.match(report, /\| 9 \| Quizåpning 2 × 7 og Knowledge \| \*\*GODKJENT – PR #5188, merge `5c400fdb79fa16af7eb23fcd61c3e8b70ef8e01b`\*\* \|/);
+  assert.match(report, /\| 10 \| People, Objects, Brands og Badges\/rundinger \| \*\*KLAR FOR REVIEW – STANDARD 4\+1, KILDE- OG BILDEKONTROLLERT\*\* \|/);
 });

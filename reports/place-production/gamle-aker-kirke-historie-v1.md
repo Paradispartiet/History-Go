@@ -6,7 +6,7 @@
 - Manifest: `data/places/manifest.json`
 - Primærkategori: `historie`
 - Stedstype: stående middelalderkirke i fortsatt bruk
-- Status: **fase 9 – Quizåpning 2 × 7 og Knowledge klare for review; stedet er ennå ikke samlet produksjonsklart**
+- Status: **fase 10 – People, Objects, Brands, Badges og Related klare for review; full audit i fase 11 gjenstår**
 
 ## Arbeidskort
 
@@ -133,8 +133,8 @@ Bare én fase kan være aktiv om gangen. Hver godkjente fase skal merges og kont
 | 6 | Lesespor | **GODKJENT – PR #4658, merge `c78cb05353bfb61eb68fef74ee9f115dfacc3a8b`** |
 | 7 | Brukerrettede Kilder | **GODKJENT – PR #5184, merge `31af12e8852cca6d7c2da2ef2e5fdab480a287c2`** |
 | 8 | Mer | **GODKJENT – PR #5186, merge `3bc252d347b3dd8561155bdbd49c354378401767`** |
-| 9 | Quizåpning 2 × 7 og Knowledge | **KLAR FOR REVIEW – 3 × 7, KNOWLEDGE-LINKET** |
-| 10 | People, Objects, Brands og Badges/rundinger | IKKE STARTET |
+| 9 | Quizåpning 2 × 7 og Knowledge | **GODKJENT – PR #5188, merge `5c400fdb79fa16af7eb23fcd61c3e8b70ef8e01b`** |
+| 10 | People, Objects, Brands og Badges/rundinger | **KLAR FOR REVIEW – STANDARD 4+1, KILDE- OG BILDEKONTROLLERT** |
 | 11 | Full audit, UI-kontroll og produksjonsklarhetsavgjørelse | IKKE STARTET |
 
 ## Resultat i fase 1
@@ -225,27 +225,39 @@ Bare én fase kan være aktiv om gangen. Hver godkjente fase skal merges og kont
 - Alle 21 spørsmål har stabilt læringsmål, evidenstype og feedbackgrunnlag. Canonical Knowledge-synk materialiserer 42 koblede Knowledge-enheter, 45 concepts og 8 terms for quizen; alle spørsmål har `knowledge_link_status: "linked"`.
 - Quizdata endrer ikke fysisk besøksstatus. Eksisterende quiz-, Knowledge- og progresjonsruntime brukes uten ny hovedflate, ny storage eller stedsspesifikk runtimevariant.
 
+## Resultat i fase 10
+
+- People-rundingen har fire direkte, manifestlastede personkoblinger: Heinrich Ernst Schirmer og Wilhelm von Hanno for restaureringen i 1856–1861, Torvald Moseid for glassmaleriet fra 1955 og Dronning Maud for den dokumenterte oppbevaringen av sarkofagen i krypten 1940–1948.
+- Olav Kyrre holdes fortsatt tilbake som svak tradisjon. Thomas Blix materialiseres ikke som en tynn ny personprofil bare for å øke antallet; hans dokumenterte arbeid bæres i stedet av de fysiske objektene.
+- Objects-rundingen har tre identifiserbare gjenstander inne i kirken: døpefonten og prekestolen skåret av Thomas Blix i 1715, samt det bevarte nattverdsmaleriet fra altertavlen fra 1700-tallet. Hvert objekt har stedstekst, funnsted, fagkilde, lokalt bilde og inspectable CC BY-SA 4.0-proveniens.
+- Kirkebygget, tårnet, kalksteinen og fossilene er ikke duplisert som Objects. Torvald Moseids glassmaleri er faglig relevant, men holdes ute av Objects til et kontrollert, lokalt objektbilde finnes.
+- Brand-kandidatpasset har kontrollert moderne prosjektaktører, ikke bare eksisterende registertreff. Zenisk og TRÅD AS består Brand-definisjonen, har direkte dokumenterte roller ved stedet og 100 prosent lokal, offisiell logodekning. Arkitektene AS og Nco AS holdes tilbake fordi den ferdige logo-/rolleporten ikke er lukket; Kirkelig fellesråd brukes ikke som institusjonsfyll.
+- Fire canonicale nabosteder gir en virkelig Related-runde: Damstredet og Telthusbakken, Vår Frelsers gravlund, St. Hanshaugen park og Stensparken. Alle løser i `places_index` og gjør kirken til inngang til et rikere lokalt område.
+- Badges ligger fortsatt separat ved overskriften. `middelalder` og `kulturminner_og_bevaring` er kontrollert mot Historie-registeret, og innholdsrundingene følger standarden `people · objects · brands · related` uten `round_profile`-overstyring eller ny runtime.
+- Seksdelt kvalitetsport er 29/30: korrekthet/evidens 5, dekning 5, redaksjonell kvalitet 5, teknisk integritet 5, sikkerhet/ansvarlighet 5 og vedlikeholdbarhet/etterprøvbarhet 4. Ingen dimensjon er under 4 og ingen kritiske funn står åpne i faseomfanget.
+
 ## Aktivt filscope
 
-Fase 9 endrer bare:
+Fase 10 endrer bare:
 
-- den eksisterende Gamle Aker-quizpakken og canonical Knowledge-registre som bygges deterministisk fra den;
-- Historie-fagmanifestets målresolver, ett reviewed `source_brief` og én generert `production_context`;
-- den eksisterende maskinlesbare Historie-produksjonsrapportens quizgate;
-- en egen quiz-/Knowledge-regresjonspakke og faseforventningen i direktefane-testen;
+- den canonicale Gamle Aker-place-filen med tre Objects og fire eksplisitte related-place-ID-er;
+- tre eksisterende People-profiler, uten å opprette nye person-ID-er;
+- canonical Brand-master og place-mapping med to ferdige profesjonsbrands;
+- tre lokale objektbilder og to lokale offisielle logo-assets med dokumentert proveniens;
+- produksjonspakkens rundingsstatus, én maskinlesbar faseaudit og én målrettet regresjonstest;
 - dette arbeidskortet.
 
-Ingen canonical place-, Story-, Lesespor-, People-, Object-, Brand-, bilde-, koordinat- eller runtimefil endres i fase 9.
+Ingen Story-, Lesespor-, quiz-, Knowledge-, koordinat-, lagrings- eller runtimefil endres i fase 10. Det innføres ingen ny hovedflate eller ny rundingsvariant.
 
-## Ferdigport for fase 9
+## Ferdigport for fase 10
 
-Fase 9 kan godkjennes når:
+Fase 10 kan godkjennes når:
 
-1. fagmanifestet løser Gamle Aker til ett reviewed kildegrunnlag, én inspectable produksjonskontekst og den ene aktive quizfilen;
-2. eksisterende quiz-audit dokumenterer 1 × 5-førtilstanden, ni gamle Knowledge-enheter og behold/omskriv/flytt/fjern-beslutningene;
-3. profilvalget er `narrow_3x7`, alle tre settene har sju spørsmål, og 21 claims dekker settplanen uten duplikatfyll;
-4. de første fjorten spørsmålene er normale og har ingen eksplisitt metode- eller teoribinding;
-5. alle spørsmål har gyldig svar, minst tre jevnbyrdige alternativer, claim-ID, eksterne kilde-ID-er, læringsmål, evidenstype og feedbackgrunnlag;
-6. metode og teori starter først i sett 3 og hver teoribinding har claim, emne, hook, kilde og konkret `why_it_helps`;
-7. canonical Knowledge-synk gir alle 21 spørsmål kjente Knowledge-, concept- og eventuelle term-ID-er uten kontraktfeil;
-8. quizinnholds-, produksjonskontekst-, progresjons-, teori-, Knowledge- og Historie-produksjonsauditene består.
+1. People-rundingen løser minst de fire oppgitte, direkte personkoblingene fra canonical manifestdata uten svak tradisjonsfyll eller brutte bildebaner;
+2. alle tre Objects er fysiske, stedsspesifikke og har to kilder, lokalt bilde, lisens, kreditering og manuell motivkontroll;
+3. Brand-kandidatpasset er dokumentert, begge inkluderte Brands består canonical score og har direkte stedsrolle;
+4. begge Brands har lokale offisielle logoer, 100 prosent attribusjonsdekning og ingen genererte eller rekonstruerte merker;
+5. alle fire Related-ID-er løser til andre canonical History Go-places, og ingen av dem er kopiert som Objects eller Structures;
+6. begge underbadges finnes i Historie-registeret og Badge forblir separat fra de fire innholdsrundingene;
+7. eksisterende runtime velger `people · objects · brands · related` fra standardkontrakten uten en lokal `round_profile` eller kodevariant;
+8. målrettet test, canonical audits, TypeScript-kontroll og GitHub CI består, og seksdelt kvalitetsport er minst 27/30 med alle dimensjoner minst 4.
