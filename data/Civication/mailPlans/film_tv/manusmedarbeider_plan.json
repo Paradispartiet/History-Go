@@ -1,0 +1,113 @@
+{
+  "schema": "civication_mail_plan_v1",
+  "version": 1,
+  "id": "film_tv_manusmedarbeider_v1",
+  "category": "film_tv",
+  "role_scope": "manusmedarbeider",
+  "title": "Manusmedarbeider",
+  "description": "Én sammenhengende manusdag der notater, forfatterstemme, kontinuitet, research og versjoner må holdes sporbare fram til en bordprøve.",
+  "arc": {
+    "from": "Ny manusmedarbeider som prøver å løse hvert notat raskt og lokalt.",
+    "to": "Pålitelig manusmedarbeider som skiller observasjon, forslag og beslutning, beskytter forfattereierskap og lar åpne spørsmål forbli synlige.",
+    "core_questions": [
+      "Hvordan gjør du et manusproblem presist uten å overta teksten?",
+      "Hvem eier beslutningen når notatene trekker i ulike retninger?",
+      "Hva skjer senere når research, kontinuitet eller versjonsspor blir forenklet?"
+    ]
+  },
+  "outcome_rules": {
+    "fired": {
+      "stability_values": ["FIRED"],
+      "strikes_gte": 3,
+      "score_lte": -3
+    },
+    "promoted": {
+      "completion_ratio_gte": 1,
+      "score_gte": 2,
+      "strikes_lte": 0,
+      "allow_warning": false
+    },
+    "stagnated": {
+      "autonomy_delta": -7,
+      "stability": "STAGNATED",
+      "add_branch_flags": [
+        "career_stagnated",
+        "film_tv_manusmedarbeider_stalled"
+      ]
+    }
+  },
+  "sequence": [
+    {
+      "step": 1,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Fastslå canonical versjon og beslutningseier før notatrunden starter.",
+      "allowed_families": ["manusmedarbeider_versjonsgrunnlag"],
+      "fallback_types": []
+    },
+    {
+      "step": 2,
+      "type": "people",
+      "phase": "early",
+      "step_goal": "Gi forfatteren et presist problem uten å skrive over stemmen.",
+      "allowed_families": ["manusmedarbeider_forfatterstemme"],
+      "fallback_types": []
+    },
+    {
+      "step": 3,
+      "type": "conflict",
+      "phase": "mid",
+      "step_goal": "Synliggjør motstridende bestillinger og få riktig eier til å prioritere.",
+      "allowed_families": ["manusmedarbeider_motstridende_notater"],
+      "fallback_types": []
+    },
+    {
+      "step": 4,
+      "type": "story",
+      "phase": "mid",
+      "step_goal": "Følg én omskriving gjennom karakterens kunnskap og senere scener.",
+      "allowed_families": ["manusmedarbeider_kontinuitetsbue"],
+      "fallback_types": []
+    },
+    {
+      "step": 5,
+      "type": "event",
+      "phase": "workday",
+      "step_goal": "Håndter endret bordprøverekkefølge uten å miste versjons- og kontinuitetsspor.",
+      "allowed_families": ["manusmedarbeider_bordproveendring"],
+      "fallback_types": []
+    },
+    {
+      "step": 6,
+      "type": "micro",
+      "phase": "workday",
+      "step_goal": "Merk en plausibel, men uverifisert detalj før den låses.",
+      "allowed_families": ["manusmedarbeider_researchstatus"],
+      "fallback_types": []
+    },
+    {
+      "step": 7,
+      "type": "knowledge",
+      "phase": "advanced",
+      "step_goal": "Bruk en canonical History Go-profil som filmhistorisk kontekst, ikke som norm for dagens manus.",
+      "allowed_families": ["manusmedarbeider_filmhistorie"],
+      "fallback_types": []
+    },
+    {
+      "step": 8,
+      "type": "followup",
+      "phase": "mastery",
+      "step_goal": "La tidligere notatpraksis møte forfatterens konkrete respons.",
+      "allowed_families": ["manusmedarbeider_notatoppfolging"],
+      "fallback_types": []
+    },
+    {
+      "step": 9,
+      "type": "consequence",
+      "phase": "mastery",
+      "step_goal": "Bruk bordprøven til å se hvilken tidligere forenkling som nå får kostnad.",
+      "allowed_families": ["manusmedarbeider_tabellproven"],
+      "fallback_types": []
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "manusmedarbeider",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "manusmedarbeider_versjonsgrunnlag",
+      "purpose": "Åpne arbeidsdagen med et konkret versjons- og beslutningsproblem.",
+      "learning_focus": ["versjonskontroll", "beslutningseier", "notatspor"],
+      "mails": [
+        {
+          "id": "film_tv_manus_job_versjonsgrunnlag_001",
+          "mail_type": "job",
+          "mail_family": "manusmedarbeider_versjonsgrunnlag",
+          "role_scope": "manusmedarbeider",
+          "phase": "intro",
+          "day_phase": "morning",
+          "priority": 140,
+          "stage": "stable",
+          "from": "Nora, manusredaktør",
+          "people_ref": "nora_manusredaktor",
+          "person_id": "nora_manusredaktor",
+          "place_id": "versjonsarkiv_manus",
+          "subject": "Hvilken versjon skal notatrunden faktisk bruke?",
+          "summary": "Forfatteren har levert versjon 12, mens en produsentkommentar ligger som løse endringer i en kopi merket 12b.",
+          "purpose": "Teste om spilleren etablerer ett sporbart grunnlag før redaksjonelt arbeid begynner.",
+          "stakes": "Feil grunnlag kan gjøre en hel notatrunde ubrukelig og skjule hvem som bestilte hvilke endringer.",
+          "situation": [
+            "Versjon 12 er levert av Elias og registrert i arkivet.",
+            "Kopien 12b inneholder tre endringer, men ingen samlet godkjenning eller endringslogg.",
+            "Nora trenger notater om en time og ber deg gjøre grunnlaget tydelig."
+          ],
+          "task_domain": "versjonskontroll",
+          "task_kind": "editorial_review",
+          "competency": "versjonssporbarhet",
+          "pressure": "notatrunde_om_en_time",
+          "choice_axis": "sporbar_baseline_vs_antatt_nyeste_fil",
+          "consequence_axis": "felles_beslutningsgrunnlag_vs_skjult_omskriving",
+          "narrative_arc": "fra_to_versjoner_til_ett_spor",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Frys versjon 12 og registrer 12b som åpne forslag",
+              "reply": "Jeg bruker levert versjon 12 som baseline og lister 12b-endringene med eier og status før de vurderes.",
+              "effect": 1,
+              "tags": ["traceability", "clarity"],
+              "feedback": "Notatrunden får ett felles grunnlag uten at forslag blir presentert som vedtak.",
+              "effects": {"stats": {"quality": 2, "trust": 2, "risk": -2, "energy": -1}}
+            },
+            {
+              "id": "B",
+              "label": "Bruk 12b fordi den inneholder de siste endringene",
+              "reply": "Jeg antar at 12b er den reelle arbeidsversjonen og skriver notatene derfra.",
+              "effect": -1,
+              "tags": ["tempo", "version_risk"],
+              "feedback": "Du sparer tid nå, men gjør uavklarte forslag til skjulte beslutninger.",
+              "effects": {"stats": {"status": 1, "quality": -2, "risk": 3, "trust": -2}}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

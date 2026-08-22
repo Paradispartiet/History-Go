@@ -43,6 +43,12 @@ Når en rolle resolves, får den:
 
 `missing_people_candidates` er en arbeidsliste, ikke automatisk autorisasjon til å opprette personen. Kandidaten må kildeverifiseres og få dokumentert stedstilknytning før eventuell materialisering.
 
+Fiktive arbeidsaktører i `roleModel.related_people` skal merkes eksplisitt med
+`"fictional": true`. Generatoren holder slike referanser utenfor canonical
+People-oppløsning og mangellisten. De kan fortsatt brukes av Work Grammar,
+mail/scener og Role World som løpende NPC-er, men skal aldri materialiseres som
+historiske People bare fordi rollen trenger en kollega eller beslutningseier.
+
 ## Fit-nivåer
 
 - `direct`: dokumentert, eksplisitt kuratert direkte rolleeksempel. Automatikk kan aldri lage dette nivået.

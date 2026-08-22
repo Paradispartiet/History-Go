@@ -1,1 +1,154 @@
-{"schema":"civication_role_model_v2","version":2,"category":"film_tv","role_scope":"manusmedarbeider","role_id":"film_tv_manusmedarbeider","title":"Manusmedarbeider","source":{"badge_file":"data/badges/film_tv.json","evidence":"data/Civication/filmTvCareerLifeEvidence.json"},"badge_titles":["Manusmedarbeider"],"core_narrative":["Manusmedarbeideren støtter utvikling og kontinuitet i manusarbeidet, dokumenterer valg og utfordrer uklarheter uten å overta forfatterens eller serieskaperens mandat."],"competence_axes":["dramaturgisk_lesing","versjonskontroll","research","kontinuitet","tilbakemelding","samarbeid"],"ideal_type_problems":[{"id":"motstridende_notater","problem":"To beslutningstakere gir manusnotater som trekker prosjektet i ulik retning."},{"id":"kontinuitetsbrudd","problem":"En endring skaper brudd i karakter- eller handlingskontinuitet."},{"id":"research_usikkert","problem":"En scene bygger på fakta som ikke er tilstrekkelig verifisert."},{"id":"versjonskaos","problem":"Produksjonen mangler en tydelig canonical manusversjon."},{"id":"stemme_vs_bestilling","problem":"En omskriving løser bestillingen, men svekker verkets etablerte stemme."}],"authority_boundaries":{"cannot":["godkjenne_endelig_manus_uten_mandat","overta_forfatterens_kreditering_eller_eierskap","endre_rettighets_eller_kontraktsvilkar","presentere_usikker_research_som_verifisert_fakta"]},"notes":["Canonical Film/TV work world for Manusmedarbeider; creative status and reputation remain separate from employment."]}
+{
+  "schema": "civication_role_model_v2",
+  "version": 2,
+  "category": "film_tv",
+  "role_scope": "manusmedarbeider",
+  "role_id": "film_tv_manusmedarbeider",
+  "title": "Manusmedarbeider",
+  "source": {
+    "badge_file": "data/badges/film_tv.json",
+    "evidence": "data/Civication/filmTvCareerLifeEvidence.json"
+  },
+  "badge_titles": ["Manusmedarbeider"],
+  "core_narrative": [
+    "Manusmedarbeideren gjør utviklingsvalg, research og versjoner sporbare uten å overta forfatterens stemme eller beslutningseierens mandat."
+  ],
+  "competence_axes": [
+    "dramaturgisk_lesing",
+    "versjonskontroll",
+    "research",
+    "kontinuitet",
+    "tilbakemelding",
+    "samarbeid"
+  ],
+  "required_knowledge": {
+    "concepts": [
+      "En manusnote skal skille observasjon, problem og løsningsforslag slik at forfatteren kan vurdere den.",
+      "Canonical manusversjon, beslutningseier og endringslogg må være synlige før en omskriving sendes videre.",
+      "Kontinuitet omfatter hva karakterene vet, vil og har opplevd på hvert punkt i fortellingen.",
+      "Usikker research skal merkes og verifiseres; plausibilitet er ikke dokumentasjon.",
+      "Historiske filmskapere kan gi kildeforankret kontekst, men er ikke autoritet for dagens konkrete manusvalg."
+    ],
+    "application": "Kunnskap brukes til å stille presise spørsmål, dokumentere usikkerhet og gi valg tilbake til riktig beslutningseier. Den gir ikke manusmedarbeideren opphavsrett, kreditering eller endelig godkjenningsmyndighet."
+  },
+  "related_people": [
+    {
+      "id": "nora_manusredaktor",
+      "name": "Nora",
+      "fictional": true,
+      "function": "Fiktiv manusredaktør og beslutningseier for prioritering av notatrunden."
+    },
+    {
+      "id": "elias_manusforfatter",
+      "name": "Elias",
+      "fictional": true,
+      "function": "Fiktiv manusforfatter som eier tekstens stemme og må få notater som er konkrete uten å bli overstyrende."
+    },
+    {
+      "id": "selma_scriptkoordinator",
+      "name": "Selma",
+      "fictional": true,
+      "function": "Fiktiv scriptkoordinator som følger versjoner, scenerekkefølge og kontinuitet mot produksjonen."
+    },
+    {
+      "id": "maja_researchansvarlig",
+      "name": "Maja",
+      "fictional": true,
+      "function": "Fiktiv researchansvarlig som skiller verifiserte opplysninger fra åpne spørsmål."
+    }
+  ],
+  "related_places": [
+    {
+      "id": "manusrommet_produksjon",
+      "name": "Produksjonens manusrom",
+      "kind": "fictional_work_surface",
+      "function": "Fiktiv arbeidsflate for notatrunder, gjennomlesning og avklaring av beslutningseier."
+    },
+    {
+      "id": "versjonsarkiv_manus",
+      "name": "Produksjonens versjonsarkiv",
+      "kind": "fictional_work_surface",
+      "function": "Fiktiv tilgangsstyrt arbeidsflate for canonical manusversjon, endringslogg og mottaksbekreftelse."
+    },
+    {
+      "id": "researchbord_film_tv",
+      "name": "Produksjonens researchbord",
+      "kind": "fictional_work_surface",
+      "function": "Fiktiv arbeidsflate for kilder, åpne faktaspørsmål og researchstatus."
+    },
+    {
+      "id": "cinemateket_oslo",
+      "name": "Cinemateket i Oslo",
+      "kind": "canonical_history_go_place",
+      "function": "Canonical History Go-anker for filmhistorisk People-kunnskap; stedet simuleres ikke som arbeidsgiver eller produksjonskontor."
+    }
+  ],
+  "ideal_type_problems": [
+    {
+      "id": "motstridende_notater",
+      "problem": "To beslutningstakere gir manusnotater som trekker prosjektet i ulik retning."
+    },
+    {
+      "id": "kontinuitetsbrudd",
+      "problem": "En endring skaper brudd i karakter- eller handlingskontinuitet."
+    },
+    {
+      "id": "research_usikkert",
+      "problem": "En scene bygger på fakta som ikke er tilstrekkelig verifisert."
+    },
+    {
+      "id": "versjonskaos",
+      "problem": "Produksjonen mangler en tydelig canonical manusversjon."
+    },
+    {
+      "id": "stemme_vs_bestilling",
+      "problem": "En omskriving løser bestillingen, men svekker verkets etablerte stemme."
+    }
+  ],
+  "authority_boundaries": {
+    "cannot": [
+      "godkjenne_endelig_manus_uten_mandat",
+      "overta_forfatterens_kreditering_eller_eierskap",
+      "endre_rettighets_eller_kontraktsvilkar",
+      "presentere_usikker_research_som_verifisert_fakta",
+      "gjore_historiske_personprofiler_til_norm_for_dagens_manusvalg"
+    ]
+  },
+  "career_path": {
+    "entry_from": [
+      "redaksjonelt_assistentarbeid",
+      "produksjonsassistentarbeid",
+      "dokumentert_manus_eller_researchpraksis"
+    ],
+    "progression_to": [
+      "manuskoordinator",
+      "manusredaktor",
+      "researchansvarlig"
+    ],
+    "possible_promotions": ["Manuskoordinator", "Manusredaktør"],
+    "possible_exits": [
+      "Bytte til research eller redaksjonelt arbeid",
+      "Gå til produksjonskoordinering",
+      "Avslutte etter prosjektkontrakten",
+      "Miste oppdraget ved gjentatte brudd på versjonssporbarhet, kreditering eller faktagrunnlag"
+    ]
+  },
+  "mail_integration": {
+    "role_scope": "manusmedarbeider",
+    "mail_profile": "film_tv_manusmedarbeider",
+    "can_feed_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ]
+  },
+  "notes": [
+    "Canonical Film/TV work world for Manusmedarbeider; current production people and work surfaces are fictional, while canonical History Go People and Places are read-only knowledge targets."
+  ]
+}

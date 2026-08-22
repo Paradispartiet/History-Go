@@ -1,0 +1,66 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "manusmedarbeider",
+  "mail_type": "micro",
+  "families": [
+    {
+      "id": "manusmedarbeider_researchstatus",
+      "purpose": "Gjøre en liten, plausibel detalj til et tydelig kildevalg.",
+      "learning_focus": ["research", "usikkerhet", "kildespor"],
+      "mails": [
+        {
+          "id": "film_tv_manus_micro_research_001",
+          "mail_type": "micro",
+          "mail_family": "manusmedarbeider_researchstatus",
+          "role_scope": "manusmedarbeider",
+          "phase": "workday",
+          "day_phase": "afternoon",
+          "priority": 110,
+          "stage": "stable",
+          "from": "Maja, researchansvarlig",
+          "people_ref": "maja_researchansvarlig",
+          "person_id": "maja_researchansvarlig",
+          "place_id": "researchbord_film_tv",
+          "subject": "Detaljen virker riktig, men kilden mangler",
+          "summary": "En rekvisittdetalj i scenen er merket «sannsynlig», men det finnes ingen kilde eller kontrollnotat.",
+          "purpose": "Teste at plausibilitet ikke blir behandlet som verifisert produksjonsfakta.",
+          "stakes": "Detaljen er liten, men kan bli dyr å rette når manus, rekvisitt og opptaksplan først er låst.",
+          "situation": [
+            "Maja har søkt i prosjektets researchmappe uten å finne kilden.",
+            "Detaljen påvirker ikke scenens dramaturgi og kan erstattes midlertidig.",
+            "Produksjonen vil låse rekvisittlisten før dagen er over."
+          ],
+          "task_domain": "research",
+          "task_kind": "source_review",
+          "competency": "researchkvalitet",
+          "pressure": "rekvisittliste_skal_lases",
+          "choice_axis": "marker_apent_sporsmal_vs_las_plausibel_detalj",
+          "consequence_axis": "etterprovbarhet_vs_sen_reparasjon",
+          "narrative_arc": "den_lille_detaljen_som_ble_fakta",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Merk detaljen som åpen og bruk en nøytral reserve",
+              "reply": "Jeg setter researchstatus til åpen, legger inn kildebehov og gir rekvisitt en reversibel reserve.",
+              "effect": 1,
+              "tags": ["research", "source_boundary"],
+              "feedback": "Produksjonen kan gå videre uten at usikkerhet skjules som fakta.",
+              "effects": {"stats": {"quality": 2, "risk": -2, "trust": 1}}
+            },
+            {
+              "id": "B",
+              "label": "Behold detaljen siden den sannsynligvis stemmer",
+              "reply": "Vi låser den foreløpig; research kan bekrefte den senere.",
+              "effect": -1,
+              "tags": ["plausibility", "research_risk"],
+              "feedback": "Et ubekreftet valg blir nå grunnlag for flere avdelingers arbeid.",
+              "effects": {"stats": {"status": 1, "quality": -2, "risk": 3}}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

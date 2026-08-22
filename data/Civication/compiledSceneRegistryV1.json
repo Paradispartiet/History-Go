@@ -54,6 +54,15 @@
     "data/Civication/mailFamilies/film_tv/followup/kurator_film_tv_followup.json",
     "data/Civication/mailFamilies/film_tv/knowledge/kurator_film_tv_knowledge.json",
     "data/Civication/mailFamilies/film_tv/consequence/kurator_film_tv_consequence.json",
+    "data/Civication/mailFamilies/film_tv/job/manusmedarbeider_job.json",
+    "data/Civication/mailFamilies/film_tv/people/manusmedarbeider_people.json",
+    "data/Civication/mailFamilies/film_tv/story/manusmedarbeider_story.json",
+    "data/Civication/mailFamilies/film_tv/conflict/manusmedarbeider_conflict.json",
+    "data/Civication/mailFamilies/film_tv/event/manusmedarbeider_event.json",
+    "data/Civication/mailFamilies/film_tv/micro/manusmedarbeider_micro.json",
+    "data/Civication/mailFamilies/film_tv/followup/manusmedarbeider_followup.json",
+    "data/Civication/mailFamilies/film_tv/knowledge/manusmedarbeider_knowledge.json",
+    "data/Civication/mailFamilies/film_tv/consequence/manusmedarbeider_consequence.json",
     "data/Civication/mailFamilies/film_tv/job/produksjonsassistent_job.json",
     "data/Civication/mailFamilies/film_tv/people/produksjonsassistent_people.json",
     "data/Civication/mailFamilies/film_tv/conflict/produksjonsassistent_conflict.json",
@@ -24488,6 +24497,1279 @@
       },
       "source_hash": "51314d11d16a76b967e11a1534c8e9460621f2d315e66e052a3f4463a7db7aee",
       "source_path": "data/Civication/mailFamilies/film_tv/story/kurator_film_tv_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "synlig_konflikt_og_beslutning_vs_skjult_kompromiss",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 1
+              }
+            },
+            "feedback": "Konflikten blir en beslutning hos riktig eier, ikke en skjult omskriving hos deg.",
+            "id": "A",
+            "label": "Sett notatene opp mot hverandre og be Nora prioritere",
+            "reply": "Disse notatene kan ikke løses samtidig uten å velge hvor tydelig scenen skal være. Hvilken retning eier vi nå?",
+            "tags": [
+              "authority",
+              "clarity"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": -2,
+                "risk": 3,
+                "trust": -1
+              }
+            },
+            "feedback": "Du flytter konflikten inn i teksten uten å avklare hvilken retning prosjektet faktisk vil ha.",
+            "id": "B",
+            "label": "Skriv en mellomvariant som forsøker å gjøre begge deler",
+            "reply": "Jeg balanserer en kort forklaring med mer undertekst og sender versjonen videre.",
+            "tags": [
+              "avoidance",
+              "rework"
+            ]
+          }
+        ],
+        "competency": "mandatklarhet",
+        "consequence_axis": "lesbar_retning_vs_omkamp",
+        "day_phase": "forenoon",
+        "from": "Nora, manusredaktør",
+        "id": "film_tv_manus_conflict_motstridende_001",
+        "mail_family": "manusmedarbeider_motstridende_notater",
+        "mail_type": "conflict",
+        "narrative_arc": "to_notater_en_beslutning",
+        "people_ref": "nora_manusredaktor",
+        "person_id": "nora_manusredaktor",
+        "phase": "mid",
+        "place_id": "manusrommet_produksjon",
+        "pressure": "motstridende_bestillinger",
+        "priority": 125,
+        "purpose": "Teste om spilleren gjør målkonflikten synlig fremfor å gjemme den i teksten.",
+        "role_scope": "manusmedarbeider",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/conflict/manusmedarbeider_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Begge notatene gjelder samme samtale mellom hovedpersonen og søsteren.",
+          "Det finnes ingen registrert prioritet eller beslutningseier for konflikten.",
+          "Bordprøven nærmer seg, men manusmedarbeideren har ikke mandat til å velge prosjektets retning alene."
+        ],
+        "stage": "stable",
+        "stakes": "En skjult kompromissversjon kan tilfredsstille ingen og gjøre senere vurdering umulig.",
+        "subject": "To notater peker i motsatt retning",
+        "summary": "Ett notat ber om tydeligere forklaring av konflikten, mens et annet ber om mer undertekst og færre forklarende replikker.",
+        "task_domain": "notater_og_utvikling",
+        "task_kind": "conflict",
+        "thread_key": "film_tv_manus_notatrunde_001"
+      },
+      "id": "film_tv_manus_conflict_motstridende_001",
+      "mail_type": "conflict",
+      "role_scope": "manusmedarbeider",
+      "scene": {
+        "arc_stage": "mid",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Konflikten blir en beslutning hos riktig eier, ikke en skjult omskriving hos deg.",
+            "id": "A",
+            "label": "Sett notatene opp mot hverandre og be Nora prioritere",
+            "reply": "Disse notatene kan ikke løses samtidig uten å velge hvor tydelig scenen skal være. Hvilken retning eier vi nå?"
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du flytter konflikten inn i teksten uten å avklare hvilken retning prosjektet faktisk vil ha.",
+            "id": "B",
+            "label": "Skriv en mellomvariant som forsøker å gjøre begge deler",
+            "reply": "Jeg balanserer en kort forklaring med mer undertekst og sender versjonen videre."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Begge notatene gjelder samme samtale mellom hovedpersonen og søsteren.",
+            "Det finnes ingen registrert prioritet eller beslutningseier for konflikten.",
+            "Bordprøven nærmer seg, men manusmedarbeideren har ikke mandat til å velge prosjektets retning alene."
+          ],
+          "subject": "To notater peker i motsatt retning",
+          "summary": "Ett notat ber om tydeligere forklaring av konflikten, mens et annet ber om mer undertekst og færre forklarende replikker."
+        },
+        "day_phase": "forenoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_manus_conflict_motstridende_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "manusrommet_produksjon",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_manus_conflict_motstridende_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/conflict/manusmedarbeider_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "film_tv_manus_notatrunde_001",
+        "version": 1
+      },
+      "source_hash": "ed7dbf1af9d447668f616ab2561aee9f4baaa0d360c39b0b5ea9560031e4de5d",
+      "source_path": "data/Civication/mailFamilies/film_tv/conflict/manusmedarbeider_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "apen_tilbakerulling_og_laring_vs_forklar_bort",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -2,
+                "quality": 3,
+                "risk": -3,
+                "status": -1,
+                "trust": 2
+              }
+            },
+            "feedback": "Bordprøven mister minutter, men neste versjon får både rettelse og læring.",
+            "id": "A",
+            "label": "Stopp, rull tilbake og dokumenter beslutningshullet",
+            "reply": "Vi bruker forrige sporbare side, retter kunnskapslinjen og registrerer at endringen manglet beslutningseier.",
+            "tags": [
+              "repair",
+              "traceability"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -3,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Du beskytter bordprøvens tempo, men lar en kjent feil bli grunnlag for neste versjon.",
+            "id": "B",
+            "label": "Forklar hva karakteren egentlig mente og les videre",
+            "reply": "Intensjonen er tydelig selv om rekkefølgen skurrer. Vi noterer det og fortsetter.",
+            "tags": [
+              "avoidance",
+              "continuity_risk"
+            ]
+          }
+        ],
+        "competency": "reparasjon_og_sporbarhet",
+        "consequence_axis": "langsiktig_tillit_vs_kortsiktig_fasade",
+        "day_phase": "evening",
+        "from": "Selma, scriptkoordinator",
+        "id": "film_tv_manus_consequence_bordprove_001",
+        "mail_family": "manusmedarbeider_tabellproven",
+        "mail_type": "consequence",
+        "narrative_arc": "kontinuitetsbruddet_returnerer",
+        "people_ref": "selma_scriptkoordinator",
+        "person_id": "selma_scriptkoordinator",
+        "phase": "mastery",
+        "place_id": "versjonsarkiv_manus",
+        "pressure": "feilen_er_offentlig_i_rommet",
+        "priority": 100,
+        "purpose": "Koble tidligere valg til en synlig, reparerbar produksjonskostnad.",
+        "role_scope": "manusmedarbeider",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/consequence/manusmedarbeider_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Kontinuitetsbruddet er nå hørbart for hele bordet.",
+          "Endringsloggen viser hvilken note og versjon som introduserte bruddet, men ikke en eksplisitt beslutning.",
+          "Selma trenger både en rettet side og en forklaring på hvordan samme feil skal hindres."
+        ],
+        "stage": "stable",
+        "stakes": "Åpen reparasjon koster tid nå; ansvarsforskyvning bevarer tempoet kort og gjør neste versjon mindre pålitelig.",
+        "subject": "Bordprøven stoppet i scene 35",
+        "summary": "Under lesingen reagerer hovedpersonen på en opplysning hun ikke har fått ennå, og deltakerne har to ulike forklaringer på hvordan endringen kom inn.",
+        "task_domain": "kontinuitet",
+        "task_kind": "consequence",
+        "thread_key": "film_tv_manus_kontinuitet_001"
+      },
+      "id": "film_tv_manus_consequence_bordprove_001",
+      "mail_type": "consequence",
+      "role_scope": "manusmedarbeider",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Bordprøven mister minutter, men neste versjon får både rettelse og læring.",
+            "id": "A",
+            "label": "Stopp, rull tilbake og dokumenter beslutningshullet",
+            "reply": "Vi bruker forrige sporbare side, retter kunnskapslinjen og registrerer at endringen manglet beslutningseier."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du beskytter bordprøvens tempo, men lar en kjent feil bli grunnlag for neste versjon.",
+            "id": "B",
+            "label": "Forklar hva karakteren egentlig mente og les videre",
+            "reply": "Intensjonen er tydelig selv om rekkefølgen skurrer. Vi noterer det og fortsetter."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Kontinuitetsbruddet er nå hørbart for hele bordet.",
+            "Endringsloggen viser hvilken note og versjon som introduserte bruddet, men ikke en eksplisitt beslutning.",
+            "Selma trenger både en rettet side og en forklaring på hvordan samme feil skal hindres."
+          ],
+          "subject": "Bordprøven stoppet i scene 35",
+          "summary": "Under lesingen reagerer hovedpersonen på en opplysning hun ikke har fått ennå, og deltakerne har to ulike forklaringer på hvordan endringen kom inn."
+        },
+        "day_phase": "evening",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_manus_consequence_bordprove_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "versjonsarkiv_manus",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_manus_consequence_bordprove_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/consequence/manusmedarbeider_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "film_tv_manus_kontinuitet_001",
+        "version": 1
+      },
+      "source_hash": "277f014d1d918420b7d2c0d06cfd7fc0458e0162bd5a22d2e3edc2911a2f6c97",
+      "source_path": "data/Civication/mailFamilies/film_tv/consequence/manusmedarbeider_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "samlet_pakke_og_mottak_vs_lose_sider",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 1
+              }
+            },
+            "feedback": "Tidsendringen blir synlig uten å skape en ny versjonskonflikt.",
+            "id": "A",
+            "label": "Publiser én bordprøvepakke og hent bekreftelser",
+            "reply": "Jeg låser riktig scene 35, nummererer ny rekkefølge og ber deltakerne bekrefte at de åpner samme pakke.",
+            "tags": [
+              "traceability",
+              "coordination"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": -1,
+                "risk": 3,
+                "status": 1
+              }
+            },
+            "feedback": "Materialet kommer raskt ut, men ingen kan se om alle åpner samme variant.",
+            "id": "B",
+            "label": "Send de fire scenene enkeltvis i chatten",
+            "reply": "Jeg sender sidene i riktig rekkefølge nå og forklarer muntlig hvilken variant som gjelder.",
+            "tags": [
+              "tempo",
+              "version_risk"
+            ]
+          }
+        ],
+        "competency": "versjonssporbarhet",
+        "consequence_axis": "felles_lesning_vs_versjonsstoy",
+        "day_phase": "afternoon",
+        "from": "Selma, scriptkoordinator",
+        "id": "film_tv_manus_event_bordprove_001",
+        "mail_family": "manusmedarbeider_bordproveendring",
+        "mail_type": "event",
+        "narrative_arc": "bordproven_endrer_rekkefolge",
+        "people_ref": "selma_scriptkoordinator",
+        "person_id": "selma_scriptkoordinator",
+        "phase": "workday",
+        "place_id": "versjonsarkiv_manus",
+        "pressure": "bordprove_om_20_minutter",
+        "priority": 115,
+        "purpose": "Gjøre en praktisk tidsendring til et spørsmål om felles manusgrunnlag.",
+        "role_scope": "manusmedarbeider",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/event/manusmedarbeider_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Selma har bekreftet ny leserekkefølge med produksjonen.",
+          "Scene 35 finnes i to varianter etter dagens notatrunde.",
+          "Alle deltakere trenger samme pakke og en synlig liste over hva som er endret."
+        ],
+        "stage": "stable",
+        "stakes": "Løse sider og muntlige beskjeder kan gjøre at deltakerne leser ulike versjoner.",
+        "subject": "Bordprøven starter med scene 35",
+        "summary": "En skuespiller må gå tidlig, og de fire første scenene i bordprøven må bytte rekkefølge.",
+        "task_domain": "versjonskontroll",
+        "task_kind": "event"
+      },
+      "id": "film_tv_manus_event_bordprove_001",
+      "mail_type": "event",
+      "role_scope": "manusmedarbeider",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Tidsendringen blir synlig uten å skape en ny versjonskonflikt.",
+            "id": "A",
+            "label": "Publiser én bordprøvepakke og hent bekreftelser",
+            "reply": "Jeg låser riktig scene 35, nummererer ny rekkefølge og ber deltakerne bekrefte at de åpner samme pakke."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Materialet kommer raskt ut, men ingen kan se om alle åpner samme variant.",
+            "id": "B",
+            "label": "Send de fire scenene enkeltvis i chatten",
+            "reply": "Jeg sender sidene i riktig rekkefølge nå og forklarer muntlig hvilken variant som gjelder."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Selma har bekreftet ny leserekkefølge med produksjonen.",
+            "Scene 35 finnes i to varianter etter dagens notatrunde.",
+            "Alle deltakere trenger samme pakke og en synlig liste over hva som er endret."
+          ],
+          "subject": "Bordprøven starter med scene 35",
+          "summary": "En skuespiller må gå tidlig, og de fire første scenene i bordprøven må bytte rekkefølge."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_manus_event_bordprove_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "versjonsarkiv_manus",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_manus_event_bordprove_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/event/manusmedarbeider_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "manusmedarbeider.mail.film_tv_manus_event_bordprove_001",
+        "version": 1
+      },
+      "source_hash": "3ebda7889d1c6538b7d5a9ebde36b82e553bacd0f2d6ccac960cdd557389d34a",
+      "source_path": "data/Civication/mailFamilies/film_tv/event/manusmedarbeider_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "begrunnet_helhetsvalg_vs_personlig_smaksvalg",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -1,
+                "trust": 2
+              }
+            },
+            "feedback": "Oppfølgingen bruker et delt kriterium og gjør samarbeidet mer presist.",
+            "id": "A",
+            "label": "Sammenlign variantene mot den senere karakterbuen",
+            "reply": "La oss velge ut fra hva hovedpersonen kan vite i scene 37, ikke hvilken replikk jeg liker best.",
+            "tags": [
+              "whole_read",
+              "authorship"
+            ]
+          },
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "quality": -1,
+                "risk": 1,
+                "status": 1
+              }
+            },
+            "feedback": "Du gir et tydelig svar, men begrunnelsen kan ikke brukes når konsekvensen viser seg senere.",
+            "id": "B",
+            "label": "Velg den mest elegante varianten med en gang",
+            "reply": "Variant to leser best. Vi tar den og går videre.",
+            "tags": [
+              "taste",
+              "tempo"
+            ]
+          }
+        ],
+        "competency": "dramaturgisk_lesing",
+        "consequence_axis": "felles_laring_vs_ny_omkamp",
+        "day_phase": "evening",
+        "from": "Elias, manusforfatter",
+        "id": "film_tv_manus_followup_forfatter_001",
+        "mail_family": "manusmedarbeider_notatoppfolging",
+        "mail_type": "followup",
+        "narrative_arc": "forfatterstemmen_far_et_nytt_valg",
+        "people_ref": "elias_manusforfatter",
+        "person_id": "elias_manusforfatter",
+        "phase": "mastery",
+        "place_id": "manusrommet_produksjon",
+        "pressure": "to_gode_losninger_kort_tid",
+        "priority": 105,
+        "purpose": "Følge opp en presis problemformulering med et nytt, reelt valg.",
+        "role_scope": "manusmedarbeider",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/followup/manusmedarbeider_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Variant én kutter en handling og lar reaksjonen komme tidligere.",
+          "Variant to beholder handlingen, men flytter en avslørende replikk til neste scene.",
+          "Begge løser tempoet, men bare en helhetslesing kan vise hvilken som passer den videre buen."
+        ],
+        "stage": "stable",
+        "stakes": "Oppfølgingen avgjør om notatrunden blir samarbeid eller bare en ny runde skjult styring.",
+        "subject": "Jeg ser problemet nå — men hvilken løsning prøver vi først?",
+        "summary": "Elias har skrevet to kortere varianter som begge bevarer stemmen, men de flytter vendepunktet på ulike måter.",
+        "task_domain": "notater_og_utvikling",
+        "task_kind": "followup",
+        "thread_key": "film_tv_manus_notatrunde_001"
+      },
+      "id": "film_tv_manus_followup_forfatter_001",
+      "mail_type": "followup",
+      "role_scope": "manusmedarbeider",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Oppfølgingen bruker et delt kriterium og gjør samarbeidet mer presist.",
+            "id": "A",
+            "label": "Sammenlign variantene mot den senere karakterbuen",
+            "reply": "La oss velge ut fra hva hovedpersonen kan vite i scene 37, ikke hvilken replikk jeg liker best."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du gir et tydelig svar, men begrunnelsen kan ikke brukes når konsekvensen viser seg senere.",
+            "id": "B",
+            "label": "Velg den mest elegante varianten med en gang",
+            "reply": "Variant to leser best. Vi tar den og går videre."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Variant én kutter en handling og lar reaksjonen komme tidligere.",
+            "Variant to beholder handlingen, men flytter en avslørende replikk til neste scene.",
+            "Begge løser tempoet, men bare en helhetslesing kan vise hvilken som passer den videre buen."
+          ],
+          "subject": "Jeg ser problemet nå — men hvilken løsning prøver vi først?",
+          "summary": "Elias har skrevet to kortere varianter som begge bevarer stemmen, men de flytter vendepunktet på ulike måter."
+        },
+        "day_phase": "evening",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_manus_followup_forfatter_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "manusrommet_produksjon",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_manus_followup_forfatter_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/followup/manusmedarbeider_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "film_tv_manus_notatrunde_001",
+        "version": 1
+      },
+      "source_hash": "c5c53abf8c11f4df7c85cc64551de20cf7cb264dcaa569bdfd821b64277241a7",
+      "source_path": "data/Civication/mailFamilies/film_tv/followup/manusmedarbeider_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "sporbar_baseline_vs_antatt_nyeste_fil",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Notatrunden får ett felles grunnlag uten at forslag blir presentert som vedtak.",
+            "id": "A",
+            "label": "Frys versjon 12 og registrer 12b som åpne forslag",
+            "reply": "Jeg bruker levert versjon 12 som baseline og lister 12b-endringene med eier og status før de vurderes.",
+            "tags": [
+              "traceability",
+              "clarity"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Du sparer tid nå, men gjør uavklarte forslag til skjulte beslutninger.",
+            "id": "B",
+            "label": "Bruk 12b fordi den inneholder de siste endringene",
+            "reply": "Jeg antar at 12b er den reelle arbeidsversjonen og skriver notatene derfra.",
+            "tags": [
+              "tempo",
+              "version_risk"
+            ]
+          }
+        ],
+        "competency": "versjonssporbarhet",
+        "consequence_axis": "felles_beslutningsgrunnlag_vs_skjult_omskriving",
+        "day_phase": "morning",
+        "from": "Nora, manusredaktør",
+        "id": "film_tv_manus_job_versjonsgrunnlag_001",
+        "mail_family": "manusmedarbeider_versjonsgrunnlag",
+        "mail_type": "job",
+        "narrative_arc": "fra_to_versjoner_til_ett_spor",
+        "people_ref": "nora_manusredaktor",
+        "person_id": "nora_manusredaktor",
+        "phase": "intro",
+        "place_id": "versjonsarkiv_manus",
+        "pressure": "notatrunde_om_en_time",
+        "priority": 140,
+        "purpose": "Teste om spilleren etablerer ett sporbart grunnlag før redaksjonelt arbeid begynner.",
+        "role_scope": "manusmedarbeider",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/job/manusmedarbeider_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Versjon 12 er levert av Elias og registrert i arkivet.",
+          "Kopien 12b inneholder tre endringer, men ingen samlet godkjenning eller endringslogg.",
+          "Nora trenger notater om en time og ber deg gjøre grunnlaget tydelig."
+        ],
+        "stage": "stable",
+        "stakes": "Feil grunnlag kan gjøre en hel notatrunde ubrukelig og skjule hvem som bestilte hvilke endringer.",
+        "subject": "Hvilken versjon skal notatrunden faktisk bruke?",
+        "summary": "Forfatteren har levert versjon 12, mens en produsentkommentar ligger som løse endringer i en kopi merket 12b.",
+        "task_domain": "versjonskontroll",
+        "task_kind": "editorial_review"
+      },
+      "id": "film_tv_manus_job_versjonsgrunnlag_001",
+      "mail_type": "job",
+      "role_scope": "manusmedarbeider",
+      "scene": {
+        "arc_stage": "intro",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Notatrunden får ett felles grunnlag uten at forslag blir presentert som vedtak.",
+            "id": "A",
+            "label": "Frys versjon 12 og registrer 12b som åpne forslag",
+            "reply": "Jeg bruker levert versjon 12 som baseline og lister 12b-endringene med eier og status før de vurderes."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du sparer tid nå, men gjør uavklarte forslag til skjulte beslutninger.",
+            "id": "B",
+            "label": "Bruk 12b fordi den inneholder de siste endringene",
+            "reply": "Jeg antar at 12b er den reelle arbeidsversjonen og skriver notatene derfra."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Versjon 12 er levert av Elias og registrert i arkivet.",
+            "Kopien 12b inneholder tre endringer, men ingen samlet godkjenning eller endringslogg.",
+            "Nora trenger notater om en time og ber deg gjøre grunnlaget tydelig."
+          ],
+          "subject": "Hvilken versjon skal notatrunden faktisk bruke?",
+          "summary": "Forfatteren har levert versjon 12, mens en produsentkommentar ligger som løse endringer i en kopi merket 12b."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_manus_job_versjonsgrunnlag_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "versjonsarkiv_manus",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_manus_job_versjonsgrunnlag_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/job/manusmedarbeider_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "manusmedarbeider.mail.film_tv_manus_job_versjonsgrunnlag_001",
+        "version": 1
+      },
+      "source_hash": "e516d43166f36b4d4f3d018f2702de251673223eda3062a2274c7cbf51d54902",
+      "source_path": "data/Civication/mailFamilies/film_tv/job/manusmedarbeider_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "les_og_avgrens_kilden_vs_gjor_historien_til_regel",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 1,
+                "trust": 1
+              }
+            },
+            "feedback": "Oppgaven fullføres bare gjennom registrert History Go-lesing av den canonicale personen.",
+            "id": "A",
+            "label": "Åpne profilen og noter hva kilden faktisk kan belyse",
+            "reply": "Jeg leser profilen som filmhistorie og formulerer spørsmål til vår produksjon uten å låne en ferdig fasit.",
+            "tags": [
+              "history_go_person",
+              "source_boundary"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -3,
+                "risk": 2,
+                "trust": -1
+              }
+            },
+            "feedback": "Du gjør en faktaprofil til autoritet for et manusvalg den ikke dokumenterer.",
+            "id": "B",
+            "label": "Bruk den historiske statusen som argument for én løsning",
+            "reply": "Jeg viser til filmhistorien for å lukke diskusjonen om hvilken manusretning som er riktig.",
+            "tags": [
+              "authority_slippage",
+              "anachronism"
+            ]
+          }
+        ],
+        "competency": "faglig_kildebruk",
+        "consequence_axis": "filmhistorisk_bevissthet_vs_autoritetsglidning",
+        "cooldown": 5,
+        "day_phase": "evening",
+        "from": "Maja, researchansvarlig",
+        "id": "film_tv_manus_knowledge_skouen_001",
+        "interaction_mode": "task",
+        "mail_family": "manusmedarbeider_filmhistorie",
+        "mail_type": "knowledge",
+        "narrative_arc": "fra_historisk_person_til_bedre_sporsmal",
+        "people_ref": "maja_researchansvarlig",
+        "person_id": "maja_researchansvarlig",
+        "phase": "advanced",
+        "place_id": "cinemateket_oslo",
+        "pressure": "historisk_kontekst_vs_normativ_fasit",
+        "priority": 108,
+        "purpose": "Teste at en virkelig person og et canonical sted brukes som faktamål, ikke som fiktiv avsender eller beslutningsautoritet.",
+        "repeatable": false,
+        "role_scope": "manusmedarbeider",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/knowledge/manusmedarbeider_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Arne Skouen finnes som canonical People-person i Film/TV-kategorien med tilknytning til Cinemateket i Oslo.",
+          "Oppgaven gjelder bare lesing av den kildeforankrede profilen i History Go.",
+          "Profilen skal brukes som filmhistorisk kontekst, ikke som dokumentasjon av rollen manusmedarbeider eller som fasit for Elias sitt manus."
+        ],
+        "stage": "stable",
+        "stakes": "Historisk innsikt kan skjerpe spørsmål om manus og regi, men kan ikke avgjøre hvilken løsning et nåtidig prosjekt skal velge.",
+        "subject": "Filmhistorie gir spørsmål, ikke en ferdig manusregel",
+        "summary": "Maja ber deg lese History Go-profilen til Arne Skouen som kildeforankret filmhistorisk kontekst og holde den adskilt fra beslutningene i dagens fiktive produksjon.",
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/people/film_tv/oslo/people_film_tv_oslo.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "film_tv_manus_history_go_skouen"
+        },
+        "task_domain": "filmhistorie",
+        "task_kind": "knowledge",
+        "task_payload": {
+          "completion_mode": "read_profile",
+          "description": "Les den canonicale profilen som filmhistorisk kontekst, ikke som norm for dagens manusvalg.",
+          "person_id": "arne_skouen",
+          "return_context": {
+            "mail_id": "film_tv_manus_knowledge_skouen_001",
+            "role_scope": "manusmedarbeider",
+            "source": "civication"
+          },
+          "target_type": "person",
+          "task_kind": "history_go_person",
+          "title": "Les profilen til Arne Skouen"
+        }
+      },
+      "id": "film_tv_manus_knowledge_skouen_001",
+      "mail_type": "knowledge",
+      "role_scope": "manusmedarbeider",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Oppgaven fullføres bare gjennom registrert History Go-lesing av den canonicale personen.",
+            "id": "A",
+            "label": "Åpne profilen og noter hva kilden faktisk kan belyse",
+            "reply": "Jeg leser profilen som filmhistorie og formulerer spørsmål til vår produksjon uten å låne en ferdig fasit."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør en faktaprofil til autoritet for et manusvalg den ikke dokumenterer.",
+            "id": "B",
+            "label": "Bruk den historiske statusen som argument for én løsning",
+            "reply": "Jeg viser til filmhistorien for å lukke diskusjonen om hvilken manusretning som er riktig."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Arne Skouen finnes som canonical People-person i Film/TV-kategorien med tilknytning til Cinemateket i Oslo.",
+            "Oppgaven gjelder bare lesing av den kildeforankrede profilen i History Go.",
+            "Profilen skal brukes som filmhistorisk kontekst, ikke som dokumentasjon av rollen manusmedarbeider eller som fasit for Elias sitt manus."
+          ],
+          "subject": "Filmhistorie gir spørsmål, ikke en ferdig manusregel",
+          "summary": "Maja ber deg lese History Go-profilen til Arne Skouen som kildeforankret filmhistorisk kontekst og holde den adskilt fra beslutningene i dagens fiktive produksjon."
+        },
+        "day_phase": "evening",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_manus_knowledge_skouen_001",
+        "interaction_mode": "task",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "cinemateket_oslo",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_manus_knowledge_skouen_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/knowledge/manusmedarbeider_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/people/film_tv/oslo/people_film_tv_oslo.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "film_tv_manus_history_go_skouen"
+        },
+        "thread_id": "manusmedarbeider.mail.film_tv_manus_knowledge_skouen_001",
+        "version": 1
+      },
+      "source_hash": "9a2af3f394a741e00286920c1e0229d9562383fd1c29b8ca0fb54ba52243da8b",
+      "source_path": "data/Civication/mailFamilies/film_tv/knowledge/manusmedarbeider_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "marker_apent_sporsmal_vs_las_plausibel_detalj",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "quality": 2,
+                "risk": -2,
+                "trust": 1
+              }
+            },
+            "feedback": "Produksjonen kan gå videre uten at usikkerhet skjules som fakta.",
+            "id": "A",
+            "label": "Merk detaljen som åpen og bruk en nøytral reserve",
+            "reply": "Jeg setter researchstatus til åpen, legger inn kildebehov og gir rekvisitt en reversibel reserve.",
+            "tags": [
+              "research",
+              "source_boundary"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1
+              }
+            },
+            "feedback": "Et ubekreftet valg blir nå grunnlag for flere avdelingers arbeid.",
+            "id": "B",
+            "label": "Behold detaljen siden den sannsynligvis stemmer",
+            "reply": "Vi låser den foreløpig; research kan bekrefte den senere.",
+            "tags": [
+              "plausibility",
+              "research_risk"
+            ]
+          }
+        ],
+        "competency": "researchkvalitet",
+        "consequence_axis": "etterprovbarhet_vs_sen_reparasjon",
+        "day_phase": "afternoon",
+        "from": "Maja, researchansvarlig",
+        "id": "film_tv_manus_micro_research_001",
+        "mail_family": "manusmedarbeider_researchstatus",
+        "mail_type": "micro",
+        "narrative_arc": "den_lille_detaljen_som_ble_fakta",
+        "people_ref": "maja_researchansvarlig",
+        "person_id": "maja_researchansvarlig",
+        "phase": "workday",
+        "place_id": "researchbord_film_tv",
+        "pressure": "rekvisittliste_skal_lases",
+        "priority": 110,
+        "purpose": "Teste at plausibilitet ikke blir behandlet som verifisert produksjonsfakta.",
+        "role_scope": "manusmedarbeider",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/micro/manusmedarbeider_micro.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Maja har søkt i prosjektets researchmappe uten å finne kilden.",
+          "Detaljen påvirker ikke scenens dramaturgi og kan erstattes midlertidig.",
+          "Produksjonen vil låse rekvisittlisten før dagen er over."
+        ],
+        "stage": "stable",
+        "stakes": "Detaljen er liten, men kan bli dyr å rette når manus, rekvisitt og opptaksplan først er låst.",
+        "subject": "Detaljen virker riktig, men kilden mangler",
+        "summary": "En rekvisittdetalj i scenen er merket «sannsynlig», men det finnes ingen kilde eller kontrollnotat.",
+        "task_domain": "research",
+        "task_kind": "source_review"
+      },
+      "id": "film_tv_manus_micro_research_001",
+      "mail_type": "micro",
+      "role_scope": "manusmedarbeider",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Produksjonen kan gå videre uten at usikkerhet skjules som fakta.",
+            "id": "A",
+            "label": "Merk detaljen som åpen og bruk en nøytral reserve",
+            "reply": "Jeg setter researchstatus til åpen, legger inn kildebehov og gir rekvisitt en reversibel reserve."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Et ubekreftet valg blir nå grunnlag for flere avdelingers arbeid.",
+            "id": "B",
+            "label": "Behold detaljen siden den sannsynligvis stemmer",
+            "reply": "Vi låser den foreløpig; research kan bekrefte den senere."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Maja har søkt i prosjektets researchmappe uten å finne kilden.",
+            "Detaljen påvirker ikke scenens dramaturgi og kan erstattes midlertidig.",
+            "Produksjonen vil låse rekvisittlisten før dagen er over."
+          ],
+          "subject": "Detaljen virker riktig, men kilden mangler",
+          "summary": "En rekvisittdetalj i scenen er merket «sannsynlig», men det finnes ingen kilde eller kontrollnotat."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_manus_micro_research_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "researchbord_film_tv",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_manus_micro_research_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/micro/manusmedarbeider_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "manusmedarbeider.mail.film_tv_manus_micro_research_001",
+        "version": 1
+      },
+      "source_hash": "d6ef5209014b00ffba6bd2dc908b6788cdcf21d95df9b79c27a4174e8f7f8182",
+      "source_path": "data/Civication/mailFamilies/film_tv/micro/manusmedarbeider_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "presist_problem_og_forfattervalg_vs_skjult_omskriving",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "quality": 2,
+                "risk": -1,
+                "trust": 2
+              }
+            },
+            "feedback": "Elias beholder eierskapet, mens bestillingen blir konkret nok til å arbeide med.",
+            "id": "A",
+            "label": "Beskriv tempoproblemet og be Elias foreslå to løsninger",
+            "reply": "Problemet er at vendepunktet kommer sent, ikke at karakteren forklarer for lite. Kan du foreslå to kortere veier som beholder stemmen?",
+            "tags": [
+              "authorship",
+              "clarity"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -1,
+                "risk": 2,
+                "status": 1,
+                "trust": -3
+              }
+            },
+            "feedback": "Du leverer en rask løsning, men flytter notatet fra problem til uavklart medforfatterskap.",
+            "id": "B",
+            "label": "Skriv om replikkene direkte for å vise hva du mener",
+            "reply": "Jeg legger inn en strammere replikkversjon, så kan du justere den etterpå.",
+            "tags": [
+              "overreach",
+              "tempo"
+            ]
+          }
+        ],
+        "competency": "tilbakemelding",
+        "consequence_axis": "eierskap_og_tillit_vs_redaksjonell_friksjon",
+        "day_phase": "forenoon",
+        "from": "Elias, manusforfatter",
+        "id": "film_tv_manus_people_forfatterstemme_001",
+        "mail_family": "manusmedarbeider_forfatterstemme",
+        "mail_type": "people",
+        "narrative_arc": "forfatterstemmen_under_notatpress",
+        "people_ref": "elias_manusforfatter",
+        "person_id": "elias_manusforfatter",
+        "phase": "early",
+        "place_id": "manusrommet_produksjon",
+        "pressure": "tempo_uten_stemmetap",
+        "priority": 130,
+        "purpose": "La spilleren beskrive problemet uten å overta tekstens stemme.",
+        "role_scope": "manusmedarbeider",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/people/manusmedarbeider_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Scenen bruker nå færre sider og oppfyller bestillingen om tempo.",
+          "Hovedpersonen sier samtidig høyt noe hun tidligere bare har vist gjennom handling.",
+          "Elias ber om å få vite hvilket problem notatet egentlig skal løse før han skriver på nytt."
+        ],
+        "stage": "stable",
+        "stakes": "Et raskt, overstyrende notat kan svekke både teksten og tilliten mellom forfatter og redaksjon.",
+        "subject": "Notatet løser tempoet, men fjerner stemmen",
+        "summary": "Elias ser at en foreslått omskriving gjør scenen kortere, men også gjør hovedpersonen mer forklarende enn i resten av manuset.",
+        "task_domain": "notater_og_utvikling",
+        "task_kind": "relationship",
+        "thread_key": "film_tv_manus_notatrunde_001"
+      },
+      "id": "film_tv_manus_people_forfatterstemme_001",
+      "mail_type": "people",
+      "role_scope": "manusmedarbeider",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Elias beholder eierskapet, mens bestillingen blir konkret nok til å arbeide med.",
+            "id": "A",
+            "label": "Beskriv tempoproblemet og be Elias foreslå to løsninger",
+            "reply": "Problemet er at vendepunktet kommer sent, ikke at karakteren forklarer for lite. Kan du foreslå to kortere veier som beholder stemmen?"
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du leverer en rask løsning, men flytter notatet fra problem til uavklart medforfatterskap.",
+            "id": "B",
+            "label": "Skriv om replikkene direkte for å vise hva du mener",
+            "reply": "Jeg legger inn en strammere replikkversjon, så kan du justere den etterpå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Scenen bruker nå færre sider og oppfyller bestillingen om tempo.",
+            "Hovedpersonen sier samtidig høyt noe hun tidligere bare har vist gjennom handling.",
+            "Elias ber om å få vite hvilket problem notatet egentlig skal løse før han skriver på nytt."
+          ],
+          "subject": "Notatet løser tempoet, men fjerner stemmen",
+          "summary": "Elias ser at en foreslått omskriving gjør scenen kortere, men også gjør hovedpersonen mer forklarende enn i resten av manuset."
+        },
+        "day_phase": "forenoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_manus_people_forfatterstemme_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "manusrommet_produksjon",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_manus_people_forfatterstemme_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/people/manusmedarbeider_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "film_tv_manus_notatrunde_001",
+        "version": 1
+      },
+      "source_hash": "3c5b0ec04938d64ccbd38835be92d38a78a200700cff58d0ee02ac5603178dc2",
+      "source_path": "data/Civication/mailFamilies/film_tv/people/manusmedarbeider_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "spor_kunnskap_gjennom_helheten_vs_lokal_lapp",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 3,
+                "risk": -2,
+                "trust": 1
+              }
+            },
+            "feedback": "Den lokale scenen løses med respekt for resten av fortellingen.",
+            "id": "A",
+            "label": "Kartlegg hva karakteren vet før du foreslår ny replikk",
+            "reply": "Jeg markerer kunnskapslinjen fra scene 31 til 37 og foreslår en reaksjon som ikke røper vendepunktet.",
+            "tags": [
+              "continuity",
+              "whole_read"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "energy": 1,
+                "quality": -2,
+                "risk": 2
+              }
+            },
+            "feedback": "Formuleringen blir svakere, men karakteren handler fortsatt som om hun vet for mye.",
+            "id": "B",
+            "label": "Bytt ut ett ord og behold replikkens funksjon",
+            "reply": "Jeg toner ned den konkrete opplysningen, men lar replikkens poeng stå.",
+            "tags": [
+              "local_patch",
+              "continuity_risk"
+            ]
+          }
+        ],
+        "competency": "kontinuitet",
+        "consequence_axis": "sammenhengende_bue_vs_bordprovebrudd",
+        "day_phase": "afternoon",
+        "from": "Selma, scriptkoordinator",
+        "id": "film_tv_manus_story_kontinuitet_001",
+        "mail_family": "manusmedarbeider_kontinuitetsbue",
+        "mail_type": "story",
+        "narrative_arc": "karakterens_kunnskap_flyttes",
+        "people_ref": "selma_scriptkoordinator",
+        "person_id": "selma_scriptkoordinator",
+        "phase": "mid",
+        "place_id": "manusrommet_produksjon",
+        "pressure": "lokal_losning_vs_senere_vendepunkt",
+        "priority": 120,
+        "purpose": "Teste helhetslesing fremfor lokal reparasjon.",
+        "role_scope": "manusmedarbeider",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/story/manusmedarbeider_story.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den nye replikken fungerer isolert og gir scenen et tydelig sluttpunkt.",
+          "I gjeldende handlingslinje lærer hovedpersonen den samme opplysningen først tre scener senere.",
+          "Selma trenger en løsning som både fungerer lokalt og bevarer vendepunktet."
+        ],
+        "stage": "stable",
+        "stakes": "Et usynlig kunnskapsbrudd kan gjøre senere vendepunkt uforståelig under bordprøven.",
+        "subject": "Hovedpersonen vet dette to scener for tidlig",
+        "summary": "En replikk som løser dagens scene avslører samtidig informasjon hovedpersonen først skal få i scene 37.",
+        "task_domain": "kontinuitet",
+        "task_kind": "story",
+        "thread_key": "film_tv_manus_kontinuitet_001"
+      },
+      "id": "film_tv_manus_story_kontinuitet_001",
+      "mail_type": "story",
+      "role_scope": "manusmedarbeider",
+      "scene": {
+        "arc_stage": "mid",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Den lokale scenen løses med respekt for resten av fortellingen.",
+            "id": "A",
+            "label": "Kartlegg hva karakteren vet før du foreslår ny replikk",
+            "reply": "Jeg markerer kunnskapslinjen fra scene 31 til 37 og foreslår en reaksjon som ikke røper vendepunktet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Formuleringen blir svakere, men karakteren handler fortsatt som om hun vet for mye.",
+            "id": "B",
+            "label": "Bytt ut ett ord og behold replikkens funksjon",
+            "reply": "Jeg toner ned den konkrete opplysningen, men lar replikkens poeng stå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den nye replikken fungerer isolert og gir scenen et tydelig sluttpunkt.",
+            "I gjeldende handlingslinje lærer hovedpersonen den samme opplysningen først tre scener senere.",
+            "Selma trenger en løsning som både fungerer lokalt og bevarer vendepunktet."
+          ],
+          "subject": "Hovedpersonen vet dette to scener for tidlig",
+          "summary": "En replikk som løser dagens scene avslører samtidig informasjon hovedpersonen først skal få i scene 37."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_manus_story_kontinuitet_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "manusrommet_produksjon",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_manus_story_kontinuitet_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/story/manusmedarbeider_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "film_tv_manus_kontinuitet_001",
+        "version": 1
+      },
+      "source_hash": "cfe3f327b68b9b2c7ffbaf1115fabdd8583f0b02842f39d486966c94967661bc",
+      "source_path": "data/Civication/mailFamilies/film_tv/story/manusmedarbeider_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -157516,7 +158798,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "67ee79512460826438025fef091ddb2f7ecef7e2970ccc3358fc6f2fc117bb32",
+  "registry_hash": "6ec730764695a2b11c6b691385c4b3b3dd757ac64a4420b8fbc1cab24224360e",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -157702,6 +158984,17 @@
       "film_tv_kurator_followup_rettigheter_001",
       "film_tv_kurator_knowledge_bevaring_tilgang_001",
       "film_tv_kurator_consequence_rettigheter_001"
+    ],
+    "film_tv/manusmedarbeider": [
+      "film_tv_manus_job_versjonsgrunnlag_001",
+      "film_tv_manus_people_forfatterstemme_001",
+      "film_tv_manus_story_kontinuitet_001",
+      "film_tv_manus_conflict_motstridende_001",
+      "film_tv_manus_event_bordprove_001",
+      "film_tv_manus_micro_research_001",
+      "film_tv_manus_followup_forfatter_001",
+      "film_tv_manus_knowledge_skouen_001",
+      "film_tv_manus_consequence_bordprove_001"
     ],
     "film_tv/produksjonsassistent": [
       "film_tv_pa_job_to_call_sheet",
@@ -158665,11 +159958,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 282,
+    "compiled_source_file_count": 291,
     "ignored_source_file_count": 1,
-    "input_file_count": 283,
-    "role_count": 37,
-    "scene_count": 1045,
+    "input_file_count": 292,
+    "role_count": 38,
+    "scene_count": 1054,
     "shadowed_duplicate_count": 0
   },
   "version": 1

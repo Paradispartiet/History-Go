@@ -109,6 +109,7 @@ function flattenStrings(value: unknown): string[] {
   if (Array.isArray(value)) return value.flatMap(flattenStrings);
   if (value && typeof value === "object") {
     const row = value as Record<string, unknown>;
+    if (row.fictional === true) return [];
     const candidate = String(row.person_id ?? row.id ?? row.name ?? "").trim();
     return candidate ? [candidate] : [];
   }
