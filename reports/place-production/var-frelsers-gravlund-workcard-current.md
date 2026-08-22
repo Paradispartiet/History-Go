@@ -2,7 +2,7 @@
 
 Dato: 2026-08-22
 Canonical place-ID: `var_frelsers_gravlund`  
-Status: **FASE 3 PASS – quiz, Knowledge og fagkobling låst**
+Status: **FASE 4 PASS – lokale rundinger og gåopplevelse låst**
 
 ## Stedsidentitet
 
@@ -23,10 +23,10 @@ Koordinaten beholdes uendret som en verifisert arealmarkør. Offisiell besøksad
 | Nyheter | Manglet | Vedtektsendring og krigshistorisk vandring i 2026 |
 | Lesespor | Manglet | Tre åpne, direkte og kuraterte leselenker |
 | Språk | Manglet | Fire lokale språkspor; ingen udokumentert dialekt |
-| People | Minst 15 koblinger, ujevn kvalitet og ingen kuratert stedsrunde | Kurateres i fase 4 |
-| Objects | Mangler canonical stedsobjekter | Tre fysiske objekter med bilde i fase 4 |
-| Brands | Mangler | Reelle forvalter-/nettverkskoblinger vurderes i fase 4 |
-| Related | Finnes bare som frø i profiler | Fire canonicale nabosteder i fase 4 |
+| People | Minst 15 koblinger, ujevn kvalitet og ingen kuratert stedsrunde | 16 kildeklare profiler; 13 lokale bilder og tre eksplisitte designkode-fallbacker |
+| Objects | Mangler canonical stedsobjekter | Tre fysiske, stedsspesifikke objekter med lokale og rettighetsklarerte bilder |
+| Brands | Mangler | Gravplassetaten og ASCE/European Cemeteries Route med dokumentert stedskobling og logo |
+| Related | Finnes bare som frø i profiler | Fire canonicale nabosteder og én firestopps nabolagsrute |
 | Quiz | Ett sett, fem spørsmål | Fire sett à sju: sted, kronologi, historiebruk og faglig sluttsett |
 | Knowledge / Fagverk | Quizgenerert minimum; ingen målmanifest | Canonical Knowledge-synk og mål i Historie-manifestet |
 | Natur | Generisk `nature_profile`, ingen artsdokumentasjon | Behold natur som stedsopplevelse; ingen rå artsliste |
@@ -53,9 +53,11 @@ Koordinaten beholdes uendret som en verifisert arealmarkør. Offisiell besøksad
 1. **PASS** – identitet, kilder, v4.2-beskrivelse og Historie-case.
 2. **PASS** – popup: kronologi, Story, Før/etter, Kilder, Nyheter, Lesespor og Språk.
 3. **PASS** – quiz 4 × 7, produksjonsbrief, kontekst, Knowledge og Fagverk.
-4. **IKKE STARTET** – kuraterte People, Objects, Brands og Related med bilder og round override.
+4. **PASS** – People, Objects, Brands og Related med bilder, samt firestoppsruten «Akersryggen – trehus, stein, minne og park». Standardrundene brukes uten lokal runtime-override.
 5. **IKKE STARTET** – onsite, progresjon, desktop/mobil, tilgjengelighet, legacy-opprydding og endelig 6-dimensjonal kvalitetsscore.
 
-## Kvalitetsstatus fase 3
+## Kvalitetsstatus fase 4
 
-Ingen kritiske blokkere for neste fase. Quizen har 28 unike, resolverte påstander fordelt på åpning, kronologi, historiebruk og sluttsett. De første 14 er stedlige spørsmål uten metode- eller teorispråk; siste sett bruker kildekritikk, sporlesning, sammenligning, Riegl og Nora etter at faktagrunnlaget er etablert. Canonical Knowledge og Fagverk-release er synkronisert. Rundinger og full UI-kontroll må fortsatt bestå egne porter før stedet kan merkes produksjonsklart.
+Ingen kritiske blokkere for sluttfasen. Standardkontrakten gir rundingene `people`, `objects`, `brands` og `related`, mens merket ligger separat. People-runden har 16 kildeklare profiler uten brutte bildebaner; 13 har lokale bilder og tre bruker eksisterende designkode-fallback. Objects har tre fysiske stopp med 100 prosent lokal bilde- og kildekning. Brands har to reelle aktører med 100 prosent logodekning. Fire nabosteder resolver, og den nye ruten binder Damstredet/Telthusbakken, Gamle Aker kirke, Vår Frelsers og St. Hanshaugen sammen uten å innføre et nytt rutesystem.
+
+Fase 4-score: korrekthet og evidens 5/5, dekning og ferdigstillelse 5/5, redaksjonell kvalitet 5/5, teknisk integritet 5/5, sikkerhet og ansvarlighet 5/5, vedlikeholdbarhet og etterprøvbarhet 5/5. Totalt 30/30; 0 kritiske funn.
