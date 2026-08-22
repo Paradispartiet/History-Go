@@ -30,6 +30,8 @@ type PlaceRow = JsonObject & {
   hidden?: unknown;
   stub?: unknown;
   groundhopper?: unknown;
+  placeScope?: unknown;
+  mapLod?: unknown;
   coordType?: unknown;
   coordStatus?: unknown;
   coordSource?: unknown;
@@ -56,7 +58,7 @@ type CoordinateOverride = JsonObject & {
 };
 
 const LIGHT_FIELDS: LightField[] = [
-  'id','name','lat','lon','r','category','year','desc','aliases','image','cardImage','frontImage','hidden','stub','groundhopper','locatorType','sourceProvider','sourceObjectId','address','geocodeAccuracy','coordRole','coordType','coordStatus','coordSource','coordVerifiedAt','coordNote','sourceFile'
+  'id','name','lat','lon','r','category','year','desc','aliases','image','cardImage','frontImage','hidden','stub','groundhopper','placeScope','mapLod','locatorType','sourceProvider','sourceObjectId','address','geocodeAccuracy','coordRole','coordType','coordStatus','coordSource','coordVerifiedAt','coordNote','sourceFile'
 ];
 
 const COORDINATE_OVERRIDE_FIELDS = [
@@ -103,6 +105,9 @@ function pickLight(place: PlaceRow, sourceFile = ''): LightPlace {
     if (Object.prototype.hasOwnProperty.call(place, key)) out[key] = place[key];
   }
   if (sourceFile) out.sourceFile = sourceFile;
+  const placeScope = typeof place.placeScope === 'string' ? place.placeScope.trim().toLowerCase() : '';
+  const explicitMapLod = typeof place.mapLod === 'string' ? place.mapLod.trim().toLowerCase() : '';
+  if (!explicitMapLod && placeScope === 'area') out.mapLod = 'area';
   return out;
 }
 
