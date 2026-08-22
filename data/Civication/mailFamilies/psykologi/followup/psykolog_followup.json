@@ -1,0 +1,14 @@
+{
+  "schema": "civication_mail_family_catalog_v1", "version": 1, "category": "psykologi", "role_scope": "psykolog", "mail_type": "followup",
+  "families": [{"id": "psykolog_planoppfolging", "purpose": "Prøve om en reforhandlet plan har blitt forstått og brukt som felles plan.", "learning_focus": ["lopende_evaluering", "medvirkning", "allianse"], "mails": [{
+    "id": "psykolog_followup_plan_001", "mail_type": "followup", "mail_family": "psykolog_planoppfolging", "role_scope": "psykolog", "thread_key": "psykolog_plan_001", "phase": "mastery", "day_phase": "day_end", "priority": 128, "cooldown": 4, "repeatable": false, "stage": "stable",
+    "from": "Lea, pasient", "people_ref": "lea_pasient", "person_id": "lea_pasient", "subject": "Jeg prøvde planen, men hindringen var en annen", "summary": "Lea brukte det felles første steget og kan beskrive både hva som fungerte og hva som stoppet henne.",
+    "purpose": "Teste om oppfølging brukes til ny læring og ikke til å måle lydighet.", "stakes": "Hvis avvik behandles som manglende motivasjon, mister planen informasjonen den skulle produsere.",
+    "situation": ["Lea gjennomførte deler av det avtalte steget.", "Hun beskriver en annen barriere enn den dere antok.", "Tilbakemeldingen kan brukes til å justere både mål og hypotese uten å love rask effekt."],
+    "task_domain": "behandlingsevaluering", "task_kind": "followup", "competency": "lopende_evaluering", "pressure": "planlojalitet_vs_ny_laring", "choice_axis": "bruk_avvik_som_data_vs_motivasjonsforklaring", "consequence_axis": "tilpasset_plan_vs_tillitsbrudd", "narrative_arc": "fra_planforsok_til_nytt_beslutningsgrunnlag",
+    "choices": [
+      {"id": "A", "label": "Undersøk barrieren og juster neste test", "reply": "Det du fant ut er data for planen. La oss avgrense hva vi prøver annerledes neste gang.", "effect": 1, "tags": ["feedback_loop", "shared_learning"], "feedback": "Leas erfaring endrer neste steg og styrker eierskapet.", "effects": {"stats": {"quality": 2, "trust": 3, "risk": -1, "energy": -1}}},
+      {"id": "B", "label": "Gjenta samme steg for å teste motivasjonen", "reply": "Vi bør holde planen stabil til du har gjennomført hele steget.", "effect": -1, "tags": ["motivation_label", "plan_rigidity"], "feedback": "Den nye barrieren blir omtolket til et problem ved personen.", "effects": {"stats": {"quality": -2, "trust": -3, "risk": 2}}}
+    ]
+  }]}]
+}

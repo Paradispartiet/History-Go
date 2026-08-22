@@ -1,0 +1,14 @@
+{
+  "schema": "civication_mail_family_catalog_v1", "version": 1, "category": "psykologi", "role_scope": "psykolog", "mail_type": "story",
+  "families": [{"id": "psykolog_journalens_sikkerhet", "purpose": "Gjøre graden av klinisk sikkerhet synlig i dokumentasjonen.", "learning_focus": ["journalforing", "hypotese", "etterprovbarhet"], "mails": [{
+    "id": "psykolog_story_journal_001", "mail_type": "story", "mail_family": "psykolog_journalens_sikkerhet", "role_scope": "psykolog", "phase": "advanced", "day_phase": "evening", "priority": 132, "cooldown": 3, "repeatable": false, "stage": "stable",
+    "from": "Ingrid, psykologspesialist", "people_ref": "ingrid_psykologspesialist", "person_id": "ingrid_psykologspesialist", "subject": "Journalen høres sikrere ut enn samtalen", "summary": "Journalutkastet beskriver én forklaring som etablert, selv om samtalen endte med to åpne hypoteser.",
+    "purpose": "Teste om dokumentasjonen gjengir begrunnelse, alternativer og usikkerhet.", "stakes": "Neste behandler kan arve tekstens sikkerhet i stedet for samtalens reelle kunnskapsgrunnlag.",
+    "situation": ["Begge hypotesene har støtte i deler av materialet.", "Ingen av dem er avklart gjennom dagens samtale.", "Journalen kan beskrive hva som taler for hver forklaring og hvilket neste steg som skal skille dem bedre."],
+    "task_domain": "klinisk_journalforing", "task_kind": "story", "competency": "dokumentasjon_og_faglig_begrunnelse", "pressure": "klar_tekst_vs_sann_usikkerhet", "choice_axis": "gradert_sikkerhet_vs_kategorisk_formulering", "consequence_axis": "reviderbarhet_vs_forankringseffekt", "narrative_arc": "fra_sikker_setning_til_etterprovbar_begrunnelse",
+    "choices": [
+      {"id": "A", "label": "Skriv begge hypotesene og hva som skal skille dem", "reply": "Jeg graderer sikkerheten og knytter neste steg til det som fortsatt er uklart.", "effect": 1, "tags": ["calibrated_uncertainty", "documentation"], "feedback": "Journalen gir neste fagperson både retning og tillatelse til å korrigere kursen.", "effects": {"stats": {"quality": 3, "trust": 1, "risk": -2, "energy": -1}}},
+      {"id": "B", "label": "Velg den mest sannsynlige for å gjøre teksten tydelig", "reply": "Jeg skriver hovedhypotesen som konklusjon og tar forbehold muntlig senere.", "effect": -1, "tags": ["false_certainty", "anchoring"], "feedback": "Teksten blir enkel å lese, men gjør en foreløpig vurdering vanskeligere å utfordre.", "effects": {"stats": {"quality": -3, "trust": -1, "risk": 3}}}
+    ]
+  }]}]
+}

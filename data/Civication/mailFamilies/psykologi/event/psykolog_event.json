@@ -1,0 +1,14 @@
+{
+  "schema": "civication_mail_family_catalog_v1", "version": 1, "category": "psykologi", "role_scope": "psykolog", "mail_type": "event",
+  "families": [{"id": "psykolog_endret_risikobilde", "purpose": "Revurdere og eskalere når ny informasjon gjør den tidligere planen utilstrekkelig.", "learning_focus": ["risiko", "pasientsikkerhet", "eskalering"], "mails": [{
+    "id": "psykolog_event_risiko_001", "mail_type": "event", "mail_family": "psykolog_endret_risikobilde", "role_scope": "psykolog", "phase": "mid", "day_phase": "afternoon", "priority": 138, "cooldown": 4, "repeatable": false, "stage": "stable",
+    "from": "Amir, sykepleier", "people_ref": "amir_sykepleier", "person_id": "amir_sykepleier", "subject": "Den avtalte planen dekker ikke endringen", "summary": "Ny informasjon gjør at den tidligere sikkerhetsplanen ikke lenger gir et tilstrekkelig beslutningsgrunnlag.",
+    "purpose": "Teste om psykologen behandler risikovurdering som løpende og henter riktig ansvar inn.", "stakes": "Å lene seg på en eldre plan kan gi falsk trygghet; panikk uten rolleavklaring kan overstyre uten å skape bedre sikkerhet.",
+    "situation": ["Opplysningen er ny og relevant for den avtalte oppfølgingen.", "Den kan ikke avklares forsvarlig gjennom en kort melding alene.", "Virksomheten har en etablert vei for umiddelbar klinisk vurdering og nødvendig eskalering."],
+    "task_domain": "risiko_og_pasientsikkerhet", "task_kind": "event", "competency": "risiko_og_pasientsikkerhet", "pressure": "endret_risiko_vs_gammel_plan", "choice_axis": "ny_vurdering_og_eskalering_vs_planinerti", "consequence_axis": "delt_ansvar_vs_falsk_trygghet", "narrative_arc": "fra_stabil_plan_til_oppdatert_sikkerhetsarbeid",
+    "choices": [
+      {"id": "A", "label": "Start ny vurdering og bruk etablert eskaleringsvei", "reply": "Vi behandler dette som ny informasjon, følger den etablerte akuttveien og dokumenterer hvem som overtar hvilket ansvar.", "effect": 1, "tags": ["risk_reassessment", "safe_escalation"], "feedback": "Du lover ikke et bestemt utfall, men sørger for ny vurdering og tydelig ansvar nå.", "effects": {"stats": {"quality": 2, "trust": 1, "risk": -4, "energy": -2}}},
+      {"id": "B", "label": "Fortsett den gamle planen til neste ordinære samtale", "reply": "Planen gjelder fortsatt; vi vurderer endringen ved neste avtale.", "effect": -1, "tags": ["plan_inertia", "unsafe_delay"], "feedback": "Den nye informasjonen får ingen virkning før tidsplanen tillater det.", "effects": {"stats": {"quality": -3, "trust": -2, "risk": 5}}}
+    ]
+  }]}]
+}

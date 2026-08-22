@@ -217,6 +217,15 @@
     "data/Civication/mailFamilies/psykologi/followup/professor_psykologi_followup.json",
     "data/Civication/mailFamilies/psykologi/knowledge/professor_psykologi_knowledge.json",
     "data/Civication/mailFamilies/psykologi/consequence/professor_psykologi_consequence.json",
+    "data/Civication/mailFamilies/psykologi/job/psykolog_job.json",
+    "data/Civication/mailFamilies/psykologi/people/psykolog_people.json",
+    "data/Civication/mailFamilies/psykologi/story/psykolog_story.json",
+    "data/Civication/mailFamilies/psykologi/conflict/psykolog_conflict.json",
+    "data/Civication/mailFamilies/psykologi/event/psykolog_event.json",
+    "data/Civication/mailFamilies/psykologi/micro/psykolog_micro.json",
+    "data/Civication/mailFamilies/psykologi/followup/psykolog_followup.json",
+    "data/Civication/mailFamilies/psykologi/knowledge/psykolog_knowledge.json",
+    "data/Civication/mailFamilies/psykologi/consequence/psykolog_consequence.json",
     "data/Civication/mailFamilies/psykologi/job/psykologi_miljoarbeid_job.json",
     "data/Civication/mailFamilies/psykologi/people/psykologi_miljoarbeid_people.json",
     "data/Civication/mailFamilies/psykologi/conflict/psykologi_miljoarbeid_conflict.json",
@@ -129758,6 +129767,1273 @@
       "category": "psykologi",
       "compatibility_projection": {
         "category": "psykologi",
+        "choice_axis": "oppgaverelevant_deling_vs_full_bakgrunn",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Amir får et handlingsbart ansvar uten at hele historien blir arbeidsmateriale for alle.",
+            "id": "A",
+            "label": "Del oppfølgingspunkt, tegn på endring og kontaktvei",
+            "reply": "Jeg deler det som er nødvendig for oppgaven og avklarer grunnlaget før eventuelle flere opplysninger tas inn.",
+            "tags": [
+              "necessary_information",
+              "role_clarity"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -3,
+                "risk": 3,
+                "trust": -3
+              }
+            },
+            "feedback": "Mengden informasjon øker, men relevans og gyldig grunnlag blir ikke tydeligere.",
+            "id": "B",
+            "label": "Send hele bakgrunnen for sikkerhets skyld",
+            "reply": "Det er tryggest at alle kjenner hele historien.",
+            "tags": [
+              "over_disclosure",
+              "boundary_failure"
+            ]
+          }
+        ],
+        "competency": "tverrfaglig_samarbeid",
+        "consequence_axis": "trygg_koordinering_vs_unodvendig_spredning",
+        "cooldown": 3,
+        "day_phase": "lunch",
+        "from": "Amir, sykepleier",
+        "id": "psykolog_conflict_informasjon_001",
+        "mail_family": "psykolog_nodvendig_informasjon",
+        "mail_type": "conflict",
+        "narrative_arc": "fra_alt_eller_ingenting_til_avgrenset_samhandling",
+        "people_ref": "amir_sykepleier",
+        "person_id": "amir_sykepleier",
+        "phase": "mid",
+        "pressure": "samhandling_vs_taushet",
+        "priority": 140,
+        "purpose": "Teste om psykologen deler det som er nødvendig uten å gjøre tverrfaglighet til grenseløs tilgang.",
+        "repeatable": false,
+        "role_scope": "psykolog",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/conflict/psykolog_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Amir har en konkret oppgave i oppfølgingen og trenger å vite hva som skal observeres og hvem som kontaktes ved endring.",
+          "Flere detaljer i bakgrunnen påvirker ikke denne oppgaven.",
+          "Delingen må følge virksomhetens gyldige grunnlag og kan avklares dersom rollen er uklar."
+        ],
+        "stage": "stable",
+        "stakes": "For lite informasjon kan gjøre oppfølgingen uklar; for mye kan krenke fortrolighet uten å forbedre handlingen.",
+        "subject": "Teamet vil ha hele bakgrunnen",
+        "summary": "Amir trenger et trygt oppfølgingspunkt, mens møteinnkallingen ber om hele den private historien.",
+        "task_domain": "tverrfaglig_informasjonsdeling",
+        "task_kind": "conflict"
+      },
+      "id": "psykolog_conflict_informasjon_001",
+      "mail_type": "conflict",
+      "role_scope": "psykolog",
+      "scene": {
+        "arc_stage": "mid",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Amir får et handlingsbart ansvar uten at hele historien blir arbeidsmateriale for alle.",
+            "id": "A",
+            "label": "Del oppfølgingspunkt, tegn på endring og kontaktvei",
+            "reply": "Jeg deler det som er nødvendig for oppgaven og avklarer grunnlaget før eventuelle flere opplysninger tas inn."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Mengden informasjon øker, men relevans og gyldig grunnlag blir ikke tydeligere.",
+            "id": "B",
+            "label": "Send hele bakgrunnen for sikkerhets skyld",
+            "reply": "Det er tryggest at alle kjenner hele historien."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Amir har en konkret oppgave i oppfølgingen og trenger å vite hva som skal observeres og hvem som kontaktes ved endring.",
+            "Flere detaljer i bakgrunnen påvirker ikke denne oppgaven.",
+            "Delingen må følge virksomhetens gyldige grunnlag og kan avklares dersom rollen er uklar."
+          ],
+          "subject": "Teamet vil ha hele bakgrunnen",
+          "summary": "Amir trenger et trygt oppfølgingspunkt, mens møteinnkallingen ber om hele den private historien."
+        },
+        "day_phase": "lunch",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "psykolog_conflict_informasjon_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "psykolog_conflict_informasjon_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/conflict/psykolog_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "psykolog.mail.psykolog_conflict_informasjon_001",
+        "version": 1
+      },
+      "source_hash": "ca78b3d2d9b2fd1817f674022d6a036ef51e324d808fcb33636373300148a359",
+      "source_path": "data/Civication/mailFamilies/psykologi/conflict/psykolog_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "proporsjonal_reformulering_vs_ny_sikker_forklaring",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 3,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Du lar resultatet endre kursen uten å kreve mer sikkerhet enn forløpet kan gi.",
+            "id": "A",
+            "label": "Nedgrader hypotesen og velg ett nytt spørsmål",
+            "reply": "Utfallet svekker den opprinnelige hypotesen, men beviser ikke årsaken. Jeg dokumenterer begrensningen og avgrenser neste undersøkelse.",
+            "tags": [
+              "proportional_inference",
+              "reformulation"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -3,
+                "risk": 3,
+                "status": 1
+              }
+            },
+            "feedback": "Du korrigerer retning, men gjentar den samme sikkerhetsfeilen i en ny formulering.",
+            "id": "B",
+            "label": "Erstatt den gamle forklaringen med den nye",
+            "reply": "Bedringen viser at vi nå har funnet den riktige forklaringen.",
+            "tags": [
+              "causal_overclaim",
+              "new_anchoring"
+            ]
+          }
+        ],
+        "competency": "klinisk_utredning",
+        "consequence_axis": "reviderbart_forlop_vs_historiebytte",
+        "cooldown": 5,
+        "day_phase": "day_end",
+        "from": "Ingrid, psykologspesialist",
+        "id": "psykolog_consequence_formulering_001",
+        "mail_family": "psykolog_formuleringskonsekvens",
+        "mail_type": "consequence",
+        "narrative_arc": "fra_blandet_utfall_til_nytt_avgrenset_sporsmal",
+        "people_ref": "ingrid_psykologspesialist",
+        "person_id": "ingrid_psykologspesialist",
+        "phase": "mastery",
+        "pressure": "laering_vs_kausal_overdrivelse",
+        "priority": 126,
+        "purpose": "Teste om psykologen bruker et blandet utfall proporsjonalt og formulerer et nytt avgrenset spørsmål.",
+        "repeatable": false,
+        "role_scope": "psykolog",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/consequence/psykolog_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Gjennomføringen bedret seg etter at prioriteringen ble endret.",
+          "Det korte forløpet kan ikke alene vise hvorfor endringen virket.",
+          "Utfallet gir grunn til å nedgradere én antakelse og velge hva som skal undersøkes videre."
+        ],
+        "stage": "stable",
+        "stakes": "En seierserklæring kan bytte én for sikker historie med en annen; å ignorere utfallet kan låse behandlingen til første hypotese.",
+        "subject": "Formuleringen forklarer mindre – og planen virker bedre",
+        "summary": "Den nye prioriteringen ga bedre gjennomføring, mens den opprinnelige forklaringen fikk svakere støtte.",
+        "task_domain": "konsekvens_og_reformulering",
+        "task_kind": "consequence",
+        "thread_key": "psykolog_plan_001"
+      },
+      "id": "psykolog_consequence_formulering_001",
+      "mail_type": "consequence",
+      "role_scope": "psykolog",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du lar resultatet endre kursen uten å kreve mer sikkerhet enn forløpet kan gi.",
+            "id": "A",
+            "label": "Nedgrader hypotesen og velg ett nytt spørsmål",
+            "reply": "Utfallet svekker den opprinnelige hypotesen, men beviser ikke årsaken. Jeg dokumenterer begrensningen og avgrenser neste undersøkelse."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du korrigerer retning, men gjentar den samme sikkerhetsfeilen i en ny formulering.",
+            "id": "B",
+            "label": "Erstatt den gamle forklaringen med den nye",
+            "reply": "Bedringen viser at vi nå har funnet den riktige forklaringen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Gjennomføringen bedret seg etter at prioriteringen ble endret.",
+            "Det korte forløpet kan ikke alene vise hvorfor endringen virket.",
+            "Utfallet gir grunn til å nedgradere én antakelse og velge hva som skal undersøkes videre."
+          ],
+          "subject": "Formuleringen forklarer mindre – og planen virker bedre",
+          "summary": "Den nye prioriteringen ga bedre gjennomføring, mens den opprinnelige forklaringen fikk svakere støtte."
+        },
+        "day_phase": "day_end",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "psykolog_consequence_formulering_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "psykolog_consequence_formulering_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/consequence/psykolog_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "psykolog_plan_001",
+        "version": 1
+      },
+      "source_hash": "2c5b478048273a7f97cc4b78084c064aa9cbfb4eae6617e7506ff2ffcee95054",
+      "source_path": "data/Civication/mailFamilies/psykologi/consequence/psykolog_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "ny_vurdering_og_eskalering_vs_planinerti",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -2,
+                "quality": 2,
+                "risk": -4,
+                "trust": 1
+              }
+            },
+            "feedback": "Du lover ikke et bestemt utfall, men sørger for ny vurdering og tydelig ansvar nå.",
+            "id": "A",
+            "label": "Start ny vurdering og bruk etablert eskaleringsvei",
+            "reply": "Vi behandler dette som ny informasjon, følger den etablerte akuttveien og dokumenterer hvem som overtar hvilket ansvar.",
+            "tags": [
+              "risk_reassessment",
+              "safe_escalation"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -3,
+                "risk": 5,
+                "trust": -2
+              }
+            },
+            "feedback": "Den nye informasjonen får ingen virkning før tidsplanen tillater det.",
+            "id": "B",
+            "label": "Fortsett den gamle planen til neste ordinære samtale",
+            "reply": "Planen gjelder fortsatt; vi vurderer endringen ved neste avtale.",
+            "tags": [
+              "plan_inertia",
+              "unsafe_delay"
+            ]
+          }
+        ],
+        "competency": "risiko_og_pasientsikkerhet",
+        "consequence_axis": "delt_ansvar_vs_falsk_trygghet",
+        "cooldown": 4,
+        "day_phase": "afternoon",
+        "from": "Amir, sykepleier",
+        "id": "psykolog_event_risiko_001",
+        "mail_family": "psykolog_endret_risikobilde",
+        "mail_type": "event",
+        "narrative_arc": "fra_stabil_plan_til_oppdatert_sikkerhetsarbeid",
+        "people_ref": "amir_sykepleier",
+        "person_id": "amir_sykepleier",
+        "phase": "mid",
+        "pressure": "endret_risiko_vs_gammel_plan",
+        "priority": 138,
+        "purpose": "Teste om psykologen behandler risikovurdering som løpende og henter riktig ansvar inn.",
+        "repeatable": false,
+        "role_scope": "psykolog",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/event/psykolog_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Opplysningen er ny og relevant for den avtalte oppfølgingen.",
+          "Den kan ikke avklares forsvarlig gjennom en kort melding alene.",
+          "Virksomheten har en etablert vei for umiddelbar klinisk vurdering og nødvendig eskalering."
+        ],
+        "stage": "stable",
+        "stakes": "Å lene seg på en eldre plan kan gi falsk trygghet; panikk uten rolleavklaring kan overstyre uten å skape bedre sikkerhet.",
+        "subject": "Den avtalte planen dekker ikke endringen",
+        "summary": "Ny informasjon gjør at den tidligere sikkerhetsplanen ikke lenger gir et tilstrekkelig beslutningsgrunnlag.",
+        "task_domain": "risiko_og_pasientsikkerhet",
+        "task_kind": "event"
+      },
+      "id": "psykolog_event_risiko_001",
+      "mail_type": "event",
+      "role_scope": "psykolog",
+      "scene": {
+        "arc_stage": "mid",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du lover ikke et bestemt utfall, men sørger for ny vurdering og tydelig ansvar nå.",
+            "id": "A",
+            "label": "Start ny vurdering og bruk etablert eskaleringsvei",
+            "reply": "Vi behandler dette som ny informasjon, følger den etablerte akuttveien og dokumenterer hvem som overtar hvilket ansvar."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Den nye informasjonen får ingen virkning før tidsplanen tillater det.",
+            "id": "B",
+            "label": "Fortsett den gamle planen til neste ordinære samtale",
+            "reply": "Planen gjelder fortsatt; vi vurderer endringen ved neste avtale."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Opplysningen er ny og relevant for den avtalte oppfølgingen.",
+            "Den kan ikke avklares forsvarlig gjennom en kort melding alene.",
+            "Virksomheten har en etablert vei for umiddelbar klinisk vurdering og nødvendig eskalering."
+          ],
+          "subject": "Den avtalte planen dekker ikke endringen",
+          "summary": "Ny informasjon gjør at den tidligere sikkerhetsplanen ikke lenger gir et tilstrekkelig beslutningsgrunnlag."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "psykolog_event_risiko_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "psykolog_event_risiko_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/event/psykolog_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "psykolog.mail.psykolog_event_risiko_001",
+        "version": 1
+      },
+      "source_hash": "81d372b5e2cf08679e687cd978d31f3bc3f6691cccf29ddc8089b60749e280d0",
+      "source_path": "data/Civication/mailFamilies/psykologi/event/psykolog_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "bruk_avvik_som_data_vs_motivasjonsforklaring",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -1,
+                "trust": 3
+              }
+            },
+            "feedback": "Leas erfaring endrer neste steg og styrker eierskapet.",
+            "id": "A",
+            "label": "Undersøk barrieren og juster neste test",
+            "reply": "Det du fant ut er data for planen. La oss avgrense hva vi prøver annerledes neste gang.",
+            "tags": [
+              "feedback_loop",
+              "shared_learning"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 2,
+                "trust": -3
+              }
+            },
+            "feedback": "Den nye barrieren blir omtolket til et problem ved personen.",
+            "id": "B",
+            "label": "Gjenta samme steg for å teste motivasjonen",
+            "reply": "Vi bør holde planen stabil til du har gjennomført hele steget.",
+            "tags": [
+              "motivation_label",
+              "plan_rigidity"
+            ]
+          }
+        ],
+        "competency": "lopende_evaluering",
+        "consequence_axis": "tilpasset_plan_vs_tillitsbrudd",
+        "cooldown": 4,
+        "day_phase": "day_end",
+        "from": "Lea, pasient",
+        "id": "psykolog_followup_plan_001",
+        "mail_family": "psykolog_planoppfolging",
+        "mail_type": "followup",
+        "narrative_arc": "fra_planforsok_til_nytt_beslutningsgrunnlag",
+        "people_ref": "lea_pasient",
+        "person_id": "lea_pasient",
+        "phase": "mastery",
+        "pressure": "planlojalitet_vs_ny_laring",
+        "priority": 128,
+        "purpose": "Teste om oppfølging brukes til ny læring og ikke til å måle lydighet.",
+        "repeatable": false,
+        "role_scope": "psykolog",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/followup/psykolog_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Lea gjennomførte deler av det avtalte steget.",
+          "Hun beskriver en annen barriere enn den dere antok.",
+          "Tilbakemeldingen kan brukes til å justere både mål og hypotese uten å love rask effekt."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis avvik behandles som manglende motivasjon, mister planen informasjonen den skulle produsere.",
+        "subject": "Jeg prøvde planen, men hindringen var en annen",
+        "summary": "Lea brukte det felles første steget og kan beskrive både hva som fungerte og hva som stoppet henne.",
+        "task_domain": "behandlingsevaluering",
+        "task_kind": "followup",
+        "thread_key": "psykolog_plan_001"
+      },
+      "id": "psykolog_followup_plan_001",
+      "mail_type": "followup",
+      "role_scope": "psykolog",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Leas erfaring endrer neste steg og styrker eierskapet.",
+            "id": "A",
+            "label": "Undersøk barrieren og juster neste test",
+            "reply": "Det du fant ut er data for planen. La oss avgrense hva vi prøver annerledes neste gang."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Den nye barrieren blir omtolket til et problem ved personen.",
+            "id": "B",
+            "label": "Gjenta samme steg for å teste motivasjonen",
+            "reply": "Vi bør holde planen stabil til du har gjennomført hele steget."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Lea gjennomførte deler av det avtalte steget.",
+            "Hun beskriver en annen barriere enn den dere antok.",
+            "Tilbakemeldingen kan brukes til å justere både mål og hypotese uten å love rask effekt."
+          ],
+          "subject": "Jeg prøvde planen, men hindringen var en annen",
+          "summary": "Lea brukte det felles første steget og kan beskrive både hva som fungerte og hva som stoppet henne."
+        },
+        "day_phase": "day_end",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "psykolog_followup_plan_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "psykolog_followup_plan_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/followup/psykolog_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "psykolog_plan_001",
+        "version": 1
+      },
+      "source_hash": "5eb0f3e8537bbfb3c0d85e168229656d404e0342bab39c6200dd7daafe587950",
+      "source_path": "data/Civication/mailFamilies/psykologi/followup/psykolog_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "reviderbar_hypotese_vs_tidlig_lukking",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 3,
+                "risk": -2,
+                "trust": 1
+              }
+            },
+            "feedback": "Planen blir mindre endelig, men mer presis og mulig å korrigere.",
+            "id": "A",
+            "label": "Marker usikkerheten og avgrens neste undersøkelse",
+            "reply": "Jeg beskriver hva hypotesen forklarer, hva som ikke passer, og hvilket spørsmål vi må undersøke før planen låses.",
+            "tags": [
+              "hypothesis_revision",
+              "bounded_action"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -3,
+                "risk": 3,
+                "status": 1,
+                "trust": -1
+              }
+            },
+            "feedback": "Den avvikende opplysningen blir synlig, men får ingen reell virkning på beslutningen.",
+            "id": "B",
+            "label": "Behold formuleringen og legg opplysningen i et vedlegg",
+            "reply": "Hovedbildet er tydelig nok til at formuleringen kan stå.",
+            "tags": [
+              "premature_closure",
+              "confirmation_bias"
+            ]
+          }
+        ],
+        "competency": "klinisk_utredning",
+        "consequence_axis": "etterprovbar_plan_vs_feilspor",
+        "cooldown": 2,
+        "day_phase": "morning",
+        "from": "Ingrid, psykologspesialist",
+        "id": "psykolog_job_formulering_001",
+        "mail_family": "psykolog_formulering_under_usikkerhet",
+        "mail_type": "job",
+        "narrative_arc": "fra_ryddig_forklaring_til_reviderbart_sporsmal",
+        "people_ref": "ingrid_psykologspesialist",
+        "person_id": "ingrid_psykologspesialist",
+        "phase": "intro",
+        "pressure": "klinisk_presisjon_vs_tidskrav",
+        "priority": 150,
+        "purpose": "Teste om psykologen skiller arbeidshypotese fra konklusjon.",
+        "repeatable": false,
+        "role_scope": "psykolog",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/job/psykolog_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den foreløpige formuleringen forklarer flere av vanskene som er beskrevet.",
+          "Det nye notatet viser et mønster formuleringen ikke forklarer godt.",
+          "Planmøtet begynner snart, men det finnes tid til å markere usikkerheten og avgrense hva som må undersøkes."
+        ],
+        "stage": "stable",
+        "stakes": "En for sikker formulering kan styre både pasient og team mot feil neste steg.",
+        "subject": "Den nye opplysningen passer ikke",
+        "summary": "Et nytt samtalenotat utfordrer den foreløpige formuleringen du skulle bruke i dagens planmøte.",
+        "task_domain": "klinisk_formulering",
+        "task_kind": "job"
+      },
+      "id": "psykolog_job_formulering_001",
+      "mail_type": "job",
+      "role_scope": "psykolog",
+      "scene": {
+        "arc_stage": "intro",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Planen blir mindre endelig, men mer presis og mulig å korrigere.",
+            "id": "A",
+            "label": "Marker usikkerheten og avgrens neste undersøkelse",
+            "reply": "Jeg beskriver hva hypotesen forklarer, hva som ikke passer, og hvilket spørsmål vi må undersøke før planen låses."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Den avvikende opplysningen blir synlig, men får ingen reell virkning på beslutningen.",
+            "id": "B",
+            "label": "Behold formuleringen og legg opplysningen i et vedlegg",
+            "reply": "Hovedbildet er tydelig nok til at formuleringen kan stå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den foreløpige formuleringen forklarer flere av vanskene som er beskrevet.",
+            "Det nye notatet viser et mønster formuleringen ikke forklarer godt.",
+            "Planmøtet begynner snart, men det finnes tid til å markere usikkerheten og avgrense hva som må undersøkes."
+          ],
+          "subject": "Den nye opplysningen passer ikke",
+          "summary": "Et nytt samtalenotat utfordrer den foreløpige formuleringen du skulle bruke i dagens planmøte."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "psykolog_job_formulering_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "psykolog_job_formulering_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/job/psykolog_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "psykolog.mail.psykolog_job_formulering_001",
+        "version": 1
+      },
+      "source_hash": "2607263c64a75dd8739ae01a554f3f9ca25fba539cec46f2092ae4266ae4cfe8",
+      "source_path": "data/Civication/mailFamilies/psykologi/job/psykolog_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "kontekstualiser_kilden_vs_gjor_den_normativ",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 1,
+                "trust": 1
+              }
+            },
+            "feedback": "Oppgaven kan bare fullføres gjennom registrert History Go-lesing av den kanoniske personen.",
+            "id": "A",
+            "label": "Åpne History Go-profilen og noter kildegrensen",
+            "reply": "Jeg leser profilen som profesjonshistorie og holder dagens kliniske vurderinger separat.",
+            "tags": [
+              "history_go_person",
+              "source_boundary"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -3,
+                "risk": 2,
+                "trust": -1
+              }
+            },
+            "feedback": "Du blander historisk kontekst med et klinisk beslutningsgrunnlag den ikke kan levere.",
+            "id": "B",
+            "label": "Bruk historisk status som støtte for dagens formulering",
+            "reply": "Jeg bruker profesjonshistorien som autoritet for den kliniske retningen.",
+            "tags": [
+              "authority_slippage",
+              "anachronism"
+            ]
+          }
+        ],
+        "competency": "faglig_kildebruk",
+        "consequence_axis": "faglig_historiebevissthet_vs_autoritetsglidning",
+        "cooldown": 5,
+        "day_phase": "evening",
+        "from": "Ingrid, psykologspesialist",
+        "id": "psykolog_knowledge_schjelderup_001",
+        "interaction_mode": "task",
+        "mail_family": "psykolog_profesjonshistorie",
+        "mail_type": "knowledge",
+        "narrative_arc": "fra_historisk_person_til_tydelig_kildegrense",
+        "people_ref": "ingrid_psykologspesialist",
+        "person_id": "ingrid_psykologspesialist",
+        "phase": "advanced",
+        "place_id": "psykologisk_institutt_uio",
+        "pressure": "historisk_autoritet_vs_kildegrense",
+        "priority": 130,
+        "purpose": "Teste at virkelig person og sted brukes som faktamål, ikke som fiktiv avsender eller klinisk autoritet.",
+        "repeatable": false,
+        "role_scope": "psykolog",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/knowledge/psykolog_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Harald Schjelderup finnes som kanonisk People-person knyttet til Psykologisk institutt, UiO.",
+          "Oppgaven gjelder bare lesing av den kildeforankrede profilen i History Go.",
+          "Profilen skal ikke brukes som behandlingsråd eller som begrunnelse for en beslutning om en nålevende pasient."
+        ],
+        "stage": "stable",
+        "stakes": "Historisk innsikt kan gi kontekst, men kan ikke erstatte oppdatert kunnskap, individuell vurdering eller gjeldende myndighetsgrenser.",
+        "subject": "Profesjonshistorie er kontekst, ikke klinisk fasit",
+        "summary": "Ingrid ber deg lese History Go-profilen til Harald Schjelderup som kildeforankret profesjonshistorie og holde den adskilt fra dagens kliniske beslutningsgrunnlag.",
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/people/psykologi/oslo/people_psykologi_oslo.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "psykolog_history_go_schjelderup"
+        },
+        "task_domain": "profesjonshistorie",
+        "task_kind": "knowledge",
+        "task_payload": {
+          "completion_mode": "read_profile",
+          "description": "Les den kildeforankrede profilen i History Go som profesjonshistorie, ikke som klinisk retningslinje.",
+          "person_id": "harald_schjelderup",
+          "return_context": {
+            "mail_id": "psykolog_knowledge_schjelderup_001",
+            "role_scope": "psykolog",
+            "source": "civication"
+          },
+          "target_type": "person",
+          "task_kind": "history_go_person",
+          "title": "Les profilen til Harald Schjelderup"
+        }
+      },
+      "id": "psykolog_knowledge_schjelderup_001",
+      "mail_type": "knowledge",
+      "role_scope": "psykolog",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Oppgaven kan bare fullføres gjennom registrert History Go-lesing av den kanoniske personen.",
+            "id": "A",
+            "label": "Åpne History Go-profilen og noter kildegrensen",
+            "reply": "Jeg leser profilen som profesjonshistorie og holder dagens kliniske vurderinger separat."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du blander historisk kontekst med et klinisk beslutningsgrunnlag den ikke kan levere.",
+            "id": "B",
+            "label": "Bruk historisk status som støtte for dagens formulering",
+            "reply": "Jeg bruker profesjonshistorien som autoritet for den kliniske retningen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Harald Schjelderup finnes som kanonisk People-person knyttet til Psykologisk institutt, UiO.",
+            "Oppgaven gjelder bare lesing av den kildeforankrede profilen i History Go.",
+            "Profilen skal ikke brukes som behandlingsråd eller som begrunnelse for en beslutning om en nålevende pasient."
+          ],
+          "subject": "Profesjonshistorie er kontekst, ikke klinisk fasit",
+          "summary": "Ingrid ber deg lese History Go-profilen til Harald Schjelderup som kildeforankret profesjonshistorie og holde den adskilt fra dagens kliniske beslutningsgrunnlag."
+        },
+        "day_phase": "evening",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "psykolog_knowledge_schjelderup_001",
+        "interaction_mode": "task",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "psykologisk_institutt_uio",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "psykolog_knowledge_schjelderup_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/knowledge/psykolog_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/people/psykologi/oslo/people_psykologi_oslo.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "psykolog_history_go_schjelderup"
+        },
+        "thread_id": "psykolog.mail.psykolog_knowledge_schjelderup_001",
+        "version": 1
+      },
+      "source_hash": "e08fd518efc90d9c70a049ebf8fd8d6b546da9398759f654e1813630488cdeb6",
+      "source_path": "data/Civication/mailFamilies/psykologi/knowledge/psykolog_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "verifiser_kritisk_premiss_vs_polering",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2
+              }
+            },
+            "feedback": "Notatet er ikke ferdigpolert, men neste samtale bygger på et tydeligere grunnlag.",
+            "id": "A",
+            "label": "Kontroller den beslutningskritiske opplysningen",
+            "reply": "Jeg bruker tiden på premisset som kan endre neste kliniske spørsmål.",
+            "tags": [
+              "critical_evidence",
+              "prioritization"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 2,
+                "status": 1
+              }
+            },
+            "feedback": "Arbeidsflaten ser ferdig ut, mens usikkerheten som kan styre planen blir liggende.",
+            "id": "B",
+            "label": "Gjør journalutkastet helt ferdig",
+            "reply": "Jeg avslutter dokumentasjonen nå og tar premisset senere.",
+            "tags": [
+              "surface_completion",
+              "unchecked_assumption"
+            ]
+          }
+        ],
+        "competency": "dokumentasjon_og_faglig_begrunnelse",
+        "consequence_axis": "presist_neste_sporsmal_vs_ryddig_feilspor",
+        "cooldown": 2,
+        "day_phase": "afternoon",
+        "from": "Seksjonslederen",
+        "id": "psykolog_micro_verifisering_001",
+        "mail_family": "psykolog_kort_mellomrom",
+        "mail_type": "micro",
+        "narrative_arc": "fra_tidsklemme_til_begrunnet_prioritering",
+        "people_ref": "seksjonsleder",
+        "person_id": "seksjonsleder",
+        "phase": "advanced",
+        "pressure": "ferdigflate_vs_beslutningsgrunnlag",
+        "priority": 134,
+        "purpose": "Teste om knapp tid brukes på beslutningskritisk kvalitet framfor kosmetisk ferdigstilling.",
+        "repeatable": true,
+        "role_scope": "psykolog",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/micro/psykolog_micro.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Utkastet har tydelig struktur, men én kildeopplysning er fortsatt tvetydig.",
+          "Opplysningen påvirker hvilket spørsmål som må tas opp i neste samtale.",
+          "Resten av språkvasken kan ferdigstilles etter samtalen uten å forsinke sikker oppfølging."
+        ],
+        "stage": "stable",
+        "stakes": "Et pent notat kan skjule at det viktigste premisset ikke er kontrollert.",
+        "subject": "Tolv minutter før neste samtale",
+        "summary": "Du rekker enten å kontrollere den opplysningen som styrer dagens plan eller å gjøre hele journalutkastet språklig ferdig.",
+        "task_domain": "klinisk_prioritering",
+        "task_kind": "micro"
+      },
+      "id": "psykolog_micro_verifisering_001",
+      "mail_type": "micro",
+      "role_scope": "psykolog",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Notatet er ikke ferdigpolert, men neste samtale bygger på et tydeligere grunnlag.",
+            "id": "A",
+            "label": "Kontroller den beslutningskritiske opplysningen",
+            "reply": "Jeg bruker tiden på premisset som kan endre neste kliniske spørsmål."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Arbeidsflaten ser ferdig ut, mens usikkerheten som kan styre planen blir liggende.",
+            "id": "B",
+            "label": "Gjør journalutkastet helt ferdig",
+            "reply": "Jeg avslutter dokumentasjonen nå og tar premisset senere."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Utkastet har tydelig struktur, men én kildeopplysning er fortsatt tvetydig.",
+            "Opplysningen påvirker hvilket spørsmål som må tas opp i neste samtale.",
+            "Resten av språkvasken kan ferdigstilles etter samtalen uten å forsinke sikker oppfølging."
+          ],
+          "subject": "Tolv minutter før neste samtale",
+          "summary": "Du rekker enten å kontrollere den opplysningen som styrer dagens plan eller å gjøre hele journalutkastet språklig ferdig."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "psykolog_micro_verifisering_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "psykolog_micro_verifisering_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/micro/psykolog_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "psykolog.mail.psykolog_micro_verifisering_001",
+        "version": 1
+      },
+      "source_hash": "fe68794ff18ebb4d2406272ec08d5347fd716cf5c9049bad5b61256e5919405f",
+      "source_path": "data/Civication/mailFamilies/psykologi/micro/psykolog_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "felles_prioritering_vs_formelt_samtykke",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -1,
+                "trust": 3
+              }
+            },
+            "feedback": "Planen beholder faglig retning, men får et startpunkt Lea kan forklare som sitt eget.",
+            "id": "A",
+            "label": "Reforhandle første mål sammen med Lea",
+            "reply": "La oss gjøre hverdagsmålet ditt til første vurderingspunkt og være tydelige på hva vi følger med på.",
+            "tags": [
+              "shared_priority",
+              "alliance"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 1,
+                "trust": -3
+              }
+            },
+            "feedback": "Medvirkningen blir et journalpunkt uten å endre handlingen.",
+            "id": "B",
+            "label": "Behold rekkefølgen og noter at Lea er hørt",
+            "reply": "Jeg dokumenterer ønsket ditt, men planen bør gjennomføres i foreslått rekkefølge.",
+            "tags": [
+              "formal_participation",
+              "plan_ownership_lost"
+            ]
+          }
+        ],
+        "competency": "terapeutisk_allianse",
+        "consequence_axis": "eierskap_vs_frafall",
+        "cooldown": 3,
+        "day_phase": "forenoon",
+        "from": "Lea, pasient",
+        "id": "psykolog_people_prioritet_001",
+        "mail_family": "psykolog_felles_prioritet",
+        "mail_type": "people",
+        "narrative_arc": "fra_plan_for_pasienten_til_plan_med_pasienten",
+        "people_ref": "lea_pasient",
+        "person_id": "lea_pasient",
+        "phase": "early",
+        "pressure": "faglig_plan_vs_pasientens_prioritet",
+        "priority": 145,
+        "purpose": "Teste om medvirkning endrer prioriteringen og ikke bare dokumenteres som gjennomført.",
+        "repeatable": false,
+        "role_scope": "psykolog",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/people/psykolog_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Lea kan gjengi planen og har ikke avvist behandling.",
+          "Hun beskriver et konkret hverdagsmål som må fungere før de andre tiltakene oppleves relevante.",
+          "Det er mulig å reforhandle rekkefølgen uten å love et bestemt klinisk resultat."
+        ],
+        "stage": "stable",
+        "stakes": "En faglig plausibel plan kan miste både eierskap og virkning hvis den ikke møter det pasienten faktisk prøver å få til.",
+        "subject": "Planen er ryddig, men begynner et annet sted",
+        "summary": "Lea forstår utkastet, men sier at det viktigste hinderet i hverdagen ikke står først.",
+        "task_domain": "behandlingsplan_og_medvirkning",
+        "task_kind": "people",
+        "thread_key": "psykolog_plan_001"
+      },
+      "id": "psykolog_people_prioritet_001",
+      "mail_type": "people",
+      "role_scope": "psykolog",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Planen beholder faglig retning, men får et startpunkt Lea kan forklare som sitt eget.",
+            "id": "A",
+            "label": "Reforhandle første mål sammen med Lea",
+            "reply": "La oss gjøre hverdagsmålet ditt til første vurderingspunkt og være tydelige på hva vi følger med på."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Medvirkningen blir et journalpunkt uten å endre handlingen.",
+            "id": "B",
+            "label": "Behold rekkefølgen og noter at Lea er hørt",
+            "reply": "Jeg dokumenterer ønsket ditt, men planen bør gjennomføres i foreslått rekkefølge."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Lea kan gjengi planen og har ikke avvist behandling.",
+            "Hun beskriver et konkret hverdagsmål som må fungere før de andre tiltakene oppleves relevante.",
+            "Det er mulig å reforhandle rekkefølgen uten å love et bestemt klinisk resultat."
+          ],
+          "subject": "Planen er ryddig, men begynner et annet sted",
+          "summary": "Lea forstår utkastet, men sier at det viktigste hinderet i hverdagen ikke står først."
+        },
+        "day_phase": "forenoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "psykolog_people_prioritet_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "psykolog_people_prioritet_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/people/psykolog_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "psykolog_plan_001",
+        "version": 1
+      },
+      "source_hash": "59a578aa1bf1aba7a596520cb9f956ef287ee80eae2a2c5a7101afc7c6a8cbf0",
+      "source_path": "data/Civication/mailFamilies/psykologi/people/psykolog_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "gradert_sikkerhet_vs_kategorisk_formulering",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 3,
+                "risk": -2,
+                "trust": 1
+              }
+            },
+            "feedback": "Journalen gir neste fagperson både retning og tillatelse til å korrigere kursen.",
+            "id": "A",
+            "label": "Skriv begge hypotesene og hva som skal skille dem",
+            "reply": "Jeg graderer sikkerheten og knytter neste steg til det som fortsatt er uklart.",
+            "tags": [
+              "calibrated_uncertainty",
+              "documentation"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -3,
+                "risk": 3,
+                "trust": -1
+              }
+            },
+            "feedback": "Teksten blir enkel å lese, men gjør en foreløpig vurdering vanskeligere å utfordre.",
+            "id": "B",
+            "label": "Velg den mest sannsynlige for å gjøre teksten tydelig",
+            "reply": "Jeg skriver hovedhypotesen som konklusjon og tar forbehold muntlig senere.",
+            "tags": [
+              "false_certainty",
+              "anchoring"
+            ]
+          }
+        ],
+        "competency": "dokumentasjon_og_faglig_begrunnelse",
+        "consequence_axis": "reviderbarhet_vs_forankringseffekt",
+        "cooldown": 3,
+        "day_phase": "evening",
+        "from": "Ingrid, psykologspesialist",
+        "id": "psykolog_story_journal_001",
+        "mail_family": "psykolog_journalens_sikkerhet",
+        "mail_type": "story",
+        "narrative_arc": "fra_sikker_setning_til_etterprovbar_begrunnelse",
+        "people_ref": "ingrid_psykologspesialist",
+        "person_id": "ingrid_psykologspesialist",
+        "phase": "advanced",
+        "pressure": "klar_tekst_vs_sann_usikkerhet",
+        "priority": 132,
+        "purpose": "Teste om dokumentasjonen gjengir begrunnelse, alternativer og usikkerhet.",
+        "repeatable": false,
+        "role_scope": "psykolog",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/story/psykolog_story.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Begge hypotesene har støtte i deler av materialet.",
+          "Ingen av dem er avklart gjennom dagens samtale.",
+          "Journalen kan beskrive hva som taler for hver forklaring og hvilket neste steg som skal skille dem bedre."
+        ],
+        "stage": "stable",
+        "stakes": "Neste behandler kan arve tekstens sikkerhet i stedet for samtalens reelle kunnskapsgrunnlag.",
+        "subject": "Journalen høres sikrere ut enn samtalen",
+        "summary": "Journalutkastet beskriver én forklaring som etablert, selv om samtalen endte med to åpne hypoteser.",
+        "task_domain": "klinisk_journalforing",
+        "task_kind": "story"
+      },
+      "id": "psykolog_story_journal_001",
+      "mail_type": "story",
+      "role_scope": "psykolog",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Journalen gir neste fagperson både retning og tillatelse til å korrigere kursen.",
+            "id": "A",
+            "label": "Skriv begge hypotesene og hva som skal skille dem",
+            "reply": "Jeg graderer sikkerheten og knytter neste steg til det som fortsatt er uklart."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Teksten blir enkel å lese, men gjør en foreløpig vurdering vanskeligere å utfordre.",
+            "id": "B",
+            "label": "Velg den mest sannsynlige for å gjøre teksten tydelig",
+            "reply": "Jeg skriver hovedhypotesen som konklusjon og tar forbehold muntlig senere."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Begge hypotesene har støtte i deler av materialet.",
+            "Ingen av dem er avklart gjennom dagens samtale.",
+            "Journalen kan beskrive hva som taler for hver forklaring og hvilket neste steg som skal skille dem bedre."
+          ],
+          "subject": "Journalen høres sikrere ut enn samtalen",
+          "summary": "Journalutkastet beskriver én forklaring som etablert, selv om samtalen endte med to åpne hypoteser."
+        },
+        "day_phase": "evening",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "psykolog_story_journal_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "psykolog_story_journal_001",
+          "source_path": "data/Civication/mailFamilies/psykologi/story/psykolog_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "psykolog.mail.psykolog_story_journal_001",
+        "version": 1
+      },
+      "source_hash": "38605a53626baebd42adc96c6e230a2c8e85341d739a9135880f4df353179842",
+      "source_path": "data/Civication/mailFamilies/psykologi/story/psykolog_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
         "choice_axis": "tydelig_grense_og_delt_ansvar_vs_umandatert_hemmelighold",
         "choices": [
           {
@@ -156240,7 +157516,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "923f6d029eedb28215b68a97370c147be35a4c7ef770bac6d9e46182a99fb34f",
+  "registry_hash": "67ee79512460826438025fef091ddb2f7ecef7e2970ccc3358fc6f2fc117bb32",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -157142,6 +158418,17 @@
       "psykologi_professor_psykologi_knowledge_makt_001",
       "psykologi_professor_psykologi_consequence_programkritikk_001"
     ],
+    "psykologi/psykolog": [
+      "psykolog_job_formulering_001",
+      "psykolog_people_prioritet_001",
+      "psykolog_story_journal_001",
+      "psykolog_conflict_informasjon_001",
+      "psykolog_event_risiko_001",
+      "psykolog_micro_verifisering_001",
+      "psykolog_followup_plan_001",
+      "psykolog_knowledge_schjelderup_001",
+      "psykolog_consequence_formulering_001"
+    ],
     "psykologi/psykologi_miljoarbeid": [
       "psykologi_miljoarbeid_job_vaktstart",
       "psykologi_miljoarbeid_people_autonomi",
@@ -157378,11 +158665,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 273,
+    "compiled_source_file_count": 282,
     "ignored_source_file_count": 1,
-    "input_file_count": 274,
-    "role_count": 36,
-    "scene_count": 1036,
+    "input_file_count": 283,
+    "role_count": 37,
+    "scene_count": 1045,
     "shadowed_duplicate_count": 0
   },
   "version": 1
