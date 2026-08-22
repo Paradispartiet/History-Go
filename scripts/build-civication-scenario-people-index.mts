@@ -35,6 +35,14 @@ type Person = {
   year?: number;
 };
 
+type PersonPoolEntry = {
+  person_id: string;
+  name: string;
+  person_category: string;
+  place_id?: string;
+  year?: number;
+};
+
 type RoleOverride = {
   direct_person_ids?: string[];
   strong_person_ids?: string[];
@@ -161,8 +169,8 @@ function explicitRolePeople(role: Record<string, unknown>): string[] {
   ], (value) => norm(value));
 }
 
-function personPoolEntry(person: Person): Record<string, unknown> {
-  const out: Record<string, unknown> = {
+function personPoolEntry(person: Person): PersonPoolEntry {
+  const out: PersonPoolEntry = {
     person_id: person.id,
     name: person.name,
     person_category: person.category
