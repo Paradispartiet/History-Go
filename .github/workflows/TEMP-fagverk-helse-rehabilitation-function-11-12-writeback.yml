@@ -27,7 +27,16 @@ jobs:
       - run: node scripts/audit-fagverk-theory-quality.mjs
       - run: node scripts/audit-fagverk-theory-integrity.mjs
       - run: node scripts/build-fagverk-release-manifest.mjs --check
-      - run: node --test tests/helse-rehabilitation-function-fulltext-v1.test.mjs tests/helse-cumulative-progress-v1.test.mjs tests/fagverk-subject-inventory.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-release-manifest.test.mjs
+      - name: Test rehabilitation fulltext
+        run: node --test tests/helse-rehabilitation-function-fulltext-v1.test.mjs
+      - name: Test Helse cumulative progress
+        run: node --test tests/helse-cumulative-progress-v1.test.mjs
+      - name: Test subject inventory
+        run: node --test tests/fagverk-subject-inventory.test.mjs
+      - name: Test general engine
+        run: node --test tests/fagverk-general-engine.test.mjs
+      - name: Test release manifest
+        run: node --test tests/fagverk-release-manifest.test.mjs
       - name: Commit deterministic writeback
         shell: bash
         run: |
