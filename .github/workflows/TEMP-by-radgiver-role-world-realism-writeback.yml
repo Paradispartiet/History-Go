@@ -61,27 +61,18 @@ jobs:
           text = test_path.read_text(encoding='utf-8')
           old_fixture = "{ mail_id: id, status: 'completed', history_go: { correct: true }, result: { effect: 1 } }"
           new_fixture = "{ mail_id: id, status: 'completed', history_go: { completed_at: '2026-08-23T13:00:00.000Z', correct: true }, result: { effect: 1 } }"
-          if old_fixture not in text:
+          if old_fixture in text:
+              text = text.replace(old_fixture, new_fixture, 1)
+          elif new_fixture not in text:
               raise SystemExit('Expected learnedTask fixture not found')
-          text = text.replace(old_fixture, new_fixture, 1)
 
           old_catalog = "return readJson(`data/Civication/mailFamilies/by/${type}/by_radgiver_plan_realism_${suffix}.json`);"
           new_catalog = "return readJson(`data/Civication/mailFamilies/by/${type}/by_radgiver_plan_${type}.json`);"
-          if old_catalog not in text:
-              raise SystemExit('Expected realism catalog path not found')
-          text = text.replace(old_catalog, new_catalog, 1)
+          if old_catalog in text:
+              text = text.replace(old_catalog, new_catalog, 1)
+          elif new_catalog not in text:
+              raise SystemExit('Expected catalog helper not found')
 
-          desired_scenes = "const scenes = catalogs.flatMap((file) => (file.families || []).flatMap((family) => family.scenes || [])).filter((entry) => String(entry?.id || '').startsWith('by_radgiver_realism_'));"
-          lines = text.splitlines()
-          for index, line in enumerate(lines):
-              stripped = line.strip()
-              if stripped.startswith('const scenes = '):
-                  indent = line[:len(line) - len(line.lstrip())]
-                  lines[index] = indent + desired_scenes
-                  break
-          else:
-              raise SystemExit('Expected scenes declaration not found')
-          text = '\n'.join(lines) + ('\n' if text.endswith('\n') else '')
           test_path.write_text(text, encoding='utf-8')
           PY
 
