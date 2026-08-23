@@ -1,0 +1,67 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "manusmedarbeider",
+  "mail_type": "consequence",
+  "families": [
+    {
+      "id": "manusmedarbeider_tabellproven",
+      "purpose": "La bordprøven synliggjøre kostnaden ved et tidligere kontinuitets- eller versjonsvalg.",
+      "learning_focus": ["forsinket_konsekvens", "reparasjon", "sporbarhet"],
+      "mails": [
+        {
+          "id": "film_tv_manus_consequence_bordprove_001",
+          "mail_type": "consequence",
+          "mail_family": "manusmedarbeider_tabellproven",
+          "role_scope": "manusmedarbeider",
+          "phase": "mastery",
+          "day_phase": "evening",
+          "priority": 100,
+          "stage": "stable",
+          "from": "Selma, scriptkoordinator",
+          "people_ref": "selma_scriptkoordinator",
+          "person_id": "selma_scriptkoordinator",
+          "place_id": "versjonsarkiv_manus",
+          "thread_key": "film_tv_manus_kontinuitet_001",
+          "subject": "Bordprøven stoppet i scene 35",
+          "summary": "Under lesingen reagerer hovedpersonen på en opplysning hun ikke har fått ennå, og deltakerne har to ulike forklaringer på hvordan endringen kom inn.",
+          "purpose": "Koble tidligere valg til en synlig, reparerbar produksjonskostnad.",
+          "stakes": "Åpen reparasjon koster tid nå; ansvarsforskyvning bevarer tempoet kort og gjør neste versjon mindre pålitelig.",
+          "situation": [
+            "Kontinuitetsbruddet er nå hørbart for hele bordet.",
+            "Endringsloggen viser hvilken note og versjon som introduserte bruddet, men ikke en eksplisitt beslutning.",
+            "Selma trenger både en rettet side og en forklaring på hvordan samme feil skal hindres."
+          ],
+          "task_domain": "kontinuitet",
+          "task_kind": "consequence",
+          "competency": "reparasjon_og_sporbarhet",
+          "pressure": "feilen_er_offentlig_i_rommet",
+          "choice_axis": "apen_tilbakerulling_og_laring_vs_forklar_bort",
+          "consequence_axis": "langsiktig_tillit_vs_kortsiktig_fasade",
+          "narrative_arc": "kontinuitetsbruddet_returnerer",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Stopp, rull tilbake og dokumenter beslutningshullet",
+              "reply": "Vi bruker forrige sporbare side, retter kunnskapslinjen og registrerer at endringen manglet beslutningseier.",
+              "effect": 1,
+              "tags": ["repair", "traceability"],
+              "feedback": "Bordprøven mister minutter, men neste versjon får både rettelse og læring.",
+              "effects": {"stats": {"quality": 3, "trust": 2, "status": -1, "risk": -3, "energy": -2}}
+            },
+            {
+              "id": "B",
+              "label": "Forklar hva karakteren egentlig mente og les videre",
+              "reply": "Intensjonen er tydelig selv om rekkefølgen skurrer. Vi noterer det og fortsetter.",
+              "effect": -1,
+              "tags": ["avoidance", "continuity_risk"],
+              "feedback": "Du beskytter bordprøvens tempo, men lar en kjent feil bli grunnlag for neste versjon.",
+              "effects": {"stats": {"status": 1, "quality": -3, "risk": 3, "trust": -2}}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

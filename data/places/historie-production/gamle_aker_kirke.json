@@ -220,8 +220,20 @@
     ]
   },
   "quizOpening": {
-    "status": "N/A",
-    "rationale": "Eksisterende quiz har bare fem spørsmål; ordinær åpning på to sett og fjorten spørsmål produseres og telles i fase 9."
+    "status": "PASS",
+    "quizTargetId": "gamle_aker_kirke",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/historie/gamle_aker_kirke.json",
+    "productionContext": "data/quiz/production_context/historie/gamle_aker_kirke.json",
+    "requiredInputs": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ]
   },
   "chronologyStories": {
     "status": "PASS",
@@ -273,6 +285,7 @@
     "G": {
       "status": "PASS",
       "evidenceRefs": [
+        "quizOpening",
         "caseRealizations.case_gamle_aker_bruk_eierskap_bevaring.causationAndUncertainty",
         "presentTrace"
       ]
@@ -287,7 +300,7 @@
   },
   "review": {
     "reviewer": "OpenAI Codex",
-    "reviewedAt": "2026-08-02",
-    "notes": "Kilde-, case-, evidens-, chronology- og Story-referanser er krysskontrollert. Slutninger om byggeår, redningsårsak og middelalderinteriør er eksplisitt avgrenset. Chronology er holdt atskilt fra episode_v1-Storyen om Dronning Mauds sarkofag; quizåpningen avgjøres i fase 9."
+    "reviewedAt": "2026-08-22",
+    "notes": "Kilde-, case-, evidens-, chronology-, Story-, quiz- og Knowledge-referanser er krysskontrollert. Slutninger om byggeår, redningsårsak og middelalderinteriør er eksplisitt avgrenset. De første to quizsettene har nøyaktig fjorten normale spørsmål uten synlig metode- eller teoribinding; metode og teori starter i sett 3."
   }
 }

@@ -1,0 +1,14 @@
+{
+  "schema": "civication_mail_family_catalog_v1", "version": 1, "category": "psykologi", "role_scope": "psykolog", "mail_type": "consequence",
+  "families": [{"id": "psykolog_formuleringskonsekvens", "purpose": "La utfallet endre formuleringen uten å gjøre ett forløp til sikkert årsaksbevis.", "learning_focus": ["konsekvens", "klinisk_usikkerhet", "neste_steg"], "mails": [{
+    "id": "psykolog_consequence_formulering_001", "mail_type": "consequence", "mail_family": "psykolog_formuleringskonsekvens", "role_scope": "psykolog", "thread_key": "psykolog_plan_001", "phase": "mastery", "day_phase": "day_end", "priority": 126, "cooldown": 5, "repeatable": false, "stage": "stable",
+    "from": "Ingrid, psykologspesialist", "people_ref": "ingrid_psykologspesialist", "person_id": "ingrid_psykologspesialist", "subject": "Formuleringen forklarer mindre – og planen virker bedre", "summary": "Den nye prioriteringen ga bedre gjennomføring, mens den opprinnelige forklaringen fikk svakere støtte.",
+    "purpose": "Teste om psykologen bruker et blandet utfall proporsjonalt og formulerer et nytt avgrenset spørsmål.", "stakes": "En seierserklæring kan bytte én for sikker historie med en annen; å ignorere utfallet kan låse behandlingen til første hypotese.",
+    "situation": ["Gjennomføringen bedret seg etter at prioriteringen ble endret.", "Det korte forløpet kan ikke alene vise hvorfor endringen virket.", "Utfallet gir grunn til å nedgradere én antakelse og velge hva som skal undersøkes videre."],
+    "task_domain": "konsekvens_og_reformulering", "task_kind": "consequence", "competency": "klinisk_utredning", "pressure": "laering_vs_kausal_overdrivelse", "choice_axis": "proporsjonal_reformulering_vs_ny_sikker_forklaring", "consequence_axis": "reviderbart_forlop_vs_historiebytte", "narrative_arc": "fra_blandet_utfall_til_nytt_avgrenset_sporsmal",
+    "choices": [
+      {"id": "A", "label": "Nedgrader hypotesen og velg ett nytt spørsmål", "reply": "Utfallet svekker den opprinnelige hypotesen, men beviser ikke årsaken. Jeg dokumenterer begrensningen og avgrenser neste undersøkelse.", "effect": 1, "tags": ["proportional_inference", "reformulation"], "feedback": "Du lar resultatet endre kursen uten å kreve mer sikkerhet enn forløpet kan gi.", "effects": {"stats": {"quality": 3, "trust": 2, "risk": -2, "energy": -1}}},
+      {"id": "B", "label": "Erstatt den gamle forklaringen med den nye", "reply": "Bedringen viser at vi nå har funnet den riktige forklaringen.", "effect": -1, "tags": ["causal_overclaim", "new_anchoring"], "feedback": "Du korrigerer retning, men gjentar den samme sikkerhetsfeilen i en ny formulering.", "effects": {"stats": {"status": 1, "quality": -3, "risk": 3}}}
+    ]
+  }]}]
+}

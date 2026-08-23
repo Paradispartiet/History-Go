@@ -1,0 +1,49 @@
+{
+  "schema": "civication_scenario_people_overrides_v1",
+  "version": 1,
+  "principles": {
+    "same_subject_is_contextual_only": true,
+    "automatic_text_match_may_be_strong_not_direct": true,
+    "direct_requires_curated_evidence": true,
+    "real_people_are_knowledge_targets_not_free_npcs": true,
+    "person_place_links_are_read_only_from_people_canon": true
+  },
+  "roles": {
+    "psykologi_psykolog": {
+      "direct_person_ids": [
+        "harald_schjelderup",
+        "ragnar_rommetveit",
+        "ase_gruda_skard"
+      ],
+      "exclude": [
+        {
+          "person_id": "nic_waal",
+          "reason": "Nic Waal var psykiater og psykoanalytiker, ikke psykolog; hun er faglig kontekst, men skal ikke brukes som direkte rolleeksempel for psykologrollen."
+        }
+      ]
+    },
+    "psykologi_professor_psykologi": {
+      "direct_person_ids": [
+        "harald_schjelderup",
+        "ragnar_rommetveit"
+      ],
+      "strong_person_ids": [
+        "ase_gruda_skard"
+      ]
+    },
+    "psykologi_forsker_psykologi": {
+      "strong_person_ids": [
+        "harald_schjelderup",
+        "ragnar_rommetveit",
+        "ase_gruda_skard",
+        "nic_waal"
+      ]
+    },
+    "psykologi_klinikkleder": {
+      "strong_person_ids": [
+        "nic_waal"
+      ]
+    }
+  },
+  "additional_missing_candidates": {}
+}

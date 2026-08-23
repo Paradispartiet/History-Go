@@ -24,6 +24,8 @@ type PlaceRow = JsonObject & {
   hidden?: unknown;
   stub?: unknown;
   groundhopper?: unknown;
+  placeScope?: unknown;
+  mapLod?: unknown;
   locatorType?: unknown;
   sourceProvider?: unknown;
   sourceObjectId?: unknown;
@@ -73,6 +75,8 @@ const LIGHT_FIELDS: LightField[] = [
   'hidden',
   'stub',
   'groundhopper',
+  'placeScope',
+  'mapLod',
   'locatorType',
   'sourceProvider',
   'sourceObjectId',
@@ -169,6 +173,9 @@ function pickLight(place: PlaceRow, sourceFile = ''): LightPlace {
     if (Object.prototype.hasOwnProperty.call(place, key)) out[key] = place[key];
   }
   if (sourceFile) out.sourceFile = sourceFile;
+  const placeScope = typeof place.placeScope === 'string' ? place.placeScope.trim().toLowerCase() : '';
+  const explicitMapLod = typeof place.mapLod === 'string' ? place.mapLod.trim().toLowerCase() : '';
+  if (!explicitMapLod && placeScope === 'area') out.mapLod = 'area';
   return out;
 }
 

@@ -1,128 +1,377 @@
 {
   "targetId": "var_frelsers_gravlund",
   "categoryId": "historie",
-  "source_quiz_file": null,
-  "generator_version": "historie_v5_1_manual_source_based",
-  "generated_from": [
-    "data/places/historie/oslo/places_historie.json",
-    "data/fag/historie/supersetQUIZMAL_historie.json",
-    "data/fag/historie/emner_historie_canonical_v4_5.json",
-    "data/fag/historie/methods_historie_canonical_v4_5.json",
-    "Oslo kommune / Vår Frelsers gravlund",
-    "Store norske leksikon / Vår Frelsers gravlund",
-    "History Go place profile: var_frelsers_gravlund"
-  ],
-  "profile_snapshot": {
-    "place_type": "gravlund",
-    "subtype": "nasjonalt_minnefelt_for_kultur_og_politikk",
-    "signature_features": [
-      "gravlund fra 1808",
-      "mange sentrale personer fra kultur, politikk og offentlig liv",
-      "minnelandskap der nasjonalhistorie kan leses i gravminner"
+  "sources": {
+    "oslo_vfg_current": "https://www.oslo.kommune.no/natur-kultur-og-fritid/gravplasser-og-kremasjoner/vare-gravplasser/var-frelsers-gravlund/",
+    "oslo_vfg_map_all": "https://www.oslo.kommune.no/get-file/767041/cf44e43deae10b0eb68641a33dba6d96c390b75154daa94c484f0c784eae199f",
+    "oslo_vfg_map_honor": "https://www.oslo.kommune.no/get-file/767042/57af46e00d32986697c7918c25a069c38961ed09152c9729af3f3a546f5d1c01",
+    "snl_vfg": "https://snl.no/V%C3%A5r_Frelsers_gravlund",
+    "byleksikon_gravlunder": "https://oslobyleksikon.no/side/Kirkeg%C3%A5rder_og_gravlunder",
+    "byleksikon_honor": "https://oslobyleksikon.no/side/%C3%86reslunden",
+    "byleksikon_chapel": "https://oslobyleksikon.no/side/V%C3%A5r_Frelsers_gravlund_kapell",
+    "oslo_wreaths_2026": "https://www.oslo.kommune.no/natur-kultur-og-fritid/17-mai/17-mai-program/program-for-bekransninger/",
+    "digitaltmuseum_postcard": "https://digitaltmuseum.no/011014442450/christiania-fra-vor-frelsers-gravlund",
+    "snl_gravlund": "https://snl.no/gravlund"
+  },
+  "production_context": {
+    "manifest_category": "historie",
+    "profile": "normal_4x7",
+    "standard_version": "3.3",
+    "source_brief": "data/quiz/production_briefs/historie/var_frelsers_gravlund.json",
+    "context_artifact": "data/quiz/production_context/historie/var_frelsers_gravlund.json",
+    "resolved_files": {
+      "pensum": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "emner": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "fagkart": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "methods": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
     ],
-    "primary_angles": [
-      "historie",
-      "minnekultur",
-      "materialitet",
-      "symbolikk"
-    ]
+    "pensum_module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_minne_kulturarv_historiebruk",
+      "his_byhistorie_stedsendring"
+    ],
+    "emne_ids": [
+      "em_his_historiske_lag_i_byrom",
+      "em_his_minnesteder_historiebruk",
+      "em_his_spor_materialitet",
+      "em_his_kulturminner_bevaring",
+      "em_his_nasjonal_identitet_fortellinger",
+      "em_his_kildekritikk_arkiv_spor"
+    ],
+    "topic_hook_ids": [
+      "his_spor_materialitet",
+      "his_kildekritikk",
+      "his_kulturminneutvelgelse_verdi",
+      "his_minnested_ritual_offentlig_sorg"
+    ],
+    "method_ids": [
+      "met_sporlesning",
+      "met_kildekritikk",
+      "met_kulturarvutvelgelsesanalyse",
+      "met_komparativ_historie",
+      "met_periodisering",
+      "met_minneanalyse"
+    ],
+    "thinker_ids": [
+      "carlo_ginzburg",
+      "marc_bloch",
+      "alois_riegl",
+      "pierre_nora"
+    ],
+    "works": [
+      "Clues, Myths, and the Historical Method",
+      "The Historian's Craft",
+      "The Modern Cult of Monuments",
+      "Realms of Memory"
+    ],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/historie/var_frelsers_gravlund_sets.json",
+        "data/knowledge/knowledge_units.generated.json",
+        "repository paths matching var_frelsers_gravlund and quiz/sets"
+      ],
+      "active_before": {
+        "manifest_entries": 1,
+        "quiz_files": 1,
+        "sets": 1,
+        "questions": 5,
+        "knowledge_units": 9,
+        "duplicates_found": 0
+      },
+      "decisions": [
+        {
+          "existing_question_id": "var_frelsers_gravlund_quiz_1",
+          "decision": "split",
+          "rationale": "Den generelle minnekulturpåstanden deles i spørsmål om fysisk landskap, Æreslunden og offentlig historiebruk."
+        },
+        {
+          "existing_question_id": "var_frelsers_gravlund_quiz_2",
+          "decision": "rewrite",
+          "rationale": "Beholder 1808 som bruksår, men skiller det fra anleggelsen i 1807 og reformen i 1805."
+        },
+        {
+          "existing_question_id": "var_frelsers_gravlund_quiz_3",
+          "decision": "rewrite",
+          "rationale": "Avgrenser Æreslunden som ett felt og unngår å gjøre den til hele gravlunden."
+        },
+        {
+          "existing_question_id": "var_frelsers_gravlund_quiz_4",
+          "decision": "split",
+          "rationale": "Kjente personer fordeles på kartlesning og 17. mai-historiebruk i stedet for ren navneoppramsing."
+        },
+        {
+          "existing_question_id": "var_frelsers_gravlund_quiz_5",
+          "decision": "move",
+          "rationale": "Den analytiske minnelandskapstolkningen flyttes til sluttsettet etter at fakta, sammenligning og kildegrunnlag er etablert."
+        }
+      ],
+      "knowledge_migration": "De ni eksisterende quizgenererte Knowledge-enhetene erstattes eller gjenbrukes deterministisk av canonical Knowledge-synk etter at 4 × 7-pakken er skrevet. Ingen personlig brukerstate endres av datarevisjonen."
+    },
+    "profile_decision": {
+      "profile": "normal",
+      "set_count": 4,
+      "questions_per_set": 7,
+      "justification": "Ti kontrollerte kilder og en kronologi fra 1805 til 2026 bærer 28 selvstendige påstander om bygrense, klasse, bygg, Æreslund, ritual, språk, kildebruk og vern uten å gjenta samme fakta."
+    },
+    "held_back_candidates": [
+      {
+        "candidate": "Napoleonskrigene som direkte årsak til etableringen",
+        "reason": "Den kontrollerte kilden dokumenterer reform, hygiene og plassering, men ikke denne entydige årsakskjeden."
+      },
+      {
+        "candidate": "Gravlunden ble stengt for nye graver i 1952",
+        "reason": "Påstanden motsies av dagens urnegravtilbud og er ikke støttet i de valgte kildene."
+      },
+      {
+        "candidate": "Alle kjente personer ligger i Æreslunden",
+        "reason": "Kommunens separate kart viser at mange historiske personer ligger utenfor feltet."
+      },
+      {
+        "candidate": "Bestemte arter dokumentert av parkpreget alene",
+        "reason": "Generisk vegetasjon eller nærhet er ikke artsbelegg."
+      }
+    ],
+    "theory_start_phase": "final",
+    "method_start_phase": "final"
   },
   "sets": [
     {
       "set_id": "historie_var_frelsers_gravlund_set_1",
+      "level": 1,
       "order": 1,
-      "mode": "history_intro_story",
+      "phase": "opening",
       "questions": [
         {
-          "id": "var_frelsers_gravlund_quiz_1",
+          "id": "var_frelsers_gravlund_quiz_01",
           "quiz_id": "historie_var_frelsers_gravlund_set_1_q1",
           "categoryId": "historie",
           "placeId": "var_frelsers_gravlund",
-          "personId": "",
-          "natureId": "",
           "targetId": "var_frelsers_gravlund",
           "question_scope": "place",
-          "question": "Hva gjør Vår Frelsers gravlund særlig viktig i norsk kulturhistorie?",
+          "question": "Når ble Vår Frelsers gravlund anlagt og tatt i bruk?",
           "options": [
-            "Den samler gravminner etter mange sentrale personer i norsk offentlighet",
-            "Den var hovedarena for ski-VM i 1952",
-            "Den ble bygget som flyplass for Oslo sentrum"
+            "Begge deler skjedde i 1805",
+            "Anlagt i 1807 og tatt i bruk sommeren 1808",
+            "Anlagt i 1811 og tatt i bruk i 1833"
           ],
-          "answer": "Den samler gravminner etter mange sentrale personer i norsk offentlighet",
-          "answerIndex": 0,
-          "dimension": "minnekultur",
-          "topic": "Nasjonalt minnelandskap",
-          "knowledge": "Vår Frelsers gravlund fungerer som et offentlig minnearkiv i stein. Gravminner, navn og plasseringer viser hvem samfunnet har valgt å huske.",
-          "trivia": [],
+          "answer": "Anlagt i 1807 og tatt i bruk sommeren 1808",
+          "answerIndex": 1,
+          "knowledge": "To årstall beskriver ulike trinn: arbeidet med gravlunden begynte i 1807, og de første gravleggingene fulgte sommeren 1808.",
           "difficulty": 1,
           "question_type": "fact",
-          "question_layer": "intro_story",
           "year": 1808,
-          "epoke_id": "1800_tall",
-          "epoke_domain": "historie",
-          "emne_id": "em_his_minnesteder_historiebruk",
-          "related_emner": [
-            "em_his_spor_materialitet",
-            "em_his_nasjonal_identitet_fortellinger"
-          ],
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "related_emners": [],
           "core_concepts": [
-            "minnekultur",
-            "gravminne",
-            "offentlighet"
+            "anleggelse",
+            "ibruktakelse"
           ],
           "concept_focus": [
-            "minnelandskap"
+            "anleggelse"
           ],
-          "learning_paths": [],
-          "tags": [
-            "var_frelsers_gravlund",
-            "minnekultur",
-            "gravminne",
-            "offentlighet"
-          ],
-          "required_tags": [
-            "external_source",
-            "history_anchor",
-            "em_his"
-          ],
+          "terms": [],
           "source": [
-            "Oslo kommune / Vår Frelsers gravlund",
-            "Store norske leksikon / Vår Frelsers gravlund",
-            "History Go place profile: var_frelsers_gravlund"
+            "oslo_vfg_current"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "Vår Frelsers gravlund rommer gravminner etter mange sentrale norske kultur- og samfunnspersoner.",
-          "guidance_basis": {
-            "emne_id": "em_his_minnesteder_historiebruk",
-            "method_id": "met_sporlesning",
-            "canonical_files_used_as_guidance_only": [
-              "data/fag/historie/emner_historie_canonical_v4_5.json",
-              "data/fag/historie/methods_historie_canonical_v4_5.json",
-              "data/fag/historie/supersetQUIZMAL_historie.json"
-            ]
-          },
-          "method_id": "met_sporlesning",
-          "history_anchor_type": "memorial_landscape",
-          "source_note": "Kildebasert historisk quizspørsmål med stedlig forankring.",
-          "external_source_ratio_target": 0.85,
-          "internal_file_only_allowed": false,
-          "requires_history_anchor": true,
-          "requires_external_claim_basis": true,
-          "validation": {
-            "emne_id_exists_in_emner_historie": true,
-            "method_id_exists_in_methods_historie": true,
-            "category_matches_badge": true,
-            "schema_extends_generic_supersetQUIZMAL": true
-          },
-          "primary_knowledge_unit_id": "ku_historie_var_frelsers_gravlund_fu_10e9f2e16b",
+          "source_origin": "external",
+          "claim_basis": "Vår Frelsers gravlund ble anlagt i 1807 og tatt i bruk sommeren 1808.",
+          "claim_id": "claim_vfg_quiz_01",
+          "learning_objective_id": "lo_historie_var_frelsers_01",
+          "evidence_type": "recall",
+          "feedback_basis": "Fasiten følger den resolverte påstanden og de gjennomgåtte kilde-ID-ene i produksjonsbriefen.",
+          "guidance_basis": [
+            "data/fag/historie/emner_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/supersetQUIZMAL_historie.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_to_arstall_beskriver_uli_befaeaa695",
           "knowledge_unit_ids": [
-            "ku_historie_var_frelsers_gravlund_fu_10e9f2e16b",
-            "ku_historie_gravminner_navn_og_plass_3d66f67d7c"
+            "ku_historie_to_arstall_beskriver_uli_befaeaa695"
           ],
           "concept_ids": [
-            "co_historie_minnekultur_a432302521",
-            "co_historie_gravminne_bc87052593",
-            "co_historie_offentlighet_89726fb9d6",
+            "co_historie_anleggelse_6009a5ac20",
+            "co_historie_ibruktakelse_e7fa411b7d"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "var_frelsers_gravlund_quiz_02",
+          "quiz_id": "historie_var_frelsers_gravlund_set_1_q2",
+          "categoryId": "historie",
+          "placeId": "var_frelsers_gravlund",
+          "targetId": "var_frelsers_gravlund",
+          "question_scope": "place",
+          "question": "Hvorfor ble den nye gravlunden lagt utenfor den tette byen?",
+          "options": [
+            "Reformen i 1805 flyttet gravlegging ut av kirker og kjøpsteder",
+            "Æreslunden måtte ligge ved et rådhus",
+            "Et ortodokst kirkebygg krevde et eget areal"
+          ],
+          "answer": "Reformen i 1805 flyttet gravlegging ut av kirker og kjøpsteder",
+          "answerIndex": 0,
+          "knowledge": "Plasseringen var del av en større endring i gravferd, hygiene og byplanlegging. Æreslunden og den ortodokse bruken kom langt senere.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "year": 1805,
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "related_emners": [],
+          "core_concepts": [
+            "gravferdsreform",
+            "bygrense"
+          ],
+          "concept_focus": [
+            "gravferdsreform"
+          ],
+          "terms": [],
+          "source": [
+            "byleksikon_gravlunder"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Reformen i 1805 forbød begravelser inne i kirkene og krevde gravplasser utenfor kjøpstedene.",
+          "claim_id": "claim_vfg_quiz_02",
+          "learning_objective_id": "lo_historie_var_frelsers_02",
+          "evidence_type": "recall",
+          "feedback_basis": "Fasiten følger den resolverte påstanden og de gjennomgåtte kilde-ID-ene i produksjonsbriefen.",
+          "guidance_basis": [
+            "data/fag/historie/emner_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/supersetQUIZMAL_historie.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_plasseringen_var_del_av__f2e724758c",
+          "knowledge_unit_ids": [
+            "ku_historie_plasseringen_var_del_av__f2e724758c",
+            "ku_historie_reslunden_og_den_ortodok_a44d25c73e"
+          ],
+          "concept_ids": [
+            "co_historie_gravferdsreform_e1fb350e4d",
+            "co_historie_bygrense_f9ce44edd4"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "var_frelsers_gravlund_quiz_03",
+          "quiz_id": "historie_var_frelsers_gravlund_set_1_q3",
+          "categoryId": "historie",
+          "placeId": "var_frelsers_gravlund",
+          "targetId": "var_frelsers_gravlund",
+          "question_scope": "place",
+          "question": "I hvilken periode var Vår Frelsers Christianias eneste gravplass?",
+          "options": [
+            "1805–1808",
+            "1839–1864",
+            "1811–1833"
+          ],
+          "answer": "1811–1833",
+          "answerIndex": 2,
+          "knowledge": "Perioden 1811–1833 viser hvor sentral gravlunden var før byen fikk flere gravplassalternativer. Det setter opplysningen inn i gravlundens dokumenterte historiske forløp.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "year": null,
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "related_emners": [],
+          "core_concepts": [
+            "gravplass",
+            "Christiania"
+          ],
+          "concept_focus": [
+            "gravplass"
+          ],
+          "terms": [],
+          "source": [
+            "snl_vfg"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Vår Frelsers var Christianias eneste gravplass fra 1811 til 1833.",
+          "claim_id": "claim_vfg_quiz_03",
+          "learning_objective_id": "lo_historie_var_frelsers_03",
+          "evidence_type": "recall",
+          "feedback_basis": "Fasiten følger den resolverte påstanden og de gjennomgåtte kilde-ID-ene i produksjonsbriefen.",
+          "guidance_basis": [
+            "data/fag/historie/emner_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/supersetQUIZMAL_historie.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_perioden_1811_1833_viser_3f4d2a42da",
+          "knowledge_unit_ids": [
+            "ku_historie_perioden_1811_1833_viser_3f4d2a42da",
+            "ku_historie_det_setter_opplysningen__20365f73e7"
+          ],
+          "concept_ids": [
+            "co_historie_gravplass_87da1afceb",
+            "co_historie_christiania_173e1620de"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "var_frelsers_gravlund_quiz_04",
+          "quiz_id": "historie_var_frelsers_gravlund_set_1_q4",
+          "categoryId": "historie",
+          "placeId": "var_frelsers_gravlund",
+          "targetId": "var_frelsers_gravlund",
+          "question_scope": "place",
+          "question": "Hva gjør landskapet lesbart som et fysisk historisk arkiv?",
+          "options": [
+            "Bare navnene på kjente personer",
+            "Gangveier, trær, gravminner og familiegraver sammen",
+            "Kun grensene på et moderne nettkart"
+          ],
+          "answer": "Gangveier, trær, gravminner og familiegraver sammen",
+          "answerIndex": 1,
+          "knowledge": "Gravlunden må leses som et samspill mellom rom, vegetasjon, monumenter og bruk. Ett navn eller ett kart alene gir ikke denne helheten.",
+          "difficulty": 1,
+          "question_type": "observation",
+          "year": null,
+          "emne_id": "em_his_spor_materialitet",
+          "related_emners": [],
+          "core_concepts": [
+            "materielt spor",
+            "minnelandskap"
+          ],
+          "concept_focus": [
+            "materielt spor"
+          ],
+          "terms": [],
+          "source": [
+            "oslo_vfg_current"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Gangveier, trær, gravminner og familiegraver gjør gravlunden lesbar som et fysisk historisk landskap.",
+          "claim_id": "claim_vfg_quiz_04",
+          "learning_objective_id": "lo_historie_var_frelsers_04",
+          "evidence_type": "recognize",
+          "feedback_basis": "Fasiten følger den resolverte påstanden og de gjennomgåtte kilde-ID-ene i produksjonsbriefen.",
+          "guidance_basis": [
+            "data/fag/historie/emner_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/supersetQUIZMAL_historie.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_gravlunden_ma_leses_som__013f88fa28",
+          "knowledge_unit_ids": [
+            "ku_historie_gravlunden_ma_leses_som__013f88fa28",
+            "ku_historie_ett_navn_eller_ett_kart__d5bd610f7f"
+          ],
+          "concept_ids": [
+            "co_historie_materielt_spor_a2f5e495f6",
             "co_historie_minnelandskap_6712650254"
           ],
           "term_ids": [],
@@ -130,191 +379,782 @@
           "knowledge_link_status": "linked"
         },
         {
-          "id": "var_frelsers_gravlund_quiz_2",
-          "quiz_id": "historie_var_frelsers_gravlund_set_1_q2",
+          "id": "var_frelsers_gravlund_quiz_05",
+          "quiz_id": "historie_var_frelsers_gravlund_set_1_q5",
           "categoryId": "historie",
           "placeId": "var_frelsers_gravlund",
-          "personId": "",
-          "natureId": "",
           "targetId": "var_frelsers_gravlund",
           "question_scope": "place",
-          "question": "Når ble Vår Frelsers gravlund tatt i bruk som historisk gravlund i Oslo?",
+          "question": "Hvordan henger Æreslunden sammen med Vår Frelsers gravlund?",
           "options": [
-            "1808",
-            "1299",
-            "1945"
+            "Den er ett avgrenset felt inne på gravlunden",
+            "Den er et annet navn på hele gravlunden",
+            "Den ligger på Ankerløkken"
           ],
-          "answer": "1808",
+          "answer": "Den er ett avgrenset felt inne på gravlunden",
           "answerIndex": 0,
-          "dimension": "tidslinje",
-          "topic": "Anleggelse",
-          "knowledge": "Gravlunden ble tatt i bruk tidlig på 1800-tallet. Den hører derfor til en fase der Christiania vokste og fikk nye institusjoner for offentlig liv, død og minne.",
-          "trivia": [],
+          "knowledge": "Æreslunden er en kuratert del av et mye større gravlundsareal. Mange kjente personer ligger utenfor feltet.",
           "difficulty": 1,
           "question_type": "fact",
-          "question_layer": "local_history",
-          "year": 1808,
-          "epoke_id": "1800_tall",
-          "epoke_domain": "historie",
-          "emne_id": "em_his_historiske_lag_i_byrom",
-          "related_emner": [
-            "em_his_minnesteder_historiebruk",
-            "em_his_spor_materialitet"
-          ],
+          "year": null,
+          "emne_id": "em_his_minnesteder_historiebruk",
+          "related_emners": [],
           "core_concepts": [
-            "gravlund",
-            "1800-tall",
-            "byhistorie"
+            "Æreslunden",
+            "avgrensning"
           ],
           "concept_focus": [
-            "periodisering"
+            "Æreslunden"
           ],
-          "learning_paths": [],
-          "tags": [
-            "var_frelsers_gravlund",
-            "gravlund",
-            "1800-tall",
-            "byhistorie"
-          ],
-          "required_tags": [
-            "external_source",
-            "history_anchor",
-            "em_his"
+          "terms": [
+            "æreslund"
           ],
           "source": [
-            "Oslo kommune / Vår Frelsers gravlund",
-            "Store norske leksikon / Vår Frelsers gravlund",
-            "History Go place profile: var_frelsers_gravlund"
+            "oslo_vfg_map_all",
+            "oslo_vfg_map_honor"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "Vår Frelsers gravlund ble tatt i bruk i 1808.",
-          "guidance_basis": {
-            "emne_id": "em_his_historiske_lag_i_byrom",
-            "method_id": "met_periodisering",
-            "canonical_files_used_as_guidance_only": [
-              "data/fag/historie/emner_historie_canonical_v4_5.json",
-              "data/fag/historie/methods_historie_canonical_v4_5.json",
-              "data/fag/historie/supersetQUIZMAL_historie.json"
-            ]
-          },
-          "method_id": "met_periodisering",
-          "history_anchor_type": "period_anchor",
-          "source_note": "Kildebasert historisk quizspørsmål med stedlig forankring.",
-          "external_source_ratio_target": 0.85,
-          "internal_file_only_allowed": false,
-          "requires_history_anchor": true,
-          "requires_external_claim_basis": true,
-          "validation": {
-            "emne_id_exists_in_emner_historie": true,
-            "method_id_exists_in_methods_historie": true,
-            "category_matches_badge": true,
-            "schema_extends_generic_supersetQUIZMAL": true
-          },
-          "primary_knowledge_unit_id": "ku_historie_gravlunden_ble_tatt_i_br_62bf7dc6b7",
+          "source_origin": "external",
+          "claim_basis": "Æreslunden er et avgrenset felt inne på Vår Frelsers gravlund, ikke et navn på hele gravlunden.",
+          "claim_id": "claim_vfg_quiz_05",
+          "learning_objective_id": "lo_historie_var_frelsers_05",
+          "evidence_type": "recall",
+          "feedback_basis": "Fasiten følger den resolverte påstanden og de gjennomgåtte kilde-ID-ene i produksjonsbriefen.",
+          "guidance_basis": [
+            "data/fag/historie/emner_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/supersetQUIZMAL_historie.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_reslunden_er_en_kuratert_e6904cf6cf",
           "knowledge_unit_ids": [
-            "ku_historie_gravlunden_ble_tatt_i_br_62bf7dc6b7",
-            "ku_historie_den_h_rer_derfor_til_en__692e34665b"
+            "ku_historie_reslunden_er_en_kuratert_e6904cf6cf",
+            "ku_historie_mange_kjente_personer_li_ff3aa7925b"
           ],
           "concept_ids": [
-            "co_historie_gravlund_136fa7b9f6",
-            "co_historie_1800_tall_c14a28aded",
-            "co_historie_byhistorie_33b40a0348",
-            "co_historie_periodisering_141a297ede"
+            "co_historie_reslunden_b11a3fb12e",
+            "co_historie_avgrensning_973d1766d4"
+          ],
+          "term_ids": [
+            "term_historie_reslund_6afbdf4e81"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "var_frelsers_gravlund_quiz_06",
+          "quiz_id": "historie_var_frelsers_gravlund_set_1_q6",
+          "categoryId": "historie",
+          "placeId": "var_frelsers_gravlund",
+          "targetId": "var_frelsers_gravlund",
+          "question_scope": "place",
+          "question": "Hvilken gravtype oppgir Oslo kommune som tilgjengelig på Vår Frelsers i dag?",
+          "options": [
+            "Bare nye kistegraver",
+            "Bare familiegraver fra før 1900",
+            "Urnegrav"
+          ],
+          "answer": "Urnegrav",
+          "answerIndex": 2,
+          "knowledge": "Kommunen opplyser at alle kan gravlegges her, men det nåværende tilbudet gjelder urnegraver. Aktiv bruk og kulturminnevern virker derfor samtidig.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "year": 2026,
+          "emne_id": "em_his_kulturminner_bevaring",
+          "related_emners": [],
+          "core_concepts": [
+            "urnegrav",
+            "aktiv gravplass"
+          ],
+          "concept_focus": [
+            "urnegrav"
+          ],
+          "terms": [
+            "urnegrav"
+          ],
+          "source": [
+            "oslo_vfg_current"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Oslo kommune opplyser at alle kan gravlegges på Vår Frelsers, og at tilgjengelig gravtype er urnegrav.",
+          "claim_id": "claim_vfg_quiz_06",
+          "learning_objective_id": "lo_historie_var_frelsers_06",
+          "evidence_type": "recall",
+          "feedback_basis": "Fasiten følger den resolverte påstanden og de gjennomgåtte kilde-ID-ene i produksjonsbriefen.",
+          "guidance_basis": [
+            "data/fag/historie/emner_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/supersetQUIZMAL_historie.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_kommunen_opplyser_at_all_f2794e4a65",
+          "knowledge_unit_ids": [
+            "ku_historie_kommunen_opplyser_at_all_f2794e4a65",
+            "ku_historie_aktiv_bruk_og_kulturminn_700929624e"
+          ],
+          "concept_ids": [
+            "co_historie_urnegrav_576bd4d62b",
+            "co_historie_aktiv_gravplass_36a68868a3"
+          ],
+          "term_ids": [
+            "term_historie_urnegrav_576bd4d62b"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "var_frelsers_gravlund_quiz_07",
+          "quiz_id": "historie_var_frelsers_gravlund_set_1_q7",
+          "categoryId": "historie",
+          "placeId": "var_frelsers_gravlund",
+          "targetId": "var_frelsers_gravlund",
+          "question_scope": "place",
+          "question": "Hvorfor trenger du begge de kommunale personkartene?",
+          "options": [
+            "Det ene viser trær og det andre bare veier",
+            "De skiller hele gravlundens historiske personer fra personene i Æreslunden",
+            "De viser gravlunden i to ulike byer"
+          ],
+          "answer": "De skiller hele gravlundens historiske personer fra personene i Æreslunden",
+          "answerIndex": 1,
+          "knowledge": "Kartene har forskjellig utvalg. Sammen motvirker de den vanlige feilen å plassere alle kjente graver i Æreslunden.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "year": null,
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "related_emners": [],
+          "core_concepts": [
+            "kartkilde",
+            "utvalg"
+          ],
+          "concept_focus": [
+            "kartkilde"
+          ],
+          "terms": [],
+          "source": [
+            "oslo_vfg_map_all",
+            "oslo_vfg_map_honor"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kommunens to separate kart må brukes sammen for å skille historiske personer på hele gravlunden fra personene i Æreslunden.",
+          "claim_id": "claim_vfg_quiz_07",
+          "learning_objective_id": "lo_historie_var_frelsers_07",
+          "evidence_type": "recall",
+          "feedback_basis": "Fasiten følger den resolverte påstanden og de gjennomgåtte kilde-ID-ene i produksjonsbriefen.",
+          "guidance_basis": [
+            "data/fag/historie/emner_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/supersetQUIZMAL_historie.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_kartene_har_forskjellig__6adc968259",
+          "knowledge_unit_ids": [
+            "ku_historie_kartene_har_forskjellig__6adc968259",
+            "ku_historie_sammen_motvirker_de_den__887c5268af"
+          ],
+          "concept_ids": [
+            "co_historie_kartkilde_93d22785a2",
+            "co_historie_utvalg_08b50e3ec0"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "historie_var_frelsers_gravlund_set_2",
+      "level": 2,
+      "order": 2,
+      "phase": "middle",
+      "questions": [
+        {
+          "id": "var_frelsers_gravlund_quiz_08",
+          "quiz_id": "historie_var_frelsers_gravlund_set_2_q1",
+          "categoryId": "historie",
+          "placeId": "var_frelsers_gravlund",
+          "targetId": "var_frelsers_gravlund",
+          "question_scope": "place",
+          "question": "Hvilken rekke gjengir de dokumenterte utvidelsesårene?",
+          "options": [
+            "1811, 1824, 1865, 1873 og 1881",
+            "1805, 1808, 1903, 1969 og 2009",
+            "1833, 1839, 1864, 1981 og 2004"
+          ],
+          "answer": "1811, 1824, 1865, 1873 og 1881",
+          "answerIndex": 0,
+          "knowledge": "Utvidelsene kom i flere omganger gjennom 1800-tallet og gjør byvekst og arealbehov synlig i selve gravlundens form.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "related_emners": [],
+          "core_concepts": [
+            "utvidelse",
+            "byvekst"
+          ],
+          "concept_focus": [
+            "utvidelse"
+          ],
+          "terms": [],
+          "source": [
+            "snl_vfg"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Gravlunden ble utvidet i 1811, 1824, 1865, 1873 og 1881.",
+          "claim_id": "claim_vfg_quiz_08",
+          "learning_objective_id": "lo_historie_var_frelsers_08",
+          "evidence_type": "recall",
+          "feedback_basis": "Fasiten følger den resolverte påstanden og de gjennomgåtte kilde-ID-ene i produksjonsbriefen.",
+          "guidance_basis": [
+            "data/fag/historie/emner_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/supersetQUIZMAL_historie.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_utvidelsene_kom_i_flere__eb540639e4",
+          "knowledge_unit_ids": [
+            "ku_historie_utvidelsene_kom_i_flere__eb540639e4"
+          ],
+          "concept_ids": [
+            "co_historie_utvidelse_dd029a8517",
+            "co_historie_byvekst_e996699094"
           ],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
         },
         {
-          "id": "var_frelsers_gravlund_quiz_3",
-          "quiz_id": "historie_var_frelsers_gravlund_set_1_q3",
+          "id": "var_frelsers_gravlund_quiz_09",
+          "quiz_id": "historie_var_frelsers_gravlund_set_2_q2",
           "categoryId": "historie",
           "placeId": "var_frelsers_gravlund",
-          "personId": "",
-          "natureId": "",
           "targetId": "var_frelsers_gravlund",
           "question_scope": "place",
-          "question": "Hva er Æreslunden på Vår Frelsers gravlund?",
+          "question": "Hva var klassekontrasten mellom Ankerløkken og Vår Frelsers fra 1839?",
           "options": [
-            "Et æresfelt for særlig sentrale personer i norsk historie og offentlighet",
-            "Et middelaldermarked for handel med fisk",
-            "En gammel militær skytebane"
+            "Begge var forbeholdt de samme festede familiegravene",
+            "Ankerløkken var æreslund, mens Vår Frelsers var militærgravplass",
+            "Fattiggraver dominerte på Ankerløkken, mens festede familiegraver preget Vår Frelsers"
           ],
-          "answer": "Et æresfelt for særlig sentrale personer i norsk historie og offentlighet",
-          "answerIndex": 0,
-          "dimension": "minne",
-          "topic": "Æreslunden",
-          "knowledge": "Æreslunden gjør gravlunden til et tydelig sted for nasjonal minnekultur. Her blir historisk betydning markert gjennom gravplassering, navn og offentlig oppmerksomhet.",
-          "trivia": [],
-          "difficulty": 1,
-          "question_type": "fact",
-          "question_layer": "people_events_memory",
-          "year": null,
-          "epoke_id": "moderne_tid",
-          "epoke_domain": "historie",
-          "emne_id": "em_his_minnesteder_historiebruk",
-          "related_emner": [
-            "em_his_nasjonal_identitet_fortellinger",
-            "em_his_spor_materialitet"
-          ],
+          "answer": "Fattiggraver dominerte på Ankerløkken, mens festede familiegraver preget Vår Frelsers",
+          "answerIndex": 2,
+          "knowledge": "Sammenligningen viser at gravplasser også fordelte synlighet og varighet sosialt. Den sier mer enn en liste over berømte navn.",
+          "difficulty": 2,
+          "question_type": "comparison",
+          "year": 1839,
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "related_emners": [],
           "core_concepts": [
-            "Æreslunden",
-            "nasjonalt minne",
-            "offentlig historie"
+            "klasse",
+            "festegrav"
           ],
           "concept_focus": [
-            "historiebruk"
+            "klasse"
           ],
-          "learning_paths": [],
-          "tags": [
-            "var_frelsers_gravlund",
-            "Æreslunden",
-            "nasjonalt minne",
-            "offentlig historie"
-          ],
-          "required_tags": [
-            "external_source",
-            "history_anchor",
-            "em_his"
+          "terms": [
+            "fattiggrav",
+            "festegrav"
           ],
           "source": [
-            "Oslo kommune / Vår Frelsers gravlund",
-            "Store norske leksikon / Vår Frelsers gravlund",
-            "History Go place profile: var_frelsers_gravlund"
+            "byleksikon_gravlunder"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "Æreslunden er et æresfelt knyttet til sentrale personer i norsk historie og offentlighet.",
-          "guidance_basis": {
-            "emne_id": "em_his_minnesteder_historiebruk",
-            "method_id": "met_kildekritikk",
-            "canonical_files_used_as_guidance_only": [
-              "data/fag/historie/emner_historie_canonical_v4_5.json",
-              "data/fag/historie/methods_historie_canonical_v4_5.json",
-              "data/fag/historie/supersetQUIZMAL_historie.json"
-            ]
-          },
-          "method_id": "met_kildekritikk",
-          "history_anchor_type": "memorial_landscape",
-          "source_note": "Kildebasert historisk quizspørsmål med stedlig forankring.",
-          "external_source_ratio_target": 0.85,
-          "internal_file_only_allowed": false,
-          "requires_history_anchor": true,
-          "requires_external_claim_basis": true,
-          "validation": {
-            "emne_id_exists_in_emner_historie": true,
-            "method_id_exists_in_methods_historie": true,
-            "category_matches_badge": true,
-            "schema_extends_generic_supersetQUIZMAL": true
-          },
-          "primary_knowledge_unit_id": "ku_historie_reslunden_gj_r_gravlunde_fab3242e62",
+          "source_origin": "external",
+          "claim_basis": "Fra 1839 dominerte fattiggravene på Ankerløkken, mens Vår Frelsers nesten bare var forbeholdt festede familiegraver.",
+          "claim_id": "claim_vfg_quiz_09",
+          "learning_objective_id": "lo_historie_var_frelsers_09",
+          "evidence_type": "compare",
+          "feedback_basis": "Fasiten følger den resolverte påstanden og de gjennomgåtte kilde-ID-ene i produksjonsbriefen.",
+          "guidance_basis": [
+            "data/fag/historie/emner_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/supersetQUIZMAL_historie.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_sammenligningen_viser_at_7383f97877",
           "knowledge_unit_ids": [
-            "ku_historie_reslunden_gj_r_gravlunde_fab3242e62",
-            "ku_historie_her_blir_historisk_betyd_5c41a3c8ac"
+            "ku_historie_sammenligningen_viser_at_7383f97877",
+            "ku_historie_den_sier_mer_enn_en_list_aa9f420a75"
+          ],
+          "concept_ids": [
+            "co_historie_klasse_4d76cebce0",
+            "co_historie_festegrav_50a8b0505d"
+          ],
+          "term_ids": [
+            "term_historie_fattiggrav_3a8213bccf",
+            "term_historie_festegrav_50a8b0505d"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "var_frelsers_gravlund_quiz_10",
+          "quiz_id": "historie_var_frelsers_gravlund_set_2_q3",
+          "categoryId": "historie",
+          "placeId": "var_frelsers_gravlund",
+          "targetId": "var_frelsers_gravlund",
+          "question_scope": "place",
+          "question": "Hva ble oppført på gravlunden i 1864?",
+          "options": [
+            "En jernbanestasjon og et posthus",
+            "Et likkapell og en graverbolig",
+            "Et nytt rådhus og et museum"
+          ],
+          "answer": "Et likkapell og en graverbolig",
+          "answerIndex": 1,
+          "knowledge": "Bygningen samlet praktiske og seremonielle funksjoner knyttet til gravferd. Senere endret den både form og bruk.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": 1864,
+          "emne_id": "em_his_spor_materialitet",
+          "related_emners": [],
+          "core_concepts": [
+            "likkapell",
+            "graverbolig"
+          ],
+          "concept_focus": [
+            "likkapell"
+          ],
+          "terms": [
+            "likkapell"
+          ],
+          "source": [
+            "snl_vfg",
+            "byleksikon_chapel"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Et likkapell og en graverbolig ble oppført på gravlunden i 1864.",
+          "claim_id": "claim_vfg_quiz_10",
+          "learning_objective_id": "lo_historie_var_frelsers_10",
+          "evidence_type": "recall",
+          "feedback_basis": "Fasiten følger den resolverte påstanden og de gjennomgåtte kilde-ID-ene i produksjonsbriefen.",
+          "guidance_basis": [
+            "data/fag/historie/emner_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/supersetQUIZMAL_historie.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_bygningen_samlet_praktis_0319a37115",
+          "knowledge_unit_ids": [
+            "ku_historie_bygningen_samlet_praktis_0319a37115",
+            "ku_historie_senere_endret_den_bade_f_63fdfbf936"
+          ],
+          "concept_ids": [
+            "co_historie_likkapell_dca51086c6",
+            "co_historie_graverbolig_331115cecd"
+          ],
+          "term_ids": [
+            "term_historie_likkapell_dca51086c6"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "var_frelsers_gravlund_quiz_11",
+          "quiz_id": "historie_var_frelsers_gravlund_set_2_q4",
+          "categoryId": "historie",
+          "placeId": "var_frelsers_gravlund",
+          "targetId": "var_frelsers_gravlund",
+          "question_scope": "place",
+          "question": "Hva skjedde med det tidligere gravkapellet i 2004?",
+          "options": [
+            "Det ble vigslet som ortodoks kirke",
+            "Det ble flyttet til Ankerløkken",
+            "Det ble omgjort til rådhus"
+          ],
+          "answer": "Det ble vigslet som ortodoks kirke",
+          "answerIndex": 0,
+          "knowledge": "Et bygg fra 1800-tallets gravferdspraksis fikk en ny religiøs bruk. Det viser endring uten at bygget mistet forbindelsen til stedet.",
+          "difficulty": 2,
+          "question_type": "context",
+          "year": 2004,
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "related_emners": [],
+          "core_concepts": [
+            "ombruk",
+            "ortodoks kirke"
+          ],
+          "concept_focus": [
+            "ombruk"
+          ],
+          "terms": [
+            "vigsling"
+          ],
+          "source": [
+            "snl_vfg",
+            "byleksikon_chapel"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Det tidligere gravkapellet ble vigslet som ortodoks kirke i 2004 og fikk dermed en ny religiøs bruk.",
+          "claim_id": "claim_vfg_quiz_11",
+          "learning_objective_id": "lo_historie_var_frelsers_11",
+          "evidence_type": "connect",
+          "feedback_basis": "Fasiten følger den resolverte påstanden og de gjennomgåtte kilde-ID-ene i produksjonsbriefen.",
+          "guidance_basis": [
+            "data/fag/historie/emner_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/supersetQUIZMAL_historie.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_et_bygg_fra_1800_tallets_205412440b",
+          "knowledge_unit_ids": [
+            "ku_historie_et_bygg_fra_1800_tallets_205412440b",
+            "ku_historie_det_viser_endring_uten_a_79926ebab1"
+          ],
+          "concept_ids": [
+            "co_historie_ombruk_f3c7adb3a9",
+            "co_historie_ortodoks_kirke_c7ad5363e0"
+          ],
+          "term_ids": [
+            "term_historie_vigsling_9b6c0629e5"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "var_frelsers_gravlund_quiz_12",
+          "quiz_id": "historie_var_frelsers_gravlund_set_2_q5",
+          "categoryId": "historie",
+          "placeId": "var_frelsers_gravlund",
+          "targetId": "var_frelsers_gravlund",
+          "question_scope": "place",
+          "question": "Når ble ideen om en egen æreslund fremsatt?",
+          "options": [
+            "I 1805",
+            "I 1969",
+            "I 1903"
+          ],
+          "answer": "I 1903",
+          "answerIndex": 2,
+          "knowledge": "Æreslunden er et senere minnepolitisk lag, ikke en del av den opprinnelige planen fra 1807–1808. Det setter opplysningen inn i gravlundens dokumenterte historiske forløp.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": 1903,
+          "emne_id": "em_his_minnesteder_historiebruk",
+          "related_emners": [],
+          "core_concepts": [
+            "Æreslunden",
+            "minnepolitikk"
+          ],
+          "concept_focus": [
+            "Æreslunden"
+          ],
+          "terms": [
+            "æreslund"
+          ],
+          "source": [
+            "snl_vfg",
+            "byleksikon_honor"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Ideen om en egen æreslund for betydelige kvinner og menn ble fremsatt i 1903.",
+          "claim_id": "claim_vfg_quiz_12",
+          "learning_objective_id": "lo_historie_var_frelsers_12",
+          "evidence_type": "recall",
+          "feedback_basis": "Fasiten følger den resolverte påstanden og de gjennomgåtte kilde-ID-ene i produksjonsbriefen.",
+          "guidance_basis": [
+            "data/fag/historie/emner_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/supersetQUIZMAL_historie.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_reslunden_er_et_senere_m_1b2ecd2b64",
+          "knowledge_unit_ids": [
+            "ku_historie_reslunden_er_et_senere_m_1b2ecd2b64",
+            "ku_historie_det_setter_opplysningen__20365f73e7"
           ],
           "concept_ids": [
             "co_historie_reslunden_b11a3fb12e",
-            "co_historie_nasjonalt_minne_f644aed5dc",
-            "co_historie_offentlig_historie_aaf9ba3d9f",
+            "co_historie_minnepolitikk_b8fe7df0a6"
+          ],
+          "term_ids": [
+            "term_historie_reslund_6afbdf4e81"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "var_frelsers_gravlund_quiz_13",
+          "quiz_id": "historie_var_frelsers_gravlund_set_2_q6",
+          "categoryId": "historie",
+          "placeId": "var_frelsers_gravlund",
+          "targetId": "var_frelsers_gravlund",
+          "question_scope": "place",
+          "question": "Hva gjelder for nye graver i Æreslunden etter 1981?",
+          "options": [
+            "Det er opprettet én hvert år",
+            "Det er ikke opprettet nye graver der",
+            "Alle urnegraver legges automatisk der"
+          ],
+          "answer": "Det er ikke opprettet nye graver der",
+          "answerIndex": 1,
+          "knowledge": "Stansen gjør Æreslunden til et historisk avgrenset utvalg. Den gjelder feltet, ikke hele gravlundens urnegravtilbud.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": 1981,
+          "emne_id": "em_his_minnesteder_historiebruk",
+          "related_emners": [],
+          "core_concepts": [
+            "utvelgelse",
+            "avgrensning"
+          ],
+          "concept_focus": [
+            "utvelgelse"
+          ],
+          "terms": [],
+          "source": [
+            "snl_vfg",
+            "byleksikon_honor"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Det er ikke opprettet nye graver i Æreslunden etter 1981.",
+          "claim_id": "claim_vfg_quiz_13",
+          "learning_objective_id": "lo_historie_var_frelsers_13",
+          "evidence_type": "recall",
+          "feedback_basis": "Fasiten følger den resolverte påstanden og de gjennomgåtte kilde-ID-ene i produksjonsbriefen.",
+          "guidance_basis": [
+            "data/fag/historie/emner_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/supersetQUIZMAL_historie.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_stansen_gj_r_reslunden_t_d83f165286",
+          "knowledge_unit_ids": [
+            "ku_historie_stansen_gj_r_reslunden_t_d83f165286",
+            "ku_historie_den_gjelder_feltet_ikke__baad5c9fa1"
+          ],
+          "concept_ids": [
+            "co_historie_utvelgelse_dad3f90c1e",
+            "co_historie_avgrensning_973d1766d4"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "var_frelsers_gravlund_quiz_14",
+          "quiz_id": "historie_var_frelsers_gravlund_set_2_q7",
+          "categoryId": "historie",
+          "placeId": "var_frelsers_gravlund",
+          "targetId": "var_frelsers_gravlund",
+          "question_scope": "place",
+          "question": "Hva var en viktig følge av den midlertidige fredningen fra 1969?",
+          "options": [
+            "Nye gravsteder ble begrenset, og bruk måtte forhandles med vern",
+            "Hele gravlunden ble flyttet",
+            "Alle monumenter ble erstattet av like steiner"
+          ],
+          "answer": "Nye gravsteder ble begrenset, og bruk måtte forhandles med vern",
+          "answerIndex": 0,
+          "knowledge": "Fredningen endret handlingsrommet, men gjorde ikke gravlunden til et urørt museum. Drift, urnegraver og vedlikehold fortsatte.",
+          "difficulty": 2,
+          "question_type": "context",
+          "year": 1969,
+          "emne_id": "em_his_kulturminner_bevaring",
+          "related_emners": [],
+          "core_concepts": [
+            "fredning",
+            "bruk og vern"
+          ],
+          "concept_focus": [
+            "fredning"
+          ],
+          "terms": [
+            "fredning"
+          ],
+          "source": [
+            "snl_vfg"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Midlertidig fredning fra 1969 begrenset opprettelsen av nye gravsteder og endret forholdet mellom bruk og vern.",
+          "claim_id": "claim_vfg_quiz_14",
+          "learning_objective_id": "lo_historie_var_frelsers_14",
+          "evidence_type": "connect",
+          "feedback_basis": "Fasiten følger den resolverte påstanden og de gjennomgåtte kilde-ID-ene i produksjonsbriefen.",
+          "guidance_basis": [
+            "data/fag/historie/emner_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/supersetQUIZMAL_historie.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_fredningen_endret_handli_6d5080bb1c",
+          "knowledge_unit_ids": [
+            "ku_historie_fredningen_endret_handli_6d5080bb1c",
+            "ku_historie_drift_urnegraver_og_vedl_a336f2101e"
+          ],
+          "concept_ids": [
+            "co_historie_fredning_32a8a51721",
+            "co_historie_bruk_og_vern_f03f2a08d8"
+          ],
+          "term_ids": [
+            "term_historie_fredning_32a8a51721"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "historie_var_frelsers_gravlund_set_3",
+      "level": 3,
+      "order": 3,
+      "phase": "bridge",
+      "questions": [
+        {
+          "id": "var_frelsers_gravlund_quiz_15",
+          "quiz_id": "historie_var_frelsers_gravlund_set_3_q1",
+          "categoryId": "historie",
+          "placeId": "var_frelsers_gravlund",
+          "targetId": "var_frelsers_gravlund",
+          "question_scope": "place",
+          "question": "Hvordan begynte bekransningene på gravlunden 17. mai 2026?",
+          "options": [
+            "Ved Ibsens grav med en militærparade",
+            "Ved Wergelands grav med taler fra to skoleelever",
+            "Ved Æreslunden med åpning av en ny grav"
+          ],
+          "answer": "Ved Wergelands grav med taler fra to skoleelever",
+          "answerIndex": 1,
+          "knowledge": "Elevenes taler gjorde et historisk gravsted til en scene for nye stemmer før barnetoget startet. Det setter opplysningen inn i gravlundens dokumenterte historiske forløp.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": 2026,
+          "emne_id": "em_his_minnesteder_historiebruk",
+          "related_emners": [],
+          "core_concepts": [
+            "bekransning",
+            "elevstemmer"
+          ],
+          "concept_focus": [
+            "bekransning"
+          ],
+          "terms": [
+            "bekransning"
+          ],
+          "source": [
+            "oslo_wreaths_2026"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Bekransningene 17. mai 2026 begynte ved Henrik Wergelands grav med taler fra to elever ved Bygdøy skole.",
+          "claim_id": "claim_vfg_quiz_15",
+          "learning_objective_id": "lo_historie_var_frelsers_15",
+          "evidence_type": "recall",
+          "feedback_basis": "Fasiten følger den resolverte påstanden og de gjennomgåtte kilde-ID-ene i produksjonsbriefen.",
+          "guidance_basis": [
+            "data/fag/historie/emner_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/supersetQUIZMAL_historie.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_elevenes_taler_gjorde_et_0310227c21",
+          "knowledge_unit_ids": [
+            "ku_historie_elevenes_taler_gjorde_et_0310227c21",
+            "ku_historie_det_setter_opplysningen__20365f73e7"
+          ],
+          "concept_ids": [
+            "co_historie_bekransning_b0272db22b",
+            "co_historie_elevstemmer_87e505414e"
+          ],
+          "term_ids": [
+            "term_historie_bekransning_b0272db22b"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "var_frelsers_gravlund_quiz_16",
+          "quiz_id": "historie_var_frelsers_gravlund_set_3_q2",
+          "categoryId": "historie",
+          "placeId": "var_frelsers_gravlund",
+          "targetId": "var_frelsers_gravlund",
+          "question_scope": "place",
+          "question": "Hvilket historisk lag ble særlig tydelig ved fellesgraven til Hansteen og Wickstrøm?",
+          "options": [
+            "Middelalderens kirkebygging",
+            "Førindustriell sjøhandel",
+            "Okkupasjons- og motstandshistorie"
+          ],
+          "answer": "Okkupasjons- og motstandshistorie",
+          "answerIndex": 2,
+          "knowledge": "Hansteen og Wickstrøm ble henrettet under okkupasjonen. Bekransningen binder 17. mai til motstand, arbeid og politisk vold.",
+          "difficulty": 2,
+          "question_type": "context",
+          "year": 2026,
+          "emne_id": "em_his_minnesteder_historiebruk",
+          "related_emners": [],
+          "core_concepts": [
+            "okkupasjon",
+            "motstand"
+          ],
+          "concept_focus": [
+            "okkupasjon"
+          ],
+          "terms": [],
+          "source": [
+            "oslo_wreaths_2026"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Bekransningen ved fellesgraven til Viggo Hansteen og Rolf Wickstrøm knytter 17. mai-ritualet til okkupasjons- og motstandshistorie.",
+          "claim_id": "claim_vfg_quiz_16",
+          "learning_objective_id": "lo_historie_var_frelsers_16",
+          "evidence_type": "connect",
+          "feedback_basis": "Fasiten følger den resolverte påstanden og de gjennomgåtte kilde-ID-ene i produksjonsbriefen.",
+          "guidance_basis": [
+            "data/fag/historie/emner_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/supersetQUIZMAL_historie.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_hansteen_og_wickstr_m_bl_8dd6d92311",
+          "knowledge_unit_ids": [
+            "ku_historie_hansteen_og_wickstr_m_bl_8dd6d92311",
+            "ku_historie_bekransningen_binder_17__eb0d815bdb"
+          ],
+          "concept_ids": [
+            "co_historie_okkupasjon_89e7ed21f1",
+            "co_historie_motstand_4fbbcd986f"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "var_frelsers_gravlund_quiz_17",
+          "quiz_id": "historie_var_frelsers_gravlund_set_3_q3",
+          "categoryId": "historie",
+          "placeId": "var_frelsers_gravlund",
+          "targetId": "var_frelsers_gravlund",
+          "question_scope": "place",
+          "question": "Hva tilfører Anna Rogstads grav til minnevandringen?",
+          "options": [
+            "Et spor om kvinners politiske representasjon",
+            "Et spor om middelalderens klosterliv",
+            "Et spor om dampskipstrafikk"
+          ],
+          "answer": "Et spor om kvinners politiske representasjon",
+          "answerIndex": 0,
+          "knowledge": "Rogstad var knyttet til politisk representasjon. At hennes grav avsluttet programmet i 2026 gjør også utvalget av stemmer og tema synlig.",
+          "difficulty": 2,
+          "question_type": "context",
+          "year": 2026,
+          "emne_id": "em_his_nasjonal_identitet_fortellinger",
+          "related_emners": [],
+          "core_concepts": [
+            "representasjon",
+            "historiebruk"
+          ],
+          "concept_focus": [
+            "representasjon"
+          ],
+          "terms": [],
+          "source": [
+            "oslo_wreaths_2026"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Anna Rogstads grav var siste stopp i gravlundens bekransningsprogram 17. mai 2026 og førte kvinners politiske representasjon inn i minnevandringen.",
+          "claim_id": "claim_vfg_quiz_17",
+          "learning_objective_id": "lo_historie_var_frelsers_17",
+          "evidence_type": "connect",
+          "feedback_basis": "Fasiten følger den resolverte påstanden og de gjennomgåtte kilde-ID-ene i produksjonsbriefen.",
+          "guidance_basis": [
+            "data/fag/historie/emner_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/supersetQUIZMAL_historie.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_rogstad_var_knyttet_til__df52dd6c02",
+          "knowledge_unit_ids": [
+            "ku_historie_rogstad_var_knyttet_til__df52dd6c02",
+            "ku_historie_at_hennes_grav_avsluttet_0b78c8d89b"
+          ],
+          "concept_ids": [
+            "co_historie_representasjon_9b7e501e30",
             "co_historie_historiebruk_fda8c699f4"
           ],
           "term_ids": [],
@@ -322,191 +1162,718 @@
           "knowledge_link_status": "linked"
         },
         {
-          "id": "var_frelsers_gravlund_quiz_4",
-          "quiz_id": "historie_var_frelsers_gravlund_set_1_q4",
+          "id": "var_frelsers_gravlund_quiz_18",
+          "quiz_id": "historie_var_frelsers_gravlund_set_3_q4",
           "categoryId": "historie",
           "placeId": "var_frelsers_gravlund",
-          "personId": "",
-          "natureId": "",
           "targetId": "var_frelsers_gravlund",
           "question_scope": "place",
-          "question": "Hvorfor kan gravminner brukes som historiske kilder?",
+          "question": "Hva dokumenterer teksten «Christiania. Fra Vor Frelsers Gravlund.» på postkortet?",
           "options": [
-            "De viser navn, datoer, sosial status, minnepraksis og hvem samfunnet har valgt å huske",
-            "De viser bare moderne veiskilt",
-            "De inneholder ingen historisk informasjon"
+            "At gravlunden lå i Danmark",
+            "Eldre bynavn og skrivemåte omkring 1915–1920",
+            "At Æreslunden ble grunnlagt i middelalderen"
           ],
-          "answer": "De viser navn, datoer, sosial status, minnepraksis og hvem samfunnet har valgt å huske",
-          "answerIndex": 0,
-          "dimension": "kilde",
-          "topic": "Gravminner som spor",
-          "knowledge": "Gravminner er materielle kilder. De kan fortelle om sosial status, familie, offentlig anerkjennelse, stil, epoke og endringer i minnekultur.",
-          "trivia": [],
+          "answer": "Eldre bynavn og skrivemåte omkring 1915–1920",
+          "answerIndex": 1,
+          "knowledge": "Bildeteksten er selv et historisk språkspor: både Christiania og «Vor» plasserer kilden i en eldre navne- og rettskrivingspraksis.",
           "difficulty": 2,
-          "question_type": "method",
-          "question_layer": "visible_traces_sources",
+          "question_type": "observation",
           "year": null,
-          "epoke_id": "flere_epoker",
-          "epoke_domain": "historie",
           "emne_id": "em_his_spor_materialitet",
-          "related_emner": [
-            "em_his_minnesteder_historiebruk",
-            "em_his_kilder_taushet_blindsoner"
-          ],
+          "related_emners": [],
           "core_concepts": [
-            "gravminne",
-            "kilde",
-            "minnepraksis"
+            "historisk skrivemåte",
+            "billedkilde"
           ],
           "concept_focus": [
-            "kildebruk"
+            "historisk skrivemåte"
           ],
-          "learning_paths": [],
-          "tags": [
-            "var_frelsers_gravlund",
-            "gravminne",
-            "kilde",
-            "minnepraksis"
-          ],
-          "required_tags": [
-            "external_source",
-            "history_anchor",
-            "em_his"
+          "terms": [
+            "Christiania",
+            "Vor"
           ],
           "source": [
-            "Oslo kommune / Vår Frelsers gravlund",
-            "Store norske leksikon / Vår Frelsers gravlund",
-            "History Go place profile: var_frelsers_gravlund"
+            "digitaltmuseum_postcard"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "Gravminner kan brukes som historiske kilder til minne, status, epoke og offentlig anerkjennelse.",
-          "guidance_basis": {
-            "emne_id": "em_his_spor_materialitet",
-            "method_id": "met_sporlesning",
-            "canonical_files_used_as_guidance_only": [
-              "data/fag/historie/emner_historie_canonical_v4_5.json",
-              "data/fag/historie/methods_historie_canonical_v4_5.json",
-              "data/fag/historie/supersetQUIZMAL_historie.json"
-            ]
-          },
-          "method_id": "met_sporlesning",
-          "history_anchor_type": "visible_trace",
-          "source_note": "Kildebasert historisk quizspørsmål med stedlig forankring.",
-          "external_source_ratio_target": 0.85,
-          "internal_file_only_allowed": false,
-          "requires_history_anchor": true,
-          "requires_external_claim_basis": true,
-          "validation": {
-            "emne_id_exists_in_emner_historie": true,
-            "method_id_exists_in_methods_historie": true,
-            "category_matches_badge": true,
-            "schema_extends_generic_supersetQUIZMAL": true
-          },
-          "primary_knowledge_unit_id": "ku_historie_gravminner_er_materielle_74c9cc7186",
+          "source_origin": "external",
+          "claim_basis": "Et postkort fra omtrent 1915–1920 bruker teksten «Christiania. Fra Vor Frelsers Gravlund.» og dokumenterer eldre bynavn og skrivemåte.",
+          "claim_id": "claim_vfg_quiz_18",
+          "learning_objective_id": "lo_historie_var_frelsers_18",
+          "evidence_type": "recognize",
+          "feedback_basis": "Fasiten følger den resolverte påstanden og de gjennomgåtte kilde-ID-ene i produksjonsbriefen.",
+          "guidance_basis": [
+            "data/fag/historie/emner_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/supersetQUIZMAL_historie.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_bildeteksten_er_selv_et__074c82f286",
           "knowledge_unit_ids": [
-            "ku_historie_gravminner_er_materielle_74c9cc7186",
-            "ku_historie_de_kan_fortelle_om_sosia_01afbcc393"
+            "ku_historie_bildeteksten_er_selv_et__074c82f286"
           ],
           "concept_ids": [
-            "co_historie_gravminne_bc87052593",
-            "co_historie_kilde_2afcba0e89",
-            "co_historie_minnepraksis_9f802e8b68",
-            "co_historie_kildebruk_41cbacbfad"
+            "co_historie_historisk_skrivemate_0dac39f49d",
+            "co_historie_billedkilde_a99513618b"
+          ],
+          "term_ids": [
+            "term_historie_christiania_173e1620de",
+            "term_historie_vor_37279b9751"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "var_frelsers_gravlund_quiz_19",
+          "quiz_id": "historie_var_frelsers_gravlund_set_3_q5",
+          "categoryId": "historie",
+          "placeId": "var_frelsers_gravlund",
+          "targetId": "var_frelsers_gravlund",
+          "question_scope": "place",
+          "question": "Hva kan det historiske postkortet og 2008-fotografiet trygt sammenlignes for?",
+          "options": [
+            "Nøyaktig vekst i hvert enkelt tre",
+            "Identiteten til alle gravene i begge utsnitt",
+            "Overordnet landskapskarakter med stier, trær og gravminner"
+          ],
+          "answer": "Overordnet landskapskarakter med stier, trær og gravminner",
+          "answerIndex": 2,
+          "knowledge": "Kamerastandpunktene er ulike. Derfor kan bildene støtte en forsiktig landskapssammenligning, men ikke en presis måling av bestemte felt.",
+          "difficulty": 2,
+          "question_type": "analysis",
+          "year": null,
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "related_emners": [],
+          "core_concepts": [
+            "bildekritikk",
+            "kamerastandpunkt"
+          ],
+          "concept_focus": [
+            "bildekritikk"
+          ],
+          "terms": [],
+          "source": [
+            "digitaltmuseum_postcard",
+            "oslo_vfg_current"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Historisk postkort og fotografiet fra Akersbakken i 2008 kan sammenligne landskapskarakter, men ikke måle bestemte gravfelt fordi kamerastandpunktene er ulike.",
+          "claim_id": "claim_vfg_quiz_19",
+          "learning_objective_id": "lo_historie_var_frelsers_19",
+          "evidence_type": "apply",
+          "feedback_basis": "Fasiten følger den resolverte påstanden og de gjennomgåtte kilde-ID-ene i produksjonsbriefen.",
+          "guidance_basis": [
+            "data/fag/historie/emner_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/supersetQUIZMAL_historie.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_kamerastandpunktene_er_u_0aa4f193b2",
+          "knowledge_unit_ids": [
+            "ku_historie_kamerastandpunktene_er_u_0aa4f193b2",
+            "ku_historie_derfor_kan_bildene_st_tt_820b4de4bc"
+          ],
+          "concept_ids": [
+            "co_historie_bildekritikk_a1ac157621",
+            "co_historie_kamerastandpunkt_44e3469104"
           ],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
         },
         {
-          "id": "var_frelsers_gravlund_quiz_5",
-          "quiz_id": "historie_var_frelsers_gravlund_set_1_q5",
+          "id": "var_frelsers_gravlund_quiz_20",
+          "quiz_id": "historie_var_frelsers_gravlund_set_3_q6",
           "categoryId": "historie",
           "placeId": "var_frelsers_gravlund",
-          "personId": "",
-          "natureId": "",
           "targetId": "var_frelsers_gravlund",
           "question_scope": "place",
-          "question": "Hvorfor er Vår Frelsers gravlund mer enn bare en gravplass?",
+          "question": "Hvorfor brukes «gravplass» i moderne lov- og forvaltningsspråk?",
           "options": [
-            "Fordi den fungerer som et offentlig minnearkiv over norsk kultur-, politikk- og samfunnshistorie",
-            "Fordi den er Oslos største kjøpesenter",
-            "Fordi den bare brukes til idrettsarrangementer"
+            "Det er et livssynsåpent samleord",
+            "Det betyr bare militærgrav",
+            "Det gjelder bare gravsteder uten trær"
           ],
-          "answer": "Fordi den fungerer som et offentlig minnearkiv over norsk kultur-, politikk- og samfunnshistorie",
+          "answer": "Det er et livssynsåpent samleord",
           "answerIndex": 0,
-          "dimension": "historisk_syntese",
-          "topic": "Offentlig minnearkiv",
-          "knowledge": "Vår Frelsers gravlund kan leses som et arkiv i stein: et sted der liv, makt, kultur, litteratur, politikk og offentlig anerkjennelse er samlet i ett landskap.",
-          "trivia": [],
+          "knowledge": "Gravlund og kirkegård kan brukes som synonymer, mens gravplass ble valgt som et mer livssynsåpent administrativt ord i 2011.",
           "difficulty": 2,
-          "question_type": "synthesis",
-          "question_layer": "synthesis_comparison",
-          "year": null,
-          "epoke_id": "flere_epoker",
-          "epoke_domain": "historie",
-          "emne_id": "em_his_minnesteder_historiebruk",
-          "related_emner": [
-            "em_his_spor_materialitet",
-            "em_his_nasjonal_identitet_fortellinger"
-          ],
+          "question_type": "fact",
+          "year": 2011,
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "related_emners": [],
           "core_concepts": [
-            "minnearkiv",
-            "kulturhistorie",
-            "offentlighet"
+            "gravplass",
+            "forvaltningsspråk"
           ],
           "concept_focus": [
-            "minnekultur"
+            "gravplass"
           ],
-          "learning_paths": [],
-          "tags": [
-            "var_frelsers_gravlund",
-            "minnearkiv",
-            "kulturhistorie",
-            "offentlighet"
-          ],
-          "required_tags": [
-            "external_source",
-            "history_anchor",
-            "em_his"
+          "terms": [
+            "gravlund",
+            "kirkegård",
+            "gravplass"
           ],
           "source": [
-            "Oslo kommune / Vår Frelsers gravlund",
-            "Store norske leksikon / Vår Frelsers gravlund",
-            "History Go place profile: var_frelsers_gravlund"
+            "snl_gravlund"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "Vår Frelsers gravlund fungerer som et samlet minnelandskap for norsk kultur-, politikk- og samfunnshistorie.",
-          "guidance_basis": {
-            "emne_id": "em_his_minnesteder_historiebruk",
-            "method_id": "met_kildekritikk",
-            "canonical_files_used_as_guidance_only": [
-              "data/fag/historie/emner_historie_canonical_v4_5.json",
-              "data/fag/historie/methods_historie_canonical_v4_5.json",
-              "data/fag/historie/supersetQUIZMAL_historie.json"
-            ]
-          },
-          "method_id": "met_kildekritikk",
-          "history_anchor_type": "memorial_landscape",
-          "source_note": "Kildebasert historisk quizspørsmål med stedlig forankring.",
-          "external_source_ratio_target": 0.85,
-          "internal_file_only_allowed": false,
-          "requires_history_anchor": true,
-          "requires_external_claim_basis": true,
-          "validation": {
-            "emne_id_exists_in_emner_historie": true,
-            "method_id_exists_in_methods_historie": true,
-            "category_matches_badge": true,
-            "schema_extends_generic_supersetQUIZMAL": true
-          },
-          "primary_knowledge_unit_id": "ku_historie_var_frelsers_gravlund_ka_1a282b0b90",
+          "source_origin": "external",
+          "claim_basis": "Gravlund og kirkegård kan være synonymer, mens gravplass ble det livssynsåpne lov- og forvaltningsordet i 2011.",
+          "claim_id": "claim_vfg_quiz_20",
+          "learning_objective_id": "lo_historie_var_frelsers_20",
+          "evidence_type": "recall",
+          "feedback_basis": "Fasiten følger den resolverte påstanden og de gjennomgåtte kilde-ID-ene i produksjonsbriefen.",
+          "guidance_basis": [
+            "data/fag/historie/emner_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/supersetQUIZMAL_historie.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_gravlund_og_kirkegard_ka_bd6f55bed8",
           "knowledge_unit_ids": [
-            "ku_historie_var_frelsers_gravlund_ka_1a282b0b90"
+            "ku_historie_gravlund_og_kirkegard_ka_bd6f55bed8"
           ],
           "concept_ids": [
-            "co_historie_minnearkiv_de0a39df24",
-            "co_historie_kulturhistorie_31357a1699",
-            "co_historie_offentlighet_89726fb9d6",
-            "co_historie_minnekultur_a432302521"
+            "co_historie_gravplass_87da1afceb",
+            "co_historie_forvaltningssprak_13a310365e"
+          ],
+          "term_ids": [
+            "term_historie_gravlund_136fa7b9f6",
+            "term_historie_kirkegard_6338b67b6b",
+            "term_historie_gravplass_87da1afceb"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "var_frelsers_gravlund_quiz_21",
+          "quiz_id": "historie_var_frelsers_gravlund_set_3_q7",
+          "categoryId": "historie",
+          "placeId": "var_frelsers_gravlund",
+          "targetId": "var_frelsers_gravlund",
+          "question_scope": "place",
+          "question": "Hva viste navneparet «Den gamle Kirkegaard» og «Den nye Kirkegaard»?",
+          "options": [
+            "At Vår Frelsers var den gamle og Ankerløkken den nye gravplassen i samme bysystem",
+            "At begge navn viste til Æreslunden",
+            "At Christiania hadde flyttet til en annen kommune"
+          ],
+          "answer": "At Vår Frelsers var den gamle og Ankerløkken den nye gravplassen i samme bysystem",
+          "answerIndex": 0,
+          "knowledge": "Navnene var relasjonelle: Et nytt gravsted endret hvordan det eldre ble omtalt. De forteller om byvekst, ikke bare alder.",
+          "difficulty": 2,
+          "question_type": "comparison",
+          "year": 1839,
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "related_emners": [],
+          "core_concepts": [
+            "lokalnavn",
+            "byvekst"
+          ],
+          "concept_focus": [
+            "lokalnavn"
+          ],
+          "terms": [
+            "Kirkegaard"
+          ],
+          "source": [
+            "byleksikon_gravlunder"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Da Ankerløkken ble kalt «Den nye Kirkegaard», ble Vår Frelsers omtalt som «Den gamle Kirkegaard».",
+          "claim_id": "claim_vfg_quiz_21",
+          "learning_objective_id": "lo_historie_var_frelsers_21",
+          "evidence_type": "compare",
+          "feedback_basis": "Fasiten følger den resolverte påstanden og de gjennomgåtte kilde-ID-ene i produksjonsbriefen.",
+          "guidance_basis": [
+            "data/fag/historie/emner_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/supersetQUIZMAL_historie.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_navnene_var_relasjonelle_eccf63b9bd",
+          "knowledge_unit_ids": [
+            "ku_historie_navnene_var_relasjonelle_eccf63b9bd",
+            "ku_historie_de_forteller_om_byvekst__88ebb38414"
+          ],
+          "concept_ids": [
+            "co_historie_lokalnavn_719563993c",
+            "co_historie_byvekst_e996699094"
+          ],
+          "term_ids": [
+            "term_historie_kirkegaard_7e508eea0b"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "historie_var_frelsers_gravlund_set_4",
+      "level": 4,
+      "order": 4,
+      "phase": "final",
+      "questions": [
+        {
+          "id": "var_frelsers_gravlund_quiz_22",
+          "quiz_id": "historie_var_frelsers_gravlund_set_4_q1",
+          "categoryId": "historie",
+          "placeId": "var_frelsers_gravlund",
+          "targetId": "var_frelsers_gravlund",
+          "question_scope": "place",
+          "question": "Hvilken kildekombinasjon gir den mest presise arbeidsdelingen?",
+          "options": [
+            "SNL for dagens åpningstider, kommunen for teori og Byleksikon for gravkart",
+            "Alle tre kildene brukes som om de var identiske",
+            "Kommunen for drift og kart, SNL for kronologi og Byleksikon for lokal- og klassehistorie"
+          ],
+          "answer": "Kommunen for drift og kart, SNL for kronologi og Byleksikon for lokal- og klassehistorie",
+          "answerIndex": 2,
+          "knowledge": "Ulike kilder svarer best på ulike spørsmål. Kildekritikk handler her om funksjon og avgrensning, ikke om å kåre én kilde til best i alt.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "year": null,
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "related_emners": [],
+          "core_concepts": [
+            "kildekritikk",
+            "kildetype"
+          ],
+          "concept_focus": [
+            "kildekritikk"
+          ],
+          "terms": [],
+          "source": [
+            "oslo_vfg_current",
+            "snl_vfg",
+            "byleksikon_gravlunder"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kommunen er sterkest på dagens drift og kart, SNL på samlet kronologi og Oslo Byleksikon på lokalhistorie og klassekontrast.",
+          "claim_id": "claim_vfg_quiz_22",
+          "learning_objective_id": "lo_historie_var_frelsers_22",
+          "evidence_type": "apply",
+          "feedback_basis": "Fasiten følger den resolverte påstanden og de gjennomgåtte kilde-ID-ene i produksjonsbriefen.",
+          "guidance_basis": [
+            "data/fag/historie/emner_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/supersetQUIZMAL_historie.json"
+          ],
+          "method_id": "met_kildekritikk",
+          "primary_knowledge_unit_id": "ku_historie_ulike_kilder_svarer_best_786168ef99",
+          "knowledge_unit_ids": [
+            "ku_historie_ulike_kilder_svarer_best_786168ef99",
+            "ku_historie_kildekritikk_handler_her_5989555f66"
+          ],
+          "concept_ids": [
+            "co_historie_kildekritikk_7f0fe7940b",
+            "co_historie_kildetype_17418c14a8"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "var_frelsers_gravlund_quiz_23",
+          "quiz_id": "historie_var_frelsers_gravlund_set_4_q2",
+          "categoryId": "historie",
+          "placeId": "var_frelsers_gravlund",
+          "targetId": "var_frelsers_gravlund",
+          "question_scope": "place",
+          "question": "Hva er den beste sporlesningen av et stort gravminne i Carlo Ginzburgs ånd?",
+          "options": [
+            "Bruk størrelse som ett spor, men test den mot materiale, plassering og andre kilder",
+            "Anta at størrelsen alene beviser hele personens økonomi",
+            "Se bort fra monumentet fordi fysiske spor aldri kan brukes"
+          ],
+          "answer": "Bruk størrelse som ett spor, men test den mot materiale, plassering og andre kilder",
+          "answerIndex": 0,
+          "knowledge": "Ginzburgs spororienterte metode oppmuntrer til å bygge tolkning av flere små tegn. Ett monument er evidens, men ikke en komplett biografi.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "year": null,
+          "emne_id": "em_his_spor_materialitet",
+          "related_emners": [],
+          "core_concepts": [
+            "sporlesning",
+            "inferensgrense"
+          ],
+          "concept_focus": [
+            "sporlesning"
+          ],
+          "terms": [
+            "gravminne"
+          ],
+          "source": [
+            "oslo_vfg_current",
+            "byleksikon_gravlunder"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Størrelsen på ett gravminne kan ikke alene bevise en persons økonomi, betydning eller hele livshistorie.",
+          "claim_id": "claim_vfg_quiz_23",
+          "learning_objective_id": "lo_historie_var_frelsers_23",
+          "evidence_type": "apply",
+          "feedback_basis": "Fasiten følger den resolverte påstanden og de gjennomgåtte kilde-ID-ene i produksjonsbriefen.",
+          "guidance_basis": [
+            "data/fag/historie/emner_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/supersetQUIZMAL_historie.json"
+          ],
+          "method_id": "met_sporlesning",
+          "topic_hook_id": "his_spor_materialitet",
+          "thinker_id": "carlo_ginzburg",
+          "thinker_name": "Carlo Ginzburg",
+          "work": "Clues, Myths, and the Historical Method",
+          "theory_ref": {
+            "topic_hook_id": "his_spor_materialitet",
+            "thinker_id": "carlo_ginzburg",
+            "work": "Clues, Myths, and the Historical Method",
+            "why_it_helps": "Ginzburgs spororienterte metode oppmuntrer til å bygge tolkning av flere små tegn. Ett monument er evidens, men ikke en komplett biografi."
+          },
+          "primary_knowledge_unit_id": "ku_historie_ginzburgs_spororienterte_b2da5bfdb3",
+          "knowledge_unit_ids": [
+            "ku_historie_ginzburgs_spororienterte_b2da5bfdb3",
+            "ku_historie_ett_monument_er_evidens__ef08e5aa5f"
+          ],
+          "concept_ids": [
+            "co_historie_sporlesning_7193e6018d",
+            "co_historie_inferensgrense_696199b5f6"
+          ],
+          "term_ids": [
+            "term_historie_gravminne_bc87052593"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "var_frelsers_gravlund_quiz_24",
+          "quiz_id": "historie_var_frelsers_gravlund_set_4_q3",
+          "categoryId": "historie",
+          "placeId": "var_frelsers_gravlund",
+          "targetId": "var_frelsers_gravlund",
+          "question_scope": "place",
+          "question": "Hva hjelper Alois Riegls monumentverdier oss å se på Vår Frelsers?",
+          "options": [
+            "At bare monumentets høyde har betydning",
+            "At alder, fortsatt bruk og bevaring kan trekke i ulike retninger",
+            "At alle gamle gravminner bør få samme nye form"
+          ],
+          "answer": "At alder, fortsatt bruk og bevaring kan trekke i ulike retninger",
+          "answerIndex": 1,
+          "knowledge": "Riegl skiller mellom flere måter et monument kan få verdi på. Det passer en aktiv gravplass der historiske steiner, urnegraver og vern må eksistere sammen.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "year": null,
+          "emne_id": "em_his_kulturminner_bevaring",
+          "related_emners": [],
+          "core_concepts": [
+            "monumentverdi",
+            "bruk og vern"
+          ],
+          "concept_focus": [
+            "monumentverdi"
+          ],
+          "terms": [
+            "monumentverdi"
+          ],
+          "source": [
+            "oslo_vfg_current",
+            "snl_vfg"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Alois Riegls skille mellom alder, bruk og monumentverdi hjelper til å analysere konflikten mellom aktiv gravplass og bevaring.",
+          "claim_id": "claim_vfg_quiz_24",
+          "learning_objective_id": "lo_historie_var_frelsers_24",
+          "evidence_type": "explain",
+          "feedback_basis": "Fasiten følger den resolverte påstanden og de gjennomgåtte kilde-ID-ene i produksjonsbriefen.",
+          "guidance_basis": [
+            "data/fag/historie/emner_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/supersetQUIZMAL_historie.json"
+          ],
+          "method_id": "met_kulturarvutvelgelsesanalyse",
+          "topic_hook_id": "his_kulturminneutvelgelse_verdi",
+          "thinker_id": "alois_riegl",
+          "thinker_name": "Alois Riegl",
+          "work": "The Modern Cult of Monuments",
+          "theory_ref": {
+            "topic_hook_id": "his_kulturminneutvelgelse_verdi",
+            "thinker_id": "alois_riegl",
+            "work": "The Modern Cult of Monuments",
+            "why_it_helps": "Riegl skiller mellom flere måter et monument kan få verdi på. Det passer en aktiv gravplass der historiske steiner, urnegraver og vern må eksistere sammen."
+          },
+          "primary_knowledge_unit_id": "ku_historie_riegl_skiller_mellom_fle_34ff07e74d",
+          "knowledge_unit_ids": [
+            "ku_historie_riegl_skiller_mellom_fle_34ff07e74d",
+            "ku_historie_det_passer_en_aktiv_grav_c3f1ae7f79"
+          ],
+          "concept_ids": [
+            "co_historie_monumentverdi_1dbc0901b6",
+            "co_historie_bruk_og_vern_f03f2a08d8"
+          ],
+          "term_ids": [
+            "term_historie_monumentverdi_1dbc0901b6"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "var_frelsers_gravlund_quiz_25",
+          "quiz_id": "historie_var_frelsers_gravlund_set_4_q4",
+          "categoryId": "historie",
+          "placeId": "var_frelsers_gravlund",
+          "targetId": "var_frelsers_gravlund",
+          "question_scope": "place",
+          "question": "Hvordan hjelper Pierre Noras idé om minnesteder med å forstå 17. mai-bekransningene?",
+          "options": [
+            "Den viser at bare bygningens alder teller",
+            "Den gjør alle graver til like sterke nasjonalsymboler",
+            "Den viser hvordan ritual og tale gir et fysisk sted offentlig minnebetydning"
+          ],
+          "answer": "Den viser hvordan ritual og tale gir et fysisk sted offentlig minnebetydning",
+          "answerIndex": 2,
+          "knowledge": "Et minnested virker gjennom praksis så vel som materiale. Bekransningene aktiverer gravene og kobler dem til samtidige fellesskap.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "year": 2026,
+          "emne_id": "em_his_minnesteder_historiebruk",
+          "related_emners": [],
+          "core_concepts": [
+            "minnested",
+            "ritual"
+          ],
+          "concept_focus": [
+            "minnested"
+          ],
+          "terms": [
+            "minnested"
+          ],
+          "source": [
+            "oslo_wreaths_2026",
+            "oslo_vfg_map_honor"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Pierre Noras idé om minnesteder hjelper til å forklare hvorfor bekransning og tale gir gravene offentlig betydning utover selve steinen.",
+          "claim_id": "claim_vfg_quiz_25",
+          "learning_objective_id": "lo_historie_var_frelsers_25",
+          "evidence_type": "explain",
+          "feedback_basis": "Fasiten følger den resolverte påstanden og de gjennomgåtte kilde-ID-ene i produksjonsbriefen.",
+          "guidance_basis": [
+            "data/fag/historie/emner_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/supersetQUIZMAL_historie.json"
+          ],
+          "method_id": "met_minneanalyse",
+          "topic_hook_id": "his_minnested_ritual_offentlig_sorg",
+          "thinker_id": "pierre_nora",
+          "thinker_name": "Pierre Nora",
+          "work": "Realms of Memory",
+          "theory_ref": {
+            "topic_hook_id": "his_minnested_ritual_offentlig_sorg",
+            "thinker_id": "pierre_nora",
+            "work": "Realms of Memory",
+            "why_it_helps": "Et minnested virker gjennom praksis så vel som materiale. Bekransningene aktiverer gravene og kobler dem til samtidige fellesskap."
+          },
+          "primary_knowledge_unit_id": "ku_historie_et_minnested_virker_gjen_65a893d1cf",
+          "knowledge_unit_ids": [
+            "ku_historie_et_minnested_virker_gjen_65a893d1cf",
+            "ku_historie_bekransningene_aktiverer_809aadb0de"
+          ],
+          "concept_ids": [
+            "co_historie_minnested_04d2c64b68",
+            "co_historie_ritual_a30db44295"
+          ],
+          "term_ids": [
+            "term_historie_minnested_04d2c64b68"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "var_frelsers_gravlund_quiz_26",
+          "quiz_id": "historie_var_frelsers_gravlund_set_4_q5",
+          "categoryId": "historie",
+          "placeId": "var_frelsers_gravlund",
+          "targetId": "var_frelsers_gravlund",
+          "question_scope": "place",
+          "question": "Hvordan ville Marc Bloch ha styrket sammenligningen med Ankerløkken?",
+          "options": [
+            "Sammenligne samme tidsrom og de samme spørsmålene om gravtype og tilgang",
+            "Sammenligne ett monument i dag med et tilfeldig kart fra en annen by",
+            "Unngå sammenligning fordi stedene er ulike"
+          ],
+          "answer": "Sammenligne samme tidsrom og de samme spørsmålene om gravtype og tilgang",
+          "answerIndex": 0,
+          "knowledge": "Komparativ historie krever et felles sammenligningsgrunnlag. Ellers kan ulik tid, kilde eller målestokk forveksles med reelle sosiale forskjeller.",
+          "difficulty": 3,
+          "question_type": "comparison",
+          "year": 1839,
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "related_emners": [],
+          "core_concepts": [
+            "komparativ historie",
+            "sammenligningsgrunnlag"
+          ],
+          "concept_focus": [
+            "komparativ historie"
+          ],
+          "terms": [],
+          "source": [
+            "byleksikon_gravlunder"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Marc Blochs komparative metode tilsier at Vår Frelsers og Ankerløkken må sammenlignes på samme tidspunkt og med samme spørsmål om gravtype og tilgang.",
+          "claim_id": "claim_vfg_quiz_26",
+          "learning_objective_id": "lo_historie_var_frelsers_26",
+          "evidence_type": "compare",
+          "feedback_basis": "Fasiten følger den resolverte påstanden og de gjennomgåtte kilde-ID-ene i produksjonsbriefen.",
+          "guidance_basis": [
+            "data/fag/historie/emner_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/supersetQUIZMAL_historie.json"
+          ],
+          "method_id": "met_komparativ_historie",
+          "topic_hook_id": "his_kildekritikk",
+          "thinker_id": "marc_bloch",
+          "thinker_name": "Marc Bloch",
+          "work": "The Historian's Craft",
+          "theory_ref": {
+            "topic_hook_id": "his_kildekritikk",
+            "thinker_id": "marc_bloch",
+            "work": "The Historian's Craft",
+            "why_it_helps": "Komparativ historie krever et felles sammenligningsgrunnlag. Ellers kan ulik tid, kilde eller målestokk forveksles med reelle sosiale forskjeller."
+          },
+          "primary_knowledge_unit_id": "ku_historie_komparativ_historie_krev_fcd9eb172a",
+          "knowledge_unit_ids": [
+            "ku_historie_komparativ_historie_krev_fcd9eb172a",
+            "ku_historie_ellers_kan_ulik_tid_kild_9d58a2f8f5"
+          ],
+          "concept_ids": [
+            "co_historie_komparativ_historie_adebb155a4",
+            "co_historie_sammenligningsgrunnlag_eb9b48fb7d"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "var_frelsers_gravlund_quiz_27",
+          "quiz_id": "historie_var_frelsers_gravlund_set_4_q6",
+          "categoryId": "historie",
+          "placeId": "var_frelsers_gravlund",
+          "targetId": "var_frelsers_gravlund",
+          "question_scope": "place",
+          "question": "Hvilken årsaksforklaring er best støttet?",
+          "options": [
+            "Æreslunden i 1903 forklarer alle utvidelser på 1800-tallet",
+            "Reformen forklarer plasseringen, mens befolkningsvekst og arealbehov forklarer utvidelsene",
+            "Det ortodokse kirkerommet i 2004 forklarer etableringen i 1807"
+          ],
+          "answer": "Reformen forklarer plasseringen, mens befolkningsvekst og arealbehov forklarer utvidelsene",
+          "answerIndex": 1,
+          "knowledge": "Å skille årsaker etter tidsfase hindrer at senere hendelser brukes til å forklare tidligere valg. Det setter opplysningen inn i gravlundens dokumenterte historiske forløp.",
+          "difficulty": 3,
+          "question_type": "context",
+          "year": null,
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "related_emners": [],
+          "core_concepts": [
+            "årsak",
+            "periodisering"
+          ],
+          "concept_focus": [
+            "årsak"
+          ],
+          "terms": [],
+          "source": [
+            "byleksikon_gravlunder",
+            "snl_vfg"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Gravferdsreformen forklarer plasseringen utenfor byen, mens befolkningsvekst og arealbehov forklarer de senere utvidelsene.",
+          "claim_id": "claim_vfg_quiz_27",
+          "learning_objective_id": "lo_historie_var_frelsers_27",
+          "evidence_type": "connect",
+          "feedback_basis": "Fasiten følger den resolverte påstanden og de gjennomgåtte kilde-ID-ene i produksjonsbriefen.",
+          "guidance_basis": [
+            "data/fag/historie/emner_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/supersetQUIZMAL_historie.json"
+          ],
+          "method_id": "met_periodisering",
+          "primary_knowledge_unit_id": "ku_historie_a_skille_arsaker_etter_t_a23f61d242",
+          "knowledge_unit_ids": [
+            "ku_historie_a_skille_arsaker_etter_t_a23f61d242",
+            "ku_historie_det_setter_opplysningen__20365f73e7"
+          ],
+          "concept_ids": [
+            "co_historie_arsak_a49378705f",
+            "co_historie_periodisering_141a297ede"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "var_frelsers_gravlund_quiz_28",
+          "quiz_id": "historie_var_frelsers_gravlund_set_4_q7",
+          "categoryId": "historie",
+          "placeId": "var_frelsers_gravlund",
+          "targetId": "var_frelsers_gravlund",
+          "question_scope": "place",
+          "question": "Hva er den viktigste kildekritiske lærdommen om mennesker uten varige gravminner?",
+          "options": [
+            "De bodde aldri i Christiania",
+            "De var nødvendigvis historisk uviktige",
+            "Fravær i landskapet kan skyldes økonomi, festeordning, utvelgelse og bevaring"
+          ],
+          "answer": "Fravær i landskapet kan skyldes økonomi, festeordning, utvelgelse og bevaring",
+          "answerIndex": 2,
+          "knowledge": "Det bevarte landskapet er et utvalg. Historikeren må også spørre hvilke mennesker og erfaringer som ikke fikk et varig fysisk spor.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "year": null,
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "related_emners": [],
+          "core_concepts": [
+            "kildestillhet",
+            "representativitet"
+          ],
+          "concept_focus": [
+            "kildestillhet"
+          ],
+          "terms": [],
+          "source": [
+            "byleksikon_gravlunder",
+            "oslo_vfg_current",
+            "byleksikon_honor"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Fravær av et varig gravminne er ikke bevis på fravær fra byens historie, fordi økonomi, festeordning, utvelgelse og bevaring påvirker hva som står igjen.",
+          "claim_id": "claim_vfg_quiz_28",
+          "learning_objective_id": "lo_historie_var_frelsers_28",
+          "evidence_type": "apply",
+          "feedback_basis": "Fasiten følger den resolverte påstanden og de gjennomgåtte kilde-ID-ene i produksjonsbriefen.",
+          "guidance_basis": [
+            "data/fag/historie/emner_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/supersetQUIZMAL_historie.json"
+          ],
+          "method_id": "met_kildekritikk",
+          "topic_hook_id": "his_kildekritikk",
+          "thinker_id": "marc_bloch",
+          "thinker_name": "Marc Bloch",
+          "work": "The Historian's Craft",
+          "theory_ref": {
+            "topic_hook_id": "his_kildekritikk",
+            "thinker_id": "marc_bloch",
+            "work": "The Historian's Craft",
+            "why_it_helps": "Det bevarte landskapet er et utvalg. Historikeren må også spørre hvilke mennesker og erfaringer som ikke fikk et varig fysisk spor."
+          },
+          "primary_knowledge_unit_id": "ku_historie_det_bevarte_landskapet_e_bbaa012dff",
+          "knowledge_unit_ids": [
+            "ku_historie_det_bevarte_landskapet_e_bbaa012dff",
+            "ku_historie_historikeren_ma_ogsa_sp__c063595fe7"
+          ],
+          "concept_ids": [
+            "co_historie_kildestillhet_2e8ef7c8ec",
+            "co_historie_representativitet_886e3bee48"
           ],
           "term_ids": [],
           "knowledge_contract_version": 1,

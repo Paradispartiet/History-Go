@@ -1,0 +1,67 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "manusmedarbeider",
+  "mail_type": "people",
+  "families": [
+    {
+      "id": "manusmedarbeider_forfatterstemme",
+      "purpose": "Gjøre forfattereierskap og presis tilbakemelding til et relasjonelt valg.",
+      "learning_focus": ["forfattereierskap", "tilbakemelding", "samarbeid"],
+      "mails": [
+        {
+          "id": "film_tv_manus_people_forfatterstemme_001",
+          "mail_type": "people",
+          "mail_family": "manusmedarbeider_forfatterstemme",
+          "role_scope": "manusmedarbeider",
+          "phase": "early",
+          "day_phase": "forenoon",
+          "priority": 130,
+          "stage": "stable",
+          "from": "Elias, manusforfatter",
+          "people_ref": "elias_manusforfatter",
+          "person_id": "elias_manusforfatter",
+          "place_id": "manusrommet_produksjon",
+          "thread_key": "film_tv_manus_notatrunde_001",
+          "subject": "Notatet løser tempoet, men fjerner stemmen",
+          "summary": "Elias ser at en foreslått omskriving gjør scenen kortere, men også gjør hovedpersonen mer forklarende enn i resten av manuset.",
+          "purpose": "La spilleren beskrive problemet uten å overta tekstens stemme.",
+          "stakes": "Et raskt, overstyrende notat kan svekke både teksten og tilliten mellom forfatter og redaksjon.",
+          "situation": [
+            "Scenen bruker nå færre sider og oppfyller bestillingen om tempo.",
+            "Hovedpersonen sier samtidig høyt noe hun tidligere bare har vist gjennom handling.",
+            "Elias ber om å få vite hvilket problem notatet egentlig skal løse før han skriver på nytt."
+          ],
+          "task_domain": "notater_og_utvikling",
+          "task_kind": "relationship",
+          "competency": "tilbakemelding",
+          "pressure": "tempo_uten_stemmetap",
+          "choice_axis": "presist_problem_og_forfattervalg_vs_skjult_omskriving",
+          "consequence_axis": "eierskap_og_tillit_vs_redaksjonell_friksjon",
+          "narrative_arc": "forfatterstemmen_under_notatpress",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Beskriv tempoproblemet og be Elias foreslå to løsninger",
+              "reply": "Problemet er at vendepunktet kommer sent, ikke at karakteren forklarer for lite. Kan du foreslå to kortere veier som beholder stemmen?",
+              "effect": 1,
+              "tags": ["authorship", "clarity"],
+              "feedback": "Elias beholder eierskapet, mens bestillingen blir konkret nok til å arbeide med.",
+              "effects": {"stats": {"quality": 2, "trust": 2, "risk": -1}}
+            },
+            {
+              "id": "B",
+              "label": "Skriv om replikkene direkte for å vise hva du mener",
+              "reply": "Jeg legger inn en strammere replikkversjon, så kan du justere den etterpå.",
+              "effect": -1,
+              "tags": ["overreach", "tempo"],
+              "feedback": "Du leverer en rask løsning, men flytter notatet fra problem til uavklart medforfatterskap.",
+              "effects": {"stats": {"status": 1, "trust": -3, "quality": -1, "risk": 2}}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

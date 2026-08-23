@@ -1,0 +1,14 @@
+{
+  "schema": "civication_mail_family_catalog_v1", "version": 1, "category": "psykologi", "role_scope": "psykolog", "mail_type": "micro",
+  "families": [{"id": "psykolog_kort_mellomrom", "purpose": "Bruke et lite tidsvindu på det mest beslutningskritiske.", "learning_focus": ["prioritering", "datakvalitet", "journalforing"], "mails": [{
+    "id": "psykolog_micro_verifisering_001", "mail_type": "micro", "mail_family": "psykolog_kort_mellomrom", "role_scope": "psykolog", "phase": "advanced", "day_phase": "afternoon", "priority": 134, "cooldown": 2, "repeatable": true, "stage": "stable",
+    "from": "Seksjonslederen", "people_ref": "seksjonsleder", "person_id": "seksjonsleder", "subject": "Tolv minutter før neste samtale", "summary": "Du rekker enten å kontrollere den opplysningen som styrer dagens plan eller å gjøre hele journalutkastet språklig ferdig.",
+    "purpose": "Teste om knapp tid brukes på beslutningskritisk kvalitet framfor kosmetisk ferdigstilling.", "stakes": "Et pent notat kan skjule at det viktigste premisset ikke er kontrollert.",
+    "situation": ["Utkastet har tydelig struktur, men én kildeopplysning er fortsatt tvetydig.", "Opplysningen påvirker hvilket spørsmål som må tas opp i neste samtale.", "Resten av språkvasken kan ferdigstilles etter samtalen uten å forsinke sikker oppfølging."],
+    "task_domain": "klinisk_prioritering", "task_kind": "micro", "competency": "dokumentasjon_og_faglig_begrunnelse", "pressure": "ferdigflate_vs_beslutningsgrunnlag", "choice_axis": "verifiser_kritisk_premiss_vs_polering", "consequence_axis": "presist_neste_sporsmal_vs_ryddig_feilspor", "narrative_arc": "fra_tidsklemme_til_begrunnet_prioritering",
+    "choices": [
+      {"id": "A", "label": "Kontroller den beslutningskritiske opplysningen", "reply": "Jeg bruker tiden på premisset som kan endre neste kliniske spørsmål.", "effect": 1, "tags": ["critical_evidence", "prioritization"], "feedback": "Notatet er ikke ferdigpolert, men neste samtale bygger på et tydeligere grunnlag.", "effects": {"stats": {"quality": 2, "risk": -2, "energy": -1}}},
+      {"id": "B", "label": "Gjør journalutkastet helt ferdig", "reply": "Jeg avslutter dokumentasjonen nå og tar premisset senere.", "effect": -1, "tags": ["surface_completion", "unchecked_assumption"], "feedback": "Arbeidsflaten ser ferdig ut, mens usikkerheten som kan styre planen blir liggende.", "effects": {"stats": {"status": 1, "quality": -2, "risk": 2}}}
+    ]
+  }]}]
+}

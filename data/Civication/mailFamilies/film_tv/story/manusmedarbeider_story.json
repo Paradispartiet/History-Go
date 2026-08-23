@@ -1,0 +1,67 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "manusmedarbeider",
+  "mail_type": "story",
+  "families": [
+    {
+      "id": "manusmedarbeider_kontinuitetsbue",
+      "purpose": "La én lokal omskriving få betydning for karakterens kunnskap senere i fortellingen.",
+      "learning_focus": ["kontinuitet", "karakterkunnskap", "helhetslesing"],
+      "mails": [
+        {
+          "id": "film_tv_manus_story_kontinuitet_001",
+          "mail_type": "story",
+          "mail_family": "manusmedarbeider_kontinuitetsbue",
+          "role_scope": "manusmedarbeider",
+          "phase": "mid",
+          "day_phase": "afternoon",
+          "priority": 120,
+          "stage": "stable",
+          "from": "Selma, scriptkoordinator",
+          "people_ref": "selma_scriptkoordinator",
+          "person_id": "selma_scriptkoordinator",
+          "place_id": "manusrommet_produksjon",
+          "thread_key": "film_tv_manus_kontinuitet_001",
+          "subject": "Hovedpersonen vet dette to scener for tidlig",
+          "summary": "En replikk som løser dagens scene avslører samtidig informasjon hovedpersonen først skal få i scene 37.",
+          "purpose": "Teste helhetslesing fremfor lokal reparasjon.",
+          "stakes": "Et usynlig kunnskapsbrudd kan gjøre senere vendepunkt uforståelig under bordprøven.",
+          "situation": [
+            "Den nye replikken fungerer isolert og gir scenen et tydelig sluttpunkt.",
+            "I gjeldende handlingslinje lærer hovedpersonen den samme opplysningen først tre scener senere.",
+            "Selma trenger en løsning som både fungerer lokalt og bevarer vendepunktet."
+          ],
+          "task_domain": "kontinuitet",
+          "task_kind": "story",
+          "competency": "kontinuitet",
+          "pressure": "lokal_losning_vs_senere_vendepunkt",
+          "choice_axis": "spor_kunnskap_gjennom_helheten_vs_lokal_lapp",
+          "consequence_axis": "sammenhengende_bue_vs_bordprovebrudd",
+          "narrative_arc": "karakterens_kunnskap_flyttes",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Kartlegg hva karakteren vet før du foreslår ny replikk",
+              "reply": "Jeg markerer kunnskapslinjen fra scene 31 til 37 og foreslår en reaksjon som ikke røper vendepunktet.",
+              "effect": 1,
+              "tags": ["continuity", "whole_read"],
+              "feedback": "Den lokale scenen løses med respekt for resten av fortellingen.",
+              "effects": {"stats": {"quality": 3, "trust": 1, "risk": -2, "energy": -1}}
+            },
+            {
+              "id": "B",
+              "label": "Bytt ut ett ord og behold replikkens funksjon",
+              "reply": "Jeg toner ned den konkrete opplysningen, men lar replikkens poeng stå.",
+              "effect": -1,
+              "tags": ["local_patch", "continuity_risk"],
+              "feedback": "Formuleringen blir svakere, men karakteren handler fortsatt som om hun vet for mye.",
+              "effects": {"stats": {"quality": -2, "risk": 2, "energy": 1}}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

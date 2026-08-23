@@ -1,0 +1,600 @@
+{
+  "schema": "civication_scenario_people_category_v2",
+  "version": 2,
+  "category": "vitenskap",
+  "generated_by": "scripts/build-civication-scenario-people-index.mts",
+  "storage_model": "category_pool_plus_role_deltas",
+  "sources": [
+    "data/Civication/historyPeople_index.json",
+    "data/Civication/roleModels/manifest.json",
+    "data/Civication/scenarioPeople/overrides.json",
+    "data/fag/**/theory_integrity_bindings*.json"
+  ],
+  "semantics": {
+    "direct": "Kun eksplisitt kuratert direkte rolleeksempel.",
+    "strong": "Sterk scenariorelevans; innebærer ikke nødvendigvis identisk yrkesrolle.",
+    "contextual": "Samme faglige kontekst; kunnskaps-/oppgavekandidat, ikke rollelikhet eller NPC-persona."
+  },
+  "people_pool": {
+    "existing_place_people": [
+      {
+        "person_id": "alfred_nobel",
+        "name": "Alfred Nobel",
+        "person_category": "vitenskap",
+        "place_id": "nobelinstituttet",
+        "year": 1901
+      },
+      {
+        "person_id": "alfredo_bensaude",
+        "name": "Alfredo Bensaúde",
+        "person_category": "vitenskap",
+        "place_id": "lisbon_instituto_superior_tecnico",
+        "year": 1911
+      },
+      {
+        "person_id": "anders_jahre",
+        "name": "Anders Jahre",
+        "person_category": "vitenskap",
+        "place_id": "universitetets_gamle_hovedbygning",
+        "year": 1960
+      },
+      {
+        "person_id": "antonio_champalimaud",
+        "name": "António Champalimaud",
+        "person_category": "vitenskap",
+        "place_id": "lisbon_champalimaud_foundation",
+        "year": 2004
+      },
+      {
+        "person_id": "branca_edmee_marques",
+        "name": "Branca Edmée Marques",
+        "person_category": "vitenskap",
+        "place_id": "lisbon_museu_nacional_de_historia_natural_e_da_ciencia",
+        "year": 1930
+      },
+      {
+        "person_id": "eilert_sundt",
+        "name": "Eilert Sundt",
+        "person_category": "vitenskap",
+        "place_id": "universitetets_gamle_hovedbygning",
+        "year": 1850
+      },
+      {
+        "person_id": "fred_kavli",
+        "name": "Fred Kavli",
+        "person_category": "vitenskap",
+        "place_id": "universitetets_gamle_hovedbygning",
+        "year": 2000
+      },
+      {
+        "person_id": "fredrik_barth",
+        "name": "Fredrik Barth",
+        "person_category": "vitenskap",
+        "place_id": "universitetets_gamle_hovedbygning",
+        "year": 1960
+      },
+      {
+        "person_id": "gago_coutinho",
+        "name": "Gago Coutinho",
+        "person_category": "vitenskap",
+        "place_id": "lisbon_observatorio_astronomico",
+        "year": 1922
+      },
+      {
+        "person_id": "harriet_holter",
+        "name": "Harriet Holter",
+        "person_category": "vitenskap",
+        "place_id": "universitetets_gamle_hovedbygning",
+        "year": 1970
+      },
+      {
+        "person_id": "helga_eng",
+        "name": "Helga Eng",
+        "person_category": "vitenskap",
+        "place_id": "universitetets_gamle_hovedbygning",
+        "year": 1920
+      },
+      {
+        "person_id": "johan_galtung",
+        "name": "Johan Galtung",
+        "person_category": "vitenskap",
+        "place_id": "nobelinstituttet",
+        "year": 1959
+      },
+      {
+        "person_id": "jon_elster",
+        "name": "Jon Elster",
+        "person_category": "vitenskap",
+        "place_id": "universitetets_gamle_hovedbygning",
+        "year": 1989
+      },
+      {
+        "person_id": "kavlifondet",
+        "name": "Kavlifondet",
+        "person_category": "vitenskap",
+        "place_id": "universitetets_gamle_hovedbygning",
+        "year": 1962
+      },
+      {
+        "person_id": "kristian_schreiner",
+        "name": "Kristian Emil Schreiner",
+        "person_category": "vitenskap",
+        "place_id": "universitetets_gamle_hovedbygning",
+        "year": 1920
+      },
+      {
+        "person_id": "lucy_smith",
+        "name": "Lucy Smith",
+        "person_category": "vitenskap",
+        "place_id": "universitetets_gamle_hovedbygning",
+        "year": 1993
+      },
+      {
+        "person_id": "niels_henrik_abel",
+        "name": "Niels Henrik Abel",
+        "person_category": "vitenskap",
+        "place_id": "abelhaugen",
+        "year": 1829
+      },
+      {
+        "person_id": "olav_thon",
+        "name": "Olav Thon",
+        "person_category": "vitenskap",
+        "place_id": "universitetets_gamle_hovedbygning",
+        "year": 2013
+      },
+      {
+        "person_id": "oystein_skaala",
+        "name": "Øystein Skaala",
+        "person_category": "vitenskap",
+        "place_id": "etneelva_forskningsplattform",
+        "year": 2013
+      },
+      {
+        "person_id": "per_tommy_fjeldheim",
+        "name": "Per Tommy Fjeldheim",
+        "person_category": "vitenskap",
+        "place_id": "etneelva_forskningsplattform",
+        "year": 2013
+      },
+      {
+        "person_id": "ragnar_frisch",
+        "name": "Ragnar Frisch",
+        "person_category": "vitenskap",
+        "place_id": "universitetets_gamle_hovedbygning",
+        "year": 1969
+      },
+      {
+        "person_id": "romulo_de_carvalho",
+        "name": "Rómulo de Carvalho",
+        "person_category": "vitenskap",
+        "place_id": "lisbon_museu_nacional_de_historia_natural_e_da_ciencia",
+        "year": 1950
+      },
+      {
+        "person_id": "sacadura_cabral",
+        "name": "Sacadura Cabral",
+        "person_category": "vitenskap",
+        "place_id": "lisbon_observatorio_astronomico",
+        "year": 1922
+      },
+      {
+        "person_id": "sophus_lie",
+        "name": "Sophus Lie",
+        "person_category": "vitenskap",
+        "place_id": "universitetets_gamle_hovedbygning",
+        "year": 1870
+      },
+      {
+        "person_id": "thomas_hylland_eriksen",
+        "name": "Thomas Hylland Eriksen",
+        "person_category": "vitenskap",
+        "place_id": "universitetets_gamle_hovedbygning",
+        "year": 1995
+      },
+      {
+        "person_id": "tove_stang_dahl",
+        "name": "Tove Stang Dahl",
+        "person_category": "vitenskap",
+        "place_id": "universitetets_gamle_hovedbygning",
+        "year": 1980
+      },
+      {
+        "person_id": "trygve_haavelmo",
+        "name": "Trygve Haavelmo",
+        "person_category": "vitenskap",
+        "place_id": "universitetets_gamle_hovedbygning",
+        "year": 1989
+      },
+      {
+        "person_id": "vilhelm_bjerknes",
+        "name": "Vilhelm Bjerknes",
+        "person_category": "vitenskap",
+        "place_id": "observatoriet",
+        "year": 1904
+      },
+      {
+        "person_id": "waldemar_christopher_brogger",
+        "name": "Waldemar Christopher Brøgger",
+        "person_category": "vitenskap",
+        "place_id": "universitetets_gamle_hovedbygning",
+        "year": 1890
+      }
+    ],
+    "existing_other_people": []
+  },
+  "cross_category_existing_references": [],
+  "missing_people_candidates": [],
+  "roles": [
+    {
+      "role_id": "vitenskap_dekan",
+      "role_scope": "dekan",
+      "title": "Dekan",
+      "source": "data/Civication/roleModels/vitenskap/dekan.json",
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
+        "dekan"
+      ],
+      "resolved_counts": {
+        "total": 29,
+        "existing_place_people": 29,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 0,
+        "contextual": 29,
+        "excluded": 0
+      }
+    },
+    {
+      "role_id": "vitenskap_forsker",
+      "role_scope": "forsker",
+      "title": "Forsker",
+      "source": "data/Civication/roleModels/vitenskap/forsker.json",
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [
+          "johan_galtung"
+        ],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
+        "forsker"
+      ],
+      "resolved_counts": {
+        "total": 29,
+        "existing_place_people": 29,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 1,
+        "contextual": 28,
+        "excluded": 0
+      }
+    },
+    {
+      "role_id": "vitenskap_forskningsassistent",
+      "role_scope": "forskningsassistent",
+      "title": "Forskningsassistent",
+      "source": "data/Civication/roleModels/vitenskap/forskningsassistent.json",
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
+        "forskningsassistent"
+      ],
+      "resolved_counts": {
+        "total": 29,
+        "existing_place_people": 29,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 0,
+        "contextual": 29,
+        "excluded": 0
+      }
+    },
+    {
+      "role_id": "vitenskap_forskningsleder",
+      "role_scope": "forskningsleder",
+      "title": "Forskningsleder",
+      "source": "data/Civication/roleModels/vitenskap/forskningsleder.json",
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
+        "forskningsleder"
+      ],
+      "resolved_counts": {
+        "total": 29,
+        "existing_place_people": 29,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 0,
+        "contextual": 29,
+        "excluded": 0
+      }
+    },
+    {
+      "role_id": "vitenskap_forsteamanuensis",
+      "role_scope": "forsteamanuensis",
+      "title": "Førsteamanuensis",
+      "source": "data/Civication/roleModels/vitenskap/forsteamanuensis.json",
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
+        "forsteamanuensis",
+        "førsteamanuensis"
+      ],
+      "resolved_counts": {
+        "total": 29,
+        "existing_place_people": 29,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 0,
+        "contextual": 29,
+        "excluded": 0
+      }
+    },
+    {
+      "role_id": "vitenskap_instituttleder",
+      "role_scope": "instituttleder",
+      "title": "Instituttleder",
+      "source": "data/Civication/roleModels/vitenskap/instituttleder.json",
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
+        "instituttleder"
+      ],
+      "resolved_counts": {
+        "total": 29,
+        "existing_place_people": 29,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 0,
+        "contextual": 29,
+        "excluded": 0
+      }
+    },
+    {
+      "role_id": "vitenskap_laboratorieassistent",
+      "role_scope": "laboratorieassistent",
+      "title": "Laboratorieassistent",
+      "source": "data/Civication/roleModels/vitenskap/laboratorieassistent.json",
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
+        "laboratorieassistent"
+      ],
+      "resolved_counts": {
+        "total": 29,
+        "existing_place_people": 29,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 0,
+        "contextual": 29,
+        "excluded": 0
+      }
+    },
+    {
+      "role_id": "vitenskap_postdoktor",
+      "role_scope": "postdoktor",
+      "title": "Postdoktor",
+      "source": "data/Civication/roleModels/vitenskap/postdoktor.json",
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
+        "postdoktor"
+      ],
+      "resolved_counts": {
+        "total": 29,
+        "existing_place_people": 29,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 0,
+        "contextual": 29,
+        "excluded": 0
+      }
+    },
+    {
+      "role_id": "vitenskap_professor",
+      "role_scope": "professor",
+      "title": "Professor",
+      "source": "data/Civication/roleModels/vitenskap/professor.json",
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
+        "professor"
+      ],
+      "resolved_counts": {
+        "total": 29,
+        "existing_place_people": 29,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 0,
+        "contextual": 29,
+        "excluded": 0
+      }
+    },
+    {
+      "role_id": "vitenskap_seniorforsker",
+      "role_scope": "seniorforsker",
+      "title": "Seniorforsker",
+      "source": "data/Civication/roleModels/vitenskap/seniorforsker.json",
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
+        "seniorforsker"
+      ],
+      "resolved_counts": {
+        "total": 29,
+        "existing_place_people": 29,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 0,
+        "contextual": 29,
+        "excluded": 0
+      }
+    },
+    {
+      "role_id": "vitenskap_stipendiat_phd",
+      "role_scope": "stipendiat_phd",
+      "title": "Stipendiat (PhD)",
+      "source": "data/Civication/roleModels/vitenskap/stipendiat_phd.json",
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
+        "stipendiat"
+      ],
+      "resolved_counts": {
+        "total": 29,
+        "existing_place_people": 29,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 0,
+        "contextual": 29,
+        "excluded": 0
+      }
+    },
+    {
+      "role_id": "vitenskap_studentassistent",
+      "role_scope": "studentassistent",
+      "title": "Studentassistent",
+      "source": "data/Civication/roleModels/vitenskap/studentassistent.json",
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
+        "studentassistent"
+      ],
+      "resolved_counts": {
+        "total": 29,
+        "existing_place_people": 29,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 0,
+        "contextual": 29,
+        "excluded": 0
+      }
+    },
+    {
+      "role_id": "vitenskap_vitenskapelig_assistent",
+      "role_scope": "vitenskapelig_assistent",
+      "title": "Vitenskapelig assistent",
+      "source": "data/Civication/roleModels/vitenskap/vitenskapelig_assistent.json",
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [
+          "niels_henrik_abel",
+          "sacadura_cabral"
+        ],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
+        "vitenskapelig"
+      ],
+      "resolved_counts": {
+        "total": 29,
+        "existing_place_people": 29,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 2,
+        "contextual": 27,
+        "excluded": 0
+      }
+    }
+  ]
+}

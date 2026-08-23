@@ -1,0 +1,35 @@
+{
+  "schema": "civication_mail_plan_v1",
+  "version": 1,
+  "id": "psykologi_psykolog_playable_v1",
+  "category": "psykologi",
+  "role_scope": "psykolog",
+  "role_id": "psykologi_psykolog",
+  "title": "Psykolog – hypotesen som må kunne endres",
+  "description": "Én klinisk arbeidsdag fra foreløpig formulering og pasientens prioritet via teamdeling og endret risiko til dokumentert oppfølging. Alle nålevende arbeidsaktører og pasientsituasjoner er fiktive.",
+  "arc": {
+    "from": "Psykolog som har en ryddig foreløpig formulering, men må tåle at både pasientens mål og nye opplysninger endrer den.",
+    "to": "Psykolog som holder hypotese, medvirkning, nødvendig informasjonsdeling og sikker eskalering synlige i samme etterprøvbare plan.",
+    "core_questions": [
+      "Hva vet du, hva antar du, og hva må undersøkes videre?",
+      "Hvordan blir pasientens prioritet en faktisk del av planen?",
+      "Hvem trenger hvilken informasjon for å handle forsvarlig?"
+    ]
+  },
+  "outcome_rules": {
+    "fired": {"stability_values": ["FIRED"], "strikes_gte": 3, "score_lte": -3},
+    "promoted": {"completion_ratio_gte": 1, "score_gte": 2, "strikes_lte": 0, "allow_warning": false},
+    "stagnated": {"autonomy_delta": -6, "stability": "STAGNATED", "add_branch_flags": ["career_stagnated", "psykolog_formulation_stalled"]}
+  },
+  "sequence": [
+    {"step": 1, "type": "job", "phase": "intro", "step_goal": "Revider en foreløpig formulering når nye opplysninger ikke passer.", "allowed_families": ["psykolog_formulering_under_usikkerhet"], "fallback_types": []},
+    {"step": 2, "type": "people", "phase": "early", "step_goal": "Gjør pasientens prioritet operativ i behandlingsplanen.", "allowed_families": ["psykolog_felles_prioritet"], "fallback_types": []},
+    {"step": 3, "type": "conflict", "phase": "mid", "step_goal": "Avgrens informasjonsdeling til det teamet trenger.", "allowed_families": ["psykolog_nodvendig_informasjon"], "fallback_types": []},
+    {"step": 4, "type": "event", "phase": "mid", "step_goal": "Revurder og eskaler når risikobildet endrer seg.", "allowed_families": ["psykolog_endret_risikobilde"], "fallback_types": []},
+    {"step": 5, "type": "micro", "phase": "advanced", "step_goal": "Bruk et kort tidsvindu til å verifisere det mest beslutningskritiske.", "allowed_families": ["psykolog_kort_mellomrom"], "fallback_types": []},
+    {"step": 6, "type": "story", "phase": "advanced", "step_goal": "Skriv journalen slik at graden av sikkerhet kan etterprøves.", "allowed_families": ["psykolog_journalens_sikkerhet"], "fallback_types": []},
+    {"step": 7, "type": "knowledge", "phase": "advanced", "step_goal": "Bruk History Go til kildeforankret profesjonshistorie uten å gjøre den til klinisk autoritet.", "allowed_families": ["psykolog_profesjonshistorie"], "fallback_types": []},
+    {"step": 8, "type": "followup", "phase": "mastery", "step_goal": "Evaluer om den reforhandlede planen faktisk eies av pasienten.", "allowed_families": ["psykolog_planoppfolging"], "fallback_types": []},
+    {"step": 9, "type": "consequence", "phase": "mastery", "step_goal": "Bruk utfallet til å velge et nytt avgrenset klinisk spørsmål.", "allowed_families": ["psykolog_formuleringskonsekvens"], "fallback_types": []}
+  ]
+}

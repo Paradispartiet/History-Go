@@ -1,0 +1,14 @@
+{
+  "schema": "civication_mail_family_catalog_v1", "version": 1, "category": "film_tv", "role_scope": "programleder", "mail_type": "people",
+  "families": [{"id": "programleder_gjesteavtale", "purpose": "Gjøre gjestens avtalte premiss og sensitive grenser operative i intervjuet.", "learning_focus": ["gjestetillit", "premiss", "grensesetting"], "mails": [{
+    "id": "film_tv_program_people_gjestegrense_001", "mail_type": "people", "mail_family": "programleder_gjesteavtale", "role_scope": "programleder", "phase": "early", "day_phase": "morning", "priority": 132, "cooldown": 2, "repeatable": false, "stage": "stable",
+    "from": "Thea, gjestekoordinator", "people_ref": "thea_gjestekoordinator", "person_id": "thea_gjestekoordinator", "place_id": "studio_program_film_tv", "thread_key": "film_tv_program_gjestegrense_001",
+    "subject": "Gjesten vil snakke om arbeidet, ikke familieforløpet", "summary": "Thea har dokumentert at gjesten gjerne svarer om prosjektet, men ikke ønsker at et nylig familieforløp brukes som inngang.", "purpose": "Teste om programlederen gjør grensen konkret før intervjuet.", "stakes": "En uklar grense kan gjøre gjesten utrygg og svekke både samtalen og senere samtykke.",
+    "situation": ["Familieforløpet finnes i offentlig omtale.", "Gjesten har uttrykkelig avgrenset dagens premiss.", "Oppfølgingsspørsmål kan fortsatt bli nødvendige hvis gjesten selv åpner temaet."],
+    "task_domain": "intervju", "task_kind": "people", "competency": "omsorg_og_grensesetting", "pressure": "sterk_historie_vs_avtalt_premiss", "choice_axis": "bekreft_grensen_og_avtal_stoppunkt_vs_hold_muligheten_apen", "consequence_axis": "gjestetillit_vs_premissglidning", "narrative_arc": "gjestens_grense_blir_testet", "interaction_mode": "decision",
+    "choices": [
+      {"id": "A", "label": "Bekreft grensen og avtal et tydelig stoppunkt", "reply": "Jeg holder familieforløpet utenfor og stanser for ny avklaring dersom gjesten selv åpner temaet.", "effect": 1, "tags": ["consent", "care"], "feedback": "Thea kan gi gjesten en presis og etterprøvbar avtale.", "effects": {"stats": {"trust": 2, "quality": 1, "risk": -2}}},
+      {"id": "B", "label": "Behold temaet som mulig oppfølging", "reply": "Jeg spør ikke direkte, men bruker det dersom samtalen trenger mer nerve.", "effect": -1, "tags": ["boundary_risk", "sensation"], "feedback": "Du gjør en uttrykkelig grense om til en taktisk reserve.", "effects": {"stats": {"trust": -2, "quality": -1, "risk": 3}}}
+    ]
+  }]}]
+}

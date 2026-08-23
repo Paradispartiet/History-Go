@@ -1,0 +1,14 @@
+{
+  "schema": "civication_mail_family_catalog_v1", "version": 1, "category": "film_tv", "role_scope": "programleder", "mail_type": "job",
+  "families": [{"id": "programleder_intervjubrief", "purpose": "Etablere et sporbar intervjugrunnlag før programlederen går i studio.", "learning_focus": ["premiss", "faktastatus", "beslutningseier"], "mails": [{
+    "id": "film_tv_program_job_brief_001", "mail_type": "job", "mail_family": "programleder_intervjubrief", "role_scope": "programleder", "phase": "intro", "day_phase": "morning", "priority": 140, "cooldown": 1, "repeatable": false, "stage": "stable",
+    "from": "Ingrid, redaksjonsleder", "people_ref": "ingrid_redaksjonsleder_program", "person_id": "ingrid_redaksjonsleder_program", "place_id": "briefrom_program_film_tv",
+    "subject": "Tre linjer i briefen har ulik faktastatus", "summary": "Introduksjonen blander ett bekreftet tall, én redaksjonell hypotese og et sitat som gjestekoordinatoren ennå ikke har godkjent.", "purpose": "Teste om programlederen skiller faktum, hypotese og avtalt premiss før opptak.", "stakes": "En skarp, men umerket hypotese kan bli presentert som fakta i åpningen.",
+    "situation": ["Amina har kilde til ett av tre utsagn.", "Theas gjestenotat avgrenser hva sitatet kan brukes til.", "Ingrid eier endelig premiss, men trenger en tydelig statusoversikt."],
+    "task_domain": "research_og_brief", "task_kind": "job", "competency": "faktapresisjon", "pressure": "sendetid_vs_verifisering", "choice_axis": "merk_status_og_be_om_beslutning_vs_les_alt_som_fakta", "consequence_axis": "sporbar_apning_vs_rettelsesrisiko", "narrative_arc": "fra_brief_til_sending", "interaction_mode": "decision",
+    "choices": [
+      {"id": "A", "label": "Merk hver linje og be Ingrid låse premisset", "reply": "Jeg skiller bekreftet fakta, åpen hypotese og sitatgrense før vi låser introduksjonen.", "effect": 1, "tags": ["verification", "authority"], "feedback": "Redaksjonen kan se hva den faktisk vet og hvem som må ta den siste beslutningen.", "effects": {"stats": {"quality": 2, "trust": 1, "risk": -2, "energy": -1}}},
+      {"id": "B", "label": "Behold formuleringene fordi åpningen trenger fart", "reply": "Jeg leser briefen som den står og justerer hvis gjesten protesterer.", "effect": -1, "tags": ["shortcut", "fact_risk"], "feedback": "En åpen hypotese går videre uten synlig status.", "effects": {"stats": {"quality": -2, "trust": -1, "risk": 3}}}
+    ]
+  }]}]
+}

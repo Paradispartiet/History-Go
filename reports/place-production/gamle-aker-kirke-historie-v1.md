@@ -1,12 +1,12 @@
 # Gamle Aker kirke – Historie-sted V1
 
-- Dato: 2026-08-02
+- Dato: 2026-08-22
 - Place ID: `gamle_aker_kirke`
 - Canonical place-fil: `data/places/historie/oslo/places_historie/gamle_aker_kirke.json`
 - Manifest: `data/places/manifest.json`
 - Primærkategori: `historie`
 - Stedstype: stående middelalderkirke i fortsatt bruk
-- Status: **fase 6 – tre åpne og komplementære Lesespor klare for review; stedet er ennå ikke samlet produksjonsklart**
+- Status: **PRODUKSJONSKLAR – fase 11 PASS**
 
 ## Arbeidskort
 
@@ -71,8 +71,8 @@ Som ekstra pilotkontroll gjenbrukes tre gode ideer fra den lukkede, feilplassert
 | Før/etter | MANGLER | Ingen canonical `for_na`-pakke eller kontrollert bildepar er funnet. |
 | Nyheter | MANGLER | Ingen daterte, ferskverifiserte nyhets-/driftsrecords for stedet er funnet. |
 | Lesespor | MANGLER | Ingen eksplisitt stedskoblet, åpen Lesespor-pakke er funnet. |
-| Kilder | IKKE GODKJENT | Leksikon `sources` er tom. `source_summary.safe_sources` består hovedsakelig av kildenavn og interne History Go-data, ikke en brukerrettet, deduplisert HTTPS-liste. |
-| Mer | DELVIS | Leksikon har korte tolkningspunkter, men de mangler kilder. Ingen ferdig Språkleksikon-/observasjonspakke er dokumentert, og Wonderkammer skal ikke gjeninnføres som ny flate. |
+| Kilder | PASS – fase 7 | Fem brukerrettede kildegrupper og sju unike, navngitte HTTPS-lenker dekker identitet, bygningshistorie, dagens bruk, rehabilitering, kulturminnevern og bilder. Interne History Go-data er fjernet fra brukerflaten, og kildekonflikten om Thomas Blix-inventaret er synlig avgrenset. |
+| Mer | PASS – fase 8 | Fem stedsspesifikke Språkleksikon-oppslag og tre kildebelagte spor hver for observasjon, betydning og motpunkt materialiseres som navngitte direktefaner. Det finnes ingen brukerrettet Mer-restfane. |
 
 ## Sanerings- og produksjonsplan
 
@@ -130,12 +130,12 @@ Bare én fase kan være aktiv om gangen. Hver godkjente fase skal merges og kont
 | 3 | Story-review og eventuell episodeproduksjon | **GODKJENT – PR #4652, merge `8ce0bc33263dbbcc7581c9b8316f8a483c60143b`** |
 | 4 | Før/etter | **GODKJENT – PR #4654, merge `850c3b3332f857fb98593f36588bc46cfe6945eb`** |
 | 5 | Nyheter | **GODKJENT – PR #4656, merge `1ae7d30113134edc26394289a1afce0226f58246`** |
-| 6 | Lesespor | **KLAR FOR REVIEW** |
-| 7 | Brukerrettede Kilder | IKKE STARTET |
-| 8 | Mer | IKKE STARTET |
-| 9 | Quizåpning 2 × 7 og Knowledge | IKKE STARTET |
-| 10 | People, Objects, Brands og Badges/rundinger | IKKE STARTET |
-| 11 | Full audit, UI-kontroll og produksjonsklarhetsavgjørelse | IKKE STARTET |
+| 6 | Lesespor | **GODKJENT – PR #4658, merge `c78cb05353bfb61eb68fef74ee9f115dfacc3a8b`** |
+| 7 | Brukerrettede Kilder | **GODKJENT – PR #5184, merge `31af12e8852cca6d7c2da2ef2e5fdab480a287c2`** |
+| 8 | Mer | **GODKJENT – PR #5186, merge `3bc252d347b3dd8561155bdbd49c354378401767`** |
+| 9 | Quizåpning 2 × 7 og Knowledge | **GODKJENT – PR #5188, merge `5c400fdb79fa16af7eb23fcd61c3e8b70ef8e01b`** |
+| 10 | People, Objects, Brands og Badges/rundinger | **GODKJENT – PR #5189, merge `cccbd5261d3597539a2dd33f69e2b33b21aa8a9a`** |
+| 11 | Full audit, UI-kontroll og produksjonsklarhetsavgjørelse | **PASS – PRODUKSJONSKLAR, KLAR FOR REVIEW** |
 
 ## Resultat i fase 1
 
@@ -193,25 +193,86 @@ Bare én fase kan være aktiv om gangen. Hver godkjente fase skal merges og kont
 - Ukjent publiseringsdato for Riksantikvarens case står ærlig som `date: null` og `year: null`; siden tillegges ikke et konstruert årstall.
 - Lesespor ligger bare i den canonicale Lesespor-modulen og vises gjennom den eksisterende stedfiltrerte rendereren. Ingen record er kopiert inn i Leksikon eller `externalLinks`.
 
-## Aktivt filscope
+## Resultat i fase 7
 
-Fase 6 endrer bare:
+- `source_summary.safe_sources` er ryddet til fem brukerrettede kildegrupper for identitet/bygningshistorie, dagens bruk, rehabilitering/kulturminnevern og bildeproveniens.
+- Sju unike, navngitte `externalLinks` bruker HTTPS og dekker Store norske leksikon, Den norske kirke, Riksantikvaren, Oslo byleksikon og begge bildenes kildesider.
+- Alle sju lenker er kontrollert 22. august 2026. Rehabiliteringssiden skiller gjennomførte arbeider i 2023–2024 fra en planlagt sluttfase i 2026–2027.
+- Store norske leksikon oppgir 1715 for Thomas Blix-inventaret, mens Den norske kirke og Oslo byleksikon oppgir 1725. Kildekonflikten er lagt i `hold_back_sources` og på den statiske Leksikon-siden; ingen av årstallene presenteres som avklart i Kilder-flaten.
+- Den statiske Leksikon-sidens Kilder-seksjon bruker de samme sju eksterne inngangene. Lokalhistoriewiki og tre interne History Go-referanser er fjernet fra brukerflaten fordi de ikke inngikk i den kontrollerte kildepakken.
+- Eksisterende popup-runtime samler place- og Leksikon-lenker med Før/etter-kildene, dedupliserer på URL og åpner eksterne lenker med `noopener noreferrer`. Ingen ny hovedflate eller runtimevariant er innført.
+- Interne rapporter, quizdata, Story-data, audits og research-notater eksponeres ikke som brukerrettede kilder. De tre usikre tradisjonene om trekirke, Olav Kyrre og tingsted forblir holdt tilbake.
 
-- den eksisterende manifestlastede Oslo/Historie-filen i Lesespor-modulen;
-- en egen Lesespor-regresjonspakke;
+## Resultat i fase 8
+
+- Leksikonets hovedrecord er oppgradert til versjon 3 med tre «Legg merke til»-punkter, tre betydningspunkter og tre motpunkter. Alle tre sporene har sju HTTPS-kilder kontrollert 22. august 2026.
+- Observasjonene gjør besøket konkret: brukeren kan lese basilikaformen, apsiden, kalksteinen/fossilsporet og restaureringslagene i selve bygget uten å berøre sårbart murverk.
+- Betydningssporet kobler navnet Aker til norrønt `akr`, ortocerkalkstein til Oslofeltets geologi og rehabiliteringen til avveininger mellom fortsatt bruk, tilgjengelighet, energi, brannsikring og vern.
+- Motpunktene holder byggeåret usikkert, forklarer at det bare steininteriøret i stor grad er et resultat av restaureringen i 1950–1955, og avviser at bygningen alene beviser trekirke-, Olav Kyrre- eller tingstedstradisjonene.
+- Et canonicalt Språkleksikon med fem oppslag forklarer `Aker`, `ortocerkalkstein`, `basilika`, `apsis` og `krypt`. Hvert oppslag er koblet til `gamle_aker_kirke`, har stedskontekst og minst én navngitt HTTPS-kilde; arkitektur- og romordene har også en egen stedskilde.
+- Gamle Aker kirke er et enkeltsted uten `placeScope: "area"`. Dialektlaget er derfor eksplisitt N/A: språkfilen har `layer: "language"`, ingen `dialect_area` og ingen `dialect_feature`. Oslo-dialekt skal eies av et relevant område-Place, ikke kopieres inn i kirkebygget.
+- Fossilstoffet som ble avvist som Story i fase 3 er nå plassert hos riktige eiere: geologibegrepet ligger i Språkleksikon, mens den kildebelagte observasjonen og betydningen ligger i direktefanene. Ingen forklarende fossiltekst gjeninnføres som Story.
+- Knowledge, funfacts, relasjoner og fysiske Objects er vurdert og ikke lagt i denne fasen. Knowledge eies av quiz-/Knowledge-fasen, relasjoner eies av canonical relasjonsdata, og Objects krever egen identitets-, kilde- og bilderunde.
+- Eksisterende runtime materialiserer språk, observasjon, betydning og motpunkter som navngitte direktefaner i den horisontalt scrollbar fanestripen. Ingen ny hovedflate, Mer-restfane eller stedsspesifikk runtimevariant er innført.
+
+## Resultat i fase 9
+
+- Den eneste aktive Gamle Aker-quizen er revidert fra ett sett med fem spørsmål til canonical `narrow_3x7`: tre sett med sju spørsmål og 21 selvstendige, kildebelagte claims.
+- Sett 1 og 2 utgjør den absolutte normalåpningen på 2 × 7. Alle fjorten spørsmål er direkte spørsmål om bygg, arkitektur, materiale, navn, bruk, eierskap, branner, rivningsstrid og restaurering; ingen har `method_id`, `topic_hook_id`, `thinker_id` eller `theory_ref`.
+- Sett 3 innfører kildekritikk, sporlesning, restaurerings-/autentisitetsanalyse og kulturarvutvelgelse. Fire teoribindinger bruker Carlo Ginzburg, Alois Riegl og Sverre Bagge bare der teorien skjerper en konkret, eksternt kildebelagt situasjon.
+- Et reviewed `source_brief` samler sju åpne HTTPS-kilder, 21 ordnede claims, audit av de fem gamle spørsmålene, profilbegrunnelse og fire eksplisitt holdte kandidater. Trekirketradisjonen, Olav Kyrre, tingstedet og det motstridende Thomas Blix-året er ikke gjort til quizfasit.
+- Den genererte produksjonskonteksten dokumenterer hele manifestløste fagpakken, stedets canonical data, relevante relasjoner/Story, valgt pensum og en nøyaktig settplan. Profilen stoppes på tre sett fordi et fjerde ville gjenta samme bygnings- og bevaringshistorie.
+- Alle 21 spørsmål har stabilt læringsmål, evidenstype og feedbackgrunnlag. Canonical Knowledge-synk materialiserer 42 koblede Knowledge-enheter, 45 concepts og 8 terms for quizen; alle spørsmål har `knowledge_link_status: "linked"`.
+- Quizdata endrer ikke fysisk besøksstatus. Eksisterende quiz-, Knowledge- og progresjonsruntime brukes uten ny hovedflate, ny storage eller stedsspesifikk runtimevariant.
+
+## Resultat i fase 10
+
+- People-rundingen har fire direkte, manifestlastede personkoblinger: Heinrich Ernst Schirmer og Wilhelm von Hanno for restaureringen i 1856–1861, Torvald Moseid for glassmaleriet fra 1955 og Dronning Maud for den dokumenterte oppbevaringen av sarkofagen i krypten 1940–1948.
+- Olav Kyrre holdes fortsatt tilbake som svak tradisjon. Thomas Blix materialiseres ikke som en tynn ny personprofil bare for å øke antallet; hans dokumenterte arbeid bæres i stedet av de fysiske objektene.
+- Objects-rundingen har tre identifiserbare gjenstander inne i kirken: døpefonten og prekestolen skåret av Thomas Blix, samt det bevarte nattverdsmaleriet fra altertavlen fra 1700-tallet. Hvert objekt har stedstekst, funnsted, kildegrunnlag, lokalt bilde og inspectable CC BY-SA 4.0-proveniens. Fase 11 gjorde de to første objekt-ID-ene og tekstene årsnøytrale fordi kildene fortsatt spriker mellom 1715 og 1725.
+- Kirkebygget, tårnet, kalksteinen og fossilene er ikke duplisert som Objects. Torvald Moseids glassmaleri er faglig relevant, men holdes ute av Objects til et kontrollert, lokalt objektbilde finnes.
+- Brand-kandidatpasset har kontrollert moderne prosjektaktører, ikke bare eksisterende registertreff. Zenisk og TRÅD AS består Brand-definisjonen, har direkte dokumenterte roller ved stedet og 100 prosent lokal, offisiell logodekning. Arkitektene AS og Nco AS holdes tilbake fordi den ferdige logo-/rolleporten ikke er lukket; Kirkelig fellesråd brukes ikke som institusjonsfyll.
+- Fire canonicale nabosteder gir en virkelig Related-runde: Damstredet og Telthusbakken, Vår Frelsers gravlund, St. Hanshaugen park og Stensparken. Alle løser i `places_index` og gjør kirken til inngang til et rikere lokalt område.
+- Badges ligger fortsatt separat ved overskriften. `middelalder` og `kulturminner_og_bevaring` er kontrollert mot Historie-registeret, og innholdsrundingene følger standarden `people · objects · brands · related` uten `round_profile`-overstyring eller ny runtime.
+- Seksdelt kvalitetsport er 29/30: korrekthet/evidens 5, dekning 5, redaksjonell kvalitet 5, teknisk integritet 5, sikkerhet/ansvarlighet 5 og vedlikeholdbarhet/etterprøvbarhet 4. Ingen dimensjon er under 4 og ingen kritiske funn står åpne i faseomfanget.
+
+## Resultat i fase 11
+
+- Hele stedschecklisten er gjennomgått på fersk `main` `cbf92f05df91dedc5d3ef60226cc9c01304ffd2a`. Description 4.2, Historie A–H, popupflater, quiz/Knowledge, rundinger, fagverk, onsite-handlinger, progresjon og relevante N/A-grenser er samlet i én maskinlesbar sluttaudit.
+- Sluttauditen fant og fjernet tre gamle parallelle sannhetslag fra place-recorden: `safe_facts`, `wonderkammer_seed` og `people_relations_seed`. Innholdet deres er allerede migrert til claims, chronology, Story, quiz/Knowledge, Språk, direktefaner og canonicale People-/Object-data; nytt Wonderkammer er ikke laget.
+- Den tidligere interne selvmotsigelsen om Thomas Blix-inventaret er lukket redaksjonelt. Object-ID-er og brukerrettet tekst oppgir ikke ett sikkert år, og både 1715- og 1725-kildene er synlige. Den statiske Leksikon-siden følger nå samme grense.
+- Den holdte trekirketradisjonen og den udokumenterte fylkeskirkeformuleringen er fjernet fra `history_layers`. Ingen research-only-påstand kan lekke inn i popupen via gamle felt.
+- Den faktiske popup-runtimeen er kjørt i Chromium på desktop (`1440 × 1000`) og mobil (`390 × 844`). Elleve navngitte faner rendres: Om, Historie, Fortellinger, Før/etter, Nyheter, Lesespor, Kilder, Legg merke til, Betydning, Motpunkter og Språk. Ingen brukerrettet Mer-fane finnes.
+- Samme Chromium-port åpner alle fanene, teller 11 chronology-punkter, én Story, to Før/etter-bilder, to notiser, tre Lesespor, tre observasjoner, tre betydningspunkter, tre motpunkter og fem språkoppføringer.
+- Standard 4+1 er verifisert i runtime: Badges ligger ved overskriften, mens Personer · Gjenstander · Brands · Relaterte steder viser 4 · 3 · 2 · 4 canonicale elementer. Ingen lokal `round_profile` eller ny runtimevariant er innført.
+- `fagverk-sted.html?place=gamle_aker_kirke` er åpnet i Chromium på desktop og mobil og viser riktig sted, hovedbilde, to underbadges, linser, spørsmål, kapitler, emner og brukerrettede kilder uten horisontal overflow.
+- Events har eksisterende tomtilstand og ingen oppdiktet hendelse. Tasks, Training, Play, offentlig hjemsted, nye unlocks, Bronse/Sølv/Gull og egen historisk rute er eksplisitt N/A. Social Meet, Kunnskapsmøte, Observer, Notat, navigasjon, NextUp, Nearby, besøk, favoritt og uavhengig quiz-/besøksprogresjon gjenbruker eksisterende eiere.
+- Seksdelt sluttport er 30/30: alle seks dimensjoner er 5, totalsummen er over kravet 27, og det står null kritiske funn eller andre blokkere åpne.
+
+Gamle Aker kirke er dermed samlet produksjonsklart. Målet er oppfylt uten nye hovedsystemer: ett kirkested gir en rik lokal opplevelse gjennom historie, materialspor, natur/geologi, Story, før/etter, nyheter, lesing, språk, quiz, People, Objects, Brands, nabosteder og fagverk.
+
+## Filscope i fase 10
+
+Fase 10 endrer bare:
+
+- den canonicale Gamle Aker-place-filen med tre Objects og fire eksplisitte related-place-ID-er;
+- tre eksisterende People-profiler, uten å opprette nye person-ID-er;
+- canonical Brand-master og place-mapping med to ferdige profesjonsbrands;
+- tre lokale objektbilder og to lokale offisielle logo-assets med dokumentert proveniens;
+- produksjonspakkens rundingsstatus, én maskinlesbar faseaudit og én målrettet regresjonstest;
 - dette arbeidskortet.
 
-Ingen canonical place-, Leksikon-, Story-, People-, Quiz-, Knowledge-, manifest-, runtime-, bilde- eller produksjonsrapportfil endres i fase 6.
+Ingen Story-, Lesespor-, quiz-, Knowledge-, koordinat-, lagrings- eller runtimefil endres i fase 10. Det innføres ingen ny hovedflate eller ny rundingsvariant.
 
-## Ferdigport for fase 6
+## Ferdigport for fase 10
 
-Fase 6 kan godkjennes når:
+Fase 10 kan godkjennes når:
 
-1. nøyaktig tre records har unike ID-er og bare `place_ids: ["gamle_aker_kirke"]`;
-2. alle tre bruker `access: "open"`, `rights: "link_only"` og `curation_status: "approved"`;
-3. kildene har canonical, recognized eller institutional kildekvalitet og inspectable HTTPS-lenker;
-4. Lesesporene utfyller hverandre med historisk oversikt, restaureringsbeslutninger og teknisk kulturminneforvaltning;
-5. ukjent dato bevares som `null`, og kjente datoer samsvarer med de publiserte sidene;
-6. ingen record lagrer artikkeltekst eller materialiseres i Leksikon, `externalLinks`, Story eller quiz;
-7. den eksisterende rendereren filtrerer på place-ID, avviser betalingsmurer og viser relevansnotatet;
-8. Lesespor-validator, Historie-rapport og PR-review består uten feil i stedskobling, tilgang eller kildeklassifisering.
+1. People-rundingen løser minst de fire oppgitte, direkte personkoblingene fra canonical manifestdata uten svak tradisjonsfyll eller brutte bildebaner;
+2. alle tre Objects er fysiske, stedsspesifikke og har to kilder, lokalt bilde, lisens, kreditering og manuell motivkontroll;
+3. Brand-kandidatpasset er dokumentert, begge inkluderte Brands består canonical score og har direkte stedsrolle;
+4. begge Brands har lokale offisielle logoer, 100 prosent attribusjonsdekning og ingen genererte eller rekonstruerte merker;
+5. alle fire Related-ID-er løser til andre canonical History Go-places, og ingen av dem er kopiert som Objects eller Structures;
+6. begge underbadges finnes i Historie-registeret og Badge forblir separat fra de fire innholdsrundingene;
+7. eksisterende runtime velger `people · objects · brands · related` fra standardkontrakten uten en lokal `round_profile` eller kodevariant;
+8. målrettet test, canonical audits, TypeScript-kontroll og GitHub CI består, og seksdelt kvalitetsport er minst 27/30 med alle dimensjoner minst 4.

@@ -1,1 +1,60 @@
-{"schema":"civication_role_model_v2","version":2,"category":"film_tv","role_scope":"programleder","role_id":"film_tv_programleder","title":"Programleder","source":{"badge_file":"data/badges/film_tv.json","evidence":"data/Civication/filmTvCareerLifeEvidence.json"},"badge_titles":["Programleder"],"core_narrative":["Programlederen bærer sendingens eller programmets publikumskontakt og må kombinere forberedelse, intervju, timing og redaksjonell rolleforståelse uten å forveksle synlighet med ubegrenset myndighet."],"competence_axes":["research_og_forberedelse","intervju","muntlig_formidling","timing_og_liveflyt","redaksjonell_rolleforstaelse","publikumstillit"],"ideal_type_problems":[{"id":"svakt_grunnlag","problem":"Et intervju skal på lufta før sentrale fakta er kontrollert."},{"id":"gjest_endrer_premiss","problem":"En gjest endrer premisset rett før opptak."},{"id":"live_avvik","problem":"En direktesending får et uventet teknisk eller redaksjonelt avvik."},{"id":"profil_vs_redaksjon","problem":"Egen profil trekker oppmerksomheten bort fra programmets redaksjonelle formål."},{"id":"saarbar_gjest","problem":"En gjest deler sensitiv informasjon som krever ekstra redaksjonell omtanke."}],"authority_boundaries":{"cannot":["presentere_ubekreftede_pastander_som_fakta","love_redaksjonelle_utfall_uten_mandat","overstyre_sikkerhets_eller_produksjonsansvar","bruke_kjendisstatus_som_bevis_pa_redaksjonell_myndighet"]},"notes":["Canonical Film/TV work world for Programleder; public profile is not itself an employment contract."]}
+{
+  "schema": "civication_role_model_v2",
+  "version": 2,
+  "category": "film_tv",
+  "role_scope": "programleder",
+  "role_id": "film_tv_programleder",
+  "title": "Programleder",
+  "source": {"badge_file": "data/badges/film_tv.json", "evidence": "data/Civication/filmTvCareerLifeEvidence.json"},
+  "badge_titles": ["Programleder"],
+  "core_narrative": [
+    "Programlederen bærer programmets publikumskontakt og gjør redaksjonelle premisser forståelige uten å forveksle synlighet, improvisasjon eller nærhet til gjesten med ubegrenset myndighet."
+  ],
+  "competence_axes": ["research_og_forberedelse", "intervju", "muntlig_formidling", "timing_og_liveflyt", "redaksjonell_rolleforstaelse", "publikumstillit"],
+  "required_knowledge": {
+    "concepts": [
+      "En intervju-brief må skille verifiserte fakta, åpne spørsmål og redaksjonelle hypoteser.",
+      "Samtykke til ett premiss dekker ikke automatisk nye, sensitive opplysninger som oppstår underveis.",
+      "I direktesending eier programlederen publikumskontakten, mens produsent og redaksjonsleder eier andre beslutninger innen sine mandater.",
+      "En god oppfølging bygger på det gjesten faktisk sa, ikke bare på den planlagte spørsmålslisten.",
+      "Historiske formidlere kan gi kildeforankret kontekst om offentlig samtale, men er ikke fasit for dagens konkrete programvalg."
+    ],
+    "application": "Kunnskap brukes til å verifisere premisser, formulere åpne spørsmål, beskytte gjestens avtalte grenser og holde publikum orientert når planen endres."
+  },
+  "related_people": [
+    {"id": "ingrid_redaksjonsleder_program", "name": "Ingrid", "fictional": true, "function": "Fiktiv redaksjonsleder og beslutningseier for premiss, publisering og vesentlige endringer i intervjuet."},
+    {"id": "jonas_liveprodusent", "name": "Jonas", "fictional": true, "function": "Fiktiv liveprodusent som eier kjøreplan, kontrollromsbeskjeder og avvikshåndtering i sending."},
+    {"id": "amina_researcher_program", "name": "Amina", "fictional": true, "function": "Fiktiv researcher som holder kildegrunnlag, uttale, tall og åpne faktaspørsmål sporbare."},
+    {"id": "thea_gjestekoordinator", "name": "Thea", "fictional": true, "function": "Fiktiv gjestekoordinator som dokumenterer avtalt premiss, praktiske behov og grenser for sensitiv omtale."}
+  ],
+  "related_places": [
+    {"id": "briefrom_program_film_tv", "name": "Programmets briefrom", "kind": "fictional_work_surface", "function": "Fiktiv arbeidsflate for research, spørsmålsrekkefølge, premiss og redaksjonelle avklaringer."},
+    {"id": "studio_program_film_tv", "name": "Programstudioet", "kind": "fictional_work_surface", "function": "Fiktivt studio for opptak og sending, med synlig kjøreplan og avklart sikkerhetslinje."},
+    {"id": "kontrollrom_program_film_tv", "name": "Programmets kontrollrom", "kind": "fictional_work_surface", "function": "Fiktiv produksjonsflate for timing, tekniske avvik og redaksjonelle beskjeder under sending."},
+    {"id": "cinemateket_oslo", "name": "Cinemateket i Oslo", "kind": "canonical_history_go_place", "function": "Canonical History Go-anker for filmhistorisk formidling; stedet simuleres ikke som arbeidsgiver eller studio."}
+  ],
+  "ideal_type_problems": [
+    {"id": "svakt_grunnlag", "problem": "Et intervju skal på lufta før sentrale fakta er kontrollert."},
+    {"id": "gjest_endrer_premiss", "problem": "En gjest endrer premisset rett før opptak."},
+    {"id": "live_avvik", "problem": "En direktesending får et uventet teknisk eller redaksjonelt avvik."},
+    {"id": "profil_vs_redaksjon", "problem": "Egen profil trekker oppmerksomheten bort fra programmets redaksjonelle formål."},
+    {"id": "saarbar_gjest", "problem": "En gjest deler sensitiv informasjon som krever ekstra redaksjonell omtanke."}
+  ],
+  "authority_boundaries": {
+    "cannot": ["presentere_ubekreftede_pastander_som_fakta", "love_redaksjonelle_utfall_uten_mandat", "overstyre_sikkerhets_eller_produksjonsansvar", "utvide_sensitivt_premiss_uten_ny_avklaring", "bruke_historiske_personprofiler_som_fasit_for_dagens_programvalg"]
+  },
+  "career_path": {
+    "entry_from": ["research_eller_redaksjonelt_assistentarbeid", "reporter_eller_formidlingsarbeid", "dokumentert_intervju_eller_sceneerfaring"],
+    "progression_to": ["senior_programleder", "redaksjonell_utvikler", "programredaktor"],
+    "possible_promotions": ["Senior programleder", "Programredaktør"],
+    "possible_exits": ["Bytte til research eller reporterarbeid", "Gå til redaksjonell utvikling eller produksjon", "Avslutte etter programkontrakten", "Miste oppdraget ved gjentatte brudd på faktagrunnlag, gjestegrenser eller sikkerhetslinje"]
+  },
+  "mail_integration": {
+    "role_scope": "programleder",
+    "mail_profile": "film_tv_programleder",
+    "can_feed_mail_types": ["job", "people", "conflict", "story", "event", "micro", "followup", "knowledge", "consequence"]
+  },
+  "notes": [
+    "Canonical Film/TV work world for Programleder; current production people and work surfaces are fictional, while canonical History Go People and Places are read-only knowledge targets."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema": "civication_mail_family_catalog_v1", "version": 1, "category": "film_tv", "role_scope": "programleder", "mail_type": "micro",
+  "families": [{"id": "programleder_faktalapp", "purpose": "Gjøre en liten faktarettelse synlig før den blir gjentatt på lufta.", "learning_focus": ["uttale", "tall", "kildestatus"], "mails": [{
+    "id": "film_tv_program_micro_faktalapp_001", "mail_type": "micro", "mail_family": "programleder_faktalapp", "role_scope": "programleder", "phase": "workday", "day_phase": "afternoon", "priority": 112, "cooldown": 2, "repeatable": true, "stage": "stable",
+    "from": "Amina, researcher", "people_ref": "amina_researcher_program", "person_id": "amina_researcher_program", "place_id": "briefrom_program_film_tv",
+    "subject": "Tallet gjelder søknader, ikke ferdige produksjoner", "summary": "Amina har oppdaget at introduksjonen bruker et søknadstall som om det var antall ferdige produksjoner, og har også lagt ved korrekt uttale av gjestens navn.", "purpose": "Teste om små rettelser får en canonical plass i briefen.", "stakes": "Et feil tall gjentatt med trygg stemme blir vanskeligere å rydde opp i etter sending.",
+    "situation": ["Kilden skiller tydelig mellom søknader og ferdige produksjoner.", "Feilen står i både introduksjon og stikkordskort.", "Korrekt uttale er bekreftet direkte med gjestekoordinatoren."],
+    "task_domain": "research_og_brief", "task_kind": "micro", "competency": "faktapresisjon", "pressure": "siste_minutt_vs_korreksjon", "choice_axis": "rett_canonical_brief_og_kort_vs_husk_det_muntlig", "consequence_axis": "samstemt_grunnlag_vs_dobbelt_feilspor", "narrative_arc": "fra_brief_til_sending", "interaction_mode": "decision",
+    "choices": [
+      {"id": "A", "label": "Rett brief og stikkordskort og bekreft mottak", "reply": "Jeg oppdaterer begge flatene til søknadstall og bruker den bekreftede uttalen.", "effect": 1, "tags": ["traceability", "correction"], "feedback": "Hele produksjonen arbeider videre fra samme korrigerte grunnlag.", "effects": {"stats": {"quality": 2, "risk": -2, "energy": -1}}},
+      {"id": "B", "label": "La dokumentene stå og korriger deg selv på lufta", "reply": "Jeg husker forskjellen når jeg leser introduksjonen.", "effect": -1, "tags": ["memory_only", "rework"], "feedback": "Feilen blir stående i to operative flater og kan fortsatt leses av andre.", "effects": {"stats": {"quality": -2, "risk": 2}}}
+    ]
+  }]}]
+}
