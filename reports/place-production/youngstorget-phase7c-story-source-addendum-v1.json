@@ -1,0 +1,118 @@
+{
+  "schema_version": "1.0",
+  "place_id": "youngstorget",
+  "phase": "7C_fortellinger",
+  "created_at": "2026-08-23",
+  "baseline_main": "d2ab0e7f845ee530c071f3aebfb430dc12efabf7",
+  "extends_source_pack": "reports/place-production/content-factory-pilot-01-oslo-sentrum-ost-source-pack-v1.json",
+  "story_id": "st_youngstorget_mayday",
+  "reused_sources": [
+    {
+      "source_id": "cf01_s02_young_oslo_byleksikon",
+      "role": "market-square background and later Youngstorget labour-movement use"
+    },
+    {
+      "source_id": "cf01_s05_arbark_8timersdagen",
+      "role": "1 May 1890 event, eight-hour demand, route endpoint and approximate participation"
+    },
+    {
+      "source_id": "cf01_s03_young_arbark_det_rode_torg",
+      "role": "later use of Youngstorget as assembly place; reused only from the already verified phase-2 claim bank"
+    }
+  ],
+  "new_sources": [
+    {
+      "source_id": "cf01_s13_oslo_byleksikon_1mai",
+      "title": "Oslo byleksikon – 1. mai",
+      "url": "https://oslobyleksikon.no/side/1._mai",
+      "source_type": "institutional",
+      "verified_at": "2026-08-23",
+      "locator": "Opening paragraph on the 1890 Kristiania procession",
+      "evidence_scope": "youngstorget_1_may_1890_route_stortinget_delivery_and_attendance",
+      "reuse_origin": "new_for_youngstorget_phase7c",
+      "limitations": "The page states 3,600 participants, while Arbark states roughly 4,000. The event and route agree; the exact attendance does not. User-facing text must therefore use a non-false precision such as 'flere tusen' unless a number is explicitly attributed."
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "cf01_young_story_1890_route_001",
+      "claim_text_or_structured_fact": "On 1 May 1890 the demonstration procession left Youngstorget, went through Torggata and Karl Johan to Stortinget, where the demand for an eight-hour working day was delivered to the Storting presidency, and then continued to Tullinløkka.",
+      "source_id": "cf01_s13_oslo_byleksikon_1mai",
+      "corroborating_source_ids": [
+        "cf01_s05_arbark_8timersdagen"
+      ],
+      "evidence_scope": "documented_route_and_political_action_from_youngstorget",
+      "applicable_place_ids_or_entity_ids": {
+        "place_ids": [
+          "youngstorget",
+          "stortinget"
+        ],
+        "entity_ids": []
+      },
+      "time_scope": "1890-05-01",
+      "freshness_class": "historical_stable",
+      "review_status": "verified",
+      "inference_limit": "Torggata and Karl Johan are documented route segments, not automatically related_places or next_scenes. Tullinløkka is not promoted to a canonical Place by this claim."
+    },
+    {
+      "claim_id": "cf01_young_story_1890_attendance_002",
+      "claim_text_or_structured_fact": "The sources agree that several thousand people took part in the 1 May 1890 procession, but differ on the exact number: Oslo byleksikon states 3,600 and Arbark states close to 4,000.",
+      "source_id": "cf01_s13_oslo_byleksikon_1mai",
+      "corroborating_source_ids": [
+        "cf01_s05_arbark_8timersdagen"
+      ],
+      "evidence_scope": "source_conflict_on_attendance_not_event_identity",
+      "applicable_place_ids_or_entity_ids": {
+        "place_ids": [
+          "youngstorget"
+        ],
+        "entity_ids": []
+      },
+      "time_scope": "1890-05-01",
+      "freshness_class": "historical_stable",
+      "review_status": "verified_with_source_disagreement",
+      "inference_limit": "Do not collapse the disagreement into one exact unattributed number. 'Flere tusen' is safe common ground; exact figures require source attribution."
+    },
+    {
+      "claim_id": "cf01_young_story_1890_narrative_003",
+      "claim_text_or_structured_fact": "The 1890 event provides an independent narrative axis for a Story because a concrete labour demand moved from assembly at Youngstorget to formal delivery at Stortinget and then onward to Tullinløkka; later Youngstorget use as an assembly space establishes continuity without claiming the square caused the movement.",
+      "source_id": "cf01_s13_oslo_byleksikon_1mai",
+      "corroborating_source_ids": [
+        "cf01_s05_arbark_8timersdagen",
+        "cf01_s03_young_arbark_det_rode_torg"
+      ],
+      "evidence_scope": "story_form_and_place_specific_narrative_axis",
+      "applicable_place_ids_or_entity_ids": {
+        "place_ids": [
+          "youngstorget",
+          "stortinget"
+        ],
+        "entity_ids": []
+      },
+      "time_scope": "1890_and_documented_later_assembly_use",
+      "freshness_class": "historical_stable",
+      "review_status": "verified_for_story_use",
+      "inference_limit": "This supports a documented mobilization route and later continuity, not a causal claim that Youngstorget created the labour movement or guaranteed later political outcomes."
+    }
+  ],
+  "held_back": [
+    {
+      "claim_id": "cf01_hold_young_first_mayday_1890",
+      "status": "not_promoted_in_7c",
+      "reason": "The Story does not need a 'first' superlative to work. Phase 7C keeps the stronger wording out rather than expanding the claim merely because a new independent source was found."
+    }
+  ],
+  "story_scope_decisions": {
+    "preserve_story_id": true,
+    "related_people": [],
+    "related_places": [
+      "stortinget"
+    ],
+    "next_scenes": [
+      "stortinget"
+    ],
+    "tullinlokka_canonical_place_created": false,
+    "martin_tranmael_relation_removed": true,
+    "reason": "The Storting is part of the documented 1890 action, while Martin Tranmæl is not an actor in the episode and Tullinløkka is not established as a canonical Place by this production phase."
+  }
+}
