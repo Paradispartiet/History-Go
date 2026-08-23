@@ -215,4 +215,7 @@ npm run places:coords:check
 echo "== Birkelunden phase 7A Om regression =="
 node --test tests/birkelunden-phase7a-about.test.mjs
 
+echo "== Birkelunden phase 7B Historie regression =="
+node --test tests/birkelunden-phase7b-history.test.mjs
+
 echo "== Places check complete =="
