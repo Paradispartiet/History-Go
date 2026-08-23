@@ -3,7 +3,7 @@
 - Oppdatert: 2026-08-23
 - Place ID: `youngstorget`
 - Canonical source: `data/places/politikk/oslo/places_politikk/youngstorget.json`
-- Aktiv baseline `main`: `7b257c603f53141862eff19a7b9e1d28b8d2fb75`
+- Aktiv baseline `main`: `bee5692301164b52ad9df5a0daabfbde974ee47a`
 - Fase 0 merge: PR #5213 / `0b62e1c96bbddcf9c8574f10e0d041bba90ca48e`
 - Fase 1 merge: PR #5214 / `902a01c339fc3af75ac9c1d3053d1a06ca1c5136`
 - Fase 2 merge: PR #5215 / `694cef96d85e3ba3ea09ec6f6d83f183bff0bdd4`
@@ -12,6 +12,7 @@
 - Fase 5 merge: PR #5222 / `2ee41fbfc861d3cdf7aecddffc3246d28c3308b5`
 - Fase 6 merge: PR #5227 / `222f6a556785fe13ff337995349b6998c50208ff`
 - Fase 7 audit merge: PR #5228 / `7b257c603f53141862eff19a7b9e1d28b8d2fb75`
+- Fase 7A merge: PR #5230 / `bee5692301164b52ad9df5a0daabfbde974ee47a`
 - Styrende kontrakt: `docs/PLACE_PRODUCTION_CHECKLIST.md`
 - Popupkontrakt: `docs/PLACE_POPUP_SYSTEM.md`
 - Prior-work gate: `docs/PLACE_PRODUCTION_PRIOR_WORK_GATE.md`
@@ -46,7 +47,7 @@ Nære egne Places som ikke skal brukes som proxy omfatter minst `folkets_hus_osl
 | 4. Kategori, Badges, emner og Fagverk | **ALLEREDE FERDIG OG MERGET** | PR #5218; `politikk`, to underbadges og tre `em_pol_*` |
 | 5. `desc` + `popupDesc` | **FERDIG OG MERGET** | PR #5222; 17/17 verified claims, 3/3 + 26/26 sentence coverage |
 | 6. Strukturerte place-profiler | **FERDIG OG MERGET** | PR #5227; spatial/temporal/history/source materialisert; subplaces/nature begrunnet N/A; 6/6 workflows grønne |
-| 7. Popupfaner | **7A OM KLAR FOR REVIEW** | audit merget i PR #5228; 7A låser eksisterende Om-flate uten canonical dataendring |
+| 7. Popupfaner | **7B HISTORIE KLAR FOR REVIEW** | audit merget #5228; 7A Om merget #5230; 7B låser eksisterende history_layers uten chronology-filler |
 | 8. Rundinger | **BLOKKERENDE LEGACY-AVVIK** | dagens `people · badges · civication · brands · leksikon · routes · music` følger ikke dagens 4+1-kontrakt |
 | 9. På stedet | **IKKE STARTET** | legacy tasks skal ikke videreføres ukritisk |
 | 10. Quiz | **EKSISTERER – RE-AUDIT SENERE** | aktivt 5-spørsmålssett finnes; ikke regenerer uten konkret behov |
@@ -83,26 +84,36 @@ Fase 7 skal ikke omskrive denne teksten uten ny konkret description-regresjon.
 - `nature_profile`: begrunnet N/A;
 - produksjonsmodell/API-kreditter: 0 fordi allerede verifisert claim-bank var tilstrekkelig, ikke fordi innhold ble kuttet.
 
-## Aktiv fase 7A – Om
+## Fase 7A – Om – ferdig og merget
 
-Fase-7-auditen er merget i PR #5228. Fase 7A kontrollerer og låser Om-fanen uten å produsere parallell tekst eller tidslinje.
+PR #5230 låste Om-fanen uten canonical dataendring:
+
+- fase-5 `popupDesc` forblir hovedartikkel;
+- fase-6 `spatial_profile` rendres gjennom eksisterende runtime;
+- ingen manifest-lastet Leksikonpost konkurrerer om Youngstorget;
+- `temporal_profile` dobbeltrendres ikke i Om;
+- permanent regresjon: `tests/youngstorget-phase7a-about.test.mjs`.
+
+## Aktiv fase 7B – Historie
+
+Fase 7B kontrollerer og låser den eksisterende Historie-fanen uten å produsere parallell chronology eller mer volum for volumets skyld.
 
 Aktivt filscope:
 
-1. `reports/place-production/youngstorget-phase7a-about-audit-v1.md`;
+1. `reports/place-production/youngstorget-phase7b-history-audit-v1.md`;
 2. `reports/place-production/youngstorget-workcard-current.md`;
-3. `tests/youngstorget-phase7a-about.test.mjs`.
+3. `tests/youngstorget-phase7b-history.test.mjs`.
 
-Canonical Youngstorget-data endres ikke i 7A.
+Canonical Youngstorget-data og popup-runtime endres ikke i 7B.
 
-Viktig kontraktgrense fra Torggata 7A: at `temporal_profile` kan leses av en helper uten egen renderer er ikke i seg selv et Om-hull. Én-visuell-eier-regelen betyr at overlappende temporal-/chronology-/history-stoff kan eies av Historie. Youngstorgets seks temporal-milepæler overlapper eksisterende `history_layers`/hovedartikkel, så vi skal ikke bygge en parallell milepælrad i Om bare for å eksponere feltet.
+Fire `history_layers` dekker allerede alle seks strukturelle temporal-milepæler. Popup-v2 renderer lagene som `.hg-place-history-section`, og tabs-runtime flytter seksjonen til Historie. Youngstorget har samtidig ingen egen manifest-lastet Leksikonartikkel/chronology. Derfor er riktig løsning å låse eksisterende eiervei, ikke å lage seks nye chronology-rader som dupliserer samme historiske stoff.
 
 Auditens faneklassifisering:
 
 | Fane | Status etter audit |
 | --- | --- |
-| Om | **7A – allerede innholdsklar, QA gjenstår**: `popupDesc` og `spatial_profile` vises; ingen egen generisk Youngstorget-Leksikonpost er funnet; temporalstoff dupliseres ikke |
-| Historie | **7B – innholdsklar, QA gjenstår**: fire `history_layers` vises; temporal/chronology-eierskap kontrolleres uten filler |
+| Om | **7A – FERDIG OG MERGET #5230**: `popupDesc` og `spatial_profile` vises; ingen konkurrerende Leksikonpost; temporalstoff dupliseres ikke |
+| Historie | **7B – KLAR FOR REVIEW**: fire `history_layers` vises og dekker temporal-milepælene; ingen chronology-filler |
 | Fortellinger | **7C – trenger reell Story-revisjon**: aktiv legacy-story er for generell som episode |
 | Før/etter | **7D – trenger produksjon**: 1996-spor finnes, canonical bildepar/rettigheter mangler |
 | Nyheter | **7E – trenger produksjon**: reelle 2026-notiser/current-stoff finnes |
@@ -122,22 +133,21 @@ Delstegrekkefølge:
 
 Fase 7 blir først samlet godkjent når relevante delsteg er ferdige, begrunnede N/A-er er dokumentert, relevante CI-/runtimeporter er grønne og sluttresultatet er kontrollert på faktisk `main`.
 
-## Kjente hull etter fase-7-audit
+## Kjente hull etter 7A
 
-1. Om trenger tab-level bevarings-/runtime-QA, men ikke ny temporal UI uten konkret regresjon.
-2. Historie trenger eksplisitt tab-QA og temporal/chronology-eierkontroll, ikke mer volum for volumets skyld.
-3. Storyen `st_youngstorget_mayday` må få tydelig narrativ episode/konflikt og dagens source-governance ved vesentlig revisjon.
-4. Før/etter mangler rettighetsklar assetpair for selve torget.
-5. Nyheter/current-status må ferskkontrolleres og materialiseres.
-6. Åpent Lesespor må avgjøres fra faktisk `access` item-for-item; abonnementstilgang skal ikke omklassifiseres.
-7. Kilder trenger inspectable, dedupliserte HTTPS-lenker.
-8. Språknavnehistorien må auditeres etter Språkleksikon-kontrakten.
-9. Canonical Objects mangler; Pioneren, Fredsmonumentet, fontenen og basaren er kandidater som må ID-/eierskapsauditeres.
-10. Rundingssettet er legacy og må senere migreres til 4+1 uten filler.
-11. Brands og People må own-place-auditeres.
-12. Onsite må saneres mot dagens kontrakt; legacy tasks er ikke produktet.
-13. Sterke «første»-claims krever uavhengig ekstra kilde dersom de senere skal publiseres.
-14. Legacy `layers.populaerkultur`/tags/knagger er ikke sanert ennå og skal ikke brukes som kilde for nye popupfaner.
+1. Historie trenger eksplisitt tab-QA og temporal/chronology-eierkontroll, ikke mer volum for volumets skyld.
+2. Storyen `st_youngstorget_mayday` må få tydelig narrativ episode/konflikt og dagens source-governance ved vesentlig revisjon.
+3. Før/etter mangler rettighetsklar assetpair for selve torget.
+4. Nyheter/current-status må ferskkontrolleres og materialiseres.
+5. Åpent Lesespor må avgjøres fra faktisk `access` item-for-item; abonnementstilgang skal ikke omklassifiseres.
+6. Kilder trenger inspectable, dedupliserte HTTPS-lenker.
+7. Språknavnehistorien må auditeres etter Språkleksikon-kontrakten.
+8. Canonical Objects mangler; Pioneren, Fredsmonumentet, fontenen og basaren er kandidater som må ID-/eierskapsauditeres.
+9. Rundingssettet er legacy og må senere migreres til 4+1 uten filler.
+10. Brands og People må own-place-auditeres.
+11. Onsite må saneres mot dagens kontrakt; legacy tasks er ikke produktet.
+12. Sterke «første»-claims krever uavhengig ekstra kilde dersom de senere skal publiseres.
+13. Legacy `layers.populaerkultur`/tags/knagger er ikke sanert ennå og skal ikke brukes som kilde for nye popupfaner.
 
 ## Content Factory-resultat så langt
 
