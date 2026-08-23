@@ -3,7 +3,7 @@
 - Dato: 2026-08-23
 - Place ID: `birkelunden`
 - Canonical eier: manifest-lastede Lesespor-filer
-- Ny datafil: `data/lesespor/oslo/lesespor_oslo_birkelunden.json`
+- Ny datafil: `data/lesespor/oslo/birkelunden/lesespor_oslo_by.json`
 - Runtime: `js/ui/place-popup-tabs.js`
 - Status: **KLAR FOR REVIEW / CI**
 
@@ -17,7 +17,7 @@ Målet er et lite, åpent og direkte lesbart fordypningsspor om selve Birkelunde
 
 `data/lesespor/manifest.json` og de aktive Oslo-filene ble kontrollert for `birkelunden`, `Birkelunden` og `Bjerkelunden`. Ingen eksisterende manifest-lastet Lesespor-post eide Birkelunden før denne fasen.
 
-Det opprettes derfor en egen, manifest-lastet `history_go_lesespor_v1`-fil for stedet. Dette unngår å omskrive den store generelle By-filen bare for å materialisere tre stedsspesifikke poster; runtime leser manifestet og bruker `place_ids` som canonical kobling.
+Det opprettes derfor en egen, manifest-lastet `history_go_lesespor_v1`-fil under en Birkelunden-undermappe. Basenavnet beholdes som `lesespor_oslo_by.json` fordi Lesespor-validatoren krever at filnavnets kategori samsvarer med `category: "by"`. Dette unngår å omskrive den store generelle By-filen bare for å materialisere tre stedsspesifikke poster; runtime leser manifestet og bruker `place_ids` som canonical kobling.
 
 ## Eksternt søk og utvalg
 
@@ -69,6 +69,7 @@ Sporet gir et sosialhistorisk perspektiv på Birkelunden som faktisk møteplass:
 ## Identitet, balanse og rettigheter
 
 - Alle tre oppføringer har eksakt `place_ids: ["birkelunden"]`.
+- Alle tre bruker validatorens tillatte `source_quality: "recognized"`; institusjonell rolle dokumenteres i `publication`/audit i stedet for å innføre nye enum-verdier.
 - Ingen oppføring bruker Paulus kirke, Paulus' plass, Grünerløkka skole, Olaf Ryes plass eller andre nabosteder som stedfortreder.
 - Oslo byleksikon gir parkhistorie, Riksantikvaren gir by-/verneperspektiv, og Pensjonistforbundet gir sosial organisasjonshistorie.
 - Tre spor er proporsjonalt: nok til en reell fordypningsfane, men ikke en generell lenkekatalog.
