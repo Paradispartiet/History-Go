@@ -4134,7 +4134,7 @@
         "schemaFamily": "foundation_v1",
         "sourceOfTruth": true,
         "firstSourceClaimBrief": "data/fag/helse/medical_ethics_evidence_source_claim_brief_v1.json",
-        "note": "Ti Helse-domener er fulltekstmaterialisert: medisinsk etikk/evidens, anatomi/fysiologi, sykdom/patofysiologi, klinisk medisin, folkehelse, epidemiologi, mikrobiologi/infeksjon, farmakologi, ernæring/metabolisme og psykisk helse. Psykisk helse har 8 seksjoner, 32 claimsporede avsnitt, 32 verifiserte claims, 15 inspiserbare kilder og 8 vurderingsoppgaver. To domener og strict proof gjenstår.",
+        "note": "Elleve Helse-domener er fulltekstmaterialisert. Rehabilitering og funksjon tilfører ICF, aktivitet og deltakelse, kapasitet og utførelse, personsentrerte mål, funksjonsvurdering, hjelpemidler, tverrprofesjonell koordinering, utfall, equity og systemkvalitet med 8 seksjoner, 32 claimsporede avsnitt, 32 verifiserte claims, 15 inspiserbare kilder og 8 vurderingsoppgaver. Ett domene og strict proof gjenstår.",
         "firstFulltextChapter": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning.json",
         "secondSourceClaimBrief": "data/fag/helse/anatomy_physiology_source_claim_brief_v1.json",
         "secondFulltextChapter": "data/fagverk/helse/anatomi-fysiologi-struktur-funksjon-og-regulering.json",
@@ -4153,12 +4153,14 @@
         "ninthSourceClaimBrief": "data/fag/helse/nutrition_metabolism_source_claim_brief_v1.json",
         "ninthFulltextChapter": "data/fagverk/helse/ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster.json",
         "tenthSourceClaimBrief": "data/fag/helse/mental_health_source_claim_brief_v1.json",
-        "tenthFulltextChapter": "data/fagverk/helse/psykisk-helse-lidelse-tjenester-recovery-og-rettigheter.json"
+        "tenthFulltextChapter": "data/fagverk/helse/psykisk-helse-lidelse-tjenester-recovery-og-rettigheter.json",
+        "eleventhSourceClaimBrief": "data/fag/helse/rehabilitation_function_source_claim_brief_v1.json",
+        "eleventhFulltextChapter": "data/fagverk/helse/rehabilitering-funksjon-icf-mal-deltakelse-og-tverrprofesjonell-praksis.json"
       },
       "editorialPlan": {
         "targetDomainCount": 12,
-        "completedSourceBriefCount": 10,
-        "registeredChapterCount": 10,
+        "completedSourceBriefCount": 11,
+        "registeredChapterCount": 11,
         "completionRequirements": [
           "all_canonical_domains_covered",
           "source_first_claim_trace_complete",
@@ -4166,7 +4168,7 @@
           "fulltext_and_assessment_audits_green",
           "strict_theory_integrity_green"
         ],
-        "nextGate": "produce_next_domain_source_brief_after_mental_health_fulltext"
+        "nextGate": "produce_next_domain_source_brief_after_rehabilitation_function_fulltext"
       },
       "chapters": [
         {
@@ -4307,6 +4309,20 @@
           "claimsFile": "data/fagverk/helse/psykisk-helse-lidelse-tjenester-recovery-og-rettigheter/claims.json",
           "briefFile": "data/fagverk/helse/psykisk-helse-lidelse-tjenester-recovery-og-rettigheter/brief.json",
           "assessmentFile": "data/fagverk/helse/psykisk-helse-lidelse-tjenester-recovery-og-rettigheter/assessment.json",
+          "safetyContractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json"
+        },
+        {
+          "id": "rehabilitering-funksjon-icf-mal-deltakelse-og-tverrprofesjonell-praksis",
+          "title": "Rehabilitering og funksjon: ICF, mål, deltakelse og tverrprofesjonell praksis",
+          "subtitle": "Fra funksjon og kontekst til mål, hjelpemidler, koordinering, utfall, equity og helsesystem",
+          "file": "data/fagverk/helse/rehabilitering-funksjon-icf-mal-deltakelse-og-tverrprofesjonell-praksis.json",
+          "primary_domain_id": "rehabilitering_funksjon",
+          "emne_ids": [
+            "em_helse_rehabilitering_funksjon"
+          ],
+          "claimsFile": "data/fagverk/helse/rehabilitering-funksjon-icf-mal-deltakelse-og-tverrprofesjonell-praksis/claims.json",
+          "briefFile": "data/fagverk/helse/rehabilitering-funksjon-icf-mal-deltakelse-og-tverrprofesjonell-praksis/brief.json",
+          "assessmentFile": "data/fagverk/helse/rehabilitering-funksjon-icf-mal-deltakelse-og-tverrprofesjonell-praksis/assessment.json",
           "safetyContractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json"
         }
       ]
