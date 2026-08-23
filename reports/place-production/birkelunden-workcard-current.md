@@ -17,6 +17,7 @@
 - Fase 4 audit: `reports/place-production/birkelunden-phase4-fagverk-nature-ownership-audit-v1.md`
 - Fase 5 review: `reports/place-production/birkelunden-phase5-description-v4_2-review-v1.md`
 - Fase 5 production package: `data/places/production/birkelunden.json`
+- Image backlog: `data/places/place_image_backlog_summary.json`
 - Styrende kontrakt: `docs/PLACE_PRODUCTION_CHECKLIST.md`
 - Description-kontrakt: `data/places/regler/PLACE_DESCRIPTION_CANONICAL.md`
 - Content Factory: `data/places/regler/content_factory_v1.json`
@@ -46,7 +47,7 @@ Koordinatidentiteten er `verified_geometry / osm-way:3236549 / park_anchor`.
 | 2. Content Factory source/claim pack | **FERDIG OG MERGET** | PR #5241 |
 | 3. Koordinater/geometri | **ALLEREDE FERDIG OG MERGET** | PR #5243; ingen ny geokoding |
 | 4. Kategori/Badges/emner/Fagverk/Nature-eierskap | **ALLEREDE FERDIG / EIERSKAP AVKLART OG MERGET** | PR #5244; `by`, to `em_by_*`, ingen underbadge-fyll; biologisk Nature-QA fortsatt åpen |
-| 5. `desc` + `popupDesc` v4.2 | **KLAR FOR REVIEW / CI** | canonical tekst + production packet + factual/editorial review materialisert |
+| 5. `desc` + `popupDesc` v4.2 + changed-place image gate | **KLAR FOR REVIEW / CI** | canonical tekst + production packet + lisensiert stedsbilde + backlogoppdatering materialisert |
 | 6. Strukturerte place-profiler | **DELVIS / NESTE** | `nature_profile` finnes; spatial/temporal/history/source-profiler må produseres source-first |
 | 7. Popupfaner | **IKKE STARTET** | hver fane separat; legacy Leksikon må saneres/auditeres |
 | 8. Rundinger | **IKKE FERDIG** | Objects/Brands/Structures/People må først få substans- og eieraudit |
@@ -56,17 +57,25 @@ Koordinatidentiteten er `verified_geometry / osm-way:3236549 / park_anchor`.
 | 12. People–sted | **EKSISTERER – RE-AUDIT** | Thorvald Meyer, Olaf Rye og Jack Johnsen-spor |
 | 13. Brands | **RESEARCHHULL** | ingen mapping; N/A er ikke bevist |
 | 14. Discovery / relations / NextUp / search / i18n | **DELVIS / IKKE STARTET** | Språkleksikon mangler |
-| 15–19. Besøk, progresjon, profil, legacy, bilder | **IKKE STARTET / RE-AUDIT** | hovedbilde finnes; slutt-QA gjenstår |
+| 15–19. Besøk, progresjon, profil, legacy, bilder | **IKKE STARTET / RE-AUDIT** | fase 5 reparerer hovedbilde; Før/etter og øvrig bilde-QA gjenstår |
 | 20–24. Data-QA, UI-QA, innholds-QA, CI, ett-sted-gate | **IKKE STARTET** | lukkes til slutt |
 
 ## Aktiv fase 5 – eksakt filscope
 
-Bare disse fire filene kan endres:
+Bare disse fem filene kan endres:
 
-1. `data/places/by/oslo/places/birkelunden.json` — kun `desc` og `popupDesc`;
-2. `data/places/production/birkelunden.json`;
-3. `reports/place-production/birkelunden-phase5-description-v4_2-review-v1.md`;
-4. `reports/place-production/birkelunden-workcard-current.md`.
+1. `data/places/by/oslo/places/birkelunden.json`
+   - `desc`;
+   - `popupDesc`;
+   - `image`;
+   - `cardImage`;
+   - `imageCredit`;
+   - `imageLicense`;
+   - `imageSourceUrl`.
+2. `data/places/production/birkelunden.json`.
+3. `data/places/place_image_backlog_summary.json`.
+4. `reports/place-production/birkelunden-phase5-description-v4_2-review-v1.md`.
+5. `reports/place-production/birkelunden-workcard-current.md`.
 
 Fase 5 skal ikke endre koordinater, radius, category, emne IDs, Nature, People, Objects, Brands, Quiz, Stories, Lesespor, routes/relations eller runtime.
 
@@ -100,7 +109,9 @@ editorial review: passed
 quiz readiness: 11 direkte faktaspørsmål
 ```
 
-## Fase 5 – viktigste korrigeringer
+Hashene er kontrollert byte-for-byte mot canonical teksten på fase-5-grenen.
+
+## Fase 5 – viktigste tekstkorrigeringer
 
 1. Parkens **16,3 dekar** og kulturmiljøets **ca. 116 dekar** skilles eksplisitt.
 2. `15 kvartaler / 139 bygårder` eies av kulturmiljøet, ikke parkflaten.
@@ -109,6 +120,42 @@ quiz readiness: 11 direkte faktaspørsmål
 5. Current søndagsmarked er holdt tilbake fordi current-volatile re-verifikasjon mangler.
 6. Source-tomme detaljer fra gammel popuptekst er ikke videreført bare fordi de lød plausible.
 7. `year: 1910` beholdes som eksisterende metadata, men brukes ikke som etableringsår i tekst, claims eller quiz-readiness.
+
+## Fase 5 – changed-place image gate
+
+De gamle canonical bildebanene var:
+
+```text
+bilder/places/birkelunden.JPG
+bilder/kort/places/birkelunden.PNG
+```
+
+Begge er kontrollert mot repoet og returnerer 404. De kan derfor ikke beholdes når Place endres.
+
+Ny image-kjede:
+
+```text
+image/cardImage:
+https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Birkelunden_%28121153%29.jpg/800px-Birkelunden_%28121153%29.jpg
+
+imageCredit: Tore Sætre / Wikimedia Commons
+imageLicense: CC BY-SA 4.0
+imageSourceUrl: https://commons.wikimedia.org/wiki/File:Birkelunden_(121153).jpg
+```
+
+Commons-filsiden er kontrollert 2026-08-23 og viser at bildet faktisk forestiller Birkelunden park på Grünerløkka, er fotografert av Tore Sætre og publisert under CC BY-SA 4.0 med attribusjonskrav.
+
+Backlog-effekt:
+
+```text
+validRemote:      29 → 30
+invalidLocalPath: 36 → 35
+remaining:      1371 → 1370
+By valid:          28 → 29
+By invalid:        36 → 35
+```
+
+Dette lukker bare Birkelundens changed-place bildeproblem. Før/etter-bilder, Objects-assets og øvrig bilde-QA gjenstår i sine egne faser.
 
 ## Fase 5 – innhold som nå er claim-sporbart
 
@@ -182,7 +229,7 @@ osm-way:3236549
 12. åpne Lesespor;
 13. lokal rute;
 14. popupfaner én for én;
-15. bilder/progression/search/UI slutt-QA.
+15. progression/search/UI slutt-QA.
 
 ## Neste fase
 
