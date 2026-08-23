@@ -14,7 +14,9 @@
   }
 
   const WORK_WORLD_SCRIPT = "js/Civication/core/civicationWorkWorld.js";
+  const AUTHORITY_SCRIPT = "js/Civication/core/civicationInstitutionAuthority.js";
   let workWorldLoadPromise = null;
+  let authorityLoadPromise = null;
 
   function runtimeWindow() {
     return /** @type {any} */ (window);
@@ -52,6 +54,33 @@
     });
 
     return workWorldLoadPromise;
+  }
+
+  function attachAuthorityResolver() {
+    const rt = runtimeWindow();
+    return rt.CivicationInstitutionAuthority?.evaluate ? rt.CivicationInstitutionAuthority : null;
+  }
+
+  function ensureAuthorityResolver() {
+    const attached = attachAuthorityResolver();
+    if (attached) return Promise.resolve(attached);
+    if (authorityLoadPromise) return authorityLoadPromise;
+    authorityLoadPromise = new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = AUTHORITY_SCRIPT;
+      script.async = false;
+      script.onload = () => {
+        const resolver = attachAuthorityResolver();
+        if (!resolver) reject(new Error("CivicationInstitutionAuthority lastet uten resolver"));
+        else resolve(resolver);
+      };
+      script.onerror = () => reject(new Error(`Kunne ikke laste ${AUTHORITY_SCRIPT}`));
+      (document.head || document.documentElement).appendChild(script);
+    }).catch((error) => {
+      authorityLoadPromise = null;
+      throw error;
+    });
+    return authorityLoadPromise;
   }
 
   function collectWorkObjectOps(eventObj, choice) {
@@ -133,6 +162,19 @@
   function activeRoleScope() {
     const active = /** @type {{ role_scope?: unknown }} */ (window.CivicationState?.getActivePosition?.() || {});
     return normStr(window.CiviMailPlanBridge?.resolveRoleScope?.(active) || active.role_scope);
+  }
+
+  async function authorityAnswerMiddleware(ctx, next) {
+    const eventObj = ctx?.eventObj || null;
+    const choiceId = normStr(ctx?.choiceId);
+    const choice = Array.isArray(eventObj?.choices) ? eventObj.choices.find((candidate) => normStr(candidate?.id) === choiceId) : null;
+    if (!choice?.authority_action) return next();
+    const [resolver, workWorld] = await Promise.all([ensureAuthorityResolver(), ensureWorkWorld()]);
+    const decision = resolver.evaluate(eventObj?.authority_context, choice.authority_action, { role_scope: activeRoleScope(), work_world: workWorld });
+    if (!decision?.allowed) return { ok: false, reason: "authority_blocked", authority: decision || { allowed: false, reason: "authority_resolution_failed" } };
+    const result = await next();
+    if (result && typeof result === "object" && result.ok) result.authority = decision;
+    return result;
   }
 
   function mergeBranchState(delta) {
@@ -464,6 +506,11 @@
   function register() {
     if (!window.CivicationChoiceDirector) return;
 
+    window.CivicationChoiceDirector.registerAnswerMiddleware?.(
+      "institutionAuthority",
+      authorityAnswerMiddleware,
+      25
+    );
     window.CivicationChoiceDirector.registerHandler(
       "dayConsequences",
       applyChoiceConsequences,
