@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0",
+  "place_id": "youngstorget",
+  "phase": "7D_for_etter",
+  "created_at": "2026-08-23",
+  "baseline_main": "e5928e6c1ba1d7b60c70646ab9ae052ef3f246a7",
+  "extends_source_pack": "reports/place-production/content-factory-pilot-01-oslo-sentrum-ost-source-pack-v1.json",
+  "sources": [
+    {
+      "source_id": "cf01_s14_snl_youngstorget_1939",
+      "title": "Store norske leksikon – Folketeaterbygningen / Youngstorget 1939",
+      "url": "https://snl.no/Folketeaterbygningen",
+      "asset_url": "https://media.snl.no/media/321637/standard_Youngstorget.jpg",
+      "original_collection_url": "https://digitaltmuseum.no/021015452558/youngstorget-med-folketeaterbygningen",
+      "creator_credit": "Johannes Markus Holmsen / Oslo Museum",
+      "date": "1939",
+      "license": "Public domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "verified_at": "2026-08-23",
+      "evidence_scope": "historical_view_over_youngstorget_square_toward_folketeaterbygningen"
+    },
+    {
+      "source_id": "cf01_s15_commons_youngstorget_2025",
+      "title": "Wikimedia Commons – 2025-09-26-Folketeaterbygningen-Youngstorget.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:2025-09-26-Folketeaterbygningen-Youngstorget.jpg",
+      "asset_url": "https://upload.wikimedia.org/wikipedia/commons/1/12/2025-09-26-Folketeaterbygningen-Youngstorget.jpg",
+      "creator_credit": "Gunnar Klack",
+      "date": "2025-09-26",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "verified_at": "2026-08-23",
+      "evidence_scope": "current_view_over_youngstorget_square_toward_folketeaterbygningen"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "cf01_young_before_after_identity_001",
+      "claim_text_or_structured_fact": "The 1939 and 2025 images both depict Youngstorget's own square surface toward Folketeaterbygningen, with the building and fountain acting as persistent orientation anchors.",
+      "source_ids": [
+        "cf01_s14_snl_youngstorget_1939",
+        "cf01_s15_commons_youngstorget_2025"
+      ],
+      "evidence_scope": "same_place_and_comparable_axis",
+      "applicable_place_ids": [
+        "youngstorget"
+      ],
+      "review_status": "verified_by_source_metadata_and_manual_visual_qa",
+      "inference_limit": "Folketeaterbygningen is an orientation anchor, not a proxy Place. The camera distance and elevation differ, so the pair is not presented as pixel-perfect repeat photography."
+    },
+    {
+      "claim_id": "cf01_young_before_after_visual_change_002",
+      "claim_text_or_structured_fact": "The 1939 frame shows the square densely occupied by market activity, people and vehicles, while the 2025 frame shows a more open paved square with the fountain, benches, circulation and stay activity clearly legible.",
+      "source_ids": [
+        "cf01_s14_snl_youngstorget_1939",
+        "cf01_s15_commons_youngstorget_2025"
+      ],
+      "evidence_scope": "directly_visible_difference_between_frames",
+      "applicable_place_ids": [
+        "youngstorget"
+      ],
+      "review_status": "verified_by_manual_visual_qa",
+      "inference_limit": "The images show different physical use and appearance at two dates; they do not by themselves establish the cause of every change or prove social, economic or political effects."
+    }
+  ],
+  "reused_claims": [
+    {
+      "source_or_claim": "Oslo kommune – Youngstorget / documented 1990s reworking and 1996 reopening",
+      "role": "context for the known square redesign, without treating the image pair as proof that every visible 2025 feature originated in that project"
+    }
+  ],
+  "rejected_candidates": [
+    {
+      "candidate": "Youngstorget med Basarhallene, 1929 – Oslo Museum OB.Z03717",
+      "reason": "Strong historical own-place image, but its axis emphasizes the basar side and predates the completed Folketeaterbygningen, giving weaker fixed-anchor comparability with the best rights-cleared 2025 frame."
+    },
+    {
+      "candidate": "Youngstorget, 17 April 1967 – Oslo Museum OB.A1923",
+      "reason": "Good own-place candidate, but the selected 1939 frame gives greater temporal depth and a clearer direct facade-plus-fountain anchor with the 2025 frame."
+    },
+    {
+      "candidate": "Oslo kommune current Youngstorget photograph",
+      "reason": "Useful current visual reference, but no sufficiently explicit reusable image license was established for canonical asset use in this phase."
+    },
+    {
+      "candidate": "VisitOSLO current Youngstorget photograph",
+      "reason": "Whole-square view, but no sufficiently explicit reusable image license was established for canonical asset use in this phase."
+    }
+  ],
+  "pair_decision": {
+    "before_source_id": "cf01_s14_snl_youngstorget_1939",
+    "now_source_id": "cf01_s15_commons_youngstorget_2025",
+    "temporal_depth_years": 86,
+    "own_place_gate": "PASS",
+    "comparable_axis_gate": "PASS",
+    "rights_gate": "PASS",
+    "manual_visual_qa": "PASS",
+    "filler_or_proxy_used": false
+  }
+}
