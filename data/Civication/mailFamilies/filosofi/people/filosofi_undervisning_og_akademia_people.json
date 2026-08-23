@@ -1,0 +1,70 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "filosofi",
+  "role_scope": "filosofi_undervisning_og_akademia",
+  "mail_type": "people",
+  "families": [
+    {
+      "id": "filosofi_studentuenighet",
+      "purpose": "Skille faglig argumentkvalitet fra enighet med underviseren.",
+      "learning_focus": ["uenighet", "argumentanalyse", "vurderingsrettferdighet"],
+      "mails": [
+        {
+          "id": "filosofi_undervisning_people_studentuenighet_001",
+          "mail_type": "people",
+          "mail_family": "filosofi_studentuenighet",
+          "role_scope": "filosofi_undervisning_og_akademia",
+          "phase": "early",
+          "day_phase": "morning",
+          "priority": 132,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Emil, seminarleder",
+          "people_ref": "emil_seminarleder_filosofi",
+          "person_id": "emil_seminarleder_filosofi",
+          "place_id": "seminarrom_filosofi",
+          "subject": "Studenten avviser forelesningens konklusjon – men argumentet er bedre enn de fleste",
+          "summary": "Emil ber deg avklare hvordan seminaret skal møte en student som er uenig med deg, men rekonstruerer standpunktet velvillig og argumenterer presist.",
+          "purpose": "Teste om underviseren belønner faglig kvalitet uavhengig av personlig standpunkt.",
+          "stakes": "Hvis enighet med foreleserens syn blir et skjult kvalitetskriterium, undergraves både vurderingsrettferdighet og studentenes trening i reell filosofisk uenighet.",
+          "situation": [
+            "Studenten gjengir argumentet fra forelesningen korrekt før kritikken begynner.",
+            "Motargumentet har eksplisitte premisser, et relevant eksempel og en sporbar pensumhenvisning.",
+            "Konklusjonen går likevel tydelig mot den tolkningen du selv forsvarte i forelesningen."
+          ],
+          "task_domain": "forelesning_seminar_og_argumenttrening",
+          "task_kind": "people",
+          "competency": "faglig_uenighetsledelse",
+          "pressure": "underviserautoritet_vs_saklig_uenighet",
+          "choice_axis": "vurder_argumentets_kvalitet_og_modeller_reell_uenighet_vs_bruk_foreleserens_posisjon_som_fasit",
+          "consequence_axis": "tillit_til_faglige_kriterier_vs_autoritetsstyrt_deltakelse",
+          "narrative_arc": "uenighet_som_faglig_praksis",
+          "interaction_mode": "decision",
+          "thread_key": "filosofi_undervisning_uenighet_001",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Anerkjenn argumentkvaliteten og bruk uenigheten til å teste begge posisjonene",
+              "reply": "Vi vurderer premisser, inferens, motargument og kildespor – ikke om studenten lander der jeg gjør. La oss teste hvor de to argumentene faktisk skiller lag.",
+              "effect": 1,
+              "tags": ["fair_disagreement", "argument_quality", "academic_trust"],
+              "feedback": "Seminaret får en tydelig modell for filosofisk uenighet der lærerautoritet ikke erstatter argumentasjon.",
+              "effects": {"stats": {"quality": 2, "trust": 3, "risk": -2, "energy": -1}}
+            },
+            {
+              "id": "B",
+              "label": "Forklar at emnet forventer at studentene behersker hovedtolkningen fra forelesningen",
+              "reply": "Argumentet er interessant, men på dette nivået bør studenten vise at hovedtolkningen fra forelesningen sitter før alternative konklusjoner får mye vekt.",
+              "effect": -1,
+              "tags": ["authority_bias", "hidden_answer_key"],
+              "feedback": "Du gjør en bestemt konklusjon til et uuttalt vurderingskrav og svekker signalet om at saklig uenighet faktisk er tillatt.",
+              "effects": {"stats": {"quality": -2, "trust": -3, "risk": 3}}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

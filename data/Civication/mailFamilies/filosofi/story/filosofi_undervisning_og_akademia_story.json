@@ -1,0 +1,70 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "filosofi",
+  "role_scope": "filosofi_undervisning_og_akademia",
+  "mail_type": "story",
+  "families": [
+    {
+      "id": "filosofi_integritetsspor",
+      "purpose": "Skille dokumentert kildeproblem og mistanke fra formell avgjørelse om akademisk uredelighet.",
+      "learning_focus": ["akademisk_redelighet", "due_process", "kildespor"],
+      "mails": [
+        {
+          "id": "filosofi_undervisning_story_integritet_001",
+          "mail_type": "story",
+          "mail_family": "filosofi_integritetsspor",
+          "role_scope": "filosofi_undervisning_og_akademia",
+          "phase": "mid",
+          "day_phase": "afternoon",
+          "priority": 120,
+          "cooldown": 4,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Nora, studiekonsulent",
+          "people_ref": "nora_studiekonsulent_filosofi",
+          "person_id": "nora_studiekonsulent_filosofi",
+          "place_id": "vurderingsrom_filosofi",
+          "subject": "Tre avsnitt følger en kilde tett, men dokumentasjonen beviser ikke hvem som skrev hva",
+          "summary": "Nora ber deg skille det du faktisk kan dokumentere i besvarelsen fra konklusjonen om eventuell uredelighet, som har en egen institusjonell prosess.",
+          "purpose": "Teste om underviseren dokumenterer observasjonen presist uten å forskuttere skyld eller improvisere sanksjon.",
+          "stakes": "For svak reaksjon kan bagatellisere kildemisbruk; for rask dom kan gjøre mistanke til skyld uten at studenten får den prosessen saken krever.",
+          "situation": [
+            "Tre formuleringer ligger tett på en pensumtekst uten tydelig sitatmarkering.",
+            "Andre deler av besvarelsen har normal og sporbar kildebruk, så mønsteret alene avgjør ikke intensjon eller omfang.",
+            "Institusjonen har en etablert kanal for videre vurdering av mulig akademisk uredelighet."
+          ],
+          "task_domain": "akademisk_redelighet_og_kildespor",
+          "task_kind": "story",
+          "competency": "integritet_og_prosess",
+          "pressure": "behov_for_reaksjon_vs_bevis_og_due_process",
+          "choice_axis": "dokumenter_konkrete_spor_og_eskaler_uten_forhandsdom_vs_avgjor_fusk_og_sanksjon_selv",
+          "consequence_axis": "etterprovbar_integritetssak_vs_improvisert_skyldfastsettelse",
+          "narrative_arc": "kildespor_til_formell_prosess",
+          "interaction_mode": "decision",
+          "thread_key": "filosofi_undervisning_integritet_001",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Dokumenter tekststedene og send saken til etablert prosess uten å konkludere om skyld",
+              "reply": "Jeg beskriver nøyaktig hvilke formuleringer og kilder som må vurderes videre, men skiller observasjonen fra den formelle avgjørelsen.",
+              "effect": 1,
+              "tags": ["evidence_record", "due_process", "academic_integrity"],
+              "feedback": "Saken blir alvorlig nok til å undersøkes, samtidig som ansvar og beviskrav forblir hos riktig prosess.",
+              "effects": {"stats": {"quality": 2, "trust": 2, "risk": -3, "energy": -1}}
+            },
+            {
+              "id": "B",
+              "label": "Registrer fusk og gi stryk direkte fordi tekstlikheten er tydelig",
+              "reply": "Kildebruddet er klart nok til at vi ikke trenger en egen prosess før reaksjonen.",
+              "effect": -1,
+              "tags": ["presumption_of_guilt", "authority_overreach"],
+              "feedback": "Du går fra dokumentert kildeproblem til formell skyld og sanksjon uten den institusjonelle behandlingen rollen uttrykkelig ikke eier.",
+              "effects": {"stats": {"quality": -3, "trust": -3, "risk": 5}}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
