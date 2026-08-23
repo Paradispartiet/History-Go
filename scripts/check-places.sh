@@ -212,4 +212,7 @@ npm run places:emner:check
 echo "== Places coordinate check =="
 npm run places:coords:check
 
+echo "== Birkelunden phase 7A Om regression =="
+node --test tests/birkelunden-phase7a-about.test.mjs
+
 echo "== Places check complete =="
