@@ -29,6 +29,19 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
+      - name: Register canonical Philosophy role model
+        run: |
+          node - <<'NODE'
+          const fs = require('node:fs');
+          const path = 'data/Civication/roleModels/manifest.json';
+          const rolePath = 'data/Civication/roleModels/filosofi/filosofi_forskning_og_formidling.json';
+          const manifest = JSON.parse(fs.readFileSync(path, 'utf8'));
+          if (!manifest.files.includes(rolePath)) {
+            manifest.files.push(rolePath);
+            manifest.files.sort((a, b) => a.localeCompare(b, 'en'));
+            fs.writeFileSync(path, `${JSON.stringify(manifest, null, 2)}\n`);
+          }
+          NODE
       - name: Regenerate compiled scene registry
         run: node scripts/build-civication-scene-registry.mjs --write
       - name: Regenerate career gameplay matrix and report
@@ -62,22 +75,22 @@ jobs:
         run: |
           set -euo pipefail
           git status --short
-          unexpected="$(git status --porcelain | sed -E 's/^.. //' | grep -vE '^(data/Civication/compiledSceneRegistryV1.json|data/Civication/careerGameplayMatrix.json|reports/civication-career-gameplay-matrix.md)$' || true)"
+          unexpected="$(git status --porcelain | sed -E 's/^.. //' | grep -vE '^(data/Civication/roleModels/manifest.json|data/Civication/compiledSceneRegistryV1.json|data/Civication/careerGameplayMatrix.json|reports/civication-career-gameplay-matrix.md)$' || true)"
           if [[ -n "$unexpected" ]]; then
             echo "Unexpected generated/build drift:"
             echo "$unexpected"
             exit 1
           fi
-      - name: Commit canonical generated outputs
+      - name: Commit canonical manifest registration and generated outputs
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/Civication/compiledSceneRegistryV1.json data/Civication/careerGameplayMatrix.json reports/civication-career-gameplay-matrix.md
+          git add data/Civication/roleModels/manifest.json data/Civication/compiledSceneRegistryV1.json data/Civication/careerGameplayMatrix.json reports/civication-career-gameplay-matrix.md
           if git diff --cached --quiet; then
-            echo "No generated changes."
+            echo "No canonical changes."
             exit 0
           fi
-          git commit -m "Regenerate Civication projections for Filosofi forskning"
+          git commit -m "Register Filosofi role model and regenerate projections"
           git push origin "HEAD:agent/civication-filosofi-forskning-formidling-playability"
