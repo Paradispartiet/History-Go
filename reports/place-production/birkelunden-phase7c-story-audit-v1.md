@@ -103,15 +103,15 @@ Ny fil:
 
 `data/stories/stories_birkelunden.json`
 
-registreres i runtime-loadede:
+registreres i canonical runtime-/governance-manifest:
 
-`data/stories/stories_manifest_by_batch_01.json`
+`data/stories/stories_manifest.json`
 
 og i streng episodekontrakt:
 
 `data/stories/stories_episode_v1_manifest.json`.
 
-Hovedmanifestet endres ikke unødvendig fordi `stories_loader.js` eksplisitt loader By-batch-manifestet som ekstra runtime-manifest.
+`tools/check_stories_integrity.mts` krever at alle `episode_v1`-filer også er aktive i hovedmanifestet, og `stories_loader.js` laster hovedmanifestet direkte. Birkelunden registreres derfor **ikke** i `data/stories/stories_manifest_by_batch_01.json`; By-batch-manifestet forblir uendret slik at samme Story-fil ikke hentes to ganger før Story-ID-deduplisering.
 
 ## Maskinscore
 
@@ -142,7 +142,7 @@ Scoren er ikke pyntet med nøkkelord for å jage høyere poeng. Den må samsvare
 6. fravær av `Norges/landets eldste`;
 7. tom `related_people`, `related_places` og `next_scenes`;
 8. eksakt maskinscore 16;
-9. runtime- og episode-manifestregistrering;
+9. registrering i canonical `stories_manifest.json` og `stories_episode_v1_manifest.json`;
 10. evidence-addendumets scopebeslutninger.
 
 Testen er koblet direkte inn i `.github/workflows/stories-governance.yml`.
@@ -156,7 +156,8 @@ Testen er koblet direkte inn i `.github/workflows/stories-governance.yml`.
 - Leksikon;
 - popup-runtime;
 - narratives/graph;
-- Før/etter, Nyheter, Lesespor, Kilder eller Språk.
+- Før/etter, Nyheter, Lesespor, Kilder eller Språk;
+- `data/stories/stories_manifest_by_batch_01.json`.
 
 ## Økonomi
 
