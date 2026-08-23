@@ -1,0 +1,135 @@
+name: TEMP Repair Helse public health writeback
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/TEMP-repair-helse-public-health-writeback.yml'
+      - '.github/workflows/TEMP-fagverk-helse-public-health-fulltext-writeback.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  writeback:
+    if: github.head_ref == 'agent/helse-public-health-fulltext-content'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install exact embedded 5/12 payloads with normalized base64 padding
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import base64
+          import gzip
+          import pathlib
+          import re
+
+          workflow_path = pathlib.Path('.github/workflows/TEMP-fagverk-helse-public-health-fulltext-writeback.yml')
+          workflow = workflow_path.read_text(encoding='utf-8')
+          targets = {
+              'MATERIALIZER_GZ_B64': 'scripts/materialize-helse-public-health-fulltext-v1.mjs',
+              'AUDIT_GZ_B64': 'scripts/audit-helse-public-health-fulltext-v1.mjs',
+              'TEST_GZ_B64': 'tests/helse-public-health-fulltext-v1.test.mjs',
+              'CUM_AUDIT_GZ_B64': 'scripts/audit-helse-cumulative-progress-v1.mjs',
+              'CUM_TEST_GZ_B64': 'tests/helse-cumulative-progress-v1.test.mjs',
+              'SOURCE_WF_GZ_B64': '.github/workflows/fagverk-helse-public-health-source-brief.yml',
+              'CLINICAL_WF_GZ_B64': '.github/workflows/fagverk-helse-clinical-medicine-fulltext.yml',
+          }
+
+          for key, target in targets.items():
+              match = re.search(rf'^\s+{re.escape(key)}:\s+(\S+)\s*$', workflow, re.MULTILINE)
+              if not match:
+                  raise SystemExit(f'Missing embedded payload: {key}')
+              encoded = match.group(1)
+              encoded += '=' * (-len(encoded) % 4)
+              payload = gzip.decompress(base64.b64decode(encoded, validate=True))
+              path = pathlib.Path(target)
+              path.parent.mkdir(parents=True, exist_ok=True)
+              path.write_bytes(payload)
+              if path.suffix == '.mjs':
+                  path.chmod(0o755)
+              print(f'{key}: decoded {len(payload)} bytes -> {target}')
+          PY
+          node --check scripts/materialize-helse-public-health-fulltext-v1.mjs
+          node --check scripts/audit-helse-public-health-fulltext-v1.mjs
+          node --check scripts/audit-helse-cumulative-progress-v1.mjs
+          node --check tests/helse-public-health-fulltext-v1.test.mjs
+          node --check tests/helse-cumulative-progress-v1.test.mjs
+
+      - name: Materialize Folkehelse fulltext and generated reports
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/materialize-helse-public-health-fulltext-v1.mjs
+          node scripts/audit-helse-public-health-fulltext-v1.mjs --write-report
+          node scripts/audit-fagverk-general-engine.mjs --write-report
+          node scripts/build-fagverk-release-manifest.mjs
+
+      - name: Validate 5/12 package before writeback
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/audit-helse-public-health-fulltext-v1.mjs
+          node scripts/audit-helse-cumulative-progress-v1.mjs
+          node scripts/audit-fagverk-subject-inventory.mjs
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/audit-fagverk-theory-quality.mjs
+          node scripts/audit-fagverk-theory-integrity.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node --test \
+            tests/helse-public-health-fulltext-v1.test.mjs \
+            tests/helse-cumulative-progress-v1.test.mjs \
+            tests/fagverk-subject-inventory.test.mjs \
+            tests/fagverk-general-engine.test.mjs \
+            tests/fagverk-release-manifest.test.mjs
+
+      - name: Commit only explicit 5/12 outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- \
+            scripts/materialize-helse-public-health-fulltext-v1.mjs \
+            scripts/audit-helse-public-health-fulltext-v1.mjs \
+            scripts/audit-helse-cumulative-progress-v1.mjs \
+            tests/helse-public-health-fulltext-v1.test.mjs \
+            tests/helse-cumulative-progress-v1.test.mjs \
+            .github/workflows/fagverk-helse-public-health-source-brief.yml \
+            .github/workflows/fagverk-helse-clinical-medicine-fulltext.yml \
+            data/fag/fag_manifest.json \
+            data/fag/helse/helsepensum_canonical_v1.json \
+            data/fag/helse/emner_helse_canonical_v1.json \
+            data/fag/helse/methods_helse_canonical_v1.json \
+            data/fagverk/fagverk_registry.json \
+            data/fagverk/subject_inventory.json \
+            data/fagverk/subject_status.json \
+            data/fagverk/fagverk_release.json \
+            data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet.json \
+            data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet/01-populasjon-determinanter-og-ulikhet.json \
+            data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet/02-helsefremming-og-forebyggingsstrategier.json \
+            data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet/03-overvaking-og-evaluering.json \
+            data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet/04-komplekse-tiltak-og-politikk.json \
+            data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet/brief.json \
+            data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet/claims.json \
+            data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet/assessment.json \
+            reports/fagverk/helse-public-health-fulltext-v1-audit.json \
+            reports/fagverk/general-engine-audit.json
+          if git diff --cached --quiet; then
+            echo 'No writeback changes.'
+            exit 0
+          fi
+          git commit -m 'Materialize Health public health fulltext'
+          git push origin HEAD:${{ github.head_ref }}
