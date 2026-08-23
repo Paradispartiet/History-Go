@@ -66,6 +66,23 @@ For hvert Place gjelder:
 
 Målet er fortsatt at hvert sted skal føles **rikt, særegent og verdt å oppsøke**.
 
+## 1A. Språkleksikon og dialekt — eksisterende CORE-regler er fortsatt bindende
+
+Content Factory endrer ingen språkregel. Språkleksikon skal fortsatt være kildebelagt, og dialektord og lokale uttrykk skal ikke diktes.
+
+Dialektinnhold kan kun eies av et område-Place med canonical `placeScope: "area"`. Et enkeltsted med Språkleksikon er ikke dermed dialekt-eier og skal ikke få konstruert dialektinnhold. `coordRole` beskriver koordinatgeometri og gir aldri dialekt-eierskap.
+
+Følgende eksisterende CORE-felt skal fortsatt fylles der de er relevante:
+
+```text
+SPRÅKLEKSIKON-STATUS:
+SPRÅKLEKSIKON-TYPE — OMRÅDE / DIREKTE SPRÅKSTED / ENKELTSTED:
+DIALEKTLAG — KUN `placeScope: "area"` / N/A:
+DIALEKTORD/LOKALE UTTRYKK — RESEARCH OG PRODUKSJON:
+```
+
+Et enkeltsted med Språkleksikon skal ikke behandles som dialektlag; områdeeierskap, kildekrav og alle øvrige språkregler i CORE og `docs/SPRAKLEKSIKON.md` gjelder uendret.
+
 ---
 
 # 2. Reuse-preflight — obligatorisk før ny research
