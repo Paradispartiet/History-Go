@@ -52,6 +52,7 @@
       "default": []
     },
     "place_id": { "$ref": "#/$defs/nonEmptyId" },
+    "work_context": { "$ref": "#/$defs/workContext" },
     "content": {
       "type": "object",
       "additionalProperties": false,
@@ -221,9 +222,166 @@
           "items": { "$ref": "#/$defs/nonEmptyId" },
           "uniqueItems": true,
           "default": []
+        },
+        "work_object_ops": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/workObjectOp" },
+          "maxItems": 12,
+          "default": []
         }
       },
       "default": {}
+    },
+    "workContext": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["object_ids"],
+      "properties": {
+        "object_ids": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/nonEmptyId" },
+          "minItems": 1,
+          "maxItems": 8,
+          "uniqueItems": true
+        },
+        "institution_id": { "$ref": "#/$defs/nonEmptyId" },
+        "deadline_ref": { "type": "string", "minLength": 1 }
+      }
+    },
+    "workObjectCreateSeed": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["work_object_id", "kind", "role_scope", "title", "status", "phase"],
+      "properties": {
+        "work_object_id": { "$ref": "#/$defs/nonEmptyId" },
+        "kind": { "$ref": "#/$defs/nonEmptyId" },
+        "role_scope": { "$ref": "#/$defs/nonEmptyId" },
+        "institution_id": { "$ref": "#/$defs/nonEmptyId" },
+        "title": { "type": "string", "minLength": 1 },
+        "status": { "$ref": "#/$defs/nonEmptyId" },
+        "phase": { "$ref": "#/$defs/nonEmptyId" },
+        "people_refs": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true, "default": [] },
+        "place_refs": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true, "default": [] },
+        "knowledge_refs": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true, "default": [] },
+        "open_questions": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true, "default": [] },
+        "deadline": { "type": "string", "minLength": 1 },
+        "confidentiality": { "type": "string", "minLength": 1 },
+        "flags": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyId" }, "uniqueItems": true, "default": [] },
+        "shared": { "type": "boolean", "default": false }
+      }
+    },
+    "workObjectPatch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["work_object_id"],
+      "properties": {
+        "work_object_id": { "$ref": "#/$defs/nonEmptyId" },
+        "kind": { "$ref": "#/$defs/nonEmptyId" },
+        "role_scope": { "$ref": "#/$defs/nonEmptyId" },
+        "institution_id": { "$ref": "#/$defs/nonEmptyId" },
+        "title": { "type": "string", "minLength": 1 },
+        "people_refs": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+        "place_refs": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+        "knowledge_refs": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+        "open_questions": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+        "deadline": { "type": ["string", "null"], "minLength": 1 },
+        "confidentiality": { "type": ["string", "null"], "minLength": 1 },
+        "flags": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyId" }, "uniqueItems": true },
+        "shared": { "type": "boolean" }
+      }
+    },
+    "workObjectOp": {
+      "oneOf": [
+        { "$ref": "#/$defs/workObjectCreateOp" },
+        { "$ref": "#/$defs/workObjectUpsertOp" },
+        { "$ref": "#/$defs/workObjectTransitionOp" },
+        { "$ref": "#/$defs/workObjectFlagOp" },
+        { "$ref": "#/$defs/workObjectCloseOp" },
+        { "$ref": "#/$defs/workObjectNoteOp" },
+        { "$ref": "#/$defs/workObjectRemoveFlagOp" }
+      ]
+    },
+    "workObjectCreateOp": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["op", "event_id", "work_object"],
+      "properties": {
+        "op": { "const": "create" },
+        "event_id": { "$ref": "#/$defs/nonEmptyId" },
+        "work_object": { "$ref": "#/$defs/workObjectCreateSeed" }
+      }
+    },
+    "workObjectUpsertOp": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["op", "event_id", "work_object"],
+      "properties": {
+        "op": { "const": "upsert" },
+        "event_id": { "$ref": "#/$defs/nonEmptyId" },
+        "work_object": { "$ref": "#/$defs/workObjectPatch" }
+      }
+    },
+    "workObjectTransitionOp": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["op", "event_id", "work_object_id"],
+      "properties": {
+        "op": { "const": "transition" },
+        "event_id": { "$ref": "#/$defs/nonEmptyId" },
+        "work_object_id": { "$ref": "#/$defs/nonEmptyId" },
+        "to_status": { "$ref": "#/$defs/nonEmptyId" },
+        "to_phase": { "$ref": "#/$defs/nonEmptyId" },
+        "note": { "type": "string", "minLength": 1 }
+      },
+      "anyOf": [
+        { "required": ["to_status"] },
+        { "required": ["to_phase"] },
+        { "required": ["note"] }
+      ]
+    },
+    "workObjectFlagOp": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["op", "event_id", "work_object_id", "flag"],
+      "properties": {
+        "op": { "const": "add_flag" },
+        "event_id": { "$ref": "#/$defs/nonEmptyId" },
+        "work_object_id": { "$ref": "#/$defs/nonEmptyId" },
+        "flag": { "$ref": "#/$defs/nonEmptyId" }
+      }
+    },
+    "workObjectRemoveFlagOp": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["op", "event_id", "work_object_id", "flag"],
+      "properties": {
+        "op": { "const": "remove_flag" },
+        "event_id": { "$ref": "#/$defs/nonEmptyId" },
+        "work_object_id": { "$ref": "#/$defs/nonEmptyId" },
+        "flag": { "$ref": "#/$defs/nonEmptyId" }
+      }
+    },
+    "workObjectCloseOp": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["op", "event_id", "work_object_id"],
+      "properties": {
+        "op": { "const": "close" },
+        "event_id": { "$ref": "#/$defs/nonEmptyId" },
+        "work_object_id": { "$ref": "#/$defs/nonEmptyId" },
+        "outcome": { "type": "string", "minLength": 1 }
+      }
+    },
+    "workObjectNoteOp": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["op", "event_id", "work_object_id", "note"],
+      "properties": {
+        "op": { "const": "note" },
+        "event_id": { "$ref": "#/$defs/nonEmptyId" },
+        "work_object_id": { "$ref": "#/$defs/nonEmptyId" },
+        "note": { "type": "string", "minLength": 1 }
+      }
     },
     "knowledgeContract": {
       "type": "object",
