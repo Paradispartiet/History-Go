@@ -1,22 +1,43 @@
 name: TEMP Helse health services economics 12/12 writeback
+
 on:
   pull_request:
     types: [opened, synchronize, reopened]
+
 permissions:
   contents: write
+
+concurrency:
+  group: temp-helse-health-services-economics-12-12-${{ github.event.pull_request.head.ref || github.ref }}
+  cancel-in-progress: false
+
 jobs:
   writeback:
-    if: github.actor != 'github-actions[bot]' && github.event.pull_request.head.ref == 'agent/helse-health-services-economics-fulltext-content'
+    if: github.actor != 'github-actions[bot]' && github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'agent/helse-health-services-economics-fulltext-content'
     runs-on: ubuntu-latest
+    env:
+      BRANCH: agent/helse-health-services-economics-fulltext-content
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: agent/helse-health-services-economics-fulltext-content
+          ref: ${{ env.BRANCH }}
           fetch-depth: 0
       - uses: actions/setup-node@v4
-        with: {node-version: 22}
+        with:
+          node-version: 22
       - run: node scripts/brief-helse-health-services-economics-sources-v1.mjs
       - run: node scripts/materialize-helse-health-services-economics-fulltext-v1.mjs
+      - name: Extend inventory test through the final-domain strict-proof gate
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const file = 'tests/fagverk-subject-inventory.test.mjs';
+          const from = 'source_brief_complete_full_chapter_production|full_chapter_complete_next_domain_source_brief';
+          const to = 'source_brief_complete_full_chapter_production|full_chapter_complete_next_domain_source_brief|full_chapter_complete_strict_proof_next';
+          const raw = fs.readFileSync(file, 'utf8');
+          if (!raw.includes(from)) throw new Error('Expected Helse progression assertion not found');
+          fs.writeFileSync(file, raw.replace(from, to));
+          NODE
       - run: node scripts/audit-fagverk-general-engine.mjs --write-report
       - run: node scripts/build-fagverk-release-manifest.mjs
       - run: node scripts/audit-helse-health-services-economics-fulltext-v1.mjs --write
@@ -53,10 +74,11 @@ jobs:
             data/fagverk/helse/helsetjenester-helseokonomi-organisering-kvalitet-prioritering-og-ressursbruk.json \
             data/fagverk/helse/helsetjenester-helseokonomi-organisering-kvalitet-prioritering-og-ressursbruk \
             reports/fagverk/helse-health-services-economics-fulltext-v1-audit.json \
-            reports/fagverk/general-engine-audit.json
+            reports/fagverk/general-engine-audit.json \
+            tests/fagverk-subject-inventory.test.mjs
           if git diff --cached --quiet; then
-            echo "No generated changes to commit."
-          else
-            git commit -m "Materialize Helse health services economics at 12/12"
-            git push origin HEAD:agent/helse-health-services-economics-fulltext-content
+            echo "No generated writeback changes."
+            exit 0
           fi
+          git commit -m "Materialize Helse health services economics at 12/12 [writeback]"
+          git push origin "HEAD:${BRANCH}"
