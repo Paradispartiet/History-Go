@@ -42,6 +42,8 @@ jobs:
             fs.writeFileSync(path, `${JSON.stringify(manifest, null, 2)}\n`);
           }
           NODE
+      - name: Regenerate Scenario People for canonical role registration
+        run: node --experimental-strip-types scripts/build-civication-scenario-people-index.mts
       - name: Regenerate compiled scene registry
         run: node scripts/build-civication-scene-registry.mjs --write
       - name: Regenerate career gameplay matrix and report
@@ -75,7 +77,7 @@ jobs:
         run: |
           set -euo pipefail
           git status --short
-          unexpected="$(git status --porcelain | sed -E 's/^.. //' | grep -vE '^(data/Civication/roleModels/manifest.json|data/Civication/compiledSceneRegistryV1.json|data/Civication/careerGameplayMatrix.json|reports/civication-career-gameplay-matrix.md)$' || true)"
+          unexpected="$(git status --porcelain | sed -E 's/^.. //' | grep -vE '^(data/Civication/roleModels/manifest.json|data/Civication/scenarioPeople/generated/filosofi.json|data/Civication/scenarioPeople_index.json|data/Civication/compiledSceneRegistryV1.json|data/Civication/careerGameplayMatrix.json|reports/civication-career-gameplay-matrix.md)$' || true)"
           if [[ -n "$unexpected" ]]; then
             echo "Unexpected generated/build drift:"
             echo "$unexpected"
@@ -87,7 +89,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/Civication/roleModels/manifest.json data/Civication/compiledSceneRegistryV1.json data/Civication/careerGameplayMatrix.json reports/civication-career-gameplay-matrix.md
+          git add data/Civication/roleModels/manifest.json data/Civication/scenarioPeople/generated/filosofi.json data/Civication/scenarioPeople_index.json data/Civication/compiledSceneRegistryV1.json data/Civication/careerGameplayMatrix.json reports/civication-career-gameplay-matrix.md
           if git diff --cached --quiet; then
             echo "No canonical changes."
             exit 0
