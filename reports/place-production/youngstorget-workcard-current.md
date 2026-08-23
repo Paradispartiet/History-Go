@@ -3,33 +3,43 @@
 - Oppdatert: 2026-08-23
 - Place ID: `youngstorget`
 - Canonical source: `data/places/politikk/oslo/places_politikk/youngstorget.json`
-- Baseline `main`: `3ee60d3bec6de6cf519a1df0b3d17cafecc63b53`
+- Aktiv baseline `main`: `0b62e1c96bbddcf9c8574f10e0d041bba90ca48e`
+- Fase 0 merge: PR #5213 / `0b62e1c96bbddcf9c8574f10e0d041bba90ca48e`
 - Styrende kontrakt: `docs/PLACE_PRODUCTION_CHECKLIST.md`
 - Obligatorisk preflight: `docs/PLACE_PRODUCTION_PRIOR_WORK_GATE.md`
 - Content Factory: `data/places/regler/content_factory_v1.json`
 - Nullmåling: `reports/place-production/youngstorget-nullmaaling-v1.md`
+- Fase 1: `reports/place-production/youngstorget-phase1-identity-source-v1.md`
 - Klynge: Torggata → Youngstorget → Storgata / Brugata–Storgata
 - Referanse-/ankersted: `torggata` – skal ikke produseres på nytt i Pilot 01
 - Første produksjonsmål: `youngstorget`
 
-## Identitet
+## Canonical identitet
 
-Denne oppføringen representerer **selve Youngstorget som offentlig torg/byrom i Oslo sentrum**, ikke de selvstendige byggene, virksomhetene, institusjonene eller andre canonical Places rundt torget.
+Youngstorget-place representerer **selve det navngitte offentlige torget/byrommet fra anlegget i 1846 og fram til dagens plass**, ikke bygg, virksomheter, organisasjoner, scener eller gater rundt torget.
 
-Nære egne Place-objekter skal behandles som relasjoner når evidensen tillater det, ikke som proxyinnhold. Viktige grenser inkluderer blant annet Folkets Hus, Folketeaterbygningen/Folketeateret, Møllergata 19, Torggata og Storgata.
+Tre tidsfakta er låst separat:
 
-## Korrigert fasestatus
+- 1846: torget ble anlagt/etablert;
+- 1852–1951: offisielt navn `Nytorvet`;
+- 1951: `Youngstorget` ble offisielt navn.
+
+Nære egne Places som ikke skal brukes som proxy for Youngstorget omfatter minst `folkets_hus_oslo`, `folketeateret`, `mollergata_19`, `torggata`, `storgata` og `brugata_storgata_rusmiljo`.
+
+`year: 1852` endres ikke blindt. Primærårssemantikken må dokumenteres sammen med description-production package fordi repoet ikke definerer `year` universelt som etableringsår, mens metadata–tekst-konsistens er obligatorisk.
+
+## Fasestatus
 
 | Fase | Status | Dokumentasjon / beslutning |
 | --- | --- | --- |
-| 0. Nullmåling | **GJENNOMFØRT PÅ BRANCH – KLAR FOR PR/REVIEW** | `youngstorget-nullmaaling-v1.md`; ingen canonical data endret |
-| 1. Canonical identity/source | **NESTE** | Lås objektgrense, manifest/source, metadata-semantikk og 1846/1852-korreksjonsgrunnlag |
-| 2. Kildebase / Content Factory source pack | **IKKE STARTET** | Felles cluster source registry + scoped claims + Youngstorget-spesifikke researchgap |
-| 3. Koordinater/geometri | **FORVENTET ALLEREDE FERDIG** | `verified_geometry`; må bekreftes med tidligere-arbeid-gate før godkjenning |
+| 0. Nullmåling | **FERDIG OG MERGET** | PR #5213 / `0b62e1c9…`; kun rapport/workcard |
+| 1. Canonical identity/source | **FERDIG PÅ AKTIV BRANCH – KLAR FOR PR** | Identitet, source-owner, own-place-grense og 1846/1852/1951 er låst; ingen canonical data endret |
+| 2. Kildebase / Content Factory source pack | **NESTE ETTER FASE-1-MERGE** | Felles source registry + scoped claims + Youngstorget-spesifikke gaps |
+| 3. Koordinater/geometri | **FORVENTET ALLEREDE FERDIG** | `verified_geometry`; tidligere-arbeid-gate skal bekrefte uten ny geokoding |
 | 4. Kategori, Badges, emner og Fagverk | **IKKE STARTET** | `politikk`; tre `em_pol_*`; to underbadges re-auditeres |
-| 5. `desc` + `popupDesc` | **BLOKKERT AV SOURCE PACK** | canonical `desc` har dokumentert 1846/1852-faktaavvik |
-| 6. Strukturerte place-profiler | **IKKE STARTET** | Stoffstyrt, ikke felttvang |
-| 7. Popupfaner | **IKKE STARTET** | Hver fane får separat review |
+| 5. `desc` + `popupDesc` | **BLOKKERT AV SOURCE PACK** | dagens tekst blander 1846-anlegget med 1852-navnet |
+| 6. Strukturerte place-profiler | **IKKE STARTET** | stoffstyrt, ikke felttvang |
+| 7. Popupfaner | **IKKE STARTET** | hver fane separat review |
 | 8. Rundinger | **BLOKKERENDE LEGACY-AVVIK** | dagens `people · badges · civication · brands · leksikon · routes · music` følger ikke 4+1-kontrakten |
 | 9. På stedet | **IKKE STARTET** | legacy tasks skal ikke videreføres ukritisk |
 | 10. Quiz | **EKSISTERER – RE-AUDIT SENERE** | aktivt 5-spørsmålssett finnes; ikke regenerer uten konkret behov |
@@ -42,35 +52,31 @@ Nære egne Place-objekter skal behandles som relasjoner når evidensen tillater 
 
 ## Aktiv fase
 
-**Kun fase 0 er gjennomført på arbeidsbranchen. Neste aktive fase etter merge er fase 1.**
+På denne branchen er **fase 1 den eneste fasen som er utført**. Ingen brukerrettet Place-, People-, Story-, Quiz-, Brand-, image-, rounds- eller runtime-data er endret.
 
-Ingen brukerrettet tekst, rounds, People, Brands, quiz, Stories eller andre canonical data skal endres i fase-0-PR-en.
+Etter merge skal ny branch opprettes fra fersk `main`, og bare **fase 2 – Content Factory source/claim pack** skal være aktiv.
 
 ## Tidligere-arbeid-gate – overordnet
 
 ```text
 TIDLIGERE-ARBEID-SØK: UTFØRT
-SISTE GODKJENTE PR/COMMIT: delsystemhistorikk identifisert; ingen full stedproduksjons-closeout funnet
+SISTE GODKJENTE PR/COMMIT: fase 0 PR #5213 / 0b62e1c96bbddcf9c8574f10e0d041bba90ca48e
 SISTE GODKJENTE TILSTAND: canonical place + verified geometry + politikk-emner + eksisterende Stories + aktiv quiz + 22+ People + Brands + Lesespor
-KONKRET REGRESJONSEVIDENS: feil formulering om 1852 som anleggsår; legacy rundingsmodell bryter dagens 4+1; eldre tasks/Civication/Leksikon/routes/music er ikke canonicale rundinger
-BESLUTNING: REELT NYTT FULLPRODUKSJONSARBEID, MEN MED BEVARING AV DELSYSTEMER SOM BESTÅR DAGENS KONTRAKT
+KONKRET REGRESJONSEVIDENS: description blander anlegg 1846 og Nytorvet-navn 1852; legacy rundingsmodell bryter dagens 4+1; eldre tasks/Civication/Leksikon/routes/music er ikke canonicale rundinger
+BESLUTNING: FULLPRODUKSJON MED BEVARING AV DELSYSTEMER SOM BESTÅR DAGENS KONTRAKT
 ```
 
-## Kjente behold-punkter før ny produksjon
+## Kjente behold-punkter
 
-- canonical ID `youngstorget`;
-- category `politikk` inntil fase 4 eventuelt viser noe annet;
+- canonical ID og manifest-source `youngstorget`;
+- category `politikk` inntil fase 4 eventuelt dokumenterer noe annet;
 - verified coordinate-evidence inntil konkret regresjon dokumenteres;
-- eksisterende quiz som baseline;
-- eksisterende Stories som baseline;
-- eksisterende People som baseline;
-- eksisterende Lesespor som baseline;
-- eksisterende emner/underbadges som baseline;
-- existing Brands as candidates, not automatic approval.
+- eksisterende quiz, Stories, People, Lesespor og emner/underbadges som baseline, ikke automatisk ferdigstatus;
+- eksisterende Brands som kandidater, ikke automatisk godkjent place-eierskap.
 
 ## Kjente hull / regressions
 
-1. `desc` blander etablering i 1846 med offisielt navn Nytorvet fra 1852.
+1. `desc` og `popupDesc` blander 1846-anlegget med 1852-navnet.
 2. Ingen moderne description production package er identifisert.
 3. Popup/historie mangler dokumentert full canonical chronology/source-eier.
 4. Før/etter mangler.
@@ -79,10 +85,11 @@ BESLUTNING: REELT NYTT FULLPRODUKSJONSARBEID, MEN MED BEVARING AV DELSYSTEMER SO
 7. Canonical Objects mangler.
 8. Rundingssettet er legacy og må migreres til 4+1 uten filler.
 9. Brands må own-place-auditeres.
-10. People må own-place-, profile-, image- og runtime-auditeres; ≥22 er bare en baseline.
+10. People må own-place-, profile-, image- og runtime-auditeres; ≥22 er bare baseline.
 11. Språk må vurderes eksplisitt, ikke automatisk N/A.
 12. Nyheter må vurderes med fersk 2026-evidens.
 13. Onsite må saneres mot dagens kontrakt; legacy tasks er ikke produktet.
+14. `year: 1852` må få eksplisitt metadata-semantikk i description/temporal-fasen; ingen blind rewrite.
 
 ## Popupstatus
 
@@ -98,13 +105,13 @@ BESLUTNING: REELT NYTT FULLPRODUKSJONSARBEID, MEN MED BEVARING AV DELSYSTEMER SO
 | Språk | **IKKE VURDERT FERDIG** |
 | Andre direktefaner | **IKKE VURDERT FERDIG** |
 
-## Content Factory-regel for denne piloten
+## Content Factory-regel
 
 Research kan batches i klyngen. Godkjenning og merge skjer fortsatt ett Place om gangen.
 
-Et cluster-claim kan bare brukes på Youngstorget når source packen eksplisitt har `applicable_place_ids` som inkluderer `youngstorget`, eller når en egen Youngstorget-kilde gir samme claim. Torggata-materiale, Storgata-materiale og Brugata-materiale kan ikke flyttes over via geografisk nærhet.
+Et cluster-claim kan bare brukes på Youngstorget når source packen eksplisitt har `applicable_place_ids` som inkluderer `youngstorget`, eller når en egen Youngstorget-kilde gir samme claim. Torggata-, Storgata- og Brugata-materiale kan ikke flyttes over via geografisk nærhet.
 
-Følgende kvalitetsporter skal dokumenteres i sluttproduksjonen:
+Kvalitetsporter som skal dokumenteres i sluttproduksjonen:
 
 - name-swap;
 - cross-place duplicate;
@@ -115,7 +122,7 @@ Følgende kvalitetsporter skal dokumenteres i sluttproduksjonen:
 
 ## Pilotmåling
 
-Cost/research-effektivitet logges, men er aldri ferdigport:
+Research-effektivitet logges separat fra kvalitet:
 
 - kilder som kunne gjenbrukes lovlig;
 - claims som kunne gjenbrukes med korrekt scope;
