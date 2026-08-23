@@ -1,0 +1,35 @@
+{
+  "schema": "civication_mail_plan_v1",
+  "version": 1,
+  "id": "film_tv_serieskaper_v1",
+  "category": "film_tv",
+  "role_scope": "serieskaper",
+  "title": "Serieskaper",
+  "description": "Én sammenhengende utviklingsdag der premiss, sesongrygg, karakterbuer, motstridende notes, produksjonsendringer og seriebibel må holdes konsistente fra writers room til sent omskrivingsmøte.",
+  "arc": {
+    "from": "Ny serieskaper som forsvarer enkeltideer og prøver å besvare alle notes lokalt.",
+    "to": "Pålitelig serieskaper som holder seriens dramatiske motor og karaktertilstand sporbar, synliggjør reelle notekonflikter og bygger produksjonsendringer inn i senere konsekvenser.",
+    "core_questions": [
+      "Hvilken dramatisk motor og hvilket publikumslofte må serien kunne gjenta og variere over flere episoder?",
+      "Hvilken konkret funksjon har denne episoden i sesongen, og hvilke senere valg avhenger av den?",
+      "Hvilke notes kan kombineres, og hvilke krever prioritering av en faktisk beslutningseier?",
+      "Hva må oppdateres i seriebibel og senere manus når produksjonsrealiteten endrer en karakter eller et fortellingsgrep?"
+    ]
+  },
+  "outcome_rules": {
+    "fired": {"stability_values": ["FIRED"], "strikes_gte": 3, "score_lte": -3},
+    "promoted": {"completion_ratio_gte": 1, "score_gte": 2, "strikes_lte": 0, "allow_warning": false},
+    "stagnated": {"autonomy_delta": -7, "stability": "STAGNATED", "add_branch_flags": ["career_stagnated", "film_tv_serieskaper_stalled"]}
+  },
+  "sequence": [
+    {"step": 1, "type": "job", "phase": "intro", "step_goal": "Lås seriens premiss, publikumslofte og episodefunksjoner før dagens utviklingsrunde.", "allowed_families": ["serieskaper_sesongrygg"], "fallback_types": []},
+    {"step": 2, "type": "people", "phase": "early", "step_goal": "Prøv en sterk episodeidé mot hovedkarakterens langsiktige bue.", "allowed_families": ["serieskaper_episode_vs_bue"], "fallback_types": []},
+    {"step": 3, "type": "conflict", "phase": "mid", "step_goal": "Skill motstridende bestiller-, produsent- og manusnotes og få riktig prioritering.", "allowed_families": ["serieskaper_noteskonflikt"], "fallback_types": []},
+    {"step": 4, "type": "story", "phase": "mid", "step_goal": "Bygg om en karakterbue når en sentral medvirkende blir utilgjengelig i to episoder.", "allowed_families": ["serieskaper_rollefravaer"], "fallback_types": []},
+    {"step": 5, "type": "event", "phase": "workday", "step_goal": "Bevar dramatisk funksjon når et kostbart location-grep faller ut av produksjonsplanen.", "allowed_families": ["serieskaper_location_bortfall"], "fallback_types": []},
+    {"step": 6, "type": "micro", "phase": "workday", "step_goal": "Stans en liten seriebibel/manus-motsigelse før flere episoder bygger videre på feil tilstand.", "allowed_families": ["serieskaper_bibelkontinuitet"], "fallback_types": []},
+    {"step": 7, "type": "knowledge", "phase": "advanced", "step_goal": "Bruk en canonical norsk manusforfatter/regissør-profil som filmhistorisk kontekst uten å gjøre den til dokumentasjon av moderne serieskaping.", "allowed_families": ["serieskaper_filmforfatter_kontekst"], "fallback_types": []},
+    {"step": 8, "type": "followup", "phase": "mastery", "step_goal": "La rollefraværet komme tilbake i en senere episode og bevar konsekvensene av omskrivingen.", "allowed_families": ["serieskaper_bueoppfolging"], "fallback_types": []},
+    {"step": 9, "type": "consequence", "phase": "mastery", "step_goal": "Se hvordan en tidligere snarvei i sesongryggen blir konkret kontinuitetsgjeld i finalearbeidet.", "allowed_families": ["serieskaper_finalegjeld"], "fallback_types": []}
+  ]
+}

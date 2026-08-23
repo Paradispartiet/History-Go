@@ -1,0 +1,69 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "serieskaper",
+  "mail_type": "event",
+  "families": [
+    {
+      "id": "serieskaper_location_bortfall",
+      "purpose": "Bevare dramatisk funksjon når et bærende location-grep faller ut av produksjonsplanen.",
+      "learning_focus": ["produksjonstilpasning", "dramatisk_funksjon", "senere_avhengigheter"],
+      "mails": [
+        {
+          "id": "film_tv_series_event_location_001",
+          "mail_type": "event",
+          "mail_family": "serieskaper_location_bortfall",
+          "role_scope": "serieskaper",
+          "phase": "workday",
+          "day_phase": "afternoon",
+          "priority": 114,
+          "cooldown": 4,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Henrik, produksjonsprodusent",
+          "people_ref": "henrik_produksjonsprodusent_series",
+          "person_id": "henrik_produksjonsprodusent_series",
+          "place_id": "produksjonsmote_serieskaper_film_tv",
+          "subject": "Locationen for episode seks faller ut – funksjonen må løses uten nytt kostnadshopp",
+          "summary": "Henrik bekrefter at den planlagte locationen ikke lenger er tilgjengelig. Scenen skulle isolere hovedkarakteren fra familien, avsløre en løgn og gjøre returen hjem vanskeligere.",
+          "purpose": "Teste om serieskaperen skiller dramatisk funksjon fra opprinnelig produksjonsløsning før omskriving.",
+          "stakes": "Hvis locationen bare erstattes visuelt kan episoden beholde sidetall og likevel miste isolasjon, informasjonsendring eller relasjonell konsekvens som senere scener trenger.",
+          "situation": [
+            "Locationbortfallet er avklart produksjonsfakta og kan ikke løses ved å flytte opptaket én dag.",
+            "Scenens tre funksjoner er isolasjon, avsløring av løgnen og en vanskeligere retur til familien.",
+            "Henrik kan tilby to eksisterende locations uten ekstra opptaksdag, men de løser ikke funksjonene automatisk."
+          ],
+          "task_domain": "produksjonstilpasset_omskriving",
+          "task_kind": "event",
+          "competency": "produksjonsgjennomforbarhet",
+          "pressure": "tapt_location_vs_bevart_dramatisk_funksjon",
+          "choice_axis": "kartlegg_funksjon_og_bygg_ny_losning_vs_bytt_location_og_bevar_sceneformen",
+          "consequence_axis": "fortellingsfunksjon_bevart_vs_skjult_sesongbrudd",
+          "narrative_arc": "produksjonsendring_med_senere_spor",
+          "interaction_mode": "decision",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bevar isolasjon, avsløring og returkostnad – bygg scenen på nytt innen de to mulige locationene",
+              "reply": "Vi bruker produksjonsrammen som gitt. Jonas og jeg løser de tre funksjonene eksplisitt og oppdaterer senere scener hvis den nye løsningen endrer rekkefølgen på informasjon.",
+              "effect": 1,
+              "tags": ["function_first", "production_reality", "continuity"],
+              "feedback": "Du gjør begrensningen til et konkret fortellingsproblem og lar ikke den gamle sceneformen skjule hva serien faktisk trenger.",
+              "effects": {"stats": {"quality": 3, "trust": 2, "risk": -2, "energy": -2}}
+            },
+            {
+              "id": "B",
+              "label": "Flytt scenen til nærmeste ledige location og behold handlingen mest mulig",
+              "reply": "Vi trenger fremdrift; vi bytter sted og gjør bare nødvendige dialogjusteringer.",
+              "effect": -1,
+              "tags": ["surface_swap", "function_loss"],
+              "feedback": "Du løser kalenderen raskt, men har ikke bevist at isolasjon, avsløring og returkostnad fortsatt finnes i den nye scenen.",
+              "effects": {"stats": {"quality": -2, "trust": -1, "risk": 3, "energy": 1}}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

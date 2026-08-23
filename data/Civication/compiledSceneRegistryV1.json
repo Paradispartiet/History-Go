@@ -88,6 +88,15 @@
     "data/Civication/mailFamilies/film_tv/followup/regissor_followup.json",
     "data/Civication/mailFamilies/film_tv/knowledge/regissor_knowledge.json",
     "data/Civication/mailFamilies/film_tv/consequence/regissor_consequence.json",
+    "data/Civication/mailFamilies/film_tv/job/serieskaper_job.json",
+    "data/Civication/mailFamilies/film_tv/people/serieskaper_people.json",
+    "data/Civication/mailFamilies/film_tv/story/serieskaper_story.json",
+    "data/Civication/mailFamilies/film_tv/conflict/serieskaper_conflict.json",
+    "data/Civication/mailFamilies/film_tv/event/serieskaper_event.json",
+    "data/Civication/mailFamilies/film_tv/micro/serieskaper_micro.json",
+    "data/Civication/mailFamilies/film_tv/followup/serieskaper_followup.json",
+    "data/Civication/mailFamilies/film_tv/knowledge/serieskaper_knowledge.json",
+    "data/Civication/mailFamilies/film_tv/consequence/serieskaper_consequence.json",
     "data/Civication/mailFamilies/litteratur/job/redaksjonsmedarbeider_job.json",
     "data/Civication/mailFamilies/litteratur/people/redaksjonsmedarbeider_people.json",
     "data/Civication/mailFamilies/litteratur/story/redaksjonsmedarbeider_story.json",
@@ -29349,6 +29358,1315 @@
       },
       "source_hash": "d1879c398c50069288247504be100176c82734c7fb6cc4ed1672877e2bed4751",
       "source_path": "data/Civication/mailFamilies/film_tv/story/regissor_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "kartlegg_mal_konflikt_og_prioritering_vs_implementer_alt_samtidig",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Du gjør notene sammenlignbare uten å late som serieskaperen alene eier bestiller- og produksjonsprioriteten.",
+            "id": "A",
+            "label": "Vis hva som kan kombineres og be Ingrid prioritere den reelle konflikten",
+            "reply": "Jeg kan løse tempo og færre locations sammen i midtdelen, men hvis relasjonsscenen også komprimeres svekker vi neste episode. Jeg trenger en eksplisitt prioritet på den konflikten.",
+            "tags": [
+              "notes_reconciliation",
+              "authority",
+              "traceability"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "energy": -2,
+                "quality": -2,
+                "risk": 3,
+                "trust": -1
+              }
+            },
+            "feedback": "Du flytter prioriteringskonflikten inn i teksten og gjør det vanskeligere å se hvilket mål som eventuelt feilet.",
+            "id": "B",
+            "label": "Skriv en raskere versjon med færre locations og kortere relasjonsscene",
+            "reply": "Jeg lager ett utkast som svarer på alle tre notene, så vurderer vi helheten etterpå.",
+            "tags": [
+              "notes_stack",
+              "hidden_tradeoff"
+            ]
+          }
+        ],
+        "competency": "notes_sporbarhet",
+        "consequence_axis": "sporbar_bestilling_vs_kompromiss_uten_eier",
+        "cooldown": 3,
+        "day_phase": "afternoon",
+        "from": "Ingrid, executive producer",
+        "id": "film_tv_series_conflict_notes_001",
+        "interaction_mode": "decision",
+        "mail_family": "serieskaper_noteskonflikt",
+        "mail_type": "conflict",
+        "narrative_arc": "notes_til_beslutningsspor",
+        "people_ref": "ingrid_executive_producer_series",
+        "person_id": "ingrid_executive_producer_series",
+        "phase": "mid",
+        "place_id": "utviklingsmote_serieskaper_film_tv",
+        "pressure": "flere_legitime_notes_vs_en_sammenhengende_episode",
+        "priority": 124,
+        "purpose": "Teste om serieskaperen kan skille kompatible notes fra reelle målkonflikter og beholde rett beslutningseier synlig.",
+        "repeatable": false,
+        "role_scope": "serieskaper",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/conflict/serieskaper_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Bestillerens tempo-note gjelder særlig episode to sin lange midtdel.",
+          "Henrik kan spare produksjonstid ved å slå sammen to locations, men det flytter en relasjonsscene.",
+          "Jonas mener relasjonsscenen er nødvendig for at episode tre sitt valg skal være troverdig."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis alle notes presses inn samtidig kan episoden få flere hendelser, færre steder og mindre karaktertid uten at noen av målene faktisk blir løst.",
+        "subject": "Bestiller vil ha mer tempo, produksjon vil ha færre locations, og manus trenger mer plass til karakterbuen",
+        "summary": "Tre legitime notes peker mot tre ulike løsninger. Ingrid trenger en konfliktanalyse før hun prioriterer hva neste manusutkast faktisk skal løse.",
+        "task_domain": "notes_reconciliation",
+        "task_kind": "conflict",
+        "thread_key": "film_tv_series_notes_001"
+      },
+      "id": "film_tv_series_conflict_notes_001",
+      "mail_type": "conflict",
+      "role_scope": "serieskaper",
+      "scene": {
+        "arc_stage": "mid",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gjør notene sammenlignbare uten å late som serieskaperen alene eier bestiller- og produksjonsprioriteten.",
+            "id": "A",
+            "label": "Vis hva som kan kombineres og be Ingrid prioritere den reelle konflikten",
+            "reply": "Jeg kan løse tempo og færre locations sammen i midtdelen, men hvis relasjonsscenen også komprimeres svekker vi neste episode. Jeg trenger en eksplisitt prioritet på den konflikten."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du flytter prioriteringskonflikten inn i teksten og gjør det vanskeligere å se hvilket mål som eventuelt feilet.",
+            "id": "B",
+            "label": "Skriv en raskere versjon med færre locations og kortere relasjonsscene",
+            "reply": "Jeg lager ett utkast som svarer på alle tre notene, så vurderer vi helheten etterpå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Bestillerens tempo-note gjelder særlig episode to sin lange midtdel.",
+            "Henrik kan spare produksjonstid ved å slå sammen to locations, men det flytter en relasjonsscene.",
+            "Jonas mener relasjonsscenen er nødvendig for at episode tre sitt valg skal være troverdig."
+          ],
+          "subject": "Bestiller vil ha mer tempo, produksjon vil ha færre locations, og manus trenger mer plass til karakterbuen",
+          "summary": "Tre legitime notes peker mot tre ulike løsninger. Ingrid trenger en konfliktanalyse før hun prioriterer hva neste manusutkast faktisk skal løse."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_series_conflict_notes_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "utviklingsmote_serieskaper_film_tv",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_series_conflict_notes_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/conflict/serieskaper_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "film_tv_series_notes_001",
+        "version": 1
+      },
+      "source_hash": "c9e5f0bbebff5a009f0532c46ceca6781e7d49ce7126d39bb474f15d93308a2c",
+      "source_path": "data/Civication/mailFamilies/film_tv/conflict/serieskaper_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "gjenbygg_nodvendig_arsakskjede_og_juster_finalen_vs_forklar_valget_i_dialog",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -2,
+                "quality": 3,
+                "risk": -3,
+                "trust": 2
+              }
+            },
+            "feedback": "Du behandler finalegjelden som et resultat av tidligere beslutninger og reparerer den med minst mulig, men reell, årsakskjede.",
+            "id": "A",
+            "label": "Reparer ett nødvendig mellomsteg tidligere og juster finalen til den buen sesongen faktisk har",
+            "reply": "Vi identifiserer hvilket manglende steg som er avgjørende, bygger det inn der vi fortsatt har rom, og lar finalens valg få den styrken den faktiske sesongen kan bære.",
+            "tags": [
+              "causal_repair",
+              "season_spine",
+              "accountability"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -3,
+                "risk": 4,
+                "status": -1,
+                "trust": -2
+              }
+            },
+            "feedback": "Du forklarer endringen, men gir ikke publikum de valgene og relasjonelle konsekvensene som skulle gjort den erfart og troverdig.",
+            "id": "B",
+            "label": "Behold finalen og legg inn en replikk som forklarer at karakteren har endret seg",
+            "reply": "Vi har ikke tid til å åpne tidligere episode. Jeg vil gjøre motivasjonen eksplisitt i finalen og holde den planlagte vendingen.",
+            "tags": [
+              "exposition_patch",
+              "continuity_debt"
+            ]
+          }
+        ],
+        "competency": "premiss_og_karakterkontinuitet",
+        "consequence_axis": "troverdig_sesongkonsekvens_vs_uopparbeidet_vending",
+        "cooldown": 6,
+        "day_phase": "evening",
+        "from": "Ingrid, executive producer",
+        "id": "film_tv_series_consequence_finalegjeld_001",
+        "interaction_mode": "decision",
+        "mail_family": "serieskaper_finalegjeld",
+        "mail_type": "consequence",
+        "narrative_arc": "fra_sesongrygg_til_finale",
+        "people_ref": "ingrid_executive_producer_series",
+        "person_id": "ingrid_executive_producer_series",
+        "phase": "mastery",
+        "place_id": "utviklingsmote_serieskaper_film_tv",
+        "pressure": "bevar_planlagt_finale_vs_reparer_faktisk_karakterbue",
+        "priority": 100,
+        "purpose": "Teste om serieskaperen reparerer årsakskjeden åpent og prioriterer nødvendige oppbyggingsslag fremfor å forklare bort et uforberedt vendepunkt.",
+        "repeatable": false,
+        "role_scope": "serieskaper",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/consequence/serieskaper_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Sesongryggen definerte opprinnelig fire nødvendige endringer før bruddet med familien.",
+          "To av mellomstegene ble svekket eller flyttet under senere episodeoptimalisering og produksjonsendringer.",
+          "Det finnes fortsatt omskrivingsrom i én tidligere episode og i finalen, men ikke nok tid til å late som hele den gamle planen fortsatt gjelder."
+        ],
+        "stage": "stable",
+        "stakes": "En billig finale-replikk kan forklare motivet, men kan ikke erstatte relasjonelle og handlingsmessige endringer som skulle gjort valget troverdig gjennom sesongen.",
+        "subject": "Finalen krever et karaktervalg som sesongen ikke har gjort mulig ennå",
+        "summary": "I finale-gjennomgangen ser Ingrid at hovedkarakteren skal bryte med familien, men flere tidligere episodekort har beholdt lojaliteten uten de planlagte mellomstegene. Valget finnes i finalemanuset, men sesongen har ikke lenger bygget kapasiteten for det.",
+        "task_domain": "sesongstruktur_og_konsekvens",
+        "task_kind": "consequence",
+        "thread_key": "film_tv_series_sesongrygg_001"
+      },
+      "id": "film_tv_series_consequence_finalegjeld_001",
+      "mail_type": "consequence",
+      "role_scope": "serieskaper",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du behandler finalegjelden som et resultat av tidligere beslutninger og reparerer den med minst mulig, men reell, årsakskjede.",
+            "id": "A",
+            "label": "Reparer ett nødvendig mellomsteg tidligere og juster finalen til den buen sesongen faktisk har",
+            "reply": "Vi identifiserer hvilket manglende steg som er avgjørende, bygger det inn der vi fortsatt har rom, og lar finalens valg få den styrken den faktiske sesongen kan bære."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du forklarer endringen, men gir ikke publikum de valgene og relasjonelle konsekvensene som skulle gjort den erfart og troverdig.",
+            "id": "B",
+            "label": "Behold finalen og legg inn en replikk som forklarer at karakteren har endret seg",
+            "reply": "Vi har ikke tid til å åpne tidligere episode. Jeg vil gjøre motivasjonen eksplisitt i finalen og holde den planlagte vendingen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Sesongryggen definerte opprinnelig fire nødvendige endringer før bruddet med familien.",
+            "To av mellomstegene ble svekket eller flyttet under senere episodeoptimalisering og produksjonsendringer.",
+            "Det finnes fortsatt omskrivingsrom i én tidligere episode og i finalen, men ikke nok tid til å late som hele den gamle planen fortsatt gjelder."
+          ],
+          "subject": "Finalen krever et karaktervalg som sesongen ikke har gjort mulig ennå",
+          "summary": "I finale-gjennomgangen ser Ingrid at hovedkarakteren skal bryte med familien, men flere tidligere episodekort har beholdt lojaliteten uten de planlagte mellomstegene. Valget finnes i finalemanuset, men sesongen har ikke lenger bygget kapasiteten for det."
+        },
+        "day_phase": "evening",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_series_consequence_finalegjeld_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "utviklingsmote_serieskaper_film_tv",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_series_consequence_finalegjeld_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/consequence/serieskaper_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "film_tv_series_sesongrygg_001",
+        "version": 1
+      },
+      "source_hash": "13472677e9342f000e81556e5d31dc470d407e1df74efb6e89459e2fda327ac0",
+      "source_path": "data/Civication/mailFamilies/film_tv/consequence/serieskaper_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "kartlegg_funksjon_og_bygg_ny_losning_vs_bytt_location_og_bevar_sceneformen",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -2,
+                "quality": 3,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Du gjør begrensningen til et konkret fortellingsproblem og lar ikke den gamle sceneformen skjule hva serien faktisk trenger.",
+            "id": "A",
+            "label": "Bevar isolasjon, avsløring og returkostnad – bygg scenen på nytt innen de to mulige locationene",
+            "reply": "Vi bruker produksjonsrammen som gitt. Jonas og jeg løser de tre funksjonene eksplisitt og oppdaterer senere scener hvis den nye løsningen endrer rekkefølgen på informasjon.",
+            "tags": [
+              "function_first",
+              "production_reality",
+              "continuity"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "energy": 1,
+                "quality": -2,
+                "risk": 3,
+                "trust": -1
+              }
+            },
+            "feedback": "Du løser kalenderen raskt, men har ikke bevist at isolasjon, avsløring og returkostnad fortsatt finnes i den nye scenen.",
+            "id": "B",
+            "label": "Flytt scenen til nærmeste ledige location og behold handlingen mest mulig",
+            "reply": "Vi trenger fremdrift; vi bytter sted og gjør bare nødvendige dialogjusteringer.",
+            "tags": [
+              "surface_swap",
+              "function_loss"
+            ]
+          }
+        ],
+        "competency": "produksjonsgjennomforbarhet",
+        "consequence_axis": "fortellingsfunksjon_bevart_vs_skjult_sesongbrudd",
+        "cooldown": 4,
+        "day_phase": "afternoon",
+        "from": "Henrik, produksjonsprodusent",
+        "id": "film_tv_series_event_location_001",
+        "interaction_mode": "decision",
+        "mail_family": "serieskaper_location_bortfall",
+        "mail_type": "event",
+        "narrative_arc": "produksjonsendring_med_senere_spor",
+        "people_ref": "henrik_produksjonsprodusent_series",
+        "person_id": "henrik_produksjonsprodusent_series",
+        "phase": "workday",
+        "place_id": "produksjonsmote_serieskaper_film_tv",
+        "pressure": "tapt_location_vs_bevart_dramatisk_funksjon",
+        "priority": 114,
+        "purpose": "Teste om serieskaperen skiller dramatisk funksjon fra opprinnelig produksjonsløsning før omskriving.",
+        "repeatable": false,
+        "role_scope": "serieskaper",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/event/serieskaper_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Locationbortfallet er avklart produksjonsfakta og kan ikke løses ved å flytte opptaket én dag.",
+          "Scenens tre funksjoner er isolasjon, avsløring av løgnen og en vanskeligere retur til familien.",
+          "Henrik kan tilby to eksisterende locations uten ekstra opptaksdag, men de løser ikke funksjonene automatisk."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis locationen bare erstattes visuelt kan episoden beholde sidetall og likevel miste isolasjon, informasjonsendring eller relasjonell konsekvens som senere scener trenger.",
+        "subject": "Locationen for episode seks faller ut – funksjonen må løses uten nytt kostnadshopp",
+        "summary": "Henrik bekrefter at den planlagte locationen ikke lenger er tilgjengelig. Scenen skulle isolere hovedkarakteren fra familien, avsløre en løgn og gjøre returen hjem vanskeligere.",
+        "task_domain": "produksjonstilpasset_omskriving",
+        "task_kind": "event"
+      },
+      "id": "film_tv_series_event_location_001",
+      "mail_type": "event",
+      "role_scope": "serieskaper",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gjør begrensningen til et konkret fortellingsproblem og lar ikke den gamle sceneformen skjule hva serien faktisk trenger.",
+            "id": "A",
+            "label": "Bevar isolasjon, avsløring og returkostnad – bygg scenen på nytt innen de to mulige locationene",
+            "reply": "Vi bruker produksjonsrammen som gitt. Jonas og jeg løser de tre funksjonene eksplisitt og oppdaterer senere scener hvis den nye løsningen endrer rekkefølgen på informasjon."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du løser kalenderen raskt, men har ikke bevist at isolasjon, avsløring og returkostnad fortsatt finnes i den nye scenen.",
+            "id": "B",
+            "label": "Flytt scenen til nærmeste ledige location og behold handlingen mest mulig",
+            "reply": "Vi trenger fremdrift; vi bytter sted og gjør bare nødvendige dialogjusteringer."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Locationbortfallet er avklart produksjonsfakta og kan ikke løses ved å flytte opptaket én dag.",
+            "Scenens tre funksjoner er isolasjon, avsløring av løgnen og en vanskeligere retur til familien.",
+            "Henrik kan tilby to eksisterende locations uten ekstra opptaksdag, men de løser ikke funksjonene automatisk."
+          ],
+          "subject": "Locationen for episode seks faller ut – funksjonen må løses uten nytt kostnadshopp",
+          "summary": "Henrik bekrefter at den planlagte locationen ikke lenger er tilgjengelig. Scenen skulle isolere hovedkarakteren fra familien, avsløre en løgn og gjøre returen hjem vanskeligere."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_series_event_location_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "produksjonsmote_serieskaper_film_tv",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_series_event_location_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/event/serieskaper_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "serieskaper.mail.film_tv_series_event_location_001",
+        "version": 1
+      },
+      "source_hash": "2bf41f89bf6ed02ab05fbcc51e64afdc00968b8c7b93b292e233f0d69238d3c7",
+      "source_path": "data/Civication/mailFamilies/film_tv/event/serieskaper_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "bygg_episode_sju_pa_den_faktiske_omskrivingen_vs_restaurer_opprinnelig_konfrontasjon",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 3,
+                "risk": -3,
+                "trust": 2
+              }
+            },
+            "feedback": "Den tidligere produksjonsendringen blir en reell del av sesongens historie og skaper ny dramatikk i stedet for skjult reset.",
+            "id": "A",
+            "label": "Bygg konfrontasjonen på søsterens nye kunnskap og den svekkede tilliten",
+            "reply": "Episode sju må huske at søsteren nå eier avsløringen. Vi beholder konfliktfunksjonen, men lar den vokse ut av den relasjonen vi faktisk skrev frem.",
+            "tags": [
+              "thread_memory",
+              "arc_consequence",
+              "continuity"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -3,
+                "risk": 4,
+                "trust": -1
+              }
+            },
+            "feedback": "Du reparerer replikkfordelingen, men sletter den relasjonelle konsekvensen som omskrivingen allerede skapte.",
+            "id": "B",
+            "label": "Bruk den opprinnelige konfrontasjonen og juster bare hvem som leverer informasjonen",
+            "reply": "Strukturen i episode sju var sterk; vi kan beholde den og flytte noen replikker så kontinuiteten ser riktig ut.",
+            "tags": [
+              "arc_reset",
+              "surface_continuity"
+            ]
+          }
+        ],
+        "competency": "langsiktig_konsekvens",
+        "consequence_axis": "valg_med_hukommelse_vs_reset_av_karakterbue",
+        "cooldown": 5,
+        "day_phase": "evening",
+        "from": "Jonas, hovedforfatter",
+        "id": "film_tv_series_followup_rollefravaer_001",
+        "interaction_mode": "decision",
+        "mail_family": "serieskaper_bueoppfolging",
+        "mail_type": "followup",
+        "narrative_arc": "rollefravaer_og_bueomskriving",
+        "people_ref": "jonas_hovedforfatter_series",
+        "person_id": "jonas_hovedforfatter_series",
+        "phase": "mastery",
+        "place_id": "writers_room_serieskaper_film_tv",
+        "pressure": "gammel_episodeplan_vs_ny_relajsonell_tilstand",
+        "priority": 104,
+        "purpose": "Teste om serieskaperen lar tidligere produksjonsvalg endre senere relasjoner og scener i stedet for å gjenopprette den gamle planen i stillhet.",
+        "repeatable": false,
+        "role_scope": "serieskaper",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/followup/serieskaper_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "I den valgte omskrivingen fikk søsteren både avsløringen og pressfunksjonen som tidligere lå hos den fraværende karakteren.",
+          "Det endret tilliten mellom søstrene og gjorde hovedkarakterens neste valg mer personlig.",
+          "Den opprinnelige episode sju-planen er fortsatt mulig å bruke som råmateriale, men ikke med den gamle kunnskaps- og relasjonstilstanden."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis episode sju vender tilbake til den gamle buen forsvinner kostnaden og relasjonsendringen fra den faktiske omskrivingen, og karakterene får inkonsistent kunnskap.",
+        "subject": "Episode sju trenger nå konsekvensen av hvordan vi løste rollefraværet",
+        "summary": "Jonas viser at omskrivingen i episode fem og seks flyttet avsløringen til søsteren. Episode sju kan derfor ikke bruke den opprinnelige konfrontasjonen som om den fraværende karakteren fortsatt eide hemmeligheten.",
+        "task_domain": "karakterbue_og_kontinuitet",
+        "task_kind": "followup",
+        "thread_key": "film_tv_series_rollefravaer_001"
+      },
+      "id": "film_tv_series_followup_rollefravaer_001",
+      "mail_type": "followup",
+      "role_scope": "serieskaper",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Den tidligere produksjonsendringen blir en reell del av sesongens historie og skaper ny dramatikk i stedet for skjult reset.",
+            "id": "A",
+            "label": "Bygg konfrontasjonen på søsterens nye kunnskap og den svekkede tilliten",
+            "reply": "Episode sju må huske at søsteren nå eier avsløringen. Vi beholder konfliktfunksjonen, men lar den vokse ut av den relasjonen vi faktisk skrev frem."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du reparerer replikkfordelingen, men sletter den relasjonelle konsekvensen som omskrivingen allerede skapte.",
+            "id": "B",
+            "label": "Bruk den opprinnelige konfrontasjonen og juster bare hvem som leverer informasjonen",
+            "reply": "Strukturen i episode sju var sterk; vi kan beholde den og flytte noen replikker så kontinuiteten ser riktig ut."
+          }
+        ],
+        "content": {
+          "situation": [
+            "I den valgte omskrivingen fikk søsteren både avsløringen og pressfunksjonen som tidligere lå hos den fraværende karakteren.",
+            "Det endret tilliten mellom søstrene og gjorde hovedkarakterens neste valg mer personlig.",
+            "Den opprinnelige episode sju-planen er fortsatt mulig å bruke som råmateriale, men ikke med den gamle kunnskaps- og relasjonstilstanden."
+          ],
+          "subject": "Episode sju trenger nå konsekvensen av hvordan vi løste rollefraværet",
+          "summary": "Jonas viser at omskrivingen i episode fem og seks flyttet avsløringen til søsteren. Episode sju kan derfor ikke bruke den opprinnelige konfrontasjonen som om den fraværende karakteren fortsatt eide hemmeligheten."
+        },
+        "day_phase": "evening",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_series_followup_rollefravaer_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "writers_room_serieskaper_film_tv",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_series_followup_rollefravaer_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/followup/serieskaper_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "film_tv_series_rollefravaer_001",
+        "version": 1
+      },
+      "source_hash": "39d8a551399845439356ab1088afed5d856a07df51cae91f3c2a03f057d16e89",
+      "source_path": "data/Civication/mailFamilies/film_tv/followup/serieskaper_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "definer_motor_bue_og_episodefunksjoner_vs_fyll_ut_flere_enkeltideer",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 1
+              }
+            },
+            "feedback": "Utviklingsteamet får et felles beslutningsgrunnlag som kan brukes til å vurdere nye ideer senere.",
+            "id": "A",
+            "label": "Definer publikumsloftet, fire nødvendige karakterendringer og hver episodes funksjon",
+            "reply": "Jeg bygger først en ryggrad som viser hva som må endres i mål, relasjoner og kunnskap gjennom sesongen, og lar episodekortene svare på den.",
+            "tags": [
+              "season_spine",
+              "character_arc",
+              "episode_function"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -1,
+                "risk": 3,
+                "trust": -1
+              }
+            },
+            "feedback": "Du bevarer kreativ frihet nå, men gjør senere helhetsvalg avhengige av hvilke ideer som tilfeldigvis blir skrevet først.",
+            "id": "B",
+            "label": "Utvikle de sterkeste episodekortene videre og la sesongbuen vokse frem",
+            "reply": "Vi har momentum i episodene; jeg vil heller få dem levende før vi låser for mye struktur.",
+            "tags": [
+              "local_optimization",
+              "continuity_debt"
+            ]
+          }
+        ],
+        "competency": "premissklarhet",
+        "consequence_axis": "sporbar_sesongutvikling_vs_sen_kontinuitetsgjeld",
+        "cooldown": 1,
+        "day_phase": "morning",
+        "from": "Ingrid, executive producer",
+        "id": "film_tv_series_job_sesongrygg_001",
+        "interaction_mode": "decision",
+        "mail_family": "serieskaper_sesongrygg",
+        "mail_type": "job",
+        "narrative_arc": "fra_sesongrygg_til_finale",
+        "people_ref": "ingrid_executive_producer_series",
+        "person_id": "ingrid_executive_producer_series",
+        "phase": "intro",
+        "place_id": "writers_room_serieskaper_film_tv",
+        "pressure": "episodeideer_vs_sesonglogikk",
+        "priority": 140,
+        "purpose": "Teste om serieskaperen kan formulere seriens dramatiske motor og episodefunksjoner før videre idéproduksjon.",
+        "repeatable": false,
+        "role_scope": "serieskaper",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/job/serieskaper_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Pilotens publikumslofte er etablert som en konflikt mellom lojalitet til familien og ønsket om selvstendighet.",
+          "Episode to, fire og seks har hver sin store hendelse, men ingen har fått eksplisitt funksjon i karakterbuen.",
+          "Ingrid trenger en utviklingsplan hun kan bruke i neste bestillermøte, ikke bare en liste med scener."
+        ],
+        "stage": "stable",
+        "stakes": "Uten en sporbar sesongrygg kan sterke enkeltideer bruke opp senere vendepunkter, motsi hverandre eller gjøre finalen avhengig av uforberedte løsninger.",
+        "subject": "Episodekortene er fulle av gode ideer, men sesongen mangler én tydelig ryggrad",
+        "summary": "Ingrid ser at de åtte episodekortene har konflikt og energi, men de beskriver ikke hvilke endringer som må skje i hovedkarakterens mål og relasjoner før finalen.",
+        "task_domain": "seriepremiss_og_sesongrygg",
+        "task_kind": "job",
+        "thread_key": "film_tv_series_sesongrygg_001"
+      },
+      "id": "film_tv_series_job_sesongrygg_001",
+      "mail_type": "job",
+      "role_scope": "serieskaper",
+      "scene": {
+        "arc_stage": "intro",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Utviklingsteamet får et felles beslutningsgrunnlag som kan brukes til å vurdere nye ideer senere.",
+            "id": "A",
+            "label": "Definer publikumsloftet, fire nødvendige karakterendringer og hver episodes funksjon",
+            "reply": "Jeg bygger først en ryggrad som viser hva som må endres i mål, relasjoner og kunnskap gjennom sesongen, og lar episodekortene svare på den."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du bevarer kreativ frihet nå, men gjør senere helhetsvalg avhengige av hvilke ideer som tilfeldigvis blir skrevet først.",
+            "id": "B",
+            "label": "Utvikle de sterkeste episodekortene videre og la sesongbuen vokse frem",
+            "reply": "Vi har momentum i episodene; jeg vil heller få dem levende før vi låser for mye struktur."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Pilotens publikumslofte er etablert som en konflikt mellom lojalitet til familien og ønsket om selvstendighet.",
+            "Episode to, fire og seks har hver sin store hendelse, men ingen har fått eksplisitt funksjon i karakterbuen.",
+            "Ingrid trenger en utviklingsplan hun kan bruke i neste bestillermøte, ikke bare en liste med scener."
+          ],
+          "subject": "Episodekortene er fulle av gode ideer, men sesongen mangler én tydelig ryggrad",
+          "summary": "Ingrid ser at de åtte episodekortene har konflikt og energi, men de beskriver ikke hvilke endringer som må skje i hovedkarakterens mål og relasjoner før finalen."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_series_job_sesongrygg_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "writers_room_serieskaper_film_tv",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_series_job_sesongrygg_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/job/serieskaper_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "film_tv_series_sesongrygg_001",
+        "version": 1
+      },
+      "source_hash": "b84f7c32138dc071fcbc7ccbc53cae2b75d6a25cf12c1bc060077ea2f32dad0e",
+      "source_path": "data/Civication/mailFamilies/film_tv/job/serieskaper_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "les_kilden_og_avgrens_hva_den_kan_belyse_vs_lan_historisk_autoritet_til_dagens_arbeidsform",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 1,
+                "trust": 1
+              }
+            },
+            "feedback": "Oppgaven fullføres gjennom History Go-lesing av den canonicale personen og beholder en tydelig grense mot dagens fiktive produksjon.",
+            "id": "A",
+            "label": "Åpne profilen og noter hva den faktisk dokumenterer om filmforfatterskap",
+            "reply": "Jeg skiller filmhistorisk kontekst fra moderne arbeidsdeling og bruker profilen til bedre spørsmål, ikke som fasit for writers room eller bestillerforhold.",
+            "tags": [
+              "history_go_person",
+              "source_boundary",
+              "film_history"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -3,
+                "risk": 3,
+                "trust": -2
+              }
+            },
+            "feedback": "Du gjør filmhistorisk biografi til dokumentasjon av en moderne mandatstruktur den ikke beviser.",
+            "id": "B",
+            "label": "Bruk den historiske profilen som støtte for at serieskaperen bør ha siste ord kreativt",
+            "reply": "Jeg viser til en sterk norsk forfatter-regissørtradisjon som argument for å samle dagens kreative beslutninger hos meg.",
+            "tags": [
+              "authority_slippage",
+              "anachronism"
+            ]
+          }
+        ],
+        "competency": "faglig_kildebruk",
+        "consequence_axis": "kildebevisst_forfatterskap_vs_anakronistisk_autoritetsglidning",
+        "cooldown": 5,
+        "day_phase": "evening",
+        "from": "Amina, manusredaktør",
+        "id": "film_tv_series_knowledge_skouen_001",
+        "interaction_mode": "task",
+        "mail_family": "serieskaper_filmforfatter_kontekst",
+        "mail_type": "knowledge",
+        "narrative_arc": "filmforfatterskap_som_kontekst",
+        "people_ref": "amina_manusredaktor_series",
+        "person_id": "amina_manusredaktor_series",
+        "phase": "advanced",
+        "place_id": "cinemateket_oslo",
+        "pressure": "historisk_kontekst_vs_modern_praksisforskning",
+        "priority": 106,
+        "purpose": "Teste at en virkelig historisk person brukes som faktamål, mens dagens serieskaperpraksis fortsatt må begrunnes i egen rolle- og produksjonskontekst.",
+        "repeatable": false,
+        "role_scope": "serieskaper",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/knowledge/serieskaper_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Arne Skouen finnes som canonical People-person i Film/TV-kategorien og beskrives som regissør og manusforfatter.",
+          "Cinemateket i Oslo er canonical place-anker for den filmhistoriske profilen.",
+          "Oppgaven gjelder lesing av profilens dokumenterte filmhistorie; den historiske personen er ikke avsender, kollega, NPC eller beslutningseier i dagens fiktive produksjon."
+        ],
+        "stage": "stable",
+        "stakes": "Historisk innsikt kan skjerpe spørsmål om audiovisuelt forfatterskap, men kan ikke dokumentere moderne writers-room-, bestiller- eller streamingpraksis den historiske profilen ikke beskriver.",
+        "subject": "Bruk Arne Skouen som filmhistorisk forfatterkontekst – ikke som manual for dagens seriesystem",
+        "summary": "Amina ber deg lese History Go-profilen til Arne Skouen som kildeforankret filmhistorisk kontekst om norsk film, regi og manusforfatterskap før dere diskuterer hvordan moderne serieforfatterskap fordeler ansvar mellom writers room, bestiller og produksjon.",
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/people/film_tv/oslo/people_film_tv_oslo.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "film_tv_series_history_go_arne_skouen"
+        },
+        "task_domain": "filmhistorie_og_forfatterskap",
+        "task_kind": "knowledge",
+        "task_payload": {
+          "completion_mode": "read_profile",
+          "description": "Les den canonicale profilen som filmhistorisk kontekst om regi og manusforfatterskap, ikke som dokumentasjon av moderne serieskaperpraksis.",
+          "person_id": "arne_skouen",
+          "return_context": {
+            "mail_id": "film_tv_series_knowledge_skouen_001",
+            "role_scope": "serieskaper",
+            "source": "civication"
+          },
+          "target_type": "person",
+          "task_kind": "history_go_person",
+          "title": "Les profilen til Arne Skouen"
+        }
+      },
+      "id": "film_tv_series_knowledge_skouen_001",
+      "mail_type": "knowledge",
+      "role_scope": "serieskaper",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Oppgaven fullføres gjennom History Go-lesing av den canonicale personen og beholder en tydelig grense mot dagens fiktive produksjon.",
+            "id": "A",
+            "label": "Åpne profilen og noter hva den faktisk dokumenterer om filmforfatterskap",
+            "reply": "Jeg skiller filmhistorisk kontekst fra moderne arbeidsdeling og bruker profilen til bedre spørsmål, ikke som fasit for writers room eller bestillerforhold."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør filmhistorisk biografi til dokumentasjon av en moderne mandatstruktur den ikke beviser.",
+            "id": "B",
+            "label": "Bruk den historiske profilen som støtte for at serieskaperen bør ha siste ord kreativt",
+            "reply": "Jeg viser til en sterk norsk forfatter-regissørtradisjon som argument for å samle dagens kreative beslutninger hos meg."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Arne Skouen finnes som canonical People-person i Film/TV-kategorien og beskrives som regissør og manusforfatter.",
+            "Cinemateket i Oslo er canonical place-anker for den filmhistoriske profilen.",
+            "Oppgaven gjelder lesing av profilens dokumenterte filmhistorie; den historiske personen er ikke avsender, kollega, NPC eller beslutningseier i dagens fiktive produksjon."
+          ],
+          "subject": "Bruk Arne Skouen som filmhistorisk forfatterkontekst – ikke som manual for dagens seriesystem",
+          "summary": "Amina ber deg lese History Go-profilen til Arne Skouen som kildeforankret filmhistorisk kontekst om norsk film, regi og manusforfatterskap før dere diskuterer hvordan moderne serieforfatterskap fordeler ansvar mellom writers room, bestiller og produksjon."
+        },
+        "day_phase": "evening",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_series_knowledge_skouen_001",
+        "interaction_mode": "task",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "cinemateket_oslo",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_series_knowledge_skouen_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/knowledge/serieskaper_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/people/film_tv/oslo/people_film_tv_oslo.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "film_tv_series_history_go_arne_skouen"
+        },
+        "thread_id": "serieskaper.mail.film_tv_series_knowledge_skouen_001",
+        "version": 1
+      },
+      "source_hash": "d002ff9afca2e28208a2295daa9a40deb4beb96831884ccdf064762d4f701e22",
+      "source_path": "data/Civication/mailFamilies/film_tv/knowledge/serieskaper_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "spor_beslutning_og_synkroniser_alle_flater_vs_la_nyeste_manus_vinne",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -3,
+                "trust": 2
+              }
+            },
+            "feedback": "Du gjør canonical tilstand etterprøvbar og stopper en liten motsigelse før den sprer seg.",
+            "id": "A",
+            "label": "Finn siste godkjente beslutning og oppdater både bibel, episode fem og avhengige episodekort",
+            "reply": "Vi bruker beslutningssporet som fasit for prosjektets nåværende tilstand og gjør avviket eksplisitt før flere manus bygger videre.",
+            "tags": [
+              "series_bible",
+              "decision_trace",
+              "continuity"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "energy": 1,
+                "quality": -2,
+                "risk": 4,
+                "trust": -1
+              }
+            },
+            "feedback": "Du lar dokumentrekkefølge erstatte godkjenning og gjør to senere episoder avhengige av en uavklart endring.",
+            "id": "B",
+            "label": "La nyeste manus være gjeldende og oppdater bibelen senere",
+            "reply": "Episode fem er lengst kommet, så vi følger den versjonen og rydder dokumentasjonen når utkastet er låst.",
+            "tags": [
+              "implicit_override",
+              "continuity_debt"
+            ]
+          }
+        ],
+        "competency": "langsiktig_sporbarhet",
+        "consequence_axis": "en_canonical_serietilstand_vs_parallelle_sannheter",
+        "cooldown": 4,
+        "day_phase": "afternoon",
+        "from": "Amina, manusredaktør",
+        "id": "film_tv_series_micro_bibel_001",
+        "interaction_mode": "decision",
+        "mail_family": "serieskaper_bibelkontinuitet",
+        "mail_type": "micro",
+        "narrative_arc": "fra_sesongrygg_til_finale",
+        "people_ref": "amina_manusredaktor_series",
+        "person_id": "amina_manusredaktor_series",
+        "phase": "workday",
+        "place_id": "seriebibel_serieskaper_film_tv",
+        "pressure": "nyeste_utkast_vs_siste_godkjente_tilstand",
+        "priority": 110,
+        "purpose": "Teste om serieskaperen velger én canonical tilstand fra siste godkjente beslutning og reparerer alle berørte flater.",
+        "repeatable": false,
+        "role_scope": "serieskaper",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/micro/serieskaper_micro.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Amina har spor til siste godkjente beslutning i utviklingsmøtet.",
+          "Episode fem-utkastet er nyere enn seriebibelen, men nyere betyr ikke automatisk godkjent canonical tilstand.",
+          "To senere episodekort er allerede avhengige av hvem som kjenner hemmeligheten."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis begge versjoner får leve videre kan episode seks og sju bli skrevet mot forskjellige karaktertilstander og skape dyr omskriving etter lås.",
+        "subject": "Episode fem og seriebibelen er uenige om hvem som kjenner hemmeligheten",
+        "summary": "Amina finner at seriebibelen fortsatt markerer hemmeligheten som skjult for søsteren, mens siste episode fem-utkast lar henne referere til den som kjent informasjon.",
+        "task_domain": "seriebibel_og_beslutningsspor",
+        "task_kind": "micro",
+        "thread_key": "film_tv_series_sesongrygg_001"
+      },
+      "id": "film_tv_series_micro_bibel_001",
+      "mail_type": "micro",
+      "role_scope": "serieskaper",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gjør canonical tilstand etterprøvbar og stopper en liten motsigelse før den sprer seg.",
+            "id": "A",
+            "label": "Finn siste godkjente beslutning og oppdater både bibel, episode fem og avhengige episodekort",
+            "reply": "Vi bruker beslutningssporet som fasit for prosjektets nåværende tilstand og gjør avviket eksplisitt før flere manus bygger videre."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du lar dokumentrekkefølge erstatte godkjenning og gjør to senere episoder avhengige av en uavklart endring.",
+            "id": "B",
+            "label": "La nyeste manus være gjeldende og oppdater bibelen senere",
+            "reply": "Episode fem er lengst kommet, så vi følger den versjonen og rydder dokumentasjonen når utkastet er låst."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Amina har spor til siste godkjente beslutning i utviklingsmøtet.",
+            "Episode fem-utkastet er nyere enn seriebibelen, men nyere betyr ikke automatisk godkjent canonical tilstand.",
+            "To senere episodekort er allerede avhengige av hvem som kjenner hemmeligheten."
+          ],
+          "subject": "Episode fem og seriebibelen er uenige om hvem som kjenner hemmeligheten",
+          "summary": "Amina finner at seriebibelen fortsatt markerer hemmeligheten som skjult for søsteren, mens siste episode fem-utkast lar henne referere til den som kjent informasjon."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_series_micro_bibel_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "seriebibel_serieskaper_film_tv",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_series_micro_bibel_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/micro/serieskaper_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "film_tv_series_sesongrygg_001",
+        "version": 1
+      },
+      "source_hash": "826590cc52427a348b8ad32228987abb049026da05e4d26e9210dd493d51a931",
+      "source_path": "data/Civication/mailFamilies/film_tv/micro/serieskaper_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "bevar_funksjonen_men_graduer_handlingen_vs_bruk_det_endelige_bruddet_na",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -1,
+                "trust": 2
+              }
+            },
+            "feedback": "Du tar idéen på alvor og plasserer den som et tydelig trinn i buen i stedet for å bruke opp buen.",
+            "id": "A",
+            "label": "Behold nektelsen, men la relasjonen få en mindre definitiv konsekvens",
+            "reply": "Vi bruker scenens styrke som første aktive grense, men sparer selve bruddet til senere. Oppdater episodefunksjonen til å vise at lojaliteten har fått en kostnad.",
+            "tags": [
+              "arc_progression",
+              "writers_room",
+              "episode_function"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "trust": -1
+              }
+            },
+            "feedback": "Du får et sterkere episodeklimaks, men gjør tre senere episodefunksjoner avhengige av en bue som ennå ikke finnes.",
+            "id": "B",
+            "label": "Bruk bruddet nå og finn en ny bue for episode fire til seks senere",
+            "reply": "Scenen er for god til å holde igjen; vi flytter karakteren raskere og løser resten etterpå.",
+            "tags": [
+              "arc_debt",
+              "local_optimization"
+            ]
+          }
+        ],
+        "competency": "karakterkontinuitet",
+        "consequence_axis": "progressiv_bue_vs_for_tidlig_utlost_vendepunkt",
+        "cooldown": 2,
+        "day_phase": "morning",
+        "from": "Jonas, hovedforfatter",
+        "id": "film_tv_series_people_bue_001",
+        "interaction_mode": "decision",
+        "mail_family": "serieskaper_episode_vs_bue",
+        "mail_type": "people",
+        "narrative_arc": "fra_sesongrygg_til_finale",
+        "people_ref": "jonas_hovedforfatter_series",
+        "person_id": "jonas_hovedforfatter_series",
+        "phase": "early",
+        "place_id": "writers_room_serieskaper_film_tv",
+        "pressure": "sterk_episode_vs_langbue",
+        "priority": 132,
+        "purpose": "Teste om serieskaperen kan bevare styrken i en ny idé ved å skille scenens funksjon fra den mest definitive handlingen.",
+        "repeatable": false,
+        "role_scope": "serieskaper",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/people/serieskaper_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Scenens styrke er at hovedkarakteren for første gang nekter å dekke over et familiemedlems valg.",
+          "Sesongryggen trenger fortsatt at karakteren forsøker én mellomløsning i episode fire og fem.",
+          "Jonas kan omskrive handlingen hvis dere blir enige om hvilken endring episode tre faktisk skal levere."
+        ],
+        "stage": "stable",
+        "stakes": "Å avvise ideen blankt kan gjøre writers room rigid; å bruke opp bruddet nå kan gjøre tre senere episoder uten tydelig progresjon.",
+        "subject": "Episode tre får et mye sterkere klimaks hvis hovedkarakteren bryter med familien allerede nå",
+        "summary": "Jonas har en scene som er bedre enn dagens episodeavslutning, men handlingen bruker opp bruddet som sesongryggen foreløpig bygger mot episode seks.",
+        "task_domain": "karakter_og_relajsonsbuer",
+        "task_kind": "people",
+        "thread_key": "film_tv_series_sesongrygg_001"
+      },
+      "id": "film_tv_series_people_bue_001",
+      "mail_type": "people",
+      "role_scope": "serieskaper",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du tar idéen på alvor og plasserer den som et tydelig trinn i buen i stedet for å bruke opp buen.",
+            "id": "A",
+            "label": "Behold nektelsen, men la relasjonen få en mindre definitiv konsekvens",
+            "reply": "Vi bruker scenens styrke som første aktive grense, men sparer selve bruddet til senere. Oppdater episodefunksjonen til å vise at lojaliteten har fått en kostnad."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du får et sterkere episodeklimaks, men gjør tre senere episodefunksjoner avhengige av en bue som ennå ikke finnes.",
+            "id": "B",
+            "label": "Bruk bruddet nå og finn en ny bue for episode fire til seks senere",
+            "reply": "Scenen er for god til å holde igjen; vi flytter karakteren raskere og løser resten etterpå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Scenens styrke er at hovedkarakteren for første gang nekter å dekke over et familiemedlems valg.",
+            "Sesongryggen trenger fortsatt at karakteren forsøker én mellomløsning i episode fire og fem.",
+            "Jonas kan omskrive handlingen hvis dere blir enige om hvilken endring episode tre faktisk skal levere."
+          ],
+          "subject": "Episode tre får et mye sterkere klimaks hvis hovedkarakteren bryter med familien allerede nå",
+          "summary": "Jonas har en scene som er bedre enn dagens episodeavslutning, men handlingen bruker opp bruddet som sesongryggen foreløpig bygger mot episode seks."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_series_people_bue_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "writers_room_serieskaper_film_tv",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_series_people_bue_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/people/serieskaper_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "film_tv_series_sesongrygg_001",
+        "version": 1
+      },
+      "source_hash": "a6cc40d05afb921f0f0f64ac246b09a02e990442bc896867d6b68a07516948af",
+      "source_path": "data/Civication/mailFamilies/film_tv/people/serieskaper_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "kartlegg_funksjoner_og_bygg_om_senere_avhengigheter_vs_fjern_scenene_lokalt",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -2,
+                "quality": 3,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Du behandler fraværet som en endring i fortellingssystemet, ikke bare i sidetallet.",
+            "id": "A",
+            "label": "Fordel funksjonene på eksisterende relasjoner og oppdater episode sju samtidig",
+            "reply": "Vi skiller avsløring, press og senere konsekvens. Jonas bygger de to første inn i eksisterende relasjoner, og vi oppdaterer episode sju før nye scener skrives.",
+            "tags": [
+              "arc_rewrite",
+              "production_reality",
+              "continuity"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "energy": 1,
+                "quality": -2,
+                "risk": 4,
+                "trust": -1
+              }
+            },
+            "feedback": "Du gjør produksjonsplanen enklere denne uken, men etterlater informasjon og relasjonseffekt uten ny eier i senere manus.",
+            "id": "B",
+            "label": "Fjern rollefigurens scener nå og la episode sju løses når den skrives",
+            "reply": "Vi må få fem og seks gjennom først; konsekvensene for sju kan writers room ta senere.",
+            "tags": [
+              "local_fix",
+              "future_debt"
+            ]
+          }
+        ],
+        "competency": "langsiktig_konsekvens",
+        "consequence_axis": "reparert_bue_vs_skjult_logikkhull",
+        "cooldown": 3,
+        "day_phase": "afternoon",
+        "from": "Henrik, produksjonsprodusent",
+        "id": "film_tv_series_story_rollefravaer_001",
+        "interaction_mode": "decision",
+        "mail_family": "serieskaper_rollefravaer",
+        "mail_type": "story",
+        "narrative_arc": "rollefravaer_og_bueomskriving",
+        "people_ref": "henrik_produksjonsprodusent_series",
+        "person_id": "henrik_produksjonsprodusent_series",
+        "phase": "mid",
+        "place_id": "produksjonsmote_serieskaper_film_tv",
+        "pressure": "rollefravaer_vs_karakter_og_informasjonsbue",
+        "priority": 118,
+        "purpose": "Teste om serieskaperen reparerer mål, relasjoner og informasjon gjennom buen i stedet for bare å fjerne scener.",
+        "repeatable": false,
+        "role_scope": "serieskaper",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/story/serieskaper_story.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Fraværet er avklart produksjonsfakta, ikke noe writers room kan forhandle bort.",
+          "Karakterens viktigste funksjoner er å avsløre én opplysning, presse hovedkarakteren til et valg og møte konsekvensen igjen i episode sju.",
+          "Jonas kan fordele funksjonene på eksisterende karakterer hvis den langsiktige relasjonslogikken først avklares."
+        ],
+        "stage": "stable",
+        "stakes": "En lokal sletting kan etterlate episode sju med informasjon ingen har fått, og hovedkarakteren uten den konflikten som skulle endre neste valg.",
+        "subject": "Birollen som bærer episode fem og seks er utilgjengelig begge opptaksukene",
+        "summary": "Henrik bekrefter at medvirkende ikke kan flyttes inn senere. Karakteren skulle utløse en konflikt og bære hemmelig informasjon inn i episode sju.",
+        "task_domain": "produksjonstilpasset_omskriving",
+        "task_kind": "story",
+        "thread_key": "film_tv_series_rollefravaer_001"
+      },
+      "id": "film_tv_series_story_rollefravaer_001",
+      "mail_type": "story",
+      "role_scope": "serieskaper",
+      "scene": {
+        "arc_stage": "mid",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du behandler fraværet som en endring i fortellingssystemet, ikke bare i sidetallet.",
+            "id": "A",
+            "label": "Fordel funksjonene på eksisterende relasjoner og oppdater episode sju samtidig",
+            "reply": "Vi skiller avsløring, press og senere konsekvens. Jonas bygger de to første inn i eksisterende relasjoner, og vi oppdaterer episode sju før nye scener skrives."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør produksjonsplanen enklere denne uken, men etterlater informasjon og relasjonseffekt uten ny eier i senere manus.",
+            "id": "B",
+            "label": "Fjern rollefigurens scener nå og la episode sju løses når den skrives",
+            "reply": "Vi må få fem og seks gjennom først; konsekvensene for sju kan writers room ta senere."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Fraværet er avklart produksjonsfakta, ikke noe writers room kan forhandle bort.",
+            "Karakterens viktigste funksjoner er å avsløre én opplysning, presse hovedkarakteren til et valg og møte konsekvensen igjen i episode sju.",
+            "Jonas kan fordele funksjonene på eksisterende karakterer hvis den langsiktige relasjonslogikken først avklares."
+          ],
+          "subject": "Birollen som bærer episode fem og seks er utilgjengelig begge opptaksukene",
+          "summary": "Henrik bekrefter at medvirkende ikke kan flyttes inn senere. Karakteren skulle utløse en konflikt og bære hemmelig informasjon inn i episode sju."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_series_story_rollefravaer_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "produksjonsmote_serieskaper_film_tv",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_series_story_rollefravaer_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/story/serieskaper_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "film_tv_series_rollefravaer_001",
+        "version": 1
+      },
+      "source_hash": "f262b7cecabdaa156f4cfd91e22546f25a9d7fee28f90082bc1dc39c5ae5002d",
+      "source_path": "data/Civication/mailFamilies/film_tv/story/serieskaper_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -161409,7 +162727,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "f4d912eff33f73917e89206ca4294522961df5cf01c40227b114cfbbb4e0cf16",
+  "registry_hash": "51630632871802f5ec84e71535ed182642c7bcd9e13f3981de049a52ecf0374e",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -161637,6 +162955,17 @@
       "film_tv_regi_followup_klipp_001",
       "film_tv_regi_knowledge_carlmar_001",
       "film_tv_regi_consequence_dekning_001"
+    ],
+    "film_tv/serieskaper": [
+      "film_tv_series_job_sesongrygg_001",
+      "film_tv_series_people_bue_001",
+      "film_tv_series_story_rollefravaer_001",
+      "film_tv_series_conflict_notes_001",
+      "film_tv_series_event_location_001",
+      "film_tv_series_micro_bibel_001",
+      "film_tv_series_followup_rollefravaer_001",
+      "film_tv_series_knowledge_skouen_001",
+      "film_tv_series_consequence_finalegjeld_001"
     ],
     "litteratur/redaksjonsmedarbeider": [
       "litteratur_redaksjonsmedarbeider_job_versjon_001",
@@ -162591,11 +163920,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 309,
+    "compiled_source_file_count": 318,
     "ignored_source_file_count": 1,
-    "input_file_count": 310,
-    "role_count": 40,
-    "scene_count": 1072,
+    "input_file_count": 319,
+    "role_count": 41,
+    "scene_count": 1081,
     "shadowed_duplicate_count": 0
   },
   "version": 1
