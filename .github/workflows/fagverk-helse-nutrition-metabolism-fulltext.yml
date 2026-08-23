@@ -1,0 +1,93 @@
+name: Fagverk Helse nutrition metabolism fulltext
+
+on:
+  pull_request:
+    paths:
+      - 'data/fag/helse/**'
+      - 'data/fag/fag_manifest.json'
+      - 'data/fagverk/helse/**'
+      - 'data/fagverk/fagverk_registry.json'
+      - 'data/fagverk/fagverk_release.json'
+      - 'data/fagverk/subject_inventory.json'
+      - 'data/fagverk/subject_status.json'
+      - 'reports/fagverk/helse-nutrition-metabolism-fulltext-v1-audit.json'
+      - 'reports/fagverk/general-engine-audit.json'
+      - 'reports/fagverk/fagverk-theory-quality-audit.json'
+      - 'reports/fagverk/fagverk-theory-integrity-audit.json'
+      - 'scripts/*helse-nutrition-metabolism*'
+      - 'scripts/audit-helse-cumulative-progress-v1.mjs'
+      - 'tests/helse-nutrition-metabolism-fulltext-v1.test.mjs'
+      - 'tests/helse-cumulative-progress-v1.test.mjs'
+      - '.github/workflows/fagverk-helse-nutrition-metabolism-fulltext.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'data/fag/helse/**'
+      - 'data/fagverk/helse/**'
+      - 'data/fagverk/fagverk_registry.json'
+      - 'data/fagverk/subject_status.json'
+      - 'data/fagverk/fagverk_release.json'
+      - 'reports/fagverk/helse-nutrition-metabolism-fulltext-v1-audit.json'
+      - 'reports/fagverk/general-engine-audit.json'
+      - 'reports/fagverk/fagverk-theory-quality-audit.json'
+      - 'reports/fagverk/fagverk-theory-integrity-audit.json'
+      - 'scripts/*helse-nutrition-metabolism*'
+      - 'tests/helse-nutrition-metabolism-fulltext-v1.test.mjs'
+      - '.github/workflows/fagverk-helse-nutrition-metabolism-fulltext.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - id: fulltext_gate
+        shell: bash
+        run: |
+          count="$(node -e "const fs=require('fs');const r=JSON.parse(fs.readFileSync('data/fagverk/fagverk_registry.json','utf8'));process.stdout.write(String(r.subjects.helse.editorialPlan.registeredChapterCount));")"
+          echo "count=${count}" >> "$GITHUB_OUTPUT"
+          if [[ ( "$count" == "8" || "$count" == "9" ) && -f scripts/materialize-helse-nutrition-metabolism-fulltext-v1.mjs && -f scripts/audit-helse-nutrition-metabolism-fulltext-v1.mjs && -f tests/helse-nutrition-metabolism-fulltext-v1.test.mjs ]]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "Bootstrap/monotone skip: nutrition/metabolism fulltext materialization is active at Helse 8/12 or 9/12 with fulltext files present; current count is ${count}/12."
+          fi
+      - if: steps.fulltext_gate.outputs.ready != 'true' && steps.fulltext_gate.outputs.count == '8'
+        run: node scripts/brief-helse-nutrition-metabolism-sources-v1.mjs
+      - if: steps.fulltext_gate.outputs.ready == 'true'
+        run: node scripts/materialize-helse-nutrition-metabolism-fulltext-v1.mjs
+      - if: steps.fulltext_gate.outputs.ready == 'true'
+        run: node scripts/audit-helse-nutrition-metabolism-fulltext-v1.mjs
+      - run: node scripts/audit-helse-cumulative-progress-v1.mjs
+      - run: node scripts/audit-fagverk-subject-inventory.mjs
+      - run: node scripts/audit-fagverk-general-engine.mjs
+      - run: node scripts/audit-fagverk-theory-quality.mjs
+      - run: node scripts/audit-fagverk-theory-integrity.mjs
+      - run: node scripts/build-fagverk-release-manifest.mjs --check
+      - if: steps.fulltext_gate.outputs.ready == 'true'
+        run: node --test tests/helse-nutrition-metabolism-fulltext-v1.test.mjs tests/helse-cumulative-progress-v1.test.mjs tests/fagverk-subject-inventory.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-release-manifest.test.mjs
+      - if: steps.fulltext_gate.outputs.ready != 'true'
+        run: node --test tests/helse-cumulative-progress-v1.test.mjs tests/fagverk-subject-inventory.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-release-manifest.test.mjs
+      - name: Verify deterministic generated outputs
+        if: steps.fulltext_gate.outputs.ready == 'true'
+        shell: bash
+        run: |
+          git diff --exit-code -- \
+            data/fag/fag_manifest.json \
+            data/fag/helse/helsepensum_canonical_v1.json \
+            data/fag/helse/emner_helse_canonical_v1.json \
+            data/fag/helse/methods_helse_canonical_v1.json \
+            data/fagverk/fagverk_registry.json \
+            data/fagverk/subject_inventory.json \
+            data/fagverk/subject_status.json \
+            data/fagverk/fagverk_release.json \
+            data/fagverk/helse/ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster.json \
+            data/fagverk/helse/ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster \
+            reports/fagverk/helse-nutrition-metabolism-fulltext-v1-audit.json \
+            reports/fagverk/general-engine-audit.json \
+            reports/fagverk/fagverk-theory-quality-audit.json \
+            reports/fagverk/fagverk-theory-integrity-audit.json
