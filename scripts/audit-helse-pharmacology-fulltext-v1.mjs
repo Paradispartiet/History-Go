@@ -36,7 +36,7 @@ export function auditHealthPharmacologyFulltextV1({writeReport=false}={}){
   assert(corpus.includes('dose er mengden')&&corpus.includes('konsentrasjon')&&corpus.includes('respons')&&corpus.includes('separate ledd'),'Dose/konsentrasjon/respons-grensen mangler');
   assert(corpus.includes('biotilgjengelighet')&&corpus.includes('systemisk tilgjengelig')&&corpus.includes('mer presist enn hvor mye som svelges'),'Biotilgjengelighetsgrensen mangler');
   assert(corpus.includes('clearance')&&corpus.includes('ikke det samme som hvor mange milligram som elimineres'),'Clearance/eliminert-mengde-grensen mangler');
-  assert(corpus.includes('eliminasjonshalveringstid')&&corpus.includes('virke kortere eller lengre')&&corpus.includes('halveringstid'),'Halveringstid/virkningsvarighet-grensen mangler');
+  assert(corpus.includes('eliminasjonshalveringstid')&&corpus.includes('vare kortere eller lengre')&&corpus.includes('halveringstid'),'Halveringstid/virkningsvarighet-grensen mangler');
   assert(corpus.includes('steady state')&&corpus.includes('ikke at konsentrasjonen er konstant')&&corpus.includes('ikke')&&corpus.includes('umiddelbart etter første dose'),'Steady-state-grensen mangler');
   assert(corpus.includes('interaksjonsevaluering')&&corpus.includes('klinisk betydning avhenger')&&corpus.includes('eksponerings–respons-forhold'),'Interaksjon/klinisk-konsekvens-grensen mangler');
   assert(corpus.includes('adverse event')&&corpus.includes('adverse drug reaction')&&corpus.includes('tidsmessig samvariasjon')&&corpus.includes('ikke i seg selv bevis'),'AE/ADR-grensen mangler');
