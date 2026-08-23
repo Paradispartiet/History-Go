@@ -2,7 +2,7 @@
 
 Status: **canonical produksjonsarbeidsflyt**  
 Eier: `place_by_place_production_workflow`  
-Sist kontrollert: **2026-08-23**
+Sist kontrollert: **2026-08-24**
 
 Dette dokumentet eier **arbeidsrekkefølge, review-checkpoints og mergekadens** for sted-for-sted-produksjon.
 
@@ -42,6 +42,27 @@ For **Brands** gjelder fortsatt de eksplisitte produksjonsgrensene: aktørtype a
 For **Quiz** skal alle aktive, arkiverte og alternative quizfiler for stedet auditeres før profilvalg. Profil og settantall følger den canonicale Quiz-kontrakten; et `major`-sted bruker 10 sett med 7 spørsmål per sett.
 
 `PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md` er den detaljerte ruteren for alle disse flatene. Ingen detalj kan hoppes over fordi mergekadensen nå er enklere.
+
+### Canonicale kvalitetslåser som fortsatt skal stå eksplisitt
+
+Arbeidskortet bruker fortsatt feltet:
+
+`MÅL FOR INNHOLDSRUNDINGER: 4 + separat fast Badge`
+
+For rundinger, Før/etter og direktefaner gjelder fortsatt:
+
+- nøyaktig fire innholdsrundinger vises i et 2 × 2-felt ved `frontImage`;
+- en enkelt vilkårlig eller taksonomisk konstruert gjenstand er ikke nok til å gjøre Objects til en kvalitetsmessig ferdig runding;
+- Objects og Structures/Bygg brukes ikke som to separate rundinger når innholdet i praksis er de samme fysiske stedselementene eller forskjellen er uklar for spilleren;
+- Fire plasser skal aldri fylles bare for å oppnå 4+1-layouten; mangler stedet fire reelt sterke og distinkte samlinger, skal innholdet eller rundingsmodellen forbedres før sluttgodkjenning;
+- canonical place-register/manifester er søkt før motivet velges, slik at bygg, virksomheter, parker, plasser eller andre delsteder med egen place-oppføring blir oppdaget;
+- et delsted som har egen canonical place-oppføring brukes ikke som primært Før/etter-stedfortreder for et overordnet sted;
+- bilder fra ulike kamerastandpunkter kan brukes som supplerende historiske bilder, men består ikke alene som fullverdig primær Før/etter-sammenligning;
+- 2009 → 2017 erstatter ikke automatisk et eldre historisk førbilde;
+- Nyheter kan ikke godkjennes som tom/N/A når fanen er relevant for stedet;
+- Lesespor kan ikke godkjennes som tom/N/A når relevant lesestoff finnes eller kan etableres etter kontrakten;
+- betalingslåst er ikke tilstrekkelig N/A-grunn for Lesespor;
+- Innhold som tidligere lå i Mer kan ikke skjules bak en restfane for å få en manglende direktefane til å se ferdig ut.
 
 ---
 
