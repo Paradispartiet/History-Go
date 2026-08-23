@@ -21,6 +21,7 @@ on:
       - 'data/leksikon/README_LEKSIKON.md'
       - 'tests/place-language-layer.test.mjs'
       - 'tests/place-language-dialect-scope.test.mjs'
+      - 'tests/birkelunden-phase7h-language.test.mjs'
       - 'tests/sprakatlas-map-v3.test.mjs'
       - 'tests/sprakatlas-collection-v4.test.mjs'
       - 'tests/place-popup-direct-tabs.test.mjs'
@@ -54,5 +55,5 @@ jobs:
       - name: Check Knowledge collection syntax
         run: node --check js/knowledgePage.js
 
-      - name: Test language data, dialect checklist, map v3, collection v4 and direct-tab contract
-        run: node --test tests/place-language-layer.test.mjs tests/place-language-dialect-scope.test.mjs tests/sprakatlas-map-v3.test.mjs tests/sprakatlas-collection-v4.test.mjs tests/place-popup-direct-tabs.test.mjs
+      - name: Test language data, dialect checklist, Birkelunden, map v3, collection v4 and direct-tab contract
+        run: node --test tests/place-language-layer.test.mjs tests/place-language-dialect-scope.test.mjs tests/birkelunden-phase7h-language.test.mjs tests/sprakatlas-map-v3.test.mjs tests/sprakatlas-collection-v4.test.mjs tests/place-popup-direct-tabs.test.mjs
