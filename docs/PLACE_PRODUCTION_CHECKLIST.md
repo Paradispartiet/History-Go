@@ -12,6 +12,8 @@ Den komplette detaljerte v1-sjekklisten er bevart byte-for-byte i:
 
 Alle faglige, redaksjonelle, faktuelle og subsystemspesifikke krav i referansen er fortsatt bindende. V2 endrer **ikke** innholdsmengde, checklist-dekning, kildekrav, fullness, own-place-regler, People/Objects/Brands/Quiz/Story-kvalitet eller manuell slutt-QA. V2 erstatter bare den gamle regelen om at hvert godkjent delsteg måtte bli en separat PR/merge.
 
+Alle canonicale steder skal ha sin egen fungerende fagverkside. V2 endrer ikke dette kravet; den forenkler bare review- og mergekadensen.
+
 > **Ett sted ferdig før neste. Faser reviewes sekvensielt. Mergegrenser følger reell risiko — ikke antall faser.**
 
 ---
