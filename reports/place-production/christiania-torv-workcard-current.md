@@ -13,8 +13,9 @@ FAGVERK-STED-STATUS: By er `materialized`; begge emner ligger i `chapter_ready` 
 STEDSTYPE: historisk bytorg / civic square  
 KOORDINATSTATUS: `verified_geometry`, OSM way `594329484`, `area_anchor`; fase 2 bekrefter ALLEREDE FERDIG uten mutation.  
 PLACE-SCOPE (canonical): `area` for selve plassflaten; separate bygg er relasjoner.  
-DESCRIPTION-PRODUCTION-PACKAGE: mangler; neste fase.  
-LEKSIKON-ID/FIL: `data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json` / `place_id=christiania_torv`; kildeløs eldre oppføring skal re-auditeres.  
+DESCRIPTION-PRODUCTION-PACKAGE: `data/places/production/christiania_torv.json`, `ready_v4_2`, 18/18 claims og 26/26 synlige setninger claim-dekket.  
+BILDESTATUS: gamle lokale paths var ugyldige; erstattet i fase 4 med Leonhard Lenz / Wikimedia Commons / CC0 1.0, inspectable source URL.  
+LEKSIKON-ID/FIL: `data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json` / `place_id=christiania_torv`; kildeløs eldre oppføring skal re-auditeres i popupfasen.  
 SPRÅKLEKSIKON-STATUS: ikke godkjent; navnehistorie vurderes.  
 SPRÅKLEKSIKON-TYPE: ENKELTSTED / navnprofil, ikke område-dialekt.  
 DIALEKTLAG: N/A – `placeScope` er ikke et dokumentert dialektområde.  
@@ -25,17 +26,17 @@ PEOPLE-KANDIDATER: `wenche_gulbransen`; søk/reuse andre canonical People før o
 WORKS-KANDIDATER: `Christian IVs hanske` (fysisk verk, kontrakt/eierskap må avklares).  
 BRANDS SOM ALLEREDE FINNES: `brasserie_france`, `filter_musikk`, `fjord_restaurant`, `pascal`, `skuld`, `statholdergaarden`, `stress`, `tom_wood`; alle current-volatile/own-place-auditeres.  
 ROUTE/RELATION-KOBLINGER: `gamle_radhus` er separat canonical nabosted; Oppdag Kvadraturen-ruter finnes som research, men intern route-ID er ikke bevist.  
-QUIZ-STATUS: ingen Christiania Torv-sett identifisert; fase 7.  
-STORY-STATUS: ingen square-owned Story identifisert; `stories_gamle_radhus.json` tilhører Gamle Rådhus og kan ikke brukes som proxy.  
-VIKTIGSTE KILDER: Oslo byleksikon; Oppdag Kvadraturen/Byantikvaren; OSM geometry; Content Factory Pilot 03 source pack.  
+QUIZ-STATUS: ingen godkjent Christiania Torv-sett identifisert; fase 7.  
+STORY-STATUS: square-owned Story må søkes/auditeres i fase 6; `stories_gamle_radhus.json` kan ikke brukes som proxy.  
+VIKTIGSTE KILDER: Oslo byleksikon; Oppdag Kvadraturen/Byantikvaren; SNL som korroborasjon; OSM geometry; Content Factory Pilot 03 source pack.  
 AVVIST/UVISST INNHOLD: bokstavelig hanskekast; sikkert Livorno-forbilde; `year=1648` som automatisk etableringsår; volatile leietakere uten fersk verifikasjon.  
 NULLMÅLING: `reports/place-production/christiania-torv-nullmaaling-v1.md`  
 SANERINGS-/PRODUKSJONSPLAN: nullmålingens faseplan 1–10.  
-AKTIV FASE: fase 3 – Fagverk/kategori/emne audit.  
-AKTIVT FILSCOPE: fase-3 audit + dette workcardet; ingen canonical Place mutation.  
-FORRIGE FASE MERGET OG LIVE-KONTROLLERT: fase 2 #5268 er merget som `fe97609bb188f2170845bce22c6dcb93b0732f16`.  
+AKTIV FASE: fase 4 – description v4.2 + bildegate.  
+AKTIVT FILSCOPE: canonical Place `desc`/`popupDesc`/image provenance, v4.2 production packet, image backlog summary, fase-4 review og dette workcardet.  
+FORRIGE FASE MERGET OG LIVE-KONTROLLERT: fase 3 #5270 er merget som `ee7a98aeb7cc5766588ba2997105b3d0a3f7616e`.  
 
-POPUPSTATUS — OM: IKKE GODKJENT  
+POPUPSTATUS — OM: DESCRIPTION-KJERNE KLAR FOR REVIEW; full popup-eier-/legacy-audit gjenstår senere.  
 POPUPSTATUS — HISTORIE: IKKE GODKJENT  
 POPUPSTATUS — FORTELLINGER: IKKE STARTET  
 POPUPSTATUS — FØR/ETTER: IKKE STARTET / MULIG N/A  
