@@ -201,9 +201,31 @@ resetForNewJob(role_key) {
     const inbox = this.getInbox();
     if (!Array.isArray(inbox)) return null;
 
-    return inbox.find(
+    const pending = inbox.find(
       m => m && m.status === "pending"
     ) || null;
+    if (!pending?.event || !Array.isArray(pending.event.choices)) return pending;
+    if (!pending.event.choices.some((choice) => choice?.affordance != null)) return pending;
+
+    const resolver = window.CivicationChoiceAffordance;
+    if (resolver?.projectInboxItem) {
+      try {
+        return resolver.projectInboxItem(pending, {
+          task_engine: window.CivicationTaskEngine
+        });
+      } catch (error) {
+        console.warn("Choice affordance projection failed closed", error);
+      }
+    }
+
+    // Gated choices are never exposed when the resolver is unavailable or fails.
+    return {
+      ...pending,
+      event: {
+        ...pending.event,
+        choices: pending.event.choices.filter((choice) => choice?.affordance == null)
+      }
+    };
   }
 
   /** @param {string} eventId
