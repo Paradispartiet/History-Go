@@ -7,12 +7,16 @@ on:
     paths:
       - scripts/TEMP_patch_civication_institution_authority.py
       - .github/workflows/TEMP-civication-institution-authority-writeback.yml
+  pull_request:
+    branches:
+      - main
 
 permissions:
   contents: write
 
 jobs:
   patch:
+    if: github.head_ref == '' || github.head_ref == 'agent/civication-institution-authority-foundation'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
