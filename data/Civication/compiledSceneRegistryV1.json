@@ -106,6 +106,15 @@
     "data/Civication/mailFamilies/filosofi/followup/filosofi_forskning_og_formidling_followup.json",
     "data/Civication/mailFamilies/filosofi/knowledge/filosofi_forskning_og_formidling_knowledge.json",
     "data/Civication/mailFamilies/filosofi/consequence/filosofi_forskning_og_formidling_consequence.json",
+    "data/Civication/mailFamilies/filosofi/job/filosofi_undervisning_og_akademia_job.json",
+    "data/Civication/mailFamilies/filosofi/people/filosofi_undervisning_og_akademia_people.json",
+    "data/Civication/mailFamilies/filosofi/story/filosofi_undervisning_og_akademia_story.json",
+    "data/Civication/mailFamilies/filosofi/conflict/filosofi_undervisning_og_akademia_conflict.json",
+    "data/Civication/mailFamilies/filosofi/event/filosofi_undervisning_og_akademia_event.json",
+    "data/Civication/mailFamilies/filosofi/micro/filosofi_undervisning_og_akademia_micro.json",
+    "data/Civication/mailFamilies/filosofi/followup/filosofi_undervisning_og_akademia_followup.json",
+    "data/Civication/mailFamilies/filosofi/knowledge/filosofi_undervisning_og_akademia_knowledge.json",
+    "data/Civication/mailFamilies/filosofi/consequence/filosofi_undervisning_og_akademia_consequence.json",
     "data/Civication/mailFamilies/litteratur/job/redaksjonsmedarbeider_job.json",
     "data/Civication/mailFamilies/litteratur/people/redaksjonsmedarbeider_people.json",
     "data/Civication/mailFamilies/litteratur/story/redaksjonsmedarbeider_story.json",
@@ -31981,6 +31990,1316 @@
       },
       "source_hash": "4eae948750eeb6002947cb87f2b32375942f914b2fd78f2ee56c1d668208ed54",
       "source_path": "data/Civication/mailFamilies/filosofi/story/filosofi_forskning_og_formidling_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "filosofi",
+      "compatibility_projection": {
+        "category": "filosofi",
+        "choice_axis": "bruk_publiserte_kriterier_og_logg_forbedring_til_neste_runde_vs_innfor_nytt_kriterium_na",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 3,
+                "risk": -3,
+                "trust": 2
+              }
+            },
+            "feedback": "Sensuren forblir etterprøvbar, samtidig som den nye faglige innsikten kan brukes til å forbedre neste vurderingsdesign.",
+            "id": "A",
+            "label": "Vurder etter publiserte kriterier og registrer syntese som mulig forbedring for neste emnerunde",
+            "reply": "Vi kan beskrive syntesen som en styrke der den faktisk viser bedre argument- eller begrepsarbeid, men vi lager ikke et nytt selvstendig kriterium etter innlevering.",
+            "tags": [
+              "published_criteria",
+              "assessment_traceability",
+              "future_improvement"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 4,
+                "trust": -2
+              }
+            },
+            "feedback": "Du gjør et etteroppdaget kvalitetskjennetegn til skjult standard og skaper en svakere begrunnelse dersom vurderingen senere utfordres.",
+            "id": "B",
+            "label": "Gi syntesen egen vekt fordi den skiller den sterkeste besvarelsen fra resten",
+            "reply": "Dette er tydelig høyere nivå, og vi bør kunne belønne det selv om kriteriet ikke var eksplisitt formulert på forhånd.",
+            "tags": [
+              "retroactive_criterion",
+              "grading_drift"
+            ]
+          }
+        ],
+        "competency": "transparent_vurdering",
+        "consequence_axis": "etterprovbar_sensur_vs_retroaktiv_standard",
+        "cooldown": 3,
+        "day_phase": "afternoon",
+        "from": "Amal, sensorpartner",
+        "id": "filosofi_undervisning_conflict_sensorgrunnlag_001",
+        "interaction_mode": "decision",
+        "mail_family": "filosofi_sensorgrunnlag",
+        "mail_type": "conflict",
+        "narrative_arc": "kriterium_til_begrunnelse_og_klage",
+        "people_ref": "amal_sensorpartner_filosofi",
+        "person_id": "amal_sensorpartner_filosofi",
+        "phase": "mid",
+        "place_id": "vurderingsrom_filosofi",
+        "pressure": "faglig_skjonn_vs_forhandskjente_kriterier",
+        "priority": 126,
+        "purpose": "Teste om sensuren forblir bundet til publiserte kriterier når et nytt kvalitetskjennetegn oppdages etter levering.",
+        "repeatable": false,
+        "role_scope": "filosofi_undervisning_og_akademia",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/filosofi/conflict/filosofi_undervisning_og_akademia_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Begge sensorer er enige om at besvarelsen er faglig sterk.",
+          "Uenigheten gjelder om original sammenkobling av to teorier skal løfte karakteren ytterligere.",
+          "Kriteriene studentene fikk før eksamen nevner ikke selvstendig syntese som egen dimensjon."
+        ],
+        "stage": "stable",
+        "stakes": "Et nytt skjult kriterium kan gjøre karakterene faglig intuitive, men mindre etterprøvbare og urettferdige overfor studenter som innrettet seg etter det faktisk publiserte grunnlaget.",
+        "subject": "Vi er uenige om toppkarakteren – men 'selvstendig syntese' står ikke i kriteriene",
+        "summary": "Amal mener en besvarelse viser uvanlig selvstendighet, men det publiserte vurderingsgrunnlaget omtaler argumentrekonstruksjon, begrepspresisjon og kildebruk – ikke et eget syntesekriterium.",
+        "task_domain": "vurdering_sensur_og_begrunnelse",
+        "task_kind": "conflict",
+        "thread_key": "filosofi_undervisning_vurdering_001"
+      },
+      "id": "filosofi_undervisning_conflict_sensorgrunnlag_001",
+      "mail_type": "conflict",
+      "role_scope": "filosofi_undervisning_og_akademia",
+      "scene": {
+        "arc_stage": "mid",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Sensuren forblir etterprøvbar, samtidig som den nye faglige innsikten kan brukes til å forbedre neste vurderingsdesign.",
+            "id": "A",
+            "label": "Vurder etter publiserte kriterier og registrer syntese som mulig forbedring for neste emnerunde",
+            "reply": "Vi kan beskrive syntesen som en styrke der den faktisk viser bedre argument- eller begrepsarbeid, men vi lager ikke et nytt selvstendig kriterium etter innlevering."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør et etteroppdaget kvalitetskjennetegn til skjult standard og skaper en svakere begrunnelse dersom vurderingen senere utfordres.",
+            "id": "B",
+            "label": "Gi syntesen egen vekt fordi den skiller den sterkeste besvarelsen fra resten",
+            "reply": "Dette er tydelig høyere nivå, og vi bør kunne belønne det selv om kriteriet ikke var eksplisitt formulert på forhånd."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Begge sensorer er enige om at besvarelsen er faglig sterk.",
+            "Uenigheten gjelder om original sammenkobling av to teorier skal løfte karakteren ytterligere.",
+            "Kriteriene studentene fikk før eksamen nevner ikke selvstendig syntese som egen dimensjon."
+          ],
+          "subject": "Vi er uenige om toppkarakteren – men 'selvstendig syntese' står ikke i kriteriene",
+          "summary": "Amal mener en besvarelse viser uvanlig selvstendighet, men det publiserte vurderingsgrunnlaget omtaler argumentrekonstruksjon, begrepspresisjon og kildebruk – ikke et eget syntesekriterium."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "filosofi_undervisning_conflict_sensorgrunnlag_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "vurderingsrom_filosofi",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "filosofi_undervisning_conflict_sensorgrunnlag_001",
+          "source_path": "data/Civication/mailFamilies/filosofi/conflict/filosofi_undervisning_og_akademia_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "filosofi_undervisning_vurdering_001",
+        "version": 1
+      },
+      "source_hash": "2c476bdaca4901f257af2c24ad6d458d868ab1dda7d89f45faee606a888667bd",
+      "source_path": "data/Civication/mailFamilies/filosofi/conflict/filosofi_undervisning_og_akademia_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "filosofi",
+      "compatibility_projection": {
+        "category": "filosofi",
+        "choice_axis": "revider_aktivitet_og_ovingsbevis_fra_dokumentert_gap_vs_behold_opplegg_og_skyv_ansvar_til_studentene",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -2,
+                "quality": 3,
+                "risk": -3,
+                "trust": 2
+              }
+            },
+            "feedback": "Du bruker vurderingsdata som forbedringssignal uten å senke standarden eller late som resultatet alene beviser én enkelt årsak.",
+            "id": "A",
+            "label": "Bygg inn flere korte argumentrekonstruksjoner med tilbakemelding før neste eksamen, og kontroller at kriteriene fortsatt måler samme mål",
+            "reply": "Mønsteret er sterkt nok til at vi må forbedre øvingsarenaen. Jeg beholder faglig standard, men flytter tid fra sekundær dekning til eksplisitt rekonstruksjon, motargument og formativ tilbakemelding.",
+            "tags": [
+              "constructive_alignment",
+              "assessment_evidence",
+              "course_revision"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "energy": 1,
+                "quality": -3,
+                "risk": 4,
+                "trust": -2
+              }
+            },
+            "feedback": "Du overser at det samme ferdighetsgapet var synlig allerede i læringsdesignet og lar vurderingen fortsette å kreve mer enn undervisningen systematisk trener.",
+            "id": "B",
+            "label": "Behold undervisningsopplegget; selvstendig argumentrekonstruksjon er studentenes ansvar på universitetsnivå",
+            "reply": "Eksamen viser hvem som klarer å løfte seg utover forelesningene. Vi bør ikke redusere pensumdekningen for å trene en ferdighet studentene forventes å utvikle selv.",
+            "tags": [
+              "alignment_denial",
+              "coverage_pressure",
+              "system_signal_ignored"
+            ]
+          }
+        ],
+        "competency": "konstruktiv_sammenheng",
+        "consequence_axis": "forbedret_alignment_vs_varig_eksamensmismatch",
+        "cooldown": 6,
+        "day_phase": "evening",
+        "from": "Sigrid, studieleder",
+        "id": "filosofi_undervisning_consequence_eksamen_001",
+        "interaction_mode": "decision",
+        "mail_family": "filosofi_eksamenskonsekvens",
+        "mail_type": "consequence",
+        "narrative_arc": "laringsdesign_til_eksamensbevis",
+        "people_ref": "sigrid_studieleder_filosofi",
+        "person_id": "sigrid_studieleder_filosofi",
+        "phase": "mastery",
+        "place_id": "vurderingsrom_filosofi",
+        "pressure": "studentansvar_vs_systematisk_laringsdesignsignal",
+        "priority": 100,
+        "purpose": "Teste om vurderingsdata brukes til å revidere undervisningen når et systematisk gap samsvarer med en tidligere identifisert alignment-risiko.",
+        "repeatable": false,
+        "role_scope": "filosofi_undervisning_og_akademia",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/filosofi/consequence/filosofi_undervisning_og_akademia_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Flertallet av besvarelsene gjengir sentrale teorier tilfredsstillende.",
+          "Det systematiske svakhetspunktet er eksplisitt premissstruktur, inferens og håndtering av motargument i egen rekonstruksjon.",
+          "Tidligere i emneplanleggingen ble det allerede identifisert at ukeplanen ga mer plass til dekning enn til argumentverksted."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis et mønster som går igjen på tvers av besvarelser bare tolkes som svak studentinnsats, kan emnet fortsette å måle en ferdighet studentene får for lite eksplisitt trening i.",
+        "subject": "Eksamensresultatene bekrefter et mønster: studentene kan teoriene, men rekonstruerer argumentene svakt",
+        "summary": "Sigrid sammenstiller sensuren og ser at studentene gjennomgående lykkes med gjenfortelling, men strever med den selvstendige argumentrekonstruksjonen eksamen ber om. Hun ber deg avgjøre om neste emnerunde skal endre undervisningsaktivitetene eller behandle resultatet som et rent studentproblem.",
+        "task_domain": "laringsmal_og_emnedesign",
+        "task_kind": "consequence",
+        "thread_key": "filosofi_undervisning_alignment_001"
+      },
+      "id": "filosofi_undervisning_consequence_eksamen_001",
+      "mail_type": "consequence",
+      "role_scope": "filosofi_undervisning_og_akademia",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du bruker vurderingsdata som forbedringssignal uten å senke standarden eller late som resultatet alene beviser én enkelt årsak.",
+            "id": "A",
+            "label": "Bygg inn flere korte argumentrekonstruksjoner med tilbakemelding før neste eksamen, og kontroller at kriteriene fortsatt måler samme mål",
+            "reply": "Mønsteret er sterkt nok til at vi må forbedre øvingsarenaen. Jeg beholder faglig standard, men flytter tid fra sekundær dekning til eksplisitt rekonstruksjon, motargument og formativ tilbakemelding."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du overser at det samme ferdighetsgapet var synlig allerede i læringsdesignet og lar vurderingen fortsette å kreve mer enn undervisningen systematisk trener.",
+            "id": "B",
+            "label": "Behold undervisningsopplegget; selvstendig argumentrekonstruksjon er studentenes ansvar på universitetsnivå",
+            "reply": "Eksamen viser hvem som klarer å løfte seg utover forelesningene. Vi bør ikke redusere pensumdekningen for å trene en ferdighet studentene forventes å utvikle selv."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Flertallet av besvarelsene gjengir sentrale teorier tilfredsstillende.",
+            "Det systematiske svakhetspunktet er eksplisitt premissstruktur, inferens og håndtering av motargument i egen rekonstruksjon.",
+            "Tidligere i emneplanleggingen ble det allerede identifisert at ukeplanen ga mer plass til dekning enn til argumentverksted."
+          ],
+          "subject": "Eksamensresultatene bekrefter et mønster: studentene kan teoriene, men rekonstruerer argumentene svakt",
+          "summary": "Sigrid sammenstiller sensuren og ser at studentene gjennomgående lykkes med gjenfortelling, men strever med den selvstendige argumentrekonstruksjonen eksamen ber om. Hun ber deg avgjøre om neste emnerunde skal endre undervisningsaktivitetene eller behandle resultatet som et rent studentproblem."
+        },
+        "day_phase": "evening",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "filosofi_undervisning_consequence_eksamen_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "vurderingsrom_filosofi",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "filosofi_undervisning_consequence_eksamen_001",
+          "source_path": "data/Civication/mailFamilies/filosofi/consequence/filosofi_undervisning_og_akademia_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "filosofi_undervisning_alignment_001",
+        "version": 1
+      },
+      "source_hash": "07b12c9377f57a2fd5833fad48be0780c5bcd76d3d3afcc6d6a6ce8cedbad5b6",
+      "source_path": "data/Civication/mailFamilies/filosofi/consequence/filosofi_undervisning_og_akademia_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "filosofi",
+      "compatibility_projection": {
+        "category": "filosofi",
+        "choice_axis": "stopp_unodvendig_persondata_beskriv_laringsmal_og_henvis_vs_be_om_diagnose_og_avgjor_selv",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "quality": 2,
+                "risk": -4,
+                "trust": 3
+              }
+            },
+            "feedback": "Du beskytter studentens personvern samtidig som det faglige målet blir tydelig nok til at autorisert tilrettelegging kan vurderes.",
+            "id": "A",
+            "label": "Stopp de unødvendige detaljene, beskriv læringsmålet og la Nora håndtere formell prosess",
+            "reply": "Jeg trenger ikke medisinske detaljer. Jeg beskriver hvilke faglige prestasjoner vurderingen må bevare, og lar tilretteleggingsprosessen avgjøre godkjent gjennomføring.",
+            "tags": [
+              "data_minimization",
+              "accommodation_process",
+              "learning_standard"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -3,
+                "risk": 5,
+                "trust": -4
+              }
+            },
+            "feedback": "Du samler sensitiv informasjon uten faglig behov og overtar en formell beslutning som ligger utenfor underviserrollen.",
+            "id": "B",
+            "label": "Be om dokumentasjon direkte og avgjør om alternativ gjennomføring virker rimelig",
+            "reply": "Send meg diagnosegrunnlaget, så kan jeg vurdere om dette er alvorlig nok til å endre gjennomføringen.",
+            "tags": [
+              "privacy_overreach",
+              "informal_accommodation_decision"
+            ]
+          }
+        ],
+        "competency": "rollegrense_og_personvern",
+        "consequence_axis": "tilgjengelig_og_prosessriktig_vurdering_vs_personvernglidning_og_uformelt_vedtak",
+        "cooldown": 4,
+        "day_phase": "afternoon",
+        "from": "Nora, studiekonsulent",
+        "id": "filosofi_undervisning_event_tilrettelegging_001",
+        "interaction_mode": "decision",
+        "mail_family": "filosofi_tilrettelegging",
+        "mail_type": "event",
+        "narrative_arc": "tilrettelegging_med_faglig_standard",
+        "people_ref": "nora_studiekonsulent_filosofi",
+        "person_id": "nora_studiekonsulent_filosofi",
+        "phase": "workday",
+        "place_id": "veiledningsrom_filosofi",
+        "pressure": "hjelpevilje_vs_formell_myndighet_og_dataminimering",
+        "priority": 114,
+        "purpose": "Teste om underviseren skiller faglig standard fra administrativ tilretteleggingsmyndighet og praktiserer dataminimering.",
+        "repeatable": false,
+        "role_scope": "filosofi_undervisning_og_akademia",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/filosofi/event/filosofi_undervisning_og_akademia_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Studenten spør om en alternativ gjennomføring som fortsatt kan vise muntlig argumentasjon og respons på motargument.",
+          "Studenten begynner å forklare medisinske detaljer som du ikke trenger for å definere det faglige læringsmålet.",
+          "Nora kan ta saken videre i den autoriserte tilretteleggingsprosessen og trenger at du beskriver hva vurderingen faktisk skal måle."
+        ],
+        "stage": "stable",
+        "stakes": "Feil håndtering kan enten stenge en legitim tilretteleggingsvei eller samle sensitive opplysninger rollen ikke trenger for å undervise og vurdere faget.",
+        "subject": "Studenten ber om alternativ muntlig gjennomføring og begynner å dele helseopplysninger direkte med deg",
+        "summary": "Nora minner om at du kan forklare det faglige læringsmålet, men ikke trenger diagnoseopplysninger eller eier det formelle tilretteleggingsvedtaket.",
+        "task_domain": "veiledning_og_tilrettelegging",
+        "task_kind": "event",
+        "thread_key": "filosofi_undervisning_tilrettelegging_001"
+      },
+      "id": "filosofi_undervisning_event_tilrettelegging_001",
+      "mail_type": "event",
+      "role_scope": "filosofi_undervisning_og_akademia",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du beskytter studentens personvern samtidig som det faglige målet blir tydelig nok til at autorisert tilrettelegging kan vurderes.",
+            "id": "A",
+            "label": "Stopp de unødvendige detaljene, beskriv læringsmålet og la Nora håndtere formell prosess",
+            "reply": "Jeg trenger ikke medisinske detaljer. Jeg beskriver hvilke faglige prestasjoner vurderingen må bevare, og lar tilretteleggingsprosessen avgjøre godkjent gjennomføring."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du samler sensitiv informasjon uten faglig behov og overtar en formell beslutning som ligger utenfor underviserrollen.",
+            "id": "B",
+            "label": "Be om dokumentasjon direkte og avgjør om alternativ gjennomføring virker rimelig",
+            "reply": "Send meg diagnosegrunnlaget, så kan jeg vurdere om dette er alvorlig nok til å endre gjennomføringen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Studenten spør om en alternativ gjennomføring som fortsatt kan vise muntlig argumentasjon og respons på motargument.",
+            "Studenten begynner å forklare medisinske detaljer som du ikke trenger for å definere det faglige læringsmålet.",
+            "Nora kan ta saken videre i den autoriserte tilretteleggingsprosessen og trenger at du beskriver hva vurderingen faktisk skal måle."
+          ],
+          "subject": "Studenten ber om alternativ muntlig gjennomføring og begynner å dele helseopplysninger direkte med deg",
+          "summary": "Nora minner om at du kan forklare det faglige læringsmålet, men ikke trenger diagnoseopplysninger eller eier det formelle tilretteleggingsvedtaket."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "filosofi_undervisning_event_tilrettelegging_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "veiledningsrom_filosofi",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "filosofi_undervisning_event_tilrettelegging_001",
+          "source_path": "data/Civication/mailFamilies/filosofi/event/filosofi_undervisning_og_akademia_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "filosofi_undervisning_tilrettelegging_001",
+        "version": 1
+      },
+      "source_hash": "03469503fb676082e48caedbe9c8c9eaecddd1e8e24fec6c8ee340b7041ffde5",
+      "source_path": "data/Civication/mailFamilies/filosofi/event/filosofi_undervisning_og_akademia_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "filosofi",
+      "compatibility_projection": {
+        "category": "filosofi",
+        "choice_axis": "begrunn_med_publiserte_kriterier_og_marker_klagegrense_vs_etterrasjonaliser_med_skjult_kriterium",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 3,
+                "risk": -3,
+                "trust": 3
+              }
+            },
+            "feedback": "Du gjør begrunnelsen etterprøvbar og lar en eventuell klage forbli uavhengig av din egen vurderingsinteresse.",
+            "id": "A",
+            "label": "Knytt begrunnelsen til konkrete tekststeder og publiserte kriterier, og forklar klageprosessen uten å spå utfallet",
+            "reply": "Jeg viser hvor besvarelsen oppfyller eller ikke oppfyller de kriteriene studenten fikk på forhånd. Syntesen kan omtales som en styrke der den faktisk forbedrer disse dimensjonene, men ikke som et nytt selvstendig krav.",
+            "tags": [
+              "assessment_trace",
+              "published_criteria",
+              "appeal_boundary"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -3,
+                "risk": 5,
+                "trust": -3
+              }
+            },
+            "feedback": "Du gjeninnfører nettopp det skjulte kriteriet sensorene tidligere avviste og gjør begrunnelsen mindre robust dersom vurderingen prøves på nytt.",
+            "id": "B",
+            "label": "Forklar at toppnivå alltid forutsetter selvstendig syntese, selv om det ikke sto uttrykkelig i kriteriene",
+            "reply": "Det er en akademisk kvalitetsforventning som ligger implisitt i nivået, og det er rimelig å bruke den for å forsvare karakteren.",
+            "tags": [
+              "posthoc_criterion",
+              "appeal_risk",
+              "authority_drift"
+            ]
+          }
+        ],
+        "competency": "transparent_vurdering",
+        "consequence_axis": "etterprovbar_begrunnelse_vs_prosess_og_kriterieglidning",
+        "cooldown": 5,
+        "day_phase": "evening",
+        "from": "Amal, sensorpartner",
+        "id": "filosofi_undervisning_followup_vurdering_001",
+        "interaction_mode": "decision",
+        "mail_family": "filosofi_vurderingsoppfolging",
+        "mail_type": "followup",
+        "narrative_arc": "kriterium_til_begrunnelse_og_klage",
+        "people_ref": "amal_sensorpartner_filosofi",
+        "person_id": "amal_sensorpartner_filosofi",
+        "phase": "mastery",
+        "place_id": "vurderingsrom_filosofi",
+        "pressure": "forsvar_av_karakter_vs_sporbar_begrunnelse_og_klagegrense",
+        "priority": 104,
+        "purpose": "Teste om tidligere kriterieavgrensning faktisk overlever møtet med begrunnelsesplikt og uavhengig klageprosess.",
+        "repeatable": false,
+        "role_scope": "filosofi_undervisning_og_akademia",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/filosofi/followup/filosofi_undervisning_og_akademia_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Studenten har rett på begrunnelse innen den gjeldende vurderingsprosessen.",
+          "Det publiserte grunnlaget omtaler argumentrekonstruksjon, begrepspresisjon og kildebruk, ikke et selvstendig syntesekriterium.",
+          "En eventuell klage behandles i separat prosess; du kan forklare egen vurdering, men ikke love utfall eller påvirke uavhengig behandling."
+        ],
+        "stage": "stable",
+        "stakes": "En etterrasjonalisert begrunnelse kan få karakteren til å virke mer elegant, men gjør vurderingsgrunnlaget mindre troverdig og kan blande underviserens rolle sammen med klageinstansens.",
+        "subject": "Studenten ber om begrunnelse – og spør hvorfor «selvstendig syntese» ikke ga utslag",
+        "summary": "En student har bedt om skriftlig begrunnelse. Amal minner om at sensorene tidligere valgte å ikke gjøre «selvstendig syntese» til et nytt kriterium etter levering, og ber deg formulere en begrunnelse som kan spores til de publiserte kriteriene uten å love noe om en eventuell klage.",
+        "task_domain": "vurdering_sensur_og_begrunnelse",
+        "task_kind": "followup",
+        "thread_key": "filosofi_undervisning_vurdering_001"
+      },
+      "id": "filosofi_undervisning_followup_vurdering_001",
+      "mail_type": "followup",
+      "role_scope": "filosofi_undervisning_og_akademia",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gjør begrunnelsen etterprøvbar og lar en eventuell klage forbli uavhengig av din egen vurderingsinteresse.",
+            "id": "A",
+            "label": "Knytt begrunnelsen til konkrete tekststeder og publiserte kriterier, og forklar klageprosessen uten å spå utfallet",
+            "reply": "Jeg viser hvor besvarelsen oppfyller eller ikke oppfyller de kriteriene studenten fikk på forhånd. Syntesen kan omtales som en styrke der den faktisk forbedrer disse dimensjonene, men ikke som et nytt selvstendig krav."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjeninnfører nettopp det skjulte kriteriet sensorene tidligere avviste og gjør begrunnelsen mindre robust dersom vurderingen prøves på nytt.",
+            "id": "B",
+            "label": "Forklar at toppnivå alltid forutsetter selvstendig syntese, selv om det ikke sto uttrykkelig i kriteriene",
+            "reply": "Det er en akademisk kvalitetsforventning som ligger implisitt i nivået, og det er rimelig å bruke den for å forsvare karakteren."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Studenten har rett på begrunnelse innen den gjeldende vurderingsprosessen.",
+            "Det publiserte grunnlaget omtaler argumentrekonstruksjon, begrepspresisjon og kildebruk, ikke et selvstendig syntesekriterium.",
+            "En eventuell klage behandles i separat prosess; du kan forklare egen vurdering, men ikke love utfall eller påvirke uavhengig behandling."
+          ],
+          "subject": "Studenten ber om begrunnelse – og spør hvorfor «selvstendig syntese» ikke ga utslag",
+          "summary": "En student har bedt om skriftlig begrunnelse. Amal minner om at sensorene tidligere valgte å ikke gjøre «selvstendig syntese» til et nytt kriterium etter levering, og ber deg formulere en begrunnelse som kan spores til de publiserte kriteriene uten å love noe om en eventuell klage."
+        },
+        "day_phase": "evening",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "filosofi_undervisning_followup_vurdering_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "vurderingsrom_filosofi",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "filosofi_undervisning_followup_vurdering_001",
+          "source_path": "data/Civication/mailFamilies/filosofi/followup/filosofi_undervisning_og_akademia_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "filosofi_undervisning_vurdering_001",
+        "version": 1
+      },
+      "source_hash": "313e53b6c1fa401f86ff89fedd60b36991f72f3b3b3c2505c062cf7fdaccfa1f",
+      "source_path": "data/Civication/mailFamilies/filosofi/followup/filosofi_undervisning_og_akademia_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "filosofi",
+      "compatibility_projection": {
+        "category": "filosofi",
+        "choice_axis": "bygg_eksplisitt_argumentverksted_og_kriterium_vs_behold_dekning_og_forutsett_selvstendighet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -2,
+                "quality": 3,
+                "risk": -2,
+                "trust": 1
+              }
+            },
+            "feedback": "Studentene får en reell øvingsarena for den vurderte kompetansen, og emneplanen får et etterprøvbart samsvar mellom mål, aktivitet og eksamen.",
+            "id": "A",
+            "label": "Kutt ett sekundært tema og legg inn argumentverksted med eksplisitt vurderingskriterium",
+            "reply": "Jeg prioriterer øving i rekonstruksjon og motargument fordi det er dette eksamen faktisk skal måle, og gjør kriteriet synlig før studentene leverer.",
+            "tags": [
+              "constructive_alignment",
+              "argument_practice",
+              "transparent_assessment"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "energy": 1,
+                "quality": -2,
+                "risk": 3,
+                "trust": -1
+              }
+            },
+            "feedback": "Du bevarer stoffmengden, men skyver en uøvd ferdighet inn i eksamen og gjør senere svake resultater vanskeligere å tolke rettferdig.",
+            "id": "B",
+            "label": "Behold full pensumdekning og la selvstendig rekonstruksjon være et implisitt universitetskrav",
+            "reply": "Vi må rekke stoffet; studentene bør kunne overføre forelesningene til selvstendig argumentarbeid på eksamen.",
+            "tags": [
+              "coverage_pressure",
+              "alignment_debt"
+            ]
+          }
+        ],
+        "competency": "konstruktiv_sammenheng",
+        "consequence_axis": "sporbar_laringsdesign_vs_sen_eksamensmismatch",
+        "cooldown": 1,
+        "day_phase": "morning",
+        "from": "Sigrid, studieleder",
+        "id": "filosofi_undervisning_job_laringsdesign_001",
+        "interaction_mode": "decision",
+        "mail_family": "filosofi_laringsdesign",
+        "mail_type": "job",
+        "narrative_arc": "laringsdesign_til_eksamensbevis",
+        "people_ref": "sigrid_studieleder_filosofi",
+        "person_id": "sigrid_studieleder_filosofi",
+        "phase": "intro",
+        "place_id": "forelesningsrom_filosofi",
+        "pressure": "pensumdekning_vs_trening_av_vurdert_kompetanse",
+        "priority": 140,
+        "purpose": "Teste om underviseren bygger konstruktiv sammenheng mellom læringsmål, aktivitet og vurdering.",
+        "repeatable": false,
+        "role_scope": "filosofi_undervisning_og_akademia",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/filosofi/job/filosofi_undervisning_og_akademia_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Læringsmålet sier at studenten skal kunne rekonstruere, sammenligne og kritisere filosofiske argumenter.",
+          "Den foreløpige ukeplanen bruker mest tid på forelesningsdekning og kort tekstgjenfortelling.",
+          "Eksamensutkastet krever en selvstendig rekonstruksjon av et argument og vurdering av et reelt motargument."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis emnet dekker mange teorier, men sjelden lar studentene rekonstruere og kritisere argumenter selv, kan eksamen måle en ferdighet undervisningen ikke har forberedt dem på.",
+        "subject": "Eksamen krever selvstendig argumentrekonstruksjon, men ukeplanen trener mest gjenfortelling",
+        "summary": "Sigrid ber deg avklare om emnet faktisk gir studentene øving i den ferdigheten som skal vurderes, før undervisningsplanen låses.",
+        "task_domain": "laringsmal_og_emnedesign",
+        "task_kind": "job",
+        "thread_key": "filosofi_undervisning_alignment_001"
+      },
+      "id": "filosofi_undervisning_job_laringsdesign_001",
+      "mail_type": "job",
+      "role_scope": "filosofi_undervisning_og_akademia",
+      "scene": {
+        "arc_stage": "intro",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Studentene får en reell øvingsarena for den vurderte kompetansen, og emneplanen får et etterprøvbart samsvar mellom mål, aktivitet og eksamen.",
+            "id": "A",
+            "label": "Kutt ett sekundært tema og legg inn argumentverksted med eksplisitt vurderingskriterium",
+            "reply": "Jeg prioriterer øving i rekonstruksjon og motargument fordi det er dette eksamen faktisk skal måle, og gjør kriteriet synlig før studentene leverer."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du bevarer stoffmengden, men skyver en uøvd ferdighet inn i eksamen og gjør senere svake resultater vanskeligere å tolke rettferdig.",
+            "id": "B",
+            "label": "Behold full pensumdekning og la selvstendig rekonstruksjon være et implisitt universitetskrav",
+            "reply": "Vi må rekke stoffet; studentene bør kunne overføre forelesningene til selvstendig argumentarbeid på eksamen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Læringsmålet sier at studenten skal kunne rekonstruere, sammenligne og kritisere filosofiske argumenter.",
+            "Den foreløpige ukeplanen bruker mest tid på forelesningsdekning og kort tekstgjenfortelling.",
+            "Eksamensutkastet krever en selvstendig rekonstruksjon av et argument og vurdering av et reelt motargument."
+          ],
+          "subject": "Eksamen krever selvstendig argumentrekonstruksjon, men ukeplanen trener mest gjenfortelling",
+          "summary": "Sigrid ber deg avklare om emnet faktisk gir studentene øving i den ferdigheten som skal vurderes, før undervisningsplanen låses."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "filosofi_undervisning_job_laringsdesign_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "forelesningsrom_filosofi",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "filosofi_undervisning_job_laringsdesign_001",
+          "source_path": "data/Civication/mailFamilies/filosofi/job/filosofi_undervisning_og_akademia_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "filosofi_undervisning_alignment_001",
+        "version": 1
+      },
+      "source_hash": "bfc8ff0656b4d5b93a305b1ec8914efbda70116de0b31013b37d26fdfee27d76",
+      "source_path": "data/Civication/mailFamilies/filosofi/job/filosofi_undervisning_og_akademia_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "filosofi",
+      "compatibility_projection": {
+        "category": "filosofi",
+        "choice_axis": "les_profilen_og_avgrens_hva_den_dokumenterer_vs_lan_personstatus_som_fasit_for_dagens_undervisning",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 1,
+                "trust": 1
+              }
+            },
+            "feedback": "History Go-lesingen gir relevant kontekst uten at den historiske personen får en oppdiktet rolle i dagens undervisningsbeslutning.",
+            "id": "A",
+            "label": "Åpne profilen og noter hva den faktisk dokumenterer før du bruker den som pensumkontekst",
+            "reply": "Jeg skiller biografisk og idéhistorisk dokumentasjon fra våre egne valg om læringsmål, aktivitet og vurdering, og bruker profilen til å formulere bedre spørsmål.",
+            "tags": [
+              "history_go_person",
+              "source_boundary",
+              "historical_context"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -3,
+                "risk": 3,
+                "trust": -2
+              }
+            },
+            "feedback": "Du går fra historisk relevans til nåtidig pedagogisk autoritet uten å begrunne undervisningsvalget med dagens læringsmål og institusjonelle ramme.",
+            "id": "B",
+            "label": "Bruk Næss som autoritet for hvordan emnet bør undervises fordi han er en sentral norsk filosof",
+            "reply": "En så sentral filosof gir oss et godt nok faglig grunnlag for å la hans perspektiv styre undervisningsformen og prioriteringene.",
+            "tags": [
+              "authority_slippage",
+              "anachronistic_authority",
+              "pedagogy_shortcut"
+            ]
+          }
+        ],
+        "competency": "kildegrense_og_filosofihistorisk_kontekst",
+        "consequence_axis": "kildebevisst_pensumkontekst_vs_autoritetsglidning",
+        "cooldown": 5,
+        "day_phase": "afternoon",
+        "from": "Emil, seminarleder",
+        "id": "filosofi_undervisning_knowledge_naess_001",
+        "interaction_mode": "task",
+        "mail_family": "filosofi_naess_undervisningskontekst",
+        "mail_type": "knowledge",
+        "narrative_arc": "historisk_filosofi_som_undervisningskontekst",
+        "people_ref": "emil_seminarleder_filosofi",
+        "person_id": "emil_seminarleder_filosofi",
+        "phase": "advanced",
+        "place_id": "maerradalen",
+        "pressure": "historisk_relevans_vs_pedagogisk_autoritetsglidning",
+        "priority": 110,
+        "purpose": "Teste at en virkelig historisk person kan være kunnskapsmål uten å bli oppdiktet som nåtidig rådgiver, kollega eller beslutningseier.",
+        "repeatable": false,
+        "role_scope": "filosofi_undervisning_og_akademia",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/filosofi/knowledge/filosofi_undervisning_og_akademia_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Arne Næss finnes som canonical People-person i History Go og er beskrevet som filosof.",
+          "Mærradalen er profilens canonical place-anker.",
+          "Oppgaven gjelder kun lesing av den publiserte profilen; Næss opptrer ikke som nåtidig avsender, underviser eller autoritet for dagens akademiske praksis."
+        ],
+        "stage": "stable",
+        "stakes": "En historisk filosof kan gi relevant idéhistorisk kontekst, men kan ikke alene begrunne dagens undervisningsdesign eller fungere som autoritet for vurderingspraksis.",
+        "subject": "Bruk Arne Næss som filosofihistorisk kontekst – ikke som fasit for hvordan vi skal undervise i dag",
+        "summary": "Emil ber deg lese History Go-profilen til Arne Næss som kildeforankret kontekst om norsk filosofi, dypøkologi og naturtenkning, og deretter skille det profilen dokumenterer fra dagens pedagogiske valg om læringsmål, pensum og vurdering.",
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/people/natur/oslo/people_natur_oslo.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "filosofi_undervisning_history_go_arne_naess"
+        },
+        "task_domain": "pensum_kontekst_og_faglig_uenighet",
+        "task_kind": "knowledge",
+        "task_payload": {
+          "completion_mode": "read_profile",
+          "description": "Les den canonicale profilen som filosofihistorisk og naturfilosofisk kontekst, ikke som pedagogisk eller normativ fasit for dagens undervisning.",
+          "person_id": "arne_naess",
+          "return_context": {
+            "mail_id": "filosofi_undervisning_knowledge_naess_001",
+            "role_scope": "filosofi_undervisning_og_akademia",
+            "source": "civication"
+          },
+          "target_type": "person",
+          "task_kind": "history_go_person",
+          "title": "Les profilen til Arne Næss"
+        }
+      },
+      "id": "filosofi_undervisning_knowledge_naess_001",
+      "mail_type": "knowledge",
+      "role_scope": "filosofi_undervisning_og_akademia",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "History Go-lesingen gir relevant kontekst uten at den historiske personen får en oppdiktet rolle i dagens undervisningsbeslutning.",
+            "id": "A",
+            "label": "Åpne profilen og noter hva den faktisk dokumenterer før du bruker den som pensumkontekst",
+            "reply": "Jeg skiller biografisk og idéhistorisk dokumentasjon fra våre egne valg om læringsmål, aktivitet og vurdering, og bruker profilen til å formulere bedre spørsmål."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du går fra historisk relevans til nåtidig pedagogisk autoritet uten å begrunne undervisningsvalget med dagens læringsmål og institusjonelle ramme.",
+            "id": "B",
+            "label": "Bruk Næss som autoritet for hvordan emnet bør undervises fordi han er en sentral norsk filosof",
+            "reply": "En så sentral filosof gir oss et godt nok faglig grunnlag for å la hans perspektiv styre undervisningsformen og prioriteringene."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Arne Næss finnes som canonical People-person i History Go og er beskrevet som filosof.",
+            "Mærradalen er profilens canonical place-anker.",
+            "Oppgaven gjelder kun lesing av den publiserte profilen; Næss opptrer ikke som nåtidig avsender, underviser eller autoritet for dagens akademiske praksis."
+          ],
+          "subject": "Bruk Arne Næss som filosofihistorisk kontekst – ikke som fasit for hvordan vi skal undervise i dag",
+          "summary": "Emil ber deg lese History Go-profilen til Arne Næss som kildeforankret kontekst om norsk filosofi, dypøkologi og naturtenkning, og deretter skille det profilen dokumenterer fra dagens pedagogiske valg om læringsmål, pensum og vurdering."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "filosofi_undervisning_knowledge_naess_001",
+        "interaction_mode": "task",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "maerradalen",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "filosofi_undervisning_knowledge_naess_001",
+          "source_path": "data/Civication/mailFamilies/filosofi/knowledge/filosofi_undervisning_og_akademia_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/people/natur/oslo/people_natur_oslo.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "filosofi_undervisning_history_go_arne_naess"
+        },
+        "thread_id": "filosofi_undervisning_og_akademia.mail.filosofi_undervisning_knowledge_naess_001",
+        "version": 1
+      },
+      "source_hash": "dd8b68208d05b2f3c68fa11560a09b7fafbe5fc6f849453dafb538b0aadce94c",
+      "source_path": "data/Civication/mailFamilies/filosofi/knowledge/filosofi_undervisning_og_akademia_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "filosofi",
+      "compatibility_projection": {
+        "category": "filosofi",
+        "choice_axis": "forankre_presisering_i_publisert_kriterium_og_tekstbevis_vs_legge_til_nye_kvalitetskrav",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 3,
+                "risk": -3,
+                "trust": 2
+              }
+            },
+            "feedback": "Du gjør kriterieanvendelsen mer konsistent uten å skape et nytt krav studentene aldri fikk vite om.",
+            "id": "A",
+            "label": "Definer hvordan det publiserte kriteriet gjenkjennes i teksten, og test presiseringen på de samme grenseeksemplene",
+            "reply": "Vi beholder kriteriets opprinnelige omfang og beskriver hvilke tekststeder som viser presis begrepsbruk, eksplisitt inferens og relevant motargument når de faktisk er del av samme publiserte standard.",
+            "tags": [
+              "criterion_operationalization",
+              "published_criteria",
+              "evidence_trace"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -3,
+                "risk": 4,
+                "trust": -2
+              }
+            },
+            "feedback": "Du skjuler et nytt kvalitetskrav inne i et gammelt kriterium og gjør den senere begrunnelsen svakere ved klage eller kalibrering.",
+            "id": "B",
+            "label": "Bruk anledningen til å kreve selvstendig syntese også, siden det likevel virker som del av analytisk presisjon",
+            "reply": "Vi kan samle flere kvalitetskjennetegn under samme formulering og få en mer finmasket karakterskala.",
+            "tags": [
+              "criterion_expansion",
+              "retroactive_standard",
+              "grading_drift"
+            ]
+          }
+        ],
+        "competency": "transparent_vurdering",
+        "consequence_axis": "konsistent_etterprovbar_begrunnelse_vs_skjult_standardglidning",
+        "cooldown": 4,
+        "day_phase": "afternoon",
+        "from": "Amal, sensorpartner",
+        "id": "filosofi_undervisning_micro_kriteriepresisering_001",
+        "interaction_mode": "decision",
+        "mail_family": "filosofi_kriteriepresisering",
+        "mail_type": "micro",
+        "narrative_arc": "kriterium_til_begrunnelse_og_klage",
+        "people_ref": "amal_sensorpartner_filosofi",
+        "person_id": "amal_sensorpartner_filosofi",
+        "phase": "workday",
+        "place_id": "vurderingsrom_filosofi",
+        "pressure": "behov_for_felles_sensorpraksis_vs_retroaktiv_kriterieutvidelse",
+        "priority": 114,
+        "purpose": "Teste om et allerede publisert kriterium kan presiseres som felles anvendelsesregel uten å bli utvidet retrospektivt.",
+        "repeatable": false,
+        "role_scope": "filosofi_undervisning_og_akademia",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/filosofi/micro/filosofi_undervisning_og_akademia_micro.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "«Analytisk presisjon» står i vurderingskriteriene studentene fikk før eksamen.",
+          "De første sensorbegrunnelsene viser tre ulike tolkninger av hva uttrykket innebærer i teksten.",
+          "Ingen av sensorene kan endre vurderingsgrunnlaget etter levering, men de må kunne anvende det konsistent og etterprøvbart."
+        ],
+        "stage": "stable",
+        "stakes": "Uten en felles operasjonalisering kan like prestasjoner få ulike begrunnelser; med en for bred presisering kan sensorene i praksis innføre et nytt skjult kriterium.",
+        "subject": "«Analytisk presisjon» står i kriteriene – men vi bruker uttrykket på tre forskjellige måter",
+        "summary": "Amal ser at sensorbegrunnelsene bruker «analytisk presisjon» om henholdsvis begrepsdefinisjon, eksplisitte inferenser og behandling av motargument. Før flere besvarelser vurderes må kriteriet knyttes til observerbare teksttrekk uten å lage et nytt krav etter levering.",
+        "task_domain": "vurdering_sensur_og_begrunnelse",
+        "task_kind": "micro",
+        "thread_key": "filosofi_undervisning_vurdering_001"
+      },
+      "id": "filosofi_undervisning_micro_kriteriepresisering_001",
+      "mail_type": "micro",
+      "role_scope": "filosofi_undervisning_og_akademia",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gjør kriterieanvendelsen mer konsistent uten å skape et nytt krav studentene aldri fikk vite om.",
+            "id": "A",
+            "label": "Definer hvordan det publiserte kriteriet gjenkjennes i teksten, og test presiseringen på de samme grenseeksemplene",
+            "reply": "Vi beholder kriteriets opprinnelige omfang og beskriver hvilke tekststeder som viser presis begrepsbruk, eksplisitt inferens og relevant motargument når de faktisk er del av samme publiserte standard."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du skjuler et nytt kvalitetskrav inne i et gammelt kriterium og gjør den senere begrunnelsen svakere ved klage eller kalibrering.",
+            "id": "B",
+            "label": "Bruk anledningen til å kreve selvstendig syntese også, siden det likevel virker som del av analytisk presisjon",
+            "reply": "Vi kan samle flere kvalitetskjennetegn under samme formulering og få en mer finmasket karakterskala."
+          }
+        ],
+        "content": {
+          "situation": [
+            "«Analytisk presisjon» står i vurderingskriteriene studentene fikk før eksamen.",
+            "De første sensorbegrunnelsene viser tre ulike tolkninger av hva uttrykket innebærer i teksten.",
+            "Ingen av sensorene kan endre vurderingsgrunnlaget etter levering, men de må kunne anvende det konsistent og etterprøvbart."
+          ],
+          "subject": "«Analytisk presisjon» står i kriteriene – men vi bruker uttrykket på tre forskjellige måter",
+          "summary": "Amal ser at sensorbegrunnelsene bruker «analytisk presisjon» om henholdsvis begrepsdefinisjon, eksplisitte inferenser og behandling av motargument. Før flere besvarelser vurderes må kriteriet knyttes til observerbare teksttrekk uten å lage et nytt krav etter levering."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "filosofi_undervisning_micro_kriteriepresisering_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "vurderingsrom_filosofi",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "filosofi_undervisning_micro_kriteriepresisering_001",
+          "source_path": "data/Civication/mailFamilies/filosofi/micro/filosofi_undervisning_og_akademia_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "filosofi_undervisning_vurdering_001",
+        "version": 1
+      },
+      "source_hash": "80da04d7793f1308d6566608388e8fa185cc89005c3725ee2ea79c4209a4a658",
+      "source_path": "data/Civication/mailFamilies/filosofi/micro/filosofi_undervisning_og_akademia_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "filosofi",
+      "compatibility_projection": {
+        "category": "filosofi",
+        "choice_axis": "vurder_argumentets_kvalitet_og_modeller_reell_uenighet_vs_bruk_foreleserens_posisjon_som_fasit",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 3
+              }
+            },
+            "feedback": "Seminaret får en tydelig modell for filosofisk uenighet der lærerautoritet ikke erstatter argumentasjon.",
+            "id": "A",
+            "label": "Anerkjenn argumentkvaliteten og bruk uenigheten til å teste begge posisjonene",
+            "reply": "Vi vurderer premisser, inferens, motargument og kildespor – ikke om studenten lander der jeg gjør. La oss teste hvor de to argumentene faktisk skiller lag.",
+            "tags": [
+              "fair_disagreement",
+              "argument_quality",
+              "academic_trust"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "trust": -3
+              }
+            },
+            "feedback": "Du gjør en bestemt konklusjon til et uuttalt vurderingskrav og svekker signalet om at saklig uenighet faktisk er tillatt.",
+            "id": "B",
+            "label": "Forklar at emnet forventer at studentene behersker hovedtolkningen fra forelesningen",
+            "reply": "Argumentet er interessant, men på dette nivået bør studenten vise at hovedtolkningen fra forelesningen sitter før alternative konklusjoner får mye vekt.",
+            "tags": [
+              "authority_bias",
+              "hidden_answer_key"
+            ]
+          }
+        ],
+        "competency": "faglig_uenighetsledelse",
+        "consequence_axis": "tillit_til_faglige_kriterier_vs_autoritetsstyrt_deltakelse",
+        "cooldown": 2,
+        "day_phase": "morning",
+        "from": "Emil, seminarleder",
+        "id": "filosofi_undervisning_people_studentuenighet_001",
+        "interaction_mode": "decision",
+        "mail_family": "filosofi_studentuenighet",
+        "mail_type": "people",
+        "narrative_arc": "uenighet_som_faglig_praksis",
+        "people_ref": "emil_seminarleder_filosofi",
+        "person_id": "emil_seminarleder_filosofi",
+        "phase": "early",
+        "place_id": "seminarrom_filosofi",
+        "pressure": "underviserautoritet_vs_saklig_uenighet",
+        "priority": 132,
+        "purpose": "Teste om underviseren belønner faglig kvalitet uavhengig av personlig standpunkt.",
+        "repeatable": false,
+        "role_scope": "filosofi_undervisning_og_akademia",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/filosofi/people/filosofi_undervisning_og_akademia_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Studenten gjengir argumentet fra forelesningen korrekt før kritikken begynner.",
+          "Motargumentet har eksplisitte premisser, et relevant eksempel og en sporbar pensumhenvisning.",
+          "Konklusjonen går likevel tydelig mot den tolkningen du selv forsvarte i forelesningen."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis enighet med foreleserens syn blir et skjult kvalitetskriterium, undergraves både vurderingsrettferdighet og studentenes trening i reell filosofisk uenighet.",
+        "subject": "Studenten avviser forelesningens konklusjon – men argumentet er bedre enn de fleste",
+        "summary": "Emil ber deg avklare hvordan seminaret skal møte en student som er uenig med deg, men rekonstruerer standpunktet velvillig og argumenterer presist.",
+        "task_domain": "forelesning_seminar_og_argumenttrening",
+        "task_kind": "people",
+        "thread_key": "filosofi_undervisning_uenighet_001"
+      },
+      "id": "filosofi_undervisning_people_studentuenighet_001",
+      "mail_type": "people",
+      "role_scope": "filosofi_undervisning_og_akademia",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Seminaret får en tydelig modell for filosofisk uenighet der lærerautoritet ikke erstatter argumentasjon.",
+            "id": "A",
+            "label": "Anerkjenn argumentkvaliteten og bruk uenigheten til å teste begge posisjonene",
+            "reply": "Vi vurderer premisser, inferens, motargument og kildespor – ikke om studenten lander der jeg gjør. La oss teste hvor de to argumentene faktisk skiller lag."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør en bestemt konklusjon til et uuttalt vurderingskrav og svekker signalet om at saklig uenighet faktisk er tillatt.",
+            "id": "B",
+            "label": "Forklar at emnet forventer at studentene behersker hovedtolkningen fra forelesningen",
+            "reply": "Argumentet er interessant, men på dette nivået bør studenten vise at hovedtolkningen fra forelesningen sitter før alternative konklusjoner får mye vekt."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Studenten gjengir argumentet fra forelesningen korrekt før kritikken begynner.",
+            "Motargumentet har eksplisitte premisser, et relevant eksempel og en sporbar pensumhenvisning.",
+            "Konklusjonen går likevel tydelig mot den tolkningen du selv forsvarte i forelesningen."
+          ],
+          "subject": "Studenten avviser forelesningens konklusjon – men argumentet er bedre enn de fleste",
+          "summary": "Emil ber deg avklare hvordan seminaret skal møte en student som er uenig med deg, men rekonstruerer standpunktet velvillig og argumenterer presist."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "filosofi_undervisning_people_studentuenighet_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "seminarrom_filosofi",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "filosofi_undervisning_people_studentuenighet_001",
+          "source_path": "data/Civication/mailFamilies/filosofi/people/filosofi_undervisning_og_akademia_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "filosofi_undervisning_uenighet_001",
+        "version": 1
+      },
+      "source_hash": "effa1080239e717b41193d203caf86640a24e36f41120519a9a6e69d57487dec",
+      "source_path": "data/Civication/mailFamilies/filosofi/people/filosofi_undervisning_og_akademia_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "filosofi",
+      "compatibility_projection": {
+        "category": "filosofi",
+        "choice_axis": "dokumenter_konkrete_spor_og_eskaler_uten_forhandsdom_vs_avgjor_fusk_og_sanksjon_selv",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -3,
+                "trust": 2
+              }
+            },
+            "feedback": "Saken blir alvorlig nok til å undersøkes, samtidig som ansvar og beviskrav forblir hos riktig prosess.",
+            "id": "A",
+            "label": "Dokumenter tekststedene og send saken til etablert prosess uten å konkludere om skyld",
+            "reply": "Jeg beskriver nøyaktig hvilke formuleringer og kilder som må vurderes videre, men skiller observasjonen fra den formelle avgjørelsen.",
+            "tags": [
+              "evidence_record",
+              "due_process",
+              "academic_integrity"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -3,
+                "risk": 5,
+                "trust": -3
+              }
+            },
+            "feedback": "Du går fra dokumentert kildeproblem til formell skyld og sanksjon uten den institusjonelle behandlingen rollen uttrykkelig ikke eier.",
+            "id": "B",
+            "label": "Registrer fusk og gi stryk direkte fordi tekstlikheten er tydelig",
+            "reply": "Kildebruddet er klart nok til at vi ikke trenger en egen prosess før reaksjonen.",
+            "tags": [
+              "presumption_of_guilt",
+              "authority_overreach"
+            ]
+          }
+        ],
+        "competency": "integritet_og_prosess",
+        "consequence_axis": "etterprovbar_integritetssak_vs_improvisert_skyldfastsettelse",
+        "cooldown": 4,
+        "day_phase": "afternoon",
+        "from": "Nora, studiekonsulent",
+        "id": "filosofi_undervisning_story_integritet_001",
+        "interaction_mode": "decision",
+        "mail_family": "filosofi_integritetsspor",
+        "mail_type": "story",
+        "narrative_arc": "kildespor_til_formell_prosess",
+        "people_ref": "nora_studiekonsulent_filosofi",
+        "person_id": "nora_studiekonsulent_filosofi",
+        "phase": "mid",
+        "place_id": "vurderingsrom_filosofi",
+        "pressure": "behov_for_reaksjon_vs_bevis_og_due_process",
+        "priority": 120,
+        "purpose": "Teste om underviseren dokumenterer observasjonen presist uten å forskuttere skyld eller improvisere sanksjon.",
+        "repeatable": false,
+        "role_scope": "filosofi_undervisning_og_akademia",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/filosofi/story/filosofi_undervisning_og_akademia_story.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Tre formuleringer ligger tett på en pensumtekst uten tydelig sitatmarkering.",
+          "Andre deler av besvarelsen har normal og sporbar kildebruk, så mønsteret alene avgjør ikke intensjon eller omfang.",
+          "Institusjonen har en etablert kanal for videre vurdering av mulig akademisk uredelighet."
+        ],
+        "stage": "stable",
+        "stakes": "For svak reaksjon kan bagatellisere kildemisbruk; for rask dom kan gjøre mistanke til skyld uten at studenten får den prosessen saken krever.",
+        "subject": "Tre avsnitt følger en kilde tett, men dokumentasjonen beviser ikke hvem som skrev hva",
+        "summary": "Nora ber deg skille det du faktisk kan dokumentere i besvarelsen fra konklusjonen om eventuell uredelighet, som har en egen institusjonell prosess.",
+        "task_domain": "akademisk_redelighet_og_kildespor",
+        "task_kind": "story",
+        "thread_key": "filosofi_undervisning_integritet_001"
+      },
+      "id": "filosofi_undervisning_story_integritet_001",
+      "mail_type": "story",
+      "role_scope": "filosofi_undervisning_og_akademia",
+      "scene": {
+        "arc_stage": "mid",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Saken blir alvorlig nok til å undersøkes, samtidig som ansvar og beviskrav forblir hos riktig prosess.",
+            "id": "A",
+            "label": "Dokumenter tekststedene og send saken til etablert prosess uten å konkludere om skyld",
+            "reply": "Jeg beskriver nøyaktig hvilke formuleringer og kilder som må vurderes videre, men skiller observasjonen fra den formelle avgjørelsen."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du går fra dokumentert kildeproblem til formell skyld og sanksjon uten den institusjonelle behandlingen rollen uttrykkelig ikke eier.",
+            "id": "B",
+            "label": "Registrer fusk og gi stryk direkte fordi tekstlikheten er tydelig",
+            "reply": "Kildebruddet er klart nok til at vi ikke trenger en egen prosess før reaksjonen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Tre formuleringer ligger tett på en pensumtekst uten tydelig sitatmarkering.",
+            "Andre deler av besvarelsen har normal og sporbar kildebruk, så mønsteret alene avgjør ikke intensjon eller omfang.",
+            "Institusjonen har en etablert kanal for videre vurdering av mulig akademisk uredelighet."
+          ],
+          "subject": "Tre avsnitt følger en kilde tett, men dokumentasjonen beviser ikke hvem som skrev hva",
+          "summary": "Nora ber deg skille det du faktisk kan dokumentere i besvarelsen fra konklusjonen om eventuell uredelighet, som har en egen institusjonell prosess."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "filosofi_undervisning_story_integritet_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "vurderingsrom_filosofi",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "filosofi_undervisning_story_integritet_001",
+          "source_path": "data/Civication/mailFamilies/filosofi/story/filosofi_undervisning_og_akademia_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "filosofi_undervisning_integritet_001",
+        "version": 1
+      },
+      "source_hash": "5b3a975f1b322e6679b4e4518f17568869bd222937a601b27297f279480f3dc2",
+      "source_path": "data/Civication/mailFamilies/filosofi/story/filosofi_undervisning_og_akademia_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -164041,7 +165360,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "dfea23d8cbb85a625a7bb33ba7a92c40a2a8bd9bb1801246b2972c9993acee00",
+  "registry_hash": "58a73083ec3da304755d22fa9830243b1a97169cedf414b1637927e9330d3fc5",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -164291,6 +165610,17 @@
       "filosofi_forskning_followup_sitat_001",
       "filosofi_forskning_knowledge_naess_001",
       "filosofi_forskning_consequence_publikum_001"
+    ],
+    "filosofi/filosofi_undervisning_og_akademia": [
+      "filosofi_undervisning_job_laringsdesign_001",
+      "filosofi_undervisning_people_studentuenighet_001",
+      "filosofi_undervisning_story_integritet_001",
+      "filosofi_undervisning_conflict_sensorgrunnlag_001",
+      "filosofi_undervisning_event_tilrettelegging_001",
+      "filosofi_undervisning_micro_kriteriepresisering_001",
+      "filosofi_undervisning_followup_vurdering_001",
+      "filosofi_undervisning_knowledge_naess_001",
+      "filosofi_undervisning_consequence_eksamen_001"
     ],
     "litteratur/redaksjonsmedarbeider": [
       "litteratur_redaksjonsmedarbeider_job_versjon_001",
@@ -165245,11 +166575,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 327,
+    "compiled_source_file_count": 336,
     "ignored_source_file_count": 1,
-    "input_file_count": 328,
-    "role_count": 42,
-    "scene_count": 1090,
+    "input_file_count": 337,
+    "role_count": 43,
+    "scene_count": 1099,
     "shadowed_duplicate_count": 0
   },
   "version": 1

@@ -1,0 +1,70 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "filosofi",
+  "role_scope": "filosofi_undervisning_og_akademia",
+  "mail_type": "consequence",
+  "families": [
+    {
+      "id": "filosofi_eksamenskonsekvens",
+      "purpose": "La eksamensresultatene teste om dagens læringsdesign faktisk trente den kompetansen vurderingen målte.",
+      "learning_focus": ["konstruktiv_sammenheng", "eksamensanalyse", "emnerevisjon"],
+      "mails": [
+        {
+          "id": "filosofi_undervisning_consequence_eksamen_001",
+          "mail_type": "consequence",
+          "mail_family": "filosofi_eksamenskonsekvens",
+          "role_scope": "filosofi_undervisning_og_akademia",
+          "phase": "mastery",
+          "day_phase": "evening",
+          "priority": 100,
+          "cooldown": 6,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Sigrid, studieleder",
+          "people_ref": "sigrid_studieleder_filosofi",
+          "person_id": "sigrid_studieleder_filosofi",
+          "place_id": "vurderingsrom_filosofi",
+          "thread_key": "filosofi_undervisning_alignment_001",
+          "subject": "Eksamensresultatene bekrefter et mønster: studentene kan teoriene, men rekonstruerer argumentene svakt",
+          "summary": "Sigrid sammenstiller sensuren og ser at studentene gjennomgående lykkes med gjenfortelling, men strever med den selvstendige argumentrekonstruksjonen eksamen ber om. Hun ber deg avgjøre om neste emnerunde skal endre undervisningsaktivitetene eller behandle resultatet som et rent studentproblem.",
+          "purpose": "Teste om vurderingsdata brukes til å revidere undervisningen når et systematisk gap samsvarer med en tidligere identifisert alignment-risiko.",
+          "stakes": "Hvis et mønster som går igjen på tvers av besvarelser bare tolkes som svak studentinnsats, kan emnet fortsette å måle en ferdighet studentene får for lite eksplisitt trening i.",
+          "situation": [
+            "Flertallet av besvarelsene gjengir sentrale teorier tilfredsstillende.",
+            "Det systematiske svakhetspunktet er eksplisitt premissstruktur, inferens og håndtering av motargument i egen rekonstruksjon.",
+            "Tidligere i emneplanleggingen ble det allerede identifisert at ukeplanen ga mer plass til dekning enn til argumentverksted."
+          ],
+          "task_domain": "laringsmal_og_emnedesign",
+          "task_kind": "consequence",
+          "competency": "konstruktiv_sammenheng",
+          "pressure": "studentansvar_vs_systematisk_laringsdesignsignal",
+          "choice_axis": "revider_aktivitet_og_ovingsbevis_fra_dokumentert_gap_vs_behold_opplegg_og_skyv_ansvar_til_studentene",
+          "consequence_axis": "forbedret_alignment_vs_varig_eksamensmismatch",
+          "narrative_arc": "laringsdesign_til_eksamensbevis",
+          "interaction_mode": "decision",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bygg inn flere korte argumentrekonstruksjoner med tilbakemelding før neste eksamen, og kontroller at kriteriene fortsatt måler samme mål",
+              "reply": "Mønsteret er sterkt nok til at vi må forbedre øvingsarenaen. Jeg beholder faglig standard, men flytter tid fra sekundær dekning til eksplisitt rekonstruksjon, motargument og formativ tilbakemelding.",
+              "effect": 1,
+              "tags": ["constructive_alignment", "assessment_evidence", "course_revision"],
+              "feedback": "Du bruker vurderingsdata som forbedringssignal uten å senke standarden eller late som resultatet alene beviser én enkelt årsak.",
+              "effects": {"stats": {"quality": 3, "trust": 2, "risk": -3, "energy": -2}}
+            },
+            {
+              "id": "B",
+              "label": "Behold undervisningsopplegget; selvstendig argumentrekonstruksjon er studentenes ansvar på universitetsnivå",
+              "reply": "Eksamen viser hvem som klarer å løfte seg utover forelesningene. Vi bør ikke redusere pensumdekningen for å trene en ferdighet studentene forventes å utvikle selv.",
+              "effect": -1,
+              "tags": ["alignment_denial", "coverage_pressure", "system_signal_ignored"],
+              "feedback": "Du overser at det samme ferdighetsgapet var synlig allerede i læringsdesignet og lar vurderingen fortsette å kreve mer enn undervisningen systematisk trener.",
+              "effects": {"stats": {"quality": -3, "trust": -2, "risk": 4, "energy": 1}}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

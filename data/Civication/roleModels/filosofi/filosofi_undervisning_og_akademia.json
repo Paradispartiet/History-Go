@@ -1,15 +1,110 @@
 {
-  "schema":"civication_role_model_v1","version":2,
-  "source":{"badge_file":"data/badges/filosofi.json","badge_id":"filosofi","evidence":"data/Civication/filosofiCareerLifeEvidence.json"},
-  "category":"filosofi","role_scope":"filosofi_undervisning_og_akademia","role_id":"filosofi_undervisning_og_akademia","title":"Filosofi – undervisning og akademia",
-  "core_narrative":["Arbeidsverdenen gjør filosofisk kunnskap lærbar og etterprøvbar gjennom undervisning, veiledning, vurdering og akademisk arbeid uten å gjøre personlig overbevisning til fasit."],
-  "work_life":{"daily_work":["planlegge undervisning rundt tydelige læringsmål","forelese og lede faglig diskusjon","gi begrunnet tilbakemelding og veiledning","lese, skrive eller kvalitetssikre akademisk arbeid"],"responsibilities":["vurdere argumentasjon etter faglige kriterier fremfor enighet","skille undervisningsrolle fra personlig autoritet","gjøre pensumvalg og vurderingskriterier transparente","ivareta akademisk redelighet og kildepraksis"],"work_environment":["universitet, høgskole eller annet organisert undervisnings- og forskningsmiljø"],"status_position":["Foreleser krever konkret undervisningsoppdrag; professortittel krever formell akademisk kvalifikasjon og ansettelse"]},
-  "career_path":{"entry_from":["konkret undervisningsoppdrag eller relevant akademisk ansettelse"],"progression_to":["større undervisnings-, forsknings- eller veiledningsansvar etter formell vurdering"],"possible_promotions":["akademiske stillinger etter kvalifikasjons- og ansettelsesprosesser"],"possible_exits":["forskning, formidling, rådgivning eller annen kunnskapsvirksomhet"],"career_risks":["uklare vurderingskriterier, autoritetsmisbruk, plagiat, dårlig kildepraksis eller sammenblanding av faglig uenighet og personvurdering"]},
-  "required_knowledge":{"education_basis":["relevant filosofisk og akademisk kompetanse tilpasset stillingen"],"skills":["undervisningsdesign","argumentanalyse","veiledning","akademisk skriving","vurdering og kildepraksis"],"category_knowledge":["filosofiens hovedområder, argumentasjon, idéhistorie, fagdidaktisk formidling og akademisk redelighet"],"history_go_badges":["filosofi"],"place_connections":[],"people_connections":[]},
-  "authority_boundaries":{"can":["stille faglige krav til argumentasjon og kildebruk","lede uenighet uten å kreve personlig enighet","gi begrunnet faglig vurdering innen eget mandat"],"cannot":["bruke Badge-poeng som grunnlag for professortittel eller akademisk ansettelse","straffe studenter for saklig uenighet med underviserens eget syn","presentere omstridte filosofiske standpunkter som institusjonell fasit uten argumentasjon","akseptere plagiat, fabrikkering eller skjult kildebruk"]},
-  "challenges":[{"id":"uenighet_og_vurdering","title":"Studenten argumenterer godt mot underviseren","description":"Faglig vurdering må belønne kvaliteten på argumentet, ikke graden av enighet med den som vurderer.","pressure":"autoritet_vs_faglig_uenighet","affects":["quality","trust"]}],
-  "dilemmas":[{"id":"kontroversielt_pensum","title":"Kontroversielt standpunkt skaper press","setup":"Et filosofisk verk er relevant for læringsmålet, men press utenfra ønsker at det fjernes uten faglig vurdering.","choice_axis":"faglig_relevans_vs_press","consequence_axis":"akademisk_integritet_vs_konfliktniva","mail_hooks":["job","story","conflict"]}],
-  "competence_axes":[{"id":"undervisningsdesign","label":"Undervisningsdesign"},{"id":"faglig_vurdering","label":"Faglig vurdering"},{"id":"veiledning","label":"Veiledning"},{"id":"akademisk_redelighet","label":"Akademisk redelighet"},{"id":"argumentanalyse","label":"Argumentanalyse"},{"id":"uenighetsledelse","label":"Uenighetsledelse"}],
-  "ideal_type_problems":[{"id":"enighet_lik_kvalitet","label":"Enighet med underviser forveksles med faglig kvalitet"},{"id":"badge_lik_tittel","label":"Badge-progresjon forveksles med akademisk kvalifikasjon"},{"id":"uklar_vurdering","label":"Studenten vurderes etter kriterier som ikke er gjort tydelige"}],
-  "notes":["Deler arbeidsverden mellom Foreleser og Professor, men portene er ulike: konkret oppdrag for Foreleser og akademisk kvalifikasjon/ansettelse for Professor."]
+  "schema": "civication_role_model_v2",
+  "version": 2,
+  "category": "filosofi",
+  "role_scope": "filosofi_undervisning_og_akademia",
+  "role_id": "filosofi_undervisning_og_akademia",
+  "title": "Filosofisk undervisning og akademia",
+  "source": {
+    "badge_file": "data/badges/filosofi.json",
+    "evidence": "data/Civication/filosofiCareerLifeEvidence.json"
+  },
+  "badge_titles": ["Foreleser", "Professor"],
+  "core_narrative": [
+    "Rollen gjør filosofiske problemer, argumenter og tekster lærbare uten å gjøre personlig enighet til mål på faglig kvalitet.",
+    "God undervisning kobler læringsmål, aktiviteter, tilbakemelding og vurdering, gjør kriterier synlige på forhånd og lar saklig uenighet vurderes etter samme standard uansett konklusjon.",
+    "Akademisk myndighet er avgrenset: underviseren kan undervise og vurdere innen mandatet, men formelle klager, tilrettelegging, personvern, fuskesaker, ansettelse og sanksjoner følger institusjonelle prosesser og kan ikke avgjøres etter eget forgodtbefinnende."
+  ],
+  "competence_axes": [
+    "laringsmal_og_konstruktiv_sammenheng",
+    "argumentundervisning_og_begrepspresisjon",
+    "faglig_uenighetsledelse",
+    "transparent_vurdering",
+    "veiledning_og_tilbakemelding",
+    "akademisk_redelighet_og_kildespor",
+    "inkluderende_og_tilgjengelig_undervisning",
+    "vurderingsmakt_og_institusjonell_prosess"
+  ],
+  "required_knowledge": {
+    "concepts": [
+      {"id": "konstruktiv_sammenheng", "description": "Læringsmål, undervisningsaktivitet og vurderingsform må måle og øve den samme typen faglig prestasjon; en eksamen bør ikke belønne noe studentene verken ble bedt om eller fikk øve på."},
+      {"id": "transparent_vurdering", "description": "Kriterier og forventet prestasjon skal være forståelige før levering. Nye skjulte krav kan ikke innføres retrospektivt for å forklare karakterforskjeller."},
+      {"id": "uenighet_og_argumentkvalitet", "description": "En student kan være faglig sterk og samtidig avvise underviserens konklusjon. Vurderingen må rette seg mot premisser, inferens, begrepsbruk, motargumenter og kildespor."},
+      {"id": "formativ_tilbakemelding", "description": "Tilbakemelding bør peke på hva studenten allerede gjør godt, hvilket konkret faglig problem som begrenser arbeidet, og hva studenten kan gjøre annerledes i neste forsøk."},
+      {"id": "akademisk_redelighet_og_prosess", "description": "Mistenkelig kildebruk skal dokumenteres og henvises til etablert prosess; underviseren skal ikke gjøre mistanke til skyld eller improvisere formelle sanksjoner."},
+      {"id": "tilrettelegging_og_likhet", "description": "Lik faglig standard er ikke det samme som identisk gjennomføring. Formell tilrettelegging skal håndteres gjennom autorisert prosess, og underviseren skal ikke etterspørre unødvendige helse- eller personopplysninger."},
+      {"id": "pensum_og_kontekstualisering", "description": "Kontroversielle eller historisk problematiske tekster kan være faglig relevante når formål, kontekst, motstemmer og læringsaktivitet er tydelige; provokasjon alene er ikke et læringsmål."},
+      {"id": "klage_habilitet_og_personvern", "description": "Karakterklage, habilitet og studentopplysninger har egne institusjonelle grenser. Underviseren skal bevare dokumentasjon og eskalere når egen rolle ikke har beslutningsmyndighet."}
+    ]
+  },
+  "related_people": [
+    {"id": "sigrid_studieleder_filosofi", "name": "Sigrid", "role": "studieleder", "function": "Fiktiv studieleder og beslutningseier for emneramme, undervisningsplan, formell vurderingsordning og eskalering av institusjonelle spørsmål.", "fictional": true},
+    {"id": "emil_seminarleder_filosofi", "name": "Emil", "role": "seminarleder", "function": "Fiktiv seminarleder som observerer studentenes faglige misforståelser, uenighet og læringsbehov og samarbeider om undervisningsopplegg.", "fictional": true},
+    {"id": "amal_sensorpartner_filosofi", "name": "Amal", "role": "sensorpartner", "function": "Fiktiv sensorpartner som kalibrerer vurderingskriterier, begrunnelser og grenseeksempler uten å erstatte formelle klage- eller habilitetsprosedyrer.", "fictional": true},
+    {"id": "nora_studiekonsulent_filosofi", "name": "Nora", "role": "studiekonsulent", "function": "Fiktiv studiekonsulent som eier administrativ prosess for vurdering, tilrettelegging, frister og studentopplysninger innen sitt mandat.", "fictional": true}
+  ],
+  "related_places": [
+    {"place_id": "forelesningsrom_filosofi", "kind": "fictional_work_surface", "function": "Fiktiv undervisningsflate for forelesning, argumentmodellering, spørsmål og begrepsavklaringer."},
+    {"place_id": "seminarrom_filosofi", "kind": "fictional_work_surface", "function": "Fiktiv undervisningsflate for tekstnær diskusjon, studentargumenter og moderert faglig uenighet."},
+    {"place_id": "vurderingsrom_filosofi", "kind": "fictional_work_surface", "function": "Fiktiv arbeidsflate for sensorarbeid, kriteriekalibrering, begrunnelser og dokumentert vurdering."},
+    {"place_id": "veiledningsrom_filosofi", "kind": "fictional_work_surface", "function": "Fiktiv arbeidsflate for studentveiledning med klare grenser for personvern, rolle og videre henvisning."},
+    {"place_id": "maerradalen", "kind": "canonical_history_go_place", "function": "History Go-anker for den canonicale Arne Næss-profilen; ikke fiktivt universitet, arbeidsgiver eller dagens pedagogiske autoritet."}
+  ],
+  "ideal_type_problems": [
+    {"id": "uenig_student", "problem": "En student argumenterer mot foreleserens syn, men gjør det presist, velvillig og kildebevisst."},
+    {"id": "skjult_kriterium", "problem": "Et kvalitetskrav virker viktig først etter at besvarelsene er levert og finnes ikke i publiserte kriterier."},
+    {"id": "mistanke_om_fusk", "problem": "En besvarelse har usporbare formuleringer og kildemønster som gir grunn til nærmere kontroll, men ikke i seg selv beviser uredelighet."},
+    {"id": "tilrettelegging_under_tidspress", "problem": "En student ber om endret gjennomføring tett på vurderingen, mens underviseren ikke eier den formelle tilretteleggingsbeslutningen."},
+    {"id": "kontroversielt_pensum", "problem": "En relevant historisk tekst oppleves belastende eller provoserende og må begrunnes, kontekstualiseres og settes i faglig dialog med motstemmer."},
+    {"id": "eksamen_vs_undervisning", "problem": "Eksamensoppgaven krever en type selvstendig argumentrekonstruksjon som studentene knapt har fått øve på i undervisningen."}
+  ],
+  "authority_boundaries": {
+    "can": [
+      "planlegge_og_gjennomfore_undervisning_innen_godkjent_emneramme",
+      "gi_begrunnet_faglig_tilbakemelding_og_vurdere_innen_formelt_mandat",
+      "lede_saklig_uenighet_og_kreve_sporbar_kildebruk",
+      "dokumentere_faglige_og_vurderingsmessige_beslutninger"
+    ],
+    "cannot": [
+      "gjore_personlig_enighet_til_vurderingskriterium",
+      "innfore_skjulte_vurderingskrav_etter_innlevering",
+      "avgjore_formell_fuskesak_eller_sanksjon_alene",
+      "overstyre_formell_klage_habilitets_tilretteleggings_eller_personvernprosess",
+      "ettersporre_unodvendige_sensitive_studentopplysninger",
+      "bruke_historiske_filosofer_som_fiktive_npc_er_eller_normativ_fasit_for_dagens_undervisning",
+      "late_som_badge_poeng_eller_Professor_tier_er_akademisk_kvalifikasjon_eller_ansettelse"
+    ]
+  },
+  "career_path": {
+    "entry_routes": [
+      "relevant_faglig_kvalifikasjon_og_formell_undervisningsavtale",
+      "midlertidig_eller_fast_undervisningsstilling_med_institusjonelt_mandat",
+      "faglig_stilling_der_undervisning_og_vurdering_er_delegert_etter_gjeldende_krav"
+    ],
+    "progression_signals": [
+      "stabil_sammenheng_mellom_laringsmal_undervisning_og_vurdering",
+      "rettferdig_og_etterprovbar_vurderingspraksis",
+      "god_veiledning_og_faglig_uenighetsledelse",
+      "ansvarlig_hantering_av_integritet_tilrettelegging_og_klagegrenser"
+    ],
+    "possible_promotions": [
+      "Professor ved separat faglig kvalifikasjon og ansettelse",
+      "emneansvarlig eller programansvarlig",
+      "studieleder eller annen faglig undervisningsledelse"
+    ],
+    "possible_exits": [
+      "gå til filosofisk forskning og formidling",
+      "gå til fagredaksjon, utdanningsutvikling eller akademisk administrasjon",
+      "avslutte ved undervisnings- eller prosjektavtalens slutt",
+      "miste vurderings- eller undervisningsmandat etter dokumentert alvorlig eller gjentatt svikt gjennom institusjonell prosess"
+    ]
+  },
+  "performance_model": {
+    "positive": ["tydelige_laringsmal", "rettferdig_vurdering", "sporbar_tilbakemelding", "saklig_uenighet", "ansvarlig_kildebruk", "korrekt_eskalering"],
+    "negative": ["skjulte_kriterier", "standpunktstraff", "usporbar_vurdering", "improvisert_sanksjon", "personvernglidning", "eksamens_undervisnings_mismatch"]
+  },
+  "mail_integration": {
+    "can_feed_mail_types": ["job", "people", "conflict", "story", "event", "micro", "followup", "knowledge", "consequence"],
+    "forbid_generic_runtime_fallbacks": true
+  }
 }

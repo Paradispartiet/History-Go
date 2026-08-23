@@ -1,0 +1,70 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "filosofi",
+  "role_scope": "filosofi_undervisning_og_akademia",
+  "mail_type": "followup",
+  "families": [
+    {
+      "id": "filosofi_vurderingsoppfolging",
+      "purpose": "La sensorgrunnlaget komme tilbake i en begrunnelses- og klagesituasjon og teste om publiserte kriterier fortsatt bærer vurderingen.",
+      "learning_focus": ["begrunnelse", "klagegrense", "vurderingsspor"],
+      "mails": [
+        {
+          "id": "filosofi_undervisning_followup_vurdering_001",
+          "mail_type": "followup",
+          "mail_family": "filosofi_vurderingsoppfolging",
+          "role_scope": "filosofi_undervisning_og_akademia",
+          "phase": "mastery",
+          "day_phase": "evening",
+          "priority": 104,
+          "cooldown": 5,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Amal, sensorpartner",
+          "people_ref": "amal_sensorpartner_filosofi",
+          "person_id": "amal_sensorpartner_filosofi",
+          "place_id": "vurderingsrom_filosofi",
+          "thread_key": "filosofi_undervisning_vurdering_001",
+          "subject": "Studenten ber om begrunnelse – og spør hvorfor «selvstendig syntese» ikke ga utslag",
+          "summary": "En student har bedt om skriftlig begrunnelse. Amal minner om at sensorene tidligere valgte å ikke gjøre «selvstendig syntese» til et nytt kriterium etter levering, og ber deg formulere en begrunnelse som kan spores til de publiserte kriteriene uten å love noe om en eventuell klage.",
+          "purpose": "Teste om tidligere kriterieavgrensning faktisk overlever møtet med begrunnelsesplikt og uavhengig klageprosess.",
+          "stakes": "En etterrasjonalisert begrunnelse kan få karakteren til å virke mer elegant, men gjør vurderingsgrunnlaget mindre troverdig og kan blande underviserens rolle sammen med klageinstansens.",
+          "situation": [
+            "Studenten har rett på begrunnelse innen den gjeldende vurderingsprosessen.",
+            "Det publiserte grunnlaget omtaler argumentrekonstruksjon, begrepspresisjon og kildebruk, ikke et selvstendig syntesekriterium.",
+            "En eventuell klage behandles i separat prosess; du kan forklare egen vurdering, men ikke love utfall eller påvirke uavhengig behandling."
+          ],
+          "task_domain": "vurdering_sensur_og_begrunnelse",
+          "task_kind": "followup",
+          "competency": "transparent_vurdering",
+          "pressure": "forsvar_av_karakter_vs_sporbar_begrunnelse_og_klagegrense",
+          "choice_axis": "begrunn_med_publiserte_kriterier_og_marker_klagegrense_vs_etterrasjonaliser_med_skjult_kriterium",
+          "consequence_axis": "etterprovbar_begrunnelse_vs_prosess_og_kriterieglidning",
+          "narrative_arc": "kriterium_til_begrunnelse_og_klage",
+          "interaction_mode": "decision",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Knytt begrunnelsen til konkrete tekststeder og publiserte kriterier, og forklar klageprosessen uten å spå utfallet",
+              "reply": "Jeg viser hvor besvarelsen oppfyller eller ikke oppfyller de kriteriene studenten fikk på forhånd. Syntesen kan omtales som en styrke der den faktisk forbedrer disse dimensjonene, men ikke som et nytt selvstendig krav.",
+              "effect": 1,
+              "tags": ["assessment_trace", "published_criteria", "appeal_boundary"],
+              "feedback": "Du gjør begrunnelsen etterprøvbar og lar en eventuell klage forbli uavhengig av din egen vurderingsinteresse.",
+              "effects": {"stats": {"quality": 3, "trust": 3, "risk": -3, "energy": -1}}
+            },
+            {
+              "id": "B",
+              "label": "Forklar at toppnivå alltid forutsetter selvstendig syntese, selv om det ikke sto uttrykkelig i kriteriene",
+              "reply": "Det er en akademisk kvalitetsforventning som ligger implisitt i nivået, og det er rimelig å bruke den for å forsvare karakteren.",
+              "effect": -1,
+              "tags": ["posthoc_criterion", "appeal_risk", "authority_drift"],
+              "feedback": "Du gjeninnfører nettopp det skjulte kriteriet sensorene tidligere avviste og gjør begrunnelsen mindre robust dersom vurderingen prøves på nytt.",
+              "effects": {"stats": {"quality": -3, "trust": -3, "risk": 5}}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

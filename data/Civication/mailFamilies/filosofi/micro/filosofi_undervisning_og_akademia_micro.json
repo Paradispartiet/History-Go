@@ -1,0 +1,70 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "filosofi",
+  "role_scope": "filosofi_undervisning_og_akademia",
+  "mail_type": "micro",
+  "families": [
+    {
+      "id": "filosofi_kriteriepresisering",
+      "purpose": "Gjøre et uklart vurderingsuttrykk operativt gjennom publiserte kriterier og konkrete tekstbevis før flere besvarelser begrunnes inkonsistent.",
+      "learning_focus": ["transparent_vurdering", "kriterieoperasjonalisering", "begrunnelsesspor"],
+      "mails": [
+        {
+          "id": "filosofi_undervisning_micro_kriteriepresisering_001",
+          "mail_type": "micro",
+          "mail_family": "filosofi_kriteriepresisering",
+          "role_scope": "filosofi_undervisning_og_akademia",
+          "phase": "workday",
+          "day_phase": "afternoon",
+          "priority": 114,
+          "cooldown": 4,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Amal, sensorpartner",
+          "people_ref": "amal_sensorpartner_filosofi",
+          "person_id": "amal_sensorpartner_filosofi",
+          "place_id": "vurderingsrom_filosofi",
+          "thread_key": "filosofi_undervisning_vurdering_001",
+          "subject": "«Analytisk presisjon» står i kriteriene – men vi bruker uttrykket på tre forskjellige måter",
+          "summary": "Amal ser at sensorbegrunnelsene bruker «analytisk presisjon» om henholdsvis begrepsdefinisjon, eksplisitte inferenser og behandling av motargument. Før flere besvarelser vurderes må kriteriet knyttes til observerbare teksttrekk uten å lage et nytt krav etter levering.",
+          "purpose": "Teste om et allerede publisert kriterium kan presiseres som felles anvendelsesregel uten å bli utvidet retrospektivt.",
+          "stakes": "Uten en felles operasjonalisering kan like prestasjoner få ulike begrunnelser; med en for bred presisering kan sensorene i praksis innføre et nytt skjult kriterium.",
+          "situation": [
+            "«Analytisk presisjon» står i vurderingskriteriene studentene fikk før eksamen.",
+            "De første sensorbegrunnelsene viser tre ulike tolkninger av hva uttrykket innebærer i teksten.",
+            "Ingen av sensorene kan endre vurderingsgrunnlaget etter levering, men de må kunne anvende det konsistent og etterprøvbart."
+          ],
+          "task_domain": "vurdering_sensur_og_begrunnelse",
+          "task_kind": "micro",
+          "competency": "transparent_vurdering",
+          "pressure": "behov_for_felles_sensorpraksis_vs_retroaktiv_kriterieutvidelse",
+          "choice_axis": "forankre_presisering_i_publisert_kriterium_og_tekstbevis_vs_legge_til_nye_kvalitetskrav",
+          "consequence_axis": "konsistent_etterprovbar_begrunnelse_vs_skjult_standardglidning",
+          "narrative_arc": "kriterium_til_begrunnelse_og_klage",
+          "interaction_mode": "decision",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Definer hvordan det publiserte kriteriet gjenkjennes i teksten, og test presiseringen på de samme grenseeksemplene",
+              "reply": "Vi beholder kriteriets opprinnelige omfang og beskriver hvilke tekststeder som viser presis begrepsbruk, eksplisitt inferens og relevant motargument når de faktisk er del av samme publiserte standard.",
+              "effect": 1,
+              "tags": ["criterion_operationalization", "published_criteria", "evidence_trace"],
+              "feedback": "Du gjør kriterieanvendelsen mer konsistent uten å skape et nytt krav studentene aldri fikk vite om.",
+              "effects": {"stats": {"quality": 3, "trust": 2, "risk": -3, "energy": -1}}
+            },
+            {
+              "id": "B",
+              "label": "Bruk anledningen til å kreve selvstendig syntese også, siden det likevel virker som del av analytisk presisjon",
+              "reply": "Vi kan samle flere kvalitetskjennetegn under samme formulering og få en mer finmasket karakterskala.",
+              "effect": -1,
+              "tags": ["criterion_expansion", "retroactive_standard", "grading_drift"],
+              "feedback": "Du skjuler et nytt kvalitetskrav inne i et gammelt kriterium og gjør den senere begrunnelsen svakere ved klage eller kalibrering.",
+              "effects": {"stats": {"quality": -3, "trust": -2, "risk": 4}}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

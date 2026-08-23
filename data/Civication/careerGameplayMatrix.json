@@ -11,11 +11,11 @@
     "support_worlds": 1,
     "statuses": {
       "reference_complete": 5,
-      "playable": 33,
+      "playable": 34,
       "partial": 0,
-      "architecture_only": 47
+      "architecture_only": 46
     },
-    "runtime_gate_pass": 38,
+    "runtime_gate_pass": 39,
     "life_story_complete": 13,
     "component_debt": {
       "entry": {
@@ -24,13 +24,13 @@
         "missing": 0
       },
       "day_one": {
-        "complete": 38,
+        "complete": 39,
         "partial": 0,
-        "missing": 47
+        "missing": 46
       },
       "workday_loop": {
-        "complete": 38,
-        "partial": 44,
+        "complete": 39,
+        "partial": 43,
         "missing": 3
       },
       "practice_stories": {
@@ -39,24 +39,24 @@
         "missing": 0
       },
       "people": {
-        "complete": 33,
+        "complete": 34,
         "partial": 8,
-        "missing": 44
+        "missing": 43
       },
       "places": {
-        "complete": 38,
+        "complete": 39,
         "partial": 0,
-        "missing": 47
+        "missing": 46
       },
       "mail": {
-        "complete": 38,
+        "complete": 39,
         "partial": 0,
-        "missing": 47
+        "missing": 46
       },
       "knowledge": {
-        "complete": 38,
+        "complete": 39,
         "partial": 13,
-        "missing": 34
+        "missing": 33
       },
       "quality_axes": {
         "complete": 85,
@@ -69,14 +69,14 @@
         "missing": 0
       },
       "consequences": {
-        "complete": 38,
+        "complete": 39,
         "partial": 0,
-        "missing": 47
+        "missing": 46
       },
       "performance": {
-        "complete": 35,
+        "complete": 36,
         "partial": 3,
-        "missing": 47
+        "missing": 46
       },
       "economy": {
         "complete": 85,
@@ -84,14 +84,14 @@
         "missing": 0
       },
       "progression": {
-        "complete": 35,
+        "complete": 36,
         "partial": 6,
-        "missing": 44
+        "missing": 43
       },
       "exit": {
-        "complete": 35,
+        "complete": 36,
         "partial": 6,
-        "missing": 44
+        "missing": 43
       }
     }
   },
@@ -3443,6 +3443,7 @@
       "category": "filosofi",
       "role_scope": "filosofi_undervisning_og_akademia",
       "declared_by": [
+        "mailPlan",
         "workGrammar"
       ],
       "badge_titles": [
@@ -3452,51 +3453,54 @@
       "role_ids": [
         "filosofi_undervisning_og_akademia"
       ],
-      "status": "architecture_only",
+      "status": "playable",
       "artifacts": {
-        "role_models": [],
+        "role_models": [
+          "data/Civication/roleModels/filosofi/filosofi_undervisning_og_akademia.json"
+        ],
         "work_grammar": "data/Civication/workGrammars/filosofi/filosofi_undervisning_og_akademia.json",
         "shared_work_grammars": [],
-        "mail_plan": null,
+        "mail_plan": "data/Civication/mailPlans/filosofi/filosofi_undervisning_og_akademia_plan.json",
         "mail_families": {
           "job": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/filosofi/job/filosofi_undervisning_og_akademia_job.json",
+            "count": 1
           },
           "people": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/filosofi/people/filosofi_undervisning_og_akademia_people.json",
+            "count": 1
           },
           "conflict": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/filosofi/conflict/filosofi_undervisning_og_akademia_conflict.json",
+            "count": 1
           },
           "story": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/filosofi/story/filosofi_undervisning_og_akademia_story.json",
+            "count": 1
           },
           "event": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/filosofi/event/filosofi_undervisning_og_akademia_event.json",
+            "count": 1
           },
           "micro": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/filosofi/micro/filosofi_undervisning_og_akademia_micro.json",
+            "count": 1
           },
           "followup": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/filosofi/followup/filosofi_undervisning_og_akademia_followup.json",
+            "count": 1
           },
           "knowledge": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/filosofi/knowledge/filosofi_undervisning_og_akademia_knowledge.json",
+            "count": 1
           },
           "consequence": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/filosofi/consequence/filosofi_undervisning_og_akademia_consequence.json",
+            "count": 1
           }
         },
         "role_tests": [
+          "tests/civication-filosofi-undervisning-akademia-playability.test.js",
           "tests/civication-philosophy-life-career-split.test.js"
         ],
         "life_story": null
@@ -3513,16 +3517,24 @@
             "note": "2 linked career title(s) have an offer policy and gate."
           },
           "day_one": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No day-one structure."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/filosofi/filosofi_undervisning_og_akademia_plan.json",
+              "tests/civication-filosofi-undervisning-akademia-playability.test.js",
+              "tests/civication-philosophy-life-career-split.test.js"
+            ],
+            "note": "Role plan and role-specific test prove a first playable day."
           },
           "workday_loop": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/workGrammars/filosofi/filosofi_undervisning_og_akademia.json"
+              "data/Civication/mailFamilies/filosofi/job/filosofi_undervisning_og_akademia_job.json",
+              "data/Civication/mailPlans/filosofi/filosofi_undervisning_og_akademia_plan.json",
+              "data/Civication/workGrammars/filosofi/filosofi_undervisning_og_akademia.json",
+              "tests/civication-filosofi-undervisning-akademia-playability.test.js",
+              "tests/civication-philosophy-life-career-split.test.js"
             ],
-            "note": "Work-loop content exists, but the complete repeatable runtime path is not proven."
+            "note": "Repeatable work content is connected to a tested plan."
           },
           "practice_stories": {
             "level": "partial",
@@ -3530,31 +3542,54 @@
               "data/Civication/praksisfortellinger_registry.json",
               "data/Civication/workGrammars/filosofi/filosofi_undervisning_og_akademia.json"
             ],
-            "note": "5 FWG stories and 0 registered practice week(s)."
+            "note": "10 FWG stories and 0 registered practice week(s)."
           },
           "people": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No work-world people layer."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/filosofi/people/filosofi_undervisning_og_akademia_people.json",
+              "data/Civication/roleModels/filosofi/filosofi_undervisning_og_akademia.json",
+              "data/Civication/workGrammars/filosofi/filosofi_undervisning_og_akademia.json"
+            ],
+            "note": "Named/typed work relationships are used by people mails."
           },
           "places": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No concrete workplace or work surface declaration."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/roleModels/filosofi/filosofi_undervisning_og_akademia.json",
+              "data/Civication/workGrammars/filosofi/filosofi_undervisning_og_akademia.json"
+            ],
+            "note": "10 place/working-surface declarations."
           },
           "mail": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No role mail/event generation."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/filosofi/conflict/filosofi_undervisning_og_akademia_conflict.json",
+              "data/Civication/mailFamilies/filosofi/consequence/filosofi_undervisning_og_akademia_consequence.json",
+              "data/Civication/mailFamilies/filosofi/event/filosofi_undervisning_og_akademia_event.json",
+              "data/Civication/mailFamilies/filosofi/followup/filosofi_undervisning_og_akademia_followup.json",
+              "data/Civication/mailFamilies/filosofi/job/filosofi_undervisning_og_akademia_job.json",
+              "data/Civication/mailFamilies/filosofi/knowledge/filosofi_undervisning_og_akademia_knowledge.json",
+              "data/Civication/mailFamilies/filosofi/micro/filosofi_undervisning_og_akademia_micro.json",
+              "data/Civication/mailFamilies/filosofi/people/filosofi_undervisning_og_akademia_people.json",
+              "data/Civication/mailFamilies/filosofi/story/filosofi_undervisning_og_akademia_story.json",
+              "data/Civication/mailPlans/filosofi/filosofi_undervisning_og_akademia_plan.json"
+            ],
+            "note": "9/9 standard mail types plus tested plan/practice coverage."
           },
           "knowledge": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No functional knowledge layer."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/filosofi/knowledge/filosofi_undervisning_og_akademia_knowledge.json",
+              "data/Civication/roleModels/filosofi/filosofi_undervisning_og_akademia.json",
+              "data/Civication/workGrammars/filosofi/filosofi_undervisning_og_akademia.json"
+            ],
+            "note": "Knowledge content is connected to a mail or job-gate surface."
           },
           "quality_axes": {
             "level": "complete",
             "evidence": [
+              "data/Civication/roleModels/filosofi/filosofi_undervisning_og_akademia.json",
               "data/Civication/workGrammars/filosofi/filosofi_undervisning_og_akademia.json"
             ],
             "note": "Quality/competence axes are declared and connected to choice/consequence fields."
@@ -3562,19 +3597,30 @@
           "authority": {
             "level": "complete",
             "evidence": [
+              "data/Civication/roleModels/filosofi/filosofi_undervisning_og_akademia.json",
               "data/Civication/workGrammars/filosofi/filosofi_undervisning_og_akademia.json"
             ],
             "note": "Explicit authority boundary exists."
           },
           "consequences": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No consequence model."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/filosofi/consequence/filosofi_undervisning_og_akademia_consequence.json",
+              "data/Civication/mailFamilies/filosofi/followup/filosofi_undervisning_og_akademia_followup.json",
+              "tests/civication-filosofi-undervisning-akademia-playability.test.js",
+              "tests/civication-philosophy-life-career-split.test.js"
+            ],
+            "note": "Later consequence/follow-up path is role-tested."
           },
           "performance": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No performance evaluation."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/filosofi/filosofi_undervisning_og_akademia_plan.json",
+              "tests/civication-career-outcomes.test.js",
+              "tests/civication-filosofi-undervisning-akademia-playability.test.js",
+              "tests/civication-philosophy-life-career-split.test.js"
+            ],
+            "note": "Positive and negative outcomes are defined and role-tested."
           },
           "economy": {
             "level": "complete",
@@ -3586,37 +3632,46 @@
             "note": "Exact salary exists for all 2 linked career title(s)."
           },
           "progression": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No progression path."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/filosofi/filosofi_undervisning_og_akademia_plan.json",
+              "data/Civication/roleModels/filosofi/filosofi_undervisning_og_akademia.json",
+              "data/Civication/workGrammars/filosofi/filosofi_undervisning_og_akademia.json",
+              "tests/civication-career-outcomes.test.js"
+            ],
+            "note": "Career path and positive runtime outcome are both present."
           },
           "exit": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No exit/job-change path."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/filosofi/filosofi_undervisning_og_akademia_plan.json",
+              "data/Civication/roleModels/filosofi/filosofi_undervisning_og_akademia.json",
+              "tests/civication-career-outcomes.test.js"
+            ],
+            "note": "Exit destinations and negative runtime outcome are both present."
           }
         },
-        "runtime_gate": false,
-        "missing_components": [
+        "runtime_gate": true,
+        "missing_components": [],
+        "complete_components": [
+          "entry",
           "day_one",
+          "workday_loop",
           "people",
           "places",
           "mail",
           "knowledge",
+          "quality_axes",
+          "authority",
           "consequences",
           "performance",
+          "economy",
           "progression",
           "exit"
         ],
-        "complete_components": [
-          "entry",
-          "quality_axes",
-          "authority",
-          "economy"
-        ],
-        "practice_story_count": 5,
+        "practice_story_count": 10,
         "practice_weeks": [],
-        "reference_depth": 5,
+        "reference_depth": 10,
         "life_story_complete": false,
         "salary": {
           "linked_titles": 2,
