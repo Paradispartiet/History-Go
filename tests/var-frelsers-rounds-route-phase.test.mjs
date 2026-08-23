@@ -114,9 +114,9 @@ test("Related places and the Akersryggen walk resolve to canonical places", () =
   assert.match(routeRuntime, /data\/routes\.json["'],\s*["']data\/routes_walks\.json/);
 });
 
-test("phase 4 records a blocker-free six-dimension gate", () => {
-  assert.equal(production.roundsReadiness.status, "phase_4_ready");
-  assert.equal(production.roundsReadiness.auditFile, "reports/place-production/var-frelsers-gravlund-phase4-rounds-audit-v1.json");
+test("phase 4 audit remains inspectable after final production promotion", () => {
+  assert.ok(["phase_4_ready", "production_ready"].includes(production.roundsReadiness.status));
+  assert.equal(production.finalAudit.status, "PRODUCTION_READY");
   assert.equal(audit.status, "PASS");
   assert.equal(audit.blockers.length, 0);
   for (const key of ["correctness_and_evidence", "coverage_and_completion", "editorial_quality", "technical_integrity", "safety_and_responsibility", "maintainability_and_verifiability"]) {

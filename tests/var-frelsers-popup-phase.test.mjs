@@ -113,8 +113,8 @@ test('statisk artikkel og produksjonsrapport har korrekte grenser for fase 2', (
 
   assert.equal(report.chronologyStories.status, 'PASS');
   assert.equal(report.gates.H.status, 'PASS');
-  assert.equal(report.quizOpening.status, 'N/A');
-  assert.match(workcard, /Status: \*\*FASE 2 PASS/);
+  assert.ok(['N/A', 'PASS'].includes(report.quizOpening.status));
+  assert.match(workcard, /Status: \*\*PRODUKSJONSKLAR – fase 5 PASS/);
   assert.match(workcard, /2\. \*\*PASS\*\* – popup/);
-  assert.match(workcard, /bildene har ulike kamerastandpunkt/);
+  assert.match(workcard, /eksplisitt kamerabegrensning/);
 });

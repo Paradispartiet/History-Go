@@ -2,7 +2,7 @@
 
 Dato: 2026-08-22
 Canonical place-ID: `var_frelsers_gravlund`  
-Status: **FASE 4 PASS – lokale rundinger og gåopplevelse låst**
+Status: **PRODUKSJONSKLAR – fase 5 PASS**
 
 ## Stedsidentitet
 
@@ -30,8 +30,8 @@ Koordinaten beholdes uendret som en verifisert arealmarkør. Offisiell besøksad
 | Quiz | Ett sett, fem spørsmål | Fire sett à sju: sted, kronologi, historiebruk og faglig sluttsett |
 | Knowledge / Fagverk | Quizgenerert minimum; ingen målmanifest | Canonical Knowledge-synk og mål i Historie-manifestet |
 | Natur | Generisk `nature_profile`, ingen artsdokumentasjon | Behold natur som stedsopplevelse; ingen rå artsliste |
-| Legacy-felter | `safe_facts`, Wonderkammer- og People-seeds | Klassifiseres og fjernes i sluttfasen |
-| QA | Eldre strukturkontroll med manuelle hull | Ny statisk og nettleserbasert sluttgate |
+| Legacy-felter | `safe_facts`, Wonderkammer- og People-seeds | Fjernet etter migrasjon til claims, Story, quiz/Knowledge, Språk og canonicale People |
+| QA | Eldre strukturkontroll med manuelle hull | Permanent statisk og Chromium-basert sluttgate på desktop og mobil |
 
 ## Kildegrunnlag låst i fase 1
 
@@ -54,10 +54,12 @@ Koordinaten beholdes uendret som en verifisert arealmarkør. Offisiell besøksad
 2. **PASS** – popup: kronologi, Story, Før/etter, Kilder, Nyheter, Lesespor og Språk.
 3. **PASS** – quiz 4 × 7, produksjonsbrief, kontekst, Knowledge og Fagverk.
 4. **PASS** – People, Objects, Brands og Related med bilder, samt firestoppsruten «Akersryggen – trehus, stein, minne og park». Standardrundene brukes uten lokal runtime-override.
-5. **IKKE STARTET** – onsite, progresjon, desktop/mobil, tilgjengelighet, legacy-opprydding og endelig 6-dimensjonal kvalitetsscore.
+5. **PASS** – onsite, progresjon, desktop/mobil, tilgjengelighet, legacy-opprydding og endelig 6-dimensjonal kvalitetsscore.
 
-## Kvalitetsstatus fase 4
+## Kvalitetsstatus fase 5
 
-Ingen kritiske blokkere for sluttfasen. Standardkontrakten gir rundingene `people`, `objects`, `brands` og `related`, mens merket ligger separat. People-runden har 16 kildeklare profiler uten brutte bildebaner; 13 har lokale bilder og tre bruker eksisterende designkode-fallback. Objects har tre fysiske stopp med 100 prosent lokal bilde- og kildekning. Brands har to reelle aktører med 100 prosent logodekning. Fire nabosteder resolver, og den nye ruten binder Damstredet/Telthusbakken, Gamle Aker kirke, Vår Frelsers og St. Hanshaugen sammen uten å innføre et nytt rutesystem.
+Ingen kritiske blokkere. Standardkontrakten gir rundingene `people`, `objects`, `brands` og `related`, mens merket ligger separat. People-runden har 16 kildeklare profiler uten brutte bildebaner; 13 har lokale bilder og tre bruker eksisterende designkode-fallback. Objects har tre fysiske stopp med 100 prosent lokal bilde- og kildekning. Brands har to reelle aktører med 100 prosent logodekning. Fire nabosteder resolver, og ruten binder Damstredet/Telthusbakken, Gamle Aker kirke, Vår Frelsers og St. Hanshaugen sammen gjennom eksisterende rutesystem.
 
-Fase 4-score: korrekthet og evidens 5/5, dekning og ferdigstillelse 5/5, redaksjonell kvalitet 5/5, teknisk integritet 5/5, sikkerhet og ansvarlighet 5/5, vedlikeholdbarhet og etterprøvbarhet 5/5. Totalt 30/30; 0 kritiske funn.
+Sluttfasen fjerner tre parallelle legacy-eiere og den utdaterte 1952-formuleringen. Onsite-opplevelsen bruker områdeanker, ordinære gangveier og eksplisitt gravlundsetikk; eksakte gravfelt holdes tilbake. Eksisterende eiere for fysisk besøk, favoritt, quiz og Next Action gjenbrukes uten ny lagring. Chromium-gaten verifiserer elleve popupfaner, tastaturnavigasjon, alle fire rundinger og Fagverk på 1440 × 1000 og 390 × 844.
+
+Endelig score: korrekthet og evidens 5/5, dekning og ferdigstillelse 5/5, redaksjonell kvalitet 5/5, teknisk integritet 5/5, sikkerhet og ansvarlighet 5/5, vedlikeholdbarhet og etterprøvbarhet 5/5. Totalt 30/30; 0 kritiske funn.
