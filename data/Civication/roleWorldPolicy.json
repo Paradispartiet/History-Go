@@ -13,12 +13,22 @@
     "editorial_layer_only": true,
     "new_runtime_allowed": false,
     "new_parallel_scene_format_allowed": false,
+    "role_world_declared_runtime_capabilities_allowed": false,
+    "governed_additive_runtime_capabilities_allowed": true,
+    "governed_capability_requirements": [
+      "existing_scene_pipeline_remains_canonical",
+      "capability_has_explicit_runtime_owner",
+      "capability_is_additive_for_existing_saves_and_roles",
+      "schema_or_state_contract_is_versioned_or_strictly_bounded",
+      "permanent_tests_prove_legacy_roles_remain_compatible",
+      "role_world_complete_semantics_are_unchanged"
+    ],
     "canonical_scene_schema": "data/Civication/sceneContractV1.schema.json",
     "compiled_registry": "data/Civication/compiledSceneRegistryV1.json",
     "scene_catalog": "CivicationSceneCatalog",
     "scene_director": "CivicationSceneDirector",
     "choice_director": "CivicationChoiceDirector",
-    "rule": "Role World materialiseres gjennom eksisterende authored sources og den canonicale Scene Pipeline."
+    "rule": "Role World-filer kan ikke opprette runtime-capabilities. Nye additive capabilities må innføres gjennom ordinær runtime-governance og fortsatt materialiseres gjennom den canonicale Scene Pipeline."
   },
   "career_status_boundary": {
     "career_reference_status": "reference_complete",
