@@ -53,6 +53,7 @@
     },
     "place_id": { "$ref": "#/$defs/nonEmptyId" },
     "work_context": { "$ref": "#/$defs/workContext" },
+    "authority_context": { "$ref": "#/$defs/authorityContext" },
     "content": {
       "type": "object",
       "additionalProperties": false,
@@ -158,7 +159,79 @@
         "label": { "type": "string", "minLength": 1 },
         "reply": { "type": "string", "minLength": 1 },
         "feedback": { "type": "string", "minLength": 1 },
+        "authority_action": { "$ref": "#/$defs/authorityAction" },
         "effects": { "$ref": "#/$defs/effects" }
+      }
+    },
+    "authorityAction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["action_id", "intent"],
+      "properties": {
+        "action_id": { "$ref": "#/$defs/nonEmptyId" },
+        "intent": { "enum": ["execute", "recommend", "request_approval", "wait", "escalate"] }
+      }
+    },
+    "authorityContext": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["institution_id", "unit_id", "role_scope", "reporting_line", "approval_points", "authority_rules", "resources", "escalation_paths"],
+      "properties": {
+        "institution_id": { "$ref": "#/$defs/nonEmptyId" },
+        "unit_id": { "$ref": "#/$defs/nonEmptyId" },
+        "role_scope": { "$ref": "#/$defs/nonEmptyId" },
+        "reporting_line": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyId" }, "uniqueItems": true },
+        "peer_functions": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyId" }, "uniqueItems": true, "default": [] },
+        "external_counterparts": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyId" }, "uniqueItems": true, "default": [] },
+        "goals_pressures": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyId" }, "uniqueItems": true, "default": [] },
+        "approval_points": { "type": "array", "items": { "$ref": "#/$defs/approvalPoint" }, "maxItems": 16 },
+        "authority_rules": { "type": "array", "items": { "$ref": "#/$defs/authorityRule" }, "minItems": 1, "maxItems": 32 },
+        "resources": { "type": "array", "items": { "$ref": "#/$defs/institutionalResource" }, "maxItems": 16 },
+        "escalation_paths": { "type": "array", "items": { "$ref": "#/$defs/escalationPath" }, "maxItems": 16 }
+      }
+    },
+    "approvalPoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["approval_id", "action_id", "approver_actor_id", "approval_object_id"],
+      "properties": {
+        "approval_id": { "$ref": "#/$defs/nonEmptyId" },
+        "action_id": { "$ref": "#/$defs/nonEmptyId" },
+        "approver_actor_id": { "$ref": "#/$defs/nonEmptyId" },
+        "approval_object_id": { "$ref": "#/$defs/nonEmptyId" }
+      }
+    },
+    "authorityRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["action_id", "authority", "requires_resources"],
+      "properties": {
+        "action_id": { "$ref": "#/$defs/nonEmptyId" },
+        "authority": { "enum": ["direct", "approval_required", "influence_only", "forbidden"] },
+        "approval_id": { "$ref": "#/$defs/nonEmptyId" },
+        "escalation_id": { "$ref": "#/$defs/nonEmptyId" },
+        "requires_resources": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyId" }, "uniqueItems": true }
+      }
+    },
+    "institutionalResource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["resource_id", "baseline_state"],
+      "properties": {
+        "resource_id": { "$ref": "#/$defs/nonEmptyId" },
+        "baseline_state": { "enum": ["available", "limited", "unavailable"] },
+        "resource_object_id": { "$ref": "#/$defs/nonEmptyId" }
+      }
+    },
+    "escalationPath": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["escalation_id", "action_id", "target_actor_id", "escalation_object_id"],
+      "properties": {
+        "escalation_id": { "$ref": "#/$defs/nonEmptyId" },
+        "action_id": { "$ref": "#/$defs/nonEmptyId" },
+        "target_actor_id": { "$ref": "#/$defs/nonEmptyId" },
+        "escalation_object_id": { "$ref": "#/$defs/nonEmptyId" }
       }
     },
     "taskContract": {
