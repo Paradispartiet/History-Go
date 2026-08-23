@@ -3,7 +3,7 @@
 - Oppdatert: 2026-08-23
 - Place ID: `birkelunden`
 - Canonical source: `data/places/by/oslo/places/birkelunden.json`
-- Aktiv 7B-baseline `main`: `2f43748cb4c07f31abfb07200f740121084d7ef5`
+- Aktiv 7C branch-baseline `main`: `847a2e8ca3e71a3bfdd9bc41e7029a41e1c9dec4`
 - Fase 0 merge: #5236 / `d3945c43f10b1f5b4e1b758f915818342f95d240`
 - Fase 1 merge: #5239 / `2dbc70a4984e01487a2dd7289d2e93bcbb0d6217`
 - Fase 2 merge: #5241 / `61bcf3e1dc0156582eb1e3bd9bfcee6d9ba05c06`
@@ -13,29 +13,20 @@
 - Fase 6 merge: #5254 / `735a7490072adc8b7decb133a0aebdd8fb33de36`
 - Fase 7 audit merge: #5255 / `72622da7b7e0074c3de6966c1b0f0da35b7b9e7d`
 - Fase 7A merge: #5257 / `2f43748cb4c07f31abfb07200f740121084d7ef5`
+- Fase 7B merge: #5262 / `54e7177a5a3b4563eafe4b0c40e8667348cbe67e`
 - Fase 7A review: `reports/place-production/birkelunden-phase7a-about-audit-v1.md`
-- Fase 7A regression: `tests/birkelunden-phase7a-about.test.mjs`
 - Fase 7B review: `reports/place-production/birkelunden-phase7b-history-audit-v1.md`
-- Fase 7B regression: `tests/birkelunden-phase7b-history.test.mjs`
-- Popupkontrakt: `docs/PLACE_POPUP_SYSTEM.md`
-- Leksikonkontrakt: `data/leksikon/README_LEKSIKON.md`
+- Fase 7C review: `reports/place-production/birkelunden-phase7c-story-audit-v1.md`
+- Fase 7C evidence: `reports/place-production/birkelunden-phase7c-story-source-addendum-v1.json`
 - Content Factory: `data/places/regler/content_factory_v1.json`
+- Story governance: `docs/STORIES_DATA_GOVERNANCE.md`
 
-## Identitet og bevaringslås
-
-Birkelunden er den avgrensede offentlige parken på Grünerløkka.
+## Bevaringslås
 
 ```text
 park: 16,3 dekar / 16 300 m²
 kulturmiljø: ca. 116 dekar
 coordinate: verified_geometry / osm-way:3236549 / park_anchor
-```
-
-Fase-5 description forblir:
-
-```text
-status: ready_v4_2
-claims: 17/17 verified
 desc SHA-256: ea8efd6ab0ed583485b2c87dd28e4dbb9af7766c32381f57e4cb6a54e9d94dbe
 popupDesc SHA-256: 670dcbc8e37004fe1c3a595ae6af1a6dcfe304f1048ce906f37df3f7e8544ff7
 ```
@@ -45,10 +36,10 @@ popupDesc SHA-256: 670dcbc8e37004fe1c3a595ae6af1a6dcfe304f1048ce906f37df3f7e8544
 | Fase | Status |
 | --- | --- |
 | 0–6 | **FERDIG OG MERGET** |
-| 7 popupaudit | **FERDIG OG MERGET** (#5255) |
+| 7 popup-audit | **FERDIG OG MERGET** (#5255) |
 | 7A Om | **FERDIG OG MERGET** (#5257) |
-| 7B Historie | **KLAR FOR REVIEW / CI** |
-| 7C Fortellinger | **REELT PRODUKSJONSHULL** – Jack Johnsen/Venner i Bjerkelunden kandidat |
+| 7B Historie | **FERDIG OG MERGET** (#5262) |
+| 7C Fortellinger | **KLAR FOR REVIEW / CI** |
 | 7D Før/etter | **REELT PRODUKSJONSHULL** |
 | 7E Nyheter | **FERSK RESEARCH KREVES** |
 | 7F Lesespor | **REELT RESEARCHHULL** |
@@ -56,80 +47,109 @@ popupDesc SHA-256: 670dcbc8e37004fe1c3a595ae6af1a6dcfe304f1048ce906f37df3f7e8544
 | 7H Språk | **REELL NAVNEHISTORIEKANDIDAT** |
 | 8–24 | **ÅPENT** etter canonical rekkefølge |
 
-## 7A – låst tilstand
+## 7A – Om, låst
 
-Om-fanen har nå:
+- fase-5 `popupDesc` forblir hovedartikkel;
+- `spatial_profile.area_m2=16300`;
+- park/kulturmiljø-grensen er eksplisitt;
+- synlig Nature-tekst er kildeauditert mot Birkelundens faktiske bjørkelunder/trehistorie;
+- canonical Leksikon-owner har `suppress_untitled_legacy_articles: true` og tomme `wikiText`, `facts`, `chronology`;
+- `tests/birkelunden-phase7a-about.test.mjs` kjøres permanent fra `scripts/check-places.sh`.
 
-- uendret fase-5 `popupDesc` som hovedartikkel;
-- `spatial_profile.area_m2=16300` og korrekt park/kulturmiljø-grense;
-- kildeauditert synlig `nature_profile` om Birkelundens bjørker, vern og trehistorie;
-- navngitt canonical Leksikon-owner med `suppress_untitled_legacy_articles: true`;
-- tomme `wikiText`, `facts` og `chronology`, slik at legacy-data ikke konkurrerer med canonical place-data.
+## 7B – Historie, låst
 
-`tests/birkelunden-phase7a-about.test.mjs` kjøres permanent fra `scripts/check-places.sh`.
-
-## 7B – Historie
-
-Canonical Historie-eier forblir `history_layers`; det bygges ingen parallell Leksikon-chronology og ingen generell temporal-renderer.
-
-De fire lagene er:
-
-1. `birkelunden_parken_blir_til` – 1860-årene–1882;
-2. `birkelunden_aktivitetspark` – 1916–1928;
-3. `birkelunden_moter_og_minnespor` – tidlig 1900-tall–1989;
-4. `birkelunden_kulturmiljo` – 1996–2006.
-
-Fase 7B lukker ett konkret dekninghull i lag 3. Tittelen blir **Navn, organisering og minnespor**, og sammendraget inkluderer den allerede verifiserte navnehistorien:
+Canonical Historie-eier er fire `history_layers` i sorteringsrekkefølge 10/20/30/40. Lag 3 heter nå **Navn, organisering og minnespor** og dekker den verifiserte navneperioden:
 
 ```text
 1926: Bjerkelunden blir offisiell navneform
 1955: Birkelunden kommer tilbake
 ```
 
-Dette gjør at de strukturelle hovedmarkørene i `temporal_profile` er representert i den brukerrettede Historie-flaten uten chronology-filler.
+Det bygges ingen parallell Leksikon-chronology og ingen generell temporal-renderer. `tests/birkelunden-phase7b-history.test.mjs` kjøres permanent fra `scripts/check-places.sh`.
 
-Canonical Leksikon-owner forblir:
+## 7C – Fortellinger
+
+Ny active Story:
 
 ```text
-title: Birkelunden
-type: main
-suppress_untitled_legacy_articles: true
-chronology: []
+id: st_birkelunden_bench_to_association
+title: Da parkbenken ble en forening
+quality_profile: episode_v1
+type: turning_point
+year: 1937
+place_id: birkelunden
+person_id: null
+related_people: []
+related_places: []
+next_scenes: []
 ```
 
-Den gamle untitled legacy chronologyen kan ligge fysisk i batchdata for kompatibilitet, men skal ikke være popup-synlig.
+Narrativ akse:
 
-## Permanent 7B-port
+```text
+10–12 pensjonister på benk
+→ låner hvilebrakke
+→ 18 personer
+→ organiserer seg i 1937
+→ senere fysisk minnespor: Jack Johnsen-bysten 1984
+```
 
-`tests/birkelunden-phase7b-history.test.mjs` krever:
+Tre inspectable kilder:
 
-- nøyaktig fire canonical history-lag i rekkefølge 10/20/30/40;
-- substansielt periode-/tittel-/summary-innhold;
-- dekning av 1860-årene, 1882, 1916, 1926, 1955, 1996 og 2006;
-- eksplisitt Bjerkelunden → Birkelunden-navnespor i lag 3;
-- tom canonical Leksikon chronology;
-- legacy chronology ikke synlig ved siden av history_layers;
-- runtime-eierskap gjennom `renderHistoryTimeline(place)` og Historie-fanen;
-- ingen `renderTemporalSection()`.
+1. Pensjonistforbundet – Vår historie;
+2. Oslo Byarkiv – TOBIAS 2–3/2006;
+3. Oslo byleksikon – Birkelunden.
 
-Testen er koblet permanent inn i `scripts/check-places.sh` etter 7A-testen.
+Kildevarianten er eksplisitt bevart:
 
-## Scope 7B
+```text
+Pensjonistforbundet: «Venner i Bjerkelunden»
+Oslo Byarkiv:        «Venner i Birkelund»
+```
 
-Endres:
+Storyen normaliserer ikke disse til én historisk form.
 
-1. `data/places/by/oslo/places/birkelunden.json` – kun tredje `history_layers`-tittel/sammendrag;
-2. `tests/birkelunden-phase7b-history.test.mjs`;
-3. `scripts/check-places.sh` – permanent 7B-teststeg;
-4. `reports/place-production/birkelunden-phase7b-history-audit-v1.md`;
-5. dette workcardet.
+Held-back:
 
-Ikke endret: descriptions/hashes, koordinater, spatial/temporal/nature-profiler, Leksikon-data, popup-JS, Stories, Før/etter, Nyheter, Lesespor, Kilder, Språk, People, Objects, Brands eller Quiz.
+```text
+«Norges/landets eldste pensjonistforening» → IKKE PROMOTERT
+```
 
-Produksjonsmodell/API-kreditter i 7B: **0**, fordi godkjent Birkelunden-evidence allerede dekker endringen fullt ut. Ingen kvalitets- eller innholdsreduksjon er gjort.
+Jack Johnsen har ingen canonical People-ID i dagens repo. Han kan derfor være dokumentert aktør i teksten og `episode.actors`, men får ingen oppfunnet `person_id`/`related_people`.
+
+Runtime:
+
+- `data/stories/stories_birkelunden.json`;
+- registrert i `data/stories/stories_manifest_by_batch_01.json`;
+- registrert i `data/stories/stories_episode_v1_manifest.json`.
+
+Maskinscore etter aktiv `runtimeScore()`:
+
+```json
+{
+  "narrative": 3,
+  "historical": 2,
+  "source": 5,
+  "play_value": 3,
+  "originality": 3,
+  "total": 16
+}
+```
+
+Scoren er ikke keyword-optimalisert; den skal være eksakt mot motoren. Narrativ kvalitet vurderes separat gjennom Story-governance.
+
+Permanent 7C-port:
+
+- `tests/birkelunden-phase7c-story.test.mjs`;
+- kjøres i `.github/workflows/stories-governance.yml`;
+- låser episode, kilder, navnevariant, held-back superlativ, tomme relasjoner, manifests og score.
+
+Modell/API-kreditter i 7C: **0 eksterne modellkall**. Evidence ble gjenbrukt og offentlige kilder verifisert uten kvalitetsreduksjon.
+
+## Scope 7C
+
+Endres bare Story-system, faseaudit og dette workcardet. Canonical Birkelunden Place, descriptions, history/spatial/temporal/nature-profiler, People, Objects, Leksikon og popup-runtime endres ikke.
 
 ## Neste
 
-Etter grønn 7B-merge starter **7C Fortellinger** fra fersk `main`.
-
-7C er reelt innholdsarbeid og skal velge en dokumentert, konkret episode med sterk Birkelunden-eierskap; Jack Johnsen / Venner i Bjerkelunden er første kandidat, men må source-auditeres mot Story-kontrakten før materialisering.
+Etter grønn 7C-merge: **7D – Før/etter**. Det krever rettighetsklare historiske og nå-bilder av selve Birkelunden med meningsfull visuell sammenligning; Paulus kirke, skole eller kulturmiljøets bygårder skal ikke brukes som proxy for parken.
