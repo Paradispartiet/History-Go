@@ -77,43 +77,18 @@ jobs:
             tests/fagverk-release-manifest.test.mjs
 
       - name: Guard generated diff scope
-        id: scope
-        continue-on-error: true
-        shell: bash
-        run: |
-          set +e
-          allowed='^(data/fag/fag_manifest\.json|data/fag/helse/helsepensum_canonical_v1\.json|data/fag/helse/emner_helse_canonical_v1\.json|data/fag/helse/methods_helse_canonical_v1\.json|data/fagverk/fagverk_registry\.json|data/fagverk/subject_inventory\.json|data/fagverk/subject_status\.json|data/fagverk/fagverk_release\.json|data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet\.json|data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet/.*\.json|reports/fagverk/helse-public-health-fulltext-v1-audit\.json|reports/fagverk/general-engine-audit\.json)$'
-          {
-            echo '=== git status --porcelain=v1 ==='
-            git status --porcelain=v1
-            echo
-            echo '=== paths outside allowlist ==='
-          } > /tmp/helse-scope-guard.log
-          bad="$(git status --porcelain=v1 | sed -E 's/^.. //' | grep -Ev "$allowed" || true)"
-          printf '%s\n' "$bad" >> /tmp/helse-scope-guard.log
-          cat /tmp/helse-scope-guard.log
-          if [[ -n "$bad" ]]; then exit 1; fi
-
-      - name: Commit scope diagnostic on mismatch
-        if: steps.scope.outcome == 'failure'
         shell: bash
         run: |
           set -euo pipefail
-          cp /tmp/helse-scope-guard.log .github/TEMP-helse-public-health-scope-diagnostic.txt
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add .github/TEMP-helse-public-health-scope-diagnostic.txt
-          if ! git diff --cached --quiet; then
-            git commit -m 'chore: capture Helse generated scope mismatch'
-            git push origin HEAD:${{ github.head_ref }}
+          allowed='^(data/fag/fag_manifest\.json|data/fag/helse/helsepensum_canonical_v1\.json|data/fag/helse/emner_helse_canonical_v1\.json|data/fag/helse/methods_helse_canonical_v1\.json|data/fagverk/fagverk_registry\.json|data/fagverk/subject_inventory\.json|data/fagverk/subject_status\.json|data/fagverk/fagverk_release\.json|data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet\.json|data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet/(|.*\.json)|reports/fagverk/helse-public-health-fulltext-v1-audit\.json|reports/fagverk/general-engine-audit\.json)$'
+          bad="$(git status --porcelain=v1 | sed -E 's/^.. //' | grep -Ev "$allowed" || true)"
+          if [[ -n "$bad" ]]; then
+            echo 'Unexpected generated files:'
+            printf '%s\n' "$bad"
+            exit 1
           fi
 
-      - name: Fail after captured scope diagnostic
-        if: steps.scope.outcome == 'failure'
-        run: exit 1
-
       - name: Commit generated 5/12 outputs
-        if: steps.scope.outcome == 'success'
         shell: bash
         run: |
           set -euo pipefail
