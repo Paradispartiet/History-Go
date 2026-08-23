@@ -4,7 +4,7 @@ import fs from 'node:fs';
 const readJson = file => JSON.parse(fs.readFileSync(file, 'utf8'));
 
 const stories = readJson('data/stories/stories_birkelunden.json');
-const byManifest = readJson('data/stories/stories_manifest_by_batch_01.json');
+const storiesManifest = readJson('data/stories/stories_manifest.json');
 const episodeManifest = readJson('data/stories/stories_episode_v1_manifest.json');
 const storyTypes = readJson('data/stories/story_types.json');
 const evidence = readJson('reports/place-production/birkelunden-phase7c-story-source-addendum-v1.json');
@@ -52,7 +52,7 @@ assert.deepEqual(story.score, {
 });
 
 assert.ok(episodeManifest.files.includes('data/stories/stories_birkelunden.json'), 'Birkelunden Story må være under streng episode-v1-validering');
-assert.ok(byManifest.files.some(row => row.entity_id === 'birkelunden' && row.path === 'data/stories/stories_birkelunden.json'), 'By-runtime-manifestet må registrere Birkelunden Story');
+assert.ok(storiesManifest.files.some(row => row.entity_id === 'birkelunden' && row.path === 'data/stories/stories_birkelunden.json'), 'canonical Stories-manifest må registrere Birkelunden Story');
 
 const nameClaim = evidence.claims.find(row => row.claim_id === 'cf02_birkelunden_story_name_004');
 assert.equal(nameClaim?.review_status, 'verified_with_source_wording_disagreement');
