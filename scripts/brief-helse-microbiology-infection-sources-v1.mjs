@@ -13,7 +13,7 @@ const ALLOWED_METHODS = new Set(['met_helse_laboratorieevidens', 'met_helse_popu
 const P = Object.freeze({
   brief: 'data/fag/helse/microbiology_infection_source_claim_brief_v1.json',
   report: 'reports/fagverk/helse-microbiology-infection-source-brief-v1-audit.json',
-  emner: 'data/fag/helse/emner_helse_canonical_v1.json',
+  emners: 'data/fag/helse/emner_helse_canonical_v1.json',
   methods: 'data/fag/helse/methods_helse_canonical_v1.json',
   safety: 'data/fag/helse/clinical_safety_contract_helse_v1.json',
   registry: 'data/fagverk/fagverk_registry.json',
@@ -64,7 +64,7 @@ function build() {
     no_claim_overstated_as_verified: claims.every((row) => row.status === 'planned_requires_fulltext_verification' && (row.source_ids || []).length >= 3),
     scenarios_non_individualizing_and_source_bound: scenarios.every((row) => (row.source_ids || []).length >= 3 && row.purpose && !/diagnostisere en konkret person|behandle en konkret person|antibiotikavalg for en person|individuell risikoberegning/u.test(row.purpose)),
     colonization_infection_boundary_explicit: brief.source_policy?.colonization_is_not_infection === true && serialized.includes('kolonisering') && serialized.includes('infeksjon'),
-    microbe_detection_disease_boundary_explicit: brief.source_policy?.microbe_detection_is_not_disease === true && serialized.includes('påvist mikrobe') && serialized.includes('sykdom'),
+    microbe_detection_disease_boundary_explicit: brief.source_policy?.microbe_detection_is_not_disease === true && (serialized.includes('mikrobefunn') || serialized.includes('påvisning av en mikroorganisme') || serialized.includes('laboratoriepåvisning')) && serialized.includes('sykdom'),
     nucleic_acid_detection_active_disease_boundary_explicit: brief.source_policy?.nucleic_acid_detection_is_not_automatically_active_disease === true && serialized.includes('nukleinsyre') && serialized.includes('aktiv sykdom'),
     pathogenicity_virulence_boundary_explicit: brief.source_policy?.pathogenicity_is_not_virulence === true && serialized.includes('patogenitet') && serialized.includes('virulens'),
     exposure_transmission_disease_boundaries_explicit: brief.source_policy?.exposure_is_not_transmission === true && brief.source_policy?.transmission_is_not_disease === true && serialized.includes('eksponering') && serialized.includes('transmisjon'),
