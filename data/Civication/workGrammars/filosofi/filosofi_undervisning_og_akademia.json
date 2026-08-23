@@ -1,49 +1,94 @@
 {
-  "schema": "civication_work_grammar_v1",
-  "version": 1,
+  "schema": "civication_work_grammar_v2",
+  "version": 2,
   "category": "filosofi",
   "role_scope": "filosofi_undervisning_og_akademia",
   "role_id": "filosofi_undervisning_og_akademia",
-  "badge_binding": {
-    "badge_id": "filosofi",
-    "badge_titles": ["Foreleser", "Professor"],
-    "tier_thresholds": [240, 300]
-  },
-  "work_world": "Filosofisk undervisning og akademia: gjør argumenter lærbare, vurder saklig uenighet etter eksplisitte faglige kriterier og hold akademisk autoritet, kildebruk og vurderingsmakt etterprøvbar.",
-  "authority_boundary": {
-    "can": [
-      "planlegge og gjennomføre undervisning innen mandatet",
-      "gi begrunnet faglig tilbakemelding",
-      "lede saklig uenighet og akademisk diskusjon"
-    ],
-    "cannot": [
-      "gjøre personlig enighet til vurderingskriterium",
-      "bruke Badge-poeng som grunnlag for akademisk tittel",
-      "skjule vurderingskriterier etter at arbeid er levert",
-      "godta usporbar eller uredelig kildebruk"
-    ]
-  },
+  "source": {"evidence": "data/Civication/filosofiCareerLifeEvidence.json"},
+  "badge_binding": {"badge_id": "filosofi", "badge_titles": ["Foreleser", "Professor"], "tier_thresholds": [240, 300]},
+  "task_families": [
+    "laringsmal_og_emnedesign",
+    "forelesning_seminar_og_argumenttrening",
+    "veiledning_og_formativ_tilbakemelding",
+    "vurdering_sensur_og_begrunnelse",
+    "akademisk_redelighet_og_kildespor",
+    "pensum_kontekst_og_faglig_uenighet"
+  ],
   "work_loops": [
-    "definer læringsmål og faglige vurderingskriterier",
-    "velg tekster og problemer som belyser reell filosofisk uenighet",
-    "foreles, spør og modeller hvordan argumenter rekonstrueres",
-    "gi tilbakemelding på premisser, inferens, begreper og kildebruk fremfor personlig standpunkt",
-    "revider undervisning og akademisk arbeid etter dokumenterte lærings- og kvalitetsproblemer"
+    {
+      "id": "undervisningsdesign_og_gjennomforing",
+      "steps": ["definer_laringsmal", "velg_problem_tekst_og_aktivitet", "modeller_argumentasjon_og_begreper", "observer_misforstaelser_og_uenighet", "gi_formativ_tilbakemelding", "revider_neste_undervisning"]
+    },
+    {
+      "id": "vurdering_og_kvalitetssikring",
+      "steps": ["publiser_kriterier_for_innlevering", "kalibrer_grenseeksempler", "vurder_argument_kildebruk_og_begrep", "dokumenter_begrunnelse", "eskaler_integritet_habilitet_eller_klage_nar_nodvendig", "bruk_resultater_til_a_revidere_emnet"]
+    }
   ],
   "practice_stories": [
-    {"id":"student_uenig","title":"Studenten argumenterer mot deg","problem":"En student avviser konklusjonen din, men argumenterer presist og kildebevisst.","good_practice":"Vurder argumentets kvalitet etter de samme kriteriene som om studenten var enig."},
-    {"id":"uklart_sensorgrunnlag","title":"Kriteriet kom etter innlevering","problem":"En svakhet virker viktig først når besvarelsene allerede er levert.","good_practice":"Ikke innfør skjulte krav retrospektivt; bruk publiserte kriterier og forbedre neste vurderingsrunde."},
-    {"id":"kontroversielt_pensum","title":"Press om å fjerne en tekst","problem":"Et relevant verk er kontroversielt og møter press om å fjernes uten faglig vurdering.","good_practice":"Vurder relevans, læringsmål og pedagogisk ramme eksplisitt og kontekstualiser teksten kritisk."},
-    {"id":"usporbar_kildebruk","title":"Kilden forsvinner i teksten","problem":"En besvarelse bygger tett på en kilde uten tydelig attribusjon.","good_practice":"Krev sporbar kildebruk og bruk institusjonens etablerte prosedyre for videre vurdering."},
-    {"id":"professor_badge","title":"Badge blir presentert som professorkompetanse","problem":"En spiller har nådd Professor-tier og forventer derfor akademisk myndighet.","good_practice":"Behold Badge-prestasjonen, men krev separat akademisk kvalifikasjon og ansettelse før professorjobben kan materialiseres."}
+    {"id":"s1","setup":"En student avviser foreleserens konklusjon, men argumenterer presist og kildebevisst.","good":"Vurder premisser, inferens, motargument og kildebruk etter samme kriterier som for en student som er enig.","bad":"Trekk for at studenten ikke følger den tolkningen som ble presentert i forelesningen."},
+    {"id":"s2","setup":"Et kvalitetskrav virker avgjørende først etter at besvarelsene er levert.","good":"Bruk publiserte kriterier nå og registrer det nye kravet som forbedring for neste vurderingsrunde.","bad":"Innfør kravet retrospektivt fordi det skiller de beste tekstene tydeligere."},
+    {"id":"s3","setup":"En besvarelse har flere formuleringer uten tydelig attribusjon, men bevisbildet er ufullstendig.","good":"Dokumenter konkrete spor og send saken inn i etablert integritetsprosess uten å forskuttere skyld.","bad":"Gi automatisk stryk og kall mønsteret bevist fusk."},
+    {"id":"s4","setup":"En student ber om alternativ gjennomføring og deler mer personlig informasjon enn du trenger.","good":"Stopp innsamlingen av unødvendige opplysninger og henvis til autorisert tilretteleggingsprosess mens faglig standard holdes tydelig.","bad":"Be om full dokumentasjon direkte slik at du kan avgjøre tilretteleggingen selv."},
+    {"id":"s5","setup":"En historisk tekst er faglig relevant, men inneholder belastende begreper og antakelser.","good":"Gjør læringsformålet eksplisitt, kontekstualiser teksten og sett den i dialog med relevante motstemmer.","bad":"Bruk kontroversen som provokasjon uten faglig ramme eller fjern teksten uten å vurdere læringsmålet."},
+    {"id":"s6","setup":"Sensorene er uenige om en besvarelse fordi de legger ulik vekt på stil og argumentstruktur.","good":"Gå tilbake til publiserte kriterier, kalibrer med konkrete tekststeder og dokumenter hvorfor vurderingen følger kriteriene.","bad":"Møtes på midten uten å avklare hvilken faglig standard karakteren uttrykker."},
+    {"id":"s7","setup":"Studentene gjør det godt på gjenfortelling, men svakt på selvstendig argumentrekonstruksjon som eksamen krever.","good":"Endre undervisningsaktivitetene slik at de faktisk trener den vurderte ferdigheten før neste eksamen.","bad":"Behold undervisningen og forklar at universitetet forventer selvstendighet uansett hva som er øvd."},
+    {"id":"s8","setup":"En student vil diskutere karakteren i en uformell veiledning og ber deg love at en klage vil føre frem.","good":"Forklar begrunnelsen og klageprosessen uten å love utfall eller påvirke uavhengig behandling.","bad":"Gi et uformelt løfte fordi du selv mener karakteren trolig var streng."},
+    {"id":"s9","setup":"En forelesning er overfylt og du vurderer å kutte motargumentene for å rekke hovedteorien.","good":"Kutt sekundært stoff, men behold minst ett reelt motargument som gjør teoriens begrensninger lærbare.","bad":"Presenter teorien som ubestridt for å dekke pensum raskere."},
+    {"id":"s10","setup":"En kollega foreslår å bruke Professor-badget som snarvei til å la spilleren sensurere avanserte besvarelser.","good":"Behold badge-progresjon som spillprestasjon, men krev separat kvalifikasjon, ansettelse og vurderingsmandat.","bad":"La badge-nivået fungere som akademisk autorisasjon."}
   ],
-  "quality_axes": [
-    "undervisningsdesign",
-    "faglig_vurdering",
-    "veiledning",
-    "argumentanalyse",
-    "akademisk_redelighet",
-    "uenighetsledelse",
-    "kildesporbarhet"
-  ]
+  "task_grammar": [
+    {"id":"bygg_laringsdesign","input":["emneramme","studentforutsetninger","faglig_problem"],"output":["laringsmal","aktivitet","vurderingsbevis","forbehold"]},
+    {"id":"kalibrer_vurdering","input":["publiserte_kriterier","besvarelser","grenseeksempler"],"output":["kriterieanvendelse","begrunnelse","uenighetspunkt","beslutningsspor"]},
+    {"id":"integritetstriage","input":["konkret_kildespor","besvarelse","institusjonell_prosess"],"output":["dokumentert_observasjon","usikkerhet","eskaleringsbehov","ingen_forhandsdom"]},
+    {"id":"veiledningsplan","input":["studentarbeid","laringsmal","rollegrense"],"output":["styrke","prioritert_forbedringspunkt","neste_handling","eventuell_henvisning"]}
+  ],
+  "actor_grammar": [
+    {"role":"studieleder","example_id":"sigrid_studieleder_filosofi","authority":["emneramme","vurderingsordning","undervisningsplan","institusjonell_eskalering"],"fictional":true},
+    {"role":"seminarleder","example_id":"emil_seminarleder_filosofi","authority":["seminargjennomforing","studentobservasjoner","undervisningsfeedback"],"fictional":true},
+    {"role":"sensorpartner","example_id":"amal_sensorpartner_filosofi","authority":["vurderingskalibrering","sensorbegrunnelse","habilitetsvarsling"],"fictional":true},
+    {"role":"studiekonsulent","example_id":"nora_studiekonsulent_filosofi","authority":["frister","tilretteleggingsprosess","studentadministrasjon","personverngrenser"],"fictional":true}
+  ],
+  "place_grammar": [
+    {"place_id":"forelesningsrom_filosofi","kind":"fictional_work_surface","function":"forelesning_argumentmodellering_og_begrepsavklaring","mail_types":["job","event"]},
+    {"place_id":"seminarrom_filosofi","kind":"fictional_work_surface","function":"studentargumenter_tekstnær_diskusjon_og_uenighet","mail_types":["people","story"]},
+    {"place_id":"vurderingsrom_filosofi","kind":"fictional_work_surface","function":"sensorarbeid_kriteriekalibrering_og_begrunnelse","mail_types":["conflict","micro","followup","consequence"]},
+    {"place_id":"veiledningsrom_filosofi","kind":"fictional_work_surface","function":"veiledning_rollegrenser_og_henvisning","mail_types":["event","followup"]},
+    {"place_id":"maerradalen","kind":"canonical_history_go_place","function":"read_only_history_go_anchor_for_arne_naess","mail_types":["knowledge"]}
+  ],
+  "conflict_grammar": [
+    {"id":"enighet_vs_argumentkvalitet","axis":"personlig_standpunkt_vs_faglig_kriterium","must_remain_visible":["publisert_kriterium","studentens_premisser","inferens_og_kildespor"]},
+    {"id":"effektiv_sensur_vs_transparens","axis":"rask_sortering_vs_begrunnet_kriteriebruk","must_remain_visible":["kriterium","tekststed","sensoruenighet","begrunnelse"]},
+    {"id":"omsorg_vs_rollegrense","axis":"hjelpevilje_vs_tilrettelegging_personvern_og_habilitet","must_remain_visible":["faglig_standard","hvem_som_eier_formell_prosess","minst_mulig_persondata"]},
+    {"id":"pensumdekning_vs_laringsdybde","axis":"mengde_stoff_vs_trening_av_vurdert_kompetanse","must_remain_visible":["laringsmal","aktivitet","vurderingsform"]}
+  ],
+  "knowledge_dependencies": [
+    {"id":"konstruktiv_sammenheng","use":"Koble læringsmål, undervisning og vurdering slik at studentene faktisk får trene det de vurderes i."},
+    {"id":"argumentpedagogikk","use":"Modellere premisser, inferens, motargument og begrepsbruk uten å gjøre lærerens konklusjon til fasit."},
+    {"id":"vurderingsvaliditet_og_transparens","use":"Bruke publiserte kriterier konsistent og dokumentere begrunnelser."},
+    {"id":"formativ_tilbakemelding","use":"Gjøre neste faglige handling konkret i stedet for å gi ren dom eller personvurdering."},
+    {"id":"akademisk_integritet_og_due_process","use":"Skille observasjon og mistanke fra formell avgjørelse og sanksjon."},
+    {"id":"tilrettelegging_personvern_og_habilitet","use":"Bevare faglig standard samtidig som formell myndighet og dataminimering respekteres."},
+    {"id":"pensumkontekst_og_uenighet","use":"Begrunne tekster etter læringsmål og kontekstualisere reell filosofisk uenighet."},
+    {"id":"kildegrense","use":"Bruke historiske filosofer som kildeforankret kontekst uten å gjøre dem til autoritet for dagens pedagogiske eller administrative praksis."}
+  ],
+  "quality_axes": ["undervisningsdesign","argumentpedagogikk","faglig_uenighetsledelse","transparent_vurdering","veiledning","akademisk_redelighet","tilgjengelighet_og_personvern","institusjonell_sporbarhet"],
+  "authority_boundary": {
+    "may": ["planlegge_og_gjennomfore_undervisning_innen_godkjent_emneramme","gi_formativ_tilbakemelding","vurdere_innen_delegert_mandat","kreve_sporbar_kildebruk","dokumentere_faglige_beslutninger"],
+    "must_escalate_when": ["mistanke_om_fusk_kan_utlose_formell_sak","student_ber_om_formell_tilrettelegging","karakterklage_eller_habilitet_krever_uavhengig_prosess","studentopplysninger_eller_personvern_gar_utover_undervisningsbehov","vurderingsordning_eller_emneramme_ma_endres_formelt","alvorlig_eller_gjentatt_sikkerhets_eller_omsorgsbekymring_ligger_utenfor_underviserrollen"],
+    "may_not": ["gjore_personlig_enighet_til_vurderingskriterium","innfore_skjulte_kriterier_retroaktivt","avgjore_formell_fuskesak_eller_sanksjon_alene","overstyre_klage_habilitets_tilretteleggings_eller_personvernprosess","ettersporre_unodvendige_sensitive_studentopplysninger","bruke_historiske_filosofer_som_fiktive_radgivere_eller_normativ_fasit","late_som_badge_poeng_er_akademisk_kvalifikasjon_eller_ansettelse"]
+  },
+  "day_one": {
+    "goal": "Gjør et filosofi-emne lærbart og vurderbart gjennom eksplisitte læringsmål, én reell uenighetsaktivitet og transparente vurderingskriterier før første sensurkonflikt oppstår.",
+    "entry_task": "bygg_laringsdesign",
+    "decision_owner": "sigrid_studieleder_filosofi",
+    "first_work_surface": "forelesningsrom_filosofi",
+    "success_signal": "laringsmal_aktivitet_vurderingskriterier_og_rollegrenser_er_sporbare_for_undervisningsteamet"
+  },
+  "mail_generation_contract": {
+    "required_mail_types": ["job","people","conflict","story","event","micro","followup","knowledge","consequence"],
+    "actor_binding": "actor_grammar.example_id",
+    "place_binding": "place_grammar.place_id",
+    "task_binding": "task_grammar.id",
+    "forbid_generic_runtime_fallbacks": true
+  }
 }
