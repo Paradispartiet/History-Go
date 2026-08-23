@@ -64,11 +64,18 @@ jobs:
           if old_fixture not in text:
               raise SystemExit('Expected learnedTask fixture not found')
           text = text.replace(old_fixture, new_fixture, 1)
+
           old_catalog = "return readJson(`data/Civication/mailFamilies/by/${type}/by_radgiver_plan_realism_${suffix}.json`);"
           new_catalog = "return readJson(`data/Civication/mailFamilies/by/${type}/by_radgiver_plan_${type}.json`);"
           if old_catalog not in text:
               raise SystemExit('Expected realism catalog path not found')
           text = text.replace(old_catalog, new_catalog, 1)
+
+          old_scenes = "const scenes = catalogs.flatMap((file) => (file.families || []).flatMap((family) => family.scenes || []));"
+          new_scenes = "const scenes = catalogs.flatMap((file) => (file.families || []).flatMap((family) => family.scenes || [])).filter((entry) => String(entry?.id || '').startsWith('by_radgiver_realism_'));"
+          if old_scenes not in text:
+              raise SystemExit('Expected scenes collection not found')
+          text = text.replace(old_scenes, new_scenes, 1)
           test_path.write_text(text, encoding='utf-8')
           PY
 
