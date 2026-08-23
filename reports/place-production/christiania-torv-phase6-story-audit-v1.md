@@ -47,16 +47,16 @@ Hanskeskulpturen brukes som dagens synlige fortellingsanker, men er eksplisitt *
 
 ## Score
 
-Maskinmotoren i `js/stories/story_scoring.js` gir:
+Autoritativ Stories-integritetskontroll i CI beregnet følgende score på den faktiske Story-teksten:
 
-- narrative: 4;
-- historical: 3;
+- narrative: 3;
+- historical: 4;
 - source: 5;
-- play_value: 4;
+- play_value: 5;
 - originality: 3;
-- total: **19**.
+- total: **20**.
 
-Scoren er teknisk kontrakt, ikke redaksjonell skjønnsscore.
+Den første lokale håndberegningen var feil og ble erstattet med CI-motorens eksakte resultat; ingen tekst eller kvalitetsgate ble endret for å oppnå scoren. Scoren er teknisk kontrakt, ikke redaksjonell skjønnsscore.
 
 ## Narrativ storytest
 
