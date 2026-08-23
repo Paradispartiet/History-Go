@@ -53,19 +53,23 @@ Materialisert:
 - `place_form: offentlig_park`;
 - canonical scope = den navngitte Birkelunden-parken;
 - offisielt areal = **16,3 dekar**;
+- runtimefelt `area_m2: 16300`;
 - gateavgrensning fra Oslo kommune;
 - Paulus' plass og Paulus kirke uttrykkelig som separate nabosteder;
 - geometri = `verified_named_park_geometry` fra OSM way 3236549;
 - kulturmiljøet på ca. 116 dekar lagres bare som eksplisitt kontekst, ikke som parkens egen utstrekning;
 - tre inspectable HTTPS-kilder ligger direkte på profilen.
 
-### Hard arealregel
+### Hard arealregel og runtime-paritet
 
 ```text
-parkareal:          16,3 dekar
-kulturmiljø:      ca. 116 dekar
-gameplay-radius r: 190 meter-parameter i Place-systemet, IKKE areal
+parkareal:             16,3 dekar = 16 300 m²
+spatial_profile field: area_m2 = 16300
+kulturmiljø:           ca. 116 dekar
+gameplay-radius r:     190 meter-parameter i Place-systemet, IKKE areal
 ```
+
+`js/ui/place-popup-v2.js` sin `renderSpatialSection()` leser `spatial_profile.area_m2`/`areaM2` og formatterer 16 300 m² som 16,3 daa. Den første fase-6-utgaven brukte et semantisk riktig, men runtime-ubenyttet `area_decares`-felt. Dette ble fanget før merge og korrigert til `area_m2: 16300`. Dermed er source-faktum, canonical data og synlig popup-renderer i parity.
 
 `r=190` er ikke brukt som areal eller som kilde til fysisk måling.
 
@@ -204,7 +208,7 @@ Dette er **researchgjenbruk, ikke kvalitetsreduksjon**. Dersom en profil hadde m
 
 ```text
 SUBSYSTEM: structured place profiles
-SPATIAL_PROFILE: PASS / MATERIALISERT
+SPATIAL_PROFILE: PASS / MATERIALISERT / area_m2=16300 RUNTIME-KOMPATIBELT
 TEMPORAL_PROFILE: PASS / MATERIALISERT
 HISTORY_LAYERS: PASS / 4 LAG MATERIALISERT
 SOURCE_SUMMARY: PASS / 5 SIKRE KILDER
