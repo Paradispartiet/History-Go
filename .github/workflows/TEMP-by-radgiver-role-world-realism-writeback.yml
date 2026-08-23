@@ -59,11 +59,17 @@ jobs:
 
           test_path = Path('tests/civication-by-radgiver-role-world-realism-pilot.test.js')
           text = test_path.read_text(encoding='utf-8')
-          old = "{ mail_id: id, status: 'completed', history_go: { correct: true }, result: { effect: 1 } }"
-          new = "{ mail_id: id, status: 'completed', history_go: { completed_at: '2026-08-23T13:00:00.000Z', correct: true }, result: { effect: 1 } }"
-          if old not in text:
+          old_fixture = "{ mail_id: id, status: 'completed', history_go: { correct: true }, result: { effect: 1 } }"
+          new_fixture = "{ mail_id: id, status: 'completed', history_go: { completed_at: '2026-08-23T13:00:00.000Z', correct: true }, result: { effect: 1 } }"
+          if old_fixture not in text:
               raise SystemExit('Expected learnedTask fixture not found')
-          test_path.write_text(text.replace(old, new, 1), encoding='utf-8')
+          text = text.replace(old_fixture, new_fixture, 1)
+          old_catalog = "return readJson(`data/Civication/mailFamilies/by/${type}/by_radgiver_plan_realism_${suffix}.json`);"
+          new_catalog = "return readJson(`data/Civication/mailFamilies/by/${type}/by_radgiver_plan_${type}.json`);"
+          if old_catalog not in text:
+              raise SystemExit('Expected realism catalog path not found')
+          text = text.replace(old_catalog, new_catalog, 1)
+          test_path.write_text(text, encoding='utf-8')
           PY
 
       - name: Regenerate compiled scene registry
