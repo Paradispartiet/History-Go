@@ -15,27 +15,27 @@ KOORDINATSTATUS: `verified_geometry`, OSM way `594329484`, `area_anchor`; allere
 PLACE-SCOPE: plassflaten; separate bygg er relasjoner.  
 DESCRIPTION-PRODUCTION-PACKAGE: `data/places/production/christiania_torv.json`, `ready_v4_2`, 18/18 claims, full sentence coverage.  
 BILDESTATUS: Leonhard Lenz / Wikimedia Commons / CC0 1.0; image gate grønnet i fase 4.  
-STRUKTURERTE PROFILER: fase 5 materialiserer `spatial_profile`, `temporal_profile`, fire `history_layers` og `source_summary`; `subplaces` og `nature_profile` er begrunnet N/A.  
+STRUKTURERTE PROFILER: fase 5 materialiserte `spatial_profile`, `temporal_profile`, fire `history_layers` og `source_summary`; `subplaces` og `nature_profile` er begrunnet N/A.  
 LEKSIKON: legacy source-tom batch3-post må saneres/supersedes i popupfasen.  
 SPRÅK: navnehistorie vurderes senere; ingen dokumentert dialektflate.  
 MÅL FOR INNHOLDSRUNDINGER: 4 + separat Badge.  
 VALGTE RUNDINGER: ikke godkjent ennå.  
-PEOPLE-KANDIDATER: gjenbruk `wenche_gulbransen`; søk canonical People før nyopprettelse.  
+PEOPLE-KANDIDATER: gjenbruk `wenche_gulbransen` og canonical `kong_christian_iv`; People-stedskoblinger kvalitetssikres i entity-/roundfasen.  
 OBJECT-KANDIDAT: `Christian IVs hanske`; søk/reuse eksisterende micro/object-data før materialisering.  
 BRANDS: åtte eksisterende mappings må own-place-/freshness-auditeres.  
-ROUTE/RELATION: `gamle_radhus` separat canonical nabosted; Oppdag Kvadraturen-ruter finnes som research.  
-QUIZ-STATUS: senere fase.  
-STORY-STATUS: neste fase; søk eksisterende `stories_christiania_torv` først.  
+ROUTE/RELATION: `gamle_radhus` separat canonical nabosted; Story relaterer `middelalder_oslo`, `akershus_festning` og `gamle_radhus` uten å slå dem sammen.  
+QUIZ-STATUS: neste fase etter Story.  
+STORY-STATUS: `st_christiania_torv_byflyttingen_1624` er materialisert som `episode_v1`, med gammel ikke-aktiv ID gjenbrukt, 3 kilder, canonical `kong_christian_iv`, maskinscore 19 og eksplisitt kildekritisk hanskegrense.  
 VIKTIGSTE KILDER: Oslo byleksikon; Oppdag Kvadraturen/Byantikvaren; SNL; OSM; Pilot 03 source pack.  
 AVVIST/UVISST: bokstavelig hanskekast; sikkert Livorno-forbilde; `year=1648` som automatisk etableringsår; volatile virksomheter uten fersk kontroll.  
 NULLMÅLING: `reports/place-production/christiania-torv-nullmaaling-v1.md`  
-AKTIV FASE: fase 5 – strukturerte profiler og source summary.  
-AKTIVT FILSCOPE: canonical Place-profiler, fase-5 audit, workcard.  
-FORRIGE FASE MERGET: fase 4 #5273 som `fe5cde4ef5c8e91b1ab2666ae8ccb3eb85052d4b`.  
+AKTIV FASE: fase 6 – Story / historisk opplevelse.  
+AKTIVT FILSCOPE: Story-fil, Story-manifest, episode-v1-manifest, fase-6 audit og workcard. TEMP-writeback er fjernet før PR.  
+FORRIGE FASE MERGET: fase 5 #5274 som `e13841fa2c7f9e735f4326bcb811d695ff227d2d`.  
 
 POPUPSTATUS — OM: description-kjerne godkjent; legacy-eier-QA gjenstår.  
-POPUPSTATUS — HISTORIE: fire canonical history layers nå KLAR FOR REVIEW.  
-POPUPSTATUS — FORTELLINGER: IKKE STARTET  
+POPUPSTATUS — HISTORIE: fire canonical history layers godkjent på main etter fase 5.  
+POPUPSTATUS — FORTELLINGER: `episode_v1` KLAR FOR REVIEW.  
 POPUPSTATUS — FØR/ETTER: IKKE STARTET / MULIG N/A  
 POPUPSTATUS — NYHETER: IKKE STARTET / MULIG N/A  
 POPUPSTATUS — LESESPOR: IKKE STARTET  
