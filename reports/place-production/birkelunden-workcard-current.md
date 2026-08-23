@@ -3,7 +3,7 @@
 - Oppdatert: 2026-08-23
 - Place ID: `birkelunden`
 - Canonical source: `data/places/by/oslo/places/birkelunden.json`
-- Aktiv 7F baseline `main`: `1cdb905970aa900ebfede38e9b5a9ae851820461`
+- Aktiv 7G baseline `main`: `090c299adba3d6a39f5f45f4ab930b2504e9200f`
 - Fase 0 merge: #5236 / `d3945c43f10b1f5b4e1b758f915818342f95d240`
 - Fase 1 merge: #5239 / `2dbc70a4984e01487a2dd7289d2e93bcbb0d6217`
 - Fase 2 merge: #5241 / `61bcf3e1dc0156582eb1e3bd9bfcee6d9ba05c06`
@@ -17,10 +17,10 @@
 - Fase 7C merge: #5266 / `8fbdbaf703b8987956eae9ca9576d68839447982`
 - Fase 7D merge: #5272 / `506540cfff848178017e387bfb33d8da8d7336f7`
 - Fase 7E merge: #5276 / `1cdb905970aa900ebfede38e9b5a9ae851820461`
-- Fase 7D review: `reports/place-production/birkelunden-phase7d-before-after-audit-v1.md`
-- Fase 7E review: `reports/place-production/birkelunden-phase7e-news-audit-v1.md`
+- Fase 7F merge: #5280 / `090c299adba3d6a39f5f45f4ab930b2504e9200f`
 - Fase 7F review: `reports/place-production/birkelunden-phase7f-reading-trail-audit-v1.md`
-- Fase 7F regression: `tests/birkelunden-phase7f-reading-trail.test.mjs`
+- Fase 7G review: `reports/place-production/birkelunden-phase7g-sources-audit-v1.md`
+- Fase 7G regression: `tests/birkelunden-phase7g-sources.test.mjs`
 - Content Factory: `data/places/regler/content_factory_v1.json`
 - Popupkontrakt: `docs/PLACE_POPUP_SYSTEM.md`
 
@@ -45,9 +45,9 @@ popupDesc SHA-256: 670dcbc8e37004fe1c3a595ae6af1a6dcfe304f1048ce906f37df3f7e8544
 | 7C Fortellinger | **FERDIG OG MERGET** (#5266) |
 | 7D Før/etter | **FERDIG OG MERGET** (#5272) |
 | 7E Nyheter | **FERDIG OG MERGET** (#5276) |
-| 7F Lesespor | **KLAR FOR REVIEW / CI** |
-| 7G Kilder | **NESTE – LABELS READY / KLIKKBARE LENKER MANGLER** |
-| 7H Språk | **REELL NAVNEHISTORIEKANDIDAT** |
+| 7F Lesespor | **FERDIG OG MERGET** (#5280) |
+| 7G Kilder | **KLAR FOR REVIEW / CI** |
+| 7H Språk | **NESTE – REELL NAVNEHISTORIEKANDIDAT** |
 | 8–24 | **ÅPENT** etter canonical rekkefølge |
 
 ## 7A – Om, låst
@@ -57,161 +57,91 @@ popupDesc SHA-256: 670dcbc8e37004fe1c3a595ae6af1a6dcfe304f1048ce906f37df3f7e8544
 - park/kulturmiljø-grensen er eksplisitt;
 - synlig Nature-tekst er kildeauditert mot Birkelundens faktiske bjørkelunder/trehistorie;
 - canonical Leksikon-owner har `suppress_untitled_legacy_articles: true` og tomme `wikiText`, `facts`, `chronology`;
-- `tests/birkelunden-phase7a-about.test.mjs` kjøres permanent fra `scripts/check-places.sh`.
+- permanent 7A-test kjøres fra `scripts/check-places.sh`.
 
 ## 7B – Historie, låst
 
-Canonical Historie-eier er fire `history_layers`. Lag 3 dekker navnesporet:
-
-```text
-1926: Bjerkelunden blir offisiell navneform
-1955: Birkelunden kommer tilbake
-```
-
-Ingen parallell Leksikon-chronology eller generell temporal-renderer. `tests/birkelunden-phase7b-history.test.mjs` kjøres permanent fra `scripts/check-places.sh`.
+Canonical Historie-eier er fire `history_layers`. Lag 3 dekker navnesporet 1926 `Bjerkelunden` → 1955 `Birkelunden`. Ingen parallell Leksikon-chronology eller generell temporal-renderer.
 
 ## 7C – Fortellinger, låst
 
-Aktiv Story:
-
-```text
-id: st_birkelunden_bench_to_association
-title: Da parkbenken ble en forening
-quality_profile: episode_v1
-type: turning_point
-year: 1937
-place_id: birkelunden
-person_id: null
-related_people: []
-related_places: []
-next_scenes: []
-```
-
-Narrativ akse: 10–12 pensjonister på benk → hvilebrakke → 18 personer → organisering i 1937 → Jack Johnsen-bysten 1984.
-
-Kildevarianten `Venner i Bjerkelunden` / `Venner i Birkelund` er eksplisitt bevart. Superlativet `Norges/landets eldste pensjonistforening` er fortsatt held back. Storyen ligger i canonical Stories-manifest og strict episode-v1-manifest. Permanent 7C-test kjøres i `Stories governance`.
+Aktiv Story er `st_birkelunden_bench_to_association`, «Da parkbenken ble en forening», `episode_v1`, `turning_point`, 1937. Narrativ akse: 10–12 pensjonister på benk → hvilebrakke → 18 personer → organisering i 1937 → Jack Johnsen-bysten 1984. Kildevarianten `Venner i Bjerkelunden` / `Venner i Birkelund` er eksplisitt bevart. Superlativet `Norges/landets eldste pensjonistforening` er fortsatt held back.
 
 ## 7D – Før/etter, låst
 
-Canonical `for_na` er materialisert som et datert parkpar:
-
-```text
-title: Birkelunden ca. 1930 og 2013
-før: Oslo Museum / Mittet & Co / OB.Z02741 / ca. 1930
-etter: Carsten R D / Wikimedia Commons / 2013-10-13
-```
-
-Felles visuelle ankre er musikkpaviljongen fra 1926, vann-/fonteneområdet og det sentrale åpne parkrommet. Paret er ikke fremstilt som identisk kamerastandpunkt, og 2013-bildet er eksplisitt ikke dokumentasjon av parkens eksakte 2026-tilstand.
-
-`tests/birkelunden-phase7d-before-after.test.mjs` låser datoer, kilder, lisens-/attribusjonskjeder, substansielle before/now/change-felt, own-place-grensen, description-hashene og `area_m2=16300`.
+Canonical `for_na` er `Birkelunden ca. 1930 og 2013`, med Oslo Museum / Mittet & Co / OB.Z02741 som førbilde og Carsten R D / Wikimedia Commons som 2013-bilde. Paviljongen, vannområdet og parkrommet er felles ankre; bildene fremstilles ikke som identisk kamerastandpunkt eller som dokumentasjon av eksakt 2026-tilstand.
 
 ## 7E – Nyheter, låst
 
-Nyhetsfil:
+To ferskverifiserte 2026-notiser er manifest-lastet: gratis Oslo Pix-utekino 25.–26. august og Bondens marked 13. september, 18. oktober, 14. november og 13. desember. Static parkfakta og proxy-steder brukes ikke som kunstige nyheter.
 
-`data/leksikon/places/oslo/by/leksikon_oslo_by_birkelunden_news.json`
+## 7F – Lesespor, låst
 
-Publisert:
+Canonical eier er `data/lesespor/oslo/lesespor_oslo_by.json`. Tre åpne, place-linkede, `link_only`-spor er publisert:
 
-1. `birkelunden_news_oslo_pix_utekino_2026` – gratis Oslo Pix-utekino 25.–26. august 2026, `valid_through: 2026-08-26`;
-2. `birkelunden_news_bondens_marked_host_2026` – Bondens marked 13. september, 18. oktober, 14. november og 13. desember 2026, `valid_through: 2026-12-13`.
+1. Riksantikvaren – `Birkelunden – Murbyens hjerte`;
+2. Oslo Byarkiv / TOBIAS – Ellen Røsjø, `Birkelunden – «distancerer Studenterlunden i Trivsel!»`, 2006, trykksider 42–45;
+3. Oslo byleksikon – `Birkelunden`.
 
-Begge ble ferskverifisert 23. august 2026 mot primærarrangør. Static parkfakta, løpende kalenderfeed og proxy-steder brukes ikke som kunstige nyheter. `tests/birkelunden-phase7e-news.test.mjs` kjøres permanent fra `scripts/check-places.sh`.
+Alle tre har `place_ids: [birkelunden]`, `verifiedAt: 2026-08-23` og ingen fulltekstkopiering. Duplikat-PR #5278 ble lukket uten merge; #5280 er canonical 7F-fasit fordi den bevarer filformatet og bruker den dypere Byarkiv-lesningen uten bred reformatteringschurn.
 
-## 7F – Lesespor
+## 7G – Kilder
 
-Canonical eier er den eksisterende kategorifilen:
+Canonical brukerrettet Kilder-owner er:
 
-`data/lesespor/oslo/lesespor_oslo_by.json`
+`data/leksikon/places/oslo/by/leksikon_oslo_by_birkelunden.json`
 
-7F materialiserer tre åpne, direkte og place-linkede spor:
+Owner oppgraderes til `version: 3` og får syv unike HTTPS `externalLinks`.
 
-### 1. Riksantikvaren
+### Fem kjerne-evidenskilder
 
-```text
-id: lesespor_birkelunden_riksantikvaren_001
-title: Birkelunden – Murbyens hjerte
-author: Synne Vik Torsdottir
-publication: Riksantikvaren
-date: 2022-04-08
-access: open
-rights: link_only
-source_quality: institutional
-```
+1. `Oslo kommune – Birkelunden`;
+2. `Oslo byleksikon – Birkelunden`;
+3. `Riksantikvaren – Birkelunden, Murbyens hjerte`;
+4. `Pensjonistforbundet – Vår historie`;
+5. `OpenStreetMap way 3236549 – Birkelunden`.
 
-Lesesporet gir langlesing om byplan, murby, Thorvald Meyer, park/kulturmiljø-grensen og fredningshistorien. Riksantikvarens sterke «første»-formulering restemples ikke som egen History Go-claim.
+Disse dekker alle fem labels i `place.source_summary.safe_sources`.
 
-### 2. Oslo Byarkiv / TOBIAS
+### To navngitte Før/etter-bildekilder
 
-```text
-id: lesespor_birkelunden_byarkiv_2006_001
-title: Birkelunden – «distancerer Studenterlunden i Trivsel!»
-author: Ellen Røsjø
-publication: Oslo Byarkiv – TOBIAS
-year: 2006
-trykksider: 42–45
-access: open
-rights: link_only
-source_quality: institutional
-```
+6. `Oslo Museum / Oslobilder – Birkelunden ca. 1930 (OB.Z02741)`;
+7. `Wikimedia Commons – Birkelunden fontene og musikkpaviljong (2013)`.
 
-Dette er den rikeste historiske lesningen: parkplanlegging, fysisk omlegging, paviljong/vannbasseng, sosial og politisk bruk og minnespor i samme artikkel.
+`for_na.sources` inneholder også byleksikon og Riksantikvaren; disse overlapper kjernesettet og materialiseres ikke på nytt. Eksisterende runtime kombinerer configured links før generiske Før/etter-links og dedupliserer på URL.
 
-### 3. Oslo byleksikon
+### Kildegrense
 
-```text
-id: lesespor_birkelunden_byleksikon_001
-title: Birkelunden
-publication: Oslo byleksikon
-access: open
-rights: link_only
-source_quality: recognized
-```
+Ingen interne audit-, report-, production-, claim-bank-, source-pack- eller coordinate-filer gjøres brukerrettede. `article.sources` beholdes som evidensobjekter; `externalLinks` er bare inspectable navigasjon i Kilder-fanen.
 
-Dette er et kortere direkte stedsoppslag som kompletterer de to langlesningene.
+### Permanent 7G-port
 
-Alle tre har:
+`tests/birkelunden-phase7g-sources.test.mjs` krever:
 
-```text
-place_ids: [birkelunden]
-verifiedAt: 2026-08-23
-curation_status: strong_candidate
-```
-
-Ingen oppføring bruker Paulus' plass, Paulus kirke, Grünerløkka skole, Olaf Ryes plass eller Sofienbergparken som proxy. Fulltekst kopieres ikke; History Go publiserer metadata, egen kort beskrivelse/relevans og ekstern lenke.
-
-Oslohistorie-kandidatene ble kontrollert, men ikke valgt fordi de tre publiserte sporene gir sterkere institusjonelt/etablert kildeeierskap og allerede dekker byplan-, arkiv- og oppslagsbehovet.
-
-### Permanent 7F-port
-
-`tests/birkelunden-phase7f-reading-trail.test.mjs` krever:
-
-- nøyaktig tre Birkelunden-spor og stabile ID-er;
-- `place_ids: [birkelunden]` uten proxy-steder;
-- `access: open`, `rights: link_only`, `verifiedAt: 2026-08-23`;
-- korrekte direkte HTTPS-lenker, forfatter-/publikasjonsmetadata og source quality;
-- TOBIAS-sider 42–45;
-- at Riksantikvaren-Lesesporet ikke restempler held-back «første»-claim i vår beskrivelse;
-- ingen kontraktstridig Birkelunden-spesialfil i manifestet;
-- eksisterende runtime-filter for place og betalingsmur;
+- version 3 og syv dedupliserte HTTPS-lenker;
+- full mapping av fem `safe_sources`;
+- full mapping av fire `for_na.sources` og begge image source pages;
+- meningsfulle Oslobilder-/Commons-labels;
+- fravær av interne kilder;
+- eksisterende runtime-deduplisering;
 - uendrede fase-5 description-hasher og `area_m2=16300`.
 
-Testen kjøres permanent fra `scripts/check-places.sh` etter 7E-testen.
+Testen kjøres permanent fra `scripts/check-places.sh` etter 7F.
 
-Produksjonsmodell/API-kreditter i 7F: **0 eksterne modellkall**. Åpne kilder ble kontrollert direkte; ingen kvalitetsterskel eller innholdsmengde ble redusert.
+Produksjonsmodell/API-kreditter i 7G: **0 eksterne modellkall**. Fasen gjenbruker allerede godkjent Birkelunden-evidence uten redusert kvalitet eller innhold.
 
-## Scope 7F
+## Scope 7G
 
 Endres:
 
-1. `data/lesespor/oslo/lesespor_oslo_by.json` – tre nye Birkelunden-items + `generated_at`;
-2. `tests/birkelunden-phase7f-reading-trail.test.mjs`;
-3. `scripts/check-places.sh` – permanent 7F-teststeg;
-4. `reports/place-production/birkelunden-phase7f-reading-trail-audit-v1.md`;
+1. Birkelunden Leksikon-owner – kun version + `externalLinks`;
+2. `tests/birkelunden-phase7g-sources.test.mjs`;
+3. `scripts/check-places.sh` – permanent 7G-test;
+4. `reports/place-production/birkelunden-phase7g-sources-audit-v1.md`;
 5. dette workcardet.
 
-Ikke endret: canonical Birkelunden Place, descriptions, profiler, `for_na`, Story, Leksikon/News, People, Objects, Nature, popup-runtime eller Lesespor-manifestets filsett.
+Canonical Place JSON, descriptions, profiler, Story, Før/etter-data, News, Lesespor, People, Objects, Nature og popup-runtime endres ikke.
 
 ## Neste
 
-Etter grønn 7F-merge starter **7G – Kilder** fra fersk `main`. Fem safe source labels finnes allerede; oppgaven er å materialisere dedupliserte, inspectable HTTPS `externalLinks` hos riktig Leksikon-/popup-eier uten å vise interne audit- eller claim-bankfiler som brukerrettede kilder.
+Etter grønn 7G-merge starter **7H – Språk** fra fersk `main`. Språkleksikon-kontrakten skal leses før materialisering. Kandidaten er det dokumenterte navnesporet `Birkelunden → Bjerkelunden (1926) → Birkelunden (1955)`. Ingen generisk park-etymologi eller oppfunnet dialekt.
