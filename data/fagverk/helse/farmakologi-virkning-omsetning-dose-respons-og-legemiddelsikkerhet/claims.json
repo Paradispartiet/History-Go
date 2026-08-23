@@ -1,0 +1,1061 @@
+{
+  "schema": "history_go_fagverk_chapter_claims_v1",
+  "version": "1.0.0",
+  "subject_id": "helse",
+  "chapter_id": "farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet",
+  "sourceBriefFile": "data/fag/helse/pharmacology_source_claim_brief_v1.json",
+  "sources": [
+    {
+      "id": "hpha01-ncbi-pharmacodynamics",
+      "publisher": "National Center for Biotechnology Information",
+      "title": "Pharmacodynamics – StatPearls",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK507791/",
+      "type": "academic-clinical-pharmacology-reference",
+      "evidence_role": "receptor-affinity-efficacy-potency-concentration-effect",
+      "source_location": "General pharmacodynamic concepts including receptors, affinity, efficacy, Emax, EC50, agonism, antagonism and concentration-effect relationships.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "National Center for Biotechnology Information – Pharmacodynamics – StatPearls"
+    },
+    {
+      "id": "hpha02-fda-ich-e4-dose-response",
+      "publisher": "U.S. Food and Drug Administration",
+      "title": "E4 Dose-Response Information to Support Drug Registration",
+      "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/e4-dose-response-information-support-drug-registration",
+      "type": "regulatory-dose-response-guidance",
+      "evidence_role": "dose-concentration-response-benefit-harm",
+      "source_location": "Regulatory principles for dose-response, concentration-response, desirable and undesirable effects, variability and study design.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "U.S. Food and Drug Administration – E4 Dose-Response Information to Support Drug Registration"
+    },
+    {
+      "id": "hpha03-ema-ich-e4-dose-response",
+      "publisher": "European Medicines Agency",
+      "title": "ICH E4 Dose response information to support drug registration",
+      "url": "https://www.ema.europa.eu/en/ich-e4-dose-response-information-support-drug-registration-scientific-guideline",
+      "type": "european-regulatory-dose-response-guidance",
+      "evidence_role": "dose-response-study-design-efficacy-safety",
+      "source_location": "ICH dose-response guidance covering desirable and undesirable effects, pharmacodynamic response, pharmacokinetic differences and dose-response study designs.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "European Medicines Agency – ICH E4 Dose response information to support drug registration"
+    },
+    {
+      "id": "hpha04-fda-bioavailability-2022",
+      "publisher": "U.S. Food and Drug Administration",
+      "title": "Bioavailability Studies Submitted in NDAs or INDs – General Considerations",
+      "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/bioavailability-studies-submitted-ndas-or-inds-general-considerations",
+      "type": "regulatory-bioavailability-guidance",
+      "evidence_role": "bioavailability-systemic-exposure-formulation",
+      "source_location": "2022 final guidance on bioavailability, systemic exposure and study design for drug products.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "U.S. Food and Drug Administration – Bioavailability Studies Submitted in NDAs or INDs – General Considerations"
+    },
+    {
+      "id": "hpha05-fda-food-effect-2026",
+      "publisher": "U.S. Food and Drug Administration",
+      "title": "Assessing the Effects of Food on Drugs in INDs and NDAs – Clinical Pharmacology Considerations",
+      "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/assessing-effects-food-drugs-inds-and-ndas-clinical-pharmacology-considerations",
+      "type": "regulatory-food-effect-guidance",
+      "evidence_role": "food-exposure-bioavailability-variability",
+      "source_location": "May 2026 final guidance on food-effect study design and interpretation for orally administered drugs.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "U.S. Food and Drug Administration – Assessing the Effects of Food on Drugs in INDs and NDAs – Clinical Pharmacology Considerations"
+    },
+    {
+      "id": "hpha06-fda-renal-pk-2024",
+      "publisher": "U.S. Food and Drug Administration",
+      "title": "Pharmacokinetics in Patients with Impaired Renal Function — Study Design, Data Analysis, and Impact on Dosing",
+      "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/pharmacokinetics-patients-impaired-renal-function-study-design-data-analysis-and-impact-dosing",
+      "type": "regulatory-organ-function-pk-guidance",
+      "evidence_role": "renal-function-pk-variability-study-design",
+      "source_location": "2024 final guidance on assessing renal-function effects on pharmacokinetics and translating group evidence into labeling.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "U.S. Food and Drug Administration – Pharmacokinetics in Patients with Impaired Renal Function — Study Design, Data Analysis, and Impact on Dosing"
+    },
+    {
+      "id": "hpha07-fda-hepatic-pk",
+      "publisher": "U.S. Food and Drug Administration",
+      "title": "Pharmacokinetics in Patients with Impaired Hepatic Function: Study Design, Data Analysis, and Impact on Dosing and Labeling",
+      "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/pharmacokinetics-patients-impaired-hepatic-function-study-design-data-analysis-and-impact-dosing-and",
+      "type": "regulatory-organ-function-pk-guidance",
+      "evidence_role": "hepatic-function-metabolism-pk-variability",
+      "source_location": "Guidance on hepatic impairment studies and effects on PK and where appropriate PD.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "U.S. Food and Drug Administration – Pharmacokinetics in Patients with Impaired Hepatic Function: Study Design, Data Analysis, and Impact on Dosing and Labeling"
+    },
+    {
+      "id": "hpha08-fda-ich-m12-ddi",
+      "publisher": "U.S. Food and Drug Administration",
+      "title": "M12 Drug Interaction Studies: Questions and Answers",
+      "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/m12-drug-interaction-studies-questions-and-answers",
+      "type": "harmonized-regulatory-ddi-guidance",
+      "evidence_role": "enzyme-transporter-ddi-design-interpretation",
+      "source_location": "Final ICH M12 framework for enzyme- and transporter-mediated pharmacokinetic drug-drug interaction evaluation.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "U.S. Food and Drug Administration – M12 Drug Interaction Studies: Questions and Answers"
+    },
+    {
+      "id": "hpha09-ema-ich-m12-ddi",
+      "publisher": "European Medicines Agency",
+      "title": "ICH M12 on drug interaction studies",
+      "url": "https://www.ema.europa.eu/en/ich-m12-drug-interaction-studies-scientific-guideline",
+      "type": "european-harmonized-ddi-guidance",
+      "evidence_role": "in-vitro-clinical-ddi-modeling-risk-management",
+      "source_location": "ICH M12 recommendations for inhibition, induction, transporters, metabolites, modeling and clinical DDI interpretation.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "European Medicines Agency – ICH M12 on drug interaction studies"
+    },
+    {
+      "id": "hpha10-fda-ddi-tables",
+      "publisher": "U.S. Food and Drug Administration",
+      "title": "Drug Development and Drug Interactions – Table of Substrates, Inhibitors and Inducers",
+      "url": "https://www.fda.gov/drugs/drug-interactions-labeling/drug-development-and-drug-interactions-table-substrates-inhibitors-and-inducers",
+      "type": "regulatory-ddi-reference",
+      "evidence_role": "cyp-transporter-substrate-inhibitor-inducer-concepts",
+      "source_location": "Examples and definitions for CYP and transporter substrates, inhibitors and inducers used in drug-interaction assessment.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "U.S. Food and Drug Administration – Drug Development and Drug Interactions – Table of Substrates, Inhibitors and Inducers"
+    },
+    {
+      "id": "hpha11-fda-pharmacogenomics",
+      "publisher": "U.S. Food and Drug Administration",
+      "title": "Clinical Pharmacogenomics: Premarket Evaluation in Early-Phase Clinical Studies and Recommendations for Labeling",
+      "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/clinical-pharmacogenomics-premarket-evaluation-early-phase-clinical-studies-and-recommendations",
+      "type": "regulatory-pharmacogenomics-guidance",
+      "evidence_role": "genetic-variation-pk-pd-efficacy-safety",
+      "source_location": "Guidance on how genomic variation may affect pharmacokinetics, pharmacodynamics, efficacy and safety in drug development.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "U.S. Food and Drug Administration – Clinical Pharmacogenomics: Premarket Evaluation in Early-Phase Clinical Studies and Recommendations for Labeling"
+    },
+    {
+      "id": "hpha12-fda-clinical-pharmacology-labeling",
+      "publisher": "U.S. Food and Drug Administration",
+      "title": "Prescribing Information Resources – Clinical Pharmacology",
+      "url": "https://www.fda.gov/drugs/fdas-labeling-resources-human-prescription-drugs/prescribing-information-resources",
+      "type": "regulatory-labeling-reference",
+      "evidence_role": "mechanism-pd-pk-labeling-evidence-translation",
+      "source_location": "FDA resources for mechanism of action, pharmacodynamics, pharmacokinetics, pharmacogenomics and interaction information in labeling.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "U.S. Food and Drug Administration – Prescribing Information Resources – Clinical Pharmacology"
+    },
+    {
+      "id": "hpha13-who-pharmacovigilance-strategies",
+      "publisher": "World Health Organization",
+      "title": "Pharmacovigilance strategies",
+      "url": "https://www.who.int/teams/regulation-prequalification/regulation-and-safety/pharmacovigilance/guidance/strategies",
+      "type": "international-pharmacovigilance-guidance",
+      "evidence_role": "adverse-effects-detection-assessment-prevention",
+      "source_location": "WHO definition and strategic framework for detection, assessment, understanding and prevention of adverse effects and other drug-related problems.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "World Health Organization – Pharmacovigilance strategies"
+    },
+    {
+      "id": "hpha14-who-pidm",
+      "publisher": "World Health Organization",
+      "title": "WHO Programme for International Drug Monitoring",
+      "url": "https://www.who.int/teams/regulation-prequalification/regulation-and-safety/pharmacovigilance/networks/pidm",
+      "type": "international-pharmacovigilance-network-reference",
+      "evidence_role": "icsr-signal-detection-global-safety-monitoring",
+      "source_location": "WHO international pharmacovigilance programme, Individual Case Safety Reports, VigiBase and global safety-signal monitoring.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "World Health Organization – WHO Programme for International Drug Monitoring"
+    }
+  ],
+  "claims": [
+    {
+      "id": "hpha-c01",
+      "claim": "Farmakodynamikk beskriver hvordan legemidler påvirker biologiske systemer og hvordan konsentrasjon ved et mål henger sammen med respons.",
+      "paragraph_id": "hpha-p-01",
+      "topic_id": "legemiddelmal-reseptorer-og-respons",
+      "source_ids": [
+        "hpha01-ncbi-pharmacodynamics",
+        "hpha02-fda-ich-e4-dose-response",
+        "hpha12-fda-clinical-pharmacology-labeling"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hpha01-ncbi-pharmacodynamics",
+          "location": "General pharmacodynamic concepts including receptors, affinity, efficacy, Emax, EC50, agonism, antagonism and concentration-effect relationships."
+        },
+        {
+          "source_id": "hpha02-fda-ich-e4-dose-response",
+          "location": "Regulatory principles for dose-response, concentration-response, desirable and undesirable effects, variability and study design."
+        },
+        {
+          "source_id": "hpha12-fda-clinical-pharmacology-labeling",
+          "location": "FDA resources for mechanism of action, pharmacodynamics, pharmacokinetics, pharmacogenomics and interaction information in labeling."
+        }
+      ],
+      "classification": "verified_general_pharmacology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hpha-c02",
+      "claim": "Legemidler kan påvirke reseptorer, enzymer, ionekanaler, transportører, nukleinsyrer eller andre biologiske mål.",
+      "paragraph_id": "hpha-p-02",
+      "topic_id": "legemiddelmal-reseptorer-og-respons",
+      "source_ids": [
+        "hpha01-ncbi-pharmacodynamics",
+        "hpha12-fda-clinical-pharmacology-labeling",
+        "hpha02-fda-ich-e4-dose-response"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hpha01-ncbi-pharmacodynamics",
+          "location": "General pharmacodynamic concepts including receptors, affinity, efficacy, Emax, EC50, agonism, antagonism and concentration-effect relationships."
+        },
+        {
+          "source_id": "hpha12-fda-clinical-pharmacology-labeling",
+          "location": "FDA resources for mechanism of action, pharmacodynamics, pharmacokinetics, pharmacogenomics and interaction information in labeling."
+        },
+        {
+          "source_id": "hpha02-fda-ich-e4-dose-response",
+          "location": "Regulatory principles for dose-response, concentration-response, desirable and undesirable effects, variability and study design."
+        }
+      ],
+      "classification": "verified_general_pharmacology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hpha-c03",
+      "claim": "Affinitet beskriver hvor sterkt eller fordelaktig en ligand binder til et biologisk mål under definerte betingelser, mens efficacy beskriver evnen til å frembringe respons etter binding.",
+      "paragraph_id": "hpha-p-03",
+      "topic_id": "legemiddelmal-reseptorer-og-respons",
+      "source_ids": [
+        "hpha01-ncbi-pharmacodynamics",
+        "hpha02-fda-ich-e4-dose-response",
+        "hpha03-ema-ich-e4-dose-response"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hpha01-ncbi-pharmacodynamics",
+          "location": "General pharmacodynamic concepts including receptors, affinity, efficacy, Emax, EC50, agonism, antagonism and concentration-effect relationships."
+        },
+        {
+          "source_id": "hpha02-fda-ich-e4-dose-response",
+          "location": "Regulatory principles for dose-response, concentration-response, desirable and undesirable effects, variability and study design."
+        },
+        {
+          "source_id": "hpha03-ema-ich-e4-dose-response",
+          "location": "ICH dose-response guidance covering desirable and undesirable effects, pharmacodynamic response, pharmacokinetic differences and dose-response study designs."
+        }
+      ],
+      "classification": "verified_general_pharmacology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hpha-c04",
+      "claim": "En agonist stabiliserer eller fremmer en reseptortilstand som gir signalering, mens en antagonist reduserer responsen på en agonist uten nødvendigvis å aktivere samme signalvei.",
+      "paragraph_id": "hpha-p-04",
+      "topic_id": "legemiddelmal-reseptorer-og-respons",
+      "source_ids": [
+        "hpha01-ncbi-pharmacodynamics",
+        "hpha02-fda-ich-e4-dose-response",
+        "hpha03-ema-ich-e4-dose-response"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hpha01-ncbi-pharmacodynamics",
+          "location": "General pharmacodynamic concepts including receptors, affinity, efficacy, Emax, EC50, agonism, antagonism and concentration-effect relationships."
+        },
+        {
+          "source_id": "hpha02-fda-ich-e4-dose-response",
+          "location": "Regulatory principles for dose-response, concentration-response, desirable and undesirable effects, variability and study design."
+        },
+        {
+          "source_id": "hpha03-ema-ich-e4-dose-response",
+          "location": "ICH dose-response guidance covering desirable and undesirable effects, pharmacodynamic response, pharmacokinetic differences and dose-response study designs."
+        }
+      ],
+      "classification": "verified_general_pharmacology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hpha-c05",
+      "claim": "Dose er mengden legemiddel som administreres, konsentrasjon er mengde legemiddel per relevant volum eller matriks, og respons er en biologisk eller klinisk endring.",
+      "paragraph_id": "hpha-p-05",
+      "topic_id": "dose-konsentrasjon-potens-og-efficacy",
+      "source_ids": [
+        "hpha02-fda-ich-e4-dose-response",
+        "hpha03-ema-ich-e4-dose-response",
+        "hpha04-fda-bioavailability-2022"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hpha02-fda-ich-e4-dose-response",
+          "location": "Regulatory principles for dose-response, concentration-response, desirable and undesirable effects, variability and study design."
+        },
+        {
+          "source_id": "hpha03-ema-ich-e4-dose-response",
+          "location": "ICH dose-response guidance covering desirable and undesirable effects, pharmacodynamic response, pharmacokinetic differences and dose-response study designs."
+        },
+        {
+          "source_id": "hpha04-fda-bioavailability-2022",
+          "location": "2022 final guidance on bioavailability, systemic exposure and study design for drug products."
+        }
+      ],
+      "classification": "verified_general_pharmacology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hpha-c06",
+      "claim": "Emax er den modellerte maksimale responsen et legemiddel kan frembringe i et definert eksperimentelt eller klinisk system, mens EC50 er konsentrasjonen som gir halvparten av denne maksimumseffekten i en valgt modell.",
+      "paragraph_id": "hpha-p-06",
+      "topic_id": "dose-konsentrasjon-potens-og-efficacy",
+      "source_ids": [
+        "hpha01-ncbi-pharmacodynamics",
+        "hpha02-fda-ich-e4-dose-response",
+        "hpha03-ema-ich-e4-dose-response"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hpha01-ncbi-pharmacodynamics",
+          "location": "General pharmacodynamic concepts including receptors, affinity, efficacy, Emax, EC50, agonism, antagonism and concentration-effect relationships."
+        },
+        {
+          "source_id": "hpha02-fda-ich-e4-dose-response",
+          "location": "Regulatory principles for dose-response, concentration-response, desirable and undesirable effects, variability and study design."
+        },
+        {
+          "source_id": "hpha03-ema-ich-e4-dose-response",
+          "location": "ICH dose-response guidance covering desirable and undesirable effects, pharmacodynamic response, pharmacokinetic differences and dose-response study designs."
+        }
+      ],
+      "classification": "verified_general_pharmacology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hpha-c07",
+      "claim": "Potens beskriver hvilken dose eller konsentrasjon som kreves for å oppnå en definert respons og påvirkes blant annet av affinitet, signalforsterkning og systemegenskaper.",
+      "paragraph_id": "hpha-p-07",
+      "topic_id": "dose-konsentrasjon-potens-og-efficacy",
+      "source_ids": [
+        "hpha01-ncbi-pharmacodynamics",
+        "hpha02-fda-ich-e4-dose-response",
+        "hpha03-ema-ich-e4-dose-response"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hpha01-ncbi-pharmacodynamics",
+          "location": "General pharmacodynamic concepts including receptors, affinity, efficacy, Emax, EC50, agonism, antagonism and concentration-effect relationships."
+        },
+        {
+          "source_id": "hpha02-fda-ich-e4-dose-response",
+          "location": "Regulatory principles for dose-response, concentration-response, desirable and undesirable effects, variability and study design."
+        },
+        {
+          "source_id": "hpha03-ema-ich-e4-dose-response",
+          "location": "ICH dose-response guidance covering desirable and undesirable effects, pharmacodynamic response, pharmacokinetic differences and dose-response study designs."
+        }
+      ],
+      "classification": "verified_general_pharmacology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hpha-c08",
+      "claim": "Dose–responsstudier må undersøke både ønskede og uønskede effekter fordi nytte og skade kan ha forskjellige kurver og terskler.",
+      "paragraph_id": "hpha-p-08",
+      "topic_id": "dose-konsentrasjon-potens-og-efficacy",
+      "source_ids": [
+        "hpha02-fda-ich-e4-dose-response",
+        "hpha03-ema-ich-e4-dose-response",
+        "hpha13-who-pharmacovigilance-strategies"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hpha02-fda-ich-e4-dose-response",
+          "location": "Regulatory principles for dose-response, concentration-response, desirable and undesirable effects, variability and study design."
+        },
+        {
+          "source_id": "hpha03-ema-ich-e4-dose-response",
+          "location": "ICH dose-response guidance covering desirable and undesirable effects, pharmacodynamic response, pharmacokinetic differences and dose-response study designs."
+        },
+        {
+          "source_id": "hpha13-who-pharmacovigilance-strategies",
+          "location": "WHO definition and strategic framework for detection, assessment, understanding and prevention of adverse effects and other drug-related problems."
+        }
+      ],
+      "classification": "verified_general_pharmacology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hpha-c09",
+      "claim": "Farmakokinetikk beskriver hvordan mengde og konsentrasjon endres over tid gjennom absorpsjon, distribusjon, metabolisme og eliminasjon.",
+      "paragraph_id": "hpha-p-09",
+      "topic_id": "absorpsjon-distribusjon-biotilgjengelighet",
+      "source_ids": [
+        "hpha04-fda-bioavailability-2022",
+        "hpha12-fda-clinical-pharmacology-labeling",
+        "hpha05-fda-food-effect-2026"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hpha04-fda-bioavailability-2022",
+          "location": "2022 final guidance on bioavailability, systemic exposure and study design for drug products."
+        },
+        {
+          "source_id": "hpha12-fda-clinical-pharmacology-labeling",
+          "location": "FDA resources for mechanism of action, pharmacodynamics, pharmacokinetics, pharmacogenomics and interaction information in labeling."
+        },
+        {
+          "source_id": "hpha05-fda-food-effect-2026",
+          "location": "May 2026 final guidance on food-effect study design and interpretation for orally administered drugs."
+        }
+      ],
+      "classification": "verified_general_pharmacology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hpha-c10",
+      "claim": "Biotilgjengelighet beskriver hastighet og omfang som et virkestoff eller en aktiv del blir systemisk tilgjengelig fra en bestemt formulering og administrasjonsmåte.",
+      "paragraph_id": "hpha-p-10",
+      "topic_id": "absorpsjon-distribusjon-biotilgjengelighet",
+      "source_ids": [
+        "hpha04-fda-bioavailability-2022",
+        "hpha05-fda-food-effect-2026",
+        "hpha12-fda-clinical-pharmacology-labeling"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hpha04-fda-bioavailability-2022",
+          "location": "2022 final guidance on bioavailability, systemic exposure and study design for drug products."
+        },
+        {
+          "source_id": "hpha05-fda-food-effect-2026",
+          "location": "May 2026 final guidance on food-effect study design and interpretation for orally administered drugs."
+        },
+        {
+          "source_id": "hpha12-fda-clinical-pharmacology-labeling",
+          "location": "FDA resources for mechanism of action, pharmacodynamics, pharmacokinetics, pharmacogenomics and interaction information in labeling."
+        }
+      ],
+      "classification": "verified_general_pharmacology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hpha-c11",
+      "claim": "Et oralt legemiddel kan metaboliseres i tarmvegg eller lever før det når systemkretsløpet, et fenomen som bidrar til førstepassasje.",
+      "paragraph_id": "hpha-p-11",
+      "topic_id": "absorpsjon-distribusjon-biotilgjengelighet",
+      "source_ids": [
+        "hpha04-fda-bioavailability-2022",
+        "hpha07-fda-hepatic-pk",
+        "hpha12-fda-clinical-pharmacology-labeling"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hpha04-fda-bioavailability-2022",
+          "location": "2022 final guidance on bioavailability, systemic exposure and study design for drug products."
+        },
+        {
+          "source_id": "hpha07-fda-hepatic-pk",
+          "location": "Guidance on hepatic impairment studies and effects on PK and where appropriate PD."
+        },
+        {
+          "source_id": "hpha12-fda-clinical-pharmacology-labeling",
+          "location": "FDA resources for mechanism of action, pharmacodynamics, pharmacokinetics, pharmacogenomics and interaction information in labeling."
+        }
+      ],
+      "classification": "verified_general_pharmacology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hpha-c12",
+      "claim": "Mat kan påvirke oppløsning, ventrikkeltømming, pH, gallesekresjon og andre forhold som endrer absorpsjon eller presystemisk omsetning av orale legemidler.",
+      "paragraph_id": "hpha-p-12",
+      "topic_id": "absorpsjon-distribusjon-biotilgjengelighet",
+      "source_ids": [
+        "hpha05-fda-food-effect-2026",
+        "hpha04-fda-bioavailability-2022",
+        "hpha12-fda-clinical-pharmacology-labeling"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hpha05-fda-food-effect-2026",
+          "location": "May 2026 final guidance on food-effect study design and interpretation for orally administered drugs."
+        },
+        {
+          "source_id": "hpha04-fda-bioavailability-2022",
+          "location": "2022 final guidance on bioavailability, systemic exposure and study design for drug products."
+        },
+        {
+          "source_id": "hpha12-fda-clinical-pharmacology-labeling",
+          "location": "FDA resources for mechanism of action, pharmacodynamics, pharmacokinetics, pharmacogenomics and interaction information in labeling."
+        }
+      ],
+      "classification": "verified_general_pharmacology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hpha-c13",
+      "claim": "Clearance er en proporsjonalitetsstørrelse som knytter eliminasjonshastighet til legemiddelkonsentrasjon og kan uttrykkes som et virtuelt volum plasma eller blod renset per tidsenhet.",
+      "paragraph_id": "hpha-p-13",
+      "topic_id": "clearance-volum-halveringstid-steady-state",
+      "source_ids": [
+        "hpha06-fda-renal-pk-2024",
+        "hpha07-fda-hepatic-pk",
+        "hpha12-fda-clinical-pharmacology-labeling"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hpha06-fda-renal-pk-2024",
+          "location": "2024 final guidance on assessing renal-function effects on pharmacokinetics and translating group evidence into labeling."
+        },
+        {
+          "source_id": "hpha07-fda-hepatic-pk",
+          "location": "Guidance on hepatic impairment studies and effects on PK and where appropriate PD."
+        },
+        {
+          "source_id": "hpha12-fda-clinical-pharmacology-labeling",
+          "location": "FDA resources for mechanism of action, pharmacodynamics, pharmacokinetics, pharmacogenomics and interaction information in labeling."
+        }
+      ],
+      "classification": "verified_general_pharmacology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hpha-c14",
+      "claim": "Distribusjonsvolum er et tilsynelatende volum som relaterer total mengde legemiddel i kroppen til målt konsentrasjon i plasma eller blod.",
+      "paragraph_id": "hpha-p-14",
+      "topic_id": "clearance-volum-halveringstid-steady-state",
+      "source_ids": [
+        "hpha04-fda-bioavailability-2022",
+        "hpha12-fda-clinical-pharmacology-labeling",
+        "hpha06-fda-renal-pk-2024"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hpha04-fda-bioavailability-2022",
+          "location": "2022 final guidance on bioavailability, systemic exposure and study design for drug products."
+        },
+        {
+          "source_id": "hpha12-fda-clinical-pharmacology-labeling",
+          "location": "FDA resources for mechanism of action, pharmacodynamics, pharmacokinetics, pharmacogenomics and interaction information in labeling."
+        },
+        {
+          "source_id": "hpha06-fda-renal-pk-2024",
+          "location": "2024 final guidance on assessing renal-function effects on pharmacokinetics and translating group evidence into labeling."
+        }
+      ],
+      "classification": "verified_general_pharmacology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hpha-c15",
+      "claim": "Eliminasjonshalveringstid er tiden det tar for konsentrasjon eller mengde å falle til halvparten under definerte kinetiske betingelser og påvirkes av både clearance og distribusjonsvolum.",
+      "paragraph_id": "hpha-p-15",
+      "topic_id": "clearance-volum-halveringstid-steady-state",
+      "source_ids": [
+        "hpha06-fda-renal-pk-2024",
+        "hpha07-fda-hepatic-pk",
+        "hpha01-ncbi-pharmacodynamics"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hpha06-fda-renal-pk-2024",
+          "location": "2024 final guidance on assessing renal-function effects on pharmacokinetics and translating group evidence into labeling."
+        },
+        {
+          "source_id": "hpha07-fda-hepatic-pk",
+          "location": "Guidance on hepatic impairment studies and effects on PK and where appropriate PD."
+        },
+        {
+          "source_id": "hpha01-ncbi-pharmacodynamics",
+          "location": "General pharmacodynamic concepts including receptors, affinity, efficacy, Emax, EC50, agonism, antagonism and concentration-effect relationships."
+        }
+      ],
+      "classification": "verified_general_pharmacology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hpha-c16",
+      "claim": "Ved gjentatt administrasjon med stabil dose, intervall og tilnærmet lineær kinetikk vil tilførsel og eliminasjon gradvis nærme seg et steady state-nivå over flere halveringstider.",
+      "paragraph_id": "hpha-p-16",
+      "topic_id": "clearance-volum-halveringstid-steady-state",
+      "source_ids": [
+        "hpha04-fda-bioavailability-2022",
+        "hpha06-fda-renal-pk-2024",
+        "hpha12-fda-clinical-pharmacology-labeling"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hpha04-fda-bioavailability-2022",
+          "location": "2022 final guidance on bioavailability, systemic exposure and study design for drug products."
+        },
+        {
+          "source_id": "hpha06-fda-renal-pk-2024",
+          "location": "2024 final guidance on assessing renal-function effects on pharmacokinetics and translating group evidence into labeling."
+        },
+        {
+          "source_id": "hpha12-fda-clinical-pharmacology-labeling",
+          "location": "FDA resources for mechanism of action, pharmacodynamics, pharmacokinetics, pharmacogenomics and interaction information in labeling."
+        }
+      ],
+      "classification": "verified_general_pharmacology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hpha-c17",
+      "claim": "Legemiddelmetaboliserende enzymer og membrantransportører kan påvirke hvor raskt legemidler absorberes, omdannes, tas opp i vev eller skilles ut.",
+      "paragraph_id": "hpha-p-17",
+      "topic_id": "metabolisme-transport-og-interaksjoner",
+      "source_ids": [
+        "hpha08-fda-ich-m12-ddi",
+        "hpha09-ema-ich-m12-ddi",
+        "hpha10-fda-ddi-tables"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hpha08-fda-ich-m12-ddi",
+          "location": "Final ICH M12 framework for enzyme- and transporter-mediated pharmacokinetic drug-drug interaction evaluation."
+        },
+        {
+          "source_id": "hpha09-ema-ich-m12-ddi",
+          "location": "ICH M12 recommendations for inhibition, induction, transporters, metabolites, modeling and clinical DDI interpretation."
+        },
+        {
+          "source_id": "hpha10-fda-ddi-tables",
+          "location": "Examples and definitions for CYP and transporter substrates, inhibitors and inducers used in drug-interaction assessment."
+        }
+      ],
+      "classification": "verified_general_pharmacology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hpha-c18",
+      "claim": "Når et enzym som bidrar vesentlig til eliminasjon hemmes, kan eksponeringen for et sensitivt substrat øke; induksjon kan øke enzymkapasitet og redusere eksponering.",
+      "paragraph_id": "hpha-p-18",
+      "topic_id": "metabolisme-transport-og-interaksjoner",
+      "source_ids": [
+        "hpha08-fda-ich-m12-ddi",
+        "hpha09-ema-ich-m12-ddi",
+        "hpha10-fda-ddi-tables"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hpha08-fda-ich-m12-ddi",
+          "location": "Final ICH M12 framework for enzyme- and transporter-mediated pharmacokinetic drug-drug interaction evaluation."
+        },
+        {
+          "source_id": "hpha09-ema-ich-m12-ddi",
+          "location": "ICH M12 recommendations for inhibition, induction, transporters, metabolites, modeling and clinical DDI interpretation."
+        },
+        {
+          "source_id": "hpha10-fda-ddi-tables",
+          "location": "Examples and definitions for CYP and transporter substrates, inhibitors and inducers used in drug-interaction assessment."
+        }
+      ],
+      "classification": "verified_general_pharmacology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hpha-c19",
+      "claim": "Transportører kan styre opptak fra tarm, hepatisk opptak, renal sekresjon eller effluks tilbake til lumen eller blod.",
+      "paragraph_id": "hpha-p-19",
+      "topic_id": "metabolisme-transport-og-interaksjoner",
+      "source_ids": [
+        "hpha08-fda-ich-m12-ddi",
+        "hpha09-ema-ich-m12-ddi",
+        "hpha10-fda-ddi-tables"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hpha08-fda-ich-m12-ddi",
+          "location": "Final ICH M12 framework for enzyme- and transporter-mediated pharmacokinetic drug-drug interaction evaluation."
+        },
+        {
+          "source_id": "hpha09-ema-ich-m12-ddi",
+          "location": "ICH M12 recommendations for inhibition, induction, transporters, metabolites, modeling and clinical DDI interpretation."
+        },
+        {
+          "source_id": "hpha10-fda-ddi-tables",
+          "location": "Examples and definitions for CYP and transporter substrates, inhibitors and inducers used in drug-interaction assessment."
+        }
+      ],
+      "classification": "verified_general_pharmacology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hpha-c20",
+      "claim": "Interaksjonsevaluering kombinerer in-vitro undersøkelser, kliniske studier og modellbaserte prediksjoner for å anslå hvor stor PK-endring en kombinasjon kan gi.",
+      "paragraph_id": "hpha-p-20",
+      "topic_id": "metabolisme-transport-og-interaksjoner",
+      "source_ids": [
+        "hpha08-fda-ich-m12-ddi",
+        "hpha09-ema-ich-m12-ddi",
+        "hpha12-fda-clinical-pharmacology-labeling"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hpha08-fda-ich-m12-ddi",
+          "location": "Final ICH M12 framework for enzyme- and transporter-mediated pharmacokinetic drug-drug interaction evaluation."
+        },
+        {
+          "source_id": "hpha09-ema-ich-m12-ddi",
+          "location": "ICH M12 recommendations for inhibition, induction, transporters, metabolites, modeling and clinical DDI interpretation."
+        },
+        {
+          "source_id": "hpha12-fda-clinical-pharmacology-labeling",
+          "location": "FDA resources for mechanism of action, pharmacodynamics, pharmacokinetics, pharmacogenomics and interaction information in labeling."
+        }
+      ],
+      "classification": "verified_general_pharmacology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hpha-c21",
+      "claim": "Redusert nyrefunksjon kan endre eksponeringen når renal utskillelse av legemiddel eller aktive metabolitter utgjør en viktig del av total eliminasjon.",
+      "paragraph_id": "hpha-p-21",
+      "topic_id": "farmakokinetisk-og-farmakodynamisk-variasjon",
+      "source_ids": [
+        "hpha06-fda-renal-pk-2024",
+        "hpha12-fda-clinical-pharmacology-labeling",
+        "hpha04-fda-bioavailability-2022"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hpha06-fda-renal-pk-2024",
+          "location": "2024 final guidance on assessing renal-function effects on pharmacokinetics and translating group evidence into labeling."
+        },
+        {
+          "source_id": "hpha12-fda-clinical-pharmacology-labeling",
+          "location": "FDA resources for mechanism of action, pharmacodynamics, pharmacokinetics, pharmacogenomics and interaction information in labeling."
+        },
+        {
+          "source_id": "hpha04-fda-bioavailability-2022",
+          "location": "2022 final guidance on bioavailability, systemic exposure and study design for drug products."
+        }
+      ],
+      "classification": "verified_general_pharmacology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hpha-c22",
+      "claim": "Nedsatt leverfunksjon kan påvirke metabolisme, biliær utskillelse, proteinbinding og blodstrøm og dermed endre PK for enkelte legemidler.",
+      "paragraph_id": "hpha-p-22",
+      "topic_id": "farmakokinetisk-og-farmakodynamisk-variasjon",
+      "source_ids": [
+        "hpha07-fda-hepatic-pk",
+        "hpha12-fda-clinical-pharmacology-labeling",
+        "hpha08-fda-ich-m12-ddi"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hpha07-fda-hepatic-pk",
+          "location": "Guidance on hepatic impairment studies and effects on PK and where appropriate PD."
+        },
+        {
+          "source_id": "hpha12-fda-clinical-pharmacology-labeling",
+          "location": "FDA resources for mechanism of action, pharmacodynamics, pharmacokinetics, pharmacogenomics and interaction information in labeling."
+        },
+        {
+          "source_id": "hpha08-fda-ich-m12-ddi",
+          "location": "Final ICH M12 framework for enzyme- and transporter-mediated pharmacokinetic drug-drug interaction evaluation."
+        }
+      ],
+      "classification": "verified_general_pharmacology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hpha-c23",
+      "claim": "Farmakogenomiske varianter kan påvirke metaboliserende enzymer, transportører eller legemiddelmål og dermed bidra til variasjon i PK, PD, effekt eller sikkerhet.",
+      "paragraph_id": "hpha-p-23",
+      "topic_id": "farmakokinetisk-og-farmakodynamisk-variasjon",
+      "source_ids": [
+        "hpha11-fda-pharmacogenomics",
+        "hpha12-fda-clinical-pharmacology-labeling",
+        "hpha10-fda-ddi-tables"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hpha11-fda-pharmacogenomics",
+          "location": "Guidance on how genomic variation may affect pharmacokinetics, pharmacodynamics, efficacy and safety in drug development."
+        },
+        {
+          "source_id": "hpha12-fda-clinical-pharmacology-labeling",
+          "location": "FDA resources for mechanism of action, pharmacodynamics, pharmacokinetics, pharmacogenomics and interaction information in labeling."
+        },
+        {
+          "source_id": "hpha10-fda-ddi-tables",
+          "location": "Examples and definitions for CYP and transporter substrates, inhibitors and inducers used in drug-interaction assessment."
+        }
+      ],
+      "classification": "verified_general_pharmacology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hpha-c24",
+      "claim": "Variasjon i legemiddeleksponering og respons kan skyldes flere samtidige forhold, blant annet formulering, mat, organfunksjon, genetikk, alder, kroppssammensetning og interaksjoner.",
+      "paragraph_id": "hpha-p-24",
+      "topic_id": "farmakokinetisk-og-farmakodynamisk-variasjon",
+      "source_ids": [
+        "hpha02-fda-ich-e4-dose-response",
+        "hpha06-fda-renal-pk-2024",
+        "hpha11-fda-pharmacogenomics"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hpha02-fda-ich-e4-dose-response",
+          "location": "Regulatory principles for dose-response, concentration-response, desirable and undesirable effects, variability and study design."
+        },
+        {
+          "source_id": "hpha06-fda-renal-pk-2024",
+          "location": "2024 final guidance on assessing renal-function effects on pharmacokinetics and translating group evidence into labeling."
+        },
+        {
+          "source_id": "hpha11-fda-pharmacogenomics",
+          "location": "Guidance on how genomic variation may affect pharmacokinetics, pharmacodynamics, efficacy and safety in drug development."
+        }
+      ],
+      "classification": "verified_general_pharmacology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hpha-c25",
+      "claim": "En adverse event er en uønsket medisinsk hendelse som opptrer etter legemiddeleksponering uten at definisjonen alene krever at legemidlet forårsaket hendelsen.",
+      "paragraph_id": "hpha-p-25",
+      "topic_id": "bivirkninger-adverse-events-og-farmakovigilans",
+      "source_ids": [
+        "hpha13-who-pharmacovigilance-strategies",
+        "hpha14-who-pidm",
+        "hpha12-fda-clinical-pharmacology-labeling"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hpha13-who-pharmacovigilance-strategies",
+          "location": "WHO definition and strategic framework for detection, assessment, understanding and prevention of adverse effects and other drug-related problems."
+        },
+        {
+          "source_id": "hpha14-who-pidm",
+          "location": "WHO international pharmacovigilance programme, Individual Case Safety Reports, VigiBase and global safety-signal monitoring."
+        },
+        {
+          "source_id": "hpha12-fda-clinical-pharmacology-labeling",
+          "location": "FDA resources for mechanism of action, pharmacodynamics, pharmacokinetics, pharmacogenomics and interaction information in labeling."
+        }
+      ],
+      "classification": "verified_general_pharmacology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hpha-c26",
+      "claim": "Farmakovigilans fortsetter etter markedsføring fordi pre-marketing studier vanligvis omfatter færre og mer selekterte deltakere og kortere observasjon enn senere bruk.",
+      "paragraph_id": "hpha-p-26",
+      "topic_id": "bivirkninger-adverse-events-og-farmakovigilans",
+      "source_ids": [
+        "hpha13-who-pharmacovigilance-strategies",
+        "hpha14-who-pidm",
+        "hpha12-fda-clinical-pharmacology-labeling"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hpha13-who-pharmacovigilance-strategies",
+          "location": "WHO definition and strategic framework for detection, assessment, understanding and prevention of adverse effects and other drug-related problems."
+        },
+        {
+          "source_id": "hpha14-who-pidm",
+          "location": "WHO international pharmacovigilance programme, Individual Case Safety Reports, VigiBase and global safety-signal monitoring."
+        },
+        {
+          "source_id": "hpha12-fda-clinical-pharmacology-labeling",
+          "location": "FDA resources for mechanism of action, pharmacodynamics, pharmacokinetics, pharmacogenomics and interaction information in labeling."
+        }
+      ],
+      "classification": "verified_general_pharmacology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hpha-c27",
+      "claim": "Spontanrapporter og Individual Case Safety Reports samler informasjon om mistenkte legemiddelrelaterte hendelser og kan avdekke mønstre som fortjener nærmere analyse.",
+      "paragraph_id": "hpha-p-27",
+      "topic_id": "bivirkninger-adverse-events-og-farmakovigilans",
+      "source_ids": [
+        "hpha14-who-pidm",
+        "hpha13-who-pharmacovigilance-strategies",
+        "hpha02-fda-ich-e4-dose-response"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hpha14-who-pidm",
+          "location": "WHO international pharmacovigilance programme, Individual Case Safety Reports, VigiBase and global safety-signal monitoring."
+        },
+        {
+          "source_id": "hpha13-who-pharmacovigilance-strategies",
+          "location": "WHO definition and strategic framework for detection, assessment, understanding and prevention of adverse effects and other drug-related problems."
+        },
+        {
+          "source_id": "hpha02-fda-ich-e4-dose-response",
+          "location": "Regulatory principles for dose-response, concentration-response, desirable and undesirable effects, variability and study design."
+        }
+      ],
+      "classification": "verified_general_pharmacology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hpha-c28",
+      "claim": "Et farmakovigilanssignal er informasjon som gir grunn til å undersøke en mulig ny sikkerhetsrisiko eller et endret aspekt ved en kjent risiko.",
+      "paragraph_id": "hpha-p-28",
+      "topic_id": "bivirkninger-adverse-events-og-farmakovigilans",
+      "source_ids": [
+        "hpha13-who-pharmacovigilance-strategies",
+        "hpha14-who-pidm",
+        "hpha12-fda-clinical-pharmacology-labeling"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hpha13-who-pharmacovigilance-strategies",
+          "location": "WHO definition and strategic framework for detection, assessment, understanding and prevention of adverse effects and other drug-related problems."
+        },
+        {
+          "source_id": "hpha14-who-pidm",
+          "location": "WHO international pharmacovigilance programme, Individual Case Safety Reports, VigiBase and global safety-signal monitoring."
+        },
+        {
+          "source_id": "hpha12-fda-clinical-pharmacology-labeling",
+          "location": "FDA resources for mechanism of action, pharmacodynamics, pharmacokinetics, pharmacogenomics and interaction information in labeling."
+        }
+      ],
+      "classification": "verified_general_pharmacology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hpha-c29",
+      "claim": "Legemiddelutvikling bygger et sammenhengende evidensgrunnlag fra mekanistiske og prekliniske studier via human PK/PD og dose–respons til klinisk effekt og sikkerhet.",
+      "paragraph_id": "hpha-p-29",
+      "topic_id": "utvikling-merking-og-livslops-benefit-risk",
+      "source_ids": [
+        "hpha02-fda-ich-e4-dose-response",
+        "hpha12-fda-clinical-pharmacology-labeling",
+        "hpha13-who-pharmacovigilance-strategies"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hpha02-fda-ich-e4-dose-response",
+          "location": "Regulatory principles for dose-response, concentration-response, desirable and undesirable effects, variability and study design."
+        },
+        {
+          "source_id": "hpha12-fda-clinical-pharmacology-labeling",
+          "location": "FDA resources for mechanism of action, pharmacodynamics, pharmacokinetics, pharmacogenomics and interaction information in labeling."
+        },
+        {
+          "source_id": "hpha13-who-pharmacovigilance-strategies",
+          "location": "WHO definition and strategic framework for detection, assessment, understanding and prevention of adverse effects and other drug-related problems."
+        }
+      ],
+      "classification": "verified_general_pharmacology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hpha-c30",
+      "claim": "Produktinformasjon kan oppsummere mekanisme, farmakodynamikk, farmakokinetikk, farmakogenomikk og relevante interaksjonsdata for et bestemt legemiddel.",
+      "paragraph_id": "hpha-p-30",
+      "topic_id": "utvikling-merking-og-livslops-benefit-risk",
+      "source_ids": [
+        "hpha12-fda-clinical-pharmacology-labeling",
+        "hpha08-fda-ich-m12-ddi",
+        "hpha11-fda-pharmacogenomics"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hpha12-fda-clinical-pharmacology-labeling",
+          "location": "FDA resources for mechanism of action, pharmacodynamics, pharmacokinetics, pharmacogenomics and interaction information in labeling."
+        },
+        {
+          "source_id": "hpha08-fda-ich-m12-ddi",
+          "location": "Final ICH M12 framework for enzyme- and transporter-mediated pharmacokinetic drug-drug interaction evaluation."
+        },
+        {
+          "source_id": "hpha11-fda-pharmacogenomics",
+          "location": "Guidance on how genomic variation may affect pharmacokinetics, pharmacodynamics, efficacy and safety in drug development."
+        }
+      ],
+      "classification": "verified_general_pharmacology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hpha-c31",
+      "claim": "Nytte–risiko-balansen vurderes gjennom hele legemidlets livsløp fordi bredere bruk, lengre oppfølging og nye studier kan endre estimater av effekt eller sikkerhet.",
+      "paragraph_id": "hpha-p-31",
+      "topic_id": "utvikling-merking-og-livslops-benefit-risk",
+      "source_ids": [
+        "hpha13-who-pharmacovigilance-strategies",
+        "hpha14-who-pidm",
+        "hpha12-fda-clinical-pharmacology-labeling"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hpha13-who-pharmacovigilance-strategies",
+          "location": "WHO definition and strategic framework for detection, assessment, understanding and prevention of adverse effects and other drug-related problems."
+        },
+        {
+          "source_id": "hpha14-who-pidm",
+          "location": "WHO international pharmacovigilance programme, Individual Case Safety Reports, VigiBase and global safety-signal monitoring."
+        },
+        {
+          "source_id": "hpha12-fda-clinical-pharmacology-labeling",
+          "location": "FDA resources for mechanism of action, pharmacodynamics, pharmacokinetics, pharmacogenomics and interaction information in labeling."
+        }
+      ],
+      "classification": "verified_general_pharmacology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hpha-c32",
+      "claim": "Farmakologiske modeller og populasjonsstudier kan forklare hvordan dose, eksponering, mekanisme, respons og variasjon henger sammen og støtte regulatorisk eller klinisk kunnskapsgrunnlag.",
+      "paragraph_id": "hpha-p-32",
+      "topic_id": "utvikling-merking-og-livslops-benefit-risk",
+      "source_ids": [
+        "hpha02-fda-ich-e4-dose-response",
+        "hpha12-fda-clinical-pharmacology-labeling",
+        "hpha13-who-pharmacovigilance-strategies"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hpha02-fda-ich-e4-dose-response",
+          "location": "Regulatory principles for dose-response, concentration-response, desirable and undesirable effects, variability and study design."
+        },
+        {
+          "source_id": "hpha12-fda-clinical-pharmacology-labeling",
+          "location": "FDA resources for mechanism of action, pharmacodynamics, pharmacokinetics, pharmacogenomics and interaction information in labeling."
+        },
+        {
+          "source_id": "hpha13-who-pharmacovigilance-strategies",
+          "location": "WHO definition and strategic framework for detection, assessment, understanding and prevention of adverse effects and other drug-related problems."
+        }
+      ],
+      "classification": "verified_general_pharmacology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    }
+  ]
+}

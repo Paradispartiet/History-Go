@@ -1,0 +1,48 @@
+{
+  "schema": "history_go_fagverk_chapter_brief_v1",
+  "version": "1.0.0",
+  "subject_id": "helse",
+  "chapter_id": "farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet",
+  "primary_domain_id": "farmakologi",
+  "purpose": "Lære generell farmakodynamikk, farmakokinetikk, dose–respons, variasjon, interaksjoner og legemiddelsikkerhet uten å gi personspesifikke legemiddelbeslutninger.",
+  "sourceStrategy": {
+    "sourceBriefFile": "data/fag/helse/pharmacology_source_claim_brief_v1.json",
+    "externalSourceCount": 14,
+    "paragraphLevelClaimTrace": true,
+    "everyPlannedClaimResolved": true,
+    "allUsedSourcesInspectable": true
+  },
+  "requiredCriticalDistinctions": [
+    "farmakodynamikk vs farmakokinetikk",
+    "affinitet vs efficacy",
+    "potens vs maksimal effekt",
+    "dose vs konsentrasjon vs respons",
+    "biotilgjengelighet vs administrert mengde",
+    "clearance vs eliminert mengde",
+    "halveringstid vs virkningsvarighet",
+    "steady state vs umiddelbar likevekt",
+    "interaksjonspotensial vs klinisk konsekvens",
+    "adverse event vs adverse drug reaction",
+    "farmakovigilanssignal vs kausalitet",
+    "populasjonsdata vs individuell dosering"
+  ],
+  "safety": {
+    "contractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json",
+    "individualDiagnosis": false,
+    "individualPrognosis": false,
+    "individualTriage": false,
+    "individualTreatmentAdvice": false,
+    "individualRiskCalculation": false,
+    "individualTestOrImageInterpretation": false,
+    "individualMedicationSelection": false,
+    "individualDosing": false
+  },
+  "qa": {
+    "topicCoverage": "8/8",
+    "plannedClaimResolution": "32/32",
+    "moduleCount": 4,
+    "sectionCount": 8,
+    "paragraphCount": 32,
+    "assessmentQuestionCount": 8
+  }
+}
