@@ -130,6 +130,231 @@ function uniqueIds(values) {
   return uniqueStrings(values).filter((value) => ID_RE.test(value));
 }
 
+function hasOwn(object, key) {
+  return Object.prototype.hasOwnProperty.call(object, key);
+}
+
+function assertPlainObject(value, label) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    throw new Error(`${label} må være objekt`);
+  }
+  return value;
+}
+
+function assertAllowedKeys(value, allowed, label) {
+  const input = assertPlainObject(value, label);
+  const unknown = Object.keys(input).filter((key) => !allowed.has(key));
+  if (unknown.length) throw new Error(`${label} har ukjent felt: ${unknown.sort().join(", ")}`);
+  return input;
+}
+
+function strictUniqueStrings(value, label, options = {}) {
+  if (!Array.isArray(value)) throw new Error(`${label} må være array`);
+  const max = Number(options.max || 32);
+  if (value.length > max) throw new Error(`${label} kan ha maks ${max} elementer`);
+  const seen = new Set();
+  const out = [];
+  for (let index = 0; index < value.length; index += 1) {
+    const item = norm(value[index]);
+    if (!item) throw new Error(`${label}[${index}] kan ikke være tom`);
+    if (options.ids === true && !ID_RE.test(item)) {
+      throw new Error(`${label}[${index}] har ugyldig id: ${JSON.stringify(value[index])}`);
+    }
+    if (seen.has(item)) throw new Error(`${label} har duplikat: ${item}`);
+    seen.add(item);
+    out.push(item);
+  }
+  return out;
+}
+
+function optionalStrictText(value, label, allowNull = false) {
+  if (value === null && allowNull) return null;
+  const out = norm(value);
+  if (!out) throw new Error(`${label} kan ikke være tom`);
+  return out;
+}
+
+function normalizeWorkContext(value, label) {
+  if (value == null) return null;
+  const input = assertAllowedKeys(
+    value,
+    new Set(["object_ids", "institution_id", "deadline_ref"]),
+    label
+  );
+  if (!hasOwn(input, "object_ids")) throw new Error(`${label}.object_ids mangler`);
+  const objectIds = strictUniqueStrings(input.object_ids, `${label}.object_ids`, { ids: true, max: 8 });
+  if (!objectIds.length) throw new Error(`${label}.object_ids må inneholde minst ett id`);
+  const out = { object_ids: objectIds };
+  if (hasOwn(input, "institution_id")) {
+    out.institution_id = assertId(input.institution_id, `${label}.institution_id`);
+  }
+  if (hasOwn(input, "deadline_ref")) {
+    out.deadline_ref = optionalStrictText(input.deadline_ref, `${label}.deadline_ref`);
+  }
+  return out;
+}
+
+const CREATE_SEED_KEYS = new Set([
+  "work_object_id",
+  "kind",
+  "role_scope",
+  "institution_id",
+  "title",
+  "status",
+  "phase",
+  "people_refs",
+  "place_refs",
+  "knowledge_refs",
+  "open_questions",
+  "deadline",
+  "confidentiality",
+  "flags",
+  "shared"
+]);
+const PATCH_SEED_KEYS = new Set([
+  "work_object_id",
+  "kind",
+  "role_scope",
+  "institution_id",
+  "title",
+  "people_refs",
+  "place_refs",
+  "knowledge_refs",
+  "open_questions",
+  "deadline",
+  "confidentiality",
+  "flags",
+  "shared"
+]);
+
+function normalizeWorkObjectSeed(value, label, mode) {
+  const create = mode === "create";
+  const input = assertAllowedKeys(value, create ? CREATE_SEED_KEYS : PATCH_SEED_KEYS, label);
+  const out = {
+    work_object_id: assertId(input.work_object_id, `${label}.work_object_id`)
+  };
+
+  if (create) {
+    out.kind = assertId(input.kind, `${label}.kind`);
+    out.role_scope = assertId(input.role_scope, `${label}.role_scope`);
+    out.title = optionalStrictText(input.title, `${label}.title`);
+    out.status = assertId(input.status, `${label}.status`);
+    out.phase = assertId(input.phase, `${label}.phase`);
+  } else {
+    if (hasOwn(input, "kind")) out.kind = assertId(input.kind, `${label}.kind`);
+    if (hasOwn(input, "role_scope")) out.role_scope = assertId(input.role_scope, `${label}.role_scope`);
+    if (hasOwn(input, "title")) out.title = optionalStrictText(input.title, `${label}.title`);
+  }
+
+  if (hasOwn(input, "institution_id")) {
+    out.institution_id = assertId(input.institution_id, `${label}.institution_id`);
+  }
+  for (const key of ["people_refs", "place_refs", "knowledge_refs", "open_questions"]) {
+    if (hasOwn(input, key)) out[key] = strictUniqueStrings(input[key], `${label}.${key}`);
+    else if (create) out[key] = [];
+  }
+  if (hasOwn(input, "deadline")) {
+    out.deadline = optionalStrictText(input.deadline, `${label}.deadline`, !create);
+  }
+  if (hasOwn(input, "confidentiality")) {
+    out.confidentiality = optionalStrictText(input.confidentiality, `${label}.confidentiality`, !create);
+  }
+  if (hasOwn(input, "flags")) {
+    out.flags = strictUniqueStrings(input.flags, `${label}.flags`, { ids: true });
+  } else if (create) {
+    out.flags = [];
+  }
+  if (hasOwn(input, "shared")) {
+    if (typeof input.shared !== "boolean") throw new Error(`${label}.shared må være boolean`);
+    out.shared = input.shared;
+  } else if (create) {
+    out.shared = false;
+  }
+
+  return out;
+}
+
+function normalizeWorkObjectOps(value, label) {
+  if (!Array.isArray(value)) throw new Error(`${label} må være array`);
+  if (value.length > 12) throw new Error(`${label} kan ha maks 12 operasjoner`);
+
+  const seenEvents = new Set();
+  const out = [];
+  for (let index = 0; index < value.length; index += 1) {
+    const opLabel = `${label}[${index}]`;
+    const raw = assertPlainObject(value[index], opLabel);
+    const op = norm(raw.op);
+    const allowedByOp = {
+      create: new Set(["op", "event_id", "work_object"]),
+      upsert: new Set(["op", "event_id", "work_object"]),
+      transition: new Set(["op", "event_id", "work_object_id", "to_status", "to_phase", "note"]),
+      add_flag: new Set(["op", "event_id", "work_object_id", "flag"]),
+      remove_flag: new Set(["op", "event_id", "work_object_id", "flag"]),
+      close: new Set(["op", "event_id", "work_object_id", "outcome"]),
+      note: new Set(["op", "event_id", "work_object_id", "note"])
+    };
+    const allowed = allowedByOp[op];
+    if (!allowed) throw new Error(`${opLabel}.op er ukjent: ${op || "<tom>"}`);
+    const input = assertAllowedKeys(raw, allowed, opLabel);
+    const eventId = assertId(input.event_id, `${opLabel}.event_id`);
+    if (seenEvents.has(eventId)) throw new Error(`${label} har duplikat event_id: ${eventId}`);
+    seenEvents.add(eventId);
+
+    if (op === "create" || op === "upsert") {
+      out.push({
+        op,
+        event_id: eventId,
+        work_object: normalizeWorkObjectSeed(input.work_object, `${opLabel}.work_object`, op)
+      });
+      continue;
+    }
+
+    const workObjectId = assertId(input.work_object_id, `${opLabel}.work_object_id`);
+    if (op === "transition") {
+      const transition = { op, event_id: eventId, work_object_id: workObjectId };
+      if (hasOwn(input, "to_status")) {
+        transition.to_status = assertId(input.to_status, `${opLabel}.to_status`);
+      }
+      if (hasOwn(input, "to_phase")) {
+        transition.to_phase = assertId(input.to_phase, `${opLabel}.to_phase`);
+      }
+      if (hasOwn(input, "note")) {
+        transition.note = optionalStrictText(input.note, `${opLabel}.note`);
+      }
+      if (!transition.to_status && !transition.to_phase && !transition.note) {
+        throw new Error(`${opLabel} må endre status/fase eller ha note`);
+      }
+      out.push(transition);
+      continue;
+    }
+
+    if (op === "add_flag" || op === "remove_flag") {
+      out.push({
+        op,
+        event_id: eventId,
+        work_object_id: workObjectId,
+        flag: assertId(input.flag, `${opLabel}.flag`)
+      });
+      continue;
+    }
+
+    if (op === "close") {
+      const close = { op, event_id: eventId, work_object_id: workObjectId };
+      if (hasOwn(input, "outcome")) close.outcome = optionalStrictText(input.outcome, `${opLabel}.outcome`);
+      out.push(close);
+      continue;
+    }
+
+    out.push({
+      op,
+      event_id: eventId,
+      work_object_id: workObjectId,
+      note: optionalStrictText(input.note, `${opLabel}.note`)
+    });
+  }
+  return out;
+}
+
 function normalizeCanonicalChoiceInputs(choices) {
   return (Array.isArray(choices) ? choices : [])
     .filter((choice) => choice && typeof choice === "object")
@@ -163,7 +388,7 @@ function normalizeProgression(value) {
   return out;
 }
 
-function normalizeEffects(value, legacyScoreDelta) {
+function normalizeEffects(value, legacyScoreDelta, label = "effects") {
   const input = value && typeof value === "object" && !Array.isArray(value) ? value : {};
   const out = {};
   const score = Number.isFinite(Number(input.score_delta)) ? Number(input.score_delta) : legacyScoreDelta;
@@ -191,6 +416,10 @@ function normalizeEffects(value, legacyScoreDelta) {
   if (Object.keys(progression).length) out.progression = progression;
   const triggerSceneIds = uniqueIds(input.trigger_scene_ids);
   if (triggerSceneIds.length) out.trigger_scene_ids = triggerSceneIds;
+  if (hasOwn(input, "work_object_ops")) {
+    const workObjectOps = normalizeWorkObjectOps(input.work_object_ops, `${label}.work_object_ops`);
+    if (workObjectOps.length) out.work_object_ops = workObjectOps;
+  }
   return out;
 }
 
@@ -199,7 +428,11 @@ function canonicalChoices(runtimeChoices, sourcePath, sceneId) {
     const out = {
       id: assertId(choice.id, `${sourcePath} :: ${sceneId} choice[${index}]`),
       label: norm(choice.label),
-      effects: normalizeEffects(choice.effects, numberOr(choice.effect, 0))
+      effects: normalizeEffects(
+        choice.effects,
+        numberOr(choice.effect, 0),
+        `${sourcePath} :: ${sceneId} choice[${index}].effects`
+      )
     };
     const reply = norm(choice.reply);
     if (reply) out.reply = reply;
@@ -342,9 +575,31 @@ function compileMail({ catalog, family, mail, sourcePath }) {
   const mailType = norm(mail?.mail_type || catalog?.mail_type || "job").toLowerCase();
   const sceneId = assertId(mail?.id, `${sourcePath} mail`);
   const canonicalChoiceInputs = normalizeCanonicalChoiceInputs(mail?.choices);
-  const compatibilityChoices = compatibilityChoiceInputs(mail?.choices);
   const choices = canonicalChoices(canonicalChoiceInputs, sourcePath, sceneId);
+  const compatibilityChoices = compatibilityChoiceInputs(mail?.choices).map((choice, index) => {
+    const normalizedOps = choices[index]?.effects?.work_object_ops;
+    if (!Array.isArray(normalizedOps) || !normalizedOps.length) return choice;
+    const rawEffects = choice?.effects && typeof choice.effects === "object" && !Array.isArray(choice.effects)
+      ? choice.effects
+      : {};
+    return {
+      ...choice,
+      effects: {
+        ...rawEffects,
+        work_object_ops: normalizedOps
+      }
+    };
+  });
   const taskContract = normalizeTaskContract(mail);
+  const workContext = normalizeWorkContext(
+    mail?.work_context,
+    `${sourcePath} :: ${sceneId} work_context`
+  );
+  const sceneEffects = normalizeEffects(
+    mail?.effects,
+    undefined,
+    `${sourcePath} :: ${sceneId} effects`
+  );
   const interactionMode = resolveInteractionMode(mail, choices, taskContract);
   if (interactionMode === "decision" && choices.length < 2) throw new Error(`${sourcePath} :: ${sceneId} decision mangler to reelle valg`);
   if (interactionMode === "task" && !taskContract) throw new Error(`${sourcePath} :: ${sceneId} task mangler gyldig task_contract`);
@@ -361,9 +616,19 @@ function compileMail({ catalog, family, mail, sourcePath }) {
     mail_family: norm(mail?.mail_family || family?.id),
     choices: compatibilityChoices,
     situation: situation.length ? situation : [norm(mail?.summary)].filter(Boolean),
+    ...(workContext ? { work_context: workContext } : {}),
     scene_catalog_source_path: sourcePath,
     scene_catalog_version: 1
   };
+  if (Array.isArray(sceneEffects.work_object_ops) && sceneEffects.work_object_ops.length) {
+    const rawEffects = mail?.effects && typeof mail.effects === "object" && !Array.isArray(mail.effects)
+      ? mail.effects
+      : {};
+    compatibilityProjection.effects = {
+      ...rawEffects,
+      work_object_ops: sceneEffects.work_object_ops
+    };
+  }
 
   const scene = {
     schema: SCENE_SCHEMA,
@@ -376,9 +641,10 @@ function compileMail({ catalog, family, mail, sourcePath }) {
     arc_stage: resolveArcStage(mail),
     interaction_mode: interactionMode,
     thread_id: canonicalThreadId(mail, roleScope, sceneId),
+    ...(workContext ? { work_context: workContext } : {}),
     content: canonicalContent(mail, sceneId),
     choices,
-    effects: normalizeEffects(mail?.effects),
+    effects: sceneEffects,
     knowledge_contract: normalizeKnowledgeContract(mail?.knowledge_contract),
     provenance: {
       adapter: "mail_family",
