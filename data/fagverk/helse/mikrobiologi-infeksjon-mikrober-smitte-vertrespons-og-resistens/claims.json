@@ -1,0 +1,1061 @@
+{
+  "schema": "history_go_fagverk_chapter_claims_v1",
+  "version": "1.0.0",
+  "subject_id": "helse",
+  "chapter_id": "mikrobiologi-infeksjon-mikrober-smitte-vertrespons-og-resistens",
+  "sourceBriefFile": "data/fag/helse/microbiology_infection_source_claim_brief_v1.json",
+  "sources": [
+    {
+      "id": "hmi01-fhi-medical-microbiology",
+      "publisher": "Folkehelseinstituttet",
+      "title": "Medisinsk mikrobiologi og smittevern – håndbok for helsepersonell",
+      "url": "https://www.fhi.no/sm/smittevernhandboka/temakapitler/medisinsk-mikrobiologi/",
+      "type": "national-medical-microbiology-guidance",
+      "evidence_role": "microbial-groups-laboratory-role-infection-control",
+      "source_location": "Overview of medical microbiology, major microbial groups, laboratory detection and characterization, resistance and outbreak-support roles.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "Folkehelseinstituttet – Medisinsk mikrobiologi og smittevern – håndbok for helsepersonell"
+    },
+    {
+      "id": "hmi02-cdc-infection-control-basics",
+      "publisher": "Centers for Disease Control and Prevention",
+      "title": "Infection Control Basics",
+      "url": "https://www.cdc.gov/infectioncontrol/guidelines/index.html",
+      "type": "federal-infection-control-guidance",
+      "evidence_role": "colonization-infection-sources-transmission",
+      "source_location": "Definitions of colonization and infection plus sources and transmission in healthcare settings.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "Centers for Disease Control and Prevention – Infection Control Basics"
+    },
+    {
+      "id": "hmi03-who-laboratory-biosafety-manual",
+      "publisher": "World Health Organization",
+      "title": "Laboratory Biosafety Manual, Fourth Edition",
+      "url": "https://iris.who.int/bitstream/handle/10665/337956/9789240011311-eng.pdf?sequence=1",
+      "type": "international-laboratory-biosafety-manual",
+      "evidence_role": "risk-based-biosafety-good-microbiological-practice",
+      "source_location": "Risk- and evidence-based laboratory biosafety, good microbiological practice, procedures, containment and safety culture.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "World Health Organization – Laboratory Biosafety Manual, Fourth Edition"
+    },
+    {
+      "id": "hmi04-who-laboratory-diagnostic-testing-2023",
+      "publisher": "World Health Organization",
+      "title": "Laboratory and point-of-care diagnostic testing for sexually transmitted infections, including HIV",
+      "url": "https://www.who.int/publications/i/item/9789240077089",
+      "type": "international-laboratory-testing-manual",
+      "evidence_role": "specimen-testing-naat-culture-serology-ast-quality",
+      "source_location": "General laboratory principles spanning specimen collection, transport, nucleic acid amplification, culture, rapid testing, antimicrobial susceptibility testing and quality systems.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "World Health Organization – Laboratory and point-of-care diagnostic testing for sexually transmitted infections, including HIV"
+    },
+    {
+      "id": "hmi05-who-ipc-core-components",
+      "publisher": "World Health Organization",
+      "title": "Core components for infection prevention and control",
+      "url": "https://www.who.int/teams/integrated-health-services/infection-prevention-control/core-components",
+      "type": "international-ipc-guidance",
+      "evidence_role": "infection-prevention-programmes-surveillance-practice",
+      "source_location": "Evidence-based core components for infection prevention and control programmes, surveillance, training and implementation.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "World Health Organization – Core components for infection prevention and control"
+    },
+    {
+      "id": "hmi06-who-glass",
+      "publisher": "World Health Organization",
+      "title": "Global Antimicrobial Resistance and Use Surveillance System (GLASS)",
+      "url": "https://www.who.int/initiatives/glass",
+      "type": "international-amr-surveillance-system",
+      "evidence_role": "standardized-amr-amc-surveillance-one-health",
+      "source_location": "Standardized global AMR/AMU surveillance modules, emerging resistance reporting and One Health surveillance.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "World Health Organization – Global Antimicrobial Resistance and Use Surveillance System (GLASS)"
+    },
+    {
+      "id": "hmi07-who-amr-report-2025",
+      "publisher": "World Health Organization",
+      "title": "Global antibiotic resistance surveillance report 2025",
+      "url": "https://www.who.int/publications/i/item/9789240116337",
+      "type": "international-amr-surveillance-report",
+      "evidence_role": "resistance-prevalence-trends-surveillance-coverage",
+      "source_location": "Global and regional antibiotic-resistance estimates and trends based on bacteriologically confirmed infections and surveillance-system assessment.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "World Health Organization – Global antibiotic resistance surveillance report 2025"
+    },
+    {
+      "id": "hmi08-fhi-antimicrobial-resistance",
+      "publisher": "Folkehelseinstituttet",
+      "title": "Antimikrobiell resistens – håndbok for helsepersonell",
+      "url": "https://www.fhi.no/sm/smittevernhandboka/temakapitler/antibiotikaresistens/",
+      "type": "national-amr-guidance",
+      "evidence_role": "resistance-selection-spread-prevention-boundaries",
+      "source_location": "Norwegian overview of antimicrobial resistance as a public-health problem, including selection pressure, spread and infection-control implications.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "Folkehelseinstituttet – Antimikrobiell resistens – håndbok for helsepersonell"
+    },
+    {
+      "id": "hmi09-fhi-norm",
+      "publisher": "Folkehelseinstituttet",
+      "title": "Norsk overvåkingssystem for antibiotikaresistens hos mikrober (NORM)",
+      "url": "https://www.fhi.no/sm/overvaking/norm/",
+      "type": "national-amr-surveillance-registry",
+      "evidence_role": "norwegian-amr-surveillance-population-data",
+      "source_location": "Norwegian national surveillance of antimicrobial resistance in human microbial isolates and population-level reporting.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "Folkehelseinstituttet – Norsk overvåkingssystem for antibiotikaresistens hos mikrober (NORM)"
+    },
+    {
+      "id": "hmi10-ecdc-wgs-surveillance",
+      "publisher": "European Centre for Disease Prevention and Control",
+      "title": "Expert opinion on whole genome sequencing for public health surveillance",
+      "url": "https://www.ecdc.europa.eu/en/publications-data/expert-opinion-whole-genome-sequencing-public-health-surveillance",
+      "type": "european-genomic-surveillance-guidance",
+      "evidence_role": "whole-genome-sequencing-surveillance-outbreak-interpretation",
+      "source_location": "Strengths, limitations and multidisciplinary interpretation of whole-genome sequencing in public-health surveillance and outbreak investigation.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "European Centre for Disease Prevention and Control – Expert opinion on whole genome sequencing for public health surveillance"
+    },
+    {
+      "id": "hmi11-ecdc-cre-reporting-2026",
+      "publisher": "European Centre for Disease Prevention and Control",
+      "title": "Reporting protocol for epidemiological, microbiological and genomic investigation of outbreaks and emerging resistance mechanisms for carbapenem-resistant Enterobacterales – version 3.0",
+      "url": "https://www.ecdc.europa.eu/en/publications-data/reporting-protocol-epidemiological-microbiological-and-genomic-investigation",
+      "type": "european-outbreak-genomic-protocol",
+      "evidence_role": "integrated-epidemiological-microbiological-genomic-outbreak-data",
+      "source_location": "2026 protocol for harmonized epidemiological, microbiological and genomic investigation of outbreaks and emerging resistance mechanisms.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "European Centre for Disease Prevention and Control – Reporting protocol for epidemiological, microbiological and genomic investigation of outbreaks and emerging resistance mechanisms for carbapenem-resistant Enterobacterales – version 3.0"
+    },
+    {
+      "id": "hmi12-cdc-hiv-cluster-sequence-limit",
+      "publisher": "Centers for Disease Control and Prevention",
+      "title": "HIV Cluster Detection and Response",
+      "url": "https://www.cdc.gov/hivpartners/php/cdr/index.html",
+      "type": "federal-molecular-surveillance-guidance",
+      "evidence_role": "sequence-similarity-not-direct-transmission-proof",
+      "source_location": "Explicit boundary that molecular sequence analysis cannot determine that a specific person directly transmitted infection to another person or establish transmission direction.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "Centers for Disease Control and Prevention – HIV Cluster Detection and Response"
+    },
+    {
+      "id": "hmi13-ncbi-bacterial-pathogenesis",
+      "publisher": "National Center for Biotechnology Information",
+      "title": "Bacterial Pathogenesis – Medical Microbiology",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK8526/",
+      "type": "academic-medical-microbiology-reference",
+      "evidence_role": "pathogenicity-virulence-colonization-host-interaction",
+      "source_location": "General concepts in bacterial pathogenesis, host resistance, adherence, colonization, virulence factors and the distinction between infection and disease.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "National Center for Biotechnology Information – Bacterial Pathogenesis – Medical Microbiology"
+    },
+    {
+      "id": "hmi14-ncbi-innate-immunity",
+      "publisher": "National Center for Biotechnology Information",
+      "title": "Innate Immunity – Immunobiology",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK10769/",
+      "type": "academic-immunobiology-reference",
+      "evidence_role": "barriers-innate-recognition-complement-phagocytes-adaptive-transition",
+      "source_location": "Barrier defenses, innate recognition, complement, phagocytes and transition from innate to adaptive responses to infection.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "National Center for Biotechnology Information – Innate Immunity – Immunobiology"
+    }
+  ],
+  "claims": [
+    {
+      "id": "hmi-c01",
+      "claim": "Medisinsk mikrobiologi omfatter biologisk ulike grupper som bakterier, virus, sopp og parasitter.",
+      "paragraph_id": "hmi-p-c01",
+      "topic_id": "mikrobielle-grupper-og-patogenese",
+      "source_ids": [
+        "hmi01-fhi-medical-microbiology",
+        "hmi03-who-laboratory-biosafety-manual",
+        "hmi13-ncbi-bacterial-pathogenesis"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hmi01-fhi-medical-microbiology",
+          "location": "Overview of medical microbiology, major microbial groups, laboratory detection and characterization, resistance and outbreak-support roles."
+        },
+        {
+          "source_id": "hmi03-who-laboratory-biosafety-manual",
+          "location": "Risk- and evidence-based laboratory biosafety, good microbiological practice, procedures, containment and safety culture."
+        },
+        {
+          "source_id": "hmi13-ncbi-bacterial-pathogenesis",
+          "location": "General concepts in bacterial pathogenesis, host resistance, adherence, colonization, virulence factors and the distinction between infection and disease."
+        }
+      ],
+      "classification": "verified_general_microbiology_infection_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hmi-c02",
+      "claim": "Patogenitet beskriver en mikroorganismes kapasitet til å fremkalle sykdom under bestemte vert- og miljøbetingelser, mens virulens beskriver graden eller uttrykket av sykdomsfremkallende egenskaper blant patogene varianter eller under ulike betingelser.",
+      "paragraph_id": "hmi-p-c02",
+      "topic_id": "mikrobielle-grupper-og-patogenese",
+      "source_ids": [
+        "hmi13-ncbi-bacterial-pathogenesis",
+        "hmi01-fhi-medical-microbiology",
+        "hmi14-ncbi-innate-immunity"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hmi13-ncbi-bacterial-pathogenesis",
+          "location": "General concepts in bacterial pathogenesis, host resistance, adherence, colonization, virulence factors and the distinction between infection and disease."
+        },
+        {
+          "source_id": "hmi01-fhi-medical-microbiology",
+          "location": "Overview of medical microbiology, major microbial groups, laboratory detection and characterization, resistance and outbreak-support roles."
+        },
+        {
+          "source_id": "hmi14-ncbi-innate-immunity",
+          "location": "Barrier defenses, innate recognition, complement, phagocytes and transition from innate to adaptive responses to infection."
+        }
+      ],
+      "classification": "verified_general_microbiology_infection_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hmi-c03",
+      "claim": "Sykdomsutvikling ved infeksjon formes av samspill mellom mikrobielle egenskaper og vertens forsvar.",
+      "paragraph_id": "hmi-p-c03",
+      "topic_id": "mikrobielle-grupper-og-patogenese",
+      "source_ids": [
+        "hmi13-ncbi-bacterial-pathogenesis",
+        "hmi14-ncbi-innate-immunity",
+        "hmi01-fhi-medical-microbiology"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hmi13-ncbi-bacterial-pathogenesis",
+          "location": "General concepts in bacterial pathogenesis, host resistance, adherence, colonization, virulence factors and the distinction between infection and disease."
+        },
+        {
+          "source_id": "hmi14-ncbi-innate-immunity",
+          "location": "Barrier defenses, innate recognition, complement, phagocytes and transition from innate to adaptive responses to infection."
+        },
+        {
+          "source_id": "hmi01-fhi-medical-microbiology",
+          "location": "Overview of medical microbiology, major microbial groups, laboratory detection and characterization, resistance and outbreak-support roles."
+        }
+      ],
+      "classification": "verified_general_microbiology_infection_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hmi-c04",
+      "claim": "Laboratoriearbeid med biologiske agens krever risikobasert biosikkerhet, gode mikrobiologiske arbeidsrutiner, riktig utstyr og prosedyrer som passer til aktiviteten og eksponeringen som kan oppstå.",
+      "paragraph_id": "hmi-p-c04",
+      "topic_id": "mikrobielle-grupper-og-patogenese",
+      "source_ids": [
+        "hmi03-who-laboratory-biosafety-manual",
+        "hmi01-fhi-medical-microbiology",
+        "hmi05-who-ipc-core-components"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hmi03-who-laboratory-biosafety-manual",
+          "location": "Risk- and evidence-based laboratory biosafety, good microbiological practice, procedures, containment and safety culture."
+        },
+        {
+          "source_id": "hmi01-fhi-medical-microbiology",
+          "location": "Overview of medical microbiology, major microbial groups, laboratory detection and characterization, resistance and outbreak-support roles."
+        },
+        {
+          "source_id": "hmi05-who-ipc-core-components",
+          "location": "Evidence-based core components for infection prevention and control programmes, surveillance, training and implementation."
+        }
+      ],
+      "classification": "verified_general_microbiology_infection_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hmi-c05",
+      "claim": "Kolonisering betyr at mikroorganismer finnes og kan formere seg på eller i en vert uten at dette i seg selv innebærer infeksjonssykdom.",
+      "paragraph_id": "hmi-p-c05",
+      "topic_id": "kolonisering-mikrobiom-infeksjon-sykdom",
+      "source_ids": [
+        "hmi02-cdc-infection-control-basics",
+        "hmi13-ncbi-bacterial-pathogenesis",
+        "hmi01-fhi-medical-microbiology"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hmi02-cdc-infection-control-basics",
+          "location": "Definitions of colonization and infection plus sources and transmission in healthcare settings."
+        },
+        {
+          "source_id": "hmi13-ncbi-bacterial-pathogenesis",
+          "location": "General concepts in bacterial pathogenesis, host resistance, adherence, colonization, virulence factors and the distinction between infection and disease."
+        },
+        {
+          "source_id": "hmi01-fhi-medical-microbiology",
+          "location": "Overview of medical microbiology, major microbial groups, laboratory detection and characterization, resistance and outbreak-support roles."
+        }
+      ],
+      "classification": "verified_general_microbiology_infection_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hmi-c06",
+      "claim": "Normal mikrobiota kan bidra til vertshomeostase og koloniseringsresistens gjennom konkurranse om næring og nisjer, produksjon av hemmende stoffer og samspill med vertens immunforsvar.",
+      "paragraph_id": "hmi-p-c06",
+      "topic_id": "kolonisering-mikrobiom-infeksjon-sykdom",
+      "source_ids": [
+        "hmi13-ncbi-bacterial-pathogenesis",
+        "hmi14-ncbi-innate-immunity",
+        "hmi02-cdc-infection-control-basics"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hmi13-ncbi-bacterial-pathogenesis",
+          "location": "General concepts in bacterial pathogenesis, host resistance, adherence, colonization, virulence factors and the distinction between infection and disease."
+        },
+        {
+          "source_id": "hmi14-ncbi-innate-immunity",
+          "location": "Barrier defenses, innate recognition, complement, phagocytes and transition from innate to adaptive responses to infection."
+        },
+        {
+          "source_id": "hmi02-cdc-infection-control-basics",
+          "location": "Definitions of colonization and infection plus sources and transmission in healthcare settings."
+        }
+      ],
+      "classification": "verified_general_microbiology_infection_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hmi-c07",
+      "claim": "Infeksjon betegner etablering og biologisk aktivitet av et smittestoff i verten, mens infeksjonssykdom innebærer at samspillet også gir patologiske eller kliniske uttrykk.",
+      "paragraph_id": "hmi-p-c07",
+      "topic_id": "kolonisering-mikrobiom-infeksjon-sykdom",
+      "source_ids": [
+        "hmi13-ncbi-bacterial-pathogenesis",
+        "hmi01-fhi-medical-microbiology",
+        "hmi14-ncbi-innate-immunity"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hmi13-ncbi-bacterial-pathogenesis",
+          "location": "General concepts in bacterial pathogenesis, host resistance, adherence, colonization, virulence factors and the distinction between infection and disease."
+        },
+        {
+          "source_id": "hmi01-fhi-medical-microbiology",
+          "location": "Overview of medical microbiology, major microbial groups, laboratory detection and characterization, resistance and outbreak-support roles."
+        },
+        {
+          "source_id": "hmi14-ncbi-innate-immunity",
+          "location": "Barrier defenses, innate recognition, complement, phagocytes and transition from innate to adaptive responses to infection."
+        }
+      ],
+      "classification": "verified_general_microbiology_infection_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hmi-c08",
+      "claim": "Et laboratoriefunn av en mikroorganisme kan være forenlig med relevant infeksjon, men kan også gjenspeile kolonisering, forurensning av prøven eller påvisning av biologisk materiale uten sykdomsbetydning.",
+      "paragraph_id": "hmi-p-c08",
+      "topic_id": "kolonisering-mikrobiom-infeksjon-sykdom",
+      "source_ids": [
+        "hmi01-fhi-medical-microbiology",
+        "hmi02-cdc-infection-control-basics",
+        "hmi04-who-laboratory-diagnostic-testing-2023"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hmi01-fhi-medical-microbiology",
+          "location": "Overview of medical microbiology, major microbial groups, laboratory detection and characterization, resistance and outbreak-support roles."
+        },
+        {
+          "source_id": "hmi02-cdc-infection-control-basics",
+          "location": "Definitions of colonization and infection plus sources and transmission in healthcare settings."
+        },
+        {
+          "source_id": "hmi04-who-laboratory-diagnostic-testing-2023",
+          "location": "General laboratory principles spanning specimen collection, transport, nucleic acid amplification, culture, rapid testing, antimicrobial susceptibility testing and quality systems."
+        }
+      ],
+      "classification": "verified_general_microbiology_infection_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hmi-c09",
+      "claim": "En smittekjede kan analyseres som flere ledd: smittestoff, reservoar eller kilde, utgangsport, transmisjonsmåte, inngangsport og mottakelig vert.",
+      "paragraph_id": "hmi-p-c09",
+      "topic_id": "reservoar-eksponering-og-transmisjon",
+      "source_ids": [
+        "hmi02-cdc-infection-control-basics",
+        "hmi05-who-ipc-core-components",
+        "hmi01-fhi-medical-microbiology"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hmi02-cdc-infection-control-basics",
+          "location": "Definitions of colonization and infection plus sources and transmission in healthcare settings."
+        },
+        {
+          "source_id": "hmi05-who-ipc-core-components",
+          "location": "Evidence-based core components for infection prevention and control programmes, surveillance, training and implementation."
+        },
+        {
+          "source_id": "hmi01-fhi-medical-microbiology",
+          "location": "Overview of medical microbiology, major microbial groups, laboratory detection and characterization, resistance and outbreak-support roles."
+        }
+      ],
+      "classification": "verified_general_microbiology_infection_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hmi-c10",
+      "claim": "Et reservoar er den økologiske sammenhengen der et smittestoff normalt opprettholdes eller formerer seg, mens den umiddelbare smittekilden er det stedet, individet eller materialet som overfører agens i en konkret hendelseskjede.",
+      "paragraph_id": "hmi-p-c10",
+      "topic_id": "reservoar-eksponering-og-transmisjon",
+      "source_ids": [
+        "hmi02-cdc-infection-control-basics",
+        "hmi01-fhi-medical-microbiology",
+        "hmi05-who-ipc-core-components"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hmi02-cdc-infection-control-basics",
+          "location": "Definitions of colonization and infection plus sources and transmission in healthcare settings."
+        },
+        {
+          "source_id": "hmi01-fhi-medical-microbiology",
+          "location": "Overview of medical microbiology, major microbial groups, laboratory detection and characterization, resistance and outbreak-support roles."
+        },
+        {
+          "source_id": "hmi05-who-ipc-core-components",
+          "location": "Evidence-based core components for infection prevention and control programmes, surveillance, training and implementation."
+        }
+      ],
+      "classification": "verified_general_microbiology_infection_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hmi-c11",
+      "claim": "Transmisjon kan skje gjennom direkte eller indirekte kontakt, dråper, luftbårne partikler, vektorer, mat, vann eller andre agensspesifikke mekanismer.",
+      "paragraph_id": "hmi-p-c11",
+      "topic_id": "reservoar-eksponering-og-transmisjon",
+      "source_ids": [
+        "hmi02-cdc-infection-control-basics",
+        "hmi05-who-ipc-core-components",
+        "hmi01-fhi-medical-microbiology"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hmi02-cdc-infection-control-basics",
+          "location": "Definitions of colonization and infection plus sources and transmission in healthcare settings."
+        },
+        {
+          "source_id": "hmi05-who-ipc-core-components",
+          "location": "Evidence-based core components for infection prevention and control programmes, surveillance, training and implementation."
+        },
+        {
+          "source_id": "hmi01-fhi-medical-microbiology",
+          "location": "Overview of medical microbiology, major microbial groups, laboratory detection and characterization, resistance and outbreak-support roles."
+        }
+      ],
+      "classification": "verified_general_microbiology_infection_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hmi-c12",
+      "claim": "Eksponering for et smittestoff er ikke det samme som vellykket transmisjon, og transmisjon er ikke det samme som sykdom.",
+      "paragraph_id": "hmi-p-c12",
+      "topic_id": "reservoar-eksponering-og-transmisjon",
+      "source_ids": [
+        "hmi13-ncbi-bacterial-pathogenesis",
+        "hmi14-ncbi-innate-immunity",
+        "hmi02-cdc-infection-control-basics"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hmi13-ncbi-bacterial-pathogenesis",
+          "location": "General concepts in bacterial pathogenesis, host resistance, adherence, colonization, virulence factors and the distinction between infection and disease."
+        },
+        {
+          "source_id": "hmi14-ncbi-innate-immunity",
+          "location": "Barrier defenses, innate recognition, complement, phagocytes and transition from innate to adaptive responses to infection."
+        },
+        {
+          "source_id": "hmi02-cdc-infection-control-basics",
+          "location": "Definitions of colonization and infection plus sources and transmission in healthcare settings."
+        }
+      ],
+      "classification": "verified_general_microbiology_infection_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hmi-c13",
+      "claim": "Hud, slimhinner, ciliefunksjon, slim, lav pH og andre fysiske og kjemiske barrierer utgjør første forsvarslinje mot mange mikroorganismer.",
+      "paragraph_id": "hmi-p-c13",
+      "topic_id": "vertrespons-og-immunpatologi",
+      "source_ids": [
+        "hmi14-ncbi-innate-immunity",
+        "hmi13-ncbi-bacterial-pathogenesis",
+        "hmi01-fhi-medical-microbiology"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hmi14-ncbi-innate-immunity",
+          "location": "Barrier defenses, innate recognition, complement, phagocytes and transition from innate to adaptive responses to infection."
+        },
+        {
+          "source_id": "hmi13-ncbi-bacterial-pathogenesis",
+          "location": "General concepts in bacterial pathogenesis, host resistance, adherence, colonization, virulence factors and the distinction between infection and disease."
+        },
+        {
+          "source_id": "hmi01-fhi-medical-microbiology",
+          "location": "Overview of medical microbiology, major microbial groups, laboratory detection and characterization, resistance and outbreak-support roles."
+        }
+      ],
+      "classification": "verified_general_microbiology_infection_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hmi-c14",
+      "claim": "Medfødt immunitet reagerer raskt gjennom blant annet mønstergjenkjenningsreseptorer, fagocytter, komplementsystemet og inflammatoriske signaler.",
+      "paragraph_id": "hmi-p-c14",
+      "topic_id": "vertrespons-og-immunpatologi",
+      "source_ids": [
+        "hmi14-ncbi-innate-immunity",
+        "hmi13-ncbi-bacterial-pathogenesis",
+        "hmi01-fhi-medical-microbiology"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hmi14-ncbi-innate-immunity",
+          "location": "Barrier defenses, innate recognition, complement, phagocytes and transition from innate to adaptive responses to infection."
+        },
+        {
+          "source_id": "hmi13-ncbi-bacterial-pathogenesis",
+          "location": "General concepts in bacterial pathogenesis, host resistance, adherence, colonization, virulence factors and the distinction between infection and disease."
+        },
+        {
+          "source_id": "hmi01-fhi-medical-microbiology",
+          "location": "Overview of medical microbiology, major microbial groups, laboratory detection and characterization, resistance and outbreak-support roles."
+        }
+      ],
+      "classification": "verified_general_microbiology_infection_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hmi-c15",
+      "claim": "Adaptiv immunitet bygger på antigenspesifikke B- og T-celler og kan etablere immunologisk hukommelse etter infeksjon eller vaksinasjon.",
+      "paragraph_id": "hmi-p-c15",
+      "topic_id": "vertrespons-og-immunpatologi",
+      "source_ids": [
+        "hmi14-ncbi-innate-immunity",
+        "hmi01-fhi-medical-microbiology",
+        "hmi13-ncbi-bacterial-pathogenesis"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hmi14-ncbi-innate-immunity",
+          "location": "Barrier defenses, innate recognition, complement, phagocytes and transition from innate to adaptive responses to infection."
+        },
+        {
+          "source_id": "hmi01-fhi-medical-microbiology",
+          "location": "Overview of medical microbiology, major microbial groups, laboratory detection and characterization, resistance and outbreak-support roles."
+        },
+        {
+          "source_id": "hmi13-ncbi-bacterial-pathogenesis",
+          "location": "General concepts in bacterial pathogenesis, host resistance, adherence, colonization, virulence factors and the distinction between infection and disease."
+        }
+      ],
+      "classification": "verified_general_microbiology_infection_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hmi-c16",
+      "claim": "Inflammasjon og andre immunreaksjoner kan både kontrollere mikroorganismer og bidra til vevsskade.",
+      "paragraph_id": "hmi-p-c16",
+      "topic_id": "vertrespons-og-immunpatologi",
+      "source_ids": [
+        "hmi14-ncbi-innate-immunity",
+        "hmi13-ncbi-bacterial-pathogenesis",
+        "hmi01-fhi-medical-microbiology"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hmi14-ncbi-innate-immunity",
+          "location": "Barrier defenses, innate recognition, complement, phagocytes and transition from innate to adaptive responses to infection."
+        },
+        {
+          "source_id": "hmi13-ncbi-bacterial-pathogenesis",
+          "location": "General concepts in bacterial pathogenesis, host resistance, adherence, colonization, virulence factors and the distinction between infection and disease."
+        },
+        {
+          "source_id": "hmi01-fhi-medical-microbiology",
+          "location": "Overview of medical microbiology, major microbial groups, laboratory detection and characterization, resistance and outbreak-support roles."
+        }
+      ],
+      "classification": "verified_general_microbiology_infection_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hmi-c17",
+      "claim": "Mikrobiologisk diagnostikk begynner før analyseinstrumentet: valg av prøvemateriale, anatomisk prøvested, tidspunkt, aseptisk teknikk, transportmedium, temperatur og tidsbruk kan påvirke hva laboratoriet mottar.",
+      "paragraph_id": "hmi-p-c17",
+      "topic_id": "provetaking-og-laboratorieevidens",
+      "source_ids": [
+        "hmi01-fhi-medical-microbiology",
+        "hmi04-who-laboratory-diagnostic-testing-2023",
+        "hmi03-who-laboratory-biosafety-manual"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hmi01-fhi-medical-microbiology",
+          "location": "Overview of medical microbiology, major microbial groups, laboratory detection and characterization, resistance and outbreak-support roles."
+        },
+        {
+          "source_id": "hmi04-who-laboratory-diagnostic-testing-2023",
+          "location": "General laboratory principles spanning specimen collection, transport, nucleic acid amplification, culture, rapid testing, antimicrobial susceptibility testing and quality systems."
+        },
+        {
+          "source_id": "hmi03-who-laboratory-biosafety-manual",
+          "location": "Risk- and evidence-based laboratory biosafety, good microbiological practice, procedures, containment and safety culture."
+        }
+      ],
+      "classification": "verified_general_microbiology_infection_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hmi-c18",
+      "claim": "Mikroskopi visualiserer celler eller strukturer, kultur undersøker vekst av levedyktige organismer under valgte betingelser, nukleinsyreamplifikasjon påviser definerte genetiske mål, og serologi måler antistoff- eller antigenrelaterte signaler.",
+      "paragraph_id": "hmi-p-c18",
+      "topic_id": "provetaking-og-laboratorieevidens",
+      "source_ids": [
+        "hmi04-who-laboratory-diagnostic-testing-2023",
+        "hmi01-fhi-medical-microbiology",
+        "hmi03-who-laboratory-biosafety-manual"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hmi04-who-laboratory-diagnostic-testing-2023",
+          "location": "General laboratory principles spanning specimen collection, transport, nucleic acid amplification, culture, rapid testing, antimicrobial susceptibility testing and quality systems."
+        },
+        {
+          "source_id": "hmi01-fhi-medical-microbiology",
+          "location": "Overview of medical microbiology, major microbial groups, laboratory detection and characterization, resistance and outbreak-support roles."
+        },
+        {
+          "source_id": "hmi03-who-laboratory-biosafety-manual",
+          "location": "Risk- and evidence-based laboratory biosafety, good microbiological practice, procedures, containment and safety culture."
+        }
+      ],
+      "classification": "verified_general_microbiology_infection_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hmi-c19",
+      "claim": "En nukleinsyretest som PCR viser at et definert genetisk mål er påvist over metodens deteksjonsgrense i den undersøkte prøven.",
+      "paragraph_id": "hmi-p-c19",
+      "topic_id": "provetaking-og-laboratorieevidens",
+      "source_ids": [
+        "hmi04-who-laboratory-diagnostic-testing-2023",
+        "hmi01-fhi-medical-microbiology",
+        "hmi02-cdc-infection-control-basics"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hmi04-who-laboratory-diagnostic-testing-2023",
+          "location": "General laboratory principles spanning specimen collection, transport, nucleic acid amplification, culture, rapid testing, antimicrobial susceptibility testing and quality systems."
+        },
+        {
+          "source_id": "hmi01-fhi-medical-microbiology",
+          "location": "Overview of medical microbiology, major microbial groups, laboratory detection and characterization, resistance and outbreak-support roles."
+        },
+        {
+          "source_id": "hmi02-cdc-infection-control-basics",
+          "location": "Definitions of colonization and infection plus sources and transmission in healthcare settings."
+        }
+      ],
+      "classification": "verified_general_microbiology_infection_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hmi-c20",
+      "claim": "Pålitelig laboratorieevidens krever validerte metoder, relevante positive og negative kontroller, intern kvalitetskontroll, ekstern kvalitetsvurdering der det er relevant og dokumentert håndtering av avvik.",
+      "paragraph_id": "hmi-p-c20",
+      "topic_id": "provetaking-og-laboratorieevidens",
+      "source_ids": [
+        "hmi04-who-laboratory-diagnostic-testing-2023",
+        "hmi03-who-laboratory-biosafety-manual",
+        "hmi01-fhi-medical-microbiology"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hmi04-who-laboratory-diagnostic-testing-2023",
+          "location": "General laboratory principles spanning specimen collection, transport, nucleic acid amplification, culture, rapid testing, antimicrobial susceptibility testing and quality systems."
+        },
+        {
+          "source_id": "hmi03-who-laboratory-biosafety-manual",
+          "location": "Risk- and evidence-based laboratory biosafety, good microbiological practice, procedures, containment and safety culture."
+        },
+        {
+          "source_id": "hmi01-fhi-medical-microbiology",
+          "location": "Overview of medical microbiology, major microbial groups, laboratory detection and characterization, resistance and outbreak-support roles."
+        }
+      ],
+      "classification": "verified_general_microbiology_infection_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hmi-c21",
+      "claim": "Antimikrobiell resistens kan oppstå gjennom mutasjoner eller erverv av genetiske resistensdeterminanter som endrer målstrukturer, reduserer opptak, øker effluks eller inaktiverer antimikrobielle midler.",
+      "paragraph_id": "hmi-p-c21",
+      "topic_id": "antimikrobiell-resistens-og-folsomhet",
+      "source_ids": [
+        "hmi08-fhi-antimicrobial-resistance",
+        "hmi07-who-amr-report-2025",
+        "hmi06-who-glass"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hmi08-fhi-antimicrobial-resistance",
+          "location": "Norwegian overview of antimicrobial resistance as a public-health problem, including selection pressure, spread and infection-control implications."
+        },
+        {
+          "source_id": "hmi07-who-amr-report-2025",
+          "location": "Global and regional antibiotic-resistance estimates and trends based on bacteriologically confirmed infections and surveillance-system assessment."
+        },
+        {
+          "source_id": "hmi06-who-glass",
+          "location": "Standardized global AMR/AMU surveillance modules, emerging resistance reporting and One Health surveillance."
+        }
+      ],
+      "classification": "verified_general_microbiology_infection_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hmi-c22",
+      "claim": "Antimikrobiell følsomhetstesting undersøker et isolats in-vitro respons mot definerte konsentrasjoner eller soner og fortolker resultatet etter standardiserte brytepunkter og metoder.",
+      "paragraph_id": "hmi-p-c22",
+      "topic_id": "antimikrobiell-resistens-og-folsomhet",
+      "source_ids": [
+        "hmi04-who-laboratory-diagnostic-testing-2023",
+        "hmi06-who-glass",
+        "hmi08-fhi-antimicrobial-resistance"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hmi04-who-laboratory-diagnostic-testing-2023",
+          "location": "General laboratory principles spanning specimen collection, transport, nucleic acid amplification, culture, rapid testing, antimicrobial susceptibility testing and quality systems."
+        },
+        {
+          "source_id": "hmi06-who-glass",
+          "location": "Standardized global AMR/AMU surveillance modules, emerging resistance reporting and One Health surveillance."
+        },
+        {
+          "source_id": "hmi08-fhi-antimicrobial-resistance",
+          "location": "Norwegian overview of antimicrobial resistance as a public-health problem, including selection pressure, spread and infection-control implications."
+        }
+      ],
+      "classification": "verified_general_microbiology_infection_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hmi-c23",
+      "claim": "Antimikrobiell bruk kan skape seleksjonspress som øker relative fordeler for resistente mikrober, mens transmisjon kan spre allerede resistente stammer eller resistensgener mellom verter og miljøer.",
+      "paragraph_id": "hmi-p-c23",
+      "topic_id": "antimikrobiell-resistens-og-folsomhet",
+      "source_ids": [
+        "hmi08-fhi-antimicrobial-resistance",
+        "hmi07-who-amr-report-2025",
+        "hmi06-who-glass"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hmi08-fhi-antimicrobial-resistance",
+          "location": "Norwegian overview of antimicrobial resistance as a public-health problem, including selection pressure, spread and infection-control implications."
+        },
+        {
+          "source_id": "hmi07-who-amr-report-2025",
+          "location": "Global and regional antibiotic-resistance estimates and trends based on bacteriologically confirmed infections and surveillance-system assessment."
+        },
+        {
+          "source_id": "hmi06-who-glass",
+          "location": "Standardized global AMR/AMU surveillance modules, emerging resistance reporting and One Health surveillance."
+        }
+      ],
+      "classification": "verified_general_microbiology_infection_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hmi-c24",
+      "claim": "Overvåkingssystemer som NORM og WHO GLASS sammenstiller resistensresultater for definerte mikrober, prøvetyper, tidsperioder og populasjoner.",
+      "paragraph_id": "hmi-p-c24",
+      "topic_id": "antimikrobiell-resistens-og-folsomhet",
+      "source_ids": [
+        "hmi09-fhi-norm",
+        "hmi06-who-glass",
+        "hmi07-who-amr-report-2025"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hmi09-fhi-norm",
+          "location": "Norwegian national surveillance of antimicrobial resistance in human microbial isolates and population-level reporting."
+        },
+        {
+          "source_id": "hmi06-who-glass",
+          "location": "Standardized global AMR/AMU surveillance modules, emerging resistance reporting and One Health surveillance."
+        },
+        {
+          "source_id": "hmi07-who-amr-report-2025",
+          "location": "Global and regional antibiotic-resistance estimates and trends based on bacteriologically confirmed infections and surveillance-system assessment."
+        }
+      ],
+      "classification": "verified_general_microbiology_infection_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hmi-c25",
+      "claim": "Effektivt smittevern er et system av organisatoriske og tekniske komponenter: ledelse, retningslinjer, opplæring, overvåking, bemanning, infrastruktur, håndhygiene, rengjøring og andre praksiser må fungere sammen.",
+      "paragraph_id": "hmi-p-c25",
+      "topic_id": "smittevern-dekontaminering-og-helsetjenesteassosiert-infeksjon",
+      "source_ids": [
+        "hmi05-who-ipc-core-components",
+        "hmi02-cdc-infection-control-basics",
+        "hmi01-fhi-medical-microbiology"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hmi05-who-ipc-core-components",
+          "location": "Evidence-based core components for infection prevention and control programmes, surveillance, training and implementation."
+        },
+        {
+          "source_id": "hmi02-cdc-infection-control-basics",
+          "location": "Definitions of colonization and infection plus sources and transmission in healthcare settings."
+        },
+        {
+          "source_id": "hmi01-fhi-medical-microbiology",
+          "location": "Overview of medical microbiology, major microbial groups, laboratory detection and characterization, resistance and outbreak-support roles."
+        }
+      ],
+      "classification": "verified_general_microbiology_infection_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hmi-c26",
+      "claim": "Standardtiltak brukes som grunnleggende smittevern overfor alle pasientkontakter basert på forventet eksponering for blod, kroppsvæsker, slimhinner, ikke-intakt hud og kontaminert utstyr.",
+      "paragraph_id": "hmi-p-c26",
+      "topic_id": "smittevern-dekontaminering-og-helsetjenesteassosiert-infeksjon",
+      "source_ids": [
+        "hmi05-who-ipc-core-components",
+        "hmi02-cdc-infection-control-basics",
+        "hmi01-fhi-medical-microbiology"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hmi05-who-ipc-core-components",
+          "location": "Evidence-based core components for infection prevention and control programmes, surveillance, training and implementation."
+        },
+        {
+          "source_id": "hmi02-cdc-infection-control-basics",
+          "location": "Definitions of colonization and infection plus sources and transmission in healthcare settings."
+        },
+        {
+          "source_id": "hmi01-fhi-medical-microbiology",
+          "location": "Overview of medical microbiology, major microbial groups, laboratory detection and characterization, resistance and outbreak-support roles."
+        }
+      ],
+      "classification": "verified_general_microbiology_infection_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hmi-c27",
+      "claim": "Rengjøring fjerner synlig smuss og organisk materiale og er ofte nødvendig før videre dekontaminering.",
+      "paragraph_id": "hmi-p-c27",
+      "topic_id": "smittevern-dekontaminering-og-helsetjenesteassosiert-infeksjon",
+      "source_ids": [
+        "hmi03-who-laboratory-biosafety-manual",
+        "hmi05-who-ipc-core-components",
+        "hmi01-fhi-medical-microbiology"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hmi03-who-laboratory-biosafety-manual",
+          "location": "Risk- and evidence-based laboratory biosafety, good microbiological practice, procedures, containment and safety culture."
+        },
+        {
+          "source_id": "hmi05-who-ipc-core-components",
+          "location": "Evidence-based core components for infection prevention and control programmes, surveillance, training and implementation."
+        },
+        {
+          "source_id": "hmi01-fhi-medical-microbiology",
+          "location": "Overview of medical microbiology, major microbial groups, laboratory detection and characterization, resistance and outbreak-support roles."
+        }
+      ],
+      "classification": "verified_general_microbiology_infection_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hmi-c28",
+      "claim": "Helsetjenesteassosierte infeksjoner kan oppstå fra pasientens egen mikrobiota eller fra andre mennesker, utstyr og miljø.",
+      "paragraph_id": "hmi-p-c28",
+      "topic_id": "smittevern-dekontaminering-og-helsetjenesteassosiert-infeksjon",
+      "source_ids": [
+        "hmi02-cdc-infection-control-basics",
+        "hmi05-who-ipc-core-components",
+        "hmi01-fhi-medical-microbiology"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hmi02-cdc-infection-control-basics",
+          "location": "Definitions of colonization and infection plus sources and transmission in healthcare settings."
+        },
+        {
+          "source_id": "hmi05-who-ipc-core-components",
+          "location": "Evidence-based core components for infection prevention and control programmes, surveillance, training and implementation."
+        },
+        {
+          "source_id": "hmi01-fhi-medical-microbiology",
+          "location": "Overview of medical microbiology, major microbial groups, laboratory detection and characterization, resistance and outbreak-support roles."
+        }
+      ],
+      "classification": "verified_general_microbiology_infection_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hmi-c29",
+      "claim": "Utbruddsundersøkelser kombinerer en epidemiologisk case-definisjon og person–sted–tid-data med mikrobiologisk identifikasjon, resistensprofil og eventuelt genomiske data.",
+      "paragraph_id": "hmi-p-c29",
+      "topic_id": "utbrudd-genomikk-og-one-health-overvaking",
+      "source_ids": [
+        "hmi11-ecdc-cre-reporting-2026",
+        "hmi10-ecdc-wgs-surveillance",
+        "hmi06-who-glass"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hmi11-ecdc-cre-reporting-2026",
+          "location": "2026 protocol for harmonized epidemiological, microbiological and genomic investigation of outbreaks and emerging resistance mechanisms."
+        },
+        {
+          "source_id": "hmi10-ecdc-wgs-surveillance",
+          "location": "Strengths, limitations and multidisciplinary interpretation of whole-genome sequencing in public-health surveillance and outbreak investigation."
+        },
+        {
+          "source_id": "hmi06-who-glass",
+          "location": "Standardized global AMR/AMU surveillance modules, emerging resistance reporting and One Health surveillance."
+        }
+      ],
+      "classification": "verified_general_microbiology_infection_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hmi-c30",
+      "claim": "Helgenomsekvensering kan gi høyoppløselig typing, identifisere genetiske resistensdeterminanter og støtte avgrensning av mulige utbruddsklynger.",
+      "paragraph_id": "hmi-p-c30",
+      "topic_id": "utbrudd-genomikk-og-one-health-overvaking",
+      "source_ids": [
+        "hmi10-ecdc-wgs-surveillance",
+        "hmi11-ecdc-cre-reporting-2026",
+        "hmi01-fhi-medical-microbiology"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hmi10-ecdc-wgs-surveillance",
+          "location": "Strengths, limitations and multidisciplinary interpretation of whole-genome sequencing in public-health surveillance and outbreak investigation."
+        },
+        {
+          "source_id": "hmi11-ecdc-cre-reporting-2026",
+          "location": "2026 protocol for harmonized epidemiological, microbiological and genomic investigation of outbreaks and emerging resistance mechanisms."
+        },
+        {
+          "source_id": "hmi01-fhi-medical-microbiology",
+          "location": "Overview of medical microbiology, major microbial groups, laboratory detection and characterization, resistance and outbreak-support roles."
+        }
+      ],
+      "classification": "verified_general_microbiology_infection_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hmi-c31",
+      "claim": "To isolater med svært like genomsekvenser kan være forenlige med en felles transmisjonskjede eller kilde, men sekvenslikhet alene kan ikke fastslå at én bestemt person direkte smittet en annen eller hvilken retning en eventuell smitte gikk.",
+      "paragraph_id": "hmi-p-c31",
+      "topic_id": "utbrudd-genomikk-og-one-health-overvaking",
+      "source_ids": [
+        "hmi12-cdc-hiv-cluster-sequence-limit",
+        "hmi10-ecdc-wgs-surveillance",
+        "hmi11-ecdc-cre-reporting-2026"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hmi12-cdc-hiv-cluster-sequence-limit",
+          "location": "Explicit boundary that molecular sequence analysis cannot determine that a specific person directly transmitted infection to another person or establish transmission direction."
+        },
+        {
+          "source_id": "hmi10-ecdc-wgs-surveillance",
+          "location": "Strengths, limitations and multidisciplinary interpretation of whole-genome sequencing in public-health surveillance and outbreak investigation."
+        },
+        {
+          "source_id": "hmi11-ecdc-cre-reporting-2026",
+          "location": "2026 protocol for harmonized epidemiological, microbiological and genomic investigation of outbreaks and emerging resistance mechanisms."
+        }
+      ],
+      "classification": "verified_general_microbiology_infection_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hmi-c32",
+      "claim": "One Health-overvåking kobler data om mikrober og antimikrobiell resistens fra mennesker, dyr, mat og miljø for å forstå økologiske koblinger og spredningsmønstre på systemnivå.",
+      "paragraph_id": "hmi-p-c32",
+      "topic_id": "utbrudd-genomikk-og-one-health-overvaking",
+      "source_ids": [
+        "hmi06-who-glass",
+        "hmi09-fhi-norm",
+        "hmi11-ecdc-cre-reporting-2026"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hmi06-who-glass",
+          "location": "Standardized global AMR/AMU surveillance modules, emerging resistance reporting and One Health surveillance."
+        },
+        {
+          "source_id": "hmi09-fhi-norm",
+          "location": "Norwegian national surveillance of antimicrobial resistance in human microbial isolates and population-level reporting."
+        },
+        {
+          "source_id": "hmi11-ecdc-cre-reporting-2026",
+          "location": "2026 protocol for harmonized epidemiological, microbiological and genomic investigation of outbreaks and emerging resistance mechanisms."
+        }
+      ],
+      "classification": "verified_general_microbiology_infection_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "schema": "history_go_fagverk_chapter_v1",
+  "version": "1.0.0",
+  "subject": "helse",
+  "subject_id": "helse",
+  "id": "mikrobiologi-infeksjon-mikrober-smitte-vertrespons-og-resistens",
+  "chapter_id": "mikrobiologi-infeksjon-mikrober-smitte-vertrespons-og-resistens",
+  "primary_domain_id": "mikrobiologi_infeksjon",
+  "editorialStatus": "chapter_ready",
+  "claimTraceRequired": true,
+  "sourceFirst": true,
+  "emne_ids": [
+    "em_helse_mikrobiologi_infeksjon"
+  ],
+  "method_ids": [
+    "met_helse_laboratorieevidens",
+    "met_helse_populasjonsanalyse"
+  ],
+  "title": "Mikrobiologi og infeksjon: mikrober, smitte, vertrespons og resistens",
+  "subtitle": "Fra mikrobielt mangfold og kolonisering til laboratorieevidens, resistens, smittevern og genomisk overvåking",
+  "lead": "Kapittelet analyserer mikroorganismer, smitte og laboratorieevidens på generelt faglig nivå og gir aldri individuell diagnose, prognose, triage, behandling, antibiotikavalg, risikoberegning eller personspesifikk medisinsk tolkning.",
+  "learningObjectives": [
+    "Mikrobielle grupper, biologisk organisering og patogenese",
+    "Kolonisering, mikrobiom, infeksjon og sykdom",
+    "Reservoar, eksponering og transmisjon",
+    "Vertrespons, barrierer og immunpatologi",
+    "Prøvetaking, laboratoriemetoder og evidensgrenser",
+    "Antimikrobiell resistens, følsomhet og seleksjon",
+    "Smittevern, dekontaminering og helsetjenesteassosiert infeksjon",
+    "Utbrudd, genomikk og One Health-overvåking"
+  ],
+  "diagnosticQuestions": [
+    {
+      "question": "Hva skiller kolonisering fra infeksjonssykdom?",
+      "answer": "Kolonisering betyr at mikroorganismer finnes og kan formere seg på eller i en vert uten at dette i seg selv innebærer infeksjonssykdom. Hud, slimhinner og tarm har normalt omfattende mikrobiota. Derfor må kolonisering holdes atskilt fra vevsinvasjon, patologisk vertrespons og klinisk sykdom, særlig når laboratoriet kan påvise mikrober også hos personer uten symptomer."
+    },
+    {
+      "question": "Hva kan et positivt mikrobefunn alene fastslå?",
+      "answer": "Et laboratoriefunn av en mikroorganisme kan være forenlig med relevant infeksjon, men kan også gjenspeile kolonisering, forurensning av prøven eller påvisning av biologisk materiale uten sykdomsbetydning. Fortolkningen avhenger av prøvested, prøvetaking, analytt, metode, tidsforløp og biologisk kontekst. Et positivt mikrobefunn alene etablerer derfor ikke en individuell diagnose eller årsaken til symptomer."
+    },
+    {
+      "question": "Hva er riktig om eksponering, transmisjon og sykdom?",
+      "answer": "Eksponering for et smittestoff er ikke det samme som vellykket transmisjon, og transmisjon er ikke det samme som sykdom. Inokulum eller dose, inngangsport, mikrobens biologiske egenskaper, vertens barrierer og immunrespons samt miljøbetingelser påvirker hvert ledd. Derfor kan en eksponering ende uten etablering, en etablert infeksjon være asymptomatisk, eller sykdom oppstå gjennom et mer komplekst vert–mikrobe-samspill."
+    },
+    {
+      "question": "Hva viser en positiv nukleinsyretest mest direkte?",
+      "answer": "En nukleinsyretest som PCR viser at et definert genetisk mål er påvist over metodens deteksjonsgrense i den undersøkte prøven. Signalet kan i enkelte sammenhenger vedvare når levedyktig organisme ikke lenger kan dokumenteres, og testen må tolkes sammen med prøvetype og biologisk kontekst. Positiv nukleinsyrepåvisning er derfor ikke automatisk bevis for aktiv sykdom eller individuell behandlingsindikasjon."
+    }
+  ],
+  "relatedPlaces": [
+    {
+      "id": "folkehelseinstituttet",
+      "name": "Folkehelseinstituttet",
+      "role": "Knytte medisinsk mikrobiologi, resistensovervåking og utbruddsanalyse til norsk praksis uten individtolkning."
+    },
+    {
+      "id": "rikshospitalet",
+      "name": "Rikshospitalet",
+      "role": "Knytte laboratoriemikrobiologi og smittevern til helsetjenestens generelle systemer uten å gi kliniske råd."
+    },
+    {
+      "id": "veterinaerinstituttet",
+      "name": "Veterinærinstituttet",
+      "role": "Knytte One Health, zoonoser og resistensovervåking mellom mennesker, dyr og miljø på populasjonsnivå."
+    }
+  ],
+  "workCases": [
+    {
+      "id": "scenario-colonization-or-infection",
+      "title": "Kolonisering eller infeksjon i et hypotetisk datasett",
+      "purpose": "Skille laboratoriepåvisning og kolonisering fra klinisk sykdom i et anonymt, ikke-individualiserende eksempel uten diagnose eller behandlingsråd.",
+      "source_ids": [
+        "hmi01-fhi-medical-microbiology",
+        "hmi02-cdc-infection-control-basics",
+        "hmi13-ncbi-bacterial-pathogenesis"
+      ]
+    },
+    {
+      "id": "scenario-naat-detection-boundary",
+      "title": "Nukleinsyrepåvisning og biologisk tolkning",
+      "purpose": "Analysere hvorfor påvist mikrobielt nukleinsyremateriale alene ikke etablerer aktiv sykdom, ved å skille prøvekvalitet, analytt, metode og klinisk kontekst på generelt nivå.",
+      "source_ids": [
+        "hmi01-fhi-medical-microbiology",
+        "hmi04-who-laboratory-diagnostic-testing-2023",
+        "hmi13-ncbi-bacterial-pathogenesis"
+      ]
+    },
+    {
+      "id": "scenario-transmission-chain",
+      "title": "Bryt en hypotetisk smittekjede",
+      "purpose": "Kartlegge reservoar, utgangsport, transmisjonsmåte, inngangsport og mottakelig vert i et generelt institusjonsscenario uten personspesifikk risikovurdering.",
+      "source_ids": [
+        "hmi02-cdc-infection-control-basics",
+        "hmi05-who-ipc-core-components",
+        "hmi14-ncbi-innate-immunity"
+      ]
+    },
+    {
+      "id": "scenario-ast-population-interpretation",
+      "title": "Resistensdata fra laboratorium til overvåking",
+      "purpose": "Skille in-vitro resistensbestemmelse, enkeltisolat, aggregert resistensandel og populasjonsovervåking uten å anbefale antibiotika til en person.",
+      "source_ids": [
+        "hmi04-who-laboratory-diagnostic-testing-2023",
+        "hmi06-who-glass",
+        "hmi09-fhi-norm"
+      ]
+    },
+    {
+      "id": "scenario-disinfection-or-sterilization",
+      "title": "Desinfeksjon eller sterilisasjon",
+      "purpose": "Velge korrekt prosessbegrep for hypotetiske instrument- og miljøsituasjoner og forklare hvorfor rengjøring, desinfeksjon og sterilisasjon ikke er synonymer.",
+      "source_ids": [
+        "hmi03-who-laboratory-biosafety-manual",
+        "hmi05-who-ipc-core-components",
+        "hmi01-fhi-medical-microbiology"
+      ]
+    },
+    {
+      "id": "scenario-genomic-cluster",
+      "title": "Genomisk klynge uten direkte smittebevis",
+      "purpose": "Kombinere hypotetiske sekvens-, tid- og kontaktdata og forklare hvorfor genetisk likhet styrker en klyngehypotese uten å bevise direkte smitte eller retning mellom bestemte personer.",
+      "source_ids": [
+        "hmi10-ecdc-wgs-surveillance",
+        "hmi11-ecdc-cre-reporting-2026",
+        "hmi12-cdc-hiv-cluster-sequence-limit"
+      ]
+    }
+  ],
+  "moduleFiles": [
+    "data/fagverk/helse/mikrobiologi-infeksjon-mikrober-smitte-vertrespons-og-resistens/01-mikrober-kolonisering-og-patogenese.json",
+    "data/fagverk/helse/mikrobiologi-infeksjon-mikrober-smitte-vertrespons-og-resistens/02-transmisjon-og-vertrespons.json",
+    "data/fagverk/helse/mikrobiologi-infeksjon-mikrober-smitte-vertrespons-og-resistens/03-laboratorieevidens-og-resistens.json",
+    "data/fagverk/helse/mikrobiologi-infeksjon-mikrober-smitte-vertrespons-og-resistens/04-smittevern-utbrudd-og-genomikk.json"
+  ],
+  "briefFile": "data/fagverk/helse/mikrobiologi-infeksjon-mikrober-smitte-vertrespons-og-resistens/brief.json",
+  "claimsFile": "data/fagverk/helse/mikrobiologi-infeksjon-mikrober-smitte-vertrespons-og-resistens/claims.json",
+  "assessmentFile": "data/fagverk/helse/mikrobiologi-infeksjon-mikrober-smitte-vertrespons-og-resistens/assessment.json",
+  "sourceBriefFile": "data/fag/helse/microbiology_infection_source_claim_brief_v1.json",
+  "safetyContractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json"
+}
