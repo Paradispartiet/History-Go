@@ -1,0 +1,142 @@
+{
+  "schema": "history_go_fagverk_chapter_v1",
+  "version": "1.0.0",
+  "subject": "helse",
+  "subject_id": "helse",
+  "id": "ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster",
+  "chapter_id": "ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster",
+  "primary_domain_id": "ernaering_metabolisme",
+  "editorialStatus": "chapter_ready",
+  "claimTraceRequired": true,
+  "sourceFirst": true,
+  "emne_ids": [
+    "em_helse_ernaering_metabolisme"
+  ],
+  "method_ids": [
+    "met_helse_mekanisme_modell",
+    "met_helse_kausal_vurdering",
+    "met_helse_populasjonsanalyse",
+    "met_helse_evidenssyntese"
+  ],
+  "title": "Ernæring og metabolisme: energi, næringsstoffer, regulering og kostmønster",
+  "subtitle": "Fra energiomsetning og makronæringsstoffer til biotilgjengelighet, referanseverdier og kostmønsterevidens",
+  "lead": "Kapittelet analyserer ernæring og metabolisme på generelt faglig nivå og gir aldri individuell diagnose, prognose, triage, diett, kalorimål, tilskuddsdose eller medisinsk ernæringsbehandling.",
+  "learningObjectives": [
+    "Energiomsetning, energibehov og dynamisk energibalanse",
+    "Karbohydratkvalitet, kostfiber og glukosemetabolisme",
+    "Fettkvalitet, essensielle fettsyrer og lipidmetabolisme",
+    "Protein, aminosyrer og nitrogenomsetning",
+    "Mikronæringsstoffer, biotilgjengelighet og homeostatisk regulering",
+    "Metabolsk integrasjon mellom måltider og over tid",
+    "Kostmønster, matmatrise og helseevidens",
+    "Referanseverdier, livsløp og ansvarlig anvendelse"
+  ],
+  "diagnosticQuestions": [
+    {
+      "question": "Hva kan en referanseverdi for energibehov ikke brukes som?",
+      "answer": "Referanseverdier for energibehov er modell- og populasjonsbaserte estimater som bygger på målte eller estimerte komponenter av energiforbruk. De beskriver forventede behov for grupper under definerte forutsetninger og har innebygd variasjon og usikkerhet. De skal derfor ikke behandles som presise personlige kalorimål uten relevant individuell og klinisk kontekst."
+    },
+    {
+      "question": "Hva skiller karbohydratmengde fra karbohydratkvalitet?",
+      "answer": "Karbohydratkvalitet omfatter blant annet innhold av kostfiber, andel frie eller tilsatte sukkerarter, graden av prosessering og hvilke matvarer karbohydratet inngår i. Disse egenskapene påvirker fordøyelse, metthet, næringstetthet og hvordan kostmønsteret henger sammen med helseutfall. Prosent energi fra karbohydrat beskriver derfor ikke alene kvaliteten på et kosthold."
+    },
+    {
+      "question": "Hvorfor må erstatningsnæringsstoffet spesifiseres når mettet fett reduseres?",
+      "answer": "Effekten av å redusere mettet fett avhenger av hvilket næringsstoff som erstatter energien. Erstatning med flerumettet fett kan påvirke lipoproteiner og kardiovaskulær risiko annerledes enn erstatning med raffinerte karbohydratkilder. En analyse som bare sier at mettet fett går ned uten å spesifisere substitusjonen, mangler derfor et avgjørende ledd i den kausale og ernæringsmessige sammenligningen."
+    },
+    {
+      "question": "Hva beskriver proteinkvalitet utover gram protein?",
+      "answer": "Proteinkvalitet avhenger blant annet av fordøyelighet og om proteinet leverer essensielle aminosyrer i forhold som dekker biologiske behov. To matvarer med samme gram protein kan dermed ha forskjellig aminosyreprofil og fordøyelighet. Samtidig spises matvarer som del av et samlet kosthold, slik at total kombinasjon av proteinkilder er viktigere enn å rangere ett enkelt protein isolert."
+    }
+  ],
+  "relatedPlaces": [
+    {
+      "id": "helsedirektoratet",
+      "name": "Helsedirektoratet",
+      "role": "Knytte generelle kostråd og befolkningsrettet ernæringsarbeid til norsk praksis uten individuell diettforskrivning."
+    },
+    {
+      "id": "folkehelseinstituttet",
+      "name": "Folkehelseinstituttet",
+      "role": "Knytte kostdata, populasjonsanalyse og usikkerhet til norsk folkehelse- og ernæringsovervåking."
+    },
+    {
+      "id": "institutt-for-helse-og-samfunn-uio",
+      "name": "Institutt for helse og samfunn, Universitetet i Oslo",
+      "role": "Knytte ernæringsepidemiologi, evidenssyntese og referanseverdier til forsknings- og undervisningskontekst."
+    }
+  ],
+  "workCases": [
+    {
+      "id": "scenario-energy-reference-not-personal-target",
+      "title": "Referansebehov og variasjon i energiforbruk",
+      "purpose": "Sammenligne hypotetiske gruppeestimater for energiomsetning og vise hvorfor referanseverdier ikke er en personlig kaloriforskrift.",
+      "source_ids": [
+        "hnm03-nnr-energy",
+        "hnm04-nasem-energy-2023",
+        "hnm13-efsa-drv"
+      ]
+    },
+    {
+      "id": "scenario-carbohydrate-quality",
+      "title": "Lik karbohydratandel, ulik matkvalitet",
+      "purpose": "Sammenligne to hypotetiske kostmønstre med lik total karbohydratandel, men ulik fiber, frie sukkerarter og matkilder uten individuell kostanbefaling.",
+      "source_ids": [
+        "hnm05-nnr-carbohydrate",
+        "hnm06-who-carbohydrate-2023",
+        "hnm07-nnr-dietary-fibre"
+      ]
+    },
+    {
+      "id": "scenario-fat-replacement",
+      "title": "Hva erstatter mettet fett?",
+      "purpose": "Analysere hvorfor effekten av lavere mettet fettinntak avhenger av erstatningsnæringsstoffet, uten å foreskrive kost til en person.",
+      "source_ids": [
+        "hnm08-nnr-fat-fatty-acids",
+        "hnm09-who-sfa-tfa-2023",
+        "hnm10-who-total-fat-2023"
+      ]
+    },
+    {
+      "id": "scenario-protein-quality",
+      "title": "Proteinmengde og proteinkvalitet",
+      "purpose": "Skille total proteinmengde fra fordøyelighet og aminosyreprofil i en generell ernæringsmodell uten individuell ernæringsbehandling.",
+      "source_ids": [
+        "hnm11-nnr-protein",
+        "hnm12-nnr-nutrients-overview",
+        "hnm02-who-fao-healthy-diets-2024"
+      ]
+    },
+    {
+      "id": "scenario-iron-bioavailability",
+      "title": "Samme jerninnhold, ulik forventet biotilgjengelighet",
+      "purpose": "Forklare hvordan kjemisk form og måltidskomponenter kan påvirke jernabsorpsjon uten å diagnostisere mangel eller anbefale tilskudd.",
+      "source_ids": [
+        "hnm14-nnr-iron",
+        "hnm12-nnr-nutrients-overview",
+        "hnm13-efsa-drv"
+      ]
+    },
+    {
+      "id": "scenario-pattern-association",
+      "title": "Kostmønster og helseutfall i observasjonsdata",
+      "purpose": "Analysere en hypotetisk kostmønster-assosiasjon med confounding, målefeil og substitusjon uten å gjøre assosiasjonen til individuell behandlingsrådgivning.",
+      "source_ids": [
+        "hnm15-nnr-dietary-patterns",
+        "hnm01-who-healthy-diet-2026",
+        "hnm02-who-fao-healthy-diets-2024"
+      ]
+    }
+  ],
+  "moduleFiles": [
+    "data/fagverk/helse/ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster/01-energi-og-karbohydratmetabolisme.json",
+    "data/fagverk/helse/ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster/02-fett-protein-og-metabolsk-integrasjon.json",
+    "data/fagverk/helse/ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster/03-mikronaeringsstoffer-og-homeostase.json",
+    "data/fagverk/helse/ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster/04-kostmonster-evidens-og-referanseverdier.json"
+  ],
+  "briefFile": "data/fagverk/helse/ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster/brief.json",
+  "claimsFile": "data/fagverk/helse/ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster/claims.json",
+  "assessmentFile": "data/fagverk/helse/ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster/assessment.json",
+  "sourceBriefFile": "data/fag/helse/nutrition_metabolism_source_claim_brief_v1.json",
+  "safetyContractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json"
+}

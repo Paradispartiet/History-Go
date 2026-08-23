@@ -1,0 +1,1112 @@
+{
+  "schema": "history_go_fagverk_chapter_claims_v1",
+  "version": "1.0.0",
+  "subject_id": "helse",
+  "chapter_id": "ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster",
+  "sourceBriefFile": "data/fag/helse/nutrition_metabolism_source_claim_brief_v1.json",
+  "sources": [
+    {
+      "id": "hnm01-who-healthy-diet-2026",
+      "publisher": "World Health Organization",
+      "title": "Healthy diet",
+      "url": "https://www.who.int/news-room/fact-sheets/detail/healthy-diet",
+      "type": "international-public-health-nutrition-reference",
+      "evidence_role": "healthy-diet-principles-adequacy-balance-moderation-diversity",
+      "source_location": "WHO fact sheet updated 26 January 2026; core principles of healthy diets, macronutrient sources, fibre, fats, free sugars and life-course framing.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "World Health Organization – Healthy diet"
+    },
+    {
+      "id": "hnm02-who-fao-healthy-diets-2024",
+      "publisher": "World Health Organization and Food and Agriculture Organization of the United Nations",
+      "title": "What are healthy diets? Joint statement by FAO and WHO",
+      "url": "https://www.who.int/publications/i/item/9789240101876",
+      "type": "international-joint-normative-statement",
+      "evidence_role": "dietary-pattern-principles-nutritional-adequacy-food-safety",
+      "source_location": "2024 joint FAO/WHO statement defining healthy-diet principles and their use for policy and diet assessment.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "World Health Organization and Food and Agriculture Organization of the United Nations – What are healthy diets? Joint statement by FAO and WHO"
+    },
+    {
+      "id": "hnm03-nnr-energy",
+      "publisher": "Nordic Council of Ministers",
+      "title": "Nordic Nutrition Recommendations 2023 – Energy",
+      "url": "https://pub.norden.org/nord2023-003/energy.html",
+      "type": "nordic-nutrition-reference",
+      "evidence_role": "energy-requirement-components-energy-balance-reference-values",
+      "source_location": "NNR2023 Energy section: energy-yielding nutrients, BEE/REE, physical activity, diet-induced thermogenesis, growth and reference energy requirements.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "Nordic Council of Ministers – Nordic Nutrition Recommendations 2023 – Energy"
+    },
+    {
+      "id": "hnm04-nasem-energy-2023",
+      "publisher": "National Academies of Sciences, Engineering, and Medicine",
+      "title": "Dietary Reference Intakes for Energy",
+      "url": "https://www.nationalacademies.org/read/26818",
+      "type": "consensus-reference-intake-report",
+      "evidence_role": "energy-expenditure-equations-requirements-uncertainty",
+      "source_location": "2023 consensus report on energy requirements, expenditure components, reference equations and population-specific estimation.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "National Academies of Sciences, Engineering, and Medicine – Dietary Reference Intakes for Energy"
+    },
+    {
+      "id": "hnm05-nnr-carbohydrate",
+      "publisher": "Nordic Council of Ministers",
+      "title": "Nordic Nutrition Recommendations 2023 – Carbohydrate",
+      "url": "https://pub.norden.org/nord2023-003/carbohydrate.html",
+      "type": "nordic-nutrition-reference",
+      "evidence_role": "carbohydrate-quantity-quality-free-sugars",
+      "source_location": "NNR2023 Carbohydrate section: energy contribution, carbohydrate quality, added/free sugars and recommended intake range.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "Nordic Council of Ministers – Nordic Nutrition Recommendations 2023 – Carbohydrate"
+    },
+    {
+      "id": "hnm06-who-carbohydrate-2023",
+      "publisher": "World Health Organization",
+      "title": "Carbohydrate intake for adults and children: WHO guideline",
+      "url": "https://www.who.int/publications/i/9789240073593",
+      "type": "international-evidence-informed-guideline",
+      "evidence_role": "carbohydrate-quality-food-sources-fibre-fruit-vegetable",
+      "source_location": "2023 WHO guideline on carbohydrate quality, preferred food sources, fruits/vegetables and naturally occurring dietary fibre.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "World Health Organization – Carbohydrate intake for adults and children: WHO guideline"
+    },
+    {
+      "id": "hnm07-nnr-dietary-fibre",
+      "publisher": "Nordic Council of Ministers",
+      "title": "Nordic Nutrition Recommendations 2023 – Dietary fibre",
+      "url": "https://pub.norden.org/nord2023-003/dietary-fibre.html",
+      "type": "nordic-nutrition-reference",
+      "evidence_role": "fibre-types-physiology-health-associations",
+      "source_location": "NNR2023 Dietary fibre section: fibre classes, physiological roles, intake reference and evidence for long-term health associations.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "Nordic Council of Ministers – Nordic Nutrition Recommendations 2023 – Dietary fibre"
+    },
+    {
+      "id": "hnm08-nnr-fat-fatty-acids",
+      "publisher": "Nordic Council of Ministers",
+      "title": "Nordic Nutrition Recommendations 2023 – Fat and fatty acids",
+      "url": "https://pub.norden.org/nord2023-003/fat-and-fatty-acids.html",
+      "type": "nordic-nutrition-reference",
+      "evidence_role": "fat-quality-essential-fatty-acids-replacement-effects",
+      "source_location": "NNR2023 Fat and fatty acids section: fat functions, essential fatty acids, saturated/unsaturated fat and replacement evidence.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "Nordic Council of Ministers – Nordic Nutrition Recommendations 2023 – Fat and fatty acids"
+    },
+    {
+      "id": "hnm09-who-sfa-tfa-2023",
+      "publisher": "World Health Organization",
+      "title": "Saturated fatty acid and trans-fatty acid intake for adults and children: WHO guideline",
+      "url": "https://www.who.int/publications/i/item/9789240073630",
+      "type": "international-evidence-informed-guideline",
+      "evidence_role": "saturated-trans-fat-replacement-ncd-risk",
+      "source_location": "2023 WHO guideline on saturated and trans-fat intake and replacement nutrients for diet-related NCD prevention.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "World Health Organization – Saturated fatty acid and trans-fatty acid intake for adults and children: WHO guideline"
+    },
+    {
+      "id": "hnm10-who-total-fat-2023",
+      "publisher": "World Health Organization",
+      "title": "Total fat intake for the prevention of unhealthy weight gain in adults and children",
+      "url": "https://www.who.int/publications/b/69218",
+      "type": "international-evidence-informed-guideline",
+      "evidence_role": "total-fat-intake-weight-gain-population-guidance",
+      "source_location": "2023 WHO guideline on total fat intake for population-level prevention of unhealthy weight gain.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "World Health Organization – Total fat intake for the prevention of unhealthy weight gain in adults and children"
+    },
+    {
+      "id": "hnm11-nnr-protein",
+      "publisher": "Nordic Council of Ministers",
+      "title": "Nordic Nutrition Recommendations 2023 – Protein",
+      "url": "https://pub.norden.org/nord2023-003/protein-.html",
+      "type": "nordic-nutrition-reference",
+      "evidence_role": "protein-requirement-quality-essential-amino-acids-nitrogen-balance",
+      "source_location": "NNR2023 Protein section: physiological requirement, nitrogen-balance evidence, protein quality, indispensable amino acids and food sources.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "Nordic Council of Ministers – Nordic Nutrition Recommendations 2023 – Protein"
+    },
+    {
+      "id": "hnm12-nnr-nutrients-overview",
+      "publisher": "Nordic Council of Ministers",
+      "title": "Nordic Nutrition Recommendations 2023 – Overview of nutrients",
+      "url": "https://pub.norden.org/nord2023-003/overview-of-nutrients.html",
+      "type": "nordic-dietary-reference-framework",
+      "evidence_role": "drv-methodology-nutrient-functions-deficiency-excess",
+      "source_location": "NNR2023 overview explaining evidence basis for dietary reference values across macro- and micronutrients and qualified systematic reviews.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "Nordic Council of Ministers – Nordic Nutrition Recommendations 2023 – Overview of nutrients"
+    },
+    {
+      "id": "hnm13-efsa-drv",
+      "publisher": "European Food Safety Authority",
+      "title": "Dietary reference value",
+      "url": "https://www.efsa.europa.eu/en/glossary/dietary-reference-value",
+      "type": "european-dietary-reference-framework",
+      "evidence_role": "population-reference-intake-average-requirement-adequate-intake",
+      "source_location": "EFSA definition of DRVs including PRI, AR, AI, LTI and RI and their population/public-health uses.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "European Food Safety Authority – Dietary reference value"
+    },
+    {
+      "id": "hnm14-nnr-iron",
+      "publisher": "Nordic Council of Ministers",
+      "title": "Nordic Nutrition Recommendations 2023 – Iron",
+      "url": "https://pub.norden.org/nord2023-003/iron.html",
+      "type": "nordic-micronutrient-reference",
+      "evidence_role": "micronutrient-absorption-bioavailability-homeostasis-deficiency-risk",
+      "source_location": "NNR2023 Iron section: haem/non-haem iron, absorption modifiers, homeostatic regulation, biomarkers, DRV derivation and risk groups.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "Nordic Council of Ministers – Nordic Nutrition Recommendations 2023 – Iron"
+    },
+    {
+      "id": "hnm15-nnr-dietary-patterns",
+      "publisher": "Nordic Council of Ministers",
+      "title": "Nordic Nutrition Recommendations 2023 – Dietary patterns",
+      "url": "https://pub.norden.org/nord2023-003/dietary-patterns.html",
+      "type": "nordic-dietary-pattern-evidence-reference",
+      "evidence_role": "whole-diet-patterns-health-associations-evidence-synthesis",
+      "source_location": "NNR2023 Dietary patterns section: total-diet framing, qualified systematic reviews, health associations and limits of pattern evidence.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "Nordic Council of Ministers – Nordic Nutrition Recommendations 2023 – Dietary patterns"
+    }
+  ],
+  "claims": [
+    {
+      "id": "hnm-c01",
+      "claim": "Kroppens totale energibehov omfatter energi til basal eller hvilende metabolisme, fysisk aktivitet og kostindusert termogenese, med ytterligere behov ved blant annet vekst, graviditet og amming.",
+      "paragraph_id": "hnm-p-01",
+      "topic_id": "energiomsetning-og-energibalanse",
+      "source_ids": [
+        "hnm03-nnr-energy",
+        "hnm04-nasem-energy-2023",
+        "hnm01-who-healthy-diet-2026"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hnm03-nnr-energy",
+          "location": "NNR2023 Energy section: energy-yielding nutrients, BEE/REE, physical activity, diet-induced thermogenesis, growth and reference energy requirements."
+        },
+        {
+          "source_id": "hnm04-nasem-energy-2023",
+          "location": "2023 consensus report on energy requirements, expenditure components, reference equations and population-specific estimation."
+        },
+        {
+          "source_id": "hnm01-who-healthy-diet-2026",
+          "location": "WHO fact sheet updated 26 January 2026; core principles of healthy diets, macronutrient sources, fibre, fats, free sugars and life-course framing."
+        }
+      ],
+      "classification": "verified_general_nutrition_metabolism_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hnm-c02",
+      "claim": "Energi fra mat kommer hovedsakelig fra karbohydrat, fett og protein, som har ulik energitetthet og samtidig inngår i forskjellige biologiske funksjoner.",
+      "paragraph_id": "hnm-p-02",
+      "topic_id": "energiomsetning-og-energibalanse",
+      "source_ids": [
+        "hnm03-nnr-energy",
+        "hnm04-nasem-energy-2023",
+        "hnm01-who-healthy-diet-2026"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hnm03-nnr-energy",
+          "location": "NNR2023 Energy section: energy-yielding nutrients, BEE/REE, physical activity, diet-induced thermogenesis, growth and reference energy requirements."
+        },
+        {
+          "source_id": "hnm04-nasem-energy-2023",
+          "location": "2023 consensus report on energy requirements, expenditure components, reference equations and population-specific estimation."
+        },
+        {
+          "source_id": "hnm01-who-healthy-diet-2026",
+          "location": "WHO fact sheet updated 26 January 2026; core principles of healthy diets, macronutrient sources, fibre, fats, free sugars and life-course framing."
+        }
+      ],
+      "classification": "verified_general_nutrition_metabolism_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hnm-c03",
+      "claim": "Energibalanse er et dynamisk forhold mellom energiinntak, energiforbruk og endringer i kroppens energilagre over tid.",
+      "paragraph_id": "hnm-p-03",
+      "topic_id": "energiomsetning-og-energibalanse",
+      "source_ids": [
+        "hnm03-nnr-energy",
+        "hnm04-nasem-energy-2023",
+        "hnm01-who-healthy-diet-2026"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hnm03-nnr-energy",
+          "location": "NNR2023 Energy section: energy-yielding nutrients, BEE/REE, physical activity, diet-induced thermogenesis, growth and reference energy requirements."
+        },
+        {
+          "source_id": "hnm04-nasem-energy-2023",
+          "location": "2023 consensus report on energy requirements, expenditure components, reference equations and population-specific estimation."
+        },
+        {
+          "source_id": "hnm01-who-healthy-diet-2026",
+          "location": "WHO fact sheet updated 26 January 2026; core principles of healthy diets, macronutrient sources, fibre, fats, free sugars and life-course framing."
+        }
+      ],
+      "classification": "verified_general_nutrition_metabolism_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hnm-c04",
+      "claim": "Referanseverdier for energibehov er modell- og populasjonsbaserte estimater som bygger på målte eller estimerte komponenter av energiforbruk.",
+      "paragraph_id": "hnm-p-04",
+      "topic_id": "energiomsetning-og-energibalanse",
+      "source_ids": [
+        "hnm03-nnr-energy",
+        "hnm04-nasem-energy-2023",
+        "hnm01-who-healthy-diet-2026"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hnm03-nnr-energy",
+          "location": "NNR2023 Energy section: energy-yielding nutrients, BEE/REE, physical activity, diet-induced thermogenesis, growth and reference energy requirements."
+        },
+        {
+          "source_id": "hnm04-nasem-energy-2023",
+          "location": "2023 consensus report on energy requirements, expenditure components, reference equations and population-specific estimation."
+        },
+        {
+          "source_id": "hnm01-who-healthy-diet-2026",
+          "location": "WHO fact sheet updated 26 January 2026; core principles of healthy diets, macronutrient sources, fibre, fats, free sugars and life-course framing."
+        }
+      ],
+      "classification": "verified_general_nutrition_metabolism_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hnm-c05",
+      "claim": "Karbohydrater er en viktig energikilde, men helseeffekter kan ikke vurderes ut fra total karbohydratmengde alene fordi matkilde og kvalitet har betydning.",
+      "paragraph_id": "hnm-p-05",
+      "topic_id": "karbohydratkvalitet-fiber-og-glukose",
+      "source_ids": [
+        "hnm05-nnr-carbohydrate",
+        "hnm06-who-carbohydrate-2023",
+        "hnm07-nnr-dietary-fibre"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hnm05-nnr-carbohydrate",
+          "location": "NNR2023 Carbohydrate section: energy contribution, carbohydrate quality, added/free sugars and recommended intake range."
+        },
+        {
+          "source_id": "hnm06-who-carbohydrate-2023",
+          "location": "2023 WHO guideline on carbohydrate quality, preferred food sources, fruits/vegetables and naturally occurring dietary fibre."
+        },
+        {
+          "source_id": "hnm07-nnr-dietary-fibre",
+          "location": "NNR2023 Dietary fibre section: fibre classes, physiological roles, intake reference and evidence for long-term health associations."
+        }
+      ],
+      "classification": "verified_general_nutrition_metabolism_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hnm-c06",
+      "claim": "Karbohydratkvalitet omfatter blant annet innhold av kostfiber, andel frie eller tilsatte sukkerarter, graden av prosessering og hvilke matvarer karbohydratet inngår i.",
+      "paragraph_id": "hnm-p-06",
+      "topic_id": "karbohydratkvalitet-fiber-og-glukose",
+      "source_ids": [
+        "hnm05-nnr-carbohydrate",
+        "hnm06-who-carbohydrate-2023",
+        "hnm07-nnr-dietary-fibre"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hnm05-nnr-carbohydrate",
+          "location": "NNR2023 Carbohydrate section: energy contribution, carbohydrate quality, added/free sugars and recommended intake range."
+        },
+        {
+          "source_id": "hnm06-who-carbohydrate-2023",
+          "location": "2023 WHO guideline on carbohydrate quality, preferred food sources, fruits/vegetables and naturally occurring dietary fibre."
+        },
+        {
+          "source_id": "hnm07-nnr-dietary-fibre",
+          "location": "NNR2023 Dietary fibre section: fibre classes, physiological roles, intake reference and evidence for long-term health associations."
+        }
+      ],
+      "classification": "verified_general_nutrition_metabolism_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hnm-c07",
+      "claim": "Kostfiber er en heterogen gruppe karbohydratrelaterte komponenter som ikke fordøyes fullstendig av menneskets egne enzymer i tynntarmen.",
+      "paragraph_id": "hnm-p-07",
+      "topic_id": "karbohydratkvalitet-fiber-og-glukose",
+      "source_ids": [
+        "hnm05-nnr-carbohydrate",
+        "hnm06-who-carbohydrate-2023",
+        "hnm07-nnr-dietary-fibre"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hnm05-nnr-carbohydrate",
+          "location": "NNR2023 Carbohydrate section: energy contribution, carbohydrate quality, added/free sugars and recommended intake range."
+        },
+        {
+          "source_id": "hnm06-who-carbohydrate-2023",
+          "location": "2023 WHO guideline on carbohydrate quality, preferred food sources, fruits/vegetables and naturally occurring dietary fibre."
+        },
+        {
+          "source_id": "hnm07-nnr-dietary-fibre",
+          "location": "NNR2023 Dietary fibre section: fibre classes, physiological roles, intake reference and evidence for long-term health associations."
+        }
+      ],
+      "classification": "verified_general_nutrition_metabolism_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hnm-c08",
+      "claim": "Retningslinjer som fremhever fullkorn, grønnsaker, frukt og belgvekster uttrykker evidens om matkilder, fiber, næringstetthet og samlede kostmønstre.",
+      "paragraph_id": "hnm-p-08",
+      "topic_id": "karbohydratkvalitet-fiber-og-glukose",
+      "source_ids": [
+        "hnm05-nnr-carbohydrate",
+        "hnm06-who-carbohydrate-2023",
+        "hnm07-nnr-dietary-fibre"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hnm05-nnr-carbohydrate",
+          "location": "NNR2023 Carbohydrate section: energy contribution, carbohydrate quality, added/free sugars and recommended intake range."
+        },
+        {
+          "source_id": "hnm06-who-carbohydrate-2023",
+          "location": "2023 WHO guideline on carbohydrate quality, preferred food sources, fruits/vegetables and naturally occurring dietary fibre."
+        },
+        {
+          "source_id": "hnm07-nnr-dietary-fibre",
+          "location": "NNR2023 Dietary fibre section: fibre classes, physiological roles, intake reference and evidence for long-term health associations."
+        }
+      ],
+      "classification": "verified_general_nutrition_metabolism_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hnm-c09",
+      "claim": "Kostfett bidrar både med konsentrert energi, essensielle fettsyrer og et miljø for opptak og transport av fettløselige vitaminer.",
+      "paragraph_id": "hnm-p-09",
+      "topic_id": "fettkvalitet-fettsyrer-og-lipidmetabolisme",
+      "source_ids": [
+        "hnm08-nnr-fat-fatty-acids",
+        "hnm09-who-sfa-tfa-2023",
+        "hnm10-who-total-fat-2023"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hnm08-nnr-fat-fatty-acids",
+          "location": "NNR2023 Fat and fatty acids section: fat functions, essential fatty acids, saturated/unsaturated fat and replacement evidence."
+        },
+        {
+          "source_id": "hnm09-who-sfa-tfa-2023",
+          "location": "2023 WHO guideline on saturated and trans-fat intake and replacement nutrients for diet-related NCD prevention."
+        },
+        {
+          "source_id": "hnm10-who-total-fat-2023",
+          "location": "2023 WHO guideline on total fat intake for population-level prevention of unhealthy weight gain."
+        }
+      ],
+      "classification": "verified_general_nutrition_metabolism_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hnm-c10",
+      "claim": "Linolsyre, en omega-6-fettsyre, og alfa-linolensyre, en omega-3-fettsyre, regnes som essensielle fordi mennesket ikke kan syntetisere deres grunnstrukturer i tilstrekkelig grad og de derfor må tilføres gjennom kosten.",
+      "paragraph_id": "hnm-p-10",
+      "topic_id": "fettkvalitet-fettsyrer-og-lipidmetabolisme",
+      "source_ids": [
+        "hnm08-nnr-fat-fatty-acids",
+        "hnm09-who-sfa-tfa-2023",
+        "hnm10-who-total-fat-2023"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hnm08-nnr-fat-fatty-acids",
+          "location": "NNR2023 Fat and fatty acids section: fat functions, essential fatty acids, saturated/unsaturated fat and replacement evidence."
+        },
+        {
+          "source_id": "hnm09-who-sfa-tfa-2023",
+          "location": "2023 WHO guideline on saturated and trans-fat intake and replacement nutrients for diet-related NCD prevention."
+        },
+        {
+          "source_id": "hnm10-who-total-fat-2023",
+          "location": "2023 WHO guideline on total fat intake for population-level prevention of unhealthy weight gain."
+        }
+      ],
+      "classification": "verified_general_nutrition_metabolism_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hnm-c11",
+      "claim": "Effekten av å redusere mettet fett avhenger av hvilket næringsstoff som erstatter energien.",
+      "paragraph_id": "hnm-p-11",
+      "topic_id": "fettkvalitet-fettsyrer-og-lipidmetabolisme",
+      "source_ids": [
+        "hnm08-nnr-fat-fatty-acids",
+        "hnm09-who-sfa-tfa-2023",
+        "hnm10-who-total-fat-2023"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hnm08-nnr-fat-fatty-acids",
+          "location": "NNR2023 Fat and fatty acids section: fat functions, essential fatty acids, saturated/unsaturated fat and replacement evidence."
+        },
+        {
+          "source_id": "hnm09-who-sfa-tfa-2023",
+          "location": "2023 WHO guideline on saturated and trans-fat intake and replacement nutrients for diet-related NCD prevention."
+        },
+        {
+          "source_id": "hnm10-who-total-fat-2023",
+          "location": "2023 WHO guideline on total fat intake for population-level prevention of unhealthy weight gain."
+        }
+      ],
+      "classification": "verified_general_nutrition_metabolism_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hnm-c12",
+      "claim": "Retningslinjer for total fettmengde og retningslinjer for fordeling mellom mettede, trans- og umettede fettsyrer besvarer forskjellige spørsmål.",
+      "paragraph_id": "hnm-p-12",
+      "topic_id": "fettkvalitet-fettsyrer-og-lipidmetabolisme",
+      "source_ids": [
+        "hnm08-nnr-fat-fatty-acids",
+        "hnm09-who-sfa-tfa-2023",
+        "hnm10-who-total-fat-2023"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hnm08-nnr-fat-fatty-acids",
+          "location": "NNR2023 Fat and fatty acids section: fat functions, essential fatty acids, saturated/unsaturated fat and replacement evidence."
+        },
+        {
+          "source_id": "hnm09-who-sfa-tfa-2023",
+          "location": "2023 WHO guideline on saturated and trans-fat intake and replacement nutrients for diet-related NCD prevention."
+        },
+        {
+          "source_id": "hnm10-who-total-fat-2023",
+          "location": "2023 WHO guideline on total fat intake for population-level prevention of unhealthy weight gain."
+        }
+      ],
+      "classification": "verified_general_nutrition_metabolism_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hnm-c13",
+      "claim": "Protein tilfører nitrogen og aminosyrer som brukes til syntese og vedlikehold av kroppens proteiner og andre nitrogenholdige forbindelser.",
+      "paragraph_id": "hnm-p-13",
+      "topic_id": "protein-aminosyrer-og-nitrogenomsetning",
+      "source_ids": [
+        "hnm11-nnr-protein",
+        "hnm03-nnr-energy",
+        "hnm12-nnr-nutrients-overview"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hnm11-nnr-protein",
+          "location": "NNR2023 Protein section: physiological requirement, nitrogen-balance evidence, protein quality, indispensable amino acids and food sources."
+        },
+        {
+          "source_id": "hnm03-nnr-energy",
+          "location": "NNR2023 Energy section: energy-yielding nutrients, BEE/REE, physical activity, diet-induced thermogenesis, growth and reference energy requirements."
+        },
+        {
+          "source_id": "hnm12-nnr-nutrients-overview",
+          "location": "NNR2023 overview explaining evidence basis for dietary reference values across macro- and micronutrients and qualified systematic reviews."
+        }
+      ],
+      "classification": "verified_general_nutrition_metabolism_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hnm-c14",
+      "claim": "Fysiologisk proteinbehov estimeres blant annet med nitrogenbalansestudier og andre metoder fordi det ikke finnes én enkel biomarkør som direkte måler hele kroppens proteinstatus.",
+      "paragraph_id": "hnm-p-14",
+      "topic_id": "protein-aminosyrer-og-nitrogenomsetning",
+      "source_ids": [
+        "hnm11-nnr-protein",
+        "hnm03-nnr-energy",
+        "hnm12-nnr-nutrients-overview"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hnm11-nnr-protein",
+          "location": "NNR2023 Protein section: physiological requirement, nitrogen-balance evidence, protein quality, indispensable amino acids and food sources."
+        },
+        {
+          "source_id": "hnm03-nnr-energy",
+          "location": "NNR2023 Energy section: energy-yielding nutrients, BEE/REE, physical activity, diet-induced thermogenesis, growth and reference energy requirements."
+        },
+        {
+          "source_id": "hnm12-nnr-nutrients-overview",
+          "location": "NNR2023 overview explaining evidence basis for dietary reference values across macro- and micronutrients and qualified systematic reviews."
+        }
+      ],
+      "classification": "verified_general_nutrition_metabolism_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hnm-c15",
+      "claim": "Proteinkvalitet avhenger blant annet av fordøyelighet og om proteinet leverer essensielle aminosyrer i forhold som dekker biologiske behov.",
+      "paragraph_id": "hnm-p-15",
+      "topic_id": "protein-aminosyrer-og-nitrogenomsetning",
+      "source_ids": [
+        "hnm11-nnr-protein",
+        "hnm03-nnr-energy",
+        "hnm12-nnr-nutrients-overview"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hnm11-nnr-protein",
+          "location": "NNR2023 Protein section: physiological requirement, nitrogen-balance evidence, protein quality, indispensable amino acids and food sources."
+        },
+        {
+          "source_id": "hnm03-nnr-energy",
+          "location": "NNR2023 Energy section: energy-yielding nutrients, BEE/REE, physical activity, diet-induced thermogenesis, growth and reference energy requirements."
+        },
+        {
+          "source_id": "hnm12-nnr-nutrients-overview",
+          "location": "NNR2023 overview explaining evidence basis for dietary reference values across macro- and micronutrients and qualified systematic reviews."
+        }
+      ],
+      "classification": "verified_general_nutrition_metabolism_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hnm-c16",
+      "claim": "Helseutfall som er assosiert med proteinrike matvarer kan ikke uten videre tilskrives selve proteinet fordi matvarene også inneholder fett, karbohydrat, mikronæringsstoffer og andre bioaktive eller strukturelle komponenter.",
+      "paragraph_id": "hnm-p-16",
+      "topic_id": "protein-aminosyrer-og-nitrogenomsetning",
+      "source_ids": [
+        "hnm11-nnr-protein",
+        "hnm03-nnr-energy",
+        "hnm12-nnr-nutrients-overview"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hnm11-nnr-protein",
+          "location": "NNR2023 Protein section: physiological requirement, nitrogen-balance evidence, protein quality, indispensable amino acids and food sources."
+        },
+        {
+          "source_id": "hnm03-nnr-energy",
+          "location": "NNR2023 Energy section: energy-yielding nutrients, BEE/REE, physical activity, diet-induced thermogenesis, growth and reference energy requirements."
+        },
+        {
+          "source_id": "hnm12-nnr-nutrients-overview",
+          "location": "NNR2023 overview explaining evidence basis for dietary reference values across macro- and micronutrients and qualified systematic reviews."
+        }
+      ],
+      "classification": "verified_general_nutrition_metabolism_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hnm-c17",
+      "claim": "Dietary Reference Values omfatter flere typer referanseverdier med ulike statistiske og praktiske formål, blant annet gjennomsnittsbehov, populasjonsreferanseinntak og adekvat inntak.",
+      "paragraph_id": "hnm-p-17",
+      "topic_id": "mikronaeringsstoffer-biotilgjengelighet-og-homeostase",
+      "source_ids": [
+        "hnm12-nnr-nutrients-overview",
+        "hnm13-efsa-drv",
+        "hnm14-nnr-iron"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hnm12-nnr-nutrients-overview",
+          "location": "NNR2023 overview explaining evidence basis for dietary reference values across macro- and micronutrients and qualified systematic reviews."
+        },
+        {
+          "source_id": "hnm13-efsa-drv",
+          "location": "EFSA definition of DRVs including PRI, AR, AI, LTI and RI and their population/public-health uses."
+        },
+        {
+          "source_id": "hnm14-nnr-iron",
+          "location": "NNR2023 Iron section: haem/non-haem iron, absorption modifiers, homeostatic regulation, biomarkers, DRV derivation and risk groups."
+        }
+      ],
+      "classification": "verified_general_nutrition_metabolism_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hnm-c18",
+      "claim": "Mikronæringsstoffers biologiske tilgjengelighet avhenger ikke bare av hvor mye et næringsstoff finnes i maten, men også av kjemisk form, matmatrise, andre måltidskomponenter og kroppens regulering av opptak og lagre.",
+      "paragraph_id": "hnm-p-18",
+      "topic_id": "mikronaeringsstoffer-biotilgjengelighet-og-homeostase",
+      "source_ids": [
+        "hnm12-nnr-nutrients-overview",
+        "hnm13-efsa-drv",
+        "hnm14-nnr-iron"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hnm12-nnr-nutrients-overview",
+          "location": "NNR2023 overview explaining evidence basis for dietary reference values across macro- and micronutrients and qualified systematic reviews."
+        },
+        {
+          "source_id": "hnm13-efsa-drv",
+          "location": "EFSA definition of DRVs including PRI, AR, AI, LTI and RI and their population/public-health uses."
+        },
+        {
+          "source_id": "hnm14-nnr-iron",
+          "location": "NNR2023 Iron section: haem/non-haem iron, absorption modifiers, homeostatic regulation, biomarkers, DRV derivation and risk groups."
+        }
+      ],
+      "classification": "verified_general_nutrition_metabolism_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hnm-c19",
+      "claim": "Jern illustrerer hvordan kjemisk form og måltidssammensetning påvirker absorpsjon: haem-jern og ikke-haem-jern følger delvis ulike opptaksbetingelser, og askorbinsyre kan fremme opptak av ikke-haem-jern mens blant annet fytat og polyfenoler kan hemme det.",
+      "paragraph_id": "hnm-p-19",
+      "topic_id": "mikronaeringsstoffer-biotilgjengelighet-og-homeostase",
+      "source_ids": [
+        "hnm12-nnr-nutrients-overview",
+        "hnm13-efsa-drv",
+        "hnm14-nnr-iron"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hnm12-nnr-nutrients-overview",
+          "location": "NNR2023 overview explaining evidence basis for dietary reference values across macro- and micronutrients and qualified systematic reviews."
+        },
+        {
+          "source_id": "hnm13-efsa-drv",
+          "location": "EFSA definition of DRVs including PRI, AR, AI, LTI and RI and their population/public-health uses."
+        },
+        {
+          "source_id": "hnm14-nnr-iron",
+          "location": "NNR2023 Iron section: haem/non-haem iron, absorption modifiers, homeostatic regulation, biomarkers, DRV derivation and risk groups."
+        }
+      ],
+      "classification": "verified_general_nutrition_metabolism_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hnm-c20",
+      "claim": "En gruppe med forhøyet risiko for utilstrekkelig inntak eller mangel er ikke det samme som en individuell mangeldiagnose.",
+      "paragraph_id": "hnm-p-20",
+      "topic_id": "mikronaeringsstoffer-biotilgjengelighet-og-homeostase",
+      "source_ids": [
+        "hnm12-nnr-nutrients-overview",
+        "hnm13-efsa-drv",
+        "hnm14-nnr-iron"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hnm12-nnr-nutrients-overview",
+          "location": "NNR2023 overview explaining evidence basis for dietary reference values across macro- and micronutrients and qualified systematic reviews."
+        },
+        {
+          "source_id": "hnm13-efsa-drv",
+          "location": "EFSA definition of DRVs including PRI, AR, AI, LTI and RI and their population/public-health uses."
+        },
+        {
+          "source_id": "hnm14-nnr-iron",
+          "location": "NNR2023 Iron section: haem/non-haem iron, absorption modifiers, homeostatic regulation, biomarkers, DRV derivation and risk groups."
+        }
+      ],
+      "classification": "verified_general_nutrition_metabolism_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hnm-c21",
+      "claim": "Etter et måltid fordeles absorberte næringsstoffer mellom umiddelbar oksidasjon, biosyntese og lagring, mens perioder uten matinntak øker mobilisering av lagrede energisubstrater.",
+      "paragraph_id": "hnm-p-21",
+      "topic_id": "metabolsk-integrasjon-mellom-maltider",
+      "source_ids": [
+        "hnm03-nnr-energy",
+        "hnm05-nnr-carbohydrate",
+        "hnm08-nnr-fat-fatty-acids",
+        "hnm11-nnr-protein"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hnm03-nnr-energy",
+          "location": "NNR2023 Energy section: energy-yielding nutrients, BEE/REE, physical activity, diet-induced thermogenesis, growth and reference energy requirements."
+        },
+        {
+          "source_id": "hnm05-nnr-carbohydrate",
+          "location": "NNR2023 Carbohydrate section: energy contribution, carbohydrate quality, added/free sugars and recommended intake range."
+        },
+        {
+          "source_id": "hnm08-nnr-fat-fatty-acids",
+          "location": "NNR2023 Fat and fatty acids section: fat functions, essential fatty acids, saturated/unsaturated fat and replacement evidence."
+        },
+        {
+          "source_id": "hnm11-nnr-protein",
+          "location": "NNR2023 Protein section: physiological requirement, nitrogen-balance evidence, protein quality, indispensable amino acids and food sources."
+        }
+      ],
+      "classification": "verified_general_nutrition_metabolism_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hnm-c22",
+      "claim": "Karbohydrat-, fett- og proteinmetabolisme er koblet gjennom felles energibærere og mellomprodukter som acetyl-CoA og intermediater i sitronsyresyklusen, men næringsstoffene har samtidig særskilte strukturelle og funksjonelle roller.",
+      "paragraph_id": "hnm-p-22",
+      "topic_id": "metabolsk-integrasjon-mellom-maltider",
+      "source_ids": [
+        "hnm03-nnr-energy",
+        "hnm05-nnr-carbohydrate",
+        "hnm08-nnr-fat-fatty-acids",
+        "hnm11-nnr-protein"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hnm03-nnr-energy",
+          "location": "NNR2023 Energy section: energy-yielding nutrients, BEE/REE, physical activity, diet-induced thermogenesis, growth and reference energy requirements."
+        },
+        {
+          "source_id": "hnm05-nnr-carbohydrate",
+          "location": "NNR2023 Carbohydrate section: energy contribution, carbohydrate quality, added/free sugars and recommended intake range."
+        },
+        {
+          "source_id": "hnm08-nnr-fat-fatty-acids",
+          "location": "NNR2023 Fat and fatty acids section: fat functions, essential fatty acids, saturated/unsaturated fat and replacement evidence."
+        },
+        {
+          "source_id": "hnm11-nnr-protein",
+          "location": "NNR2023 Protein section: physiological requirement, nitrogen-balance evidence, protein quality, indispensable amino acids and food sources."
+        }
+      ],
+      "classification": "verified_general_nutrition_metabolism_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hnm-c23",
+      "claim": "Homeostatisk regulering bidrar til å holde konsentrasjoner og tilgjengelighet av energisubstrater og mange næringsstoffer innen funksjonelle områder til tross for varierende måltider og aktivitet.",
+      "paragraph_id": "hnm-p-23",
+      "topic_id": "metabolsk-integrasjon-mellom-maltider",
+      "source_ids": [
+        "hnm03-nnr-energy",
+        "hnm05-nnr-carbohydrate",
+        "hnm08-nnr-fat-fatty-acids",
+        "hnm11-nnr-protein"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hnm03-nnr-energy",
+          "location": "NNR2023 Energy section: energy-yielding nutrients, BEE/REE, physical activity, diet-induced thermogenesis, growth and reference energy requirements."
+        },
+        {
+          "source_id": "hnm05-nnr-carbohydrate",
+          "location": "NNR2023 Carbohydrate section: energy contribution, carbohydrate quality, added/free sugars and recommended intake range."
+        },
+        {
+          "source_id": "hnm08-nnr-fat-fatty-acids",
+          "location": "NNR2023 Fat and fatty acids section: fat functions, essential fatty acids, saturated/unsaturated fat and replacement evidence."
+        },
+        {
+          "source_id": "hnm11-nnr-protein",
+          "location": "NNR2023 Protein section: physiological requirement, nitrogen-balance evidence, protein quality, indispensable amino acids and food sources."
+        }
+      ],
+      "classification": "verified_general_nutrition_metabolism_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hnm-c24",
+      "claim": "Pedagogiske modeller av absorptiv og postabsorptiv tilstand er nyttige fordi de synliggjør typiske endringer i substratflyt etter måltider og under faste.",
+      "paragraph_id": "hnm-p-24",
+      "topic_id": "metabolsk-integrasjon-mellom-maltider",
+      "source_ids": [
+        "hnm03-nnr-energy",
+        "hnm05-nnr-carbohydrate",
+        "hnm08-nnr-fat-fatty-acids",
+        "hnm11-nnr-protein"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hnm03-nnr-energy",
+          "location": "NNR2023 Energy section: energy-yielding nutrients, BEE/REE, physical activity, diet-induced thermogenesis, growth and reference energy requirements."
+        },
+        {
+          "source_id": "hnm05-nnr-carbohydrate",
+          "location": "NNR2023 Carbohydrate section: energy contribution, carbohydrate quality, added/free sugars and recommended intake range."
+        },
+        {
+          "source_id": "hnm08-nnr-fat-fatty-acids",
+          "location": "NNR2023 Fat and fatty acids section: fat functions, essential fatty acids, saturated/unsaturated fat and replacement evidence."
+        },
+        {
+          "source_id": "hnm11-nnr-protein",
+          "location": "NNR2023 Protein section: physiological requirement, nitrogen-balance evidence, protein quality, indispensable amino acids and food sources."
+        }
+      ],
+      "classification": "verified_general_nutrition_metabolism_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hnm-c25",
+      "claim": "Kostmønstre beskriver kombinasjoner, mengder og relative proporsjoner av mat og drikke over tid og fanger derfor mer av den faktiske eksponeringen enn ett enkelt næringsstoff.",
+      "paragraph_id": "hnm-p-25",
+      "topic_id": "kostmonster-matmatrise-og-helseevidens",
+      "source_ids": [
+        "hnm01-who-healthy-diet-2026",
+        "hnm02-who-fao-healthy-diets-2024",
+        "hnm15-nnr-dietary-patterns"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hnm01-who-healthy-diet-2026",
+          "location": "WHO fact sheet updated 26 January 2026; core principles of healthy diets, macronutrient sources, fibre, fats, free sugars and life-course framing."
+        },
+        {
+          "source_id": "hnm02-who-fao-healthy-diets-2024",
+          "location": "2024 joint FAO/WHO statement defining healthy-diet principles and their use for policy and diet assessment."
+        },
+        {
+          "source_id": "hnm15-nnr-dietary-patterns",
+          "location": "NNR2023 Dietary patterns section: total-diet framing, qualified systematic reviews, health associations and limits of pattern evidence."
+        }
+      ],
+      "classification": "verified_general_nutrition_metabolism_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hnm-c26",
+      "claim": "Sunne kostmønstre kjennetegnes typisk av ernæringsmessig adekvathet, balanse, moderasjon og variasjon, men den konkrete sammensetningen kan variere med kultur, tilgjengelige matvarer, livsfase og lokale forhold.",
+      "paragraph_id": "hnm-p-26",
+      "topic_id": "kostmonster-matmatrise-og-helseevidens",
+      "source_ids": [
+        "hnm01-who-healthy-diet-2026",
+        "hnm02-who-fao-healthy-diets-2024",
+        "hnm15-nnr-dietary-patterns"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hnm01-who-healthy-diet-2026",
+          "location": "WHO fact sheet updated 26 January 2026; core principles of healthy diets, macronutrient sources, fibre, fats, free sugars and life-course framing."
+        },
+        {
+          "source_id": "hnm02-who-fao-healthy-diets-2024",
+          "location": "2024 joint FAO/WHO statement defining healthy-diet principles and their use for policy and diet assessment."
+        },
+        {
+          "source_id": "hnm15-nnr-dietary-patterns",
+          "location": "NNR2023 Dietary patterns section: total-diet framing, qualified systematic reviews, health associations and limits of pattern evidence."
+        }
+      ],
+      "classification": "verified_general_nutrition_metabolism_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hnm-c27",
+      "claim": "Assosiasjoner mellom kostmønstre og langsiktige helseutfall må vurderes med hensyn til confounding, målefeil og at mennesker endrer flere matvarer og levevaner samtidig.",
+      "paragraph_id": "hnm-p-27",
+      "topic_id": "kostmonster-matmatrise-og-helseevidens",
+      "source_ids": [
+        "hnm01-who-healthy-diet-2026",
+        "hnm02-who-fao-healthy-diets-2024",
+        "hnm15-nnr-dietary-patterns"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hnm01-who-healthy-diet-2026",
+          "location": "WHO fact sheet updated 26 January 2026; core principles of healthy diets, macronutrient sources, fibre, fats, free sugars and life-course framing."
+        },
+        {
+          "source_id": "hnm02-who-fao-healthy-diets-2024",
+          "location": "2024 joint FAO/WHO statement defining healthy-diet principles and their use for policy and diet assessment."
+        },
+        {
+          "source_id": "hnm15-nnr-dietary-patterns",
+          "location": "NNR2023 Dietary patterns section: total-diet framing, qualified systematic reviews, health associations and limits of pattern evidence."
+        }
+      ],
+      "classification": "verified_general_nutrition_metabolism_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hnm-c28",
+      "claim": "Evidens for en hel matvare eller et kostmønster kan ikke uten videre overføres til et isolert næringsstoff eller kosttilskudd.",
+      "paragraph_id": "hnm-p-28",
+      "topic_id": "kostmonster-matmatrise-og-helseevidens",
+      "source_ids": [
+        "hnm01-who-healthy-diet-2026",
+        "hnm02-who-fao-healthy-diets-2024",
+        "hnm15-nnr-dietary-patterns"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hnm01-who-healthy-diet-2026",
+          "location": "WHO fact sheet updated 26 January 2026; core principles of healthy diets, macronutrient sources, fibre, fats, free sugars and life-course framing."
+        },
+        {
+          "source_id": "hnm02-who-fao-healthy-diets-2024",
+          "location": "2024 joint FAO/WHO statement defining healthy-diet principles and their use for policy and diet assessment."
+        },
+        {
+          "source_id": "hnm15-nnr-dietary-patterns",
+          "location": "NNR2023 Dietary patterns section: total-diet framing, qualified systematic reviews, health associations and limits of pattern evidence."
+        }
+      ],
+      "classification": "verified_general_nutrition_metabolism_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hnm-c29",
+      "claim": "Energi- og næringsbehov varierer med blant annet alder, kroppsstørrelse, fysisk aktivitet, vekst, graviditet og amming, og referansesystemer bruker derfor livsfase- og gruppebestemte verdier.",
+      "paragraph_id": "hnm-p-29",
+      "topic_id": "referanseverdier-livslop-og-ansvarlig-anvendelse",
+      "source_ids": [
+        "hnm01-who-healthy-diet-2026",
+        "hnm04-nasem-energy-2023",
+        "hnm12-nnr-nutrients-overview",
+        "hnm13-efsa-drv"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hnm01-who-healthy-diet-2026",
+          "location": "WHO fact sheet updated 26 January 2026; core principles of healthy diets, macronutrient sources, fibre, fats, free sugars and life-course framing."
+        },
+        {
+          "source_id": "hnm04-nasem-energy-2023",
+          "location": "2023 consensus report on energy requirements, expenditure components, reference equations and population-specific estimation."
+        },
+        {
+          "source_id": "hnm12-nnr-nutrients-overview",
+          "location": "NNR2023 overview explaining evidence basis for dietary reference values across macro- and micronutrients and qualified systematic reviews."
+        },
+        {
+          "source_id": "hnm13-efsa-drv",
+          "location": "EFSA definition of DRVs including PRI, AR, AI, LTI and RI and their population/public-health uses."
+        }
+      ],
+      "classification": "verified_general_nutrition_metabolism_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hnm-c30",
+      "claim": "Gjennomsnittsbehov og populasjonsreferanseinntak har ulike roller: gjennomsnittsbehovet beskriver nivået som forventes å dekke behovet hos omtrent halvparten av en definert gruppe, mens populasjonsreferanseinntaket legges høyere for å dekke behovet hos nesten alle.",
+      "paragraph_id": "hnm-p-30",
+      "topic_id": "referanseverdier-livslop-og-ansvarlig-anvendelse",
+      "source_ids": [
+        "hnm01-who-healthy-diet-2026",
+        "hnm04-nasem-energy-2023",
+        "hnm12-nnr-nutrients-overview",
+        "hnm13-efsa-drv"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hnm01-who-healthy-diet-2026",
+          "location": "WHO fact sheet updated 26 January 2026; core principles of healthy diets, macronutrient sources, fibre, fats, free sugars and life-course framing."
+        },
+        {
+          "source_id": "hnm04-nasem-energy-2023",
+          "location": "2023 consensus report on energy requirements, expenditure components, reference equations and population-specific estimation."
+        },
+        {
+          "source_id": "hnm12-nnr-nutrients-overview",
+          "location": "NNR2023 overview explaining evidence basis for dietary reference values across macro- and micronutrients and qualified systematic reviews."
+        },
+        {
+          "source_id": "hnm13-efsa-drv",
+          "location": "EFSA definition of DRVs including PRI, AR, AI, LTI and RI and their population/public-health uses."
+        }
+      ],
+      "classification": "verified_general_nutrition_metabolism_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hnm-c31",
+      "claim": "Kostretningslinjer sammenfatter evidens for friske populasjoner og folkehelse og kan gi rammer for kostmønstre uten å være sykdomsspesifikk behandling.",
+      "paragraph_id": "hnm-p-31",
+      "topic_id": "referanseverdier-livslop-og-ansvarlig-anvendelse",
+      "source_ids": [
+        "hnm01-who-healthy-diet-2026",
+        "hnm04-nasem-energy-2023",
+        "hnm12-nnr-nutrients-overview",
+        "hnm13-efsa-drv"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hnm01-who-healthy-diet-2026",
+          "location": "WHO fact sheet updated 26 January 2026; core principles of healthy diets, macronutrient sources, fibre, fats, free sugars and life-course framing."
+        },
+        {
+          "source_id": "hnm04-nasem-energy-2023",
+          "location": "2023 consensus report on energy requirements, expenditure components, reference equations and population-specific estimation."
+        },
+        {
+          "source_id": "hnm12-nnr-nutrients-overview",
+          "location": "NNR2023 overview explaining evidence basis for dietary reference values across macro- and micronutrients and qualified systematic reviews."
+        },
+        {
+          "source_id": "hnm13-efsa-drv",
+          "location": "EFSA definition of DRVs including PRI, AR, AI, LTI and RI and their population/public-health uses."
+        }
+      ],
+      "classification": "verified_general_nutrition_metabolism_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hnm-c32",
+      "claim": "Ansvarlig ernæringsundervisning skiller mellom biologisk mekanisme, populasjonsbasert referanseverdi, epidemiologisk assosiasjon og klinisk beslutning.",
+      "paragraph_id": "hnm-p-32",
+      "topic_id": "referanseverdier-livslop-og-ansvarlig-anvendelse",
+      "source_ids": [
+        "hnm01-who-healthy-diet-2026",
+        "hnm04-nasem-energy-2023",
+        "hnm12-nnr-nutrients-overview",
+        "hnm13-efsa-drv"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hnm01-who-healthy-diet-2026",
+          "location": "WHO fact sheet updated 26 January 2026; core principles of healthy diets, macronutrient sources, fibre, fats, free sugars and life-course framing."
+        },
+        {
+          "source_id": "hnm04-nasem-energy-2023",
+          "location": "2023 consensus report on energy requirements, expenditure components, reference equations and population-specific estimation."
+        },
+        {
+          "source_id": "hnm12-nnr-nutrients-overview",
+          "location": "NNR2023 overview explaining evidence basis for dietary reference values across macro- and micronutrients and qualified systematic reviews."
+        },
+        {
+          "source_id": "hnm13-efsa-drv",
+          "location": "EFSA definition of DRVs including PRI, AR, AI, LTI and RI and their population/public-health uses."
+        }
+      ],
+      "classification": "verified_general_nutrition_metabolism_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    }
+  ]
+}
