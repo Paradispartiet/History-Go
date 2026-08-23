@@ -11,7 +11,7 @@ UNDERBADGES: ingen eksplisitte i dagens record; må ikke oppfinnes for completen
 EMNE_IDS: `em_by_torg_plasser_som_scene`, `em_by_offentlige_rom_motesteder`  
 FAGVERK-STED-STATUS: eksisterende koblinger; egen fase-3 audit påkrevd.  
 STEDSTYPE: historisk bytorg / civic square  
-KOORDINATSTATUS: `verified_geometry`, OSM way `594329484`, `area_anchor`; beholdes uten regresjonsbevis.  
+KOORDINATSTATUS: `verified_geometry`, OSM way `594329484`, `area_anchor`; fase 2 bekrefter ALLEREDE FERDIG uten mutation.  
 PLACE-SCOPE (canonical): `area` for selve plassflaten; separate bygg er relasjoner.  
 DESCRIPTION-PRODUCTION-PACKAGE: mangler.  
 LEKSIKON-ID/FIL: `data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json` / `place_id=christiania_torv`; kildeløs eldre oppføring skal re-auditeres.  
@@ -31,9 +31,9 @@ VIKTIGSTE KILDER: Oslo byleksikon; Oppdag Kvadraturen/Byantikvaren; OSM geometry
 AVVIST/UVISST INNHOLD: bokstavelig hanskekast; sikkert Livorno-forbilde; `year=1648` som automatisk etableringsår; volatile leietakere uten fersk verifikasjon.  
 NULLMÅLING: `reports/place-production/christiania-torv-nullmaaling-v1.md`  
 SANERINGS-/PRODUKSJONSPLAN: nullmålingens faseplan 1–10.  
-AKTIV FASE: fase 1 – nullmåling og arbeidskort.  
-AKTIVT FILSCOPE: bare de to rapportfilene i `reports/place-production/`.  
-FORRIGE FASE MERGET OG LIVE-KONTROLLERT: klyngens source pack #5261 er merget; ingen Christiania Torv-produksjonsfase før denne.  
+AKTIV FASE: fase 2 – identity/source/coordinate prior-work gate.  
+AKTIVT FILSCOPE: fase-2 audit + dette workcardet; ingen canonical Place mutation.  
+FORRIGE FASE MERGET OG LIVE-KONTROLLERT: fase 1 #5263 er merget som `56d34be511aee748cf1d07310eb48e932be30ed7`; shared source pack #5261 er også på main.  
 
 POPUPSTATUS — OM: IKKE GODKJENT  
 POPUPSTATUS — HISTORIE: IKKE GODKJENT  
