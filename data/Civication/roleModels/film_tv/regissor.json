@@ -1,1 +1,170 @@
-{"schema":"civication_role_model_v2","version":2,"category":"film_tv","role_scope":"regissor","role_id":"film_tv_regissor","title":"Regissør","source":{"badge_file":"data/badges/film_tv.json","evidence":"data/Civication/filmTvCareerLifeEvidence.json"},"badge_titles":["Regissør"],"core_narrative":["Regissøren leder den kunstneriske realiseringen av et film- eller TV-prosjekt gjennom utvikling, opptak og etterarbeid, men arbeider alltid innen prosjektets avtalte produksjons-, sikkerhets- og rettighetsrammer."],"competence_axes":["visuell_fortelling","skuespiller_og_medvirkende_regi","sceneanalyse","avdelingssamarbeid","opptaksprioritering","etterarbeidsdommekraft"],"ideal_type_problems":[{"id":"tid_vs_scene","problem":"En viktig scene trenger mer tid enn opptaksplanen har satt av."},{"id":"tolkning_vs_manus","problem":"En sterk regiløsning trekker scenen bort fra manusets etablerte premiss."},{"id":"sikkerhet_vs_bilde","problem":"Et ønsket bilde krever en løsning som utfordrer sikkerhetsplanen."},{"id":"medvirkende_grense","problem":"En medvirkende setter en legitim grense for gjennomføring av en scene."},{"id":"klipp_vs_intensjon","problem":"Etterarbeidet viser at opprinnelig intensjon ikke fungerer med materialet som faktisk er filmet."}],"authority_boundaries":{"cannot":["overstyre_sikkerhetsansvar_for_a_fa_et_bilde","tilsidesette_samtykke_eller_avtalte_medvirkendegrenser","endre_rettigheter_kontrakter_eller_budsjettfullmakter_uten_mandat","behandle_kunstnerisk_ledelse_som_uinnskrenket_personalmakt"]},"notes":["Canonical Film/TV work world for Regissør, grounded in the evidence-backed professional directing role."]}
+{
+  "schema": "civication_role_model_v2",
+  "version": 2,
+  "category": "film_tv",
+  "role_scope": "regissor",
+  "role_id": "film_tv_regissor",
+  "title": "Regissør",
+  "source": {
+    "badge_file": "data/badges/film_tv.json",
+    "evidence": "data/Civication/filmTvCareerLifeEvidence.json"
+  },
+  "badge_titles": [
+    "Regissør"
+  ],
+  "core_narrative": [
+    "Regissøren leder den kunstneriske realiseringen av et film- eller TV-prosjekt ved å omsette manus, medvirkende arbeid, bilde, lyd, rytme og produksjonsrammer til en sammenhengende helhet. Kunstnerisk ledelse gir ikke rett til å overstyre sikkerhet, samtykke, kontrakter eller produksjonens andre beslutningseiere."
+  ],
+  "competence_axes": [
+    "sceneanalyse_og_tolkning",
+    "skuespiller_og_medvirkende_regi",
+    "visuell_fortelling_og_dekning",
+    "avdelingssamarbeid",
+    "opptaksprioritering",
+    "etterarbeidsdommekraft"
+  ],
+  "required_knowledge": {
+    "concepts": [
+      "En sceneplan må uttrykke hva scenen skal forandre dramatisk, ikke bare hvilke bilder som er ønskelige.",
+      "Blocking, kameraplassering, lys, lyd og medvirkendes arbeid påvirker hverandre; en endring i én avdeling kan kreve en ny samlet løsning.",
+      "Dekning er et fortellings- og klipperessursvalg: manglende reaksjon, overgang eller kontinuitet kan først bli synlig når materialet settes sammen.",
+      "Regissøren kan prioritere kunstneriske løsninger, men må eskalere når løsningen påvirker sikkerhet, samtykke, rettigheter, større tidsavvik eller budsjettfullmakt.",
+      "Etterarbeid krever at intensjonen prøves mot det materialet som faktisk finnes, ikke at klippen tvinges til å late som den opprinnelige planen ble filmet.",
+      "Historiske regissører og filmhistoriske profiler kan gi kildeforankret kontekst om filmpraksis og filmkultur, men er ikke normativ fasit for dagens konkrete produksjonsvalg."
+    ],
+    "application": "Kunnskap brukes til å formulere sceneintensjon, planlegge dekning, arbeide presist med medvirkende og avdelinger, prioritere under tidspress og vurdere hva materialet faktisk kan bære i klippen."
+  },
+  "related_people": [
+    {
+      "id": "sara_produsent_regi",
+      "name": "Sara",
+      "fictional": true,
+      "function": "Fiktiv produsent og beslutningseier for budsjett, hovedplan, større omlegginger og eventuell pickup."
+    },
+    {
+      "id": "martin_fotograf_regi",
+      "name": "Martin",
+      "fictional": true,
+      "function": "Fiktiv fotograf som leder fotografisk gjennomføring og gjør lys-, kamera- og dekningskonsekvenser synlige for regien."
+    },
+    {
+      "id": "leila_forste_regiassistent",
+      "name": "Leila",
+      "fictional": true,
+      "function": "Fiktiv første regiassistent som holder dagsplan, settflyt og eskaleringslinjer for sikkerhet og gjennomføring tydelige."
+    },
+    {
+      "id": "noor_klipper_regi",
+      "name": "Noor",
+      "fictional": true,
+      "function": "Fiktiv klipper som vurderer det faktisk innspilte materialet og gjør kontinuitet, rytme og manglende dekning synlig i etterarbeidet."
+    }
+  ],
+  "related_places": [
+    {
+      "id": "preproduksjonsrom_regi_film_tv",
+      "name": "Regiens preproduksjonsrom",
+      "kind": "fictional_work_surface",
+      "function": "Fiktiv arbeidsflate for sceneanalyse, blocking, shot-prioritering og avklaringer med produksjon og avdelinger."
+    },
+    {
+      "id": "opptakssett_regi_film_tv",
+      "name": "Filmsettet",
+      "kind": "fictional_work_surface",
+      "function": "Fiktiv opptaksflate der scene, medvirkende, kamera, lyd, lys, tid og sikkerhet møtes."
+    },
+    {
+      "id": "regimonitor_regi_film_tv",
+      "name": "Regimonitoren",
+      "kind": "fictional_work_surface",
+      "function": "Fiktiv arbeidsflate for vurdering av take, kontinuitet, prestasjon og nødvendig dekning før settet går videre."
+    },
+    {
+      "id": "klipperom_regi_film_tv",
+      "name": "Klipperommet",
+      "kind": "fictional_work_surface",
+      "function": "Fiktiv etterarbeidsflate der materialets faktiske rytme, dekning og fortellingsklarhet prøves."
+    },
+    {
+      "id": "cinemateket_oslo",
+      "name": "Cinemateket i Oslo",
+      "kind": "canonical_history_go_place",
+      "function": "Canonical History Go-anker for norsk filmhistorie og regissørprofiler; stedet simuleres ikke som dagens arbeidsgiver eller produksjonssett."
+    }
+  ],
+  "ideal_type_problems": [
+    {
+      "id": "tid_vs_scene",
+      "problem": "En viktig scene trenger mer tid enn dagsplanen har satt av."
+    },
+    {
+      "id": "tolkning_vs_manus",
+      "problem": "En sterk ny regiløsning endrer scenens premiss og påvirker flere avdelinger."
+    },
+    {
+      "id": "sikkerhet_vs_bilde",
+      "problem": "Et ønsket bilde eller en bevegelse krever en løsning som ikke er dekket av dagens sikkerhetsopplegg."
+    },
+    {
+      "id": "medvirkende_grense",
+      "problem": "En medvirkende setter en legitim grense som krever ny blocking eller bildeplan."
+    },
+    {
+      "id": "dekning_vs_fremdrift",
+      "problem": "Produksjonen må velge mellom å gå videre og å sikre materiale klippen sannsynligvis trenger."
+    },
+    {
+      "id": "klipp_vs_intensjon",
+      "problem": "Etterarbeidet viser at opprinnelig intensjon ikke fungerer med materialet som faktisk er filmet."
+    }
+  ],
+  "authority_boundaries": {
+    "cannot": [
+      "overstyre_sikkerhetsansvar_eller_stansekrav",
+      "tilsidesette_samtykke_eller_avtalte_medvirkendegrenser",
+      "endre_rettigheter_kontrakter_eller_budsjettfullmakter_uten_mandat",
+      "behandle_kunstnerisk_ledelse_som_uinnskrenket_personalmakt",
+      "bruke_historiske_regissorer_som_fasit_for_dagens_produksjonsvalg"
+    ]
+  },
+  "career_path": {
+    "entry_from": [
+      "regiassistent_eller_scriptarbeid",
+      "kortfilm_dokumentar_eller_annen_dokumentert_regierfaring",
+      "manus_utvikling_eller_avdelingsarbeid_med_regiansvar"
+    ],
+    "progression_to": [
+      "regissor_med_storre_produksjonsansvar",
+      "serie_eller_hovedregissor",
+      "kreativ_leder_eller_utviklingsregissor"
+    ],
+    "possible_promotions": [
+      "Hovedregissør",
+      "Serieregissør / kreativ leder"
+    ],
+    "possible_exits": [
+      "Bytte til manus- eller utviklingsarbeid",
+      "Gå til regiassistent-, klippe- eller annen produksjonsrolle",
+      "Avslutte etter prosjektkontrakten",
+      "Miste oppdraget ved gjentatte brudd på sikkerhet, samtykke, produksjonsmandat eller profesjonell gjennomføring"
+    ]
+  },
+  "mail_integration": {
+    "role_scope": "regissor",
+    "mail_profile": "film_tv_regissor",
+    "can_feed_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ]
+  },
+  "notes": [
+    "Canonical Film/TV work world for Regissør; current production people and work surfaces are fictional, while canonical History Go People and Places are read-only knowledge targets."
+  ]
+}

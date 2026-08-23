@@ -79,6 +79,15 @@
     "data/Civication/mailFamilies/film_tv/followup/programleder_followup.json",
     "data/Civication/mailFamilies/film_tv/knowledge/programleder_knowledge.json",
     "data/Civication/mailFamilies/film_tv/consequence/programleder_consequence.json",
+    "data/Civication/mailFamilies/film_tv/job/regissor_job.json",
+    "data/Civication/mailFamilies/film_tv/people/regissor_people.json",
+    "data/Civication/mailFamilies/film_tv/story/regissor_story.json",
+    "data/Civication/mailFamilies/film_tv/conflict/regissor_conflict.json",
+    "data/Civication/mailFamilies/film_tv/event/regissor_event.json",
+    "data/Civication/mailFamilies/film_tv/micro/regissor_micro.json",
+    "data/Civication/mailFamilies/film_tv/followup/regissor_followup.json",
+    "data/Civication/mailFamilies/film_tv/knowledge/regissor_knowledge.json",
+    "data/Civication/mailFamilies/film_tv/consequence/regissor_consequence.json",
     "data/Civication/mailFamilies/litteratur/job/redaksjonsmedarbeider_job.json",
     "data/Civication/mailFamilies/litteratur/people/redaksjonsmedarbeider_people.json",
     "data/Civication/mailFamilies/litteratur/story/redaksjonsmedarbeider_story.json",
@@ -28037,6 +28046,1309 @@
       },
       "source_hash": "75fb0a6b9e340fe648c46ec47a9d5a558d47147ce9b8186fae09582ffdde379b",
       "source_path": "data/Civication/mailFamilies/film_tv/story/programleder_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "velg_minste_fortellingskritiske_dekning_vs_alt_eller_ingenting",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 1
+              }
+            },
+            "feedback": "Du gjør kompromisset eksplisitt og beholder materialet klippen mest sannsynlig trenger.",
+            "id": "A",
+            "label": "Ta én prioritert reaksjon og én enkel overgang innen ti minutter",
+            "reply": "Vi tar den reaksjonen som bærer vendepunktet og en overgang som gjør den klippbar, og lar resten av ønskelisten falle.",
+            "tags": [
+              "coverage",
+              "time_tradeoff",
+              "editing"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "energy": 1,
+                "quality": -2,
+                "risk": 3,
+                "trust": -1
+              }
+            },
+            "feedback": "Du vinner tid nå, men flytter en konkret fortellingsrisiko til etterarbeidet.",
+            "id": "B",
+            "label": "Dropp reaksjonene og stol på masteren",
+            "reply": "Vi går videre nå; Noor får bygge scenen fra masteren og dialogtakene.",
+            "tags": [
+              "coverage_shortcut",
+              "pickup_risk"
+            ]
+          }
+        ],
+        "competency": "klippbarhet",
+        "consequence_axis": "kontrollert_kompromiss_vs_sen_pickupkostnad",
+        "cooldown": 3,
+        "day_phase": "afternoon",
+        "from": "Sara, produsent",
+        "id": "film_tv_regi_conflict_dekning_001",
+        "interaction_mode": "decision",
+        "mail_family": "regissor_dekning_under_tid",
+        "mail_type": "conflict",
+        "narrative_arc": "fra_sceneplan_til_klipp",
+        "people_ref": "sara_produsent_regi",
+        "person_id": "sara_produsent_regi",
+        "phase": "mid",
+        "place_id": "preproduksjonsrom_regi_film_tv",
+        "pressure": "dekning_vs_dagsplan",
+        "priority": 124,
+        "purpose": "Teste om regissøren prioriterer en begrenset dekningspakke i stedet for å gjøre tid eller prestisje til skjult beslutningseier.",
+        "repeatable": false,
+        "role_scope": "regissor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/conflict/regissor_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Masteren dekker dialogen, men ikke et rent reaksjonsøyeblikk etter vendepunktet.",
+          "Noor har i forhåndssamtalen bedt om minst én tydelig reaksjonsmulighet.",
+          "Sara kan frigjøre ti minutter, ikke førti."
+        ],
+        "stage": "stable",
+        "stakes": "Å droppe all reaksjonsdekning kan gjøre vendepunktet vanskelig å bygge; å kreve full plan kan velte resten av dagen.",
+        "subject": "Vi ligger førti minutter etter — reaksjonsdekkingen er det eneste som ikke er tatt",
+        "summary": "Sara kan holde settet åpent noen minutter til, men ikke nok til hele den opprinnelige reaksjonsplanen. Regien må si hva klippen faktisk trenger.",
+        "task_domain": "opptaksprioritering",
+        "task_kind": "conflict",
+        "thread_key": "film_tv_regi_dekning_001"
+      },
+      "id": "film_tv_regi_conflict_dekning_001",
+      "mail_type": "conflict",
+      "role_scope": "regissor",
+      "scene": {
+        "arc_stage": "mid",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gjør kompromisset eksplisitt og beholder materialet klippen mest sannsynlig trenger.",
+            "id": "A",
+            "label": "Ta én prioritert reaksjon og én enkel overgang innen ti minutter",
+            "reply": "Vi tar den reaksjonen som bærer vendepunktet og en overgang som gjør den klippbar, og lar resten av ønskelisten falle."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du vinner tid nå, men flytter en konkret fortellingsrisiko til etterarbeidet.",
+            "id": "B",
+            "label": "Dropp reaksjonene og stol på masteren",
+            "reply": "Vi går videre nå; Noor får bygge scenen fra masteren og dialogtakene."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Masteren dekker dialogen, men ikke et rent reaksjonsøyeblikk etter vendepunktet.",
+            "Noor har i forhåndssamtalen bedt om minst én tydelig reaksjonsmulighet.",
+            "Sara kan frigjøre ti minutter, ikke førti."
+          ],
+          "subject": "Vi ligger førti minutter etter — reaksjonsdekkingen er det eneste som ikke er tatt",
+          "summary": "Sara kan holde settet åpent noen minutter til, men ikke nok til hele den opprinnelige reaksjonsplanen. Regien må si hva klippen faktisk trenger."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_regi_conflict_dekning_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "preproduksjonsrom_regi_film_tv",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_regi_conflict_dekning_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/conflict/regissor_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "film_tv_regi_dekning_001",
+        "version": 1
+      },
+      "source_hash": "5854db67fb3c22c49ad136d64f71015559c9bb74e7a8464a69786a15c1cf546e",
+      "source_path": "data/Civication/mailFamilies/film_tv/conflict/regissor_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "test_omklipp_og_begrunn_eventuell_pickup_vs_skyv_skyld_pa_klipp",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "quality": 3,
+                "risk": -2,
+                "status": 1,
+                "trust": 2
+              }
+            },
+            "feedback": "Du bruker faktisk klippediagnose før du påfører produksjonen ny kostnad og gjør årsaken etterprøvbar.",
+            "id": "A",
+            "label": "Test bredbildet i ny struktur og spesifiser pickup bare hvis vendepunktet fortsatt svikter",
+            "reply": "Vi prøver først om eksisterende materiale kan bære scenen. Hvis ikke ber jeg om én konkret reaksjonspickup og eier at vi droppet den under tidspress.",
+            "tags": [
+              "repair",
+              "editing",
+              "accountability"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -1,
+                "risk": 4,
+                "status": -1,
+                "trust": -2
+              }
+            },
+            "feedback": "Du hopper fra ett dokumentert dekningshull til full nyopptak uten å prøve det materialet som faktisk finnes eller avklare omfanget.",
+            "id": "B",
+            "label": "Be om en ny opptaksdag og få scenen slik den opprinnelig var tenkt",
+            "reply": "Vi bør ikke kompromisse med scenen i klipp; vi tar den opp igjen med full dekningsplan.",
+            "tags": [
+              "scope_escalation",
+              "prestige"
+            ]
+          }
+        ],
+        "competency": "helhetsdommekraft",
+        "consequence_axis": "kontrollert_reparasjon_vs_gjentatt_kostnad",
+        "cooldown": 6,
+        "day_phase": "evening",
+        "from": "Sara, produsent",
+        "id": "film_tv_regi_consequence_dekning_001",
+        "interaction_mode": "decision",
+        "mail_family": "regissor_manglende_dekning",
+        "mail_type": "consequence",
+        "narrative_arc": "fra_sceneplan_til_klipp",
+        "people_ref": "sara_produsent_regi",
+        "person_id": "sara_produsent_regi",
+        "phase": "mastery",
+        "place_id": "klipperom_regi_film_tv",
+        "pressure": "prestisje_vs_reparasjon",
+        "priority": 100,
+        "purpose": "Teste om regissøren tar ansvar for en tidligere dekningssnarvei og velger neste tiltak etter faktisk diagnose.",
+        "repeatable": false,
+        "role_scope": "regissor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/consequence/regissor_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Noor har prøvd masteren mot begge dialogtakene og dokumentert hvor vendepunktet blir uklart.",
+          "Det finnes ett bredt bilde som kan omstruktureres, men ingen ren reaksjon.",
+          "Sara kan vurdere en kort pickup hvis regien beskriver det konkrete manglende bildet og hvorfor det er nødvendig."
+        ],
+        "stage": "stable",
+        "stakes": "Pickup koster produksjonstid og må godkjennes; omklipp er billigere, men kan bare velges hvis materialet fortsatt bærer scenen ærlig.",
+        "subject": "Masteren bærer dialogen, men vendepunktet mangler en ren reaksjon",
+        "summary": "Første assembly bekrefter risikoen fra ettermiddagen: da reaksjonsdekkingen ble droppet, mistet klippen den tydeligste overgangen inn i scenens vendepunkt. Sara trenger en beslutning om omklipp eller pickup.",
+        "task_domain": "etterarbeid_og_helhet",
+        "task_kind": "consequence",
+        "thread_key": "film_tv_regi_dekning_001"
+      },
+      "id": "film_tv_regi_consequence_dekning_001",
+      "mail_type": "consequence",
+      "role_scope": "regissor",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du bruker faktisk klippediagnose før du påfører produksjonen ny kostnad og gjør årsaken etterprøvbar.",
+            "id": "A",
+            "label": "Test bredbildet i ny struktur og spesifiser pickup bare hvis vendepunktet fortsatt svikter",
+            "reply": "Vi prøver først om eksisterende materiale kan bære scenen. Hvis ikke ber jeg om én konkret reaksjonspickup og eier at vi droppet den under tidspress."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du hopper fra ett dokumentert dekningshull til full nyopptak uten å prøve det materialet som faktisk finnes eller avklare omfanget.",
+            "id": "B",
+            "label": "Be om en ny opptaksdag og få scenen slik den opprinnelig var tenkt",
+            "reply": "Vi bør ikke kompromisse med scenen i klipp; vi tar den opp igjen med full dekningsplan."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Noor har prøvd masteren mot begge dialogtakene og dokumentert hvor vendepunktet blir uklart.",
+            "Det finnes ett bredt bilde som kan omstruktureres, men ingen ren reaksjon.",
+            "Sara kan vurdere en kort pickup hvis regien beskriver det konkrete manglende bildet og hvorfor det er nødvendig."
+          ],
+          "subject": "Masteren bærer dialogen, men vendepunktet mangler en ren reaksjon",
+          "summary": "Første assembly bekrefter risikoen fra ettermiddagen: da reaksjonsdekkingen ble droppet, mistet klippen den tydeligste overgangen inn i scenens vendepunkt. Sara trenger en beslutning om omklipp eller pickup."
+        },
+        "day_phase": "evening",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_regi_consequence_dekning_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "klipperom_regi_film_tv",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_regi_consequence_dekning_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/consequence/regissor_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "film_tv_regi_dekning_001",
+        "version": 1
+      },
+      "source_hash": "0158748735182c1d4c09c0e670c12770c0d4b355174623acf7829ebbca6b4c54",
+      "source_path": "data/Civication/mailFamilies/film_tv/consequence/regissor_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "ta_fortellingskritisk_oppsett_forst_vs_folg_planlagt_rekkefolge",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "quality": 2,
+                "risk": -2,
+                "trust": 1
+              }
+            },
+            "feedback": "Du bruker det korte lysvinduet på materialet som ikke kan erstattes av det dere allerede har.",
+            "id": "A",
+            "label": "Ta reaksjonen først og vurder resten etter lyset",
+            "reply": "Vi sikrer oppsettet som tilfører ny fortellingsinformasjon, og lar stemningsbildet og alternativvinkelen være sekundære.",
+            "tags": [
+              "prioritization",
+              "coverage",
+              "continuity"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": -2,
+                "risk": 3
+              }
+            },
+            "feedback": "Du beskytter arbeidsflyten på kort sikt, men lar klokkeslettet avgjøre om scenens nye informasjon blir filmet.",
+            "id": "B",
+            "label": "Følg shotlisten i planlagt rekkefølge for å holde avdelingene stabile",
+            "reply": "Vi endrer ikke rekkefølgen; alle kjenner planen og vi får så mye vi rekker.",
+            "tags": [
+              "plan_rigidity",
+              "coverage_risk"
+            ]
+          }
+        ],
+        "competency": "helhetsdommekraft",
+        "consequence_axis": "bevart_sceneinformasjon_vs_tapt_lys_og_dekning",
+        "cooldown": 3,
+        "day_phase": "afternoon",
+        "from": "Martin, fotograf",
+        "id": "film_tv_regi_event_lysfall_001",
+        "interaction_mode": "decision",
+        "mail_family": "regissor_lysfall",
+        "mail_type": "event",
+        "narrative_arc": "fra_sceneplan_til_klipp",
+        "people_ref": "martin_fotograf_regi",
+        "person_id": "martin_fotograf_regi",
+        "phase": "workday",
+        "place_id": "opptakssett_regi_film_tv",
+        "pressure": "lysfall_vs_opprinnelig_shotrekkefolge",
+        "priority": 114,
+        "purpose": "Teste om regissøren bruker scene- og dekningskunnskap til å endre rekkefølge under et reelt produksjonsavvik.",
+        "repeatable": false,
+        "role_scope": "regissor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/event/regissor_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Ett oppsett viser reaksjonen etter vendepunktet.",
+          "Ett er et stemningsbilde uten ny handling.",
+          "Ett er en alternativ vinkel på dialog som allerede finnes i masteren."
+        ],
+        "stage": "stable",
+        "stakes": "Å jage alle tre oppsett kan gi svakere prestasjon, kontinuitetsbrudd og mer teknisk risiko; å velge feil oppsett kan fjerne nødvendig informasjon.",
+        "subject": "Skydekket åpner seg — kontinuitetslyset varer kanskje tjue minutter",
+        "summary": "Martin varsler at vinduet for det planlagte lyset er kortere enn antatt. Tre oppsett står igjen, men bare ett av dem bærer ny fortellingsinformasjon.",
+        "task_domain": "opptaksprioritering",
+        "task_kind": "event"
+      },
+      "id": "film_tv_regi_event_lysfall_001",
+      "mail_type": "event",
+      "role_scope": "regissor",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du bruker det korte lysvinduet på materialet som ikke kan erstattes av det dere allerede har.",
+            "id": "A",
+            "label": "Ta reaksjonen først og vurder resten etter lyset",
+            "reply": "Vi sikrer oppsettet som tilfører ny fortellingsinformasjon, og lar stemningsbildet og alternativvinkelen være sekundære."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du beskytter arbeidsflyten på kort sikt, men lar klokkeslettet avgjøre om scenens nye informasjon blir filmet.",
+            "id": "B",
+            "label": "Følg shotlisten i planlagt rekkefølge for å holde avdelingene stabile",
+            "reply": "Vi endrer ikke rekkefølgen; alle kjenner planen og vi får så mye vi rekker."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Ett oppsett viser reaksjonen etter vendepunktet.",
+            "Ett er et stemningsbilde uten ny handling.",
+            "Ett er en alternativ vinkel på dialog som allerede finnes i masteren."
+          ],
+          "subject": "Skydekket åpner seg — kontinuitetslyset varer kanskje tjue minutter",
+          "summary": "Martin varsler at vinduet for det planlagte lyset er kortere enn antatt. Tre oppsett står igjen, men bare ett av dem bærer ny fortellingsinformasjon."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_regi_event_lysfall_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "opptakssett_regi_film_tv",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_regi_event_lysfall_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/event/regissor_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "regissor.mail.film_tv_regi_event_lysfall_001",
+        "version": 1
+      },
+      "source_hash": "fb883cb5356540e40b54c2c3e4927aaf8569872dd7ff97f605dd8ea5fdf6d1e6",
+      "source_path": "data/Civication/mailFamilies/film_tv/event/regissor_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "test_eksisterende_materiale_forst_vs_gjor_grensen_til_pickupproblem",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 3,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Du skiller fortellingsproblemet fra medvirkendegrensen og diagnostiserer materialet før ny produksjon foreslås.",
+            "id": "A",
+            "label": "Be Noor teste reaksjonsfragmentene og det brede bildet før pickup vurderes",
+            "reply": "Grensen ligger fast. La oss først se om eksisterende dekning kan gjøre vendepunktet tydelig; hvis ikke beskriver vi nøyaktig hva en pickup må tilføre.",
+            "tags": [
+              "editing",
+              "consent",
+              "diagnosis"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "trust": -3
+              }
+            },
+            "feedback": "Du gjør en avklart grense til forklaring på klippeproblemet før eksisterende materiale er prøvd ut.",
+            "id": "B",
+            "label": "Be Sara om pickup av den opprinnelige bevegelsen i en enklere versjon",
+            "reply": "Den nye blockingen ble for svak; vi bør hente inn igjen noe av den første ideen for å få vendepunktet til å sitte.",
+            "tags": [
+              "boundary_regression",
+              "pickup_risk"
+            ]
+          }
+        ],
+        "competency": "etterarbeidsdommekraft",
+        "consequence_axis": "aerlig_omklipp_vs_unodvendig_nyopptak",
+        "cooldown": 5,
+        "day_phase": "evening",
+        "from": "Noor, klipper",
+        "id": "film_tv_regi_followup_klipp_001",
+        "interaction_mode": "decision",
+        "mail_family": "regissor_klippoppfolging",
+        "mail_type": "followup",
+        "narrative_arc": "medvirkendegrensen_og_sceneformen",
+        "people_ref": "noor_klipper_regi",
+        "person_id": "noor_klipper_regi",
+        "phase": "mastery",
+        "place_id": "klipperom_regi_film_tv",
+        "pressure": "fortellingsklarhet_vs_pickupkostnad",
+        "priority": 104,
+        "purpose": "Teste om regissøren kan forbedre fortellingsklarheten uten å behandle den tidligere grensen som et problem som bør omgjøres.",
+        "repeatable": false,
+        "role_scope": "regissor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/followup/regissor_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den avtalte medvirkendegrensen står uendret.",
+          "Det finnes to alternative reaksjonsfragmenter og et bredere bilde fra slutten av take to.",
+          "Sara må godkjenne eventuell pickup; Noor kan først teste en ny struktur med eksisterende materiale."
+        ],
+        "stage": "stable",
+        "stakes": "En pickup kan koste tid og penger; et omklipp kan bevare grensen, men må faktisk løse lesbarheten med materialet som finnes.",
+        "subject": "Reblockingen respekterte grensen, men vendepunktet leses svakt i første klipp",
+        "summary": "Noor har lagt sammen scenen. Den nye blockingen fungerer med medvirkendes avtalte grense, men klippen mangler en tydelig reaksjon som binder blikk og avstand til vendepunktet.",
+        "task_domain": "etterarbeid_og_helhet",
+        "task_kind": "followup",
+        "thread_key": "film_tv_regi_scenegrense_001"
+      },
+      "id": "film_tv_regi_followup_klipp_001",
+      "mail_type": "followup",
+      "role_scope": "regissor",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du skiller fortellingsproblemet fra medvirkendegrensen og diagnostiserer materialet før ny produksjon foreslås.",
+            "id": "A",
+            "label": "Be Noor teste reaksjonsfragmentene og det brede bildet før pickup vurderes",
+            "reply": "Grensen ligger fast. La oss først se om eksisterende dekning kan gjøre vendepunktet tydelig; hvis ikke beskriver vi nøyaktig hva en pickup må tilføre."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør en avklart grense til forklaring på klippeproblemet før eksisterende materiale er prøvd ut.",
+            "id": "B",
+            "label": "Be Sara om pickup av den opprinnelige bevegelsen i en enklere versjon",
+            "reply": "Den nye blockingen ble for svak; vi bør hente inn igjen noe av den første ideen for å få vendepunktet til å sitte."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den avtalte medvirkendegrensen står uendret.",
+            "Det finnes to alternative reaksjonsfragmenter og et bredere bilde fra slutten av take to.",
+            "Sara må godkjenne eventuell pickup; Noor kan først teste en ny struktur med eksisterende materiale."
+          ],
+          "subject": "Reblockingen respekterte grensen, men vendepunktet leses svakt i første klipp",
+          "summary": "Noor har lagt sammen scenen. Den nye blockingen fungerer med medvirkendes avtalte grense, men klippen mangler en tydelig reaksjon som binder blikk og avstand til vendepunktet."
+        },
+        "day_phase": "evening",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_regi_followup_klipp_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "klipperom_regi_film_tv",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_regi_followup_klipp_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/followup/regissor_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "film_tv_regi_scenegrense_001",
+        "version": 1
+      },
+      "source_hash": "09a09d9f9b290e6f5c5c106980d52e7c8b7bf86710585c5fb4ab3d36f36a4bc4",
+      "source_path": "data/Civication/mailFamilies/film_tv/followup/regissor_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "rangér_sceneendring_og_nodvendig_dekning_vs_forsvar_hele_shotlisten",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 1
+              }
+            },
+            "feedback": "Sara og avdelingene får en plan som kan diskuteres som prioritering, ikke som kunstnerisk absolutt.",
+            "id": "A",
+            "label": "Definer vendepunktet og ranger seks nødvendige oppsett",
+            "reply": "Jeg markerer hvilke oppsett som bærer sceneendringen, hvilke som er støtte, og hva som kan falle bort uten å gjøre klippen uforståelig.",
+            "tags": [
+              "scene_intent",
+              "coverage",
+              "authority"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": -1,
+                "risk": 3,
+                "trust": -1
+              }
+            },
+            "feedback": "Du lar tidspresset bestemme hvilke bilder som forsvinner, uten å ha definert hvilke tap scenen tåler.",
+            "id": "B",
+            "label": "Behold alle elleve og hent tiden underveis",
+            "reply": "Jeg vil se hvor raskt vi arbeider før vi kutter noe fra planen.",
+            "tags": [
+              "scope_risk",
+              "time_pressure"
+            ]
+          }
+        ],
+        "competency": "fortellingsklarhet",
+        "consequence_axis": "klippbar_scene_vs_tidsoverskridelse",
+        "cooldown": 1,
+        "day_phase": "morning",
+        "from": "Sara, produsent",
+        "id": "film_tv_regi_job_sceneplan_001",
+        "interaction_mode": "decision",
+        "mail_family": "regissor_sceneplan",
+        "mail_type": "job",
+        "narrative_arc": "fra_sceneplan_til_klipp",
+        "people_ref": "sara_produsent_regi",
+        "person_id": "sara_produsent_regi",
+        "phase": "intro",
+        "place_id": "preproduksjonsrom_regi_film_tv",
+        "pressure": "kunstnerisk_ambisjon_vs_dagsplan",
+        "priority": 140,
+        "purpose": "Teste om regissøren kan oversette kunstnerisk intensjon til en prioriterbar og produksjonsklar sceneplan.",
+        "repeatable": false,
+        "role_scope": "regissor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/job/regissor_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Manuset har ett tydelig vendepunkt mellom de to medvirkende.",
+          "Martin har beregnet at lysendringene gjør elleve oppsett urealistiske før lunsj.",
+          "Sara kan godkjenne en større tidsomlegging, men trenger først regissørens faglige prioritering."
+        ],
+        "stage": "stable",
+        "stakes": "Uten rangering kan teamet bruke morgenen på fine bilder og likevel mangle reaksjonen eller overgangen som bærer scenens vendepunkt.",
+        "subject": "Første scene har elleve oppsett, men bare seks er realistiske i dagsplanen",
+        "summary": "Shotlisten dekker alle ønskede vinkler, men Sara trenger en prioritering som viser hvilke bilder scenen faktisk trenger for å fungere i klippen.",
+        "task_domain": "sceneanalyse_og_tolkning",
+        "task_kind": "job",
+        "thread_key": "film_tv_regi_dekning_001"
+      },
+      "id": "film_tv_regi_job_sceneplan_001",
+      "mail_type": "job",
+      "role_scope": "regissor",
+      "scene": {
+        "arc_stage": "intro",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Sara og avdelingene får en plan som kan diskuteres som prioritering, ikke som kunstnerisk absolutt.",
+            "id": "A",
+            "label": "Definer vendepunktet og ranger seks nødvendige oppsett",
+            "reply": "Jeg markerer hvilke oppsett som bærer sceneendringen, hvilke som er støtte, og hva som kan falle bort uten å gjøre klippen uforståelig."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du lar tidspresset bestemme hvilke bilder som forsvinner, uten å ha definert hvilke tap scenen tåler.",
+            "id": "B",
+            "label": "Behold alle elleve og hent tiden underveis",
+            "reply": "Jeg vil se hvor raskt vi arbeider før vi kutter noe fra planen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Manuset har ett tydelig vendepunkt mellom de to medvirkende.",
+            "Martin har beregnet at lysendringene gjør elleve oppsett urealistiske før lunsj.",
+            "Sara kan godkjenne en større tidsomlegging, men trenger først regissørens faglige prioritering."
+          ],
+          "subject": "Første scene har elleve oppsett, men bare seks er realistiske i dagsplanen",
+          "summary": "Shotlisten dekker alle ønskede vinkler, men Sara trenger en prioritering som viser hvilke bilder scenen faktisk trenger for å fungere i klippen."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_regi_job_sceneplan_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "preproduksjonsrom_regi_film_tv",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_regi_job_sceneplan_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/job/regissor_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "film_tv_regi_dekning_001",
+        "version": 1
+      },
+      "source_hash": "03240e587bb11a4143578ff14e22539a310a7b787a463a24c71d30dd8de5253b",
+      "source_path": "data/Civication/mailFamilies/film_tv/job/regissor_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "les_og_avgrens_hva_profilen_kan_belyse_vs_lan_historisk_autoritet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 1,
+                "trust": 1
+              }
+            },
+            "feedback": "Oppgaven fullføres bare gjennom registrert History Go-lesing av den canonicale personen.",
+            "id": "A",
+            "label": "Åpne profilen og noter hva den faktisk dokumenterer",
+            "reply": "Jeg leser profilen som filmhistorie og holder dagens produksjonsvalg forankret i vårt manus, materiale og avklarte ansvar.",
+            "tags": [
+              "history_go_person",
+              "source_boundary"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -3,
+                "risk": 2,
+                "trust": -1
+              }
+            },
+            "feedback": "Du gjør en faktaprofil til normativ autoritet for valg den ikke dokumenterer.",
+            "id": "B",
+            "label": "Bruk pionerstatusen som argument for hvordan en regissør bør arbeide",
+            "reply": "Jeg viser til filmhistorien for å lukke diskusjonen om dagens regi- og klippvalg.",
+            "tags": [
+              "authority_slippage",
+              "anachronism"
+            ]
+          }
+        ],
+        "competency": "faglig_kildebruk",
+        "consequence_axis": "bedre_kontekst_vs_autoritetsglidning",
+        "cooldown": 5,
+        "day_phase": "evening",
+        "from": "Noor, klipper",
+        "id": "film_tv_regi_knowledge_carlmar_001",
+        "interaction_mode": "task",
+        "mail_family": "regissor_filmhistorisk_kontekst",
+        "mail_type": "knowledge",
+        "narrative_arc": "fra_filmhistorie_til_reflektert_praksis",
+        "people_ref": "noor_klipper_regi",
+        "person_id": "noor_klipper_regi",
+        "phase": "advanced",
+        "place_id": "cinemateket_oslo",
+        "pressure": "historisk_kontekst_vs_normativ_fasit",
+        "priority": 108,
+        "purpose": "Teste at en virkelig historisk regissør brukes som faktamål og refleksjonskontekst, ikke som fiktiv rådgiver eller autoritet for dagens produksjon.",
+        "repeatable": false,
+        "role_scope": "regissor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/knowledge/regissor_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Edith Carlmar finnes som canonical People-person i Film/TV-kategorien med placeId Cinemateket i Oslo.",
+          "Oppgaven gjelder bare lesing av den kildeforankrede profilen i History Go.",
+          "Profilen brukes som historisk kontekst for norsk regi og filmkultur, ikke som dokumentasjon av dagens fiktive arbeidsprosess."
+        ],
+        "stage": "stable",
+        "stakes": "Historisk innsikt kan skjerpe spørsmål om praksis og rammer, men kan ikke avgjøre dagens scene, samtykke, sikkerhet eller klippeløsning.",
+        "subject": "Edith Carlmar gir filmhistorisk kontekst — ikke en oppskrift for dagens scene",
+        "summary": "Noor ber deg lese History Go-profilen til Edith Carlmar som kildeforankret norsk filmhistorie før dere diskuterer hvordan regi- og klippevalg formes av sin produksjonskontekst.",
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/people/film_tv/oslo/people_film_tv_oslo.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "film_tv_regi_history_go_edith_carlmar"
+        },
+        "task_domain": "filmhistorie",
+        "task_kind": "knowledge",
+        "task_payload": {
+          "completion_mode": "read_profile",
+          "description": "Les den canonicale profilen som norsk filmhistorisk regikontekst, ikke som fasit for dagens produksjon.",
+          "person_id": "edith_carlmar",
+          "return_context": {
+            "mail_id": "film_tv_regi_knowledge_carlmar_001",
+            "role_scope": "regissor",
+            "source": "civication"
+          },
+          "target_type": "person",
+          "task_kind": "history_go_person",
+          "title": "Les profilen til Edith Carlmar"
+        }
+      },
+      "id": "film_tv_regi_knowledge_carlmar_001",
+      "mail_type": "knowledge",
+      "role_scope": "regissor",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Oppgaven fullføres bare gjennom registrert History Go-lesing av den canonicale personen.",
+            "id": "A",
+            "label": "Åpne profilen og noter hva den faktisk dokumenterer",
+            "reply": "Jeg leser profilen som filmhistorie og holder dagens produksjonsvalg forankret i vårt manus, materiale og avklarte ansvar."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør en faktaprofil til normativ autoritet for valg den ikke dokumenterer.",
+            "id": "B",
+            "label": "Bruk pionerstatusen som argument for hvordan en regissør bør arbeide",
+            "reply": "Jeg viser til filmhistorien for å lukke diskusjonen om dagens regi- og klippvalg."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Edith Carlmar finnes som canonical People-person i Film/TV-kategorien med placeId Cinemateket i Oslo.",
+            "Oppgaven gjelder bare lesing av den kildeforankrede profilen i History Go.",
+            "Profilen brukes som historisk kontekst for norsk regi og filmkultur, ikke som dokumentasjon av dagens fiktive arbeidsprosess."
+          ],
+          "subject": "Edith Carlmar gir filmhistorisk kontekst — ikke en oppskrift for dagens scene",
+          "summary": "Noor ber deg lese History Go-profilen til Edith Carlmar som kildeforankret norsk filmhistorie før dere diskuterer hvordan regi- og klippevalg formes av sin produksjonskontekst."
+        },
+        "day_phase": "evening",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_regi_knowledge_carlmar_001",
+        "interaction_mode": "task",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "cinemateket_oslo",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_regi_knowledge_carlmar_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/knowledge/regissor_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/people/film_tv/oslo/people_film_tv_oslo.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "film_tv_regi_history_go_edith_carlmar"
+        },
+        "thread_id": "regissor.mail.film_tv_regi_knowledge_carlmar_001",
+        "version": 1
+      },
+      "source_hash": "16336b818fdbf359dce2a6d51cb5aff6fca7a8171eb84a078c213dab46b83cf8",
+      "source_path": "data/Civication/mailFamilies/film_tv/knowledge/regissor_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "velg_kanonisk_kontinuitet_for_neste_oppsett_vs_skyv_problemet_til_klipp",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2
+              }
+            },
+            "feedback": "Teamet vet hvilken versjon resten av scenen skal følge, og klipperen får et tydelig grunnlag.",
+            "id": "A",
+            "label": "Velg masterens kontinuitet og korriger før neste take",
+            "reply": "Vi matcher eyeline og rekvisitt til masteren og noterer det siste nærbildet som mulig avvik, ikke som ny standard.",
+            "tags": [
+              "continuity",
+              "editing",
+              "clarity"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "energy": 1,
+                "quality": -2,
+                "risk": 3
+              }
+            },
+            "feedback": "Du gjør et løsbart setproblem til en permanent begrensning i etterarbeidet.",
+            "id": "B",
+            "label": "Fortsett og la Noor velge den beste kombinasjonen senere",
+            "reply": "Vi har begge varianter; klippen får finne det som fungerer.",
+            "tags": [
+              "continuity_debt",
+              "shortcut"
+            ]
+          }
+        ],
+        "competency": "klippbarhet",
+        "consequence_axis": "sporbar_klippbarhet_vs_sen_restriksjon",
+        "cooldown": 2,
+        "day_phase": "afternoon",
+        "from": "Leila, første regiassistent",
+        "id": "film_tv_regi_micro_kontinuitet_001",
+        "interaction_mode": "decision",
+        "mail_family": "regissor_kontinuitetsstopp",
+        "mail_type": "micro",
+        "narrative_arc": "fra_sceneplan_til_klipp",
+        "people_ref": "leila_forste_regiassistent",
+        "person_id": "leila_forste_regiassistent",
+        "phase": "workday",
+        "place_id": "regimonitor_regi_film_tv",
+        "pressure": "tempo_vs_kontinuitet",
+        "priority": 110,
+        "purpose": "Teste om regissøren stopper lenge nok til å velge en klippbar kontinuitet før teamet bygger videre.",
+        "repeatable": false,
+        "role_scope": "regissor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/micro/regissor_micro.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Masteren har én tydelig blikkretning.",
+          "Det siste nære bildet har motsatt eyeline og rekvisitten i ny hånd.",
+          "Neste oppsett kan matches til én av versjonene, men ikke begge uten ekstra tid."
+        ],
+        "stage": "stable",
+        "stakes": "Et lite avvik kan bli en stor klipperestriksjon hvis neste oppsett etablerer den motsatte versjonen.",
+        "subject": "Eyeline og rekvisittplassering peker i to ulike retninger",
+        "summary": "Leila har fanget at siste take flyttet både blikkretning og en sentral rekvisitt i forhold til masteren. Neste oppsett vil låse hvilken kontinuitet scenen kan bruke.",
+        "task_domain": "visuell_plan_og_dekning",
+        "task_kind": "micro"
+      },
+      "id": "film_tv_regi_micro_kontinuitet_001",
+      "mail_type": "micro",
+      "role_scope": "regissor",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Teamet vet hvilken versjon resten av scenen skal følge, og klipperen får et tydelig grunnlag.",
+            "id": "A",
+            "label": "Velg masterens kontinuitet og korriger før neste take",
+            "reply": "Vi matcher eyeline og rekvisitt til masteren og noterer det siste nærbildet som mulig avvik, ikke som ny standard."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør et løsbart setproblem til en permanent begrensning i etterarbeidet.",
+            "id": "B",
+            "label": "Fortsett og la Noor velge den beste kombinasjonen senere",
+            "reply": "Vi har begge varianter; klippen får finne det som fungerer."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Masteren har én tydelig blikkretning.",
+            "Det siste nære bildet har motsatt eyeline og rekvisitten i ny hånd.",
+            "Neste oppsett kan matches til én av versjonene, men ikke begge uten ekstra tid."
+          ],
+          "subject": "Eyeline og rekvisittplassering peker i to ulike retninger",
+          "summary": "Leila har fanget at siste take flyttet både blikkretning og en sentral rekvisitt i forhold til masteren. Neste oppsett vil låse hvilken kontinuitet scenen kan bruke."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_regi_micro_kontinuitet_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "regimonitor_regi_film_tv",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_regi_micro_kontinuitet_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/micro/regissor_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "regissor.mail.film_tv_regi_micro_kontinuitet_001",
+        "version": 1
+      },
+      "source_hash": "50b8e2b921b2be6efe89b7402fa393e624d49e6d8ee438e8f0aa021f53841668",
+      "source_path": "data/Civication/mailFamilies/film_tv/micro/regissor_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "samle_sceneintensjon_og_endre_en_begrenset_del_vs_las_en_avdeling",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -1,
+                "trust": 2
+              }
+            },
+            "feedback": "Du bruker sceneintensjonen som felles mål og gjør kompromisset synlig for begge fagfunksjonene.",
+            "id": "A",
+            "label": "Samle Martin og medvirkende om vendepunktet og juster kamera eller markering",
+            "reply": "Vi beholder bevegelsen som hjelper spillet, men flytter kamera eller markering nok til at vendepunktet faktisk kan leses.",
+            "tags": [
+              "collaboration",
+              "blocking",
+              "coverage"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Du sparer omstillingstid, men gjør medvirkendes arbeid til et middel for en plan som ble laget før prøven.",
+            "id": "B",
+            "label": "Lås den planlagte kameraposisjonen og få medvirkende tilbake på merkene",
+            "reply": "Bildet er allerede bygget; vi må få spillet til å passe den tekniske planen.",
+            "tags": [
+              "rigidity",
+              "performance_risk"
+            ]
+          }
+        ],
+        "competency": "avdelingssamarbeid",
+        "consequence_axis": "spilt_og_lesbart_vendepunkt_vs_fragmentert_scene",
+        "cooldown": 2,
+        "day_phase": "morning",
+        "from": "Martin, fotograf",
+        "id": "film_tv_regi_people_blocking_001",
+        "interaction_mode": "decision",
+        "mail_family": "regissor_blocking_og_bilde",
+        "mail_type": "people",
+        "narrative_arc": "medvirkendegrensen_og_sceneformen",
+        "people_ref": "martin_fotograf_regi",
+        "person_id": "martin_fotograf_regi",
+        "phase": "early",
+        "place_id": "opptakssett_regi_film_tv",
+        "pressure": "blocking_vs_bildeplan",
+        "priority": 132,
+        "purpose": "Teste om regissøren behandler fotograf og medvirkende som samarbeidende fagfunksjoner rundt samme sceneproblem.",
+        "repeatable": false,
+        "role_scope": "regissor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/people/regissor_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "De medvirkende har funnet en naturlig bevegelse som gjør konflikten tydeligere.",
+          "Kameraoppsettet ble planlagt før prøven og fanger ikke vendepunktet godt.",
+          "Det er fortsatt tid til én teknisk justering før opptak, men ikke til full redesign."
+        ],
+        "stage": "stable",
+        "stakes": "Å tvinge enten blocking eller bildeplan uendret kan bevare én kvalitet og ødelegge den andre.",
+        "subject": "Blockingen virker for scenen, men kamera og lys mister vendepunktet",
+        "summary": "Martin viser at den nye bevegelsen gir bedre spill mellom de medvirkende, men plasserer det avgjørende blikket utenfor den planlagte lys- og kameralinjen.",
+        "task_domain": "visuell_plan_og_dekning",
+        "task_kind": "people",
+        "thread_key": "film_tv_regi_scenegrense_001"
+      },
+      "id": "film_tv_regi_people_blocking_001",
+      "mail_type": "people",
+      "role_scope": "regissor",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du bruker sceneintensjonen som felles mål og gjør kompromisset synlig for begge fagfunksjonene.",
+            "id": "A",
+            "label": "Samle Martin og medvirkende om vendepunktet og juster kamera eller markering",
+            "reply": "Vi beholder bevegelsen som hjelper spillet, men flytter kamera eller markering nok til at vendepunktet faktisk kan leses."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du sparer omstillingstid, men gjør medvirkendes arbeid til et middel for en plan som ble laget før prøven.",
+            "id": "B",
+            "label": "Lås den planlagte kameraposisjonen og få medvirkende tilbake på merkene",
+            "reply": "Bildet er allerede bygget; vi må få spillet til å passe den tekniske planen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "De medvirkende har funnet en naturlig bevegelse som gjør konflikten tydeligere.",
+            "Kameraoppsettet ble planlagt før prøven og fanger ikke vendepunktet godt.",
+            "Det er fortsatt tid til én teknisk justering før opptak, men ikke til full redesign."
+          ],
+          "subject": "Blockingen virker for scenen, men kamera og lys mister vendepunktet",
+          "summary": "Martin viser at den nye bevegelsen gir bedre spill mellom de medvirkende, men plasserer det avgjørende blikket utenfor den planlagte lys- og kameralinjen."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_regi_people_blocking_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "opptakssett_regi_film_tv",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_regi_people_blocking_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/people/regissor_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "film_tv_regi_scenegrense_001",
+        "version": 1
+      },
+      "source_hash": "0fddf3e9e29d0bcf1957e0c7fbe14e80b01b8ce250572c5572130bc81bb790ff",
+      "source_path": "data/Civication/mailFamilies/film_tv/people/regissor_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "bekreft_grensen_og_reblock_vs_argumenter_for_opprinnelig_handling",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -3,
+                "trust": 3
+              }
+            },
+            "feedback": "Grensen blir operativ, og avdelingene får én felles ny løsning å arbeide etter.",
+            "id": "A",
+            "label": "Bekreft grensen og bygg vendepunktet med ny blocking",
+            "reply": "Den fysiske bevegelsen faller bort. Vi prøver avstand, blikk og plassering som bærer samme sceneendring, og oppdaterer kamera etter det.",
+            "tags": [
+              "consent",
+              "reblocking",
+              "collaboration"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 4,
+                "trust": -3
+              }
+            },
+            "feedback": "Du gjør en uttrykkelig grense til noe som må forsvares overfor regissøren under tidspress.",
+            "id": "B",
+            "label": "Forklar hvorfor bevegelsen er viktig og be om ett forsøk",
+            "reply": "Jeg vil vise hvordan bevegelsen virker i bildet før vi bestemmer oss endelig.",
+            "tags": [
+              "boundary_pressure",
+              "hierarchy"
+            ]
+          }
+        ],
+        "competency": "samtykke_og_sikkerhet",
+        "consequence_axis": "tillit_og_spillbar_scene_vs_press_og_produksjonsuro",
+        "cooldown": 3,
+        "day_phase": "afternoon",
+        "from": "Leila, første regiassistent",
+        "id": "film_tv_regi_story_grense_001",
+        "interaction_mode": "decision",
+        "mail_family": "regissor_medvirkendegrense",
+        "mail_type": "story",
+        "narrative_arc": "medvirkendegrensen_og_sceneformen",
+        "people_ref": "leila_forste_regiassistent",
+        "person_id": "leila_forste_regiassistent",
+        "phase": "mid",
+        "place_id": "opptakssett_regi_film_tv",
+        "pressure": "sceneintensjon_vs_medvirkendegrense",
+        "priority": 118,
+        "purpose": "Teste om regissøren kan bevare sceneintensjonen uten å behandle den opprinnelige handlingen som nødvendig eller samtykke som forhandlingskort.",
+        "repeatable": false,
+        "role_scope": "regissor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/story/regissor_story.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Grensen gjelder den konkrete fysiske bevegelsen, ikke deltakelse i scenen som helhet.",
+          "Vendepunktet kan uttrykkes gjennom avstand, blikk og posisjon i rommet i stedet.",
+          "Martin trenger vite den nye blockingen før han låser kamerabevegelsen."
+        ],
+        "stage": "stable",
+        "stakes": "En presset medvirkende kan miste tillit og trygghet; en uavklart improvisasjon kan samtidig skape nye problemer for kamera, lys og kontinuitet.",
+        "subject": "En medvirkende sier nei til den planlagte fysiske bevegelsen",
+        "summary": "Under siste prøve setter en medvirkende en tydelig grense for bevegelsen som var bygget inn i blockingen. Leila trenger en ny plan før kamera går.",
+        "task_domain": "medvirkende_regi",
+        "task_kind": "story",
+        "thread_key": "film_tv_regi_scenegrense_001"
+      },
+      "id": "film_tv_regi_story_grense_001",
+      "mail_type": "story",
+      "role_scope": "regissor",
+      "scene": {
+        "arc_stage": "mid",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Grensen blir operativ, og avdelingene får én felles ny løsning å arbeide etter.",
+            "id": "A",
+            "label": "Bekreft grensen og bygg vendepunktet med ny blocking",
+            "reply": "Den fysiske bevegelsen faller bort. Vi prøver avstand, blikk og plassering som bærer samme sceneendring, og oppdaterer kamera etter det."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør en uttrykkelig grense til noe som må forsvares overfor regissøren under tidspress.",
+            "id": "B",
+            "label": "Forklar hvorfor bevegelsen er viktig og be om ett forsøk",
+            "reply": "Jeg vil vise hvordan bevegelsen virker i bildet før vi bestemmer oss endelig."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Grensen gjelder den konkrete fysiske bevegelsen, ikke deltakelse i scenen som helhet.",
+            "Vendepunktet kan uttrykkes gjennom avstand, blikk og posisjon i rommet i stedet.",
+            "Martin trenger vite den nye blockingen før han låser kamerabevegelsen."
+          ],
+          "subject": "En medvirkende sier nei til den planlagte fysiske bevegelsen",
+          "summary": "Under siste prøve setter en medvirkende en tydelig grense for bevegelsen som var bygget inn i blockingen. Leila trenger en ny plan før kamera går."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_regi_story_grense_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "opptakssett_regi_film_tv",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_regi_story_grense_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/story/regissor_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "film_tv_regi_scenegrense_001",
+        "version": 1
+      },
+      "source_hash": "d1879c398c50069288247504be100176c82734c7fb6cc4ed1672877e2bed4751",
+      "source_path": "data/Civication/mailFamilies/film_tv/story/regissor_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -160097,7 +161409,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "b8cfba08c3cc1ceb4eb78c6ca104333fcfb111b6ef60c5fbd3f936e16b602271",
+  "registry_hash": "f4d912eff33f73917e89206ca4294522961df5cf01c40227b114cfbbb4e0cf16",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -160314,6 +161626,17 @@
       "film_tv_program_followup_gjestegrense_001",
       "film_tv_program_knowledge_bang_hansen_001",
       "film_tv_program_consequence_rettelse_001"
+    ],
+    "film_tv/regissor": [
+      "film_tv_regi_job_sceneplan_001",
+      "film_tv_regi_people_blocking_001",
+      "film_tv_regi_story_grense_001",
+      "film_tv_regi_conflict_dekning_001",
+      "film_tv_regi_event_lysfall_001",
+      "film_tv_regi_micro_kontinuitet_001",
+      "film_tv_regi_followup_klipp_001",
+      "film_tv_regi_knowledge_carlmar_001",
+      "film_tv_regi_consequence_dekning_001"
     ],
     "litteratur/redaksjonsmedarbeider": [
       "litteratur_redaksjonsmedarbeider_job_versjon_001",
@@ -161268,11 +162591,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 300,
+    "compiled_source_file_count": 309,
     "ignored_source_file_count": 1,
-    "input_file_count": 301,
-    "role_count": 39,
-    "scene_count": 1063,
+    "input_file_count": 310,
+    "role_count": 40,
+    "scene_count": 1072,
     "shadowed_duplicate_count": 0
   },
   "version": 1
