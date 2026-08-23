@@ -33680,6 +33680,65 @@
               "uncertainty_erased",
               "closure_pressure"
             ]
+          },
+          {
+            "affordance": {
+              "history_go": {
+                "min_effect": 1,
+                "require_history_go_correct": true,
+                "require_task_completed": true,
+                "task_mail_ids": [
+                  "historie_arkiv_knowledge_akershus_001"
+                ]
+              }
+            },
+            "effect": 2,
+            "effects": {
+              "stats": {
+                "energy": -2,
+                "quality": 5,
+                "risk": -5,
+                "trust": 4
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "historie_arkiv_digital_001_lart_kildegrense",
+                  "note": "Verifisert teknisk proveniens, arkivmetadata og senere fortolkning er skilt eksplisitt; den uløste autentisitetsusikkerheten er bevart.",
+                  "op": "transition",
+                  "to_phase": "verifisert_migrering_med_eksplisitt_kildegrense",
+                  "to_status": "partially_resolved",
+                  "work_object_id": "historie_arkiv_sak_digital_bevaring_001"
+                },
+                {
+                  "event_id": "historie_arkiv_digital_001_lart_to_avvik_redusert",
+                  "flag": "to_hashavvik",
+                  "op": "remove_flag",
+                  "work_object_id": "historie_arkiv_sak_digital_bevaring_001"
+                },
+                {
+                  "event_id": "historie_arkiv_digital_001_lart_ett_ulost",
+                  "flag": "ett_autentisitetsavvik_ulost",
+                  "op": "add_flag",
+                  "work_object_id": "historie_arkiv_sak_digital_bevaring_001"
+                },
+                {
+                  "event_id": "historie_arkiv_digital_001_kildegrense_adskilt",
+                  "flag": "kilde_metadata_fortolkning_adskilt",
+                  "op": "add_flag",
+                  "work_object_id": "historie_arkiv_sak_digital_bevaring_001"
+                }
+              ]
+            },
+            "feedback": "Du bruker den lærte kildegrensen aktivt: teknisk evidens, arkivmetadata og senere fortolkning får separate statusnivåer, slik at migreringen blir både operativ og etterprøvbar.",
+            "id": "C",
+            "label": "Bruk History Go-øvelsen eksplisitt: skill verifisert teknisk proveniens, arkivmetadata og senere historisk fortolkning; migrer bare den verifiserte delen og merk det uløste autentisitetssporet",
+            "reply": "Jeg skiller hva integritetsloggen faktisk beviser fra hva vi bare kan tolke historisk. Den verifiserte delen migreres med fullt endringsspor; den uklare filen beholder begge kandidater og en eksplisitt usikkerhetsmarkør i stedet for en konstruert originalstatus.",
+            "tags": [
+              "learned_source_boundary",
+              "technical_provenance",
+              "metadata_separation",
+              "authenticity_uncertainty"
+            ]
           }
         ],
         "competency": "autentisitet_kjede_og_endringsspor",
@@ -33814,6 +33873,53 @@
             "id": "B",
             "label": "Velg den best dokumenterte kandidaten som original og lukk serien som ferdigmigrert",
             "reply": "Vi trenger én operativ status. Den kandidaten med best tidsstempelkjede er sannsynligvis riktig, og begge versjonene kan uansett arkiveres i backup."
+          },
+          {
+            "affordance": {
+              "history_go": {
+                "min_effect": 1,
+                "require_history_go_correct": true,
+                "require_task_completed": true,
+                "task_mail_ids": [
+                  "historie_arkiv_knowledge_akershus_001"
+                ]
+              }
+            },
+            "effects": {
+              "score_delta": 2,
+              "work_object_ops": [
+                {
+                  "event_id": "historie_arkiv_digital_001_lart_kildegrense",
+                  "note": "Verifisert teknisk proveniens, arkivmetadata og senere fortolkning er skilt eksplisitt; den uløste autentisitetsusikkerheten er bevart.",
+                  "op": "transition",
+                  "to_phase": "verifisert_migrering_med_eksplisitt_kildegrense",
+                  "to_status": "partially_resolved",
+                  "work_object_id": "historie_arkiv_sak_digital_bevaring_001"
+                },
+                {
+                  "event_id": "historie_arkiv_digital_001_lart_to_avvik_redusert",
+                  "flag": "to_hashavvik",
+                  "op": "remove_flag",
+                  "work_object_id": "historie_arkiv_sak_digital_bevaring_001"
+                },
+                {
+                  "event_id": "historie_arkiv_digital_001_lart_ett_ulost",
+                  "flag": "ett_autentisitetsavvik_ulost",
+                  "op": "add_flag",
+                  "work_object_id": "historie_arkiv_sak_digital_bevaring_001"
+                },
+                {
+                  "event_id": "historie_arkiv_digital_001_kildegrense_adskilt",
+                  "flag": "kilde_metadata_fortolkning_adskilt",
+                  "op": "add_flag",
+                  "work_object_id": "historie_arkiv_sak_digital_bevaring_001"
+                }
+              ]
+            },
+            "feedback": "Du bruker den lærte kildegrensen aktivt: teknisk evidens, arkivmetadata og senere fortolkning får separate statusnivåer, slik at migreringen blir både operativ og etterprøvbar.",
+            "id": "C",
+            "label": "Bruk History Go-øvelsen eksplisitt: skill verifisert teknisk proveniens, arkivmetadata og senere historisk fortolkning; migrer bare den verifiserte delen og merk det uløste autentisitetssporet",
+            "reply": "Jeg skiller hva integritetsloggen faktisk beviser fra hva vi bare kan tolke historisk. Den verifiserte delen migreres med fullt endringsspor; den uklare filen beholder begge kandidater og en eksplisitt usikkerhetsmarkør i stedet for en konstruert originalstatus."
           }
         ],
         "content": {
@@ -33894,7 +34000,7 @@
           ]
         }
       },
-      "source_hash": "d1f208bbb36c0ef6fbead703037450b2dedf3e8acffe6c88abcddffad99c96e9",
+      "source_hash": "eb1ed7bd6687fc9cfe1149949c9d413844a92c1f983df8a337c07fe3c07bd0a0",
       "source_path": "data/Civication/mailFamilies/historie/consequence/historie_arkiv_og_dokumentasjon_consequence.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -167989,7 +168095,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "de483ce4376176b5ec90e3367aac4c8c3ab96677d26059d27ddd0fa436d19bcd",
+  "registry_hash": "56d24a6e5f0e13a5fb67b08c83a751a4248cee57faa56c8e627d89a26bb9fd27",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",

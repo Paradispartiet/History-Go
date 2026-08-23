@@ -118,6 +118,65 @@
                   }
                 ]
               }
+            },
+            {
+              "id": "C",
+              "label": "Bruk History Go-øvelsen eksplisitt: skill verifisert teknisk proveniens, arkivmetadata og senere historisk fortolkning; migrer bare den verifiserte delen og merk det uløste autentisitetssporet",
+              "reply": "Jeg skiller hva integritetsloggen faktisk beviser fra hva vi bare kan tolke historisk. Den verifiserte delen migreres med fullt endringsspor; den uklare filen beholder begge kandidater og en eksplisitt usikkerhetsmarkør i stedet for en konstruert originalstatus.",
+              "effect": 2,
+              "affordance": {
+                "history_go": {
+                  "task_mail_ids": [
+                    "historie_arkiv_knowledge_akershus_001"
+                  ],
+                  "require_task_completed": true,
+                  "require_history_go_correct": true,
+                  "min_effect": 1
+                }
+              },
+              "tags": [
+                "learned_source_boundary",
+                "technical_provenance",
+                "metadata_separation",
+                "authenticity_uncertainty"
+              ],
+              "feedback": "Du bruker den lærte kildegrensen aktivt: teknisk evidens, arkivmetadata og senere fortolkning får separate statusnivåer, slik at migreringen blir både operativ og etterprøvbar.",
+              "effects": {
+                "stats": {
+                  "quality": 5,
+                  "trust": 4,
+                  "risk": -5,
+                  "energy": -2
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "historie_arkiv_digital_001_lart_kildegrense",
+                    "work_object_id": "historie_arkiv_sak_digital_bevaring_001",
+                    "to_status": "partially_resolved",
+                    "to_phase": "verifisert_migrering_med_eksplisitt_kildegrense",
+                    "note": "Verifisert teknisk proveniens, arkivmetadata og senere fortolkning er skilt eksplisitt; den uløste autentisitetsusikkerheten er bevart."
+                  },
+                  {
+                    "op": "remove_flag",
+                    "event_id": "historie_arkiv_digital_001_lart_to_avvik_redusert",
+                    "work_object_id": "historie_arkiv_sak_digital_bevaring_001",
+                    "flag": "to_hashavvik"
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "historie_arkiv_digital_001_lart_ett_ulost",
+                    "work_object_id": "historie_arkiv_sak_digital_bevaring_001",
+                    "flag": "ett_autentisitetsavvik_ulost"
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "historie_arkiv_digital_001_kildegrense_adskilt",
+                    "work_object_id": "historie_arkiv_sak_digital_bevaring_001",
+                    "flag": "kilde_metadata_fortolkning_adskilt"
+                  }
+                ]
+              }
             }
           ],
           "work_context": {
