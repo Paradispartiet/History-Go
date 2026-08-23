@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0",
+  "artifact_id": "ekebergparken_content_factory_production_plan_v1",
+  "status": "production_complete_release_pending",
+  "place_id": "ekebergparken",
+  "branch": "agent/content-factory-ekeberg-cluster-v1",
+  "recovery_base_sha": "3ee60d3bec6de6cf519a1df0b3d17cafecc63b53",
+  "recovery": {
+    "original_local_commit_prefix": "c9f1e933",
+    "byte_for_byte_recovery": false,
+    "branch_secured_before_sync": true,
+    "recovery_commits": [
+      "4cc378e1e71e68705bfc878120b03f9ae3462f5e",
+      "c43deb02acf18a13513b248b7bb30575d8ec589d"
+    ],
+    "first_sync_commit": "2e5bc67e49677ac8b2da8512bfe40e9546523e90",
+    "note": "Den opprinnelige lokale checkouten var utilgjengelig og committen nådde aldri GitHub. De to fase-0-artifaktene ble derfor rekonstruert fra kjent gammel base og repoets canonical data, pushet på branch fra gammel base og først deretter synkronisert med main. Rekonstruksjonen hevder ikke byte-identitet."
+  },
+  "quality_contract": {
+    "content_factory_only_optimizes_research": true,
+    "full_place_checklist_required": true,
+    "full_relevant_content_required": true,
+    "no_generic_filler": true,
+    "missing_evidence_means_more_research": true,
+    "approval_unit": "single_place",
+    "separate_places": [
+      "ekebergparken_museum",
+      "ekeberg_helleristninger",
+      "ekebergsletta"
+    ]
+  },
+  "post_sync_null_measurement": {
+    "canonical_identity": "present and preserved as broad sculpture/cultural-heritage park",
+    "coordinates": "existing verified_geometry area anchor preserved",
+    "description": "upgraded to claim-bound v4.2-ready long description",
+    "structured_profiles": "spatial, temporal, history, language, source, nature, training and route coverage present",
+    "stories": "upgraded to episode_v1 with dated action, actors, consequence, sources and related entities",
+    "people": "existing canonical Cecilie Malm Brundtland and Christian Ringnes reused; no duplicate People created",
+    "objects": "not duplicated; art works belong to category-specific Kunstverk/productions round",
+    "rounds": "audited override: people, images, brands, productions",
+    "quiz": "6 sets / 42 questions retained; generic meta quiz fully replaced by source-bound schema-complete questions",
+    "reading_tracks": "three existing Ekebergparken lesespor linked",
+    "routes": "existing History Go route retained and linked to verified official path geography",
+    "language_name": "Eikaberg/eik+berg sourced; no unsupported dialect variant invented",
+    "nature_fag_aha": "nature profile retained/refined; art emne_ids and six place-specific learning hooks present",
+    "sources": "inspectable source_summary plus v4.2 claim register present",
+    "assets": "Commons image source, author and CC BY-SA 3.0 license recorded",
+    "before_after": "not forced; no verified paired historical/current image set was selected",
+    "news": "volatile current items intentionally not converted into evergreen canonical facts"
+  },
+  "phases": [
+    {"phase":0,"name":"Recovery, collision gate and null measurement","status":"COMPLETE"},
+    {"phase":1,"name":"Canonical identity, source owner and coordinate prior-work gate","status":"COMPLETE"},
+    {"phase":2,"name":"Source/claim pack and factual research closure","status":"COMPLETE"},
+    {"phase":3,"name":"Core Place, Fagverk and structured profiles","status":"COMPLETE"},
+    {"phase":4,"name":"Description and popup editorial surfaces","status":"COMPLETE"},
+    {"phase":5,"name":"Stories, People, Objects/artworks and relations","status":"COMPLETE"},
+    {"phase":6,"name":"Quiz, rounds, reading tracks, routes and Knowledge/Aha","status":"COMPLETE"},
+    {"phase":7,"name":"Assets, validation and release gate","status":"COMPLETE_PRE_RELEASE"}
+  ],
+  "canonical_outputs": [
+    "data/places/kunst/oslo/places_kunst/ekebergparken.json",
+    "data/places/production/ekebergparken.json",
+    "data/stories/stories_ekebergparken.json",
+    "data/quiz/kunst/ekebergparken_sets.json",
+    "reports/place-production/ekebergparken_content_factory_source_pack_v1.json",
+    "reports/place-production/ekebergparken_content_factory_production_plan_v1.json"
+  ],
+  "held_back_claims": [
+    "Eksakt nåværende antall kunstverk som tidløst evergreen-tall",
+    "Edvard Munchs eksakte historiske ståsted for Skrik",
+    "Museum, helleristninger eller Ekebergsletta som underobjekter som kan erstatte Ekebergparken-identiteten"
+  ],
+  "release_sequence": [
+    "revalidate branch against fresh main",
+    "run PR/CI gates",
+    "merge only when required checks are green"
+  ]
+}

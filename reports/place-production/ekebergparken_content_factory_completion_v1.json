@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0",
+  "artifact_id": "ekebergparken_content_factory_completion_v1",
+  "place_id": "ekebergparken",
+  "status": "production_complete_ci_pending",
+  "completed_at": "2026-08-23",
+  "branch": "agent/content-factory-ekeberg-cluster-v1",
+  "recovery_integrity": {
+    "old_base_used": "3ee60d3bec6de6cf519a1df0b3d17cafecc63b53",
+    "recovery_branch_pushed_before_sync": true,
+    "byte_identical_to_lost_local_files": false,
+    "reason": "Original local checkout was unavailable and c9f1e933 never reached GitHub; recovery artifacts are explicit reconstruction, not a false byte-for-byte claim."
+  },
+  "collision_gate": {
+    "status": "passed",
+    "approval_owner": "ekebergparken",
+    "separate_canonical_places": [
+      "ekebergparken_museum",
+      "ekeberg_helleristninger",
+      "ekebergsletta"
+    ],
+    "coordinate_rule": "existing verified_geometry area anchor preserved"
+  },
+  "coverage": {
+    "canonical_place": "complete",
+    "description_v4_2_packet": "complete",
+    "story": "episode_v1 complete",
+    "people": {
+      "status": "complete_by_reuse",
+      "ids": ["cecilie_malm_brundtland", "christian_ringnes"],
+      "duplicate_created": false
+    },
+    "objects_and_artworks": {
+      "status": "complete",
+      "artworks_curated": 8,
+      "objects_round": "intentionally not duplicated",
+      "rounding_rule": "artworks are owned by Kunstverk/productions; controlled Images round replaces redundant generic Objects"
+    },
+    "round_profile": ["people", "images", "brands", "productions"],
+    "brand_prior_work": "ekebergrestauranten retained",
+    "quiz": {
+      "sets": 6,
+      "questions": 42,
+      "quantity_reduced": false,
+      "answer_positions": {"index_0":14,"index_1":14,"index_2":14},
+      "quality_change": "generic/meta prompts replaced by source-bound fact, context, comparison, observation, concept and analysis questions"
+    },
+    "reading_tracks": {
+      "count": 3,
+      "ids": ["lesespor_ekebergparken_001", "lesespor_ekebergparken_002", "lesespor_ekebergparken_003"]
+    },
+    "route": {
+      "history_go_route_id": "ekebergparken_utsikt_skogsti",
+      "official_map_bound": true,
+      "navigation_replacement": false
+    },
+    "language_and_name": {
+      "historical_form": "Eikaberg",
+      "etymology": "eik + berg",
+      "unsupported_dialect_variant_added": false
+    },
+    "nature": "existing full nature profile retained and nearby canonical references corrected to the Ekeberg cluster",
+    "fag_and_aha": {
+      "category": "kunst",
+      "emne_ids": 4,
+      "learning_hooks": 6,
+      "generic_hooks": false
+    },
+    "sources": "inspectable URLs in source pack, source_summary, description claims, Story and quiz source registry",
+    "image": {
+      "source": "Wikimedia Commons",
+      "author": "Helge Høifødt",
+      "license": "CC BY-SA 3.0",
+      "subject": "Tony Cragg, Cast Glances, in Ekebergparken landscape"
+    },
+    "before_after": "not forced; no source-safe paired before/after asset selected",
+    "news": "not promoted into evergreen data; current facts remain freshness-gated"
+  },
+  "uncertainty_register": [
+    "Do not freeze a current artwork count as evergreen truth.",
+    "Do not claim Marina Abramovic's The Scream proves Edvard Munch's exact historic viewpoint.",
+    "Do not use the museum/visitor address as a proxy coordinate for the whole park."
+  ],
+  "pre_release_validation": {
+    "github_contents_write": "passed for all produced JSON files",
+    "post_sync_diff_gate": "passed before canonical production; branch was 0 behind main at that gate",
+    "description_validator_contract": "packet built against validatorVersion 4.2.1 requirements",
+    "quiz_question_contract": "all 42 questions include required v2 fields",
+    "final_authority": "PR CI and required status checks",
+    "merge_rule": "merge only after green CI"
+  }
+}
