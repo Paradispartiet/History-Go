@@ -136,7 +136,7 @@ assert.equal(knowledge.task_payload.target_type, 'person');
 assert.equal(knowledge.task_payload.person_id, 'edith_carlmar');
 assert.equal(knowledge.task_payload.completion_mode, 'read_profile');
 assert.equal(knowledge.place_id, canonicalPlaceId);
-assert.match(knowledge.summary, /filmhistorisk/);
+assert.match(knowledge.summary, /filmhistorie/);
 
 global.window = global;
 global.document = undefined;
