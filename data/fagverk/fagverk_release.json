@@ -11,7 +11,7 @@
     "schema": "history_go_fagverk_registry_v1",
     "version": "3.14.0",
     "updated_at": "2026-08-21",
-    "content_sha256": "8fa90c48d277ca637ae289c872ca78b3b9ce1356eaff50d98feb09968e4fa486"
+    "content_sha256": "e904eba1483f1c8c0667844a507b014673495d2a3524a697d1b8af6afd6afcad"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,18 +27,18 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "ce1d250b609ca5edd9de3c6144529ae43b5c9688870ba44c1690bc1c63d0b9d5"
+    "content_sha256": "206a984b9610e47cdeae6007fecc908c51dd51b1eab183ba3bdc39b142994e54"
   },
   "summary": {
     "subject_count": 20,
     "root_subject_count": 19,
     "specialization_count": 1,
     "chapter_subject_count": 16,
-    "chapter_count": 167,
-    "module_file_count": 409,
-    "package_file_count": 234,
-    "chapter_referenced_file_count": 779,
-    "referenced_file_count": 964,
+    "chapter_count": 168,
+    "module_file_count": 413,
+    "package_file_count": 236,
+    "chapter_referenced_file_count": 786,
+    "referenced_file_count": 972,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -1033,9 +1033,9 @@
         "supersetQuizMal"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 16,
+      "package_file_count": 18,
       "required_package_file_count": 4,
-      "optional_package_file_count": 12,
+      "optional_package_file_count": 14,
       "package_files": [
         {
           "path": "data/fag/helse/anatomy_physiology_source_claim_brief_v1.json",
@@ -1095,7 +1095,7 @@
             "emner"
           ],
           "exists": true,
-          "content_sha256": "06c15c35fe38e17acc70cf3151fd72af9a5108cf3cd0979bca271d2e436cb94d"
+          "content_sha256": "49cf8fd88e1643fa9c8022257fe3db2e6bf5183367343552cd11b5a8b666f0bd"
         },
         {
           "path": "data/fag/helse/fagkart_helse_canonical_v1.json",
@@ -1119,7 +1119,7 @@
             "pensum"
           ],
           "exists": true,
-          "content_sha256": "e522e7524a082eac48dc07208707f92015ce2151fcc76006bb3dce606f00fc73"
+          "content_sha256": "9321a8e1adddd013bde43d4530d263ecfe536750d07acba2d5453d8fbbb00cb6"
         },
         {
           "path": "data/fag/helse/medical_ethics_evidence_source_claim_brief_v1.json",
@@ -1143,7 +1143,19 @@
             "methods"
           ],
           "exists": true,
-          "content_sha256": "187c48e7b4527bfb27ca4445aeb4567632fc4bacba35f2821dd821249615c699"
+          "content_sha256": "4c76e710b21860aa511795fb4daa16450c008f1190cd942ef5d6424966e62758"
+        },
+        {
+          "path": "data/fag/helse/public_health_source_claim_brief_v1.json",
+          "required": false,
+          "fields": [
+            "sourceClaimBriefs"
+          ],
+          "key_paths": [
+            "sourceClaimBriefs[4]"
+          ],
+          "exists": true,
+          "content_sha256": "e5636120744afa43eca11cbf40a543afdd79714c37360ae6e4510febbb348044"
         },
         {
           "path": "data/fag/helse/supersetQUIZMAL_helse.json",
@@ -1168,6 +1180,18 @@
           ],
           "exists": true,
           "content_sha256": "5fa3705b9df0c8229f60d2c0491e97ae6586dc7eccc4980472fce96f2c110a8b"
+        },
+        {
+          "path": "data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet.json",
+          "required": false,
+          "fields": [
+            "chapters"
+          ],
+          "key_paths": [
+            "chapters[4]"
+          ],
+          "exists": true,
+          "content_sha256": "5bdecb6a6615370d2f82f7bb45cbc15ffe027caa08948745d15ce5509fe04ea1"
         },
         {
           "path": "data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging.json",
@@ -1230,20 +1254,20 @@
           "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
         }
       ],
-      "package_content_sha256": "8928c50ead671c2c1920572ea788ac8fc8f89dd903c176cdcc52f4002f3e1c11",
-      "chapter_count": 4,
-      "module_file_count": 16,
-      "brief_file_count": 4,
-      "claims_file_count": 4,
-      "chapter_referenced_file_count": 28,
-      "chapter_content_sha256": "2f343b25b5b4e5cedd98ca7df8e84a3ac44f7b51e0710bf1042cdf2eba60127c",
-      "referenced_file_count": 40,
+      "package_content_sha256": "d36cc9b3fbd00489c9b3e6ae786caf3751fbfc9c95d20a48c3d4523e788db1d2",
+      "chapter_count": 5,
+      "module_file_count": 20,
+      "brief_file_count": 5,
+      "claims_file_count": 5,
+      "chapter_referenced_file_count": 35,
+      "chapter_content_sha256": "121c3845735fda1782e472099234aca05c8b6cb203788c73c6be175636b3215f",
+      "referenced_file_count": 48,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "285f0a8c0c876aaafd2f63e7b43495454c8baddad8feca576720261e73fcb038",
-      "content_sha256": "3745c9adff31f094306354eeb3dac3392e76ccc56b6e1b9d6d5985ff0c177e19",
+      "structure_sha256": "efb64d75134041ce0b3d19bb528b3237d2f924278122fb92d2d388b837cca7b8",
+      "content_sha256": "f91d1447a7e6e0604e0740807bc552670f24f2eda2a3df63c804cd38f79860ef",
       "chapters": [
         {
           "chapter_id": "medisinsk-etikk-evidens-og-ansvarlig-beslutning",
@@ -1276,6 +1300,14 @@
           "module_file_count": 4,
           "referenced_file_count": 7,
           "content_sha256": "e2ae903dba4f77488c000514d5310c83270ce464950c895cb1589cc99137f7d6"
+        },
+        {
+          "chapter_id": "folkehelse-populasjon-determinanter-forebygging-og-ulikhet",
+          "title": "Folkehelse: populasjon, determinanter, forebygging og ulikhet",
+          "file": "data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet.json",
+          "module_file_count": 4,
+          "referenced_file_count": 7,
+          "content_sha256": "4cb1e5e4604a7d139386dae8a1841a46b1e79c534307e94cddb7fa7d79b16c38"
         }
       ]
     },
@@ -1706,7 +1738,7 @@
             "quizProduction.targets.var_frelsers_gravlund.context_artifact"
           ],
           "exists": true,
-          "content_sha256": "fa841e94f58914cdf9acf11143ec059a44f18363fb9f79284b562eabece32679"
+          "content_sha256": "8ff69127945942c48d39357156951a9927af82bc1585ba9f48851766b9568424"
         },
         {
           "path": "data/quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json",
@@ -1757,7 +1789,7 @@
           "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
         }
       ],
-      "package_content_sha256": "6bf346962dc923a67e3cc7aedbf5c246066342784784d938950bfefc24d151cf",
+      "package_content_sha256": "b21f601b7dfa65f8ab7616bd331dd79f77429e421dd8092b8126f633078b224f",
       "chapter_count": 23,
       "module_file_count": 69,
       "brief_file_count": 0,
@@ -1770,7 +1802,7 @@
       "missing_chapter_files": [],
       "missing_files": [],
       "structure_sha256": "7b9a8ef7f33a13ceed3a26e1d988cad029e2fa0915fb79a7a4d0b60575c759b5",
-      "content_sha256": "e151b62e00ee74c55d085e3238e66df21bc9c5a3c57aa8d34ed940ede40f645d",
+      "content_sha256": "75b1934425e66dada36687073d4b755d607b880a8c64d0460942881f31968ce4",
       "chapters": [
         {
           "chapter_id": "historisk_tid_periodisering",
@@ -5329,5 +5361,5 @@
       ]
     }
   },
-  "release_sha256": "656ee1eeeaf2ccb183952a589a57e60d2d4c340787d9d18206c4ae1950fab208"
+  "release_sha256": "3c312d7add6281c980636643edfd8dfee8de0132ccd728790a1bd159c404bba5"
 }
