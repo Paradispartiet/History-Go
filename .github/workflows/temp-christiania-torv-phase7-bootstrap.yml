@@ -59,12 +59,30 @@ jobs:
           if (!Array.isArray(brief.claims) || brief.claims.length !== 35) {
             throw new Error(`Expected 35 source-brief claims, got ${Array.isArray(brief.claims) ? brief.claims.length : typeof brief.claims}`);
           }
+          const familyMap = {
+            fact: 'fact',
+            context: 'context',
+            comparison: 'context',
+            observation: 'context',
+            concept: 'concept_theory',
+            analysis: 'concept_theory'
+          };
+          for (const claim of brief.claims) {
+            const canonicalFamily = familyMap[claim.family];
+            if (!canonicalFamily) throw new Error(`Unknown claim family: ${claim.family}`);
+            claim.family = canonicalFamily;
+          }
+          fs.writeFileSync(p, JSON.stringify(brief, null, 2) + '\n');
           const quiz = JSON.parse(fs.readFileSync('data/quiz/by/christiania_torv_sets.json', 'utf8'));
           const questions = quiz.sets.flatMap(set => set.questions || []);
           if (quiz.sets.length !== 5 || questions.length !== 35) {
             throw new Error(`Expected 5x7 quiz, got ${quiz.sets.length} sets / ${questions.length} questions`);
           }
-          console.log(`Source brief ${brief.claims.length}/35 and quiz ${questions.length}/35 materialized.`);
+          const counts = brief.claims.reduce((acc, claim) => {
+            acc[claim.family] = (acc[claim.family] || 0) + 1;
+            return acc;
+          }, {});
+          console.log(`Source brief ${brief.claims.length}/35 and quiz ${questions.length}/35 materialized. Canonical claim families: ${JSON.stringify(counts)}`);
           NODE
       - name: Build deterministic quiz context
         run: |
