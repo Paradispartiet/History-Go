@@ -61,6 +61,8 @@ jobs:
       - if: steps.fulltext_gate.outputs.ready == 'true'
         run: node scripts/materialize-helse-health-services-economics-fulltext-v1.mjs
       - if: steps.fulltext_gate.outputs.ready == 'true'
+        run: node scripts/build-fagverk-release-manifest.mjs
+      - if: steps.fulltext_gate.outputs.ready == 'true'
         run: node scripts/audit-helse-health-services-economics-fulltext-v1.mjs
       - run: node scripts/audit-helse-cumulative-progress-v1.mjs
       - run: node scripts/audit-fagverk-subject-inventory.mjs
