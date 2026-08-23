@@ -7,12 +7,16 @@ on:
     paths:
       - scripts/TEMP_minimize_choice_affordance_schema.py
       - .github/workflows/TEMP-minimize-choice-affordance-schema.yml
+  pull_request:
+    branches:
+      - main
 
 permissions:
   contents: write
 
 jobs:
   minimize:
+    if: github.head_ref == '' || github.head_ref == 'agent/civication-knowledge-choice-affordance'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -29,11 +33,15 @@ jobs:
           node scripts/build-civication-scene-registry.mjs --check
           node tests/civication-history-go-choice-affordance.test.js
           node tests/civication-institution-authority-foundation.test.js
-      - name: Commit minimized schema
+      - name: Commit minimized schema when needed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/Civication/sceneContractV1.schema.json
           git diff --cached --check
-          git commit -m "Minimize choice affordance schema diff"
-          git push origin HEAD:agent/civication-knowledge-choice-affordance
+          if git diff --cached --quiet; then
+            echo "Schema already minimized"
+          else
+            git commit -m "Minimize choice affordance schema diff"
+            git push origin HEAD:agent/civication-knowledge-choice-affordance
+          fi
