@@ -11,7 +11,7 @@
     "schema": "history_go_fagverk_registry_v1",
     "version": "3.14.0",
     "updated_at": "2026-08-21",
-    "content_sha256": "e904eba1483f1c8c0667844a507b014673495d2a3524a697d1b8af6afd6afcad"
+    "content_sha256": "fe1bff570e11decb8e9d155db29cbe5b8c619eddbae8e36534f6e4d627fe7ef6"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,18 +27,18 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "206a984b9610e47cdeae6007fecc908c51dd51b1eab183ba3bdc39b142994e54"
+    "content_sha256": "fbb7b401edee8ffeb52fdb7ad5bbe93251be6b3ff0a551861a139ee1c738a1fc"
   },
   "summary": {
     "subject_count": 20,
     "root_subject_count": 19,
     "specialization_count": 1,
     "chapter_subject_count": 16,
-    "chapter_count": 168,
-    "module_file_count": 413,
-    "package_file_count": 236,
-    "chapter_referenced_file_count": 786,
-    "referenced_file_count": 972,
+    "chapter_count": 169,
+    "module_file_count": 417,
+    "package_file_count": 238,
+    "chapter_referenced_file_count": 793,
+    "referenced_file_count": 980,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -1033,9 +1033,9 @@
         "supersetQuizMal"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 18,
+      "package_file_count": 20,
       "required_package_file_count": 4,
-      "optional_package_file_count": 14,
+      "optional_package_file_count": 16,
       "package_files": [
         {
           "path": "data/fag/helse/anatomy_physiology_source_claim_brief_v1.json",
@@ -1095,7 +1095,19 @@
             "emner"
           ],
           "exists": true,
-          "content_sha256": "49cf8fd88e1643fa9c8022257fe3db2e6bf5183367343552cd11b5a8b666f0bd"
+          "content_sha256": "a1a222f11e086cd7b1cc8c98880f6fb7359ed728d2c6cf135baecadd35b0a1b6"
+        },
+        {
+          "path": "data/fag/helse/epidemiology_source_claim_brief_v1.json",
+          "required": false,
+          "fields": [
+            "sourceClaimBriefs"
+          ],
+          "key_paths": [
+            "sourceClaimBriefs[5]"
+          ],
+          "exists": true,
+          "content_sha256": "6995df812f89d27a84e4088bd802cc1d05f454593b53ebc7cd10c366b882b26d"
         },
         {
           "path": "data/fag/helse/fagkart_helse_canonical_v1.json",
@@ -1119,7 +1131,7 @@
             "pensum"
           ],
           "exists": true,
-          "content_sha256": "9321a8e1adddd013bde43d4530d263ecfe536750d07acba2d5453d8fbbb00cb6"
+          "content_sha256": "2ef9a5f5c61ebc0bb31d4ce5428f06a3da659630170f2c8c3979cbaeda90b4a3"
         },
         {
           "path": "data/fag/helse/medical_ethics_evidence_source_claim_brief_v1.json",
@@ -1180,6 +1192,18 @@
           ],
           "exists": true,
           "content_sha256": "5fa3705b9df0c8229f60d2c0491e97ae6586dc7eccc4980472fce96f2c110a8b"
+        },
+        {
+          "path": "data/fagverk/helse/epidemiologi-design-mal-bias-confounding-og-kausalitet.json",
+          "required": false,
+          "fields": [
+            "chapters"
+          ],
+          "key_paths": [
+            "chapters[5]"
+          ],
+          "exists": true,
+          "content_sha256": "b066d2f4c144fc0afb38dc03ce1fb96a4bef6b6986c60aa9fb3519a0aecf5891"
         },
         {
           "path": "data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet.json",
@@ -1254,20 +1278,20 @@
           "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
         }
       ],
-      "package_content_sha256": "d36cc9b3fbd00489c9b3e6ae786caf3751fbfc9c95d20a48c3d4523e788db1d2",
-      "chapter_count": 5,
-      "module_file_count": 20,
-      "brief_file_count": 5,
-      "claims_file_count": 5,
-      "chapter_referenced_file_count": 35,
-      "chapter_content_sha256": "121c3845735fda1782e472099234aca05c8b6cb203788c73c6be175636b3215f",
-      "referenced_file_count": 48,
+      "package_content_sha256": "eacbdcb725692b61e431c7602a89c3832d66e61b5deca3bcfe317c6ee1b43cea",
+      "chapter_count": 6,
+      "module_file_count": 24,
+      "brief_file_count": 6,
+      "claims_file_count": 6,
+      "chapter_referenced_file_count": 42,
+      "chapter_content_sha256": "5ca030ec422dbcf637a425ede9d657671baf4a234f63febacb2f853117101cd3",
+      "referenced_file_count": 56,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "efb64d75134041ce0b3d19bb528b3237d2f924278122fb92d2d388b837cca7b8",
-      "content_sha256": "f91d1447a7e6e0604e0740807bc552670f24f2eda2a3df63c804cd38f79860ef",
+      "structure_sha256": "5f16de8f808f113e0ddd7617f9c1dde339c6e965ba228c1bf917b97b1d1e1dff",
+      "content_sha256": "8c9e475987c786eece1ad1a647fad3dfe691afd8d708a727ba8fb592dd32a0b6",
       "chapters": [
         {
           "chapter_id": "medisinsk-etikk-evidens-og-ansvarlig-beslutning",
@@ -1308,6 +1332,14 @@
           "module_file_count": 4,
           "referenced_file_count": 7,
           "content_sha256": "4cb1e5e4604a7d139386dae8a1841a46b1e79c534307e94cddb7fa7d79b16c38"
+        },
+        {
+          "chapter_id": "epidemiologi-design-mal-bias-confounding-og-kausalitet",
+          "title": "Epidemiologi: design, mål, bias, confounding og kausalitet",
+          "file": "data/fagverk/helse/epidemiologi-design-mal-bias-confounding-og-kausalitet.json",
+          "module_file_count": 4,
+          "referenced_file_count": 7,
+          "content_sha256": "c67dae56749f7a8833fff2e3ab60d865e9703237b25d0ab98cfd328f125fdc3f"
         }
       ]
     },
@@ -5361,5 +5393,5 @@
       ]
     }
   },
-  "release_sha256": "3c312d7add6281c980636643edfd8dfee8de0132ccd728790a1bd159c404bba5"
+  "release_sha256": "9d992ae114eaa8d0bac2b4d111fa5ef66b6829d0ed114e281943b06143283186"
 }

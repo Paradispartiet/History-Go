@@ -1,0 +1,122 @@
+{
+  "schema": "history_go_fagverk_health_module_v1",
+  "version": "1.0.0",
+  "id": "04-usikkerhet-heterogenitet-og-transport",
+  "title": "Usikkerhet, heterogenitet og transport",
+  "sections": [
+    {
+      "id": "hep-kausalitet-presisjon-og-robusthet",
+      "title": "Kausal tolkning, presisjon, sensitivitetsanalyse og robusthet",
+      "topic_id": "kausalitet-presisjon-og-robusthet",
+      "emne_ids": [
+        "em_helse_epidemiologi"
+      ],
+      "method_ids": [
+        "met_helse_kausal_vurdering"
+      ],
+      "boundary": "Kausal tolkning må skille identifikasjonsantakelser, statistisk presisjon og systematisk bias; p-verdier og konfidensintervaller løser ikke designfeil.",
+      "paragraphIds": [
+        "hep-p-c25",
+        "hep-p-c26",
+        "hep-p-c27",
+        "hep-p-c28"
+      ],
+      "paragraphs": [
+        "Kausal effektmåling krever at spørsmålet definerer relevante eksponeringsalternativer, utfall, populasjon og tidsramme. Identifikasjon fra observasjonsdata bygger deretter på antakelser som konsistens, tilstrekkelig utbyttbarhet og positivitet, i tillegg til korrekt måling og analyse. Disse antakelsene må gjøres synlige fordi data alene vanligvis ikke kan verifisere dem fullstendig.",
+        "Et konfidensintervall beskriver statistisk usikkerhet rundt et estimat under den valgte modellen og samplingsmekanismen. Det inkorporerer ikke automatisk seleksjonsbias, målefeil, residual confounding eller feil i den kausale modellen. Et smalt intervall kan derfor sameksistere med betydelig systematisk usikkerhet, og presisjon må holdes atskilt fra validitet.",
+        "Statistisk signifikans oppsummerer hvor kompatible dataene er med en bestemt nullhypotese under modellforutsetninger, men sier ikke alene hvor stor eller viktig en effekt er. Effektstørrelse, absolutt risiko, usikkerhet, konsekvenser og beslutningskontekst må vurderes separat. En liten p-verdi er derfor verken et mål på klinisk betydning eller folkehelsemessig betydning.",
+        "Sensitivitets- og robusthetsanalyser undersøker hvordan resultater endres når antakelser, spesifikasjoner eller plausible feilkilder varieres. De kan avdekke at konklusjoner er skjøre eller relativt stabile, men kan ikke gjøre en utestbar antakelse sann. Gode analyser beskriver derfor både hva som ble variert og hvilke problemer analysen fortsatt ikke kan utelukke."
+      ],
+      "paragraphClaimIds": [
+        [
+          "hep-c25"
+        ],
+        [
+          "hep-c26"
+        ],
+        [
+          "hep-c27"
+        ],
+        [
+          "hep-c28"
+        ]
+      ],
+      "keyPoints": [
+        "Kausal effektmåling krever eksplisitt spørsmål og antakelser om blant annet konsistens, utbyttbarhet og positivitet.",
+        "Sensitivitetsanalyse viser avhengighet av antakelser og valg, men gjør ikke utestbare antakelser sanne."
+      ],
+      "keyPointClaimIds": [
+        [
+          "hep-c25"
+        ],
+        [
+          "hep-c28"
+        ]
+      ],
+      "source_ids": [
+        "hep05-fhi-analytic-epidemiology",
+        "hep07-hernan-robins-what-if",
+        "hep08-greenland-pearl-robins-dags",
+        "hep09-strobe-observational-reporting",
+        "hep10-cochrane-robins-i-v2"
+      ]
+    },
+    {
+      "id": "hep-heterogenitet-malpopulasjon-og-transport",
+      "title": "Effektheterogenitet, målpopulasjon og generaliserbarhet",
+      "topic_id": "heterogenitet-malpopulasjon-og-transport",
+      "emne_ids": [
+        "em_helse_epidemiologi"
+      ],
+      "method_ids": [
+        "met_helse_populasjonsanalyse",
+        "met_helse_kausal_vurdering"
+      ],
+      "boundary": "Et studieestimat gjelder ikke automatisk enhver befolkning; målpopulasjon, effektmodifikasjon, overlapp og identifikasjonsantakelser må spesifiseres.",
+      "paragraphIds": [
+        "hep-p-c29",
+        "hep-p-c30",
+        "hep-p-c31",
+        "hep-p-c32"
+      ],
+      "paragraphs": [
+        "Generaliserbarhet og transportabilitet handler om hvorvidt et estimat fra en studie kan informere en eksplisitt definert målpopulasjon. Studiepopulasjonen og målpopulasjonen må derfor beskrives separat, inkludert hvordan deltakere ble valgt og hvilke karakteristika som påvirker effekt eller måling. Et resultat gjelder ikke automatisk alle mennesker bare fordi studien er internvalid.",
+        "Hvis en variabel modifiserer effekten av en eksponering, kan forskjellig fordeling av denne variabelen mellom studie- og målpopulasjonen gi ulike gjennomsnittlige effekter. Det er ikke nødvendigvis bias; effekten kan faktisk være heterogen. Transport krever derfor vurdering av relevante effektmodifikatorer og av om de er målt på sammenlignbar måte.",
+        "Heterogenitet beskriver at estimater eller effekter varierer mellom grupper, steder eller studier, men variasjon kan skyldes reelle forskjeller, tilfeldighet, måling eller metodiske forhold. Heterogenitet er derfor ikke automatisk bevis på bias. Små undergrupper kan også gi ustabile estimater, så mønstre må vurderes med presisjon, forhåndshypoteser og faglig plausibilitet.",
+        "Transport av en kausal effekt krever tilstrekkelig overlapp mellom studie- og målpopulasjon for relevante karakteristika, samt antakelser om blant annet effektmodifikatorer, måling og identifikasjon. Vekting eller standardisering kan justere for observerte forskjeller under disse antakelsene, men eliminerer ikke ukjente brudd, manglende overlapp eller umålte forhold som påvirker transportabiliteten."
+      ],
+      "paragraphClaimIds": [
+        [
+          "hep-c29"
+        ],
+        [
+          "hep-c30"
+        ],
+        [
+          "hep-c31"
+        ],
+        [
+          "hep-c32"
+        ]
+      ],
+      "keyPoints": [
+        "Generaliserbarhet og transportabilitet krever eksplisitt definert målpopulasjon i forhold til studiepopulasjon.",
+        "Transport krever overlapp og antakelser om effektmodifikatorer og måling; vekting fjerner ikke ukjente brudd."
+      ],
+      "keyPointClaimIds": [
+        [
+          "hep-c29"
+        ],
+        [
+          "hep-c32"
+        ]
+      ],
+      "source_ids": [
+        "hep06-who-health-data-glossary-2025",
+        "hep07-hernan-robins-what-if",
+        "hep09-strobe-observational-reporting",
+        "hep14-young-dahabreh-transportability-2026"
+      ]
+    }
+  ]
+}

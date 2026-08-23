@@ -4134,7 +4134,7 @@
         "schemaFamily": "foundation_v1",
         "sourceOfTruth": true,
         "firstSourceClaimBrief": "data/fag/helse/medical_ethics_evidence_source_claim_brief_v1.json",
-        "note": "Fem Helse-domener er fulltekstmaterialisert: medisinsk etikk/evidens, anatomi/fysiologi, sykdom/patofysiologi, klinisk medisin og folkehelse. Domene 5 har 8 seksjoner, 32 claimsporede avsnitt, 32 verifiserte claims, 14 inspiserbare kilder og 8 vurderingsoppgaver. Syv domener og strict proof gjenstår.",
+        "note": "Seks Helse-domener er fulltekstmaterialisert: medisinsk etikk/evidens, anatomi/fysiologi, sykdom/patofysiologi, klinisk medisin, folkehelse og epidemiologi. Epidemiologi har 8 seksjoner, 32 claimsporede avsnitt, 32 verifiserte claims, 14 inspiserbare kilder og 8 vurderingsoppgaver. Seks domener og strict proof gjenstår.",
         "firstFulltextChapter": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning.json",
         "secondSourceClaimBrief": "data/fag/helse/anatomy_physiology_source_claim_brief_v1.json",
         "secondFulltextChapter": "data/fagverk/helse/anatomi-fysiologi-struktur-funksjon-og-regulering.json",
@@ -4143,12 +4143,14 @@
         "fourthSourceClaimBrief": "data/fag/helse/clinical_medicine_source_claim_brief_v1.json",
         "fourthFulltextChapter": "data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging.json",
         "fifthSourceClaimBrief": "data/fag/helse/public_health_source_claim_brief_v1.json",
-        "fifthFulltextChapter": "data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet.json"
+        "fifthFulltextChapter": "data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet.json",
+        "sixthSourceClaimBrief": "data/fag/helse/epidemiology_source_claim_brief_v1.json",
+        "sixthFulltextChapter": "data/fagverk/helse/epidemiologi-design-mal-bias-confounding-og-kausalitet.json"
       },
       "editorialPlan": {
         "targetDomainCount": 12,
-        "completedSourceBriefCount": 5,
-        "registeredChapterCount": 5,
+        "completedSourceBriefCount": 6,
+        "registeredChapterCount": 6,
         "completionRequirements": [
           "all_canonical_domains_covered",
           "source_first_claim_trace_complete",
@@ -4156,7 +4158,7 @@
           "fulltext_and_assessment_audits_green",
           "strict_theory_integrity_green"
         ],
-        "nextGate": "produce_next_domain_source_brief_after_public_health_fulltext"
+        "nextGate": "produce_next_domain_source_brief_after_epidemiology_fulltext"
       },
       "chapters": [
         {
@@ -4227,6 +4229,20 @@
           "claimsFile": "data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet/claims.json",
           "briefFile": "data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet/brief.json",
           "assessmentFile": "data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet/assessment.json",
+          "safetyContractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json"
+        },
+        {
+          "id": "epidemiologi-design-mal-bias-confounding-og-kausalitet",
+          "title": "Epidemiologi: design, mål, bias, confounding og kausalitet",
+          "subtitle": "Fra forekomstsmål og studiedesign til kausal struktur, usikkerhet og transportabilitet",
+          "file": "data/fagverk/helse/epidemiologi-design-mal-bias-confounding-og-kausalitet.json",
+          "primary_domain_id": "epidemiologi",
+          "emne_ids": [
+            "em_helse_epidemiologi"
+          ],
+          "claimsFile": "data/fagverk/helse/epidemiologi-design-mal-bias-confounding-og-kausalitet/claims.json",
+          "briefFile": "data/fagverk/helse/epidemiologi-design-mal-bias-confounding-og-kausalitet/brief.json",
+          "assessmentFile": "data/fagverk/helse/epidemiologi-design-mal-bias-confounding-og-kausalitet/assessment.json",
           "safetyContractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json"
         }
       ]
