@@ -54,7 +54,7 @@ jobs:
             echo "ready=true" >> "$GITHUB_OUTPUT"
           else
             echo "ready=false" >> "$GITHUB_OUTPUT"
-            echo "Bootstrap/monotone skip: microbiology-infection fulltext materialization is active at Helse 6/12 or 7/12 with fulltext files present; current count is ${count}/12."
+            echo "Monotone skip: microbiology-infection fulltext materialization is active only at Helse 6/12 or 7/12; current count is ${count}/12."
           fi
       - if: steps.fulltext_gate.outputs.ready != 'true' && steps.fulltext_gate.outputs.count == '6'
         run: node scripts/brief-helse-microbiology-infection-sources-v1.mjs

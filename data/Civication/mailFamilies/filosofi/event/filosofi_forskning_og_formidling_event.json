@@ -1,0 +1,14 @@
+{
+  "schema":"civication_mail_family_catalog_v1","version":1,"category":"filosofi","role_scope":"filosofi_forskning_og_formidling","mail_type":"event",
+  "families":[{"id":"filosofi_kildetilgang","purpose":"Bevare kildegrensen når primærmateriale ikke kan inspiseres før publiseringsfristen.","learning_focus":["kildetilgang","usikkerhet","publiseringsgrense"],"mails":[{
+    "id":"filosofi_forskning_event_kildetilgang_001","mail_type":"event","mail_family":"filosofi_kildetilgang","role_scope":"filosofi_forskning_og_formidling","phase":"advanced","day_phase":"afternoon","priority":114,"cooldown":4,"repeatable":false,"stage":"stable",
+    "from":"Noor, kildebibliotekar","people_ref":"noor_kildebibliotekar_filosofi","person_id":"noor_kildebibliotekar_filosofi","place_id":"kildelab_filosofi_forskning",
+    "subject":"Primærutgaven er utilgjengelig i dag – sekundærkilden gjengir bare et utdrag","summary":"Noor bekrefter at den relevante historiske utgaven ikke kan inspiseres før etter fristen. Den tilgjengelige sekundærkilden gir et utdrag og en tolkning, men ikke avsnittene før og etter.","purpose":"Teste om rollen justerer påstandens styrke når kildegrunnlaget ikke kan kontrolleres fullt.","stakes":"En sikker attribusjon kan bli stående i offentlig materiale selv om dere bare har sett en senere utlegning og et løsrevet utdrag.",
+    "situation":["Primærutgaven er katalogisert, men ikke tilgjengelig før neste uke.","Sekundærkilden er identifiserbar og skiller delvis mellom sitat og egen tolkning.","Publiseringsfristen kan holdes dersom påstanden begrenses til det sekundærkilden faktisk dokumenterer."],
+    "task_domain":"kildekritikk","task_kind":"event","competency":"kildekritikk_og_proveniens","pressure":"publiseringsfrist_vs_full_kildekontroll","choice_axis":"begrens_paastand_og_merk_kilden_vs_lat_som_primaren_er_kontrollert","consequence_axis":"sporbar_usikkerhet_vs_falsk_direkte_evidens","narrative_arc":"kildegrense_under_tidspress","interaction_mode":"decision",
+    "choices":[
+      {"id":"A","label":"Omskriv til «sekundærkilden tolker teksten slik» og registrer primærkontrollen som åpen","reply":"Vi publiserer bare det vi faktisk kan dokumentere i dag, og lar den direkte attribusjonen vente til primærteksten kan leses i kontekst.","effect":1,"tags":["source_boundary","qualified_claim"],"feedback":"Du skiller tilgjengelig evidens fra den sterkere påstanden dere ennå ikke har kontrollert.","effects":{"stats":{"quality":3,"trust":2,"risk":-3,"energy":-1}}},
+      {"id":"B","label":"Bruk sekundærutdraget som om primærteksten var kontrollert og legg inn full henvisning senere","reply":"Tolkningen virker solid, og vi kan oppdatere referansen når utgaven blir tilgjengelig.","effect":-1,"tags":["evidence_overreach","deadline_pressure"],"feedback":"Du oppgraderer en sekundær fremstilling til direkte primærevidens uten å ha lest konteksten.","effects":{"stats":{"quality":-3,"trust":-2,"risk":4,"energy":1}}}
+    ]
+  }]}]
+}

@@ -4134,7 +4134,7 @@
         "schemaFamily": "foundation_v1",
         "sourceOfTruth": true,
         "firstSourceClaimBrief": "data/fag/helse/medical_ethics_evidence_source_claim_brief_v1.json",
-        "note": "Sju Helse-domener er fulltekstmaterialisert: medisinsk etikk/evidens, anatomi/fysiologi, sykdom/patofysiologi, klinisk medisin, folkehelse, epidemiologi og mikrobiologi/infeksjon. Mikrobiologi/infeksjon har 8 seksjoner, 32 claimsporede avsnitt, 32 verifiserte claims, 14 inspiserbare kilder og 8 vurderingsoppgaver. Fem domener og strict proof gjenstår.",
+        "note": "Ti Helse-domener er fulltekstmaterialisert: medisinsk etikk/evidens, anatomi/fysiologi, sykdom/patofysiologi, klinisk medisin, folkehelse, epidemiologi, mikrobiologi/infeksjon, farmakologi, ernæring/metabolisme og psykisk helse. Psykisk helse har 8 seksjoner, 32 claimsporede avsnitt, 32 verifiserte claims, 15 inspiserbare kilder og 8 vurderingsoppgaver. To domener og strict proof gjenstår.",
         "firstFulltextChapter": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning.json",
         "secondSourceClaimBrief": "data/fag/helse/anatomy_physiology_source_claim_brief_v1.json",
         "secondFulltextChapter": "data/fagverk/helse/anatomi-fysiologi-struktur-funksjon-og-regulering.json",
@@ -4147,12 +4147,18 @@
         "sixthSourceClaimBrief": "data/fag/helse/epidemiology_source_claim_brief_v1.json",
         "sixthFulltextChapter": "data/fagverk/helse/epidemiologi-design-mal-bias-confounding-og-kausalitet.json",
         "seventhSourceClaimBrief": "data/fag/helse/microbiology_infection_source_claim_brief_v1.json",
-        "seventhFulltextChapter": "data/fagverk/helse/mikrobiologi-infeksjon-mikrober-smitte-vertrespons-og-resistens.json"
+        "seventhFulltextChapter": "data/fagverk/helse/mikrobiologi-infeksjon-mikrober-smitte-vertrespons-og-resistens.json",
+        "eighthSourceClaimBrief": "data/fag/helse/pharmacology_source_claim_brief_v1.json",
+        "eighthFulltextChapter": "data/fagverk/helse/farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet.json",
+        "ninthSourceClaimBrief": "data/fag/helse/nutrition_metabolism_source_claim_brief_v1.json",
+        "ninthFulltextChapter": "data/fagverk/helse/ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster.json",
+        "tenthSourceClaimBrief": "data/fag/helse/mental_health_source_claim_brief_v1.json",
+        "tenthFulltextChapter": "data/fagverk/helse/psykisk-helse-lidelse-tjenester-recovery-og-rettigheter.json"
       },
       "editorialPlan": {
         "targetDomainCount": 12,
-        "completedSourceBriefCount": 7,
-        "registeredChapterCount": 7,
+        "completedSourceBriefCount": 10,
+        "registeredChapterCount": 10,
         "completionRequirements": [
           "all_canonical_domains_covered",
           "source_first_claim_trace_complete",
@@ -4160,7 +4166,7 @@
           "fulltext_and_assessment_audits_green",
           "strict_theory_integrity_green"
         ],
-        "nextGate": "produce_next_domain_source_brief_after_microbiology_infection_fulltext"
+        "nextGate": "produce_next_domain_source_brief_after_mental_health_fulltext"
       },
       "chapters": [
         {
@@ -4259,6 +4265,48 @@
           "claimsFile": "data/fagverk/helse/mikrobiologi-infeksjon-mikrober-smitte-vertrespons-og-resistens/claims.json",
           "briefFile": "data/fagverk/helse/mikrobiologi-infeksjon-mikrober-smitte-vertrespons-og-resistens/brief.json",
           "assessmentFile": "data/fagverk/helse/mikrobiologi-infeksjon-mikrober-smitte-vertrespons-og-resistens/assessment.json",
+          "safetyContractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json"
+        },
+        {
+          "id": "farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet",
+          "title": "Farmakologi: virkning, omsetning, dose–respons og legemiddelsikkerhet",
+          "subtitle": "Fra reseptorer og eksponering til interaksjoner, variasjon og farmakovigilans",
+          "file": "data/fagverk/helse/farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet.json",
+          "primary_domain_id": "farmakologi",
+          "emne_ids": [
+            "em_helse_farmakologi"
+          ],
+          "claimsFile": "data/fagverk/helse/farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet/claims.json",
+          "briefFile": "data/fagverk/helse/farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet/brief.json",
+          "assessmentFile": "data/fagverk/helse/farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet/assessment.json",
+          "safetyContractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json"
+        },
+        {
+          "id": "ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster",
+          "title": "Ernæring og metabolisme: energi, næringsstoffer, regulering og kostmønster",
+          "subtitle": "Fra energiomsetning og makronæringsstoffer til biotilgjengelighet, referanseverdier og kostmønsterevidens",
+          "file": "data/fagverk/helse/ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster.json",
+          "primary_domain_id": "ernaering_metabolisme",
+          "emne_ids": [
+            "em_helse_ernaering_metabolisme"
+          ],
+          "claimsFile": "data/fagverk/helse/ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster/claims.json",
+          "briefFile": "data/fagverk/helse/ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster/brief.json",
+          "assessmentFile": "data/fagverk/helse/ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster/assessment.json",
+          "safetyContractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json"
+        },
+        {
+          "id": "psykisk-helse-lidelse-tjenester-recovery-og-rettigheter",
+          "title": "Psykisk helse: lidelse, tjenester, recovery og rettigheter",
+          "subtitle": "Fra psykisk helse-kontinuum og klassifikasjon til tjenester, personlig recovery, medvirkning og rights-based praksis",
+          "file": "data/fagverk/helse/psykisk-helse-lidelse-tjenester-recovery-og-rettigheter.json",
+          "primary_domain_id": "psykisk_helse",
+          "emne_ids": [
+            "em_helse_psykisk_helse"
+          ],
+          "claimsFile": "data/fagverk/helse/psykisk-helse-lidelse-tjenester-recovery-og-rettigheter/claims.json",
+          "briefFile": "data/fagverk/helse/psykisk-helse-lidelse-tjenester-recovery-og-rettigheter/brief.json",
+          "assessmentFile": "data/fagverk/helse/psykisk-helse-lidelse-tjenester-recovery-og-rettigheter/assessment.json",
           "safetyContractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json"
         }
       ]

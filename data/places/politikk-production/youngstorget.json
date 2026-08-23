@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "politikk_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "youngstorget",
+  "placeFile": "data/places/politikk/oslo/places_politikk/youngstorget.json",
+  "status": "ready",
+  "primaryFunction": {
+    "statement": "Youngstorget er et offentlig torg som forvaltes som markeds-, arrangements- og demonstrasjonsrom og brukes som tilbakevendende mobiliseringsarena.",
+    "placeObjectDistinction": "Rapporten gjelder selve torget og bruken av plassrommet, ikke organisasjonene, virksomhetene eller de canonicale nabobyggene rundt det.",
+    "sourceIds": ["source_oslo_kommune_youngstorget", "source_arbark_youngstorget"]
+  },
+  "politicsTopics": [
+    {"emneId": "em_pol_arbeidsliv_kollektiv_kamp", "siteSpecificRationale": "Arbeiderbevegelsens dokumenterte møter og 1. mai-prosesjonen i 1890 knytter kollektiv organisering og arbeidslivskamp direkte til torget.", "evidenceChainIds": ["chain_offentlig_mobilisering"]},
+    {"emneId": "em_pol_demonstrasjoner_protest", "siteSpecificRationale": "Youngstorget er dokumentert som et tilbakevendende sted for demonstrasjoner og markeringer, både historisk og i kommunens beskrivelse av dagens bruk.", "evidenceChainIds": ["chain_offentlig_mobilisering"]},
+    {"emneId": "em_pol_mediert_offentlighet", "siteSpecificRationale": "Informasjonsskjermer og den permanente historiske fotoutstillingen formidler torgets politiske historie i det samme offentlige rommet der markeringene skjer.", "evidenceChainIds": ["chain_offentlig_mobilisering"]}
+  ],
+  "sources": [
+    {"id": "source_oslo_kommune_youngstorget", "url": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/youngstorget/", "sourceLocation": "Ingress, gjennomførte oppgraderinger, fotoutstilling og videreutvikling", "sourceType": "official", "verifiedAt": "2026-08-23", "temporalStatus": "current"},
+    {"id": "source_arbark_youngstorget", "url": "https://www.arbark.no/eldok/Arbeiderhistorie1996_9.pdf", "sourceLocation": "Historikken om marked, massemøter og arbeiderbevegelsens bruk av Youngstorget", "sourceType": "archive", "verifiedAt": "2026-08-23", "temporalStatus": "historical"},
+    {"id": "source_arbark_1890", "url": "https://www.arbark.no/Utstilling/8timersdagen/8timersdagen_kap03.htm", "sourceLocation": "Avsnittet om demonstrasjonen fra Youngstorget til Tullinløkka 1. mai 1890", "sourceType": "archive", "verifiedAt": "2026-08-23", "temporalStatus": "historical"}
+  ],
+  "evidenceChains": [
+    {
+      "id": "chain_offentlig_mobilisering",
+      "claim": "Youngstorget fungerer som politisk offentlighet gjennom kommunal forvaltning av torget og dokumentert kollektiv bruk til møter, markeringer og demonstrasjoner.",
+      "stages": {
+        "institutionActor": {"status": "documented", "statement": "Oslo kommune forvalter Youngstorget som offentlig by- og arrangementsrom.", "sourceIds": ["source_oslo_kommune_youngstorget"]},
+        "competenceRole": {"status": "documented", "statement": "Kommunen fastsetter utleieregler og tiltak som balanserer hverdagsbruk mot store arrangementer.", "sourceIds": ["source_oslo_kommune_youngstorget"]},
+        "ruleDecision": {"status": "documented", "statement": "Kommunens arbeid med utleieregler styrer hvordan torget kan disponeres til ulike formål.", "sourceIds": ["source_oslo_kommune_youngstorget"]},
+        "resourceInstrument": {"status": "documented", "statement": "Plassrom, sitteplasser, informasjonsskjermer og belysning er dokumenterte fysiske virkemidler.", "sourceIds": ["source_oslo_kommune_youngstorget"]},
+        "implementation": {"status": "documented", "statement": "Torget brukes til demonstrasjoner, markeringer, torghandel, kultur og andre arrangementer.", "sourceIds": ["source_oslo_kommune_youngstorget", "source_arbark_youngstorget"]},
+        "output": {"status": "documented", "statement": "Historiske massemøter og 1890-prosesjonen viser konkret kollektiv mobilisering fra Youngstorget.", "sourceIds": ["source_arbark_youngstorget", "source_arbark_1890"]},
+        "outcomeEffect": {"status": "not_applicable", "rationale": "Kildene dokumenterer bruk og mobilisering, men ikke en entydig politisk effekt av hvert arrangement."}
+      }
+    }
+  ],
+  "currentVerification": {"status": "PASS", "checkedAt": "2026-08-23", "currentClaimIds": ["chain_offentlig_mobilisering"], "sourceIds": ["source_oslo_kommune_youngstorget"]},
+  "quizOpening": {"status": "N/A", "rationale": "Eksisterende Youngstorget-quiz har fem spørsmål og oppfyller derfor ikke denne portens separate krav om nøyaktig 14 spørsmål i de to første settene."},
+  "chronologyStories": {"status": "PASS", "chronologyReviewed": true, "storiesReviewed": true, "rationale": "Canonical chronology og eksisterende Youngstorget-Stories er gjennomgått mot den låste identiteten; fase 5 endrer ingen av dem."},
+  "gates": {
+    "A": {"status": "PASS", "evidenceRefs": ["primaryFunction", "source_oslo_kommune_youngstorget"]},
+    "B": {"status": "PASS", "evidenceRefs": ["politicsTopics", "chain_offentlig_mobilisering"]},
+    "C": {"status": "PASS", "evidenceRefs": ["chain_offentlig_mobilisering"]},
+    "D": {"status": "PASS", "evidenceRefs": ["source_oslo_kommune_youngstorget", "source_arbark_youngstorget", "source_arbark_1890"]},
+    "E": {"status": "PASS", "evidenceRefs": ["currentVerification", "source_oslo_kommune_youngstorget"]},
+    "F": {"status": "N/A", "rationale": "Quizåpningen har fem, ikke fjorten, spørsmål og kan ikke godkjennes som full Politikk-quizport i denne fasen."},
+    "G": {"status": "PASS", "evidenceRefs": ["chronologyStories"]}
+  },
+  "review": {"reviewer": "Youngstorget phase 5 integration review", "reviewedAt": "2026-08-23", "notes": "Rapporten dokumenterer Politikk-porten som ble obligatorisk ved canonical description-endring. Den utvider ikke fase-5-tekstscopecet og overdriver ikke quizstatus eller politiske virkninger."}
+}

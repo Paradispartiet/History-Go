@@ -1,0 +1,88 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "filosofi",
+  "role_scope": "filosofi_undervisning_og_akademia",
+  "mail_type": "knowledge",
+  "families": [
+    {
+      "id": "filosofi_naess_undervisningskontekst",
+      "purpose": "Bruke en canonical filosofprofil som idéhistorisk undervisningskontekst uten å gjøre den historiske personen til nåtidig pedagogisk autoritet eller fiktiv kollega.",
+      "learning_focus": ["filosofihistorie", "kildegrense", "pensumkontekst"],
+      "mails": [
+        {
+          "id": "filosofi_undervisning_knowledge_naess_001",
+          "mail_type": "knowledge",
+          "mail_family": "filosofi_naess_undervisningskontekst",
+          "role_scope": "filosofi_undervisning_og_akademia",
+          "phase": "advanced",
+          "day_phase": "afternoon",
+          "priority": 110,
+          "cooldown": 5,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Emil, seminarleder",
+          "people_ref": "emil_seminarleder_filosofi",
+          "person_id": "emil_seminarleder_filosofi",
+          "place_id": "maerradalen",
+          "subject": "Bruk Arne Næss som filosofihistorisk kontekst – ikke som fasit for hvordan vi skal undervise i dag",
+          "summary": "Emil ber deg lese History Go-profilen til Arne Næss som kildeforankret kontekst om norsk filosofi, dypøkologi og naturtenkning, og deretter skille det profilen dokumenterer fra dagens pedagogiske valg om læringsmål, pensum og vurdering.",
+          "purpose": "Teste at en virkelig historisk person kan være kunnskapsmål uten å bli oppdiktet som nåtidig rådgiver, kollega eller beslutningseier.",
+          "stakes": "En historisk filosof kan gi relevant idéhistorisk kontekst, men kan ikke alene begrunne dagens undervisningsdesign eller fungere som autoritet for vurderingspraksis.",
+          "situation": [
+            "Arne Næss finnes som canonical People-person i History Go og er beskrevet som filosof.",
+            "Mærradalen er profilens canonical place-anker.",
+            "Oppgaven gjelder kun lesing av den publiserte profilen; Næss opptrer ikke som nåtidig avsender, underviser eller autoritet for dagens akademiske praksis."
+          ],
+          "task_domain": "pensum_kontekst_og_faglig_uenighet",
+          "task_kind": "knowledge",
+          "competency": "kildegrense_og_filosofihistorisk_kontekst",
+          "pressure": "historisk_relevans_vs_pedagogisk_autoritetsglidning",
+          "choice_axis": "les_profilen_og_avgrens_hva_den_dokumenterer_vs_lan_personstatus_som_fasit_for_dagens_undervisning",
+          "consequence_axis": "kildebevisst_pensumkontekst_vs_autoritetsglidning",
+          "narrative_arc": "historisk_filosofi_som_undervisningskontekst",
+          "interaction_mode": "task",
+          "task_contract": {
+            "task_id": "filosofi_undervisning_history_go_arne_naess",
+            "completion_rule": "history_go_payload_completed",
+            "failure_rule": "remain_open",
+            "evidence_refs": ["data/people/natur/oslo/people_natur_oslo.json"]
+          },
+          "task_payload": {
+            "task_kind": "history_go_person",
+            "target_type": "person",
+            "person_id": "arne_naess",
+            "completion_mode": "read_profile",
+            "title": "Les profilen til Arne Næss",
+            "description": "Les den canonicale profilen som filosofihistorisk og naturfilosofisk kontekst, ikke som pedagogisk eller normativ fasit for dagens undervisning.",
+            "return_context": {
+              "source": "civication",
+              "mail_id": "filosofi_undervisning_knowledge_naess_001",
+              "role_scope": "filosofi_undervisning_og_akademia"
+            }
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Åpne profilen og noter hva den faktisk dokumenterer før du bruker den som pensumkontekst",
+              "reply": "Jeg skiller biografisk og idéhistorisk dokumentasjon fra våre egne valg om læringsmål, aktivitet og vurdering, og bruker profilen til å formulere bedre spørsmål.",
+              "effect": 1,
+              "tags": ["history_go_person", "source_boundary", "historical_context"],
+              "feedback": "History Go-lesingen gir relevant kontekst uten at den historiske personen får en oppdiktet rolle i dagens undervisningsbeslutning.",
+              "effects": {"stats": {"quality": 1, "trust": 1, "energy": -1}}
+            },
+            {
+              "id": "B",
+              "label": "Bruk Næss som autoritet for hvordan emnet bør undervises fordi han er en sentral norsk filosof",
+              "reply": "En så sentral filosof gir oss et godt nok faglig grunnlag for å la hans perspektiv styre undervisningsformen og prioriteringene.",
+              "effect": -1,
+              "tags": ["authority_slippage", "anachronistic_authority", "pedagogy_shortcut"],
+              "feedback": "Du går fra historisk relevans til nåtidig pedagogisk autoritet uten å begrunne undervisningsvalget med dagens læringsmål og institusjonelle ramme.",
+              "effects": {"stats": {"quality": -3, "trust": -2, "risk": 3}}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

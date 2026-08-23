@@ -11,7 +11,7 @@
     "schema": "history_go_fagverk_registry_v1",
     "version": "3.14.0",
     "updated_at": "2026-08-21",
-    "content_sha256": "2e67e67f36f557ef58f25eee8513730dc37e99f1362a0d563993f21c3cc5884d"
+    "content_sha256": "8babcc6cd17612f227a3a2ce4cd5106f7531e3f29933fd35525dfce814d1377d"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,18 +27,18 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "10295e707e7220a6ea3a13d8a5b64f89787dba9c5945b970ec7e9439b5177139"
+    "content_sha256": "7fbd2da6ccf87c44dd7317e4001c7d4a0b878d6ac3db4b811cc963f614193d67"
   },
   "summary": {
     "subject_count": 20,
     "root_subject_count": 19,
     "specialization_count": 1,
     "chapter_subject_count": 16,
-    "chapter_count": 170,
-    "module_file_count": 421,
-    "package_file_count": 240,
-    "chapter_referenced_file_count": 800,
-    "referenced_file_count": 988,
+    "chapter_count": 173,
+    "module_file_count": 433,
+    "package_file_count": 246,
+    "chapter_referenced_file_count": 821,
+    "referenced_file_count": 1012,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -1033,9 +1033,9 @@
         "supersetQuizMal"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 22,
+      "package_file_count": 28,
       "required_package_file_count": 4,
-      "optional_package_file_count": 18,
+      "optional_package_file_count": 24,
       "package_files": [
         {
           "path": "data/fag/helse/anatomy_physiology_source_claim_brief_v1.json",
@@ -1095,7 +1095,7 @@
             "emner"
           ],
           "exists": true,
-          "content_sha256": "ebc2789779ad69aa87c2bf286a9b00c276024469b62b1e08c0b1a7df266500c5"
+          "content_sha256": "9926a1dd2778f2086630461eb8b1c44f05f4face917a6ab00cc93bf08d481c27"
         },
         {
           "path": "data/fag/helse/epidemiology_source_claim_brief_v1.json",
@@ -1131,7 +1131,7 @@
             "pensum"
           ],
           "exists": true,
-          "content_sha256": "5d93778e48eb091663b4e4ac9ed980869c23b1f85a7a6b38d1f24a2368ed1c39"
+          "content_sha256": "65299e168acef9dd0fd48f077aabc367ad35f0db0e5b41a77a5c1ea32d139561"
         },
         {
           "path": "data/fag/helse/medical_ethics_evidence_source_claim_brief_v1.json",
@@ -1144,6 +1144,18 @@
           ],
           "exists": true,
           "content_sha256": "ad8ba8a2bfaaea14d6f26b36c33cb4535b4a870b0c55952abfc83fb587a4346b"
+        },
+        {
+          "path": "data/fag/helse/mental_health_source_claim_brief_v1.json",
+          "required": false,
+          "fields": [
+            "sourceClaimBriefs"
+          ],
+          "key_paths": [
+            "sourceClaimBriefs[9]"
+          ],
+          "exists": true,
+          "content_sha256": "2e1820f76f4316da603a34311b0d23f9e049ac7ea15681975fad2d7cde25750d"
         },
         {
           "path": "data/fag/helse/methods_helse_canonical_v1.json",
@@ -1168,6 +1180,30 @@
           ],
           "exists": true,
           "content_sha256": "015818d2074cf48b68e9444904070b2e27c0f9a56140ce937897d909e3fa1425"
+        },
+        {
+          "path": "data/fag/helse/nutrition_metabolism_source_claim_brief_v1.json",
+          "required": false,
+          "fields": [
+            "sourceClaimBriefs"
+          ],
+          "key_paths": [
+            "sourceClaimBriefs[8]"
+          ],
+          "exists": true,
+          "content_sha256": "cd8a3f59f088a04e60350d0e789202278db4286307820c1d274d5ff1486e351c"
+        },
+        {
+          "path": "data/fag/helse/pharmacology_source_claim_brief_v1.json",
+          "required": false,
+          "fields": [
+            "sourceClaimBriefs"
+          ],
+          "key_paths": [
+            "sourceClaimBriefs[7]"
+          ],
+          "exists": true,
+          "content_sha256": "2b70afe49c0bada982011279574885ef82898d7adf9b5ba7134a0c50ab7f6484"
         },
         {
           "path": "data/fag/helse/public_health_source_claim_brief_v1.json",
@@ -1218,6 +1254,30 @@
           "content_sha256": "b066d2f4c144fc0afb38dc03ce1fb96a4bef6b6986c60aa9fb3519a0aecf5891"
         },
         {
+          "path": "data/fagverk/helse/ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster.json",
+          "required": false,
+          "fields": [
+            "chapters"
+          ],
+          "key_paths": [
+            "chapters[8]"
+          ],
+          "exists": true,
+          "content_sha256": "d4a16822894eea26578ccc9e328687dd8e53372d25fbdaa652bd190429f5421a"
+        },
+        {
+          "path": "data/fagverk/helse/farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet.json",
+          "required": false,
+          "fields": [
+            "chapters"
+          ],
+          "key_paths": [
+            "chapters[7]"
+          ],
+          "exists": true,
+          "content_sha256": "166ea674e6e61b1269d614473874b47810dff0cf338f9445356d0e254a9acf7e"
+        },
+        {
           "path": "data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet.json",
           "required": false,
           "fields": [
@@ -1266,6 +1326,18 @@
           "content_sha256": "b035fe9b75e267d80976bc91195752ac378042d149bf12e8c97b971308a5df9a"
         },
         {
+          "path": "data/fagverk/helse/psykisk-helse-lidelse-tjenester-recovery-og-rettigheter.json",
+          "required": false,
+          "fields": [
+            "chapters"
+          ],
+          "key_paths": [
+            "chapters[9]"
+          ],
+          "exists": true,
+          "content_sha256": "d6a67b12ed3264ec2773b47dc5707851c58891e35a48a8f75ac4c5b226dc35ea"
+        },
+        {
           "path": "data/fagverk/helse/sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt.json",
           "required": false,
           "fields": [
@@ -1302,20 +1374,20 @@
           "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
         }
       ],
-      "package_content_sha256": "95b2353066bf6036fd7c7d58cd86c44d4ba39a191aad084a1aa6d9762c45951d",
-      "chapter_count": 7,
-      "module_file_count": 28,
-      "brief_file_count": 7,
-      "claims_file_count": 7,
-      "chapter_referenced_file_count": 49,
-      "chapter_content_sha256": "054d1efbc571c2f88a7bb36b2f1911a9ce6b7c5b92f9fc168f23ffc563c5d34d",
-      "referenced_file_count": 64,
+      "package_content_sha256": "6f961553ada82b1382aca90c079c803b38a051aff79e1c3eac0ca33db37dd727",
+      "chapter_count": 10,
+      "module_file_count": 40,
+      "brief_file_count": 10,
+      "claims_file_count": 10,
+      "chapter_referenced_file_count": 70,
+      "chapter_content_sha256": "0a28c7befb06ebb2e691d34af048b02737ecae3b28b34cd4cdfce88709c03feb",
+      "referenced_file_count": 88,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "473fcdb8f7a5b899cbf1368f3ad7d51dc4b9c0339248e1316d705f97b7920be3",
-      "content_sha256": "31e788e32b1dc752b543ac274821d7ebdaa381b46aade235238ea7e5ab7d9510",
+      "structure_sha256": "bbe510872bff4dc1289eb388475fe35e1da2d33460da177c9bbbf480c74a9597",
+      "content_sha256": "3077c972076ce17555cc7b2c2bffeedf307f47c95f2dbd259aa4027c5da1ecd1",
       "chapters": [
         {
           "chapter_id": "medisinsk-etikk-evidens-og-ansvarlig-beslutning",
@@ -1372,6 +1444,30 @@
           "module_file_count": 4,
           "referenced_file_count": 7,
           "content_sha256": "d9ceb0e36659eb32d94795e53747da1255a700e585f45077ad6fc69795db1552"
+        },
+        {
+          "chapter_id": "farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet",
+          "title": "Farmakologi: virkning, omsetning, dose–respons og legemiddelsikkerhet",
+          "file": "data/fagverk/helse/farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet.json",
+          "module_file_count": 4,
+          "referenced_file_count": 7,
+          "content_sha256": "3dc4669321fb931e5fe1f8044c55a647addaeb57a6d40b0ddbecb13c147878e3"
+        },
+        {
+          "chapter_id": "ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster",
+          "title": "Ernæring og metabolisme: energi, næringsstoffer, regulering og kostmønster",
+          "file": "data/fagverk/helse/ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster.json",
+          "module_file_count": 4,
+          "referenced_file_count": 7,
+          "content_sha256": "0b63bfb1026bdc707481c8c0bba8677f61a4d8378b85955c07fffaba9a06ef56"
+        },
+        {
+          "chapter_id": "psykisk-helse-lidelse-tjenester-recovery-og-rettigheter",
+          "title": "Psykisk helse: lidelse, tjenester, recovery og rettigheter",
+          "file": "data/fagverk/helse/psykisk-helse-lidelse-tjenester-recovery-og-rettigheter.json",
+          "module_file_count": 4,
+          "referenced_file_count": 7,
+          "content_sha256": "f7642b66cef4d34b78621640455b4cfa6bc7f5de3d8ccdd26095acb1578f815b"
         }
       ]
     },
@@ -5425,5 +5521,5 @@
       ]
     }
   },
-  "release_sha256": "af63cd4c0d8b4ce59a3be1af684f82d6d637efb609d91bb02211d1b719ab6480"
+  "release_sha256": "a964e54d1e8967169ecefe27eb3fdbb09b03e7941de809c10589bd6631abc970"
 }
