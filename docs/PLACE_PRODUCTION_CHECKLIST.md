@@ -32,9 +32,14 @@ For detaljproduksjon gjelder subsystemets canonical kontrakt, akkurat som i v1-r
 - rundinger: `data/places/README_place_rounds.md`;
 - People: `docs/people-of-places-method.md` og `docs/PEOPLE_PROFILE_CANONICAL.md`;
 - Stories: `docs/STORIES_DATA_GOVERNANCE.md`;
+- Brands: `data/brands/brand_rules_v1_1.json`;
 - Quiz: `data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md`;
 - koordinater: `docs/coordinates/README.md` og coordinate-kontraktene;
 - relevante Fagverk-/kategori-/Natur-/Historie-/Politikk-/Næringsliv-/Subkultur-kontrakter.
+
+For **Brands** gjelder fortsatt de eksplisitte produksjonsgrensene: aktørtype alene brukes verken som godkjenning eller avslag. Null treff i eksisterende Brand-register behandles som «må researches», ikke som N/A; N/A krever dokumentert kandidatsøk og kandidatspesifikke avvisningsgrunner.
+
+For **Quiz** skal alle aktive, arkiverte og alternative quizfiler for stedet auditeres før profilvalg. Profil og settantall følger den canonicale Quiz-kontrakten; et `major`-sted bruker 10 sett med 7 spørsmål per sett.
 
 `PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md` er den detaljerte ruteren for alle disse flatene. Ingen detalj kan hoppes over fordi mergekadensen nå er enklere.
 
