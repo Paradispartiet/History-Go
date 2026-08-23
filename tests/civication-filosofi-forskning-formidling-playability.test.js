@@ -12,6 +12,7 @@ const category = 'filosofi';
 const roleScope = 'filosofi_forskning_og_formidling';
 const roleId = roleScope;
 const mailTypes = ['job','people','conflict','story','event','micro','followup','knowledge','consequence'];
+const planSequenceTypes = ['job','people','conflict','story','event','micro','knowledge','followup','consequence'];
 const fictionalPeople = new Set([
   'liv_forskningsleder_filosofi',
   'noor_kildebibliotekar_filosofi',
@@ -72,7 +73,7 @@ assert.equal(plan.version, 1);
 assert.equal(plan.category, category);
 assert.equal(plan.role_scope, roleScope);
 assert.equal(plan.sequence.length, 9);
-assert.deepEqual(plan.sequence.map(step => step.type), mailTypes);
+assert.deepEqual(plan.sequence.map(step => step.type), planSequenceTypes);
 assert.ok(plan.outcome_rules.promoted);
 assert.ok(plan.outcome_rules.fired);
 assert.ok(plan.sequence.every(step => Array.isArray(step.fallback_types) && step.fallback_types.length === 0));
