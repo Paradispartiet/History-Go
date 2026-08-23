@@ -48,14 +48,13 @@ jobs:
       - id: fulltext_gate
         shell: bash
         run: |
-          if [[ -f scripts/materialize-helse-epidemiology-fulltext-v1.mjs && -f scripts/audit-helse-epidemiology-fulltext-v1.mjs && -f tests/helse-epidemiology-fulltext-v1.test.mjs ]]; then
+          count="$(node -e "const fs=require('fs');const r=JSON.parse(fs.readFileSync('data/fagverk/fagverk_registry.json','utf8'));process.stdout.write(String(r.subjects.helse.editorialPlan.registeredChapterCount));")"
+          if [[ ( "$count" == "5" || "$count" == "6" ) && -f scripts/materialize-helse-epidemiology-fulltext-v1.mjs && -f scripts/audit-helse-epidemiology-fulltext-v1.mjs && -f tests/helse-epidemiology-fulltext-v1.test.mjs ]]; then
             echo "ready=true" >> "$GITHUB_OUTPUT"
           else
             echo "ready=false" >> "$GITHUB_OUTPUT"
-            echo "Bootstrap only: epidemiology fulltext materializer/audit/test not present yet."
+            echo "Monotone skip: epidemiology fulltext materialization is active only at Helse 5/12 or 6/12; current count is ${count}/12."
           fi
-      - if: steps.fulltext_gate.outputs.ready != 'true'
-        run: node scripts/brief-helse-epidemiology-sources-v1.mjs
       - if: steps.fulltext_gate.outputs.ready == 'true'
         run: node scripts/materialize-helse-epidemiology-fulltext-v1.mjs
       - if: steps.fulltext_gate.outputs.ready == 'true'
@@ -68,6 +67,8 @@ jobs:
       - run: node scripts/build-fagverk-release-manifest.mjs --check
       - if: steps.fulltext_gate.outputs.ready == 'true'
         run: node --test tests/helse-epidemiology-fulltext-v1.test.mjs tests/helse-cumulative-progress-v1.test.mjs tests/fagverk-subject-inventory.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-release-manifest.test.mjs
+      - if: steps.fulltext_gate.outputs.ready != 'true'
+        run: node --test tests/helse-cumulative-progress-v1.test.mjs tests/fagverk-subject-inventory.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-release-manifest.test.mjs
       - name: Verify deterministic generated outputs
         if: steps.fulltext_gate.outputs.ready == 'true'
         shell: bash

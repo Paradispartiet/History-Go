@@ -2,11 +2,11 @@
 
 Status: **canonical produktkart**  
 Eier: `history_go_product_map`  
-Sist kontrollert: **2026-08-04**
+Sist kontrollert: **2026-08-23**
 
 Dette dokumentet beskriver hvilke hovedflater History GO består av og hvordan de henger sammen. Det er et produktkart, ikke en detaljoppskrift for hvert subsystem.
 
-For sted-for-sted produksjon brukes `docs/PLACE_PRODUCTION_CHECKLIST.md`. Når et subsystem skal produseres, gjelder subsystemets egen canonical kontrakt.
+For sted-for-sted produksjon brukes `docs/PLACE_PRODUCTION_CHECKLIST.md`. Den komplette detaljerte stedsgaten er bevart i `docs/PLACE_PRODUCTION_CHECKLIST_CORE.md`. Når et subsystem skal produseres, gjelder subsystemets egen canonical kontrakt. Innholdsproduksjon i skala følger i tillegg `data/places/regler/content_factory_v1.json`.
 
 ## 1. Hovedløkken
 
@@ -206,7 +206,86 @@ Objects = hva tingen er
 Civication = kjøp/eierskap/bruk i Civication
 ```
 
-## 13. Autoritetsregel
+## 13. Content Factory v1 — smartere produksjonsmetode, samme fulle kvalitetsmål
+
+History GO skal ha **fyldig, stedsspesifikt innhold for alle Places etter den komplette sted-checklisten**. Content Factory endrer ikke dette målet.
+
+Metoden løser bare et produksjonsproblem: samme kilder, claims, People, hendelser og kontekst blir ellers researched og lastet inn flere ganger når nærliggende eller relaterte Places produseres separat.
+
+Canonical flyt:
+
+```text
+søk og gjenbruk eksisterende research
+→ samle delt evidens når flere Places faktisk overlapper
+→ bind claims eksplisitt til riktige Places/entities
+→ finn place-spesifikke hull
+→ gjør så mye ekstra place-spesifikk research som trengs
+→ produser alle relevante checklist-flater fullt
+→ anti-generic review
+→ full CORE-checklist
+→ individuell manuell QA og merge
+```
+
+### Ingen billigere innholdsklasser
+
+Content Factory har ingen `anchor`/`standard`/`baseline`-modell og ingen annen ordning som tillater et mindre ferdig Place for å spare kostnader.
+
+Alle Places skal vurderes mot hele relevante checklisten. Hvis People, Stories, Quiz, språk, Objects, Brands, historie, før/etter, ruter, observasjoner eller andre flater er relevante og kildebærende, skal de produseres.
+
+N/A brukes bare når innholdstypen faktisk er irrelevant eller ikke lar seg forsvare etter ordentlig research — aldri fordi stedet er definert som «long tail» eller fordi tokenbudsjettet er brukt opp.
+
+### Delt research, individuell forståelse
+
+En geografisk eller tematisk source pack kan brukes når flere Places deler reell historisk eller faglig kontekst. Men dette er et evidensbibliotek, ikke en tekstmal.
+
+Hvert Place skal fortsatt få:
+
+- egen evidensavgrensning;
+- egen gap-research;
+- egen redaksjonell syntese;
+- egne relevante samlinger og læringsflater;
+- egen manuell produktvurdering.
+
+### Claim-bank
+
+Et verified faktum skal ikke researches på nytt bare fordi det skal brukes i en annen popupfane, Quiz, Story eller et annet Place som evidensen faktisk gjelder.
+
+Claim-gjenbruk skal redusere gjentatt research. Det skal **ikke** gi gjenbrukt generisk slutttekst. Samme claim kan få forskjellig betydning og presentasjon på forskjellige steder.
+
+### Deterministisk arbeid
+
+Scripts og canonical data skal gjøre eksakt arbeid som ID-/manifest-/relation-oppslag, deduplisering, indeksbygging, schema-/reference-validering og eksisterende entity-/claim-oppslag.
+
+Dette frigjør modell- og researchkapasitet til det som faktisk krever vurdering: kildekritikk, ny evidens, stedsspesifikk syntese, Stories, pedagogikk og sluttkvalitet.
+
+### Ingen modellkvote
+
+Det finnes ingen prosentgrense for AI-/modellbruk. Hvis et Place trenger ekstra research eller ekstra reasoning for å bli godt nok, skal dette gjøres.
+
+Effektiviteten skal komme fra at samme grunnlag ikke betales for flere ganger, ikke fra at modellen brukes mindre enn kvaliteten krever.
+
+### Anti-generic gate
+
+Et sted blokkeres dersom place-authored innhold:
+
+- består name-swap-testen og like gjerne kunne tilhørt et annet Place;
+- mangler stedsspesifikke evidensankre;
+- er eksakt eller nær duplikat av tekst fra andre Places;
+- mangler source→claim→tekst-sporbarhet;
+- ikke gir en tydelig lokal lærings-/observasjonsverdi;
+- fremstår fullt bare fordi generisk filler har fylt checklist-flater.
+
+### Fullness gate
+
+Content Factory er ikke vellykket dersom kostnaden faller ved at relevante flater blir mindre utforsket. Et Place kan ikke erklæres ferdig mens relevant, kildebærende innhold fortsatt er materielt underprodusert.
+
+### Skalering
+
+Metoden piloteres først på én sammenhengende Oslo-klynge. Den skaleres bare dersom vi får **samme eller høyere innholdsfylde, stedsspesifisitet, faktisitet og manuell kvalitet** som den eksisterende sted-for-sted-metoden, samtidig som gjentatt research/kontekst reduseres.
+
+Den operative inngangen er `docs/PLACE_PRODUCTION_CHECKLIST.md`. Den komplette detaljerte gaten er `docs/PLACE_PRODUCTION_CHECKLIST_CORE.md`. Den maskinlesbare metodekontrakten er `data/places/regler/content_factory_v1.json`.
+
+## 14. Autoritetsregel
 
 Dette produktkartet bestemmer **hvilke roller systemene har**. Det bestemmer ikke detaljproduksjonen.
 

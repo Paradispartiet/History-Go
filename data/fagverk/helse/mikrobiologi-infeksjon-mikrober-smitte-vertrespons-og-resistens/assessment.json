@@ -1,0 +1,193 @@
+{
+  "schema": "history_go_fagverk_health_chapter_assessment_v1",
+  "version": "1.0.0",
+  "subject_id": "helse",
+  "chapter_id": "mikrobiologi-infeksjon-mikrober-smitte-vertrespons-og-resistens",
+  "status": "audited",
+  "questions": [
+    {
+      "id": "helse-hmi-q01",
+      "question": "Hva skiller kolonisering fra infeksjonssykdom?",
+      "options": [
+        "Kolonisering betyr alltid sykdom",
+        "Kolonisering kan foreligge uten infeksjonssykdom",
+        "Infeksjon betyr bare laboratoriekontaminasjon",
+        "Begrepene er identiske"
+      ],
+      "answer": "Kolonisering kan foreligge uten infeksjonssykdom",
+      "answerIndex": 1,
+      "question_type": "analysis",
+      "difficulty": "medium",
+      "emne_id": "em_helse_mikrobiologi_infeksjon",
+      "claim_id": "hmi-c05",
+      "source": [
+        "hmi02-cdc-infection-control-basics",
+        "hmi13-ncbi-bacterial-pathogenesis",
+        "hmi01-fhi-medical-microbiology"
+      ],
+      "knowledge": "Kolonisering betyr at mikroorganismer finnes og kan formere seg på eller i en vert uten at dette i seg selv innebærer infeksjonssykdom. Hud, slimhinner og tarm har normalt omfattende mikrobiota. Derfor må kolonisering holdes atskilt fra vevsinvasjon, patologisk vertrespons og klinisk sykdom, særlig når laboratoriet kan påvise mikrober også hos personer uten symptomer.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hmi-q02",
+      "question": "Hva kan et positivt mikrobefunn alene fastslå?",
+      "options": [
+        "At personen har sykdom",
+        "At funnet må behandles",
+        "At en mikroorganisme eller analytt er påvist, mens sykdomsbetydning krever mer kontekst",
+        "At direkte smitte er bevist"
+      ],
+      "answer": "At en mikroorganisme eller analytt er påvist, mens sykdomsbetydning krever mer kontekst",
+      "answerIndex": 2,
+      "question_type": "analysis",
+      "difficulty": "medium",
+      "emne_id": "em_helse_mikrobiologi_infeksjon",
+      "claim_id": "hmi-c08",
+      "source": [
+        "hmi01-fhi-medical-microbiology",
+        "hmi02-cdc-infection-control-basics",
+        "hmi04-who-laboratory-diagnostic-testing-2023"
+      ],
+      "knowledge": "Et laboratoriefunn av en mikroorganisme kan være forenlig med relevant infeksjon, men kan også gjenspeile kolonisering, forurensning av prøven eller påvisning av biologisk materiale uten sykdomsbetydning. Fortolkningen avhenger av prøvested, prøvetaking, analytt, metode, tidsforløp og biologisk kontekst. Et positivt mikrobefunn alene etablerer derfor ikke en individuell diagnose eller årsaken til symptomer.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hmi-q03",
+      "question": "Hva er riktig om eksponering, transmisjon og sykdom?",
+      "options": [
+        "De er samme hendelse",
+        "Eksponering garanterer transmisjon",
+        "Transmisjon garanterer sykdom",
+        "De er separate ledd med egne biologiske betingelser"
+      ],
+      "answer": "De er separate ledd med egne biologiske betingelser",
+      "answerIndex": 3,
+      "question_type": "analysis",
+      "difficulty": "medium",
+      "emne_id": "em_helse_mikrobiologi_infeksjon",
+      "claim_id": "hmi-c12",
+      "source": [
+        "hmi13-ncbi-bacterial-pathogenesis",
+        "hmi14-ncbi-innate-immunity",
+        "hmi02-cdc-infection-control-basics"
+      ],
+      "knowledge": "Eksponering for et smittestoff er ikke det samme som vellykket transmisjon, og transmisjon er ikke det samme som sykdom. Inokulum eller dose, inngangsport, mikrobens biologiske egenskaper, vertens barrierer og immunrespons samt miljøbetingelser påvirker hvert ledd. Derfor kan en eksponering ende uten etablering, en etablert infeksjon være asymptomatisk, eller sykdom oppstå gjennom et mer komplekst vert–mikrobe-samspill.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hmi-q04",
+      "question": "Hva viser en positiv nukleinsyretest mest direkte?",
+      "options": [
+        "At et definert genetisk mål ble påvist under testens betingelser",
+        "At levende mikrobe alltid finnes",
+        "At aktiv sykdom er bevist",
+        "At behandling er nødvendig"
+      ],
+      "answer": "At et definert genetisk mål ble påvist under testens betingelser",
+      "answerIndex": 0,
+      "question_type": "analysis",
+      "difficulty": "hard",
+      "emne_id": "em_helse_mikrobiologi_infeksjon",
+      "claim_id": "hmi-c19",
+      "source": [
+        "hmi04-who-laboratory-diagnostic-testing-2023",
+        "hmi01-fhi-medical-microbiology",
+        "hmi02-cdc-infection-control-basics"
+      ],
+      "knowledge": "En nukleinsyretest som PCR viser at et definert genetisk mål er påvist over metodens deteksjonsgrense i den undersøkte prøven. Signalet kan i enkelte sammenhenger vedvare når levedyktig organisme ikke lenger kan dokumenteres, og testen må tolkes sammen med prøvetype og biologisk kontekst. Positiv nukleinsyrepåvisning er derfor ikke automatisk bevis for aktiv sykdom eller individuell behandlingsindikasjon.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hmi-q05",
+      "question": "Hva betyr in-vitro følsomhetstesting?",
+      "options": [
+        "Et garantert klinisk utfall",
+        "Et standardisert laboratoriemål som må holdes atskilt fra garantert klinisk effekt",
+        "At alle antibiotika virker likt",
+        "En individuell behandlingsordre"
+      ],
+      "answer": "Et standardisert laboratoriemål som må holdes atskilt fra garantert klinisk effekt",
+      "answerIndex": 1,
+      "question_type": "analysis",
+      "difficulty": "hard",
+      "emne_id": "em_helse_mikrobiologi_infeksjon",
+      "claim_id": "hmi-c22",
+      "source": [
+        "hmi04-who-laboratory-diagnostic-testing-2023",
+        "hmi06-who-glass",
+        "hmi08-fhi-antimicrobial-resistance"
+      ],
+      "knowledge": "Antimikrobiell følsomhetstesting undersøker et isolats in-vitro respons mot definerte konsentrasjoner eller soner og fortolker resultatet etter standardiserte brytepunkter og metoder. Klassifikasjonen støtter mikrobiologisk forståelse og overvåking, men klinisk effekt påvirkes også av eksponering i vev, vertsfaktorer, infeksjonssted og andre forhold. Et laboratorieresultat er derfor ikke en garanti for behandlingsutfall.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hmi-q06",
+      "question": "Hva skiller best desinfeksjon fra sterilisasjon?",
+      "options": [
+        "Ingen forskjell",
+        "Sterilisering har et strengere mål om eliminering av levedyktige mikroorganismer",
+        "Desinfeksjon betyr bare rengjøring med vann",
+        "Sterilisering gjelder bare virus"
+      ],
+      "answer": "Sterilisering har et strengere mål om eliminering av levedyktige mikroorganismer",
+      "answerIndex": 1,
+      "question_type": "analysis",
+      "difficulty": "hard",
+      "emne_id": "em_helse_mikrobiologi_infeksjon",
+      "claim_id": "hmi-c27",
+      "source": [
+        "hmi03-who-laboratory-biosafety-manual",
+        "hmi05-who-ipc-core-components",
+        "hmi01-fhi-medical-microbiology"
+      ],
+      "knowledge": "Rengjøring fjerner synlig smuss og organisk materiale og er ofte nødvendig før videre dekontaminering. Desinfeksjon bruker fysiske eller kjemiske prosesser for å inaktivere et definert spekter av mikroorganismer under angitte betingelser, mens sterilisasjon har et strengere mål om å eliminere levedyktige mikroorganismer, inkludert særlig resistente former. Begrepene beskriver derfor ulike validerte prosessmål.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hmi-q07",
+      "question": "Hva kan svært like genomsekvenser ikke alene bevise?",
+      "options": [
+        "Genetisk relasjon under analysen",
+        "At isolater kan inngå i samme klyngehypotese",
+        "Direkte smitte og retning mellom bestemte personer",
+        "At videre epidemiologisk analyse kan være nyttig"
+      ],
+      "answer": "Direkte smitte og retning mellom bestemte personer",
+      "answerIndex": 2,
+      "question_type": "analysis",
+      "difficulty": "hard",
+      "emne_id": "em_helse_mikrobiologi_infeksjon",
+      "claim_id": "hmi-c31",
+      "source": [
+        "hmi12-cdc-hiv-cluster-sequence-limit",
+        "hmi10-ecdc-wgs-surveillance",
+        "hmi11-ecdc-cre-reporting-2026"
+      ],
+      "knowledge": "To isolater med svært like genomsekvenser kan være forenlige med en felles transmisjonskjede eller kilde, men sekvenslikhet alene kan ikke fastslå at én bestemt person direkte smittet en annen eller hvilken retning en eventuell smitte gikk. Usamplede mellomledd og felles kilder er alternative forklaringer. Direkte transmisjon krever derfor epidemiologisk og tidsmessig evidens i tillegg til genomikk.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hmi-q08",
+      "question": "Hvordan skal en nasjonal resistensandel forstås?",
+      "options": [
+        "Som et aggregert populasjonsmål",
+        "Som antibiotikavalg for én person",
+        "Som sikker individuell prognose",
+        "Som bevis på behandlingssvikt hos alle"
+      ],
+      "answer": "Som et aggregert populasjonsmål",
+      "answerIndex": 0,
+      "question_type": "analysis",
+      "difficulty": "hard",
+      "emne_id": "em_helse_mikrobiologi_infeksjon",
+      "claim_id": "hmi-c24",
+      "source": [
+        "hmi09-fhi-norm",
+        "hmi06-who-glass",
+        "hmi07-who-amr-report-2025"
+      ],
+      "knowledge": "Overvåkingssystemer som NORM og WHO GLASS sammenstiller resistensresultater for definerte mikrober, prøvetyper, tidsperioder og populasjoner. Resultatene kan vise nivåer, trender og geografiske forskjeller, men påvirkes av prøvetakingspraksis og hvilke isolater som inngår. En aggregert resistensandel er et populasjonsmål og kan ikke alene omsettes til antibiotikavalg for en bestemt person.",
+      "safety_mode": "general_non_individualizing"
+    }
+  ]
+}

@@ -1,0 +1,162 @@
+{
+  "schema_version": "2.0",
+  "status": "canonical",
+  "owner": "history_go_content_factory",
+  "last_verified": "2026-08-23",
+  "purpose": "Make History GO place production cheaper and faster by reusing verified research, claims and canonical entities across places without reducing content scope, editorial richness, factuality or any existing place-production quality gate.",
+  "non_negotiable": {
+    "full_place_checklist_required": true,
+    "full_relevant_content_required": true,
+    "quality_must_be_maximized": true,
+    "no_shortcuts": true,
+    "no_reduced_scope_for_cost": true,
+    "no_content_tiers": true,
+    "no_cost_quota_can_override_quality": true,
+    "no_generic_filler": true,
+    "missing_evidence_requires_more_research_not_less_content": true,
+    "research_reuse_may_reduce_duplicate_work_only": true
+  },
+  "core_principle": "Research can be shared; quality approval cannot. Every place must still be produced as a rich, place-specific History GO experience under the complete canonical place checklist and all subsystem contracts.",
+  "research_model": {
+    "research_unit": "cluster_or_source_family_when_useful",
+    "approval_unit": "single_place",
+    "rule": "Group research only when sources, historical episodes, people, institutions, natural systems or other evidence genuinely overlap. Never group places merely to save cost if doing so weakens place-specific understanding.",
+    "sequence": [
+      "search existing canonical research and entities",
+      "assemble shared source/evidence pack where genuine overlap exists",
+      "build or reuse explicit claims with place/entity scope",
+      "identify per-place evidence gaps",
+      "perform additional place-specific research until the complete checklist can be fulfilled at the highest supportable quality",
+      "materialize structured candidates",
+      "review and approve each place independently through the full checklist"
+    ]
+  },
+  "claim_bank": {
+    "principle": "A fact is researched once when the evidence is already sufficient, then reused through explicit claim references instead of rediscovered for every surface or place.",
+    "required_fields": [
+      "claim_id",
+      "claim_text_or_structured_fact",
+      "source_id",
+      "locator",
+      "evidence_scope",
+      "applicable_place_ids_or_entity_ids",
+      "time_scope",
+      "freshness_class",
+      "review_status",
+      "inference_limit"
+    ],
+    "scope_rule": "Area-level or shared evidence may only be reused for a place when the claim explicitly supports that place. Shared context is not permission to restamp a general claim as a place-specific fact.",
+    "dedupe_rule": "Before researching or creating a claim, search existing place production packages, People claims, Stories, relations, routes, Fagverk evidence, quiz production contexts and other canonical claim stores for equivalent evidence.",
+    "richness_rule": "Claim reuse is a research optimization, not a text reuse strategy. The same claim may support different place-specific narratives, observations, quizzes or relations, but each final surface must be written for the actual place."
+  },
+  "source_pack": {
+    "required_fields": [
+      "cluster_or_family_id",
+      "scope_description",
+      "place_ids_considered",
+      "source_registry",
+      "claims",
+      "entity_relations",
+      "conflicts_and_uncertainties",
+      "held_back_claims",
+      "per_place_research_gaps",
+      "freshness_notes"
+    ],
+    "rule": "The source pack is an evidence library. It does not define how much content a place gets and does not replace place-specific research where the complete checklist identifies a gap."
+  },
+  "freshness_classes": {
+    "historical_stable": "Stable historical claim. Reuse is allowed without rediscovery unless a conflict, correction or stronger source appears.",
+    "institutional_periodic": "Institutional function, ownership, operator or similar fact that can change. Reverify when the place is materially revised or the owning contract requires it.",
+    "current_volatile": "Current business, opening status, event, news, access, hours or other time-sensitive fact. Fresh verification is required under the owning subsystem contract.",
+    "source_volatile": "The fact may be stable but the source itself is unstable. Preserve provenance and maintain/replace the source as needed."
+  },
+  "deterministic_first": {
+    "principle": "Do not spend model reasoning on work that code or existing canonical data can do exactly.",
+    "tasks": [
+      "search and resolve existing canonical IDs",
+      "resolve manifests and source files",
+      "find existing People, Objects, Brands, Stories, routes and relations",
+      "reuse source IDs and reviewed locators",
+      "deduplicate equivalent claims/entities",
+      "build generated indexes and registries",
+      "validate JSON, schemas and references",
+      "run source freshness and integrity audits",
+      "run subsystem tests and browser verification",
+      "detect exact and near-duplicate place-authored text across batch outputs"
+    ],
+    "quality_rule": "Deterministic work may remove repetitive labor only; it may not generate unsupported editorial conclusions or bypass a manual/editorial gate."
+  },
+  "model_use": {
+    "principle": "Use strong reasoning whenever it materially improves research, source criticism, synthesis, pedagogy or editorial quality. The goal is not to minimize model use at the expense of quality; the goal is to stop paying repeatedly for the same context and deterministic work.",
+    "batch_context_rule": "When multiple places genuinely share reviewed source context, provide that context once and request structured per-place candidates in the same reasoning pass where useful.",
+    "per_place_followup_rule": "If any place needs additional research or deeper synthesis after the shared pass, run the additional work. Cost is never a reason to stop before the full checklist and quality bar are met.",
+    "candidate_only": "Model output is never publishable merely because it is structured, fluent or passes schema validation. It must pass the complete per-place editorial and subsystem gates.",
+    "no_numeric_cap": true
+  },
+  "anti_generic_quality_gate": {
+    "blocking": true,
+    "principle": "Shared research must produce richer local content, not templated local content.",
+    "tests": [
+      {
+        "id": "name_swap_test",
+        "rule": "If a place-authored paragraph remains substantially correct after replacing the place name with another same-category place, it is presumed generic and must be rewritten or removed."
+      },
+      {
+        "id": "specific_evidence_anchor",
+        "rule": "Every substantive visible section must be grounded in place-specific evidence such as a documented event, person, object, physical feature, use, date/period, relation, production, local language feature, natural feature or other distinguishing fact."
+      },
+      {
+        "id": "cross_place_duplicate_check",
+        "rule": "Exact or near-duplicate place-authored prose across places is a blocker when it differs mainly by names or superficial substitutions. Shared canonical UI copy is exempt."
+      },
+      {
+        "id": "source_to_text_traceability",
+        "rule": "Distinctive factual statements must trace to reviewed claims/source locators or explicit canonical entity relations."
+      },
+      {
+        "id": "local_experience_test",
+        "rule": "Manual review must be able to state what the player can learn, notice, compare, understand or do at this specific place that is not supplied by generic area/category prose."
+      },
+      {
+        "id": "fullness_test",
+        "rule": "The place must not be declared complete while relevant, source-supported People, Objects, Brands, Stories, Quiz/Knowledge, language, history, before/after, routes, observations or other checklist surfaces remain materially underproduced."
+      }
+    ]
+  },
+  "full_content_rule": {
+    "definition": "Full content means all relevant checklist surfaces are actively researched and produced to the highest quality the evidence can support. A surface is N/A only because the subsystem is genuinely irrelevant or the evidence does not support it after appropriate research, never because the place was assigned a cheaper production class.",
+    "required_behavior": [
+      "research all relevant checklist surfaces",
+      "seek additional evidence when shared sources are insufficient",
+      "produce rich place-specific descriptions and history",
+      "produce all relevant canonical entity relationships",
+      "produce Stories when a real narrative episode exists",
+      "produce Quiz/Knowledge when the place supports meaningful learning",
+      "produce language/local-expression content when supported by the language contract",
+      "produce before/after, observations, routes and other experiential content when evidence and assets support them",
+      "perform manual visual and editorial QA after technical gates"
+    ]
+  },
+  "economy_metrics": {
+    "purpose": "Measure avoided duplicate work without turning efficiency into a product target.",
+    "track": [
+      "places_completed",
+      "sources_reused",
+      "new_sources_added",
+      "claims_reused",
+      "new_claims_added",
+      "shared_source_packs_used",
+      "deterministic_tasks_avoiding_model_calls",
+      "model_calls_reusing_shared_context",
+      "place_specific_followup_research_calls",
+      "generic_candidates_rejected",
+      "manual_review_reopens"
+    ],
+    "anti_metric": "No raw count, reuse ratio, token budget, model-call count or cost target may be used as evidence that a place is complete or as justification for reducing content."
+  },
+  "rollout": {
+    "pilot_rule": "Pilot the smarter research method on one coherent Oslo cluster while every place still follows the complete existing checklist.",
+    "comparison": "Compare against recent one-place production for editorial richness, place specificity, source traceability, checklist completeness, manual quality and total duplicate research/model context.",
+    "scale_gate": "Scale only if duplicate work falls without any reduction in content richness, checklist completeness, factuality, source traceability or manual quality. Any quality regression blocks scaling until the method is fixed."
+  }
+}

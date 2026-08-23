@@ -1,0 +1,628 @@
+{
+  "schema_version": "1.0",
+  "content_factory_contract": "data/places/regler/content_factory_v1.json",
+  "cluster_or_family_id": "cf_pilot_01_oslo_sentrum_ost",
+  "scope_description": "Shared evidence pack for Torggata → Youngstorget → Storgata / Brugata-Storgata. Research may be reused only where each claim's explicit place/entity scope permits it. Youngstorget is the active production target; Torggata is a reference/source anchor and must not be re-produced in this pilot.",
+  "created_at": "2026-08-23",
+  "baseline_main": "902a01c339fc3af75ac9c1d3053d1a06ca1c5136",
+  "place_ids_considered": [
+    "torggata",
+    "youngstorget",
+    "storgata",
+    "brugata_storgata_rusmiljo"
+  ],
+  "non_place_cluster_entities_considered": [
+    "street:brugata"
+  ],
+  "source_registry": [
+    {
+      "source_id": "cf01_s01_young_oslo_kommune",
+      "title": "Oslo kommune – Youngstorget",
+      "url": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/youngstorget/",
+      "source_type": "official",
+      "verified_at": "2026-08-23",
+      "locator": "Ingress; Hva finnes på torget?; Kunst på Youngstorget; Fotoutstilling; Hvor?; Videreutviklingen av Youngstorget; Gjennomførte oppgraderinger; Under planlegging",
+      "evidence_scope": "youngstorget_place_specific_and_current_municipal_status",
+      "reuse_origin": "new_for_pilot_01",
+      "limitations": "Current use, facilities, project status and plans are time-sensitive. Planned measures must remain qualified and be reverified under the owning subsystem contract. The page's wording about anniversary context for the 1997 peace monument is preserved as source wording and not independently inferred."
+    },
+    {
+      "source_id": "cf01_s02_young_oslo_byleksikon",
+      "title": "Oslo byleksikon – Youngstorget",
+      "url": "https://oslobyleksikon.no/side/Youngstorget",
+      "source_type": "institutional",
+      "verified_at": "2026-08-23",
+      "locator": "Ingress; market-history paragraphs; Youngstorgets basar; arbeiderbevegelsen; krigsårene; Lilletinget; 1990-tallsopprustningen; monumentomtaler",
+      "evidence_scope": "youngstorget_identity_chronology_physical_history_and_relations",
+      "reuse_origin": "new_for_pilot_01",
+      "limitations": "Secondary institutional source. Current tenants and present-day operating status must be checked separately. Building-address history must not be restamped as square history without explicit relation scope."
+    },
+    {
+      "source_id": "cf01_s03_young_arbark_det_rode_torg",
+      "title": "Arbeiderbevegelsens arkiv og bibliotek – Lill-Ann Jensen: Det røde torg",
+      "url": "https://www.arbark.no/eldok/Arbeiderhistorie1996_9.pdf",
+      "source_type": "archive",
+      "verified_at": "2026-08-23",
+      "locator": "Article sections on Youngsløkka/anlegg/navn/marked; samlingsplass; 1890/1898 processions; 1920s–1930s mass meetings; 1956 May Day; Pioneren; 1996 reworking",
+      "evidence_scope": "youngstorget_historical_place_use_labour_movement_and_physical_change",
+      "reuse_origin": "new_for_pilot_01",
+      "limitations": "Historical article published in 1996. Strong 'first' claims remain subject to the description contract's independent-source rule before unqualified publication. Neighbor-building material is relation evidence, not automatic square-owned content."
+    },
+    {
+      "source_id": "cf01_s04_young_arbark_image_series",
+      "title": "Arbeiderbevegelsens arkiv og bibliotek – Youngstorget image series",
+      "url": "https://www.arbark.no/Bildeserier/Youngstorget/Youngstorget.htm",
+      "source_type": "archive",
+      "verified_at": "2026-08-23",
+      "locator": "Captions for market, Folketeaterbygningen, 1950s torghandel, 1 May 1956, transport and 1996 fountain copy",
+      "evidence_scope": "youngstorget_historical_image_context_and_captioned_events",
+      "reuse_origin": "new_for_pilot_01",
+      "limitations": "Image captions are usable as research evidence; image publication rights/provenance must be reviewed separately before assets are materialized in History GO. Same institution as S03, so it is not an independent second source for strong claims."
+    },
+    {
+      "source_id": "cf01_s05_arbark_8timersdagen",
+      "title": "Arbeiderbevegelsens arkiv og bibliotek – Åttetimersdagen del 3",
+      "url": "https://www.arbark.no/Utstilling/8timersdagen/8timersdagen_kap03.htm",
+      "source_type": "archive",
+      "verified_at": "2026-08-23",
+      "locator": "Section on 1 May and the eight-hour working day, 1890",
+      "evidence_scope": "youngstorget_1_may_1890_event",
+      "reuse_origin": "new_for_pilot_01",
+      "limitations": "Same institution as S03. Supports event details but does not satisfy two-independent-source requirement for an unqualified strong 'first' claim."
+    },
+    {
+      "source_id": "cf01_s06_lo_1mai_2026",
+      "title": "Landsorganisasjonen i Norge – 1. mai 2026 / Youngstorget",
+      "url": "https://www.lo.no/nyhetsrommet/1.-mai-2026",
+      "source_type": "primary",
+      "verified_at": "2026-08-23",
+      "locator": "Oslo/Youngstorget programme and main-speaker information",
+      "evidence_scope": "youngstorget_current_2026_may_day_use",
+      "reuse_origin": "new_for_pilot_01",
+      "limitations": "Event-specific and current-volatile. It verifies 2026 use, not a permanent future schedule or all historical May Day claims."
+    },
+    {
+      "source_id": "cf01_s07_oslo_museum_8march_2026",
+      "title": "Oslo Museum – Kvinnedagen 2026",
+      "url": "https://www.oslomuseum.no/kvinnedagen/",
+      "source_type": "institutional",
+      "verified_at": "2026-08-23",
+      "locator": "Official marking in Oslo / Youngstorget programme information",
+      "evidence_scope": "youngstorget_current_2026_march_8_use",
+      "reuse_origin": "new_for_pilot_01",
+      "limitations": "Event-specific and current-volatile. It verifies one 2026 event, not a timeless annual pattern."
+    },
+    {
+      "source_id": "cf01_s08_oslo_byliv_young_storgata",
+      "title": "Oslo kommune – byliv analysis/strategy for Youngstorget–Storgata",
+      "url": "https://www.oslo.kommune.no/get-file/1122649/9f0ced5a3eeeb6b3b4fbe0b556dbb6baa139715984ce250b5fbe2a8a7833c876/",
+      "source_type": "official",
+      "verified_at": "2026-08-23",
+      "locator": "Youngstorget/Storgata area: description, Bylivsundersøkelsen and analysis paragraphs",
+      "evidence_scope": "area_context_youngstorget_storgata_torggata_brugata_connections",
+      "reuse_origin": "new_for_pilot_01",
+      "limitations": "Area-level planning/analysis evidence. It may support explicitly area-scoped context but may not be restamped as a place-specific fact for every place in the area. Historical report context must not be phrased as unchanged 2026 conditions without fresh support."
+    },
+    {
+      "source_id": "cf01_s09_toi_torggata_brugata_1581_2017",
+      "title": "Transportøkonomisk institutt – Sykling i gågater: Torggata og Brugata",
+      "url": "https://www.toi.no/publikasjoner/sykling-i-gagater-trafikkomfang-samhandling-og-konflikter-mellom-syklister-og-fotgjengere-i-torggata-og-brugata-i-oslo",
+      "source_type": "scholarly",
+      "verified_at": "2026-08-11",
+      "locator": "Publication summary/results for observed sections in Torggata and Brugata",
+      "evidence_scope": "torggata_and_street_brugata_historical_empirical_mobility_only",
+      "reuse_origin": "reused_from_reports/place-production/torggata-source-base-v1.md:S6",
+      "limitations": "Historic empirical observations. Does not support Youngstorget, Storgata or the Brugata/Storgata open-drug-environment Place merely because they are geographically near or share a street name."
+    },
+    {
+      "source_id": "cf01_s10_storgata_byleksikon",
+      "title": "Oslo byleksikon – Storgata",
+      "url": "https://oslobyleksikon.no/side/Storgata",
+      "source_type": "institutional",
+      "verified_at": "2026-08-23",
+      "locator": "Ingress and historical street-development paragraphs",
+      "evidence_scope": "storgata_identity_and_historical_street_development",
+      "reuse_origin": "new_cluster_seed_for_downstream_place",
+      "limitations": "Current commercial tenants are volatile. Detailed address history belongs to the relevant building/address unless it is explicitly used as street-level evidence."
+    },
+    {
+      "source_id": "cf01_s11_brugata_byleksikon",
+      "title": "Oslo byleksikon – Brugata",
+      "url": "https://oslobyleksikon.no/side/Brugata",
+      "source_type": "institutional",
+      "verified_at": "2026-08-23",
+      "locator": "Ingress and street-history paragraphs",
+      "evidence_scope": "street_brugata_identity_and_historical_development",
+      "reuse_origin": "new_cluster_seed_without_creating_a_new_place",
+      "limitations": "Pilot audit has not established a separate canonical bare `brugata` Place. This source may remain scoped to the non-Place street entity until canonical ownership is resolved. It must not be attached to `brugata_storgata_rusmiljo` merely by name overlap."
+    },
+    {
+      "source_id": "cf01_s12_rusmiljo_oslo_kommune",
+      "title": "Oslo kommune – mapping of the open drug environment at Brugata/Storgata",
+      "url": "https://magasin.oslo.kommune.no/byplan/trygghet-og-kriminalitetsforebygging-m%C3%A5-v%C3%A6re-f%C3%B8rende-i-byutviklingen",
+      "source_type": "official",
+      "verified_at": "2026-07-22",
+      "locator": "Sections describing the open drug environment around Storgata/Brugata; provenance already recorded in canonical Place externalLinks",
+      "evidence_scope": "brugata_storgata_rusmiljo_social_territory",
+      "reuse_origin": "reused_from_canonical_place_externalLinks",
+      "limitations": "Sensitive and potentially changing social-geographic evidence. Must be reverified when that Place is materially revised. Does not characterize all of Storgata, all of Brugata or Youngstorget."
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "cf01_young_identity_001",
+      "claim_text_or_structured_fact": "Youngstorget is a named public square in central Oslo, bounded by Pløens gate, Eva Kolstads gate, Møllergata, Youngs gate and the Folketeater quarter; Torggata crosses the square.",
+      "source_id": "cf01_s02_young_oslo_byleksikon",
+      "corroborating_source_ids": ["cf01_s01_young_oslo_kommune"],
+      "locator": "S02 ingress; S01 Hvor?",
+      "evidence_scope": "place_identity_and_physical_relation",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["youngstorget", "torggata"], "entity_ids": []},
+      "time_scope": "stable_named_place_geometry_context",
+      "freshness_class": "historical_stable",
+      "review_status": "verified",
+      "inference_limit": "The boundary/crossing relation does not transfer Torggata's separate street history or businesses to Youngstorget."
+    },
+    {
+      "claim_id": "cf01_young_history_001",
+      "claim_text_or_structured_fact": "The square was laid out/established in 1846.",
+      "source_id": "cf01_s01_young_oslo_kommune",
+      "corroborating_source_ids": ["cf01_s02_young_oslo_byleksikon", "cf01_s03_young_arbark_det_rode_torg"],
+      "locator": "S01 ingress; S02 ingress; S03 opening history",
+      "evidence_scope": "youngstorget_establishment",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["youngstorget"], "entity_ids": []},
+      "time_scope": "1846",
+      "freshness_class": "historical_stable",
+      "review_status": "verified",
+      "inference_limit": "Do not conflate the 1846 physical establishment with the 1852 official naming as Nytorvet."
+    },
+    {
+      "claim_id": "cf01_young_name_001",
+      "claim_text_or_structured_fact": "The official name from 1852 through 1951 was Nytorvet.",
+      "source_id": "cf01_s02_young_oslo_byleksikon",
+      "corroborating_source_ids": ["cf01_s03_young_arbark_det_rode_torg"],
+      "locator": "S02 ingress; S03 opening history",
+      "evidence_scope": "youngstorget_historical_name",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["youngstorget"], "entity_ids": []},
+      "time_scope": "1852-1951",
+      "freshness_class": "historical_stable",
+      "review_status": "verified",
+      "inference_limit": "1852 is a naming milestone, not evidence that the square itself was first established that year."
+    },
+    {
+      "claim_id": "cf01_young_name_002",
+      "claim_text_or_structured_fact": "Youngstorget became the official name in 1951, after merchant Jørgen Young, who had owned the area where the square was laid out.",
+      "source_id": "cf01_s02_young_oslo_byleksikon",
+      "locator": "Ingress",
+      "evidence_scope": "youngstorget_name_and_person_relation",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["youngstorget"], "entity_ids": ["jorgen_young"]},
+      "time_scope": "1951_and_historical_background",
+      "freshness_class": "historical_stable",
+      "review_status": "verified",
+      "inference_limit": "The naming relation supports Jørgen Young's place connection; other biographical facts require People-owned evidence."
+    },
+    {
+      "claim_id": "cf01_young_market_001",
+      "claim_text_or_structured_fact": "Youngstorget was intended as a market for agricultural products and for a long period was used especially as a cattle market; market activity became livelier after market traffic was moved there from Stortorvet in the 1850s.",
+      "source_id": "cf01_s02_young_oslo_byleksikon",
+      "corroborating_source_ids": ["cf01_s03_young_arbark_det_rode_torg"],
+      "locator": "S02 market-history paragraphs; S03 market-history section",
+      "evidence_scope": "youngstorget_historical_use",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["youngstorget"], "entity_ids": []},
+      "time_scope": "mid_19th_century",
+      "freshness_class": "historical_stable",
+      "review_status": "verified",
+      "inference_limit": "Do not describe the historical cattle-market function as the square's current primary use."
+    },
+    {
+      "claim_id": "cf01_young_basar_001",
+      "claim_text_or_structured_fact": "The Youngstorget bazaar structure dates from the 1870s and forms a persistent physical element of the square's market history.",
+      "source_id": "cf01_s01_young_oslo_kommune",
+      "corroborating_source_ids": ["cf01_s02_young_oslo_byleksikon"],
+      "locator": "S01 Basarbygget; S02 Youngstorgets basar",
+      "evidence_scope": "physical_feature_and_market_history",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["youngstorget"], "entity_ids": ["candidate_object:youngstorgets_basar"]},
+      "time_scope": "1870s_to_present_structure",
+      "freshness_class": "institutional_periodic",
+      "review_status": "verified_with_scope",
+      "inference_limit": "Object/building ownership must be resolved before materializing it as a Youngstorget Object or separate Place. Current tenants are not part of this claim."
+    },
+    {
+      "claim_id": "cf01_young_object_001",
+      "claim_text_or_structured_fact": "The bronze full-figure sculpture Pioneren by Per Palle Storm was unveiled on Youngstorget in 1958.",
+      "source_id": "cf01_s01_young_oslo_kommune",
+      "corroborating_source_ids": ["cf01_s03_young_arbark_det_rode_torg"],
+      "locator": "S01 Kunst på Youngstorget; S03 Pioneren section",
+      "evidence_scope": "place_specific_art_object",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["youngstorget"], "entity_ids": ["candidate_object:pioneren", "per_palle_storm"]},
+      "time_scope": "1958_to_present_location_subject_to_object_recheck",
+      "freshness_class": "institutional_periodic",
+      "review_status": "verified_with_scope",
+      "inference_limit": "Candidate for the Objects/kunst system; do not duplicate an existing canonical object/Place if one is found in phase 8."
+    },
+    {
+      "claim_id": "cf01_young_object_002",
+      "claim_text_or_structured_fact": "A granite peace monument by sculptor Hagbart Solløs stands on Youngstorget and was erected in 1997 through LO and Nei til atomvåpen.",
+      "source_id": "cf01_s01_young_oslo_kommune",
+      "locator": "Kunst på Youngstorget",
+      "evidence_scope": "place_specific_art_memorial",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["youngstorget"], "entity_ids": ["candidate_object:fredsmonumentet", "hagbart_sollos"]},
+      "time_scope": "1997_to_present_location_subject_to_object_recheck",
+      "freshness_class": "institutional_periodic",
+      "review_status": "verified_with_scope",
+      "inference_limit": "Use the municipality's explicit facts only; do not infer additional commemoration chronology without a second source. Resolve canonical Object ownership before materialization."
+    },
+    {
+      "claim_id": "cf01_young_exhibition_001",
+      "claim_text_or_structured_fact": "Youngstorget has a permanent outdoor historical photo exhibition of 24 photographs, established in cooperation between Oslo municipality, LO and Arbeiderbevegelsens arkiv og bibliotek.",
+      "source_id": "cf01_s01_young_oslo_kommune",
+      "locator": "Fotoutstilling",
+      "evidence_scope": "current_place_specific_experience",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["youngstorget"], "entity_ids": ["organization:lo", "organization:arbark"]},
+      "time_scope": "current_as_verified_2026-08-23",
+      "freshness_class": "institutional_periodic",
+      "review_status": "verified",
+      "inference_limit": "The claim verifies the exhibition and partner organizations, not republication rights for its individual photographs."
+    },
+    {
+      "claim_id": "cf01_young_current_use_001",
+      "claim_text_or_structured_fact": "Oslo municipality currently describes Youngstorget as used for demonstrations, commemorations/markings, market trade, outdoor serving, cultural events and other arrangements.",
+      "source_id": "cf01_s01_young_oslo_kommune",
+      "locator": "Ingress",
+      "evidence_scope": "current_place_use",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["youngstorget"], "entity_ids": []},
+      "time_scope": "current_as_verified_2026-08-23",
+      "freshness_class": "institutional_periodic",
+      "review_status": "verified",
+      "inference_limit": "This is a current municipal description, not evidence that every use occurs continuously or with equal frequency."
+    },
+    {
+      "claim_id": "cf01_young_development_001",
+      "claim_text_or_structured_fact": "From 2023 Oslo municipality has worked on new rental guidelines and measures intended to improve the balance between everyday square life and large events on Youngstorget.",
+      "source_id": "cf01_s01_young_oslo_kommune",
+      "locator": "Videreutviklingen av Youngstorget",
+      "evidence_scope": "current_municipal_management_and_design",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["youngstorget"], "entity_ids": []},
+      "time_scope": "2023_to_current_as_verified_2026-08-23",
+      "freshness_class": "institutional_periodic",
+      "review_status": "verified",
+      "inference_limit": "Do not attribute social outcomes to the guidelines unless a source evaluates those outcomes."
+    },
+    {
+      "claim_id": "cf01_young_development_002",
+      "claim_text_or_structured_fact": "The municipality lists completed Youngstorget measures including new seating, rehabilitated planters and planting, information displays, enhanced cleaning/safety measures, a permanent historical photo exhibition, new winter lighting and illuminated facade signs.",
+      "source_id": "cf01_s01_young_oslo_kommune",
+      "locator": "Gjennomførte oppgraderinger",
+      "evidence_scope": "current_completed_municipal_measures",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["youngstorget"], "entity_ids": []},
+      "time_scope": "completed_before_2026-08-23",
+      "freshness_class": "institutional_periodic",
+      "review_status": "verified",
+      "inference_limit": "Do not claim these measures caused improved safety, identity or usage unless an evaluation source supports that conclusion."
+    },
+    {
+      "claim_id": "cf01_young_development_003",
+      "claim_text_or_structured_fact": "As of 2026-08-23, Oslo municipality lists fountain-light repair, stair lighting/signage, underground waste handling, outdoor-serving design guidelines and surface rehabilitation as planned measures for Youngstorget.",
+      "source_id": "cf01_s01_young_oslo_kommune",
+      "locator": "Under planlegging",
+      "evidence_scope": "future_plans",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["youngstorget"], "entity_ids": []},
+      "time_scope": "planned_as_of_2026-08-23",
+      "freshness_class": "current_volatile",
+      "review_status": "verified_current_plan",
+      "inference_limit": "Must remain explicitly qualified as planned; reverify before later publication because schedule/scope may change."
+    },
+    {
+      "claim_id": "cf01_young_event_1890_001",
+      "claim_text_or_structured_fact": "On 1 May 1890 a labour demonstration procession went from Youngstorget to Tullinløkka; Arbark's account states that roughly 4,000 workers took part.",
+      "source_id": "cf01_s05_arbark_8timersdagen",
+      "corroborating_source_ids": ["cf01_s03_young_arbark_det_rode_torg"],
+      "locator": "S05 1 May 1890 section; S03 Youngstorget as assembly place",
+      "evidence_scope": "documented_event_on_and_from_youngstorget",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["youngstorget"], "entity_ids": []},
+      "time_scope": "1890-05-01",
+      "freshness_class": "historical_stable",
+      "review_status": "verified_without_strong_superlative",
+      "inference_limit": "Do not publish the stronger formulation 'the first May Day demonstration procession in the capital' as an unqualified strong claim until an independent second source is registered."
+    },
+    {
+      "claim_id": "cf01_young_labour_001",
+      "claim_text_or_structured_fact": "Youngstorget developed into a recurring assembly and demonstration place for the labour movement, with major mass gatherings particularly documented in the 1920s and 1930s.",
+      "source_id": "cf01_s03_young_arbark_det_rode_torg",
+      "corroborating_source_ids": ["cf01_s02_young_oslo_byleksikon"],
+      "locator": "S03 sections on samlingsplass and 1920s–1930s gatherings; S02 arbeiderbevegelsen",
+      "evidence_scope": "historical_place_use_and_political_publicness",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["youngstorget"], "entity_ids": []},
+      "time_scope": "late_19th_to_20th_century",
+      "freshness_class": "historical_stable",
+      "review_status": "verified",
+      "inference_limit": "Do not reduce the square's identity to only labour politics; market, everyday and other public uses are separately documented."
+    },
+    {
+      "claim_id": "cf01_young_event_2026_001",
+      "claim_text_or_structured_fact": "LO's 1 May 2026 Oslo programme used Youngstorget for the main Oslo gathering and speech before the procession.",
+      "source_id": "cf01_s06_lo_1mai_2026",
+      "locator": "Oslo/Youngstorget programme",
+      "evidence_scope": "specific_current_event",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["youngstorget"], "entity_ids": ["organization:lo"]},
+      "time_scope": "2026-05-01",
+      "freshness_class": "current_volatile",
+      "review_status": "verified",
+      "inference_limit": "This verifies the 2026 event only; it does not prove future annual scheduling."
+    },
+    {
+      "claim_id": "cf01_young_event_2026_002",
+      "claim_text_or_structured_fact": "Oslo Museum's 2026 International Women's Day information directed participants to Youngstorget for the official Oslo programme beginning at 16:00 on 8 March 2026.",
+      "source_id": "cf01_s07_oslo_museum_8march_2026",
+      "locator": "Official marking in Oslo",
+      "evidence_scope": "specific_current_event",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["youngstorget"], "entity_ids": []},
+      "time_scope": "2026-03-08",
+      "freshness_class": "current_volatile",
+      "review_status": "verified",
+      "inference_limit": "This verifies the 2026 event only and should not be generalized into an undocumented continuous tradition."
+    },
+    {
+      "claim_id": "cf01_young_change_1996_001",
+      "claim_text_or_structured_fact": "Youngstorget underwent a major reworking in the mid-1990s; sources document a 1996 reopening/traffic change and installation of a newly cast copy of the historic fountain.",
+      "source_id": "cf01_s02_young_oslo_byleksikon",
+      "corroborating_source_ids": ["cf01_s03_young_arbark_det_rode_torg", "cf01_s04_young_arbark_image_series"],
+      "locator": "S02 1990s upgrade paragraph; S03 1996 ending section; S04 fountain/1996 captions",
+      "evidence_scope": "physical_before_after_change",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["youngstorget"], "entity_ids": ["candidate_object:fountain"]},
+      "time_scope": "1990s_with_1996_milestone",
+      "freshness_class": "historical_stable",
+      "review_status": "verified_with_scope",
+      "inference_limit": "Before/after asset pairing and exact traffic-design details require dedicated phase-7/19 source and rights review."
+    },
+    {
+      "claim_id": "cf01_cluster_context_001",
+      "claim_text_or_structured_fact": "Oslo municipality's city-life analysis treats Youngstorget/Storgata as one planning sub-area and describes Torggata, Møllergata and Storgata as important connecting streets within that area.",
+      "source_id": "cf01_s08_oslo_byliv_young_storgata",
+      "locator": "Youngstorget/Storgata area description and analysis",
+      "evidence_scope": "area_context_only",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["youngstorget", "torggata", "storgata"], "entity_ids": ["street:brugata"]},
+      "time_scope": "planning_analysis_context",
+      "freshness_class": "historical_stable",
+      "review_status": "verified_area_scope",
+      "inference_limit": "This shared planning context is not permission to copy specific facts, social histories or identities from one place to another."
+    },
+    {
+      "claim_id": "cf01_cluster_mobility_001",
+      "claim_text_or_structured_fact": "TØI empirically studied interactions between cyclists and pedestrians in specified sections of Torggata and Brugata.",
+      "source_id": "cf01_s09_toi_torggata_brugata_1581_2017",
+      "locator": "Publication summary/results",
+      "evidence_scope": "historical_empirical_street_sections",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["torggata"], "entity_ids": ["street:brugata"]},
+      "time_scope": "study_period_reported_2017",
+      "freshness_class": "historical_stable",
+      "review_status": "verified_reused",
+      "inference_limit": "Explicitly NOT scoped to `youngstorget`, `storgata` or `brugata_storgata_rusmiljo`. Geographic proximity and the word Brugata do not transfer this mobility evidence to those Places."
+    },
+    {
+      "claim_id": "cf01_storgata_identity_001",
+      "claim_text_or_structured_fact": "Storgata runs from Dronningens gate at Kirkeristen to Nybrua and is historically one of Oslo's old approach/traffic streets.",
+      "source_id": "cf01_s10_storgata_byleksikon",
+      "locator": "Ingress",
+      "evidence_scope": "storgata_identity",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["storgata"], "entity_ids": []},
+      "time_scope": "historical_stable_identity",
+      "freshness_class": "historical_stable",
+      "review_status": "verified_downstream_seed",
+      "inference_limit": "Does not apply to Youngstorget or the Brugata/Storgata social-territory Place."
+    },
+    {
+      "claim_id": "cf01_storgata_history_001",
+      "claim_text_or_structured_fact": "Storgata's present northern continuation to Nybrua was established as a continuous route when Nybrua was completed in 1827.",
+      "source_id": "cf01_s10_storgata_byleksikon",
+      "locator": "Historical street-development paragraph",
+      "evidence_scope": "storgata_historical_development",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["storgata"], "entity_ids": []},
+      "time_scope": "1827",
+      "freshness_class": "historical_stable",
+      "review_status": "verified_downstream_seed",
+      "inference_limit": "Keep separate from Brugata's own earlier route history."
+    },
+    {
+      "claim_id": "cf01_brugata_identity_001",
+      "claim_text_or_structured_fact": "Brugata runs from Storgata to Vaterlands bru; before the 1827 Nybrua change it formed part of Vaterlands Storgade together with a western part of today's Storgata.",
+      "source_id": "cf01_s11_brugata_byleksikon",
+      "locator": "Ingress",
+      "evidence_scope": "street_brugata_identity_history",
+      "applicable_place_ids_or_entity_ids": {"place_ids": [], "entity_ids": ["street:brugata"]},
+      "time_scope": "historical_to_present_street_identity",
+      "freshness_class": "historical_stable",
+      "review_status": "verified_entity_seed",
+      "inference_limit": "No separate canonical `brugata` Place is created by this source pack. Do not attach this whole-street history to `brugata_storgata_rusmiljo`."
+    },
+    {
+      "claim_id": "cf01_brugata_history_001",
+      "claim_text_or_structured_fact": "Brugata retains buildings rooted in 18th-century bondehandel, where agricultural traders could trade and stay outside the old city core.",
+      "source_id": "cf01_s11_brugata_byleksikon",
+      "locator": "Street-history paragraph",
+      "evidence_scope": "street_brugata_historical_commercial_use",
+      "applicable_place_ids_or_entity_ids": {"place_ids": [], "entity_ids": ["street:brugata"]},
+      "time_scope": "mid_18th_to_19th_century",
+      "freshness_class": "historical_stable",
+      "review_status": "verified_entity_seed",
+      "inference_limit": "This is whole-street history, not evidence about Youngstorget or the contemporary open drug environment."
+    },
+    {
+      "claim_id": "cf01_rusmiljo_scope_001",
+      "claim_text_or_structured_fact": "Oslo municipality has documented an open drug environment around the Brugata/Storgata intersection as a specific social territory; the canonical History GO Place is `brugata_storgata_rusmiljo`.",
+      "source_id": "cf01_s12_rusmiljo_oslo_kommune",
+      "locator": "Municipal mapping sections already recorded in the canonical Place externalLinks",
+      "evidence_scope": "sensitive_social_territory",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["brugata_storgata_rusmiljo"], "entity_ids": []},
+      "time_scope": "mapped_current_environment_subject_to_reverification",
+      "freshness_class": "institutional_periodic",
+      "review_status": "verified_reused_with_freshness_gate",
+      "inference_limit": "Must not be generalized to all people or businesses in Brugata/Storgata, all of Storgata, all of Brugata, or Youngstorget. Reverify before downstream full production."
+    }
+  ],
+  "entity_relations": [
+    {
+      "relation_id": "cf01_rel_young_jorgen_young",
+      "from": "youngstorget",
+      "to": "jorgen_young",
+      "relation_type": "name_and_land_history",
+      "claim_ids": ["cf01_young_name_002"],
+      "status": "verified_relation_seed",
+      "ownership_note": "Biography remains People-owned."
+    },
+    {
+      "relation_id": "cf01_rel_young_torggata",
+      "from": "youngstorget",
+      "to": "torggata",
+      "relation_type": "street_crosses_square",
+      "claim_ids": ["cf01_young_identity_001"],
+      "status": "verified",
+      "ownership_note": "The relation does not merge place identities."
+    },
+    {
+      "relation_id": "cf01_rel_young_pioneren",
+      "from": "youngstorget",
+      "to": "candidate_object:pioneren",
+      "relation_type": "located_art_object",
+      "claim_ids": ["cf01_young_object_001"],
+      "status": "candidate_pending_canonical_object_resolution",
+      "ownership_note": "Resolve Object/kunst ownership and existing IDs before materialization."
+    },
+    {
+      "relation_id": "cf01_rel_young_fredsmonument",
+      "from": "youngstorget",
+      "to": "candidate_object:fredsmonumentet",
+      "relation_type": "located_memorial",
+      "claim_ids": ["cf01_young_object_002"],
+      "status": "candidate_pending_canonical_object_resolution",
+      "ownership_note": "Resolve Object/kunst ownership and existing IDs before materialization."
+    },
+    {
+      "relation_id": "cf01_rel_young_folkets_hus",
+      "from": "youngstorget",
+      "to": "folkets_hus_oslo",
+      "relation_type": "adjacent_historical_organizational_relation",
+      "claim_ids": ["cf01_young_labour_001"],
+      "status": "relation_requires_claim_specific_materialization",
+      "ownership_note": "Folkets Hus remains its own canonical Place; its internal history is not Youngstorget content by proximity."
+    },
+    {
+      "relation_id": "cf01_rel_young_folketeateret",
+      "from": "youngstorget",
+      "to": "folketeateret",
+      "relation_type": "adjacent_building_relation",
+      "claim_ids": [],
+      "status": "boundary_relation_only",
+      "ownership_note": "Folketeateret remains its own canonical Place. Add narrative relation only when a source explicitly links a relevant episode to the square."
+    }
+  ],
+  "conflicts_and_uncertainties": [
+    {
+      "id": "cf01_conflict_young_1846_1852",
+      "issue": "Existing Youngstorget desc/popupDesc says the square was laid out as Nytorvet in 1852, conflating two different milestones.",
+      "resolved_facts": ["square laid out/established 1846", "official name Nytorvet 1852-1951", "Youngstorget official from 1951"],
+      "status": "resolved_at_claim_level_pending_description_metadata_fix"
+    },
+    {
+      "id": "cf01_uncertainty_young_year_field",
+      "issue": "Canonical place has year=1852, but repo policy does not define year universally as establishment year.",
+      "status": "hold_metadata_until_description_production_package_documents_primary_year_semantics"
+    },
+    {
+      "id": "cf01_uncertainty_bare_brugata_place",
+      "issue": "A separate canonical bare `brugata` Place was not established in Pilot 01 preflight.",
+      "status": "do_not_create_or_assume_place; keep evidence on entity street:brugata until canonical audit"
+    }
+  ],
+  "held_back_claims": [
+    {
+      "claim_id": "cf01_hold_young_first_mayday_1890",
+      "claim": "The first May Day demonstration procession in the capital departed Youngstorget in 1890.",
+      "reason": "Strong 'first' claim currently supported by multiple Arbark pages from the same institution. Description contract requires at least two independent sources for disputed/strong claims before unqualified publication.",
+      "next_research": "Find and inspect an independent archival, museum, scholarly or reputable historical source."
+    },
+    {
+      "claim_id": "cf01_hold_young_first_womens_procession_1898",
+      "claim": "The first women's demonstration procession departed Youngstorget in 1898.",
+      "reason": "Strong 'first' formulation located in Arbark material but not independently corroborated in this phase.",
+      "next_research": "Independent source required before publication as a strong claim."
+    },
+    {
+      "claim_id": "cf01_hold_young_first_main_mayday_1956",
+      "claim": "1956 was the first time the main May Day event was held on Youngstorget.",
+      "reason": "Arbark article and Arbark image series agree, but they are the same institution; independent corroboration is still required for the unqualified strong claim.",
+      "next_research": "Find independent newspaper/archive/LO or scholarly documentation."
+    },
+    {
+      "claim_id": "cf01_hold_brand_proximity",
+      "claim": "Current brands/venues mapped to Youngstorget belong to the square because they are nearby.",
+      "reason": "Rejected by own-place gate. Address/proximity is insufficient; each Brand needs explicit place relation and canonical ownership audit.",
+      "next_research": "Phase 8 Brand audit."
+    },
+    {
+      "claim_id": "cf01_hold_toi_to_rusmiljo",
+      "claim": "TØI's Brugata mobility findings describe the canonical `brugata_storgata_rusmiljo` Place.",
+      "reason": "Rejected scope transfer. TØI studied pedestrian/cyclist interactions in Brugata street sections; the rusmiljø Place is a distinct social-territory object.",
+      "next_research": "Use the rusmiljø's own official social-geographic sources."
+    }
+  ],
+  "per_place_research_gaps": {
+    "youngstorget": [
+      "Find independent corroboration before publishing strong 'first' claims for 1890, 1898 and 1956.",
+      "Resolve primary-year metadata semantics in the v4.2 description production package; fix the 1846/1852 conflation in visible text.",
+      "Research/resolve canonical Object IDs and ownership for Pioneren, Fredsmonumentet, fountain and bazaar before phase 8.",
+      "Perform full own-place People audit despite the existing >=22 mapping baseline; proximity to adjacent institutions is not enough.",
+      "Perform full own-place Brand audit for internasjonalen, mono, sentrum_scene and stratos; do not preserve by proximity.",
+      "Build/verify chronology and Story boundaries so narrative episodes are not duplicated as generic history.",
+      "Acquire before/after image pair(s) with inspectable provenance and publication rights; current historical image sources are research candidates, not automatically publishable assets.",
+      "Research local-language/Språkleksikon candidates such as Nytorvet/Youngstorget only under the language contract; no automatic N/A.",
+      "Reverify all current/future municipal project claims immediately before any news/current-status surface is approved.",
+      "Audit Lesespor items for direct Youngstorget relevance, accessibility and source quality.",
+      "Research any missing route/related-place relations only when narrative/historical linkage is explicit, not because locations are close."
+    ],
+    "torggata": [
+      "No active new full production in Pilot 01. Existing Torggata source base remains the reference anchor.",
+      "Only genuinely shared source/claim material is reused; no Youngstorget production may trigger Torggata re-authoring."
+    ],
+    "storgata": [
+      "Downstream production not started. Existing canonical record and verified geometry must be audited against current checklist before any new production.",
+      "Area-level Youngstorget/Storgata planning evidence is context only; build a Storgata-specific source pack extension when Storgata becomes active."
+    ],
+    "brugata_storgata_rusmiljo": [
+      "Downstream production not started. Sensitive current social-geographic claims require freshness review before material revision.",
+      "Keep the social-territory Place distinct from whole-street Brugata and Storgata history and from mobility research."
+    ],
+    "street:brugata": [
+      "Canonical bare Place ownership unresolved; do not create a new Place merely because the cluster name includes Brugata.",
+      "Historical street and TØI mobility evidence remains entity-scoped until the canonical audit resolves ownership."
+    ]
+  },
+  "freshness_notes": [
+    "Historical claims with stable dates may be reused unless conflicting evidence appears.",
+    "Oslo municipality Youngstorget use/management/upgrades are institutional_periodic; planned measures are current_volatile and must remain qualified.",
+    "LO and Oslo Museum 2026 event claims are event-specific and must not be generalized into future schedules.",
+    "The Brugata/Storgata open-drug-environment source is sensitive and institutional_periodic; reverify when that Place becomes active.",
+    "TØI 2017 mobility observations are historical empirical data, not current traffic counts."
+  ],
+  "reuse_measurement": {
+    "quality_is_not_a_cost_metric": true,
+    "sources_reused_from_existing_history_go_research": 2,
+    "new_external_sources_added_to_cluster_pack": 10,
+    "reused_source_ids": [
+      "cf01_s09_toi_torggata_brugata_1581_2017",
+      "cf01_s12_rusmiljo_oslo_kommune"
+    ],
+    "research_reuse_demonstrated_by": [
+      "Torggata source base contributed already-reviewed TØI provenance without a new discovery pass.",
+      "Canonical rusmiljø externalLinks contributed official provenance without restamping it onto another Place.",
+      "One Youngstorget source pass now feeds description/history/object/current-use/before-after/quiz/related research surfaces through explicit claims instead of repeating source discovery for each surface."
+    ],
+    "generic_or_scope_invalid_candidates_rejected": 5,
+    "note": "Counts describe avoided duplicate work only. They are not a completion, richness or quality score."
+  },
+  "phase_2_decision": {
+    "youngstorget_source_pack_status": "sufficient_to_begin_next_checklist_phases_but_not_sufficient_to_close_all_surfaces",
+    "next_phase": "3_coordinates_prior_work_gate",
+    "approval_unit": "youngstorget_only",
+    "blocking_rule": "Any later surface that reaches an evidence gap must trigger additional Youngstorget-specific research rather than reduced content."
+  }
+}

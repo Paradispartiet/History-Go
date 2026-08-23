@@ -1,0 +1,101 @@
+{
+  "place_id": "st_hanshaugen_park",
+  "status": "PRODUCTION_READY",
+  "reviewed_at": "2026-08-23",
+  "blockers": [],
+  "counts": {
+    "chronology": 12,
+    "stories": 3,
+    "reading_trails": 3,
+    "language_entries": 4,
+    "people": 3,
+    "objects": 3,
+    "related_places": 4,
+    "quiz_sets": 6,
+    "quiz_questions": 42
+  },
+  "checklist": [
+    {
+      "id": "place foundation",
+      "status": "PASS"
+    },
+    {
+      "id": "popup",
+      "status": "PASS"
+    },
+    {
+      "id": "stories",
+      "status": "PASS"
+    },
+    {
+      "id": "chronology",
+      "status": "PASS"
+    },
+    {
+      "id": "people",
+      "status": "PASS"
+    },
+    {
+      "id": "objects",
+      "status": "PASS"
+    },
+    {
+      "id": "language",
+      "status": "PASS"
+    },
+    {
+      "id": "nature",
+      "status": "PASS"
+    },
+    {
+      "id": "reading trails",
+      "status": "PASS"
+    },
+    {
+      "id": "quiz",
+      "status": "PASS"
+    },
+    {
+      "id": "route linkage",
+      "status": "PASS"
+    },
+    {
+      "id": "sources",
+      "status": "PASS"
+    },
+    {
+      "id": "onsite guidance",
+      "status": "PASS"
+    }
+  ],
+  "quality_score": {
+    "dimensions": {
+      "correctness_evidence": 5,
+      "coverage_completion": 5,
+      "editorial_quality": 5,
+      "technical_integrity": 5,
+      "safety_responsibility": 5,
+      "maintainability_auditability": 5
+    },
+    "total": 30,
+    "critical_findings": 0
+  },
+  "evidence": {
+    "sources": [
+      "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/parker-og-lekeplasser/st-hanshaugen/",
+      "https://oslobyleksikon.no/side/Sankt_Hanshaugen",
+      "https://aktuelt.oslo.kommune.no/det-felles-eide-80-ar-med-kunst-i-byen",
+      "https://oslobyleksikon.no/side/Parker_og_gr%C3%B8ntanlegg",
+      "https://oslobyleksikon.no/side/Branner"
+    ],
+    "tests": [
+      "node --test tests/st-hanshaugen-park-completion.test.mjs",
+      "npm run places:index:build",
+      "npm run places:index:check"
+    ]
+  },
+  "limitations": [
+    "Automatiske tester beviser struktur og integrasjon, ikke dagens midlertidige parkdrift.",
+    "Eksakt tilgjengelighet påvirkes av føre, vedlikehold og arrangementer."
+  ]
+}
