@@ -9,6 +9,7 @@ on:
       - 'tools/report_stories_governance.mts'
       - 'tests/oslo-tinghuset-story-phase.test.mjs'
       - 'tests/stories-governance-metrics.test.mjs'
+      - 'tests/birkelunden-phase7c-story.test.mjs'
       - '.github/workflows/stories-governance.yml'
   push:
     branches:
@@ -20,6 +21,7 @@ on:
       - 'tools/report_stories_governance.mts'
       - 'tests/oslo-tinghuset-story-phase.test.mjs'
       - 'tests/stories-governance-metrics.test.mjs'
+      - 'tests/birkelunden-phase7c-story.test.mjs'
       - '.github/workflows/stories-governance.yml'
 
 permissions:
@@ -78,6 +80,9 @@ jobs:
 
       - name: Validate Oslo tinghus Story phase
         run: node --test tests/oslo-tinghuset-story-phase.test.mjs
+
+      - name: Validate Birkelunden phase 7C Story
+        run: node --test tests/birkelunden-phase7c-story.test.mjs
 
       - name: Upload metrics diagnostic
         if: failure()
