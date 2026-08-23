@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "sharedFullMatrixPaths": [
+    "data/places/manifest.json",
+    "data/places/places_index.json",
+    "data/places/category_overrides",
+    "docs/PLACE_PRODUCTION_CHECKLIST.md",
+    "scripts/check-places.sh",
+    "scripts/run-place-regressions-v1.mjs",
+    "js/map.ts",
+    "js/map.js",
+    "js/app.js",
+    "js/views/MapView.js",
+    ".github/ci/place-regression-registry-v1.json",
+    ".github/workflows/data-checks.yml"
+  ],
+  "places": [
+    {
+      "id": "birkelunden",
+      "match": ["birkelunden"],
+      "tests": [
+        "tests/birkelunden-phase7a-about.test.mjs",
+        "tests/birkelunden-phase7b-history.test.mjs",
+        "tests/birkelunden-phase7d-before-after.test.mjs",
+        "tests/birkelunden-phase7e-news.test.mjs",
+        "tests/birkelunden-phase7f-reading-trail.test.mjs",
+        "tests/birkelunden-phase7g-sources.test.mjs"
+      ]
+    },
+    {
+      "id": "torggata",
+      "match": ["torggata"],
+      "tests": [
+        "tests/torggata-phase14-discovery.test.mjs",
+        "tests/torggata-phase15-physical-visit.test.mjs",
+        "tests/torggata-phase16-favorite-progress.test.mjs",
+        "tests/torggata-phase17-profile-unlocks.test.mjs",
+        "tests/torggata-phase21-webgl-fallback.test.mjs",
+        "tests/torggata-phase22-content-qa.test.mjs",
+        "tests/torggata-phase23-ci-gates.test.mjs",
+        "tests/torggata-phase24-one-place-gate.test.mjs"
+      ]
+    }
+  ]
+}
