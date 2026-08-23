@@ -115,6 +115,15 @@
     "data/Civication/mailFamilies/filosofi/followup/filosofi_undervisning_og_akademia_followup.json",
     "data/Civication/mailFamilies/filosofi/knowledge/filosofi_undervisning_og_akademia_knowledge.json",
     "data/Civication/mailFamilies/filosofi/consequence/filosofi_undervisning_og_akademia_consequence.json",
+    "data/Civication/mailFamilies/historie/job/historie_arkiv_og_dokumentasjon_job.json",
+    "data/Civication/mailFamilies/historie/people/historie_arkiv_og_dokumentasjon_people.json",
+    "data/Civication/mailFamilies/historie/story/historie_arkiv_og_dokumentasjon_story.json",
+    "data/Civication/mailFamilies/historie/conflict/historie_arkiv_og_dokumentasjon_conflict.json",
+    "data/Civication/mailFamilies/historie/event/historie_arkiv_og_dokumentasjon_event.json",
+    "data/Civication/mailFamilies/historie/micro/historie_arkiv_og_dokumentasjon_micro.json",
+    "data/Civication/mailFamilies/historie/followup/historie_arkiv_og_dokumentasjon_followup.json",
+    "data/Civication/mailFamilies/historie/knowledge/historie_arkiv_og_dokumentasjon_knowledge.json",
+    "data/Civication/mailFamilies/historie/consequence/historie_arkiv_og_dokumentasjon_consequence.json",
     "data/Civication/mailFamilies/litteratur/job/redaksjonsmedarbeider_job.json",
     "data/Civication/mailFamilies/litteratur/people/redaksjonsmedarbeider_people.json",
     "data/Civication/mailFamilies/litteratur/story/redaksjonsmedarbeider_story.json",
@@ -33300,6 +33309,2626 @@
       },
       "source_hash": "5b3a975f1b322e6679b4e4518f17568869bd222937a601b27297f279480f3dc2",
       "source_path": "data/Civication/mailFamilies/filosofi/story/filosofi_undervisning_og_akademia_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "forbered_relevant_minimert_og_sporbart_grunnlag_vs_utlever_alt_som_er_funnet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 3,
+                "risk": -4,
+                "trust": 3
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "historie_arkiv_innsyn_001_minimert_grunnlag",
+                  "note": "Relevans, tredjepartsrisiko og tilgangsstatus er skilt og sendt til autorisert beslutningseier.",
+                  "op": "transition",
+                  "to_phase": "minimert_beslutningsgrunnlag",
+                  "to_status": "awaiting_decision",
+                  "work_object_id": "historie_arkiv_sak_innsyn_001"
+                },
+                {
+                  "event_id": "historie_arkiv_innsyn_001_minimering_flagg",
+                  "flag": "minimering_dokumentert",
+                  "op": "add_flag",
+                  "work_object_id": "historie_arkiv_sak_innsyn_001"
+                }
+              ]
+            },
+            "feedback": "Du gjør arkivfaglig gjenfinning nyttig for beslutningen uten å gjøre tilgangsmyndigheten til din egen.",
+            "id": "A",
+            "label": "Skill hoveddokument og vedlegg, beskriv relevans og tilgangsrisiko, og send et minimert grunnlag til Eline for avgjørelse",
+            "reply": "Jeg dokumenterer hvilke deler som svarer på forespørselen, hvilke vedlegg som inneholder unødvendige tredjepartsopplysninger, og hvorfor hvert materiale trenger eller ikke trenger særskilt vurdering.",
+            "tags": [
+              "access_triage",
+              "data_minimization",
+              "decision_owner"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -3,
+                "risk": 5,
+                "trust": -3
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "historie_arkiv_innsyn_001_overutlevering",
+                  "note": "Hele mappen er foreslått utlevert uten nødvendig avgrensning av tredjepartsopplysninger.",
+                  "op": "transition",
+                  "to_phase": "overutlevering_foreslatt",
+                  "to_status": "at_risk",
+                  "work_object_id": "historie_arkiv_sak_innsyn_001"
+                },
+                {
+                  "event_id": "historie_arkiv_innsyn_001_personvernrisiko",
+                  "flag": "personvernrisiko",
+                  "op": "add_flag",
+                  "work_object_id": "historie_arkiv_sak_innsyn_001"
+                }
+              ]
+            },
+            "feedback": "Du forveksler gjenfinnbarhet med rett til full utlevering og flytter en tilgangsvurdering over på mottakeren.",
+            "id": "B",
+            "label": "Send hele mappen – materialet er funnet i arkivet og bestilleren ba om saken",
+            "reply": "Det blir mest transparent å gi alt vi har funnet. Bestilleren kan selv avgjøre hvilke vedlegg som er relevante.",
+            "tags": [
+              "overdisclosure",
+              "access_boundary_breach",
+              "privacy_risk"
+            ]
+          }
+        ],
+        "competency": "personvern_klausul_og_tilgangsgrense",
+        "consequence_axis": "lovlig_etterprovbar_tilgang_vs_overeksponering_eller_rolleoverskridelse",
+        "cooldown": 4,
+        "day_phase": "midday",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "historie_arkiv_innsyn_001_opprettet",
+              "op": "create",
+              "work_object": {
+                "confidentiality": "tredjepartsopplysninger",
+                "deadline": "innsynsfrist",
+                "flags": [
+                  "tilgangsavgjorelse_avventer"
+                ],
+                "institution_id": "historie_arkivinstitusjon_001",
+                "kind": "innsynssak",
+                "knowledge_refs": [
+                  "innsyn_vs_gjenfinning",
+                  "personvern_klausul_og_minimering"
+                ],
+                "open_questions": [
+                  "Hvilke vedlegg er nødvendige for forespørselen?",
+                  "Hvilke tilgangsbegrensninger må avgjøres av autorisert beslutningseier?"
+                ],
+                "people_refs": [
+                  "eline_innsynskoordinator_historie"
+                ],
+                "phase": "gjenfinning",
+                "place_refs": [
+                  "innsynsrom_arkiv_historie"
+                ],
+                "role_scope": "historie_arkiv_og_dokumentasjon",
+                "shared": false,
+                "status": "open",
+                "title": "Innsynssak med relevante dokumenter og tredjepartsopplysninger",
+                "work_object_id": "historie_arkiv_sak_innsyn_001"
+              }
+            }
+          ]
+        },
+        "from": "Eline, innsynskoordinator",
+        "id": "historie_arkiv_conflict_innsyn_001",
+        "interaction_mode": "decision",
+        "mail_family": "historie_arkiv_innsyn_og_minimering",
+        "mail_type": "conflict",
+        "narrative_arc": "innsyn_fra_gjenfinning_til_begrunnelse_og_oppfolging",
+        "people_ref": "eline_innsynskoordinator_historie",
+        "person_id": "eline_innsynskoordinator_historie",
+        "phase": "mid",
+        "place_id": "innsynsrom_arkiv_historie",
+        "pressure": "rask_tilgang_vs_minimering_og_myndighet",
+        "priority": 120,
+        "purpose": "Teste at gjenfinning, relevans, minimering og formell tilgangsmyndighet holdes adskilt.",
+        "repeatable": false,
+        "role_scope": "historie_arkiv_og_dokumentasjon",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/conflict/historie_arkiv_og_dokumentasjon_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Hoveddokumentet svarer direkte på det bestilleren ber om.",
+          "Vedleggene har ulik relevans og inkluderer tredjepartsopplysninger som ikke er nødvendige for å forstå hoveddokumentet.",
+          "Du kan beskrive innhold, tilgangsstatus og risiko, men den endelige avgjørelsen om eventuell begrensning eller utlevering ligger hos autorisert beslutningseier."
+        ],
+        "stage": "stable",
+        "stakes": "For bred utlevering kan eksponere opplysninger forespørselen ikke krever; for defensiv lukking kan samtidig gjøre arkivet mindre tilgjengelig enn regelverket gir grunnlag for.",
+        "subject": "Forespørselen treffer riktig sak – men vedleggene inneholder flere personer enn bestilleren trenger",
+        "summary": "Du har funnet dokumentene som svarer på forespørselen. Hoveddokumentet er relevant, mens flere vedlegg inneholder tredjepartsopplysninger og eldre tilgangsmarkeringer som ikke er avklart. Eline ber deg forberede et beslutningsgrunnlag uten å gjøre selve innsynsavgjørelsen på hennes vegne.",
+        "task_domain": "gjenfinning_og_innsynsforberedelse",
+        "task_kind": "conflict",
+        "thread_key": "historie_arkiv_innsyn_001",
+        "work_context": {
+          "deadline_ref": "innsynsfrist",
+          "institution_id": "historie_arkivinstitusjon_001",
+          "object_ids": [
+            "historie_arkiv_sak_innsyn_001"
+          ]
+        }
+      },
+      "id": "historie_arkiv_conflict_innsyn_001",
+      "mail_type": "conflict",
+      "role_scope": "historie_arkiv_og_dokumentasjon",
+      "scene": {
+        "arc_stage": "mid",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "historie_arkiv_innsyn_001_minimert_grunnlag",
+                  "note": "Relevans, tredjepartsrisiko og tilgangsstatus er skilt og sendt til autorisert beslutningseier.",
+                  "op": "transition",
+                  "to_phase": "minimert_beslutningsgrunnlag",
+                  "to_status": "awaiting_decision",
+                  "work_object_id": "historie_arkiv_sak_innsyn_001"
+                },
+                {
+                  "event_id": "historie_arkiv_innsyn_001_minimering_flagg",
+                  "flag": "minimering_dokumentert",
+                  "op": "add_flag",
+                  "work_object_id": "historie_arkiv_sak_innsyn_001"
+                }
+              ]
+            },
+            "feedback": "Du gjør arkivfaglig gjenfinning nyttig for beslutningen uten å gjøre tilgangsmyndigheten til din egen.",
+            "id": "A",
+            "label": "Skill hoveddokument og vedlegg, beskriv relevans og tilgangsrisiko, og send et minimert grunnlag til Eline for avgjørelse",
+            "reply": "Jeg dokumenterer hvilke deler som svarer på forespørselen, hvilke vedlegg som inneholder unødvendige tredjepartsopplysninger, og hvorfor hvert materiale trenger eller ikke trenger særskilt vurdering."
+          },
+          {
+            "effects": {
+              "score_delta": -1,
+              "work_object_ops": [
+                {
+                  "event_id": "historie_arkiv_innsyn_001_overutlevering",
+                  "note": "Hele mappen er foreslått utlevert uten nødvendig avgrensning av tredjepartsopplysninger.",
+                  "op": "transition",
+                  "to_phase": "overutlevering_foreslatt",
+                  "to_status": "at_risk",
+                  "work_object_id": "historie_arkiv_sak_innsyn_001"
+                },
+                {
+                  "event_id": "historie_arkiv_innsyn_001_personvernrisiko",
+                  "flag": "personvernrisiko",
+                  "op": "add_flag",
+                  "work_object_id": "historie_arkiv_sak_innsyn_001"
+                }
+              ]
+            },
+            "feedback": "Du forveksler gjenfinnbarhet med rett til full utlevering og flytter en tilgangsvurdering over på mottakeren.",
+            "id": "B",
+            "label": "Send hele mappen – materialet er funnet i arkivet og bestilleren ba om saken",
+            "reply": "Det blir mest transparent å gi alt vi har funnet. Bestilleren kan selv avgjøre hvilke vedlegg som er relevante."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Hoveddokumentet svarer direkte på det bestilleren ber om.",
+            "Vedleggene har ulik relevans og inkluderer tredjepartsopplysninger som ikke er nødvendige for å forstå hoveddokumentet.",
+            "Du kan beskrive innhold, tilgangsstatus og risiko, men den endelige avgjørelsen om eventuell begrensning eller utlevering ligger hos autorisert beslutningseier."
+          ],
+          "subject": "Forespørselen treffer riktig sak – men vedleggene inneholder flere personer enn bestilleren trenger",
+          "summary": "Du har funnet dokumentene som svarer på forespørselen. Hoveddokumentet er relevant, mens flere vedlegg inneholder tredjepartsopplysninger og eldre tilgangsmarkeringer som ikke er avklart. Eline ber deg forberede et beslutningsgrunnlag uten å gjøre selve innsynsavgjørelsen på hennes vegne."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "historie_arkiv_innsyn_001_opprettet",
+              "op": "create",
+              "work_object": {
+                "confidentiality": "tredjepartsopplysninger",
+                "deadline": "innsynsfrist",
+                "flags": [
+                  "tilgangsavgjorelse_avventer"
+                ],
+                "institution_id": "historie_arkivinstitusjon_001",
+                "kind": "innsynssak",
+                "knowledge_refs": [
+                  "innsyn_vs_gjenfinning",
+                  "personvern_klausul_og_minimering"
+                ],
+                "open_questions": [
+                  "Hvilke vedlegg er nødvendige for forespørselen?",
+                  "Hvilke tilgangsbegrensninger må avgjøres av autorisert beslutningseier?"
+                ],
+                "people_refs": [
+                  "eline_innsynskoordinator_historie"
+                ],
+                "phase": "gjenfinning",
+                "place_refs": [
+                  "innsynsrom_arkiv_historie"
+                ],
+                "role_scope": "historie_arkiv_og_dokumentasjon",
+                "shared": false,
+                "status": "open",
+                "title": "Innsynssak med relevante dokumenter og tredjepartsopplysninger",
+                "work_object_id": "historie_arkiv_sak_innsyn_001"
+              }
+            }
+          ]
+        },
+        "id": "historie_arkiv_conflict_innsyn_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "innsynsrom_arkiv_historie",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_arkiv_conflict_innsyn_001",
+          "source_path": "data/Civication/mailFamilies/historie/conflict/historie_arkiv_og_dokumentasjon_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_arkiv_innsyn_001",
+        "version": 1,
+        "work_context": {
+          "deadline_ref": "innsynsfrist",
+          "institution_id": "historie_arkivinstitusjon_001",
+          "object_ids": [
+            "historie_arkiv_sak_innsyn_001"
+          ]
+        }
+      },
+      "source_hash": "dc6278ae108408e3c6ac33594d5db7a602a5e8cfe837b6f0249c960b6106d3aa",
+      "source_path": "data/Civication/mailFamilies/historie/conflict/historie_arkiv_og_dokumentasjon_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "migrer_verifisert_del_og_bevar_ulost_avvik_eksplisitt_vs_tving_alle_filer_til_samme_status",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -2,
+                "quality": 4,
+                "risk": -4,
+                "trust": 3
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "historie_arkiv_digital_001_delvis_avklart",
+                  "note": "Verifisert del er migrert kontrollert, mens to kandidater til den siste filen og autentisitetsusikkerheten bevares eksplisitt.",
+                  "op": "transition",
+                  "to_phase": "ett_autentisitetsavvik_ulost",
+                  "to_status": "partially_resolved",
+                  "work_object_id": "historie_arkiv_sak_digital_bevaring_001"
+                },
+                {
+                  "event_id": "historie_arkiv_digital_001_to_avvik_redusert",
+                  "flag": "to_hashavvik",
+                  "op": "remove_flag",
+                  "work_object_id": "historie_arkiv_sak_digital_bevaring_001"
+                },
+                {
+                  "event_id": "historie_arkiv_digital_001_ett_ulost_flagg",
+                  "flag": "ett_autentisitetsavvik_ulost",
+                  "op": "add_flag",
+                  "work_object_id": "historie_arkiv_sak_digital_bevaring_001"
+                }
+              ]
+            },
+            "feedback": "Du lar bevaringsstatus følge evidensen fil for fil og unngår både unødvendig blokkering og falsk sikkerhet.",
+            "id": "A",
+            "label": "Fullfør migreringen for den verifiserte delen, bevar originalene, og la den siste filen stå med to kandidater og eksplisitt autentisitetsusikkerhet",
+            "reply": "Vi dokumenterer hvorfor ett avvik er forklart, hvilke kontroller som besto, og hvorfor det andre ikke kan lukkes. Begge kandidatene bevares til ny evidens eventuelt gir grunnlag for en annen status.",
+            "tags": [
+              "evidence_asymmetry",
+              "verified_migration",
+              "authenticity_uncertainty"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "energy": 1,
+                "quality": -4,
+                "risk": 5,
+                "trust": -3
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "historie_arkiv_digital_001_prematur_lukking",
+                  "op": "close",
+                  "outcome": "prematurt_lukket_med_uavklart_autentisitet",
+                  "work_object_id": "historie_arkiv_sak_digital_bevaring_001"
+                }
+              ]
+            },
+            "feedback": "Du gjør sannsynlighet til autoritativ identifikasjon uten tilstrekkelig grunnlag og skjuler nettopp det integritetsavviket bevaringssporet skulle synliggjøre.",
+            "id": "B",
+            "label": "Velg den best dokumenterte kandidaten som original og lukk serien som ferdigmigrert",
+            "reply": "Vi trenger én operativ status. Den kandidaten med best tidsstempelkjede er sannsynligvis riktig, og begge versjonene kan uansett arkiveres i backup.",
+            "tags": [
+              "false_authoritative_version",
+              "uncertainty_erased",
+              "closure_pressure"
+            ]
+          }
+        ],
+        "competency": "autentisitet_kjede_og_endringsspor",
+        "consequence_axis": "nyansert_etterprovbar_bevaringskjede_vs_falsk_avslutning",
+        "cooldown": 6,
+        "day_phase": "evening",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "historie_arkiv_digital_001_opprettet",
+              "op": "create",
+              "work_object": {
+                "confidentiality": "intern_bevaringslogg",
+                "deadline": "formatrisiko_arbeidsplan",
+                "flags": [
+                  "to_hashavvik"
+                ],
+                "institution_id": "historie_arkivinstitusjon_001",
+                "kind": "digital_bevaringssak",
+                "knowledge_refs": [
+                  "digital_bevaring",
+                  "autentisitet_og_integritet",
+                  "endringslogg_og_reversibilitet"
+                ],
+                "open_questions": [
+                  "Hva forklarer hashavviket i fil 1?",
+                  "Hvilken av to kandidater for fil 2 kan autentiseres?"
+                ],
+                "people_refs": [
+                  "noah_digital_bevaring_historie"
+                ],
+                "phase": "integritetskontroll",
+                "place_refs": [
+                  "digitalt_bevaringsverksted_historie"
+                ],
+                "role_scope": "historie_arkiv_og_dokumentasjon",
+                "shared": false,
+                "status": "open",
+                "title": "Digital serie med formatrisiko og to hashavvik",
+                "work_object_id": "historie_arkiv_sak_digital_bevaring_001"
+              }
+            }
+          ]
+        },
+        "from": "Noah, digital bevaringsrådgiver",
+        "id": "historie_arkiv_consequence_migrering_001",
+        "interaction_mode": "decision",
+        "mail_family": "historie_arkiv_migreringskonsekvens",
+        "mail_type": "consequence",
+        "narrative_arc": "digitalt_avvik_til_verifisert_migrering_og_senere_kontroll",
+        "people_ref": "noah_digital_bevaring_historie",
+        "person_id": "noah_digital_bevaring_historie",
+        "phase": "mastery",
+        "place_id": "digitalt_bevaringsverksted_historie",
+        "pressure": "ren_sluttrapport_vs_evidensmessig_asymmetri",
+        "priority": 98,
+        "purpose": "Teste om spilleren bevarer asymmetrien i evidensen i stedet for å tvinge hele serien inn i én ryddig status.",
+        "repeatable": false,
+        "role_scope": "historie_arkiv_og_dokumentasjon",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/consequence/historie_arkiv_og_dokumentasjon_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "310 filer og det forklarte avviket kan knyttes til et dokumentert integritets- og migreringsspor.",
+          "Den siste filen har to bevarte kandidater og utilstrekkelig evidens for å utpeke én autoritativ originalversjon.",
+          "Det er mulig å fullføre kontrollert migrering for den verifiserte delen samtidig som begge kandidatene og usikkerheten for den siste filen bevares eksplisitt."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis begge avvik markeres som løst blir katalogen enklere, men usikker autentisitet skjules. Hvis all migrering stoppes permanent ignoreres samtidig at størstedelen av serien kan bevares kontrollert.",
+        "subject": "Avviksanalysen er ferdig: én fil kan forklares – den andre kan fortsatt ikke autentiseres sikkert",
+        "summary": "Noah har dokumentert at det ene hashavviket skyldes en tidligere, sporbar teknisk normalisering som ikke endret dokumentets meningsinnhold. For den andre filen finnes to versjoner med ulik kjede og ingen tilstrekkelig dokumentasjon til å avgjøre hvilken som er autoritativ. Migreringstesten er ellers vellykket.",
+        "task_domain": "digital_integritet_og_bevaring",
+        "task_kind": "consequence",
+        "thread_key": "historie_arkiv_digital_bevaring_001",
+        "work_context": {
+          "deadline_ref": "etterkontroll",
+          "institution_id": "historie_arkivinstitusjon_001",
+          "object_ids": [
+            "historie_arkiv_sak_digital_bevaring_001"
+          ]
+        }
+      },
+      "id": "historie_arkiv_consequence_migrering_001",
+      "mail_type": "consequence",
+      "role_scope": "historie_arkiv_og_dokumentasjon",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "historie_arkiv_digital_001_delvis_avklart",
+                  "note": "Verifisert del er migrert kontrollert, mens to kandidater til den siste filen og autentisitetsusikkerheten bevares eksplisitt.",
+                  "op": "transition",
+                  "to_phase": "ett_autentisitetsavvik_ulost",
+                  "to_status": "partially_resolved",
+                  "work_object_id": "historie_arkiv_sak_digital_bevaring_001"
+                },
+                {
+                  "event_id": "historie_arkiv_digital_001_to_avvik_redusert",
+                  "flag": "to_hashavvik",
+                  "op": "remove_flag",
+                  "work_object_id": "historie_arkiv_sak_digital_bevaring_001"
+                },
+                {
+                  "event_id": "historie_arkiv_digital_001_ett_ulost_flagg",
+                  "flag": "ett_autentisitetsavvik_ulost",
+                  "op": "add_flag",
+                  "work_object_id": "historie_arkiv_sak_digital_bevaring_001"
+                }
+              ]
+            },
+            "feedback": "Du lar bevaringsstatus følge evidensen fil for fil og unngår både unødvendig blokkering og falsk sikkerhet.",
+            "id": "A",
+            "label": "Fullfør migreringen for den verifiserte delen, bevar originalene, og la den siste filen stå med to kandidater og eksplisitt autentisitetsusikkerhet",
+            "reply": "Vi dokumenterer hvorfor ett avvik er forklart, hvilke kontroller som besto, og hvorfor det andre ikke kan lukkes. Begge kandidatene bevares til ny evidens eventuelt gir grunnlag for en annen status."
+          },
+          {
+            "effects": {
+              "score_delta": -1,
+              "work_object_ops": [
+                {
+                  "event_id": "historie_arkiv_digital_001_prematur_lukking",
+                  "op": "close",
+                  "outcome": "prematurt_lukket_med_uavklart_autentisitet",
+                  "work_object_id": "historie_arkiv_sak_digital_bevaring_001"
+                }
+              ]
+            },
+            "feedback": "Du gjør sannsynlighet til autoritativ identifikasjon uten tilstrekkelig grunnlag og skjuler nettopp det integritetsavviket bevaringssporet skulle synliggjøre.",
+            "id": "B",
+            "label": "Velg den best dokumenterte kandidaten som original og lukk serien som ferdigmigrert",
+            "reply": "Vi trenger én operativ status. Den kandidaten med best tidsstempelkjede er sannsynligvis riktig, og begge versjonene kan uansett arkiveres i backup."
+          }
+        ],
+        "content": {
+          "situation": [
+            "310 filer og det forklarte avviket kan knyttes til et dokumentert integritets- og migreringsspor.",
+            "Den siste filen har to bevarte kandidater og utilstrekkelig evidens for å utpeke én autoritativ originalversjon.",
+            "Det er mulig å fullføre kontrollert migrering for den verifiserte delen samtidig som begge kandidatene og usikkerheten for den siste filen bevares eksplisitt."
+          ],
+          "subject": "Avviksanalysen er ferdig: én fil kan forklares – den andre kan fortsatt ikke autentiseres sikkert",
+          "summary": "Noah har dokumentert at det ene hashavviket skyldes en tidligere, sporbar teknisk normalisering som ikke endret dokumentets meningsinnhold. For den andre filen finnes to versjoner med ulik kjede og ingen tilstrekkelig dokumentasjon til å avgjøre hvilken som er autoritativ. Migreringstesten er ellers vellykket."
+        },
+        "day_phase": "evening",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "historie_arkiv_digital_001_opprettet",
+              "op": "create",
+              "work_object": {
+                "confidentiality": "intern_bevaringslogg",
+                "deadline": "formatrisiko_arbeidsplan",
+                "flags": [
+                  "to_hashavvik"
+                ],
+                "institution_id": "historie_arkivinstitusjon_001",
+                "kind": "digital_bevaringssak",
+                "knowledge_refs": [
+                  "digital_bevaring",
+                  "autentisitet_og_integritet",
+                  "endringslogg_og_reversibilitet"
+                ],
+                "open_questions": [
+                  "Hva forklarer hashavviket i fil 1?",
+                  "Hvilken av to kandidater for fil 2 kan autentiseres?"
+                ],
+                "people_refs": [
+                  "noah_digital_bevaring_historie"
+                ],
+                "phase": "integritetskontroll",
+                "place_refs": [
+                  "digitalt_bevaringsverksted_historie"
+                ],
+                "role_scope": "historie_arkiv_og_dokumentasjon",
+                "shared": false,
+                "status": "open",
+                "title": "Digital serie med formatrisiko og to hashavvik",
+                "work_object_id": "historie_arkiv_sak_digital_bevaring_001"
+              }
+            }
+          ]
+        },
+        "id": "historie_arkiv_consequence_migrering_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "digitalt_bevaringsverksted_historie",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_arkiv_consequence_migrering_001",
+          "source_path": "data/Civication/mailFamilies/historie/consequence/historie_arkiv_og_dokumentasjon_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_arkiv_digital_bevaring_001",
+        "version": 1,
+        "work_context": {
+          "deadline_ref": "etterkontroll",
+          "institution_id": "historie_arkivinstitusjon_001",
+          "object_ids": [
+            "historie_arkiv_sak_digital_bevaring_001"
+          ]
+        }
+      },
+      "source_hash": "d1f208bbb36c0ef6fbead703037450b2dedf3e8acffe6c88abcddffad99c96e9",
+      "source_path": "data/Civication/mailFamilies/historie/consequence/historie_arkiv_og_dokumentasjon_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "frys_avvik_bevar_original_og_test_pa_kopi_vs_konverter_alt_og_standardiser_resultatet",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -2,
+                "quality": 3,
+                "risk": -4,
+                "trust": 2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "historie_arkiv_digital_001_avvik_isolert",
+                  "note": "Originalbitstrømmen er bevart, avvikene isolert og migrering testes på kontrollerte kopier.",
+                  "op": "transition",
+                  "to_phase": "avvik_isolert_migreringstest",
+                  "to_status": "in_progress",
+                  "work_object_id": "historie_arkiv_sak_digital_bevaring_001"
+                },
+                {
+                  "event_id": "historie_arkiv_digital_001_original_bevart",
+                  "flag": "originalbitstrom_bevart",
+                  "op": "add_flag",
+                  "work_object_id": "historie_arkiv_sak_digital_bevaring_001"
+                }
+              ]
+            },
+            "feedback": "Du håndterer formatrisiko uten å ofre muligheten til å undersøke hva som faktisk skjedde med de to avvikende filene.",
+            "id": "A",
+            "label": "Sett de to filene i avviksspor, bevar originalbitstrømmen og test migrering på kontrollerte kopier før serien behandles samlet",
+            "reply": "Vi lar de 310 verifiserte filene beholde sitt integritetsspor, isolerer avvikene uten å slette noe og dokumenterer både migreringsverktøy, parametre og etterkontroll på testkopiene.",
+            "tags": [
+              "fixity",
+              "migration_test",
+              "original_preservation",
+              "integrity_incident"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "energy": 1,
+                "quality": -3,
+                "risk": 5,
+                "trust": -2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "historie_arkiv_digital_001_uverifisert_migrering",
+                  "note": "Hele serien er konvertert før hashavvikene er forklart.",
+                  "op": "transition",
+                  "to_phase": "uverifisert_migrering",
+                  "to_status": "at_risk",
+                  "work_object_id": "historie_arkiv_sak_digital_bevaring_001"
+                },
+                {
+                  "event_id": "historie_arkiv_digital_001_integritet_svekket",
+                  "flag": "integritetsgrunnlag_svekket",
+                  "op": "add_flag",
+                  "work_object_id": "historie_arkiv_sak_digital_bevaring_001"
+                }
+              ]
+            },
+            "feedback": "Du løser ett bevaringsproblem ved å gjøre et annet mindre etterprøvbart og risikerer at avvikene blir videreført uten identifiserbar årsak.",
+            "id": "B",
+            "label": "Konverter hele serien nå og bruk de nye filene som standard – formatrisikoen er mer akutt enn to gamle hashavvik",
+            "reply": "Vi beholder en kopi av mappen, men det viktigste er å få alt over i et moderne format før den gamle programvaren svikter.",
+            "tags": [
+              "unverified_migration",
+              "fixity_ignored",
+              "derivative_as_original"
+            ]
+          }
+        ],
+        "competency": "digital_bevaring_og_integritetskontroll",
+        "consequence_axis": "verifisert_bevaringskjede_vs_skjult_integritetsforurensning",
+        "cooldown": 4,
+        "day_phase": "afternoon",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "historie_arkiv_digital_001_opprettet",
+              "op": "create",
+              "work_object": {
+                "confidentiality": "intern_bevaringslogg",
+                "deadline": "formatrisiko_arbeidsplan",
+                "flags": [
+                  "to_hashavvik"
+                ],
+                "institution_id": "historie_arkivinstitusjon_001",
+                "kind": "digital_bevaringssak",
+                "knowledge_refs": [
+                  "digital_bevaring",
+                  "autentisitet_og_integritet",
+                  "endringslogg_og_reversibilitet"
+                ],
+                "open_questions": [
+                  "Hva forklarer hashavviket i fil 1?",
+                  "Hvilken av to kandidater for fil 2 kan autentiseres?"
+                ],
+                "people_refs": [
+                  "noah_digital_bevaring_historie"
+                ],
+                "phase": "integritetskontroll",
+                "place_refs": [
+                  "digitalt_bevaringsverksted_historie"
+                ],
+                "role_scope": "historie_arkiv_og_dokumentasjon",
+                "shared": false,
+                "status": "open",
+                "title": "Digital serie med formatrisiko og to hashavvik",
+                "work_object_id": "historie_arkiv_sak_digital_bevaring_001"
+              }
+            }
+          ]
+        },
+        "from": "Noah, digital bevaringsrådgiver",
+        "id": "historie_arkiv_event_formatrisiko_001",
+        "interaction_mode": "decision",
+        "mail_family": "historie_arkiv_format_og_integritetsavvik",
+        "mail_type": "event",
+        "narrative_arc": "digitalt_avvik_til_verifisert_migrering_og_senere_kontroll",
+        "people_ref": "noah_digital_bevaring_historie",
+        "person_id": "noah_digital_bevaring_historie",
+        "phase": "workday",
+        "place_id": "digitalt_bevaringsverksted_historie",
+        "pressure": "formatrisiko_og_deadline_vs_integritetsavklaring",
+        "priority": 112,
+        "purpose": "Teste om spilleren stopper automatisert migrering når integritetsgrunnlaget er uklart og skiller originalbevaring fra testet derivat.",
+        "repeatable": false,
+        "role_scope": "historie_arkiv_og_dokumentasjon",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/event/historie_arkiv_og_dokumentasjon_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "310 filer matcher mottakets registrerte hashverdier; to gjør det ikke.",
+          "Ingen av de to avvikene er dokumentert som autorisert tidligere migrering eller redigering.",
+          "Originalbitstrømmen er fortsatt tilgjengelig og kan bevares urørt mens avvikene undersøkes og en migrering testes på kopier."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis migreringen kjøres over hele serien før avviket forstås kan et gammelt integritetsproblem bli bakt inn i en ny, tilsynelatende autoritativ versjon og originalsporet svekkes.",
+        "subject": "Formatet står på risikolisten – og to av 312 filer matcher ikke mottakets hashlogg",
+        "summary": "Noah planla en kontrollert migrering av en eldre digital serie, men før testen finner han to filer med hashavvik mot mottaksloggen. Serien kan fortsatt åpnes, men det er uklart om avviket skyldes tidligere transformasjon, feil kopi eller reell endring.",
+        "task_domain": "digital_integritet_og_bevaring",
+        "task_kind": "event",
+        "thread_key": "historie_arkiv_digital_bevaring_001",
+        "work_context": {
+          "deadline_ref": "formatrisiko_arbeidsplan",
+          "institution_id": "historie_arkivinstitusjon_001",
+          "object_ids": [
+            "historie_arkiv_sak_digital_bevaring_001"
+          ]
+        }
+      },
+      "id": "historie_arkiv_event_formatrisiko_001",
+      "mail_type": "event",
+      "role_scope": "historie_arkiv_og_dokumentasjon",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "historie_arkiv_digital_001_avvik_isolert",
+                  "note": "Originalbitstrømmen er bevart, avvikene isolert og migrering testes på kontrollerte kopier.",
+                  "op": "transition",
+                  "to_phase": "avvik_isolert_migreringstest",
+                  "to_status": "in_progress",
+                  "work_object_id": "historie_arkiv_sak_digital_bevaring_001"
+                },
+                {
+                  "event_id": "historie_arkiv_digital_001_original_bevart",
+                  "flag": "originalbitstrom_bevart",
+                  "op": "add_flag",
+                  "work_object_id": "historie_arkiv_sak_digital_bevaring_001"
+                }
+              ]
+            },
+            "feedback": "Du håndterer formatrisiko uten å ofre muligheten til å undersøke hva som faktisk skjedde med de to avvikende filene.",
+            "id": "A",
+            "label": "Sett de to filene i avviksspor, bevar originalbitstrømmen og test migrering på kontrollerte kopier før serien behandles samlet",
+            "reply": "Vi lar de 310 verifiserte filene beholde sitt integritetsspor, isolerer avvikene uten å slette noe og dokumenterer både migreringsverktøy, parametre og etterkontroll på testkopiene."
+          },
+          {
+            "effects": {
+              "score_delta": -1,
+              "work_object_ops": [
+                {
+                  "event_id": "historie_arkiv_digital_001_uverifisert_migrering",
+                  "note": "Hele serien er konvertert før hashavvikene er forklart.",
+                  "op": "transition",
+                  "to_phase": "uverifisert_migrering",
+                  "to_status": "at_risk",
+                  "work_object_id": "historie_arkiv_sak_digital_bevaring_001"
+                },
+                {
+                  "event_id": "historie_arkiv_digital_001_integritet_svekket",
+                  "flag": "integritetsgrunnlag_svekket",
+                  "op": "add_flag",
+                  "work_object_id": "historie_arkiv_sak_digital_bevaring_001"
+                }
+              ]
+            },
+            "feedback": "Du løser ett bevaringsproblem ved å gjøre et annet mindre etterprøvbart og risikerer at avvikene blir videreført uten identifiserbar årsak.",
+            "id": "B",
+            "label": "Konverter hele serien nå og bruk de nye filene som standard – formatrisikoen er mer akutt enn to gamle hashavvik",
+            "reply": "Vi beholder en kopi av mappen, men det viktigste er å få alt over i et moderne format før den gamle programvaren svikter."
+          }
+        ],
+        "content": {
+          "situation": [
+            "310 filer matcher mottakets registrerte hashverdier; to gjør det ikke.",
+            "Ingen av de to avvikene er dokumentert som autorisert tidligere migrering eller redigering.",
+            "Originalbitstrømmen er fortsatt tilgjengelig og kan bevares urørt mens avvikene undersøkes og en migrering testes på kopier."
+          ],
+          "subject": "Formatet står på risikolisten – og to av 312 filer matcher ikke mottakets hashlogg",
+          "summary": "Noah planla en kontrollert migrering av en eldre digital serie, men før testen finner han to filer med hashavvik mot mottaksloggen. Serien kan fortsatt åpnes, men det er uklart om avviket skyldes tidligere transformasjon, feil kopi eller reell endring."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "historie_arkiv_digital_001_opprettet",
+              "op": "create",
+              "work_object": {
+                "confidentiality": "intern_bevaringslogg",
+                "deadline": "formatrisiko_arbeidsplan",
+                "flags": [
+                  "to_hashavvik"
+                ],
+                "institution_id": "historie_arkivinstitusjon_001",
+                "kind": "digital_bevaringssak",
+                "knowledge_refs": [
+                  "digital_bevaring",
+                  "autentisitet_og_integritet",
+                  "endringslogg_og_reversibilitet"
+                ],
+                "open_questions": [
+                  "Hva forklarer hashavviket i fil 1?",
+                  "Hvilken av to kandidater for fil 2 kan autentiseres?"
+                ],
+                "people_refs": [
+                  "noah_digital_bevaring_historie"
+                ],
+                "phase": "integritetskontroll",
+                "place_refs": [
+                  "digitalt_bevaringsverksted_historie"
+                ],
+                "role_scope": "historie_arkiv_og_dokumentasjon",
+                "shared": false,
+                "status": "open",
+                "title": "Digital serie med formatrisiko og to hashavvik",
+                "work_object_id": "historie_arkiv_sak_digital_bevaring_001"
+              }
+            }
+          ]
+        },
+        "id": "historie_arkiv_event_formatrisiko_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "digitalt_bevaringsverksted_historie",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_arkiv_event_formatrisiko_001",
+          "source_path": "data/Civication/mailFamilies/historie/event/historie_arkiv_og_dokumentasjon_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_arkiv_digital_bevaring_001",
+        "version": 1,
+        "work_context": {
+          "deadline_ref": "formatrisiko_arbeidsplan",
+          "institution_id": "historie_arkivinstitusjon_001",
+          "object_ids": [
+            "historie_arkiv_sak_digital_bevaring_001"
+          ]
+        }
+      },
+      "source_hash": "cbb1fe96753bebcaf90526ee4b00caf5b68a8805ec50063f8ebddaa445c1d1ff",
+      "source_path": "data/Civication/mailFamilies/historie/event/historie_arkiv_og_dokumentasjon_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "verifiser_pakke_mot_beslutning_og_logg_vs_send_mappen_som_allerede_ligger_klar",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 3,
+                "risk": -4,
+                "trust": 3
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "historie_arkiv_innsyn_001_avgjorelse_mottatt",
+                  "flag": "tilgangsavgjorelse_avventer",
+                  "op": "remove_flag",
+                  "work_object_id": "historie_arkiv_sak_innsyn_001"
+                },
+                {
+                  "event_id": "historie_arkiv_innsyn_001_korrekt_lukket",
+                  "op": "close",
+                  "outcome": "utleveringspakke_verifisert_mot_autorisert_beslutning",
+                  "work_object_id": "historie_arkiv_sak_innsyn_001"
+                }
+              ]
+            },
+            "feedback": "Du lar den praktiske utleveringen bevare samme avgrensning og sporbarhet som den formelle beslutningen.",
+            "id": "A",
+            "label": "Bygg pakken fra godkjent uttrekksliste, kontrolltell filene og logg nøyaktig hva som sendes og hvilken beslutning det bygger på",
+            "reply": "Jeg lager en separat utleveringskopi, verifiserer innholdet mot Elines avgjørelse og registrerer koblingen mellom original, godkjent uttrekk og faktisk sendt pakke.",
+            "tags": [
+              "release_package",
+              "decision_trace",
+              "disclosure_control"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "energy": 1,
+                "quality": -3,
+                "risk": 5,
+                "trust": -3
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "historie_arkiv_innsyn_001_lukket_med_sporbarhetsgap",
+                  "op": "close",
+                  "outcome": "arbeidsmappe_sendt_med_sporbarhets_og_overeksponeringsrisiko",
+                  "work_object_id": "historie_arkiv_sak_innsyn_001"
+                }
+              ]
+            },
+            "feedback": "Du lar en arbeidsmappe erstatte den autoriserte uttrekkslisten og skaper risiko for at vedlegg beslutningen avgrenset likevel følger med.",
+            "id": "B",
+            "label": "Send arbeidsmappen dere brukte i vurderingen og fjern bare de åpenbart irrelevante filene",
+            "reply": "Vi har allerede gått gjennom materialet. En ny eksportkontroll vil bare forsinke bestilleren.",
+            "tags": [
+              "release_mismatch",
+              "working_folder_leak",
+              "audit_gap"
+            ]
+          }
+        ],
+        "competency": "innsyn_vs_gjenfinning",
+        "consequence_axis": "sporbar_korrekt_utlevering_vs_praktisk_overeksponering",
+        "cooldown": 5,
+        "day_phase": "evening",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "historie_arkiv_innsyn_001_opprettet",
+              "op": "create",
+              "work_object": {
+                "confidentiality": "tredjepartsopplysninger",
+                "deadline": "innsynsfrist",
+                "flags": [
+                  "tilgangsavgjorelse_avventer"
+                ],
+                "institution_id": "historie_arkivinstitusjon_001",
+                "kind": "innsynssak",
+                "knowledge_refs": [
+                  "innsyn_vs_gjenfinning",
+                  "personvern_klausul_og_minimering"
+                ],
+                "open_questions": [
+                  "Hvilke vedlegg er nødvendige for forespørselen?",
+                  "Hvilke tilgangsbegrensninger må avgjøres av autorisert beslutningseier?"
+                ],
+                "people_refs": [
+                  "eline_innsynskoordinator_historie"
+                ],
+                "phase": "gjenfinning",
+                "place_refs": [
+                  "innsynsrom_arkiv_historie"
+                ],
+                "role_scope": "historie_arkiv_og_dokumentasjon",
+                "shared": false,
+                "status": "open",
+                "title": "Innsynssak med relevante dokumenter og tredjepartsopplysninger",
+                "work_object_id": "historie_arkiv_sak_innsyn_001"
+              }
+            }
+          ]
+        },
+        "from": "Eline, innsynskoordinator",
+        "id": "historie_arkiv_followup_innsyn_001",
+        "interaction_mode": "decision",
+        "mail_family": "historie_arkiv_innsynsoppfolging",
+        "mail_type": "followup",
+        "narrative_arc": "innsyn_fra_gjenfinning_til_begrunnelse_og_oppfolging",
+        "people_ref": "eline_innsynskoordinator_historie",
+        "person_id": "eline_innsynskoordinator_historie",
+        "phase": "mastery",
+        "place_id": "innsynsrom_arkiv_historie",
+        "pressure": "rask_sending_vs_dobbelkontroll_av_pakke_og_logg",
+        "priority": 102,
+        "purpose": "Teste at en riktig tilgangsavgjørelse ikke undergraves av slurv i den praktiske utleveringen.",
+        "repeatable": false,
+        "role_scope": "historie_arkiv_og_dokumentasjon",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/followup/historie_arkiv_og_dokumentasjon_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den formelle tilgangsavgjørelsen er allerede tatt av autorisert beslutningseier og skal ikke reforhandles i denne oppgaven.",
+          "Arbeidet ditt er å materialisere nøyaktig den godkjente pakken og kontrollere den mot beslutningssporet.",
+          "Originalmaterialet skal forbli urørt; eventuell avgrenset brukskopi må kunne knyttes til original og beslutning uten at kopien blir ny arkivoriginal."
+        ],
+        "stage": "stable",
+        "stakes": "En feil eksportmappe kan eksponere materiale beslutningen uttrykkelig ikke omfatter, mens en dårlig logg gjør det vanskelig å dokumentere hva mottakeren faktisk fikk.",
+        "subject": "Tilgangsavgjørelsen er klar – nå må selve utleveringspakken samsvare med den",
+        "summary": "Eline har tatt den formelle beslutningen på grunnlag av materialet du forberedte: hoveddokumentet kan utleveres, ett relevant vedlegg inngår etter avgrensning, og øvrige vedlegg skal ikke følge med. Hun ber deg kontrollere at eksportpakken, filnavnene og loggen faktisk speiler denne beslutningen før sending.",
+        "task_domain": "gjenfinning_og_innsynsforberedelse",
+        "task_kind": "followup",
+        "thread_key": "historie_arkiv_innsyn_001",
+        "work_context": {
+          "deadline_ref": "utleveringsfrist",
+          "institution_id": "historie_arkivinstitusjon_001",
+          "object_ids": [
+            "historie_arkiv_sak_innsyn_001"
+          ]
+        }
+      },
+      "id": "historie_arkiv_followup_innsyn_001",
+      "mail_type": "followup",
+      "role_scope": "historie_arkiv_og_dokumentasjon",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "historie_arkiv_innsyn_001_avgjorelse_mottatt",
+                  "flag": "tilgangsavgjorelse_avventer",
+                  "op": "remove_flag",
+                  "work_object_id": "historie_arkiv_sak_innsyn_001"
+                },
+                {
+                  "event_id": "historie_arkiv_innsyn_001_korrekt_lukket",
+                  "op": "close",
+                  "outcome": "utleveringspakke_verifisert_mot_autorisert_beslutning",
+                  "work_object_id": "historie_arkiv_sak_innsyn_001"
+                }
+              ]
+            },
+            "feedback": "Du lar den praktiske utleveringen bevare samme avgrensning og sporbarhet som den formelle beslutningen.",
+            "id": "A",
+            "label": "Bygg pakken fra godkjent uttrekksliste, kontrolltell filene og logg nøyaktig hva som sendes og hvilken beslutning det bygger på",
+            "reply": "Jeg lager en separat utleveringskopi, verifiserer innholdet mot Elines avgjørelse og registrerer koblingen mellom original, godkjent uttrekk og faktisk sendt pakke."
+          },
+          {
+            "effects": {
+              "score_delta": -1,
+              "work_object_ops": [
+                {
+                  "event_id": "historie_arkiv_innsyn_001_lukket_med_sporbarhetsgap",
+                  "op": "close",
+                  "outcome": "arbeidsmappe_sendt_med_sporbarhets_og_overeksponeringsrisiko",
+                  "work_object_id": "historie_arkiv_sak_innsyn_001"
+                }
+              ]
+            },
+            "feedback": "Du lar en arbeidsmappe erstatte den autoriserte uttrekkslisten og skaper risiko for at vedlegg beslutningen avgrenset likevel følger med.",
+            "id": "B",
+            "label": "Send arbeidsmappen dere brukte i vurderingen og fjern bare de åpenbart irrelevante filene",
+            "reply": "Vi har allerede gått gjennom materialet. En ny eksportkontroll vil bare forsinke bestilleren."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den formelle tilgangsavgjørelsen er allerede tatt av autorisert beslutningseier og skal ikke reforhandles i denne oppgaven.",
+            "Arbeidet ditt er å materialisere nøyaktig den godkjente pakken og kontrollere den mot beslutningssporet.",
+            "Originalmaterialet skal forbli urørt; eventuell avgrenset brukskopi må kunne knyttes til original og beslutning uten at kopien blir ny arkivoriginal."
+          ],
+          "subject": "Tilgangsavgjørelsen er klar – nå må selve utleveringspakken samsvare med den",
+          "summary": "Eline har tatt den formelle beslutningen på grunnlag av materialet du forberedte: hoveddokumentet kan utleveres, ett relevant vedlegg inngår etter avgrensning, og øvrige vedlegg skal ikke følge med. Hun ber deg kontrollere at eksportpakken, filnavnene og loggen faktisk speiler denne beslutningen før sending."
+        },
+        "day_phase": "evening",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "historie_arkiv_innsyn_001_opprettet",
+              "op": "create",
+              "work_object": {
+                "confidentiality": "tredjepartsopplysninger",
+                "deadline": "innsynsfrist",
+                "flags": [
+                  "tilgangsavgjorelse_avventer"
+                ],
+                "institution_id": "historie_arkivinstitusjon_001",
+                "kind": "innsynssak",
+                "knowledge_refs": [
+                  "innsyn_vs_gjenfinning",
+                  "personvern_klausul_og_minimering"
+                ],
+                "open_questions": [
+                  "Hvilke vedlegg er nødvendige for forespørselen?",
+                  "Hvilke tilgangsbegrensninger må avgjøres av autorisert beslutningseier?"
+                ],
+                "people_refs": [
+                  "eline_innsynskoordinator_historie"
+                ],
+                "phase": "gjenfinning",
+                "place_refs": [
+                  "innsynsrom_arkiv_historie"
+                ],
+                "role_scope": "historie_arkiv_og_dokumentasjon",
+                "shared": false,
+                "status": "open",
+                "title": "Innsynssak med relevante dokumenter og tredjepartsopplysninger",
+                "work_object_id": "historie_arkiv_sak_innsyn_001"
+              }
+            }
+          ]
+        },
+        "id": "historie_arkiv_followup_innsyn_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "innsynsrom_arkiv_historie",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_arkiv_followup_innsyn_001",
+          "source_path": "data/Civication/mailFamilies/historie/followup/historie_arkiv_og_dokumentasjon_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_arkiv_innsyn_001",
+        "version": 1,
+        "work_context": {
+          "deadline_ref": "utleveringsfrist",
+          "institution_id": "historie_arkivinstitusjon_001",
+          "object_ids": [
+            "historie_arkiv_sak_innsyn_001"
+          ]
+        }
+      },
+      "source_hash": "3dd10a1d5224fac48f7ac776035a59145e5a4af6d5f432269338bbb3bbeb23d9",
+      "source_path": "data/Civication/mailFamilies/historie/followup/historie_arkiv_og_dokumentasjon_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "sikre_minimumsspor_og_markere_avvik_vs_registrere_raskt_med_antatt_struktur",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 3,
+                "risk": -3,
+                "trust": 2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "historie_arkiv_leveranse_001_minimumsspor",
+                  "note": "Leveranseidentitet, opphav, relasjoner og kjente avvik er registrert uten å gjette på ukjent struktur.",
+                  "op": "transition",
+                  "to_phase": "minimumsspor_sikret",
+                  "to_status": "in_progress",
+                  "work_object_id": "historie_arkiv_sak_leveranse_001"
+                },
+                {
+                  "event_id": "historie_arkiv_leveranse_001_sporbar_flagg",
+                  "flag": "minimumsspor_sikret",
+                  "op": "add_flag",
+                  "work_object_id": "historie_arkiv_sak_leveranse_001"
+                }
+              ]
+            },
+            "feedback": "Du gjør leveransen langsommere i starten, men bevarer det som senere gjør dokumentene forståelige og etterprøvbare.",
+            "id": "A",
+            "label": "Lås leveranseidentitet, opphav, relasjoner og avvik først; finbeskriv resten etter at mappestrukturen er avklart",
+            "reply": "Jeg registrerer hva vi faktisk vet om avsender, overføring, serie og fil-/boksidentitet, markerer de uklare kodene og holder eksportnavn adskilt fra antatt originalstruktur.",
+            "tags": [
+              "provenance",
+              "minimum_metadata",
+              "uncertainty_trace"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "energy": 1,
+                "quality": -3,
+                "risk": 4,
+                "trust": -2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "historie_arkiv_leveranse_001_antatt_struktur",
+                  "note": "Eksportens mappehierarki er brukt som om det var dokumentert original orden.",
+                  "op": "transition",
+                  "to_phase": "antatt_struktur",
+                  "to_status": "at_risk",
+                  "work_object_id": "historie_arkiv_sak_leveranse_001"
+                },
+                {
+                  "event_id": "historie_arkiv_leveranse_001_metadata_gjeld",
+                  "flag": "metadata_gjeld",
+                  "op": "add_flag",
+                  "work_object_id": "historie_arkiv_sak_leveranse_001"
+                }
+              ]
+            },
+            "feedback": "Du gjør en ukjent struktur til tilsynelatende sikker metadata og risikerer at senere korreksjon ikke kan skille opprinnelig orden fra arkivets egen gjetning.",
+            "id": "B",
+            "label": "Registrer etter dagens mappehierarki og fyll inn de mest sannsynlige seriene for å få leveransen ferdig",
+            "reply": "Vi kan korrigere katalogen senere hvis avsenderen kommer med mer informasjon. Nå er det viktigst å få alt søkbart.",
+            "tags": [
+              "provenance_guess",
+              "metadata_debt",
+              "false_certainty"
+            ]
+          }
+        ],
+        "competency": "proveniens_og_opprinnelig_orden",
+        "consequence_axis": "etterprovbar_leveranse_vs_varig_provenienstap",
+        "cooldown": 3,
+        "day_phase": "morning",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "historie_arkiv_leveranse_001_opprettet",
+              "op": "create",
+              "work_object": {
+                "confidentiality": "intern_arbeidsinformasjon",
+                "deadline": "mottaksfrist",
+                "flags": [
+                  "proveniens_uavklart"
+                ],
+                "institution_id": "historie_arkivinstitusjon_001",
+                "kind": "arkivleveranse",
+                "knowledge_refs": [
+                  "proveniens_og_opprinnelig_orden",
+                  "minimumsmetadata_og_sporbarhet"
+                ],
+                "open_questions": [
+                  "Hva var avsenders opprinnelige mappestruktur?",
+                  "Hvordan kobles eksportnavn tilbake til systemnøkler?"
+                ],
+                "people_refs": [
+                  "sara_arkivleder_historie",
+                  "yusuf_dokumentforvalter_historie"
+                ],
+                "phase": "mottak",
+                "place_refs": [
+                  "mottak_arkiv_historie",
+                  "ordningsrom_arkiv_historie"
+                ],
+                "role_scope": "historie_arkiv_og_dokumentasjon",
+                "shared": true,
+                "status": "open",
+                "title": "Blandet arkivleveranse med uklart systemspor",
+                "work_object_id": "historie_arkiv_sak_leveranse_001"
+              }
+            }
+          ]
+        },
+        "from": "Sara, arkivleder",
+        "id": "historie_arkiv_job_mottak_001",
+        "interaction_mode": "decision",
+        "mail_family": "historie_arkiv_mottak_og_proveniens",
+        "mail_type": "job",
+        "narrative_arc": "leveranse_til_proveniens_og_senere_gjenfinning",
+        "people_ref": "sara_arkivleder_historie",
+        "person_id": "sara_arkivleder_historie",
+        "phase": "intro",
+        "place_id": "mottak_arkiv_historie",
+        "pressure": "registreringsvolum_vs_kontekstbevaring",
+        "priority": 130,
+        "purpose": "Teste om spilleren prioriterer sporbar identitet, proveniens og avvik fremfor å gjøre materialet tilsynelatende ferdigregistrert på usikkert grunnlag.",
+        "repeatable": false,
+        "role_scope": "historie_arkiv_og_dokumentasjon",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/job/historie_arkiv_og_dokumentasjon_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Leveransen består av digitale filer og to papirserier fra samme avsender, men overføringslisten mangler forklaring på flere mappekoder.",
+          "Noen digitale mapper ser ut til å være eksportkopier med andre navn enn i avsenders opprinnelige system.",
+          "Sara har myndighet til å prioritere mottaket, men ingen har grunnlag for å fylle proveniensgapene med antakelser."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis opphav og relasjoner går tapt nå kan senere brukere finne dokumentene, men misforstå hvem som skapte dem, hvordan de hang sammen og hvilken versjon som faktisk ble overført.",
+        "subject": "Ny leveranse: 4 800 filer, to papirserier – og overføringslisten forklarer ikke mappestrukturen",
+        "summary": "Sara gir deg en blandet leveranse der filene kan åpnes og boksene er merket, men sammenhengen mellom avsenderens arbeidsprosesser, mapper og serier er dårlig dokumentert. Leveransen kan registreres raskt bare hvis dere aksepterer at konteksten rekonstrueres senere.",
+        "task_domain": "mottak_og_dokumentasjonsfangst",
+        "task_kind": "job",
+        "thread_key": "historie_arkiv_leveranse_001",
+        "work_context": {
+          "deadline_ref": "mottaksfrist",
+          "institution_id": "historie_arkivinstitusjon_001",
+          "object_ids": [
+            "historie_arkiv_sak_leveranse_001"
+          ]
+        }
+      },
+      "id": "historie_arkiv_job_mottak_001",
+      "mail_type": "job",
+      "role_scope": "historie_arkiv_og_dokumentasjon",
+      "scene": {
+        "arc_stage": "intro",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "historie_arkiv_leveranse_001_minimumsspor",
+                  "note": "Leveranseidentitet, opphav, relasjoner og kjente avvik er registrert uten å gjette på ukjent struktur.",
+                  "op": "transition",
+                  "to_phase": "minimumsspor_sikret",
+                  "to_status": "in_progress",
+                  "work_object_id": "historie_arkiv_sak_leveranse_001"
+                },
+                {
+                  "event_id": "historie_arkiv_leveranse_001_sporbar_flagg",
+                  "flag": "minimumsspor_sikret",
+                  "op": "add_flag",
+                  "work_object_id": "historie_arkiv_sak_leveranse_001"
+                }
+              ]
+            },
+            "feedback": "Du gjør leveransen langsommere i starten, men bevarer det som senere gjør dokumentene forståelige og etterprøvbare.",
+            "id": "A",
+            "label": "Lås leveranseidentitet, opphav, relasjoner og avvik først; finbeskriv resten etter at mappestrukturen er avklart",
+            "reply": "Jeg registrerer hva vi faktisk vet om avsender, overføring, serie og fil-/boksidentitet, markerer de uklare kodene og holder eksportnavn adskilt fra antatt originalstruktur."
+          },
+          {
+            "effects": {
+              "score_delta": -1,
+              "work_object_ops": [
+                {
+                  "event_id": "historie_arkiv_leveranse_001_antatt_struktur",
+                  "note": "Eksportens mappehierarki er brukt som om det var dokumentert original orden.",
+                  "op": "transition",
+                  "to_phase": "antatt_struktur",
+                  "to_status": "at_risk",
+                  "work_object_id": "historie_arkiv_sak_leveranse_001"
+                },
+                {
+                  "event_id": "historie_arkiv_leveranse_001_metadata_gjeld",
+                  "flag": "metadata_gjeld",
+                  "op": "add_flag",
+                  "work_object_id": "historie_arkiv_sak_leveranse_001"
+                }
+              ]
+            },
+            "feedback": "Du gjør en ukjent struktur til tilsynelatende sikker metadata og risikerer at senere korreksjon ikke kan skille opprinnelig orden fra arkivets egen gjetning.",
+            "id": "B",
+            "label": "Registrer etter dagens mappehierarki og fyll inn de mest sannsynlige seriene for å få leveransen ferdig",
+            "reply": "Vi kan korrigere katalogen senere hvis avsenderen kommer med mer informasjon. Nå er det viktigst å få alt søkbart."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Leveransen består av digitale filer og to papirserier fra samme avsender, men overføringslisten mangler forklaring på flere mappekoder.",
+            "Noen digitale mapper ser ut til å være eksportkopier med andre navn enn i avsenders opprinnelige system.",
+            "Sara har myndighet til å prioritere mottaket, men ingen har grunnlag for å fylle proveniensgapene med antakelser."
+          ],
+          "subject": "Ny leveranse: 4 800 filer, to papirserier – og overføringslisten forklarer ikke mappestrukturen",
+          "summary": "Sara gir deg en blandet leveranse der filene kan åpnes og boksene er merket, men sammenhengen mellom avsenderens arbeidsprosesser, mapper og serier er dårlig dokumentert. Leveransen kan registreres raskt bare hvis dere aksepterer at konteksten rekonstrueres senere."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "historie_arkiv_leveranse_001_opprettet",
+              "op": "create",
+              "work_object": {
+                "confidentiality": "intern_arbeidsinformasjon",
+                "deadline": "mottaksfrist",
+                "flags": [
+                  "proveniens_uavklart"
+                ],
+                "institution_id": "historie_arkivinstitusjon_001",
+                "kind": "arkivleveranse",
+                "knowledge_refs": [
+                  "proveniens_og_opprinnelig_orden",
+                  "minimumsmetadata_og_sporbarhet"
+                ],
+                "open_questions": [
+                  "Hva var avsenders opprinnelige mappestruktur?",
+                  "Hvordan kobles eksportnavn tilbake til systemnøkler?"
+                ],
+                "people_refs": [
+                  "sara_arkivleder_historie",
+                  "yusuf_dokumentforvalter_historie"
+                ],
+                "phase": "mottak",
+                "place_refs": [
+                  "mottak_arkiv_historie",
+                  "ordningsrom_arkiv_historie"
+                ],
+                "role_scope": "historie_arkiv_og_dokumentasjon",
+                "shared": true,
+                "status": "open",
+                "title": "Blandet arkivleveranse med uklart systemspor",
+                "work_object_id": "historie_arkiv_sak_leveranse_001"
+              }
+            }
+          ]
+        },
+        "id": "historie_arkiv_job_mottak_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "mottak_arkiv_historie",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_arkiv_job_mottak_001",
+          "source_path": "data/Civication/mailFamilies/historie/job/historie_arkiv_og_dokumentasjon_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_arkiv_leveranse_001",
+        "version": 1,
+        "work_context": {
+          "deadline_ref": "mottaksfrist",
+          "institution_id": "historie_arkivinstitusjon_001",
+          "object_ids": [
+            "historie_arkiv_sak_leveranse_001"
+          ]
+        }
+      },
+      "source_hash": "efde937ee94894faa4aa7ef33c38813c0de4cb4daa919ca2318778c308d9bb28",
+      "source_path": "data/Civication/mailFamilies/historie/job/historie_arkiv_og_dokumentasjon_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "bruk_stedsprofil_som_kontekst_og_sporsmalsgenerator_vs_kopier_syntesen_inn_som_kildemetadata",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "trust": 2
+              }
+            },
+            "feedback": "Du bruker History Go som læringsflate uten å viske ut forskjellen mellom historisk formidling og arkivets dokumentasjon av et konkret kildespor.",
+            "id": "A",
+            "label": "Åpne stedet, noter hvilke utsagn som er historisk syntese, og formuler hvilke proveniensdata et konkret arkivobjekt fortsatt måtte ha",
+            "reply": "Jeg bruker profilen til å forstå kontekst og stille bedre spørsmål, men lar dokumentets eget opphav, relasjon, datering og integritet være grunnlaget for arkivbeskrivelsen.",
+            "tags": [
+              "history_go_place",
+              "source_boundary",
+              "archival_description"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -3,
+                "risk": 3,
+                "trust": -2
+              }
+            },
+            "feedback": "Du gjør en senere syntese til del av materialets tilsynelatende egen dokumentasjon og svekker skillet mellom kilde, metadata og fortolkning.",
+            "id": "B",
+            "label": "Bruk stedsteksten som ferdig katalogkontekst siden den allerede sammenfatter historien godt",
+            "reply": "Profilen er mer lesbar enn våre notater. Vi kan gjenbruke formuleringene direkte og spare tid på kontekstfeltet.",
+            "tags": [
+              "interpretation_as_metadata",
+              "source_boundary_loss",
+              "context_copy"
+            ]
+          }
+        ],
+        "competency": "kildekritikk_vs_arkivbeskrivelse",
+        "consequence_axis": "tydelig_kildegrense_vs_sammenblanding_av_kilde_metadata_og_fortolkning",
+        "cooldown": 5,
+        "day_phase": "afternoon",
+        "from": "Sara, arkivleder",
+        "id": "historie_arkiv_knowledge_akershus_001",
+        "interaction_mode": "task",
+        "links": [
+          {
+            "kind": "person",
+            "label": "Knut Alvsson i History Go",
+            "ref": "knut_alvsson"
+          },
+          {
+            "kind": "person",
+            "label": "Ole Høiland i History Go",
+            "ref": "ole_hoiland"
+          },
+          {
+            "kind": "person",
+            "label": "Reidar Haaland i History Go",
+            "ref": "reidar_haaland"
+          }
+        ],
+        "mail_family": "historie_arkiv_kildebeskrivelse_vs_historisk_fortolkning",
+        "mail_type": "knowledge",
+        "narrative_arc": "formidling_til_kildegrense_og_bedre_beskrivelse",
+        "people_ref": "sara_arkivleder_historie",
+        "person_id": "sara_arkivleder_historie",
+        "phase": "advanced",
+        "place_id": "ordningsrom_arkiv_historie",
+        "pressure": "brukervennlig_historisk_syntese_vs_arkivfaglig_kildegrense",
+        "priority": 106,
+        "purpose": "Teste at spilleren kan lære av en offentlig historisk syntese uten å gjøre fortolkende stedstekst til proveniens eller primærkildebeskrivelse.",
+        "repeatable": false,
+        "role_scope": "historie_arkiv_og_dokumentasjon",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/knowledge/historie_arkiv_og_dokumentasjon_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Akershus festning er et canonicalt History Go-sted med en publisert profil som beskriver flere historiske tidslag.",
+          "Profilen er nyttig som kontekst og inngang til spørsmål, men den er ikke i seg selv proveniens for et konkret arkivdokument dere katalogiserer.",
+          "Oppgaven krever bare at du åpner og leser stedet; Akershus festning er ikke en fiktiv arbeidsplass eller avsender i Civication."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis formidlingsprosa kopieres inn som arkivmetadata kan senere brukere miste skillet mellom hva et konkret dokument viser, hva arkivet vet om opphavet og hva en senere historisk syntese fortolker.",
+        "subject": "Åpne Akershus festning i History Go: hva er stedshistorie, og hva ville vært arkivmetadata?",
+        "summary": "Sara ber deg lese den canonicale History Go-profilen for Akershus festning som et øvelsesobjekt. Profilen sammenfatter mange tidslag og hendelser for en bruker, mens en arkivpost må beskrive et konkret materiale, dets opphav, relasjon og usikkerhet. Oppgaven er å bruke forskjellen bevisst – ikke å omskrive History Go-prosa til katalogmetadata.",
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/places/historie/oslo/places_historie/akershus_festning.json",
+            "data/quiz/historie/akershus_festning_sets.json",
+            "data/people/historie/oslo/akershus_festning/knut_alvsson.json",
+            "data/people/historie/oslo/akershus_festning/ole_hoiland.json",
+            "data/people/historie/oslo/akershus_festning/reidar_haaland.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "historie_arkiv_history_go_akershus_festning"
+        },
+        "task_domain": "kildekontekst_og_formidling",
+        "task_kind": "knowledge",
+        "task_payload": {
+          "completion_mode": "open_place",
+          "description": "Åpne den canonicale stedssiden og skill mellom stedets formidlingshistorie og metadata som måtte vært dokumentert for et konkret arkivobjekt.",
+          "place_id": "akershus_festning",
+          "return_context": {
+            "mail_id": "historie_arkiv_knowledge_akershus_001",
+            "quiz_ref": "data/quiz/historie/akershus_festning_sets.json",
+            "related_person_ids": [
+              "knut_alvsson",
+              "ole_hoiland",
+              "reidar_haaland"
+            ],
+            "role_scope": "historie_arkiv_og_dokumentasjon",
+            "source": "civication"
+          },
+          "target_type": "place",
+          "task_kind": "history_go_place",
+          "title": "Les Akershus festning som historisk syntese"
+        },
+        "thread_key": "historie_arkiv_kildekontekst_001"
+      },
+      "id": "historie_arkiv_knowledge_akershus_001",
+      "mail_type": "knowledge",
+      "role_scope": "historie_arkiv_og_dokumentasjon",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du bruker History Go som læringsflate uten å viske ut forskjellen mellom historisk formidling og arkivets dokumentasjon av et konkret kildespor.",
+            "id": "A",
+            "label": "Åpne stedet, noter hvilke utsagn som er historisk syntese, og formuler hvilke proveniensdata et konkret arkivobjekt fortsatt måtte ha",
+            "reply": "Jeg bruker profilen til å forstå kontekst og stille bedre spørsmål, men lar dokumentets eget opphav, relasjon, datering og integritet være grunnlaget for arkivbeskrivelsen."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør en senere syntese til del av materialets tilsynelatende egen dokumentasjon og svekker skillet mellom kilde, metadata og fortolkning.",
+            "id": "B",
+            "label": "Bruk stedsteksten som ferdig katalogkontekst siden den allerede sammenfatter historien godt",
+            "reply": "Profilen er mer lesbar enn våre notater. Vi kan gjenbruke formuleringene direkte og spare tid på kontekstfeltet."
+          }
+        ],
+        "content": {
+          "links": [
+            {
+              "kind": "person",
+              "label": "Knut Alvsson i History Go",
+              "ref": "knut_alvsson"
+            },
+            {
+              "kind": "person",
+              "label": "Ole Høiland i History Go",
+              "ref": "ole_hoiland"
+            },
+            {
+              "kind": "person",
+              "label": "Reidar Haaland i History Go",
+              "ref": "reidar_haaland"
+            }
+          ],
+          "situation": [
+            "Akershus festning er et canonicalt History Go-sted med en publisert profil som beskriver flere historiske tidslag.",
+            "Profilen er nyttig som kontekst og inngang til spørsmål, men den er ikke i seg selv proveniens for et konkret arkivdokument dere katalogiserer.",
+            "Oppgaven krever bare at du åpner og leser stedet; Akershus festning er ikke en fiktiv arbeidsplass eller avsender i Civication."
+          ],
+          "subject": "Åpne Akershus festning i History Go: hva er stedshistorie, og hva ville vært arkivmetadata?",
+          "summary": "Sara ber deg lese den canonicale History Go-profilen for Akershus festning som et øvelsesobjekt. Profilen sammenfatter mange tidslag og hendelser for en bruker, mens en arkivpost må beskrive et konkret materiale, dets opphav, relasjon og usikkerhet. Oppgaven er å bruke forskjellen bevisst – ikke å omskrive History Go-prosa til katalogmetadata."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_arkiv_knowledge_akershus_001",
+        "interaction_mode": "task",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "ordningsrom_arkiv_historie",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_arkiv_knowledge_akershus_001",
+          "source_path": "data/Civication/mailFamilies/historie/knowledge/historie_arkiv_og_dokumentasjon_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/places/historie/oslo/places_historie/akershus_festning.json",
+            "data/quiz/historie/akershus_festning_sets.json",
+            "data/people/historie/oslo/akershus_festning/knut_alvsson.json",
+            "data/people/historie/oslo/akershus_festning/ole_hoiland.json",
+            "data/people/historie/oslo/akershus_festning/reidar_haaland.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "historie_arkiv_history_go_akershus_festning"
+        },
+        "thread_id": "historie_arkiv_kildekontekst_001",
+        "version": 1
+      },
+      "source_hash": "a0960c7cf5bdf9644282bc759a910eaf64ba4880273c475b8abed0c998477a0b",
+      "source_path": "data/Civication/mailFamilies/historie/knowledge/historie_arkiv_og_dokumentasjon_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "bruk_personprofil_til_sporsmal_og_kontekst_vs_gjor_biografisk_syntese_til_proveniens",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Du kobler History Go-personen til arbeidssaken som et kildekritisk hjelpemiddel uten å gjøre syntesen til arkivbevis.",
+            "id": "A",
+            "label": "Åpne profilen og bruk den til å formulere hva som må verifiseres i selve arkivmaterialet",
+            "reply": "Jeg bruker personprofilen til å forstå tids- og hendelseskontekst, men registrerer bare dokumentets opphav og relasjoner når arkivsporet faktisk dokumenterer dem.",
+            "tags": [
+              "history_go_person",
+              "source_boundary",
+              "provenance_question"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -3,
+                "risk": 4,
+                "trust": -2
+              }
+            },
+            "feedback": "Du gjør en historisk plausibel person–sted-kobling til sikker dokumentproveniens uten evidens fra selve arkivkjeden.",
+            "id": "B",
+            "label": "Bruk personprofilens kobling til Akershus som tilstrekkelig grunnlag for å fylle inn dokumentets proveniens",
+            "reply": "Når personen og stedet allerede er historisk koblet kan vi føre denne sammenhengen direkte i metadata og spare en ny kontrollrunde.",
+            "tags": [
+              "biography_as_provenance",
+              "source_boundary_loss",
+              "false_certainty"
+            ]
+          }
+        ],
+        "competency": "kildekritikk_vs_arkivbeskrivelse",
+        "consequence_axis": "bedre_kildekritiske_sporsmal_vs_falsk_opphavssikkerhet",
+        "cooldown": 5,
+        "day_phase": "afternoon",
+        "from": "Sara, arkivleder",
+        "id": "historie_arkiv_knowledge_knut_alvsson_001",
+        "interaction_mode": "task",
+        "links": [
+          {
+            "kind": "place",
+            "label": "Akershus festning i History Go",
+            "ref": "akershus_festning"
+          }
+        ],
+        "mail_family": "historie_arkiv_kildebeskrivelse_vs_historisk_fortolkning",
+        "mail_type": "knowledge",
+        "narrative_arc": "formidling_til_kildegrense_og_bedre_beskrivelse",
+        "people_ref": "sara_arkivleder_historie",
+        "person_id": "sara_arkivleder_historie",
+        "phase": "advanced",
+        "place_id": "ordningsrom_arkiv_historie",
+        "pressure": "nyttig_personkontekst_vs_udokumentert_proveniensslutning",
+        "priority": 105,
+        "purpose": "Koble arkivrollen direkte til eksisterende canonical History Go People og trene skillet mellom biografisk syntese, dokumentinnhold og arkivproveniens.",
+        "repeatable": false,
+        "role_scope": "historie_arkiv_og_dokumentasjon",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/knowledge/historie_arkiv_og_dokumentasjon_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Knut Alvsson finnes allerede som canonical History Go Person knyttet til Akershus festning og året 1502.",
+          "Personprofilen oppsummerer en historisk aktør og hendelseskontekst; den er ikke i seg selv metadata for et bestemt brev, regnskap, protokoll eller annet arkivobjekt.",
+          "Et konkret arkivobjekt må fortsatt beskrives ut fra dokumentert skaper, arkivsammenheng, datering, relasjon, overføring og eventuelle usikkerheter."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis en personprofil brukes som erstatning for dokumentets eget opphavs- og overføringsspor kan en plausibel historisk kobling bli feilaktig registrert som sikker proveniens.",
+        "subject": "Åpne Knut Alvsson i History Go: en personprofil er kontekst, ikke dokumentproveniens",
+        "summary": "Sara ber deg åpne den canonicale History Go-profilen for Knut Alvsson, som knytter opprørslederen til Akershus festning i 1502. Profilen kan gi historisk kontekst og bedre spørsmål, men den kan ikke alene avgjøre hvem som skapte et konkret dokument, hvordan dokumentet kom inn i arkivet eller hvilken provenienskjede akkurat dette arkivobjektet har.",
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/people/historie/oslo/akershus_festning/knut_alvsson.json",
+            "data/places/historie/oslo/places_historie/akershus_festning.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "historie_arkiv_history_go_knut_alvsson"
+        },
+        "task_domain": "kildekontekst_og_formidling",
+        "task_kind": "knowledge",
+        "task_payload": {
+          "completion_mode": "read_profile",
+          "description": "Åpne den canonicale personprofilen og skill det History Go sammenfatter om aktøren fra proveniens som må dokumenteres for et konkret arkivobjekt.",
+          "person_id": "knut_alvsson",
+          "return_context": {
+            "mail_id": "historie_arkiv_knowledge_knut_alvsson_001",
+            "place_id": "akershus_festning",
+            "role_scope": "historie_arkiv_og_dokumentasjon",
+            "source": "civication"
+          },
+          "target_type": "person",
+          "task_kind": "history_go_person",
+          "title": "Les Knut Alvsson som historisk personkontekst"
+        },
+        "thread_key": "historie_arkiv_kildekontekst_001"
+      },
+      "id": "historie_arkiv_knowledge_knut_alvsson_001",
+      "mail_type": "knowledge",
+      "role_scope": "historie_arkiv_og_dokumentasjon",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du kobler History Go-personen til arbeidssaken som et kildekritisk hjelpemiddel uten å gjøre syntesen til arkivbevis.",
+            "id": "A",
+            "label": "Åpne profilen og bruk den til å formulere hva som må verifiseres i selve arkivmaterialet",
+            "reply": "Jeg bruker personprofilen til å forstå tids- og hendelseskontekst, men registrerer bare dokumentets opphav og relasjoner når arkivsporet faktisk dokumenterer dem."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør en historisk plausibel person–sted-kobling til sikker dokumentproveniens uten evidens fra selve arkivkjeden.",
+            "id": "B",
+            "label": "Bruk personprofilens kobling til Akershus som tilstrekkelig grunnlag for å fylle inn dokumentets proveniens",
+            "reply": "Når personen og stedet allerede er historisk koblet kan vi føre denne sammenhengen direkte i metadata og spare en ny kontrollrunde."
+          }
+        ],
+        "content": {
+          "links": [
+            {
+              "kind": "place",
+              "label": "Akershus festning i History Go",
+              "ref": "akershus_festning"
+            }
+          ],
+          "situation": [
+            "Knut Alvsson finnes allerede som canonical History Go Person knyttet til Akershus festning og året 1502.",
+            "Personprofilen oppsummerer en historisk aktør og hendelseskontekst; den er ikke i seg selv metadata for et bestemt brev, regnskap, protokoll eller annet arkivobjekt.",
+            "Et konkret arkivobjekt må fortsatt beskrives ut fra dokumentert skaper, arkivsammenheng, datering, relasjon, overføring og eventuelle usikkerheter."
+          ],
+          "subject": "Åpne Knut Alvsson i History Go: en personprofil er kontekst, ikke dokumentproveniens",
+          "summary": "Sara ber deg åpne den canonicale History Go-profilen for Knut Alvsson, som knytter opprørslederen til Akershus festning i 1502. Profilen kan gi historisk kontekst og bedre spørsmål, men den kan ikke alene avgjøre hvem som skapte et konkret dokument, hvordan dokumentet kom inn i arkivet eller hvilken provenienskjede akkurat dette arkivobjektet har."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_arkiv_knowledge_knut_alvsson_001",
+        "interaction_mode": "task",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "ordningsrom_arkiv_historie",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_arkiv_knowledge_knut_alvsson_001",
+          "source_path": "data/Civication/mailFamilies/historie/knowledge/historie_arkiv_og_dokumentasjon_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/people/historie/oslo/akershus_festning/knut_alvsson.json",
+            "data/places/historie/oslo/places_historie/akershus_festning.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "historie_arkiv_history_go_knut_alvsson"
+        },
+        "thread_id": "historie_arkiv_kildekontekst_001",
+        "version": 1
+      },
+      "source_hash": "0bbd1121dfd723ffbb37fb43bd892d2a29c872b6ee9fd1126f695dee823e5e43",
+      "source_path": "data/Civication/mailFamilies/historie/knowledge/historie_arkiv_og_dokumentasjon_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "bevar_identitet_opphav_relajon_tilgang_og_usikkerhet_vs_reduser_til_filnavn_og_tittel",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": 1,
+                "quality": 3,
+                "risk": -3,
+                "trust": 2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "historie_arkiv_leveranse_001_operativt_minimum",
+                  "note": "Materialet kan åpnes for søk med identitet, opphav, relasjon, tidsrom, tilgangsstatus og usikkerhet bevart.",
+                  "op": "transition",
+                  "to_phase": "minimumsmetadata_operativt",
+                  "to_status": "in_progress",
+                  "work_object_id": "historie_arkiv_sak_leveranse_001"
+                },
+                {
+                  "event_id": "historie_arkiv_leveranse_001_minimum_operativt_flagg",
+                  "flag": "minimumsmetadata_operativt",
+                  "op": "add_flag",
+                  "work_object_id": "historie_arkiv_sak_leveranse_001"
+                }
+              ]
+            },
+            "feedback": "Du reduserer detaljnivået uten å redusere materialets identitet og kontrollspor.",
+            "id": "A",
+            "label": "Sett et eksplisitt minimum for identitet, opphav, relasjon, tidsrom, tilgangsstatus og avvik; utsett finbeskrivelsen",
+            "reply": "Vi åpner bare poster som kan spores tilbake til mottaket og riktig kontekst. Ukjente felt merkes som uavklart i stedet for å fylles med gjetning.",
+            "tags": [
+              "minimum_metadata",
+              "traceability",
+              "known_unknowns"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "energy": 2,
+                "quality": -3,
+                "risk": 4,
+                "trust": -2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "historie_arkiv_leveranse_001_tynn_metadata",
+                  "note": "Postene er åpnet med filnavn og enkel tittel før proveniens- og tilgangsminimum er sikret.",
+                  "op": "transition",
+                  "to_phase": "tynn_metadata_publisert",
+                  "to_status": "at_risk",
+                  "work_object_id": "historie_arkiv_sak_leveranse_001"
+                },
+                {
+                  "event_id": "historie_arkiv_leveranse_001_kontekstgjeld",
+                  "flag": "kontekstgjeld",
+                  "op": "add_flag",
+                  "work_object_id": "historie_arkiv_sak_leveranse_001"
+                }
+              ]
+            },
+            "feedback": "Du gjør restarbeidet vanskeligere fordi postene åpnes uten de feltene som forteller hva de er, hvor de hører hjemme og hvilke tilgangsgrenser som gjelder.",
+            "id": "B",
+            "label": "Publiser filnavn, enkel tittel og dato nå; resten kan berikes når køen er nede",
+            "reply": "Brukerne får tilgang raskere, og vi kan fylle inn proveniens, relasjoner og tilgangsdetaljer i en senere rydderunde.",
+            "tags": [
+              "thin_metadata",
+              "context_debt",
+              "access_risk"
+            ]
+          }
+        ],
+        "competency": "minimumsmetadata_og_sporbarhet",
+        "consequence_axis": "kontrollert_restgjeld_vs_uforstaelig_metadata_gjeld",
+        "cooldown": 4,
+        "day_phase": "afternoon",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "historie_arkiv_leveranse_001_opprettet",
+              "op": "create",
+              "work_object": {
+                "confidentiality": "intern_arbeidsinformasjon",
+                "deadline": "mottaksfrist",
+                "flags": [
+                  "proveniens_uavklart"
+                ],
+                "institution_id": "historie_arkivinstitusjon_001",
+                "kind": "arkivleveranse",
+                "knowledge_refs": [
+                  "proveniens_og_opprinnelig_orden",
+                  "minimumsmetadata_og_sporbarhet"
+                ],
+                "open_questions": [
+                  "Hva var avsenders opprinnelige mappestruktur?",
+                  "Hvordan kobles eksportnavn tilbake til systemnøkler?"
+                ],
+                "people_refs": [
+                  "sara_arkivleder_historie",
+                  "yusuf_dokumentforvalter_historie"
+                ],
+                "phase": "mottak",
+                "place_refs": [
+                  "mottak_arkiv_historie",
+                  "ordningsrom_arkiv_historie"
+                ],
+                "role_scope": "historie_arkiv_og_dokumentasjon",
+                "shared": true,
+                "status": "open",
+                "title": "Blandet arkivleveranse med uklart systemspor",
+                "work_object_id": "historie_arkiv_sak_leveranse_001"
+              }
+            }
+          ]
+        },
+        "from": "Sara, arkivleder",
+        "id": "historie_arkiv_micro_minimumsmetadata_001",
+        "interaction_mode": "decision",
+        "mail_family": "historie_arkiv_minimumsmetadata_under_press",
+        "mail_type": "micro",
+        "narrative_arc": "leveranse_til_proveniens_og_senere_gjenfinning",
+        "people_ref": "sara_arkivleder_historie",
+        "person_id": "sara_arkivleder_historie",
+        "phase": "workday",
+        "place_id": "ordningsrom_arkiv_historie",
+        "pressure": "registreringskø_vs_kontekstminimum",
+        "priority": 109,
+        "purpose": "Teste om spilleren skiller utsettbar berikelse fra metadata som er nødvendig for proveniens og ansvarlig tilgang.",
+        "repeatable": false,
+        "role_scope": "historie_arkiv_og_dokumentasjon",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/micro/historie_arkiv_og_dokumentasjon_micro.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Full emnebeskrivelse og detaljert nøkkelordsetting kan utsettes uten at kildens identitet går tapt.",
+          "Opphav, serie-/saksrelasjon, dato eller tidsrom, mottaksidentitet, tilgangsstatus og kjente usikkerheter er nødvendige for senere forståelse og kontroll.",
+          "Felt dere ikke faktisk kjenner skal kunne stå eksplisitt uavklart fremfor å fylles med antatte verdier."
+        ],
+        "stage": "stable",
+        "stakes": "Et for tynt minimum kan gjøre mange dokumenter søkbare raskt, men samtidig løsrive dem fra kontekst og tilgangsstatus slik at senere opprydding blir dyr og usikker.",
+        "subject": "Vi rekker ikke full beskrivelse i dag – hvilke felt må være på plass før resten av leveransen åpnes for søk?",
+        "summary": "Køen vokser og Sara ber deg definere et minimumsnivå som gjør materialet gjenfinnbart uten å skape falsk sikkerhet. Finbeskrivelse kan vente, men identitet, opphav, relasjon, tidsangivelse, tilgangsstatus og kjente avvik må kunne forstås senere.",
+        "task_domain": "proveniens_ordning_og_metadata",
+        "task_kind": "micro",
+        "thread_key": "historie_arkiv_leveranse_001",
+        "work_context": {
+          "deadline_ref": "mottaksfrist",
+          "institution_id": "historie_arkivinstitusjon_001",
+          "object_ids": [
+            "historie_arkiv_sak_leveranse_001"
+          ]
+        }
+      },
+      "id": "historie_arkiv_micro_minimumsmetadata_001",
+      "mail_type": "micro",
+      "role_scope": "historie_arkiv_og_dokumentasjon",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "historie_arkiv_leveranse_001_operativt_minimum",
+                  "note": "Materialet kan åpnes for søk med identitet, opphav, relasjon, tidsrom, tilgangsstatus og usikkerhet bevart.",
+                  "op": "transition",
+                  "to_phase": "minimumsmetadata_operativt",
+                  "to_status": "in_progress",
+                  "work_object_id": "historie_arkiv_sak_leveranse_001"
+                },
+                {
+                  "event_id": "historie_arkiv_leveranse_001_minimum_operativt_flagg",
+                  "flag": "minimumsmetadata_operativt",
+                  "op": "add_flag",
+                  "work_object_id": "historie_arkiv_sak_leveranse_001"
+                }
+              ]
+            },
+            "feedback": "Du reduserer detaljnivået uten å redusere materialets identitet og kontrollspor.",
+            "id": "A",
+            "label": "Sett et eksplisitt minimum for identitet, opphav, relasjon, tidsrom, tilgangsstatus og avvik; utsett finbeskrivelsen",
+            "reply": "Vi åpner bare poster som kan spores tilbake til mottaket og riktig kontekst. Ukjente felt merkes som uavklart i stedet for å fylles med gjetning."
+          },
+          {
+            "effects": {
+              "score_delta": -1,
+              "work_object_ops": [
+                {
+                  "event_id": "historie_arkiv_leveranse_001_tynn_metadata",
+                  "note": "Postene er åpnet med filnavn og enkel tittel før proveniens- og tilgangsminimum er sikret.",
+                  "op": "transition",
+                  "to_phase": "tynn_metadata_publisert",
+                  "to_status": "at_risk",
+                  "work_object_id": "historie_arkiv_sak_leveranse_001"
+                },
+                {
+                  "event_id": "historie_arkiv_leveranse_001_kontekstgjeld",
+                  "flag": "kontekstgjeld",
+                  "op": "add_flag",
+                  "work_object_id": "historie_arkiv_sak_leveranse_001"
+                }
+              ]
+            },
+            "feedback": "Du gjør restarbeidet vanskeligere fordi postene åpnes uten de feltene som forteller hva de er, hvor de hører hjemme og hvilke tilgangsgrenser som gjelder.",
+            "id": "B",
+            "label": "Publiser filnavn, enkel tittel og dato nå; resten kan berikes når køen er nede",
+            "reply": "Brukerne får tilgang raskere, og vi kan fylle inn proveniens, relasjoner og tilgangsdetaljer i en senere rydderunde."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Full emnebeskrivelse og detaljert nøkkelordsetting kan utsettes uten at kildens identitet går tapt.",
+            "Opphav, serie-/saksrelasjon, dato eller tidsrom, mottaksidentitet, tilgangsstatus og kjente usikkerheter er nødvendige for senere forståelse og kontroll.",
+            "Felt dere ikke faktisk kjenner skal kunne stå eksplisitt uavklart fremfor å fylles med antatte verdier."
+          ],
+          "subject": "Vi rekker ikke full beskrivelse i dag – hvilke felt må være på plass før resten av leveransen åpnes for søk?",
+          "summary": "Køen vokser og Sara ber deg definere et minimumsnivå som gjør materialet gjenfinnbart uten å skape falsk sikkerhet. Finbeskrivelse kan vente, men identitet, opphav, relasjon, tidsangivelse, tilgangsstatus og kjente avvik må kunne forstås senere."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "historie_arkiv_leveranse_001_opprettet",
+              "op": "create",
+              "work_object": {
+                "confidentiality": "intern_arbeidsinformasjon",
+                "deadline": "mottaksfrist",
+                "flags": [
+                  "proveniens_uavklart"
+                ],
+                "institution_id": "historie_arkivinstitusjon_001",
+                "kind": "arkivleveranse",
+                "knowledge_refs": [
+                  "proveniens_og_opprinnelig_orden",
+                  "minimumsmetadata_og_sporbarhet"
+                ],
+                "open_questions": [
+                  "Hva var avsenders opprinnelige mappestruktur?",
+                  "Hvordan kobles eksportnavn tilbake til systemnøkler?"
+                ],
+                "people_refs": [
+                  "sara_arkivleder_historie",
+                  "yusuf_dokumentforvalter_historie"
+                ],
+                "phase": "mottak",
+                "place_refs": [
+                  "mottak_arkiv_historie",
+                  "ordningsrom_arkiv_historie"
+                ],
+                "role_scope": "historie_arkiv_og_dokumentasjon",
+                "shared": true,
+                "status": "open",
+                "title": "Blandet arkivleveranse med uklart systemspor",
+                "work_object_id": "historie_arkiv_sak_leveranse_001"
+              }
+            }
+          ]
+        },
+        "id": "historie_arkiv_micro_minimumsmetadata_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "ordningsrom_arkiv_historie",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_arkiv_micro_minimumsmetadata_001",
+          "source_path": "data/Civication/mailFamilies/historie/micro/historie_arkiv_og_dokumentasjon_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_arkiv_leveranse_001",
+        "version": 1,
+        "work_context": {
+          "deadline_ref": "mottaksfrist",
+          "institution_id": "historie_arkivinstitusjon_001",
+          "object_ids": [
+            "historie_arkiv_sak_leveranse_001"
+          ]
+        }
+      },
+      "source_hash": "dcec29efb9d059ecb41d951b5b91d11ad67585d18b5f9ca0557adb3fa09eb177",
+      "source_path": "data/Civication/mailFamilies/historie/micro/historie_arkiv_og_dokumentasjon_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "bevar_eksport_og_systemrapport_som_adskilte_spor_vs_likestill_eksportmappe_med_original_orden",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 3,
+                "risk": -3,
+                "trust": 2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "historie_arkiv_leveranse_001_systemkontekst",
+                  "note": "Koblingsrapporten bevarer relasjonen mellom opprinnelige poster og eksportfiler som eget overføringsspor.",
+                  "op": "transition",
+                  "to_phase": "systemkontekst_dokumentert",
+                  "to_status": "in_progress",
+                  "work_object_id": "historie_arkiv_sak_leveranse_001"
+                },
+                {
+                  "event_id": "historie_arkiv_leveranse_001_proveniens_avklart",
+                  "flag": "proveniens_uavklart",
+                  "op": "remove_flag",
+                  "work_object_id": "historie_arkiv_sak_leveranse_001"
+                },
+                {
+                  "event_id": "historie_arkiv_leveranse_001_systemspor_flagg",
+                  "flag": "systemspor_sikret",
+                  "op": "add_flag",
+                  "work_object_id": "historie_arkiv_sak_leveranse_001"
+                }
+              ]
+            },
+            "feedback": "Du gjør en teknisk eksporthendelse til et kontrollert spor i stedet for å la den usynlig omskrive arkivets struktur.",
+            "id": "A",
+            "label": "Hent koblingsrapporten, registrer den som overføringsspor og behold eksportstrukturen som eksport – ikke som original orden",
+            "reply": "Vi dokumenterer både hva systemet hadde og hva uttrekket gjorde. Da kan senere brukere skille kildens opprinnelige relasjoner fra arkivets tekniske mottaksprosess.",
+            "tags": [
+              "system_provenance",
+              "transfer_trace",
+              "relationship_preservation"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "energy": 1,
+                "quality": -3,
+                "risk": 4,
+                "trust": -2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "historie_arkiv_leveranse_001_eksport_som_original",
+                  "note": "Eksportlayouten er likestilt med original orden uten dokumentert systemkobling.",
+                  "op": "transition",
+                  "to_phase": "eksportstruktur_som_original",
+                  "to_status": "at_risk",
+                  "work_object_id": "historie_arkiv_sak_leveranse_001"
+                },
+                {
+                  "event_id": "historie_arkiv_leveranse_001_konteksttap",
+                  "flag": "konteksttap_risiko",
+                  "op": "add_flag",
+                  "work_object_id": "historie_arkiv_sak_leveranse_001"
+                }
+              ]
+            },
+            "feedback": "Du gjør brukergrensesnittets eksportstruktur til historisk orden og mister dokumentert sammenheng mellom materiale og skaperprosess.",
+            "id": "B",
+            "label": "Bruk eksportmappene som den nye serien – de er mer forståelige og alle filene er med",
+            "reply": "Det viktige er at materialet kan finnes. Vi trenger ikke komplisere katalogen med interne nøkler som brukerne uansett ikke kjenner.",
+            "tags": [
+              "export_as_original",
+              "context_loss",
+              "convenience_rewrite"
+            ]
+          }
+        ],
+        "competency": "proveniens_og_opprinnelig_orden",
+        "consequence_axis": "rekonstruerbar_systemproveniens_vs_tap_av_opprinnelig_relajon",
+        "cooldown": 3,
+        "day_phase": "morning",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "historie_arkiv_leveranse_001_opprettet",
+              "op": "create",
+              "work_object": {
+                "confidentiality": "intern_arbeidsinformasjon",
+                "deadline": "mottaksfrist",
+                "flags": [
+                  "proveniens_uavklart"
+                ],
+                "institution_id": "historie_arkivinstitusjon_001",
+                "kind": "arkivleveranse",
+                "knowledge_refs": [
+                  "proveniens_og_opprinnelig_orden",
+                  "minimumsmetadata_og_sporbarhet"
+                ],
+                "open_questions": [
+                  "Hva var avsenders opprinnelige mappestruktur?",
+                  "Hvordan kobles eksportnavn tilbake til systemnøkler?"
+                ],
+                "people_refs": [
+                  "sara_arkivleder_historie",
+                  "yusuf_dokumentforvalter_historie"
+                ],
+                "phase": "mottak",
+                "place_refs": [
+                  "mottak_arkiv_historie",
+                  "ordningsrom_arkiv_historie"
+                ],
+                "role_scope": "historie_arkiv_og_dokumentasjon",
+                "shared": true,
+                "status": "open",
+                "title": "Blandet arkivleveranse med uklart systemspor",
+                "work_object_id": "historie_arkiv_sak_leveranse_001"
+              }
+            }
+          ]
+        },
+        "from": "Yusuf, dokumentforvalter",
+        "id": "historie_arkiv_people_systemkontekst_001",
+        "interaction_mode": "decision",
+        "mail_family": "historie_arkiv_systemkontekst",
+        "mail_type": "people",
+        "narrative_arc": "leveranse_til_proveniens_og_senere_gjenfinning",
+        "people_ref": "yusuf_dokumentforvalter_historie",
+        "person_id": "yusuf_dokumentforvalter_historie",
+        "phase": "early",
+        "place_id": "mottak_arkiv_historie",
+        "pressure": "registreringsfrist_vs_systemkontekst",
+        "priority": 125,
+        "purpose": "Teste om spilleren bruker systemkontekst som dokumentert proveniensevidens i stedet for å behandle eksportens visuelle struktur som original orden.",
+        "repeatable": false,
+        "role_scope": "historie_arkiv_og_dokumentasjon",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/people/historie_arkiv_og_dokumentasjon_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Eksportmappene har lesbare navn som ser logiske ut, men de ble generert ved uttrekk og er ikke identiske med avsenders interne nøkler.",
+          "Yusuf kan levere en maskinell koblingsrapport mellom de opprinnelige postene og eksportfilene.",
+          "Rapporten er dokumentasjon av overføringen og skal ikke blandes sammen med originalmaterialet som om den alltid har vært del av arkivet."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis eksportlayouten tas for å være original struktur kan relasjonene mellom dokumenter og saker forsvinne selv om alle filer teknisk sett er bevart.",
+        "subject": "Eksporten har laget nye mappenavn – jeg kan hente systemrapporten som viser de opprinnelige relasjonene",
+        "summary": "Yusuf oppdager at eksportverktøyet erstattet interne saks- og serienøkler med lesbare mappenavn. Han kan hente en systemrapport som kobler eksportmappene tilbake til opprinnelige poster, men det vil forsinke registreringen og rapporten må lagres som eget forvaltningsspor.",
+        "task_domain": "mottak_og_dokumentasjonsfangst",
+        "task_kind": "people",
+        "thread_key": "historie_arkiv_leveranse_001",
+        "work_context": {
+          "deadline_ref": "mottaksfrist",
+          "institution_id": "historie_arkivinstitusjon_001",
+          "object_ids": [
+            "historie_arkiv_sak_leveranse_001"
+          ]
+        }
+      },
+      "id": "historie_arkiv_people_systemkontekst_001",
+      "mail_type": "people",
+      "role_scope": "historie_arkiv_og_dokumentasjon",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "historie_arkiv_leveranse_001_systemkontekst",
+                  "note": "Koblingsrapporten bevarer relasjonen mellom opprinnelige poster og eksportfiler som eget overføringsspor.",
+                  "op": "transition",
+                  "to_phase": "systemkontekst_dokumentert",
+                  "to_status": "in_progress",
+                  "work_object_id": "historie_arkiv_sak_leveranse_001"
+                },
+                {
+                  "event_id": "historie_arkiv_leveranse_001_proveniens_avklart",
+                  "flag": "proveniens_uavklart",
+                  "op": "remove_flag",
+                  "work_object_id": "historie_arkiv_sak_leveranse_001"
+                },
+                {
+                  "event_id": "historie_arkiv_leveranse_001_systemspor_flagg",
+                  "flag": "systemspor_sikret",
+                  "op": "add_flag",
+                  "work_object_id": "historie_arkiv_sak_leveranse_001"
+                }
+              ]
+            },
+            "feedback": "Du gjør en teknisk eksporthendelse til et kontrollert spor i stedet for å la den usynlig omskrive arkivets struktur.",
+            "id": "A",
+            "label": "Hent koblingsrapporten, registrer den som overføringsspor og behold eksportstrukturen som eksport – ikke som original orden",
+            "reply": "Vi dokumenterer både hva systemet hadde og hva uttrekket gjorde. Da kan senere brukere skille kildens opprinnelige relasjoner fra arkivets tekniske mottaksprosess."
+          },
+          {
+            "effects": {
+              "score_delta": -1,
+              "work_object_ops": [
+                {
+                  "event_id": "historie_arkiv_leveranse_001_eksport_som_original",
+                  "note": "Eksportlayouten er likestilt med original orden uten dokumentert systemkobling.",
+                  "op": "transition",
+                  "to_phase": "eksportstruktur_som_original",
+                  "to_status": "at_risk",
+                  "work_object_id": "historie_arkiv_sak_leveranse_001"
+                },
+                {
+                  "event_id": "historie_arkiv_leveranse_001_konteksttap",
+                  "flag": "konteksttap_risiko",
+                  "op": "add_flag",
+                  "work_object_id": "historie_arkiv_sak_leveranse_001"
+                }
+              ]
+            },
+            "feedback": "Du gjør brukergrensesnittets eksportstruktur til historisk orden og mister dokumentert sammenheng mellom materiale og skaperprosess.",
+            "id": "B",
+            "label": "Bruk eksportmappene som den nye serien – de er mer forståelige og alle filene er med",
+            "reply": "Det viktige er at materialet kan finnes. Vi trenger ikke komplisere katalogen med interne nøkler som brukerne uansett ikke kjenner."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Eksportmappene har lesbare navn som ser logiske ut, men de ble generert ved uttrekk og er ikke identiske med avsenders interne nøkler.",
+            "Yusuf kan levere en maskinell koblingsrapport mellom de opprinnelige postene og eksportfilene.",
+            "Rapporten er dokumentasjon av overføringen og skal ikke blandes sammen med originalmaterialet som om den alltid har vært del av arkivet."
+          ],
+          "subject": "Eksporten har laget nye mappenavn – jeg kan hente systemrapporten som viser de opprinnelige relasjonene",
+          "summary": "Yusuf oppdager at eksportverktøyet erstattet interne saks- og serienøkler med lesbare mappenavn. Han kan hente en systemrapport som kobler eksportmappene tilbake til opprinnelige poster, men det vil forsinke registreringen og rapporten må lagres som eget forvaltningsspor."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "historie_arkiv_leveranse_001_opprettet",
+              "op": "create",
+              "work_object": {
+                "confidentiality": "intern_arbeidsinformasjon",
+                "deadline": "mottaksfrist",
+                "flags": [
+                  "proveniens_uavklart"
+                ],
+                "institution_id": "historie_arkivinstitusjon_001",
+                "kind": "arkivleveranse",
+                "knowledge_refs": [
+                  "proveniens_og_opprinnelig_orden",
+                  "minimumsmetadata_og_sporbarhet"
+                ],
+                "open_questions": [
+                  "Hva var avsenders opprinnelige mappestruktur?",
+                  "Hvordan kobles eksportnavn tilbake til systemnøkler?"
+                ],
+                "people_refs": [
+                  "sara_arkivleder_historie",
+                  "yusuf_dokumentforvalter_historie"
+                ],
+                "phase": "mottak",
+                "place_refs": [
+                  "mottak_arkiv_historie",
+                  "ordningsrom_arkiv_historie"
+                ],
+                "role_scope": "historie_arkiv_og_dokumentasjon",
+                "shared": true,
+                "status": "open",
+                "title": "Blandet arkivleveranse med uklart systemspor",
+                "work_object_id": "historie_arkiv_sak_leveranse_001"
+              }
+            }
+          ]
+        },
+        "id": "historie_arkiv_people_systemkontekst_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "mottak_arkiv_historie",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_arkiv_people_systemkontekst_001",
+          "source_path": "data/Civication/mailFamilies/historie/people/historie_arkiv_og_dokumentasjon_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_arkiv_leveranse_001",
+        "version": 1,
+        "work_context": {
+          "deadline_ref": "mottaksfrist",
+          "institution_id": "historie_arkivinstitusjon_001",
+          "object_ids": [
+            "historie_arkiv_sak_leveranse_001"
+          ]
+        }
+      },
+      "source_hash": "619fef68adcea74ace72319300c5fa34983f5f18d02c46c11e22a16787b7a92d",
+      "source_path": "data/Civication/mailFamilies/historie/people/historie_arkiv_og_dokumentasjon_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "historie",
+      "compatibility_projection": {
+        "category": "historie",
+        "choice_axis": "korriger_med_evidens_og_endringsspor_vs_overskriv_for_a_skape_ren_fasit",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 3,
+                "risk": -3,
+                "trust": 3
+              }
+            },
+            "feedback": "Du forbedrer gjenfinningen uten å gjøre arkivets egen feil usynlig for senere kontroll.",
+            "id": "A",
+            "label": "Korriger avsenderfeltet, dokumenter hvilke spor som begrunner endringen og bevar den tidligere verdien i endringshistorikken",
+            "reply": "Jeg oppdaterer den aktive katalogverdien, lenker korreksjonen til originalens og mottakssporets evidens og gjør tidspunkt og tidligere verdi synlig i forvaltningsloggen.",
+            "tags": [
+              "metadata_correction",
+              "audit_trail",
+              "source_integrity"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -3,
+                "risk": 4,
+                "trust": -3
+              }
+            },
+            "feedback": "Du gjør den nye beskrivelsen tydelig, men fjerner sporet som forklarer eldre katalogbruk og gjør arkivets egen korreksjon vanskeligere å etterprøve.",
+            "id": "B",
+            "label": "Erstatt den gamle verdien overalt slik at brukerne ikke møter motstridende informasjon",
+            "reply": "Når den nye identifikasjonen er bedre dokumentert bør katalogen vise én entydig versjon. Det gamle feltet skaper bare forvirring.",
+            "tags": [
+              "silent_overwrite",
+              "audit_loss",
+              "metadata_cleaning"
+            ]
+          }
+        ],
+        "competency": "metadata_og_beskrivelsesspor",
+        "consequence_axis": "etterprovbar_korreksjon_vs_slettet_forvaltningshistorikk",
+        "cooldown": 4,
+        "day_phase": "afternoon",
+        "from": "Yusuf, dokumentforvalter",
+        "id": "historie_arkiv_story_metadata_001",
+        "interaction_mode": "decision",
+        "mail_family": "historie_arkiv_metadata_korreksjon",
+        "mail_type": "story",
+        "narrative_arc": "metadata_fra_feil_til_korreksjon_og_senere_kildebruk",
+        "people_ref": "yusuf_dokumentforvalter_historie",
+        "person_id": "yusuf_dokumentforvalter_historie",
+        "phase": "mid",
+        "place_id": "ordningsrom_arkiv_historie",
+        "pressure": "katalogkonsistens_vs_transparent_korreksjon",
+        "priority": 115,
+        "purpose": "Teste transparent korreksjon: beskrive bedre, bevare originalen og gjøre forvaltningshistorikken forståelig.",
+        "repeatable": false,
+        "role_scope": "historie_arkiv_og_dokumentasjon",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/historie/story/historie_arkiv_og_dokumentasjon_story.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Originaldokumentet skal ikke endres; spørsmålet gjelder beskrivende metadata og digital avskriftens merknadsfelt.",
+          "Tre uavhengige spor i materialet støtter den nye avsenderidentifikasjonen, mens den gamle katalogteksten mangler begrunnelse.",
+          "Den tidligere katalogverdien er del av forvaltningshistorikken og kan ha påvirket senere forskning, så korreksjonen må være synlig og datert."
+        ],
+        "stage": "stable",
+        "stakes": "En stille overskriving gjør dagens katalog penere, men skjuler hvorfor eldre brukere kan ha sitert materialet annerledes og svekker etterprøvbarheten av selve arkivarbeidet.",
+        "subject": "Originalbrevet viser en annen avsender enn katalogen – og den gamle feilen er allerede sitert videre",
+        "summary": "Ved kontroll av et digitalisert brev ser Yusuf at katalogposten tilskriver brevet feil avsender. Originalens signatur, følgebrevet og mottaksnotatet peker samme vei, mens den gamle katalogteksten har vært brukt i flere senere omtaler. Dere må korrigere søkedata uten å late som feilen aldri har eksistert.",
+        "task_domain": "proveniens_ordning_og_metadata",
+        "task_kind": "story",
+        "thread_key": "historie_arkiv_metadata_001"
+      },
+      "id": "historie_arkiv_story_metadata_001",
+      "mail_type": "story",
+      "role_scope": "historie_arkiv_og_dokumentasjon",
+      "scene": {
+        "arc_stage": "mid",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du forbedrer gjenfinningen uten å gjøre arkivets egen feil usynlig for senere kontroll.",
+            "id": "A",
+            "label": "Korriger avsenderfeltet, dokumenter hvilke spor som begrunner endringen og bevar den tidligere verdien i endringshistorikken",
+            "reply": "Jeg oppdaterer den aktive katalogverdien, lenker korreksjonen til originalens og mottakssporets evidens og gjør tidspunkt og tidligere verdi synlig i forvaltningsloggen."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør den nye beskrivelsen tydelig, men fjerner sporet som forklarer eldre katalogbruk og gjør arkivets egen korreksjon vanskeligere å etterprøve.",
+            "id": "B",
+            "label": "Erstatt den gamle verdien overalt slik at brukerne ikke møter motstridende informasjon",
+            "reply": "Når den nye identifikasjonen er bedre dokumentert bør katalogen vise én entydig versjon. Det gamle feltet skaper bare forvirring."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Originaldokumentet skal ikke endres; spørsmålet gjelder beskrivende metadata og digital avskriftens merknadsfelt.",
+            "Tre uavhengige spor i materialet støtter den nye avsenderidentifikasjonen, mens den gamle katalogteksten mangler begrunnelse.",
+            "Den tidligere katalogverdien er del av forvaltningshistorikken og kan ha påvirket senere forskning, så korreksjonen må være synlig og datert."
+          ],
+          "subject": "Originalbrevet viser en annen avsender enn katalogen – og den gamle feilen er allerede sitert videre",
+          "summary": "Ved kontroll av et digitalisert brev ser Yusuf at katalogposten tilskriver brevet feil avsender. Originalens signatur, følgebrevet og mottaksnotatet peker samme vei, mens den gamle katalogteksten har vært brukt i flere senere omtaler. Dere må korrigere søkedata uten å late som feilen aldri har eksistert."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "historie_arkiv_story_metadata_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "ordningsrom_arkiv_historie",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "historie_arkiv_story_metadata_001",
+          "source_path": "data/Civication/mailFamilies/historie/story/historie_arkiv_og_dokumentasjon_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "historie_arkiv_metadata_001",
+        "version": 1
+      },
+      "source_hash": "5601ab2c44747ebe3a4196adc541fc92f9e6e28441911021d6e7e9415c90d8da",
+      "source_path": "data/Civication/mailFamilies/historie/story/historie_arkiv_og_dokumentasjon_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -165360,7 +167989,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "58a73083ec3da304755d22fa9830243b1a97169cedf414b1637927e9330d3fc5",
+  "registry_hash": "de483ce4376176b5ec90e3367aac4c8c3ab96677d26059d27ddd0fa436d19bcd",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -165621,6 +168250,18 @@
       "filosofi_undervisning_followup_vurdering_001",
       "filosofi_undervisning_knowledge_naess_001",
       "filosofi_undervisning_consequence_eksamen_001"
+    ],
+    "historie/historie_arkiv_og_dokumentasjon": [
+      "historie_arkiv_job_mottak_001",
+      "historie_arkiv_people_systemkontekst_001",
+      "historie_arkiv_story_metadata_001",
+      "historie_arkiv_conflict_innsyn_001",
+      "historie_arkiv_event_formatrisiko_001",
+      "historie_arkiv_micro_minimumsmetadata_001",
+      "historie_arkiv_followup_innsyn_001",
+      "historie_arkiv_knowledge_akershus_001",
+      "historie_arkiv_knowledge_knut_alvsson_001",
+      "historie_arkiv_consequence_migrering_001"
     ],
     "litteratur/redaksjonsmedarbeider": [
       "litteratur_redaksjonsmedarbeider_job_versjon_001",
@@ -166575,11 +169216,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 336,
+    "compiled_source_file_count": 345,
     "ignored_source_file_count": 1,
-    "input_file_count": 337,
-    "role_count": 43,
-    "scene_count": 1099,
+    "input_file_count": 346,
+    "role_count": 44,
+    "scene_count": 1109,
     "shadowed_duplicate_count": 0
   },
   "version": 1

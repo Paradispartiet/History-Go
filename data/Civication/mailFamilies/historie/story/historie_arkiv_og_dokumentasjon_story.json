@@ -1,0 +1,70 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "historie",
+  "role_scope": "historie_arkiv_og_dokumentasjon",
+  "mail_type": "story",
+  "families": [
+    {
+      "id": "historie_arkiv_metadata_korreksjon",
+      "purpose": "Gjøre skillet mellom originalkilde og beskrivende metadata spillbart når en eldre katalogtekst viser seg å være feil.",
+      "learning_focus": ["original_vs_metadata", "korreksjonsspor", "kildekritikk"],
+      "mails": [
+        {
+          "id": "historie_arkiv_story_metadata_001",
+          "mail_type": "story",
+          "mail_family": "historie_arkiv_metadata_korreksjon",
+          "role_scope": "historie_arkiv_og_dokumentasjon",
+          "phase": "mid",
+          "day_phase": "afternoon",
+          "priority": 115,
+          "cooldown": 4,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Yusuf, dokumentforvalter",
+          "people_ref": "yusuf_dokumentforvalter_historie",
+          "person_id": "yusuf_dokumentforvalter_historie",
+          "place_id": "ordningsrom_arkiv_historie",
+          "thread_key": "historie_arkiv_metadata_001",
+          "subject": "Originalbrevet viser en annen avsender enn katalogen – og den gamle feilen er allerede sitert videre",
+          "summary": "Ved kontroll av et digitalisert brev ser Yusuf at katalogposten tilskriver brevet feil avsender. Originalens signatur, følgebrevet og mottaksnotatet peker samme vei, mens den gamle katalogteksten har vært brukt i flere senere omtaler. Dere må korrigere søkedata uten å late som feilen aldri har eksistert.",
+          "purpose": "Teste transparent korreksjon: beskrive bedre, bevare originalen og gjøre forvaltningshistorikken forståelig.",
+          "stakes": "En stille overskriving gjør dagens katalog penere, men skjuler hvorfor eldre brukere kan ha sitert materialet annerledes og svekker etterprøvbarheten av selve arkivarbeidet.",
+          "situation": [
+            "Originaldokumentet skal ikke endres; spørsmålet gjelder beskrivende metadata og digital avskriftens merknadsfelt.",
+            "Tre uavhengige spor i materialet støtter den nye avsenderidentifikasjonen, mens den gamle katalogteksten mangler begrunnelse.",
+            "Den tidligere katalogverdien er del av forvaltningshistorikken og kan ha påvirket senere forskning, så korreksjonen må være synlig og datert."
+          ],
+          "task_domain": "proveniens_ordning_og_metadata",
+          "task_kind": "story",
+          "competency": "metadata_og_beskrivelsesspor",
+          "pressure": "katalogkonsistens_vs_transparent_korreksjon",
+          "choice_axis": "korriger_med_evidens_og_endringsspor_vs_overskriv_for_a_skape_ren_fasit",
+          "consequence_axis": "etterprovbar_korreksjon_vs_slettet_forvaltningshistorikk",
+          "narrative_arc": "metadata_fra_feil_til_korreksjon_og_senere_kildebruk",
+          "interaction_mode": "decision",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Korriger avsenderfeltet, dokumenter hvilke spor som begrunner endringen og bevar den tidligere verdien i endringshistorikken",
+              "reply": "Jeg oppdaterer den aktive katalogverdien, lenker korreksjonen til originalens og mottakssporets evidens og gjør tidspunkt og tidligere verdi synlig i forvaltningsloggen.",
+              "effect": 1,
+              "tags": ["metadata_correction", "audit_trail", "source_integrity"],
+              "feedback": "Du forbedrer gjenfinningen uten å gjøre arkivets egen feil usynlig for senere kontroll.",
+              "effects": {"stats": {"quality": 3, "trust": 3, "risk": -3, "energy": -1}}
+            },
+            {
+              "id": "B",
+              "label": "Erstatt den gamle verdien overalt slik at brukerne ikke møter motstridende informasjon",
+              "reply": "Når den nye identifikasjonen er bedre dokumentert bør katalogen vise én entydig versjon. Det gamle feltet skaper bare forvirring.",
+              "effect": -1,
+              "tags": ["silent_overwrite", "audit_loss", "metadata_cleaning"],
+              "feedback": "Du gjør den nye beskrivelsen tydelig, men fjerner sporet som forklarer eldre katalogbruk og gjør arkivets egen korreksjon vanskeligere å etterprøve.",
+              "effects": {"stats": {"quality": -3, "trust": -3, "risk": 4}}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
