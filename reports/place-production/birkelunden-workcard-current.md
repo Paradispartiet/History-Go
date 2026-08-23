@@ -3,7 +3,7 @@
 - Oppdatert: 2026-08-23
 - Place ID: `birkelunden`
 - Canonical source: `data/places/by/oslo/places/birkelunden.json`
-- Aktiv 7C branch-baseline `main`: `847a2e8ca3e71a3bfdd9bc41e7029a41e1c9dec4`
+- Aktiv 7D baseline `main`: `fe97609bb188f2170845bce22c6dcb93b0732f16`
 - Fase 0 merge: #5236 / `d3945c43f10b1f5b4e1b758f915818342f95d240`
 - Fase 1 merge: #5239 / `2dbc70a4984e01487a2dd7289d2e93bcbb0d6217`
 - Fase 2 merge: #5241 / `61bcf3e1dc0156582eb1e3bd9bfcee6d9ba05c06`
@@ -14,12 +14,11 @@
 - Fase 7 audit merge: #5255 / `72622da7b7e0074c3de6966c1b0f0da35b7b9e7d`
 - Fase 7A merge: #5257 / `2f43748cb4c07f31abfb07200f740121084d7ef5`
 - Fase 7B merge: #5262 / `54e7177a5a3b4563eafe4b0c40e8667348cbe67e`
-- Fase 7A review: `reports/place-production/birkelunden-phase7a-about-audit-v1.md`
-- Fase 7B review: `reports/place-production/birkelunden-phase7b-history-audit-v1.md`
-- Fase 7C review: `reports/place-production/birkelunden-phase7c-story-audit-v1.md`
-- Fase 7C evidence: `reports/place-production/birkelunden-phase7c-story-source-addendum-v1.json`
+- Fase 7C merge: #5266 / `8fbdbaf703b8987956eae9ca9576d68839447982`
+- Fase 7D review: `reports/place-production/birkelunden-phase7d-before-after-audit-v1.md`
+- Fase 7D regression: `tests/birkelunden-phase7d-before-after.test.mjs`
 - Content Factory: `data/places/regler/content_factory_v1.json`
-- Story governance: `docs/STORIES_DATA_GOVERNANCE.md`
+- Popupkontrakt: `docs/PLACE_POPUP_SYSTEM.md`
 
 ## Bevaringslås
 
@@ -39,8 +38,8 @@ popupDesc SHA-256: 670dcbc8e37004fe1c3a595ae6af1a6dcfe304f1048ce906f37df3f7e8544
 | 7 popup-audit | **FERDIG OG MERGET** (#5255) |
 | 7A Om | **FERDIG OG MERGET** (#5257) |
 | 7B Historie | **FERDIG OG MERGET** (#5262) |
-| 7C Fortellinger | **KLAR FOR REVIEW / CI** |
-| 7D Før/etter | **REELT PRODUKSJONSHULL** |
+| 7C Fortellinger | **FERDIG OG MERGET** (#5266) |
+| 7D Før/etter | **KLAR FOR REVIEW / CI** |
 | 7E Nyheter | **FERSK RESEARCH KREVES** |
 | 7F Lesespor | **REELT RESEARCHHULL** |
 | 7G Kilder | **LABELS READY / KLIKKBARE LENKER MANGLER** |
@@ -49,7 +48,7 @@ popupDesc SHA-256: 670dcbc8e37004fe1c3a595ae6af1a6dcfe304f1048ce906f37df3f7e8544
 
 ## 7A – Om, låst
 
-- fase-5 `popupDesc` forblir hovedartikkel;
+- fase-5 `popupDesc` er hovedartikkel;
 - `spatial_profile.area_m2=16300`;
 - park/kulturmiljø-grensen er eksplisitt;
 - synlig Nature-tekst er kildeauditert mot Birkelundens faktiske bjørkelunder/trehistorie;
@@ -58,18 +57,18 @@ popupDesc SHA-256: 670dcbc8e37004fe1c3a595ae6af1a6dcfe304f1048ce906f37df3f7e8544
 
 ## 7B – Historie, låst
 
-Canonical Historie-eier er fire `history_layers` i sorteringsrekkefølge 10/20/30/40. Lag 3 heter nå **Navn, organisering og minnespor** og dekker den verifiserte navneperioden:
+Canonical Historie-eier er fire `history_layers`. Lag 3 dekker navnesporet:
 
 ```text
 1926: Bjerkelunden blir offisiell navneform
 1955: Birkelunden kommer tilbake
 ```
 
-Det bygges ingen parallell Leksikon-chronology og ingen generell temporal-renderer. `tests/birkelunden-phase7b-history.test.mjs` kjøres permanent fra `scripts/check-places.sh`.
+Ingen parallell Leksikon-chronology eller generell temporal-renderer. `tests/birkelunden-phase7b-history.test.mjs` kjøres permanent fra `scripts/check-places.sh`.
 
-## 7C – Fortellinger
+## 7C – Fortellinger, låst
 
-Ny active Story:
+Aktiv Story:
 
 ```text
 id: st_birkelunden_bench_to_association
@@ -84,73 +83,86 @@ related_places: []
 next_scenes: []
 ```
 
-Narrativ akse:
+Narrativ akse: 10–12 pensjonister på benk → hvilebrakke → 18 personer → organisering i 1937 → Jack Johnsen-bysten 1984.
+
+Kildevarianten `Venner i Bjerkelunden` / `Venner i Birkelund` er eksplisitt bevart. Superlativet `Norges/landets eldste pensjonistforening` er fortsatt held back. Storyen ligger i canonical Stories-manifest og strict episode-v1-manifest. Permanent 7C-test kjøres i `Stories governance`.
+
+## 7D – Før/etter
+
+Canonical `for_na` er nå materialisert som et datert parkpar:
 
 ```text
-10–12 pensjonister på benk
-→ låner hvilebrakke
-→ 18 personer
-→ organiserer seg i 1937
-→ senere fysisk minnespor: Jack Johnsen-bysten 1984
+title: Birkelunden ca. 1930 og 2013
+før: Oslo Museum / Mittet & Co / OB.Z02741 / ca. 1930
+etter: Carsten R D / Wikimedia Commons / 2013-10-13
 ```
 
-Tre inspectable kilder:
+### Før
 
-1. Pensjonistforbundet – Vår historie;
-2. Oslo Byarkiv – TOBIAS 2–3/2006;
-3. Oslo byleksikon – Birkelunden.
+- medie-URL: `https://ems.dimu.org/image/012sB3HjP2a4?dimension=1200x1200`;
+- kilde: `https://oslobilder.no/OMU/OB.Z02741`;
+- kredit: `Mittet & Co / Oslo Museum (OB.Z02741)`;
+- Oslobilder oppgir: `Creative Commons 3.0`;
+- katalogisert motiv: selve Birkelunden med park, musikkpaviljong, lekeplass, lekeapparater og benker.
 
-Kildevarianten er eksplisitt bevart:
+Lisensen lagres med akkurat den spesifisiteten kilden gir. Ingen CC-undertype gjettes.
 
-```text
-Pensjonistforbundet: «Venner i Bjerkelunden»
-Oslo Byarkiv:        «Venner i Birkelund»
-```
+### Etter / moderne sammenligningslag
 
-Storyen normaliserer ikke disse til én historisk form.
+- medie-URL: `https://upload.wikimedia.org/wikipedia/commons/c/ca/Birkelunden_fountain_and_music_pavilion.jpg`;
+- kilde: `https://commons.wikimedia.org/wiki/File:Birkelunden_fountain_and_music_pavilion.jpg`;
+- fotograf: Carsten R D;
+- lisens: `CC BY-SA 4.0`;
+- dato: 2013-10-13;
+- kamera-posisjon: `59.926374, 10.760091`.
 
-Held-back:
+2013 beskrives ikke som parkens eksakte 2026-tilstand. Det er et moderne, datert sammenligningslag.
 
-```text
-«Norges/landets eldste pensjonistforening» → IKKE PROMOTERT
-```
+### Felles visuelle ankre
 
-Jack Johnsen har ingen canonical People-ID i dagens repo. Han kan derfor være dokumentert aktør i teksten og `episode.actors`, men får ingen oppfunnet `person_id`/`related_people`.
+1. den runde musikkpaviljongen fra 1926;
+2. vann-/fonteneområdet, etablert som basseng 1927–28;
+3. det sentrale åpne parkrommet.
 
-Runtime/governance:
+Paret er ikke påstått å være fotografert fra identisk kamera-posisjon. Verdien er at de samme fysiske parkankrene gjør tidsforskjellen lesbar.
 
-- `data/stories/stories_birkelunden.json`;
-- registrert i canonical `data/stories/stories_manifest.json`;
-- registrert i `data/stories/stories_episode_v1_manifest.json`;
-- `data/stories/stories_manifest_by_batch_01.json` forblir uendret for å unngå dobbel runtime-fetch.
+### Avviste 7D-spor
 
-Maskinscore etter aktiv `runtimeScore()`:
+- Riksantikvaren ca. 1905: sterk kandidat, men ikke fullstendig verifisert gjenbruksrett for akkurat nettsidefilen;
+- Commons Birkelunden 2022: full filside-/forfatter-/lisenskjede lot seg ikke stabilt verifisere i denne kjøringen;
+- Journalen/OsloMet 2025: nyere, men ingen etablert fri gjenbrukslisens;
+- Thorvald Meyers gate 2024: gaten nedenfor parken, ikke selve canonical place;
+- canonical hovedbilde 2015: rettighetsklart, men svakere motivsamsvar med 1930-bildet.
 
-```json
-{
-  "narrative": 3,
-  "historical": 2,
-  "source": 5,
-  "play_value": 3,
-  "originality": 3,
-  "total": 16
-}
-```
+### Permanent 7D-port
 
-Scoren er ikke keyword-optimalisert; den skal være eksakt mot motoren. Narrativ kvalitet vurderes separat gjennom Story-governance.
+`tests/birkelunden-phase7d-before-after.test.mjs` krever:
 
-Permanent 7C-port:
+- eksakte datoer og bildekilder;
+- begge krediterings-/lisenskjeder;
+- paviljong og vannområde som felles ankre;
+- substansielle `before`, `now`, `change`;
+- eksplisitt begrensning mot å fremstille 2013 som 2026;
+- fire inspectable HTTPS-kilder;
+- uendrede fase-5 description-hasher og `area_m2=16300`;
+- eksisterende `for_na`- og attribusjonsruntime.
 
-- `tests/birkelunden-phase7c-story.test.mjs`;
-- kjøres i `.github/workflows/stories-governance.yml`;
-- låser episode, kilder, navnevariant, held-back superlativ, tomme relasjoner, canonical manifest + episode-manifest og score.
+Testen er koblet permanent inn i `scripts/check-places.sh` etter 7A og 7B.
 
-Modell/API-kreditter i 7C: **0 eksterne modellkall**. Evidence ble gjenbrukt og offentlige kilder verifisert uten kvalitetsreduksjon.
+Produksjonsmodell/API-kreditter i 7D: **0 eksterne modellkall**. Repo-evidence, offentlige kataloger, Commons-metadata og bilde-QA var tilstrekkelig; ingen kvalitetsreduksjon.
 
-## Scope 7C
+## Scope 7D
 
-Endres bare Story-system, faseaudit og dette workcardet. Canonical Birkelunden Place, descriptions, history/spatial/temporal/nature-profiler, People, Objects, Leksikon og popup-runtime endres ikke.
+Endres:
+
+1. canonical Birkelunden JSON – kun ny `for_na`;
+2. `tests/birkelunden-phase7d-before-after.test.mjs`;
+3. `scripts/check-places.sh` – permanent 7D-teststeg;
+4. 7D-audit;
+5. dette workcardet.
+
+Ikke endret: `desc`, `popupDesc`, koordinater, profiler, Story, People, Objects, Leksikon eller popup-runtime.
 
 ## Neste
 
-Etter grønn 7C-merge: **7D – Før/etter**. Det krever rettighetsklare historiske og nå-bilder av selve Birkelunden med meningsfull visuell sammenligning; Paulus kirke, skole eller kulturmiljøets bygårder skal ikke brukes som proxy for parken.
+Etter grønn 7D-merge starter **7E – Nyheter** fra fersk `main`. Nyhetsfasen skal bruke fersk 2026-research, date-stemple notiser og bare materialisere Birkelunden-relevante aktuelle hendelser/forvaltningsforhold som består freshness-gaten.
