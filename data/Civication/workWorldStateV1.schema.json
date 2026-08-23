@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://history-go.local/schemas/civication-work-world-state-v1.json",
+  "title": "Civication Work World State v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "objects_by_id",
+    "active_object_ids",
+    "role_object_ids",
+    "shared_object_ids"
+  ],
+  "properties": {
+    "schema": { "const": "civication_work_world_state_v1" },
+    "version": { "const": 1 },
+    "objects_by_id": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/workObject" }
+    },
+    "active_object_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/id" }
+    },
+    "role_object_ids": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "uniqueItems": true,
+        "items": { "$ref": "#/$defs/id" }
+      }
+    },
+    "shared_object_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/id" }
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    },
+    "stringList": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "historyEvent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "at", "op"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "at": { "type": "string", "minLength": 1 },
+        "op": {
+          "enum": [
+            "created",
+            "updated",
+            "transition",
+            "flag_added",
+            "flag_removed",
+            "closed",
+            "note"
+          ]
+        },
+        "scene_id": { "$ref": "#/$defs/id" },
+        "choice_id": { "$ref": "#/$defs/id" },
+        "from_status": { "type": "string", "minLength": 1 },
+        "to_status": { "type": "string", "minLength": 1 },
+        "from_phase": { "type": "string", "minLength": 1 },
+        "to_phase": { "type": "string", "minLength": 1 },
+        "flag": { "$ref": "#/$defs/id" },
+        "note": { "type": "string", "minLength": 1 },
+        "outcome": { "type": "string", "minLength": 1 }
+      }
+    },
+    "workObject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "version",
+        "work_object_id",
+        "kind",
+        "role_scope",
+        "title",
+        "status",
+        "phase",
+        "opened_at",
+        "updated_at",
+        "people_refs",
+        "place_refs",
+        "knowledge_refs",
+        "open_questions",
+        "flags",
+        "history"
+      ],
+      "properties": {
+        "schema": { "const": "civication_work_object_v1" },
+        "version": { "const": 1 },
+        "work_object_id": { "$ref": "#/$defs/id" },
+        "kind": { "$ref": "#/$defs/id" },
+        "role_scope": { "$ref": "#/$defs/id" },
+        "institution_id": { "$ref": "#/$defs/id" },
+        "title": { "type": "string", "minLength": 1 },
+        "status": { "$ref": "#/$defs/id" },
+        "phase": { "$ref": "#/$defs/id" },
+        "opened_at": { "type": "string", "minLength": 1 },
+        "updated_at": { "type": "string", "minLength": 1 },
+        "people_refs": { "$ref": "#/$defs/stringList" },
+        "place_refs": { "$ref": "#/$defs/stringList" },
+        "knowledge_refs": { "$ref": "#/$defs/stringList" },
+        "open_questions": { "$ref": "#/$defs/stringList" },
+        "deadline": { "type": ["string", "null"] },
+        "confidentiality": { "type": ["string", "null"] },
+        "flags": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "history": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/historyEvent" }
+        },
+        "closed_at": { "type": ["string", "null"] },
+        "outcome": { "type": ["string", "null"] },
+        "shared": { "type": "boolean", "default": false }
+      }
+    }
+  }
+}
