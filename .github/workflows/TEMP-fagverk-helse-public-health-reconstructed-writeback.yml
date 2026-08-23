@@ -34,7 +34,7 @@ jobs:
         with:
           node-version: 22
 
-      - name: Materialize Folkehelse 5/12
+      - name: Syntax-check reconstructed 5/12 code
         shell: bash
         run: |
           set -euo pipefail
@@ -43,12 +43,48 @@ jobs:
           node --check scripts/audit-helse-cumulative-progress-v1.mjs
           node --check tests/helse-public-health-fulltext-v1.test.mjs
           node --check tests/helse-cumulative-progress-v1.test.mjs
-          node scripts/materialize-helse-public-health-fulltext-v1.mjs
+
+      - name: Materialize Folkehelse 5/12 with captured diagnostics
+        id: materialize
+        continue-on-error: true
+        shell: bash
+        run: |
+          set +e
+          node scripts/materialize-helse-public-health-fulltext-v1.mjs > /tmp/helse-materialize.log 2>&1
+          status=$?
+          cat /tmp/helse-materialize.log
+          printf '\nexit_status=%s\n' "$status" >> /tmp/helse-materialize.log
+          exit "$status"
+
+      - name: Commit materializer diagnostic on failure
+        if: steps.materialize.outcome == 'failure'
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp /tmp/helse-materialize.log .github/TEMP-helse-public-health-reconstructed-diagnostic.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .github/TEMP-helse-public-health-reconstructed-diagnostic.txt
+          if ! git diff --cached --quiet; then
+            git commit -m 'chore: capture Helse reconstructed materializer error'
+            git push origin HEAD:${{ github.head_ref }}
+          fi
+
+      - name: Fail after captured materializer diagnostic
+        if: steps.materialize.outcome == 'failure'
+        run: exit 1
+
+      - name: Write generated reports
+        if: steps.materialize.outcome == 'success'
+        shell: bash
+        run: |
+          set -euo pipefail
           node scripts/audit-helse-public-health-fulltext-v1.mjs --write-report
           node scripts/audit-fagverk-general-engine.mjs --write-report
           node scripts/build-fagverk-release-manifest.mjs
 
       - name: Validate exact 5/12 package
+        if: steps.materialize.outcome == 'success'
         shell: bash
         run: |
           set -euo pipefail
@@ -67,6 +103,7 @@ jobs:
             tests/fagverk-release-manifest.test.mjs
 
       - name: Guard generated diff scope
+        if: steps.materialize.outcome == 'success'
         shell: bash
         run: |
           set -euo pipefail
@@ -79,6 +116,7 @@ jobs:
           fi
 
       - name: Commit generated 5/12 outputs
+        if: steps.materialize.outcome == 'success'
         shell: bash
         run: |
           set -euo pipefail
