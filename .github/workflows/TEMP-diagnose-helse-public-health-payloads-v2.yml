@@ -1,0 +1,133 @@
+name: TEMP Diagnose Helse public health payloads v2
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/TEMP-diagnose-helse-public-health-payloads-v2.yml'
+      - '.github/workflows/TEMP-fagverk-helse-public-health-fulltext-writeback.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    if: github.head_ref == 'agent/helse-public-health-fulltext-content'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Diagnose all embedded payloads exactly
+        id: diagnose
+        shell: bash
+        continue-on-error: true
+        run: |
+          set -u
+          python3 - <<'PY'
+          import base64
+          import gzip
+          import pathlib
+          import re
+          import subprocess
+
+          workflow = pathlib.Path('.github/workflows/TEMP-fagverk-helse-public-health-fulltext-writeback.yml').read_text(encoding='utf-8')
+          targets = [
+              ('MATERIALIZER_GZ_B64', '/tmp/materializer.mjs', True),
+              ('AUDIT_GZ_B64', '/tmp/fulltext-audit.mjs', True),
+              ('TEST_GZ_B64', '/tmp/fulltext-test.mjs', True),
+              ('CUM_AUDIT_GZ_B64', '/tmp/cumulative-audit.mjs', True),
+              ('CUM_TEST_GZ_B64', '/tmp/cumulative-test.mjs', True),
+              ('SOURCE_WF_GZ_B64', '/tmp/source-workflow.yml', False),
+              ('CLINICAL_WF_GZ_B64', '/tmp/clinical-workflow.yml', False),
+          ]
+
+          report = []
+          failed = False
+          for key, output, node_check in targets:
+              report.append(f'=== {key} ===')
+              match = re.search(rf'^\s+{re.escape(key)}:\s+(\S+)\s*$', workflow, re.MULTILINE)
+              if not match:
+                  report.append('EXTRACT_FAIL')
+                  failed = True
+                  continue
+
+              encoded = match.group(1)
+              pad = -len(encoded) % 4
+              report.append(f'base64_chars={len(encoded)} padding_added={pad}')
+              encoded += '=' * pad
+
+              try:
+                  raw = base64.b64decode(encoded, validate=True)
+                  report.append(f'BASE64_OK bytes={len(raw)}')
+              except Exception as exc:
+                  report.append(f'BASE64_FAIL {type(exc).__name__}: {exc}')
+                  failed = True
+                  continue
+
+              try:
+                  payload = gzip.decompress(raw)
+                  pathlib.Path(output).write_bytes(payload)
+                  report.append(f'GZIP_OK bytes={len(payload)}')
+              except Exception as exc:
+                  report.append(f'GZIP_FAIL {type(exc).__name__}: {exc}')
+                  failed = True
+                  continue
+
+              if node_check:
+                  checked = subprocess.run(['node', '--check', output], text=True, capture_output=True)
+                  if checked.returncode == 0:
+                      report.append('NODE_CHECK_OK')
+                  else:
+                      failed = True
+                      report.append(f'NODE_CHECK_FAIL exit={checked.returncode}')
+                      detail = (checked.stderr or checked.stdout or '').strip()
+                      report.append(detail if detail else '(no node --check output)')
+                      m = re.search(r':(\d+)\s*$', (checked.stderr or '').splitlines()[0] if (checked.stderr or '').splitlines() else '')
+                      if m:
+                          lineno = int(m.group(1))
+                          lines = pathlib.Path(output).read_text(encoding='utf-8', errors='replace').splitlines()
+                          lo = max(1, lineno - 3)
+                          hi = min(len(lines), lineno + 3)
+                          report.append(f'CONTEXT_LINES_{lo}_{hi}:')
+                          for n in range(lo, hi + 1):
+                              report.append(f'{n}: {lines[n-1]}')
+              else:
+                  text = pathlib.Path(output).read_text(encoding='utf-8', errors='replace')
+                  report.append(f'YAML_NONEMPTY={bool(text.strip())} first_line={text.splitlines()[0] if text.splitlines() else "<empty>"}')
+                  if not text.strip():
+                      failed = True
+
+          path = pathlib.Path('.github/TEMP-helse-public-health-payload-diagnostics-v2.txt')
+          path.write_text('\n'.join(report) + '\n', encoding='utf-8')
+          print('\n'.join(report))
+          raise SystemExit(1 if failed else 0)
+          PY
+
+      - name: Commit diagnostics v2
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f .github/TEMP-helse-public-health-payload-diagnostics-v2.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .github/TEMP-helse-public-health-payload-diagnostics-v2.txt
+          if git diff --cached --quiet; then
+            echo 'Diagnostics unchanged.'
+            exit 0
+          fi
+          git commit -m 'chore: capture Helse payload diagnostics v2'
+          git push origin HEAD:${{ github.head_ref }}
+
+      - name: Fail when payload diagnostics failed
+        if: steps.diagnose.outcome == 'failure'
+        run: exit 1
