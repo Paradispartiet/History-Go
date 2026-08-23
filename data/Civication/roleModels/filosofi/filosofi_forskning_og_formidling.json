@@ -1,15 +1,110 @@
 {
-  "schema":"civication_role_model_v1","version":2,
-  "source":{"badge_file":"data/badges/filosofi.json","badge_id":"filosofi","evidence":"data/Civication/filosofiCareerLifeEvidence.json"},
-  "category":"filosofi","role_scope":"filosofi_forskning_og_formidling","role_id":"filosofi_forskning_og_formidling","title":"Filosofi – forskning og formidling",
-  "core_narrative":["Arbeidsverdenen undersøker begreper, argumenter og idéhistoriske sammenhenger med eksplisitt kildebruk, presise premisser og redelig behandling av motargumenter."],
-  "work_life":{"daily_work":["avgrense et filosofisk eller idéhistorisk spørsmål","lese og sammenholde primær- og sekundærkilder","rekonstruere argumenter før kritikk","skrive eller formidle analyser til et bestemt publikum"],"responsibilities":["skille påstand, premiss og konklusjon","skille historisk aktørperspektiv fra egen vurdering","vise usikkerhet og rivaliserende tolkninger","sitere og kontekstualisere kilder redelig"],"work_environment":["universitet, kunnskapsinstitusjon, forlag, kulturinstitusjon, redaksjon eller prosjektmiljø"],"status_position":["faglig autoritet følger dokumentert kompetanse, metode og arbeidsrolle; ikke Badge-poeng"]},
-  "career_path":{"entry_from":["relevant utdanning eller konkret arbeidsgiverkvalifikasjon"],"progression_to":["mer selvstendig analyse, forskning, formidling eller undervisning"],"possible_promotions":["prosjektansvar, fagansvar eller akademisk stilling etter separat vurdering"],"possible_exits":["rådgivning, redaksjon, kulturformidling, undervisning eller offentlig utredning"],"career_risks":["stråmannsargumentasjon, anakronisme, kildeløs sikkerhet eller sammenblanding av normativ og empirisk påstand"]},
-  "required_knowledge":{"education_basis":["filosofi, idéhistorie eller relevant humanistisk kompetanse tilpasset stillingen"],"skills":["argumentanalyse","begrepsanalyse","kildekritikk","idéhistorisk kontekstualisering","skriftlig og muntlig formidling"],"category_knowledge":["etikk, logikk, erkjennelsesteori, metafysikk, politisk filosofi, idéhistorie og vitenskapsfilosofi"],"history_go_badges":["filosofi"],"place_connections":[],"people_connections":[]},
-  "authority_boundaries":{"can":["rekonstruere og kritisk vurdere argumenter","skille normative spørsmål fra empiriske premisser","formidle alternative tolkninger og deres begrensninger"],"cannot":["presentere egen normativ konklusjon som empirisk bevist fakta","tilskrive en historisk tenker syn uten kildegrunnlag","redusere et motargument til en stråmann for å vinne diskusjonen","bruke Badge-tittel som bevis på grad, ansettelse eller akademisk autoritet"]},
-  "challenges":[{"id":"velvillig_rekonstruksjon","title":"Det svakeste argumentet er lettest å slå","description":"En kilde kan tolkes på flere måter, og den enkleste kritikken bygger ofte på den minst velvillige lesningen.","pressure":"retorisk_seier_vs_faglig_redelighet","affects":["quality","trust"]}],
-  "dilemmas":[{"id":"normativ_sikkerhet","title":"Sterk konklusjon, uenige premisser","setup":"Oppdragsgiver ønsker et entydig svar, mens den filosofiske analysen viser at konklusjonen avhenger av omstridte verdipremisser.","choice_axis":"enkelhet_vs_premissapenhet","consequence_axis":"slagkraft_vs_redelighet","mail_hooks":["job","story","conflict"]}],
-  "competence_axes":[{"id":"argumentanalyse","label":"Argumentanalyse"},{"id":"begrepspresisjon","label":"Begrepspresisjon"},{"id":"kildekritikk","label":"Kildekritikk"},{"id":"idehistorisk_kontekst","label":"Idéhistorisk kontekst"},{"id":"formidling","label":"Formidling"},{"id":"uenighetskompetanse","label":"Uenighetskompetanse"}],
-  "ideal_type_problems":[{"id":"stramann","label":"Motargumentet gjøres svakere enn kilden tilsier"},{"id":"anakronisme","label":"Nåtidige begreper projiseres ukritisk bakover"},{"id":"normativ_lik_empirisk","label":"Verdipåstand presenteres som empirisk funn"}],
-  "notes":["Deler arbeidsverden mellom Idéhistoriker og Filosof. Etiker, Logiker og Fagfilosof er separate Badge-/livsidentiteter uten automatisk arbeidsforhold."]
+  "schema": "civication_role_model_v2",
+  "version": 2,
+  "category": "filosofi",
+  "role_scope": "filosofi_forskning_og_formidling",
+  "role_id": "filosofi_forskning_og_formidling",
+  "title": "Filosofisk forskning og formidling",
+  "source": {
+    "badge_file": "data/badges/filosofi.json",
+    "evidence": "data/Civication/filosofiCareerLifeEvidence.json"
+  },
+  "badge_titles": ["Idéhistoriker", "Filosof"],
+  "core_narrative": [
+    "Rollen undersøker argumenter, begreper og idéhistoriske kilder uten å gjøre normative premisser, kildeusikkerhet eller tolkning til skjulte fakta.",
+    "Godt arbeid betyr å avgrense spørsmål, rekonstruere motposisjoner rimelig, spore sitater og attribusjoner, skille empiriske og normative premisser og formidle uenighet slik at publikum kan se hva konklusjonen faktisk avhenger av.",
+    "Rollen kan analysere og anbefale innenfor et eksplisitt mandat, men kan ikke gi oppdragsgiverens ønskede konklusjon status som forskningsresultat eller bruke historiske personer som fiktive autoriteter for dagens valg."
+  ],
+  "competence_axes": [
+    "argumentrekonstruksjon",
+    "begrepspresisjon",
+    "kildekritikk_og_proveniens",
+    "idehistorisk_kontekst",
+    "normativ_empirisk_grense",
+    "rivaliserende_tolkninger",
+    "uenighetskompetanse",
+    "ansvarlig_formidling"
+  ],
+  "required_knowledge": {
+    "concepts": [
+      {"id": "argumentstruktur_og_velvillighetsprinsipp", "description": "Et argument må rekonstrueres med premisser, inferens og konklusjon, og en kritikk bør treffe den sterkeste rimelige versjonen som kilden faktisk kan bære."},
+      {"id": "begrepsanalyse_og_operativ_avgrensning", "description": "Ord som frihet, ansvar, natur, rettferdighet og rasjonalitet kan ha flere betydninger; arbeidet må angi hvilken betydning som brukes i hvert argument."},
+      {"id": "normative_og_empiriske_premisser", "description": "Data kan støtte empiriske premisser, men en normativ konklusjon krever eksplisitte verdi- eller handlingspremisser som ikke skal kamufleres som måledata."},
+      {"id": "primar_sekundarkilde_og_sitatproveniens", "description": "Sitat, attribusjon og idéhistorisk påstand må spores så langt kildene tillater; en kjent sekundær gjengivelse er ikke automatisk en sikker primærkilde."},
+      {"id": "kontekstualisme_og_anakronisme", "description": "Historiske tekster skal først forstås med sitt eget vokabular, problemfelt og institusjonelle miljø før moderne analytiske begreper brukes eksplisitt som senere rammer."},
+      {"id": "tolkningskonkurranse_og_usikkerhet", "description": "Flere tolkninger kan passe samme tekst eller materiale; en konklusjon bør angi hva som skiller tolkningene og hvor evidensen ikke avgjør saken."},
+      {"id": "formidlingspresisjon", "description": "Forenkling er nødvendig i offentlig formidling, men skal bevare avgjørende forbehold, kildegrenser og skillet mellom hva noen hevdet, hva analysen tolker og hva redaksjonen anbefaler."},
+      {"id": "korrigering_og_etterprovbarhet", "description": "Feil sitat, manglende kildekontekst eller oversett rivaliserende tolkning skal korrigeres synlig i arbeidsgrunnlaget og i publisert materiale når feilen påvirker forståelsen."}
+    ]
+  },
+  "related_people": [
+    {"id": "liv_forskningsleder_filosofi", "name": "Liv", "role": "forskningsleder", "function": "Fiktiv forskningsleder og beslutningseier for problemavgrensning, leveranse, metodekrav og publiseringsklarhet.", "fictional": true},
+    {"id": "noor_kildebibliotekar_filosofi", "name": "Noor", "role": "kildebibliotekar", "function": "Fiktiv kildebibliotekar som hjelper med proveniens, primærkilder, katalogspor og dokumentert usikkerhet, uten å bestemme analysens konklusjon.", "fictional": true},
+    {"id": "marius_fagredaktor_filosofi", "name": "Marius", "role": "fagredaktør", "function": "Fiktiv fagredaktør med ansvar for format, sitatkontroll, redaksjonell tydelighet og korrigering, men ikke for å diktere forskningsresultatet.", "fictional": true},
+    {"id": "selma_formidlingsprodusent_filosofi", "name": "Selma", "role": "formidlingsprodusent", "function": "Fiktiv formidlingsprodusent som eier publikum, sceneformat og tidsramme, men ikke kan gjøre dramaturgisk enkelhet til faglig fasit.", "fictional": true}
+  ],
+  "related_places": [
+    {"place_id": "arbeidsrom_filosofi_forskning", "kind": "fictional_work_surface", "function": "Arbeidsflate for problemavgrensning, argumentkart og første syntese."},
+    {"place_id": "kildelab_filosofi_forskning", "kind": "fictional_work_surface", "function": "Arbeidsflate for primær-/sekundærkilder, sitatproveniens og idéhistorisk kontekst."},
+    {"place_id": "redaksjonsmote_filosofi_formidling", "kind": "fictional_work_surface", "function": "Arbeidsflate for redaksjonelle prioriteringer, uenighet, rettelser og publiseringsbeslutninger."},
+    {"place_id": "formidlingsscene_filosofi", "kind": "fictional_work_surface", "function": "Arbeidsflate for offentlig samtale, foredrag og spørsmål der forenkling og forbehold må balanseres."},
+    {"place_id": "maerradalen", "kind": "canonical_history_go_place", "function": "History Go-anker for den canonicale Arne Næss-profilen; ikke fiktivt arbeidssted eller arbeidsgiver."}
+  ],
+  "ideal_type_problems": [
+    {"id": "oppdragsgiver_vil_ha_fasit", "problem": "Oppdragsgiver ønsker at analysen skal bevise en bestemt normativ konklusjon før premisser og motargumenter er vurdert."},
+    {"id": "sitat_uten_primarspor", "problem": "Et kjent sitat passer argumentet, men den eneste funne henvisningen er en sen sekundær gjengivelse."},
+    {"id": "anakronistisk_begrep", "problem": "Et moderne analytisk begrep ser ut til å forklare en historisk tekst, men kan skjule aktørens eget problem og vokabular."},
+    {"id": "stramann_under_tidspress", "problem": "En kort publiseringsform blir enklere hvis motposisjonen reduseres til en svak variant som kilden selv ikke ville godta."},
+    {"id": "forbehold_forsvinner_i_formidling", "problem": "Et avgjørende kilde- eller tolkningsforbehold kuttes fordi scenen eller artikkelen trenger et tydeligere poeng."}
+  ],
+  "authority_boundaries": {
+    "can": [
+      "avgrense_forskningssporsmal_innenfor_mandatet",
+      "rekonstruere_og_kritisere_argumenter",
+      "kontekstualisere_idehistoriske_kilder",
+      "foresla_formuleringer_og_anbefalinger_med_synlige_premisser",
+      "kreve_kilde_og_tolkningsforbehold_i_eget_faglig_arbeid"
+    ],
+    "cannot": [
+      "gjore_normativ_konklusjon_til_empirisk_fakta",
+      "tilskrive_kilder_syn_sitat_eller_motiver_de_ikke_dokumenterer",
+      "bruke_stramannsversjoner_som_erstatning_for_reell_uenighet",
+      "overstyre_rettigheter_tilgang_personvern_eller_formell_publiseringsmyndighet",
+      "love_at_en_bestemt_konklusjon_blir_forskningsresultatet",
+      "bruke_historiske_filosofer_som_fiktive_npc_er_eller_normativ_fasit_for_dagens_valg",
+      "late_som_badge_poeng_er_akademisk_grad_eller_ansettelse"
+    ]
+  },
+  "career_path": {
+    "entry_routes": [
+      "relevant_hoyere_utdanning_og_dokumentert_analytisk_arbeid",
+      "idehistorisk_arkiv_eller_kildearbeid_med_faglig_metode",
+      "redaksjonell_eller_museal_formidling_med_dokumentert_faglig_dybde"
+    ],
+    "progression_signals": [
+      "stabil_argument_og_kildekvalitet",
+      "etterprovbar_rekonstruksjon_av_uenighet",
+      "presis_syntese_under_formidlingspress",
+      "ansvarlig_korrigering_og_metodeforklaring"
+    ],
+    "possible_promotions": [
+      "seniorforsker_eller_senioranalytiker",
+      "fagredaktor_eller_programansvarlig",
+      "prosjektleder_for_forskning_og_formidling"
+    ],
+    "possible_exits": [
+      "idehistorisk_arkiv_eller_museumsarbeid",
+      "forskningsredaksjon_og_fagforlag",
+      "utredning_og_analyse_med_eksplisitt_metodeansvar",
+      "prosjektavslutning_eller_tapt_mandat_etter_gjentatt_kilde_eller_integritetssvikt"
+    ]
+  },
+  "performance_model": {
+    "positive": ["presise_argumentkart", "sporbare_kilder", "rettferdig_uenighet", "synlige_premisser", "korrigerbar_formidling"],
+    "negative": ["stramann", "sitatglidning", "anakronisme", "skjult_normativitet", "forbeholdsbrudd", "uetterprovbar_fasit"]
+  },
+  "mail_integration": {
+    "can_feed_mail_types": ["job", "people", "conflict", "story", "event", "micro", "followup", "knowledge", "consequence"],
+    "forbid_generic_runtime_fallbacks": true
+  }
 }
