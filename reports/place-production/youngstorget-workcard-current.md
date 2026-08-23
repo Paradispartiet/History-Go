@@ -3,7 +3,7 @@
 - Oppdatert: 2026-08-23
 - Place ID: `youngstorget`
 - Canonical source: `data/places/politikk/oslo/places_politikk/youngstorget.json`
-- Aktiv audit-baseline `main`: `3c0003dd9a6f5eba18c91ee0002857ba75e64e25`
+- Aktiv baseline `main`: `7b257c603f53141862eff19a7b9e1d28b8d2fb75`
 - Fase 0 merge: PR #5213 / `0b62e1c96bbddcf9c8574f10e0d041bba90ca48e`
 - Fase 1 merge: PR #5214 / `902a01c339fc3af75ac9c1d3053d1a06ca1c5136`
 - Fase 2 merge: PR #5215 / `694cef96d85e3ba3ea09ec6f6d83f183bff0bdd4`
@@ -11,6 +11,7 @@
 - Fase 4 merge: PR #5218 / `7da39fab4381b1671527108d01d8736de51c63f4`
 - Fase 5 merge: PR #5222 / `2ee41fbfc861d3cdf7aecddffc3246d28c3308b5`
 - Fase 6 merge: PR #5227 / `222f6a556785fe13ff337995349b6998c50208ff`
+- Fase 7 audit merge: PR #5228 / `7b257c603f53141862eff19a7b9e1d28b8d2fb75`
 - Styrende kontrakt: `docs/PLACE_PRODUCTION_CHECKLIST.md`
 - Popupkontrakt: `docs/PLACE_POPUP_SYSTEM.md`
 - Prior-work gate: `docs/PLACE_PRODUCTION_PRIOR_WORK_GATE.md`
@@ -45,7 +46,7 @@ Nære egne Places som ikke skal brukes som proxy omfatter minst `folkets_hus_osl
 | 4. Kategori, Badges, emner og Fagverk | **ALLEREDE FERDIG OG MERGET** | PR #5218; `politikk`, to underbadges og tre `em_pol_*` |
 | 5. `desc` + `popupDesc` | **FERDIG OG MERGET** | PR #5222; 17/17 verified claims, 3/3 + 26/26 sentence coverage |
 | 6. Strukturerte place-profiler | **FERDIG OG MERGET** | PR #5227; spatial/temporal/history/source materialisert; subplaces/nature begrunnet N/A; 6/6 workflows grønne |
-| 7. Popupfaner | **AUDIT AKTIV** | fase-7-audit klassifiserer fanene; deretter små PR-er 7A–7H |
+| 7. Popupfaner | **7A OM KLAR FOR REVIEW** | audit merget i PR #5228; 7A låser eksisterende Om-flate uten canonical dataendring |
 | 8. Rundinger | **BLOKKERENDE LEGACY-AVVIK** | dagens `people · badges · civication · brands · leksikon · routes · music` følger ikke dagens 4+1-kontrakt |
 | 9. På stedet | **IKKE STARTET** | legacy tasks skal ikke videreføres ukritisk |
 | 10. Quiz | **EKSISTERER – RE-AUDIT SENERE** | aktivt 5-spørsmålssett finnes; ikke regenerer uten konkret behov |
@@ -82,9 +83,17 @@ Fase 7 skal ikke omskrive denne teksten uten ny konkret description-regresjon.
 - `nature_profile`: begrunnet N/A;
 - produksjonsmodell/API-kreditter: 0 fordi allerede verifisert claim-bank var tilstrekkelig, ikke fordi innhold ble kuttet.
 
-## Aktiv fase 7 – popupfaner
+## Aktiv fase 7A – Om
 
-Fase 7 starter med audit-only PR. Ingen canonical popupdata endres i auditsteget.
+Fase-7-auditen er merget i PR #5228. Fase 7A kontrollerer og låser Om-fanen uten å produsere parallell tekst eller tidslinje.
+
+Aktivt filscope:
+
+1. `reports/place-production/youngstorget-phase7a-about-audit-v1.md`;
+2. `reports/place-production/youngstorget-workcard-current.md`;
+3. `tests/youngstorget-phase7a-about.test.mjs`.
+
+Canonical Youngstorget-data endres ikke i 7A.
 
 Viktig kontraktgrense fra Torggata 7A: at `temporal_profile` kan leses av en helper uten egen renderer er ikke i seg selv et Om-hull. Én-visuell-eier-regelen betyr at overlappende temporal-/chronology-/history-stoff kan eies av Historie. Youngstorgets seks temporal-milepæler overlapper eksisterende `history_layers`/hovedartikkel, så vi skal ikke bygge en parallell milepælrad i Om bare for å eksponere feltet.
 
