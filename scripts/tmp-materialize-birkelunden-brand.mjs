@@ -2,12 +2,12 @@ import fs from 'node:fs';
 
 const placeId = 'birkelunden';
 const brandId = 'bondens_marked';
-const logoPath = 'bilder/kort/brands/bondens_marked.webp';
+const logoPath = 'bilder/kort/brands/bondens_marked.svg';
 const masterPath = 'data/brands/brands_master.json';
 const byPlacePath = 'data/brands/brands_by_place.json';
 
 if (!fs.existsSync(logoPath)) {
-  throw new Error(`Missing generated authentic wordmark asset: ${logoPath}`);
+  throw new Error(`Missing official Bondens marked logo asset: ${logoPath}`);
 }
 
 const master = JSON.parse(fs.readFileSync(masterPath, 'utf8'));
@@ -31,7 +31,7 @@ const brand = {
   status: 'active',
   verification: 'verified',
   verified_at: '2026-08-23',
-  popupdesc: 'Bondens marked er et beskyttet norsk markedsnavn etablert i 2003. Organisasjonen oppgir selv gjentatte markedsdager i Birkelunden og bruker stedet som fast markedsplass i Oslo.',
+  popupdesc: 'Bondens marked er et norsk markedsnavn etablert i 2003. Organisasjonen oppgir selv gjentatte markedsdager i Birkelunden og bruker stedet som fast markedsplass i Oslo.',
   desc: 'Nasjonalt lokalmat- og produsentmarked med dokumentert, gjentatt tilstedeværelse i Birkelunden.',
   tags: ['brand', 'farmers_market', 'local_food', 'birkelunden', 'oslo'],
   place_ids: [placeId],
@@ -43,22 +43,20 @@ const brand = {
   logo: logoPath,
   imageMeta: {
     sourcePage: 'https://bondensmarked.no/om-oss/bilder',
-    sourceAsset: 'https://res.cloudinary.com/hanen/image/upload/b_rgb%3Af8f8f9%2Cc_pad%2Cdpr_2%2Ch_700%2Cq_70%2Cw_1050/v1/BM/ct9bxkxkv5nzqrf8vrmx.jpg',
-    creator: 'Tore Berntsen',
-    credit: 'Bondens marked / Tore Berntsen',
-    rightsBasis: 'explicit_media_reuse_permission_on_source_page',
-    rightsNote: 'Bondens markeds egen Bilderside sier at illustrasjonsbildene er til bruk for media og andre som måtte trenge det. Assetet er kun et crop av et autentisk, synlig Bondens marked-ordmerke i det oppgitte mediebildet.',
+    sourceAsset: 'https://bondensmarked.no/bm-logo.svg',
+    creator: 'Bondens marked',
+    credit: 'Bondens marked official website',
+    rightsBasis: 'referential_trademark_identification',
+    rightsNote: 'Official logo asset published by Bondens marked and stored locally only for referential identification. No endorsement is implied.',
     temporalScope: 'current',
     assetKind: 'logo',
-    sourceForm: 'authentic_wordmark_on_official_media_image',
-    transformation: 'crop of authentic Bondens marked wordmark printed on an official market bag; resize and WebP normalization only',
+    sourceForm: 'official_logo_asset',
+    transformation: 'downloaded unchanged from the official Bondens marked website',
     reviewStatus: 'manually_approved',
     usageContext: 'referential_identification',
     noEndorsement: true,
     generated: false,
     reconstructed: false,
-    width: 900,
-    height: 520,
     bytes,
     reviewedAt: '2026-08-23'
   }
