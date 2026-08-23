@@ -1,0 +1,98 @@
+name: TEMP Civication Filosofi undervisning akademia writeback
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - agent/civication-filosofi-undervisning-akademia-playability
+
+permissions:
+  contents: write
+
+jobs:
+  writeback:
+    if: >-
+      (github.event_name == 'push' && github.actor != 'github-actions[bot]') ||
+      (github.event_name == 'pull_request' && github.head_ref == 'agent/civication-filosofi-undervisning-akademia-playability')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out role branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/civication-filosofi-undervisning-akademia-playability
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Register canonical Philosophy teaching role model
+        run: |
+          node - <<'NODE'
+          const fs = require('node:fs');
+          const path = 'data/Civication/roleModels/manifest.json';
+          const rolePath = 'data/Civication/roleModels/filosofi/filosofi_undervisning_og_akademia.json';
+          const manifest = JSON.parse(fs.readFileSync(path, 'utf8'));
+          if (!manifest.files.includes(rolePath)) {
+            manifest.files.push(rolePath);
+            manifest.files.sort((a, b) => a.localeCompare(b, 'en'));
+            fs.writeFileSync(path, `${JSON.stringify(manifest, null, 2)}\n`);
+          }
+          NODE
+      - name: Regenerate Scenario People for canonical role registration
+        run: node --experimental-strip-types scripts/build-civication-scenario-people-index.mts
+      - name: Regenerate compiled scene registry
+        run: node scripts/build-civication-scene-registry.mjs --write
+      - name: Regenerate career gameplay matrix and report
+        run: node scripts/audit-civication-career-gameplay.mjs --write
+      - name: Verify Philosophy teaching targeted contract
+        run: node tests/civication-filosofi-undervisning-akademia-playability.test.js
+      - name: Run complete Civication suite
+        run: node tests/run-civication-tests.mjs
+      - name: Verify Scenario People stays synchronized
+        run: node --experimental-strip-types scripts/build-civication-scenario-people-index.mts --check
+      - name: Verify compiled scene registry stays synchronized
+        run: node scripts/build-civication-scene-registry.mjs --check
+      - name: Verify career gameplay matrix stays synchronized
+        run: node scripts/audit-civication-career-gameplay.mjs --check
+      - name: Verify Role World contract
+        run: node tests/civication-role-world-contract.test.js
+      - name: Typecheck web
+        run: npm run typecheck:web
+      - name: Typecheck scripts
+        run: npm run typecheck:scripts
+      - name: Typecheck tools
+        run: npm run typecheck:tools
+      - name: Build scripts
+        run: npm run build:scripts
+      - name: Verify browser build sync
+        run: npm run build:web:check
+      - name: Verify whitespace
+        run: git diff --check
+      - name: Refuse unrelated generator or build drift
+        shell: bash
+        run: |
+          set -euo pipefail
+          git status --short
+          unexpected="$(git status --porcelain | sed -E 's/^.. //' | grep -vE '^(data/Civication/roleModels/manifest.json|data/Civication/scenarioPeople/generated/filosofi.json|data/Civication/scenarioPeople_index.json|data/Civication/compiledSceneRegistryV1.json|data/Civication/careerGameplayMatrix.json|reports/civication-career-gameplay-matrix.md)$' || true)"
+          if [[ -n "$unexpected" ]]; then
+            echo "Unexpected generated/build drift:"
+            echo "$unexpected"
+            exit 1
+          fi
+      - name: Commit canonical manifest registration and generated outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/Civication/roleModels/manifest.json data/Civication/scenarioPeople/generated/filosofi.json data/Civication/scenarioPeople_index.json data/Civication/compiledSceneRegistryV1.json data/Civication/careerGameplayMatrix.json reports/civication-career-gameplay-matrix.md
+          if git diff --cached --quiet; then
+            echo "No canonical changes."
+            exit 0
+          fi
+          git commit -m "Register Filosofi teaching role and regenerate projections"
+          git push origin "HEAD:agent/civication-filosofi-undervisning-akademia-playability"
