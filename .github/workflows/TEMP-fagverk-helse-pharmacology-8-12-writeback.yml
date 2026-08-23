@@ -1,0 +1,79 @@
+name: TEMP Helse pharmacology 8/12 writeback
+
+on:
+  push:
+    branches:
+      - agent/helse-pharmacology-fulltext-content
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: temp-helse-pharmacology-8-12-writeback
+  cancel-in-progress: true
+
+jobs:
+  writeback:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/helse-pharmacology-fulltext-content
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate source brief
+        run: node scripts/brief-helse-pharmacology-sources-v1.mjs
+      - name: Materialize pharmacology fulltext
+        run: node scripts/materialize-helse-pharmacology-fulltext-v1.mjs
+      - name: Refresh general engine audit
+        run: node scripts/audit-fagverk-general-engine.mjs --write-report
+      - name: Build deterministic release
+        run: node scripts/build-fagverk-release-manifest.mjs
+      - name: Write pharmacology audit
+        run: node scripts/audit-helse-pharmacology-fulltext-v1.mjs --write-report
+      - name: Validate materialized state
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/audit-helse-pharmacology-fulltext-v1.mjs
+          node scripts/audit-helse-cumulative-progress-v1.mjs
+          node scripts/audit-fagverk-subject-inventory.mjs
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/audit-fagverk-theory-quality.mjs
+          node scripts/audit-fagverk-theory-integrity.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node --test \
+            tests/helse-pharmacology-fulltext-v1.test.mjs \
+            tests/helse-cumulative-progress-v1.test.mjs \
+            tests/fagverk-subject-inventory.test.mjs \
+            tests/fagverk-general-engine.test.mjs \
+            tests/fagverk-release-manifest.test.mjs
+      - name: Commit generated outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- \
+            data/fag/fag_manifest.json \
+            data/fag/helse/helsepensum_canonical_v1.json \
+            data/fag/helse/emner_helse_canonical_v1.json \
+            data/fag/helse/methods_helse_canonical_v1.json \
+            data/fagverk/fagverk_registry.json \
+            data/fagverk/subject_inventory.json \
+            data/fagverk/subject_status.json \
+            data/fagverk/fagverk_release.json \
+            data/fagverk/helse/farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet.json \
+            data/fagverk/helse/farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet \
+            reports/fagverk/helse-pharmacology-fulltext-v1-audit.json \
+            reports/fagverk/general-engine-audit.json
+          if git diff --cached --quiet; then
+            echo "Generated outputs already current."
+            exit 0
+          fi
+          git commit -m "Materialize Helse pharmacology at 8/12"
+          git push origin HEAD:agent/helse-pharmacology-fulltext-content
