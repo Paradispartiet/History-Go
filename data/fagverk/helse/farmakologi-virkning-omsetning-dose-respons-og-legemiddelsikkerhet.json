@@ -1,0 +1,140 @@
+{
+  "schema": "history_go_fagverk_chapter_v1",
+  "version": "1.0.0",
+  "subject": "helse",
+  "subject_id": "helse",
+  "id": "farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet",
+  "chapter_id": "farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet",
+  "primary_domain_id": "farmakologi",
+  "editorialStatus": "chapter_ready",
+  "claimTraceRequired": true,
+  "sourceFirst": true,
+  "emne_ids": [
+    "em_helse_farmakologi"
+  ],
+  "method_ids": [
+    "met_helse_mekanisme_modell",
+    "met_helse_klinisk_studievurdering"
+  ],
+  "title": "Farmakologi: virkning, omsetning, dose–respons og legemiddelsikkerhet",
+  "subtitle": "Fra reseptorer og eksponering til interaksjoner, variasjon og farmakovigilans",
+  "lead": "Kapittelet analyserer farmakologi på generelt faglig nivå og gir aldri individuell diagnose, prognose, triage, behandling, legemiddelvalg, dosejustering, seponering eller personspesifikk medisinsk tolkning.",
+  "learningObjectives": [
+    "Legemiddelmål, reseptorer og respons",
+    "Dose, konsentrasjon, potens og maksimal effekt",
+    "Absorpsjon, distribusjon og biotilgjengelighet",
+    "Clearance, distribusjonsvolum, halveringstid og steady state",
+    "Metabolisme, transport og legemiddelinteraksjoner",
+    "Variasjon i eksponering og respons",
+    "Bivirkninger, adverse events og farmakovigilans",
+    "Legemiddelutvikling, merking og livsløpsvurdering"
+  ],
+  "diagnosticQuestions": [
+    {
+      "question": "Hva skiller affinitet fra efficacy?",
+      "answer": "Affinitet beskriver hvor sterkt eller fordelaktig en ligand binder til et biologisk mål under definerte betingelser, mens efficacy beskriver evnen til å frembringe respons etter binding. Et stoff kan derfor binde med høy affinitet uten å gi maksimal aktivering, og bindingsstyrke kan ikke brukes som direkte mål på hvor stor systemeffekt som oppnås."
+    },
+    {
+      "question": "Hva betyr høyere potens?",
+      "answer": "Potens beskriver hvilken dose eller konsentrasjon som kreves for å oppnå en definert respons og påvirkes blant annet av affinitet, signalforsterkning og systemegenskaper. Efficacy eller maksimal effekt beskriver hvor stor respons systemet kan nå. Et mer potent legemiddel trenger derfor ikke ha større maksimal effekt enn et mindre potent legemiddel."
+    },
+    {
+      "question": "Hva beskriver biotilgjengelighet best?",
+      "answer": "Biotilgjengelighet beskriver hastighet og omfang som et virkestoff eller en aktiv del blir systemisk tilgjengelig fra en bestemt formulering og administrasjonsmåte. Eksponering vurderes ofte med konsentrasjon–tid-baserte mål. Begrepet er derfor mer presist enn hvor mye som svelges eller forlater tarmen, fordi presystemiske prosesser kan endre hvor mye aktivt stoff som når systemkretsløpet."
+    },
+    {
+      "question": "Hva kan eliminasjonshalveringstid ikke automatisk fortelle?",
+      "answer": "Eliminasjonshalveringstid er tiden det tar for konsentrasjon eller mengde å falle til halvparten under definerte kinetiske betingelser og påvirkes av både clearance og distribusjonsvolum. Farmakodynamiske effekter kan vare kortere eller lengre enn plasmakonsentrasjonens halveringstid på grunn av målkinetikk, aktive metabolitter eller irreversible biologiske endringer."
+    }
+  ],
+  "relatedPlaces": [
+    {
+      "id": "direktoratet-for-medisinske-produkter",
+      "name": "Direktoratet for medisinske produkter",
+      "role": "Knytte legemiddelutvikling, merking og sikkerhetsovervåking til norsk regulatorisk praksis uten individråd."
+    },
+    {
+      "id": "farmasoytisk-institutt-uio",
+      "name": "Farmasøytisk institutt, Universitetet i Oslo",
+      "role": "Knytte farmakodynamikk, farmakokinetikk og legemiddelanalyse til undervisnings- og forskningskontekst."
+    },
+    {
+      "id": "oslo-universitetssykehus",
+      "name": "Oslo universitetssykehus",
+      "role": "Knytte klinisk farmakologi og legemiddelsikkerhet til helsetjenestens generelle systemer uten individuell forskrivning."
+    }
+  ],
+  "workCases": [
+    {
+      "id": "scenario-potency-versus-efficacy",
+      "title": "Potens og maksimal effekt i to hypotetiske konsentrasjons–responskurver",
+      "purpose": "Skille potens fra maksimal effekt uten å velge legemiddel eller dose for en person.",
+      "source_ids": [
+        "hpha01-ncbi-pharmacodynamics",
+        "hpha02-fda-ich-e4-dose-response",
+        "hpha03-ema-ich-e4-dose-response"
+      ]
+    },
+    {
+      "id": "scenario-same-dose-different-exposure",
+      "title": "Samme nominelle dose, ulik systemisk eksponering",
+      "purpose": "Analysere hypotetisk forskjell i biotilgjengelighet og eksponering uten individuell dosejustering.",
+      "source_ids": [
+        "hpha04-fda-bioavailability-2022",
+        "hpha05-fda-food-effect-2026",
+        "hpha12-fda-clinical-pharmacology-labeling"
+      ]
+    },
+    {
+      "id": "scenario-half-life-and-steady-state",
+      "title": "Halveringstid og akkumulering i en generell PK-modell",
+      "purpose": "Forklare hvorfor halveringstid påvirker akkumulering og tid mot steady state, men ikke er identisk med virkningsvarighet.",
+      "source_ids": [
+        "hpha04-fda-bioavailability-2022",
+        "hpha06-fda-renal-pk-2024",
+        "hpha07-fda-hepatic-pk"
+      ]
+    },
+    {
+      "id": "scenario-enzyme-inhibition-interaction",
+      "title": "Enzymhemming og eksponeringsendring",
+      "purpose": "Spore en hypotetisk CYP-interaksjon fra mekanisme til endret eksponering og usikker klinisk betydning uten behandlingsråd.",
+      "source_ids": [
+        "hpha08-fda-ich-m12-ddi",
+        "hpha09-ema-ich-m12-ddi",
+        "hpha10-fda-ddi-tables"
+      ]
+    },
+    {
+      "id": "scenario-variability-study",
+      "title": "Farmakokinetisk variasjon mellom studiegrupper",
+      "purpose": "Sammenligne hypotetiske gruppeestimater for organfunksjon, mat og genetisk variasjon uten personspesifikk dosering.",
+      "source_ids": [
+        "hpha05-fda-food-effect-2026",
+        "hpha06-fda-renal-pk-2024",
+        "hpha11-fda-pharmacogenomics"
+      ]
+    },
+    {
+      "id": "scenario-safety-signal",
+      "title": "Farmakovigilanssignal uten automatisk kausalitet",
+      "purpose": "Analysere et hypotetisk mønster av spontanrapporter og skille signalgenerering fra kausal konklusjon.",
+      "source_ids": [
+        "hpha13-who-pharmacovigilance-strategies",
+        "hpha14-who-pidm",
+        "hpha12-fda-clinical-pharmacology-labeling"
+      ]
+    }
+  ],
+  "moduleFiles": [
+    "data/fagverk/helse/farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet/01-farmakodynamikk-og-dose-respons.json",
+    "data/fagverk/helse/farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet/02-farmakokinetikk-og-eksponering.json",
+    "data/fagverk/helse/farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet/03-interaksjoner-og-variasjon.json",
+    "data/fagverk/helse/farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet/04-legemiddelsikkerhet-og-livslop.json"
+  ],
+  "briefFile": "data/fagverk/helse/farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet/brief.json",
+  "claimsFile": "data/fagverk/helse/farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet/claims.json",
+  "assessmentFile": "data/fagverk/helse/farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet/assessment.json",
+  "sourceBriefFile": "data/fag/helse/pharmacology_source_claim_brief_v1.json",
+  "safetyContractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json"
+}
