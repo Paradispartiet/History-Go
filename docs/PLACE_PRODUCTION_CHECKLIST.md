@@ -14,6 +14,8 @@ Alle faglige, redaksjonelle, faktuelle og subsystemspesifikke krav i referansen 
 
 Alle canonicale steder skal ha sin egen fungerende fagverkside. V2 endrer ikke dette kravet; den forenkler bare review- og mergekadensen.
 
+DIALEKTLAG — KUN `placeScope: "area"` / N/A. Dialektlag kan bare eies av canonical area-Places; enkelt-Places kan ha Språkleksikon, men er ikke dialekteiere. Når Språkleksikon produseres, skal relevante dialektord vurderes og kildebelegges etter språk-/dialektkontrakten.
+
 > **Ett sted ferdig før neste. Faser reviewes sekvensielt. Mergegrenser følger reell risiko — ikke antall faser.**
 
 ---
