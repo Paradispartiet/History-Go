@@ -127,13 +127,13 @@ Oslo Pix-notisen gjelder gratis utekino 25. og 26. august. Bondens marked-notise
 
 ## 7F – Lesespor
 
-Canonical eier er manifest-lastede `history_go_lesespor_v1`-filer. Ny stedsspesifikk fil:
+Canonical eier er den allerede manifest-lastede Oslo By-filen:
 
 ```text
-data/lesespor/oslo/birkelunden/lesespor_oslo_by.json
+data/lesespor/oslo/lesespor_oslo_by.json
 ```
 
-Basenavnet beholdes som `lesespor_oslo_by.json` slik at filnavnkategorien samsvarer med `category: "by"`; Birkelunden-avgrensningen ligger i undermappen og i eksakt `place_ids`.
+Birkelunden får ikke en parallell manifestfil. De tre oppføringene skilles fra øvrige Oslo By-spor med eksakt `place_ids: ["birkelunden"]`.
 
 Tre åpne `link_only`-spor er materialisert:
 
@@ -156,6 +156,10 @@ Pensjonistforbundet – Vår historie
 
 Alle tre har eksakt `place_ids: ["birkelunden"]`, `access: open`, `rights: link_only`, `source_quality: recognized`, `verifiedAt: 2026-08-23` og direkte HTTPS-lenke. Artikkeltekst kopieres ikke.
 
+### Validator- og owner-avklaring
+
+Første forsøk på egen Birkelunden-fil ble avvist av den permanente Lesespor-validatoren fordi filene må følge `<scope>/lesespor_<scope>_<category>.json`, med `city` lik scope og `category` lik filnavnkategori. Det ble ikke løst ved å svekke validatoren. I stedet ble data flyttet til riktig canonical eier, `oslo/lesespor_oslo_by.json`, og den midlertidige sidefilen ble slettet.
+
 ### Own-place og holdbacks
 
 - park og større kulturmiljø skilles eksplisitt i de to første sporene;
@@ -167,11 +171,11 @@ Alle tre har eksakt `place_ids: ["birkelunden"]`, `access: open`, `rights: link_
 
 `tests/birkelunden-phase7f-reading-trail.test.mjs` krever:
 
-- nøyaktig tre Birkelunden-spor;
+- nøyaktig tre Birkelunden-spor filtrert fra canonical Oslo By-fil;
 - eksakte IDs, `place_ids`, åpen tilgang og `link_only`;
 - validator-tillatt `source_quality: recognized`;
 - direkte URL-er og `verifiedAt`;
-- manifestregistrering rett etter den generelle Oslo By-filen;
+- kun den eksisterende `oslo/lesespor_oslo_by.json` i manifestet, uten Birkelunden-sidefil;
 - eksisterende runtimefilter for place-ID og betalingsmur;
 - auditert perspektivbredde/own-place;
 - uendrede fase-5 description-hasher og `area_m2=16300`.
@@ -184,12 +188,13 @@ Produksjonsmodell/API-kreditter i 7F: **0 eksterne modellkall**. Åpne nettsider
 
 Endres:
 
-1. ny Birkelunden Lesespor-fil;
-2. `data/lesespor/manifest.json`;
-3. `tests/birkelunden-phase7f-reading-trail.test.mjs`;
-4. `scripts/check-places.sh` – permanent 7F-teststeg;
-5. `reports/place-production/birkelunden-phase7f-reading-trail-audit-v1.md`;
-6. dette workcardet.
+1. `data/lesespor/oslo/lesespor_oslo_by.json` – tre Birkelunden-poster;
+2. `tests/birkelunden-phase7f-reading-trail.test.mjs`;
+3. `scripts/check-places.sh` – permanent 7F-teststeg;
+4. `reports/place-production/birkelunden-phase7f-reading-trail-audit-v1.md`;
+5. dette workcardet.
+
+Manifestet beholdes på canonical hovedgreninnhold. Ingen ekstra Lesespor-fil blir stående.
 
 Ikke endret: canonical Birkelunden Place, `desc`, `popupDesc`, koordinater, profiler, `for_na`, Story, People, Objects, Nature, news-data eller popup-runtime.
 
