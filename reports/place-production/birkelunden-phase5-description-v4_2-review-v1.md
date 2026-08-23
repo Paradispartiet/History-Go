@@ -6,6 +6,7 @@
 - Canonical Place: `data/places/by/oslo/places/birkelunden.json`
 - Production packet: `data/places/production/birkelunden.json`
 - Source pack: `reports/place-production/content-factory-pilot-02-grunerlokka-parks-source-pack-v1.json`
+- Image backlog: `data/places/place_image_backlog_summary.json`
 - Contract: `data/places/regler/PLACE_DESCRIPTION_CANONICAL.md`
 - Schema: `data/places/regler/place_description_production_v4_2.schema.json`
 - Validator: `scripts/validate-place-description-production-v4_2.mjs`
@@ -15,14 +16,24 @@
 
 Fase 5 er første brukerrettede produksjonsfase i Content Factory Pilot 02.
 
-Fire filer er tillatt i scope:
+Fem filer er tillatt i scope:
 
-1. canonical `data/places/by/oslo/places/birkelunden.json` — bare `desc` og `popupDesc`;
-2. ny v4.2 production packet `data/places/production/birkelunden.json`;
-3. denne reviewrapporten;
-4. aktivt workcard.
+1. `data/places/by/oslo/places/birkelunden.json`
+   - `desc`;
+   - `popupDesc`;
+   - `image`;
+   - `cardImage`;
+   - `imageCredit`;
+   - `imageLicense`;
+   - `imageSourceUrl`.
+2. `data/places/production/birkelunden.json`.
+3. `data/places/place_image_backlog_summary.json`.
+4. denne reviewrapporten.
+5. aktivt workcard.
 
-Ingen koordinater, kategori, emner, Nature, Quiz, People, Objects, Brands, Stories, Lesespor, routes/relations eller runtime skal endres.
+Bildeendringen er ikke en ny redaksjonell sideoppgave. Den er nødvendig changed-place image-reparasjon: de gamle lokale Birkelunden-referansene finnes ikke i repoet og returnerer 404. Fase 5 erstatter dem derfor med ett inspectable, rettighetsklart bilde av selve Birkelunden park.
+
+Ingen koordinater, radius, kategori, emner, Nature, Quiz, People, Objects, Brands, Stories, Lesespor, routes/relations eller runtime endres.
 
 ## 2. Før/etter – hovedproblemene i gammel tekst
 
@@ -30,17 +41,18 @@ Den gamle teksten hadde mye godt historisk råstoff, men var ikke godkjennbar un
 
 I tillegg hadde den konkrete scope-/faktaproblemer:
 
-- `116 dekar`, `15 kvartaler` og `139 bygårder` ble presentert inne i Birkelunden-artikkelen uten tydelig nok skille mellom **parken** og **Birkelunden kulturmiljø**;
+- `116 dekar`, `15 kvartaler` og `139 bygårder` ble presentert uten tydelig nok skille mellom **parken** og **Birkelunden kulturmiljø**;
 - en sterk `første`-påstand om kulturmiljøfredningen ble brukt uten v4.2-kravets to uavhengige kilder;
 - flere detaljer om tidlig gjerde, treplanting, nabolagsbefolkning, Paulus kirke, Grünerløkka skole og løpende arrangementsbruk var ikke materialisert som fase-2 claims;
 - formuleringen om dagens marked/arrangementer var current-volatile og ikke ferskverifisert gjennom en 2026 operatør-/offisiell arrangementsflate;
-- canonical `year: 1910` kunne misforstås som etableringsår selv om source packen dokumenterer anlegg i 1860-årene og overdragelse i 1882.
+- canonical `year: 1910` kunne misforstås som etableringsår selv om source packen dokumenterer anlegg i 1860-årene og overdragelse i 1882;
+- `image: bilder/places/birkelunden.JPG` og `cardImage: bilder/kort/places/birkelunden.PNG` peker til filer som ikke finnes i repoet.
 
-Fase 5 løser dette ved å skrive fra verifiserte claims, ikke ved å prøve å «redde» usporbare setninger.
+Fase 5 løser dette ved å skrive fra verifiserte claims og ved å reparere den obligatoriske stedsbildeproveniensen.
 
 ## 3. Ny `desc`
 
-Ny `desc` er **65 ord / 2 setninger**.
+Ny `desc` er 65 ord / 2 setninger etter repoets validatorlogikk.
 
 Styrende idé:
 
@@ -62,7 +74,7 @@ Ingen `første`, `eldste`, `største`, årsaksrangering eller current markedspå
 
 ## 4. Ny `popupDesc`
 
-Ny `popupDesc` er **301 ord, 6 avsnitt og 18 setninger** etter validatorens `Intl.Segmenter('nb')`-logikk.
+Ny `popupDesc` er 301 ord, 6 avsnitt og 18 setninger etter validatorens `Intl.Segmenter('nb')`-logikk.
 
 Artikkelen følger seks faktiske stofflag:
 
@@ -100,7 +112,7 @@ Evidens:
 - Oslo byleksikon: 1989;
 - Nils Aas Kunstverksted: 1989.
 
-Store norske leksikon – Birkelunden oppgir 1889. Den kilden brukes **ikke** for årstallet og konflikten er bevart i claim-notatet og Content Factory source packen.
+Store norske leksikon – Birkelunden oppgir 1889. Den kilden brukes ikke for årstallet, og konflikten er bevart i claim-notatet og Content Factory source packen.
 
 Ingen stiltiende flertallsavgjørelse eller usynlig korrigering er gjort.
 
@@ -115,15 +127,7 @@ Birkelunden kulturmiljø: ca. 116 dekar
 
 Kulturmiljøet omfatter parken, Grünerløkka skole, Paulus kirke og 15 kvartaler med 139 bygårder. Disse byggene og arealtallet brukes som **kulturmiljøkontekst**, ikke som parkens egen struktur eller areal.
 
-Det er avgjørende for senere:
-
-- `spatial_profile`;
-- Structures;
-- Objects;
-- Før/etter;
-- relations;
-- popupfaner;
-- bilder.
+Denne grensen bæres videre til `spatial_profile`, Structures, Objects, Før/etter, relations, popupfaner og bilder.
 
 ## 8. `year: 1910`
 
@@ -137,23 +141,11 @@ Repoets Place-kontrakter definerer ikke `year` som et universelt etableringsår.
 - `identity.period` starter i 1860-årene;
 - faktareviewet dokumenterer at sourced parkhistorie starter i 1860-årene og har 1882 som overdragelsesmilepæl.
 
-En senere eksplisitt metadataaudit kan endre feltet hvis feltkontrakten eller sterkere canonical semantics krever det. Description-teksten får ikke late som 1910 er etableringsår.
+## 9. Sentence coverage og teksthash
 
-## 9. Sentence coverage
+Alle 2 `desc`-setninger og alle 18 `popupDesc`-setninger har minst ett eksplisitt verified claim.
 
-Alle **2 `desc`-setninger** og alle **18 `popupDesc`-setninger** har minst ett eksplisitt verified claim.
-
-Ingen tekstsetning viser til:
-
-- rejected claim;
-- held-back superlativ;
-- current søndagsmarked;
-- SNLs 1889-datering;
-- generisk Grünerløkka-kontekst uten park-scope.
-
-## 10. Teksthash
-
-Production packet bruker SHA-256 over rå parsed text, identisk med validatorens `sha256Text`:
+SHA-256 er kontrollert byte-for-byte mot canonical branchtekst:
 
 ```text
 desc:
@@ -162,6 +154,55 @@ ea8efd6ab0ed583485b2c87dd28e4dbb9af7766c32381f57e4cb6a54e9d94dbe
 popupDesc:
 670dcbc8e37004fe1c3a595ae6af1a6dcfe304f1048ce906f37df3f7e8544ff7
 ```
+
+Ingen tekstsetning viser til rejected claim, held-back superlativ, current søndagsmarked, SNLs 1889-datering eller generisk Grünerløkka-kontekst uten park-scope.
+
+## 10. Changed-place image gate
+
+### Gammel tilstand
+
+```text
+image: bilder/places/birkelunden.JPG
+cardImage: bilder/kort/places/birkelunden.PNG
+```
+
+Begge filbanene er kontrollert mot repoet og finnes ikke. De er derfor ikke gyldige stedsbilder.
+
+### Ny tilstand
+
+```text
+image/cardImage:
+https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Birkelunden_%28121153%29.jpg/800px-Birkelunden_%28121153%29.jpg
+
+imageCredit: Tore Sætre / Wikimedia Commons
+imageLicense: CC BY-SA 4.0
+imageSourceUrl: https://commons.wikimedia.org/wiki/File:Birkelunden_(121153).jpg
+```
+
+Commons-filsiden er kontrollert 2026-08-23 og dokumenterer:
+
+- motiv: Birkelunden park på Grünerløkka;
+- dato: 23. oktober 2015;
+- fotograf: Tore Sætre;
+- source: own work;
+- lisens: Creative Commons Attribution-ShareAlike 4.0;
+- attribusjonsinstruks: `Tore Sætre / Wikimedia`.
+
+Bildet viser det canonicale parkobjektet og brukes ikke som proxy for Paulus kirke, omkringliggende bygårder eller hele kulturmiljøet.
+
+### Backlog-effekt
+
+Den ugyldige lokale Birkelunden-bildereferansen erstattes av én gyldig remote place-image-kjede:
+
+```text
+validRemote:      29 → 30
+invalidLocalPath: 36 → 35
+remaining:      1371 → 1370
+By valid:          28 → 29
+By invalid:        36 → 35
+```
+
+Dette er en kvalitetsreparasjon, ikke et forsøk på å lukke den globale bildebackloggen i denne PR-en.
 
 ## 11. Quiz-readiness
 
@@ -220,13 +261,13 @@ Dette reduserer ikke innholdskvaliteten. Det erstatter svak eller scope-uklar te
 ## 14. Fasebeslutning
 
 ```text
-SUBSYSTEM: desc / popupDesc v4.2
+SUBSYSTEM: desc / popupDesc v4.2 + changed-place image gate
 IDENTITY: RESOLVED
 DESC: 65 ord / 2 setninger
 POPUPDESC: 301 ord / 6 avsnitt / 18 setninger
 CLAIMS: 17/17 verified
 SENTENCE COVERAGE: 20/20 setninger dekket
-TEXT HASHES: MATERIALISERT
+TEXT HASHES: VERIFIED
 FACTUAL REVIEW: PASSED
 EDITORIAL REVIEW: PASSED
 QUIZ READINESS: 11 direkte spørsmål
@@ -234,6 +275,9 @@ STRONG HELD-BACK CLAIMS PUBLISERT: NEI
 CURRENT SØNDAGSMARKED PUBLISERT: NEI
 SNL 1889 PUBLISERT: NEI
 PARK/KULTURMILJØ-SCOPE: RETTET
+OLD LOCAL PLACE IMAGE PATHS: INVALID / 404
+NEW IMAGE PROVENANCE: VERIFIED / CC BY-SA 4.0
+GLOBAL IMAGE BACKLOG: 1371 → 1370
 CANONICAL COORD/KATEGORI/EMNER/NATURE ENDRET: NEI
 STATUS: KLAR FOR VALIDATOR / PR REVIEW
 NESTE FASE ETTER MERGE: 6 – strukturerte place-profiler
