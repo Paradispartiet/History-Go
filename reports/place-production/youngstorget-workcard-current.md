@@ -86,16 +86,18 @@ Fase 7 skal ikke omskrive denne teksten uten ny konkret description-regresjon.
 
 Fase 7 starter med audit-only PR. Ingen canonical popupdata endres i auditsteget.
 
+Viktig kontraktgrense fra Torggata 7A: at `temporal_profile` kan leses av en helper uten egen renderer er ikke i seg selv et Om-hull. Én-visuell-eier-regelen betyr at overlappende temporal-/chronology-/history-stoff kan eies av Historie. Youngstorgets seks temporal-milepæler overlapper eksisterende `history_layers`/hovedartikkel, så vi skal ikke bygge en parallell milepælrad i Om bare for å eksponere feltet.
+
 Auditens faneklassifisering:
 
 | Fane | Status etter audit |
 | --- | --- |
-| Om | **7A – trenger arbeid**: `temporal_profile` finnes, men renderes ikke |
-| Historie | **7B – innholdsklar, QA gjenstår**: fire `history_layers` vises; ikke bygg filler-chronology |
+| Om | **7A – allerede innholdsklar, QA gjenstår**: `popupDesc` og `spatial_profile` vises; ingen egen generisk Youngstorget-Leksikonpost er funnet; temporalstoff dupliseres ikke |
+| Historie | **7B – innholdsklar, QA gjenstår**: fire `history_layers` vises; temporal/chronology-eierskap kontrolleres uten filler |
 | Fortellinger | **7C – trenger reell Story-revisjon**: aktiv legacy-story er for generell som episode |
 | Før/etter | **7D – trenger produksjon**: 1996-spor finnes, canonical bildepar/rettigheter mangler |
 | Nyheter | **7E – trenger produksjon**: reelle 2026-notiser/current-stoff finnes |
-| Lesespor | **7F – begrunnet N/A i åpen popup inntil åpent spor finnes**: fire Aftenposten-abonnementslenker filtreres korrekt |
+| Lesespor | **7F – tilgangs-QA**: fire Aftenposten-spor finnes; åpen popup må fortsatt filtrere registrert abonnement/betalingsmur |
 | Kilder | **7G – trenger arbeid**: source labels finnes, inspectable HTTPS-lenker mangler |
 | Språk | **7H – egen vurdering**: Nytorvet/Youngstorget-navnehistorien er reell, men Språkleksikon-verdien må avgjøres uten filler |
 | Spor & objekter | **senere canonical eierfase**: Object-ID/eierskap må avklares først |
@@ -113,12 +115,12 @@ Fase 7 blir først samlet godkjent når relevante delsteg er ferdige, begrunnede
 
 ## Kjente hull etter fase-7-audit
 
-1. `temporal_profile` mangler runtimepresentasjon i Om.
-2. Historie trenger eksplisitt tab-QA, ikke mer volum for volumets skyld.
+1. Om trenger tab-level bevarings-/runtime-QA, men ikke ny temporal UI uten konkret regresjon.
+2. Historie trenger eksplisitt tab-QA og temporal/chronology-eierkontroll, ikke mer volum for volumets skyld.
 3. Storyen `st_youngstorget_mayday` må få tydelig narrativ episode/konflikt og dagens source-governance ved vesentlig revisjon.
 4. Før/etter mangler rettighetsklar assetpair for selve torget.
 5. Nyheter/current-status må ferskkontrolleres og materialiseres.
-6. Åpent Lesespor mangler; abonnementstilgang skal ikke omklassifiseres.
+6. Åpent Lesespor må avgjøres fra faktisk `access` item-for-item; abonnementstilgang skal ikke omklassifiseres.
 7. Kilder trenger inspectable, dedupliserte HTTPS-lenker.
 8. Språknavnehistorien må auditeres etter Språkleksikon-kontrakten.
 9. Canonical Objects mangler; Pioneren, Fredsmonumentet, fontenen og basaren er kandidater som må ID-/eierskapsauditeres.
