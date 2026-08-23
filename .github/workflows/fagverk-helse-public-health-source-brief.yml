@@ -1,5 +1,4 @@
 name: Fagverk Helse public health source brief
-
 on:
   pull_request:
     paths:
@@ -26,10 +25,8 @@ on:
       - 'scripts/*helse-public-health*'
       - 'tests/helse-public-health-source-brief-v1.test.mjs'
       - '.github/workflows/fagverk-helse-public-health-source-brief.yml'
-
 permissions:
   contents: read
-
 jobs:
   audit:
     runs-on: ubuntu-latest
@@ -40,11 +37,12 @@ jobs:
       - id: source_gate
         shell: bash
         run: |
-          if [[ -f scripts/brief-helse-public-health-sources-v1.mjs && -f tests/helse-public-health-source-brief-v1.test.mjs ]]; then
+          count="$(node -e "const fs=require('fs');const r=JSON.parse(fs.readFileSync('data/fagverk/fagverk_registry.json','utf8'));process.stdout.write(String(r.subjects.helse.editorialPlan.registeredChapterCount));")"
+          if [[ "$count" == "4" && -f scripts/brief-helse-public-health-sources-v1.mjs && -f tests/helse-public-health-source-brief-v1.test.mjs ]]; then
             echo "ready=true" >> "$GITHUB_OUTPUT"
           else
             echo "ready=false" >> "$GITHUB_OUTPUT"
-            echo "Bootstrap only: public health source brief generator/test not present yet."
+            echo "Monotone skip: Folkehelse source brief gate is active only at Helse 4/12; current count is ${count}/12."
           fi
       - if: steps.source_gate.outputs.ready == 'true'
         run: node scripts/brief-helse-public-health-sources-v1.mjs

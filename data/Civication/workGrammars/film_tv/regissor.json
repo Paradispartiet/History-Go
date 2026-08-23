@@ -1,1 +1,207 @@
-{"schema":"civication_work_grammar_v2","version":2,"category":"film_tv","role_scope":"regissor","source":{"evidence":"data/Civication/filmTvCareerLifeEvidence.json"},"badge_binding":{"badge_id":"film_tv","badge_titles":["Regissør"]},"task_families":["scene_og_tolkning","medvirkende_regi","visuell_plan","opptaksprioritering","etterarbeid_og_helhet"],"work_loops":[{"id":"scene","steps":["avklar_sceneformaal","planlegg_med_avdelinger","arbeid_med_medvirkende","gjennomfor_sikkert","vurder_materialet"]},{"id":"kunstnerisk_avvik","steps":["identifiser_problem","skill_intensjon_fra_losning","avklar_rammer","velg_ny_losning","kommuniser_konsekvens"]}],"practice_stories":[{"id":"s1","setup":"En viktig scene trenger mer tid enn planen tillater.","good":"Prioriter hva scenen faktisk må oppnå og avklar tidskonsekvens med produksjonen.","bad":"La alle avdelinger jobbe over uten avklaring."},{"id":"s2","setup":"En regiløsning trekker scenen bort fra manusets premiss.","good":"Test om endringen tjener helheten og avklar større dramaturgiske skift.","bad":"Endre retning uten å informere berørte kreative eiere."},{"id":"s3","setup":"Et ønsket bilde utfordrer sikkerhetsplanen.","good":"Finn en sikker alternativ løsning med fagansvarlige.","bad":"Press gjennom bildet fordi det er kunstnerisk viktig."},{"id":"s4","setup":"En medvirkende setter en legitim grense.","good":"Respekter grensen og omarbeid scenen innen samtykket.","bad":"Bruk hierarki eller tidspress for å få gjennom ønsket."},{"id":"s5","setup":"Klipperommet viser at intensjonen ikke finnes i materialet.","good":"Arbeid med det faktiske materialet og revurder fortellergrepet.","bad":"Tving fram opprinnelig plan uansett hva bildene viser."}],"quality_axes":["fortellingsklarhet","visuell_konsistens","samarbeid","samtykke_og_sikkerhet","opptakseffektivitet","helhetsdommekraft"],"authority_boundary":{"may_not":["overstyre_sikkerhetsansvar","tilsidesette_samtykke","endre_rettigheter_eller_budsjettfullmakter","bruke_kunstnerisk_ledelse_som_uinnskrenket_personalmakt"]}}
+{
+  "schema": "civication_work_grammar_v2",
+  "version": 2,
+  "category": "film_tv",
+  "role_scope": "regissor",
+  "source": {
+    "evidence": "data/Civication/filmTvCareerLifeEvidence.json"
+  },
+  "badge_binding": {
+    "badge_id": "film_tv",
+    "badge_titles": [
+      "Regissør"
+    ]
+  },
+  "task_families": [
+    "sceneanalyse_og_tolkning",
+    "medvirkende_regi",
+    "visuell_plan_og_dekning",
+    "opptaksprioritering",
+    "etterarbeid_og_helhet"
+  ],
+  "work_loops": [
+    {
+      "id": "scene_fra_manus_til_take",
+      "steps": [
+        "avklar_sceneendring_og_intensjon",
+        "blokker_med_medvirkende",
+        "samordne_kamera_lys_lyd_og_sikkerhet",
+        "prioriter_dekning",
+        "gjennomfor_og_vurder_take"
+      ]
+    },
+    {
+      "id": "take_til_klipp",
+      "steps": [
+        "vurder_materialet_som_finnes",
+        "identifiser_fortellings_eller_kontinuitetshull",
+        "skill_intensjon_fra_losning",
+        "avklar_pickup_eller_omklipp_med_rett_beslutningseier",
+        "dokumenter_neste_losning"
+      ]
+    }
+  ],
+  "practice_stories": [
+    {
+      "id": "s1",
+      "setup": "En viktig scene trenger mer tid enn planen tillater.",
+      "good": "Definer hva scenen må oppnå, prioriter nødvendig dekning og avklar tidskonsekvensen med produsent og første regiassistent.",
+      "bad": "La alle avdelinger jobbe over uten å gjøre prioriteringen eksplisitt."
+    },
+    {
+      "id": "s2",
+      "setup": "Blocking som fungerer for medvirkende kolliderer med lys- og kameroplanen.",
+      "good": "Samle medvirkende og fotograf om sceneintensjonen og finn en løsning som bevarer både spill og visuell lesbarhet.",
+      "bad": "Lås bildet først og krev at medvirkende tilpasser seg uten ny prøving."
+    },
+    {
+      "id": "s3",
+      "setup": "En medvirkende setter en legitim grense for en planlagt bevegelse.",
+      "good": "Respekter grensen, re-block scenen og avklar praktiske konsekvenser med relevante fagansvarlige.",
+      "bad": "Bruk tidspress eller regissørstatus for å få gjennom den opprinnelige løsningen."
+    },
+    {
+      "id": "s4",
+      "setup": "To takes har ulik plassering av en sentral rekvisitt og ulik eyeline.",
+      "good": "Bestem hvilken kontinuitet klippen skal bygge på og sikre de manglende overgangene før dere går videre.",
+      "bad": "Anta at klipperen kan skjule forskjellen senere."
+    },
+    {
+      "id": "s5",
+      "setup": "Et sterkt spilltake har samtidig en teknisk lydfeil.",
+      "good": "Skill hva som er uerstattelig i prestasjonen fra hva som kan løses teknisk, og avgjør om dere trenger et nytt take.",
+      "bad": "Forkast prestasjonen automatisk eller godta lyden uten faglig avklaring."
+    },
+    {
+      "id": "s6",
+      "setup": "Et ønsket kameragrep krever en bevegelse som ikke er dekket av dagens sikkerhetsplan.",
+      "good": "Stans og finn en trygg alternativ løsning med ansvarlige fagfunksjoner.",
+      "bad": "Press gjennom bildet fordi det bare tar noen sekunder."
+    },
+    {
+      "id": "s7",
+      "setup": "Dagslyset forsvinner og tre planlagte oppsett gjenstår.",
+      "good": "Ranger oppsettene etter fortellingsbehov og klipperisiko, og avklar hva som flyttes.",
+      "bad": "Skynd alle tre oppsettene uten å endre ambisjonsnivå eller plan."
+    },
+    {
+      "id": "s8",
+      "setup": "Klipperommet viser at scenen mangler en reaksjon som gjør vendepunktet forståelig.",
+      "good": "Vurder om eksisterende materiale kan omstruktureres før du foreslår pickup og forklar hva pickupen faktisk skal løse.",
+      "bad": "Bestill ny opptaksdag før problemet er diagnostisert."
+    },
+    {
+      "id": "s9",
+      "setup": "En medvirkende leverer teknisk korrekt tekst, men scenens handling blir uklar.",
+      "good": "Gi en konkret spillretning knyttet til mål, handling og partner i stedet for å be om mer følelse generelt.",
+      "bad": "Stable abstrakte emosjonsord oppå hverandre."
+    },
+    {
+      "id": "s10",
+      "setup": "En ny regidé vil endre scenens tone og krever omlegging i flere avdelinger.",
+      "good": "Skill den kunstneriske gevinsten fra produksjonskostnaden og avklar endringen før avdelingene bygger videre.",
+      "bad": "La hver avdeling oppdage endringen når kamera går."
+    }
+  ],
+  "task_grammar": [
+    {
+      "id": "bygg_sceneplan",
+      "label": "Bygg sceneplan fra dramatisk funksjon til blocking og dekning",
+      "task_type": "scene_plan",
+      "good_work": "Gjør sceneintensjon, blocking, nødvendig dekning, avdelingsbehov og beslutningsgrenser eksplisitte før opptak.",
+      "bad_work": "Starter med ønsket shotliste uten å avklare hva scenen faktisk må fortelle.",
+      "mail_types": ["job", "people", "micro"]
+    },
+    {
+      "id": "prioriter_under_tidspress",
+      "label": "Prioriter opptak når tid eller lys endrer planen",
+      "task_type": "shooting_priority",
+      "good_work": "Rangerer oppsett etter fortellingsverdi, klipperisiko, sikkerhet og produksjonskostnad sammen med rette eiere.",
+      "bad_work": "Prøver å beholde hele planen ved å komprimere prøver, kommunikasjon eller sikkerhet.",
+      "mail_types": ["conflict", "event", "consequence"]
+    },
+    {
+      "id": "forvalt_medvirkendegrense",
+      "label": "Omarbeid scene når medvirkende setter en grense",
+      "task_type": "performer_boundary",
+      "good_work": "Respekterer grensen, gjør ny blocking konkret og sørger for at alle berørte avdelinger arbeider etter samme avklaring.",
+      "bad_work": "Behandler samtykke som et engangsja til den opprinnelige planen.",
+      "mail_types": ["people", "story", "followup"]
+    },
+    {
+      "id": "diagnostiser_klipp",
+      "label": "Diagnostiser fortellingsproblem i klipperommet",
+      "task_type": "edit_diagnosis",
+      "good_work": "Prøver omstrukturering og tilgjengelig dekning før pickup eller større omlegging foreslås.",
+      "bad_work": "Tvinger opprinnelig intensjon gjennom uten å forholde seg til materialet.",
+      "mail_types": ["followup", "consequence"]
+    }
+  ],
+  "actor_grammar": [
+    {"actor_type": "produsent", "example_id": "sara_produsent_regi", "function": "Eier budsjett, hovedplan og større produksjonsmessige beslutninger.", "can_send_mail_types": ["job", "conflict", "consequence"]},
+    {"actor_type": "fotograf", "example_id": "martin_fotograf_regi", "function": "Leder fotografisk gjennomføring og synliggjør kamera-, lys- og dekningskonsekvenser.", "can_send_mail_types": ["people", "story", "event"]},
+    {"actor_type": "forste_regiassistent", "example_id": "leila_forste_regiassistent", "function": "Holder dagsplan, settflyt og eskaleringslinjer for gjennomføring og sikkerhet tydelige.", "can_send_mail_types": ["micro", "event", "people"]},
+    {"actor_type": "klipper", "example_id": "noor_klipper_regi", "function": "Vurderer materialets faktiske rytme, kontinuitet og fortellingsdekning i etterarbeidet.", "can_send_mail_types": ["followup", "knowledge", "consequence"]}
+  ],
+  "place_grammar": [
+    {"place_id": "preproduksjonsrom_regi_film_tv", "kind": "fictional_work_surface", "function": "Sceneanalyse, blocking, shot-prioritering og avklaringer før opptak.", "mail_types": ["job", "conflict"]},
+    {"place_id": "opptakssett_regi_film_tv", "kind": "fictional_work_surface", "function": "Gjennomføring med medvirkende og avdelinger under faktisk tid, sikkerhet og produksjonsplan.", "mail_types": ["people", "story", "event", "micro"]},
+    {"place_id": "regimonitor_regi_film_tv", "kind": "fictional_work_surface", "function": "Vurdering av take, kontinuitet, prestasjon og nødvendig dekning.", "mail_types": ["micro", "consequence"]},
+    {"place_id": "klipperom_regi_film_tv", "kind": "fictional_work_surface", "function": "Etterarbeid der materialets faktiske fortellingsmuligheter og hull vurderes.", "mail_types": ["followup", "consequence"]},
+    {"place_id": "cinemateket_oslo", "kind": "canonical_history_go_place", "function": "Read-only History Go-anker for norsk filmhistorie og regissørprofiler; ikke simulert arbeidssted.", "mail_types": ["knowledge"]}
+  ],
+  "conflict_grammar": [
+    {"id": "dekning_vs_dagsplan", "pressure": "tid_og_kostnad", "must_remain_visible": ["sceneintensjon", "klipperisiko", "beslutningseier_for_tidsavvik"]},
+    {"id": "kunstnerisk_ambisjon_vs_sikkerhet_og_samtykke", "pressure": "sterkt_bilde_og_prestasjon", "must_remain_visible": ["sikkerhetslinje", "medvirkendegrense", "alternativ_losning"]},
+    {"id": "opprinnelig_intensjon_vs_faktisk_materiale", "pressure": "prestisje_og_pickupkostnad", "must_remain_visible": ["hva_materialet_beviser", "hva_klippen_mangler", "hvem_som_kan_godkjenne_ny_opptaksdag"]}
+  ],
+  "solution_patterns": [
+    "formuler_sceneendringen_for_du_velger_bilde",
+    "samordne_blocking_med_kamera_lys_lyd_og_medvirkende",
+    "prioriter_dekning_etter_fortellings_og_klipperisiko",
+    "stans_og_replanlegg_nar_sikkerhet_eller_samtykke_endres",
+    "diagnostiser_materialet_for_du_bestiller_pickup"
+  ],
+  "failure_patterns": [
+    "gjor_shotlisten_til_sceneformal",
+    "presser_samtykke_eller_sikkerhetsgrense",
+    "lar_tidspress_fjerne_nodvendig_dekning",
+    "skyver_produksjonsbeslutning_over_pa_egen_kunstnerisk_status",
+    "tvinger_opprinnelig_plan_inn_i_materiale_som_ikke_barer_den"
+  ],
+  "knowledge_dependencies": [
+    {"id": "sceneintensjon", "use": "Formulere hva som skal endres dramatisk og hva hvert oppsett må bidra med."},
+    {"id": "blocking_og_dekning", "use": "Forstå samspillet mellom medvirkende, kamera, kontinuitet og klipp."},
+    {"id": "mandat_og_eskalering", "use": "Skille regissørens kunstneriske valg fra produsent-, sikkerhets-, samtykke- og kontraktsbeslutninger."},
+    {"id": "klippbarhet", "use": "Vurdere om materialet faktisk gir klipperen reaksjoner, overganger og fortellingsinformasjon som scenen trenger."},
+    {"id": "kildegrense", "use": "Bruke norsk filmhistorie som kontekst uten å gjøre historiske personer til fiktive rådgivere eller normativ fasit."}
+  ],
+  "mail_generation_contract": {
+    "required_mail_types": ["job", "people", "conflict", "story", "event", "micro", "followup", "knowledge", "consequence"],
+    "actor_binding": "actor_grammar.example_id",
+    "place_binding": "place_grammar.place_id",
+    "task_binding": "task_grammar.id",
+    "forbid_generic_runtime_fallbacks": true
+  },
+  "day_one": {
+    "entry_task": "bygg_sceneplan",
+    "decision_owner": "sara_produsent_regi",
+    "first_work_surface": "preproduksjonsrom_regi_film_tv",
+    "success_signal": "sceneintensjon_blocking_dekning_og_eskaleringspunkter_er_sporbare_for_forste_opptak"
+  },
+  "quality_axes": [
+    "fortellingsklarhet",
+    "medvirkende_regi",
+    "visuell_sammenheng",
+    "samarbeid",
+    "samtykke_og_sikkerhet",
+    "opptakseffektivitet",
+    "klippbarhet",
+    "helhetsdommekraft"
+  ],
+  "authority_boundary": {
+    "may": ["tolke_manus_og_sceneformal", "lede_blocking_og_medvirkende_regi", "prioritere_kunstnerisk_dekning_innen_avklart_plan", "be_om_nytt_take_eller_alternativ_losning", "vurdere_klipp_og_foresla_pickup"],
+    "must_escalate_when": ["sikkerhetsopplegg_ikke_dekker_onsket_losning", "medvirkendegrense_eller_samtykke_endres", "storre_tids_budsjett_rettighets_eller_kontraktskonsekvens_oppstar", "ny_opptaksdag_eller_vesentlig_produksjonsomlegging_vurderes"],
+    "may_not": ["overstyre_sikkerhetsansvar", "tilsidesette_samtykke", "endre_budsjett_rettigheter_eller_kontrakter_uten_mandat", "bruke_kunstnerisk_ledelse_som_uinnskrenket_personalmakt", "bruke_historiske_personer_som_fiktive_beslutningstakere"]
+  }
+}

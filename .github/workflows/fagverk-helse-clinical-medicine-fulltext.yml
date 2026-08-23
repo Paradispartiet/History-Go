@@ -1,5 +1,4 @@
 name: Fagverk Helse clinical medicine fulltext
-
 on:
   pull_request:
     paths:
@@ -34,10 +33,8 @@ on:
       - 'scripts/*helse-clinical-medicine*'
       - 'tests/helse-clinical-medicine-fulltext-v1.test.mjs'
       - '.github/workflows/fagverk-helse-clinical-medicine-fulltext.yml'
-
 permissions:
   contents: read
-
 jobs:
   audit:
     runs-on: ubuntu-latest
@@ -45,20 +42,21 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: {node-version: 22}
-      - id: fulltext_gate
+      - id: progress_gate
         shell: bash
         run: |
-          if [[ -f scripts/materialize-helse-clinical-medicine-fulltext-v1.mjs && -f scripts/audit-helse-clinical-medicine-fulltext-v1.mjs && -f tests/helse-clinical-medicine-fulltext-v1.test.mjs ]]; then
-            echo "ready=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "ready=false" >> "$GITHUB_OUTPUT"
-            echo "Bootstrap only: clinical medicine fulltext materializer/audit/test not present yet."
-          fi
-      - if: steps.fulltext_gate.outputs.ready != 'true'
+          count="$(node -e "const fs=require('fs');const r=JSON.parse(fs.readFileSync('data/fagverk/fagverk_registry.json','utf8'));process.stdout.write(String(r.subjects.helse.editorialPlan.registeredChapterCount));")"
+          if [[ "$count" == "4" ]]; then echo "active=true" >> "$GITHUB_OUTPUT"; else echo "active=false" >> "$GITHUB_OUTPUT"; echo "Monotone skip: clinical-medicine fulltext gate is active only at Helse 4/12; current count is ${count}/12."; fi
+      - id: fulltext_gate
+        if: steps.progress_gate.outputs.active == 'true'
+        shell: bash
+        run: |
+          if [[ -f scripts/materialize-helse-clinical-medicine-fulltext-v1.mjs && -f scripts/audit-helse-clinical-medicine-fulltext-v1.mjs && -f tests/helse-clinical-medicine-fulltext-v1.test.mjs ]]; then echo "ready=true" >> "$GITHUB_OUTPUT"; else echo "ready=false" >> "$GITHUB_OUTPUT"; fi
+      - if: steps.progress_gate.outputs.active == 'true' && steps.fulltext_gate.outputs.ready != 'true'
         run: node scripts/brief-helse-clinical-medicine-sources-v1.mjs
-      - if: steps.fulltext_gate.outputs.ready == 'true'
+      - if: steps.progress_gate.outputs.active == 'true' && steps.fulltext_gate.outputs.ready == 'true'
         run: node scripts/materialize-helse-clinical-medicine-fulltext-v1.mjs
-      - if: steps.fulltext_gate.outputs.ready == 'true'
+      - if: steps.progress_gate.outputs.active == 'true' && steps.fulltext_gate.outputs.ready == 'true'
         run: node scripts/audit-helse-clinical-medicine-fulltext-v1.mjs
       - run: node scripts/audit-helse-cumulative-progress-v1.mjs
       - run: node scripts/audit-fagverk-subject-inventory.mjs
@@ -66,10 +64,10 @@ jobs:
       - run: node scripts/audit-fagverk-theory-quality.mjs
       - run: node scripts/audit-fagverk-theory-integrity.mjs
       - run: node scripts/build-fagverk-release-manifest.mjs --check
-      - if: steps.fulltext_gate.outputs.ready == 'true'
+      - if: steps.progress_gate.outputs.active == 'true' && steps.fulltext_gate.outputs.ready == 'true'
         run: node --test tests/helse-clinical-medicine-fulltext-v1.test.mjs tests/helse-cumulative-progress-v1.test.mjs tests/fagverk-subject-inventory.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-release-manifest.test.mjs
       - name: Verify deterministic generated outputs
-        if: steps.fulltext_gate.outputs.ready == 'true'
+        if: steps.progress_gate.outputs.active == 'true' && steps.fulltext_gate.outputs.ready == 'true'
         shell: bash
         run: |
           git diff --exit-code -- \

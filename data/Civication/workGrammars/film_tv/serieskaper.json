@@ -1,1 +1,316 @@
-{"schema":"civication_work_grammar_v2","version":2,"category":"film_tv","role_scope":"serieskaper","source":{"evidence":"data/Civication/filmTvCareerLifeEvidence.json"},"badge_binding":{"badge_id":"film_tv","badge_titles":["Serieskaper"]},"task_families":["seriepremiss","karakter_og_buer","episode_og_sesongstruktur","manusutvikling","kreativ_samordning"],"work_loops":[{"id":"sesongutvikling","steps":["avklar_premiss","bygg_buer","test_episodefunksjoner","samordne_manus_og_produksjon","revider_helheten"]},{"id":"produksjonsendring","steps":["identifiser_hva_som_brytes","prioriter_seriekjerne","avklar_praktiske_rammer","bygg_om_fortelling","spor_nye_premisser"]}],"practice_stories":[{"id":"s1","setup":"En sterk episodeidé bryter en langsiktig karakterbue.","good":"Test episodens funksjon mot sesongens etablerte premisser før den låses.","bad":"Velg den mest spektakulære ideen isolert."},{"id":"s2","setup":"Et sentralt fortellingsgrep er for dyrt å produsere.","good":"Bevar dramatisk funksjon og bygg en gjennomførbar løsning med produksjonen.","bad":"Ignorer rammene til opptaksstart."},{"id":"s3","setup":"Bestillernotater trekker serien i motstridende retninger.","good":"Synliggjør konfliktene og få prioritering av seriens kjerne.","bad":"Legg alle notatene oppå hverandre."},{"id":"s4","setup":"En sentral medvirkende blir utilgjengelig.","good":"Bygg om buen med tydelig konsekvensanalyse for resten av sesongen.","bad":"Fjern rollen uten å reparere fortellingslogikken."},{"id":"s5","setup":"Det ønskes en dramatisk slutt uten oppbygging.","good":"Finn en slutt som vokser ut av etablerte valg eller bygg nødvendig forarbeid.","bad":"Legg inn en tilfeldig vending for effekt."}],"quality_axes":["premissklarhet","karakterkontinuitet","sesongstruktur","produksjonsgjennomforbarhet","kreativt_samarbeid","langsiktig_sporbarhet"],"authority_boundary":{"may_not":["overstyre_sikkerhets_eller_rettighetsrammer","love_bestilling_forlengelse_eller_budsjett","tilegne_seg_andres_kreditering","behandle_kreativt_eierskap_som_uinnskrenket_personalmakt"]}}
+{
+  "schema": "civication_work_grammar_v2",
+  "version": 2,
+  "category": "film_tv",
+  "role_scope": "serieskaper",
+  "source": {
+    "evidence": "data/Civication/filmTvCareerLifeEvidence.json"
+  },
+  "badge_binding": {
+    "badge_id": "film_tv",
+    "badge_titles": [
+      "Serieskaper"
+    ]
+  },
+  "task_families": [
+    "seriepremiss_og_sesongrygg",
+    "karakter_og_relajsonsbuer",
+    "episodefunksjon_og_manusutvikling",
+    "notes_reconciliation",
+    "produksjonstilpasset_omskriving"
+  ],
+  "work_loops": [
+    {
+      "id": "sesongutvikling",
+      "steps": [
+        "avklar_premiss_og_publikumslofte",
+        "bygg_karakter_og_relajsonsbuer",
+        "test_episodefunksjoner_mot_sesongrygg",
+        "samordne_manus_notes_og_produksjon",
+        "oppdater_seriebibel_og_beslutningsspor"
+      ]
+    },
+    {
+      "id": "produksjonsendring",
+      "steps": [
+        "identifiser_hvilken_fortellingsfunksjon_som_brytes",
+        "skil_funksjon_fra_opprinnelig_losning",
+        "avklar_faktiske_produksjonsrammer_og_beslutningseier",
+        "bygg_om_episode_og_buer",
+        "spor_nye_premisser_gjennom_senere_episoder"
+      ]
+    }
+  ],
+  "practice_stories": [
+    {
+      "id": "s1",
+      "setup": "En sterk episodeidé gir umiddelbart driv, men lar hovedkarakteren gjøre et valg som først skulle være mulig etter episode seks.",
+      "good": "Test idéens dramatiske funksjon mot karakterbuen og finn en tidligere, mindre definitiv handling som gir episoden kraft uten å bruke opp senere utvikling.",
+      "bad": "Behold den mest spektakulære handlingen fordi episoden isolert blir bedre."
+    },
+    {
+      "id": "s2",
+      "setup": "Et sentralt set piece er for dyrt å produsere innen avtalt ramme.",
+      "good": "Beskriv hva set piecet skulle gjøre med relasjon, informasjon og tempo, og bygg en rimeligere løsning som bevarer disse funksjonene.",
+      "bad": "La manuset stå uendret og håp at produksjonen finner pengene senere."
+    },
+    {
+      "id": "s3",
+      "setup": "Bestiller ønsker mer tempo, produsent vil redusere locations og hovedforfatter mener karakterarbeidet allerede er for komprimert.",
+      "good": "Synliggjør hvilke notes som kan kombineres og hvilke som faktisk kolliderer, og be Ingrid prioritere konflikten før omskriving.",
+      "bad": "Legg alle notatene inn samtidig og mål fremdrift i antall besvarte kommentarer."
+    },
+    {
+      "id": "s4",
+      "setup": "En sentral medvirkende blir utilgjengelig for to episoder midt i sesongen.",
+      "good": "Spor hva fraværet gjør med andre karakterers mål, kunnskap og senere møter før episodene bygges om.",
+      "bad": "Fjern karakterens scener og fordel replikkene til andre uten konsekvensanalyse."
+    },
+    {
+      "id": "s5",
+      "setup": "Det ønskes en dramatisk sesongslutt med en avsløring som ikke har spor i tidligere episoder.",
+      "good": "Enten bygg nødvendige forvarsler i tidligere episoder eller velg en slutt som vokser ut av eksisterende valg og konsekvenser.",
+      "bad": "Legg inn vendingen som en overraskelse og kall manglende oppbygging uforutsigbarhet."
+    },
+    {
+      "id": "s6",
+      "setup": "Seriebibelen sier at en birolle fortsatt skjuler en hemmelighet, mens episode fem-manuset lar rollen omtale den som kjent informasjon.",
+      "good": "Finn siste godkjente beslutning, velg canonical tilstand og oppdater både manusnotat og bibel før flere episoder bygger videre.",
+      "bad": "La begge versjoner eksistere til klipp fordi dialogen kan justeres senere."
+    },
+    {
+      "id": "s7",
+      "setup": "En ny forfatter foreslår en toneendring som er frisk og morsom, men flytter serien ut av det etablerte publikumsloftet.",
+      "good": "Identifiser hva som faktisk er friskt i grepet og prøv det innen seriens etablerte tone- og konsekvenslogikk.",
+      "bad": "Avvis alt nytt som ikke ligner pilotepisoden."
+    },
+    {
+      "id": "s8",
+      "setup": "Regi foreslår å slå sammen to scener på location for å spare tid, men scenene ligger på hver sin side av en viktig kunnskapsendring.",
+      "good": "Bevar forskjellen i hva karakterene vet og finn en sammenslåing som fortsatt markerer endringen, eller forklar hvorfor produksjonsbesparelsen skaper logikkbrudd.",
+      "bad": "Slå dem sammen uten å oppdatere karaktertilstand fordi produksjonen eier location-planen."
+    },
+    {
+      "id": "s9",
+      "setup": "En episode har tre parallelle historier, men ingen av dem endrer hovedkonflikten før rulletekst.",
+      "good": "Definer hvilken funksjon episoden skal ha i sesongryggen og la minst én historie endre et mål, en relasjon eller relevant kunnskap.",
+      "bad": "Legg inn en cliffhanger uten kobling til episodens øvrige arbeid."
+    },
+    {
+      "id": "s10",
+      "setup": "Et tidligere kompromiss med en karakterbue løste episode fire, men gjør episode åtte sin planlagte konfrontasjon mindre troverdig.",
+      "good": "La den tidligere endringen få reell konsekvens og bygg konfrontasjonen på den nye historien fremfor å gjenopprette den gamle planen i stillhet.",
+      "bad": "Skriv episode åtte som opprinnelig planlagt og anta at publikum ikke husker detaljen."
+    }
+  ],
+  "task_grammar": [
+    {
+      "id": "bygg_sesongrygg",
+      "label": "Bygg sesongrygg fra premiss til episodefunksjoner",
+      "task_type": "season_spine",
+      "good_work": "Gjør seriens publikumslofte, karakterendringer, episodefunksjoner og avgjørende avhengigheter eksplisitte før enkeltideer låses.",
+      "bad_work": "Behandler episodekort som en samling attraktive hendelser uten langsiktig årsak og konsekvens.",
+      "mail_types": ["job", "people", "micro"]
+    },
+    {
+      "id": "reconcile_notes",
+      "label": "Skill og prioriter motstridende notes",
+      "task_type": "notes_reconciliation",
+      "good_work": "Knytter hvert note til mål, eier og konsekvens, og eskalerer reelle prioriteringskonflikter før omskriving.",
+      "bad_work": "Prøver å tilfredsstille alle notes samtidig uten å vise hva serien mister.",
+      "mail_types": ["conflict", "consequence"]
+    },
+    {
+      "id": "bygg_om_karakterbue",
+      "label": "Bygg om karakterbue etter produksjonsendring",
+      "task_type": "arc_rewrite",
+      "good_work": "Sporer hvilke mål, relasjoner, kunnskapsendringer og senere scener som påvirkes før ny løsning låses.",
+      "bad_work": "Fjerner utilgjengelig innhold lokalt uten å reparere senere avhengigheter.",
+      "mail_types": ["story", "followup"]
+    },
+    {
+      "id": "vedlikehold_seriebibel",
+      "label": "Vedlikehold canonical seriebibel og beslutningsspor",
+      "task_type": "series_bible",
+      "good_work": "Skiller godkjente premisser fra forslag og sørger for at senere manus bygger på samme karakter-, tidslinje- og relasjonstilstand.",
+      "bad_work": "Lar nyeste muntlige idé overstyre dokumentert canonical tilstand uten spor.",
+      "mail_types": ["micro", "event", "followup"]
+    }
+  ],
+  "actor_grammar": [
+    {
+      "actor_type": "executive_producer",
+      "example_id": "ingrid_executive_producer_series",
+      "function": "Eier bestilleravklaringer, hovedramme, større omlegginger og formelle beslutninger om budsjett eller videre bestilling.",
+      "can_send_mail_types": ["job", "conflict", "consequence"]
+    },
+    {
+      "actor_type": "hovedforfatter",
+      "example_id": "jonas_hovedforfatter_series",
+      "function": "Leder konkret manusarbeid og gjør episode-, karakter- og dialogkonsekvenser synlige i writers room.",
+      "can_send_mail_types": ["people", "story", "event"]
+    },
+    {
+      "actor_type": "manusredaktor",
+      "example_id": "amina_manusredaktor_series",
+      "function": "Holder seriebibel, beslutningsspor og kontinuitetsgjeld etterprøvbart gjennom utviklingen.",
+      "can_send_mail_types": ["micro", "knowledge", "followup"]
+    },
+    {
+      "actor_type": "produksjonsprodusent",
+      "example_id": "henrik_produksjonsprodusent_series",
+      "function": "Synliggjør kostnad, plan, location- og medvirkendekonsekvenser og krever avklaring før kostbare kreative endringer låses.",
+      "can_send_mail_types": ["event", "conflict", "consequence"]
+    }
+  ],
+  "place_grammar": [
+    {
+      "place_id": "writers_room_serieskaper_film_tv",
+      "kind": "fictional_work_surface",
+      "function": "Premiss, karakterbuer, episodefunksjoner og kollektiv idétesting.",
+      "mail_types": ["job", "people", "story"]
+    },
+    {
+      "place_id": "seriebibel_serieskaper_film_tv",
+      "kind": "fictional_work_surface",
+      "function": "Canonical premisser, karaktertilstand, tidslinje, relasjoner og beslutningshistorikk.",
+      "mail_types": ["micro", "followup"]
+    },
+    {
+      "place_id": "utviklingsmote_serieskaper_film_tv",
+      "kind": "fictional_work_surface",
+      "function": "Bestiller-, produsent- og kreative notes skilles, prioriteres og får tydelig eier.",
+      "mail_types": ["conflict", "consequence"]
+    },
+    {
+      "place_id": "produksjonsmote_serieskaper_film_tv",
+      "kind": "fictional_work_surface",
+      "function": "Manusgrep prøves mot faktiske opptaks-, kostnads-, location- og medvirkenderammer.",
+      "mail_types": ["event", "consequence"]
+    },
+    {
+      "place_id": "cinemateket_oslo",
+      "kind": "canonical_history_go_place",
+      "function": "Read-only History Go-anker for norsk filmhistorie og filmforfatterskap; ikke moderne writers room eller bestillerflate.",
+      "mail_types": ["knowledge"]
+    }
+  ],
+  "conflict_grammar": [
+    {
+      "id": "episodekraft_vs_langbue",
+      "pressure": "lokal_dramatisk_effekt",
+      "must_remain_visible": ["karaktertilstand_for_episoden", "hva_som_forbrukes_for_tidlig", "senere_avhengigheter"]
+    },
+    {
+      "id": "notes_vs_seriekjerne",
+      "pressure": "flere_legitime_bestillere",
+      "must_remain_visible": ["note_eier", "hvilket_mal_notet_tjener", "hvilke_notes_som_kolliderer", "hvem_som_kan_prioritere"]
+    },
+    {
+      "id": "fortellingsgrep_vs_produksjonsramme",
+      "pressure": "tid_kostnad_location_eller_medvirkende",
+      "must_remain_visible": ["dramatisk_funksjon", "faktisk_begrensning", "hvilke_senere_episoder_som_pavirkes"]
+    },
+    {
+      "id": "seriebibel_vs_siste_ide",
+      "pressure": "tempo_og_muntlige_beslutninger",
+      "must_remain_visible": ["siste_godkjente_tilstand", "hva_som_foreslas_endret", "hvilke_manus_som_ma_oppdateres"]
+    }
+  ],
+  "solution_patterns": [
+    "formuler_seriens_baerekraftige_motor_for_episodekortene_lases",
+    "spor_karaktervalg_som_tilstandsendringer_med_senere_konsekvens",
+    "skill_notes_som_kan_kombineres_fra_notes_som_krever_prioritering",
+    "bevar_dramatisk_funksjon_nar_produksjonslosningen_ma_endres",
+    "oppdater_seriebibel_og_berorte_manus_etter_hver_laset_endring"
+  ],
+  "failure_patterns": [
+    "optimaliserer_episoden_pa_bekostning_av_sesongen",
+    "svarer_pa_alle_notes_uten_prioritet",
+    "fjerner_produksjonsproblem_uten_a_reparere_fortellingsavhengigheter",
+    "lar_muntlige_ideer_overstyre_canonical_serietilstand_uten_spor",
+    "bruker_kreativt_eierskap_til_a_overstyre_kreditering_eller_formelle_beslutningseiere"
+  ],
+  "knowledge_dependencies": [
+    {
+      "id": "seriepremiss_og_motor",
+      "use": "Vurdere om serieideen kan generere meningsfulle konflikter og endringer over flere episoder."
+    },
+    {
+      "id": "karaktertilstand_og_buer",
+      "use": "Spore mål, relasjoner, kunnskap og konsekvenser slik at senere episoder bygger på det som faktisk har skjedd."
+    },
+    {
+      "id": "episodefunksjon",
+      "use": "Skille en underholdende episodeidé fra den konkrete jobben episoden må gjøre i sesongstrukturen."
+    },
+    {
+      "id": "notes_og_beslutningseierskap",
+      "use": "Skille kreative forslag fra formelle bestillinger og synliggjøre når legitim feedback er innbyrdes uforenlig."
+    },
+    {
+      "id": "produksjonsoversettelse",
+      "use": "Bevare dramatisk funksjon når location, medvirkende, tid eller budsjett gjør opprinnelig løsning umulig."
+    },
+    {
+      "id": "kildegrense",
+      "use": "Bruke norsk filmhistorie som kontekst for audiovisuelt forfatterskap uten å påstå at historiske profiler dokumenterer moderne TV-seriepraksis."
+    }
+  ],
+  "mail_generation_contract": {
+    "required_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
+    "actor_binding": "actor_grammar.example_id",
+    "place_binding": "place_grammar.place_id",
+    "task_binding": "task_grammar.id",
+    "forbid_generic_runtime_fallbacks": true
+  },
+  "day_one": {
+    "entry_task": "bygg_sesongrygg",
+    "decision_owner": "ingrid_executive_producer_series",
+    "first_work_surface": "writers_room_serieskaper_film_tv",
+    "success_signal": "premiss_publikumslofte_karakterbuer_episodefunksjoner_og_apne_beslutninger_er_sporbare_for_utviklingsteamet"
+  },
+  "quality_axes": [
+    "premissklarhet",
+    "karakterkontinuitet",
+    "episodefunksjon",
+    "sesongstruktur",
+    "notes_sporbarhet",
+    "produksjonsgjennomforbarhet",
+    "kreativt_samarbeid",
+    "langsiktig_konsekvens"
+  ],
+  "authority_boundary": {
+    "may": [
+      "foresla_og_prioritere_premiss_karakterbuer_og_episodefunksjoner_innen_kreativt_mandat",
+      "lede_writers_room_og_be_om_manusrevisjoner_innen_avklart_kreditering_og_arbeidsdeling",
+      "samle_og_reconcile_kreative_notes",
+      "foresla_produksjonstilpassede_fortellingsendringer",
+      "vedlikeholde_seriebibel_og_beslutningsspor"
+    ],
+    "must_escalate_when": [
+      "notes_fra_formelle_beslutningseiere_er_innbyrdes_uforenlige",
+      "endring_krever_vesentlig_budsjett_plan_location_eller_medvirkendeomlegging",
+      "rettigheter_kreditering_eller_opphavsrett_berores",
+      "sikkerhets_eller_produksjonsansvar_setter_en_grense",
+      "forlengelse_bestilling_eller_vesentlig_scope_endres"
+    ],
+    "may_not": [
+      "overstyre_sikkerhets_eller_rettighetsrammer",
+      "love_bestilling_forlengelse_eller_budsjett",
+      "tilegne_seg_andres_kreditering_eller_opphavsrett",
+      "behandle_kreativt_eierskap_som_uinnskrenket_personalmakt",
+      "bruke_historiske_filmskapere_som_fiktive_radgivere_eller_normativ_fasit"
+    ]
+  }
+}

@@ -1,0 +1,1061 @@
+{
+  "schema": "history_go_fagverk_chapter_claims_v1",
+  "version": "1.0.0",
+  "subject_id": "helse",
+  "chapter_id": "epidemiologi-design-mal-bias-confounding-og-kausalitet",
+  "sourceBriefFile": "data/fag/helse/epidemiology_source_claim_brief_v1.json",
+  "sources": [
+    {
+      "id": "hep01-who-basic-epidemiology",
+      "publisher": "World Health Organization",
+      "title": "Basic Epidemiology, 2nd edition",
+      "url": "https://www.who.int/publications/b/31231",
+      "type": "international-epidemiology-textbook",
+      "evidence_role": "epidemiologic-principles-frequency-design-causation",
+      "source_location": "Core chapters on measuring health and disease, epidemiologic designs, association and causation.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "World Health Organization – Basic Epidemiology, 2nd edition"
+    },
+    {
+      "id": "hep02-cdc-principles-epidemiology",
+      "publisher": "Centers for Disease Control and Prevention",
+      "title": "Principles of Epidemiology in Public Health Practice, Third Edition",
+      "url": "https://stacks.cdc.gov/view/cdc/13178/cdc_13178_DS1.pdf",
+      "type": "federal-epidemiology-training-manual",
+      "evidence_role": "frequency-measures-association-study-design",
+      "source_location": "Lessons on incidence proportion, person-time incidence rate, prevalence and association measures.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "Centers for Disease Control and Prevention – Principles of Epidemiology in Public Health Practice, Third Edition"
+    },
+    {
+      "id": "hep03-cdc-field-study-design",
+      "publisher": "Centers for Disease Control and Prevention",
+      "title": "Designing and Conducting Analytic Studies in the Field",
+      "url": "https://www.cdc.gov/field-epi-manual/php/chapters/design-conduct-analyze-field-studies.html",
+      "type": "federal-field-epidemiology-manual",
+      "evidence_role": "cohort-case-control-design-source-population",
+      "source_location": "Cohort and case-control design, source-population logic and control selection.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "Centers for Disease Control and Prevention – Designing and Conducting Analytic Studies in the Field"
+    },
+    {
+      "id": "hep04-cdc-field-analysis",
+      "publisher": "Centers for Disease Control and Prevention",
+      "title": "Analyzing and Interpreting Data",
+      "url": "https://www.cdc.gov/field-epi-manual/php/chapters/analyze-interpret-data.html",
+      "type": "federal-field-epidemiology-manual",
+      "evidence_role": "design-consistent-analysis-effect-measures",
+      "source_location": "Analysis matched to design, risk ratios, odds ratios and prevalence measures.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "Centers for Disease Control and Prevention – Analyzing and Interpreting Data"
+    },
+    {
+      "id": "hep05-fhi-analytic-epidemiology",
+      "publisher": "Folkehelseinstituttet",
+      "title": "Analytisk epidemiologiske undersøkelser: Planlegging, gjennomføring og analyse",
+      "url": "https://www.fhi.no/ut/utbruddshandboka/bakgrunnsartikler/analytisk-epidemiologiske-undersoker/",
+      "type": "national-public-health-methods-guidance",
+      "evidence_role": "association-chance-bias-confounding-causal-interpretation",
+      "source_location": "Planlegging og tolkning, inkludert tilfeldighet, bias, confounding og assosiasjon–kausalitet-grensen.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "Folkehelseinstituttet – Analytisk epidemiologiske undersøkelser: Planlegging, gjennomføring og analyse"
+    },
+    {
+      "id": "hep06-who-health-data-glossary-2025",
+      "publisher": "World Health Organization",
+      "title": "Glossary of health data, statistics and public health indicators",
+      "url": "https://www.who.int/publications/b/77303",
+      "type": "international-health-data-glossary",
+      "evidence_role": "standardized-health-data-and-indicator-terminology",
+      "source_location": "Standardiserte definisjoner for helsedata, statistikk, indikatorer, populasjoner og rater.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "World Health Organization – Glossary of health data, statistics and public health indicators"
+    },
+    {
+      "id": "hep07-hernan-robins-what-if",
+      "publisher": "Harvard T.H. Chan School of Public Health",
+      "title": "Causal Inference: What If",
+      "url": "https://www.hsph.harvard.edu/miguel-hernan/wp-content/uploads/sites/1268/2024/01/hernanrobins_WhatIf_2jan24.pdf",
+      "type": "academic-causal-inference-textbook",
+      "evidence_role": "causal-questions-identification-assumptions-confounding",
+      "source_location": "Potential outcomes, exchangeability, positivity, consistency, confounding, standardization and weighting.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "Harvard T.H. Chan School of Public Health – Causal Inference: What If"
+    },
+    {
+      "id": "hep08-greenland-pearl-robins-dags",
+      "publisher": "Epidemiology / PubMed",
+      "title": "Causal diagrams for epidemiologic research",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9888278/",
+      "type": "peer-reviewed-causal-methods-paper",
+      "evidence_role": "dag-confounding-mediation-collider-structure",
+      "source_location": "Causal-diagram framework for confounding, mediation, selection and conditioning.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "Epidemiology / PubMed – Causal diagrams for epidemiologic research"
+    },
+    {
+      "id": "hep09-strobe-observational-reporting",
+      "publisher": "STROBE Initiative",
+      "title": "STROBE checklists for observational studies",
+      "url": "https://www.strobe-statement.org/checklists/",
+      "type": "observational-study-reporting-guidance",
+      "evidence_role": "transparent-reporting-design-participants-variables-bias-analysis",
+      "source_location": "Cohort, case-control and cross-sectional reporting checklists; reporting guidance, not a design or quality-rating instrument.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "STROBE Initiative – STROBE checklists for observational studies"
+    },
+    {
+      "id": "hep10-cochrane-robins-i-v2",
+      "publisher": "Cochrane Methods",
+      "title": "Risk of bias in non-randomized studies of interventions (ROBINS-I)",
+      "url": "https://methods.cochrane.org/bias/risk-bias-non-randomized-studies-interventions",
+      "type": "systematic-review-risk-of-bias-method",
+      "evidence_role": "structured-risk-of-bias-domains-nonrandomized-studies",
+      "source_location": "Risk-of-bias domains for confounding, selection, classification, missing data, outcome measurement and reporting.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "Cochrane Methods – Risk of bias in non-randomized studies of interventions (ROBINS-I)"
+    },
+    {
+      "id": "hep11-seer-incidence",
+      "publisher": "National Cancer Institute SEER",
+      "title": "Cancer Incidence Rates",
+      "url": "https://seer.cancer.gov/statistics/types/incidence.html",
+      "type": "federal-cancer-statistics-methods-page",
+      "evidence_role": "incidence-rate-definition-standardization",
+      "source_location": "Definition and reporting of incidence rates and age-adjusted rates in population statistics.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "National Cancer Institute SEER – Cancer Incidence Rates"
+    },
+    {
+      "id": "hep12-seer-prevalence",
+      "publisher": "National Cancer Institute SEER",
+      "title": "Cancer Prevalence",
+      "url": "https://seer.cancer.gov/statistics/types/prevalence.html",
+      "type": "federal-cancer-statistics-methods-page",
+      "evidence_role": "prevalence-definition-survival-duration-boundary",
+      "source_location": "Prevalence as people alive with a prior diagnosis at a point or period, distinct from new cases.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "National Cancer Institute SEER – Cancer Prevalence"
+    },
+    {
+      "id": "hep13-sterne-missing-data",
+      "publisher": "BMJ",
+      "title": "Multiple imputation for missing data in epidemiological and clinical research: potential and pitfalls",
+      "url": "https://www.bmj.com/content/338/bmj.b2393",
+      "type": "peer-reviewed-methods-tutorial",
+      "evidence_role": "missing-data-assumptions-multiple-imputation",
+      "source_location": "Missing-data mechanisms, bias and precision, multiple-imputation assumptions and complete-case pitfalls.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "BMJ – Multiple imputation for missing data in epidemiological and clinical research: potential and pitfalls"
+    },
+    {
+      "id": "hep14-young-dahabreh-transportability-2026",
+      "publisher": "Annual Review of Public Health / PMC",
+      "title": "Generalizability and Transportability of Causal Effects",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13390982/",
+      "type": "peer-reviewed-causal-transportability-review",
+      "evidence_role": "target-population-generalizability-transportability",
+      "source_location": "Target populations, generalizability, transportability, effect modifiers, overlap and identification assumptions.",
+      "retrieval_status": "verified_2026-08-23",
+      "label": "Annual Review of Public Health / PMC – Generalizability and Transportability of Causal Effects"
+    }
+  ],
+  "claims": [
+    {
+      "id": "hep-c01",
+      "claim": "Et epidemiologisk forekomstmål trenger en eksplisitt definert populasjon, en tidsramme og en teller som følger en kjent case-definisjon.",
+      "paragraph_id": "hep-p-c01",
+      "topic_id": "populasjon-tid-og-nevner",
+      "source_ids": [
+        "hep01-who-basic-epidemiology",
+        "hep02-cdc-principles-epidemiology",
+        "hep06-who-health-data-glossary-2025"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hep01-who-basic-epidemiology",
+          "location": "Core chapters on measuring health and disease, epidemiologic designs, association and causation."
+        },
+        {
+          "source_id": "hep02-cdc-principles-epidemiology",
+          "location": "Lessons on incidence proportion, person-time incidence rate, prevalence and association measures."
+        },
+        {
+          "source_id": "hep06-who-health-data-glossary-2025",
+          "location": "Standardiserte definisjoner for helsedata, statistikk, indikatorer, populasjoner og rater."
+        }
+      ],
+      "classification": "verified_general_epidemiology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hep-c02",
+      "claim": "Case-definisjonen bestemmer hvilke hendelser som teller som tilfeller, mens inklusjons- og eksklusjonsregler bestemmer hvem som kan bidra data.",
+      "paragraph_id": "hep-p-c02",
+      "topic_id": "populasjon-tid-og-nevner",
+      "source_ids": [
+        "hep01-who-basic-epidemiology",
+        "hep03-cdc-field-study-design",
+        "hep06-who-health-data-glossary-2025"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hep01-who-basic-epidemiology",
+          "location": "Core chapters on measuring health and disease, epidemiologic designs, association and causation."
+        },
+        {
+          "source_id": "hep03-cdc-field-study-design",
+          "location": "Cohort and case-control design, source-population logic and control selection."
+        },
+        {
+          "source_id": "hep06-who-health-data-glossary-2025",
+          "location": "Standardiserte definisjoner for helsedata, statistikk, indikatorer, populasjoner og rater."
+        }
+      ],
+      "classification": "verified_general_epidemiology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hep-c03",
+      "claim": "En insidensrate knytter nye hendelser til tid som personer eller populasjoner faktisk er under risiko, ofte uttrykt som person-tid.",
+      "paragraph_id": "hep-p-c03",
+      "topic_id": "populasjon-tid-og-nevner",
+      "source_ids": [
+        "hep02-cdc-principles-epidemiology",
+        "hep11-seer-incidence",
+        "hep06-who-health-data-glossary-2025"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hep02-cdc-principles-epidemiology",
+          "location": "Lessons on incidence proportion, person-time incidence rate, prevalence and association measures."
+        },
+        {
+          "source_id": "hep11-seer-incidence",
+          "location": "Definition and reporting of incidence rates and age-adjusted rates in population statistics."
+        },
+        {
+          "source_id": "hep06-who-health-data-glossary-2025",
+          "location": "Standardiserte definisjoner for helsedata, statistikk, indikatorer, populasjoner og rater."
+        }
+      ],
+      "classification": "verified_general_epidemiology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hep-c04",
+      "claim": "Tidsserier i epidemiologi påvirkes ikke bare av sykdomsprosesser, men også av hvilke personer som inngår i nevneren, hvor fullstendig hendelser registreres og hvordan case oppdages.",
+      "paragraph_id": "hep-p-c04",
+      "topic_id": "populasjon-tid-og-nevner",
+      "source_ids": [
+        "hep01-who-basic-epidemiology",
+        "hep02-cdc-principles-epidemiology",
+        "hep11-seer-incidence"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hep01-who-basic-epidemiology",
+          "location": "Core chapters on measuring health and disease, epidemiologic designs, association and causation."
+        },
+        {
+          "source_id": "hep02-cdc-principles-epidemiology",
+          "location": "Lessons on incidence proportion, person-time incidence rate, prevalence and association measures."
+        },
+        {
+          "source_id": "hep11-seer-incidence",
+          "location": "Definition and reporting of incidence rates and age-adjusted rates in population statistics."
+        }
+      ],
+      "classification": "verified_general_epidemiology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hep-c05",
+      "claim": "Prevalens beskriver hvor stor andel av en definert populasjon som har en tilstand på et tidspunkt eller i en periode, mens insidens beskriver nye tilfeller eller hendelser som oppstår over tid.",
+      "paragraph_id": "hep-p-c05",
+      "topic_id": "forekomst-risiko-rate-prevalens",
+      "source_ids": [
+        "hep01-who-basic-epidemiology",
+        "hep02-cdc-principles-epidemiology",
+        "hep12-seer-prevalence"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hep01-who-basic-epidemiology",
+          "location": "Core chapters on measuring health and disease, epidemiologic designs, association and causation."
+        },
+        {
+          "source_id": "hep02-cdc-principles-epidemiology",
+          "location": "Lessons on incidence proportion, person-time incidence rate, prevalence and association measures."
+        },
+        {
+          "source_id": "hep12-seer-prevalence",
+          "location": "Prevalence as people alive with a prior diagnosis at a point or period, distinct from new cases."
+        }
+      ],
+      "classification": "verified_general_epidemiology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hep-c06",
+      "claim": "Kumulativ insidens uttrykker risikoen for at en ny hendelse oppstår i en definert gruppe over et bestemt tidsintervall, forutsatt at populasjonen kan følges på en relevant måte.",
+      "paragraph_id": "hep-p-c06",
+      "topic_id": "forekomst-risiko-rate-prevalens",
+      "source_ids": [
+        "hep01-who-basic-epidemiology",
+        "hep02-cdc-principles-epidemiology",
+        "hep11-seer-incidence"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hep01-who-basic-epidemiology",
+          "location": "Core chapters on measuring health and disease, epidemiologic designs, association and causation."
+        },
+        {
+          "source_id": "hep02-cdc-principles-epidemiology",
+          "location": "Lessons on incidence proportion, person-time incidence rate, prevalence and association measures."
+        },
+        {
+          "source_id": "hep11-seer-incidence",
+          "location": "Definition and reporting of incidence rates and age-adjusted rates in population statistics."
+        }
+      ],
+      "classification": "verified_general_epidemiology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hep-c07",
+      "claim": "Prevalens bestemmes av tilstrømningen av nye tilfeller og hvor lenge personer forblir i den aktuelle tilstanden.",
+      "paragraph_id": "hep-p-c07",
+      "topic_id": "forekomst-risiko-rate-prevalens",
+      "source_ids": [
+        "hep01-who-basic-epidemiology",
+        "hep02-cdc-principles-epidemiology",
+        "hep12-seer-prevalence"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hep01-who-basic-epidemiology",
+          "location": "Core chapters on measuring health and disease, epidemiologic designs, association and causation."
+        },
+        {
+          "source_id": "hep02-cdc-principles-epidemiology",
+          "location": "Lessons on incidence proportion, person-time incidence rate, prevalence and association measures."
+        },
+        {
+          "source_id": "hep12-seer-prevalence",
+          "location": "Prevalence as people alive with a prior diagnosis at a point or period, distinct from new cases."
+        }
+      ],
+      "classification": "verified_general_epidemiology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hep-c08",
+      "claim": "Aldersstandardisering holder en valgt aldersfordeling konstant for å gjøre rater fra ulike populasjoner mer sammenlignbare.",
+      "paragraph_id": "hep-p-c08",
+      "topic_id": "forekomst-risiko-rate-prevalens",
+      "source_ids": [
+        "hep01-who-basic-epidemiology",
+        "hep11-seer-incidence",
+        "hep06-who-health-data-glossary-2025"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hep01-who-basic-epidemiology",
+          "location": "Core chapters on measuring health and disease, epidemiologic designs, association and causation."
+        },
+        {
+          "source_id": "hep11-seer-incidence",
+          "location": "Definition and reporting of incidence rates and age-adjusted rates in population statistics."
+        },
+        {
+          "source_id": "hep06-who-health-data-glossary-2025",
+          "location": "Standardiserte definisjoner for helsedata, statistikk, indikatorer, populasjoner og rater."
+        }
+      ],
+      "classification": "verified_general_epidemiology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hep-c09",
+      "claim": "Kohortstudier organiserer vanligvis observasjonen fra eksponering mot senere utfall, mens kasus-kontrollstudier begynner med utfallsstatus og rekonstruerer tidligere eksponering.",
+      "paragraph_id": "hep-p-c09",
+      "topic_id": "studiedesign-og-estimand",
+      "source_ids": [
+        "hep01-who-basic-epidemiology",
+        "hep03-cdc-field-study-design",
+        "hep09-strobe-observational-reporting"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hep01-who-basic-epidemiology",
+          "location": "Core chapters on measuring health and disease, epidemiologic designs, association and causation."
+        },
+        {
+          "source_id": "hep03-cdc-field-study-design",
+          "location": "Cohort and case-control design, source-population logic and control selection."
+        },
+        {
+          "source_id": "hep09-strobe-observational-reporting",
+          "location": "Cohort, case-control and cross-sectional reporting checklists; reporting guidance, not a design or quality-rating instrument."
+        }
+      ],
+      "classification": "verified_general_epidemiology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hep-c10",
+      "claim": "I en kasus-kontrollstudie skal kontrollene representere eksponeringsfordelingen i den kildepopulasjonen som kunne ha produsert kasusene.",
+      "paragraph_id": "hep-p-c10",
+      "topic_id": "studiedesign-og-estimand",
+      "source_ids": [
+        "hep03-cdc-field-study-design",
+        "hep04-cdc-field-analysis",
+        "hep01-who-basic-epidemiology"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hep03-cdc-field-study-design",
+          "location": "Cohort and case-control design, source-population logic and control selection."
+        },
+        {
+          "source_id": "hep04-cdc-field-analysis",
+          "location": "Analysis matched to design, risk ratios, odds ratios and prevalence measures."
+        },
+        {
+          "source_id": "hep01-who-basic-epidemiology",
+          "location": "Core chapters on measuring health and disease, epidemiologic designs, association and causation."
+        }
+      ],
+      "classification": "verified_general_epidemiology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hep-c11",
+      "claim": "I en tverrsnittsstudie måles eksponering og utfall ofte på samme tidspunkt eller innenfor samme korte vindu.",
+      "paragraph_id": "hep-p-c11",
+      "topic_id": "studiedesign-og-estimand",
+      "source_ids": [
+        "hep01-who-basic-epidemiology",
+        "hep04-cdc-field-analysis",
+        "hep09-strobe-observational-reporting"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hep01-who-basic-epidemiology",
+          "location": "Core chapters on measuring health and disease, epidemiologic designs, association and causation."
+        },
+        {
+          "source_id": "hep04-cdc-field-analysis",
+          "location": "Analysis matched to design, risk ratios, odds ratios and prevalence measures."
+        },
+        {
+          "source_id": "hep09-strobe-observational-reporting",
+          "location": "Cohort, case-control and cross-sectional reporting checklists; reporting guidance, not a design or quality-rating instrument."
+        }
+      ],
+      "classification": "verified_general_epidemiology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hep-c12",
+      "claim": "Et epidemiologisk estimat må passe både studiedesignet og det konkrete estimandet eller spørsmålet.",
+      "paragraph_id": "hep-p-c12",
+      "topic_id": "studiedesign-og-estimand",
+      "source_ids": [
+        "hep03-cdc-field-study-design",
+        "hep04-cdc-field-analysis",
+        "hep09-strobe-observational-reporting"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hep03-cdc-field-study-design",
+          "location": "Cohort and case-control design, source-population logic and control selection."
+        },
+        {
+          "source_id": "hep04-cdc-field-analysis",
+          "location": "Analysis matched to design, risk ratios, odds ratios and prevalence measures."
+        },
+        {
+          "source_id": "hep09-strobe-observational-reporting",
+          "location": "Cohort, case-control and cross-sectional reporting checklists; reporting guidance, not a design or quality-rating instrument."
+        }
+      ],
+      "classification": "verified_general_epidemiology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hep-c13",
+      "claim": "Risk ratio sammenligner risikoer, mens odds ratio sammenligner odds; de er matematisk ulike størrelser.",
+      "paragraph_id": "hep-p-c13",
+      "topic_id": "assosiasjonsmal-relative-og-absolutte",
+      "source_ids": [
+        "hep02-cdc-principles-epidemiology",
+        "hep04-cdc-field-analysis",
+        "hep09-strobe-observational-reporting"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hep02-cdc-principles-epidemiology",
+          "location": "Lessons on incidence proportion, person-time incidence rate, prevalence and association measures."
+        },
+        {
+          "source_id": "hep04-cdc-field-analysis",
+          "location": "Analysis matched to design, risk ratios, odds ratios and prevalence measures."
+        },
+        {
+          "source_id": "hep09-strobe-observational-reporting",
+          "location": "Cohort, case-control and cross-sectional reporting checklists; reporting guidance, not a design or quality-rating instrument."
+        }
+      ],
+      "classification": "verified_general_epidemiology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hep-c14",
+      "claim": "I en ordinær kasus-kontrollstudie bestemmes antallet kasus og kontroller av sampling etter utfallsstatus, slik at absolutte risikoer vanligvis ikke kan beregnes direkte fra selve studieutvalget.",
+      "paragraph_id": "hep-p-c14",
+      "topic_id": "assosiasjonsmal-relative-og-absolutte",
+      "source_ids": [
+        "hep03-cdc-field-study-design",
+        "hep04-cdc-field-analysis",
+        "hep02-cdc-principles-epidemiology"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hep03-cdc-field-study-design",
+          "location": "Cohort and case-control design, source-population logic and control selection."
+        },
+        {
+          "source_id": "hep04-cdc-field-analysis",
+          "location": "Analysis matched to design, risk ratios, odds ratios and prevalence measures."
+        },
+        {
+          "source_id": "hep02-cdc-principles-epidemiology",
+          "location": "Lessons on incidence proportion, person-time incidence rate, prevalence and association measures."
+        }
+      ],
+      "classification": "verified_general_epidemiology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hep-c15",
+      "claim": "Relative mål beskriver styrken i en sammenligning, mens absolutte mål også avhenger av bakgrunnsrisikoen i den relevante populasjonen.",
+      "paragraph_id": "hep-p-c15",
+      "topic_id": "assosiasjonsmal-relative-og-absolutte",
+      "source_ids": [
+        "hep02-cdc-principles-epidemiology",
+        "hep07-hernan-robins-what-if",
+        "hep04-cdc-field-analysis"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hep02-cdc-principles-epidemiology",
+          "location": "Lessons on incidence proportion, person-time incidence rate, prevalence and association measures."
+        },
+        {
+          "source_id": "hep07-hernan-robins-what-if",
+          "location": "Potential outcomes, exchangeability, positivity, consistency, confounding, standardization and weighting."
+        },
+        {
+          "source_id": "hep04-cdc-field-analysis",
+          "location": "Analysis matched to design, risk ratios, odds ratios and prevalence measures."
+        }
+      ],
+      "classification": "verified_general_epidemiology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hep-c16",
+      "claim": "En observert assosiasjon er en statistisk sammenheng mellom eksponering og utfall i dataene, men er ikke i seg selv en kausal effekt.",
+      "paragraph_id": "hep-p-c16",
+      "topic_id": "assosiasjonsmal-relative-og-absolutte",
+      "source_ids": [
+        "hep05-fhi-analytic-epidemiology",
+        "hep07-hernan-robins-what-if",
+        "hep08-greenland-pearl-robins-dags"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hep05-fhi-analytic-epidemiology",
+          "location": "Planlegging og tolkning, inkludert tilfeldighet, bias, confounding og assosiasjon–kausalitet-grensen."
+        },
+        {
+          "source_id": "hep07-hernan-robins-what-if",
+          "location": "Potential outcomes, exchangeability, positivity, consistency, confounding, standardization and weighting."
+        },
+        {
+          "source_id": "hep08-greenland-pearl-robins-dags",
+          "location": "Causal-diagram framework for confounding, mediation, selection and conditioning."
+        }
+      ],
+      "classification": "verified_general_epidemiology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hep-c17",
+      "claim": "Tilfeldig feil kan gjøre et estimat upresist, og større utvalg kan ofte redusere denne statistiske usikkerheten.",
+      "paragraph_id": "hep-p-c17",
+      "topic_id": "bias-seleksjon-og-maling",
+      "source_ids": [
+        "hep05-fhi-analytic-epidemiology",
+        "hep09-strobe-observational-reporting",
+        "hep10-cochrane-robins-i-v2"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hep05-fhi-analytic-epidemiology",
+          "location": "Planlegging og tolkning, inkludert tilfeldighet, bias, confounding og assosiasjon–kausalitet-grensen."
+        },
+        {
+          "source_id": "hep09-strobe-observational-reporting",
+          "location": "Cohort, case-control and cross-sectional reporting checklists; reporting guidance, not a design or quality-rating instrument."
+        },
+        {
+          "source_id": "hep10-cochrane-robins-i-v2",
+          "location": "Risk-of-bias domains for confounding, selection, classification, missing data, outcome measurement and reporting."
+        }
+      ],
+      "classification": "verified_general_epidemiology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hep-c18",
+      "claim": "Seleksjonsbias kan oppstå når sannsynligheten for å bli inkludert, fortsette i oppfølging eller ha komplette data avhenger av eksponering, utfall eller deres årsaker på en måte som endrer sammenligningen.",
+      "paragraph_id": "hep-p-c18",
+      "topic_id": "bias-seleksjon-og-maling",
+      "source_ids": [
+        "hep03-cdc-field-study-design",
+        "hep07-hernan-robins-what-if",
+        "hep10-cochrane-robins-i-v2"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hep03-cdc-field-study-design",
+          "location": "Cohort and case-control design, source-population logic and control selection."
+        },
+        {
+          "source_id": "hep07-hernan-robins-what-if",
+          "location": "Potential outcomes, exchangeability, positivity, consistency, confounding, standardization and weighting."
+        },
+        {
+          "source_id": "hep10-cochrane-robins-i-v2",
+          "location": "Risk-of-bias domains for confounding, selection, classification, missing data, outcome measurement and reporting."
+        }
+      ],
+      "classification": "verified_general_epidemiology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hep-c19",
+      "claim": "Målefeil og feilklassifikasjon kan ramme eksponering, utfall eller kovariater og dermed endre både størrelse og retning på et estimat.",
+      "paragraph_id": "hep-p-c19",
+      "topic_id": "bias-seleksjon-og-maling",
+      "source_ids": [
+        "hep01-who-basic-epidemiology",
+        "hep09-strobe-observational-reporting",
+        "hep10-cochrane-robins-i-v2"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hep01-who-basic-epidemiology",
+          "location": "Core chapters on measuring health and disease, epidemiologic designs, association and causation."
+        },
+        {
+          "source_id": "hep09-strobe-observational-reporting",
+          "location": "Cohort, case-control and cross-sectional reporting checklists; reporting guidance, not a design or quality-rating instrument."
+        },
+        {
+          "source_id": "hep10-cochrane-robins-i-v2",
+          "location": "Risk-of-bias domains for confounding, selection, classification, missing data, outcome measurement and reporting."
+        }
+      ],
+      "classification": "verified_general_epidemiology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hep-c20",
+      "claim": "Manglende data kan både redusere presisjon og skape bias dersom fraværet henger sammen med verdier som er relevante for analysen.",
+      "paragraph_id": "hep-p-c20",
+      "topic_id": "bias-seleksjon-og-maling",
+      "source_ids": [
+        "hep13-sterne-missing-data",
+        "hep09-strobe-observational-reporting",
+        "hep10-cochrane-robins-i-v2"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hep13-sterne-missing-data",
+          "location": "Missing-data mechanisms, bias and precision, multiple-imputation assumptions and complete-case pitfalls."
+        },
+        {
+          "source_id": "hep09-strobe-observational-reporting",
+          "location": "Cohort, case-control and cross-sectional reporting checklists; reporting guidance, not a design or quality-rating instrument."
+        },
+        {
+          "source_id": "hep10-cochrane-robins-i-v2",
+          "location": "Risk-of-bias domains for confounding, selection, classification, missing data, outcome measurement and reporting."
+        }
+      ],
+      "classification": "verified_general_epidemiology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hep-c21",
+      "claim": "Confounding oppstår når den eksponerte og den ueksponerte sammenligningen også skiller seg i andre årsaker til utfallet, slik at effekten av eksponeringen blandes med disse forskjellene.",
+      "paragraph_id": "hep-p-c21",
+      "topic_id": "confounding-justering-og-dags",
+      "source_ids": [
+        "hep05-fhi-analytic-epidemiology",
+        "hep07-hernan-robins-what-if",
+        "hep08-greenland-pearl-robins-dags"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hep05-fhi-analytic-epidemiology",
+          "location": "Planlegging og tolkning, inkludert tilfeldighet, bias, confounding og assosiasjon–kausalitet-grensen."
+        },
+        {
+          "source_id": "hep07-hernan-robins-what-if",
+          "location": "Potential outcomes, exchangeability, positivity, consistency, confounding, standardization and weighting."
+        },
+        {
+          "source_id": "hep08-greenland-pearl-robins-dags",
+          "location": "Causal-diagram framework for confounding, mediation, selection and conditioning."
+        }
+      ],
+      "classification": "verified_general_epidemiology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hep-c22",
+      "claim": "Justering for målte confoundere kan under bestemte antakelser gjøre grupper mer sammenlignbare med hensyn til disse variablene.",
+      "paragraph_id": "hep-p-c22",
+      "topic_id": "confounding-justering-og-dags",
+      "source_ids": [
+        "hep07-hernan-robins-what-if",
+        "hep08-greenland-pearl-robins-dags",
+        "hep05-fhi-analytic-epidemiology"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hep07-hernan-robins-what-if",
+          "location": "Potential outcomes, exchangeability, positivity, consistency, confounding, standardization and weighting."
+        },
+        {
+          "source_id": "hep08-greenland-pearl-robins-dags",
+          "location": "Causal-diagram framework for confounding, mediation, selection and conditioning."
+        },
+        {
+          "source_id": "hep05-fhi-analytic-epidemiology",
+          "location": "Planlegging og tolkning, inkludert tilfeldighet, bias, confounding og assosiasjon–kausalitet-grensen."
+        }
+      ],
+      "classification": "verified_general_epidemiology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hep-c23",
+      "claim": "En mediator ligger på en kausal vei mellom eksponering og utfall i den aktuelle problemstillingen.",
+      "paragraph_id": "hep-p-c23",
+      "topic_id": "confounding-justering-og-dags",
+      "source_ids": [
+        "hep07-hernan-robins-what-if",
+        "hep08-greenland-pearl-robins-dags",
+        "hep09-strobe-observational-reporting"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hep07-hernan-robins-what-if",
+          "location": "Potential outcomes, exchangeability, positivity, consistency, confounding, standardization and weighting."
+        },
+        {
+          "source_id": "hep08-greenland-pearl-robins-dags",
+          "location": "Causal-diagram framework for confounding, mediation, selection and conditioning."
+        },
+        {
+          "source_id": "hep09-strobe-observational-reporting",
+          "location": "Cohort, case-control and cross-sectional reporting checklists; reporting guidance, not a design or quality-rating instrument."
+        }
+      ],
+      "classification": "verified_general_epidemiology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hep-c24",
+      "claim": "En kollider er en variabel som påvirkes av to eller flere andre variabler i den kausale strukturen.",
+      "paragraph_id": "hep-p-c24",
+      "topic_id": "confounding-justering-og-dags",
+      "source_ids": [
+        "hep08-greenland-pearl-robins-dags",
+        "hep07-hernan-robins-what-if",
+        "hep09-strobe-observational-reporting"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hep08-greenland-pearl-robins-dags",
+          "location": "Causal-diagram framework for confounding, mediation, selection and conditioning."
+        },
+        {
+          "source_id": "hep07-hernan-robins-what-if",
+          "location": "Potential outcomes, exchangeability, positivity, consistency, confounding, standardization and weighting."
+        },
+        {
+          "source_id": "hep09-strobe-observational-reporting",
+          "location": "Cohort, case-control and cross-sectional reporting checklists; reporting guidance, not a design or quality-rating instrument."
+        }
+      ],
+      "classification": "verified_general_epidemiology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hep-c25",
+      "claim": "Kausal effektmåling krever at spørsmålet definerer relevante eksponeringsalternativer, utfall, populasjon og tidsramme.",
+      "paragraph_id": "hep-p-c25",
+      "topic_id": "kausalitet-presisjon-og-robusthet",
+      "source_ids": [
+        "hep07-hernan-robins-what-if",
+        "hep08-greenland-pearl-robins-dags",
+        "hep05-fhi-analytic-epidemiology"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hep07-hernan-robins-what-if",
+          "location": "Potential outcomes, exchangeability, positivity, consistency, confounding, standardization and weighting."
+        },
+        {
+          "source_id": "hep08-greenland-pearl-robins-dags",
+          "location": "Causal-diagram framework for confounding, mediation, selection and conditioning."
+        },
+        {
+          "source_id": "hep05-fhi-analytic-epidemiology",
+          "location": "Planlegging og tolkning, inkludert tilfeldighet, bias, confounding og assosiasjon–kausalitet-grensen."
+        }
+      ],
+      "classification": "verified_general_epidemiology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hep-c26",
+      "claim": "Et konfidensintervall beskriver statistisk usikkerhet rundt et estimat under den valgte modellen og samplingsmekanismen.",
+      "paragraph_id": "hep-p-c26",
+      "topic_id": "kausalitet-presisjon-og-robusthet",
+      "source_ids": [
+        "hep05-fhi-analytic-epidemiology",
+        "hep09-strobe-observational-reporting",
+        "hep10-cochrane-robins-i-v2"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hep05-fhi-analytic-epidemiology",
+          "location": "Planlegging og tolkning, inkludert tilfeldighet, bias, confounding og assosiasjon–kausalitet-grensen."
+        },
+        {
+          "source_id": "hep09-strobe-observational-reporting",
+          "location": "Cohort, case-control and cross-sectional reporting checklists; reporting guidance, not a design or quality-rating instrument."
+        },
+        {
+          "source_id": "hep10-cochrane-robins-i-v2",
+          "location": "Risk-of-bias domains for confounding, selection, classification, missing data, outcome measurement and reporting."
+        }
+      ],
+      "classification": "verified_general_epidemiology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hep-c27",
+      "claim": "Statistisk signifikans oppsummerer hvor kompatible dataene er med en bestemt nullhypotese under modellforutsetninger, men sier ikke alene hvor stor eller viktig en effekt er.",
+      "paragraph_id": "hep-p-c27",
+      "topic_id": "kausalitet-presisjon-og-robusthet",
+      "source_ids": [
+        "hep02-cdc-principles-epidemiology",
+        "hep04-cdc-field-analysis",
+        "hep09-strobe-observational-reporting"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hep02-cdc-principles-epidemiology",
+          "location": "Lessons on incidence proportion, person-time incidence rate, prevalence and association measures."
+        },
+        {
+          "source_id": "hep04-cdc-field-analysis",
+          "location": "Analysis matched to design, risk ratios, odds ratios and prevalence measures."
+        },
+        {
+          "source_id": "hep09-strobe-observational-reporting",
+          "location": "Cohort, case-control and cross-sectional reporting checklists; reporting guidance, not a design or quality-rating instrument."
+        }
+      ],
+      "classification": "verified_general_epidemiology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hep-c28",
+      "claim": "Sensitivitets- og robusthetsanalyser undersøker hvordan resultater endres når antakelser, spesifikasjoner eller plausible feilkilder varieres.",
+      "paragraph_id": "hep-p-c28",
+      "topic_id": "kausalitet-presisjon-og-robusthet",
+      "source_ids": [
+        "hep07-hernan-robins-what-if",
+        "hep10-cochrane-robins-i-v2",
+        "hep09-strobe-observational-reporting"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hep07-hernan-robins-what-if",
+          "location": "Potential outcomes, exchangeability, positivity, consistency, confounding, standardization and weighting."
+        },
+        {
+          "source_id": "hep10-cochrane-robins-i-v2",
+          "location": "Risk-of-bias domains for confounding, selection, classification, missing data, outcome measurement and reporting."
+        },
+        {
+          "source_id": "hep09-strobe-observational-reporting",
+          "location": "Cohort, case-control and cross-sectional reporting checklists; reporting guidance, not a design or quality-rating instrument."
+        }
+      ],
+      "classification": "verified_general_epidemiology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hep-c29",
+      "claim": "Generaliserbarhet og transportabilitet handler om hvorvidt et estimat fra en studie kan informere en eksplisitt definert målpopulasjon.",
+      "paragraph_id": "hep-p-c29",
+      "topic_id": "heterogenitet-malpopulasjon-og-transport",
+      "source_ids": [
+        "hep14-young-dahabreh-transportability-2026",
+        "hep07-hernan-robins-what-if",
+        "hep09-strobe-observational-reporting"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hep14-young-dahabreh-transportability-2026",
+          "location": "Target populations, generalizability, transportability, effect modifiers, overlap and identification assumptions."
+        },
+        {
+          "source_id": "hep07-hernan-robins-what-if",
+          "location": "Potential outcomes, exchangeability, positivity, consistency, confounding, standardization and weighting."
+        },
+        {
+          "source_id": "hep09-strobe-observational-reporting",
+          "location": "Cohort, case-control and cross-sectional reporting checklists; reporting guidance, not a design or quality-rating instrument."
+        }
+      ],
+      "classification": "verified_general_epidemiology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hep-c30",
+      "claim": "Hvis en variabel modifiserer effekten av en eksponering, kan forskjellig fordeling av denne variabelen mellom studie- og målpopulasjonen gi ulike gjennomsnittlige effekter.",
+      "paragraph_id": "hep-p-c30",
+      "topic_id": "heterogenitet-malpopulasjon-og-transport",
+      "source_ids": [
+        "hep14-young-dahabreh-transportability-2026",
+        "hep07-hernan-robins-what-if",
+        "hep06-who-health-data-glossary-2025"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hep14-young-dahabreh-transportability-2026",
+          "location": "Target populations, generalizability, transportability, effect modifiers, overlap and identification assumptions."
+        },
+        {
+          "source_id": "hep07-hernan-robins-what-if",
+          "location": "Potential outcomes, exchangeability, positivity, consistency, confounding, standardization and weighting."
+        },
+        {
+          "source_id": "hep06-who-health-data-glossary-2025",
+          "location": "Standardiserte definisjoner for helsedata, statistikk, indikatorer, populasjoner og rater."
+        }
+      ],
+      "classification": "verified_general_epidemiology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hep-c31",
+      "claim": "Heterogenitet beskriver at estimater eller effekter varierer mellom grupper, steder eller studier, men variasjon kan skyldes reelle forskjeller, tilfeldighet, måling eller metodiske forhold.",
+      "paragraph_id": "hep-p-c31",
+      "topic_id": "heterogenitet-malpopulasjon-og-transport",
+      "source_ids": [
+        "hep09-strobe-observational-reporting",
+        "hep14-young-dahabreh-transportability-2026",
+        "hep02-cdc-principles-epidemiology"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hep09-strobe-observational-reporting",
+          "location": "Cohort, case-control and cross-sectional reporting checklists; reporting guidance, not a design or quality-rating instrument."
+        },
+        {
+          "source_id": "hep14-young-dahabreh-transportability-2026",
+          "location": "Target populations, generalizability, transportability, effect modifiers, overlap and identification assumptions."
+        },
+        {
+          "source_id": "hep02-cdc-principles-epidemiology",
+          "location": "Lessons on incidence proportion, person-time incidence rate, prevalence and association measures."
+        }
+      ],
+      "classification": "verified_general_epidemiology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    },
+    {
+      "id": "hep-c32",
+      "claim": "Transport av en kausal effekt krever tilstrekkelig overlapp mellom studie- og målpopulasjon for relevante karakteristika, samt antakelser om blant annet effektmodifikatorer, måling og identifikasjon.",
+      "paragraph_id": "hep-p-c32",
+      "topic_id": "heterogenitet-malpopulasjon-og-transport",
+      "source_ids": [
+        "hep14-young-dahabreh-transportability-2026",
+        "hep07-hernan-robins-what-if",
+        "hep09-strobe-observational-reporting"
+      ],
+      "source_locators": [
+        {
+          "source_id": "hep14-young-dahabreh-transportability-2026",
+          "location": "Target populations, generalizability, transportability, effect modifiers, overlap and identification assumptions."
+        },
+        {
+          "source_id": "hep07-hernan-robins-what-if",
+          "location": "Potential outcomes, exchangeability, positivity, consistency, confounding, standardization and weighting."
+        },
+        {
+          "source_id": "hep09-strobe-observational-reporting",
+          "location": "Cohort, case-control and cross-sectional reporting checklists; reporting guidance, not a design or quality-rating instrument."
+        }
+      ],
+      "classification": "verified_general_epidemiology_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-23"
+    }
+  ]
+}

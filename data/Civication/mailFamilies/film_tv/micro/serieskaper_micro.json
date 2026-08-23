@@ -1,0 +1,70 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "serieskaper",
+  "mail_type": "micro",
+  "families": [
+    {
+      "id": "serieskaper_bibelkontinuitet",
+      "purpose": "Fange en liten seriebibel/manus-motsigelse før den blir produksjonsgjeld i flere episoder.",
+      "learning_focus": ["seriebibel", "canonical_tilstand", "beslutningsspor"],
+      "mails": [
+        {
+          "id": "film_tv_series_micro_bibel_001",
+          "mail_type": "micro",
+          "mail_family": "serieskaper_bibelkontinuitet",
+          "role_scope": "serieskaper",
+          "phase": "workday",
+          "day_phase": "afternoon",
+          "priority": 110,
+          "cooldown": 4,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Amina, manusredaktør",
+          "people_ref": "amina_manusredaktor_series",
+          "person_id": "amina_manusredaktor_series",
+          "place_id": "seriebibel_serieskaper_film_tv",
+          "subject": "Episode fem og seriebibelen er uenige om hvem som kjenner hemmeligheten",
+          "summary": "Amina finner at seriebibelen fortsatt markerer hemmeligheten som skjult for søsteren, mens siste episode fem-utkast lar henne referere til den som kjent informasjon.",
+          "purpose": "Teste om serieskaperen velger én canonical tilstand fra siste godkjente beslutning og reparerer alle berørte flater.",
+          "stakes": "Hvis begge versjoner får leve videre kan episode seks og sju bli skrevet mot forskjellige karaktertilstander og skape dyr omskriving etter lås.",
+          "situation": [
+            "Amina har spor til siste godkjente beslutning i utviklingsmøtet.",
+            "Episode fem-utkastet er nyere enn seriebibelen, men nyere betyr ikke automatisk godkjent canonical tilstand.",
+            "To senere episodekort er allerede avhengige av hvem som kjenner hemmeligheten."
+          ],
+          "task_domain": "seriebibel_og_beslutningsspor",
+          "task_kind": "micro",
+          "competency": "langsiktig_sporbarhet",
+          "pressure": "nyeste_utkast_vs_siste_godkjente_tilstand",
+          "choice_axis": "spor_beslutning_og_synkroniser_alle_flater_vs_la_nyeste_manus_vinne",
+          "consequence_axis": "en_canonical_serietilstand_vs_parallelle_sannheter",
+          "narrative_arc": "fra_sesongrygg_til_finale",
+          "interaction_mode": "decision",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Finn siste godkjente beslutning og oppdater både bibel, episode fem og avhengige episodekort",
+              "reply": "Vi bruker beslutningssporet som fasit for prosjektets nåværende tilstand og gjør avviket eksplisitt før flere manus bygger videre.",
+              "effect": 1,
+              "tags": ["series_bible", "decision_trace", "continuity"],
+              "feedback": "Du gjør canonical tilstand etterprøvbar og stopper en liten motsigelse før den sprer seg.",
+              "effects": {"stats": {"quality": 2, "trust": 2, "risk": -3, "energy": -1}}
+            },
+            {
+              "id": "B",
+              "label": "La nyeste manus være gjeldende og oppdater bibelen senere",
+              "reply": "Episode fem er lengst kommet, så vi følger den versjonen og rydder dokumentasjonen når utkastet er låst.",
+              "effect": -1,
+              "tags": ["implicit_override", "continuity_debt"],
+              "feedback": "Du lar dokumentrekkefølge erstatte godkjenning og gjør to senere episoder avhengige av en uavklart endring.",
+              "effects": {"stats": {"quality": -2, "trust": -1, "risk": 4, "energy": 1}}
+            }
+          ],
+          "thread_key": "film_tv_series_sesongrygg_001"
+        }
+      ]
+    }
+  ]
+}

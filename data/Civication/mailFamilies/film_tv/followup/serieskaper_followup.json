@@ -1,0 +1,70 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "serieskaper",
+  "mail_type": "followup",
+  "families": [
+    {
+      "id": "serieskaper_bueoppfolging",
+      "purpose": "La rollefraværet komme tilbake i senere episode og teste om omskrivingens konsekvenser faktisk ble bevart.",
+      "learning_focus": ["karakterbue", "oppfolging", "sosial_hukommelse"],
+      "mails": [
+        {
+          "id": "film_tv_series_followup_rollefravaer_001",
+          "mail_type": "followup",
+          "mail_family": "serieskaper_bueoppfolging",
+          "role_scope": "serieskaper",
+          "phase": "mastery",
+          "day_phase": "evening",
+          "priority": 104,
+          "cooldown": 5,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Jonas, hovedforfatter",
+          "people_ref": "jonas_hovedforfatter_series",
+          "person_id": "jonas_hovedforfatter_series",
+          "place_id": "writers_room_serieskaper_film_tv",
+          "thread_key": "film_tv_series_rollefravaer_001",
+          "subject": "Episode sju trenger nå konsekvensen av hvordan vi løste rollefraværet",
+          "summary": "Jonas viser at omskrivingen i episode fem og seks flyttet avsløringen til søsteren. Episode sju kan derfor ikke bruke den opprinnelige konfrontasjonen som om den fraværende karakteren fortsatt eide hemmeligheten.",
+          "purpose": "Teste om serieskaperen lar tidligere produksjonsvalg endre senere relasjoner og scener i stedet for å gjenopprette den gamle planen i stillhet.",
+          "stakes": "Hvis episode sju vender tilbake til den gamle buen forsvinner kostnaden og relasjonsendringen fra den faktiske omskrivingen, og karakterene får inkonsistent kunnskap.",
+          "situation": [
+            "I den valgte omskrivingen fikk søsteren både avsløringen og pressfunksjonen som tidligere lå hos den fraværende karakteren.",
+            "Det endret tilliten mellom søstrene og gjorde hovedkarakterens neste valg mer personlig.",
+            "Den opprinnelige episode sju-planen er fortsatt mulig å bruke som råmateriale, men ikke med den gamle kunnskaps- og relasjonstilstanden."
+          ],
+          "task_domain": "karakterbue_og_kontinuitet",
+          "task_kind": "followup",
+          "competency": "langsiktig_konsekvens",
+          "pressure": "gammel_episodeplan_vs_ny_relajsonell_tilstand",
+          "choice_axis": "bygg_episode_sju_pa_den_faktiske_omskrivingen_vs_restaurer_opprinnelig_konfrontasjon",
+          "consequence_axis": "valg_med_hukommelse_vs_reset_av_karakterbue",
+          "narrative_arc": "rollefravaer_og_bueomskriving",
+          "interaction_mode": "decision",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bygg konfrontasjonen på søsterens nye kunnskap og den svekkede tilliten",
+              "reply": "Episode sju må huske at søsteren nå eier avsløringen. Vi beholder konfliktfunksjonen, men lar den vokse ut av den relasjonen vi faktisk skrev frem.",
+              "effect": 1,
+              "tags": ["thread_memory", "arc_consequence", "continuity"],
+              "feedback": "Den tidligere produksjonsendringen blir en reell del av sesongens historie og skaper ny dramatikk i stedet for skjult reset.",
+              "effects": {"stats": {"quality": 3, "trust": 2, "risk": -3, "energy": -1}}
+            },
+            {
+              "id": "B",
+              "label": "Bruk den opprinnelige konfrontasjonen og juster bare hvem som leverer informasjonen",
+              "reply": "Strukturen i episode sju var sterk; vi kan beholde den og flytte noen replikker så kontinuiteten ser riktig ut.",
+              "effect": -1,
+              "tags": ["arc_reset", "surface_continuity"],
+              "feedback": "Du reparerer replikkfordelingen, men sletter den relasjonelle konsekvensen som omskrivingen allerede skapte.",
+              "effects": {"stats": {"quality": -3, "trust": -1, "risk": 4}}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -4134,19 +4134,25 @@
         "schemaFamily": "foundation_v1",
         "sourceOfTruth": true,
         "firstSourceClaimBrief": "data/fag/helse/medical_ethics_evidence_source_claim_brief_v1.json",
-        "note": "Fire Helse-domener er fulltekstmaterialisert: medisinsk etikk/evidens, anatomi/fysiologi, sykdom/patofysiologi og klinisk medisin. Domene 4 har 8 seksjoner, 32 claimsporede avsnitt, 32 verifiserte claims, 14 inspiserbare kilder og 8 vurderingsoppgaver. Åtte domener og strict proof gjenstår.",
+        "note": "Sju Helse-domener er fulltekstmaterialisert: medisinsk etikk/evidens, anatomi/fysiologi, sykdom/patofysiologi, klinisk medisin, folkehelse, epidemiologi og mikrobiologi/infeksjon. Mikrobiologi/infeksjon har 8 seksjoner, 32 claimsporede avsnitt, 32 verifiserte claims, 14 inspiserbare kilder og 8 vurderingsoppgaver. Fem domener og strict proof gjenstår.",
         "firstFulltextChapter": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning.json",
         "secondSourceClaimBrief": "data/fag/helse/anatomy_physiology_source_claim_brief_v1.json",
         "secondFulltextChapter": "data/fagverk/helse/anatomi-fysiologi-struktur-funksjon-og-regulering.json",
         "thirdSourceClaimBrief": "data/fag/helse/disease_pathophysiology_source_claim_brief_v1.json",
         "thirdFulltextChapter": "data/fagverk/helse/sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt.json",
         "fourthSourceClaimBrief": "data/fag/helse/clinical_medicine_source_claim_brief_v1.json",
-        "fourthFulltextChapter": "data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging.json"
+        "fourthFulltextChapter": "data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging.json",
+        "fifthSourceClaimBrief": "data/fag/helse/public_health_source_claim_brief_v1.json",
+        "fifthFulltextChapter": "data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet.json",
+        "sixthSourceClaimBrief": "data/fag/helse/epidemiology_source_claim_brief_v1.json",
+        "sixthFulltextChapter": "data/fagverk/helse/epidemiologi-design-mal-bias-confounding-og-kausalitet.json",
+        "seventhSourceClaimBrief": "data/fag/helse/microbiology_infection_source_claim_brief_v1.json",
+        "seventhFulltextChapter": "data/fagverk/helse/mikrobiologi-infeksjon-mikrober-smitte-vertrespons-og-resistens.json"
       },
       "editorialPlan": {
         "targetDomainCount": 12,
-        "completedSourceBriefCount": 4,
-        "registeredChapterCount": 4,
+        "completedSourceBriefCount": 7,
+        "registeredChapterCount": 7,
         "completionRequirements": [
           "all_canonical_domains_covered",
           "source_first_claim_trace_complete",
@@ -4154,7 +4160,7 @@
           "fulltext_and_assessment_audits_green",
           "strict_theory_integrity_green"
         ],
-        "nextGate": "produce_next_domain_source_brief_after_clinical_medicine_fulltext"
+        "nextGate": "produce_next_domain_source_brief_after_microbiology_infection_fulltext"
       },
       "chapters": [
         {
@@ -4211,6 +4217,48 @@
           "claimsFile": "data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging/claims.json",
           "briefFile": "data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging/brief.json",
           "assessmentFile": "data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging/assessment.json",
+          "safetyContractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json"
+        },
+        {
+          "id": "folkehelse-populasjon-determinanter-forebygging-og-ulikhet",
+          "title": "Folkehelse: populasjon, determinanter, forebygging og ulikhet",
+          "subtitle": "Fra befolkningsfordelinger og sosiale determinanter til forebyggingsstrategier, overvåking, evaluering og Health in All Policies",
+          "file": "data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet.json",
+          "primary_domain_id": "folkehelse",
+          "emne_ids": [
+            "em_helse_folkehelse"
+          ],
+          "claimsFile": "data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet/claims.json",
+          "briefFile": "data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet/brief.json",
+          "assessmentFile": "data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet/assessment.json",
+          "safetyContractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json"
+        },
+        {
+          "id": "epidemiologi-design-mal-bias-confounding-og-kausalitet",
+          "title": "Epidemiologi: design, mål, bias, confounding og kausalitet",
+          "subtitle": "Fra forekomstsmål og studiedesign til kausal struktur, usikkerhet og transportabilitet",
+          "file": "data/fagverk/helse/epidemiologi-design-mal-bias-confounding-og-kausalitet.json",
+          "primary_domain_id": "epidemiologi",
+          "emne_ids": [
+            "em_helse_epidemiologi"
+          ],
+          "claimsFile": "data/fagverk/helse/epidemiologi-design-mal-bias-confounding-og-kausalitet/claims.json",
+          "briefFile": "data/fagverk/helse/epidemiologi-design-mal-bias-confounding-og-kausalitet/brief.json",
+          "assessmentFile": "data/fagverk/helse/epidemiologi-design-mal-bias-confounding-og-kausalitet/assessment.json",
+          "safetyContractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json"
+        },
+        {
+          "id": "mikrobiologi-infeksjon-mikrober-smitte-vertrespons-og-resistens",
+          "title": "Mikrobiologi og infeksjon: mikrober, smitte, vertrespons og resistens",
+          "subtitle": "Fra mikrobielt mangfold og kolonisering til laboratorieevidens, resistens, smittevern og genomisk overvåking",
+          "file": "data/fagverk/helse/mikrobiologi-infeksjon-mikrober-smitte-vertrespons-og-resistens.json",
+          "primary_domain_id": "mikrobiologi_infeksjon",
+          "emne_ids": [
+            "em_helse_mikrobiologi_infeksjon"
+          ],
+          "claimsFile": "data/fagverk/helse/mikrobiologi-infeksjon-mikrober-smitte-vertrespons-og-resistens/claims.json",
+          "briefFile": "data/fagverk/helse/mikrobiologi-infeksjon-mikrober-smitte-vertrespons-og-resistens/brief.json",
+          "assessmentFile": "data/fagverk/helse/mikrobiologi-infeksjon-mikrober-smitte-vertrespons-og-resistens/assessment.json",
           "safetyContractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json"
         }
       ]

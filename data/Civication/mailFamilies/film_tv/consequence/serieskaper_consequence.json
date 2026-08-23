@@ -1,0 +1,70 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "serieskaper",
+  "mail_type": "consequence",
+  "families": [
+    {
+      "id": "serieskaper_finalegjeld",
+      "purpose": "Gjøre tidligere svak sesongrygg eller uavklart canonical tilstand synlig som konkret finale- og kontinuitetsgjeld.",
+      "learning_focus": ["sesongrygg", "konsekvens", "reparasjon"],
+      "mails": [
+        {
+          "id": "film_tv_series_consequence_finalegjeld_001",
+          "mail_type": "consequence",
+          "mail_family": "serieskaper_finalegjeld",
+          "role_scope": "serieskaper",
+          "phase": "mastery",
+          "day_phase": "evening",
+          "priority": 100,
+          "cooldown": 6,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Ingrid, executive producer",
+          "people_ref": "ingrid_executive_producer_series",
+          "person_id": "ingrid_executive_producer_series",
+          "place_id": "utviklingsmote_serieskaper_film_tv",
+          "thread_key": "film_tv_series_sesongrygg_001",
+          "subject": "Finalen krever et karaktervalg som sesongen ikke har gjort mulig ennå",
+          "summary": "I finale-gjennomgangen ser Ingrid at hovedkarakteren skal bryte med familien, men flere tidligere episodekort har beholdt lojaliteten uten de planlagte mellomstegene. Valget finnes i finalemanuset, men sesongen har ikke lenger bygget kapasiteten for det.",
+          "purpose": "Teste om serieskaperen reparerer årsakskjeden åpent og prioriterer nødvendige oppbyggingsslag fremfor å forklare bort et uforberedt vendepunkt.",
+          "stakes": "En billig finale-replikk kan forklare motivet, men kan ikke erstatte relasjonelle og handlingsmessige endringer som skulle gjort valget troverdig gjennom sesongen.",
+          "situation": [
+            "Sesongryggen definerte opprinnelig fire nødvendige endringer før bruddet med familien.",
+            "To av mellomstegene ble svekket eller flyttet under senere episodeoptimalisering og produksjonsendringer.",
+            "Det finnes fortsatt omskrivingsrom i én tidligere episode og i finalen, men ikke nok tid til å late som hele den gamle planen fortsatt gjelder."
+          ],
+          "task_domain": "sesongstruktur_og_konsekvens",
+          "task_kind": "consequence",
+          "competency": "premiss_og_karakterkontinuitet",
+          "pressure": "bevar_planlagt_finale_vs_reparer_faktisk_karakterbue",
+          "choice_axis": "gjenbygg_nodvendig_arsakskjede_og_juster_finalen_vs_forklar_valget_i_dialog",
+          "consequence_axis": "troverdig_sesongkonsekvens_vs_uopparbeidet_vending",
+          "narrative_arc": "fra_sesongrygg_til_finale",
+          "interaction_mode": "decision",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Reparer ett nødvendig mellomsteg tidligere og juster finalen til den buen sesongen faktisk har",
+              "reply": "Vi identifiserer hvilket manglende steg som er avgjørende, bygger det inn der vi fortsatt har rom, og lar finalens valg få den styrken den faktiske sesongen kan bære.",
+              "effect": 1,
+              "tags": ["causal_repair", "season_spine", "accountability"],
+              "feedback": "Du behandler finalegjelden som et resultat av tidligere beslutninger og reparerer den med minst mulig, men reell, årsakskjede.",
+              "effects": {"stats": {"quality": 3, "trust": 2, "risk": -3, "energy": -2}}
+            },
+            {
+              "id": "B",
+              "label": "Behold finalen og legg inn en replikk som forklarer at karakteren har endret seg",
+              "reply": "Vi har ikke tid til å åpne tidligere episode. Jeg vil gjøre motivasjonen eksplisitt i finalen og holde den planlagte vendingen.",
+              "effect": -1,
+              "tags": ["exposition_patch", "continuity_debt"],
+              "feedback": "Du forklarer endringen, men gir ikke publikum de valgene og relasjonelle konsekvensene som skulle gjort den erfart og troverdig.",
+              "effects": {"stats": {"quality": -3, "trust": -2, "risk": 4, "status": -1}}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

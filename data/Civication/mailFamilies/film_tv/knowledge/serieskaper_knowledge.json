@@ -1,0 +1,88 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "serieskaper",
+  "mail_type": "knowledge",
+  "families": [
+    {
+      "id": "serieskaper_filmforfatter_kontekst",
+      "purpose": "Koble serieskaping til kildeforankret norsk filmforfatterhistorie uten å gjøre historiske arbeidsformer til fasit for moderne serieutvikling.",
+      "learning_focus": ["filmhistorie", "manusforfatterskap", "kildegrense"],
+      "mails": [
+        {
+          "id": "film_tv_series_knowledge_skouen_001",
+          "mail_type": "knowledge",
+          "mail_family": "serieskaper_filmforfatter_kontekst",
+          "role_scope": "serieskaper",
+          "phase": "advanced",
+          "day_phase": "evening",
+          "priority": 106,
+          "cooldown": 5,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Amina, manusredaktør",
+          "people_ref": "amina_manusredaktor_series",
+          "person_id": "amina_manusredaktor_series",
+          "place_id": "cinemateket_oslo",
+          "subject": "Bruk Arne Skouen som filmhistorisk forfatterkontekst – ikke som manual for dagens seriesystem",
+          "summary": "Amina ber deg lese History Go-profilen til Arne Skouen som kildeforankret filmhistorisk kontekst om norsk film, regi og manusforfatterskap før dere diskuterer hvordan moderne serieforfatterskap fordeler ansvar mellom writers room, bestiller og produksjon.",
+          "purpose": "Teste at en virkelig historisk person brukes som faktamål, mens dagens serieskaperpraksis fortsatt må begrunnes i egen rolle- og produksjonskontekst.",
+          "stakes": "Historisk innsikt kan skjerpe spørsmål om audiovisuelt forfatterskap, men kan ikke dokumentere moderne writers-room-, bestiller- eller streamingpraksis den historiske profilen ikke beskriver.",
+          "situation": [
+            "Arne Skouen finnes som canonical People-person i Film/TV-kategorien og beskrives som regissør og manusforfatter.",
+            "Cinemateket i Oslo er canonical place-anker for den filmhistoriske profilen.",
+            "Oppgaven gjelder lesing av profilens dokumenterte filmhistorie; den historiske personen er ikke avsender, kollega, NPC eller beslutningseier i dagens fiktive produksjon."
+          ],
+          "task_domain": "filmhistorie_og_forfatterskap",
+          "task_kind": "knowledge",
+          "competency": "faglig_kildebruk",
+          "pressure": "historisk_kontekst_vs_modern_praksisforskning",
+          "choice_axis": "les_kilden_og_avgrens_hva_den_kan_belyse_vs_lan_historisk_autoritet_til_dagens_arbeidsform",
+          "consequence_axis": "kildebevisst_forfatterskap_vs_anakronistisk_autoritetsglidning",
+          "narrative_arc": "filmforfatterskap_som_kontekst",
+          "interaction_mode": "task",
+          "task_contract": {
+            "task_id": "film_tv_series_history_go_arne_skouen",
+            "completion_rule": "history_go_payload_completed",
+            "failure_rule": "remain_open",
+            "evidence_refs": ["data/people/film_tv/oslo/people_film_tv_oslo.json"]
+          },
+          "task_payload": {
+            "task_kind": "history_go_person",
+            "target_type": "person",
+            "person_id": "arne_skouen",
+            "completion_mode": "read_profile",
+            "title": "Les profilen til Arne Skouen",
+            "description": "Les den canonicale profilen som filmhistorisk kontekst om regi og manusforfatterskap, ikke som dokumentasjon av moderne serieskaperpraksis.",
+            "return_context": {
+              "source": "civication",
+              "mail_id": "film_tv_series_knowledge_skouen_001",
+              "role_scope": "serieskaper"
+            }
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Åpne profilen og noter hva den faktisk dokumenterer om filmforfatterskap",
+              "reply": "Jeg skiller filmhistorisk kontekst fra moderne arbeidsdeling og bruker profilen til bedre spørsmål, ikke som fasit for writers room eller bestillerforhold.",
+              "effect": 1,
+              "tags": ["history_go_person", "source_boundary", "film_history"],
+              "feedback": "Oppgaven fullføres gjennom History Go-lesing av den canonicale personen og beholder en tydelig grense mot dagens fiktive produksjon.",
+              "effects": {"stats": {"quality": 1, "trust": 1, "energy": -1}}
+            },
+            {
+              "id": "B",
+              "label": "Bruk den historiske profilen som støtte for at serieskaperen bør ha siste ord kreativt",
+              "reply": "Jeg viser til en sterk norsk forfatter-regissørtradisjon som argument for å samle dagens kreative beslutninger hos meg.",
+              "effect": -1,
+              "tags": ["authority_slippage", "anachronism"],
+              "feedback": "Du gjør filmhistorisk biografi til dokumentasjon av en moderne mandatstruktur den ikke beviser.",
+              "effects": {"stats": {"quality": -3, "trust": -2, "risk": 3}}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

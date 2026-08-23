@@ -1,0 +1,193 @@
+{
+  "schema": "history_go_fagverk_health_chapter_assessment_v1",
+  "version": "1.0.0",
+  "subject_id": "helse",
+  "chapter_id": "epidemiologi-design-mal-bias-confounding-og-kausalitet",
+  "status": "audited",
+  "questions": [
+    {
+      "id": "helse-hep-q01",
+      "question": "Hvorfor er en aldersstandardisert insidensrate ikke en individuell sannsynlighet?",
+      "options": [
+        "Fordi standardiserte rater bare gjelder sykehus",
+        "Fordi den er et konstruert populasjonsmål for sammenligning, ikke en persons risiko",
+        "Fordi alder aldri påvirker rater",
+        "Fordi den mangler teller"
+      ],
+      "answer": "Fordi den er et konstruert populasjonsmål for sammenligning, ikke en persons risiko",
+      "answerIndex": 1,
+      "question_type": "analysis",
+      "difficulty": "medium",
+      "emne_id": "em_helse_epidemiologi",
+      "claim_id": "hep-c03",
+      "source": [
+        "hep02-cdc-principles-epidemiology",
+        "hep11-seer-incidence",
+        "hep06-who-health-data-glossary-2025"
+      ],
+      "knowledge": "En insidensrate knytter nye hendelser til tid som personer eller populasjoner faktisk er under risiko, ofte uttrykt som person-tid. Aldersstandardiserte rater brukes for å sammenligne populasjoner med ulik alderssammensetning ved hjelp av en standardfordeling. Begge er populasjonsmål og kan ikke oversettes direkte til en bestemt persons sannsynlighet for et utfall.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hep-q02",
+      "question": "Hva skiller best kumulativ risiko fra en insidensrate?",
+      "options": [
+        "Risiko er en sannsynlighet over et intervall, mens rate bruker hendelser per person-tid",
+        "De er alltid samme størrelse",
+        "Rate kan bare brukes i laboratorier",
+        "Risiko krever ingen tidsramme"
+      ],
+      "answer": "Risiko er en sannsynlighet over et intervall, mens rate bruker hendelser per person-tid",
+      "answerIndex": 0,
+      "question_type": "analysis",
+      "difficulty": "medium",
+      "emne_id": "em_helse_epidemiologi",
+      "claim_id": "hep-c06",
+      "source": [
+        "hep01-who-basic-epidemiology",
+        "hep02-cdc-principles-epidemiology",
+        "hep11-seer-incidence"
+      ],
+      "knowledge": "Kumulativ insidens uttrykker risikoen for at en ny hendelse oppstår i en definert gruppe over et bestemt tidsintervall, forutsatt at populasjonen kan følges på en relevant måte. Insidensrate bruker derimot person-tid i nevneren og beskriver hendelseshastighet. Risiko og rate har dermed ulike enheter, forutsetninger og fortolkninger og skal ikke brukes som synonymer.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hep-q03",
+      "question": "Hva er kontrollenes hovedrolle i en kasus-kontrollstudie?",
+      "options": [
+        "Å være tilfeldig valgte friske personer fra hele landet",
+        "Å representere eksponeringsfordelingen i kildepopulasjonen som kunne ha gitt opphav til kasus",
+        "Å gjøre studien til et randomisert forsøk",
+        "Å beregne individuell prognose"
+      ],
+      "answer": "Å representere eksponeringsfordelingen i kildepopulasjonen som kunne ha gitt opphav til kasus",
+      "answerIndex": 1,
+      "question_type": "analysis",
+      "difficulty": "medium",
+      "emne_id": "em_helse_epidemiologi",
+      "claim_id": "hep-c10",
+      "source": [
+        "hep03-cdc-field-study-design",
+        "hep04-cdc-field-analysis",
+        "hep01-who-basic-epidemiology"
+      ],
+      "knowledge": "I en kasus-kontrollstudie skal kontrollene representere eksponeringsfordelingen i den kildepopulasjonen som kunne ha produsert kasusene. Hvis kontrollene velges fra en annen mekanisme eller en gruppe med systematisk annen eksponering, kan odds ratio bli skjev. Kontrollutvalg er derfor et designspørsmål om kildepopulasjon, ikke bare et spørsmål om å finne personer uten sykdom.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hep-q04",
+      "question": "Hvorfor skal odds ratio ikke automatisk omtales som risk ratio?",
+      "options": [
+        "Fordi odds og risiko er matematisk ulike størrelser",
+        "Fordi odds ratio aldri kan beregnes",
+        "Fordi risk ratio bare gjelder prevalens",
+        "Fordi de alltid har motsatt fortegn"
+      ],
+      "answer": "Fordi odds og risiko er matematisk ulike størrelser",
+      "answerIndex": 0,
+      "question_type": "analysis",
+      "difficulty": "hard",
+      "emne_id": "em_helse_epidemiologi",
+      "claim_id": "hep-c13",
+      "source": [
+        "hep02-cdc-principles-epidemiology",
+        "hep04-cdc-field-analysis",
+        "hep09-strobe-observational-reporting"
+      ],
+      "knowledge": "Risk ratio sammenligner risikoer, mens odds ratio sammenligner odds; de er matematisk ulike størrelser. Når et utfall er sjeldent kan de numerisk ligne, men likhet under enkelte betingelser gjør dem ikke generelt utskiftbare. Rapportering bør bruke korrekt navn, forklare nevner og tidsramme og unngå å omtale odds ratio automatisk som risk ratio.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hep-q05",
+      "question": "Hvorfor fjerner ikke et svært stort utvalg automatisk systematisk bias?",
+      "options": [
+        "Fordi større utvalg vanligvis øker bias",
+        "Fordi større utvalg kan øke presisjon uten å rette en systematisk skjev datagenerering",
+        "Fordi presisjon og bias er identiske",
+        "Fordi bias bare finnes i små studier"
+      ],
+      "answer": "Fordi større utvalg kan øke presisjon uten å rette en systematisk skjev datagenerering",
+      "answerIndex": 1,
+      "question_type": "analysis",
+      "difficulty": "hard",
+      "emne_id": "em_helse_epidemiologi",
+      "claim_id": "hep-c17",
+      "source": [
+        "hep05-fhi-analytic-epidemiology",
+        "hep09-strobe-observational-reporting",
+        "hep10-cochrane-robins-i-v2"
+      ],
+      "knowledge": "Tilfeldig feil kan gjøre et estimat upresist, og større utvalg kan ofte redusere denne statistiske usikkerheten. Systematisk bias oppstår derimot når datagenereringen eller analysen forskyver estimatet i en bestemt strukturert retning. Et enormt datasett kan derfor gi et svært presist, men fortsatt skjevt estimat dersom seleksjon eller måling er systematisk problematisk.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hep-q06",
+      "question": "Hvorfor kan justering for en kollider skape bias?",
+      "options": [
+        "Fordi kondisjonering kan åpne en ikke-kausal statistisk forbindelse",
+        "Fordi alle kovariater alltid er confoundere",
+        "Fordi kollidere bare finnes i randomiserte forsøk",
+        "Fordi justering alltid reduserer utvalget til null"
+      ],
+      "answer": "Fordi kondisjonering kan åpne en ikke-kausal statistisk forbindelse",
+      "answerIndex": 0,
+      "question_type": "analysis",
+      "difficulty": "hard",
+      "emne_id": "em_helse_epidemiologi",
+      "claim_id": "hep-c24",
+      "source": [
+        "hep08-greenland-pearl-robins-dags",
+        "hep07-hernan-robins-what-if",
+        "hep09-strobe-observational-reporting"
+      ],
+      "knowledge": "En kollider er en variabel som påvirkes av to eller flere andre variabler i den kausale strukturen. Å kondisjonere på eller selektere etter en kollider kan åpne en ikke-kausal statistisk forbindelse og skape bias. Derfor er strategien om å justere for alle tilgjengelige kovariater metodisk usikker; variabelvalg må begrunnes kausalt.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hep-q07",
+      "question": "Hva kan statistisk signifikans ikke fastslå alene?",
+      "options": [
+        "Om en p-verdi ble beregnet",
+        "Effektens størrelse og kliniske eller folkehelsemessige betydning",
+        "Om data finnes",
+        "Om en nullhypotese er formulert"
+      ],
+      "answer": "Effektens størrelse og kliniske eller folkehelsemessige betydning",
+      "answerIndex": 1,
+      "question_type": "analysis",
+      "difficulty": "hard",
+      "emne_id": "em_helse_epidemiologi",
+      "claim_id": "hep-c27",
+      "source": [
+        "hep02-cdc-principles-epidemiology",
+        "hep04-cdc-field-analysis",
+        "hep09-strobe-observational-reporting"
+      ],
+      "knowledge": "Statistisk signifikans oppsummerer hvor kompatible dataene er med en bestemt nullhypotese under modellforutsetninger, men sier ikke alene hvor stor eller viktig en effekt er. Effektstørrelse, absolutt risiko, usikkerhet, konsekvenser og beslutningskontekst må vurderes separat. En liten p-verdi er derfor verken et mål på klinisk betydning eller folkehelsemessig betydning.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hep-q08",
+      "question": "Hva kreves for å transportere et kausalt estimat til en ny målpopulasjon?",
+      "options": [
+        "Bare en stor studie",
+        "Overlapp og eksplisitte antakelser om blant annet effektmodifikatorer, måling og identifikasjon",
+        "Kun statistisk signifikans",
+        "At målpopulasjonen har samme navn"
+      ],
+      "answer": "Overlapp og eksplisitte antakelser om blant annet effektmodifikatorer, måling og identifikasjon",
+      "answerIndex": 1,
+      "question_type": "analysis",
+      "difficulty": "hard",
+      "emne_id": "em_helse_epidemiologi",
+      "claim_id": "hep-c32",
+      "source": [
+        "hep14-young-dahabreh-transportability-2026",
+        "hep07-hernan-robins-what-if",
+        "hep09-strobe-observational-reporting"
+      ],
+      "knowledge": "Transport av en kausal effekt krever tilstrekkelig overlapp mellom studie- og målpopulasjon for relevante karakteristika, samt antakelser om blant annet effektmodifikatorer, måling og identifikasjon. Vekting eller standardisering kan justere for observerte forskjeller under disse antakelsene, men eliminerer ikke ukjente brudd, manglende overlapp eller umålte forhold som påvirker transportabiliteten.",
+      "safety_mode": "general_non_individualizing"
+    }
+  ]
+}

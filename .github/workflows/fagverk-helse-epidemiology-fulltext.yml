@@ -1,0 +1,90 @@
+name: Fagverk Helse epidemiology fulltext
+
+on:
+  pull_request:
+    paths:
+      - 'data/fag/helse/**'
+      - 'data/fag/fag_manifest.json'
+      - 'data/fagverk/helse/**'
+      - 'data/fagverk/fagverk_registry.json'
+      - 'data/fagverk/fagverk_release.json'
+      - 'data/fagverk/subject_inventory.json'
+      - 'data/fagverk/subject_status.json'
+      - 'reports/fagverk/helse-epidemiology-fulltext-v1-audit.json'
+      - 'reports/fagverk/general-engine-audit.json'
+      - 'reports/fagverk/fagverk-theory-quality-audit.json'
+      - 'reports/fagverk/fagverk-theory-integrity-audit.json'
+      - 'scripts/*helse-epidemiology*'
+      - 'scripts/audit-helse-cumulative-progress-v1.mjs'
+      - 'tests/helse-epidemiology-fulltext-v1.test.mjs'
+      - 'tests/helse-cumulative-progress-v1.test.mjs'
+      - '.github/workflows/fagverk-helse-epidemiology-fulltext.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'data/fag/helse/**'
+      - 'data/fagverk/helse/**'
+      - 'data/fagverk/fagverk_registry.json'
+      - 'data/fagverk/subject_status.json'
+      - 'data/fagverk/fagverk_release.json'
+      - 'reports/fagverk/helse-epidemiology-fulltext-v1-audit.json'
+      - 'reports/fagverk/general-engine-audit.json'
+      - 'reports/fagverk/fagverk-theory-quality-audit.json'
+      - 'reports/fagverk/fagverk-theory-integrity-audit.json'
+      - 'scripts/*helse-epidemiology*'
+      - 'tests/helse-epidemiology-fulltext-v1.test.mjs'
+      - '.github/workflows/fagverk-helse-epidemiology-fulltext.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - id: fulltext_gate
+        shell: bash
+        run: |
+          count="$(node -e "const fs=require('fs');const r=JSON.parse(fs.readFileSync('data/fagverk/fagverk_registry.json','utf8'));process.stdout.write(String(r.subjects.helse.editorialPlan.registeredChapterCount));")"
+          if [[ ( "$count" == "5" || "$count" == "6" ) && -f scripts/materialize-helse-epidemiology-fulltext-v1.mjs && -f scripts/audit-helse-epidemiology-fulltext-v1.mjs && -f tests/helse-epidemiology-fulltext-v1.test.mjs ]]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "Monotone skip: epidemiology fulltext materialization is active only at Helse 5/12 or 6/12; current count is ${count}/12."
+          fi
+      - if: steps.fulltext_gate.outputs.ready == 'true'
+        run: node scripts/materialize-helse-epidemiology-fulltext-v1.mjs
+      - if: steps.fulltext_gate.outputs.ready == 'true'
+        run: node scripts/audit-helse-epidemiology-fulltext-v1.mjs
+      - run: node scripts/audit-helse-cumulative-progress-v1.mjs
+      - run: node scripts/audit-fagverk-subject-inventory.mjs
+      - run: node scripts/audit-fagverk-general-engine.mjs
+      - run: node scripts/audit-fagverk-theory-quality.mjs
+      - run: node scripts/audit-fagverk-theory-integrity.mjs
+      - run: node scripts/build-fagverk-release-manifest.mjs --check
+      - if: steps.fulltext_gate.outputs.ready == 'true'
+        run: node --test tests/helse-epidemiology-fulltext-v1.test.mjs tests/helse-cumulative-progress-v1.test.mjs tests/fagverk-subject-inventory.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-release-manifest.test.mjs
+      - if: steps.fulltext_gate.outputs.ready != 'true'
+        run: node --test tests/helse-cumulative-progress-v1.test.mjs tests/fagverk-subject-inventory.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-release-manifest.test.mjs
+      - name: Verify deterministic generated outputs
+        if: steps.fulltext_gate.outputs.ready == 'true'
+        shell: bash
+        run: |
+          git diff --exit-code -- \
+            data/fag/fag_manifest.json \
+            data/fag/helse/helsepensum_canonical_v1.json \
+            data/fag/helse/emner_helse_canonical_v1.json \
+            data/fag/helse/methods_helse_canonical_v1.json \
+            data/fagverk/fagverk_registry.json \
+            data/fagverk/subject_inventory.json \
+            data/fagverk/subject_status.json \
+            data/fagverk/fagverk_release.json \
+            data/fagverk/helse/epidemiologi-design-mal-bias-confounding-og-kausalitet.json \
+            data/fagverk/helse/epidemiologi-design-mal-bias-confounding-og-kausalitet \
+            reports/fagverk/helse-epidemiology-fulltext-v1-audit.json \
+            reports/fagverk/general-engine-audit.json \
+            reports/fagverk/fagverk-theory-quality-audit.json \
+            reports/fagverk/fagverk-theory-integrity-audit.json
