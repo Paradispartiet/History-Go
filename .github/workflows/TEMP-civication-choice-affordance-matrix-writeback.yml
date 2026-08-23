@@ -1,0 +1,42 @@
+name: TEMP Civication choice affordance matrix writeback
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    if: github.head_ref == 'agent/civication-knowledge-choice-affordance'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/civication-knowledge-choice-affordance
+          fetch-depth: 0
+      - name: Refresh career gameplay projections
+        run: node scripts/audit-civication-career-gameplay.mjs --write
+      - name: Verify generated projections and affected regressions
+        run: |
+          node scripts/audit-civication-career-gameplay.mjs --check
+          node tests/civication-career-gameplay-matrix.test.js
+          node tests/civication-by-radgiver-role-world.test.js
+          node tests/civication-controller-role-world.test.js
+          node tests/civication-sport-utover-role-world.test.js
+          node tests/civication-history-go-choice-affordance.test.js
+          node scripts/build-civication-scene-registry.mjs --check
+      - name: Commit refreshed projections
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/Civication/careerGameplayMatrix.json reports/civication-career-gameplay-matrix.md
+          git diff --cached --check
+          if git diff --cached --quiet; then
+            echo "Career gameplay projections already synchronized"
+          else
+            git commit -m "Refresh career gameplay matrix for choice affordance proof"
+            git push origin HEAD:agent/civication-knowledge-choice-affordance
+          fi
