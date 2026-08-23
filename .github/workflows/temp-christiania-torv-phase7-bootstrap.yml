@@ -23,7 +23,7 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci --silent
-      - name: Execute phase-7 materializer blocks
+      - name: Materialize canonical source brief, quiz and registrations
         run: |
           python3 <<'PY'
           from pathlib import Path
@@ -48,10 +48,46 @@ jobs:
                   continue
               i += 1
 
-          if not blocks:
-              raise SystemExit('No block-style run sections found in phase-7 materializer')
-
-          for index, block in enumerate(blocks, 1):
-              print(f'Executing materializer block {index}/{len(blocks)}')
-              subprocess.run(['bash', '-euo', 'pipefail', '-c', block], check=True)
+          if len(blocks) < 1:
+              raise SystemExit('No materializer block found')
+          subprocess.run(['bash', '-euo', 'pipefail', '-c', blocks[0]], check=True)
           PY
+          node <<'NODE'
+          const fs = require('fs');
+          const p = 'data/quiz/production_briefs/by/christiania_torv.json';
+          const brief = JSON.parse(fs.readFileSync(p, 'utf8'));
+          if (!Array.isArray(brief.claims) || brief.claims.length !== 35) {
+            throw new Error(`Expected 35 source-brief claims, got ${Array.isArray(brief.claims) ? brief.claims.length : typeof brief.claims}`);
+          }
+          const quiz = JSON.parse(fs.readFileSync('data/quiz/by/christiania_torv_sets.json', 'utf8'));
+          const questions = quiz.sets.flatMap(set => set.questions || []);
+          if (quiz.sets.length !== 5 || questions.length !== 35) {
+            throw new Error(`Expected 5x7 quiz, got ${quiz.sets.length} sets / ${questions.length} questions`);
+          }
+          console.log(`Source brief ${brief.claims.length}/35 and quiz ${questions.length}/35 materialized.`);
+          NODE
+      - name: Build deterministic context, Knowledge and Fagverk release
+        run: |
+          npm run quiz:context -- --category by --target christiania_torv --output data/quiz/production_context/by/christiania_torv.json
+          npm run knowledge:canonical:write
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Validate phase 7 before writeback
+        run: |
+          npm run audit:quiz-manifest:v2
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          npm run audit:quiz-content
+          npm run knowledge:canonical:check
+          npm run test:quiz-production
+      - name: Commit canonical phase-7 writeback
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/fag/fag_manifest.json data/fagverk/fagverk_release.json data/quiz/manifest.json data/quiz/production_briefs/by/christiania_torv.json data/quiz/production_context/by/christiania_torv.json data/quiz/by/christiania_torv_sets.json data/knowledge reports/knowledge-contract-audit.json reports/knowledge-id-backfill.json reports/quiz_manifest_v2_audit_report.json
+          if git diff --cached --quiet; then
+            echo "No phase-7 writeback needed."
+            exit 0
+          fi
+          git commit -m "Materialize Christiania Torv Quiz and Knowledge"
+          git push origin HEAD:agent/christiania-torv-phase7-quiz-v1
