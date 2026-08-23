@@ -8,7 +8,12 @@
     {
       "id": "historie_arkiv_format_og_integritetsavvik",
       "purpose": "Gjøre digital bevaring spillbar som kontrollert risikohåndtering, ikke enkel filkonvertering.",
-      "learning_focus": ["digital_bevaring", "hash", "formatrisiko", "migreringsspor"],
+      "learning_focus": [
+        "digital_bevaring",
+        "hash",
+        "formatrisiko",
+        "migreringsspor"
+      ],
       "mails": [
         {
           "id": "historie_arkiv_event_formatrisiko_001",
@@ -49,20 +54,120 @@
               "label": "Sett de to filene i avviksspor, bevar originalbitstrømmen og test migrering på kontrollerte kopier før serien behandles samlet",
               "reply": "Vi lar de 310 verifiserte filene beholde sitt integritetsspor, isolerer avvikene uten å slette noe og dokumenterer både migreringsverktøy, parametre og etterkontroll på testkopiene.",
               "effect": 1,
-              "tags": ["fixity", "migration_test", "original_preservation", "integrity_incident"],
+              "tags": [
+                "fixity",
+                "migration_test",
+                "original_preservation",
+                "integrity_incident"
+              ],
               "feedback": "Du håndterer formatrisiko uten å ofre muligheten til å undersøke hva som faktisk skjedde med de to avvikende filene.",
-              "effects": {"stats": {"quality": 3, "trust": 2, "risk": -4, "energy": -2}}
+              "effects": {
+                "stats": {
+                  "quality": 3,
+                  "trust": 2,
+                  "risk": -4,
+                  "energy": -2
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "historie_arkiv_digital_001_avvik_isolert",
+                    "work_object_id": "historie_arkiv_sak_digital_bevaring_001",
+                    "to_status": "in_progress",
+                    "to_phase": "avvik_isolert_migreringstest",
+                    "note": "Originalbitstrømmen er bevart, avvikene isolert og migrering testes på kontrollerte kopier."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "historie_arkiv_digital_001_original_bevart",
+                    "work_object_id": "historie_arkiv_sak_digital_bevaring_001",
+                    "flag": "originalbitstrom_bevart"
+                  }
+                ]
+              }
             },
             {
               "id": "B",
               "label": "Konverter hele serien nå og bruk de nye filene som standard – formatrisikoen er mer akutt enn to gamle hashavvik",
               "reply": "Vi beholder en kopi av mappen, men det viktigste er å få alt over i et moderne format før den gamle programvaren svikter.",
               "effect": -1,
-              "tags": ["unverified_migration", "fixity_ignored", "derivative_as_original"],
+              "tags": [
+                "unverified_migration",
+                "fixity_ignored",
+                "derivative_as_original"
+              ],
               "feedback": "Du løser ett bevaringsproblem ved å gjøre et annet mindre etterprøvbart og risikerer at avvikene blir videreført uten identifiserbar årsak.",
-              "effects": {"stats": {"quality": -3, "trust": -2, "risk": 5, "energy": 1}}
+              "effects": {
+                "stats": {
+                  "quality": -3,
+                  "trust": -2,
+                  "risk": 5,
+                  "energy": 1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "historie_arkiv_digital_001_uverifisert_migrering",
+                    "work_object_id": "historie_arkiv_sak_digital_bevaring_001",
+                    "to_status": "at_risk",
+                    "to_phase": "uverifisert_migrering",
+                    "note": "Hele serien er konvertert før hashavvikene er forklart."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "historie_arkiv_digital_001_integritet_svekket",
+                    "work_object_id": "historie_arkiv_sak_digital_bevaring_001",
+                    "flag": "integritetsgrunnlag_svekket"
+                  }
+                ]
+              }
             }
-          ]
+          ],
+          "work_context": {
+            "object_ids": [
+              "historie_arkiv_sak_digital_bevaring_001"
+            ],
+            "institution_id": "historie_arkivinstitusjon_001",
+            "deadline_ref": "formatrisiko_arbeidsplan"
+          },
+          "effects": {
+            "work_object_ops": [
+              {
+                "op": "create",
+                "event_id": "historie_arkiv_digital_001_opprettet",
+                "work_object": {
+                  "work_object_id": "historie_arkiv_sak_digital_bevaring_001",
+                  "kind": "digital_bevaringssak",
+                  "role_scope": "historie_arkiv_og_dokumentasjon",
+                  "institution_id": "historie_arkivinstitusjon_001",
+                  "title": "Digital serie med formatrisiko og to hashavvik",
+                  "status": "open",
+                  "phase": "integritetskontroll",
+                  "people_refs": [
+                    "noah_digital_bevaring_historie"
+                  ],
+                  "place_refs": [
+                    "digitalt_bevaringsverksted_historie"
+                  ],
+                  "knowledge_refs": [
+                    "digital_bevaring",
+                    "autentisitet_og_integritet",
+                    "endringslogg_og_reversibilitet"
+                  ],
+                  "open_questions": [
+                    "Hva forklarer hashavviket i fil 1?",
+                    "Hvilken av to kandidater for fil 2 kan autentiseres?"
+                  ],
+                  "deadline": "formatrisiko_arbeidsplan",
+                  "confidentiality": "intern_bevaringslogg",
+                  "flags": [
+                    "to_hashavvik"
+                  ],
+                  "shared": false
+                }
+              }
+            ]
+          }
         }
       ]
     }

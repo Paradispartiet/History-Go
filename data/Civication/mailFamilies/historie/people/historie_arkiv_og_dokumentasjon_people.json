@@ -8,7 +8,11 @@
     {
       "id": "historie_arkiv_systemkontekst",
       "purpose": "Gjøre samarbeid med dokumentforvaltning til en faglig del av proveniensarbeidet når eksporterte mapper ikke lenger speiler avsenders opprinnelige system.",
-      "learning_focus": ["systemproveniens", "overforingsspor", "samarbeid"],
+      "learning_focus": [
+        "systemproveniens",
+        "overforingsspor",
+        "samarbeid"
+      ],
       "mails": [
         {
           "id": "historie_arkiv_people_systemkontekst_001",
@@ -49,20 +53,126 @@
               "label": "Hent koblingsrapporten, registrer den som overføringsspor og behold eksportstrukturen som eksport – ikke som original orden",
               "reply": "Vi dokumenterer både hva systemet hadde og hva uttrekket gjorde. Da kan senere brukere skille kildens opprinnelige relasjoner fra arkivets tekniske mottaksprosess.",
               "effect": 1,
-              "tags": ["system_provenance", "transfer_trace", "relationship_preservation"],
+              "tags": [
+                "system_provenance",
+                "transfer_trace",
+                "relationship_preservation"
+              ],
               "feedback": "Du gjør en teknisk eksporthendelse til et kontrollert spor i stedet for å la den usynlig omskrive arkivets struktur.",
-              "effects": {"stats": {"quality": 3, "trust": 2, "risk": -3, "energy": -1}}
+              "effects": {
+                "stats": {
+                  "quality": 3,
+                  "trust": 2,
+                  "risk": -3,
+                  "energy": -1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "historie_arkiv_leveranse_001_systemkontekst",
+                    "work_object_id": "historie_arkiv_sak_leveranse_001",
+                    "to_status": "in_progress",
+                    "to_phase": "systemkontekst_dokumentert",
+                    "note": "Koblingsrapporten bevarer relasjonen mellom opprinnelige poster og eksportfiler som eget overføringsspor."
+                  },
+                  {
+                    "op": "remove_flag",
+                    "event_id": "historie_arkiv_leveranse_001_proveniens_avklart",
+                    "work_object_id": "historie_arkiv_sak_leveranse_001",
+                    "flag": "proveniens_uavklart"
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "historie_arkiv_leveranse_001_systemspor_flagg",
+                    "work_object_id": "historie_arkiv_sak_leveranse_001",
+                    "flag": "systemspor_sikret"
+                  }
+                ]
+              }
             },
             {
               "id": "B",
               "label": "Bruk eksportmappene som den nye serien – de er mer forståelige og alle filene er med",
               "reply": "Det viktige er at materialet kan finnes. Vi trenger ikke komplisere katalogen med interne nøkler som brukerne uansett ikke kjenner.",
               "effect": -1,
-              "tags": ["export_as_original", "context_loss", "convenience_rewrite"],
+              "tags": [
+                "export_as_original",
+                "context_loss",
+                "convenience_rewrite"
+              ],
               "feedback": "Du gjør brukergrensesnittets eksportstruktur til historisk orden og mister dokumentert sammenheng mellom materiale og skaperprosess.",
-              "effects": {"stats": {"quality": -3, "trust": -2, "risk": 4, "energy": 1}}
+              "effects": {
+                "stats": {
+                  "quality": -3,
+                  "trust": -2,
+                  "risk": 4,
+                  "energy": 1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "historie_arkiv_leveranse_001_eksport_som_original",
+                    "work_object_id": "historie_arkiv_sak_leveranse_001",
+                    "to_status": "at_risk",
+                    "to_phase": "eksportstruktur_som_original",
+                    "note": "Eksportlayouten er likestilt med original orden uten dokumentert systemkobling."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "historie_arkiv_leveranse_001_konteksttap",
+                    "work_object_id": "historie_arkiv_sak_leveranse_001",
+                    "flag": "konteksttap_risiko"
+                  }
+                ]
+              }
             }
-          ]
+          ],
+          "work_context": {
+            "object_ids": [
+              "historie_arkiv_sak_leveranse_001"
+            ],
+            "institution_id": "historie_arkivinstitusjon_001",
+            "deadline_ref": "mottaksfrist"
+          },
+          "effects": {
+            "work_object_ops": [
+              {
+                "op": "create",
+                "event_id": "historie_arkiv_leveranse_001_opprettet",
+                "work_object": {
+                  "work_object_id": "historie_arkiv_sak_leveranse_001",
+                  "kind": "arkivleveranse",
+                  "role_scope": "historie_arkiv_og_dokumentasjon",
+                  "institution_id": "historie_arkivinstitusjon_001",
+                  "title": "Blandet arkivleveranse med uklart systemspor",
+                  "status": "open",
+                  "phase": "mottak",
+                  "people_refs": [
+                    "sara_arkivleder_historie",
+                    "yusuf_dokumentforvalter_historie"
+                  ],
+                  "place_refs": [
+                    "mottak_arkiv_historie",
+                    "ordningsrom_arkiv_historie"
+                  ],
+                  "knowledge_refs": [
+                    "proveniens_og_opprinnelig_orden",
+                    "minimumsmetadata_og_sporbarhet"
+                  ],
+                  "open_questions": [
+                    "Hva var avsenders opprinnelige mappestruktur?",
+                    "Hvordan kobles eksportnavn tilbake til systemnøkler?"
+                  ],
+                  "deadline": "mottaksfrist",
+                  "confidentiality": "intern_arbeidsinformasjon",
+                  "flags": [
+                    "proveniens_uavklart"
+                  ],
+                  "shared": true
+                }
+              }
+            ]
+          }
         }
       ]
     }

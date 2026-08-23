@@ -8,7 +8,12 @@
     {
       "id": "historie_arkiv_innsyn_og_minimering",
       "purpose": "Skille faglig gjenfinning fra formell tilgangsavgjørelse når relevant materiale også inneholder tredjepartsopplysninger.",
-      "learning_focus": ["innsyn", "personvern", "dataminimering", "rollegrense"],
+      "learning_focus": [
+        "innsyn",
+        "personvern",
+        "dataminimering",
+        "rollegrense"
+      ],
       "mails": [
         {
           "id": "historie_arkiv_conflict_innsyn_001",
@@ -49,20 +54,117 @@
               "label": "Skill hoveddokument og vedlegg, beskriv relevans og tilgangsrisiko, og send et minimert grunnlag til Eline for avgjørelse",
               "reply": "Jeg dokumenterer hvilke deler som svarer på forespørselen, hvilke vedlegg som inneholder unødvendige tredjepartsopplysninger, og hvorfor hvert materiale trenger eller ikke trenger særskilt vurdering.",
               "effect": 1,
-              "tags": ["access_triage", "data_minimization", "decision_owner"],
+              "tags": [
+                "access_triage",
+                "data_minimization",
+                "decision_owner"
+              ],
               "feedback": "Du gjør arkivfaglig gjenfinning nyttig for beslutningen uten å gjøre tilgangsmyndigheten til din egen.",
-              "effects": {"stats": {"quality": 3, "trust": 3, "risk": -4, "energy": -1}}
+              "effects": {
+                "stats": {
+                  "quality": 3,
+                  "trust": 3,
+                  "risk": -4,
+                  "energy": -1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "historie_arkiv_innsyn_001_minimert_grunnlag",
+                    "work_object_id": "historie_arkiv_sak_innsyn_001",
+                    "to_status": "awaiting_decision",
+                    "to_phase": "minimert_beslutningsgrunnlag",
+                    "note": "Relevans, tredjepartsrisiko og tilgangsstatus er skilt og sendt til autorisert beslutningseier."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "historie_arkiv_innsyn_001_minimering_flagg",
+                    "work_object_id": "historie_arkiv_sak_innsyn_001",
+                    "flag": "minimering_dokumentert"
+                  }
+                ]
+              }
             },
             {
               "id": "B",
               "label": "Send hele mappen – materialet er funnet i arkivet og bestilleren ba om saken",
               "reply": "Det blir mest transparent å gi alt vi har funnet. Bestilleren kan selv avgjøre hvilke vedlegg som er relevante.",
               "effect": -1,
-              "tags": ["overdisclosure", "access_boundary_breach", "privacy_risk"],
+              "tags": [
+                "overdisclosure",
+                "access_boundary_breach",
+                "privacy_risk"
+              ],
               "feedback": "Du forveksler gjenfinnbarhet med rett til full utlevering og flytter en tilgangsvurdering over på mottakeren.",
-              "effects": {"stats": {"quality": -3, "trust": -3, "risk": 5}}
+              "effects": {
+                "stats": {
+                  "quality": -3,
+                  "trust": -3,
+                  "risk": 5
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "historie_arkiv_innsyn_001_overutlevering",
+                    "work_object_id": "historie_arkiv_sak_innsyn_001",
+                    "to_status": "at_risk",
+                    "to_phase": "overutlevering_foreslatt",
+                    "note": "Hele mappen er foreslått utlevert uten nødvendig avgrensning av tredjepartsopplysninger."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "historie_arkiv_innsyn_001_personvernrisiko",
+                    "work_object_id": "historie_arkiv_sak_innsyn_001",
+                    "flag": "personvernrisiko"
+                  }
+                ]
+              }
             }
-          ]
+          ],
+          "work_context": {
+            "object_ids": [
+              "historie_arkiv_sak_innsyn_001"
+            ],
+            "institution_id": "historie_arkivinstitusjon_001",
+            "deadline_ref": "innsynsfrist"
+          },
+          "effects": {
+            "work_object_ops": [
+              {
+                "op": "create",
+                "event_id": "historie_arkiv_innsyn_001_opprettet",
+                "work_object": {
+                  "work_object_id": "historie_arkiv_sak_innsyn_001",
+                  "kind": "innsynssak",
+                  "role_scope": "historie_arkiv_og_dokumentasjon",
+                  "institution_id": "historie_arkivinstitusjon_001",
+                  "title": "Innsynssak med relevante dokumenter og tredjepartsopplysninger",
+                  "status": "open",
+                  "phase": "gjenfinning",
+                  "people_refs": [
+                    "eline_innsynskoordinator_historie"
+                  ],
+                  "place_refs": [
+                    "innsynsrom_arkiv_historie"
+                  ],
+                  "knowledge_refs": [
+                    "innsyn_vs_gjenfinning",
+                    "personvern_klausul_og_minimering"
+                  ],
+                  "open_questions": [
+                    "Hvilke vedlegg er nødvendige for forespørselen?",
+                    "Hvilke tilgangsbegrensninger må avgjøres av autorisert beslutningseier?"
+                  ],
+                  "deadline": "innsynsfrist",
+                  "confidentiality": "tredjepartsopplysninger",
+                  "flags": [
+                    "tilgangsavgjorelse_avventer"
+                  ],
+                  "shared": false
+                }
+              }
+            ]
+          }
         }
       ]
     }

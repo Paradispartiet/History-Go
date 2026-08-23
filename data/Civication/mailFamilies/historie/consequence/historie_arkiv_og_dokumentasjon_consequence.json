@@ -8,7 +8,12 @@
     {
       "id": "historie_arkiv_migreringskonsekvens",
       "purpose": "La dagens integritetsavvik komme tilbake etter teknisk analyse og teste om ulike bevisbilder behandles forskjellig i den endelige bevaringskjeden.",
-      "learning_focus": ["integritetsavvik", "migreringsverifikasjon", "originalbevaring", "endringsspor"],
+      "learning_focus": [
+        "integritetsavvik",
+        "migreringsverifikasjon",
+        "originalbevaring",
+        "endringsspor"
+      ],
       "mails": [
         {
           "id": "historie_arkiv_consequence_migrering_001",
@@ -49,20 +54,117 @@
               "label": "Fullfør migreringen for den verifiserte delen, bevar originalene, og la den siste filen stå med to kandidater og eksplisitt autentisitetsusikkerhet",
               "reply": "Vi dokumenterer hvorfor ett avvik er forklart, hvilke kontroller som besto, og hvorfor det andre ikke kan lukkes. Begge kandidatene bevares til ny evidens eventuelt gir grunnlag for en annen status.",
               "effect": 1,
-              "tags": ["evidence_asymmetry", "verified_migration", "authenticity_uncertainty"],
+              "tags": [
+                "evidence_asymmetry",
+                "verified_migration",
+                "authenticity_uncertainty"
+              ],
               "feedback": "Du lar bevaringsstatus følge evidensen fil for fil og unngår både unødvendig blokkering og falsk sikkerhet.",
-              "effects": {"stats": {"quality": 4, "trust": 3, "risk": -4, "energy": -2}}
+              "effects": {
+                "stats": {
+                  "quality": 4,
+                  "trust": 3,
+                  "risk": -4,
+                  "energy": -2
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "historie_arkiv_digital_001_delvis_avklart",
+                    "work_object_id": "historie_arkiv_sak_digital_bevaring_001",
+                    "to_status": "partially_resolved",
+                    "to_phase": "ett_autentisitetsavvik_ulost",
+                    "note": "Verifisert del er migrert kontrollert, mens to kandidater til den siste filen og autentisitetsusikkerheten bevares eksplisitt."
+                  },
+                  {
+                    "op": "remove_flag",
+                    "event_id": "historie_arkiv_digital_001_to_avvik_redusert",
+                    "work_object_id": "historie_arkiv_sak_digital_bevaring_001",
+                    "flag": "to_hashavvik"
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "historie_arkiv_digital_001_ett_ulost_flagg",
+                    "work_object_id": "historie_arkiv_sak_digital_bevaring_001",
+                    "flag": "ett_autentisitetsavvik_ulost"
+                  }
+                ]
+              }
             },
             {
               "id": "B",
               "label": "Velg den best dokumenterte kandidaten som original og lukk serien som ferdigmigrert",
               "reply": "Vi trenger én operativ status. Den kandidaten med best tidsstempelkjede er sannsynligvis riktig, og begge versjonene kan uansett arkiveres i backup.",
               "effect": -1,
-              "tags": ["false_authoritative_version", "uncertainty_erased", "closure_pressure"],
+              "tags": [
+                "false_authoritative_version",
+                "uncertainty_erased",
+                "closure_pressure"
+              ],
               "feedback": "Du gjør sannsynlighet til autoritativ identifikasjon uten tilstrekkelig grunnlag og skjuler nettopp det integritetsavviket bevaringssporet skulle synliggjøre.",
-              "effects": {"stats": {"quality": -4, "trust": -3, "risk": 5, "energy": 1}}
+              "effects": {
+                "stats": {
+                  "quality": -4,
+                  "trust": -3,
+                  "risk": 5,
+                  "energy": 1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "close",
+                    "event_id": "historie_arkiv_digital_001_prematur_lukking",
+                    "work_object_id": "historie_arkiv_sak_digital_bevaring_001",
+                    "outcome": "prematurt_lukket_med_uavklart_autentisitet"
+                  }
+                ]
+              }
             }
-          ]
+          ],
+          "work_context": {
+            "object_ids": [
+              "historie_arkiv_sak_digital_bevaring_001"
+            ],
+            "institution_id": "historie_arkivinstitusjon_001",
+            "deadline_ref": "etterkontroll"
+          },
+          "effects": {
+            "work_object_ops": [
+              {
+                "op": "create",
+                "event_id": "historie_arkiv_digital_001_opprettet",
+                "work_object": {
+                  "work_object_id": "historie_arkiv_sak_digital_bevaring_001",
+                  "kind": "digital_bevaringssak",
+                  "role_scope": "historie_arkiv_og_dokumentasjon",
+                  "institution_id": "historie_arkivinstitusjon_001",
+                  "title": "Digital serie med formatrisiko og to hashavvik",
+                  "status": "open",
+                  "phase": "integritetskontroll",
+                  "people_refs": [
+                    "noah_digital_bevaring_historie"
+                  ],
+                  "place_refs": [
+                    "digitalt_bevaringsverksted_historie"
+                  ],
+                  "knowledge_refs": [
+                    "digital_bevaring",
+                    "autentisitet_og_integritet",
+                    "endringslogg_og_reversibilitet"
+                  ],
+                  "open_questions": [
+                    "Hva forklarer hashavviket i fil 1?",
+                    "Hvilken av to kandidater for fil 2 kan autentiseres?"
+                  ],
+                  "deadline": "formatrisiko_arbeidsplan",
+                  "confidentiality": "intern_bevaringslogg",
+                  "flags": [
+                    "to_hashavvik"
+                  ],
+                  "shared": false
+                }
+              }
+            ]
+          }
         }
       ]
     }

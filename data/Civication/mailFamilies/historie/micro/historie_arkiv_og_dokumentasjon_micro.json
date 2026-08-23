@@ -8,7 +8,11 @@
     {
       "id": "historie_arkiv_minimumsmetadata_under_press",
       "purpose": "Teste hvilke metadata som ikke kan ofres selv når registreringsvolum og kø presser arbeidet.",
-      "learning_focus": ["minimumsmetadata", "sporbarhet", "usikkerhetsmarkering"],
+      "learning_focus": [
+        "minimumsmetadata",
+        "sporbarhet",
+        "usikkerhetsmarkering"
+      ],
       "mails": [
         {
           "id": "historie_arkiv_micro_minimumsmetadata_001",
@@ -49,20 +53,120 @@
               "label": "Sett et eksplisitt minimum for identitet, opphav, relasjon, tidsrom, tilgangsstatus og avvik; utsett finbeskrivelsen",
               "reply": "Vi åpner bare poster som kan spores tilbake til mottaket og riktig kontekst. Ukjente felt merkes som uavklart i stedet for å fylles med gjetning.",
               "effect": 1,
-              "tags": ["minimum_metadata", "traceability", "known_unknowns"],
+              "tags": [
+                "minimum_metadata",
+                "traceability",
+                "known_unknowns"
+              ],
               "feedback": "Du reduserer detaljnivået uten å redusere materialets identitet og kontrollspor.",
-              "effects": {"stats": {"quality": 3, "trust": 2, "risk": -3, "energy": 1}}
+              "effects": {
+                "stats": {
+                  "quality": 3,
+                  "trust": 2,
+                  "risk": -3,
+                  "energy": 1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "historie_arkiv_leveranse_001_operativt_minimum",
+                    "work_object_id": "historie_arkiv_sak_leveranse_001",
+                    "to_status": "in_progress",
+                    "to_phase": "minimumsmetadata_operativt",
+                    "note": "Materialet kan åpnes for søk med identitet, opphav, relasjon, tidsrom, tilgangsstatus og usikkerhet bevart."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "historie_arkiv_leveranse_001_minimum_operativt_flagg",
+                    "work_object_id": "historie_arkiv_sak_leveranse_001",
+                    "flag": "minimumsmetadata_operativt"
+                  }
+                ]
+              }
             },
             {
               "id": "B",
               "label": "Publiser filnavn, enkel tittel og dato nå; resten kan berikes når køen er nede",
               "reply": "Brukerne får tilgang raskere, og vi kan fylle inn proveniens, relasjoner og tilgangsdetaljer i en senere rydderunde.",
               "effect": -1,
-              "tags": ["thin_metadata", "context_debt", "access_risk"],
+              "tags": [
+                "thin_metadata",
+                "context_debt",
+                "access_risk"
+              ],
               "feedback": "Du gjør restarbeidet vanskeligere fordi postene åpnes uten de feltene som forteller hva de er, hvor de hører hjemme og hvilke tilgangsgrenser som gjelder.",
-              "effects": {"stats": {"quality": -3, "trust": -2, "risk": 4, "energy": 2}}
+              "effects": {
+                "stats": {
+                  "quality": -3,
+                  "trust": -2,
+                  "risk": 4,
+                  "energy": 2
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "historie_arkiv_leveranse_001_tynn_metadata",
+                    "work_object_id": "historie_arkiv_sak_leveranse_001",
+                    "to_status": "at_risk",
+                    "to_phase": "tynn_metadata_publisert",
+                    "note": "Postene er åpnet med filnavn og enkel tittel før proveniens- og tilgangsminimum er sikret."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "historie_arkiv_leveranse_001_kontekstgjeld",
+                    "work_object_id": "historie_arkiv_sak_leveranse_001",
+                    "flag": "kontekstgjeld"
+                  }
+                ]
+              }
             }
-          ]
+          ],
+          "work_context": {
+            "object_ids": [
+              "historie_arkiv_sak_leveranse_001"
+            ],
+            "institution_id": "historie_arkivinstitusjon_001",
+            "deadline_ref": "mottaksfrist"
+          },
+          "effects": {
+            "work_object_ops": [
+              {
+                "op": "create",
+                "event_id": "historie_arkiv_leveranse_001_opprettet",
+                "work_object": {
+                  "work_object_id": "historie_arkiv_sak_leveranse_001",
+                  "kind": "arkivleveranse",
+                  "role_scope": "historie_arkiv_og_dokumentasjon",
+                  "institution_id": "historie_arkivinstitusjon_001",
+                  "title": "Blandet arkivleveranse med uklart systemspor",
+                  "status": "open",
+                  "phase": "mottak",
+                  "people_refs": [
+                    "sara_arkivleder_historie",
+                    "yusuf_dokumentforvalter_historie"
+                  ],
+                  "place_refs": [
+                    "mottak_arkiv_historie",
+                    "ordningsrom_arkiv_historie"
+                  ],
+                  "knowledge_refs": [
+                    "proveniens_og_opprinnelig_orden",
+                    "minimumsmetadata_og_sporbarhet"
+                  ],
+                  "open_questions": [
+                    "Hva var avsenders opprinnelige mappestruktur?",
+                    "Hvordan kobles eksportnavn tilbake til systemnøkler?"
+                  ],
+                  "deadline": "mottaksfrist",
+                  "confidentiality": "intern_arbeidsinformasjon",
+                  "flags": [
+                    "proveniens_uavklart"
+                  ],
+                  "shared": true
+                }
+              }
+            ]
+          }
         }
       ]
     }

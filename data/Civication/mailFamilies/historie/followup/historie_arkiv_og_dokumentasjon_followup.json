@@ -8,7 +8,12 @@
     {
       "id": "historie_arkiv_innsynsoppfolging",
       "purpose": "La den tidligere tilgangsvurderingen komme tilbake som konkret utleveringspakke og teste om beslutning, uttrekk og logg faktisk stemmer overens.",
-      "learning_focus": ["innsynsspor", "minimering", "utleveringskontroll", "beslutningsgrense"],
+      "learning_focus": [
+        "innsynsspor",
+        "minimering",
+        "utleveringskontroll",
+        "beslutningsgrense"
+      ],
       "mails": [
         {
           "id": "historie_arkiv_followup_innsyn_001",
@@ -49,20 +54,108 @@
               "label": "Bygg pakken fra godkjent uttrekksliste, kontrolltell filene og logg nøyaktig hva som sendes og hvilken beslutning det bygger på",
               "reply": "Jeg lager en separat utleveringskopi, verifiserer innholdet mot Elines avgjørelse og registrerer koblingen mellom original, godkjent uttrekk og faktisk sendt pakke.",
               "effect": 1,
-              "tags": ["release_package", "decision_trace", "disclosure_control"],
+              "tags": [
+                "release_package",
+                "decision_trace",
+                "disclosure_control"
+              ],
               "feedback": "Du lar den praktiske utleveringen bevare samme avgrensning og sporbarhet som den formelle beslutningen.",
-              "effects": {"stats": {"quality": 3, "trust": 3, "risk": -4, "energy": -1}}
+              "effects": {
+                "stats": {
+                  "quality": 3,
+                  "trust": 3,
+                  "risk": -4,
+                  "energy": -1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "remove_flag",
+                    "event_id": "historie_arkiv_innsyn_001_avgjorelse_mottatt",
+                    "work_object_id": "historie_arkiv_sak_innsyn_001",
+                    "flag": "tilgangsavgjorelse_avventer"
+                  },
+                  {
+                    "op": "close",
+                    "event_id": "historie_arkiv_innsyn_001_korrekt_lukket",
+                    "work_object_id": "historie_arkiv_sak_innsyn_001",
+                    "outcome": "utleveringspakke_verifisert_mot_autorisert_beslutning"
+                  }
+                ]
+              }
             },
             {
               "id": "B",
               "label": "Send arbeidsmappen dere brukte i vurderingen og fjern bare de åpenbart irrelevante filene",
               "reply": "Vi har allerede gått gjennom materialet. En ny eksportkontroll vil bare forsinke bestilleren.",
               "effect": -1,
-              "tags": ["release_mismatch", "working_folder_leak", "audit_gap"],
+              "tags": [
+                "release_mismatch",
+                "working_folder_leak",
+                "audit_gap"
+              ],
               "feedback": "Du lar en arbeidsmappe erstatte den autoriserte uttrekkslisten og skaper risiko for at vedlegg beslutningen avgrenset likevel følger med.",
-              "effects": {"stats": {"quality": -3, "trust": -3, "risk": 5, "energy": 1}}
+              "effects": {
+                "stats": {
+                  "quality": -3,
+                  "trust": -3,
+                  "risk": 5,
+                  "energy": 1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "close",
+                    "event_id": "historie_arkiv_innsyn_001_lukket_med_sporbarhetsgap",
+                    "work_object_id": "historie_arkiv_sak_innsyn_001",
+                    "outcome": "arbeidsmappe_sendt_med_sporbarhets_og_overeksponeringsrisiko"
+                  }
+                ]
+              }
             }
-          ]
+          ],
+          "work_context": {
+            "object_ids": [
+              "historie_arkiv_sak_innsyn_001"
+            ],
+            "institution_id": "historie_arkivinstitusjon_001",
+            "deadline_ref": "utleveringsfrist"
+          },
+          "effects": {
+            "work_object_ops": [
+              {
+                "op": "create",
+                "event_id": "historie_arkiv_innsyn_001_opprettet",
+                "work_object": {
+                  "work_object_id": "historie_arkiv_sak_innsyn_001",
+                  "kind": "innsynssak",
+                  "role_scope": "historie_arkiv_og_dokumentasjon",
+                  "institution_id": "historie_arkivinstitusjon_001",
+                  "title": "Innsynssak med relevante dokumenter og tredjepartsopplysninger",
+                  "status": "open",
+                  "phase": "gjenfinning",
+                  "people_refs": [
+                    "eline_innsynskoordinator_historie"
+                  ],
+                  "place_refs": [
+                    "innsynsrom_arkiv_historie"
+                  ],
+                  "knowledge_refs": [
+                    "innsyn_vs_gjenfinning",
+                    "personvern_klausul_og_minimering"
+                  ],
+                  "open_questions": [
+                    "Hvilke vedlegg er nødvendige for forespørselen?",
+                    "Hvilke tilgangsbegrensninger må avgjøres av autorisert beslutningseier?"
+                  ],
+                  "deadline": "innsynsfrist",
+                  "confidentiality": "tredjepartsopplysninger",
+                  "flags": [
+                    "tilgangsavgjorelse_avventer"
+                  ],
+                  "shared": false
+                }
+              }
+            ]
+          }
         }
       ]
     }

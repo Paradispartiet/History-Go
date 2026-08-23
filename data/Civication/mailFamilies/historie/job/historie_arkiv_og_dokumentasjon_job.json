@@ -8,7 +8,11 @@
     {
       "id": "historie_arkiv_mottak_og_proveniens",
       "purpose": "Starte arbeidsdagen med en reell arkivfaglig leveransekontroll der proveniens og minimumsmetadata må sikres før volumproduksjon.",
-      "learning_focus": ["proveniens", "dokumentasjonsfangst", "minimumsmetadata"],
+      "learning_focus": [
+        "proveniens",
+        "dokumentasjonsfangst",
+        "minimumsmetadata"
+      ],
       "mails": [
         {
           "id": "historie_arkiv_job_mottak_001",
@@ -49,20 +53,120 @@
               "label": "Lås leveranseidentitet, opphav, relasjoner og avvik først; finbeskriv resten etter at mappestrukturen er avklart",
               "reply": "Jeg registrerer hva vi faktisk vet om avsender, overføring, serie og fil-/boksidentitet, markerer de uklare kodene og holder eksportnavn adskilt fra antatt originalstruktur.",
               "effect": 1,
-              "tags": ["provenance", "minimum_metadata", "uncertainty_trace"],
+              "tags": [
+                "provenance",
+                "minimum_metadata",
+                "uncertainty_trace"
+              ],
               "feedback": "Du gjør leveransen langsommere i starten, men bevarer det som senere gjør dokumentene forståelige og etterprøvbare.",
-              "effects": {"stats": {"quality": 3, "trust": 2, "risk": -3, "energy": -1}}
+              "effects": {
+                "stats": {
+                  "quality": 3,
+                  "trust": 2,
+                  "risk": -3,
+                  "energy": -1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "historie_arkiv_leveranse_001_minimumsspor",
+                    "work_object_id": "historie_arkiv_sak_leveranse_001",
+                    "to_status": "in_progress",
+                    "to_phase": "minimumsspor_sikret",
+                    "note": "Leveranseidentitet, opphav, relasjoner og kjente avvik er registrert uten å gjette på ukjent struktur."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "historie_arkiv_leveranse_001_sporbar_flagg",
+                    "work_object_id": "historie_arkiv_sak_leveranse_001",
+                    "flag": "minimumsspor_sikret"
+                  }
+                ]
+              }
             },
             {
               "id": "B",
               "label": "Registrer etter dagens mappehierarki og fyll inn de mest sannsynlige seriene for å få leveransen ferdig",
               "reply": "Vi kan korrigere katalogen senere hvis avsenderen kommer med mer informasjon. Nå er det viktigst å få alt søkbart.",
               "effect": -1,
-              "tags": ["provenance_guess", "metadata_debt", "false_certainty"],
+              "tags": [
+                "provenance_guess",
+                "metadata_debt",
+                "false_certainty"
+              ],
               "feedback": "Du gjør en ukjent struktur til tilsynelatende sikker metadata og risikerer at senere korreksjon ikke kan skille opprinnelig orden fra arkivets egen gjetning.",
-              "effects": {"stats": {"quality": -3, "trust": -2, "risk": 4, "energy": 1}}
+              "effects": {
+                "stats": {
+                  "quality": -3,
+                  "trust": -2,
+                  "risk": 4,
+                  "energy": 1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "historie_arkiv_leveranse_001_antatt_struktur",
+                    "work_object_id": "historie_arkiv_sak_leveranse_001",
+                    "to_status": "at_risk",
+                    "to_phase": "antatt_struktur",
+                    "note": "Eksportens mappehierarki er brukt som om det var dokumentert original orden."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "historie_arkiv_leveranse_001_metadata_gjeld",
+                    "work_object_id": "historie_arkiv_sak_leveranse_001",
+                    "flag": "metadata_gjeld"
+                  }
+                ]
+              }
             }
-          ]
+          ],
+          "work_context": {
+            "object_ids": [
+              "historie_arkiv_sak_leveranse_001"
+            ],
+            "institution_id": "historie_arkivinstitusjon_001",
+            "deadline_ref": "mottaksfrist"
+          },
+          "effects": {
+            "work_object_ops": [
+              {
+                "op": "create",
+                "event_id": "historie_arkiv_leveranse_001_opprettet",
+                "work_object": {
+                  "work_object_id": "historie_arkiv_sak_leveranse_001",
+                  "kind": "arkivleveranse",
+                  "role_scope": "historie_arkiv_og_dokumentasjon",
+                  "institution_id": "historie_arkivinstitusjon_001",
+                  "title": "Blandet arkivleveranse med uklart systemspor",
+                  "status": "open",
+                  "phase": "mottak",
+                  "people_refs": [
+                    "sara_arkivleder_historie",
+                    "yusuf_dokumentforvalter_historie"
+                  ],
+                  "place_refs": [
+                    "mottak_arkiv_historie",
+                    "ordningsrom_arkiv_historie"
+                  ],
+                  "knowledge_refs": [
+                    "proveniens_og_opprinnelig_orden",
+                    "minimumsmetadata_og_sporbarhet"
+                  ],
+                  "open_questions": [
+                    "Hva var avsenders opprinnelige mappestruktur?",
+                    "Hvordan kobles eksportnavn tilbake til systemnøkler?"
+                  ],
+                  "deadline": "mottaksfrist",
+                  "confidentiality": "intern_arbeidsinformasjon",
+                  "flags": [
+                    "proveniens_uavklart"
+                  ],
+                  "shared": true
+                }
+              }
+            ]
+          }
         }
       ]
     }
