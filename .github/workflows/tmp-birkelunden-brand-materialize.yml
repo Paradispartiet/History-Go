@@ -7,20 +7,28 @@ on:
     paths:
       - '.github/workflows/tmp-birkelunden-brand-materialize.yml'
       - 'scripts/tmp-materialize-birkelunden-brand.mjs'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/tmp-birkelunden-brand-materialize.yml'
+      - 'scripts/tmp-materialize-birkelunden-brand.mjs'
 
 permissions:
   contents: write
 
 jobs:
   materialize:
-    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
+    if: ${{ (github.event_name != 'pull_request' || github.head_ref == 'agent/content-factory-pilot-02-birkelunden-canonical-completion') && (github.event_name != 'push' || !contains(github.event.head_commit.message, '[skip ci]')) }}
     runs-on: ubuntu-latest
+    env:
+      TARGET_BRANCH: ${{ github.head_ref || github.ref_name }}
     steps:
       - name: Check out branch
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          ref: ${{ github.ref_name }}
+          ref: ${{ env.TARGET_BRANCH }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -77,4 +85,4 @@ jobs:
             exit 0
           fi
           git commit -m 'Materialize Birkelunden Bondens marked brand [skip ci]'
-          git push origin HEAD:${GITHUB_REF_NAME}
+          git push origin HEAD:${TARGET_BRANCH}
