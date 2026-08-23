@@ -1,0 +1,57 @@
+name: TEMP Christiania Torv phase 7 bootstrap
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  bootstrap:
+    if: github.head_ref == 'agent/christiania-torv-phase7-quiz-v1'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/christiania-torv-phase7-quiz-v1
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --silent
+      - name: Execute phase-7 materializer blocks
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+          import subprocess
+
+          source = Path('.github/workflows/temp-christiania-torv-quiz-writeback-v2.yml').read_text().splitlines()
+          blocks = []
+          i = 0
+          while i < len(source):
+              line = source[i]
+              if line.strip() == 'run: |':
+                  indent = len(line) - len(line.lstrip())
+                  i += 1
+                  block = []
+                  while i < len(source):
+                      current = source[i]
+                      if current.strip() and len(current) - len(current.lstrip()) <= indent:
+                          break
+                      block.append(current[indent + 2:] if len(current) >= indent + 2 else '')
+                      i += 1
+                  blocks.append('\n'.join(block).rstrip() + '\n')
+                  continue
+              i += 1
+
+          if not blocks:
+              raise SystemExit('No block-style run sections found in phase-7 materializer')
+
+          for index, block in enumerate(blocks, 1):
+              print(f'Executing materializer block {index}/{len(blocks)}')
+              subprocess.run(['bash', '-euo', 'pipefail', '-c', block], check=True)
+          PY
