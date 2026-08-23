@@ -7,12 +7,16 @@ on:
     paths:
       - scripts/TEMP_patch_civication_choice_affordance.py
       - .github/workflows/TEMP-civication-choice-affordance-writeback.yml
+  pull_request:
+    branches:
+      - main
 
 permissions:
   contents: write
 
 jobs:
   patch:
+    if: github.head_ref == '' || github.head_ref == 'agent/civication-knowledge-choice-affordance'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,7 +24,12 @@ jobs:
           ref: agent/civication-knowledge-choice-affordance
           fetch-depth: 0
       - name: Apply bounded knowledge affordance patch
-        run: python scripts/TEMP_patch_civication_choice_affordance.py
+        run: |
+          if grep -q '"choiceAffordance"' data/Civication/sceneContractV1.schema.json; then
+            echo "Choice affordance patch already materialized"
+          else
+            python scripts/TEMP_patch_civication_choice_affordance.py
+          fi
       - name: Materialize scene registry
         run: node scripts/build-civication-scene-registry.mjs --write
       - name: Verify foundation and Arkiv vertical slice
@@ -37,11 +46,15 @@ jobs:
           node tests/civication-institution-authority-foundation.test.js
           node tests/civication-historie-arkiv-work-object-continuity.test.js
           node tests/civication-historie-arkiv-dokumentasjon-playability.test.js
-      - name: Commit writeback
+      - name: Commit writeback when needed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/Civication/sceneContractV1.schema.json data/Civication/compiledSceneRegistryV1.json data/Civication/mailFamilies/historie/consequence/historie_arkiv_og_dokumentasjon_consequence.json js/Civication/core/civicationEventEngine.js js/Civication/civicationShellLoader.js scripts/build-civication-scene-registry.mjs
           git diff --cached --check
-          git commit -m "Connect History Go learning to professional choices"
-          git push origin HEAD:agent/civication-knowledge-choice-affordance
+          if git diff --cached --quiet; then
+            echo "No writeback changes"
+          else
+            git commit -m "Connect History Go learning to professional choices"
+            git push origin HEAD:agent/civication-knowledge-choice-affordance
+          fi
