@@ -1,0 +1,101 @@
+{
+  "place_id": "damstredet_telthusbakken",
+  "status": "PRODUCTION_READY",
+  "reviewed_at": "2026-08-23",
+  "blockers": [],
+  "counts": {
+    "chronology": 12,
+    "stories": 3,
+    "reading_trails": 3,
+    "language_entries": 4,
+    "people": 5,
+    "objects": 3,
+    "related_places": 4,
+    "quiz_sets": 7,
+    "quiz_questions": 44
+  },
+  "checklist": [
+    {
+      "id": "place foundation",
+      "status": "PASS"
+    },
+    {
+      "id": "popup",
+      "status": "PASS"
+    },
+    {
+      "id": "stories",
+      "status": "PASS"
+    },
+    {
+      "id": "chronology",
+      "status": "PASS"
+    },
+    {
+      "id": "people",
+      "status": "PASS"
+    },
+    {
+      "id": "objects",
+      "status": "PASS"
+    },
+    {
+      "id": "language",
+      "status": "PASS"
+    },
+    {
+      "id": "nature",
+      "status": "PASS"
+    },
+    {
+      "id": "reading trails",
+      "status": "PASS"
+    },
+    {
+      "id": "quiz",
+      "status": "PASS"
+    },
+    {
+      "id": "route linkage",
+      "status": "PASS"
+    },
+    {
+      "id": "sources",
+      "status": "PASS"
+    },
+    {
+      "id": "onsite guidance",
+      "status": "PASS"
+    }
+  ],
+  "quality_score": {
+    "dimensions": {
+      "correctness_evidence": 4,
+      "coverage_completion": 5,
+      "editorial_quality": 5,
+      "technical_integrity": 5,
+      "safety_responsibility": 5,
+      "maintainability_auditability": 5
+    },
+    "total": 29,
+    "critical_findings": 0
+  },
+  "evidence": {
+    "sources": [
+      "https://oslobyleksikon.no/side/Damstredet",
+      "https://oslobyleksikon.no/side/Telthusbakken",
+      "https://oslobyleksikon.no/side/Bergfjerdingen",
+      "https://oslobyleksikon.no/side/Billedhuggerl%C3%B8kken",
+      "https://oslobyleksikon.no/side/Sigrun_Bergs_plass"
+    ],
+    "tests": [
+      "node --test tests/damstredet-telthusbakken-completion.test.mjs",
+      "npm run places:index:build",
+      "npm run places:index:check"
+    ]
+  },
+  "limitations": [
+    "Automatiske tester beviser struktur og integrasjon, ikke dagens fysiske tilstand i private hus.",
+    "Eksakt tilgjengelighet kan påvirkes av føre, vedlikehold og midlertidige arbeider."
+  ]
+}
