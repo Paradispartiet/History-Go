@@ -2,8 +2,7 @@
 
 - Dato: 2026-08-23
 - Place ID: `birkelunden`
-- Canonical eier: manifest-lastede Lesespor-filer
-- Ny datafil: `data/lesespor/oslo/birkelunden/lesespor_oslo_by.json`
+- Canonical eier: `data/lesespor/oslo/lesespor_oslo_by.json`
 - Runtime: `js/ui/place-popup-tabs.js`
 - Status: **KLAR FOR REVIEW / CI**
 
@@ -13,11 +12,13 @@ Nullmålingen og fase-7-auditen fant ingen manifest-lastet Birkelunden-oppførin
 
 Målet er et lite, åpent og direkte lesbart fordypningsspor om selve Birkelunden. Sporene skal tilføre forskjellige perspektiver og ikke bare gjenta Kilder-fanen som en uannotert lenkeliste.
 
-## Repo-søk
+## Repo-søk og canonical eier
 
 `data/lesespor/manifest.json` og de aktive Oslo-filene ble kontrollert for `birkelunden`, `Birkelunden` og `Bjerkelunden`. Ingen eksisterende manifest-lastet Lesespor-post eide Birkelunden før denne fasen.
 
-Det opprettes derfor en egen, manifest-lastet `history_go_lesespor_v1`-fil under en Birkelunden-undermappe. Basenavnet beholdes som `lesespor_oslo_by.json` fordi Lesespor-validatoren krever at filnavnets kategori samsvarer med `category: "by"`. Dette unngår å omskrive den store generelle By-filen bare for å materialisere tre stedsspesifikke poster; runtime leser manifestet og bruker `place_ids` som canonical kobling.
+Første implementasjonsforsøk brukte en separat Birkelunden-fil. Lesespor-validatoren avviste dette korrekt: aktive filer må følge `<scope>/lesespor_<scope>_<category>.json`, og dokumentets `city` og `category` må samsvare med henholdsvis scope og filnavn. Et eget Birkelunden-scope ville derfor feilrepresentert Oslo som by.
+
+Løsningen følger Torggata-precedens og den eksisterende kontrakten: de tre Birkelunden-postene legges i den canonical Oslo By-filen `data/lesespor/oslo/lesespor_oslo_by.json`. `place_ids: ["birkelunden"]` er den stedsspesifikke koblingen. Manifestet forblir uendret og det opprettes ingen parallell sannhetskilde.
 
 ## Eksternt søk og utvalg
 
@@ -38,6 +39,7 @@ Det opprettes derfor en egen, manifest-lastet `history_go_lesespor_v1`-fil under
 - Type: leksikonartikkel
 - Tilgang: `open`
 - Rettighetshåndtering: `link_only`
+- `source_quality`: `recognized`
 - Direkte URL: `https://oslobyleksikon.no/side/Birkelunden`
 - Kontrollert: 2026-08-23
 
@@ -50,6 +52,7 @@ Sporet gir en sammenhengende parkhistorie: anleggelsen i 1860-årene, overdragel
 - Type: fagartikkel
 - Tilgang: `open`
 - Rettighetshåndtering: `link_only`
+- `source_quality`: `recognized`
 - Direkte URL: `https://www.riksantikvaren.no/kulturhistorie/birkelunden-murbyens-hjerte/`
 - Kontrollert: 2026-08-23
 
@@ -61,6 +64,7 @@ Sporet forklarer parken som offentlig rom i Grünerløkkas kvartalsstruktur og g
 - Type: organisasjonshistorie
 - Tilgang: `open`
 - Rettighetshåndtering: `link_only`
+- `source_quality`: `recognized`
 - Direkte URL: `https://www.pensjonistforbundet.no/om-oss/var-historie`
 - Kontrollert: 2026-08-23
 
@@ -69,7 +73,7 @@ Sporet gir et sosialhistorisk perspektiv på Birkelunden som faktisk møteplass:
 ## Identitet, balanse og rettigheter
 
 - Alle tre oppføringer har eksakt `place_ids: ["birkelunden"]`.
-- Alle tre bruker validatorens tillatte `source_quality: "recognized"`; institusjonell rolle dokumenteres i `publication`/audit i stedet for å innføre nye enum-verdier.
+- Validatorens tillatte `source_quality: "recognized"` brukes for alle tre; institusjonell rolle dokumenteres i `publication` og denne auditen, ikke gjennom nye enum-verdier.
 - Ingen oppføring bruker Paulus kirke, Paulus' plass, Grünerløkka skole, Olaf Ryes plass eller andre nabosteder som stedfortreder.
 - Oslo byleksikon gir parkhistorie, Riksantikvaren gir by-/verneperspektiv, og Pensjonistforbundet gir sosial organisasjonshistorie.
 - Tre spor er proporsjonalt: nok til en reell fordypningsfane, men ikke en generell lenkekatalog.
@@ -83,12 +87,23 @@ Eksisterende `renderLesespor()`:
 1. krever at `place_ids` inneholder aktiv place-ID;
 2. filtrerer ut betalingsmur-/abonnementsmarkører;
 3. viser tittel, forfatter/publikasjon, type, relevans og ekstern lenke;
-4. kan lese flere filer fra `data/lesespor/manifest.json` uten et nytt parallelt runtime-system.
+4. leser den allerede manifestregistrerte Oslo By-filen uten nytt runtime-system.
 
 Automatiske tester kan låse data, manifest, tilgang, URL-er og runtimefilter, men beviser ikke alene at ferdig Lesespor-fane er visuelt eller redaksjonelt god. Full popup-QA inngår i sluttporten.
 
+## Permanent regresjonslås
+
+`tests/birkelunden-phase7f-reading-trail.test.mjs` filtrerer den canonical Oslo By-filen på `place_ids` og krever:
+
+1. nøyaktig tre Birkelunden-spor;
+2. eksakte IDs og direkte HTTPS-URL-er;
+3. `access: open`, `rights: link_only`, `source_quality: recognized` og `verifiedAt: 2026-08-23`;
+4. kun canonical `oslo/lesespor_oslo_by.json` i manifestet – ingen Birkelunden-sidefil;
+5. eksisterende place-ID- og betalingsmurfilter i runtime;
+6. uendrede Birkelunden description-hasher og `area_m2=16300`.
+
 ## Beslutning
 
-**Lesespor-blokkeren er løst av fase 7F** når datafil, manifest, audit, workcard og regresjonstest er merget med grønn CI.
+**Lesespor-blokkeren er løst av fase 7F** når den canonical Oslo By-filen, audit, workcard og regresjonstest er merget med grønn CI.
 
 Neste canonical delsteg: **7G – Kilder**. Birkelunden har sikre source-labels og et godt source/claim-grunnlag; neste jobb er å gjøre den brukerrettede kildeflaten inspectable med dedupliserte HTTPS-lenker uten å blande inn tekniske IDs eller irrelevante kontrollkilder.
