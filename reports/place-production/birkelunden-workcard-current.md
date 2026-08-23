@@ -3,13 +3,15 @@
 - Oppdatert: 2026-08-23
 - Place ID: `birkelunden`
 - Canonical source: `data/places/by/oslo/places/birkelunden.json`
-- Aktiv baseline `main`: fase-1 merge `2dbc70a4984e01487a2dd7289d2e93bcbb0d6217`
+- Aktiv baseline `main`: fase-2 merge `61bcf3e1dc0156582eb1e3bd9bfcee6d9ba05c06`
 - Fase 0 merge: PR #5236 / `d3945c43f10b1f5b4e1b758f915818342f95d240`
 - Fase 1 merge: PR #5239 / `2dbc70a4984e01487a2dd7289d2e93bcbb0d6217`
+- Fase 2 merge: PR #5241 / `61bcf3e1dc0156582eb1e3bd9bfcee6d9ba05c06`
 - Nullmåling: `reports/place-production/birkelunden-nullmaaling-v1.md`
 - Fase 1 audit: `reports/place-production/birkelunden-phase1-identity-source-boundary-v1.md`
 - Fase 2 shared pack: `reports/place-production/content-factory-pilot-02-grunerlokka-parks-source-pack-v1.json`
 - Fase 2 review: `reports/place-production/birkelunden-phase2-content-factory-source-pack-v1.md`
+- Fase 3 audit: `reports/place-production/birkelunden-phase3-coordinate-prior-work-gate-v1.md`
 - Styrende kontrakt: `docs/PLACE_PRODUCTION_CHECKLIST.md`
 - Core: `docs/PLACE_PRODUCTION_CHECKLIST_CORE.md`
 - Prior-work gate: `docs/PLACE_PRODUCTION_PRIOR_WORK_GATE.md`
@@ -39,7 +41,7 @@ Canonical `birkelunden` representerer ikke automatisk:
 - Grünerløkka skole;
 - omkringliggende leiegårder eller hele Grünerløkka.
 
-Koordinatevidensen låser parkidentiteten til OSM way `3236549`. Fase 1 fant ingen grunn til å endre canonical metadata eller koordinater.
+Koordinatevidensen låser parkidentiteten til OSM way `3236549`.
 
 ## Fasestatus
 
@@ -47,8 +49,8 @@ Koordinatevidensen låser parkidentiteten til OSM way `3236549`. Fase 1 fant ing
 | --- | --- | --- |
 | 0. Nullmåling | **FERDIG OG MERGET** | PR #5236 / `d3945c43…`; kun rapport + workcard |
 | 1. Canonical identity/source | **FERDIG OG MERGET** | PR #5239 / `2dbc70a4…`; park vs. kulturmiljø/Paulus' plass kildeavgrenset |
-| 2. Content Factory source/claim pack | **KLAR FOR REVIEW** | 14 source/proveniensposter, 26 scopede claims, konflikter/held-backs/gaps; ingen canonical innholdsendring |
-| 3. Koordinater/geometri | **EKSISTERER – forventet ALLEREDE FERDIG** | `verified_geometry`, OSM way 3236549; prior-work gate neste |
+| 2. Content Factory source/claim pack | **FERDIG OG MERGET** | PR #5241 / `61bcf3e1…`; 14 source/proveniensposter, 26 scopede claims, konflikter/held-backs/gaps |
+| 3. Koordinater/geometri | **ALLEREDE FERDIG – KLAR FOR REVIEW** | `verified_geometry`, OSM way 3236549, canonical/evidence/protokoll-paritet PASS; ingen coordinate mutation |
 | 4. Kategori, Badges, emner, Fagverk og Nature-eierskap | **EKSISTERER DELVIS – RE-AUDIT** | kategori `by`, to `em_by_*`, `nature_profile`; underbadges ikke låst |
 | 5. `desc` + `popupDesc` v4.2 | **EKSISTERER – RE-AUDIT / MULIG REVISJON** | fyldig tekst finnes, production package mangler; kulturmiljøscope må skilles eksplisitt |
 | 6. Strukturerte place-profiler | **DELVIS** | `nature_profile` finnes; spatial/temporal/history/source-profiler mangler |
@@ -63,19 +65,20 @@ Koordinatevidensen låser parkidentiteten til OSM way `3236549`. Fase 1 fant ing
 | 15–19. Besøk, progresjon, profil, legacy, bilder | **IKKE STARTET / RE-AUDIT** | hovedbilde finnes; slutt-QA og øvrige flater gjenstår |
 | 20–24. Data-QA, UI-QA, innholds-QA, CI, ett-sted-gate | **IKKE STARTET** | lukkes først etter full produksjon |
 
-## Fase 2 – aktivt scope
+## Fase 3 – aktivt scope
 
 Aktivt filscope:
 
-1. `reports/place-production/content-factory-pilot-02-grunerlokka-parks-source-pack-v1.json`;
-2. `reports/place-production/birkelunden-phase2-content-factory-source-pack-v1.md`;
-3. `reports/place-production/birkelunden-workcard-current.md`.
+1. `reports/place-production/birkelunden-phase3-coordinate-prior-work-gate-v1.md`;
+2. `reports/place-production/birkelunden-workcard-current.md`.
 
-Fase 2 skal **ikke** endre:
+Fase 3 skal **ikke** endre:
 
 - canonical Birkelunden-place;
+- coordinate-evidence;
+- coordinate protocol;
+- source/claim pack;
 - `year`;
-- koordinater;
 - `desc` / `popupDesc`;
 - Nature-data;
 - People/Objects/Brands;
@@ -86,7 +89,47 @@ Fase 2 skal **ikke** endre:
 - routes/relations;
 - runtime.
 
-## Fase 2 – source/claim-status
+## Coordinate prior-work-gate
+
+Eksisterende coordinate-evidence og canonical Place er i eksakt semantisk parity:
+
+```text
+lat:          59.92634
+lon:          10.76013
+r:            190
+coordType:    park_anchor
+coordStatus:  verified_geometry
+coordSourceId: osm-way:3236549
+```
+
+Coordinate-evidence sier:
+
+- `evidenceStatus: applied_to_place`;
+- resolved identity = det avgrensede parkrommet;
+- `requiresSplit: false`;
+- source object = named OSM parkpolygon;
+- Oslo kommune = uavhengig identitets-/avgrensningskontroll;
+- representasjonspunktet skilles eksplisitt fra holdeplass, Paulus' plass og Paulus kirke.
+
+Coordinate-protokollen fører Birkelunden i batch 15 som `verified_geometry | osm-way:3236549`.
+
+Beslutning:
+
+```text
+KLASSIFISERING: ALLEREDE FERDIG
+CANONICAL ↔ EVIDENCE PARITY: PASS
+PROTOKOLLPARITET: PASS
+IDENTITY PARITY: PASS
+KONKRET REGRESJONSEVIDENS: INGEN
+KOORDINATENDRING: NEI
+NY GEOKODING: NEI
+NYTT SOURCE OBJECT: NEI
+PLACE SPLIT: NEI
+```
+
+Ny geokoding ville være dobbeltarbeid og kunne degradere et semantisk riktig parkpolygon til et svakere punkt-/adressehit.
+
+## Fase 2 – source/claim-status bevart
 
 Shared packen registrerer:
 
@@ -131,7 +174,7 @@ Pakken låser blant annet:
 - Nils Aas Kunstverksted: `1989`;
 - SNL Birkelunden: `1889`.
 
-Beslutning: **1989** er godkjent claim-verdi. SNLs `1889` er registrert som kildekonflikt og sperres for akkurat dette årstallet; den blir ikke stilletiende ignorert.
+Beslutning: **1989** er godkjent claim-verdi. SNLs `1889` er registrert som kildekonflikt og sperres for akkurat dette årstallet.
 
 ### Park vs. kulturmiljø
 
@@ -145,34 +188,7 @@ Beslutning: **1989** er godkjent claim-verdi. SNLs `1889` er registrert som kild
 - søndagsmarked som fast current-2026-claim uten fersk operatør/offisiell verifikasjon;
 - arbeidsbevegelsesbruk blåst opp til Story uten konkret episode/narrativ akse.
 
-## Object-/People-/Story-kandidater som researchen nå peker på
-
-- Thorvald Meyer → People relation;
-- Jack Johnsen → People + Story-kandidat;
-- musikkpaviljongen → Object-kandidat;
-- `Føll` → Object-kandidat;
-- Jack Johnsen-bysten → Object-kandidat;
-- Spaniamonumentet → Object-kandidat;
-- arbeiderbevegelsens parkbruk → historisk use-claim, men trenger episode research før Story.
-
-Kandidat betyr ikke materialisert eller godkjent subsysteminnhold.
-
-## Olaf Ryes downstream-seed
-
-Shared packen inneholder bare seed-evidens, ikke approval:
-
-- separat fysisk plassidentitet;
-- 1863 kommunalt kjøpt løkke;
-- regulert/navngitt plass 1864;
-- parkopparbeidelse 1890;
-- Eilert Sundt-byste 1892;
-- fontene 1927;
-- 2026-fasiliteter fra kommunen, markert current-volatile;
-- felles Grünerløkka-kontekst via Thorvald Meyers gate.
-
-Når Olaf Ryes plass senere tas, starter det med egen nullmåling og egen full checklist.
-
-## Kjente Birkelunden-hull etter fase 2
+## Kjente Birkelunden-hull etter fase 3
 
 1. kilder for eksisterende `nature_profile` / reell økologi og habitat;
 2. 2026-ferskkontroll av marked, events og recurring use;
@@ -188,7 +204,8 @@ Når Olaf Ryes plass senere tas, starter det med egen nullmåling og egen full c
 12. lokal Grünerløkka-rute;
 13. metadatareview av `year: 1910`;
 14. brukerrettet `source_summary` / inspectable HTTPS-kilder;
-15. alle senere popup-/onsite-/progression-/UI-sluttgater.
+15. kategori/underbadge/Fagverk/Nature-eierskap må re-auditeres i fase 4;
+16. alle senere popup-/onsite-/progression-/UI-sluttgater.
 
 ## Content Factory-regler som fortsatt gjelder
 
@@ -205,6 +222,6 @@ API-/modellkreditter kan aldri brukes som begrunnelse for mindre innhold, generi
 
 ## Neste fase
 
-Når fase 2 er grønn, merget og kontrollert på fersk `main`, starter **fase 3 – koordinater/geometri, prior-work gate**.
+Når fase 3 er grønn, merget og kontrollert på fersk `main`, starter **fase 4 – kategori, Badges, emner, Fagverk og Nature-eierskap**.
 
-Forventning: eksisterende coordinate-evidence (`verified_geometry`, OSM way 3236549) skal klassifiseres **ALLEREDE FERDIG** dersom identitet, geometri og applied coordinates fortsatt består dagens kontrakt. Ingen ny geokoding skal utføres bare for å lage en faseendring.
+Fase 4 skal først kontrollere om dagens `by`-kategori, de to `em_by_*`-koblingene og `nature_profile` faktisk er canonical, materialisert og runtime-koblet. Eksisterende korrekt arbeid beholdes; underbadges eller ekstra emner skal ikke legges til bare for volum.
