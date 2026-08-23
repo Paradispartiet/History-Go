@@ -240,11 +240,11 @@ async function proveRuntimeTransaction() {
 
   const result = await registered({ eventObj, choice, result: { ok: true, effect: 1 } });
   assert.equal(result.work_world.applied_count, 2);
-  assert.deepEqual(result.work_world.work_context_before.missing_object_ids, ['foundation_runtime_case']);
-  assert.deepEqual(result.work_world.work_context_after.missing_object_ids, []);
+  assert.deepEqual(Array.from(result.work_world.work_context_before.missing_object_ids), ['foundation_runtime_case']);
+  assert.deepEqual(Array.from(result.work_world.work_context_after.missing_object_ids), []);
   assert.equal(result.work_world.work_context_after.objects[0].status, 'in_progress');
   assert.equal(result.work_world.work_context_after.objects[0].phase, 'review');
-  assert.deepEqual(result.work_world.operation_event_ids, ['foundation_runtime_create', 'foundation_runtime_review']);
+  assert.deepEqual(Array.from(result.work_world.operation_event_ids), ['foundation_runtime_create', 'foundation_runtime_review']);
   const persisted = adapter.getWorkObject('foundation_runtime_case');
   assert.equal(persisted.history.length, 2);
   assert.equal(state.snapshot().score, 11);
