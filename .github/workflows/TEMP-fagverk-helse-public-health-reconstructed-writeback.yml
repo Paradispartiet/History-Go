@@ -74,17 +74,54 @@ jobs:
         if: steps.materialize.outcome == 'failure'
         run: exit 1
 
-      - name: Write generated reports
+      - name: Diagnose report phase
+        id: reports
         if: steps.materialize.outcome == 'success'
+        continue-on-error: true
+        shell: bash
+        run: |
+          set +e
+          : > /tmp/helse-report-phase.log
+          failed=0
+          run_one() {
+            label="$1"
+            shift
+            {
+              echo "=== ${label} ==="
+              echo "+ $*"
+            } >> /tmp/helse-report-phase.log
+            "$@" >> /tmp/helse-report-phase.log 2>&1
+            status=$?
+            echo "exit_status=${status}" >> /tmp/helse-report-phase.log
+            echo >> /tmp/helse-report-phase.log
+            if [[ "$status" -ne 0 ]]; then failed=1; fi
+          }
+          run_one public_health_audit node scripts/audit-helse-public-health-fulltext-v1.mjs --write-report
+          run_one general_engine_audit node scripts/audit-fagverk-general-engine.mjs --write-report
+          run_one release_manifest_build node scripts/build-fagverk-release-manifest.mjs
+          cat /tmp/helse-report-phase.log
+          exit "$failed"
+
+      - name: Commit report diagnostic on failure
+        if: steps.materialize.outcome == 'success' && steps.reports.outcome == 'failure'
         shell: bash
         run: |
           set -euo pipefail
-          node scripts/audit-helse-public-health-fulltext-v1.mjs --write-report
-          node scripts/audit-fagverk-general-engine.mjs --write-report
-          node scripts/build-fagverk-release-manifest.mjs
+          cp /tmp/helse-report-phase.log .github/TEMP-helse-public-health-report-diagnostic.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .github/TEMP-helse-public-health-report-diagnostic.txt
+          if ! git diff --cached --quiet; then
+            git commit -m 'chore: capture Helse report-phase error'
+            git push origin HEAD:${{ github.head_ref }}
+          fi
+
+      - name: Fail after captured report diagnostic
+        if: steps.materialize.outcome == 'success' && steps.reports.outcome == 'failure'
+        run: exit 1
 
       - name: Validate exact 5/12 package
-        if: steps.materialize.outcome == 'success'
+        if: steps.materialize.outcome == 'success' && steps.reports.outcome == 'success'
         shell: bash
         run: |
           set -euo pipefail
@@ -103,7 +140,7 @@ jobs:
             tests/fagverk-release-manifest.test.mjs
 
       - name: Guard generated diff scope
-        if: steps.materialize.outcome == 'success'
+        if: steps.materialize.outcome == 'success' && steps.reports.outcome == 'success'
         shell: bash
         run: |
           set -euo pipefail
@@ -116,7 +153,7 @@ jobs:
           fi
 
       - name: Commit generated 5/12 outputs
-        if: steps.materialize.outcome == 'success'
+        if: steps.materialize.outcome == 'success' && steps.reports.outcome == 'success'
         shell: bash
         run: |
           set -euo pipefail
