@@ -96,7 +96,13 @@ assert.match(audit, /Oslo byleksikon/);
 assert.match(audit, /access: open/);
 assert.match(audit, /link_only/);
 assert.match(audit, /fulltekst/i);
-assert.match(audit, /Oslohistorie[\s\S]*ikke valgt/);
-assert.match(workcard, /7F Lesespor \| \*\*KLAR FOR REVIEW \/ CI\*\*/);
+assert.match(audit, /Oslohistorie[\s\S]*Ikke valgt/i);
+
+// Permanent documentation assertions must survive later phase progress.
+// Lock the 7F section and canonical IDs, not the transient "next/review" status string.
+assert.match(workcard, /## 7F – Lesespor/);
+assert.match(workcard, /lesespor_birkelunden_riksantikvaren_001/);
+assert.match(workcard, /lesespor_birkelunden_byarkiv_2006_001/);
+assert.match(workcard, /lesespor_birkelunden_byleksikon_001/);
 
 console.log('Birkelunden phase 7F reading trail regression: PASS');
