@@ -227,4 +227,7 @@ node --test tests/birkelunden-phase7e-news.test.mjs
 echo "== Birkelunden phase 7F Lesespor regression =="
 node --test tests/birkelunden-phase7f-reading-trail.test.mjs
 
+echo "== Birkelunden phase 7G Kilder regression =="
+node --test tests/birkelunden-phase7g-sources.test.mjs
+
 echo "== Places check complete =="
