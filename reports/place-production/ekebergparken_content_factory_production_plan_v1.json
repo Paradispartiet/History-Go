@@ -1,0 +1,160 @@
+{
+  "schema_version": "1.0",
+  "artifact_id": "ekebergparken_content_factory_production_plan_v1",
+  "status": "recovered_phase_plan",
+  "place_id": "ekebergparken",
+  "branch": "agent/content-factory-ekeberg-cluster-v1",
+  "recovery_base_sha": "3ee60d3bec6de6cf519a1df0b3d17cafecc63b53",
+  "recovery": {
+    "original_local_commit_prefix": "c9f1e933",
+    "byte_for_byte_recovery": false,
+    "note": "The original local checkout is unavailable and the local commit never reached GitHub. This reconstructs the documented production state from the known base, canonical repo data and revalidated sources without claiming byte identity."
+  },
+  "quality_contract": {
+    "content_factory_only_optimizes_research": true,
+    "full_place_checklist_required": true,
+    "full_relevant_content_required": true,
+    "no_generic_filler": true,
+    "missing_evidence_means_more_research": true,
+    "approval_unit": "single_place",
+    "separate_places": [
+      "ekebergparken_museum",
+      "ekeberg_helleristninger",
+      "ekebergsletta"
+    ]
+  },
+  "null_measurement": {
+    "canonical_identity": "present and distinct: broad sculpture and cultural-heritage park",
+    "coordinates": "verified_geometry; preserve existing official-map area anchor",
+    "category_badges_fagverk": "kunst category with existing underbadges and four art emne_ids",
+    "description": "present but short and not backed by a current v4.2 description production package",
+    "structured_profiles": {
+      "nature_profile": "present",
+      "training_profile": "present",
+      "spatial_profile": "missing",
+      "temporal_profile": "missing",
+      "history_layers": "missing",
+      "source_summary": "missing"
+    },
+    "stories": "one existing Story; governance and relationship audit required",
+    "people": "one related_people_id on Place; full people-of-place audit incomplete",
+    "objects": "on-site Wonderkammer research exists; canonical Object/work ownership audit required",
+    "quiz": "6 sets / 42 existing questions; several are broad or generic and require canonical quiz review rather than blind expansion",
+    "reading_tracks": "not established in recovered baseline; audit required",
+    "routes": "official park paths exist; History GO route ownership and integration audit required",
+    "language_name": "not established; Språkleksikon assessment required",
+    "nature_knowledge_aha": "nature profile and art learning hooks exist; Fagverk/Knowledge/Aha visible integration must be checked",
+    "sources": "external URLs exist in Story and coordinate evidence but canonical source_summary/source tab is missing",
+    "before_after_news": "not established; assess separately and use N/A only with documented reason",
+    "images_visible_ui": "final asset and popup QA required"
+  },
+  "phase_count": 8,
+  "phases": [
+    {
+      "phase": 0,
+      "name": "Recovery, collision gate and null measurement",
+      "status": "READY_FOR_REVIEW",
+      "definition_of_done": [
+        "branch secured from original base before sync",
+        "both recovered JSON artifacts validate",
+        "four canonical place identities remain distinct",
+        "null measurement complete"
+      ]
+    },
+    {
+      "phase": 1,
+      "name": "Canonical identity, source owner and coordinate prior-work gate",
+      "status": "NOT_STARTED",
+      "definition_of_done": [
+        "canonical owner confirmed",
+        "museum, rock carvings and Ekebergsletta excluded as proxies",
+        "verified geometry preserved unless a documented regression exists"
+      ]
+    },
+    {
+      "phase": 2,
+      "name": "Source/claim pack and factual research closure",
+      "status": "NOT_STARTED",
+      "definition_of_done": [
+        "all publishable factual assertions have explicit evidence scope",
+        "volatile facts separated from evergreen facts",
+        "gaps are researched or explicitly blocked"
+      ]
+    },
+    {
+      "phase": 3,
+      "name": "Core Place, Fagverk and structured profiles",
+      "status": "NOT_STARTED",
+      "definition_of_done": [
+        "metadata remains precise",
+        "spatial, temporal, history and source profiles are place-specific",
+        "nature, history and art claims respect owner boundaries"
+      ]
+    },
+    {
+      "phase": 4,
+      "name": "Description and popup editorial surfaces",
+      "status": "NOT_STARTED",
+      "definition_of_done": [
+        "description protocol passes",
+        "no duplicated filler across tabs",
+        "Om, Historie, Kilder, Språk, Før/etter and Nyheter are independently approved or justified N/A"
+      ]
+    },
+    {
+      "phase": 5,
+      "name": "Stories, People, Objects and relations",
+      "status": "NOT_STARTED",
+      "definition_of_done": [
+        "Story governance passes",
+        "People identities are canonical and sourced",
+        "Objects belong to the correct place owner",
+        "Scream-viewpoint uncertainty is preserved"
+      ]
+    },
+    {
+      "phase": 6,
+      "name": "Quiz, rounds, reading tracks, routes and Knowledge/Aha",
+      "status": "NOT_STARTED",
+      "definition_of_done": [
+        "quiz is source-bound and non-generic",
+        "routes use safe official path geography",
+        "reading tracks satisfy access policy",
+        "four visible rounds are coherent and non-empty where relevant",
+        "Nature, Fagverk and Knowledge/Aha integration is verified"
+      ]
+    },
+    {
+      "phase": 7,
+      "name": "Assets, visible QA, full validation and release gate",
+      "status": "NOT_STARTED",
+      "definition_of_done": [
+        "JSON, schema and reference gates pass",
+        "no collision or duplicate-text regressions",
+        "visible popup and rounds inspected",
+        "no broken images or false zero states",
+        "six-part quality review has no blocker",
+        "PR is green before merge"
+      ]
+    }
+  ],
+  "release_sequence": [
+    "secure recovered branch on origin",
+    "sync from fresh main only after recovery files are committed",
+    "rerun collision gate",
+    "rerun JSON validation",
+    "rerun null measurement",
+    "execute all eight phases sequentially",
+    "full production validation",
+    "open PR",
+    "CI",
+    "merge only if green"
+  ],
+  "do_not_do": [
+    "recreate branch from current main before recovery",
+    "replace area anchor with museum address",
+    "merge distinct Ekeberg Places",
+    "use generic filler to close checklist items",
+    "weaken gates to save model or API cost"
+  ]
+}
