@@ -466,6 +466,42 @@ function normalizeWorkObjectOps(value, label) {
   return out;
 }
 
+function normalizeChoiceAffordance(value, label) {
+  if (value == null) return null;
+  const input = assertAllowedKeys(value, new Set(["history_go"]), label);
+  if (!hasOwn(input, "history_go")) throw new Error(`${label}.history_go mangler`);
+  const historyGo = assertAllowedKeys(
+    input.history_go,
+    new Set(["task_mail_ids", "require_task_completed", "require_history_go_correct", "min_effect"]),
+    `${label}.history_go`
+  );
+  if (!hasOwn(historyGo, "task_mail_ids")) throw new Error(`${label}.history_go.task_mail_ids mangler`);
+  const taskMailIds = strictUniqueStrings(
+    historyGo.task_mail_ids,
+    `${label}.history_go.task_mail_ids`,
+    { ids: true, max: 8 }
+  );
+  if (!taskMailIds.length) throw new Error(`${label}.history_go.task_mail_ids må inneholde minst ett id`);
+  const out = {
+    history_go: {
+      task_mail_ids: taskMailIds,
+      require_task_completed: true,
+      require_history_go_correct: true
+    }
+  };
+  for (const key of ["require_task_completed", "require_history_go_correct"]) {
+    if (!hasOwn(historyGo, key)) continue;
+    if (typeof historyGo[key] !== "boolean") throw new Error(`${label}.history_go.${key} må være boolean`);
+    out.history_go[key] = historyGo[key];
+  }
+  if (hasOwn(historyGo, "min_effect")) {
+    const minEffect = Number(historyGo.min_effect);
+    if (!Number.isFinite(minEffect)) throw new Error(`${label}.history_go.min_effect må være et endelig tall`);
+    out.history_go.min_effect = minEffect;
+  }
+  return out;
+}
+
 function normalizeCanonicalChoiceInputs(choices) {
   return (Array.isArray(choices) ? choices : [])
     .filter((choice) => choice && typeof choice === "object")
@@ -549,6 +585,8 @@ function canonicalChoices(runtimeChoices, sourcePath, sceneId) {
     if (reply) out.reply = reply;
     const feedback = norm(choice.feedback);
     if (feedback) out.feedback = feedback;
+    const affordance = normalizeChoiceAffordance(choice.affordance, `${sourcePath} :: ${sceneId} choice[${index}].affordance`);
+    if (affordance) out.affordance = affordance;
     const authorityAction = normalizeAuthorityAction(choice.authority_action, `${sourcePath} :: ${sceneId} choice[${index}].authority_action`);
     if (authorityAction) out.authority_action = authorityAction;
     return out;
@@ -692,9 +730,11 @@ function compileMail({ catalog, family, mail, sourcePath }) {
   const compatibilityChoices = compatibilityChoiceInputs(mail?.choices).map((choice, index) => {
     const normalizedOps = choices[index]?.effects?.work_object_ops;
     const normalizedAuthorityAction = choices[index]?.authority_action;
-    if ((!Array.isArray(normalizedOps) || !normalizedOps.length) && !normalizedAuthorityAction) return choice;
+    const normalizedAffordance = choices[index]?.affordance;
+    if ((!Array.isArray(normalizedOps) || !normalizedOps.length) && !normalizedAuthorityAction && !normalizedAffordance) return choice;
     const out = { ...choice };
     if (normalizedAuthorityAction) out.authority_action = normalizedAuthorityAction;
+    if (normalizedAffordance) out.affordance = normalizedAffordance;
     if (Array.isArray(normalizedOps) && normalizedOps.length) {
       const rawEffects = choice?.effects && typeof choice.effects === "object" && !Array.isArray(choice.effects) ? choice.effects : {};
       out.effects = { ...rawEffects, work_object_ops: normalizedOps };
@@ -715,6 +755,12 @@ function compileMail({ catalog, family, mail, sourcePath }) {
   );
   const interactionMode = resolveInteractionMode(mail, choices, taskContract);
   if (interactionMode === "decision" && choices.length < 2) throw new Error(`${sourcePath} :: ${sceneId} decision mangler to reelle valg`);
+  if (interactionMode === "decision" && choices.some((choice) => choice.affordance)) {
+    const baselineChoices = choices.filter((choice) => !choice.affordance);
+    if (baselineChoices.length < 2) {
+      throw new Error(`${sourcePath} :: ${sceneId} affordance-decision må beholde to ungated baseline-valg`);
+    }
+  }
   if (interactionMode === "task" && !taskContract) throw new Error(`${sourcePath} :: ${sceneId} task mangler gyldig task_contract`);
   if (interactionMode === "info" && choices.length) throw new Error(`${sourcePath} :: ${sceneId} info kan ikke ha valg`);
   if (interactionMode === "ack" && choices.length > 1) throw new Error(`${sourcePath} :: ${sceneId} ack kan ikke ha mer enn ett valg`);
@@ -814,6 +860,28 @@ function canShadowDuplicate(kept, shadowed) {
   return duplicateRoutingSignature(kept) === duplicateRoutingSignature(shadowed);
 }
 
+function validateChoiceAffordanceReferences(entries) {
+  const byId = new Map(entries.map((entry) => [entry.id, entry]));
+  for (const entry of entries) {
+    for (const choice of Array.isArray(entry?.scene?.choices) ? entry.scene.choices : []) {
+      const taskMailIds = choice?.affordance?.history_go?.task_mail_ids;
+      if (!Array.isArray(taskMailIds)) continue;
+      for (const taskMailId of taskMailIds) {
+        const target = byId.get(taskMailId);
+        if (!target) {
+          throw new Error(`${entry.source_path} :: ${entry.id} choice ${choice.id} affordance peker på ukjent task mail ${taskMailId}`);
+        }
+        if (target.scene?.interaction_mode !== "task") {
+          throw new Error(`${entry.source_path} :: ${entry.id} choice ${choice.id} affordance peker på ${taskMailId} som ikke er task-scene`);
+        }
+        if (target.scene?.task_contract?.completion_rule !== "history_go_payload_completed") {
+          throw new Error(`${entry.source_path} :: ${entry.id} choice ${choice.id} affordance peker på ${taskMailId} uten History Go completion-kontrakt`);
+        }
+      }
+    }
+  }
+}
+
 function assertRegistryEntry(entry) {
   const scene = entry?.scene;
   if (!scene || scene.schema !== SCENE_SCHEMA || scene.version !== SCENE_VERSION) {
@@ -892,6 +960,8 @@ export async function compileRegistryFromRepo(repoRoot = process.cwd()) {
       }
     }
   }
+
+  validateChoiceAffordanceReferences(entries);
 
   // role_index is runtime-semantic: preserve source-rank, source-file and in-file mail order.
   // entries may still be canonically sorted for stable reviewable output after the index is captured.

@@ -22,115 +22,269 @@
     "provenance"
   ],
   "properties": {
-    "schema": { "const": "civication_scene_v1" },
-    "version": { "const": 1 },
-    "id": { "$ref": "#/$defs/nonEmptyId" },
+    "schema": {
+      "const": "civication_scene_v1"
+    },
+    "version": {
+      "const": 1
+    },
+    "id": {
+      "$ref": "#/$defs/nonEmptyId"
+    },
     "domain": {
-      "enum": ["work", "private", "life", "social", "system"]
+      "enum": [
+        "work",
+        "private",
+        "life",
+        "social",
+        "system"
+      ]
     },
     "scene_kind": {
-      "enum": ["task", "relationship", "conflict", "knowledge", "consequence", "offer", "milestone"]
+      "enum": [
+        "task",
+        "relationship",
+        "conflict",
+        "knowledge",
+        "consequence",
+        "offer",
+        "milestone"
+      ]
     },
     "delivery": {
-      "enum": ["mail", "meeting", "conversation", "task", "notification"]
+      "enum": [
+        "mail",
+        "meeting",
+        "conversation",
+        "task",
+        "notification"
+      ]
     },
     "day_phase": {
-      "enum": ["morning", "forenoon", "workday", "lunch", "afternoon", "dinner", "evening", "day_end", "any"]
+      "enum": [
+        "morning",
+        "forenoon",
+        "workday",
+        "lunch",
+        "afternoon",
+        "dinner",
+        "evening",
+        "day_end",
+        "any"
+      ]
     },
     "arc_stage": {
-      "enum": ["intro", "early", "mid", "advanced", "mastery", "climax", "any"]
+      "enum": [
+        "intro",
+        "early",
+        "mid",
+        "advanced",
+        "mastery",
+        "climax",
+        "any"
+      ]
     },
     "interaction_mode": {
-      "enum": ["decision", "task", "ack", "info"]
+      "enum": [
+        "decision",
+        "task",
+        "ack",
+        "info"
+      ]
     },
-    "thread_id": { "$ref": "#/$defs/nonEmptyId" },
-    "practice_story_id": { "$ref": "#/$defs/nonEmptyId" },
+    "thread_id": {
+      "$ref": "#/$defs/nonEmptyId"
+    },
+    "practice_story_id": {
+      "$ref": "#/$defs/nonEmptyId"
+    },
     "people_ids": {
       "type": "array",
-      "items": { "$ref": "#/$defs/nonEmptyId" },
+      "items": {
+        "$ref": "#/$defs/nonEmptyId"
+      },
       "uniqueItems": true,
       "default": []
     },
-    "place_id": { "$ref": "#/$defs/nonEmptyId" },
-    "work_context": { "$ref": "#/$defs/workContext" },
-    "authority_context": { "$ref": "#/$defs/authorityContext" },
+    "place_id": {
+      "$ref": "#/$defs/nonEmptyId"
+    },
+    "work_context": {
+      "$ref": "#/$defs/workContext"
+    },
+    "authority_context": {
+      "$ref": "#/$defs/authorityContext"
+    },
     "content": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["subject", "summary", "situation"],
+      "required": [
+        "subject",
+        "summary",
+        "situation"
+      ],
       "properties": {
-        "subject": { "type": "string", "minLength": 1 },
-        "summary": { "type": "string", "minLength": 1 },
+        "subject": {
+          "type": "string",
+          "minLength": 1
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1
+        },
         "situation": {
           "type": "array",
-          "items": { "type": "string", "minLength": 1 },
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
           "minItems": 1
         },
-        "explanation": { "type": "string", "minLength": 1 },
+        "explanation": {
+          "type": "string",
+          "minLength": 1
+        },
         "links": {
           "type": "array",
-          "items": { "$ref": "#/$defs/link" },
+          "items": {
+            "$ref": "#/$defs/link"
+          },
           "default": []
         }
       }
     },
     "choices": {
       "type": "array",
-      "items": { "$ref": "#/$defs/choice" },
+      "items": {
+        "$ref": "#/$defs/choice"
+      },
       "default": []
     },
-    "task_contract": { "$ref": "#/$defs/taskContract" },
-    "effects": { "$ref": "#/$defs/effects" },
-    "knowledge_contract": { "$ref": "#/$defs/knowledgeContract" },
+    "task_contract": {
+      "$ref": "#/$defs/taskContract"
+    },
+    "effects": {
+      "$ref": "#/$defs/effects"
+    },
+    "knowledge_contract": {
+      "$ref": "#/$defs/knowledgeContract"
+    },
     "provenance": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["adapter", "source_path", "source_id"],
+      "required": [
+        "adapter",
+        "source_path",
+        "source_id"
+      ],
       "properties": {
         "adapter": {
-          "enum": ["role_pack", "work_grammar", "mail_family", "private", "life", "social", "narrative", "system", "manual"]
+          "enum": [
+            "role_pack",
+            "work_grammar",
+            "mail_family",
+            "private",
+            "life",
+            "social",
+            "narrative",
+            "system",
+            "manual"
+          ]
         },
-        "source_path": { "type": "string", "minLength": 1 },
-        "source_id": { "$ref": "#/$defs/nonEmptyId" },
-        "source_schema": { "type": "string", "minLength": 1 },
-        "compiled_at_build": { "type": "boolean", "default": true }
+        "source_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_id": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "source_schema": {
+          "type": "string",
+          "minLength": 1
+        },
+        "compiled_at_build": {
+          "type": "boolean",
+          "default": true
+        }
       }
     }
   },
   "allOf": [
     {
       "if": {
-        "properties": { "interaction_mode": { "const": "decision" } },
-        "required": ["interaction_mode"]
+        "properties": {
+          "interaction_mode": {
+            "const": "decision"
+          }
+        },
+        "required": [
+          "interaction_mode"
+        ]
       },
       "then": {
-        "required": ["choices"],
-        "properties": { "choices": { "minItems": 2 } }
+        "required": [
+          "choices"
+        ],
+        "properties": {
+          "choices": {
+            "minItems": 2
+          }
+        }
       }
     },
     {
       "if": {
-        "properties": { "interaction_mode": { "const": "task" } },
-        "required": ["interaction_mode"]
-      },
-      "then": { "required": ["task_contract"] }
-    },
-    {
-      "if": {
-        "properties": { "interaction_mode": { "const": "info" } },
-        "required": ["interaction_mode"]
+        "properties": {
+          "interaction_mode": {
+            "const": "task"
+          }
+        },
+        "required": [
+          "interaction_mode"
+        ]
       },
       "then": {
-        "properties": { "choices": { "maxItems": 0 } }
+        "required": [
+          "task_contract"
+        ]
       }
     },
     {
       "if": {
-        "properties": { "interaction_mode": { "const": "ack" } },
-        "required": ["interaction_mode"]
+        "properties": {
+          "interaction_mode": {
+            "const": "info"
+          }
+        },
+        "required": [
+          "interaction_mode"
+        ]
       },
       "then": {
-        "properties": { "choices": { "maxItems": 1 } }
+        "properties": {
+          "choices": {
+            "maxItems": 0
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "interaction_mode": {
+            "const": "ack"
+          }
+        },
+        "required": [
+          "interaction_mode"
+        ]
+      },
+      "then": {
+        "properties": {
+          "choices": {
+            "maxItems": 1
+          }
+        }
       }
     }
   ],
@@ -143,108 +297,303 @@
     "link": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["label", "ref"],
+      "required": [
+        "label",
+        "ref"
+      ],
       "properties": {
-        "label": { "type": "string", "minLength": 1 },
-        "ref": { "type": "string", "minLength": 1 },
-        "kind": { "enum": ["fagverk", "place", "person", "task", "external"] }
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "fagverk",
+            "place",
+            "person",
+            "task",
+            "external"
+          ]
+        }
       }
     },
     "choice": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "label", "effects"],
+      "required": [
+        "id",
+        "label",
+        "effects"
+      ],
       "properties": {
-        "id": { "$ref": "#/$defs/nonEmptyId" },
-        "label": { "type": "string", "minLength": 1 },
-        "reply": { "type": "string", "minLength": 1 },
-        "feedback": { "type": "string", "minLength": 1 },
-        "authority_action": { "$ref": "#/$defs/authorityAction" },
-        "effects": { "$ref": "#/$defs/effects" }
+        "id": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reply": {
+          "type": "string",
+          "minLength": 1
+        },
+        "feedback": {
+          "type": "string",
+          "minLength": 1
+        },
+        "authority_action": {
+          "$ref": "#/$defs/authorityAction"
+        },
+        "effects": {
+          "$ref": "#/$defs/effects"
+        },
+        "affordance": {
+          "$ref": "#/$defs/choiceAffordance"
+        }
       }
     },
     "authorityAction": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["action_id", "intent"],
+      "required": [
+        "action_id",
+        "intent"
+      ],
       "properties": {
-        "action_id": { "$ref": "#/$defs/nonEmptyId" },
-        "intent": { "enum": ["execute", "recommend", "request_approval", "wait", "escalate"] }
+        "action_id": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "intent": {
+          "enum": [
+            "execute",
+            "recommend",
+            "request_approval",
+            "wait",
+            "escalate"
+          ]
+        }
       }
     },
     "authorityContext": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["institution_id", "unit_id", "role_scope", "reporting_line", "approval_points", "authority_rules", "resources", "escalation_paths"],
+      "required": [
+        "institution_id",
+        "unit_id",
+        "role_scope",
+        "reporting_line",
+        "approval_points",
+        "authority_rules",
+        "resources",
+        "escalation_paths"
+      ],
       "properties": {
-        "institution_id": { "$ref": "#/$defs/nonEmptyId" },
-        "unit_id": { "$ref": "#/$defs/nonEmptyId" },
-        "role_scope": { "$ref": "#/$defs/nonEmptyId" },
-        "reporting_line": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyId" }, "uniqueItems": true },
-        "peer_functions": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyId" }, "uniqueItems": true, "default": [] },
-        "external_counterparts": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyId" }, "uniqueItems": true, "default": [] },
-        "goals_pressures": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyId" }, "uniqueItems": true, "default": [] },
-        "approval_points": { "type": "array", "items": { "$ref": "#/$defs/approvalPoint" }, "maxItems": 16 },
-        "authority_rules": { "type": "array", "items": { "$ref": "#/$defs/authorityRule" }, "minItems": 1, "maxItems": 32 },
-        "resources": { "type": "array", "items": { "$ref": "#/$defs/institutionalResource" }, "maxItems": 16 },
-        "escalation_paths": { "type": "array", "items": { "$ref": "#/$defs/escalationPath" }, "maxItems": 16 }
+        "institution_id": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "unit_id": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "role_scope": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "reporting_line": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonEmptyId"
+          },
+          "uniqueItems": true
+        },
+        "peer_functions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonEmptyId"
+          },
+          "uniqueItems": true,
+          "default": []
+        },
+        "external_counterparts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonEmptyId"
+          },
+          "uniqueItems": true,
+          "default": []
+        },
+        "goals_pressures": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonEmptyId"
+          },
+          "uniqueItems": true,
+          "default": []
+        },
+        "approval_points": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/approvalPoint"
+          },
+          "maxItems": 16
+        },
+        "authority_rules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/authorityRule"
+          },
+          "minItems": 1,
+          "maxItems": 32
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/institutionalResource"
+          },
+          "maxItems": 16
+        },
+        "escalation_paths": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/escalationPath"
+          },
+          "maxItems": 16
+        }
       }
     },
     "approvalPoint": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["approval_id", "action_id", "approver_actor_id", "approval_object_id"],
+      "required": [
+        "approval_id",
+        "action_id",
+        "approver_actor_id",
+        "approval_object_id"
+      ],
       "properties": {
-        "approval_id": { "$ref": "#/$defs/nonEmptyId" },
-        "action_id": { "$ref": "#/$defs/nonEmptyId" },
-        "approver_actor_id": { "$ref": "#/$defs/nonEmptyId" },
-        "approval_object_id": { "$ref": "#/$defs/nonEmptyId" }
+        "approval_id": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "action_id": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "approver_actor_id": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "approval_object_id": {
+          "$ref": "#/$defs/nonEmptyId"
+        }
       }
     },
     "authorityRule": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["action_id", "authority", "requires_resources"],
+      "required": [
+        "action_id",
+        "authority",
+        "requires_resources"
+      ],
       "properties": {
-        "action_id": { "$ref": "#/$defs/nonEmptyId" },
-        "authority": { "enum": ["direct", "approval_required", "influence_only", "forbidden"] },
-        "approval_id": { "$ref": "#/$defs/nonEmptyId" },
-        "escalation_id": { "$ref": "#/$defs/nonEmptyId" },
-        "requires_resources": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyId" }, "uniqueItems": true }
+        "action_id": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "authority": {
+          "enum": [
+            "direct",
+            "approval_required",
+            "influence_only",
+            "forbidden"
+          ]
+        },
+        "approval_id": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "escalation_id": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "requires_resources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonEmptyId"
+          },
+          "uniqueItems": true
+        }
       }
     },
     "institutionalResource": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["resource_id", "baseline_state"],
+      "required": [
+        "resource_id",
+        "baseline_state"
+      ],
       "properties": {
-        "resource_id": { "$ref": "#/$defs/nonEmptyId" },
-        "baseline_state": { "enum": ["available", "limited", "unavailable"] },
-        "resource_object_id": { "$ref": "#/$defs/nonEmptyId" }
+        "resource_id": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "baseline_state": {
+          "enum": [
+            "available",
+            "limited",
+            "unavailable"
+          ]
+        },
+        "resource_object_id": {
+          "$ref": "#/$defs/nonEmptyId"
+        }
       }
     },
     "escalationPath": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["escalation_id", "action_id", "target_actor_id", "escalation_object_id"],
+      "required": [
+        "escalation_id",
+        "action_id",
+        "target_actor_id",
+        "escalation_object_id"
+      ],
       "properties": {
-        "escalation_id": { "$ref": "#/$defs/nonEmptyId" },
-        "action_id": { "$ref": "#/$defs/nonEmptyId" },
-        "target_actor_id": { "$ref": "#/$defs/nonEmptyId" },
-        "escalation_object_id": { "$ref": "#/$defs/nonEmptyId" }
+        "escalation_id": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "action_id": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "target_actor_id": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "escalation_object_id": {
+          "$ref": "#/$defs/nonEmptyId"
+        }
       }
     },
     "taskContract": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["task_id", "completion_rule"],
+      "required": [
+        "task_id",
+        "completion_rule"
+      ],
       "properties": {
-        "task_id": { "$ref": "#/$defs/nonEmptyId" },
-        "completion_rule": { "type": "string", "minLength": 1 },
-        "failure_rule": { "type": "string", "minLength": 1 },
+        "task_id": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "completion_rule": {
+          "type": "string",
+          "minLength": 1
+        },
+        "failure_rule": {
+          "type": "string",
+          "minLength": 1
+        },
         "evidence_refs": {
           "type": "array",
-          "items": { "type": "string", "minLength": 1 },
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
           "uniqueItems": true,
           "default": []
         }
@@ -254,28 +603,42 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "score_delta": { "type": "number", "default": 0 },
+        "score_delta": {
+          "type": "number",
+          "default": 0
+        },
         "quality_axes": {
           "type": "object",
-          "additionalProperties": { "type": "number" },
+          "additionalProperties": {
+            "type": "number"
+          },
           "default": {}
         },
         "state_set": {
           "type": "object",
           "additionalProperties": {
-            "type": ["string", "number", "boolean", "null"]
+            "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+            ]
           },
           "default": {}
         },
         "add_flags": {
           "type": "array",
-          "items": { "$ref": "#/$defs/nonEmptyId" },
+          "items": {
+            "$ref": "#/$defs/nonEmptyId"
+          },
           "uniqueItems": true,
           "default": []
         },
         "remove_flags": {
           "type": "array",
-          "items": { "$ref": "#/$defs/nonEmptyId" },
+          "items": {
+            "$ref": "#/$defs/nonEmptyId"
+          },
           "uniqueItems": true,
           "default": []
         },
@@ -283,22 +646,38 @@
           "type": "object",
           "additionalProperties": false,
           "properties": {
-            "role_delta": { "type": "number", "default": 0 },
-            "competency_delta": { "type": "number", "default": 0 },
-            "autonomy_delta": { "type": "number", "default": 0 },
-            "economy_delta": { "type": "number", "default": 0 }
+            "role_delta": {
+              "type": "number",
+              "default": 0
+            },
+            "competency_delta": {
+              "type": "number",
+              "default": 0
+            },
+            "autonomy_delta": {
+              "type": "number",
+              "default": 0
+            },
+            "economy_delta": {
+              "type": "number",
+              "default": 0
+            }
           },
           "default": {}
         },
         "trigger_scene_ids": {
           "type": "array",
-          "items": { "$ref": "#/$defs/nonEmptyId" },
+          "items": {
+            "$ref": "#/$defs/nonEmptyId"
+          },
           "uniqueItems": true,
           "default": []
         },
         "work_object_ops": {
           "type": "array",
-          "items": { "$ref": "#/$defs/workObjectOp" },
+          "items": {
+            "$ref": "#/$defs/workObjectOp"
+          },
           "maxItems": 12,
           "default": []
         }
@@ -308,181 +687,468 @@
     "workContext": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["object_ids"],
+      "required": [
+        "object_ids"
+      ],
       "properties": {
         "object_ids": {
           "type": "array",
-          "items": { "$ref": "#/$defs/nonEmptyId" },
+          "items": {
+            "$ref": "#/$defs/nonEmptyId"
+          },
           "minItems": 1,
           "maxItems": 8,
           "uniqueItems": true
         },
-        "institution_id": { "$ref": "#/$defs/nonEmptyId" },
-        "deadline_ref": { "type": "string", "minLength": 1 }
+        "institution_id": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "deadline_ref": {
+          "type": "string",
+          "minLength": 1
+        }
       }
     },
     "workObjectCreateSeed": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["work_object_id", "kind", "role_scope", "title", "status", "phase"],
+      "required": [
+        "work_object_id",
+        "kind",
+        "role_scope",
+        "title",
+        "status",
+        "phase"
+      ],
       "properties": {
-        "work_object_id": { "$ref": "#/$defs/nonEmptyId" },
-        "kind": { "$ref": "#/$defs/nonEmptyId" },
-        "role_scope": { "$ref": "#/$defs/nonEmptyId" },
-        "institution_id": { "$ref": "#/$defs/nonEmptyId" },
-        "title": { "type": "string", "minLength": 1 },
-        "status": { "$ref": "#/$defs/nonEmptyId" },
-        "phase": { "$ref": "#/$defs/nonEmptyId" },
-        "people_refs": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true, "default": [] },
-        "place_refs": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true, "default": [] },
-        "knowledge_refs": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true, "default": [] },
-        "open_questions": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true, "default": [] },
-        "deadline": { "type": "string", "minLength": 1 },
-        "confidentiality": { "type": "string", "minLength": 1 },
-        "flags": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyId" }, "uniqueItems": true, "default": [] },
-        "shared": { "type": "boolean", "default": false }
+        "work_object_id": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "kind": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "role_scope": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "institution_id": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "phase": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "people_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "default": []
+        },
+        "place_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "default": []
+        },
+        "knowledge_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "default": []
+        },
+        "open_questions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "default": []
+        },
+        "deadline": {
+          "type": "string",
+          "minLength": 1
+        },
+        "confidentiality": {
+          "type": "string",
+          "minLength": 1
+        },
+        "flags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonEmptyId"
+          },
+          "uniqueItems": true,
+          "default": []
+        },
+        "shared": {
+          "type": "boolean",
+          "default": false
+        }
       }
     },
     "workObjectPatch": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["work_object_id"],
+      "required": [
+        "work_object_id"
+      ],
       "properties": {
-        "work_object_id": { "$ref": "#/$defs/nonEmptyId" },
-        "kind": { "$ref": "#/$defs/nonEmptyId" },
-        "role_scope": { "$ref": "#/$defs/nonEmptyId" },
-        "institution_id": { "$ref": "#/$defs/nonEmptyId" },
-        "title": { "type": "string", "minLength": 1 },
-        "people_refs": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
-        "place_refs": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
-        "knowledge_refs": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
-        "open_questions": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
-        "deadline": { "type": ["string", "null"], "minLength": 1 },
-        "confidentiality": { "type": ["string", "null"], "minLength": 1 },
-        "flags": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyId" }, "uniqueItems": true },
-        "shared": { "type": "boolean" }
+        "work_object_id": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "kind": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "role_scope": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "institution_id": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "people_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "place_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "knowledge_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "open_questions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "deadline": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "confidentiality": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "flags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonEmptyId"
+          },
+          "uniqueItems": true
+        },
+        "shared": {
+          "type": "boolean"
+        }
       }
     },
     "workObjectOp": {
       "oneOf": [
-        { "$ref": "#/$defs/workObjectCreateOp" },
-        { "$ref": "#/$defs/workObjectUpsertOp" },
-        { "$ref": "#/$defs/workObjectTransitionOp" },
-        { "$ref": "#/$defs/workObjectFlagOp" },
-        { "$ref": "#/$defs/workObjectCloseOp" },
-        { "$ref": "#/$defs/workObjectNoteOp" },
-        { "$ref": "#/$defs/workObjectRemoveFlagOp" }
+        {
+          "$ref": "#/$defs/workObjectCreateOp"
+        },
+        {
+          "$ref": "#/$defs/workObjectUpsertOp"
+        },
+        {
+          "$ref": "#/$defs/workObjectTransitionOp"
+        },
+        {
+          "$ref": "#/$defs/workObjectFlagOp"
+        },
+        {
+          "$ref": "#/$defs/workObjectCloseOp"
+        },
+        {
+          "$ref": "#/$defs/workObjectNoteOp"
+        },
+        {
+          "$ref": "#/$defs/workObjectRemoveFlagOp"
+        }
       ]
     },
     "workObjectCreateOp": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["op", "event_id", "work_object"],
+      "required": [
+        "op",
+        "event_id",
+        "work_object"
+      ],
       "properties": {
-        "op": { "const": "create" },
-        "event_id": { "$ref": "#/$defs/nonEmptyId" },
-        "work_object": { "$ref": "#/$defs/workObjectCreateSeed" }
+        "op": {
+          "const": "create"
+        },
+        "event_id": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "work_object": {
+          "$ref": "#/$defs/workObjectCreateSeed"
+        }
       }
     },
     "workObjectUpsertOp": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["op", "event_id", "work_object"],
+      "required": [
+        "op",
+        "event_id",
+        "work_object"
+      ],
       "properties": {
-        "op": { "const": "upsert" },
-        "event_id": { "$ref": "#/$defs/nonEmptyId" },
-        "work_object": { "$ref": "#/$defs/workObjectPatch" }
+        "op": {
+          "const": "upsert"
+        },
+        "event_id": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "work_object": {
+          "$ref": "#/$defs/workObjectPatch"
+        }
       }
     },
     "workObjectTransitionOp": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["op", "event_id", "work_object_id"],
+      "required": [
+        "op",
+        "event_id",
+        "work_object_id"
+      ],
       "properties": {
-        "op": { "const": "transition" },
-        "event_id": { "$ref": "#/$defs/nonEmptyId" },
-        "work_object_id": { "$ref": "#/$defs/nonEmptyId" },
-        "to_status": { "$ref": "#/$defs/nonEmptyId" },
-        "to_phase": { "$ref": "#/$defs/nonEmptyId" },
-        "note": { "type": "string", "minLength": 1 }
+        "op": {
+          "const": "transition"
+        },
+        "event_id": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "work_object_id": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "to_status": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "to_phase": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "note": {
+          "type": "string",
+          "minLength": 1
+        }
       },
       "anyOf": [
-        { "required": ["to_status"] },
-        { "required": ["to_phase"] },
-        { "required": ["note"] }
+        {
+          "required": [
+            "to_status"
+          ]
+        },
+        {
+          "required": [
+            "to_phase"
+          ]
+        },
+        {
+          "required": [
+            "note"
+          ]
+        }
       ]
     },
     "workObjectFlagOp": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["op", "event_id", "work_object_id", "flag"],
+      "required": [
+        "op",
+        "event_id",
+        "work_object_id",
+        "flag"
+      ],
       "properties": {
-        "op": { "const": "add_flag" },
-        "event_id": { "$ref": "#/$defs/nonEmptyId" },
-        "work_object_id": { "$ref": "#/$defs/nonEmptyId" },
-        "flag": { "$ref": "#/$defs/nonEmptyId" }
+        "op": {
+          "const": "add_flag"
+        },
+        "event_id": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "work_object_id": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "flag": {
+          "$ref": "#/$defs/nonEmptyId"
+        }
       }
     },
     "workObjectRemoveFlagOp": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["op", "event_id", "work_object_id", "flag"],
+      "required": [
+        "op",
+        "event_id",
+        "work_object_id",
+        "flag"
+      ],
       "properties": {
-        "op": { "const": "remove_flag" },
-        "event_id": { "$ref": "#/$defs/nonEmptyId" },
-        "work_object_id": { "$ref": "#/$defs/nonEmptyId" },
-        "flag": { "$ref": "#/$defs/nonEmptyId" }
+        "op": {
+          "const": "remove_flag"
+        },
+        "event_id": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "work_object_id": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "flag": {
+          "$ref": "#/$defs/nonEmptyId"
+        }
       }
     },
     "workObjectCloseOp": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["op", "event_id", "work_object_id"],
+      "required": [
+        "op",
+        "event_id",
+        "work_object_id"
+      ],
       "properties": {
-        "op": { "const": "close" },
-        "event_id": { "$ref": "#/$defs/nonEmptyId" },
-        "work_object_id": { "$ref": "#/$defs/nonEmptyId" },
-        "outcome": { "type": "string", "minLength": 1 }
+        "op": {
+          "const": "close"
+        },
+        "event_id": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "work_object_id": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "outcome": {
+          "type": "string",
+          "minLength": 1
+        }
       }
     },
     "workObjectNoteOp": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["op", "event_id", "work_object_id", "note"],
+      "required": [
+        "op",
+        "event_id",
+        "work_object_id",
+        "note"
+      ],
       "properties": {
-        "op": { "const": "note" },
-        "event_id": { "$ref": "#/$defs/nonEmptyId" },
-        "work_object_id": { "$ref": "#/$defs/nonEmptyId" },
-        "note": { "type": "string", "minLength": 1 }
+        "op": {
+          "const": "note"
+        },
+        "event_id": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "work_object_id": {
+          "$ref": "#/$defs/nonEmptyId"
+        },
+        "note": {
+          "type": "string",
+          "minLength": 1
+        }
       }
     },
     "knowledgeContract": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["version", "mode", "source_refs", "frozen_fields"],
+      "required": [
+        "version",
+        "mode",
+        "source_refs",
+        "frozen_fields"
+      ],
       "properties": {
-        "version": { "const": 1 },
-        "mode": {
-          "enum": ["none", "pinned", "pinned_rules_dynamic_explanation"]
+        "version": {
+          "const": 1
         },
-        "ruleset_ref": { "type": "string", "minLength": 1 },
-        "ruleset_version": { "type": "string", "minLength": 1 },
+        "mode": {
+          "enum": [
+            "none",
+            "pinned",
+            "pinned_rules_dynamic_explanation"
+          ]
+        },
+        "ruleset_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "ruleset_version": {
+          "type": "string",
+          "minLength": 1
+        },
         "source_refs": {
           "type": "array",
-          "items": { "type": "string", "minLength": 1 },
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
           "uniqueItems": true
         },
         "frozen_fields": {
           "type": "array",
           "items": {
-            "enum": ["interaction_mode", "choices", "task_contract", "effects", "success_rule", "answer_key"]
+            "enum": [
+              "interaction_mode",
+              "choices",
+              "task_contract",
+              "effects",
+              "success_rule",
+              "answer_key"
+            ]
           },
           "uniqueItems": true
         },
         "dynamic_fields": {
           "type": "array",
           "items": {
-            "enum": ["content.explanation", "content.links", "job_description"]
+            "enum": [
+              "content.explanation",
+              "content.links",
+              "job_description"
+            ]
           },
           "uniqueItems": true,
           "default": []
@@ -492,31 +1158,92 @@
         {
           "if": {
             "properties": {
-              "mode": { "enum": ["pinned", "pinned_rules_dynamic_explanation"] }
+              "mode": {
+                "enum": [
+                  "pinned",
+                  "pinned_rules_dynamic_explanation"
+                ]
+              }
             },
-            "required": ["mode"]
+            "required": [
+              "mode"
+            ]
           },
           "then": {
-            "required": ["ruleset_ref", "ruleset_version"],
-            "properties": { "frozen_fields": { "minItems": 1 } }
+            "required": [
+              "ruleset_ref",
+              "ruleset_version"
+            ],
+            "properties": {
+              "frozen_fields": {
+                "minItems": 1
+              }
+            }
           }
         },
         {
           "if": {
             "properties": {
-              "mode": { "const": "pinned_rules_dynamic_explanation" }
+              "mode": {
+                "const": "pinned_rules_dynamic_explanation"
+              }
             },
-            "required": ["mode"]
+            "required": [
+              "mode"
+            ]
           },
           "then": {
             "properties": {
               "dynamic_fields": {
-                "contains": { "const": "content.explanation" }
+                "contains": {
+                  "const": "content.explanation"
+                }
               }
             }
           }
         }
       ]
+    },
+    "choiceAffordance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "history_go"
+      ],
+      "properties": {
+        "history_go": {
+          "$ref": "#/$defs/historyGoChoiceAffordance"
+        }
+      }
+    },
+    "historyGoChoiceAffordance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "task_mail_ids"
+      ],
+      "properties": {
+        "task_mail_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonEmptyId"
+          },
+          "minItems": 1,
+          "maxItems": 8,
+          "uniqueItems": true
+        },
+        "require_task_completed": {
+          "type": "boolean",
+          "default": true
+        },
+        "require_history_go_correct": {
+          "type": "boolean",
+          "default": true
+        },
+        "min_effect": {
+          "type": "number"
+        }
+      }
     }
   }
 }
