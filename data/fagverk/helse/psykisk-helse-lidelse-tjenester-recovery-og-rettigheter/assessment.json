@@ -1,0 +1,193 @@
+{
+  "schema": "history_go_fagverk_health_chapter_assessment_v1",
+  "version": "1.0.0",
+  "subject_id": "helse",
+  "chapter_id": "psykisk-helse-lidelse-tjenester-recovery-og-rettigheter",
+  "status": "audited",
+  "questions": [
+    {
+      "id": "helse-hmh-q01",
+      "question": "Hva er feil ved å definere psykisk helse bare som fravær av diagnose?",
+      "options": [
+        "Det er alltid en tilstrekkelig definisjon",
+        "Trivsel, funksjon og plager kan variere uavhengig av om en diagnose er registrert",
+        "Diagnoser beskriver alltid all livskvalitet",
+        "Psykisk helse kan bare måles hos personer med diagnose"
+      ],
+      "answer": "Trivsel, funksjon og plager kan variere uavhengig av om en diagnose er registrert",
+      "answerIndex": 1,
+      "question_type": "analysis",
+      "difficulty": "medium",
+      "emne_id": "em_helse_psykisk_helse",
+      "claim_id": "hmh-c02",
+      "source": [
+        "hmh01-who-mental-health-2025",
+        "hmh02-who-mental-disorders-2025",
+        "hmh03-who-world-mental-health-report-2022"
+      ],
+      "knowledge": "Fravær av en diagnostisert psykisk lidelse er ikke det samme som høy trivsel eller god psykisk helse, og betydelige psykiske plager kan finnes uten at kriteriene for en bestemt lidelse er oppfylt. WHO bruker dessuten mental health conditions som et bredere begrep enn formelle mental disorders. Begrepsnivåene må derfor holdes atskilt når populasjon, tjenester og klinisk klassifikasjon beskrives.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hmh-q02",
+      "question": "Hvorfor kan én symptomskår ikke alene være en diagnose?",
+      "options": [
+        "Fordi skårer aldri kan brukes i helsearbeid",
+        "Fordi diagnose krever mønster, varighet, funksjon, kontekst og relevante avgrensninger",
+        "Fordi symptomer alltid er normale",
+        "Fordi alle diagnoser krever laboratorietest"
+      ],
+      "answer": "Fordi diagnose krever mønster, varighet, funksjon, kontekst og relevante avgrensninger",
+      "answerIndex": 1,
+      "question_type": "analysis",
+      "difficulty": "medium",
+      "emne_id": "em_helse_psykisk_helse",
+      "claim_id": "hmh-c06",
+      "source": [
+        "hmh06-who-icd11-cddr-2024",
+        "hmh02-who-mental-disorders-2025",
+        "hmh10-who-mhgap-guideline-2023"
+      ],
+      "knowledge": "Et enkelt symptom, en enkelt observasjon eller én numerisk skår er ikke en diagnose. Diagnostisk vurdering må kunne ta hensyn til mønster, varighet, alvorlighetsgrad, funksjon, utviklings- og livskontekst og relevante alternative forklaringer eller eksklusjoner. Derfor kan to mennesker med lignende symptomskår ha ulike kliniske problemstillinger, og undervisning skal ikke gjøre en skår til en personspesifikk konklusjon.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hmh-q03",
+      "question": "Hva kan en populasjonsprevalens ikke fortelle direkte?",
+      "options": [
+        "Hvor vanlig en tilstand er i en definert gruppe",
+        "Sannsynligheten for at en bestemt person har lidelsen",
+        "Hvordan forekomst kan sammenlignes mellom grupper",
+        "At definisjon og datakilde kan påvirke estimatet"
+      ],
+      "answer": "Sannsynligheten for at en bestemt person har lidelsen",
+      "answerIndex": 1,
+      "question_type": "analysis",
+      "difficulty": "medium",
+      "emne_id": "em_helse_psykisk_helse",
+      "claim_id": "hmh-c11",
+      "source": [
+        "hmh02-who-mental-disorders-2025",
+        "hmh03-who-world-mental-health-report-2022",
+        "hmh05-who-mental-health-atlas-2024"
+      ],
+      "knowledge": "Prevalens og sykdomsbyrde oppsummerer hvor vanlige eller belastende tilstander er i definerte populasjoner og tidsperioder. Slike mål påvirkes av definisjon, datakilde, målemetode og hvem som inngår i populasjonen. En gruppeprevalens kan derfor ikke settes lik sannsynligheten for at en bestemt person har en lidelse, og den sier heller ikke alene noe om årsak eller fremtidig forløp.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hmh-q04",
+      "question": "Hva er en viktig grense ved stepped eller mixed care?",
+      "options": [
+        "Modellen er en automatisk alvorlighetsstige",
+        "Én skår bestemmer alltid omsorgsnivå",
+        "Tjenesteintensitet kan organiseres fleksibelt, men individuell vurdering kan ikke erstattes",
+        "Spesialisttjenester har aldri en rolle"
+      ],
+      "answer": "Tjenesteintensitet kan organiseres fleksibelt, men individuell vurdering kan ikke erstattes",
+      "answerIndex": 2,
+      "question_type": "analysis",
+      "difficulty": "hard",
+      "emne_id": "em_helse_psykisk_helse",
+      "claim_id": "hmh-c15",
+      "source": [
+        "hmh13-helsedirektoratet-voksne-2025",
+        "hmh14-helsedirektoratet-planlegging-samarbeid-2025",
+        "hmh12-who-health-sector-policy-2025"
+      ],
+      "knowledge": "Stepped care og mixed care er måter å organisere tjenester slik at intensitet, kombinasjon og samarbeid kan tilpasses behov og endres over tid. En slik modell kan omfatte lavterskeltilbud, kommunale tjenester, primærhelsetjeneste og spesialisthelsetjeneste i ulike kombinasjoner. Den er ikke en rigid alvorlighetsstige der én skår automatisk bestemmer neste nivå, fordi behov, risiko, funksjon og preferanser krever faglig vurdering.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hmh-q05",
+      "question": "Hvorfor er systemkapasitet ikke det samme som pasientutfall?",
+      "options": [
+        "Fordi personell og finansiering ikke kan måles",
+        "Fordi systemindikatorer beskriver kapasitet, mens pasientutfall måler andre nivåer av kvalitet og effekt",
+        "Fordi pasientutfall alltid er identiske",
+        "Fordi tjenestedekning alene beviser effekt"
+      ],
+      "answer": "Fordi systemindikatorer beskriver kapasitet, mens pasientutfall måler andre nivåer av kvalitet og effekt",
+      "answerIndex": 1,
+      "question_type": "analysis",
+      "difficulty": "hard",
+      "emne_id": "em_helse_psykisk_helse",
+      "claim_id": "hmh-c19",
+      "source": [
+        "hmh05-who-mental-health-atlas-2024",
+        "hmh12-who-health-sector-policy-2025",
+        "hmh03-who-world-mental-health-report-2022"
+      ],
+      "knowledge": "Tall for finansiering, personell, sengekapasitet, konsultasjoner eller tjenestedekning beskriver ulike sider ved et psykisk helse-systems kapasitet og organisering. De kan avdekke store systemforskjeller og mangler, men er ikke direkte mål på om en bestemt pasient fikk trygg, effektiv eller personorientert hjelp. Systemindikatorer og pasientnivåutfall må derfor analyseres som forskjellige målenivåer.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hmh-q06",
+      "question": "Hvorfor bør symptomer, funksjon, livskvalitet og personlig recovery måles hver for seg?",
+      "options": [
+        "Fordi de er identiske",
+        "Fordi de kan utvikle seg forskjellig og representerer ulike utfallsdimensjoner",
+        "Fordi bare symptomer betyr noe",
+        "Fordi recovery alltid betyr symptomfrihet"
+      ],
+      "answer": "Fordi de kan utvikle seg forskjellig og representerer ulike utfallsdimensjoner",
+      "answerIndex": 1,
+      "question_type": "analysis",
+      "difficulty": "hard",
+      "emne_id": "em_helse_psykisk_helse",
+      "claim_id": "hmh-c23",
+      "source": [
+        "hmh15-leamy-recovery-systematic-review-2011",
+        "hmh07-who-community-mental-health-services-2021",
+        "hmh14-helsedirektoratet-planlegging-samarbeid-2025"
+      ],
+      "knowledge": "Symptomnivå, funksjon, livskvalitet og personlig recovery er relaterte, men ikke identiske utfallsdimensjoner. En person kan for eksempel oppleve bedre deltagelse eller mening uten full symptomremisjon, mens symptomlette ikke nødvendigvis løser sosiale eller funksjonelle barrierer. Evaluering av psykisk helse-tjenester bør derfor være eksplisitt om hvilket utfall som måles i stedet for å samle alt under én generell idé om bedring.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hmh-q07",
+      "question": "Hva er riktig om peer support og profesjonelle tjenester?",
+      "options": [
+        "Peer support erstatter alltid profesjonell hjelp",
+        "De kan være komplementære og har ulike roller og ansvar",
+        "Profesjonelle tjenester gjør peer support irrelevant",
+        "Peer support skal ha uavgrenset klinisk ansvar"
+      ],
+      "answer": "De kan være komplementære og har ulike roller og ansvar",
+      "answerIndex": 1,
+      "question_type": "analysis",
+      "difficulty": "hard",
+      "emne_id": "em_helse_psykisk_helse",
+      "claim_id": "hmh-c28",
+      "source": [
+        "hmh08-who-peer-support-2021",
+        "hmh07-who-community-mental-health-services-2021",
+        "hmh13-helsedirektoratet-voksne-2025"
+      ],
+      "knowledge": "Verdien av peer support innebærer ikke at profesjonell helsehjelp, spesialistkompetanse eller akutte tjenester alltid kan erstattes av erfaringsstøtte. Peer- og profesjonelle roller kan være komplementære og ha ulike ansvar, kompetansegrunnlag og grenser. Tjenestedesign bør derfor unngå både å marginalisere erfaringskompetanse og å legge klinisk ansvar på peer-roller som de ikke er ment å bære.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hmh-q08",
+      "question": "Hvorfor må menneskerettslige standarder skilles fra lokal lov i undervisningen?",
+      "options": [
+        "Fordi menneskerettigheter ikke har betydning",
+        "Fordi normativ systemretning og konkret juridisk regel eller enkeltvedtak er ulike nivåer",
+        "Fordi lokal lov alltid er identisk i alle land",
+        "Fordi Fagverket skal avgjøre konkrete tvangssaker"
+      ],
+      "answer": "Fordi normativ systemretning og konkret juridisk regel eller enkeltvedtak er ulike nivåer",
+      "answerIndex": 1,
+      "question_type": "analysis",
+      "difficulty": "hard",
+      "emne_id": "em_helse_psykisk_helse",
+      "claim_id": "hmh-c30",
+      "source": [
+        "hmh09-who-ohchr-rights-legislation-2023",
+        "hmh07-who-community-mental-health-services-2021",
+        "hmh13-helsedirektoratet-voksne-2025"
+      ],
+      "knowledge": "WHO og OHCHR anbefaler at psykisk helse-systemer reduserer bruk av tvang og utvikler personorienterte og rights-based alternativer, men internasjonale menneskerettslige standarder og lokal lov er ikke samme analytiske nivå. Lovgivning varierer og konkrete vedtak avhenger av jurisdiksjon og sakens faktum. Fagverket kan derfor forklare normer og systemretning uten å gi juridiske råd om samtykkekompetanse, tvang eller enkeltvedtak.",
+      "safety_mode": "general_non_individualizing"
+    }
+  ]
+}

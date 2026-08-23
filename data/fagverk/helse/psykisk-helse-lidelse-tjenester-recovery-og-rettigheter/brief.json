@@ -1,0 +1,57 @@
+{
+  "schema": "history_go_fagverk_chapter_brief_v1",
+  "version": "1.0.0",
+  "subject_id": "helse",
+  "chapter_id": "psykisk-helse-lidelse-tjenester-recovery-og-rettigheter",
+  "primary_domain_id": "psykisk_helse",
+  "purpose": "Lære psykisk helse som helse- og tjenestefelt med klassifikasjon, determinanter, recovery, medvirkning og rettigheter uten individuell diagnose, risikovurdering, triage, behandling eller juridisk enkeltsaksråd.",
+  "sourceStrategy": {
+    "sourceBriefFile": "data/fag/helse/mental_health_source_claim_brief_v1.json",
+    "externalSourceCount": 15,
+    "paragraphLevelClaimTrace": true,
+    "everyPlannedClaimResolved": true,
+    "allUsedSourcesInspectable": true
+  },
+  "requiredCriticalDistinctions": [
+    "psykisk helse vs fravær av psykisk lidelse",
+    "mental health condition vs formell mental disorder",
+    "symptom eller distress vs diagnose",
+    "screening eller skår vs diagnose",
+    "diagnostisk kategori vs hele personen eller fast etiologi",
+    "populasjonsprevalens vs individuell sannsynlighet",
+    "determinant eller assosiasjon vs individuell årsak",
+    "gruppeevidens vs individuell behandlingsanbefaling",
+    "tjenestetilgang vs tjenesteeffekt og kvalitet",
+    "community care vs fravær av spesialisttjeneste",
+    "stepped eller mixed care vs rigid alvorlighetsstige",
+    "personlig recovery vs symptomremisjon",
+    "recovery-orientering vs garantert recovery",
+    "peer support vs erstatning for profesjonell hjelp",
+    "systemindikator vs pasientnivåutfall",
+    "menneskerettsstandard vs lokal juridisk regel",
+    "autonomi og samtykke vs fravær av sikkerhetsansvar",
+    "stigma og diskriminering vs diagnostisk validitet",
+    "Helse-eierskap vs Psykologi-teorieierskap"
+  ],
+  "safety": {
+    "contractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json",
+    "individualDiagnosis": false,
+    "individualPrognosis": false,
+    "individualTriage": false,
+    "individualTreatmentAdvice": false,
+    "individualRiskCalculation": false,
+    "individualTestOrImageInterpretation": false,
+    "individualMedicationSelection": false,
+    "individualDosing": false,
+    "individualLegalAdvice": false,
+    "individualCrisisInstruction": false
+  },
+  "qa": {
+    "topicCoverage": "8/8",
+    "plannedClaimResolution": "32/32",
+    "moduleCount": 4,
+    "sectionCount": 8,
+    "paragraphCount": 32,
+    "assessmentQuestionCount": 8
+  }
+}
