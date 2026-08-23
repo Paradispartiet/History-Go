@@ -194,7 +194,7 @@ Dialektinnhold kan kun eies av et område-Place med `placeScope: "area"`. `coord
 
 #### Brands
 
-`data/brands/brand_rules_v1_1.json` er canonical semantisk eier for Brand-vurderingen. Aktørtype alene brukes verken som godkjenning eller avslag. Null treff i eksisterende brandregister behandles som «må researches», ikke som N/A. Brands kan først settes N/A etter reelt kandidatsøk og dokumenterte kandidatspesifikke avvisningsgrunner.
+`data/brands/brand_rules_v1_1.json` er canonical semantisk eier for Brand-vurderingen. aktørtype alene brukes verken som godkjenning eller avslag. Null treff i eksisterende brandregister behandles som «må researches», ikke som N/A. Brands kan først settes N/A etter reelt kandidatsøk og dokumenterte kandidatspesifikke avvisningsgrunner.
 
 #### Quiz
 
