@@ -3,7 +3,7 @@
 - Oppdatert: 2026-08-23
 - Place ID: `birkelunden`
 - Canonical source: `data/places/by/oslo/places/birkelunden.json`
-- Aktiv 7E baseline `main`: `87343213dae6eb4ab17720463f68334184395c68`
+- Aktiv 7F baseline `main`: `1cdb905970aa900ebfede38e9b5a9ae851820461`
 - Fase 0 merge: #5236 / `d3945c43f10b1f5b4e1b758f915818342f95d240`
 - Fase 1 merge: #5239 / `2dbc70a4984e01487a2dd7289d2e93bcbb0d6217`
 - Fase 2 merge: #5241 / `61bcf3e1dc0156582eb1e3bd9bfcee6d9ba05c06`
@@ -16,10 +16,13 @@
 - Fase 7B merge: #5262 / `54e7177a5a3b4563eafe4b0c40e8667348cbe67e`
 - Fase 7C merge: #5266 / `8fbdbaf703b8987956eae9ca9576d68839447982`
 - Fase 7D merge: #5272 / `506540cfff848178017e387bfb33d8da8d7336f7`
+- Fase 7E merge: #5276 / `1cdb905970aa900ebfede38e9b5a9ae851820461`
 - Fase 7D review: `reports/place-production/birkelunden-phase7d-before-after-audit-v1.md`
 - Fase 7D regression: `tests/birkelunden-phase7d-before-after.test.mjs`
 - Fase 7E review: `reports/place-production/birkelunden-phase7e-news-audit-v1.md`
 - Fase 7E regression: `tests/birkelunden-phase7e-news.test.mjs`
+- Fase 7F review: `reports/place-production/birkelunden-phase7f-reading-trail-audit-v1.md`
+- Fase 7F regression: `tests/birkelunden-phase7f-reading-trail.test.mjs`
 - Content Factory: `data/places/regler/content_factory_v1.json`
 - Popupkontrakt: `docs/PLACE_POPUP_SYSTEM.md`
 
@@ -43,9 +46,9 @@ popupDesc SHA-256: 670dcbc8e37004fe1c3a595ae6af1a6dcfe304f1048ce906f37df3f7e8544
 | 7B Historie | **FERDIG OG MERGET** (#5262) |
 | 7C Fortellinger | **FERDIG OG MERGET** (#5266) |
 | 7D Før/etter | **FERDIG OG MERGET** (#5272) |
-| 7E Nyheter | **KLAR FOR REVIEW / CI** |
-| 7F Lesespor | **NESTE – REELT RESEARCHHULL** |
-| 7G Kilder | **LABELS READY / KLIKKBARE LENKER MANGLER** |
+| 7E Nyheter | **FERDIG OG MERGET** (#5276) |
+| 7F Lesespor | **KLAR FOR REVIEW / CI** |
+| 7G Kilder | **NESTE – LABELS READY / KLIKKBARE LENKER MANGLER** |
 | 7H Språk | **REELL NAVNEHISTORIEKANDIDAT** |
 | 8–24 | **ÅPENT** etter canonical rekkefølge |
 
@@ -104,79 +107,89 @@ Felles visuelle ankre er musikkpaviljongen fra 1926, vann-/fonteneområdet og de
 
 `tests/birkelunden-phase7d-before-after.test.mjs` låser datoer, kilder, lisens-/attribusjonskjeder, substansielle before/now/change-felt, own-place-grensen, description-hashene og `area_m2=16300`. Testen kjøres permanent fra `scripts/check-places.sh`.
 
-## 7E – Nyheter
+## 7E – Nyheter, låst
 
-Canonical eier er manifest-lastede Leksikon-oppføringer, samme runtimekontrakt som Torggatta. Canonical Place får ikke et parallelt `news`-felt.
+Canonical eier er manifest-lastede Leksikon-oppføringer, samme runtimekontrakt som Torggata. Canonical Place har ikke et parallelt `news`-felt.
 
-Ny fil:
-
-```text
-data/leksikon/places/oslo/by/leksikon_oslo_by_birkelunden_news.json
-```
-
-### Publisert notis 1 – Oslo Pix
+Publisert:
 
 ```text
-id: birkelunden_news_oslo_pix_utekino_2026
-date: 2026-08-25
-valid_through: 2026-08-26
-status: scheduled
+birkelunden_news_oslo_pix_utekino_2026
+2026-08-25 → 2026-08-26
+
+birkelunden_news_bondens_marked_host_2026
+2026-09-13 → 2026-12-13
 ```
 
-Oslo Pix sitt offisielle 2026-program oppgir gratis utekino i Birkelunden 25. og 26. august kl. 19.00: `The Truman Show` tirsdag og `Thelma & Louise` onsdag.
+Oslo Pix-notisen gjelder gratis utekino 25. og 26. august. Bondens marked-notisen låser bare de fire kommende Birkelunden-datoene 13. september, 18. oktober, 14. november og 13. desember 2026. Begge har direkte primærkilder, `verifiedAt: 2026-08-23` og eksplisitt freshness-grense.
 
-Kilde: `https://www.oslopix.no/no/arrangement/2026/kveldsvisninger-p%C3%A5-birkelunden-gratis-utekino`.
+`tests/birkelunden-phase7e-news.test.mjs` kjøres permanent fra `scripts/check-places.sh`.
 
-### Publisert notis 2 – Bondens marked
+## 7F – Lesespor
+
+Canonical eier er manifest-lastede `history_go_lesespor_v1`-filer. Ny stedsspesifikk fil:
 
 ```text
-id: birkelunden_news_bondens_marked_host_2026
-date: 2026-09-13
-valid_through: 2026-12-13
-status: scheduled
+data/lesespor/oslo/lesespor_oslo_birkelunden.json
 ```
 
-Bondens marked oppgir fire kommende Birkelunden-datoer etter 23. august: 13. september, 18. oktober, 14. november og 13. desember 2026. Produsentantall og andre detaljer som kan endres er bevisst ikke låst inn i notisen.
+Tre åpne `link_only`-spor er materialisert:
 
-Kilde: `https://bondensmarked.no/markedsplasser/birkelunden-gr-nerloekka`.
+```text
+lesespor_birkelunden_byleksikon_001
+Oslo byleksikon – Birkelunden
 
-### Holdbacks og own-place
+lesespor_birkelunden_riksantikvaren_001
+Riksantikvaren – Birkelunden – Murbyens hjerte
 
-- Oslo kommunes parkside brukes som basis-/identitetskilde, ikke som kunstig nyhet uten ny 2026-hendelse;
-- VisitOSLOs løpende søndagsmarked er kontrollert, men holdes ute av denne fasen for å unngå generell kalenderfeed;
-- Tankesmien Agendas «Blokka»-side har dato-/ukedagkonflikt og brukes ikke som selvstendig nyhetskilde;
-- Paulus' plass, Paulus kirke, Grünerløkka skole, Olaf Ryes plass, Sofienbergparken og området generelt brukes ikke som stedfortredere for Birkelunden.
+lesespor_birkelunden_pensjonistforbundet_001
+Pensjonistforbundet – Vår historie
+```
 
-### Permanent 7E-port
+### Perspektivdeling
 
-`tests/birkelunden-phase7e-news.test.mjs` krever:
+- Oslo byleksikon: sammenhengende parkhistorie og anlegg;
+- Riksantikvaren: murby, offentlig rom og kulturmiljø som kontekst;
+- Pensjonistforbundet: Jack Johnsen, benken, møteplassen og organiseringen i 1937.
 
-- nøyaktig to proporsjonale `news_note`-oppføringer;
-- `place_id: birkelunden`, dato, status, `verifiedAt` og `valid_through`;
-- direkte HTTPS-kilde til begge primærarrangører;
-- de publiserte Oslo Pix- og Bondens marked-datoene;
-- én manifestregistrering rett etter canonical Birkelunden-Leksikon;
-- eksisterende runtimeklassifisering/kildevisning;
-- own-place-dokumentasjon;
+Alle tre har eksakt `place_ids: ["birkelunden"]`, `access: open`, `rights: link_only`, `verifiedAt: 2026-08-23` og direkte HTTPS-lenke. Artikkeltekst kopieres ikke.
+
+### Own-place og holdbacks
+
+- park og større kulturmiljø skilles eksplisitt i de to første sporene;
+- Paulus kirke, Paulus' plass, Grünerløkka skole, Olaf Ryes plass og andre naboplaces brukes ikke som stedfortredere;
+- Store norske leksikon er kontrollert, men holdes tilbake fordi det overlapper Oslo byleksikon mer enn det tilfører et fjerde perspektiv;
+- tre spor er valgt framfor en generell lenkekatalog.
+
+### Permanent 7F-port
+
+`tests/birkelunden-phase7f-reading-trail.test.mjs` krever:
+
+- nøyaktig tre Birkelunden-spor;
+- eksakte IDs, `place_ids`, åpen tilgang og `link_only`;
+- direkte URL-er og `verifiedAt`;
+- manifestregistrering rett etter den generelle Oslo By-filen;
+- eksisterende runtimefilter for place-ID og betalingsmur;
+- auditert perspektivbredde/own-place;
 - uendrede fase-5 description-hasher og `area_m2=16300`.
 
-Testen kjøres permanent fra `scripts/check-places.sh` etter 7D-testen.
+Testen kjøres permanent fra `scripts/check-places.sh` etter 7E-testen.
 
-Produksjonsmodell/API-kreditter i 7E: **0 eksterne modellkall**. Fersk research ble gjort mot åpne primærkilder og kontrollkilder; ingen kvalitetsterskel ble redusert.
+Produksjonsmodell/API-kreditter i 7F: **0 eksterne modellkall**. Åpne nettsider og repo-/runtimekontrakter var tilstrekkelige; ingen kvalitetsterskel ble redusert.
 
-## Scope 7E
+## Scope 7F
 
 Endres:
 
-1. ny Birkelunden news Leksikon-fil;
-2. `data/leksikon/manifest.json`;
-3. `tests/birkelunden-phase7e-news.test.mjs`;
-4. `scripts/check-places.sh` – permanent 7E-teststeg;
-5. `reports/place-production/birkelunden-phase7e-news-audit-v1.md`;
+1. ny Birkelunden Lesespor-fil;
+2. `data/lesespor/manifest.json`;
+3. `tests/birkelunden-phase7f-reading-trail.test.mjs`;
+4. `scripts/check-places.sh` – permanent 7F-teststeg;
+5. `reports/place-production/birkelunden-phase7f-reading-trail-audit-v1.md`;
 6. dette workcardet.
 
-Ikke endret: canonical Birkelunden Place, `desc`, `popupDesc`, koordinater, profiler, `for_na`, Story, People, Objects, Nature eller popup-runtime.
+Ikke endret: canonical Birkelunden Place, `desc`, `popupDesc`, koordinater, profiler, `for_na`, Story, People, Objects, Nature, news-data eller popup-runtime.
 
 ## Neste
 
-Etter grønn 7E-merge starter **7F – Lesespor** fra fersk `main`. Fase-7-auditen klassifiserte Lesespor som et reelt researchhull; det skal derfor gjennomføres et nytt strengt søk etter place-linkede åpne lesespor før noe kan markeres ferdig eller begrunnet N/A.
+Etter grønn 7F-merge starter **7G – Kilder** fra fersk `main`. Fase-2 source/claim-pakken og `source_summary.safe_sources` har allerede sterke source-labels, men den brukerrettede Kilder-fanen skal få dedupliserte, inspectable HTTPS-lenker og eksplisitt source-eierskap uten å vise tekniske kontroll-ID-er som kilder.
