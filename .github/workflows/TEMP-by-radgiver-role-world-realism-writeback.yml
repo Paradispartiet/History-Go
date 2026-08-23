@@ -1,0 +1,62 @@
+name: TEMP By-radgiver Role World realism writeback
+
+on:
+  push:
+    branches:
+      - agent/civication-by-radgiver-role-world-realism
+
+permissions:
+  contents: write
+
+jobs:
+  writeback:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/civication-by-radgiver-role-world-realism
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Materialize By-radgiver realism pilot
+        run: python3 scripts/TEMP_patch_by_radgiver_role_world_realism.py
+
+      - name: Regenerate compiled scene registry
+        run: node scripts/build-civication-scene-registry.mjs
+
+      - name: Run By-radgiver pilot proof
+        run: node tests/civication-by-radgiver-role-world-realism-pilot.test.js
+
+      - name: Run History Go choice affordance proof
+        run: node tests/civication-history-go-choice-affordance.test.js
+
+      - name: Run institution authority proof
+        run: node tests/civication-institution-authority-foundation.test.js
+
+      - name: Run archive continuity proof
+        run: node tests/civication-historie-arkiv-work-object-continuity.test.js
+
+      - name: Run complete Civication regression suite
+        run: npm run test:civication
+
+      - name: Commit permanent pilot output
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/Civication tests/civication-by-radgiver-role-world-realism-pilot.test.js reports/civication-by-radgiver-role-world-realism-pilot.md
+          if git diff --cached --quiet; then
+            echo "No permanent changes to commit"
+          else
+            git commit -m "Add By-radgiver Role World realism pilot"
+            git push
+          fi
