@@ -1,0 +1,93 @@
+name: Fagverk Helse rehabilitation function fulltext
+
+on:
+  pull_request:
+    paths:
+      - 'data/fag/helse/**'
+      - 'data/fag/fag_manifest.json'
+      - 'data/fagverk/helse/**'
+      - 'data/fagverk/fagverk_registry.json'
+      - 'data/fagverk/fagverk_release.json'
+      - 'data/fagverk/subject_inventory.json'
+      - 'data/fagverk/subject_status.json'
+      - 'reports/fagverk/helse-rehabilitation-function-fulltext-v1-audit.json'
+      - 'reports/fagverk/general-engine-audit.json'
+      - 'reports/fagverk/fagverk-theory-quality-audit.json'
+      - 'reports/fagverk/fagverk-theory-integrity-audit.json'
+      - 'scripts/*helse-rehabilitation-function*'
+      - 'scripts/audit-helse-cumulative-progress-v1.mjs'
+      - 'tests/helse-rehabilitation-function-fulltext-v1.test.mjs'
+      - 'tests/helse-cumulative-progress-v1.test.mjs'
+      - '.github/workflows/fagverk-helse-rehabilitation-function-fulltext.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'data/fag/helse/**'
+      - 'data/fagverk/helse/**'
+      - 'data/fagverk/fagverk_registry.json'
+      - 'data/fagverk/subject_status.json'
+      - 'data/fagverk/fagverk_release.json'
+      - 'reports/fagverk/helse-rehabilitation-function-fulltext-v1-audit.json'
+      - 'reports/fagverk/general-engine-audit.json'
+      - 'reports/fagverk/fagverk-theory-quality-audit.json'
+      - 'reports/fagverk/fagverk-theory-integrity-audit.json'
+      - 'scripts/*helse-rehabilitation-function*'
+      - 'tests/helse-rehabilitation-function-fulltext-v1.test.mjs'
+      - '.github/workflows/fagverk-helse-rehabilitation-function-fulltext.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - id: fulltext_gate
+        shell: bash
+        run: |
+          count="$(node -e "const fs=require('fs');const r=JSON.parse(fs.readFileSync('data/fagverk/fagverk_registry.json','utf8'));process.stdout.write(String(r.subjects.helse.editorialPlan.registeredChapterCount));")"
+          echo "count=${count}" >> "$GITHUB_OUTPUT"
+          if [[ ( "$count" == "10" || "$count" == "11" ) && -f scripts/materialize-helse-rehabilitation-function-fulltext-v1.mjs && -f scripts/audit-helse-rehabilitation-function-fulltext-v1.mjs && -f tests/helse-rehabilitation-function-fulltext-v1.test.mjs ]]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "Bootstrap/monotone skip: rehabilitation/function fulltext materialization is active at Helse 10/12 or 11/12 with fulltext files present; current count is ${count}/12."
+          fi
+      - if: steps.fulltext_gate.outputs.ready != 'true' && steps.fulltext_gate.outputs.count == '10'
+        run: node scripts/brief-helse-rehabilitation-function-sources-v1.mjs
+      - if: steps.fulltext_gate.outputs.ready == 'true'
+        run: node scripts/materialize-helse-rehabilitation-function-fulltext-v1.mjs
+      - if: steps.fulltext_gate.outputs.ready == 'true'
+        run: node scripts/audit-helse-rehabilitation-function-fulltext-v1.mjs
+      - run: node scripts/audit-helse-cumulative-progress-v1.mjs
+      - run: node scripts/audit-fagverk-subject-inventory.mjs
+      - run: node scripts/audit-fagverk-general-engine.mjs
+      - run: node scripts/audit-fagverk-theory-quality.mjs
+      - run: node scripts/audit-fagverk-theory-integrity.mjs
+      - run: node scripts/build-fagverk-release-manifest.mjs --check
+      - if: steps.fulltext_gate.outputs.ready == 'true'
+        run: node --test tests/helse-rehabilitation-function-fulltext-v1.test.mjs tests/helse-cumulative-progress-v1.test.mjs tests/fagverk-subject-inventory.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-release-manifest.test.mjs
+      - if: steps.fulltext_gate.outputs.ready != 'true'
+        run: node --test tests/helse-cumulative-progress-v1.test.mjs tests/fagverk-subject-inventory.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-release-manifest.test.mjs
+      - name: Verify deterministic generated outputs
+        if: steps.fulltext_gate.outputs.ready == 'true'
+        shell: bash
+        run: |
+          git diff --exit-code -- \
+            data/fag/fag_manifest.json \
+            data/fag/helse/helsepensum_canonical_v1.json \
+            data/fag/helse/emner_helse_canonical_v1.json \
+            data/fag/helse/methods_helse_canonical_v1.json \
+            data/fagverk/fagverk_registry.json \
+            data/fagverk/subject_inventory.json \
+            data/fagverk/subject_status.json \
+            data/fagverk/fagverk_release.json \
+            data/fagverk/helse/rehabilitering-funksjon-icf-mal-deltakelse-og-tverrprofesjonell-praksis.json \
+            data/fagverk/helse/rehabilitering-funksjon-icf-mal-deltakelse-og-tverrprofesjonell-praksis \
+            reports/fagverk/helse-rehabilitation-function-fulltext-v1-audit.json \
+            reports/fagverk/general-engine-audit.json \
+            reports/fagverk/fagverk-theory-quality-audit.json \
+            reports/fagverk/fagverk-theory-integrity-audit.json
