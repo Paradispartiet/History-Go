@@ -1,0 +1,140 @@
+{
+  "schema": "history_go_fagverk_chapter_v1",
+  "version": "1.0.0",
+  "subject": "helse",
+  "subject_id": "helse",
+  "id": "epidemiologi-design-mal-bias-confounding-og-kausalitet",
+  "chapter_id": "epidemiologi-design-mal-bias-confounding-og-kausalitet",
+  "primary_domain_id": "epidemiologi",
+  "editorialStatus": "chapter_ready",
+  "claimTraceRequired": true,
+  "sourceFirst": true,
+  "emne_ids": [
+    "em_helse_epidemiologi"
+  ],
+  "method_ids": [
+    "met_helse_populasjonsanalyse",
+    "met_helse_kausal_vurdering"
+  ],
+  "title": "Epidemiologi: design, mål, bias, confounding og kausalitet",
+  "subtitle": "Fra forekomstsmål og studiedesign til kausal struktur, usikkerhet og transportabilitet",
+  "lead": "Kapittelet analyserer populasjonsdata og studiedesign og gir aldri individuell diagnose, prognose, triage, behandling, risikoberegning eller personspesifikk medisinsk tolkning.",
+  "learningObjectives": [
+    "Populasjon, tid, case-definisjon og nevner",
+    "Forekomst: insidens, risiko, rate og prevalens",
+    "Studiedesign, utvalg og hvilket spørsmål som faktisk estimeres",
+    "Assosiasjonsmål, relative og absolutte effekter",
+    "Bias: seleksjon, måling, klassifikasjon og manglende data",
+    "Confounding, justering, mediatorer og kollidere",
+    "Kausal tolkning, presisjon, sensitivitetsanalyse og robusthet",
+    "Effektheterogenitet, målpopulasjon og generaliserbarhet"
+  ],
+  "diagnosticQuestions": [
+    {
+      "question": "Hvorfor er en aldersstandardisert insidensrate ikke en individuell sannsynlighet?",
+      "answer": "En insidensrate knytter nye hendelser til tid som personer eller populasjoner faktisk er under risiko, ofte uttrykt som person-tid. Aldersstandardiserte rater brukes for å sammenligne populasjoner med ulik alderssammensetning ved hjelp av en standardfordeling. Begge er populasjonsmål og kan ikke oversettes direkte til en bestemt persons sannsynlighet for et utfall."
+    },
+    {
+      "question": "Hva skiller best kumulativ risiko fra en insidensrate?",
+      "answer": "Kumulativ insidens uttrykker risikoen for at en ny hendelse oppstår i en definert gruppe over et bestemt tidsintervall, forutsatt at populasjonen kan følges på en relevant måte. Insidensrate bruker derimot person-tid i nevneren og beskriver hendelseshastighet. Risiko og rate har dermed ulike enheter, forutsetninger og fortolkninger og skal ikke brukes som synonymer."
+    },
+    {
+      "question": "Hva er kontrollenes hovedrolle i en kasus-kontrollstudie?",
+      "answer": "I en kasus-kontrollstudie skal kontrollene representere eksponeringsfordelingen i den kildepopulasjonen som kunne ha produsert kasusene. Hvis kontrollene velges fra en annen mekanisme eller en gruppe med systematisk annen eksponering, kan odds ratio bli skjev. Kontrollutvalg er derfor et designspørsmål om kildepopulasjon, ikke bare et spørsmål om å finne personer uten sykdom."
+    },
+    {
+      "question": "Hvorfor skal odds ratio ikke automatisk omtales som risk ratio?",
+      "answer": "Risk ratio sammenligner risikoer, mens odds ratio sammenligner odds; de er matematisk ulike størrelser. Når et utfall er sjeldent kan de numerisk ligne, men likhet under enkelte betingelser gjør dem ikke generelt utskiftbare. Rapportering bør bruke korrekt navn, forklare nevner og tidsramme og unngå å omtale odds ratio automatisk som risk ratio."
+    }
+  ],
+  "relatedPlaces": [
+    {
+      "id": "folkehelseinstituttet",
+      "name": "Folkehelseinstituttet",
+      "role": "Knytte populasjonsmål, studiedesign, overvåking og kausal tolkning til norsk epidemiologisk praksis uten individtolkning."
+    },
+    {
+      "id": "institutt-for-helse-og-samfunn-uio",
+      "name": "Institutt for helse og samfunn, Universitetet i Oslo",
+      "role": "Analysere epidemiologisk design, confounding, kausal inferens og målpopulasjoner i forsknings- og undervisningskontekst."
+    },
+    {
+      "id": "kreftregisteret",
+      "name": "Kreftregisteret",
+      "role": "Undersøke hvordan insidens, prevalens, registrering og standardisering brukes i populasjonsbasert sykdomsovervåking."
+    }
+  ],
+  "workCases": [
+    {
+      "id": "scenario-same-prevalence-different-incidence",
+      "title": "Samme prevalens, ulik insidens",
+      "purpose": "Sammenligne hypotetiske populasjoner med samme prevalens, men ulik insidens og varighet, uten individuell prognose.",
+      "source_ids": [
+        "hep01-who-basic-epidemiology",
+        "hep02-cdc-principles-epidemiology",
+        "hep12-seer-prevalence"
+      ]
+    },
+    {
+      "id": "scenario-cohort-or-case-control",
+      "title": "Kohort eller kasus-kontroll",
+      "purpose": "Velge hypotetisk studiedesign ut fra utfall, tidsrekkefølge og kildepopulasjon uten personspesifikk tolkning.",
+      "source_ids": [
+        "hep01-who-basic-epidemiology",
+        "hep03-cdc-field-study-design",
+        "hep09-strobe-observational-reporting"
+      ]
+    },
+    {
+      "id": "scenario-odds-ratio-common-outcome",
+      "title": "Odds ratio ved vanlig utfall",
+      "purpose": "Analysere hvorfor en odds ratio ikke uten videre skal omtales som en risk ratio når utfallet er vanlig.",
+      "source_ids": [
+        "hep02-cdc-principles-epidemiology",
+        "hep04-cdc-field-analysis",
+        "hep09-strobe-observational-reporting"
+      ]
+    },
+    {
+      "id": "scenario-adjustment-dag",
+      "title": "Hvilke variabler skal justeres for?",
+      "purpose": "Bruke en hypotetisk kausal graf til å skille confounder, mediator og kollider før modelljustering.",
+      "source_ids": [
+        "hep07-hernan-robins-what-if",
+        "hep08-greenland-pearl-robins-dags",
+        "hep05-fhi-analytic-epidemiology"
+      ]
+    },
+    {
+      "id": "scenario-small-p-large-effect",
+      "title": "Lav p-verdi og liten praktisk effekt",
+      "purpose": "Skille statistisk presisjon og signifikans fra effektstørrelse og praktisk betydning i et hypotetisk datasett.",
+      "source_ids": [
+        "hep02-cdc-principles-epidemiology",
+        "hep04-cdc-field-analysis",
+        "hep09-strobe-observational-reporting"
+      ]
+    },
+    {
+      "id": "scenario-transport-target-population",
+      "title": "Studieeffekt til en ny målpopulasjon",
+      "purpose": "Vurdere hypotetisk transportabilitet ved ulik fordeling av effektmodifikatorer, uten individuell behandlingsanbefaling.",
+      "source_ids": [
+        "hep14-young-dahabreh-transportability-2026",
+        "hep07-hernan-robins-what-if",
+        "hep09-strobe-observational-reporting"
+      ]
+    }
+  ],
+  "moduleFiles": [
+    "data/fagverk/helse/epidemiologi-design-mal-bias-confounding-og-kausalitet/01-populasjon-tid-og-forekomst.json",
+    "data/fagverk/helse/epidemiologi-design-mal-bias-confounding-og-kausalitet/02-studiedesign-og-assosiasjon.json",
+    "data/fagverk/helse/epidemiologi-design-mal-bias-confounding-og-kausalitet/03-bias-confounding-og-kausal-struktur.json",
+    "data/fagverk/helse/epidemiologi-design-mal-bias-confounding-og-kausalitet/04-usikkerhet-heterogenitet-og-transport.json"
+  ],
+  "briefFile": "data/fagverk/helse/epidemiologi-design-mal-bias-confounding-og-kausalitet/brief.json",
+  "claimsFile": "data/fagverk/helse/epidemiologi-design-mal-bias-confounding-og-kausalitet/claims.json",
+  "assessmentFile": "data/fagverk/helse/epidemiologi-design-mal-bias-confounding-og-kausalitet/assessment.json",
+  "sourceBriefFile": "data/fag/helse/epidemiology_source_claim_brief_v1.json",
+  "safetyContractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json"
+}

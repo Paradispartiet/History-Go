@@ -1,0 +1,120 @@
+{
+  "schema": "history_go_fagverk_health_module_v1",
+  "version": "1.0.0",
+  "id": "01-populasjon-tid-og-forekomst",
+  "title": "Populasjon, tid og forekomst",
+  "sections": [
+    {
+      "id": "hep-populasjon-tid-og-nevner",
+      "title": "Populasjon, tid, case-definisjon og nevner",
+      "topic_id": "populasjon-tid-og-nevner",
+      "emne_ids": [
+        "em_helse_epidemiologi"
+      ],
+      "method_ids": [
+        "met_helse_populasjonsanalyse"
+      ],
+      "boundary": "Rå antall er ikke et epidemiologisk mål uten definert case, populasjon, tidsrom og nevner; standardiserte mål er ikke individuell risiko.",
+      "paragraphIds": [
+        "hep-p-c01",
+        "hep-p-c02",
+        "hep-p-c03",
+        "hep-p-c04"
+      ],
+      "paragraphs": [
+        "Et epidemiologisk forekomstmål trenger en eksplisitt definert populasjon, en tidsramme og en teller som følger en kjent case-definisjon. Et rått antall tilfeller sier derfor lite om hvor vanlig en hendelse er dersom størrelsen på populasjonen og tiden under observasjon ikke er kjent. Denne avgrensningen hindrer også at et gruppemål feilaktig leses som individuell risiko.",
+        "Case-definisjonen bestemmer hvilke hendelser som teller som tilfeller, mens inklusjons- og eksklusjonsregler bestemmer hvem som kan bidra data. Når definisjonene endres mellom steder eller perioder, kan deler av en observert forskjell skyldes måten data er samlet og klassifisert på. Sammenlignbar epidemiologi krever derfor dokumenterte og tilstrekkelig stabile definisjoner.",
+        "En insidensrate knytter nye hendelser til tid som personer eller populasjoner faktisk er under risiko, ofte uttrykt som person-tid. Aldersstandardiserte rater brukes for å sammenligne populasjoner med ulik alderssammensetning ved hjelp av en standardfordeling. Begge er populasjonsmål og kan ikke oversettes direkte til en bestemt persons sannsynlighet for et utfall.",
+        "Tidsserier i epidemiologi påvirkes ikke bare av sykdomsprosesser, men også av hvilke personer som inngår i nevneren, hvor fullstendig hendelser registreres og hvordan case oppdages. Bedre diagnostikk eller rapportering kan for eksempel øke registrert forekomst uten tilsvarende økning i underliggende sykdom. Trendtolkning må derfor undersøke datagenereringen før årsaksforklaringer foreslås."
+      ],
+      "paragraphClaimIds": [
+        [
+          "hep-c01"
+        ],
+        [
+          "hep-c02"
+        ],
+        [
+          "hep-c03"
+        ],
+        [
+          "hep-c04"
+        ]
+      ],
+      "keyPoints": [
+        "Forekomstsmål krever eksplisitt populasjon og tidsramme; rå antall er ikke automatisk risiko eller rate.",
+        "Endret nevner, registrering eller case-ascertainment kan gi tilsynelatende trender."
+      ],
+      "keyPointClaimIds": [
+        [
+          "hep-c01"
+        ],
+        [
+          "hep-c04"
+        ]
+      ],
+      "source_ids": [
+        "hep01-who-basic-epidemiology",
+        "hep02-cdc-principles-epidemiology",
+        "hep06-who-health-data-glossary-2025",
+        "hep11-seer-incidence"
+      ]
+    },
+    {
+      "id": "hep-forekomst-risiko-rate-prevalens",
+      "title": "Forekomst: insidens, risiko, rate og prevalens",
+      "topic_id": "forekomst-risiko-rate-prevalens",
+      "emne_ids": [
+        "em_helse_epidemiologi"
+      ],
+      "method_ids": [
+        "met_helse_populasjonsanalyse"
+      ],
+      "boundary": "Insidens, kumulativ risiko, person-tidsrate og prevalens beskriver ulike størrelser.",
+      "paragraphIds": [
+        "hep-p-c05",
+        "hep-p-c06",
+        "hep-p-c07",
+        "hep-p-c08"
+      ],
+      "paragraphs": [
+        "Prevalens beskriver hvor stor andel av en definert populasjon som har en tilstand på et tidspunkt eller i en periode, mens insidens beskriver nye tilfeller eller hendelser som oppstår over tid. Målene svarer på ulike spørsmål. En høy prevalens kan derfor eksistere sammen med moderat insidens dersom tilstanden varer lenge eller overlevelsen er god.",
+        "Kumulativ insidens uttrykker risikoen for at en ny hendelse oppstår i en definert gruppe over et bestemt tidsintervall, forutsatt at populasjonen kan følges på en relevant måte. Insidensrate bruker derimot person-tid i nevneren og beskriver hendelseshastighet. Risiko og rate har dermed ulike enheter, forutsetninger og fortolkninger og skal ikke brukes som synonymer.",
+        "Prevalens bestemmes av tilstrømningen av nye tilfeller og hvor lenge personer forblir i den aktuelle tilstanden. Endringer i behandling, overlevelse, remisjon eller sykdomsvarighet kan derfor endre prevalensen selv om insidensen er stabil. Det er en viktig grunn til at prevalenstrender ikke alene kan brukes som mål på om nye sykdomstilfeller blir vanligere.",
+        "Aldersstandardisering holder en valgt aldersfordeling konstant for å gjøre rater fra ulike populasjoner mer sammenlignbare. Den standardiserte raten er derfor et konstruert sammenligningsmål, ikke den observerte risikoen i noen enkelt aldersgruppe og heller ikke individuell risiko. Ved beslutninger bør både standardiserte og relevante aldersspesifikke mål være synlige."
+      ],
+      "paragraphClaimIds": [
+        [
+          "hep-c05"
+        ],
+        [
+          "hep-c06"
+        ],
+        [
+          "hep-c07"
+        ],
+        [
+          "hep-c08"
+        ]
+      ],
+      "keyPoints": [
+        "Prevalens beskriver eksisterende tilfeller; insidens beskriver nye tilfeller eller hendelser over tid.",
+        "Aldersstandardisering er et konstruert populasjonssammenligningsmål og ikke individuell risiko."
+      ],
+      "keyPointClaimIds": [
+        [
+          "hep-c05"
+        ],
+        [
+          "hep-c08"
+        ]
+      ],
+      "source_ids": [
+        "hep01-who-basic-epidemiology",
+        "hep02-cdc-principles-epidemiology",
+        "hep11-seer-incidence",
+        "hep12-seer-prevalence"
+      ]
+    }
+  ]
+}

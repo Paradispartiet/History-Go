@@ -1,0 +1,123 @@
+{
+  "schema": "history_go_fagverk_health_module_v1",
+  "version": "1.0.0",
+  "id": "03-bias-confounding-og-kausal-struktur",
+  "title": "Bias, confounding og kausal struktur",
+  "sections": [
+    {
+      "id": "hep-bias-seleksjon-og-maling",
+      "title": "Bias: seleksjon, måling, klassifikasjon og manglende data",
+      "topic_id": "bias-seleksjon-og-maling",
+      "emne_ids": [
+        "em_helse_epidemiologi"
+      ],
+      "method_ids": [
+        "met_helse_populasjonsanalyse",
+        "met_helse_kausal_vurdering"
+      ],
+      "boundary": "Systematisk bias og tilfeldig feil er forskjellige; større utvalg løser ikke automatisk seleksjon, målefeil eller frafall.",
+      "paragraphIds": [
+        "hep-p-c17",
+        "hep-p-c18",
+        "hep-p-c19",
+        "hep-p-c20"
+      ],
+      "paragraphs": [
+        "Tilfeldig feil kan gjøre et estimat upresist, og større utvalg kan ofte redusere denne statistiske usikkerheten. Systematisk bias oppstår derimot når datagenereringen eller analysen forskyver estimatet i en bestemt strukturert retning. Et enormt datasett kan derfor gi et svært presist, men fortsatt skjevt estimat dersom seleksjon eller måling er systematisk problematisk.",
+        "Seleksjonsbias kan oppstå når sannsynligheten for å bli inkludert, fortsette i oppfølging eller ha komplette data avhenger av eksponering, utfall eller deres årsaker på en måte som endrer sammenligningen. Problemet vurderes ut fra seleksjonsmekanismen, ikke bare fra hvor stor frafallsprosenten er. Representativitet alene er heller ikke synonymt med kausal validitet.",
+        "Målefeil og feilklassifikasjon kan ramme eksponering, utfall eller kovariater og dermed endre både størrelse og retning på et estimat. En enkel etikett som differensiell eller ikke-differensiell er ikke nok til å bestemme hvilken vei bias går i alle situasjoner. Tolkning krever kunnskap om måleprosessen, kategoriene og den aktuelle analysemodellen.",
+        "Manglende data kan både redusere presisjon og skape bias dersom fraværet henger sammen med verdier som er relevante for analysen. Multiple imputation kan være bedre enn enkel komplett-case-analyse under passende antakelser, men resultatet avhenger av imputasjonsmodell, inkluderte variabler og antatt missingness-mekanisme. Imputasjon gjør derfor ikke ukjent seleksjon eller modellfeil borte."
+      ],
+      "paragraphClaimIds": [
+        [
+          "hep-c17"
+        ],
+        [
+          "hep-c18"
+        ],
+        [
+          "hep-c19"
+        ],
+        [
+          "hep-c20"
+        ]
+      ],
+      "keyPoints": [
+        "Større utvalg kan redusere tilfeldig usikkerhet uten å fjerne systematisk bias.",
+        "Manglende data kan påvirke presisjon og bias; multiple imputation avhenger av modeller og antakelser."
+      ],
+      "keyPointClaimIds": [
+        [
+          "hep-c17"
+        ],
+        [
+          "hep-c20"
+        ]
+      ],
+      "source_ids": [
+        "hep03-cdc-field-study-design",
+        "hep05-fhi-analytic-epidemiology",
+        "hep09-strobe-observational-reporting",
+        "hep10-cochrane-robins-i-v2",
+        "hep13-sterne-missing-data"
+      ]
+    },
+    {
+      "id": "hep-confounding-justering-og-dags",
+      "title": "Confounding, justering, mediatorer og kollidere",
+      "topic_id": "confounding-justering-og-dags",
+      "emne_ids": [
+        "em_helse_epidemiologi"
+      ],
+      "method_ids": [
+        "met_helse_populasjonsanalyse",
+        "met_helse_kausal_vurdering"
+      ],
+      "boundary": "En variabels rolle bestemmes av kausal struktur og spørsmål, ikke bare statistisk assosiasjon; justering kan både redusere og introdusere bias.",
+      "paragraphIds": [
+        "hep-p-c21",
+        "hep-p-c22",
+        "hep-p-c23",
+        "hep-p-c24"
+      ],
+      "paragraphs": [
+        "Confounding oppstår når den eksponerte og den ueksponerte sammenligningen også skiller seg i andre årsaker til utfallet, slik at effekten av eksponeringen blandes med disse forskjellene. At en kovariat er statistisk assosiert med både eksponering og utfall er ikke alene tilstrekkelig for å definere dens kausale rolle. Designkunnskap og årsaksstruktur må inngå.",
+        "Justering for målte confoundere kan under bestemte antakelser gjøre grupper mer sammenlignbare med hensyn til disse variablene. Det garanterer ikke at all confounding er fjernet: variabler kan være grovt målt, modeller kan være feilspesifisert og relevante årsaker kan være umålte. Et justert estimat skal derfor ikke automatisk omtales som uconfounded eller kausalt.",
+        "En mediator ligger på en kausal vei mellom eksponering og utfall i den aktuelle problemstillingen. Justering for mediatoren kan blokkere deler av den totale effekten og dermed endre hvilket estimand som faktisk estimeres. Om en variabel skal justeres for kan derfor ikke avgjøres uten å spesifisere om spørsmålet gjelder total effekt, direkte effekt eller en annen kausal størrelse.",
+        "En kollider er en variabel som påvirkes av to eller flere andre variabler i den kausale strukturen. Å kondisjonere på eller selektere etter en kollider kan åpne en ikke-kausal statistisk forbindelse og skape bias. Derfor er strategien om å justere for alle tilgjengelige kovariater metodisk usikker; variabelvalg må begrunnes kausalt."
+      ],
+      "paragraphClaimIds": [
+        [
+          "hep-c21"
+        ],
+        [
+          "hep-c22"
+        ],
+        [
+          "hep-c23"
+        ],
+        [
+          "hep-c24"
+        ]
+      ],
+      "keyPoints": [
+        "Confounding blander eksponeringseffekt med andre årsaksforskjeller; assosiasjon alene identifiserer ikke confounder.",
+        "Kondisjonering på kollider kan åpne ikke-kausal bane; flere kovariater er derfor ikke alltid bedre."
+      ],
+      "keyPointClaimIds": [
+        [
+          "hep-c21"
+        ],
+        [
+          "hep-c24"
+        ]
+      ],
+      "source_ids": [
+        "hep05-fhi-analytic-epidemiology",
+        "hep07-hernan-robins-what-if",
+        "hep08-greenland-pearl-robins-dags",
+        "hep09-strobe-observational-reporting"
+      ]
+    }
+  ]
+}
