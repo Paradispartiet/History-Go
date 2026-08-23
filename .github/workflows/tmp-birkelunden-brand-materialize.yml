@@ -30,45 +30,16 @@ jobs:
           fetch-depth: 0
           ref: ${{ env.TARGET_BRANCH }}
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Download documented media image
+      - name: Download official Bondens marked logo
         run: |
+          mkdir -p bilder/kort/brands
           curl --fail --location --retry 3 \
             --user-agent 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 History-Go/1.0' \
             --referer 'https://bondensmarked.no/om-oss/bilder' \
-            --header 'Accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8' \
-            'https://res.cloudinary.com/hanen/image/upload/b_rgb%3Af8f8f9%2Cc_pad%2Cdpr_2%2Ch_700%2Cq_70%2Cw_1050/v1/BM/ct9bxkxkv5nzqrf8vrmx.jpg' \
-            --output /tmp/bondens-marked-media.jpg
-
-      - name: Crop authentic Bondens marked wordmark
-        run: |
-          python -m pip install --quiet pillow
-          python - <<'PY'
-          from pathlib import Path
-          from PIL import Image, ImageOps
-
-          source = Path('/tmp/bondens-marked-media.jpg')
-          target = Path('bilder/kort/brands/bondens_marked.webp')
-          target.parent.mkdir(parents=True, exist_ok=True)
-
-          img = Image.open(source).convert('RGB')
-          if img.size != (1050, 700):
-              raise SystemExit(f'Unexpected source dimensions: {img.size}')
-
-          # Authentic wordmark printed on the large lower-left market bag.
-          crop = img.crop((155, 435, 320, 530))
-          resized = ImageOps.contain(crop, (900, 520), Image.Resampling.LANCZOS)
-          canvas = Image.new('RGB', (900, 520), 'white')
-          x = (900 - resized.width) // 2
-          y = (520 - resized.height) // 2
-          canvas.paste(resized, (x, y))
-          canvas.save(target, 'WEBP', quality=92, method=6)
-          print(f'{target}: {target.stat().st_size} bytes')
-          PY
+            --header 'Accept: image/svg+xml,image/*,*/*;q=0.8' \
+            'https://bondensmarked.no/bm-logo.svg' \
+            --output bilder/kort/brands/bondens_marked.svg
+          grep -q '<svg' bilder/kort/brands/bondens_marked.svg
 
       - name: Materialize canonical brand and mapping
         run: node scripts/tmp-materialize-birkelunden-brand.mjs
@@ -76,13 +47,13 @@ jobs:
       - name: Validate JSON and asset
         run: |
           node -e "JSON.parse(require('fs').readFileSync('data/brands/brands_master.json','utf8')); JSON.parse(require('fs').readFileSync('data/brands/brands_by_place.json','utf8'));"
-          test -s bilder/kort/brands/bondens_marked.webp
+          test -s bilder/kort/brands/bondens_marked.svg
 
       - name: Commit one-shot output
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/brands/brands_master.json data/brands/brands_by_place.json bilder/kort/brands/bondens_marked.webp
+          git add data/brands/brands_master.json data/brands/brands_by_place.json bilder/kort/brands/bondens_marked.svg
           if git diff --cached --quiet; then
             echo 'No materialized changes.'
             exit 0
