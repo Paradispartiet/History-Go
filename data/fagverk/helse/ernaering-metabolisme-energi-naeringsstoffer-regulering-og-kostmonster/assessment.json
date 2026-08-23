@@ -1,0 +1,194 @@
+{
+  "schema": "history_go_fagverk_health_chapter_assessment_v1",
+  "version": "1.0.0",
+  "subject_id": "helse",
+  "chapter_id": "ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster",
+  "status": "audited",
+  "questions": [
+    {
+      "id": "helse-hnm-q01",
+      "question": "Hva kan en referanseverdi for energibehov ikke brukes som?",
+      "options": [
+        "Et populasjonsbasert estimat",
+        "Et presist personlig kalorimål uten individuell kontekst",
+        "En modell med usikkerhet",
+        "Et sammenligningsgrunnlag for grupper"
+      ],
+      "answer": "Et presist personlig kalorimål uten individuell kontekst",
+      "answerIndex": 1,
+      "question_type": "analysis",
+      "difficulty": "medium",
+      "emne_id": "em_helse_ernaering_metabolisme",
+      "claim_id": "hnm-c04",
+      "source": [
+        "hnm03-nnr-energy",
+        "hnm04-nasem-energy-2023",
+        "hnm01-who-healthy-diet-2026"
+      ],
+      "knowledge": "Referanseverdier for energibehov er modell- og populasjonsbaserte estimater som bygger på målte eller estimerte komponenter av energiforbruk. De beskriver forventede behov for grupper under definerte forutsetninger og har innebygd variasjon og usikkerhet. De skal derfor ikke behandles som presise personlige kalorimål uten relevant individuell og klinisk kontekst.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hnm-q02",
+      "question": "Hva skiller karbohydratmengde fra karbohydratkvalitet?",
+      "options": [
+        "Det finnes ingen forskjell",
+        "Kvalitet omfatter blant annet fiber, frie sukkerarter og matkilder utover total mengde",
+        "Mengde beskriver bare vitaminer",
+        "Kvalitet betyr bare energiprosent"
+      ],
+      "answer": "Kvalitet omfatter blant annet fiber, frie sukkerarter og matkilder utover total mengde",
+      "answerIndex": 1,
+      "question_type": "analysis",
+      "difficulty": "medium",
+      "emne_id": "em_helse_ernaering_metabolisme",
+      "claim_id": "hnm-c06",
+      "source": [
+        "hnm05-nnr-carbohydrate",
+        "hnm06-who-carbohydrate-2023",
+        "hnm07-nnr-dietary-fibre"
+      ],
+      "knowledge": "Karbohydratkvalitet omfatter blant annet innhold av kostfiber, andel frie eller tilsatte sukkerarter, graden av prosessering og hvilke matvarer karbohydratet inngår i. Disse egenskapene påvirker fordøyelse, metthet, næringstetthet og hvordan kostmønsteret henger sammen med helseutfall. Prosent energi fra karbohydrat beskriver derfor ikke alene kvaliteten på et kosthold.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hnm-q03",
+      "question": "Hvorfor må erstatningsnæringsstoffet spesifiseres når mettet fett reduseres?",
+      "options": [
+        "Fordi effekten avhenger av hva som erstatter energien",
+        "Fordi alle erstatninger er identiske",
+        "Fordi mettet fett ikke bidrar med energi",
+        "Fordi bare protein kan erstatte fett"
+      ],
+      "answer": "Fordi effekten avhenger av hva som erstatter energien",
+      "answerIndex": 0,
+      "question_type": "analysis",
+      "difficulty": "medium",
+      "emne_id": "em_helse_ernaering_metabolisme",
+      "claim_id": "hnm-c11",
+      "source": [
+        "hnm08-nnr-fat-fatty-acids",
+        "hnm09-who-sfa-tfa-2023",
+        "hnm10-who-total-fat-2023"
+      ],
+      "knowledge": "Effekten av å redusere mettet fett avhenger av hvilket næringsstoff som erstatter energien. Erstatning med flerumettet fett kan påvirke lipoproteiner og kardiovaskulær risiko annerledes enn erstatning med raffinerte karbohydratkilder. En analyse som bare sier at mettet fett går ned uten å spesifisere substitusjonen, mangler derfor et avgjørende ledd i den kausale og ernæringsmessige sammenligningen.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hnm-q04",
+      "question": "Hva beskriver proteinkvalitet utover gram protein?",
+      "options": [
+        "Bare energitetthet",
+        "Fordøyelighet og tilgang på essensielle aminosyrer",
+        "Bare matens farge",
+        "Kun nitrogeninnhold uten fordøyelighet"
+      ],
+      "answer": "Fordøyelighet og tilgang på essensielle aminosyrer",
+      "answerIndex": 1,
+      "question_type": "analysis",
+      "difficulty": "hard",
+      "emne_id": "em_helse_ernaering_metabolisme",
+      "claim_id": "hnm-c15",
+      "source": [
+        "hnm11-nnr-protein",
+        "hnm03-nnr-energy",
+        "hnm12-nnr-nutrients-overview"
+      ],
+      "knowledge": "Proteinkvalitet avhenger blant annet av fordøyelighet og om proteinet leverer essensielle aminosyrer i forhold som dekker biologiske behov. To matvarer med samme gram protein kan dermed ha forskjellig aminosyreprofil og fordøyelighet. Samtidig spises matvarer som del av et samlet kosthold, slik at total kombinasjon av proteinkilder er viktigere enn å rangere ett enkelt protein isolert.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hnm-q05",
+      "question": "Hvorfor er næringsinnhold ikke det samme som biotilgjengelighet?",
+      "options": [
+        "Fordi absorpsjon påvirkes av kjemisk form, matmatrise og regulering",
+        "Fordi innhold aldri kan måles",
+        "Fordi alle næringsstoffer absorberes fullstendig",
+        "Fordi biotilgjengelighet betyr energitetthet"
+      ],
+      "answer": "Fordi absorpsjon påvirkes av kjemisk form, matmatrise og regulering",
+      "answerIndex": 0,
+      "question_type": "analysis",
+      "difficulty": "hard",
+      "emne_id": "em_helse_ernaering_metabolisme",
+      "claim_id": "hnm-c18",
+      "source": [
+        "hnm12-nnr-nutrients-overview",
+        "hnm13-efsa-drv",
+        "hnm14-nnr-iron"
+      ],
+      "knowledge": "Mikronæringsstoffers biologiske tilgjengelighet avhenger ikke bare av hvor mye et næringsstoff finnes i maten, men også av kjemisk form, matmatrise, andre måltidskomponenter og kroppens regulering av opptak og lagre. Samme deklarerte innhold kan derfor gi ulik absorbert mengde. Biotilgjengelighet er et prosessbegrep og skal ikke forveksles med næringsinnhold alene.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hnm-q06",
+      "question": "Hva betyr det at en gruppe har forhøyet mangelrisiko?",
+      "options": [
+        "At alle i gruppen har en diagnostisert mangel",
+        "At risikoen er høyere på gruppenivå, uten at dette alene diagnostiserer enkeltpersoner",
+        "At alle bør ta samme tilskuddsdose",
+        "At laboratorietesting er unødvendig"
+      ],
+      "answer": "At risikoen er høyere på gruppenivå, uten at dette alene diagnostiserer enkeltpersoner",
+      "answerIndex": 1,
+      "question_type": "analysis",
+      "difficulty": "hard",
+      "emne_id": "em_helse_ernaering_metabolisme",
+      "claim_id": "hnm-c20",
+      "source": [
+        "hnm12-nnr-nutrients-overview",
+        "hnm13-efsa-drv",
+        "hnm14-nnr-iron"
+      ],
+      "knowledge": "En gruppe med forhøyet risiko for utilstrekkelig inntak eller mangel er ikke det samme som en individuell mangeldiagnose. Diagnose krever personspesifikk klinisk vurdering og, når relevant, laboratoriedata tolket i riktig kontekst. Befolkningsreferanser og risikogrupper er nyttige for overvåking og planlegging, men Fagverket bruker dem ikke til å diagnostisere eller anbefale tilskudd til enkeltpersoner.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hnm-q07",
+      "question": "Hvorfor er en kostmønsterassosiasjon ikke automatisk kausal?",
+      "options": [
+        "Fordi confounding, målefeil og samtidige forskjeller kan påvirke sammenhengen",
+        "Fordi observasjonsdata aldri har verdi",
+        "Fordi kosthold ikke kan påvirke helse",
+        "Fordi bare én matvare kan studeres om gangen"
+      ],
+      "answer": "Fordi confounding, målefeil og samtidige forskjeller kan påvirke sammenhengen",
+      "answerIndex": 0,
+      "question_type": "analysis",
+      "difficulty": "hard",
+      "emne_id": "em_helse_ernaering_metabolisme",
+      "claim_id": "hnm-c27",
+      "source": [
+        "hnm01-who-healthy-diet-2026",
+        "hnm02-who-fao-healthy-diets-2024",
+        "hnm15-nnr-dietary-patterns"
+      ],
+      "knowledge": "Assosiasjoner mellom kostmønstre og langsiktige helseutfall må vurderes med hensyn til confounding, målefeil og at mennesker endrer flere matvarer og levevaner samtidig. Kostregistrering er utsatt for feilklassifisering, og observasjonelle sammenhenger kan påvirkes av sosioøkonomiske og atferdsmessige faktorer. En assosiasjon er derfor ikke automatisk bevis på at mønsteret alene forårsaket utfallet.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hnm-q08",
+      "question": "Hva skiller kostretningslinjer fra medisinsk ernæringsbehandling?",
+      "options": [
+        "Det finnes ingen forskjell",
+        "Retningslinjer gjelder populasjonsrammer, mens klinisk behandling kan kreve personspesifikk vurdering",
+        "Retningslinjer er alltid individuelle resepter",
+        "Medisinsk ernæringsbehandling krever aldri klinisk kontekst"
+      ],
+      "answer": "Retningslinjer gjelder populasjonsrammer, mens klinisk behandling kan kreve personspesifikk vurdering",
+      "answerIndex": 1,
+      "question_type": "analysis",
+      "difficulty": "hard",
+      "emne_id": "em_helse_ernaering_metabolisme",
+      "claim_id": "hnm-c31",
+      "source": [
+        "hnm01-who-healthy-diet-2026",
+        "hnm04-nasem-energy-2023",
+        "hnm12-nnr-nutrients-overview",
+        "hnm13-efsa-drv"
+      ],
+      "knowledge": "Kostretningslinjer sammenfatter evidens for friske populasjoner og folkehelse og kan gi rammer for kostmønstre uten å være sykdomsspesifikk behandling. Medisinsk ernæringsbehandling ved sykdom kan kreve diagnose, symptomer, laboratoriedata, legemidler og andre personspesifikke forhold. Fagverket stopper derfor før individuell kostplan, kaloriforskrift, tilskuddsdose eller klinisk behandlingsvalg.",
+      "safety_mode": "general_non_individualizing"
+    }
+  ]
+}
