@@ -38,6 +38,9 @@ jobs:
       - name: Download documented media image
         run: |
           curl --fail --location --retry 3 \
+            --user-agent 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 History-Go/1.0' \
+            --referer 'https://bondensmarked.no/om-oss/bilder' \
+            --header 'Accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8' \
             'https://res.cloudinary.com/hanen/image/upload/b_rgb%3Af8f8f9%2Cc_pad%2Cdpr_2%2Ch_700%2Cq_70%2Cw_1050/v1/BM/ct9bxkxkv5nzqrf8vrmx.jpg' \
             --output /tmp/bondens-marked-media.jpg
 
