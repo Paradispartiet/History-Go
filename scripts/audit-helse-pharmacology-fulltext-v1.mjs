@@ -28,7 +28,8 @@ export function auditHealthPharmacologyFulltextV1({writeReport=false}={}){
   assert(source.decision_scenarios.length===6,'Seks generelle scenarioer kreves');
   assert(assessment.questions.length===8&&assessment.questions.every((x)=>x.answer===x.options[x.answerIndex]&&claimIds.has(x.claim_id)&&x.source.length>=3&&x.safety_mode==='general_non_individualizing'),'Assessment feiler');
   assert(safety.status==='blocking'&&brief.safety.individualDiagnosis===false&&brief.safety.individualPrognosis===false&&brief.safety.individualTriage===false&&brief.safety.individualTreatmentAdvice===false&&brief.safety.individualRiskCalculation===false&&brief.safety.individualMedicationSelection===false&&brief.safety.individualDosing===false,'Klinisk sikkerhetsgrense feiler');
-  assert(chapter.lead.includes('aldri individuell')&&!paragraphs.some((x)=>/du bør|din dose|din medisin|din behandling|start(?:e)? med|slutt(?:e)? med|seponer|bytt legemiddel|ring 113|oppsøk (lege|legevakt)/iu.test(x)),'Individråd funnet');
+  const unsafeAdvice=/du bør|du skal|du må|din dose|dosen din|din medisin|medisinen din|din behandling|behandlingen din|start(?:e)? med (?:medisinen|legemidlet)|slutt(?:e)? med (?:medisinen|legemidlet)|seponer(?:e)? (?:medisinen|legemidlet|behandlingen)|bytt(?:e)? (?:medisin|legemiddel)|ring 113|oppsøk (?:lege|legevakt)/iu;
+  assert(chapter.lead.includes('aldri individuell')&&!paragraphs.some((x)=>unsafeAdvice.test(x)),'Individråd funnet');
   const corpus=paragraphs.join(' ').toLowerCase();
   assert(corpus.includes('farmakodynamikk')&&corpus.includes('farmakokinetikk')&&corpus.includes('forskjellige spørsmål')&&corpus.includes('ikke brukes som synonymer'),'PD/PK-grensen mangler');
   assert(corpus.includes('affinitet')&&corpus.includes('efficacy')&&corpus.includes('ikke brukes som direkte mål'),'Affinitet/efficacy-grensen mangler');
