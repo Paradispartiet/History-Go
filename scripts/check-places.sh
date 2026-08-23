@@ -207,7 +207,7 @@ echo "== Places index check =="
 npm run places:index:check
 
 echo "== Places emne check =="
-npm run places:emners:check
+npm run places:emner:check
 
 echo "== Places coordinate check =="
 npm run places:coords:check
