@@ -44,84 +44,21 @@ jobs:
           node --check tests/helse-public-health-fulltext-v1.test.mjs
           node --check tests/helse-cumulative-progress-v1.test.mjs
 
-      - name: Materialize Folkehelse 5/12 with captured diagnostics
-        id: materialize
-        continue-on-error: true
-        shell: bash
-        run: |
-          set +e
-          node scripts/materialize-helse-public-health-fulltext-v1.mjs > /tmp/helse-materialize.log 2>&1
-          status=$?
-          cat /tmp/helse-materialize.log
-          printf '\nexit_status=%s\n' "$status" >> /tmp/helse-materialize.log
-          exit "$status"
-
-      - name: Commit materializer diagnostic on failure
-        if: steps.materialize.outcome == 'failure'
+      - name: Materialize Folkehelse 5/12
         shell: bash
         run: |
           set -euo pipefail
-          cp /tmp/helse-materialize.log .github/TEMP-helse-public-health-reconstructed-diagnostic.txt
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add .github/TEMP-helse-public-health-reconstructed-diagnostic.txt
-          if ! git diff --cached --quiet; then
-            git commit -m 'chore: capture Helse reconstructed materializer error'
-            git push origin HEAD:${{ github.head_ref }}
-          fi
+          node scripts/materialize-helse-public-health-fulltext-v1.mjs
 
-      - name: Fail after captured materializer diagnostic
-        if: steps.materialize.outcome == 'failure'
-        run: exit 1
-
-      - name: Diagnose report phase
-        id: reports
-        if: steps.materialize.outcome == 'success'
-        continue-on-error: true
-        shell: bash
-        run: |
-          set +e
-          : > /tmp/helse-report-phase.log
-          failed=0
-          run_one() {
-            label="$1"
-            shift
-            {
-              echo "=== ${label} ==="
-              echo "+ $*"
-            } >> /tmp/helse-report-phase.log
-            "$@" >> /tmp/helse-report-phase.log 2>&1
-            status=$?
-            echo "exit_status=${status}" >> /tmp/helse-report-phase.log
-            echo >> /tmp/helse-report-phase.log
-            if [[ "$status" -ne 0 ]]; then failed=1; fi
-          }
-          run_one public_health_audit node scripts/audit-helse-public-health-fulltext-v1.mjs --write-report
-          run_one general_engine_audit node scripts/audit-fagverk-general-engine.mjs --write-report
-          run_one release_manifest_build node scripts/build-fagverk-release-manifest.mjs
-          cat /tmp/helse-report-phase.log
-          exit "$failed"
-
-      - name: Commit report diagnostic on failure
-        if: steps.materialize.outcome == 'success' && steps.reports.outcome == 'failure'
+      - name: Write generated reports
         shell: bash
         run: |
           set -euo pipefail
-          cp /tmp/helse-report-phase.log .github/TEMP-helse-public-health-report-diagnostic.txt
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add .github/TEMP-helse-public-health-report-diagnostic.txt
-          if ! git diff --cached --quiet; then
-            git commit -m 'chore: capture Helse report-phase error'
-            git push origin HEAD:${{ github.head_ref }}
-          fi
-
-      - name: Fail after captured report diagnostic
-        if: steps.materialize.outcome == 'success' && steps.reports.outcome == 'failure'
-        run: exit 1
+          node scripts/audit-helse-public-health-fulltext-v1.mjs --write-report
+          node scripts/audit-fagverk-general-engine.mjs --write-report
+          node scripts/build-fagverk-release-manifest.mjs
 
       - name: Validate exact 5/12 package
-        if: steps.materialize.outcome == 'success' && steps.reports.outcome == 'success'
         shell: bash
         run: |
           set -euo pipefail
@@ -140,20 +77,43 @@ jobs:
             tests/fagverk-release-manifest.test.mjs
 
       - name: Guard generated diff scope
-        if: steps.materialize.outcome == 'success' && steps.reports.outcome == 'success'
+        id: scope
+        continue-on-error: true
+        shell: bash
+        run: |
+          set +e
+          allowed='^(data/fag/fag_manifest\.json|data/fag/helse/helsepensum_canonical_v1\.json|data/fag/helse/emner_helse_canonical_v1\.json|data/fag/helse/methods_helse_canonical_v1\.json|data/fagverk/fagverk_registry\.json|data/fagverk/subject_inventory\.json|data/fagverk/subject_status\.json|data/fagverk/fagverk_release\.json|data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet\.json|data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet/.*\.json|reports/fagverk/helse-public-health-fulltext-v1-audit\.json|reports/fagverk/general-engine-audit\.json)$'
+          {
+            echo '=== git status --porcelain=v1 ==='
+            git status --porcelain=v1
+            echo
+            echo '=== paths outside allowlist ==='
+          } > /tmp/helse-scope-guard.log
+          bad="$(git status --porcelain=v1 | sed -E 's/^.. //' | grep -Ev "$allowed" || true)"
+          printf '%s\n' "$bad" >> /tmp/helse-scope-guard.log
+          cat /tmp/helse-scope-guard.log
+          if [[ -n "$bad" ]]; then exit 1; fi
+
+      - name: Commit scope diagnostic on mismatch
+        if: steps.scope.outcome == 'failure'
         shell: bash
         run: |
           set -euo pipefail
-          allowed='^(data/fag/fag_manifest\.json|data/fag/helse/helsepensum_canonical_v1\.json|data/fag/helse/emner_helse_canonical_v1\.json|data/fag/helse/methods_helse_canonical_v1\.json|data/fagverk/fagverk_registry\.json|data/fagverk/subject_inventory\.json|data/fagverk/subject_status\.json|data/fagverk/fagverk_release\.json|data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet\.json|data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet/.*\.json|reports/fagverk/helse-public-health-fulltext-v1-audit\.json|reports/fagverk/general-engine-audit\.json)$'
-          bad="$(git status --porcelain=v1 | sed -E 's/^.. //' | grep -Ev "$allowed" || true)"
-          if [[ -n "$bad" ]]; then
-            echo 'Unexpected generated files:'
-            printf '%s\n' "$bad"
-            exit 1
+          cp /tmp/helse-scope-guard.log .github/TEMP-helse-public-health-scope-diagnostic.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .github/TEMP-helse-public-health-scope-diagnostic.txt
+          if ! git diff --cached --quiet; then
+            git commit -m 'chore: capture Helse generated scope mismatch'
+            git push origin HEAD:${{ github.head_ref }}
           fi
 
+      - name: Fail after captured scope diagnostic
+        if: steps.scope.outcome == 'failure'
+        run: exit 1
+
       - name: Commit generated 5/12 outputs
-        if: steps.materialize.outcome == 'success' && steps.reports.outcome == 'success'
+        if: steps.scope.outcome == 'success'
         shell: bash
         run: |
           set -euo pipefail
