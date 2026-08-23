@@ -1,0 +1,70 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "historie",
+  "role_scope": "historie_arkiv_og_dokumentasjon",
+  "mail_type": "people",
+  "families": [
+    {
+      "id": "historie_arkiv_systemkontekst",
+      "purpose": "Gjøre samarbeid med dokumentforvaltning til en faglig del av proveniensarbeidet når eksporterte mapper ikke lenger speiler avsenders opprinnelige system.",
+      "learning_focus": ["systemproveniens", "overforingsspor", "samarbeid"],
+      "mails": [
+        {
+          "id": "historie_arkiv_people_systemkontekst_001",
+          "mail_type": "people",
+          "mail_family": "historie_arkiv_systemkontekst",
+          "role_scope": "historie_arkiv_og_dokumentasjon",
+          "phase": "early",
+          "day_phase": "morning",
+          "priority": 125,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Yusuf, dokumentforvalter",
+          "people_ref": "yusuf_dokumentforvalter_historie",
+          "person_id": "yusuf_dokumentforvalter_historie",
+          "place_id": "mottak_arkiv_historie",
+          "thread_key": "historie_arkiv_leveranse_001",
+          "subject": "Eksporten har laget nye mappenavn – jeg kan hente systemrapporten som viser de opprinnelige relasjonene",
+          "summary": "Yusuf oppdager at eksportverktøyet erstattet interne saks- og serienøkler med lesbare mappenavn. Han kan hente en systemrapport som kobler eksportmappene tilbake til opprinnelige poster, men det vil forsinke registreringen og rapporten må lagres som eget forvaltningsspor.",
+          "purpose": "Teste om spilleren bruker systemkontekst som dokumentert proveniensevidens i stedet for å behandle eksportens visuelle struktur som original orden.",
+          "stakes": "Hvis eksportlayouten tas for å være original struktur kan relasjonene mellom dokumenter og saker forsvinne selv om alle filer teknisk sett er bevart.",
+          "situation": [
+            "Eksportmappene har lesbare navn som ser logiske ut, men de ble generert ved uttrekk og er ikke identiske med avsenders interne nøkler.",
+            "Yusuf kan levere en maskinell koblingsrapport mellom de opprinnelige postene og eksportfilene.",
+            "Rapporten er dokumentasjon av overføringen og skal ikke blandes sammen med originalmaterialet som om den alltid har vært del av arkivet."
+          ],
+          "task_domain": "mottak_og_dokumentasjonsfangst",
+          "task_kind": "people",
+          "competency": "proveniens_og_opprinnelig_orden",
+          "pressure": "registreringsfrist_vs_systemkontekst",
+          "choice_axis": "bevar_eksport_og_systemrapport_som_adskilte_spor_vs_likestill_eksportmappe_med_original_orden",
+          "consequence_axis": "rekonstruerbar_systemproveniens_vs_tap_av_opprinnelig_relajon",
+          "narrative_arc": "leveranse_til_proveniens_og_senere_gjenfinning",
+          "interaction_mode": "decision",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Hent koblingsrapporten, registrer den som overføringsspor og behold eksportstrukturen som eksport – ikke som original orden",
+              "reply": "Vi dokumenterer både hva systemet hadde og hva uttrekket gjorde. Da kan senere brukere skille kildens opprinnelige relasjoner fra arkivets tekniske mottaksprosess.",
+              "effect": 1,
+              "tags": ["system_provenance", "transfer_trace", "relationship_preservation"],
+              "feedback": "Du gjør en teknisk eksporthendelse til et kontrollert spor i stedet for å la den usynlig omskrive arkivets struktur.",
+              "effects": {"stats": {"quality": 3, "trust": 2, "risk": -3, "energy": -1}}
+            },
+            {
+              "id": "B",
+              "label": "Bruk eksportmappene som den nye serien – de er mer forståelige og alle filene er med",
+              "reply": "Det viktige er at materialet kan finnes. Vi trenger ikke komplisere katalogen med interne nøkler som brukerne uansett ikke kjenner.",
+              "effect": -1,
+              "tags": ["export_as_original", "context_loss", "convenience_rewrite"],
+              "feedback": "Du gjør brukergrensesnittets eksportstruktur til historisk orden og mister dokumentert sammenheng mellom materiale og skaperprosess.",
+              "effects": {"stats": {"quality": -3, "trust": -2, "risk": 4, "energy": 1}}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "historie",
+  "role_scope": "historie_arkiv_og_dokumentasjon",
+  "mail_type": "micro",
+  "families": [
+    {
+      "id": "historie_arkiv_minimumsmetadata_under_press",
+      "purpose": "Teste hvilke metadata som ikke kan ofres selv når registreringsvolum og kø presser arbeidet.",
+      "learning_focus": ["minimumsmetadata", "sporbarhet", "usikkerhetsmarkering"],
+      "mails": [
+        {
+          "id": "historie_arkiv_micro_minimumsmetadata_001",
+          "mail_type": "micro",
+          "mail_family": "historie_arkiv_minimumsmetadata_under_press",
+          "role_scope": "historie_arkiv_og_dokumentasjon",
+          "phase": "workday",
+          "day_phase": "afternoon",
+          "priority": 109,
+          "cooldown": 4,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Sara, arkivleder",
+          "people_ref": "sara_arkivleder_historie",
+          "person_id": "sara_arkivleder_historie",
+          "place_id": "ordningsrom_arkiv_historie",
+          "thread_key": "historie_arkiv_leveranse_001",
+          "subject": "Vi rekker ikke full beskrivelse i dag – hvilke felt må være på plass før resten av leveransen åpnes for søk?",
+          "summary": "Køen vokser og Sara ber deg definere et minimumsnivå som gjør materialet gjenfinnbart uten å skape falsk sikkerhet. Finbeskrivelse kan vente, men identitet, opphav, relasjon, tidsangivelse, tilgangsstatus og kjente avvik må kunne forstås senere.",
+          "purpose": "Teste om spilleren skiller utsettbar berikelse fra metadata som er nødvendig for proveniens og ansvarlig tilgang.",
+          "stakes": "Et for tynt minimum kan gjøre mange dokumenter søkbare raskt, men samtidig løsrive dem fra kontekst og tilgangsstatus slik at senere opprydding blir dyr og usikker.",
+          "situation": [
+            "Full emnebeskrivelse og detaljert nøkkelordsetting kan utsettes uten at kildens identitet går tapt.",
+            "Opphav, serie-/saksrelasjon, dato eller tidsrom, mottaksidentitet, tilgangsstatus og kjente usikkerheter er nødvendige for senere forståelse og kontroll.",
+            "Felt dere ikke faktisk kjenner skal kunne stå eksplisitt uavklart fremfor å fylles med antatte verdier."
+          ],
+          "task_domain": "proveniens_ordning_og_metadata",
+          "task_kind": "micro",
+          "competency": "minimumsmetadata_og_sporbarhet",
+          "pressure": "registreringskø_vs_kontekstminimum",
+          "choice_axis": "bevar_identitet_opphav_relajon_tilgang_og_usikkerhet_vs_reduser_til_filnavn_og_tittel",
+          "consequence_axis": "kontrollert_restgjeld_vs_uforstaelig_metadata_gjeld",
+          "narrative_arc": "leveranse_til_proveniens_og_senere_gjenfinning",
+          "interaction_mode": "decision",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Sett et eksplisitt minimum for identitet, opphav, relasjon, tidsrom, tilgangsstatus og avvik; utsett finbeskrivelsen",
+              "reply": "Vi åpner bare poster som kan spores tilbake til mottaket og riktig kontekst. Ukjente felt merkes som uavklart i stedet for å fylles med gjetning.",
+              "effect": 1,
+              "tags": ["minimum_metadata", "traceability", "known_unknowns"],
+              "feedback": "Du reduserer detaljnivået uten å redusere materialets identitet og kontrollspor.",
+              "effects": {"stats": {"quality": 3, "trust": 2, "risk": -3, "energy": 1}}
+            },
+            {
+              "id": "B",
+              "label": "Publiser filnavn, enkel tittel og dato nå; resten kan berikes når køen er nede",
+              "reply": "Brukerne får tilgang raskere, og vi kan fylle inn proveniens, relasjoner og tilgangsdetaljer i en senere rydderunde.",
+              "effect": -1,
+              "tags": ["thin_metadata", "context_debt", "access_risk"],
+              "feedback": "Du gjør restarbeidet vanskeligere fordi postene åpnes uten de feltene som forteller hva de er, hvor de hører hjemme og hvilke tilgangsgrenser som gjelder.",
+              "effects": {"stats": {"quality": -3, "trust": -2, "risk": 4, "energy": 2}}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "historie",
+  "role_scope": "historie_arkiv_og_dokumentasjon",
+  "mail_type": "followup",
+  "families": [
+    {
+      "id": "historie_arkiv_innsynsoppfolging",
+      "purpose": "La den tidligere tilgangsvurderingen komme tilbake som konkret utleveringspakke og teste om beslutning, uttrekk og logg faktisk stemmer overens.",
+      "learning_focus": ["innsynsspor", "minimering", "utleveringskontroll", "beslutningsgrense"],
+      "mails": [
+        {
+          "id": "historie_arkiv_followup_innsyn_001",
+          "mail_type": "followup",
+          "mail_family": "historie_arkiv_innsynsoppfolging",
+          "role_scope": "historie_arkiv_og_dokumentasjon",
+          "phase": "mastery",
+          "day_phase": "evening",
+          "priority": 102,
+          "cooldown": 5,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Eline, innsynskoordinator",
+          "people_ref": "eline_innsynskoordinator_historie",
+          "person_id": "eline_innsynskoordinator_historie",
+          "place_id": "innsynsrom_arkiv_historie",
+          "thread_key": "historie_arkiv_innsyn_001",
+          "subject": "Tilgangsavgjørelsen er klar – nå må selve utleveringspakken samsvare med den",
+          "summary": "Eline har tatt den formelle beslutningen på grunnlag av materialet du forberedte: hoveddokumentet kan utleveres, ett relevant vedlegg inngår etter avgrensning, og øvrige vedlegg skal ikke følge med. Hun ber deg kontrollere at eksportpakken, filnavnene og loggen faktisk speiler denne beslutningen før sending.",
+          "purpose": "Teste at en riktig tilgangsavgjørelse ikke undergraves av slurv i den praktiske utleveringen.",
+          "stakes": "En feil eksportmappe kan eksponere materiale beslutningen uttrykkelig ikke omfatter, mens en dårlig logg gjør det vanskelig å dokumentere hva mottakeren faktisk fikk.",
+          "situation": [
+            "Den formelle tilgangsavgjørelsen er allerede tatt av autorisert beslutningseier og skal ikke reforhandles i denne oppgaven.",
+            "Arbeidet ditt er å materialisere nøyaktig den godkjente pakken og kontrollere den mot beslutningssporet.",
+            "Originalmaterialet skal forbli urørt; eventuell avgrenset brukskopi må kunne knyttes til original og beslutning uten at kopien blir ny arkivoriginal."
+          ],
+          "task_domain": "gjenfinning_og_innsynsforberedelse",
+          "task_kind": "followup",
+          "competency": "innsyn_vs_gjenfinning",
+          "pressure": "rask_sending_vs_dobbelkontroll_av_pakke_og_logg",
+          "choice_axis": "verifiser_pakke_mot_beslutning_og_logg_vs_send_mappen_som_allerede_ligger_klar",
+          "consequence_axis": "sporbar_korrekt_utlevering_vs_praktisk_overeksponering",
+          "narrative_arc": "innsyn_fra_gjenfinning_til_begrunnelse_og_oppfolging",
+          "interaction_mode": "decision",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bygg pakken fra godkjent uttrekksliste, kontrolltell filene og logg nøyaktig hva som sendes og hvilken beslutning det bygger på",
+              "reply": "Jeg lager en separat utleveringskopi, verifiserer innholdet mot Elines avgjørelse og registrerer koblingen mellom original, godkjent uttrekk og faktisk sendt pakke.",
+              "effect": 1,
+              "tags": ["release_package", "decision_trace", "disclosure_control"],
+              "feedback": "Du lar den praktiske utleveringen bevare samme avgrensning og sporbarhet som den formelle beslutningen.",
+              "effects": {"stats": {"quality": 3, "trust": 3, "risk": -4, "energy": -1}}
+            },
+            {
+              "id": "B",
+              "label": "Send arbeidsmappen dere brukte i vurderingen og fjern bare de åpenbart irrelevante filene",
+              "reply": "Vi har allerede gått gjennom materialet. En ny eksportkontroll vil bare forsinke bestilleren.",
+              "effect": -1,
+              "tags": ["release_mismatch", "working_folder_leak", "audit_gap"],
+              "feedback": "Du lar en arbeidsmappe erstatte den autoriserte uttrekkslisten og skaper risiko for at vedlegg beslutningen avgrenset likevel følger med.",
+              "effects": {"stats": {"quality": -3, "trust": -3, "risk": 5, "energy": 1}}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

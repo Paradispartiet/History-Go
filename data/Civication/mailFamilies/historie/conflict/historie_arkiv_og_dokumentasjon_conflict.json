@@ -1,0 +1,70 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "historie",
+  "role_scope": "historie_arkiv_og_dokumentasjon",
+  "mail_type": "conflict",
+  "families": [
+    {
+      "id": "historie_arkiv_innsyn_og_minimering",
+      "purpose": "Skille faglig gjenfinning fra formell tilgangsavgjørelse når relevant materiale også inneholder tredjepartsopplysninger.",
+      "learning_focus": ["innsyn", "personvern", "dataminimering", "rollegrense"],
+      "mails": [
+        {
+          "id": "historie_arkiv_conflict_innsyn_001",
+          "mail_type": "conflict",
+          "mail_family": "historie_arkiv_innsyn_og_minimering",
+          "role_scope": "historie_arkiv_og_dokumentasjon",
+          "phase": "mid",
+          "day_phase": "midday",
+          "priority": 120,
+          "cooldown": 4,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Eline, innsynskoordinator",
+          "people_ref": "eline_innsynskoordinator_historie",
+          "person_id": "eline_innsynskoordinator_historie",
+          "place_id": "innsynsrom_arkiv_historie",
+          "thread_key": "historie_arkiv_innsyn_001",
+          "subject": "Forespørselen treffer riktig sak – men vedleggene inneholder flere personer enn bestilleren trenger",
+          "summary": "Du har funnet dokumentene som svarer på forespørselen. Hoveddokumentet er relevant, mens flere vedlegg inneholder tredjepartsopplysninger og eldre tilgangsmarkeringer som ikke er avklart. Eline ber deg forberede et beslutningsgrunnlag uten å gjøre selve innsynsavgjørelsen på hennes vegne.",
+          "purpose": "Teste at gjenfinning, relevans, minimering og formell tilgangsmyndighet holdes adskilt.",
+          "stakes": "For bred utlevering kan eksponere opplysninger forespørselen ikke krever; for defensiv lukking kan samtidig gjøre arkivet mindre tilgjengelig enn regelverket gir grunnlag for.",
+          "situation": [
+            "Hoveddokumentet svarer direkte på det bestilleren ber om.",
+            "Vedleggene har ulik relevans og inkluderer tredjepartsopplysninger som ikke er nødvendige for å forstå hoveddokumentet.",
+            "Du kan beskrive innhold, tilgangsstatus og risiko, men den endelige avgjørelsen om eventuell begrensning eller utlevering ligger hos autorisert beslutningseier."
+          ],
+          "task_domain": "gjenfinning_og_innsynsforberedelse",
+          "task_kind": "conflict",
+          "competency": "personvern_klausul_og_tilgangsgrense",
+          "pressure": "rask_tilgang_vs_minimering_og_myndighet",
+          "choice_axis": "forbered_relevant_minimert_og_sporbart_grunnlag_vs_utlever_alt_som_er_funnet",
+          "consequence_axis": "lovlig_etterprovbar_tilgang_vs_overeksponering_eller_rolleoverskridelse",
+          "narrative_arc": "innsyn_fra_gjenfinning_til_begrunnelse_og_oppfolging",
+          "interaction_mode": "decision",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skill hoveddokument og vedlegg, beskriv relevans og tilgangsrisiko, og send et minimert grunnlag til Eline for avgjørelse",
+              "reply": "Jeg dokumenterer hvilke deler som svarer på forespørselen, hvilke vedlegg som inneholder unødvendige tredjepartsopplysninger, og hvorfor hvert materiale trenger eller ikke trenger særskilt vurdering.",
+              "effect": 1,
+              "tags": ["access_triage", "data_minimization", "decision_owner"],
+              "feedback": "Du gjør arkivfaglig gjenfinning nyttig for beslutningen uten å gjøre tilgangsmyndigheten til din egen.",
+              "effects": {"stats": {"quality": 3, "trust": 3, "risk": -4, "energy": -1}}
+            },
+            {
+              "id": "B",
+              "label": "Send hele mappen – materialet er funnet i arkivet og bestilleren ba om saken",
+              "reply": "Det blir mest transparent å gi alt vi har funnet. Bestilleren kan selv avgjøre hvilke vedlegg som er relevante.",
+              "effect": -1,
+              "tags": ["overdisclosure", "access_boundary_breach", "privacy_risk"],
+              "feedback": "Du forveksler gjenfinnbarhet med rett til full utlevering og flytter en tilgangsvurdering over på mottakeren.",
+              "effects": {"stats": {"quality": -3, "trust": -3, "risk": 5}}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

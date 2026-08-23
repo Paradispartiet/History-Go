@@ -1,0 +1,70 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "historie",
+  "role_scope": "historie_arkiv_og_dokumentasjon",
+  "mail_type": "event",
+  "families": [
+    {
+      "id": "historie_arkiv_format_og_integritetsavvik",
+      "purpose": "Gjøre digital bevaring spillbar som kontrollert risikohåndtering, ikke enkel filkonvertering.",
+      "learning_focus": ["digital_bevaring", "hash", "formatrisiko", "migreringsspor"],
+      "mails": [
+        {
+          "id": "historie_arkiv_event_formatrisiko_001",
+          "mail_type": "event",
+          "mail_family": "historie_arkiv_format_og_integritetsavvik",
+          "role_scope": "historie_arkiv_og_dokumentasjon",
+          "phase": "workday",
+          "day_phase": "afternoon",
+          "priority": 112,
+          "cooldown": 4,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Noah, digital bevaringsrådgiver",
+          "people_ref": "noah_digital_bevaring_historie",
+          "person_id": "noah_digital_bevaring_historie",
+          "place_id": "digitalt_bevaringsverksted_historie",
+          "thread_key": "historie_arkiv_digital_bevaring_001",
+          "subject": "Formatet står på risikolisten – og to av 312 filer matcher ikke mottakets hashlogg",
+          "summary": "Noah planla en kontrollert migrering av en eldre digital serie, men før testen finner han to filer med hashavvik mot mottaksloggen. Serien kan fortsatt åpnes, men det er uklart om avviket skyldes tidligere transformasjon, feil kopi eller reell endring.",
+          "purpose": "Teste om spilleren stopper automatisert migrering når integritetsgrunnlaget er uklart og skiller originalbevaring fra testet derivat.",
+          "stakes": "Hvis migreringen kjøres over hele serien før avviket forstås kan et gammelt integritetsproblem bli bakt inn i en ny, tilsynelatende autoritativ versjon og originalsporet svekkes.",
+          "situation": [
+            "310 filer matcher mottakets registrerte hashverdier; to gjør det ikke.",
+            "Ingen av de to avvikene er dokumentert som autorisert tidligere migrering eller redigering.",
+            "Originalbitstrømmen er fortsatt tilgjengelig og kan bevares urørt mens avvikene undersøkes og en migrering testes på kopier."
+          ],
+          "task_domain": "digital_integritet_og_bevaring",
+          "task_kind": "event",
+          "competency": "digital_bevaring_og_integritetskontroll",
+          "pressure": "formatrisiko_og_deadline_vs_integritetsavklaring",
+          "choice_axis": "frys_avvik_bevar_original_og_test_pa_kopi_vs_konverter_alt_og_standardiser_resultatet",
+          "consequence_axis": "verifisert_bevaringskjede_vs_skjult_integritetsforurensning",
+          "narrative_arc": "digitalt_avvik_til_verifisert_migrering_og_senere_kontroll",
+          "interaction_mode": "decision",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Sett de to filene i avviksspor, bevar originalbitstrømmen og test migrering på kontrollerte kopier før serien behandles samlet",
+              "reply": "Vi lar de 310 verifiserte filene beholde sitt integritetsspor, isolerer avvikene uten å slette noe og dokumenterer både migreringsverktøy, parametre og etterkontroll på testkopiene.",
+              "effect": 1,
+              "tags": ["fixity", "migration_test", "original_preservation", "integrity_incident"],
+              "feedback": "Du håndterer formatrisiko uten å ofre muligheten til å undersøke hva som faktisk skjedde med de to avvikende filene.",
+              "effects": {"stats": {"quality": 3, "trust": 2, "risk": -4, "energy": -2}}
+            },
+            {
+              "id": "B",
+              "label": "Konverter hele serien nå og bruk de nye filene som standard – formatrisikoen er mer akutt enn to gamle hashavvik",
+              "reply": "Vi beholder en kopi av mappen, men det viktigste er å få alt over i et moderne format før den gamle programvaren svikter.",
+              "effect": -1,
+              "tags": ["unverified_migration", "fixity_ignored", "derivative_as_original"],
+              "feedback": "Du løser ett bevaringsproblem ved å gjøre et annet mindre etterprøvbart og risikerer at avvikene blir videreført uten identifiserbar årsak.",
+              "effects": {"stats": {"quality": -3, "trust": -2, "risk": 5, "energy": 1}}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

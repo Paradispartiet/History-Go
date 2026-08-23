@@ -1,18 +1,94 @@
 {
-  "schema":"civication_work_grammar_v2","version":2,
-  "category":"historie","role_scope":"historie_arkiv_og_dokumentasjon","role_id":"historie_arkiv_og_dokumentasjon",
-  "badge_binding":{"badge_id":"historie","badge_titles":["Arkivmedarbeider","Arkivar"]},
-  "work_world":"Arkivarbeid der proveniens, metadata, innsyn, bevaring og sporbarhet avgjør om dokumentasjon kan brukes som kilde og rettighetsgrunnlag.",
-  "task_families":["journalforing","registrering","katalogisering","innsyn","digital_bevaring","formidling"],
-  "work_loops":["mottak -> proveniens -> registrering -> kvalitetssikring -> tilgang -> bevaring","foresporsel -> identifisering -> regelvurdering -> gjenfinning -> dokumentert svar"],
-  "pressure_axes":["tilgang_vs_personvern","tempo_vs_metadata","bevaring_vs_formatrisiko"],
-  "practice_stories":[
-    {"id":"uklar_proveniens","setup":"En viktig samling mangler sikker proveniens.","decision":"Stans bastante beskrivelser, dokumenter usikkerheten og rekonstruer kjeden før publisering.","learning":"kontekst er en del av kilden"},
-    {"id":"innsyn_personvern","setup":"En bruker ber om materiale med mulig personsensitiv informasjon.","decision":"Skill gjenfinning fra innsynsavgjørelse og dokumenter hvilke regler som må vurderes.","learning":"tilgjengelighet er ikke grenseløs"},
-    {"id":"metadata_press","setup":"En stor leveranse må registreres raskt.","decision":"Prioriter minimumsmetadata som bevarer proveniens og etterprøvbarhet før volum.","learning":"hurtig registrering uten sporbarhet skaper ny gjeld"},
-    {"id":"formatrisiko","setup":"Filer ligger i et gammelt format som snart ikke kan åpnes.","decision":"Planlegg kontrollert migrering med originalbevaring og verifikasjon.","learning":"digital bevaring krever aktiv forvaltning"},
-    {"id":"feil_katalogtekst","setup":"En katalogtekst viser seg å inneholde en gammel feil.","decision":"Korriger beskrivelsen transparent uten å omskrive originalmaterialet.","learning":"arkivet må skille kilde fra metadata"}
+  "schema": "civication_work_grammar_v2",
+  "version": 2,
+  "category": "historie",
+  "role_scope": "historie_arkiv_og_dokumentasjon",
+  "role_id": "historie_arkiv_og_dokumentasjon",
+  "source": {"evidence": "data/Civication/historieCareerLifeEvidence.json"},
+  "badge_binding": {"badge_id": "historie", "badge_titles": ["Arkivmedarbeider", "Arkivar"], "tier_thresholds": [25, 150]},
+  "work_world": "Arkivarbeid der proveniens, metadata, innsyn, bevaring og sporbarhet avgjør om dokumentasjon kan brukes som kilde og rettighetsgrunnlag.",
+  "task_families": [
+    "mottak_og_dokumentasjonsfangst",
+    "proveniens_ordning_og_metadata",
+    "gjenfinning_og_innsynsforberedelse",
+    "digital_integritet_og_bevaring",
+    "kassasjon_og_bevaringsvurdering",
+    "kildekontekst_og_formidling"
   ],
-  "quality_axes":["proveniens","sporbarhet","metadata","tilgjengelighet","regelverk","bevaring"],
-  "authority_boundary":{"may":["ordne, beskrive og tilgjengeliggjøre dokumentasjon innen mandat"],"may_not":["endre originalkilder","skjule usikker proveniens","gi ulovlig innsyn","forfalske metadata"]}
+  "work_loops": [
+    {
+      "id": "mottak_ordning_og_tilgang",
+      "steps": ["kontroller_leveranse_og_opphav", "registrer_minimumsmetadata", "bevar_proveniens_og_relajon", "kvalitetssikre_beskrivelse_og_usikkerhet", "klassifiser_tilgangsstatus", "gjor_materiale_gjenfinnbart_uten_a_endre_original"]
+    },
+    {
+      "id": "digital_bevaring_og_avvik",
+      "steps": ["identifiser_filer_og_format", "registrer_hash_og_originalbitstrom", "vurder_formatrisiko", "test_migrering_pa_kopi", "verifiser_resultat_og_bevar_original", "dokumenter_inngrep_og_eventuelt_eskaler_avvik"]
+    }
+  ],
+  "practice_stories": [
+    {"id":"s1","setup":"En viktig samling mangler sikker proveniens og en kollega vil fylle tomrommet med det som virker mest sannsynlig.","good":"Marker usikkerheten eksplisitt, bevar eksisterende orden og rekonstruer kjeden fra dokumenterte spor før beskrivelsen gjøres mer bestemt.","bad":"Velg den mest plausible historien og skriv metadata som om den var bekreftet."},
+    {"id":"s2","setup":"En bruker ber om materiale med mulig personsensitiv informasjon og har en legitim, men bred forespørsel.","good":"Gjenfinn relevant materiale, begrens unødvendig eksponering og send tilgangsspørsmålet til riktig beslutningseier med dokumentert grunnlag.","bad":"Utlever hele mappen fordi forespørselen virker rimelig og materialet allerede er funnet."},
+    {"id":"s3","setup":"En stor leveranse må registreres før dagens slutt og metadataarbeidet henger etter.","good":"Prioriter minimumsmetadata som sikrer identitet, opphav, relasjon og tilgangsstatus før volum og finbeskrivelse.","bad":"Registrer bare filnavn og antall nå og regn med at konteksten kan rekonstrueres senere."},
+    {"id":"s4","setup":"Filer ligger i et gammelt format som bare kan åpnes på én eldre maskin.","good":"Bevar originalbitstrøm, registrer hash og format, test migrering på kopi og dokumenter verifikasjon før produksjonsbruk.","bad":"Konverter filene direkte og erstatt originalene for å unngå dobbelt lagringsbehov."},
+    {"id":"s5","setup":"En katalogtekst viser seg å tilskrive et brev feil avsender.","good":"Korriger metadata med synlig endringsspor og begrunnelse, men la originaldokumentet og tidligere forvaltningsspor stå urørt.","bad":"Endre både katalogtekst og digital avskrift slik at alt fremstår konsistent uten spor av den gamle feilen."},
+    {"id":"s6","setup":"Et magasin er fullt, og tre mapper ser ut som kopier av materiale som finnes annet sted.","good":"Kontroller serieforbindelse, autentisitet og autorisert kassasjonsgrunnlag før noe fjernes, og eskaler ved manglende vedtak.","bad":"Kasser de tilsynelatende duplikatene fordi plasspresset er akutt."},
+    {"id":"s7","setup":"To filer har samme navn og innholdet ser likt ut, men hashene er forskjellige.","good":"Behandle forskjellen som et integritetsavvik, bevar begge eksemplarer og undersøk kjede, metadata og transformasjonshistorikk før autoritativ versjon fastsettes.","bad":"Velg den nyeste filen og slett den andre for å unngå forvirring."},
+    {"id":"s8","setup":"En forsker ønsker at katalogteksten skal beskrive en hendelse med den tolkningen forskeren mener er historisk riktig.","good":"Skill kildebeskrivelse fra historisk tolkning, dokumenter relevant kontekst og behold tolkningsusikkerhet der kilden ikke avgjør spørsmålet.","bad":"Skriv forskerens tolkning inn som faktum fordi den er faglig overbevisende."},
+    {"id":"s9","setup":"En mappe er feilplassert i ordningen, men flytting vil bryte det opprinnelige serienummeret.","good":"Bevar eller dokumenter den opprinnelige plasseringen og bruk metadata eller kontrollert omordning med tydelig kryssreferanse fremfor usporbar flytting.","bad":"Flytt mappen dit den tematisk passer best og oppdater nummeret uten å bevare gammelt spor."},
+    {"id":"s10","setup":"Spilleren har nådd Arkivar-badget og en kollega foreslår å åpne kvalifiserte arkivaroppgaver automatisk.","good":"Behandle badge-poeng som læringsprogresjon, men krev separat relevant utdanning eller arbeidsgiverkvalifikasjon før Arkivar-status materialiseres.","bad":"La terskelen 150 fungere som formell kvalifikasjon fordi spilleren allerede har vist høy historiekunnskap."}
+  ],
+  "task_grammar": [
+    {"id":"mottakskontroll","input":["leveranseliste","materiale","avsenderopplysninger","overforingsspor"],"output":["identitetskontroll","proveniensstatus","avvik","minimumsmetadata","eskaleringsbehov"]},
+    {"id":"metadata_kvalitetssikring","input":["originalmateriale","eksisterende_metadata","kontekstspor"],"output":["korrigert_beskrivelse","usikkerhetsmarkor","endringslogg","ingen_endring_av_original"]},
+    {"id":"innsynstriage","input":["foresporsel","gjenfunnet_materiale","tilgangsstatus","rollemandat"],"output":["relevant_utvalg","personvern_og_klausulrisiko","beslutningseier","dokumentert_svargrunnlag"]},
+    {"id":"digital_bevaringskontroll","input":["originalfiler","hashverdier","formatprofil","bevaringskrav"],"output":["integritetsstatus","formatrisiko","testet_migreringskopi","verifikasjon","endringsspor"]}
+  ],
+  "actor_grammar": [
+    {"role":"arkivleder","example_id":"sara_arkivleder_historie","authority":["prioritering","mandat","bevarings_og_kassasjonseskalering","tilgangs_og_integritetsavvik"],"fictional":true},
+    {"role":"dokumentforvalter","example_id":"yusuf_dokumentforvalter_historie","authority":["dokumentasjonsfangst","journalspor","overforingsmetadata","systemkontekst"],"fictional":true},
+    {"role":"innsynskoordinator","example_id":"eline_innsynskoordinator_historie","authority":["innsynsprosess","tilgangsvurdering_innen_mandat","personvernminimering","begrunnelsesspor"],"fictional":true},
+    {"role":"digital_bevaringsradgiver","example_id":"noah_digital_bevaring_historie","authority":["integritetskontroll","formatrisiko","migreringstest","bevaringskopi_og_teknisk_endringsspor"],"fictional":true}
+  ],
+  "place_grammar": [
+    {"place_id":"mottak_arkiv_historie","kind":"fictional_work_surface","function":"leveransekontroll_proveniens_og_dokumentasjonsfangst","mail_types":["job","people"]},
+    {"place_id":"ordningsrom_arkiv_historie","kind":"fictional_work_surface","function":"ordning_metadata_kildekontekst_og_kvalitetssikring","mail_types":["conflict","micro","knowledge"]},
+    {"place_id":"innsynsrom_arkiv_historie","kind":"fictional_work_surface","function":"gjenfinning_innsynsforberedelse_personvern_og_sporbar_utlevering","mail_types":["story","followup"]},
+    {"place_id":"digitalt_bevaringsverksted_historie","kind":"fictional_work_surface","function":"hash_formatrisiko_migrering_bevaringskopi_og_integritetsavvik","mail_types":["event","consequence"]}
+  ],
+  "conflict_grammar": [
+    {"id":"tilgang_vs_personvern","axis":"gjenfinnbarhet_vs_lovlig_og_minimert_utlevering","must_remain_visible":["foresporselens_formal","tilgangsstatus","tredjepartsopplysninger","beslutningseier"]},
+    {"id":"tempo_vs_metadata","axis":"produksjonsvolum_vs_proveniens_og_minimumsspor","must_remain_visible":["opphav","relasjon","identitet","tilgangsstatus","usikkerhet"]},
+    {"id":"bevaring_vs_formatrisiko","axis":"rask_konvertering_vs_originalbevaring_og_verifikasjon","must_remain_visible":["originalbitstrom","hash","migreringslogg","verifisert_resultat"]},
+    {"id":"beskrivelse_vs_tolkning","axis":"gjenfinnbar_kontekst_vs_historisk_fasit","must_remain_visible":["hva_kilden_viser","hva_metadata_sier","hva_som_er_usikkert","hva_som_er_senere_tolkning"]}
+  ],
+  "knowledge_dependencies": [
+    {"id":"proveniens_og_opprinnelig_orden","use":"Bevare hvem som skapte materialet, i hvilken sammenheng og hvordan delene henger sammen."},
+    {"id":"original_vs_metadata","use":"Korrigere beskrivelser uten å omskrive eller harmonisere originalmaterialet."},
+    {"id":"minimumsmetadata_og_sporbarhet","use":"Sikre at tidspress ikke ødelegger identitet, relasjon eller senere etterprøvbarhet."},
+    {"id":"innsyn_vs_gjenfinning","use":"Skille teknisk eller faglig gjenfinning fra formell rett til utlevering."},
+    {"id":"autentisitet_og_integritet","use":"Håndtere versjons- og hashavvik uten å slette bevis eller velge autoritativ fil på gjetning."},
+    {"id":"digital_bevaring","use":"Planlegge formatmigrering med originalbevaring, kontrollsum og verifikasjon."},
+    {"id":"kassasjon_og_bevaringsvedtak","use":"Behandle sletting som autorisert og dokumentert beslutning, ikke lokal opprydding."},
+    {"id":"kildekritikk_vs_arkivbeskrivelse","use":"Gjøre kontekst søkbar uten å gjøre en omstridt historisk fortolkning til metadatafasit."}
+  ],
+  "quality_axes": ["proveniens","sporbarhet","metadata","tilgjengelighet","personvern_og_regelverk","digital_integritet","bevaring","kildekontekst"],
+  "authority_boundary": {
+    "may": ["motta_registrere_ordne_og_beskrive_arkivmateriale_innen_mandat","kvalitetssikre_metadata_og_markere_usikkerhet","gjenfinne_materiale_og_forberede_tilgangsgrunnlag","gjennomfore_autorisert_integritetskontroll_og_bevaringsarbeid"],
+    "must_escalate_when": ["kassasjon_eller_sletting_krever_formelt_vedtak","innsyn_berorer_klausul_personvern_eller_uklar_hjemmel","autentisitet_eller_integritet_ikke_kan_fastsettes_forsvarlig","proveniensgap_kan_endre_materialets_rettslige_eller_historiske_betydning","migrering_kan_medfore_informasjonstap_eller_originalen_ikke_kan_bevares","sikkerhetshendelse_eller_uautorisert_tilgang_har_funnet_sted"],
+    "may_not": ["endre_originalkilder_for_a_tilpasse_dem_metadata_eller_tolkning","skjule_usikker_proveniens","gi_ulovlig_eller_uautorisert_innsyn","kassere_slette_eller_overskrive_uten_autorisert_grunnlag","erstatte_original_digital_bitstrom_med_brukskopi_uten_bevaringsspor","fjerne_metadatahistorikk_for_a_gjore_katalogen_penere","late_som_badge_poeng_er_relevant_utdanning_eller_arbeidsgiverkvalifikasjon"]
+  },
+  "day_one": {
+    "goal": "Ta imot en ufullstendig dokumentleveranse, bevare proveniens og minimumsmetadata og gjøre første prioriterte del gjenfinnbar uten å foregripe innsyn, kassasjon eller historisk tolkning.",
+    "entry_task": "mottakskontroll",
+    "decision_owner": "sara_arkivleder_historie",
+    "first_work_surface": "mottak_arkiv_historie",
+    "success_signal": "leveransen_har_sporbart_opphav_avvik_minimumsmetadata_tilgangsstatus_og_eier_for_videre_beslutninger"
+  },
+  "mail_generation_contract": {
+    "required_mail_types": ["job","people","conflict","story","event","micro","followup","knowledge","consequence"],
+    "actor_binding": "actor_grammar.example_id",
+    "place_binding": "place_grammar.place_id",
+    "task_binding": "task_grammar.id",
+    "forbid_generic_runtime_fallbacks": true
+  }
 }

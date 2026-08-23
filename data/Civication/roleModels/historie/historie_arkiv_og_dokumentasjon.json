@@ -1,11 +1,117 @@
 {
-  "schema":"civication_role_model_v2","version":2,
-  "source":{"badge_file":"data/badges/historie.json","badge_id":"historie","evidence":"data/Civication/historieCareerLifeEvidence.json"},
-  "category":"historie","role_scope":"historie_arkiv_og_dokumentasjon","role_id":"historie_arkiv_og_dokumentasjon","title":"Arkiv og dokumentasjon",
-  "badge_titles":["Arkivmedarbeider","Arkivar"],
-  "core_narrative":["Bevare, beskrive, kvalitetssikre og gjøre dokumentasjon tilgjengelig uten å miste proveniens, kontekst eller rettslige hensyn."],
-  "work_life":{"daily_work":["journalføring","registrering","katalogisering","gjenfinning","innsynsarbeid","formidling"],"responsibilities":["sporbarhet","kontekst","tilgjengelighet","personvern","bevaring"],"work_environment":["arkivinstitusjon","museum","offentlig virksomhet","privat dokumentasjonsforvaltning"]},
-  "authority_boundaries":{"can":["beskrive og ordne arkiv","kvalitetssikre metadata","veilede om gjenfinning og arkivbruk"],"cannot":["endre kilders innhold","skjule proveniens","gi innsyn i strid med regelverk","late som faglig vurdering er juridisk vedtak"]},
-  "competence_axes":["arkivforståelse","proveniens","metadata","kildekritikk","innsyn_og_personvern","digital_bevaring"],
-  "ideal_type_problems":["uklar proveniens","mangelfull metadata","motstridende innsynshensyn","digitalt format i fare","historisk verdi uten tydelig kontekst"]
+  "schema": "civication_role_model_v2",
+  "version": 2,
+  "category": "historie",
+  "role_scope": "historie_arkiv_og_dokumentasjon",
+  "role_id": "historie_arkiv_og_dokumentasjon",
+  "title": "Arkiv og dokumentasjon",
+  "source": {
+    "badge_file": "data/badges/historie.json",
+    "badge_id": "historie",
+    "evidence": "data/Civication/historieCareerLifeEvidence.json"
+  },
+  "badge_titles": ["Arkivmedarbeider", "Arkivar"],
+  "core_narrative": [
+    "Rollen gjør dokumentasjon gjenfinnbar og etterprøvbar uten å endre originalmaterialets innhold, proveniens eller historiske kontekst.",
+    "Godt arkivarbeid skiller selve kilden fra metadata om kilden, dokumenterer usikkerhet, bevarer ordnings- og proveniensspor og gjør tilgangsavgjørelser etter regelverk fremfor bekvemmelighet.",
+    "Arkivmyndighet er avgrenset: medarbeideren kan motta, registrere, ordne, beskrive, kvalitetssikre og gjenfinne innen mandat, men kan ikke improvisere kassasjon, oppheve klausuler, gi ulovlig innsyn, omskrive originaler eller behandle badge-poeng som formell Arkivar-kvalifikasjon."
+  ],
+  "work_life": {
+    "daily_work": ["journalforing", "registrering", "katalogisering", "gjenfinning", "innsynsforberedelse", "digital_bevaring", "formidling"],
+    "responsibilities": ["sporbarhet", "kontekst", "tilgjengelighet", "personvern", "bevaring", "integritet"],
+    "work_environment": ["arkivinstitusjon", "museum", "offentlig_virksomhet", "privat_dokumentasjonsforvaltning"]
+  },
+  "competence_axes": [
+    "proveniens_og_opprinnelig_orden",
+    "metadata_og_beskrivelsesspor",
+    "journalforing_og_dokumentasjonsfangst",
+    "gjenfinning_og_innsynsforberedelse",
+    "personvern_klausul_og_tilgangsgrense",
+    "digital_bevaring_og_integritetskontroll",
+    "autentisitet_kjede_og_endringsspor",
+    "kassasjon_bevaring_og_formell_myndighet"
+  ],
+  "required_knowledge": {
+    "concepts": [
+      {"id": "proveniens_og_opprinnelig_orden", "description": "Arkivmaterialets opphav og relasjon til skaperens virksomhet er en del av kildekonteksten. Materiale skal ikke reorganiseres slik at disse sammenhengene forsvinner uten at endringen dokumenteres."},
+      {"id": "original_vs_metadata", "description": "En katalogpost, tittel eller sammendrag beskriver en kilde, men er ikke kilden selv. Feil metadata kan korrigeres transparent; originalmaterialet skal ikke omskrives for å passe beskrivelsen."},
+      {"id": "minimumsmetadata_og_sporbarhet", "description": "Ved tidspress må registreringen fortsatt bevare identitet, opphav, dato eller tidsrom, relasjon, tilgangsstatus og nødvendig endringsspor slik at materialet kan forstås og kontrolleres senere."},
+      {"id": "innsyn_vs_gjenfinning", "description": "Å finne relevant materiale er ikke det samme som å ha myndighet til å utlevere det. Tilgang må vurderes mot gjeldende regelverk, klausuler, personvern og eventuell beslutningseier."},
+      {"id": "autentisitet_og_integritet", "description": "Arkivarbeid må bevare spor som gjør det mulig å vurdere om et dokument er det det utgir seg for å være, og om innhold eller fil er endret etter mottak."},
+      {"id": "digital_bevaring", "description": "Digital bevaring krever kontrollert lagring, integritetskontroll, formatrisikovurdering og dokumentert migrering. En konvertert brukskopi kan ikke erstatte originalbitstrøm eller dokumentasjon av transformasjonen uten eksplisitt bevaringsbeslutning."},
+      {"id": "kassasjon_og_bevaringsvedtak", "description": "Sletting og kassasjon er irreversible inngrep og skal følge autorisert bevarings- og kassasjonsregelverk; praktisk plassmangel eller lokal preferanse er ikke tilstrekkelig beslutningsgrunnlag."},
+      {"id": "personvern_klausul_og_minimering", "description": "Personsensitive eller klausulerte opplysninger skal håndteres med behovstilpasset tilgang og minst mulig eksponering. Arkivmedarbeideren skal ikke kopiere eller spre mer informasjon enn oppgaven krever."},
+      {"id": "kildekritikk_vs_arkivbeskrivelse", "description": "Arkivaren dokumenterer kontekst, opphav, orden og usikkerhet, men skal ikke gjøre én historisk tolkning til metadatafasit når materialet støtter flere plausible lesninger."},
+      {"id": "endringslogg_og_reversibilitet", "description": "Korrigeringer, migreringer, ompakking og andre inngrep skal ha et spor som viser hva som ble gjort, hvorfor, av hvem og når, slik at senere brukere kan forstå materialets forvaltningshistorie."}
+    ]
+  },
+  "related_people": [
+    {"id": "sara_arkivleder_historie", "name": "Sara", "role": "arkivleder", "function": "Fiktiv arkivleder som eier prioritering, mandat, eskalering og formelle bevarings- eller tilgangsavklaringer når førstelinjen ikke har beslutningsmyndighet.", "fictional": true},
+    {"id": "yusuf_dokumentforvalter_historie", "name": "Yusuf", "role": "dokumentforvalter", "function": "Fiktiv dokumentforvalter som arbeider med dokumentasjonsfangst, journalspor, metadata og overføring fra aktive systemer til arkiv.", "fictional": true},
+    {"id": "eline_innsynskoordinator_historie", "name": "Eline", "role": "innsynskoordinator", "function": "Fiktiv innsynskoordinator som skiller gjenfinning fra rettslig tilgangsvurdering og eier eller eskalerer formelle utleveringsbeslutninger etter mandat.", "fictional": true},
+    {"id": "noah_digital_bevaring_historie", "name": "Noah", "role": "digital_bevaringsradgiver", "function": "Fiktiv rådgiver for filintegritet, formatrisiko, kontrollert migrering, bevaringskopier og dokumenterte tekniske inngrep.", "fictional": true}
+  ],
+  "related_places": [
+    {"place_id": "mottak_arkiv_historie", "kind": "fictional_work_surface", "function": "Fiktiv mottaksflate for accession, overføringskontroll, proveniens, leveranselister og første integritetskontroll."},
+    {"place_id": "ordningsrom_arkiv_historie", "kind": "fictional_work_surface", "function": "Fiktiv arbeidsflate for ordning, metadata, katalogisering, kontekstnotater og kvalitetssikring uten inngrep i originalinnhold."},
+    {"place_id": "innsynsrom_arkiv_historie", "kind": "fictional_work_surface", "function": "Fiktiv kontrollert arbeidsflate for gjenfinning, tilgangsforberedelse og dokumentert utlevering etter autorisert avgjørelse."},
+    {"place_id": "digitalt_bevaringsverksted_historie", "kind": "fictional_work_surface", "function": "Fiktiv teknisk arbeidsflate for checksum-kontroll, formatkartlegging, migreringstest, bevaringskopier og verifisert endringslogg."}
+  ],
+  "ideal_type_problems": [
+    {"id": "uklar_proveniens", "problem": "En samling kommer inn med store innholdsmengder, men overføringslisten sier lite om hvem som skapte mappestrukturen og hvorfor enkelte mapper mangler."},
+    {"id": "innsyn_med_personopplysninger", "problem": "En bestiller ber om rask tilgang til en mappe som er relevant for saken, men som også inneholder tredjepartsopplysninger som ikke trengs for forespørselen."},
+    {"id": "metadatafeil_i_gammel_katalog", "problem": "En etablert katalogtekst tilskriver et dokument feil avsender, mens originalen og mottakssporet peker i en annen retning."},
+    {"id": "formatrisiko_og_migrering", "problem": "En digital serie ligger i et foreldet format og kan fortsatt åpnes på én maskin, men det finnes ingen dokumentert migreringsstrategi."},
+    {"id": "kassasjon_under_plasspress", "problem": "Et magasin er fullt, og en kollega foreslår å fjerne duplikatlignende mapper uten å kontrollere kassasjonsgrunnlag eller serieforbindelser."},
+    {"id": "autentisitetsavvik", "problem": "To filer med samme dokumentnavn har ulike hashverdier og ulik tidsstempelkjede, men begge omtales som den autoritative versjonen."}
+  ],
+  "authority_boundaries": {
+    "can": [
+      "motta_registrere_ordne_og_beskrive_materiale_innen_mandat",
+      "kvalitetssikre_metadata_og_dokumentere_usikkerhet_uten_a_endre_originalen",
+      "gjenfinne_materiale_og_forberede_innsynsgrunnlag",
+      "gjennomfore_autorisert_integritetskontroll_og_dokumentert_bevaringsarbeid"
+    ],
+    "cannot": [
+      "endre_originalkilder_for_a_fa_dem_til_a_stemme_med_metadata_eller_tolkning",
+      "skjule_usikker_proveniens_eller_manglende_kjede",
+      "gi_innsyn_eller_spre_klausulert_personsensitivt_materiale_uten_rett_grunnlag_og_mandat",
+      "kassere_slette_eller_overskrive_bevaringsverdig_materiale_uten_autorisert_vedtak",
+      "erstatte_original_digital_bitstrom_med_migrert_brukskopi_uten_bevaringsspor",
+      "fjerne_tidligere_metadatafeil_uten_a_bevare_korreksjons_og_endringsspor",
+      "late_som_Arkivar_badge_eller_poeng_er_relevant_utdanning_eller_arbeidsgiverkvalifikasjon"
+    ]
+  },
+  "career_path": {
+    "entry_routes": [
+      "Arkivmedarbeider gjennom ordinart jobbtilbud og arbeidsgiveropplaring",
+      "dokumentasjons_eller_journalforingsarbeid_med_gradvis_arkivansvar",
+      "relevant_historie_informasjonsforvaltning_eller_arkivfaglig_bakgrunn_koblet_til_konkret_stilling"
+    ],
+    "progression_signals": [
+      "stabil_proveniens_og_metadata_kvalitet",
+      "sporbare_innsyns_og_endringsbeslutninger",
+      "sikker_digital_bevaring_og_feilhaandtering",
+      "riktig_eskalering_av_kassasjon_tilgang_og_autentisitetsavvik"
+    ],
+    "possible_promotions": [
+      "Arkivar ved separat relevant utdanning eller arbeidsgiverkvalifikasjon",
+      "senior_eller_spesialisert_arkiv_og_dokumentasjonsansvar",
+      "fagledelse_nar_egen_lederstilling_og_utnevnelse_senere_er_oppfylt"
+    ],
+    "possible_exits": [
+      "ga_til_forvaltning_og_radgivning",
+      "ga_til_museum_samling_eller_digital_bevaring",
+      "avslutte_ved_arbeidsforholdets_eller_prosjektets_slutt",
+      "miste_tilgangs_eller_arkivmandat_etter_dokumentert_alvorlig_eller_gjentatt_integritetsbrudd_gjennom_arbeidsgiverprosess"
+    ]
+  },
+  "performance_model": {
+    "positive": ["proveniens_bevart", "metadata_sporbar", "korrekt_innsynsgrense", "integritet_verifisert", "bevaring_dokumentert", "riktig_eskalering"],
+    "negative": ["proveniens_tapt", "metadata_uten_spor", "ulovlig_eller_for_bredt_innsyn", "original_endret", "uautorisert_kassasjon", "migrering_uten_verifikasjon"]
+  },
+  "mail_integration": {
+    "can_feed_mail_types": ["job", "people", "conflict", "story", "event", "micro", "followup", "knowledge", "consequence"],
+    "forbid_generic_runtime_fallbacks": true
+  }
 }
