@@ -221,4 +221,7 @@ node --test tests/birkelunden-phase7b-history.test.mjs
 echo "== Birkelunden phase 7D Før/etter regression =="
 node --test tests/birkelunden-phase7d-before-after.test.mjs
 
+echo "== Birkelunden phase 7E Nyheter regression =="
+node --test tests/birkelunden-phase7e-news.test.mjs
+
 echo "== Places check complete =="
