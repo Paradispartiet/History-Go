@@ -13,6 +13,119 @@
     return Array.from(new Set((Array.isArray(arr) ? arr : []).map(normStr).filter(Boolean)));
   }
 
+  const WORK_WORLD_SCRIPT = "js/Civication/core/civicationWorkWorld.js";
+  let workWorldLoadPromise = null;
+
+  function runtimeWindow() {
+    return /** @type {any} */ (window);
+  }
+
+  function attachWorkWorldFromFactory() {
+    const rt = runtimeWindow();
+    if (rt.CivicationWorkWorld?.applyOperations) return rt.CivicationWorkWorld;
+    if (rt.CivicationWorkWorldFactory?.createAdapter && rt.CivicationState?.getState && rt.CivicationState?.setState) {
+      rt.CivicationWorkWorld = rt.CivicationWorkWorldFactory.createAdapter(rt.CivicationState);
+      return rt.CivicationWorkWorld;
+    }
+    return null;
+  }
+
+  function ensureWorkWorld() {
+    const attached = attachWorkWorldFromFactory();
+    if (attached) return Promise.resolve(attached);
+    if (workWorldLoadPromise) return workWorldLoadPromise;
+
+    workWorldLoadPromise = new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = WORK_WORLD_SCRIPT;
+      script.async = false;
+      script.onload = () => {
+        const adapter = attachWorkWorldFromFactory();
+        if (!adapter) reject(new Error("CivicationWorkWorld lastet uten state-adapter"));
+        else resolve(adapter);
+      };
+      script.onerror = () => reject(new Error(`Kunne ikke laste ${WORK_WORLD_SCRIPT}`));
+      (document.head || document.documentElement).appendChild(script);
+    }).catch((error) => {
+      workWorldLoadPromise = null;
+      throw error;
+    });
+
+    return workWorldLoadPromise;
+  }
+
+  function collectWorkObjectOps(eventObj, choice) {
+    const sceneOps = Array.isArray(eventObj?.effects?.work_object_ops) ? eventObj.effects.work_object_ops : [];
+    const choiceOps = Array.isArray(choice?.effects?.work_object_ops) ? choice.effects.work_object_ops : [];
+    return [...sceneOps, ...choiceOps];
+  }
+
+  function makeShadowWorkWorld(adapter, factory) {
+    let shadowState = { work_world: adapter.getWorldState() };
+    const shadowApi = {
+      getState() {
+        return JSON.parse(JSON.stringify(shadowState));
+      },
+      setState(patch) {
+        shadowState = { ...shadowState, ...JSON.parse(JSON.stringify(patch || {})) };
+        return JSON.parse(JSON.stringify(shadowState));
+      }
+    };
+    return factory.createAdapter(shadowApi);
+  }
+
+  async function applyWorkWorldConsequences(eventObj, choice) {
+    const operations = collectWorkObjectOps(eventObj, choice);
+    if (!operations.length) return null;
+
+    const sceneId = normStr(eventObj?.id);
+    const choiceId = normStr(choice?.id);
+    if (!sceneId || !choiceId) throw new Error("work_object_ops krever scene-id og choice-id");
+
+    const eventIds = operations.map((operation) => normStr(operation?.event_id));
+    if (eventIds.some((eventId) => !eventId)) throw new Error("work_object_ops krever stabile event_id");
+    if (new Set(eventIds).size !== eventIds.length) {
+      throw new Error("work_object_ops kan ikke gjenbruke event_id i samme svarbatch");
+    }
+
+    const adapter = await ensureWorkWorld();
+    const factory = runtimeWindow().CivicationWorkWorldFactory;
+    if (!factory?.createAdapter) {
+      throw new Error("CivicationWorkWorldFactory mangler for transaksjonell preflight");
+    }
+
+    const context = {
+      scene_id: sceneId,
+      choice_id: choiceId,
+      at: new Date().toISOString()
+    };
+    const before = eventObj?.work_context
+      ? adapter.resolveWorkContext(eventObj.work_context)
+      : null;
+
+    // Preflight hele batchen mot et isolert work-world snapshot. Ingen reell
+    // Civication-state skal muteres dersom en senere operasjon er ugyldig.
+    const shadow = makeShadowWorkWorld(adapter, factory);
+    shadow.applyOperations(operations, context);
+
+    const applied = adapter.applyOperations(operations, context);
+    const after = eventObj?.work_context
+      ? adapter.resolveWorkContext(eventObj.work_context)
+      : null;
+
+    try {
+      window.dispatchEvent(new Event("updateProfile"));
+    } catch {}
+
+    return {
+      applied_count: applied.length,
+      operation_event_ids: eventIds,
+      object_ids: applied.map((entry) => entry.work_object_id),
+      work_context_before: before,
+      work_context_after: after
+    };
+  }
+
   function activeCareerId() {
     return normStr((/** @type {{ career_id?: unknown }} */ (window.CivicationState?.getActivePosition?.() || {})).career_id);
   }
@@ -294,14 +407,14 @@
     return delta;
   }
 
-  function applyChoiceConsequences(ctx) {
+  function finishChoiceConsequences(ctx, workWorld) {
     const { eventObj, choice, result } = ctx;
-    if (!eventObj || !choice) return null;
-
     const roleScope = activeRoleScope();
     const hasExplicitNextBias = !!(choice?.next_bias && typeof choice.next_bias === "object");
 
-    if (roleScope !== "mellomleder" && !hasExplicitNextBias) return null;
+    if (roleScope !== "mellomleder" && !hasExplicitNextBias) {
+      return workWorld ? { work_world: workWorld } : null;
+    }
 
     const branch = mergeBranchState(inferBranchBias(eventObj, choice, result));
     const psyche = roleScope === "mellomleder"
@@ -328,12 +441,24 @@
     window.dispatchEvent(new Event("updateProfile"));
 
     return {
+      ...(workWorld ? { work_world: workWorld } : {}),
       branch,
       psyche,
       capital,
       burnout,
       collapse
     };
+  }
+
+  function applyChoiceConsequences(ctx) {
+    const { eventObj, choice } = ctx;
+    if (!eventObj || !choice) return null;
+
+    const operations = collectWorkObjectOps(eventObj, choice);
+    if (!operations.length) return finishChoiceConsequences(ctx, null);
+
+    return applyWorkWorldConsequences(eventObj, choice)
+      .then((workWorld) => finishChoiceConsequences(ctx, workWorld));
   }
 
   function register() {
