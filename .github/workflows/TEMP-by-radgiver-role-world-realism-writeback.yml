@@ -34,17 +34,36 @@ jobs:
       - name: Materialize By-radgiver realism pilot
         run: python3 scripts/TEMP_patch_by_radgiver_role_world_realism.py
 
-      - name: Align completed History Go fixture with TaskEngine truth
+      - name: Fold pilot families into runtime-owned catalogs and align proof fixture
         run: |
           python3 - <<'PY'
+          import json
           from pathlib import Path
-          path = Path('tests/civication-by-radgiver-role-world-realism-pilot.test.js')
-          text = path.read_text(encoding='utf-8')
+
+          root = Path('data/Civication/mailFamilies/by')
+          role = 'by_radgiver_plan'
+          for mail_type in ('job', 'event', 'knowledge', 'followup', 'consequence'):
+              generated = root / mail_type / f'{role}_realism_{mail_type}.json'
+              canonical = root / mail_type / f'{role}_{mail_type}.json'
+              extra = json.loads(generated.read_text(encoding='utf-8'))
+              target = json.loads(canonical.read_text(encoding='utf-8'))
+              if extra.get('role_scope') != role or extra.get('mail_type') != mail_type:
+                  raise SystemExit(f'Unexpected generated catalog contract: {generated}')
+              if target.get('role_scope') != role or target.get('mail_type') != mail_type:
+                  raise SystemExit(f'Unexpected canonical catalog contract: {canonical}')
+              extra_families = extra.get('families') or []
+              extra_ids = {family.get('id') for family in extra_families}
+              target['families'] = [family for family in (target.get('families') or []) if family.get('id') not in extra_ids] + extra_families
+              canonical.write_text(json.dumps(target, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+              generated.unlink()
+
+          test_path = Path('tests/civication-by-radgiver-role-world-realism-pilot.test.js')
+          text = test_path.read_text(encoding='utf-8')
           old = "{ mail_id: id, status: 'completed', history_go: { correct: true }, result: { effect: 1 } }"
           new = "{ mail_id: id, status: 'completed', history_go: { completed_at: '2026-08-23T13:00:00.000Z', correct: true }, result: { effect: 1 } }"
           if old not in text:
               raise SystemExit('Expected learnedTask fixture not found')
-          path.write_text(text.replace(old, new, 1), encoding='utf-8')
+          test_path.write_text(text.replace(old, new, 1), encoding='utf-8')
           PY
 
       - name: Regenerate compiled scene registry
