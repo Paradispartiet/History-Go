@@ -117,11 +117,12 @@ Held-back:
 
 Jack Johnsen har ingen canonical People-ID i dagens repo. Han kan derfor være dokumentert aktør i teksten og `episode.actors`, men får ingen oppfunnet `person_id`/`related_people`.
 
-Runtime:
+Runtime/governance:
 
 - `data/stories/stories_birkelunden.json`;
-- registrert i `data/stories/stories_manifest_by_batch_01.json`;
-- registrert i `data/stories/stories_episode_v1_manifest.json`.
+- registrert i canonical `data/stories/stories_manifest.json`;
+- registrert i `data/stories/stories_episode_v1_manifest.json`;
+- `data/stories/stories_manifest_by_batch_01.json` forblir uendret for å unngå dobbel runtime-fetch.
 
 Maskinscore etter aktiv `runtimeScore()`:
 
@@ -142,7 +143,7 @@ Permanent 7C-port:
 
 - `tests/birkelunden-phase7c-story.test.mjs`;
 - kjøres i `.github/workflows/stories-governance.yml`;
-- låser episode, kilder, navnevariant, held-back superlativ, tomme relasjoner, manifests og score.
+- låser episode, kilder, navnevariant, held-back superlativ, tomme relasjoner, canonical manifest + episode-manifest og score.
 
 Modell/API-kreditter i 7C: **0 eksterne modellkall**. Evidence ble gjenbrukt og offentlige kilder verifisert uten kvalitetsreduksjon.
 
