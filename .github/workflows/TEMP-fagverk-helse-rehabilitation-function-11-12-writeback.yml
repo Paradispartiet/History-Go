@@ -27,8 +27,14 @@ jobs:
       - run: node scripts/audit-fagverk-theory-quality.mjs
       - run: node scripts/audit-fagverk-theory-integrity.mjs
       - run: node scripts/build-fagverk-release-manifest.mjs --check
-      - name: Test rehabilitation fulltext
-        run: node --test tests/helse-rehabilitation-function-fulltext-v1.test.mjs
+      - name: Test rehabilitation counts and quality
+        run: node --test --test-name-pattern="fulltekst består" tests/helse-rehabilitation-function-fulltext-v1.test.mjs
+      - name: Test rehabilitation boundaries
+        run: node --test --test-name-pattern="kritiske faggrenser" tests/helse-rehabilitation-function-fulltext-v1.test.mjs
+      - name: Test rehabilitation claim trace
+        run: node --test --test-name-pattern="gjensidig paragraph-claim-spor" tests/helse-rehabilitation-function-fulltext-v1.test.mjs
+      - name: Test rehabilitation 11/12 status
+        run: node --test --test-name-pattern="Helse står på 11/12" tests/helse-rehabilitation-function-fulltext-v1.test.mjs
       - name: Test Helse cumulative progress
         run: node --test tests/helse-cumulative-progress-v1.test.mjs
       - name: Test subject inventory
