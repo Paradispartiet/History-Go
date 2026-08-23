@@ -1,21 +1,18 @@
-name: TEMP Civication institution authority writeback
+name: TEMP Civication institution authority verification
 
 on:
   push:
     branches:
       - agent/civication-institution-authority-foundation
-    paths:
-      - scripts/TEMP_patch_civication_institution_authority.py
-      - .github/workflows/TEMP-civication-institution-authority-writeback.yml
   pull_request:
     branches:
       - main
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  patch:
+  verify:
     if: github.head_ref == '' || github.head_ref == 'agent/civication-institution-authority-foundation'
     runs-on: ubuntu-latest
     steps:
@@ -23,9 +20,7 @@ jobs:
         with:
           ref: agent/civication-institution-authority-foundation
           fetch-depth: 0
-      - name: Apply bounded authority patch
-        run: python scripts/TEMP_patch_civication_institution_authority.py
-      - name: Syntax and registry checks
+      - name: Verify institutional authority foundation
         run: |
           node --check js/Civication/core/civicationInstitutionAuthority.js
           node --check js/Civication/systems/day/dayConsequences.js
@@ -33,11 +28,4 @@ jobs:
           python -m json.tool data/Civication/sceneContractV1.schema.json >/dev/null
           node scripts/build-civication-scene-registry.mjs --check
           node tests/civication-work-object-scene-pipeline.test.js
-      - name: Commit writeback
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/Civication/sceneContractV1.schema.json scripts/build-civication-scene-registry.mjs js/Civication/systems/day/dayConsequences.js
-          git diff --cached --check
-          git commit -m "Add institutional structure and authority foundation"
-          git push origin HEAD:agent/civication-institution-authority-foundation
+          node tests/civication-institution-authority-foundation.test.js
