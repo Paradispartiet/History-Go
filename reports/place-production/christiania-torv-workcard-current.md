@@ -6,54 +6,41 @@ NAVN: Christiania Torv
 CANONICAL SOURCE-FIL: `data/places/by/oslo/places/christiania_torv.json`  
 MANIFEST: `data/places/manifest.json`  
 HVA REPRESENTERER PLACE-OBJEKTET: Det navngitte torget/plassrommet i Kvadraturen, ikke bygningene rundt.  
-PRIMÆRKATEGORI: `by` – fase 3 bekrefter riktig eier.  
-UNDERBADGES: ingen nye; fase 3 finner ikke grunnlag for filler-merker.  
-EMNE_IDS: `em_by_torg_plasser_som_scene`, `em_by_offentlige_rom_motesteder` – begge beholdes og eies av `byliv-offentlige-rom`.  
-FAGVERK-STED-STATUS: By er `materialized`; begge emner ligger i `chapter_ready` Fagverk-kapittel.  
+PRIMÆRKATEGORI: `by` – godkjent fase 3.  
+UNDERBADGES: ingen nye; ingen filler-merker.  
+EMNE_IDS: `em_by_torg_plasser_som_scene`, `em_by_offentlige_rom_motesteder` – eies av `byliv-offentlige-rom`.  
+FAGVERK-STED-STATUS: By er `materialized`; emnene ligger i `chapter_ready` Fagverk-kapittel.  
 STEDSTYPE: historisk bytorg / civic square  
-KOORDINATSTATUS: `verified_geometry`, OSM way `594329484`, `area_anchor`; fase 2 bekrefter ALLEREDE FERDIG uten mutation.  
-PLACE-SCOPE (canonical): `area` for selve plassflaten; separate bygg er relasjoner.  
-DESCRIPTION-PRODUCTION-PACKAGE: `data/places/production/christiania_torv.json`, `ready_v4_2`, 18/18 claims og 26/26 synlige setninger claim-dekket.  
-BILDESTATUS: gamle lokale paths var ugyldige; erstattet i fase 4 med Leonhard Lenz / Wikimedia Commons / CC0 1.0, inspectable source URL.  
-LEKSIKON-ID/FIL: `data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json` / `place_id=christiania_torv`; kildeløs eldre oppføring skal re-auditeres i popupfasen.  
-SPRÅKLEKSIKON-STATUS: ikke godkjent; navnehistorie vurderes.  
-SPRÅKLEKSIKON-TYPE: ENKELTSTED / navnprofil, ikke område-dialekt.  
-DIALEKTLAG: N/A – `placeScope` er ikke et dokumentert dialektområde.  
-DIALEKTORD/LOKALE UTTRYKK: ikke produsert uten kilde.  
-MÅL FOR INNHOLDSRUNDINGER: 4 + separat fast Badge.  
-VALGTE RUNDINGER: ikke godkjent ennå; kandidatretning `people · objects · brands · related`, avhenger av round/brand/entity-audit.  
-PEOPLE-KANDIDATER: `wenche_gulbransen`; søk/reuse andre canonical People før opprettelse.  
-WORKS-KANDIDATER: `Christian IVs hanske` (fysisk verk, kontrakt/eierskap må avklares).  
-BRANDS SOM ALLEREDE FINNES: `brasserie_france`, `filter_musikk`, `fjord_restaurant`, `pascal`, `skuld`, `statholdergaarden`, `stress`, `tom_wood`; alle current-volatile/own-place-auditeres.  
-ROUTE/RELATION-KOBLINGER: `gamle_radhus` er separat canonical nabosted; Oppdag Kvadraturen-ruter finnes som research, men intern route-ID er ikke bevist.  
-QUIZ-STATUS: ingen godkjent Christiania Torv-sett identifisert; fase 7.  
-STORY-STATUS: square-owned Story må søkes/auditeres i fase 6; `stories_gamle_radhus.json` kan ikke brukes som proxy.  
-VIKTIGSTE KILDER: Oslo byleksikon; Oppdag Kvadraturen/Byantikvaren; SNL som korroborasjon; OSM geometry; Content Factory Pilot 03 source pack.  
-AVVIST/UVISST INNHOLD: bokstavelig hanskekast; sikkert Livorno-forbilde; `year=1648` som automatisk etableringsår; volatile leietakere uten fersk verifikasjon.  
+KOORDINATSTATUS: `verified_geometry`, OSM way `594329484`, `area_anchor`; allerede ferdig.  
+PLACE-SCOPE: plassflaten; separate bygg er relasjoner.  
+DESCRIPTION-PRODUCTION-PACKAGE: `data/places/production/christiania_torv.json`, `ready_v4_2`, 18/18 claims, full sentence coverage.  
+BILDESTATUS: Leonhard Lenz / Wikimedia Commons / CC0 1.0; image gate grønnet i fase 4.  
+STRUKTURERTE PROFILER: fase 5 materialiserer `spatial_profile`, `temporal_profile`, fire `history_layers` og `source_summary`; `subplaces` og `nature_profile` er begrunnet N/A.  
+LEKSIKON: legacy source-tom batch3-post må saneres/supersedes i popupfasen.  
+SPRÅK: navnehistorie vurderes senere; ingen dokumentert dialektflate.  
+MÅL FOR INNHOLDSRUNDINGER: 4 + separat Badge.  
+VALGTE RUNDINGER: ikke godkjent ennå.  
+PEOPLE-KANDIDATER: gjenbruk `wenche_gulbransen`; søk canonical People før nyopprettelse.  
+OBJECT-KANDIDAT: `Christian IVs hanske`; søk/reuse eksisterende micro/object-data før materialisering.  
+BRANDS: åtte eksisterende mappings må own-place-/freshness-auditeres.  
+ROUTE/RELATION: `gamle_radhus` separat canonical nabosted; Oppdag Kvadraturen-ruter finnes som research.  
+QUIZ-STATUS: senere fase.  
+STORY-STATUS: neste fase; søk eksisterende `stories_christiania_torv` først.  
+VIKTIGSTE KILDER: Oslo byleksikon; Oppdag Kvadraturen/Byantikvaren; SNL; OSM; Pilot 03 source pack.  
+AVVIST/UVISST: bokstavelig hanskekast; sikkert Livorno-forbilde; `year=1648` som automatisk etableringsår; volatile virksomheter uten fersk kontroll.  
 NULLMÅLING: `reports/place-production/christiania-torv-nullmaaling-v1.md`  
-SANERINGS-/PRODUKSJONSPLAN: nullmålingens faseplan 1–10.  
-AKTIV FASE: fase 4 – description v4.2 + bildegate.  
-AKTIVT FILSCOPE: canonical Place `desc`/`popupDesc`/image provenance, v4.2 production packet, image backlog summary, fase-4 review og dette workcardet.  
-FORRIGE FASE MERGET OG LIVE-KONTROLLERT: fase 3 #5270 er merget som `ee7a98aeb7cc5766588ba2997105b3d0a3f7616e`.  
+AKTIV FASE: fase 5 – strukturerte profiler og source summary.  
+AKTIVT FILSCOPE: canonical Place-profiler, fase-5 audit, workcard.  
+FORRIGE FASE MERGET: fase 4 #5273 som `fe5cde4ef5c8e91b1ab2666ae8ccb3eb85052d4b`.  
 
-POPUPSTATUS — OM: DESCRIPTION-KJERNE KLAR FOR REVIEW; full popup-eier-/legacy-audit gjenstår senere.  
-POPUPSTATUS — HISTORIE: IKKE GODKJENT  
+POPUPSTATUS — OM: description-kjerne godkjent; legacy-eier-QA gjenstår.  
+POPUPSTATUS — HISTORIE: fire canonical history layers nå KLAR FOR REVIEW.  
 POPUPSTATUS — FORTELLINGER: IKKE STARTET  
 POPUPSTATUS — FØR/ETTER: IKKE STARTET / MULIG N/A  
 POPUPSTATUS — NYHETER: IKKE STARTET / MULIG N/A  
 POPUPSTATUS — LESESPOR: IKKE STARTET  
-POPUPSTATUS — KILDER: IKKE FERDIG  
+POPUPSTATUS — KILDER: source summary etablert; klikkbar sluttflate gjenstår.  
 POPUPSTATUS — SPRÅK: IKKE STARTET  
 POPUPSTATUS — SPOR OG OBJEKTER: IKKE STARTET  
-POPUPSTATUS — LEGG MERKE TIL: IKKE STARTET  
-POPUPSTATUS — BETYDNING: IKKE STARTET  
-POPUPSTATUS — MOTPUNKTER: IKKE STARTET  
-POPUPSTATUS — RELASJONER: IKKE STARTET  
-POPUPSTATUS — KUNNSKAP: IKKE STARTET  
-POPUPSTATUS — OBSERVASJONER: IKKE STARTET  
-
-MANUELL SLUTT-QA — FØR/ETTER-SAMMENLIGNING: ikke utført  
-MANUELL SLUTT-QA — NYHETER-DEKNING: ikke utført  
-MANUELL SLUTT-QA — DIREKTE TILLEGGSFANER: ikke utført  
-MANUELL SLUTT-QA — RUNDINGSKOHERENS: ikke utført  
-MANUELL SLUTT-QA — KRITISKE FUNN/BLOKKERE: slutt-QA skal ikke påstås før alle faser er merget.
+POPUPSTATUS — RELASJONER/KUNNSKAP/OBSERVASJONER: senere faser.  
+MANUELL SLUTT-QA: ikke utført; ingen sluttstatus før alle faser er merget.
