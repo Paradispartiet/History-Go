@@ -1,12 +1,12 @@
 name: TEMP Helse rehabilitation function 11/12 writeback
 on:
-  push:
-    branches: [agent/helse-rehabilitation-function-fulltext-content]
+  pull_request:
+    types: [opened, synchronize, reopened]
 permissions:
   contents: write
 jobs:
   writeback:
-    if: github.actor != 'github-actions[bot]'
+    if: github.actor != 'github-actions[bot]' && github.event.pull_request.head.ref == 'agent/helse-rehabilitation-function-fulltext-content'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
