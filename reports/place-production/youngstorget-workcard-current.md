@@ -3,12 +3,13 @@
 - Oppdatert: 2026-08-23
 - Place ID: `youngstorget`
 - Canonical source: `data/places/politikk/oslo/places_politikk/youngstorget.json`
-- Aktiv baseline `main`: `7da39fab4381b1671527108d01d8736de51c63f4`
+- Aktiv baseline `main`: `2ee41fbfc861d3cdf7aecddffc3246d28c3308b5`
 - Fase 0 merge: PR #5213 / `0b62e1c96bbddcf9c8574f10e0d041bba90ca48e`
 - Fase 1 merge: PR #5214 / `902a01c339fc3af75ac9c1d3053d1a06ca1c5136`
 - Fase 2 merge: PR #5215 / `694cef96d85e3ba3ea09ec6f6d83f183bff0bdd4`
 - Fase 3 merge: PR #5216 / `809c53eb40cb489cc77ef4b6ae6fceb5fdd90364`
 - Fase 4 merge: PR #5218 / `7da39fab4381b1671527108d01d8736de51c63f4`
+- Fase 5 merge: PR #5222 / `2ee41fbfc861d3cdf7aecddffc3246d28c3308b5`
 - Styrende kontrakt: `docs/PLACE_PRODUCTION_CHECKLIST.md`
 - Prior-work gate: `docs/PLACE_PRODUCTION_PRIOR_WORK_GATE.md`
 - Content Factory: `data/places/regler/content_factory_v1.json`
@@ -20,6 +21,7 @@
 - Fase 4: `reports/place-production/youngstorget-phase4-fagverk-audit-v1.md`
 - Fase 5 production packet: `data/places/production/youngstorget.json`
 - Fase 5 review: `reports/place-production/youngstorget-phase5-description-review-v1.md`
+- Fase 6 review: `reports/place-production/youngstorget-phase6-structured-profiles-audit-v1.md`
 - Klynge: Torggata → Youngstorget → Storgata / Brugata–Storgata
 - Referanse-/ankersted: `torggata` – skal ikke produseres på nytt i Pilot 01
 - Første fullproduksjonsmål: `youngstorget`
@@ -36,20 +38,20 @@ Tre tidsfakta er låst separat:
 
 Nære egne Places som ikke skal brukes som proxy for Youngstorget omfatter minst `folkets_hus_oslo`, `folketeateret`, `mollergata_19`, `torggata`, `storgata` og `brugata_storgata_rusmiljo`.
 
-`year: 1852` beholdes som eksisterende representativ navnemilepæl. Production packet låser samtidig `identity.period: 1846–`, og synlig tekst skiller anlegget i 1846 fra navnemilepælene i 1852 og 1951.
+`year: 1852` beholdes som representativ navnemilepæl. Fase-5 production packet låser samtidig `identity.period: 1846–`, og synlig tekst skiller anlegget i 1846 fra navnemilepælene i 1852 og 1951.
 
 ## Fasestatus
 
 | Fase | Status | Dokumentasjon / beslutning |
 | --- | --- | --- |
 | 0. Nullmåling | **FERDIG OG MERGET** | PR #5213 |
-| 1. Canonical identity/source | **FERDIG OG MERGET** | PR #5214; identity/source-owner/own-place-grense låst |
-| 2. Content Factory source/claim pack | **FERDIG OG MERGET** | PR #5215; 12-source registry, scoped claims, relations, held-backs, freshness og gaps |
-| 3. Koordinater/geometri | **ALLEREDE FERDIG OG MERGET** | PR #5216; `verified_geometry`, `osm-relation:12773689`; ingen ny geokoding |
-| 4. Kategori, Badges, emner og Fagverk | **ALLEREDE FERDIG OG MERGET** | PR #5218; `politikk`, to underbadges og tre `em_pol_*` består place-/runtime-/Fagverk-gatene |
-| 5. `desc` + `popupDesc` | **PRODUSERT PÅ AKTIV BRANCH – KLAR FOR CI/VALIDATOR** | v4.2-pakke, 17/17 verified claims, 3/3 + 26/26 sentence coverage; 1846/1852-regresjonen rettet |
-| 6. Strukturerte place-profiler | **NESTE ETTER FASE-5-MERGE** | temporal/spatial/history materialiseres bare der source packen gir substans |
-| 7. Popupfaner | **IKKE STARTET** | hver fane får separat review; fase-5 Om-tekst er produsert men tab-level QA er ikke lukket |
+| 1. Canonical identity/source | **FERDIG OG MERGET** | PR #5214 |
+| 2. Content Factory source/claim pack | **FERDIG OG MERGET** | PR #5215 |
+| 3. Koordinater/geometri | **ALLEREDE FERDIG OG MERGET** | PR #5216; `verified_geometry`, `osm-relation:12773689` |
+| 4. Kategori, Badges, emner og Fagverk | **ALLEREDE FERDIG OG MERGET** | PR #5218; `politikk`, to underbadges og tre `em_pol_*` |
+| 5. `desc` + `popupDesc` | **FERDIG OG MERGET** | PR #5222; 17/17 verified claims, 3/3 + 26/26 sentence coverage, alle ordinære workflows grønne |
+| 6. Strukturerte place-profiler | **KLAR FOR REVIEW PÅ AKTIV BRANCH** | spatial/temporal/history/source materialisert; subplaces/nature begrunnet N/A |
+| 7. Popupfaner | **IKKE STARTET** | starter først etter fase-6-merge; hver fane separat review |
 | 8. Rundinger | **BLOKKERENDE LEGACY-AVVIK** | dagens `people · badges · civication · brands · leksikon · routes · music` følger ikke dagens 4+1-kontrakt |
 | 9. På stedet | **IKKE STARTET** | legacy tasks skal ikke videreføres ukritisk |
 | 10. Quiz | **EKSISTERER – RE-AUDIT SENERE** | aktivt 5-spørsmålssett finnes; ikke regenerer uten konkret behov |
@@ -57,79 +59,90 @@ Nære egne Places som ikke skal brukes som proxy for Youngstorget omfatter minst
 | 12. People–sted | **EKSISTERER – RE-AUDIT SENERE** | permanent test låser ≥22 koblinger; kvantitet er ikke kvalitetsbevis |
 | 13. Brands | **EKSISTERER – OWN-PLACE AUDIT SENERE** | fire mappings finnes; place-eierskap må dokumenteres |
 | 14. Discovery / relations / NextUp / search / i18n | **IKKE STARTET** | place-spesifikk audit |
-| 15–19. Besøk, progresjon, profil, legacy, bilder | **IKKE STARTET / RE-AUDIT** | bilder er et kjent faktisk hull |
+| 15–19. Besøk, progresjon, profil, legacy, bilder | **IKKE STARTET / RE-AUDIT** | place-bilde er nå materialisert; øvrige flater gjenstår |
 | 20–24. Data-QA, UI-QA, innholds-QA, CI, ett-sted-gate | **IKKE STARTET** | lukkes først etter full produksjon |
 
 ## Aktiv fase
 
-På denne branchen er **fase 5 den eneste aktive fasen**.
+På denne branchen er **fase 6 – strukturerte place-profiler** eneste aktive fase.
 
-Canonical `desc` og `popupDesc` er produsert fra source/claim-pakken, og `data/places/production/youngstorget.json` er opprettet som v4.2-kandidat. Ingen andre canonical subsystemer er sanert eller produsert i samme fase.
+Aktivt filscope:
 
-Fase 5 kan bare klassifiseres `FERDIG` dersom repoets v4.2-validator og relevante CI-porter er grønne. Etter merge skal ny branch opprettes fra fersk `main`, og bare **fase 6 – strukturerte place-profiler** skal være aktiv.
+1. `data/places/politikk/oslo/places_politikk/youngstorget.json`;
+2. `reports/place-production/youngstorget-phase6-structured-profiles-audit-v1.md`;
+3. `reports/place-production/youngstorget-workcard-current.md`.
 
-## Fase 5 – description-produksjon
+Fase 6 endrer ikke fase-5 production packet, `desc`/`popupDesc`, quiz, Stories, People, Brands, Objects, rundinger, onsite eller andre senere subsystemer.
 
-### Synlig omfang
+## Fase 6 – strukturerte profiler
 
-- `desc`: **55 ord / 3 setninger**;
-- `popupDesc`: **421 ord / 6 avsnitt / 26 setninger**;
-- production packet: **17/17 verified claims**;
-- `desc` sentence coverage: **3/3**;
-- `popupDesc` sentence coverage: **26/26**.
+### `spatial_profile`
 
-### Faktakorreksjon
+**PASS / materialisert.** Youngstorget behandles som offentlig torg. Pløens gate, Eva Kolstads gate, Møllergata, Youngs gate og Folketeaterkvartalet brukes som kildebelagt grensekontekst; Torggata er en kryssende gate. OSM relation `12773689` forblir verifisert navngitt geometri. `r=150` brukes ikke som areal, og det publiseres ikke et oppdiktet arealmål.
 
-Den gamle teksten sa at Youngstorget «ble anlagt som Nytorvet i 1852». Dette er nå rettet i synlig tekst:
+### `temporal_profile`
 
-- anlegg/etablering = 1846;
-- Nytorvet som offisielt navn = 1852–1951;
-- Youngstorget som offisielt navn = 1951.
+**PASS / materialisert.** Seks hovedmilepæler: 1846, 1852, 1890, 1951, 1958 og 1996. Feltet holdes kort og erstatter ikke chronology/Leksikon.
 
-### Innholdsankere
+### `subplaces`
 
-Den nye teksten bygger på konkrete Youngstorget-fakta og stedselementer: tidlig marked/kveghandel, basaren, arbeiderbevegelsens mobilisering, 1. mai 1890, massemøter i mellomkrigstiden, Pioneren, fredsmonumentet, den permanente historiske fotoutstillingen, 1990-talls/1996-omforming, kommunale tiltak og dokumenterte 2026-hendelser.
+**BEGRUNNET N/A.** Source packen dokumenterer ingen stabile, navngitte interne Youngstorget-soner som bør bli subplaces. Gatene og institusjonene rundt torget skal ikke konstrueres som delsoner bare for completeness.
 
-### Sanert fra description-flaten
+### `history_layers`
 
-- meta som «markøren gjelder» og «På stedet kan History Go ...»;
-- generisk scene-/lyd-/vakt-/presseforklaring uten place-spesifikk kilde;
-- generell demokratiteori som ikke er Youngstorget-fakta;
-- proxyargumentasjon basert på nabobygg;
-- udokumenterte generelle mediepåstander.
+**PASS / materialisert.** Fire lag:
 
-Det legitime Fagverk-emnet `em_pol_mediert_offentlighet` beholdes fra fase 4, men gir ikke blankofullmakt til å skrive udokumentert medieteori i `popupDesc`.
+1. markedstorget blir til, 1846–1870-årene;
+2. arbeiderbevegelsens samlingsrom, 1890–1930-årene;
+3. nytt navn og synlige minnespor, 1951–1997;
+4. torget bygges om, 1990-årene–1996.
 
-### Strong/freshness-port
+### `nature_profile`
 
-Source packens tilbakeholdte «første»-claims for 1890, 1898 og 1956 er **ikke** publisert i description-teksten.
+**BEGRUNNET N/A.** Kommunal beplantning er et byromstiltak, men det finnes ikke kildegrunnlag for en naturfaglig hovedrolle/habitatprofil. Feltet fylles ikke med natur-filler.
 
-Nåtidsclaims fra Oslo kommune er verifisert 2026-08-23. Konkrete 8. mars og 1. mai 2026-hendelser er behandlet som datofestet historikk, ikke som løfter om framtidig gjentakelse. Planlagte framtidstiltak er holdt ute av den langsiktige description-flaten og skal eventuelt eies av senere Nyheter/current-status med ferskhetsport.
+### `source_summary`
 
-## Description-kvalitetsporter
+**PASS / materialisert.** Brukerrettet basisliste med Oslo kommune, Oslo byleksikon, to Arbark-kilder og OSM-geometrikilden. Interne audits/researchnotater er holdt ute.
 
-- `name-swap`: **PASS**;
-- `cross-place duplicate`: **PASS**;
-- `place-specific evidence anchors`: **PASS**;
-- `source → claim → text`: **PASS på packet-nivå, teknisk validator gjenstår**;
-- `local experience`: **PASS**;
-- `fullness`: **PASS for description-fasen**.
+## Fase-5 bevaring
 
-Teksten kan ikke flyttes til et annet torg ved å bytte stedsnavn: den er bundet til Youngstorgets årstall, navn, marked, 1890-rute, Pioneren, fredsmonument, fotoutstilling, 1996-omforming og konkrete gategrenser.
+Fase 5 er nå faktisk merget på `main` via #5222 / `2ee41fb…`:
+
+- `desc`: 55 ord / 3 setninger;
+- `popupDesc`: 421 ord / 6 avsnitt / 26 setninger;
+- 17/17 claims verified;
+- `desc` sentence coverage: 3/3;
+- `popupDesc` sentence coverage: 26/26;
+- name-swap PASS;
+- cross-place duplicate PASS;
+- place-specific evidence anchors PASS;
+- source → claim → text PASS;
+- local experience PASS;
+- fullness PASS for description-fasen;
+- lisensiert place-bilde og nødvendig Politikk-production mirror er materialisert;
+- alle seks ordinære PR-workflows var grønne før merge.
 
 ## Content Factory-resultat så langt
 
 Shared source pack har:
 
-- **12 registrerte kilder**;
-- **2 kilder/proveniens direkte gjenbrukt** fra eksisterende History GO-arbeid;
-- **10 nye eksterne kilder** lagt til cluster-pakken;
-- **5 scope-ugyldige/generiske claim-kandidater** eksplisitt avvist;
-- coordinate-subsystem bevart uten ny research/geokoding;
+- 12 registrerte kilder;
+- 2 kilder/proveniens direkte gjenbrukt fra eksisterende History GO-arbeid;
+- 10 nye eksterne kilder lagt til cluster-pakken;
+- 5 scope-ugyldige/generiske claim-kandidater eksplisitt avvist;
+- coordinate-subsystem bevart uten ny geokoding;
 - category/badge/emne/Fagverk bevart uten ny modell-/fagproduksjon;
-- én kontrollert Youngstorget-researchpass gjenbrukt i description, history/object/current-use/before-after/quiz/relations-forberedelse gjennom claim-banken.
+- én kontrollert Youngstorget-researchpass gjenbrukt i description, strukturerte profiler og forberedelse til senere history/object/current-use/before-after/quiz/relations-arbeid.
 
 Dette er arbeids-/gjenbruksmåling, **aldri kvalitet, richness eller ferdigstatus**.
+
+## Modell- og kredittstatus fase 6
+
+- produksjonsmodellkall: **0**;
+- token-/API-kreditter brukt: **0**;
+- begrunnelse: fase 2-claimbanken og fase-3-geometrien gir allerede eksplisitt evidens til de materialiserte feltene;
+- ingen relevant profil er kortet ned av budsjett. Ved nytt evidensgap er handlingen mer research, ikke svakere innhold.
 
 ## Scope-gater som fortsatt gjelder
 
@@ -139,45 +152,32 @@ Dette er arbeids-/gjenbruksmåling, **aldri kvalitet, richness eller ferdigstatu
 - `street:brugata` → ny bare-`brugata` Place: **NEI**; canonical eier er ikke bevist.
 - nabobygg/virksomhet → Youngstorget People/Brands/Stories: **NEI** ved nærhet alene.
 
-## Kjente behold-punkter etter fase 5
+## Kjente hull etter fase 6
 
-- canonical ID/source `youngstorget`;
-- verified geometry;
-- `category: politikk`;
-- `underbadge_ids: arbeiderbevegelse, aktivisme_og_protest`;
-- de tre eksisterende `em_pol_*`-koblingene og Fagverk-runtime;
-- ny claim-sporet `desc`/`popupDesc`, forutsatt grønn v4.2-validator;
-- eksisterende quiz, Stories, People og Lesespor som baseline, ikke automatisk ferdigstatus;
-- eksisterende Brands som kandidater, ikke automatisk godkjent place-eierskap.
-
-## Kjente hull / regressions etter fase 5
-
-1. Strukturerte temporal/spatial/history-profiler er ikke materialisert etter dagens source pack.
-2. Popup/Historie og de øvrige popupfanene mangler separat tab-level review.
-3. Før/etter mangler; 1990-talls/1996-researchspor finnes, men assetpar/rettigheter mangler.
-4. Kilder/source_summary mangler som komplett brukerflate.
-5. Bilder mangler som godkjente place-assets/proveniens.
-6. Canonical Objects mangler; Pioneren, Fredsmonumentet, fontenen og basaren er kandidater som må ID-/eierskapsauditeres.
-7. Rundingssettet er legacy og må migreres til 4+1 uten filler.
-8. Brands må own-place-auditeres.
-9. People må own-place-, profile-, image- og runtime-auditeres; ≥22 er bare baseline.
-10. Språk må vurderes eksplisitt, ikke automatisk N/A.
-11. Nyheter/current-status må ferskkontrolleres før godkjenning.
-12. Onsite må saneres mot dagens kontrakt; legacy tasks er ikke produktet.
-13. Sterke «første»-claims krever uavhengig ekstra kilde dersom de senere skal publiseres.
-14. Legacy `layers.populaerkultur`, tags/knagger og andre medieflater er ikke sanert i fase 5; de må gjennom sin eierfase i stedet for å blandes inn i description-jobben.
+1. Popupfanene mangler separat tab-level review.
+2. Før/etter mangler ferdig rettighetsklar assetpair; 1996-sporet er bare researchgrunnlag.
+3. Kilder-fanen har nå `source_summary`, men faktisk popup-runtime og full source-visning må godkjennes i fase 7.
+4. Canonical Objects mangler; Pioneren, Fredsmonumentet, fontenen og basaren er kandidater som må ID-/eierskapsauditeres.
+5. Rundingssettet er legacy og må migreres til 4+1 uten filler.
+6. Brands må own-place-auditeres.
+7. People må own-place-, profile-, image- og runtime-auditeres; ≥22 er bare baseline.
+8. Språk må vurderes eksplisitt, ikke automatisk N/A.
+9. Nyheter/current-status må ferskkontrolleres før godkjenning.
+10. Onsite må saneres mot dagens kontrakt; legacy tasks er ikke produktet.
+11. Sterke «første»-claims krever uavhengig ekstra kilde dersom de senere skal publiseres.
+12. Legacy `layers.populaerkultur`, tags/knagger og andre medieflater er ikke sanert i fase 6; de skal gjennom sin eierfase.
 
 ## Popupstatus
 
 | Fane | Status |
 | --- | --- |
-| Om | **DESCRIPTION-INNHOLD PRODUSERT – TAB-LEVEL QA I FASE 7 GJENSTÅR** |
-| Historie | **RIK CLAIM-BASE FINNES – EGEN HISTORIESTRUKTUR/TAB-QA GJENSTÅR** |
+| Om | **DESCRIPTION-INNHOLD FERDIG OG MERGET – TAB-LEVEL QA I FASE 7 GJENSTÅR** |
+| Historie | **STRUKTURERT HISTORY-LAYER MATERIALISERT – TAB-QA/CHRONOLOGY-GRENSE GJENSTÅR** |
 | Fortellinger | **EKSISTERER – IKKE RE-AUDITERT** |
 | Før/etter | **RESEARCHSPOR FUNNET – ASSETS/RETTIGHETER MANGLER** |
 | Nyheter | **FERSKE 2026-KILDER FINNES – IKKE MATERIALISERT/GODKJENT** |
 | Lesespor | **EKSISTERER – IKKE RE-AUDITERT** |
-| Kilder | **SOURCE PACK FINNES – BRUKERFLATE IKKE FERDIG** |
+| Kilder | **SOURCE_SUMMARY MATERIALISERT – TAB-RUNTIME/QA GJENSTÅR** |
 | Språk | **IKKE VURDERT FERDIG** |
 | Spor & objekter | **KANDIDATCLAIMS FINNES – CANONICAL OBJECT AUDIT MANGLER** |
 | Andre direktefaner | **IKKE VURDERT FERDIG** |
