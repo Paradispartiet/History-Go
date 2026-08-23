@@ -66,10 +66,17 @@ jobs:
           }
           console.log(`Source brief ${brief.claims.length}/35 and quiz ${questions.length}/35 materialized.`);
           NODE
-      - name: Build deterministic context, Knowledge and Fagverk release
+      - name: Build deterministic quiz context
         run: |
+          set -euxo pipefail
           npm run quiz:context -- --category by --target christiania_torv --output data/quiz/production_context/by/christiania_torv.json
+      - name: Write canonical Knowledge
+        run: |
+          set -euxo pipefail
           npm run knowledge:canonical:write
+      - name: Build Fagverk release
+        run: |
+          set -euxo pipefail
           node scripts/build-fagverk-release-manifest.mjs
       - name: Validate phase 7 before writeback
         run: |
