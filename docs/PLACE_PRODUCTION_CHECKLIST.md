@@ -14,7 +14,7 @@ Alle faglige, redaksjonelle, faktuelle og subsystemspesifikke krav i referansen 
 
 Alle canonicale steder skal ha sin egen fungerende fagverkside. V2 endrer ikke dette kravet; den forenkler bare review- og mergekadensen.
 
-DIALEKTLAG — KUN `placeScope: "area"` / N/A. Dialektinnhold kan kun eies av et område-Place med `placeScope: "area"`. Et enkeltsted med Språkleksikon skal ikke diktes om til dialekteier. `coordRole` beskriver koordinatgeometri og gir aldri dialekt-eierskap. Når Språkleksikon produseres, skal relevante dialektord og lokale uttrykk vurderes og kildebelegges etter språk-/dialektkontrakten.
+DIALEKTLAG — KUN `placeScope: "area"` / N/A. Dialektinnhold kan kun eies av et område-Place med `placeScope: "area"`. Et enkeltsted med Språkleksikon skal ikke diktes om til dialekteier. `coordRole` beskriver koordinatgeometri og gir aldri dialekt-eierskap. Når Språkleksikon produseres, skal minst ett reelt dialektord eller lokalt uttrykk være kildebelagt når dialektlaget er relevant; øvrige relevante dialektord og lokale uttrykk skal vurderes og kildebelegges etter språk-/dialektkontrakten.
 
 > **Ett sted ferdig før neste. Faser reviewes sekvensielt. Mergegrenser følger reell risiko — ikke antall faser.**
 
