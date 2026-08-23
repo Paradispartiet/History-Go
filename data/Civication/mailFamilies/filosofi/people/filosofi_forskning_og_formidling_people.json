@@ -1,0 +1,14 @@
+{
+  "schema":"civication_mail_family_catalog_v1","version":1,"category":"filosofi","role_scope":"filosofi_forskning_og_formidling","mail_type":"people",
+  "families":[{"id":"filosofi_velvillig_rekonstruksjon","purpose":"Gjøre motposisjonen sterk nok til at kritikken tester reell uenighet.","learning_focus":["argumentrekonstruksjon","uenighetskompetanse","stramann"],"mails":[{
+    "id":"filosofi_forskning_people_motargument_001","mail_type":"people","mail_family":"filosofi_velvillig_rekonstruksjon","role_scope":"filosofi_forskning_og_formidling","phase":"early","day_phase":"forenoon","priority":130,"cooldown":2,"repeatable":false,"stage":"stable",
+    "from":"Marius, fagredaktør","people_ref":"marius_fagredaktor_filosofi","person_id":"marius_fagredaktor_filosofi","place_id":"arbeidsrom_filosofi_forskning","thread_key":"filosofi_frihet_teknologi_001",
+    "subject":"Motargumentet i utkastet er for lett å slå","summary":"Marius peker på at utkastet gjengir motposisjonen som «all teknologi gir flere valg og derfor mer frihet». Kilden hevder noe mer presist: enkelte infrastrukturer kan øke faktisk handlingskapasitet selv når de samtidig skaper nye avhengigheter.","purpose":"Teste om kritikken rettes mot den sterkeste rimelige kildestøttede versjonen.","stakes":"En svak gjengivelse gir en enkel seier, men publikum lærer ikke hva den reelle uenigheten gjelder.",
+    "situation":["Kilden skiller mellom antall valg og faktisk kapasitet til å handle.","Utkastet har redusert dette til en generell teknologipositiv påstand.","Det finnes fortsatt plass til å omskrive argumentkartet før redaksjonsmøtet."],
+    "task_domain":"argumentanalyse","task_kind":"people","competency":"argumentrekonstruksjon","pressure":"retorisk_enkelhet_vs_reell_uenighet","choice_axis":"rekonstruer_sterkeste_rimelige_argument_vs_behold_svak_variant","consequence_axis":"redelig_kritikk_vs_stramann","narrative_arc":"fra_problem_til_offentlig_formidling","interaction_mode":"decision",
+    "choices":[
+      {"id":"A","label":"Skriv motargumentet om til kapasitet, avhengighet og faktisk handlingsrom før du kritiserer det","reply":"Jeg lar kilden få sin sterkeste rimelige form og tester deretter hvor argumentet trenger normative premisser eller empirisk støtte.","effect":1,"tags":["steelman","argument_map"],"feedback":"Kritikken blir vanskeligere, men treffer nå den faktiske posisjonen i stedet for en praktisk stråmann.","effects":{"stats":{"quality":3,"trust":2,"risk":-2,"energy":-1}}},
+      {"id":"B","label":"Behold den korte versjonen fordi publikum ellers mister hovedpoenget","reply":"Jeg trenger en tydelig kontrast; detaljene i motargumentet kan ligge i kildelisten.","effect":-1,"tags":["strawman","editorial_shortcut"],"feedback":"Du bruker formatpress til å endre hva motposisjonen faktisk hevder.","effects":{"stats":{"quality":-3,"trust":-2,"risk":3,"energy":1}}}
+    ]
+  }]}]
+}

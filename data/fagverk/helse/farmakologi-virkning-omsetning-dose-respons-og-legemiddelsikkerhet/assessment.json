@@ -1,0 +1,193 @@
+{
+  "schema": "history_go_fagverk_health_chapter_assessment_v1",
+  "version": "1.0.0",
+  "subject_id": "helse",
+  "chapter_id": "farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet",
+  "status": "audited",
+  "questions": [
+    {
+      "id": "helse-hpha-q01",
+      "question": "Hva skiller affinitet fra efficacy?",
+      "options": [
+        "Affinitet er bindingstendens, efficacy er evne til å frembringe respons",
+        "De er identiske",
+        "Efficacy er bare plasmakonsentrasjon",
+        "Affinitet er dose"
+      ],
+      "answer": "Affinitet er bindingstendens, efficacy er evne til å frembringe respons",
+      "answerIndex": 0,
+      "question_type": "analysis",
+      "difficulty": "medium",
+      "emne_id": "em_helse_farmakologi",
+      "claim_id": "hpha-c03",
+      "source": [
+        "hpha01-ncbi-pharmacodynamics",
+        "hpha02-fda-ich-e4-dose-response",
+        "hpha03-ema-ich-e4-dose-response"
+      ],
+      "knowledge": "Affinitet beskriver hvor sterkt eller fordelaktig en ligand binder til et biologisk mål under definerte betingelser, mens efficacy beskriver evnen til å frembringe respons etter binding. Et stoff kan derfor binde med høy affinitet uten å gi maksimal aktivering, og bindingsstyrke kan ikke brukes som direkte mål på hvor stor systemeffekt som oppnås.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hpha-q02",
+      "question": "Hva betyr høyere potens?",
+      "options": [
+        "Alltid høyere maksimal effekt",
+        "Lavere dose eller konsentrasjon for en definert respons",
+        "Lengre halveringstid",
+        "Større biotilgjengelighet"
+      ],
+      "answer": "Lavere dose eller konsentrasjon for en definert respons",
+      "answerIndex": 1,
+      "question_type": "analysis",
+      "difficulty": "medium",
+      "emne_id": "em_helse_farmakologi",
+      "claim_id": "hpha-c07",
+      "source": [
+        "hpha01-ncbi-pharmacodynamics",
+        "hpha02-fda-ich-e4-dose-response",
+        "hpha03-ema-ich-e4-dose-response"
+      ],
+      "knowledge": "Potens beskriver hvilken dose eller konsentrasjon som kreves for å oppnå en definert respons og påvirkes blant annet av affinitet, signalforsterkning og systemegenskaper. Efficacy eller maksimal effekt beskriver hvor stor respons systemet kan nå. Et mer potent legemiddel trenger derfor ikke ha større maksimal effekt enn et mindre potent legemiddel.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hpha-q03",
+      "question": "Hva beskriver biotilgjengelighet best?",
+      "options": [
+        "Bare mengden som svelges",
+        "Hastighet og omfang av systemisk tilgjengelighet fra en formulering",
+        "Kun renal utskillelse",
+        "Kun maksimal effekt"
+      ],
+      "answer": "Hastighet og omfang av systemisk tilgjengelighet fra en formulering",
+      "answerIndex": 1,
+      "question_type": "analysis",
+      "difficulty": "medium",
+      "emne_id": "em_helse_farmakologi",
+      "claim_id": "hpha-c10",
+      "source": [
+        "hpha04-fda-bioavailability-2022",
+        "hpha05-fda-food-effect-2026",
+        "hpha12-fda-clinical-pharmacology-labeling"
+      ],
+      "knowledge": "Biotilgjengelighet beskriver hastighet og omfang som et virkestoff eller en aktiv del blir systemisk tilgjengelig fra en bestemt formulering og administrasjonsmåte. Eksponering vurderes ofte med konsentrasjon–tid-baserte mål. Begrepet er derfor mer presist enn hvor mye som svelges eller forlater tarmen, fordi presystemiske prosesser kan endre hvor mye aktivt stoff som når systemkretsløpet.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hpha-q04",
+      "question": "Hva kan eliminasjonshalveringstid ikke automatisk fortelle?",
+      "options": [
+        "Tidsforløp for konsentrasjonsfall",
+        "At effektens varighet er identisk med halveringstiden",
+        "At clearance og distribusjon er relevante",
+        "At akkumulering kan påvirkes"
+      ],
+      "answer": "At effektens varighet er identisk med halveringstiden",
+      "answerIndex": 1,
+      "question_type": "analysis",
+      "difficulty": "hard",
+      "emne_id": "em_helse_farmakologi",
+      "claim_id": "hpha-c15",
+      "source": [
+        "hpha06-fda-renal-pk-2024",
+        "hpha07-fda-hepatic-pk",
+        "hpha01-ncbi-pharmacodynamics"
+      ],
+      "knowledge": "Eliminasjonshalveringstid er tiden det tar for konsentrasjon eller mengde å falle til halvparten under definerte kinetiske betingelser og påvirkes av både clearance og distribusjonsvolum. Farmakodynamiske effekter kan vare kortere eller lengre enn plasmakonsentrasjonens halveringstid på grunn av målkinetikk, aktive metabolitter eller irreversible biologiske endringer.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hpha-q05",
+      "question": "Hvorfor betyr en PK-interaksjon ikke automatisk klinisk skade?",
+      "options": [
+        "Fordi eksponeringsendring må relateres til eksponerings–respons og sikkerhetsmargin",
+        "Fordi interaksjoner ikke finnes",
+        "Fordi AUC alltid er klinisk irrelevant",
+        "Fordi enzymer ikke påvirker legemidler"
+      ],
+      "answer": "Fordi eksponeringsendring må relateres til eksponerings–respons og sikkerhetsmargin",
+      "answerIndex": 0,
+      "question_type": "analysis",
+      "difficulty": "hard",
+      "emne_id": "em_helse_farmakologi",
+      "claim_id": "hpha-c20",
+      "source": [
+        "hpha08-fda-ich-m12-ddi",
+        "hpha09-ema-ich-m12-ddi",
+        "hpha12-fda-clinical-pharmacology-labeling"
+      ],
+      "knowledge": "Interaksjonsevaluering kombinerer in-vitro undersøkelser, kliniske studier og modellbaserte prediksjoner for å anslå hvor stor PK-endring en kombinasjon kan gi. En påvist hemming, induksjon eller AUC-endring er evidens om eksponering, men klinisk betydning avhenger også av legemidlets eksponerings–respons-forhold, sikkerhetsmargin og aktuell kontekst.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hpha-q06",
+      "question": "Hva er riktig om gruppeestimert PK-variasjon?",
+      "options": [
+        "Den bestemmer automatisk individets dose",
+        "Den beskriver populasjonsmønstre som krever ytterligere kontekst for individbeslutning",
+        "Den eliminerer all usikkerhet",
+        "Den er bare farmakodynamikk"
+      ],
+      "answer": "Den beskriver populasjonsmønstre som krever ytterligere kontekst for individbeslutning",
+      "answerIndex": 1,
+      "question_type": "analysis",
+      "difficulty": "hard",
+      "emne_id": "em_helse_farmakologi",
+      "claim_id": "hpha-c24",
+      "source": [
+        "hpha02-fda-ich-e4-dose-response",
+        "hpha06-fda-renal-pk-2024",
+        "hpha11-fda-pharmacogenomics"
+      ],
+      "knowledge": "Variasjon i legemiddeleksponering og respons kan skyldes flere samtidige forhold, blant annet formulering, mat, organfunksjon, genetikk, alder, kroppssammensetning og interaksjoner. En gruppeforskjell isolerer ikke nødvendigvis alle relevante årsaker. Populasjonsestimater må derfor beskrives med usikkerhet og kan ikke automatisk oversettes til nødvendig dose for et individ.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hpha-q07",
+      "question": "Hva skiller adverse event fra adverse drug reaction?",
+      "options": [
+        "Alle adverse events er kausale reaksjoner",
+        "ADR innebærer en vurdert kausal sammenheng, mens adverse event ikke krever det",
+        "ADR betyr bare alvorlig hendelse",
+        "Det finnes ingen forskjell"
+      ],
+      "answer": "ADR innebærer en vurdert kausal sammenheng, mens adverse event ikke krever det",
+      "answerIndex": 1,
+      "question_type": "analysis",
+      "difficulty": "hard",
+      "emne_id": "em_helse_farmakologi",
+      "claim_id": "hpha-c25",
+      "source": [
+        "hpha13-who-pharmacovigilance-strategies",
+        "hpha14-who-pidm",
+        "hpha12-fda-clinical-pharmacology-labeling"
+      ],
+      "knowledge": "En adverse event er en uønsket medisinsk hendelse som opptrer etter legemiddeleksponering uten at definisjonen alene krever at legemidlet forårsaket hendelsen. En adverse drug reaction innebærer en vurdert kausal relasjon etter relevante kriterier. Tidsmessig samvariasjon er derfor et utgangspunkt for sikkerhetsvurdering, ikke i seg selv bevis for farmakologisk årsak.",
+      "safety_mode": "general_non_individualizing"
+    },
+    {
+      "id": "helse-hpha-q08",
+      "question": "Hva er et farmakovigilanssignal?",
+      "options": [
+        "Ferdig bevis på kausalitet",
+        "Informasjon som gir grunn til å undersøke en mulig sikkerhetsrisiko",
+        "En individuell diagnose",
+        "En doseringsordre"
+      ],
+      "answer": "Informasjon som gir grunn til å undersøke en mulig sikkerhetsrisiko",
+      "answerIndex": 1,
+      "question_type": "analysis",
+      "difficulty": "hard",
+      "emne_id": "em_helse_farmakologi",
+      "claim_id": "hpha-c28",
+      "source": [
+        "hpha13-who-pharmacovigilance-strategies",
+        "hpha14-who-pidm",
+        "hpha12-fda-clinical-pharmacology-labeling"
+      ],
+      "knowledge": "Et farmakovigilanssignal er informasjon som gir grunn til å undersøke en mulig ny sikkerhetsrisiko eller et endret aspekt ved en kjent risiko. Signalet må vurderes mot alternative forklaringer, biologisk plausibilitet, tidsmønster, eksponeringsdata og andre studier. Signaldeteksjon er derfor hypotesegenererende og skal ikke forveksles med ferdig kausal konklusjon.",
+      "safety_mode": "general_non_individualizing"
+    }
+  ]
+}

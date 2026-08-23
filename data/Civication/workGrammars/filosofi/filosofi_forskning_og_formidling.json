@@ -1,15 +1,86 @@
 {
-  "schema":"civication_work_grammar_v1","version":1,"category":"filosofi","role_scope":"filosofi_forskning_og_formidling","role_id":"filosofi_forskning_og_formidling",
-  "badge_binding":{"badge_id":"filosofi","badge_titles":["Idéhistoriker","Filosof"],"tier_thresholds":[60,150]},
-  "work_world":"Filosofisk forskning og formidling: rekonstruer argumenter, arbeid kildekritisk og gjør premisser, begreper, tolkninger og usikkerhet synlige.",
-  "authority_boundary":{"can":["analysere og kritisere argumenter","kontekstualisere idéhistoriske kilder","formidle normative og teoretiske spørsmål med eksplisitte premisser"],"cannot":["gjøre en normativ konklusjon til empirisk fakta","tilskrive kilder syn de ikke dokumenterer","bruke stråmannsversjoner av motargumenter","late som Badge-poeng er akademisk grad eller ansettelse"]},
-  "work_loops":["avgrens spørsmål og definer nøkkelbegreper","finn og vurder relevante primær- og sekundærkilder","rekonstruer det sterkeste rimelige argumentet før kritikk","skill empiriske premisser fra normative premisser og vurder inferensen","formidle konklusjon, rivaliserende tolkninger og begrensninger"],
-  "practice_stories":[
-    {"id":"stramann_i_notat","title":"Det enkle motargumentet","problem":"Et notat blir skarpere hvis motpartens syn gjengis i sin svakeste form.","good_practice":"Rekonstruer den sterkeste rimelige versjonen først og la kritikken treffe den versjonen."},
-    {"id":"anakronistisk_begrep","title":"Et moderne begrep passer for godt","problem":"En historisk tekst ser ut til å bruke dagens kategori, men selve begrepet oppstod langt senere.","good_practice":"Beskriv først aktørens eget vokabular og marker tydelig når moderne analytiske begreper brukes."},
-    {"id":"normativt_som_data","title":"Verdien blir til fakta","problem":"En normativ konklusjon presenteres som om den følger direkte av empiriske data.","good_practice":"Gjør verdipremisset eksplisitt og vis hvilke deler av argumentet som er empiriske og normative."},
-    {"id":"beromt_sitat","title":"Sitatet alle kjenner","problem":"Et berømt sitat passer perfekt, men kildehenvisningen er sekundær og usikker.","good_practice":"Spor sitatet til primærkilden eller merk attribusjonen som usikker i stedet for å gjenta tradisjonen."},
-    {"id":"oppdragsgiver_vil_ha_fasit","title":"Bestillingen ber om ett riktig svar","problem":"Analysen viser flere forsvarlige posisjoner, mens oppdragsgiver ønsker én enkel fasit.","good_practice":"Gi en tydelig anbefaling bare når premissene støtter den, og synliggjør hvilke verdi- og usikkerhetsvalg anbefalingen avhenger av."}
+  "schema": "civication_work_grammar_v2",
+  "version": 2,
+  "category": "filosofi",
+  "role_scope": "filosofi_forskning_og_formidling",
+  "role_id": "filosofi_forskning_og_formidling",
+  "source": {"evidence": "data/Civication/filosofiCareerLifeEvidence.json"},
+  "badge_binding": {"badge_id": "filosofi", "badge_titles": ["Idéhistoriker", "Filosof"], "tier_thresholds": [60, 150]},
+  "task_families": [
+    "problemavgrensning_og_begrepsanalyse",
+    "argumentrekonstruksjon_og_kritikk",
+    "kildeproveniens_og_idehistorisk_kontekst",
+    "normativ_empirisk_analyse",
+    "faglig_formidling_og_korrigering"
   ],
-  "quality_axes":["argumentanalyse","begrepspresisjon","kildekritikk","idehistorisk_kontekst","normativ_transparens","uenighetskompetanse","formidling"]
+  "work_loops": [
+    {
+      "id": "forskning_og_argumentanalyse",
+      "steps": ["avgrens_sporsmal_og_begreper", "bygg_kildegrunnlag", "rekonstruer_argumenter", "test_rivaliserende_tolkninger", "skill_empirisk_og_normativt", "skriv_med_forbehold_og_spor"]
+    },
+    {
+      "id": "formidling_og_korrigering",
+      "steps": ["definer_publikum_og_format", "velg_baerende_paastander", "bevar_avgjorende_forbehold", "verifiser_sitat_og_attributt", "formidle_uenighet", "registrer_og_rett_faglige_feil"]
+    }
+  ],
+  "practice_stories": [
+    {"id": "p1", "setup": "Et notat blir skarpere hvis motpartens syn gjengis i sin svakeste form.", "good": "Rekonstruer den sterkeste rimelige versjonen kilden kan bære før kritikken formuleres.", "bad": "Velg den enkleste varianten å avvise."},
+    {"id": "p2", "setup": "Et moderne begrep ser ut til å beskrive en eldre tekst perfekt.", "good": "Vis først tekstens eget vokabular og marker det moderne begrepet som en senere analytisk ramme.", "bad": "Skriv som om den historiske aktøren brukte dagens kategori."},
+    {"id": "p3", "setup": "En normativ konklusjon passer godt med et empirisk datasett.", "good": "Gjør verdipremisset eksplisitt og vis hva dataene faktisk støtter.", "bad": "Presenter konklusjonen som om den var målt direkte."},
+    {"id": "p4", "setup": "Et berømt sitat passer perfekt, men du finner bare sekundære gjengivelser.", "good": "Spor til primærkilden eller merk attribusjonen som uavklart.", "bad": "Bruk sitatet fordi det er allment kjent."},
+    {"id": "p5", "setup": "Oppdragsgiver vil ha ett riktig svar, mens analysen avhenger av omstridte premisser.", "good": "Vis premissene og gi bare anbefaling med tydelig normativ betingelse.", "bad": "Skjul uenigheten for å møte bestillingen."},
+    {"id": "p6", "setup": "To tolkninger passer samme tekst, men bare én passer prosjektets tese.", "good": "Vis hva som skiller tolkningene og hvorfor evidensen eventuelt favoriserer én.", "bad": "Utelat rivalen fordi den kompliserer konklusjonen."},
+    {"id": "p7", "setup": "En muntlig scene gir plass til én setning om et komplekst argument.", "good": "Forenkle formen, men behold premisset eller forbeholdet som avgjør konklusjonen.", "bad": "Kutt forbeholdet og la slagordet stå som faglig fasit."},
+    {"id": "p8", "setup": "En kilde bruker samme ord som prosjektet, men i en annen betydning.", "good": "Definer betydningen i kontekst før du sammenligner på tvers av tekster.", "bad": "Behandle ordlikhet som begrepslikhet."},
+    {"id": "p9", "setup": "En redaksjonell overskrift gjør en tolkning til et sikkert historisk motiv.", "good": "Skill dokumentert utsagn fra tolkning og skriv overskriften deretter.", "bad": "Behold motivpåstanden fordi den er mer engasjerende."},
+    {"id": "p10", "setup": "Et publisert sitat viser seg å mangle den avgrensningen som endrer meningen.", "good": "Rett sitatet og vurder om argumentet eller publiseringen også må korrigeres.", "bad": "Rett bare fotnoten og la konklusjonen stå uendret."}
+  ],
+  "task_grammar": [
+    {"id": "argumentkart", "input": ["sporsmal", "kilder", "begreper"], "output": ["premisser", "inferens", "konklusjon", "motargument", "usikkerhet"]},
+    {"id": "sitatproveniens", "input": ["sitat_eller_attribusjon"], "output": ["primarspor", "sekundarspor", "kontekst", "status"]},
+    {"id": "idehistorisk_kontekst", "input": ["historisk_tekst", "begrep"], "output": ["aktorsprak", "historisk_problem", "moderne_analyseramme", "anakronismefare"]},
+    {"id": "formidlingsbrief", "input": ["faglig_analyse", "publikum", "format"], "output": ["baerende_paastand", "avgjorende_forbehold", "rivaliserende_syn", "kildespor"]}
+  ],
+  "actor_grammar": [
+    {"role": "forskningsleder", "example_id": "liv_forskningsleder_filosofi", "authority": ["problemavgrensning", "leveranse", "metodekrav", "publiseringsklarhet"], "fictional": true},
+    {"role": "kildebibliotekar", "example_id": "noor_kildebibliotekar_filosofi", "authority": ["proveniens", "katalogspor", "kildetilgang"], "fictional": true},
+    {"role": "fagredaktor", "example_id": "marius_fagredaktor_filosofi", "authority": ["format", "sitatkontroll", "rettelser"], "fictional": true},
+    {"role": "formidlingsprodusent", "example_id": "selma_formidlingsprodusent_filosofi", "authority": ["publikum", "sceneformat", "tidsramme"], "fictional": true}
+  ],
+  "place_grammar": [
+    {"place_id": "arbeidsrom_filosofi_forskning", "kind": "fictional_work_surface", "function": "argumentkart_og_syntese"},
+    {"place_id": "kildelab_filosofi_forskning", "kind": "fictional_work_surface", "function": "kilder_proveniens_og_kontekst"},
+    {"place_id": "redaksjonsmote_filosofi_formidling", "kind": "fictional_work_surface", "function": "publiseringsvalg_og_korrigering"},
+    {"place_id": "formidlingsscene_filosofi", "kind": "fictional_work_surface", "function": "offentlig_formidling_og_sporsmal"},
+    {"place_id": "maerradalen", "kind": "canonical_history_go_place", "function": "read_only_history_go_anchor_for_arne_naess"}
+  ],
+  "conflict_grammar": [
+    {"id": "bestilling_vs_premissapenhet", "axis": "forhandskonklusjon_vs_etterprovbar_analyse"},
+    {"id": "slagkraft_vs_forbehold", "axis": "kort_fasit_vs_presis_usikkerhet"},
+    {"id": "tolkning_vs_attribusjon", "axis": "analytisk_syntese_vs_kildens_eget_utsagn"}
+  ],
+  "knowledge_dependencies": [
+    "argumentstruktur_og_velvillighetsprinsipp",
+    "begrepsanalyse_og_operativ_avgrensning",
+    "normative_og_empiriske_premisser",
+    "primar_sekundarkilde_og_sitatproveniens",
+    "kontekstualisme_og_anakronisme",
+    "tolkningskonkurranse_og_usikkerhet",
+    "formidlingspresisjon",
+    "korrigering_og_etterprovbarhet"
+  ],
+  "quality_axes": ["argumentanalyse", "begrepspresisjon", "kildekritikk", "idehistorisk_kontekst", "normativ_transparens", "uenighetskompetanse", "formidling", "etterprovbarhet"],
+  "authority_boundary": {
+    "can": ["analysere_og_kritisere_argumenter", "kontekstualisere_idehistoriske_kilder", "formidle_normative_og_teoretiske_sporsmal_med_eksplisitte_premisser"],
+    "must_escalate_when": ["sitat_eller_attribusjon_ikke_kan_spores", "rettighet_eller_tilgangsgrense_er_uavklart", "oppdragsgiver_krever_forhandsbestemt_resultat", "publisert_feil_kan_endre_hovedkonklusjon", "formatkrav_fjerner_avgjorende_faglig_forbehold"],
+    "may_not": ["gjore_normativ_konklusjon_til_empirisk_fakta", "tilskrive_kilder_syn_de_ikke_dokumenterer", "bruke_stramannsversjoner_av_motargumenter", "bruke_historiske_filosofer_som_fiktive_radgivere_eller_normativ_fasit", "late_som_badge_poeng_er_akademisk_grad_eller_ansettelse"]
+  },
+  "day_one": {
+    "goal": "Lever et kort, etterprøvbart faglig notat og en formidlingsbrief uten å skjule premisser, rivaliserende tolkninger eller kildeusikkerhet.",
+    "phases": ["problemavgrensning", "argumentrekonstruksjon", "kildekontroll", "redaksjonell_konflikt", "formidling", "oppfolging_og_korrigering"]
+  },
+  "mail_generation_contract": {
+    "required_mail_types": ["job", "people", "conflict", "story", "event", "micro", "followup", "knowledge", "consequence"],
+    "forbid_generic_runtime_fallbacks": true
+  }
 }
