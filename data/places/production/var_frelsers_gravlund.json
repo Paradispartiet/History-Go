@@ -289,9 +289,9 @@
     ]
   },
   "roundsReadiness": {
-    "status": "phase_4_ready",
+    "status": "production_ready",
     "reviewedAt": "2026-08-22",
-    "auditFile": "reports/place-production/var-frelsers-gravlund-phase4-rounds-audit-v1.json",
+    "auditFile": "reports/place-production/var-frelsers-gravlund-phase5-final-audit-v1.json",
     "badgePlacement": "separate_header",
     "contentRoundIds": [
       "people",
@@ -354,5 +354,38 @@
     "factualReview": "passed",
     "editorialReview": "passed",
     "validatorVersion": "4.2.1"
+  },
+  "onsiteReadiness": {
+    "status": "PASS",
+    "areaAnchor": "verified_geometry",
+    "officialPathsOnly": true,
+    "preciseGraveNavigationHeldBack": true,
+    "routeId": "akersryggen_stein_minne_park",
+    "conduct": [
+      "gå på ordinære gangveier",
+      "snakk lavt",
+      "ikke berør gravminner eller blomster",
+      "vis hensyn til seremonier og andre besøkende"
+    ],
+    "terrain": ["bakker", "byfortau", "grusganger"]
+  },
+  "progressionReadiness": {
+    "status": "PASS",
+    "physicalVisitOwner": "existing_physical_visit_contract",
+    "favoriteOwner": "HGFavoritePlaces",
+    "nextActionOwner": "existing_place_progress_contract",
+    "quizVisitSeparation": true,
+    "newPersistence": false,
+    "newUnlockSystem": false
+  },
+  "finalAudit": {
+    "status": "PRODUCTION_READY",
+    "reviewedAt": "2026-08-22",
+    "auditFile": "reports/place-production/var-frelsers-gravlund-phase5-final-audit-v1.json",
+    "permanentTest": "tests/var-frelsers-phase5-completion.test.mjs",
+    "desktopViewport": "1440x1000",
+    "mobileViewport": "390x844",
+    "criticalFindings": 0,
+    "qualityScore": 30
   }
 }

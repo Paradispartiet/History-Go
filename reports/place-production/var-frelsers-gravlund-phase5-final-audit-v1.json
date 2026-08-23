@@ -1,0 +1,135 @@
+{
+  "schema": "history_go_place_final_audit_v1",
+  "place_id": "var_frelsers_gravlund",
+  "phase": 5,
+  "reviewed_at": "2026-08-22",
+  "base_main": "1a9f8fd4afdcea5af29e479a7aaeb1f55c77b819",
+  "status": "PRODUCTION_READY",
+  "decision": "Vår Frelsers gravlund består hele stedschecklisten som én rik lokal opplevelse uten nytt hovedsystem eller stedsspesifikk runtimevariant.",
+  "blockers": [],
+  "identity": {
+    "status": "PASS",
+    "canonical_place_id": "var_frelsers_gravlund",
+    "represents": "Hele gravlundsarealet mellom Akersbakken, Akersveien og Ullevålsveien, med Æreslunden som delområde.",
+    "excludes": [
+      "Gamle Aker kirkegård",
+      "det tidligere kapellet som selvstendig sted",
+      "enkeltgraver som globale steder",
+      "andre gravlunder i Oslo"
+    ],
+    "category": "historie",
+    "coordinates": "verified_geometry"
+  },
+  "content_inventory": {
+    "description_claims": 14,
+    "chronology_items": 13,
+    "stories": 1,
+    "before_after_pairs": 1,
+    "news_notes": 2,
+    "reading_trails": 3,
+    "source_links": 7,
+    "language_terms": 4,
+    "quiz_profile": "normal_4x7",
+    "quiz_questions": 28,
+    "people": 16,
+    "objects": 3,
+    "brands": 2,
+    "related_places": 4,
+    "walks": 1,
+    "underbadges": 1
+  },
+  "popup_tabs": [
+    { "id": "about", "label": "Om", "status": "PASS", "evidence": "Canonical Description 4.2, lokalt hovedbilde og tydelig avgrensning rendres." },
+    { "id": "history", "label": "Historie", "status": "PASS", "evidence": "13 kildebelagte milepæler fra 1805 til 2026." },
+    { "id": "stories", "label": "Fortellinger", "status": "PASS", "evidence": "Én episode_v1 om fem offentlige bekransninger 17. mai 2026." },
+    { "id": "before-after", "label": "Før/etter", "status": "PASS", "evidence": "Ett rettighetsklarert landskapspar med eksplisitt kamerabegrensning." },
+    { "id": "news", "label": "Nyheter", "status": "PASS", "evidence": "To daterte notiser om vedtektsendring og krigshistorisk vandring i 2026." },
+    { "id": "reading", "label": "Lesespor", "status": "PASS", "evidence": "Tre åpne og stedsspesifikke lesespor." },
+    { "id": "sources", "label": "Kilder", "status": "PASS", "evidence": "Offisielle og redaksjonelle HTTPS-kilder rendres med trygg ekstern lenking." },
+    { "id": "notice", "label": "Legg merke til", "status": "PASS", "evidence": "Tre fysisk observerbare spor i landskap, monumenter og gangveier." },
+    { "id": "meaning", "label": "Betydning", "status": "PASS", "evidence": "Tre stedsspesifikke koblinger mellom klasse, minne og historiebruk." },
+    { "id": "counterpoints", "label": "Motpunkter", "status": "PASS", "evidence": "Tre inferensgrenser om utvelgelse, synlighet og kamerastandpunkt." },
+    { "id": "language", "label": "Språk", "status": "PASS", "evidence": "Fire dokumenterte lokale språkspor; udokumentert dialekt er ikke konstruert." }
+  ],
+  "rounds": {
+    "status": "PASS",
+    "badge_placement": "separate_header",
+    "content_round_ids": ["people", "objects", "brands", "related"],
+    "round_profile_override": false,
+    "image_or_intentional_fallback_coverage": "100_percent",
+    "browser_counts": { "people": 16, "objects": 3, "brands": 2, "related": 4 }
+  },
+  "onsite": {
+    "status": "PASS",
+    "arrival": "Bruk den verifiserte områdeankeren og offisielle gangveier; eksakte gravfelt og radnumre holdes utenfor uten fersk kartkontroll.",
+    "sequence": [
+      "les terrenget og den historiske bygrensen",
+      "sammenlign monumentformer uten å berøre gravminner",
+      "bruk Æreslunden som eksempel på offentlig utvelgelse, ikke som hele gravlunden",
+      "avslutt i parkrommet eller fortsett den canonicale Akersryggen-ruten"
+    ],
+    "conduct": "Gå på ordinære gangveier, snakk lavt, og la gravsteder, blomster og seremonier være i fred.",
+    "accessibility": "Ruten varsler bakker, byfortau og grusganger; mobilvisningen har ingen horisontal side-overflow."
+  },
+  "progression": {
+    "status": "PASS",
+    "physical_visit_owner": "existing physical visit / visited_places contract",
+    "favorite_owner": "existing HGFavoritePlaces contract",
+    "quiz_visit_separation": true,
+    "next_action_owner": "existing place progress contract",
+    "new_persistence": false,
+    "new_unlock_system": false
+  },
+  "legacy_cleanup": {
+    "status": "PASS",
+    "removed_fields": ["safe_facts", "wonderkammer_seed", "people_relations_seed"],
+    "migration": "Fakta eies av claims, kronologi, Story, quiz/Knowledge, Språk og canonicale runder. Personkoblinger eies av people-manifestet.",
+    "conflict_correction": "Påstandene om Napoleonskrigene som direkte årsak og stenging for nye graver i 1952 er fjernet fra legacy-lagene. Dagens urnegravtilbud og gjenbruksstans følger Oslo kommunes nåværende stedsside.",
+    "held_back_claims_not_user_visible": ["eksakte felt- og radnumre", "antall vernede gravminner", "detaljer om første gravlegging"]
+  },
+  "checklist": [
+    { "area": "Description, Historie A–H og present trace", "status": "PASS", "evidence": "14/14 claims og A–H PASS." },
+    { "area": "Hovedbilde, kortbilde og før/etter", "status": "PASS", "evidence": "Alle lokale filer finnes med rettighetsmetadata." },
+    { "area": "Quiz, Knowledge og Fagverk", "status": "PASS", "evidence": "4 × 7, 28 spørsmål og deterministisk kontekst." },
+    { "area": "People, Objects, Brands og Related", "status": "PASS", "evidence": "16 + 3 + 2 + 4 gjennom standard 4+1-kontrakt." },
+    { "area": "Natur og lokal observasjon", "status": "PASS", "evidence": "Parktrær, vegetasjon, skygge og minnelandskap formidles uten udokumentert artsliste." },
+    { "area": "Språk og dialekt", "status": "PASS", "evidence": "Fire lokale språkspor; dialekt er bevisst ikke fylt med antakelser." },
+    { "area": "Events", "status": "PASS_WITH_CONTENT_NA", "evidence": "Ingen aktiv canonical hendelse; daterte nyheter og Story brukes uten filler." },
+    { "area": "Avtal å møtes og Kunnskapsmøte", "status": "PASS", "evidence": "Eksisterende Social Meet og Spotmeeting bruker canonical place-ID." },
+    { "area": "Tasks, Training og Play", "status": "N/A", "evidence": "Ikke del av stedets gjeldende kontrakt; ingen konstruert filler." },
+    { "area": "Observer og Notat", "status": "PASS", "evidence": "Eksisterende handlinger kan bruke monument, terreng og minnespor uten ny lagring." },
+    { "area": "Rute, NextUp og Nearby", "status": "PASS", "evidence": "Én firestopps walk og fire canonicale nabosteder bruker eksisterende systemer." },
+    { "area": "Søk, alias og i18n", "status": "PASS", "evidence": "Canonical ID og navn beholdes; norsk kildetekst og språkspor deler identitet." },
+    { "area": "Fysisk besøk, Favoritt og Place-progress", "status": "PASS", "evidence": "Eksisterende eiere gjenbrukes; quiz og fysisk besøk er separate akser." },
+    { "area": "People/Object-unlocks og medaljer", "status": "N/A", "evidence": "Ingen eksisterende regel krever stedsspesifikke unlocks eller medaljer." },
+    { "area": "Desktop, mobil og tilgjengelighet", "status": "PASS", "evidence": "Chromium tester 11 faner, tastatur, mobilscroll, énkolonne Før/etter og uten side-overflow." },
+    { "area": "Statisk Leksikon", "status": "PASS", "evidence": "Samme kronologi og inferensgrenser som canonical place-data." },
+    { "area": "Legacy Wonderkammer og seeds", "status": "N/A", "evidence": "Seeds er fjernet etter migrasjon til eksisterende eiere; nytt Wonderkammer opprettes ikke." },
+    { "area": "CI og permanente regresjonsporter", "status": "PASS", "evidence": "Sluttesten, produksjonsauditene og relevante prosjektporter dekker ferdigstatusen." }
+  ],
+  "browser_evidence": {
+    "status": "PASS",
+    "engine": "Chromium via Playwright",
+    "desktop_viewport": "1440x1000",
+    "mobile_viewport": "390x844",
+    "popup_tabs_rendered": 11,
+    "tabpanel_count": 11,
+    "more_tab_visible": false,
+    "before_after_mobile_columns": 1,
+    "fagverk_page": "PASS",
+    "permanent_test": "tests/var-frelsers-phase5-completion.test.mjs"
+  },
+  "quality_score": {
+    "dimensions": {
+      "correctness_and_evidence": 5,
+      "coverage_and_completion": 5,
+      "editorial_quality": 5,
+      "technical_integrity": 5,
+      "safety_and_responsibility": 5,
+      "maintainability_and_verifiability": 5
+    },
+    "total": 30,
+    "minimum_required": 27,
+    "critical_findings": 0
+  }
+}

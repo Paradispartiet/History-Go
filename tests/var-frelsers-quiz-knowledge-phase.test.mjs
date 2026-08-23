@@ -160,6 +160,6 @@ test('Fagverk-release og Historie-gate G er synkronisert', () => {
     requiredInputs: ['pensum', 'emner', 'fagkart', 'methods', 'supersetQuizMal', 'quizStandard', 'quizQuestionSchema']
   });
   assert.equal(productionReport.gates.G.status, 'PASS');
-  assert.match(workcard, /Status: \*\*FASE 3 PASS/);
+  assert.match(workcard, /Status: \*\*PRODUKSJONSKLAR – fase 5 PASS/);
   assert.match(workcard, /3\. \*\*PASS\*\* – quiz 4 × 7/);
 });
