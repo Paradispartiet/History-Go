@@ -130,8 +130,10 @@ Oslo Pix-notisen gjelder gratis utekino 25. og 26. august. Bondens marked-notise
 Canonical eier er manifest-lastede `history_go_lesespor_v1`-filer. Ny stedsspesifikk fil:
 
 ```text
-data/lesespor/oslo/lesespor_oslo_birkelunden.json
+data/lesespor/oslo/birkelunden/lesespor_oslo_by.json
 ```
+
+Basenavnet beholdes som `lesespor_oslo_by.json` slik at filnavnkategorien samsvarer med `category: "by"`; Birkelunden-avgrensningen ligger i undermappen og i eksakt `place_ids`.
 
 Tre åpne `link_only`-spor er materialisert:
 
@@ -152,7 +154,7 @@ Pensjonistforbundet – Vår historie
 - Riksantikvaren: murby, offentlig rom og kulturmiljø som kontekst;
 - Pensjonistforbundet: Jack Johnsen, benken, møteplassen og organiseringen i 1937.
 
-Alle tre har eksakt `place_ids: ["birkelunden"]`, `access: open`, `rights: link_only`, `verifiedAt: 2026-08-23` og direkte HTTPS-lenke. Artikkeltekst kopieres ikke.
+Alle tre har eksakt `place_ids: ["birkelunden"]`, `access: open`, `rights: link_only`, `source_quality: recognized`, `verifiedAt: 2026-08-23` og direkte HTTPS-lenke. Artikkeltekst kopieres ikke.
 
 ### Own-place og holdbacks
 
@@ -167,6 +169,7 @@ Alle tre har eksakt `place_ids: ["birkelunden"]`, `access: open`, `rights: link_
 
 - nøyaktig tre Birkelunden-spor;
 - eksakte IDs, `place_ids`, åpen tilgang og `link_only`;
+- validator-tillatt `source_quality: recognized`;
 - direkte URL-er og `verifiedAt`;
 - manifestregistrering rett etter den generelle Oslo By-filen;
 - eksisterende runtimefilter for place-ID og betalingsmur;
