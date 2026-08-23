@@ -3,7 +3,7 @@
 - Oppdatert: 2026-08-23
 - Place ID: `birkelunden`
 - Canonical source: `data/places/by/oslo/places/birkelunden.json`
-- Aktiv 7A-baseline `main`: `72622da7b7e0074c3de6966c1b0f0da35b7b9e7d`
+- Aktiv 7B-baseline `main`: `2f43748cb4c07f31abfb07200f740121084d7ef5`
 - Fase 0 merge: #5236 / `d3945c43f10b1f5b4e1b758f915818342f95d240`
 - Fase 1 merge: #5239 / `2dbc70a4984e01487a2dd7289d2e93bcbb0d6217`
 - Fase 2 merge: #5241 / `61bcf3e1dc0156582eb1e3bd9bfcee6d9ba05c06`
@@ -12,8 +12,11 @@
 - Fase 5 merge: #5251 / `7ef7d80a334f80f44d48bbbdec60ac8ccf9db6cd`
 - Fase 6 merge: #5254 / `735a7490072adc8b7decb133a0aebdd8fb33de36`
 - Fase 7 audit merge: #5255 / `72622da7b7e0074c3de6966c1b0f0da35b7b9e7d`
+- Fase 7A merge: #5257 / `2f43748cb4c07f31abfb07200f740121084d7ef5`
 - Fase 7A review: `reports/place-production/birkelunden-phase7a-about-audit-v1.md`
 - Fase 7A regression: `tests/birkelunden-phase7a-about.test.mjs`
+- Fase 7B review: `reports/place-production/birkelunden-phase7b-history-audit-v1.md`
+- Fase 7B regression: `tests/birkelunden-phase7b-history.test.mjs`
 - Popupkontrakt: `docs/PLACE_POPUP_SYSTEM.md`
 - Leksikonkontrakt: `data/leksikon/README_LEKSIKON.md`
 - Content Factory: `data/places/regler/content_factory_v1.json`
@@ -43,8 +46,8 @@ popupDesc SHA-256: 670dcbc8e37004fe1c3a595ae6af1a6dcfe304f1048ce906f37df3f7e8544
 | --- | --- |
 | 0–6 | **FERDIG OG MERGET** |
 | 7 popupaudit | **FERDIG OG MERGET** (#5255) |
-| 7A Om | **KLAR FOR REVIEW / CI** |
-| 7B Historie | **NESTE** – forventet smal preservation-QA etter 7A |
+| 7A Om | **FERDIG OG MERGET** (#5257) |
+| 7B Historie | **KLAR FOR REVIEW / CI** |
 | 7C Fortellinger | **REELT PRODUKSJONSHULL** – Jack Johnsen/Venner i Bjerkelunden kandidat |
 | 7D Før/etter | **REELT PRODUKSJONSHULL** |
 | 7E Nyheter | **FERSK RESEARCH KREVES** |
@@ -53,99 +56,80 @@ popupDesc SHA-256: 670dcbc8e37004fe1c3a595ae6af1a6dcfe304f1048ce906f37df3f7e8544
 | 7H Språk | **REELL NAVNEHISTORIEKANDIDAT** |
 | 8–24 | **ÅPENT** etter canonical rekkefølge |
 
-## 7A – eksakt filscope
+## 7A – låst tilstand
 
-7A kan endre:
+Om-fanen har nå:
 
-1. `data/places/by/oslo/places/birkelunden.json` — kun `nature_profile`;
-2. `data/leksikon/manifest.json` — registrere canonical Birkelunden Leksikon-owner;
-3. `data/leksikon/places/oslo/by/leksikon_oslo_by_birkelunden.json` — ny compatibility main-owner;
-4. `tests/birkelunden-phase7a-about.test.mjs`;
-5. `reports/place-production/birkelunden-phase7a-about-audit-v1.md`;
-6. dette workcardet.
+- uendret fase-5 `popupDesc` som hovedartikkel;
+- `spatial_profile.area_m2=16300` og korrekt park/kulturmiljø-grense;
+- kildeauditert synlig `nature_profile` om Birkelundens bjørker, vern og trehistorie;
+- navngitt canonical Leksikon-owner med `suppress_untitled_legacy_articles: true`;
+- tomme `wikiText`, `facts` og `chronology`, slik at legacy-data ikke konkurrerer med canonical place-data.
 
-Ingen popup-JS, descriptions, spatial/temporal/history/source-profiler, images, coordinates, category/emner, Nature mapping/unlocks, Stories, Before/After, News, Lesespor, Språk eller rounds endres.
+`tests/birkelunden-phase7a-about.test.mjs` kjøres permanent fra `scripts/check-places.sh`.
 
-## Om – status etter 7A-endringene
+## 7B – Historie
 
-### Hovedartikkel
+Canonical Historie-eier forblir `history_layers`; det bygges ingen parallell Leksikon-chronology og ingen generell temporal-renderer.
 
-Beholdt byte-for-byte. Production packet-hash låses i permanent test.
+De fire lagene er:
 
-### Spatial
+1. `birkelunden_parken_blir_til` – 1860-årene–1882;
+2. `birkelunden_aktivitetspark` – 1916–1928;
+3. `birkelunden_moter_og_minnespor` – tidlig 1900-tall–1989;
+4. `birkelunden_kulturmiljo` – 1996–2006.
 
-Beholdt:
+Fase 7B lukker ett konkret dekninghull i lag 3. Tittelen blir **Navn, organisering og minnespor**, og sammendraget inkluderer den allerede verifiserte navnehistorien:
 
-- `area_m2: 16300` → runtime viser 16,3 daa;
-- park/kulturmiljø-grensen;
-- ingen bruk av `r=190` som areal.
+```text
+1926: Bjerkelunden blir offisiell navneform
+1955: Birkelunden kommer tilbake
+```
 
-### Temporal
+Dette gjør at de strukturelle hovedmarkørene i `temporal_profile` er representert i den brukerrettede Historie-flaten uten chronology-filler.
 
-Ingen ny temporal renderer. Tidsfakta har allerede eier i hovedartikkel/Historie.
-
-### Legacy Leksikon
-
-Ny manifest-lastet main-owner:
-
-`data/leksikon/places/oslo/by/leksikon_oslo_by_birkelunden.json`
-
-Den har:
+Canonical Leksikon-owner forblir:
 
 ```text
 title: Birkelunden
 type: main
-version: 2
 suppress_untitled_legacy_articles: true
-wikiText: []
-facts: []
 chronology: []
 ```
 
-Dette bruker eksisterende runtime-mekanisme. Den gamle untitled batch3-recorden kan fortsatt eksistere for legacy compatibility, men filtreres ut av popupens visible article set og konkurrerer ikke med Om/Historie.
+Den gamle untitled legacy chronologyen kan ligge fysisk i batchdata for kompatibilitet, men skal ikke være popup-synlig.
 
-### Nature i Om
+## Permanent 7B-port
 
-Gamle udokumenterte formuleringer om:
+`tests/birkelunden-phase7b-history.test.mjs` krever:
 
-- pollinatorer;
-- mildere lokalklima;
-- leveområde;
-- generisk naturkontakt
+- nøyaktig fire canonical history-lag i rekkefølge 10/20/30/40;
+- substansielt periode-/tittel-/summary-innhold;
+- dekning av 1860-årene, 1882, 1916, 1926, 1955, 1996 og 2006;
+- eksplisitt Bjerkelunden → Birkelunden-navnespor i lag 3;
+- tom canonical Leksikon chronology;
+- legacy chronology ikke synlig ved siden av history_layers;
+- runtime-eierskap gjennom `renderHistoryTimeline(place)` og Historie-fanen;
+- ingen `renderTemporalSection()`.
 
-er fjernet fra synlig summary.
+Testen er koblet permanent inn i `scripts/check-places.sh` etter 7A-testen.
 
-Ny kildeauditert profil bygger på:
+## Scope 7B
 
-- Oslo kommune: autentiske bjørkelunder; bjørkelundene er fredet som del av historisk miljø; de eldste trærne var oppgitt til rundt 140 år i 2022;
-- Oslo byleksikon: trærne ble delvis fornyet i 1984–86.
+Endres:
 
-Profilen har `review_status: source_audited_visible_layer`, `verified_at: 2026-08-23` og inspectable HTTPS-kilder.
+1. `data/places/by/oslo/places/birkelunden.json` – kun tredje `history_layers`-tittel/sammendrag;
+2. `tests/birkelunden-phase7b-history.test.mjs`;
+3. `scripts/check-places.sh` – permanent 7B-teststeg;
+4. `reports/place-production/birkelunden-phase7b-history-audit-v1.md`;
+5. dette workcardet.
 
-Dette lukker den synlige Nature-blockeren i Om. Dyp flora/fauna-mapping-QA står fortsatt åpen og blir ikke falskt godkjent.
+Ikke endret: descriptions/hashes, koordinater, spatial/temporal/nature-profiler, Leksikon-data, popup-JS, Stories, Før/etter, Nyheter, Lesespor, Kilder, Språk, People, Objects, Brands eller Quiz.
 
-## Permanent 7A-port
-
-`tests/birkelunden-phase7a-about.test.mjs` krever:
-
-- phase-5 hash-parity;
-- `ready_v4_2`;
-- 16,3 daa via `area_m2`;
-- kildeauditert Nature summary;
-- fravær av gamle unsupported nature claims;
-- manifest-lastet named Leksikon main-owner;
-- suppression av untitled legacy Birkelunden-records;
-- ingen parallelle Leksikon facts/chronology;
-- eksisterende `area_m2`-renderer;
-- ingen `renderTemporalSection()` i Om.
+Produksjonsmodell/API-kreditter i 7B: **0**, fordi godkjent Birkelunden-evidence allerede dekker endringen fullt ut. Ingen kvalitets- eller innholdsreduksjon er gjort.
 
 ## Neste
 
-Etter grønn 7A-merge starter **7B Historie** fra fersk `main`.
+Etter grønn 7B-merge starter **7C Fortellinger** fra fersk `main`.
 
-7B skal ikke produsere ny chronology med mindre en konkret mangel finnes. Den skal først bevise at:
-
-- fire `history_layers` er eneste sterke timeline-eier;
-- den untitled legacy chronologyen ikke lenger er popup-synlig etter 7A;
-- temporal_profile ikke dobbeltrendres;
-- Historie-fanen har korrekt rekkefølge og substans.
+7C er reelt innholdsarbeid og skal velge en dokumentert, konkret episode med sterk Birkelunden-eierskap; Jack Johnsen / Venner i Bjerkelunden er første kandidat, men må source-auditeres mot Story-kontrakten før materialisering.
