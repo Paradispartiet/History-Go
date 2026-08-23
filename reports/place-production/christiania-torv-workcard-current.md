@@ -6,14 +6,14 @@ NAVN: Christiania Torv
 CANONICAL SOURCE-FIL: `data/places/by/oslo/places/christiania_torv.json`  
 MANIFEST: `data/places/manifest.json`  
 HVA REPRESENTERER PLACE-OBJEKTET: Det navngitte torget/plassrommet i Kvadraturen, ikke bygningene rundt.  
-PRIMÆRKATEGORI: `by`  
-UNDERBADGES: ingen eksplisitte i dagens record; må ikke oppfinnes for completeness.  
-EMNE_IDS: `em_by_torg_plasser_som_scene`, `em_by_offentlige_rom_motesteder`  
-FAGVERK-STED-STATUS: eksisterende koblinger; egen fase-3 audit påkrevd.  
+PRIMÆRKATEGORI: `by` – fase 3 bekrefter riktig eier.  
+UNDERBADGES: ingen nye; fase 3 finner ikke grunnlag for filler-merker.  
+EMNE_IDS: `em_by_torg_plasser_som_scene`, `em_by_offentlige_rom_motesteder` – begge beholdes og eies av `byliv-offentlige-rom`.  
+FAGVERK-STED-STATUS: By er `materialized`; begge emner ligger i `chapter_ready` Fagverk-kapittel.  
 STEDSTYPE: historisk bytorg / civic square  
 KOORDINATSTATUS: `verified_geometry`, OSM way `594329484`, `area_anchor`; fase 2 bekrefter ALLEREDE FERDIG uten mutation.  
 PLACE-SCOPE (canonical): `area` for selve plassflaten; separate bygg er relasjoner.  
-DESCRIPTION-PRODUCTION-PACKAGE: mangler.  
+DESCRIPTION-PRODUCTION-PACKAGE: mangler; neste fase.  
 LEKSIKON-ID/FIL: `data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json` / `place_id=christiania_torv`; kildeløs eldre oppføring skal re-auditeres.  
 SPRÅKLEKSIKON-STATUS: ikke godkjent; navnehistorie vurderes.  
 SPRÅKLEKSIKON-TYPE: ENKELTSTED / navnprofil, ikke område-dialekt.  
@@ -31,9 +31,9 @@ VIKTIGSTE KILDER: Oslo byleksikon; Oppdag Kvadraturen/Byantikvaren; OSM geometry
 AVVIST/UVISST INNHOLD: bokstavelig hanskekast; sikkert Livorno-forbilde; `year=1648` som automatisk etableringsår; volatile leietakere uten fersk verifikasjon.  
 NULLMÅLING: `reports/place-production/christiania-torv-nullmaaling-v1.md`  
 SANERINGS-/PRODUKSJONSPLAN: nullmålingens faseplan 1–10.  
-AKTIV FASE: fase 2 – identity/source/coordinate prior-work gate.  
-AKTIVT FILSCOPE: fase-2 audit + dette workcardet; ingen canonical Place mutation.  
-FORRIGE FASE MERGET OG LIVE-KONTROLLERT: fase 1 #5263 er merget som `56d34be511aee748cf1d07310eb48e932be30ed7`; shared source pack #5261 er også på main.  
+AKTIV FASE: fase 3 – Fagverk/kategori/emne audit.  
+AKTIVT FILSCOPE: fase-3 audit + dette workcardet; ingen canonical Place mutation.  
+FORRIGE FASE MERGET OG LIVE-KONTROLLERT: fase 2 #5268 er merget som `fe97609bb188f2170845bce22c6dcb93b0732f16`.  
 
 POPUPSTATUS — OM: IKKE GODKJENT  
 POPUPSTATUS — HISTORIE: IKKE GODKJENT  
