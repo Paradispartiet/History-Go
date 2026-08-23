@@ -30,85 +30,146 @@
   },
   "claims": [
     {
-      "id": "claim_dam_identity",
-      "claim": "Damstredet gikk tidligere under navnet Bergfjerdingens Gade og fikk dagens navn etter Billedhuggerdammen.",
+      "id": "claim_dam_area_identity",
+      "claim": "Damstredet og Telthusbakken er to historiske gateløp ved Akersveien og Gamle Aker kirke, med eldre trehusbebyggelse.",
       "sourceUrl": "https://oslobyleksikon.no/side/Damstredet",
-      "sourceLocation": "Ingress og bygninger 1–3",
-      "sourceType": "reputable_secondary",
+      "sourceLocation": "Ingress og gatebeskrivelse; sammenholdt med oppslaget Telthusbakken",
+      "sourceType": "institutional",
       "verifiedAt": "2026-08-23",
       "status": "verified",
       "claimKind": "identity",
       "evidenceMode": "explicit",
-      "temporalStatus": "historical"
+      "temporalStatus": "current"
     },
     {
-      "id": "claim_tel_settlement",
-      "claim": "Fattigfolk tok i bruk marginal grunn i Telthusbakken mot slutten av 1700-tallet; tomteforholdene ble formalisert i 1815–16.",
-      "sourceUrl": "https://oslobyleksikon.no/side/Telthusbakken",
-      "sourceLocation": "Ingress",
-      "sourceType": "reputable_secondary",
-      "verifiedAt": "2026-08-23",
-      "status": "verified",
-      "claimKind": "strong",
-      "evidenceMode": "explicit",
-      "temporalStatus": "historical"
-    },
-    {
-      "id": "claim_dam_people",
-      "claim": "Wergeland, Dickman, Berg og Egede-Nissen har dokumenterte forbindelser til adresser i Damstredet.",
+      "id": "claim_dam_street_history",
+      "claim": "Damstredets navn, Billedhuggerdammen, Bergfjerdingen, husene Solberg og Rabarbraslottet samt personene Wergeland, Dickman og Berg er dokumentert i gatehistorien.",
       "sourceUrl": "https://oslobyleksikon.no/side/Damstredet",
-      "sourceLocation": "Bygninger 1–3, 2, 5 og 20",
-      "sourceType": "reputable_secondary",
+      "sourceLocation": "Ingress og omtalen av bygningene 1–3, 2, 5 og 20",
+      "sourceType": "institutional",
       "verifiedAt": "2026-08-23",
       "status": "verified",
       "claimKind": "ordinary",
       "evidenceMode": "explicit",
       "temporalStatus": "historical"
+    },
+    {
+      "id": "claim_telthus_settlement",
+      "claim": "Telthusbakken fikk navn etter et militært telthus, og marginal grunn i Bymarken ble bebygd av fattigfolk før tomteforholdene ble formalisert i 1815–16.",
+      "sourceUrl": "https://oslobyleksikon.no/side/Telthusbakken",
+      "sourceLocation": "Ingress og gatehistorie",
+      "sourceType": "institutional",
+      "verifiedAt": "2026-08-23",
+      "status": "verified",
+      "claimKind": "ordinary",
+      "evidenceMode": "explicit",
+      "temporalStatus": "historical"
+    },
+    {
+      "id": "claim_dam_interpretation",
+      "claim": "De to gatehistoriene dokumenterer at terreng, bruk, ombygging, minnearbeid og bevaring har formet området, og at gatene må leses som beslektede, men ulike historiske miljøer.",
+      "sourceUrl": "https://oslobyleksikon.no/side/Damstredet",
+      "independentSourceUrls": [
+        "https://oslobyleksikon.no/side/Telthusbakken"
+      ],
+      "sourceLocation": "Samlet eksplisitt sammenstilling av de to gateoppslagene",
+      "sourceType": "institutional",
+      "verifiedAt": "2026-08-23",
+      "status": "verified",
+      "claimKind": "strong",
+      "evidenceMode": "explicit",
+      "temporalStatus": "current"
     }
   ],
+  "sentenceCoverage": {
+    "desc": [
+      { "sentence": 1, "claimIds": ["claim_dam_area_identity"] },
+      { "sentence": 2, "claimIds": ["claim_dam_street_history"] },
+      { "sentence": 3, "claimIds": ["claim_telthus_settlement"] }
+    ],
+    "popupDesc": [
+      { "sentence": 1, "claimIds": ["claim_dam_area_identity", "claim_dam_street_history"] },
+      { "sentence": 2, "claimIds": ["claim_dam_street_history"] },
+      { "sentence": 3, "claimIds": ["claim_dam_street_history"] },
+      { "sentence": 4, "claimIds": ["claim_dam_street_history", "claim_dam_interpretation"] },
+      { "sentence": 5, "claimIds": ["claim_dam_street_history"] },
+      { "sentence": 6, "claimIds": ["claim_dam_street_history", "claim_dam_interpretation"] },
+      { "sentence": 7, "claimIds": ["claim_dam_street_history"] },
+      { "sentence": 8, "claimIds": ["claim_dam_street_history", "claim_dam_interpretation"] },
+      { "sentence": 9, "claimIds": ["claim_dam_street_history"] },
+      { "sentence": 10, "claimIds": ["claim_dam_street_history", "claim_dam_interpretation"] },
+      { "sentence": 11, "claimIds": ["claim_dam_street_history"] },
+      { "sentence": 12, "claimIds": ["claim_dam_street_history"] },
+      { "sentence": 13, "claimIds": ["claim_dam_street_history"] },
+      { "sentence": 14, "claimIds": ["claim_dam_street_history", "claim_dam_interpretation"] },
+      { "sentence": 15, "claimIds": ["claim_dam_street_history"] },
+      { "sentence": 16, "claimIds": ["claim_dam_street_history"] },
+      { "sentence": 17, "claimIds": ["claim_dam_street_history", "claim_dam_interpretation"] },
+      { "sentence": 18, "claimIds": ["claim_dam_street_history", "claim_dam_interpretation"] },
+      { "sentence": 19, "claimIds": ["claim_dam_street_history", "claim_dam_interpretation"] },
+      { "sentence": 20, "claimIds": ["claim_telthus_settlement"] },
+      { "sentence": 21, "claimIds": ["claim_telthus_settlement"] },
+      { "sentence": 22, "claimIds": ["claim_telthus_settlement"] },
+      { "sentence": 23, "claimIds": ["claim_telthus_settlement"] },
+      { "sentence": 24, "claimIds": ["claim_telthus_settlement"] },
+      { "sentence": 25, "claimIds": ["claim_dam_area_identity", "claim_telthus_settlement"] },
+      { "sentence": 26, "claimIds": ["claim_telthus_settlement", "claim_dam_interpretation"] },
+      { "sentence": 27, "claimIds": ["claim_dam_area_identity", "claim_dam_interpretation"] },
+      { "sentence": 28, "claimIds": ["claim_dam_area_identity", "claim_dam_interpretation"] }
+    ]
+  },
   "reviews": {
     "factual": {
       "status": "passed",
-      "reviewedAt": "2026-08-23"
+      "reviewedAt": "2026-08-23",
+      "reviewer": "History Go kildekontroll"
     },
     "editorial": {
       "status": "passed",
-      "reviewedAt": "2026-08-23"
+      "reviewedAt": "2026-08-23",
+      "reviewer": "History Go redaksjonell kontroll",
+      "introducedNewFacts": false,
+      "ingressReview": {
+        "controllingIdea": "To nabogater viser ulike sider av eldre bosetting, arbeid, minne og bevaring langs Akerryggen.",
+        "chronologyInventoryRemoved": true,
+        "nameAndYearPileupRemoved": true,
+        "knownNewFlowPassed": true,
+        "readAloudPassed": true
+      }
     },
     "onsite": {
       "status": "passed_with_accessibility_note",
       "reviewedAt": "2026-08-23"
     }
   },
-  "roundsReadiness": {
-    "status": "production_ready",
-    "contentRoundIds": [
-      "people",
-      "objects",
-      "related"
-    ],
-    "peopleIds": [
-      "henrik_wergeland",
-      "sigurd_dickman",
-      "rolle_dickman",
-      "sigrun_berg",
-      "stig_egede_nissen"
-    ],
-    "objectIds": [
-      "damstredet_solberg_veslebrunen_stall",
-      "damstredet_sigurd_dickman_snublestein",
-      "telthusbakken_bla_skilt"
-    ],
-    "relatedPlaceIds": [
-      "gamle_aker_kirke",
-      "var_frelsers_gravlund",
-      "st_hanshaugen_park",
-      "akerselva_vulkan"
+  "quizReadiness": {
+    "questions": [
+      { "question": "Hva het Damstredet tidligere?", "answer": "Bergfjerdingens Gade.", "type": "hva", "normalKnowledgeQuestion": true, "claimIds": ["claim_dam_street_history"] },
+      { "question": "Hva ga Damstredet dagens navn?", "answer": "Billedhuggerdammen.", "type": "hva", "normalKnowledgeQuestion": true, "claimIds": ["claim_dam_street_history"] },
+      { "question": "Hvem bodde i Solberg som nygift i 1839–41?", "answer": "Henrik Wergeland.", "type": "hvem", "normalKnowledgeQuestion": true, "claimIds": ["claim_dam_street_history"] },
+      { "question": "Når ble Dikterstuen flyttet til Norsk Folkemuseum?", "answer": "I 1902.", "type": "når", "normalKnowledgeQuestion": true, "claimIds": ["claim_dam_street_history"] },
+      { "question": "Hvilket objekt i Damstredet minnes Sigurd Dickman?", "answer": "En snublestein.", "type": "hvilket_verk_eller_objekt", "normalKnowledgeQuestion": true, "claimIds": ["claim_dam_street_history"] },
+      { "question": "Hva viser navnet Rabarbraslottet til?", "answer": "En gartner og en stor rabarbraseng.", "type": "hva", "normalKnowledgeQuestion": true, "claimIds": ["claim_dam_street_history"] },
+      { "question": "Hva ga Telthusbakken navn?", "answer": "Et militært telthus ved Gamle Aker kirke.", "type": "hva", "normalKnowledgeQuestion": true, "claimIds": ["claim_telthus_settlement"] },
+      { "question": "Når ble tomteforholdene i Telthusbakken mer formelle?", "answer": "I 1815–16.", "type": "når", "normalKnowledgeQuestion": true, "claimIds": ["claim_telthus_settlement"] }
     ]
   },
+  "roundsReadiness": {
+    "status": "production_ready",
+    "contentRoundIds": ["people", "objects", "related"],
+    "peopleIds": ["henrik_wergeland", "sigurd_dickman", "rolle_dickman", "sigrun_berg", "stig_egede_nissen"],
+    "objectIds": ["damstredet_solberg_veslebrunen_stall", "damstredet_sigurd_dickman_snublestein", "telthusbakken_bla_skilt"],
+    "relatedPlaceIds": ["gamle_aker_kirke", "var_frelsers_gravlund", "st_hanshaugen_park", "akerselva_vulkan"]
+  },
   "completion": {
+    "completedUnder": "4.2",
     "currentStatus": "current",
+    "sourceVerifiedAt": "2026-08-23",
+    "claimsVerified": { "verified": 4, "total": 4 },
+    "factualReview": "passed",
+    "editorialReview": "passed",
+    "validatorVersion": "4.2.1",
     "finalAudit": "reports/place-production/damstredet-telthusbakken-final-audit-v1.json"
   },
-  "reviewsNotes": "Private boliger og hager er uttrykkelig avgrenset fra besøksarealet; enkeltbyggenes detaljerte vern og dateringer holdes tilbake uten registerkontroll."
+  "reviewsNotes": "Private boliger og hager er avgrenset fra besøksarealet; enkeltbyggenes detaljerte vern og dateringer holdes tilbake uten registerkontroll."
 }
