@@ -75,8 +75,8 @@ assert.match(audit, /Tankesmien Agenda[\s\S]*Avvist/);
 assert.match(audit, /Paulus' plass, Paulus kirke, Grünerløkka skole, Olaf Ryes plass, Sofienbergparken/);
 assert.match(audit, /Automatiske tester[\s\S]*ikke alene bevise/);
 
-assert.match(workcard, /7E Nyheter \| \*\*KLAR FOR REVIEW \/ CI\*\*/);
-assert.match(workcard, /7F Lesespor \| \*\*NESTE – REELT RESEARCHHULL\*\*/);
+assert.match(workcard, /Fase 7E merge: #5276 \/ `1cdb905970aa900ebfede38e9b5a9ae851820461`/);
+assert.match(workcard, /7E Nyheter \| \*\*FERDIG OG MERGET\*\* \(#5276\)/);
 assert.match(workcard, /Oslo Pix/);
 assert.match(workcard, /Bondens marked/);
 
