@@ -77,7 +77,6 @@ test("TypeScript source og committed runtime-builds inneholder LOD v2", () => {
   }
 });
 
-
 test("detaljprikker beholdes sammen med stedsnavn og er mindre enn gammel profil", () => {
   const dotFn = source.match(/function getPlaceDotPaint\(isArea = false\) \{[\s\S]*?\n  \}/)?.[0] || "";
   assert.ok(dotFn, "mangler getPlaceDotPaint");
