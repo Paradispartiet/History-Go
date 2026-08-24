@@ -128,6 +128,11 @@ def main_case_create() -> dict:
 
 
 def catalog(mail_type: str, family_id: str, purpose: str, learning_focus: list[str], mails: list[dict]) -> dict:
+    focus = list(learning_focus)
+    for mail in mails:
+        mail.setdefault("learning_focus", focus)
+        if mail_type in {"micro", "followup", "knowledge", "consequence"}:
+            mail.setdefault("next_bias", {"tags": focus[:3], "weight": 1})
     return {
         "schema": "civication_mail_family_catalog_v1",
         "version": 1,
@@ -1102,6 +1107,18 @@ console.log('✓ By-rådgiver Role World realism pilot: persistent case → auth
     path.write_text(content, encoding="utf-8")
 
 
+def update_existing_contract_tests() -> None:
+    path = ROOT / "tests/civication-by-radgiver-role-world.test.js"
+    text = path.read_text(encoding="utf-8")
+    old = "assert.equal(plan.sequence.length, 32, 'By-rådgiver plan should preserve 12 authored steps and add two ten-step practice weeks');"
+    new = "assert.equal(plan.sequence.length, 38, 'By-rådgiver plan should preserve 12 authored steps, two ten-step practice weeks, and six Role World realism steps');"
+    if old in text:
+        text = text.replace(old, new, 1)
+    elif new not in text:
+        raise SystemExit("Expected By-rådgiver plan length assertion not found")
+    path.write_text(text, encoding="utf-8")
+
+
 def write_report() -> None:
     content = f'''# Civication By-rådgiver — Role World realism pilot
 
@@ -1217,6 +1234,7 @@ def run() -> None:
     write_json("data/Civication/mailFamilies/by/consequence/by_radgiver_plan_realism_consequence.json", build_consequence())
     update_plan()
     write_test()
+    update_existing_contract_tests()
     write_report()
     print("By-rådgiver Role World realism pilot patched")
 
