@@ -1,0 +1,2149 @@
+{
+  "targetId": "birkelunden",
+  "categoryId": "by",
+  "sources": {
+    "oslo_byleksikon": "https://oslobyleksikon.no/side/Birkelunden",
+    "oslo_kommune": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/parker-og-grontomrader/birkelunden/",
+    "riksantikvaren": "https://www.riksantikvaren.no/kulturhistorie/birkelunden-murbyens-hjerte/",
+    "pensjonistforbundet": "https://www.pensjonistforbundet.no/om-oss/var-historie",
+    "nils_aas": "https://nils-aas-kunstverksted.no/nils-aas/biografi/",
+    "oslo_museum_before": "https://www.oslobilder.no/OMU/OB.Z02741",
+    "commons_after": "https://commons.wikimedia.org/wiki/File:Birkelunden_fountain_and_music_pavilion.jpg"
+  },
+  "production_context": {
+    "manifest_category": "by",
+    "profile": "rich_5x7",
+    "standard_version": "3.3",
+    "source_brief": "data/quiz/production_briefs/by/birkelunden.json",
+    "context_artifact": "data/quiz/production_context/by/birkelunden.json",
+    "resolved_files": {
+      "pensum": "data/fag/by/pensum_by.json",
+      "emner": "data/fag/by/emner_by.json",
+      "fagkart": "data/fag/by/fagkart_by.json",
+      "methods": "data/fag/by/methods_by.json",
+      "supersetQuizMal": "data/fag/by/supersetQUIZMAL_by.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "kur_by_04_historiske_lag_og_transformasjon",
+      "kur_by_07_gronn_blaa_og_offentlig_natur"
+    ],
+    "emne_ids": [
+      "em_by_parker_som_sosial_infrastruktur",
+      "em_by_opphold_vs_gjennomgang",
+      "em_by_historiske_lag_i_hverdagsrom"
+    ],
+    "topic_hook_ids": [
+      "byliv_aapne_rom",
+      "byliv_arrangement",
+      "byliv_moteplasser",
+      "byliv_sosial_miks"
+    ],
+    "method_ids": [
+      "met_for_etter"
+    ],
+    "thinker_ids": [
+      "william_h_whyte"
+    ],
+    "works": [
+      "The Social Life of Small Urban Spaces"
+    ],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/by/",
+        "data/quiz/by/arkiv/",
+        "data/quizcards/by/",
+        "reports/place-production/birkelunden-nullmaaling-v1.md"
+      ],
+      "active_before": {
+        "file": null,
+        "set_count": 0,
+        "question_count": 0,
+        "finding": "Ingen manifest-loadet quizpakke med package targetId=birkelunden."
+      },
+      "legacy_before": {
+        "finding": "Repoet har spørsmål i andre mål som omtaler Birkelunden og Nature unlock-referansen birkelunden_quiz_1, men ingen av disse er en canonical Birkelunden-eid Place-quiz."
+      },
+      "decisions": [
+        "Opprett ny manifest-loadet Birkelunden-pakke uten å kopiere spørsmål fra Grünerløkka-, Stensparken- eller quizcard-filer.",
+        "Velg rich 5x7 fordi kildene bærer fem selvstendige læringsjobber: etablering/geometri, fysisk parkutvikling/navn, organisering/kunst, vern/forvaltning og sluttende sammenligning/syntese.",
+        "Ikke velg major: seks eller flere sett ville kreve kunstig splitting av de samme kildelagene."
+      ],
+      "knowledge_migration": "Nytt target har ingen legacy Knowledge-eier å migrere; canonical Knowledge kan bygges deterministisk fra den nye manifest-loadede quizpakken."
+    },
+    "profile_decision": {
+      "profile": "rich",
+      "set_count": 5,
+      "questions_per_set": 7,
+      "justification": "Birkelunden har fem reelt forskjellige, kildebårne progresjonsløp, men ikke nok uavhengig stoff til seks eller flere sett uten gjentakelse. Rich 5x7 gir full normalåpning og en egen sluttfase uten filler."
+    },
+    "held_back_candidates": [
+      "SNLs avvikende 1889-dato for Spaniamonumentet brukes ikke; 1989 støttes av Oslo byleksikon og Nils Aas-kildegrunnlaget.",
+      "Påstanden om at Birkelunden eller foreningen er «Norges eldste» publiseres ikke uten sterkere, eksplisitt superlativbevis.",
+      "Paulus kirke, Grünerløkka skole og andre elementer i det større kulturmiljøet gjøres ikke til Birkelunden-eide Objects/Structures eller quizproxy.",
+      "2013-bildet brukes ikke som påstand om eksakt 2026-tilstand."
+    ],
+    "theory_start_phase": "final",
+    "method_start_phase": "final"
+  },
+  "sets": [
+    {
+      "set_id": "by_birkelunden_set_1",
+      "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "birkelunden_quiz_1",
+          "quiz_id": "by_birkelunden_set_1_q1",
+          "categoryId": "by",
+          "placeId": "birkelunden",
+          "personId": "",
+          "natureId": "",
+          "targetId": "birkelunden",
+          "question_scope": "place",
+          "question": "Hvem anla Birkelunden i 1860-årene?",
+          "options": [
+            "Thorvald Meyer",
+            "Otto Hald",
+            "Nils Aas"
+          ],
+          "answer": "Thorvald Meyer",
+          "answerIndex": 0,
+          "dimension": "offentlig_parkrom",
+          "topic": "Hvem anla Birkelunden i 1860-årene",
+          "knowledge": "Thorvald Meyer anla Birkelunden i 1860-årene som del av utbyggingen på Grünerløkka.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_parker_som_sosial_infrastruktur",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "birkelunden",
+            "place_specific",
+            "canonical_v3_3"
+          ],
+          "required_tags": [],
+          "claim_id": "claim_birkelunden_q01",
+          "source": [
+            "oslo_byleksikon",
+            "riksantikvaren"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Thorvald Meyer anla Birkelunden i 1860-årene som del av utbyggingen på Grünerløkka.",
+          "guidance_basis": [
+            "data/fag/fag_manifest.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
+          ],
+          "primary_knowledge_unit_id": "ku_by_thorvald_meyer_anla_birk_24d2bd2dbf",
+          "knowledge_unit_ids": [
+            "ku_by_thorvald_meyer_anla_birk_24d2bd2dbf"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "birkelunden_quiz_2",
+          "quiz_id": "by_birkelunden_set_1_q2",
+          "categoryId": "by",
+          "placeId": "birkelunden",
+          "personId": "",
+          "natureId": "",
+          "targetId": "birkelunden",
+          "question_scope": "place",
+          "question": "Når ble Birkelunden anlagt?",
+          "options": [
+            "I 1860-årene",
+            "I 1920-årene",
+            "I 1980-årene"
+          ],
+          "answer": "I 1860-årene",
+          "answerIndex": 0,
+          "dimension": "historiske_lag",
+          "topic": "Når ble Birkelunden anlagt",
+          "knowledge": "Birkelunden ble anlagt i 1860-årene. Senere ombygginger og minnespor kom i flere tydelige lag.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "birkelunden",
+            "place_specific",
+            "canonical_v3_3"
+          ],
+          "required_tags": [],
+          "claim_id": "claim_birkelunden_q02",
+          "source": [
+            "oslo_byleksikon",
+            "riksantikvaren"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Birkelunden ble anlagt i 1860-årene. Senere ombygginger og minnespor kom i flere tydelige lag.",
+          "guidance_basis": [
+            "data/fag/fag_manifest.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
+          ],
+          "primary_knowledge_unit_id": "ku_by_birkelunden_ble_anlagt_i_7f4e091918",
+          "knowledge_unit_ids": [
+            "ku_by_birkelunden_ble_anlagt_i_7f4e091918",
+            "ku_by_senere_ombygginger_og_mi_9837aa774b"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "birkelunden_quiz_3",
+          "quiz_id": "by_birkelunden_set_1_q3",
+          "categoryId": "by",
+          "placeId": "birkelunden",
+          "personId": "",
+          "natureId": "",
+          "targetId": "birkelunden",
+          "question_scope": "place",
+          "question": "Når ble Birkelunden overført til kommunen?",
+          "options": [
+            "1906",
+            "1882",
+            "1955"
+          ],
+          "answer": "1882",
+          "answerIndex": 1,
+          "dimension": "offentlig_parkrom",
+          "topic": "Når ble Birkelunden overført til kommunen",
+          "knowledge": "Thorvald Meyer overførte parken til kommunen i 1882.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_parker_som_sosial_infrastruktur",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "birkelunden",
+            "place_specific",
+            "canonical_v3_3"
+          ],
+          "required_tags": [],
+          "claim_id": "claim_birkelunden_q03",
+          "source": [
+            "oslo_byleksikon",
+            "riksantikvaren"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Thorvald Meyer overførte parken til kommunen i 1882.",
+          "guidance_basis": [
+            "data/fag/fag_manifest.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
+          ],
+          "primary_knowledge_unit_id": "ku_by_thorvald_meyer_overf_rte_020bdfc059",
+          "knowledge_unit_ids": [
+            "ku_by_thorvald_meyer_overf_rte_020bdfc059"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "birkelunden_quiz_4",
+          "quiz_id": "by_birkelunden_set_1_q4",
+          "categoryId": "by",
+          "placeId": "birkelunden",
+          "personId": "",
+          "natureId": "",
+          "targetId": "birkelunden",
+          "question_scope": "place",
+          "question": "Hvilket vilkår fulgte overføringen av Birkelunden til kommunen?",
+          "options": [
+            "At parken skulle brukes som idrettsstadion",
+            "At området ikke skulle bebygges",
+            "At parken skulle stenges om vinteren"
+          ],
+          "answer": "At området ikke skulle bebygges",
+          "answerIndex": 1,
+          "dimension": "offentlig_parkrom",
+          "topic": "Hvilket vilkår fulgte overføringen av Birkelunden til kommunen",
+          "knowledge": "Overføringen til kommunen hadde et vilkår om at parkarealet ikke skulle bebygges.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_parker_som_sosial_infrastruktur",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "birkelunden",
+            "place_specific",
+            "canonical_v3_3"
+          ],
+          "required_tags": [],
+          "claim_id": "claim_birkelunden_q04",
+          "source": [
+            "oslo_byleksikon",
+            "riksantikvaren"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Overføringen til kommunen hadde et vilkår om at parkarealet ikke skulle bebygges.",
+          "guidance_basis": [
+            "data/fag/fag_manifest.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
+          ],
+          "primary_knowledge_unit_id": "ku_by_overf_ringen_til_kommune_a3adf73b9e",
+          "knowledge_unit_ids": [
+            "ku_by_overf_ringen_til_kommune_a3adf73b9e"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "birkelunden_quiz_5",
+          "quiz_id": "by_birkelunden_set_1_q5",
+          "categoryId": "by",
+          "placeId": "birkelunden",
+          "personId": "",
+          "natureId": "",
+          "targetId": "birkelunden",
+          "question_scope": "place",
+          "question": "Hvor stort er selve Birkelunden park?",
+          "options": [
+            "16,3 dekar",
+            "116 dekar",
+            "1,63 dekar"
+          ],
+          "answer": "16,3 dekar",
+          "answerIndex": 0,
+          "dimension": "offentlig_parkrom",
+          "topic": "Hvor stort er selve Birkelunden park",
+          "knowledge": "Birkelunden park er 16,3 dekar. Tallet rundt 116 dekar gjelder det større fredede kulturmiljøet og skal ikke brukes som parkareal.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_parker_som_sosial_infrastruktur",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "birkelunden",
+            "place_specific",
+            "canonical_v3_3"
+          ],
+          "required_tags": [],
+          "claim_id": "claim_birkelunden_q05",
+          "source": [
+            "oslo_kommune",
+            "riksantikvaren"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Birkelunden park er 16,3 dekar. Tallet rundt 116 dekar gjelder det større fredede kulturmiljøet og skal ikke brukes som parkareal.",
+          "guidance_basis": [
+            "data/fag/fag_manifest.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
+          ],
+          "primary_knowledge_unit_id": "ku_by_birkelunden_park_er_16_3_39326e8513",
+          "knowledge_unit_ids": [
+            "ku_by_birkelunden_park_er_16_3_39326e8513",
+            "ku_by_tallet_rundt_116_dekar_g_0b835d4735"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "birkelunden_quiz_6",
+          "quiz_id": "by_birkelunden_set_1_q6",
+          "categoryId": "by",
+          "placeId": "birkelunden",
+          "personId": "",
+          "natureId": "",
+          "targetId": "birkelunden",
+          "question_scope": "place",
+          "question": "Hvilken gate ligger langs østsiden av Birkelunden?",
+          "options": [
+            "Pilestredet",
+            "Thorvald Meyers gate",
+            "Torggata"
+          ],
+          "answer": "Thorvald Meyers gate",
+          "answerIndex": 1,
+          "dimension": "historiske_lag",
+          "topic": "Hvilken gate ligger langs østsiden av Birkelunden",
+          "knowledge": "Thorvald Meyers gate danner parkens østside; parkens øvrige avgrensning følger Toftes gate, Seilduksgata og Schleppegrells gate.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "birkelunden",
+            "place_specific",
+            "canonical_v3_3"
+          ],
+          "required_tags": [],
+          "claim_id": "claim_birkelunden_q06",
+          "source": [
+            "oslo_byleksikon",
+            "oslo_kommune"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Thorvald Meyers gate danner parkens østside; parkens øvrige avgrensning følger Toftes gate, Seilduksgata og Schleppegrells gate.",
+          "guidance_basis": [
+            "data/fag/fag_manifest.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
+          ],
+          "primary_knowledge_unit_id": "ku_by_thorvald_meyers_gate_dan_9f858680c8",
+          "knowledge_unit_ids": [
+            "ku_by_thorvald_meyers_gate_dan_9f858680c8"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "birkelunden_quiz_7",
+          "quiz_id": "by_birkelunden_set_1_q7",
+          "categoryId": "by",
+          "placeId": "birkelunden",
+          "personId": "",
+          "natureId": "",
+          "targetId": "birkelunden",
+          "question_scope": "place",
+          "question": "Hva er tallet rundt 116 dekar knyttet til ved Birkelunden?",
+          "options": [
+            "Selve parkens plenareal",
+            "Det større fredede Birkelunden kulturmiljøet",
+            "Bare lekearealet"
+          ],
+          "answer": "Det større fredede Birkelunden kulturmiljøet",
+          "answerIndex": 1,
+          "dimension": "offentlig_parkrom",
+          "topic": "Hva er tallet rundt 116 dekar knyttet til ved Birkelunden",
+          "knowledge": "Rundt 116 dekar beskriver det større fredede kulturmiljøet rundt parken, ikke park-place på 16,3 dekar.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_parker_som_sosial_infrastruktur",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "birkelunden",
+            "place_specific",
+            "canonical_v3_3"
+          ],
+          "required_tags": [],
+          "claim_id": "claim_birkelunden_q07",
+          "source": [
+            "riksantikvaren"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Rundt 116 dekar beskriver det større fredede kulturmiljøet rundt parken, ikke park-place på 16,3 dekar.",
+          "guidance_basis": [
+            "data/fag/fag_manifest.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
+          ],
+          "primary_knowledge_unit_id": "ku_by_rundt_116_dekar_beskrive_07112cf8c8",
+          "knowledge_unit_ids": [
+            "ku_by_rundt_116_dekar_beskrive_07112cf8c8"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "by_birkelunden_set_2",
+      "level": 2,
+      "order": 2,
+      "phase": "middle",
+      "xp": 60,
+      "questions": [
+        {
+          "id": "birkelunden_quiz_8",
+          "quiz_id": "by_birkelunden_set_2_q1",
+          "categoryId": "by",
+          "placeId": "birkelunden",
+          "personId": "",
+          "natureId": "",
+          "targetId": "birkelunden",
+          "question_scope": "place",
+          "question": "Hva ble blant annet lagt til da Birkelunden ble omlagt i 1916–1920?",
+          "options": [
+            "Leke- og aktivitetsmuligheter",
+            "En motorvei",
+            "Et rådhus"
+          ],
+          "answer": "Leke- og aktivitetsmuligheter",
+          "answerIndex": 0,
+          "dimension": "offentlig_parkrom",
+          "topic": "Hva ble blant annet lagt til da Birkelunden ble omlagt i 1916–1920",
+          "knowledge": "Omleggingen 1916–1920 ga parken tydeligere rekreasjons- og aktivitetsfunksjoner, blant annet leke- og skøytemuligheter.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_parker_som_sosial_infrastruktur",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "birkelunden",
+            "place_specific",
+            "canonical_v3_3"
+          ],
+          "required_tags": [],
+          "claim_id": "claim_birkelunden_q08",
+          "source": [
+            "oslo_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Omleggingen 1916–1920 ga parken tydeligere rekreasjons- og aktivitetsfunksjoner, blant annet leke- og skøytemuligheter.",
+          "guidance_basis": [
+            "data/fag/fag_manifest.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
+          ],
+          "primary_knowledge_unit_id": "ku_by_omleggingen_1916_1920_ga_538f7d11b5",
+          "knowledge_unit_ids": [
+            "ku_by_omleggingen_1916_1920_ga_538f7d11b5"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "birkelunden_quiz_9",
+          "quiz_id": "by_birkelunden_set_2_q2",
+          "categoryId": "by",
+          "placeId": "birkelunden",
+          "personId": "",
+          "natureId": "",
+          "targetId": "birkelunden",
+          "question_scope": "place",
+          "question": "Når ble den nåværende musikkpaviljongen i Birkelunden reist?",
+          "options": [
+            "1882",
+            "1926",
+            "1989"
+          ],
+          "answer": "1926",
+          "answerIndex": 1,
+          "dimension": "historiske_lag",
+          "topic": "Når ble den nåværende musikkpaviljongen i Birkelunden reist",
+          "knowledge": "Den nåværende musikkpaviljongen ble reist i 1926.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "birkelunden",
+            "place_specific",
+            "canonical_v3_3"
+          ],
+          "required_tags": [],
+          "claim_id": "claim_birkelunden_q09",
+          "source": [
+            "oslo_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Den nåværende musikkpaviljongen ble reist i 1926.",
+          "guidance_basis": [
+            "data/fag/fag_manifest.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
+          ],
+          "primary_knowledge_unit_id": "ku_by_den_nav_rende_musikkpavi_6d2f36f725",
+          "knowledge_unit_ids": [
+            "ku_by_den_nav_rende_musikkpavi_6d2f36f725"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "birkelunden_quiz_10",
+          "quiz_id": "by_birkelunden_set_2_q3",
+          "categoryId": "by",
+          "placeId": "birkelunden",
+          "personId": "",
+          "natureId": "",
+          "targetId": "birkelunden",
+          "question_scope": "place",
+          "question": "Hvem tegnet den nåværende musikkpaviljongen?",
+          "options": [
+            "Otto Hald",
+            "Ørnulf Bast",
+            "Nils Aas"
+          ],
+          "answer": "Otto Hald",
+          "answerIndex": 0,
+          "dimension": "historiske_lag",
+          "topic": "Hvem tegnet den nåværende musikkpaviljongen",
+          "knowledge": "Arkitekt Otto Hald tegnet musikkpaviljongen som ble reist i 1926 etter en arkitektkonkurranse.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "birkelunden",
+            "place_specific",
+            "canonical_v3_3"
+          ],
+          "required_tags": [],
+          "claim_id": "claim_birkelunden_q10",
+          "source": [
+            "oslo_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Arkitekt Otto Hald tegnet musikkpaviljongen som ble reist i 1926 etter en arkitektkonkurranse.",
+          "guidance_basis": [
+            "data/fag/fag_manifest.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
+          ],
+          "primary_knowledge_unit_id": "ku_by_arkitekt_otto_hald_tegne_52173ae4bd",
+          "knowledge_unit_ids": [
+            "ku_by_arkitekt_otto_hald_tegne_52173ae4bd"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "birkelunden_quiz_11",
+          "quiz_id": "by_birkelunden_set_2_q4",
+          "categoryId": "by",
+          "placeId": "birkelunden",
+          "personId": "",
+          "natureId": "",
+          "targetId": "birkelunden",
+          "question_scope": "place",
+          "question": "Når ble vannbassenget ved paviljongen anlagt?",
+          "options": [
+            "1927–1928",
+            "1953–1955",
+            "2005–2006"
+          ],
+          "answer": "1927–1928",
+          "answerIndex": 0,
+          "dimension": "historiske_lag",
+          "topic": "Når ble vannbassenget ved paviljongen anlagt",
+          "knowledge": "Vannbassenget ble anlagt i 1927–1928, kort tid etter den nåværende paviljongen.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "birkelunden",
+            "place_specific",
+            "canonical_v3_3"
+          ],
+          "required_tags": [],
+          "claim_id": "claim_birkelunden_q11",
+          "source": [
+            "oslo_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Vannbassenget ble anlagt i 1927–1928, kort tid etter den nåværende paviljongen.",
+          "guidance_basis": [
+            "data/fag/fag_manifest.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
+          ],
+          "primary_knowledge_unit_id": "ku_by_vannbassenget_ble_anlagt_7032424c5b",
+          "knowledge_unit_ids": [
+            "ku_by_vannbassenget_ble_anlagt_7032424c5b"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "birkelunden_quiz_12",
+          "quiz_id": "by_birkelunden_set_2_q5",
+          "categoryId": "by",
+          "placeId": "birkelunden",
+          "personId": "",
+          "natureId": "",
+          "targetId": "birkelunden",
+          "question_scope": "place",
+          "question": "Hvilken navneform ble offisiell for parken i 1926?",
+          "options": [
+            "Bjerkelunden",
+            "Meyerlunden",
+            "Paulusparken"
+          ],
+          "answer": "Bjerkelunden",
+          "answerIndex": 0,
+          "dimension": "historiske_lag",
+          "topic": "Hvilken navneform ble offisiell for parken i 1926",
+          "knowledge": "Bjerkelunden ble offisiell navneform i 1926.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "birkelunden",
+            "place_specific",
+            "canonical_v3_3"
+          ],
+          "required_tags": [],
+          "claim_id": "claim_birkelunden_q12",
+          "source": [
+            "oslo_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Bjerkelunden ble offisiell navneform i 1926.",
+          "guidance_basis": [
+            "data/fag/fag_manifest.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
+          ],
+          "primary_knowledge_unit_id": "ku_by_bjerkelunden_ble_offisie_4b65ea84a7",
+          "knowledge_unit_ids": [
+            "ku_by_bjerkelunden_ble_offisie_4b65ea84a7"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "birkelunden_quiz_13",
+          "quiz_id": "by_birkelunden_set_2_q6",
+          "categoryId": "by",
+          "placeId": "birkelunden",
+          "personId": "",
+          "natureId": "",
+          "targetId": "birkelunden",
+          "question_scope": "place",
+          "question": "Når kom navneformen Birkelunden tilbake som offisiell form?",
+          "options": [
+            "1937",
+            "1955",
+            "2006"
+          ],
+          "answer": "1955",
+          "answerIndex": 1,
+          "dimension": "historiske_lag",
+          "topic": "Når kom navneformen Birkelunden tilbake som offisiell form",
+          "knowledge": "I 1955 ble Birkelunden igjen offisiell navneform etter perioden med Bjerkelunden.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "birkelunden",
+            "place_specific",
+            "canonical_v3_3"
+          ],
+          "required_tags": [],
+          "claim_id": "claim_birkelunden_q13",
+          "source": [
+            "oslo_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "I 1955 ble Birkelunden igjen offisiell navneform etter perioden med Bjerkelunden.",
+          "guidance_basis": [
+            "data/fag/fag_manifest.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
+          ],
+          "primary_knowledge_unit_id": "ku_by_i_1955_ble_birkelunden_i_00bb046e8d",
+          "knowledge_unit_ids": [
+            "ku_by_i_1955_ble_birkelunden_i_00bb046e8d"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "birkelunden_quiz_14",
+          "quiz_id": "by_birkelunden_set_2_q7",
+          "categoryId": "by",
+          "placeId": "birkelunden",
+          "personId": "",
+          "natureId": "",
+          "targetId": "birkelunden",
+          "question_scope": "place",
+          "question": "Hvem laget bronsegruppen Føll i Birkelunden?",
+          "options": [
+            "Nils Aas",
+            "Ørnulf Bast",
+            "Otto Hald"
+          ],
+          "answer": "Ørnulf Bast",
+          "answerIndex": 1,
+          "dimension": "historiske_lag",
+          "topic": "Hvem laget bronsegruppen Føll i Birkelunden",
+          "knowledge": "Ørnulf Bast laget bronsegruppen Føll, som ble satt opp i Birkelunden i 1953.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "birkelunden",
+            "place_specific",
+            "canonical_v3_3"
+          ],
+          "required_tags": [],
+          "claim_id": "claim_birkelunden_q14",
+          "source": [
+            "oslo_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Ørnulf Bast laget bronsegruppen Føll, som ble satt opp i Birkelunden i 1953.",
+          "guidance_basis": [
+            "data/fag/fag_manifest.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
+          ],
+          "primary_knowledge_unit_id": "ku_by_rnulf_bast_laget_bronseg_65638bc7ee",
+          "knowledge_unit_ids": [
+            "ku_by_rnulf_bast_laget_bronseg_65638bc7ee"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "by_birkelunden_set_3",
+      "level": 3,
+      "order": 3,
+      "phase": "middle",
+      "xp": 70,
+      "questions": [
+        {
+          "id": "birkelunden_quiz_15",
+          "quiz_id": "by_birkelunden_set_3_q1",
+          "categoryId": "by",
+          "placeId": "birkelunden",
+          "personId": "",
+          "natureId": "",
+          "targetId": "birkelunden",
+          "question_scope": "place",
+          "question": "Hvor møttes gruppen rundt Jack Johnsen først ifølge Pensjonistforbundets historie?",
+          "options": [
+            "På en benk i Birkelunden",
+            "I Oslo rådhus",
+            "På en jernbanestasjon"
+          ],
+          "answer": "På en benk i Birkelunden",
+          "answerIndex": 0,
+          "dimension": "offentlig_parkrom",
+          "topic": "Hvor møttes gruppen rundt Jack Johnsen først ifølge Pensjonistforbundets historie",
+          "knowledge": "Pensjonistforbundet beskriver 10–12 pensjonister som møttes på en benk i Birkelunden, med Jack Johnsen som pådriver.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_parker_som_sosial_infrastruktur",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "birkelunden",
+            "place_specific",
+            "canonical_v3_3"
+          ],
+          "required_tags": [],
+          "claim_id": "claim_birkelunden_q15",
+          "source": [
+            "pensjonistforbundet"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Pensjonistforbundet beskriver 10–12 pensjonister som møttes på en benk i Birkelunden, med Jack Johnsen som pådriver.",
+          "guidance_basis": [
+            "data/fag/fag_manifest.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
+          ],
+          "primary_knowledge_unit_id": "ku_by_pensjonistforbundet_besk_ae182bc90e",
+          "knowledge_unit_ids": [
+            "ku_by_pensjonistforbundet_besk_ae182bc90e"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "birkelunden_quiz_16",
+          "quiz_id": "by_birkelunden_set_3_q2",
+          "categoryId": "by",
+          "placeId": "birkelunden",
+          "personId": "",
+          "natureId": "",
+          "targetId": "birkelunden",
+          "question_scope": "place",
+          "question": "Hvor mange var med på å stifte Venner i Bjerkelunden i 1937 ifølge Pensjonistforbundet?",
+          "options": [
+            "8",
+            "18",
+            "80"
+          ],
+          "answer": "18",
+          "answerIndex": 1,
+          "dimension": "offentlig_parkrom",
+          "topic": "Hvor mange var med på å stifte Venner i Bjerkelunden i 1937 ifølge Pensjonistforbundet",
+          "knowledge": "Etter benkmøtene og bruken av hvilebrakken var 18 personer med på å stifte Venner i Bjerkelunden i 1937.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_parker_som_sosial_infrastruktur",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "birkelunden",
+            "place_specific",
+            "canonical_v3_3"
+          ],
+          "required_tags": [],
+          "claim_id": "claim_birkelunden_q16",
+          "source": [
+            "pensjonistforbundet"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Etter benkmøtene og bruken av hvilebrakken var 18 personer med på å stifte Venner i Bjerkelunden i 1937.",
+          "guidance_basis": [
+            "data/fag/fag_manifest.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
+          ],
+          "primary_knowledge_unit_id": "ku_by_etter_benkm_tene_og_bruk_f2608f299b",
+          "knowledge_unit_ids": [
+            "ku_by_etter_benkm_tene_og_bruk_f2608f299b"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "birkelunden_quiz_17",
+          "quiz_id": "by_birkelunden_set_3_q3",
+          "categoryId": "by",
+          "placeId": "birkelunden",
+          "personId": "",
+          "natureId": "",
+          "targetId": "birkelunden",
+          "question_scope": "place",
+          "question": "Når ble bysten av Jack Johnsen reist i Birkelunden?",
+          "options": [
+            "1953",
+            "1984",
+            "2006"
+          ],
+          "answer": "1984",
+          "answerIndex": 1,
+          "dimension": "historiske_lag",
+          "topic": "Når ble bysten av Jack Johnsen reist i Birkelunden",
+          "knowledge": "Pensjonister reiste bysten av Jack Johnsen i Birkelunden i 1984.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "birkelunden",
+            "place_specific",
+            "canonical_v3_3"
+          ],
+          "required_tags": [],
+          "claim_id": "claim_birkelunden_q17",
+          "source": [
+            "oslo_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Pensjonister reiste bysten av Jack Johnsen i Birkelunden i 1984.",
+          "guidance_basis": [
+            "data/fag/fag_manifest.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
+          ],
+          "primary_knowledge_unit_id": "ku_by_pensjonister_reiste_byst_429976f62b",
+          "knowledge_unit_ids": [
+            "ku_by_pensjonister_reiste_byst_429976f62b"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "birkelunden_quiz_18",
+          "quiz_id": "by_birkelunden_set_3_q4",
+          "categoryId": "by",
+          "placeId": "birkelunden",
+          "personId": "",
+          "natureId": "",
+          "targetId": "birkelunden",
+          "question_scope": "place",
+          "question": "Hvem laget Spaniamonumentet i Birkelunden?",
+          "options": [
+            "Nils Aas",
+            "Ørnulf Bast",
+            "Thorvald Meyer"
+          ],
+          "answer": "Nils Aas",
+          "answerIndex": 0,
+          "dimension": "historiske_lag",
+          "topic": "Hvem laget Spaniamonumentet i Birkelunden",
+          "knowledge": "Nils Aas laget minnesmerket over nordmenn som deltok i de internasjonale brigadene i den spanske borgerkrigen.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "birkelunden",
+            "place_specific",
+            "canonical_v3_3"
+          ],
+          "required_tags": [],
+          "claim_id": "claim_birkelunden_q18",
+          "source": [
+            "oslo_byleksikon",
+            "nils_aas"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Nils Aas laget minnesmerket over nordmenn som deltok i de internasjonale brigadene i den spanske borgerkrigen.",
+          "guidance_basis": [
+            "data/fag/fag_manifest.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
+          ],
+          "primary_knowledge_unit_id": "ku_by_nils_aas_laget_minnesmer_1137c50894",
+          "knowledge_unit_ids": [
+            "ku_by_nils_aas_laget_minnesmer_1137c50894"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "birkelunden_quiz_19",
+          "quiz_id": "by_birkelunden_set_3_q5",
+          "categoryId": "by",
+          "placeId": "birkelunden",
+          "personId": "",
+          "natureId": "",
+          "targetId": "birkelunden",
+          "question_scope": "place",
+          "question": "Hvilket år ble Spaniamonumentet reist i Birkelunden?",
+          "options": [
+            "1889",
+            "1955",
+            "1989"
+          ],
+          "answer": "1989",
+          "answerIndex": 2,
+          "dimension": "historiske_lag",
+          "topic": "Hvilket år ble Spaniamonumentet reist i Birkelunden",
+          "knowledge": "Oslo byleksikon og Nils Aas-kildegrunnlaget støtter 1989. Den avvikende 1889-formen i en sekundærkilde er holdt ute.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "birkelunden",
+            "place_specific",
+            "canonical_v3_3"
+          ],
+          "required_tags": [],
+          "claim_id": "claim_birkelunden_q19",
+          "source": [
+            "oslo_byleksikon",
+            "nils_aas"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Oslo byleksikon og Nils Aas-kildegrunnlaget støtter 1989. Den avvikende 1889-formen i en sekundærkilde er holdt ute.",
+          "guidance_basis": [
+            "data/fag/fag_manifest.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
+          ],
+          "primary_knowledge_unit_id": "ku_by_oslo_byleksikon_og_nils__f79de44489",
+          "knowledge_unit_ids": [
+            "ku_by_oslo_byleksikon_og_nils__f79de44489",
+            "ku_by_den_avvikende_1889_forme_3ce5188d40"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "birkelunden_quiz_20",
+          "quiz_id": "by_birkelunden_set_3_q6",
+          "categoryId": "by",
+          "placeId": "birkelunden",
+          "personId": "",
+          "natureId": "",
+          "targetId": "birkelunden",
+          "question_scope": "place",
+          "question": "Hva viser opprustningen i 1984–1986 om Birkelunden?",
+          "options": [
+            "At parkens fysiske anlegg også er blitt fornyet over tid",
+            "At parken ble flyttet til et annet sted",
+            "At hele parken ble bebygd"
+          ],
+          "answer": "At parkens fysiske anlegg også er blitt fornyet over tid",
+          "answerIndex": 0,
+          "dimension": "historiske_lag",
+          "topic": "Hva viser opprustningen i 1984–1986 om Birkelunden",
+          "knowledge": "Arbeid med basseng, beplantning og trær i 1984–1986 viser at Birkelunden har vært forvaltet og fysisk justert etter etableringen.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "context",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "birkelunden",
+            "place_specific",
+            "canonical_v3_3"
+          ],
+          "required_tags": [],
+          "claim_id": "claim_birkelunden_q20",
+          "source": [
+            "oslo_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Arbeid med basseng, beplantning og trær i 1984–1986 viser at Birkelunden har vært forvaltet og fysisk justert etter etableringen.",
+          "guidance_basis": [
+            "data/fag/fag_manifest.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
+          ],
+          "primary_knowledge_unit_id": "ku_by_arbeid_med_basseng_bepla_e7f45bfe53",
+          "knowledge_unit_ids": [
+            "ku_by_arbeid_med_basseng_bepla_e7f45bfe53"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "birkelunden_quiz_21",
+          "quiz_id": "by_birkelunden_set_3_q7",
+          "categoryId": "by",
+          "placeId": "birkelunden",
+          "personId": "",
+          "natureId": "",
+          "targetId": "birkelunden",
+          "question_scope": "place",
+          "question": "Hvorfor er musikkpaviljongen et nyttig fast holdepunkt i Birkelundens Før/etter-par?",
+          "options": [
+            "Den står synlig i parkrommet på tvers av flere tidslag",
+            "Den ble flyttet mellom bydelene",
+            "Den er eldre enn hele Grünerløkka"
+          ],
+          "answer": "Den står synlig i parkrommet på tvers av flere tidslag",
+          "answerIndex": 0,
+          "dimension": "historiske_lag",
+          "topic": "Hvorfor er musikkpaviljongen et nyttig fast holdepunkt i Birkelundens Før/etter-par",
+          "knowledge": "Paviljongen fra 1926 er et gjenkjennelig fysisk anker i den historiske ca. 1930-dokumentasjonen og det daterte nyere parkbildet.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "context",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "birkelunden",
+            "place_specific",
+            "canonical_v3_3"
+          ],
+          "required_tags": [],
+          "claim_id": "claim_birkelunden_q21",
+          "source": [
+            "oslo_museum_before",
+            "commons_after",
+            "oslo_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Paviljongen fra 1926 er et gjenkjennelig fysisk anker i den historiske ca. 1930-dokumentasjonen og det daterte nyere parkbildet.",
+          "guidance_basis": [
+            "data/fag/fag_manifest.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
+          ],
+          "primary_knowledge_unit_id": "ku_by_paviljongen_fra_1926_er__cd01918f0d",
+          "knowledge_unit_ids": [
+            "ku_by_paviljongen_fra_1926_er__cd01918f0d"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "by_birkelunden_set_4",
+      "level": 4,
+      "order": 4,
+      "phase": "bridge",
+      "xp": 80,
+      "questions": [
+        {
+          "id": "birkelunden_quiz_22",
+          "quiz_id": "by_birkelunden_set_4_q1",
+          "categoryId": "by",
+          "placeId": "birkelunden",
+          "personId": "",
+          "natureId": "",
+          "targetId": "birkelunden",
+          "question_scope": "place",
+          "question": "Hva viser kombinasjonen av 1996 og 2006 i Birkelundens vernehistorie?",
+          "options": [
+            "At fredningen var en prosess over tid",
+            "At parken bare var vernet i ti dager",
+            "At parkens areal økte til 116 dekar"
+          ],
+          "answer": "At fredningen var en prosess over tid",
+          "answerIndex": 0,
+          "dimension": "historiske_lag",
+          "topic": "Hva viser kombinasjonen av 1996 og 2006 i Birkelundens vernehistorie",
+          "knowledge": "Kildegrunnlaget skiller mellom starten på fredningsprosessen i 1996 og selve fredningen av det større kulturmiljøet i 2006.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "context",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "birkelunden",
+            "place_specific",
+            "canonical_v3_3"
+          ],
+          "required_tags": [],
+          "claim_id": "claim_birkelunden_q22",
+          "source": [
+            "oslo_byleksikon",
+            "riksantikvaren"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kildegrunnlaget skiller mellom starten på fredningsprosessen i 1996 og selve fredningen av det større kulturmiljøet i 2006.",
+          "guidance_basis": [
+            "data/fag/fag_manifest.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
+          ],
+          "primary_knowledge_unit_id": "ku_by_kildegrunnlaget_skiller__b84a2cff0b",
+          "knowledge_unit_ids": [
+            "ku_by_kildegrunnlaget_skiller__b84a2cff0b"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "birkelunden_quiz_23",
+          "quiz_id": "by_birkelunden_set_4_q2",
+          "categoryId": "by",
+          "placeId": "birkelunden",
+          "personId": "",
+          "natureId": "",
+          "targetId": "birkelunden",
+          "question_scope": "place",
+          "question": "Hvorfor skal ikke 116 dekar brukes som størrelse på Birkelunden park?",
+          "options": [
+            "Fordi det er arealet til det større kulturmiljøet rundt parken",
+            "Fordi tallet gjelder bare paviljongen",
+            "Fordi parkens areal er ukjent"
+          ],
+          "answer": "Fordi det er arealet til det større kulturmiljøet rundt parken",
+          "answerIndex": 0,
+          "dimension": "offentlig_parkrom",
+          "topic": "Hvorfor skal ikke 116 dekar brukes som størrelse på Birkelunden park",
+          "knowledge": "Parken er 16,3 dekar. Omtrent 116 dekar gjelder en større fredet bystruktur som også omfatter bebyggelse og andre elementer rundt parken.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "context",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_parker_som_sosial_infrastruktur",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "birkelunden",
+            "place_specific",
+            "canonical_v3_3"
+          ],
+          "required_tags": [],
+          "claim_id": "claim_birkelunden_q23",
+          "source": [
+            "oslo_kommune",
+            "riksantikvaren"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Parken er 16,3 dekar. Omtrent 116 dekar gjelder en større fredet bystruktur som også omfatter bebyggelse og andre elementer rundt parken.",
+          "guidance_basis": [
+            "data/fag/fag_manifest.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
+          ],
+          "primary_knowledge_unit_id": "ku_by_parken_er_16_3_dekar_706fb22eb8",
+          "knowledge_unit_ids": [
+            "ku_by_parken_er_16_3_dekar_706fb22eb8",
+            "ku_by_omtrent_116_dekar_gjelde_343ffd6b3b"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "birkelunden_quiz_24",
+          "quiz_id": "by_birkelunden_set_4_q3",
+          "categoryId": "by",
+          "placeId": "birkelunden",
+          "personId": "",
+          "natureId": "",
+          "targetId": "birkelunden",
+          "question_scope": "place",
+          "question": "Hva omfatter det fredede Birkelunden kulturmiljøet i tillegg til selve parken?",
+          "options": [
+            "Bare parkeringsplasser",
+            "Omkringliggende murbybebyggelse og offentlige bygg",
+            "Kun Akerselva"
+          ],
+          "answer": "Omkringliggende murbybebyggelse og offentlige bygg",
+          "answerIndex": 1,
+          "dimension": "historiske_lag",
+          "topic": "Hva omfatter det fredede Birkelunden kulturmiljøet i tillegg til selve parken",
+          "knowledge": "Riksantikvaren beskriver et større kulturmiljø der parken inngår sammen med murbykvartaler og offentlige bygg. Det betyr ikke at disse eies av park-place som structures.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "birkelunden",
+            "place_specific",
+            "canonical_v3_3"
+          ],
+          "required_tags": [],
+          "claim_id": "claim_birkelunden_q24",
+          "source": [
+            "riksantikvaren"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Riksantikvaren beskriver et større kulturmiljø der parken inngår sammen med murbykvartaler og offentlige bygg. Det betyr ikke at disse eies av park-place som structures.",
+          "guidance_basis": [
+            "data/fag/fag_manifest.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
+          ],
+          "primary_knowledge_unit_id": "ku_by_riksantikvaren_beskriver_8e1ebfefdf",
+          "knowledge_unit_ids": [
+            "ku_by_riksantikvaren_beskriver_8e1ebfefdf",
+            "ku_by_det_betyr_ikke_at_disse__95e8d49adc"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "birkelunden_quiz_25",
+          "quiz_id": "by_birkelunden_set_4_q4",
+          "categoryId": "by",
+          "placeId": "birkelunden",
+          "personId": "",
+          "natureId": "",
+          "targetId": "birkelunden",
+          "question_scope": "place",
+          "question": "Hvilket fysisk element er fortsatt en sentral del av Birkelundens parkmiljø?",
+          "options": [
+            "Musikkpaviljongen",
+            "Barcode-rekken",
+            "Akershus festning"
+          ],
+          "answer": "Musikkpaviljongen",
+          "answerIndex": 0,
+          "dimension": "offentlig_parkrom",
+          "topic": "Hvilket fysisk element er fortsatt en sentral del av Birkelundens parkmiljø",
+          "knowledge": "Den nåværende paviljongen fra 1926 er fortsatt en sentral struktur i parken og brukes som orienteringspunkt i historiske og nyere bilder.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "context",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_parker_som_sosial_infrastruktur",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "birkelunden",
+            "place_specific",
+            "canonical_v3_3"
+          ],
+          "required_tags": [],
+          "claim_id": "claim_birkelunden_q25",
+          "source": [
+            "oslo_byleksikon",
+            "oslo_kommune"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Den nåværende paviljongen fra 1926 er fortsatt en sentral struktur i parken og brukes som orienteringspunkt i historiske og nyere bilder.",
+          "guidance_basis": [
+            "data/fag/fag_manifest.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
+          ],
+          "primary_knowledge_unit_id": "ku_by_den_nav_rende_paviljonge_47acabc2b8",
+          "knowledge_unit_ids": [
+            "ku_by_den_nav_rende_paviljonge_47acabc2b8"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "birkelunden_quiz_26",
+          "quiz_id": "by_birkelunden_set_4_q5",
+          "categoryId": "by",
+          "placeId": "birkelunden",
+          "personId": "",
+          "natureId": "",
+          "targetId": "birkelunden",
+          "question_scope": "place",
+          "question": "Hva forteller tre- og beplantningsfornyelse om en historisk park som Birkelunden?",
+          "options": [
+            "At historisk kontinuitet kan eksistere samtidig med løpende skjøtsel og utskifting",
+            "At alle trær må være fra 1860-årene",
+            "At vern stopper all parkforvaltning"
+          ],
+          "answer": "At historisk kontinuitet kan eksistere samtidig med løpende skjøtsel og utskifting",
+          "answerIndex": 0,
+          "dimension": "offentlig_parkrom",
+          "topic": "Hva forteller tre- og beplantningsfornyelse om en historisk park som Birkelunden",
+          "knowledge": "Birkelundens historie omfatter både gamle plantinger og senere fornyelse. Et historisk parkrom trenger derfor ikke bestå av uendrede enkelttrær for å ha kontinuitet.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "context",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_parker_som_sosial_infrastruktur",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "birkelunden",
+            "place_specific",
+            "canonical_v3_3"
+          ],
+          "required_tags": [],
+          "claim_id": "claim_birkelunden_q26",
+          "source": [
+            "oslo_byleksikon",
+            "riksantikvaren"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Birkelundens historie omfatter både gamle plantinger og senere fornyelse. Et historisk parkrom trenger derfor ikke bestå av uendrede enkelttrær for å ha kontinuitet.",
+          "guidance_basis": [
+            "data/fag/fag_manifest.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
+          ],
+          "primary_knowledge_unit_id": "ku_by_birkelundens_historie_om_3ae5ff903d",
+          "knowledge_unit_ids": [
+            "ku_by_birkelundens_historie_om_3ae5ff903d",
+            "ku_by_et_historisk_parkrom_tre_669d916bb4"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "birkelunden_quiz_27",
+          "quiz_id": "by_birkelunden_set_4_q6",
+          "categoryId": "by",
+          "placeId": "birkelunden",
+          "personId": "",
+          "natureId": "",
+          "targetId": "birkelunden",
+          "question_scope": "place",
+          "question": "Hvorfor skal Paulus kirke ikke legges inn som en Birkelunden-structure?",
+          "options": [
+            "Kirken er et eget sted i det større kulturmiljøet, ikke en struktur eid av park-place",
+            "Fordi kirker aldri kan vises i History Go",
+            "Fordi kirken ikke ligger på Grünerløkka"
+          ],
+          "answer": "Kirken er et eget sted i det større kulturmiljøet, ikke en struktur eid av park-place",
+          "answerIndex": 0,
+          "dimension": "historiske_lag",
+          "topic": "Hvorfor skal Paulus kirke ikke legges inn som en Birkelunden-structure",
+          "knowledge": "Det større fredede kulturmiljøet binder flere steder sammen, men parkens canonical innhold må fortsatt holde own-place-grensen.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "context",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "birkelunden",
+            "place_specific",
+            "canonical_v3_3"
+          ],
+          "required_tags": [],
+          "claim_id": "claim_birkelunden_q27",
+          "source": [
+            "riksantikvaren"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Det større fredede kulturmiljøet binder flere steder sammen, men parkens canonical innhold må fortsatt holde own-place-grensen.",
+          "guidance_basis": [
+            "data/fag/fag_manifest.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
+          ],
+          "primary_knowledge_unit_id": "ku_by_det_st_rre_fredede_kultu_fecca1cb6b",
+          "knowledge_unit_ids": [
+            "ku_by_det_st_rre_fredede_kultu_fecca1cb6b"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "birkelunden_quiz_28",
+          "quiz_id": "by_birkelunden_set_4_q7",
+          "categoryId": "by",
+          "placeId": "birkelunden",
+          "personId": "",
+          "natureId": "",
+          "targetId": "birkelunden",
+          "question_scope": "place",
+          "question": "Hva kan Før/etter-bildene dokumentere sikrest?",
+          "options": [
+            "At faste parkankre som paviljong og sentralt parkrom kan sammenlignes over tid",
+            "Nøyaktig hvem som brukte parken hver dag",
+            "Eksakt boligpris rundt parken"
+          ],
+          "answer": "At faste parkankre som paviljong og sentralt parkrom kan sammenlignes over tid",
+          "answerIndex": 0,
+          "dimension": "historiske_lag",
+          "topic": "Hva kan Før/etter-bildene dokumentere sikrest",
+          "knowledge": "Bildene støtter visuelle sammenligninger av synlige parkankre. De dokumenterer ikke alene sosial sammensetning, boligpriser eller årsaker til endring.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "context",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "birkelunden",
+            "place_specific",
+            "canonical_v3_3"
+          ],
+          "required_tags": [],
+          "claim_id": "claim_birkelunden_q28",
+          "source": [
+            "oslo_museum_before",
+            "commons_after"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Bildene støtter visuelle sammenligninger av synlige parkankre. De dokumenterer ikke alene sosial sammensetning, boligpriser eller årsaker til endring.",
+          "guidance_basis": [
+            "data/fag/fag_manifest.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
+          ],
+          "primary_knowledge_unit_id": "ku_by_bildene_st_tter_visuelle_75132bf44d",
+          "knowledge_unit_ids": [
+            "ku_by_bildene_st_tter_visuelle_75132bf44d",
+            "ku_by_de_dokumenterer_ikke_ale_d20f6cabb1"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "by_birkelunden_set_5",
+      "level": 5,
+      "order": 5,
+      "phase": "final",
+      "xp": 90,
+      "questions": [
+        {
+          "id": "birkelunden_quiz_29",
+          "quiz_id": "by_birkelunden_set_5_q1",
+          "categoryId": "by",
+          "placeId": "birkelunden",
+          "personId": "",
+          "natureId": "",
+          "targetId": "birkelunden",
+          "question_scope": "place",
+          "question": "Hvilken arealbruk er mest presis når du beskriver Birkelunden?",
+          "options": [
+            "16,3 dekar for parken og ca. 116 dekar for det større kulturmiljøet",
+            "116 dekar for parken og 16,3 dekar for hele kulturmiljøet",
+            "Samme arealtall for begge"
+          ],
+          "answer": "16,3 dekar for parken og ca. 116 dekar for det større kulturmiljøet",
+          "answerIndex": 0,
+          "dimension": "historiske_lag",
+          "topic": "Hvilken arealbruk er mest presis når du beskriver Birkelunden",
+          "knowledge": "Presis stedslesning krever at parkens egen geometri holdes fra den større vernekonteksten.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "concept",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "birkelunden",
+            "place_specific",
+            "canonical_v3_3"
+          ],
+          "required_tags": [],
+          "claim_id": "claim_birkelunden_q29",
+          "source": [
+            "oslo_kommune",
+            "riksantikvaren"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Presis stedslesning krever at parkens egen geometri holdes fra den større vernekonteksten.",
+          "guidance_basis": [
+            "data/fag/fag_manifest.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
+          ],
+          "primary_knowledge_unit_id": "ku_by_presis_stedslesning_krev_1f0962f619",
+          "knowledge_unit_ids": [
+            "ku_by_presis_stedslesning_krev_1f0962f619"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "birkelunden_quiz_30",
+          "quiz_id": "by_birkelunden_set_5_q2",
+          "categoryId": "by",
+          "placeId": "birkelunden",
+          "personId": "",
+          "natureId": "",
+          "targetId": "birkelunden",
+          "question_scope": "place",
+          "question": "Hva bør du først finne når du sammenligner Birkelunden ca. 1930 med bildet fra 2013?",
+          "options": [
+            "Et fast fysisk anker som paviljongen og parkrommets hovedretning",
+            "En tilfeldig bilmodell",
+            "En person som må være den samme"
+          ],
+          "answer": "Et fast fysisk anker som paviljongen og parkrommets hovedretning",
+          "answerIndex": 0,
+          "dimension": "historiske_lag",
+          "topic": "Hva bør du først finne når du sammenligner Birkelunden ca. 1930 med bildet fra 2013",
+          "knowledge": "Før/etter-metoden blir sikrere når samme eller tydelig gjenkjennelige fysiske ankre brukes før forskjeller beskrives.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "comparison",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "birkelunden",
+            "place_specific",
+            "canonical_v3_3"
+          ],
+          "required_tags": [],
+          "claim_id": "claim_birkelunden_q30",
+          "source": [
+            "oslo_museum_before",
+            "commons_after"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Før/etter-metoden blir sikrere når samme eller tydelig gjenkjennelige fysiske ankre brukes før forskjeller beskrives.",
+          "guidance_basis": [
+            "data/fag/fag_manifest.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
+          ],
+          "method_id": "met_for_etter",
+          "primary_knowledge_unit_id": "ku_by_f_r_etter_metoden_blir_s_90c6a9b84a",
+          "knowledge_unit_ids": [
+            "ku_by_f_r_etter_metoden_blir_s_90c6a9b84a"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "birkelunden_quiz_31",
+          "quiz_id": "by_birkelunden_set_5_q3",
+          "categoryId": "by",
+          "placeId": "birkelunden",
+          "personId": "",
+          "natureId": "",
+          "targetId": "birkelunden",
+          "question_scope": "place",
+          "question": "Hva kan du ikke konkludere om bare fra Birkelundens 2013-bilde?",
+          "options": [
+            "At bildet viser parkens eksakte tilstand i 2026",
+            "At paviljongen var synlig i 2013",
+            "At bildet er nyere enn ca. 1930-bildet"
+          ],
+          "answer": "At bildet viser parkens eksakte tilstand i 2026",
+          "answerIndex": 0,
+          "dimension": "historiske_lag",
+          "topic": "Hva kan du ikke konkludere om bare fra Birkelundens 2013-bilde",
+          "knowledge": "Et datert etter-bilde dokumenterer sin egen opptakstid. Det skal ikke automatisk restemples som dagens tilstand.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "concept",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "birkelunden",
+            "place_specific",
+            "canonical_v3_3"
+          ],
+          "required_tags": [],
+          "claim_id": "claim_birkelunden_q31",
+          "source": [
+            "commons_after"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Et datert etter-bilde dokumenterer sin egen opptakstid. Det skal ikke automatisk restemples som dagens tilstand.",
+          "guidance_basis": [
+            "data/fag/fag_manifest.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
+          ],
+          "primary_knowledge_unit_id": "ku_by_et_datert_etter_bilde_do_2102dbd755",
+          "knowledge_unit_ids": [
+            "ku_by_et_datert_etter_bilde_do_2102dbd755",
+            "ku_by_det_skal_ikke_automatisk_0f649613ef"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "birkelunden_quiz_32",
+          "quiz_id": "by_birkelunden_set_5_q4",
+          "categoryId": "by",
+          "placeId": "birkelunden",
+          "personId": "",
+          "natureId": "",
+          "targetId": "birkelunden",
+          "question_scope": "place",
+          "question": "Hva er den sikreste lesningen av omleggingen 1916–1920?",
+          "options": [
+            "At dokumenterte leke-, skøyte- og rekreasjonsfunksjoner ble tydeligere bygget inn i parken",
+            "At all tidligere parkbruk opphørte",
+            "At parken ble privat"
+          ],
+          "answer": "At dokumenterte leke-, skøyte- og rekreasjonsfunksjoner ble tydeligere bygget inn i parken",
+          "answerIndex": 0,
+          "dimension": "offentlig_parkrom",
+          "topic": "Hva er den sikreste lesningen av omleggingen 1916–1920",
+          "knowledge": "Kilden dokumenterer nye eller styrkede aktivitetsfunksjoner. Den beviser ikke at all tidligere bruk forsvant.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "concept",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_parker_som_sosial_infrastruktur",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "birkelunden",
+            "place_specific",
+            "canonical_v3_3"
+          ],
+          "required_tags": [],
+          "claim_id": "claim_birkelunden_q32",
+          "source": [
+            "oslo_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kilden dokumenterer nye eller styrkede aktivitetsfunksjoner. Den beviser ikke at all tidligere bruk forsvant.",
+          "guidance_basis": [
+            "data/fag/fag_manifest.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
+          ],
+          "primary_knowledge_unit_id": "ku_by_kilden_dokumenterer_nye__881b12da4d",
+          "knowledge_unit_ids": [
+            "ku_by_kilden_dokumenterer_nye__881b12da4d",
+            "ku_by_den_beviser_ikke_at_all__e735ee4c20"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "birkelunden_quiz_33",
+          "quiz_id": "by_birkelunden_set_5_q5",
+          "categoryId": "by",
+          "placeId": "birkelunden",
+          "personId": "",
+          "natureId": "",
+          "targetId": "birkelunden",
+          "question_scope": "place",
+          "question": "Hva gjør overføringen i 1882 særlig relevant for å forstå Birkelunden som offentlig rom?",
+          "options": [
+            "Den kobler en privat utbyggers parkinitiativ til kommunalt eierskap og et vilkår mot bebyggelse",
+            "Den gjorde parken til privat hage",
+            "Den fjernet all kommunal forvaltning"
+          ],
+          "answer": "Den kobler en privat utbyggers parkinitiativ til kommunalt eierskap og et vilkår mot bebyggelse",
+          "answerIndex": 0,
+          "dimension": "offentlig_parkrom",
+          "topic": "Hva gjør overføringen i 1882 særlig relevant for å forstå Birkelunden som offentlig rom",
+          "knowledge": "Meyer anla parken, men 1882-overføringen plasserte den i kommunal forvaltning under et uttrykkelig arealvilkår.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "concept",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_parker_som_sosial_infrastruktur",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "birkelunden",
+            "place_specific",
+            "canonical_v3_3"
+          ],
+          "required_tags": [],
+          "claim_id": "claim_birkelunden_q33",
+          "source": [
+            "oslo_byleksikon",
+            "riksantikvaren"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Meyer anla parken, men 1882-overføringen plasserte den i kommunal forvaltning under et uttrykkelig arealvilkår.",
+          "guidance_basis": [
+            "data/fag/fag_manifest.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
+          ],
+          "primary_knowledge_unit_id": "ku_by_meyer_anla_parken_men_18_6add37acb8",
+          "knowledge_unit_ids": [
+            "ku_by_meyer_anla_parken_men_18_6add37acb8"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "birkelunden_quiz_34",
+          "quiz_id": "by_birkelunden_set_5_q6",
+          "categoryId": "by",
+          "placeId": "birkelunden",
+          "personId": "",
+          "natureId": "",
+          "targetId": "birkelunden",
+          "question_scope": "place",
+          "question": "William H. Whyte undersøkte hvordan små byrom faktisk brukes. Hva gjør Jack Johnsen-sporet særlig egnet for en slik stedsanalyse?",
+          "options": [
+            "Benk, hvilebrakke, stiftelse og senere byste knytter dokumentert sosial bruk til konkrete steder i Birkelunden",
+            "Historien handler bare om en nasjonal organisasjon uten parktilknytning",
+            "Den foregår på Olaf Ryes plass"
+          ],
+          "answer": "Benk, hvilebrakke, stiftelse og senere byste knytter dokumentert sosial bruk til konkrete steder i Birkelunden",
+          "answerIndex": 0,
+          "dimension": "offentlig_parkrom",
+          "topic": "William H. Whyte undersøkte hvordan små byrom faktisk brukes. Hva gjør Jack Johnsen-sporet særlig egnet for en slik stedsanalyse",
+          "knowledge": "Whytes observasjonsorienterte perspektiv retter oppmerksomheten mot hvordan fysiske sitte- og oppholdssteder brukes sosialt. Birkelunden-kildene dokumenterer nettopp en kjede fra benk og hvilebrakke til organisering og et senere minnespor.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "concept",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_parker_som_sosial_infrastruktur",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "birkelunden",
+            "place_specific",
+            "canonical_v3_3"
+          ],
+          "required_tags": [],
+          "claim_id": "claim_birkelunden_q34",
+          "source": [
+            "pensjonistforbundet",
+            "oslo_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Whytes observasjonsorienterte perspektiv retter oppmerksomheten mot hvordan fysiske sitte- og oppholdssteder brukes sosialt. Birkelunden-kildene dokumenterer nettopp en kjede fra benk og hvilebrakke til organisering og et senere minnespor.",
+          "guidance_basis": [
+            "data/fag/fag_manifest.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
+          ],
+          "topic_hook_id": "byliv_aapne_rom",
+          "thinker_id": "william_h_whyte",
+          "work": "The Social Life of Small Urban Spaces",
+          "theory_ref": {
+            "topic_hook_id": "byliv_aapne_rom",
+            "thinker_id": "william_h_whyte",
+            "work": "The Social Life of Small Urban Spaces",
+            "why_it_helps": "Whytes observasjonsorienterte perspektiv gjør det mulig å undersøke hvordan konkrete sitteplasser og oppholdssteder faktisk støtter sosial bruk av parken."
+          },
+          "primary_knowledge_unit_id": "ku_by_whytes_observasjonsorien_2847b5a154",
+          "knowledge_unit_ids": [
+            "ku_by_whytes_observasjonsorien_2847b5a154",
+            "ku_by_birkelunden_kildene_doku_304bc07a29"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "birkelunden_quiz_35",
+          "quiz_id": "by_birkelunden_set_5_q7",
+          "categoryId": "by",
+          "placeId": "birkelunden",
+          "personId": "",
+          "natureId": "",
+          "targetId": "birkelunden",
+          "question_scope": "place",
+          "question": "Hvordan kan kunst- og minneobjektene hjelpe deg å lese Birkelundens etterkrigshistorie?",
+          "options": [
+            "Ved å følge daterte spor som Føll 1953, Jack Johnsen-bysten 1984 og Spaniamonumentet 1989",
+            "Ved å anta at alle tre er fra samme år",
+            "Ved å behandle dem som bygg i nabokvartalene"
+          ],
+          "answer": "Ved å følge daterte spor som Føll 1953, Jack Johnsen-bysten 1984 og Spaniamonumentet 1989",
+          "answerIndex": 0,
+          "dimension": "historiske_lag",
+          "topic": "Hvordan kan kunst- og minneobjektene hjelpe deg å lese Birkelundens etterkrigshistorie",
+          "knowledge": "De tre verkene ligger i parken, men peker mot ulike temaer og tidspunkter. Dateringen gjør dem til konkrete, adskilte historiske lag.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "observation",
+          "year": null,
+          "epoke_id": null,
+          "epoke_domain": "by",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "related_emner": [],
+          "core_concepts": [],
+          "concept_focus": [],
+          "learning_paths": [],
+          "tags": [
+            "birkelunden",
+            "place_specific",
+            "canonical_v3_3"
+          ],
+          "required_tags": [],
+          "claim_id": "claim_birkelunden_q35",
+          "source": [
+            "oslo_byleksikon",
+            "nils_aas"
+          ],
+          "source_origin": "external",
+          "claim_basis": "De tre verkene ligger i parken, men peker mot ulike temaer og tidspunkter. Dateringen gjør dem til konkrete, adskilte historiske lag.",
+          "guidance_basis": [
+            "data/fag/fag_manifest.json",
+            "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
+          ],
+          "primary_knowledge_unit_id": "ku_by_de_tre_verkene_ligger_i__21a5120410",
+          "knowledge_unit_ids": [
+            "ku_by_de_tre_verkene_ligger_i__21a5120410",
+            "ku_by_dateringen_gj_r_dem_til__afb1214eae"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    }
+  ]
+}

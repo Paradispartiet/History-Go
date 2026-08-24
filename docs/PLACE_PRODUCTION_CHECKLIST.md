@@ -33,6 +33,7 @@ For detaljproduksjon gjelder subsystemets canonical kontrakt, akkurat som i v1-r
 - Språkleksikon: `docs/SPRAKLEKSIKON.md`;
 - rundinger: `data/places/README_place_rounds.md`;
 - People: `docs/people-of-places-method.md` og `docs/PEOPLE_PROFILE_CANONICAL.md`;
+- Brands: `data/brands/brand_rules_v1_1.json`;
 - Stories: `docs/STORIES_DATA_GOVERNANCE.md`;
 - Brands: `data/brands/brand_rules_v1_1.json`;
 - Quiz: `data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md`;
@@ -212,6 +213,24 @@ Fortsatt obligatorisk:
 - koordinat- og bildeproveniens;
 - deterministiske manifester/indekser der de eier data;
 - teknisk PASS er aldri synonymt med redaksjonell ferdigstatus.
+
+### Bindende detaljankere fra v1
+
+Disse ankerreglene gjentas her fordi permanente governance-tester og produksjonsreview skal kunne lese dem direkte fra den aktive sjekklisten. De endrer ikke v2-mergekadensen.
+
+#### Språkleksikon og dialekt
+
+**DIALEKTLAG — KUN `placeScope: "area"` / N/A**
+
+Dialektinnhold kan kun eies av et område-Place med `placeScope: "area"`. `coordRole` beskriver bare koordinatgeometri og gir aldri dialekt-eierskap. Et enkeltsted med Språkleksikon skal researches for kildebelagte dialektord og lokale uttrykk, men dialekt skal ikke diktes for å fylle en flate. Når enkeltstedet ikke kan eie dialektlaget, skal relevante språkrelasjoner og nærmeste områdeeier brukes etter Språkleksikon-kontrakten.
+
+#### Brands
+
+`data/brands/brand_rules_v1_1.json` er canonical semantisk eier for Brand-vurderingen. aktørtype alene brukes verken som godkjenning eller avslag. Null treff i eksisterende brandregister behandles som «må researches», ikke som N/A. Brands kan først settes N/A etter reelt kandidatsøk og dokumenterte kandidatspesifikke avvisningsgrunner.
+
+#### Quiz
+
+Eksisterende quiz skal auditeres før profilvalg, og auditen skal omfatte alle aktive, arkiverte og alternative quizfiler. Profil og settantall skal velges eksplisitt etter canonical Quiz-kontrakt; et `major`-sted bruker 10 sett. Eksisterende gode spørsmål skal bevares, og `profile_hint` er ikke alene autoritet til å velge profil.
 
 ---
 

@@ -1,0 +1,559 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "categoryId": "by",
+  "targetId": "birkelunden",
+  "reviewed_at": "2026-08-24",
+  "review_note": "Bygger på Birkelundens gjennomgåtte source/claim-pack og ferdigreviewede popupfaser. Spørsmålene er skrevet fra claims og egne stedsgrenser, ikke fra emneetiketter.",
+  "sources": {
+    "oslo_byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Birkelunden",
+      "source_type": "local_history_encyclopedia",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert mot Birkelunden-artikkelen for parkhistorie, paviljong, basseng, navnehistorie, skulpturer, minnesmerker og fredningskontekst."
+    },
+    "oslo_kommune": {
+      "url": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/parker-og-grontomrader/birkelunden/",
+      "source_type": "municipal_primary",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for dagens parkidentitet, areal, fasiliteter og kommunal forvaltning."
+    },
+    "riksantikvaren": {
+      "url": "https://www.riksantikvaren.no/kulturhistorie/birkelunden-murbyens-hjerte/",
+      "source_type": "national_heritage_authority",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for murby-/kulturmiljøkontekst og skillet mellom parken og det større fredede området."
+    },
+    "pensjonistforbundet": {
+      "url": "https://www.pensjonistforbundet.no/om-oss/var-historie",
+      "source_type": "primary_organization_history",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for Jack Johnsen, benkgruppen, hvilebrakken, 18 stiftere og Venner i Bjerkelunden i 1937."
+    },
+    "nils_aas": {
+      "url": "https://nils-aas-kunstverksted.no/nils-aas/biografi/",
+      "source_type": "artist_institution",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert sammen med Oslo byleksikon for Nils Aas og Spaniamonumentet; 1989 brukes, mens SNLs avvikende 1889-dato er avvist."
+    },
+    "oslo_museum_before": {
+      "url": "https://www.oslobilder.no/OMU/OB.Z02741",
+      "source_type": "museum_archive_image",
+      "review_status": "reviewed",
+      "review_note": "Fase 7D-kontrollert historisk Birkelunden-bilde fra ca. 1930 med paviljong og sentralt parkrom."
+    },
+    "commons_after": {
+      "url": "https://commons.wikimedia.org/wiki/File:Birkelunden_fountain_and_music_pavilion.jpg",
+      "source_type": "licensed_image",
+      "review_status": "reviewed",
+      "review_note": "Fase 7D-kontrollert bilde fra 2013; brukes som datert etter-bilde, ikke som dokumentasjon av eksakt 2026-tilstand."
+    }
+  },
+  "selected_curriculum": {
+    "pensum_module_ids": [
+      "kur_by_04_historiske_lag_og_transformasjon",
+      "kur_by_07_gronn_blaa_og_offentlig_natur"
+    ],
+    "emne_ids": [
+      "em_by_parker_som_sosial_infrastruktur",
+      "em_by_opphold_vs_gjennomgang",
+      "em_by_historiske_lag_i_hverdagsrom"
+    ],
+    "topic_hook_ids": [
+      "byliv_aapne_rom",
+      "byliv_arrangement",
+      "byliv_moteplasser",
+      "byliv_sosial_miks"
+    ],
+    "method_ids": [
+      "met_for_etter"
+    ],
+    "thinker_ids": [
+      "william_h_whyte"
+    ],
+    "works": [
+      "The Social Life of Small Urban Spaces"
+    ]
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/by/",
+      "data/quiz/by/arkiv/",
+      "data/quizcards/by/",
+      "reports/place-production/birkelunden-nullmaaling-v1.md"
+    ],
+    "active_before": {
+      "file": null,
+      "set_count": 0,
+      "question_count": 0,
+      "finding": "Ingen manifest-loadet quizpakke med package targetId=birkelunden."
+    },
+    "legacy_before": {
+      "finding": "Repoet har spørsmål i andre mål som omtaler Birkelunden og Nature unlock-referansen birkelunden_quiz_1, men ingen av disse er en canonical Birkelunden-eid Place-quiz."
+    },
+    "decisions": [
+      "Opprett ny manifest-loadet Birkelunden-pakke uten å kopiere spørsmål fra Grünerløkka-, Stensparken- eller quizcard-filer.",
+      "Velg rich 5x7 fordi kildene bærer fem selvstendige læringsjobber: etablering/geometri, fysisk parkutvikling/navn, organisering/kunst, vern/forvaltning og sluttende sammenligning/syntese.",
+      "Ikke velg major: seks eller flere sett ville kreve kunstig splitting av de samme kildelagene."
+    ],
+    "knowledge_migration": "Nytt target har ingen legacy Knowledge-eier å migrere; canonical Knowledge kan bygges deterministisk fra den nye manifest-loadede quizpakken."
+  },
+  "profile_decision": {
+    "profile": "rich",
+    "set_count": 5,
+    "questions_per_set": 7,
+    "justification": "Birkelunden har fem reelt forskjellige, kildebårne progresjonsløp, men ikke nok uavhengig stoff til seks eller flere sett uten gjentakelse. Rich 5x7 gir full normalåpning og en egen sluttfase uten filler."
+  },
+  "held_back_candidates": [
+    "SNLs avvikende 1889-dato for Spaniamonumentet brukes ikke; 1989 støttes av Oslo byleksikon og Nils Aas-kildegrunnlaget.",
+    "Påstanden om at Birkelunden eller foreningen er «Norges eldste» publiseres ikke uten sterkere, eksplisitt superlativbevis.",
+    "Paulus kirke, Grünerløkka skole og andre elementer i det større kulturmiljøet gjøres ikke til Birkelunden-eide Objects/Structures eller quizproxy.",
+    "2013-bildet brukes ikke som påstand om eksakt 2026-tilstand."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_birkelunden_q01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Thorvald Meyer anla Birkelunden i 1860-årene som del av utbyggingen på Grünerløkka.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "riksantikvaren"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_birkelunden_q02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Birkelunden ble anlagt i 1860-årene. Senere ombygginger og minnespor kom i flere tydelige lag.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "riksantikvaren"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_birkelunden_q03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Thorvald Meyer overførte parken til kommunen i 1882.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "riksantikvaren"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_birkelunden_q04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Overføringen til kommunen hadde et vilkår om at parkarealet ikke skulle bebygges.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "riksantikvaren"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_birkelunden_q05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Birkelunden park er 16,3 dekar. Tallet rundt 116 dekar gjelder det større fredede kulturmiljøet og skal ikke brukes som parkareal.",
+      "source_ids": [
+        "oslo_kommune",
+        "riksantikvaren"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_birkelunden_q06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Thorvald Meyers gate danner parkens østside; parkens øvrige avgrensning følger Toftes gate, Seilduksgata og Schleppegrells gate.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_birkelunden_q07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Rundt 116 dekar beskriver det større fredede kulturmiljøet rundt parken, ikke park-place på 16,3 dekar.",
+      "source_ids": [
+        "riksantikvaren"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_birkelunden_q08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Omleggingen 1916–1920 ga parken tydeligere rekreasjons- og aktivitetsfunksjoner, blant annet leke- og skøytemuligheter.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_birkelunden_q09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Den nåværende musikkpaviljongen ble reist i 1926.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_birkelunden_q10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Arkitekt Otto Hald tegnet musikkpaviljongen som ble reist i 1926 etter en arkitektkonkurranse.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_birkelunden_q11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Vannbassenget ble anlagt i 1927–1928, kort tid etter den nåværende paviljongen.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_birkelunden_q12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Bjerkelunden ble offisiell navneform i 1926.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_birkelunden_q13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "I 1955 ble Birkelunden igjen offisiell navneform etter perioden med Bjerkelunden.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_birkelunden_q14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Ørnulf Bast laget bronsegruppen Føll, som ble satt opp i Birkelunden i 1953.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_birkelunden_q15",
+      "order": 15,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Pensjonistforbundet beskriver 10–12 pensjonister som møttes på en benk i Birkelunden, med Jack Johnsen som pådriver.",
+      "source_ids": [
+        "pensjonistforbundet"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_birkelunden_q16",
+      "order": 16,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Etter benkmøtene og bruken av hvilebrakken var 18 personer med på å stifte Venner i Bjerkelunden i 1937.",
+      "source_ids": [
+        "pensjonistforbundet"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_birkelunden_q17",
+      "order": 17,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Pensjonister reiste bysten av Jack Johnsen i Birkelunden i 1984.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_birkelunden_q18",
+      "order": 18,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Nils Aas laget minnesmerket over nordmenn som deltok i de internasjonale brigadene i den spanske borgerkrigen.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "nils_aas"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_birkelunden_q19",
+      "order": 19,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon og Nils Aas-kildegrunnlaget støtter 1989. Den avvikende 1889-formen i en sekundærkilde er holdt ute.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "nils_aas"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_birkelunden_q20",
+      "order": 20,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Arbeid med basseng, beplantning og trær i 1984–1986 viser at Birkelunden har vært forvaltet og fysisk justert etter etableringen.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_birkelunden_q21",
+      "order": 21,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Paviljongen fra 1926 er et gjenkjennelig fysisk anker i den historiske ca. 1930-dokumentasjonen og det daterte nyere parkbildet.",
+      "source_ids": [
+        "oslo_museum_before",
+        "commons_after",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_birkelunden_q22",
+      "order": 22,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Kildegrunnlaget skiller mellom starten på fredningsprosessen i 1996 og selve fredningen av det større kulturmiljøet i 2006.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "riksantikvaren"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_birkelunden_q23",
+      "order": 23,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Parken er 16,3 dekar. Omtrent 116 dekar gjelder en større fredet bystruktur som også omfatter bebyggelse og andre elementer rundt parken.",
+      "source_ids": [
+        "oslo_kommune",
+        "riksantikvaren"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_birkelunden_q24",
+      "order": 24,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Riksantikvaren beskriver et større kulturmiljø der parken inngår sammen med murbykvartaler og offentlige bygg. Det betyr ikke at disse eies av park-place som structures.",
+      "source_ids": [
+        "riksantikvaren"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_birkelunden_q25",
+      "order": 25,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Den nåværende paviljongen fra 1926 er fortsatt en sentral struktur i parken og brukes som orienteringspunkt i historiske og nyere bilder.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_birkelunden_q26",
+      "order": 26,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Birkelundens historie omfatter både gamle plantinger og senere fornyelse. Et historisk parkrom trenger derfor ikke bestå av uendrede enkelttrær for å ha kontinuitet.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "riksantikvaren"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_birkelunden_q27",
+      "order": 27,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Det større fredede kulturmiljøet binder flere steder sammen, men parkens canonical innhold må fortsatt holde own-place-grensen.",
+      "source_ids": [
+        "riksantikvaren"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_birkelunden_q28",
+      "order": 28,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Bildene støtter visuelle sammenligninger av synlige parkankre. De dokumenterer ikke alene sosial sammensetning, boligpriser eller årsaker til endring.",
+      "source_ids": [
+        "oslo_museum_before",
+        "commons_after"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_birkelunden_q29",
+      "order": 29,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Presis stedslesning krever at parkens egen geometri holdes fra den større vernekonteksten.",
+      "source_ids": [
+        "oslo_kommune",
+        "riksantikvaren"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_birkelunden_q30",
+      "order": 30,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Før/etter-metoden blir sikrere når samme eller tydelig gjenkjennelige fysiske ankre brukes før forskjeller beskrives.",
+      "source_ids": [
+        "oslo_museum_before",
+        "commons_after"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_birkelunden_q31",
+      "order": 31,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Et datert etter-bilde dokumenterer sin egen opptakstid. Det skal ikke automatisk restemples som dagens tilstand.",
+      "source_ids": [
+        "commons_after"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_birkelunden_q32",
+      "order": 32,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kilden dokumenterer nye eller styrkede aktivitetsfunksjoner. Den beviser ikke at all tidligere bruk forsvant.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_birkelunden_q33",
+      "order": 33,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Meyer anla parken, men 1882-overføringen plasserte den i kommunal forvaltning under et uttrykkelig arealvilkår.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "riksantikvaren"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_birkelunden_q34",
+      "order": 34,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Whytes observasjonsorienterte perspektiv retter oppmerksomheten mot hvordan fysiske sitte- og oppholdssteder brukes sosialt. Birkelunden-kildene dokumenterer nettopp en kjede fra benk og hvilebrakke til organisering og et senere minnespor.",
+      "source_ids": [
+        "pensjonistforbundet",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur",
+      "topic_hook_id": "byliv_aapne_rom",
+      "thinker_id": "william_h_whyte",
+      "work": "The Social Life of Small Urban Spaces"
+    },
+    {
+      "claim_id": "claim_birkelunden_q35",
+      "order": 35,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "De tre verkene ligger i parken, men peker mot ulike temaer og tidspunkter. Dateringen gjør dem til konkrete, adskilte historiske lag.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "nils_aas"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    }
+  ]
+}
