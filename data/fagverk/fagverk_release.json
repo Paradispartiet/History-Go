@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "8f93bd18df3e64ad6ddb471ed026c7f271c9896a8ac1008a7622816ecb0b60df"
+    "content_sha256": "131ae41cdef39559201378681c23c31e3b03071d15dcfee2a54e27063f4850a1"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 16,
     "chapter_count": 174,
     "module_file_count": 437,
-    "package_file_count": 248,
+    "package_file_count": 251,
     "chapter_referenced_file_count": 828,
-    "referenced_file_count": 1020,
+    "referenced_file_count": 1023,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -76,9 +76,9 @@
         "supersetQuizMal"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 15,
+      "package_file_count": 18,
       "required_package_file_count": 4,
-      "optional_package_file_count": 11,
+      "optional_package_file_count": 14,
       "package_files": [
         {
           "path": "data/fag/by/emner_by.json",
@@ -141,6 +141,18 @@
           "content_sha256": "289f1004b8cd8fd3a551b7e884908ee2653ea9d4315a58dce417ffb064007956"
         },
         {
+          "path": "data/quiz/by/christiania_torv_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.christiania_torv.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "aa0c70bf8b2b3a7b02bdd96ae27a8463fd816fc67020d938579349650cababda"
+        },
+        {
           "path": "data/quiz/by/deichman_bjorvika_sets.json",
           "required": false,
           "fields": [
@@ -165,6 +177,18 @@
           "content_sha256": "cf6eafa10b607b1ce5e5f6c3d29f42b965d9dfed596ad37d45e18eca119bcdfd"
         },
         {
+          "path": "data/quiz/production_briefs/by/christiania_torv.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.christiania_torv.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "4c097ffd4900a1567e2cc920fdbba70bb941ee90a9a3de2a869c8ee95f9ba5ab"
+        },
+        {
           "path": "data/quiz/production_briefs/by/deichman_bjorvika.json",
           "required": false,
           "fields": [
@@ -187,6 +211,18 @@
           ],
           "exists": true,
           "content_sha256": "e19e930817be069930e5273fef95c1b7aa19d3e1f303f0ca64b2ad8d2d86250f"
+        },
+        {
+          "path": "data/quiz/production_context/by/christiania_torv.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.christiania_torv.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "48c0e629ffd589f1ec06d71f586c2cab94f9d986a963ce742913d234d4e748f0"
         },
         {
           "path": "data/quiz/production_context/by/deichman_bjorvika.json",
@@ -261,20 +297,20 @@
           "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
         }
       ],
-      "package_content_sha256": "850e17a5e11073edc7b7a1f2b6fb42c23cb0c8bc0bb98e9b29f924903cd66ed5",
+      "package_content_sha256": "9f48f19787e33ed1af16fcda240d4c6a313a4fdcde9145cd79f57c9d83dbc879",
       "chapter_count": 17,
       "module_file_count": 51,
       "brief_file_count": 17,
       "claims_file_count": 17,
       "chapter_referenced_file_count": 102,
       "chapter_content_sha256": "21ed783bb2d9f06494fa9a56eb60af89e5d8c8225a51d930eebddf35203dd283",
-      "referenced_file_count": 117,
+      "referenced_file_count": 120,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "67805efadd63cfa6d026b3d3ee82064a882f88d18e7fc3a9cccd8ecc3fd65ffb",
-      "content_sha256": "d5b520e36e6f7bd84f5d83abf287e4f78296dc3e8525a51df31699fdd055ea56",
+      "structure_sha256": "25c89392a510fe52aacd2761c559efb8088475eac721e3fa6e64a9afb0877a70",
+      "content_sha256": "b39a2ddff7e986b7336c1b7d321a3f75aab5df5d9a95b58d2783c3c038d74542",
       "chapters": [
         {
           "chapter_id": "byliv-offentlige-rom",
@@ -5553,5 +5589,5 @@
       ]
     }
   },
-  "release_sha256": "6120c883ce53d0717a58bba85e05a3777e82f6ca114c7d1034c8122619bf8fb7"
+  "release_sha256": "a1cf51ef33f84a578ccd2b400cbad1f2d175165bff6151b0d0779f565d0a636f"
 }
