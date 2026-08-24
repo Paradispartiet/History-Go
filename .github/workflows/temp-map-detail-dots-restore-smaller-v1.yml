@@ -51,7 +51,7 @@ jobs:
       - name: Guard final file scope
         shell: bash
         run: |
-          allowed='^(js/map\\.ts|js/map\\.js|dist/web/map\\.js|tests/map-place-area-lod\\.test\\.mjs|scripts/temp-map-detail-dots-restore-smaller-v1\\.mjs|\\.github/workflows/temp-map-detail-dots-restore-smaller-v1\\.yml)$'
+          allowed='^(js/map[.]ts|js/map[.]js|dist/web/map[.]js|tests/map-place-area-lod[.]test[.]mjs|scripts/temp-map-detail-dots-restore-smaller-v1[.]mjs|[.]github/workflows/temp-map-detail-dots-restore-smaller-v1[.]yml)$'
           unexpected="$(git diff --name-only | grep -Ev "$allowed" || true)"
           if [ -n "$unexpected" ]; then
             echo "Unexpected generated changes:"
