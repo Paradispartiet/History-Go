@@ -150,6 +150,32 @@ test("broken collection previews fall back to icon and count", async () => {
   assert.equal(icon.querySelector("img"), null);
 });
 
+test("documented physical Civication objects remain in Objects without a preview image", async () => {
+  const place = {
+    id: "physical_without_image",
+    category: "by",
+    civication_store: [{
+      id: "documented_object",
+      title: "Dokumentert fysisk objekt",
+      physicalObject: true,
+      placeSpecific: true,
+      historicalFunction: "Et fysisk og kildebundet spor ved stedet."
+    }],
+    place_card_profile: {
+      schema: "history_go_place_card_profile_v2",
+      collection_ids: ["people", "objects"],
+      reason: "Det fysiske objektet er dokumentert selv om eget previewbilde mangler.",
+      verifiedAt: "2026-08-24"
+    }
+  };
+  const w = make(place);
+  await w.HGPlaceCardCollections.apply(place);
+  assert.equal(w.HGPlaceCardCollections.getItems(place, "objects").length, 1);
+  assert.equal(w.document.querySelectorAll("#pcObjectsList [data-visual-round-item]").length, 1);
+  assert.equal(w.document.querySelector("#pcObjectsIcon img"), null);
+  assert.equal(w.document.querySelector("#pcObjectsIcon .pc-round-count").textContent, "1");
+});
+
 test("Quiz remains a mandatory prominent PlaceCard action", async () => {
   const place = { id: "quiz", category: "by" };
   const w = make(place);
