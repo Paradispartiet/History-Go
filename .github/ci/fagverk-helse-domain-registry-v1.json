@@ -3,17 +3,122 @@
   "subject": "helse",
   "totalDomains": 12,
   "domains": [
-    {"ordinal":1,"slug":"medical-ethics-evidence","sourceBriefScript":"scripts/brief-helse-medical-ethics-evidence-sources-v1.mjs","sourceBriefTest":"tests/helse-medical-ethics-evidence-source-brief-v1.test.mjs","fulltextMaterializer":"scripts/materialize-helse-medical-ethics-evidence-fulltext-v1.mjs","fulltextAudit":"scripts/audit-helse-medical-ethics-evidence-fulltext-v1.mjs","fulltextTest":"tests/helse-medical-ethics-evidence-fulltext-v1.test.mjs"},
-    {"ordinal":2,"slug":"anatomy-physiology","sourceBriefScript":"scripts/brief-helse-anatomy-physiology-sources-v1.mjs","sourceBriefTest":"tests/helse-anatomy-physiology-source-brief-v1.test.mjs","fulltextMaterializer":"scripts/materialize-helse-anatomy-physiology-fulltext-v1.mjs","fulltextAudit":"scripts/audit-helse-anatomy-physiology-fulltext-v1.mjs","fulltextTest":"tests/helse-anatomy-physiology-fulltext-v1.test.mjs"},
-    {"ordinal":3,"slug":"disease-pathophysiology","sourceBriefScript":"scripts/brief-helse-disease-pathophysiology-sources-v1.mjs","sourceBriefTest":"tests/helse-disease-pathophysiology-source-brief-v1.test.mjs","fulltextMaterializer":"scripts/materialize-helse-disease-pathophysiology-fulltext-v1.mjs","fulltextAudit":"scripts/audit-helse-disease-pathophysiology-fulltext-v1.mjs","fulltextTest":"tests/helse-disease-pathophysiology-fulltext-v1.test.mjs"},
-    {"ordinal":4,"slug":"clinical-medicine","sourceBriefScript":"scripts/brief-helse-clinical-medicine-sources-v1.mjs","sourceBriefTest":"tests/helse-clinical-medicine-source-brief-v1.test.mjs","fulltextMaterializer":"scripts/materialize-helse-clinical-medicine-fulltext-v1.mjs","fulltextAudit":"scripts/audit-helse-clinical-medicine-fulltext-v1.mjs","fulltextTest":"tests/helse-clinical-medicine-fulltext-v1.test.mjs"},
-    {"ordinal":5,"slug":"public-health","sourceBriefScript":"scripts/brief-helse-public-health-sources-v1.mjs","sourceBriefTest":"tests/helse-public-health-source-brief-v1.test.mjs","fulltextMaterializer":"scripts/materialize-helse-public-health-fulltext-v1.mjs","fulltextAudit":"scripts/audit-helse-public-health-fulltext-v1.mjs","fulltextTest":"tests/helse-public-health-fulltext-v1.test.mjs"},
-    {"ordinal":6,"slug":"epidemiology","sourceBriefScript":"scripts/brief-helse-epidemiology-sources-v1.mjs","sourceBriefTest":"tests/helse-epidemiology-source-brief-v1.test.mjs","fulltextMaterializer":"scripts/materialize-helse-epidemiology-fulltext-v1.mjs","fulltextAudit":"scripts/audit-helse-epidemiology-fulltext-v1.mjs","fulltextTest":"tests/helse-epidemiology-fulltext-v1.test.mjs"},
-    {"ordinal":7,"slug":"microbiology-infection","sourceBriefScript":"scripts/brief-helse-microbiology-infection-sources-v1.mjs","sourceBriefTest":"tests/helse-microbiology-infection-source-brief-v1.test.mjs","fulltextMaterializer":"scripts/materialize-helse-microbiology-infection-fulltext-v1.mjs","fulltextAudit":"scripts/audit-helse-microbiology-infection-fulltext-v1.mjs","fulltextTest":"tests/helse-microbiology-infection-fulltext-v1.test.mjs"},
-    {"ordinal":8,"slug":"pharmacology","sourceBriefScript":"scripts/brief-helse-pharmacology-sources-v1.mjs","sourceBriefTest":"tests/helse-pharmacology-source-brief-v1.test.mjs","fulltextMaterializer":"scripts/materialize-helse-pharmacology-fulltext-v1.mjs","fulltextAudit":"scripts/audit-helse-pharmacology-fulltext-v1.mjs","fulltextTest":"tests/helse-pharmacology-fulltext-v1.test.mjs"},
-    {"ordinal":9,"slug":"nutrition-metabolism","sourceBriefScript":"scripts/brief-helse-nutrition-metabolism-sources-v1.mjs","sourceBriefTest":"tests/helse-nutrition-metabolism-source-brief-v1.test.mjs","fulltextMaterializer":"scripts/materialize-helse-nutrition-metabolism-fulltext-v1.mjs","fulltextAudit":"scripts/audit-helse-nutrition-metabolism-fulltext-v1.mjs","fulltextTest":"tests/helse-nutrition-metabolism-fulltext-v1.test.mjs"},
-    {"ordinal":10,"slug":"mental-health","sourceBriefScript":"scripts/brief-helse-mental-health-sources-v1.mjs","sourceBriefTest":"tests/helse-mental-health-source-brief-v1.test.mjs","fulltextMaterializer":"scripts/materialize-helse-mental-health-fulltext-v1.mjs","fulltextAudit":"scripts/audit-helse-mental-health-fulltext-v1.mjs","fulltextTest":"tests/helse-mental-health-fulltext-v1.test.mjs"},
-    {"ordinal":11,"slug":"rehabilitation-function","sourceBriefScript":"scripts/brief-helse-rehabilitation-function-sources-v1.mjs","sourceBriefTest":"tests/helse-rehabilitation-function-source-brief-v1.test.mjs","fulltextMaterializer":"scripts/materialize-helse-rehabilitation-function-fulltext-v1.mjs","fulltextAudit":"scripts/audit-helse-rehabilitation-function-fulltext-v1.mjs","fulltextTest":"tests/helse-rehabilitation-function-fulltext-v1.test.mjs"},
-    {"ordinal":12,"slug":"health-services-economics","sourceBriefScript":"scripts/brief-helse-health-services-economics-sources-v1.mjs","sourceBriefTest":"tests/helse-health-services-economics-source-brief-v1.test.mjs","fulltextMaterializer":"scripts/materialize-helse-health-services-economics-fulltext-v1.mjs","fulltextAudit":"scripts/audit-helse-health-services-economics-fulltext-v1.mjs","fulltextTest":"tests/helse-health-services-economics-fulltext-v1.test.mjs"}
-  ]
+    {
+      "ordinal": 1,
+      "slug": "medical-ethics-evidence",
+      "sourceBriefScript": "scripts/brief-helse-medical-ethics-evidence-sources-v1.mjs",
+      "sourceBriefTest": "tests/helse-medical-ethics-evidence-source-brief-v1.test.mjs",
+      "fulltextMaterializer": "scripts/materialize-helse-medical-ethics-evidence-fulltext-v1.mjs",
+      "fulltextAudit": "scripts/audit-helse-medical-ethics-evidence-fulltext-v1.mjs",
+      "fulltextTest": "tests/helse-medical-ethics-evidence-fulltext-v1.test.mjs"
+    },
+    {
+      "ordinal": 2,
+      "slug": "anatomy-physiology",
+      "sourceBriefScript": "scripts/brief-helse-anatomy-physiology-sources-v1.mjs",
+      "sourceBriefTest": "tests/helse-anatomy-physiology-source-brief-v1.test.mjs",
+      "fulltextMaterializer": "scripts/materialize-helse-anatomy-physiology-fulltext-v1.mjs",
+      "fulltextAudit": "scripts/audit-helse-anatomy-physiology-fulltext-v1.mjs",
+      "fulltextTest": "tests/helse-anatomy-physiology-fulltext-v1.test.mjs"
+    },
+    {
+      "ordinal": 3,
+      "slug": "disease-pathophysiology",
+      "sourceBriefScript": "scripts/brief-helse-disease-pathophysiology-sources-v1.mjs",
+      "sourceBriefTest": "tests/helse-disease-pathophysiology-source-brief-v1.test.mjs",
+      "fulltextMaterializer": "scripts/materialize-helse-disease-pathophysiology-fulltext-v1.mjs",
+      "fulltextAudit": "scripts/audit-helse-disease-pathophysiology-fulltext-v1.mjs",
+      "fulltextTest": "tests/helse-disease-pathophysiology-fulltext-v1.test.mjs"
+    },
+    {
+      "ordinal": 4,
+      "slug": "clinical-medicine",
+      "sourceBriefScript": "scripts/brief-helse-clinical-medicine-sources-v1.mjs",
+      "sourceBriefTest": "tests/helse-clinical-medicine-source-brief-v1.test.mjs",
+      "fulltextMaterializer": "scripts/materialize-helse-clinical-medicine-fulltext-v1.mjs",
+      "fulltextAudit": "scripts/audit-helse-clinical-medicine-fulltext-v1.mjs",
+      "fulltextTest": "tests/helse-clinical-medicine-fulltext-v1.test.mjs"
+    },
+    {
+      "ordinal": 5,
+      "slug": "public-health",
+      "sourceBriefScript": "scripts/brief-helse-public-health-sources-v1.mjs",
+      "sourceBriefTest": "tests/helse-public-health-source-brief-v1.test.mjs",
+      "fulltextMaterializer": "scripts/materialize-helse-public-health-fulltext-v1.mjs",
+      "fulltextAudit": "scripts/audit-helse-public-health-fulltext-v1.mjs",
+      "fulltextTest": "tests/helse-public-health-fulltext-v1.test.mjs"
+    },
+    {
+      "ordinal": 6,
+      "slug": "epidemiology",
+      "sourceBriefScript": "scripts/brief-helse-epidemiology-sources-v1.mjs",
+      "sourceBriefTest": "tests/helse-epidemiology-source-brief-v1.test.mjs",
+      "fulltextMaterializer": "scripts/materialize-helse-epidemiology-fulltext-v1.mjs",
+      "fulltextAudit": "scripts/audit-helse-epidemiology-fulltext-v1.mjs",
+      "fulltextTest": "tests/helse-epidemiology-fulltext-v1.test.mjs"
+    },
+    {
+      "ordinal": 7,
+      "slug": "microbiology-infection",
+      "sourceBriefScript": "scripts/brief-helse-microbiology-infection-sources-v1.mjs",
+      "sourceBriefTest": "tests/helse-microbiology-infection-source-brief-v1.test.mjs",
+      "fulltextMaterializer": "scripts/materialize-helse-microbiology-infection-fulltext-v1.mjs",
+      "fulltextAudit": "scripts/audit-helse-microbiology-infection-fulltext-v1.mjs",
+      "fulltextTest": "tests/helse-microbiology-infection-fulltext-v1.test.mjs"
+    },
+    {
+      "ordinal": 8,
+      "slug": "pharmacology",
+      "sourceBriefScript": "scripts/brief-helse-pharmacology-sources-v1.mjs",
+      "sourceBriefTest": "tests/helse-pharmacology-source-brief-v1.test.mjs",
+      "fulltextMaterializer": "scripts/materialize-helse-pharmacology-fulltext-v1.mjs",
+      "fulltextAudit": "scripts/audit-helse-pharmacology-fulltext-v1.mjs",
+      "fulltextTest": "tests/helse-pharmacology-fulltext-v1.test.mjs"
+    },
+    {
+      "ordinal": 9,
+      "slug": "nutrition-metabolism",
+      "sourceBriefScript": "scripts/brief-helse-nutrition-metabolism-sources-v1.mjs",
+      "sourceBriefTest": "tests/helse-nutrition-metabolism-source-brief-v1.test.mjs",
+      "fulltextMaterializer": "scripts/materialize-helse-nutrition-metabolism-fulltext-v1.mjs",
+      "fulltextAudit": "scripts/audit-helse-nutrition-metabolism-fulltext-v1.mjs",
+      "fulltextTest": "tests/helse-nutrition-metabolism-fulltext-v1.test.mjs"
+    },
+    {
+      "ordinal": 10,
+      "slug": "mental-health",
+      "sourceBriefScript": "scripts/brief-helse-mental-health-sources-v1.mjs",
+      "sourceBriefTest": "tests/helse-mental-health-source-brief-v1.test.mjs",
+      "fulltextMaterializer": "scripts/materialize-helse-mental-health-fulltext-v1.mjs",
+      "fulltextAudit": "scripts/audit-helse-mental-health-fulltext-v1.mjs",
+      "fulltextTest": "tests/helse-mental-health-fulltext-v1.test.mjs"
+    },
+    {
+      "ordinal": 11,
+      "slug": "rehabilitation-function",
+      "sourceBriefScript": "scripts/brief-helse-rehabilitation-function-sources-v1.mjs",
+      "sourceBriefTest": "tests/helse-rehabilitation-function-source-brief-v1.test.mjs",
+      "fulltextMaterializer": "scripts/materialize-helse-rehabilitation-function-fulltext-v1.mjs",
+      "fulltextAudit": "scripts/audit-helse-rehabilitation-function-fulltext-v1.mjs",
+      "fulltextTest": "tests/helse-rehabilitation-function-fulltext-v1.test.mjs"
+    },
+    {
+      "ordinal": 12,
+      "slug": "health-services-economics",
+      "sourceBriefScript": "scripts/brief-helse-health-services-economics-sources-v1.mjs",
+      "sourceBriefTest": "tests/helse-health-services-economics-source-brief-v1.test.mjs",
+      "fulltextMaterializer": "scripts/materialize-helse-health-services-economics-fulltext-v1.mjs",
+      "fulltextAudit": "scripts/audit-helse-health-services-economics-fulltext-v1.mjs",
+      "fulltextTest": "tests/helse-health-services-economics-fulltext-v1.test.mjs"
+    }
+  ],
+  "strictCompletion": {
+    "bindings": "data/fag/helse/theory_integrity_bindings_helse_v1.json",
+    "audit": "tools/audit-helse-theory-integrity.mjs",
+    "auditTest": "tests/helse-theory-integrity.test.mjs",
+    "materializer": "scripts/materialize-helse-strict-completion-v1.mjs",
+    "completionTest": "tests/helse-strict-completion-v1.test.mjs",
+    "auditReport": "reports/fagverk/helse-theory-integrity-audit.json",
+    "completionReport": "reports/fagverk/helse-strict-completion-v1-audit.json"
+  }
 }
