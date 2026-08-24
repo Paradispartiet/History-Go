@@ -49,7 +49,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: fagverk-helse-${{ github.ref }}
@@ -72,32 +72,3 @@ jobs:
 
       - name: Run registry-driven Helse gate
         run: node scripts/run-helse-domain-ci-v1.mjs
-
-  writeback:
-    if: github.event_name == 'pull_request' && github.head_ref == 'agent/helse-strict-completion-proof-v1'
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: agent/helse-strict-completion-proof-v1
-          fetch-depth: 0
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-      - name: Refresh shared deterministic reports
-        run: |
-          node scripts/audit-fagverk-subject-inventory.mjs --write-report --no-check-report
-          node scripts/audit-fagverk-general-engine.mjs --write-report --no-check-report
-      - name: Commit deterministic reports
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add reports/fagverk/subject-baseline.json
-          git add reports/fagverk/general-engine-audit.json
-          if git diff --cached --quiet; then
-            echo "No generated changes"
-            exit 0
-          fi
-          git commit -m "Refresh shared Helse completion reports"
-          git push origin HEAD:agent/helse-strict-completion-proof-v1
