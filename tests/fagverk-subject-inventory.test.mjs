@@ -214,7 +214,7 @@ test('19+1-utvidelsen låser seks eksplisitte canonicale underkategorier', () =>
   assert.equal(c.labels.litteratur, 'Språk & litteratur');
 });
 
-test('Helse og Utdanning har konsistent foundation med dokumentert Helse-fremdrift uten prematur completion', () => {
+test('Helse er strict-complete og Utdanning beholder konsistent expansion foundation', () => {
   const manifest = readJson('data/fag/fag_manifest.json');
   const status = readJson('data/fagverk/subject_status.json');
   const registry = readJson('data/fagverk/fagverk_registry.json');
@@ -232,8 +232,8 @@ test('Helse og Utdanning har konsistent foundation med dokumentert Helse-fremdri
 
     assert.equal(entry.status, id === 'helse' ? 'active_foundation' : 'expansion_foundation');
     assert.equal(pensum.subject_id, id);
-    assert.equal(pensum.status, id === 'helse' ? 'active_foundation' : 'canonical_expansion_foundation');
-    assert.equal(pensum.complete_ready, false);
+    assert.equal(pensum.status, id === 'helse' ? 'complete' : 'canonical_expansion_foundation');
+    assert.equal(pensum.complete_ready, id === 'helse');
     assert.deepEqual(pensum.domain_order, pensum.domains.map((domain) => domain.domain_id));
     assert.deepEqual(emner.map((emne) => emne.domain), pensum.domain_order);
     assert.deepEqual(fagkart.categories.map((category) => category.id), pensum.domain_order);
@@ -247,9 +247,11 @@ test('Helse og Utdanning har konsistent foundation med dokumentert Helse-fremdri
     assert.equal(quizProfile.governance.authority, 'category_content_only');
     assert.equal(subjectStatus.navigationStatus, id === 'helse' ? 'materialized' : 'planned');
     assert.equal(subjectStatus.assessmentStatus, id === 'helse' ? 'audited' : 'pending');
-    assert.equal(subjectStatus.editorialStatus, id === 'helse' ? 'chapters_in_progress' : 'not_started');
+    assert.equal(subjectStatus.editorialStatus, id === 'helse' ? 'complete' : 'not_started');
     if (id === 'helse') {
-      assert.match(subjectStatus.nextGate, /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_domain_source_brief|full_chapter_complete_strict_proof_next)$/u);
+      assert.equal(subjectStatus.nextGate, 'complete');
+      assert.equal(registry.subjects.helse.editorialPlan.strictCompletionProof.status, 'strictly_proven');
+      assert.equal(registry.subjects.helse.editorialPlan.strictCompletionProof.canonical_major_fields, 12);
     } else {
       assert.equal(subjectStatus.nextGate, 'first_source_brief_after_repository_reconciliation');
     }
