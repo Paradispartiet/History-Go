@@ -21,7 +21,7 @@ for (const id of ['productions', 'structures', 'competitions', 'related', 'desti
 assert(!/images:\s*\{\s*id:["']images["']/.test(rounds));
 
 assert(rounds.includes('GENERAL_BASE = Object.freeze(["people", "objects", "brands"])'));
-assert(rounds.includes('NATURE_BASE = Object.freeze(["map", "flora", "fauna"])'));
+assert(rounds.includes('NATURE_BASE = Object.freeze(["flora", "fauna", "map"])'));
 assert(rounds.includes('CATEGORY_FOURTH'));
 assert(rounds.includes('kunst:"productions"'));
 assert(rounds.includes('sport:"competitions"'));
@@ -39,8 +39,9 @@ assert(rounds.includes('ensureBadgePlacement'));
 assert(rounds.includes('ensureQuizAction'));
 
 assert(contract.includes('Bilder er medieinnhold, ikke samling'));
-assert(contract.includes('to, tre eller fire kvalifiserte samlinger'));
-assert(contract.includes('People, Flora og Fauna'));
+assert(contract.includes('nøyaktig fire samlingsflater'));
+assert(contract.includes('People** som én sirkel'));
+assert(contract.includes('**Flora** og **Fauna** som to sirkler'));
 assert(contract.includes('generisk Verk'));
 assert(contract.includes('Detaljer'));
 assert(contract.includes('Punkter'));

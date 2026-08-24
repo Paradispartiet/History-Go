@@ -654,6 +654,16 @@ function setPlaceCardImgSrcStable(img, src, alt) {
   if (!img) return;
 
   const next = String(src || "").trim();
+  const frontFace = img.closest?.(".pc-card-face-front");
+
+  if (frontFace && img.dataset.pcFrontFallbackBound !== "1") {
+    img.dataset.pcFrontFallbackBound = "1";
+    img.addEventListener("load", () => { frontFace.dataset.mediaState = "ready"; });
+    img.addEventListener("error", () => {
+      img.removeAttribute("src");
+      frontFace.dataset.mediaState = "fallback";
+    });
+  }
 
   if (alt != null && img.alt !== String(alt)) {
     img.alt = String(alt);
@@ -661,12 +671,14 @@ function setPlaceCardImgSrcStable(img, src, alt) {
 
   if (!next) {
     if (img.getAttribute("src")) img.removeAttribute("src");
+    if (frontFace) frontFace.dataset.mediaState = "fallback";
     return;
   }
 
   const current = img.getAttribute("src") || "";
   if (current === next) return;
 
+  if (frontFace) frontFace.dataset.mediaState = "loading";
   img.src = next;
 }
 
@@ -1288,7 +1300,9 @@ const setPcText = (btn, text) => {
  */
 const setRoundLabel = (el, emoji, count = 0) => {
   if (!el) return;
-  const hasCount = !(count === "" || count == null);
+  // Null er en lastet, tom samling – ikke en verdi som skal dominere kortet visuelt.
+  // Selve samlingsflaten og ikonet beholdes slik at 2 × 2-komposisjonen alltid er full.
+  const hasCount = !(count === "" || count == null || Number(count) === 0);
   el.innerHTML = `
     <div class="pc-round-label">
       <span class="pc-round-emoji">${emoji}</span>

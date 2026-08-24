@@ -50,7 +50,7 @@ For **Quiz** skal alle aktive, arkiverte og alternative quizfiler for stedet aud
 
 Arbeidskortet bruker nå feltet:
 
-`MÅL FOR PLACECARD-SAMLINGER: 2–4 kvalifiserte samlinger + separat fast Badge + obligatorisk Quiz`
+`MÅL FOR PLACECARD-SAMLINGER: alltid fire flater i fast kategori-komposisjon + separat fast Badge + obligatorisk Quiz`
 
 For PlaceCard-samlinger, Før/etter og direktefaner gjelder:
 

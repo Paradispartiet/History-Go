@@ -10,7 +10,7 @@ const roundsSource = fs.readFileSync(path.join(__dirname, "../js/ui/place-rounds
 const shortcutsSource = fs.readFileSync(path.join(__dirname, "../js/ui/place-popup-shortcuts.js"), "utf8");
 const shortcutsCss = fs.readFileSync(path.join(__dirname, "../css/place-popup-shortcuts.css"), "utf8");
 
-test("legacy nodes cannot leak beyond the selected 2–4 PlaceCard collections", async () => {
+test("legacy nodes cannot leak beyond the fixed four PlaceCard collections", async () => {
   const dom = new JSDOM(`<!doctype html><body><div id="placeCard" data-current-place-id="p"><div class="pc-body"><div class="pc-title-row"><h2 id="pcTitle"></h2></div><div class="pc-icons-quad">${["People", "Nature", "Badges", "Works", "Details", "Spots", "CivicationStore", "Brands", "ForNa", "Fortellinger", "Leksikon", "Play", "Training", "Tasks"].map(x => `<div id="pc${x}Icon" class="pc-round"></div>`).join("")}</div><div id="pcPeopleList"></div><div id="pcBadgesList"></div><div id="pcBrandsList"></div><div id="pcWorksList"></div><div id="pcCivicationStoreList"></div></div></div></body>`, { url: "https://history-go.test/", runScripts: "outside-only" });
   const w = dom.window;
   w.PLACES = [{ id: "p", category: "sport", competitions: [{ id: "finale", title: "Finale", image: "finale.jpg" }], image: "sted.jpg" }];

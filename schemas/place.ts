@@ -100,7 +100,7 @@ export type PlaceCardCollectionId =
 
 export interface PlaceCardProfileV2 {
   schema: "history_go_place_card_profile_v2";
-  /** To til fire kvalifiserte samlinger. Bilder eies av medieflaten, ikke av denne listen. */
+  /** Nøyaktig fire samlinger i fast kategoriavhengig 2 × 2-komposisjon. Bilder eies av medieflaten. */
   collection_ids: PlaceCardCollectionId[];
   reason: string;
   verifiedAt: string;

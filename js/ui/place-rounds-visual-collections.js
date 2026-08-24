@@ -25,8 +25,11 @@
 
   const ALL_DEFS = Object.freeze([...FIXED_DEFS, ...Object.values(CATEGORY_DEFS)]);
   const BY_ID = new Map(ALL_DEFS.map(def => [def.id, def]));
+  // Fire faste visuelle plasser. Badges ligger separat ved tittelen.
+  // Vanlige steder: én sirkel + tre rektangler.
+  // Natursteder: to sirkler + to rektangler.
   const GENERAL_BASE = Object.freeze(["people", "objects", "brands"]);
-  const NATURE_BASE = Object.freeze(["map", "flora", "fauna"]);
+  const NATURE_BASE = Object.freeze(["flora", "fauna", "map"]);
   const COLLECTION_IDS = new Set(ALL_DEFS.filter(def => def.id !== "badges").map(def => def.id));
   const CATEGORY_COLLECTION_IDS = new Set(Object.keys(CATEGORY_DEFS));
 
@@ -41,6 +44,7 @@
     naeringsliv:"structures",
     natur:"destinations",
     politikk:"related",
+    popkultur:"productions",
     psykologi:"related",
     religion:"structures",
     scenekunst:"productions",
@@ -61,6 +65,7 @@
     film_tv:"Filmer og serier",
     scenekunst:"Forestillinger",
     media:"Utgivelser",
+    popkultur:"Uttrykk og utgivelser",
     subkultur:"Uttrykk og utgivelser"
   });
 
@@ -249,12 +254,26 @@
     return [];
   }
 
-  function structurallyValidIds(ids) {
-    return ids.length >= 2
-      && ids.length <= 4
-      && new Set(ids).size === ids.length
-      && ids.every(id => COLLECTION_IDS.has(id))
-      && ids.filter(id => CATEGORY_COLLECTION_IDS.has(id)).length <= 1;
+  function isNature(place) {
+    return normalizeCategory(place) === "natur";
+  }
+
+  function preferredCategoryCollectionId(place) {
+    return CATEGORY_FOURTH[normalizeCategory(place)] || "related";
+  }
+
+  function normalizedFullGridIds(place, requestedIds = []) {
+    const requestedCategory = requestedIds.find(id => CATEGORY_COLLECTION_IDS.has(id));
+    const categoryId = requestedCategory || preferredCategoryCollectionId(place);
+    return isNature(place)
+      ? [...NATURE_BASE, categoryId]
+      : [...GENERAL_BASE, categoryId];
+  }
+
+  function structurallyValidIds(place, ids) {
+    if (ids.length !== 4 || new Set(ids).size !== 4 || !ids.every(id => COLLECTION_IDS.has(id))) return false;
+    const expected = normalizedFullGridIds(place, ids);
+    return expected.every((id, index) => ids[index] === id);
   }
 
   function canonicalConfiguredIds(place) {
@@ -262,7 +281,7 @@
     const ids = arr(profile?.collection_ids).map(s);
     const valid = s(profile?.schema) === "history_go_place_card_profile_v2"
       && s(profile?.reason).length > 0
-      && structurallyValidIds(ids);
+      && structurallyValidIds(place, ids);
     return valid ? ids : null;
   }
 
@@ -275,7 +294,7 @@
       if (id === "images" || !COLLECTION_IDS.has(id) || ids.includes(id)) continue;
       ids.push(id);
     }
-    return structurallyValidIds(ids) ? ids : null;
+    return normalizedFullGridIds(place, ids);
   }
 
   function configuredCollectionIds(place) {
@@ -288,15 +307,8 @@
     return "category_default";
   }
 
-  function preferredCategoryCollectionId(place) {
-    return CATEGORY_FOURTH[normalizeCategory(place)] || null;
-  }
-
   function defaultCollectionIds(place) {
-    const base = normalizeCategory(place) === "natur" ? [...NATURE_BASE] : [...GENERAL_BASE];
-    const preferred = preferredCategoryCollectionId(place);
-    if (preferred && collectionItems(place, preferred).length > 0) base.push(preferred);
-    return base;
+    return normalizedFullGridIds(place);
   }
 
   function selectedIds(place) {

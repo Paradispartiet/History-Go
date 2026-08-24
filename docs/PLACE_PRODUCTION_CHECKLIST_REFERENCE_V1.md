@@ -99,7 +99,7 @@ Et sted kan ikke merkes `produksjonsklart` når nullmålingen eller fasesporinge
 ### Manuell sluttvurdering kan gjenåpne stedet
 
 - [ ] den synlige spilleropplevelsen vurderes som helhet etter at alle tekniske faser er merget;
-- [ ] hver av de 2–4 valgte PlaceCard-samlingene åpnes på faktisk produksjonsflate; synlig antall, popupinnhold og datakilde må stemme, og en samling som viser falsk 0 under lasting er et blockerfunn;
+- [ ] hver av de fire PlaceCard-samlingene åpnes på faktisk produksjonsflate; synlig antall, popupinnhold og datakilde må stemme, og en samling som viser falsk 0 under lasting er et blockerfunn;
 - [ ] alle samlings-preview kontrolleres; manglende mediefil skal gi et tydelig ikon-/antallsfallback, aldri et ødelagt bildeikon;
 - [ ] Før/etter-tekstens retning, høyre/venstre, motivanker og observasjonsinstruks kontrolleres visuelt mot begge bildene;
 - [ ] tomme faner, svake bildevalg, kunstige samlinger og taksonomisk korrekte men brukerfiendtlige kombinasjoner registreres som reelle kvalitetsavvik;
@@ -154,7 +154,7 @@ SPRÅKLEKSIKON-STATUS:
 SPRÅKLEKSIKON-TYPE — OMRÅDE / DIREKTE SPRÅKSTED / ENKELTSTED:
 DIALEKTLAG — KUN `placeScope: "area"` / N/A:
 DIALEKTORD/LOKALE UTTRYKK — RESEARCH OG PRODUKSJON:
-MÅL FOR PLACECARD-SAMLINGER: 2–4 kvalifiserte samlinger + separat fast Badge + obligatorisk Quiz
+MÅL FOR PLACECARD-SAMLINGER: alltid fire flater i fast kategori-komposisjon + separat fast Badge + obligatorisk Quiz
 VALGTE PLACECARD-SAMLINGER:
 PEOPLE-KANDIDATER:
 WORKS-KANDIDATER:
@@ -965,14 +965,14 @@ Denne oppskriften gjentar ikke samlingspool, profiler eller naturkartkrav. **Pla
 - [ ] stedet følger canonical PlaceCard-samlingskontrakt;
 - [ ] Badges vises fast og separat ved stedsoverskriften og teller ikke blant samlingene;
 - [ ] obligatorisk Quiz vises som tydelig PlaceCard-handling og fungerer;
-- [ ] 2–4 kvalifiserte samlinger vises balansert ved `frontImage`: 2 i én rad, 3 som 2 + 1 og 4 som 2 × 2;
+- [ ] fire samlingsflater vises som et fullt 2 × 2-felt ved `frontImage`: vanlige kort har People-sirkel + tre rektangler; Nature har Flora- og Fauna-sirkler + to rektangler;
 - [ ] People, Flora og Fauna er sirkler; øvrige samlinger er avrundede rektangler;
 - [ ] Bilder ligger i `frontImage`-/medieflaten eller hos riktig bildeeier og brukes aldri som samling/reserve;
 - [ ] hver samling har en naturlig brukerforståelse, tydelig egen innholdstype og reell stedsspesifikk substans;
 - [ ] en enkelt vilkårlig eller taksonomisk konstruert gjenstand er ikke nok til å gjøre Objects ferdig;
 - [ ] Objects og Structures/Bygg brukes ikke som to separate samlinger når skillet er uklart eller innholdet overlapper;
 - [ ] semantisk overlappende samlinger slås sammen eller én utelates; to eller tre sterke samlinger er bedre enn en kunstig fjerde;
-- [ ] nye/fullproduserte steder bruker `place_card_profile.collection_ids` med 2–4 IDs, begrunnelse og verifiseringsdato;
+- [ ] nye/fullproduserte steder bruker `place_card_profile.collection_ids` med nøyaktig fire IDs i fast kategori-komposisjon, begrunnelse og verifiseringsdato;
 - [ ] eksisterende `round_profile.content_round_ids` leses bare gjennom kompatibilitetslaget, og `images` filtreres bort;
 - [ ] alle valgte samlinger vurderes samlet i faktisk UI; korrekt JSON hver for seg er ikke tilstrekkelig;
 - [ ] hver samling åpnes i produksjon og viser reelt innhold; tom popup eller falsk 0 er ikke godkjent;
@@ -1314,7 +1314,7 @@ En valgt samling med ødelagt, misvisende eller falskt preview er ikke produksjo
 - [ ] PlaceCard-samlingene følger `data/places/README_place_rounds.md`;
 - [ ] Badges vises separat ved stedsoverskriften;
 - [ ] obligatorisk Quiz er tydelig og fungerer;
-- [ ] 2–4 kvalifiserte samlinger vises balansert ved `frontImage`;
+- [ ] fire samlingsflater vises som et fullt 2 × 2-felt ved `frontImage`;
 - [ ] People, Flora og Fauna er sirkler; øvrige samlinger er avrundede rektangler;
 - [ ] Bilder ligger i medieflaten/riktig popupflate og aldri som PlaceCard-samling eller reserve;
 - [ ] alle valgte samlinger har korrekte preview eller robust ikonfallback;
@@ -1441,9 +1441,9 @@ Et sted er **sted-produksjon ferdig** først når hvert punkt nedenfor er sant e
 - [ ] `data/places/README_place_rounds.md` er fulgt;
 - [ ] Badges vises separat ved stedsoverskriften;
 - [ ] Quiz vises som obligatorisk, tydelig handling;
-- [ ] stedet viser 2–4 samlinger fra `place_card_profile`, eller dokumentert legacy-adapter før migrering;
+- [ ] stedet viser fire samlingsflater fra `place_card_profile`, eller dokumentert legacy-adapter som kompletterer til full kategori-komposisjon før migrering;
 - [ ] hver samling er substansiell, naturlig og tydelig forskjellig fra de andre;
-- [ ] form og balansert 2/3/4-layout er kontrollert på mobil og desktop;
+- [ ] form og full 2 × 2-layout er kontrollert på mobil og desktop;
 - [ ] Bilder brukes ikke som samling eller reserve;
 - [ ] Objects og Structures/Bygg er ikke kunstig splittet;
 - [ ] preview og innhold følger PlaceCard-kontrakten.
@@ -1555,11 +1555,11 @@ LES: docs/PLACE_POPUP_SYSTEM.md
 
 ### F. PlaceCard-samlinger
 LES: data/places/README_place_rounds.md
-Mål: [ ] 2–4 kvalifiserte samlinger + separat Badge + obligatorisk Quiz
+Mål: [ ] alltid fire flater i fast kategori-komposisjon + separat Badge + obligatorisk Quiz
 - [ ] `place_card_profile.collection_ids` / dokumentert legacy-adapter
 - [ ] Badge separat ved overskriften
 - [ ] Quiz tydelig og fungerende
-- [ ] 2/3/4-layout balansert ved `frontImage`
+- [ ] full 2 × 2-layout balansert ved `frontImage`
 - [ ] People/Flora/Fauna sirkler; øvrige samlinger avrundede rektangler
 - [ ] Bilder bare i medie-/bildeflater, aldri som samling/reserve
 For hver samling: [ ] relevant  [ ] stedsspesifikk  [ ] substansiell  [ ] previewklart  [ ] riktig flow

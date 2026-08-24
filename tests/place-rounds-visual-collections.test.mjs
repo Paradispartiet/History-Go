@@ -8,6 +8,7 @@ import { JSDOM } from "jsdom";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const source = fs.readFileSync(path.join(__dirname, "../js/ui/place-rounds-visual-collections.js"), "utf8");
 const placeCardSource = fs.readFileSync(path.join(__dirname, "../js/ui/place-card.js"), "utf8");
+const placeCardCss = fs.readFileSync(path.join(__dirname, "../css/placeCard.css"), "utf8");
 const windows = new Set();
 afterEach(() => { for (const w of windows) w.close(); windows.clear(); });
 const ICONS = ["People", "Badges", "Brands", "Nature", "Works", "Details", "Spots", "CivicationStore", "ForNa", "Fortellinger", "Leksikon", "Play", "Training", "Tasks"];
@@ -36,49 +37,67 @@ test("canonical pool contains collections, never the removed Images reserve", ()
   }
 });
 
-test("category defaults keep four collections only when the fourth has real content", () => {
+test("every ordinary category default keeps one circle and three rectangles", () => {
   const art = { id: "kunst", category: "kunst", works: [{ id: "verk", title: "Et verk", image: "verk.jpg" }], image: "sted.jpg" };
   const politics = { id: "politikk", category: "politikk", frontImage: "front.jpg" };
   const w = make(art);
   assert.deepEqual(ids(w, art), ["people", "objects", "brands", "productions"]);
   assert.equal(w.HGPlaceCardCollections.getCategoryCollection(art), "productions");
   assert.equal(w.HGPlaceCardCollections.getFourthLabel(art), "Kunstverk");
-  assert.deepEqual(ids(w, politics), ["people", "objects", "brands"]);
-  assert.equal(w.HGPlaceCardCollections.getCategoryCollection(politics), null);
+  assert.deepEqual(ids(w, politics), ["people", "objects", "brands", "related"]);
+  assert.equal(w.HGPlaceCardCollections.getCategoryCollection(politics), "related");
+});
+
+test("all registered ordinary categories render a full 1 + 3 composition", async () => {
+  const categories = [
+    "by", "historie", "historisk", "kunst", "litteratur", "media", "musikk",
+    "naeringsliv", "politikk", "popkultur", "psykologi", "religion", "scenekunst", "sport",
+    "subkultur", "vitenskap", "filosofi", "film_tv", "lekeplass", "trening", "transport"
+  ];
+  for (const category of categories) {
+    const place = { id: `all_${category}`, category };
+    const w = make(place);
+    await w.HGPlaceCardCollections.apply(place);
+    const definitions = Array.from(w.HGPlaceCardCollections.get(place));
+    assert.equal(definitions.length, 4, category);
+    assert.deepEqual(definitions.map(def => def.shape), ["circle", "rectangle", "rectangle", "rectangle"], category);
+    assert.equal(w.document.querySelector(".pc-icons-quad").dataset.collectionCount, "4", category);
+  }
 });
 
 test("nature keeps circular Flora and Fauna while Map and destinations are rectangular", async () => {
   const place = { id: "n", category: "natur", destinations: [{ id: "topp", title: "Utsiktstoppen", image: "topp.jpg" }], image: "natur.jpg" };
   const w = make(place);
   await w.HGPlaceCardCollections.apply(place);
-  assert.deepEqual(ids(w, place), ["map", "flora", "fauna", "destinations"]);
+  assert.deepEqual(ids(w, place), ["flora", "fauna", "map", "destinations"]);
   assert.equal(w.document.getElementById("pcFloraIcon").dataset.collectionShape, "circle");
   assert.equal(w.document.getElementById("pcFaunaIcon").dataset.collectionShape, "circle");
   assert.equal(w.document.getElementById("pcNatureMapIcon").dataset.collectionShape, "rectangle");
   assert.equal(w.document.getElementById("pcCategoryCollectionIcon").dataset.collectionShape, "rectangle");
 });
 
-test("new place_card_profile supports two, three and four curated collections", () => {
-  for (const collectionIds of [
-    ["people", "related"],
-    ["people", "objects", "related"],
-    ["people", "objects", "brands", "related"]
-  ]) {
-    const place = {
-      id: `p${collectionIds.length}`,
-      category: "by",
-      related_place_ids: ["r"],
-      place_card_profile: {
-        schema: "history_go_place_card_profile_v2",
-        collection_ids: collectionIds,
-        reason: "Bare dokumenterte og visuelt tydelige samlinger er valgt.",
-        verifiedAt: "2026-08-24"
-      }
-    };
-    const w = make(place, { PLACES: [place, { id: "r", name: "Relatert" }] });
-    assert.deepEqual(ids(w, place), collectionIds);
-    assert.equal(w.HGPlaceCardCollections.getProfileSource(place), "place_card_profile_v2");
-  }
+test("canonical profiles require the fixed full grid and incomplete profiles fall back safely", () => {
+  const complete = {
+    id: "complete", category: "by", related_place_ids: ["r"],
+    place_card_profile: {
+      schema: "history_go_place_card_profile_v2",
+      collection_ids: ["people", "objects", "brands", "structures"],
+      reason: "Den faste fulle komposisjonen er kontrollert.", verifiedAt: "2026-08-24"
+    }
+  };
+  const incomplete = {
+    id: "incomplete", category: "historie",
+    place_card_profile: {
+      schema: "history_go_place_card_profile_v2",
+      collection_ids: ["people", "objects", "related"],
+      reason: "En gammel ufullstendig profil skal ikke kollapse rutenettet.", verifiedAt: "2026-08-24"
+    }
+  };
+  const w = make(complete, { PLACES: [complete, incomplete, { id: "r", name: "Relatert" }] });
+  assert.deepEqual(ids(w, complete), ["people", "objects", "brands", "structures"]);
+  assert.equal(w.HGPlaceCardCollections.getProfileSource(complete), "place_card_profile_v2");
+  assert.deepEqual(ids(w, incomplete), ["people", "objects", "brands", "related"]);
+  assert.equal(w.HGPlaceCardCollections.getProfileSource(incomplete), "category_default");
 });
 
 test("legacy round_profile remains readable and silently drops Images", async () => {
@@ -95,17 +114,17 @@ test("legacy round_profile remains readable and silently drops Images", async ()
   };
   const related = { id: "relatert", name: "Relatert sted", cardImage: "missing.jpg" };
   const w = make(place, { PLACES: [place, related] });
-  assert.deepEqual(ids(w, place), ["people", "brands", "related"]);
+  assert.deepEqual(ids(w, place), ["people", "objects", "brands", "related"]);
   assert.equal(w.HGPlaceCardCollections.getProfileSource(place), "round_profile_v1_adapter");
   await w.HGPlaceCardCollections.apply(place);
-  assert.equal(w.document.querySelector(".pc-icons-quad").dataset.collectionCount, "3");
+  assert.equal(w.document.querySelector(".pc-icons-quad").dataset.collectionCount, "4");
   assert.equal(w.document.querySelector(".pc-icons-quad").dataset.collectionProfileSource, "round_profile_v1_adapter");
 });
 
-test("Christiania Torv's three-collection v2 pilot profile is executable", () => {
+test("Christiania Torv's full four-collection v2 profile is executable", () => {
   const place = JSON.parse(fs.readFileSync(path.join(__dirname, "../data/places/by/oslo/places/christiania_torv.json"), "utf8"));
   const w = make(place);
-  assert.deepEqual(ids(w, place), ["people", "objects", "related"]);
+  assert.deepEqual(ids(w, place), ["people", "objects", "brands", "related"]);
   assert.equal(w.HGPlaceCardCollections.getProfileSource(place), "place_card_profile_v2");
 });
 
@@ -136,7 +155,7 @@ test("broken collection previews fall back to icon and count", async () => {
     related_place_ids: ["relatert"],
     place_card_profile: {
       schema: "history_go_place_card_profile_v2",
-      collection_ids: ["people", "related"],
+      collection_ids: ["people", "objects", "brands", "related"],
       reason: "Relasjonen er en reell og dokumentert samling.",
       verifiedAt: "2026-08-24"
     }
@@ -164,7 +183,7 @@ test("documented physical Civication objects remain in Objects without a preview
     }],
     place_card_profile: {
       schema: "history_go_place_card_profile_v2",
-      collection_ids: ["people", "objects"],
+      collection_ids: ["people", "objects", "brands", "related"],
       reason: "Det fysiske objektet er dokumentert selv om eget previewbilde mangler.",
       verifiedAt: "2026-08-24"
     }
@@ -190,7 +209,7 @@ test("Quiz remains a mandatory prominent PlaceCard action", async () => {
 test("generic Details and Spots never become collections and nature map has no generic fallback", () => {
   const place = { id: "p", category: "historie", details: [{ id: "d" }], spots: [{ id: "s" }] };
   const w = make(place);
-  assert.deepEqual(ids(w, place), ["people", "objects", "brands"]);
+  assert.deepEqual(ids(w, place), ["people", "objects", "brands", "related"]);
   assert.ok(!/flyToPlace|HGMapView|\.flyTo\s*\(/.test(source));
   assert.ok(source.includes("HGNatureDetailedMap"));
   assert.ok(!source.includes("people_ids"));
@@ -201,4 +220,12 @@ test("core People and Brands keep preview fallback and keyboard activation", () 
   assert.match(placeCardSource, /setRoundPreview\(peopleIcon, previewImage, previewAlt, "👥", persons\.length\)/);
   assert.match(placeCardSource, /setRoundPreview\(brandsIcon, b0\?\.logo \|\| "", b0\?\.label \|\| "", "🏷️", brands\.length\)/);
   assert.match(placeCardSource, /iconEl\?\.addEventListener\("keydown", openRoundPopup\)/);
+  assert.match(placeCardSource, /Number\(count\) === 0/);
+});
+
+test("missing or broken front media keeps a branded visual surface instead of a black hole", () => {
+  assert.match(placeCardSource, /pcFrontFallbackBound/);
+  assert.match(placeCardSource, /frontFace\.dataset\.mediaState = "fallback"/);
+  assert.match(placeCardCss, /\.pc-card-face-front\{[\s\S]*linear-gradient/);
+  assert.match(placeCardCss, /content:"HISTORY GO"/);
 });

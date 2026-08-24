@@ -106,7 +106,7 @@ test('Chromium renders the rich popup and rounds on desktop and mobile', async t
     assert.equal(await page.locator('#hg-place-panel-stories .hg-place-story-card').count(), 3);
     assert.equal(await page.locator('#hg-place-panel-reading .hg-place-reading-card').count(), 3);
     assert.equal(await page.locator('#hg-place-panel-language article, #hg-place-panel-language li').count() >= 4, true);
-    assert.deepEqual(await page.evaluate(() => window.HGPlaceRounds.get(window.PLACES[0]).map(round => round.id)), ['people', 'objects', 'related']);
+    assert.deepEqual(await page.evaluate(() => window.HGPlaceRounds.get(window.PLACES[0]).map(round => round.id)), ['people', 'objects', 'brands', 'structures']);
     await page.setViewportSize({ width: 390, height: 844 });
     await page.reload({ waitUntil: 'networkidle' });
     await page.waitForFunction(() => window.__ready === true);

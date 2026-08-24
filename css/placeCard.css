@@ -189,6 +189,30 @@
   -webkit-backface-visibility: hidden;
 }
 
+.pc-card-face-front{
+  display:grid;
+  place-items:center;
+  background:
+    radial-gradient(circle at 28% 22%, rgba(255,216,91,.28), transparent 34%),
+    linear-gradient(145deg, #213849, #0d151c 58%, #17252f);
+}
+
+.pc-card-face-front::before{
+  content:"HISTORY GO";
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  color:rgba(255,255,255,.72);
+  font-weight:800;
+  font-size:clamp(14px, 2vw, 22px);
+  letter-spacing:.12em;
+}
+
+.pc-card-face-front[data-media-state="ready"]::before{
+  content:"";
+}
+
 .pc-card-face-back{
   transform: rotateY(180deg);
 }
@@ -198,6 +222,8 @@
   height: 100%;
   object-fit: contain;
   display: block;
+  position:relative;
+  z-index:1;
 }
 
 /* Quizkort-bakside: rommer både gammelt bilde og nytt renderet kort */

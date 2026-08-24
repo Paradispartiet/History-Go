@@ -99,17 +99,17 @@ test("manual quality review records the original five findings and the current r
   assert.equal(reading.resolution.items.length, 3);
 });
 
-test("global checklist mirrors the canonical 2–4 collections plus separate Badge contract", () => {
+test("global checklist mirrors the canonical full four-collection plus separate Badge contract", () => {
   const workflow = fs.readFileSync("docs/PLACE_PRODUCTION_CHECKLIST.md", "utf8");
   const checklist = fs.readFileSync("docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md", "utf8");
   const contract = fs.readFileSync("data/places/README_place_rounds.md", "utf8");
 
   assert.match(workflow, /PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1\.md/);
   assert.match(workflow, /Alle faglige, redaksjonelle, faktuelle og subsystemspesifikke krav i referansen er fortsatt bindende/);
-  assert.match(contract, /to, tre eller fire kvalifiserte samlinger/);
-  assert.match(contract, /Badges teller ikke blant de 2–4 samlingene/);
-  assert.match(checklist, /MÅL FOR PLACECARD-SAMLINGER: 2–4 kvalifiserte samlinger \+ separat fast Badge \+ obligatorisk Quiz/);
-  assert.match(checklist, /2–4 kvalifiserte samlinger vises balansert ved `frontImage`/);
+  assert.match(contract, /nøyaktig fire samlingsflater ligger i et balansert 2 × 2-felt/);
+  assert.match(contract, /Badges teller ikke blant de fire samlingene/);
+  assert.match(checklist, /MÅL FOR PLACECARD-SAMLINGER: alltid fire flater i fast kategori-komposisjon \+ separat fast Badge \+ obligatorisk Quiz/);
+  assert.match(checklist, /fire samlingsflater vises som et fullt 2 × 2-felt ved `frontImage`/);
   assert.match(checklist, /bilder fra ulike kamerastandpunkter kan brukes som supplerende historiske bilder/);
   assert.match(checklist, /canonical place-register\/manifester er søkt før motivet velges/i);
   assert.match(checklist, /delsted som har egen canonical place-oppføring brukes ikke som primært Før\/etter-stedfortreder/i);

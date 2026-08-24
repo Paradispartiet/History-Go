@@ -23,26 +23,17 @@ function layoutFor(count) {
   return { dom, grid };
 }
 
-test("two collections use one balanced row", () => {
-  const { dom, grid } = layoutFor(2);
-  assert.equal(grid.style.getPropertyValue("--hg-collection-fill-height"), "108px");
-  assert.equal(grid.style.getPropertyValue("--hg-collection-circle-size"), "108px");
+test("four collections use balanced two-row sizing", () => {
+  const { dom, grid } = layoutFor(4);
+  assert.equal(grid.style.getPropertyValue("--hg-collection-fill-height"), "105px");
+  assert.equal(grid.style.getPropertyValue("--hg-collection-circle-size"), "105px");
   dom.window.close();
 });
 
-test("three and four collections use balanced two-row sizing", () => {
-  for (const count of [3, 4]) {
-    const { dom, grid } = layoutFor(count);
-    assert.equal(grid.style.getPropertyValue("--hg-collection-fill-height"), "105px");
-    assert.equal(grid.style.getPropertyValue("--hg-collection-circle-size"), "105px");
-    dom.window.close();
-  }
-});
-
-test("CSS owns 2/3/4 layouts and shape rules", () => {
-  for (const count of [2, 3, 4]) assert.match(css, new RegExp(`data-collection-count="${count}"`));
+test("CSS owns the fixed four-cell layout and shape rules", () => {
+  assert.match(css, /data-collection-count="4"/);
+  assert.doesNotMatch(css, /data-collection-count="[23]"/);
   assert.match(css, /data-collection-shape="circle"[\s\S]*border-radius:50%/);
   assert.match(css, /data-collection-shape="rectangle"[\s\S]*border-radius:clamp/);
-  assert.match(css, /data-collection-position="2"[\s\S]*grid-column:1 \/ -1/);
-  assert.match(script, /\[2, 3, 4\]\.includes\(count\)/);
+  assert.match(script, /count !== 4/);
 });

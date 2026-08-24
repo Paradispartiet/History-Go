@@ -16,26 +16,22 @@ Sist kontrollert: **2026-08-24**
 
 Filnavnet beholdes midlertidig slik at gamle lenker og arbeidsløp ikke brytes. Kontrakten handler nå om **samlinger**, ikke om en kvote med runde elementer.
 
-> **PlaceCard fremhever bare samlinger som er tydelige, stedsspesifikke, substansielle og visuelt ærlige. Ingen samling opprettes for å fylle en plass.**
+> **PlaceCard har alltid en full, fast 2 × 2-komposisjon. Tomme registre gir en ærlig ikon-/statusflate; de skal aldri kollapse layouten eller fylles med oppdiktet innhold.**
 
 ## 1. Fast PlaceCard-komposisjon
 
 Den eksisterende PlaceCard-komposisjonen beholdes:
 
 1. `frontImage`-/medieflaten ligger i kortets venstre mediefelt;
-2. to, tre eller fire kvalifiserte samlinger ligger balansert i samlingsfeltet ved siden av;
+2. nøyaktig fire samlingsflater ligger i et balansert 2 × 2-felt ved siden av;
 3. Badges ligger separat ved stedsoverskriften og teller ikke som samling;
 4. de sju små stedspopup-snarveiene står i sitt eksisterende felt;
 5. den obligatoriske, tydelige **Ta quiz**-handlingen beholdes i PlaceCard-footeren;
 6. stedspopupens faner, eierskap og innhold endres ikke av denne kontrakten.
 
-Antall samlinger følger innholdet:
+Vanlige PlaceCards viser alltid **People** som én sirkel og **Objects**, **Brands** og kategoriens samling som tre avrundede rektangler. Nature PlaceCards viser alltid **Flora** og **Fauna** som to sirkler og **Kart** og **Turmål** som to avrundede rektangler. Badges-rundingene ved overskriften kommer i tillegg og teller ikke blant de fire.
 
-- **2 samlinger:** én balansert rad;
-- **3 samlinger:** 2 + 1, med siste samling sentrert;
-- **4 samlinger:** balansert 2 × 2.
-
-Det finnes ingen femte innholdsplass og ingen minimumskvote på fire.
+Det finnes ingen femte samlingsplass. En samling uten registrerte treff beholder ikon og forståelig tomtilstand uten å vise tallet 0; den må aldri fjernes slik at kortet får et visuelt hull.
 
 ## 2. Formregler
 
@@ -53,8 +49,8 @@ Nye og vesentlig reviderte steder bruker:
 {
   "place_card_profile": {
     "schema": "history_go_place_card_profile_v2",
-    "collection_ids": ["people", "objects", "related"],
-    "reason": "Tre dokumenterte og tydelig forskjellige stedssamlinger består innholds- og UI-gaten.",
+    "collection_ids": ["people", "objects", "brands", "related"],
+    "reason": "Den faste fulle standardkomposisjonen er kontrollert med én sirkel og tre rektangler.",
     "verifiedAt": "YYYY-MM-DD"
   }
 }
@@ -62,11 +58,11 @@ Nye og vesentlig reviderte steder bruker:
 
 Krav:
 
-- `collection_ids` har 2–4 unike canonical IDs;
-- rekkefølgen er redaksjonelt valgt og blir visningsrekkefølgen;
-- hver valgt samling har reelt, stedsspesifikt innhold og forståelig brukerbetydning;
+- `collection_ids` har nøyaktig fire unike canonical IDs;
+- rekkefølgen følger den faste standard- eller naturkomposisjonen;
+- innhold skal være reelt og stedsspesifikt; et tomt register vises som en ærlig reserveflate og aldri som oppdiktet innhold eller synlig 0;
 - maksimalt én kategori-eid samling (`productions`, `structures`, `competitions`, `related` eller `destinations`) kan velges fordi de deler runtime-visningsplass;
-- `reason` forklarer hvorfor akkurat disse samlingene består og hvorfor relevante utelatelser ikke er filler;
+- `reason` forklarer kategori-komposisjonen og dokumenterer hvilke tomme flater som fortsatt er reelle produksjonsgap;
 - `verifiedAt` viser siste reelle innholds- og UI-kontroll;
 - schemaet skal valideres, men strukturell schema-PASS erstatter aldri redaksjonell kontroll.
 
@@ -92,8 +88,8 @@ Kompatibilitetslaget:
 1. bevarer rekkefølgen på støttede samlinger;
 2. dedupliserer IDs;
 3. fjerner `images`, fordi Bilder ikke lenger er en samling;
-4. godtar resultatet når 2–4 støttede samlinger gjenstår;
-5. faller tilbake til kategoriens overgangsprofil dersom legacy-profilen ikke kan leses sikkert.
+4. kompletterer resultatet til den faste fireflaterskomposisjonen for kategorien;
+5. faller tilbake til samme kategori-profil dersom legacy-profilen ikke kan leses sikkert.
 
 `round_profile` er read-only legacy for nye produksjonsløp. Stedet migreres til `place_card_profile` først når det faktisk fullproduseres eller PlaceCard-kurateres.
 
@@ -101,19 +97,19 @@ Kompatibilitetslaget:
 
 For at gamle steder ikke skal ødelegges, kan runtime fortsatt utlede en overgangsprofil.
 
-Vanlige steder starter fra:
+Vanlige steder bruker alltid:
 
 ```text
-people · objects · brands
+people · objects · brands · kategoriens samling
 ```
 
-Natursteder starter fra:
+Natursteder bruker alltid:
 
 ```text
-map · flora · fauna
+flora · fauna · map · destinations
 ```
 
-Når kategoriens naturlige samling har reelt runtime-innhold, kan den legges til som nummer fire:
+Kategoriens naturlige samling fyller alltid den fjerde plassen. Manglende registrerte treff vises som ikon-/statusreserve uten falskt innhold:
 
 | Kategori | Kategori-eid samling | Brukerrettet navn |
 | --- | --- | --- |
@@ -124,6 +120,7 @@ Når kategoriens naturlige samling har reelt runtime-innhold, kan den legges til
 | `scenekunst` | `productions` | Forestillinger |
 | `media` | `productions` | Utgivelser |
 | `subkultur` | `productions` | Uttrykk og utgivelser |
+| `popkultur` | `productions` | Uttrykk og utgivelser |
 | `sport` | `competitions` | Kamper og konkurranser |
 | `natur` | `destinations` | Turmål |
 | `by` | `structures` | Bygg og anlegg |
@@ -163,7 +160,7 @@ People viser canonical personer med dokumentert stedstilknytning. Place-eierskap
 
 Objects er en reell samling av fysiske, identifiserbare gjenstander med dokumentert stedstilknytning. Canonical felt er `place.objects`.
 
-En fysisk Civication-post kan leses som compatibility-kilde når den faktisk oppfyller Objects-kontrakten. Det gjør ikke Civication til en samling. Én vilkårlig gjenstand er ikke automatisk nok til å etablere en god PlaceCard-samling.
+En fysisk Civication-post kan leses som compatibility-kilde når den faktisk oppfyller Objects-kontrakten. Det gjør ikke Civication til en samling. En tom eller svak Objects-kilde fylles aldri med en vilkårlig gjenstand; flaten beholder i stedet sin ærlige reservevisning.
 
 ## 9. Brands
 
@@ -190,7 +187,7 @@ En produksjon er ikke det samme som en fysisk gjenstand: en sang kan høre til i
 
 `structures` betyr navngitte bygninger og anlegg som utgjør en reell samling ved stedet, som haller, tårn, tribuner, broer, verksteder eller andre identifiserbare konstruksjoner.
 
-Gamle `subplaces`-/`spots`-data kan bare brukes som compatibility-kilde når posten uttrykkelig beskriver en bygning eller et anlegg. Objects og Structures velges ikke sammen når skillet er kunstig eller begge beskriver de samme fysiske elementene.
+Gamle `subplaces`-/`spots`-data kan bare brukes som compatibility-kilde når posten uttrykkelig beskriver en bygning eller et anlegg. Objects og Structures kan ha hver sin faste flate, men samme fysiske element må aldri dupliseres eller gis et kunstig skille mellom samlingene.
 
 ## 13. Competitions
 
@@ -238,7 +235,7 @@ Badges står separat ved stedsoverskriften og åpner:
 fagverk-sted.html?place=<place_id>
 ```
 
-Badges teller ikke blant de 2–4 samlingene. Hvert sted skal ha fungerende fagverk-side etter produksjonssjekklisten.
+Badges teller ikke blant de fire samlingene. Hvert sted skal ha fungerende fagverk-side etter produksjonssjekklisten.
 
 Quiz er en obligatorisk, tydelig PlaceCard-handling i footeren. Quiz skal ikke gjøres valgfri, skjules eller flyttes inn i samlingsfeltet. Samlingsantall har ingen innvirkning på quizkravet.
 
@@ -248,10 +245,10 @@ Et sted er PlaceCard-ferdig når:
 
 1. Badges vises separat ved overskriften og åpner riktig fagverk-side;
 2. Quiz vises som obligatorisk, tydelig handling og åpner riktig stedquiz;
-3. 2–4 samlinger er valgt i `place_card_profile` etter reell kandidatvurdering;
-4. alle valgte samlinger er relevante, stedsspesifikke, substansielle og tydelig forskjellige;
-5. People, Flora og Fauna er sirkler, mens øvrige samlinger er avrundede rektangler;
-6. 2-, 3- eller 4-layouten er kontrollert på mobil og desktop;
+3. nøyaktig fire samlingsflater er valgt i `place_card_profile` etter kategoriens faste komposisjon;
+4. samlinger med innhold er relevante og stedsspesifikke; tomme registre viser ærlig reserveflate uten falskt 0;
+5. vanlige kort har People som sirkel og tre rektangler; Nature har Flora og Fauna som sirkler og to rektangler;
+6. den fulle 2 × 2-layouten er kontrollert på mobil og desktop;
 7. Bilder finnes bare i medie-/bildeeierne og aldri som samling eller reserve;
 8. hver samling åpner korrekt popupinnhold, antall og datakilde;
 9. ødelagt preview faller tilbake til ikon og antall uten ødelagt bildeikon;
@@ -261,4 +258,4 @@ Et sted er PlaceCard-ferdig når:
 13. stedspopupen er uendret og fullverdig kontrollert etter popupkontrakten;
 14. schema, typer, renderer, layout og relevante permanente tester passerer.
 
-**Stoppgate:** PlaceCard kan ikke ferdigmeldes før runtime, schema og tester støtter den valgte modellen. Ingen fjerde samling skal produseres bare for å demonstrere 2 × 2-layouten.
+**Stoppgate:** PlaceCard kan ikke ferdigmeldes før runtime, schema og tester støtter den fulle modellen. Manglende innhold skal registreres som et produksjonsgap, men PlaceCard-komposisjonen skal fortsatt være full og visuelt stabil.

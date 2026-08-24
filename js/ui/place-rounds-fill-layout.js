@@ -1,6 +1,6 @@
 // @ts-nocheck
 // js/ui/place-rounds-fill-layout.js
-// Balanserer to, tre eller fire canonical PlaceCard-samlinger ved siden av frontImage.
+// Balanserer den faste 2 × 2-komposisjonen ved siden av frontImage.
 (function installPlaceRoundsFillLayout(global) {
   "use strict";
 
@@ -19,14 +19,14 @@
     if (!grid) return;
 
     const count = Number(grid.dataset.collectionCount || grid.dataset.roundCount || 0);
-    if (![2, 3, 4].includes(count)) {
+    if (count !== 4) {
       grid.style.removeProperty("--hg-collection-fill-height");
       grid.style.removeProperty("--hg-collection-circle-size");
       return;
     }
 
     const cols = 2;
-    const rows = count <= 2 ? 1 : 2;
+    const rows = 2;
     const gap = numericGap(grid);
     const rect = grid.getBoundingClientRect();
     const width = rect.width || grid.clientWidth || 0;
