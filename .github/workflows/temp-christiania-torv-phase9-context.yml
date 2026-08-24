@@ -1,9 +1,9 @@
 name: TEMP Christiania Torv phase 9 context writeback
 
 on:
-  push:
+  pull_request:
     branches:
-      - agent/christiania-torv-phase9-rounds-entities-v1
+      - main
 
 permissions:
   contents: write
