@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "39a10b4c44726cceeda884f3932fa88730fa06f2e1e8bd8f5e90c5032b0f0e82"
+    "content_sha256": "bad81ab49244684a9f33e11144f71500f2027779b700d285dd648b16535f2a79"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 16,
     "chapter_count": 175,
     "module_file_count": 441,
-    "package_file_count": 254,
+    "package_file_count": 256,
     "chapter_referenced_file_count": 835,
-    "referenced_file_count": 1033,
+    "referenced_file_count": 1034,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -1105,9 +1105,9 @@
         "supersetQuizMal"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 30,
+      "package_file_count": 32,
       "required_package_file_count": 4,
-      "optional_package_file_count": 26,
+      "optional_package_file_count": 28,
       "package_files": [
         {
           "path": "data/fag/helse/anatomy_physiology_source_claim_brief_v1.json",
@@ -1192,6 +1192,18 @@
           ],
           "exists": true,
           "content_sha256": "f30a5834cdc30b0e362b77f13082de2191e8ed385eca9ff3d73bbc54a8e1f070"
+        },
+        {
+          "path": "data/fag/helse/health_services_economics_source_claim_brief_v1.json",
+          "required": false,
+          "fields": [
+            "sourceClaimBriefs"
+          ],
+          "key_paths": [
+            "sourceClaimBriefs[11]"
+          ],
+          "exists": true,
+          "content_sha256": "595ac254e211a6aca06b3575c80c9c584942151b2203c728b490e5c76094cb7a"
         },
         {
           "path": "data/fag/helse/helsepensum_canonical_v1.json",
@@ -1374,6 +1386,18 @@
           "content_sha256": "5bdecb6a6615370d2f82f7bb45cbc15ffe027caa08948745d15ce5509fe04ea1"
         },
         {
+          "path": "data/fagverk/helse/helsetjenester-helseokonomi-organisering-kvalitet-prioritering-og-ressursbruk.json",
+          "required": false,
+          "fields": [
+            "chapters"
+          ],
+          "key_paths": [
+            "chapters[11]"
+          ],
+          "exists": true,
+          "content_sha256": "e13d9f24e5d6cb09a0a133f35785fc478431b0d4d79b004f7c21325bc5bb9cbe"
+        },
+        {
           "path": "data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging.json",
           "required": false,
           "fields": [
@@ -1470,20 +1494,20 @@
           "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
         }
       ],
-      "package_content_sha256": "f4e712ff4e0627e2e8aba479cda6438a3e97f7fbae2bd32b67366f10103ce2f8",
+      "package_content_sha256": "78d396babef563ebda71dc1a36d80fba54927941427af1e073ba6aa7ad1d04da",
       "chapter_count": 12,
       "module_file_count": 48,
       "brief_file_count": 12,
       "claims_file_count": 12,
       "chapter_referenced_file_count": 84,
       "chapter_content_sha256": "a2678ee4b38ebbdea2b334d8f21606c54e63a1a2e7d7906f3d00610bf718e12b",
-      "referenced_file_count": 103,
+      "referenced_file_count": 104,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "cec68886c2a03b585e6216beeb6a33a9f80319159bb7f5f7efa85815e9610cc3",
-      "content_sha256": "92b40505b286de33bca34357673545af22fd8d9bd52b8b09b66877ad0c917563",
+      "structure_sha256": "e774632b327c48d02a928e1d77e968a6a41a75fcac4818d15c990ea1b2e24145",
+      "content_sha256": "88c2975f9c295e7110082014a2f1cfc251d55c6b92a3b396f23132a07a4ad020",
       "chapters": [
         {
           "chapter_id": "medisinsk-etikk-evidens-og-ansvarlig-beslutning",
@@ -5633,5 +5657,5 @@
       ]
     }
   },
-  "release_sha256": "b69d46f61ff59b248b0adbe29639ec0f73ea94cc0b5c88a7010bed1e52233f23"
+  "release_sha256": "6358bfde3f62939003b03ac25d9d2d2acfb232a5e6003f00eff5f607469bb02b"
 }
