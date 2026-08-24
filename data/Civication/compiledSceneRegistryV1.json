@@ -8975,7 +8975,10 @@
           "institution_id": "oslo_kommune_planavdeling_001",
           "object_ids": [
             "by_radgiver_lillebekk_plan_case_001"
-          ]
+          ],
+          "priority": "high",
+          "rework_of_object_transition": "by_radgiver_lillebekk_ready_after_approval",
+          "rework_of_scene_id": "by_radgiver_realism_approval_request_001"
         }
       },
       "id": "by_radgiver_realism_return_to_case_001",
@@ -9193,10 +9196,13 @@
           "institution_id": "oslo_kommune_planavdeling_001",
           "object_ids": [
             "by_radgiver_lillebekk_plan_case_001"
-          ]
+          ],
+          "priority": "high",
+          "rework_of_object_transition": "by_radgiver_lillebekk_ready_after_approval",
+          "rework_of_scene_id": "by_radgiver_realism_approval_request_001"
         }
       },
-      "source_hash": "6def7d4cf733b47b84ca88f64e408a9256342d71caf0e61e170c9ec45d52fd52",
+      "source_hash": "7042e1ac3b46c0bdd89f119a7b948bdd37ae79659594a2bffb557b0bd22fa227",
       "source_path": "data/Civication/mailFamilies/by/consequence/by_radgiver_plan_consequence.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -10060,11 +10066,15 @@
         "task_kind": "event",
         "thread_key": "by_radgiver_lillebekk_realism_001",
         "work_context": {
+          "deadline_day": 1,
+          "deadline_phase": "afternoon",
           "deadline_ref": "utvalg_etter_rework",
+          "handoff_to_actor_id": "elin_plansjef",
           "institution_id": "oslo_kommune_planavdeling_001",
           "object_ids": [
             "by_radgiver_lillebekk_plan_case_001"
-          ]
+          ],
+          "priority": "high"
         }
       },
       "id": "by_radgiver_realism_approval_request_001",
@@ -10317,14 +10327,18 @@
         "thread_id": "by_radgiver_lillebekk_realism_001",
         "version": 1,
         "work_context": {
+          "deadline_day": 1,
+          "deadline_phase": "afternoon",
           "deadline_ref": "utvalg_etter_rework",
+          "handoff_to_actor_id": "elin_plansjef",
           "institution_id": "oslo_kommune_planavdeling_001",
           "object_ids": [
             "by_radgiver_lillebekk_plan_case_001"
-          ]
+          ],
+          "priority": "high"
         }
       },
-      "source_hash": "050d05437f014b08bf701e6d5df1fa322dbc35f1b87f499a65ae5792b486fc4f",
+      "source_hash": "d9f26b05c162b507d8ab9868693ddc46d2af8622b866b0ce1fff979bf54397c5",
       "source_path": "data/Civication/mailFamilies/by/event/by_radgiver_plan_event.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -10503,11 +10517,14 @@
         "task_kind": "event",
         "thread_key": "by_radgiver_lillebekk_realism_001",
         "work_context": {
+          "deadline_day": 2,
+          "deadline_phase": "afternoon",
           "deadline_ref": "politisk_utvalg",
           "institution_id": "oslo_kommune_planavdeling_001",
           "object_ids": [
             "by_radgiver_lillebekk_plan_case_001"
-          ]
+          ],
+          "priority": "urgent"
         }
       },
       "id": "by_radgiver_realism_formal_send_001",
@@ -10663,14 +10680,17 @@
         "thread_id": "by_radgiver_lillebekk_realism_001",
         "version": 1,
         "work_context": {
+          "deadline_day": 2,
+          "deadline_phase": "afternoon",
           "deadline_ref": "politisk_utvalg",
           "institution_id": "oslo_kommune_planavdeling_001",
           "object_ids": [
             "by_radgiver_lillebekk_plan_case_001"
-          ]
+          ],
+          "priority": "urgent"
         }
       },
-      "source_hash": "4a70d739ef8b64e2b82c6a36e59755516c09bc8f757c53296cdfe81f80dd3b56",
+      "source_hash": "854b8fcb1fd53a18cc541ee4980b353c382aa8da482067394002ff1d2aa76a8a",
       "source_path": "data/Civication/mailFamilies/by/event/by_radgiver_plan_event.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -12110,9 +12130,11 @@
         "work_context": {
           "deadline_ref": "politisk_utvalg",
           "institution_id": "oslo_kommune_planavdeling_001",
+          "interrupts": true,
           "object_ids": [
             "by_radgiver_lillebekk_plan_case_001"
-          ]
+          ],
+          "priority": "urgent"
         }
       },
       "id": "by_radgiver_realism_approval_grant_001",
@@ -12223,12 +12245,14 @@
         "work_context": {
           "deadline_ref": "politisk_utvalg",
           "institution_id": "oslo_kommune_planavdeling_001",
+          "interrupts": true,
           "object_ids": [
             "by_radgiver_lillebekk_plan_case_001"
-          ]
+          ],
+          "priority": "urgent"
         }
       },
-      "source_hash": "8de37cc27491b16a37410f560441bcc7a02af760353d4359000cf07f1e1390b2",
+      "source_hash": "45073ed73af441c31bfe063f28061b7b760e0cfb0a2f40f8943f7aaa0c7aee23",
       "source_path": "data/Civication/mailFamilies/by/followup/by_radgiver_plan_followup.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -17194,11 +17218,15 @@
         },
         "thread_key": "by_radgiver_lillebekk_realism_001",
         "work_context": {
+          "deadline_day": 2,
+          "deadline_phase": "forenoon",
           "deadline_ref": "ledergjennomgang",
           "institution_id": "oslo_kommune_planavdeling_001",
           "object_ids": [
             "by_radgiver_lillebekk_plan_case_001"
-          ]
+          ],
+          "priority": "high",
+          "waiting_for_actor_id": "elin_plansjef"
         }
       },
       "id": "by_radgiver_realism_knowledge_radhus_001",
@@ -17293,14 +17321,18 @@
         "thread_id": "by_radgiver_lillebekk_realism_001",
         "version": 1,
         "work_context": {
+          "deadline_day": 2,
+          "deadline_phase": "forenoon",
           "deadline_ref": "ledergjennomgang",
           "institution_id": "oslo_kommune_planavdeling_001",
           "object_ids": [
             "by_radgiver_lillebekk_plan_case_001"
-          ]
+          ],
+          "priority": "high",
+          "waiting_for_actor_id": "elin_plansjef"
         }
       },
-      "source_hash": "d3f159f8c6d45e2803e73b58ffa7703d48aba194f6003fa851ae6c12e5ead5a7",
+      "source_hash": "aefba22387bea3a27c2fd514d3d1f4adfaa873004b51eb5157b0ef4cbf1b8676",
       "source_path": "data/Civication/mailFamilies/by/knowledge/by_radgiver_plan_knowledge.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -170372,7 +170404,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "b8474766df869c08db671382ab06ecc31914e50ee345f610bb68bbf5b094d3b7",
+  "registry_hash": "b2f19b8884b224f1857b07c6f2384f8a6adbd1973a8f7ee885e85b48892fe500",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",

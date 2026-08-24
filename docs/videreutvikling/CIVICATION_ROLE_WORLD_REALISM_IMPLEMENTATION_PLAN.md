@@ -1,7 +1,7 @@
 # Civication Role World — implementasjonsplan for rikere livsverdener
 
-Status: **videreutviklingsplan — ikke implementert runtime-kontrakt**  
-Sist kontrollert: **2026-08-23**
+Status: **aktiv implementering — foundation, authority, History Go-affordance og generalized work rhythm v1 er materialisert**
+Sist kontrollert: **2026-08-24**
 
 ## 1. Mål
 
@@ -15,6 +15,15 @@ før vi vurderer noen ny motor
 ```
 
 Vi skal ikke implementere alt i én PR. Hvert lag skal bevises med én eller noen få representative roller, permanente tester og full regressjon før neste lag blir blokkerende.
+
+Gjeldende implementeringsstatus:
+
+- persistent work-object foundation og Scene Pipeline-effekter er i produksjon;
+- institusjons-/myndighetskontrakten er i produksjon;
+- History Go-affordance som utvider faglige valg uten å gi ny formell myndighet er i produksjon;
+- full pilot finnes for arkiv/dokumentasjon og By-rådgiver;
+- generalized work rhythm v1 tolker additive metadata i eksisterende SceneDirector/daily-adaptere;
+- bred rolle-rollout og Role World Realism Matrix skal fortsatt vente til situert omdømme og minst én strukturelt annerledes pilot er bevist.
 
 ## 2. Verifisert eksisterende arkitektur
 
@@ -343,6 +352,8 @@ arbeidsproblem → History Go-task → completion → return → nytt relevant v
 
 ## 8. Fase 4 — realistisk arbeidsrytme, backlog og rework
 
+Status 2026-08-24: **generalized work rhythm v1 implementert; fase-exit på tvers av ulike yrkestyper gjenstår**.
+
 ### 8.1 Ingen ny dagmotor
 
 Bruk eksisterende day/phase-system og SceneDirector.
@@ -368,6 +379,14 @@ Audit og utvid ved behov:
 - `civicationDailyMailBuilder.js` / `civicationWorkdayMailBuilder.js` der de fortsatt er adaptere inn i canonical scenes.
 
 Regler skal være deterministiske og ikke oversvømme spilleren.
+
+Implementert v1:
+
+- `CivicationWorkRhythm` er en ren evaluator, ikke en ny motor eller state-eier;
+- SceneDirector filtrerer eksplisitte blockers/waiting/rework-forutsetninger og rangerer deadline/priority/interrupt-signaler stabilt;
+- daily- og workday-adapterne bruker samme evaluator, slik at blocked scener ikke lekker inn som daily extras;
+- gamle saves og scener uten rhythm-metadata beholder tidligere eligibility og rekkefølge;
+- By-rådgiver-piloten materialiserer venting, lederhåndoff, avbrudd, rework og fristpress i canonical role-owned kataloger.
 
 ### 8.4 Hverdagsbeats
 
@@ -813,19 +832,10 @@ Programmet er først modent nok for bred rollout når:
 11. full Civication-suite og TypeScript-gates er grønne;
 12. en egen realisme-matrise viser faktisk implementert dekning uten å omskrive historien til eksisterende `role_world_complete`.
 
-## 24. Første konkrete implementeringsoppgave etter dokumentasjonen
+## 24. Neste konkrete implementeringsoppgave
 
-Når det systematiske career-playability-sporet tillater det, bør første kodearbeid være:
+Neste mekanikk er **situert omdømme og relasjonell tillit** som en egen, avgrenset PR. Den skal gjenbruke eksisterende reputation/NPC-consequence-kjeder, ha additive defaults og ikke starte bred rolle-rollout.
 
-**Persistent Work Object Foundation**
-
-Scope:
-
-- state contract + typed helper;
-- additive Scene Contract metadata/effects;
-- compiler parity;
-- unit tests;
-- ingen bred rolleproduksjon;
-- deretter én separat pilot-PR for `historie/historie_arkiv_og_dokumentasjon`.
+Deretter skal en strukturelt annerledes rollepilot bevise at work rhythm faktisk varierer mellom yrkestyper. Først etter 3–4 forskjellige piloter opprettes Role World Realism Matrix; bred rollout forblir utsatt til da.
 
 Dette gir størst realismegevinst per ny mekanikk og danner grunnlaget for institusjon, rhythm, rework, History Go-affordances og cross-role shared world.

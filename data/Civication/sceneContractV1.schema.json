@@ -344,7 +344,21 @@
           "uniqueItems": true
         },
         "institution_id": { "$ref": "#/$defs/nonEmptyId" },
-        "deadline_ref": { "type": "string", "minLength": 1 }
+        "deadline_ref": { "type": "string", "minLength": 1 },
+        "deadline_day": { "type": "integer", "minimum": 1, "maximum": 366 },
+        "deadline_phase": {
+          "enum": ["morning", "forenoon", "workday", "lunch", "afternoon", "dinner", "evening", "day_end", "any"]
+        },
+        "blocked_by_object_id": { "$ref": "#/$defs/nonEmptyId" },
+        "waiting_for_actor_id": { "$ref": "#/$defs/nonEmptyId" },
+        "handoff_to_actor_id": { "$ref": "#/$defs/nonEmptyId" },
+        "priority": { "enum": ["low", "normal", "high", "urgent"] },
+        "interrupts": { "type": "boolean" },
+        "rework_of_scene_id": { "$ref": "#/$defs/nonEmptyId" },
+        "rework_of_object_transition": { "$ref": "#/$defs/nonEmptyId" }
+      },
+      "dependentRequired": {
+        "deadline_phase": ["deadline_day"]
       }
     },
     "workObjectCreateSeed": {
