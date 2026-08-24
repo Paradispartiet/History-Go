@@ -15,6 +15,7 @@ const bank = read('data/Civication/roleWorldThemeBank.json');
 const plan = read('data/Civication/mailPlans/media/media_redaksjon_plan.json');
 const model = read('data/Civication/roleModels/media/journalist.json');
 const matrix = read('data/Civication/careerGameplayMatrix.json');
+const scenarioPeople = read('data/Civication/scenarioPeople/generated/media.json');
 
 assert.equal(world.schema, 'civication_role_world_v1');
 assert.equal(world.category, 'media');
@@ -98,6 +99,12 @@ assert.equal(world.materialization.no_new_runtime, true);
 assert.equal(model.role_id, 'media_journalist');
 assert.equal(model.role_scope, 'media_redaksjon');
 assert.ok(model.related_people.length >= 8);
+assert.ok(model.related_people.every(person => person.fictional === true));
+const fictionalPeople = new Set(model.related_people.map(person => person.id));
+assert.ok(
+  scenarioPeople.missing_people_candidates.every(person => !fictionalPeople.has(person.id)),
+  'fictional newsroom actors never leak into the canonical People backlog'
+);
 assert.ok(model.related_places.some(place => place.id === 'vg_huset'));
 assert.ok(model.required_knowledge.place_connections.some(place => place.place_id === 'vg_huset'));
 for (const family of [
