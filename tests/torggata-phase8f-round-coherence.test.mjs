@@ -23,7 +23,7 @@ function runtime(nextPlace = place, extraPlaces = []) {
   return dom.window;
 }
 
-test("Torggata owns four distinct content rounds plus separate Badge", () => {
+test("Torggata legacy profile is adapted to three collections plus separate Badge", () => {
   assert.deepStrictEqual(place.round_profile.content_round_ids, ["people", "images", "brands", "related"]);
   assert.equal(place.round_profile.schema, "history_go_place_round_profile_v1");
   assert.match(place.round_profile.reason, /enslig Objects-post/);
@@ -32,8 +32,8 @@ test("Torggata owns four distinct content rounds plus separate Badge", () => {
   assert.deepStrictEqual(place.related_place_ids, ["storgata", "youngstorget", "eldorado_bokhandel"]);
 
   const w = runtime();
-  assert.deepStrictEqual(Array.from(w.HGPlaceRounds.get(place)).map(def => def.id), ["people", "images", "brands", "related"]);
-  assert.equal(w.HGPlaceRounds.getItems(place, "images").length, 4);
+  assert.deepStrictEqual(Array.from(w.HGPlaceRounds.get(place)).map(def => def.id), ["people", "brands", "related"]);
+  assert.equal(w.HGPlaceRounds.getItems(place, "images").length, 0);
   assert.equal(w.HGPlaceRounds.getItems(place, "related").length, 3);
   assert.equal(w.HGPlaceRounds.badge.id, "badges");
 });
@@ -49,27 +49,27 @@ test("own places appear only as explicit relations, not parent objects or struct
   assert.match(audit, /Torggata Bad brukes ikke som bilde, Object, Structure eller hovedanker/);
 });
 
-test("invalid or empty local profiles fall back to the standard category contract", () => {
+test("legacy profiles are filtered when possible and otherwise fall back to category defaults", () => {
   const invalid = JSON.parse(JSON.stringify(place));
   invalid.id = "invalid_profile";
   invalid.round_profile.content_round_ids = ["people", "images", "brands", "images"];
   const w1 = runtime(invalid);
-  assert.equal(w1.HGPlaceRounds.getConfigured(invalid), null);
-  assert.deepStrictEqual(Array.from(w1.HGPlaceRounds.get(invalid)).map(def => def.id), ["people", "objects", "brands", "images"]);
+  assert.deepStrictEqual(Array.from(w1.HGPlaceRounds.getConfigured(invalid)), ["people", "brands"]);
+  assert.deepStrictEqual(Array.from(w1.HGPlaceRounds.get(invalid)).map(def => def.id), ["people", "brands"]);
 
   const undocumented = JSON.parse(JSON.stringify(place));
   undocumented.id = "undocumented_profile";
   undocumented.round_profile.reason = "   ";
   const w2 = runtime(undocumented);
   assert.equal(w2.HGPlaceRounds.getConfigured(undocumented), null);
-  assert.deepStrictEqual(Array.from(w2.HGPlaceRounds.get(undocumented)).map(def => def.id), ["people", "objects", "brands", "images"]);
+  assert.deepStrictEqual(Array.from(w2.HGPlaceRounds.get(undocumented)).map(def => def.id), ["people", "objects", "brands"]);
 
   const empty = JSON.parse(JSON.stringify(place));
   empty.id = "empty_profile";
   empty.related_place_ids = [];
   const w3 = runtime(empty);
-  assert.equal(w3.HGPlaceRounds.getConfigured(empty), null);
-  assert.deepStrictEqual(Array.from(w3.HGPlaceRounds.get(empty)).map(def => def.id), ["people", "objects", "brands", "images"]);
+  assert.deepStrictEqual(Array.from(w3.HGPlaceRounds.getConfigured(empty)), ["people", "brands", "related"]);
+  assert.deepStrictEqual(Array.from(w3.HGPlaceRounds.get(empty)).map(def => def.id), ["people", "brands", "related"]);
 });
 
 test("backlog closes all five content findings and queues manual re-QA", () => {
@@ -83,11 +83,11 @@ test("backlog closes all five content findings and queues manual re-QA", () => {
   assert.equal(backlog.sequence.find(item => item.id === "manual_ui_and_content_reqa").status, "QUEUED_NEXT");
 });
 
-test("contracts reject filler while preserving 4+1", () => {
-  assert.match(contract, /standardprofiler, ikke en kvote/);
-  assert.match(contract, /round_profile\.content_round_ids/);
-  assert.match(contract, /Objects og Structures er ikke separate rundinger når skillet er kunstig/);
-  assert.match(contract, /egen canonical oppføring vises bare som eksplisitt `related`/);
-  assert.match(checklist, /avgrensede og begrunnede `round_profile\.content_round_ids`-overstyringen/);
+test("contracts reject filler while preserving legacy evidence", () => {
+  assert.match(contract, /kontrakten handler nå om \*\*samlinger\*\*, ikke om en kvote/i);
+  assert.match(contract, /"place_card_profile"[\s\S]*"collection_ids"/);
+  assert.match(contract, /Objects og Structures velges ikke sammen når skillet er kunstig/);
+  assert.match(contract, /egen canonical oppføring vises bare som eksplisitt relasjon/);
+  assert.match(checklist, /nye\/fullproduserte steder bruker `place_card_profile\.collection_ids`/);
   assert.match(workcard, /INGEN ÅPNE INNHOLDSFUNN, MEN MANUELL RE-QA GJENSTÅR/);
 });

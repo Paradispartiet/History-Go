@@ -10,7 +10,7 @@ const roundsSource = fs.readFileSync(path.join(__dirname, "../js/ui/place-rounds
 const shortcutsSource = fs.readFileSync(path.join(__dirname, "../js/ui/place-popup-shortcuts.js"), "utf8");
 const shortcutsCss = fs.readFileSync(path.join(__dirname, "../css/place-popup-shortcuts.css"), "utf8");
 
-test("legacy nodes cannot leak more than four rounds and the fourth is a clear category collection", async () => {
+test("legacy nodes cannot leak beyond the selected 2–4 PlaceCard collections", async () => {
   const dom = new JSDOM(`<!doctype html><body><div id="placeCard" data-current-place-id="p"><div class="pc-body"><div class="pc-title-row"><h2 id="pcTitle"></h2></div><div class="pc-icons-quad">${["People", "Nature", "Badges", "Works", "Details", "Spots", "CivicationStore", "Brands", "ForNa", "Fortellinger", "Leksikon", "Play", "Training", "Tasks"].map(x => `<div id="pc${x}Icon" class="pc-round"></div>`).join("")}</div><div id="pcPeopleList"></div><div id="pcBadgesList"></div><div id="pcBrandsList"></div><div id="pcWorksList"></div><div id="pcCivicationStoreList"></div></div></div></body>`, { url: "https://history-go.test/", runScripts: "outside-only" });
   const w = dom.window;
   w.PLACES = [{ id: "p", category: "sport", competitions: [{ id: "finale", title: "Finale", image: "finale.jpg" }], image: "sted.jpg" }];
@@ -19,12 +19,14 @@ test("legacy nodes cannot leak more than four rounds and the fourth is a clear c
   await w.HGVisualPlaceRounds.apply(w.PLACES[0]);
   const visible = [...w.document.querySelectorAll(".pc-icons-quad .pc-round")].filter(el => !el.hidden);
   assert.equal(visible.length, 4);
-  assert.equal(w.document.querySelector(".pc-icons-quad").dataset.roundCount, "4");
-  assert.equal(w.document.querySelector(".pc-icons-quad").dataset.roundFourth, "competitions");
+  assert.equal(w.document.querySelector(".pc-icons-quad").dataset.collectionCount, "4");
+  assert.equal(w.document.querySelector(".pc-icons-quad").dataset.collectionProfileSource, "category_default");
   assert.deepEqual(visible.slice().sort((a, b) => Number(a.style.order) - Number(b.style.order)).map(el => el.id), ["pcPeopleIcon", "pcObjectsIcon", "pcBrandsIcon", "pcCategoryCollectionIcon"]);
   for (const removed of ["pcWorksIcon", "pcDetailsIcon", "pcSpotsIcon", "pcCivicationStoreIcon"]) {
     assert.equal(w.document.getElementById(removed).hidden, true, removed);
   }
+  assert.equal(w.document.getElementById("pcPeopleIcon").dataset.collectionShape, "circle");
+  assert.equal(w.document.getElementById("pcCategoryCollectionIcon").dataset.collectionShape, "rectangle");
   assert.equal(w.document.getElementById("pcBadgesIcon").parentElement.className, "pc-title-row");
   dom.window.close();
 });

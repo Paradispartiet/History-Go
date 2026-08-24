@@ -15,9 +15,10 @@ for (const id of ['civication', 'works', 'details', 'spots', 'før_nå', 'fortel
   assert(!new RegExp(`id:\\s*["']${id}["']`).test(rounds), id);
 }
 
-for (const id of ['productions', 'structures', 'competitions', 'related', 'destinations', 'images']) {
+for (const id of ['productions', 'structures', 'competitions', 'related', 'destinations']) {
   assert(new RegExp(`${id}:\\s*\\{\\s*id:["']${id}["']`).test(rounds), id);
 }
+assert(!/images:\s*\{\s*id:["']images["']/.test(rounds));
 
 assert(rounds.includes('GENERAL_BASE = Object.freeze(["people", "objects", "brands"])'));
 assert(rounds.includes('NATURE_BASE = Object.freeze(["map", "flora", "fauna"])'));
@@ -27,15 +28,20 @@ assert(rounds.includes('sport:"competitions"'));
 assert(rounds.includes('historie:"related"'));
 assert(rounds.includes('by:"structures"'));
 assert(rounds.includes('natur:"destinations"'));
-assert(rounds.includes('return collectionItems(place, preferred).length ? preferred : "images"'));
+assert(rounds.includes('place_card_profile'));
+assert(rounds.includes('round_profile_v1_adapter'));
+assert(rounds.includes('id === "images"'));
 assert(rounds.includes('PRODUCTION_LABELS'));
 assert(rounds.includes('badge:BY_ID.get("badges")'));
-assert(rounds.includes('roundCount = "4"'));
+assert(rounds.includes('collectionCount = String(selected.length)'));
+assert(rounds.includes('history_go_place_card_profile_v2'));
 assert(rounds.includes('ensureBadgePlacement'));
+assert(rounds.includes('ensureQuizAction'));
 
-assert(contract.includes('`Bilder` som eneste generelle reserve'));
-assert(contract.includes('Fjernet som rundingsalternativer'));
+assert(contract.includes('Bilder er medieinnhold, ikke samling'));
+assert(contract.includes('to, tre eller fire kvalifiserte samlinger'));
+assert(contract.includes('People, Flora og Fauna'));
 assert(contract.includes('generisk Verk'));
 assert(contract.includes('Detaljer'));
 assert(contract.includes('Punkter'));
-console.log('Canonical four-round final model audit OK');
+console.log('Canonical PlaceCard collections v2 audit OK');

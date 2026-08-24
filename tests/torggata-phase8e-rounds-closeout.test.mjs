@@ -15,7 +15,7 @@ test("8F preserves the 8E ban on legacy place.rounds and uses a bounded profile"
   assert.equal(Object.prototype.hasOwnProperty.call(place, "structures"), false);
 });
 
-test("Torggata is People · Bilder · Brands · Relaterte steder with Badge separate", async () => {
+test("Torggata legacy profile becomes People · Brands · Relaterte steder with Badge separate", async () => {
   const legacyIds = [
     "pcWorksIcon", "pcDetailsIcon", "pcSpotsIcon", "pcCivicationStoreIcon", "pcNatureIcon",
     "pcForNaIcon", "pcFortellingerIcon", "pcLeksikonIcon", "pcPlayIcon", "pcTrainingIcon",
@@ -28,21 +28,19 @@ test("Torggata is People · Bilder · Brands · Relaterte steder with Badge sepa
   w.document.dispatchEvent(new w.Event("DOMContentLoaded", { bubbles:true }));
   await w.HGVisualPlaceRounds.apply(place);
 
-  assert.deepStrictEqual(Array.from(w.HGVisualPlaceRounds.get(place)), ["people", "images", "brands", "related"]);
+  assert.deepStrictEqual(Array.from(w.HGVisualPlaceRounds.get(place)), ["people", "brands", "related"]);
   assert.equal(w.HGVisualPlaceRounds.getFourth(place), "related");
-  assert.equal(w.HGVisualPlaceRounds.getItems(place, "images").length, 4);
+  assert.equal(w.HGVisualPlaceRounds.getItems(place, "images").length, 0);
   assert.equal(w.HGVisualPlaceRounds.getItems(place, "related").length, 3);
 
   const grid = w.document.querySelector(".pc-icons-quad");
   const visible = [...grid.querySelectorAll(".pc-round")].filter(el => !el.hidden);
   const ordered = visible.slice().sort((a,b) => Number(a.style.order) - Number(b.style.order)).map(el => el.id);
-  assert.equal(grid.dataset.roundCount, "4");
-  assert.equal(grid.dataset.roundSecond, "images");
-  assert.equal(grid.dataset.roundFourth, "related");
-  assert.deepStrictEqual(ordered, ["pcPeopleIcon", "pcObjectsIcon", "pcBrandsIcon", "pcCategoryCollectionIcon"]);
-  assert.equal(w.document.getElementById("pcObjectsIcon").dataset.roundId, "images");
-  assert.equal(w.document.getElementById("pcObjectsIcon").getAttribute("aria-label"), "Bilder");
-  assert.equal(w.document.getElementById("pcCategoryCollectionIcon").dataset.roundId, "related");
+  assert.equal(grid.dataset.collectionCount, "3");
+  assert.equal(grid.dataset.collectionProfileSource, "round_profile_v1_adapter");
+  assert.deepStrictEqual(ordered, ["pcPeopleIcon", "pcBrandsIcon", "pcCategoryCollectionIcon"]);
+  assert.equal(w.document.getElementById("pcObjectsIcon").hidden, true);
+  assert.equal(w.document.getElementById("pcCategoryCollectionIcon").dataset.collectionId, "related");
   assert.equal(w.document.getElementById("pcBadgesIcon").parentElement.className, "pc-title-row");
   assert.equal(w.document.getElementById("pcBadgesIcon").hidden, false);
   for (const id of legacyIds) assert.equal(w.document.getElementById(id).hidden, true, id);

@@ -6,7 +6,7 @@ Sist kontrollert: **2026-08-24**
 
 Dette dokumentet eier **arbeidsrekkefølge, review-checkpoints og mergekadens** for sted-for-sted-produksjon.
 
-Den komplette detaljerte v1-sjekklisten er bevart byte-for-byte i:
+Den komplette detaljerte sjekklisten er bevart og kontraktsoppdatert i:
 
 - `docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md`
 
@@ -31,7 +31,7 @@ For detaljproduksjon gjelder subsystemets canonical kontrakt, akkurat som i v1-r
 - `desc`/`popupDesc`: `data/places/regler/PLACE_DESCRIPTION_CANONICAL.md` og v4.2-schema;
 - popupfaner: `docs/PLACE_POPUP_SYSTEM.md`;
 - Språkleksikon: `docs/SPRAKLEKSIKON.md`;
-- rundinger: `data/places/README_place_rounds.md`;
+- PlaceCard-samlinger: `data/places/README_place_rounds.md`;
 - People: `docs/people-of-places-method.md` og `docs/PEOPLE_PROFILE_CANONICAL.md`;
 - Brands: `data/brands/brand_rules_v1_1.json`;
 - Stories: `docs/STORIES_DATA_GOVERNANCE.md`;
@@ -48,16 +48,20 @@ For **Quiz** skal alle aktive, arkiverte og alternative quizfiler for stedet aud
 
 ### Canonicale kvalitetslåser som fortsatt skal stå eksplisitt
 
-Arbeidskortet bruker fortsatt feltet:
+Arbeidskortet bruker nå feltet:
 
-`MÅL FOR INNHOLDSRUNDINGER: 4 + separat fast Badge`
+`MÅL FOR PLACECARD-SAMLINGER: 2–4 kvalifiserte samlinger + separat fast Badge + obligatorisk Quiz`
 
-For rundinger, Før/etter og direktefaner gjelder fortsatt:
+For PlaceCard-samlinger, Før/etter og direktefaner gjelder:
 
-- nøyaktig fire innholdsrundinger vises i et 2 × 2-felt ved `frontImage`;
-- en enkelt vilkårlig eller taksonomisk konstruert gjenstand er ikke nok til å gjøre Objects til en kvalitetsmessig ferdig runding;
-- Objects og Structures/Bygg brukes ikke som to separate rundinger når innholdet i praksis er de samme fysiske stedselementene eller forskjellen er uklar for spilleren;
-- Fire plasser skal aldri fylles bare for å oppnå 4+1-layouten; mangler stedet fire reelt sterke og distinkte samlinger, skal innholdet eller rundingsmodellen forbedres før sluttgodkjenning;
+- PlaceCard beholder dagens komposisjon og viser 2, 3 eller 4 kvalifiserte samlinger balansert ved `frontImage`;
+- People, Flora og Fauna vises som sirkler; øvrige samlinger vises som avrundede rektangler;
+- Bilder er ikke en samling eller reserve, men beholdes i `frontImage`-/medieflaten og hos sine bildeeiere;
+- Quiz er obligatorisk og beholdes som tydelig PlaceCard-handling;
+- en enkelt vilkårlig eller taksonomisk konstruert gjenstand er ikke nok til å gjøre Objects til en kvalitetsmessig ferdig samling;
+- Objects og Structures/Bygg brukes ikke som to separate samlinger når innholdet i praksis er de samme fysiske stedselementene eller forskjellen er uklar for spilleren;
+- en tredje eller fjerde plass skal aldri fylles bare for å oppnå en bestemt layout; mangler stedet fire reelt sterke og distinkte samlinger, brukes to eller tre;
+- nye/fullproduserte steder bruker `place_card_profile.collection_ids`; eksisterende `round_profile` leses bare gjennom kompatibilitetslaget og migreres når stedet faktisk fullproduseres;
 - canonical place-register/manifester er søkt før motivet velges, slik at bygg, virksomheter, parker, plasser eller andre delsteder med egen place-oppføring blir oppdaget;
 - et delsted som har egen canonical place-oppføring brukes ikke som primært Før/etter-stedfortreder for et overordnet sted;
 - bilder fra ulike kamerastandpunkter kan brukes som supplerende historiske bilder, men består ikke alene som fullverdig primær Før/etter-sammenligning;
@@ -80,7 +84,7 @@ Før første brukerrettede endring skal stedet ha en skriftlig nullmåling og sa
 - description-produksjon;
 - strukturerte place-profiler;
 - alle relevante popupfaner og direktefaner;
-- People, Objects/Works, Brands og rundinger;
+- People, Objects/Works, Brands og PlaceCard-samlinger;
 - Stories, Quiz, Knowledge/Aha, Lesespor og ruter/relasjoner;
 - kilder, bilder/proveniens og faktisk UI-visning;
 - relevante fagspesifikke place-gates.
@@ -146,7 +150,7 @@ Kan samle flere **sekvensielt reviewede** innholdsfaser, for eksempel:
 - description v4.2;
 - strukturerte place-profiler;
 - Om/Historie/Fortellinger/Før–etter/Nyheter/Lesespor/Kilder/Språk;
-- relevante People/Objects/Brands/rundinger;
+- relevante People/Objects/Brands/PlaceCard-samlinger;
 - Quiz/Story/Knowledge/ruter når kontraktene tillater samme avgrensede diff.
 
 Det er ikke lov å hoppe over intern review bare fordi fasene ligger i samme PR.
@@ -257,12 +261,12 @@ Et sted kan ikke merkes `produksjonsklart` eller `SLUTTFØRT` før den synlige o
 Minimum:
 
 - åpne alle relevante popupfaner og direktefaner;
-- kontroller alle valgte rundinger, antall, datakilde og bilder;
+- kontroller alle valgte PlaceCard-samlinger, form, antall, datakilde og preview;
 - kontroller Før/etter visuelt mot begge bilder;
 - kontroller Nyheter-ferskhet der relevant;
 - kontroller Lesespor-tilgang og Kilder-lenker;
-- kontroller Stories/Quiz/People/Objects/Brands og ruter slik de faktisk vises;
-- registrer tomme faner, svake bildevalg, kunstige samlinger og taksonomisk korrekte men brukerfiendtlige kombinasjoner som reelle blockers;
+- kontroller Stories/obligatorisk Quiz/People/Objects/Brands og ruter slik de faktisk vises;
+- registrer tomme faner, svake bildevalg, kunstige PlaceCard-samlinger og taksonomisk korrekte men brukerfiendtlige kombinasjoner som reelle blockers;
 - gjenåpne checkpoint/fase når slutt-QA motsier tidligere godkjenning.
 
 Grønn CI eller komplett schema kan aldri overstyre dokumentert svak sluttflate.
