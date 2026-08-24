@@ -258,6 +258,19 @@
       }
     }
 
+    const situated = window.CivicationSocialStandingFactory?.resolveReactionStanding?.(
+      eventObj,
+      choice,
+      window.CivicationState?.getState?.() || {}
+    ) || null;
+    if (situated?.band === "trusted") {
+      line += " I denne konkrete relasjonen finnes det allerede opparbeidet tillit, så reaksjonen bygger på mer enn et globalt omdømme.";
+    } else if (situated?.band === "strained") {
+      line += " I denne konkrete relasjonen er tilliten allerede svekket, så reaksjonen blir mer varsom enn en global omdømmeverdi ville vist.";
+    } else if (situated) {
+      line += " Tilliten i denne konkrete relasjonen er fortsatt uavklart og vurderes separat fra globalt omdømme.";
+    }
+
     return {
       id: `npc_reaction_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
       personId: normStr(person?.id),
@@ -268,6 +281,11 @@
       title,
       line,
       trustDelta,
+      ...(situated ? {
+        situatedAudienceId: situated.audience_id,
+        situatedStanding: situated.value,
+        situatedStandingBand: situated.band
+      } : {}),
       createdAt: new Date().toISOString(),
       careerId: normStr(/** @type {{ career_id?: unknown } | undefined} */ (window.CivicationState?.getActivePosition?.())?.career_id)
     };

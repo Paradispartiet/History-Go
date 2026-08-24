@@ -817,6 +817,154 @@
           ]
         }
       ]
+    },
+    {
+      "id": "role_world_realism_situated_reputation",
+      "purpose": "La samme faglige uenighet skape forskjellig, vedvarende tillit i lederlinjen og planteamet uten å redusere relasjonene til én sosial score.",
+      "learning_focus": [
+        "situated_reputation",
+        "relational_trust",
+        "professional_dissent",
+        "managerial_accountability"
+      ],
+      "mails": [
+        {
+          "id": "by_radgiver_situated_reputation_tradeoff_001",
+          "mail_type": "event",
+          "mail_family": "role_world_realism_situated_reputation",
+          "role_scope": "by_radgiver_plan",
+          "phase": "mastery",
+          "day_phase": "afternoon",
+          "priority": 60,
+          "cooldown": 8,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "Elin, plansjef",
+          "sender": "elin_plansjef",
+          "person_id": "elin_plansjef",
+          "people_ref": "elin_plansjef",
+          "place_id": "radhuset_planavdeling",
+          "thread_key": "by_radgiver_lillebekk_realism_001",
+          "subject": "Før oversendelsen: hvem skal kunne se den faglige uenigheten?",
+          "summary": "Elin trenger et samordnet notat innen fristen. Nora og Signe mener samtidig at deres faglige motforestillinger må følge saken som et synlig spor, ikke bare ligge i intern historikk.",
+          "purpose": "Bevise at ett profesjonelt valg kan styrke tillit hos kolleger og svekke den i lederlinjen, eller omvendt, uten å endre spillerens formelle myndighet.",
+          "stakes": "Et eksplisitt dissensspor beskytter etterprøvbarhet, men gir Elin mindre kontroll over et stramt saksframlegg. Et samlet notat gir lederlinjen bedre leveransekontroll, men kan gjøre teamets faglige motstemmer mindre synlige senere.",
+          "situation": [
+            "Lillebekk-saken er faglig klar og ledergodkjent, men de interne vurderingene peker ikke helt samme vei.",
+            "Elin ber om ett administrativt notat som kan sendes uten ny redigeringsrunde.",
+            "Nora og Signe ber om at deres avvikende vurderinger blir stående som navngitte, sporbare faglige premisser."
+          ],
+          "task_domain": "situert_tillit_i_planarbeid",
+          "task_kind": "event",
+          "competency": "faglig_uenighet_og_lederlinje",
+          "pressure": "leveransekontroll_vs_sporbart_faglig_dissensspor",
+          "choice_axis": "synlig_faglig_dissens_vs_samordnet_leveranse",
+          "consequence_axis": "kollegatillit_vs_ledertillit",
+          "narrative_arc": "lillebekk_fra_kunnskapsgrunnlag_til_politisk_behandling",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "by_radgiver_lillebekk_plan_case_001"
+            ],
+            "institution_id": "oslo_kommune_planavdeling_001",
+            "priority": "high"
+          },
+          "social_standing_context": {
+            "reaction_audience_id": "manager:elin_plansjef"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "La Noras og Signes faglige dissens følge saken som et tydelig, navngitt spor",
+              "reply": "Jeg beholder ett administrativt hovednotat, men lar de avvikende faglige vurderingene stå synlig med premiss, ansvar og konsekvens.",
+              "effect": 1,
+              "tags": [
+                "professional_dissent_visible",
+                "team_trust",
+                "managerial_friction"
+              ],
+              "feedback": "Teamet ser at faglig uenighet ikke blir redigert bort. Elin får et mer krevende dokument å eie under tidspress, og tilliten utvikler seg derfor forskjellig i de to relasjonene.",
+              "effects": {
+                "social_standing_ops": [
+                  {
+                    "event_id": "by_radgiver_standing_team_dissent_visible",
+                    "audience_id": "team:lillebekk_planteam",
+                    "delta": 3,
+                    "reason": "Faglige motforestillinger beholdes som navngitte, etterprøvbare premisser.",
+                    "source_actor_id": "signe_byokolog"
+                  },
+                  {
+                    "event_id": "by_radgiver_standing_manager_less_editorial_control",
+                    "audience_id": "manager:elin_plansjef",
+                    "delta": -2,
+                    "reason": "Lederlinjen må eie et mer komplekst saksframlegg under den samme fristen.",
+                    "source_actor_id": "elin_plansjef"
+                  }
+                ],
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "by_radgiver_lillebekk_visible_professional_dissent",
+                    "work_object_id": "by_radgiver_lillebekk_plan_case_001",
+                    "flag": "faglig_dissens_sporbart_synlig"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lever ett samordnet notat og behold uenigheten i den interne saksloggen",
+              "reply": "Jeg samler vurderingene i ett konsistent administrativt notat og lar den fullstendige uenigheten ligge etterprøvbart i intern historikk.",
+              "effect": 1,
+              "tags": [
+                "managerial_delivery_control",
+                "manager_trust",
+                "team_friction"
+              ],
+              "feedback": "Elin får en leveranse hun kan stå for uten ny runde. Teamet mister tillit fordi deres motforestillinger blir vanskeligere å se for dem som bare leser oversendelsen.",
+              "effects": {
+                "social_standing_ops": [
+                  {
+                    "event_id": "by_radgiver_standing_manager_delivery_control",
+                    "audience_id": "manager:elin_plansjef",
+                    "delta": 3,
+                    "reason": "Lederlinjen får en konsistent leveranse innen fristen.",
+                    "source_actor_id": "elin_plansjef"
+                  },
+                  {
+                    "event_id": "by_radgiver_standing_team_dissent_internalized",
+                    "audience_id": "team:lillebekk_planteam",
+                    "delta": -3,
+                    "reason": "Faglige motforestillinger blir liggende i intern historikk i stedet for selve oversendelsen.",
+                    "source_actor_id": "signe_byokolog"
+                  }
+                ],
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "by_radgiver_lillebekk_internalized_professional_dissent",
+                    "work_object_id": "by_radgiver_lillebekk_plan_case_001",
+                    "flag": "faglig_dissens_beholdt_i_intern_historikk"
+                  }
+                ]
+              }
+            }
+          ],
+          "planned_only": true,
+          "learning_focus": [
+            "situated_reputation",
+            "relational_trust",
+            "professional_dissent",
+            "managerial_accountability"
+          ],
+          "tags": [
+            "event",
+            "situated_reputation",
+            "by_radgiver_plan",
+            "lillebekk"
+          ]
+        }
+      ]
     }
   ]
 }

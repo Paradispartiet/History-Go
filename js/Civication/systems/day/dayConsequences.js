@@ -15,8 +15,10 @@
 
   const WORK_WORLD_SCRIPT = "js/Civication/core/civicationWorkWorld.js";
   const AUTHORITY_SCRIPT = "js/Civication/core/civicationInstitutionAuthority.js";
+  const SOCIAL_STANDING_SCRIPT = "js/Civication/core/civicationSocialStanding.js";
   let workWorldLoadPromise = null;
   let authorityLoadPromise = null;
+  let socialStandingLoadPromise = null;
 
   function runtimeWindow() {
     return /** @type {any} */ (window);
@@ -83,10 +85,85 @@
     return authorityLoadPromise;
   }
 
+  function attachSocialStanding() {
+    const rt = runtimeWindow();
+    if (rt.CivicationSocialStanding?.applyOperations) return rt.CivicationSocialStanding;
+    if (rt.CivicationSocialStandingFactory?.createAdapter && rt.CivicationState?.getState && rt.CivicationState?.setState) {
+      rt.CivicationSocialStanding = rt.CivicationSocialStandingFactory.createAdapter(rt.CivicationState);
+      return rt.CivicationSocialStanding;
+    }
+    return null;
+  }
+
+  function ensureSocialStanding() {
+    const attached = attachSocialStanding();
+    if (attached) return Promise.resolve(attached);
+    if (socialStandingLoadPromise) return socialStandingLoadPromise;
+    socialStandingLoadPromise = new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = SOCIAL_STANDING_SCRIPT;
+      script.async = false;
+      script.onload = () => {
+        const adapter = attachSocialStanding();
+        if (!adapter) reject(new Error("CivicationSocialStanding lastet uten state-adapter"));
+        else resolve(adapter);
+      };
+      script.onerror = () => reject(new Error(`Kunne ikke laste ${SOCIAL_STANDING_SCRIPT}`));
+      (document.head || document.documentElement).appendChild(script);
+    }).catch((error) => {
+      socialStandingLoadPromise = null;
+      throw error;
+    });
+    return socialStandingLoadPromise;
+  }
+
   function collectWorkObjectOps(eventObj, choice) {
     const sceneOps = Array.isArray(eventObj?.effects?.work_object_ops) ? eventObj.effects.work_object_ops : [];
     const choiceOps = Array.isArray(choice?.effects?.work_object_ops) ? choice.effects.work_object_ops : [];
     return [...sceneOps, ...choiceOps];
+  }
+
+  function collectSocialStandingOps(eventObj, choice) {
+    const sceneOps = Array.isArray(eventObj?.effects?.social_standing_ops) ? eventObj.effects.social_standing_ops : [];
+    const choiceOps = Array.isArray(choice?.effects?.social_standing_ops) ? choice.effects.social_standing_ops : [];
+    return [...sceneOps, ...choiceOps];
+  }
+
+  function makeShadowStateAdapter() {
+    let shadowState = JSON.parse(JSON.stringify(window.CivicationState?.getState?.() || {}));
+    return {
+      getState() { return JSON.parse(JSON.stringify(shadowState)); },
+      setState(patch) {
+        shadowState = { ...shadowState, ...JSON.parse(JSON.stringify(patch || {})) };
+        return JSON.parse(JSON.stringify(shadowState));
+      }
+    };
+  }
+
+  async function prepareSocialStandingConsequences(eventObj, choice) {
+    const operations = collectSocialStandingOps(eventObj, choice);
+    if (!operations.length) return null;
+    const sceneId = normStr(eventObj?.id);
+    const choiceId = normStr(choice?.id);
+    if (!sceneId || !choiceId) throw new Error("social_standing_ops krever scene-id og choice-id");
+    const adapter = await ensureSocialStanding();
+    const factory = runtimeWindow().CivicationSocialStandingFactory;
+    if (!factory?.createAdapter) throw new Error("CivicationSocialStandingFactory mangler for preflight");
+    const context = { scene_id: sceneId, choice_id: choiceId, at: new Date().toISOString() };
+    factory.createAdapter(makeShadowStateAdapter()).applyOperations(operations, context);
+    return { adapter, operations, context };
+  }
+
+  function commitSocialStandingConsequences(prepared) {
+    if (!prepared) return null;
+    const applied = prepared.adapter.applyOperations(prepared.operations, prepared.context);
+    const audienceIds = uniq(applied.map((entry) => entry.audience_id));
+    return {
+      applied_count: applied.filter((entry) => entry.idempotent !== true).length,
+      event_ids: applied.map((entry) => entry.event_id),
+      audience_ids: audienceIds,
+      values: Object.fromEntries(audienceIds.map((id) => [id, prepared.adapter.getStanding(id)]))
+    };
   }
 
   function makeShadowWorkWorld(adapter, factory) {
@@ -449,13 +526,17 @@
     return delta;
   }
 
-  function finishChoiceConsequences(ctx, workWorld) {
+  function finishChoiceConsequences(ctx, workWorld, socialStanding) {
     const { eventObj, choice, result } = ctx;
     const roleScope = activeRoleScope();
     const hasExplicitNextBias = !!(choice?.next_bias && typeof choice.next_bias === "object");
 
     if (roleScope !== "mellomleder" && !hasExplicitNextBias) {
-      return workWorld ? { work_world: workWorld } : null;
+      if (!workWorld && !socialStanding) return null;
+      return {
+        ...(workWorld ? { work_world: workWorld } : {}),
+        ...(socialStanding ? { social_standing: socialStanding } : {})
+      };
     }
 
     const branch = mergeBranchState(inferBranchBias(eventObj, choice, result));
@@ -484,6 +565,7 @@
 
     return {
       ...(workWorld ? { work_world: workWorld } : {}),
+      ...(socialStanding ? { social_standing: socialStanding } : {}),
       branch,
       psyche,
       capital,
@@ -497,10 +579,15 @@
     if (!eventObj || !choice) return null;
 
     const operations = collectWorkObjectOps(eventObj, choice);
-    if (!operations.length) return finishChoiceConsequences(ctx, null);
+    const standingOperations = collectSocialStandingOps(eventObj, choice);
+    if (!operations.length && !standingOperations.length) return finishChoiceConsequences(ctx, null, null);
 
-    return applyWorkWorldConsequences(eventObj, choice)
-      .then((workWorld) => finishChoiceConsequences(ctx, workWorld));
+    return prepareSocialStandingConsequences(eventObj, choice)
+      .then(async (preparedStanding) => {
+        const workWorld = operations.length ? await applyWorkWorldConsequences(eventObj, choice) : null;
+        const socialStanding = commitSocialStandingConsequences(preparedStanding);
+        return finishChoiceConsequences(ctx, workWorld, socialStanding);
+      });
   }
 
   function register() {

@@ -90,6 +90,16 @@
     salaryModifier: 1
   },
 
+  // Additive situated trust. career.reputation remains the legacy/global value.
+  social_standing: {
+    schema: "civication_social_standing_v1",
+    version: 1,
+    by_audience: {},
+    applied_event_ids: [],
+    history: [],
+    updated_at: null
+  },
+
   civication_unread: {
     unreadCivicationCount: 0,
     unreadJobMailCount: 0,

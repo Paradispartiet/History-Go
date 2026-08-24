@@ -23,7 +23,8 @@ Gjeldende implementeringsstatus:
 - History Go-affordance som utvider faglige valg uten å gi ny formell myndighet er i produksjon;
 - full pilot finnes for arkiv/dokumentasjon og By-rådgiver;
 - generalized work rhythm v1 tolker additive metadata i eksisterende SceneDirector/daily-adaptere;
-- bred rolle-rollout og Role World Realism Matrix skal fortsatt vente til situert omdømme og minst én strukturelt annerledes pilot er bevist.
+- situert omdømme v1 lagrer avgrenset leder-/team-/profesjons-/offentlig tillit, porter senere scener og beriker NPC-reaksjoner uten å erstatte global reputation;
+- bred rolle-rollout og Role World Realism Matrix skal fortsatt vente til minst én strukturelt annerledes pilot er bevist.
 
 ## 2. Verifisert eksisterende arkitektur
 
@@ -441,6 +442,8 @@ Hvis UI fortsatt trenger én reputation-verdi, kan den beregnes eller oppdateres
 
 En pilot skal kunne ende med to motstridende relasjonelle resultater, for eksempel høy kollegatillit og lav ledertillit, og dette skal gi ulike senere scener.
 
+Implementert 2026-08-24: By-rådgiverens Lillebekk-sak kan ende med høy teamtillit/lav ledertillit eller høy ledertillit/lav teamtillit. SceneDirector og daily-adapterne slipper deretter bare gjennom den relasjonsscenen som samsvarer med den faktisk lagrede situerte tilliten. NPC-reaksjonen leser samme authored audience-id; `career.reputation` og myndighetskontrakten forblir uendret.
+
 ## 10. Fase 6 — arbeidsvilkår
 
 ### 10.1 Gjenbruk eksisterende life/career-state
@@ -834,8 +837,8 @@ Programmet er først modent nok for bred rollout når:
 
 ## 24. Neste konkrete implementeringsoppgave
 
-Neste mekanikk er **situert omdømme og relasjonell tillit** som en egen, avgrenset PR. Den skal gjenbruke eksisterende reputation/NPC-consequence-kjeder, ha additive defaults og ikke starte bred rolle-rollout.
+Neste oppgave er en **strukturelt annerledes rollepilot** som beviser at work rhythm, kapasitet, rework og relasjonelle konsekvenser faktisk varierer mellom yrkestyper. Sport-utøver eller en annen kropp-/prestasjonshverdag er første kandidat, men konkret rolle skal velges mot fersk readiness- og dataintegritetsaudit.
 
-Deretter skal en strukturelt annerledes rollepilot bevise at work rhythm faktisk varierer mellom yrkestyper. Først etter 3–4 forskjellige piloter opprettes Role World Realism Matrix; bred rollout forblir utsatt til da.
+Først etter 3–4 forskjellige piloter opprettes Role World Realism Matrix; bred rollout forblir utsatt til da. Employment conditions bygges bare dersom pilotauditen påviser et faktisk state-gap, ikke som en automatisk ny motor.
 
 Dette gir størst realismegevinst per ny mekanikk og danner grunnlaget for institusjon, rhythm, rework, History Go-affordances og cross-role shared world.
