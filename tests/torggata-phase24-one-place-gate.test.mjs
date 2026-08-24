@@ -100,9 +100,12 @@ test("manual quality review records the original five findings and the current r
 });
 
 test("global checklist mirrors the canonical four-plus-separate-Badge contract", () => {
-  const checklist = fs.readFileSync("docs/PLACE_PRODUCTION_CHECKLIST.md", "utf8");
+  const workflow = fs.readFileSync("docs/PLACE_PRODUCTION_CHECKLIST.md", "utf8");
+  const checklist = fs.readFileSync("docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md", "utf8");
   const contract = fs.readFileSync("data/places/README_place_rounds.md", "utf8");
 
+  assert.match(workflow, /PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1\.md/);
+  assert.match(workflow, /Alle faglige, redaksjonelle, faktuelle og subsystemspesifikke krav i referansen er fortsatt bindende/);
   assert.match(contract, /nøyaktig fire innholdsrundinger i et 2 × 2-felt/);
   assert.match(contract, /Badges teller ikke som en av de fire rundingene/);
   assert.match(checklist, /MÅL FOR INNHOLDSRUNDINGER: 4 \+ separat fast Badge/);

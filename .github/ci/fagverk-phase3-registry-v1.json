@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "subjects": {
+    "kunst": {
+      "match": ["data/fag/kunst/", "data/fagverk/kunst/", "data/badges/kunst.json", "fagverk-kunst-", "kunst-theory-"],
+      "syntax": ["scripts/audit-fagverk-kunst-phase3.mjs", "scripts/audit-fagverk-kunst-complete.mjs", "tools/audit-kunst-theory-integrity.mjs"],
+      "run": ["scripts/audit-fagverk-kunst-phase3.mjs", "scripts/audit-fagverk-kunst-complete.mjs", "tools/audit-kunst-theory-integrity.mjs"],
+      "tests": ["tests/fagverk-kunst-phase3.test.mjs", "tests/kunst-theory-integrity.test.mjs"]
+    },
+    "media": {
+      "match": ["data/fag/media/", "data/fagverk/media/", "data/badges/media.json", "fagverk-media-"],
+      "syntax": ["scripts/audit-fagverk-media-phase3.mjs"],
+      "run": ["scripts/audit-fagverk-media-phase3.mjs"],
+      "tests": ["tests/fagverk-media-phase3.test.mjs"]
+    },
+    "sport": {
+      "match": ["data/fag/sport/", "data/fagverk/sport/", "data/badges/sport.json", "fagverk-sport-", "sport-theory-", "materialize-sport-complete.mjs"],
+      "syntax": ["scripts/audit-fagverk-sport-phase3.mjs", "tools/audit-sport-theory-integrity.mjs", "scripts/materialize-sport-complete.mjs"],
+      "run": ["scripts/audit-fagverk-sport-phase3.mjs", "tools/audit-sport-theory-integrity.mjs"],
+      "tests": ["tests/fagverk-sport-phase3.test.mjs", "tests/sport-theory-integrity.test.mjs"]
+    },
+    "filosofi": {
+      "match": ["data/fag/filosofi/", "data/fagverk/filosofi/", "data/badges/filosofi.json", "fagverk-filosofi-", "filosofi-theory-", "reports/filosofi-final-quality-qa.md"],
+      "syntax": ["scripts/audit-fagverk-filosofi-phase3.mjs", "tools/audit-filosofi-theory-integrity.mjs"],
+      "run": ["scripts/audit-fagverk-filosofi-phase3.mjs", "tools/audit-filosofi-theory-integrity.mjs"],
+      "tests": [
+        "tests/fagverk-filosofi-phase3.test.mjs",
+        "tests/fagverk-filosofi-complete.test.mjs",
+        "tests/fagverk-filosofi-editorial-style.test.mjs",
+        "tests/fagverk-filosofi-university-depth.test.mjs",
+        "tests/fagverk-filosofi-final-quality.test.mjs",
+        "tests/fagverk-filosofi-field-coverage.test.mjs",
+        "tests/filosofi-theory-integrity.test.mjs"
+      ]
+    },
+    "scenekunst": {
+      "match": ["data/fag/scenekunst/", "data/fagverk/scenekunst/", "data/badges/scenekunst.json", "fagverk-scenekunst-"],
+      "syntax": ["scripts/audit-fagverk-scenekunst-phase3.mjs"],
+      "run": ["scripts/audit-fagverk-scenekunst-phase3.mjs"],
+      "tests": ["tests/fagverk-scenekunst-phase3.test.mjs"]
+    }
+  }
+}
