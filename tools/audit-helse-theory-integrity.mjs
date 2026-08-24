@@ -72,7 +72,9 @@ export function auditHelseTheoryIntegrity({ writeReport = false, checkReport = t
       assert(!objectIds.has(object.id), `Duplikat model object: ${object.id}`);
       objectIds.add(object.id);
       assert(object.domain_id === domainId && emneIds.has(object.emne_id), `${object.id}: canonical domain-/emnebinding feiler`);
-      for (const key of ['model_kind', 'model_name', 'scope', 'core_claim_or_mechanism', 'rival_or_alternative', 'interpretive_consequence']) {
+      assert(String(object.model_kind || '').length >= 8, `${object.id}: mangler model_kind`);
+      assert(String(object.model_name || '').length >= 12, `${object.id}: mangler model_name`);
+      for (const key of ['scope', 'core_claim_or_mechanism', 'rival_or_alternative', 'interpretive_consequence']) {
         assert(String(object[key] || '').length >= 30, `${object.id}: mangler substansiell ${key}`);
       }
       assert(Array.isArray(object.limitations) && object.limitations.length >= 2 && object.limitations.every((value) => String(value).length >= 80), `${object.id}: eksplisitte gyldighetsgrenser mangler`);
