@@ -1090,7 +1090,7 @@ const compiledAuthority = registry.entries.find(row => row.id === requestApprova
 assert.equal(compiledAuthority.scene.authority_context.approval_points[0].approval_object_id, approvalId);
 assert.equal(compiledAuthority.compatibility_projection.choices.find(c => c.id === 'A').authority_action.intent, 'request_approval');
 const compiledLearning = registry.entries.find(row => row.id === historyGo.id);
-assert.equal(compiledLearning.scene.task_payload.place_id, 'oslo_radhus');
+assert.equal(compiledLearning.compatibility_projection.task_payload.place_id, 'oslo_radhus');
 const compiledReturn = registry.entries.find(row => row.id === returnToCase.id);
 assert.deepEqual(compiledReturn.scene.choices.find(c => c.id === 'C').affordance.history_go.task_mail_ids, [knowledgeMailId]);
 const compiledSend = registry.entries.find(row => row.id === formalSend.id);
