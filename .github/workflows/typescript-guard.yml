@@ -255,6 +255,10 @@ jobs:
         if: needs.scope.outputs.web == 'true'
         run: node tests/background-boot-pacing.test.js
 
+      - name: Hyperfast place-open payload regression
+        if: needs.scope.outputs.web == 'true'
+        run: npm run place-open:check && npm run test:place-open
+
       - name: Torggata canonical People regression
         if: needs.scope.outputs.web == 'true'
         run: node --test tests/torggata-phase12-people-links.test.mjs

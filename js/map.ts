@@ -1076,8 +1076,16 @@
     let suppressPlaceClickUntil = 0;
     let lastOpenedPlace = { id: null, at: 0 };
 
-    const setPointer = () => {
+    const prefetchFeature = (event: any) => {
+      const feature = getPlaceFeatureFromEvent(event);
+      const id = feature?.properties?.id;
+      if (!id) return;
+      const place = PLACES.find(candidate => String(candidate?.id || "") === String(id));
+      void (window as any).HGPlaceOpen?.preload?.(place || id);
+    };
+    const setPointer = (event: any) => {
       canvas.style.cursor = "pointer";
+      prefetchFeature(event);
     };
 
     const clearPointer = () => {
@@ -1098,6 +1106,7 @@
     const handlePointerDown = (event) => {
       pointerStart = { x: event.clientX, y: event.clientY };
       pointerMoved = false;
+      prefetchFeature({ originalEvent: event });
     };
 
     const handlePointerMove = (event) => {

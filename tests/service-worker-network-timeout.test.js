@@ -3,8 +3,12 @@ const path = require('path');
 
 const sw = fs.readFileSync(path.join(__dirname, '..', 'sw.js'), 'utf8');
 
-if (!/const SW_VERSION = "hg-sw-2026-07-28-v1\.3\.145";/.test(sw)) {
+if (!/const SW_VERSION = "hg-sw-2026-08-24-v1\.3\.147";/.test(sw)) {
   throw new Error('service worker version was not bumped');
+}
+
+if (!/path\.includes\("\/data\/runtime\/place-open\/"\)[\s\S]*staleWhileRevalidate\(req, CACHE_RUNTIME\)/.test(sw)) {
+  throw new Error('place-open payloads must return cached content without waiting for the network timeout');
 }
 
 if (!/function fetchWithTimeout\(req, timeoutMs = 4500\)/.test(sw)) {

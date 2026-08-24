@@ -269,8 +269,9 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
   assert.match(peopleIcon.innerHTML, /…/, "loading-broen overskriver en falsk null");
 
   await window.bootCritical();
-  assert.ok(fetchLog.includes("data/people/manifest.json"), "People starter straks critical boot er ferdig");
+  assert.ok(fetchLog.includes("data/runtime/people-all.json"), "samlet People-kilde starter straks critical boot er ferdig");
   assert.ok(fetchLog.includes("data/relations.json"), "Relasjoner starter straks critical boot er ferdig");
+  await waitUntil(() => fetchLog.includes("data/people/manifest.json"), "manifest-fallback startet ikke etter manglende samlefil");
 
   await delay(2);
   placeCard.dataset.currentPlaceId = "place-1";
@@ -295,10 +296,10 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
   assert.ok(maxPeopleFetches > 1, `forventet parallell People-lasting, fikk ${maxPeopleFetches}`);
   assert.ok(maxPeopleFetches <= 6, `People-lasting overskred grensen: ${maxPeopleFetches}`);
 
-  const peopleManifestIndex = fetchLog.indexOf("data/people/manifest.json");
+  const peopleAggregateIndex = fetchLog.indexOf("data/runtime/people-all.json");
   const relationIndex = fetchLog.indexOf("data/relations.json");
   const wonderIndex = fetchLog.indexOf("data/wonderkammer/index.json");
-  assert.ok(peopleManifestIndex >= 0 && peopleManifestIndex < wonderIndex);
+  assert.ok(peopleAggregateIndex >= 0 && peopleAggregateIndex < wonderIndex);
   assert.ok(relationIndex >= 0 && relationIndex < wonderIndex);
   assert.ok(lifecycle.indexOf("people-priority-ready") < lifecycle.indexOf("people-ready"));
   assert.ok(lifecycle.indexOf("people-ready") < lifecycle.indexOf("wonderkammer-ready"));

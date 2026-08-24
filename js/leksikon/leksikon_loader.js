@@ -1039,30 +1039,42 @@
     if (initPromise) return initPromise;
 
     initPromise = (async () => {
-      const manifest = await fetchJSON(MANIFEST_URL).catch(() => ({ files: [] }));
-      const files = Array.isArray(manifest.files) ? manifest.files : [];
       const byPlace = Object.create(null);
       const all = [];
-
-      for (const file of files) {
-        const data = await fetchJSON(file).catch(err => {
-          console.warn("[HGLeksikon] hoppet over", file, err?.message || err);
-          return null;
-        });
-
-        const rows = Array.isArray(data)
+      const addData = data => {
+        const records = Array.isArray(data)
           ? data
           : Array.isArray(data?.places)
             ? data.places
             : data?.place_id
               ? [data]
               : [];
-
-        for (const row of rows) {
+        for (const row of records) {
           const id = norm(row?.place_id || row?.place);
           if (!id) continue;
           (byPlace[id] ||= []).push(row);
           all.push(row);
+        }
+      };
+
+      const aggregate = await fetchJSON("data/runtime/leksikon-all.json").catch(() => null);
+      if (aggregate?.schema === "history-go-runtime-shards-v1") {
+        const shards = await Promise.all((aggregate.files || []).map(file => fetchJSON(file).catch(err => {
+          console.warn("[HGLeksikon] hoppet over shard", file, err?.message || err);
+          return [];
+        })));
+        shards.forEach(addData);
+      } else if (Array.isArray(aggregate) && aggregate.length) {
+        addData(aggregate);
+      } else {
+        const manifest = await fetchJSON(MANIFEST_URL).catch(() => ({ files: [] }));
+        const files = Array.isArray(manifest.files) ? manifest.files : [];
+        for (const file of files) {
+          const data = await fetchJSON(file).catch(err => {
+            console.warn("[HGLeksikon] hoppet over", file, err?.message || err);
+            return null;
+          });
+          addData(data);
         }
       }
 
