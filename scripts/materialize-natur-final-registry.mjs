@@ -58,6 +58,8 @@ function materializeMapDotFixOnce() {
   run('git', ['add', 'js/map.ts', 'js/map.js', 'dist/web/map.js', 'tests/map-place-area-lod.test.mjs', 'scripts/materialize-natur-final-registry.mjs']);
   run('git', ['add', '-u', 'scripts/temp-map-detail-dots-restore-smaller-v1.mjs', '.github/workflows/temp-map-detail-dots-restore-smaller-v1.yml']);
   run('git', ['diff', '--cached', '--check']);
+  run('git', ['config', 'user.name', 'github-actions[bot]']);
+  run('git', ['config', 'user.email', '41898282+github-actions[bot]@users.noreply.github.com']);
   run('git', ['commit', '-m', 'Restore smaller visible place dots']);
   run('git', ['push', 'origin', `HEAD:${MAP_FIX_BRANCH}`]);
 }
