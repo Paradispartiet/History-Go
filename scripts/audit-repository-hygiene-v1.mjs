@@ -11,7 +11,7 @@ const maxDiagnosticBytes = 500 * 1024;
 const diagnosticExtensions = new Set(['.html', '.htm', '.zip', '.tar', '.gz', '.7z', '.pdf']);
 
 function git(args) {
-  const result = spawnSync('git', args, { encoding: 'utf8' });
+  const result = spawnSync('git', args, { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
   if (result.status !== 0) {
     process.stderr.write(result.stderr || `git ${args.join(' ')} failed\n`);
     process.exit(result.status ?? 1);
