@@ -83,6 +83,11 @@ on:
       - "docs/documentation_registry.json"
       - "schemas/place.ts"
       - "tests/place-card-profile-schema.test.mjs"
+      - "tests/christiania-torv-placecard-collections-v2.test.mjs"
+      - "tests/christiania-torv-placecard-collections-v2-browser-audit.test.mjs"
+      - "data/places/by/oslo/places/christiania_torv.json"
+      - "data/quiz/production_context/by/christiania_torv.json"
+      - "reports/place-production/christiania-torv-*.md"
       - ".github/workflows/place-rounds-governance.yml"
   push:
     branches: [main]
@@ -167,6 +172,11 @@ on:
       - "docs/documentation_registry.json"
       - "schemas/place.ts"
       - "tests/place-card-profile-schema.test.mjs"
+      - "tests/christiania-torv-placecard-collections-v2.test.mjs"
+      - "tests/christiania-torv-placecard-collections-v2-browser-audit.test.mjs"
+      - "data/places/by/oslo/places/christiania_torv.json"
+      - "data/quiz/production_context/by/christiania_torv.json"
+      - "reports/place-production/christiania-torv-*.md"
       - ".github/workflows/place-rounds-governance.yml"
   workflow_dispatch:
 
@@ -198,7 +208,7 @@ jobs:
         run: |
           node --check js/ui/place-popup-tabs.js
           node --check js/ui/nature-detailed-map.js
-          node --test tests/place-rounds-visual-collections.test.mjs tests/place-rounds-grid-exclusivity.test.mjs tests/place-rounds-fill-layout.test.mjs tests/place-card-profile-schema.test.mjs tests/nature-detailed-map.test.mjs
+          node --test tests/place-rounds-visual-collections.test.mjs tests/place-rounds-grid-exclusivity.test.mjs tests/place-rounds-fill-layout.test.mjs tests/place-card-profile-schema.test.mjs tests/christiania-torv-placecard-collections-v2.test.mjs tests/nature-detailed-map.test.mjs
           node tests/place-card-rounds-runtime-audit.test.js
           node tests/place-people-ids-runtime.test.js
           node tests/nationaltheatret-people-curation.test.js
@@ -211,3 +221,4 @@ jobs:
           node --test tests/regjeringskvartalet-image-gates.test.mjs
           node --test tests/place-production-brand-quiz-governance.test.mjs
           node tests/regjeringskvartalet-ui-production-audit.test.mjs
+          node tests/christiania-torv-placecard-collections-v2-browser-audit.test.mjs
