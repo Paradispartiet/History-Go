@@ -1,0 +1,36 @@
+name: Cleanup merged agent branch
+
+on:
+  pull_request:
+    types: [closed]
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    if: >-
+      github.event.pull_request.merged == true &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      startsWith(github.event.pull_request.head.ref, 'agent/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete merged agent branch
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const ref = context.payload.pull_request.head.ref;
+            try {
+              await github.rest.git.deleteRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: `heads/${ref}`,
+              });
+              core.info(`Deleted merged branch ${ref}`);
+            } catch (error) {
+              if (error.status === 404) {
+                core.notice(`Branch ${ref} is already deleted.`);
+                return;
+              }
+              throw error;
+            }

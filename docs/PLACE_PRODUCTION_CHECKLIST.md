@@ -2,7 +2,7 @@
 
 Status: **canonical produksjonsarbeidsflyt**  
 Eier: `place_by_place_production_workflow`  
-Sist kontrollert: **2026-08-23**
+Sist kontrollert: **2026-08-24**
 
 Dette dokumentet eier **arbeidsrekkefølge, review-checkpoints og mergekadens** for sted-for-sted-produksjon.
 
@@ -11,6 +11,12 @@ Den komplette detaljerte v1-sjekklisten er bevart byte-for-byte i:
 - `docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md`
 
 Alle faglige, redaksjonelle, faktuelle og subsystemspesifikke krav i referansen er fortsatt bindende. V2 endrer **ikke** innholdsmengde, checklist-dekning, kildekrav, fullness, own-place-regler, People/Objects/Brands/Quiz/Story-kvalitet eller manuell slutt-QA. V2 erstatter bare den gamle regelen om at hvert godkjent delsteg måtte bli en separat PR/merge.
+
+Alle canonicale steder skal ha sin egen fungerende fagverkside. Kravet gjelder hvert sted, kan ikke settes til N/A og er en egen ferdigport. V2 endrer ikke dette kravet; den forenkler bare review- og mergekadensen.
+
+Arbeidskortet skal eksplisitt føre `FAGVERK-STED-STATUS:`. `fagverk-sted` er aldri N/A. Sluttstatusen skal dokumentere `fagverk-sted — obligatorisk, fungerende og aldri N/A` før stedet kan godkjennes ferdig.
+
+DIALEKTLAG — KUN `placeScope: "area"` / N/A. Dialektinnhold kan kun eies av et område-Place med `placeScope: "area"`. Et enkeltsted med Språkleksikon skal ikke diktes om til dialekteier. `coordRole` beskriver koordinatgeometri og gir aldri dialekt-eierskap. Når Språkleksikon produseres, skal minst ett reelt dialektord eller lokalt uttrykk være kildebelagt når dialektlaget er relevant; øvrige relevante dialektord og lokale uttrykk skal vurderes og kildebelegges etter språk-/dialektkontrakten.
 
 > **Ett sted ferdig før neste. Faser reviewes sekvensielt. Mergegrenser følger reell risiko — ikke antall faser.**
 
@@ -29,11 +35,37 @@ For detaljproduksjon gjelder subsystemets canonical kontrakt, akkurat som i v1-r
 - People: `docs/people-of-places-method.md` og `docs/PEOPLE_PROFILE_CANONICAL.md`;
 - Brands: `data/brands/brand_rules_v1_1.json`;
 - Stories: `docs/STORIES_DATA_GOVERNANCE.md`;
+- Brands: `data/brands/brand_rules_v1_1.json`;
 - Quiz: `data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md`;
 - koordinater: `docs/coordinates/README.md` og coordinate-kontraktene;
 - relevante Fagverk-/kategori-/Natur-/Historie-/Politikk-/Næringsliv-/Subkultur-kontrakter.
 
+For **Brands** gjelder fortsatt de eksplisitte produksjonsgrensene: aktørtype alene brukes verken som godkjenning eller avslag. Null treff i eksisterende Brand-register behandles som «må researches», ikke som N/A; N/A krever dokumentert kandidatsøk og kandidatspesifikke avvisningsgrunner.
+
+For **Quiz** skal alle aktive, arkiverte og alternative quizfiler for stedet auditeres før profilvalg. Profil og settantall følger den canonicale Quiz-kontrakten; et `major`-sted bruker 10 sett med 7 spørsmål per sett.
+
 `PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md` er den detaljerte ruteren for alle disse flatene. Ingen detalj kan hoppes over fordi mergekadensen nå er enklere.
+
+### Canonicale kvalitetslåser som fortsatt skal stå eksplisitt
+
+Arbeidskortet bruker fortsatt feltet:
+
+`MÅL FOR INNHOLDSRUNDINGER: 4 + separat fast Badge`
+
+For rundinger, Før/etter og direktefaner gjelder fortsatt:
+
+- nøyaktig fire innholdsrundinger vises i et 2 × 2-felt ved `frontImage`;
+- en enkelt vilkårlig eller taksonomisk konstruert gjenstand er ikke nok til å gjøre Objects til en kvalitetsmessig ferdig runding;
+- Objects og Structures/Bygg brukes ikke som to separate rundinger når innholdet i praksis er de samme fysiske stedselementene eller forskjellen er uklar for spilleren;
+- Fire plasser skal aldri fylles bare for å oppnå 4+1-layouten; mangler stedet fire reelt sterke og distinkte samlinger, skal innholdet eller rundingsmodellen forbedres før sluttgodkjenning;
+- canonical place-register/manifester er søkt før motivet velges, slik at bygg, virksomheter, parker, plasser eller andre delsteder med egen place-oppføring blir oppdaget;
+- et delsted som har egen canonical place-oppføring brukes ikke som primært Før/etter-stedfortreder for et overordnet sted;
+- bilder fra ulike kamerastandpunkter kan brukes som supplerende historiske bilder, men består ikke alene som fullverdig primær Før/etter-sammenligning;
+- 2009 → 2017 erstatter ikke automatisk et eldre historisk førbilde;
+- Nyheter kan ikke godkjennes som tom/N/A når fanen er relevant for stedet;
+- Lesespor kan ikke godkjennes som tom/N/A når relevant lesestoff finnes eller kan etableres etter kontrakten;
+- betalingslåst er ikke tilstrekkelig N/A-grunn for Lesespor;
+- Innhold som tidligere lå i Mer kan ikke skjules bak en restfane for å få en manglende direktefane til å se ferdig ut.
 
 ---
 
