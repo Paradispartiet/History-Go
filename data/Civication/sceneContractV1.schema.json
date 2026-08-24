@@ -54,6 +54,7 @@
     "place_id": { "$ref": "#/$defs/nonEmptyId" },
     "work_context": { "$ref": "#/$defs/workContext" },
     "authority_context": { "$ref": "#/$defs/authorityContext" },
+    "social_standing_context": { "$ref": "#/$defs/socialStandingContext" },
     "content": {
       "type": "object",
       "additionalProperties": false,
@@ -327,6 +328,12 @@
           "items": { "$ref": "#/$defs/workObjectOp" },
           "maxItems": 12,
           "default": []
+        },
+        "social_standing_ops": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/socialStandingOp" },
+          "maxItems": 8,
+          "default": []
         }
       },
       "default": {}
@@ -359,6 +366,53 @@
       },
       "dependentRequired": {
         "deadline_phase": ["deadline_day"]
+      }
+    },
+    "socialStandingContext": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reaction_audience_id": { "$ref": "#/$defs/socialAudienceId" },
+        "requirements": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/socialStandingRequirement" },
+          "maxItems": 8,
+          "default": []
+        }
+      },
+      "anyOf": [
+        { "required": ["reaction_audience_id"] },
+        { "required": ["requirements"] }
+      ]
+    },
+    "socialAudienceId": {
+      "type": "string",
+      "pattern": "^(manager|team|professional|public):[a-z0-9][a-z0-9_.:-]{0,95}$"
+    },
+    "socialStandingRequirement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["audience_id"],
+      "properties": {
+        "audience_id": { "$ref": "#/$defs/socialAudienceId" },
+        "min": { "type": "number", "minimum": -100, "maximum": 100 },
+        "max": { "type": "number", "minimum": -100, "maximum": 100 }
+      },
+      "anyOf": [
+        { "required": ["min"] },
+        { "required": ["max"] }
+      ]
+    },
+    "socialStandingOp": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["event_id", "audience_id", "delta"],
+      "properties": {
+        "event_id": { "$ref": "#/$defs/nonEmptyId" },
+        "audience_id": { "$ref": "#/$defs/socialAudienceId" },
+        "delta": { "type": "number", "minimum": -100, "maximum": 100, "not": { "const": 0 } },
+        "reason": { "type": "string", "minLength": 1 },
+        "source_actor_id": { "$ref": "#/$defs/nonEmptyId" }
       }
     },
     "workObjectCreateSeed": {

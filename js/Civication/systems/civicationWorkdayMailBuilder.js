@@ -85,11 +85,14 @@
   }
   function filterAndRankWorkRhythm(candidates, state, options = {}) {
     const helper = window.CivicationWorkRhythm;
-    if (typeof helper?.evaluateCandidates !== "function") return Array.isArray(candidates) ? candidates : [];
-    return helper.evaluateCandidates(candidates, state, {
+    const rhythm = typeof helper?.evaluateCandidates === "function" ? helper.evaluateCandidates(candidates, state, {
       day_index: getWorkdayDayIndex() || 1,
       phase: options.phase
-    });
+    }) : (Array.isArray(candidates) ? candidates : []);
+    const standing = window.CivicationSocialStandingFactory;
+    return typeof standing?.evaluateCandidates === "function"
+      ? standing.evaluateCandidates(rhythm, state)
+      : rhythm;
   }
   function isWorkPhase(phaseId) {
     return WORK_PHASE_SET.has(norm(phaseId));
@@ -565,6 +568,11 @@
       phase: context?.phase
     });
   }
+  function evaluateSocialStanding(mail, context) {
+    const helper = window.CivicationSocialStandingFactory;
+    if (typeof helper?.evaluateScene !== "function") return { eligible: true };
+    return helper.evaluateScene(mail, context?.state || getState());
+  }
   function progressionText(mail) {
     return [
       mail?.id,
@@ -638,6 +646,7 @@
     if (context?.used_ids?.has?.(id)) return false;
     if (id === norm(context?.planned_primary_id)) return false;
     if (evaluateWorkRhythm(mail, context).eligible !== true) return false;
+    if (evaluateSocialStanding(mail, context).eligible !== true) return false;
     const text = progressionText(mail);
     const week = extractProgressionWeek(mail);
     const maxWeek = Math.max(1, Number(context?.max_week || 1));

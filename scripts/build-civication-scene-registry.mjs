@@ -14,6 +14,7 @@ export const LEGACY_FALLBACK_ROOT = "data/Civication/jobbmails";
 export const DEFAULT_OUTPUT = "data/Civication/compiledSceneRegistryV1.json";
 
 const ID_RE = /^[A-Za-z0-9][A-Za-z0-9._:-]*$/;
+const SOCIAL_AUDIENCE_ID_RE = /^(manager|team|professional|public):[a-z0-9][a-z0-9_.:-]{0,95}$/;
 const DAY_PHASES = new Set([
   "morning", "forenoon", "workday", "lunch", "afternoon", "dinner", "evening", "day_end", "any"
 ]);
@@ -226,6 +227,53 @@ function normalizeWorkContext(value, label) {
   if (hasOwn(input, "interrupts")) {
     if (typeof input.interrupts !== "boolean") throw new Error(`${label}.interrupts må være boolean`);
     out.interrupts = input.interrupts;
+  }
+  return out;
+}
+
+function assertSocialAudienceId(value, label) {
+  const id = norm(value);
+  if (!SOCIAL_AUDIENCE_ID_RE.test(id)) {
+    throw new Error(`${label} har ugyldig situert audience-id: ${JSON.stringify(value)}`);
+  }
+  return id;
+}
+
+function normalizeSocialStandingContext(value, label) {
+  if (value == null) return null;
+  const input = assertAllowedKeys(value, new Set(["reaction_audience_id", "requirements"]), label);
+  const out = {};
+  if (hasOwn(input, "reaction_audience_id")) {
+    out.reaction_audience_id = assertSocialAudienceId(input.reaction_audience_id, `${label}.reaction_audience_id`);
+  }
+  if (hasOwn(input, "requirements")) {
+    if (!Array.isArray(input.requirements)) throw new Error(`${label}.requirements må være array`);
+    if (input.requirements.length > 8) throw new Error(`${label}.requirements kan ha maks 8 elementer`);
+    const seen = new Set();
+    out.requirements = input.requirements.map((raw, index) => {
+      const itemLabel = `${label}.requirements[${index}]`;
+      const requirement = assertAllowedKeys(raw, new Set(["audience_id", "min", "max"]), itemLabel);
+      const audienceId = assertSocialAudienceId(requirement.audience_id, `${itemLabel}.audience_id`);
+      if (seen.has(audienceId)) throw new Error(`${label}.requirements har duplikat audience_id: ${audienceId}`);
+      seen.add(audienceId);
+      const item = { audience_id: audienceId };
+      for (const key of ["min", "max"]) {
+        if (!hasOwn(requirement, key)) continue;
+        const number = Number(requirement[key]);
+        if (!Number.isFinite(number) || number < -100 || number > 100) {
+          throw new Error(`${itemLabel}.${key} må være et tall mellom -100 og 100`);
+        }
+        item[key] = number;
+      }
+      if (!hasOwn(item, "min") && !hasOwn(item, "max")) throw new Error(`${itemLabel} krever min eller max`);
+      if (hasOwn(item, "min") && hasOwn(item, "max") && item.min > item.max) {
+        throw new Error(`${itemLabel}.min kan ikke være større enn max`);
+      }
+      return item;
+    });
+  }
+  if (!out.reaction_audience_id && !hasOwn(out, "requirements")) {
+    throw new Error(`${label} krever reaction_audience_id eller requirements`);
   }
   return out;
 }
@@ -502,6 +550,33 @@ function normalizeWorkObjectOps(value, label) {
   return out;
 }
 
+function normalizeSocialStandingOps(value, label) {
+  if (!Array.isArray(value)) throw new Error(`${label} må være array`);
+  if (value.length > 8) throw new Error(`${label} kan ha maks 8 operasjoner`);
+  const seenEvents = new Set();
+  return value.map((raw, index) => {
+    const opLabel = `${label}[${index}]`;
+    const input = assertAllowedKeys(raw, new Set([
+      "event_id", "audience_id", "delta", "reason", "source_actor_id"
+    ]), opLabel);
+    const eventId = assertId(input.event_id, `${opLabel}.event_id`);
+    if (seenEvents.has(eventId)) throw new Error(`${label} har duplikat event_id: ${eventId}`);
+    seenEvents.add(eventId);
+    const delta = Number(input.delta);
+    if (!Number.isFinite(delta) || delta === 0 || delta < -100 || delta > 100) {
+      throw new Error(`${opLabel}.delta må være et ikke-null tall mellom -100 og 100`);
+    }
+    const out = {
+      event_id: eventId,
+      audience_id: assertSocialAudienceId(input.audience_id, `${opLabel}.audience_id`),
+      delta
+    };
+    if (hasOwn(input, "reason")) out.reason = optionalStrictText(input.reason, `${opLabel}.reason`);
+    if (hasOwn(input, "source_actor_id")) out.source_actor_id = assertId(input.source_actor_id, `${opLabel}.source_actor_id`);
+    return out;
+  });
+}
+
 function normalizeChoiceAffordance(value, label) {
   if (value == null) return null;
   const input = assertAllowedKeys(value, new Set(["history_go"]), label);
@@ -602,6 +677,10 @@ function normalizeEffects(value, legacyScoreDelta, label = "effects") {
   if (hasOwn(input, "work_object_ops")) {
     const workObjectOps = normalizeWorkObjectOps(input.work_object_ops, `${label}.work_object_ops`);
     if (workObjectOps.length) out.work_object_ops = workObjectOps;
+  }
+  if (hasOwn(input, "social_standing_ops")) {
+    const standingOps = normalizeSocialStandingOps(input.social_standing_ops, `${label}.social_standing_ops`);
+    if (standingOps.length) out.social_standing_ops = standingOps;
   }
   return out;
 }
@@ -765,15 +844,23 @@ function compileMail({ catalog, family, mail, sourcePath }) {
   const choices = canonicalChoices(canonicalChoiceInputs, sourcePath, sceneId);
   const compatibilityChoices = compatibilityChoiceInputs(mail?.choices).map((choice, index) => {
     const normalizedOps = choices[index]?.effects?.work_object_ops;
+    const normalizedStandingOps = choices[index]?.effects?.social_standing_ops;
     const normalizedAuthorityAction = choices[index]?.authority_action;
     const normalizedAffordance = choices[index]?.affordance;
-    if ((!Array.isArray(normalizedOps) || !normalizedOps.length) && !normalizedAuthorityAction && !normalizedAffordance) return choice;
+    if ((!Array.isArray(normalizedOps) || !normalizedOps.length) &&
+        (!Array.isArray(normalizedStandingOps) || !normalizedStandingOps.length) &&
+        !normalizedAuthorityAction && !normalizedAffordance) return choice;
     const out = { ...choice };
     if (normalizedAuthorityAction) out.authority_action = normalizedAuthorityAction;
     if (normalizedAffordance) out.affordance = normalizedAffordance;
-    if (Array.isArray(normalizedOps) && normalizedOps.length) {
+    if ((Array.isArray(normalizedOps) && normalizedOps.length) ||
+        (Array.isArray(normalizedStandingOps) && normalizedStandingOps.length)) {
       const rawEffects = choice?.effects && typeof choice.effects === "object" && !Array.isArray(choice.effects) ? choice.effects : {};
-      out.effects = { ...rawEffects, work_object_ops: normalizedOps };
+      out.effects = {
+        ...rawEffects,
+        ...(Array.isArray(normalizedOps) && normalizedOps.length ? { work_object_ops: normalizedOps } : {}),
+        ...(Array.isArray(normalizedStandingOps) && normalizedStandingOps.length ? { social_standing_ops: normalizedStandingOps } : {})
+      };
     }
     return out;
   });
@@ -781,6 +868,10 @@ function compileMail({ catalog, family, mail, sourcePath }) {
   const workContext = normalizeWorkContext(
     mail?.work_context,
     `${sourcePath} :: ${sceneId} work_context`
+  );
+  const socialStandingContext = normalizeSocialStandingContext(
+    mail?.social_standing_context,
+    `${sourcePath} :: ${sceneId} social_standing_context`
   );
   const authorityContext = normalizeAuthorityContext(mail?.authority_context, `${sourcePath} :: ${sceneId} authority_context`);
   validateAuthorityBindings(authorityContext, choices, workContext, sourcePath, sceneId);
@@ -812,17 +903,20 @@ function compileMail({ catalog, family, mail, sourcePath }) {
     choices: compatibilityChoices,
     situation: situation.length ? situation : [norm(mail?.summary)].filter(Boolean),
     ...(workContext ? { work_context: workContext } : {}),
+    ...(socialStandingContext ? { social_standing_context: socialStandingContext } : {}),
     ...(authorityContext ? { authority_context: authorityContext } : {}),
     scene_catalog_source_path: sourcePath,
     scene_catalog_version: 1
   };
-  if (Array.isArray(sceneEffects.work_object_ops) && sceneEffects.work_object_ops.length) {
+  if ((Array.isArray(sceneEffects.work_object_ops) && sceneEffects.work_object_ops.length) ||
+      (Array.isArray(sceneEffects.social_standing_ops) && sceneEffects.social_standing_ops.length)) {
     const rawEffects = mail?.effects && typeof mail.effects === "object" && !Array.isArray(mail.effects)
       ? mail.effects
       : {};
     compatibilityProjection.effects = {
       ...rawEffects,
-      work_object_ops: sceneEffects.work_object_ops
+      ...(Array.isArray(sceneEffects.work_object_ops) && sceneEffects.work_object_ops.length ? { work_object_ops: sceneEffects.work_object_ops } : {}),
+      ...(Array.isArray(sceneEffects.social_standing_ops) && sceneEffects.social_standing_ops.length ? { social_standing_ops: sceneEffects.social_standing_ops } : {})
     };
   }
 
@@ -838,6 +932,7 @@ function compileMail({ catalog, family, mail, sourcePath }) {
     interaction_mode: interactionMode,
     thread_id: canonicalThreadId(mail, roleScope, sceneId),
     ...(workContext ? { work_context: workContext } : {}),
+    ...(socialStandingContext ? { social_standing_context: socialStandingContext } : {}),
     ...(authorityContext ? { authority_context: authorityContext } : {}),
     content: canonicalContent(mail, sceneId),
     choices,

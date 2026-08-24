@@ -927,6 +927,274 @@
           ]
         }
       ]
+    },
+    {
+      "id": "role_world_realism_situated_reputation_response",
+      "purpose": "La den relasjonen som faktisk ble styrket i Lillebekk-valget produsere en egen senere scene, mens den andre scenen forblir utilgjengelig.",
+      "learning_focus": [
+        "situated_reputation",
+        "conditional_relationship_scene",
+        "team_trust",
+        "manager_trust"
+      ],
+      "mails": [
+        {
+          "id": "by_radgiver_situated_team_trust_followup_001",
+          "mail_type": "followup",
+          "mail_family": "role_world_realism_situated_reputation_response",
+          "role_scope": "by_radgiver_plan",
+          "phase": "mastery",
+          "day_phase": "afternoon",
+          "priority": 60,
+          "cooldown": 8,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Signe, byøkolog",
+          "sender": "signe_byokolog",
+          "person_id": "signe_byokolog",
+          "people_ref": "signe_byokolog",
+          "place_id": "radhuset_planavdeling",
+          "thread_key": "by_radgiver_lillebekk_realism_001",
+          "subject": "Signe: Det faglige sporet står der også når vi er uenige",
+          "summary": "Signe følger opp fordi den navngitte dissensen faktisk ble stående i saken. Hun tilbyr faglig samarbeid videre, men gjør det klart at tilliten i teamet ikke opphever spenningen i lederlinjen.",
+          "purpose": "Bevise at høy teamtillit, sammen med lavere ledertillit, gir en egen senere relasjonsscene.",
+          "stakes": "Kollegial tillit gir bedre faglig informasjonsflyt, men er verken formell godkjenning eller en erstatning for lederansvar.",
+          "situation": [
+            "Signe ser at hennes vurdering av grøntdraget kan spores helt fram til oversendelsen.",
+            "Hun deler et nytt faglig notat tidligere enn hun ellers ville gjort.",
+            "Samtidig minner hun om at Elin fortsatt må eie leveransen og konsekvensene av den."
+          ],
+          "task_domain": "kollegial_informasjonsdeling_etter_faglig_dissens",
+          "task_kind": "followup",
+          "competency": "relasjonell_tillit_med_myndighetsgrense",
+          "pressure": "tidlig_faglig_deling_vs_uformell_omgaelse_av_lederlinje",
+          "choice_axis": "avgrenset_faglig_samarbeid_vs_felles_reparasjonsformat",
+          "consequence_axis": "robust_teamtillit_vs_uformell_skyggelinje",
+          "narrative_arc": "lillebekk_fra_kunnskapsgrunnlag_til_politisk_behandling",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "by_radgiver_lillebekk_plan_case_001"
+            ],
+            "institution_id": "oslo_kommune_planavdeling_001",
+            "priority": "high"
+          },
+          "social_standing_context": {
+            "reaction_audience_id": "team:lillebekk_planteam",
+            "requirements": [
+              {
+                "audience_id": "team:lillebekk_planteam",
+                "min": 2
+              },
+              {
+                "audience_id": "manager:elin_plansjef",
+                "max": -1
+              }
+            ]
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta imot notatet og behold ansvarsgrensene synlige",
+              "reply": "Jeg bruker notatet i videre faglig arbeid, men behandler det ikke som ledergodkjenning eller politisk mandat.",
+              "effect": 1,
+              "feedback": "Høy kollegatillit gir tidligere faglig informasjonsdeling, ikke større formell myndighet.",
+              "effects": {
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "by_radgiver_lillebekk_team_trust_followup",
+                    "work_object_id": "by_radgiver_lillebekk_plan_case_001",
+                    "flag": "kollegial_tillit_gir_tidlig_faglig_deling"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Be Signe og Elin lage et felles format for synlig faglig dissens",
+              "reply": "Jeg bruker ikke teamtilliten som en skyggelinje, men foreslår et felles format der faglige motforestillinger kan spores og lederansvaret fortsatt er tydelig.",
+              "effect": 1,
+              "feedback": "Du bruker den sterke teamrelasjonen til å reparere arbeidsformen på tvers av relasjonene, ikke til å gå rundt lederlinjen.",
+              "effects": {
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "by_radgiver_lillebekk_shared_dissent_format_requested",
+                    "work_object_id": "by_radgiver_lillebekk_plan_case_001",
+                    "flag": "felles_format_for_faglig_dissens_foreslatt"
+                  }
+                ]
+              }
+            }
+          ],
+          "planned_only": true,
+          "learning_focus": [
+            "situated_reputation",
+            "team_trust",
+            "authority_boundary",
+            "relationship_repair"
+          ],
+          "next_bias": {
+            "tags": [
+              "team_trust",
+              "visible_professional_dissent"
+            ],
+            "weight": 1
+          },
+          "triggers_on_choice": {
+            "A": [
+              "role_world_realism_authority"
+            ],
+            "B": [
+              "role_world_realism_authority"
+            ]
+          },
+          "branch_flags": {
+            "A": [
+              "teamtillit_med_synlig_ansvarsgrense"
+            ],
+            "B": [
+              "relasjonell_reparasjon_foreslatt"
+            ]
+          },
+          "tags": [
+            "followup",
+            "situated_reputation",
+            "team_trust",
+            "by_radgiver_plan",
+            "lillebekk"
+          ]
+        },
+        {
+          "id": "by_radgiver_situated_manager_trust_followup_001",
+          "mail_type": "followup",
+          "mail_family": "role_world_realism_situated_reputation_response",
+          "role_scope": "by_radgiver_plan",
+          "phase": "mastery",
+          "day_phase": "afternoon",
+          "priority": 60,
+          "cooldown": 8,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Elin, plansjef",
+          "sender": "elin_plansjef",
+          "person_id": "elin_plansjef",
+          "people_ref": "elin_plansjef",
+          "place_id": "radhuset_planavdeling",
+          "thread_key": "by_radgiver_lillebekk_realism_001",
+          "subject": "Elin: Leveransen holdt — nå må den interne uenigheten fortsatt være sporbar",
+          "summary": "Elin følger opp fordi du leverte et konsistent notat innen fristen. Hun gir deg tidligere ansvar i neste redigeringsrunde, men krever samtidig et eksplisitt internt dissensregister for å reparere teamets informasjonsbrudd.",
+          "purpose": "Bevise at høy ledertillit, sammen med lav teamtillit, gir en annen senere relasjonsscene.",
+          "stakes": "Lederens tillit kan gi tidligere tilgang til arbeidsflyten, men den gir ikke spilleren mer beslutningsmyndighet og fjerner ikke behovet for å reparere kollegial tillit.",
+          "situation": [
+            "Elin fikk et saksframlegg hun kunne sende uten ny redigeringsrunde.",
+            "Hun ber deg starte tidligere på neste leveranse fordi hun stoler på gjennomføringen.",
+            "Samtidig peker hun på at faglige motforestillinger må loggføres tydeligere neste gang."
+          ],
+          "task_domain": "lederforankret_arbeidsansvar_etter_samordnet_leveranse",
+          "task_kind": "followup",
+          "competency": "ledertillit_med_kollegial_reparasjon",
+          "pressure": "tidligere_leveranseansvar_vs_svekket_teamtillit",
+          "choice_axis": "ta_ansvar_med_dissensspor_vs_dele_redigeringsansvar",
+          "consequence_axis": "robust_ledertillit_vs_varig_informasjonsbrudd_i_teamet",
+          "narrative_arc": "lillebekk_fra_kunnskapsgrunnlag_til_politisk_behandling",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "by_radgiver_lillebekk_plan_case_001"
+            ],
+            "institution_id": "oslo_kommune_planavdeling_001",
+            "priority": "high"
+          },
+          "social_standing_context": {
+            "reaction_audience_id": "manager:elin_plansjef",
+            "requirements": [
+              {
+                "audience_id": "manager:elin_plansjef",
+                "min": 2
+              },
+              {
+                "audience_id": "team:lillebekk_planteam",
+                "max": -2
+              }
+            ]
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta ansvar for neste leveranse og opprett et tydelig internt dissensspor",
+              "reply": "Jeg tar imot det tidligere redigeringsansvaret og gjør faglige motforestillinger eksplisitt sporbare uten å late som jeg har fått ny myndighet.",
+              "effect": 1,
+              "feedback": "Høy ledertillit gir tidligere ansvar i arbeidsflyten, men ingen ny formell myndighet og ingen automatisk reparasjon av teamtilliten.",
+              "effects": {
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "by_radgiver_lillebekk_manager_trust_followup",
+                    "work_object_id": "by_radgiver_lillebekk_plan_case_001",
+                    "flag": "ledertillit_gir_tidligere_redigeringsansvar"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Be om delt redigeringsansvar med Nora eller Signe i neste runde",
+              "reply": "Jeg tar imot Elins tillit, men foreslår at neste leveranse får delt faglig redigering slik at teamets motforestillinger kommer inn før notatet låses.",
+              "effect": 1,
+              "feedback": "Du bruker ledertilliten til å åpne arbeidsprosessen for kollegene igjen, ikke til å gjøre deg selv mer myndig.",
+              "effects": {
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "by_radgiver_lillebekk_shared_editing_requested",
+                    "work_object_id": "by_radgiver_lillebekk_plan_case_001",
+                    "flag": "delt_faglig_redigering_foreslatt"
+                  }
+                ]
+              }
+            }
+          ],
+          "planned_only": true,
+          "learning_focus": [
+            "situated_reputation",
+            "manager_trust",
+            "authority_boundary",
+            "relationship_repair"
+          ],
+          "next_bias": {
+            "tags": [
+              "manager_trust",
+              "delivery_control"
+            ],
+            "weight": 1
+          },
+          "triggers_on_choice": {
+            "A": [
+              "role_world_realism_authority"
+            ],
+            "B": [
+              "role_world_realism_authority"
+            ]
+          },
+          "branch_flags": {
+            "A": [
+              "ledertillit_med_eksplisitt_dissensspor"
+            ],
+            "B": [
+              "delt_redigering_for_teamreparasjon"
+            ]
+          },
+          "tags": [
+            "followup",
+            "situated_reputation",
+            "manager_trust",
+            "by_radgiver_plan",
+            "lillebekk"
+          ]
+        }
+      ]
     }
   ]
 }
