@@ -130,6 +130,7 @@ def main_case_create() -> dict:
 def catalog(mail_type: str, family_id: str, purpose: str, learning_focus: list[str], mails: list[dict]) -> dict:
     focus = list(learning_focus)
     for mail in mails:
+        mail.setdefault("planned_only", True)
         mail.setdefault("learning_focus", focus)
         if mail_type in {"micro", "followup", "knowledge", "consequence"}:
             mail.setdefault("next_bias", {"tags": focus[:3], "weight": 1})
