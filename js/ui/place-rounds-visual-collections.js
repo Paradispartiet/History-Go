@@ -140,7 +140,7 @@
   }
 
   function physicalCivication(item) {
-    if (!item || typeof item !== "object" || !imageFor(item)) return false;
+    if (!item || typeof item !== "object") return false;
     return Boolean(
       item.physicalObject === true || item.physical === true || item.isPhysical === true ||
       s(item.objectType || item.object_type || item.material || item.historicalFunction || item.historical_function)
