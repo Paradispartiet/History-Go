@@ -1,0 +1,1711 @@
+{
+  "schema": "history_go_helse_theory_integrity_bindings_v1",
+  "version": "1.0.0",
+  "status": "canonical",
+  "subject_id": "helse",
+  "profile": "hybrid",
+  "completion_status_read_only": false,
+  "content_mutation": false,
+  "production_rule": "Strict proof krever to relevante modeller, mekanismer eller rammeverk per canonicalt Helse-hovedfelt, faglig passende og inspectable kilder, eksakte claim-sporede prosebindings, tydelige begrensninger og et reelt komplementært eller alternativt analysegrunnlag. Ingen binding kan gi individuell diagnose, prognose, triage, behandling, rettighetsavgjørelse eller budsjettinstruks.",
+  "safety_boundary": "Generell undervisning om helse og medisin; aldri individuell diagnose, prognose, triage eller behandlingsanbefaling.",
+  "fields": [
+    {
+      "domain_id": "anatomi_fysiologi",
+      "domain_label": "Anatomi og fysiologi",
+      "comparison": {
+        "model_object_ids": [
+          "helse-anatomi-fysiologi-01",
+          "helse-anatomi-fysiologi-02"
+        ],
+        "interpretive_consequence": "Anatomisk språk, posisjon, plan og variabilitet og Organisasjonsnivå, vev og struktur–funksjon brukes som komplementære forklaringsrammer. Sammen hindrer de at anatomi og fysiologi reduseres til én indikator, én lineær årsak eller en individualiserende slutning fra gruppedata."
+      },
+      "model_objects": [
+        {
+          "id": "helse-anatomi-fysiologi-01",
+          "model_kind": "mechanism_or_framework",
+          "model_name": "Anatomisk språk, posisjon, plan og variabilitet",
+          "emne_id": "em_helse_anatomi_fysiologi",
+          "domain_id": "anatomi_fysiologi",
+          "scope": "Rammeverket brukes til generell, kildebasert analyse av anatomisk språk, posisjon, plan og variabilitet innen Anatomi og fysiologi, med eksplisitt skille mellom gruppedata, mekanisme og individuell klinisk vurdering.",
+          "core_claim_or_mechanism": "En standardisert anatomisk term navngir en struktur i en felles nomenklatur; den fastslår ikke at enhver kropp har identisk form, eller at et avvik er sykdom. Anatomisk beskrivelse må derfor skilles fra dokumentasjon av variasjon og fra en klinisk vurdering som krever egne data.",
+          "limitations": [
+            "Terminologia Anatomica reduserer tvetydighet ved å standardisere navn og hierarkier på tvers av språk og fagmiljøer. Standardiseringen fjerner ikke biologisk variasjon, måleusikkerhet eller historiske forskjeller i navnebruk, men gjør det tydeligere hvilket objekt en påstand gjelder.",
+            "Bindingen dokumenterer generell fagforståelse og kan ikke brukes til individuell diagnose, prognose, triage, behandling, rettighetsavgjørelse eller budsjettbeslutning."
+          ],
+          "rival_or_alternative": "Organisasjonsnivå, vev og struktur–funksjon er et komplementært analysegrunnlag når spørsmålet gjelder andre ledd, forutsetninger eller gyldighetsgrenser enn dem dette rammeverket forklarer direkte.",
+          "interpretive_consequence": "Retningsord som anterior, posterior, medial og lateral får presis mening når kroppen plasseres i avtalt anatomisk posisjon. Referanserammen må oppgis også når en person faktisk ligger, roterer eller avbildes fra en annen vinkel, ellers kan samme struktur beskrives motstridende.",
+          "scholarly_source": {
+            "source_id": "hap01-ifaa-fipat-ta2",
+            "label": "International Federation of Associations of Anatomists / FIPAT – Terminologia Anatomica, second edition",
+            "url": "https://libraries.dal.ca/Fipat/ta2.html",
+            "authority_class": "international-anatomical-terminology-primary-source",
+            "source_role": "Official TA2 index and tables: standardized Latin anatomical terms, hierarchical identifiers and approved international nomenclature.",
+            "use_limit": "Kilden brukes bare innen sitt dokumenterte evidensområde og aldri som selvstendig grunnlag for en individuell klinisk eller rettslig beslutning."
+          },
+          "content_bindings": [
+            {
+              "role": "mechanism",
+              "chapter_file": "data/fagverk/helse/anatomi-fysiologi-struktur-funksjon-og-regulering.json",
+              "module_file": "data/fagverk/helse/anatomi-fysiologi-struktur-funksjon-og-regulering/01-anatomisk-sprak-og-struktur.json",
+              "section_id": "hap-anatomisk-sprak-og-referanserammer",
+              "paragraph_index": 0,
+              "claim_id": "hap-01-01",
+              "source_ids": [
+                "hap01-ifaa-fipat-ta2",
+                "hap02-openstax-structural-organization",
+                "hap03-openstax-anatomical-terminology"
+              ]
+            },
+            {
+              "role": "limitation",
+              "chapter_file": "data/fagverk/helse/anatomi-fysiologi-struktur-funksjon-og-regulering.json",
+              "module_file": "data/fagverk/helse/anatomi-fysiologi-struktur-funksjon-og-regulering/01-anatomisk-sprak-og-struktur.json",
+              "section_id": "hap-anatomisk-sprak-og-referanserammer",
+              "paragraph_index": 3,
+              "claim_id": "hap-01-04",
+              "source_ids": [
+                "hap01-ifaa-fipat-ta2",
+                "hap02-openstax-structural-organization",
+                "hap03-openstax-anatomical-terminology"
+              ]
+            },
+            {
+              "role": "alternative",
+              "chapter_file": "data/fagverk/helse/anatomi-fysiologi-struktur-funksjon-og-regulering.json",
+              "module_file": "data/fagverk/helse/anatomi-fysiologi-struktur-funksjon-og-regulering/01-anatomisk-sprak-og-struktur.json",
+              "section_id": "hap-organisasjonsniva-og-struktur-funksjon",
+              "paragraph_index": 0,
+              "claim_id": "hap-02-01",
+              "source_ids": [
+                "hap02-openstax-structural-organization",
+                "hap04-aps-core-concepts",
+                "hap05-michael-core-concepts-2020"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "helse-anatomi-fysiologi-02",
+          "model_kind": "complementary_framework",
+          "model_name": "Organisasjonsnivå, vev og struktur–funksjon",
+          "emne_id": "em_helse_anatomi_fysiologi",
+          "domain_id": "anatomi_fysiologi",
+          "scope": "Rammeverket brukes til generell, kildebasert analyse av organisasjonsnivå, vev og struktur–funksjon innen Anatomi og fysiologi, med eksplisitt skille mellom gruppedata, mekanisme og individuell klinisk vurdering.",
+          "core_claim_or_mechanism": "Kroppen kan beskrives på kjemisk, cellulært, vevs-, organ-, organsystem- og organismenivå, men nivåene er gjensidig avhengige. En endring på ett nivå kan forplante seg, dempes eller kompenseres på andre nivåer, så nivåinndeling er et analyseverktøy og ikke separate kropper.",
+          "limitations": [
+            "Anatomi beskriver blant annet form, plassering og relasjoner; fysiologi undersøker prosesser og regulering. En klinisk slutning om sykdom eller funksjonstap krever i tillegg person-, måle- og kontekstdata, og kan ikke avledes direkte fra en lærebokfigur eller generell mekanisme.",
+            "Bindingen dokumenterer generell fagforståelse og kan ikke brukes til individuell diagnose, prognose, triage, behandling, rettighetsavgjørelse eller budsjettbeslutning."
+          ],
+          "rival_or_alternative": "Anatomisk språk, posisjon, plan og variabilitet er et komplementært analysegrunnlag når spørsmålet gjelder andre ledd, forutsetninger eller gyldighetsgrenser enn dem dette rammeverket forklarer direkte.",
+          "interpretive_consequence": "Struktur–funksjon er en prøvbar relasjon mellom organisering og hva systemet kan gjøre under bestemte betingelser. Forklaringen må vise mekanismen som forbinder form og funksjon; den skal ikke si at en struktur finnes fordi kroppen ønsket eller trengte et bestemt resultat.",
+          "scholarly_source": {
+            "source_id": "hap04-aps-core-concepts",
+            "label": "American Physiological Society – Core Concepts of Physiology Learning Module",
+            "url": "https://www.physiology.org/professional-development/career/cpe/teaching-integrative-physiology/core-concepts",
+            "authority_class": "professional-society-curriculum-framework",
+            "source_role": "Fourteen vetted cross-system concepts including structure–function, gradients, mass balance, homeostasis, communication, integration and adaptation.",
+            "use_limit": "Kilden brukes bare innen sitt dokumenterte evidensområde og aldri som selvstendig grunnlag for en individuell klinisk eller rettslig beslutning."
+          },
+          "content_bindings": [
+            {
+              "role": "mechanism",
+              "chapter_file": "data/fagverk/helse/anatomi-fysiologi-struktur-funksjon-og-regulering.json",
+              "module_file": "data/fagverk/helse/anatomi-fysiologi-struktur-funksjon-og-regulering/01-anatomisk-sprak-og-struktur.json",
+              "section_id": "hap-organisasjonsniva-og-struktur-funksjon",
+              "paragraph_index": 0,
+              "claim_id": "hap-02-01",
+              "source_ids": [
+                "hap02-openstax-structural-organization",
+                "hap04-aps-core-concepts",
+                "hap05-michael-core-concepts-2020"
+              ]
+            },
+            {
+              "role": "limitation",
+              "chapter_file": "data/fagverk/helse/anatomi-fysiologi-struktur-funksjon-og-regulering.json",
+              "module_file": "data/fagverk/helse/anatomi-fysiologi-struktur-funksjon-og-regulering/01-anatomisk-sprak-og-struktur.json",
+              "section_id": "hap-organisasjonsniva-og-struktur-funksjon",
+              "paragraph_index": 3,
+              "claim_id": "hap-02-04",
+              "source_ids": [
+                "hap02-openstax-structural-organization",
+                "hap04-aps-core-concepts",
+                "hap05-michael-core-concepts-2020"
+              ]
+            },
+            {
+              "role": "alternative",
+              "chapter_file": "data/fagverk/helse/anatomi-fysiologi-struktur-funksjon-og-regulering.json",
+              "module_file": "data/fagverk/helse/anatomi-fysiologi-struktur-funksjon-og-regulering/01-anatomisk-sprak-og-struktur.json",
+              "section_id": "hap-anatomisk-sprak-og-referanserammer",
+              "paragraph_index": 0,
+              "claim_id": "hap-01-01",
+              "source_ids": [
+                "hap01-ifaa-fipat-ta2",
+                "hap02-openstax-structural-organization",
+                "hap03-openstax-anatomical-terminology"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "domain_id": "sykdom_patofysiologi",
+      "domain_label": "Sykdomslære og patofysiologi",
+      "comparison": {
+        "model_object_ids": [
+          "helse-sykdom-patofysiologi-01",
+          "helse-sykdom-patofysiologi-02"
+        ],
+        "interpretive_consequence": "Sykdom, mekanisme og kausal kjede og Cellestress, adaptasjon, skade og celledød brukes som komplementære forklaringsrammer. Sammen hindrer de at sykdomslære og patofysiologi reduseres til én indikator, én lineær årsak eller en individualiserende slutning fra gruppedata."
+      },
+      "model_objects": [
+        {
+          "id": "helse-sykdom-patofysiologi-01",
+          "model_kind": "mechanism_or_framework",
+          "model_name": "Sykdom, mekanisme og kausal kjede",
+          "emne_id": "em_helse_sykdom_patofysiologi",
+          "domain_id": "sykdom_patofysiologi",
+          "scope": "Rammeverket brukes til generell, kildebasert analyse av sykdom, mekanisme og kausal kjede innen Sykdomslære og patofysiologi, med eksplisitt skille mellom gruppedata, mekanisme og individuell klinisk vurdering.",
+          "core_claim_or_mechanism": "Et sykdomsbegrep beskriver et mønster av endret struktur, funksjon eller biologisk respons og er ikke det samme som et enkelt måleresultat. En risikofaktor endrer sannsynlighet, mens en biomarkør er en målbar indikator; ingen av delene etablerer alene en sykdomsmekanisme eller en individuell diagnose.",
+          "limitations": [
+            "Det samme kliniske fenomenet kan oppstå gjennom ulike biologiske mekanismer, og den samme mekanismen kan gi forskjellige fenotyper avhengig av lokalisasjon, alvorlighetsgrad, reserve og kontekst. Patofysiologisk forklaring krever derfor mer enn å koble ett tegn til én antatt årsak.",
+            "Bindingen dokumenterer generell fagforståelse og kan ikke brukes til individuell diagnose, prognose, triage, behandling, rettighetsavgjørelse eller budsjettbeslutning."
+          ],
+          "rival_or_alternative": "Cellestress, adaptasjon, skade og celledød er et komplementært analysegrunnlag når spørsmålet gjelder andre ledd, forutsetninger eller gyldighetsgrenser enn dem dette rammeverket forklarer direkte.",
+          "interpretive_consequence": "En kausal sykdomsmodell må angi etterprøvbare ledd fra påvirkning eller biologisk variasjon via mekanismer til vevs- eller systemkonsekvenser. En observert assosiasjon kan være forenlig med årsak, men kan også skyldes omvendt retning, felles årsaker eller andre skjevheter og er derfor ikke i seg selv et mekanismebevis.",
+          "scholarly_source": {
+            "source_id": "hdp01-ncbi-cell-injury-necrosis",
+            "label": "National Library of Medicine / StatPearls – Cell Liquefactive Necrosis",
+            "url": "https://www.ncbi.nlm.nih.gov/books/NBK430935/",
+            "authority_class": "authoritative_biomedical_or_government_reference",
+            "source_role": "Introduction; Pathophysiology — reversible/irreversible injury and necrosis.",
+            "use_limit": "Kilden brukes bare innen sitt dokumenterte evidensområde og aldri som selvstendig grunnlag for en individuell klinisk eller rettslig beslutning."
+          },
+          "content_bindings": [
+            {
+              "role": "mechanism",
+              "chapter_file": "data/fagverk/helse/sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt.json",
+              "module_file": "data/fagverk/helse/sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt/01-mekanisme-celleskade-og-inflammasjon.json",
+              "section_id": "hdp-sykdom-mekanisme-og-kausal-kjede",
+              "paragraph_index": 0,
+              "claim_id": "hdp-01-01",
+              "source_ids": [
+                "hdp01-ncbi-cell-injury-necrosis",
+                "hdp09-nhgri-genetic-disorders",
+                "hdp13-fda-nih-best"
+              ]
+            },
+            {
+              "role": "limitation",
+              "chapter_file": "data/fagverk/helse/sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt.json",
+              "module_file": "data/fagverk/helse/sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt/01-mekanisme-celleskade-og-inflammasjon.json",
+              "section_id": "hdp-sykdom-mekanisme-og-kausal-kjede",
+              "paragraph_index": 3,
+              "claim_id": "hdp-01-04",
+              "source_ids": [
+                "hdp01-ncbi-cell-injury-necrosis",
+                "hdp09-nhgri-genetic-disorders",
+                "hdp13-fda-nih-best"
+              ]
+            },
+            {
+              "role": "alternative",
+              "chapter_file": "data/fagverk/helse/sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt.json",
+              "module_file": "data/fagverk/helse/sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt/01-mekanisme-celleskade-og-inflammasjon.json",
+              "section_id": "hdp-cellestress-skade-og-celledod",
+              "paragraph_index": 0,
+              "claim_id": "hdp-02-01",
+              "source_ids": [
+                "hdp01-ncbi-cell-injury-necrosis",
+                "hdp02-ncbi-apoptosis-cell-death",
+                "hdp04-ncbi-wound-healing"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "helse-sykdom-patofysiologi-02",
+          "model_kind": "complementary_framework",
+          "model_name": "Cellestress, adaptasjon, skade og celledød",
+          "emne_id": "em_helse_sykdom_patofysiologi",
+          "domain_id": "sykdom_patofysiologi",
+          "scope": "Rammeverket brukes til generell, kildebasert analyse av cellestress, adaptasjon, skade og celledød innen Sykdomslære og patofysiologi, med eksplisitt skille mellom gruppedata, mekanisme og individuell klinisk vurdering.",
+          "core_claim_or_mechanism": "Cellulær adaptasjon kan bevare levedyktighet under belastning, mens reversibel skade innebærer funksjons- og strukturendringer som kan gå tilbake dersom belastningen fjernes i tide. Irreversibel skade oppstår når kritiske funksjoner og membran- eller organellintegritet ikke lenger kan gjenopprettes, og grensen avhenger av celletype, intensitet og varighet.",
+          "limitations": [
+            "Skadde celler kan miste spesialisert funksjon, frigjøre intracellulært materiale og faresignaler og påvirke naboceller, kar og immunrespons. Slike cellulære funn kan inngå i en vevsmekanisme, men de er ikke tilstrekkelige til å diagnostisere en bestemt person uten klinisk kontekst og egne validerte undersøkelser.",
+            "Bindingen dokumenterer generell fagforståelse og kan ikke brukes til individuell diagnose, prognose, triage, behandling, rettighetsavgjørelse eller budsjettbeslutning."
+          ],
+          "rival_or_alternative": "Sykdom, mekanisme og kausal kjede er et komplementært analysegrunnlag når spørsmålet gjelder andre ledd, forutsetninger eller gyldighetsgrenser enn dem dette rammeverket forklarer direkte.",
+          "interpretive_consequence": "Nekrose er typisk forbundet med tap av membranintegritet, celleinnhold som lekker ut og en vevsreaksjon, mens apoptose er en regulert demontering av cellen gjennom organiserte signalveier og proteaser. Dette er viktige kontraster, men biologisk celledød omfatter også andre regulerte former, så nekrose og apoptose er ikke en uttømmende todeling.",
+          "scholarly_source": {
+            "source_id": "hdp02-ncbi-apoptosis-cell-death",
+            "label": "National Library of Medicine / StatPearls – Apoptosis and Cell Death: Signaling in Health and Diseases",
+            "url": "https://www.ncbi.nlm.nih.gov/books/NBK499821/",
+            "authority_class": "authoritative_biomedical_or_government_reference",
+            "source_role": "Introduction; mechanisms — intrinsic/extrinsic apoptosis, caspases, necrosis distinction.",
+            "use_limit": "Kilden brukes bare innen sitt dokumenterte evidensområde og aldri som selvstendig grunnlag for en individuell klinisk eller rettslig beslutning."
+          },
+          "content_bindings": [
+            {
+              "role": "mechanism",
+              "chapter_file": "data/fagverk/helse/sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt.json",
+              "module_file": "data/fagverk/helse/sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt/01-mekanisme-celleskade-og-inflammasjon.json",
+              "section_id": "hdp-cellestress-skade-og-celledod",
+              "paragraph_index": 0,
+              "claim_id": "hdp-02-01",
+              "source_ids": [
+                "hdp01-ncbi-cell-injury-necrosis",
+                "hdp02-ncbi-apoptosis-cell-death",
+                "hdp04-ncbi-wound-healing"
+              ]
+            },
+            {
+              "role": "limitation",
+              "chapter_file": "data/fagverk/helse/sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt.json",
+              "module_file": "data/fagverk/helse/sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt/01-mekanisme-celleskade-og-inflammasjon.json",
+              "section_id": "hdp-cellestress-skade-og-celledod",
+              "paragraph_index": 3,
+              "claim_id": "hdp-02-04",
+              "source_ids": [
+                "hdp01-ncbi-cell-injury-necrosis",
+                "hdp02-ncbi-apoptosis-cell-death",
+                "hdp04-ncbi-wound-healing"
+              ]
+            },
+            {
+              "role": "alternative",
+              "chapter_file": "data/fagverk/helse/sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt.json",
+              "module_file": "data/fagverk/helse/sykdom-og-patofysiologi-mekanisme-skade-og-systemsvikt/01-mekanisme-celleskade-og-inflammasjon.json",
+              "section_id": "hdp-sykdom-mekanisme-og-kausal-kjede",
+              "paragraph_index": 0,
+              "claim_id": "hdp-01-01",
+              "source_ids": [
+                "hdp01-ncbi-cell-injury-necrosis",
+                "hdp09-nhgri-genetic-disorders",
+                "hdp13-fda-nih-best"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "domain_id": "klinisk_medisin",
+      "domain_label": "Klinisk medisin",
+      "comparison": {
+        "model_object_ids": [
+          "helse-klinisk-medisin-01",
+          "helse-klinisk-medisin-02"
+        ],
+        "interpretive_consequence": "Klinisk informasjon, problemrepresentasjon og arbeidshypoteser og Diagnostisk testytelse, referansestandard og bias brukes som komplementære forklaringsrammer. Sammen hindrer de at klinisk medisin reduseres til én indikator, én lineær årsak eller en individualiserende slutning fra gruppedata."
+      },
+      "model_objects": [
+        {
+          "id": "helse-klinisk-medisin-01",
+          "model_kind": "mechanism_or_framework",
+          "model_name": "Klinisk informasjon, problemrepresentasjon og arbeidshypoteser",
+          "emne_id": "em_helse_klinisk_medisin",
+          "domain_id": "klinisk_medisin",
+          "scope": "Rammeverket brukes til generell, kildebasert analyse av klinisk informasjon, problemrepresentasjon og arbeidshypoteser innen Klinisk medisin, med eksplisitt skille mellom gruppedata, mekanisme og individuell klinisk vurdering.",
+          "core_claim_or_mechanism": "Rå klinisk informasjon består av enkeltopplysninger som symptombeskrivelser, observasjoner, undersøkelsesfunn og testresultater. En problemrepresentasjon komprimerer utvalgte opplysninger til en arbeidbar faglig oppsummering, mens en diagnose er en senere fortolkende konklusjon som krever samlet evidens og kan revideres.",
+          "limitations": [
+            "Diagnostisk usikkerhet er ikke det samme som tilfeldig gjetning. En faglig håndtert usikkerhet gjør arbeidshypoteser eksplisitte, knytter dem til tilgjengelig evidens, beskriver hva som fortsatt er ukjent og åpner for systematisk oppdatering når ny informasjon blir tilgjengelig.",
+            "Bindingen dokumenterer generell fagforståelse og kan ikke brukes til individuell diagnose, prognose, triage, behandling, rettighetsavgjørelse eller budsjettbeslutning."
+          ],
+          "rival_or_alternative": "Diagnostisk testytelse, referansestandard og bias er et komplementært analysegrunnlag når spørsmålet gjelder andre ledd, forutsetninger eller gyldighetsgrenser enn dem dette rammeverket forklarer direkte.",
+          "interpretive_consequence": "Diagnostisk arbeid er en iterativ prosess der informasjon innhentes, vurderes og integreres over tid. Nye opplysninger kan styrke, svekke eller omforme tidligere arbeidshypoteser, slik at diagnostikk ikke bør fremstilles som én enkelt test eller et lineært engangstrinn.",
+          "scholarly_source": {
+            "source_id": "hcm01-nasem-diagnostic-process",
+            "label": "National Academies of Sciences, Engineering, and Medicine – Improving Diagnosis in Health Care – Chapter 2: The Diagnostic Process",
+            "url": "https://www.nationalacademies.org/read/21794/chapter/4",
+            "authority_class": "national-academies-consensus-report",
+            "source_role": "Chapter 2: iterative information gathering, history/interview, physical examination, diagnostic testing, consultation, hypothesis generation and updating prior probabilities.",
+            "use_limit": "Kilden brukes bare innen sitt dokumenterte evidensområde og aldri som selvstendig grunnlag for en individuell klinisk eller rettslig beslutning."
+          },
+          "content_bindings": [
+            {
+              "role": "mechanism",
+              "chapter_file": "data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging.json",
+              "module_file": "data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging/01-klinisk-informasjon-og-testing.json",
+              "section_id": "hcm-klinisk-informasjon-og-problemrepresentasjon",
+              "paragraph_index": 0,
+              "claim_id": "hcm-01-01",
+              "source_ids": [
+                "hcm01-nasem-diagnostic-process",
+                "hcm04-ahrq-calibrate-dx",
+                "hcm14-ncbi-clinical-methods-laboratory"
+              ]
+            },
+            {
+              "role": "limitation",
+              "chapter_file": "data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging.json",
+              "module_file": "data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging/01-klinisk-informasjon-og-testing.json",
+              "section_id": "hcm-klinisk-informasjon-og-problemrepresentasjon",
+              "paragraph_index": 3,
+              "claim_id": "hcm-01-04",
+              "source_ids": [
+                "hcm01-nasem-diagnostic-process",
+                "hcm04-ahrq-calibrate-dx",
+                "hcm06-who-diagnostic-safety"
+              ]
+            },
+            {
+              "role": "alternative",
+              "chapter_file": "data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging.json",
+              "module_file": "data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging/01-klinisk-informasjon-og-testing.json",
+              "section_id": "hcm-diagnostisk-testytelse-og-referansestandard",
+              "paragraph_index": 0,
+              "claim_id": "hcm-02-01",
+              "source_ids": [
+                "hcm02-fda-diagnostic-test-guidance",
+                "hcm03-ahrq-medical-test-methods",
+                "hcm14-ncbi-clinical-methods-laboratory"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "helse-klinisk-medisin-02",
+          "model_kind": "complementary_framework",
+          "model_name": "Diagnostisk testytelse, referansestandard og bias",
+          "emne_id": "em_helse_klinisk_medisin",
+          "domain_id": "klinisk_medisin",
+          "scope": "Rammeverket brukes til generell, kildebasert analyse av diagnostisk testytelse, referansestandard og bias innen Klinisk medisin, med eksplisitt skille mellom gruppedata, mekanisme og individuell klinisk vurdering.",
+          "core_claim_or_mechanism": "Sensitivitet beskriver hvor stor andel av dem som har den definerte tilstanden etter en relevant referansestandard som får positivt testresultat, mens spesifisitet beskriver andelen uten tilstanden som får negativt resultat. Begge målene er knyttet til definert test, terskel, referansestandard og studiepopulasjon.",
+          "limitations": [
+            "Feil i referansestandarden kan feilklassifisere måltilstanden, verifikasjonsbias kan oppstå når ikke alle får samme eller uavhengig bekreftelse, og inkorporasjonsbias kan oppstå når indekstesten inngår i selve referansen. Slike skjevheter kan systematisk forvrenge estimerte mål på diagnostisk ytelse.",
+            "Bindingen dokumenterer generell fagforståelse og kan ikke brukes til individuell diagnose, prognose, triage, behandling, rettighetsavgjørelse eller budsjettbeslutning."
+          ],
+          "rival_or_alternative": "Klinisk informasjon, problemrepresentasjon og arbeidshypoteser er et komplementært analysegrunnlag når spørsmålet gjelder andre ledd, forutsetninger eller gyldighetsgrenser enn dem dette rammeverket forklarer direkte.",
+          "interpretive_consequence": "Diagnostisk nøyaktighet krever sammenligning mot en referansestandard som så godt som mulig klassifiserer måltilstanden uavhengig av testen som evalueres. Ren overensstemmelse mellom to tester uten en slik standard kan måle likhet, men viser ikke alene hvilken test som klassifiserer tilstanden riktig.",
+          "scholarly_source": {
+            "source_id": "hcm03-ahrq-medical-test-methods",
+            "label": "Agency for Healthcare Research and Quality / NCBI Bookshelf – Methods Guide for Medical Test Reviews",
+            "url": "https://www.ncbi.nlm.nih.gov/books/NBK98241/",
+            "authority_class": "federal-methods-guide",
+            "source_role": "Introduction and core chapters: medical tests depend on clinical context, prior information, provider skill, downstream actions and patient-relevant outcomes; test evidence must be assembled across linked evidence.",
+            "use_limit": "Kilden brukes bare innen sitt dokumenterte evidensområde og aldri som selvstendig grunnlag for en individuell klinisk eller rettslig beslutning."
+          },
+          "content_bindings": [
+            {
+              "role": "mechanism",
+              "chapter_file": "data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging.json",
+              "module_file": "data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging/01-klinisk-informasjon-og-testing.json",
+              "section_id": "hcm-diagnostisk-testytelse-og-referansestandard",
+              "paragraph_index": 0,
+              "claim_id": "hcm-02-01",
+              "source_ids": [
+                "hcm02-fda-diagnostic-test-guidance",
+                "hcm03-ahrq-medical-test-methods",
+                "hcm14-ncbi-clinical-methods-laboratory"
+              ]
+            },
+            {
+              "role": "limitation",
+              "chapter_file": "data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging.json",
+              "module_file": "data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging/01-klinisk-informasjon-og-testing.json",
+              "section_id": "hcm-diagnostisk-testytelse-og-referansestandard",
+              "paragraph_index": 3,
+              "claim_id": "hcm-02-04",
+              "source_ids": [
+                "hcm02-fda-diagnostic-test-guidance",
+                "hcm03-ahrq-medical-test-methods",
+                "hcm14-ncbi-clinical-methods-laboratory"
+              ]
+            },
+            {
+              "role": "alternative",
+              "chapter_file": "data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging.json",
+              "module_file": "data/fagverk/helse/klinisk-medisin-informasjon-testing-beslutning-og-oppfolging/01-klinisk-informasjon-og-testing.json",
+              "section_id": "hcm-klinisk-informasjon-og-problemrepresentasjon",
+              "paragraph_index": 0,
+              "claim_id": "hcm-01-01",
+              "source_ids": [
+                "hcm01-nasem-diagnostic-process",
+                "hcm04-ahrq-calibrate-dx",
+                "hcm14-ncbi-clinical-methods-laboratory"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "domain_id": "folkehelse",
+      "domain_label": "Folkehelse",
+      "comparison": {
+        "model_object_ids": [
+          "helse-folkehelse-01",
+          "helse-folkehelse-02"
+        ],
+        "interpretive_consequence": "Populasjon, individ, fordeling og folkehelse og Determinanter, gradienter, helseulikhet og rettferdighet brukes som komplementære forklaringsrammer. Sammen hindrer de at folkehelse reduseres til én indikator, én lineær årsak eller en individualiserende slutning fra gruppedata."
+      },
+      "model_objects": [
+        {
+          "id": "helse-folkehelse-01",
+          "model_kind": "mechanism_or_framework",
+          "model_name": "Populasjon, individ, fordeling og folkehelse",
+          "emne_id": "em_helse_folkehelse",
+          "domain_id": "folkehelse",
+          "scope": "Rammeverket brukes til generell, kildebasert analyse av populasjon, individ, fordeling og folkehelse innen Folkehelse, med eksplisitt skille mellom gruppedata, mekanisme og individuell klinisk vurdering.",
+          "core_claim_or_mechanism": "Folkehelse beskriver og påvirker helse på befolkningsnivå gjennom fordelinger, eksponeringer, ressurser og forebyggende handling. Det skiller seg fra klinisk medisin, som vurderer en konkret persons symptomer, funn og behandlingsbehov; gruppedata kan derfor ikke brukes som individuell diagnose eller prognose.",
+          "limitations": [
+            "Prevalens, rater og gjennomsnitt beskriver egenskaper ved definerte populasjoner i bestemte tidsrom. De sier ikke hvilken diagnose, prognose eller risiko en bestemt person har, fordi individuell vurdering krever personspesifikke data og en annen inferens enn beskrivelse av gruppefordelinger.",
+            "Bindingen dokumenterer generell fagforståelse og kan ikke brukes til individuell diagnose, prognose, triage, behandling, rettighetsavgjørelse eller budsjettbeslutning."
+          ],
+          "rival_or_alternative": "Determinanter, gradienter, helseulikhet og rettferdighet er et komplementært analysegrunnlag når spørsmålet gjelder andre ledd, forutsetninger eller gyldighetsgrenser enn dem dette rammeverket forklarer direkte.",
+          "interpretive_consequence": "Geoffrey Roses skille mellom årsaker til enkeltkasus og årsaker til forekomst viser at faktorene som forklarer hvorfor én person rammes, ikke nødvendigvis forklarer hvorfor forekomsten varierer mellom populasjoner. Folkehelseanalyse må derfor undersøke både individuelle og fordelingsskapende betingelser uten å blande analysenivåene.",
+          "scholarly_source": {
+            "source_id": "hph04-cdc-surveillance",
+            "label": "Centers for Disease Control and Prevention – Lexicon, Definitions, and Conceptual Framework for Public Health Surveillance",
+            "url": "https://www.cdc.gov/mmwr/preview/mmwrhtml/su6103a3.htm",
+            "authority_class": "federal-public-health-surveillance-framework",
+            "source_role": "Current surveillance definition and principles: ongoing systematic collection, analysis, interpretation, dissemination and application of health data for prevention and control.",
+            "use_limit": "Kilden brukes bare innen sitt dokumenterte evidensområde og aldri som selvstendig grunnlag for en individuell klinisk eller rettslig beslutning."
+          },
+          "content_bindings": [
+            {
+              "role": "mechanism",
+              "chapter_file": "data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet.json",
+              "module_file": "data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet/01-populasjon-determinanter-og-ulikhet.json",
+              "section_id": "hph-populasjon-individ-og-fordeling",
+              "paragraph_index": 0,
+              "claim_id": "hph-01-01",
+              "source_ids": [
+                "hph04-cdc-surveillance",
+                "hph10-fhi-national-public-health-survey-2025",
+                "hph11-fhi-public-health-challenges-2026"
+              ]
+            },
+            {
+              "role": "limitation",
+              "chapter_file": "data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet.json",
+              "module_file": "data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet/01-populasjon-determinanter-og-ulikhet.json",
+              "section_id": "hph-populasjon-individ-og-fordeling",
+              "paragraph_index": 3,
+              "claim_id": "hph-01-04",
+              "source_ids": [
+                "hph04-cdc-surveillance",
+                "hph08-rose-sick-individuals-populations",
+                "hph10-fhi-national-public-health-survey-2025"
+              ]
+            },
+            {
+              "role": "alternative",
+              "chapter_file": "data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet.json",
+              "module_file": "data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet/01-populasjon-determinanter-og-ulikhet.json",
+              "section_id": "hph-determinanter-gradienter-og-helseulikhet",
+              "paragraph_index": 0,
+              "claim_id": "hph-02-01",
+              "source_ids": [
+                "hph01-who-sdoh-equity-2025",
+                "hph09-nasem-health-equity",
+                "hph12-who-commercial-determinants"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "helse-folkehelse-02",
+          "model_kind": "complementary_framework",
+          "model_name": "Determinanter, gradienter, helseulikhet og rettferdighet",
+          "emne_id": "em_helse_folkehelse",
+          "domain_id": "folkehelse",
+          "scope": "Rammeverket brukes til generell, kildebasert analyse av determinanter, gradienter, helseulikhet og rettferdighet innen Folkehelse, med eksplisitt skille mellom gruppedata, mekanisme og individuell klinisk vurdering.",
+          "core_claim_or_mechanism": "Sosiale determinanter omfatter betingelser som mennesker fødes, vokser, lever, arbeider og eldes under, samt fordelingen av makt, penger og ressurser som former disse betingelsene. Virkningene oppstår gjennom flere mekanismer og over livsløpet, ikke som én enkel eller biologisk uunngåelig årsak.",
+          "limitations": [
+            "Helsebestemmende forhold kan ligge i bolig, utdanning, arbeid, miljø, politikk og kommersielle systemer, blant annet gjennom produkter, markedspraksis og ressursfordeling. Slike strukturelle og kommersielle determinanter inngår i årsakskjeder, men én faktor kan sjelden alene forklare hele befolkningsmønsteret.",
+            "Bindingen dokumenterer generell fagforståelse og kan ikke brukes til individuell diagnose, prognose, triage, behandling, rettighetsavgjørelse eller budsjettbeslutning."
+          ],
+          "rival_or_alternative": "Populasjon, individ, fordeling og folkehelse er et komplementært analysegrunnlag når spørsmålet gjelder andre ledd, forutsetninger eller gyldighetsgrenser enn dem dette rammeverket forklarer direkte.",
+          "interpretive_consequence": "En sosial gradient i helse betyr at helseutfall ofte varierer systematisk langs sosiale posisjoner, ikke bare mellom en liten utsatt gruppe og resten. Gradienter er statistiske populasjonsmønstre; de gjør ikke gruppetilhørighet til biologisk skjebne og kan ikke forutsi utfallet for et enkelt individ.",
+          "scholarly_source": {
+            "source_id": "hph09-nasem-health-equity",
+            "label": "National Academies of Sciences, Engineering, and Medicine – Communities in Action: Pathways to Health Equity",
+            "url": "https://www.nationalacademies.org/read/24624/chapter",
+            "authority_class": "national-academies-consensus-report",
+            "source_role": "Definitions and chapters 1–6: health equity, health disparities, root causes, social determinants, community action and public policy.",
+            "use_limit": "Kilden brukes bare innen sitt dokumenterte evidensområde og aldri som selvstendig grunnlag for en individuell klinisk eller rettslig beslutning."
+          },
+          "content_bindings": [
+            {
+              "role": "mechanism",
+              "chapter_file": "data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet.json",
+              "module_file": "data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet/01-populasjon-determinanter-og-ulikhet.json",
+              "section_id": "hph-determinanter-gradienter-og-helseulikhet",
+              "paragraph_index": 0,
+              "claim_id": "hph-02-01",
+              "source_ids": [
+                "hph01-who-sdoh-equity-2025",
+                "hph09-nasem-health-equity",
+                "hph12-who-commercial-determinants"
+              ]
+            },
+            {
+              "role": "limitation",
+              "chapter_file": "data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet.json",
+              "module_file": "data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet/01-populasjon-determinanter-og-ulikhet.json",
+              "section_id": "hph-determinanter-gradienter-og-helseulikhet",
+              "paragraph_index": 3,
+              "claim_id": "hph-02-04",
+              "source_ids": [
+                "hph12-who-commercial-determinants",
+                "hph01-who-sdoh-equity-2025",
+                "hph03-who-hiap"
+              ]
+            },
+            {
+              "role": "alternative",
+              "chapter_file": "data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet.json",
+              "module_file": "data/fagverk/helse/folkehelse-populasjon-determinanter-forebygging-og-ulikhet/01-populasjon-determinanter-og-ulikhet.json",
+              "section_id": "hph-populasjon-individ-og-fordeling",
+              "paragraph_index": 0,
+              "claim_id": "hph-01-01",
+              "source_ids": [
+                "hph04-cdc-surveillance",
+                "hph10-fhi-national-public-health-survey-2025",
+                "hph11-fhi-public-health-challenges-2026"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "domain_id": "epidemiologi",
+      "domain_label": "Epidemiologi",
+      "comparison": {
+        "model_object_ids": [
+          "helse-epidemiologi-01",
+          "helse-epidemiologi-02"
+        ],
+        "interpretive_consequence": "Populasjon, tid, case-definisjon og nevner og Forekomst: insidens, risiko, rate og prevalens brukes som komplementære forklaringsrammer. Sammen hindrer de at epidemiologi reduseres til én indikator, én lineær årsak eller en individualiserende slutning fra gruppedata."
+      },
+      "model_objects": [
+        {
+          "id": "helse-epidemiologi-01",
+          "model_kind": "mechanism_or_framework",
+          "model_name": "Populasjon, tid, case-definisjon og nevner",
+          "emne_id": "em_helse_epidemiologi",
+          "domain_id": "epidemiologi",
+          "scope": "Rammeverket brukes til generell, kildebasert analyse av populasjon, tid, case-definisjon og nevner innen Epidemiologi, med eksplisitt skille mellom gruppedata, mekanisme og individuell klinisk vurdering.",
+          "core_claim_or_mechanism": "Et epidemiologisk forekomstmål trenger en eksplisitt definert populasjon, en tidsramme og en teller som følger en kjent case-definisjon. Et rått antall tilfeller sier derfor lite om hvor vanlig en hendelse er dersom størrelsen på populasjonen og tiden under observasjon ikke er kjent. Denne avgrensningen hindrer også at et gruppemål feilaktig leses som individuell risiko.",
+          "limitations": [
+            "Tidsserier i epidemiologi påvirkes ikke bare av sykdomsprosesser, men også av hvilke personer som inngår i nevneren, hvor fullstendig hendelser registreres og hvordan case oppdages. Bedre diagnostikk eller rapportering kan for eksempel øke registrert forekomst uten tilsvarende økning i underliggende sykdom. Trendtolkning må derfor undersøke datagenereringen før årsaksforklaringer foreslås.",
+            "Bindingen dokumenterer generell fagforståelse og kan ikke brukes til individuell diagnose, prognose, triage, behandling, rettighetsavgjørelse eller budsjettbeslutning."
+          ],
+          "rival_or_alternative": "Forekomst: insidens, risiko, rate og prevalens er et komplementært analysegrunnlag når spørsmålet gjelder andre ledd, forutsetninger eller gyldighetsgrenser enn dem dette rammeverket forklarer direkte.",
+          "interpretive_consequence": "Case-definisjonen bestemmer hvilke hendelser som teller som tilfeller, mens inklusjons- og eksklusjonsregler bestemmer hvem som kan bidra data. Når definisjonene endres mellom steder eller perioder, kan deler av en observert forskjell skyldes måten data er samlet og klassifisert på. Sammenlignbar epidemiologi krever derfor dokumenterte og tilstrekkelig stabile definisjoner.",
+          "scholarly_source": {
+            "source_id": "hep01-who-basic-epidemiology",
+            "label": "World Health Organization – Basic Epidemiology, 2nd edition",
+            "url": "https://www.who.int/publications/b/31231",
+            "authority_class": "international-epidemiology-textbook",
+            "source_role": "Core chapters on measuring health and disease, epidemiologic designs, association and causation.",
+            "use_limit": "Kilden brukes bare innen sitt dokumenterte evidensområde og aldri som selvstendig grunnlag for en individuell klinisk eller rettslig beslutning."
+          },
+          "content_bindings": [
+            {
+              "role": "mechanism",
+              "chapter_file": "data/fagverk/helse/epidemiologi-design-mal-bias-confounding-og-kausalitet.json",
+              "module_file": "data/fagverk/helse/epidemiologi-design-mal-bias-confounding-og-kausalitet/01-populasjon-tid-og-forekomst.json",
+              "section_id": "hep-populasjon-tid-og-nevner",
+              "paragraph_index": 0,
+              "claim_id": "hep-c01",
+              "source_ids": [
+                "hep01-who-basic-epidemiology",
+                "hep02-cdc-principles-epidemiology",
+                "hep06-who-health-data-glossary-2025"
+              ]
+            },
+            {
+              "role": "limitation",
+              "chapter_file": "data/fagverk/helse/epidemiologi-design-mal-bias-confounding-og-kausalitet.json",
+              "module_file": "data/fagverk/helse/epidemiologi-design-mal-bias-confounding-og-kausalitet/01-populasjon-tid-og-forekomst.json",
+              "section_id": "hep-populasjon-tid-og-nevner",
+              "paragraph_index": 3,
+              "claim_id": "hep-c04",
+              "source_ids": [
+                "hep01-who-basic-epidemiology",
+                "hep02-cdc-principles-epidemiology",
+                "hep11-seer-incidence"
+              ]
+            },
+            {
+              "role": "alternative",
+              "chapter_file": "data/fagverk/helse/epidemiologi-design-mal-bias-confounding-og-kausalitet.json",
+              "module_file": "data/fagverk/helse/epidemiologi-design-mal-bias-confounding-og-kausalitet/01-populasjon-tid-og-forekomst.json",
+              "section_id": "hep-forekomst-risiko-rate-prevalens",
+              "paragraph_index": 0,
+              "claim_id": "hep-c05",
+              "source_ids": [
+                "hep01-who-basic-epidemiology",
+                "hep02-cdc-principles-epidemiology",
+                "hep12-seer-prevalence"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "helse-epidemiologi-02",
+          "model_kind": "complementary_framework",
+          "model_name": "Forekomst: insidens, risiko, rate og prevalens",
+          "emne_id": "em_helse_epidemiologi",
+          "domain_id": "epidemiologi",
+          "scope": "Rammeverket brukes til generell, kildebasert analyse av forekomst: insidens, risiko, rate og prevalens innen Epidemiologi, med eksplisitt skille mellom gruppedata, mekanisme og individuell klinisk vurdering.",
+          "core_claim_or_mechanism": "Prevalens beskriver hvor stor andel av en definert populasjon som har en tilstand på et tidspunkt eller i en periode, mens insidens beskriver nye tilfeller eller hendelser som oppstår over tid. Målene svarer på ulike spørsmål. En høy prevalens kan derfor eksistere sammen med moderat insidens dersom tilstanden varer lenge eller overlevelsen er god.",
+          "limitations": [
+            "Aldersstandardisering holder en valgt aldersfordeling konstant for å gjøre rater fra ulike populasjoner mer sammenlignbare. Den standardiserte raten er derfor et konstruert sammenligningsmål, ikke den observerte risikoen i noen enkelt aldersgruppe og heller ikke individuell risiko. Ved beslutninger bør både standardiserte og relevante aldersspesifikke mål være synlige.",
+            "Bindingen dokumenterer generell fagforståelse og kan ikke brukes til individuell diagnose, prognose, triage, behandling, rettighetsavgjørelse eller budsjettbeslutning."
+          ],
+          "rival_or_alternative": "Populasjon, tid, case-definisjon og nevner er et komplementært analysegrunnlag når spørsmålet gjelder andre ledd, forutsetninger eller gyldighetsgrenser enn dem dette rammeverket forklarer direkte.",
+          "interpretive_consequence": "Kumulativ insidens uttrykker risikoen for at en ny hendelse oppstår i en definert gruppe over et bestemt tidsintervall, forutsatt at populasjonen kan følges på en relevant måte. Insidensrate bruker derimot person-tid i nevneren og beskriver hendelseshastighet. Risiko og rate har dermed ulike enheter, forutsetninger og fortolkninger og skal ikke brukes som synonymer.",
+          "scholarly_source": {
+            "source_id": "hep02-cdc-principles-epidemiology",
+            "label": "Centers for Disease Control and Prevention – Principles of Epidemiology in Public Health Practice, Third Edition",
+            "url": "https://stacks.cdc.gov/view/cdc/13178/cdc_13178_DS1.pdf",
+            "authority_class": "federal-epidemiology-training-manual",
+            "source_role": "Lessons on incidence proportion, person-time incidence rate, prevalence and association measures.",
+            "use_limit": "Kilden brukes bare innen sitt dokumenterte evidensområde og aldri som selvstendig grunnlag for en individuell klinisk eller rettslig beslutning."
+          },
+          "content_bindings": [
+            {
+              "role": "mechanism",
+              "chapter_file": "data/fagverk/helse/epidemiologi-design-mal-bias-confounding-og-kausalitet.json",
+              "module_file": "data/fagverk/helse/epidemiologi-design-mal-bias-confounding-og-kausalitet/01-populasjon-tid-og-forekomst.json",
+              "section_id": "hep-forekomst-risiko-rate-prevalens",
+              "paragraph_index": 0,
+              "claim_id": "hep-c05",
+              "source_ids": [
+                "hep01-who-basic-epidemiology",
+                "hep02-cdc-principles-epidemiology",
+                "hep12-seer-prevalence"
+              ]
+            },
+            {
+              "role": "limitation",
+              "chapter_file": "data/fagverk/helse/epidemiologi-design-mal-bias-confounding-og-kausalitet.json",
+              "module_file": "data/fagverk/helse/epidemiologi-design-mal-bias-confounding-og-kausalitet/01-populasjon-tid-og-forekomst.json",
+              "section_id": "hep-forekomst-risiko-rate-prevalens",
+              "paragraph_index": 3,
+              "claim_id": "hep-c08",
+              "source_ids": [
+                "hep01-who-basic-epidemiology",
+                "hep11-seer-incidence",
+                "hep06-who-health-data-glossary-2025"
+              ]
+            },
+            {
+              "role": "alternative",
+              "chapter_file": "data/fagverk/helse/epidemiologi-design-mal-bias-confounding-og-kausalitet.json",
+              "module_file": "data/fagverk/helse/epidemiologi-design-mal-bias-confounding-og-kausalitet/01-populasjon-tid-og-forekomst.json",
+              "section_id": "hep-populasjon-tid-og-nevner",
+              "paragraph_index": 0,
+              "claim_id": "hep-c01",
+              "source_ids": [
+                "hep01-who-basic-epidemiology",
+                "hep02-cdc-principles-epidemiology",
+                "hep06-who-health-data-glossary-2025"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "domain_id": "mikrobiologi_infeksjon",
+      "domain_label": "Mikrobiologi og infeksjon",
+      "comparison": {
+        "model_object_ids": [
+          "helse-mikrobiologi-infeksjon-01",
+          "helse-mikrobiologi-infeksjon-02"
+        ],
+        "interpretive_consequence": "Mikrobielle grupper, biologisk organisering og patogenese og Kolonisering, mikrobiom, infeksjon og sykdom brukes som komplementære forklaringsrammer. Sammen hindrer de at mikrobiologi og infeksjon reduseres til én indikator, én lineær årsak eller en individualiserende slutning fra gruppedata."
+      },
+      "model_objects": [
+        {
+          "id": "helse-mikrobiologi-infeksjon-01",
+          "model_kind": "mechanism_or_framework",
+          "model_name": "Mikrobielle grupper, biologisk organisering og patogenese",
+          "emne_id": "em_helse_mikrobiologi_infeksjon",
+          "domain_id": "mikrobiologi_infeksjon",
+          "scope": "Rammeverket brukes til generell, kildebasert analyse av mikrobielle grupper, biologisk organisering og patogenese innen Mikrobiologi og infeksjon, med eksplisitt skille mellom gruppedata, mekanisme og individuell klinisk vurdering.",
+          "core_claim_or_mechanism": "Medisinsk mikrobiologi omfatter biologisk ulike grupper som bakterier, virus, sopp og parasitter. Bakterier er cellulære organismer, virus er avhengige av vertsceller for replikasjon, mens sopp og parasitter har andre eukaryote strukturer og livssykluser. Derfor må struktur, replikasjon, prøvetaking og laboratoriepåvisning forstås ut fra hvilken mikrobegruppe som undersøkes, ikke behandles som én felles biologisk mekanisme.",
+          "limitations": [
+            "Laboratoriearbeid med biologiske agens krever risikobasert biosikkerhet, gode mikrobiologiske arbeidsrutiner, riktig utstyr og prosedyrer som passer til aktiviteten og eksponeringen som kan oppstå. Laboratoriets risikovurdering gjelder sannsynlighet og konsekvens ved håndtering i en bestemt arbeidssituasjon; den er ikke en direkte rangering av klinisk alvorlighet for en bestemt pasient.",
+            "Bindingen dokumenterer generell fagforståelse og kan ikke brukes til individuell diagnose, prognose, triage, behandling, rettighetsavgjørelse eller budsjettbeslutning."
+          ],
+          "rival_or_alternative": "Kolonisering, mikrobiom, infeksjon og sykdom er et komplementært analysegrunnlag når spørsmålet gjelder andre ledd, forutsetninger eller gyldighetsgrenser enn dem dette rammeverket forklarer direkte.",
+          "interpretive_consequence": "Patogenitet beskriver en mikroorganismes kapasitet til å fremkalle sykdom under bestemte vert- og miljøbetingelser, mens virulens beskriver graden eller uttrykket av sykdomsfremkallende egenskaper blant patogene varianter eller under ulike betingelser. Begrepene overlapper, men er ikke synonymer, og virulens kan ikke reduseres til at en mikrobe enten er farlig eller ufarlig.",
+          "scholarly_source": {
+            "source_id": "hmi01-fhi-medical-microbiology",
+            "label": "Folkehelseinstituttet – Medisinsk mikrobiologi og smittevern – håndbok for helsepersonell",
+            "url": "https://www.fhi.no/sm/smittevernhandboka/temakapitler/medisinsk-mikrobiologi/",
+            "authority_class": "national-medical-microbiology-guidance",
+            "source_role": "Overview of medical microbiology, major microbial groups, laboratory detection and characterization, resistance and outbreak-support roles.",
+            "use_limit": "Kilden brukes bare innen sitt dokumenterte evidensområde og aldri som selvstendig grunnlag for en individuell klinisk eller rettslig beslutning."
+          },
+          "content_bindings": [
+            {
+              "role": "mechanism",
+              "chapter_file": "data/fagverk/helse/mikrobiologi-infeksjon-mikrober-smitte-vertrespons-og-resistens.json",
+              "module_file": "data/fagverk/helse/mikrobiologi-infeksjon-mikrober-smitte-vertrespons-og-resistens/01-mikrober-kolonisering-og-patogenese.json",
+              "section_id": "hmi-mikrobielle-grupper-og-patogenese",
+              "paragraph_index": 0,
+              "claim_id": "hmi-c01",
+              "source_ids": [
+                "hmi01-fhi-medical-microbiology",
+                "hmi03-who-laboratory-biosafety-manual",
+                "hmi13-ncbi-bacterial-pathogenesis"
+              ]
+            },
+            {
+              "role": "limitation",
+              "chapter_file": "data/fagverk/helse/mikrobiologi-infeksjon-mikrober-smitte-vertrespons-og-resistens.json",
+              "module_file": "data/fagverk/helse/mikrobiologi-infeksjon-mikrober-smitte-vertrespons-og-resistens/01-mikrober-kolonisering-og-patogenese.json",
+              "section_id": "hmi-mikrobielle-grupper-og-patogenese",
+              "paragraph_index": 3,
+              "claim_id": "hmi-c04",
+              "source_ids": [
+                "hmi03-who-laboratory-biosafety-manual",
+                "hmi01-fhi-medical-microbiology",
+                "hmi05-who-ipc-core-components"
+              ]
+            },
+            {
+              "role": "alternative",
+              "chapter_file": "data/fagverk/helse/mikrobiologi-infeksjon-mikrober-smitte-vertrespons-og-resistens.json",
+              "module_file": "data/fagverk/helse/mikrobiologi-infeksjon-mikrober-smitte-vertrespons-og-resistens/01-mikrober-kolonisering-og-patogenese.json",
+              "section_id": "hmi-kolonisering-mikrobiom-infeksjon-sykdom",
+              "paragraph_index": 0,
+              "claim_id": "hmi-c05",
+              "source_ids": [
+                "hmi02-cdc-infection-control-basics",
+                "hmi13-ncbi-bacterial-pathogenesis",
+                "hmi01-fhi-medical-microbiology"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "helse-mikrobiologi-infeksjon-02",
+          "model_kind": "complementary_framework",
+          "model_name": "Kolonisering, mikrobiom, infeksjon og sykdom",
+          "emne_id": "em_helse_mikrobiologi_infeksjon",
+          "domain_id": "mikrobiologi_infeksjon",
+          "scope": "Rammeverket brukes til generell, kildebasert analyse av kolonisering, mikrobiom, infeksjon og sykdom innen Mikrobiologi og infeksjon, med eksplisitt skille mellom gruppedata, mekanisme og individuell klinisk vurdering.",
+          "core_claim_or_mechanism": "Kolonisering betyr at mikroorganismer finnes og kan formere seg på eller i en vert uten at dette i seg selv innebærer infeksjonssykdom. Hud, slimhinner og tarm har normalt omfattende mikrobiota. Derfor må kolonisering holdes atskilt fra vevsinvasjon, patologisk vertrespons og klinisk sykdom, særlig når laboratoriet kan påvise mikrober også hos personer uten symptomer.",
+          "limitations": [
+            "Et laboratoriefunn av en mikroorganisme kan være forenlig med relevant infeksjon, men kan også gjenspeile kolonisering, forurensning av prøven eller påvisning av biologisk materiale uten sykdomsbetydning. Fortolkningen avhenger av prøvested, prøvetaking, analytt, metode, tidsforløp og biologisk kontekst. Et positivt mikrobefunn alene etablerer derfor ikke en individuell diagnose eller årsaken til symptomer.",
+            "Bindingen dokumenterer generell fagforståelse og kan ikke brukes til individuell diagnose, prognose, triage, behandling, rettighetsavgjørelse eller budsjettbeslutning."
+          ],
+          "rival_or_alternative": "Mikrobielle grupper, biologisk organisering og patogenese er et komplementært analysegrunnlag når spørsmålet gjelder andre ledd, forutsetninger eller gyldighetsgrenser enn dem dette rammeverket forklarer direkte.",
+          "interpretive_consequence": "Normal mikrobiota kan bidra til vertshomeostase og koloniseringsresistens gjennom konkurranse om næring og nisjer, produksjon av hemmende stoffer og samspill med vertens immunforsvar. Samtidig kan mikroorganismer som vanligvis inngår i mikrobiota bli opportunistiske dersom barrierer brytes, økologien endres eller vertsforsvaret svekkes. Kategorien normalflora er derfor kontekstavhengig, ikke en garanti mot patogenese.",
+          "scholarly_source": {
+            "source_id": "hmi13-ncbi-bacterial-pathogenesis",
+            "label": "National Center for Biotechnology Information – Bacterial Pathogenesis – Medical Microbiology",
+            "url": "https://www.ncbi.nlm.nih.gov/books/NBK8526/",
+            "authority_class": "academic-medical-microbiology-reference",
+            "source_role": "General concepts in bacterial pathogenesis, host resistance, adherence, colonization, virulence factors and the distinction between infection and disease.",
+            "use_limit": "Kilden brukes bare innen sitt dokumenterte evidensområde og aldri som selvstendig grunnlag for en individuell klinisk eller rettslig beslutning."
+          },
+          "content_bindings": [
+            {
+              "role": "mechanism",
+              "chapter_file": "data/fagverk/helse/mikrobiologi-infeksjon-mikrober-smitte-vertrespons-og-resistens.json",
+              "module_file": "data/fagverk/helse/mikrobiologi-infeksjon-mikrober-smitte-vertrespons-og-resistens/01-mikrober-kolonisering-og-patogenese.json",
+              "section_id": "hmi-kolonisering-mikrobiom-infeksjon-sykdom",
+              "paragraph_index": 0,
+              "claim_id": "hmi-c05",
+              "source_ids": [
+                "hmi02-cdc-infection-control-basics",
+                "hmi13-ncbi-bacterial-pathogenesis",
+                "hmi01-fhi-medical-microbiology"
+              ]
+            },
+            {
+              "role": "limitation",
+              "chapter_file": "data/fagverk/helse/mikrobiologi-infeksjon-mikrober-smitte-vertrespons-og-resistens.json",
+              "module_file": "data/fagverk/helse/mikrobiologi-infeksjon-mikrober-smitte-vertrespons-og-resistens/01-mikrober-kolonisering-og-patogenese.json",
+              "section_id": "hmi-kolonisering-mikrobiom-infeksjon-sykdom",
+              "paragraph_index": 3,
+              "claim_id": "hmi-c08",
+              "source_ids": [
+                "hmi01-fhi-medical-microbiology",
+                "hmi02-cdc-infection-control-basics",
+                "hmi04-who-laboratory-diagnostic-testing-2023"
+              ]
+            },
+            {
+              "role": "alternative",
+              "chapter_file": "data/fagverk/helse/mikrobiologi-infeksjon-mikrober-smitte-vertrespons-og-resistens.json",
+              "module_file": "data/fagverk/helse/mikrobiologi-infeksjon-mikrober-smitte-vertrespons-og-resistens/01-mikrober-kolonisering-og-patogenese.json",
+              "section_id": "hmi-mikrobielle-grupper-og-patogenese",
+              "paragraph_index": 0,
+              "claim_id": "hmi-c01",
+              "source_ids": [
+                "hmi01-fhi-medical-microbiology",
+                "hmi03-who-laboratory-biosafety-manual",
+                "hmi13-ncbi-bacterial-pathogenesis"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "domain_id": "farmakologi",
+      "domain_label": "Farmakologi",
+      "comparison": {
+        "model_object_ids": [
+          "helse-farmakologi-01",
+          "helse-farmakologi-02"
+        ],
+        "interpretive_consequence": "Legemiddelmål, reseptorer og respons og Dose, konsentrasjon, potens og maksimal effekt brukes som komplementære forklaringsrammer. Sammen hindrer de at farmakologi reduseres til én indikator, én lineær årsak eller en individualiserende slutning fra gruppedata."
+      },
+      "model_objects": [
+        {
+          "id": "helse-farmakologi-01",
+          "model_kind": "mechanism_or_framework",
+          "model_name": "Legemiddelmål, reseptorer og respons",
+          "emne_id": "em_helse_farmakologi",
+          "domain_id": "farmakologi",
+          "scope": "Rammeverket brukes til generell, kildebasert analyse av legemiddelmål, reseptorer og respons innen Farmakologi, med eksplisitt skille mellom gruppedata, mekanisme og individuell klinisk vurdering.",
+          "core_claim_or_mechanism": "Farmakodynamikk beskriver hvordan legemidler påvirker biologiske systemer og hvordan konsentrasjon ved et mål henger sammen med respons. Farmakokinetikk beskriver derimot hvordan absorpsjon, distribusjon, metabolisme og eliminasjon former eksponeringen over tid. De to feltene kobles når eksponering relateres til effekt, men de besvarer forskjellige spørsmål og skal ikke brukes som synonymer.",
+          "limitations": [
+            "En agonist stabiliserer eller fremmer en reseptortilstand som gir signalering, mens en antagonist reduserer responsen på en agonist uten nødvendigvis å aktivere samme signalvei. Partielle agonister kan gi lavere maksimal respons enn fulle agonister i samme system. Dette viser at reseptorokkupasjon, intrinsisk aktivitet og maksimal vevsrespons er beslektede, men separate egenskaper.",
+            "Bindingen dokumenterer generell fagforståelse og kan ikke brukes til individuell diagnose, prognose, triage, behandling, rettighetsavgjørelse eller budsjettbeslutning."
+          ],
+          "rival_or_alternative": "Dose, konsentrasjon, potens og maksimal effekt er et komplementært analysegrunnlag når spørsmålet gjelder andre ledd, forutsetninger eller gyldighetsgrenser enn dem dette rammeverket forklarer direkte.",
+          "interpretive_consequence": "Legemidler kan påvirke reseptorer, enzymer, ionekanaler, transportører, nukleinsyrer eller andre biologiske mål. En mekanismebeskrivelse må derfor angi hvilket mål som påvirkes, hvilken retning påvirkningen har og hvordan signalet kan forplante seg til en målbar effekt. Et legemiddelnavn alene beskriver ikke mekanismen, og samme legemiddel kan ha flere relevante mål.",
+          "scholarly_source": {
+            "source_id": "hpha01-ncbi-pharmacodynamics",
+            "label": "National Center for Biotechnology Information – Pharmacodynamics – StatPearls",
+            "url": "https://www.ncbi.nlm.nih.gov/books/NBK507791/",
+            "authority_class": "academic-clinical-pharmacology-reference",
+            "source_role": "General pharmacodynamic concepts including receptors, affinity, efficacy, Emax, EC50, agonism, antagonism and concentration-effect relationships.",
+            "use_limit": "Kilden brukes bare innen sitt dokumenterte evidensområde og aldri som selvstendig grunnlag for en individuell klinisk eller rettslig beslutning."
+          },
+          "content_bindings": [
+            {
+              "role": "mechanism",
+              "chapter_file": "data/fagverk/helse/farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet.json",
+              "module_file": "data/fagverk/helse/farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet/01-farmakodynamikk-og-dose-respons.json",
+              "section_id": "hpha-legemiddelmal-reseptorer-og-respons",
+              "paragraph_index": 0,
+              "claim_id": "hpha-c01",
+              "source_ids": [
+                "hpha01-ncbi-pharmacodynamics",
+                "hpha02-fda-ich-e4-dose-response",
+                "hpha12-fda-clinical-pharmacology-labeling"
+              ]
+            },
+            {
+              "role": "limitation",
+              "chapter_file": "data/fagverk/helse/farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet.json",
+              "module_file": "data/fagverk/helse/farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet/01-farmakodynamikk-og-dose-respons.json",
+              "section_id": "hpha-legemiddelmal-reseptorer-og-respons",
+              "paragraph_index": 3,
+              "claim_id": "hpha-c04",
+              "source_ids": [
+                "hpha01-ncbi-pharmacodynamics",
+                "hpha02-fda-ich-e4-dose-response",
+                "hpha03-ema-ich-e4-dose-response"
+              ]
+            },
+            {
+              "role": "alternative",
+              "chapter_file": "data/fagverk/helse/farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet.json",
+              "module_file": "data/fagverk/helse/farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet/01-farmakodynamikk-og-dose-respons.json",
+              "section_id": "hpha-dose-konsentrasjon-potens-og-efficacy",
+              "paragraph_index": 0,
+              "claim_id": "hpha-c05",
+              "source_ids": [
+                "hpha02-fda-ich-e4-dose-response",
+                "hpha03-ema-ich-e4-dose-response",
+                "hpha04-fda-bioavailability-2022"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "helse-farmakologi-02",
+          "model_kind": "complementary_framework",
+          "model_name": "Dose, konsentrasjon, potens og maksimal effekt",
+          "emne_id": "em_helse_farmakologi",
+          "domain_id": "farmakologi",
+          "scope": "Rammeverket brukes til generell, kildebasert analyse av dose, konsentrasjon, potens og maksimal effekt innen Farmakologi, med eksplisitt skille mellom gruppedata, mekanisme og individuell klinisk vurdering.",
+          "core_claim_or_mechanism": "Dose er mengden legemiddel som administreres, konsentrasjon er mengde legemiddel per relevant volum eller matriks, og respons er en biologisk eller klinisk endring. Absorpsjon, distribusjon og eliminasjon gjør at samme nominelle dose kan gi ulik konsentrasjonsprofil. Derfor må dose–konsentrasjon og konsentrasjon–respons analyseres som separate ledd i en farmakologisk kjede.",
+          "limitations": [
+            "Dose–responsstudier må undersøke både ønskede og uønskede effekter fordi nytte og skade kan ha forskjellige kurver og terskler. Et terapeutisk vindu beskriver et forhold mellom eksponeringer med forventet nytte og eksponeringer med uakseptabel toksisitet i definerte populasjoner. Det er ikke en universell sikkerhetsgrense som kan brukes til individuell dosering uten klinisk kontekst.",
+            "Bindingen dokumenterer generell fagforståelse og kan ikke brukes til individuell diagnose, prognose, triage, behandling, rettighetsavgjørelse eller budsjettbeslutning."
+          ],
+          "rival_or_alternative": "Legemiddelmål, reseptorer og respons er et komplementært analysegrunnlag når spørsmålet gjelder andre ledd, forutsetninger eller gyldighetsgrenser enn dem dette rammeverket forklarer direkte.",
+          "interpretive_consequence": "Emax er den modellerte maksimale responsen et legemiddel kan frembringe i et definert eksperimentelt eller klinisk system, mens EC50 er konsentrasjonen som gir halvparten av denne maksimumseffekten i en valgt modell. EC50 beskriver derfor ikke maksimal effekt, og Emax sier ikke hvor lav konsentrasjon som er nødvendig for å nærme seg denne effekten.",
+          "scholarly_source": {
+            "source_id": "hpha03-ema-ich-e4-dose-response",
+            "label": "European Medicines Agency – ICH E4 Dose response information to support drug registration",
+            "url": "https://www.ema.europa.eu/en/ich-e4-dose-response-information-support-drug-registration-scientific-guideline",
+            "authority_class": "european-regulatory-dose-response-guidance",
+            "source_role": "ICH dose-response guidance covering desirable and undesirable effects, pharmacodynamic response, pharmacokinetic differences and dose-response study designs.",
+            "use_limit": "Kilden brukes bare innen sitt dokumenterte evidensområde og aldri som selvstendig grunnlag for en individuell klinisk eller rettslig beslutning."
+          },
+          "content_bindings": [
+            {
+              "role": "mechanism",
+              "chapter_file": "data/fagverk/helse/farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet.json",
+              "module_file": "data/fagverk/helse/farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet/01-farmakodynamikk-og-dose-respons.json",
+              "section_id": "hpha-dose-konsentrasjon-potens-og-efficacy",
+              "paragraph_index": 0,
+              "claim_id": "hpha-c05",
+              "source_ids": [
+                "hpha02-fda-ich-e4-dose-response",
+                "hpha03-ema-ich-e4-dose-response",
+                "hpha04-fda-bioavailability-2022"
+              ]
+            },
+            {
+              "role": "limitation",
+              "chapter_file": "data/fagverk/helse/farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet.json",
+              "module_file": "data/fagverk/helse/farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet/01-farmakodynamikk-og-dose-respons.json",
+              "section_id": "hpha-dose-konsentrasjon-potens-og-efficacy",
+              "paragraph_index": 3,
+              "claim_id": "hpha-c08",
+              "source_ids": [
+                "hpha02-fda-ich-e4-dose-response",
+                "hpha03-ema-ich-e4-dose-response",
+                "hpha13-who-pharmacovigilance-strategies"
+              ]
+            },
+            {
+              "role": "alternative",
+              "chapter_file": "data/fagverk/helse/farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet.json",
+              "module_file": "data/fagverk/helse/farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet/01-farmakodynamikk-og-dose-respons.json",
+              "section_id": "hpha-legemiddelmal-reseptorer-og-respons",
+              "paragraph_index": 0,
+              "claim_id": "hpha-c01",
+              "source_ids": [
+                "hpha01-ncbi-pharmacodynamics",
+                "hpha02-fda-ich-e4-dose-response",
+                "hpha12-fda-clinical-pharmacology-labeling"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "domain_id": "ernaering_metabolisme",
+      "domain_label": "Ernæring og metabolisme",
+      "comparison": {
+        "model_object_ids": [
+          "helse-ernaering-metabolisme-01",
+          "helse-ernaering-metabolisme-02"
+        ],
+        "interpretive_consequence": "Energiomsetning, energibehov og dynamisk energibalanse og Karbohydratkvalitet, kostfiber og glukosemetabolisme brukes som komplementære forklaringsrammer. Sammen hindrer de at ernæring og metabolisme reduseres til én indikator, én lineær årsak eller en individualiserende slutning fra gruppedata."
+      },
+      "model_objects": [
+        {
+          "id": "helse-ernaering-metabolisme-01",
+          "model_kind": "mechanism_or_framework",
+          "model_name": "Energiomsetning, energibehov og dynamisk energibalanse",
+          "emne_id": "em_helse_ernaering_metabolisme",
+          "domain_id": "ernaering_metabolisme",
+          "scope": "Rammeverket brukes til generell, kildebasert analyse av energiomsetning, energibehov og dynamisk energibalanse innen Ernæring og metabolisme, med eksplisitt skille mellom gruppedata, mekanisme og individuell klinisk vurdering.",
+          "core_claim_or_mechanism": "Kroppens totale energibehov omfatter energi til basal eller hvilende metabolisme, fysisk aktivitet og kostindusert termogenese, med ytterligere behov ved blant annet vekst, graviditet og amming. Bidragenes størrelse varierer mellom mennesker og over tid. Derfor må energibehov forstås som summen av flere målbare prosesser, ikke som én universell konstant.",
+          "limitations": [
+            "Referanseverdier for energibehov er modell- og populasjonsbaserte estimater som bygger på målte eller estimerte komponenter av energiforbruk. De beskriver forventede behov for grupper under definerte forutsetninger og har innebygd variasjon og usikkerhet. De skal derfor ikke behandles som presise personlige kalorimål uten relevant individuell og klinisk kontekst.",
+            "Bindingen dokumenterer generell fagforståelse og kan ikke brukes til individuell diagnose, prognose, triage, behandling, rettighetsavgjørelse eller budsjettbeslutning."
+          ],
+          "rival_or_alternative": "Karbohydratkvalitet, kostfiber og glukosemetabolisme er et komplementært analysegrunnlag når spørsmålet gjelder andre ledd, forutsetninger eller gyldighetsgrenser enn dem dette rammeverket forklarer direkte.",
+          "interpretive_consequence": "Energi fra mat kommer hovedsakelig fra karbohydrat, fett og protein, som har ulik energitetthet og samtidig inngår i forskjellige biologiske funksjoner. Fett fungerer blant annet som energilager og del av membraner, protein leverer aminosyrer til syntese og karbohydrat bidrar med lett tilgjengelige substrater for energiomsetning. Lik energimengde betyr derfor ikke lik metabolsk rolle.",
+          "scholarly_source": {
+            "source_id": "hnm03-nnr-energy",
+            "label": "Nordic Council of Ministers – Nordic Nutrition Recommendations 2023 – Energy",
+            "url": "https://pub.norden.org/nord2023-003/energy.html",
+            "authority_class": "nordic-nutrition-reference",
+            "source_role": "NNR2023 Energy section: energy-yielding nutrients, BEE/REE, physical activity, diet-induced thermogenesis, growth and reference energy requirements.",
+            "use_limit": "Kilden brukes bare innen sitt dokumenterte evidensområde og aldri som selvstendig grunnlag for en individuell klinisk eller rettslig beslutning."
+          },
+          "content_bindings": [
+            {
+              "role": "mechanism",
+              "chapter_file": "data/fagverk/helse/ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster.json",
+              "module_file": "data/fagverk/helse/ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster/01-energi-og-karbohydratmetabolisme.json",
+              "section_id": "hnm-energiomsetning-og-energibalanse",
+              "paragraph_index": 0,
+              "claim_id": "hnm-c01",
+              "source_ids": [
+                "hnm03-nnr-energy",
+                "hnm04-nasem-energy-2023",
+                "hnm01-who-healthy-diet-2026"
+              ]
+            },
+            {
+              "role": "limitation",
+              "chapter_file": "data/fagverk/helse/ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster.json",
+              "module_file": "data/fagverk/helse/ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster/01-energi-og-karbohydratmetabolisme.json",
+              "section_id": "hnm-energiomsetning-og-energibalanse",
+              "paragraph_index": 3,
+              "claim_id": "hnm-c04",
+              "source_ids": [
+                "hnm03-nnr-energy",
+                "hnm04-nasem-energy-2023",
+                "hnm01-who-healthy-diet-2026"
+              ]
+            },
+            {
+              "role": "alternative",
+              "chapter_file": "data/fagverk/helse/ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster.json",
+              "module_file": "data/fagverk/helse/ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster/01-energi-og-karbohydratmetabolisme.json",
+              "section_id": "hnm-karbohydratkvalitet-fiber-og-glukose",
+              "paragraph_index": 0,
+              "claim_id": "hnm-c05",
+              "source_ids": [
+                "hnm05-nnr-carbohydrate",
+                "hnm06-who-carbohydrate-2023",
+                "hnm07-nnr-dietary-fibre"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "helse-ernaering-metabolisme-02",
+          "model_kind": "complementary_framework",
+          "model_name": "Karbohydratkvalitet, kostfiber og glukosemetabolisme",
+          "emne_id": "em_helse_ernaering_metabolisme",
+          "domain_id": "ernaering_metabolisme",
+          "scope": "Rammeverket brukes til generell, kildebasert analyse av karbohydratkvalitet, kostfiber og glukosemetabolisme innen Ernæring og metabolisme, med eksplisitt skille mellom gruppedata, mekanisme og individuell klinisk vurdering.",
+          "core_claim_or_mechanism": "Karbohydrater er en viktig energikilde, men helseeffekter kan ikke vurderes ut fra total karbohydratmengde alene fordi matkilde og kvalitet har betydning. Fullkorn, frukt, grønnsaker og belgvekster leverer karbohydrat sammen med fiber og andre komponenter, mens frie sukkerarter representerer en annen ernæringsmessig kontekst. Mengde og kvalitet må derfor analyseres hver for seg.",
+          "limitations": [
+            "Retningslinjer som fremhever fullkorn, grønnsaker, frukt og belgvekster uttrykker evidens om matkilder, fiber, næringstetthet og samlede kostmønstre. De innebærer ikke at alle karbohydratkilder har samme biologiske egenskaper bare fordi de bidrar med samme makronæringsstoff. Matens struktur og hvilke andre komponenter som følger med, er del av den ernæringsmessige eksponeringen.",
+            "Bindingen dokumenterer generell fagforståelse og kan ikke brukes til individuell diagnose, prognose, triage, behandling, rettighetsavgjørelse eller budsjettbeslutning."
+          ],
+          "rival_or_alternative": "Energiomsetning, energibehov og dynamisk energibalanse er et komplementært analysegrunnlag når spørsmålet gjelder andre ledd, forutsetninger eller gyldighetsgrenser enn dem dette rammeverket forklarer direkte.",
+          "interpretive_consequence": "Karbohydratkvalitet omfatter blant annet innhold av kostfiber, andel frie eller tilsatte sukkerarter, graden av prosessering og hvilke matvarer karbohydratet inngår i. Disse egenskapene påvirker fordøyelse, metthet, næringstetthet og hvordan kostmønsteret henger sammen med helseutfall. Prosent energi fra karbohydrat beskriver derfor ikke alene kvaliteten på et kosthold.",
+          "scholarly_source": {
+            "source_id": "hnm06-who-carbohydrate-2023",
+            "label": "World Health Organization – Carbohydrate intake for adults and children: WHO guideline",
+            "url": "https://www.who.int/publications/i/9789240073593",
+            "authority_class": "international-evidence-informed-guideline",
+            "source_role": "2023 WHO guideline on carbohydrate quality, preferred food sources, fruits/vegetables and naturally occurring dietary fibre.",
+            "use_limit": "Kilden brukes bare innen sitt dokumenterte evidensområde og aldri som selvstendig grunnlag for en individuell klinisk eller rettslig beslutning."
+          },
+          "content_bindings": [
+            {
+              "role": "mechanism",
+              "chapter_file": "data/fagverk/helse/ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster.json",
+              "module_file": "data/fagverk/helse/ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster/01-energi-og-karbohydratmetabolisme.json",
+              "section_id": "hnm-karbohydratkvalitet-fiber-og-glukose",
+              "paragraph_index": 0,
+              "claim_id": "hnm-c05",
+              "source_ids": [
+                "hnm05-nnr-carbohydrate",
+                "hnm06-who-carbohydrate-2023",
+                "hnm07-nnr-dietary-fibre"
+              ]
+            },
+            {
+              "role": "limitation",
+              "chapter_file": "data/fagverk/helse/ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster.json",
+              "module_file": "data/fagverk/helse/ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster/01-energi-og-karbohydratmetabolisme.json",
+              "section_id": "hnm-karbohydratkvalitet-fiber-og-glukose",
+              "paragraph_index": 3,
+              "claim_id": "hnm-c08",
+              "source_ids": [
+                "hnm05-nnr-carbohydrate",
+                "hnm06-who-carbohydrate-2023",
+                "hnm07-nnr-dietary-fibre"
+              ]
+            },
+            {
+              "role": "alternative",
+              "chapter_file": "data/fagverk/helse/ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster.json",
+              "module_file": "data/fagverk/helse/ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster/01-energi-og-karbohydratmetabolisme.json",
+              "section_id": "hnm-energiomsetning-og-energibalanse",
+              "paragraph_index": 0,
+              "claim_id": "hnm-c01",
+              "source_ids": [
+                "hnm03-nnr-energy",
+                "hnm04-nasem-energy-2023",
+                "hnm01-who-healthy-diet-2026"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "domain_id": "psykisk_helse",
+      "domain_label": "Psykisk helse",
+      "comparison": {
+        "model_object_ids": [
+          "helse-psykisk-helse-01",
+          "helse-psykisk-helse-02"
+        ],
+        "interpretive_consequence": "Psykisk helse, kontinuum, lidelse og funksjon og Klassifikasjon, symptomer, diagnose og usikkerhet brukes som komplementære forklaringsrammer. Sammen hindrer de at psykisk helse reduseres til én indikator, én lineær årsak eller en individualiserende slutning fra gruppedata."
+      },
+      "model_objects": [
+        {
+          "id": "helse-psykisk-helse-01",
+          "model_kind": "mechanism_or_framework",
+          "model_name": "Psykisk helse, kontinuum, lidelse og funksjon",
+          "emne_id": "em_helse_psykisk_helse",
+          "domain_id": "psykisk_helse",
+          "scope": "Rammeverket brukes til generell, kildebasert analyse av psykisk helse, kontinuum, lidelse og funksjon innen Psykisk helse, med eksplisitt skille mellom gruppedata, mekanisme og individuell klinisk vurdering.",
+          "core_claim_or_mechanism": "Psykisk helse beskriver mer enn fravær av sykdom og omfatter kapasitet til å håndtere belastninger, lære, arbeide, inngå relasjoner og delta i samfunnet. Tilstanden kan variere over tid og mellom situasjoner, slik at et kontinuum er mer presist enn en enkel todeling mellom psykisk frisk og psykisk syk. Kontinuumet er en generell modell, ikke et verktøy for å klassifisere enkeltpersoner.",
+          "limitations": [
+            "Psykisk helse og psykisk lidelse kan ikke organiseres på én enkel akse der alt som øker på den ene siden nødvendigvis minker like mye på den andre. En person kan oppleve meningsfulle relasjoner og funksjon samtidig med vedvarende symptomer, mens en annen kan ha lav trivsel uten å oppfylle diagnosekrav. For tjenester og forskning er det derfor nyttig å måle både positive helseutfall, plager og funksjon.",
+            "Bindingen dokumenterer generell fagforståelse og kan ikke brukes til individuell diagnose, prognose, triage, behandling, rettighetsavgjørelse eller budsjettbeslutning."
+          ],
+          "rival_or_alternative": "Klassifikasjon, symptomer, diagnose og usikkerhet er et komplementært analysegrunnlag når spørsmålet gjelder andre ledd, forutsetninger eller gyldighetsgrenser enn dem dette rammeverket forklarer direkte.",
+          "interpretive_consequence": "Fravær av en diagnostisert psykisk lidelse er ikke det samme som høy trivsel eller god psykisk helse, og betydelige psykiske plager kan finnes uten at kriteriene for en bestemt lidelse er oppfylt. WHO bruker dessuten mental health conditions som et bredere begrep enn formelle mental disorders. Begrepsnivåene må derfor holdes atskilt når populasjon, tjenester og klinisk klassifikasjon beskrives.",
+          "scholarly_source": {
+            "source_id": "hmh01-who-mental-health-2025",
+            "label": "World Health Organization – Mental health",
+            "url": "https://www.who.int/news-room/fact-sheets/detail/mental-health-strengthening-our-response",
+            "authority_class": "international-public-health-reference",
+            "source_role": "WHO fact sheet updated 8 October 2025; mental health definition, continuum, determinants, promotion, prevention and service response.",
+            "use_limit": "Kilden brukes bare innen sitt dokumenterte evidensområde og aldri som selvstendig grunnlag for en individuell klinisk eller rettslig beslutning."
+          },
+          "content_bindings": [
+            {
+              "role": "mechanism",
+              "chapter_file": "data/fagverk/helse/psykisk-helse-lidelse-tjenester-recovery-og-rettigheter.json",
+              "module_file": "data/fagverk/helse/psykisk-helse-lidelse-tjenester-recovery-og-rettigheter/01-begreper-og-klassifikasjon.json",
+              "section_id": "hmh-psykisk-helse-kontinuum-lidelse-og-funksjon",
+              "paragraph_index": 0,
+              "claim_id": "hmh-c01",
+              "source_ids": [
+                "hmh01-who-mental-health-2025",
+                "hmh03-who-world-mental-health-report-2022",
+                "hmh04-who-action-plan-2013-2030"
+              ]
+            },
+            {
+              "role": "limitation",
+              "chapter_file": "data/fagverk/helse/psykisk-helse-lidelse-tjenester-recovery-og-rettigheter.json",
+              "module_file": "data/fagverk/helse/psykisk-helse-lidelse-tjenester-recovery-og-rettigheter/01-begreper-og-klassifikasjon.json",
+              "section_id": "hmh-psykisk-helse-kontinuum-lidelse-og-funksjon",
+              "paragraph_index": 3,
+              "claim_id": "hmh-c04",
+              "source_ids": [
+                "hmh02-who-mental-disorders-2025",
+                "hmh03-who-world-mental-health-report-2022",
+                "hmh04-who-action-plan-2013-2030"
+              ]
+            },
+            {
+              "role": "alternative",
+              "chapter_file": "data/fagverk/helse/psykisk-helse-lidelse-tjenester-recovery-og-rettigheter.json",
+              "module_file": "data/fagverk/helse/psykisk-helse-lidelse-tjenester-recovery-og-rettigheter/01-begreper-og-klassifikasjon.json",
+              "section_id": "hmh-klassifikasjon-symptomer-diagnose-og-usikkerhet",
+              "paragraph_index": 0,
+              "claim_id": "hmh-c05",
+              "source_ids": [
+                "hmh06-who-icd11-cddr-2024",
+                "hmh02-who-mental-disorders-2025",
+                "hmh10-who-mhgap-guideline-2023"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "helse-psykisk-helse-02",
+          "model_kind": "complementary_framework",
+          "model_name": "Klassifikasjon, symptomer, diagnose og usikkerhet",
+          "emne_id": "em_helse_psykisk_helse",
+          "domain_id": "psykisk_helse",
+          "scope": "Rammeverket brukes til generell, kildebasert analyse av klassifikasjon, symptomer, diagnose og usikkerhet innen Psykisk helse, med eksplisitt skille mellom gruppedata, mekanisme og individuell klinisk vurdering.",
+          "core_claim_or_mechanism": "ICD-11 gir kliniske beskrivelser og diagnostiske krav som skal støtte mer konsistent gjenkjenning og klassifikasjon av psykiske, atferdsmessige og nevroutviklingsrelaterte lidelser. Slike kriterier organiserer relevant informasjon om symptom- og funksjonsmønstre, men selve klassifikasjonssystemet utfører ikke den individuelle vurderingen. Diagnose forutsetter klinisk kontekst, relevante avgrensninger og profesjonell vurdering.",
+          "limitations": [
+            "En diagnostisk kategori er et felles språk for å beskrive bestemte kliniske mønstre, planlegge forskning og organisere tjenester, men den er ikke en full beskrivelse av personen. Samme diagnose kan opptre med ulik funksjon, livshistorie, samtidige problemer og hjelpebehov, og kategorien angir ikke nødvendigvis én fast biologisk eller psykologisk årsak. Identitet og etiologi kan derfor ikke reduseres til diagnoseetiketten.",
+            "Bindingen dokumenterer generell fagforståelse og kan ikke brukes til individuell diagnose, prognose, triage, behandling, rettighetsavgjørelse eller budsjettbeslutning."
+          ],
+          "rival_or_alternative": "Psykisk helse, kontinuum, lidelse og funksjon er et komplementært analysegrunnlag når spørsmålet gjelder andre ledd, forutsetninger eller gyldighetsgrenser enn dem dette rammeverket forklarer direkte.",
+          "interpretive_consequence": "Et enkelt symptom, en enkelt observasjon eller én numerisk skår er ikke en diagnose. Diagnostisk vurdering må kunne ta hensyn til mønster, varighet, alvorlighetsgrad, funksjon, utviklings- og livskontekst og relevante alternative forklaringer eller eksklusjoner. Derfor kan to mennesker med lignende symptomskår ha ulike kliniske problemstillinger, og undervisning skal ikke gjøre en skår til en personspesifikk konklusjon.",
+          "scholarly_source": {
+            "source_id": "hmh02-who-mental-disorders-2025",
+            "label": "World Health Organization – Mental disorders",
+            "url": "https://www.who.int/news-room/fact-sheets/detail/mental-disorders",
+            "authority_class": "international-clinical-public-health-reference",
+            "source_role": "WHO fact sheet updated 30 September 2025; mental disorder definition, broader mental health conditions, impairment, burden and care gap.",
+            "use_limit": "Kilden brukes bare innen sitt dokumenterte evidensområde og aldri som selvstendig grunnlag for en individuell klinisk eller rettslig beslutning."
+          },
+          "content_bindings": [
+            {
+              "role": "mechanism",
+              "chapter_file": "data/fagverk/helse/psykisk-helse-lidelse-tjenester-recovery-og-rettigheter.json",
+              "module_file": "data/fagverk/helse/psykisk-helse-lidelse-tjenester-recovery-og-rettigheter/01-begreper-og-klassifikasjon.json",
+              "section_id": "hmh-klassifikasjon-symptomer-diagnose-og-usikkerhet",
+              "paragraph_index": 0,
+              "claim_id": "hmh-c05",
+              "source_ids": [
+                "hmh06-who-icd11-cddr-2024",
+                "hmh02-who-mental-disorders-2025",
+                "hmh10-who-mhgap-guideline-2023"
+              ]
+            },
+            {
+              "role": "limitation",
+              "chapter_file": "data/fagverk/helse/psykisk-helse-lidelse-tjenester-recovery-og-rettigheter.json",
+              "module_file": "data/fagverk/helse/psykisk-helse-lidelse-tjenester-recovery-og-rettigheter/01-begreper-og-klassifikasjon.json",
+              "section_id": "hmh-klassifikasjon-symptomer-diagnose-og-usikkerhet",
+              "paragraph_index": 3,
+              "claim_id": "hmh-c08",
+              "source_ids": [
+                "hmh06-who-icd11-cddr-2024",
+                "hmh03-who-world-mental-health-report-2022",
+                "hmh09-who-ohchr-rights-legislation-2023"
+              ]
+            },
+            {
+              "role": "alternative",
+              "chapter_file": "data/fagverk/helse/psykisk-helse-lidelse-tjenester-recovery-og-rettigheter.json",
+              "module_file": "data/fagverk/helse/psykisk-helse-lidelse-tjenester-recovery-og-rettigheter/01-begreper-og-klassifikasjon.json",
+              "section_id": "hmh-psykisk-helse-kontinuum-lidelse-og-funksjon",
+              "paragraph_index": 0,
+              "claim_id": "hmh-c01",
+              "source_ids": [
+                "hmh01-who-mental-health-2025",
+                "hmh03-who-world-mental-health-report-2022",
+                "hmh04-who-action-plan-2013-2030"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "domain_id": "rehabilitering_funksjon",
+      "domain_label": "Rehabilitering og funksjon",
+      "comparison": {
+        "model_object_ids": [
+          "helse-rehabilitering-funksjon-01",
+          "helse-rehabilitering-funksjon-02"
+        ],
+        "interpretive_consequence": "Funksjon, funksjonsnedsettelse og ICF og Aktivitet, deltakelse, kapasitet, utførelse og miljø brukes som komplementære forklaringsrammer. Sammen hindrer de at rehabilitering og funksjon reduseres til én indikator, én lineær årsak eller en individualiserende slutning fra gruppedata."
+      },
+      "model_objects": [
+        {
+          "id": "helse-rehabilitering-funksjon-01",
+          "model_kind": "mechanism_or_framework",
+          "model_name": "Funksjon, funksjonsnedsettelse og ICF",
+          "emne_id": "em_helse_rehabilitering_funksjon",
+          "domain_id": "rehabilitering_funksjon",
+          "scope": "Rammeverket brukes til generell, kildebasert analyse av funksjon, funksjonsnedsettelse og icf innen Rehabilitering og funksjon, med eksplisitt skille mellom gruppedata, mekanisme og individuell klinisk vurdering.",
+          "core_claim_or_mechanism": "ICF organiserer funksjon og funksjonsnedsettelse gjennom kroppsfunksjoner og -strukturer, aktivitet, deltakelse og kontekstuelle faktorer. Rammeverket beskriver hvordan helse og funksjon kan analyseres på flere nivåer samtidig, men er ikke en diagnoseklassifikasjon og skal ikke brukes som en klinisk etikett på en person.",
+          "limitations": [
+            "ICF klassifiserer helse- og funksjonsdomener og beskrivelser av situasjoner, ikke mennesker som faste typer. En ICF-profil kan strukturere relevant informasjon om funksjon og kontekst, men den er ikke en total beskrivelse av identitet, livserfaring, preferanser eller rehabiliteringspotensial hos et individ.",
+            "Bindingen dokumenterer generell fagforståelse og kan ikke brukes til individuell diagnose, prognose, triage, behandling, rettighetsavgjørelse eller budsjettbeslutning."
+          ],
+          "rival_or_alternative": "Aktivitet, deltakelse, kapasitet, utførelse og miljø er et komplementært analysegrunnlag når spørsmålet gjelder andre ledd, forutsetninger eller gyldighetsgrenser enn dem dette rammeverket forklarer direkte.",
+          "interpretive_consequence": "Funksjon og funksjonsnedsettelse oppstår i et dynamisk samspill mellom helsetilstand og kontekst, ikke som en mekanisk følge av diagnose alene. To personer med samme diagnose kan derfor ha svært ulik aktivitet, deltakelse og støttebehov fordi omgivelser, oppgaver, ressurser og barrierer påvirker faktisk hverdagsfunksjon.",
+          "scholarly_source": {
+            "source_id": "hrf02-who-icf",
+            "label": "World Health Organization – International Classification of Functioning, Disability and Health (ICF)",
+            "url": "https://www.who.int/classifications/international-classification-of-functioning-disability-and-health",
+            "authority_class": "international-functioning-classification",
+            "source_role": "WHO ICF overview; functioning and disability domains, environmental factors, and use at individual and population levels.",
+            "use_limit": "Kilden brukes bare innen sitt dokumenterte evidensområde og aldri som selvstendig grunnlag for en individuell klinisk eller rettslig beslutning."
+          },
+          "content_bindings": [
+            {
+              "role": "mechanism",
+              "chapter_file": "data/fagverk/helse/rehabilitering-funksjon-icf-mal-deltakelse-og-tverrprofesjonell-praksis.json",
+              "module_file": "data/fagverk/helse/rehabilitering-funksjon-icf-mal-deltakelse-og-tverrprofesjonell-praksis/01-icf-funksjon-og-kontekst.json",
+              "section_id": "hrf-functioning-disability-og-icf",
+              "paragraph_index": 0,
+              "claim_id": "hrf-c01",
+              "source_ids": [
+                "hrf02-who-icf",
+                "hrf03-who-icf-practical-manual",
+                "hrf01-who-rehabilitation-2024"
+              ]
+            },
+            {
+              "role": "limitation",
+              "chapter_file": "data/fagverk/helse/rehabilitering-funksjon-icf-mal-deltakelse-og-tverrprofesjonell-praksis.json",
+              "module_file": "data/fagverk/helse/rehabilitering-funksjon-icf-mal-deltakelse-og-tverrprofesjonell-praksis/01-icf-funksjon-og-kontekst.json",
+              "section_id": "hrf-functioning-disability-og-icf",
+              "paragraph_index": 3,
+              "claim_id": "hrf-c04",
+              "source_ids": [
+                "hrf02-who-icf",
+                "hrf03-who-icf-practical-manual",
+                "hrf04-who-model-disability-survey"
+              ]
+            },
+            {
+              "role": "alternative",
+              "chapter_file": "data/fagverk/helse/rehabilitering-funksjon-icf-mal-deltakelse-og-tverrprofesjonell-praksis.json",
+              "module_file": "data/fagverk/helse/rehabilitering-funksjon-icf-mal-deltakelse-og-tverrprofesjonell-praksis/01-icf-funksjon-og-kontekst.json",
+              "section_id": "hrf-activity-participation-capacity-performance-og-miljo",
+              "paragraph_index": 0,
+              "claim_id": "hrf-c05",
+              "source_ids": [
+                "hrf02-who-icf",
+                "hrf03-who-icf-practical-manual",
+                "hrf01-who-rehabilitation-2024"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "helse-rehabilitering-funksjon-02",
+          "model_kind": "complementary_framework",
+          "model_name": "Aktivitet, deltakelse, kapasitet, utførelse og miljø",
+          "emne_id": "em_helse_rehabilitering_funksjon",
+          "domain_id": "rehabilitering_funksjon",
+          "scope": "Rammeverket brukes til generell, kildebasert analyse av aktivitet, deltakelse, kapasitet, utførelse og miljø innen Rehabilitering og funksjon, med eksplisitt skille mellom gruppedata, mekanisme og individuell klinisk vurdering.",
+          "core_claim_or_mechanism": "Aktivitet beskriver gjennomføring av oppgaver eller handlinger, mens deltakelse gjelder involvering i livssituasjoner. Nivåene kan påvirke hverandre og noen kategorier kan overlappe, men de svarer ikke på samme analytiske spørsmål og bør derfor ikke slås sammen til ett generelt mål på funksjon.",
+          "limitations": [
+            "Endringer i tilgjengelighet, hjelpemidler eller omgivelser kan forbedre utførelse og deltakelse uten tilsvarende endring i kroppslig impairment. Dette viser hvorfor funksjonsanalyse må undersøke samspillet mellom person og miljø, og hvorfor rehabiliteringsgevinst ikke kan reduseres til kroppslig normalisering.",
+            "Bindingen dokumenterer generell fagforståelse og kan ikke brukes til individuell diagnose, prognose, triage, behandling, rettighetsavgjørelse eller budsjettbeslutning."
+          ],
+          "rival_or_alternative": "Funksjon, funksjonsnedsettelse og ICF er et komplementært analysegrunnlag når spørsmålet gjelder andre ledd, forutsetninger eller gyldighetsgrenser enn dem dette rammeverket forklarer direkte.",
+          "interpretive_consequence": "Kapasitet beskriver hva som kan utføres under en definert eller standardisert kontekst, mens performance eller utførelse beskriver hva som faktisk skjer i personens vanlige miljø. Et gap mellom kapasitet og utførelse kan derfor peke mot miljø-, støtte- eller oppgavefaktorer uten å være et direkte mål på motivasjon eller vilje.",
+          "scholarly_source": {
+            "source_id": "hrf03-who-icf-practical-manual",
+            "label": "World Health Organization – How to use the ICF: A practical manual for using the International Classification of Functioning, Disability and Health",
+            "url": "https://cdn.who.int/media/docs/default-source/classification/icf/drafticfpracticalmanual2.pdf?sfvrsn=8a214b01_4",
+            "authority_class": "international-classification-practical-manual",
+            "source_role": "WHO ICF practical manual; body functions/structures, activities/participation, capacity, performance and contextual factors.",
+            "use_limit": "Kilden brukes bare innen sitt dokumenterte evidensområde og aldri som selvstendig grunnlag for en individuell klinisk eller rettslig beslutning."
+          },
+          "content_bindings": [
+            {
+              "role": "mechanism",
+              "chapter_file": "data/fagverk/helse/rehabilitering-funksjon-icf-mal-deltakelse-og-tverrprofesjonell-praksis.json",
+              "module_file": "data/fagverk/helse/rehabilitering-funksjon-icf-mal-deltakelse-og-tverrprofesjonell-praksis/01-icf-funksjon-og-kontekst.json",
+              "section_id": "hrf-activity-participation-capacity-performance-og-miljo",
+              "paragraph_index": 0,
+              "claim_id": "hrf-c05",
+              "source_ids": [
+                "hrf02-who-icf",
+                "hrf03-who-icf-practical-manual",
+                "hrf01-who-rehabilitation-2024"
+              ]
+            },
+            {
+              "role": "limitation",
+              "chapter_file": "data/fagverk/helse/rehabilitering-funksjon-icf-mal-deltakelse-og-tverrprofesjonell-praksis.json",
+              "module_file": "data/fagverk/helse/rehabilitering-funksjon-icf-mal-deltakelse-og-tverrprofesjonell-praksis/01-icf-funksjon-og-kontekst.json",
+              "section_id": "hrf-activity-participation-capacity-performance-og-miljo",
+              "paragraph_index": 3,
+              "claim_id": "hrf-c08",
+              "source_ids": [
+                "hrf04-who-model-disability-survey",
+                "hrf08-who-assistive-technology-2024",
+                "hrf01-who-rehabilitation-2024"
+              ]
+            },
+            {
+              "role": "alternative",
+              "chapter_file": "data/fagverk/helse/rehabilitering-funksjon-icf-mal-deltakelse-og-tverrprofesjonell-praksis.json",
+              "module_file": "data/fagverk/helse/rehabilitering-funksjon-icf-mal-deltakelse-og-tverrprofesjonell-praksis/01-icf-funksjon-og-kontekst.json",
+              "section_id": "hrf-functioning-disability-og-icf",
+              "paragraph_index": 0,
+              "claim_id": "hrf-c01",
+              "source_ids": [
+                "hrf02-who-icf",
+                "hrf03-who-icf-practical-manual",
+                "hrf01-who-rehabilitation-2024"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "domain_id": "helsetjenester_helseokonomi",
+      "domain_label": "Helsevesen, organisering og helseøkonomi",
+      "comparison": {
+        "model_object_ids": [
+          "helse-helsetjenester-helseokonomi-01",
+          "helse-helsetjenester-helseokonomi-02"
+        ],
+        "interpretive_consequence": "Systemfunksjoner, tjenestenivåer og primary care og Tilgang, kontinuitet, integrasjon og universell dekning brukes som komplementære forklaringsrammer. Sammen hindrer de at helsevesen, organisering og helseøkonomi reduseres til én indikator, én lineær årsak eller en individualiserende slutning fra gruppedata."
+      },
+      "model_objects": [
+        {
+          "id": "helse-helsetjenester-helseokonomi-01",
+          "model_kind": "mechanism_or_framework",
+          "model_name": "Systemfunksjoner, tjenestenivåer og primary care",
+          "emne_id": "em_helse_helsetjenester_helseokonomi",
+          "domain_id": "helsetjenester_helseokonomi",
+          "scope": "Rammeverket brukes til generell, kildebasert analyse av systemfunksjoner, tjenestenivåer og primary care innen Helsevesen, organisering og helseøkonomi, med eksplisitt skille mellom gruppedata, mekanisme og individuell klinisk vurdering.",
+          "core_claim_or_mechanism": "Helsesystemer kan analyseres gjennom funksjoner som styring, finansiering, ressursgenerering og tjenesteleveranse; funksjonene er analytiske og trenger ikke være separate organisasjoner. Denne funksjonsinndelingen gjør det mulig å undersøke hvor i systemet en flaskehals oppstår uten å anta at én etat eller ett organisatorisk nivå alene eier årsaken.",
+          "limitations": [
+            "Integrerte tjenester krever samordning av funksjoner og forløp; integrasjon er ikke synonymt med organisatorisk sammenslåing. Samordning kan skje gjennom delte standarder, informasjonsflyt, ansvarsoverføring og koordinerte forløp selv når organisasjonene fortsatt er juridisk og administrativt separate.",
+            "Bindingen dokumenterer generell fagforståelse og kan ikke brukes til individuell diagnose, prognose, triage, behandling, rettighetsavgjørelse eller budsjettbeslutning."
+          ],
+          "rival_or_alternative": "Tilgang, kontinuitet, integrasjon og universell dekning er et komplementært analysegrunnlag når spørsmålet gjelder andre ledd, forutsetninger eller gyldighetsgrenser enn dem dette rammeverket forklarer direkte.",
+          "interpretive_consequence": "Primary care er en kjerne i førstelinjens kliniske tjenester, mens primary health care er en bredere tilnærming som også omfatter multisektorielle og samfunnsrettede komponenter. Skillet er viktig fordi klinisk førstelinjearbeid kan være sterkt samtidig som forebygging, folkehelsetiltak eller tverrsektorielle betingelser er svake, og omvendt.",
+          "scholarly_source": {
+            "source_id": "hse01-who-hspa-2026",
+            "label": "World Health Organization – Health system performance assessment: renewed global framework to guide policy-making",
+            "url": "https://www.who.int/publications/b/75024",
+            "authority_class": "international-health-system-performance-framework",
+            "source_role": "WHO renewed HSPA framework, 2026; system functions, performance pathways and goals.",
+            "use_limit": "Kilden brukes bare innen sitt dokumenterte evidensområde og aldri som selvstendig grunnlag for en individuell klinisk eller rettslig beslutning."
+          },
+          "content_bindings": [
+            {
+              "role": "mechanism",
+              "chapter_file": "data/fagverk/helse/helsetjenester-helseokonomi-organisering-kvalitet-prioritering-og-ressursbruk.json",
+              "module_file": "data/fagverk/helse/helsetjenester-helseokonomi-organisering-kvalitet-prioritering-og-ressursbruk/01-system-og-tilgang.json",
+              "section_id": "hse-systemfunksjoner-og-tjenestenivaer",
+              "paragraph_index": 0,
+              "claim_id": "hse-c01",
+              "source_ids": [
+                "hse01-who-hspa-2026",
+                "hse04-who-phc-framework-2020",
+                "hse05-who-primary-care"
+              ]
+            },
+            {
+              "role": "limitation",
+              "chapter_file": "data/fagverk/helse/helsetjenester-helseokonomi-organisering-kvalitet-prioritering-og-ressursbruk.json",
+              "module_file": "data/fagverk/helse/helsetjenester-helseokonomi-organisering-kvalitet-prioritering-og-ressursbruk/01-system-og-tilgang.json",
+              "section_id": "hse-systemfunksjoner-og-tjenestenivaer",
+              "paragraph_index": 3,
+              "claim_id": "hse-c04",
+              "source_ids": [
+                "hse01-who-hspa-2026",
+                "hse04-who-phc-framework-2020",
+                "hse05-who-primary-care"
+              ]
+            },
+            {
+              "role": "alternative",
+              "chapter_file": "data/fagverk/helse/helsetjenester-helseokonomi-organisering-kvalitet-prioritering-og-ressursbruk.json",
+              "module_file": "data/fagverk/helse/helsetjenester-helseokonomi-organisering-kvalitet-prioritering-og-ressursbruk/01-system-og-tilgang.json",
+              "section_id": "hse-tilgang-kontinuitet-integrasjon-og-uhc",
+              "paragraph_index": 0,
+              "claim_id": "hse-c05",
+              "source_ids": [
+                "hse03-who-uhc-2025",
+                "hse05-who-primary-care",
+                "hse12-who-financial-protection"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "helse-helsetjenester-helseokonomi-02",
+          "model_kind": "complementary_framework",
+          "model_name": "Tilgang, kontinuitet, integrasjon og universell dekning",
+          "emne_id": "em_helse_helsetjenester_helseokonomi",
+          "domain_id": "helsetjenester_helseokonomi",
+          "scope": "Rammeverket brukes til generell, kildebasert analyse av tilgang, kontinuitet, integrasjon og universell dekning innen Helsevesen, organisering og helseøkonomi, med eksplisitt skille mellom gruppedata, mekanisme og individuell klinisk vurdering.",
+          "core_claim_or_mechanism": "Universell helsedekning innebærer tilgang til nødvendige tjenester av tilstrekkelig kvalitet uten økonomisk ruin; formell dekning alene dokumenterer ikke faktisk tilgang. For analyse betyr dette at dekningsgrad må suppleres med spørsmål om behov, faktisk brukbarhet, tjenestekvalitet og økonomisk risiko for befolkningen.",
+          "limitations": [
+            "Overganger mellom tjenestenivåer og kontinuitetsindikatorer må tolkes i kontekst; en overgang er ikke i seg selv bevis på god eller dårlig kvalitet. Overgangsdata bør kobles til hva som skjedde før og etter overføringen, om nødvendig informasjon fulgte med og om ansvar og oppfølging var tydelige.",
+            "Bindingen dokumenterer generell fagforståelse og kan ikke brukes til individuell diagnose, prognose, triage, behandling, rettighetsavgjørelse eller budsjettbeslutning."
+          ],
+          "rival_or_alternative": "Systemfunksjoner, tjenestenivåer og primary care er et komplementært analysegrunnlag når spørsmålet gjelder andre ledd, forutsetninger eller gyldighetsgrenser enn dem dette rammeverket forklarer direkte.",
+          "interpretive_consequence": "Tilgang kan begrenses av økonomi, geografi, ventetid, organisering, språk og andre barrierer selv når en tjeneste finnes. Barrierene kan virke samtidig og ulikt mellom grupper, slik at et gjennomsnittlig tilgjengelighetstall kan skjule betydelige fordelingsproblemer.",
+          "scholarly_source": {
+            "source_id": "hse05-who-primary-care",
+            "label": "World Health Organization – Primary care",
+            "url": "https://www.who.int/teams/integrated-health-services/clinical-services-and-systems/primary-care",
+            "authority_class": "international-primary-care-reference",
+            "source_role": "WHO Primary care overview; five core primary-care functions and distinction from broader PHC.",
+            "use_limit": "Kilden brukes bare innen sitt dokumenterte evidensområde og aldri som selvstendig grunnlag for en individuell klinisk eller rettslig beslutning."
+          },
+          "content_bindings": [
+            {
+              "role": "mechanism",
+              "chapter_file": "data/fagverk/helse/helsetjenester-helseokonomi-organisering-kvalitet-prioritering-og-ressursbruk.json",
+              "module_file": "data/fagverk/helse/helsetjenester-helseokonomi-organisering-kvalitet-prioritering-og-ressursbruk/01-system-og-tilgang.json",
+              "section_id": "hse-tilgang-kontinuitet-integrasjon-og-uhc",
+              "paragraph_index": 0,
+              "claim_id": "hse-c05",
+              "source_ids": [
+                "hse03-who-uhc-2025",
+                "hse05-who-primary-care",
+                "hse12-who-financial-protection"
+              ]
+            },
+            {
+              "role": "limitation",
+              "chapter_file": "data/fagverk/helse/helsetjenester-helseokonomi-organisering-kvalitet-prioritering-og-ressursbruk.json",
+              "module_file": "data/fagverk/helse/helsetjenester-helseokonomi-organisering-kvalitet-prioritering-og-ressursbruk/01-system-og-tilgang.json",
+              "section_id": "hse-tilgang-kontinuitet-integrasjon-og-uhc",
+              "paragraph_index": 3,
+              "claim_id": "hse-c08",
+              "source_ids": [
+                "hse03-who-uhc-2025",
+                "hse05-who-primary-care",
+                "hse12-who-financial-protection"
+              ]
+            },
+            {
+              "role": "alternative",
+              "chapter_file": "data/fagverk/helse/helsetjenester-helseokonomi-organisering-kvalitet-prioritering-og-ressursbruk.json",
+              "module_file": "data/fagverk/helse/helsetjenester-helseokonomi-organisering-kvalitet-prioritering-og-ressursbruk/01-system-og-tilgang.json",
+              "section_id": "hse-systemfunksjoner-og-tjenestenivaer",
+              "paragraph_index": 0,
+              "claim_id": "hse-c01",
+              "source_ids": [
+                "hse01-who-hspa-2026",
+                "hse04-who-phc-framework-2020",
+                "hse05-who-primary-care"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "domain_id": "medisinsk_etikk_evidens",
+      "domain_label": "Medisinsk etikk og evidens",
+      "comparison": {
+        "model_object_ids": [
+          "helse-medisinsk-etikk-evidens-01",
+          "helse-medisinsk-etikk-evidens-02"
+        ],
+        "interpretive_consequence": "Autonomi, tilpasset informasjon og informert samtykke og Beslutningskapasitet, sårbarhet, støtte og representasjon brukes som komplementære forklaringsrammer. Sammen hindrer de at medisinsk etikk og evidens reduseres til én indikator, én lineær årsak eller en individualiserende slutning fra gruppedata."
+      },
+      "model_objects": [
+        {
+          "id": "helse-medisinsk-etikk-evidens-01",
+          "model_kind": "mechanism_or_framework",
+          "model_name": "Autonomi, tilpasset informasjon og informert samtykke",
+          "emne_id": "em_helse_medisinsk_etikk_evidens",
+          "domain_id": "medisinsk_etikk_evidens",
+          "scope": "Rammeverket brukes til generell, kildebasert analyse av autonomi, tilpasset informasjon og informert samtykke innen Medisinsk etikk og evidens, med eksplisitt skille mellom gruppedata, mekanisme og individuell klinisk vurdering.",
+          "core_claim_or_mechanism": "Rett til informasjon og medvirkning innebærer ikke plikt til å godta et bestemt alternativ. Norsk pasientrett og profesjonsetiske normer gjør beslutningen avhengig av relevante valgmuligheter, mens helsepersonellet fortsatt må avgrense samtalen til faglig forsvarlige alternativer.",
+          "limitations": [
+            "Samtykke er formålsavgrenset og kan trekkes tilbake. Et tidligere ja kan derfor ikke behandles som ubegrenset tillatelse til nye inngrep, forskningsformål eller brukssituasjoner; endret formål krever ny informasjon og relevant rettslig og etisk vurdering.",
+            "Bindingen dokumenterer generell fagforståelse og kan ikke brukes til individuell diagnose, prognose, triage, behandling, rettighetsavgjørelse eller budsjettbeslutning."
+          ],
+          "rival_or_alternative": "Beslutningskapasitet, sårbarhet, støtte og representasjon er et komplementært analysegrunnlag når spørsmålet gjelder andre ledd, forutsetninger eller gyldighetsgrenser enn dem dette rammeverket forklarer direkte.",
+          "interpretive_consequence": "Informasjon er ikke tilstrekkelig bare fordi den er gitt. Den må tilpasses mottakerens forutsetninger, omfatte relevante fordeler, ulemper og alternativer og gi rom for spørsmål; først da kan forståelse og frivillighet undersøkes som deler av informert samtykke.",
+          "scholarly_source": {
+            "source_id": "hme02-wma-medical-ethics-code",
+            "label": "World Medical Association – WMA International Code of Medical Ethics",
+            "url": "https://www.wma.net/policies-post/wma-international-code-of-medical-ethics/",
+            "authority_class": "international-professional-ethics-code",
+            "source_role": "Duties to the patient and general duties: dignity, autonomy, informed consent, benefit–harm balance, professional judgement and disclosure or management of conflicts of interest.",
+            "use_limit": "Kilden brukes bare innen sitt dokumenterte evidensområde og aldri som selvstendig grunnlag for en individuell klinisk eller rettslig beslutning."
+          },
+          "content_bindings": [
+            {
+              "role": "mechanism",
+              "chapter_file": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning.json",
+              "module_file": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning/01-autonomi-samtykke-og-stotte.json",
+              "section_id": "hme-autonomi-informasjon-og-samtykke",
+              "paragraph_index": 0,
+              "claim_id": "hme-01-01",
+              "source_ids": [
+                "hme02-wma-medical-ethics-code",
+                "hme06-no-patient-rights-act",
+                "hme10-nice-shared-decision",
+                "hme11-helsenorge-shared-decision"
+              ]
+            },
+            {
+              "role": "limitation",
+              "chapter_file": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning.json",
+              "module_file": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning/01-autonomi-samtykke-og-stotte.json",
+              "section_id": "hme-autonomi-informasjon-og-samtykke",
+              "paragraph_index": 3,
+              "claim_id": "hme-01-04",
+              "source_ids": [
+                "hme02-wma-medical-ethics-code",
+                "hme06-no-patient-rights-act",
+                "hme10-nice-shared-decision",
+                "hme11-helsenorge-shared-decision"
+              ]
+            },
+            {
+              "role": "alternative",
+              "chapter_file": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning.json",
+              "module_file": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning/01-autonomi-samtykke-og-stotte.json",
+              "section_id": "hme-samtykkekompetanse-sarbarhet-og-representasjon",
+              "paragraph_index": 0,
+              "claim_id": "hme-02-01",
+              "source_ids": [
+                "hme01-wma-helsinki-2024",
+                "hme04-cioms-2016",
+                "hme05-no-health-research-act",
+                "hme06-no-patient-rights-act"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "helse-medisinsk-etikk-evidens-02",
+          "model_kind": "complementary_framework",
+          "model_name": "Beslutningskapasitet, sårbarhet, støtte og representasjon",
+          "emne_id": "em_helse_medisinsk_etikk_evidens",
+          "domain_id": "medisinsk_etikk_evidens",
+          "scope": "Rammeverket brukes til generell, kildebasert analyse av beslutningskapasitet, sårbarhet, støtte og representasjon innen Medisinsk etikk og evidens, med eksplisitt skille mellom gruppedata, mekanisme og individuell klinisk vurdering.",
+          "core_claim_or_mechanism": "Beslutningskapasitet må knyttes til den konkrete beslutningen, informasjonen og situasjonen, ikke gjøres til en varig merkelapp for hele personen. Denne teksten lærer analyseprinsippet, men avgjør aldri kapasiteten til en faktisk person.",
+          "limitations": [
+            "Et gyldig rettslig samtykkegrunnlag avslutter ikke den etiske vurderingen. Press, avhengighet, urimelig byrde, svak kunnskapsverdi eller utilstrekkelig beskyttelse kan fortsatt gjøre en praksis uforsvarlig, og rettskilde og etisk norm må derfor navngis separat.",
+            "Bindingen dokumenterer generell fagforståelse og kan ikke brukes til individuell diagnose, prognose, triage, behandling, rettighetsavgjørelse eller budsjettbeslutning."
+          ],
+          "rival_or_alternative": "Autonomi, tilpasset informasjon og informert samtykke er et komplementært analysegrunnlag når spørsmålet gjelder andre ledd, forutsetninger eller gyldighetsgrenser enn dem dette rammeverket forklarer direkte.",
+          "interpretive_consequence": "Behov for støtte eller representasjon opphever ikke den berørtes status som deltaker i beslutningen. Etiske retningslinjer og norsk rett legger vekt på tilpasset informasjon, involvering så langt som mulig og respekt for uttrykte ønsker innenfor gjeldende verneregler.",
+          "scholarly_source": {
+            "source_id": "hme04-cioms-2016",
+            "label": "Council for International Organizations of Medical Sciences – International Ethical Guidelines for Health-related Research Involving Humans",
+            "url": "https://cioms.ch/publications/product/international-ethical-guidelines-for-health-related-research-involving-humans/",
+            "authority_class": "international-health-research-guideline",
+            "source_role": "2016 guidelines and commentaries on social value, scientific validity, fair selection, vulnerable situations, informed consent, ethics review and public accountability.",
+            "use_limit": "Kilden brukes bare innen sitt dokumenterte evidensområde og aldri som selvstendig grunnlag for en individuell klinisk eller rettslig beslutning."
+          },
+          "content_bindings": [
+            {
+              "role": "mechanism",
+              "chapter_file": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning.json",
+              "module_file": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning/01-autonomi-samtykke-og-stotte.json",
+              "section_id": "hme-samtykkekompetanse-sarbarhet-og-representasjon",
+              "paragraph_index": 0,
+              "claim_id": "hme-02-01",
+              "source_ids": [
+                "hme01-wma-helsinki-2024",
+                "hme04-cioms-2016",
+                "hme05-no-health-research-act",
+                "hme06-no-patient-rights-act"
+              ]
+            },
+            {
+              "role": "limitation",
+              "chapter_file": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning.json",
+              "module_file": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning/01-autonomi-samtykke-og-stotte.json",
+              "section_id": "hme-samtykkekompetanse-sarbarhet-og-representasjon",
+              "paragraph_index": 3,
+              "claim_id": "hme-02-04",
+              "source_ids": [
+                "hme01-wma-helsinki-2024",
+                "hme04-cioms-2016",
+                "hme05-no-health-research-act",
+                "hme06-no-patient-rights-act"
+              ]
+            },
+            {
+              "role": "alternative",
+              "chapter_file": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning.json",
+              "module_file": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning/01-autonomi-samtykke-og-stotte.json",
+              "section_id": "hme-autonomi-informasjon-og-samtykke",
+              "paragraph_index": 0,
+              "claim_id": "hme-01-01",
+              "source_ids": [
+                "hme02-wma-medical-ethics-code",
+                "hme06-no-patient-rights-act",
+                "hme10-nice-shared-decision",
+                "hme11-helsenorge-shared-decision"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
