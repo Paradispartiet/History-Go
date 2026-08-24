@@ -178,7 +178,11 @@ function normalizeWorkContext(value, label) {
   if (value == null) return null;
   const input = assertAllowedKeys(
     value,
-    new Set(["object_ids", "institution_id", "deadline_ref"]),
+    new Set([
+      "object_ids", "institution_id", "deadline_ref", "deadline_day", "deadline_phase",
+      "blocked_by_object_id", "waiting_for_actor_id", "handoff_to_actor_id", "priority",
+      "interrupts", "rework_of_scene_id", "rework_of_object_transition"
+    ]),
     label
   );
   if (!hasOwn(input, "object_ids")) throw new Error(`${label}.object_ids mangler`);
@@ -190,6 +194,38 @@ function normalizeWorkContext(value, label) {
   }
   if (hasOwn(input, "deadline_ref")) {
     out.deadline_ref = optionalStrictText(input.deadline_ref, `${label}.deadline_ref`);
+  }
+  if (hasOwn(input, "deadline_day")) {
+    const deadlineDay = Number(input.deadline_day);
+    if (!Number.isInteger(deadlineDay) || deadlineDay < 1 || deadlineDay > 366) {
+      throw new Error(`${label}.deadline_day må være heltall mellom 1 og 366`);
+    }
+    out.deadline_day = deadlineDay;
+  }
+  if (hasOwn(input, "deadline_phase")) {
+    if (!hasOwn(input, "deadline_day")) throw new Error(`${label}.deadline_phase krever deadline_day`);
+    const deadlinePhase = norm(input.deadline_phase);
+    if (!["morning", "forenoon", "workday", "lunch", "afternoon", "dinner", "evening", "day_end", "any"].includes(deadlinePhase)) {
+      throw new Error(`${label}.deadline_phase er ukjent: ${deadlinePhase || "<tom>"}`);
+    }
+    out.deadline_phase = deadlinePhase;
+  }
+  for (const key of [
+    "blocked_by_object_id", "waiting_for_actor_id", "handoff_to_actor_id",
+    "rework_of_scene_id", "rework_of_object_transition"
+  ]) {
+    if (hasOwn(input, key)) out[key] = assertId(input[key], `${label}.${key}`);
+  }
+  if (hasOwn(input, "priority")) {
+    const priority = norm(input.priority);
+    if (!["low", "normal", "high", "urgent"].includes(priority)) {
+      throw new Error(`${label}.priority er ukjent: ${priority || "<tom>"}`);
+    }
+    out.priority = priority;
+  }
+  if (hasOwn(input, "interrupts")) {
+    if (typeof input.interrupts !== "boolean") throw new Error(`${label}.interrupts må være boolean`);
+    out.interrupts = input.interrupts;
   }
   return out;
 }
