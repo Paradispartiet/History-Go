@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
+import vm from "node:vm";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -101,20 +102,112 @@ test("områdemarkører er mindre firkanter uten å redusere hitflaten", () => {
   const squarePaint = source.match(/function getPlaceAreaSquarePaint\(isGlow = false\) \{[\s\S]*?\n  \}/)?.[0] || "";
   assert.ok(squareLayout, "mangler layout for firkantede områdemarkører");
   assert.ok(squarePaint, "mangler paint for firkantede områdemarkører");
-  assert.match(source, /PLACE_AREA_SQUARE_IMAGE_ID\s*=\s*"hg-place-area-square-sdf"/);
-  assert.match(source, /function buildPlaceAreaSquareSdfImage\(size = 32\)/);
-  assert.match(source, /MAP\.addImage\([\s\S]*?PLACE_AREA_SQUARE_IMAGE_ID,[\s\S]*?sdf: true/);
-  assert.match(source, /ensurePlaceAreaSquareImage\(\);[\s\S]*?const src = MAP\.getSource\(SRC\)/);
-  assert.match(squareLayout, /"icon-image": PLACE_AREA_SQUARE_IMAGE_ID/);
+  assert.match(source, /PLACE_AREA_SQUARE_IMAGE_PREFIX\s*=\s*"hg-place-area-square-rgba"/);
+  assert.match(source, /function buildPlaceAreaSquareImage\(fill, border, size = 32\)/);
+  assert.match(source, /MAP\.addImage\(imageId, buildPlaceAreaSquareImage\(fill, border\), \{ pixelRatio: 1 \}\)/);
+  assert.doesNotMatch(source, /sdf:\s*true/, "områdefirkanten skal ikke være avhengig av SDF-rendering");
+  assert.match(source, /ensurePlaceAreaSquareImages\(features\);[\s\S]*?const src = MAP\.getSource\(SRC\)/);
+  assert.match(source, /feature\.properties\.areaSquareImage = imageId/);
+  assert.match(squareLayout, /"icon-image": \["get", "areaSquareImage"\]/);
   assert.match(squareLayout, /"icon-size": \["\/", side, 16\]/);
   assert.doesNotMatch(squareLayout, /text-field|■/, "områdefirkanten skal ikke være avhengig av kartfonten");
   assert.match(squareLayout, /7, \["\+", 5\.0/);
   assert.match(squareLayout, /12, \["\+", 7\.4/);
   assert.match(squareLayout, /18, \["\+", 10\.5/);
-  assert.match(squarePaint, /"icon-halo-color": \["get", "border"\]/);
+  assert.doesNotMatch(squarePaint, /icon-color|icon-halo/, "farge og kant skal være bakt inn i RGBA-ikonet");
+
+  const app = read("js/app.js");
+  const index = read("index.html");
+  assert.match(app, /loadScriptOnce\("js\/map\.js\?v=20260824-area-square-runtime2"\)/);
+  assert.match(index, /js\/app\.js\?v=20260824-area-square-runtime2/);
 
   assert.match(source, /id: L_AREA_GLOW,[\s\S]*?type: "symbol",[\s\S]*?layout: getPlaceAreaSquareLayout\(true\),[\s\S]*?paint: getPlaceAreaSquarePaint\(true\)/);
   assert.match(source, /id: L_AREA_DOTS,[\s\S]*?type: "symbol",[\s\S]*?layout: getPlaceAreaSquareLayout\(false\),[\s\S]*?paint: getPlaceAreaSquarePaint\(false\)/);
   assert.match(source, /id: L_DOTS,[\s\S]*?type: "circle",[\s\S]*?paint: getPlaceDotPaint\(false\)/);
   assert.match(source, /id: L_AREA_HIT,[\s\S]*?type: "circle",[\s\S]*?paint: getPlaceHitPaint\(true\)/);
+});
+
+test("runtime lager et synlig RGBA-kvadrat og binder det til områdelaget", () => {
+  const images = new Map();
+  const layers = new Map();
+  const sources = new Map();
+  const canvas = { addEventListener() {}, getBoundingClientRect: () => ({ left: 0, top: 0 }) };
+
+  class FakeMap {
+    addControl() {}
+    on(event, layerOrHandler, maybeHandler) {
+      const handler = typeof layerOrHandler === "function" ? layerOrHandler : maybeHandler;
+      if (event === "load") handler();
+      return this;
+    }
+    once(_event, handler) { handler(); return this; }
+    resize() {}
+    isStyleLoaded() { return true; }
+    getStyle() { return { layers: [] }; }
+    getCanvas() { return canvas; }
+    getZoom() { return 10; }
+    hasImage(id) { return images.has(id); }
+    addImage(id, image, options) { images.set(id, { image, options }); }
+    getSource(id) { return sources.get(id); }
+    addSource(id, source) {
+      sources.set(id, { ...source, setData(data) { this.data = data; } });
+    }
+    removeSource(id) { sources.delete(id); }
+    getLayer(id) { return layers.get(id); }
+    addLayer(layer) { layers.set(layer.id, layer); }
+    removeLayer(id) { layers.delete(id); }
+    moveLayer() {}
+  }
+
+  const mapElement = { dataset: {}, setAttribute() {} };
+  const document = {
+    getElementById: id => id === "map" ? mapElement : null,
+    querySelector: () => null
+  };
+  const context = {
+    console,
+    document,
+    localStorage: { getItem: () => null, setItem() {} },
+    maplibregl: { Map: FakeMap, NavigationControl: class {} },
+    setTimeout,
+    clearTimeout
+  };
+  context.window = context;
+  context.addEventListener = () => {};
+  context.catSecondaryColor = () => "#112233";
+  vm.createContext(context);
+  vm.runInContext(legacy, context, { filename: "js/map.js" });
+
+  context.HGMap.initMap();
+  context.HGMap.setCatColor(() => "#445566");
+  context.HGMap.setPlaces([{
+    id: "runtime-area",
+    name: "Runtime area",
+    category: "historie",
+    placeScope: "area",
+    mapLod: "area",
+    lat: 59.9139,
+    lon: 10.7522,
+    r: 100
+  }]);
+
+  assert.equal(images.size, 1, "området skal registrere ett farget runtime-ikon");
+  const [{ image, options }] = [...images.values()];
+  assert.equal(options.pixelRatio, 1);
+  assert.equal(Object.keys(options).length, 1);
+  assert.equal(image.width, 32);
+  assert.equal(image.height, 32);
+  const pixels = Array.from({ length: image.width * image.height }, (_, i) =>
+    Array.from(image.data.slice(i * 4, i * 4 + 4)).join(",")
+  );
+  assert.ok(pixels.includes("68,85,102,255"), "ikonet mangler fyllfargen");
+  assert.ok(pixels.includes("17,34,51,255"), "ikonet mangler kantfargen");
+  assert.ok(pixels.includes("0,0,0,0"), "ikonet mangler transparent luft rundt firkanten");
+
+  const feature = sources.get("hg-places").data.features[0];
+  assert.match(feature.properties.areaSquareImage, /^hg-place-area-square-rgba-/);
+  assert.equal(
+    JSON.stringify(layers.get("hg-place-areas-dots").layout["icon-image"]),
+    JSON.stringify(["get", "areaSquareImage"])
+  );
 });

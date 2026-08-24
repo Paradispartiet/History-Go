@@ -28,7 +28,7 @@
     const L_AREA_HIT = "hg-place-areas-hit";
     const L_AREA_DOTS = "hg-place-areas-dots";
     const L_AREA_LAB = "hg-place-areas-label";
-    const PLACE_AREA_SQUARE_IMAGE_ID = "hg-place-area-square-sdf";
+    const PLACE_AREA_SQUARE_IMAGE_PREFIX = "hg-place-area-square-rgba";
     const PLACE_AREA_LABEL_MIN_ZOOM = 9.5;
     const PLACE_DETAIL_MIN_ZOOM = 11.8;
     const PLACE_DETAIL_HIT_MIN_ZOOM = 12.35;
@@ -570,41 +570,74 @@
         1
       ];
     }
-    function buildPlaceAreaSquareSdfImage(size = 32) {
+    function parsePlaceMarkerColor(value, fallback = [108, 117, 125, 255]) {
+      const color = String(value || "").trim();
+      const shortHex = color.match(/^#([0-9a-f]{3})$/i);
+      if (shortHex) {
+        return shortHex[1].split("").map((channel) => parseInt(channel + channel, 16)).concat(255);
+      }
+      const longHex = color.match(/^#([0-9a-f]{6})$/i);
+      if (longHex) {
+        const numeric = parseInt(longHex[1], 16);
+        return [numeric >> 16 & 255, numeric >> 8 & 255, numeric & 255, 255];
+      }
+      const rgb = color.match(/^rgba?\(\s*(\d+(?:\.\d+)?)\s*,\s*(\d+(?:\.\d+)?)\s*,\s*(\d+(?:\.\d+)?)(?:\s*,\s*(\d+(?:\.\d+)?))?\s*\)$/i);
+      if (rgb) {
+        const alpha = rgb[4] == null ? 255 : Math.round(Math.max(0, Math.min(1, Number(rgb[4]))) * 255);
+        return [
+          Math.round(Math.max(0, Math.min(255, Number(rgb[1])))),
+          Math.round(Math.max(0, Math.min(255, Number(rgb[2])))),
+          Math.round(Math.max(0, Math.min(255, Number(rgb[3])))),
+          alpha
+        ];
+      }
+      return fallback.slice();
+    }
+    function getPlaceAreaSquareImageId(fill, border) {
+      const bytes = [...parsePlaceMarkerColor(fill), ...parsePlaceMarkerColor(border)];
+      return `${PLACE_AREA_SQUARE_IMAGE_PREFIX}-${bytes.map((channel) => channel.toString(16).padStart(2, "0")).join("")}`;
+    }
+    function buildPlaceAreaSquareImage(fill, border, size = 32) {
       const data = new Uint8Array(size * size * 4);
-      const center = size / 2;
-      const halfSide = size / 4;
+      const fillRgba = parsePlaceMarkerColor(fill);
+      const borderRgba = parsePlaceMarkerColor(border, fillRgba);
+      const outerStart = Math.floor(size / 4);
+      const outerEnd = size - outerStart;
+      const borderWidth = Math.max(2, Math.round(size / 16));
       for (let y = 0; y < size; y += 1) {
         for (let x = 0; x < size; x += 1) {
-          const dx = Math.abs(x + 0.5 - center) - halfSide;
-          const dy = Math.abs(y + 0.5 - center) - halfSide;
-          const outside = Math.hypot(Math.max(dx, 0), Math.max(dy, 0));
-          const inside = Math.min(Math.max(dx, dy), 0);
-          const signedDistance = outside + inside;
-          const alpha = Math.max(0, Math.min(255, Math.round(128 - signedDistance * 18)));
+          const insideOuter = x >= outerStart && x < outerEnd && y >= outerStart && y < outerEnd;
+          if (!insideOuter) continue;
+          const insideFill = x >= outerStart + borderWidth && x < outerEnd - borderWidth && y >= outerStart + borderWidth && y < outerEnd - borderWidth;
+          const rgba = insideFill ? fillRgba : borderRgba;
           const offset = (y * size + x) * 4;
-          data[offset] = 255;
-          data[offset + 1] = 255;
-          data[offset + 2] = 255;
-          data[offset + 3] = alpha;
+          data[offset] = rgba[0];
+          data[offset + 1] = rgba[1];
+          data[offset + 2] = rgba[2];
+          data[offset + 3] = rgba[3];
         }
       }
       return { width: size, height: size, data };
     }
-    function ensurePlaceAreaSquareImage() {
+    function ensurePlaceAreaSquareImages(features) {
+      var _a;
       if (!MAP || typeof MAP.addImage !== "function") return false;
-      if (typeof MAP.hasImage === "function" && MAP.hasImage(PLACE_AREA_SQUARE_IMAGE_ID)) return true;
-      try {
-        MAP.addImage(
-          PLACE_AREA_SQUARE_IMAGE_ID,
-          buildPlaceAreaSquareSdfImage(),
-          { sdf: true, pixelRatio: 1 }
-        );
-        return true;
-      } catch (error) {
-        console.warn("[HGMap] Could not register area square icon", error);
-        return false;
+      let ready = true;
+      for (const feature of features) {
+        if (![PLACE_MAP_LOD_OVERVIEW, PLACE_MAP_LOD_AREA].includes((_a = feature == null ? void 0 : feature.properties) == null ? void 0 : _a.mapLod)) continue;
+        const fill = feature.properties.fill;
+        const border = feature.properties.border;
+        const imageId = getPlaceAreaSquareImageId(fill, border);
+        feature.properties.areaSquareImage = imageId;
+        if (typeof MAP.hasImage === "function" && MAP.hasImage(imageId)) continue;
+        try {
+          MAP.addImage(imageId, buildPlaceAreaSquareImage(fill, border), { pixelRatio: 1 });
+        } catch (error) {
+          ready = false;
+          console.warn("[HGMap] Could not register area square icon", { imageId, error });
+        }
       }
+      return ready;
     }
     function getPlaceAreaSquareLayout(isGlow = false) {
       const side = isGlow ? ["interpolate", ["linear"], ["zoom"], 7, 7, 9.5, 8.5, 12, 10, 16, 12, 18, 14] : [
@@ -623,7 +656,7 @@
         ["+", 10.5, ["*", 0.5, ["get", "visited"]]]
       ];
       return {
-        "icon-image": PLACE_AREA_SQUARE_IMAGE_ID,
+        "icon-image": ["get", "areaSquareImage"],
         "icon-size": ["/", side, 16],
         "icon-allow-overlap": true,
         "icon-ignore-placement": true,
@@ -634,29 +667,21 @@
     function getPlaceAreaSquarePaint(isGlow = false) {
       if (isGlow) {
         return {
-          "icon-color": ["get", "fill"],
           "icon-opacity": [
             "case",
             ["in", ["get", "coordinateTrust"], ["literal", ["review", "unknown"]]],
             0.06,
             0.14
-          ],
-          "icon-halo-color": ["get", "fill"],
-          "icon-halo-width": isStandardMapStyle() ? 1.4 : 1.1,
-          "icon-halo-blur": 1
+          ]
         };
       }
       return {
-        "icon-color": ["get", "fill"],
         "icon-opacity": [
           "case",
           ["in", ["get", "coordinateTrust"], ["literal", ["review", "unknown"]]],
           0.58,
           1
-        ],
-        "icon-halo-color": ["get", "border"],
-        "icon-halo-width": isStandardMapStyle() ? 1.2 : 1,
-        "icon-halo-blur": 0
+        ]
       };
     }
     function getPlaceGlowPaint(isArea = false) {
@@ -837,7 +862,7 @@
       if (!features.length) return;
       const fc = { type: "FeatureCollection", features };
       applyStandardMapPalette();
-      ensurePlaceAreaSquareImage();
+      ensurePlaceAreaSquareImages(features);
       const src = MAP.getSource(SRC);
       if (src) {
         src.setData(fc);
