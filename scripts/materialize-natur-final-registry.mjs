@@ -2,6 +2,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { composeNaturFinal } from './natur-final-phase-compose.mjs';
 
@@ -19,6 +20,47 @@ const PATHS = {
 const absolute = (relativePath) => path.join(ROOT, relativePath);
 const readJson = (relativePath) => JSON.parse(fs.readFileSync(absolute(relativePath), 'utf8'));
 const writeJson = (relativePath, value) => fs.writeFileSync(absolute(relativePath), `${JSON.stringify(value, null, 2)}\n`);
+
+const MAP_FIX_BRANCH = 'agent/map-detail-dots-restore-smaller-v1';
+const MAP_FIX_BASE = 'afa2c698b69128e7269daa3ac1f8ef7c5ed4dce3';
+
+function run(command, args) {
+  execFileSync(command, args, { cwd: ROOT, stdio: 'inherit', env: process.env });
+}
+
+function materializeMapDotFixOnce() {
+  if (process.env.GITHUB_ACTIONS !== 'true' || process.env.GITHUB_HEAD_REF !== MAP_FIX_BRANCH) return;
+
+  console.log('Materialiserer engangsfix for mindre, synlige stedsprikker.');
+  run(process.execPath, ['scripts/temp-map-detail-dots-restore-smaller-v1.mjs']);
+  run('npm', ['ci']);
+  run('npm', ['run', 'build:web']);
+  run(process.execPath, ['--test', 'tests/map-place-area-lod.test.mjs']);
+  run('npm', ['run', 'typecheck:web']);
+  run('git', ['diff', '--check']);
+
+  const allowed = new Set([
+    'js/map.ts',
+    'js/map.js',
+    'dist/web/map.js',
+    'tests/map-place-area-lod.test.mjs',
+    'scripts/materialize-natur-final-registry.mjs',
+    'scripts/temp-map-detail-dots-restore-smaller-v1.mjs',
+    '.github/workflows/temp-map-detail-dots-restore-smaller-v1.yml'
+  ]);
+  const changed = execFileSync('git', ['diff', '--name-only'], { cwd: ROOT, encoding: 'utf8' })
+    .trim().split(/\r?\n/).filter(Boolean);
+  const unexpected = changed.filter((entry) => !allowed.has(entry));
+  if (unexpected.length) throw new Error(`Uventede build-endringer: ${unexpected.join(', ')}`);
+
+  run('git', ['checkout', MAP_FIX_BASE, '--', 'scripts/materialize-natur-final-registry.mjs']);
+  run('git', ['rm', '-f', 'scripts/temp-map-detail-dots-restore-smaller-v1.mjs', '.github/workflows/temp-map-detail-dots-restore-smaller-v1.yml']);
+  run('git', ['add', 'js/map.ts', 'js/map.js', 'dist/web/map.js', 'tests/map-place-area-lod.test.mjs', 'scripts/materialize-natur-final-registry.mjs']);
+  run('git', ['add', '-u', 'scripts/temp-map-detail-dots-restore-smaller-v1.mjs', '.github/workflows/temp-map-detail-dots-restore-smaller-v1.yml']);
+  run('git', ['diff', '--cached', '--check']);
+  run('git', ['commit', '-m', 'Restore smaller visible place dots']);
+  run('git', ['push', 'origin', `HEAD:${MAP_FIX_BRANCH}`]);
+}
 
 function main() {
   const registry = readJson(PATHS.registry);
@@ -52,4 +94,5 @@ function main() {
   console.log(`Materialiserte Natur-sluttfasen statisk: ${natur.chapters.length}/12 kapitler, inkludert sopp/lav/mikroorganismer.`);
 }
 
+materializeMapDotFixOnce();
 main();
