@@ -3,7 +3,7 @@
 Dato: 2026-08-24  
 Place ID: `christiania_torv`  
 Baseline: Phase-8 merge `980a359c1016955baaefd9279fafa2a825978e46`  
-Status: **PENDING permanent validation**
+Status: **PASS – entity/round decisions and deterministic context validated**
 
 ## Reuse og eierskap
 
@@ -37,3 +37,10 @@ Brands er bevisst fraværende. Ingen filler-runding eller nabobygg som proxy er 
 ## Deterministisk Quiz/Knowledge-grense
 
 Place-filen inngår i Phase-7 production-context-hashen. Context-artifactet skal derfor gjenbygges deterministisk på denne branch-headen før PR, ikke håndredigeres eller omstemples.
+
+## Validation evidence
+
+- TEMP context validation run: `32700357680`, job `97350454877` — success.
+- Deterministic quiz production-context, progression, theory binding and canonical Knowledge check passed after the Phase-9 place changes.
+- TEMP workflow removed before merge.
+- Permanent CI is evaluated on the cleanup head.
