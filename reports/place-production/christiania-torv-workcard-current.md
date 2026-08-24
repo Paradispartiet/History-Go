@@ -18,8 +18,8 @@ BILDESTATUS: Leonhard Lenz / Wikimedia Commons / CC0 1.0; image gate grønnet i 
 STRUKTURERTE PROFILER: fase 5 materialiserte `spatial_profile`, `temporal_profile`, fire `history_layers` og `source_summary`; `subplaces` og `nature_profile` er begrunnet N/A.  
 LEKSIKON: legacy source-tom batch3-post må saneres/supersedes i popupfasen.  
 SPRÅK: navnehistorie vurderes senere; ingen dokumentert dialektflate.  
-MÅL FOR PLACECARD-SAMLINGER: 2–4 kvalifiserte samlinger + separat Badge + obligatorisk Quiz.
-VALGTE PLACECARD-SAMLINGER: `people`, `objects`, `related` – eksplisitt v2-profil, godkjent som pilot. Brands og fjerde samling er utelatt som filler.
+MÅL FOR PLACECARD-SAMLINGER: alltid fire flater i fast kategori-komposisjon + separat Badge + obligatorisk Quiz.
+VALGTE PLACECARD-SAMLINGER: `people`, `objects`, `brands`, `related` – eksplisitt v2-profil med full 2 × 2-komposisjon. Brands viser ærlig ikon-/statusreserve uten falske virksomhetskoblinger når registeret er tomt.
 PEOPLE-KANDIDATER: gjenbruk `wenche_gulbransen` og canonical `kong_christian_iv`; People-stedskoblinger kvalitetssikres i entity-/roundfasen.  
 OBJECT-KANDIDAT: `Christian IVs hanske`; søk/reuse eksisterende micro/object-data før materialisering.  
 BRANDS: åtte eksisterende mappings må own-place-/freshness-auditeres.  
@@ -44,7 +44,7 @@ POPUPSTATUS — SPRÅK: GODKJENT; tre dokumenterte navnehistoriske oppføringer,
 POPUPSTATUS — SPOR OG OBJEKTER: GODKJENT; Christian IVs hanske materialisert som stedsspesifikt fysisk objekt.  
 POPUPSTATUS — RELASJONER/KUNNSKAP/OBSERVASJONER: fem curated relasjoner; Knowledge linked; ingen filler-observasjonsfane.  
 MANUELL SLUTT-QA: canonical data, placegrense, spørsmålstall, Knowledge-linker, route reuse og volatile Brands er kontrollert; permanente Phase-9-porter var 8/8 grønne.  
-PLACECARD V2-QA: tre samlinger rendres som 2 + 1; People er sirkel, Objects og Relaterte steder er avrundede rektangler; Bilder er ikke samling; Quiz er synlig primærhandling; alle tre popupene har reelt innhold.
+PLACECARD V2-QA: fire flater rendres som full 2 × 2; People er sirkel, Objects, Brands og Relaterte steder er avrundede rektangler; Bilder er ikke samling; Quiz er synlig primærhandling; tom Brands-status lager ikke layout-hull eller falsk 0.
 
 ## Completion record 2026-08-24
 

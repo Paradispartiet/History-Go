@@ -47,7 +47,7 @@ Content Factory status: **PASS / COMPLETE**
 - `Christian IVs hanske` er materialisert som fysisk, stedsspesifikt object med tre kilder og eksplisitt kildekritisk grense;
 - åtte volatile/uklart eide brand-mappinger er retirert i stedet for å publiseres blindt;
 - canonical PlaceCard v2-samlinger er `people`, `objects` og `related`;
-- Brands og en kunstig fjerde samling er utelatt fordi dokumentert ferskhet og eksakt plass-eierskap mangler;
+- Brands beholder den faste rektangulære reserveflaten uten å opprette falske virksomhetskoblinger når registeret ikke har verifiserte treff;
 - eksisterende rute `oslo_fra_middelalderby_til_fjordby` gjenbrukes; ingen rute-ID er oppfunnet.
 
 ## Permanente sluttporter

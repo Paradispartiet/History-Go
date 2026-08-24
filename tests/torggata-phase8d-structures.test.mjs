@@ -32,7 +32,7 @@ test("8D is historical and its own-place Structures collection is retired by 8F"
 test("current runtime selects related places, not Structures", () => {
   const w = runtime();
   assert.equal(w.HGPlaceRounds.getFourth(place), "related");
-  assert.deepStrictEqual(Array.from(w.HGPlaceRounds.get(place)).map(item => item.id), ["people", "images", "brands", "related"]);
+  assert.deepStrictEqual(Array.from(w.HGPlaceRounds.get(place)).map(item => item.id), ["people", "objects", "brands", "related"]);
   assert.deepStrictEqual(Array.from(w.HGPlaceRounds.getItems(place, "related")).map(item => item.id), ["storgata", "youngstorget", "eldorado_bokhandel"]);
   assert.equal(Array.from(w.HGPlaceRounds.get(place)).some(item => item.id === "structures"), false);
 });

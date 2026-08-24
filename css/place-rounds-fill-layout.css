@@ -1,4 +1,4 @@
-/* PlaceCard-samlinger: balansert 2/3/4-layout til høyre for frontImage. */
+/* PlaceCard-samlinger: alltid et fullt 2 × 2-felt til høyre for frontImage. */
 #placeCard .pc-side-stack{
   width:100%;
   max-width:100%;
@@ -23,19 +23,9 @@
   gap:var(--pc-round-gap);
 }
 
-#placeCard .pc-icons-quad[data-collection-count="2"]{
-  grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
-  grid-template-rows:minmax(0, 1fr) !important;
-}
-
-#placeCard .pc-icons-quad[data-collection-count="3"],
 #placeCard .pc-icons-quad[data-collection-count="4"]{
   grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
   grid-template-rows:repeat(2, minmax(0, 1fr)) !important;
-}
-
-#placeCard .pc-icons-quad[data-collection-count="3"] .pc-collection[data-collection-position="2"]{
-  grid-column:1 / -1;
 }
 
 #placeCard .pc-icons-quad .pc-collection[data-collection-shape="circle"]:not([hidden]){
@@ -60,10 +50,6 @@
   flex-basis:auto;
   aspect-ratio:auto;
   border-radius:clamp(14px, 12%, 22px);
-}
-
-#placeCard .pc-icons-quad[data-collection-count="3"] .pc-collection[data-collection-shape="rectangle"][data-collection-position="2"]{
-  width:calc((100% - var(--pc-round-gap)) / 2);
 }
 
 body.hg-app.hg-phone #placeCard .pc-side-stack,

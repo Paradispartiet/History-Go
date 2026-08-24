@@ -85,6 +85,7 @@ on:
       - "tests/place-card-profile-schema.test.mjs"
       - "tests/christiania-torv-placecard-collections-v2.test.mjs"
       - "tests/christiania-torv-placecard-collections-v2-browser-audit.test.mjs"
+      - "tests/place-card-fullness-all-categories-browser-audit.test.mjs"
       - "data/places/by/oslo/places/christiania_torv.json"
       - "data/quiz/production_context/by/christiania_torv.json"
       - "reports/place-production/christiania-torv-*.md"
@@ -174,6 +175,7 @@ on:
       - "tests/place-card-profile-schema.test.mjs"
       - "tests/christiania-torv-placecard-collections-v2.test.mjs"
       - "tests/christiania-torv-placecard-collections-v2-browser-audit.test.mjs"
+      - "tests/place-card-fullness-all-categories-browser-audit.test.mjs"
       - "data/places/by/oslo/places/christiania_torv.json"
       - "data/quiz/production_context/by/christiania_torv.json"
       - "reports/place-production/christiania-torv-*.md"
@@ -201,10 +203,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Install Chromium for Regjeringskvartalet UI audit
+      - name: Install Chromium for PlaceCard UI audits
         run: npx playwright install --with-deps chromium
 
-      - name: Test canonical 2–4 PlaceCard collections plus Badges contract
+      - name: Test canonical full four-cell PlaceCard plus Badges contract
         run: |
           node --check js/ui/place-popup-tabs.js
           node --check js/ui/nature-detailed-map.js
@@ -222,3 +224,4 @@ jobs:
           node --test tests/place-production-brand-quiz-governance.test.mjs
           node tests/regjeringskvartalet-ui-production-audit.test.mjs
           node tests/christiania-torv-placecard-collections-v2-browser-audit.test.mjs
+          node tests/place-card-fullness-all-categories-browser-audit.test.mjs

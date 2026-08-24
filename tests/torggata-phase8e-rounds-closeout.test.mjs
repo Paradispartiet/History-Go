@@ -15,7 +15,7 @@ test("8F preserves the 8E ban on legacy place.rounds and uses a bounded profile"
   assert.equal(Object.prototype.hasOwnProperty.call(place, "structures"), false);
 });
 
-test("Torggata legacy profile becomes People · Brands · Relaterte steder with Badge separate", async () => {
+test("Torggata legacy profile becomes People · Objects · Brands · Relaterte steder with Badge separate", async () => {
   const legacyIds = [
     "pcWorksIcon", "pcDetailsIcon", "pcSpotsIcon", "pcCivicationStoreIcon", "pcNatureIcon",
     "pcForNaIcon", "pcFortellingerIcon", "pcLeksikonIcon", "pcPlayIcon", "pcTrainingIcon",
@@ -28,7 +28,7 @@ test("Torggata legacy profile becomes People · Brands · Relaterte steder with 
   w.document.dispatchEvent(new w.Event("DOMContentLoaded", { bubbles:true }));
   await w.HGVisualPlaceRounds.apply(place);
 
-  assert.deepStrictEqual(Array.from(w.HGVisualPlaceRounds.get(place)), ["people", "brands", "related"]);
+  assert.deepStrictEqual(Array.from(w.HGVisualPlaceRounds.get(place)), ["people", "objects", "brands", "related"]);
   assert.equal(w.HGVisualPlaceRounds.getFourth(place), "related");
   assert.equal(w.HGVisualPlaceRounds.getItems(place, "images").length, 0);
   assert.equal(w.HGVisualPlaceRounds.getItems(place, "related").length, 3);
@@ -36,10 +36,10 @@ test("Torggata legacy profile becomes People · Brands · Relaterte steder with 
   const grid = w.document.querySelector(".pc-icons-quad");
   const visible = [...grid.querySelectorAll(".pc-round")].filter(el => !el.hidden);
   const ordered = visible.slice().sort((a,b) => Number(a.style.order) - Number(b.style.order)).map(el => el.id);
-  assert.equal(grid.dataset.collectionCount, "3");
+  assert.equal(grid.dataset.collectionCount, "4");
   assert.equal(grid.dataset.collectionProfileSource, "round_profile_v1_adapter");
-  assert.deepStrictEqual(ordered, ["pcPeopleIcon", "pcBrandsIcon", "pcCategoryCollectionIcon"]);
-  assert.equal(w.document.getElementById("pcObjectsIcon").hidden, true);
+  assert.deepStrictEqual(ordered, ["pcPeopleIcon", "pcObjectsIcon", "pcBrandsIcon", "pcCategoryCollectionIcon"]);
+  assert.equal(w.document.getElementById("pcObjectsIcon").hidden, false);
   assert.equal(w.document.getElementById("pcCategoryCollectionIcon").dataset.collectionId, "related");
   assert.equal(w.document.getElementById("pcBadgesIcon").parentElement.className, "pc-title-row");
   assert.equal(w.document.getElementById("pcBadgesIcon").hidden, false);

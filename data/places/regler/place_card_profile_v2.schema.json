@@ -9,7 +9,7 @@
     "schema": { "const": "history_go_place_card_profile_v2" },
     "collection_ids": {
       "type": "array",
-      "minItems": 2,
+      "minItems": 4,
       "maxItems": 4,
       "uniqueItems": true,
       "items": {
@@ -35,5 +35,33 @@
     },
     "reason": { "type": "string", "minLength": 20 },
     "verifiedAt": { "type": "string", "format": "date" }
-  }
+  },
+  "oneOf": [
+    {
+      "title": "Vanlig PlaceCard: People + Objects + Brands + én kategori-samling",
+      "properties": {
+        "collection_ids": {
+          "prefixItems": [
+            { "const": "people" },
+            { "const": "objects" },
+            { "const": "brands" },
+            { "enum": ["productions", "structures", "competitions", "related", "destinations"] }
+          ]
+        }
+      }
+    },
+    {
+      "title": "Nature PlaceCard: Flora + Fauna + Map + én kategori-samling",
+      "properties": {
+        "collection_ids": {
+          "prefixItems": [
+            { "const": "flora" },
+            { "const": "fauna" },
+            { "const": "map" },
+            { "enum": ["productions", "structures", "competitions", "related", "destinations"] }
+          ]
+        }
+      }
+    }
+  ]
 }

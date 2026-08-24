@@ -31,7 +31,7 @@ people · objects · related
 ## Runtime- og UI-resultat
 
 - profilkilde: `place_card_profile_v2`;
-- layout: 3 samlinger som 2 + 1 med siste samling sentrert;
+- layout: 4 samlingsflater som et fullt 2 × 2-felt;
 - former: People er sirkel; Objects og Relaterte steder er avrundede rektangler;
 - Objects-popup: 1 reelt element;
 - Relaterte steder-popup: 5 reelle elementer;
@@ -58,7 +58,7 @@ people · objects · related
 | Faktisitet og kildegrunnlag | 5/5 | Ingen nye claims; eksisterende source-eide People, Object og relasjoner er revalidert. |
 | Innholdsdekning | 5/5 | Hele stedet er allerede fullprodusert; piloten beholder popup, Story, Quiz, Knowledge, språk, kilder, bilde og rute. |
 | Redaksjonell kvalitet | 5/5 | Tre sterke samlinger velges; Brands og fjerde samling holdes tilbake som filler. |
-| Brukeropplevelse og tilgjengelighet | 5/5 | 2 + 1-layout, formregler, forståelige navn, popupinnhold og tydelig Quiz er låst i test. |
+| Brukeropplevelse og tilgjengelighet | 5/5 | Full 2 × 2-layout, formregler, forståelige navn, ærlig tomtilstand, popupinnhold og tydelig Quiz er låst i test. |
 | Teknisk robusthet | 5/5 | Canonical schema, runtime-kilde, deterministisk quizkontekst og legacy-fjerning er synkronisert. |
 | Operasjonell trygghet | 4/5 | Lokale porter er grønne; siste poeng holdes tilbake til obligatorisk Chromium- og repository-CI er grønn. |
 

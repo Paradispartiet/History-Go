@@ -63,7 +63,8 @@ test('PlaceCard-runtime bruker kategoriens samling uten Images-reserve eller ste
   assert.match(roundsContract, /\| `politikk` \| `related` \| Relaterte steder \|/);
   assert.match(runtime, /politikk:\s*["']related["']/);
   assert.match(runtime, /GENERAL_BASE = Object\.freeze\(\["people", "objects", "brands"\]\)/);
-  assert.match(runtime, /if \(preferred && collectionItems\(place, preferred\)\.length > 0\) base\.push\(preferred\)/);
+  assert.match(runtime, /return normalizedFullGridIds\(place\)/);
+  assert.match(runtime, /const categoryId = requestedCategory \|\| preferredCategoryCollectionId\(place\)/);
   assert.doesNotMatch(runtime, /id:"images"/);
   assert.doesNotMatch(runtime, /id:\s*["'](?:civication|works|details|spots)["']/);
   assert.doesNotMatch(runtime, /regjeringskvartalet/);

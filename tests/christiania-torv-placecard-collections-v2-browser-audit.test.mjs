@@ -13,8 +13,8 @@ const fixture = `<!doctype html><html><head><meta charset="utf-8">
   <style>
     :root{--pc-round-gap:12px;--place-card-orb-size:120px}
     body{margin:0;font-family:sans-serif}.pc-grid{display:grid;grid-template-columns:280px 360px;gap:16px;width:656px;margin:24px}
-    .pc-media{height:300px;background:#ccd6df;border-radius:16px}.pc-side-stack,.pc-icons-quad{height:300px}
-    .pc-round{box-sizing:border-box;background:#315b78;color:white;border:2px solid #fff;display:grid;place-items:center;overflow:hidden}
+    .pc-media{height:300px;background:#ccd6df;border-radius:16px}.pc-side-stack,.pc-icons-quad{height:300px}.pc-icons-quad{display:grid}
+    .pc-round{box-sizing:border-box;background:#315b78;color:white;border:2px solid #fff;display:grid;place-items:center;overflow:hidden}.pc-round[hidden]{display:none!important}
     #pcQuiz{margin:0 24px;padding:12px 22px}.pc-action-primary{font-weight:700;background:#ffd85b}
     @media(max-width:700px){.pc-grid{grid-template-columns:1fr;width:auto;margin:12px}.pc-media{height:180px}.pc-side-stack,.pc-icons-quad{height:260px}}
   </style></head><body>
@@ -59,9 +59,9 @@ try {
   await page.waitForFunction(() => window.__auditReady === true);
 
   const verify = async expectedWidth => {
-    assert.equal(await page.locator(".pc-icons-quad").getAttribute("data-collection-count"), "3");
+    assert.equal(await page.locator(".pc-icons-quad").getAttribute("data-collection-count"), "4");
     assert.equal(await page.locator(".pc-icons-quad").getAttribute("data-collection-profile-source"), "place_card_profile_v2");
-    assert.equal(await page.locator(".pc-icons-quad .pc-round:not([hidden])").count(), 3);
+    assert.equal(await page.locator(".pc-icons-quad .pc-round:not([hidden])").count(), 4);
     assert.equal(await page.locator("#pcQuiz").isVisible(), true);
     assert.equal(await page.locator("#pcQuiz").evaluate(node => node.classList.contains("pc-action-primary")), true);
     const geometry = await page.evaluate(() => {
@@ -71,14 +71,19 @@ try {
       };
       const people = box(document.getElementById("pcPeopleIcon"));
       const objects = box(document.getElementById("pcObjectsIcon"));
+      const brands = box(document.getElementById("pcBrandsIcon"));
       const related = box(document.getElementById("pcCategoryCollectionIcon"));
-      const grid = box(document.querySelector(".pc-icons-quad"));
-      return { people, objects, related, grid };
+      const gridElement = document.querySelector(".pc-icons-quad");
+      const grid = box(gridElement);
+      const gridStyle = getComputedStyle(gridElement);
+      return { people, objects, brands, related, grid, columns:gridStyle.gridTemplateColumns, rows:gridStyle.gridTemplateRows };
     });
     assert.ok(Math.abs(geometry.people.width - geometry.people.height) < 2);
     assert.ok(geometry.objects.width > geometry.objects.height);
+    assert.ok(geometry.brands.width > geometry.brands.height);
     assert.ok(geometry.related.width > geometry.related.height);
-    assert.ok(Math.abs((geometry.related.x + geometry.related.width / 2) - (geometry.grid.x + geometry.grid.width / 2)) < 3);
+    assert.equal(geometry.columns.split(" ").filter(Boolean).length, 2);
+    assert.equal(geometry.rows.split(" ").filter(Boolean).length, 2);
     assert.ok(geometry.grid.width >= expectedWidth);
   };
 

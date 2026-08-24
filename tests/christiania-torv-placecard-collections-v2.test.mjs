@@ -44,21 +44,21 @@ function makeRuntime() {
   return dom.window;
 }
 
-test("Christiania Torv is the canonical three-collection v2 pilot", () => {
+test("Christiania Torv uses the canonical full four-collection v2 profile", () => {
   assert.equal(Object.prototype.hasOwnProperty.call(place, "round_profile"), false);
   assert.deepEqual(place.place_card_profile, {
     schema: "history_go_place_card_profile_v2",
-    collection_ids: ["people", "objects", "related"],
+    collection_ids: ["people", "objects", "brands", "related"],
     reason: place.place_card_profile.reason,
     verifiedAt: "2026-08-24"
   });
   assert.ok(place.place_card_profile.reason.length >= schema.properties.reason.minLength);
-  assert.match(place.place_card_profile.reason, /Brands og en kunstig fjerde samling er derfor utelatt/);
+  assert.match(place.place_card_profile.reason, /faste, fulle standardkomposisjonen/);
   assert.ok(!place.place_card_profile.collection_ids.includes("images"));
-  assert.ok(!place.place_card_profile.collection_ids.includes("brands"));
+  assert.ok(place.place_card_profile.collection_ids.includes("brands"));
 });
 
-test("the three selected collections retain real place-specific content", () => {
+test("the three content-bearing collections remain place-specific while Brands stays an honest reserve", () => {
   const wenche = people.find(person => person.id === "wenche_gulbransen");
   assert.ok(wenche, "canonical Wenche Gulbransen profile must exist");
   assert.ok([wenche.placeId, ...(wenche.places || [])].includes("christiania_torv"));
@@ -70,21 +70,22 @@ test("the three selected collections retain real place-specific content", () => 
   assert.ok(place.related_place_ids.includes("gamle_radhus"));
 });
 
-test("runtime renders the v2 profile as a balanced 2 + 1 PlaceCard with prominent Quiz", async () => {
+test("runtime renders the v2 profile as a full 2 × 2 PlaceCard with prominent Quiz", async () => {
   const window = makeRuntime();
   await window.HGPlaceCardCollections.apply(place);
   const ids = Array.from(window.HGPlaceCardCollections.get(place), definition => definition.id);
-  assert.deepEqual(ids, ["people", "objects", "related"]);
+  assert.deepEqual(ids, ["people", "objects", "brands", "related"]);
   assert.equal(window.HGPlaceCardCollections.getProfileSource(place), "place_card_profile_v2");
   const grid = window.document.querySelector(".pc-icons-quad");
-  assert.equal(grid.dataset.collectionCount, "3");
+  assert.equal(grid.dataset.collectionCount, "4");
   assert.equal(grid.dataset.collectionProfileSource, "place_card_profile_v2");
   assert.equal(window.document.getElementById("pcPeopleIcon").dataset.collectionShape, "circle");
   assert.equal(window.document.getElementById("pcObjectsIcon").dataset.collectionShape, "rectangle");
   assert.equal(window.document.getElementById("pcCategoryCollectionIcon").dataset.collectionShape, "rectangle");
   assert.equal(window.document.getElementById("pcObjectsList").querySelectorAll("[data-visual-round-item]").length, 1);
   assert.equal(window.document.getElementById("pcCategoryCollectionList").querySelectorAll("[data-visual-round-item]").length, 5);
-  assert.equal(window.document.getElementById("pcBrandsIcon").hidden, true);
+  assert.equal(window.document.getElementById("pcBrandsIcon").hidden, false);
+  assert.equal(window.document.getElementById("pcBrandsIcon").dataset.collectionShape, "rectangle");
   const quizButton = window.document.getElementById("pcQuiz");
   assert.equal(quizButton.hidden, false);
   assert.equal(quizButton.classList.contains("pc-action-primary"), true);
@@ -100,7 +101,7 @@ test("popup, Quiz and production richness remain complete after PlaceCard migrat
   assert.equal(questions.length, 35);
   assert.ok(questions.every(question => question.knowledge_link_status === "linked"));
   assert.ok(questions.every(question => question.primary_knowledge_unit_id));
-  assert.match(workcard, /VALGTE PLACECARD-SAMLINGER: `people`, `objects`, `related`/);
+  assert.match(workcard, /VALGTE PLACECARD-SAMLINGER: `people`, `objects`, `brands`, `related`/);
   assert.match(workcard, /Bilder er ikke samling/);
   assert.match(finalAudit, /første eksplisitte `place_card_profile` v2-piloten/);
 });
