@@ -1,0 +1,69 @@
+name: TEMP restore smaller visible place dots
+
+on:
+  push:
+    branches:
+      - agent/map-detail-dots-restore-smaller-v1
+
+permissions:
+  contents: write
+
+jobs:
+  apply-test-commit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/map-detail-dots-restore-smaller-v1
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Apply permanent map fix
+        run: node scripts/temp-map-detail-dots-restore-smaller-v1.mjs
+
+      - name: Rebuild committed web runtimes
+        run: npm run build:web
+
+      - name: Focused map LOD regression
+        run: node --test tests/map-place-area-lod.test.mjs
+
+      - name: Typecheck web runtime
+        run: npm run typecheck:web
+
+      - name: Verify patch whitespace
+        run: git diff --check
+
+      - name: Guard final file scope
+        shell: bash
+        run: |
+          allowed='^(js/map\.ts|js/map\.js|dist/web/map\.js|tests/map-place-area-lod\.test\.mjs|scripts/temp-map-detail-dots-restore-smaller-v1\.mjs|\.github/workflows/temp-map-detail-dots-restore-smaller-v1\.yml)$'
+          unexpected="$(git diff --name-only | grep -Ev "$allowed" || true)"
+          if [ -n "$unexpected" ]; then
+            echo "Unexpected generated changes:"
+            echo "$unexpected"
+            exit 1
+          fi
+
+      - name: Remove temporary machinery
+        run: git rm -f scripts/temp-map-detail-dots-restore-smaller-v1.mjs .github/workflows/temp-map-detail-dots-restore-smaller-v1.yml
+
+      - name: Commit permanent implementation
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add js/map.ts js/map.js dist/web/map.js tests/map-place-area-lod.test.mjs
+          git add -u scripts/temp-map-detail-dots-restore-smaller-v1.mjs .github/workflows/temp-map-detail-dots-restore-smaller-v1.yml
+          git diff --cached --check
+          git commit -m "Restore smaller visible place dots"
+          git push origin HEAD:agent/map-detail-dots-restore-smaller-v1
