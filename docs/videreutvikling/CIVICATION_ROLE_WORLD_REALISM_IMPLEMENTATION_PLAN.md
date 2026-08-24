@@ -646,7 +646,7 @@ Beviser:
 
 `sport/sport_utover` materialiserer nå én persistent konkurranseuke fra baseline via endret kroppssignal, venting på fysioterapeut/trener, History Go-kontekst ved Bislett, revidert belastning og restitusjon til en formelt avgrenset konkurransebeslutning. Tidlig rapportering gir høyere fag-/trenertillit og lavere kortsiktig teamtillit; sen rapportering gir motsatt relasjonell gren. Ingen av grenene gir selvlisensiering, uttak eller medisinsk myndighet.
 
-### Pilot D — undervisning/journalistikk
+### Pilot D — journalistikk — implementert 2026-08-24
 
 Beviser:
 
@@ -655,7 +655,11 @@ Beviser:
 - profesjonskultur;
 - rework/feedback.
 
-Først etter dette bør realisme-gaten rulles bredt ut.
+`media/media_redaksjon`, sentrert på `media_journalist`, materialiserer nå én persistent publiseringssak fra kildevarsel og kildevernshandoff via redaktørventing, VG-huset som History Go-kunnskapsflate, situert kilde-/desk-/vaktsjeftillit, rework og redaktørgodkjenning til publikumskritikk, synlig rettelse og profesjonell lukking. Kildetillit, publikumstillit og profesjonell tillit kan gi ulike senere informasjonsflater, men ingen av dem gir publiseringsmyndighet.
+
+Piloten viste ett nødvendig, smalt kontraktsfunn: en kilde er en egen situert omdømmeflate og skal ikke feilklassifiseres som `public` eller `professional`. Det eksisterende audience-ID-vokabularet er derfor utvidet additivt med `source:*` i samme state helper, scene contract og compiler; ingen ny reputation-motor er opprettet.
+
+De fire strukturelt forskjellige pilotene er nå bevist. Neste leveranse skal være en egen, liten Matrix/gate-PR som låser bare feltene pilotene faktisk har vist at ulike rolleverdener trenger. Bred rollout skal fortsatt vente til den gaten er permanent testet.
 
 ## 16. PR-strategi
 
@@ -840,8 +844,8 @@ Programmet er først modent nok for bred rollout når:
 
 ## 24. Neste konkrete implementeringsoppgave
 
-Sport-utøverpiloten har nå bevist at eksisterende work-object-, rhythm-, authority-, History Go- og situated-standing-kontrakter også tåler en kropp-/prestasjonshverdag. Auditen fant ikke et state-gap som forsvarer en egen employment-conditions-motor.
+Journalistikkpiloten har nå bevist at eksisterende work-object-, rhythm-, authority-, History Go- og situated-standing-kontrakter tåler kildeavhengighet, publikum som feedback-/kunnskapsflate, redaktørmyndighet, feedback/rework og synlig rettelse. Readiness-auditen valgte journalistikk foran undervisning fordi `media/media_redaksjon` allerede hadde canonical arbeidsgrammatikk, tre verifiserte redaksjonssteder og en komplett playable kilde-/desk-/vaktsjefstruktur, mens undervisningskandidatene var tynne eller `architecture_only`.
 
-Neste oppgave er **Pilot D — undervisning eller journalistikk**. Den skal velges mot fersk readiness-audit og bevise publikum-/student-/kilderelasjoner, profesjonskultur, kunnskapsbasert handlingsrom og feedback/rework med en annen myndighetskjede enn arkiv, plan og sport.
+Neste oppgave er en **egen Role World Realism Matrix/gate-PR**. Den skal sammenligne arkiv, by-plan, sport og journalistikk og låse bare dokumenterte tverrrollefelt: persistent object, institution/authority, rhythm/waiting/handoff/rework, History Go-affordance, situerte audience-typer, People/Places og provenance. Rolletypespesifikke objektarter, faser og relasjonsnavn skal forbli rolle-eid.
 
-Role World Realism Matrix og bred rollout forblir utsatt til Pilot D er bevist og de tre eksisterende fullpilotene kan sammenlignes uten å låse felt for tidlig. Deretter skal en egen, liten Matrix/gate-PR definere bare de feltene pilotene faktisk har vist at ulike rolletyper trenger.
+Bred rollout forblir utsatt til Matrix-gaten er permanent testet mot semantic playthrough, compiled registry parity og eksisterende Career/Role World-status uten completion-inflasjon.

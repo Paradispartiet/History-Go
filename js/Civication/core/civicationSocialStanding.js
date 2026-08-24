@@ -17,7 +17,7 @@
   const SCHEMA = "civication_social_standing_v1";
   const MIN_VALUE = -100;
   const MAX_VALUE = 100;
-  const AUDIENCE_ID_RE = /^(manager|team|professional|public):[a-z0-9][a-z0-9_.:-]{0,95}$/;
+  const AUDIENCE_ID_RE = /^(manager|team|professional|public|source):[a-z0-9][a-z0-9_.:-]{0,95}$/;
 
   /** @param {unknown} value */
   function text(value) {

@@ -14,6 +14,7 @@ const roleScope = ['by', 'radgiver', 'plan'].join('_');
 const caseId = 'by_radgiver_lillebekk_plan_case_001';
 const managerAudience = 'manager:elin_plansjef';
 const teamAudience = 'team:lillebekk_planteam';
+const sourceAudience = 'source:kilde_ellen';
 
 function catalog(type) {
   return readJson(`data/Civication/mailFamilies/by/${type}/${roleScope}_${type}.json`);
@@ -85,6 +86,14 @@ const managerBranch = branch('B');
 assert.equal(managerBranch.adapter.getStanding(managerAudience), 3);
 assert.equal(managerBranch.adapter.getStanding(teamAudience), -3);
 assert.equal(managerBranch.api.getState().career.reputation, 70);
+
+const sourceApi = stateApi({ career: { reputation: 70 } });
+const sourceAdapter = standingFactory.createAdapter(sourceApi);
+sourceAdapter.applyOperations([
+  { event_id: 'source_axis_proof', audience_id: sourceAudience, delta: 2, reason: 'kildetillit er situert' }
+]);
+assert.equal(sourceAdapter.getStanding(sourceAudience), 2, 'source relationships use the same bounded standing contract');
+assert.equal(sourceApi.getState().career.reputation, 70, 'source standing cannot rewrite legacy/global reputation');
 
 const teamCandidates = standingFactory.evaluateCandidates(
   [teamFollowup, managerFollowup],
