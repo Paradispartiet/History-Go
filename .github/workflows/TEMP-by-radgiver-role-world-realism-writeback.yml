@@ -79,6 +79,9 @@ jobs:
       - name: Regenerate compiled scene registry
         run: node scripts/build-civication-scene-registry.mjs --write
 
+      - name: Regenerate Career Gameplay Matrix
+        run: node scripts/audit-civication-career-gameplay.mjs --write
+
       - name: Run By-radgiver pilot proof
         run: node tests/civication-by-radgiver-role-world-realism-pilot.test.js
 
@@ -98,7 +101,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/Civication tests/civication-by-radgiver-role-world-realism-pilot.test.js reports/civication-by-radgiver-role-world-realism-pilot.md
+          git add data/Civication tests/civication-by-radgiver-role-world-realism-pilot.test.js tests/civication-by-radgiver-role-world.test.js reports/civication-by-radgiver-role-world-realism-pilot.md
           if git diff --cached --quiet; then
             echo "No permanent changes to commit"
           else
