@@ -20,7 +20,7 @@ Deterministisk production-context, canonical Knowledge-materialisering og full q
 ## Sluttresultat – PASS
 
 Status: **PASS**  
-Sluttvalidering: workflow-run `32698513593`, jobb `97345008399` (grønn)  
+Sluttvalidering: workflow-run `32698513593`, jobb `97345190242` (grønn)  
 Canonical writeback-head: `7ef83f8c8469673a4c6c152387384b68f4226692`
 
 - Canonical quiz: nøyaktig **5 sett × 7 = 35 spørsmål**.
