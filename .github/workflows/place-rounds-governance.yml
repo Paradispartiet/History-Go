@@ -86,6 +86,17 @@ on:
       - "tests/christiania-torv-placecard-collections-v2.test.mjs"
       - "tests/christiania-torv-placecard-collections-v2-browser-audit.test.mjs"
       - "tests/place-card-fullness-all-categories-browser-audit.test.mjs"
+      - "tests/bankplassen-place-completion-v1.test.mjs"
+      - "tests/bankplassen-place-completion-v1-browser-audit.test.mjs"
+      - "data/places/by/oslo/places/bankplassen.json"
+      - "data/places/production/bankplassen.json"
+      - "data/places/places_index.json"
+      - "data/quiz/by/bankplassen_sets_merged.json"
+      - "data/quiz/production_briefs/by/bankplassen.json"
+      - "data/quiz/production_context/by/bankplassen.json"
+      - "data/people/scenekunst/oslo/bankplassen/**"
+      - "data/people/claims/scenekunst/oslo/bankplassen/**"
+      - "reports/place-production/bankplassen-*.md"
       - "data/places/by/oslo/places/christiania_torv.json"
       - "data/quiz/production_context/by/christiania_torv.json"
       - "reports/place-production/christiania-torv-*.md"
@@ -176,6 +187,17 @@ on:
       - "tests/christiania-torv-placecard-collections-v2.test.mjs"
       - "tests/christiania-torv-placecard-collections-v2-browser-audit.test.mjs"
       - "tests/place-card-fullness-all-categories-browser-audit.test.mjs"
+      - "tests/bankplassen-place-completion-v1.test.mjs"
+      - "tests/bankplassen-place-completion-v1-browser-audit.test.mjs"
+      - "data/places/by/oslo/places/bankplassen.json"
+      - "data/places/production/bankplassen.json"
+      - "data/places/places_index.json"
+      - "data/quiz/by/bankplassen_sets_merged.json"
+      - "data/quiz/production_briefs/by/bankplassen.json"
+      - "data/quiz/production_context/by/bankplassen.json"
+      - "data/people/scenekunst/oslo/bankplassen/**"
+      - "data/people/claims/scenekunst/oslo/bankplassen/**"
+      - "reports/place-production/bankplassen-*.md"
       - "data/places/by/oslo/places/christiania_torv.json"
       - "data/quiz/production_context/by/christiania_torv.json"
       - "reports/place-production/christiania-torv-*.md"
@@ -210,7 +232,7 @@ jobs:
         run: |
           node --check js/ui/place-popup-tabs.js
           node --check js/ui/nature-detailed-map.js
-          node --test tests/place-rounds-visual-collections.test.mjs tests/place-rounds-grid-exclusivity.test.mjs tests/place-rounds-fill-layout.test.mjs tests/place-card-profile-schema.test.mjs tests/christiania-torv-placecard-collections-v2.test.mjs tests/nature-detailed-map.test.mjs
+          node --test tests/place-rounds-visual-collections.test.mjs tests/place-rounds-grid-exclusivity.test.mjs tests/place-rounds-fill-layout.test.mjs tests/place-card-profile-schema.test.mjs tests/christiania-torv-placecard-collections-v2.test.mjs tests/bankplassen-place-completion-v1.test.mjs tests/nature-detailed-map.test.mjs
           node tests/place-card-rounds-runtime-audit.test.js
           node tests/place-people-ids-runtime.test.js
           node tests/nationaltheatret-people-curation.test.js
@@ -225,3 +247,4 @@ jobs:
           node tests/regjeringskvartalet-ui-production-audit.test.mjs
           node tests/christiania-torv-placecard-collections-v2-browser-audit.test.mjs
           node tests/place-card-fullness-all-categories-browser-audit.test.mjs
+          node tests/bankplassen-place-completion-v1-browser-audit.test.mjs
