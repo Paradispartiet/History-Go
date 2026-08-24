@@ -1,6 +1,6 @@
 # Birkelunden – aktivt stedproduksjonskort
 
-- Oppdatert: 2026-08-23
+- Oppdatert: 2026-08-24
 - Place ID: `birkelunden`
 - Canonical source: `data/places/by/oslo/places/birkelunden.json`
 - Aktiv 7G baseline `main`: `090c299adba3d6a39f5f45f4ab930b2504e9200f`
@@ -49,9 +49,9 @@ popupDesc SHA-256: 670dcbc8e37004fe1c3a595ae6af1a6dcfe304f1048ce906f37df3f7e8544
 | 7D Før/etter | **FERDIG OG MERGET** (#5272) |
 | 7E Nyheter | **FERDIG OG MERGET** (#5276) |
 | 7F Lesespor | **FERDIG OG MERGET** (#5280) |
-| 7G Kilder | **KLAR FOR REVIEW / CI** |
-| 7H Språk | **NESTE – REELL NAVNEHISTORIEKANDIDAT** |
-| 8–24 | **ÅPENT** etter canonical rekkefølge |
+| 7G Kilder | **FERDIG OG MERGET** |
+| 7H Språk | **GODKJENT CHECKPOINT – FINAL PR-GRENSE** |
+| 8–24 | **MATERIALISERT OG REVIEWET – FINAL CI/MAIN GATE GJENSTÅR** |
 
 ## 7A – Om, låst
 
@@ -327,3 +327,19 @@ Canonical Place JSON, descriptions, profiler, Story, Før/etter-data, News, Lese
 ## Neste
 
 Etter grønn 7G-merge starter **7H – Språk** fra fersk `main`. Språkleksikon-kontrakten skal leses før materialisering. Kandidaten er det dokumenterte navnesporet `Birkelunden → Bjerkelunden (1926) → Birkelunden (1955)`. Ingen generisk park-etymologi eller oppfunnet dialekt.
+
+
+## Fase 8–24 – canonical completion
+
+- People: `thorvald_meyer` + ny claim-mappet `jack_johnsen`.
+- Objects: `birkelunden_foell`, `birkelunden_jack_johnsen_byste`, `birkelunden_spaniamonumentet`.
+- Brand: `bondens_marked` med lokalt, offisielt press-room-logoasset.
+- Structures: `birkelunden_musikkpaviljong`, `birkelunden_vannbasseng`.
+- Rundinger: `people / images / brands / structures`; Objects er canonical, men ikke visuell runding uten tre sikre objektbilder.
+- Quiz: `data/quiz/by/birkelunden_sets.json`, rich 5×7 / 35 spørsmål, 35 reviewede claims.
+- History profile: materialisert.
+- Rute: begrunnet N/A i enkelt-place-produksjonen; ingen nabostedsproxy.
+- Completion audit: `reports/place-production/birkelunden-phase8-24-completion-audit-v1.md`.
+- Completion report: `reports/place-production/birkelunden_content_factory_completion_v1.json`.
+
+Final ferdigstatus kan først skrives etter grønn PR-head, merge og kontroll av fersk `main`.

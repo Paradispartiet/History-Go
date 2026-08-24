@@ -1,0 +1,109 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "jack_johnsen",
+  "profile_file": "data/people/by/oslo/birkelunden/jack_johnsen.json",
+  "identity": {
+    "canonical_identity": "Jack Johnsen, pensjonistorganisator dokumentert som pådriver for gruppen som organiserte seg i Birkelunden i 1937.",
+    "name_variants": [],
+    "not": [
+      "navnelike personer",
+      "senere innehavere av samme navn"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "birkelunden_bench_group",
+      "claim": "Pensjonistforbundet beskriver Jack Johnsen som pådriver for en gruppe på 10–12 pensjonister som møttes på en benk i Birkelunden.",
+      "status": "verified",
+      "source_url": "https://www.pensjonistforbundet.no/om-oss/var-historie",
+      "source_location": "avsnittet om Jack Johnsen og møtene på benken i Birkelunden",
+      "source_type": "primary_organization_history",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-24",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "friends_founded_1937",
+      "claim": "Etter at gruppen fikk låne hvilebrakken i Birkelunden, var 18 personer med på å stifte Venner i Bjerkelunden i 1937.",
+      "status": "verified",
+      "source_url": "https://www.pensjonistforbundet.no/om-oss/var-historie",
+      "source_location": "avsnittet om hvilebrakken og stiftelsen i 1937",
+      "source_type": "primary_organization_history",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-24",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "johnsen_bust_1984",
+      "claim": "I 1984 ble en byste av Jack Johnsen reist i Birkelunden av pensjonister.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/side/Birkelunden",
+      "source_location": "avsnittet om skulpturer og minnesmerker i parken",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-24",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "birkelunden_bench_group"
+    ],
+    "kindLabel": [
+      "birkelunden_bench_group"
+    ],
+    "year": [
+      "friends_founded_1937"
+    ],
+    "placeId": [
+      "birkelunden_bench_group",
+      "friends_founded_1937"
+    ],
+    "places[birkelunden]": [
+      "birkelunden_bench_group",
+      "friends_founded_1937"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "birkelunden_bench_group",
+          "friends_founded_1937"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "birkelunden_bench_group"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "friends_founded_1937"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "johnsen_bust_1984"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "3/3",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-08-24",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "schema": "history_go_content_factory_completion_v1",
+  "place_id": "birkelunden",
+  "reviewed_at": "2026-08-24",
+  "status": "production_ready_ci_pending",
+  "preservation": {
+    "park_area_m2": 16300,
+    "protected_cultural_environment_area_approx_dekar": 116,
+    "desc_sha256": "ea8efd6ab0ed583485b2c87dd28e4dbb9af7766c32381f57e4cb6a54e9d94dbe",
+    "popupDesc_sha256": "670dcbc8e37004fe1c3a595ae6af1a6dcfe304f1048ce906f37df3f7e8544ff7",
+    "coordinate_status": "verified_geometry",
+    "coordinate_source_id": "osm-way:3236549"
+  },
+  "coverage": {
+    "phase_7h_language": "PASS",
+    "people": {
+      "status": "PASS",
+      "direct_ids": [
+        "thorvald_meyer",
+        "jack_johnsen"
+      ]
+    },
+    "objects": {
+      "status": "PASS",
+      "ids": [
+        "birkelunden_foell",
+        "birkelunden_jack_johnsen_byste",
+        "birkelunden_spaniamonumentet"
+      ]
+    },
+    "brands": {
+      "status": "PASS",
+      "ids": [
+        "bondens_marked"
+      ]
+    },
+    "structures": {
+      "status": "PASS",
+      "ids": [
+        "birkelunden_musikkpaviljong",
+        "birkelunden_vannbasseng"
+      ]
+    },
+    "rounds": {
+      "status": "PASS",
+      "ids": [
+        "people",
+        "images",
+        "brands",
+        "structures"
+      ]
+    },
+    "quiz": {
+      "status": "PASS",
+      "profile": "rich_5x7",
+      "set_count": 5,
+      "question_count": 35
+    },
+    "story": {
+      "status": "PASS",
+      "id": "st_birkelunden_bench_to_association"
+    },
+    "reading_tracks": {
+      "status": "PASS",
+      "count": 3
+    },
+    "sources": {
+      "status": "PASS",
+      "owner": "data/leksikon/places/oslo/by/leksikon_oslo_by_birkelunden.json"
+    },
+    "before_after": {
+      "status": "PASS",
+      "title": "Birkelunden ca. 1930 og 2013"
+    },
+    "news": {
+      "status": "PASS",
+      "freshness_owner": "data/leksikon/places/oslo/by/leksikon_oslo_by_birkelunden_news.json"
+    },
+    "language": {
+      "status": "PASS",
+      "owner": "data/leksikon/sprak/places/europe/norway/oslo/birkelunden.json"
+    },
+    "nature": {
+      "status": "PASS_EXISTING_AUDITED_LAYER",
+      "primary_category_unchanged": "by"
+    },
+    "fagverk": {
+      "status": "PASS",
+      "emne_ids": [
+        "em_by_parker_som_sosial_infrastruktur",
+        "em_by_opphold_vs_gjennomgang"
+      ]
+    },
+    "history_profile": {
+      "status": "PASS",
+      "schema": "history_go_place_history_profile_v1"
+    },
+    "route": {
+      "status": "BEGRUNNET_NA",
+      "reason": "Ingen eksisterende canonical Birkelunden-rute og ingen egen place-intern flerstopp-rute kan materialiseres uten å gjøre nabosteder til proxy. Eksisterende relasjoner beholdes; en senere Grünerløkka-klynge kan eie en flerplace-rute."
+    }
+  },
+  "own_place_holdbacks": [
+    "Paulus kirke som Birkelunden-structure",
+    "Grünerløkka skole som Birkelunden-structure",
+    "Olaf Ryes plass som Birkelunden-proxy",
+    "større 116-dekar kulturmiljø som parkgeometri"
+  ],
+  "final_gate": {
+    "required": [
+      "targeted_regression",
+      "data_checks",
+      "place_rounds",
+      "quiz_audits",
+      "people_profile_audit",
+      "full_ci",
+      "main_verification"
+    ],
+    "state": "pending_final_pr_head"
+  }
+}
