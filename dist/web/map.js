@@ -579,7 +579,7 @@
       const longHex = color.match(/^#([0-9a-f]{6})$/i);
       if (longHex) {
         const numeric = parseInt(longHex[1], 16);
-        return [(numeric >> 16) & 255, (numeric >> 8) & 255, numeric & 255, 255];
+        return [numeric >> 16 & 255, numeric >> 8 & 255, numeric & 255, 255];
       }
       const rgb = color.match(/^rgba?\(\s*(\d+(?:\.\d+)?)\s*,\s*(\d+(?:\.\d+)?)\s*,\s*(\d+(?:\.\d+)?)(?:\s*,\s*(\d+(?:\.\d+)?))?\s*\)$/i);
       if (rgb) {
@@ -620,10 +620,11 @@
       return { width: size, height: size, data };
     }
     function ensurePlaceAreaSquareImages(features) {
+      var _a;
       if (!MAP || typeof MAP.addImage !== "function") return false;
       let ready = true;
       for (const feature of features) {
-        if (![PLACE_MAP_LOD_OVERVIEW, PLACE_MAP_LOD_AREA].includes(feature == null ? void 0 : feature.properties.mapLod)) continue;
+        if (![PLACE_MAP_LOD_OVERVIEW, PLACE_MAP_LOD_AREA].includes((_a = feature == null ? void 0 : feature.properties) == null ? void 0 : _a.mapLod)) continue;
         const fill = feature.properties.fill;
         const border = feature.properties.border;
         const imageId = getPlaceAreaSquareImageId(fill, border);
