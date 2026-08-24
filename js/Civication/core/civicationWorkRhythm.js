@@ -231,10 +231,10 @@
       index,
       rhythm: evaluateScene(scene, state, clock)
     }));
-    const result = evaluated
+    const result = /** @type {any[] & Record<string, any>} */ (evaluated
       .filter((entry) => entry.rhythm.eligible)
       .sort((a, b) => Number(b.rhythm.priority_score) - Number(a.rhythm.priority_score) || a.index - b.index)
-      .map((entry) => ({ ...entry.scene, work_rhythm: entry.rhythm }));
+      .map((entry) => ({ ...entry.scene, work_rhythm: entry.rhythm })));
     for (const key of Object.keys(source)) {
       if (!/^\d+$/.test(key)) result[key] = source[key];
     }
