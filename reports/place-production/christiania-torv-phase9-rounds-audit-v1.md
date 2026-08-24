@@ -1,4 +1,4 @@
-# Christiania Torv – fase 9 People / Object / Brands / rounds / route audit v1
+# Christiania Torv – fase 9 People / Object / Brands / PlaceCard / route audit v1
 
 Dato: 2026-08-24  
 Place ID: `christiania_torv`  
@@ -16,7 +16,7 @@ Status: **PASS – entity/round decisions and deterministic context validated**
 
 Den gamle mappingen inneholdt åtte kandidater: `brasserie_france`, `filter_musikk`, `fjord_restaurant`, `pascal`, `skuld`, `statholdergaarden`, `stress` og `tom_wood`.
 
-Katalogpostene dokumenterte ikke samlet fersk `verifiedAt`, eksakt fasade-/plassgrense og gjeldende drift for Christiania Torv. Hele mappingen er derfor retirert. Det er bedre med ingen Brands-runding enn en volatil virksomhetsliste som feilaktig eies av torget.
+Katalogpostene dokumenterte ikke samlet fersk `verifiedAt`, eksakt fasade-/plassgrense og gjeldende drift for Christiania Torv. Hele mappingen er derfor retirert. Det er bedre med ingen Brands-samling enn en volatil virksomhetsliste som feilaktig eies av torget.
 
 ## Rute og relasjoner
 
@@ -24,15 +24,15 @@ Eksisterende intern rute `oslo_fra_middelalderby_til_fjordby` gjenbrukes. Den ha
 
 Curated `related_place_ids` er begrenset til fem dokumenterte forbindelser: `gamle_radhus`, `middelalder_oslo`, `akershus_festning`, `oslo_domkirke` og `stortorget`.
 
-## Rundingsprofil
+## PlaceCard-profil
 
-Aktive, reelt innholdsbårne rundinger:
+Aktive, reelt innholdsbårne samlinger:
 
 - `people`
 - `objects`
 - `related`
 
-Brands er bevisst fraværende. Ingen filler-runding eller nabobygg som proxy er lagt til.
+Brands er bevisst fraværende. Ingen filler-samling eller nabobygg som proxy er lagt til. Fase-9-resultatet er migrert fra legacy `round_profile` til canonical `place_card_profile` v2 i den første stedspiloten etter system-PR #5295.
 
 ## Deterministisk Quiz/Knowledge-grense
 

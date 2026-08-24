@@ -1,6 +1,6 @@
 # Christiania Torv – current workcard
 
-Dato: 2026-08-23  
+Dato: 2026-08-24
 PLACE ID: `christiania_torv`  
 NAVN: Christiania Torv  
 CANONICAL SOURCE-FIL: `data/places/by/oslo/places/christiania_torv.json`  
@@ -18,8 +18,8 @@ BILDESTATUS: Leonhard Lenz / Wikimedia Commons / CC0 1.0; image gate grønnet i 
 STRUKTURERTE PROFILER: fase 5 materialiserte `spatial_profile`, `temporal_profile`, fire `history_layers` og `source_summary`; `subplaces` og `nature_profile` er begrunnet N/A.  
 LEKSIKON: legacy source-tom batch3-post må saneres/supersedes i popupfasen.  
 SPRÅK: navnehistorie vurderes senere; ingen dokumentert dialektflate.  
-MÅL FOR INNHOLDSRUNDINGER: 4 + separat Badge.  
-VALGTE RUNDINGER: ikke godkjent ennå.  
+MÅL FOR PLACECARD-SAMLINGER: 2–4 kvalifiserte samlinger + separat Badge + obligatorisk Quiz.
+VALGTE PLACECARD-SAMLINGER: `people`, `objects`, `related` – eksplisitt v2-profil, godkjent som pilot. Brands og fjerde samling er utelatt som filler.
 PEOPLE-KANDIDATER: gjenbruk `wenche_gulbransen` og canonical `kong_christian_iv`; People-stedskoblinger kvalitetssikres i entity-/roundfasen.  
 OBJECT-KANDIDAT: `Christian IVs hanske`; søk/reuse eksisterende micro/object-data før materialisering.  
 BRANDS: åtte eksisterende mappings må own-place-/freshness-auditeres.  
@@ -29,8 +29,8 @@ STORY-STATUS: `st_christiania_torv_byflyttingen_1624` er materialisert som `epis
 VIKTIGSTE KILDER: Oslo byleksikon; Oppdag Kvadraturen/Byantikvaren; SNL; OSM; Pilot 03 source pack.  
 AVVIST/UVISST: bokstavelig hanskekast; sikkert Livorno-forbilde; `year=1648` som automatisk etableringsår; volatile virksomheter uten fersk kontroll.  
 NULLMÅLING: `reports/place-production/christiania-torv-nullmaaling-v1.md`  
-AKTIV FASE: FERDIG – alle Content Factory-faser 1–10 er lukket.  
-AKTIVT FILSCOPE: ingen produksjonsbranch; slutt-audit og denne workcarden er canonical closeout.  
+AKTIV FASE: FERDIG – alle Content Factory-faser 1–10 er lukket; PlaceCard v2-pilot er validert.
+AKTIVT FILSCOPE: canonical PlaceCard-profil, deterministisk Quiz-kontekst, pilot-test og closeout-dokumentasjon.
 FORRIGE FASE MERGET: fase 9 #5289 som `44e8535a1b02760d842346dc23af0e214161e326`.  
 
 POPUPSTATUS — OM: GODKJENT; canonical popupDesc/spatial profile + sanitert kildebundet Leksikon.  
@@ -44,6 +44,7 @@ POPUPSTATUS — SPRÅK: GODKJENT; tre dokumenterte navnehistoriske oppføringer,
 POPUPSTATUS — SPOR OG OBJEKTER: GODKJENT; Christian IVs hanske materialisert som stedsspesifikt fysisk objekt.  
 POPUPSTATUS — RELASJONER/KUNNSKAP/OBSERVASJONER: fem curated relasjoner; Knowledge linked; ingen filler-observasjonsfane.  
 MANUELL SLUTT-QA: canonical data, placegrense, spørsmålstall, Knowledge-linker, route reuse og volatile Brands er kontrollert; permanente Phase-9-porter var 8/8 grønne.  
+PLACECARD V2-QA: tre samlinger rendres som 2 + 1; People er sirkel, Objects og Relaterte steder er avrundede rektangler; Bilder er ikke samling; Quiz er synlig primærhandling; alle tre popupene har reelt innhold.
 
 ## Completion record 2026-08-24
 
@@ -54,3 +55,4 @@ MANUELL SLUTT-QA: canonical data, placegrense, spørsmålstall, Knowledge-linker
 - Phase 8 merge: `980a359c1016955baaefd9279fafa2a825978e46`
 - Phase 9 merge: `44e8535a1b02760d842346dc23af0e214161e326`
 - Final audit: `reports/place-production/christiania-torv-final-completion-audit-v1.md`
+- PlaceCard v2 pilot: `reports/place-production/christiania-torv-placecard-collections-v2-pilot.md`

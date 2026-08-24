@@ -13,7 +13,7 @@ Content Factory status: **PASS / COMPLETE**
 | 6 – Story | PASS | `87343213dae6eb4ab17720463f68334184395c68` |
 | 7 – Quiz + Knowledge | PASS | `cf41f032bb2be8286d24f4c0ca08d0980147db4d` |
 | 8 – popup / legacy / språk | PASS | `980a359c1016955baaefd9279fafa2a825978e46` |
-| 9 – entities / rounds / route | PASS | `44e8535a1b02760d842346dc23af0e214161e326` |
+| 9 – entities / PlaceCard / route | PASS | `44e8535a1b02760d842346dc23af0e214161e326` |
 
 ## Place og eierskap
 
@@ -40,13 +40,14 @@ Content Factory status: **PASS / COMPLETE**
 - tre dokumenterte navnespor er materialisert;
 - ingen dialekt, uttale eller etymologi er diktet opp.
 
-## People, Object, Brands, rounds og route
+## People, Object, Brands, PlaceCard og route
 
 - canonical Wenche Gulbransen gjenbrukes;
 - Storyens `kong_christian_iv` gjenbrukes uten duplikat;
 - `Christian IVs hanske` er materialisert som fysisk, stedsspesifikt object med tre kilder og eksplisitt kildekritisk grense;
 - åtte volatile/uklart eide brand-mappinger er retirert i stedet for å publiseres blindt;
-- aktive content rounds er `people`, `objects` og `related`;
+- canonical PlaceCard v2-samlinger er `people`, `objects` og `related`;
+- Brands og en kunstig fjerde samling er utelatt fordi dokumentert ferskhet og eksakt plass-eierskap mangler;
 - eksisterende rute `oslo_fra_middelalderby_til_fjordby` gjenbrukes; ingen rute-ID er oppfunnet.
 
 ## Permanente sluttporter
@@ -58,7 +59,7 @@ Phase-9 cleanup-head `f7a3b94d5e578d41e4bd50bdac6c29d5a1ea39af`:
 - Fagverk and place learning — success
 - Place description governance — success
 - Map place area LOD checks — success
-- Place rounds governance — success
+- PlaceCard collections governance — success
 - Knowledge checks — success
 - Data checks — success
 
@@ -66,4 +67,4 @@ Data checks inkluderte grønne Places data, People data, Category and quiz gover
 
 ## Sluttbeslutning
 
-Christiania Torv dekker alle relevante Content Factory-faser uten kvalitetsportsvekkelse, duplikater eller innholdsfiller. Completion kan merkes **DONE** når denne closeout-PR-en er grønn og mergecommit er verifisert på `main`.
+Christiania Torv dekker alle relevante Content Factory-faser uten kvalitetsportsvekkelse, duplikater eller innholdsfiller. Stedet er den første eksplisitte `place_card_profile` v2-piloten etter system-PR #5295. Completion kan merkes **DONE** når pilot-PR-en er grønn og mergecommit er verifisert på `main`.
