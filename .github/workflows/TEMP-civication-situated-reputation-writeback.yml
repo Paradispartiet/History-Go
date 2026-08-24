@@ -20,6 +20,7 @@ jobs:
           echo "$PATCH_B64" | base64 --decode > /tmp/civication-situated-reputation.patch
           git apply --index /tmp/civication-situated-reputation.patch
           git rm .github/workflows/TEMP-civication-situated-reputation-writeback.yml
+          git rm scripts/TEMP_trigger_civication_situated_reputation.txt
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "Add situated Civication reputation"
