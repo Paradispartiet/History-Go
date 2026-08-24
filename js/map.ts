@@ -645,8 +645,11 @@
     return fallbackColor || "#6c757d";
   }
 
-  function getPlaceMarkerStrokeWidth() {
-    return isStandardMapStyle() ? 2.4 : 1.8;
+  function getPlaceMarkerStrokeWidth(isArea = false) {
+    // Preserve the established area-marker border, but keep detail markers
+    // visually subordinate to their labels and to the overview layer.
+    if (isArea) return isStandardMapStyle() ? 2.4 : 1.8;
+    return isStandardMapStyle() ? 1.45 : 1.15;
   }
 
   function getPlaceDetailVisibility() {
@@ -660,7 +663,7 @@
   function getPlaceGlowPaint(isArea = false) {
     const radius = isArea
       ? ["interpolate", ["linear"], ["zoom"], 7, 3.5, 9.5, 6, 12, 8.2, 16, 11.5, 18, 15]
-      : ["interpolate", ["linear"], ["zoom"], 10, 2, 12, 3, 14, 5, 16, 9, 18, 14];
+      : ["interpolate", ["linear"], ["zoom"], 10, 1.8, 12, 2.5, 14, 3.7, 16, 5.2, 18, 7.4];
     const visibility = isArea ? 1 : getPlaceDetailVisibility();
 
     if (!isStandardMapStyle()) {
@@ -675,7 +678,7 @@
     return {
       "circle-radius": isArea
         ? radius
-        : ["interpolate", ["linear"], ["zoom"], 10, 5, 12, 7, 14, 9, 16, 13, 18, 18],
+        : ["interpolate", ["linear"], ["zoom"], 10, 3.0, 12, 3.8, 14, 5.0, 16, 6.8, 18, 9.2],
       "circle-color": ["get", "fill"],
       "circle-opacity": [
         "*",
@@ -737,23 +740,21 @@
           ]
         : [
             "interpolate", ["linear"], ["zoom"],
-            10, ["+", 2.1, ["*", 0.4, ["get", "visited"]]],
-            12, ["+", 2.8, ["*", 0.6, ["get", "visited"]]],
-            14, ["+", 4.1, ["*", 0.8, ["get", "visited"]]],
-            16, ["+", 6.1, ["*", 1.0, ["get", "visited"]]],
-            18, ["+", 8.8, ["*", 1.3, ["get", "visited"]]]
+            10, ["+", 1.6, ["*", 0.2, ["get", "visited"]]],
+            12, ["+", 2.2, ["*", 0.3, ["get", "visited"]]],
+            14, ["+", 3.0, ["*", 0.4, ["get", "visited"]]],
+            16, ["+", 4.0, ["*", 0.6, ["get", "visited"]]],
+            18, ["+", 5.6, ["*", 0.8, ["get", "visited"]]]
           ],
       "circle-color": ["get", "fill"],
       "circle-stroke-color": ["get", "border"],
-      "circle-stroke-width": isArea ? getPlaceMarkerStrokeWidth() + 0.5 : getPlaceMarkerStrokeWidth(),
+      "circle-stroke-width": isArea ? getPlaceMarkerStrokeWidth(true) + 0.5 : getPlaceMarkerStrokeWidth(false),
+      // The layer minzoom already owns when detail markers appear. Do not fade
+      // the actual dot away: once a place label can render, its dot must exist.
       "circle-opacity": [
-        "*",
-        [
-          "case",
-          ["in", ["get", "coordinateTrust"], ["literal", ["review", "unknown"]]], 0.58,
-          1
-        ],
-        isArea ? 1 : getPlaceDetailVisibility()
+        "case",
+        ["in", ["get", "coordinateTrust"], ["literal", ["review", "unknown"]]], 0.58,
+        1
       ]
     };
   }

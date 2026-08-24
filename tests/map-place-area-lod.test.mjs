@@ -76,3 +76,22 @@ test("TypeScript source og committed runtime-builds inneholder LOD v2", () => {
     assert.match(code, /11\.8/, name + ": mangler detaljfade-start");
   }
 });
+
+test("detaljprikker beholdes sammen med stedsnavn og er mindre enn gammel profil", () => {
+  const dotFn = source.match(/function getPlaceDotPaint\(isArea = false\) \{[\s\S]*?\n  \}/)?.[0] || "";
+  assert.ok(dotFn, "mangler getPlaceDotPaint");
+  assert.doesNotMatch(dotFn, /getPlaceDetailVisibility/, "selve detaljprikken skal ikke fades bort av LOD-overgangen");
+  assert.match(dotFn, /10, \["\+", 1\.6/);
+  assert.match(dotFn, /14, \["\+", 3\.0/);
+  assert.match(dotFn, /18, \["\+", 5\.6/);
+  assert.match(dotFn, /getPlaceMarkerStrokeWidth\(false\)/);
+
+  assert.match(source, /function getPlaceMarkerStrokeWidth\(isArea = false\)/);
+  assert.match(source, /if \(isArea\) return isStandardMapStyle\(\) \? 2\.4 : 1\.8/);
+  assert.match(source, /return isStandardMapStyle\(\) \? 1\.45 : 1\.15/);
+
+  const detailZoom = Number(source.match(/PLACE_DETAIL_MIN_ZOOM\s*=\s*([0-9.]+)/)?.[1]);
+  const labelZoom = Number(source.match(/PLACE_DETAIL_LABEL_MIN_ZOOM\s*=\s*([0-9.]+)/)?.[1]);
+  assert.ok(Number.isFinite(detailZoom) && Number.isFinite(labelZoom));
+  assert.ok(detailZoom < labelZoom, "detaljprikken må være aktiv før stedsnavnet kan vises");
+});
