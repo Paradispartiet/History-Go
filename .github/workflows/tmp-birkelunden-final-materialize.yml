@@ -73,7 +73,9 @@ jobs:
         run: npm ci
 
       - name: Build canonical quiz production context
-        run: npm run quiz:context -- --category by --target birkelunden --output data/quiz/production_context/by/birkelunden.json
+        run: |
+          mkdir -p data/quiz/production_context/by
+          npm run quiz:context -- --category by --target birkelunden > data/quiz/production_context/by/birkelunden.json
 
       - name: Validate quiz governance
         run: |
