@@ -8691,6 +8691,518 @@
     {
       "category": "by",
       "compatibility_projection": {
+        "authority_context": {
+          "approval_points": [
+            {
+              "action_id": "send_lillebekk_til_politisk_behandling",
+              "approval_id": "lillebekk_utvalgsgodkjenning",
+              "approval_object_id": "by_radgiver_lillebekk_approval_001",
+              "approver_actor_id": "elin_plansjef"
+            }
+          ],
+          "authority_rules": [
+            {
+              "action_id": "send_lillebekk_til_politisk_behandling",
+              "approval_id": "lillebekk_utvalgsgodkjenning",
+              "authority": "approval_required",
+              "escalation_id": "lillebekk_frist_eskalering",
+              "requires_resources": [
+                "planjuridisk_kapasitet"
+              ]
+            },
+            {
+              "action_id": "skriv_faglig_anbefaling",
+              "authority": "influence_only",
+              "requires_resources": [
+                "planjuridisk_kapasitet"
+              ]
+            },
+            {
+              "action_id": "love_utbygger_planutfall",
+              "authority": "forbidden",
+              "requires_resources": []
+            }
+          ],
+          "escalation_paths": [
+            {
+              "action_id": "send_lillebekk_til_politisk_behandling",
+              "escalation_id": "lillebekk_frist_eskalering",
+              "escalation_object_id": "by_radgiver_lillebekk_escalation_001",
+              "target_actor_id": "elin_plansjef"
+            }
+          ],
+          "external_counterparts": [
+            "ivar_utbygger",
+            "hanne_beboer"
+          ],
+          "goals_pressures": [
+            "politisk_utvalgsfrist",
+            "lovlighet_og_etterprovbarhet",
+            "boligmal_og_gjennomforbarhet",
+            "medvirkning_og_lokalkunnskap"
+          ],
+          "institution_id": "oslo_kommune_planavdeling_001",
+          "peer_functions": [
+            "nora_planjuss",
+            "signe_byokolog",
+            "maja_utvalgssekretaer"
+          ],
+          "reporting_line": [
+            "elin_plansjef"
+          ],
+          "resources": [
+            {
+              "baseline_state": "limited",
+              "resource_id": "planjuridisk_kapasitet"
+            }
+          ],
+          "role_scope": "by_radgiver_plan",
+          "unit_id": "lillebekk_planteam"
+        },
+        "branch_flags": {
+          "A": [
+            "faglig_anbefaling_med_synlige_forbehold"
+          ],
+          "B": [
+            "politisk_valgrom_komprimert"
+          ],
+          "C": [
+            "history_go_myndighetsgrense_anvendt"
+          ]
+        },
+        "category": "by",
+        "choice_axis": "eksplisitt_lov_fag_politikk_vs_samlet_anbefaling",
+        "choices": [
+          {
+            "authority_action": {
+              "action_id": "skriv_faglig_anbefaling",
+              "intent": "recommend"
+            },
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "quality": 2,
+                "risk": -1,
+                "trust": 2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_lillebekk_baseline_basis",
+                  "note": "Administrasjonens anbefaling og forbehold er synlige, men politiske alternativer er ikke fullt separert som eget valgrom.",
+                  "op": "transition",
+                  "to_phase": "faglig_anbefaling_med_synlige_forbehold",
+                  "to_status": "awaiting_submission",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                }
+              ]
+            },
+            "feedback": "Dette er faglig forsvarlig, men utvalgets reelle valgpunkter kan fortsatt ligge tett på administrasjonens foretrukne løsning.",
+            "id": "A",
+            "label": "Behold ett tydelig administrativt hovedforslag og list forbeholdene under",
+            "reply": "Jeg gir utvalget ett hovedforslag, men gjør usikkerheten og de viktigste forbeholdene synlige under anbefalingen.",
+            "tags": [
+              "baseline_good",
+              "visible_caveats"
+            ]
+          },
+          {
+            "authority_action": {
+              "action_id": "skriv_faglig_anbefaling",
+              "intent": "recommend"
+            },
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "trust": -1
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_lillebekk_blurred_basis",
+                  "op": "transition",
+                  "to_phase": "forenklet_saksgrunnlag_med_skjult_valgrom",
+                  "to_status": "awaiting_submission",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_choice_blur",
+                  "flag": "politisk_valgrom_delvis_skjult",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                }
+              ]
+            },
+            "feedback": "Dokumentet blir raskt å lese, men det blir vanskeligere å se hvilke alternativer administrasjonen har gjort mindre synlige.",
+            "id": "B",
+            "label": "Komprimer saken til anbefalt løsning og de to viktigste konsekvensene",
+            "reply": "Jeg gjør saken kortest mulig rundt én anbefalt løsning og to hovedkonsekvenser.",
+            "tags": [
+              "compression",
+              "political_choice_blur"
+            ]
+          },
+          {
+            "affordance": {
+              "history_go": {
+                "min_effect": 1,
+                "require_history_go_correct": true,
+                "require_task_completed": true,
+                "task_mail_ids": [
+                  "by_radgiver_realism_knowledge_radhus_001"
+                ]
+              }
+            },
+            "authority_action": {
+              "action_id": "skriv_faglig_anbefaling",
+              "intent": "recommend"
+            },
+            "effect": 2,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 5,
+                "risk": -4,
+                "trust": 4
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_lillebekk_learned_basis",
+                  "note": "Lovkrav, lokal evidens, administrativ anbefaling og politiske alternativer er separert eksplisitt før oversendelse.",
+                  "op": "transition",
+                  "to_phase": "kunnskapsforankret_beslutningsgrunnlag_med_eksplisitt_myndighetsgrense",
+                  "to_status": "awaiting_submission",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_remove_authority_blur",
+                  "flag": "politisk_grense_ikke_eksplisitt",
+                  "op": "remove_flag",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_remove_summary_blur",
+                  "flag": "forbehold_komprimert_i_sammendrag",
+                  "op": "remove_flag",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_explicit_authority_boundary",
+                  "flag": "lov_fag_politikk_eksplisitt_adskilt",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                }
+              ]
+            },
+            "feedback": "History Go-kunnskapen blir profesjonell kompetanse: den gir ikke mer myndighet, men gjør beslutningsgrunnlaget bedre og mindre styrende.",
+            "id": "C",
+            "label": "Bruk rådhus-læringen: skill bindende lovkrav, dokumentert lokal evidens, administrativ anbefaling og eksplisitte politiske alternativer",
+            "reply": "Jeg strukturerer saken slik at utvalget kan se hva som er juridisk bundet, hva kunnskapsgrunnlaget faktisk viser, hva administrasjonen anbefaler, og hvilke verdibaserte alternativer som fortsatt tilhører politikken.",
+            "tags": [
+              "learned_authority_boundary",
+              "evidence_structure",
+              "political_choice_space"
+            ]
+          }
+        ],
+        "competency": "evidens_myndighet_og_alternativstruktur",
+        "consequence_axis": "bedre_politisk_valgrom_vs_skjult_administrativ_styring",
+        "cooldown": 8,
+        "day_phase": "afternoon",
+        "from": "Maja, utvalgssekretær",
+        "id": "by_radgiver_realism_return_to_case_001",
+        "interaction_mode": "decision",
+        "learning_focus": [
+          "return_to_case",
+          "choice_affordance",
+          "political_readability",
+          "authority_boundary"
+        ],
+        "mail_family": "role_world_realism_return_to_case",
+        "mail_type": "consequence",
+        "narrative_arc": "lillebekk_fra_kunnskapsgrunnlag_til_politisk_behandling",
+        "next_bias": {
+          "tags": [
+            "return_to_case",
+            "choice_affordance",
+            "political_readability"
+          ],
+          "weight": 1
+        },
+        "person_id": "maja_utvalgssekretaer",
+        "phase": "mastery",
+        "place_id": "politisk_utvalg_moterom",
+        "planned_only": true,
+        "pressure": "kort_sammendrag_vs_etterprovbar_ansvarsdeling",
+        "priority": 60,
+        "purpose": "Bevise at konkret, korrekt anvendt History Go-læring åpner et materiell bedre profesjonelt valg i samme vedvarende arbeidssak.",
+        "repeatable": false,
+        "role_scope": "by_radgiver_plan",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/consequence/by_radgiver_plan_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Skolevei og grøntdrag er nå dokumentert som faktiske premisser.",
+          "Ledergodkjenningen krever at politiske alternativer ikke skjules i administrativt språk.",
+          "History Go-øvelsen kan gi deg et bedre grep, men bare dersom den er fullført og anvendt profesjonelt."
+        ],
+        "stage": "stable",
+        "stakes": "Et lesbart sammendrag kan fortsatt skjule hvem som eier hvilke vurderinger. Den beste løsningen er ikke mer tekst, men en eksplisitt myndighets- og evidensstruktur som følger saken videre.",
+        "subject": "Tilbake til Lillebekk: utvalget må se hva administrasjonen vet, anbefaler og ikke kan bestemme",
+        "summary": "Saken kommer tilbake etter History Go-læring og ledergjennomgang. Du skal nå velge hvordan beslutningsgrunnlaget skiller lovkrav, lokal evidens, faglig anbefaling og politiske alternativer.",
+        "tags": [
+          "consequence",
+          "history_go",
+          "authority_boundary",
+          "by_radgiver_plan",
+          "lillebekk"
+        ],
+        "task_domain": "politisk_lesbart_beslutningsgrunnlag",
+        "task_kind": "consequence",
+        "thread_key": "by_radgiver_lillebekk_realism_001",
+        "triggers_on_choice": {
+          "A": [
+            "role_world_realism_authority"
+          ],
+          "B": [
+            "role_world_realism_authority"
+          ],
+          "C": [
+            "role_world_realism_authority"
+          ]
+        },
+        "work_context": {
+          "deadline_ref": "politisk_utvalg",
+          "institution_id": "oslo_kommune_planavdeling_001",
+          "object_ids": [
+            "by_radgiver_lillebekk_plan_case_001"
+          ]
+        }
+      },
+      "id": "by_radgiver_realism_return_to_case_001",
+      "mail_type": "consequence",
+      "role_scope": "by_radgiver_plan",
+      "scene": {
+        "arc_stage": "mastery",
+        "authority_context": {
+          "approval_points": [
+            {
+              "action_id": "send_lillebekk_til_politisk_behandling",
+              "approval_id": "lillebekk_utvalgsgodkjenning",
+              "approval_object_id": "by_radgiver_lillebekk_approval_001",
+              "approver_actor_id": "elin_plansjef"
+            }
+          ],
+          "authority_rules": [
+            {
+              "action_id": "send_lillebekk_til_politisk_behandling",
+              "approval_id": "lillebekk_utvalgsgodkjenning",
+              "authority": "approval_required",
+              "escalation_id": "lillebekk_frist_eskalering",
+              "requires_resources": [
+                "planjuridisk_kapasitet"
+              ]
+            },
+            {
+              "action_id": "skriv_faglig_anbefaling",
+              "authority": "influence_only",
+              "requires_resources": [
+                "planjuridisk_kapasitet"
+              ]
+            },
+            {
+              "action_id": "love_utbygger_planutfall",
+              "authority": "forbidden",
+              "requires_resources": []
+            }
+          ],
+          "escalation_paths": [
+            {
+              "action_id": "send_lillebekk_til_politisk_behandling",
+              "escalation_id": "lillebekk_frist_eskalering",
+              "escalation_object_id": "by_radgiver_lillebekk_escalation_001",
+              "target_actor_id": "elin_plansjef"
+            }
+          ],
+          "external_counterparts": [
+            "ivar_utbygger",
+            "hanne_beboer"
+          ],
+          "goals_pressures": [
+            "politisk_utvalgsfrist",
+            "lovlighet_og_etterprovbarhet",
+            "boligmal_og_gjennomforbarhet",
+            "medvirkning_og_lokalkunnskap"
+          ],
+          "institution_id": "oslo_kommune_planavdeling_001",
+          "peer_functions": [
+            "nora_planjuss",
+            "signe_byokolog",
+            "maja_utvalgssekretaer"
+          ],
+          "reporting_line": [
+            "elin_plansjef"
+          ],
+          "resources": [
+            {
+              "baseline_state": "limited",
+              "resource_id": "planjuridisk_kapasitet"
+            }
+          ],
+          "role_scope": "by_radgiver_plan",
+          "unit_id": "lillebekk_planteam"
+        },
+        "choices": [
+          {
+            "authority_action": {
+              "action_id": "skriv_faglig_anbefaling",
+              "intent": "recommend"
+            },
+            "effects": {
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_lillebekk_baseline_basis",
+                  "note": "Administrasjonens anbefaling og forbehold er synlige, men politiske alternativer er ikke fullt separert som eget valgrom.",
+                  "op": "transition",
+                  "to_phase": "faglig_anbefaling_med_synlige_forbehold",
+                  "to_status": "awaiting_submission",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                }
+              ]
+            },
+            "feedback": "Dette er faglig forsvarlig, men utvalgets reelle valgpunkter kan fortsatt ligge tett på administrasjonens foretrukne løsning.",
+            "id": "A",
+            "label": "Behold ett tydelig administrativt hovedforslag og list forbeholdene under",
+            "reply": "Jeg gir utvalget ett hovedforslag, men gjør usikkerheten og de viktigste forbeholdene synlige under anbefalingen."
+          },
+          {
+            "authority_action": {
+              "action_id": "skriv_faglig_anbefaling",
+              "intent": "recommend"
+            },
+            "effects": {
+              "score_delta": -1,
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_lillebekk_blurred_basis",
+                  "op": "transition",
+                  "to_phase": "forenklet_saksgrunnlag_med_skjult_valgrom",
+                  "to_status": "awaiting_submission",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_choice_blur",
+                  "flag": "politisk_valgrom_delvis_skjult",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                }
+              ]
+            },
+            "feedback": "Dokumentet blir raskt å lese, men det blir vanskeligere å se hvilke alternativer administrasjonen har gjort mindre synlige.",
+            "id": "B",
+            "label": "Komprimer saken til anbefalt løsning og de to viktigste konsekvensene",
+            "reply": "Jeg gjør saken kortest mulig rundt én anbefalt løsning og to hovedkonsekvenser."
+          },
+          {
+            "affordance": {
+              "history_go": {
+                "min_effect": 1,
+                "require_history_go_correct": true,
+                "require_task_completed": true,
+                "task_mail_ids": [
+                  "by_radgiver_realism_knowledge_radhus_001"
+                ]
+              }
+            },
+            "authority_action": {
+              "action_id": "skriv_faglig_anbefaling",
+              "intent": "recommend"
+            },
+            "effects": {
+              "score_delta": 2,
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_lillebekk_learned_basis",
+                  "note": "Lovkrav, lokal evidens, administrativ anbefaling og politiske alternativer er separert eksplisitt før oversendelse.",
+                  "op": "transition",
+                  "to_phase": "kunnskapsforankret_beslutningsgrunnlag_med_eksplisitt_myndighetsgrense",
+                  "to_status": "awaiting_submission",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_remove_authority_blur",
+                  "flag": "politisk_grense_ikke_eksplisitt",
+                  "op": "remove_flag",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_remove_summary_blur",
+                  "flag": "forbehold_komprimert_i_sammendrag",
+                  "op": "remove_flag",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_explicit_authority_boundary",
+                  "flag": "lov_fag_politikk_eksplisitt_adskilt",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                }
+              ]
+            },
+            "feedback": "History Go-kunnskapen blir profesjonell kompetanse: den gir ikke mer myndighet, men gjør beslutningsgrunnlaget bedre og mindre styrende.",
+            "id": "C",
+            "label": "Bruk rådhus-læringen: skill bindende lovkrav, dokumentert lokal evidens, administrativ anbefaling og eksplisitte politiske alternativer",
+            "reply": "Jeg strukturerer saken slik at utvalget kan se hva som er juridisk bundet, hva kunnskapsgrunnlaget faktisk viser, hva administrasjonen anbefaler, og hvilke verdibaserte alternativer som fortsatt tilhører politikken."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Skolevei og grøntdrag er nå dokumentert som faktiske premisser.",
+            "Ledergodkjenningen krever at politiske alternativer ikke skjules i administrativt språk.",
+            "History Go-øvelsen kan gi deg et bedre grep, men bare dersom den er fullført og anvendt profesjonelt."
+          ],
+          "subject": "Tilbake til Lillebekk: utvalget må se hva administrasjonen vet, anbefaler og ikke kan bestemme",
+          "summary": "Saken kommer tilbake etter History Go-læring og ledergjennomgang. Du skal nå velge hvordan beslutningsgrunnlaget skiller lovkrav, lokal evidens, faglig anbefaling og politiske alternativer."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_radgiver_realism_return_to_case_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "politisk_utvalg_moterom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_radgiver_realism_return_to_case_001",
+          "source_path": "data/Civication/mailFamilies/by/consequence/by_radgiver_plan_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_radgiver_lillebekk_realism_001",
+        "version": 1,
+        "work_context": {
+          "deadline_ref": "politisk_utvalg",
+          "institution_id": "oslo_kommune_planavdeling_001",
+          "object_ids": [
+            "by_radgiver_lillebekk_plan_case_001"
+          ]
+        }
+      },
+      "source_hash": "6def7d4cf733b47b84ca88f64e408a9256342d71caf0e61e170c9ec45d52fd52",
+      "source_path": "data/Civication/mailFamilies/by/consequence/by_radgiver_plan_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
         "category": "by",
         "choice_axis": "faglig_presisjon_vs_tempo",
         "choices": [
@@ -9255,6 +9767,910 @@
         "version": 1
       },
       "source_hash": "72b4cd04070c743fbd460d6f8f4d1bc4beade5543c54e97667ffe760452fc824",
+      "source_path": "data/Civication/mailFamilies/by/event/by_radgiver_plan_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "authority_context": {
+          "approval_points": [
+            {
+              "action_id": "send_lillebekk_til_politisk_behandling",
+              "approval_id": "lillebekk_utvalgsgodkjenning",
+              "approval_object_id": "by_radgiver_lillebekk_approval_001",
+              "approver_actor_id": "elin_plansjef"
+            }
+          ],
+          "authority_rules": [
+            {
+              "action_id": "send_lillebekk_til_politisk_behandling",
+              "approval_id": "lillebekk_utvalgsgodkjenning",
+              "authority": "approval_required",
+              "escalation_id": "lillebekk_frist_eskalering",
+              "requires_resources": [
+                "planjuridisk_kapasitet"
+              ]
+            },
+            {
+              "action_id": "skriv_faglig_anbefaling",
+              "authority": "influence_only",
+              "requires_resources": [
+                "planjuridisk_kapasitet"
+              ]
+            },
+            {
+              "action_id": "love_utbygger_planutfall",
+              "authority": "forbidden",
+              "requires_resources": []
+            }
+          ],
+          "escalation_paths": [
+            {
+              "action_id": "send_lillebekk_til_politisk_behandling",
+              "escalation_id": "lillebekk_frist_eskalering",
+              "escalation_object_id": "by_radgiver_lillebekk_escalation_001",
+              "target_actor_id": "elin_plansjef"
+            }
+          ],
+          "external_counterparts": [
+            "ivar_utbygger",
+            "hanne_beboer"
+          ],
+          "goals_pressures": [
+            "politisk_utvalgsfrist",
+            "lovlighet_og_etterprovbarhet",
+            "boligmal_og_gjennomforbarhet",
+            "medvirkning_og_lokalkunnskap"
+          ],
+          "institution_id": "oslo_kommune_planavdeling_001",
+          "peer_functions": [
+            "nora_planjuss",
+            "signe_byokolog",
+            "maja_utvalgssekretaer"
+          ],
+          "reporting_line": [
+            "elin_plansjef"
+          ],
+          "resources": [
+            {
+              "baseline_state": "limited",
+              "resource_id": "planjuridisk_kapasitet"
+            }
+          ],
+          "role_scope": "by_radgiver_plan",
+          "unit_id": "lillebekk_planteam"
+        },
+        "category": "by",
+        "choice_axis": "godkjenningsspor_vs_uformelt_signal_vs_eskalering",
+        "choices": [
+          {
+            "authority_action": {
+              "action_id": "send_lillebekk_til_politisk_behandling",
+              "intent": "request_approval"
+            },
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_lillebekk_approval_requested",
+                  "op": "create",
+                  "work_object": {
+                    "flags": [
+                      "venter_pa_leder"
+                    ],
+                    "institution_id": "oslo_kommune_planavdeling_001",
+                    "kind": "approval",
+                    "knowledge_refs": [
+                      "politisk_lesbarhet",
+                      "juridisk_presisjon"
+                    ],
+                    "open_questions": [
+                      "Er lovkrav, faglig skjønn og politisk valg skilt tydelig nok?"
+                    ],
+                    "people_refs": [
+                      "elin_plansjef",
+                      "nora_planjuss"
+                    ],
+                    "phase": "ledergjennomgang",
+                    "place_refs": [
+                      "oslo_radhus"
+                    ],
+                    "role_scope": "by_radgiver_plan",
+                    "shared": true,
+                    "status": "pending",
+                    "title": "Plansjefens godkjenning av Lillebekk før politisk oversendelse",
+                    "work_object_id": "by_radgiver_lillebekk_approval_001"
+                  }
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_waiting_for_approval",
+                  "note": "Saksgrunnlaget er sendt til plansjef og planjurist; formell oversendelse venter på godkjenning.",
+                  "op": "transition",
+                  "to_phase": "leder_og_planjuss_gjennomgang",
+                  "to_status": "awaiting_approval",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_document_handoff",
+                  "flag": "dokument_handover_til_leder_og_planjuss",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                }
+              ]
+            },
+            "feedback": "Du gjør ledelsesansvaret eksplisitt og lar godkjenningen få et vedvarende spor.",
+            "id": "A",
+            "label": "Send saksgrunnlaget til Elin for eksplisitt ledergodkjenning",
+            "reply": "Jeg sender faglig anbefaling, åpne forbehold og juridiske kontrollpunkter til plansjefen for formell godkjenning før oversendelse.",
+            "tags": [
+              "approval",
+              "authority_boundary",
+              "traceability"
+            ]
+          },
+          {
+            "authority_action": {
+              "action_id": "skriv_faglig_anbefaling",
+              "intent": "recommend"
+            },
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -2,
+                "quality": 3,
+                "risk": -2,
+                "trust": 1
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_lillebekk_targeted_rework",
+                  "note": "Saksframlegget er sendt tilbake til målrettet revisjon for å skille lovkrav, faglig skjønn og politisk valg.",
+                  "op": "transition",
+                  "to_phase": "rework_lov_fag_politikk",
+                  "to_status": "in_progress",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_rework_visible",
+                  "flag": "rework_lov_fag_politikk",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                }
+              ]
+            },
+            "feedback": "Du bruker en ekstra arbeidsrunde, men gjør mandatgrensen lesbar før dokumentet flyttes videre.",
+            "id": "B",
+            "label": "Skriv om anbefalingen først: skill lovkrav, faglig skjønn og politisk valg før godkjenning",
+            "reply": "Jeg gjør en målrettet rework før ledergjennomgangen, slik at utvalget kan se hvilke deler som er bundet, hvilke som er faglige vurderinger, og hvilke som er reelle politiske valg.",
+            "tags": [
+              "rework",
+              "professional_recommendation",
+              "political_readability"
+            ]
+          },
+          {
+            "authority_action": {
+              "action_id": "send_lillebekk_til_politisk_behandling",
+              "intent": "escalate"
+            },
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -1,
+                "trust": 2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_lillebekk_deadline_escalated",
+                  "op": "create",
+                  "work_object": {
+                    "flags": [
+                      "utvalgsfrist_i_fare"
+                    ],
+                    "institution_id": "oslo_kommune_planavdeling_001",
+                    "kind": "escalation",
+                    "knowledge_refs": [
+                      "kapasitetsstyring",
+                      "juridisk_kvalitetssikring"
+                    ],
+                    "open_questions": [
+                      "Skal utvalgsfristen flyttes, eller må annen sak vike for juridisk kontroll?"
+                    ],
+                    "people_refs": [
+                      "elin_plansjef",
+                      "nora_planjuss"
+                    ],
+                    "phase": "plansjef_prioritering",
+                    "place_refs": [],
+                    "role_scope": "by_radgiver_plan",
+                    "shared": true,
+                    "status": "open",
+                    "title": "Frist- og kapasitetskonflikt i Lillebekk",
+                    "work_object_id": "by_radgiver_lillebekk_escalation_001"
+                  }
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_capacity_escalated",
+                  "note": "Utvalgsfrist og juridisk kapasitet er eskalert til plansjef for eksplisitt prioritering.",
+                  "op": "transition",
+                  "to_phase": "venter_pa_prioritering_av_kapasitet",
+                  "to_status": "blocked",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                }
+              ]
+            },
+            "feedback": "Du gjør kapasitetsproblemet til en lederbeslutning i stedet for en skjult kvalitetsreduksjon.",
+            "id": "C",
+            "label": "Eskaler frist–kapasitetskonflikten til Elin i stedet for å kutte juridisk kontroll",
+            "reply": "Jeg eskalerer at utvalgsfristen og tilgjengelig planjuridisk kapasitet ikke går opp, slik at leder må prioritere mellom frist, omfordeling og kvalitet.",
+            "tags": [
+              "escalation",
+              "capacity",
+              "managerial_choice"
+            ]
+          }
+        ],
+        "competency": "mandat_eskalering_og_saksflyt",
+        "consequence_axis": "etterprovbar_myndighet_vs_skjult_forventning",
+        "cooldown": 8,
+        "day_phase": "afternoon",
+        "from": "Maja, utvalgssekretær",
+        "id": "by_radgiver_realism_approval_request_001",
+        "interaction_mode": "decision",
+        "learning_focus": [
+          "authority_boundary",
+          "approval",
+          "escalation",
+          "capacity",
+          "political_handoff"
+        ],
+        "mail_family": "role_world_realism_authority",
+        "mail_type": "event",
+        "narrative_arc": "lillebekk_fra_kunnskapsgrunnlag_til_politisk_behandling",
+        "person_id": "maja_utvalgssekretaer",
+        "phase": "advanced",
+        "place_id": "politisk_utvalg_moterom",
+        "planned_only": true,
+        "pressure": "utvalgsfrist_vs_juridisk_kapasitet",
+        "priority": 60,
+        "purpose": "Gjør forskjellen mellom faglig anbefaling, ledergodkjenning, eskalering og politisk vedtak spillbar.",
+        "repeatable": false,
+        "role_scope": "by_radgiver_plan",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/event/by_radgiver_plan_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Nora har bare begrenset kapasitet til siste juridiske kontroll før fristen.",
+          "Ivar vil vite om høyden 'i praksis er avklart'.",
+          "Maja trenger et tydelig skille mellom hva administrasjonen anbefaler og hva utvalget skal velge."
+        ],
+        "stage": "stable",
+        "stakes": "Et uformelt ja kan bli lest som et løfte. En skjult kapasitetskonflikt kan gi dårlig juss. En reell godkjenningskjede koster tid, men gjør ansvaret etterprøvbart.",
+        "subject": "Utvalgsfristen står: hvem kan faktisk sende Lillebekk videre?",
+        "summary": "Maja trenger en behandlingsklar sak, men ditt faglige mandat er å anbefale og dokumentere. Plansjefen må eie den formelle administrative godkjenningen før saken sendes til politisk behandling.",
+        "task_domain": "institusjonell_myndighet_og_godkjenning",
+        "task_kind": "event",
+        "thread_key": "by_radgiver_lillebekk_realism_001",
+        "work_context": {
+          "deadline_ref": "utvalg_etter_rework",
+          "institution_id": "oslo_kommune_planavdeling_001",
+          "object_ids": [
+            "by_radgiver_lillebekk_plan_case_001"
+          ]
+        }
+      },
+      "id": "by_radgiver_realism_approval_request_001",
+      "mail_type": "event",
+      "role_scope": "by_radgiver_plan",
+      "scene": {
+        "arc_stage": "advanced",
+        "authority_context": {
+          "approval_points": [
+            {
+              "action_id": "send_lillebekk_til_politisk_behandling",
+              "approval_id": "lillebekk_utvalgsgodkjenning",
+              "approval_object_id": "by_radgiver_lillebekk_approval_001",
+              "approver_actor_id": "elin_plansjef"
+            }
+          ],
+          "authority_rules": [
+            {
+              "action_id": "send_lillebekk_til_politisk_behandling",
+              "approval_id": "lillebekk_utvalgsgodkjenning",
+              "authority": "approval_required",
+              "escalation_id": "lillebekk_frist_eskalering",
+              "requires_resources": [
+                "planjuridisk_kapasitet"
+              ]
+            },
+            {
+              "action_id": "skriv_faglig_anbefaling",
+              "authority": "influence_only",
+              "requires_resources": [
+                "planjuridisk_kapasitet"
+              ]
+            },
+            {
+              "action_id": "love_utbygger_planutfall",
+              "authority": "forbidden",
+              "requires_resources": []
+            }
+          ],
+          "escalation_paths": [
+            {
+              "action_id": "send_lillebekk_til_politisk_behandling",
+              "escalation_id": "lillebekk_frist_eskalering",
+              "escalation_object_id": "by_radgiver_lillebekk_escalation_001",
+              "target_actor_id": "elin_plansjef"
+            }
+          ],
+          "external_counterparts": [
+            "ivar_utbygger",
+            "hanne_beboer"
+          ],
+          "goals_pressures": [
+            "politisk_utvalgsfrist",
+            "lovlighet_og_etterprovbarhet",
+            "boligmal_og_gjennomforbarhet",
+            "medvirkning_og_lokalkunnskap"
+          ],
+          "institution_id": "oslo_kommune_planavdeling_001",
+          "peer_functions": [
+            "nora_planjuss",
+            "signe_byokolog",
+            "maja_utvalgssekretaer"
+          ],
+          "reporting_line": [
+            "elin_plansjef"
+          ],
+          "resources": [
+            {
+              "baseline_state": "limited",
+              "resource_id": "planjuridisk_kapasitet"
+            }
+          ],
+          "role_scope": "by_radgiver_plan",
+          "unit_id": "lillebekk_planteam"
+        },
+        "choices": [
+          {
+            "authority_action": {
+              "action_id": "send_lillebekk_til_politisk_behandling",
+              "intent": "request_approval"
+            },
+            "effects": {
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_lillebekk_approval_requested",
+                  "op": "create",
+                  "work_object": {
+                    "flags": [
+                      "venter_pa_leder"
+                    ],
+                    "institution_id": "oslo_kommune_planavdeling_001",
+                    "kind": "approval",
+                    "knowledge_refs": [
+                      "politisk_lesbarhet",
+                      "juridisk_presisjon"
+                    ],
+                    "open_questions": [
+                      "Er lovkrav, faglig skjønn og politisk valg skilt tydelig nok?"
+                    ],
+                    "people_refs": [
+                      "elin_plansjef",
+                      "nora_planjuss"
+                    ],
+                    "phase": "ledergjennomgang",
+                    "place_refs": [
+                      "oslo_radhus"
+                    ],
+                    "role_scope": "by_radgiver_plan",
+                    "shared": true,
+                    "status": "pending",
+                    "title": "Plansjefens godkjenning av Lillebekk før politisk oversendelse",
+                    "work_object_id": "by_radgiver_lillebekk_approval_001"
+                  }
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_waiting_for_approval",
+                  "note": "Saksgrunnlaget er sendt til plansjef og planjurist; formell oversendelse venter på godkjenning.",
+                  "op": "transition",
+                  "to_phase": "leder_og_planjuss_gjennomgang",
+                  "to_status": "awaiting_approval",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_document_handoff",
+                  "flag": "dokument_handover_til_leder_og_planjuss",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                }
+              ]
+            },
+            "feedback": "Du gjør ledelsesansvaret eksplisitt og lar godkjenningen få et vedvarende spor.",
+            "id": "A",
+            "label": "Send saksgrunnlaget til Elin for eksplisitt ledergodkjenning",
+            "reply": "Jeg sender faglig anbefaling, åpne forbehold og juridiske kontrollpunkter til plansjefen for formell godkjenning før oversendelse."
+          },
+          {
+            "authority_action": {
+              "action_id": "skriv_faglig_anbefaling",
+              "intent": "recommend"
+            },
+            "effects": {
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_lillebekk_targeted_rework",
+                  "note": "Saksframlegget er sendt tilbake til målrettet revisjon for å skille lovkrav, faglig skjønn og politisk valg.",
+                  "op": "transition",
+                  "to_phase": "rework_lov_fag_politikk",
+                  "to_status": "in_progress",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_rework_visible",
+                  "flag": "rework_lov_fag_politikk",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                }
+              ]
+            },
+            "feedback": "Du bruker en ekstra arbeidsrunde, men gjør mandatgrensen lesbar før dokumentet flyttes videre.",
+            "id": "B",
+            "label": "Skriv om anbefalingen først: skill lovkrav, faglig skjønn og politisk valg før godkjenning",
+            "reply": "Jeg gjør en målrettet rework før ledergjennomgangen, slik at utvalget kan se hvilke deler som er bundet, hvilke som er faglige vurderinger, og hvilke som er reelle politiske valg."
+          },
+          {
+            "authority_action": {
+              "action_id": "send_lillebekk_til_politisk_behandling",
+              "intent": "escalate"
+            },
+            "effects": {
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_lillebekk_deadline_escalated",
+                  "op": "create",
+                  "work_object": {
+                    "flags": [
+                      "utvalgsfrist_i_fare"
+                    ],
+                    "institution_id": "oslo_kommune_planavdeling_001",
+                    "kind": "escalation",
+                    "knowledge_refs": [
+                      "kapasitetsstyring",
+                      "juridisk_kvalitetssikring"
+                    ],
+                    "open_questions": [
+                      "Skal utvalgsfristen flyttes, eller må annen sak vike for juridisk kontroll?"
+                    ],
+                    "people_refs": [
+                      "elin_plansjef",
+                      "nora_planjuss"
+                    ],
+                    "phase": "plansjef_prioritering",
+                    "place_refs": [],
+                    "role_scope": "by_radgiver_plan",
+                    "shared": true,
+                    "status": "open",
+                    "title": "Frist- og kapasitetskonflikt i Lillebekk",
+                    "work_object_id": "by_radgiver_lillebekk_escalation_001"
+                  }
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_capacity_escalated",
+                  "note": "Utvalgsfrist og juridisk kapasitet er eskalert til plansjef for eksplisitt prioritering.",
+                  "op": "transition",
+                  "to_phase": "venter_pa_prioritering_av_kapasitet",
+                  "to_status": "blocked",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                }
+              ]
+            },
+            "feedback": "Du gjør kapasitetsproblemet til en lederbeslutning i stedet for en skjult kvalitetsreduksjon.",
+            "id": "C",
+            "label": "Eskaler frist–kapasitetskonflikten til Elin i stedet for å kutte juridisk kontroll",
+            "reply": "Jeg eskalerer at utvalgsfristen og tilgjengelig planjuridisk kapasitet ikke går opp, slik at leder må prioritere mellom frist, omfordeling og kvalitet."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Nora har bare begrenset kapasitet til siste juridiske kontroll før fristen.",
+            "Ivar vil vite om høyden 'i praksis er avklart'.",
+            "Maja trenger et tydelig skille mellom hva administrasjonen anbefaler og hva utvalget skal velge."
+          ],
+          "subject": "Utvalgsfristen står: hvem kan faktisk sende Lillebekk videre?",
+          "summary": "Maja trenger en behandlingsklar sak, men ditt faglige mandat er å anbefale og dokumentere. Plansjefen må eie den formelle administrative godkjenningen før saken sendes til politisk behandling."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_radgiver_realism_approval_request_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "politisk_utvalg_moterom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_radgiver_realism_approval_request_001",
+          "source_path": "data/Civication/mailFamilies/by/event/by_radgiver_plan_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_radgiver_lillebekk_realism_001",
+        "version": 1,
+        "work_context": {
+          "deadline_ref": "utvalg_etter_rework",
+          "institution_id": "oslo_kommune_planavdeling_001",
+          "object_ids": [
+            "by_radgiver_lillebekk_plan_case_001"
+          ]
+        }
+      },
+      "source_hash": "050d05437f014b08bf701e6d5df1fa322dbc35f1b87f499a65ae5792b486fc4f",
+      "source_path": "data/Civication/mailFamilies/by/event/by_radgiver_plan_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "authority_context": {
+          "approval_points": [
+            {
+              "action_id": "send_lillebekk_til_politisk_behandling",
+              "approval_id": "lillebekk_utvalgsgodkjenning",
+              "approval_object_id": "by_radgiver_lillebekk_approval_001",
+              "approver_actor_id": "elin_plansjef"
+            }
+          ],
+          "authority_rules": [
+            {
+              "action_id": "send_lillebekk_til_politisk_behandling",
+              "approval_id": "lillebekk_utvalgsgodkjenning",
+              "authority": "approval_required",
+              "escalation_id": "lillebekk_frist_eskalering",
+              "requires_resources": [
+                "planjuridisk_kapasitet"
+              ]
+            },
+            {
+              "action_id": "skriv_faglig_anbefaling",
+              "authority": "influence_only",
+              "requires_resources": [
+                "planjuridisk_kapasitet"
+              ]
+            },
+            {
+              "action_id": "love_utbygger_planutfall",
+              "authority": "forbidden",
+              "requires_resources": []
+            }
+          ],
+          "escalation_paths": [
+            {
+              "action_id": "send_lillebekk_til_politisk_behandling",
+              "escalation_id": "lillebekk_frist_eskalering",
+              "escalation_object_id": "by_radgiver_lillebekk_escalation_001",
+              "target_actor_id": "elin_plansjef"
+            }
+          ],
+          "external_counterparts": [
+            "ivar_utbygger",
+            "hanne_beboer"
+          ],
+          "goals_pressures": [
+            "politisk_utvalgsfrist",
+            "lovlighet_og_etterprovbarhet",
+            "boligmal_og_gjennomforbarhet",
+            "medvirkning_og_lokalkunnskap"
+          ],
+          "institution_id": "oslo_kommune_planavdeling_001",
+          "peer_functions": [
+            "nora_planjuss",
+            "signe_byokolog",
+            "maja_utvalgssekretaer"
+          ],
+          "reporting_line": [
+            "elin_plansjef"
+          ],
+          "resources": [
+            {
+              "baseline_state": "limited",
+              "resource_id": "planjuridisk_kapasitet"
+            }
+          ],
+          "role_scope": "by_radgiver_plan",
+          "unit_id": "lillebekk_planteam"
+        },
+        "category": "by",
+        "choice_axis": "send_med_godkjenning_vs_vent",
+        "choices": [
+          {
+            "authority_action": {
+              "action_id": "send_lillebekk_til_politisk_behandling",
+              "intent": "execute"
+            },
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 3,
+                "risk": -3,
+                "trust": 3
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_lillebekk_sent_to_committee",
+                  "op": "close",
+                  "outcome": "sendt_til_politisk_behandling_med_sporbart_administrativt_fagspor",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                }
+              ]
+            },
+            "feedback": "Du avslutter administrasjonens saksforberedelse uten å late som du eier det politiske utfallet.",
+            "id": "A",
+            "label": "Send den godkjente saken til politisk behandling",
+            "reply": "Jeg sender den godkjente administrative anbefalingen og de åpne politiske alternativene til utvalget.",
+            "tags": [
+              "authorized_execution",
+              "political_handoff",
+              "case_closure"
+            ]
+          },
+          {
+            "authority_action": {
+              "action_id": "send_lillebekk_til_politisk_behandling",
+              "intent": "wait"
+            },
+            "effect": 0,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_lillebekk_waiting_before_send",
+                  "note": "Formell oversendelse er utsatt til godkjenningen er persistent registrert.",
+                  "op": "transition",
+                  "to_phase": "venter_pa_registrert_ledergodkjenning",
+                  "to_status": "awaiting_approval",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                }
+              ]
+            },
+            "feedback": "Du behandler venting som reell arbeidsflyt, ikke som tom tekst: saken blir stående åpen fordi en avhengighet mangler.",
+            "id": "B",
+            "label": "Vent på godkjenning hvis den fortsatt ikke er registrert",
+            "reply": "Jeg lar saken stå i oversendelseskøen til ledergodkjenningen faktisk finnes som et spor i saken.",
+            "tags": [
+              "waiting",
+              "approval_dependency"
+            ]
+          }
+        ],
+        "competency": "myndighetsgrense",
+        "consequence_axis": "legitim_oversendelse_vs_uautorisert_handling",
+        "cooldown": 10,
+        "day_phase": "day_end",
+        "from": "Maja, utvalgssekretær",
+        "id": "by_radgiver_realism_formal_send_001",
+        "interaction_mode": "decision",
+        "learning_focus": [
+          "authority_boundary",
+          "approval",
+          "escalation",
+          "capacity",
+          "political_handoff"
+        ],
+        "mail_family": "role_world_realism_authority",
+        "mail_type": "event",
+        "narrative_arc": "lillebekk_fra_kunnskapsgrunnlag_til_politisk_behandling",
+        "person_id": "maja_utvalgssekretaer",
+        "phase": "mastery",
+        "place_id": "politisk_utvalg_moterom",
+        "planned_only": true,
+        "pressure": "frist_vs_formell_myndighet",
+        "priority": 60,
+        "purpose": "Bevise at formell handling er blokkert av myndighetskontrakten før persistent godkjenning er gitt, men åpnes etter godkjenning.",
+        "repeatable": false,
+        "role_scope": "by_radgiver_plan",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/event/by_radgiver_plan_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Maja har satt opp saken til neste politiske møte.",
+          "Saksframlegget har nå et eksplisitt skille mellom lovkrav, faglig anbefaling og politiske alternativer.",
+          "Den siste kontrollen er ikke innholdsmessig, men institusjonell: finnes den nødvendige ledergodkjenningen?"
+        ],
+        "stage": "stable",
+        "stakes": "Å sende før godkjenning gjør et faglig arbeidsprodukt til en uautorisert institusjonell handling. Å vente uten grunn kan på sin side koste fristen.",
+        "subject": "Lillebekk er klar til oversendelse — hvis riktig myndighet faktisk har godkjent",
+        "summary": "Beslutningsgrunnlaget er ferdig. Nå er forskjellen mellom å anbefale og å sende formelt avgjørende: oversendelse kan bare skje når ledergodkjenningen står som gitt.",
+        "task_domain": "formell_oversendelse",
+        "task_kind": "event",
+        "thread_key": "by_radgiver_lillebekk_realism_001",
+        "work_context": {
+          "deadline_ref": "politisk_utvalg",
+          "institution_id": "oslo_kommune_planavdeling_001",
+          "object_ids": [
+            "by_radgiver_lillebekk_plan_case_001"
+          ]
+        }
+      },
+      "id": "by_radgiver_realism_formal_send_001",
+      "mail_type": "event",
+      "role_scope": "by_radgiver_plan",
+      "scene": {
+        "arc_stage": "mastery",
+        "authority_context": {
+          "approval_points": [
+            {
+              "action_id": "send_lillebekk_til_politisk_behandling",
+              "approval_id": "lillebekk_utvalgsgodkjenning",
+              "approval_object_id": "by_radgiver_lillebekk_approval_001",
+              "approver_actor_id": "elin_plansjef"
+            }
+          ],
+          "authority_rules": [
+            {
+              "action_id": "send_lillebekk_til_politisk_behandling",
+              "approval_id": "lillebekk_utvalgsgodkjenning",
+              "authority": "approval_required",
+              "escalation_id": "lillebekk_frist_eskalering",
+              "requires_resources": [
+                "planjuridisk_kapasitet"
+              ]
+            },
+            {
+              "action_id": "skriv_faglig_anbefaling",
+              "authority": "influence_only",
+              "requires_resources": [
+                "planjuridisk_kapasitet"
+              ]
+            },
+            {
+              "action_id": "love_utbygger_planutfall",
+              "authority": "forbidden",
+              "requires_resources": []
+            }
+          ],
+          "escalation_paths": [
+            {
+              "action_id": "send_lillebekk_til_politisk_behandling",
+              "escalation_id": "lillebekk_frist_eskalering",
+              "escalation_object_id": "by_radgiver_lillebekk_escalation_001",
+              "target_actor_id": "elin_plansjef"
+            }
+          ],
+          "external_counterparts": [
+            "ivar_utbygger",
+            "hanne_beboer"
+          ],
+          "goals_pressures": [
+            "politisk_utvalgsfrist",
+            "lovlighet_og_etterprovbarhet",
+            "boligmal_og_gjennomforbarhet",
+            "medvirkning_og_lokalkunnskap"
+          ],
+          "institution_id": "oslo_kommune_planavdeling_001",
+          "peer_functions": [
+            "nora_planjuss",
+            "signe_byokolog",
+            "maja_utvalgssekretaer"
+          ],
+          "reporting_line": [
+            "elin_plansjef"
+          ],
+          "resources": [
+            {
+              "baseline_state": "limited",
+              "resource_id": "planjuridisk_kapasitet"
+            }
+          ],
+          "role_scope": "by_radgiver_plan",
+          "unit_id": "lillebekk_planteam"
+        },
+        "choices": [
+          {
+            "authority_action": {
+              "action_id": "send_lillebekk_til_politisk_behandling",
+              "intent": "execute"
+            },
+            "effects": {
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_lillebekk_sent_to_committee",
+                  "op": "close",
+                  "outcome": "sendt_til_politisk_behandling_med_sporbart_administrativt_fagspor",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                }
+              ]
+            },
+            "feedback": "Du avslutter administrasjonens saksforberedelse uten å late som du eier det politiske utfallet.",
+            "id": "A",
+            "label": "Send den godkjente saken til politisk behandling",
+            "reply": "Jeg sender den godkjente administrative anbefalingen og de åpne politiske alternativene til utvalget."
+          },
+          {
+            "authority_action": {
+              "action_id": "send_lillebekk_til_politisk_behandling",
+              "intent": "wait"
+            },
+            "effects": {
+              "score_delta": 0,
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_lillebekk_waiting_before_send",
+                  "note": "Formell oversendelse er utsatt til godkjenningen er persistent registrert.",
+                  "op": "transition",
+                  "to_phase": "venter_pa_registrert_ledergodkjenning",
+                  "to_status": "awaiting_approval",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                }
+              ]
+            },
+            "feedback": "Du behandler venting som reell arbeidsflyt, ikke som tom tekst: saken blir stående åpen fordi en avhengighet mangler.",
+            "id": "B",
+            "label": "Vent på godkjenning hvis den fortsatt ikke er registrert",
+            "reply": "Jeg lar saken stå i oversendelseskøen til ledergodkjenningen faktisk finnes som et spor i saken."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Maja har satt opp saken til neste politiske møte.",
+            "Saksframlegget har nå et eksplisitt skille mellom lovkrav, faglig anbefaling og politiske alternativer.",
+            "Den siste kontrollen er ikke innholdsmessig, men institusjonell: finnes den nødvendige ledergodkjenningen?"
+          ],
+          "subject": "Lillebekk er klar til oversendelse — hvis riktig myndighet faktisk har godkjent",
+          "summary": "Beslutningsgrunnlaget er ferdig. Nå er forskjellen mellom å anbefale og å sende formelt avgjørende: oversendelse kan bare skje når ledergodkjenningen står som gitt."
+        },
+        "day_phase": "day_end",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_radgiver_realism_formal_send_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "politisk_utvalg_moterom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_radgiver_realism_formal_send_001",
+          "source_path": "data/Civication/mailFamilies/by/event/by_radgiver_plan_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_radgiver_lillebekk_realism_001",
+        "version": 1,
+        "work_context": {
+          "deadline_ref": "politisk_utvalg",
+          "institution_id": "oslo_kommune_planavdeling_001",
+          "object_ids": [
+            "by_radgiver_lillebekk_plan_case_001"
+          ]
+        }
+      },
+      "source_hash": "4a70d739ef8b64e2b82c6a36e59755516c09bc8f757c53296cdfe81f80dd3b56",
       "source_path": "data/Civication/mailFamilies/by/event/by_radgiver_plan_event.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -10527,6 +11943,292 @@
         "version": 1
       },
       "source_hash": "c5c0148397b700cc9d136ac9619059f5275502caef180e518453fab7b8332a57",
+      "source_path": "data/Civication/mailFamilies/by/followup/by_radgiver_plan_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "branch_flags": {
+          "A": [
+            "ledergodkjenning_med_synlige_vilkar"
+          ],
+          "B": [
+            "ledergodkjenning_med_sammendragsrisiko"
+          ]
+        },
+        "category": "by",
+        "choice_axis": "bevar_vilkar_vs_glatt_over_forbehold",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "quality": 3,
+                "risk": -2,
+                "trust": 3
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_lillebekk_approval_granted",
+                  "note": "Plansjefen har godkjent oversendelsen med eksplisitt krav om at dokumenterte forbehold og politiske alternativer bevares.",
+                  "op": "transition",
+                  "to_phase": "godkjent_med_vilkar",
+                  "to_status": "granted",
+                  "work_object_id": "by_radgiver_lillebekk_approval_001"
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_ready_after_approval",
+                  "note": "Saken har passert leder- og planjuridisk kontroll og venter på siste faglige formulering før oversendelse.",
+                  "op": "transition",
+                  "to_phase": "ledergodkjent_beslutningsgrunnlag",
+                  "to_status": "awaiting_submission",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_approval_conditions_visible",
+                  "flag": "ledergodkjenning_med_synlige_vilkar",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                }
+              ]
+            },
+            "feedback": "Godkjenningen blir et persistent spor, og dokumentet beholder vilkårene som gjorde godkjenningen mulig.",
+            "id": "A",
+            "label": "Registrer godkjenningen og behold alle tre vilkårene i oversendelsen",
+            "reply": "Jeg registrerer ledergodkjenningen og lar skolevei, grøntdrag og myndighetsgrense følge saken som eksplisitte premisser.",
+            "tags": [
+              "approval_granted",
+              "conditions_preserved",
+              "document_flow"
+            ]
+          },
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "quality": 0,
+                "risk": 2,
+                "trust": 1
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_lillebekk_approval_granted_compressed",
+                  "note": "Formell ledergodkjenning er gitt, men sammendraget bærer økt risiko for å skjule premisser.",
+                  "op": "transition",
+                  "to_phase": "godkjent_med_komprimert_sammendrag",
+                  "to_status": "granted",
+                  "work_object_id": "by_radgiver_lillebekk_approval_001"
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_ready_with_summary_risk",
+                  "op": "transition",
+                  "to_phase": "ledergodkjent_med_sammendragsrisiko",
+                  "to_status": "awaiting_submission",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_summary_risk",
+                  "flag": "forbehold_komprimert_i_sammendrag",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                }
+              ]
+            },
+            "feedback": "Saken kan sendes, men politisk lesbarhet blir kjøpt med en risiko for at viktige premisser forsvinner i sammendraget.",
+            "id": "B",
+            "label": "Registrer godkjenningen, men forkort forbeholdene i sammendraget",
+            "reply": "Jeg registrerer godkjenningen, men komprimerer forbeholdene for å gjøre saken raskere å lese.",
+            "tags": [
+              "approval_granted",
+              "compression_risk"
+            ]
+          }
+        ],
+        "competency": "arbeidsflyt_og_sporbarhet",
+        "consequence_axis": "sporbar_godkjenning_vs_skjult_usikkerhet",
+        "cooldown": 8,
+        "day_phase": "morning",
+        "from": "Elin, plansjef",
+        "id": "by_radgiver_realism_approval_grant_001",
+        "interaction_mode": "decision",
+        "learning_focus": [
+          "approval_granted",
+          "rework",
+          "document_handoff",
+          "waiting"
+        ],
+        "mail_family": "role_world_realism_approval_followup",
+        "mail_type": "followup",
+        "narrative_arc": "lillebekk_fra_kunnskapsgrunnlag_til_politisk_behandling",
+        "next_bias": {
+          "tags": [
+            "approval_granted",
+            "rework",
+            "document_handoff"
+          ],
+          "weight": 1
+        },
+        "person_id": "elin_plansjef",
+        "phase": "mastery",
+        "place_id": "radhuset_planavdeling",
+        "planned_only": true,
+        "pressure": "frist_vs_vilkar_for_godkjenning",
+        "priority": 60,
+        "purpose": "La en persistent approval gå fra pending til granted i en senere scene og vise at dokumentet har flyttet seg gjennom lederlinje og fagkontroll.",
+        "repeatable": false,
+        "role_scope": "by_radgiver_plan",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/followup/by_radgiver_plan_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Nora har kontrollert at rekkefølgekravet er juridisk lesbart.",
+          "Elin godkjenner at saken kan sendes når forbeholdene står synlig.",
+          "Godkjenningen skal være et varig arbeidsobjekt, ikke bare en setning som glemmes før siste scene."
+        ],
+        "stage": "stable",
+        "stakes": "Godkjenningen er ikke et signal om at alle faglige spørsmål er løst. Den betyr at administrasjonen står for beslutningsgrunnlaget slik det nå er avgrenset.",
+        "subject": "Godkjent med ett vilkår: usikkerheten og det politiske valget skal følge saken helt inn i utvalget",
+        "summary": "Etter leder- og planjuridisk gjennomgang godkjenner Elin oversendelsen, men bare dersom saken beholder den dokumenterte skoleveien, grøntdragets funksjon og skillet mellom administrativ anbefaling og politisk valg.",
+        "tags": [
+          "followup",
+          "approval",
+          "rework",
+          "by_radgiver_plan",
+          "lillebekk"
+        ],
+        "task_domain": "ledergodkjenning_og_dokumentflyt",
+        "task_kind": "followup",
+        "thread_key": "by_radgiver_lillebekk_realism_001",
+        "triggers_on_choice": {
+          "A": [
+            "role_world_realism_return_to_case"
+          ],
+          "B": [
+            "role_world_realism_return_to_case"
+          ]
+        },
+        "work_context": {
+          "deadline_ref": "politisk_utvalg",
+          "institution_id": "oslo_kommune_planavdeling_001",
+          "object_ids": [
+            "by_radgiver_lillebekk_plan_case_001"
+          ]
+        }
+      },
+      "id": "by_radgiver_realism_approval_grant_001",
+      "mail_type": "followup",
+      "role_scope": "by_radgiver_plan",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_lillebekk_approval_granted",
+                  "note": "Plansjefen har godkjent oversendelsen med eksplisitt krav om at dokumenterte forbehold og politiske alternativer bevares.",
+                  "op": "transition",
+                  "to_phase": "godkjent_med_vilkar",
+                  "to_status": "granted",
+                  "work_object_id": "by_radgiver_lillebekk_approval_001"
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_ready_after_approval",
+                  "note": "Saken har passert leder- og planjuridisk kontroll og venter på siste faglige formulering før oversendelse.",
+                  "op": "transition",
+                  "to_phase": "ledergodkjent_beslutningsgrunnlag",
+                  "to_status": "awaiting_submission",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_approval_conditions_visible",
+                  "flag": "ledergodkjenning_med_synlige_vilkar",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                }
+              ]
+            },
+            "feedback": "Godkjenningen blir et persistent spor, og dokumentet beholder vilkårene som gjorde godkjenningen mulig.",
+            "id": "A",
+            "label": "Registrer godkjenningen og behold alle tre vilkårene i oversendelsen",
+            "reply": "Jeg registrerer ledergodkjenningen og lar skolevei, grøntdrag og myndighetsgrense følge saken som eksplisitte premisser."
+          },
+          {
+            "effects": {
+              "score_delta": 0,
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_lillebekk_approval_granted_compressed",
+                  "note": "Formell ledergodkjenning er gitt, men sammendraget bærer økt risiko for å skjule premisser.",
+                  "op": "transition",
+                  "to_phase": "godkjent_med_komprimert_sammendrag",
+                  "to_status": "granted",
+                  "work_object_id": "by_radgiver_lillebekk_approval_001"
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_ready_with_summary_risk",
+                  "op": "transition",
+                  "to_phase": "ledergodkjent_med_sammendragsrisiko",
+                  "to_status": "awaiting_submission",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_summary_risk",
+                  "flag": "forbehold_komprimert_i_sammendrag",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                }
+              ]
+            },
+            "feedback": "Saken kan sendes, men politisk lesbarhet blir kjøpt med en risiko for at viktige premisser forsvinner i sammendraget.",
+            "id": "B",
+            "label": "Registrer godkjenningen, men forkort forbeholdene i sammendraget",
+            "reply": "Jeg registrerer godkjenningen, men komprimerer forbeholdene for å gjøre saken raskere å lese."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Nora har kontrollert at rekkefølgekravet er juridisk lesbart.",
+            "Elin godkjenner at saken kan sendes når forbeholdene står synlig.",
+            "Godkjenningen skal være et varig arbeidsobjekt, ikke bare en setning som glemmes før siste scene."
+          ],
+          "subject": "Godkjent med ett vilkår: usikkerheten og det politiske valget skal følge saken helt inn i utvalget",
+          "summary": "Etter leder- og planjuridisk gjennomgang godkjenner Elin oversendelsen, men bare dersom saken beholder den dokumenterte skoleveien, grøntdragets funksjon og skillet mellom administrativ anbefaling og politisk valg."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_radgiver_realism_approval_grant_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "radhuset_planavdeling",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_radgiver_realism_approval_grant_001",
+          "source_path": "data/Civication/mailFamilies/by/followup/by_radgiver_plan_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_radgiver_lillebekk_realism_001",
+        "version": 1,
+        "work_context": {
+          "deadline_ref": "politisk_utvalg",
+          "institution_id": "oslo_kommune_planavdeling_001",
+          "object_ids": [
+            "by_radgiver_lillebekk_plan_case_001"
+          ]
+        }
+      },
+      "source_hash": "8de37cc27491b16a37410f560441bcc7a02af760353d4359000cf07f1e1390b2",
       "source_path": "data/Civication/mailFamilies/by/followup/by_radgiver_plan_followup.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -12101,6 +13803,330 @@
         "version": 1
       },
       "source_hash": "c906078ad1f57ef7433079c70f0e98bcfbb7686030655010bf18d3f2673ddf13",
+      "source_path": "data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "dokumenter_faktisk_bruk_vs_glatt_over_avviket",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 3,
+                "risk": -2,
+                "trust": 2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_lillebekk_grounding_started",
+                  "note": "Faktisk skolevei og grøntdragets funksjon er løftet inn som eksplisitte premisser i samme plansak.",
+                  "op": "transition",
+                  "to_phase": "lokalkunnskap_og_teknisk_grunnlag",
+                  "to_status": "in_progress",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_local_knowledge_visible",
+                  "flag": "lokalkunnskap_som_evidens",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                }
+              ]
+            },
+            "feedback": "Saken blir mer krevende, men det blir synlig hva som faktisk må avklares.",
+            "id": "A",
+            "label": "Registrer skolevei og grøntdrag som åpne faglige premisser før du anbefaler løsning",
+            "reply": "Jeg gjør faktisk bruk, overvannsfunksjon og dokumentasjonsmangler eksplisitte i saken før vi låser anbefalingen.",
+            "tags": [
+              "persistent_case",
+              "local_knowledge",
+              "traceability"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "energy": 1,
+                "quality": -2,
+                "risk": 3,
+                "trust": -1
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_lillebekk_grounding_deferred",
+                  "note": "Kjent lokal kunnskap er skjøvet til senere høring i stedet for å bli integrert i første faglige grunnlag.",
+                  "op": "transition",
+                  "to_phase": "formelt_grunnlag_med_utsatt_lokalkunnskap",
+                  "to_status": "in_progress",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_rework_risk",
+                  "flag": "sen_rework_risiko",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                }
+              ]
+            },
+            "feedback": "Framdriften ser bedre ut, men du skyver et kjent kunnskapsgap inn i en senere og dyrere fase.",
+            "id": "B",
+            "label": "Hold saken på kartgrunnlaget og noter at lokale forhold kan avklares i høringen",
+            "reply": "Jeg holder første anbefaling på det formelle kartgrunnlaget og lar medvirkningsrunden ta resten.",
+            "tags": [
+              "formal_map_only",
+              "deferred_uncertainty"
+            ]
+          }
+        ],
+        "competency": "stedsanalyse_og_saksansvar",
+        "consequence_axis": "sporbar_sak_vs_sen_klagerisiko",
+        "cooldown": 8,
+        "day_phase": "morning",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "by_radgiver_lillebekk_case_opened",
+              "op": "create",
+              "work_object": {
+                "confidentiality": "offentlig_saksforberedelse_med_interne_arbeidsnotater",
+                "deadline": "utvalg_etter_rework",
+                "flags": [
+                  "skolevei_ikke_dokumentert",
+                  "politisk_grense_ikke_eksplisitt"
+                ],
+                "institution_id": "oslo_kommune_planavdeling_001",
+                "kind": "reguleringssak",
+                "knowledge_refs": [
+                  "reguleringsplan",
+                  "medvirkning",
+                  "rekkefolgekrav",
+                  "politisk_lesbarhet",
+                  "juridisk_presisjon"
+                ],
+                "open_questions": [
+                  "Hvordan skal faktisk skolevei dokumenteres i planens kunnskapsgrunnlag?",
+                  "Hvilken funksjon har grøntdraget for overvann og lokal bruk?",
+                  "Hva er administrasjonens faglige anbefaling, og hva må overlates til politisk valg?"
+                ],
+                "people_refs": [
+                  "elin_plansjef",
+                  "ivar_utbygger",
+                  "hanne_beboer",
+                  "signe_byokolog",
+                  "nora_planjuss",
+                  "maja_utvalgssekretaer"
+                ],
+                "phase": "stedsanalyse_og_kunnskapsgrunnlag",
+                "place_refs": [
+                  "oslo_radhus",
+                  "skolevei_lillebekk",
+                  "grontdrag_lillebekk"
+                ],
+                "role_scope": "by_radgiver_plan",
+                "shared": true,
+                "status": "open",
+                "title": "Lillebekk detaljregulering — skolevei, grøntdrag og fortetting",
+                "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+              }
+            }
+          ]
+        },
+        "from": "Elin, plansjef",
+        "id": "by_radgiver_realism_case_open_001",
+        "interaction_mode": "decision",
+        "learning_focus": [
+          "persistent_work_case",
+          "lokalkunnskap",
+          "stedsanalyse",
+          "sporbarhet"
+        ],
+        "mail_family": "role_world_realism_lillebekk_case",
+        "mail_type": "job",
+        "narrative_arc": "lillebekk_fra_kunnskapsgrunnlag_til_politisk_behandling",
+        "person_id": "elin_plansjef",
+        "phase": "advanced",
+        "place_id": "radhuset_planavdeling",
+        "planned_only": true,
+        "pressure": "utvalgsfrist_vs_ufullstendig_kunnskapsgrunnlag",
+        "priority": 60,
+        "purpose": "Åpne én vedvarende plansak som må overleve gjennom analyse, godkjenning, History Go-læring, rework og politisk oversendelse.",
+        "repeatable": false,
+        "role_scope": "by_radgiver_plan",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Utbygger trenger forutsigbarhet før prosjekteringen går videre.",
+          "Hanne har dokumentert faktisk skolevei, mens Signe peker på at grøntdraget også fungerer som flomvei.",
+          "Elin ber deg eie det faglige grunnlaget, men minner om at du ikke eier det politiske vedtaket."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis saken behandles som en serie enkeltmailer kan ansvar og usikkerhet forsvinne. Hvis den holdes som én sak må hvert senere valg stå i et spor som andre kan etterprøve.",
+        "subject": "Lillebekk blir din sak: skoleveien finnes i hverdagen, men ikke i beslutningsgrunnlaget",
+        "summary": "Elin gir deg ansvar for å gjøre Lillebekk behandlingsklar. Det formelle kartet ser ryddig ut, men befaring og medvirkning viser en faktisk skolevei og et grøntdrag med overvannsfunksjon som ikke er godt nok dokumentert.",
+        "task_domain": "vedvarende_reguleringssak",
+        "task_kind": "job",
+        "thread_key": "by_radgiver_lillebekk_realism_001",
+        "work_context": {
+          "deadline_ref": "utvalg_etter_rework",
+          "institution_id": "oslo_kommune_planavdeling_001",
+          "object_ids": [
+            "by_radgiver_lillebekk_plan_case_001"
+          ]
+        }
+      },
+      "id": "by_radgiver_realism_case_open_001",
+      "mail_type": "job",
+      "role_scope": "by_radgiver_plan",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_lillebekk_grounding_started",
+                  "note": "Faktisk skolevei og grøntdragets funksjon er løftet inn som eksplisitte premisser i samme plansak.",
+                  "op": "transition",
+                  "to_phase": "lokalkunnskap_og_teknisk_grunnlag",
+                  "to_status": "in_progress",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_local_knowledge_visible",
+                  "flag": "lokalkunnskap_som_evidens",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                }
+              ]
+            },
+            "feedback": "Saken blir mer krevende, men det blir synlig hva som faktisk må avklares.",
+            "id": "A",
+            "label": "Registrer skolevei og grøntdrag som åpne faglige premisser før du anbefaler løsning",
+            "reply": "Jeg gjør faktisk bruk, overvannsfunksjon og dokumentasjonsmangler eksplisitte i saken før vi låser anbefalingen."
+          },
+          {
+            "effects": {
+              "score_delta": -1,
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_lillebekk_grounding_deferred",
+                  "note": "Kjent lokal kunnskap er skjøvet til senere høring i stedet for å bli integrert i første faglige grunnlag.",
+                  "op": "transition",
+                  "to_phase": "formelt_grunnlag_med_utsatt_lokalkunnskap",
+                  "to_status": "in_progress",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_rework_risk",
+                  "flag": "sen_rework_risiko",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                }
+              ]
+            },
+            "feedback": "Framdriften ser bedre ut, men du skyver et kjent kunnskapsgap inn i en senere og dyrere fase.",
+            "id": "B",
+            "label": "Hold saken på kartgrunnlaget og noter at lokale forhold kan avklares i høringen",
+            "reply": "Jeg holder første anbefaling på det formelle kartgrunnlaget og lar medvirkningsrunden ta resten."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Utbygger trenger forutsigbarhet før prosjekteringen går videre.",
+            "Hanne har dokumentert faktisk skolevei, mens Signe peker på at grøntdraget også fungerer som flomvei.",
+            "Elin ber deg eie det faglige grunnlaget, men minner om at du ikke eier det politiske vedtaket."
+          ],
+          "subject": "Lillebekk blir din sak: skoleveien finnes i hverdagen, men ikke i beslutningsgrunnlaget",
+          "summary": "Elin gir deg ansvar for å gjøre Lillebekk behandlingsklar. Det formelle kartet ser ryddig ut, men befaring og medvirkning viser en faktisk skolevei og et grøntdrag med overvannsfunksjon som ikke er godt nok dokumentert."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "by_radgiver_lillebekk_case_opened",
+              "op": "create",
+              "work_object": {
+                "confidentiality": "offentlig_saksforberedelse_med_interne_arbeidsnotater",
+                "deadline": "utvalg_etter_rework",
+                "flags": [
+                  "skolevei_ikke_dokumentert",
+                  "politisk_grense_ikke_eksplisitt"
+                ],
+                "institution_id": "oslo_kommune_planavdeling_001",
+                "kind": "reguleringssak",
+                "knowledge_refs": [
+                  "reguleringsplan",
+                  "medvirkning",
+                  "rekkefolgekrav",
+                  "politisk_lesbarhet",
+                  "juridisk_presisjon"
+                ],
+                "open_questions": [
+                  "Hvordan skal faktisk skolevei dokumenteres i planens kunnskapsgrunnlag?",
+                  "Hvilken funksjon har grøntdraget for overvann og lokal bruk?",
+                  "Hva er administrasjonens faglige anbefaling, og hva må overlates til politisk valg?"
+                ],
+                "people_refs": [
+                  "elin_plansjef",
+                  "ivar_utbygger",
+                  "hanne_beboer",
+                  "signe_byokolog",
+                  "nora_planjuss",
+                  "maja_utvalgssekretaer"
+                ],
+                "phase": "stedsanalyse_og_kunnskapsgrunnlag",
+                "place_refs": [
+                  "oslo_radhus",
+                  "skolevei_lillebekk",
+                  "grontdrag_lillebekk"
+                ],
+                "role_scope": "by_radgiver_plan",
+                "shared": true,
+                "status": "open",
+                "title": "Lillebekk detaljregulering — skolevei, grøntdrag og fortetting",
+                "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+              }
+            }
+          ]
+        },
+        "id": "by_radgiver_realism_case_open_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "radhuset_planavdeling",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_radgiver_realism_case_open_001",
+          "source_path": "data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_radgiver_lillebekk_realism_001",
+        "version": 1,
+        "work_context": {
+          "deadline_ref": "utvalg_etter_rework",
+          "institution_id": "oslo_kommune_planavdeling_001",
+          "object_ids": [
+            "by_radgiver_lillebekk_plan_case_001"
+          ]
+        }
+      },
+      "source_hash": "03166770b17d9f81536b2995fc518e64973c8903f1fb13a512b18e05a30dc852",
       "source_path": "data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -15024,6 +17050,257 @@
         "version": 1
       },
       "source_hash": "12381b90da563177ca087831bf6fcf21865850a9349ab41fa29d1197d3ddcaaf",
+      "source_path": "data/Civication/mailFamilies/by/knowledge/by_radgiver_plan_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "skille_lov_fag_politikk_vs_skrive_alt_som_en_konklusjon",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 3,
+                "risk": -3,
+                "trust": 2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_lillebekk_history_go_applied",
+                  "note": "History Go-læringen fra Oslo rådhus er brukt til å skille lovkrav, administrativ anbefaling og politisk valg i beslutningsgrunnlaget.",
+                  "op": "transition",
+                  "to_phase": "myndighetsgrense_og_alternativer_revidert",
+                  "to_status": "in_progress",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_authority_literacy",
+                  "flag": "history_go_myndighetsgrense_anvendt",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                }
+              ]
+            },
+            "feedback": "Du omsetter stedskunnskap til et konkret profesjonelt grep uten å gjøre History Go til ny formell myndighet.",
+            "id": "A",
+            "label": "Bruk rådhusprofilen til å skrive tre eksplisitte kolonner: lovkrav, administrativ anbefaling og politisk valg",
+            "reply": "Jeg bruker History Go-konteksten til å gjøre myndighetsgrensen synlig i Lillebekk: det bundne, det faglig anbefalte og det politisk valgbare får hver sin status.",
+            "tags": [
+              "history_go_place",
+              "authority_literacy",
+              "political_readability"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -1,
+                "risk": 2,
+                "trust": -1
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_lillebekk_authority_blur",
+                  "flag": "politisk_grense_fortsatt_uklar",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                }
+              ]
+            },
+            "feedback": "Du lærer noe om institusjonen, men omsetter det ikke til et bedre profesjonelt beslutningsgrunnlag.",
+            "id": "B",
+            "label": "Bruk rådhusprofilen som generell bakgrunn, men behold ett samlet administrativt forslag",
+            "reply": "Jeg har forstått institusjonen, men holder saken kort ved å presentere én samlet anbefaling uten å skille eksplisitt mellom bundet og politisk valgbart.",
+            "tags": [
+              "history_go_context_only",
+              "authority_blur"
+            ]
+          }
+        ],
+        "competency": "administrasjon_politikk_grense",
+        "consequence_axis": "etterprovbart_beslutningsgrunnlag_vs_skult_myndighetsutovelse",
+        "cooldown": 8,
+        "day_phase": "afternoon",
+        "from": "Elin, plansjef",
+        "id": "by_radgiver_realism_knowledge_radhus_001",
+        "interaction_mode": "task",
+        "learning_focus": [
+          "History Go",
+          "oslo_radhus",
+          "lokaldemokrati",
+          "administrasjon_vs_politikk"
+        ],
+        "mail_family": "role_world_realism_history_go",
+        "mail_type": "knowledge",
+        "narrative_arc": "lillebekk_fra_kunnskapsgrunnlag_til_politisk_behandling",
+        "next_bias": {
+          "tags": [
+            "History Go",
+            "oslo_radhus",
+            "lokaldemokrati"
+          ],
+          "weight": 1
+        },
+        "person_id": "elin_plansjef",
+        "phase": "advanced",
+        "place_id": "radhuset_planavdeling",
+        "planned_only": true,
+        "pressure": "politisk_lesbarhet_vs_skjult_styring",
+        "priority": 60,
+        "purpose": "La konkret History Go-kunnskap om kommunal institusjon og lokaldemokrati endre et senere profesjonelt handlingsrom i samme plansak.",
+        "repeatable": false,
+        "role_scope": "by_radgiver_plan",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/knowledge/by_radgiver_plan_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Oslo rådhus er et canonicalt History Go-sted knyttet til bystyre, byråd, kommunal administrasjon og lokaldemokrati.",
+          "Du skal bruke stedet som institusjonell læringsflate, ikke som fiktiv arbeidsplass i Lillebekk-saken.",
+          "Når du kommer tilbake skal du kunne markere hva som er lovbundet, hva administrasjonen anbefaler, og hva politikerne faktisk skal velge."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis administrativ anbefaling skrives som om den var vedtak, skjules politikk i fagspråk. Hvis alt omtales som politikk, forsvinner lovkrav og faglig ansvar. Begge feil gjør saken vanskeligere å etterprøve.",
+        "subject": "Gå til Oslo rådhus i History Go: administrasjonen forbereder, politikken vedtar",
+        "summary": "Elin ber deg bruke den canonicale History Go-profilen for Oslo rådhus til å kontrollere en avgjørende grense i Lillebekk-saken: bystyret og andre folkevalgte organer eier politiske vedtak, mens administrasjonen skal gjøre premisser, lovkrav, faglige vurderinger og alternativer etterprøvbare.",
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/places/politikk/oslo/places_politikk/oslo_radhus.json",
+            "data/quiz/politikk/oslo_radhus_sets.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "by_radgiver_history_go_oslo_radhus"
+        },
+        "task_domain": "kommunal_myndighet_og_politisk_beslutning",
+        "task_kind": "knowledge",
+        "task_payload": {
+          "completion_mode": "open_place",
+          "description": "Åpne Oslo rådhus og bruk profilen til å skille kommunal administrasjon, folkevalgte vedtak og den offentlige beslutningsarenaen før du går tilbake til Lillebekk-saken.",
+          "place_id": "oslo_radhus",
+          "return_context": {
+            "mail_id": "by_radgiver_realism_knowledge_radhus_001",
+            "place_id": "oslo_radhus",
+            "quiz_ref": "data/quiz/politikk/oslo_radhus_sets.json",
+            "role_scope": "by_radgiver_plan",
+            "source": "civication"
+          },
+          "target_type": "place",
+          "task_kind": "history_go_place",
+          "title": "Les Oslo rådhus som kommunalt makt- og beslutningssted"
+        },
+        "thread_key": "by_radgiver_lillebekk_realism_001",
+        "work_context": {
+          "deadline_ref": "ledergjennomgang",
+          "institution_id": "oslo_kommune_planavdeling_001",
+          "object_ids": [
+            "by_radgiver_lillebekk_plan_case_001"
+          ]
+        }
+      },
+      "id": "by_radgiver_realism_knowledge_radhus_001",
+      "mail_type": "knowledge",
+      "role_scope": "by_radgiver_plan",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_lillebekk_history_go_applied",
+                  "note": "History Go-læringen fra Oslo rådhus er brukt til å skille lovkrav, administrativ anbefaling og politisk valg i beslutningsgrunnlaget.",
+                  "op": "transition",
+                  "to_phase": "myndighetsgrense_og_alternativer_revidert",
+                  "to_status": "in_progress",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                },
+                {
+                  "event_id": "by_radgiver_lillebekk_authority_literacy",
+                  "flag": "history_go_myndighetsgrense_anvendt",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                }
+              ]
+            },
+            "feedback": "Du omsetter stedskunnskap til et konkret profesjonelt grep uten å gjøre History Go til ny formell myndighet.",
+            "id": "A",
+            "label": "Bruk rådhusprofilen til å skrive tre eksplisitte kolonner: lovkrav, administrativ anbefaling og politisk valg",
+            "reply": "Jeg bruker History Go-konteksten til å gjøre myndighetsgrensen synlig i Lillebekk: det bundne, det faglig anbefalte og det politisk valgbare får hver sin status."
+          },
+          {
+            "effects": {
+              "score_delta": -1,
+              "work_object_ops": [
+                {
+                  "event_id": "by_radgiver_lillebekk_authority_blur",
+                  "flag": "politisk_grense_fortsatt_uklar",
+                  "op": "add_flag",
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001"
+                }
+              ]
+            },
+            "feedback": "Du lærer noe om institusjonen, men omsetter det ikke til et bedre profesjonelt beslutningsgrunnlag.",
+            "id": "B",
+            "label": "Bruk rådhusprofilen som generell bakgrunn, men behold ett samlet administrativt forslag",
+            "reply": "Jeg har forstått institusjonen, men holder saken kort ved å presentere én samlet anbefaling uten å skille eksplisitt mellom bundet og politisk valgbart."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Oslo rådhus er et canonicalt History Go-sted knyttet til bystyre, byråd, kommunal administrasjon og lokaldemokrati.",
+            "Du skal bruke stedet som institusjonell læringsflate, ikke som fiktiv arbeidsplass i Lillebekk-saken.",
+            "Når du kommer tilbake skal du kunne markere hva som er lovbundet, hva administrasjonen anbefaler, og hva politikerne faktisk skal velge."
+          ],
+          "subject": "Gå til Oslo rådhus i History Go: administrasjonen forbereder, politikken vedtar",
+          "summary": "Elin ber deg bruke den canonicale History Go-profilen for Oslo rådhus til å kontrollere en avgjørende grense i Lillebekk-saken: bystyret og andre folkevalgte organer eier politiske vedtak, mens administrasjonen skal gjøre premisser, lovkrav, faglige vurderinger og alternativer etterprøvbare."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_radgiver_realism_knowledge_radhus_001",
+        "interaction_mode": "task",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "radhuset_planavdeling",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_radgiver_realism_knowledge_radhus_001",
+          "source_path": "data/Civication/mailFamilies/by/knowledge/by_radgiver_plan_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/places/politikk/oslo/places_politikk/oslo_radhus.json",
+            "data/quiz/politikk/oslo_radhus_sets.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "by_radgiver_history_go_oslo_radhus"
+        },
+        "thread_id": "by_radgiver_lillebekk_realism_001",
+        "version": 1,
+        "work_context": {
+          "deadline_ref": "ledergjennomgang",
+          "institution_id": "oslo_kommune_planavdeling_001",
+          "object_ids": [
+            "by_radgiver_lillebekk_plan_case_001"
+          ]
+        }
+      },
+      "source_hash": "d3f159f8c6d45e2803e73b58ffa7703d48aba194f6003fa851ae6c12e5ead5a7",
       "source_path": "data/Civication/mailFamilies/by/knowledge/by_radgiver_plan_knowledge.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -168095,7 +170372,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "56d24a6e5f0e13a5fb67b08c83a751a4248cee57faa56c8e627d89a26bb9fd27",
+  "registry_hash": "b8474766df869c08db671382ab06ecc31914e50ee345f610bb68bbf5b094d3b7",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -168174,6 +170451,7 @@
       "by_radgiver_week2_fortetting_pusterom",
       "by_radgiver_week2_juridisk_grense",
       "by_radgiver_week2_send_saken_videre",
+      "by_radgiver_realism_case_open_001",
       "by_areal_people_utbygger_001",
       "by_areal_people_nabo_001",
       "by_areal_people_politikk_001",
@@ -168212,6 +170490,8 @@
       "by_areal_event_medvirkning_001",
       "by_areal_event_closure_001",
       "by_areal_event_week2_nabomote_004",
+      "by_radgiver_realism_approval_request_001",
+      "by_radgiver_realism_formal_send_001",
       "by_areal_micro_001",
       "by_areal_micro_002",
       "by_areal_micro_003",
@@ -168236,6 +170516,7 @@
       "by_areal_followup_006",
       "by_areal_followup_007",
       "by_areal_followup_008",
+      "by_radgiver_realism_approval_grant_001",
       "by_areal_knowledge_001",
       "by_areal_knowledge_002",
       "by_areal_knowledge_003",
@@ -168244,6 +170525,7 @@
       "by_areal_knowledge_006",
       "by_areal_day1_evening_knowledge_001",
       "by_areal_knowledge_008",
+      "by_radgiver_realism_knowledge_radhus_001",
       "by_areal_consequence_001",
       "by_areal_consequence_002",
       "by_areal_consequence_003",
@@ -168251,7 +170533,8 @@
       "by_areal_consequence_005",
       "by_areal_consequence_006",
       "by_areal_consequence_007",
-      "by_areal_consequence_008"
+      "by_areal_consequence_008",
+      "by_radgiver_realism_return_to_case_001"
     ],
     "by/by_saksbehandler": [
       "by_saks_job_dok_001",
@@ -169326,7 +171609,7 @@
     "ignored_source_file_count": 1,
     "input_file_count": 346,
     "role_count": 44,
-    "scene_count": 1109,
+    "scene_count": 1115,
     "shadowed_duplicate_count": 0
   },
   "version": 1

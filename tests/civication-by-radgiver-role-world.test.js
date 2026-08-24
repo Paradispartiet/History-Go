@@ -145,7 +145,7 @@ for (const pkg of role.packages) {
   assert.equal(pkg.expected_private_threads, 5);
   assert.equal(pkg.test_file, 'tests/civication-by-radgiver-role-world.test.js');
 }
-assert.equal(plan.sequence.length, 32, 'By-rådgiver plan should preserve 12 authored steps and add two ten-step practice weeks');
+assert.equal(plan.sequence.length, 38, 'By-rådgiver plan should preserve 12 authored steps, two ten-step practice weeks, and six Role World realism steps');
 for (const [pkgIndex, pkg] of role.packages.entries()) {
   const steps = plan.sequence.slice(pkg.step_start - 1, pkg.step_end);
   assert.equal(steps.length, 10);
