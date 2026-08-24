@@ -1,6 +1,6 @@
 # Civication Role World — implementasjonsplan for rikere livsverdener
 
-Status: **aktiv implementering — foundation, authority, History Go-affordance og generalized work rhythm v1 er materialisert**
+Status: **aktiv implementering — foundation, authority, History Go-affordance, generalized work rhythm v1 og tre fullpiloter er materialisert**
 Sist kontrollert: **2026-08-24**
 
 ## 1. Mål
@@ -21,10 +21,11 @@ Gjeldende implementeringsstatus:
 - persistent work-object foundation og Scene Pipeline-effekter er i produksjon;
 - institusjons-/myndighetskontrakten er i produksjon;
 - History Go-affordance som utvider faglige valg uten å gi ny formell myndighet er i produksjon;
-- full pilot finnes for arkiv/dokumentasjon og By-rådgiver;
+- full pilot finnes for arkiv/dokumentasjon, By-rådgiver og Sport-utøver;
 - generalized work rhythm v1 tolker additive metadata i eksisterende SceneDirector/daily-adaptere;
 - situert omdømme v1 lagrer avgrenset leder-/team-/profesjons-/offentlig tillit, porter senere scener og beriker NPC-reaksjoner uten å erstatte global reputation;
-- bred rolle-rollout og Role World Realism Matrix skal fortsatt vente til minst én strukturelt annerledes pilot er bevist.
+- Sport-utøveren beviser en strukturelt annerledes kropp-/prestasjonshverdag med persistent treningssyklus, restitusjon, fysioterapeut-/trener-handoff, situert trener-/fag-/teamtillit, History Go ved Bislett og uttaksmyndighet uten ny motor;
+- bred rolle-rollout og Role World Realism Matrix skal fortsatt vente til undervisning/journalistikk eller en annen fjerde pilot har prøvd publikum-/student-/kilderelasjoner og profesjonskultur.
 
 ## 2. Verifisert eksisterende arkitektur
 
@@ -633,7 +634,7 @@ Beviser:
 - situert reputation;
 - shared case potensial.
 
-### Pilot C — sport-utøver eller annen kropp-/prestasjonshverdag
+### Pilot C — sport-utøver eller annen kropp-/prestasjonshverdag — implementert 2026-08-24
 
 Beviser:
 
@@ -642,6 +643,8 @@ Beviser:
 - team/coach trust;
 - kontrakt/status;
 - at systemet ikke bare passer kontorarbeid.
+
+`sport/sport_utover` materialiserer nå én persistent konkurranseuke fra baseline via endret kroppssignal, venting på fysioterapeut/trener, History Go-kontekst ved Bislett, revidert belastning og restitusjon til en formelt avgrenset konkurransebeslutning. Tidlig rapportering gir høyere fag-/trenertillit og lavere kortsiktig teamtillit; sen rapportering gir motsatt relasjonell gren. Ingen av grenene gir selvlisensiering, uttak eller medisinsk myndighet.
 
 ### Pilot D — undervisning/journalistikk
 
@@ -837,8 +840,8 @@ Programmet er først modent nok for bred rollout når:
 
 ## 24. Neste konkrete implementeringsoppgave
 
-Neste oppgave er en **strukturelt annerledes rollepilot** som beviser at work rhythm, kapasitet, rework og relasjonelle konsekvenser faktisk varierer mellom yrkestyper. Sport-utøver eller en annen kropp-/prestasjonshverdag er første kandidat, men konkret rolle skal velges mot fersk readiness- og dataintegritetsaudit.
+Sport-utøverpiloten har nå bevist at eksisterende work-object-, rhythm-, authority-, History Go- og situated-standing-kontrakter også tåler en kropp-/prestasjonshverdag. Auditen fant ikke et state-gap som forsvarer en egen employment-conditions-motor.
 
-Først etter 3–4 forskjellige piloter opprettes Role World Realism Matrix; bred rollout forblir utsatt til da. Employment conditions bygges bare dersom pilotauditen påviser et faktisk state-gap, ikke som en automatisk ny motor.
+Neste oppgave er **Pilot D — undervisning eller journalistikk**. Den skal velges mot fersk readiness-audit og bevise publikum-/student-/kilderelasjoner, profesjonskultur, kunnskapsbasert handlingsrom og feedback/rework med en annen myndighetskjede enn arkiv, plan og sport.
 
-Dette gir størst realismegevinst per ny mekanikk og danner grunnlaget for institusjon, rhythm, rework, History Go-affordances og cross-role shared world.
+Role World Realism Matrix og bred rollout forblir utsatt til Pilot D er bevist og de tre eksisterende fullpilotene kan sammenlignes uten å låse felt for tidlig. Deretter skal en egen, liten Matrix/gate-PR definere bare de feltene pilotene faktisk har vist at ulike rolletyper trenger.

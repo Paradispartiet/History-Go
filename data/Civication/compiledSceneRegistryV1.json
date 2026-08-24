@@ -337,7 +337,9 @@
     "data/Civication/mailFamilies/sport/story/sport_utover_story.json",
     "data/Civication/mailFamilies/sport/conflict/sport_utover_conflict.json",
     "data/Civication/mailFamilies/sport/event/sport_utover_event.json",
+    "data/Civication/mailFamilies/sport/followup/sport_utover_followup.json",
     "data/Civication/mailFamilies/sport/knowledge/sport_utover_knowledge.json",
+    "data/Civication/mailFamilies/sport/consequence/sport_utover_consequence.json",
     "data/Civication/mailFamilies/subkultur/job/subkultur_arrangementsdrift_job.json",
     "data/Civication/mailFamilies/subkultur/people/subkultur_arrangementsdrift_people.json",
     "data/Civication/mailFamilies/subkultur/conflict/subkultur_arrangementsdrift_conflict.json",
@@ -165137,6 +165139,305 @@
       "category": "sport",
       "compatibility_projection": {
         "category": "sport",
+        "choice_axis": "revider_plan_med_flere_signaltyper_vs_jag_ett_resultat",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "sport_utover_microcycle_rebuilt_basic",
+                  "note": "Én belastningsøkt er fjernet og konkurransespesifikk trening er avgrenset før ny kontroll.",
+                  "op": "transition",
+                  "to_phase": "restituert_med_en_kontrollert_konkurranseblokk",
+                  "to_status": "awaiting_competition",
+                  "work_object_id": "sport_utover_microcycle_001"
+                },
+                {
+                  "event_id": "sport_utover_capacity_reduction_visible",
+                  "flag": "redusert_kapasitet_synlig_i_plan",
+                  "op": "add_flag",
+                  "work_object_id": "sport_utover_microcycle_001"
+                }
+              ]
+            },
+            "feedback": "Planen blir mindre, men mer tolkbar. Konkurransemuligheten bevares uten å skjule redusert kapasitet.",
+            "id": "A",
+            "label": "Kutt én belastningsøkt og behold én kontrollert konkurransespesifikk blokk",
+            "reply": "Jeg prioriterer restitusjon og én tydelig blokk framfor å forsøke å hente inn hele den opprinnelige planen."
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "sport_utover_microcycle_rebuilt_with_hidden_debt",
+                  "note": "Den opprinnelige planen beholdes selv om dagens kroppssignal og restitusjonsrom peker mot redusert kapasitet.",
+                  "op": "transition",
+                  "to_phase": "opprinnelig_plan_med_skjult_belastningsgjeld",
+                  "to_status": "awaiting_competition",
+                  "work_object_id": "sport_utover_microcycle_001"
+                },
+                {
+                  "event_id": "sport_utover_load_debt_hidden_by_result",
+                  "flag": "resultat_skjuler_belastningsgjeld",
+                  "op": "add_flag",
+                  "work_object_id": "sport_utover_microcycle_001"
+                }
+              ]
+            },
+            "feedback": "Et tidligere resultat brukes som svar på en annen type spørsmål og gjør restitusjonsbehovet vanskeligere å se.",
+            "id": "B",
+            "label": "Behold begge øktene og bruk siste gode resultat som tegn på at kapasiteten finnes",
+            "reply": "Jeg forsøker å gjennomføre den opprinnelige planen fordi det siste resultatet viser at toppnivået er der."
+          },
+          {
+            "affordance": {
+              "history_go": {
+                "require_history_go_correct": true,
+                "require_task_completed": true,
+                "task_mail_ids": [
+                  "sport_utover_realism_knowledge_bislett_001"
+                ]
+              }
+            },
+            "effect": 2,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "sport_utover_microcycle_rebuilt_with_measurement_context",
+                  "note": "Konkurranseambisjon, intern belastningstrend og støtteapparatets vurdering er skilt før siste plan låses.",
+                  "op": "transition",
+                  "to_phase": "resultat_belastning_og_vurdering_eksplisitt_adskilt",
+                  "to_status": "awaiting_competition",
+                  "work_object_id": "sport_utover_microcycle_001"
+                },
+                {
+                  "event_id": "sport_utover_measurement_context_visible",
+                  "flag": "bislett_kunnskap_anvendt_uten_myndighetsglidning",
+                  "op": "add_flag",
+                  "work_object_id": "sport_utover_microcycle_001"
+                },
+                {
+                  "event_id": "sport_utover_recovery_capacity_visible",
+                  "flag": "restitusjonskapasitet_synlig_i_mikroplan",
+                  "op": "add_flag",
+                  "work_object_id": "sport_utover_microcycle_001"
+                }
+              ]
+            },
+            "feedback": "History Go gir et mer presist sorteringsgrep, men verken medisinsk klarering eller uttaksmyndighet.",
+            "id": "C",
+            "label": "Bruk Bislett-læringen: skill resultat, belastningstrend og faglig vurdering før planen låses",
+            "reply": "Jeg lar resultatmålet stå som konkurranseambisjon, men bygger belastningsplanen på egen trend, kroppssignal og den avtalte faglige vurderingen."
+          }
+        ],
+        "competency": "restitusjon_som_planarbeid",
+        "consequence_axis": "tolkbar_konkurranseberedskap_vs_skjult_belastningsgjeld",
+        "cooldown": 10,
+        "day_phase": "afternoon",
+        "from": "Maja, trener",
+        "id": "sport_utover_realism_rebuild_microcycle_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_realism_sport_rebuild_cycle",
+        "mail_type": "consequence",
+        "narrative_arc": "fra_baseline_til_forsvarlig_konkurransebeslutning",
+        "people_ref": "trener_maja",
+        "person_id": "trener_maja",
+        "phase": "mastery",
+        "place_id": "sport_treningsfelt",
+        "planned_only": true,
+        "pressure": "konkurranseforberedelse_vs_redusert_kapasitet",
+        "priority": 80,
+        "purpose": "Bevise at restitusjon ikke er passiv venting, men en arbeidsfase som endrer plan, kapasitet og senere handlingsrom.",
+        "repeatable": false,
+        "role_scope": "sport_utover",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/sport/consequence/sport_utover_consequence.json",
+        "scene_catalog_version": 1,
+        "sender": "trener_maja",
+        "situation": [
+          "Godkjenningen gjelder en revidert belastning med ny kontroll.",
+          "Treningsuka har mindre kapasitet enn først planlagt, og én økt må enten kuttes eller endres.",
+          "History Go-oppgaven ved Bislett kan brukes til å skille det offentlige resultatet fra kroppens og støtteapparatets andre datatyper."
+        ],
+        "stage": "stable",
+        "stakes": "En revidert plan kan bevare konkurransemuligheten uten å late som usikkerheten er borte. Å jage ett mål eller resultat kan derimot gjøre restitusjonen til skjult gjeld.",
+        "subject": "Bygg konkurranseuka på nytt etter vurdering og restitusjon",
+        "summary": "Maja ber deg bidra til rework av mikroplanen. Du skal holde prestasjonsmål, belastningstrend, kroppssignal og faglig vurdering adskilt før konkurransedagen.",
+        "tags": [
+          "consequence",
+          "role_world_realism",
+          "rework",
+          "recovery",
+          "sport_utover"
+        ],
+        "task_domain": "rework_av_mikroplan_etter_belastningssignal",
+        "task_kind": "consequence",
+        "thread_key": "sport_utover_konkurranseuke_realism_001",
+        "work_context": {
+          "deadline_day": 3,
+          "deadline_phase": "afternoon",
+          "deadline_ref": "konkurranseuttak",
+          "institution_id": "fjordby_il_prestasjonsgruppe_001",
+          "object_ids": [
+            "sport_utover_microcycle_001"
+          ],
+          "priority": "urgent",
+          "rework_of_object_transition": "sport_utover_microcycle_modified_plan",
+          "rework_of_scene_id": "sport_utover_realism_assessment_grant_001"
+        }
+      },
+      "id": "sport_utover_realism_rebuild_microcycle_001",
+      "mail_type": "consequence",
+      "role_scope": "sport_utover",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "sport_utover_microcycle_rebuilt_basic",
+                  "note": "Én belastningsøkt er fjernet og konkurransespesifikk trening er avgrenset før ny kontroll.",
+                  "op": "transition",
+                  "to_phase": "restituert_med_en_kontrollert_konkurranseblokk",
+                  "to_status": "awaiting_competition",
+                  "work_object_id": "sport_utover_microcycle_001"
+                },
+                {
+                  "event_id": "sport_utover_capacity_reduction_visible",
+                  "flag": "redusert_kapasitet_synlig_i_plan",
+                  "op": "add_flag",
+                  "work_object_id": "sport_utover_microcycle_001"
+                }
+              ]
+            },
+            "feedback": "Planen blir mindre, men mer tolkbar. Konkurransemuligheten bevares uten å skjule redusert kapasitet.",
+            "id": "A",
+            "label": "Kutt én belastningsøkt og behold én kontrollert konkurransespesifikk blokk",
+            "reply": "Jeg prioriterer restitusjon og én tydelig blokk framfor å forsøke å hente inn hele den opprinnelige planen."
+          },
+          {
+            "effects": {
+              "score_delta": -1,
+              "work_object_ops": [
+                {
+                  "event_id": "sport_utover_microcycle_rebuilt_with_hidden_debt",
+                  "note": "Den opprinnelige planen beholdes selv om dagens kroppssignal og restitusjonsrom peker mot redusert kapasitet.",
+                  "op": "transition",
+                  "to_phase": "opprinnelig_plan_med_skjult_belastningsgjeld",
+                  "to_status": "awaiting_competition",
+                  "work_object_id": "sport_utover_microcycle_001"
+                },
+                {
+                  "event_id": "sport_utover_load_debt_hidden_by_result",
+                  "flag": "resultat_skjuler_belastningsgjeld",
+                  "op": "add_flag",
+                  "work_object_id": "sport_utover_microcycle_001"
+                }
+              ]
+            },
+            "feedback": "Et tidligere resultat brukes som svar på en annen type spørsmål og gjør restitusjonsbehovet vanskeligere å se.",
+            "id": "B",
+            "label": "Behold begge øktene og bruk siste gode resultat som tegn på at kapasiteten finnes",
+            "reply": "Jeg forsøker å gjennomføre den opprinnelige planen fordi det siste resultatet viser at toppnivået er der."
+          },
+          {
+            "affordance": {
+              "history_go": {
+                "require_history_go_correct": true,
+                "require_task_completed": true,
+                "task_mail_ids": [
+                  "sport_utover_realism_knowledge_bislett_001"
+                ]
+              }
+            },
+            "effects": {
+              "score_delta": 2,
+              "work_object_ops": [
+                {
+                  "event_id": "sport_utover_microcycle_rebuilt_with_measurement_context",
+                  "note": "Konkurranseambisjon, intern belastningstrend og støtteapparatets vurdering er skilt før siste plan låses.",
+                  "op": "transition",
+                  "to_phase": "resultat_belastning_og_vurdering_eksplisitt_adskilt",
+                  "to_status": "awaiting_competition",
+                  "work_object_id": "sport_utover_microcycle_001"
+                },
+                {
+                  "event_id": "sport_utover_measurement_context_visible",
+                  "flag": "bislett_kunnskap_anvendt_uten_myndighetsglidning",
+                  "op": "add_flag",
+                  "work_object_id": "sport_utover_microcycle_001"
+                },
+                {
+                  "event_id": "sport_utover_recovery_capacity_visible",
+                  "flag": "restitusjonskapasitet_synlig_i_mikroplan",
+                  "op": "add_flag",
+                  "work_object_id": "sport_utover_microcycle_001"
+                }
+              ]
+            },
+            "feedback": "History Go gir et mer presist sorteringsgrep, men verken medisinsk klarering eller uttaksmyndighet.",
+            "id": "C",
+            "label": "Bruk Bislett-læringen: skill resultat, belastningstrend og faglig vurdering før planen låses",
+            "reply": "Jeg lar resultatmålet stå som konkurranseambisjon, men bygger belastningsplanen på egen trend, kroppssignal og den avtalte faglige vurderingen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Godkjenningen gjelder en revidert belastning med ny kontroll.",
+            "Treningsuka har mindre kapasitet enn først planlagt, og én økt må enten kuttes eller endres.",
+            "History Go-oppgaven ved Bislett kan brukes til å skille det offentlige resultatet fra kroppens og støtteapparatets andre datatyper."
+          ],
+          "subject": "Bygg konkurranseuka på nytt etter vurdering og restitusjon",
+          "summary": "Maja ber deg bidra til rework av mikroplanen. Du skal holde prestasjonsmål, belastningstrend, kroppssignal og faglig vurdering adskilt før konkurransedagen."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "sport_utover_realism_rebuild_microcycle_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "sport_treningsfelt",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "sport_utover_realism_rebuild_microcycle_001",
+          "source_path": "data/Civication/mailFamilies/sport/consequence/sport_utover_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "sport_utover_konkurranseuke_realism_001",
+        "version": 1,
+        "work_context": {
+          "deadline_day": 3,
+          "deadline_phase": "afternoon",
+          "deadline_ref": "konkurranseuttak",
+          "institution_id": "fjordby_il_prestasjonsgruppe_001",
+          "object_ids": [
+            "sport_utover_microcycle_001"
+          ],
+          "priority": "urgent",
+          "rework_of_object_transition": "sport_utover_microcycle_modified_plan",
+          "rework_of_scene_id": "sport_utover_realism_assessment_grant_001"
+        }
+      },
+      "source_hash": "51f2aea667509e1ae6ea811101d5248c4639029762fb1a06aad41c977e0eedcc",
+      "source_path": "data/Civication/mailFamilies/sport/consequence/sport_utover_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "sport",
+      "compatibility_projection": {
+        "category": "sport",
         "choices": [
           {
             "effects": {
@@ -165371,6 +165672,1559 @@
       },
       "source_hash": "a35a60d45bff24cc890f5db59e3754f1677effe03acbe0571a058c5b985dab66",
       "source_path": "data/Civication/mailFamilies/sport/event/sport_utover_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "sport",
+      "compatibility_projection": {
+        "authority_context": {
+          "approval_points": [
+            {
+              "action_id": "return_to_full_competition_load",
+              "approval_id": "sport_utover_full_load_clearance",
+              "approval_object_id": "sport_utover_readiness_approval_001",
+              "approver_actor_id": "trener_maja"
+            }
+          ],
+          "authority_rules": [
+            {
+              "action_id": "report_body_signal",
+              "authority": "direct",
+              "requires_resources": []
+            },
+            {
+              "action_id": "return_to_full_competition_load",
+              "approval_id": "sport_utover_full_load_clearance",
+              "authority": "approval_required",
+              "requires_resources": [
+                "faglig_belastningsvurdering"
+              ]
+            },
+            {
+              "action_id": "self_clear_for_selection",
+              "authority": "forbidden",
+              "requires_resources": []
+            }
+          ],
+          "escalation_paths": [],
+          "external_counterparts": [],
+          "goals_pressures": [
+            "konkurranseforberedelse",
+            "forsvarlig_belastningsstyring",
+            "lagets_tilgjengelighet",
+            "kontraktsmessig_arbeidsplikt"
+          ],
+          "institution_id": "fjordby_il_prestasjonsgruppe_001",
+          "peer_functions": [
+            "fysio_elias",
+            "lagkontakt_samir",
+            "lagkamerat_nora"
+          ],
+          "reporting_line": [
+            "trener_maja"
+          ],
+          "resources": [
+            {
+              "baseline_state": "limited",
+              "resource_id": "faglig_belastningsvurdering"
+            }
+          ],
+          "role_scope": "sport_utover",
+          "unit_id": "prestasjonstroppen"
+        },
+        "category": "sport",
+        "choice_axis": "tidlig_handoff_vs_fullfor_forst_rapportere_senere",
+        "choices": [
+          {
+            "authority_action": {
+              "action_id": "report_body_signal",
+              "intent": "execute"
+            },
+            "effect": 1,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:fysio_elias",
+                  "delta": 3,
+                  "event_id": "sport_utover_standing_physio_early_signal",
+                  "reason": "Belastningsendringen rapporteres før den skjules av mer arbeid.",
+                  "source_actor_id": "fysio_elias"
+                },
+                {
+                  "audience_id": "manager:trener_maja",
+                  "delta": 2,
+                  "event_id": "sport_utover_standing_coach_plannable_signal",
+                  "reason": "Treneren får et reelt grunnlag for å endre økt og uttaksforberedelse.",
+                  "source_actor_id": "trener_maja"
+                },
+                {
+                  "audience_id": "team:prestasjonstroppen",
+                  "delta": -1,
+                  "event_id": "sport_utover_standing_team_lost_partner",
+                  "reason": "Laget mister en planlagt partner i den siste konkurranseblokken.",
+                  "source_actor_id": "lagkamerat_nora"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "sport_utover_readiness_assessment_requested",
+                  "op": "create",
+                  "work_object": {
+                    "flags": [
+                      "tidlig_signal"
+                    ],
+                    "institution_id": "fjordby_il_prestasjonsgruppe_001",
+                    "kind": "approval",
+                    "knowledge_refs": [
+                      "data/fag/sport/measurement_registry_sport_v1.json"
+                    ],
+                    "open_questions": [
+                      "Hvilken belastning er avtalt fram til ny vurdering?"
+                    ],
+                    "people_refs": [
+                      "trener_maja",
+                      "fysio_elias"
+                    ],
+                    "phase": "fysio_og_trener_vurdering",
+                    "place_refs": [
+                      "sport_fysiorom"
+                    ],
+                    "role_scope": "sport_utover",
+                    "shared": false,
+                    "status": "pending",
+                    "title": "Trenerens beslutning om full konkurransebelastning",
+                    "work_object_id": "sport_utover_readiness_approval_001"
+                  }
+                },
+                {
+                  "event_id": "sport_utover_microcycle_waits_for_assessment",
+                  "note": "Den høyintensive blokken er stanset mens kroppssignalet vurderes og resten av uka planlegges på nytt.",
+                  "op": "transition",
+                  "to_phase": "venter_pa_fysio_og_trener",
+                  "to_status": "awaiting_assessment",
+                  "work_object_id": "sport_utover_microcycle_001"
+                },
+                {
+                  "event_id": "sport_utover_early_signal_trace",
+                  "flag": "belastningssignal_rapportert_tidlig",
+                  "op": "add_flag",
+                  "work_object_id": "sport_utover_microcycle_001"
+                }
+              ]
+            },
+            "feedback": "Elias og Maja får et tidlig, tolkbart signal. Nora mister en partner i blokken og opplever kostnaden her og nå.",
+            "id": "A",
+            "label": "Stans blokken, rapporter endringen og send vurderingen til Elias og Maja",
+            "reply": "Jeg beskriver hva som har endret seg siden baseline og lar støtteapparatet vurdere plan og belastning før jeg lover mer."
+          },
+          {
+            "authority_action": {
+              "action_id": "report_body_signal",
+              "intent": "execute"
+            },
+            "effect": 0,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "team:prestasjonstroppen",
+                  "delta": 2,
+                  "event_id": "sport_utover_standing_team_short_term_availability",
+                  "reason": "Utøveren holder den planlagte lagblokken i gang når en lagkamerat trenger partner.",
+                  "source_actor_id": "lagkamerat_nora"
+                },
+                {
+                  "audience_id": "manager:trener_maja",
+                  "delta": -3,
+                  "event_id": "sport_utover_standing_coach_late_signal",
+                  "reason": "Treneren får belastningsinformasjonen etter at planen allerede er gjennomført.",
+                  "source_actor_id": "trener_maja"
+                },
+                {
+                  "audience_id": "professional:fysio_elias",
+                  "delta": -2,
+                  "event_id": "sport_utover_standing_physio_late_signal",
+                  "reason": "Fysioterapeuten mister muligheten til å vurdere endringen før mer belastning legges på.",
+                  "source_actor_id": "fysio_elias"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "sport_utover_late_readiness_assessment_requested",
+                  "op": "create",
+                  "work_object": {
+                    "flags": [
+                      "sent_signal"
+                    ],
+                    "institution_id": "fjordby_il_prestasjonsgruppe_001",
+                    "kind": "approval",
+                    "knowledge_refs": [
+                      "data/fag/sport/measurement_registry_sport_v1.json"
+                    ],
+                    "open_questions": [
+                      "Hvordan påvirket den fullførte blokken signalet og resten av uka?"
+                    ],
+                    "people_refs": [
+                      "trener_maja",
+                      "fysio_elias"
+                    ],
+                    "phase": "sen_fysio_og_trener_vurdering",
+                    "place_refs": [
+                      "sport_fysiorom"
+                    ],
+                    "role_scope": "sport_utover",
+                    "shared": false,
+                    "status": "pending",
+                    "title": "Trenerens beslutning om full konkurransebelastning",
+                    "work_object_id": "sport_utover_readiness_approval_001"
+                  }
+                },
+                {
+                  "event_id": "sport_utover_microcycle_waits_after_extra_load",
+                  "note": "Blokken ble fullført før kroppssignalet ble levert; resten av uka må vurderes med den ekstra belastningen som premiss.",
+                  "op": "transition",
+                  "to_phase": "venter_pa_vurdering_etter_ekstra_belastning",
+                  "to_status": "awaiting_assessment",
+                  "work_object_id": "sport_utover_microcycle_001"
+                },
+                {
+                  "event_id": "sport_utover_late_signal_trace",
+                  "flag": "belastningssignal_rapportert_sent",
+                  "op": "add_flag",
+                  "work_object_id": "sport_utover_microcycle_001"
+                }
+              ]
+            },
+            "feedback": "Nora får partneren hun trenger, men Maja og Elias mottar signalet etter at ny belastning allerede er lagt på.",
+            "id": "B",
+            "label": "Fullfør blokken med Nora og rapporter stramheten etterpå",
+            "reply": "Jeg holder lagets plan i gang nå og forteller Elias og Maja om endringen når blokken er ferdig."
+          }
+        ],
+        "competency": "rapportering_under_statuspress",
+        "consequence_axis": "faglig_tillit_vs_kortsiktig_lagtilgjengelighet",
+        "cooldown": 10,
+        "day_phase": "afternoon",
+        "from": "Maja, trener",
+        "id": "sport_utover_realism_body_signal_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_realism_sport_load_decisions",
+        "mail_type": "event",
+        "narrative_arc": "fra_baseline_til_forsvarlig_konkurransebeslutning",
+        "people_ref": "trener_maja",
+        "person_id": "trener_maja",
+        "phase": "advanced",
+        "place_id": "sport_treningsfelt",
+        "planned_only": true,
+        "pressure": "lagets_kortsiktige_behov_vs_forsvarlig_vurderingsrom",
+        "priority": 80,
+        "purpose": "Bevise at ærlig belastningsrapportering og kortsiktig tilgjengelighet kan gi forskjellige tillitsutfall uten at noen relasjon gir medisinsk klarering eller uttaksmyndighet.",
+        "repeatable": false,
+        "role_scope": "sport_utover",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/sport/event/sport_utover_event.json",
+        "scene_catalog_version": 1,
+        "sender": "trener_maja",
+        "situation": [
+          "Stramheten har økt etter første del av økta, men er ikke en diagnose.",
+          "Nora trenger en partner for å gjennomføre den planlagte konkurranseblokken.",
+          "Elias kan vurdere signalet, og Maja må eie endringen i treningsplan og senere uttak."
+        ],
+        "social_standing_context": {
+          "reaction_audience_id": "manager:trener_maja"
+        },
+        "stage": "stable_warning",
+        "stakes": "Å melde tidlig kan gjøre laget mindre komplett akkurat nå, men bevare vurderingsrommet. Å holde blokken i gang kan hjelpe en lagkamerat kortsiktig, men svekke trenerens og fysioterapeutens grunnlag for forsvarlig planlegging.",
+        "subject": "Stramheten øker før siste høyintensive blokk",
+        "summary": "Kroppssignalet er tydeligere enn ved baseline. Nora trenger en partner i siste blokk, mens Maja og Elias trenger informasjon før de kan vurdere resten av uka.",
+        "tags": [
+          "event",
+          "role_world_realism",
+          "body_signal",
+          "situated_reputation",
+          "sport_utover"
+        ],
+        "task_domain": "belastningssignal_og_faglig_handoff",
+        "task_kind": "event",
+        "thread_key": "sport_utover_konkurranseuke_realism_001",
+        "work_context": {
+          "deadline_day": 1,
+          "deadline_phase": "afternoon",
+          "deadline_ref": "siste_hoyintensive_blokk",
+          "handoff_to_actor_id": "fysio_elias",
+          "institution_id": "fjordby_il_prestasjonsgruppe_001",
+          "interrupts": true,
+          "object_ids": [
+            "sport_utover_microcycle_001"
+          ],
+          "priority": "urgent"
+        }
+      },
+      "id": "sport_utover_realism_body_signal_001",
+      "mail_type": "event",
+      "role_scope": "sport_utover",
+      "scene": {
+        "arc_stage": "advanced",
+        "authority_context": {
+          "approval_points": [
+            {
+              "action_id": "return_to_full_competition_load",
+              "approval_id": "sport_utover_full_load_clearance",
+              "approval_object_id": "sport_utover_readiness_approval_001",
+              "approver_actor_id": "trener_maja"
+            }
+          ],
+          "authority_rules": [
+            {
+              "action_id": "report_body_signal",
+              "authority": "direct",
+              "requires_resources": []
+            },
+            {
+              "action_id": "return_to_full_competition_load",
+              "approval_id": "sport_utover_full_load_clearance",
+              "authority": "approval_required",
+              "requires_resources": [
+                "faglig_belastningsvurdering"
+              ]
+            },
+            {
+              "action_id": "self_clear_for_selection",
+              "authority": "forbidden",
+              "requires_resources": []
+            }
+          ],
+          "escalation_paths": [],
+          "external_counterparts": [],
+          "goals_pressures": [
+            "konkurranseforberedelse",
+            "forsvarlig_belastningsstyring",
+            "lagets_tilgjengelighet",
+            "kontraktsmessig_arbeidsplikt"
+          ],
+          "institution_id": "fjordby_il_prestasjonsgruppe_001",
+          "peer_functions": [
+            "fysio_elias",
+            "lagkontakt_samir",
+            "lagkamerat_nora"
+          ],
+          "reporting_line": [
+            "trener_maja"
+          ],
+          "resources": [
+            {
+              "baseline_state": "limited",
+              "resource_id": "faglig_belastningsvurdering"
+            }
+          ],
+          "role_scope": "sport_utover",
+          "unit_id": "prestasjonstroppen"
+        },
+        "choices": [
+          {
+            "authority_action": {
+              "action_id": "report_body_signal",
+              "intent": "execute"
+            },
+            "effects": {
+              "score_delta": 1,
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:fysio_elias",
+                  "delta": 3,
+                  "event_id": "sport_utover_standing_physio_early_signal",
+                  "reason": "Belastningsendringen rapporteres før den skjules av mer arbeid.",
+                  "source_actor_id": "fysio_elias"
+                },
+                {
+                  "audience_id": "manager:trener_maja",
+                  "delta": 2,
+                  "event_id": "sport_utover_standing_coach_plannable_signal",
+                  "reason": "Treneren får et reelt grunnlag for å endre økt og uttaksforberedelse.",
+                  "source_actor_id": "trener_maja"
+                },
+                {
+                  "audience_id": "team:prestasjonstroppen",
+                  "delta": -1,
+                  "event_id": "sport_utover_standing_team_lost_partner",
+                  "reason": "Laget mister en planlagt partner i den siste konkurranseblokken.",
+                  "source_actor_id": "lagkamerat_nora"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "sport_utover_readiness_assessment_requested",
+                  "op": "create",
+                  "work_object": {
+                    "flags": [
+                      "tidlig_signal"
+                    ],
+                    "institution_id": "fjordby_il_prestasjonsgruppe_001",
+                    "kind": "approval",
+                    "knowledge_refs": [
+                      "data/fag/sport/measurement_registry_sport_v1.json"
+                    ],
+                    "open_questions": [
+                      "Hvilken belastning er avtalt fram til ny vurdering?"
+                    ],
+                    "people_refs": [
+                      "trener_maja",
+                      "fysio_elias"
+                    ],
+                    "phase": "fysio_og_trener_vurdering",
+                    "place_refs": [
+                      "sport_fysiorom"
+                    ],
+                    "role_scope": "sport_utover",
+                    "shared": false,
+                    "status": "pending",
+                    "title": "Trenerens beslutning om full konkurransebelastning",
+                    "work_object_id": "sport_utover_readiness_approval_001"
+                  }
+                },
+                {
+                  "event_id": "sport_utover_microcycle_waits_for_assessment",
+                  "note": "Den høyintensive blokken er stanset mens kroppssignalet vurderes og resten av uka planlegges på nytt.",
+                  "op": "transition",
+                  "to_phase": "venter_pa_fysio_og_trener",
+                  "to_status": "awaiting_assessment",
+                  "work_object_id": "sport_utover_microcycle_001"
+                },
+                {
+                  "event_id": "sport_utover_early_signal_trace",
+                  "flag": "belastningssignal_rapportert_tidlig",
+                  "op": "add_flag",
+                  "work_object_id": "sport_utover_microcycle_001"
+                }
+              ]
+            },
+            "feedback": "Elias og Maja får et tidlig, tolkbart signal. Nora mister en partner i blokken og opplever kostnaden her og nå.",
+            "id": "A",
+            "label": "Stans blokken, rapporter endringen og send vurderingen til Elias og Maja",
+            "reply": "Jeg beskriver hva som har endret seg siden baseline og lar støtteapparatet vurdere plan og belastning før jeg lover mer."
+          },
+          {
+            "authority_action": {
+              "action_id": "report_body_signal",
+              "intent": "execute"
+            },
+            "effects": {
+              "score_delta": 0,
+              "social_standing_ops": [
+                {
+                  "audience_id": "team:prestasjonstroppen",
+                  "delta": 2,
+                  "event_id": "sport_utover_standing_team_short_term_availability",
+                  "reason": "Utøveren holder den planlagte lagblokken i gang når en lagkamerat trenger partner.",
+                  "source_actor_id": "lagkamerat_nora"
+                },
+                {
+                  "audience_id": "manager:trener_maja",
+                  "delta": -3,
+                  "event_id": "sport_utover_standing_coach_late_signal",
+                  "reason": "Treneren får belastningsinformasjonen etter at planen allerede er gjennomført.",
+                  "source_actor_id": "trener_maja"
+                },
+                {
+                  "audience_id": "professional:fysio_elias",
+                  "delta": -2,
+                  "event_id": "sport_utover_standing_physio_late_signal",
+                  "reason": "Fysioterapeuten mister muligheten til å vurdere endringen før mer belastning legges på.",
+                  "source_actor_id": "fysio_elias"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "sport_utover_late_readiness_assessment_requested",
+                  "op": "create",
+                  "work_object": {
+                    "flags": [
+                      "sent_signal"
+                    ],
+                    "institution_id": "fjordby_il_prestasjonsgruppe_001",
+                    "kind": "approval",
+                    "knowledge_refs": [
+                      "data/fag/sport/measurement_registry_sport_v1.json"
+                    ],
+                    "open_questions": [
+                      "Hvordan påvirket den fullførte blokken signalet og resten av uka?"
+                    ],
+                    "people_refs": [
+                      "trener_maja",
+                      "fysio_elias"
+                    ],
+                    "phase": "sen_fysio_og_trener_vurdering",
+                    "place_refs": [
+                      "sport_fysiorom"
+                    ],
+                    "role_scope": "sport_utover",
+                    "shared": false,
+                    "status": "pending",
+                    "title": "Trenerens beslutning om full konkurransebelastning",
+                    "work_object_id": "sport_utover_readiness_approval_001"
+                  }
+                },
+                {
+                  "event_id": "sport_utover_microcycle_waits_after_extra_load",
+                  "note": "Blokken ble fullført før kroppssignalet ble levert; resten av uka må vurderes med den ekstra belastningen som premiss.",
+                  "op": "transition",
+                  "to_phase": "venter_pa_vurdering_etter_ekstra_belastning",
+                  "to_status": "awaiting_assessment",
+                  "work_object_id": "sport_utover_microcycle_001"
+                },
+                {
+                  "event_id": "sport_utover_late_signal_trace",
+                  "flag": "belastningssignal_rapportert_sent",
+                  "op": "add_flag",
+                  "work_object_id": "sport_utover_microcycle_001"
+                }
+              ]
+            },
+            "feedback": "Nora får partneren hun trenger, men Maja og Elias mottar signalet etter at ny belastning allerede er lagt på.",
+            "id": "B",
+            "label": "Fullfør blokken med Nora og rapporter stramheten etterpå",
+            "reply": "Jeg holder lagets plan i gang nå og forteller Elias og Maja om endringen når blokken er ferdig."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Stramheten har økt etter første del av økta, men er ikke en diagnose.",
+            "Nora trenger en partner for å gjennomføre den planlagte konkurranseblokken.",
+            "Elias kan vurdere signalet, og Maja må eie endringen i treningsplan og senere uttak."
+          ],
+          "subject": "Stramheten øker før siste høyintensive blokk",
+          "summary": "Kroppssignalet er tydeligere enn ved baseline. Nora trenger en partner i siste blokk, mens Maja og Elias trenger informasjon før de kan vurdere resten av uka."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "sport_utover_realism_body_signal_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "sport_treningsfelt",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "sport_utover_realism_body_signal_001",
+          "source_path": "data/Civication/mailFamilies/sport/event/sport_utover_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "social_standing_context": {
+          "reaction_audience_id": "manager:trener_maja"
+        },
+        "thread_id": "sport_utover_konkurranseuke_realism_001",
+        "version": 1,
+        "work_context": {
+          "deadline_day": 1,
+          "deadline_phase": "afternoon",
+          "deadline_ref": "siste_hoyintensive_blokk",
+          "handoff_to_actor_id": "fysio_elias",
+          "institution_id": "fjordby_il_prestasjonsgruppe_001",
+          "interrupts": true,
+          "object_ids": [
+            "sport_utover_microcycle_001"
+          ],
+          "priority": "urgent"
+        }
+      },
+      "source_hash": "aed14b09fc380ba367b2bc8630d9f6b87bb6272d649dc0e439b32198b226a7f1",
+      "source_path": "data/Civication/mailFamilies/sport/event/sport_utover_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "sport",
+      "compatibility_projection": {
+        "authority_context": {
+          "approval_points": [
+            {
+              "action_id": "return_to_full_competition_load",
+              "approval_id": "sport_utover_full_load_clearance",
+              "approval_object_id": "sport_utover_readiness_approval_001",
+              "approver_actor_id": "trener_maja"
+            }
+          ],
+          "authority_rules": [
+            {
+              "action_id": "return_to_full_competition_load",
+              "approval_id": "sport_utover_full_load_clearance",
+              "authority": "approval_required",
+              "requires_resources": [
+                "faglig_belastningsvurdering"
+              ]
+            },
+            {
+              "action_id": "wait_for_selection_or_clearance",
+              "authority": "direct",
+              "requires_resources": []
+            },
+            {
+              "action_id": "self_clear_for_selection",
+              "authority": "forbidden",
+              "requires_resources": []
+            }
+          ],
+          "escalation_paths": [],
+          "external_counterparts": [],
+          "goals_pressures": [
+            "konkurranseforberedelse",
+            "forsvarlig_belastningsstyring",
+            "lagets_tilgjengelighet"
+          ],
+          "institution_id": "fjordby_il_prestasjonsgruppe_001",
+          "peer_functions": [
+            "fysio_elias",
+            "lagkontakt_samir",
+            "lagkamerat_nora"
+          ],
+          "reporting_line": [
+            "trener_maja"
+          ],
+          "resources": [
+            {
+              "baseline_state": "limited",
+              "resource_id": "faglig_belastningsvurdering"
+            }
+          ],
+          "role_scope": "sport_utover",
+          "unit_id": "prestasjonstroppen"
+        },
+        "category": "sport",
+        "choice_axis": "gjennomfor_med_godkjenning_vs_vent_pa_avklaring",
+        "choices": [
+          {
+            "authority_action": {
+              "action_id": "return_to_full_competition_load",
+              "intent": "execute"
+            },
+            "effect": 1,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "sport_utover_microcycle_completed_with_clearance",
+                  "op": "close",
+                  "outcome": "konkurranseuke_fullfort_med_sporbart_belastnings_og_beslutningsspor",
+                  "work_object_id": "sport_utover_microcycle_001"
+                }
+              ]
+            },
+            "feedback": "Godkjenningen gjør handlingen legitim, men garanterer verken resultat, ny kontrakt eller framtidig uttak.",
+            "id": "A",
+            "label": "Gjennomfør bare den konkurransebelastningen Maja faktisk har godkjent",
+            "reply": "Jeg følger den registrerte beslutningen og holder gjennomføringen innenfor den avtalte belastningen, uten å gjøre uttaket til bevis på varig status."
+          },
+          {
+            "authority_action": {
+              "action_id": "wait_for_selection_or_clearance",
+              "intent": "execute"
+            },
+            "effect": 1,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "sport_utover_competition_waits_for_clarity",
+                  "note": "Utøveren avventer fordi godkjenning eller kroppssignal ikke er tilstrekkelig avklart.",
+                  "op": "transition",
+                  "to_phase": "venter_pa_klar_kropps_og_uttaksbeslutning",
+                  "to_status": "awaiting_decision",
+                  "work_object_id": "sport_utover_microcycle_001"
+                }
+              ]
+            },
+            "feedback": "Å vente er en aktiv profesjonell handling når premissene for full belastning ikke er på plass.",
+            "id": "B",
+            "label": "Vent dersom godkjenningen eller kroppssignalet fortsatt er uavklart",
+            "reply": "Jeg lar konkurranseviljen vente til beslutningssporet og kroppssignalet er tydelig nok til at Maja kan eie en faktisk avgjørelse."
+          }
+        ],
+        "competency": "forsvarlig_gjennomforing_innen_beslutningskjede",
+        "consequence_axis": "forsvarlig_tilgjengelighet_vs_selvklarering",
+        "cooldown": 12,
+        "day_phase": "afternoon",
+        "from": "Maja, trener",
+        "id": "sport_utover_realism_competition_decision_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_realism_sport_load_decisions",
+        "mail_type": "event",
+        "narrative_arc": "fra_baseline_til_forsvarlig_konkurransebeslutning",
+        "people_ref": "trener_maja",
+        "person_id": "trener_maja",
+        "phase": "mastery",
+        "place_id": "sport_konkurransearena",
+        "planned_only": true,
+        "pressure": "status_og_konkurransevilje_vs_avtalt_belastning",
+        "priority": 90,
+        "purpose": "Avslutte treningsforløpet uten å la kunnskap, omdømme, kontrakt eller status gi utøveren myndighet til å klarere eller ta ut seg selv.",
+        "repeatable": false,
+        "role_scope": "sport_utover",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/sport/event/sport_utover_event.json",
+        "scene_catalog_version": 1,
+        "sender": "trener_maja",
+        "situation": [
+          "Belastningsplanen er revidert etter vurdering og restitusjon.",
+          "Maja eier uttaket og godkjenningen av full konkurransebelastning.",
+          "Elias' vurdering er faglig premiss, ikke et løfte om prestasjon eller resultat."
+        ],
+        "stage": "stable",
+        "stakes": "En god uke kan gi bedre informasjon og tillit, men ikke selvtildelt startplass. Å følge godkjenningen gjør ansvaret synlig; å vente ved uavklart signal beskytter både kropp og beslutningskjede.",
+        "subject": "Konkurransedagen: avtalt belastning er klar, men uttaket er fortsatt trenerens beslutning",
+        "summary": "Maja har en registrert belastningsvurdering og tar den sportslige beslutningen. Du kan gjennomføre den avtalte konkurransebelastningen dersom godkjenningen faktisk er gitt, eller vente dersom kroppen eller beslutningssporet fortsatt er uavklart.",
+        "tags": [
+          "event",
+          "role_world_realism",
+          "authority_boundary",
+          "competition",
+          "sport_utover"
+        ],
+        "task_domain": "konkurransebeslutning_og_myndighetsgrense",
+        "task_kind": "event",
+        "thread_key": "sport_utover_konkurranseuke_realism_001",
+        "work_context": {
+          "deadline_day": 4,
+          "deadline_phase": "afternoon",
+          "deadline_ref": "konkurranseuttak",
+          "institution_id": "fjordby_il_prestasjonsgruppe_001",
+          "object_ids": [
+            "sport_utover_microcycle_001"
+          ],
+          "priority": "urgent"
+        }
+      },
+      "id": "sport_utover_realism_competition_decision_001",
+      "mail_type": "event",
+      "role_scope": "sport_utover",
+      "scene": {
+        "arc_stage": "mastery",
+        "authority_context": {
+          "approval_points": [
+            {
+              "action_id": "return_to_full_competition_load",
+              "approval_id": "sport_utover_full_load_clearance",
+              "approval_object_id": "sport_utover_readiness_approval_001",
+              "approver_actor_id": "trener_maja"
+            }
+          ],
+          "authority_rules": [
+            {
+              "action_id": "return_to_full_competition_load",
+              "approval_id": "sport_utover_full_load_clearance",
+              "authority": "approval_required",
+              "requires_resources": [
+                "faglig_belastningsvurdering"
+              ]
+            },
+            {
+              "action_id": "wait_for_selection_or_clearance",
+              "authority": "direct",
+              "requires_resources": []
+            },
+            {
+              "action_id": "self_clear_for_selection",
+              "authority": "forbidden",
+              "requires_resources": []
+            }
+          ],
+          "escalation_paths": [],
+          "external_counterparts": [],
+          "goals_pressures": [
+            "konkurranseforberedelse",
+            "forsvarlig_belastningsstyring",
+            "lagets_tilgjengelighet"
+          ],
+          "institution_id": "fjordby_il_prestasjonsgruppe_001",
+          "peer_functions": [
+            "fysio_elias",
+            "lagkontakt_samir",
+            "lagkamerat_nora"
+          ],
+          "reporting_line": [
+            "trener_maja"
+          ],
+          "resources": [
+            {
+              "baseline_state": "limited",
+              "resource_id": "faglig_belastningsvurdering"
+            }
+          ],
+          "role_scope": "sport_utover",
+          "unit_id": "prestasjonstroppen"
+        },
+        "choices": [
+          {
+            "authority_action": {
+              "action_id": "return_to_full_competition_load",
+              "intent": "execute"
+            },
+            "effects": {
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "sport_utover_microcycle_completed_with_clearance",
+                  "op": "close",
+                  "outcome": "konkurranseuke_fullfort_med_sporbart_belastnings_og_beslutningsspor",
+                  "work_object_id": "sport_utover_microcycle_001"
+                }
+              ]
+            },
+            "feedback": "Godkjenningen gjør handlingen legitim, men garanterer verken resultat, ny kontrakt eller framtidig uttak.",
+            "id": "A",
+            "label": "Gjennomfør bare den konkurransebelastningen Maja faktisk har godkjent",
+            "reply": "Jeg følger den registrerte beslutningen og holder gjennomføringen innenfor den avtalte belastningen, uten å gjøre uttaket til bevis på varig status."
+          },
+          {
+            "authority_action": {
+              "action_id": "wait_for_selection_or_clearance",
+              "intent": "execute"
+            },
+            "effects": {
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "sport_utover_competition_waits_for_clarity",
+                  "note": "Utøveren avventer fordi godkjenning eller kroppssignal ikke er tilstrekkelig avklart.",
+                  "op": "transition",
+                  "to_phase": "venter_pa_klar_kropps_og_uttaksbeslutning",
+                  "to_status": "awaiting_decision",
+                  "work_object_id": "sport_utover_microcycle_001"
+                }
+              ]
+            },
+            "feedback": "Å vente er en aktiv profesjonell handling når premissene for full belastning ikke er på plass.",
+            "id": "B",
+            "label": "Vent dersom godkjenningen eller kroppssignalet fortsatt er uavklart",
+            "reply": "Jeg lar konkurranseviljen vente til beslutningssporet og kroppssignalet er tydelig nok til at Maja kan eie en faktisk avgjørelse."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Belastningsplanen er revidert etter vurdering og restitusjon.",
+            "Maja eier uttaket og godkjenningen av full konkurransebelastning.",
+            "Elias' vurdering er faglig premiss, ikke et løfte om prestasjon eller resultat."
+          ],
+          "subject": "Konkurransedagen: avtalt belastning er klar, men uttaket er fortsatt trenerens beslutning",
+          "summary": "Maja har en registrert belastningsvurdering og tar den sportslige beslutningen. Du kan gjennomføre den avtalte konkurransebelastningen dersom godkjenningen faktisk er gitt, eller vente dersom kroppen eller beslutningssporet fortsatt er uavklart."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "sport_utover_realism_competition_decision_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "sport_konkurransearena",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "sport_utover_realism_competition_decision_001",
+          "source_path": "data/Civication/mailFamilies/sport/event/sport_utover_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "sport_utover_konkurranseuke_realism_001",
+        "version": 1,
+        "work_context": {
+          "deadline_day": 4,
+          "deadline_phase": "afternoon",
+          "deadline_ref": "konkurranseuttak",
+          "institution_id": "fjordby_il_prestasjonsgruppe_001",
+          "object_ids": [
+            "sport_utover_microcycle_001"
+          ],
+          "priority": "urgent"
+        }
+      },
+      "source_hash": "b7aad8f614585e7945c0fb6f996470019da1d6cb894a1e7b93c646b927faa333",
+      "source_path": "data/Civication/mailFamilies/sport/event/sport_utover_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "sport",
+      "compatibility_projection": {
+        "category": "sport",
+        "choice_axis": "aksepter_revidert_plan_vs_forhandle_avgrenset_testblokk",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "sport_utover_readiness_approval_granted",
+                  "note": "Maja har godkjent revidert belastning etter Elias' vurdering, med ny kontroll før konkurranse.",
+                  "op": "transition",
+                  "to_phase": "revidert_belastning_godkjent",
+                  "to_status": "granted",
+                  "work_object_id": "sport_utover_readiness_approval_001"
+                },
+                {
+                  "event_id": "sport_utover_microcycle_modified_plan",
+                  "note": "Treningssyklusen fortsetter med redusert volum, avgrenset intensitet og ny kontroll.",
+                  "op": "transition",
+                  "to_phase": "restitusjon_og_revidert_belastning",
+                  "to_status": "in_progress",
+                  "work_object_id": "sport_utover_microcycle_001"
+                },
+                {
+                  "event_id": "sport_utover_return_conditions_visible",
+                  "flag": "retur_med_synlige_vilkar",
+                  "op": "add_flag",
+                  "work_object_id": "sport_utover_microcycle_001"
+                }
+              ]
+            },
+            "feedback": "Returen blir en prosess med sporbare vilkår, ikke et binært frisk-eller-skadet-stempel.",
+            "id": "A",
+            "label": "Registrer godkjenningen og følg den reviderte planen med ny kontroll",
+            "reply": "Jeg følger den avtalte belastningen og beholder ny kontroll som faktisk vilkår før konkurransedagen."
+          },
+          {
+            "effect": 1,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "sport_utover_readiness_approval_granted_with_test",
+                  "note": "Maja har godkjent én avgrenset testblokk med stoppkriterium og ny kontroll.",
+                  "op": "transition",
+                  "to_phase": "kontrollert_testblokk_godkjent",
+                  "to_status": "granted",
+                  "work_object_id": "sport_utover_readiness_approval_001"
+                },
+                {
+                  "event_id": "sport_utover_microcycle_modified_plan",
+                  "note": "Treningssyklusen fortsetter med én avgrenset testblokk før ny vurdering.",
+                  "op": "transition",
+                  "to_phase": "kontrollert_test_og_restitusjon",
+                  "to_status": "in_progress",
+                  "work_object_id": "sport_utover_microcycle_001"
+                },
+                {
+                  "event_id": "sport_utover_test_stop_rule_visible",
+                  "flag": "testblokk_med_stoppkriterium",
+                  "op": "add_flag",
+                  "work_object_id": "sport_utover_microcycle_001"
+                }
+              ]
+            },
+            "feedback": "Du forhandler om belastning innen beslutningskjeden og gjør testen avgrenset, men gir ikke deg selv full klarering.",
+            "id": "B",
+            "label": "Be om én kontrollert testblokk og la resultatet avgjøre om planen skal stå",
+            "reply": "Jeg foreslår én tydelig avgrenset blokk med stoppkriterium og ny vurdering, ikke en åpen fulløkt."
+          }
+        ],
+        "competency": "arbeide_innen_vilkar_og_ny_kontroll",
+        "consequence_axis": "sporbar_restitusjon_vs_ny_skjult_belastningsgjeld",
+        "cooldown": 10,
+        "day_phase": "morning",
+        "from": "Elias og Maja",
+        "id": "sport_utover_realism_assessment_grant_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_realism_sport_assessment_return",
+        "mail_type": "followup",
+        "narrative_arc": "fra_baseline_til_forsvarlig_konkurransebeslutning",
+        "people_ids": [
+          "fysio_elias",
+          "trener_maja"
+        ],
+        "people_ref": "fysio_elias",
+        "person_id": "fysio_elias",
+        "phase": "mastery",
+        "place_id": "sport_fysiorom",
+        "planned_only": true,
+        "pressure": "konkurransehast_vs_tydelige_vilkar",
+        "priority": 90,
+        "purpose": "Flytte både godkjenningsobjektet og treningssyklusen videre etter venting, med synlige vilkår og uten selvlisensiering.",
+        "repeatable": false,
+        "role_scope": "sport_utover",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/sport/followup/sport_utover_followup.json",
+        "scene_catalog_version": 1,
+        "sender": "fysio_elias",
+        "situation": [
+          "Elias beskriver belastningssignalet som vurdert, men ikke som garanti for risikofri deltakelse.",
+          "Maja godkjenner en revidert treningsplan og beholder den sportslige uttaksbeslutningen.",
+          "Neste kontroll skal skje etter den avtalte belastningen, ikke etter at statuspresset har flyttet grensen igjen."
+        ],
+        "stage": "stable",
+        "stakes": "En godkjenning med vilkår er ikke det samme som at usikkerheten er borte. Den gjør hvem som besluttet hva, på hvilket grunnlag og med hvilken kontroll etterprøvbart.",
+        "subject": "Vurderingen er tilbake: full belastning kan prøves innen en revidert plan",
+        "summary": "Elias har vurdert kroppssignalet, og Maja eier treningsbeslutningen. De åpner en avgrenset retur til belastning med ny kontroll, men lover verken uttak eller resultat.",
+        "tags": [
+          "followup",
+          "role_world_realism",
+          "assessment",
+          "recovery",
+          "sport_utover"
+        ],
+        "task_domain": "vurderingsretur_og_revidert_belastning",
+        "task_kind": "followup",
+        "thread_key": "sport_utover_konkurranseuke_realism_001",
+        "work_context": {
+          "deadline_day": 2,
+          "deadline_phase": "morning",
+          "deadline_ref": "revidert_kontrollokt",
+          "institution_id": "fjordby_il_prestasjonsgruppe_001",
+          "interrupts": true,
+          "object_ids": [
+            "sport_utover_microcycle_001"
+          ],
+          "priority": "urgent",
+          "waiting_for_actor_id": "fysio_elias"
+        }
+      },
+      "id": "sport_utover_realism_assessment_grant_001",
+      "mail_type": "followup",
+      "role_scope": "sport_utover",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "sport_utover_readiness_approval_granted",
+                  "note": "Maja har godkjent revidert belastning etter Elias' vurdering, med ny kontroll før konkurranse.",
+                  "op": "transition",
+                  "to_phase": "revidert_belastning_godkjent",
+                  "to_status": "granted",
+                  "work_object_id": "sport_utover_readiness_approval_001"
+                },
+                {
+                  "event_id": "sport_utover_microcycle_modified_plan",
+                  "note": "Treningssyklusen fortsetter med redusert volum, avgrenset intensitet og ny kontroll.",
+                  "op": "transition",
+                  "to_phase": "restitusjon_og_revidert_belastning",
+                  "to_status": "in_progress",
+                  "work_object_id": "sport_utover_microcycle_001"
+                },
+                {
+                  "event_id": "sport_utover_return_conditions_visible",
+                  "flag": "retur_med_synlige_vilkar",
+                  "op": "add_flag",
+                  "work_object_id": "sport_utover_microcycle_001"
+                }
+              ]
+            },
+            "feedback": "Returen blir en prosess med sporbare vilkår, ikke et binært frisk-eller-skadet-stempel.",
+            "id": "A",
+            "label": "Registrer godkjenningen og følg den reviderte planen med ny kontroll",
+            "reply": "Jeg følger den avtalte belastningen og beholder ny kontroll som faktisk vilkår før konkurransedagen."
+          },
+          {
+            "effects": {
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "sport_utover_readiness_approval_granted_with_test",
+                  "note": "Maja har godkjent én avgrenset testblokk med stoppkriterium og ny kontroll.",
+                  "op": "transition",
+                  "to_phase": "kontrollert_testblokk_godkjent",
+                  "to_status": "granted",
+                  "work_object_id": "sport_utover_readiness_approval_001"
+                },
+                {
+                  "event_id": "sport_utover_microcycle_modified_plan",
+                  "note": "Treningssyklusen fortsetter med én avgrenset testblokk før ny vurdering.",
+                  "op": "transition",
+                  "to_phase": "kontrollert_test_og_restitusjon",
+                  "to_status": "in_progress",
+                  "work_object_id": "sport_utover_microcycle_001"
+                },
+                {
+                  "event_id": "sport_utover_test_stop_rule_visible",
+                  "flag": "testblokk_med_stoppkriterium",
+                  "op": "add_flag",
+                  "work_object_id": "sport_utover_microcycle_001"
+                }
+              ]
+            },
+            "feedback": "Du forhandler om belastning innen beslutningskjeden og gjør testen avgrenset, men gir ikke deg selv full klarering.",
+            "id": "B",
+            "label": "Be om én kontrollert testblokk og la resultatet avgjøre om planen skal stå",
+            "reply": "Jeg foreslår én tydelig avgrenset blokk med stoppkriterium og ny vurdering, ikke en åpen fulløkt."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Elias beskriver belastningssignalet som vurdert, men ikke som garanti for risikofri deltakelse.",
+            "Maja godkjenner en revidert treningsplan og beholder den sportslige uttaksbeslutningen.",
+            "Neste kontroll skal skje etter den avtalte belastningen, ikke etter at statuspresset har flyttet grensen igjen."
+          ],
+          "subject": "Vurderingen er tilbake: full belastning kan prøves innen en revidert plan",
+          "summary": "Elias har vurdert kroppssignalet, og Maja eier treningsbeslutningen. De åpner en avgrenset retur til belastning med ny kontroll, men lover verken uttak eller resultat."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "sport_utover_realism_assessment_grant_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "people_ids": [
+          "fysio_elias",
+          "trener_maja"
+        ],
+        "place_id": "sport_fysiorom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "sport_utover_realism_assessment_grant_001",
+          "source_path": "data/Civication/mailFamilies/sport/followup/sport_utover_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "sport_utover_konkurranseuke_realism_001",
+        "version": 1,
+        "work_context": {
+          "deadline_day": 2,
+          "deadline_phase": "morning",
+          "deadline_ref": "revidert_kontrollokt",
+          "institution_id": "fjordby_il_prestasjonsgruppe_001",
+          "interrupts": true,
+          "object_ids": [
+            "sport_utover_microcycle_001"
+          ],
+          "priority": "urgent",
+          "waiting_for_actor_id": "fysio_elias"
+        }
+      },
+      "source_hash": "b404fa7f402f0c30a73c60b4ed68afd163881cf3e3dd12bc05500d5d6abde0a2",
+      "source_path": "data/Civication/mailFamilies/sport/followup/sport_utover_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "sport",
+      "compatibility_projection": {
+        "category": "sport",
+        "choice_axis": "bruk_data_til_bedre_rapportering_vs_bruk_data_til_selvklarering",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "sport_utover_professional_trust_early_data",
+                  "flag": "faglig_tillit_gir_tidlig_trenddeling",
+                  "op": "add_flag",
+                  "work_object_id": "sport_utover_microcycle_001"
+                }
+              ]
+            },
+            "feedback": "Faglig tillit gir tidligere innsikt og bedre samarbeid, ikke ny myndighet.",
+            "id": "A",
+            "label": "Bruk trenden til å forbedre neste rapportering, ikke til å klarere deg selv",
+            "reply": "Jeg noterer hvilke endringer som var tolkbare og lar Maja og Elias beholde sine beslutningsroller."
+          },
+          {
+            "effect": 1,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "sport_utover_shared_signal_format_requested",
+                  "flag": "felles_format_for_signal_lagbehov_og_stopp",
+                  "op": "add_flag",
+                  "work_object_id": "sport_utover_microcycle_001"
+                }
+              ]
+            },
+            "feedback": "Du bruker relasjonen til å reparere arbeidsformen, ikke til å gjøre støtteapparatet til skjold mot laget.",
+            "id": "B",
+            "label": "Be Elias og Nora lage et felles format for signal, lagbehov og stoppkriterium",
+            "reply": "Jeg bruker den faglige tilliten til å reparere lagets forståelse av hvorfor blokken ble endret."
+          }
+        ],
+        "competency": "samarbeid_uten_myndighetsglidning",
+        "consequence_axis": "robust_faglig_tillit_vs_myndighetsglidning",
+        "cooldown": 10,
+        "day_phase": "lunch",
+        "from": "Elias, fysioterapeut",
+        "id": "sport_utover_realism_professional_trust_followup_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_realism_sport_situated_response",
+        "mail_type": "followup",
+        "narrative_arc": "fra_baseline_til_forsvarlig_konkurransebeslutning",
+        "people_ref": "fysio_elias",
+        "person_id": "fysio_elias",
+        "phase": "mastery",
+        "place_id": "sport_fysiorom",
+        "planned_only": true,
+        "pressure": "tidlig_innsikt_vs_selvtolkning_som_klarering",
+        "priority": 70,
+        "purpose": "Bevise at høy tillit hos trener og fysioterapeut gir tidligere informasjonsdeling, mens lagets kortsiktige frustrasjon fortsatt er reell.",
+        "repeatable": false,
+        "role_scope": "sport_utover",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/sport/followup/sport_utover_followup.json",
+        "scene_catalog_version": 1,
+        "sender": "fysio_elias",
+        "situation": [
+          "Elias kan sammenligne baseline, endringen under økta og responsen etter restitusjon.",
+          "Han deler trenden tidligere fordi rapporteringen var presis og tidsnok.",
+          "Nora mistet fortsatt en treningspartner i den avgjørende blokken."
+        ],
+        "social_standing_context": {
+          "reaction_audience_id": "professional:fysio_elias",
+          "requirements": [
+            {
+              "audience_id": "professional:fysio_elias",
+              "min": 2
+            },
+            {
+              "audience_id": "manager:trener_maja",
+              "min": 1
+            },
+            {
+              "audience_id": "team:prestasjonstroppen",
+              "max": -1
+            }
+          ]
+        },
+        "stage": "stable",
+        "stakes": "Tidlig tilgang til vurderingsgrunnlaget kan forbedre egenrapportering og samarbeid, men kan ikke brukes til å overstyre Maja eller Elias.",
+        "subject": "Elias deler trenden tidligere fordi signalet kom før belastningen skjulte den",
+        "summary": "Den tidlige rapporteringen gjør at Elias kan vise hvordan signalet endret seg gjennom restitusjonen. Han inviterer deg inn i tolkningen, men beholder den faglige grensen og gir ingen ny klareringsmyndighet.",
+        "tags": [
+          "followup",
+          "situated_reputation",
+          "professional_trust",
+          "sport_utover"
+        ],
+        "task_domain": "faglig_informasjonsdeling_etter_tidlig_signal",
+        "task_kind": "followup",
+        "thread_key": "sport_utover_konkurranseuke_realism_001",
+        "work_context": {
+          "institution_id": "fjordby_il_prestasjonsgruppe_001",
+          "object_ids": [
+            "sport_utover_microcycle_001"
+          ],
+          "priority": "high"
+        }
+      },
+      "id": "sport_utover_realism_professional_trust_followup_001",
+      "mail_type": "followup",
+      "role_scope": "sport_utover",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "sport_utover_professional_trust_early_data",
+                  "flag": "faglig_tillit_gir_tidlig_trenddeling",
+                  "op": "add_flag",
+                  "work_object_id": "sport_utover_microcycle_001"
+                }
+              ]
+            },
+            "feedback": "Faglig tillit gir tidligere innsikt og bedre samarbeid, ikke ny myndighet.",
+            "id": "A",
+            "label": "Bruk trenden til å forbedre neste rapportering, ikke til å klarere deg selv",
+            "reply": "Jeg noterer hvilke endringer som var tolkbare og lar Maja og Elias beholde sine beslutningsroller."
+          },
+          {
+            "effects": {
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "sport_utover_shared_signal_format_requested",
+                  "flag": "felles_format_for_signal_lagbehov_og_stopp",
+                  "op": "add_flag",
+                  "work_object_id": "sport_utover_microcycle_001"
+                }
+              ]
+            },
+            "feedback": "Du bruker relasjonen til å reparere arbeidsformen, ikke til å gjøre støtteapparatet til skjold mot laget.",
+            "id": "B",
+            "label": "Be Elias og Nora lage et felles format for signal, lagbehov og stoppkriterium",
+            "reply": "Jeg bruker den faglige tilliten til å reparere lagets forståelse av hvorfor blokken ble endret."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Elias kan sammenligne baseline, endringen under økta og responsen etter restitusjon.",
+            "Han deler trenden tidligere fordi rapporteringen var presis og tidsnok.",
+            "Nora mistet fortsatt en treningspartner i den avgjørende blokken."
+          ],
+          "subject": "Elias deler trenden tidligere fordi signalet kom før belastningen skjulte den",
+          "summary": "Den tidlige rapporteringen gjør at Elias kan vise hvordan signalet endret seg gjennom restitusjonen. Han inviterer deg inn i tolkningen, men beholder den faglige grensen og gir ingen ny klareringsmyndighet."
+        },
+        "day_phase": "lunch",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "sport_utover_realism_professional_trust_followup_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "sport_fysiorom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "sport_utover_realism_professional_trust_followup_001",
+          "source_path": "data/Civication/mailFamilies/sport/followup/sport_utover_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "social_standing_context": {
+          "reaction_audience_id": "professional:fysio_elias",
+          "requirements": [
+            {
+              "audience_id": "professional:fysio_elias",
+              "min": 2
+            },
+            {
+              "audience_id": "manager:trener_maja",
+              "min": 1
+            },
+            {
+              "audience_id": "team:prestasjonstroppen",
+              "max": -1
+            }
+          ]
+        },
+        "thread_id": "sport_utover_konkurranseuke_realism_001",
+        "version": 1,
+        "work_context": {
+          "institution_id": "fjordby_il_prestasjonsgruppe_001",
+          "object_ids": [
+            "sport_utover_microcycle_001"
+          ],
+          "priority": "high"
+        }
+      },
+      "source_hash": "5e5c42f1fa43895912e8d787738b498150c81112ee37a1bebad6a987572d204e",
+      "source_path": "data/Civication/mailFamilies/sport/followup/sport_utover_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "sport",
+      "compatibility_projection": {
+        "category": "sport",
+        "choice_axis": "avgrens_lagbidrag_vs_gjor_tillit_til_ny_belastning",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "sport_utover_team_trust_bounded_support",
+                  "flag": "teamtillit_med_revidert_belastningsgrense",
+                  "op": "add_flag",
+                  "work_object_id": "sport_utover_microcycle_001"
+                }
+              ]
+            },
+            "feedback": "Du bevarer lagrelasjonen uten å gjøre sosial tillit til medisinsk eller sportslig klarering.",
+            "id": "A",
+            "label": "Tilby støtte innen den reviderte planen, men ikke en ny høyintensiv blokk",
+            "reply": "Jeg stiller opp for Nora i det Maja har planlagt, men bruker ikke lagets tillit til å flytte belastningsgrensen."
+          },
+          {
+            "effect": 1,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "sport_utover_team_need_escalated_to_plan",
+                  "flag": "lagbehov_tatt_inn_i_trenerplan",
+                  "op": "add_flag",
+                  "work_object_id": "sport_utover_microcycle_001"
+                }
+              ]
+            },
+            "feedback": "Du bruker teamtilliten til bedre planlegging, ikke til en skjult avtale utenfor trenerlinjen.",
+            "id": "B",
+            "label": "Be Nora bli med når du forklarer Maja hvorfor lagbehovet bør inn i planen",
+            "reply": "Jeg gjør lagets behov synlig i riktig beslutningsrom i stedet for å love en uautorisert ekstrablokk."
+          }
+        ],
+        "competency": "laglojalitet_med_belastningsgrense",
+        "consequence_axis": "robust_laglojalitet_vs_skjult_belastningsgjeld",
+        "cooldown": 10,
+        "day_phase": "lunch",
+        "from": "Nora, lagkamerat",
+        "id": "sport_utover_realism_team_trust_followup_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_realism_sport_situated_response",
+        "mail_type": "followup",
+        "narrative_arc": "fra_baseline_til_forsvarlig_konkurransebeslutning",
+        "people_ref": "lagkamerat_nora",
+        "person_id": "lagkamerat_nora",
+        "phase": "mastery",
+        "place_id": "sport_garderobe",
+        "planned_only": true,
+        "pressure": "teamtillit_vs_revidert_plan",
+        "priority": 70,
+        "purpose": "Bevise at kortsiktig lagtilgjengelighet kan gi sterkere teamtillit og samtidig svakere tillit i trener- og faglinjen.",
+        "repeatable": false,
+        "role_scope": "sport_utover",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/sport/followup/sport_utover_followup.json",
+        "scene_catalog_version": 1,
+        "sender": "lagkamerat_nora",
+        "situation": [
+          "Nora opplevde at du reddet den siste konkurranseblokken.",
+          "Hun spør om du også kan være partner i neste høyintensive økt.",
+          "Maja og Elias har samtidig redusert belastningen fordi signalet kom etter at blokken var ferdig."
+        ],
+        "social_standing_context": {
+          "reaction_audience_id": "team:prestasjonstroppen",
+          "requirements": [
+            {
+              "audience_id": "team:prestasjonstroppen",
+              "min": 2
+            },
+            {
+              "audience_id": "manager:trener_maja",
+              "max": -2
+            },
+            {
+              "audience_id": "professional:fysio_elias",
+              "max": -1
+            }
+          ]
+        },
+        "stage": "stable_warning",
+        "stakes": "Å være den laget kan stole på er reelt sosialt arbeid. Det blir risikabelt når tilliten gjør ny belastning til en moralsk plikt som omgår plan og vurdering.",
+        "subject": "Nora stoler på at du stiller opp — Maja stoler mindre på når du sier fra",
+        "summary": "Nora følger opp fordi du holdt lagblokken i gang. Hun spør om du også kan dekke neste økt, samtidig som Maja har strammet inn planen fordi kroppssignalet kom sent.",
+        "tags": [
+          "followup",
+          "situated_reputation",
+          "team_trust",
+          "sport_utover"
+        ],
+        "task_domain": "lagtilgjengelighet_etter_sent_signal",
+        "task_kind": "followup",
+        "thread_key": "sport_utover_konkurranseuke_realism_001",
+        "work_context": {
+          "institution_id": "fjordby_il_prestasjonsgruppe_001",
+          "object_ids": [
+            "sport_utover_microcycle_001"
+          ],
+          "priority": "high"
+        }
+      },
+      "id": "sport_utover_realism_team_trust_followup_001",
+      "mail_type": "followup",
+      "role_scope": "sport_utover",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "sport_utover_team_trust_bounded_support",
+                  "flag": "teamtillit_med_revidert_belastningsgrense",
+                  "op": "add_flag",
+                  "work_object_id": "sport_utover_microcycle_001"
+                }
+              ]
+            },
+            "feedback": "Du bevarer lagrelasjonen uten å gjøre sosial tillit til medisinsk eller sportslig klarering.",
+            "id": "A",
+            "label": "Tilby støtte innen den reviderte planen, men ikke en ny høyintensiv blokk",
+            "reply": "Jeg stiller opp for Nora i det Maja har planlagt, men bruker ikke lagets tillit til å flytte belastningsgrensen."
+          },
+          {
+            "effects": {
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "sport_utover_team_need_escalated_to_plan",
+                  "flag": "lagbehov_tatt_inn_i_trenerplan",
+                  "op": "add_flag",
+                  "work_object_id": "sport_utover_microcycle_001"
+                }
+              ]
+            },
+            "feedback": "Du bruker teamtilliten til bedre planlegging, ikke til en skjult avtale utenfor trenerlinjen.",
+            "id": "B",
+            "label": "Be Nora bli med når du forklarer Maja hvorfor lagbehovet bør inn i planen",
+            "reply": "Jeg gjør lagets behov synlig i riktig beslutningsrom i stedet for å love en uautorisert ekstrablokk."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Nora opplevde at du reddet den siste konkurranseblokken.",
+            "Hun spør om du også kan være partner i neste høyintensive økt.",
+            "Maja og Elias har samtidig redusert belastningen fordi signalet kom etter at blokken var ferdig."
+          ],
+          "subject": "Nora stoler på at du stiller opp — Maja stoler mindre på når du sier fra",
+          "summary": "Nora følger opp fordi du holdt lagblokken i gang. Hun spør om du også kan dekke neste økt, samtidig som Maja har strammet inn planen fordi kroppssignalet kom sent."
+        },
+        "day_phase": "lunch",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "sport_utover_realism_team_trust_followup_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "sport_garderobe",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "sport_utover_realism_team_trust_followup_001",
+          "source_path": "data/Civication/mailFamilies/sport/followup/sport_utover_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "social_standing_context": {
+          "reaction_audience_id": "team:prestasjonstroppen",
+          "requirements": [
+            {
+              "audience_id": "team:prestasjonstroppen",
+              "min": 2
+            },
+            {
+              "audience_id": "manager:trener_maja",
+              "max": -2
+            },
+            {
+              "audience_id": "professional:fysio_elias",
+              "max": -1
+            }
+          ]
+        },
+        "thread_id": "sport_utover_konkurranseuke_realism_001",
+        "version": 1,
+        "work_context": {
+          "institution_id": "fjordby_il_prestasjonsgruppe_001",
+          "object_ids": [
+            "sport_utover_microcycle_001"
+          ],
+          "priority": "high"
+        }
+      },
+      "source_hash": "cfc46c5e03de31fce6193edd4fab8abffd1311b521439bb660a206aea083255d",
+      "source_path": "data/Civication/mailFamilies/sport/followup/sport_utover_followup.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -166341,6 +168195,274 @@
         "version": 1
       },
       "source_hash": "d5b889a975318ae13294ac4b6c7ebedd513bedc9745a8c26fab34cd5b028be30",
+      "source_path": "data/Civication/mailFamilies/sport/job/sport_utover_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "sport",
+      "compatibility_projection": {
+        "category": "sport",
+        "choice_axis": "konkret_baseline_vs_tilgjengelighet_uten_kroppskontekst",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "sport_utover_baseline_reported",
+                  "flag": "baseline_med_kroppskontekst",
+                  "op": "add_flag",
+                  "work_object_id": "sport_utover_microcycle_001"
+                }
+              ]
+            },
+            "feedback": "Uka får et sammenligningsgrunnlag uten at ett tall blir gjort til medisinsk fasit.",
+            "id": "A",
+            "label": "Registrer søvn, opplevd belastning og dagens kroppssignal før økta",
+            "reply": "Jeg gir Maja og Elias en konkret baseline og skiller rapportering fra både diagnose og krav om uttak."
+          },
+          {
+            "effect": 0,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "sport_utover_baseline_deferred",
+                  "flag": "baseline_uten_kroppskontekst",
+                  "op": "add_flag",
+                  "work_object_id": "sport_utover_microcycle_001"
+                }
+              ]
+            },
+            "feedback": "Tilgjengelighet er registrert, men støtteapparatet mangler en baseline som kan skille ny endring fra gammel variasjon.",
+            "id": "B",
+            "label": "Meld bare at du er tilgjengelig og la tallene komme etter økta",
+            "reply": "Jeg bekrefter at jeg kan trene, men venter med å beskrive søvn, tretthet og den lille stramheten."
+          }
+        ],
+        "competency": "presis_belastningsrapportering",
+        "consequence_axis": "tolkbar_belastningsutvikling_vs_skjult_usikkerhet",
+        "cooldown": 10,
+        "day_phase": "morning",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "sport_utover_microcycle_opened",
+              "op": "create",
+              "work_object": {
+                "confidentiality": "utover_og_relevant_stotteapparat",
+                "deadline": "konkurranseuttak_dag_4_ettermiddag",
+                "flags": [
+                  "konkurranseuke_apnet"
+                ],
+                "institution_id": "fjordby_il_prestasjonsgruppe_001",
+                "kind": "training_cycle",
+                "knowledge_refs": [
+                  "data/fag/sport/measurement_registry_sport_v1.json",
+                  "data/quiz/sport/bislett_stadion_sets.json"
+                ],
+                "open_questions": [
+                  "Hvordan endrer kroppssignalene seg når planlagt belastning og faktisk restitusjon ses samlet?",
+                  "Hvilken del av konkurransebeslutningen eier utøveren, treneren og støtteapparatet hver for seg?"
+                ],
+                "people_refs": [
+                  "trener_maja",
+                  "fysio_elias",
+                  "lagkontakt_samir",
+                  "lagkamerat_nora"
+                ],
+                "phase": "baseline_og_belastningsplan",
+                "place_refs": [
+                  "sport_treningsfelt",
+                  "sport_fysiorom",
+                  "sport_konkurransearena",
+                  "bislett_stadion"
+                ],
+                "role_scope": "sport_utover",
+                "shared": false,
+                "status": "in_progress",
+                "title": "Konkurranseuke: belastning, restitusjon og uttak",
+                "work_object_id": "sport_utover_microcycle_001"
+              }
+            }
+          ]
+        },
+        "from": "Maja, trener",
+        "id": "sport_utover_realism_microcycle_open_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_realism_sport_microcycle",
+        "mail_type": "job",
+        "narrative_arc": "fra_baseline_til_forsvarlig_konkurransebeslutning",
+        "people_ref": "trener_maja",
+        "person_id": "trener_maja",
+        "phase": "advanced",
+        "place_id": "sport_treningsfelt",
+        "planned_only": true,
+        "pressure": "statusbehov_vs_etterprovbar_baseline",
+        "priority": 70,
+        "purpose": "Bevise at en utøverrolle kan eie et persistent treningsforløp som beveger seg gjennom belastning, vurdering, rework, restitusjon og konkurranse.",
+        "repeatable": false,
+        "role_scope": "sport_utover",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/sport/job/sport_utover_job.json",
+        "scene_catalog_version": 1,
+        "sender": "trener_maja",
+        "situation": [
+          "Konkurranseuka har to belastningsøkter, én lett dag og en mulig konkurransedag.",
+          "Maja eier treningsplan og uttak, Elias eier sin faglige vurdering, mens du eier ærlig rapportering og gjennomføring innen avtalte rammer.",
+          "Kontrakten gjør dette til arbeid, men gir deg verken rett til startplass eller myndighet til å klarere deg selv."
+        ],
+        "stage": "stable",
+        "stakes": "En vag start gjør senere smerte, tretthet og prestasjon vanskelig å tolke. En etterprøvbar baseline gir ikke garanti for uttak, men gjør støtteapparatets vurderinger og dine egne valg mer presise.",
+        "subject": "Konkurranseuka begynner med en baseline, ikke med et løfte om uttak",
+        "summary": "Maja åpner ukas belastningsplan. Du skal dokumentere dagens kroppssignaler, planlagt intensitet og restitusjonsrom før statusbehovet eller lagpresset får definere hva kroppen tåler.",
+        "tags": [
+          "job",
+          "role_world_realism",
+          "training_cycle",
+          "recovery",
+          "sport_utover"
+        ],
+        "task_domain": "konkurranseuke_og_belastningsstyring",
+        "task_kind": "job",
+        "thread_key": "sport_utover_konkurranseuke_realism_001",
+        "work_context": {
+          "deadline_day": 4,
+          "deadline_phase": "afternoon",
+          "deadline_ref": "konkurranseuttak",
+          "institution_id": "fjordby_il_prestasjonsgruppe_001",
+          "object_ids": [
+            "sport_utover_microcycle_001"
+          ],
+          "priority": "high"
+        }
+      },
+      "id": "sport_utover_realism_microcycle_open_001",
+      "mail_type": "job",
+      "role_scope": "sport_utover",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "sport_utover_baseline_reported",
+                  "flag": "baseline_med_kroppskontekst",
+                  "op": "add_flag",
+                  "work_object_id": "sport_utover_microcycle_001"
+                }
+              ]
+            },
+            "feedback": "Uka får et sammenligningsgrunnlag uten at ett tall blir gjort til medisinsk fasit.",
+            "id": "A",
+            "label": "Registrer søvn, opplevd belastning og dagens kroppssignal før økta",
+            "reply": "Jeg gir Maja og Elias en konkret baseline og skiller rapportering fra både diagnose og krav om uttak."
+          },
+          {
+            "effects": {
+              "score_delta": 0,
+              "work_object_ops": [
+                {
+                  "event_id": "sport_utover_baseline_deferred",
+                  "flag": "baseline_uten_kroppskontekst",
+                  "op": "add_flag",
+                  "work_object_id": "sport_utover_microcycle_001"
+                }
+              ]
+            },
+            "feedback": "Tilgjengelighet er registrert, men støtteapparatet mangler en baseline som kan skille ny endring fra gammel variasjon.",
+            "id": "B",
+            "label": "Meld bare at du er tilgjengelig og la tallene komme etter økta",
+            "reply": "Jeg bekrefter at jeg kan trene, men venter med å beskrive søvn, tretthet og den lille stramheten."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Konkurranseuka har to belastningsøkter, én lett dag og en mulig konkurransedag.",
+            "Maja eier treningsplan og uttak, Elias eier sin faglige vurdering, mens du eier ærlig rapportering og gjennomføring innen avtalte rammer.",
+            "Kontrakten gjør dette til arbeid, men gir deg verken rett til startplass eller myndighet til å klarere deg selv."
+          ],
+          "subject": "Konkurranseuka begynner med en baseline, ikke med et løfte om uttak",
+          "summary": "Maja åpner ukas belastningsplan. Du skal dokumentere dagens kroppssignaler, planlagt intensitet og restitusjonsrom før statusbehovet eller lagpresset får definere hva kroppen tåler."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "sport_utover_microcycle_opened",
+              "op": "create",
+              "work_object": {
+                "confidentiality": "utover_og_relevant_stotteapparat",
+                "deadline": "konkurranseuttak_dag_4_ettermiddag",
+                "flags": [
+                  "konkurranseuke_apnet"
+                ],
+                "institution_id": "fjordby_il_prestasjonsgruppe_001",
+                "kind": "training_cycle",
+                "knowledge_refs": [
+                  "data/fag/sport/measurement_registry_sport_v1.json",
+                  "data/quiz/sport/bislett_stadion_sets.json"
+                ],
+                "open_questions": [
+                  "Hvordan endrer kroppssignalene seg når planlagt belastning og faktisk restitusjon ses samlet?",
+                  "Hvilken del av konkurransebeslutningen eier utøveren, treneren og støtteapparatet hver for seg?"
+                ],
+                "people_refs": [
+                  "trener_maja",
+                  "fysio_elias",
+                  "lagkontakt_samir",
+                  "lagkamerat_nora"
+                ],
+                "phase": "baseline_og_belastningsplan",
+                "place_refs": [
+                  "sport_treningsfelt",
+                  "sport_fysiorom",
+                  "sport_konkurransearena",
+                  "bislett_stadion"
+                ],
+                "role_scope": "sport_utover",
+                "shared": false,
+                "status": "in_progress",
+                "title": "Konkurranseuke: belastning, restitusjon og uttak",
+                "work_object_id": "sport_utover_microcycle_001"
+              }
+            }
+          ]
+        },
+        "id": "sport_utover_realism_microcycle_open_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "sport_treningsfelt",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "sport_utover_realism_microcycle_open_001",
+          "source_path": "data/Civication/mailFamilies/sport/job/sport_utover_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "sport_utover_konkurranseuke_realism_001",
+        "version": 1,
+        "work_context": {
+          "deadline_day": 4,
+          "deadline_phase": "afternoon",
+          "deadline_ref": "konkurranseuttak",
+          "institution_id": "fjordby_il_prestasjonsgruppe_001",
+          "object_ids": [
+            "sport_utover_microcycle_001"
+          ],
+          "priority": "high"
+        }
+      },
+      "source_hash": "6fb8a748fa50c24a1125b85f6a3ecbda6b1d403c438c13f8c5d944bee2d332d1",
       "source_path": "data/Civication/mailFamilies/sport/job/sport_utover_job.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -168221,6 +170343,238 @@
         "version": 1
       },
       "source_hash": "7909981770e98833ef8c8dc31d72a149322b82a05b7bd38ecab98cc3f838715b",
+      "source_path": "data/Civication/mailFamilies/sport/knowledge/sport_utover_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "sport",
+      "compatibility_projection": {
+        "category": "sport",
+        "choice_axis": "skille_maletyper_vs_bruke_resultat_som_klarering",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "sport_utover_bislett_measurement_context_applied",
+                  "flag": "history_go_resultat_belastning_vurdering_adskilt",
+                  "op": "add_flag",
+                  "work_object_id": "sport_utover_microcycle_001"
+                },
+                {
+                  "event_id": "sport_utover_bislett_learning_note",
+                  "note": "Bislett-læringen er brukt til å skille målbar offentlig prestasjon fra intern belastningstrend og faglig klarering.",
+                  "op": "note",
+                  "work_object_id": "sport_utover_microcycle_001"
+                }
+              ]
+            },
+            "feedback": "History Go-kunnskapen blir et profesjonelt sorteringsgrep, ikke en snarvei til klarering.",
+            "id": "A",
+            "label": "Skill resultat, belastningstrend og faglig vurdering i tre eksplisitte kolonner",
+            "reply": "Jeg bruker Bislett til å forstå hva målte prestasjoner kan dokumentere, og lar kroppssignal og faglig vurdering beholde sine egne premisser."
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "sport_utover_result_used_as_clearance",
+                  "flag": "resultat_feilbrukt_som_klarering",
+                  "op": "add_flag",
+                  "work_object_id": "sport_utover_microcycle_001"
+                }
+              ]
+            },
+            "feedback": "Et reelt resultat blir brukt utenfor det det kan dokumentere og kan ikke erstatte dagens kroppssignal eller beslutningskjede.",
+            "id": "B",
+            "label": "Bruk siste gode resultat som hovedbevis på at full belastning bør være trygg",
+            "reply": "Jeg lar det siste målte resultatet veie tyngst fordi det viser hva jeg nylig kunne prestere."
+          }
+        ],
+        "competency": "kontekstuell_tolkning_av_prestasjonsdata",
+        "consequence_axis": "presis_rework_vs_tallbasert_selvklarering",
+        "cooldown": 10,
+        "day_phase": "evening",
+        "from": "Elias, fysioterapeut",
+        "id": "sport_utover_realism_knowledge_bislett_001",
+        "interaction_mode": "task",
+        "mail_family": "role_world_realism_sport_history_go",
+        "mail_type": "knowledge",
+        "narrative_arc": "fra_baseline_til_forsvarlig_konkurransebeslutning",
+        "people_ref": "fysio_elias",
+        "person_id": "fysio_elias",
+        "phase": "advanced",
+        "place_id": "sport_fysiorom",
+        "planned_only": true,
+        "pressure": "rekord_og_resultatlogikk_vs_forsvarlig_beredskapsvurdering",
+        "priority": 70,
+        "purpose": "La konkret History Go-kunnskap utvide et senere profesjonelt valg uten å gjøre en arena, rekord eller quiz til medisinsk myndighet.",
+        "repeatable": false,
+        "role_scope": "sport_utover",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/sport/knowledge/sport_utover_knowledge.json",
+        "scene_catalog_version": 1,
+        "sender": "fysio_elias",
+        "situation": [
+          "Bisletts canonicale History Go-profil viser hvordan prestasjoner stedfestes gjennom bane, måling, resultattavler, publikum og rekordminne.",
+          "Sportens måleregister beskriver samtidig at treningsbelastning og restitusjon må tolkes kontekstuelt, ikke som diagnose fra ett tall.",
+          "Når du kommer tilbake skal du kunne holde offentlig resultat, intern belastningstrend og faglig vurdering adskilt."
+        ],
+        "stage": "stable",
+        "stakes": "Resultater og rekorder er reelle prestasjonsdata. De blir farlige som fasit når de brukes til å overstyre belastningstrend, kroppssignal, kontekst eller støtteapparatets avgrensede vurdering.",
+        "subject": "Gå til Bislett i History Go: et målt resultat er virkelig, men ikke hele beredskapen",
+        "summary": "Mens Elias vurderer kroppssignalet, ber han deg lese Bislett som sted for tidtaking, rekorder, publikum og prestasjonsminne. Oppgaven er å forstå hva et resultat faktisk måler, og hva det ikke kan avgjøre om dagens belastning eller medisinske klarering.",
+        "tags": [
+          "knowledge",
+          "History Go",
+          "bislett_stadion",
+          "measurement_context",
+          "sport_utover"
+        ],
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/places/sport/europa/norway/oslo_sport/bislett_stadion.json",
+            "data/quiz/sport/bislett_stadion_sets.json",
+            "data/fag/sport/measurement_registry_sport_v1.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "sport_utover_history_go_bislett_measurement_context"
+        },
+        "task_domain": "prestasjon_maling_og_belastningskontekst",
+        "task_kind": "knowledge",
+        "task_payload": {
+          "completion_mode": "open_place",
+          "description": "Åpne Bislett stadion og bruk profilen til å skille rekord, resultat og offentlig prestasjonsminne fra kroppens belastningstrend og støtteapparatets vurdering.",
+          "place_id": "bislett_stadion",
+          "return_context": {
+            "mail_id": "sport_utover_realism_knowledge_bislett_001",
+            "place_id": "bislett_stadion",
+            "quiz_ref": "data/quiz/sport/bislett_stadion_sets.json",
+            "role_scope": "sport_utover",
+            "source": "civication"
+          },
+          "target_type": "place",
+          "task_kind": "history_go_place",
+          "title": "Les Bislett som sted for målte prestasjoner"
+        },
+        "thread_key": "sport_utover_konkurranseuke_realism_001",
+        "work_context": {
+          "deadline_day": 2,
+          "deadline_phase": "morning",
+          "deadline_ref": "fysio_og_trener_vurdering",
+          "institution_id": "fjordby_il_prestasjonsgruppe_001",
+          "object_ids": [
+            "sport_utover_microcycle_001"
+          ],
+          "priority": "high",
+          "waiting_for_actor_id": "fysio_elias"
+        }
+      },
+      "id": "sport_utover_realism_knowledge_bislett_001",
+      "mail_type": "knowledge",
+      "role_scope": "sport_utover",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "sport_utover_bislett_measurement_context_applied",
+                  "flag": "history_go_resultat_belastning_vurdering_adskilt",
+                  "op": "add_flag",
+                  "work_object_id": "sport_utover_microcycle_001"
+                },
+                {
+                  "event_id": "sport_utover_bislett_learning_note",
+                  "note": "Bislett-læringen er brukt til å skille målbar offentlig prestasjon fra intern belastningstrend og faglig klarering.",
+                  "op": "note",
+                  "work_object_id": "sport_utover_microcycle_001"
+                }
+              ]
+            },
+            "feedback": "History Go-kunnskapen blir et profesjonelt sorteringsgrep, ikke en snarvei til klarering.",
+            "id": "A",
+            "label": "Skill resultat, belastningstrend og faglig vurdering i tre eksplisitte kolonner",
+            "reply": "Jeg bruker Bislett til å forstå hva målte prestasjoner kan dokumentere, og lar kroppssignal og faglig vurdering beholde sine egne premisser."
+          },
+          {
+            "effects": {
+              "score_delta": -1,
+              "work_object_ops": [
+                {
+                  "event_id": "sport_utover_result_used_as_clearance",
+                  "flag": "resultat_feilbrukt_som_klarering",
+                  "op": "add_flag",
+                  "work_object_id": "sport_utover_microcycle_001"
+                }
+              ]
+            },
+            "feedback": "Et reelt resultat blir brukt utenfor det det kan dokumentere og kan ikke erstatte dagens kroppssignal eller beslutningskjede.",
+            "id": "B",
+            "label": "Bruk siste gode resultat som hovedbevis på at full belastning bør være trygg",
+            "reply": "Jeg lar det siste målte resultatet veie tyngst fordi det viser hva jeg nylig kunne prestere."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Bisletts canonicale History Go-profil viser hvordan prestasjoner stedfestes gjennom bane, måling, resultattavler, publikum og rekordminne.",
+            "Sportens måleregister beskriver samtidig at treningsbelastning og restitusjon må tolkes kontekstuelt, ikke som diagnose fra ett tall.",
+            "Når du kommer tilbake skal du kunne holde offentlig resultat, intern belastningstrend og faglig vurdering adskilt."
+          ],
+          "subject": "Gå til Bislett i History Go: et målt resultat er virkelig, men ikke hele beredskapen",
+          "summary": "Mens Elias vurderer kroppssignalet, ber han deg lese Bislett som sted for tidtaking, rekorder, publikum og prestasjonsminne. Oppgaven er å forstå hva et resultat faktisk måler, og hva det ikke kan avgjøre om dagens belastning eller medisinske klarering."
+        },
+        "day_phase": "evening",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "sport_utover_realism_knowledge_bislett_001",
+        "interaction_mode": "task",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "sport_fysiorom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "sport_utover_realism_knowledge_bislett_001",
+          "source_path": "data/Civication/mailFamilies/sport/knowledge/sport_utover_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/places/sport/europa/norway/oslo_sport/bislett_stadion.json",
+            "data/quiz/sport/bislett_stadion_sets.json",
+            "data/fag/sport/measurement_registry_sport_v1.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "sport_utover_history_go_bislett_measurement_context"
+        },
+        "thread_id": "sport_utover_konkurranseuke_realism_001",
+        "version": 1,
+        "work_context": {
+          "deadline_day": 2,
+          "deadline_phase": "morning",
+          "deadline_ref": "fysio_og_trener_vurdering",
+          "institution_id": "fjordby_il_prestasjonsgruppe_001",
+          "object_ids": [
+            "sport_utover_microcycle_001"
+          ],
+          "priority": "high",
+          "waiting_for_actor_id": "fysio_elias"
+        }
+      },
+      "source_hash": "9206efe389308c832c2940189ba694b4eb3aa55dbe289ea026038c5226e0981d",
       "source_path": "data/Civication/mailFamilies/sport/knowledge/sport_utover_knowledge.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -171130,7 +173484,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "f04ed69100d49b72def36838eac7c6f785b82d056375054fca034e93f4ac9635",
+  "registry_hash": "5030555c3ff2e4e516581ce01dd8e729dd02a9c32b201ed8375127f358e304a0",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -172310,6 +174664,7 @@
       "sport_utover_week2_job_3",
       "sport_utover_week2_job_4",
       "sport_utover_week2_job_5",
+      "sport_utover_realism_microcycle_open_001",
       "sport_utover_week1_private_1",
       "sport_utover_week1_private_2",
       "sport_utover_week1_private_3",
@@ -172326,8 +174681,15 @@
       "sport_utover_conflict_002",
       "sport_utover_event_001",
       "sport_utover_event_002",
+      "sport_utover_realism_body_signal_001",
+      "sport_utover_realism_competition_decision_001",
+      "sport_utover_realism_assessment_grant_001",
+      "sport_utover_realism_professional_trust_followup_001",
+      "sport_utover_realism_team_trust_followup_001",
       "sport_utover_knowledge_001",
-      "sport_utover_knowledge_002"
+      "sport_utover_knowledge_002",
+      "sport_utover_realism_knowledge_bislett_001",
+      "sport_utover_realism_rebuild_microcycle_001"
     ],
     "subkultur/subkultur_arrangementsdrift": [
       "subkultur_arrangementsdrift_job_apning",
@@ -172366,11 +174728,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 345,
+    "compiled_source_file_count": 347,
     "ignored_source_file_count": 1,
-    "input_file_count": 346,
+    "input_file_count": 348,
     "role_count": 44,
-    "scene_count": 1118,
+    "scene_count": 1126,
     "shadowed_duplicate_count": 0
   },
   "version": 1
