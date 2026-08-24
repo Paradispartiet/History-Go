@@ -36,7 +36,7 @@ jobs:
           node-version: '20'
           cache: npm
 
-      - name: Correct one-shot tuple resolver
+      - name: Correct one-shot materializer resolver
         run: |
           node - <<'NODE'
           const fs = require('fs');
@@ -49,10 +49,18 @@ jobs:
             ['knowledge: d[7],', 'knowledge: d[8],'],
             ['source: d[8],', 'source: d[9],'],
             ['claim_basis: d[7],', 'claim_basis: d[8],'],
-            ['if (d[9]) q.method_id = d[9];', 'if (d[10]) q.method_id = d[10];']
+            ['if (d[9]) q.method_id = d[9];', 'if (d[10]) q.method_id = d[10];'],
+            [
+              "const quizManifest = read(quizManifestPath);",
+              "const quizManifestRaw = read(quizManifestPath);\nconst quizManifest = Array.isArray(quizManifestRaw?.sets) ? quizManifestRaw : (typeof quizManifestRaw?.content === 'string' ? JSON.parse(quizManifestRaw.content) : quizManifestRaw);\nif (!Array.isArray(quizManifest?.sets)) throw new Error(`Quiz manifest sets missing; keys=${Object.keys(quizManifest || {}).join(',')}`);"
+            ],
+            [
+              'https://commons.wikimedia.org/wiki/File:Birkelunden,_Oslo_-_2013-10-13_at_13-18-12.jpg',
+              'https://commons.wikimedia.org/wiki/File:Birkelunden_fountain_and_music_pavilion.jpg'
+            ]
           ];
           for (const [from, to] of replacements) {
-            if (!s.includes(from)) throw new Error(`Missing expected tuple expression: ${from}`);
+            if (!s.includes(from)) throw new Error(`Missing expected materializer expression: ${from}`);
             s = s.replace(from, to);
           }
           fs.writeFileSync(p, s);
