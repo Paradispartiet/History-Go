@@ -249,7 +249,7 @@ test('Helse og Utdanning har konsistent foundation med dokumentert Helse-fremdri
     assert.equal(subjectStatus.assessmentStatus, id === 'helse' ? 'audited' : 'pending');
     assert.equal(subjectStatus.editorialStatus, id === 'helse' ? 'chapters_in_progress' : 'not_started');
     if (id === 'helse') {
-      assert.match(subjectStatus.nextGate, /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_domain_source_brief)$/u);
+      assert.match(subjectStatus.nextGate, /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_domain_source_brief|full_chapter_complete_strict_proof_next)$/u);
     } else {
       assert.equal(subjectStatus.nextGate, 'first_source_brief_after_repository_reconciliation');
     }

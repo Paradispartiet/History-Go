@@ -1,0 +1,62 @@
+{
+  "schema": "history_go_fagverk_chapter_brief_v1",
+  "version": "1.0.0",
+  "subject_id": "helse",
+  "chapter_id": "helsetjenester-helseokonomi-organisering-kvalitet-prioritering-og-ressursbruk",
+  "primary_domain_id": "helsetjenester_helseokonomi",
+  "purpose": "Lære helsetjenester og helseøkonomi gjennom systemfunksjoner, tilgang, kvalitet, sikkerhet, finansiering, mulighetskostnad, HTA, prioritering, likeverd og benchmarking uten individuell helsehjelp, rettighetsavgjørelser eller institusjonsspesifikke budsjettinstrukser.",
+  "sourceStrategy": {
+    "sourceBriefFile": "data/fag/helse/health_services_economics_source_claim_brief_v1.json",
+    "externalSourceCount": 15,
+    "paragraphLevelClaimTrace": true,
+    "everyPlannedClaimResolved": true,
+    "allUsedSourcesInspectable": true
+  },
+  "requiredCriticalDistinctions": [
+    "dekning vs faktisk tilgang",
+    "tilgang vs kvalitet eller utfall",
+    "tjenestebruk vs behov",
+    "primary care vs bredere primary health care",
+    "integrasjon vs organisatorisk sammenslåing",
+    "flerdimensjonal kvalitet vs enkeltindikator",
+    "indikator vs kausal forklaring",
+    "pasientsikkerhetshendelse vs samlet systemrangering",
+    "finansieringsfunksjon vs leveransemodell",
+    "betalingsinsentiv vs deterministisk atferd",
+    "pooling vs tjenestekvalitet",
+    "finansiell beskyttelse vs null egenbetaling overalt",
+    "mulighetskostnad vs bokført pris",
+    "lav kostnad vs kostnadseffektivitet",
+    "kostnadseffektivitet vs budsjettvirkning",
+    "økonomisk modell vs automatisk beslutningsregel",
+    "HTA-beslutningsstøtte vs beslutning",
+    "prioritering vs billigste alternativ",
+    "norske prioriteringskriterier vs universell lov",
+    "effektivitet vs likeverd",
+    "gruppedata vs individuell prediksjon",
+    "benchmark vs kausal kontrafaktisk",
+    "utgifter vs garanterte utfall"
+  ],
+  "safety": {
+    "contractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json",
+    "individualDiagnosis": false,
+    "individualPrognosis": false,
+    "individualTriage": false,
+    "individualTreatmentAdvice": false,
+    "individualRiskCalculation": false,
+    "individualTestOrImageInterpretation": false,
+    "individualMedicationSelection": false,
+    "individualDosing": false,
+    "individualLegalAdvice": false,
+    "individualBudgetInstruction": false,
+    "individualCrisisInstruction": false
+  },
+  "qa": {
+    "topicCoverage": "8/8",
+    "plannedClaimResolution": "32/32",
+    "moduleCount": 4,
+    "sectionCount": 8,
+    "paragraphCount": 32,
+    "assessmentQuestionCount": 8
+  }
+}

@@ -4134,7 +4134,7 @@
         "schemaFamily": "foundation_v1",
         "sourceOfTruth": true,
         "firstSourceClaimBrief": "data/fag/helse/medical_ethics_evidence_source_claim_brief_v1.json",
-        "note": "Elleve Helse-domener er fulltekstmaterialisert. Rehabilitering og funksjon tilfører ICF, aktivitet og deltakelse, kapasitet og utførelse, personsentrerte mål, funksjonsvurdering, hjelpemidler, tverrprofesjonell koordinering, utfall, equity og systemkvalitet med 8 seksjoner, 32 claimsporede avsnitt, 32 verifiserte claims, 15 inspiserbare kilder og 8 vurderingsoppgaver. Ett domene og strict proof gjenstår.",
+        "note": "Alle tolv Helse-domener er nå fulltekstmaterialisert source-first. Helsetjenester og helseøkonomi tilfører systemfunksjoner, tilgang, kvalitet, pasientsikkerhet, finansiering, mulighetskostnad, HTA, prioritering, finansiell beskyttelse, likeverd og benchmarking med 8 seksjoner, 32 claimsporede avsnitt, 32 verifiserte claims, 15 inspiserbare kilder og 8 vurderingsoppgaver. Strict proof gjenstår før complete kan hevdes.",
         "firstFulltextChapter": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning.json",
         "secondSourceClaimBrief": "data/fag/helse/anatomy_physiology_source_claim_brief_v1.json",
         "secondFulltextChapter": "data/fagverk/helse/anatomi-fysiologi-struktur-funksjon-og-regulering.json",
@@ -4155,12 +4155,14 @@
         "tenthSourceClaimBrief": "data/fag/helse/mental_health_source_claim_brief_v1.json",
         "tenthFulltextChapter": "data/fagverk/helse/psykisk-helse-lidelse-tjenester-recovery-og-rettigheter.json",
         "eleventhSourceClaimBrief": "data/fag/helse/rehabilitation_function_source_claim_brief_v1.json",
-        "eleventhFulltextChapter": "data/fagverk/helse/rehabilitering-funksjon-icf-mal-deltakelse-og-tverrprofesjonell-praksis.json"
+        "eleventhFulltextChapter": "data/fagverk/helse/rehabilitering-funksjon-icf-mal-deltakelse-og-tverrprofesjonell-praksis.json",
+        "twelfthSourceClaimBrief": "data/fag/helse/health_services_economics_source_claim_brief_v1.json",
+        "twelfthFulltextChapter": "data/fagverk/helse/helsetjenester-helseokonomi-organisering-kvalitet-prioritering-og-ressursbruk.json"
       },
       "editorialPlan": {
         "targetDomainCount": 12,
-        "completedSourceBriefCount": 11,
-        "registeredChapterCount": 11,
+        "completedSourceBriefCount": 12,
+        "registeredChapterCount": 12,
         "completionRequirements": [
           "all_canonical_domains_covered",
           "source_first_claim_trace_complete",
@@ -4168,7 +4170,7 @@
           "fulltext_and_assessment_audits_green",
           "strict_theory_integrity_green"
         ],
-        "nextGate": "produce_next_domain_source_brief_after_rehabilitation_function_fulltext"
+        "nextGate": "prove_health_strict_completion_after_all_twelve_fulltext_domains"
       },
       "chapters": [
         {
@@ -4323,6 +4325,20 @@
           "claimsFile": "data/fagverk/helse/rehabilitering-funksjon-icf-mal-deltakelse-og-tverrprofesjonell-praksis/claims.json",
           "briefFile": "data/fagverk/helse/rehabilitering-funksjon-icf-mal-deltakelse-og-tverrprofesjonell-praksis/brief.json",
           "assessmentFile": "data/fagverk/helse/rehabilitering-funksjon-icf-mal-deltakelse-og-tverrprofesjonell-praksis/assessment.json",
+          "safetyContractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json"
+        },
+        {
+          "id": "helsetjenester-helseokonomi-organisering-kvalitet-prioritering-og-ressursbruk",
+          "title": "Helsetjenester og helseøkonomi: organisering, kvalitet, prioritering og ressursbruk",
+          "subtitle": "Fra systemfunksjoner og tilgang til finansiering, HTA, prioritering, likeverd og styringsdata",
+          "file": "data/fagverk/helse/helsetjenester-helseokonomi-organisering-kvalitet-prioritering-og-ressursbruk.json",
+          "primary_domain_id": "helsetjenester_helseokonomi",
+          "emne_ids": [
+            "em_helse_helsetjenester_helseokonomi"
+          ],
+          "claimsFile": "data/fagverk/helse/helsetjenester-helseokonomi-organisering-kvalitet-prioritering-og-ressursbruk/claims.json",
+          "briefFile": "data/fagverk/helse/helsetjenester-helseokonomi-organisering-kvalitet-prioritering-og-ressursbruk/brief.json",
+          "assessmentFile": "data/fagverk/helse/helsetjenester-helseokonomi-organisering-kvalitet-prioritering-og-ressursbruk/assessment.json",
           "safetyContractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json"
         }
       ]
