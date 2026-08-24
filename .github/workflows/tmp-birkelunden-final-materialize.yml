@@ -1,0 +1,113 @@
+name: TEMP Birkelunden final materialize
+
+on:
+  push:
+    branches:
+      - agent/content-factory-pilot-02-birkelunden-canonical-completion
+    paths:
+      - '.github/workflows/tmp-birkelunden-final-materialize.yml'
+      - 'scripts/tmp-materialize-birkelunden-final.mjs'
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
+    runs-on: ubuntu-latest
+    env:
+      TARGET_BRANCH: agent/content-factory-pilot-02-birkelunden-canonical-completion
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ env.TARGET_BRANCH }}
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Correct one-shot tuple resolver
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const p = 'scripts/tmp-materialize-birkelunden-final.mjs';
+          let s = fs.readFileSync(p, 'utf8');
+          const replacements = [
+            ['statement: d[7],', 'statement: d[8],'],
+            ['source_ids: d[8],', 'source_ids: d[9],'],
+            ['answer: d[7 - 1],', 'answer: d[7],'],
+            ['knowledge: d[7],', 'knowledge: d[8],'],
+            ['source: d[8],', 'source: d[9],'],
+            ['claim_basis: d[7],', 'claim_basis: d[8],'],
+            ['if (d[9]) q.method_id = d[9];', 'if (d[10]) q.method_id = d[10];']
+          ];
+          for (const [from, to] of replacements) {
+            if (!s.includes(from)) throw new Error(`Missing expected tuple expression: ${from}`);
+            s = s.replace(from, to);
+          }
+          fs.writeFileSync(p, s);
+          NODE
+
+      - name: Materialize Birkelunden canonical completion
+        run: node scripts/tmp-materialize-birkelunden-final.mjs
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build canonical quiz production context
+        run: npm run quiz:context -- --category by --target birkelunden --output data/quiz/production_context/by/birkelunden.json
+
+      - name: Validate quiz governance
+        run: |
+          npm run audit:quiz-manifest:v2
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+
+      - name: Validate People and round runtime
+        run: |
+          npm run audit:people-profile-canonical
+          node --test tests/place-rounds-visual-collections.test.mjs
+
+      - name: Validate preservation locks
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const crypto = require('crypto');
+          const p = JSON.parse(fs.readFileSync('data/places/by/oslo/places/birkelunden.json','utf8'));
+          const h = s => crypto.createHash('sha256').update(s).digest('hex');
+          if (p.spatial_profile.area_m2 !== 16300) throw new Error('area lock');
+          if (h(p.desc) !== 'ea8efd6ab0ed583485b2c87dd28e4dbb9af7766c32381f57e4cb6a54e9d94dbe') throw new Error('desc lock');
+          if (h(p.popupDesc) !== '670dcbc8e37004fe1c3a595ae6af1a6dcfe304f1048ce906f37df3f7e8544ff7') throw new Error('popup lock');
+          if (p.objects?.length !== 3) throw new Error('objects');
+          if (p.structures?.length !== 2) throw new Error('structures');
+          if (JSON.stringify(p.round_profile?.content_round_ids) !== JSON.stringify(['people','images','brands','structures'])) throw new Error('round profile');
+          NODE
+
+      - name: Commit materialized output
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            data/places/by/oslo/places/birkelunden.json \
+            data/people/by/oslo/birkelunden/jack_johnsen.json \
+            data/people/claims/by/oslo/birkelunden/jack_johnsen.claims.json \
+            data/people/manifest.json \
+            data/quiz/by/birkelunden_sets.json \
+            data/quiz/production_briefs/by/birkelunden.json \
+            data/quiz/production_context/by/birkelunden.json \
+            data/quiz/manifest.json \
+            data/fag/fag_manifest.json \
+            reports/place-production/birkelunden_content_factory_completion_v1.json \
+            reports/place-production/birkelunden-phase8-24-completion-audit-v1.md \
+            reports/place-production/birkelunden-workcard-current.md
+          if git diff --cached --quiet; then
+            echo 'No materialized changes.'
+            exit 0
+          fi
+          git commit -m 'Materialize Birkelunden phases 8-24 [skip ci]'
+          git push origin HEAD:${TARGET_BRANCH}
