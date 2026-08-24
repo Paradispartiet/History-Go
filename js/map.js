@@ -586,7 +586,7 @@
         ["+", 10.5, ["*", 0.5, ["get", "visited"]]]
       ];
       return {
-        "text-field": "■",
+        "text-field": "\u25A0",
         "text-font": ["Open Sans Semibold", "Arial Unicode MS Regular"],
         "text-size": size,
         "text-allow-overlap": true,
