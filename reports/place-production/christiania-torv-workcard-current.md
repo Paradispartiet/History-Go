@@ -24,23 +24,33 @@ PEOPLE-KANDIDATER: gjenbruk `wenche_gulbransen` og canonical `kong_christian_iv`
 OBJECT-KANDIDAT: `Christian IVs hanske`; søk/reuse eksisterende micro/object-data før materialisering.  
 BRANDS: åtte eksisterende mappings må own-place-/freshness-auditeres.  
 ROUTE/RELATION: `gamle_radhus` separat canonical nabosted; Story relaterer `middelalder_oslo`, `akershus_festning` og `gamle_radhus` uten å slå dem sammen.  
-QUIZ-STATUS: neste fase etter Story.  
+QUIZ-STATUS: Phase 7 fullført og merget; 5 × 7 = 35 spørsmål, alle canonical Knowledge-linked.  
 STORY-STATUS: `st_christiania_torv_byflyttingen_1624` er materialisert som `episode_v1`, med gammel ikke-aktiv ID gjenbrukt, 3 kilder, canonical `kong_christian_iv`, maskinscore 19 og eksplisitt kildekritisk hanskegrense.  
 VIKTIGSTE KILDER: Oslo byleksikon; Oppdag Kvadraturen/Byantikvaren; SNL; OSM; Pilot 03 source pack.  
 AVVIST/UVISST: bokstavelig hanskekast; sikkert Livorno-forbilde; `year=1648` som automatisk etableringsår; volatile virksomheter uten fersk kontroll.  
 NULLMÅLING: `reports/place-production/christiania-torv-nullmaaling-v1.md`  
-AKTIV FASE: fase 6 – Story / historisk opplevelse.  
-AKTIVT FILSCOPE: Story-fil, Story-manifest, episode-v1-manifest, fase-6 audit og workcard. TEMP-writeback er fjernet før PR.  
-FORRIGE FASE MERGET: fase 5 #5274 som `e13841fa2c7f9e735f4326bcb811d695ff227d2d`.  
+AKTIV FASE: FERDIG – alle Content Factory-faser 1–10 er lukket.  
+AKTIVT FILSCOPE: ingen produksjonsbranch; slutt-audit og denne workcarden er canonical closeout.  
+FORRIGE FASE MERGET: fase 9 #5289 som `44e8535a1b02760d842346dc23af0e214161e326`.  
 
-POPUPSTATUS — OM: description-kjerne godkjent; legacy-eier-QA gjenstår.  
-POPUPSTATUS — HISTORIE: fire canonical history layers godkjent på main etter fase 5.  
-POPUPSTATUS — FORTELLINGER: `episode_v1` KLAR FOR REVIEW.  
-POPUPSTATUS — FØR/ETTER: IKKE STARTET / MULIG N/A  
-POPUPSTATUS — NYHETER: IKKE STARTET / MULIG N/A  
-POPUPSTATUS — LESESPOR: IKKE STARTET  
-POPUPSTATUS — KILDER: source summary etablert; klikkbar sluttflate gjenstår.  
-POPUPSTATUS — SPRÅK: IKKE STARTET  
-POPUPSTATUS — SPOR OG OBJEKTER: IKKE STARTET  
-POPUPSTATUS — RELASJONER/KUNNSKAP/OBSERVASJONER: senere faser.  
-MANUELL SLUTT-QA: ikke utført; ingen sluttstatus før alle faser er merget.
+POPUPSTATUS — OM: GODKJENT; canonical popupDesc/spatial profile + sanitert kildebundet Leksikon.  
+POPUPSTATUS — HISTORIE: GODKJENT; fire history layers + fem korte kildebårne chronology-milepæler.  
+POPUPSTATUS — FORTELLINGER: GODKJENT; canonical episode_v1.  
+POPUPSTATUS — FØR/ETTER: begrunnet ikke materialisert; ingen kilde-/rettighetsklar samme-sted-bildepar, og Gamle Rådhus brukes ikke som proxy.  
+POPUPSTATUS — NYHETER: begrunnet N/A; ingen fersk source-eid torghendelse nødvendig for evergreen completion.  
+POPUPSTATUS — LESESPOR: begrunnet N/A; ingen kontrollert åpen, direkte, stedsspesifikk tekst.  
+POPUPSTATUS — KILDER: GODKJENT; fem inspectable HTTPS-kilder via Leksikon-eier.  
+POPUPSTATUS — SPRÅK: GODKJENT; tre dokumenterte navnehistoriske oppføringer, ingen oppdiktet dialekt.  
+POPUPSTATUS — SPOR OG OBJEKTER: GODKJENT; Christian IVs hanske materialisert som stedsspesifikt fysisk objekt.  
+POPUPSTATUS — RELASJONER/KUNNSKAP/OBSERVASJONER: fem curated relasjoner; Knowledge linked; ingen filler-observasjonsfane.  
+MANUELL SLUTT-QA: canonical data, placegrense, spørsmålstall, Knowledge-linker, route reuse og volatile Brands er kontrollert; permanente Phase-9-porter var 8/8 grønne.  
+
+## Completion record 2026-08-24
+
+- Phase 4 merge: `fe5cde4ef5c8e91b1ab2666ae8ccb3eb85052d4b`
+- Phase 5 merge: `e13841fa2c7f9e735f4326bcb811d695ff227d2d`
+- Phase 6 merge: `87343213dae6eb4ab17720463f68334184395c68`
+- Phase 7 merge: `cf41f032bb2be8286d24f4c0ca08d0980147db4d`
+- Phase 8 merge: `980a359c1016955baaefd9279fafa2a825978e46`
+- Phase 9 merge: `44e8535a1b02760d842346dc23af0e214161e326`
+- Final audit: `reports/place-production/christiania-torv-final-completion-audit-v1.md`
