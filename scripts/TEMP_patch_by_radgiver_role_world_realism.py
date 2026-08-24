@@ -133,6 +133,27 @@ def catalog(mail_type: str, family_id: str, purpose: str, learning_focus: list[s
         mail.setdefault("learning_focus", focus)
         if mail_type in {"micro", "followup", "knowledge", "consequence"}:
             mail.setdefault("next_bias", {"tags": focus[:3], "weight": 1})
+        if mail_type == "followup":
+            mail.setdefault("triggers_on_choice", {
+                choice["id"]: ["role_world_realism_return_to_case"]
+                for choice in mail.get("choices", [])
+            })
+            mail.setdefault("branch_flags", {
+                "A": ["ledergodkjenning_med_synlige_vilkar"],
+                "B": ["ledergodkjenning_med_sammendragsrisiko"],
+            })
+            mail.setdefault("tags", ["followup", "approval", "rework", ROLE_SCOPE, "lillebekk"])
+        elif mail_type == "consequence":
+            mail.setdefault("triggers_on_choice", {
+                choice["id"]: ["role_world_realism_authority"]
+                for choice in mail.get("choices", [])
+            })
+            mail.setdefault("branch_flags", {
+                "A": ["faglig_anbefaling_med_synlige_forbehold"],
+                "B": ["politisk_valgrom_komprimert"],
+                "C": ["history_go_myndighetsgrense_anvendt"],
+            })
+            mail.setdefault("tags", ["consequence", "history_go", "authority_boundary", ROLE_SCOPE, "lillebekk"])
     return {
         "schema": "civication_mail_family_catalog_v1",
         "version": 1,
