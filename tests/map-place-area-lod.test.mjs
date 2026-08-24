@@ -98,40 +98,41 @@ test("detaljprikker beholdes sammen med stedsnavn og er mindre enn gammel profil
 });
 
 test("områdemarkører er mindre firkanter uten å redusere hitflaten", () => {
-  const squareLayout = source.match(/function getPlaceAreaSquareLayout\(isGlow = false\) \{[\s\S]*?\n  \}/)?.[0] || "";
-  const squarePaint = source.match(/function getPlaceAreaSquarePaint\(isGlow = false\) \{[\s\S]*?\n  \}/)?.[0] || "";
-  assert.ok(squareLayout, "mangler layout for firkantede områdemarkører");
-  assert.ok(squarePaint, "mangler paint for firkantede områdemarkører");
-  assert.match(source, /PLACE_AREA_SQUARE_IMAGE_PREFIX\s*=\s*"hg-place-area-square-rgba"/);
-  assert.match(source, /function buildPlaceAreaSquareImage\(fill, border, size = 32\)/);
-  assert.match(source, /MAP\.addImage\(imageId, buildPlaceAreaSquareImage\(fill, border\), \{ pixelRatio: 1 \}\)/);
-  assert.doesNotMatch(source, /sdf:\s*true/, "områdefirkanten skal ikke være avhengig av SDF-rendering");
-  assert.match(source, /ensurePlaceAreaSquareImages\(features\);[\s\S]*?const src = MAP\.getSource\(SRC\)/);
-  assert.match(source, /feature\.properties\.areaSquareImage = imageId/);
-  assert.match(squareLayout, /"icon-image": \["get", "areaSquareImage"\]/);
-  assert.match(squareLayout, /"icon-size": \["\/", side, 16\]/);
-  assert.doesNotMatch(squareLayout, /text-field|■/, "områdefirkanten skal ikke være avhengig av kartfonten");
-  assert.match(squareLayout, /7, \["\+", 5\.0/);
-  assert.match(squareLayout, /12, \["\+", 7\.4/);
-  assert.match(squareLayout, /18, \["\+", 10\.5/);
-  assert.doesNotMatch(squarePaint, /icon-color|icon-halo/, "farge og kant skal være bakt inn i RGBA-ikonet");
+  assert.match(source, /PLACE_AREA_MARKER_CLASS\s*=\s*"hg-place-area-marker"/);
+  assert.match(source, /function syncPlaceAreaDomMarkers\(features\)/);
+  assert.match(source, /new maplibregl\.Marker\(\{ element, anchor: "center" \}\)/);
+  assert.match(source, /element\.style\.borderRadius = "0"/);
+  assert.match(source, /element\.style\.pointerEvents = "none"/);
+  assert.match(source, /element\.style\.backgroundColor = feature\.properties\.fill/);
+  assert.match(source, /element\.style\.borderColor = feature\.properties\.border/);
+  assert.match(source, /syncPlaceAreaDomMarkers\(features\);[\s\S]*?const src = MAP\.getSource\(SRC\)/);
+  assert.doesNotMatch(source, /addImage|areaSquareImage|sdf:\s*true/, "områdefirkanten skal være en ekte DOM-markør, ikke et spriteikon");
+  assert.match(source, /\[7, 5\.0\]/);
+  assert.match(source, /\[12, 7\.4\]/);
+  assert.match(source, /\[18, 10\.5\]/);
 
   const app = read("js/app.js");
   const index = read("index.html");
-  assert.match(app, /loadScriptOnce\("js\/map\.js\?v=20260824-area-square-runtime2"\)/);
-  assert.match(index, /js\/app\.js\?v=20260824-area-square-runtime2/);
+  assert.match(app, /loadScriptOnce\("js\/map\.js\?v=20260824-area-square-dom3"\)/);
+  assert.match(index, /js\/app\.js\?v=20260824-area-square-dom3/);
 
-  assert.match(source, /id: L_AREA_GLOW,[\s\S]*?type: "symbol",[\s\S]*?layout: getPlaceAreaSquareLayout\(true\),[\s\S]*?paint: getPlaceAreaSquarePaint\(true\)/);
-  assert.match(source, /id: L_AREA_DOTS,[\s\S]*?type: "symbol",[\s\S]*?layout: getPlaceAreaSquareLayout\(false\),[\s\S]*?paint: getPlaceAreaSquarePaint\(false\)/);
+  assert.doesNotMatch(source, /id: L_AREA_(?:GLOW|DOTS),/);
   assert.match(source, /id: L_DOTS,[\s\S]*?type: "circle",[\s\S]*?paint: getPlaceDotPaint\(false\)/);
   assert.match(source, /id: L_AREA_HIT,[\s\S]*?type: "circle",[\s\S]*?paint: getPlaceHitPaint\(true\)/);
 });
 
-test("runtime lager et synlig RGBA-kvadrat og binder det til områdelaget", () => {
-  const images = new Map();
+test("runtime lager en synlig DOM-firkant over kartcanvaset", () => {
+  const markers = [];
   const layers = new Map();
   const sources = new Map();
   const canvas = { addEventListener() {}, getBoundingClientRect: () => ({ left: 0, top: 0 }) };
+
+  class FakeMarker {
+    constructor(options) { this.element = options.element; this.anchor = options.anchor; }
+    setLngLat(coordinates) { this.coordinates = coordinates; return this; }
+    addTo(map) { this.map = map; markers.push(this); return this; }
+    remove() { this.removed = true; }
+  }
 
   class FakeMap {
     addControl() {}
@@ -146,8 +147,6 @@ test("runtime lager et synlig RGBA-kvadrat og binder det til områdelaget", () =
     getStyle() { return { layers: [] }; }
     getCanvas() { return canvas; }
     getZoom() { return 10; }
-    hasImage(id) { return images.has(id); }
-    addImage(id, image, options) { images.set(id, { image, options }); }
     getSource(id) { return sources.get(id); }
     addSource(id, source) {
       sources.set(id, { ...source, setData(data) { this.data = data; } });
@@ -162,13 +161,14 @@ test("runtime lager et synlig RGBA-kvadrat og binder det til områdelaget", () =
   const mapElement = { dataset: {}, setAttribute() {} };
   const document = {
     getElementById: id => id === "map" ? mapElement : null,
-    querySelector: () => null
+    querySelector: () => null,
+    createElement: () => ({ className: "", dataset: {}, style: {}, setAttribute() {} })
   };
   const context = {
     console,
     document,
     localStorage: { getItem: () => null, setItem() {} },
-    maplibregl: { Map: FakeMap, NavigationControl: class {} },
+    maplibregl: { Map: FakeMap, Marker: FakeMarker, NavigationControl: class {} },
     setTimeout,
     clearTimeout
   };
@@ -191,23 +191,17 @@ test("runtime lager et synlig RGBA-kvadrat og binder det til områdelaget", () =
     r: 100
   }]);
 
-  assert.equal(images.size, 1, "området skal registrere ett farget runtime-ikon");
-  const [{ image, options }] = [...images.values()];
-  assert.equal(options.pixelRatio, 1);
-  assert.equal(Object.keys(options).length, 1);
-  assert.equal(image.width, 32);
-  assert.equal(image.height, 32);
-  const pixels = Array.from({ length: image.width * image.height }, (_, i) =>
-    Array.from(image.data.slice(i * 4, i * 4 + 4)).join(",")
-  );
-  assert.ok(pixels.includes("68,85,102,255"), "ikonet mangler fyllfargen");
-  assert.ok(pixels.includes("17,34,51,255"), "ikonet mangler kantfargen");
-  assert.ok(pixels.includes("0,0,0,0"), "ikonet mangler transparent luft rundt firkanten");
-
-  const feature = sources.get("hg-places").data.features[0];
-  assert.match(feature.properties.areaSquareImage, /^hg-place-area-square-rgba-/);
-  assert.equal(
-    JSON.stringify(layers.get("hg-place-areas-dots").layout["icon-image"]),
-    JSON.stringify(["get", "areaSquareImage"])
-  );
+  assert.equal(markers.length, 1, "området skal opprette én DOM-markør");
+  const marker = markers[0];
+  assert.equal(marker.anchor, "center");
+  assert.equal(JSON.stringify(marker.coordinates), JSON.stringify([10.7522, 59.9139]));
+  assert.equal(marker.element.className, "hg-place-area-marker");
+  assert.equal(marker.element.dataset.placeId, "runtime-area");
+  assert.equal(marker.element.style.borderRadius, "0");
+  assert.equal(marker.element.style.pointerEvents, "none");
+  assert.equal(marker.element.style.backgroundColor, "#445566");
+  assert.equal(marker.element.style.borderColor, "#112233");
+  assert.equal(marker.element.style.width, "6.44px");
+  assert.equal(marker.element.style.height, "6.44px");
+  assert.equal(layers.has("hg-place-areas-dots"), false, "det gamle symbollaget skal ikke finnes");
 });
