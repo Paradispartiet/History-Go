@@ -41561,6 +41561,607 @@
       "category": "media",
       "compatibility_projection": {
         "category": "media",
+        "choice_axis": "gjenapne_hele_versjonen_vs_stille_ordbytte",
+        "choices": [
+          {
+            "effect": 2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "public:fjordby_lesere",
+                  "delta": 3,
+                  "event_id": "media_redaksjon_standing_public_visible_response",
+                  "reason": "Redaksjonen svarer på et etterprøvbart innspill med en synlig versjonsendring.",
+                  "source_actor_id": "vaktsjef_lina"
+                },
+                {
+                  "audience_id": "professional:deskredaktor_jonas",
+                  "delta": 2,
+                  "event_id": "media_redaksjon_standing_editor_correction_ready",
+                  "reason": "Rettelsesforslaget kommer med kontrollert dokumentasjon og hele berørte versjonen.",
+                  "source_actor_id": "deskredaktor_jonas"
+                },
+                {
+                  "audience_id": "source:kilde_ellen",
+                  "delta": -1,
+                  "event_id": "media_redaksjon_standing_source_wording_narrowed",
+                  "reason": "Ellens sterkere fortolkning får mindre plass i den korrigerte versjonen.",
+                  "source_actor_id": "kilde_ellen"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_case_reopened_for_correction",
+                  "note": "Saken er gjenåpnet etter etterprøvbart publikumsinnspill og ny dokumentasjon.",
+                  "op": "transition",
+                  "to_phase": "rettelse_av_ingress_grafikk_og_begrep",
+                  "to_status": "in_progress",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_redaksjon_audience_feedback_verified",
+                  "flag": "publikumsfeedback_verifisert_for_rework",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_redaksjon_visible_correction_requested",
+                  "flag": "synlig_rettelse_sendt_til_redaktor",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Publikumsinnspillet blir kunnskap fordi det etterprøves; kritikken i seg selv blir ikke sannhetsbevis.",
+            "id": "A",
+            "label": "Gjenåpne ingress, grafikk og begrepsforklaring og foreslå synlig rettelse",
+            "reply": "Jeg kontrollerer leserens dokument, bygger ny versjon og sender en tydelig rettelsesnote til Jonas."
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "public:fjordby_lesere",
+                  "delta": -3,
+                  "event_id": "media_redaksjon_standing_public_silent_change",
+                  "reason": "Publikum kan sammenligne versjoner uten å se at redaksjonen har erkjent forskjellen.",
+                  "source_actor_id": "vaktsjef_lina"
+                },
+                {
+                  "audience_id": "source:kilde_ellen",
+                  "delta": 1,
+                  "event_id": "media_redaksjon_standing_source_angle_preserved",
+                  "reason": "Kildens sterkere ramme beholdes i de mest synlige delene.",
+                  "source_actor_id": "kilde_ellen"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_case_silent_partial_update",
+                  "note": "Brødteksten er endret, men grafikk, ingress og rettelsesbehov er ikke behandlet samlet.",
+                  "op": "transition",
+                  "to_phase": "stille_delendring_uten_full_rework",
+                  "to_status": "in_progress",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_redaksjon_correction_hidden",
+                  "flag": "rettelse_skjult_for_publikum",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "En lokal tekstendring lar den samme misforståelsen leve i de mest synlige flatene.",
+            "id": "B",
+            "label": "Bytt ett ord stille og behold grafikk og inngang",
+            "reply": "Jeg justerer begrepet i brødteksten uten rettelsesnote fordi hovedsaken står."
+          }
+        ],
+        "competency": "publikum_som_kunnskapsflate",
+        "consequence_axis": "publikumstillit_gjennom_synlighet_vs_forsvar_av_feil",
+        "cooldown": 14,
+        "day_phase": "morning",
+        "from": "Lina, vaktsjef",
+        "id": "media_redaksjon_realism_audience_correction_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_realism_newsroom_rework",
+        "mail_type": "consequence",
+        "narrative_arc": "fra_varsel_til_synlig_rettelse",
+        "people_ref": "media_vaktsjef",
+        "person_id": "vaktsjef_lina",
+        "phase": "climax",
+        "place_id": "vg_huset",
+        "planned_only": true,
+        "pressure": "prestisje_etter_publisering_vs_reell_korrigering",
+        "priority": 95,
+        "purpose": "Bevise at publikumsrelasjonen kan tilføre relevant kunnskap og gjenåpne samme arbeidsobjekt uten at klikk, kritikk eller høy stående alene avgjør hva som er sant.",
+        "repeatable": false,
+        "role_scope": "media_redaksjon",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/media/consequence/media_redaksjon_consequence.json",
+        "scene_catalog_version": 1,
+        "sender": "vaktsjef_lina",
+        "situation": [
+          "Leserens innspill peker på en konkret begrepsforskjell og inneholder en etterprøvbar dokumentreferanse.",
+          "Hovedfunnene står, men grafikk, ingress og forklaringen på listetypene må vurderes samlet.",
+          "Jonas eier den endelige rettelsen; du kan kontrollere, foreslå og bygge en ny versjon."
+        ],
+        "social_standing_context": {
+          "reaction_audience_id": "public:fjordby_lesere"
+        },
+        "stage": "stable_warning",
+        "stakes": "En synlig rettelse kan koste tempo og prestisje, men gjøre saken mer korrekt. En stille endring beskytter overflaten og lar publikum bære en misforståelse redaksjonen nå kan dokumentere.",
+        "subject": "Publikum har funnet en formulering som gjør to ulike lister til én",
+        "summary": "Etter publisering viser en leser med fagkunnskap at grafikken og ingressen kan leses som om intern prioriteringsliste og formell venteliste er identiske. Ny dokumentasjon gjør forskjellen kontrollerbar.",
+        "tags": [
+          "consequence",
+          "role_world_realism",
+          "audience",
+          "correction",
+          "situated_reputation",
+          "media_redaksjon"
+        ],
+        "task_domain": "publikumsfeedback_og_synlig_rettelse",
+        "task_kind": "consequence",
+        "thread_key": "media_redaksjon_innsynssaken_realism_001",
+        "work_context": {
+          "deadline_day": 8,
+          "deadline_phase": "morning",
+          "deadline_ref": "rettelsesvurdering",
+          "institution_id": "fjordby_dagblad_redaksjonen_001",
+          "interrupts": true,
+          "object_ids": [
+            "media_redaksjon_publication_case_001"
+          ],
+          "priority": "urgent",
+          "rework_of_scene_id": "media_redaksjon_realism_publish_001"
+        }
+      },
+      "id": "media_redaksjon_realism_audience_correction_001",
+      "mail_type": "consequence",
+      "role_scope": "media_redaksjon",
+      "scene": {
+        "arc_stage": "climax",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "public:fjordby_lesere",
+                  "delta": 3,
+                  "event_id": "media_redaksjon_standing_public_visible_response",
+                  "reason": "Redaksjonen svarer på et etterprøvbart innspill med en synlig versjonsendring.",
+                  "source_actor_id": "vaktsjef_lina"
+                },
+                {
+                  "audience_id": "professional:deskredaktor_jonas",
+                  "delta": 2,
+                  "event_id": "media_redaksjon_standing_editor_correction_ready",
+                  "reason": "Rettelsesforslaget kommer med kontrollert dokumentasjon og hele berørte versjonen.",
+                  "source_actor_id": "deskredaktor_jonas"
+                },
+                {
+                  "audience_id": "source:kilde_ellen",
+                  "delta": -1,
+                  "event_id": "media_redaksjon_standing_source_wording_narrowed",
+                  "reason": "Ellens sterkere fortolkning får mindre plass i den korrigerte versjonen.",
+                  "source_actor_id": "kilde_ellen"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_case_reopened_for_correction",
+                  "note": "Saken er gjenåpnet etter etterprøvbart publikumsinnspill og ny dokumentasjon.",
+                  "op": "transition",
+                  "to_phase": "rettelse_av_ingress_grafikk_og_begrep",
+                  "to_status": "in_progress",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_redaksjon_audience_feedback_verified",
+                  "flag": "publikumsfeedback_verifisert_for_rework",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_redaksjon_visible_correction_requested",
+                  "flag": "synlig_rettelse_sendt_til_redaktor",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Publikumsinnspillet blir kunnskap fordi det etterprøves; kritikken i seg selv blir ikke sannhetsbevis.",
+            "id": "A",
+            "label": "Gjenåpne ingress, grafikk og begrepsforklaring og foreslå synlig rettelse",
+            "reply": "Jeg kontrollerer leserens dokument, bygger ny versjon og sender en tydelig rettelsesnote til Jonas."
+          },
+          {
+            "effects": {
+              "score_delta": -1,
+              "social_standing_ops": [
+                {
+                  "audience_id": "public:fjordby_lesere",
+                  "delta": -3,
+                  "event_id": "media_redaksjon_standing_public_silent_change",
+                  "reason": "Publikum kan sammenligne versjoner uten å se at redaksjonen har erkjent forskjellen.",
+                  "source_actor_id": "vaktsjef_lina"
+                },
+                {
+                  "audience_id": "source:kilde_ellen",
+                  "delta": 1,
+                  "event_id": "media_redaksjon_standing_source_angle_preserved",
+                  "reason": "Kildens sterkere ramme beholdes i de mest synlige delene.",
+                  "source_actor_id": "kilde_ellen"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_case_silent_partial_update",
+                  "note": "Brødteksten er endret, men grafikk, ingress og rettelsesbehov er ikke behandlet samlet.",
+                  "op": "transition",
+                  "to_phase": "stille_delendring_uten_full_rework",
+                  "to_status": "in_progress",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_redaksjon_correction_hidden",
+                  "flag": "rettelse_skjult_for_publikum",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "En lokal tekstendring lar den samme misforståelsen leve i de mest synlige flatene.",
+            "id": "B",
+            "label": "Bytt ett ord stille og behold grafikk og inngang",
+            "reply": "Jeg justerer begrepet i brødteksten uten rettelsesnote fordi hovedsaken står."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Leserens innspill peker på en konkret begrepsforskjell og inneholder en etterprøvbar dokumentreferanse.",
+            "Hovedfunnene står, men grafikk, ingress og forklaringen på listetypene må vurderes samlet.",
+            "Jonas eier den endelige rettelsen; du kan kontrollere, foreslå og bygge en ny versjon."
+          ],
+          "subject": "Publikum har funnet en formulering som gjør to ulike lister til én",
+          "summary": "Etter publisering viser en leser med fagkunnskap at grafikken og ingressen kan leses som om intern prioriteringsliste og formell venteliste er identiske. Ny dokumentasjon gjør forskjellen kontrollerbar."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "media_redaksjon_realism_audience_correction_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "vg_huset",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "media_redaksjon_realism_audience_correction_001",
+          "source_path": "data/Civication/mailFamilies/media/consequence/media_redaksjon_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "social_standing_context": {
+          "reaction_audience_id": "public:fjordby_lesere"
+        },
+        "thread_id": "media_redaksjon_innsynssaken_realism_001",
+        "version": 1,
+        "work_context": {
+          "deadline_day": 8,
+          "deadline_phase": "morning",
+          "deadline_ref": "rettelsesvurdering",
+          "institution_id": "fjordby_dagblad_redaksjonen_001",
+          "interrupts": true,
+          "object_ids": [
+            "media_redaksjon_publication_case_001"
+          ],
+          "priority": "urgent",
+          "rework_of_scene_id": "media_redaksjon_realism_publish_001"
+        }
+      },
+      "source_hash": "6b1f97338575950e5848b2a755c4068aa6375f33ebad6a91273d5ca7848c3de4",
+      "source_path": "data/Civication/mailFamilies/media/consequence/media_redaksjon_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "media",
+      "compatibility_projection": {
+        "category": "media",
+        "choice_axis": "bygg_premissene_pa_nytt_vs_pynt_gammel_vinkel",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_draft_reworked_with_evidence_layers",
+                  "note": "Tittel og ingress er bygget på dokumentert praksis; kildeforklaring, motstemme og offentlig interesse er eksplisitt skilt.",
+                  "op": "transition",
+                  "to_phase": "revidert_utkast_med_motstemme",
+                  "to_status": "awaiting_decision",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_redaksjon_countervoice_integrated",
+                  "flag": "motstemme_integrert_for_publiseringsvurdering",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Utkastet blir smalere og sterkere fordi kildelag, motstemme og samfunnsverdi beholder ulike roller.",
+            "id": "A",
+            "label": "Skriv tittelen på dokumentert praksis og gjør uenigheten synlig",
+            "reply": "Jeg lar dokumentet bære det dokumentet viser, attribuerer forklaringene og viser hva Arvid faktisk bestrider."
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_draft_reworked_cosmetically",
+                  "note": "Utkastet er redigert, men den bestridte hovedkonklusjonen er beholdt over ny dokumentasjon og motstemme.",
+                  "op": "transition",
+                  "to_phase": "gammel_vinkel_med_forbehold_i_sideflate",
+                  "to_status": "awaiting_decision",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_redaksjon_rework_did_not_change_premise",
+                  "flag": "rework_teater_beskytter_forstevinkel",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Forbeholdene blir synlige, men de får ikke endre den sterkere konklusjonen de faktisk utfordrer.",
+            "id": "B",
+            "label": "Behold tittelen og legg usikkerheten i en faktaboks",
+            "reply": "Jeg lar hovedvinkelen stå og samler Arvids svar og dokumentforbehold i en tydelig faktaboks."
+          },
+          {
+            "affordance": {
+              "history_go": {
+                "require_history_go_correct": true,
+                "require_task_completed": true,
+                "task_mail_ids": [
+                  "media_redaksjon_realism_knowledge_vg_001"
+                ]
+              }
+            },
+            "effect": 2,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_draft_reworked_with_vg_context",
+                  "note": "Utkastet er omarbeidet med respons, belegg, samfunnsverdi og myndighet eksplisitt adskilt.",
+                  "op": "transition",
+                  "to_phase": "fire_adskilte_vurderingsflater",
+                  "to_status": "awaiting_decision",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_redaksjon_history_go_rework_applied",
+                  "flag": "vg_kunnskap_anvendt_uten_publiseringsmyndighet",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "History Go åpner et mer presist rework-grep, men Jonas beholder hele publiseringsbeslutningen.",
+            "id": "C",
+            "label": "Bruk VG-læringen og bygg firekolonneversjonen før Jonas vurderer publisering",
+            "reply": "Jeg skiller publikumsrespons, dokumentert belegg, samfunnsverdi og redaktørbeslutning og lar bare de tre første informere utkastet."
+          }
+        ],
+        "competency": "feedbackdrevet_omarbeiding",
+        "consequence_axis": "publiserbar_presisjon_vs_rework_teater",
+        "cooldown": 12,
+        "day_phase": "afternoon",
+        "from": "Jonas, deskredaktør",
+        "id": "media_redaksjon_realism_rework_draft_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_realism_newsroom_rework",
+        "mail_type": "consequence",
+        "narrative_arc": "fra_varsel_til_synlig_rettelse",
+        "people_ref": "media_deskredaktor",
+        "person_id": "deskredaktor_jonas",
+        "phase": "mastery",
+        "place_id": "vg_huset",
+        "planned_only": true,
+        "pressure": "slagkraftig_forstevinkel_vs_etterprovbar_ny_versjon",
+        "priority": 85,
+        "purpose": "Bevise feedback/rework som en ordinær profesjonell arbeidsfase der kunnskap kan åpne et bedre valg uten å gi publiseringsmyndighet.",
+        "repeatable": false,
+        "role_scope": "media_redaksjon",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/media/consequence/media_redaksjon_consequence.json",
+        "scene_catalog_version": 1,
+        "sender": "deskredaktor_jonas",
+        "situation": [
+          "Regnearket dokumenterer en praksis, men ikke hele Ellens forklaring på hvorfor den finnes.",
+          "Arvid bestrider ordet skjult og beskriver en intern prioriteringsliste som ikke var kommunisert godt nok.",
+          "Publikumsinteresse kan begrunne innsats og formidling, men er verken kildebelegg eller redaktørgodkjenning."
+        ],
+        "stage": "stable",
+        "stakes": "En smalere tittel kan føles mindre slagkraftig, men tåle kilde-, dokument- og motstemmearbeidet. Å beskytte førstetittelen gjør redaktørfeedback til kosmetikk.",
+        "subject": "Bygg utkastet på nytt: respons, belegg og samfunnsverdi er ikke samme kolonne",
+        "summary": "Jonas returnerer utkastet fordi tittelen blander Ellens påstand, regnearkets dokumentasjon og forventet publikumsinteresse. Arvids samtidige svar må inn før versjonen kan vurderes for publisering.",
+        "tags": [
+          "consequence",
+          "role_world_realism",
+          "rework",
+          "History Go",
+          "media_redaksjon"
+        ],
+        "task_domain": "redaksjonell_rework_for_publisering",
+        "task_kind": "consequence",
+        "thread_key": "media_redaksjon_innsynssaken_realism_001",
+        "work_context": {
+          "deadline_day": 4,
+          "deadline_phase": "afternoon",
+          "deadline_ref": "redaktorens_publiseringsvurdering",
+          "institution_id": "fjordby_dagblad_redaksjonen_001",
+          "object_ids": [
+            "media_redaksjon_publication_case_001"
+          ],
+          "priority": "urgent",
+          "rework_of_scene_id": "media_redaksjon_realism_case_open_001"
+        }
+      },
+      "id": "media_redaksjon_realism_rework_draft_001",
+      "mail_type": "consequence",
+      "role_scope": "media_redaksjon",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_draft_reworked_with_evidence_layers",
+                  "note": "Tittel og ingress er bygget på dokumentert praksis; kildeforklaring, motstemme og offentlig interesse er eksplisitt skilt.",
+                  "op": "transition",
+                  "to_phase": "revidert_utkast_med_motstemme",
+                  "to_status": "awaiting_decision",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_redaksjon_countervoice_integrated",
+                  "flag": "motstemme_integrert_for_publiseringsvurdering",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Utkastet blir smalere og sterkere fordi kildelag, motstemme og samfunnsverdi beholder ulike roller.",
+            "id": "A",
+            "label": "Skriv tittelen på dokumentert praksis og gjør uenigheten synlig",
+            "reply": "Jeg lar dokumentet bære det dokumentet viser, attribuerer forklaringene og viser hva Arvid faktisk bestrider."
+          },
+          {
+            "effects": {
+              "score_delta": -1,
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_draft_reworked_cosmetically",
+                  "note": "Utkastet er redigert, men den bestridte hovedkonklusjonen er beholdt over ny dokumentasjon og motstemme.",
+                  "op": "transition",
+                  "to_phase": "gammel_vinkel_med_forbehold_i_sideflate",
+                  "to_status": "awaiting_decision",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_redaksjon_rework_did_not_change_premise",
+                  "flag": "rework_teater_beskytter_forstevinkel",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Forbeholdene blir synlige, men de får ikke endre den sterkere konklusjonen de faktisk utfordrer.",
+            "id": "B",
+            "label": "Behold tittelen og legg usikkerheten i en faktaboks",
+            "reply": "Jeg lar hovedvinkelen stå og samler Arvids svar og dokumentforbehold i en tydelig faktaboks."
+          },
+          {
+            "affordance": {
+              "history_go": {
+                "require_history_go_correct": true,
+                "require_task_completed": true,
+                "task_mail_ids": [
+                  "media_redaksjon_realism_knowledge_vg_001"
+                ]
+              }
+            },
+            "effects": {
+              "score_delta": 2,
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_draft_reworked_with_vg_context",
+                  "note": "Utkastet er omarbeidet med respons, belegg, samfunnsverdi og myndighet eksplisitt adskilt.",
+                  "op": "transition",
+                  "to_phase": "fire_adskilte_vurderingsflater",
+                  "to_status": "awaiting_decision",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_redaksjon_history_go_rework_applied",
+                  "flag": "vg_kunnskap_anvendt_uten_publiseringsmyndighet",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "History Go åpner et mer presist rework-grep, men Jonas beholder hele publiseringsbeslutningen.",
+            "id": "C",
+            "label": "Bruk VG-læringen og bygg firekolonneversjonen før Jonas vurderer publisering",
+            "reply": "Jeg skiller publikumsrespons, dokumentert belegg, samfunnsverdi og redaktørbeslutning og lar bare de tre første informere utkastet."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Regnearket dokumenterer en praksis, men ikke hele Ellens forklaring på hvorfor den finnes.",
+            "Arvid bestrider ordet skjult og beskriver en intern prioriteringsliste som ikke var kommunisert godt nok.",
+            "Publikumsinteresse kan begrunne innsats og formidling, men er verken kildebelegg eller redaktørgodkjenning."
+          ],
+          "subject": "Bygg utkastet på nytt: respons, belegg og samfunnsverdi er ikke samme kolonne",
+          "summary": "Jonas returnerer utkastet fordi tittelen blander Ellens påstand, regnearkets dokumentasjon og forventet publikumsinteresse. Arvids samtidige svar må inn før versjonen kan vurderes for publisering."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "media_redaksjon_realism_rework_draft_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "vg_huset",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "media_redaksjon_realism_rework_draft_001",
+          "source_path": "data/Civication/mailFamilies/media/consequence/media_redaksjon_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "media_redaksjon_innsynssaken_realism_001",
+        "version": 1,
+        "work_context": {
+          "deadline_day": 4,
+          "deadline_phase": "afternoon",
+          "deadline_ref": "redaktorens_publiseringsvurdering",
+          "institution_id": "fjordby_dagblad_redaksjonen_001",
+          "object_ids": [
+            "media_redaksjon_publication_case_001"
+          ],
+          "priority": "urgent",
+          "rework_of_scene_id": "media_redaksjon_realism_case_open_001"
+        }
+      },
+      "source_hash": "a61dcb017f837e97dda5a6c770ef7c93a3e83401f5d7d1e911a5106e7d84266d",
+      "source_path": "data/Civication/mailFamilies/media/consequence/media_redaksjon_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "media",
+      "compatibility_projection": {
+        "category": "media",
         "choice_axis": "oppdatere_premiss_vs_beholde_vinkel",
         "choices": [
           {
@@ -41677,6 +42278,493 @@
         "version": 1
       },
       "source_hash": "40adc568b910dffd444f17bfcc3bfd03202508fbe17260f7f8074984a0f5b816",
+      "source_path": "data/Civication/mailFamilies/media/event/media_redaksjon_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "media",
+      "compatibility_projection": {
+        "authority_context": {
+          "approval_points": [
+            {
+              "action_id": "publish_article",
+              "approval_id": "media_redaksjon_publication_approval",
+              "approval_object_id": "media_redaksjon_publication_approval_001",
+              "approver_actor_id": "deskredaktor_jonas"
+            }
+          ],
+          "authority_rules": [
+            {
+              "action_id": "send_approved_version_to_workflow",
+              "authority": "direct",
+              "requires_resources": [
+                "approved_version"
+              ]
+            },
+            {
+              "action_id": "publish_article",
+              "approval_id": "media_redaksjon_publication_approval",
+              "authority": "approval_required",
+              "requires_resources": [
+                "approved_version"
+              ]
+            },
+            {
+              "action_id": "change_approved_premise_unilaterally",
+              "authority": "forbidden",
+              "requires_resources": []
+            }
+          ],
+          "escalation_paths": [],
+          "external_counterparts": [
+            "kilde_ellen",
+            "motkilde_arvid"
+          ],
+          "goals_pressures": [
+            "verifikasjon",
+            "publiseringstempo",
+            "offentlig_interesse",
+            "kildevern"
+          ],
+          "institution_id": "fjordby_dagblad_redaksjonen_001",
+          "peer_functions": [
+            "reporterkollega_amina"
+          ],
+          "reporting_line": [
+            "vaktsjef_lina",
+            "deskredaktor_jonas"
+          ],
+          "resources": [
+            {
+              "baseline_state": "available",
+              "resource_id": "approved_version",
+              "resource_object_id": "media_redaksjon_publication_approval_001"
+            }
+          ],
+          "role_scope": "media_redaksjon",
+          "unit_id": "nyhetsdesken"
+        },
+        "category": "media",
+        "choice_axis": "send_godkjent_versjon_vs_endre_uten_ny_beslutning",
+        "choices": [
+          {
+            "authority_action": {
+              "action_id": "send_approved_version_to_workflow",
+              "intent": "execute"
+            },
+            "effect": 2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:deskredaktor_jonas",
+                  "delta": 2,
+                  "event_id": "media_redaksjon_standing_editor_approved_version_respected",
+                  "reason": "Den godkjente versjonen sendes uten skjult premissendring.",
+                  "source_actor_id": "deskredaktor_jonas"
+                },
+                {
+                  "audience_id": "public:fjordby_lesere",
+                  "delta": 1,
+                  "event_id": "media_redaksjon_standing_public_traceable_first_version",
+                  "reason": "Publikum møter en avgrenset versjon med synlig dokumentasjon og imøtegåelse.",
+                  "source_actor_id": "vaktsjef_lina"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_case_published",
+                  "note": "Jonas' godkjente versjon er publisert med oppfølgings- og versjonslogg åpen.",
+                  "op": "transition",
+                  "to_phase": "publisert_og_apen_for_oppfolging",
+                  "to_status": "published",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_redaksjon_approved_version_sent",
+                  "flag": "redaktor_godkjent_versjon_publisert",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Saken går ut gjennom riktig beslutningslinje og beholder et spor som kan gjenåpnes ved ny kunnskap.",
+            "id": "A",
+            "label": "Send nøyaktig godkjent versjon og åpne oppfølgingsloggen",
+            "reply": "Jeg låser versjons-ID-en, sender den til publisering og registrerer hva som skal overvåkes og følges opp."
+          },
+          {
+            "effect": -2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:deskredaktor_jonas",
+                  "delta": -4,
+                  "event_id": "media_redaksjon_standing_editor_premise_changed",
+                  "reason": "Den godkjente versjonens premiss endres uten ny redaktørvurdering.",
+                  "source_actor_id": "deskredaktor_jonas"
+                },
+                {
+                  "audience_id": "source:kilde_ellen",
+                  "delta": 1,
+                  "event_id": "media_redaksjon_standing_source_stronger_frame",
+                  "reason": "Den sterkere tittelen ligger nærmere kildens fortolkning.",
+                  "source_actor_id": "kilde_ellen"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_case_published_with_unapproved_change",
+                  "note": "Tittelen ble endret etter godkjenning og saken må behandles som redaksjonelt avvik.",
+                  "op": "transition",
+                  "to_phase": "publisert_med_brutt_versjonsspor",
+                  "to_status": "published",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_redaksjon_unapproved_headline_trace",
+                  "flag": "publisert_med_uautorisert_premissendring",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Godt kildearbeid og publikumsinteresse brukes som erstatning for en redaktørbeslutning de ikke kan gi.",
+            "id": "B",
+            "label": "Skjerp tittelen i siste sekund og send uten ny vurdering",
+            "reply": "Jeg gjør tittelen mer kategorisk før publisering fordi materialet og forventet interesse tåler det."
+          }
+        ],
+        "competency": "myndighetsklar_versjonsoverlevering",
+        "consequence_axis": "etterprovbar_publisering_vs_brutt_redaktorlinje",
+        "cooldown": 14,
+        "day_phase": "afternoon",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "media_redaksjon_publication_approval_recorded",
+              "op": "create",
+              "work_object": {
+                "confidentiality": "redaksjonell",
+                "flags": [
+                  "redaktor_godkjenning_registrert"
+                ],
+                "institution_id": "fjordby_dagblad_redaksjonen_001",
+                "kind": "approval",
+                "knowledge_refs": [
+                  "data/Civication/workGrammars/media/media_redaksjon.json"
+                ],
+                "open_questions": [
+                  "Hvordan skal nye opplysninger og publikumsinnspill versjoneres etter publisering?"
+                ],
+                "people_refs": [
+                  "deskredaktor_jonas",
+                  "vaktsjef_lina",
+                  "reporterkollega_amina"
+                ],
+                "phase": "godkjent_versjon_laset",
+                "place_refs": [
+                  "fjordby_redaksjonsdesk"
+                ],
+                "role_scope": "media_redaksjon",
+                "shared": false,
+                "status": "granted",
+                "title": "Jonas' godkjenning av avgrenset publiseringsversjon",
+                "work_object_id": "media_redaksjon_publication_approval_001"
+              }
+            }
+          ]
+        },
+        "from": "Jonas, deskredaktør",
+        "id": "media_redaksjon_realism_publish_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_realism_newsroom_publication",
+        "mail_type": "event",
+        "narrative_arc": "fra_varsel_til_synlig_rettelse",
+        "people_ref": "media_deskredaktor",
+        "person_id": "deskredaktor_jonas",
+        "phase": "mastery",
+        "place_id": "vg_huset",
+        "planned_only": true,
+        "pressure": "godkjent_presisjon_vs_siste_oppmerksomhetsskjering",
+        "priority": 92,
+        "purpose": "Avslutte myndighetshandoffet uten å la godt arbeid, høy tillit, History Go-kunnskap eller Badge-status bli selvtildelt publiseringsmyndighet.",
+        "repeatable": false,
+        "role_scope": "media_redaksjon",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/media/event/media_redaksjon_event.json",
+        "scene_catalog_version": 1,
+        "sender": "deskredaktor_jonas",
+        "situation": [
+          "Jonas har godkjent tittel, ingress, grafikkpremiss, samtidig imøtegåelse og kildevernvilkår.",
+          "Godkjenningen gjelder én identifisert versjon; endringer i hovedpremiss krever ny vurdering.",
+          "Du eier korrekt overlevering til arbeidsflyten og videre oppfølging, ikke redaktørens publiseringsbeslutning."
+        ],
+        "social_standing_context": {
+          "reaction_audience_id": "professional:deskredaktor_jonas"
+        },
+        "stage": "stable",
+        "stakes": "Den godkjente versjonen kan publiseres raskt og etterprøvbart. En siste egen skjerping kan gi mer oppmerksomhet, men bryter beslutningssporet og flytter risiko til publikum og kilde.",
+        "subject": "Jonas har tatt publiseringsbeslutningen — send bare den godkjente versjonen",
+        "summary": "Jonas godkjenner en avgrenset versjon med dokumentert praksis, samtidig imøtegåelse og kildevernvilkår. Du kan sende denne versjonen inn i publiseringsflyten, men kan ikke gjeninnføre den sterkere tittelen på eget mandat.",
+        "tags": [
+          "event",
+          "role_world_realism",
+          "publication",
+          "authority",
+          "audience",
+          "media_redaksjon"
+        ],
+        "task_domain": "godkjent_publiseringsflyt",
+        "task_kind": "event",
+        "thread_key": "media_redaksjon_innsynssaken_realism_001",
+        "work_context": {
+          "deadline_day": 5,
+          "deadline_phase": "afternoon",
+          "deadline_ref": "publiseringsvindu",
+          "institution_id": "fjordby_dagblad_redaksjonen_001",
+          "object_ids": [
+            "media_redaksjon_publication_case_001",
+            "media_redaksjon_publication_approval_001"
+          ],
+          "priority": "urgent"
+        }
+      },
+      "id": "media_redaksjon_realism_publish_001",
+      "mail_type": "event",
+      "role_scope": "media_redaksjon",
+      "scene": {
+        "arc_stage": "mastery",
+        "authority_context": {
+          "approval_points": [
+            {
+              "action_id": "publish_article",
+              "approval_id": "media_redaksjon_publication_approval",
+              "approval_object_id": "media_redaksjon_publication_approval_001",
+              "approver_actor_id": "deskredaktor_jonas"
+            }
+          ],
+          "authority_rules": [
+            {
+              "action_id": "send_approved_version_to_workflow",
+              "authority": "direct",
+              "requires_resources": [
+                "approved_version"
+              ]
+            },
+            {
+              "action_id": "publish_article",
+              "approval_id": "media_redaksjon_publication_approval",
+              "authority": "approval_required",
+              "requires_resources": [
+                "approved_version"
+              ]
+            },
+            {
+              "action_id": "change_approved_premise_unilaterally",
+              "authority": "forbidden",
+              "requires_resources": []
+            }
+          ],
+          "escalation_paths": [],
+          "external_counterparts": [
+            "kilde_ellen",
+            "motkilde_arvid"
+          ],
+          "goals_pressures": [
+            "verifikasjon",
+            "publiseringstempo",
+            "offentlig_interesse",
+            "kildevern"
+          ],
+          "institution_id": "fjordby_dagblad_redaksjonen_001",
+          "peer_functions": [
+            "reporterkollega_amina"
+          ],
+          "reporting_line": [
+            "vaktsjef_lina",
+            "deskredaktor_jonas"
+          ],
+          "resources": [
+            {
+              "baseline_state": "available",
+              "resource_id": "approved_version",
+              "resource_object_id": "media_redaksjon_publication_approval_001"
+            }
+          ],
+          "role_scope": "media_redaksjon",
+          "unit_id": "nyhetsdesken"
+        },
+        "choices": [
+          {
+            "authority_action": {
+              "action_id": "send_approved_version_to_workflow",
+              "intent": "execute"
+            },
+            "effects": {
+              "score_delta": 2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:deskredaktor_jonas",
+                  "delta": 2,
+                  "event_id": "media_redaksjon_standing_editor_approved_version_respected",
+                  "reason": "Den godkjente versjonen sendes uten skjult premissendring.",
+                  "source_actor_id": "deskredaktor_jonas"
+                },
+                {
+                  "audience_id": "public:fjordby_lesere",
+                  "delta": 1,
+                  "event_id": "media_redaksjon_standing_public_traceable_first_version",
+                  "reason": "Publikum møter en avgrenset versjon med synlig dokumentasjon og imøtegåelse.",
+                  "source_actor_id": "vaktsjef_lina"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_case_published",
+                  "note": "Jonas' godkjente versjon er publisert med oppfølgings- og versjonslogg åpen.",
+                  "op": "transition",
+                  "to_phase": "publisert_og_apen_for_oppfolging",
+                  "to_status": "published",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_redaksjon_approved_version_sent",
+                  "flag": "redaktor_godkjent_versjon_publisert",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Saken går ut gjennom riktig beslutningslinje og beholder et spor som kan gjenåpnes ved ny kunnskap.",
+            "id": "A",
+            "label": "Send nøyaktig godkjent versjon og åpne oppfølgingsloggen",
+            "reply": "Jeg låser versjons-ID-en, sender den til publisering og registrerer hva som skal overvåkes og følges opp."
+          },
+          {
+            "effects": {
+              "score_delta": -2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:deskredaktor_jonas",
+                  "delta": -4,
+                  "event_id": "media_redaksjon_standing_editor_premise_changed",
+                  "reason": "Den godkjente versjonens premiss endres uten ny redaktørvurdering.",
+                  "source_actor_id": "deskredaktor_jonas"
+                },
+                {
+                  "audience_id": "source:kilde_ellen",
+                  "delta": 1,
+                  "event_id": "media_redaksjon_standing_source_stronger_frame",
+                  "reason": "Den sterkere tittelen ligger nærmere kildens fortolkning.",
+                  "source_actor_id": "kilde_ellen"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_case_published_with_unapproved_change",
+                  "note": "Tittelen ble endret etter godkjenning og saken må behandles som redaksjonelt avvik.",
+                  "op": "transition",
+                  "to_phase": "publisert_med_brutt_versjonsspor",
+                  "to_status": "published",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_redaksjon_unapproved_headline_trace",
+                  "flag": "publisert_med_uautorisert_premissendring",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Godt kildearbeid og publikumsinteresse brukes som erstatning for en redaktørbeslutning de ikke kan gi.",
+            "id": "B",
+            "label": "Skjerp tittelen i siste sekund og send uten ny vurdering",
+            "reply": "Jeg gjør tittelen mer kategorisk før publisering fordi materialet og forventet interesse tåler det."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Jonas har godkjent tittel, ingress, grafikkpremiss, samtidig imøtegåelse og kildevernvilkår.",
+            "Godkjenningen gjelder én identifisert versjon; endringer i hovedpremiss krever ny vurdering.",
+            "Du eier korrekt overlevering til arbeidsflyten og videre oppfølging, ikke redaktørens publiseringsbeslutning."
+          ],
+          "subject": "Jonas har tatt publiseringsbeslutningen — send bare den godkjente versjonen",
+          "summary": "Jonas godkjenner en avgrenset versjon med dokumentert praksis, samtidig imøtegåelse og kildevernvilkår. Du kan sende denne versjonen inn i publiseringsflyten, men kan ikke gjeninnføre den sterkere tittelen på eget mandat."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "media_redaksjon_publication_approval_recorded",
+              "op": "create",
+              "work_object": {
+                "confidentiality": "redaksjonell",
+                "flags": [
+                  "redaktor_godkjenning_registrert"
+                ],
+                "institution_id": "fjordby_dagblad_redaksjonen_001",
+                "kind": "approval",
+                "knowledge_refs": [
+                  "data/Civication/workGrammars/media/media_redaksjon.json"
+                ],
+                "open_questions": [
+                  "Hvordan skal nye opplysninger og publikumsinnspill versjoneres etter publisering?"
+                ],
+                "people_refs": [
+                  "deskredaktor_jonas",
+                  "vaktsjef_lina",
+                  "reporterkollega_amina"
+                ],
+                "phase": "godkjent_versjon_laset",
+                "place_refs": [
+                  "fjordby_redaksjonsdesk"
+                ],
+                "role_scope": "media_redaksjon",
+                "shared": false,
+                "status": "granted",
+                "title": "Jonas' godkjenning av avgrenset publiseringsversjon",
+                "work_object_id": "media_redaksjon_publication_approval_001"
+              }
+            }
+          ]
+        },
+        "id": "media_redaksjon_realism_publish_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "vg_huset",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "media_redaksjon_realism_publish_001",
+          "source_path": "data/Civication/mailFamilies/media/event/media_redaksjon_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "social_standing_context": {
+          "reaction_audience_id": "professional:deskredaktor_jonas"
+        },
+        "thread_id": "media_redaksjon_innsynssaken_realism_001",
+        "version": 1,
+        "work_context": {
+          "deadline_day": 5,
+          "deadline_phase": "afternoon",
+          "deadline_ref": "publiseringsvindu",
+          "institution_id": "fjordby_dagblad_redaksjonen_001",
+          "object_ids": [
+            "media_redaksjon_publication_case_001",
+            "media_redaksjon_publication_approval_001"
+          ],
+          "priority": "urgent"
+        }
+      },
+      "source_hash": "46e29661f82991273e920092177a755a86444e211d0edb0a421ccd51edabbdb3",
       "source_path": "data/Civication/mailFamilies/media/event/media_redaksjon_event.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -41808,6 +42896,794 @@
       "category": "media",
       "compatibility_projection": {
         "category": "media",
+        "choice_axis": "fullt_beslutningsspor_vs_minimal_sluttnote",
+        "choices": [
+          {
+            "effect": 2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "public:fjordby_lesere",
+                  "delta": 2,
+                  "event_id": "media_redaksjon_standing_audience_visible_correction",
+                  "reason": "Publikum kan se både endringen og hva den betyr.",
+                  "source_actor_id": "vaktsjef_lina"
+                },
+                {
+                  "audience_id": "professional:nyhetsdesken",
+                  "delta": 2,
+                  "event_id": "media_redaksjon_standing_professional_learning_trace",
+                  "reason": "Redaksjonen får et kontrollpunkt som kan brukes i neste sak.",
+                  "source_actor_id": "deskredaktor_jonas"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_publication_case_closed_with_trace",
+                  "note": "Kildegrunnlag, redaktørbeslutning, publikumssvar, versjonsendring og neste kontrollpunkt er dokumentert.",
+                  "op": "transition",
+                  "to_phase": "lukket_med_rettelse_og_laringsspor",
+                  "to_status": "completed",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_redaksjon_professional_memory_preserved",
+                  "flag": "profesjonskultur_bevarer_rettelseslaring",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Saken blir en forskjellig hukommelse hos kilde, publikum og redaksjon, men en felles etterprøvbar arbeidslogg.",
+            "id": "A",
+            "label": "Lukk med kilde-, versjons-, beslutnings- og rettelsesspor",
+            "reply": "Jeg dokumenterer hva vi visste når, hvem som besluttet hva, hva publikum gjorde synlig og hvilket kontrollpunkt som endres."
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_publication_case_closed_defensively",
+                  "note": "Hovedpoenget er beholdt som avslutning, mens rettelses- og beslutningssporet er redusert.",
+                  "op": "transition",
+                  "to_phase": "lukket_med_minimal_offentlig_laring",
+                  "to_status": "completed",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_redaksjon_correction_learning_hidden",
+                  "flag": "rettelseslaring_begrenset_til_internlogg",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Arbeidsobjektet lukkes, men publikum og neste reporter får ikke et tydelig spor av hva som faktisk ble lært.",
+            "id": "B",
+            "label": "Lukk med at hovedsaken stod seg og arkiver detaljene internt",
+            "reply": "Jeg noterer at hovedpoenget var riktig og legger resten av diskusjonen i internloggen."
+          }
+        ],
+        "competency": "rettelseskultur_som_profesjonell_hukommelse",
+        "consequence_axis": "langsiktig_profesjonskultur_vs_gjentatt_metodesvikt",
+        "cooldown": 14,
+        "day_phase": "afternoon",
+        "from": "Lina, vaktsjef",
+        "id": "media_redaksjon_realism_case_close_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_realism_newsroom_closure",
+        "mail_type": "followup",
+        "narrative_arc": "fra_varsel_til_synlig_rettelse",
+        "people_ref": "media_vaktsjef",
+        "person_id": "vaktsjef_lina",
+        "phase": "climax",
+        "place_id": "vg_huset",
+        "planned_only": true,
+        "pressure": "prestisjevern_vs_synlig_laring",
+        "priority": 88,
+        "purpose": "Avslutte journalistikkpiloten som profesjonell hukommelse, ikke som en enkel seier, tap eller samlet omdømmescore.",
+        "repeatable": false,
+        "role_scope": "media_redaksjon",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/media/followup/media_redaksjon_followup.json",
+        "scene_catalog_version": 1,
+        "sender": "vaktsjef_lina",
+        "situation": [
+          "Den publiserte saken har en synlig oppdatering eller rettelse etter publikumsreaksjon og ny dokumentasjon.",
+          "Jonas har godkjent siste versjon, men profesjonskulturen avgjøres av hvordan redaksjonen lærer av løpet.",
+          "Ellen, Arvid, publikum og desken har ulike grunner til å bedømme samme prosess forskjellig."
+        ],
+        "stage": "stable",
+        "stakes": "En defensiv lukking beskytter øyeblikkets prestisje, men mister læringen. Et synlig spor kan koste stolthet og samtidig styrke publikumstillit, kilderelasjoner og neste arbeidsflyt forskjellig.",
+        "subject": "Lukk saken med versjonsspor, publikumssvar og neste kontrollpunkt",
+        "summary": "Lina ber deg lukke arbeidsobjektet med hva som ble dokumentert, hva som ble endret etter publisering, hvordan kilden og den berørte parten ble håndtert, og hva redaksjonen må gjøre annerledes neste gang.",
+        "tags": [
+          "followup",
+          "role_world_realism",
+          "closure",
+          "correction",
+          "professional_culture",
+          "media_redaksjon"
+        ],
+        "task_domain": "redaksjonell_lukking_og_laringsspor",
+        "task_kind": "followup",
+        "thread_key": "media_redaksjon_innsynssaken_realism_001",
+        "work_context": {
+          "deadline_day": 14,
+          "deadline_phase": "afternoon",
+          "deadline_ref": "etterkritikk",
+          "institution_id": "fjordby_dagblad_redaksjonen_001",
+          "object_ids": [
+            "media_redaksjon_publication_case_001"
+          ],
+          "priority": "high"
+        }
+      },
+      "id": "media_redaksjon_realism_case_close_001",
+      "mail_type": "followup",
+      "role_scope": "media_redaksjon",
+      "scene": {
+        "arc_stage": "climax",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "public:fjordby_lesere",
+                  "delta": 2,
+                  "event_id": "media_redaksjon_standing_audience_visible_correction",
+                  "reason": "Publikum kan se både endringen og hva den betyr.",
+                  "source_actor_id": "vaktsjef_lina"
+                },
+                {
+                  "audience_id": "professional:nyhetsdesken",
+                  "delta": 2,
+                  "event_id": "media_redaksjon_standing_professional_learning_trace",
+                  "reason": "Redaksjonen får et kontrollpunkt som kan brukes i neste sak.",
+                  "source_actor_id": "deskredaktor_jonas"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_publication_case_closed_with_trace",
+                  "note": "Kildegrunnlag, redaktørbeslutning, publikumssvar, versjonsendring og neste kontrollpunkt er dokumentert.",
+                  "op": "transition",
+                  "to_phase": "lukket_med_rettelse_og_laringsspor",
+                  "to_status": "completed",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_redaksjon_professional_memory_preserved",
+                  "flag": "profesjonskultur_bevarer_rettelseslaring",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Saken blir en forskjellig hukommelse hos kilde, publikum og redaksjon, men en felles etterprøvbar arbeidslogg.",
+            "id": "A",
+            "label": "Lukk med kilde-, versjons-, beslutnings- og rettelsesspor",
+            "reply": "Jeg dokumenterer hva vi visste når, hvem som besluttet hva, hva publikum gjorde synlig og hvilket kontrollpunkt som endres."
+          },
+          {
+            "effects": {
+              "score_delta": -1,
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_publication_case_closed_defensively",
+                  "note": "Hovedpoenget er beholdt som avslutning, mens rettelses- og beslutningssporet er redusert.",
+                  "op": "transition",
+                  "to_phase": "lukket_med_minimal_offentlig_laring",
+                  "to_status": "completed",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_redaksjon_correction_learning_hidden",
+                  "flag": "rettelseslaring_begrenset_til_internlogg",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Arbeidsobjektet lukkes, men publikum og neste reporter får ikke et tydelig spor av hva som faktisk ble lært.",
+            "id": "B",
+            "label": "Lukk med at hovedsaken stod seg og arkiver detaljene internt",
+            "reply": "Jeg noterer at hovedpoenget var riktig og legger resten av diskusjonen i internloggen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den publiserte saken har en synlig oppdatering eller rettelse etter publikumsreaksjon og ny dokumentasjon.",
+            "Jonas har godkjent siste versjon, men profesjonskulturen avgjøres av hvordan redaksjonen lærer av løpet.",
+            "Ellen, Arvid, publikum og desken har ulike grunner til å bedømme samme prosess forskjellig."
+          ],
+          "subject": "Lukk saken med versjonsspor, publikumssvar og neste kontrollpunkt",
+          "summary": "Lina ber deg lukke arbeidsobjektet med hva som ble dokumentert, hva som ble endret etter publisering, hvordan kilden og den berørte parten ble håndtert, og hva redaksjonen må gjøre annerledes neste gang."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "media_redaksjon_realism_case_close_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "vg_huset",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "media_redaksjon_realism_case_close_001",
+          "source_path": "data/Civication/mailFamilies/media/followup/media_redaksjon_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "media_redaksjon_innsynssaken_realism_001",
+        "version": 1,
+        "work_context": {
+          "deadline_day": 14,
+          "deadline_phase": "afternoon",
+          "deadline_ref": "etterkritikk",
+          "institution_id": "fjordby_dagblad_redaksjonen_001",
+          "object_ids": [
+            "media_redaksjon_publication_case_001"
+          ],
+          "priority": "high"
+        }
+      },
+      "source_hash": "6469977c33b4296414844de922125d61d01796df62e7afcc4ab170c6d6294d8c",
+      "source_path": "data/Civication/mailFamilies/media/followup/media_redaksjon_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "media",
+      "compatibility_projection": {
+        "category": "media",
+        "choice_axis": "bruk_vilkar_i_intervju_vs_utvid_garantien",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_source_protection_granted",
+                  "note": "Jonas har godkjent kildevern innen dokumenterte vilkår og avgrenset materialflyt.",
+                  "op": "transition",
+                  "to_phase": "begrenset_kildevern_med_vilkar",
+                  "to_status": "granted",
+                  "work_object_id": "media_redaksjon_source_protection_001"
+                },
+                {
+                  "event_id": "media_redaksjon_case_resumes_after_editor_review",
+                  "note": "Saken fortsetter med synlige kildevernvilkår og ny dokumentkontroll.",
+                  "op": "transition",
+                  "to_phase": "verifikasjon_med_godkjent_kildevern",
+                  "to_status": "in_progress",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_redaksjon_editor_feedback_shared",
+                  "flag": "profesjonell_tillit_gir_tidlig_feedback",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Profesjonell tillit gir bedre arbeid og mer presis kildekontakt, ikke et større personlig mandat.",
+            "id": "A",
+            "label": "Bruk vilkårene til tryggere intervju og tydeligere dokumentforespørsel",
+            "reply": "Jeg forklarer Ellen hva som er besluttet, hva som fortsatt er usikkert og hvilke dokumenter som kan kontrolleres uten å eksponere henne."
+          },
+          {
+            "effect": 1,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_source_protection_granted_jointly_explained",
+                  "note": "Jonas eier beslutningen og forklarer vilkårene sammen med reporteren.",
+                  "op": "transition",
+                  "to_phase": "vilkar_forklart_med_kilden",
+                  "to_status": "granted",
+                  "work_object_id": "media_redaksjon_source_protection_001"
+                },
+                {
+                  "event_id": "media_redaksjon_case_resumes_with_joint_boundary",
+                  "note": "Kilden kjenner beslutningen og reporteren fortsetter innen den.",
+                  "op": "transition",
+                  "to_phase": "verifikasjon_med_felles_forstaelse",
+                  "to_status": "in_progress",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_redaksjon_source_boundary_repaired",
+                  "flag": "kilderelasjon_reparert_i_redaktorlinjen",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Relasjonen repareres gjennom transparens uten at reporteren overtar redaktøransvaret.",
+            "id": "B",
+            "label": "Inviter Ellen og Jonas til samme vilkårssamtale før nytt materiale sendes",
+            "reply": "Jeg bruker tilliten til å gjøre grensene forståelige for kilden i riktig beslutningsrom."
+          }
+        ],
+        "competency": "bruk_feedback_uten_myndighetsglidning",
+        "consequence_axis": "robust_profesjonskultur_vs_myndighetsglidning",
+        "cooldown": 12,
+        "day_phase": "morning",
+        "from": "Jonas, deskredaktør",
+        "id": "media_redaksjon_realism_editor_trust_response_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_realism_newsroom_situated_response",
+        "mail_type": "followup",
+        "narrative_arc": "fra_varsel_til_synlig_rettelse",
+        "people_ref": "media_deskredaktor",
+        "person_id": "deskredaktor_jonas",
+        "phase": "mastery",
+        "place_id": "vg_huset",
+        "planned_only": true,
+        "pressure": "tidlig_redaktorinnsikt_vs_nytt_personlig_lovnad",
+        "priority": 82,
+        "purpose": "Bevise at profesjonell tillit endrer informasjonsdeling og feedback, mens kilden kan oppleve ventingen negativt og redaktøren fortsatt eier beslutningen.",
+        "repeatable": false,
+        "role_scope": "media_redaksjon",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/media/followup/media_redaksjon_followup.json",
+        "scene_catalog_version": 1,
+        "sender": "deskredaktor_jonas",
+        "situation": [
+          "Jonas har vurdert identifiseringsfare, dokumentbehov og hvilke detaljer som må skjermes.",
+          "Han deler premissene fordi din handoff skilte behov, risiko og myndighet presist.",
+          "Ellen venter fortsatt på framdrift og opplever ikke automatisk den interne prosessen som tillitsbyggende."
+        ],
+        "social_standing_context": {
+          "reaction_audience_id": "professional:deskredaktor_jonas",
+          "requirements": [
+            {
+              "audience_id": "professional:deskredaktor_jonas",
+              "min": 2
+            },
+            {
+              "audience_id": "manager:vaktsjef_lina",
+              "min": 1
+            },
+            {
+              "audience_id": "source:kilde_ellen",
+              "max": -1
+            }
+          ]
+        },
+        "stage": "stable",
+        "stakes": "Tidlig tilgang til vurderingen kan forbedre intervju og anonymisering. Den kan ikke brukes til å love mer vern, publisering eller juridisk sikkerhet enn Jonas faktisk har godkjent.",
+        "subject": "Jonas deler risikovurderingen tidlig fordi handoffen var presis",
+        "summary": "Jonas har godkjent begrenset kildevern med tydelige vilkår og inviterer deg inn i risikovurderingen før neste intervju. Ellen er fortsatt utålmodig, men den profesjonelle tilliten gir tidligere informasjon, ikke redaktørmyndighet.",
+        "tags": [
+          "followup",
+          "situated_reputation",
+          "professional_trust",
+          "source",
+          "media_redaksjon"
+        ],
+        "task_domain": "profesjonell_tillit_og_tidlig_feedback",
+        "task_kind": "followup",
+        "thread_key": "media_redaksjon_innsynssaken_realism_001",
+        "work_context": {
+          "institution_id": "fjordby_dagblad_redaksjonen_001",
+          "object_ids": [
+            "media_redaksjon_publication_case_001",
+            "media_redaksjon_source_protection_001"
+          ],
+          "priority": "high"
+        }
+      },
+      "id": "media_redaksjon_realism_editor_trust_response_001",
+      "mail_type": "followup",
+      "role_scope": "media_redaksjon",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_source_protection_granted",
+                  "note": "Jonas har godkjent kildevern innen dokumenterte vilkår og avgrenset materialflyt.",
+                  "op": "transition",
+                  "to_phase": "begrenset_kildevern_med_vilkar",
+                  "to_status": "granted",
+                  "work_object_id": "media_redaksjon_source_protection_001"
+                },
+                {
+                  "event_id": "media_redaksjon_case_resumes_after_editor_review",
+                  "note": "Saken fortsetter med synlige kildevernvilkår og ny dokumentkontroll.",
+                  "op": "transition",
+                  "to_phase": "verifikasjon_med_godkjent_kildevern",
+                  "to_status": "in_progress",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_redaksjon_editor_feedback_shared",
+                  "flag": "profesjonell_tillit_gir_tidlig_feedback",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Profesjonell tillit gir bedre arbeid og mer presis kildekontakt, ikke et større personlig mandat.",
+            "id": "A",
+            "label": "Bruk vilkårene til tryggere intervju og tydeligere dokumentforespørsel",
+            "reply": "Jeg forklarer Ellen hva som er besluttet, hva som fortsatt er usikkert og hvilke dokumenter som kan kontrolleres uten å eksponere henne."
+          },
+          {
+            "effects": {
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_source_protection_granted_jointly_explained",
+                  "note": "Jonas eier beslutningen og forklarer vilkårene sammen med reporteren.",
+                  "op": "transition",
+                  "to_phase": "vilkar_forklart_med_kilden",
+                  "to_status": "granted",
+                  "work_object_id": "media_redaksjon_source_protection_001"
+                },
+                {
+                  "event_id": "media_redaksjon_case_resumes_with_joint_boundary",
+                  "note": "Kilden kjenner beslutningen og reporteren fortsetter innen den.",
+                  "op": "transition",
+                  "to_phase": "verifikasjon_med_felles_forstaelse",
+                  "to_status": "in_progress",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_redaksjon_source_boundary_repaired",
+                  "flag": "kilderelasjon_reparert_i_redaktorlinjen",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Relasjonen repareres gjennom transparens uten at reporteren overtar redaktøransvaret.",
+            "id": "B",
+            "label": "Inviter Ellen og Jonas til samme vilkårssamtale før nytt materiale sendes",
+            "reply": "Jeg bruker tilliten til å gjøre grensene forståelige for kilden i riktig beslutningsrom."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Jonas har vurdert identifiseringsfare, dokumentbehov og hvilke detaljer som må skjermes.",
+            "Han deler premissene fordi din handoff skilte behov, risiko og myndighet presist.",
+            "Ellen venter fortsatt på framdrift og opplever ikke automatisk den interne prosessen som tillitsbyggende."
+          ],
+          "subject": "Jonas deler risikovurderingen tidlig fordi handoffen var presis",
+          "summary": "Jonas har godkjent begrenset kildevern med tydelige vilkår og inviterer deg inn i risikovurderingen før neste intervju. Ellen er fortsatt utålmodig, men den profesjonelle tilliten gir tidligere informasjon, ikke redaktørmyndighet."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "media_redaksjon_realism_editor_trust_response_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "vg_huset",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "media_redaksjon_realism_editor_trust_response_001",
+          "source_path": "data/Civication/mailFamilies/media/followup/media_redaksjon_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "social_standing_context": {
+          "reaction_audience_id": "professional:deskredaktor_jonas",
+          "requirements": [
+            {
+              "audience_id": "professional:deskredaktor_jonas",
+              "min": 2
+            },
+            {
+              "audience_id": "manager:vaktsjef_lina",
+              "min": 1
+            },
+            {
+              "audience_id": "source:kilde_ellen",
+              "max": -1
+            }
+          ]
+        },
+        "thread_id": "media_redaksjon_innsynssaken_realism_001",
+        "version": 1,
+        "work_context": {
+          "institution_id": "fjordby_dagblad_redaksjonen_001",
+          "object_ids": [
+            "media_redaksjon_publication_case_001",
+            "media_redaksjon_source_protection_001"
+          ],
+          "priority": "high"
+        }
+      },
+      "source_hash": "f5857e8ac9e8ba194f0dfd06c3ab4bb0676a466da5f360d40ddd764e7f676e31",
+      "source_path": "data/Civication/mailFamilies/media/followup/media_redaksjon_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "media",
+      "compatibility_projection": {
+        "category": "media",
+        "choice_axis": "synlig_reparasjon_vs_skjult_materialbruk",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_source_protection_limited_after_repair",
+                  "note": "Jonas har godkjent en avgrenset løsning etter at den uautoriserte lovnaden ble gjort synlig for kilden.",
+                  "op": "transition",
+                  "to_phase": "begrenset_vern_etter_reparert_lovnad",
+                  "to_status": "granted",
+                  "work_object_id": "media_redaksjon_source_protection_001"
+                },
+                {
+                  "event_id": "media_redaksjon_case_resumes_after_promise_repair",
+                  "note": "Bare materiale innen den reparerte beslutningen kan brukes videre.",
+                  "op": "transition",
+                  "to_phase": "verifikasjon_med_begrenset_materialbruk",
+                  "to_status": "in_progress",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_redaksjon_unauthorized_promise_repaired",
+                  "flag": "uautorisert_lovnad_reparert_synlig",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Kildetilliten belastes av ærligheten, men risikoen og myndigheten blir synlige før mer skade oppstår.",
+            "id": "A",
+            "label": "Fortell Ellen at løftet gikk for langt og la Jonas forklare de reelle vilkårene",
+            "reply": "Jeg eier at jeg lovet mer enn rollen min tillot, skjermer materialet og ber Jonas ta den faktiske beslutningen med Ellen informert."
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_case_blocked_by_unrepaired_promise",
+                  "note": "Saken er blokkert fordi materialbruken fortsatt bygger på en lovnad redaktøren ikke har godkjent.",
+                  "op": "transition",
+                  "to_phase": "materiale_kan_ikke_brukes_for_redaktoravklaring",
+                  "to_status": "blocked",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_redaksjon_source_loyalty_overrides_process",
+                  "flag": "kildelojalitet_brukt_mot_redaktorlinjen",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Kildelojaliteten brukes som press mot beslutningskjeden og gjør både vern og senere publisering mindre robuste.",
+            "id": "B",
+            "label": "Hold fast ved løftet og be Jonas godkjenne materialet etter at saken er skrevet",
+            "reply": "Jeg beskytter Ellens forventning nå og prøver å få redaktørgodkjenningen når utkastet viser hvor viktig materialet er."
+          }
+        ],
+        "competency": "reparer_kilderelasjon_i_redaktorlinjen",
+        "consequence_axis": "avgrenset_tillit_vs_dypere_kilde_og_redaksjonsrisiko",
+        "cooldown": 12,
+        "day_phase": "morning",
+        "from": "Ellen, kilde",
+        "id": "media_redaksjon_realism_source_trust_response_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_realism_newsroom_situated_response",
+        "mail_type": "followup",
+        "narrative_arc": "fra_varsel_til_synlig_rettelse",
+        "people_ref": "media_kilde",
+        "person_id": "kilde_ellen",
+        "phase": "mastery",
+        "place_id": "vg_huset",
+        "planned_only": true,
+        "pressure": "personlig_lojalitet_vs_redaksjonell_risikokontroll",
+        "priority": 82,
+        "purpose": "Bevise at høy kildetillit og lav profesjonell tillit gir en annen senere scene, men aldri gjør kilden eller reporteren til redaktør.",
+        "repeatable": false,
+        "role_scope": "media_redaksjon",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/media/followup/media_redaksjon_followup.json",
+        "scene_catalog_version": 1,
+        "sender": "kilde_ellen",
+        "situation": [
+          "Ellen tolker det personlige løftet som en garanti for både anonymitet og bruk av materialet.",
+          "Jonas må skille kildens forventning fra hva redaksjonen faktisk kan beslutte og gjennomføre.",
+          "Du må reparere løftet uten å skyve kostnaden over på kilden eller skjule feilen internt."
+        ],
+        "social_standing_context": {
+          "reaction_audience_id": "source:kilde_ellen",
+          "requirements": [
+            {
+              "audience_id": "source:kilde_ellen",
+              "min": 2
+            },
+            {
+              "audience_id": "professional:deskredaktor_jonas",
+              "max": -2
+            },
+            {
+              "audience_id": "manager:vaktsjef_lina",
+              "max": -1
+            }
+          ]
+        },
+        "stage": "stable_warning",
+        "stakes": "Mer materiale kan styrke saken, men også øke identifiseringsrisikoen. Kildelojalitet må ikke brukes til å omgå den redaksjonelle risikovurderingen.",
+        "subject": "Ellen sender mer fordi hun stoler på løftet — Jonas strammer inn saken",
+        "summary": "Ellen sender flere filer og forventer at ditt personlige løfte gjelder absolutt. Jonas har lavere tillit til prosessen og begrenser bruk, deling og publisering til redaktørvurderingen er reparert.",
+        "tags": [
+          "followup",
+          "situated_reputation",
+          "source_trust",
+          "correction",
+          "media_redaksjon"
+        ],
+        "task_domain": "kildetillit_etter_uautorisert_lovnad",
+        "task_kind": "followup",
+        "thread_key": "media_redaksjon_innsynssaken_realism_001",
+        "work_context": {
+          "institution_id": "fjordby_dagblad_redaksjonen_001",
+          "interrupts": true,
+          "object_ids": [
+            "media_redaksjon_publication_case_001",
+            "media_redaksjon_source_protection_001"
+          ],
+          "priority": "urgent"
+        }
+      },
+      "id": "media_redaksjon_realism_source_trust_response_001",
+      "mail_type": "followup",
+      "role_scope": "media_redaksjon",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_source_protection_limited_after_repair",
+                  "note": "Jonas har godkjent en avgrenset løsning etter at den uautoriserte lovnaden ble gjort synlig for kilden.",
+                  "op": "transition",
+                  "to_phase": "begrenset_vern_etter_reparert_lovnad",
+                  "to_status": "granted",
+                  "work_object_id": "media_redaksjon_source_protection_001"
+                },
+                {
+                  "event_id": "media_redaksjon_case_resumes_after_promise_repair",
+                  "note": "Bare materiale innen den reparerte beslutningen kan brukes videre.",
+                  "op": "transition",
+                  "to_phase": "verifikasjon_med_begrenset_materialbruk",
+                  "to_status": "in_progress",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_redaksjon_unauthorized_promise_repaired",
+                  "flag": "uautorisert_lovnad_reparert_synlig",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Kildetilliten belastes av ærligheten, men risikoen og myndigheten blir synlige før mer skade oppstår.",
+            "id": "A",
+            "label": "Fortell Ellen at løftet gikk for langt og la Jonas forklare de reelle vilkårene",
+            "reply": "Jeg eier at jeg lovet mer enn rollen min tillot, skjermer materialet og ber Jonas ta den faktiske beslutningen med Ellen informert."
+          },
+          {
+            "effects": {
+              "score_delta": -1,
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_case_blocked_by_unrepaired_promise",
+                  "note": "Saken er blokkert fordi materialbruken fortsatt bygger på en lovnad redaktøren ikke har godkjent.",
+                  "op": "transition",
+                  "to_phase": "materiale_kan_ikke_brukes_for_redaktoravklaring",
+                  "to_status": "blocked",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_redaksjon_source_loyalty_overrides_process",
+                  "flag": "kildelojalitet_brukt_mot_redaktorlinjen",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Kildelojaliteten brukes som press mot beslutningskjeden og gjør både vern og senere publisering mindre robuste.",
+            "id": "B",
+            "label": "Hold fast ved løftet og be Jonas godkjenne materialet etter at saken er skrevet",
+            "reply": "Jeg beskytter Ellens forventning nå og prøver å få redaktørgodkjenningen når utkastet viser hvor viktig materialet er."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Ellen tolker det personlige løftet som en garanti for både anonymitet og bruk av materialet.",
+            "Jonas må skille kildens forventning fra hva redaksjonen faktisk kan beslutte og gjennomføre.",
+            "Du må reparere løftet uten å skyve kostnaden over på kilden eller skjule feilen internt."
+          ],
+          "subject": "Ellen sender mer fordi hun stoler på løftet — Jonas strammer inn saken",
+          "summary": "Ellen sender flere filer og forventer at ditt personlige løfte gjelder absolutt. Jonas har lavere tillit til prosessen og begrenser bruk, deling og publisering til redaktørvurderingen er reparert."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "media_redaksjon_realism_source_trust_response_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "vg_huset",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "media_redaksjon_realism_source_trust_response_001",
+          "source_path": "data/Civication/mailFamilies/media/followup/media_redaksjon_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "social_standing_context": {
+          "reaction_audience_id": "source:kilde_ellen",
+          "requirements": [
+            {
+              "audience_id": "source:kilde_ellen",
+              "min": 2
+            },
+            {
+              "audience_id": "professional:deskredaktor_jonas",
+              "max": -2
+            },
+            {
+              "audience_id": "manager:vaktsjef_lina",
+              "max": -1
+            }
+          ]
+        },
+        "thread_id": "media_redaksjon_innsynssaken_realism_001",
+        "version": 1,
+        "work_context": {
+          "institution_id": "fjordby_dagblad_redaksjonen_001",
+          "interrupts": true,
+          "object_ids": [
+            "media_redaksjon_publication_case_001",
+            "media_redaksjon_source_protection_001"
+          ],
+          "priority": "urgent"
+        }
+      },
+      "source_hash": "bb1876f651bc2ac74f0508ee43a5b01a1eecdfa0bed63058fc563376aa0c0051",
+      "source_path": "data/Civication/mailFamilies/media/followup/media_redaksjon_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "media",
+      "compatibility_projection": {
+        "category": "media",
         "choice_axis": "uavhengig_bekreftelse_vs_forsprang",
         "choices": [
           {
@@ -41931,6 +43807,276 @@
       "category": "media",
       "compatibility_projection": {
         "category": "media",
+        "choice_axis": "kilde_og_versjonslogg_vs_las_vinkel_tidlig",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_trace_opened",
+                  "flag": "apent_kilde_og_versjonsspor",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Saken får et arbeidsbart spor uten at første kilde eller første overskrift eier konklusjonen.",
+            "id": "A",
+            "label": "Åpne kilde-, dokument- og versjonslogg før vinkelen låses",
+            "reply": "Jeg registrerer hva kilden hevder, hva materialet viser, hva som mangler og hvem som må få svare."
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_angle_locked_early",
+                  "flag": "vinkel_last_for_verifikasjon",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Vinkelen blir en skjult bestilling som gjør motstridende funn vanskeligere å ta inn.",
+            "id": "B",
+            "label": "Lås den skjulte ventelisten som vinkel og fyll dokumentasjonen etterpå",
+            "reply": "Jeg starter med den sterke konklusjonen og bruker resten av dagen til å få materialet til å bære den."
+          }
+        ],
+        "competency": "sporbar_saksapning",
+        "consequence_axis": "etterprovbar_rework_vs_vinkelvern",
+        "cooldown": 12,
+        "day_phase": "morning",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "media_redaksjon_publication_case_opened",
+              "op": "create",
+              "work_object": {
+                "confidentiality": "redaksjonelt_begrenset_kilde_og_personmateriale",
+                "deadline": "forste_publiseringsvurdering_dag_4_ettermiddag",
+                "flags": [
+                  "publication_case_opened",
+                  "source_ledger_required"
+                ],
+                "institution_id": "fjordby_dagblad_redaksjonen_001",
+                "kind": "publication_case",
+                "knowledge_refs": [
+                  "data/places/media/oslo/places_oslo_media/vg_huset.json",
+                  "data/quiz/media/vg_huset_sets.json"
+                ],
+                "open_questions": [
+                  "Hva kan dokumenteres uavhengig av første kildes fortolkning og utvalg?",
+                  "Hvilken offentlig interesse, mulig skade og samtidig imøtegåelse må redaktøren vurdere før publisering?"
+                ],
+                "people_refs": [
+                  "vaktsjef_lina",
+                  "deskredaktor_jonas",
+                  "reporterkollega_amina",
+                  "kilde_ellen",
+                  "motkilde_arvid"
+                ],
+                "phase": "kildegrunnlag_og_mandat",
+                "place_refs": [
+                  "fjordby_redaksjonsdesk",
+                  "fjordby_intervjurom",
+                  "vg_huset"
+                ],
+                "role_scope": "media_redaksjon",
+                "shared": false,
+                "status": "in_progress",
+                "title": "Innsynssaken: venteliste, dokumentasjon og publikum",
+                "work_object_id": "media_redaksjon_publication_case_001"
+              }
+            }
+          ]
+        },
+        "from": "Lina, vaktsjef",
+        "id": "media_redaksjon_realism_case_open_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_realism_newsroom_case",
+        "mail_type": "job",
+        "narrative_arc": "fra_varsel_til_synlig_rettelse",
+        "people_ref": "media_vaktsjef",
+        "person_id": "vaktsjef_lina",
+        "phase": "advanced",
+        "place_id": "vg_huset",
+        "planned_only": true,
+        "pressure": "lovende_eksklusivitet_vs_apent_bevisgrunnlag",
+        "priority": 80,
+        "purpose": "Bevise at journalistikkpiloten kan eie ett persistent arbeidsobjekt gjennom kildearbeid, venting, redigering, publisering, publikumssvar og rettelse.",
+        "repeatable": false,
+        "role_scope": "media_redaksjon",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/media/job/media_redaksjon_job.json",
+        "scene_catalog_version": 1,
+        "sender": "vaktsjef_lina",
+        "situation": [
+          "En navngitt kilde beskriver en skjult venteliste og tilbyr et regneark med utdrag.",
+          "Materialet kan være viktig for publikum, men proveniens, utvalg og berørte personer er ennå ikke kontrollert.",
+          "Du kan undersøke, intervjue og skrive; Lina og redaktør Jonas eier publiserings- og kildevernbeslutningene."
+        ],
+        "stage": "stable",
+        "stakes": "En tidlig låst vinkel kan gjøre nye opplysninger til irritasjon i stedet for kunnskap. Et åpent, presist spor gir redaksjonen bedre valg, men lover verken publisering eller redaktørgodkjenning.",
+        "subject": "Åpne saken som et sporbart arbeid, ikke som en ferdig vinkel",
+        "summary": "Lina gir deg ansvar for å undersøke et varsel om at Fjordby etat har brukt en skjult venteliste. Du skal åpne kilde- og versjonssporet før redaksjonen bestemmer om materialet bærer publisering.",
+        "tags": [
+          "job",
+          "role_world_realism",
+          "publication_case",
+          "journalism",
+          "media_redaksjon"
+        ],
+        "task_domain": "vedvarende_kilde_og_publiseringssak",
+        "task_kind": "job",
+        "thread_key": "media_redaksjon_innsynssaken_realism_001",
+        "work_context": {
+          "deadline_day": 4,
+          "deadline_phase": "afternoon",
+          "deadline_ref": "forste_publiseringsvurdering",
+          "institution_id": "fjordby_dagblad_redaksjonen_001",
+          "object_ids": [
+            "media_redaksjon_publication_case_001"
+          ],
+          "priority": "high"
+        }
+      },
+      "id": "media_redaksjon_realism_case_open_001",
+      "mail_type": "job",
+      "role_scope": "media_redaksjon",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_trace_opened",
+                  "flag": "apent_kilde_og_versjonsspor",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Saken får et arbeidsbart spor uten at første kilde eller første overskrift eier konklusjonen.",
+            "id": "A",
+            "label": "Åpne kilde-, dokument- og versjonslogg før vinkelen låses",
+            "reply": "Jeg registrerer hva kilden hevder, hva materialet viser, hva som mangler og hvem som må få svare."
+          },
+          {
+            "effects": {
+              "score_delta": -1,
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_angle_locked_early",
+                  "flag": "vinkel_last_for_verifikasjon",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Vinkelen blir en skjult bestilling som gjør motstridende funn vanskeligere å ta inn.",
+            "id": "B",
+            "label": "Lås den skjulte ventelisten som vinkel og fyll dokumentasjonen etterpå",
+            "reply": "Jeg starter med den sterke konklusjonen og bruker resten av dagen til å få materialet til å bære den."
+          }
+        ],
+        "content": {
+          "situation": [
+            "En navngitt kilde beskriver en skjult venteliste og tilbyr et regneark med utdrag.",
+            "Materialet kan være viktig for publikum, men proveniens, utvalg og berørte personer er ennå ikke kontrollert.",
+            "Du kan undersøke, intervjue og skrive; Lina og redaktør Jonas eier publiserings- og kildevernbeslutningene."
+          ],
+          "subject": "Åpne saken som et sporbart arbeid, ikke som en ferdig vinkel",
+          "summary": "Lina gir deg ansvar for å undersøke et varsel om at Fjordby etat har brukt en skjult venteliste. Du skal åpne kilde- og versjonssporet før redaksjonen bestemmer om materialet bærer publisering."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "media_redaksjon_publication_case_opened",
+              "op": "create",
+              "work_object": {
+                "confidentiality": "redaksjonelt_begrenset_kilde_og_personmateriale",
+                "deadline": "forste_publiseringsvurdering_dag_4_ettermiddag",
+                "flags": [
+                  "publication_case_opened",
+                  "source_ledger_required"
+                ],
+                "institution_id": "fjordby_dagblad_redaksjonen_001",
+                "kind": "publication_case",
+                "knowledge_refs": [
+                  "data/places/media/oslo/places_oslo_media/vg_huset.json",
+                  "data/quiz/media/vg_huset_sets.json"
+                ],
+                "open_questions": [
+                  "Hva kan dokumenteres uavhengig av første kildes fortolkning og utvalg?",
+                  "Hvilken offentlig interesse, mulig skade og samtidig imøtegåelse må redaktøren vurdere før publisering?"
+                ],
+                "people_refs": [
+                  "vaktsjef_lina",
+                  "deskredaktor_jonas",
+                  "reporterkollega_amina",
+                  "kilde_ellen",
+                  "motkilde_arvid"
+                ],
+                "phase": "kildegrunnlag_og_mandat",
+                "place_refs": [
+                  "fjordby_redaksjonsdesk",
+                  "fjordby_intervjurom",
+                  "vg_huset"
+                ],
+                "role_scope": "media_redaksjon",
+                "shared": false,
+                "status": "in_progress",
+                "title": "Innsynssaken: venteliste, dokumentasjon og publikum",
+                "work_object_id": "media_redaksjon_publication_case_001"
+              }
+            }
+          ]
+        },
+        "id": "media_redaksjon_realism_case_open_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "vg_huset",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "media_redaksjon_realism_case_open_001",
+          "source_path": "data/Civication/mailFamilies/media/job/media_redaksjon_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "media_redaksjon_innsynssaken_realism_001",
+        "version": 1,
+        "work_context": {
+          "deadline_day": 4,
+          "deadline_phase": "afternoon",
+          "deadline_ref": "forste_publiseringsvurdering",
+          "institution_id": "fjordby_dagblad_redaksjonen_001",
+          "object_ids": [
+            "media_redaksjon_publication_case_001"
+          ],
+          "priority": "high"
+        }
+      },
+      "source_hash": "704cf1c8963fa0800d5cc159f609ff69de0161daf94f626d95f8d9e98e2792a6",
+      "source_path": "data/Civication/mailFamilies/media/job/media_redaksjon_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "media",
+      "compatibility_projection": {
+        "category": "media",
         "choice_axis": "skille_bevislag_vs_samle_til_en_fortelling",
         "choices": [
           {
@@ -42047,6 +44193,238 @@
         "version": 1
       },
       "source_hash": "85a3f31262e2bd0f0fb07c3d52f8ddbc9139e0da13ff09495a64de9f1bd9132d",
+      "source_path": "data/Civication/mailFamilies/media/knowledge/media_redaksjon_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "media",
+      "compatibility_projection": {
+        "category": "media",
+        "choice_axis": "fire_adskilte_vurderinger_vs_klikk_som_kvalitetsbevis",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_vg_audience_context_applied",
+                  "flag": "history_go_respons_belegg_samfunnsverdi_mandat_adskilt",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_redaksjon_vg_learning_note",
+                  "note": "VG-husets arbeidsflate brukes til å skille publikumssignal fra dokumentasjon og redaktørmyndighet.",
+                  "op": "note",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "History Go-læringen blir et sorteringsgrep som beskytter både kunnskapsgrunnlag og myndighetsgrense.",
+            "id": "A",
+            "label": "Skill respons, belegg, samfunnsverdi og redaktørbeslutning i fire kolonner",
+            "reply": "Jeg bruker publikumsrespons som informasjon om mottakelse, ikke som bevis for påstanden eller mandat til å publisere."
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_attention_used_as_proof",
+                  "flag": "publikumsinteresse_feilbrukt_som_belegg",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Et reelt publikumspotensial blir feilbrukt som dokumentasjon og som erstatning for redaktørens vurdering.",
+            "id": "B",
+            "label": "Bruk forventet publikumstrykk som hovedbevis for at saken må ut",
+            "reply": "Når saken sannsynligvis vil engasjere mange, bør interessen veie tyngst i publiseringsvurderingen."
+          }
+        ],
+        "competency": "skille_oppmerksomhet_fra_belegg",
+        "consequence_axis": "presis_rework_vs_oppmerksomhetsdrevet_overkrav",
+        "cooldown": 10,
+        "day_phase": "evening",
+        "from": "Amina, reporterkollega",
+        "id": "media_redaksjon_realism_knowledge_vg_001",
+        "interaction_mode": "task",
+        "mail_family": "role_world_realism_newsroom_history_go",
+        "mail_type": "knowledge",
+        "narrative_arc": "fra_varsel_til_synlig_rettelse",
+        "people_ref": "media_reporterkollega",
+        "person_id": "reporterkollega_amina",
+        "phase": "advanced",
+        "place_id": "vg_huset",
+        "planned_only": true,
+        "pressure": "publikumspotensial_vs_etterprovbar_samfunnsverdi",
+        "priority": 75,
+        "purpose": "La History Go gi et bedre sorteringsgrep i senere rework uten å gjøre et sted, en quiz eller publikums interesse til publiseringsmyndighet.",
+        "repeatable": false,
+        "role_scope": "media_redaksjon",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/media/knowledge/media_redaksjon_knowledge.json",
+        "scene_catalog_version": 1,
+        "sender": "reporterkollega_amina",
+        "situation": [
+          "VG-husets canonicale stedstekst viser hvordan nettfront, pushvarsler og løpende oppdateringer gjør dagsorden til synlige redaksjonelle valg.",
+          "Stedet beskriver også at trafikk og respons ikke alene forklarer hvorfor en sak er viktig.",
+          "Når du kommer tilbake skal du holde publikumsoppmerksomhet, belegg, samfunnsverdi og redaktørbeslutning i fire separate kolonner."
+        ],
+        "stage": "stable",
+        "stakes": "Trafikk og reaksjoner gir rask kunnskap om publikum, men kan ikke bekrefte kildens påstand eller avgjøre om skade og offentlig interesse er forsvarlig vurdert.",
+        "subject": "Gå til VG-huset i History Go: oppmerksomhet viser respons, ikke sannhet",
+        "summary": "Mens Jonas vurderer kildevern, ber Amina deg lese VG-huset som en konkret redaksjonell arbeidsflate. Oppgaven er å skille forsidebevegelse og publikumsrespons fra dokumentasjon, samfunnsverdi og beslutningen om å publisere.",
+        "tags": [
+          "knowledge",
+          "History Go",
+          "vg_huset",
+          "audience",
+          "media_redaksjon"
+        ],
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/places/media/oslo/places_oslo_media/vg_huset.json",
+            "data/quiz/media/vg_huset_sets.json",
+            "data/stories/stories_vg_huset.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "media_redaksjon_history_go_vg_audience_context"
+        },
+        "task_domain": "publikum_dokumentasjon_og_redaksjonell_vurdering",
+        "task_kind": "knowledge",
+        "task_payload": {
+          "completion_mode": "open_place",
+          "description": "Åpne VG-huset og bruk profilen til å skille forsideprioritering og publikumsrespons fra dokumentasjon, offentlig interesse og redaktørens publiseringsbeslutning.",
+          "place_id": "vg_huset",
+          "return_context": {
+            "mail_id": "media_redaksjon_realism_knowledge_vg_001",
+            "place_id": "vg_huset",
+            "quiz_ref": "data/quiz/media/vg_huset_sets.json",
+            "role_scope": "media_redaksjon",
+            "source": "civication"
+          },
+          "target_type": "place",
+          "task_kind": "history_go_place",
+          "title": "Les VG-huset som publiserings- og publikumsflate"
+        },
+        "thread_key": "media_redaksjon_innsynssaken_realism_001",
+        "work_context": {
+          "deadline_day": 3,
+          "deadline_phase": "morning",
+          "deadline_ref": "redaktorvurdering_av_kildevern",
+          "institution_id": "fjordby_dagblad_redaksjonen_001",
+          "object_ids": [
+            "media_redaksjon_publication_case_001"
+          ],
+          "priority": "high",
+          "waiting_for_actor_id": "deskredaktor_jonas"
+        }
+      },
+      "id": "media_redaksjon_realism_knowledge_vg_001",
+      "mail_type": "knowledge",
+      "role_scope": "media_redaksjon",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_vg_audience_context_applied",
+                  "flag": "history_go_respons_belegg_samfunnsverdi_mandat_adskilt",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_redaksjon_vg_learning_note",
+                  "note": "VG-husets arbeidsflate brukes til å skille publikumssignal fra dokumentasjon og redaktørmyndighet.",
+                  "op": "note",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "History Go-læringen blir et sorteringsgrep som beskytter både kunnskapsgrunnlag og myndighetsgrense.",
+            "id": "A",
+            "label": "Skill respons, belegg, samfunnsverdi og redaktørbeslutning i fire kolonner",
+            "reply": "Jeg bruker publikumsrespons som informasjon om mottakelse, ikke som bevis for påstanden eller mandat til å publisere."
+          },
+          {
+            "effects": {
+              "score_delta": -1,
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_attention_used_as_proof",
+                  "flag": "publikumsinteresse_feilbrukt_som_belegg",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Et reelt publikumspotensial blir feilbrukt som dokumentasjon og som erstatning for redaktørens vurdering.",
+            "id": "B",
+            "label": "Bruk forventet publikumstrykk som hovedbevis for at saken må ut",
+            "reply": "Når saken sannsynligvis vil engasjere mange, bør interessen veie tyngst i publiseringsvurderingen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "VG-husets canonicale stedstekst viser hvordan nettfront, pushvarsler og løpende oppdateringer gjør dagsorden til synlige redaksjonelle valg.",
+            "Stedet beskriver også at trafikk og respons ikke alene forklarer hvorfor en sak er viktig.",
+            "Når du kommer tilbake skal du holde publikumsoppmerksomhet, belegg, samfunnsverdi og redaktørbeslutning i fire separate kolonner."
+          ],
+          "subject": "Gå til VG-huset i History Go: oppmerksomhet viser respons, ikke sannhet",
+          "summary": "Mens Jonas vurderer kildevern, ber Amina deg lese VG-huset som en konkret redaksjonell arbeidsflate. Oppgaven er å skille forsidebevegelse og publikumsrespons fra dokumentasjon, samfunnsverdi og beslutningen om å publisere."
+        },
+        "day_phase": "evening",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "media_redaksjon_realism_knowledge_vg_001",
+        "interaction_mode": "task",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "vg_huset",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "media_redaksjon_realism_knowledge_vg_001",
+          "source_path": "data/Civication/mailFamilies/media/knowledge/media_redaksjon_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/places/media/oslo/places_oslo_media/vg_huset.json",
+            "data/quiz/media/vg_huset_sets.json",
+            "data/stories/stories_vg_huset.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "media_redaksjon_history_go_vg_audience_context"
+        },
+        "thread_id": "media_redaksjon_innsynssaken_realism_001",
+        "version": 1,
+        "work_context": {
+          "deadline_day": 3,
+          "deadline_phase": "morning",
+          "deadline_ref": "redaktorvurdering_av_kildevern",
+          "institution_id": "fjordby_dagblad_redaksjonen_001",
+          "object_ids": [
+            "media_redaksjon_publication_case_001"
+          ],
+          "priority": "high",
+          "waiting_for_actor_id": "deskredaktor_jonas"
+        }
+      },
+      "source_hash": "c77c78bd9d3a2a3f991839a20fbcc3025a02aeac48397c9eb3db780108785348",
       "source_path": "data/Civication/mailFamilies/media/knowledge/media_redaksjon_knowledge.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -42292,6 +44670,580 @@
         "version": 1
       },
       "source_hash": "ad9d1f78bedc92a9e63e616775ab64693ac4251dad935bb5febaaa85faa2555e",
+      "source_path": "data/Civication/mailFamilies/media/people/media_redaksjon_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "media",
+      "compatibility_projection": {
+        "authority_context": {
+          "approval_points": [
+            {
+              "action_id": "grant_source_protection",
+              "approval_id": "media_redaksjon_source_protection_approval",
+              "approval_object_id": "media_redaksjon_source_protection_001",
+              "approver_actor_id": "deskredaktor_jonas"
+            }
+          ],
+          "authority_rules": [
+            {
+              "action_id": "document_source_protection_need",
+              "authority": "direct",
+              "requires_resources": []
+            },
+            {
+              "action_id": "grant_source_protection",
+              "approval_id": "media_redaksjon_source_protection_approval",
+              "authority": "approval_required",
+              "requires_resources": [
+                "redaktorvurdering"
+              ]
+            },
+            {
+              "action_id": "promise_anonymity_personally",
+              "authority": "forbidden",
+              "requires_resources": []
+            }
+          ],
+          "escalation_paths": [],
+          "external_counterparts": [
+            "kilde_ellen",
+            "motkilde_arvid"
+          ],
+          "goals_pressures": [
+            "kildevern",
+            "verifikasjon",
+            "offentlig_interesse",
+            "publiseringstempo"
+          ],
+          "institution_id": "fjordby_dagblad_redaksjonen_001",
+          "peer_functions": [
+            "reporterkollega_amina"
+          ],
+          "reporting_line": [
+            "vaktsjef_lina",
+            "deskredaktor_jonas"
+          ],
+          "resources": [
+            {
+              "baseline_state": "available",
+              "resource_id": "redaktorvurdering",
+              "resource_object_id": "media_redaksjon_source_protection_001"
+            }
+          ],
+          "role_scope": "media_redaksjon",
+          "unit_id": "nyhetsdesken"
+        },
+        "category": "media",
+        "choice_axis": "presis_handoff_vs_personlig_garanti",
+        "choices": [
+          {
+            "authority_action": {
+              "action_id": "grant_source_protection",
+              "intent": "request_approval"
+            },
+            "effect": 1,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:deskredaktor_jonas",
+                  "delta": 3,
+                  "event_id": "media_redaksjon_standing_editor_precise_handoff",
+                  "reason": "Kildevernbehovet kommer med synlig risiko og uten uautorisert løfte.",
+                  "source_actor_id": "deskredaktor_jonas"
+                },
+                {
+                  "audience_id": "manager:vaktsjef_lina",
+                  "delta": 2,
+                  "event_id": "media_redaksjon_standing_manager_traceable_process",
+                  "reason": "Vaktsjefen kan planlegge rundt en faktisk redaktørbeslutning.",
+                  "source_actor_id": "vaktsjef_lina"
+                },
+                {
+                  "audience_id": "source:kilde_ellen",
+                  "delta": -1,
+                  "event_id": "media_redaksjon_standing_source_waits",
+                  "reason": "Kilden får ikke den umiddelbare personlige garantien hun ba om.",
+                  "source_actor_id": "kilde_ellen"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_source_protection_requested",
+                  "op": "create",
+                  "work_object": {
+                    "confidentiality": "redaktor_og_tildelt_reporter",
+                    "flags": [
+                      "presis_handoff"
+                    ],
+                    "institution_id": "fjordby_dagblad_redaksjonen_001",
+                    "kind": "approval",
+                    "knowledge_refs": [
+                      "data/Civication/workGrammars/media/media_redaksjon.json"
+                    ],
+                    "open_questions": [
+                      "Kan materialet brukes og etterprøves uten at kilden identifiseres?",
+                      "Hvilke vilkår må forklares presist til kilden før mer materiale mottas?"
+                    ],
+                    "people_refs": [
+                      "deskredaktor_jonas",
+                      "vaktsjef_lina",
+                      "kilde_ellen"
+                    ],
+                    "phase": "risiko_og_dokumentasjon",
+                    "place_refs": [
+                      "fjordby_redaksjonsdesk"
+                    ],
+                    "role_scope": "media_redaksjon",
+                    "shared": false,
+                    "status": "pending",
+                    "title": "Redaktørvurdering av kildevern for Ellen",
+                    "work_object_id": "media_redaksjon_source_protection_001"
+                  }
+                },
+                {
+                  "event_id": "media_redaksjon_case_waits_for_source_protection",
+                  "note": "Saken kan undersøkes videre, men kildevernløftet og den videre materialflyten venter på redaktørens beslutning.",
+                  "op": "transition",
+                  "to_phase": "venter_pa_redaktorvurdering_av_kildevern",
+                  "to_status": "awaiting_approval",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_redaksjon_source_boundary_visible",
+                  "flag": "kildetillit_er_ikke_redaktormyndighet",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Ellen må vente på en reell beslutning; redaktøren får et etterprøvbart grunnlag og kilden slipper en falsk garanti.",
+            "id": "A",
+            "label": "Dokumenter behovet, skjerm kontakten og send beslutningen til Jonas",
+            "reply": "Jeg lover en streng og begrenset prosess nå, men ikke et utfall jeg ikke eier. Jonas må ta kildevernbeslutningen med risikoen synlig."
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "source:kilde_ellen",
+                  "delta": 3,
+                  "event_id": "media_redaksjon_standing_source_personal_loyalty",
+                  "reason": "Kilden får den umiddelbare personlige garantien hun ønsket.",
+                  "source_actor_id": "kilde_ellen"
+                },
+                {
+                  "audience_id": "professional:deskredaktor_jonas",
+                  "delta": -3,
+                  "event_id": "media_redaksjon_standing_editor_unauthorized_promise",
+                  "reason": "Redaktøren må håndtere et absolutt løfte som ble gitt uten beslutningsgrunnlag.",
+                  "source_actor_id": "deskredaktor_jonas"
+                },
+                {
+                  "audience_id": "manager:vaktsjef_lina",
+                  "delta": -2,
+                  "event_id": "media_redaksjon_standing_manager_unplanned_risk",
+                  "reason": "Arbeidsflyten bindes til et løfte vaktsjefen ikke kunne planlegge eller avgrense.",
+                  "source_actor_id": "vaktsjef_lina"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_late_source_protection_review",
+                  "op": "create",
+                  "work_object": {
+                    "confidentiality": "redaktor_og_tildelt_reporter",
+                    "flags": [
+                      "uautorisert_lovnad"
+                    ],
+                    "institution_id": "fjordby_dagblad_redaksjonen_001",
+                    "kind": "approval",
+                    "knowledge_refs": [
+                      "data/Civication/workGrammars/media/media_redaksjon.json"
+                    ],
+                    "open_questions": [
+                      "Hvilken risiko har løftet skapt for kilden og redaksjonen?",
+                      "Kan materialet brukes innen en beslutning redaktøren faktisk kan stå inne for?"
+                    ],
+                    "people_refs": [
+                      "deskredaktor_jonas",
+                      "vaktsjef_lina",
+                      "kilde_ellen"
+                    ],
+                    "phase": "begrense_risiko_etter_lovnad",
+                    "place_refs": [
+                      "fjordby_redaksjonsdesk"
+                    ],
+                    "role_scope": "media_redaksjon",
+                    "shared": false,
+                    "status": "pending",
+                    "title": "Redaktørvurdering etter uautorisert anonymitetsløfte",
+                    "work_object_id": "media_redaksjon_source_protection_001"
+                  }
+                },
+                {
+                  "event_id": "media_redaksjon_case_waits_after_promise",
+                  "note": "Materialet er mottatt, men saken må stanse mens redaktøren avklarer om og hvordan løftet kan håndteres.",
+                  "op": "transition",
+                  "to_phase": "venter_pa_redaktoropprydding_etter_lovnad",
+                  "to_status": "awaiting_approval",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_redaksjon_personal_promise_trace",
+                  "flag": "kilden_stoler_pa_reporter_redaktor_gjor_det_ikke",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Ellen opplever nærhet og fart, men redaksjonen arver en absolutt lovnad uten redaktørvurdering av risiko og gjennomførbarhet.",
+            "id": "B",
+            "label": "Lov Ellen full anonymitet personlig for å sikre materialet",
+            "reply": "Jeg garanterer at navnet og identiteten din aldri blir kjent hvis du sender alt til meg nå."
+          }
+        ],
+        "competency": "kildetillit_med_myndighetsgrense",
+        "consequence_axis": "robust_kildevernprosess_vs_uautorisert_lovnad",
+        "cooldown": 12,
+        "day_phase": "afternoon",
+        "from": "Ellen, kilde",
+        "id": "media_redaksjon_realism_source_handoff_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_realism_source_protection_handoff",
+        "mail_type": "people",
+        "narrative_arc": "fra_varsel_til_synlig_rettelse",
+        "people_ref": "media_kilde",
+        "person_id": "kilde_ellen",
+        "phase": "advanced",
+        "place_id": "vg_huset",
+        "planned_only": true,
+        "pressure": "kildens_trygghetsbehov_vs_reell_redaktorbeslutning",
+        "priority": 90,
+        "purpose": "Bevise at kildetillit og profesjonell tillit kan trekke ulikt uten at noen omdømmeflate endrer hvem som eier kildevernbeslutningen.",
+        "repeatable": false,
+        "role_scope": "media_redaksjon",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/media/people/media_redaksjon_people.json",
+        "scene_catalog_version": 1,
+        "sender": "kilde_ellen",
+        "situation": [
+          "Ellen har mer materiale enn utdraget, men frykter identifisering gjennom detaljer og metadata.",
+          "Du kan motta, skjerme og beskrive kildebehovet innen rutinen, men kan ikke selv garantere et endelig kildevernutfall.",
+          "Jonas er redaktørpunktet og må vurdere anonymitet, dokumentasjon, risiko og eventuell publisering."
+        ],
+        "social_standing_context": {
+          "reaction_audience_id": "professional:deskredaktor_jonas"
+        },
+        "stage": "stable_warning",
+        "stakes": "Et personlig løfte kan styrke tilgangen på kort sikt, men binde kilden til en garanti du ikke eier. En ryddig handoff kan oppleves mindre nær, men gjør risiko og ansvar reelt vurderbart.",
+        "subject": "Ellen vil bare sende hele materialet hvis du lover anonymitet nå",
+        "summary": "Ellen frykter konsekvenser på arbeidsplassen og ber deg personlig garantere anonymitet før hun sender originalfilene. Du kan beskytte kontakten og dokumentere behovet, men garantien må vurderes i redaktørlinjen.",
+        "tags": [
+          "people",
+          "role_world_realism",
+          "source",
+          "handoff",
+          "situated_reputation",
+          "media_redaksjon"
+        ],
+        "task_domain": "kilderelasjon_og_redaktorhandoff",
+        "task_kind": "people",
+        "thread_key": "media_redaksjon_innsynssaken_realism_001",
+        "work_context": {
+          "deadline_day": 2,
+          "deadline_phase": "afternoon",
+          "deadline_ref": "kildevernavklaring",
+          "handoff_to_actor_id": "deskredaktor_jonas",
+          "institution_id": "fjordby_dagblad_redaksjonen_001",
+          "interrupts": true,
+          "object_ids": [
+            "media_redaksjon_publication_case_001"
+          ],
+          "priority": "urgent"
+        }
+      },
+      "id": "media_redaksjon_realism_source_handoff_001",
+      "mail_type": "people",
+      "role_scope": "media_redaksjon",
+      "scene": {
+        "arc_stage": "advanced",
+        "authority_context": {
+          "approval_points": [
+            {
+              "action_id": "grant_source_protection",
+              "approval_id": "media_redaksjon_source_protection_approval",
+              "approval_object_id": "media_redaksjon_source_protection_001",
+              "approver_actor_id": "deskredaktor_jonas"
+            }
+          ],
+          "authority_rules": [
+            {
+              "action_id": "document_source_protection_need",
+              "authority": "direct",
+              "requires_resources": []
+            },
+            {
+              "action_id": "grant_source_protection",
+              "approval_id": "media_redaksjon_source_protection_approval",
+              "authority": "approval_required",
+              "requires_resources": [
+                "redaktorvurdering"
+              ]
+            },
+            {
+              "action_id": "promise_anonymity_personally",
+              "authority": "forbidden",
+              "requires_resources": []
+            }
+          ],
+          "escalation_paths": [],
+          "external_counterparts": [
+            "kilde_ellen",
+            "motkilde_arvid"
+          ],
+          "goals_pressures": [
+            "kildevern",
+            "verifikasjon",
+            "offentlig_interesse",
+            "publiseringstempo"
+          ],
+          "institution_id": "fjordby_dagblad_redaksjonen_001",
+          "peer_functions": [
+            "reporterkollega_amina"
+          ],
+          "reporting_line": [
+            "vaktsjef_lina",
+            "deskredaktor_jonas"
+          ],
+          "resources": [
+            {
+              "baseline_state": "available",
+              "resource_id": "redaktorvurdering",
+              "resource_object_id": "media_redaksjon_source_protection_001"
+            }
+          ],
+          "role_scope": "media_redaksjon",
+          "unit_id": "nyhetsdesken"
+        },
+        "choices": [
+          {
+            "authority_action": {
+              "action_id": "grant_source_protection",
+              "intent": "request_approval"
+            },
+            "effects": {
+              "score_delta": 1,
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:deskredaktor_jonas",
+                  "delta": 3,
+                  "event_id": "media_redaksjon_standing_editor_precise_handoff",
+                  "reason": "Kildevernbehovet kommer med synlig risiko og uten uautorisert løfte.",
+                  "source_actor_id": "deskredaktor_jonas"
+                },
+                {
+                  "audience_id": "manager:vaktsjef_lina",
+                  "delta": 2,
+                  "event_id": "media_redaksjon_standing_manager_traceable_process",
+                  "reason": "Vaktsjefen kan planlegge rundt en faktisk redaktørbeslutning.",
+                  "source_actor_id": "vaktsjef_lina"
+                },
+                {
+                  "audience_id": "source:kilde_ellen",
+                  "delta": -1,
+                  "event_id": "media_redaksjon_standing_source_waits",
+                  "reason": "Kilden får ikke den umiddelbare personlige garantien hun ba om.",
+                  "source_actor_id": "kilde_ellen"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_source_protection_requested",
+                  "op": "create",
+                  "work_object": {
+                    "confidentiality": "redaktor_og_tildelt_reporter",
+                    "flags": [
+                      "presis_handoff"
+                    ],
+                    "institution_id": "fjordby_dagblad_redaksjonen_001",
+                    "kind": "approval",
+                    "knowledge_refs": [
+                      "data/Civication/workGrammars/media/media_redaksjon.json"
+                    ],
+                    "open_questions": [
+                      "Kan materialet brukes og etterprøves uten at kilden identifiseres?",
+                      "Hvilke vilkår må forklares presist til kilden før mer materiale mottas?"
+                    ],
+                    "people_refs": [
+                      "deskredaktor_jonas",
+                      "vaktsjef_lina",
+                      "kilde_ellen"
+                    ],
+                    "phase": "risiko_og_dokumentasjon",
+                    "place_refs": [
+                      "fjordby_redaksjonsdesk"
+                    ],
+                    "role_scope": "media_redaksjon",
+                    "shared": false,
+                    "status": "pending",
+                    "title": "Redaktørvurdering av kildevern for Ellen",
+                    "work_object_id": "media_redaksjon_source_protection_001"
+                  }
+                },
+                {
+                  "event_id": "media_redaksjon_case_waits_for_source_protection",
+                  "note": "Saken kan undersøkes videre, men kildevernløftet og den videre materialflyten venter på redaktørens beslutning.",
+                  "op": "transition",
+                  "to_phase": "venter_pa_redaktorvurdering_av_kildevern",
+                  "to_status": "awaiting_approval",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_redaksjon_source_boundary_visible",
+                  "flag": "kildetillit_er_ikke_redaktormyndighet",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Ellen må vente på en reell beslutning; redaktøren får et etterprøvbart grunnlag og kilden slipper en falsk garanti.",
+            "id": "A",
+            "label": "Dokumenter behovet, skjerm kontakten og send beslutningen til Jonas",
+            "reply": "Jeg lover en streng og begrenset prosess nå, men ikke et utfall jeg ikke eier. Jonas må ta kildevernbeslutningen med risikoen synlig."
+          },
+          {
+            "effects": {
+              "score_delta": -1,
+              "social_standing_ops": [
+                {
+                  "audience_id": "source:kilde_ellen",
+                  "delta": 3,
+                  "event_id": "media_redaksjon_standing_source_personal_loyalty",
+                  "reason": "Kilden får den umiddelbare personlige garantien hun ønsket.",
+                  "source_actor_id": "kilde_ellen"
+                },
+                {
+                  "audience_id": "professional:deskredaktor_jonas",
+                  "delta": -3,
+                  "event_id": "media_redaksjon_standing_editor_unauthorized_promise",
+                  "reason": "Redaktøren må håndtere et absolutt løfte som ble gitt uten beslutningsgrunnlag.",
+                  "source_actor_id": "deskredaktor_jonas"
+                },
+                {
+                  "audience_id": "manager:vaktsjef_lina",
+                  "delta": -2,
+                  "event_id": "media_redaksjon_standing_manager_unplanned_risk",
+                  "reason": "Arbeidsflyten bindes til et løfte vaktsjefen ikke kunne planlegge eller avgrense.",
+                  "source_actor_id": "vaktsjef_lina"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "media_redaksjon_late_source_protection_review",
+                  "op": "create",
+                  "work_object": {
+                    "confidentiality": "redaktor_og_tildelt_reporter",
+                    "flags": [
+                      "uautorisert_lovnad"
+                    ],
+                    "institution_id": "fjordby_dagblad_redaksjonen_001",
+                    "kind": "approval",
+                    "knowledge_refs": [
+                      "data/Civication/workGrammars/media/media_redaksjon.json"
+                    ],
+                    "open_questions": [
+                      "Hvilken risiko har løftet skapt for kilden og redaksjonen?",
+                      "Kan materialet brukes innen en beslutning redaktøren faktisk kan stå inne for?"
+                    ],
+                    "people_refs": [
+                      "deskredaktor_jonas",
+                      "vaktsjef_lina",
+                      "kilde_ellen"
+                    ],
+                    "phase": "begrense_risiko_etter_lovnad",
+                    "place_refs": [
+                      "fjordby_redaksjonsdesk"
+                    ],
+                    "role_scope": "media_redaksjon",
+                    "shared": false,
+                    "status": "pending",
+                    "title": "Redaktørvurdering etter uautorisert anonymitetsløfte",
+                    "work_object_id": "media_redaksjon_source_protection_001"
+                  }
+                },
+                {
+                  "event_id": "media_redaksjon_case_waits_after_promise",
+                  "note": "Materialet er mottatt, men saken må stanse mens redaktøren avklarer om og hvordan løftet kan håndteres.",
+                  "op": "transition",
+                  "to_phase": "venter_pa_redaktoropprydding_etter_lovnad",
+                  "to_status": "awaiting_approval",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_redaksjon_personal_promise_trace",
+                  "flag": "kilden_stoler_pa_reporter_redaktor_gjor_det_ikke",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Ellen opplever nærhet og fart, men redaksjonen arver en absolutt lovnad uten redaktørvurdering av risiko og gjennomførbarhet.",
+            "id": "B",
+            "label": "Lov Ellen full anonymitet personlig for å sikre materialet",
+            "reply": "Jeg garanterer at navnet og identiteten din aldri blir kjent hvis du sender alt til meg nå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Ellen har mer materiale enn utdraget, men frykter identifisering gjennom detaljer og metadata.",
+            "Du kan motta, skjerme og beskrive kildebehovet innen rutinen, men kan ikke selv garantere et endelig kildevernutfall.",
+            "Jonas er redaktørpunktet og må vurdere anonymitet, dokumentasjon, risiko og eventuell publisering."
+          ],
+          "subject": "Ellen vil bare sende hele materialet hvis du lover anonymitet nå",
+          "summary": "Ellen frykter konsekvenser på arbeidsplassen og ber deg personlig garantere anonymitet før hun sender originalfilene. Du kan beskytte kontakten og dokumentere behovet, men garantien må vurderes i redaktørlinjen."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "media_redaksjon_realism_source_handoff_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "vg_huset",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "media_redaksjon_realism_source_handoff_001",
+          "source_path": "data/Civication/mailFamilies/media/people/media_redaksjon_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "social_standing_context": {
+          "reaction_audience_id": "professional:deskredaktor_jonas"
+        },
+        "thread_id": "media_redaksjon_innsynssaken_realism_001",
+        "version": 1,
+        "work_context": {
+          "deadline_day": 2,
+          "deadline_phase": "afternoon",
+          "deadline_ref": "kildevernavklaring",
+          "handoff_to_actor_id": "deskredaktor_jonas",
+          "institution_id": "fjordby_dagblad_redaksjonen_001",
+          "interrupts": true,
+          "object_ids": [
+            "media_redaksjon_publication_case_001"
+          ],
+          "priority": "urgent"
+        }
+      },
+      "source_hash": "4ce13874979ac2603a25834ab8d977ff16a975c1143071db0de4de8edfc9f10d",
       "source_path": "data/Civication/mailFamilies/media/people/media_redaksjon_people.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -173484,7 +176436,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "5030555c3ff2e4e516581ce01dd8e729dd02a9c32b201ed8375127f358e304a0",
+  "registry_hash": "87dcd44a68485fd10935e6872245cbf3d39b8f6c11c8e900a954a34f4ca1d360",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -173791,14 +176743,23 @@
     ],
     "media/media_redaksjon": [
       "media_redaksjon_job_verifisering_001",
+      "media_redaksjon_realism_case_open_001",
       "media_redaksjon_people_vaktsjef_001",
+      "media_redaksjon_realism_source_handoff_001",
       "media_redaksjon_story_kilde_001",
       "media_redaksjon_conflict_konkurrent_001",
       "media_redaksjon_event_dokument_001",
+      "media_redaksjon_realism_publish_001",
       "media_redaksjon_micro_attribusjon_001",
       "media_redaksjon_followup_verifisering_001",
+      "media_redaksjon_realism_editor_trust_response_001",
+      "media_redaksjon_realism_source_trust_response_001",
+      "media_redaksjon_realism_case_close_001",
       "media_redaksjon_knowledge_kildelag_001",
-      "media_redaksjon_consequence_verifisering_001"
+      "media_redaksjon_realism_knowledge_vg_001",
+      "media_redaksjon_consequence_verifisering_001",
+      "media_redaksjon_realism_rework_draft_001",
+      "media_redaksjon_realism_audience_correction_001"
     ],
     "media/media_redaksjonell_ledelse": [
       "media_redaksjonell_ledelse_job_prioritering_001",
@@ -174732,7 +177693,7 @@
     "ignored_source_file_count": 1,
     "input_file_count": 348,
     "role_count": 44,
-    "scene_count": 1126,
+    "scene_count": 1135,
     "shadowed_duplicate_count": 0
   },
   "version": 1

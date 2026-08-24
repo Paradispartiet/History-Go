@@ -179,31 +179,38 @@ assert.match(roleMailDoc, /Mail er delivery/);
 assert.doesNotMatch(roleMailDoc, /Dette er autoritativ jobbmailflyt/);
 
 const completeWorlds = index.roles.filter((entry) => entry.status === 'role_world_complete');
-assert.equal(completeWorlds.length, 5, 'The reference proof wave must expose exactly five completed reference worlds');
-assert.deepEqual(referenceIdentity(completeWorlds[0]), {
+assert.ok(completeWorlds.length >= 5, 'The completed five-world reference wave must remain intact');
+const referenceWorlds = completeWorlds.slice(0, 5);
+assert.deepEqual(referenceIdentity(referenceWorlds[0]), {
   category: 'naeringsliv',
   role_scope: 'ekspeditor',
   status: 'role_world_complete'
 }, 'Ekspeditor must remain the first completed Role World');
-assert.deepEqual(referenceIdentity(completeWorlds[0]), index.first_reference_world);
-assert.deepEqual(referenceIdentity(completeWorlds[1]), index.second_reference_world);
-assert.deepEqual(referenceIdentity(completeWorlds[2]), {
+assert.deepEqual(referenceIdentity(referenceWorlds[0]), index.first_reference_world);
+assert.deepEqual(referenceIdentity(referenceWorlds[1]), index.second_reference_world);
+assert.deepEqual(referenceIdentity(referenceWorlds[2]), {
   category: 'by',
   role_scope: 'by_radgiver_plan',
   status: 'role_world_complete'
 }, 'By-rådgiver must be the third completed Role World');
-assert.deepEqual(referenceIdentity(completeWorlds[2]), index.third_reference_world);
-assert.deepEqual(referenceIdentity(completeWorlds[3]), {
+assert.deepEqual(referenceIdentity(referenceWorlds[2]), index.third_reference_world);
+assert.deepEqual(referenceIdentity(referenceWorlds[3]), {
   category: 'naeringsliv',
   role_scope: 'controller',
   status: 'role_world_complete'
 }, 'Controller must be the fourth completed Role World');
-assert.deepEqual(referenceIdentity(completeWorlds[3]), index.fourth_reference_world);
-assert.deepEqual(referenceIdentity(completeWorlds[4]), {
+assert.deepEqual(referenceIdentity(referenceWorlds[3]), index.fourth_reference_world);
+assert.deepEqual(referenceIdentity(referenceWorlds[4]), {
   category: 'sport',
   role_scope: 'sport_utover',
   status: 'role_world_complete'
 }, 'Sport-utøver must be the fifth completed Role World');
-assert.deepEqual(referenceIdentity(completeWorlds[4]), index.fifth_reference_world);
+assert.deepEqual(referenceIdentity(referenceWorlds[4]), index.fifth_reference_world);
+assert.deepEqual(referenceIdentity(completeWorlds[5]), {
+  category: 'media',
+  role_scope: 'media_redaksjon',
+  status: 'role_world_complete'
+}, 'Journalism must remain the fourth structurally different pilot after the five-world proof wave');
+assert.deepEqual(referenceIdentity(completeWorlds[5]), referenceIdentity(index.fourth_structural_pilot));
 
 console.log('Civication Role World contract: OK');

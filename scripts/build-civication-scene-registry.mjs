@@ -14,7 +14,7 @@ export const LEGACY_FALLBACK_ROOT = "data/Civication/jobbmails";
 export const DEFAULT_OUTPUT = "data/Civication/compiledSceneRegistryV1.json";
 
 const ID_RE = /^[A-Za-z0-9][A-Za-z0-9._:-]*$/;
-const SOCIAL_AUDIENCE_ID_RE = /^(manager|team|professional|public):[a-z0-9][a-z0-9_.:-]{0,95}$/;
+const SOCIAL_AUDIENCE_ID_RE = /^(manager|team|professional|public|source):[a-z0-9][a-z0-9_.:-]{0,95}$/;
 const DAY_PHASES = new Set([
   "morning", "forenoon", "workday", "lunch", "afternoon", "dinner", "evening", "day_end", "any"
 ]);

@@ -44,7 +44,9 @@ assert.equal(plan.schema, 'civication_mail_plan_v1');
 assert.equal(plan.version, 1);
 assert.equal(plan.category, 'media');
 assert.equal(plan.role_scope, 'media_redaksjon');
-assert.equal(plan.sequence.length, 8);
+assert.equal(plan.sequence.length, 16);
+assert.deepEqual(plan.sequence.slice(8).map(step => step.step), [9, 10, 11, 12, 13, 14, 15, 16]);
+assert.ok(plan.sequence.slice(8).every(step => step.fallback_types.length === 0), 'Role World pilot steps cannot use fallback content');
 assert.ok(plan.outcome_rules?.promoted, 'positive runtime outcome exists');
 assert.ok(plan.outcome_rules?.fired, 'negative runtime outcome exists');
 

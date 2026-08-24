@@ -310,6 +310,10 @@ Ekspeditør, Renholder, By-rådgiver, Controller og Sport-utøver er strukturref
 
 **Reference wave complete.** Proof-bølgen dekker nå servicearbeid, usynlig arbeid, forvaltning, tall/kontroll og kropp/prestasjon. Neste bredere produksjonsrolle skal velges eksplisitt i en ny rollout-policy, ikke arves som en skjult `next_reference_world`.
 
+Den fjerde strukturelt annerledes piloten er nå materialisert i `media/media_redaksjon`, sentrert på Journalisten. Den er ikke en sjette skjult reference world, men et bevis på at samme standard tåler kilder, publikum, profesjonskultur, redaktørmyndighet, feedback/rework og synlig rettelse. Piloten utvider den eksisterende situated-standing-kontrakten additivt med audience-typen `source:*`; den oppretter ingen ny reputation- eller Role World-runtime.
+
+Neste produksjonssteg er en separat Role World Realism Matrix/gate-PR som bare skal låse felter med faktisk bevis fra arkiv, plan, sport og journalistikk. Bred rollout skal ikke starte før den gaten beskytter mot completion-inflasjon og parallell runtime.
+
 ## 14. Canonical authoring workflow
 
 Den praktiske produksjonsoppskriften er canonical i:
