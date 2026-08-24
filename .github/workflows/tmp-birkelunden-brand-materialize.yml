@@ -30,16 +30,16 @@ jobs:
           fetch-depth: 0
           ref: ${{ env.TARGET_BRANCH }}
 
-      - name: Download official Bondens marked logo
+      - name: Download official Bondens marked press-room logo
         run: |
           mkdir -p bilder/kort/brands
           curl --fail --location --retry 3 \
             --user-agent 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 History-Go/1.0' \
-            --referer 'https://bondensmarked.no/om-oss/bilder' \
-            --header 'Accept: image/svg+xml,image/*,*/*;q=0.8' \
-            'https://bondensmarked.no/bm-logo.svg' \
-            --output bilder/kort/brands/bondens_marked.svg
-          grep -q '<svg' bilder/kort/brands/bondens_marked.svg
+            --referer 'https://kommunikasjon.ntb.no/presserom/17848583/bondensmarked/mi?item=logo-17981723' \
+            --header 'Accept: image/png,image/*,*/*;q=0.8' \
+            'https://kommunikasjon.ntb.no/data/images/00438/af74f0cb-914c-4614-a0e6-0c1ff9c4c611.png' \
+            --output bilder/kort/brands/bondens_marked.png
+          file bilder/kort/brands/bondens_marked.png | grep -q 'PNG image data'
 
       - name: Materialize canonical brand and mapping
         run: node scripts/tmp-materialize-birkelunden-brand.mjs
@@ -47,13 +47,13 @@ jobs:
       - name: Validate JSON and asset
         run: |
           node -e "JSON.parse(require('fs').readFileSync('data/brands/brands_master.json','utf8')); JSON.parse(require('fs').readFileSync('data/brands/brands_by_place.json','utf8'));"
-          test -s bilder/kort/brands/bondens_marked.svg
+          test -s bilder/kort/brands/bondens_marked.png
 
       - name: Commit one-shot output
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/brands/brands_master.json data/brands/brands_by_place.json bilder/kort/brands/bondens_marked.svg
+          git add data/brands/brands_master.json data/brands/brands_by_place.json bilder/kort/brands/bondens_marked.png
           if git diff --cached --quiet; then
             echo 'No materialized changes.'
             exit 0
