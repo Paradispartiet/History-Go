@@ -30,7 +30,7 @@ jobs:
 
       - name: Materialize generated Civication artifacts
         run: |
-          node scripts/build-civication-scene-registry.mjs
+          node scripts/build-civication-scene-registry.mjs --write
           node scripts/audit-civication-career-gameplay.mjs --write
 
       - name: Verify materialized pilot
