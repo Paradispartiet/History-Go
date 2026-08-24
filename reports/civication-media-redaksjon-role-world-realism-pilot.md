@@ -67,7 +67,7 @@ After publication, Sara's document-backed audience feedback reopens the same cas
 ## Permanent proof
 
 - **286/286 Civication test files** pass, including learning-profile and knowledge-requirement audits;
-- `tests/civication-media-redaksjon-role-world-realism-pilot.test.js` protects the 56-beat world, all file#id provenance, the nine-scene vertical, opposing standing branches, authority boundaries, History Go affordance, rework, publication, correction and closure;
+- `tests/civication-media-redaksjon-role-world-realism-pilot.test.js` protects the 56-beat world, all file#id provenance, the nine-scene vertical, opposing standing branches, authority boundaries and History Go affordance; a 96-branch semantic traversal proves that every authored trust, rework, publication, correction and closure choice reaches `completed`;
 - `tests/civication-situated-reputation.test.js` now proves the bounded `source:*` audience without global-score leakage;
 - the general Role World contract preserves the original five-world reference wave and registers journalism separately as the fourth structural pilot;
 - source → compiled registry parity remains clean for all new scenes.
@@ -78,7 +78,7 @@ Materialized registry:
 - **44 roles**
 - **347 compiled sources**
 - **0 shadowed duplicates**
-- registry hash: `249374ba81b0c0cd483b86a1e7fe3db2b114972d5a9f9f1172ed76b55a1c1655`
+- registry hash: `87dcd44a68485fd10935e6872245cbf3d39b8f6c11c8e900a954a34f4ca1d360`
 
 ## What Pilot D teaches the future Matrix
 

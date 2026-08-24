@@ -7,6 +7,8 @@ const path = require('node:path');
 const { execFileSync } = require('node:child_process');
 
 const ROOT = path.resolve(__dirname, '..');
+const rhythm = require(path.join(ROOT, 'js/Civication/core/civicationWorkRhythm.js'));
+const workWorldFactory = require(path.join(ROOT, 'js/Civication/core/civicationWorkWorld.js'));
 const rel = value => path.join(ROOT, value);
 const read = value => JSON.parse(fs.readFileSync(rel(value), 'utf8'));
 const world = read('data/Civication/roleWorlds/media/media_redaksjon.json');
@@ -16,6 +18,30 @@ const plan = read('data/Civication/mailPlans/media/media_redaksjon_plan.json');
 const model = read('data/Civication/roleModels/media/journalist.json');
 const matrix = read('data/Civication/careerGameplayMatrix.json');
 const scenarioPeople = read('data/Civication/scenarioPeople/generated/media.json');
+
+function stateApi(initial = {}) {
+  let state = JSON.parse(JSON.stringify(initial));
+  const merge = (left, right) => {
+    const out = { ...(left || {}) };
+    for (const [key, value] of Object.entries(right || {})) {
+      out[key] = value && typeof value === 'object' && !Array.isArray(value)
+        ? merge(out[key] || {}, value)
+        : value;
+    }
+    return out;
+  };
+  return {
+    getState() { return JSON.parse(JSON.stringify(state)); },
+    setState(patch) { state = merge(state, patch || {}); return this.getState(); }
+  };
+}
+
+function applyScene(adapter, scene, choiceId, at) {
+  const choice = scene.choices.find(candidate => candidate.id === choiceId);
+  assert(choice, `${scene.id} choice ${choiceId}`);
+  adapter.applyOperations(scene.effects?.work_object_ops || [], { scene_id: scene.id, choice_id: choiceId, at });
+  adapter.applyOperations(choice.effects?.work_object_ops || [], { scene_id: scene.id, choice_id: choiceId, at });
+}
 
 assert.equal(world.schema, 'civication_role_world_v1');
 assert.equal(world.category, 'media');
@@ -177,6 +203,39 @@ assert.equal(correction.work_context.rework_of_scene_id, 'media_redaksjon_realis
 assert.ok(correction.choices[0].effects.social_standing_ops.some(op => op.audience_id === 'public:fjordby_lesere' && op.delta > 0));
 const closure = mails.get('media_redaksjon_realism_case_close_001');
 assert.ok(closure.choices[0].effects.work_object_ops.some(op => op.op === 'transition' && op.to_status === 'completed'));
+
+// Every authored trust, rework, publication, correction and closure choice must
+// retain a valid path through the existing work-rhythm contract.
+const responseBranches = [
+  { scene: editorResponse, handoffChoice: 'A' },
+  { scene: sourceResponse, handoffChoice: 'B' }
+];
+for (const response of responseBranches) {
+  for (const responseChoice of response.scene.choices) {
+    for (const reworkChoice of rework.choices) {
+      for (const publishChoice of publish.choices) {
+        for (const correctionChoice of correction.choices) {
+          for (const closureChoice of closure.choices) {
+            const api = stateApi();
+            const adapter = workWorldFactory.createAdapter(api);
+            applyScene(adapter, open, 'A', '2026-08-24T08:00:00.000Z');
+            applyScene(adapter, handoff, response.handoffChoice, '2026-08-24T09:00:00.000Z');
+            applyScene(adapter, response.scene, responseChoice.id, '2026-08-25T08:00:00.000Z');
+            assert.equal(rhythm.evaluateScene(rework, api.getState()).eligible, true, `${response.scene.id}/${responseChoice.id} reaches rework`);
+            applyScene(adapter, rework, reworkChoice.id, '2026-08-25T12:00:00.000Z');
+            assert.equal(rhythm.evaluateScene(publish, api.getState()).eligible, true, `${rework.id}/${reworkChoice.id} reaches publication`);
+            applyScene(adapter, publish, publishChoice.id, '2026-08-26T12:00:00.000Z');
+            assert.equal(rhythm.evaluateScene(correction, api.getState()).eligible, true, `${publish.id}/${publishChoice.id} reaches correction`);
+            applyScene(adapter, correction, correctionChoice.id, '2026-08-27T08:00:00.000Z');
+            assert.equal(rhythm.evaluateScene(closure, api.getState()).eligible, true, `${correction.id}/${correctionChoice.id} reaches closure`);
+            applyScene(adapter, closure, closureChoice.id, '2026-08-28T12:00:00.000Z');
+            assert.equal(adapter.getWorkObject('media_redaksjon_publication_case_001').status, 'completed');
+          }
+        }
+      }
+    }
+  }
+}
 
 const career = matrix.worlds.find(row => row.key === 'media/media_redaksjon');
 assert.ok(career);

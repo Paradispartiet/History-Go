@@ -1,0 +1,38 @@
+name: TEMP materialize Civication media redaksjon branches
+
+on:
+  push:
+    branches:
+      - agent/civication-media-redaksjon-realism-pilot
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Materialize governed artifacts
+        run: |
+          node scripts/build-civication-scene-registry.mjs --write
+          node scripts/audit-civication-career-gameplay.mjs --write
+          node scripts/build-civication-scene-registry.mjs --check
+          node scripts/audit-civication-career-gameplay.mjs --check
+          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts --check
+      - name: Verify full Civication suite
+        run: npm run test:civication
+      - name: Commit clean generated head
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/TEMP-materialize-civication-media-redaksjon-branches.yml
+          git add data/Civication/compiledSceneRegistryV1.json data/Civication/careerGameplayMatrix.json
+          git commit -m "Materialize journalism branch reachability artifacts"
+          git push
