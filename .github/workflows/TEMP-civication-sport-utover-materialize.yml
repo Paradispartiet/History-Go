@@ -1,16 +1,16 @@
 name: TEMP Civication sport-utover materialization
 
 on:
-  push:
+  pull_request:
     branches:
-      - agent/civication-sport-utover-realism-pilot
+      - main
 
 permissions:
   contents: write
 
 jobs:
   materialize:
-    if: github.actor != 'github-actions[bot]'
+    if: github.event.pull_request.head.ref == 'agent/civication-sport-utover-realism-pilot'
     runs-on: ubuntu-latest
     steps:
       - name: Check out pilot branch
