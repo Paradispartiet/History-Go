@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - agent/map-detail-dots-restore-smaller-v1
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - main
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -67,6 +72,3 @@ jobs:
           git diff --cached --check
           git commit -m "Restore smaller visible place dots"
           git push origin HEAD:agent/map-detail-dots-restore-smaller-v1
-
-# retrigger after workflow registration
-# direct retrigger 2026-08-24
