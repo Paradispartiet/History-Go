@@ -5,7 +5,7 @@ import { pathToFileURL } from 'node:url';
 import { validateRepository } from './validate-place-description-production-v4_2.mjs';
 
 export const LENGTH_POLICY_REVISION = '4.2.1-source-led-length';
-export const PR_SCOPE_POLICY_REVISION = '4.2.1-canonical-place-onboarding-index';
+export const PR_SCOPE_POLICY_REVISION = '4.2.2-canonical-place-production-index';
 
 const WORD_COUNT_ONLY_CODES = new Set([
   'desc_outside_normal_range',
@@ -30,6 +30,11 @@ function isCanonicalPlaceSourceFile(file) {
     && !value.startsWith(RULES_PREFIX)
     && value !== PLACE_MANIFEST_PATH
     && !isGeneratedPlaceIndexPath(value);
+}
+
+function placeIdFromJsonPath(file) {
+  const value = String(file ?? '');
+  return value.endsWith('.json') ? path.basename(value, '.json') : '';
 }
 
 function normalizeChangedEntries(entries) {
@@ -92,24 +97,38 @@ export function applySourceLedLengthPolicy(report) {
 }
 
 /**
- * A new canonical Place must be allowed to commit the synchronized manifest
- * and generated place index in the same PR. This does not relax the isolation
- * rule for ordinary description-only work: the exception requires at least one
- * newly added canonical Place source plus both manifest and generated-index
- * changes. Other PR-isolation findings remain blocking.
+ * A canonical Place onboarding or complete Place production must be allowed to
+ * commit its synchronized generated place index in the same PR. This does not
+ * relax the isolation rule for ordinary description-only work: onboarding
+ * requires an added Place plus manifest synchronization, while full production
+ * requires a changed canonical Place and its matching production packet. Other
+ * PR-isolation findings remain blocking.
  */
 export function applyCanonicalPlaceOnboardingScopePolicy(report, changedEntries = []) {
   const entries = normalizeChangedEntries(changedEntries);
   const addedPlaceFiles = entries
     .filter((entry) => entry.status.startsWith('A') && isCanonicalPlaceSourceFile(entry.file))
     .map((entry) => entry.file);
+  const changedPlaceFiles = entries
+    .filter((entry) => isCanonicalPlaceSourceFile(entry.file))
+    .map((entry) => entry.file);
+  const changedPlaceIds = new Set(changedPlaceFiles.map(placeIdFromJsonPath).filter(Boolean));
+  const changedProductionPackets = entries
+    .filter((entry) => entry.file.startsWith(PACKET_PREFIX) && entry.file.endsWith('.json'))
+    .map((entry) => entry.file);
+  const matchingProductionPlaceIds = [...new Set(
+    changedProductionPackets
+      .map(placeIdFromJsonPath)
+      .filter((placeId) => changedPlaceIds.has(placeId))
+  )];
   const manifestChanged = entries.some((entry) => entry.file === PLACE_MANIFEST_PATH);
   const generatedIndexesChanged = entries
     .filter((entry) => isGeneratedPlaceIndexPath(entry.file))
     .map((entry) => entry.file);
   const canonicalOnboarding = addedPlaceFiles.length > 0 && manifestChanged && generatedIndexesChanged.length > 0;
+  const canonicalPlaceProduction = matchingProductionPlaceIds.length > 0 && generatedIndexesChanged.length > 0;
 
-  if (!canonicalOnboarding) return report;
+  if (!canonicalOnboarding && !canonicalPlaceProduction) return report;
 
   const issues = Array.isArray(report?.issues) ? report.issues : [];
   const removedIssues = issues.filter((issue) => String(issue?.code ?? '') === GENERATED_INDEX_ISSUE_CODE);
@@ -120,9 +139,13 @@ export function applyCanonicalPlaceOnboardingScopePolicy(report, changedEntries 
     ...report,
     prScopePolicy: {
       revision: PR_SCOPE_POLICY_REVISION,
-      canonicalPlaceOnboarding: true,
+      canonicalPlaceOnboarding: canonicalOnboarding,
+      canonicalPlaceProduction,
       addedPlaceFiles,
-      manifestChanged: true,
+      changedPlaceFiles,
+      changedProductionPackets,
+      matchingProductionPlaceIds,
+      manifestChanged,
       generatedIndexesChanged,
       removedGeneratedIndexIssueCount: removedIssues.length,
       removedGeneratedIndexIssues: removedIssues
