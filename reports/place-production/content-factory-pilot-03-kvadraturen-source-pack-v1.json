@@ -4,8 +4,14 @@
   "cluster_or_family_id": "cf_pilot_03_kvadraturen_civic_core",
   "scope_description": "Shared evidence pack for Christiania Torv, Bankplassen and Grev Wedels plass. Shared research may reduce duplication, but every claim is explicitly scoped and every Place still requires independent full-checklist approval.",
   "created_at": "2026-08-23",
-  "baseline_main": "4d72529f1a4212b67269159da64afa577573bc83",
+  "updated_at": "2026-08-24",
+  "baseline_main": "26cd3288092b4dd91cba850928e0d977e4d4012b",
   "place_ids_considered": ["christiania_torv", "bankplassen", "grev_wedels_plass"],
+  "place_statuses": {
+    "christiania_torv": "FERDIG_PÅ_MAIN",
+    "bankplassen": "FERDIG_KANDIDAT_UNDER_SLUTT_QA",
+    "grev_wedels_plass": "NESTE_ETTER_BANKPLASSEN_MERGE"
+  },
   "source_registry": [
     {
       "source_id": "cf03_s01_christiania_byleksikon",
@@ -381,13 +387,14 @@
     "Nåværende leietakere/åpningstider uten fersk subsystem-verifikasjon."
   ],
   "per_place_research_gaps": {
-    "christiania_torv": ["Stories-eierskap", "fire ikke-filler-rundinger", "navn/språk", "før/etter", "ruter og lesespor"],
-    "bankplassen": ["People/Objects-audit", "Structures vs Related", "eksisterende 30-spørsmålsquiz", "Ole Høiland/Teaterslaget Stories"],
+    "christiania_torv": [],
+    "bankplassen": [],
     "grev_wedels_plass": ["Kvinnetorso Object", "Brands uten filler", "canonical IDs for Militærhospitalet/Gamle Logen", "quiz/story/rute/lesespor"]
   },
   "freshness_notes": {
     "historical_stable": "Hoveddelen av pakken er stabil historie og kan gjenbrukes under eksplisitt place-scope.",
     "current_volatile": "Arrangementer, åpningstider, leietakere og drift må verifiseres ferskt av eierende subsystem.",
-    "recent_stable_object": "Kvinnetorso er etter avdukingen et varig fysisk spor; eventdetaljer behandles som historiske."
+    "recent_stable_object": "Kvinnetorso er etter avdukingen et varig fysisk spor; eventdetaljer behandles som historiske.",
+    "bankplassen_closeout": "Bankplassen bruker 2023 Commons-bilde, fire verifiserte kunstverk, fire separate relasjonssteder og v3.3 Quiz/Knowledge. Stories, People, Brands, Nature, språk og nyheter har eksplisitte N/A-/eierbeslutninger i workcardet."
   }
 }

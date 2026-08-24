@@ -1,436 +1,361 @@
 {
   "targetId": "bankplassen",
   "categoryId": "by",
-  "source_quiz_file": null,
-  "generator_version": "v5_1_external_priority_chat_merged_normal_place_5x6",
-  "size_class": "normal_place",
-  "generated_from": [
-    "SET_MAL_README_v4_3 (1).md",
-    "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-    "supersetQUIZMAL (10).json",
-    "data/places/by/oslo/places_by.json",
-    "data/fag/by/pensum_by.json",
-    "https://snl.no/Bankplassen_-_Oslo",
-    "https://oslobyleksikon.no/side/Bankplassen",
-    "https://lokalhistoriewiki.no/wiki/Bankplassen_%28Oslo%29"
-  ],
-  "merge_notes": {
-    "existing_quiz_status": "No standard set-file found at data/quiz/by/bankplassen_sets.json, and searches for bankplassen quiz_id, targetId and placeId in data/quiz returned no hits.",
-    "kept": "No existing questions to keep.",
-    "corrected": "No existing target questions to correct.",
-    "added": "Five complete sets with six questions each, using normal_place size."
+  "sources": {
+    "bank_byleksikon": "https://oslobyleksikon.no/side/Bankplassen",
+    "bank_oppdag": "https://www.oppdagkvadraturen.no/stoppesteder/grev-wedels-plass-bankplassen",
+    "bank_nb_history": "https://www.norges-bank.no/en/topics/about/history/history-of-norges-bank/",
+    "bank_nb_building": "https://www.norges-bank.no/tema/Om-Norges-Bank/Bygget/",
+    "bank_nasjonalmuseet": "https://www.nasjonalmuseet.no/en/visit/locations/national-museum-architecture/the-history-of-the-national-museum--architecture/",
+    "bank_theater": "https://oslobyleksikon.no/side/Christiania_Theater",
+    "bank_snl_theater": "https://snl.no/Christiania_Theater",
+    "bank_engebret": "https://oslobyleksikon.no/side/Engebrets_Caf%C3%A9",
+    "bank_art_pike": "https://www.oppdagkvadraturen.no/stoppesteder/sittende-pike-med-hodetelefon-et-bilde-pa-var-tid-marit-krogh",
+    "bank_art_brun": "https://www.oppdagkvadraturen.no/stoppesteder/johannes-brun-brynjulf-bergslien",
+    "bank_art_mann": "https://www.oppdagkvadraturen.no/stoppesteder/mann-med-liten-handbevegelse-istvan-lisztes-2",
+    "bank_art_lyttende": "https://www.oppdagkvadraturen.no/stoppesteder/lyttende-istvan-lisztes",
+    "bank_osm": "https://www.openstreetmap.org/relation/12044741",
+    "bank_commons_1838": "https://commons.wikimedia.org/wiki/File:Bankplassen_med_Christiania_Theater_OB.09114.jpg",
+    "bank_commons_2023": "https://commons.wikimedia.org/wiki/File:Bankplassen,_Oslo_2023.jpg"
   },
-  "profile_snapshot": {
-    "place_type": "plass",
-    "subtype": "stille_kvadraturplass_med_kulturtyngde",
-    "signature_features": [
-      "historisk plass i Kvadraturen",
-      "roligere rom mellom monumentalbygg og kulturinstitusjoner",
-      "sterk lesbarhet i historiske lag og arkitektur"
+  "production_context": {
+    "manifest_category": "by",
+    "profile": "rich_5x7",
+    "standard_version": "3.3",
+    "source_brief": "data/quiz/production_briefs/by/bankplassen.json",
+    "context_artifact": "data/quiz/production_context/by/bankplassen.json",
+    "resolved_files": {
+      "pensum": "data/fag/by/pensum_by.json",
+      "emner": "data/fag/by/emner_by.json",
+      "fagkart": "data/fag/by/fagkart_by.json",
+      "methods": "data/fag/by/methods_by.json",
+      "supersetQuizMal": "data/fag/by/supersetQUIZMAL_by.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
     ],
-    "primary_angles": [
-      "historie",
-      "form",
-      "institusjon",
-      "materialitet"
+    "pensum_module_ids": [
+      "kur_by_01_byrom_akser_knutepunkt",
+      "kur_by_04_historiske_lag_og_transformasjon",
+      "kur_by_06_makt_symboler_og_representasjon"
     ],
-    "must_include": [
-      "Kvadraturens historiske struktur",
-      "forskjellen på rolig byrom og travel hovedakse"
-    ]
+    "emne_ids": [
+      "em_by_torg_plasser_som_scene",
+      "em_by_offentlige_rom_motesteder",
+      "em_by_historiske_lag_i_hverdagsrom",
+      "em_by_transformasjon_ombruk"
+    ],
+    "topic_hook_ids": [
+      "byliv_aapne_rom"
+    ],
+    "method_ids": [
+      "met_feltobservasjon"
+    ],
+    "thinker_ids": [
+      "william_h_whyte"
+    ],
+    "works": [
+      "The Social Life of Small Urban Spaces"
+    ],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/by/bankplassen_sets_merged.json",
+        "data/quiz/by/bankplassen_sets.json",
+        "data/quiz/by/places/bankplassen_sets.json",
+        "data/quiz/arkiv",
+        "reports/place-production/content-factory-pilot-03-kvadraturen-source-pack-v1.json"
+      ],
+      "active_before": {
+        "file": "data/quiz/by/bankplassen_sets_merged.json",
+        "set_count": 5,
+        "question_count": 30,
+        "finding": "Aktiv legacy-pakke hadde 5×6, interne modellspørsmål og ingen v3.3 production_context eller full Knowledge-kontrakt."
+      },
+      "decisions": [
+        "Behold dokumenterte stedspåstander, men skriv spørsmålene på nytt under v3.3-kontrakten.",
+        "Bruk fem selvstendige læringsjobber og 5×7 fordi kildene bærer festningslag, bank-/teaterlag, ombruk, romlig lesning og metode.",
+        "Hold bygg- og hendelsesfakta knyttet til de separate nabostedene, og bruk dem som synlige relasjoner til plassrommet.",
+        "Legg teori og feltmetode bare i sluttsettet."
+      ],
+      "knowledge_migration": "Canonical Knowledge materialiseres deterministisk etter at quizpakken og production context er skrevet."
+    },
+    "profile_decision": {
+      "profile": "rich",
+      "set_count": 5,
+      "questions_per_set": 7,
+      "justification": "Kildegrunnlaget bærer fem selvstendige læringsjobber: festningsverk og plassdannelse; bank, teater og park; institusjonsombruk og offentlig kunst; canonical/romlig sammenheng; faglig syntese, kildekritikk og feltobservasjon."
+    },
+    "held_back_candidates": [
+      "Ole Høiland-ranet som Bankplassen-eid historie – hendelsen eies av `grunnlovsbygget_bankplassen`.",
+      "Teaterslaget som Bankplassen-eid Story – hendelsen eies av teater-/Bankplassen 4-stedet.",
+      "Dagens leietakere og åpningstider – volatile og ikke nødvendige for evergreen-quizen.",
+      "Bred tematisk People-kobling til Christian IV, Bernt Anker eller institusjonelle stiftelser.",
+      "Antakelser om faktisk opphold utledet fra design alene."
+    ],
+    "theory_start_phase": "final",
+    "method_start_phase": "final"
   },
   "sets": [
     {
       "set_id": "by_bankplassen_set_1",
       "level": 1,
       "order": 1,
+      "phase": "opening",
       "xp": 50,
-      "mode": "history_intro_story",
       "questions": [
         {
           "id": "bankplassen_quiz_1",
           "quiz_id": "by_bankplassen_set_1_q1",
           "categoryId": "by",
           "placeId": "bankplassen",
-          "personId": "",
-          "natureId": "",
           "targetId": "bankplassen",
           "question_scope": "place",
           "question": "Hvor ligger Bankplassen?",
           "options": [
-            "I Kvadraturen i Oslo sentrum",
-            "På Romsås i Groruddalen",
-            "Ved Ullernåsen"
+            "Mellom Kirkegata, Kongens gate og Myntgata",
+            "Mellom Karl Johans gate, Rosenkrantz' gate og Stortingsgata",
+            "Mellom Torggata, Hausmanns gate og Møllergata"
           ],
-          "answer": "I Kvadraturen i Oslo sentrum",
+          "answer": "Mellom Kirkegata, Kongens gate og Myntgata",
           "answerIndex": 0,
-          "dimension": "plassering",
-          "topic": "Kvadraturen",
-          "knowledge": "SNL og Lokalhistoriewiki beskriver Bankplassen som en plass i Oslo sentrum/Kvadraturen.",
-          "trivia": [],
+          "knowledge": "Bankplassen ligger mellom Kirkegata, Kongens gate og Myntgata i Kvadraturen.",
           "difficulty": 1,
           "question_type": "fact",
-          "question_layer": "history_intro_story",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
           "emne_id": "em_by_torg_plasser_som_scene",
-          "related_emner": [],
-          "core_concepts": [
-            "Kvadraturen",
-            "Oslo sentrum",
-            "plass"
-          ],
-          "concept_focus": [
-            "Kvadraturen",
-            "Oslo sentrum"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "bankplassen",
-            "kvadraturen",
-            "sentrum"
-          ],
-          "required_tags": [],
           "source": [
-            "https://snl.no/Bankplassen_-_Oslo",
-            "https://lokalhistoriewiki.no/wiki/Bankplassen_%28Oslo%29"
+            "bank_byleksikon",
+            "bank_osm"
           ],
           "source_origin": "external",
-          "claim_basis": "external_verified_claim",
-          "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
-            "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
+          "claim_basis": "Bankplassen ligger mellom Kirkegata, Kongens gate og Myntgata i Kvadraturen.",
+          "claim_id": "claim_bankplassen_quiz_1",
+          "primary_knowledge_unit_id": "ku_by_bankplassen_ligger_mello_4aef60e00e",
+          "knowledge_unit_ids": [
+            "ku_by_bankplassen_ligger_mello_4aef60e00e"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         },
         {
           "id": "bankplassen_quiz_2",
           "quiz_id": "by_bankplassen_set_1_q2",
           "categoryId": "by",
           "placeId": "bankplassen",
-          "personId": "",
-          "natureId": "",
-          "targetId": "bankplassen",
-          "question_scope": "place",
-          "question": "Hvilke gater avgrenser Bankplassen ifølge Oslo byleksikon?",
-          "options": [
-            "Kirkegata, Kongens gate og Myntgata",
-            "Bogstadveien, Hegdehaugsveien og Kirkeveien",
-            "Trondheimsveien, Københavngata og Dælenenggata"
-          ],
-          "answer": "Kirkegata, Kongens gate og Myntgata",
-          "answerIndex": 0,
-          "dimension": "orientering",
-          "topic": "avgrensning",
-          "knowledge": "Oslo byleksikon oppgir at Bankplassen er avgrenset av Kirkegata, Kongens gate og Myntgata.",
-          "trivia": [],
-          "difficulty": 1,
-          "question_type": "fact",
-          "question_layer": "history_intro_story",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_gangstrommer_snarveier",
-          "related_emner": [],
-          "core_concepts": [
-            "Kirkegata",
-            "Kongens gate",
-            "Myntgata"
-          ],
-          "concept_focus": [
-            "Kirkegata",
-            "Kongens gate"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "kirkegata",
-            "kongens_gate",
-            "myntgata"
-          ],
-          "required_tags": [],
-          "source": [
-            "https://oslobyleksikon.no/side/Bankplassen",
-            "https://lokalhistoriewiki.no/wiki/Bankplassen_%28Oslo%29"
-          ],
-          "source_origin": "external",
-          "claim_basis": "external_verified_claim",
-          "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
-            "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
-        },
-        {
-          "id": "bankplassen_quiz_3",
-          "quiz_id": "by_bankplassen_set_1_q3",
-          "categoryId": "by",
-          "placeId": "bankplassen",
-          "personId": "",
-          "natureId": "",
           "targetId": "bankplassen",
           "question_scope": "place",
           "question": "Hva er Bankplassen oppkalt etter?",
           "options": [
             "Norges Bank",
             "Christiania Theater",
-            "Engebret Café"
+            "Akershus festning"
           ],
           "answer": "Norges Bank",
           "answerIndex": 0,
-          "dimension": "navnehistorie",
-          "topic": "Norges Bank",
-          "knowledge": "Oslo byleksikon skriver at Bankplassen er oppkalt etter Norges Bank.",
-          "trivia": [],
+          "knowledge": "Bankplassen fikk navn etter Norges Bank.",
           "difficulty": 1,
           "question_type": "fact",
-          "question_layer": "history_intro_story",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
           "emne_id": "em_by_historiske_lag_i_hverdagsrom",
-          "related_emner": [],
-          "core_concepts": [
-            "Norges Bank",
-            "navn",
-            "plass"
-          ],
-          "concept_focus": [
-            "Norges Bank",
-            "navn"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "norges_bank",
-            "navn",
-            "bankplassen"
-          ],
-          "required_tags": [],
           "source": [
-            "https://oslobyleksikon.no/side/Bankplassen",
-            "https://snl.no/Bankplassen_-_Oslo"
+            "bank_byleksikon"
           ],
           "source_origin": "external",
-          "claim_basis": "external_verified_claim",
-          "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
-            "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
+          "claim_basis": "Bankplassen fikk navn etter Norges Bank.",
+          "claim_id": "claim_bankplassen_quiz_2",
+          "primary_knowledge_unit_id": "ku_by_bankplassen_fikk_navn_et_2515ce3de4",
+          "knowledge_unit_ids": [
+            "ku_by_bankplassen_fikk_navn_et_2515ce3de4"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "bankplassen_quiz_3",
+          "quiz_id": "by_bankplassen_set_1_q3",
+          "categoryId": "by",
+          "placeId": "bankplassen",
+          "targetId": "bankplassen",
+          "question_scope": "place",
+          "question": "Hva ble fjernet før Bankplassen kunne utvikles?",
+          "options": [
+            "De nedre festningsvollene og glaciset",
+            "En middelalderkirke og kirkegård",
+            "Et jernbanespor og en godsterminal"
+          ],
+          "answer": "De nedre festningsvollene og glaciset",
+          "answerIndex": 0,
+          "knowledge": "De nedre festningsvollene og glaciset ble fjernet fra midten av 1820-årene.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "bank_byleksikon",
+            "bank_oppdag"
+          ],
+          "source_origin": "external",
+          "claim_basis": "De nedre festningsvollene og glaciset ble fjernet fra midten av 1820-årene.",
+          "claim_id": "claim_bankplassen_quiz_3",
+          "primary_knowledge_unit_id": "ku_by_de_nedre_festningsvollen_c306083f7d",
+          "knowledge_unit_ids": [
+            "ku_by_de_nedre_festningsvollen_c306083f7d"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         },
         {
           "id": "bankplassen_quiz_4",
           "quiz_id": "by_bankplassen_set_1_q4",
           "categoryId": "by",
           "placeId": "bankplassen",
-          "personId": "",
-          "natureId": "",
           "targetId": "bankplassen",
           "question_scope": "place",
-          "question": "Når ble Norges Banks første bygning på Bankplassen oppført?",
+          "question": "Fra hvilken periode ble de nedre festningsverkene fjernet?",
           "options": [
-            "1828",
-            "1815",
-            "1986"
+            "Fra midten av 1820-årene",
+            "Fra slutten av 1600-årene",
+            "Fra begynnelsen av 1900-årene"
           ],
-          "answer": "1828",
+          "answer": "Fra midten av 1820-årene",
           "answerIndex": 0,
-          "dimension": "historie",
-          "topic": "første bankbygning",
-          "knowledge": "SNL, Oslo byleksikon og Lokalhistoriewiki oppgir at Norges Banks første bygning på Bankplassen ble oppført i 1828.",
-          "trivia": [],
+          "knowledge": "Fjerningen av de nedre festningsverkene startet fra midten av 1820-årene.",
           "difficulty": 1,
           "question_type": "fact",
-          "question_layer": "history_intro_story",
-          "year": 1828,
-          "epoke_id": null,
-          "epoke_domain": "by",
           "emne_id": "em_by_historiske_lag_i_hverdagsrom",
-          "related_emner": [],
-          "core_concepts": [
-            "1828",
-            "Norges Bank",
-            "Bankplassen 3"
-          ],
-          "concept_focus": [
-            "1828",
-            "Norges Bank"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "1828",
-            "norges_bank",
-            "bygning"
-          ],
-          "required_tags": [],
           "source": [
-            "https://snl.no/Bankplassen_-_Oslo",
-            "https://oslobyleksikon.no/side/Bankplassen",
-            "https://lokalhistoriewiki.no/wiki/Bankplassen_%28Oslo%29"
+            "bank_byleksikon",
+            "bank_oppdag"
           ],
           "source_origin": "external",
-          "claim_basis": "external_verified_claim",
-          "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
-            "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
+          "claim_basis": "Fjerningen av de nedre festningsverkene startet fra midten av 1820-årene.",
+          "claim_id": "claim_bankplassen_quiz_4",
+          "primary_knowledge_unit_id": "ku_by_fjerningen_av_de_nedre_f_acc1c59104",
+          "knowledge_unit_ids": [
+            "ku_by_fjerningen_av_de_nedre_f_acc1c59104"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         },
         {
           "id": "bankplassen_quiz_5",
           "quiz_id": "by_bankplassen_set_1_q5",
           "categoryId": "by",
           "placeId": "bankplassen",
-          "personId": "",
-          "natureId": "",
           "targetId": "bankplassen",
           "question_scope": "place",
-          "question": "Hvem tegnet Norges Banks første bygning på Bankplassen?",
+          "question": "Hva slags plassanlegg ble utviklet på det frigjorte arealet?",
           "options": [
-            "Christian H. Grosch",
-            "Sverre Fehn",
-            "Arnstein Arneberg"
+            "Et representativt anlegg for offentlige institusjoner",
+            "Et privat hageanlegg for én kjøpmann",
+            "Et industriområde med lagerhaller"
           ],
-          "answer": "Christian H. Grosch",
+          "answer": "Et representativt anlegg for offentlige institusjoner",
           "answerIndex": 0,
-          "dimension": "arkitektur",
-          "topic": "Christian H. Grosch",
-          "knowledge": "SNL og Lokalhistoriewiki oppgir Christian H. Grosch som arkitekt for Norges Banks første bygning på Bankplassen.",
-          "trivia": [],
+          "knowledge": "Bankplassen ble utviklet som et representativt anlegg for sivile og militære institusjoner.",
           "difficulty": 1,
           "question_type": "fact",
-          "question_layer": "history_intro_story",
-          "year": 1828,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_bygningstyper_og_typologier",
-          "related_emner": [],
-          "core_concepts": [
-            "Christian H. Grosch",
-            "Norges Bank",
-            "arkitektur"
-          ],
-          "concept_focus": [
-            "Christian H. Grosch",
-            "Norges Bank"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "grosch",
-            "arkitektur",
-            "bank"
-          ],
-          "required_tags": [],
+          "emne_id": "em_by_offentlige_rom_motesteder",
           "source": [
-            "https://snl.no/Bankplassen_-_Oslo",
-            "https://lokalhistoriewiki.no/wiki/Bankplassen_%28Oslo%29"
+            "bank_byleksikon",
+            "bank_oppdag"
           ],
           "source_origin": "external",
-          "claim_basis": "external_verified_claim",
-          "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
-            "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
+          "claim_basis": "Bankplassen ble utviklet som et representativt anlegg for sivile og militære institusjoner.",
+          "claim_id": "claim_bankplassen_quiz_5",
+          "primary_knowledge_unit_id": "ku_by_bankplassen_ble_utviklet_06972e9d86",
+          "knowledge_unit_ids": [
+            "ku_by_bankplassen_ble_utviklet_06972e9d86"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         },
         {
           "id": "bankplassen_quiz_6",
           "quiz_id": "by_bankplassen_set_1_q6",
           "categoryId": "by",
           "placeId": "bankplassen",
-          "personId": "",
-          "natureId": "",
           "targetId": "bankplassen",
           "question_scope": "place",
-          "question": "Hvilken karakter gir repoets stedsprofil Bankplassen?",
+          "question": "Når sto Norges Banks eldste bygning ved plassen ferdig?",
           "options": [
-            "Stille kvadraturplass med kulturtyngde og historiske lag",
-            "Sesongstyrt skøytebane på Karl Johan",
-            "Vestkantboligområde med store villaer"
+            "1828",
+            "1807",
+            "1906"
           ],
-          "answer": "Stille kvadraturplass med kulturtyngde og historiske lag",
+          "answer": "1828",
           "answerIndex": 0,
-          "dimension": "byanalyse",
-          "topic": "repoets stedsprofil",
-          "knowledge": "Repoets stedsprofil sier at Bankplassen skal spørres som et konsentrert historierom i tett sentrum, ikke som generisk kulturplass.",
-          "trivia": [],
+          "knowledge": "Norges Banks eldste bygning ved Bankplassen sto ferdig i 1828.",
           "difficulty": 1,
           "question_type": "fact",
-          "question_layer": "history_intro_story",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_torg_plasser_som_scene",
-          "related_emner": [],
-          "core_concepts": [
-            "historiske lag",
-            "kulturtyngde",
-            "rolig byrom"
-          ],
-          "concept_focus": [
-            "historiske lag",
-            "kulturtyngde"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "kvadraturen",
-            "kultur",
-            "historie"
-          ],
-          "required_tags": [],
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
           "source": [
-            "data/places/by/oslo/places_by.json",
-            "https://snl.no/Bankplassen_-_Oslo"
+            "bank_byleksikon",
+            "bank_oppdag"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "mixed_external_and_place_profile_claim",
-          "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
-            "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
+          "source_origin": "external",
+          "claim_basis": "Norges Banks eldste bygning ved Bankplassen sto ferdig i 1828.",
+          "claim_id": "claim_bankplassen_quiz_6",
+          "primary_knowledge_unit_id": "ku_by_norges_banks_eldste_bygn_6ecfcd8bdb",
+          "knowledge_unit_ids": [
+            "ku_by_norges_banks_eldste_bygn_6ecfcd8bdb"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "bankplassen_quiz_7",
+          "quiz_id": "by_bankplassen_set_1_q7",
+          "categoryId": "by",
+          "placeId": "bankplassen",
+          "targetId": "bankplassen",
+          "question_scope": "place",
+          "question": "Hvem tegnet bankbygningen som sto ferdig i 1828?",
+          "options": [
+            "Christian Heinrich Grosch",
+            "Sverre Fehn",
+            "Ingvar Hjorth"
+          ],
+          "answer": "Christian Heinrich Grosch",
+          "answerIndex": 0,
+          "knowledge": "Christian Heinrich Grosch tegnet bankbygningen som sto ferdig i 1828.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "source": [
+            "bank_byleksikon",
+            "bank_oppdag"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Christian Heinrich Grosch tegnet bankbygningen som sto ferdig i 1828.",
+          "claim_id": "claim_bankplassen_quiz_7",
+          "primary_knowledge_unit_id": "ku_by_christian_heinrich_grosc_4709adf599",
+          "knowledge_unit_ids": [
+            "ku_by_christian_heinrich_grosc_4709adf599"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         }
       ]
     },
@@ -438,862 +363,190 @@
       "set_id": "by_bankplassen_set_2",
       "level": 2,
       "order": 2,
+      "phase": "middle",
       "xp": 60,
-      "mode": "local_history_buildings_events",
       "questions": [
         {
-          "id": "bankplassen_quiz_7",
+          "id": "bankplassen_quiz_8",
           "quiz_id": "by_bankplassen_set_2_q1",
           "categoryId": "by",
           "placeId": "bankplassen",
-          "personId": "",
-          "natureId": "",
           "targetId": "bankplassen",
           "question_scope": "place",
-          "question": "Hvilken historisk beslutning frigjorde området der Bankplassen ble anlagt?",
-          "options": [
-            "At festningen ble vedtatt nedlagt i 1815",
-            "At Holmenkollbanen åpnet i 1898",
-            "At Romsås ble utbygget i 1969"
-          ],
-          "answer": "At festningen ble vedtatt nedlagt i 1815",
-          "answerIndex": 0,
-          "dimension": "historie",
-          "topic": "festningsområdet",
-          "knowledge": "SNL og Oslo byleksikon beskriver Bankplassen som anlagt på et område frigjort etter at festningen ble vedtatt nedlagt i 1815.",
-          "trivia": [],
-          "difficulty": 2,
-          "question_type": "fact",
-          "question_layer": "local_history_buildings_events",
-          "year": 1815,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
-          "related_emner": [],
-          "core_concepts": [
-            "Akershus festning",
-            "1815",
-            "frigjort område"
-          ],
-          "concept_focus": [
-            "Akershus festning",
-            "1815"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "1815",
-            "festning",
-            "bankplassen"
-          ],
-          "required_tags": [],
-          "source": [
-            "https://snl.no/Bankplassen_-_Oslo",
-            "https://oslobyleksikon.no/side/Bankplassen"
-          ],
-          "source_origin": "external",
-          "claim_basis": "external_verified_claim",
-          "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
-            "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
-        },
-        {
-          "id": "bankplassen_quiz_8",
-          "quiz_id": "by_bankplassen_set_2_q2",
-          "categoryId": "by",
-          "placeId": "bankplassen",
-          "personId": "",
-          "natureId": "",
-          "targetId": "bankplassen",
-          "question_scope": "place",
-          "question": "Hva ble revet fra midten av 1820-årene før Bankplassen ble formet?",
-          "options": [
-            "Nedre festnings voller og glacis",
-            "Rodeløkkas trehus",
-            "Spikersuppas skøytebane"
-          ],
-          "answer": "Nedre festnings voller og glacis",
-          "answerIndex": 0,
-          "dimension": "historie",
-          "topic": "voller og glacis",
-          "knowledge": "SNL og Oslo byleksikon oppgir at Nedre festnings voller og glacis ble revet fra midten av 1820-årene.",
-          "trivia": [],
-          "difficulty": 2,
-          "question_type": "fact",
-          "question_layer": "local_history_buildings_events",
-          "year": 1825,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
-          "related_emner": [],
-          "core_concepts": [
-            "Nedre festning",
-            "voller",
-            "glacis"
-          ],
-          "concept_focus": [
-            "Nedre festning",
-            "voller"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "voller",
-            "glacis",
-            "1820"
-          ],
-          "required_tags": [],
-          "source": [
-            "https://snl.no/Bankplassen_-_Oslo",
-            "https://oslobyleksikon.no/side/Bankplassen"
-          ],
-          "source_origin": "external",
-          "claim_basis": "external_verified_claim",
-          "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
-            "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
-        },
-        {
-          "id": "bankplassen_quiz_9",
-          "quiz_id": "by_bankplassen_set_2_q3",
-          "categoryId": "by",
-          "placeId": "bankplassen",
-          "personId": "",
-          "natureId": "",
-          "targetId": "bankplassen",
-          "question_scope": "place",
-          "question": "Hvordan ble Bankplassen utviklet som plassanlegg?",
-          "options": [
-            "Representativt plassanlegg for offentlig forvaltning",
-            "Kolonihage for private parsellhager",
-            "Motorveikryss for Ring 3"
-          ],
-          "answer": "Representativt plassanlegg for offentlig forvaltning",
-          "answerIndex": 0,
-          "dimension": "byplanhistorie",
-          "topic": "representativ plass",
-          "knowledge": "SNL og Oslo byleksikon beskriver Bankplassen som et representativt plassanlegg med offentlige bygninger for sivil og militær forvaltning.",
-          "trivia": [],
-          "difficulty": 2,
-          "question_type": "fact",
-          "question_layer": "local_history_buildings_events",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_torg_plasser_som_scene",
-          "related_emner": [],
-          "core_concepts": [
-            "representativt plassanlegg",
-            "forvaltning",
-            "ny norsk stat"
-          ],
-          "concept_focus": [
-            "representativt plassanlegg",
-            "forvaltning"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "representativt",
-            "forvaltning",
-            "plass"
-          ],
-          "required_tags": [],
-          "source": [
-            "https://snl.no/Bankplassen_-_Oslo",
-            "https://oslobyleksikon.no/side/Bankplassen"
-          ],
-          "source_origin": "external",
-          "claim_basis": "external_verified_claim",
-          "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
-            "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
-        },
-        {
-          "id": "bankplassen_quiz_10",
-          "quiz_id": "by_bankplassen_set_2_q4",
-          "categoryId": "by",
-          "placeId": "bankplassen",
-          "personId": "",
-          "natureId": "",
-          "targetId": "bankplassen",
-          "question_scope": "place",
-          "question": "Hvilken kulturbygning gjorde Bankplassen til et kulturelt senter fra 1837?",
+          "question": "Hvilken kulturinstitusjon åpnet ved Bankplassen i 1837?",
           "options": [
             "Christiania Theater",
             "Nationaltheatret",
-            "Colosseum kino"
+            "Den Norske Opera"
           ],
           "answer": "Christiania Theater",
           "answerIndex": 0,
-          "dimension": "kulturhistorie",
-          "topic": "Christiania Theater",
-          "knowledge": "SNL og Oslo byleksikon skriver at Bankplassen ble et kulturelt senter ved byggingen av Christiania Theater i 1837.",
-          "trivia": [],
+          "knowledge": "Christiania Theater åpnet ved Bankplassen i 1837.",
           "difficulty": 1,
           "question_type": "fact",
-          "question_layer": "local_history_buildings_events",
-          "year": 1837,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_institusjoner_kulturformidling",
-          "related_emner": [],
-          "core_concepts": [
-            "Christiania Theater",
-            "1837",
-            "kultur"
-          ],
-          "concept_focus": [
-            "Christiania Theater",
-            "1837"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "christiania_theater",
-            "1837",
-            "kultur"
-          ],
-          "required_tags": [],
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
           "source": [
-            "https://snl.no/Bankplassen_-_Oslo",
-            "https://oslobyleksikon.no/side/Bankplassen",
-            "https://lokalhistoriewiki.no/wiki/Bankplassen_%28Oslo%29"
+            "bank_theater",
+            "bank_snl_theater"
           ],
           "source_origin": "external",
-          "claim_basis": "external_verified_claim",
-          "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
-            "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
+          "claim_basis": "Christiania Theater åpnet ved Bankplassen i 1837.",
+          "claim_id": "claim_bankplassen_quiz_8",
+          "primary_knowledge_unit_id": "ku_by_christiania_theater_apne_b75c3c00d9",
+          "knowledge_unit_ids": [
+            "ku_by_christiania_theater_apne_b75c3c00d9"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "bankplassen_quiz_9",
+          "quiz_id": "by_bankplassen_set_2_q2",
+          "categoryId": "by",
+          "placeId": "bankplassen",
+          "targetId": "bankplassen",
+          "question_scope": "place",
+          "question": "Når ble Christiania Theater-bygningen revet?",
+          "options": [
+            "1899",
+            "1860",
+            "1937"
+          ],
+          "answer": "1899",
+          "answerIndex": 0,
+          "knowledge": "Christiania Theater-bygningen ble revet i 1899.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "bank_theater",
+            "bank_snl_theater"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Christiania Theater-bygningen ble revet i 1899.",
+          "claim_id": "claim_bankplassen_quiz_9",
+          "primary_knowledge_unit_id": "ku_by_christiania_theater_bygn_f16f719658",
+          "knowledge_unit_ids": [
+            "ku_by_christiania_theater_bygn_f16f719658"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "bankplassen_quiz_10",
+          "quiz_id": "by_bankplassen_set_2_q3",
+          "categoryId": "by",
+          "placeId": "bankplassen",
+          "targetId": "bankplassen",
+          "question_scope": "place",
+          "question": "Hva anla Selskabet for Oslo Byes Vel på plassen i 1860?",
+          "options": [
+            "Parkmessig beplantning",
+            "En overdekket markedshall",
+            "En trikkesløyfe"
+          ],
+          "answer": "Parkmessig beplantning",
+          "answerIndex": 0,
+          "knowledge": "Selskabet for Oslo Byes Vel anla parkmessig beplantning i 1860.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "bank_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Selskabet for Oslo Byes Vel anla parkmessig beplantning i 1860.",
+          "claim_id": "claim_bankplassen_quiz_10",
+          "primary_knowledge_unit_id": "ku_by_selskabet_for_oslo_byes__ca1439be5d",
+          "knowledge_unit_ids": [
+            "ku_by_selskabet_for_oslo_byes__ca1439be5d"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         },
         {
           "id": "bankplassen_quiz_11",
-          "quiz_id": "by_bankplassen_set_2_q5",
+          "quiz_id": "by_bankplassen_set_2_q4",
           "categoryId": "by",
           "placeId": "bankplassen",
-          "personId": "",
-          "natureId": "",
           "targetId": "bankplassen",
           "question_scope": "place",
-          "question": "Hva gjorde Selskabet for Oslo Byes Vel ved Bankplassen i 1860?",
-          "options": [
-            "Utførte parkmessig beplantning",
-            "Anla Holmenkollbanen",
-            "Reiste Romsås senter"
-          ],
-          "answer": "Utførte parkmessig beplantning",
-          "answerIndex": 0,
-          "dimension": "byromshistorie",
-          "topic": "beplantning",
-          "knowledge": "Oslo byleksikon oppgir at Selskabet for Oslo Byes Vel utførte parkmessig beplantning mellom teateret og den gamle bankbygningen i 1860.",
-          "trivia": [],
-          "difficulty": 2,
-          "question_type": "fact",
-          "question_layer": "local_history_buildings_events",
-          "year": 1860,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_vegetasjon_parker_grontdrag",
-          "related_emner": [],
-          "core_concepts": [
-            "Selskabet for Oslo Byes Vel",
-            "beplantning",
-            "1860"
-          ],
-          "concept_focus": [
-            "Selskabet for Oslo Byes Vel",
-            "beplantning"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "byes_vel",
-            "beplantning",
-            "1860"
-          ],
-          "required_tags": [],
-          "source": [
-            "https://oslobyleksikon.no/side/Bankplassen"
-          ],
-          "source_origin": "external",
-          "claim_basis": "external_verified_claim",
-          "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
-            "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
-        },
-        {
-          "id": "bankplassen_quiz_12",
-          "quiz_id": "by_bankplassen_set_2_q6",
-          "categoryId": "by",
-          "placeId": "bankplassen",
-          "personId": "",
-          "natureId": "",
-          "targetId": "bankplassen",
-          "question_scope": "place",
-          "question": "Hvilken gate krysser Bankplassen ifølge Lokalhistoriewiki?",
-          "options": [
-            "Revierstredet",
-            "Karl Johans gate",
-            "Helgesens gate"
-          ],
-          "answer": "Revierstredet",
-          "answerIndex": 0,
-          "dimension": "orientering",
-          "topic": "Revierstredet",
-          "knowledge": "Lokalhistoriewiki oppgir at Revierstredet krysser Bankplassen.",
-          "trivia": [],
-          "difficulty": 1,
-          "question_type": "fact",
-          "question_layer": "local_history_buildings_events",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_gangstrommer_snarveier",
-          "related_emner": [],
-          "core_concepts": [
-            "Revierstredet",
-            "Bankplassen",
-            "gateløp"
-          ],
-          "concept_focus": [
-            "Revierstredet",
-            "Bankplassen"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "revierstredet",
-            "bankplassen",
-            "orientering"
-          ],
-          "required_tags": [],
-          "source": [
-            "https://lokalhistoriewiki.no/wiki/Bankplassen_%28Oslo%29"
-          ],
-          "source_origin": "external",
-          "claim_basis": "external_verified_claim",
-          "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
-            "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
-        }
-      ]
-    },
-    {
-      "set_id": "by_bankplassen_set_3",
-      "level": 3,
-      "order": 3,
-      "xp": 70,
-      "mode": "humor_curiosities_life",
-      "questions": [
-        {
-          "id": "bankplassen_quiz_13",
-          "quiz_id": "by_bankplassen_set_3_q1",
-          "categoryId": "by",
-          "placeId": "bankplassen",
-          "personId": "",
-          "natureId": "",
-          "targetId": "bankplassen",
-          "question_scope": "place",
-          "question": "Hvilken restaurant har adresse Bankplassen 1B?",
-          "options": [
-            "Engebret Café",
-            "Theatercaféen",
-            "Grand Café"
-          ],
-          "answer": "Engebret Café",
-          "answerIndex": 0,
-          "dimension": "hverdagsliv",
-          "topic": "Engebret Café",
-          "knowledge": "Lokalhistoriewiki oppgir at Engebret Café har adresse Bankplassen 1B.",
-          "trivia": [],
-          "difficulty": 1,
-          "question_type": "fact",
-          "question_layer": "humor_curiosities_life",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_kommersielle_gater",
-          "related_emner": [],
-          "core_concepts": [
-            "Engebret Café",
-            "Bankplassen 1B",
-            "servering"
-          ],
-          "concept_focus": [
-            "Engebret Café",
-            "Bankplassen 1B"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "engebret_cafe",
-            "servering",
-            "bankplassen"
-          ],
-          "required_tags": [],
-          "source": [
-            "https://lokalhistoriewiki.no/wiki/Bankplassen_%28Oslo%29"
-          ],
-          "source_origin": "external",
-          "claim_basis": "external_verified_claim",
-          "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
-            "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
-        },
-        {
-          "id": "bankplassen_quiz_14",
-          "quiz_id": "by_bankplassen_set_3_q2",
-          "categoryId": "by",
-          "placeId": "bankplassen",
-          "personId": "",
-          "natureId": "",
-          "targetId": "bankplassen",
-          "question_scope": "place",
-          "question": "Når ble Engebret Café etablert i Kirkegata?",
+          "question": "Når ble Engebret Café etablert?",
           "options": [
             "1857",
-            "1863",
-            "1895"
-          ],
-          "answer": "1857",
-          "answerIndex": 0,
-          "dimension": "serveringshistorie",
-          "topic": "Engebret Café",
-          "knowledge": "Lokalhistoriewiki oppgir at Engebret Café ble etablert i Kirkegata i 1857.",
-          "trivia": [],
-          "difficulty": 1,
-          "question_type": "fact",
-          "question_layer": "humor_curiosities_life",
-          "year": 1857,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
-          "related_emner": [],
-          "core_concepts": [
-            "1857",
-            "Kirkegata",
-            "Engebret Café"
-          ],
-          "concept_focus": [
-            "1857",
-            "Kirkegata"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "1857",
-            "engebret_cafe",
-            "kirkegata"
-          ],
-          "required_tags": [],
-          "source": [
-            "https://lokalhistoriewiki.no/wiki/Bankplassen_%28Oslo%29"
-          ],
-          "source_origin": "external",
-          "claim_basis": "external_verified_claim",
-          "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
-            "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
-        },
-        {
-          "id": "bankplassen_quiz_15",
-          "quiz_id": "by_bankplassen_set_3_q3",
-          "categoryId": "by",
-          "placeId": "bankplassen",
-          "personId": "",
-          "natureId": "",
-          "targetId": "bankplassen",
-          "question_scope": "place",
-          "question": "Når fikk Engebret Café tilhold på Bankplassen?",
-          "options": [
-            "1863",
-            "1828",
-            "1986"
-          ],
-          "answer": "1863",
-          "answerIndex": 0,
-          "dimension": "serveringshistorie",
-          "topic": "Engebret på Bankplassen",
-          "knowledge": "Lokalhistoriewiki oppgir at Engebret Café har hatt tilhold på Bankplassen siden 1863.",
-          "trivia": [],
-          "difficulty": 1,
-          "question_type": "fact",
-          "question_layer": "humor_curiosities_life",
-          "year": 1863,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_kommersielle_gater",
-          "related_emner": [],
-          "core_concepts": [
-            "1863",
-            "Bankplassen 1B",
-            "servering"
-          ],
-          "concept_focus": [
-            "1863",
-            "Bankplassen 1B"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "1863",
-            "engebret_cafe",
-            "bankplassen"
-          ],
-          "required_tags": [],
-          "source": [
-            "https://lokalhistoriewiki.no/wiki/Bankplassen_%28Oslo%29"
-          ],
-          "source_origin": "external",
-          "claim_basis": "external_verified_claim",
-          "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
-            "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
-        },
-        {
-          "id": "bankplassen_quiz_16",
-          "quiz_id": "by_bankplassen_set_3_q4",
-          "categoryId": "by",
-          "placeId": "bankplassen",
-          "personId": "",
-          "natureId": "",
-          "targetId": "bankplassen",
-          "question_scope": "place",
-          "question": "Omtrent når er bygningen til Engebret Café fra?",
-          "options": [
-            "Ca. 1760",
-            "Ca. 1956",
-            "Ca. 2008"
-          ],
-          "answer": "Ca. 1760",
-          "answerIndex": 0,
-          "dimension": "bygningshistorie",
-          "topic": "Bankplassen 1B",
-          "knowledge": "Lokalhistoriewiki beskriver Engebret Cafés bygning på Bankplassen 1B som fra cirka 1760.",
-          "trivia": [],
-          "difficulty": 2,
-          "question_type": "fact",
-          "question_layer": "humor_curiosities_life",
-          "year": 1760,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
-          "related_emner": [],
-          "core_concepts": [
-            "ca. 1760",
-            "Bankplassen 1B",
-            "eldre bygning"
-          ],
-          "concept_focus": [
-            "ca. 1760",
-            "Bankplassen 1B"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "1760",
-            "bygning",
-            "engebret"
-          ],
-          "required_tags": [],
-          "source": [
-            "https://lokalhistoriewiki.no/wiki/Bankplassen_%28Oslo%29"
-          ],
-          "source_origin": "external",
-          "claim_basis": "external_verified_claim",
-          "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
-            "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
-        },
-        {
-          "id": "bankplassen_quiz_17",
-          "quiz_id": "by_bankplassen_set_3_q5",
-          "categoryId": "by",
-          "placeId": "bankplassen",
-          "personId": "",
-          "natureId": "",
-          "targetId": "bankplassen",
-          "question_scope": "place",
-          "question": "Hva heter bygningen i Bankplassen 1A fra 1895?",
-          "options": [
-            "Knudsengården",
-            "Conditorigården",
-            "Tollboden"
-          ],
-          "answer": "Knudsengården",
-          "answerIndex": 0,
-          "dimension": "bygningshistorie",
-          "topic": "Knudsengården",
-          "knowledge": "Lokalhistoriewiki oppgir at Bankplassen 1A er Knudsengården fra 1895.",
-          "trivia": [],
-          "difficulty": 1,
-          "question_type": "fact",
-          "question_layer": "humor_curiosities_life",
-          "year": 1895,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
-          "related_emner": [],
-          "core_concepts": [
-            "Knudsengården",
-            "Bankplassen 1A",
-            "1895"
-          ],
-          "concept_focus": [
-            "Knudsengården",
-            "Bankplassen 1A"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "knudsengården",
-            "1895",
-            "bankplassen"
-          ],
-          "required_tags": [],
-          "source": [
-            "https://lokalhistoriewiki.no/wiki/Bankplassen_%28Oslo%29"
-          ],
-          "source_origin": "external",
-          "claim_basis": "external_verified_claim",
-          "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
-            "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
-        },
-        {
-          "id": "bankplassen_quiz_18",
-          "quiz_id": "by_bankplassen_set_3_q6",
-          "categoryId": "by",
-          "placeId": "bankplassen",
-          "personId": "",
-          "natureId": "",
-          "targetId": "bankplassen",
-          "question_scope": "place",
-          "question": "Hvem tegnet Knudsengården ifølge Lokalhistoriewiki?",
-          "options": [
-            "Ole Eriksen Stein",
-            "Christian H. Grosch",
-            "Sverre Fehn"
-          ],
-          "answer": "Ole Eriksen Stein",
-          "answerIndex": 0,
-          "dimension": "arkitektur",
-          "topic": "Knudsengården",
-          "knowledge": "Lokalhistoriewiki oppgir Ole Eriksen Stein som arkitekt for Knudsengården.",
-          "trivia": [],
-          "difficulty": 2,
-          "question_type": "fact",
-          "question_layer": "humor_curiosities_life",
-          "year": 1895,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_bygningstyper_og_typologier",
-          "related_emner": [],
-          "core_concepts": [
-            "Ole Eriksen Stein",
-            "Knudsengården",
-            "arkitekt"
-          ],
-          "concept_focus": [
-            "Ole Eriksen Stein",
-            "Knudsengården"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "ole_eriksen_stein",
-            "knudsengården",
-            "arkitekt"
-          ],
-          "required_tags": [],
-          "source": [
-            "https://lokalhistoriewiki.no/wiki/Bankplassen_%28Oslo%29"
-          ],
-          "source_origin": "external",
-          "claim_basis": "external_verified_claim",
-          "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
-            "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
-        }
-      ]
-    },
-    {
-      "set_id": "by_bankplassen_set_4",
-      "level": 4,
-      "order": 4,
-      "xp": 80,
-      "mode": "place_facts_architecture",
-      "questions": [
-        {
-          "id": "bankplassen_quiz_19",
-          "quiz_id": "by_bankplassen_set_4_q1",
-          "categoryId": "by",
-          "placeId": "bankplassen",
-          "personId": "",
-          "natureId": "",
-          "targetId": "bankplassen",
-          "question_scope": "place",
-          "question": "Hvor lenge holdt Norges Bank til i Bankplassen 3?",
-          "options": [
-            "Fra 1828 til 1906",
-            "Fra 1906 til 1986",
-            "Fra 1986 til i dag"
-          ],
-          "answer": "Fra 1828 til 1906",
-          "answerIndex": 0,
-          "dimension": "bankhistorie",
-          "topic": "Bankplassen 3",
-          "knowledge": "Lokalhistoriewiki oppgir at Norges Bank holdt til i Bankplassen 3 fra 1828 til 1906.",
-          "trivia": [],
-          "difficulty": 2,
-          "question_type": "fact",
-          "question_layer": "place_facts_architecture",
-          "year": 1828,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_institusjoner_kulturformidling",
-          "related_emner": [],
-          "core_concepts": [
-            "Bankplassen 3",
-            "Norges Bank",
-            "1828–1906"
-          ],
-          "concept_focus": [
-            "Bankplassen 3",
-            "Norges Bank"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "norges_bank",
             "1828",
             "1906"
           ],
-          "required_tags": [],
+          "answer": "1857",
+          "answerIndex": 0,
+          "knowledge": "Engebret Café ble etablert i 1857.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
           "source": [
-            "https://lokalhistoriewiki.no/wiki/Bankplassen_%28Oslo%29",
-            "https://oslobyleksikon.no/side/Bankplassen"
+            "bank_engebret"
           ],
           "source_origin": "external",
-          "claim_basis": "external_verified_claim",
-          "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
-            "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
+          "claim_basis": "Engebret Café ble etablert i 1857.",
+          "claim_id": "claim_bankplassen_quiz_11",
+          "primary_knowledge_unit_id": "ku_by_engebret_cafe_ble_etable_e82d15af01",
+          "knowledge_unit_ids": [
+            "ku_by_engebret_cafe_ble_etable_e82d15af01"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         },
         {
-          "id": "bankplassen_quiz_20",
-          "quiz_id": "by_bankplassen_set_4_q2",
+          "id": "bankplassen_quiz_12",
+          "quiz_id": "by_bankplassen_set_2_q5",
           "categoryId": "by",
           "placeId": "bankplassen",
-          "personId": "",
-          "natureId": "",
           "targetId": "bankplassen",
           "question_scope": "place",
-          "question": "Når ble Norges Banks hovedkontor flyttet fra Trondheim til Kristiania?",
+          "question": "Hva åpnet på den tidligere teatertomten i 1906?",
+          "options": [
+            "Norges Banks nye hovedsete",
+            "Riksarkivets magasin",
+            "Nasjonalmuseet – Arkitektur"
+          ],
+          "answer": "Norges Banks nye hovedsete",
+          "answerIndex": 0,
+          "knowledge": "Norges Banks nye hovedsete åpnet på den tidligere teatertomten i 1906.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "source": [
+            "bank_byleksikon",
+            "bank_nb_history"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Norges Banks nye hovedsete åpnet på den tidligere teatertomten i 1906.",
+          "claim_id": "claim_bankplassen_quiz_12",
+          "primary_knowledge_unit_id": "ku_by_norges_banks_nye_hovedse_b2df09a684",
+          "knowledge_unit_ids": [
+            "ku_by_norges_banks_nye_hovedse_b2df09a684"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "bankplassen_quiz_13",
+          "quiz_id": "by_bankplassen_set_2_q6",
+          "categoryId": "by",
+          "placeId": "bankplassen",
+          "targetId": "bankplassen",
+          "question_scope": "place",
+          "question": "Når ble Norges Banks hovedsete flyttet fra Trondheim til Kristiania?",
           "options": [
             "1897",
             "1816",
@@ -1301,303 +554,562 @@
           ],
           "answer": "1897",
           "answerIndex": 0,
-          "dimension": "bankhistorie",
-          "topic": "hovedkontor",
-          "knowledge": "Lokalhistoriewiki oppgir at Norges Banks hovedkontor ble flyttet fra Trondheim til Kristiania i 1897.",
-          "trivia": [],
-          "difficulty": 2,
+          "knowledge": "Norges Banks hovedsete ble flyttet fra Trondheim til Kristiania i 1897.",
+          "difficulty": 1,
           "question_type": "fact",
-          "question_layer": "place_facts_architecture",
-          "year": 1897,
-          "epoke_id": null,
-          "epoke_domain": "by",
           "emne_id": "em_by_historiske_lag_i_hverdagsrom",
-          "related_emner": [],
-          "core_concepts": [
-            "1897",
-            "Trondheim",
-            "Kristiania"
-          ],
-          "concept_focus": [
-            "1897",
-            "Trondheim"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "1897",
-            "trondheim",
-            "kristiania"
-          ],
-          "required_tags": [],
           "source": [
-            "https://lokalhistoriewiki.no/wiki/Bankplassen_%28Oslo%29"
+            "bank_nb_history"
           ],
           "source_origin": "external",
-          "claim_basis": "external_verified_claim",
-          "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
-            "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
+          "claim_basis": "Norges Banks hovedsete ble flyttet fra Trondheim til Kristiania i 1897.",
+          "claim_id": "claim_bankplassen_quiz_13",
+          "primary_knowledge_unit_id": "ku_by_norges_banks_hovedsete_b_e5900bd197",
+          "knowledge_unit_ids": [
+            "ku_by_norges_banks_hovedsete_b_e5900bd197"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         },
         {
-          "id": "bankplassen_quiz_21",
-          "quiz_id": "by_bankplassen_set_4_q3",
+          "id": "bankplassen_quiz_14",
+          "quiz_id": "by_bankplassen_set_2_q7",
           "categoryId": "by",
           "placeId": "bankplassen",
-          "personId": "",
-          "natureId": "",
           "targetId": "bankplassen",
           "question_scope": "place",
-          "question": "Hvilken kjent bankraner ranet Norges Bank på Bankplassen nyttårsaften 1835?",
-          "options": [
-            "Ole Høiland",
-            "Gjest Baardsen",
-            "Johannes Brun"
-          ],
-          "answer": "Ole Høiland",
-          "answerIndex": 0,
-          "dimension": "hendelse",
-          "topic": "bankran 1835",
-          "knowledge": "Lokalhistoriewiki oppgir at Ole Høiland ranet Norges Bank på Bankplassen nyttårsaften 1835.",
-          "trivia": [],
-          "difficulty": 2,
-          "question_type": "fact",
-          "question_layer": "place_facts_architecture",
-          "year": 1835,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
-          "related_emner": [],
-          "core_concepts": [
-            "Ole Høiland",
-            "nyttårsaften 1835",
-            "Norges Bank"
-          ],
-          "concept_focus": [
-            "Ole Høiland",
-            "nyttårsaften 1835"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "ole_høiland",
-            "bankran",
-            "1835"
-          ],
-          "required_tags": [],
-          "source": [
-            "https://lokalhistoriewiki.no/wiki/Bankplassen_%28Oslo%29"
-          ],
-          "source_origin": "external",
-          "claim_basis": "external_verified_claim",
-          "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
-            "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
-        },
-        {
-          "id": "bankplassen_quiz_22",
-          "quiz_id": "by_bankplassen_set_4_q4",
-          "categoryId": "by",
-          "placeId": "bankplassen",
-          "personId": "",
-          "natureId": "",
-          "targetId": "bankplassen",
-          "question_scope": "place",
-          "question": "Hvilken institusjon brukte Bankplassen 3 fra 1914 til 1979?",
+          "question": "Hvilken institusjon brukte den gamle bankbygningen etter banken?",
           "options": [
             "Riksarkivet",
-            "Oslo rådhus",
-            "Nationaltheatret"
+            "Nationaltheatret",
+            "Oslo Børs"
           ],
           "answer": "Riksarkivet",
           "answerIndex": 0,
-          "dimension": "institusjonshistorie",
-          "topic": "Riksarkivet",
-          "knowledge": "Lokalhistoriewiki oppgir at Riksarkivet brukte Bankplassen 3 fra 1914 til 1979.",
-          "trivia": [],
-          "difficulty": 2,
-          "question_type": "fact",
-          "question_layer": "place_facts_architecture",
-          "year": 1914,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_institusjoner_kulturformidling",
-          "related_emner": [],
-          "core_concepts": [
-            "Riksarkivet",
-            "1914–1979",
-            "Bankplassen 3"
-          ],
-          "concept_focus": [
-            "Riksarkivet",
-            "1914–1979"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "riksarkivet",
-            "1914",
-            "1979"
-          ],
-          "required_tags": [],
-          "source": [
-            "https://lokalhistoriewiki.no/wiki/Bankplassen_%28Oslo%29"
-          ],
-          "source_origin": "external",
-          "claim_basis": "external_verified_claim",
-          "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
-            "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
-        },
-        {
-          "id": "bankplassen_quiz_23",
-          "quiz_id": "by_bankplassen_set_4_q5",
-          "categoryId": "by",
-          "placeId": "bankplassen",
-          "personId": "",
-          "natureId": "",
-          "targetId": "bankplassen",
-          "question_scope": "place",
-          "question": "Hva huser Bankplassen 3 i dag ifølge Lokalhistoriewiki?",
-          "options": [
-            "Norsk Arkitekturmuseum",
-            "Romsås senter",
-            "Vålerenga kirke"
-          ],
-          "answer": "Norsk Arkitekturmuseum",
-          "answerIndex": 0,
-          "dimension": "kulturinstitusjon",
-          "topic": "Arkitekturmuseet",
-          "knowledge": "Lokalhistoriewiki beskriver Bankplassen 3 som bygningen som i dag huser Norsk Arkitekturmuseum.",
-          "trivia": [],
+          "knowledge": "Riksarkivet brukte den gamle bankbygningen etter Norges Bank.",
           "difficulty": 1,
           "question_type": "fact",
-          "question_layer": "place_facts_architecture",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_institusjoner_kulturformidling",
-          "related_emner": [],
-          "core_concepts": [
-            "Norsk Arkitekturmuseum",
-            "Bankplassen 3",
-            "museum"
-          ],
-          "concept_focus": [
-            "Norsk Arkitekturmuseum",
-            "Bankplassen 3"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "arkitekturmuseet",
-            "bankplassen_3",
-            "museum"
-          ],
-          "required_tags": [],
+          "emne_id": "em_by_transformasjon_ombruk",
           "source": [
-            "https://lokalhistoriewiki.no/wiki/Bankplassen_%28Oslo%29"
+            "bank_nasjonalmuseet"
           ],
           "source_origin": "external",
-          "claim_basis": "external_verified_claim",
-          "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
-            "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
-        },
+          "claim_basis": "Riksarkivet brukte den gamle bankbygningen etter Norges Bank.",
+          "claim_id": "claim_bankplassen_quiz_14",
+          "primary_knowledge_unit_id": "ku_by_riksarkivet_brukte_den_g_083ca54cd3",
+          "knowledge_unit_ids": [
+            "ku_by_riksarkivet_brukte_den_g_083ca54cd3"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "by_bankplassen_set_3",
+      "level": 3,
+      "order": 3,
+      "phase": "middle",
+      "xp": 70,
+      "questions": [
         {
-          "id": "bankplassen_quiz_24",
-          "quiz_id": "by_bankplassen_set_4_q6",
+          "id": "bankplassen_quiz_15",
+          "quiz_id": "by_bankplassen_set_3_q1",
           "categoryId": "by",
           "placeId": "bankplassen",
-          "personId": "",
-          "natureId": "",
           "targetId": "bankplassen",
           "question_scope": "place",
-          "question": "Hvem tegnet tilbygget til Arkitekturmuseet som Lokalhistoriewiki omtaler?",
+          "question": "Hvem tegnet paviljongen ved Nasjonalmuseet – Arkitektur?",
           "options": [
             "Sverre Fehn",
-            "Arnstein Arneberg",
-            "Ove Bang"
+            "Christian Heinrich Grosch",
+            "Kjell Lund"
           ],
           "answer": "Sverre Fehn",
           "answerIndex": 0,
-          "dimension": "arkitektur",
-          "topic": "Sverre Fehn",
-          "knowledge": "Lokalhistoriewiki omtaler Arkitekturmuseets tilbygg av Sverre Fehn.",
-          "trivia": [],
+          "knowledge": "Sverre Fehn tegnet paviljongen ved Nasjonalmuseet – Arkitektur.",
           "difficulty": 2,
           "question_type": "fact",
-          "question_layer": "place_facts_architecture",
-          "year": 2008,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_bygningstyper_og_typologier",
-          "related_emner": [],
-          "core_concepts": [
-            "Sverre Fehn",
-            "tilbygg",
-            "Arkitekturmuseet"
-          ],
-          "concept_focus": [
-            "Sverre Fehn",
-            "tilbygg"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "sverre_fehn",
-            "arkitekturmuseet",
-            "tilbygg"
-          ],
-          "required_tags": [],
+          "emne_id": "em_by_transformasjon_ombruk",
           "source": [
-            "https://lokalhistoriewiki.no/wiki/Bankplassen_%28Oslo%29"
+            "bank_nasjonalmuseet"
           ],
           "source_origin": "external",
-          "claim_basis": "external_verified_claim",
-          "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
-            "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
+          "claim_basis": "Sverre Fehn tegnet paviljongen ved Nasjonalmuseet – Arkitektur.",
+          "claim_id": "claim_bankplassen_quiz_15",
+          "primary_knowledge_unit_id": "ku_by_sverre_fehn_tegnet_pavil_ea0afea042",
+          "knowledge_unit_ids": [
+            "ku_by_sverre_fehn_tegnet_pavil_ea0afea042"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "bankplassen_quiz_16",
+          "quiz_id": "by_bankplassen_set_3_q2",
+          "categoryId": "by",
+          "placeId": "bankplassen",
+          "targetId": "bankplassen",
+          "question_scope": "place",
+          "question": "Når åpnet anlegget som Nasjonalmuseet – Arkitektur?",
+          "options": [
+            "2008",
+            "1986",
+            "2017"
+          ],
+          "answer": "2008",
+          "answerIndex": 0,
+          "knowledge": "Anlegget åpnet som Nasjonalmuseet – Arkitektur i 2008.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "source": [
+            "bank_nasjonalmuseet"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Anlegget åpnet som Nasjonalmuseet – Arkitektur i 2008.",
+          "claim_id": "claim_bankplassen_quiz_16",
+          "primary_knowledge_unit_id": "ku_by_anlegget_apnet_som_nasjo_591b3e794a",
+          "knowledge_unit_ids": [
+            "ku_by_anlegget_apnet_som_nasjo_591b3e794a"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "bankplassen_quiz_17",
+          "quiz_id": "by_bankplassen_set_3_q3",
+          "categoryId": "by",
+          "placeId": "bankplassen",
+          "targetId": "bankplassen",
+          "question_scope": "place",
+          "question": "Når ble Norges Banks nåværende hovedkontor innviet?",
+          "options": [
+            "1986",
+            "1906",
+            "2008"
+          ],
+          "answer": "1986",
+          "answerIndex": 0,
+          "knowledge": "Norges Banks nåværende hovedkontor ved Bankplassen ble innviet i 1986.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "bank_nb_building"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Norges Banks nåværende hovedkontor ved Bankplassen ble innviet i 1986.",
+          "claim_id": "claim_bankplassen_quiz_17",
+          "primary_knowledge_unit_id": "ku_by_norges_banks_nav_rende_h_7078afac27",
+          "knowledge_unit_ids": [
+            "ku_by_norges_banks_nav_rende_h_7078afac27"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "bankplassen_quiz_18",
+          "quiz_id": "by_bankplassen_set_3_q4",
+          "categoryId": "by",
+          "placeId": "bankplassen",
+          "targetId": "bankplassen",
+          "question_scope": "place",
+          "question": "Hvilket monument ble flyttet til Bankplassen i 1986?",
+          "options": [
+            "Statuen av Johannes Brun",
+            "Statuen av Christian IV",
+            "Statuen av Camilla Collett"
+          ],
+          "answer": "Statuen av Johannes Brun",
+          "answerIndex": 0,
+          "knowledge": "Brynjulf Bergsliens statue av Johannes Brun ble flyttet til Bankplassen i 1986.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "bank_art_brun"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Brynjulf Bergsliens statue av Johannes Brun ble flyttet til Bankplassen i 1986.",
+          "claim_id": "claim_bankplassen_quiz_18",
+          "primary_knowledge_unit_id": "ku_by_brynjulf_bergsliens_stat_705a4ceee6",
+          "knowledge_unit_ids": [
+            "ku_by_brynjulf_bergsliens_stat_705a4ceee6"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "bankplassen_quiz_19",
+          "quiz_id": "by_bankplassen_set_3_q5",
+          "categoryId": "by",
+          "placeId": "bankplassen",
+          "targetId": "bankplassen",
+          "question_scope": "place",
+          "question": "Hvem laget «Sittende pike med hodetelefon»?",
+          "options": [
+            "Marit Krogh",
+            "Wenche Gulbransen",
+            "Kirsten Kokkin"
+          ],
+          "answer": "Marit Krogh",
+          "answerIndex": 0,
+          "knowledge": "Marit Krogh laget «Sittende pike med hodetelefon», som kom til Bankplassen i 2014.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "bank_art_pike"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Marit Krogh laget «Sittende pike med hodetelefon», som kom til Bankplassen i 2014.",
+          "claim_id": "claim_bankplassen_quiz_19",
+          "primary_knowledge_unit_id": "ku_by_marit_krogh_laget_sitten_ad4033e857",
+          "knowledge_unit_ids": [
+            "ku_by_marit_krogh_laget_sitten_ad4033e857"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "bankplassen_quiz_20",
+          "quiz_id": "by_bankplassen_set_3_q6",
+          "categoryId": "by",
+          "placeId": "bankplassen",
+          "targetId": "bankplassen",
+          "question_scope": "place",
+          "question": "Hvor finner du István Lisztes' tre bronsefigurer?",
+          "options": [
+            "Langs Revierstredet ved Bankplassen",
+            "Midt på Christiania Torv",
+            "Ved fontenen på Stortorvet"
+          ],
+          "answer": "Langs Revierstredet ved Bankplassen",
+          "answerIndex": 0,
+          "knowledge": "István Lisztes' tre bronsefigurer står langs Revierstredet ved Bankplassen.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "bank_art_mann"
+          ],
+          "source_origin": "external",
+          "claim_basis": "István Lisztes' tre bronsefigurer står langs Revierstredet ved Bankplassen.",
+          "claim_id": "claim_bankplassen_quiz_20",
+          "primary_knowledge_unit_id": "ku_by_istvan_lisztes_tre_brons_24a1b3bd2f",
+          "knowledge_unit_ids": [
+            "ku_by_istvan_lisztes_tre_brons_24a1b3bd2f"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "bankplassen_quiz_21",
+          "quiz_id": "by_bankplassen_set_3_q7",
+          "categoryId": "by",
+          "placeId": "bankplassen",
+          "targetId": "bankplassen",
+          "question_scope": "place",
+          "question": "Hvorfor må den gamle bankbygningen og Bankplassen behandles som separate steder?",
+          "options": [
+            "Bygningen er et avgrenset bygg, mens Bankplassen er det offentlige rommet utenfor",
+            "Bygningen og plassen ligger i hver sin by",
+            "Plassen ble opprettet etter at bygningen ble revet"
+          ],
+          "answer": "Bygningen er et avgrenset bygg, mens Bankplassen er det offentlige rommet utenfor",
+          "answerIndex": 0,
+          "knowledge": "Den gamle bankbygningen er et avgrenset canonical byggested, mens Bankplassen er det navngitte offentlige plassrommet rundt.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_by_torg_plasser_som_scene",
+          "source": [
+            "bank_byleksikon",
+            "bank_osm"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Den gamle bankbygningen er et avgrenset canonical byggested, mens Bankplassen er det navngitte offentlige plassrommet rundt.",
+          "claim_id": "claim_bankplassen_quiz_21",
+          "primary_knowledge_unit_id": "ku_by_den_gamle_bankbygningen__1726bf73d9",
+          "knowledge_unit_ids": [
+            "ku_by_den_gamle_bankbygningen__1726bf73d9"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "by_bankplassen_set_4",
+      "level": 4,
+      "order": 4,
+      "phase": "bridge",
+      "xp": 80,
+      "questions": [
+        {
+          "id": "bankplassen_quiz_22",
+          "quiz_id": "by_bankplassen_set_4_q1",
+          "categoryId": "by",
+          "placeId": "bankplassen",
+          "targetId": "bankplassen",
+          "question_scope": "place",
+          "question": "Hvorfor kunne Bankplassen utvikles på 1820-tallet?",
+          "options": [
+            "Fjerningen av de nedre festningsverkene frigjorde arealet",
+            "Teateret ble flyttet til Nationaltheatret",
+            "Hovedsetet ble flyttet fra Trondheim"
+          ],
+          "answer": "Fjerningen av de nedre festningsverkene frigjorde arealet",
+          "answerIndex": 0,
+          "knowledge": "Fjerningen av de nedre festningsverkene frigjorde arealet som Bankplassen ble utviklet på.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "bank_byleksikon",
+            "bank_oppdag"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Fjerningen av de nedre festningsverkene frigjorde arealet som Bankplassen ble utviklet på.",
+          "claim_id": "claim_bankplassen_quiz_22",
+          "primary_knowledge_unit_id": "ku_by_fjerningen_av_de_nedre_f_b7149dd237",
+          "knowledge_unit_ids": [
+            "ku_by_fjerningen_av_de_nedre_f_b7149dd237"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "bankplassen_quiz_23",
+          "quiz_id": "by_bankplassen_set_4_q2",
+          "categoryId": "by",
+          "placeId": "bankplassen",
+          "targetId": "bankplassen",
+          "question_scope": "place",
+          "question": "Hva førte rivingen av Christiania Theater til på tomten?",
+          "options": [
+            "Norges Banks hovedsete fra 1906 ble reist der",
+            "Plassen ble gjort om til havn",
+            "Groschs bygning ble flyttet dit"
+          ],
+          "answer": "Norges Banks hovedsete fra 1906 ble reist der",
+          "answerIndex": 0,
+          "knowledge": "Rivingen av Christiania Theater åpnet tomten for Norges Banks hovedsete fra 1906.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "source": [
+            "bank_theater",
+            "bank_nb_history"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Rivingen av Christiania Theater åpnet tomten for Norges Banks hovedsete fra 1906.",
+          "claim_id": "claim_bankplassen_quiz_23",
+          "primary_knowledge_unit_id": "ku_by_rivingen_av_christiania__cb424a3cc0",
+          "knowledge_unit_ids": [
+            "ku_by_rivingen_av_christiania__cb424a3cc0"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "bankplassen_quiz_24",
+          "quiz_id": "by_bankplassen_set_4_q3",
+          "categoryId": "by",
+          "placeId": "bankplassen",
+          "targetId": "bankplassen",
+          "question_scope": "place",
+          "question": "Hva skiller banklagene fra hverandre rundt plassen?",
+          "options": [
+            "De tilhører ulike perioder og har ulike arkitektoniske uttrykk",
+            "Alle tre ble reist samtidig og ser like ut",
+            "Bare den eldste bygningen har vendt seg mot plassen"
+          ],
+          "answer": "De tilhører ulike perioder og har ulike arkitektoniske uttrykk",
+          "answerIndex": 0,
+          "knowledge": "Bankbygningene fra 1828, 1906 og 1986 gjør tre ulike institusjons- og arkitekturlag synlige rundt samme plassrom.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "bank_byleksikon",
+            "bank_nb_history",
+            "bank_nb_building"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Bankbygningene fra 1828, 1906 og 1986 gjør tre ulike institusjons- og arkitekturlag synlige rundt samme plassrom.",
+          "claim_id": "claim_bankplassen_quiz_24",
+          "primary_knowledge_unit_id": "ku_by_bankbygningene_fra_1828__c7d0fd03dd",
+          "knowledge_unit_ids": [
+            "ku_by_bankbygningene_fra_1828__c7d0fd03dd"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "bankplassen_quiz_25",
+          "quiz_id": "by_bankplassen_set_4_q4",
+          "categoryId": "by",
+          "placeId": "bankplassen",
+          "targetId": "bankplassen",
+          "question_scope": "place",
+          "question": "Hvordan bør litografien fra 1838 sammenlignes med fotografiet fra 2023?",
+          "options": [
+            "Som to ulike kildetyper som viser forskjellige tidslag, ikke som en presis måleserie",
+            "Som identiske fotografiske opptak fra samme kamera",
+            "Som bevis for at alle fasader er uendret"
+          ],
+          "answer": "Som to ulike kildetyper som viser forskjellige tidslag, ikke som en presis måleserie",
+          "answerIndex": 0,
+          "knowledge": "Litografien fra 1838 og fotografiet fra 2023 viser ulike tidslag og kildetyper, men er ikke en presis måleserie fra identisk standpunkt.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "bank_commons_1838",
+            "bank_commons_2023"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Litografien fra 1838 og fotografiet fra 2023 viser ulike tidslag og kildetyper, men er ikke en presis måleserie fra identisk standpunkt.",
+          "claim_id": "claim_bankplassen_quiz_25",
+          "primary_knowledge_unit_id": "ku_by_litografien_fra_1838_og__12a4c5afeb",
+          "knowledge_unit_ids": [
+            "ku_by_litografien_fra_1838_og__12a4c5afeb"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "bankplassen_quiz_26",
+          "quiz_id": "by_bankplassen_set_4_q5",
+          "categoryId": "by",
+          "placeId": "bankplassen",
+          "targetId": "bankplassen",
+          "question_scope": "place",
+          "question": "Hvordan virker nyere kunst sammen med sikring ved Bankplassen?",
+          "options": [
+            "Skulpturer er integrert ved granittblokker, benker og passasje",
+            "Kunsten står inne i et lukket museum",
+            "Sikringen er fjernet for å gi plass til kunst"
+          ],
+          "answer": "Skulpturer er integrert ved granittblokker, benker og passasje",
+          "answerIndex": 0,
+          "knowledge": "Nyere skulpturer er integrert med granittblokker, benker og passasje i kunst- og sikringslandskapet ved Bankplassen.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "bank_art_pike",
+            "bank_art_mann",
+            "bank_art_lyttende"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Nyere skulpturer er integrert med granittblokker, benker og passasje i kunst- og sikringslandskapet ved Bankplassen.",
+          "claim_id": "claim_bankplassen_quiz_26",
+          "primary_knowledge_unit_id": "ku_by_nyere_skulpturer_er_inte_7568192bac",
+          "knowledge_unit_ids": [
+            "ku_by_nyere_skulpturer_er_inte_7568192bac"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "bankplassen_quiz_27",
+          "quiz_id": "by_bankplassen_set_4_q6",
+          "categoryId": "by",
+          "placeId": "bankplassen",
+          "targetId": "bankplassen",
+          "question_scope": "place",
+          "question": "Hvorfor er Johannes Brun-statuen et stedsspesifikt spor?",
+          "options": [
+            "Den står nær tomten der Christiania Theater lå og der Brun arbeidet",
+            "Den markerer hvor Norges Bank ble grunnlagt i Trondheim",
+            "Den viser hvem som tegnet hovedkontoret fra 1986"
+          ],
+          "answer": "Den står nær tomten der Christiania Theater lå og der Brun arbeidet",
+          "answerIndex": 0,
+          "knowledge": "Johannes Brun-statuens plassering nær den tidligere teaterplassen gjør det tapte teaterlaget synlig i dagens plassrom.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "bank_art_brun",
+            "bank_theater"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Johannes Brun-statuens plassering nær den tidligere teaterplassen gjør det tapte teaterlaget synlig i dagens plassrom.",
+          "claim_id": "claim_bankplassen_quiz_27",
+          "primary_knowledge_unit_id": "ku_by_johannes_brun_statuens_p_0b9631bbb0",
+          "knowledge_unit_ids": [
+            "ku_by_johannes_brun_statuens_p_0b9631bbb0"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "bankplassen_quiz_28",
+          "quiz_id": "by_bankplassen_set_4_q7",
+          "categoryId": "by",
+          "placeId": "bankplassen",
+          "targetId": "bankplassen",
+          "question_scope": "place",
+          "question": "Hvordan fungerer Bankplassen som offentlig rom mellom institusjonene?",
+          "options": [
+            "Plassflaten binder fasader, ferdsel, opphold og kunst sammen uten å gjøre byggene til samme sted",
+            "Plassen er bare en privat forgård uten ferdsel",
+            "Plassen har ingen forbindelse til bygningene rundt"
+          ],
+          "answer": "Plassflaten binder fasader, ferdsel, opphold og kunst sammen uten å gjøre byggene til samme sted",
+          "answerIndex": 0,
+          "knowledge": "Bankplassen binder separate institusjonsfasader, ferdsel, opphold og offentlig kunst sammen i ett offentlig plassrom.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "bank_oppdag",
+            "bank_osm"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Bankplassen binder separate institusjonsfasader, ferdsel, opphold og offentlig kunst sammen i ett offentlig plassrom.",
+          "claim_id": "claim_bankplassen_quiz_28",
+          "primary_knowledge_unit_id": "ku_by_bankplassen_binder_separ_20ef6d7e77",
+          "knowledge_unit_ids": [
+            "ku_by_bankplassen_binder_separ_20ef6d7e77"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         }
       ]
     },
@@ -1605,390 +1117,291 @@
       "set_id": "by_bankplassen_set_5",
       "level": 5,
       "order": 5,
+      "phase": "final",
       "xp": 90,
-      "mode": "place_concrete_advanced",
       "questions": [
         {
-          "id": "bankplassen_quiz_25",
+          "id": "bankplassen_quiz_29",
           "quiz_id": "by_bankplassen_set_5_q1",
           "categoryId": "by",
           "placeId": "bankplassen",
-          "personId": "",
-          "natureId": "",
           "targetId": "bankplassen",
           "question_scope": "place",
-          "question": "Hva lå på Bankplassen 4 før Norges Banks andre bygning ble reist?",
+          "question": "Hva betyr det at Bankplassen har historiske lag?",
           "options": [
-            "Christiania Theater",
-            "Rodeløkkens Kolonihager",
-            "Holmenkollbanens administrasjon"
+            "At spor fra festning, bank, teater, museum og offentlig kunst kan leses i samme plassrom",
+            "At alle bygningene er oppført i samme stil",
+            "At plassen aldri har skiftet funksjon"
           ],
-          "answer": "Christiania Theater",
+          "answer": "At spor fra festning, bank, teater, museum og offentlig kunst kan leses i samme plassrom",
           "answerIndex": 0,
-          "dimension": "kulturhistorie",
-          "topic": "Bankplassen 4",
-          "knowledge": "Lokalhistoriewiki oppgir at Christiania Theater hadde tilhold på Bankplassen 4 før teateret ble revet i 1899.",
-          "trivia": [],
-          "difficulty": 2,
-          "question_type": "fact",
-          "question_layer": "place_concrete_advanced",
-          "year": 1837,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_institusjoner_kulturformidling",
-          "related_emner": [],
-          "core_concepts": [
-            "Christiania Theater",
-            "Bankplassen 4",
-            "revet 1899"
-          ],
-          "concept_focus": [
-            "Christiania Theater",
-            "Bankplassen 4"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "christiania_theater",
-            "bankplassen_4",
-            "1899"
-          ],
-          "required_tags": [],
-          "source": [
-            "https://lokalhistoriewiki.no/wiki/Bankplassen_%28Oslo%29",
-            "https://snl.no/Bankplassen_-_Oslo"
-          ],
-          "source_origin": "external",
-          "claim_basis": "external_verified_claim",
-          "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
-            "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
-        },
-        {
-          "id": "bankplassen_quiz_26",
-          "quiz_id": "by_bankplassen_set_5_q2",
-          "categoryId": "by",
-          "placeId": "bankplassen",
-          "personId": "",
-          "natureId": "",
-          "targetId": "bankplassen",
-          "question_scope": "place",
-          "question": "Hva var Bankplassen 4 fra 1906 til 1986?",
-          "options": [
-            "Norges Banks hovedkontor",
-            "Oslo domkirke",
-            "En kolonihage"
-          ],
-          "answer": "Norges Banks hovedkontor",
-          "answerIndex": 0,
-          "dimension": "bankhistorie",
-          "topic": "Norges Banks andre bygning",
-          "knowledge": "Lokalhistoriewiki oppgir at Bankplassen 4 var hovedkontor for Norges Bank fra 1906 til 1986.",
-          "trivia": [],
-          "difficulty": 2,
-          "question_type": "fact",
-          "question_layer": "place_concrete_advanced",
-          "year": 1906,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_institusjoner_kulturformidling",
-          "related_emner": [],
-          "core_concepts": [
-            "Bankplassen 4",
-            "Norges Bank",
-            "1906–1986"
-          ],
-          "concept_focus": [
-            "Bankplassen 4",
-            "Norges Bank"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "norges_bank",
-            "1906",
-            "1986"
-          ],
-          "required_tags": [],
-          "source": [
-            "https://lokalhistoriewiki.no/wiki/Bankplassen_%28Oslo%29"
-          ],
-          "source_origin": "external",
-          "claim_basis": "external_verified_claim",
-          "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
-            "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
-        },
-        {
-          "id": "bankplassen_quiz_27",
-          "quiz_id": "by_bankplassen_set_5_q3",
-          "categoryId": "by",
-          "placeId": "bankplassen",
-          "personId": "",
-          "natureId": "",
-          "targetId": "bankplassen",
-          "question_scope": "place",
-          "question": "Hvilken adresse har Norges Banks nåværende hovedkontor ifølge Lokalhistoriewiki?",
-          "options": [
-            "Bankplassen 2",
-            "Bankplassen 1B",
-            "Bankplassen 3"
-          ],
-          "answer": "Bankplassen 2",
-          "answerIndex": 0,
-          "dimension": "bankhistorie",
-          "topic": "nåværende hovedkontor",
-          "knowledge": "Lokalhistoriewiki oppgir at dagens hovedkontor for Norges Bank fra 1986 har adresse Bankplassen 2.",
-          "trivia": [],
-          "difficulty": 1,
-          "question_type": "fact",
-          "question_layer": "place_concrete_advanced",
-          "year": 1986,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_institusjoner_kulturformidling",
-          "related_emner": [],
-          "core_concepts": [
-            "Bankplassen 2",
-            "Norges Bank",
-            "1986"
-          ],
-          "concept_focus": [
-            "Bankplassen 2",
-            "Norges Bank"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "bankplassen_2",
-            "norges_bank",
-            "1986"
-          ],
-          "required_tags": [],
-          "source": [
-            "https://lokalhistoriewiki.no/wiki/Bankplassen_%28Oslo%29"
-          ],
-          "source_origin": "external",
-          "claim_basis": "external_verified_claim",
-          "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
-            "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
-        },
-        {
-          "id": "bankplassen_quiz_28",
-          "quiz_id": "by_bankplassen_set_5_q4",
-          "categoryId": "by",
-          "placeId": "bankplassen",
-          "personId": "",
-          "natureId": "",
-          "targetId": "bankplassen",
-          "question_scope": "place",
-          "question": "Hvilken kontrast skiller Bankplassen fra Spikersuppa i repoets sammenligningslogikk?",
-          "options": [
-            "Roligere historisk kulturrom mot mer sesongstyrt hovedakse-scene",
-            "To like drabantbyer",
-            "To like villaområder"
-          ],
-          "answer": "Roligere historisk kulturrom mot mer sesongstyrt hovedakse-scene",
-          "answerIndex": 0,
-          "dimension": "kontrast",
-          "topic": "Bankplassen og Spikersuppa",
-          "knowledge": "Repoets stedsprofiler skiller Bankplassens roligere historiske kulturrom fra Spikersuppas sesongstyrte sentrumsscene.",
-          "trivia": [],
-          "difficulty": 2,
-          "question_type": "fact",
-          "question_layer": "place_concrete_advanced",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_torg_plasser_som_scene",
-          "related_emner": [],
-          "core_concepts": [
-            "Bankplassen",
-            "Spikersuppa",
-            "kontrast"
-          ],
-          "concept_focus": [
-            "Bankplassen",
-            "Spikersuppa"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "spikersuppa",
-            "kontrast",
-            "historie"
-          ],
-          "required_tags": [],
-          "source": [
-            "data/places/by/oslo/places_by.json"
-          ],
-          "source_origin": "mixed",
-          "claim_basis": "mixed_external_and_place_profile_claim",
-          "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
-            "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
-        },
-        {
-          "id": "bankplassen_quiz_29",
-          "quiz_id": "by_bankplassen_set_5_q5",
-          "categoryId": "by",
-          "placeId": "bankplassen",
-          "personId": "",
-          "natureId": "",
-          "targetId": "bankplassen",
-          "question_scope": "place",
-          "question": "Hvilken kontrast skiller Bankplassen fra Christiania Torv i repoets sammenligningslogikk?",
-          "options": [
-            "Kultur- og finanshistorisk plass mot grunnleggingsplass i regulert kvadraturby",
-            "To like skøytebaner",
-            "To like boligfelt"
-          ],
-          "answer": "Kultur- og finanshistorisk plass mot grunnleggingsplass i regulert kvadraturby",
-          "answerIndex": 0,
-          "dimension": "kontrast",
-          "topic": "Bankplassen og Christiania Torv",
-          "knowledge": "Repoets profiler setter Bankplassen som stille kvadraturplass med kulturtyngde opp mot Christiania Torv som grunnleggingsplass i regulert kvadraturby.",
-          "trivia": [],
-          "difficulty": 2,
-          "question_type": "fact",
-          "question_layer": "place_concrete_advanced",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
+          "knowledge": "Historiske lag på Bankplassen betyr at spor fra skiftende institusjoner, former og bruk kan leses i samme plassrom.",
+          "difficulty": 3,
+          "question_type": "concept",
           "emne_id": "em_by_historiske_lag_i_hverdagsrom",
-          "related_emner": [],
-          "core_concepts": [
-            "Bankplassen",
-            "Christiania Torv",
-            "Kvadraturen"
-          ],
-          "concept_focus": [
-            "Bankplassen",
-            "Christiania Torv"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "christiania_torv",
-            "kvadraturen",
-            "kontrast"
-          ],
-          "required_tags": [],
           "source": [
-            "data/places/by/oslo/places_by.json"
+            "bank_byleksikon",
+            "bank_oppdag"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "mixed_external_and_place_profile_claim",
-          "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
-            "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
+          "source_origin": "external",
+          "claim_basis": "Historiske lag på Bankplassen betyr at spor fra skiftende institusjoner, former og bruk kan leses i samme plassrom.",
+          "claim_id": "claim_bankplassen_quiz_29",
+          "primary_knowledge_unit_id": "ku_by_historiske_lag_pa_bankpl_0289f69e09",
+          "knowledge_unit_ids": [
+            "ku_by_historiske_lag_pa_bankpl_0289f69e09"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         },
         {
           "id": "bankplassen_quiz_30",
+          "quiz_id": "by_bankplassen_set_5_q2",
+          "categoryId": "by",
+          "placeId": "bankplassen",
+          "targetId": "bankplassen",
+          "question_scope": "place",
+          "question": "Hva kjennetegner et flerfunksjonelt offentlig rom på Bankplassen?",
+          "options": [
+            "Institusjoner, ferdsel, opphold og kunst møtes rundt samme plassflate",
+            "Én privat virksomhet bestemmer all bruk",
+            "Alle spor fra tidligere perioder er fjernet"
+          ],
+          "answer": "Institusjoner, ferdsel, opphold og kunst møtes rundt samme plassflate",
+          "answerIndex": 0,
+          "knowledge": "Bankplassen er flerfunksjonell fordi institusjoner, ferdsel, opphold og offentlig kunst møtes rundt samme plassflate.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "bank_oppdag",
+            "bank_art_pike"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Bankplassen er flerfunksjonell fordi institusjoner, ferdsel, opphold og offentlig kunst møtes rundt samme plassflate.",
+          "claim_id": "claim_bankplassen_quiz_30",
+          "primary_knowledge_unit_id": "ku_by_bankplassen_er_flerfunks_15cae0ff81",
+          "knowledge_unit_ids": [
+            "ku_by_bankplassen_er_flerfunks_15cae0ff81"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "bankplassen_quiz_31",
+          "quiz_id": "by_bankplassen_set_5_q3",
+          "categoryId": "by",
+          "placeId": "bankplassen",
+          "targetId": "bankplassen",
+          "question_scope": "place",
+          "question": "William H. Whyte undersøkte faktisk bruk av små byrom. Hva kan du observere på Bankplassen?",
+          "options": [
+            "Hvor mennesker stopper, sitter og beveger seg i forhold til kanter, trær og kunst",
+            "Hvilken arkitekt som signerte alle fasadene",
+            "Hvor mange ansatte Norges Bank hadde i 1906"
+          ],
+          "answer": "Hvor mennesker stopper, sitter og beveger seg i forhold til kanter, trær og kunst",
+          "answerIndex": 0,
+          "knowledge": "Faktisk opphold og bevegelse kan observeres i forhold til Bankplassens kanter, trær, sittemuligheter og kunstverk.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "bank_oppdag",
+            "bank_osm"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Faktisk opphold og bevegelse kan observeres i forhold til Bankplassens kanter, trær, sittemuligheter og kunstverk.",
+          "claim_id": "claim_bankplassen_quiz_31",
+          "topic_hook_id": "byliv_aapne_rom",
+          "thinker_id": "william_h_whyte",
+          "thinker_name": "William H. Whyte",
+          "work": "The Social Life of Small Urban Spaces",
+          "theory_focus": "observer faktisk bruk av små offentlige byrom",
+          "theory_ref": {
+            "topic_hook_id": "byliv_aapne_rom",
+            "thinker_id": "william_h_whyte",
+            "work": "The Social Life of Small Urban Spaces",
+            "why_it_helps": "Whytes observasjonsbaserte byromslesning skiller planlagt form fra faktisk opphold og bevegelse på Bankplassen."
+          },
+          "primary_knowledge_unit_id": "ku_by_faktisk_opphold_og_beveg_06aa5997df",
+          "knowledge_unit_ids": [
+            "ku_by_faktisk_opphold_og_beveg_06aa5997df"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "bankplassen_quiz_32",
+          "quiz_id": "by_bankplassen_set_5_q4",
+          "categoryId": "by",
+          "placeId": "bankplassen",
+          "targetId": "bankplassen",
+          "question_scope": "place",
+          "question": "Hva er den sterkeste feltobservasjonen av hvor Bankplassen skaper opphold?",
+          "options": [
+            "Tell stopp og sitteopphold på flere tidspunkt og noter hvor de skjer",
+            "Anta at alle benker alltid brukes likt",
+            "Les bare årstallene på fasadene"
+          ],
+          "answer": "Tell stopp og sitteopphold på flere tidspunkt og noter hvor de skjer",
+          "answerIndex": 0,
+          "knowledge": "Systematisk observasjon på flere tidspunkt kan teste hvor mennesker faktisk stopper og sitter på Bankplassen.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "bank_oppdag",
+            "bank_osm"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Systematisk observasjon på flere tidspunkt kan teste hvor mennesker faktisk stopper og sitter på Bankplassen.",
+          "claim_id": "claim_bankplassen_quiz_32",
+          "topic_hook_id": "byliv_aapne_rom",
+          "thinker_id": "william_h_whyte",
+          "thinker_name": "William H. Whyte",
+          "work": "The Social Life of Small Urban Spaces",
+          "theory_focus": "observer faktisk bruk av små offentlige byrom",
+          "theory_ref": {
+            "topic_hook_id": "byliv_aapne_rom",
+            "thinker_id": "william_h_whyte",
+            "work": "The Social Life of Small Urban Spaces",
+            "why_it_helps": "Whytes observasjonsbaserte byromslesning skiller planlagt form fra faktisk opphold og bevegelse på Bankplassen."
+          },
+          "method_id": "met_feltobservasjon",
+          "guidance_basis": [
+            "Observer samme del av plassen på minst to tidspunkt.",
+            "Noter hvor mennesker stopper og sitter før du vurderer plassens bruk."
+          ],
+          "primary_knowledge_unit_id": "ku_by_systematisk_observasjon__40a4990f5d",
+          "knowledge_unit_ids": [
+            "ku_by_systematisk_observasjon__40a4990f5d"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "bankplassen_quiz_33",
+          "quiz_id": "by_bankplassen_set_5_q5",
+          "categoryId": "by",
+          "placeId": "bankplassen",
+          "targetId": "bankplassen",
+          "question_scope": "place",
+          "question": "Hvorfor må designintensjon skilles fra faktisk bruk?",
+          "options": [
+            "Et planlagt sitte- eller kunstgrep beviser ikke alene hvordan mennesker bruker stedet",
+            "Faktisk bruk kan alltid utledes fra et kart",
+            "Design og bruk er alltid identiske"
+          ],
+          "answer": "Et planlagt sitte- eller kunstgrep beviser ikke alene hvordan mennesker bruker stedet",
+          "answerIndex": 0,
+          "knowledge": "Et planlagt grep i plassrommet beviser ikke alene faktisk bruk; bruk må observeres.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "bank_oppdag",
+            "bank_osm"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Et planlagt grep i plassrommet beviser ikke alene faktisk bruk; bruk må observeres.",
+          "claim_id": "claim_bankplassen_quiz_33",
+          "topic_hook_id": "byliv_aapne_rom",
+          "thinker_id": "william_h_whyte",
+          "thinker_name": "William H. Whyte",
+          "work": "The Social Life of Small Urban Spaces",
+          "theory_focus": "observer faktisk bruk av små offentlige byrom",
+          "theory_ref": {
+            "topic_hook_id": "byliv_aapne_rom",
+            "thinker_id": "william_h_whyte",
+            "work": "The Social Life of Small Urban Spaces",
+            "why_it_helps": "Whytes observasjonsbaserte byromslesning skiller planlagt form fra faktisk opphold og bevegelse på Bankplassen."
+          },
+          "primary_knowledge_unit_id": "ku_by_et_planlagt_grep_i_plass_37ff943b4c",
+          "knowledge_unit_ids": [
+            "ku_by_et_planlagt_grep_i_plass_37ff943b4c"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "bankplassen_quiz_34",
           "quiz_id": "by_bankplassen_set_5_q6",
           "categoryId": "by",
           "placeId": "bankplassen",
-          "personId": "",
-          "natureId": "",
           "targetId": "bankplassen",
           "question_scope": "place",
-          "question": "Hvilken samlet analyse passer best for Bankplassen?",
+          "question": "Hva er en kildekritisk forskjell mellom litografien fra 1838 og fotoet fra 2023?",
           "options": [
-            "Et kompakt sentrumrom der bankhistorie, statsmakt, kulturinstitusjoner og Kvadraturens struktur må leses sammen",
-            "Et vestlig boligområde der villaer forklarer alt",
-            "En fjellhall der T-bane og betongpris er hovedpoenget"
+            "Litografien er en kunstnerisk framstilling, mens fotoet er et fotografisk opptak",
+            "Begge er samtidige fotografier",
+            "Ingen av dem viser Bankplassen"
           ],
-          "answer": "Et kompakt sentrumrom der bankhistorie, statsmakt, kulturinstitusjoner og Kvadraturens struktur må leses sammen",
+          "answer": "Litografien er en kunstnerisk framstilling, mens fotoet er et fotografisk opptak",
           "answerIndex": 0,
-          "dimension": "syntese",
-          "topic": "samlet stedlesning",
-          "knowledge": "Bankplassen bør leses som et lite, men tett historisk byrom der finanshistorie, statsbygging, teaterhistorie, arkitektur og dagens kulturbruk møtes i Kvadraturen.",
-          "trivia": [],
+          "knowledge": "Litografien fra 1838 er en kunstnerisk framstilling, mens 2023-bildet er et fotografisk opptak av dagens plass.",
           "difficulty": 3,
-          "question_type": "fact",
-          "question_layer": "place_concrete_advanced",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_torg_plasser_som_scene",
-          "related_emner": [],
-          "core_concepts": [
-            "bankhistorie",
-            "statsbygging",
-            "kulturinstitusjoner"
-          ],
-          "concept_focus": [
-            "bankhistorie",
-            "statsbygging"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "bankhistorie",
-            "kultur",
-            "kvadraturen"
-          ],
-          "required_tags": [],
+          "question_type": "concept",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
           "source": [
-            "data/places/by/oslo/places_by.json",
-            "https://snl.no/Bankplassen_-_Oslo",
-            "https://oslobyleksikon.no/side/Bankplassen",
-            "https://lokalhistoriewiki.no/wiki/Bankplassen_%28Oslo%29"
+            "bank_commons_1838",
+            "bank_commons_2023"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "mixed_external_and_place_profile_claim",
-          "guidance_basis": [
-            "SET_MAL_README_v4_3 (1).md",
-            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
-            "supersetQUIZMAL (10).json",
-            "data/places/by/oslo/places_by.json",
-            "data/fag/by/pensum_by.json",
-            "emnemapping_canonical_v4_5.json",
-            "emner_by_canonical_v4_5.json",
-            "fagkart_by_canonical_v4_5.json",
-            "methods_by_canonical_v4_5.json",
-            "bypensum_canonical_v4_5.json"
-          ]
+          "source_origin": "external",
+          "claim_basis": "Litografien fra 1838 er en kunstnerisk framstilling, mens 2023-bildet er et fotografisk opptak av dagens plass.",
+          "claim_id": "claim_bankplassen_quiz_34",
+          "primary_knowledge_unit_id": "ku_by_litografien_fra_1838_er__a491322203",
+          "knowledge_unit_ids": [
+            "ku_by_litografien_fra_1838_er__a491322203"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "bankplassen_quiz_35",
+          "quiz_id": "by_bankplassen_set_5_q7",
+          "categoryId": "by",
+          "placeId": "bankplassen",
+          "targetId": "bankplassen",
+          "question_scope": "place",
+          "question": "Hva beskytter en tydelig canonical eiergrense mot?",
+          "options": [
+            "At hendelser i nabobygg feilaktig blir presentert som om plassflaten eier dem",
+            "At brukeren ser relaterte steder",
+            "At plassens koordinat kan verifiseres"
+          ],
+          "answer": "At hendelser i nabobygg feilaktig blir presentert som om plassflaten eier dem",
+          "answerIndex": 0,
+          "knowledge": "En tydelig canonical eiergrense hindrer at hendelser i nabobygg feilaktig tilskrives Bankplassen som plassflate.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "bank_byleksikon",
+            "bank_osm"
+          ],
+          "source_origin": "external",
+          "claim_basis": "En tydelig canonical eiergrense hindrer at hendelser i nabobygg feilaktig tilskrives Bankplassen som plassflate.",
+          "claim_id": "claim_bankplassen_quiz_35",
+          "primary_knowledge_unit_id": "ku_by_en_tydelig_canonical_eie_518341df85",
+          "knowledge_unit_ids": [
+            "ku_by_en_tydelig_canonical_eie_518341df85"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         }
       ]
     }
