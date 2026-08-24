@@ -11,7 +11,7 @@ Status: **PASS – klar for permanente porter**
 - **Historie:** fire canonical `history_layers` beholdes. Leksikon-chronology er begrenset til fem korte, daterte og eksplisitt kildebelagte milepæler; den er ikke en Story-kopi.
 - **Fortellinger:** den aktive Phase-6 `episode_v1` beholdes hos Stories-systemet.
 - **Før/etter, Nyheter og Lesespor:** ikke fylt med proxyinnhold eller filler. Intet nabobygg brukes som stedfortreder.
-- **Kilder:** fem inspectable HTTPS-lenker er materialisert i `externalLinks`, med OSM tydelig avgrenset til geometri.
+- **Kilder:** fem inspectable HTTPS-lenker er materialisert i Leksikon-eierens `externalLinks`, med OSM tydelig avgrenset til geometri.
 - **Språk:** tre dokumenterte navnespor er materialisert i Språkleksikon: `Byens gamle Torv`, `Gammel-Torvet` og navnevedtaket `Christiania Torv` fra 1958. Ingen dialekt, uttale eller etymologi er diktet opp.
 - **Spor & objekter / relasjoner:** holdes hos Phase 9-eierne; de er ikke improvisert i popupen.
 
@@ -21,9 +21,12 @@ Status: **PASS – klar for permanente porter**
 
 ## Endrede canonical eiere
 
-- `data/places/by/oslo/places/christiania_torv.json`
 - `data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json`
 - `data/leksikon/sprak/places/europe/norway/oslo/christiania_torv.json`
 - `data/leksikon/sprak/manifest.json`
 
 Sluttstatus settes bare til merget etter permanente place-, popup-, leksikon- og Språkleksikonporter.
+
+## Deterministisk Quiz/Knowledge-grense
+
+Canonical Place-filen er bevisst uendret i Phase 8. Quiz production context hasher targetfilen; popupkilder og aliaser ligger derfor hos Leksikon-/Språkleksikon-eierne, slik at Phase-7-artifactet forblir en ekte deterministisk rebuild i stedet for å bli manuelt omstemplet.
