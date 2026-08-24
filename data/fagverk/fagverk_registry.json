@@ -4134,7 +4134,7 @@
         "schemaFamily": "foundation_v1",
         "sourceOfTruth": true,
         "firstSourceClaimBrief": "data/fag/helse/medical_ethics_evidence_source_claim_brief_v1.json",
-        "note": "Alle tolv Helse-domener er nå fulltekstmaterialisert source-first. Helsetjenester og helseøkonomi tilfører systemfunksjoner, tilgang, kvalitet, pasientsikkerhet, finansiering, mulighetskostnad, HTA, prioritering, finansiell beskyttelse, likeverd og benchmarking med 8 seksjoner, 32 claimsporede avsnitt, 32 verifiserte claims, 15 inspiserbare kilder og 8 vurderingsoppgaver. Strict proof gjenstår før complete kan hevdes.",
+        "note": "Alle tolv Helse-domener er fulltekstmaterialisert source-first og strict completion er bevist per canonicalt hovedfelt. Permanent audit binder 24 modeller, mekanismer eller rammeverk til 24 inspectable scholarly sources, 72 eksakte claim-sporede prosebindings og den blokkerende ikke-individualiserende sikkerhetskontrakten.",
         "firstFulltextChapter": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning.json",
         "secondSourceClaimBrief": "data/fag/helse/anatomy_physiology_source_claim_brief_v1.json",
         "secondFulltextChapter": "data/fagverk/helse/anatomi-fysiologi-struktur-funksjon-og-regulering.json",
@@ -4170,7 +4170,20 @@
           "fulltext_and_assessment_audits_green",
           "strict_theory_integrity_green"
         ],
-        "nextGate": "prove_health_strict_completion_after_all_twelve_fulltext_domains"
+        "nextGate": "complete",
+        "strictCompletionProof": {
+          "status": "strictly_proven",
+          "proof_scope": "per_canonical_major_field",
+          "canonical_major_fields": 12,
+          "model_objects": 24,
+          "scholarly_sources": 24,
+          "actual_prose_bindings": 72,
+          "verified_claims": 384,
+          "bindings_file": "data/fag/helse/theory_integrity_bindings_helse_v1.json",
+          "audit_script": "tools/audit-helse-theory-integrity.mjs",
+          "audit_report": "reports/fagverk/helse-theory-integrity-audit.json",
+          "safety": "blocking_general_non_individualizing"
+        }
       },
       "chapters": [
         {
