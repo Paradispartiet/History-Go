@@ -163,7 +163,7 @@ async function run() {
   assert(runtimeTypes.size > 2, 'runtime should include several mail family types');
   assert(runtimeTypes.has('job') && [...runtimeTypes].some(type => type !== 'job'), 'runtime should include multiple mail_type values');
   assert(runtimeTypes.has('job'), 'Day 1 should include at least one job-mail');
-  assert(runtimeTypes.has('people'), `Day 1 should include at least one people-mail; types=${JSON.stringify([...runtimeTypes])}; items=${JSON.stringify(runtime.items.map(row => ({ phase: row.phase, slot: row.slot, id: row.event?.id, type: row.event?.mail_type, family: row.event?.mail_family })))}`);
+  assert(runtimeTypes.has('people'), 'Day 1 should include at least one people-mail');
   assert(
     ['micro', 'followup', 'knowledge', 'consequence'].some(type => runtimeTypes.has(type)),
     'Day 1 should include at least one micro/followup/knowledge/consequence mail'
