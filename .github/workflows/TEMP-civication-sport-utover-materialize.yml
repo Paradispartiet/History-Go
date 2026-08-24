@@ -1,0 +1,51 @@
+name: TEMP Civication sport-utover materialization
+
+on:
+  push:
+    branches:
+      - agent/civication-sport-utover-realism-pilot
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out pilot branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/civication-sport-utover-realism-pilot
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Materialize generated Civication artifacts
+        run: |
+          node scripts/build-civication-scene-registry.mjs
+          node scripts/audit-civication-career-gameplay.mjs --write
+
+      - name: Verify materialized pilot
+        run: |
+          node scripts/build-civication-scene-registry.mjs --check
+          node scripts/audit-civication-career-gameplay.mjs --check
+          npm run test:civication
+
+      - name: Commit artifacts and remove temporary workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/TEMP-civication-sport-utover-materialize.yml
+          git add data/Civication/compiledSceneRegistryV1.json
+          git add data/Civication/careerGameplayMatrix.json
+          git add reports/civication-career-gameplay-matrix.md
+          git commit -m "Materialize sport athlete Role World pilot"
+          git push origin HEAD:agent/civication-sport-utover-realism-pilot

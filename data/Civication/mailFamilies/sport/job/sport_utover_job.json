@@ -1451,6 +1451,150 @@
           "mail_class": "job_message"
         }
       ]
+    },
+    {
+      "id": "role_world_realism_sport_microcycle",
+      "purpose": "Åpne én persistent konkurranseuke der treningsbelastning, kroppssignaler, restitusjon og uttak må forstås som en sammenhengende profesjonell prosess.",
+      "learning_focus": [
+        "persistent_training_cycle",
+        "load_baseline",
+        "recovery_rhythm",
+        "professional_reporting"
+      ],
+      "mails": [
+        {
+          "id": "sport_utover_realism_microcycle_open_001",
+          "mail_type": "job",
+          "mail_family": "role_world_realism_sport_microcycle",
+          "role_scope": "sport_utover",
+          "phase": "advanced",
+          "day_phase": "morning",
+          "priority": 70,
+          "cooldown": 10,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Maja, trener",
+          "sender": "trener_maja",
+          "person_id": "trener_maja",
+          "people_ref": "trener_maja",
+          "place_id": "sport_treningsfelt",
+          "thread_key": "sport_utover_konkurranseuke_realism_001",
+          "subject": "Konkurranseuka begynner med en baseline, ikke med et løfte om uttak",
+          "summary": "Maja åpner ukas belastningsplan. Du skal dokumentere dagens kroppssignaler, planlagt intensitet og restitusjonsrom før statusbehovet eller lagpresset får definere hva kroppen tåler.",
+          "purpose": "Bevise at en utøverrolle kan eie et persistent treningsforløp som beveger seg gjennom belastning, vurdering, rework, restitusjon og konkurranse.",
+          "stakes": "En vag start gjør senere smerte, tretthet og prestasjon vanskelig å tolke. En etterprøvbar baseline gir ikke garanti for uttak, men gjør støtteapparatets vurderinger og dine egne valg mer presise.",
+          "situation": [
+            "Konkurranseuka har to belastningsøkter, én lett dag og en mulig konkurransedag.",
+            "Maja eier treningsplan og uttak, Elias eier sin faglige vurdering, mens du eier ærlig rapportering og gjennomføring innen avtalte rammer.",
+            "Kontrakten gjør dette til arbeid, men gir deg verken rett til startplass eller myndighet til å klarere deg selv."
+          ],
+          "task_domain": "konkurranseuke_og_belastningsstyring",
+          "task_kind": "job",
+          "competency": "presis_belastningsrapportering",
+          "pressure": "statusbehov_vs_etterprovbar_baseline",
+          "choice_axis": "konkret_baseline_vs_tilgjengelighet_uten_kroppskontekst",
+          "consequence_axis": "tolkbar_belastningsutvikling_vs_skjult_usikkerhet",
+          "narrative_arc": "fra_baseline_til_forsvarlig_konkurransebeslutning",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "sport_utover_microcycle_001"
+            ],
+            "institution_id": "fjordby_il_prestasjonsgruppe_001",
+            "deadline_ref": "konkurranseuttak",
+            "deadline_day": 4,
+            "deadline_phase": "afternoon",
+            "priority": "high"
+          },
+          "effects": {
+            "work_object_ops": [
+              {
+                "op": "create",
+                "event_id": "sport_utover_microcycle_opened",
+                "work_object": {
+                  "work_object_id": "sport_utover_microcycle_001",
+                  "kind": "training_cycle",
+                  "role_scope": "sport_utover",
+                  "institution_id": "fjordby_il_prestasjonsgruppe_001",
+                  "title": "Konkurranseuke: belastning, restitusjon og uttak",
+                  "status": "in_progress",
+                  "phase": "baseline_og_belastningsplan",
+                  "people_refs": [
+                    "trener_maja",
+                    "fysio_elias",
+                    "lagkontakt_samir",
+                    "lagkamerat_nora"
+                  ],
+                  "place_refs": [
+                    "sport_treningsfelt",
+                    "sport_fysiorom",
+                    "sport_konkurransearena",
+                    "bislett_stadion"
+                  ],
+                  "knowledge_refs": [
+                    "data/fag/sport/measurement_registry_sport_v1.json",
+                    "data/quiz/sport/bislett_stadion_sets.json"
+                  ],
+                  "open_questions": [
+                    "Hvordan endrer kroppssignalene seg når planlagt belastning og faktisk restitusjon ses samlet?",
+                    "Hvilken del av konkurransebeslutningen eier utøveren, treneren og støtteapparatet hver for seg?"
+                  ],
+                  "deadline": "konkurranseuttak_dag_4_ettermiddag",
+                  "confidentiality": "utover_og_relevant_stotteapparat",
+                  "flags": [
+                    "konkurranseuke_apnet"
+                  ],
+                  "shared": false
+                }
+              }
+            ]
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Registrer søvn, opplevd belastning og dagens kroppssignal før økta",
+              "reply": "Jeg gir Maja og Elias en konkret baseline og skiller rapportering fra både diagnose og krav om uttak.",
+              "effect": 1,
+              "feedback": "Uka får et sammenligningsgrunnlag uten at ett tall blir gjort til medisinsk fasit.",
+              "effects": {
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "sport_utover_baseline_reported",
+                    "work_object_id": "sport_utover_microcycle_001",
+                    "flag": "baseline_med_kroppskontekst"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Meld bare at du er tilgjengelig og la tallene komme etter økta",
+              "reply": "Jeg bekrefter at jeg kan trene, men venter med å beskrive søvn, tretthet og den lille stramheten.",
+              "effect": 0,
+              "feedback": "Tilgjengelighet er registrert, men støtteapparatet mangler en baseline som kan skille ny endring fra gammel variasjon.",
+              "effects": {
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "sport_utover_baseline_deferred",
+                    "work_object_id": "sport_utover_microcycle_001",
+                    "flag": "baseline_uten_kroppskontekst"
+                  }
+                ]
+              }
+            }
+          ],
+          "planned_only": true,
+          "tags": [
+            "job",
+            "role_world_realism",
+            "training_cycle",
+            "recovery",
+            "sport_utover"
+          ]
+        }
+      ]
     }
   ]
 }

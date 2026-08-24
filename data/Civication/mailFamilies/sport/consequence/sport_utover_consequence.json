@@ -1,0 +1,168 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "sport",
+  "role_scope": "sport_utover",
+  "mail_type": "consequence",
+  "families": [
+    {
+      "id": "role_world_realism_sport_rebuild_cycle",
+      "purpose": "La vurdering, restitusjon og History Go-læring endre den samme konkurranseuka før den endelige beslutningen.",
+      "learning_focus": [
+        "rework",
+        "recovery",
+        "History Go affordance",
+        "measurement_context"
+      ],
+      "mails": [
+        {
+          "id": "sport_utover_realism_rebuild_microcycle_001",
+          "mail_type": "consequence",
+          "mail_family": "role_world_realism_sport_rebuild_cycle",
+          "role_scope": "sport_utover",
+          "phase": "mastery",
+          "day_phase": "afternoon",
+          "priority": 80,
+          "cooldown": 10,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Maja, trener",
+          "sender": "trener_maja",
+          "person_id": "trener_maja",
+          "people_ref": "trener_maja",
+          "place_id": "sport_treningsfelt",
+          "thread_key": "sport_utover_konkurranseuke_realism_001",
+          "subject": "Bygg konkurranseuka på nytt etter vurdering og restitusjon",
+          "summary": "Maja ber deg bidra til rework av mikroplanen. Du skal holde prestasjonsmål, belastningstrend, kroppssignal og faglig vurdering adskilt før konkurransedagen.",
+          "purpose": "Bevise at restitusjon ikke er passiv venting, men en arbeidsfase som endrer plan, kapasitet og senere handlingsrom.",
+          "stakes": "En revidert plan kan bevare konkurransemuligheten uten å late som usikkerheten er borte. Å jage ett mål eller resultat kan derimot gjøre restitusjonen til skjult gjeld.",
+          "situation": [
+            "Godkjenningen gjelder en revidert belastning med ny kontroll.",
+            "Treningsuka har mindre kapasitet enn først planlagt, og én økt må enten kuttes eller endres.",
+            "History Go-oppgaven ved Bislett kan brukes til å skille det offentlige resultatet fra kroppens og støtteapparatets andre datatyper."
+          ],
+          "task_domain": "rework_av_mikroplan_etter_belastningssignal",
+          "task_kind": "consequence",
+          "competency": "restitusjon_som_planarbeid",
+          "pressure": "konkurranseforberedelse_vs_redusert_kapasitet",
+          "choice_axis": "revider_plan_med_flere_signaltyper_vs_jag_ett_resultat",
+          "consequence_axis": "tolkbar_konkurranseberedskap_vs_skjult_belastningsgjeld",
+          "narrative_arc": "fra_baseline_til_forsvarlig_konkurransebeslutning",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "sport_utover_microcycle_001"
+            ],
+            "institution_id": "fjordby_il_prestasjonsgruppe_001",
+            "deadline_ref": "konkurranseuttak",
+            "deadline_day": 3,
+            "deadline_phase": "afternoon",
+            "rework_of_scene_id": "sport_utover_realism_assessment_grant_001",
+            "rework_of_object_transition": "sport_utover_microcycle_modified_plan",
+            "priority": "urgent"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Kutt én belastningsøkt og behold én kontrollert konkurransespesifikk blokk",
+              "reply": "Jeg prioriterer restitusjon og én tydelig blokk framfor å forsøke å hente inn hele den opprinnelige planen.",
+              "effect": 1,
+              "feedback": "Planen blir mindre, men mer tolkbar. Konkurransemuligheten bevares uten å skjule redusert kapasitet.",
+              "effects": {
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "sport_utover_microcycle_rebuilt_basic",
+                    "work_object_id": "sport_utover_microcycle_001",
+                    "to_status": "awaiting_competition",
+                    "to_phase": "restituert_med_en_kontrollert_konkurranseblokk",
+                    "note": "Én belastningsøkt er fjernet og konkurransespesifikk trening er avgrenset før ny kontroll."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "sport_utover_capacity_reduction_visible",
+                    "work_object_id": "sport_utover_microcycle_001",
+                    "flag": "redusert_kapasitet_synlig_i_plan"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Behold begge øktene og bruk siste gode resultat som tegn på at kapasiteten finnes",
+              "reply": "Jeg forsøker å gjennomføre den opprinnelige planen fordi det siste resultatet viser at toppnivået er der.",
+              "effect": -1,
+              "feedback": "Et tidligere resultat brukes som svar på en annen type spørsmål og gjør restitusjonsbehovet vanskeligere å se.",
+              "effects": {
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "sport_utover_microcycle_rebuilt_with_hidden_debt",
+                    "work_object_id": "sport_utover_microcycle_001",
+                    "to_status": "awaiting_competition",
+                    "to_phase": "opprinnelig_plan_med_skjult_belastningsgjeld",
+                    "note": "Den opprinnelige planen beholdes selv om dagens kroppssignal og restitusjonsrom peker mot redusert kapasitet."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "sport_utover_load_debt_hidden_by_result",
+                    "work_object_id": "sport_utover_microcycle_001",
+                    "flag": "resultat_skjuler_belastningsgjeld"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Bruk Bislett-læringen: skill resultat, belastningstrend og faglig vurdering før planen låses",
+              "reply": "Jeg lar resultatmålet stå som konkurranseambisjon, men bygger belastningsplanen på egen trend, kroppssignal og den avtalte faglige vurderingen.",
+              "effect": 2,
+              "affordance": {
+                "history_go": {
+                  "task_mail_ids": [
+                    "sport_utover_realism_knowledge_bislett_001"
+                  ],
+                  "require_task_completed": true,
+                  "require_history_go_correct": true
+                }
+              },
+              "feedback": "History Go gir et mer presist sorteringsgrep, men verken medisinsk klarering eller uttaksmyndighet.",
+              "effects": {
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "sport_utover_microcycle_rebuilt_with_measurement_context",
+                    "work_object_id": "sport_utover_microcycle_001",
+                    "to_status": "awaiting_competition",
+                    "to_phase": "resultat_belastning_og_vurdering_eksplisitt_adskilt",
+                    "note": "Konkurranseambisjon, intern belastningstrend og støtteapparatets vurdering er skilt før siste plan låses."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "sport_utover_measurement_context_visible",
+                    "work_object_id": "sport_utover_microcycle_001",
+                    "flag": "bislett_kunnskap_anvendt_uten_myndighetsglidning"
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "sport_utover_recovery_capacity_visible",
+                    "work_object_id": "sport_utover_microcycle_001",
+                    "flag": "restitusjonskapasitet_synlig_i_mikroplan"
+                  }
+                ]
+              }
+            }
+          ],
+          "planned_only": true,
+          "tags": [
+            "consequence",
+            "role_world_realism",
+            "rework",
+            "recovery",
+            "sport_utover"
+          ]
+        }
+      ]
+    }
+  ]
+}

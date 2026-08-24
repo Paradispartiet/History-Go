@@ -114,6 +114,139 @@
           ]
         }
       ]
+    },
+    {
+      "id": "role_world_realism_sport_history_go",
+      "purpose": "Bruk Bisletts målte prestasjons- og rekordkultur til å skille offentlig resultat fra intern belastning, restitusjon og faglig vurdering.",
+      "learning_focus": [
+        "History Go",
+        "bislett_stadion",
+        "measurement_context",
+        "result_vs_readiness"
+      ],
+      "mails": [
+        {
+          "id": "sport_utover_realism_knowledge_bislett_001",
+          "mail_type": "knowledge",
+          "mail_family": "role_world_realism_sport_history_go",
+          "role_scope": "sport_utover",
+          "phase": "advanced",
+          "day_phase": "evening",
+          "priority": 70,
+          "cooldown": 10,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Elias, fysioterapeut",
+          "sender": "fysio_elias",
+          "person_id": "fysio_elias",
+          "people_ref": "fysio_elias",
+          "place_id": "sport_fysiorom",
+          "thread_key": "sport_utover_konkurranseuke_realism_001",
+          "subject": "Gå til Bislett i History Go: et målt resultat er virkelig, men ikke hele beredskapen",
+          "summary": "Mens Elias vurderer kroppssignalet, ber han deg lese Bislett som sted for tidtaking, rekorder, publikum og prestasjonsminne. Oppgaven er å forstå hva et resultat faktisk måler, og hva det ikke kan avgjøre om dagens belastning eller medisinske klarering.",
+          "purpose": "La konkret History Go-kunnskap utvide et senere profesjonelt valg uten å gjøre en arena, rekord eller quiz til medisinsk myndighet.",
+          "stakes": "Resultater og rekorder er reelle prestasjonsdata. De blir farlige som fasit når de brukes til å overstyre belastningstrend, kroppssignal, kontekst eller støtteapparatets avgrensede vurdering.",
+          "situation": [
+            "Bisletts canonicale History Go-profil viser hvordan prestasjoner stedfestes gjennom bane, måling, resultattavler, publikum og rekordminne.",
+            "Sportens måleregister beskriver samtidig at treningsbelastning og restitusjon må tolkes kontekstuelt, ikke som diagnose fra ett tall.",
+            "Når du kommer tilbake skal du kunne holde offentlig resultat, intern belastningstrend og faglig vurdering adskilt."
+          ],
+          "task_domain": "prestasjon_maling_og_belastningskontekst",
+          "task_kind": "knowledge",
+          "competency": "kontekstuell_tolkning_av_prestasjonsdata",
+          "pressure": "rekord_og_resultatlogikk_vs_forsvarlig_beredskapsvurdering",
+          "choice_axis": "skille_maletyper_vs_bruke_resultat_som_klarering",
+          "consequence_axis": "presis_rework_vs_tallbasert_selvklarering",
+          "narrative_arc": "fra_baseline_til_forsvarlig_konkurransebeslutning",
+          "interaction_mode": "task",
+          "task_contract": {
+            "task_id": "sport_utover_history_go_bislett_measurement_context",
+            "completion_rule": "history_go_payload_completed",
+            "failure_rule": "remain_open",
+            "evidence_refs": [
+              "data/places/sport/europa/norway/oslo_sport/bislett_stadion.json",
+              "data/quiz/sport/bislett_stadion_sets.json",
+              "data/fag/sport/measurement_registry_sport_v1.json"
+            ]
+          },
+          "task_payload": {
+            "task_kind": "history_go_place",
+            "target_type": "place",
+            "place_id": "bislett_stadion",
+            "completion_mode": "open_place",
+            "title": "Les Bislett som sted for målte prestasjoner",
+            "description": "Åpne Bislett stadion og bruk profilen til å skille rekord, resultat og offentlig prestasjonsminne fra kroppens belastningstrend og støtteapparatets vurdering.",
+            "return_context": {
+              "source": "civication",
+              "mail_id": "sport_utover_realism_knowledge_bislett_001",
+              "role_scope": "sport_utover",
+              "place_id": "bislett_stadion",
+              "quiz_ref": "data/quiz/sport/bislett_stadion_sets.json"
+            }
+          },
+          "work_context": {
+            "object_ids": [
+              "sport_utover_microcycle_001"
+            ],
+            "institution_id": "fjordby_il_prestasjonsgruppe_001",
+            "deadline_ref": "fysio_og_trener_vurdering",
+            "deadline_day": 2,
+            "deadline_phase": "morning",
+            "waiting_for_actor_id": "fysio_elias",
+            "priority": "high"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skill resultat, belastningstrend og faglig vurdering i tre eksplisitte kolonner",
+              "reply": "Jeg bruker Bislett til å forstå hva målte prestasjoner kan dokumentere, og lar kroppssignal og faglig vurdering beholde sine egne premisser.",
+              "effect": 1,
+              "feedback": "History Go-kunnskapen blir et profesjonelt sorteringsgrep, ikke en snarvei til klarering.",
+              "effects": {
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "sport_utover_bislett_measurement_context_applied",
+                    "work_object_id": "sport_utover_microcycle_001",
+                    "flag": "history_go_resultat_belastning_vurdering_adskilt"
+                  },
+                  {
+                    "op": "note",
+                    "event_id": "sport_utover_bislett_learning_note",
+                    "work_object_id": "sport_utover_microcycle_001",
+                    "note": "Bislett-læringen er brukt til å skille målbar offentlig prestasjon fra intern belastningstrend og faglig klarering."
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Bruk siste gode resultat som hovedbevis på at full belastning bør være trygg",
+              "reply": "Jeg lar det siste målte resultatet veie tyngst fordi det viser hva jeg nylig kunne prestere.",
+              "effect": -1,
+              "feedback": "Et reelt resultat blir brukt utenfor det det kan dokumentere og kan ikke erstatte dagens kroppssignal eller beslutningskjede.",
+              "effects": {
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "sport_utover_result_used_as_clearance",
+                    "work_object_id": "sport_utover_microcycle_001",
+                    "flag": "resultat_feilbrukt_som_klarering"
+                  }
+                ]
+              }
+            }
+          ],
+          "planned_only": true,
+          "tags": [
+            "knowledge",
+            "History Go",
+            "bislett_stadion",
+            "measurement_context",
+            "sport_utover"
+          ]
+        }
+      ]
     }
   ]
 }
