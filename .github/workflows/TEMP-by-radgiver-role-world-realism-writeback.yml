@@ -77,7 +77,7 @@ jobs:
           PY
 
       - name: Regenerate compiled scene registry
-        run: node scripts/build-civication-scene-registry.mjs
+        run: node scripts/build-civication-scene-registry.mjs --write
 
       - name: Run By-radgiver pilot proof
         run: node tests/civication-by-radgiver-role-world-realism-pilot.test.js
