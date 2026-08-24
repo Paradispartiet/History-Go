@@ -1,0 +1,56 @@
+name: TEMP Helse strict completion writeback
+
+on:
+  push:
+    branches:
+      - agent/helse-strict-completion-proof-v1
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: temp-helse-strict-writeback-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  writeback:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/helse-strict-completion-proof-v1
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate source contracts
+        run: |
+          node --check tools/audit-helse-theory-integrity.mjs
+          node --check scripts/materialize-helse-strict-completion-v1.mjs
+          node --check scripts/audit-fagverk-theory-integrity.mjs
+          node --check scripts/run-helse-domain-ci-v1.mjs
+      - name: Materialize canonical derived outputs
+        run: |
+          node tools/audit-helse-theory-integrity.mjs --write-report --no-check-report
+          node scripts/materialize-helse-strict-completion-v1.mjs
+          node scripts/audit-helse-health-services-economics-fulltext-v1.mjs --write
+          node scripts/audit-fagverk-theory-quality.mjs --write-report --no-check-report
+          node scripts/audit-fagverk-theory-integrity.mjs --write-report --no-check-report
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Commit deterministic outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/fag/helse/helsepensum_canonical_v1.json
+          git add data/fagverk/fagverk_registry.json
+          git add data/fagverk/subject_status.json
+          git add data/fagverk/fagverk_release.json
+          git add reports/fagverk
+          if git diff --cached --quiet; then
+            echo "No generated changes"
+            exit 0
+          fi
+          git commit -m "Materialize Helse strict completion outputs"
+          git push origin HEAD:agent/helse-strict-completion-proof-v1
