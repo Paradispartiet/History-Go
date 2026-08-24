@@ -19472,7 +19472,7 @@
         "mail_families": {
           "job": {
             "path": "data/Civication/mailFamilies/sport/job/sport_utover_job.json",
-            "count": 18
+            "count": 19
           },
           "people": {
             "path": "data/Civication/mailFamilies/sport/people/sport_utover_people.json",
@@ -19488,23 +19488,23 @@
           },
           "event": {
             "path": "data/Civication/mailFamilies/sport/event/sport_utover_event.json",
-            "count": 2
+            "count": 4
           },
           "micro": {
             "path": null,
             "count": 0
           },
           "followup": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/sport/followup/sport_utover_followup.json",
+            "count": 3
           },
           "knowledge": {
             "path": "data/Civication/mailFamilies/sport/knowledge/sport_utover_knowledge.json",
-            "count": 2
+            "count": 3
           },
           "consequence": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/sport/consequence/sport_utover_consequence.json",
+            "count": 1
           }
         },
         "role_tests": [
@@ -19512,6 +19512,7 @@
           "tests/civication-psykologi-miljoarbeid-playability.test.js",
           "tests/civication-role-world-contract.test.js",
           "tests/civication-sport-life-career-split.test.js",
+          "tests/civication-sport-utover-role-world-realism-pilot.test.js",
           "tests/civication-sport-utover-role-world.test.js"
         ],
         "life_story": {
@@ -19543,6 +19544,7 @@
               "tests/civication-psykologi-miljoarbeid-playability.test.js",
               "tests/civication-role-world-contract.test.js",
               "tests/civication-sport-life-career-split.test.js",
+              "tests/civication-sport-utover-role-world-realism-pilot.test.js",
               "tests/civication-sport-utover-role-world.test.js"
             ],
             "note": "Role plan and role-specific test prove a first playable day."
@@ -19557,6 +19559,7 @@
               "tests/civication-psykologi-miljoarbeid-playability.test.js",
               "tests/civication-role-world-contract.test.js",
               "tests/civication-sport-life-career-split.test.js",
+              "tests/civication-sport-utover-role-world-realism-pilot.test.js",
               "tests/civication-sport-utover-role-world.test.js"
             ],
             "note": "Repeatable work content is connected to a tested plan."
@@ -19592,13 +19595,15 @@
               "data/Civication/roleModels/sport/profesjonell_utover.json",
               "data/Civication/workGrammars/sport/sport_utover.json"
             ],
-            "note": "6 place/working-surface declarations."
+            "note": "7 place/working-surface declarations."
           },
           "mail": {
             "level": "complete",
             "evidence": [
               "data/Civication/mailFamilies/sport/conflict/sport_utover_conflict.json",
+              "data/Civication/mailFamilies/sport/consequence/sport_utover_consequence.json",
               "data/Civication/mailFamilies/sport/event/sport_utover_event.json",
+              "data/Civication/mailFamilies/sport/followup/sport_utover_followup.json",
               "data/Civication/mailFamilies/sport/job/sport_utover_job.json",
               "data/Civication/mailFamilies/sport/knowledge/sport_utover_knowledge.json",
               "data/Civication/mailFamilies/sport/people/sport_utover_people.json",
@@ -19606,7 +19611,7 @@
               "data/Civication/mailPlans/sport/sport_utover_plan.json",
               "tests/civication-sport-utover-role-world.test.js"
             ],
-            "note": "6/9 standard mail types plus tested plan/practice coverage."
+            "note": "8/9 standard mail types plus tested plan/practice coverage."
           },
           "knowledge": {
             "level": "complete",
@@ -19640,10 +19645,13 @@
           "consequences": {
             "level": "complete",
             "evidence": [
+              "data/Civication/mailFamilies/sport/consequence/sport_utover_consequence.json",
+              "data/Civication/mailFamilies/sport/followup/sport_utover_followup.json",
               "tests/civication-pilot-wave-closure.test.js",
               "tests/civication-psykologi-miljoarbeid-playability.test.js",
               "tests/civication-role-world-contract.test.js",
               "tests/civication-sport-life-career-split.test.js",
+              "tests/civication-sport-utover-role-world-realism-pilot.test.js",
               "tests/civication-sport-utover-role-world.test.js"
             ],
             "note": "Later consequence/follow-up path is role-tested."
@@ -19657,6 +19665,7 @@
               "tests/civication-psykologi-miljoarbeid-playability.test.js",
               "tests/civication-role-world-contract.test.js",
               "tests/civication-sport-life-career-split.test.js",
+              "tests/civication-sport-utover-role-world-realism-pilot.test.js",
               "tests/civication-sport-utover-role-world.test.js"
             ],
             "note": "Positive and negative outcomes are defined and role-tested."
