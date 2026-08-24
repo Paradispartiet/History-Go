@@ -14,6 +14,8 @@
     let onPlaceClick = (_id) => {
     };
     let userMarker = null;
+    const placeAreaMarkers = /* @__PURE__ */ new Map();
+    let placeAreaMarkerZoomBound = false;
     const STYLE_STORAGE_KEY = "hg_map_style_mode";
     const STYLE_MODE_STANDARD = "standard";
     const STYLE_MODE_SATELLITE = "satellite";
@@ -28,7 +30,7 @@
     const L_AREA_HIT = "hg-place-areas-hit";
     const L_AREA_DOTS = "hg-place-areas-dots";
     const L_AREA_LAB = "hg-place-areas-label";
-    const PLACE_AREA_SQUARE_IMAGE_PREFIX = "hg-place-area-square-rgba";
+    const PLACE_AREA_MARKER_CLASS = "hg-place-area-marker";
     const PLACE_AREA_LABEL_MIN_ZOOM = 9.5;
     const PLACE_DETAIL_MIN_ZOOM = 11.8;
     const PLACE_DETAIL_HIT_MIN_ZOOM = 12.35;
@@ -570,119 +572,73 @@
         1
       ];
     }
-    function parsePlaceMarkerColor(value, fallback = [108, 117, 125, 255]) {
-      const color = String(value || "").trim();
-      const shortHex = color.match(/^#([0-9a-f]{3})$/i);
-      if (shortHex) {
-        return shortHex[1].split("").map((channel) => parseInt(channel + channel, 16)).concat(255);
-      }
-      const longHex = color.match(/^#([0-9a-f]{6})$/i);
-      if (longHex) {
-        const numeric = parseInt(longHex[1], 16);
-        return [numeric >> 16 & 255, numeric >> 8 & 255, numeric & 255, 255];
-      }
-      const rgb = color.match(/^rgba?\(\s*(\d+(?:\.\d+)?)\s*,\s*(\d+(?:\.\d+)?)\s*,\s*(\d+(?:\.\d+)?)(?:\s*,\s*(\d+(?:\.\d+)?))?\s*\)$/i);
-      if (rgb) {
-        const alpha = rgb[4] == null ? 255 : Math.round(Math.max(0, Math.min(1, Number(rgb[4]))) * 255);
-        return [
-          Math.round(Math.max(0, Math.min(255, Number(rgb[1])))),
-          Math.round(Math.max(0, Math.min(255, Number(rgb[2])))),
-          Math.round(Math.max(0, Math.min(255, Number(rgb[3])))),
-          alpha
-        ];
-      }
-      return fallback.slice();
-    }
-    function getPlaceAreaSquareImageId(fill, border) {
-      const bytes = [...parsePlaceMarkerColor(fill), ...parsePlaceMarkerColor(border)];
-      return `${PLACE_AREA_SQUARE_IMAGE_PREFIX}-${bytes.map((channel) => channel.toString(16).padStart(2, "0")).join("")}`;
-    }
-    function buildPlaceAreaSquareImage(fill, border, size = 32) {
-      const data = new Uint8Array(size * size * 4);
-      const fillRgba = parsePlaceMarkerColor(fill);
-      const borderRgba = parsePlaceMarkerColor(border, fillRgba);
-      const outerStart = Math.floor(size / 4);
-      const outerEnd = size - outerStart;
-      const borderWidth = Math.max(2, Math.round(size / 16));
-      for (let y = 0; y < size; y += 1) {
-        for (let x = 0; x < size; x += 1) {
-          const insideOuter = x >= outerStart && x < outerEnd && y >= outerStart && y < outerEnd;
-          if (!insideOuter) continue;
-          const insideFill = x >= outerStart + borderWidth && x < outerEnd - borderWidth && y >= outerStart + borderWidth && y < outerEnd - borderWidth;
-          const rgba = insideFill ? fillRgba : borderRgba;
-          const offset = (y * size + x) * 4;
-          data[offset] = rgba[0];
-          data[offset + 1] = rgba[1];
-          data[offset + 2] = rgba[2];
-          data[offset + 3] = rgba[3];
+    function interpolatePlaceAreaMarkerSide(zoom, isVisited) {
+      const stops = [[7, 5], [9.5, 6.2], [12, 7.4], [16, 9], [18, 10.5]];
+      const bonus = isVisited ? Math.max(0.2, Math.min(0.5, 0.2 + (zoom - 7) * (0.3 / 11))) : 0;
+      if (zoom <= stops[0][0]) return stops[0][1] + bonus;
+      for (let index = 1; index < stops.length; index += 1) {
+        const [rightZoom, rightSide] = stops[index];
+        const [leftZoom, leftSide] = stops[index - 1];
+        if (zoom <= rightZoom) {
+          const progress = (zoom - leftZoom) / (rightZoom - leftZoom);
+          return leftSide + (rightSide - leftSide) * progress + bonus;
         }
       }
-      return { width: size, height: size, data };
+      return stops[stops.length - 1][1] + bonus;
     }
-    function ensurePlaceAreaSquareImages(features) {
+    function updatePlaceAreaDomMarkerSizes() {
       var _a;
-      if (!MAP || typeof MAP.addImage !== "function") return false;
-      let ready = true;
+      if (!MAP) return;
+      const zoom = Number(((_a = MAP.getZoom) == null ? void 0 : _a.call(MAP)) || 10);
+      for (const entry of placeAreaMarkers.values()) {
+        const side = interpolatePlaceAreaMarkerSide(zoom, entry.visited);
+        entry.element.style.width = `${side.toFixed(2)}px`;
+        entry.element.style.height = `${side.toFixed(2)}px`;
+      }
+    }
+    function syncPlaceAreaDomMarkers(features) {
+      var _a;
+      if (!MAP || typeof (maplibregl == null ? void 0 : maplibregl.Marker) !== "function") return;
+      const activeIds = /* @__PURE__ */ new Set();
       for (const feature of features) {
         if (![PLACE_MAP_LOD_OVERVIEW, PLACE_MAP_LOD_AREA].includes((_a = feature == null ? void 0 : feature.properties) == null ? void 0 : _a.mapLod)) continue;
-        const fill = feature.properties.fill;
-        const border = feature.properties.border;
-        const imageId = getPlaceAreaSquareImageId(fill, border);
-        feature.properties.areaSquareImage = imageId;
-        if (typeof MAP.hasImage === "function" && MAP.hasImage(imageId)) continue;
-        try {
-          MAP.addImage(imageId, buildPlaceAreaSquareImage(fill, border), { pixelRatio: 1 });
-        } catch (error) {
-          ready = false;
-          console.warn("[HGMap] Could not register area square icon", { imageId, error });
+        const id = String(feature.properties.id || "").trim();
+        if (!id) continue;
+        activeIds.add(id);
+        let entry = placeAreaMarkers.get(id);
+        if (!entry) {
+          const element = document.createElement("div");
+          element.className = PLACE_AREA_MARKER_CLASS;
+          element.dataset.placeId = id;
+          element.setAttribute("aria-hidden", "true");
+          element.style.boxSizing = "border-box";
+          element.style.borderStyle = "solid";
+          element.style.borderWidth = "1.5px";
+          element.style.borderRadius = "0";
+          element.style.pointerEvents = "none";
+          element.style.zIndex = "4";
+          const marker = new maplibregl.Marker({ element, anchor: "center" }).setLngLat(feature.geometry.coordinates).addTo(MAP);
+          entry = { marker, element, visited: false };
+          placeAreaMarkers.set(id, entry);
+        } else {
+          entry.marker.setLngLat(feature.geometry.coordinates);
         }
+        entry.visited = feature.properties.visited === 1;
+        entry.element.style.backgroundColor = feature.properties.fill;
+        entry.element.style.borderColor = feature.properties.border;
+        entry.element.style.opacity = ["review", "unknown"].includes(feature.properties.coordinateTrust) ? "0.78" : "1";
+        entry.element.style.boxShadow = `0 0 5px ${feature.properties.fill}`;
       }
-      return ready;
-    }
-    function getPlaceAreaSquareLayout(isGlow = false) {
-      const side = isGlow ? ["interpolate", ["linear"], ["zoom"], 7, 7, 9.5, 8.5, 12, 10, 16, 12, 18, 14] : [
-        "interpolate",
-        ["linear"],
-        ["zoom"],
-        7,
-        ["+", 5, ["*", 0.2, ["get", "visited"]]],
-        9.5,
-        ["+", 6.2, ["*", 0.25, ["get", "visited"]]],
-        12,
-        ["+", 7.4, ["*", 0.3, ["get", "visited"]]],
-        16,
-        ["+", 9, ["*", 0.4, ["get", "visited"]]],
-        18,
-        ["+", 10.5, ["*", 0.5, ["get", "visited"]]]
-      ];
-      return {
-        "icon-image": ["get", "areaSquareImage"],
-        "icon-size": ["/", side, 16],
-        "icon-allow-overlap": true,
-        "icon-ignore-placement": true,
-        "icon-pitch-alignment": "viewport",
-        "icon-rotation-alignment": "viewport"
-      };
-    }
-    function getPlaceAreaSquarePaint(isGlow = false) {
-      if (isGlow) {
-        return {
-          "icon-opacity": [
-            "case",
-            ["in", ["get", "coordinateTrust"], ["literal", ["review", "unknown"]]],
-            0.06,
-            0.14
-          ]
-        };
+      for (const [id, entry] of placeAreaMarkers) {
+        if (activeIds.has(id)) continue;
+        entry.marker.remove();
+        placeAreaMarkers.delete(id);
       }
-      return {
-        "icon-opacity": [
-          "case",
-          ["in", ["get", "coordinateTrust"], ["literal", ["review", "unknown"]]],
-          0.58,
-          1
-        ]
-      };
+      if (!placeAreaMarkerZoomBound) {
+        MAP.on("zoom", updatePlaceAreaDomMarkerSizes);
+        placeAreaMarkerZoomBound = true;
+      }
+      updatePlaceAreaDomMarkerSizes();
     }
     function getPlaceGlowPaint(isArea = false) {
       const radius = isArea ? ["interpolate", ["linear"], ["zoom"], 7, 3.5, 9.5, 6, 12, 8.2, 16, 11.5, 18, 15] : ["interpolate", ["linear"], ["zoom"], 10, 1.8, 12, 2.5, 14, 3.7, 16, 5.2, 18, 7.4];
@@ -862,7 +818,7 @@
       if (!features.length) return;
       const fc = { type: "FeatureCollection", features };
       applyStandardMapPalette();
-      ensurePlaceAreaSquareImages(features);
+      syncPlaceAreaDomMarkers(features);
       const src = MAP.getSource(SRC);
       if (src) {
         src.setData(fc);
@@ -872,28 +828,12 @@
       removeIfExists();
       MAP.addSource(SRC, { type: "geojson", data: fc });
       MAP.addLayer({
-        id: L_AREA_GLOW,
-        filter: PLACE_AREA_LOD_FILTER,
-        type: "symbol",
-        source: SRC,
-        layout: getPlaceAreaSquareLayout(true),
-        paint: getPlaceAreaSquarePaint(true)
-      });
-      MAP.addLayer({
         id: L_GLOW,
         minzoom: PLACE_DETAIL_MIN_ZOOM,
         filter: PLACE_DETAIL_LOD_FILTER,
         type: "circle",
         source: SRC,
         paint: getPlaceGlowPaint(false)
-      });
-      MAP.addLayer({
-        id: L_AREA_DOTS,
-        filter: PLACE_AREA_LOD_FILTER,
-        type: "symbol",
-        source: SRC,
-        layout: getPlaceAreaSquareLayout(false),
-        paint: getPlaceAreaSquarePaint(false)
       });
       MAP.addLayer({
         id: L_DOTS,
