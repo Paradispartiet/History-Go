@@ -1,6 +1,6 @@
 // @ts-nocheck
 // js/ui/place-rounds-fill-layout.js
-// Maksimerer de fire canonical rundingene i et 2 × 2-felt ved siden av frontImage.
+// Balanserer to, tre eller fire canonical PlaceCard-samlinger ved siden av frontImage.
 (function installPlaceRoundsFillLayout(global) {
   "use strict";
 
@@ -18,24 +18,27 @@
     const grid = document.querySelector("#placeCard .pc-icons-quad");
     if (!grid) return;
 
-    const count = Number(grid.dataset.roundCount || 0);
-    if (count !== 4) {
-      grid.style.removeProperty("--hg-round-fill-size");
+    const count = Number(grid.dataset.collectionCount || grid.dataset.roundCount || 0);
+    if (![2, 3, 4].includes(count)) {
+      grid.style.removeProperty("--hg-collection-fill-height");
+      grid.style.removeProperty("--hg-collection-circle-size");
       return;
     }
 
     const cols = 2;
-    const rows = 2;
+    const rows = count <= 2 ? 1 : 2;
     const gap = numericGap(grid);
     const rect = grid.getBoundingClientRect();
     const width = rect.width || grid.clientWidth || 0;
     const height = rect.height || grid.clientHeight || 0;
     if (width <= 0 || height <= 0) return;
 
-    const byWidth = (width - gap * (cols - 1)) / cols;
-    const byHeight = (height - gap * (rows - 1)) / rows;
-    const size = Math.max(1, Math.floor(Math.min(byWidth, byHeight)));
-    grid.style.setProperty("--hg-round-fill-size", `${size}px`);
+    const cellWidth = (width - gap * (cols - 1)) / cols;
+    const cellHeight = (height - gap * (rows - 1)) / rows;
+    const collectionHeight = Math.max(1, Math.floor(Math.min(cellHeight, cellWidth * 0.68)));
+    const circleSize = Math.max(1, Math.floor(Math.min(cellWidth, collectionHeight)));
+    grid.style.setProperty("--hg-collection-fill-height", `${collectionHeight}px`);
+    grid.style.setProperty("--hg-collection-circle-size", `${circleSize}px`);
   }
 
   function scheduleLayout() {
@@ -55,7 +58,7 @@
 
     if (!attrObserver && typeof global.MutationObserver === "function") {
       attrObserver = new global.MutationObserver(scheduleLayout);
-      attrObserver.observe(grid, { attributes: true, attributeFilter: ["data-round-count"] });
+      attrObserver.observe(grid, { attributes: true, attributeFilter: ["data-collection-count", "data-round-count"] });
     }
 
     if (!resizeObserver && typeof global.ResizeObserver === "function") {

@@ -2,7 +2,7 @@
 
 Status: **canonical produksjonsarbeidsflyt**  
 Eier: `place_by_place_production_workflow`  
-Sist kontrollert: **2026-08-14**
+Sist kontrollert: **2026-08-24**
 
 Dette dokumentet er arbeidsoppskriften for å ferdigstille **ett History GO-sted om gangen**.
 
@@ -23,7 +23,7 @@ Det er en **ruterings- og sjekkliste**, ikke en erstatning for subsystemenes egn
 | Description-produksjonspakke | `data/places/regler/place_description_production_v4_2.schema.json` |
 | Stedspopup / direkte faner og scrollbar | **`docs/PLACE_POPUP_SYSTEM.md`** |
 | Språkleksikon / dialektord og lokale uttrykk | **`docs/SPRAKLEKSIKON.md`** |
-| PlaceCard-rundinger | **`data/places/README_place_rounds.md`** |
+| PlaceCard-samlinger | **`data/places/README_place_rounds.md`** |
 | Brands-semantikk, klassifisering og place-kobling | **`data/brands/brand_rules_v1_1.json`** |
 | Kategori / canonical kategori-ID-er | `data/categories/category_contract.json` |
 | Fagverk / merke vs fag / navigasjon | `docs/FAGVERK_NAVIGATION.md` |
@@ -67,14 +67,14 @@ Det er derfor ikke lov å:
 - skrive `desc`/`popupDesc` uten Place Description-protokollen;
 - lage en People-record uten People Profile-kontrakten;
 - lage en Story uten Stories governance;
-- velge rundinger uten rundingkontrakten;
+- velge PlaceCard-samlinger uten samlingskontrakten;
 - endre koordinat uten coordinate-kontraktene.
 
 ---
 
 ## Obligatorisk arbeidsmåte — nullmåling og én fase om gangen
 
-Før et eksisterende eller nytt sted fylles, skal det lages en skriftlig nullmåling og sanerings-/produksjonsplan. Nullmålingen skal minst dekke canonical identitet, Politikk-, Historie-, Næringsliv- og Subkultur-gate når relevant, alle relevante popupfaner, inkludert datastyrte direktefaner, rundinger, People, Objects, Brands, Badges, Stories, Quiz, Knowledge, kilder og faktisk UI-visning.
+Før et eksisterende eller nytt sted fylles, skal det lages en skriftlig nullmåling og sanerings-/produksjonsplan. Nullmålingen skal minst dekke canonical identitet, Politikk-, Historie-, Næringsliv- og Subkultur-gate når relevant, alle relevante popupfaner, inkludert datastyrte direktefaner, PlaceCard-samlinger, People, Objects, Brands, Badges, Stories, Quiz, Knowledge, kilder og faktisk UI-visning.
 
 Produksjonen deles deretter i små faser. Bare én fase kan ha status `PÅGÅR` om gangen:
 
@@ -87,10 +87,10 @@ IKKE STARTET → PÅGÅR → KLAR FOR REVIEW → GODKJENT / BEGRUNNET N/A
 - [ ] aktiv fase og eksakt filscope er skrevet i arbeidskortet;
 - [ ] neste fase starter ikke før den aktive fasen er reviewet;
 - [ ] teknisk PASS brukes ikke som synonym for redaksjonell ferdigstatus;
-- [ ] en runding er ikke «bildeklar» fordi bare preview-elementet har bilde;
+- [ ] en samling er ikke ferdig fordi bare preview-elementet ser riktig ut;
 - [ ] hver popupfane vurderes og godkjennes separat;
-- [ ] hver godkjent fase merges som en liten, avgrenset PR og kontrolleres på faktisk `main`/produksjonsflate før neste fase starter;
-- [ ] arbeid samles ikke i en skjult flerfasebranch mens status rapporteres som publisert.
+- [ ] checkpointene reviewes sekvensielt på samme branch, mens 2–4 risikobaserte PR-er normalt brukes per sted;
+- [ ] branch-, PR-, merge- og live-status rapporteres presist; arbeid på en flercheckpoint-branch omtales aldri som publisert før merge.
 
 ### Stoppgate
 
@@ -99,8 +99,8 @@ Et sted kan ikke merkes `produksjonsklart` når nullmålingen eller fasesporinge
 ### Manuell sluttvurdering kan gjenåpne stedet
 
 - [ ] den synlige spilleropplevelsen vurderes som helhet etter at alle tekniske faser er merget;
-- [ ] hver av de fire innholdsrundingene åpnes på faktisk produksjonsflate; synlig antall, popupinnhold og datakilde må stemme, og en runding som viser falsk 0 under lasting er et blockerfunn;
-- [ ] alle rundings-preview kontrolleres for vellykket bildelast; manglende mediefil skal gi et tydelig ikon-/antallsfallback, aldri et ødelagt bildeikon;
+- [ ] hver av de 2–4 valgte PlaceCard-samlingene åpnes på faktisk produksjonsflate; synlig antall, popupinnhold og datakilde må stemme, og en samling som viser falsk 0 under lasting er et blockerfunn;
+- [ ] alle samlings-preview kontrolleres; manglende mediefil skal gi et tydelig ikon-/antallsfallback, aldri et ødelagt bildeikon;
 - [ ] Før/etter-tekstens retning, høyre/venstre, motivanker og observasjonsinstruks kontrolleres visuelt mot begge bildene;
 - [ ] tomme faner, svake bildevalg, kunstige samlinger og taksonomisk korrekte men brukerfiendtlige kombinasjoner registreres som reelle kvalitetsavvik;
 - [ ] manuell kvalitetskritikk kan gjenåpne en tidligere godkjent fase og oppheve `SLUTTFØRT`;
@@ -154,8 +154,8 @@ SPRÅKLEKSIKON-STATUS:
 SPRÅKLEKSIKON-TYPE — OMRÅDE / DIREKTE SPRÅKSTED / ENKELTSTED:
 DIALEKTLAG — KUN `placeScope: "area"` / N/A:
 DIALEKTORD/LOKALE UTTRYKK — RESEARCH OG PRODUKSJON:
-MÅL FOR INNHOLDSRUNDINGER: 4 + separat fast Badge
-VALGTE RUNDINGER:
+MÅL FOR PLACECARD-SAMLINGER: 2–4 kvalifiserte samlinger + separat fast Badge + obligatorisk Quiz
+VALGTE PLACECARD-SAMLINGER:
 PEOPLE-KANDIDATER:
 WORKS-KANDIDATER:
 BRANDS SOM ALLEREDE FINNES:
@@ -210,7 +210,7 @@ Sjekk:
 - [ ] søk fullt navn, gamle navn, aliaser og stavevarianter;
 - [ ] bekreft at samme fysiske/historiske objekt ikke allerede finnes som et annet canonical place;
 - [ ] kartlegg bygg, virksomheter, parker, plasser og andre delsteder innenfor eller langs stedet som allerede har egne canonical place-oppføringer;
-- [ ] legg innholdet hos riktig place-eier: et delsted med egen place-oppføring kan lenkes som relasjon eller brukes som tydelig avgrenset supplement, men kan ikke brukes i stedet for parent-place i noen fane, runding, bildepar, Story eller hovedpåstand;
+- [ ] legg innholdet hos riktig place-eier: et delsted med egen place-oppføring kan lenkes som relasjon eller brukes som tydelig avgrenset supplement, men kan ikke brukes i stedet for parent-place i noen fane, samling, bildepar, Story eller hovedpåstand;
 - [ ] finn manifest-loadet source-fil som faktisk eier stedet;
 - [ ] aggregate-/legacyfil er ikke feilaktig edit-target;
 - [ ] definer place-objektet i én presis setning;
@@ -284,7 +284,7 @@ Usikker koordinat skal ikke merkes `verified`.
 - [ ] ikke dupliser place i andre kategorier for å uttrykke tverrfaglighet;
 - [ ] `underbadge_ids` vurdert og alle ID-er finnes;
 - [ ] `emne_ids` vurdert;
-- [ ] Badges-rundingen er fast og vises øverst til høyre ved stedsoverskriften;
+- [ ] Badges-handlingen er fast, separat fra samlingene og vises øverst til høyre ved stedsoverskriften;
 - [ ] riktig badgegrafikk finnes;
 - [ ] Badges åpner `fagverk-sted.html?place=<place_id>`;
 - [ ] stedets fagverkside viser riktig sted, kategori og relevante fag-/emnekoblinger;
@@ -814,7 +814,7 @@ Kontroller spesielt der relevant:
 - idrettsanlegg: åpning, kapasitet, konstruksjon, historiske brukere/hendelser;
 - industri/teknologi: funksjon, drift, maskiner, energi, råvarer, transport, gjenbruk.
 
-`nature_profile` i Om betyr ikke automatisk Nature-runding.
+`nature_profile` i Om betyr ikke automatisk en PlaceCard-samling.
 
 ---
 
@@ -938,7 +938,7 @@ Det finnes ikke lenger en brukerrettet **Mer**-fane. Når source-data finnes, ma
 - [ ] **Observasjoner** vurdert når observasjonsdata finnes;
 - [ ] hvert tilleggslag får en navngitt direktefane bare når det faktisk har innhold;
 - [ ] ukjent legacy-innhold får en konkret, reviewbar faneetikett fra sin egen overskrift og parkeres ikke i en ny restkategori;
-- [ ] ingen av disse fanene brukes som søppelskuff for handlinger eller for fysiske elementer som egentlig eies av rundinger eller andre places.
+- [ ] ingen av disse fanene brukes som søppelskuff for handlinger eller for fysiske elementer som egentlig eies av PlaceCard-samlinger eller andre places.
 
 **Stoppgate:** Innhold som tidligere lå i Mer kan ikke skjules bak en restfane. Det skal enten ligge hos riktig eksisterende eier, vises som en konkret direktefane, eller utelates med dokumentert grunn.
 
@@ -954,35 +954,37 @@ Status kan ikke arves mellom faner. Særlig gjelder:
 
 ---
 
-# DEL D — RUNDINGER
+# DEL D — PLACECARD-SAMLINGER
 
-## 8. Kontroller PlaceCard-rundingene
+## 8. Kontroller PlaceCard-samlingene
 
 **LES FØRST — obligatorisk:** `data/places/README_place_rounds.md`
 
-Denne oppskriften gjentar ikke rundingspalett, profiler eller naturkartkrav. **Rundingskontrakten eier hele rundingsmodellen.**
+Denne oppskriften gjentar ikke samlingspool, profiler eller naturkartkrav. **PlaceCard-kontrakten eier hele samlingsmodellen.**
 
-- [ ] stedet følger canonical rundingskontrakt;
-- [ ] Badge-rundingen vises fast øverst til høyre ved stedsoverskriften og teller ikke blant de fire innholdsrundingene;
-- [ ] nøyaktig fire innholdsrundinger vises i et 2 × 2-felt ved `frontImage`;
-- [ ] hver runding har en naturlig brukerforståelse, en tydelig egen innholdstype og en reell stedsspesifikk samling;
-- [ ] en enkelt vilkårlig eller taksonomisk konstruert gjenstand er ikke nok til å gjøre Objects til en kvalitetsmessig ferdig runding;
-- [ ] Objects og Structures/Bygg brukes ikke som to separate rundinger når innholdet i praksis er de samme fysiske stedselementene eller forskjellen er uklar for spilleren;
-- [ ] to semantisk overlappende rundinger slås sammen eller erstattes av et mer meningsfullt canonical alternativ; hvis dagens rundingskontrakt hindrer dette, må kontrakt og runtime forbedres før stedet kan ferdigmeldes;
-- [ ] vanlig sted vurderer standarden `people · objects · brands`, og natursted `map · flora · fauna`, men standardprofilen fritar aldri fra relevans-, substans- og koherenskontrollen;
-- [ ] dersom standarden feiler, brukes bare den avgrensede og begrunnede `round_profile.content_round_ids`-overstyringen i rundingskontrakten; legacy `rounds` eller fri lokal palett er fortsatt forbudt;
-- [ ] kategoriens fjerde runding tilfører en ny opplevelse og er ikke bare et nytt navn på innhold som allerede ligger i en fast runding;
-- [ ] alle fire rundinger vurderes samlet i faktisk UI; korrekt JSON hver for seg er ikke tilstrekkelig;
-- [ ] hver runding åpnes i produksjon og viser reelt innhold; et korrekt register som ender i tom popup eller falsk 0 er ikke godkjent;
-- [ ] Personer-rundingen kontrollerer place-eierskap per profil: en personkobling som egentlig gjelder et delsted med egen canonical place, holdes tilbake eller flyttes til delstedet og kan ikke brukes som proxy for parent-place;
+- [ ] stedet følger canonical PlaceCard-samlingskontrakt;
+- [ ] Badges vises fast og separat ved stedsoverskriften og teller ikke blant samlingene;
+- [ ] obligatorisk Quiz vises som tydelig PlaceCard-handling og fungerer;
+- [ ] 2–4 kvalifiserte samlinger vises balansert ved `frontImage`: 2 i én rad, 3 som 2 + 1 og 4 som 2 × 2;
+- [ ] People, Flora og Fauna er sirkler; øvrige samlinger er avrundede rektangler;
+- [ ] Bilder ligger i `frontImage`-/medieflaten eller hos riktig bildeeier og brukes aldri som samling/reserve;
+- [ ] hver samling har en naturlig brukerforståelse, tydelig egen innholdstype og reell stedsspesifikk substans;
+- [ ] en enkelt vilkårlig eller taksonomisk konstruert gjenstand er ikke nok til å gjøre Objects ferdig;
+- [ ] Objects og Structures/Bygg brukes ikke som to separate samlinger når skillet er uklart eller innholdet overlapper;
+- [ ] semantisk overlappende samlinger slås sammen eller én utelates; to eller tre sterke samlinger er bedre enn en kunstig fjerde;
+- [ ] nye/fullproduserte steder bruker `place_card_profile.collection_ids` med 2–4 IDs, begrunnelse og verifiseringsdato;
+- [ ] eksisterende `round_profile.content_round_ids` leses bare gjennom kompatibilitetslaget, og `images` filtreres bort;
+- [ ] alle valgte samlinger vurderes samlet i faktisk UI; korrekt JSON hver for seg er ikke tilstrekkelig;
+- [ ] hver samling åpnes i produksjon og viser reelt innhold; tom popup eller falsk 0 er ikke godkjent;
+- [ ] People kontrollerer place-eierskap per profil: en personkobling som egentlig gjelder et delsted med egen canonical place, holdes tilbake eller flyttes til delstedet og kan ikke brukes som proxy for parent-place;
 - [ ] mutable People-manifest, profilfiler for åpent sted og canonical relasjonsregistre revalideres etter produksjonsendringer; aggregerte profilfiler uten place-id i filstien registreres i manifestets `priorityFilesByPlace`; en stale cache som mangler nye place→person-koblinger, gir tom popup eller falsk 0 er et blockerfunn;
-- [ ] alle fire rundingene har et forståelig tilgjengelig navn i faktisk UI;
+- [ ] alle valgte samlinger har et forståelig tilgjengelig navn i faktisk UI;
 - [ ] runtime og data bruker ikke legacy 6-/9-/12-rundersmodell i mediefeltet;
 - [ ] preview representerer samlingen ærlig og brukes ikke som innholdsfilter;
-- [ ] et preview med manglende/ødelagt bildefil faller tilbake til rundingens ikon og antall uten ødelagt bildeikon;
+- [ ] et preview med manglende/ødelagt bildefil faller tilbake til samlingens ikon og antall uten ødelagt bildeikon;
 - [ ] gammel place-spesifikk `rounds`-kuratering brukes ikke som ny standard.
 
-**Stoppgate:** Stedet er ikke rundingsklart dersom én av de fire rundingene er tynn, kunstig, misvisende eller i vesentlig semantisk overlapp med en annen runding. Fire plasser skal aldri fylles bare for å oppnå 4+1-layouten.
+**Stoppgate:** Stedet er ikke PlaceCard-klart dersom en valgt samling er tynn, kunstig, misvisende eller i vesentlig semantisk overlapp med en annen. Runtime, schema og tester må støtte modellen før stedet kan ferdigmeldes.
 
 ---
 
@@ -1077,7 +1079,7 @@ Når historisk rute berøres: **LES FØRST:** `docs/README_HistoryGo_Historiske_
 
 **LES FØRST — obligatorisk:** `docs/people-of-places-method.md`
 
-Selv om People ikke velges som runding, skal relevante personer vurderes.
+Selv om People ikke velges som PlaceCard-samling, skal relevante personer vurderes.
 
 Researchrekkefølge:
 
@@ -1098,7 +1100,7 @@ Researchrekkefølge:
 - [ ] `desc` er en kort, særpreget People-teaser, mens `popupDesc` er den lengre profilteksten;
 - [ ] navnet er ikke det eneste som skiller ellers malidentiske `desc`/`popupDesc`;
 - [ ] gjentatte setningsåpninger og boilerplate er eksplisitt kontrollert;
-- [ ] hver person som vises i den ferdige rundingen har identitetskontrollert bilde eller tydelig merket redaksjonell illustrasjon;
+- [ ] hver person som vises i den ferdige People-samlingen har identitetskontrollert bilde eller tydelig merket redaksjonell illustrasjon;
 - [ ] manglende tillatt foto kan løses med redaksjonell illustrasjon etter bildekontrakten; logoer kan brukes som identifikasjon i Brands, men ikke som personportrett.
 
 ### Hvis personprofil opprettes eller revideres
@@ -1135,7 +1137,7 @@ Brands er ikke begrenset til forbrukermerker. Profesjonelle firmaer, arkitektur-
 - [ ] aktørtype alene brukes verken som godkjenning eller avslag;
 - [ ] gjenbruk eksisterende ID når kandidaten allerede er canonical;
 - [ ] dokumenter Brand–sted-koblingen med inspectable kilde, konkret rolle og tidsrom;
-- [ ] **alle** canonical Brands som skal være synlige i den ferdige rundingen har lokal, verifisert logo eller autentisk dokumentert historisk ordmerke/brandmark;
+- [ ] **alle** canonical Brands som skal være synlige i den ferdige Brand-samlingen har lokal, verifisert logo eller autentisk dokumentert historisk ordmerke/brandmark;
 - [ ] logo-/ordmerkedekning er **100 %** før Brand-fasen kan godkjennes;
 - [ ] vanlig dokumentarfoto kan supplere et brand, men teller ikke som logo;
 - [ ] navnefallback teller ikke som ferdig logoport;
@@ -1145,7 +1147,7 @@ Brands er ikke begrenset til forbrukermerker. Profesjonelle firmaer, arkitektur-
 - [ ] null treff i Brand-master eller `brands_by_place` behandles som «må researches», ikke som N/A;
 - [ ] N/A brukes bare etter dokumentert kandidatsøk og kandidatspesifikke avvisningsgrunner.
 
-Personverk håndteres i People-profilen etter People-kontrakten, ikke som PlaceCard-runding.
+Personverk håndteres i People-profilen etter People-kontrakten, ikke som PlaceCard-samling.
 
 ---
 
@@ -1248,13 +1250,13 @@ Hvis legacy Wonderkammer finnes:
 - [ ] narrativ episode → Story bare hvis Story-kontrakten består;
 - [ ] gammel entry slettes ikke før canonical erstatning er validert.
 
-Civication Store beholdes som eget spillsystem. Det er ikke en PlaceCard-runding.
+Civication Store beholdes som eget spillsystem. Det er ikke en PlaceCard-samling.
 
 ---
 
 # DEL I — BILDER
 
-## 19. Hovedbilder og rundingsbilder
+## 19. Hovedbilder og samlingsbilder
 
 For hvert bilde som publiseres:
 
@@ -1265,13 +1267,13 @@ For hvert bilde som publiseres:
 - [ ] historisk bilde presenteres som historisk;
 - [ ] illustrasjon presenteres ikke som dokumentarfoto;
 - [ ] attribusjon/lisens lagres der datamodellen krever det;
-- [ ] hver valgt runding har minst ett faktisk bildeklart preview;
+- [ ] hver valgt samling har et ærlig preview; der egnet bilde mangler brukes samlingens ikon og antall;
 - [ ] Objects/Details/Spots viser det konkrete elementet, ikke bare generisk hovedbilde;
 - [ ] People-bilder følger `docs/PEOPLE_IMAGES.md`.
 
 ### Stoppgate
 
-En valgt runding uten reelt visuelt innhold er ikke produksjonsklar selv om JSON/CI er grønn.
+En valgt samling med ødelagt, misvisende eller falskt preview er ikke produksjonsklar selv om JSON/CI er grønn.
 
 ---
 
@@ -1309,20 +1311,23 @@ En valgt runding uten reelt visuelt innhold er ikke produksjonsklar selv om JSON
 - [ ] popup har Om · Historie · Fortellinger · Før/etter · Nyheter · Lesespor · Kilder · Mer;
 - [ ] Før/etter-hovedparet er visuelt sammenlignbart og inkluderer et reelt gammelt–nå-lag når stedet og arkivtilgangen tilsier det;
 - [ ] Nyheter, Lesespor og Mer er kontrollert som faktiske brukerflater; tomt/N/A er ikke godkjent bare fordi data mangler;
-- [ ] rundingssettet følger `data/places/README_place_rounds.md`;
-- [ ] fast Badges-runding vises øverst til høyre ved stedsoverskriften;
-- [ ] fire innholdsrundinger vises i et 2 × 2-felt ved `frontImage`;
-- [ ] alle valgte rundinger har korrekte bilder;
+- [ ] PlaceCard-samlingene følger `data/places/README_place_rounds.md`;
+- [ ] Badges vises separat ved stedsoverskriften;
+- [ ] obligatorisk Quiz er tydelig og fungerer;
+- [ ] 2–4 kvalifiserte samlinger vises balansert ved `frontImage`;
+- [ ] People, Flora og Fauna er sirkler; øvrige samlinger er avrundede rektangler;
+- [ ] Bilder ligger i medieflaten/riktig popupflate og aldri som PlaceCard-samling eller reserve;
+- [ ] alle valgte samlinger har korrekte preview eller robust ikonfallback;
 - [ ] People-kortet viser personens korte `desc`, ikke hele `popupDesc`;
 - [ ] full People-tekst vises først i personpopupen;
 - [ ] Badges åpner riktig sted/fagverk;
-- [ ] Badge og de fire canonicale innholdsrundingene åpner riktig innhold;
-- [ ] de fire rundingene er innholdsmessig tydelige og ikke kunstige eller semantisk overlappende;
-- [ ] Objects bæres av en naturlig samling og er ikke en egen runding bare på grunn av én tilfeldig gjenstand;
+- [ ] Badge og alle valgte canonicale samlinger åpner riktig innhold;
+- [ ] samlingene er innholdsmessig tydelige og ikke kunstige eller semantisk overlappende;
+- [ ] Objects bæres av en naturlig samling og velges ikke bare på grunn av én tilfeldig gjenstand;
 - [ ] Brands viser bare kandidater som består `data/brands/brand_rules_v1_1.json` og har dokumentert stedskobling;
 - [ ] natursteder bruker den canonical naturprofilen;
-- [ ] Civication/Wonderkammer vises ikke som canonical runding;
-- [ ] På stedet ligger under rundingene;
+- [ ] Civication/Wonderkammer vises ikke som canonical samling;
+- [ ] På stedet ligger under samlingene;
 - [ ] visit-knapp/status fungerer;
 - [ ] favorittstatus fungerer;
 - [ ] quiz fungerer uten å skrive fysisk besøk;
@@ -1346,8 +1351,8 @@ En valgt runding uten reelt visuelt innhold er ikke produksjonsklar selv om JSON
 - [ ] Brands følger den canonicale Brand-definisjonen uten å snevres inn til bare forbrukermerker eller utvides til en generell aktørrestkategori;
 - [ ] Før/etter er vurdert for sammenlignbart utsnitt, historisk dybde og faktisk nåbilde — ikke bare lisens og kilder;
 - [ ] Nyheter, Lesespor og Mer har reell dekning eller en dokumentert, streng N/A-begrunnelse etter aktivt søk;
-- [ ] rundingsinnhold er ikke filler;
-- [ ] rundingene er samlet vurdert for brukerforståelse, substans og semantisk overlapp;
+- [ ] samlingsinnhold er ikke filler;
+- [ ] PlaceCard-samlingene er samlet vurdert for brukerforståelse, substans og semantisk overlapp;
 - [ ] avvist/usikkert innhold er fortsatt utelatt.
 
 ---
@@ -1432,13 +1437,16 @@ Et sted er **sted-produksjon ferdig** først når hvert punkt nedenfor er sant e
 - [ ] Kilder;
 - [ ] Mer / strengt dokumentert N/A etter søk i alle relevante innholdseiere.
 
-### Rundinger
+### PlaceCard-samlinger
 - [ ] `data/places/README_place_rounds.md` er fulgt;
-- [ ] Badges vises fast øverst til høyre ved stedsoverskriften;
-- [ ] stedet viser nøyaktig fire innholdsrundinger fra riktig canonical profil;
-- [ ] hver runding er substansiell, naturlig og tydelig forskjellig fra de andre;
+- [ ] Badges vises separat ved stedsoverskriften;
+- [ ] Quiz vises som obligatorisk, tydelig handling;
+- [ ] stedet viser 2–4 samlinger fra `place_card_profile`, eller dokumentert legacy-adapter før migrering;
+- [ ] hver samling er substansiell, naturlig og tydelig forskjellig fra de andre;
+- [ ] form og balansert 2/3/4-layout er kontrollert på mobil og desktop;
+- [ ] Bilder brukes ikke som samling eller reserve;
 - [ ] Objects og Structures/Bygg er ikke kunstig splittet;
-- [ ] preview og innhold følger rundingskontrakten.
+- [ ] preview og innhold følger PlaceCard-kontrakten.
 
 ### På stedet / læring
 - [ ] Events / N/A;
@@ -1475,7 +1483,7 @@ Et sted er **sted-produksjon ferdig** først når hvert punkt nedenfor er sant e
 
 ### Bilder
 - [ ] hovedbilder;
-- [ ] rundingspreview;
+- [ ] samlingspreview;
 - [ ] identitet;
 - [ ] lisens/attribusjon der relevant.
 
@@ -1545,14 +1553,17 @@ LES: docs/PLACE_POPUP_SYSTEM.md
 - [ ] Kilder — status + brukerrettet kildeflate
 - [ ] Mer — status + egen N/A-begrunnelse/evidens
 
-### F. Rundinger
+### F. PlaceCard-samlinger
 LES: data/places/README_place_rounds.md
-Mål: [ ] 4 innholdsrundinger + separat fast Badge
-- [ ] Badge — separat og fast øverst til høyre
-- [ ] riktig fast profil: `people · objects · brands` / `map · flora · fauna`
-- [ ] fire innholdsrundinger i et 2 × 2-felt ved `frontImage`
-For hver innholdsrunding: [ ] relevant  [ ] stedsspesifikk  [ ] substansiell  [ ] bildeklart  [ ] riktig flow
-Samlet: [ ] tydelig forskjellige samlinger  [ ] ingen kunstig Objects/Structures-splitt  [ ] ingen enkel gjenstand som fyll
+Mål: [ ] 2–4 kvalifiserte samlinger + separat Badge + obligatorisk Quiz
+- [ ] `place_card_profile.collection_ids` / dokumentert legacy-adapter
+- [ ] Badge separat ved overskriften
+- [ ] Quiz tydelig og fungerende
+- [ ] 2/3/4-layout balansert ved `frontImage`
+- [ ] People/Flora/Fauna sirkler; øvrige samlinger avrundede rektangler
+- [ ] Bilder bare i medie-/bildeflater, aldri som samling/reserve
+For hver samling: [ ] relevant  [ ] stedsspesifikk  [ ] substansiell  [ ] previewklart  [ ] riktig flow
+Samlet: [ ] tydelig forskjellige samlinger  [ ] ingen kunstig Objects/Structures-splitt  [ ] ingen enkel gjenstand som fyll  [ ] ingen kunstig fjerde samling
 
 ### G. People / Stories / Quiz
 - [ ] People of Places lest og vurdert
@@ -1595,12 +1606,12 @@ Samlet: [ ] tydelig forskjellige samlinger  [ ] ingen kunstig Objects/Structures
 
 ### K. Bilder og slutt-QA
 - [ ] hovedbilder
-- [ ] rundingsbilder
+- [ ] samlingsbilder
 - [ ] Før/etter: sammenlignbart utsnitt + gammel–nå-lag + faktisk nåbilde
 - [ ] Nyheter, Lesespor og Mer: innhold eller strengt dokumentert N/A etter søk
 - [ ] identitet/attribusjon
 - [ ] JSON/referanser
-- [ ] fire-runders 2 × 2-felt + separat Badge-plassering
+- [ ] balansert 2-/3-/4-samlingslayout + separat Badge-plassering + tydelig Quiz
 - [ ] popupfaner
 - [ ] relevant CI
 - [ ] ren slutt-diff

@@ -9,8 +9,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const script = fs.readFileSync(path.join(__dirname, "../js/ui/place-rounds-fill-layout.js"), "utf8");
 const css = fs.readFileSync(path.join(__dirname, "../css/place-rounds-fill-layout.css"), "utf8");
 
-test("four rounds fill a two by two grid", () => {
-  const dom = new JSDOM('<body><div id="placeCard"><div class="pc-icons-quad" data-round-count="4"></div></div></body>', { runScripts: "outside-only" });
+function layoutFor(count) {
+  const dom = new JSDOM(`<body><div id="placeCard"><div class="pc-icons-quad" data-collection-count="${count}"></div></div></body>`, { runScripts: "outside-only" });
   const w = dom.window;
   const grid = w.document.querySelector(".pc-icons-quad");
   grid.getBoundingClientRect = () => ({ width: 330, height: 220 });
@@ -20,13 +20,29 @@ test("four rounds fill a two by two grid", () => {
   w.ResizeObserver = undefined;
   w.eval(script);
   w.HGPlaceRoundsFillLayout.layout();
-  assert.equal(grid.style.getPropertyValue("--hg-round-fill-size"), "105px");
+  return { dom, grid };
+}
+
+test("two collections use one balanced row", () => {
+  const { dom, grid } = layoutFor(2);
+  assert.equal(grid.style.getPropertyValue("--hg-collection-fill-height"), "108px");
+  assert.equal(grid.style.getPropertyValue("--hg-collection-circle-size"), "108px");
   dom.window.close();
 });
 
-test("only the canonical four-round layout remains", () => {
-  assert.match(css, /data-round-count="4"[\s\S]*repeat\(2, minmax\(0, 1fr\)\)/);
-  assert.doesNotMatch(css, /data-round-count="3"/);
-  assert.doesNotMatch(css, /data-round-count="6"/);
-  assert.match(script, /count !== 4/);
+test("three and four collections use balanced two-row sizing", () => {
+  for (const count of [3, 4]) {
+    const { dom, grid } = layoutFor(count);
+    assert.equal(grid.style.getPropertyValue("--hg-collection-fill-height"), "105px");
+    assert.equal(grid.style.getPropertyValue("--hg-collection-circle-size"), "105px");
+    dom.window.close();
+  }
+});
+
+test("CSS owns 2/3/4 layouts and shape rules", () => {
+  for (const count of [2, 3, 4]) assert.match(css, new RegExp(`data-collection-count="${count}"`));
+  assert.match(css, /data-collection-shape="circle"[\s\S]*border-radius:50%/);
+  assert.match(css, /data-collection-shape="rectangle"[\s\S]*border-radius:clamp/);
+  assert.match(css, /data-collection-position="2"[\s\S]*grid-column:1 \/ -1/);
+  assert.match(script, /\[2, 3, 4\]\.includes\(count\)/);
 });

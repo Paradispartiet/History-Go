@@ -32,6 +32,7 @@
   const L_AREA_HIT = "hg-place-areas-hit";
   const L_AREA_DOTS = "hg-place-areas-dots";
   const L_AREA_LAB = "hg-place-areas-label";
+  const PLACE_AREA_SQUARE_IMAGE_ID = "hg-place-area-square-sdf";
   const PLACE_AREA_LABEL_MIN_ZOOM = 9.5;
   const PLACE_DETAIL_MIN_ZOOM = 11.8;
   const PLACE_DETAIL_HIT_MIN_ZOOM = 12.35;
@@ -660,8 +661,49 @@
     ];
   }
 
+  function buildPlaceAreaSquareSdfImage(size = 32) {
+    const data = new Uint8Array(size * size * 4);
+    const center = size / 2;
+    const halfSide = size / 4;
+
+    for (let y = 0; y < size; y += 1) {
+      for (let x = 0; x < size; x += 1) {
+        const dx = Math.abs(x + 0.5 - center) - halfSide;
+        const dy = Math.abs(y + 0.5 - center) - halfSide;
+        const outside = Math.hypot(Math.max(dx, 0), Math.max(dy, 0));
+        const inside = Math.min(Math.max(dx, dy), 0);
+        const signedDistance = outside + inside;
+        const alpha = Math.max(0, Math.min(255, Math.round(128 - signedDistance * 18)));
+        const offset = (y * size + x) * 4;
+        data[offset] = 255;
+        data[offset + 1] = 255;
+        data[offset + 2] = 255;
+        data[offset + 3] = alpha;
+      }
+    }
+
+    return { width: size, height: size, data };
+  }
+
+  function ensurePlaceAreaSquareImage() {
+    if (!MAP || typeof MAP.addImage !== "function") return false;
+    if (typeof MAP.hasImage === "function" && MAP.hasImage(PLACE_AREA_SQUARE_IMAGE_ID)) return true;
+
+    try {
+      MAP.addImage(
+        PLACE_AREA_SQUARE_IMAGE_ID,
+        buildPlaceAreaSquareSdfImage(),
+        { sdf: true, pixelRatio: 1 }
+      );
+      return true;
+    } catch (error) {
+      console.warn("[HGMap] Could not register area square icon", error);
+      return false;
+    }
+  }
+
   function getPlaceAreaSquareLayout(isGlow = false) {
-    const size = isGlow
+    const side = isGlow
       ? ["interpolate", ["linear"], ["zoom"], 7, 7.0, 9.5, 8.5, 12, 10.0, 16, 12.0, 18, 14.0]
       : [
           "interpolate", ["linear"], ["zoom"],
@@ -673,41 +715,40 @@
         ];
 
     return {
-      "text-field": "■",
-      "text-font": ["Open Sans Semibold", "Arial Unicode MS Regular"],
-      "text-size": size,
-      "text-allow-overlap": true,
-      "text-ignore-placement": true,
-      "text-pitch-alignment": "viewport",
-      "text-rotation-alignment": "viewport"
+      "icon-image": PLACE_AREA_SQUARE_IMAGE_ID,
+      "icon-size": ["/", side, 16],
+      "icon-allow-overlap": true,
+      "icon-ignore-placement": true,
+      "icon-pitch-alignment": "viewport",
+      "icon-rotation-alignment": "viewport"
     };
   }
 
   function getPlaceAreaSquarePaint(isGlow = false) {
     if (isGlow) {
       return {
-        "text-color": ["get", "fill"],
-        "text-opacity": [
+        "icon-color": ["get", "fill"],
+        "icon-opacity": [
           "case",
           ["in", ["get", "coordinateTrust"], ["literal", ["review", "unknown"]]], 0.06,
           0.14
         ],
-        "text-halo-color": ["get", "fill"],
-        "text-halo-width": isStandardMapStyle() ? 1.4 : 1.1,
-        "text-halo-blur": 1.0
+        "icon-halo-color": ["get", "fill"],
+        "icon-halo-width": isStandardMapStyle() ? 1.4 : 1.1,
+        "icon-halo-blur": 1.0
       };
     }
 
     return {
-      "text-color": ["get", "fill"],
-      "text-opacity": [
+      "icon-color": ["get", "fill"],
+      "icon-opacity": [
         "case",
         ["in", ["get", "coordinateTrust"], ["literal", ["review", "unknown"]]], 0.58,
         1
       ],
-      "text-halo-color": ["get", "border"],
-      "text-halo-width": isStandardMapStyle() ? 1.2 : 1.0,
-      "text-halo-blur": 0
+      "icon-halo-color": ["get", "border"],
+      "icon-halo-width": isStandardMapStyle() ? 1.2 : 1.0,
+      "icon-halo-blur": 0
     };
   }
 
@@ -895,6 +936,7 @@
 
     const fc = { type: "FeatureCollection", features };
     applyStandardMapPalette();
+    ensurePlaceAreaSquareImage();
     const src = MAP.getSource(SRC);
     if (src) {
       src.setData(fc);

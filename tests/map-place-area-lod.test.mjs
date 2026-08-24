@@ -101,11 +101,17 @@ test("områdemarkører er mindre firkanter uten å redusere hitflaten", () => {
   const squarePaint = source.match(/function getPlaceAreaSquarePaint\(isGlow = false\) \{[\s\S]*?\n  \}/)?.[0] || "";
   assert.ok(squareLayout, "mangler layout for firkantede områdemarkører");
   assert.ok(squarePaint, "mangler paint for firkantede områdemarkører");
-  assert.match(squareLayout, /"text-field": "■"/);
+  assert.match(source, /PLACE_AREA_SQUARE_IMAGE_ID\s*=\s*"hg-place-area-square-sdf"/);
+  assert.match(source, /function buildPlaceAreaSquareSdfImage\(size = 32\)/);
+  assert.match(source, /MAP\.addImage\([\s\S]*?PLACE_AREA_SQUARE_IMAGE_ID,[\s\S]*?sdf: true/);
+  assert.match(source, /ensurePlaceAreaSquareImage\(\);[\s\S]*?const src = MAP\.getSource\(SRC\)/);
+  assert.match(squareLayout, /"icon-image": PLACE_AREA_SQUARE_IMAGE_ID/);
+  assert.match(squareLayout, /"icon-size": \["\/", side, 16\]/);
+  assert.doesNotMatch(squareLayout, /text-field|■/, "områdefirkanten skal ikke være avhengig av kartfonten");
   assert.match(squareLayout, /7, \["\+", 5\.0/);
   assert.match(squareLayout, /12, \["\+", 7\.4/);
   assert.match(squareLayout, /18, \["\+", 10\.5/);
-  assert.match(squarePaint, /"text-halo-color": \["get", "border"\]/);
+  assert.match(squarePaint, /"icon-halo-color": \["get", "border"\]/);
 
   assert.match(source, /id: L_AREA_GLOW,[\s\S]*?type: "symbol",[\s\S]*?layout: getPlaceAreaSquareLayout\(true\),[\s\S]*?paint: getPlaceAreaSquarePaint\(true\)/);
   assert.match(source, /id: L_AREA_DOTS,[\s\S]*?type: "symbol",[\s\S]*?layout: getPlaceAreaSquareLayout\(false\),[\s\S]*?paint: getPlaceAreaSquarePaint\(false\)/);
