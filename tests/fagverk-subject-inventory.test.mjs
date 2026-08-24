@@ -49,7 +49,7 @@ test('Auditerte fag har dokumentert og statusriktig fremdrift gjennom den genere
     assert.equal(subject.editorialStatus, 'not_started');
   }
   const helse = s.subjects.find((x) => x.id === 'helse');
-  assert.deepEqual([helse.navigationStatus, helse.assessmentStatus, helse.editorialStatus], ['materialized', 'audited', 'chapters_in_progress']);
+  assert.deepEqual([helse.navigationStatus, helse.assessmentStatus, helse.editorialStatus], ['materialized', 'audited', 'complete']);
   for (const id of audited.map((x) => x.id)) {
     const subject = s.subjects.find((x) => x.id === id);
     assert.equal(subject.navigationStatus, 'materialized');
