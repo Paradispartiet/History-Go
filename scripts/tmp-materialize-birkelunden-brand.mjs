@@ -2,7 +2,7 @@ import fs from 'node:fs';
 
 const placeId = 'birkelunden';
 const brandId = 'bondens_marked';
-const logoPath = 'bilder/kort/brands/bondens_marked.svg';
+const logoPath = 'bilder/kort/brands/bondens_marked.png';
 const masterPath = 'data/brands/brands_master.json';
 const byPlacePath = 'data/brands/brands_by_place.json';
 
@@ -30,7 +30,7 @@ const brand = {
   state: 'catalog',
   status: 'active',
   verification: 'verified',
-  verified_at: '2026-08-23',
+  verified_at: '2026-08-24',
   popupdesc: 'Bondens marked er et norsk markedsnavn etablert i 2003. Organisasjonen oppgir selv gjentatte markedsdager i Birkelunden og bruker stedet som fast markedsplass i Oslo.',
   desc: 'Nasjonalt lokalmat- og produsentmarked med dokumentert, gjentatt tilstedeværelse i Birkelunden.',
   tags: ['brand', 'farmers_market', 'local_food', 'birkelunden', 'oslo'],
@@ -38,27 +38,27 @@ const brand = {
   source_urls: [
     'https://bondensmarked.no/om-oss',
     'https://bondensmarked.no/markedsplasser/birkelunden-gr-nerloekka',
-    'https://bondensmarked.no/om-oss/bilder'
+    'https://kommunikasjon.ntb.no/presserom/17848583/bondensmarked/mi?item=logo-17981723'
   ],
   logo: logoPath,
   imageMeta: {
-    sourcePage: 'https://bondensmarked.no/om-oss/bilder',
-    sourceAsset: 'https://bondensmarked.no/bm-logo.svg',
+    sourcePage: 'https://kommunikasjon.ntb.no/presserom/17848583/bondensmarked/mi?item=logo-17981723',
+    sourceAsset: 'https://kommunikasjon.ntb.no/data/images/00438/af74f0cb-914c-4614-a0e6-0c1ff9c4c611.png',
     creator: 'Bondens marked',
-    credit: 'Bondens marked official website',
+    credit: 'Bondens marked / NTB Kommunikasjon mediebank',
     rightsBasis: 'referential_trademark_identification',
-    rightsNote: 'Official logo asset published by Bondens marked and stored locally only for referential identification. No endorsement is implied.',
+    rightsNote: 'Official PNG logo distributed in the Bondens marked press-room media bank and stored locally only for referential identification. No endorsement is implied.',
     temporalScope: 'current',
     assetKind: 'logo',
-    sourceForm: 'official_logo_asset',
-    transformation: 'downloaded unchanged from the official Bondens marked website',
+    sourceForm: 'official_pressroom_logo_asset',
+    transformation: 'downloaded unchanged from the official Bondens marked NTB press-room media bank',
     reviewStatus: 'manually_approved',
     usageContext: 'referential_identification',
     noEndorsement: true,
     generated: false,
     reconstructed: false,
     bytes,
-    reviewedAt: '2026-08-23'
+    reviewedAt: '2026-08-24'
   }
 };
 
