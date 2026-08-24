@@ -104,6 +104,15 @@ if (latestDomain) {
     [latestDomain.fulltextMaterializer],
     `Helse ${latestDomain.slug} deterministic fulltext materialization`,
   );
+  if (count === registry.totalDomains) {
+    for (const script of [
+      "tools/audit-helse-theory-integrity.mjs",
+      "scripts/materialize-helse-strict-completion-v1.mjs",
+    ]) {
+      requireFile(script, "Helse strict completion contract");
+      runNode([script], script);
+    }
+  }
   runNode(
     [latestDomain.fulltextAudit],
     `Helse ${latestDomain.slug} fulltext audit`,
@@ -132,6 +141,8 @@ if (latestDomain) {
   tests.push(latestDomain.fulltextTest);
 }
 for (const test of [
+  "tests/helse-theory-integrity.test.mjs",
+  "tests/helse-strict-completion-v1.test.mjs",
   "tests/helse-cumulative-progress-v1.test.mjs",
   "tests/fagverk-subject-inventory.test.mjs",
   "tests/fagverk-general-engine.test.mjs",
