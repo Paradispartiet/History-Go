@@ -1753,6 +1753,187 @@
           "choices": []
         }
       ]
+    },
+    {
+      "id": "role_world_realism_lillebekk_case",
+      "purpose": "Åpne Lillebekk som én vedvarende plansak med eksplisitt kunnskapsgrunnlag, ansvar og senere beslutningsspor.",
+      "learning_focus": [
+        "persistent_work_case",
+        "lokalkunnskap",
+        "stedsanalyse",
+        "sporbarhet"
+      ],
+      "mails": [
+        {
+          "id": "by_radgiver_realism_case_open_001",
+          "mail_type": "job",
+          "mail_family": "role_world_realism_lillebekk_case",
+          "role_scope": "by_radgiver_plan",
+          "phase": "advanced",
+          "day_phase": "morning",
+          "priority": 60,
+          "cooldown": 8,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Elin, plansjef",
+          "person_id": "elin_plansjef",
+          "place_id": "radhuset_planavdeling",
+          "thread_key": "by_radgiver_lillebekk_realism_001",
+          "subject": "Lillebekk blir din sak: skoleveien finnes i hverdagen, men ikke i beslutningsgrunnlaget",
+          "summary": "Elin gir deg ansvar for å gjøre Lillebekk behandlingsklar. Det formelle kartet ser ryddig ut, men befaring og medvirkning viser en faktisk skolevei og et grøntdrag med overvannsfunksjon som ikke er godt nok dokumentert.",
+          "purpose": "Åpne én vedvarende plansak som må overleve gjennom analyse, godkjenning, History Go-læring, rework og politisk oversendelse.",
+          "stakes": "Hvis saken behandles som en serie enkeltmailer kan ansvar og usikkerhet forsvinne. Hvis den holdes som én sak må hvert senere valg stå i et spor som andre kan etterprøve.",
+          "situation": [
+            "Utbygger trenger forutsigbarhet før prosjekteringen går videre.",
+            "Hanne har dokumentert faktisk skolevei, mens Signe peker på at grøntdraget også fungerer som flomvei.",
+            "Elin ber deg eie det faglige grunnlaget, men minner om at du ikke eier det politiske vedtaket."
+          ],
+          "task_domain": "vedvarende_reguleringssak",
+          "task_kind": "job",
+          "competency": "stedsanalyse_og_saksansvar",
+          "pressure": "utvalgsfrist_vs_ufullstendig_kunnskapsgrunnlag",
+          "choice_axis": "dokumenter_faktisk_bruk_vs_glatt_over_avviket",
+          "consequence_axis": "sporbar_sak_vs_sen_klagerisiko",
+          "narrative_arc": "lillebekk_fra_kunnskapsgrunnlag_til_politisk_behandling",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "by_radgiver_lillebekk_plan_case_001"
+            ],
+            "institution_id": "oslo_kommune_planavdeling_001",
+            "deadline_ref": "utvalg_etter_rework"
+          },
+          "effects": {
+            "work_object_ops": [
+              {
+                "op": "create",
+                "event_id": "by_radgiver_lillebekk_case_opened",
+                "work_object": {
+                  "work_object_id": "by_radgiver_lillebekk_plan_case_001",
+                  "kind": "reguleringssak",
+                  "role_scope": "by_radgiver_plan",
+                  "institution_id": "oslo_kommune_planavdeling_001",
+                  "title": "Lillebekk detaljregulering — skolevei, grøntdrag og fortetting",
+                  "status": "open",
+                  "phase": "stedsanalyse_og_kunnskapsgrunnlag",
+                  "people_refs": [
+                    "elin_plansjef",
+                    "ivar_utbygger",
+                    "hanne_beboer",
+                    "signe_byokolog",
+                    "nora_planjuss",
+                    "maja_utvalgssekretaer"
+                  ],
+                  "place_refs": [
+                    "oslo_radhus",
+                    "skolevei_lillebekk",
+                    "grontdrag_lillebekk"
+                  ],
+                  "knowledge_refs": [
+                    "reguleringsplan",
+                    "medvirkning",
+                    "rekkefolgekrav",
+                    "politisk_lesbarhet",
+                    "juridisk_presisjon"
+                  ],
+                  "open_questions": [
+                    "Hvordan skal faktisk skolevei dokumenteres i planens kunnskapsgrunnlag?",
+                    "Hvilken funksjon har grøntdraget for overvann og lokal bruk?",
+                    "Hva er administrasjonens faglige anbefaling, og hva må overlates til politisk valg?"
+                  ],
+                  "deadline": "utvalg_etter_rework",
+                  "confidentiality": "offentlig_saksforberedelse_med_interne_arbeidsnotater",
+                  "flags": [
+                    "skolevei_ikke_dokumentert",
+                    "politisk_grense_ikke_eksplisitt"
+                  ],
+                  "shared": true
+                }
+              }
+            ]
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Registrer skolevei og grøntdrag som åpne faglige premisser før du anbefaler løsning",
+              "reply": "Jeg gjør faktisk bruk, overvannsfunksjon og dokumentasjonsmangler eksplisitte i saken før vi låser anbefalingen.",
+              "effect": 1,
+              "tags": [
+                "persistent_case",
+                "local_knowledge",
+                "traceability"
+              ],
+              "feedback": "Saken blir mer krevende, men det blir synlig hva som faktisk må avklares.",
+              "effects": {
+                "stats": {
+                  "quality": 3,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "by_radgiver_lillebekk_grounding_started",
+                    "work_object_id": "by_radgiver_lillebekk_plan_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "lokalkunnskap_og_teknisk_grunnlag",
+                    "note": "Faktisk skolevei og grøntdragets funksjon er løftet inn som eksplisitte premisser i samme plansak."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "by_radgiver_lillebekk_local_knowledge_visible",
+                    "work_object_id": "by_radgiver_lillebekk_plan_case_001",
+                    "flag": "lokalkunnskap_som_evidens"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Hold saken på kartgrunnlaget og noter at lokale forhold kan avklares i høringen",
+              "reply": "Jeg holder første anbefaling på det formelle kartgrunnlaget og lar medvirkningsrunden ta resten.",
+              "effect": -1,
+              "tags": [
+                "formal_map_only",
+                "deferred_uncertainty"
+              ],
+              "feedback": "Framdriften ser bedre ut, men du skyver et kjent kunnskapsgap inn i en senere og dyrere fase.",
+              "effects": {
+                "stats": {
+                  "quality": -2,
+                  "trust": -1,
+                  "risk": 3,
+                  "energy": 1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "by_radgiver_lillebekk_grounding_deferred",
+                    "work_object_id": "by_radgiver_lillebekk_plan_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "formelt_grunnlag_med_utsatt_lokalkunnskap",
+                    "note": "Kjent lokal kunnskap er skjøvet til senere høring i stedet for å bli integrert i første faglige grunnlag."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "by_radgiver_lillebekk_rework_risk",
+                    "work_object_id": "by_radgiver_lillebekk_plan_case_001",
+                    "flag": "sen_rework_risiko"
+                  }
+                ]
+              }
+            }
+          ],
+          "planned_only": true,
+          "learning_focus": [
+            "persistent_work_case",
+            "lokalkunnskap",
+            "stedsanalyse",
+            "sporbarhet"
+          ]
+        }
+      ]
     }
   ]
 }

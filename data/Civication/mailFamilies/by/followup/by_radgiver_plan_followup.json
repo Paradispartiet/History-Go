@@ -749,6 +749,182 @@
           ]
         }
       ]
+    },
+    {
+      "id": "role_world_realism_approval_followup",
+      "purpose": "La leder- og planjuridisk kontroll komme tilbake som en senere, persistent godkjenning med vilkår og dokumentflyt.",
+      "learning_focus": [
+        "approval_granted",
+        "rework",
+        "document_handoff",
+        "waiting"
+      ],
+      "mails": [
+        {
+          "id": "by_radgiver_realism_approval_grant_001",
+          "mail_type": "followup",
+          "mail_family": "role_world_realism_approval_followup",
+          "role_scope": "by_radgiver_plan",
+          "phase": "mastery",
+          "day_phase": "morning",
+          "priority": 60,
+          "cooldown": 8,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Elin, plansjef",
+          "person_id": "elin_plansjef",
+          "place_id": "radhuset_planavdeling",
+          "thread_key": "by_radgiver_lillebekk_realism_001",
+          "subject": "Godkjent med ett vilkår: usikkerheten og det politiske valget skal følge saken helt inn i utvalget",
+          "summary": "Etter leder- og planjuridisk gjennomgang godkjenner Elin oversendelsen, men bare dersom saken beholder den dokumenterte skoleveien, grøntdragets funksjon og skillet mellom administrativ anbefaling og politisk valg.",
+          "purpose": "La en persistent approval gå fra pending til granted i en senere scene og vise at dokumentet har flyttet seg gjennom lederlinje og fagkontroll.",
+          "stakes": "Godkjenningen er ikke et signal om at alle faglige spørsmål er løst. Den betyr at administrasjonen står for beslutningsgrunnlaget slik det nå er avgrenset.",
+          "situation": [
+            "Nora har kontrollert at rekkefølgekravet er juridisk lesbart.",
+            "Elin godkjenner at saken kan sendes når forbeholdene står synlig.",
+            "Godkjenningen skal være et varig arbeidsobjekt, ikke bare en setning som glemmes før siste scene."
+          ],
+          "task_domain": "ledergodkjenning_og_dokumentflyt",
+          "task_kind": "followup",
+          "competency": "arbeidsflyt_og_sporbarhet",
+          "pressure": "frist_vs_vilkar_for_godkjenning",
+          "choice_axis": "bevar_vilkar_vs_glatt_over_forbehold",
+          "consequence_axis": "sporbar_godkjenning_vs_skjult_usikkerhet",
+          "narrative_arc": "lillebekk_fra_kunnskapsgrunnlag_til_politisk_behandling",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "by_radgiver_lillebekk_plan_case_001"
+            ],
+            "institution_id": "oslo_kommune_planavdeling_001",
+            "deadline_ref": "politisk_utvalg"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Registrer godkjenningen og behold alle tre vilkårene i oversendelsen",
+              "reply": "Jeg registrerer ledergodkjenningen og lar skolevei, grøntdrag og myndighetsgrense følge saken som eksplisitte premisser.",
+              "effect": 1,
+              "tags": [
+                "approval_granted",
+                "conditions_preserved",
+                "document_flow"
+              ],
+              "feedback": "Godkjenningen blir et persistent spor, og dokumentet beholder vilkårene som gjorde godkjenningen mulig.",
+              "effects": {
+                "stats": {
+                  "quality": 3,
+                  "trust": 3,
+                  "risk": -2
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "by_radgiver_lillebekk_approval_granted",
+                    "work_object_id": "by_radgiver_lillebekk_approval_001",
+                    "to_status": "granted",
+                    "to_phase": "godkjent_med_vilkar",
+                    "note": "Plansjefen har godkjent oversendelsen med eksplisitt krav om at dokumenterte forbehold og politiske alternativer bevares."
+                  },
+                  {
+                    "op": "transition",
+                    "event_id": "by_radgiver_lillebekk_ready_after_approval",
+                    "work_object_id": "by_radgiver_lillebekk_plan_case_001",
+                    "to_status": "awaiting_submission",
+                    "to_phase": "ledergodkjent_beslutningsgrunnlag",
+                    "note": "Saken har passert leder- og planjuridisk kontroll og venter på siste faglige formulering før oversendelse."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "by_radgiver_lillebekk_approval_conditions_visible",
+                    "work_object_id": "by_radgiver_lillebekk_plan_case_001",
+                    "flag": "ledergodkjenning_med_synlige_vilkar"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Registrer godkjenningen, men forkort forbeholdene i sammendraget",
+              "reply": "Jeg registrerer godkjenningen, men komprimerer forbeholdene for å gjøre saken raskere å lese.",
+              "effect": 0,
+              "tags": [
+                "approval_granted",
+                "compression_risk"
+              ],
+              "feedback": "Saken kan sendes, men politisk lesbarhet blir kjøpt med en risiko for at viktige premisser forsvinner i sammendraget.",
+              "effects": {
+                "stats": {
+                  "quality": 0,
+                  "trust": 1,
+                  "risk": 2
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "by_radgiver_lillebekk_approval_granted_compressed",
+                    "work_object_id": "by_radgiver_lillebekk_approval_001",
+                    "to_status": "granted",
+                    "to_phase": "godkjent_med_komprimert_sammendrag",
+                    "note": "Formell ledergodkjenning er gitt, men sammendraget bærer økt risiko for å skjule premisser."
+                  },
+                  {
+                    "op": "transition",
+                    "event_id": "by_radgiver_lillebekk_ready_with_summary_risk",
+                    "work_object_id": "by_radgiver_lillebekk_plan_case_001",
+                    "to_status": "awaiting_submission",
+                    "to_phase": "ledergodkjent_med_sammendragsrisiko"
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "by_radgiver_lillebekk_summary_risk",
+                    "work_object_id": "by_radgiver_lillebekk_plan_case_001",
+                    "flag": "forbehold_komprimert_i_sammendrag"
+                  }
+                ]
+              }
+            }
+          ],
+          "planned_only": true,
+          "learning_focus": [
+            "approval_granted",
+            "rework",
+            "document_handoff",
+            "waiting"
+          ],
+          "next_bias": {
+            "tags": [
+              "approval_granted",
+              "rework",
+              "document_handoff"
+            ],
+            "weight": 1
+          },
+          "triggers_on_choice": {
+            "A": [
+              "role_world_realism_return_to_case"
+            ],
+            "B": [
+              "role_world_realism_return_to_case"
+            ]
+          },
+          "branch_flags": {
+            "A": [
+              "ledergodkjenning_med_synlige_vilkar"
+            ],
+            "B": [
+              "ledergodkjenning_med_sammendragsrisiko"
+            ]
+          },
+          "tags": [
+            "followup",
+            "approval",
+            "rework",
+            "by_radgiver_plan",
+            "lillebekk"
+          ]
+        }
+      ]
     }
   ]
 }
