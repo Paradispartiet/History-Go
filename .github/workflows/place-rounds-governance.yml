@@ -54,6 +54,7 @@ on:
       - "data/leksikon/sprak/places/europe/norway/oslo/tinghuset.json"
       - "data/leksikon/sprak/places/europe/norway/oslo/regjeringskvartalet.json"
       - "data/places/README_place_rounds.md"
+      - "data/places/regler/place_card_profile_v2.schema.json"
       - "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
       - "data/places/scenekunst/oslo/places_scenekunst/nationaltheatret.json"
       - "data/places/politikk/oslo/places_politikk/tinghuset.json"
@@ -81,6 +82,7 @@ on:
       - "docs/HISTORY_GO_PRODUCT_MAP.md"
       - "docs/documentation_registry.json"
       - "schemas/place.ts"
+      - "tests/place-card-profile-schema.test.mjs"
       - ".github/workflows/place-rounds-governance.yml"
   push:
     branches: [main]
@@ -136,6 +138,7 @@ on:
       - "data/leksikon/sprak/places/europe/norway/oslo/tinghuset.json"
       - "data/leksikon/sprak/places/europe/norway/oslo/regjeringskvartalet.json"
       - "data/places/README_place_rounds.md"
+      - "data/places/regler/place_card_profile_v2.schema.json"
       - "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
       - "data/places/scenekunst/oslo/places_scenekunst/nationaltheatret.json"
       - "data/places/politikk/oslo/places_politikk/tinghuset.json"
@@ -163,6 +166,7 @@ on:
       - "docs/HISTORY_GO_PRODUCT_MAP.md"
       - "docs/documentation_registry.json"
       - "schemas/place.ts"
+      - "tests/place-card-profile-schema.test.mjs"
       - ".github/workflows/place-rounds-governance.yml"
   workflow_dispatch:
 
@@ -190,11 +194,11 @@ jobs:
       - name: Install Chromium for Regjeringskvartalet UI audit
         run: npx playwright install --with-deps chromium
 
-      - name: Test canonical three content rounds plus Badges contract
+      - name: Test canonical 2–4 PlaceCard collections plus Badges contract
         run: |
           node --check js/ui/place-popup-tabs.js
           node --check js/ui/nature-detailed-map.js
-          node --test tests/place-rounds-visual-collections.test.mjs tests/place-rounds-grid-exclusivity.test.mjs tests/place-rounds-fill-layout.test.mjs tests/nature-detailed-map.test.mjs
+          node --test tests/place-rounds-visual-collections.test.mjs tests/place-rounds-grid-exclusivity.test.mjs tests/place-rounds-fill-layout.test.mjs tests/place-card-profile-schema.test.mjs tests/nature-detailed-map.test.mjs
           node tests/place-card-rounds-runtime-audit.test.js
           node tests/place-people-ids-runtime.test.js
           node tests/nationaltheatret-people-curation.test.js

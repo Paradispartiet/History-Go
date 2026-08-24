@@ -1,51 +1,60 @@
-# History GO — canonical PlaceCard-rundinger
+# History GO — canonical PlaceCard-samlinger
 
-Status: **eneste autoritative rundingskontrakt**  
-Eier: `place_rounds_contract`  
-Runtime: `js/ui/place-rounds-visual-collections.js`  
-Layout: `js/ui/place-rounds-fill-layout.js` og `css/place-rounds-fill-layout.css`  
-Sted-for-sted arbeidsflyt: `docs/PLACE_PRODUCTION_CHECKLIST.md`  
-Sist kontrollert: **2026-08-14**
+Status: **eneste autoritative PlaceCard-samlingskontrakt**
 
-Denne filen bestemmer hva som er en PlaceCard-runding, hvor rundingene plasseres, hvordan kategoriens standardprofil velges og når en stedsspesifikk koherensprofil er påkrevd.
+Eier: `place_card_collections_contract_v2`
 
-> **Rundinger er tydelige, visuelle samlinger. De skal aldri opprettes bare for å fylle et tomt felt.**
+Runtime: `js/ui/place-rounds-visual-collections.js`
 
-## 1. Fast geometri
+Layout: `js/ui/place-rounds-fill-layout.js` og `css/place-rounds-fill-layout.css`
 
-Et PlaceCard viser alltid:
+Schema: `data/places/regler/place_card_profile_v2.schema.json`
 
-1. én Badges-runding øverst til høyre ved stedsoverskriften;
-2. nøyaktig fire innholdsrundinger i et 2 × 2-felt ved `frontImage`;
-3. sju små stedspopup-SVG-er i et eget felt til høyre for rundingene.
+Sted-for-sted arbeidsflyt: `docs/PLACE_PRODUCTION_CHECKLIST.md`
 
-Badges teller ikke som en av de fire rundingene i mediefeltet. PlaceCard har dermed fem synlige rundinger totalt.
+Sist kontrollert: **2026-08-24**
 
-## 2. Standardprofil og kontrollert stedsoverstyring
+Filnavnet beholdes midlertidig slik at gamle lenker og arbeidsløp ikke brytes. Kontrakten handler nå om **samlinger**, ikke om en kvote med runde elementer.
 
-Vanlige steder bruker:
+> **PlaceCard fremhever bare samlinger som er tydelige, stedsspesifikke, substansielle og visuelt ærlige. Ingen samling opprettes for å fylle en plass.**
 
-```text
-people · objects · brands · [kategoriens fjerde]
-```
+## 1. Fast PlaceCard-komposisjon
 
-Natursteder bruker:
+Den eksisterende PlaceCard-komposisjonen beholdes:
 
-```text
-map · flora · fauna · [kategoriens fjerde]
-```
+1. `frontImage`-/medieflaten ligger i kortets venstre mediefelt;
+2. to, tre eller fire kvalifiserte samlinger ligger balansert i samlingsfeltet ved siden av;
+3. Badges ligger separat ved stedsoverskriften og teller ikke som samling;
+4. de sju små stedspopup-snarveiene står i sitt eksisterende felt;
+5. den obligatoriske, tydelige **Ta quiz**-handlingen beholdes i PlaceCard-footeren;
+6. stedspopupens faner, eierskap og innhold endres ikke av denne kontrakten.
 
-Dette er standardprofiler, ikke en kvote som kan overstyre redaksjonell kvalitet. Når standarden gir en tynn, kunstig eller overlappende samling, skal stedet bruke en auditert `round_profile.content_round_ids` med nøyaktig fire IDs.
+Antall samlinger følger innholdet:
 
-Uten en gyldig stedsoverstyring er `Bilder` som eneste generelle reserve når kategoriens fjerde samling mangler; reserven gjør aldri en tom eller kunstig samling gyldig.
+- **2 samlinger:** én balansert rad;
+- **3 samlinger:** 2 + 1, med siste samling sentrert;
+- **4 samlinger:** balansert 2 × 2.
 
-For vanlige steder støtter runtime en avgrenset koherensoverstyring:
+Det finnes ingen femte innholdsplass og ingen minimumskvote på fire.
+
+## 2. Formregler
+
+- `people`, `flora` og `fauna` vises som sirkler;
+- alle øvrige samlinger vises som avrundede rektangler;
+- Badges er en separat handling ved overskriften og kan beholde sin sirkelform;
+- formen endrer bare presentasjonen, aldri popupens data eller samlingens innhold;
+- bilde-preview kan brukes inne i en kvalifisert samling, men previewet filtrerer aldri popupinnholdet.
+
+## 3. Canonical profil for nye og fullproduserte steder
+
+Nye og vesentlig reviderte steder bruker:
 
 ```json
 {
-  "round_profile": {
-    "content_round_ids": ["people", "images", "brands", "related"],
-    "reason": "konkret redaksjonell begrunnelse",
+  "place_card_profile": {
+    "schema": "history_go_place_card_profile_v2",
+    "collection_ids": ["people", "objects", "related"],
+    "reason": "Tre dokumenterte og tydelig forskjellige stedssamlinger består innholds- og UI-gaten.",
     "verifiedAt": "YYYY-MM-DD"
   }
 }
@@ -53,21 +62,60 @@ For vanlige steder støtter runtime en avgrenset koherensoverstyring:
 
 Krav:
 
-- `people` og `brands` beholdes i henholdsvis første og tredje posisjon;
-- andre posisjon er `objects` eller `images`;
-- fjerde posisjon velges fra den canonical fjerde-rundingspoolen;
-- andre og fjerde posisjon kan ikke være samme runding;
-- begge overstyrte samlinger må ha reelt innhold;
-- `reason` skal dokumentere hvilket konkret relevans-, substans- eller overlappsproblem standarden løste;
-- overstyringen skal testes i faktisk 2 × 2-layout.
+- `collection_ids` har 2–4 unike canonical IDs;
+- rekkefølgen er redaksjonelt valgt og blir visningsrekkefølgen;
+- hver valgt samling har reelt, stedsspesifikt innhold og forståelig brukerbetydning;
+- maksimalt én kategori-eid samling (`productions`, `structures`, `competitions`, `related` eller `destinations`) kan velges fordi de deler runtime-visningsplass;
+- `reason` forklarer hvorfor akkurat disse samlingene består og hvorfor relevante utelatelser ikke er filler;
+- `verifiedAt` viser siste reelle innholds- og UI-kontroll;
+- schemaet skal valideres, men strukturell schema-PASS erstatter aldri redaksjonell kontroll.
 
-Overstyringen er ikke en fri legacy-`rounds`-liste. Den er en begrenset kvalitetsventil for å hindre filler.
+## 4. Bakoverkompatibilitet
 
-## 3. Den fjerde standardrundingen
+Eksisterende steder migreres ikke samlet.
 
-Uten en godkjent stedsoverstyring er den fjerde rundingen kategoriavhengig og velges bare når samlingen har reelt innhold. Dersom normalvalget er tomt, brukes `Bilder` som generell reserve.
+Runtime leser fortsatt legacy:
 
-| Kategori | Normal fjerde runding | Brukerrettet navn |
+```json
+{
+  "round_profile": {
+    "schema": "history_go_place_round_profile_v1",
+    "content_round_ids": ["people", "images", "brands", "related"],
+    "reason": "Tidligere auditert profil",
+    "verifiedAt": "YYYY-MM-DD"
+  }
+}
+```
+
+Kompatibilitetslaget:
+
+1. bevarer rekkefølgen på støttede samlinger;
+2. dedupliserer IDs;
+3. fjerner `images`, fordi Bilder ikke lenger er en samling;
+4. godtar resultatet når 2–4 støttede samlinger gjenstår;
+5. faller tilbake til kategoriens overgangsprofil dersom legacy-profilen ikke kan leses sikkert.
+
+`round_profile` er read-only legacy for nye produksjonsløp. Stedet migreres til `place_card_profile` først når det faktisk fullproduseres eller PlaceCard-kurateres.
+
+## 5. Overgangsprofil for steder uten profil
+
+For at gamle steder ikke skal ødelegges, kan runtime fortsatt utlede en overgangsprofil.
+
+Vanlige steder starter fra:
+
+```text
+people · objects · brands
+```
+
+Natursteder starter fra:
+
+```text
+map · flora · fauna
+```
+
+Når kategoriens naturlige samling har reelt runtime-innhold, kan den legges til som nummer fire:
+
+| Kategori | Kategori-eid samling | Brukerrettet navn |
 | --- | --- | --- |
 | `kunst` | `productions` | Kunstverk |
 | `litteratur` | `productions` | Bøker og tekster |
@@ -87,36 +135,11 @@ Uten en godkjent stedsoverstyring er den fjerde rundingen kategoriavhengig og ve
 | `filosofi` | `related` | Relaterte steder |
 | `psykologi` | `related` | Relaterte steder |
 
-Canonical aliaser normaliseres gjennom `data/categories/category_contract.json`.
+Overgangsprofilen er kompatibilitet, ikke redaksjonell ferdigstatus. Ved fullproduksjon skal alle kandidatene vurderes, og den nye eksplisitte profilen skal velges.
 
-### Eksempler
-
-```text
-Kunst:      people · objects · brands · Kunstverk
-Sport:      people · objects · brands · Kamper og konkurranser
-Historie:   people · objects · brands · Relaterte steder
-By:         people · objects · brands · Bygg og anlegg
-Natur:      map · flora · fauna · Turmål
-```
-
-Hvis kategoriens normale samling mangler reelt innhold:
+## 6. Canonical samlingspool
 
 ```text
-people · objects · brands · Bilder
-```
-
-For natursteder:
-
-```text
-map · flora · fauna · Bilder
-```
-
-`Bilder` er ikke konstruert fyll. Rundingen bruker dokumenterte bilder som allerede tilhører stedet: hovedbilder, galleri, historiske bilder og før-/nå-bilder.
-
-## 4. Canonical rundingspool
-
-```text
-badges
 people
 objects
 brands
@@ -128,132 +151,114 @@ structures
 competitions
 related
 destinations
-images
 ```
 
-- `badges` står ved overskriften;
-- `people`, `objects` og `brands` er standardbasen på vanlige steder; `objects` kan erstattes av `images` gjennom den avgrensede koherensprofilen;
-- `map`, `flora` og `fauna` er naturstedets tre faste samlinger;
-- de seks siste ID-ene er tillatte fjerde-rundinger og kan velges eksplisitt i en gyldig koherensprofil;
-- `productions` får alltid et kategoriens konkret brukerrettet navn;
-- `images` er eneste generelle reserve.
+`badges` står separat ved overskriften og inngår ikke i poolen.
 
-## 5. People
+## 7. People
 
-People viser canonical personer med dokumentert stedstilknytning. Previewet skal aldri filtrere hvem som finnes i People-popupen.
+People viser canonical personer med dokumentert stedstilknytning. Place-eierskap vurderes per profil. En personkobling som egentlig gjelder et delsted med egen canonical Place, brukes ikke som proxy for parent-stedet. Previewet filtrerer aldri hvem som finnes i People-popupen, og falsk 0 mens People-data lastes er en blocker.
 
-## 6. Objects
+## 8. Objects
 
-Objects er fysiske, identifiserbare gjenstander med dokumentert stedstilknytning. Canonical felt er `place.objects`.
+Objects er en reell samling av fysiske, identifiserbare gjenstander med dokumentert stedstilknytning. Canonical felt er `place.objects`.
 
-En fysisk Civication-post kan leses som compatibility-kilde for Objects når den faktisk oppfyller Objects-kontrakten. Det gjør ikke Civication til en runding.
+En fysisk Civication-post kan leses som compatibility-kilde når den faktisk oppfyller Objects-kontrakten. Det gjør ikke Civication til en samling. Én vilkårlig gjenstand er ikke automatisk nok til å etablere en god PlaceCard-samling.
 
-## 7. Brands
+## 9. Brands
 
 Canonical semantisk eier er `data/brands/brand_rules_v1_1.json`.
 
-Brands betyr selvstendige, sosialt gjenkjennelige navn og identiteter med dokumentert stedskobling. Profesjonelle firmaer, arkitektur- og ingeniørfirmaer, historiske virksomheter, venue-identiteter og institusjonsbrands kan kvalifisere når Brand-reglene består; aktørtypen er heller ikke et avslag i seg selv.
+Brands betyr selvstendige, sosialt gjenkjennelige navn og identiteter med dokumentert stedskobling. Profesjonelle firmaer, arkitektur- og ingeniørfirmaer, historiske virksomheter, venue-identiteter og institusjonsbrands kan kvalifisere når Brand-reglene består; aktørtypen er heller ikke et avslag i seg selv. Brands er ikke en restkategori, og null treff i dagens register er ikke alene grunnlag for N/A.
 
-Brands er ikke en generell restkategori. Null treff i dagens Brand-register er ikke alene grunnlag for N/A. Kandidater skal vurderes etter identitets-, gjenkjennelses- og stedstilknytningskravene.
+## 10. Map, Flora og Fauna
 
-## 8. Productions
+- `map` åpner et faktisk tur-/naturkart og faller aldri tilbake til det generelle hovedkartet;
+- `flora` viser dokumenterte plantearter eller floraenheter knyttet til stedet;
+- `fauna` viser dokumenterte dyrearter eller faunaenheter knyttet til stedet;
+- naturprofilen skal aldri fylles med generisk naturinnhold som ikke gjelder stedet.
 
-`productions` brukes bare i kategorier der en produksjonssamling er et naturlig og forståelig produktbegrep. Rundingen heter derfor aldri generelt «Verk» i grensesnittet.
+## 11. Productions
 
-Tillatte brukerrettede samlinger er:
+`productions` brukes bare der en produksjonssamling er et naturlig brukerbegrep. Samlingen heter aldri generelt «Verk» i grensesnittet.
 
-- Kunstverk;
-- Bøker og tekster;
-- Sanger og album;
-- Filmer og serier;
-- Forestillinger;
-- Utgivelser;
-- Uttrykk og utgivelser.
+Tillatte brukerrettede navn er Kunstverk, Bøker og tekster, Sanger og album, Filmer og serier, Forestillinger, Utgivelser og Uttrykk og utgivelser.
 
-En produksjon er ikke det samme som en fysisk gjenstand. En sang kan være innhold i `Sanger og album`; instrumentet er et Object. En bok kan være innhold i `Bøker og tekster`; originalmanuskriptet er et Object.
+En produksjon er ikke det samme som en fysisk gjenstand: en sang kan høre til i Sanger og album, mens instrumentet er et Object; en bok kan høre til i Bøker og tekster, mens originalmanuskriptet er et Object.
 
-## 9. Structures
+## 12. Structures
 
-`structures` betyr navngitte bygninger og anlegg som utgjør en reell samling ved stedet, blant annet haller, tårn, tribuner, broer, verksteder og andre identifiserbare konstruksjoner.
+`structures` betyr navngitte bygninger og anlegg som utgjør en reell samling ved stedet, som haller, tårn, tribuner, broer, verksteder eller andre identifiserbare konstruksjoner.
 
-Gamle `subplaces`- eller `spots`-data kan bare brukes som compatibility-kilde når posten uttrykkelig beskriver en bygning eller et anlegg. Et tilfeldig delpunkt kvalifiserer ikke.
+Gamle `subplaces`-/`spots`-data kan bare brukes som compatibility-kilde når posten uttrykkelig beskriver en bygning eller et anlegg. Objects og Structures velges ikke sammen når skillet er kunstig eller begge beskriver de samme fysiske elementene.
 
-## 10. Competitions
+## 13. Competitions
 
-`competitions` betyr dokumenterte kamper, løp, finaler, stevner og turneringer knyttet til et sportssted.
+`competitions` betyr dokumenterte kamper, løp, finaler, stevner og turneringer knyttet til et sportssted. Det finnes ingen generell Sport-samling. Utøvere hører i People, drakter og pokaler i Objects, og klubber/arenaidentiteter i Brands.
 
-Det finnes ingen generell «Sport»-runding. Utøvere hører i People, drakter og pokaler i Objects, klubber og arenaidentiteter i Brands.
+## 14. Related
 
-## 11. Related
+`related` viser faktiske andre History GO-steder med dokumentert relasjon. Samlingen inneholder ikke tekstlige temaer, løse nøkkelord eller oppdiktede punkter. Et sted med egen canonical oppføring vises bare som eksplisitt relasjon, aldri som parent-stedets Object eller Structure.
 
-`related` viser faktiske andre History GO-steder med dokumentert relasjon til stedet. Den skal ikke inneholde tekstlige temaer, løse nøkkelord eller oppdiktede «punkter».
+## 15. Destinations
 
-## 12. Destinations
+`destinations` viser navngitte turmål ved eller omkring et natursted, som topper, utsiktspunkter, strender, hytter og badeplasser. Et naturfenomen, en løs observasjon eller en terrengdetalj er ikke automatisk et Turmål.
 
-`destinations` viser navngitte turmål ved eller omkring et natursted, for eksempel topper, utsiktspunkter, strender, hytter og badeplasser.
+## 16. Bilder er medieinnhold, ikke samling
 
-Et naturfenomen, en løs observasjon eller en detalj i terrenget er ikke automatisk et Turmål.
+`images` er fjernet fra samlingspoolen og kan aldri brukes som reserve.
 
-## 13. Images
+Hovedbilder, galleri, historiske bilder og før-/nå-bilder beholdes hos sine eksisterende eiere og kan vises i `frontImage`-/medieflaten eller i riktig popupfane. Bilder skal dedupliseres, kilde- og lisensføres, og aldri kopieres eller gis ny identitet for å fylle PlaceCard.
 
-`images` viser dokumenterte bilder som allerede tilhører stedet. Runtime kan lese blant annet:
+Fjerningen av Bilder som samling reduserer ikke bildeproduksjonen eller provenienskravene.
 
-- `images`, `gallery`, `photos` og `imageGallery`;
-- hoved-, popup- og stedsbilder;
-- dokumenterte før-/nå-bilder.
+## 17. Ikke PlaceCard-samlinger
 
-Bilder skal dedupliseres. Et bilde skal ikke kopieres eller gis ny identitet bare for å fylle rundingen.
+Følgende er ikke canonical samlinger:
 
-## 14. Fjernet som rundingsalternativer
-
-Følgende er ikke canonical PlaceCard-rundinger:
-
+- `images` / Bilder;
 - `works` / generisk Verk;
 - `details` / Detaljer;
 - `spots` / Punkter;
-- `nature` som generisk samlerunding;
-- Civication;
-- Før/etter;
-- Fortellinger/Stories;
-- Leksikon;
-- Lek;
-- Trening;
-- Oppgaver;
-- Events;
+- generisk `nature`;
+- Civication og Wonderkammer;
+- Før/etter, Fortellinger/Stories, Leksikon, Nyheter og Lesespor;
+- Lek, Trening, Oppgaver, Events, Observer og Notat;
 - Quiz;
-- Observer;
-- Notat;
 - Rute;
-- Wonderkammer;
 - de sju stedspopup-SVG-ene.
 
-`details`, `visual_details`, `site_details`, `spots`, `subplaces` og `subPlaces` kan fortsatt være steddata. De gir ikke automatisk en runding.
+Disse kan fortsatt være viktige deler av den samlede stedsopplevelsen hos sine canonical eiere. At de ikke er PlaceCard-samlinger betyr aldri at de er valgfrie i stedsproduksjonen.
 
-## 15. Badges
+## 18. Badges og Quiz
 
-Badges-rundingen står separat ved stedsoverskriften og åpner:
+Badges står separat ved stedsoverskriften og åpner:
 
 ```text
 fagverk-sted.html?place=<place_id>
 ```
 
-Badges skal aldri dupliseres i 2 × 2-feltet.
+Badges teller ikke blant de 2–4 samlingene. Hvert sted skal ha fungerende fagverk-side etter produksjonssjekklisten.
 
-## 16. Produksjonsgate
+Quiz er en obligatorisk, tydelig PlaceCard-handling i footeren. Quiz skal ikke gjøres valgfri, skjules eller flyttes inn i samlingsfeltet. Samlingsantall har ingen innvirkning på quizkravet.
 
-Et sted er rundingsklart når:
+## 19. Produksjonsgate
 
-1. Badges vises ved stedsoverskriften;
-2. fire rundinger vises i et 2 × 2-felt;
-3. standardprofilen brukes når den er substansiell og koherent; ellers finnes en gyldig, begrunnet `round_profile.content_round_ids`;
-4. den fjerde standardrundingen følger kategorimatrisen, eller er eksplisitt valgt i den kontrollerte koherensprofilen;
-5. alle valgte samlinger har reelt stedsspesifikt innhold; `images` brukes bare når bildene faktisk dokumenterer stedet;
-6. generisk Works, Details, Spots og Civication ikke vises som rundinger;
-7. People-previewet ikke filtrerer People-popupen;
-8. naturstedets Kart åpner et faktisk tur-/naturkart;
-9. de sju popup-SVG-ene står separat til høyre;
-10. Objects og Structures er ikke separate rundinger når skillet er kunstig eller samlingene i praksis beskriver de samme fysiske stedselementene;
-11. et place med egen canonical oppføring vises bare som eksplisitt `related`, aldri som parent-place-objekt eller -struktur;
-12. hver runding har et forståelig tilgjengelig navn, og bilde-preview med manglende mediefil faller tilbake til rundingens ikon og antall uten ødelagt bildeikon;
-13. hver runding er åpnet på faktisk produksjonsflate og viser korrekt antall og reelt popupinnhold; falsk 0 mens data fortsatt lastes er ikke godkjent;
-14. relevante rundings-, popup- og datagater passerer.
+Et sted er PlaceCard-ferdig når:
+
+1. Badges vises separat ved overskriften og åpner riktig fagverk-side;
+2. Quiz vises som obligatorisk, tydelig handling og åpner riktig stedquiz;
+3. 2–4 samlinger er valgt i `place_card_profile` etter reell kandidatvurdering;
+4. alle valgte samlinger er relevante, stedsspesifikke, substansielle og tydelig forskjellige;
+5. People, Flora og Fauna er sirkler, mens øvrige samlinger er avrundede rektangler;
+6. 2-, 3- eller 4-layouten er kontrollert på mobil og desktop;
+7. Bilder finnes bare i medie-/bildeeierne og aldri som samling eller reserve;
+8. hver samling åpner korrekt popupinnhold, antall og datakilde;
+9. ødelagt preview faller tilbake til ikon og antall uten ødelagt bildeikon;
+10. People-previewet filtrerer ikke People-popupen;
+11. naturkartet åpner faktisk detaljkart;
+12. ingen delsted-, Object-/Structure-, Brand- eller relasjonseier er feil;
+13. stedspopupen er uendret og fullverdig kontrollert etter popupkontrakten;
+14. schema, typer, renderer, layout og relevante permanente tester passerer.
+
+**Stoppgate:** PlaceCard kan ikke ferdigmeldes før runtime, schema og tester støtter den valgte modellen. Ingen fjerde samling skal produseres bare for å demonstrere 2 × 2-layouten.
