@@ -660,6 +660,57 @@
     ];
   }
 
+  function getPlaceAreaSquareLayout(isGlow = false) {
+    const size = isGlow
+      ? ["interpolate", ["linear"], ["zoom"], 7, 7.0, 9.5, 8.5, 12, 10.0, 16, 12.0, 18, 14.0]
+      : [
+          "interpolate", ["linear"], ["zoom"],
+          7, ["+", 5.0, ["*", 0.2, ["get", "visited"]]],
+          9.5, ["+", 6.2, ["*", 0.25, ["get", "visited"]]],
+          12, ["+", 7.4, ["*", 0.3, ["get", "visited"]]],
+          16, ["+", 9.0, ["*", 0.4, ["get", "visited"]]],
+          18, ["+", 10.5, ["*", 0.5, ["get", "visited"]]]
+        ];
+
+    return {
+      "text-field": "■",
+      "text-font": ["Open Sans Semibold", "Arial Unicode MS Regular"],
+      "text-size": size,
+      "text-allow-overlap": true,
+      "text-ignore-placement": true,
+      "text-pitch-alignment": "viewport",
+      "text-rotation-alignment": "viewport"
+    };
+  }
+
+  function getPlaceAreaSquarePaint(isGlow = false) {
+    if (isGlow) {
+      return {
+        "text-color": ["get", "fill"],
+        "text-opacity": [
+          "case",
+          ["in", ["get", "coordinateTrust"], ["literal", ["review", "unknown"]]], 0.06,
+          0.14
+        ],
+        "text-halo-color": ["get", "fill"],
+        "text-halo-width": isStandardMapStyle() ? 1.4 : 1.1,
+        "text-halo-blur": 1.0
+      };
+    }
+
+    return {
+      "text-color": ["get", "fill"],
+      "text-opacity": [
+        "case",
+        ["in", ["get", "coordinateTrust"], ["literal", ["review", "unknown"]]], 0.58,
+        1
+      ],
+      "text-halo-color": ["get", "border"],
+      "text-halo-width": isStandardMapStyle() ? 1.2 : 1.0,
+      "text-halo-blur": 0
+    };
+  }
+
   function getPlaceGlowPaint(isArea = false) {
     const radius = isArea
       ? ["interpolate", ["linear"], ["zoom"], 7, 3.5, 9.5, 6, 12, 8.2, 16, 11.5, 18, 15]
@@ -857,9 +908,10 @@
     MAP.addLayer({
       id: L_AREA_GLOW,
       filter: PLACE_AREA_LOD_FILTER,
-      type: "circle",
+      type: "symbol",
       source: SRC,
-      paint: getPlaceGlowPaint(true)
+      layout: getPlaceAreaSquareLayout(true),
+      paint: getPlaceAreaSquarePaint(true)
     });
 
     MAP.addLayer({
@@ -874,9 +926,10 @@
     MAP.addLayer({
       id: L_AREA_DOTS,
       filter: PLACE_AREA_LOD_FILTER,
-      type: "circle",
+      type: "symbol",
       source: SRC,
-      paint: getPlaceDotPaint(true)
+      layout: getPlaceAreaSquareLayout(false),
+      paint: getPlaceAreaSquarePaint(false)
     });
 
     MAP.addLayer({
