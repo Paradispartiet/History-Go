@@ -95,3 +95,20 @@ test("detaljprikker beholdes sammen med stedsnavn og er mindre enn gammel profil
   assert.ok(Number.isFinite(detailZoom) && Number.isFinite(labelZoom));
   assert.ok(detailZoom < labelZoom, "detaljprikken må være aktiv før stedsnavnet kan vises");
 });
+
+test("områdemarkører er mindre firkanter uten å redusere hitflaten", () => {
+  const squareLayout = source.match(/function getPlaceAreaSquareLayout\(isGlow = false\) \{[\s\S]*?\n  \}/)?.[0] || "";
+  const squarePaint = source.match(/function getPlaceAreaSquarePaint\(isGlow = false\) \{[\s\S]*?\n  \}/)?.[0] || "";
+  assert.ok(squareLayout, "mangler layout for firkantede områdemarkører");
+  assert.ok(squarePaint, "mangler paint for firkantede områdemarkører");
+  assert.match(squareLayout, /"text-field": "■"/);
+  assert.match(squareLayout, /7, \["\+", 5\.0/);
+  assert.match(squareLayout, /12, \["\+", 7\.4/);
+  assert.match(squareLayout, /18, \["\+", 10\.5/);
+  assert.match(squarePaint, /"text-halo-color": \["get", "border"\]/);
+
+  assert.match(source, /id: L_AREA_GLOW,[\s\S]*?type: "symbol",[\s\S]*?layout: getPlaceAreaSquareLayout\(true\),[\s\S]*?paint: getPlaceAreaSquarePaint\(true\)/);
+  assert.match(source, /id: L_AREA_DOTS,[\s\S]*?type: "symbol",[\s\S]*?layout: getPlaceAreaSquareLayout\(false\),[\s\S]*?paint: getPlaceAreaSquarePaint\(false\)/);
+  assert.match(source, /id: L_DOTS,[\s\S]*?type: "circle",[\s\S]*?paint: getPlaceDotPaint\(false\)/);
+  assert.match(source, /id: L_AREA_HIT,[\s\S]*?type: "circle",[\s\S]*?paint: getPlaceHitPaint\(true\)/);
+});
