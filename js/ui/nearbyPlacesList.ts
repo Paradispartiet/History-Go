@@ -21,12 +21,17 @@ type RouterRuntime = {
   navigate?: (hash: string) => unknown;
 };
 
+type PlaceOpenRuntime = {
+  preload?: (place: NearbyListPlace) => Promise<unknown>;
+};
+
 type RuntimeWindow = Window & typeof globalThis & {
   HGNearbyPlacesList?: NearbyPlacesListApi;
   HGNearbyPlaceSelector?: NearbyPlaceSelectorApi;
   HGNearbyFilters?: NearbyFiltersApi;
   HG_I18N?: I18nRuntime;
   HGAppRouter?: RouterRuntime;
+  HGPlaceOpen?: PlaceOpenRuntime;
   visited?: Record<string, unknown>;
   renderNearbyPlaces?: () => void;
 };
@@ -167,7 +172,13 @@ function createPlaceItem(
     </div>
   `;
 
-  item.addEventListener("click", () => routeToPlace(place.id));
+  const prefetch = () => { void win.HGPlaceOpen?.preload?.(place); };
+  item.addEventListener("pointerenter", prefetch, { once: true });
+  item.addEventListener("touchstart", prefetch, { passive: true, once: true });
+  item.addEventListener("click", () => {
+    prefetch();
+    routeToPlace(place.id);
+  });
   return item;
 }
 
@@ -185,6 +196,10 @@ function render(): void {
   if (listEl.dataset.renderSignature === renderSignature) return;
   listEl.dataset.renderSignature = renderSignature;
   listEl.innerHTML = "";
+
+  // Første mobiltrykk har ingen hover. Varm derfor de synlige topptreffene idet
+  // listen rendres, slik at stedspakken ligger i minnet før brukeren trykker.
+  selection.items.slice(0, 8).forEach((place) => { void win.HGPlaceOpen?.preload?.(place); });
 
   if (!selection.items.length) {
     if (selection.favoritesOnly) {

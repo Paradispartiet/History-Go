@@ -963,6 +963,13 @@ window.openPlaceCard = async function (place) {
     return false;
   }
 
+  if (window.HGPlaceOpen?.ensure && !window.HGPlaceOpen.has?.(placeId)) {
+    const hydratedPlace = await window.HGPlaceOpen.ensure(place);
+    if (hydratedPlace && typeof hydratedPlace === "object") place = hydratedPlace;
+  } else {
+    place = window.HGPlaceOpen?.getPlace?.(placeId) || place;
+  }
+
   if (window.DataHub?.loadFullPlace && !PLACE_CARD_PROGRESSIVE_LOADS.full.has(placeId)) {
     PLACE_CARD_PROGRESSIVE_LOADS.full.add(placeId);
     const fullStart = performance.now();
@@ -2421,7 +2428,7 @@ if (fortellingerEl) {
   };
 
   updateStoryRound();
-  if (!window.HGStories?.ready && typeof window.HGStories?.init === "function") {
+  if (!window.HGStories?.ready && !window.HGPlaceOpen?.has?.(storyPlaceId) && typeof window.HGStories?.init === "function") {
     fortellingerEl.innerHTML = `<div class="pc-empty">Laster fortellinger …</div>`;
     void window.HGStories.init()
       .then(updateStoryRound)

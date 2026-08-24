@@ -141,27 +141,26 @@
     async init() {
       if (this.ready) return this;
 
-      const manifest = await fetchJson(EVENTS_MANIFEST_PATH);
-      const files = ensureArray(manifest?.files);
-
-      this.manifest = manifest;
-
       const loaded = [];
-
-      for (const file of files) {
-        const path = asString(file?.path);
-        if (!path) continue;
-
-        try {
-          const data = await fetchJson(path);
-          const arr = ensureArray(data);
-
-          for (const evt of arr) {
-            if (!isValidEvent(evt)) continue;
-            loaded.push(normalizeEvent(evt, file));
+      const aggregate = await fetchJson("data/runtime/events-all.json").catch(() => null);
+      if (Array.isArray(aggregate)) {
+        this.manifest = { files: [{ path: "data/runtime/events-all.json" }] };
+        for (const evt of aggregate) if (isValidEvent(evt)) loaded.push(normalizeEvent(evt));
+      } else {
+        const manifest = await fetchJson(EVENTS_MANIFEST_PATH);
+        const files = ensureArray(manifest?.files);
+        this.manifest = manifest;
+        for (const file of files) {
+          const path = asString(file?.path);
+          if (!path) continue;
+          try {
+            const data = await fetchJson(path);
+            for (const evt of ensureArray(data)) {
+              if (isValidEvent(evt)) loaded.push(normalizeEvent(evt, file));
+            }
+          } catch (err) {
+            console.warn("[HGEvents] load failed:", path, err);
           }
-        } catch (err) {
-          console.warn("[HGEvents] load failed:", path, err);
         }
       }
 

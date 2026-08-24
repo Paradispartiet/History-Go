@@ -579,8 +579,13 @@
     loadNext();
   }
 
-  function showPlacePopupV2(inputPlace) {
+  async function showPlacePopupV2(inputPlace) {
     if (!inputPlace) return;
+    if (global.HGPlaceOpen?.ensure && !global.HGPlaceOpen.has?.(inputPlace)) {
+      inputPlace = await global.HGPlaceOpen.ensure(inputPlace) || inputPlace;
+    } else {
+      inputPlace = global.HGPlaceOpen?.getPlace?.(inputPlace) || inputPlace;
+    }
     const place = localizePlace(inputPlace);
 
     const makePopup = helper("makePopup");
@@ -601,7 +606,7 @@
     const people = peopleForPlace(place);
     const relations = curatedRelationsForPlace(place);
     const observations = observationsForPlace(place);
-    const events = list(global.HGEvents?.getByPlace?.(place?.id));
+    const events = list(global.HGEvents?.getByPlace?.(place?.id) || global.HG_PLACE_OPEN_EVENTS?.[place?.id]);
     const stories = list(global.HGStories?.getByPlace?.(place?.id));
     const candidates = imageCandidates(place);
 
@@ -694,10 +699,12 @@
     if (typeof global.makePopup !== "function") return false;
 
     const previous = global.showPlacePopup;
-    showPlacePopupV2.__previous = previous;
-    showPlacePopupV2.__usesPopupDesc = true;
-    showPlacePopupV2.__hgPlacePopupV2 = true;
-    global.showPlacePopup = showPlacePopupV2;
+    /** @type {any} */
+    const popup = showPlacePopupV2;
+    popup.__previous = previous;
+    popup.__usesPopupDesc = true;
+    popup.__hgPlacePopupV2 = true;
+    global.showPlacePopup = popup;
     global[INSTALL_FLAG] = true;
     return true;
   }

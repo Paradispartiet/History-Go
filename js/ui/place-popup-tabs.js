@@ -74,6 +74,9 @@
   }
 
   async function loadLeksikon(placeId) {
+    if (Object.prototype.hasOwnProperty.call(global.LEKSIKON_BY_PLACE || {}, placeId)) {
+      return list(global.LEKSIKON_BY_PLACE[placeId]);
+    }
     try { await global.HGLeksikon?.init?.(); } catch (error) {
       if (global.DEBUG) console.warn("[place-popup-tabs] Leksikon", error);
     }
@@ -81,6 +84,9 @@
   }
 
   async function loadStories(placeId) {
+    if (Object.prototype.hasOwnProperty.call(global.HGStories?.byPlace || {}, placeId)) {
+      return list(global.HGStories.byPlace[placeId]);
+    }
     try { await global.HGStories?.init?.(); } catch {}
     try { return list(global.HGStories?.getByPlace?.(placeId)); } catch { return []; }
   }
@@ -96,6 +102,9 @@
   }
 
   async function loadLanguage(placeId) {
+    if (Object.prototype.hasOwnProperty.call(global.HG_PLACE_OPEN_LANGUAGE || {}, placeId)) {
+      return global.HG_PLACE_OPEN_LANGUAGE[placeId];
+    }
     try {
       const manifestResponse = await fetch("data/leksikon/sprak/manifest.json", { cache: "default" });
       if (!manifestResponse.ok) return null;
@@ -461,7 +470,12 @@
     if (typeof current !== "function" || current.__hgPlacePopupTabs || current.__hgPlacePopupV2 !== true) return false;
     const wrapped = function showTabbedPlacePopup(place) {
       const result = current.apply(this, arguments);
-      try { decorate(place); } catch (error) { console.warn("[place-popup-tabs]", error); }
+      if (result && typeof result.then === "function") {
+        void result.then(() => decorate(global.HGPlaceOpen?.getPlace?.(place) || place))
+          .catch(error => console.warn("[place-popup-tabs]", error));
+      } else {
+        try { decorate(place); } catch (error) { console.warn("[place-popup-tabs]", error); }
+      }
       return result;
     };
     wrapped.__hgPlacePopupTabs = true;

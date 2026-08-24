@@ -957,8 +957,17 @@
       let mapGestureActive = false;
       let suppressPlaceClickUntil = 0;
       let lastOpenedPlace = { id: null, at: 0 };
-      const setPointer = () => {
+      const prefetchFeature = (event) => {
+        var _a2, _b2, _c2;
+        const feature = getPlaceFeatureFromEvent(event);
+        const id = (_a2 = feature == null ? void 0 : feature.properties) == null ? void 0 : _a2.id;
+        if (!id) return;
+        const place = PLACES.find((candidate) => String((candidate == null ? void 0 : candidate.id) || "") === String(id));
+        void ((_c2 = (_b2 = window.HGPlaceOpen) == null ? void 0 : _b2.preload) == null ? void 0 : _c2.call(_b2, place || id));
+      };
+      const setPointer = (event) => {
         canvas.style.cursor = "pointer";
+        prefetchFeature(event);
       };
       const clearPointer = () => {
         canvas.style.cursor = "";
@@ -975,6 +984,7 @@
       const handlePointerDown = (event) => {
         pointerStart = { x: event.clientX, y: event.clientY };
         pointerMoved = false;
+        prefetchFeature({ originalEvent: event });
       };
       const handlePointerMove = (event) => {
         if (!pointerStart || pointerMoved) return;

@@ -3,6 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
+    "place-open:build": "node scripts/build-place-open-payloads.mjs",
+    "place-open:check": "node scripts/build-place-open-payloads.mjs --check",
+    "test:place-open": "node --test tests/place-open-hyperfast.test.mjs",
     "typecheck": "tsc -p tsconfig.json",
     "typecheck:scripts": "tsc -p tsconfig.scripts.json",
     "build:scripts": "tsc -p tsconfig.scripts.build.json",

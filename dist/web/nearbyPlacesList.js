@@ -111,7 +111,16 @@
       </div>
     </div>
   `;
-    item.addEventListener("click", () => routeToPlace(place.id));
+    const prefetch = () => {
+      var _a, _b;
+      void ((_b = (_a = win.HGPlaceOpen) == null ? void 0 : _a.preload) == null ? void 0 : _b.call(_a, place));
+    };
+    item.addEventListener("pointerenter", prefetch, { once: true });
+    item.addEventListener("touchstart", prefetch, { passive: true, once: true });
+    item.addEventListener("click", () => {
+      prefetch();
+      routeToPlace(place.id);
+    });
     return item;
   }
   function render() {
@@ -127,6 +136,10 @@
     if (listEl.dataset.renderSignature === renderSignature) return;
     listEl.dataset.renderSignature = renderSignature;
     listEl.innerHTML = "";
+    selection.items.slice(0, 8).forEach((place) => {
+      var _a2, _b2;
+      void ((_b2 = (_a2 = win.HGPlaceOpen) == null ? void 0 : _a2.preload) == null ? void 0 : _b2.call(_a2, place));
+    });
     if (!selection.items.length) {
       if (selection.favoritesOnly) {
         renderFavoritesEmpty(listEl);

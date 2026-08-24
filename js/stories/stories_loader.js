@@ -170,46 +170,54 @@
 
       const inFlight = (async () => {
 
-      const manifests = [];
-      const mainManifest = await loadManifest(MANIFEST_PATH);
-      manifests.push(mainManifest);
-
-      for (const path of EXTRA_MANIFEST_PATHS) {
-        try {
-          manifests.push(await loadManifest(path));
-        } catch (err) {
-          console.warn("Ekstra story-manifest feilet:", path, err);
-        }
-      }
-
-      const files = manifests.flatMap(manifest => ensureArray(manifest.files));
-      this.manifest = {
-        files,
-        sources: [MANIFEST_PATH, ...EXTRA_MANIFEST_PATHS]
-      };
-
       const loadedStories = [];
       const seenStoryIds = new Set();
+      const addStories = stories => {
+        for (const story of ensureArray(stories)) {
+          if (!isValidStory(story) || seenStoryIds.has(story.id)) continue;
+          seenStoryIds.add(story.id);
+          story.next_scenes = normalizeNextScenes(story.next_scenes);
+          loadedStories.push(story);
+        }
+      };
 
-      for (const file of files) {
-        if (!file?.path) continue;
-
-        try {
-          const res = await fetch(file.path);
-          if (!res.ok) continue;
-
-          const stories = await res.json();
-          if (!Array.isArray(stories)) continue;
-
-          for (const story of stories) {
-            if (!isValidStory(story)) continue;
-            if (seenStoryIds.has(story.id)) continue;
-            seenStoryIds.add(story.id);
-            story.next_scenes = normalizeNextScenes(story.next_scenes);
-            loadedStories.push(story);
+      let aggregateLoaded = false;
+      try {
+        const aggregateResponse = await fetch("data/runtime/stories-all.json", { cache: "force-cache" });
+        if (aggregateResponse.ok) {
+          const aggregate = await aggregateResponse.json();
+          if (aggregate?.schema === "history-go-runtime-shards-v1") {
+            const shards = await Promise.all(ensureArray(aggregate.files).map(async path => {
+              const response = await fetch(path, { cache: "force-cache" });
+              return response.ok ? response.json() : [];
+            }));
+            shards.forEach(addStories);
+          } else {
+            addStories(aggregate);
           }
-        } catch (err) {
-          console.warn("Story load feilet:", file.path, err);
+          aggregateLoaded = loadedStories.length > 0;
+          this.manifest = { files: ensureArray(aggregate?.files).map(path => ({ path })), sources: ["data/runtime/stories-all.json"] };
+        }
+      } catch {}
+
+      if (!aggregateLoaded) {
+        const manifests = [];
+        const mainManifest = await loadManifest(MANIFEST_PATH);
+        manifests.push(mainManifest);
+        for (const path of EXTRA_MANIFEST_PATHS) {
+          try { manifests.push(await loadManifest(path)); }
+          catch (err) { console.warn("Ekstra story-manifest feilet:", path, err); }
+        }
+        const files = manifests.flatMap(manifest => ensureArray(manifest.files));
+        this.manifest = { files, sources: [MANIFEST_PATH, ...EXTRA_MANIFEST_PATHS] };
+        for (const file of files) {
+          if (!file?.path) continue;
+          try {
+            const res = await fetch(file.path);
+            if (res.ok) addStories(await res.json());
+          } catch (err) {
+            console.warn("Story load feilet:", file.path, err);
+          }
         }
       }
 

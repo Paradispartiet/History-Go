@@ -242,6 +242,7 @@
    * @returns {boolean}
    */
   function navigateToPlace(place) {
+    void window.HGPlaceOpen?.preload?.(place);
     const map = window.HGMap?.getMap?.() || window.MAP;
     if (!Number.isFinite(place?.lon) || !Number.isFinite(place?.lat)) return false;
 
