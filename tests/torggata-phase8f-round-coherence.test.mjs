@@ -78,7 +78,7 @@ test("backlog closes all five content findings and queues manual re-QA", () => {
   assert.deepStrictEqual(finding.resolution.current_rounds, ["people", "images", "brands", "related"]);
   assert.equal(finding.resolution.badge_separate, true);
   assert.ok(backlog.findings.every(item => item.workflow_status?.startsWith("RESOLVED_PHASE_")));
-  assert.deepStrictEqual(backlog.active_phase, { id:"final_closeout", status:"READY_TO_MERGE" });
+  assert.deepStrictEqual(backlog.active_phase, { id:"final_closeout", status:"COMPLETED" });
   assert.equal(backlog.sequence.find(item => item.id === "objects_structures_round_overlap").status, "RESOLVED");
   assert.equal(backlog.sequence.find(item => item.id === "manual_ui_and_content_reqa").status, "RESOLVED");
 });
@@ -89,5 +89,5 @@ test("contracts preserve legacy evidence while keeping the visual grid full", ()
   assert.match(contract, /Objects og Structures kan ha hver sin faste flate/);
   assert.match(contract, /egen canonical oppføring vises bare som eksplisitt relasjon/);
   assert.match(checklist, /nye\/fullproduserte steder bruker `place_card_profile\.collection_ids`/);
-  assert.match(workcard, /Torggata = SLUTTGODKJENT FOR CLOSEOUT-MERGE/);
+  assert.match(workcard, /Torggata = SLUTTFØRT, MERGET OG DEPLOYET/);
 });

@@ -83,6 +83,6 @@ test('workcard beholder Brands som godkjent i sluttstatusen', () => {
   assert.match(workcard, /\| 13\. Brands \| \*\*GODKJENT\*\*/);
   assert.match(workcard, /13\/13 canonical brands/);
   assert.match(workcard, /\| 8\. PlaceCard-samlinger \| \*\*GODKJENT ETTER RE-QA\*\*/);
-  assert.match(workcard, /Torggata = SLUTTGODKJENT FOR CLOSEOUT-MERGE/);
+  assert.match(workcard, /Torggata = SLUTTFØRT, MERGET OG DEPLOYET/);
   assert.doesNotMatch(workcard, /\| 8\. Rundinger \| \*\*PÅGÅR – 8C Brands\*\*/);
 });

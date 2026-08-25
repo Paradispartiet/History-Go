@@ -3,7 +3,7 @@
   "place_id": "torggata",
   "phase": 24,
   "generated_at": "2026-08-25",
-  "status": "APPROVED_READY_TO_MERGE",
+  "status": "CLOSED_MERGED_DEPLOYED",
   "base_branch": "main",
   "base_sha": "7fdbdd7cb08e7a84ada8121083b0f8a25754623d",
   "scope": {
@@ -78,7 +78,7 @@
     "required_total": 27,
     "critical_findings": [],
     "unresolved_blockers": [],
-    "gate": "PASS_READY_TO_MERGE"
+    "gate": "PASS_COMPLETE"
   },
   "merge_requirements": [
     "PR applies to Torggata closeout only",
@@ -90,5 +90,15 @@
     "merge uses the expected final head SHA",
     "merged main and Pages deployment are verified before Olaf Ryes plass starts"
   ],
-  "conclusion": "Torggata passes the 2026-08-25 manual re-QA and content re-QA. All five reopened editorial findings are resolved, the People false-zero blocker is gone, exactly the four intended people are visible, the six-part score is 29/30, and no unresolved blocker remains. The place is approved for SHA-locked closeout merge; final merged/live evidence is recorded after that merge."
+  "final_completion_evidence": {
+    "closeout_pr": 5337,
+    "closeout_head_sha": "8d3800771cb9d311376a815c06abdbf1e38f951e",
+    "merge_commit": "85a4029aba1d0dc9aaadc0fb11d5f7c3378b88bf",
+    "main_verified": true,
+    "pages_run_id": 32896361659,
+    "pages_run_number": 14523,
+    "pages_status": "SUCCESS",
+    "pages_verified_at": "2026-08-25T20:39:35Z"
+  },
+  "conclusion": "Torggata passed the 2026-08-25 manual and content re-QA, PR #5337 was SHA-locked and squash-merged, the exact merge commit was verified as main, and Pages run 32896361659 completed successfully. All five reopened findings are resolved, exactly the four intended people are visible, the score is 29/30, and Torggata is complete."
 }
