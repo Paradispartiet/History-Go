@@ -151,7 +151,7 @@ for (const [sceneId, roleScope, sourcePath] of [
   assert.equal(entry.scene.work_context?.institution_id, proof.institution_id);
 }
 
-assert.equal(realism.semantics.broad_rollout_allowed, false, 'cross-role proof does not silently open broad rollout');
+assert.equal(realism.semantics.broad_rollout_allowed, true, 'dedicated policy opening may follow the cross-role proof, but the proof itself still grants no authority');
 assert.equal(realism.program_level_proofs.cross_role_links.status, 'runtime_proven');
 assert.ok(realism.program_level_proofs.cross_role_links.evidence_refs.includes('tests/civication-cross-role-shared-world.test.js'));
 
