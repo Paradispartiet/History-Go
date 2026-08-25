@@ -59,11 +59,15 @@ test("PlaceCard uses six full-width SVG shortcuts and opens Om from title or inf
   assert.match(shortcutsCss, /pc-progress-status-line\{[\s\S]*?grid-column:1 \/ -1;[\s\S]*?grid-row:2/);
   assert.match(shortcutsCss, /#placeCard \.pc-title-row\{[\s\S]*?order:0;[\s\S]*?margin:4px 0 8px/);
   assert.match(shortcutsCss, /#placeCard #pcMeta > \*\{[\s\S]*?white-space:nowrap !important;[\s\S]*?text-overflow:ellipsis/);
-  assert.match(layoutCss, /body\.hg-app #placeCard\{[\s\S]*?top:\s*calc\(var\(--hg-visual-header-height, 74px\) \+ 58px\);[\s\S]*?bottom:\s*auto;[\s\S]*?max-height:\s*calc\([\s\S]*?100dvh[\s\S]*?var\(--hg-bottom-nav-height\) - 72px/);
-  assert.match(placeCardCss, /#placeCard\{[\s\S]*?top:\s*calc\(var\(--hg-visual-header-height, 74px\) \+ 58px\);[\s\S]*?bottom:\s*auto;[\s\S]*?max-height:\s*calc\([\s\S]*?100dvh[\s\S]*?- 72px/);
+  assert.match(shortcutsCss, /#placeCard #pcMeta > button\{[\s\S]*?cursor:pointer/);
+  assert.match(layoutCss, /body\.hg-app #placeCard\{[\s\S]*?top:\s*calc\(var\(--hg-visual-header-height, 74px\) \+ 58px\);[\s\S]*?bottom:\s*var\(--hg-bottom-nav-height\);[\s\S]*?max-height:\s*none/);
+  assert.match(placeCardCss, /#placeCard\{[\s\S]*?top:\s*calc\(var\(--hg-visual-header-height, 74px\) \+ 58px\);[\s\S]*?bottom:\s*var\([\s\S]*?--hg-bottom-nav-height,[\s\S]*?max-height:\s*none/);
   assert.doesNotMatch(layoutCss, /body\.hg-app #placeCard\{[\s\S]*?top:auto/);
-  assert.doesNotMatch(layoutCss, /body\.hg-app #placeCard\{[\s\S]*?max-height:\s*none/);
+  assert.match(placeCardCss, /#placeCard #pcDesc\{[\s\S]*?-webkit-line-clamp:\s*5/);
+  assert.match(placeCardCss, /body\.hg-app\.hg-phone #placeCard #pcDesc\{[\s\S]*?-webkit-line-clamp:\s*4/);
   assert.match(placeCardSource, /if \(!samePlace\)[\s\S]*?scrollBody\.scrollTop = 0/);
+  assert.match(placeCardSource, /className = "pc-category-meta"[\s\S]*?badgesIcon\?\.click\(\)/);
+  assert.match(placeCardSource, /HGPlaceCardEpoke\?\.render\?\.\(place\)[\s\S]*?HGPlaceCardStatusSurface\?\.render\?\.\(place\)/);
 
   w.document.getElementById("pcTitle").click();
   w.document.getElementById("pcDesc").dispatchEvent(new w.KeyboardEvent("keydown", { key: "Enter", bubbles: true }));

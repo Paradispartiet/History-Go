@@ -76,6 +76,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     // lastet før quiz/app-runtime trenger window.saveVisitedFromQuiz.
     await safeRun("loadPersistence", () => loadScriptOnce("js/state/persistence.js"));
     await safeRun("loadFavorites", () => loadScriptOnce("js/state/favorites.js"));
+    // Statuslinjen i PlaceCard må kunne rendres ved aller første åpning.
+    // Readeren lastes derfor før routeren, ikke som en post-ready-forbedring.
+    await safeRun("loadProfileProgressReader", () => loadScriptOnce("js/progress/profileProgressReader.js"));
 
     await safeRun("loadNearbyDrawer", () => loadScriptOnce("js/ui/nearby-drawer.js"));
     await safeRun("loadNearbyFilters", () => loadScriptOnce("dist/web/nearbyFilters.js"));
@@ -127,6 +130,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadEpokerRuntime", () => loadScriptOnce("js/epoker-runtime.js"));
     await safeRun("loadTimeResolver", () => loadScriptOnce("js/time-resolver.js"));
     await safeRun("loadPlaceCardEpoke", () => loadScriptOnce("js/ui/place-card-epoke.js"));
+    await safeRun("loadPlaceCardStatusSurface", () => loadScriptOnce("js/ui/place-card-status-surface.js"));
 
     await safeRun("LayerManager.init", () => window.LayerManager?.init?.());
     await safeRun("bottomSheetController.init", () => window.bottomSheetController?.init?.());

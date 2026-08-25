@@ -15,7 +15,8 @@
 //   er lastet (samme mønster som leksikon_loader.js), i stedet for å
 //   gjøre place-card.js mer skjør med stor inline-logikk.
 // - Tåler steder uten år, uten epoke_id og uten domain.
-// - Viser ALDRI "Ikke registrert": finnes ingen epoke, vises ingenting.
+// - Beholder epokeplassen også når tidsdata mangler, slik metadataoppsettet
+//   aldri kollapser til bare én linje.
 // ============================================================
 
 (function () {
@@ -70,6 +71,10 @@
     }
   }
 
+  function openTimeAndSubject() {
+    document.getElementById("pcBadgesIcon")?.click();
+  }
+
   function renderEpokeLine(place) {
     const metaEl = document.getElementById("pcMeta");
     if (!metaEl || !place) return;
@@ -78,10 +83,8 @@
     metaEl.querySelectorAll(".pc-epoke").forEach((node) => node.remove());
 
     const res = resolvePlaceTime(place);
-    const label = txt(res?.epokeLabel);
-
-    // Ingen epoke funnet → vis ingenting (ingen "Ikke registrert"-tekst).
-    if (!label) return;
+    const resolvedLabel = txt(res?.epokeLabel);
+    const label = resolvedLabel || "Ikke registrert";
 
     // Foretrekk epokens egen tidsspenn (f.eks. 1880–1910) for kontekst, og
     // fall tilbake til stedets egne år hvis epoken mangler årstall.
@@ -104,10 +107,30 @@
       }
     }
 
-    const line = document.createElement("div");
+    const line = document.createElement("button");
+    line.type = "button";
     line.className = "pc-epoke";
     line.textContent = `Epoke: ${label}`;
+    line.dataset.epokeStatus = resolvedLabel ? "resolved" : "unknown";
+    line.setAttribute("aria-label", `Åpne tid og epoke: ${label}`);
+    line.title = "Åpne tid og epoke";
+    line.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      openTimeAndSubject();
+    });
     metaEl.appendChild(line);
+    return line;
+  }
+
+  async function render(place) {
+    if (window.HGEpokerRuntime?.ready) {
+      await window.HGEpokerRuntime.ready;
+    }
+    const currentPlaceId = txt(document.getElementById("placeCard")?.dataset?.currentPlaceId);
+    const incomingPlaceId = txt(place?.id || place?.placeId);
+    if (currentPlaceId && incomingPlaceId && currentPlaceId !== incomingPlaceId) return null;
+    return renderEpokeLine(place);
   }
 
   function patchOpenPlaceCard() {
@@ -117,11 +140,7 @@
     window.openPlaceCard = async function (...args) {
       const result = await original.apply(this, args);
       try {
-        // Sørg for at epoke-indexen er klar før vi resolver.
-        if (window.HGEpokerRuntime?.ready) {
-          await window.HGEpokerRuntime.ready;
-        }
-        renderEpokeLine(args[0]);
+        await render(args[0]);
       } catch (err) {
         console.warn("[HGPlaceCardEpoke]", err);
       }
@@ -140,4 +159,6 @@
       if (patchOpenPlaceCard() || tries > 50) clearInterval(timer);
     }, 50);
   }
+
+  window.HGPlaceCardEpoke = { render };
 })();
