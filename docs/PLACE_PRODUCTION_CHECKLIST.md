@@ -16,7 +16,9 @@ Alle canonicale steder skal ha sin egen fungerende fagverkside. Kravet gjelder h
 
 Arbeidskortet skal eksplisitt føre `FAGVERK-STED-STATUS:`. `fagverk-sted` er aldri N/A. Sluttstatusen skal dokumentere `fagverk-sted — obligatorisk, fungerende og aldri N/A` før stedet kan godkjennes ferdig.
 
-DIALEKTLAG — KUN `placeScope: "area"` / N/A. Dialektinnhold kan kun eies av et område-Place med `placeScope: "area"`. Et enkeltsted med Språkleksikon skal ikke diktes om til dialekteier. `coordRole` beskriver koordinatgeometri og gir aldri dialekt-eierskap. Når Språkleksikon produseres, skal minst ett reelt dialektord eller lokalt uttrykk være kildebelagt når dialektlaget er relevant; øvrige relevante dialektord og lokale uttrykk skal vurderes og kildebelegges etter språk-/dialektkontrakten.
+**SPRÅKLEKSIKON — ALLTID / ALDRI N/A.** Alle canonicale steder har stedsspesifikke navn og begreper som skal researches og materialiseres i Språkleksikonet. Et fullprodusert sted kan ikke ha null språkoppføringer eller mangle Språk-fanen. Manglende legacy-data er et produksjonsgap, ikke N/A.
+
+**DIALEKTLAG — KUN `placeScope: "area"` / N/A.** Dialekt er et separat underlag og er ikke synonymt med Språkleksikon. Dialektinnhold kan kun eies av et område-Place med `placeScope: "area"`. Et enkeltsted skal ikke diktes om til dialekteier. `coordRole` beskriver koordinatgeometri og gir aldri dialekt-eierskap. Når dialektlaget researches på et område-Place, skal minst ett reelt dialektord eller lokalt uttrykk produseres når kildene bærer det; dersom kildene ikke bærer et forsvarlig dialektfunn kan **dialektdeljobben** settes begrunnet N/A/holdback. Språkleksikonet som helhet kan aldri settes N/A.
 
 > **Ett sted ferdig før neste. Faser reviewes sekvensielt. Mergegrenser følger reell risiko — ikke antall faser.**
 
@@ -44,7 +46,9 @@ For **Brands** gjelder fortsatt de eksplisitte produksjonsgrensene: aktørtype a
 
 For **Quiz** skal alle aktive, arkiverte og alternative quizfiler for stedet auditeres før profilvalg. Profil og settantall følger den canonicale Quiz-kontrakten; et `major`-sted bruker 10 sett med 7 spørsmål per sett.
 
-`PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md` er den detaljerte ruteren for alle disse flatene. Ingen detalj kan hoppes over fordi mergekadensen nå er enklere.
+For **Språk** gjelder en egen absolutt ferdigport: alle steder skal ha en canonical Språkleksikon-eier og minst én reell, stedsspesifikk språkoppføring. Dette kan være et dokumentert stedsnavn/navnespor, et relevant fagord/begrep, en historisk betegnelse, et lokalt uttrykk eller annen kildebundet språkbruk. Det er ikke et krav at stedet har dialekt.
+
+`PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md` er den detaljerte ruteren for alle disse flatene. Ingen detalj kan hoppes over fordi mergekadensen nå er enklere. Der eldre referansetekst omtaler Språk som «valgfri», «når relevant» eller åpner for null språkoppføringer, er denne aktive v2-regelen autoritativ: **Språk er relevant for alle Places; bare dialektlaget kan være N/A.**
 
 ### Canonicale kvalitetslåser som fortsatt skal stå eksplisitt
 
@@ -66,7 +70,8 @@ For PlaceCard-samlinger, Før/etter og eierstyrte popupflater gjelder:
 - **People-popupen** eier personrelasjoner; en ren place→place-relasjon skal ikke inn i People;
 - **Relaterte steder (`related`)** eier dokumenterte place→place-relasjoner;
 - **Om** eier `Betydning`, `Motpunkter` og generell source-eid stedskunnskap/observasjonskunnskap når ingen smalere canonical eier finnes;
-- **Språk** er den eneste definerte valgfrie direktefanen og vises bare når stedet faktisk har dokumentert språkstoff;
+- **Språk** er en fast obligatorisk stedspopupfane på alle canonicale steder; fullproduksjon krever reelle, stedsspesifikke begreper/navnespor og Språk kan aldri være N/A;
+- **Dialekt** er ikke obligatorisk for alle steder og skal aldri konstrueres for å fylle Språk-fanen;
 - canonical place-register/manifester er søkt før motivet velges, slik at bygg, virksomheter, parker, plasser eller andre delsteder med egen place-oppføring blir oppdaget;
 - et delsted som har egen canonical place-oppføring brukes ikke som primært Før/etter-stedfortreder for et overordnet sted;
 - bilder fra ulike kamerastandpunkter kan brukes som supplerende historiske bilder, men består ikke alene som fullverdig primær Før/etter-sammenligning;
@@ -88,7 +93,8 @@ Før første brukerrettede endring skal stedet ha en skriftlig nullmåling og sa
 - kategori, Badges, emner, Fagverk og Nature når relevant;
 - description-produksjon;
 - strukturerte place-profiler;
-- alle relevante grunnfaner, valgfri Språk og eierflater i Objects/People/Relaterte steder/Om;
+- alle åtte faste popupfaner, inkludert obligatorisk Språk, samt eierflater i Objects/People/Relaterte steder/Om;
+- Språkleksikon-eier, eksisterende begreper/navnespor og eventuelt separat dialektlag;
 - People, Objects/Works, Brands og PlaceCard-samlinger;
 - Stories, Quiz, Knowledge/Aha, Lesespor og ruter/relasjoner;
 - kilder, bilder/proveniens og faktisk UI-visning;
@@ -128,6 +134,8 @@ Eksempler:
 - en popup-/samlingsflate som allerede har riktig canonical owner og full dekning;
 - et irrelevant subsystem med dokumentert N/A.
 
+Språk er ikke et irrelevant subsystem for et canonical Place. Bare dialektdeljobben kan ende begrunnet N/A.
+
 ---
 
 ## 4. Mergegrenser følger risiko
@@ -155,6 +163,7 @@ Kan samle flere **sekvensielt reviewede** innholdsfaser, for eksempel:
 - description v4.2;
 - strukturerte place-profiler;
 - Om/Historie/Fortellinger/Før–etter/Nyheter/Lesespor/Kilder/Språk;
+- obligatoriske Språkleksikon-begreper/navnespor og eventuelt separat dialektlag;
 - relevante People/Objects/Brands/PlaceCard-samlinger og eide underseksjoner;
 - Quiz/Story/Knowledge/ruter når kontraktene tillater samme avgrensede diff.
 
@@ -218,6 +227,7 @@ Fortsatt obligatorisk:
 - ingen filler for å tilfredsstille felttall;
 - own-place og entity-grenser;
 - alle relevante People/Objects/Brands/Stories/Quiz-/runde-kontrakter;
+- obligatorisk Språkleksikon på alle Places, med reelle begreper/navnespor og uten konstruert dialekt;
 - alle relevante faglige place-gates;
 - koordinat- og bildeproveniens;
 - deterministiske manifester/indekser der de eier data;
@@ -229,9 +239,13 @@ Disse ankerreglene gjentas her fordi permanente governance-tester og produksjons
 
 #### Språkleksikon og dialekt
 
+**SPRÅKLEKSIKON — ALLE PLACES / ALDRI N/A**
+
+Alle canonicale steder skal researches for og materialisere reelle, stedsspesifikke språkoppføringer. Relevante kandidater er blant annet stedsnavn/navnehistorie, fagord, funksjonsbegreper, historiske betegnelser og dokumenterte lokale uttrykk. Null eksisterende språkdata betyr «må produseres», ikke N/A. Generelle fagord uten dokumentert stedskobling skal ikke brukes som filler.
+
 **DIALEKTLAG — KUN `placeScope: "area"` / N/A**
 
-Dialektinnhold kan kun eies av et område-Place med `placeScope: "area"`. `coordRole` beskriver bare koordinatgeometri og gir aldri dialekt-eierskap. Et enkeltsted med Språkleksikon skal researches for kildebelagte dialektord og lokale uttrykk, men dialekt skal ikke diktes for å fylle en flate. Når enkeltstedet ikke kan eie dialektlaget, skal relevante språkrelasjoner og nærmeste områdeeier brukes etter Språkleksikon-kontrakten.
+Dialektinnhold kan kun eies av et område-Place med `placeScope: "area"`. `coordRole` beskriver bare koordinatgeometri og gir aldri dialekt-eierskap. Et enkeltsted skal ha Språkleksikon, men ikke et konstruert dialektlag. Når området faktisk kan eie dialekt, researches dialektord og lokale uttrykk; dialekt skal ikke diktes for å fylle en flate. Når kildene ikke bærer et forsvarlig dialektfunn kan dialektdeljobben settes begrunnet N/A/holdback, mens Språkleksikonet fortsatt må ferdigstilles.
 
 #### Brands
 
@@ -265,7 +279,9 @@ Et sted kan ikke merkes `produksjonsklart` eller `SLUTTFØRT` før den synlige o
 
 Minimum:
 
-- åpne alle sju grunnfaner og valgfri Språk når den finnes;
+- åpne alle åtte faste faner, inkludert Språk;
+- kontroller at Språk viser reelle, stedsspesifikke oppføringer og ikke står i produksjonsgap-tilstand;
+- kontroller at eventuelt dialektinnhold har riktig `placeScope: "area"`-eier, og at fravær av dialekt ikke behandles som fravær av språk;
 - åpne Objects-popupen og kontroller eventuelle `Spor og objekter`/`Legg merke til`-seksjoner;
 - åpne People-popupen og kontroller personrelasjoner når de finnes;
 - kontroller at place→place-relasjoner ligger i Relaterte steder og ikke i People;
@@ -284,19 +300,20 @@ Grønn CI eller komplett schema kan aldri overstyre dokumentert svak sluttflate.
 
 ## 9. Forholdet til v1-referansen
 
-`docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md` er fortsatt bindende for **hva som skal kontrolleres og hvordan subsystemene rutes**.
+`docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md` er fortsatt bindende for **hva som skal kontrolleres og hvordan subsystemene rutes**, med de eksplisitte v2-overstyringene nedenfor.
 
-Følgende v1-kadensregler er uttrykkelig erstattet av dette dokumentet:
+Følgende v1-regler/ordlyder er uttrykkelig erstattet av dette dokumentet:
 
 1. «hver godkjent fase merges som en liten, avgrenset PR»;
 2. krav om main/live-kontroll mellom hvert enkelt internt checkpoint;
 3. implisitt krav om audit-only PR for en fase som ender `ALLEREDE FERDIG` eller `BEGRUNNET N/A`;
-4. arbeidskortfelt som forutsetter at forrige fase må være merget fremfor reviewet.
+4. arbeidskortfelt som forutsetter at forrige fase må være merget fremfor reviewet;
+5. enhver formulering som gjør Språk/Språkleksikon valgfritt, «når relevant» eller tillater null språkoppføringer som godkjent sluttstatus.
 
-Alle øvrige kvalitets-, innholds-, source-, UI- og slutt-QA-krav består.
+Alle øvrige kvalitets-, innholds-, source-, UI- og slutt-QA-krav består. Dialektreglene i referansen består også: dialektlaget er et separat area-eid underlag og kan være begrunnet N/A uten at Språkleksikonet blir N/A.
 
 ---
 
 ## Kort regel
 
-**Review hver fase. Merge ved reelle risikogrenser. Behold full kvalitet. Ikke bruk GitHub-PR-er som fasebokføring.**
+**Review hver fase. Merge ved reelle risikogrenser. Behold full kvalitet. Alle Places har Språk; bare dialekt kan mangle. Ikke bruk GitHub-PR-er som fasebokføring.**
