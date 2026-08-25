@@ -2,7 +2,7 @@
   "schema": "civication_role_world_policy_v1",
   "version": 1,
   "status": "canonical_editorial_completion_contract",
-  "effective_date": "2026-08-18",
+  "effective_date": "2026-08-25",
   "standard": "docs/CIVICATION_ROLE_WORLD_STANDARD.md",
   "authoring_guide": "docs/CIVICATION_ROLE_WORLD_AUTHORING_GUIDE.md",
   "authoring_checklist": "data/Civication/roleWorldAuthoringChecklist.json",
@@ -35,6 +35,15 @@
     "career_policy": "data/Civication/careerGameplayPolicy.json",
     "not_equivalent_to": "role_world_complete",
     "reason": "reference_complete beviser 15 career-komponenter, Life Story, praksisdybde og to uker, men ikke den strengere sosiale serie-/Role World-standarden."
+  },
+  "realism_matrix_gate": {
+    "path": "data/Civication/roleWorldRealismMatrix.json",
+    "schema": "civication_role_world_realism_matrix_v1",
+    "status": "gate_active",
+    "broad_rollout_allowed": false,
+    "completion_statuses_unchanged": true,
+    "new_runtime_allowed": false,
+    "rule": "Matrixen er en separat audit/completion-gate. Den kan bare låse tverrrollefelt som har flerpilotbevis og kan ikke omskrive reference_complete, role_world_complete eller Scene Pipeline-eierskap."
   },
   "role_world_statuses": [
     "role_world_not_started",
