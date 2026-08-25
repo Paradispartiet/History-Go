@@ -136,7 +136,7 @@ Vanlige norske ord skal ikke merkes som lokale bare fordi de forekommer i en lok
 
 ## 7. Språkleksikon og dialektlag — hardt skille
 
-Språkleksikonet er obligatorisk på alle typer Places. **Dialektlaget er strengere og valgfritt:** Dialektlaget kan bare eies av et canonical Place med `placeScope: "area"`. Det finnes ingen unntak for gater, bygg, institusjoner, markeder, havner, arbeidsplasser eller andre enkelt-Places.
+Språkleksikonet er obligatorisk på alle typer Places. **Språkleksikon kan finnes på alle typer Places, og etter denne kontrakten skal det finnes på alle canonical Places.** Dialektlaget er strengere og valgfritt: Dialektlaget kan bare eies av et canonical Place med `placeScope: "area"`. Det finnes ingen unntak for gater, bygg, institusjoner, markeder, havner, arbeidsplasser eller andre enkelt-Places.
 
 Dette betyr:
 
@@ -164,7 +164,7 @@ Betydning, geografisk utbredelse og historisk/moderne status skal avgrenses ette
 
 ### Enkelt-Places og direkte språksteder
 
-Enkelt-Places skal ha et Språkleksikon, men ikke et dialektlag. Historiske gatenavn på Torggata, et dokumentert kallenavn på en bygning, et fagord ved Bislett stadion eller et arbeidsplassuttrykk kan være gyldig språkinnhold når kildene bærer det. Slike oppføringer skal ikke merkes som dialekt og skal ikke bruke et bredere dialektområde som om enkeltstedet eide det.
+**Enkelt-Places kan ha Språkleksikon, og i fullproduksjon skal de ha det; de skal ikke ha et konstruert dialektlag.** Historiske gatenavn på Torggata, et dokumentert kallenavn på en bygning, et fagord ved Bislett stadion eller et arbeidsplassuttrykk kan være gyldig språkinnhold når kildene bærer det. Slike oppføringer skal ikke merkes som dialekt og skal ikke bruke et bredere dialektområde som om enkeltstedet eide det.
 
 Gater, markeder, havner og arbeidsmiljøer kan fortsatt være **direkte språksteder** for stedsspesifikke uttrykk. «Direkte språksted» er en Språkleksikon-klassifisering, ikke en dialektklassifisering.
 
