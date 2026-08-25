@@ -121,7 +121,7 @@ test("Språkleksikon-dokumentasjonen låser Språk som eneste definerte valgfrie
   assert.match(contract, /hg_knowledge_entries_v2/);
   assert.match(popup, /én definert, source-eid \*\*valgfri direktefane\*\*/i);
   assert.match(popup, /Språk[\s\S]*eneste definerte valgfrie direktefanen/i);
-  assert.match(popup, /Spor & objekter[\s\S]*ikke selvstendige stedspopupfaner/i);
+  assert.match(popup, /Følgende er \*\*ikke selvstendige stedspopupfaner\*\*[\s\S]*Spor & objekter/i);
 });
 
 
