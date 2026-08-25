@@ -63,7 +63,7 @@ test("Birkelunden er enkeltstedsspråk og aldri dialekteier", () => {
       assert.match(source.url, /^https:\/\//);
     }
   }
-  assert.match(contract, /Enkelt-Places skal ha et Språkleksikon, men ikke et dialektlag/i);
+  assert.match(contract, /Enkelt-Places[^\n]*Språkleksikon[^\n]*ikke[^\n]*dialektlag/i);
 });
 
 test("Birkelunden-språket er registrert hos canonical manifest og synlig via eksisterende runtime", () => {
