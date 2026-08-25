@@ -1,0 +1,58 @@
+name: TEMP Civication Role World rollout readiness materializer
+
+on:
+  push:
+    branches:
+      - agent/civication-role-world-broad-rollout-readiness
+
+concurrency:
+  group: temp-civication-role-world-rollout-readiness-${{ github.ref_name }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  materialize-readiness:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out readiness branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/civication-role-world-broad-rollout-readiness
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Materialize readiness audit
+        run: node scripts/audit-civication-role-world-rollout-readiness.mjs --write
+
+      - name: Verify readiness gate
+        run: node tests/civication-role-world-rollout-readiness.test.js
+
+      - name: Verify locked Realism Matrix and cross-role proof
+        run: |
+          node tests/civication-role-world-realism-matrix.test.js
+          node tests/civication-cross-role-shared-world.test.js
+
+      - name: Run full Civication suite
+        run: node tests/run-civication-tests.mjs
+
+      - name: Publish generated audit and remove temporary materializer
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/TEMP-civication-role-world-rollout-readiness-materialize.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No generated changes to publish"
+            exit 0
+          fi
+          git commit -m "Materialize Role World rollout readiness audit"
+          git pull --rebase origin agent/civication-role-world-broad-rollout-readiness
+          git push origin HEAD:agent/civication-role-world-broad-rollout-readiness
