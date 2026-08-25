@@ -2,13 +2,17 @@
 
 Status: **canonical produktstandard for et History GO-sted**  
 Eier: `place_product_standard`  
-Sist kontrollert: **2026-08-03**
+Sist kontrollert: **2026-08-25**
 
 Dette dokumentet definerer **hva et History GO-sted er og hvilke roller stedssystemet har**. Det er ikke detaljoppskrift for tekst, quiz, rundinger, People eller koordinater.
 
-Sted-for-sted arbeidsrekkefølge:
+Sted-for-sted arbeidsrekkefølge for ordinære steder:
 
 - `docs/PLACE_PRODUCTION_CHECKLIST.md`
+
+Lettvektssteder med `placeTier: "micro"` følger i stedet den avgrensede ferdigdefinisjonen i:
+
+- `docs/MICRO_PLACE_CONTRACT.md`
 
 ## 1. Autoritetskart
 
@@ -16,6 +20,8 @@ Sted-for-sted arbeidsrekkefølge:
 | --- | --- |
 | Faktisitet | `docs/FACTUALITY_CONTRACT.md` |
 | Place-data/manifester/referanser | `docs/DATA_PRODUCTION_CONTRACT.md` |
+| Ordinær Place-produksjon | `docs/PLACE_PRODUCTION_CHECKLIST.md` |
+| Micro Place-produksjon | `docs/MICRO_PLACE_CONTRACT.md` |
 | `desc` / `popupDesc` produksjon | `data/places/regler/PLACE_DESCRIPTION_CANONICAL.md` |
 | Popup-presentasjon | `docs/PLACE_POPUP_SYSTEM.md` |
 | Rundinger | `data/places/README_place_rounds.md` |
@@ -31,7 +37,7 @@ Sted-for-sted arbeidsrekkefølge:
 | Progresjon/read-model | `docs/PROGRESSION_MODEL.md` |
 | Fagverk-navigasjon | `docs/FAGVERK_NAVIGATION.md` |
 
-Ved konflikt gjelder subsystemets eierkontrakt og faktisk source/runtime foran oppsummeringen her.
+Ved konflikt gjelder subsystemets eierkontrakt og faktisk source/runtime foran oppsummeringen her. `MICRO_PLACE_CONTRACT.md` eier uttrykkelig hvilke ordinære fullness-krav som ikke gjelder når `placeTier: "micro"` er validert.
 
 ## 2. Grunnmodell
 
@@ -46,6 +52,8 @@ Harde regler:
 5. Koordinatet representerer det faktiske History GO-objektet etter coordinate-kontrakten.
 6. Brukerrettede fakta er source-led.
 7. Genererte indekser er build-output og håndredigeres ikke.
+8. `placeTier` beskriver produksjonsomfang, ikke fagkategori. Fravær betyr ordinært/standard sted; `micro` krever `MICRO_PLACE_CONTRACT.md`.
+9. Et Micro Place kan ha egen kartprikk ved et større parent-place uten å arve parentens kategori.
 
 ## 3. Minimum place-object
 
@@ -62,7 +70,19 @@ Et basissted trenger minst:
 }
 ```
 
-Dette betyr bare at stedet kan eksistere i grunnsystemet. Det betyr ikke at stedet er produksjonsferdig.
+Dette betyr bare at stedet kan eksistere i grunnsystemet. Det betyr ikke at et ordinært sted er produksjonsferdig.
+
+Et Micro Place trenger i tillegg minst:
+
+```js
+{
+  placeTier: "micro",
+  subcategory_id,
+  micro_place_profile
+}
+```
+
+og full koordinat-/kildekontrakt etter `docs/MICRO_PLACE_CONTRACT.md`.
 
 ## 4. Rikt place-object
 
@@ -76,6 +96,10 @@ Relevante og dokumenterte felt kan blant annet være:
   lon,
   r,
   category,
+  subcategory_id,
+  placeTier,
+  micro_place_profile,
+  parent_place_id,
   underbadge_ids,
   year,
   desc,
@@ -111,7 +135,7 @@ Canonical data kan også eies utenfor place-recorden: People, Works, Brands, Sto
 
 Denne filen eier **ikke** produksjonsmetoden for tekstene.
 
-All ny eller vesentlig revidert `desc`/`popupDesc` følger:
+All ny eller vesentlig revidert ordinær `desc`/`popupDesc` følger:
 
 - `data/places/regler/PLACE_DESCRIPTION_CANONICAL.md`;
 - tilhørende production-package schema og validator.
@@ -123,11 +147,15 @@ Denne stedstandarden fastslår bare rollen:
 - `desc` = kort leksikalsk inngang;
 - `popupDesc` = full stedartikkel til Om-fanen.
 
+For et validert Micro Place er en source-led `desc` obligatorisk, mens full `popupDesc`-artikkel ikke er obligatorisk med mindre mikroobjektets dokumenterte stoffmengde faktisk tilsier det. Faktisitetskontrakten gjelder uansett.
+
 ## 6. De tre brukerrettede stedflatene
 
 ### Rundinger
 
 Rundingsmodellen eies **kun** av `data/places/README_place_rounds.md`. Denne filen vedlikeholder ikke egen palett, profil eller antallsregel.
+
+Det ordinære firefeltskravet gjelder ikke Micro Place; micro-presentasjonen eies av `docs/MICRO_PLACE_CONTRACT.md`.
 
 ### På stedet
 
@@ -144,21 +172,23 @@ Quiz, Observer, Notat og Rute kan ha egne flows.
 
 ### Stedspopup
 
-Kunnskapsflaten:
+Kunnskapsflaten for ordinære steder:
 
 ```text
-Om · Historie · Fortellinger · Før/etter · Nyheter · Lesespor · Kilder · Mer
+Om · Historie · Fortellinger · Før/etter · Nyheter · Lesespor · Kilder · direkte datastyrte faner
 ```
 
 Disse tre rollene skal ikke blandes for å fylle UI.
 
 Stedspopupens hero skal gi orientering og primær handling, ikke gjenta nøkkeltall som allerede eies av type-spesifikke detaljseksjoner. Se `docs/PLACE_POPUP_SYSTEM.md` for regelen om én visuell eier per opplysning.
 
+Micro Place skal ikke vise eller kreve tomme ordinære faner bare for å etterligne et fullsted.
+
 ## 7. PlaceCard
 
 PlaceCard er det kompakte kontrollrommet for stedet.
 
-Det skal kunne vise, når relevant og implementert:
+For ordinære steder skal det kunne vise, når relevant og implementert:
 
 - navn og kategori;
 - korrekt stedbilde;
@@ -172,13 +202,15 @@ Det skal kunne vise, når relevant og implementert:
 
 Lang kunnskap hører i popupen, ikke i selve PlaceCard.
 
+For `placeTier: "micro"` gjelder den kompakte Micro PlaceCard-kontrakten: det ordinære firefelts-gridet skjules, Fagverk-badge er ikke obligatorisk, og Quiz vises bare når `micro_place_profile.quizMode` er `place`.
+
 ## 8. Badges og fagverk
 
 `category` er stedets primære canonical kategori/badgeidentitet.
 
 `underbadge_ids` brukes til canonical underbadges.
 
-Badges-rundingen åpner:
+For ordinære steder åpner Badges-handlingen:
 
 ```text
 fagverk-sted.html?place=<place_id>
@@ -186,11 +218,13 @@ fagverk-sted.html?place=<place_id>
 
 Merke- og fagsider har forskjellige roller; se `docs/FAGVERK_NAVIGATION.md`.
 
+Micro Place beholder toppkategoriens kartidentitet, men egen Fagverk-sted-side er ikke et ferdigkrav med mindre en aktivert micro-flate uttrykkelig trenger den.
+
 ## 9. Rundinger og canonical place-felt
 
-Detaljreglene eies av `data/places/README_place_rounds.md`.
+Detaljreglene for ordinære steder eies av `data/places/README_place_rounds.md`.
 
-For ny/revidert stedproduksjon:
+For ny/revidert ordinær stedproduksjon:
 
 - `rounds` = legacy presentasjonsfelt; rundingsvalg eies av canonical rundingskontrakt;
 - `objects` = nye Object-kort;
@@ -201,6 +235,8 @@ For ny/revidert stedproduksjon:
 Legacy aliaser skal ikke bli nye standarder.
 
 Nature er valgfri. Brands-semantikken eies av `data/brands/brand_rules_v1_1.json`: også profesjonelle, arkitektur-, venue-, institusjons-, legacy- og skiltidentiteter kan kvalifisere når navnet har selvstendig gjenkjennelse og dokumentert stedskobling. Aktørtype alene er verken godkjenning eller avslag.
+
+Micro Place skal ikke opprette `place_card_profile` for å fylle fire kunstige samlinger.
 
 ## 10. Strukturerte place-profiler
 
@@ -215,6 +251,8 @@ Få tydelige hovedmilepæler når ett `year` ikke er nok. Detaljert chronology e
 ### `subplaces`
 
 Reelle fysiske deler eller soner under hovedstedet. Et subplace blir ikke automatisk et nytt globalt Place.
+
+Et element som trenger egen faglig kartprikk og består Micro Place-identitetsporten kan i stedet bli eget Micro Place med parent-/relation-kobling.
 
 ### `history_layers`
 
@@ -243,6 +281,8 @@ Aktuell produkt/runtimemodell skiller blant annet:
 
 Se `docs/COMPLETION_DEFINITIONS.md`, `docs/PROGRESSION_MODEL.md` og `docs/QUIZ_AND_PHYSICAL_VISIT_MODEL.md`.
 
+Et Micro Place uten egen quiz skal ikke få manglende quiz presentert som en ufullført handling.
+
 ## 12. Wonderkammer og Civication
 
 Wonderkammer er legacy migreringsgrunnlag, ikke ny PlaceCard-runding eller ny stedproduksjonsmodell.
@@ -251,8 +291,10 @@ Civication er et separat spillsystem. En fysisk Civication-ting kan vises som Ob
 
 ## 13. Produksjonsferdig sted
 
-Et sted er ikke produksjonsferdig bare fordi basisobjektet validerer.
+Et ordinært sted er ikke produksjonsferdig bare fordi basisobjektet validerer.
 
-Ferdigstatus bestemmes gjennom `docs/PLACE_PRODUCTION_CHECKLIST.md`, som krever eksplisitt vurdering av alle relevante subsystemer, kilder, bilder, UI, spillerstatus og CI.
+Ordinær ferdigstatus bestemmes gjennom `docs/PLACE_PRODUCTION_CHECKLIST.md`, som krever eksplisitt vurdering av alle relevante subsystemer, kilder, bilder, UI, spillerstatus og CI.
 
-**Manglende relevant innhold kan være N/A. Glemt kontroll kan ikke være N/A.**
+Et validert `placeTier: "micro"` er ferdig etter `docs/MICRO_PLACE_CONTRACT.md`. Denne ferdigdefinisjonen er bevisst mindre i innholdsbredden, men beholder full styrke på identitet, faktisitet, coordinate source, canonical source/manifest/index og faktisk UI-kontroll.
+
+**Manglende relevant innhold kan være N/A. Glemt kontroll kan ikke være N/A. Micro Place er en egen kontrakt, ikke en generell snarvei.**
