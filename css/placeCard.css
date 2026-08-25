@@ -49,16 +49,23 @@
   left: calc(12px + env(safe-area-inset-left, 0px));
   right: calc(12px + env(safe-area-inset-right, 0px));
 
-  /* Fast topp rett under Utforsk og fast bunn over footeren.
+  /* Fast topp rett under Utforsk og innholdsstyrt høyde.
      Posisjon/lag styres autoritativt i css/layout.css
      (body.hg-app #placeCard); verdiene her er robust fallback. */
   top: calc(var(--hg-visual-header-height, 74px) + 58px);
-  bottom: calc(
-    var(--hg-bottom-nav-height, calc(72px + env(safe-area-inset-bottom, 0px)))
-    + 14px
-  );
+  bottom: auto;
   height: auto;
-  max-height: none;
+  /* Behold minst 14px luft over footeren uten å strekke kortet. */
+  max-height: calc(
+    100vh - var(--hg-visual-header-height, 74px) -
+    var(--hg-bottom-nav-height, calc(72px + env(safe-area-inset-bottom, 0px)))
+    - 72px
+  );
+  max-height: calc(
+    100dvh - var(--hg-visual-header-height, 74px) -
+    var(--hg-bottom-nav-height, calc(72px + env(safe-area-inset-bottom, 0px)))
+    - 72px
+  );
 
   /* Desktop/tablett: modal-lignende kort sentrert med begrenset bredde. */
   max-width: 760px;
