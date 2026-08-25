@@ -1,6 +1,6 @@
 # Torggata – aktivt stedproduksjonskort
 
-- Oppdatert: 2026-08-14
+- Oppdatert: 2026-08-25
 - Place ID: `torggata`
 - Canonical source: `data/places/by/oslo/places/torggata.json`
 - Styrende kontrakt: `docs/PLACE_PRODUCTION_CHECKLIST.md`
@@ -60,12 +60,12 @@
 | 4. Kategori, Badges, emner og Fagverk | **GODKJENT** | PR #4813, merge `094fbcef5119fb6e3c427df2ee59ee645bd79795` |
 | 5. `desc` + `popupDesc` | **GODKJENT** | PR #4815, merge `0528b259fcb6dc0e2a3ea68b6d3e3925bbfe5a4e` |
 | 6. Strukturerte place-profiler | **GODKJENT** | PR #4816, merge `e155aea8b0717c623a1de9904dcc253e8820f356` |
-| 7. Popupfaner | **GJENÅPNET – 7D FØR/ETTER, 7F NYHETER, 7G LESESPOR OG 7H MER LØST** | gammelt–nå-paret, to daterte 2026-notiser, tre åpne Lesespor og et kildebelagt språk-/observasjonslag er publisert |
-| 8. Rundinger | **GJENÅPNET OG REPARERT I 8F; MANUELL RE-QA NESTE** | 4+1 beholdt som People · Bilder · Brands · Relaterte steder; den enslige Objects-posten og own-place-baserte Structures-rundingen er fjernet |
+| 7. Popupfaner | **GODKJENT ETTER RE-QA** | gammelt–nå-paret, to daterte 2026-notiser, tre åpne Lesespor, Språk og eierstyrte direktefaner er kontrollert |
+| 8. PlaceCard-samlinger | **GODKJENT ETTER RE-QA** | full 4+1-komposisjon og separat Badge er kontrollert; legacy-profilen leses gjennom canonical kompatibilitetslag uten Bilder som samling |
 | 9. På stedet | **GODKJENT** | legacy `tasks_profile` migrert ut + onsite-runtime/regresjon godkjent |
 | 10. Quiz | **GODKJENT** | full canonical quizProduction-pakke, 5 × 7 kildebårne spørsmål |
 | 11. Observer, Notat og Rute | **GODKJENT** | eksisterende Observer-, Notat- og navigasjonsruntime auditert; historisk rute begrunnet N/A |
-| 12. People–sted-koblinger | **GJENÅPNET; FJERDE REPARASJON PÅGÅR** | canonical målsett er Henrik Bull, Harald Olsen, Alma Fahlstrøm og Johan Fahlstrøm; Torggata Bad-proxyer og bredt områdefyll er holdt ute; produksjon viste fortsatt falsk 0 fordi stale `relations.json` manglet de nye koblingene |
+| 12. People–sted-koblinger | **GODKJENT ETTER PRODUKSJONS-RE-QA** | nøyaktig Harald Olsen, Alma Fahlstrøm, Johan Fahlstrøm og Henrik Bull vises; falsk 0 og tom popup er løst; Torggata Bad-proxyer og områdefyll forblir holdt ute |
 | 13. Brands | **GODKJENT** | 13/13 canonical brands har lokal verifisert logo eller autentisk historisk ordmerke/brandmark med proveniens; ingen genererte eller rekonstruerte logoer |
 | 14. Leksikon, relations, NextUp, Nearby, søk og i18n | **GODKJENT** | kildebåret Leksikon beholdt; `storgata`-relasjon, historiske aliaser og tre trofaste oversettelser regresjonslåst |
 | 15. Fysisk besøk / innsjekk | **ALLEREDE FERDIG – GODKJENT** | PR #3212/#3218-baselinen består med canonical Torggata-anker/radius og quiz/visit-separasjon |
@@ -74,10 +74,10 @@
 | 18. Legacy Wonderkammer | **GODKJENT N/A** | ingen Torggata-Wonderkammerdata; tidligere materiale er allerede klassifisert til canonical eiere |
 | 19. Hovedbilder og rundingsbilder | **GODKJENT** | to lokale hovedbilder; People 7/7, Objects 1/1 og Brands 13/13 bildeklare med proveniens |
 | 20. Data-QA | **GODKJENT** | canonical data, indekser, referanser og subsystemporter bestått på siste innholds-head |
-| 21. UI-QA | **GJENÅPNET; PRODUKSJONSBLOCKER** | 4+1 og øvrige flater beholdes, men Personer må vise nøyaktig 4 etter fersk relasjonslast før Torggata kan lukkes |
-| 22. Innholds-QA | **HISTORISK GODKJENT; GJENÅPNET FOR RE-QA** | alle fem redaksjonelle funn er datareparert; samlet innholds- og UI-kontroll gjenstår |
+| 21. UI-QA | **GODKJENT ETTER PRODUKSJONS-RE-QA** | alle hovedflater består, 4+1 består og Personer viser nøyaktig 4 uten falsk 0 |
+| 22. Innholds-QA | **GODKJENT ETTER RE-QA** | alle fem redaksjonelle funn er løst og kontrollert samlet; ingen ny påstand eller filler er introdusert |
 | 23. CI / repository-gates | **GODKJENT** | eksakte grønne Data/Places-, Fagverk By-, TypeScript-, rundings- og Pages-kjøringer registrert |
-| 24. Ett-sted-PR | **TEKNISK MERGET; REDAKSJONELL KVALITET GJENÅPNET** | PR #4962 og deploy er historisk verifisert, men manuell sluttvurdering avdekket fem blokkerende kvalitetsavvik |
+| 24. Ett-sted-PR | **GODKJENT FOR FINAL CLOSEOUT-MERGE** | ny seksdelt score er 29/30, ingen blokkere gjenstår og closeout-PR-en omfatter bare Torggata-status, audit og permanente regresjoner |
 
 ## Tidligere-arbeid-gate – koordinater
 
@@ -978,3 +978,34 @@ Root cause er avgrenset: People-manifestet og prioriterte profilfiler blir nå r
 Fjerde reparasjon gjør begge mutable relasjonsregistrene cache-uavhengige med `no-store`, låser kontrakten i bakgrunnslastertesten og utvider den globale produksjonssjekklisten: ny eller endret place→person-relasjon skal ikke kunne skjules av stale cache. Etter ny merge og Pages-deploy skal en fersk produksjonskontroll bekrefte nøyaktig Henrik Bull, Harald Olsen, Alma Fahlstrøm og Johan Fahlstrøm.
 
 **STATUS: FJERDE REPARASJON PÅGÅR — TORGATTA ER IKKE FERDIG FØR PRODUKSJON VISER PERSONER = 4.**
+
+## Produksjons-reQA 5 — sluttgodkjent for closeout (2026-08-25)
+
+**Kontrollert main:** `7fdbdd7cb08e7a84ada8121083b0f8a25754623d`
+**Kontrollert flate:** canonical Torggata PlaceCard og stedspopup på produksjonsflaten.
+
+Den siste manuelle livekontrollen viser nå nøyaktig **Harald Olsen, Alma Fahlstrøm, Johan Fahlstrøm og Henrik Bull**. Den tidligere falske nullen og den tomme People-popupen er borte. Torggata Bad-personene og brede områdekoblinger er fortsatt korrekt holdt utenfor parent-stedets People-samling.
+
+Re-QA bekrefter samtidig:
+
+- fire samlingsflater i full 2 × 2-komposisjon og separat Badge;
+- sammenlignbart før/etter-par fra Torggata 30–36, ca. 1965 mot 2025;
+- fylte Nyheter og tre åpne Lesespor;
+- obligatorisk Språk med tre stedsspesifikke språkspor;
+- eierstyrte direktefaner uten ny Mer-restfane;
+- fungerende obligatorisk Quiz og bevart visit/quiz-separasjon;
+- ingen nye påstander, personer, Brands, Stories, objekter eller stedselementer i closeout-diffen.
+
+Den seksdelte kvalitetsvurderingen er satt på nytt til **29/30**. Alle seks dimensjoner består minimum 4/5; kritiske funn og uløste blokkere er begge 0.
+
+```text
+AKTIV FASE: 24 final closeout
+SISTE GODKJENTE CHECKPOINT: 21/22 produksjons- og innholds-re-QA
+AKTIVT FILSCOPE: status, audit og permanente Torggata-regresjoner
+AKTIV MERGEGRENSE: integration / final closeout
+BRANCH STATUS: klar for PR og SHA-låst merge
+LIVE STATUS: innholdet er live på main; closeout-bokføringen blir endelig ved merge
+NESTE FASE: ingen — Olaf Ryes plass starter først etter closeout-merge og main-kontroll
+```
+
+**Torggata = SLUTTGODKJENT FOR CLOSEOUT-MERGE.**

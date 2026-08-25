@@ -13,7 +13,7 @@ const backlog = readJson('reports/place-production/torggata-quality-improvement-
 const runtime = read('js/ui/place-popup-tabs.js');
 const audit = read('reports/place-production/torggata-phase7f-news-audit-v1.md');
 const workcard = read('reports/place-production/torggata-workcard-current.md');
-const checklist = read('docs/PLACE_PRODUCTION_CHECKLIST.md');
+const checklist = read('docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md');
 
 assert(Array.isArray(news), 'Torggata-nyheter skal være en manifest-lastet artikkelliste');
 assert.strictEqual(news.length, 2, 'Fase 7F skal publisere to proporsjonale 2026-notiser');
@@ -78,14 +78,14 @@ assert.strictEqual(finding.resolution.source_owner, newsPath);
 assert.strictEqual(finding.resolution.verified_at, '2026-08-14');
 assert.strictEqual(backlog.sequence[0].status, 'RESOLVED');
 assert.strictEqual(backlog.sequence[1].status, 'RESOLVED');
-assert.strictEqual(backlog.sequence[2].status, 'QUEUED_NEXT');
+assert.strictEqual(backlog.sequence[2].status, 'RESOLVED');
 assert.deepStrictEqual(backlog.active_phase, {
-  id: 'reading_trail_missing',
-  status: 'QUEUED_NEXT'
+  id: 'final_closeout',
+  status: 'READY_TO_MERGE'
 });
 
-assert.match(workcard, /7F NYHETER LØST; LESESPOR NESTE/);
-assert.match(workcard, /TRE REDAKSJONELLE BLOKKERE GJENSTÅR/);
+assert.match(workcard, /Gjenåpnet fase 7F Nyheter = LØST/);
+assert.match(workcard, /Torggata = SLUTTGODKJENT FOR CLOSEOUT-MERGE/);
 assert.match(workcard, /Torggata Bad, Rockefeller og Youngstorget brukes ikke som stedfortredere/);
 assert.match(checklist, /Nyheter kan ikke godkjennes som tom\/N\/A/);
 assert.match(checklist, /nåtidsnotiser er ferskt kontrollert og har tydelig publiserings-\/hendelsesdato/);

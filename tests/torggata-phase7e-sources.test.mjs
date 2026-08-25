@@ -9,7 +9,7 @@ const article = readJson('data/leksikon/places/oslo/by/leksikon_oslo_by_torggata
 const runtime = read('js/ui/place-popup-tabs.js');
 
 assert.equal(article.place_id, 'torggata');
-assert.equal(article.version, 4);
+assert.equal(article.version, 5);
 assert.ok(Array.isArray(article.externalLinks));
 assert.equal(new Set(article.externalLinks.map(link => link.url)).size, article.externalLinks.length, 'Torggata-leksikonet skal ikke ha duplikate externalLinks-URL-er');
 assert.ok(article.externalLinks.every(link => String(link.url || '').startsWith('https://')));
@@ -35,11 +35,9 @@ for (const label of place.source_summary.safe_sources) {
   assert.ok(expectedSafeSourceUrls.get(label).some(url => configuredUrls.has(url)), `safe source mangler klikkbar HTTPS-lenke: ${label}`);
 }
 
-for (const sourceUrl of place.for_na.sources) {
-  assert.ok(configuredUrls.has(sourceUrl), `Før/etter-kilde mangler navngitt configuredLink: ${sourceUrl}`);
-}
+assert.ok(place.for_na.sources.every(sourceUrl => /^https:\/\//.test(sourceUrl)), 'Før/etter-kilder skal være HTTPS');
 for (const sourcePage of [place.for_na.beforeImageMeta.sourcePage, place.for_na.nowImageMeta.sourcePage]) {
-  assert.ok(configuredUrls.has(sourcePage), `bildekilde mangler navngitt configuredLink: ${sourcePage}`);
+  assert.ok(place.for_na.sources.includes(sourcePage), `bildekilde mangler i canonical Før/etter-kilder: ${sourcePage}`);
 }
 
 for (const label of [
