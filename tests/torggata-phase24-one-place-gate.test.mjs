@@ -120,6 +120,8 @@ test("global checklist mirrors the canonical full four-collection plus separate 
   assert.match(checklist, /Innhold som tidligere lå i Mer kan ikke skjules bak en restfane/);
   assert.match(checklist, /en enkelt vilkårlig eller taksonomisk konstruert gjenstand er ikke nok/);
   assert.match(checklist, /Objects og Structures\/Bygg brukes ikke som to separate samlinger/);
-  assert.match(checklist, /to eller tre sterke samlinger er bedre enn en kunstig fjerde/);
+  assert.match(checklist, /en svak eller tom canonical kilde beholder en ærlig ikon-\/statusflate/);
+  assert.doesNotMatch(checklist, /to eller tre sterke samlinger er bedre enn en kunstig fjerde/);
+  assert.doesNotMatch(checklist, /balansert 2-\/3-\/4-samlingslayout/);
   assert.doesNotMatch(checklist, /tre innholdsrundinger|3 innholdsrundinger|tre-rundersrad|legacy 4-\/6-/i);
 });

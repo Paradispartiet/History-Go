@@ -971,7 +971,7 @@ Denne oppskriften gjentar ikke samlingspool, profiler eller naturkartkrav. **Pla
 - [ ] hver samling har en naturlig brukerforståelse, tydelig egen innholdstype og reell stedsspesifikk substans;
 - [ ] en enkelt vilkårlig eller taksonomisk konstruert gjenstand er ikke nok til å gjøre Objects ferdig;
 - [ ] Objects og Structures/Bygg brukes ikke som to separate samlinger når skillet er uklart eller innholdet overlapper;
-- [ ] semantisk overlappende samlinger slås sammen eller én utelates; to eller tre sterke samlinger er bedre enn en kunstig fjerde;
+- [ ] semantisk overlappende innhold dupliseres ikke mellom de fire faste flatene; en svak eller tom canonical kilde beholder en ærlig ikon-/statusflate uten oppdiktet innhold eller synlig falsk 0, og registreres som produksjonsgap;
 - [ ] nye/fullproduserte steder bruker `place_card_profile.collection_ids` med nøyaktig fire IDs i fast kategori-komposisjon, begrunnelse og verifiseringsdato;
 - [ ] eksisterende `round_profile.content_round_ids` leses bare gjennom kompatibilitetslaget, og `images` filtreres bort;
 - [ ] alle valgte samlinger vurderes samlet i faktisk UI; korrekt JSON hver for seg er ikke tilstrekkelig;
@@ -1611,7 +1611,7 @@ Samlet: [ ] tydelig forskjellige samlinger  [ ] ingen kunstig Objects/Structures
 - [ ] Nyheter, Lesespor og Mer: innhold eller strengt dokumentert N/A etter søk
 - [ ] identitet/attribusjon
 - [ ] JSON/referanser
-- [ ] balansert 2-/3-/4-samlingslayout + separat Badge-plassering + tydelig Quiz
+- [ ] full 2 × 2-layout med nøyaktig fire samlingsflater + separat Badge-plassering + tydelig obligatorisk Quiz
 - [ ] popupfaner
 - [ ] relevant CI
 - [ ] ren slutt-diff
