@@ -1,0 +1,194 @@
+{
+  "schema": "civication_role_world_realism_matrix_v1",
+  "version": 1,
+  "status": "gate_active_broad_rollout_blocked",
+  "effective_date": "2026-08-25",
+  "purpose": "Lås bare tverrrollefelter som er bevist gjennom strukturelt forskjellige Civication-livsverdener, uten å endre Career- eller Role World-completion og uten å opprette ny runtime.",
+  "semantics": {
+    "independent_from": [
+      "reference_complete",
+      "role_world_complete"
+    ],
+    "allowed_dimension_statuses": [
+      "not_started",
+      "editorial_only",
+      "runtime_proven",
+      "reference_proven"
+    ],
+    "no_new_runtime": true,
+    "new_parallel_scene_format_allowed": false,
+    "completion_statuses_unchanged": true,
+    "broad_rollout_allowed": false,
+    "rollout_rule": "Bred rollout kan først åpnes gjennom en egen policyendring etter at denne gaten er grønn og gjenstående programkrav er bevist."
+  },
+  "pilot_set": [
+    {
+      "id": "archive_documentation",
+      "category": "historie",
+      "role_scope": "historie_arkiv_og_dokumentasjon",
+      "structural_type": "records_access_provenance",
+      "proof_status": "runtime_proven",
+      "evidence_refs": [
+        "reports/civication-persistent-work-object-foundation-baseline.md",
+        "reports/civication-work-object-scene-pipeline.md",
+        "data/Civication/mailPlans/historie/historie_arkiv_og_dokumentasjon_plan.json",
+        "data/Civication/workGrammars/historie/historie_arkiv_og_dokumentasjon.json"
+      ]
+    },
+    {
+      "id": "by_plan",
+      "category": "by",
+      "role_scope": "by_radgiver_plan",
+      "structural_type": "public_administration_planning",
+      "proof_status": "reference_proven",
+      "evidence_refs": [
+        "reports/civication-by-radgiver-role-world-realism-pilot.md",
+        "tests/civication-by-radgiver-role-world-realism-pilot.test.js",
+        "data/Civication/roleWorlds/by/by_radgiver_plan.json"
+      ]
+    },
+    {
+      "id": "sport_performance",
+      "category": "sport",
+      "role_scope": "sport_utover",
+      "structural_type": "body_performance_team",
+      "proof_status": "reference_proven",
+      "evidence_refs": [
+        "reports/civication-sport-utover-role-world-realism-pilot.md",
+        "tests/civication-sport-utover-role-world-realism-pilot.test.js",
+        "data/Civication/roleWorlds/sport/sport_utover.json"
+      ]
+    },
+    {
+      "id": "journalism",
+      "category": "media",
+      "role_scope": "media_redaksjon",
+      "structural_type": "sources_audience_editorial",
+      "proof_status": "reference_proven",
+      "evidence_refs": [
+        "reports/civication-media-redaksjon-role-world-realism-pilot.md",
+        "tests/civication-media-redaksjon-role-world-realism-pilot.test.js",
+        "data/Civication/roleWorlds/media/media_redaksjon.json"
+      ]
+    }
+  ],
+  "locked_cross_role_dimensions": [
+    {
+      "id": "persistent_work_object",
+      "status": "reference_proven",
+      "contract": "Arbeid som varer over tid skal kunne ha stabil objektidentitet, eksplisitte overganger og etterprøvbar historikk som senere scener faktisk leser.",
+      "evidence_pilots": [
+        "archive_documentation",
+        "by_plan",
+        "sport_performance",
+        "journalism"
+      ]
+    },
+    {
+      "id": "institution_authority",
+      "status": "reference_proven",
+      "contract": "Rollen skal skille faglig handlingsrom, godkjenning, formell beslutningsmyndighet og eksterne aktørers påvirkning; kunnskap eller tillit kan ikke omgå authority-porten.",
+      "evidence_pilots": [
+        "archive_documentation",
+        "by_plan",
+        "sport_performance",
+        "journalism"
+      ]
+    },
+    {
+      "id": "rhythm_waiting_handoff_rework",
+      "status": "reference_proven",
+      "contract": "Yrkesrytme skal kunne uttrykke frist, venting, handoff, avbrudd og rework gjennom eksisterende Scene Pipeline uten en ny dagmotor.",
+      "evidence_pilots": [
+        "by_plan",
+        "sport_performance",
+        "journalism"
+      ]
+    },
+    {
+      "id": "history_go_affordance",
+      "status": "reference_proven",
+      "contract": "History Go-completion kan åpne et bedre, relevant faglig handlingsalternativ, men kan ikke alene gi ny formell profesjons- eller beslutningsmyndighet.",
+      "evidence_pilots": [
+        "archive_documentation",
+        "by_plan",
+        "sport_performance",
+        "journalism"
+      ]
+    },
+    {
+      "id": "situated_audience_types",
+      "status": "reference_proven",
+      "contract": "Relasjonell tillit skal være situert mot authored audience-ID-er og kunne gi forskjellige senere scener uten å bli en global sosial score.",
+      "bounded_audience_types": [
+        "manager:*",
+        "team:*",
+        "professional:*",
+        "public:*",
+        "source:*"
+      ],
+      "evidence_pilots": [
+        "by_plan",
+        "sport_performance",
+        "journalism"
+      ]
+    },
+    {
+      "id": "people_places_integrity",
+      "status": "reference_proven",
+      "contract": "Virkelige People og Places skal brukes faktabasert som canonical kunnskaps-/stedsreferanser; oppdiktet arbeidsdrama skal bæres av eksplisitt fiktive scenariofigurer og institusjoner.",
+      "evidence_pilots": [
+        "archive_documentation",
+        "by_plan",
+        "sport_performance",
+        "journalism"
+      ]
+    },
+    {
+      "id": "provenance",
+      "status": "reference_proven",
+      "contract": "Authored realismebevis skal ha stabil source/file-provenance og bevare parity inn i den kompilerte scene-registryen uten generic fallback eller shadowed scenes.",
+      "evidence_pilots": [
+        "archive_documentation",
+        "by_plan",
+        "sport_performance",
+        "journalism"
+      ]
+    }
+  ],
+  "role_owned_not_global": [
+    "work_object_kind",
+    "work_object_phase_names",
+    "relationship_actor_ids",
+    "institution_ids_and_unit_ids",
+    "role_specific_authority_actions",
+    "role_specific_confidentiality",
+    "role_specific_feedback_surfaces",
+    "role_specific_professional_culture",
+    "role_specific_employment_conditions"
+  ],
+  "deferred_dimensions": [
+    {
+      "id": "employment_conditions",
+      "status": "editorial_only",
+      "reason": "Arbeidsvilkår er ikke bevist som en nødvendig felles runtimekontrakt på tvers av pilotene; Sport-utøver-auditen fant at eksisterende career/contract-kontekst var tilstrekkelig."
+    },
+    {
+      "id": "professional_culture",
+      "status": "editorial_only",
+      "reason": "Journalistikk beviser profesjonskultur redaksjonelt, men ett sterkt domene er ikke nok til å låse et globalt runtimefelt."
+    },
+    {
+      "id": "cross_role_links",
+      "status": "not_started",
+      "reason": "Definition of Done krever fortsatt minst ett shared object som oppleves fra to roller med ulikt handlingsrom og uten privilege leakage."
+    }
+  ],
+  "required_gate_tests": [
+    "tests/civication-role-world-realism-matrix.test.js",
+    "tests/civication-semantic-playthrough-gate.test.js",
+    "tests/civication-compiled-scene-registry-parity.test.js",
+    "tests/civication-career-gameplay-matrix.test.js",
+    "tests/civication-role-world-contract.test.js"
+  ]
+}
