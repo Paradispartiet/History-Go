@@ -1,0 +1,46 @@
+name: TEMP Oslo miljø og gjenbruk generation
+
+on:
+  push:
+    branches:
+      - agent/miljo-gjenbruk-oslo-places-20260825
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Generate canonical Oslo places and production packets
+        run: node tools/TEMP-generate-oslo-miljo-gjenbruk.mjs
+      - name: Validate production packets
+        run: node scripts/validate-place-description-production-v4_2.mjs --all
+      - name: Validate JSON
+        run: |
+          node - <<'NODE'
+          const fs=require('fs'),path=require('path');
+          for(const dir of ['data/places/natur/oslo/miljo_gjenbruk','data/places/production']){
+            for(const f of fs.readdirSync(dir)){ if(!f.endsWith('.json')) continue; if(dir.endsWith('production')&&!/(gjenvinningsstasjon|miljostasjon)/.test(f)) continue; JSON.parse(fs.readFileSync(path.join(dir,f),'utf8')); }
+          }
+          JSON.parse(fs.readFileSync('data/places/manifest.json','utf8'));
+          JSON.parse(fs.readFileSync('reports/oslo-miljo-gjenbruk-2026/permanent-active-inventory.json','utf8'));
+          NODE
+      - name: Commit generated canonical data
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/places/manifest.json data/places/natur/oslo/miljo_gjenbruk data/places/production reports/oslo-miljo-gjenbruk-2026
+          if git diff --cached --quiet; then
+            echo 'No generated changes'
+            exit 0
+          fi
+          git commit -m 'Produce permanent Oslo miljø og gjenbruk places'
+          git push origin HEAD:agent/miljo-gjenbruk-oslo-places-20260825
