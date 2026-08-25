@@ -22,6 +22,7 @@
     ensureScript("js/ui/place-popup-direct-tabs.js");
     ensureScript("js/ui/nature-detailed-map.js");
     ensureScript("js/ui/place-rounds-visual-collections.js");
+    ensureScript("js/ui/micro-place-card.js");
     ensureStylesheet("css/place-rounds-fill-layout.css");
     ensureScript("js/ui/place-rounds-fill-layout.js");
     ensureStylesheet("css/place-popup-shortcuts.css");
