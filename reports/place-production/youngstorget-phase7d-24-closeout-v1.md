@@ -34,4 +34,11 @@ Dette closeout-dokumentet supplerer de tidligere mergede leveransene gjennom fas
 - den eksisterende repo-baseline-testen `historical-routes` feiler uavhengig av leveransen fordi `main` har et uløst `middelalder_oslo`-stopp; Youngstorget-rutedata er ikke endret;
 - PlaceCard-guardtesten er reparert uten å svekke porten: samme loaderkrav valideres whitespace-tolerant mot minifisert runtime.
 
-Endelig fase-24-status settes først når preview er kontrollert på mobil og desktop, PR-CI er grønn og GitHub viser merge til `main`.
+## Slutt-QA og kvalitetsport
+
+- desktop-preview 1363×936: eksakt fire samlingsflater, separat Badge-felt, tydelig Quiz, rik popup og ingen horisontal overflow;
+- registrert Chrome-regresjon: 1100×760 og 390×844 bestått, inkludert fire samlingsflater, separat Badge, prominent Quiz og overflow-kontroll; `skipped 0` i CI;
+- PR #5316: 62 av 62 workflow-kjøringer grønne på head `6ae5dcd0f`, inkludert Data checks og Repository hygiene;
+- seksdimensjonal kvalitetsvurdering: korrekthet/evidens 5, dekning/ferdigstillelse 5, faglig/redaksjonell kvalitet 5, teknisk integritet 5, sikkerhet/ansvarlighet 4 og vedlikeholdbarhet/etterprøvbarhet 5; **29/30**, 0 kritiske avvik og 0 uløste blokkere.
+
+Leveransen er klar for merge. Endelig fase-24-verifisering fullføres ved å lese tilbake PR-status og `main`-ref etter GitHub-mergen.

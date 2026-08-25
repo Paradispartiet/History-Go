@@ -30,11 +30,11 @@ Youngstorget er selve det navngitte offentlige torget fra anlegget i 1846 til da
 | 14 Discovery | **FERDIG** | Alias, index, Related, Nearby/NextUp-kompatibilitet, søk og tre fulltekstoversettelser |
 | 15–18 Besøk/progresjon/profil/legacy | **FERDIG / BEGRUNNET N/A** | Besøk er separat fra Quiz; eksisterende state-kontrakter bevart; ingen falske belønninger eller Wonderkammer-innhold |
 | 19 Bilder | **FERDIG** | Hero + reelt før/etter-par; ingen irrelevante bilder som collection eller object-reserve |
-| 20 Data-QA | **FERDIG LOKALT** | Schema, indeks, People, Stories, Leksikon, fagverk, Knowledge og quiz-porter grønne |
-| 21 Manuell UI-QA | **VENTER PÅ REACHABLE PREVIEW** | Lokal browser-binær finnes ikke; sky-QA kjøres på PR-preview/merged site |
-| 22 Innholds-QA | **FERDIG LOKALT** | Stedsspesifisitet, grenselinjer, kildekjede, språk og tomtilstander kontrollert |
-| 23 CI | **VENTER PÅ PR** | Full CI følges etter push |
-| 24 Ett-sted-gate | **VENTER PÅ UI + CI + MERGE** | Endelig audit oppdateres med PR og mergecommit |
+| 20 Data-QA | **FERDIG** | Schema, indeks, People, Stories, Leksikon, fagverk, Knowledge og quiz-porter grønne lokalt og i CI |
+| 21 Manuell UI-QA | **FERDIG** | Desktop 1363×936 kontrollert i sky-preview; 1100×760 og mobil 390×844 bestått i registrert Chrome-regresjon uten skip |
+| 22 Innholds-QA | **FERDIG** | Stedsspesifisitet, grenselinjer, kildekjede, språk, popupflater og tomtilstander kontrollert manuelt og automatisk |
+| 23 CI | **FERDIG** | 62 av 62 workflow-kjøringer grønne på PR-head `6ae5dcd0f` |
+| 24 Ett-sted-gate | **KLAR FOR MERGE** | PR #5316 er mergeable; audit 29/30 uten kritiske avvik eller blokkere |
 
 ## Redaksjonelle beslutninger
 
@@ -46,6 +46,10 @@ Youngstorget er selve det navngitte offentlige torget fra anlegget i 1846 til da
 - Max Manus-relasjonen ble fjernet fordi den var en automatisk migrert kobling uten dokumentert egen Youngstorget-evidens.
 - Ingen ny historisk rute materialiseres: 1890-Storyen går til Tullinløkka, som ikke er canonical Place i dagens datagrunnlag. Et falskt eller delvis løst stopp ville bryte rutekontrakten.
 
+## Kvalitetsport
+
+Seksdimensjonal vurdering: korrekthet/evidens 5, dekning/ferdigstillelse 5, faglig/redaksjonell kvalitet 5, teknisk integritet 5, sikkerhet/ansvarlighet 4 og vedlikeholdbarhet/etterprøvbarhet 5. Sum **29/30**, høy kvalitet, 0 kritiske avvik og 0 uløste blokkere.
+
 ## Neste handling
 
-Push branchen, åpne PR, bruk preview til desktop/mobile QA, reparer eventuelle reelle feil, få CI grønn og merge til `main`. Storgata/Brugata starter først etter verifisert merge.
+Merge PR #5316 og verifiser at GitHub viser den som merget og at `main` peker på mergecommit. Storgata/Brugata starter først etter verifisert merge.

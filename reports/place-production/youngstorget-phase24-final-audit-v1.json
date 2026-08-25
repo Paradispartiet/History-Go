@@ -6,7 +6,7 @@
     "HG Data/Kilder/PLACE_PRODUCTION_CHECKLIST (2).md",
     "HG Data/Kilder/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1 (2).md"
   ],
-  "overall_status": "pending_manual_ui_ci_and_merge",
+  "overall_status": "ready_to_merge",
   "scope": {
     "canonical": "the named public square itself from 1846 onward",
     "excluded_as_own_content": [
@@ -35,11 +35,11 @@
     "17_profile_unlock": "pass",
     "18_wonderkammer": "not_applicable_no_new_content",
     "19_images": "pass",
-    "20_data_qa": "pass_local",
-    "21_manual_ui_qa": "pending_reachable_preview",
-    "22_content_qa": "pass_local",
-    "23_ci": "pending_pull_request",
-    "24_one_place_gate": "pending_ui_ci_and_merge"
+    "20_data_qa": "pass_local_and_ci",
+    "21_manual_ui_qa": "pass_desktop_cloud_and_mobile_ci",
+    "22_content_qa": "pass_manual_and_automated",
+    "23_ci": "pass_62_of_62",
+    "24_one_place_gate": "ready_to_merge"
   },
   "place_card": {
     "profile": "history_go_place_card_profile_v2",
@@ -70,6 +70,30 @@
     "knowledge_canonical": "pass",
     "place_open_payloads": "synchronized"
   },
+  "ui_verification": {
+    "desktop_cloud": {
+      "viewport": "1363x936",
+      "place_card_collections": 4,
+      "badges_separate": true,
+      "quiz_prominent": true,
+      "horizontal_overflow": false,
+      "popup_tabs_reviewed": ["om", "historie", "fortellinger", "for_etter", "nyheter", "kilder"]
+    },
+    "responsive_ci": {
+      "viewports": ["1100x760", "390x844"],
+      "test": "tests/youngstorget-full-completion.test.mjs",
+      "result": "pass",
+      "skipped": 0
+    }
+  },
+  "ci_verification": {
+    "head_sha": "6ae5dcd0f296828d4540dbde46bb731989bd0834",
+    "workflow_runs": 62,
+    "successful": 62,
+    "failed": 0,
+    "repository_hygiene": "pass",
+    "data_checks": "pass"
+  },
   "baseline_failures_outside_change_scope": [
     {
       "test": "tests/historical-routes.test.js",
@@ -77,7 +101,19 @@
       "changed_by_delivery": false
     }
   ],
-  "quality_score": null,
-  "pull_request": null,
+  "quality_score": {
+    "correctness_and_evidence": {"score": 5, "evidence": "Canonical scope, 12 inspectable source links, claim-owned quiz and licensed image provenance were reviewed end to end."},
+    "coverage_and_completion": {"score": 5, "evidence": "Phases 7D-24 are covered; all four PlaceCard surfaces, popup layers, quiz, translations, routes/relations and production packages are present or honestly N/A."},
+    "editorial_quality": {"score": 5, "evidence": "Place-specific chronology, stories, news, language and interpretation were manually reviewed; neighbor content and generic proxy actors were removed."},
+    "technical_integrity": {"score": 5, "evidence": "61 relevant local tests passed; all 62 PR workflow runs passed; desktop and 390x844 responsive regressions passed with zero skips in CI."},
+    "safety_and_responsibility": {"score": 4, "evidence": "Image rights, source limits, uncertain causal claims and honest empty states are explicit; the domain has no additional high-risk safety surface."},
+    "maintainability_and_auditability": {"score": 5, "evidence": "Deterministic generator, canonical IDs, production reports, source briefs, registry entry and permanent regression test make the delivery reproducible and reviewable."},
+    "total": 29,
+    "maximum": 30,
+    "classification": "high_quality",
+    "critical_findings": 0,
+    "unresolved_blockers": 0
+  },
+  "pull_request": "https://github.com/Paradispartiet/History-Go/pull/5316",
   "merge_commit": null
 }
