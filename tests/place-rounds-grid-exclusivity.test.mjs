@@ -10,6 +10,7 @@ const roundsSource = fs.readFileSync(path.join(__dirname, "../js/ui/place-rounds
 const shortcutsSource = fs.readFileSync(path.join(__dirname, "../js/ui/place-popup-shortcuts.js"), "utf8");
 const shortcutsCss = fs.readFileSync(path.join(__dirname, "../css/place-popup-shortcuts.css"), "utf8");
 const layoutCss = fs.readFileSync(path.join(__dirname, "../css/layout.css"), "utf8");
+const placeCardCss = fs.readFileSync(path.join(__dirname, "../css/placeCard.css"), "utf8");
 const placeCardSource = fs.readFileSync(path.join(__dirname, "../js/ui/place-card.js"), "utf8");
 
 test("legacy nodes cannot leak beyond the fixed four PlaceCard collections", async () => {
@@ -58,8 +59,10 @@ test("PlaceCard uses six full-width SVG shortcuts and opens Om from title or inf
   assert.match(shortcutsCss, /pc-progress-status-line\{[\s\S]*?grid-column:1 \/ -1;[\s\S]*?grid-row:2/);
   assert.match(shortcutsCss, /#placeCard \.pc-title-row\{[\s\S]*?order:0;[\s\S]*?margin:4px 0 8px/);
   assert.match(shortcutsCss, /#placeCard #pcMeta > \*\{[\s\S]*?white-space:nowrap !important;[\s\S]*?text-overflow:ellipsis/);
-  assert.match(layoutCss, /body\.hg-app #placeCard\{[\s\S]*?top:\s*calc\(var\(--hg-visual-header-height, 74px\) \+ 58px\);[\s\S]*?bottom:\s*calc\(var\(--hg-bottom-nav-height\) \+ 14px\)/);
+  assert.match(layoutCss, /body\.hg-app #placeCard\{[\s\S]*?top:\s*calc\(var\(--hg-visual-header-height, 74px\) \+ 58px\);[\s\S]*?bottom:\s*auto;[\s\S]*?max-height:\s*calc\([\s\S]*?100dvh[\s\S]*?var\(--hg-bottom-nav-height\) - 72px/);
+  assert.match(placeCardCss, /#placeCard\{[\s\S]*?top:\s*calc\(var\(--hg-visual-header-height, 74px\) \+ 58px\);[\s\S]*?bottom:\s*auto;[\s\S]*?max-height:\s*calc\([\s\S]*?100dvh[\s\S]*?- 72px/);
   assert.doesNotMatch(layoutCss, /body\.hg-app #placeCard\{[\s\S]*?top:auto/);
+  assert.doesNotMatch(layoutCss, /body\.hg-app #placeCard\{[\s\S]*?max-height:\s*none/);
   assert.match(placeCardSource, /if \(!samePlace\)[\s\S]*?scrollBody\.scrollTop = 0/);
 
   w.document.getElementById("pcTitle").click();
