@@ -26,13 +26,15 @@ function make(place) {
   return w;
 }
 
-test("canonical category contract materializes both new undercategories", () => {
-  const nature = categories.canonicalSubcategories.natur.find(row => row.id === "miljo_gjenbruk");
-  const literature = categories.canonicalSubcategories.litteratur.find(row => row.id === "lesekiosk");
+test("canonical Place category contract materializes both new undercategories without changing Fagverk specializations", () => {
+  const nature = categories.canonicalPlaceSubcategories.natur.find(row => row.id === "miljo_gjenbruk");
+  const literature = categories.canonicalPlaceSubcategories.litteratur.find(row => row.id === "lesekiosk");
   assert.equal(nature.status, "foundation_materialized");
   assert.ok(nature.fagverkChapterIds.includes("sirkulaer_okonomi_avfall_ombruk"));
   assert.equal(literature.status, "foundation_materialized");
   assert.ok(literature.fagverkChapterIds.includes("lesekultur_bokdeling_offentlighet"));
+  assert.deepEqual(categories.canonicalSubcategories.natur.map(row => row.id), ["geografi"]);
+  assert.deepEqual(categories.canonicalSubcategories.litteratur.map(row => row.id), ["sprak_lingvistikk"]);
 });
 
 test("PlaceCard schema accepts the exact Miljø & gjenbruk four-surface profile", () => {
