@@ -87,12 +87,12 @@
 
   async function objectsSupplement(place) {
     const placeId = text(place?.id || place?.placeId);
-    const cached = global.HGPlacePopupDirectTabs?.getSupplements?.(placeId, "objects") || [];
-    if (cached.length) return cached.join("");
-
     const articles = await loadLeksikon(placeId);
     const main = mainArticle(articles, place);
     if (!main) return "";
+
+    // Canonical Objects-listen beholder antallet. Leksikon-supplementet viser
+    // bare ekstra kunnskap og dedupliseres mot allerede eide Objects.
     const owned = objectKeysAlreadyOwned(place);
     const candidates = [
       ...list(main?.artifacts),
@@ -106,39 +106,65 @@
     return renderObjectCards(candidates) + renderNotice(interpretation.what_to_notice);
   }
 
-  function relationEndpoints(relation) {
-    if (!relation || typeof relation !== "object") return [];
-    return [
-      relation.person_id, relation.personId, relation.target_person_id, relation.targetPersonId,
-      relation.fromId, relation.from_id, relation.sourceId, relation.source_id,
-      relation.toId, relation.to_id, relation.targetId, relation.target_id
-    ].map(text).filter(Boolean);
+  function relationKey(relation) {
+    return text(relation?.id) || [
+      relation?.personId, relation?.person_id, relation?.placeId, relation?.place_id,
+      relation?.fromType, relation?.from_type, relation?.fromId, relation?.from_id,
+      relation?.toType, relation?.to_type, relation?.toId, relation?.to_id,
+      relation?.type, relation?.kind, relation?.label
+    ].map(text).join("|");
   }
 
-  function peopleIds(place) {
-    return new Set([
-      ...list(place?.people).map(person => text(typeof person === "string" ? person : person?.id || person?.person_id || person?.personId)),
-      ...list(place?.people_ids).map(text),
-      ...list(place?.person_ids).map(text)
-    ].filter(Boolean));
+  function relationTouchesPlace(relation, placeId) {
+    if (!relation || typeof relation !== "object" || !placeId) return false;
+    if (text(relation?.placeId || relation?.place_id || relation?.place) === placeId) return true;
+    const fromType = text(relation?.fromType || relation?.from_type);
+    const toType = text(relation?.toType || relation?.to_type);
+    const fromId = text(relation?.fromId || relation?.from_id);
+    const toId = text(relation?.toId || relation?.to_id);
+    return (fromType === "place" && fromId === placeId) || (toType === "place" && toId === placeId);
+  }
+
+  function relationTouchesPerson(relation) {
+    if (!relation || typeof relation !== "object") return false;
+    if (text(relation?.personId || relation?.person_id || relation?.person)) return true;
+    const fromType = text(relation?.fromType || relation?.from_type);
+    const toType = text(relation?.toType || relation?.to_type);
+    return fromType === "person" || toType === "person";
+  }
+
+  function relationsForPlace(place) {
+    const placeId = text(place?.id || place?.placeId);
+    let rows = [];
+    try {
+      if (typeof global.getRelationsForPlace === "function") rows = list(global.getRelationsForPlace(placeId));
+    } catch {}
+    if (!rows.length) {
+      rows = [
+        ...list(global.RELATIONS).filter(relation => relationTouchesPlace(relation, placeId)),
+        ...list(place?.relations)
+      ];
+    }
+    try {
+      if (typeof global.filterCuratedRels === "function") rows = list(global.filterCuratedRels(rows));
+    } catch {}
+    return unique(rows, relationKey);
   }
 
   function personRelations(place) {
-    const personIdSet = peopleIds(place);
-    const placeIds = new Set(list(global.PLACES).map(row => text(row?.id)).filter(Boolean));
-    return list(place?.relations).filter(relation => {
-      if (!relation || typeof relation !== "object") return false;
-      const endpoints = relationEndpoints(relation);
-      if (endpoints.some(id => personIdSet.has(id))) return true;
-      if (text(relation?.person_id || relation?.personId || relation?.target_person_id || relation?.targetPersonId)) return true;
-      // Ikke legg rene place→place-relasjoner i People; de eies av Relaterte steder.
-      return endpoints.length > 0 && endpoints.some(id => !placeIds.has(id));
-    });
+    // Bare relasjoner som faktisk berører en person får People-eierskap.
+    // Rene place→place-relasjoner blir igjen hos Relaterte steder.
+    return relationsForPlace(place).filter(relationTouchesPerson);
   }
 
   function renderRelations(relations) {
-    const rows = unique(relations, relation => relation?.id || [relation?.fromId, relation?.toId, relation?.type, relation?.label].map(text).join("|"));
+    const rows = unique(relations, relationKey);
     if (!rows.length) return "";
+
+    if (typeof global.renderRelationRow === "function") {
+      return `<section class="pc-collection-supplement" data-collection-supplement="people-relations"><h3>Relasjoner</h3><ul class="hg-rel-list pc-people-relations">${rows.map(relation => global.renderRelationRow(relation)).join("")}</ul></section>`;
+    }
+
     return `<section class="pc-collection-supplement" data-collection-supplement="people-relations"><h3>Relasjoner</h3><div class="pc-relation-list">${rows.map(relation => {
       const title = text(relation?.label || relation?.title || relation?.name || relation?.relation || relation?.type || "Relasjon");
       const desc = text(relation?.description || relation?.desc || relation?.note || relation?.why);
@@ -148,10 +174,7 @@
   }
 
   function peopleSupplement(place) {
-    const placeId = text(place?.id || place?.placeId);
-    const cached = global.HGPlacePopupDirectTabs?.getSupplements?.(placeId, "people") || [];
-    const canonical = renderRelations(personRelations(place));
-    return canonical || cached.join("");
+    return renderRelations(personRelations(place));
   }
 
   function install() {
@@ -176,7 +199,13 @@
     wrapped.__hgCollectionKnowledgeRouting = true;
     wrapped.__previous = current;
     global.showPlaceCardRoundPopup = wrapped;
-    global.HGPlaceCollectionKnowledgeRouting = { objectsSupplement, peopleSupplement, personRelations };
+    global.HGPlaceCollectionKnowledgeRouting = {
+      objectsSupplement,
+      peopleSupplement,
+      personRelations,
+      relationTouchesPerson,
+      relationTouchesPlace
+    };
     global[INSTALL_FLAG] = true;
     return true;
   }
