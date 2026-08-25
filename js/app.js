@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // hg-phone/hg-tablet settes aldri på <body> – mobilkompresjonen av header
     // og footer (css/miniProfile.css, css/footer.css, css/layout.css) slår
     // ikke inn, og innholdet skyves ut av skjermen på mobil.
-    await safeRun("loadViewportManager", () => loadScriptOnce("js/core/viewportManager.js?v=20260825-narrow-ipad-scaling1"));
+    await safeRun("loadViewportManager", () => loadScriptOnce("js/core/viewportManager.js"));
     await safeRun("loadDom", () => loadScriptOnce("js/ui/dom.js"));
     await safeRun("loadToast", () => loadScriptOnce("js/ui/toast.js"));
     await safeRun("loadOnboardingWelcome", () => loadScriptOnce("js/ui/onboarding-welcome.js"));
