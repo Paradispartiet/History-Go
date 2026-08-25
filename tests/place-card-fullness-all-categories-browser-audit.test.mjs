@@ -69,14 +69,16 @@ try {
     assert.equal(Math.round(metadata[0].y), Math.round(metadata[1].y), `${category} category and epoch share first row`);
     assert.ok(metadata[2].y > metadata[0].y, `${category} status owns second row`);
     assert.ok(metadata.every(cell => cell.whiteSpace === "nowrap" && cell.scrollHeight <= cell.h + 1), `${category} metadata no-wrap`);
-    const [placeCardRect, exploreRect, titleRect] = await Promise.all([
+    const [placeCardRect, exploreRect, titleRect, footerRect] = await Promise.all([
       page.locator("#placeCard").boundingBox(),
       page.locator("#nearbyExploreToggle").boundingBox(),
-      page.locator("#pcTitle").boundingBox()
+      page.locator("#pcTitle").boundingBox(),
+      page.locator(".app-footer").boundingBox()
     ]);
-    assert.ok(placeCardRect && exploreRect && titleRect, `${category} anchored card geometry`);
+    assert.ok(placeCardRect && exploreRect && titleRect && footerRect, `${category} anchored card geometry`);
     const exploreGap = placeCardRect.y - (exploreRect.y + exploreRect.height);
     assert.ok(exploreGap >= 4 && exploreGap <= 16, `${category} PlaceCard starts just below Utforsk`);
+    assert.ok(Math.abs(placeCardRect.y + placeCardRect.height - footerRect.y) <= 2, `${category} PlaceCard reaches footer`);
     assert.ok(titleRect.y - placeCardRect.y >= 8 && titleRect.y - placeCardRect.y <= 24, `${category} title stays at card top with breathing room`);
     assert.equal(await page.locator("#pcBadgesIcon").evaluate(node => node.parentElement.classList.contains("pc-title-row")), true, category);
     assert.equal(await page.locator("#pcQuiz").isVisible(), true, category);
