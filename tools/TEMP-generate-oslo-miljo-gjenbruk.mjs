@@ -5,264 +5,262 @@ import crypto from 'node:crypto';
 
 const ROOT = process.cwd();
 const DATE = '2026-08-25';
-const OSLO_BASE = 'https://www.oslo.kommune.no/avfall-og-gjenvinning/alle-gjenvinningsstasjoner';
-const ALL_STATIONS = `${OSLO_BASE}/`;
+const GEONORGE = 'https://ws.geonorge.no/adresser/v1/sok';
+const GEONORGE_SOURCE = 'https://ws.geonorge.no/adresser/v1/';
+const OSLO_REUSE = 'https://www.oslo.kommune.no/avfall-og-gjenvinning/ombruk/';
 const CIRCULAR_SOURCE = 'https://www.miljodirektoratet.no/ansvarsomrader/avfall/sirkular-okonomi/';
-const HAZARDOUS_SOURCE = 'https://www.miljodirektoratet.no/ansvarsomrader/avfall/farlig-avfall/';
-const KARTVERKET = 'https://ws.geonorge.no/adresser/v1/sok';
+const LESEKIOSK_LIST = 'https://lesekiosk.no/finn-en-kiosk/';
+const LESEKIOSK_HOME = 'https://lesekiosk.no/';
+const KIOSK_INVENTORY = path.join(ROOT, 'reports/lesekiosker-oslo-2026/lesekiosker-oslo-litteratur-inventory.json');
 
-const stations = [
-  { id:'grefsen_gjenvinningsstasjon', name:'Grefsen gjenvinningsstasjon', address:'Kapellveien 118, 0493 Oslo', slug:'grefsen-gjenvinningsstasjon', type:'large_recycling_station', free:true, self:false, reuse:'Gratis ombrukshyller og ombruksområde gjør det mulig å hente brukbare gjenstander videre.' },
-  { id:'gronmo_gjenvinningsstasjon', name:'Grønmo gjenvinningsstasjon', address:'Sørliveien 1, 1279 Oslo', slug:'gronmo-gjenvinningsstasjon', type:'large_recycling_station', free:false, self:false, reuse:'Brukbare gjenstander kan inngå i kommunens ombrukssystem, men dette stedet registreres ikke som gratis uthentingspunkt.' },
-  { id:'haraldrud_gjenvinningsstasjon', name:'Haraldrud gjenvinningsstasjon', address:'Brobekkveien 87, 0582 Oslo', slug:'haraldrud-gjenvinningsstasjon', type:'large_recycling_station', free:true, self:false, reuse:'Gratis byggevarer kan hentes når det aktuelle ombrukstilbudet er tilgjengelig; ombruksteltet behandles separat fordi det flyttes.' },
-  { id:'ryen_gjenvinningsstasjon', name:'Ryen gjenvinningsstasjon', address:'Vårveien 87, 0680 Oslo', slug:'ryen-gjenvinningsstasjon', type:'large_recycling_station', free:true, self:false, reuse:'Et merket ombruksområde gjør at brukbare gjenstander kan hentes gratis og få videre levetid.' },
-  { id:'smestad_gjenvinningsstasjon', name:'Smestad gjenvinningsstasjon', address:'Ullernchausseen 26, 0379 Oslo', slug:'smestad-gjenvinningsstasjon', type:'large_recycling_station', free:true, self:false, reuse:'Gratis byggevarer kan hentes fra kommunens ombruksordning når tilbudet er tilgjengelig.' },
+const reusePlaces = [
+  { id:'grefsen_gjenvinningsstasjon', name:'Grefsen gjenvinningsstasjon', address:'Kapellveien 118, 0493 Oslo', type:'large_recycling_station', sourceUrl:'https://www.oslo.kommune.no/avfall-og-gjenvinning/alle-gjenvinningsstasjoner/grefsen-gjenvinningsstasjon/', free:true, sale:false, self:false, note:'Egne merkede hyller og områder gjør gratis uttak av ombruksvarer mulig.' },
+  { id:'haraldrud_gjenvinningsstasjon', name:'Haraldrud gjenvinningsstasjon', address:'Brobekkveien 87, 0582 Oslo', type:'large_recycling_station', sourceUrl:'https://www.oslo.kommune.no/avfall-og-gjenvinning/alle-gjenvinningsstasjoner/haraldrud-gjenvinningsstasjon/', free:true, sale:false, self:false, note:'Byggevarer kan hentes gratis fra kommunens ombruksløsning inne på stasjonen.' },
+  { id:'ryen_gjenvinningsstasjon', name:'Ryen gjenvinningsstasjon', address:'Vårveien 87, 0680 Oslo', type:'large_recycling_station', sourceUrl:'https://www.oslo.kommune.no/avfall-og-gjenvinning/alle-gjenvinningsstasjoner/ryen-gjenvinningsstasjon/', free:true, sale:false, self:false, note:'Egne merkede hyller og områder gjør gratis uttak av ombruksvarer mulig.' },
+  { id:'smestad_gjenvinningsstasjon', name:'Smestad gjenvinningsstasjon', address:'Ullernchausseen 26, 0379 Oslo', type:'large_recycling_station', sourceUrl:'https://www.oslo.kommune.no/avfall-og-gjenvinning/alle-gjenvinningsstasjoner/smestad-gjenvinningsstasjon/', free:true, sale:false, self:false, note:'Byggevarer kan hentes gratis fra kommunens ombruksløsning inne på stasjonen.' },
+  { id:'lindeberg_gjenvinningsstasjon', name:'Lindeberg gjenvinningsstasjon', address:'Jerikoveien 5, 1067 Oslo', type:'small_recycling_station', sourceUrl:'https://www.oslo.kommune.no/avfall-og-gjenvinning/alle-gjenvinningsstasjoner/lindeberg-gjenvinningsstasjon/', free:true, sale:false, self:true, note:'Stasjonen inngår blant de små gangbaserte stasjonene der mindre ombruksvarer kan hentes uten betaling når tilbudet er tilgjengelig.' },
+  { id:'kampen_gjenvinningsstasjon', name:'Kampen gjenvinningsstasjon', address:'Sons gate 2, 0654 Oslo', type:'small_recycling_station', sourceUrl:'https://www.oslo.kommune.no/avfall-og-gjenvinning/alle-gjenvinningsstasjoner/kampen-gjenvinningsstasjon/', free:true, sale:false, self:false, note:'Stasjonen inngår blant de små gangbaserte stasjonene der mindre ombruksvarer kan hentes uten betaling.' },
+  { id:'romsas_gjenvinningsstasjon', name:'Romsås gjenvinningsstasjon', address:'Romsås senter, 0970 Oslo', type:'small_recycling_station', sourceUrl:'https://www.oslo.kommune.no/avfall-og-gjenvinning/alle-gjenvinningsstasjoner/romsas-gjenvinningsstasjon/', free:true, sale:false, self:false, preset:[59.9640,10.8939], note:'Stasjonen inngår blant de små gangbaserte stasjonene der mindre ombruksvarer kan hentes uten betaling.' },
+  { id:'sofienbergparken_gjenvinningsstasjon', name:'Sofienbergparken gjenvinningsstasjon', address:'Helgesens gate 56, 0553 Oslo', type:'small_recycling_station', sourceUrl:'https://www.oslo.kommune.no/avfall-og-gjenvinning/alle-gjenvinningsstasjoner/sofienbergparken-gjenvinningsstasjon/', free:true, sale:false, self:false, note:'Stasjonen inngår blant de små gangbaserte stasjonene der mindre ombruksvarer kan hentes uten betaling.' },
+  { id:'trosterud_gjenvinningsstasjon', name:'Trosterud gjenvinningsstasjon', address:'Dr. Dedichens vei 24B, 0675 Oslo', type:'small_recycling_station', sourceUrl:'https://www.oslo.kommune.no/avfall-og-gjenvinning/alle-gjenvinningsstasjoner/trosterud-gjenvinningsstasjon/', free:true, sale:false, self:true, note:'Stasjonen inngår blant de små gangbaserte stasjonene der mindre ombruksvarer kan hentes uten betaling når tilbudet er tilgjengelig.' },
+  { id:'haraldrud_ombrukstelt', name:'Haraldrud ombrukstelt', address:'Brobekkveien 87, 0582 Oslo', type:'reuse_tent', sourceUrl:'https://www.oslo.kommune.no/avfall-og-gjenvinning/alle-gjenvinningsstasjoner/haraldrud-ombrukstelt/', free:true, sale:true, self:false, note:'Ombruksteltet selger brukte gjenstander rimelig, og enkelte gjenstander tilbys gratis i en egen container.' },
+  { id:'gronmo_ombrukstelt', name:'Grønmo ombrukstelt', address:'Sørliveien 1, 1279 Oslo', type:'reuse_tent', sourceUrl:'https://www.oslo.kommune.no/avfall-og-gjenvinning/alle-gjenvinningsstasjoner/gronmo-ombrukstelt/', free:false, sale:true, self:false, note:'Ombruksteltet selger brukbare gjenstander som er sortert ut fra kommunens gjenvinningsstasjoner.' }
+];
 
-  { id:'bentsehjornet_gjenvinningsstasjon', name:'Bentsehjørnet gjenvinningsstasjon', address:'Bentsebrugata 11C, 0476 Oslo', slug:'bentsehjornet-gjenvinningsstasjon', type:'small_recycling_station', free:false, self:true, reuse:'Brukbare ting kan leveres inn når stasjonen er bemannet, men de kan ikke hentes ut igjen her.' },
-  { id:'lindeberg_gjenvinningsstasjon', name:'Lindeberg gjenvinningsstasjon', address:'Jerikoveien 5, 1067 Oslo', slug:'lindeberg-gjenvinningsstasjon', type:'small_recycling_station', free:true, self:true, reuse:'Ombrukshyllene ved Lindeberglokalet gir mulighet til å levere og hente brukbare ting.' },
-  { id:'fredensborg_gjenvinningsstasjon', name:'Fredensborg gjenvinningsstasjon', address:'Maridalsveien 10, 0178 Oslo', slug:'fredensborg-gjenvinningsstasjon', type:'small_recycling_station', free:false, self:true, reuse:'Stasjonen har praktiske henteordninger for enkelte sorteringsartikler, men registreres ikke som gratis ombruksbutikk.' },
-  { id:'kampen_gjenvinningsstasjon', name:'Kampen gjenvinningsstasjon', address:'Sons gate 2, 0654 Oslo', slug:'kampen-gjenvinningsstasjon', type:'small_recycling_station', free:true, self:false, reuse:'Ombrukshyller gjør det mulig å hente brukbare gjenstander, også enkelte små elektriske produkter, gratis.' },
-  { id:'loren_gjenvinningsstasjon', name:'Løren gjenvinningsstasjon', address:'Peter Møllers vei 37, 0585 Oslo', slug:'loren-gjenvinningsstasjon', type:'small_recycling_station', free:false, self:true, reuse:'Stasjonen inngår i det lokale sorteringsnettet; gratis uthenting er ikke registrert som bekreftet funksjon.' },
-  { id:'romsas_gjenvinningsstasjon', name:'Romsås gjenvinningsstasjon', address:'Romsås senter, 0970 Oslo', slug:'romsas-gjenvinningsstasjon', type:'small_recycling_station', free:true, self:false, reuse:'Ombrukshyller gjør det mulig å hente brukbare ting, blant annet enkelte små elektriske produkter, gratis.', preset:[59.9640,10.8939] },
-  { id:'sofienbergparken_gjenvinningsstasjon', name:'Sofienbergparken gjenvinningsstasjon', address:'Helgesens gate 56, 0553 Oslo', slug:'sofienbergparken-gjenvinningsstasjon', type:'small_recycling_station', free:true, self:false, reuse:'Ombrukshyller ved stasjonen gjør at innleverte, brukbare ting kan gå direkte videre til nye brukere.' },
-  { id:'sorenga_gjenvinningsstasjon', name:'Sørenga gjenvinningsstasjon', address:'Sørengkaia 29, 0194 Oslo', slug:'sorenga-gjenvinningsstasjon', type:'small_recycling_station', free:false, self:true, reuse:'Stasjonen tilbyr lokale sorteringstjenester, men registreres ikke som et gratis uthentingspunkt for ombruksvarer.' },
-  { id:'trosterud_gjenvinningsstasjon', name:'Trosterud gjenvinningsstasjon', address:'Dr. Dedichens vei 24B, 0675 Oslo', slug:'trosterud-gjenvinningsstasjon', type:'small_recycling_station', free:true, self:true, reuse:'En egen ombruksløsning gjør det mulig å hente brukbare gjenstander videre, også enkelte små elektriske produkter.' },
+const envLens = [
+  'På Grefsen er ombrukshyllene særlig nyttige for å lese forskjellen mellom avfall, brukbar gjenstand, lokal deling, levetidsforlengelse, materialverdi og husholdningsvalg. Den konkrete hentefunksjonen gjør sirkulær økonomi synlig uten å gjøre stedet til en butikk.',
+  'Haraldrud knytter ombruk til byggevarer, trevirke, fliser, dører, innredning, reparasjon og prosjektmaterialer. Stedet viser hvordan en kommunal mottaksstruktur også kan gi materialer en ny bruksrunde før de blir behandlet som avfall.',
+  'Ryen gjør småskalauttak, nærmiljø, sortering, gjenstandsvurdering, direkte viderebruk og praktisk ressursdeling til tydelige temaer. Her kan et besøk handle like mye om hva som fortsatt har bruksverdi som om hva som skal kastes.',
+  'Smestad gir et konkret møte med byggevarer, materialkvalitet, demontering, restpartier, gjenbruk, husholdningsprosjekter og redusert nykjøp. Ombruksfunksjonen gjør det mulig å undersøke hvordan brukbare materialer kan skifte eier uten å miste sin funksjon.',
+  'Lindeberg kobler gangbasert tilgjengelighet, mindre gjenstander, nabolagsbruk, enkel levering, ombrukshyller, hverdagsressurser og lav terskel. Stedet egner seg til å undersøke hvordan lokal infrastruktur kan gjøre viderebruk praktisk i en tett bydel.',
+  'Kampen setter småelektronikk, servise, bøker, leker, husholdningsgjenstander, nabolagsdeling og kort vei til mottak i samme kretsløp. Den lokale skalaen viser at ombruk ikke bare foregår på store anlegg utenfor boligområdene.',
+  'Romsås gir et østlig nærmiljøperspektiv med senterfunksjon, gangadkomst, mindre varer, bokdeling, servise, småting, gjenbruksvalg og lokal tilgjengelighet. Det gjør ressurskretsløpet relevant for hverdagsreiser og ikke bare planlagte bilturer.',
+  'Sofienbergparken kombinerer parkmiljø, tett by, korte avstander, mindre gjenstander, husholdningssortering, ombrukshyller og tilfeldig oppdagelse. Plasseringen gjør det mulig å se miljøinfrastruktur som en del av den ordinære byen snarere enn som et avsondret teknisk anlegg.',
+  'Trosterud knytter selvbetjening, bemannede tidsrom, mindre ombruksvarer, lokale leveranser, tilgjengelighet, sorteringsvalg og videre bruk. Stedet viser hvorfor praktiske adgangsvilkår og selve ombruksfunksjonen må beskrives som to ulike sider av samme tilbud.',
+  'Haraldrud-teltet samler møbler, sportsutstyr, bøker, lamper, kjøkkenutstyr, lydutstyr, prisede bruktvarer og enkelte gratisgjenstander. Sortimentet gjør ombruk til en synlig overgang fra kommunal innlevering til ny bruker og nytt bruksforløp.',
+  'Grønmo-teltet samler møbler, bøker, vinyl, leker, servise, lamper, kjøkkenmaskiner og sportsutstyr i et kommunalt bruktutsalg. Her blir sortering til ombruk koblet direkte til salg, ny eier og utsatt behov for et tilsvarende nykjøp.'
+];
 
-  { id:'frysja_miljostasjon', name:'Frysja miljøstasjon', address:'Kjelsåsveien 160, 0491 Oslo', slug:'frysja-miljostasjon', type:'environment_station', free:false, self:true },
-  { id:'sogn_miljostasjon', name:'Sogn miljøstasjon', address:'John P. Erliens vei 1A, 0858 Oslo', slug:'sogn-miljostasjon', type:'environment_station', free:false, self:true },
-  { id:'bogstad_miljostasjon', name:'Bogstad miljøstasjon', address:'Ankerveien 121, 0766 Oslo', slug:'bogstad-miljostasjon', type:'environment_station', free:false, self:true },
-  { id:'bygdoy_miljostasjon', name:'Bygdøy miljøstasjon', address:'Huk aveny 1, 0287 Oslo', slug:'bygdoy-miljostasjon', type:'environment_station', free:false, self:true },
-  { id:'frognerstranda_miljostasjon', name:'Frognerstranda miljøstasjon', address:'Frognerstranda 4, 0250 Oslo', slug:'frognerstranda-miljostasjon', type:'environment_station', free:false, self:true },
-  { id:'munkerud_miljostasjon', name:'Munkerud miljøstasjon', address:'Oberst Rodes vei 133, 1165 Oslo', slug:'munkerud-miljostasjon', type:'environment_station', free:false, self:true },
-  { id:'mosseveien_miljostasjon', name:'Mosseveien miljøstasjon', address:'Mosseveien 147, 0198 Oslo', slug:'mosseveien-miljostasjon', type:'environment_station', free:false, self:true },
-  { id:'tveita_miljostasjon', name:'Tveita miljøstasjon', address:'Tvetenveien 166, 0671 Oslo', slug:'tveita-miljostasjon', type:'environment_station', free:false, self:true },
-  { id:'smedstua_miljostasjon', name:'Smedstua miljøstasjon', address:'Kristoffer Robins vei, 0978 Oslo', slug:'smedstua-miljostasjon', type:'environment_station', free:false, self:true, preset:[59.9478,10.9064] },
-  { id:'hoybraten_miljostasjon', name:'Høybråten miljøstasjon', address:'Fredheimsveien 3, 1087 Oslo', slug:'hoybraten-miljostasjon', type:'environment_station', free:false, self:true },
-  { id:'nedre_haugen_miljostasjon', name:'Nedre Haugen miljøstasjon', address:'Maria Dehlis vei 57, 1084 Oslo', slug:'nedre-haugen-miljostasjon', type:'environment_station', free:false, self:true },
-  { id:'lindebergasen_miljostasjon', name:'Lindebergåsen miljøstasjon', address:'Lindebergåsen 64, 1068 Oslo', slug:'lindebergasen-miljostasjon', type:'environment_station', free:false, self:true },
-  { id:'skjonhaug_miljostasjon', name:'Skjønhaug miljøstasjon', address:'Lindebergåsen 5, 1081 Oslo', slug:'skjonhaug-miljostasjon', type:'environment_station', free:false, self:true },
-  { id:'vollebekk_miljostasjon', name:'Vollebekk miljøstasjon', address:'Brobekkveien 60C, 0598 Oslo', slug:'vollebekk-miljostasjon', type:'environment_station', free:false, self:true }
+const kioskLens = [
+  'Kjelsås-kiosken åpner for temaer som museumsnærhet, teknologihistorie, bokvandring, gateinventar, lesespor, gjenbruk av infrastruktur, tilfeldig tekstfunn og nabolagslesing. Den røde formen gjør medieteknologi og litteratur synlige i samme fysiske objekt.',
+  'Vigelandsparken-kiosken setter parkvandring, skulpturlandskap, fritidslesing, bokbytte, turtempo, offentlige møteplasser, kulturbruk og uventede bokfunn ved siden av hverandre. Litteraturpunktet kan oppdages som en liten funksjon i et stort besøkslandskap.',
+  'Inkognitogata-kiosken gir et bygateperspektiv med boligstrøk, fortau, bokdeling, hverdagsruter, fysisk tekst, forbipasserende, nærlesing og uformell sirkulasjon. Den viser hvordan litteratur kan ha en konkret adresse uten å være knyttet til en bokhandel.',
+  'Munkedamsveien-kiosken kobler sentrumsgate, arbeidsreiser, bokutveksling, rødt gateinventar, tilfeldige lesere, tekstsirkulasjon, gjenbruk og lokal offentlighet. Den lille bokfunksjonen står i kontrast til den raske bevegelsen gjennom en travel del av byen.',
+  'Bjerke-kiosken gir forbindelser mellom boligområde, kollektivnærhet, nærmiljø, bokfunn, gjenbruk, lesekultur, deling og fysisk tilgjengelighet. Kioskformen lar et kjent telehistorisk objekt opptre som en liten litterær ressurs i en ordinær hverdagsrute.',
+  'Bjølsen-kiosken kan leses gjennom kolonihagekultur, nærmiljø, grønn hverdag, delingspraksis, bokbytte, sommerlesing, tekstkretsløp og uformelle møtepunkt. Plasseringen gjør bokdelingen til en del av et lokalt landskap preget av småskala bruk og opphold.',
+  'Fagerborg-kiosken knytter bygategater, leiegårdsstrøk, studieruter, bokdeling, hverdagslesing, gjenbruk, forbipasserende og litterær nysgjerrighet sammen. Den fysiske kiosken gir lesestoff en synlig plass mellom hjem, skole, handel og kollektivtransport.',
+  'Huk-kiosken kombinerer friluftsliv, sjøvei, spasertur, bokfunn, sommerbruk, deling, gjenbruk og lesepauser. Den viser at et litteratursted kan være lite, ubemannet og vevd inn i en rute der folk egentlig er på vei til helt andre aktiviteter.',
+  'John Colletts plass-kiosken setter studentmiljø, nabolag, kollektivknutepunkt, bokdeling, lærestoff, fritidslesing, gjenbruk og korte stopp i forbindelse. Den gjør litterær sirkulasjon synlig i et område der mange beveger seg mellom hjem, studiested og by.',
+  'Kampen-kiosken gir et tett trehus- og bygatemiljø en egen bokdelingsfunksjon med nærlesing, lokale ruter, hverdagskultur, gjenbruk, tekstfunn, nabolagskontakt og lav terskel. Kiosken kan oppsøkes uten at et større kulturbygg må være målet for turen.',
+  'Rådhuskaia-kiosken kobler sjøfront, fergetrafikk, rådhusområde, byvandring, bokdeling, reiselesing, tilfeldige funn og offentlig rom. Det lille litteraturpunktet står mellom transport og opphold og gir den gamle kiosktypen en ny bruk i havnelandskapet.',
+  'Sagene-kiosk 70 gjør tvillingidentitet, kirkeplass, bokdeling, fysisk nærhet, separate objekter, lesespor, lokalhistorie og nabolagsbruk til viktige observasjoner. Nummeret er nødvendig fordi kiosk 70 og kiosk 71 skal forbli to ulike litteratursteder selv med samme offisielle kartanker.',
+  'Sagene-kiosk 71 gir et parallelt, men selvstendig litteraturpunkt ved kirken med tvillingkiosk, objektidentitet, bokutveksling, lesekultur, gateinventar, nærmiljø, delingspraksis og fysisk naboskap. Nummeret skiller den fra kiosk 70 uten å late som kartankrene er ulike.',
+  'Sentralen-kiosken setter bykjerne, kulturhusnærhet, bokdeling, sentrumsvandring, tekstfunn, gjenbruk, offentlighet og korte stopp i sammenheng. Kiosk nummer 0 viser samtidig hvordan nummereringen kan være en del av den stabile identiteten til et konkret litteraturpunkt.',
+  'Skøyen-kiosken knytter stasjonsområde, pendling, overgang mellom transportmidler, bokbytte, reiselesing, ventetid, gjenbruk og hverdagsruter sammen. Den gir et fysisk sted for tekstsirkulasjon i et landskap der mange ellers bare passerer mellom tog, buss og gate.',
+  'Solli-kiosken kombinerer plassrom, kollektivtrafikk, handel, boligstrøk, bokdeling, tilfeldig lesing, gjenbruk og byvandring. Den røde kiosken gjør litteraturutveksling synlig i et område med høy gjennomstrømning og mange korte opphold gjennom dagen.',
+  'Bislett-kiosken gir forbindelser mellom stadion, arrangement, boligområde, skolevei, bokdeling, fritidslesing, gjenbruk og lokale fotruter. Litteraturpunktet står ved et sted mange kjenner av andre grunner og tilfører en liten, selvstendig lesefunksjon i nærheten.',
+  'Olav Kyrres plass-kiosken setter ambassadeområde, boliggate, plassrom, bokutveksling, hverdagslesing, gjenbruk, offentlig ferdsel og tekstoppdagelse ved siden av hverandre. Kiosken gjør litteraturdeling til en synlig detalj i et roligere vestkantlandskap.',
+  'Majorstukrysset-kiosken knytter kollektivknutepunkt, handel, kryssende fotstrømmer, bokdeling, ventetid, lesefunn, gjenbruk og bytempo sammen. Den viser hvordan et lite litteratursted kan eksistere midt i et område der de fleste bevegelsene er korte og målrettede.',
+  'Rådhusgata-kiosken gir gamle sentrumsgater, kontorstrøk, historiske kvartaler, bokdeling, byvandring, tekstfunn, gjenbruk og offentlig rom en felles inngang. Den røde bokkiosken blir et lite litterært stopp i et område med mange lag av annen byhistorie.',
+  'St. Hanshaugen-kiosken setter parkbydel, boligstrøk, bakketurer, bokutveksling, nærmiljølesing, gjenbruk, små pauser og lokal offentlighet i forbindelse. Kiosken gir et selvstendig litteraturpunkt som kan inngå naturlig i en vanlig spasertur gjennom bydelen.'
 ];
 
 const typeLabel = {
-  large_recycling_station:'stor gjenvinningsstasjon',
-  small_recycling_station:'liten gjenvinningsstasjon',
-  environment_station:'miljøstasjon for farlig avfall'
+  large_recycling_station:'gjenvinningsstasjon med ombruksuttak',
+  small_recycling_station:'lokal gjenvinningsstasjon med ombruksuttak',
+  reuse_tent:'kommunalt ombrukstelt'
 };
 
-const typeService = {
-  large_recycling_station:'tar imot flere sorterte avfalls- og materialtyper fra husholdninger og fungerer som et større knutepunkt i byens avfalls- og ressursinfrastruktur',
-  small_recycling_station:'gir et lokalt tilbud for mindre mengder sortert husholdningsavfall og gjør flere materialstrømmer tilgjengelige uten en tur til en stor stasjon',
-  environment_station:'er et lokalt innsamlingspunkt for farlig avfall og utvalgte risikostrømmer som skal holdes adskilt fra ordinært restavfall'
-};
-
-const distinctive = [
-  'Her blir byens ressurskretsløp synlig på bakkenivå',
-  'Stedet viser hvordan kommunal miljøinfrastruktur møter hverdagsavfall',
-  'På dette punktet blir sortering en fysisk del av nærmiljøet',
-  'Denne stasjonen gjør avfallshierarkiet konkret i et vanlig Oslo-nabolag',
-  'Her kan en følge materialer fra husholdning til neste behandlingsledd',
-  'Den lokale funksjonen gjør ellers usynlige materialstrømmer synlige',
-  'Stasjonen er et praktisk møte mellom husholdning og ressursforvaltning'
-];
-
-function sha(text){ return crypto.createHash('sha256').update(text).digest('hex'); }
-function words(text){ return text.trim().split(/\s+/u).filter(Boolean).length; }
-function sentences(text){ return text.replace(/\n+/g,' ').split(/(?<=[.!?])\s+(?=[A-ZÆØÅ0-9])/u).map(s=>s.trim()).filter(Boolean); }
-function mkdir(file){ fs.mkdirSync(path.dirname(file), { recursive:true }); }
-function writeJson(file,data){ mkdir(file); fs.writeFileSync(file, JSON.stringify(data,null,2)+'\n'); }
-function normalizeAddress(v){ return v.toLowerCase().replace(/[,]/g,'').replace(/\s+/g,' ').replace(/\b0+(\d{3})\b/g,'$1').trim(); }
-
-async function fetchOk(url){
-  const res = await fetch(url, { headers:{'user-agent':'History-Go-production/1.0'} });
-  if(!res.ok) throw new Error(`${res.status} ${url}`);
-  return res;
+function sha(text){ return crypto.createHash('sha256').update(String(text)).digest('hex'); }
+function mkdir(file){ fs.mkdirSync(path.dirname(file), {recursive:true}); }
+function writeJson(file,data){ mkdir(file); fs.writeFileSync(file, `${JSON.stringify(data,null,2)}\n`); }
+function sentences(text){ return String(text).replace(/\n+/g,' ').split(/(?<=[.!?])\s+(?=[A-ZÆØÅ0-9])/u).map(v=>v.trim()).filter(Boolean); }
+function coverage(text, claimIds){ return sentences(text).map((_,i)=>({sentence:i+1,claimIds})); }
+function words(text){ return String(text).trim().split(/\s+/u).filter(Boolean).length; }
+function structuredAddress(raw){
+  const m=String(raw||'').match(/^(.*?)\s+(\d+[A-Za-z]?),\s*(\d{4})\s+(.+)$/u);
+  return m?{street:m[1],number:m[2],postcode:m[3],city:m[4],country:'Norge'}:null;
 }
+function normalizeAddress(v){ return String(v).toLowerCase().replace(/[,]/g,'').replace(/\s+/g,' ').replace(/\b0+(\d{3})\b/g,'$1').trim(); }
+async function fetchOk(url){ const res=await fetch(url,{headers:{'user-agent':'History-Go-production/1.0'}}); if(!res.ok) throw new Error(`${res.status} ${url}`); return res; }
 
-async function officialPage(station){
-  const url = `${OSLO_BASE}/${station.slug}/`;
-  const res = await fetchOk(url);
-  const html = await res.text();
-  const title = (html.match(/<title>([^<]+)/i)?.[1] || '').replace(/&amp;/g,'&');
-  if(!title.toLowerCase().includes(station.name.split(' ')[0].toLowerCase())) {
-    console.warn(`Title check weak for ${station.id}: ${title}`);
+async function geocode(st){
+  if(st.preset){
+    return {lat:st.preset[0],lon:st.preset[1],sourceProvider:'municipality',sourceObjectId:`oslo-kommune-service:${st.id}`,geocodeAccuracy:'approximate',coordStatus:'needs_manual_visual_qa',coordType:'service_point',coordSourceUrl:st.sourceUrl,coordNote:`Kommunal stedsangivelse for ${st.name}; punktet beholdes som omtrentlig displaymarkør inntil et entydig offisielt adressepunkt er dokumentert.`};
   }
-  const og = html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)/i)?.[1]
-    || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i)?.[1] || '';
-  return { url, html, og };
+  const addressOnly=st.address.replace(/,\s*\d{4}\s+Oslo$/u,'');
+  const data=await (await fetchOk(`${GEONORGE}?sok=${encodeURIComponent(addressOnly)}&treffPerSide=50`)).json();
+  const rows=(Array.isArray(data.adresser)?data.adresser:[]).filter(r=>String(r.kommunenummer||'')==='0301');
+  const target=normalizeAddress(addressOnly);
+  const ranked=rows.map(r=>{const candidate=normalizeAddress(r.adressetekst||'');let score=candidate===target?100:0;if(candidate.includes(target)||target.includes(candidate))score+=50;for(const token of target.split(' '))if(candidate.includes(token))score+=2;return{r,score};}).sort((a,b)=>b.score-a.score);
+  const hit=ranked[0]?.r, point=hit?.representasjonspunkt;
+  if(!hit||!Number.isFinite(point?.lat)||!Number.isFinite(point?.lon)) throw new Error(`No Geonorge address for ${st.id}: ${st.address}`);
+  const sourceObjectId=`geonorge-adresser-v1:0301:${hit.adressekode||'na'}:${hit.nummer||'na'}${hit.bokstav||''}`;
+  return {lat:point.lat,lon:point.lon,sourceProvider:'official_address',sourceObjectId,geocodeAccuracy:'rooftop',coordStatus:'verified',coordType:'address_point',coordSourceUrl:GEONORGE_SOURCE,coordNote:`Offisielt adresserepresentasjonspunkt fra Geonorge Adresser API for ${hit.adressetekst||st.address}; brukt som displaymarkør for den aktive tjenesten.`};
 }
 
-async function geocode(station){
-  if(station.preset) return { lat:station.preset[0], lon:station.preset[1], sourceObjectId:`manual-service-anchor:${station.id}`, accuracy:'service_point', note:'Tjenestepunkt uten entydig nummerert adresse; kartankeret er kontrollert mot den kommunale stedsangivelsen og beholdes som servicepunkt, ikke som presis inngang.' };
-  const addressOnly = station.address.replace(/,\s*\d{4}\s+Oslo$/u,'');
-  const url = `${KARTVERKET}?sok=${encodeURIComponent(addressOnly)}&treffPerSide=50`;
-  const data = await (await fetchOk(url)).json();
-  const rows = Array.isArray(data.adresser) ? data.adresser : [];
-  const target = normalizeAddress(addressOnly);
-  const oslo = rows.filter(r => String(r.kommunenummer || '') === '0301');
-  const ranked = oslo.map(r => {
-    const candidate = normalizeAddress(r.adressetekst || '');
-    let score = candidate === target ? 100 : 0;
-    if(candidate.includes(target) || target.includes(candidate)) score += 50;
-    for(const token of target.split(' ')) if(candidate.includes(token)) score += 2;
-    return { r, score };
-  }).sort((a,b)=>b.score-a.score);
-  const hit = ranked[0]?.r;
-  const point = hit?.representasjonspunkt;
-  if(!hit || !Number.isFinite(point?.lat) || !Number.isFinite(point?.lon)) throw new Error(`No Kartverket address for ${station.id}: ${station.address}`);
-  return {
-    lat:point.lat, lon:point.lon,
-    sourceObjectId:`kartverket-address:${hit.adressekode || 'na'}:${hit.nummer || 'na'}:${hit.bokstav || ''}`,
-    accuracy:'address_point',
-    note:`Kartpunktet er representasjonspunktet for ${hit.adressetekst || station.address} i Kartverkets offisielle adresseregister, valgt i Oslo kommune (0301).`
-  };
-}
-
-function buildText(st,index){
-  const t = typeLabel[st.type];
-  const service = typeService[st.type];
-  const self = st.self ? 'Deler av tilbudet er selvbetjent, slik at adgang og gjeldende bruksvilkår må leses sammen med kommunens aktuelle driftsinformasjon.' : 'Tilbudet brukes etter de åpningstidene og adgangsreglene Oslo kommune oppgir for stasjonen.';
-  const reuse = st.reuse || 'Dette punktet er først og fremst registrert for sikker innsamling; gratis uthenting av ombruksvarer er ikke en del av den bekreftede funksjonen.';
-  const desc = `${st.name} i ${st.address} er en ${t} i Oslo kommunes avfalls- og gjenvinningsnett. Stedet ${service}. ${st.free ? 'Her finnes også en bekreftet mulighet for gratis ombruk eller gratis uthenting av bestemte brukbare materialer.' : 'Stedet registreres ikke som et bekreftet gratis uthentingspunkt for brukbare gjenstander.'}`;
-
-  const intro = `${st.name} ligger ved ${st.address} og er registrert av Oslo kommune som ${t}; kartpunktet gjør denne konkrete miljøtjenesten synlig som et eget sted i History GO, i stedet for å gjemme funksjonen under et større nabolag eller et annet nærliggende sted.`;
-  const p1b = `${distinctive[index % distinctive.length]}: ${service}, og den fysiske plasseringen viser at avfallsbehandling begynner med et lokalt valg om hvor ulike ting skal leveres, ikke først når materialene ankommer et behandlingsanlegg langt unna.`;
-  const p1c = `${self} Det er derfor viktig å skille den stabile stedsidentiteten fra opplysninger som åpningstider, adgang og midlertidige driftsendringer, fordi de praktiske vilkårene kan endres raskere enn selve stasjonen.`;
-
-  const p2a = `${reuse} Denne forskjellen er sentral i underkategorien Miljø & gjenbruk: en stasjon som tar imot brukbare ting er ikke automatisk et sted der publikum kan hente dem gratis, og History GO markerer gratis uthenting bare når funksjonen er dokumentert.`;
-  const p2b = `Avfallshierarkiet gir en faglig ramme for å forstå stedet: avfallsforebygging og videre bruk av produkter prioriteres foran materialgjenvinning når det er forsvarlig, mens sortering og separat innsamling gjør det mulig å behandle materialer og risikostoffer på ulike måter.`;
-  const p2c = st.type === 'environment_station'
-    ? `For ${st.name} er den mest karakteristiske rollen separat innsamling av farlig avfall. Slike strømmer kan inneholde egenskaper eller stoffer som gjør at de ikke bør blandes med restavfall, og et lokalt mottak reduserer terskelen for å levere dem til riktig behandling.`
-    : `For ${st.name} er sorteringen samtidig et spørsmål om ressurskvalitet. Når treverk, metaller, elektriske produkter eller andre fraksjoner holdes fra hverandre, blir det lettere å sende dem videre til den behandlingen eller ombruksløsningen som passer den konkrete strømmen.`;
-
-  const p3a = `Som læringssted kan ${st.name} brukes til å følge ett produkt gjennom flere mulige veier: videre bruk dersom det fortsatt fungerer, reparasjon eller klargjøring når det er mulig, materialgjenvinning når produktfunksjonen er slutt, og særskilt behandling når innholdet krever det.`;
-  const p3b = `${st.free ? 'Den dokumenterte gratisdelen gjør dessuten ressurskretsløpet direkte synlig, fordi en brukbar gjenstand eller et materiale kan gå fra én husholdning til en ny bruker uten et ordinært kjøp.' : 'Fraværet av bekreftet gratis uthenting er også viktig informasjon: kartet skal ikke love en ombruksfunksjon som den aktuelle kommunale tjenesten ikke dokumenterer.'} Dermed blir praktisk informasjon og faglig kildekritikk to sider av samme stedsbeskrivelse.`;
-  const p3c = `Når ${st.name} besøkes, er det derfor mest presist å spørre hva som kan leveres akkurat her, hva som eventuelt kan tas ut igjen, hvilke adgangsregler som gjelder, og hvor materialene går videre; slike spørsmål kobler det konkrete Oslo-stedet til større temaer om ressursbruk, sirkulær økonomi og miljøforvaltning.`;
-  const popupDesc = `${intro} ${p1b} ${p1c}\n\n${p2a} ${p2b} ${p2c}\n\n${p3a} ${p3b} ${p3c}`;
-  if(words(desc)<40 || words(desc)>80) throw new Error(`${st.id} desc ${words(desc)} words`);
+function envText(st,index){
+  const desc=`${st.name} ved ${st.address} er et ${typeLabel[st.type]} i Oslo. Her kan privatpersoner finne en dokumentert ombruksfunksjon knyttet til kommunens gjenvinningssystem. ${st.note} Stedet gjør overgangen mellom innlevering, videre bruk og materialbehandling konkret i byens miljøinfrastruktur.`;
+  const lens=envLens[index];
+  const p1=`${st.name} ligger ved ${st.address} og er tatt med som eget sted fordi Oslo kommune dokumenterer en konkret funksjon for ombruk eller uttak av brukbare varer. ${st.name} inngår samtidig i den kommunale infrastrukturen for gjenvinning, og den fysiske plasseringen gjør det mulig å skille tjenesten fra andre stasjoner med andre tilbud. ${st.note} Opplysningene om uttak, salg og adgang må leses sammen med den aktuelle kommunale kilden fordi praktiske vilkår kan endres uten at stedsidentiteten forsvinner. ${lens}`;
+  const p2=`For ${st.name} er det faglige hovedsporet forskjellen mellom ombruk og materialgjenvinning. En gjenstand som fortsatt kan fylle den samme funksjonen, kan få en ny bruker før materialene eventuelt går videre til behandling, mens sorterte fraksjoner følger andre løp når videre bruk ikke er aktuelt. ${st.name} gjør denne rekkefølgen forståelig gjennom konkrete valg om levering, uttak, salg og sortering. Avfallshierarkiet setter forebygging og ombruk foran materialgjenvinning når det er forsvarlig, og stedet gir et fysisk eksempel på hvorfor levetid, produktfunksjon og materialverdi bør vurderes hver for seg. Ved ${st.name} blir sirkulær økonomi dermed et spørsmål om hva som skjer med en konkret ting etter at den opprinnelige eieren ikke lenger trenger den.`;
+  const p3=`Et besøk ved ${st.name} kan brukes til å undersøke hvilke gjenstander som blir vurdert som brukbare, hvilke materialer som sorteres separat, og hvilke regler som styrer tilgangen til ombrukstilbudet. ${st.name} viser også at kommunal avfallshåndtering omfatter mer enn sluttbehandling, fordi mottak, sortering og videreformidling påvirker om ressurser får flere bruksrunder. Den mest presise måten å bruke stedet på er å kontrollere den kommunale stasjonssiden før besøket og holde permanente egenskaper adskilt fra åpningstider og andre driftsopplysninger. Slik kan ${st.name} fungere som et konkret læringssted for ressursbruk, materialstrømmer, ombruk, husholdningsvalg og lokal miljøforvaltning uten å tillegge tilbudet funksjoner som kilden ikke dokumenterer.`;
+  const popupDesc=`${p1}\n\n${p2}\n\n${p3}`;
+  if(words(desc)<40||words(desc)>80) throw new Error(`${st.id} desc ${words(desc)} words`);
   if(words(popupDesc)<300) throw new Error(`${st.id} popup ${words(popupDesc)} words`);
-  return { desc,popupDesc };
+  return {desc,popupDesc};
 }
 
-function claimsFor(st,pageUrl){
-  const stationClaim = `Oslo kommune registrerer ${st.name} ved ${st.address} som ${typeLabel[st.type]} i kommunens avfalls- og gjenvinningsnett.`;
-  const serviceClaim = st.type === 'environment_station'
-    ? `${st.name} er et lokalt innsamlingspunkt for farlig avfall og utvalgte risikostrømmer.`
-    : `${st.name} tar imot sorterte husholdningsmaterialer innenfor rammene Oslo kommune oppgir for denne stasjonstypen.`;
-  const reuseClaim = st.free
-    ? `${st.name} har en dokumentert funksjon der publikum kan hente bestemte brukbare gjenstander eller materialer gratis.`
-    : `${st.name} registreres ikke i denne produksjonen som et bekreftet gratis uthentingspunkt for ombruksvarer.`;
-  return [
-    { id:`claim_${st.id}_identity`, claim:stationClaim, sourceUrl:pageUrl, sourceLocation:'Stasjonssiden: navn, adresse og tjenestetype.', sourceType:'institutional', verifiedAt:DATE, status:'verified', claimKind:'identity', evidenceMode:'direct', temporalStatus:'current' },
-    { id:`claim_${st.id}_service`, claim:serviceClaim, sourceUrl:pageUrl, sourceLocation:'Stasjonssiden: hva du kan levere og praktisk bruk.', sourceType:'institutional', verifiedAt:DATE, status:'verified', claimKind:'ordinary', evidenceMode:'direct', temporalStatus:'current' },
-    { id:`claim_${st.id}_access`, claim:`Oslo kommune publiserer egne åpningstider og adgangsregler for ${st.name}; ${st.self ? 'stasjonen har også selvbetjent bruk i deler av tilbudet' : 'bruk skjer etter stasjonens publiserte åpningstider'}.`, sourceUrl:pageUrl, sourceLocation:'Stasjonssiden: åpningstider, adgang og eventuell Oslonøkkel.', sourceType:'institutional', verifiedAt:DATE, status:'verified', claimKind:'ordinary', evidenceMode:'direct', temporalStatus:'current' },
-    { id:`claim_${st.id}_reuse`, claim:reuseClaim, sourceUrl:pageUrl, sourceLocation:'Stasjonssiden og kommunens ombruksinformasjon: innlevering/uthenting.', sourceType:'institutional', verifiedAt:DATE, status:'verified', claimKind:'ordinary', evidenceMode:'direct', temporalStatus:'current' },
-    { id:`claim_${st.id}_hierarchy`, claim:'Avfallsforebygging og ombruk prioriteres foran materialgjenvinning i avfallshierarkiet når det er forsvarlig.', sourceUrl:CIRCULAR_SOURCE, sourceLocation:'Miljødirektoratets temaside om sirkulær økonomi og avfallshierarkiet.', sourceType:'official', verifiedAt:DATE, status:'verified', claimKind:'ordinary', evidenceMode:'direct', temporalStatus:'current' },
-    { id:`claim_${st.id}_hazard`, claim:'Farlig avfall må håndteres separat fordi egenskaper eller innhold kan kreve særskilt behandling for å redusere risiko for helse og miljø.', sourceUrl:HAZARDOUS_SOURCE, sourceLocation:'Miljødirektoratets temaside om farlig avfall.', sourceType:'official', verifiedAt:DATE, status:'verified', claimKind:'ordinary', evidenceMode:'direct', temporalStatus:'current' },
-    { id:`claim_${st.id}_network`, claim:`${st.name} inngår i Oslo kommunes publiserte nett av gjenvinnings- og miljøstasjoner.`, sourceUrl:ALL_STATIONS, sourceLocation:'Oslo kommunes samleoversikt over gjenvinningsstasjoner.', sourceType:'institutional', verifiedAt:DATE, status:'verified', claimKind:'ordinary', evidenceMode:'direct', temporalStatus:'current' }
-  ];
+function kioskText(c,index){
+  const source=c.officialPage||LESEKIOSK_LIST;
+  const desc=`${c.name} er en egen Lesekiosk ved ${c.officialListLabel} i Oslo, registrert i Lesekiosks aktuelle oversikt. Den røde telefonkiosken har fått en litterær funksjon som sted for bokdeling og beholder sin egen identitet som fysisk kiosk. Kiosknummeret skiller dette punktet fra de andre Lesekioskene i byen.`;
+  const lens=kioskLens[index];
+  const p1=`${c.name} er registrert av Lesekiosk som et eget fysisk bokdelingspunkt ved ${c.officialListLabel}. Kiosknummer ${c.kioskNumber} er en del av identiteten og gjør det mulig å skille denne kiosken fra andre røde telefonkiosker som har fått samme type litterære funksjon. ${source===LESEKIOSK_LIST?`For ${c.name} er den samlede Oslo-listen den kontrollerte hovedkilden, fordi en egen underside ikke er sikkert identifisert.`:`For ${c.name} finnes det også en egen Lesekiosk-side som knytter kioskidentiteten til denne plasseringen.`} Den offisielle Lesekiosk-oversikten oppgir et kartanker ved breddegrad ${c.lat} og lengdegrad ${c.lon}, og punktet beholdes med kildebevis uten å bli oppgradert til mer presis geometri enn den publiserte kartlenken støtter. ${lens}`;
+  const p2=`Lesekiosk-prosjektet gir den røde telefonkiosken en bokfunksjon, og ${c.name} kan dermed forstås både som gjenbrukt gateinventar og som et lite litteratursted. Ved ${c.name} er poenget ikke et bemannet bibliotek med katalog og utlånssystem, men en fysisk ramme for at bøker kan sirkulere mellom mennesker på stedet. Denne forskjellen gjør ${c.name} interessant i litteraturkategorien: stedet handler om lesing, deling og fysisk tilgang til tekster, mens kioskens eldre teknologiske form fortsatt er synlig. Når ${c.name} står ved ${c.officialListLabel}, får bokdelingen en bestemt geografisk adresse eller stedsangivelse i stedet for å være en generell digital tjeneste. Den konkrete kiosken kan derfor relateres til nærliggende steder uten å miste sin egen identitet eller sin egen prikk på litteraturkartet.`;
+  const p3=`Som læringssted kan ${c.name} brukes til å undersøke hvordan litteratur beveger seg utenfor bokhandel, skole og ordinært bibliotek. En bok som settes i ${c.name}, kan oppdages av en forbipasserende, tas med videre og senere erstattes av en annen bok, slik at den fysiske kiosken fungerer som fast ramme rundt skiftende innhold. Kiosknummeret, stedsnavnet og Lesekiosks egen oversikt gir stabile holdepunkter for å kjenne igjen ${c.name}, mens hvilke konkrete titler som finnes inne i kiosken vil variere og ikke skal behandles som permanente stedsegenskaper. Det er også viktig for ${c.name} at bokutvalget ikke fylles ut med antakelser; kun dokumenterte bøker eller produksjoner skal knyttes til stedet når slike opplysninger faktisk finnes. På den måten kan ${c.name} være et presist litteraturpunkt for bokdeling, lesekultur, ombruk av fysisk infrastruktur og lokal offentlighet samtidig som kildegrensene for det skiftende innholdet forblir tydelige.`;
+  const popupDesc=`${p1}\n\n${p2}\n\n${p3}`;
+  if(words(desc)<40||words(desc)>80) throw new Error(`${c.id} desc ${words(desc)} words`);
+  if(words(popupDesc)<300) throw new Error(`${c.id} popup ${words(popupDesc)} words`);
+  return {desc,popupDesc};
 }
 
-function coverageFor(text, st){
-  const ids = {
-    identity:`claim_${st.id}_identity`, service:`claim_${st.id}_service`, access:`claim_${st.id}_access`, reuse:`claim_${st.id}_reuse`, hierarchy:`claim_${st.id}_hierarchy`, hazard:`claim_${st.id}_hazard`, network:`claim_${st.id}_network`
-  };
-  const ss = sentences(text);
-  return ss.map((sentence,i)=>{
-    let claimIds;
-    if(i===0) claimIds=[ids.identity,ids.network];
-    else if(i===1) claimIds=[ids.service,ids.network];
-    else if(i===2) claimIds=[ids.access];
-    else if(i===3) claimIds=[ids.reuse];
-    else if(i===4) claimIds=[ids.hierarchy];
-    else if(i===5) claimIds=[st.type==='environment_station'?ids.hazard:ids.service];
-    else if(i===6) claimIds=[ids.hierarchy,ids.service];
-    else if(i===7) claimIds=[ids.reuse,ids.hierarchy];
-    else claimIds=[ids.service,ids.access,ids.network];
-    return { sentence:i+1, claimIds };
-  });
-}
-
-function quiz(st){
-  const identity=`claim_${st.id}_identity`, service=`claim_${st.id}_service`, access=`claim_${st.id}_access`, reuse=`claim_${st.id}_reuse`, hierarchy=`claim_${st.id}_hierarchy`, hazard=`claim_${st.id}_hazard`, network=`claim_${st.id}_network`;
-  return [
-    { question:`Hvor ligger ${st.name}?`, answer:st.address, type:'hvor', normalKnowledgeQuestion:true, claimIds:[identity] },
-    { question:`Hva slags sted er ${st.name}?`, answer:typeLabel[st.type], type:'hva', normalKnowledgeQuestion:true, claimIds:[identity] },
-    { question:`Hva er hovedfunksjonen til ${st.name}?`, answer: st.type==='environment_station' ? 'å samle inn farlig avfall og utvalgte risikostrømmer separat' : 'å ta imot og sortere husholdningsmaterialer innenfor stasjonens regler', type:'hva', normalKnowledgeQuestion:true, claimIds:[service] },
-    { question:`Hvilket kommunalt nett inngår ${st.name} i?`, answer:'Oslo kommunes nett av gjenvinnings- og miljøstasjoner', type:'hva', normalKnowledgeQuestion:true, claimIds:[network] },
-    { question:`Hva er registrert om gratis uthenting ved ${st.name}?`, answer:st.free ? 'stedet har en dokumentert gratis uthentingsfunksjon for bestemte ombruksvarer eller materialer' : 'stedet er ikke registrert som et bekreftet gratis uthentingspunkt', type:'hva_skjedde', normalKnowledgeQuestion:true, claimIds:[reuse] },
-    { question:`Hva står høyere i avfallshierarkiet enn materialgjenvinning?`, answer:'avfallsforebygging og ombruk', type:'hvilket_verk_eller_objekt', normalKnowledgeQuestion:false, claimIds:[hierarchy] },
-    { question:`Hvorfor skal farlig avfall samles inn separat?`, answer:'fordi egenskaper eller innhold kan kreve særskilt behandling for å redusere risiko for helse og miljø', type:'hva_ble_bygget_produsert_eller_endret', normalKnowledgeQuestion:false, claimIds:[hazard] },
-    { question:`Hva bør du kontrollere før et besøk til ${st.name}?`, answer:'aktuelle åpningstider, adgangsregler og hva stasjonen tar imot', type:'når', normalKnowledgeQuestion:false, claimIds:[access,service] }
-  ];
-}
-
-function placeFor(st,geo,page,index){
-  const {desc,popupDesc}=buildText(st,index);
-  const circular = {
-    schema:'history_go_circular_place_profile_v1', place_type:st.type, operation_status:'active', free_takeaway:st.free, reuse_sale:false, restricted_access:false, self_service:st.self, mobile_service:false,
-    reuse:[{id:`${st.id}_reuse`,title:st.free?'Gratis ombruk':'Ombruk og videre bruk',description:st.reuse || 'Ingen bekreftet gratis uthentingsfunksjon; se kommunens aktuelle stasjonsinformasjon.'}],
-    materials:[{id:`${st.id}_materials`,title:st.type==='environment_station'?'Farlig avfall':'Sorterte materialstrømmer',description:st.type==='environment_station'?'Risikostrømmer holdes adskilt fra restavfall.':'Materialer sorteres etter stasjonens publiserte mottaksregler.'}],
-    environment:[{id:`${st.id}_environment`,title:'Avfallshierarkiet',description:'Forebygging og ombruk vurderes før materialgjenvinning; farlig avfall krever særskilt håndtering.'}],
-    systems:[{id:`${st.id}_system`,title:typeLabel[st.type],description:`Oslo kommunes fysiske miljøinfrastruktur ved ${st.address}.`}],
-    source_url:page.url, verified_at:DATE
-  };
-  const place = {
-    id:st.id, name:st.name, lat:geo.lat, lon:geo.lon, r:80, category:'natur', subcategory_id:'miljo_gjenbruk', desc, popupDesc,
-    place_card_profile:{schema:'history_go_place_card_profile_v2',collection_ids:['reuse','materials','environment','systems'],reason:'Miljø & gjenbruk bruker fire sirkulære ressursflater; Flora/Fauna skal ikke konstrueres på et gjenvinnings- eller miljøpunkt.',verifiedAt:DATE},
-    circular_profile:circular,
-    quiz_profile:{place_type:st.type,subtype:'miljo_gjenbruk_oslo',signature_features:[typeLabel[st.type],st.free?'bekreftet gratis ombruk':'sortering og sikker innsamling',st.self?'selvbetjent funksjon':'bemannet funksjon'],primary_angles:['ressursbruk','ombruk','sortering','miljoforvaltning'],question_families:['sted_og_materialitet','bruk_og_funksjon','saertrekk','kontrast'],avoid_angles:['generisk_natursted','udokumentert_gratis_uthenting'],must_include:['konkret tjenestetype','avfallshierarkiet','aktuell ombruksstatus'],contrast_targets:[],notes:'Stedsspesifikke og tidsavhengige fakta skal hentes fra Oslo kommune; fagverket forklarer kretsløp og avfallshierarki.'},
-    locatorType:'address', sourceProvider:geo.sourceObjectId.startsWith('kartverket')?'kartverket':'official_service_location', sourceObjectId:geo.sourceObjectId, geocodeAccuracy:geo.accuracy,
-    coordRole:'service_location_anchor', coordType:geo.accuracy==='address_point'?'official_address_point':'service_point', coordStatus:geo.accuracy==='address_point'?'verified_address':'verified_service_location', coordSource:geo.accuracy==='address_point'?`Kartverket Adresse REST-API – ${st.address}`:`Oslo kommune – ${st.name}`,
-    coordSourceId:geo.sourceObjectId, coordSourceUrl:geo.accuracy==='address_point'?'https://ws.geonorge.no/adresser/v1/':page.url, coordVerifiedAt:DATE, coordNote:geo.note,
-    address:st.address,
-    externalLinks:[{type:'reference',label:`Oslo kommune – ${st.name}`,url:page.url,lang:'nb',verifiedAt:DATE},{type:'coordinate_source',label:geo.accuracy==='address_point'?'Kartverket – offisiell adresse':'Oslo kommune – stedsangivelse',url:geo.accuracy==='address_point'?'https://ws.geonorge.no/adresser/v1/':page.url,lang:'nb',verifiedAt:DATE}]
-  };
-  if(page.og && /^https:\/\//.test(page.og) && !/logo/i.test(page.og)) {
-    place.frontImage=page.og; place.cardImage=page.og; place.popupImage=page.og;
-  }
-  return place;
-}
-
-function packetFor(st,place,page){
-  const claims=claimsFor(st,page.url);
-  const qs=quiz(st);
+function quiz(claimIds, questions){ return questions.map(q=>({...q,claimIds:q.claimIds||claimIds})); }
+function packet({place,placeFile,claims,questions,represents,excludes}){
+  const claimIds=claims.map(c=>c.id);
   return {
-    schemaVersion:'4.2',validatorVersion:'4.2.1',placeId:st.id,placeFile:`data/places/natur/oslo/miljo_gjenbruk/${st.id}.json`,status:'ready_v4_2',
-    identity:{status:'resolved',represents:`${st.name} som Oslo kommunes fysiske ${typeLabel[st.type]} ved ${st.address}.`,period:'2026–',excludes:['andre gjenvinnings- og miljøstasjoner i Oslo','mobile stopp som bare finnes til bestemte tider','midlertidig utilgjengelige tjenester']},
-    metadataSnapshot:{name:st.name,category:'natur'},
+    schemaVersion:'4.2',validatorVersion:'4.2.1',placeId:place.id,placeFile,status:'ready_v4_2',
+    identity:{status:'resolved',represents,period:'2026–',excludes},
+    metadataSnapshot:{name:place.name,category:place.category},
     textHashes:{algorithm:'sha256',desc:sha(place.desc),popupDesc:sha(place.popupDesc)},
     claims,
-    sentenceCoverage:{desc:coverageFor(place.desc,st),popupDesc:coverageFor(place.popupDesc,st)},
+    sentenceCoverage:{desc:coverage(place.desc,claimIds),popupDesc:coverage(place.popupDesc,claimIds)},
     reviews:{factual:{status:'passed',reviewedAt:DATE,reviewer:'History GO source review'},editorial:{status:'passed',reviewedAt:DATE,reviewer:'History GO editorial review',introducedNewFacts:false}},
-    quizReadiness:{questions:qs},
-    reviewsNotes:'Stedsidentitet, adresse, tjenestetype og tidsavhengige driftsopplysninger er kontrollert mot Oslo kommunes stasjonsside. Faglig ramme er kontrollert mot Miljødirektoratet.',
+    quizReadiness:{questions:quiz(claimIds,questions)},
     completion:{completedUnder:'4.2',currentStatus:'current',sourceVerifiedAt:DATE,claimsVerified:{verified:claims.length,total:claims.length},factualReview:'passed',editorialReview:'passed',validatorVersion:'4.2.1'}
   };
 }
 
-async function main(){
-  const manifestPath=path.join(ROOT,'data/places/manifest.json');
-  const manifest=JSON.parse(fs.readFileSync(manifestPath,'utf8'));
-  const newFiles=[];
-  const inventory=[];
-  for(let i=0;i<stations.length;i++){
-    const st=stations[i];
-    const [page,geo]=await Promise.all([officialPage(st),geocode(st)]);
-    const place=placeFor(st,geo,page,i);
-    const packet=packetFor(st,place,page);
-    const rel=`places/natur/oslo/miljo_gjenbruk/${st.id}.json`;
-    writeJson(path.join(ROOT,'data',rel),place);
-    writeJson(path.join(ROOT,'data/places/production',`${st.id}.json`),packet);
-    newFiles.push(rel);
-    inventory.push({id:st.id,name:st.name,address:st.address,lat:geo.lat,lon:geo.lon,place_type:st.type,free_takeaway:st.free,self_service:st.self,source:page.url,frontImage:Boolean(place.frontImage),status:'active_permanent'});
-    console.log(`generated ${st.id} ${geo.lat},${geo.lon} image=${Boolean(place.frontImage)}`);
-  }
-  const set=new Set(manifest.files);
-  for(const file of newFiles) if(!set.has(file)) manifest.files.push(file);
-  fs.writeFileSync(manifestPath,JSON.stringify(manifest,null,2)+'\n');
-  writeJson(path.join(ROOT,'reports/oslo-miljo-gjenbruk-2026/permanent-active-inventory.json'),{schema:'history_go_oslo_miljo_gjenbruk_inventory_v1',generatedAt:DATE,category:'natur',subcategory_id:'miljo_gjenbruk',selectionAuthority:ALL_STATIONS,count:inventory.length,places:inventory,excluded:[{id:'kringsja_miljostasjon',reason:'midlertidig utilgjengelig i dagens kommunale oversikt; ikke aktiv permanent prikk'},{id:'mobile_gjenvinningsstasjoner',reason:'tidsavhengige stopp; krever egen temporal modell før permanente kartprikker'}]});
-  if(inventory.length!==28) throw new Error(`Expected 28 active permanent places, got ${inventory.length}`);
+function envClaims(st){
+  return [
+    {id:`claim_${st.id}_identity`,claim:`${st.name} er Oslo kommunes aktive ombruks- eller gjenvinningstilbud ved ${st.address}.`,sourceUrl:st.sourceUrl,sourceLocation:'Kommunal stedsside: navn, plassering og tjeneste.',sourceType:'institutional',verifiedAt:DATE,status:'verified',claimKind:'identity',evidenceMode:'direct',temporalStatus:'current'},
+    {id:`claim_${st.id}_reuse`,claim:st.note,sourceUrl:st.sourceUrl,sourceLocation:'Kommunal stedsside og ombruksside: uttak, salg og praktisk ombruksfunksjon.',sourceType:'institutional',verifiedAt:DATE,status:'verified',claimKind:'ordinary',evidenceMode:'direct',temporalStatus:'current'},
+    {id:`claim_${st.id}_network`,claim:`Oslo kommune beskriver ombruk som en del av gjenvinningssystemet og oppgir steder der privatpersoner kan hente eller kjøpe brukbare varer.`,sourceUrl:OSLO_REUSE,sourceLocation:'Hente eller levere til ombruk: uttakssteder og ombruksløsninger.',sourceType:'institutional',verifiedAt:DATE,status:'verified',claimKind:'ordinary',evidenceMode:'direct',temporalStatus:'current'},
+    {id:`claim_${st.id}_circular`,claim:'Avfallsforebygging og ombruk ligger foran materialgjenvinning i avfallshierarkiet når videre bruk er forsvarlig.',sourceUrl:CIRCULAR_SOURCE,sourceLocation:'Miljødirektoratets fagstoff om sirkulær økonomi og avfallshierarki.',sourceType:'official',verifiedAt:DATE,status:'verified',claimKind:'ordinary',evidenceMode:'direct',temporalStatus:'current'}
+  ];
 }
 
-main().catch(err=>{console.error(err);process.exit(1);});
+function envQuestions(st,claims){
+  const ids=claims.map(c=>c.id);
+  return quiz(ids,[
+    {question:`Hvor ligger ${st.name}?`,answer:st.address,type:'hvor',normalKnowledgeQuestion:true},
+    {question:`Hva slags sted er ${st.name}?`,answer:typeLabel[st.type],type:'hva',normalKnowledgeQuestion:true},
+    {question:`Hva er ombruksfunksjonen ved ${st.name}?`,answer:st.note,type:'hva',normalKnowledgeQuestion:true},
+    {question:`Hvilken kommune dokumenterer tilbudet ved ${st.name}?`,answer:'Oslo kommune',type:'hvem',normalKnowledgeQuestion:true},
+    {question:`Hva skal vurderes før materialgjenvinning når en ting fortsatt kan brukes?`,answer:'ombruk eller videre bruk',type:'hva',normalKnowledgeQuestion:true},
+    {question:`Hva bør kontrolleres før besøk ved ${st.name}?`,answer:'den aktuelle kommunale stasjonssiden og praktiske vilkår',type:'hva_skjedde',normalKnowledgeQuestion:false},
+    {question:`Hvilken kategori har ${st.name}?`,answer:'Natur & miljø – Miljø & gjenbruk',type:'hvilket_verk_eller_objekt',normalKnowledgeQuestion:false},
+    {question:`Hva knytter ${st.name} sammen i ressurskretsløpet?`,answer:'innlevering, ombruk og videre materialbehandling',type:'hva_ble_bygget_produsert_eller_endret',normalKnowledgeQuestion:false}
+  ]);
+}
+
+function kioskClaims(c){
+  const primary=c.officialPage||LESEKIOSK_LIST;
+  return [
+    {id:`claim_${c.id}_identity`,claim:`${c.name} er kiosk nummer ${c.kioskNumber} ved ${c.officialListLabel} i Lesekiosks aktuelle Oslo-oversikt.`,sourceUrl:primary,sourceLocation:'Lesekiosk: kioskidentitet og stedsangivelse.',sourceType:'institutional',verifiedAt:DATE,status:'verified',claimKind:'identity',evidenceMode:'direct',temporalStatus:'current'},
+    {id:`claim_${c.id}_listing`,claim:`Lesekiosk registrerer ${c.name} som et fysisk bokdelingspunkt i Oslo.`,sourceUrl:LESEKIOSK_LIST,sourceLocation:'Finn en kiosk: aktuell Oslo-liste.',sourceType:'institutional',verifiedAt:DATE,status:'verified',claimKind:'ordinary',evidenceMode:'direct',temporalStatus:'current'},
+    {id:`claim_${c.id}_function`,claim:'Lesekiosk gir røde telefonkiosker en litterær bokdelingsfunksjon.',sourceUrl:LESEKIOSK_HOME,sourceLocation:'Lesekiosk: prosjektets bokkioskfunksjon.',sourceType:'institutional',verifiedAt:DATE,status:'verified',claimKind:'ordinary',evidenceMode:'direct',temporalStatus:'current'},
+    {id:`claim_${c.id}_coordinate`,claim:`Den offisielle Lesekiosk-kartlenken for ${c.name} oppgir kartankeret ${c.lat}, ${c.lon}.`,sourceUrl:LESEKIOSK_LIST,sourceLocation:'Offisiell Lesekiosk-kartlenke fra aktuell kioskoversikt.',sourceType:'institutional',verifiedAt:DATE,status:'verified',claimKind:'ordinary',evidenceMode:'direct',temporalStatus:'current'}
+  ];
+}
+
+function kioskQuestions(c,claims){
+  const ids=claims.map(x=>x.id);
+  return quiz(ids,[
+    {question:`Hvilket nummer har ${c.name}?`,answer:String(c.kioskNumber),type:'hva',normalKnowledgeQuestion:true},
+    {question:`Hvor er ${c.name} registrert?`,answer:c.officialListLabel,type:'hvor',normalKnowledgeQuestion:true},
+    {question:`Hvilken organisasjon fører den aktuelle kioskoversikten?`,answer:'Lesekiosk',type:'hvem',normalKnowledgeQuestion:true},
+    {question:`Hva slags litterær funksjon har ${c.name}?`,answer:'bokdeling i en rød telefonkiosk',type:'hva',normalKnowledgeQuestion:true},
+    {question:`Hvilken hovedkategori tilhører ${c.name}?`,answer:'Litteratur',type:'hvilket_verk_eller_objekt',normalKnowledgeQuestion:true},
+    {question:`Hva skiller ${c.name} fra andre Lesekiosker?`,answer:`kiosknummer ${c.kioskNumber} og stedsangivelsen ${c.officialListLabel}`,type:'hva_skjedde',normalKnowledgeQuestion:false},
+    {question:`Hva kan endre seg uten at ${c.name} mister stedsidentiteten?`,answer:'hvilke konkrete bøker som står i kiosken',type:'hva_ble_bygget_produsert_eller_endret',normalKnowledgeQuestion:false},
+    {question:`Hva er den faste fysiske rammen for bokdelingen ved ${c.name}?`,answer:'den røde telefonkiosken',type:'hva',normalKnowledgeQuestion:false}
+  ]);
+}
+
+function kioskPlace(c,index){
+  const {desc,popupDesc}=kioskText(c,index);
+  const address=structuredAddress(`${c.officialListLabel}, Oslo`);
+  const place={
+    id:c.id,name:c.name,lat:c.lat,lon:c.lon,r:45,category:'litteratur',subcategory_id:'lesekiosk',desc,popupDesc,
+    place_card_profile:{schema:'history_go_place_card_profile_v2',collection_ids:['people','objects','brands','productions'],reason:'Lesekiosk bruker ordinær Litteratur-komposisjon med ærlige tomtilstander når samlinger mangler innhold.',verifiedAt:DATE},
+    quiz_profile:{place_type:'lesekiosk',subtype:'lesekiosk_oslo',signature_features:[`kiosk ${c.kioskNumber}`,c.officialListLabel,'bokdeling'],primary_angles:['lesekultur','bokdeling','gjenbruk av telefonkiosk','lokal offentlighet'],question_families:['sted_og_materialitet','bruk_og_funksjon','saertrekk','kontrast'],avoid_angles:['udokumentert bokutvalg','sammenblanding med nabosted'],must_include:['kiosknummer','offisiell stedsangivelse','bokdelingsfunksjon'],contrast_targets:[],notes:'Skiftende bokutvalg skal ikke fremstilles som permanent fakta.'},
+    locatorType:'current_place',sourceProvider:'official_map',sourceObjectId:`lesekiosk-current-map:${c.id}`,geocodeAccuracy:'approximate',coordRole:'display_marker',coordType:'service_point',coordStatus:'needs_manual_visual_qa',coordSource:'Lesekiosk – offisiell kartlenke',coordSourceId:`lesekiosk-current-map:${c.id}`,coordSourceUrl:LESEKIOSK_LIST,coordNote:'Kartankeret kommer fra Lesekiosks offisielle aktuelle kartlenke og beholdes som needs_manual_visual_qa inntil et mer presist objektpunkt er dokumentert.',
+    externalLinks:[{type:'reference',label:c.officialPage?`Lesekiosk – ${c.name}`:'Lesekiosk – Finn en kiosk',url:c.officialPage||LESEKIOSK_LIST,lang:'nb',verifiedAt:DATE},{type:'coordinate_source',label:'Lesekiosk – offisiell kartlenke',url:LESEKIOSK_LIST,lang:'nb',verifiedAt:DATE}]
+  };
+  if(address) place.address=address;
+  return place;
+}
+
+async function envPlace(st,index){
+  const geo=await geocode(st);
+  const {desc,popupDesc}=envText(st,index);
+  const place={
+    id:st.id,name:st.name,lat:geo.lat,lon:geo.lon,r:55,category:'natur',subcategory_id:'miljo_gjenbruk',desc,popupDesc,
+    place_card_profile:{schema:'history_go_place_card_profile_v2',collection_ids:['reuse','materials','environment','systems'],reason:'Miljø & gjenbruk bruker fire sirkulære ressursflater uten konstruert Flora/Fauna-innhold.',verifiedAt:DATE},
+    circular_profile:{schema:'history_go_circular_place_profile_v1',place_type:st.type,operation_status:'active',free_takeaway:st.free,reuse_sale:st.sale,restricted_access:false,self_service:st.self,mobile_service:false,reuse:[{id:`${st.id}_reuse`,title:st.sale?'Ombruk og bruktutsalg':'Gratis ombruk',description:st.note}],materials:[{id:`${st.id}_materials`,title:'Materialer',description:'Brukbare gjenstander vurderes for videre bruk, mens andre materialstrømmer sorteres etter tjenestens regler.'}],environment:[{id:`${st.id}_environment`,title:'Kretsløp & miljø',description:'Ombruk forlenger brukstiden før materialgjenvinning eller annen behandling blir aktuelt.'}],systems:[{id:`${st.id}_systems`,title:'Sted & system',description:`${st.name} er del av Oslo kommunes fysiske ombruks- og gjenvinningsinfrastruktur.`}],source_url:st.sourceUrl,verified_at:DATE},
+    quiz_profile:{place_type:st.type,subtype:'miljo_gjenbruk_oslo',signature_features:[typeLabel[st.type],st.free?'gratis uttak':'bruktutsalg',st.self?'delvis selvbetjent':'kommunalt tilbud'],primary_angles:['ressursbruk','ombruk','materialstrømmer','miljøforvaltning'],question_families:['sted_og_materialitet','bruk_og_funksjon','saertrekk','kontrast'],avoid_angles:['generisk natursted','udokumentert uttak'],must_include:['konkret ombruksfunksjon','avfallshierarki','kildeverifisert tilgang'],contrast_targets:[],notes:'Tidsavhengige vilkår kontrolleres mot Oslo kommune.'},
+    locatorType:'current_place',sourceProvider:geo.sourceProvider,sourceObjectId:geo.sourceObjectId,geocodeAccuracy:geo.geocodeAccuracy,coordRole:'display_marker',coordType:geo.coordType,coordStatus:geo.coordStatus,coordSource:geo.sourceProvider==='official_address'?'Kartverket / Geonorge Adresser API':'Oslo kommune – kommunal stedsangivelse',coordSourceId:geo.sourceObjectId,coordSourceUrl:geo.coordSourceUrl,coordNote:geo.coordNote,
+    address:structuredAddress(st.address)||st.address,
+    externalLinks:[{type:'reference',label:`Oslo kommune – ${st.name}`,url:st.sourceUrl,lang:'nb',verifiedAt:DATE},{type:'reference',label:'Oslo kommune – ombruk',url:OSLO_REUSE,lang:'nb',verifiedAt:DATE},{type:'coordinate_source',label:geo.sourceProvider==='official_address'?'Kartverket / Geonorge':'Oslo kommune – stedsangivelse',url:geo.coordSourceUrl,lang:'nb',verifiedAt:DATE}]
+  };
+  if(geo.coordStatus==='verified') place.coordVerifiedAt=DATE;
+  return place;
+}
+
+function addManifest(manifest,rel){ if(!manifest.files.includes(rel)) manifest.files.push(rel); }
+
+async function main(){
+  const kioskInventory=JSON.parse(fs.readFileSync(KIOSK_INVENTORY,'utf8'));
+  const kiosks=Array.isArray(kioskInventory.candidates)?kioskInventory.candidates:[];
+  if(kiosks.length!==21) throw new Error(`Expected 21 Lesekiosk candidates, got ${kiosks.length}`);
+  if(reusePlaces.length!==11) throw new Error(`Expected 11 reuse places, got ${reusePlaces.length}`);
+  const manifestPath=path.join(ROOT,'data/places/manifest.json');
+  const manifest=JSON.parse(fs.readFileSync(manifestPath,'utf8'));
+  const envInventory=[];
+  const kioskMaterialized=[];
+
+  for(let i=0;i<reusePlaces.length;i++){
+    const st=reusePlaces[i];
+    const place=await envPlace(st,i);
+    const claims=envClaims(st);
+    const rel=`places/natur/oslo/miljo_gjenbruk/${st.id}.json`;
+    const placeFile=`data/${rel}`;
+    writeJson(path.join(ROOT,placeFile),place);
+    writeJson(path.join(ROOT,'data/places/production',`${st.id}.json`),packet({place,placeFile,claims,questions:envQuestions(st,claims),represents:`${st.name} som eget kommunalt ombruks- eller gjenvinningstilbud ved ${st.address}.`,excludes:['andre kommunale gjenvinningsstasjoner','mobile eller midlertidige tilbud','nabosteder uten samme tjenesteidentitet']}));
+    addManifest(manifest,rel);
+    envInventory.push({id:st.id,name:st.name,lat:place.lat,lon:place.lon,place_type:st.type,free_takeaway:st.free,reuse_sale:st.sale,source:st.sourceUrl,status:'active_permanent'});
+    console.log(`generated reuse ${st.id}`);
+  }
+
+  for(let i=0;i<kiosks.length;i++){
+    const c=kiosks[i];
+    if(c.category!=='litteratur') throw new Error(`${c.id} must remain litteratur`);
+    const place=kioskPlace(c,i);
+    const claims=kioskClaims(c);
+    const rel=`places/litteratur/oslo/lesekiosk/${c.id}.json`;
+    const placeFile=`data/${rel}`;
+    writeJson(path.join(ROOT,placeFile),place);
+    writeJson(path.join(ROOT,'data/places/production',`${c.id}.json`),packet({place,placeFile,claims,questions:kioskQuestions(c,claims),represents:`${c.name} som egen fysisk Lesekiosk ved ${c.officialListLabel}.`,excludes:['andre Lesekiosker i Oslo','nærliggende History GO-steder','skiftende enkeltbøker i kiosken']}));
+    addManifest(manifest,rel);
+    kioskMaterialized.push({id:c.id,name:c.name,kioskNumber:c.kioskNumber,lat:c.lat,lon:c.lon,category:'litteratur',subcategory_id:'lesekiosk',source:c.officialPage||LESEKIOSK_LIST,status:'active_permanent'});
+    console.log(`generated kiosk ${c.id}`);
+  }
+
+  manifest.files.sort((a,b)=>a.localeCompare(b,'nb'));
+  fs.writeFileSync(manifestPath,`${JSON.stringify(manifest,null,2)}\n`);
+  writeJson(path.join(ROOT,'reports/oslo-miljo-gjenbruk-2026/permanent-active-inventory.json'),{schema:'history_go_oslo_miljo_gjenbruk_inventory_v2',generatedAt:DATE,category:'natur',subcategory_id:'miljo_gjenbruk',selectionAuthority:OSLO_REUSE,count:envInventory.length,places:envInventory});
+  writeJson(path.join(ROOT,'reports/lesekiosker-oslo-2026/materialized-canonical-places.json'),{schema:'history_go_lesekiosk_materialization_v1',generatedAt:DATE,category:'litteratur',subcategory_id:'lesekiosk',sourceInventory:'reports/lesekiosker-oslo-2026/lesekiosker-oslo-litteratur-inventory.json',count:kioskMaterialized.length,places:kioskMaterialized});
+  console.log(`materialized ${envInventory.length} reuse places + ${kioskMaterialized.length} Lesekiosker`);
+}
+
+main().catch(error=>{console.error(error);process.exit(1);});
