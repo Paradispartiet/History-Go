@@ -62,11 +62,16 @@ for (const pilot of pilots) {
 }
 
 const indexedKeys = new Set((roleWorldIndex.roles || []).map((entry) => `${entry.category}/${entry.role_scope}`));
-for (const key of ['by/by_radgiver_plan', 'sport/sport_utover', 'media/media_redaksjon']) {
-  assert.ok(indexedKeys.has(key), `Indexed structural pilot missing: ${key}`);
+const indexedPilots = pilots.filter((pilot) => pilot.proof_status === 'reference_proven');
+for (const pilot of indexedPilots) {
+  const key = `${pilot.category}/${pilot.role_scope}`;
+  assert.ok(indexedKeys.has(key), `Indexed structural pilot missing: ${pilot.id}`);
 }
-assert.ok(!indexedKeys.has('historie/historie_arkiv_og_dokumentasjon'), 'Archive vertical must not be fabricated into Role World completion by the Matrix');
-assert.ok(careerMatrix.worlds.some((world) => world.key === 'by/by_radgiver_plan'), 'Career Matrix remains an independent status source');
+const archivePilot = pilots.find((pilot) => pilot.id === 'archive_documentation');
+assert.ok(archivePilot, 'Archive structural vertical must remain declared');
+assert.ok(!indexedKeys.has(`${archivePilot.category}/${archivePilot.role_scope}`), 'Archive vertical must not be fabricated into Role World completion by the Matrix');
+const careerPilot = pilots.find((pilot) => pilot.id === 'by_plan');
+assert.ok(careerPilot && careerMatrix.worlds.some((world) => world.key === `${careerPilot.category}/${careerPilot.role_scope}`), 'Career Matrix remains an independent status source');
 
 const expectedDimensions = [
   'persistent_work_object',
@@ -100,7 +105,7 @@ for (const prefix of ['manager', 'team', 'professional', 'public', 'source']) {
   assert.match(standingSource, new RegExp(`\\b${prefix}\\b`), `Situated-standing runtime must still recognize ${prefix}:*`);
 }
 assert.match(standingSource, /career\.reputation remains the legacy\/global summary/);
-assert.match(standingSource, /it grants no authority|it grants no authority/i);
+assert.match(standingSource, /it grants no authority/i);
 
 const roleOwned = new Set(matrix.role_owned_not_global || []);
 for (const required of [
