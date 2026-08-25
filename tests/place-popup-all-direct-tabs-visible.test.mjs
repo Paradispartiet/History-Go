@@ -16,11 +16,12 @@ test("gamle Mer-familier blir ikke faste popupfaner", () => {
 });
 
 test("Objects og People eier sine tidligere Mer-lag", () => {
-  assert.match(directTabs, /storeSupplement\(placeId, "objects", node\)/);
-  assert.match(directTabs, /storeSupplement\(placeId, "people", node\)/);
+  assert.match(directTabs, /heading === "spor og objekter" \|\| heading === "legg merke til"/);
+  assert.match(directTabs, /hg-place-relations-section/);
   assert.match(ownership, /objectsSupplement/);
   assert.match(ownership, /peopleSupplement/);
-  assert.match(ownership, /kind === "objects"/);
+  assert.match(ownership, /interpretation\.what_to_notice/);
+  assert.match(ownership, /personRelations/);
   assert.match(ownership, /\["objects", "people"\]\.includes\(kind\)/);
 });
 
@@ -30,6 +31,13 @@ test("Betydning, motpunkter og generell kunnskap blir stedskunnskap under Om", (
   assert.match(directTabs, /hg-place-knowledge-section/);
   assert.match(directTabs, /hg-place-observations-section/);
   assert.match(directTabs, /moveToAbout\(node, panelWrap\)/);
+});
+
+test("rene place-relasjoner holdes utenfor People", () => {
+  assert.match(ownership, /relationTouchesPerson/);
+  assert.match(ownership, /relationsForPlace/);
+  assert.match(ownership, /filter\(relationTouchesPerson\)/);
+  assert.match(ownership, /Rene place→place-relasjoner blir igjen hos Relaterte steder/);
 });
 
 test("ingen innholdsfamilie gjeninnfører Mer eller en generell restfane", () => {
