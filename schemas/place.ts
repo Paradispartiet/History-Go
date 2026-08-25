@@ -11,6 +11,24 @@ export interface PlaceNatureProfile {
   [key: string]: unknown;
 }
 
+export interface PlaceCircularProfile {
+  schema?: "history_go_circular_place_profile_v1" | string;
+  place_type?: "large_recycling_station" | "small_recycling_station" | "environment_station" | "reuse_point" | "sharing_point" | string;
+  operation_status?: "active" | "temporary_unavailable" | "historic" | string;
+  free_takeaway?: boolean;
+  reuse_sale?: boolean;
+  restricted_access?: boolean;
+  self_service?: boolean;
+  mobile_service?: boolean;
+  reuse?: PlaceVisualRoundItem[];
+  materials?: PlaceVisualRoundItem[];
+  environment?: PlaceVisualRoundItem[];
+  systems?: PlaceVisualRoundItem[];
+  source_url?: string;
+  verified_at?: string;
+  [key: string]: unknown;
+}
+
 export interface PlaceTrainingProfileExercise {
   id?: string;
   title?: string;
@@ -96,11 +114,15 @@ export type PlaceCardCollectionId =
   | "structures"
   | "competitions"
   | "related"
-  | "destinations";
+  | "destinations"
+  | "reuse"
+  | "materials"
+  | "environment"
+  | "systems";
 
 export interface PlaceCardProfileV2 {
   schema: "history_go_place_card_profile_v2";
-  /** Nøyaktig fire samlinger i fast kategoriavhengig 2 × 2-komposisjon. Bilder eies av medieflaten. */
+  /** Nøyaktig fire samlinger i fast kategori-/underkategoriavhengig 2 × 2-komposisjon. Bilder eies av medieflaten. */
   collection_ids: PlaceCardCollectionId[];
   reason: string;
   verifiedAt: string;
@@ -127,6 +149,8 @@ export interface Place {
   lng?: number;
   r?: number;
   category?: string;
+  /** Canonical specialization beneath the existing top category. Never creates a new map color. */
+  subcategory_id?: string;
   year?: number;
   desc?: string;
   popupDesc?: string;
@@ -142,6 +166,7 @@ export interface Place {
   sport_profile?: PlaceSportProfile;
   quiz_profile?: Record<string, unknown>;
   nature_profile?: PlaceNatureProfile;
+  circular_profile?: PlaceCircularProfile;
   for_na?: PlaceForNaProfile;
   training_profile?: PlaceTrainingProfile;
   relations?: unknown[];
