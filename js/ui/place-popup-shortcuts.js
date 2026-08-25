@@ -1,6 +1,6 @@
 // @ts-nocheck
 // js/ui/place-popup-shortcuts.js
-// Sju faste SVG-snarveier fra PlaceCard til stedspopupen. Om åpnes via stedsnavn eller infotekst.
+// Seks faste SVG-snarveier fra PlaceCard til stedspopupen. Om åpnes via stedsnavn eller infotekst.
 (function installPlacePopupShortcuts(global) {
   "use strict";
 
@@ -14,8 +14,7 @@
     { id: "before-after", label: "Før/etter", icon: icon('<path d="M4 7h11"/><path d="m12 4 3 3-3 3"/><path d="M20 17H9"/><path d="m12 14-3 3 3 3"/>') },
     { id: "news", label: "Nyheter", icon: icon('<path d="M5 4.5h13.5v15H5z"/><path d="M8 8h7.5"/><path d="M8 11h7.5"/><path d="M8 14h3"/><path d="M13 14h2.5"/>') },
     { id: "reading", label: "Lesespor", icon: icon('<path d="M6 4.5h11a2 2 0 0 1 2 2v13H8a2 2 0 0 1-2-2z"/><path d="M6 16.5h13"/><path d="M9.5 4.5v8l2.4-1.5 2.4 1.5v-8"/>') },
-    { id: "sources", label: "Kilder", icon: icon('<path d="M9.5 14.5 8 16a3.5 3.5 0 0 1-5-5l3-3a3.5 3.5 0 0 1 5 0"/><path d="m14.5 9.5 1.5-1.5a3.5 3.5 0 0 1 5 5l-3 3a3.5 3.5 0 0 1-5 0"/><path d="m8.5 15.5 7-7"/>') },
-    { id: "more", label: "Mer", icon: icon('<circle cx="5" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="19" cy="12" r="1" fill="currentColor" stroke="none"/>') }
+    { id: "sources", label: "Kilder", icon: icon('<path d="M9.5 14.5 8 16a3.5 3.5 0 0 1-5-5l3-3a3.5 3.5 0 0 1 5 0"/><path d="m14.5 9.5 1.5-1.5a3.5 3.5 0 0 1 5 5l-3 3a3.5 3.5 0 0 1-5 0"/><path d="m8.5 15.5 7-7"/>') }
   ]);
 
   const text = value => String(value == null ? "" : value).trim();
@@ -42,9 +41,9 @@
 
   function ensureDom() {
     const card = document.getElementById("placeCard");
-    const side = card?.querySelector(".pc-side-stack");
-    if (!side) return null;
-    let wrap = side.querySelector(`[${WRAP_ATTR}]`);
+    const grid = card?.querySelector(".pc-grid");
+    if (!grid) return null;
+    let wrap = grid.querySelector(`[${WRAP_ATTR}]`);
     if (!wrap) {
       wrap = document.createElement("div");
       wrap.className = "pc-place-popup-shortcuts";
@@ -52,7 +51,9 @@
       wrap.setAttribute("role", "group");
       wrap.setAttribute("aria-label", "Stedsinformasjon");
       wrap.innerHTML = SHORTCUTS.map(button).join("");
-      side.appendChild(wrap);
+      grid.appendChild(wrap);
+    } else if (wrap.parentElement !== grid) {
+      grid.appendChild(wrap);
     }
     prepareInfoTargets(card);
     return wrap;

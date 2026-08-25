@@ -31,8 +31,8 @@ test("legacy nodes cannot leak beyond the fixed four PlaceCard collections", asy
   dom.window.close();
 });
 
-test("PlaceCard uses seven small SVG shortcuts and opens Om from title or info text", () => {
-  const dom = new JSDOM('<!doctype html><body><div id="placeCard" data-current-place-id="p"><div class="pc-title-row"><h2 id="pcTitle">Stedet</h2></div><p id="pcDesc">Infotekst</p><div class="pc-side-stack"><div class="pc-icons-quad"></div></div></div></body>', { url: "https://history-go.test/", runScripts: "outside-only" });
+test("PlaceCard uses six full-width SVG shortcuts and opens Om from title or info text", () => {
+  const dom = new JSDOM('<!doctype html><body><div id="placeCard" data-current-place-id="p"><div class="pc-title-row"><h2 id="pcTitle">Stedet</h2></div><p id="pcDesc">Infotekst</p><div class="pc-grid"><div class="pc-frontcard"></div><div class="pc-side-stack"><div class="pc-icons-quad"></div></div><div class="pc-events-quad"></div></div></div></body>', { url: "https://history-go.test/", runScripts: "outside-only" });
   const w = dom.window;
   const calls = [];
   w.PLACES = [{ id: "p", name: "Stedet" }];
@@ -41,13 +41,15 @@ test("PlaceCard uses seven small SVG shortcuts and opens Om from title or info t
   w.document.dispatchEvent(new w.Event("DOMContentLoaded", { bubbles: true }));
 
   const buttons = [...w.document.querySelectorAll("[data-place-popup-tab]")];
-  assert.equal(buttons.length, 7);
+  assert.equal(buttons.length, 6);
   assert.ok(buttons.every(button => button.querySelector("svg")));
   assert.equal(w.document.querySelector('[data-place-popup-tab="about"]'), null);
-  assert.deepEqual(buttons.map(button => button.dataset.placePopupTab), ["history", "stories", "before-after", "news", "reading", "sources", "more"]);
-  assert.match(shortcutsCss, /grid-template-columns:repeat\(7,minmax\(0,1fr\)\)/);
-  assert.match(shortcutsCss, /grid-template-rows:minmax\(0,1fr\) 32px/);
-  assert.match(shortcutsCss, /#placeCard \.pc-icons-quad\{[\s\S]*?gap:3px/);
+  assert.deepEqual(buttons.map(button => button.dataset.placePopupTab), ["history", "stories", "before-after", "news", "reading", "sources"]);
+  assert.equal(w.document.querySelector(".pc-place-popup-shortcuts").parentElement.classList.contains("pc-grid"), true);
+  assert.match(shortcutsCss, /grid-template-columns:repeat\(6,minmax\(0,1fr\)\)/);
+  assert.match(shortcutsCss, /grid-column:1 \/ 3;[\s\S]*?grid-row:2;/);
+  assert.match(shortcutsCss, /#placeCard \.pc-events-quad\{[\s\S]*?grid-row:3/);
+  assert.match(shortcutsCss, /#placeCard \.pc-icons-quad\{[\s\S]*?gap:5px/);
   assert.doesNotMatch(shortcutsCss, /grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
   assert.match(shortcutsCss, /width:21px/);
   assert.match(shortcutsCss, /#placeCard #pcMeta\{[\s\S]*?grid-template-columns:minmax\(0,\.9fr\) minmax\(0,1\.25fr\) minmax\(0,1\.1fr\)/);

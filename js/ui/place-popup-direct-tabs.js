@@ -220,7 +220,12 @@
 
     const wrapped = function showPlacePopupWithDirectTabs(place) {
       const result = current.apply(this, arguments);
-      try { decoratePopup(); } catch (error) { if (global.DEBUG) console.warn("[place-popup-direct-tabs]", error); }
+      const revealDirectTabs = () => {
+        try { decoratePopup(); } catch (error) { if (global.DEBUG) console.warn("[place-popup-direct-tabs]", error); }
+      };
+      if (result && typeof result.then === "function") void result.then(revealDirectTabs).catch(error => { if (global.DEBUG) console.warn("[place-popup-direct-tabs]", error); });
+      else if (typeof global.queueMicrotask === "function") global.queueMicrotask(revealDirectTabs);
+      else global.setTimeout(revealDirectTabs, 0);
       return result;
     };
     wrapped.__hgPlacePopupDirectTabs = true;
@@ -231,6 +236,7 @@
     global.HGPlacePopupDirectTabs = { decoratePopup, activate };
     installDecoratorBridge();
     global[INSTALL_FLAG] = true;
+    try { decoratePopup(); } catch (error) { if (global.DEBUG) console.warn("[place-popup-direct-tabs]", error); }
     return true;
   }
 
