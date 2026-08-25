@@ -30,7 +30,12 @@
           "environment",
           "systems"
         ]
-      }
+      },
+      "contains": {
+        "enum": ["productions", "structures", "competitions", "related", "destinations"]
+      },
+      "minContains": 0,
+      "maxContains": 1
     },
     "reason": { "type": "string", "minLength": 20 },
     "verifiedAt": { "type": "string", "format": "date" }
