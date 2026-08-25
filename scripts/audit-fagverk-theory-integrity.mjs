@@ -14,6 +14,7 @@ import { auditMediaTheoryIntegrity } from '../tools/audit-media-theory-integrity
 import { auditMusikkTheoryIntegrity } from '../tools/audit-musikk-theory-integrity.mjs';
 import { auditLitteraturTheoryIntegrity } from '../tools/audit-litteratur-theory-integrity.mjs';
 import { auditNaturTheoryIntegrity } from '../tools/audit-natur-theory-integrity.mjs';
+import { auditHelseTheoryIntegrity } from '../tools/audit-helse-theory-integrity.mjs';
 import { auditNaeringslivTheoryIntegrity } from '../tools/audit-naeringsliv-theory-integrity.mjs';
 import { auditPsykologiTheoryIntegrity } from '../tools/audit-psykologi-theory-integrity.mjs';
 import { auditSportTheoryIntegrity } from '../tools/audit-sport-theory-integrity.mjs';
@@ -43,6 +44,7 @@ const RUNNERS={
   musikk:()=>auditMusikkTheoryIntegrity(),
   litteratur:()=>auditLitteraturTheoryIntegrity(),
   natur:()=>auditNaturTheoryIntegrity(),
+  helse:()=>auditHelseTheoryIntegrity(),
   naeringsliv:()=>auditNaeringslivTheoryIntegrity(),
   psykologi:()=>auditPsykologiTheoryIntegrity(),
   sport:()=>auditSportTheoryIntegrity(),
@@ -132,6 +134,9 @@ export function auditFagverkTheoryIntegrity({writeReport=false,checkReport=true}
   const naturAdapter=adapterById.get('natur');
   assert(naturAdapter?.proof_scope==='structured_subject_gate','Natur må bruke permanent structured subject gate etter 12-felts reconciliation');
   assert(allVerified(naturAdapter?.existing_gate_proves),'Natur structured subject gate må dokumentere alle strict proof-dimensjoner');
+  const helseAdapter=adapterById.get('helse');
+  assert(helseAdapter?.proof_scope==='structured_subject_gate','Helse må bruke permanent structured subject gate etter 12-felts reconciliation');
+  assert(allVerified(helseAdapter?.existing_gate_proves),'Helse structured subject gate må dokumentere alle strict proof-dimensjoner');
   const naeringslivAdapter=adapterById.get('naeringsliv');
   assert(naeringslivAdapter?.proof_scope==='structured_subject_gate','Næringsliv må bruke permanent structured subject gate etter 6-felts reconciliation');
   assert(allVerified(naeringslivAdapter?.existing_gate_proves),'Næringsliv structured subject gate må dokumentere alle strict proof-dimensjoner');

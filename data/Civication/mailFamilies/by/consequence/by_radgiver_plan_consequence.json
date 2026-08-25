@@ -749,6 +749,306 @@
           ]
         }
       ]
+    },
+    {
+      "id": "role_world_realism_return_to_case",
+      "purpose": "Returner til samme Lillebekk-sak og la korrekt anvendt History Go-kunnskap åpne et bedre, men ikke mer myndig, profesjonelt valg.",
+      "learning_focus": [
+        "return_to_case",
+        "choice_affordance",
+        "political_readability",
+        "authority_boundary"
+      ],
+      "mails": [
+        {
+          "id": "by_radgiver_realism_return_to_case_001",
+          "mail_type": "consequence",
+          "mail_family": "role_world_realism_return_to_case",
+          "role_scope": "by_radgiver_plan",
+          "phase": "mastery",
+          "day_phase": "afternoon",
+          "priority": 60,
+          "cooldown": 8,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Maja, utvalgssekretær",
+          "person_id": "maja_utvalgssekretaer",
+          "place_id": "politisk_utvalg_moterom",
+          "thread_key": "by_radgiver_lillebekk_realism_001",
+          "subject": "Tilbake til Lillebekk: utvalget må se hva administrasjonen vet, anbefaler og ikke kan bestemme",
+          "summary": "Saken kommer tilbake etter History Go-læring og ledergjennomgang. Du skal nå velge hvordan beslutningsgrunnlaget skiller lovkrav, lokal evidens, faglig anbefaling og politiske alternativer.",
+          "purpose": "Bevise at konkret, korrekt anvendt History Go-læring åpner et materiell bedre profesjonelt valg i samme vedvarende arbeidssak.",
+          "stakes": "Et lesbart sammendrag kan fortsatt skjule hvem som eier hvilke vurderinger. Den beste løsningen er ikke mer tekst, men en eksplisitt myndighets- og evidensstruktur som følger saken videre.",
+          "situation": [
+            "Skolevei og grøntdrag er nå dokumentert som faktiske premisser.",
+            "Ledergodkjenningen krever at politiske alternativer ikke skjules i administrativt språk.",
+            "History Go-øvelsen kan gi deg et bedre grep, men bare dersom den er fullført og anvendt profesjonelt."
+          ],
+          "task_domain": "politisk_lesbart_beslutningsgrunnlag",
+          "task_kind": "consequence",
+          "competency": "evidens_myndighet_og_alternativstruktur",
+          "pressure": "kort_sammendrag_vs_etterprovbar_ansvarsdeling",
+          "choice_axis": "eksplisitt_lov_fag_politikk_vs_samlet_anbefaling",
+          "consequence_axis": "bedre_politisk_valgrom_vs_skjult_administrativ_styring",
+          "narrative_arc": "lillebekk_fra_kunnskapsgrunnlag_til_politisk_behandling",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "by_radgiver_lillebekk_plan_case_001"
+            ],
+            "institution_id": "oslo_kommune_planavdeling_001",
+            "deadline_ref": "politisk_utvalg",
+            "rework_of_scene_id": "by_radgiver_realism_approval_request_001",
+            "rework_of_object_transition": "by_radgiver_lillebekk_ready_after_approval",
+            "priority": "high"
+          },
+          "authority_context": {
+            "institution_id": "oslo_kommune_planavdeling_001",
+            "unit_id": "lillebekk_planteam",
+            "role_scope": "by_radgiver_plan",
+            "reporting_line": [
+              "elin_plansjef"
+            ],
+            "peer_functions": [
+              "nora_planjuss",
+              "signe_byokolog",
+              "maja_utvalgssekretaer"
+            ],
+            "external_counterparts": [
+              "ivar_utbygger",
+              "hanne_beboer"
+            ],
+            "goals_pressures": [
+              "politisk_utvalgsfrist",
+              "lovlighet_og_etterprovbarhet",
+              "boligmal_og_gjennomforbarhet",
+              "medvirkning_og_lokalkunnskap"
+            ],
+            "approval_points": [
+              {
+                "approval_id": "lillebekk_utvalgsgodkjenning",
+                "action_id": "send_lillebekk_til_politisk_behandling",
+                "approver_actor_id": "elin_plansjef",
+                "approval_object_id": "by_radgiver_lillebekk_approval_001"
+              }
+            ],
+            "authority_rules": [
+              {
+                "action_id": "send_lillebekk_til_politisk_behandling",
+                "authority": "approval_required",
+                "approval_id": "lillebekk_utvalgsgodkjenning",
+                "escalation_id": "lillebekk_frist_eskalering",
+                "requires_resources": [
+                  "planjuridisk_kapasitet"
+                ]
+              },
+              {
+                "action_id": "skriv_faglig_anbefaling",
+                "authority": "influence_only",
+                "requires_resources": [
+                  "planjuridisk_kapasitet"
+                ]
+              },
+              {
+                "action_id": "love_utbygger_planutfall",
+                "authority": "forbidden",
+                "requires_resources": []
+              }
+            ],
+            "resources": [
+              {
+                "resource_id": "planjuridisk_kapasitet",
+                "baseline_state": "limited"
+              }
+            ],
+            "escalation_paths": [
+              {
+                "escalation_id": "lillebekk_frist_eskalering",
+                "action_id": "send_lillebekk_til_politisk_behandling",
+                "target_actor_id": "elin_plansjef",
+                "escalation_object_id": "by_radgiver_lillebekk_escalation_001"
+              }
+            ]
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Behold ett tydelig administrativt hovedforslag og list forbeholdene under",
+              "reply": "Jeg gir utvalget ett hovedforslag, men gjør usikkerheten og de viktigste forbeholdene synlige under anbefalingen.",
+              "effect": 1,
+              "authority_action": {
+                "action_id": "skriv_faglig_anbefaling",
+                "intent": "recommend"
+              },
+              "tags": [
+                "baseline_good",
+                "visible_caveats"
+              ],
+              "feedback": "Dette er faglig forsvarlig, men utvalgets reelle valgpunkter kan fortsatt ligge tett på administrasjonens foretrukne løsning.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "by_radgiver_lillebekk_baseline_basis",
+                    "work_object_id": "by_radgiver_lillebekk_plan_case_001",
+                    "to_status": "awaiting_submission",
+                    "to_phase": "faglig_anbefaling_med_synlige_forbehold",
+                    "note": "Administrasjonens anbefaling og forbehold er synlige, men politiske alternativer er ikke fullt separert som eget valgrom."
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Komprimer saken til anbefalt løsning og de to viktigste konsekvensene",
+              "reply": "Jeg gjør saken kortest mulig rundt én anbefalt løsning og to hovedkonsekvenser.",
+              "effect": -1,
+              "authority_action": {
+                "action_id": "skriv_faglig_anbefaling",
+                "intent": "recommend"
+              },
+              "tags": [
+                "compression",
+                "political_choice_blur"
+              ],
+              "feedback": "Dokumentet blir raskt å lese, men det blir vanskeligere å se hvilke alternativer administrasjonen har gjort mindre synlige.",
+              "effects": {
+                "stats": {
+                  "quality": -2,
+                  "trust": -1,
+                  "risk": 3
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "by_radgiver_lillebekk_blurred_basis",
+                    "work_object_id": "by_radgiver_lillebekk_plan_case_001",
+                    "to_status": "awaiting_submission",
+                    "to_phase": "forenklet_saksgrunnlag_med_skjult_valgrom"
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "by_radgiver_lillebekk_choice_blur",
+                    "work_object_id": "by_radgiver_lillebekk_plan_case_001",
+                    "flag": "politisk_valgrom_delvis_skjult"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Bruk rådhus-læringen: skill bindende lovkrav, dokumentert lokal evidens, administrativ anbefaling og eksplisitte politiske alternativer",
+              "reply": "Jeg strukturerer saken slik at utvalget kan se hva som er juridisk bundet, hva kunnskapsgrunnlaget faktisk viser, hva administrasjonen anbefaler, og hvilke verdibaserte alternativer som fortsatt tilhører politikken.",
+              "effect": 2,
+              "affordance": {
+                "history_go": {
+                  "task_mail_ids": [
+                    "by_radgiver_realism_knowledge_radhus_001"
+                  ],
+                  "require_task_completed": true,
+                  "require_history_go_correct": true,
+                  "min_effect": 1
+                }
+              },
+              "authority_action": {
+                "action_id": "skriv_faglig_anbefaling",
+                "intent": "recommend"
+              },
+              "tags": [
+                "learned_authority_boundary",
+                "evidence_structure",
+                "political_choice_space"
+              ],
+              "feedback": "History Go-kunnskapen blir profesjonell kompetanse: den gir ikke mer myndighet, men gjør beslutningsgrunnlaget bedre og mindre styrende.",
+              "effects": {
+                "stats": {
+                  "quality": 5,
+                  "trust": 4,
+                  "risk": -4,
+                  "energy": -1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "by_radgiver_lillebekk_learned_basis",
+                    "work_object_id": "by_radgiver_lillebekk_plan_case_001",
+                    "to_status": "awaiting_submission",
+                    "to_phase": "kunnskapsforankret_beslutningsgrunnlag_med_eksplisitt_myndighetsgrense",
+                    "note": "Lovkrav, lokal evidens, administrativ anbefaling og politiske alternativer er separert eksplisitt før oversendelse."
+                  },
+                  {
+                    "op": "remove_flag",
+                    "event_id": "by_radgiver_lillebekk_remove_authority_blur",
+                    "work_object_id": "by_radgiver_lillebekk_plan_case_001",
+                    "flag": "politisk_grense_ikke_eksplisitt"
+                  },
+                  {
+                    "op": "remove_flag",
+                    "event_id": "by_radgiver_lillebekk_remove_summary_blur",
+                    "work_object_id": "by_radgiver_lillebekk_plan_case_001",
+                    "flag": "forbehold_komprimert_i_sammendrag"
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "by_radgiver_lillebekk_explicit_authority_boundary",
+                    "work_object_id": "by_radgiver_lillebekk_plan_case_001",
+                    "flag": "lov_fag_politikk_eksplisitt_adskilt"
+                  }
+                ]
+              }
+            }
+          ],
+          "planned_only": true,
+          "learning_focus": [
+            "return_to_case",
+            "choice_affordance",
+            "political_readability",
+            "authority_boundary"
+          ],
+          "next_bias": {
+            "tags": [
+              "return_to_case",
+              "choice_affordance",
+              "political_readability"
+            ],
+            "weight": 1
+          },
+          "triggers_on_choice": {
+            "A": [
+              "role_world_realism_authority"
+            ],
+            "B": [
+              "role_world_realism_authority"
+            ],
+            "C": [
+              "role_world_realism_authority"
+            ]
+          },
+          "branch_flags": {
+            "A": [
+              "faglig_anbefaling_med_synlige_forbehold"
+            ],
+            "B": [
+              "politisk_valgrom_komprimert"
+            ],
+            "C": [
+              "history_go_myndighetsgrense_anvendt"
+            ]
+          },
+          "tags": [
+            "consequence",
+            "history_go",
+            "authority_boundary",
+            "by_radgiver_plan",
+            "lillebekk"
+          ]
+        }
+      ]
     }
   ]
 }

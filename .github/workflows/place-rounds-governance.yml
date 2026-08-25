@@ -54,6 +54,7 @@ on:
       - "data/leksikon/sprak/places/europe/norway/oslo/tinghuset.json"
       - "data/leksikon/sprak/places/europe/norway/oslo/regjeringskvartalet.json"
       - "data/places/README_place_rounds.md"
+      - "data/places/regler/place_card_profile_v2.schema.json"
       - "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
       - "data/places/scenekunst/oslo/places_scenekunst/nationaltheatret.json"
       - "data/places/politikk/oslo/places_politikk/tinghuset.json"
@@ -81,6 +82,24 @@ on:
       - "docs/HISTORY_GO_PRODUCT_MAP.md"
       - "docs/documentation_registry.json"
       - "schemas/place.ts"
+      - "tests/place-card-profile-schema.test.mjs"
+      - "tests/christiania-torv-placecard-collections-v2.test.mjs"
+      - "tests/christiania-torv-placecard-collections-v2-browser-audit.test.mjs"
+      - "tests/place-card-fullness-all-categories-browser-audit.test.mjs"
+      - "tests/bankplassen-place-completion-v1.test.mjs"
+      - "tests/bankplassen-place-completion-v1-browser-audit.test.mjs"
+      - "data/places/by/oslo/places/bankplassen.json"
+      - "data/places/production/bankplassen.json"
+      - "data/places/places_index.json"
+      - "data/quiz/by/bankplassen_sets_merged.json"
+      - "data/quiz/production_briefs/by/bankplassen.json"
+      - "data/quiz/production_context/by/bankplassen.json"
+      - "data/people/scenekunst/oslo/bankplassen/**"
+      - "data/people/claims/scenekunst/oslo/bankplassen/**"
+      - "reports/place-production/bankplassen-*.md"
+      - "data/places/by/oslo/places/christiania_torv.json"
+      - "data/quiz/production_context/by/christiania_torv.json"
+      - "reports/place-production/christiania-torv-*.md"
       - ".github/workflows/place-rounds-governance.yml"
   push:
     branches: [main]
@@ -136,6 +155,7 @@ on:
       - "data/leksikon/sprak/places/europe/norway/oslo/tinghuset.json"
       - "data/leksikon/sprak/places/europe/norway/oslo/regjeringskvartalet.json"
       - "data/places/README_place_rounds.md"
+      - "data/places/regler/place_card_profile_v2.schema.json"
       - "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md"
       - "data/places/scenekunst/oslo/places_scenekunst/nationaltheatret.json"
       - "data/places/politikk/oslo/places_politikk/tinghuset.json"
@@ -163,6 +183,24 @@ on:
       - "docs/HISTORY_GO_PRODUCT_MAP.md"
       - "docs/documentation_registry.json"
       - "schemas/place.ts"
+      - "tests/place-card-profile-schema.test.mjs"
+      - "tests/christiania-torv-placecard-collections-v2.test.mjs"
+      - "tests/christiania-torv-placecard-collections-v2-browser-audit.test.mjs"
+      - "tests/place-card-fullness-all-categories-browser-audit.test.mjs"
+      - "tests/bankplassen-place-completion-v1.test.mjs"
+      - "tests/bankplassen-place-completion-v1-browser-audit.test.mjs"
+      - "data/places/by/oslo/places/bankplassen.json"
+      - "data/places/production/bankplassen.json"
+      - "data/places/places_index.json"
+      - "data/quiz/by/bankplassen_sets_merged.json"
+      - "data/quiz/production_briefs/by/bankplassen.json"
+      - "data/quiz/production_context/by/bankplassen.json"
+      - "data/people/scenekunst/oslo/bankplassen/**"
+      - "data/people/claims/scenekunst/oslo/bankplassen/**"
+      - "reports/place-production/bankplassen-*.md"
+      - "data/places/by/oslo/places/christiania_torv.json"
+      - "data/quiz/production_context/by/christiania_torv.json"
+      - "reports/place-production/christiania-torv-*.md"
       - ".github/workflows/place-rounds-governance.yml"
   workflow_dispatch:
 
@@ -187,14 +225,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Install Chromium for Regjeringskvartalet UI audit
+      - name: Install Chromium for PlaceCard UI audits
         run: npx playwright install --with-deps chromium
 
-      - name: Test canonical three content rounds plus Badges contract
+      - name: Test canonical full four-cell PlaceCard plus Badges contract
         run: |
           node --check js/ui/place-popup-tabs.js
           node --check js/ui/nature-detailed-map.js
-          node --test tests/place-rounds-visual-collections.test.mjs tests/place-rounds-grid-exclusivity.test.mjs tests/place-rounds-fill-layout.test.mjs tests/nature-detailed-map.test.mjs
+          node --test tests/place-rounds-visual-collections.test.mjs tests/place-rounds-grid-exclusivity.test.mjs tests/place-rounds-fill-layout.test.mjs tests/place-card-profile-schema.test.mjs tests/christiania-torv-placecard-collections-v2.test.mjs tests/bankplassen-place-completion-v1.test.mjs tests/nature-detailed-map.test.mjs
           node tests/place-card-rounds-runtime-audit.test.js
           node tests/place-people-ids-runtime.test.js
           node tests/nationaltheatret-people-curation.test.js
@@ -207,3 +245,6 @@ jobs:
           node --test tests/regjeringskvartalet-image-gates.test.mjs
           node --test tests/place-production-brand-quiz-governance.test.mjs
           node tests/regjeringskvartalet-ui-production-audit.test.mjs
+          node tests/christiania-torv-placecard-collections-v2-browser-audit.test.mjs
+          node tests/place-card-fullness-all-categories-browser-audit.test.mjs
+          node tests/bankplassen-place-completion-v1-browser-audit.test.mjs

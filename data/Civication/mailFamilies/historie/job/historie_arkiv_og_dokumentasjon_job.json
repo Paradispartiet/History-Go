@@ -1,0 +1,174 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "historie",
+  "role_scope": "historie_arkiv_og_dokumentasjon",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "historie_arkiv_mottak_og_proveniens",
+      "purpose": "Starte arbeidsdagen med en reell arkivfaglig leveransekontroll der proveniens og minimumsmetadata må sikres før volumproduksjon.",
+      "learning_focus": [
+        "proveniens",
+        "dokumentasjonsfangst",
+        "minimumsmetadata"
+      ],
+      "mails": [
+        {
+          "id": "historie_arkiv_job_mottak_001",
+          "mail_type": "job",
+          "mail_family": "historie_arkiv_mottak_og_proveniens",
+          "role_scope": "historie_arkiv_og_dokumentasjon",
+          "phase": "intro",
+          "day_phase": "morning",
+          "priority": 130,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Sara, arkivleder",
+          "people_ref": "sara_arkivleder_historie",
+          "person_id": "sara_arkivleder_historie",
+          "place_id": "mottak_arkiv_historie",
+          "thread_key": "historie_arkiv_leveranse_001",
+          "subject": "Ny leveranse: 4 800 filer, to papirserier – og overføringslisten forklarer ikke mappestrukturen",
+          "summary": "Sara gir deg en blandet leveranse der filene kan åpnes og boksene er merket, men sammenhengen mellom avsenderens arbeidsprosesser, mapper og serier er dårlig dokumentert. Leveransen kan registreres raskt bare hvis dere aksepterer at konteksten rekonstrueres senere.",
+          "purpose": "Teste om spilleren prioriterer sporbar identitet, proveniens og avvik fremfor å gjøre materialet tilsynelatende ferdigregistrert på usikkert grunnlag.",
+          "stakes": "Hvis opphav og relasjoner går tapt nå kan senere brukere finne dokumentene, men misforstå hvem som skapte dem, hvordan de hang sammen og hvilken versjon som faktisk ble overført.",
+          "situation": [
+            "Leveransen består av digitale filer og to papirserier fra samme avsender, men overføringslisten mangler forklaring på flere mappekoder.",
+            "Noen digitale mapper ser ut til å være eksportkopier med andre navn enn i avsenders opprinnelige system.",
+            "Sara har myndighet til å prioritere mottaket, men ingen har grunnlag for å fylle proveniensgapene med antakelser."
+          ],
+          "task_domain": "mottak_og_dokumentasjonsfangst",
+          "task_kind": "job",
+          "competency": "proveniens_og_opprinnelig_orden",
+          "pressure": "registreringsvolum_vs_kontekstbevaring",
+          "choice_axis": "sikre_minimumsspor_og_markere_avvik_vs_registrere_raskt_med_antatt_struktur",
+          "consequence_axis": "etterprovbar_leveranse_vs_varig_provenienstap",
+          "narrative_arc": "leveranse_til_proveniens_og_senere_gjenfinning",
+          "interaction_mode": "decision",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lås leveranseidentitet, opphav, relasjoner og avvik først; finbeskriv resten etter at mappestrukturen er avklart",
+              "reply": "Jeg registrerer hva vi faktisk vet om avsender, overføring, serie og fil-/boksidentitet, markerer de uklare kodene og holder eksportnavn adskilt fra antatt originalstruktur.",
+              "effect": 1,
+              "tags": [
+                "provenance",
+                "minimum_metadata",
+                "uncertainty_trace"
+              ],
+              "feedback": "Du gjør leveransen langsommere i starten, men bevarer det som senere gjør dokumentene forståelige og etterprøvbare.",
+              "effects": {
+                "stats": {
+                  "quality": 3,
+                  "trust": 2,
+                  "risk": -3,
+                  "energy": -1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "historie_arkiv_leveranse_001_minimumsspor",
+                    "work_object_id": "historie_arkiv_sak_leveranse_001",
+                    "to_status": "in_progress",
+                    "to_phase": "minimumsspor_sikret",
+                    "note": "Leveranseidentitet, opphav, relasjoner og kjente avvik er registrert uten å gjette på ukjent struktur."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "historie_arkiv_leveranse_001_sporbar_flagg",
+                    "work_object_id": "historie_arkiv_sak_leveranse_001",
+                    "flag": "minimumsspor_sikret"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Registrer etter dagens mappehierarki og fyll inn de mest sannsynlige seriene for å få leveransen ferdig",
+              "reply": "Vi kan korrigere katalogen senere hvis avsenderen kommer med mer informasjon. Nå er det viktigst å få alt søkbart.",
+              "effect": -1,
+              "tags": [
+                "provenance_guess",
+                "metadata_debt",
+                "false_certainty"
+              ],
+              "feedback": "Du gjør en ukjent struktur til tilsynelatende sikker metadata og risikerer at senere korreksjon ikke kan skille opprinnelig orden fra arkivets egen gjetning.",
+              "effects": {
+                "stats": {
+                  "quality": -3,
+                  "trust": -2,
+                  "risk": 4,
+                  "energy": 1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "historie_arkiv_leveranse_001_antatt_struktur",
+                    "work_object_id": "historie_arkiv_sak_leveranse_001",
+                    "to_status": "at_risk",
+                    "to_phase": "antatt_struktur",
+                    "note": "Eksportens mappehierarki er brukt som om det var dokumentert original orden."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "historie_arkiv_leveranse_001_metadata_gjeld",
+                    "work_object_id": "historie_arkiv_sak_leveranse_001",
+                    "flag": "metadata_gjeld"
+                  }
+                ]
+              }
+            }
+          ],
+          "work_context": {
+            "object_ids": [
+              "historie_arkiv_sak_leveranse_001"
+            ],
+            "institution_id": "historie_arkivinstitusjon_001",
+            "deadline_ref": "mottaksfrist"
+          },
+          "effects": {
+            "work_object_ops": [
+              {
+                "op": "create",
+                "event_id": "historie_arkiv_leveranse_001_opprettet",
+                "work_object": {
+                  "work_object_id": "historie_arkiv_sak_leveranse_001",
+                  "kind": "arkivleveranse",
+                  "role_scope": "historie_arkiv_og_dokumentasjon",
+                  "institution_id": "historie_arkivinstitusjon_001",
+                  "title": "Blandet arkivleveranse med uklart systemspor",
+                  "status": "open",
+                  "phase": "mottak",
+                  "people_refs": [
+                    "sara_arkivleder_historie",
+                    "yusuf_dokumentforvalter_historie"
+                  ],
+                  "place_refs": [
+                    "mottak_arkiv_historie",
+                    "ordningsrom_arkiv_historie"
+                  ],
+                  "knowledge_refs": [
+                    "proveniens_og_opprinnelig_orden",
+                    "minimumsmetadata_og_sporbarhet"
+                  ],
+                  "open_questions": [
+                    "Hva var avsenders opprinnelige mappestruktur?",
+                    "Hvordan kobles eksportnavn tilbake til systemnøkler?"
+                  ],
+                  "deadline": "mottaksfrist",
+                  "confidentiality": "intern_arbeidsinformasjon",
+                  "flags": [
+                    "proveniens_uavklart"
+                  ],
+                  "shared": true
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

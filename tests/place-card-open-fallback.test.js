@@ -10,8 +10,10 @@ const openEnd = placeCard.indexOf('// ==========================================
 assert(openEnd > openStart, 'PlaceCard open function end marker exists');
 const openBody = placeCard.slice(openStart, openEnd);
 
-assert(openBody.includes('const fullPlace = await window.DataHub.loadFullPlace(placeId, { cache: "default" });'), 'openPlaceCard still attempts optional full-place enrichment');
-assert(openBody.includes('if (fullPlace && typeof fullPlace === "object")'), 'full-place data is merged only when present');
+assert(openBody.includes('const hydratedPlace = await window.HGPlaceOpen.ensure(place);'), 'openPlaceCard waits for the one-request place payload before rendering');
+assert(openBody.includes('if (hydratedPlace && typeof hydratedPlace === "object") place = hydratedPlace;'), 'the hydrated place replaces the index record when available');
+assert(openBody.includes('void window.DataHub.loadFullPlace(placeId, { cache: "default", place })'), 'openPlaceCard retains optional full-place enrichment as a compatibility fallback');
+assert(openBody.includes('if (fullPlace && typeof fullPlace === "object") reopenCurrentPlaceCard(placeId, fullPlace);'), 'fallback full-place data is merged only when present');
 assert(!openBody.includes('if (!fullPlace || typeof fullPlace !== "object")'), 'missing full-place data must not hard-fail opening');
 assert(!openBody.includes('return false;\n    }\n  }\n\n  if (!isPlaceCardPlaceComplete(place))'), 'loadFullPlace failures should fall through to base-place completeness check');
 assert(openBody.includes('if (!isPlaceCardPlaceComplete(place))'), 'final base/enriched place is still validated before opening');

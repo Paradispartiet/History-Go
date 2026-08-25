@@ -13,6 +13,225 @@
     return Array.from(new Set((Array.isArray(arr) ? arr : []).map(normStr).filter(Boolean)));
   }
 
+  const WORK_WORLD_SCRIPT = "js/Civication/core/civicationWorkWorld.js";
+  const AUTHORITY_SCRIPT = "js/Civication/core/civicationInstitutionAuthority.js";
+  const SOCIAL_STANDING_SCRIPT = "js/Civication/core/civicationSocialStanding.js";
+  let workWorldLoadPromise = null;
+  let authorityLoadPromise = null;
+  let socialStandingLoadPromise = null;
+
+  function runtimeWindow() {
+    return /** @type {any} */ (window);
+  }
+
+  function attachWorkWorldFromFactory() {
+    const rt = runtimeWindow();
+    if (rt.CivicationWorkWorld?.applyOperations) return rt.CivicationWorkWorld;
+    if (rt.CivicationWorkWorldFactory?.createAdapter && rt.CivicationState?.getState && rt.CivicationState?.setState) {
+      rt.CivicationWorkWorld = rt.CivicationWorkWorldFactory.createAdapter(rt.CivicationState);
+      return rt.CivicationWorkWorld;
+    }
+    return null;
+  }
+
+  function ensureWorkWorld() {
+    const attached = attachWorkWorldFromFactory();
+    if (attached) return Promise.resolve(attached);
+    if (workWorldLoadPromise) return workWorldLoadPromise;
+
+    workWorldLoadPromise = new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = WORK_WORLD_SCRIPT;
+      script.async = false;
+      script.onload = () => {
+        const adapter = attachWorkWorldFromFactory();
+        if (!adapter) reject(new Error("CivicationWorkWorld lastet uten state-adapter"));
+        else resolve(adapter);
+      };
+      script.onerror = () => reject(new Error(`Kunne ikke laste ${WORK_WORLD_SCRIPT}`));
+      (document.head || document.documentElement).appendChild(script);
+    }).catch((error) => {
+      workWorldLoadPromise = null;
+      throw error;
+    });
+
+    return workWorldLoadPromise;
+  }
+
+  function attachAuthorityResolver() {
+    const rt = runtimeWindow();
+    return rt.CivicationInstitutionAuthority?.evaluate ? rt.CivicationInstitutionAuthority : null;
+  }
+
+  function ensureAuthorityResolver() {
+    const attached = attachAuthorityResolver();
+    if (attached) return Promise.resolve(attached);
+    if (authorityLoadPromise) return authorityLoadPromise;
+    authorityLoadPromise = new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = AUTHORITY_SCRIPT;
+      script.async = false;
+      script.onload = () => {
+        const resolver = attachAuthorityResolver();
+        if (!resolver) reject(new Error("CivicationInstitutionAuthority lastet uten resolver"));
+        else resolve(resolver);
+      };
+      script.onerror = () => reject(new Error(`Kunne ikke laste ${AUTHORITY_SCRIPT}`));
+      (document.head || document.documentElement).appendChild(script);
+    }).catch((error) => {
+      authorityLoadPromise = null;
+      throw error;
+    });
+    return authorityLoadPromise;
+  }
+
+  function attachSocialStanding() {
+    const rt = runtimeWindow();
+    if (rt.CivicationSocialStanding?.applyOperations) return rt.CivicationSocialStanding;
+    if (rt.CivicationSocialStandingFactory?.createAdapter && rt.CivicationState?.getState && rt.CivicationState?.setState) {
+      rt.CivicationSocialStanding = rt.CivicationSocialStandingFactory.createAdapter(rt.CivicationState);
+      return rt.CivicationSocialStanding;
+    }
+    return null;
+  }
+
+  function ensureSocialStanding() {
+    const attached = attachSocialStanding();
+    if (attached) return Promise.resolve(attached);
+    if (socialStandingLoadPromise) return socialStandingLoadPromise;
+    socialStandingLoadPromise = new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = SOCIAL_STANDING_SCRIPT;
+      script.async = false;
+      script.onload = () => {
+        const adapter = attachSocialStanding();
+        if (!adapter) reject(new Error("CivicationSocialStanding lastet uten state-adapter"));
+        else resolve(adapter);
+      };
+      script.onerror = () => reject(new Error(`Kunne ikke laste ${SOCIAL_STANDING_SCRIPT}`));
+      (document.head || document.documentElement).appendChild(script);
+    }).catch((error) => {
+      socialStandingLoadPromise = null;
+      throw error;
+    });
+    return socialStandingLoadPromise;
+  }
+
+  function collectWorkObjectOps(eventObj, choice) {
+    const sceneOps = Array.isArray(eventObj?.effects?.work_object_ops) ? eventObj.effects.work_object_ops : [];
+    const choiceOps = Array.isArray(choice?.effects?.work_object_ops) ? choice.effects.work_object_ops : [];
+    return [...sceneOps, ...choiceOps];
+  }
+
+  function collectSocialStandingOps(eventObj, choice) {
+    const sceneOps = Array.isArray(eventObj?.effects?.social_standing_ops) ? eventObj.effects.social_standing_ops : [];
+    const choiceOps = Array.isArray(choice?.effects?.social_standing_ops) ? choice.effects.social_standing_ops : [];
+    return [...sceneOps, ...choiceOps];
+  }
+
+  function makeShadowStateAdapter() {
+    let shadowState = JSON.parse(JSON.stringify(window.CivicationState?.getState?.() || {}));
+    return {
+      getState() { return JSON.parse(JSON.stringify(shadowState)); },
+      setState(patch) {
+        shadowState = { ...shadowState, ...JSON.parse(JSON.stringify(patch || {})) };
+        return JSON.parse(JSON.stringify(shadowState));
+      }
+    };
+  }
+
+  async function prepareSocialStandingConsequences(eventObj, choice) {
+    const operations = collectSocialStandingOps(eventObj, choice);
+    if (!operations.length) return null;
+    const sceneId = normStr(eventObj?.id);
+    const choiceId = normStr(choice?.id);
+    if (!sceneId || !choiceId) throw new Error("social_standing_ops krever scene-id og choice-id");
+    const adapter = await ensureSocialStanding();
+    const factory = runtimeWindow().CivicationSocialStandingFactory;
+    if (!factory?.createAdapter) throw new Error("CivicationSocialStandingFactory mangler for preflight");
+    const context = { scene_id: sceneId, choice_id: choiceId, at: new Date().toISOString() };
+    factory.createAdapter(makeShadowStateAdapter()).applyOperations(operations, context);
+    return { adapter, operations, context };
+  }
+
+  function commitSocialStandingConsequences(prepared) {
+    if (!prepared) return null;
+    const applied = prepared.adapter.applyOperations(prepared.operations, prepared.context);
+    const audienceIds = uniq(applied.map((entry) => entry.audience_id));
+    return {
+      applied_count: applied.filter((entry) => entry.idempotent !== true).length,
+      event_ids: applied.map((entry) => entry.event_id),
+      audience_ids: audienceIds,
+      values: Object.fromEntries(audienceIds.map((id) => [id, prepared.adapter.getStanding(id)]))
+    };
+  }
+
+  function makeShadowWorkWorld(adapter, factory) {
+    let shadowState = { work_world: adapter.getWorldState() };
+    const shadowApi = {
+      getState() {
+        return JSON.parse(JSON.stringify(shadowState));
+      },
+      setState(patch) {
+        shadowState = { ...shadowState, ...JSON.parse(JSON.stringify(patch || {})) };
+        return JSON.parse(JSON.stringify(shadowState));
+      }
+    };
+    return factory.createAdapter(shadowApi);
+  }
+
+  async function applyWorkWorldConsequences(eventObj, choice) {
+    const operations = collectWorkObjectOps(eventObj, choice);
+    if (!operations.length) return null;
+
+    const sceneId = normStr(eventObj?.id);
+    const choiceId = normStr(choice?.id);
+    if (!sceneId || !choiceId) throw new Error("work_object_ops krever scene-id og choice-id");
+
+    const eventIds = operations.map((operation) => normStr(operation?.event_id));
+    if (eventIds.some((eventId) => !eventId)) throw new Error("work_object_ops krever stabile event_id");
+    if (new Set(eventIds).size !== eventIds.length) {
+      throw new Error("work_object_ops kan ikke gjenbruke event_id i samme svarbatch");
+    }
+
+    const adapter = await ensureWorkWorld();
+    const factory = runtimeWindow().CivicationWorkWorldFactory;
+    if (!factory?.createAdapter) {
+      throw new Error("CivicationWorkWorldFactory mangler for transaksjonell preflight");
+    }
+
+    const context = {
+      scene_id: sceneId,
+      choice_id: choiceId,
+      at: new Date().toISOString()
+    };
+    const before = eventObj?.work_context
+      ? adapter.resolveWorkContext(eventObj.work_context)
+      : null;
+
+    // Preflight hele batchen mot et isolert work-world snapshot. Ingen reell
+    // Civication-state skal muteres dersom en senere operasjon er ugyldig.
+    const shadow = makeShadowWorkWorld(adapter, factory);
+    shadow.applyOperations(operations, context);
+
+    const applied = adapter.applyOperations(operations, context);
+    const after = eventObj?.work_context
+      ? adapter.resolveWorkContext(eventObj.work_context)
+      : null;
+
+    try {
+      window.dispatchEvent(new Event("updateProfile"));
+    } catch {}
+
+    return {
+      applied_count: applied.length,
+      operation_event_ids: eventIds,
+      object_ids: applied.map((entry) => entry.work_object_id),
+      work_context_before: before,
+      work_context_after: after
+    };
+  }
+
   function activeCareerId() {
     return normStr((/** @type {{ career_id?: unknown }} */ (window.CivicationState?.getActivePosition?.() || {})).career_id);
   }
@@ -20,6 +239,19 @@
   function activeRoleScope() {
     const active = /** @type {{ role_scope?: unknown }} */ (window.CivicationState?.getActivePosition?.() || {});
     return normStr(window.CiviMailPlanBridge?.resolveRoleScope?.(active) || active.role_scope);
+  }
+
+  async function authorityAnswerMiddleware(ctx, next) {
+    const eventObj = ctx?.eventObj || null;
+    const choiceId = normStr(ctx?.choiceId);
+    const choice = Array.isArray(eventObj?.choices) ? eventObj.choices.find((candidate) => normStr(candidate?.id) === choiceId) : null;
+    if (!choice?.authority_action) return next();
+    const [resolver, workWorld] = await Promise.all([ensureAuthorityResolver(), ensureWorkWorld()]);
+    const decision = resolver.evaluate(eventObj?.authority_context, choice.authority_action, { role_scope: activeRoleScope(), work_world: workWorld });
+    if (!decision?.allowed) return { ok: false, reason: "authority_blocked", authority: decision || { allowed: false, reason: "authority_resolution_failed" } };
+    const result = await next();
+    if (result && typeof result === "object" && result.ok) result.authority = decision;
+    return result;
   }
 
   function mergeBranchState(delta) {
@@ -294,14 +526,18 @@
     return delta;
   }
 
-  function applyChoiceConsequences(ctx) {
+  function finishChoiceConsequences(ctx, workWorld, socialStanding) {
     const { eventObj, choice, result } = ctx;
-    if (!eventObj || !choice) return null;
-
     const roleScope = activeRoleScope();
     const hasExplicitNextBias = !!(choice?.next_bias && typeof choice.next_bias === "object");
 
-    if (roleScope !== "mellomleder" && !hasExplicitNextBias) return null;
+    if (roleScope !== "mellomleder" && !hasExplicitNextBias) {
+      if (!workWorld && !socialStanding) return null;
+      return {
+        ...(workWorld ? { work_world: workWorld } : {}),
+        ...(socialStanding ? { social_standing: socialStanding } : {})
+      };
+    }
 
     const branch = mergeBranchState(inferBranchBias(eventObj, choice, result));
     const psyche = roleScope === "mellomleder"
@@ -328,6 +564,8 @@
     window.dispatchEvent(new Event("updateProfile"));
 
     return {
+      ...(workWorld ? { work_world: workWorld } : {}),
+      ...(socialStanding ? { social_standing: socialStanding } : {}),
       branch,
       psyche,
       capital,
@@ -336,9 +574,30 @@
     };
   }
 
+  function applyChoiceConsequences(ctx) {
+    const { eventObj, choice } = ctx;
+    if (!eventObj || !choice) return null;
+
+    const operations = collectWorkObjectOps(eventObj, choice);
+    const standingOperations = collectSocialStandingOps(eventObj, choice);
+    if (!operations.length && !standingOperations.length) return finishChoiceConsequences(ctx, null, null);
+
+    return prepareSocialStandingConsequences(eventObj, choice)
+      .then(async (preparedStanding) => {
+        const workWorld = operations.length ? await applyWorkWorldConsequences(eventObj, choice) : null;
+        const socialStanding = commitSocialStandingConsequences(preparedStanding);
+        return finishChoiceConsequences(ctx, workWorld, socialStanding);
+      });
+  }
+
   function register() {
     if (!window.CivicationChoiceDirector) return;
 
+    window.CivicationChoiceDirector.registerAnswerMiddleware?.(
+      "institutionAuthority",
+      authorityAnswerMiddleware,
+      25
+    );
     window.CivicationChoiceDirector.registerHandler(
       "dayConsequences",
       applyChoiceConsequences,

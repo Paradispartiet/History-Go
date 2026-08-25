@@ -289,7 +289,7 @@
   function updatePeopleSurfaceState() {
     const icon = document.getElementById("pcPeopleIcon");
     const list = document.getElementById("pcPeopleList");
-    const ready = peopleAndRelationsReady();
+    const ready = peopleAndRelationsReady() || window.HGPlaceOpen?.has?.(getCurrentPlaceId()) === true;
     const failed = window.HG_PEOPLE_STATUS === "error" || window.HG_RELATIONS_STATUS === "error";
 
     if (ready) {
@@ -397,6 +397,7 @@
       "hg:people-priority-ready",
       "hg:people-ready",
       "hg:people-error",
+      "hg:place-open-ready",
       "hg:relations-loading",
       "hg:relations-ready",
       "hg:relations-error",
@@ -554,6 +555,10 @@
       const p = (window.PLACES || []).find((x) => String(x?.id || "").trim() === placeId);
       if (!p) return;
 
+      // Kartflyvningen gir oss et gratis prefetch-vindu. Når stedet faktisk
+      // åpnes er full place/People/popup-pakke allerede i minnet.
+      void window.HGPlaceOpen?.preload?.(p);
+
       const next = `#/place/${encodeURIComponent(placeId)}`;
       if (window.HGAppRouter?.navigate) {
         window.HGAppRouter.navigate(next);
@@ -629,6 +634,22 @@
   }
 
   async function loadWonderkammerBackground() {
+    const aggregate = await fetchJSON("data/runtime/wonderkammer-all.json", { cache: "force-cache" });
+    if (aggregate?.schema === "history-go-runtime-shards-v1" && aggregate.groups) {
+      const [places, people] = await Promise.all([
+        Promise.all((aggregate.groups.places || []).map(url => fetchJSON(url, { cache: "force-cache" }))),
+        Promise.all((aggregate.groups.people || []).map(url => fetchJSON(url, { cache: "force-cache" })))
+      ]);
+      const merged = { places: places.flat().filter(Boolean), people: people.flat().filter(Boolean) };
+      buildWonderkammerIndex(merged);
+      emit("hg:wonderkammer-ready", { count: places.length + people.length, aggregate: true });
+      return merged;
+    }
+    if (aggregate && (Array.isArray(aggregate.places) || Array.isArray(aggregate.people))) {
+      buildWonderkammerIndex(aggregate);
+      emit("hg:wonderkammer-ready", { count: 1, aggregate: true });
+      return aggregate;
+    }
     const manifest = await fetchJSON("data/wonderkammer/index.json", { cache: "default" });
     const files = Array.isArray(manifest?.files) && manifest.files.length
       ? manifest.files
@@ -658,6 +679,15 @@
 
     peopleLoadPromise = (async () => {
       setPeopleDataState("loading", { phase: "manifest" });
+      const aggregate = await fetchJSON("data/runtime/people-all.json", { cache: "force-cache" });
+      const aggregateRows = aggregate?.schema === "history-go-runtime-shards-v1"
+        ? (await Promise.all((aggregate.files || []).map(url => fetchJSON(url, { cache: "force-cache" })))).flatMap(data => normalizeRows(data, "people"))
+        : normalizeRows(aggregate, "people");
+      if (aggregateRows.length) {
+        window.PEOPLE = mergeRowsById(aggregateRows, Array.isArray(window.PEOPLE) ? window.PEOPLE : []);
+        setPeopleDataState("ready", { count: window.PEOPLE.length, files: 1, aggregate: true });
+        return window.PEOPLE;
+      }
       const manifest = await fetchJSON("data/people/manifest.json", { cache: "default" });
       if (!manifest || !Array.isArray(manifest.files)) {
         throw new Error("People-manifestet kunne ikke lastes");

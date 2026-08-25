@@ -4,7 +4,7 @@ const fs = require("fs");
 const path = require("path");
 
 const html = fs.readFileSync(path.join(__dirname, "..", "index.html"), "utf8");
-const appEntry = html.indexOf('<script type="module" src="./js/app.js?v=20260728-bootfix1"></script>');
+const appEntry = html.indexOf('<script type="module" src="./js/app.js?v=20260824-area-square-dom3"></script>');
 assert.ok(appEntry >= 0, "index must contain the cache-busted app entry");
 
 for (const src of [

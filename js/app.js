@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadNatureUnlockToast", () => loadScriptOnce("js/ui/nature-unlock-toast.js"));
     await safeRun("loadPersonPlaceUnlockToast", () => loadScriptOnce("js/ui/person-place-unlock-toast.js"));
     await safeRun("loadBadgeUnlockToast", () => loadScriptOnce("js/ui/badge-unlock-toast.js"));
-    await safeRun("loadMap", () => loadScriptOnce("js/map.js"));
+    await safeRun("loadMap", () => loadScriptOnce("js/map.js?v=20260824-area-square-dom3"));
     await safeRun("loadAhaMusicBridge", () => loadScriptOnce("js/integrations/aha-music.js"));
     await safeRun("loadNearbyPlaceSelector", () => loadScriptOnce("dist/web/nearbyPlaceSelector.js"));
     await safeRun("loadNearbyPlacesList", () => loadScriptOnce("dist/web/nearbyPlacesList.js"));
@@ -97,11 +97,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     // rendres synkront når et sted åpnes, mens Fortellinger har egen async init.
     await safeRun("loadStories", () => loadScriptOnce("js/stories/stories_loader.js"));
     await safeRun("loadBrands", () => loadScriptOnce("js/brands/brands_loader.js"));
+    await safeRun("loadPlaceOpenLoader", () => loadScriptOnce("js/data/place-open-loader.js"));
     await safeRun("loadPopupUtils", () => loadScriptOnce("js/ui/popup-utils.js"));
     // Leksikon-hubben rendrer Wonderkammer-rader med data-wonderkammer-entry;
     // entry-handleren må derfor være lastet før brukeren kan klikke dem.
     await safeRun("loadWonderkammerEntry", () => loadScriptOnce("js/ui/wonderkammer-entry.js"));
     await safeRun("loadPlaceCard", () => loadScriptOnce("js/ui/place-card.js"));
+    await safeRun("loadPlacePopupV2", () => loadScriptOnce("js/ui/place-popup-v2.js"));
+    await safeRun("loadPlacePopupTabs", () => loadScriptOnce("js/ui/place-popup-tabs.js"));
 
     // Leksikon-runtime: leksikon_loader.js definerer window.HGLeksikon og patcher
     // window.openPlaceCard, så den må lastes etter place-card.js (som definerer

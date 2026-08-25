@@ -49,30 +49,16 @@
   left: calc(12px + env(safe-area-inset-left, 0px));
   right: calc(12px + env(safe-area-inset-right, 0px));
 
-  /* Flytende kort: bunnforankret med luft over footeren, luft på sidene,
-     og aldri helt opp til headeren. Posisjon/lag styres autoritativt i
-     css/layout.css (body.hg-app #placeCard) – verdiene her holdes i synk
-     for robust fallback uten app-spesifisiteten. */
-  top: auto;
+  /* Fast topp rett under Utforsk og fast bunn over footeren.
+     Posisjon/lag styres autoritativt i css/layout.css
+     (body.hg-app #placeCard); verdiene her er robust fallback. */
+  top: calc(var(--hg-visual-header-height, 74px) + 58px);
   bottom: calc(
     var(--hg-bottom-nav-height, calc(72px + env(safe-area-inset-bottom, 0px)))
     + 14px
   );
-
-  /* Innholdet definerer høyden opp til max-height (26px = 14px luft over
-     footer + minst 12px luft under header). Selve kortet klipper
-     innholdet, mens .pc-body scroller internt. */
   height: auto;
-  max-height: calc(
-    100vh - var(--hg-visual-header-height, 74px) -
-    var(--hg-bottom-nav-height, calc(72px + env(safe-area-inset-bottom, 0px)))
-    - 26px
-  );
-  max-height: calc(
-    100dvh - var(--hg-visual-header-height, 74px) -
-    var(--hg-bottom-nav-height, calc(72px + env(safe-area-inset-bottom, 0px)))
-    - 26px
-  );
+  max-height: none;
 
   /* Desktop/tablett: modal-lignende kort sentrert med begrenset bredde. */
   max-width: 760px;
@@ -189,6 +175,30 @@
   -webkit-backface-visibility: hidden;
 }
 
+.pc-card-face-front{
+  display:grid;
+  place-items:center;
+  background:
+    radial-gradient(circle at 28% 22%, rgba(255,216,91,.28), transparent 34%),
+    linear-gradient(145deg, #213849, #0d151c 58%, #17252f);
+}
+
+.pc-card-face-front::before{
+  content:"HISTORY GO";
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  color:rgba(255,255,255,.72);
+  font-weight:800;
+  font-size:clamp(14px, 2vw, 22px);
+  letter-spacing:.12em;
+}
+
+.pc-card-face-front[data-media-state="ready"]::before{
+  content:"";
+}
+
 .pc-card-face-back{
   transform: rotateY(180deg);
 }
@@ -198,6 +208,8 @@
   height: 100%;
   object-fit: contain;
   display: block;
+  position:relative;
+  z-index:1;
 }
 
 /* Quizkort-bakside: rommer både gammelt bilde og nytt renderet kort */

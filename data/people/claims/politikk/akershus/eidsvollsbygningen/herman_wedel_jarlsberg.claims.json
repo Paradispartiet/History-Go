@@ -1,0 +1,123 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "herman_wedel_jarlsberg",
+  "profile_file": "data/people/politikk/akershus/eidsvollsbygningen/herman_wedel_jarlsberg.json",
+  "identity": {
+    "canonical_identity": "Johan Caspar Herman Wedel Jarlsberg (1779–1840), norsk politiker, greve og stattholder.",
+    "name_variants": [
+      "Herman Wedel Jarlsberg",
+      "Herman Wedel-Jarlsberg"
+    ],
+    "not": [
+      "andre medlemmer av slekten Wedel Jarlsberg"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "identity_and_lifespan",
+      "claim": "Store norske leksikon identifiserer Herman Wedel Jarlsberg og oppgir levetiden 1779–1840.",
+      "status": "verified",
+      "source_url": "https://snl.no/Herman_Wedel_Jarlsberg",
+      "source_location": "faktaboks og innledning",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-24",
+      "evidence_level": "explicit"
+    },
+    {
+      "id": "eidsvoll_role",
+      "claim": "Wedel Jarlsberg representerte Jarlsberg grevskap på Riksforsamlingen i 1814 og var en sentral unionspolitiker.",
+      "status": "verified",
+      "source_url": "https://snl.no/Herman_Wedel_Jarlsberg",
+      "source_location": "biografien om 1814",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-24",
+      "evidence_level": "explicit"
+    },
+    {
+      "id": "square_eponym",
+      "claim": "Grev Wedels plass fikk navn etter Herman Wedel Jarlsberg i 1852.",
+      "status": "verified",
+      "source_url": "https://www.oppdagkvadraturen.no/stoppesteder/grev-wedels-plass",
+      "source_location": "steds- og navnehistorikken",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-24",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "identity_and_lifespan"
+    ],
+    "kindLabel": [
+      "identity_and_lifespan"
+    ],
+    "birth_date": [
+      "identity_and_lifespan"
+    ],
+    "death_date": [
+      "identity_and_lifespan"
+    ],
+    "year": [
+      "eidsvoll_role"
+    ],
+    "placeId": [
+      "eidsvoll_role"
+    ],
+    "places[eidsvollsbygningen]": [
+      "eidsvoll_role"
+    ],
+    "places[grev_wedels_plass]": [
+      "square_eponym"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "eidsvoll_role"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "eidsvoll_role"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "eidsvoll_role"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "eidsvoll_role"
+        ]
+      },
+      {
+        "sentence": 4,
+        "claim_ids": [
+          "square_eponym"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "3/3",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-08-24",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}

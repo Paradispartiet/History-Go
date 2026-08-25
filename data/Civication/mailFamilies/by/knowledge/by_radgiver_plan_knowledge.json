@@ -758,6 +758,165 @@
           ]
         }
       ]
+    },
+    {
+      "id": "role_world_realism_history_go",
+      "purpose": "Bruk et canonicalt kommunalt maktsted i History Go til å trene en profesjonell myndighetsgrense som senere åpner et bedre valg.",
+      "learning_focus": [
+        "History Go",
+        "oslo_radhus",
+        "lokaldemokrati",
+        "administrasjon_vs_politikk"
+      ],
+      "mails": [
+        {
+          "id": "by_radgiver_realism_knowledge_radhus_001",
+          "mail_type": "knowledge",
+          "mail_family": "role_world_realism_history_go",
+          "role_scope": "by_radgiver_plan",
+          "phase": "advanced",
+          "day_phase": "afternoon",
+          "priority": 60,
+          "cooldown": 8,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Elin, plansjef",
+          "person_id": "elin_plansjef",
+          "place_id": "radhuset_planavdeling",
+          "thread_key": "by_radgiver_lillebekk_realism_001",
+          "subject": "Gå til Oslo rådhus i History Go: administrasjonen forbereder, politikken vedtar",
+          "summary": "Elin ber deg bruke den canonicale History Go-profilen for Oslo rådhus til å kontrollere en avgjørende grense i Lillebekk-saken: bystyret og andre folkevalgte organer eier politiske vedtak, mens administrasjonen skal gjøre premisser, lovkrav, faglige vurderinger og alternativer etterprøvbare.",
+          "purpose": "La konkret History Go-kunnskap om kommunal institusjon og lokaldemokrati endre et senere profesjonelt handlingsrom i samme plansak.",
+          "stakes": "Hvis administrativ anbefaling skrives som om den var vedtak, skjules politikk i fagspråk. Hvis alt omtales som politikk, forsvinner lovkrav og faglig ansvar. Begge feil gjør saken vanskeligere å etterprøve.",
+          "situation": [
+            "Oslo rådhus er et canonicalt History Go-sted knyttet til bystyre, byråd, kommunal administrasjon og lokaldemokrati.",
+            "Du skal bruke stedet som institusjonell læringsflate, ikke som fiktiv arbeidsplass i Lillebekk-saken.",
+            "Når du kommer tilbake skal du kunne markere hva som er lovbundet, hva administrasjonen anbefaler, og hva politikerne faktisk skal velge."
+          ],
+          "task_domain": "kommunal_myndighet_og_politisk_beslutning",
+          "task_kind": "knowledge",
+          "competency": "administrasjon_politikk_grense",
+          "pressure": "politisk_lesbarhet_vs_skjult_styring",
+          "choice_axis": "skille_lov_fag_politikk_vs_skrive_alt_som_en_konklusjon",
+          "consequence_axis": "etterprovbart_beslutningsgrunnlag_vs_skult_myndighetsutovelse",
+          "narrative_arc": "lillebekk_fra_kunnskapsgrunnlag_til_politisk_behandling",
+          "interaction_mode": "task",
+          "task_contract": {
+            "task_id": "by_radgiver_history_go_oslo_radhus",
+            "completion_rule": "history_go_payload_completed",
+            "failure_rule": "remain_open",
+            "evidence_refs": [
+              "data/places/politikk/oslo/places_politikk/oslo_radhus.json",
+              "data/quiz/politikk/oslo_radhus_sets.json"
+            ]
+          },
+          "task_payload": {
+            "task_kind": "history_go_place",
+            "target_type": "place",
+            "place_id": "oslo_radhus",
+            "completion_mode": "open_place",
+            "title": "Les Oslo rådhus som kommunalt makt- og beslutningssted",
+            "description": "Åpne Oslo rådhus og bruk profilen til å skille kommunal administrasjon, folkevalgte vedtak og den offentlige beslutningsarenaen før du går tilbake til Lillebekk-saken.",
+            "return_context": {
+              "source": "civication",
+              "mail_id": "by_radgiver_realism_knowledge_radhus_001",
+              "role_scope": "by_radgiver_plan",
+              "place_id": "oslo_radhus",
+              "quiz_ref": "data/quiz/politikk/oslo_radhus_sets.json"
+            }
+          },
+          "work_context": {
+            "object_ids": [
+              "by_radgiver_lillebekk_plan_case_001"
+            ],
+            "institution_id": "oslo_kommune_planavdeling_001",
+            "deadline_ref": "ledergjennomgang",
+            "deadline_day": 2,
+            "deadline_phase": "forenoon",
+            "waiting_for_actor_id": "elin_plansjef",
+            "priority": "high"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bruk rådhusprofilen til å skrive tre eksplisitte kolonner: lovkrav, administrativ anbefaling og politisk valg",
+              "reply": "Jeg bruker History Go-konteksten til å gjøre myndighetsgrensen synlig i Lillebekk: det bundne, det faglig anbefalte og det politisk valgbare får hver sin status.",
+              "effect": 1,
+              "tags": [
+                "history_go_place",
+                "authority_literacy",
+                "political_readability"
+              ],
+              "feedback": "Du omsetter stedskunnskap til et konkret profesjonelt grep uten å gjøre History Go til ny formell myndighet.",
+              "effects": {
+                "stats": {
+                  "quality": 3,
+                  "trust": 2,
+                  "risk": -3,
+                  "energy": -1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "by_radgiver_lillebekk_history_go_applied",
+                    "work_object_id": "by_radgiver_lillebekk_plan_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "myndighetsgrense_og_alternativer_revidert",
+                    "note": "History Go-læringen fra Oslo rådhus er brukt til å skille lovkrav, administrativ anbefaling og politisk valg i beslutningsgrunnlaget."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "by_radgiver_lillebekk_authority_literacy",
+                    "work_object_id": "by_radgiver_lillebekk_plan_case_001",
+                    "flag": "history_go_myndighetsgrense_anvendt"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Bruk rådhusprofilen som generell bakgrunn, men behold ett samlet administrativt forslag",
+              "reply": "Jeg har forstått institusjonen, men holder saken kort ved å presentere én samlet anbefaling uten å skille eksplisitt mellom bundet og politisk valgbart.",
+              "effect": -1,
+              "tags": [
+                "history_go_context_only",
+                "authority_blur"
+              ],
+              "feedback": "Du lærer noe om institusjonen, men omsetter det ikke til et bedre profesjonelt beslutningsgrunnlag.",
+              "effects": {
+                "stats": {
+                  "quality": -1,
+                  "trust": -1,
+                  "risk": 2
+                },
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "by_radgiver_lillebekk_authority_blur",
+                    "work_object_id": "by_radgiver_lillebekk_plan_case_001",
+                    "flag": "politisk_grense_fortsatt_uklar"
+                  }
+                ]
+              }
+            }
+          ],
+          "planned_only": true,
+          "learning_focus": [
+            "History Go",
+            "oslo_radhus",
+            "lokaldemokrati",
+            "administrasjon_vs_politikk"
+          ],
+          "next_bias": {
+            "tags": [
+              "History Go",
+              "oslo_radhus",
+              "lokaldemokrati"
+            ],
+            "weight": 1
+          }
+        }
+      ]
     }
   ]
 }

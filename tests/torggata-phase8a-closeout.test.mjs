@@ -67,11 +67,11 @@ test("PlaceCard People list and preview consume getPeopleForPlace rather than a 
   assert.match(source, /const persons = getPeopleForPlace\(place\.id\);/);
   assert.match(source, /data-person=/);
   assert.match(source, /const p0 = persons\?\.find/);
-  assert.match(source, /setRoundLabel\(peopleIcon, "👥", persons\.length\)/);
+  assert.match(source, /setRoundPreview\(peopleIcon, previewImage, previewAlt, "👥", persons\.length\)/);
   assert.doesNotMatch(source, /Canonical explicit curation wins/);
 });
 
-test("Torggata category-four grid keeps People as the first of four content rounds", async () => {
+test("Torggata transition grid keeps People first and reserves all four visual cells", async () => {
   const roundsSource = fs.readFileSync(path.join(ROOT, "js/ui/place-rounds-visual-collections.js"), "utf8");
   const dom = new JSDOM(`<!doctype html><body>
     <div id="placeCard" data-current-place-id="torggata">
@@ -91,7 +91,7 @@ test("Torggata category-four grid keeps People as the first of four content roun
   await w.HGVisualPlaceRounds.apply(w.PLACES[0]);
   const grid = w.document.querySelector(".pc-icons-quad");
   const visible = [...grid.querySelectorAll(".pc-round")].filter(el => !el.hidden).sort((a, b) => Number(a.style.order) - Number(b.style.order));
-  assert.equal(grid.dataset.roundCount, "4");
+  assert.equal(grid.dataset.collectionCount, "4");
   assert.equal(visible.length, 4);
   assert.equal(visible[0].id, "pcPeopleIcon");
   assert.deepEqual(visible.map(el => el.id), ["pcPeopleIcon", "pcObjectsIcon", "pcBrandsIcon", "pcCategoryCollectionIcon"]);

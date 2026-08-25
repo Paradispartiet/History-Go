@@ -41,6 +41,8 @@ on:
       - 'js/views/MapView.js'
       - 'scripts/check-people.sh'
       - 'scripts/check-places.sh'
+      - 'scripts/run-place-regressions-v1.mjs'
+      - '.github/ci/place-regression-registry-v1.json'
       - 'scripts/build-civication-history-people-index.mts'
       - 'scripts/knowledge-canonical-data.mts'
       - 'scripts/audit-category-governance.mjs'
@@ -73,165 +75,176 @@ on:
       - 'js/knowledgePage.js'
       - 'tests/knowledge-v2-model.test.js'
       - 'tests/knowledge-canonical-storage-contract.test.js'
+      - '.github/actions/setup-node-npm/**'
       - '.github/workflows/data-checks.yml'
   workflow_dispatch:
 
 permissions:
   contents: read
 
+concurrency:
+  group: data-checks-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
+  scope:
+    name: Classify data-check scope
+    runs-on: ubuntu-latest
+    outputs:
+      people: ${{ steps.scope.outputs.people }}
+      places: ${{ steps.scope.outputs.places }}
+      quiz: ${{ steps.scope.outputs.quiz }}
+      knowledge: ${{ steps.scope.outputs.knowledge }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - id: scope
+        name: Route changed files to domain gates
+        shell: bash
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          if [[ "$GITHUB_EVENT_NAME" != "pull_request" ]]; then
+            {
+              echo 'people=true'
+              echo 'places=true'
+              echo 'quiz=true'
+              echo 'knowledge=true'
+            } >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          people=false
+          places=false
+          quiz=false
+          knowledge=false
+          all=false
+          git diff --name-only "$BASE_SHA" "$HEAD_SHA" > /tmp/history-go-data-check-paths.txt
+          cat /tmp/history-go-data-check-paths.txt
+
+          while IFS= read -r path; do
+            [[ -n "$path" ]] || continue
+            case "$path" in
+              data/people/*|bilder/kort/people/*|docs/PEOPLE_IMAGES.md|tests/etne-people-manifest-integration.test.js|tests/people-images.test.mjs|tests/etne-people-of-places-*.test.js|scripts/check-people.sh|scripts/build-civication-history-people-index.mts|data/Civication/historyPeople_index.json|data/Civication/people_access_map.json)
+                people=true
+                ;;
+              data/places/*|data/leksikon/places/*|docs/PLACE_PRODUCTION_CHECKLIST.md|js/map.ts|js/map.js|js/app.js|js/views/MapView.js|scripts/check-places.sh|scripts/run-place-regressions-v1.mjs|.github/ci/place-regression-registry-v1.json|tests/torggata-*|reports/place-production/torggata-*|scripts/audit-politikk-place-production.mjs|scripts/audit-historie-place-production.mjs|scripts/audit-naeringsliv-place-production.mjs|scripts/audit-subkultur-place-production.mjs|tests/politikk-place-production.test.mjs|tests/historie-place-production.test.mjs|tests/naeringsliv-place-production.test.mjs|tests/subkultur-place-production.test.mjs)
+                places=true
+                ;;
+              data/quiz/*|scripts/audit-quiz-*|scripts/build-quiz-production-context.mjs|scripts/quiz-production-lib.mjs|tests/quiz-*|tests/quiz-content-quality-audit.test.mjs)
+                quiz=true
+                ;;
+              data/knowledge/*|scripts/knowledge-canonical-data.mts|js/knowledgeV2.ts|js/knowledgeClaimCore.ts|dist/web/knowledgeV2.js|js/knowledgePage.js|tests/knowledge-v2-model.test.js|tests/knowledge-canonical-storage-contract.test.js)
+                knowledge=true
+                ;;
+              data/categories/*|js/DomainRegistry.js|js/core/categories.ts|js/core/categories.js|dist/web/categories.js|bilder/merker/*)
+                places=true
+                quiz=true
+                ;;
+              data/fag/*|data/badges/*)
+                places=true
+                quiz=true
+                knowledge=true
+                ;;
+              package.json|package-lock.json|tsconfig.tools*.json|tsconfig.scripts*.json|tools/*|.github/actions/setup-node-npm/*|.github/workflows/data-checks.yml)
+                all=true
+                ;;
+              *)
+                # The workflow path filter should make this rare. Unknown matched
+                # paths fail closed into the full data suite rather than being skipped.
+                all=true
+                ;;
+            esac
+          done < /tmp/history-go-data-check-paths.txt
+
+          if [[ "$all" == true ]]; then
+            people=true
+            places=true
+            quiz=true
+            knowledge=true
+          fi
+
+          {
+            echo "people=$people"
+            echo "places=$places"
+            echo "quiz=$quiz"
+            echo "knowledge=$knowledge"
+          } >> "$GITHUB_OUTPUT"
+
   people:
     name: People data
+    needs: scope
+    if: needs.scope.outputs.people == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install dependencies
-        run: npm install --no-audit --no-fund
-
+      - name: Setup cached Node workspace
+        uses: ./.github/actions/setup-node-npm
       - name: Run people check
         run: bash scripts/check-people.sh
 
   places:
     name: Places data
+    needs: scope
+    if: needs.scope.outputs.places == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install dependencies
-        run: npm install --no-audit --no-fund
-
-      - name: Run places check
+      - name: Setup cached Node workspace
+        uses: ./.github/actions/setup-node-npm
+      - name: Run generic places check
         shell: bash
         run: |
           set -o pipefail
-          if [ -f scripts/check-places.sh ]; then
-            bash scripts/check-places.sh 2>&1 | tee /tmp/places-check.log
-          else
-            echo "scripts/check-places.sh not found; using inline places checks" | tee /tmp/places-check.log
-            {
-              node <<'NODE'
-          const fs = require('fs');
-          const path = require('path');
-          function readJson(file) {
-            try { return JSON.parse(fs.readFileSync(file, 'utf8')); }
-            catch (error) {
-              console.error(`JSON parse failed: ${file}`);
-              console.error(error.message);
-              process.exit(1);
-            }
-          }
-          const manifestPath = 'data/places/manifest.json';
-          const placesIndexPath = 'data/places/places_index.json';
-          const manifest = readJson(manifestPath);
-          if (!manifest || !Array.isArray(manifest.files)) {
-            console.error(`${manifestPath} must contain a files array`);
-            process.exit(1);
-          }
-          const files = [manifestPath, placesIndexPath, ...manifest.files.map((file) => path.join('data', file))];
-          for (const file of files) {
-            if (!fs.existsSync(file)) {
-              console.error(`Missing expected file: ${file}`);
-              process.exit(1);
-            }
-            readJson(file);
-          }
-          console.log(`json ok (${files.length} files)`);
-          NODE
-              npm run places:index:build
-              npm run build:tools
-              npm run places:index:check
-              npm run places:emner:check
-              npm run places:coords:check
-            } 2>&1 | tee -a /tmp/places-check.log
-          fi
-
-      - name: Test Torggata phase 14 discovery contract
-        run: node --test tests/torggata-phase14-discovery.test.mjs
-
-      - name: Test Torggata phase 15 physical visit contract
-        run: node --test tests/torggata-phase15-physical-visit.test.mjs
-
-      - name: Test Torggata phase 16 favorite and progress contract
-        run: node --test tests/torggata-phase16-favorite-progress.test.mjs
-
-      - name: Test Torggata phase 17 profile and unlock contract
-        run: node --test tests/torggata-phase17-profile-unlocks.test.mjs
-
-      - name: Test Torggata phase 21 WebGL fallback
-        run: node --test tests/torggata-phase21-webgl-fallback.test.mjs
-
-      - name: Test Torggata phase 22 content QA
-        run: node --test tests/torggata-phase22-content-qa.test.mjs
-
-      - name: Test Torggata phase 23 repository gates
-        run: node --test tests/torggata-phase23-ci-gates.test.mjs
-
-      - name: Test Torggata phase 24 one-place merge gate
-        run: node --test tests/torggata-phase24-one-place-gate.test.mjs
-
+          bash scripts/check-places.sh 2>&1 | tee /tmp/places-check.log
+      - name: Run affected place regressions
+        env:
+          PLACE_REGRESSION_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PLACE_REGRESSION_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: node scripts/run-place-regressions-v1.mjs
       - name: Enforce Politikk place production reports
         shell: bash
         run: |
           node --test tests/politikk-place-production.test.mjs
           if [ "${{ github.event_name }}" = "pull_request" ]; then
-            node scripts/audit-politikk-place-production.mjs --changed \
-              --base "${{ github.event.pull_request.base.sha }}" \
-              --head "${{ github.sha }}"
+            node scripts/audit-politikk-place-production.mjs --changed --base "${{ github.event.pull_request.base.sha }}" --head "${{ github.sha }}"
           else
             node scripts/audit-politikk-place-production.mjs --all
           fi
-
       - name: Enforce Historie place production reports
         shell: bash
         run: |
           node --test tests/historie-place-production.test.mjs
           if [ "${{ github.event_name }}" = "pull_request" ]; then
-            node scripts/audit-historie-place-production.mjs --changed \
-              --base "${{ github.event.pull_request.base.sha }}" \
-              --head "${{ github.sha }}"
+            node scripts/audit-historie-place-production.mjs --changed --base "${{ github.event.pull_request.base.sha }}" --head "${{ github.sha }}"
           else
             node scripts/audit-historie-place-production.mjs --all
           fi
-
       - name: Enforce Næringsliv place production reports
         shell: bash
         run: |
           node --test tests/naeringsliv-place-production.test.mjs
           if [ "${{ github.event_name }}" = "pull_request" ]; then
-            node scripts/audit-naeringsliv-place-production.mjs --changed \
-              --base "${{ github.event.pull_request.base.sha }}" \
-              --head "${{ github.sha }}"
+            node scripts/audit-naeringsliv-place-production.mjs --changed --base "${{ github.event.pull_request.base.sha }}" --head "${{ github.sha }}"
           else
             node scripts/audit-naeringsliv-place-production.mjs --all
           fi
-
       - name: Enforce Subkultur place production reports
         shell: bash
         run: |
           node --test tests/subkultur-place-production.test.mjs
           if [ "${{ github.event_name }}" = "pull_request" ]; then
-            node scripts/audit-subkultur-place-production.mjs --changed \
-              --base "${{ github.event.pull_request.base.sha }}" \
-              --head "${{ github.sha }}"
+            node scripts/audit-subkultur-place-production.mjs --changed --base "${{ github.event.pull_request.base.sha }}" --head "${{ github.sha }}"
           else
             node scripts/audit-subkultur-place-production.mjs --all
           fi
-
       - name: Upload Places check log
         if: always()
         uses: actions/upload-artifact@v4
@@ -239,7 +252,6 @@ jobs:
           name: places-check-log
           path: /tmp/places-check.log
           if-no-files-found: warn
-
       - name: Upload Religion candidate audit
         if: always()
         uses: actions/upload-artifact@v4
@@ -250,31 +262,23 @@ jobs:
 
   quiz-governance:
     name: Category and quiz governance
+    needs: scope
+    if: needs.scope.outputs.quiz == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install dependencies
-        run: npm install --no-audit --no-fund
-
+      - name: Setup cached Node workspace
+        uses: ./.github/actions/setup-node-npm
       - name: Audit canonical categories
         run: npm run audit:categories
-
       - name: Audit canonical quiz templates
         run: npm run audit:quiz-templates
-
       - name: Audit quiz production packages
         run: |
           npm run audit:quiz-production-context
           npm run audit:quiz-progression
           npm run audit:quiz-theory-binding
-
       - name: Test quiz content audit and repaired quizzes
         run: |
           npm run test:quiz-content-audit
@@ -282,41 +286,31 @@ jobs:
 
   knowledge:
     name: Knowledge V2
+    needs: scope
+    if: needs.scope.outputs.knowledge == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci --no-audit --no-fund
-
+      - name: Setup cached Node workspace
+        uses: ./.github/actions/setup-node-npm
       - name: Typecheck Knowledge core
         run: npm run typecheck:web
-
       - name: Build and syntax check canonical Knowledge tooling
         run: |
           npm run build:scripts
           node --check dist/web/knowledgeV2.js
           node --check js/knowledgePage.js
           node --check dist/scripts/knowledge-canonical-data.mjs
-
       - name: Guard canonical Knowledge data and contract
         run: |
           npm run knowledge:canonical:check
           npm run knowledge:legacy:check
           npm run audit:knowledge
-
       - name: Run Knowledge V2 and storage contract tests
         run: |
           npm run test:knowledge-v2
           node --test tests/knowledge-canonical-storage-contract.test.js
-
       - name: Upload Knowledge contract audit
         if: always()
         uses: actions/upload-artifact@v4

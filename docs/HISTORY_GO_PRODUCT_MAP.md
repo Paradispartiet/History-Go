@@ -34,19 +34,14 @@ Canonical rundingsmodell:
 ```text
 Badge ved tittelen
 Vanlig sted: People · Objects · Brands · kategoriens fjerde
-Natursted:   Map · Flora · Fauna · kategoriens fjerde
+Natursted:   Flora · Fauna · Kart · Turmål
 ```
 
-Tillatte fjerde-rundinger:
+PlaceCard viser alltid nøyaktig fire samlingsflater i et fullt 2 × 2-felt. Vanlige steder har People som én sirkel og tre avrundede rektangler. Natursteder har Flora og Fauna som to sirkler og Kart og Turmål som to avrundede rektangler. Badges står separat ved tittelen og teller ikke blant de fire, og Quiz er en obligatorisk tydelig handling.
 
-```text
-Kategoriens produksjoner · Bygg og anlegg · Kamper og konkurranser
-Relaterte steder · Turmål · Bilder
-```
+Kategoriens fjerde samling for vanlige steder løses av `data/places/README_place_rounds.md`. Generisk `Works`, `Details`, `Spots` og `Bilder` er ikke samlingsalternativer. Bilder beholdes i `frontImage`-/medieflaten eller hos riktig bildeeier og kan aldri brukes som samling eller reserve. En samling uten registrerte treff beholder en ærlig ikon-/statusflate uten oppdiktet innhold eller synlig falsk 0; layouten kollapser ikke.
 
-Generisk `Works`, `Details` og `Spots` er ikke lenger rundingsalternativer. `Bilder` er eneste generelle reserve når kategoriens normale samling mangler faktisk innhold.
-
-PlaceCard-rundinger følger `data/places/README_place_rounds.md`; denne filen gjentar ikke detaljreglene.
+PlaceCard-samlinger følger `data/places/README_place_rounds.md`; denne filen gjentar ikke detaljreglene.
 
 Canonical popupfaner:
 

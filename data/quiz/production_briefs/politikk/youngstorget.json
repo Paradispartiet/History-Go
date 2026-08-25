@@ -1,0 +1,560 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "categoryId": "politikk",
+  "targetId": "youngstorget",
+  "profile_hint": "rich",
+  "reviewed_at": "2026-08-25",
+  "review_note": "Kildegrunnlaget skiller torgflaten fra nabobygg, dokumenterer historiske hendelser og fysiske spor, og holder synlighet, bruk og politisk gjennomslag analytisk atskilt.",
+  "scope": {
+    "place": "Youngstorget",
+    "production_profile": "rich",
+    "set_count": 5,
+    "questions_per_set": 7,
+    "total_questions": 35,
+    "normal_opening_questions": 14
+  },
+  "sources": {
+    "oslo_kommune": {
+      "url": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/youngstorget/",
+      "source_type": "official_municipality",
+      "review_status": "reviewed",
+      "review_note": "Identitet, basar, kunst, fotoutstilling, tiltak og nåværende bruk."
+    },
+    "oslo_byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Youngstorget",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Avgrensning, navn, marked, fontene og 1996-omforming."
+    },
+    "arbark_rode_torg": {
+      "url": "https://www.arbark.no/eldok/Arbeiderhistorie1996_9.pdf",
+      "source_type": "archive_research",
+      "review_status": "reviewed",
+      "review_note": "Torget som arbeiderbevegelsens samlingsrom og dokumenterte massemøter."
+    },
+    "arbark_8timer": {
+      "url": "https://www.arbark.no/Utstilling/8timersdagen/8timersdagen_kap03.htm",
+      "source_type": "archive_exhibition",
+      "review_status": "reviewed",
+      "review_note": "1. mai 1890, rute og omtrent 4 000 deltakere."
+    },
+    "lo_historie": {
+      "url": "https://www.lo.no/nyhetsrommet/det-forste-skritt-til-frihet/",
+      "source_type": "primary_organization_history",
+      "review_status": "reviewed",
+      "review_note": "1. mai-historie, 3 600 deltakere og stopp ved Stortinget."
+    },
+    "oslo_museum_2026": {
+      "url": "https://www.oslomuseum.no/kvinnedagen/",
+      "source_type": "institutional_event",
+      "review_status": "reviewed",
+      "review_note": "Offisielt 8. mars-program på Youngstorget i 2026."
+    },
+    "lo_2026": {
+      "url": "https://www.lo.no/nyhetsrommet/1.-mai-2026",
+      "source_type": "primary_organization_event",
+      "review_status": "reviewed",
+      "review_note": "LOs hovedtale på Youngstorget 1. mai 2026."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "konflikt_makt_sivilsamfunn",
+      "demokrati_representasjon_offentlighet"
+    ],
+    "emne_ids": [
+      "em_pol_arbeidsliv_kollektiv_kamp",
+      "em_pol_demonstrasjoner_protest",
+      "em_pol_mediert_offentlighet"
+    ],
+    "topic_hook_ids": [
+      "offentlighet"
+    ],
+    "method_ids": [
+      "met_pol_offentlighetsanalyse",
+      "met_pol_dokumentanalyse"
+    ],
+    "thinker_ids": [
+      "jurgen_habermas",
+      "nancy_fraser",
+      "hannah_arendt"
+    ],
+    "works": []
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/politikk/youngstorget_sets.json",
+      "data/stories/stories_youngstorget.json",
+      "data/places/production/youngstorget.json"
+    ],
+    "active_before": {
+      "file": "data/quiz/politikk/youngstorget_sets.json",
+      "set_count": 1,
+      "question_count": 5,
+      "finding": "Fem gode kjerner fantes, men pakken manglet source brief, production_context, profilvalg og full 7-spørsmålsprogresjon."
+    },
+    "decisions": [
+      "Bevar temaene marked, basar, Pioneren, Fredsmonumentet og kontrasten til Stortinget i en ny kildebåret pakke.",
+      "Skriv alle spørsmål mot reviewede eksterne source-id-er og egne claim-id-er.",
+      "Hold teori og metode ute av de første 14 spørsmålene."
+    ],
+    "knowledge_migration": "Eksisterende fem kunnskapsforklaringer inngår redaksjonelt i ny pakke; canonical Knowledge-registre regenereres deterministisk etter materialisering."
+  },
+  "profile_decision": {
+    "profile": "rich",
+    "set_count": 5,
+    "questions_per_set": 7,
+    "justification": "Fem selvstendige kildebårne læringsjobber: identitet og marked, arbeiderbevegelse og 1890, synlige minnespor, fysisk omforming og dagens bruk, samt avsluttende offentlighets- og kildeanalyse."
+  },
+  "held_back_candidates": [
+    "Påstander om at et konkret arrangement eller en tale automatisk ga politisk gjennomslag.",
+    "Nabovirksomheter og organisasjoner som Brands uten own-place-eierskap og fullt verifisert logo/wordmark-proveniens.",
+    "People-koblinger basert på generell arbeiderbevegelse, sentrumstilknytning eller nærhet alene.",
+    "Eksakt deltakertall i 1890 som én ubestridt fasit; kildenes 3 600 og rundt 4 000 beholdes som intervall."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_youngstorget_quiz_1",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Torget ble anlagt i 1846.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_2",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Nytorvet var offisielt navn fra 1852 til 1951.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_3",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Området der torget ble anlagt hadde tilhørt Jørgen Young.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_4",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Torget var planlagt for landbruksvarer og ble lenge brukt til kveghandel.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_arbeidsliv_kollektiv_kamp"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_5",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Basaren fra 1870-årene er et fysisk spor etter markedsfunksjonen.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_arbeidsliv_kollektiv_kamp"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_6",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Torggata krysser den navngitte plassflaten.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_7",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Canonical identitet er selve torget, ikke nabobygg eller kryssende gater.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_8",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Demonstrasjonen gikk til Tullinløkka og stanset ved Stortinget.",
+      "source_ids": [
+        "lo_historie"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demonstrasjoner_protest"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_9",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Parolen krevde normalarbeidsdag på åtte timer.",
+      "source_ids": [
+        "arbark_8timer"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_arbeidsliv_kollektiv_kamp"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "LO oppgir 3 600, mens Arbark oppgir rundt 4 000; forskjellen beholdes synlig.",
+      "source_ids": [
+        "lo_historie"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demonstrasjoner_protest"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Arbark dokumenterer store massemøter på torget i 1920- og 1930-årene.",
+      "source_ids": [
+        "arbark_rode_torg"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demonstrasjoner_protest"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Torget utviklet seg til et tilbakevendende mobiliseringsrom.",
+      "source_ids": [
+        "arbark_rode_torg"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demonstrasjoner_protest"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Stoppet ved Stortinget viser forbindelsen mellom offentlig krav og parlamentarisk institusjon.",
+      "source_ids": [
+        "lo_historie"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Youngstorget er et mobiliseringsrom, ikke en lovgivende institusjon.",
+      "source_ids": [
+        "arbark_rode_torg"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_15",
+      "order": 15,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Per Palle Storm laget Pioneren.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_arbeidsliv_kollektiv_kamp"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_16",
+      "order": 16,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Pioneren ble avduket på Youngstorget i 1958.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_arbeidsliv_kollektiv_kamp"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_17",
+      "order": 17,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Monumentet ble reist gjennom LO og Nei til atomvåpen.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demonstrasjoner_protest"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_18",
+      "order": 18,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Pioneren gjør kollektivt arbeid og organisering synlig uten å være et personportrett.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_arbeidsliv_kollektiv_kamp"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_19",
+      "order": 19,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Monumentet føyer fredsaktivisme til torgets protesthistorie.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demonstrasjoner_protest"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_20",
+      "order": 20,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Den permanente utstillingen lar historiske funksjoner leses i dagens plassrom.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_21",
+      "order": 21,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Utstillingen består av 24 historiske fotografier.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_22",
+      "order": 22,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Torget åpnet igjen i 1996 med endret trafikkmønster.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_23",
+      "order": 23,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "En ny avstøpning av den historiske fontenen kom på plass.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_24",
+      "order": 24,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Kommunen beskriver en blanding av markeringer, torghandel, servering, kultur og arrangementer.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_25",
+      "order": 25,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Bygningen og fontenen gir faste ankre, mens bruken av plassflaten er tydelig forskjellig.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_26",
+      "order": 26,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Visuell endring er dokumentert, men årsaksforklaringer krever egne kilder.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_27",
+      "order": 27,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Kommunen har arbeidet med regler og tiltak som balanserer daglig bruk og store arrangementer.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_28",
+      "order": 28,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "De daterte hendelsene dokumenterer fortsatt mobiliseringsbruk uten å gjøre hvert program permanent.",
+      "source_ids": [
+        "lo_2026"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demonstrasjoner_protest"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_29",
+      "order": 29,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Offentlighetsanalyse skiller synlighet, adgang, dagsorden og mulig innflytelse.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet",
+      "method_id": "met_pol_offentlighetsanalyse",
+      "topic_hook_id": "offentlighet",
+      "thinker_id": "jurgen_habermas"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_30",
+      "order": 30,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Offentlig begrunnelse viser hvordan et synlig krav søker gyldighet og innflytelse.",
+      "source_ids": [
+        "lo_2026"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet",
+      "method_id": "met_pol_offentlighetsanalyse",
+      "topic_hook_id": "offentlighet",
+      "thinker_id": "jurgen_habermas"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_31",
+      "order": 31,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Motoffentligheter gjør ulik adgang og deltakelsesparitet til konkrete spørsmål.",
+      "source_ids": [
+        "arbark_rode_torg"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet",
+      "method_id": "met_pol_offentlighetsanalyse",
+      "topic_hook_id": "offentlighet",
+      "thinker_id": "nancy_fraser"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_32",
+      "order": 32,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Torget kan fungere som fremtredelsesrom, men synlighet er fortsatt ikke det samme som beslutningsmakt.",
+      "source_ids": [
+        "arbark_rode_torg"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet",
+      "method_id": "met_pol_offentlighetsanalyse",
+      "topic_hook_id": "offentlighet",
+      "thinker_id": "hannah_arendt"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_33",
+      "order": 33,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Youngstorget dokumenterer synlighet og mobilisering, mens gjennomslag må undersøkes i videre prosesser.",
+      "source_ids": [
+        "lo_historie"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet",
+      "method_id": "met_pol_offentlighetsanalyse",
+      "topic_hook_id": "offentlighet",
+      "thinker_id": "nancy_fraser"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_34",
+      "order": 34,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Stedsobservasjon viser bruk og form; dokumenter viser beslutninger, regler og aktørenes begrunnelser.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet",
+      "method_id": "met_pol_dokumentanalyse",
+      "topic_hook_id": "offentlighet",
+      "thinker_id": "jurgen_habermas"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_35",
+      "order": 35,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kilder støtter sted, hendelser og bruk; virkning og representativitet krever egen evidens.",
+      "source_ids": [
+        "arbark_rode_torg"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet",
+      "method_id": "met_pol_dokumentanalyse",
+      "topic_hook_id": "offentlighet",
+      "thinker_id": "hannah_arendt"
+    }
+  ]
+}

@@ -580,6 +580,15 @@ async function loadPlacesBase(opts = {}) {
     if (_lesesporPromise) return _lesesporPromise;
 
     _lesesporPromise = (async () => {
+      const aggregate = await fetchJSON(pData("runtime/lesespor-all.json"), { ...opts, cache: "force-cache" }).catch(() => null);
+      if (Array.isArray(aggregate) && aggregate.length) {
+        const items = sortLesesporItems(aggregate);
+        const byPlace = buildLesesporPlaceIndex(items);
+        window.LESESPOR = items;
+        window.LESESPOR_BY_PLACE = byPlace;
+        window.getLesesporForPlace = getLesesporForPlace;
+        return { items, byPlace, manifest: { files: ["data/runtime/lesespor-all.json"] } };
+      }
       let manifest;
       try {
         manifest = await fetchJSON(pData("lesespor/manifest.json"), opts);
@@ -716,6 +725,31 @@ async function loadPlacesBase(opts = {}) {
   }
 
   async function loadNature() {
+    const aggregate = await fetchJSON(pData("runtime/nature-all.json"), { cache: "force-cache" }).catch(() => null);
+    if (aggregate?.schema === "history-go-runtime-shards-v1" && aggregate.groups) {
+      const [flora, fauna] = await Promise.all([
+        Promise.all((aggregate.groups.flora || []).map(file => fetchJSON(file, { cache: "force-cache" }).catch(() => []))),
+        Promise.all((aggregate.groups.fauna || []).map(file => fetchJSON(file, { cache: "force-cache" }).catch(() => [])))
+      ]);
+      window.FLORA = flora.flat();
+      window.FAUNA = fauna.flat();
+      try {
+        window.dispatchEvent(new CustomEvent("hg:nature-loaded", {
+          detail: { flora: window.FLORA.length, fauna: window.FAUNA.length, aggregate: true }
+        }));
+      } catch {}
+      return;
+    }
+    if (aggregate && (Array.isArray(aggregate.flora) || Array.isArray(aggregate.fauna))) {
+      window.FLORA = Array.isArray(aggregate.flora) ? aggregate.flora : [];
+      window.FAUNA = Array.isArray(aggregate.fauna) ? aggregate.fauna : [];
+      try {
+        window.dispatchEvent(new CustomEvent("hg:nature-loaded", {
+          detail: { flora: window.FLORA.length, fauna: window.FAUNA.length, aggregate: true }
+        }));
+      } catch {}
+      return;
+    }
     try { window.FLORA = await loadNatureGroup("natur/flora"); }
     catch { window.FLORA = []; }
     try { window.FAUNA = await loadNatureGroup("natur/fauna"); }

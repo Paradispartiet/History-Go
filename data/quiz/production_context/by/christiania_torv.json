@@ -1,0 +1,901 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "by",
+  "targetId": "christiania_torv",
+  "profile": "rich_5x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1182,
+    "selection_sha256": "ebaa53acca3fa8b37c2feb5094fcc044d24e64d35e9c690990b5fd05acf5cef5",
+    "category_id": "by",
+    "target_id": "christiania_torv"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/by/pensum_by.json",
+      "bytes": 16713,
+      "sha256": "8de40f1af13426445083f0f3339cb4892f4833921c3614747c29656d165a0b2b",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/by/emner_by.json",
+      "bytes": 594396,
+      "sha256": "7019313fc4b9efa3aa5393a0dd3180b12abba00b0672cb65b44efd0e5c27e8c6",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/by/fagkart_by.json",
+      "bytes": 374396,
+      "sha256": "88d4d9a5e23f60e88da6542d55d84cae5ae4516fb2130163e6de013f88c50127",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/by/methods_by.json",
+      "bytes": 44201,
+      "sha256": "14f3c0fd567a4a43c4d151867bb3d01bdb73da8c95ce6f3e3128fee0964dfd76",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/by/supersetQUIZMAL_by.json",
+      "bytes": 6860,
+      "sha256": "a42443c293a254519c489a705662c46ae8593f348b329c34c3f4f3eda129945a",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 16882,
+      "sha256": "60804db1e587faae822930a800cfebac7966fa7e009778d46d94d1f28e02545e",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/by/christiania_torv.json",
+      "bytes": 19962,
+      "sha256": "5cf2d1263f640fa1115607426c3eb069c610997d37adf0d7a95becc7c9b262d6"
+    },
+    "target": {
+      "path": "data/places/by/oslo/places/christiania_torv.json",
+      "bytes": 11099,
+      "sha256": "50fbbf21f988625ee03882113f210436aa8169eb980f3a2a0fc5517a2b08a47b"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1563,
+      "selection_sha256": "c363dcd32f8d2413e5312e1df1dd11c26edaa2d54fe41d3c338f9aeb828f37e3"
+    },
+    "relations": [],
+    "stories": [
+      {
+        "path": "data/stories/stories_christiania_torv.json",
+        "matches": 1,
+        "selection_bytes": 3512,
+        "selection_sha256": "7384bae8306c17c3426149500590fe7dce151480e59451b146fee0485507ff98"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/by/christiania_torv_sets.json",
+  "source_registry": {
+    "ct_byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Christiania_Torv",
+      "source_type": "local_history_encyclopedia",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert 2026-08-23; hovedkilde for torgets funksjoner, marked, vannpost, straff, kirker, navn, rehabilitering og fontene."
+    },
+    "ct_oppdag": {
+      "url": "https://www.oppdagkvadraturen.no/stoppesteder/christiania-torv",
+      "source_type": "municipal_heritage_interpretation",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert 2026-08-23; brukt for 1624-byflytting, civic sentrum og forskyvningen mot Stortorvet."
+    },
+    "ct_arch": {
+      "url": "https://www.oppdagkvadraturen.no/stoppesteder/christiania-torv-stil-og-arkitektur",
+      "source_type": "municipal_heritage_interpretation",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert 2026-08-23; brukt for torgets form, plassering, rehabilitering og hanskefontenen."
+    },
+    "ct_history": {
+      "url": "https://www.oppdagkvadraturen.no/historien",
+      "source_type": "municipal_heritage_interpretation",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert 2026-08-23; brukt for brannen i 1624, byflyttingen og reguleringen av Christiania."
+    },
+    "ct_snl": {
+      "url": "https://snl.no/Christiania_torg",
+      "source_type": "encyclopedia",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert 2026-08-23 som uavhengig korroborasjon for sentrale navn- og historieopplysninger."
+    },
+    "ct_market": {
+      "url": "https://oslobyleksikon.no/side/Christianiamarkedet",
+      "source_type": "local_history_encyclopedia",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert 2026-08-23 som korroborasjon for Christianiamarkedets plassering og flytting."
+    },
+    "stortorvet_byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Stortorvet",
+      "source_type": "local_history_encyclopedia",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert 2026-08-23 kun for eksplisitt sammenligning av funksjonsflyttingen fra Christiania Torv."
+    },
+    "bank_byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Bankplassen",
+      "source_type": "local_history_encyclopedia",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert 2026-08-23 kun for eksplisitt sammenligning mellom to separate Kvadraturen-plasser."
+    },
+    "ct_osm": {
+      "url": "https://www.openstreetmap.org/way/594329484",
+      "source_type": "geometry",
+      "review_status": "reviewed",
+      "review_note": "Verifisert 2026-07-19; brukes bare som geometri-/plassanker, ikke som historisk kilde."
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/by/christiania_torv_sets.json",
+      "data/quiz/by/christiania_torv_sets_merged.json",
+      "data/quiz/by/places/christiania_torv_sets.json",
+      "reports/place-production/christiania-torv-nullmaaling-v1.md"
+    ],
+    "active_before": {
+      "file": null,
+      "set_count": 0,
+      "question_count": 0,
+      "finding": "Ingen aktiv Christiania Torv-quiz ble funnet i manifest eller canonical By-quizsti."
+    },
+    "decisions": [
+      "Opprett én canonical By-quiz for torget; ikke gjenbruk Gamle Rådhus-quiz som proxy.",
+      "Bruk fem kildebårne læringsjobber og 5×7, ikke et fast volumkrav.",
+      "Første 14 spørsmål er direkte, normale og kildebelagte.",
+      "Teori og metode kommer først i bridge/final og er bundet til konkrete plassfakta."
+    ],
+    "knowledge_migration": "Canonical Knowledge materialiseres deterministisk etter at den nye quizpakken og production context er skrevet."
+  },
+  "profile_decision": {
+    "profile": "rich",
+    "set_count": 5,
+    "questions_per_set": 7,
+    "justification": "Kildegrunnlaget bærer fem selvstendige læringsjobber: 1624-grunnlegging/civic kjerne; kirke/navn/modernisering; marked-vann-myndighet og sentrumsforskyvning; romlig lesning/sammenligning/metode; faglig syntese og kildekritikk. Seks eller flere sett ville splitte de samme påstandene kunstig."
+  },
+  "held_back_candidates": [
+    "Bokstavelig hanskekast i 1624 – senere kunstmotiv er ikke historisk bevis.",
+    "Livorno som sikkert direkte forbilde – kilden kvalifiserer forbindelsen.",
+    "`year: 1648` som automatisk etableringsår – metadatafeltet brukes ikke slik uten egen semantisk avklaring.",
+    "Dagens restauranter/leietakere – volatile og ikke nødvendige for evergreen-quizen.",
+    "Gamle Rådhus som om bygget og torget var samme canonical Place."
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 7,
+      "emner": 82,
+      "topic_hooks": 81,
+      "methods": 14
+    },
+    "candidate_emner": [
+      {
+        "id": "em_by_historiske_lag_i_hverdagsrom",
+        "title": "Historiske lag i hverdagsrom",
+        "score": 100
+      },
+      {
+        "id": "em_by_offentlige_rom_motesteder",
+        "title": "Offentlige rom og møtesteder",
+        "score": 100
+      },
+      {
+        "id": "em_by_torg_plasser_som_scene",
+        "title": "Torg og plasser som scene",
+        "score": 100
+      },
+      {
+        "id": "em_by_transformasjon_ombruk",
+        "title": "Transformasjon og ombruk",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "arb_industri_havn",
+        "title": "Industri og havn",
+        "category_id": "arbeid_og_naering",
+        "score": 10
+      },
+      {
+        "id": "arb_transformasjon",
+        "title": "Næring i transformasjon",
+        "category_id": "arbeid_og_naering",
+        "score": 10
+      },
+      {
+        "id": "ark_bygningstyper",
+        "title": "Bygningstyper",
+        "category_id": "arkitektur",
+        "score": 10
+      },
+      {
+        "id": "ark_transformasjon",
+        "title": "Ombygging og transformasjon",
+        "category_id": "arkitektur",
+        "score": 10
+      },
+      {
+        "id": "bolig_endring_tid",
+        "title": "Endring over tid",
+        "category_id": "bolig_og_nabolag",
+        "score": 10
+      },
+      {
+        "id": "byliv_aapne_rom",
+        "title": "Bruk av åpne rom",
+        "category_id": "byliv",
+        "score": 10
+      },
+      {
+        "id": "his_bevaring",
+        "title": "Bevaring",
+        "category_id": "historiske_lag",
+        "score": 10
+      },
+      {
+        "id": "his_epoker",
+        "title": "Arkitektoniske epoker",
+        "category_id": "historiske_lag",
+        "score": 10
+      },
+      {
+        "id": "his_glemt_historie",
+        "title": "Hva som glemmes",
+        "category_id": "historiske_lag",
+        "score": 10
+      },
+      {
+        "id": "his_ombruk",
+        "title": "Ombruk",
+        "category_id": "historiske_lag",
+        "score": 10
+      },
+      {
+        "id": "his_rivning",
+        "title": "Rivning",
+        "category_id": "historiske_lag",
+        "score": 10
+      },
+      {
+        "id": "his_spor_gatebilde",
+        "title": "Historiske spor i gatebildet",
+        "category_id": "historiske_lag",
+        "score": 10
+      },
+      {
+        "id": "plan_byggeprosesser",
+        "title": "Byggeprosesser",
+        "category_id": "administrasjon_og_plan",
+        "score": 10
+      },
+      {
+        "id": "plan_midlertidige_tiltak",
+        "title": "Midlertidige tiltak",
+        "category_id": "administrasjon_og_plan",
+        "score": 10
+      },
+      {
+        "id": "urb_byidealer",
+        "title": "Byidealer",
+        "category_id": "urbanisme",
+        "score": 10
+      },
+      {
+        "id": "urb_historiske_visjoner",
+        "title": "Historiske byvisjoner",
+        "category_id": "urbanisme",
+        "score": 10
+      },
+      {
+        "id": "urb_offentlig_rom_ide",
+        "title": "Offentlig rom som idé",
+        "category_id": "urbanisme",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "kur_by_01_byrom_akser_knutepunkt",
+      "kur_by_04_historiske_lag_og_transformasjon",
+      "kur_by_06_makt_symboler_og_representasjon"
+    ],
+    "emne_ids": [
+      "em_by_torg_plasser_som_scene",
+      "em_by_offentlige_rom_motesteder",
+      "em_by_historiske_lag_i_hverdagsrom",
+      "em_by_transformasjon_ombruk"
+    ],
+    "topic_hook_ids": [
+      "byliv_aapne_rom"
+    ],
+    "method_ids": [
+      "met_feltobservasjon"
+    ],
+    "thinker_ids": [
+      "william_h_whyte"
+    ],
+    "works": [
+      "The Social Life of Small Urban Spaces"
+    ]
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_christiania_torv_quiz_1",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Etter storbrannen i 1624 bestemte Christian IV at byen skulle flyttes vestover til området ved Akershus festning og bygges som Christiania.",
+      "source_ids": [
+        "ct_history",
+        "ct_oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_christiania_torv_quiz_2",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Den flyttede byen fikk navnet Christiania.",
+      "source_ids": [
+        "ct_history"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_christiania_torv_quiz_3",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Hellig Trefoldighets kirke ble innviet ved Christiania Torv i 1639.",
+      "source_ids": [
+        "ct_byleksikon",
+        "ct_snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_christiania_torv_quiz_4",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Gamle Rådhus sto ferdig ved Christiania Torv i 1641.",
+      "source_ids": [
+        "ct_byleksikon",
+        "ct_oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_christiania_torv_quiz_5",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Den offentlige vannposten midt på torget ble kalt Vandkunsten.",
+      "source_ids": [
+        "ct_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_christiania_torv_quiz_6",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kaken var en påle med halsjern som ble brukt ved offentlig pisking på torget.",
+      "source_ids": [
+        "ct_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_christiania_torv_quiz_7",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Christianiamarkedet ble flyttet fra Christiania Torv til Stortorvet i 1736.",
+      "source_ids": [
+        "ct_byleksikon",
+        "ct_market"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_christiania_torv_quiz_8",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Hellig Trefoldighets kirke brant ned i 1686.",
+      "source_ids": [
+        "ct_byleksikon",
+        "ct_oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_christiania_torv_quiz_9",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Den nye domkirken sto ferdig ved Stortorvet i 1697.",
+      "source_ids": [
+        "ct_oppdag",
+        "stortorvet_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_christiania_torv_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Christiania Torv ble senere omtalt som Byens gamle Torv eller Gammel-Torvet.",
+      "source_ids": [
+        "ct_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_christiania_torv_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Johannes kirke ble innviet ved torget i 1878 og sto der til 1929.",
+      "source_ids": [
+        "ct_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_christiania_torv_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Navnet Christiania Torv ble vedtatt i 1958.",
+      "source_ids": [
+        "ct_byleksikon",
+        "ct_snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_christiania_torv_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "I 1964 ble torget innhegnet og steinsatt og fikk en ny vannkunst.",
+      "source_ids": [
+        "ct_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_transformasjon_ombruk"
+    },
+    {
+      "claim_id": "claim_christiania_torv_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Wenche Gulbransen laget fonteneskulpturen «Christian IVs hanske», som kom på torget i 1997.",
+      "source_ids": [
+        "ct_byleksikon",
+        "ct_arch"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_christiania_torv_quiz_15",
+      "order": 15,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Utformingen av Christiania Torv ble tildelt Oslo bys arkitekturpris i 2003.",
+      "source_ids": [
+        "ct_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_transformasjon_ombruk"
+    },
+    {
+      "claim_id": "claim_christiania_torv_quiz_16",
+      "order": 16,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Rådhusgata og Øvre Slottsgate møtes ved Christiania Torv.",
+      "source_ids": [
+        "ct_byleksikon",
+        "ct_osm"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_christiania_torv_quiz_17",
+      "order": 17,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Gamle Rådhus fra 1641 står fortsatt ved Christiania Torv.",
+      "source_ids": [
+        "ct_byleksikon",
+        "ct_oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_christiania_torv_quiz_18",
+      "order": 18,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Christianiamarkedet ble holdt på torget i januar og februar.",
+      "source_ids": [
+        "ct_byleksikon",
+        "ct_market"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_christiania_torv_quiz_19",
+      "order": 19,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Torget samlet marked, offentlig vannpost og offentlig myndighetsutøvelse i den tidlige byen.",
+      "source_ids": [
+        "ct_byleksikon",
+        "ct_oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_christiania_torv_quiz_20",
+      "order": 20,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Flytting av domkirke- og markedsfunksjoner mot Stortorvet bidro til at Christiania Torv mistet sin tidligere sentralitet.",
+      "source_ids": [
+        "ct_oppdag",
+        "ct_byleksikon",
+        "stortorvet_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_christiania_torv_quiz_21",
+      "order": 21,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Gamle Rådhus er et separat bygg ved torget og et synlig bevis på torgets tidlige sivile funksjon.",
+      "source_ids": [
+        "ct_byleksikon",
+        "ct_oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_christiania_torv_quiz_22",
+      "order": 22,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Christiania Torv inngår i byplanen etter 1624, mens Bankplassen vokste fram på frigjort areal etter fjerning av festningsverk fra 1820-årene.",
+      "source_ids": [
+        "ct_oppdag",
+        "bank_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_christiania_torv_quiz_23",
+      "order": 23,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Stortorvet overtok sentrale kirke- og markedsfunksjoner som tidligere var knyttet til Christiania Torv.",
+      "source_ids": [
+        "ct_oppdag",
+        "stortorvet_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_christiania_torv_quiz_24",
+      "order": 24,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Christiania Torv hadde opprinnelig en tilnærmet kvadratisk form.",
+      "source_ids": [
+        "ct_arch"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_christiania_torv_quiz_25",
+      "order": 25,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Dagens plass kan undersøkes ved systematisk feltobservasjon av hvor mennesker stopper, sitter og beveger seg.",
+      "source_ids": [
+        "ct_osm",
+        "ct_arch"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_christiania_torv_quiz_26",
+      "order": 26,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Fonteneskulpturen «Christian IVs hanske» er et synlig moderne anker for fortellingen om bygrunnleggelsen.",
+      "source_ids": [
+        "ct_byleksikon",
+        "ct_arch"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_christiania_torv_quiz_27",
+      "order": 27,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Vandkunsten gjorde torget til praktisk infrastruktur fordi borgere kunne hente vann og legge private ledninger derfra.",
+      "source_ids": [
+        "ct_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_torg_plasser_som_scene"
+    },
+    {
+      "claim_id": "claim_christiania_torv_quiz_28",
+      "order": 28,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Offentlig straff på torget gjorde myndighetsutøvelse synlig i et felles byrom.",
+      "source_ids": [
+        "ct_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_christiania_torv_quiz_29",
+      "order": 29,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Christiania Torv har historiske lag fra civic sentrum, marked og myndighet til trafikk, rehabilitering og offentlig kunst.",
+      "source_ids": [
+        "ct_byleksikon",
+        "ct_oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_christiania_torv_quiz_30",
+      "order": 30,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Christiania Torv samlet flere offentlige og hverdagslige funksjoner i samme plassrom.",
+      "source_ids": [
+        "ct_byleksikon",
+        "ct_oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_christiania_torv_quiz_31",
+      "order": 31,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Torgets fysiske utforming kan sammenholdes med faktisk observerbar bruk av plassrommet.",
+      "source_ids": [
+        "ct_arch",
+        "ct_osm"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_christiania_torv_quiz_32",
+      "order": 32,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Påstander om hvordan et plassgrep påvirker opphold bør testes mot faktisk observerbar bruk.",
+      "source_ids": [
+        "ct_arch",
+        "ct_osm"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_offentlige_rom_motesteder"
+    },
+    {
+      "claim_id": "claim_christiania_torv_quiz_33",
+      "order": 33,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Christiania Torv og Bankplassen er separate plassrom fra ulike historiske faser.",
+      "source_ids": [
+        "ct_oppdag",
+        "bank_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_christiania_torv_quiz_34",
+      "order": 34,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Torgets dokumenterte utvikling går fra 1624-byens civic kjerne via funksjonsforskyvning til moderne rehabilitering og offentlig kunst.",
+      "source_ids": [
+        "ct_history",
+        "ct_oppdag",
+        "ct_byleksikon",
+        "ct_arch"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_christiania_torv_quiz_35",
+      "order": 35,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Fontenen fra 1997 bruker hanskefortellingen som motiv, men dokumenterer ikke i seg selv et bokstavelig hanskekast i 1624.",
+      "source_ids": [
+        "ct_arch",
+        "ct_oppdag"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "story",
+      "id": "st_christiania_torv_byflyttingen_1624",
+      "source_file": "data/stories/stories_christiania_torv.json",
+      "summary": "Storbrannen i 1624 skapte en krise som endret Oslos geografi. Christian IV bestemte at byen skulle flyttes vestover til området ved Akershus festning, og Christiania Torv ble et sentralt plassrom i den nye regulerte byen."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "by_christiania_torv_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_christiania_torv_quiz_1",
+        "claim_christiania_torv_quiz_2",
+        "claim_christiania_torv_quiz_3",
+        "claim_christiania_torv_quiz_4",
+        "claim_christiania_torv_quiz_5",
+        "claim_christiania_torv_quiz_6",
+        "claim_christiania_torv_quiz_7"
+      ]
+    },
+    {
+      "set_id": "by_christiania_torv_set_2",
+      "order": 2,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_christiania_torv_quiz_8",
+        "claim_christiania_torv_quiz_9",
+        "claim_christiania_torv_quiz_10",
+        "claim_christiania_torv_quiz_11",
+        "claim_christiania_torv_quiz_12",
+        "claim_christiania_torv_quiz_13",
+        "claim_christiania_torv_quiz_14"
+      ]
+    },
+    {
+      "set_id": "by_christiania_torv_set_3",
+      "order": 3,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_christiania_torv_quiz_15",
+        "claim_christiania_torv_quiz_16",
+        "claim_christiania_torv_quiz_17",
+        "claim_christiania_torv_quiz_18",
+        "claim_christiania_torv_quiz_19",
+        "claim_christiania_torv_quiz_20",
+        "claim_christiania_torv_quiz_21"
+      ]
+    },
+    {
+      "set_id": "by_christiania_torv_set_4",
+      "order": 4,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_christiania_torv_quiz_22",
+        "claim_christiania_torv_quiz_23",
+        "claim_christiania_torv_quiz_24",
+        "claim_christiania_torv_quiz_25",
+        "claim_christiania_torv_quiz_26",
+        "claim_christiania_torv_quiz_27",
+        "claim_christiania_torv_quiz_28"
+      ]
+    },
+    {
+      "set_id": "by_christiania_torv_set_5",
+      "order": 5,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_christiania_torv_quiz_29",
+        "claim_christiania_torv_quiz_30",
+        "claim_christiania_torv_quiz_31",
+        "claim_christiania_torv_quiz_32",
+        "claim_christiania_torv_quiz_33",
+        "claim_christiania_torv_quiz_34",
+        "claim_christiania_torv_quiz_35"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 35,
+    "counts": {
+      "fact": 20,
+      "context": 10,
+      "concept_theory": 5
+    },
+    "ratios": {
+      "fact": 0.571,
+      "context": 0.286,
+      "concept_theory": 0.143
+    }
+  }
+}

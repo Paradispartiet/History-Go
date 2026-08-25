@@ -1,0 +1,331 @@
+{
+  "schema_version": "1.0",
+  "artifact_id": "ekebergparken_content_factory_source_pack_v1",
+  "status": "recovered_and_revalidated",
+  "recovery": {
+    "original_branch": "agent/content-factory-ekeberg-cluster-v1",
+    "original_base_sha": "3ee60d3bec6de6cf519a1df0b3d17cafecc63b53",
+    "original_local_commit_prefix": "c9f1e933",
+    "byte_for_byte_recovery": false,
+    "reason": "The original checkout is unavailable in this runtime and the local commit never reached GitHub. The pack is reconstructed from the known baseline, canonical repository data and reverified sources without changing canonical place content.",
+    "preservation_rule": "Do not treat reconstructed wording as proof of the lost local bytes. Preserve canonical identities, coordinate evidence and source ownership."
+  },
+  "cluster_or_family_id": "ekeberg-cluster-v1",
+  "scope_description": "Shared research and collision-control pack for the Ekeberg area. The approval unit is Ekebergparken sculpture park only. Ekebergparken Museum, Ekeberg rock carvings and Ekebergsletta remain separate canonical places and may contribute only explicitly scoped relations or context.",
+  "place_ids_considered": [
+    "ekebergparken",
+    "ekebergparken_museum",
+    "ekeberg_helleristninger",
+    "ekebergsletta"
+  ],
+  "approval_place_id": "ekebergparken",
+  "canonical_owner": {
+    "path": "data/places/kunst/oslo/places_kunst/ekebergparken.json",
+    "identity": "The broad public sculpture and cultural-heritage park in the Ekeberg hillside landscape, not the museum building, rock-carving field or sports plain.",
+    "category": "kunst",
+    "coordinate_status": "verified_geometry",
+    "coordinate_source_id": "ekebergparken:official-map",
+    "coordinate_rule": "Preserve the existing area anchor; never substitute the museum or visitor address for the whole park."
+  },
+  "collision_gate": {
+    "result": "pass",
+    "separate_place_owners": [
+      {
+        "place_id": "ekebergparken_museum",
+        "owner": "museum and visitor centre in Lunds villa",
+        "must_not_proxy_for": "ekebergparken"
+      },
+      {
+        "place_id": "ekeberg_helleristninger",
+        "owner": "archaeological rock-carving field",
+        "must_not_proxy_for": "ekebergparken"
+      },
+      {
+        "place_id": "ekebergsletta",
+        "owner": "sports and recreation plain",
+        "must_not_proxy_for": "ekebergparken"
+      }
+    ],
+    "rule": "Nearby or embedded entities with their own canonical Place remain distinct. Shared Ekeberg history is scoped claim by claim."
+  },
+  "source_registry": [
+    {
+      "source_id": "src_ep_official_about",
+      "title": "Ekebergparken – Om Ekebergparken",
+      "url": "https://ekebergparken.com/om-ekebergparken",
+      "freshness_class": "institutional_periodic",
+      "scope": ["ekebergparken"],
+      "use": "park identity, public access, collection and landscape framing"
+    },
+    {
+      "source_id": "src_ep_official_history",
+      "title": "Ekebergparken – Historie",
+      "url": "https://ekebergparken.com/historie",
+      "freshness_class": "historical_stable",
+      "scope": ["ekebergparken", "ekeberg-cluster-v1"],
+      "use": "long historical continuity, Folkeparken and cultural heritage"
+    },
+    {
+      "source_id": "src_ep_official_timeline",
+      "title": "Ekebergparken – Historical timeline",
+      "url": "https://ekebergparken.com/en/historisk-tidslinje",
+      "freshness_class": "historical_stable",
+      "scope": ["ekebergparken", "ekeberg-cluster-v1"],
+      "use": "1929 restaurant, occupation-era cemetery, 2011 decision and 2013 reopening"
+    },
+    {
+      "source_id": "src_ep_official_foundation",
+      "title": "Ekebergparken – Om stiftelsen",
+      "url": "https://ekebergparken.com/om-stiftelsen",
+      "freshness_class": "institutional_periodic",
+      "scope": ["ekebergparken"],
+      "use": "foundation, municipality agreement, opening date, financing and operations"
+    },
+    {
+      "source_id": "src_ep_official_establishment",
+      "title": "Ekebergparken – The establishment of Ekebergparken",
+      "url": "https://ekebergparken.com/en/etableringen-av-ekebergparken",
+      "freshness_class": "historical_stable",
+      "scope": ["ekebergparken"],
+      "use": "2011 political decision, planning constraints, public-private development and cultural-heritage integration"
+    },
+    {
+      "source_id": "src_ep_official_map",
+      "title": "Ekebergparken – Kart",
+      "url": "https://ekebergparken.com/kart",
+      "freshness_class": "institutional_periodic",
+      "scope": ["ekebergparken"],
+      "use": "verified area identity, named paths, walking loops and visitor geography"
+    },
+    {
+      "source_id": "repo_ep_place",
+      "title": "Canonical Ekebergparken Place",
+      "path": "data/places/kunst/oslo/places_kunst/ekebergparken.json",
+      "freshness_class": "canonical_repo",
+      "scope": ["ekebergparken"],
+      "use": "current place metadata, coordinate identity, nature/training and quiz profile"
+    },
+    {
+      "source_id": "repo_ep_coordinate",
+      "title": "Ekebergparken coordinate evidence",
+      "path": "data/coordinate-evidence/oslo/kunst/ekebergparken.json",
+      "freshness_class": "canonical_repo",
+      "scope": ["ekebergparken"],
+      "use": "coordinate prior-work gate"
+    },
+    {
+      "source_id": "repo_ep_story",
+      "title": "Existing Ekebergparken Story",
+      "path": "data/stories/stories_ekebergparken.json",
+      "freshness_class": "canonical_repo",
+      "scope": ["ekebergparken"],
+      "use": "Story prior-work audit"
+    },
+    {
+      "source_id": "repo_ep_quiz",
+      "title": "Existing Ekebergparken quiz sets",
+      "path": "data/quiz/kunst/ekebergparken_sets.json",
+      "freshness_class": "canonical_repo",
+      "scope": ["ekebergparken"],
+      "use": "quiz prior-work audit; six sets and 42 questions at recovery check"
+    },
+    {
+      "source_id": "repo_ep_wonder_scream",
+      "title": "Wonderkammer Scream-viewpoint research",
+      "path": "reports/atlas-obscura-oslo-wonderkammer-batch-9/research.md",
+      "freshness_class": "canonical_repo",
+      "scope": ["ekebergparken"],
+      "use": "on-site viewpoint candidate with explicit uncertainty guardrail"
+    },
+    {
+      "source_id": "repo_ep_wonder_santa",
+      "title": "Wonderkammer Santa research",
+      "path": "reports/atlas-obscura-oslo-wonderkammer-batch-10/research.md",
+      "freshness_class": "canonical_repo",
+      "scope": ["ekebergparken"],
+      "use": "on-site artwork candidate grounded in official artwork source"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "cf_ekeberg_identity",
+      "claim_text_or_structured_fact": "Ekebergparken is a public sculpture and cultural-heritage park on Ekebergåsen in Oslo.",
+      "source_id": "src_ep_official_about",
+      "locator": "About page opening sections",
+      "evidence_scope": "place_identity",
+      "applicable_place_ids_or_entity_ids": ["ekebergparken"],
+      "time_scope": "current identity",
+      "freshness_class": "institutional_periodic",
+      "review_status": "verified",
+      "inference_limit": "Does not identify museum, rock carvings or Ekebergsletta as the park itself."
+    },
+    {
+      "claim_id": "cf_ekeberg_opening_2013",
+      "claim_text_or_structured_fact": "The sculpture and cultural-heritage park opened to the public on 26 September 2013.",
+      "source_id": "src_ep_official_foundation",
+      "locator": "foundation history",
+      "evidence_scope": "historical",
+      "applicable_place_ids_or_entity_ids": ["ekebergparken"],
+      "time_scope": "2013",
+      "freshness_class": "historical_stable",
+      "review_status": "verified",
+      "inference_limit": "2013 is the opening of the present sculpture-park project, not the beginning of human use of Ekeberg."
+    },
+    {
+      "claim_id": "cf_ekeberg_folkepark_1889",
+      "claim_text_or_structured_fact": "A public park was established on Ekeberg in 1889 and became a recreation area for Oslo residents.",
+      "source_id": "src_ep_official_history",
+      "locator": "history introduction",
+      "evidence_scope": "historical_context",
+      "applicable_place_ids_or_entity_ids": ["ekebergparken"],
+      "time_scope": "1889 onward",
+      "freshness_class": "historical_stable",
+      "review_status": "verified",
+      "inference_limit": "Use as area history, not as proof that today's exact sculpture-park boundary was identical."
+    },
+    {
+      "claim_id": "cf_ekeberg_deep_history",
+      "claim_text_or_structured_fact": "The Ekeberg area contains traces of human activity spanning more than 10,000 years, including settlements, burial mounds and rock carvings.",
+      "source_id": "src_ep_official_history",
+      "locator": "history introduction",
+      "evidence_scope": "area_history",
+      "applicable_place_ids_or_entity_ids": ["ekebergparken", "ekeberg_helleristninger"],
+      "time_scope": "prehistory",
+      "freshness_class": "historical_stable",
+      "review_status": "verified_with_scope_guard",
+      "inference_limit": "Do not absorb the separately canonical rock-carving field into Ekebergparken Place ownership."
+    },
+    {
+      "claim_id": "cf_ekeberg_2011_decision",
+      "claim_text_or_structured_fact": "Oslo City Council approved the sculpture and cultural-heritage park framework in August 2011.",
+      "source_id": "src_ep_official_establishment",
+      "locator": "The City Council decree",
+      "evidence_scope": "governance",
+      "applicable_place_ids_or_entity_ids": ["ekebergparken"],
+      "time_scope": "2011",
+      "freshness_class": "historical_stable",
+      "review_status": "verified",
+      "inference_limit": "Do not collapse the political debate into a single pro or con claim."
+    },
+    {
+      "claim_id": "cf_ekeberg_public_private",
+      "claim_text_or_structured_fact": "The park was created through cooperation between Oslo Municipality as landowner and C. Ludens Ringnes Foundation, with foundation financing for establishment, sculpture acquisition and a maintenance fund.",
+      "source_id": "src_ep_official_foundation",
+      "locator": "foundation project description",
+      "evidence_scope": "governance_financing",
+      "applicable_place_ids_or_entity_ids": ["ekebergparken"],
+      "time_scope": "project agreement",
+      "freshness_class": "historical_stable",
+      "review_status": "verified",
+      "inference_limit": "Describe documented structure; value judgments require separately sourced debate context."
+    },
+    {
+      "claim_id": "cf_ekeberg_landscape_art",
+      "claim_text_or_structured_fact": "The park is intentionally organized so art, cultural heritage and landscape are experienced together through movement across the site.",
+      "source_id": "src_ep_official_establishment",
+      "locator": "planning and concept description",
+      "evidence_scope": "art_landscape",
+      "applicable_place_ids_or_entity_ids": ["ekebergparken"],
+      "time_scope": "2011-present",
+      "freshness_class": "institutional_periodic",
+      "review_status": "verified",
+      "inference_limit": "Not every individual work is necessarily site-specific."
+    },
+    {
+      "claim_id": "cf_ekeberg_paths",
+      "claim_text_or_structured_fact": "The official map identifies a 1.6 km main loop plus shorter named paths including Kjærlighetssti, Geitespranget, Spettestien, Utsiktstien and Kulturminnesti.",
+      "source_id": "src_ep_official_map",
+      "locator": "Stier og symboler",
+      "evidence_scope": "route_geography",
+      "applicable_place_ids_or_entity_ids": ["ekebergparken"],
+      "time_scope": "current",
+      "freshness_class": "institutional_periodic",
+      "review_status": "verified_current",
+      "inference_limit": "History GO route integration must not invent access beyond official paths or imply walking times are permanent."
+    },
+    {
+      "claim_id": "cf_ekeberg_coord_preserve",
+      "claim_text_or_structured_fact": "The canonical coordinate is a verified semantic area anchor tied to the official park map.",
+      "source_id": "repo_ep_place",
+      "locator": "coord fields",
+      "evidence_scope": "coordinate",
+      "applicable_place_ids_or_entity_ids": ["ekebergparken"],
+      "time_scope": "verified 2026-07-19",
+      "freshness_class": "canonical_repo",
+      "review_status": "verified",
+      "inference_limit": "Do not geocode the museum address as replacement."
+    }
+  ],
+  "entity_relations": [
+    {
+      "from": "ekebergparken",
+      "to": "ekebergparken_museum",
+      "relation": "contains_or_adjacent_distinct_place",
+      "ownership_rule": "museum retains its own canonical Place"
+    },
+    {
+      "from": "ekebergparken",
+      "to": "ekeberg_helleristninger",
+      "relation": "area_context_distinct_archaeological_place",
+      "ownership_rule": "rock-carving field retains its own canonical Place"
+    },
+    {
+      "from": "ekebergparken",
+      "to": "ekebergsletta",
+      "relation": "nearby_area_distinct_place",
+      "ownership_rule": "sports plain retains its own canonical Place"
+    }
+  ],
+  "conflicts_and_uncertainties": [
+    {
+      "id": "collection_count_2026",
+      "issue": "Official pages expose differing current collection counts.",
+      "rule": "Do not hard-code a volatile current count into evergreen canonical description; reverify for current or news use."
+    },
+    {
+      "id": "deep_history_scope",
+      "issue": "Area history includes archaeology whose strongest physical owner may be a separate canonical Place.",
+      "rule": "Use scoped context only; never proxy the separate rock-carving Place."
+    },
+    {
+      "id": "scream_viewpoint",
+      "issue": "Existing Wonderkammer research cannot prove Munch's exact standing point or that The Scream directly reproduces the view.",
+      "rule": "Preserve uncertainty in any Story, Object or observation."
+    }
+  ],
+  "held_back_claims": [
+    {
+      "claim": "Exact current artwork count in evergreen popup text",
+      "reason": "volatile and currently inconsistent across official pages"
+    },
+    {
+      "claim": "Munch's exact standing point for The Scream",
+      "reason": "not provable from existing evidence"
+    },
+    {
+      "claim": "Museum, rock carvings or Ekebergsletta as subrecords of Ekebergparken Place",
+      "reason": "canonical collision gate forbids proxy ownership"
+    }
+  ],
+  "per_place_research_gaps": {
+    "ekebergparken": [
+      "claim-bound long description and production packet",
+      "structured spatial, temporal, history and source profiles",
+      "Story episode quality and explicit People and related-place relations",
+      "People and Objects audit with canonical identity checks",
+      "Lesespor availability and access-policy audit",
+      "History GO route integration using official path geography without replacing official navigation",
+      "language and name assessment under Språkleksikon contract",
+      "before/after and current/news assessment",
+      "source tab with inspectable URLs",
+      "visible popup, rounds and image final QA"
+    ],
+    "ekebergparken_museum": ["not approval unit in this production"],
+    "ekeberg_helleristninger": ["not approval unit in this production"],
+    "ekebergsletta": ["not approval unit in this production"]
+  },
+  "freshness_notes": [
+    "Current opening status, event listings, artwork count and institution operations are volatile and must be rechecked when displayed as current facts.",
+    "Historical opening, 1889 public-park history and 2011 planning decision are stable claims unless stronger conflicting sources emerge."
+  ]
+}

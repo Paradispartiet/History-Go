@@ -1,0 +1,401 @@
+{
+  "schema_version": "1.0",
+  "content_factory_contract": "data/places/regler/content_factory_v1.json",
+  "cluster_or_family_id": "cf_pilot_03_kvadraturen_civic_core",
+  "scope_description": "Shared evidence pack for Christiania Torv, Bankplassen and Grev Wedels plass. Shared research may reduce duplication, but every claim is explicitly scoped and every Place still requires independent full-checklist approval.",
+  "created_at": "2026-08-23",
+  "updated_at": "2026-08-24",
+  "baseline_main": "97e9e3c20075fb24783db107874afcf525227a58",
+  "place_ids_considered": ["christiania_torv", "bankplassen", "grev_wedels_plass"],
+  "place_statuses": {
+    "christiania_torv": "FERDIG_PÅ_MAIN",
+    "bankplassen": "FERDIG_PÅ_MAIN",
+    "grev_wedels_plass": "FERDIG_AVVENTER_PR_CI"
+  },
+  "source_registry": [
+    {
+      "source_id": "cf03_s01_christiania_byleksikon",
+      "title": "Oslo byleksikon – Christiania Torv",
+      "url": "https://oslobyleksikon.no/side/Christiania_Torv",
+      "source_type": "institutional",
+      "verified_at": "2026-08-23",
+      "locator": "Torget; marked, straff, vannpost og kirker; bygninger m.m.",
+      "evidence_scope": "christiania_torv_identity_history_objects_relations",
+      "limitations": "Nabobygg med egen canonical Place-identitet beholdes som relasjoner. Nåværende leietakere/drift er volatile."
+    },
+    {
+      "source_id": "cf03_s02_christiania_oppdag",
+      "title": "Oppdag Kvadraturen / Byantikvaren – Christiania Torv",
+      "url": "https://www.oppdagkvadraturen.no/stoppesteder/christiania-torv",
+      "source_type": "institutional",
+      "verified_at": "2026-08-23",
+      "locator": "Torget som byens sentrum; stil og arkitektur; Nye tider",
+      "evidence_scope": "christiania_torv_1624_core_and_modern_recovery",
+      "limitations": "Hanskemotivet er kunstnerisk/historieformidlende motiv og er ikke bevis for et bokstavelig historisk hanskekast."
+    },
+    {
+      "source_id": "cf03_s03_christiania_architecture",
+      "title": "Oppdag Kvadraturen / Byantikvaren – Christiania Torv: Stil og arkitektur",
+      "url": "https://www.oppdagkvadraturen.no/stoppesteder/christiania-torv-stil-og-arkitektur",
+      "source_type": "institutional",
+      "verified_at": "2026-08-23",
+      "locator": "Renessanseform; beliggenhet og utvikling; moderne gjenoppretting",
+      "evidence_scope": "christiania_torv_spatial_history",
+      "limitations": "Livorno omtales bare som mulig forbilde, ikke sikker direkte modell."
+    },
+    {
+      "source_id": "cf03_s04_christiania_osm",
+      "title": "OpenStreetMap way 594329484 – Christiania torv",
+      "url": "https://www.openstreetmap.org/way/594329484",
+      "source_type": "geometry",
+      "verified_at": "2026-07-19",
+      "locator": "Named square geometry",
+      "evidence_scope": "christiania_torv_geometry_only",
+      "limitations": "Geometri, ikke historisk kilde."
+    },
+    {
+      "source_id": "cf03_s05_bank_byleksikon",
+      "title": "Oslo byleksikon – Bankplassen",
+      "url": "https://oslobyleksikon.no/side/Bankplassen",
+      "source_type": "institutional",
+      "verified_at": "2026-08-23",
+      "locator": "Ingress; plasshistorie; bygninger; kunst; rehabilitering 2016",
+      "evidence_scope": "bankplassen_identity_history_art_public_space",
+      "limitations": "Bygninger med egen canonical identitet eies ikke av plassen."
+    },
+    {
+      "source_id": "cf03_s06_bank_grev_oppdag",
+      "title": "Oppdag Kvadraturen / Byantikvaren – Grev Wedels plass og Bankplassen",
+      "url": "https://www.oppdagkvadraturen.no/stoppesteder/grev-wedels-plass-bankplassen",
+      "source_type": "institutional",
+      "verified_at": "2026-08-23",
+      "locator": "Åpning i festningsverket; Norges Bank; urealiserte statsbygg",
+      "evidence_scope": "shared_post_1814_state_building_context",
+      "limitations": "Områdekontekst kan ikke restemples som identisk stedshistorie for begge plasser."
+    },
+    {
+      "source_id": "cf03_s07_norges_bank",
+      "title": "Oslo byleksikon – Norges Bank",
+      "url": "https://oslobyleksikon.no/side/Norges_Bank",
+      "source_type": "institutional",
+      "verified_at": "2026-08-23",
+      "locator": "Bankbygningene ved Bankplassen og flyttehistorien",
+      "evidence_scope": "bankplassen_norges_bank_relation",
+      "limitations": "Institusjonshistorie brukes bare der den eksplisitt støtter plassen/bygningene ved plassen."
+    },
+    {
+      "source_id": "cf03_s08_bank_osm",
+      "title": "OpenStreetMap relation 12044741 – Bankplassen",
+      "url": "https://www.openstreetmap.org/relation/12044741",
+      "source_type": "geometry",
+      "verified_at": "2026-07-19",
+      "locator": "Named place=square geometry",
+      "evidence_scope": "bankplassen_geometry_only",
+      "limitations": "Geometri, ikke historisk kilde."
+    },
+    {
+      "source_id": "cf03_s09_grev_byleksikon",
+      "title": "Oslo byleksikon – Grev Wedels plass",
+      "url": "https://oslobyleksikon.no/side/Grev_Wedels_plass",
+      "source_type": "institutional",
+      "verified_at": "2026-08-23",
+      "locator": "Fortidsvoller; urealiserte statsplaner; park; krig; bygninger; 2026-skulptur",
+      "evidence_scope": "grev_wedels_identity_history_park_art",
+      "limitations": "Nabobygg beholdes som egne enheter der canonical."
+    },
+    {
+      "source_id": "cf03_s10_grev_oppdag",
+      "title": "Oppdag Kvadraturen / Byantikvaren – Grev Wedels plass",
+      "url": "https://www.oppdagkvadraturen.no/stoppesteder/grev-wedels-plass",
+      "source_type": "institutional",
+      "verified_at": "2026-08-23",
+      "locator": "Park 1869; Storting/Høyesterett; Gamle Logen; Militærhospitalet; bilperioden; 1980-tallet",
+      "evidence_scope": "grev_wedels_historical_layers_relations",
+      "limitations": "Full biografi for Gamle Logen og Militærhospitalet tilhører deres egne enheter."
+    },
+    {
+      "source_id": "cf03_s11_grev_oslobyesvel_2026",
+      "title": "Selskabet for Oslo Byes Vel – Avduking av skulptur",
+      "url": "https://www.oslobyesvel.no/nyheter/ordfreren-avduket-vr-historiske-gave-lrdag-6-juni/6",
+      "source_type": "primary",
+      "verified_at": "2026-08-24",
+      "locator": "6. juni 2026: Grev Wedels plass ved Militærhospitalet",
+      "evidence_scope": "grev_wedels_kristian_blystad_kvinnetorso_2026",
+      "limitations": "Eventopplysninger er historiske; det varige objektet kan brukes evergreen etter kryssjekk."
+    },
+    {
+      "source_id": "cf03_s12_grev_osm",
+      "title": "OpenStreetMap way 33610051 – Grev Wedels plass",
+      "url": "https://www.openstreetmap.org/way/33610051",
+      "source_type": "geometry",
+      "verified_at": "2026-07-19",
+      "locator": "Named leisure=park geometry",
+      "evidence_scope": "grev_wedels_geometry_only",
+      "limitations": "Geometri, ikke historisk kilde."
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "cf03_christiania_identity_001",
+      "claim_text_or_structured_fact": "Christiania Torv var politisk, sivilt og handelsmessig sentrum i den nye Christiania-byen i det første århundret etter flyttingen i 1624.",
+      "source_id": "cf03_s02_christiania_oppdag",
+      "corroborating_source_ids": ["cf03_s01_christiania_byleksikon"],
+      "locator": "S02 Torget som byens sentrum; S01 torghistorien",
+      "evidence_scope": "christiania_torv_historical_identity",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["christiania_torv"], "entity_ids": []},
+      "time_scope": "1624-1700-tallet",
+      "freshness_class": "historical_stable",
+      "review_status": "verified",
+      "inference_limit": "Nabobyggenes fulle historie overføres ikke til torget."
+    },
+    {
+      "claim_id": "cf03_christiania_spatial_001",
+      "claim_text_or_structured_fact": "Torget ble anlagt med en tilnærmet kvadratisk renessanseform der to gater krysset plassrommet; formen ble endret og delvis gjenskapt i 1990-årene.",
+      "source_id": "cf03_s03_christiania_architecture",
+      "corroborating_source_ids": ["cf03_s02_christiania_oppdag"],
+      "locator": "S03 torgets form og moderne utvikling",
+      "evidence_scope": "christiania_torv_spatial_history",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["christiania_torv"], "entity_ids": []},
+      "time_scope": "1624-1990-årene",
+      "freshness_class": "historical_stable",
+      "review_status": "verified",
+      "inference_limit": "Mulig Livorno-forbilde publiseres ikke som sikkert."
+    },
+    {
+      "claim_id": "cf03_christiania_functions_001",
+      "claim_text_or_structured_fact": "Torget samlet rådhus, kirke, marked, offentlig vannpost og offentlig straff i den tidlige byen.",
+      "source_id": "cf03_s01_christiania_byleksikon",
+      "corroborating_source_ids": ["cf03_s02_christiania_oppdag"],
+      "locator": "S01 torghistorie og bygninger",
+      "evidence_scope": "christiania_torv_civic_functions",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["christiania_torv"], "entity_ids": []},
+      "time_scope": "1600-1700-tallet",
+      "freshness_class": "historical_stable",
+      "review_status": "verified",
+      "inference_limit": "Bygninger med egen canonical identitet behandles som relasjoner."
+    },
+    {
+      "claim_id": "cf03_christiania_market_001",
+      "claim_text_or_structured_fact": "Christianiamarked ble holdt på torget i januar og februar fra 1640-årene til 1736, da markedet ble flyttet til Stortorvet.",
+      "source_id": "cf03_s01_christiania_byleksikon",
+      "corroborating_source_ids": [],
+      "locator": "S01 marked",
+      "evidence_scope": "christiania_torv_market_history",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["christiania_torv"], "entity_ids": []},
+      "time_scope": "1640-årene-1736",
+      "freshness_class": "historical_stable",
+      "review_status": "verified",
+      "inference_limit": "Ingen."
+    },
+    {
+      "claim_id": "cf03_christiania_art_001",
+      "claim_text_or_structured_fact": "Wenche Gulbransens fonteneskulptur «Christian IVs hanske» kom på torget i 1997 på stedet knyttet til den gamle vannkunsten.",
+      "source_id": "cf03_s01_christiania_byleksikon",
+      "corroborating_source_ids": ["cf03_s03_christiania_architecture"],
+      "locator": "S01/S03 fonteneskulptur",
+      "evidence_scope": "christiania_torv_public_art",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["christiania_torv"], "entity_ids": ["wenche_gulbransen"]},
+      "time_scope": "1997-",
+      "freshness_class": "historical_stable",
+      "review_status": "verified",
+      "inference_limit": "Kunstmotivet er ikke bevis for et bokstavelig hanskekast."
+    },
+    {
+      "claim_id": "cf03_bank_fortification_001",
+      "claim_text_or_structured_fact": "Bankplassen vokste fram på areal som ble frigitt da deler av de nedre festningsverkene ved Akershus ble fjernet fra midten av 1820-årene.",
+      "source_id": "cf03_s05_bank_byleksikon",
+      "corroborating_source_ids": ["cf03_s06_bank_grev_oppdag"],
+      "locator": "S05 ingress; S06 Åpning i festningen",
+      "evidence_scope": "bankplassen_post_fortification_urbanization",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["bankplassen", "grev_wedels_plass"], "entity_ids": []},
+      "time_scope": "1810-1830-årene",
+      "freshness_class": "historical_stable",
+      "review_status": "verified",
+      "inference_limit": "Felles områdekontekst gjør ikke plassene til samme Place."
+    },
+    {
+      "claim_id": "cf03_bank_first_bank_001",
+      "claim_text_or_structured_fact": "Norges Banks første egen bygning i Christiania sto ferdig på Bankplassen i 1828 og var tegnet av Christian H. Grosch.",
+      "source_id": "cf03_s05_bank_byleksikon",
+      "corroborating_source_ids": ["cf03_s07_norges_bank"],
+      "locator": "S05 Bankplassen 3; S07 bankbygningene",
+      "evidence_scope": "bankplassen_bank_building_relation",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["bankplassen"], "entity_ids": ["grunnlovsbygget_bankplassen"]},
+      "time_scope": "1828",
+      "freshness_class": "historical_stable",
+      "review_status": "verified",
+      "inference_limit": "Bygningen beholdes som eget canonical sted der den finnes."
+    },
+    {
+      "claim_id": "cf03_bank_hoiland_001",
+      "claim_text_or_structured_fact": "Ole Høiland brøt seg inn i den første bankbygningen nyttårsnatten 1835/36.",
+      "source_id": "cf03_s05_bank_byleksikon",
+      "corroborating_source_ids": [],
+      "locator": "S05 Bankplassen 3",
+      "evidence_scope": "bankplassen_historical_episode",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["bankplassen"], "entity_ids": []},
+      "time_scope": "1835-1836",
+      "freshness_class": "historical_stable",
+      "review_status": "verified",
+      "inference_limit": "Beløp og detaljforløp krever egen Story-kildesjekk."
+    },
+    {
+      "claim_id": "cf03_bank_theater_001",
+      "claim_text_or_structured_fact": "Christiania Theater lå på Bankplassen fra 1837 til 1899 og ble revet for å gi plass til Norges Banks andre bygning.",
+      "source_id": "cf03_s05_bank_byleksikon",
+      "corroborating_source_ids": ["cf03_s06_bank_grev_oppdag"],
+      "locator": "S05 teaterhistorien",
+      "evidence_scope": "bankplassen_theatre_history",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["bankplassen"], "entity_ids": []},
+      "time_scope": "1837-1899",
+      "freshness_class": "historical_stable",
+      "review_status": "verified",
+      "inference_limit": "Ingen."
+    },
+    {
+      "claim_id": "cf03_bank_art_001",
+      "claim_text_or_structured_fact": "Brynjulf Bergsliens Johannes Brun-statue ble flyttet til Bankplassen i 1986; plassen har også Gunnar Jahn-bysten fra 1998 og «Pike med hodetelefoner» fra 2014.",
+      "source_id": "cf03_s05_bank_byleksikon",
+      "corroborating_source_ids": [],
+      "locator": "S05 kunstverk på plassen",
+      "evidence_scope": "bankplassen_public_art",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["bankplassen"], "entity_ids": []},
+      "time_scope": "1986-",
+      "freshness_class": "institutional_periodic",
+      "review_status": "verified",
+      "inference_limit": "Objektstatus bør kontrolleres ved senere større revisjon."
+    },
+    {
+      "claim_id": "cf03_bank_rehab_001",
+      "claim_text_or_structured_fact": "Bankplassen ble rehabilitert til Norges Banks 200-årsjubileum i 2016 med blant annet belysning, planting, reparert plassgulv og basseng tilpasset scene om vinteren.",
+      "source_id": "cf03_s05_bank_byleksikon",
+      "corroborating_source_ids": [],
+      "locator": "S05 rehabilitering 2016",
+      "evidence_scope": "bankplassen_public_space_change",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["bankplassen"], "entity_ids": []},
+      "time_scope": "2016",
+      "freshness_class": "historical_stable",
+      "review_status": "verified",
+      "inference_limit": "Ingen."
+    },
+    {
+      "claim_id": "cf03_grev_identity_001",
+      "claim_text_or_structured_fact": "Grev Wedels plass er et park-/plassrom ved inngangen til Festningsplassen og fikk navn i 1852 etter Herman Wedel-Jarlsberg.",
+      "source_id": "cf03_s09_grev_byleksikon",
+      "corroborating_source_ids": ["cf03_s10_grev_oppdag"],
+      "locator": "S09 ingress; S10 navn",
+      "evidence_scope": "grev_wedels_identity_name",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["grev_wedels_plass"], "entity_ids": []},
+      "time_scope": "1852-",
+      "freshness_class": "historical_stable",
+      "review_status": "verified",
+      "inference_limit": "Ingen."
+    },
+    {
+      "claim_id": "cf03_grev_stateplan_001",
+      "claim_text_or_structured_fact": "På 1830-tallet ble området vurdert for blant annet Stortinget og Høyesterett, men militære restriksjoner stanset byggeplanene.",
+      "source_id": "cf03_s09_grev_byleksikon",
+      "corroborating_source_ids": ["cf03_s10_grev_oppdag", "cf03_s06_bank_grev_oppdag"],
+      "locator": "S09/S10/S06 urealiserte statsbygg",
+      "evidence_scope": "grev_wedels_unbuilt_capital_plan",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["grev_wedels_plass"], "entity_ids": []},
+      "time_scope": "1830-årene",
+      "freshness_class": "historical_stable",
+      "review_status": "verified",
+      "inference_limit": "Bygningene ble ikke oppført."
+    },
+    {
+      "claim_id": "cf03_grev_park_001",
+      "claim_text_or_structured_fact": "Selskabet for Christiania Byes Vel foreslo park i 1840-årene, og Oppdag Kvadraturen daterer realiseringen til 1869.",
+      "source_id": "cf03_s10_grev_oppdag",
+      "corroborating_source_ids": ["cf03_s09_grev_byleksikon"],
+      "locator": "S10 parkhistorie",
+      "evidence_scope": "grev_wedels_park_establishment",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["grev_wedels_plass"], "entity_ids": []},
+      "time_scope": "1840-årene-1869",
+      "freshness_class": "historical_stable",
+      "review_status": "verified",
+      "inference_limit": "Bruk 1869 når eksakt år kreves; bredere kilder sier 1860-årene."
+    },
+    {
+      "claim_id": "cf03_grev_car_war_001",
+      "claim_text_or_structured_fact": "1900-tallet ga bilbruk, parkering og under krigen tyske brakker på Grev Wedels plass før parkfunksjonen ble gjenopprettet i 1980-årene.",
+      "source_id": "cf03_s09_grev_byleksikon",
+      "corroborating_source_ids": ["cf03_s10_grev_oppdag"],
+      "locator": "S09 krigs-/bilhistorie; S10 Bilene tar over",
+      "evidence_scope": "grev_wedels_20c_transformation",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["grev_wedels_plass"], "entity_ids": []},
+      "time_scope": "1920-1980-årene",
+      "freshness_class": "historical_stable",
+      "review_status": "verified",
+      "inference_limit": "Detaljer om den tyske leiren beholdes kildenært."
+    },
+    {
+      "claim_id": "cf03_grev_hospital_001",
+      "claim_text_or_structured_fact": "Militærhospitalet, opprinnelig oppført i Akersgata i 1807, ble demontert og gjenreist ved Grev Wedels plass i begynnelsen av 1980-årene.",
+      "source_id": "cf03_s10_grev_oppdag",
+      "corroborating_source_ids": ["cf03_s09_grev_byleksikon"],
+      "locator": "S10 Militærhospitalet; S09 nr. 1",
+      "evidence_scope": "grev_wedels_military_hospital_relation",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["grev_wedels_plass"], "entity_ids": ["militaerhospitalet"]},
+      "time_scope": "1807-1984",
+      "freshness_class": "historical_stable",
+      "review_status": "verified",
+      "inference_limit": "Bygningens fulle biografi tilhører dens egen enhet."
+    },
+    {
+      "claim_id": "cf03_grev_kvinnetorso_001",
+      "claim_text_or_structured_fact": "Kristian Blystads monumentalskulptur «Kvinnetorso» ble avduket på Grev Wedels plass 6. juni 2026 som gave fra Selskabet for Oslo Byes Vel til byen.",
+      "source_id": "cf03_s11_grev_oslobyesvel_2026",
+      "corroborating_source_ids": ["cf03_s09_grev_byleksikon"],
+      "locator": "S11 avdukingsoppføring; S09 2026-tillegg",
+      "evidence_scope": "grev_wedels_public_art_2026",
+      "applicable_place_ids_or_entity_ids": {"place_ids": ["grev_wedels_plass"], "entity_ids": []},
+      "time_scope": "2026-",
+      "freshness_class": "historical_stable",
+      "review_status": "verified",
+      "inference_limit": "Eventprogram er historikk; det varige objektet er evergreen."
+    }
+  ],
+  "entity_relations": [
+    {
+      "relation_id": "cf03_rel_christiania_gamle_radhus",
+      "from_place_id": "christiania_torv",
+      "to_entity_id": "gamle_radhus",
+      "relation_type": "adjacent_canonical_place",
+      "supporting_source_ids": ["cf03_s01_christiania_byleksikon", "cf03_s02_christiania_oppdag"],
+      "rule": "Relasjon, ikke square-owned Structure."
+    },
+    {
+      "relation_id": "cf03_rel_bank_old_bank",
+      "from_place_id": "bankplassen",
+      "to_entity_id": "grunnlovsbygget_bankplassen",
+      "relation_type": "adjacent_canonical_place",
+      "supporting_source_ids": ["cf03_s05_bank_byleksikon", "cf03_s07_norges_bank"],
+      "rule": "Relasjon, ikke square-owned Structure."
+    }
+  ],
+  "conflicts_and_uncertainties": [
+    {"id": "cf03_unc_01", "topic": "Christian IVs hanske", "rule": "Ikke publiser bokstavelig hanskekast som etablert historisk faktum."},
+    {"id": "cf03_unc_02", "topic": "christiania_torv.year", "rule": "Eksisterende year=1648 er ikke brukt som grunnleggelsesår; narrativ tidslinje bruker dokumenterte 1624+-milepæler. Feltet endres bare etter egen semantikkontroll."},
+    {"id": "cf03_unc_03", "topic": "Grev Wedels plass parkår", "rule": "Bruk 1869 der eksakt år kreves; andre kilder beskriver bredt 1860-årene."}
+  ],
+  "held_back_claims": [
+    "Bokstavelig hanskekast av Christian IV.",
+    "Livorno som sikkert direkte forbilde.",
+    "Nabobygninger som square-owned innhold når de har egen canonical identitet.",
+    "Nåværende leietakere/åpningstider uten fersk subsystem-verifikasjon."
+  ],
+  "per_place_research_gaps": {
+    "christiania_torv": [],
+    "bankplassen": [],
+    "grev_wedels_plass": []
+  },
+  "freshness_notes": {
+    "historical_stable": "Hoveddelen av pakken er stabil historie og kan gjenbrukes under eksplisitt place-scope.",
+    "current_volatile": "Arrangementer, åpningstider, leietakere og drift må verifiseres ferskt av eierende subsystem.",
+    "recent_stable_object": "Kvinnetorso er etter avdukingen et varig fysisk spor; eventdetaljer behandles som historiske.",
+    "bankplassen_closeout": "Bankplassen bruker 2023 Commons-bilde, fire verifiserte kunstverk, fire separate relasjonssteder og v3.3 Quiz/Knowledge. Stories, People, Brands, Nature, språk og nyheter har eksplisitte N/A-/eierbeslutninger i workcardet.",
+    "grev_wedels_plass_closeout": "Grev Wedels plass bruker kontrollert Commons-frontbilde, Herman Wedel Jarlsberg, tre fysiske parkobjekter, fire canonical relasjoner og v3.3 Quiz/Knowledge. Brands bruker dokumentert systemfallback fordi ingen kvalifisert brandprofil finnes."
+  }
+}

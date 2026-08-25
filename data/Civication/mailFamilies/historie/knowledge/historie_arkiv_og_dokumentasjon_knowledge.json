@@ -1,0 +1,248 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "historie",
+  "role_scope": "historie_arkiv_og_dokumentasjon",
+  "mail_type": "knowledge",
+  "families": [
+    {
+      "id": "historie_arkiv_kildebeskrivelse_vs_historisk_fortolkning",
+      "purpose": "Bruke et canonicalt History Go-sted til å trene skillet mellom offentlig historiefortelling, kildeutsagn, metadata og arkivfaglig usikkerhet.",
+      "learning_focus": [
+        "kildekontekst",
+        "arkivbeskrivelse",
+        "historisk_fortolkning",
+        "History Go"
+      ],
+      "mails": [
+        {
+          "id": "historie_arkiv_knowledge_akershus_001",
+          "mail_type": "knowledge",
+          "mail_family": "historie_arkiv_kildebeskrivelse_vs_historisk_fortolkning",
+          "role_scope": "historie_arkiv_og_dokumentasjon",
+          "phase": "advanced",
+          "day_phase": "afternoon",
+          "priority": 106,
+          "cooldown": 5,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Sara, arkivleder",
+          "people_ref": "sara_arkivleder_historie",
+          "person_id": "sara_arkivleder_historie",
+          "place_id": "ordningsrom_arkiv_historie",
+          "thread_key": "historie_arkiv_kildekontekst_001",
+          "subject": "Åpne Akershus festning i History Go: hva er stedshistorie, og hva ville vært arkivmetadata?",
+          "summary": "Sara ber deg lese den canonicale History Go-profilen for Akershus festning som et øvelsesobjekt. Profilen sammenfatter mange tidslag og hendelser for en bruker, mens en arkivpost må beskrive et konkret materiale, dets opphav, relasjon og usikkerhet. Oppgaven er å bruke forskjellen bevisst – ikke å omskrive History Go-prosa til katalogmetadata.",
+          "purpose": "Teste at spilleren kan lære av en offentlig historisk syntese uten å gjøre fortolkende stedstekst til proveniens eller primærkildebeskrivelse.",
+          "stakes": "Hvis formidlingsprosa kopieres inn som arkivmetadata kan senere brukere miste skillet mellom hva et konkret dokument viser, hva arkivet vet om opphavet og hva en senere historisk syntese fortolker.",
+          "situation": [
+            "Akershus festning er et canonicalt History Go-sted med en publisert profil som beskriver flere historiske tidslag.",
+            "Profilen er nyttig som kontekst og inngang til spørsmål, men den er ikke i seg selv proveniens for et konkret arkivdokument dere katalogiserer.",
+            "Oppgaven krever bare at du åpner og leser stedet; Akershus festning er ikke en fiktiv arbeidsplass eller avsender i Civication."
+          ],
+          "task_domain": "kildekontekst_og_formidling",
+          "task_kind": "knowledge",
+          "competency": "kildekritikk_vs_arkivbeskrivelse",
+          "pressure": "brukervennlig_historisk_syntese_vs_arkivfaglig_kildegrense",
+          "choice_axis": "bruk_stedsprofil_som_kontekst_og_sporsmalsgenerator_vs_kopier_syntesen_inn_som_kildemetadata",
+          "consequence_axis": "tydelig_kildegrense_vs_sammenblanding_av_kilde_metadata_og_fortolkning",
+          "narrative_arc": "formidling_til_kildegrense_og_bedre_beskrivelse",
+          "interaction_mode": "task",
+          "task_contract": {
+            "task_id": "historie_arkiv_history_go_akershus_festning",
+            "completion_rule": "history_go_payload_completed",
+            "failure_rule": "remain_open",
+            "evidence_refs": [
+              "data/places/historie/oslo/places_historie/akershus_festning.json",
+              "data/quiz/historie/akershus_festning_sets.json",
+              "data/people/historie/oslo/akershus_festning/knut_alvsson.json",
+              "data/people/historie/oslo/akershus_festning/ole_hoiland.json",
+              "data/people/historie/oslo/akershus_festning/reidar_haaland.json"
+            ]
+          },
+          "task_payload": {
+            "task_kind": "history_go_place",
+            "target_type": "place",
+            "place_id": "akershus_festning",
+            "completion_mode": "open_place",
+            "title": "Les Akershus festning som historisk syntese",
+            "description": "Åpne den canonicale stedssiden og skill mellom stedets formidlingshistorie og metadata som måtte vært dokumentert for et konkret arkivobjekt.",
+            "return_context": {
+              "source": "civication",
+              "mail_id": "historie_arkiv_knowledge_akershus_001",
+              "role_scope": "historie_arkiv_og_dokumentasjon",
+              "related_person_ids": [
+                "knut_alvsson",
+                "ole_hoiland",
+                "reidar_haaland"
+              ],
+              "quiz_ref": "data/quiz/historie/akershus_festning_sets.json"
+            }
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Åpne stedet, noter hvilke utsagn som er historisk syntese, og formuler hvilke proveniensdata et konkret arkivobjekt fortsatt måtte ha",
+              "reply": "Jeg bruker profilen til å forstå kontekst og stille bedre spørsmål, men lar dokumentets eget opphav, relasjon, datering og integritet være grunnlaget for arkivbeskrivelsen.",
+              "effect": 1,
+              "tags": [
+                "history_go_place",
+                "source_boundary",
+                "archival_description"
+              ],
+              "feedback": "Du bruker History Go som læringsflate uten å viske ut forskjellen mellom historisk formidling og arkivets dokumentasjon av et konkret kildespor.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Bruk stedsteksten som ferdig katalogkontekst siden den allerede sammenfatter historien godt",
+              "reply": "Profilen er mer lesbar enn våre notater. Vi kan gjenbruke formuleringene direkte og spare tid på kontekstfeltet.",
+              "effect": -1,
+              "tags": [
+                "interpretation_as_metadata",
+                "source_boundary_loss",
+                "context_copy"
+              ],
+              "feedback": "Du gjør en senere syntese til del av materialets tilsynelatende egen dokumentasjon og svekker skillet mellom kilde, metadata og fortolkning.",
+              "effects": {
+                "stats": {
+                  "quality": -3,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ],
+          "links": [
+            {
+              "label": "Knut Alvsson i History Go",
+              "ref": "knut_alvsson",
+              "kind": "person"
+            },
+            {
+              "label": "Ole Høiland i History Go",
+              "ref": "ole_hoiland",
+              "kind": "person"
+            },
+            {
+              "label": "Reidar Haaland i History Go",
+              "ref": "reidar_haaland",
+              "kind": "person"
+            }
+          ]
+        },
+        {
+          "id": "historie_arkiv_knowledge_knut_alvsson_001",
+          "mail_type": "knowledge",
+          "mail_family": "historie_arkiv_kildebeskrivelse_vs_historisk_fortolkning",
+          "role_scope": "historie_arkiv_og_dokumentasjon",
+          "phase": "advanced",
+          "day_phase": "afternoon",
+          "priority": 105,
+          "cooldown": 5,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Sara, arkivleder",
+          "people_ref": "sara_arkivleder_historie",
+          "person_id": "sara_arkivleder_historie",
+          "place_id": "ordningsrom_arkiv_historie",
+          "thread_key": "historie_arkiv_kildekontekst_001",
+          "subject": "Åpne Knut Alvsson i History Go: en personprofil er kontekst, ikke dokumentproveniens",
+          "summary": "Sara ber deg åpne den canonicale History Go-profilen for Knut Alvsson, som knytter opprørslederen til Akershus festning i 1502. Profilen kan gi historisk kontekst og bedre spørsmål, men den kan ikke alene avgjøre hvem som skapte et konkret dokument, hvordan dokumentet kom inn i arkivet eller hvilken provenienskjede akkurat dette arkivobjektet har.",
+          "purpose": "Koble arkivrollen direkte til eksisterende canonical History Go People og trene skillet mellom biografisk syntese, dokumentinnhold og arkivproveniens.",
+          "stakes": "Hvis en personprofil brukes som erstatning for dokumentets eget opphavs- og overføringsspor kan en plausibel historisk kobling bli feilaktig registrert som sikker proveniens.",
+          "situation": [
+            "Knut Alvsson finnes allerede som canonical History Go Person knyttet til Akershus festning og året 1502.",
+            "Personprofilen oppsummerer en historisk aktør og hendelseskontekst; den er ikke i seg selv metadata for et bestemt brev, regnskap, protokoll eller annet arkivobjekt.",
+            "Et konkret arkivobjekt må fortsatt beskrives ut fra dokumentert skaper, arkivsammenheng, datering, relasjon, overføring og eventuelle usikkerheter."
+          ],
+          "task_domain": "kildekontekst_og_formidling",
+          "task_kind": "knowledge",
+          "competency": "kildekritikk_vs_arkivbeskrivelse",
+          "pressure": "nyttig_personkontekst_vs_udokumentert_proveniensslutning",
+          "choice_axis": "bruk_personprofil_til_sporsmal_og_kontekst_vs_gjor_biografisk_syntese_til_proveniens",
+          "consequence_axis": "bedre_kildekritiske_sporsmal_vs_falsk_opphavssikkerhet",
+          "narrative_arc": "formidling_til_kildegrense_og_bedre_beskrivelse",
+          "interaction_mode": "task",
+          "task_contract": {
+            "task_id": "historie_arkiv_history_go_knut_alvsson",
+            "completion_rule": "history_go_payload_completed",
+            "failure_rule": "remain_open",
+            "evidence_refs": [
+              "data/people/historie/oslo/akershus_festning/knut_alvsson.json",
+              "data/places/historie/oslo/places_historie/akershus_festning.json"
+            ]
+          },
+          "task_payload": {
+            "task_kind": "history_go_person",
+            "target_type": "person",
+            "person_id": "knut_alvsson",
+            "completion_mode": "read_profile",
+            "title": "Les Knut Alvsson som historisk personkontekst",
+            "description": "Åpne den canonicale personprofilen og skill det History Go sammenfatter om aktøren fra proveniens som må dokumenteres for et konkret arkivobjekt.",
+            "return_context": {
+              "source": "civication",
+              "mail_id": "historie_arkiv_knowledge_knut_alvsson_001",
+              "role_scope": "historie_arkiv_og_dokumentasjon",
+              "place_id": "akershus_festning"
+            }
+          },
+          "links": [
+            {
+              "label": "Akershus festning i History Go",
+              "ref": "akershus_festning",
+              "kind": "place"
+            }
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Åpne profilen og bruk den til å formulere hva som må verifiseres i selve arkivmaterialet",
+              "reply": "Jeg bruker personprofilen til å forstå tids- og hendelseskontekst, men registrerer bare dokumentets opphav og relasjoner når arkivsporet faktisk dokumenterer dem.",
+              "effect": 1,
+              "tags": [
+                "history_go_person",
+                "source_boundary",
+                "provenance_question"
+              ],
+              "feedback": "Du kobler History Go-personen til arbeidssaken som et kildekritisk hjelpemiddel uten å gjøre syntesen til arkivbevis.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Bruk personprofilens kobling til Akershus som tilstrekkelig grunnlag for å fylle inn dokumentets proveniens",
+              "reply": "Når personen og stedet allerede er historisk koblet kan vi føre denne sammenhengen direkte i metadata og spare en ny kontrollrunde.",
+              "effect": -1,
+              "tags": [
+                "biography_as_provenance",
+                "source_boundary_loss",
+                "false_certainty"
+              ],
+              "feedback": "Du gjør en historisk plausibel person–sted-kobling til sikker dokumentproveniens uten evidens fra selve arkivkjeden.",
+              "effects": {
+                "stats": {
+                  "quality": -3,
+                  "trust": -2,
+                  "risk": 4
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -147,7 +147,7 @@
         "person_id": "bernt_anker",
         "name": "Bernt Anker",
         "person_category": "historie",
-        "place_id": "bankplassen",
+        "place_id": "den_gamle_krigsskolen",
         "year": 1790
       },
       {
@@ -1645,6 +1645,35 @@
   "cross_category_existing_references": [],
   "missing_people_candidates": [],
   "roles": [
+    {
+      "role_id": "historie_arkiv_og_dokumentasjon",
+      "role_scope": "historie_arkiv_og_dokumentasjon",
+      "title": "Arkiv og dokumentasjon",
+      "source": "data/Civication/roleModels/historie/historie_arkiv_og_dokumentasjon.json",
+      "resolution": {
+        "base_pool": "people_pool",
+        "base_fit": "contextual",
+        "inherited_cross_category_pool": "cross_category_existing_references",
+        "inherited_cross_category_fit": "strong",
+        "direct_person_ids": [],
+        "strong_person_ids": [],
+        "additional_existing_people": [],
+        "excluded_people": []
+      },
+      "automatic_match_tokens": [
+        "arkiv",
+        "dokumentasjon"
+      ],
+      "resolved_counts": {
+        "total": 232,
+        "existing_place_people": 232,
+        "existing_other_people": 0,
+        "direct": 0,
+        "strong": 0,
+        "contextual": 232,
+        "excluded": 0
+      }
+    },
     {
       "role_id": "historie_arkivar",
       "role_scope": "arkivar",

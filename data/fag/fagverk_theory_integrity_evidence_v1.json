@@ -176,7 +176,7 @@
       "proof_scope": "structured_subject_gate",
       "audit_script": "tools/audit-kunst-theory-integrity.mjs",
       "test": "tests/kunst-theory-integrity.test.mjs",
-      "workflow": ".github/workflows/fagverk-kunst-phase3.yml",
+      "workflow": ".github/workflows/fagverk-phase3.yml",
       "evidence_files": [
         "data/fag/kunst/fagkart_kunst_canonical_v4_5.json",
         "data/fagverk/fagverk_registry.json",
@@ -360,7 +360,7 @@
       "proof_scope": "structured_subject_gate",
       "audit_script": "tools/audit-sport-theory-integrity.mjs",
       "test": "tests/sport-theory-integrity.test.mjs",
-      "workflow": ".github/workflows/fagverk-sport-phase3.yml",
+      "workflow": ".github/workflows/fagverk-phase3.yml",
       "evidence_files": [
         "data/fag/sport/sportpensum_canonical_v4_5.json",
         "data/fag/sport/theory_units_sport_canonical_v6.json",
@@ -449,7 +449,7 @@
       "proof_scope": "structured_subject_gate",
       "audit_script": "tools/audit-filosofi-theory-integrity.mjs",
       "test": "tests/filosofi-theory-integrity.test.mjs",
-      "workflow": ".github/workflows/fagverk-filosofi-phase3.yml",
+      "workflow": ".github/workflows/fagverk-phase3.yml",
       "evidence_files": [
         "data/fag/filosofi/theory_integrity_bindings_filosofi_v1.json",
         "data/fagverk/filosofi/filosofi_field_coverage_v1.json",
@@ -495,6 +495,32 @@
         "limitations": "verified",
         "rival_or_alternative": "verified",
         "person_work_binding": "verified",
+        "scholarly_source_quality": "verified",
+        "claim_or_content_binding": "verified",
+        "actual_prose_binding": "verified",
+        "anti_trivia_rule": "verified",
+        "universal_subject_scope": "verified"
+      }
+    },
+    {
+      "subject_id": "helse",
+      "proof_scope": "structured_subject_gate",
+      "audit_script": "tools/audit-helse-theory-integrity.mjs",
+      "test": "tests/helse-theory-integrity.test.mjs",
+      "workflow": ".github/workflows/fagverk-helse.yml",
+      "evidence_files": [
+        "data/fag/helse/helsepensum_canonical_v1.json",
+        "data/fag/helse/theory_integrity_bindings_helse_v1.json",
+        "data/fagverk/fagverk_registry.json",
+        "reports/fagverk/helse-theory-integrity-audit.json",
+        "reports/fagverk/helse-strict-completion-v1-audit.json"
+      ],
+      "existing_gate_proves": {
+        "canonical_field_coverage": "verified",
+        "structured_scope_mechanism": "verified",
+        "limitations": "verified",
+        "rival_or_alternative": "verified",
+        "person_work_binding": "not_applicable_hybrid_without_named_person_provenance",
         "scholarly_source_quality": "verified",
         "claim_or_content_binding": "verified",
         "actual_prose_binding": "verified",

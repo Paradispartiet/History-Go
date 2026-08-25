@@ -85,6 +85,35 @@ export interface PlaceVisualRoundItem {
   [key: string]: unknown;
 }
 
+export type PlaceCardCollectionId =
+  | "people"
+  | "objects"
+  | "brands"
+  | "map"
+  | "flora"
+  | "fauna"
+  | "productions"
+  | "structures"
+  | "competitions"
+  | "related"
+  | "destinations";
+
+export interface PlaceCardProfileV2 {
+  schema: "history_go_place_card_profile_v2";
+  /** Nøyaktig fire samlinger i fast kategoriavhengig 2 × 2-komposisjon. Bilder eies av medieflaten. */
+  collection_ids: PlaceCardCollectionId[];
+  reason: string;
+  verifiedAt: string;
+}
+
+export interface LegacyPlaceRoundProfileV1 {
+  schema?: "history_go_place_round_profile_v1" | string;
+  /** Leses bare gjennom kompatibilitetsadapteren; `images` filtreres bort. */
+  content_round_ids: string[];
+  reason: string;
+  verifiedAt?: string;
+}
+
 export interface Place {
   id: string;
   name?: string;
@@ -118,6 +147,11 @@ export interface Place {
   relations?: unknown[];
   people?: unknown[];
   wonderkammer?: unknown;
+
+  /** Canonical PlaceCard-samlingsprofil for nye og fullproduserte steder. */
+  place_card_profile?: PlaceCardProfileV2;
+  /** Legacy-profil som fortsatt leses, men ikke skal opprettes ved ny produksjon. */
+  round_profile?: LegacyPlaceRoundProfileV1;
 
   /** Fysiske, identifiserbare gjenstander. Civication-egenskaper kan ligge på samme objekt. */
   objects?: PlaceVisualRoundItem[];
@@ -164,7 +198,7 @@ export interface Place {
   viewpoints?: PlaceVisualRoundItem[];
   attractions?: PlaceVisualRoundItem[];
 
-  /** Dokumenterte bildesamlinger brukt av Bilder-reserven. */
+  /** Dokumenterte bilder som eies av frontImage-/medieflaten, ikke av en PlaceCard-samling. */
   images?: Array<string | PlaceVisualRoundItem>;
   gallery?: Array<string | PlaceVisualRoundItem>;
   photos?: Array<string | PlaceVisualRoundItem>;

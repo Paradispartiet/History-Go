@@ -1,33 +1,37 @@
 // @ts-nocheck
 // js/ui/place-rounds-visual-collections.js
-// Canonical PlaceCard-rundinger. Regler eies kun av data/places/README_place_rounds.md.
-(function installCanonicalPlaceRounds(global) {
+// Canonical PlaceCard-samlinger. Filnavnet beholdes for bakoverkompatibel lasting.
+// Regler eies kun av data/places/README_place_rounds.md.
+(function installCanonicalPlaceCardCollections(global) {
   "use strict";
 
   const FIXED_DEFS = Object.freeze([
-    { id:"badges", label:"Merker", fallbackIcon:"🏅", iconId:"pcBadgesIcon", listId:"pcBadgesList", kind:"badges" },
-    { id:"people", label:"Personer", fallbackIcon:"👥", iconId:"pcPeopleIcon", listId:"pcPeopleList", kind:"people" },
-    { id:"objects", label:"Gjenstander", fallbackIcon:"🏺", iconId:"pcObjectsIcon", listId:"pcObjectsList", kind:"objects" },
-    { id:"brands", label:"Brands", fallbackIcon:"🏷️", iconId:"pcBrandsIcon", listId:"pcBrandsList", kind:"brands" },
-    { id:"map", label:"Kart", fallbackIcon:"🗺️", iconId:"pcNatureMapIcon", listId:"pcNatureMapList", kind:"nature-map" },
-    { id:"flora", label:"Flora", fallbackIcon:"🌱", iconId:"pcFloraIcon", listId:"pcFloraList", kind:"flora" },
-    { id:"fauna", label:"Fauna", fallbackIcon:"🐾", iconId:"pcFaunaIcon", listId:"pcFaunaList", kind:"fauna" }
+    { id:"badges", label:"Merker", fallbackIcon:"🏅", iconId:"pcBadgesIcon", listId:"pcBadgesList", kind:"badges", shape:"circle" },
+    { id:"people", label:"Personer", fallbackIcon:"👥", iconId:"pcPeopleIcon", listId:"pcPeopleList", kind:"people", shape:"circle" },
+    { id:"objects", label:"Gjenstander", fallbackIcon:"🏺", iconId:"pcObjectsIcon", listId:"pcObjectsList", kind:"objects", shape:"rectangle" },
+    { id:"brands", label:"Brands", fallbackIcon:"🏷️", iconId:"pcBrandsIcon", listId:"pcBrandsList", kind:"brands", shape:"rectangle" },
+    { id:"map", label:"Kart", fallbackIcon:"🗺️", iconId:"pcNatureMapIcon", listId:"pcNatureMapList", kind:"nature-map", shape:"rectangle" },
+    { id:"flora", label:"Flora", fallbackIcon:"🌱", iconId:"pcFloraIcon", listId:"pcFloraList", kind:"flora", shape:"circle" },
+    { id:"fauna", label:"Fauna", fallbackIcon:"🐾", iconId:"pcFaunaIcon", listId:"pcFaunaList", kind:"fauna", shape:"circle" }
   ]);
 
-  const FOURTH_DEFS = Object.freeze({
-    productions: { id:"productions", label:"Produksjoner", fallbackIcon:"🎭", iconId:"pcCategoryCollectionIcon", listId:"pcCategoryCollectionList", kind:"productions" },
-    structures: { id:"structures", label:"Bygg og anlegg", fallbackIcon:"🏛️", iconId:"pcCategoryCollectionIcon", listId:"pcCategoryCollectionList", kind:"structures" },
-    competitions: { id:"competitions", label:"Kamper og konkurranser", fallbackIcon:"🏆", iconId:"pcCategoryCollectionIcon", listId:"pcCategoryCollectionList", kind:"competitions" },
-    related: { id:"related", label:"Relaterte steder", fallbackIcon:"🧭", iconId:"pcCategoryCollectionIcon", listId:"pcCategoryCollectionList", kind:"related" },
-    destinations: { id:"destinations", label:"Turmål", fallbackIcon:"🥾", iconId:"pcCategoryCollectionIcon", listId:"pcCategoryCollectionList", kind:"destinations" },
-    images: { id:"images", label:"Bilder", fallbackIcon:"🖼️", iconId:"pcCategoryCollectionIcon", listId:"pcCategoryCollectionList", kind:"images" }
+  const CATEGORY_DEFS = Object.freeze({
+    productions: { id:"productions", label:"Produksjoner", fallbackIcon:"🎭", iconId:"pcCategoryCollectionIcon", listId:"pcCategoryCollectionList", kind:"productions", shape:"rectangle" },
+    structures: { id:"structures", label:"Bygg og anlegg", fallbackIcon:"🏛️", iconId:"pcCategoryCollectionIcon", listId:"pcCategoryCollectionList", kind:"structures", shape:"rectangle" },
+    competitions: { id:"competitions", label:"Kamper og konkurranser", fallbackIcon:"🏆", iconId:"pcCategoryCollectionIcon", listId:"pcCategoryCollectionList", kind:"competitions", shape:"rectangle" },
+    related: { id:"related", label:"Relaterte steder", fallbackIcon:"🧭", iconId:"pcCategoryCollectionIcon", listId:"pcCategoryCollectionList", kind:"related", shape:"rectangle" },
+    destinations: { id:"destinations", label:"Turmål", fallbackIcon:"🥾", iconId:"pcCategoryCollectionIcon", listId:"pcCategoryCollectionList", kind:"destinations", shape:"rectangle" }
   });
 
-  const ALL_DEFS = Object.freeze([...FIXED_DEFS, ...Object.values(FOURTH_DEFS)]);
+  const ALL_DEFS = Object.freeze([...FIXED_DEFS, ...Object.values(CATEGORY_DEFS)]);
   const BY_ID = new Map(ALL_DEFS.map(def => [def.id, def]));
+  // Fire faste visuelle plasser. Badges ligger separat ved tittelen.
+  // Vanlige steder: én sirkel + tre rektangler.
+  // Natursteder: to sirkler + to rektangler.
   const GENERAL_BASE = Object.freeze(["people", "objects", "brands"]);
-  const NATURE_BASE = Object.freeze(["map", "flora", "fauna"]);
-  const STANDARD_SECOND_ROUNDS = new Set(["objects", "images"]);
+  const NATURE_BASE = Object.freeze(["flora", "fauna", "map"]);
+  const COLLECTION_IDS = new Set(ALL_DEFS.filter(def => def.id !== "badges").map(def => def.id));
+  const CATEGORY_COLLECTION_IDS = new Set(Object.keys(CATEGORY_DEFS));
 
   const CATEGORY_FOURTH = Object.freeze({
     by:"structures",
@@ -40,6 +44,7 @@
     naeringsliv:"structures",
     natur:"destinations",
     politikk:"related",
+    popkultur:"productions",
     psykologi:"related",
     religion:"structures",
     scenekunst:"productions",
@@ -60,6 +65,7 @@
     film_tv:"Filmer og serier",
     scenekunst:"Forestillinger",
     media:"Utgivelser",
+    popkultur:"Uttrykk og utgivelser",
     subkultur:"Uttrykk og utgivelser"
   });
 
@@ -74,7 +80,6 @@
   const esc = value => String(value ?? "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\"/g,"&quot;").replace(/'/g,"&#39;");
   let scheduled = false;
   let badgeBound = false;
-  let secondBound = false;
   let categoryBound = false;
 
   function normalizeCategory(place) {
@@ -140,7 +145,7 @@
   }
 
   function physicalCivication(item) {
-    if (!item || typeof item !== "object" || !imageFor(item)) return false;
+    if (!item || typeof item !== "object") return false;
     return Boolean(
       item.physicalObject === true || item.physical === true || item.isPhysical === true ||
       s(item.objectType || item.object_type || item.material || item.historicalFunction || item.historical_function)
@@ -238,46 +243,6 @@
     return dedupe([...direct, ...linked]).filter(item => s(item.id) !== s(place?.id));
   }
 
-  function imageItems(place) {
-    const result = [];
-    const push = (value, title, sourceKind) => {
-      if (!value) return;
-      if (typeof value === "string") {
-        result.push({ id:`${sourceKind}_${result.length}`, title, description:"", image:s(value), sourceKind });
-        return;
-      }
-      if (typeof value === "object") {
-        const image = imageFor(value);
-        if (!image) return;
-        result.push({
-          id:s(value.id || value.key || `${sourceKind}_${result.length}`),
-          title:s(value.title || value.caption || value.label || title),
-          description:s(value.description || value.desc || value.summary),
-          image,
-          sourceKind
-        });
-      }
-    };
-    arr(place?.images).forEach(value => push(value, "Bilde", "images"));
-    arr(place?.gallery).forEach(value => push(value, "Bilde", "gallery"));
-    arr(place?.photos).forEach(value => push(value, "Bilde", "photos"));
-    arr(place?.imageGallery).forEach(value => push(value, "Bilde", "imageGallery"));
-    arr(place?.media?.images).forEach(value => push(value, "Bilde", "media"));
-    push(place?.frontImage, "Hovedbilde", "frontImage");
-    push(place?.popupImage, "Stedsbilde", "popupImage");
-    push(place?.image, "Stedsbilde", "image");
-    if (!result.length) push(place?.cardImage, "Stedsbilde", "cardImage");
-    push(place?.for_na?.beforeImage, s(place?.for_na?.beforeImageLabel || "Før"), "beforeImage");
-    push(place?.for_na?.nowImage, s(place?.for_na?.nowImageLabel || "Nå"), "nowImage");
-    const seen = new Set();
-    return result.filter(item => {
-      const key = s(item.image).replace(/([_-])card(?=\.[a-z0-9]+$)/i, "").toLowerCase();
-      if (!key || seen.has(key)) return false;
-      seen.add(key);
-      return true;
-    });
-  }
-
   function collectionItems(place, id) {
     if (!place) return [];
     if (id === "objects") return objectItems(place);
@@ -286,61 +251,88 @@
     if (id === "competitions") return competitionItems(place);
     if (id === "related") return relatedItems(place);
     if (id === "destinations") return destinationItems(place);
-    if (id === "images") return imageItems(place);
     return [];
   }
 
-  function preferredFourthId(place) {
-    return CATEGORY_FOURTH[normalizeCategory(place)] || "images";
+  function isNature(place) {
+    return normalizeCategory(place) === "natur";
   }
 
-  function configuredRoundIds(place) {
-    if (normalizeCategory(place) === "natur") return null;
-    const ids = arr(place?.round_profile?.content_round_ids).map(s);
-    const valid = s(place?.round_profile?.reason).length > 0
-      && ids.length === 4
-      && ids[0] === "people"
-      && STANDARD_SECOND_ROUNDS.has(ids[1])
-      && ids[2] === "brands"
-      && Object.prototype.hasOwnProperty.call(FOURTH_DEFS, ids[3])
-      && ids[1] !== ids[3]
-      && collectionItems(place, ids[1]).length > 0
-      && collectionItems(place, ids[3]).length > 0;
+  function preferredCategoryCollectionId(place) {
+    return CATEGORY_FOURTH[normalizeCategory(place)] || "related";
+  }
+
+  function normalizedFullGridIds(place, requestedIds = []) {
+    const requestedCategory = requestedIds.find(id => CATEGORY_COLLECTION_IDS.has(id));
+    const categoryId = requestedCategory || preferredCategoryCollectionId(place);
+    return isNature(place)
+      ? [...NATURE_BASE, categoryId]
+      : [...GENERAL_BASE, categoryId];
+  }
+
+  function structurallyValidIds(place, ids) {
+    if (ids.length !== 4 || new Set(ids).size !== 4 || !ids.every(id => COLLECTION_IDS.has(id))) return false;
+    const expected = normalizedFullGridIds(place, ids);
+    return expected.every((id, index) => ids[index] === id);
+  }
+
+  function canonicalConfiguredIds(place) {
+    const profile = place?.place_card_profile;
+    const ids = arr(profile?.collection_ids).map(s);
+    const valid = s(profile?.schema) === "history_go_place_card_profile_v2"
+      && s(profile?.reason).length > 0
+      && structurallyValidIds(place, ids);
     return valid ? ids : null;
   }
 
-  function secondRoundId(place) {
-    return configuredRoundIds(place)?.[1] || "objects";
+  function legacyConfiguredIds(place) {
+    const profile = place?.round_profile;
+    if (!profile || s(profile?.reason).length === 0) return null;
+    const ids = [];
+    for (const id of arr(profile?.content_round_ids).map(s)) {
+      // Bilder hører nå hjemme i frontImage-/medieflaten og faller derfor ut i adapteren.
+      if (id === "images" || !COLLECTION_IDS.has(id) || ids.includes(id)) continue;
+      ids.push(id);
+    }
+    return normalizedFullGridIds(place, ids);
   }
 
-  function fourthRoundId(place) {
-    const configured = configuredRoundIds(place);
-    if (configured) return configured[3];
-    const preferred = preferredFourthId(place);
-    return collectionItems(place, preferred).length ? preferred : "images";
+  function configuredCollectionIds(place) {
+    return canonicalConfiguredIds(place) || legacyConfiguredIds(place);
   }
 
-  function fourthLabel(place, id = fourthRoundId(place)) {
-    if (id === "productions") return PRODUCTION_LABELS[normalizeCategory(place)] || FOURTH_DEFS.productions.label;
-    return FOURTH_DEFS[id]?.label || FOURTH_DEFS.images.label;
+  function profileSource(place) {
+    if (canonicalConfiguredIds(place)) return "place_card_profile_v2";
+    if (legacyConfiguredIds(place)) return "round_profile_v1_adapter";
+    return "category_default";
+  }
+
+  function defaultCollectionIds(place) {
+    return normalizedFullGridIds(place);
+  }
+
+  function selectedIds(place) {
+    return configuredCollectionIds(place) || defaultCollectionIds(place);
+  }
+
+  function collectionLabel(place, id) {
+    if (id === "productions") return PRODUCTION_LABELS[normalizeCategory(place)] || CATEGORY_DEFS.productions.label;
+    return BY_ID.get(id)?.label || "Samling";
   }
 
   function defFor(place, id) {
     const def = BY_ID.get(id);
     if (!def) return null;
-    return id in FOURTH_DEFS ? { ...def, label:fourthLabel(place, id) } : def;
+    return { ...def, label:collectionLabel(place, id) };
   }
 
-  function secondDef(place) {
-    const def = defFor(place, secondRoundId(place));
-    return def ? { ...def, iconId:"pcObjectsIcon", listId:"pcObjectsList" } : null;
+  function compatibilityFourthId(place) {
+    return selectedIds(place).find(id => CATEGORY_COLLECTION_IDS.has(id)) || null;
   }
 
-  function selectedIds(place) {
-    const configured = configuredRoundIds(place);
-    if (configured) return configured;
-    const base = normalizeCategory(place) === "natur" ? NATURE_BASE : GENERAL_BASE;
-    return [...base, fourthRoundId(place)];
+  function compatibilityFourthLabel(place) {
+    const id = compatibilityFourthId(place);
+    return id ? collectionLabel(place, id) : "";
   }
 
   function ensureBadgePlacement() {
@@ -351,6 +343,22 @@
     badge.hidden = false;
     badge.setAttribute("aria-hidden", "false");
     if (badge.parentElement !== titleRow) titleRow.appendChild(badge);
+  }
+
+  function ensureQuizAction() {
+    const quiz = document.getElementById("pcQuiz");
+    if (!quiz) return;
+    quiz.hidden = false;
+    quiz.setAttribute("aria-hidden", "false");
+    quiz.classList.add("pc-action-primary");
+    if (!s(quiz.getAttribute("aria-label"))) quiz.setAttribute("aria-label", "Ta quiz");
+  }
+
+  function applyCollectionShape(icon, def) {
+    if (!icon || !def) return;
+    icon.classList.add("pc-collection");
+    icon.dataset.collectionId = def.id;
+    icon.dataset.collectionShape = def.shape;
   }
 
   function ensureElement(id, className, parent, roleButton = false) {
@@ -375,14 +383,16 @@
     const body = card?.querySelector(".pc-body");
     if (!card || !grid || !body) return;
     for (const def of FIXED_DEFS.filter(item => ["objects", "map", "flora", "fauna"].includes(item.id))) {
-      const icon = ensureElement(def.iconId, "pc-round", grid, true);
+      const icon = ensureElement(def.iconId, "pc-round pc-collection", grid, true);
       icon?.setAttribute("aria-label", def.label);
+      applyCollectionShape(icon, def);
       ensureElement(def.listId, "", body, false);
     }
-    const categoryIcon = ensureElement("pcCategoryCollectionIcon", "pc-round", grid, true);
+    const categoryIcon = ensureElement("pcCategoryCollectionIcon", "pc-round pc-collection", grid, true);
     categoryIcon?.setAttribute("aria-label", "Kategoriinnhold");
     ensureElement("pcCategoryCollectionList", "", body, false);
     ensureBadgePlacement();
+    ensureQuizAction();
   }
 
   function renderRows(items, def) {
@@ -399,12 +409,12 @@
     return arr(place?.[kind]).map((id, index) => normalizeItem(registry.find(row => s(row?.id) === s(id)) || id, index, kind)).filter(Boolean);
   }
 
-  function fallbackRoundHtml(def, count) {
+  function fallbackCollectionHtml(def, count) {
     return `<div class="pc-round-label"><span class="pc-round-emoji">${def.fallbackIcon}</span><span class="pc-round-count">${count || ""}</span></div>`;
   }
 
-  function renderRoundPreview(icon, preview, def, count) {
-    const fallback = fallbackRoundHtml(def, count);
+  function renderCollectionPreview(icon, preview, def, count) {
+    const fallback = fallbackCollectionHtml(def, count);
     if (!preview?.image) {
       icon.innerHTML = fallback;
       return;
@@ -423,28 +433,17 @@
     if (def.id === "map") {
       const preview = await Promise.resolve(global.HGNatureDetailedMap?.getPreview?.(place)).catch(() => "");
       icon.innerHTML = preview ? `<img src="${esc(preview)}" class="pc-person-img" alt="Turkart">` : `<div class="pc-round-label"><span class="pc-round-emoji">${def.fallbackIcon}</span></div>`;
-      list.innerHTML = '<div class="pc-empty">Tur- og naturkart åpnes fra Kart-rundingen.</div>';
+      list.innerHTML = '<div class="pc-empty">Tur- og naturkart åpnes fra Kart-samlingen.</div>';
       return;
     }
     const items = ["flora", "fauna"].includes(def.id) ? await natureItems(place, def.id) : collectionItems(place, def.id);
     list.innerHTML = renderRows(items, def);
     const preview = items.find(item => item.image);
-    renderRoundPreview(icon, preview, def, items.length);
+    renderCollectionPreview(icon, preview, def, items.length);
   }
 
-  async function renderSecond(place) {
-    const def = secondDef(place);
-    if (!def) return;
-    await renderFixed(place, def);
-    const icon = document.getElementById("pcObjectsIcon");
-    if (!icon) return;
-    icon.dataset.roundId = def.id;
-    icon.setAttribute("aria-label", def.label);
-    icon.title = def.label;
-  }
-
-  function renderFourth(place) {
-    const id = fourthRoundId(place);
+  function renderCategoryCollection(place) {
+    const id = compatibilityFourthId(place);
     const def = defFor(place, id);
     const icon = document.getElementById("pcCategoryCollectionIcon");
     const list = document.getElementById("pcCategoryCollectionList");
@@ -452,16 +451,17 @@
     const items = collectionItems(place, id);
     list.innerHTML = renderRows(items, def);
     const preview = items.find(item => item.image);
-    icon.dataset.roundId = id;
+    icon.dataset.collectionId = id;
     icon.setAttribute("aria-label", def.label);
     icon.title = def.label;
-    renderRoundPreview(icon, preview, def, items.length);
+    applyCollectionShape(icon, def);
+    renderCollectionPreview(icon, preview, def, items.length);
   }
 
   function showMissingDetailedMap(place) {
     global.showPlaceCardRoundPopup?.({
       title:"Kart", subtitle:s(place?.name || place?.title), kind:"nature-map", place,
-      html:'<div class="pc-empty">Tur-/naturkartet er ikke lastet for dette naturstedet. History GO bruker aldri det generelle hovedkartet som fallback for Kart-rundingen.</div>'
+      html:'<div class="pc-empty">Tur-/naturkartet er ikke lastet for dette naturstedet. History GO bruker aldri det generelle hovedkartet som fallback for Kart-samlingen.</div>'
     });
   }
 
@@ -489,27 +489,7 @@
     icon.addEventListener("keydown", open);
   }
 
-  function bindSecond() {
-    if (secondBound) return;
-    const icon = document.getElementById("pcObjectsIcon");
-    if (!icon) return;
-    secondBound = true;
-    const open = async event => {
-      if (event?.type === "keydown" && !["Enter", " "].includes(event.key)) return;
-      event?.preventDefault?.();
-      event?.stopPropagation?.();
-      const place = currentPlace();
-      if (!place) return;
-      await renderSecond(place);
-      const def = secondDef(place);
-      const html = s(document.getElementById("pcObjectsList")?.innerHTML) || '<div class="pc-empty">Ingen innhold ennå</div>';
-      global.showPlaceCardRoundPopup?.({ title:def?.label || "Gjenstander", subtitle:s(place.name || place.title), html, place, kind:def?.id || "objects" });
-    };
-    icon.addEventListener("click", open);
-    icon.addEventListener("keydown", open);
-  }
-
-  function bindFourth() {
+  function bindCategoryCollection() {
     if (categoryBound) return;
     const icon = document.getElementById("pcCategoryCollectionIcon");
     if (!icon) return;
@@ -520,11 +500,11 @@
       event?.stopPropagation?.();
       const place = currentPlace();
       if (!place) return;
-      renderFourth(place);
-      const id = fourthRoundId(place);
+      renderCategoryCollection(place);
+      const id = compatibilityFourthId(place);
       const def = defFor(place, id);
       const html = s(document.getElementById("pcCategoryCollectionList")?.innerHTML) || '<div class="pc-empty">Ingen innhold ennå</div>';
-      global.showPlaceCardRoundPopup?.({ title:def?.label || "Bilder", subtitle:s(place.name || place.title), html, place, kind:id });
+      global.showPlaceCardRoundPopup?.({ title:def?.label || "Samling", subtitle:s(place.name || place.title), html, place, kind:id });
     };
     icon.addEventListener("click", open);
     icon.addEventListener("keydown", open);
@@ -551,39 +531,34 @@
     ensureDom();
     bindBadge();
     ensureBadgePlacement();
-    for (const def of FIXED_DEFS.filter(item => ["map", "flora", "fauna"].includes(item.id))) {
+    ensureQuizAction();
+    for (const def of FIXED_DEFS.filter(item => ["objects", "map", "flora", "fauna"].includes(item.id))) {
       await renderFixed(place, def);
       bindFixed(def);
     }
-    await renderSecond(place);
-    bindSecond();
-    renderFourth(place);
-    bindFourth();
+    renderCategoryCollection(place);
+    bindCategoryCollection();
 
     const selected = selectedIds(place);
-    const configured = configuredRoundIds(place);
-    const slotIconIds = selected.map((id, index) => {
-      if (configured && index === 1) return "pcObjectsIcon";
-      if (index === 3) return "pcCategoryCollectionIcon";
-      return BY_ID.get(id)?.iconId;
-    }).filter(Boolean);
+    const slotIconIds = selected.map(id => BY_ID.get(id)?.iconId).filter(Boolean);
     const allowed = new Set(slotIconIds);
     selected.forEach((id, index) => {
       const icon = document.getElementById(slotIconIds[index]);
       const def = defFor(place, id);
       if (!icon || !def) return;
+      applyCollectionShape(icon, def);
       icon.setAttribute("aria-label", def.label);
       icon.setAttribute("role", "button");
       icon.setAttribute("tabindex", "0");
       icon.title = def.label;
     });
     const grid = card.querySelector(".pc-icons-quad");
-    const fourth = selected[3] || "images";
-    card.dataset.roundMode = "category-four";
-    card.dataset.roundCount = "4";
-    card.dataset.roundCategory = normalizeCategory(place);
-    card.dataset.roundSecond = selected[1] || "";
-    card.dataset.roundFourth = fourth;
+    const source = profileSource(place);
+    card.dataset.collectionMode = "place-card-collections-v2";
+    card.dataset.collectionCount = String(selected.length);
+    card.dataset.collectionProfileSource = source;
+    card.dataset.roundMode = "collections-v2";
+    card.dataset.roundCount = String(selected.length);
 
     if (grid) {
       grid.querySelectorAll(".pc-round").forEach(icon => {
@@ -591,9 +566,12 @@
         icon.hidden = !show;
         icon.setAttribute("aria-hidden", show ? "false" : "true");
         if (show) {
-          icon.style.order = String(slotIconIds.indexOf(icon.id));
+          const position = slotIconIds.indexOf(icon.id);
+          icon.style.order = String(position);
+          icon.dataset.collectionPosition = String(position);
         } else {
           icon.style.order = "";
+          delete icon.dataset.collectionPosition;
         }
       });
       for (const iconId of LEGACY_GRID_ICON_IDS) {
@@ -602,14 +580,15 @@
         icon.hidden = true;
         icon.setAttribute("aria-hidden", "true");
         icon.style.order = "";
+        delete icon.dataset.collectionPosition;
       }
-      grid.dataset.roundMode = "category-four";
-      grid.dataset.roundCount = "4";
-      grid.dataset.roundCategory = normalizeCategory(place);
-      grid.dataset.roundSecond = selected[1] || "";
-      grid.dataset.roundFourth = fourth;
-      grid.style.gridTemplateColumns = "repeat(2, minmax(0, 1fr))";
-      grid.style.gridTemplateRows = "repeat(2, minmax(0, 1fr))";
+      grid.dataset.collectionMode = "place-card-collections-v2";
+      grid.dataset.collectionCount = String(selected.length);
+      grid.dataset.collectionProfileSource = source;
+      grid.dataset.roundMode = "collections-v2";
+      grid.dataset.roundCount = String(selected.length);
+      grid.style.removeProperty("grid-template-columns");
+      grid.style.removeProperty("grid-template-rows");
     }
   }
 
@@ -624,42 +603,45 @@
   function patchOpenPlaceCard() {
     const original = global.openPlaceCard;
     if (typeof original !== "function") return false;
-    if (original.__canonicalCategoryFourPatched) return true;
+    if (original.__placeCardCollectionsV2Patched) return true;
     const patched = async function(...args) {
       const result = await original.apply(this, args);
       scheduleApply();
       return result;
     };
-    patched.__canonicalCategoryFourPatched = true;
+    patched.__placeCardCollectionsV2Patched = true;
     global.openPlaceCard = patched;
     return true;
   }
 
   function installApi() {
-    const registry = [...FIXED_DEFS, ...Object.values(FOURTH_DEFS)];
+    const registry = [...FIXED_DEFS, ...Object.values(CATEGORY_DEFS)];
     const byId = Object.fromEntries(registry.map(def => [def.id, def]));
-    global.HGPlaceRounds = {
+    const api = {
       registry, badge:BY_ID.get("badges"),
       base:{ standard:[...GENERAL_BASE], natur:[...NATURE_BASE] },
-      fourthByCategory:CATEGORY_FOURTH,
+      categoryCollectionByCategory:CATEGORY_FOURTH,
       byId,
-      getConfigured:configuredRoundIds,
+      getConfigured:configuredCollectionIds,
+      getProfileSource:profileSource,
       get:place => selectedIds(place).map(id => defFor(place, id)).filter(Boolean),
-      getFourth:fourthRoundId,
-      getFourthLabel:fourthLabel,
+      getCategoryCollection:compatibilityFourthId,
+      getFourth:compatibilityFourthId,
+      getFourthLabel:compatibilityFourthLabel,
       getItems:collectionItems,
       apply,
-      __canonicalCategoryFour:true
+      __canonicalPlaceCardCollectionsV2:true
     };
-    global.getPlaceRounds = global.HGPlaceRounds.get;
+    global.HGPlaceCardCollections = api;
+    global.HGPlaceRounds = api;
+    global.getPlaceRounds = api.get;
   }
 
   function init() {
     ensureDom();
     installApi();
     bindBadge();
-    bindSecond();
-    bindFourth();
+    bindCategoryCollection();
     patchOpenPlaceCard();
     scheduleApply();
     if (typeof global.openPlaceCard !== "function") {
@@ -671,13 +653,21 @@
     }
   }
 
-  global.HGVisualPlaceRounds = {
+  const compatibilityApi = {
     ids:ALL_DEFS.map(def => def.id), registry:[...ALL_DEFS], badge:BY_ID.get("badges"),
     base:{ standard:[...GENERAL_BASE], natur:[...NATURE_BASE] },
-    fourthByCategory:CATEGORY_FOURTH,
-    getConfigured:configuredRoundIds,
-    get:selectedIds, getFourth:fourthRoundId, getFourthLabel:fourthLabel, getItems:collectionItems, apply
+    categoryCollectionByCategory:CATEGORY_FOURTH,
+    getConfigured:configuredCollectionIds,
+    getProfileSource:profileSource,
+    get:selectedIds,
+    getCategoryCollection:compatibilityFourthId,
+    getFourth:compatibilityFourthId,
+    getFourthLabel:compatibilityFourthLabel,
+    getItems:collectionItems,
+    apply
   };
+  global.HGVisualPlaceRounds = compatibilityApi;
+  global.HGVisualPlaceCardCollections = compatibilityApi;
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, { once:true });
   else init();

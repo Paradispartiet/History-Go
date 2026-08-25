@@ -409,6 +409,21 @@
     return priority * 100000 + hashString(`${seed}:${mail?.id || ""}`);
   }
 
+  function evaluateWorkRhythm(mail, context) {
+    const helper = window.CivicationWorkRhythm;
+    if (typeof helper?.evaluateScene !== "function") return { eligible: true, priority_score: 0 };
+    return helper.evaluateScene(mail, context?.state || getState(), {
+      day_index: window.CivicationWorkdayRuntime?.getWorkdayDayIndex?.() || 1,
+      phase: context?.phase
+    });
+  }
+
+  function evaluateSocialStanding(mail, context) {
+    const helper = window.CivicationSocialStandingFactory;
+    if (typeof helper?.evaluateScene !== "function") return { eligible: true };
+    return helper.evaluateScene(mail, context?.state || getState());
+  }
+
   function progressionText(mail) {
     return [
       mail?.id,
@@ -476,6 +491,7 @@
       max_week: maxWeek,
       planned_primary_id: norm(plannedPrimary?.id),
       used_ids: consumedSet(state),
+      state,
       runtime
     };
   }
@@ -485,6 +501,8 @@
     if (!id) return false;
     if (context?.used_ids?.has?.(id)) return false;
     if (id === norm(context?.planned_primary_id)) return false;
+    if (evaluateWorkRhythm(mail, context).eligible !== true) return false;
+    if (evaluateSocialStanding(mail, context).eligible !== true) return false;
     // Some authored packages are intentionally reachable only through the role plan.
     // They may live in normal mail-family catalogs for SceneCatalog/MailRuntime, but
     // must never be sampled as daily_extra before or beside their planned step.
@@ -505,7 +523,8 @@
   }
 
   function filterPoolForDailySlot(pool, phase, slot, context) {
-    const safe = (Array.isArray(pool) ? pool : []).filter(mail => mailMatchesDailyProgression(mail, context));
+    const rhythmContext = { ...context, phase: norm(phase?.id || phase) };
+    const safe = (Array.isArray(pool) ? pool : []).filter(mail => mailMatchesDailyProgression(mail, rhythmContext));
     const slotId = slugify(slot?.slot || slot?.type || "");
     const slotType = slugify(slot?.type || slot?.slot || "");
 
@@ -916,10 +935,13 @@
       });
     }
 
+    const rhythmContext = { ...progressionContext, phase: norm(phase?.id) };
     candidates.sort((a, b) => {
       const ap = norm(a?.phase) === norm(phase?.id) ? 500000 : 0;
       const bp = norm(b?.phase) === norm(phase?.id) ? 500000 : 0;
-      return (bp + seededScore(seed, b)) - (ap + seededScore(seed, a));
+      const aRhythm = Number(evaluateWorkRhythm(a, rhythmContext).priority_score || 0) * 1000000;
+      const bRhythm = Number(evaluateWorkRhythm(b, rhythmContext).priority_score || 0) * 1000000;
+      return (bRhythm + bp + seededScore(seed, b)) - (aRhythm + ap + seededScore(seed, a));
     });
 
     const selected = candidates.slice(0, Math.max(0, Number(count || 1)));

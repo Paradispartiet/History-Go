@@ -14,6 +14,7 @@ export const LEGACY_FALLBACK_ROOT = "data/Civication/jobbmails";
 export const DEFAULT_OUTPUT = "data/Civication/compiledSceneRegistryV1.json";
 
 const ID_RE = /^[A-Za-z0-9][A-Za-z0-9._:-]*$/;
+const SOCIAL_AUDIENCE_ID_RE = /^(manager|team|professional|public|source):[a-z0-9][a-z0-9_.:-]{0,95}$/;
 const DAY_PHASES = new Set([
   "morning", "forenoon", "workday", "lunch", "afternoon", "dinner", "evening", "day_end", "any"
 ]);
@@ -130,6 +131,488 @@ function uniqueIds(values) {
   return uniqueStrings(values).filter((value) => ID_RE.test(value));
 }
 
+function hasOwn(object, key) {
+  return Object.prototype.hasOwnProperty.call(object, key);
+}
+
+function assertPlainObject(value, label) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    throw new Error(`${label} må være objekt`);
+  }
+  return value;
+}
+
+function assertAllowedKeys(value, allowed, label) {
+  const input = assertPlainObject(value, label);
+  const unknown = Object.keys(input).filter((key) => !allowed.has(key));
+  if (unknown.length) throw new Error(`${label} har ukjent felt: ${unknown.sort().join(", ")}`);
+  return input;
+}
+
+function strictUniqueStrings(value, label, options = {}) {
+  if (!Array.isArray(value)) throw new Error(`${label} må være array`);
+  const max = Number(options.max || 32);
+  if (value.length > max) throw new Error(`${label} kan ha maks ${max} elementer`);
+  const seen = new Set();
+  const out = [];
+  for (let index = 0; index < value.length; index += 1) {
+    const item = norm(value[index]);
+    if (!item) throw new Error(`${label}[${index}] kan ikke være tom`);
+    if (options.ids === true && !ID_RE.test(item)) {
+      throw new Error(`${label}[${index}] har ugyldig id: ${JSON.stringify(value[index])}`);
+    }
+    if (seen.has(item)) throw new Error(`${label} har duplikat: ${item}`);
+    seen.add(item);
+    out.push(item);
+  }
+  return out;
+}
+
+function optionalStrictText(value, label, allowNull = false) {
+  if (value === null && allowNull) return null;
+  const out = norm(value);
+  if (!out) throw new Error(`${label} kan ikke være tom`);
+  return out;
+}
+
+function normalizeWorkContext(value, label) {
+  if (value == null) return null;
+  const input = assertAllowedKeys(
+    value,
+    new Set([
+      "object_ids", "institution_id", "deadline_ref", "deadline_day", "deadline_phase",
+      "blocked_by_object_id", "waiting_for_actor_id", "handoff_to_actor_id", "priority",
+      "interrupts", "rework_of_scene_id", "rework_of_object_transition"
+    ]),
+    label
+  );
+  if (!hasOwn(input, "object_ids")) throw new Error(`${label}.object_ids mangler`);
+  const objectIds = strictUniqueStrings(input.object_ids, `${label}.object_ids`, { ids: true, max: 8 });
+  if (!objectIds.length) throw new Error(`${label}.object_ids må inneholde minst ett id`);
+  const out = { object_ids: objectIds };
+  if (hasOwn(input, "institution_id")) {
+    out.institution_id = assertId(input.institution_id, `${label}.institution_id`);
+  }
+  if (hasOwn(input, "deadline_ref")) {
+    out.deadline_ref = optionalStrictText(input.deadline_ref, `${label}.deadline_ref`);
+  }
+  if (hasOwn(input, "deadline_day")) {
+    const deadlineDay = Number(input.deadline_day);
+    if (!Number.isInteger(deadlineDay) || deadlineDay < 1 || deadlineDay > 366) {
+      throw new Error(`${label}.deadline_day må være heltall mellom 1 og 366`);
+    }
+    out.deadline_day = deadlineDay;
+  }
+  if (hasOwn(input, "deadline_phase")) {
+    if (!hasOwn(input, "deadline_day")) throw new Error(`${label}.deadline_phase krever deadline_day`);
+    const deadlinePhase = norm(input.deadline_phase);
+    if (!["morning", "forenoon", "workday", "lunch", "afternoon", "dinner", "evening", "day_end", "any"].includes(deadlinePhase)) {
+      throw new Error(`${label}.deadline_phase er ukjent: ${deadlinePhase || "<tom>"}`);
+    }
+    out.deadline_phase = deadlinePhase;
+  }
+  for (const key of [
+    "blocked_by_object_id", "waiting_for_actor_id", "handoff_to_actor_id",
+    "rework_of_scene_id", "rework_of_object_transition"
+  ]) {
+    if (hasOwn(input, key)) out[key] = assertId(input[key], `${label}.${key}`);
+  }
+  if (hasOwn(input, "priority")) {
+    const priority = norm(input.priority);
+    if (!["low", "normal", "high", "urgent"].includes(priority)) {
+      throw new Error(`${label}.priority er ukjent: ${priority || "<tom>"}`);
+    }
+    out.priority = priority;
+  }
+  if (hasOwn(input, "interrupts")) {
+    if (typeof input.interrupts !== "boolean") throw new Error(`${label}.interrupts må være boolean`);
+    out.interrupts = input.interrupts;
+  }
+  return out;
+}
+
+function assertSocialAudienceId(value, label) {
+  const id = norm(value);
+  if (!SOCIAL_AUDIENCE_ID_RE.test(id)) {
+    throw new Error(`${label} har ugyldig situert audience-id: ${JSON.stringify(value)}`);
+  }
+  return id;
+}
+
+function normalizeSocialStandingContext(value, label) {
+  if (value == null) return null;
+  const input = assertAllowedKeys(value, new Set(["reaction_audience_id", "requirements"]), label);
+  const out = {};
+  if (hasOwn(input, "reaction_audience_id")) {
+    out.reaction_audience_id = assertSocialAudienceId(input.reaction_audience_id, `${label}.reaction_audience_id`);
+  }
+  if (hasOwn(input, "requirements")) {
+    if (!Array.isArray(input.requirements)) throw new Error(`${label}.requirements må være array`);
+    if (input.requirements.length > 8) throw new Error(`${label}.requirements kan ha maks 8 elementer`);
+    const seen = new Set();
+    out.requirements = input.requirements.map((raw, index) => {
+      const itemLabel = `${label}.requirements[${index}]`;
+      const requirement = assertAllowedKeys(raw, new Set(["audience_id", "min", "max"]), itemLabel);
+      const audienceId = assertSocialAudienceId(requirement.audience_id, `${itemLabel}.audience_id`);
+      if (seen.has(audienceId)) throw new Error(`${label}.requirements har duplikat audience_id: ${audienceId}`);
+      seen.add(audienceId);
+      const item = { audience_id: audienceId };
+      for (const key of ["min", "max"]) {
+        if (!hasOwn(requirement, key)) continue;
+        const number = Number(requirement[key]);
+        if (!Number.isFinite(number) || number < -100 || number > 100) {
+          throw new Error(`${itemLabel}.${key} må være et tall mellom -100 og 100`);
+        }
+        item[key] = number;
+      }
+      if (!hasOwn(item, "min") && !hasOwn(item, "max")) throw new Error(`${itemLabel} krever min eller max`);
+      if (hasOwn(item, "min") && hasOwn(item, "max") && item.min > item.max) {
+        throw new Error(`${itemLabel}.min kan ikke være større enn max`);
+      }
+      return item;
+    });
+  }
+  if (!out.reaction_audience_id && !hasOwn(out, "requirements")) {
+    throw new Error(`${label} krever reaction_audience_id eller requirements`);
+  }
+  return out;
+}
+
+function normalizeAuthorityAction(value, label) {
+  if (value == null) return null;
+  const input = assertAllowedKeys(value, new Set(["action_id", "intent"]), label);
+  const intent = norm(input.intent);
+  if (!["execute", "recommend", "request_approval", "wait", "escalate"].includes(intent)) {
+    throw new Error(`${label}.intent er ukjent: ${intent || "<tom>"}`);
+  }
+  return { action_id: assertId(input.action_id, `${label}.action_id`), intent };
+}
+
+function normalizeAuthorityContext(value, label) {
+  if (value == null) return null;
+  const input = assertAllowedKeys(value, new Set([
+    "institution_id", "unit_id", "role_scope", "reporting_line", "peer_functions",
+    "external_counterparts", "goals_pressures", "approval_points", "authority_rules",
+    "resources", "escalation_paths"
+  ]), label);
+  const out = {
+    institution_id: assertId(input.institution_id, `${label}.institution_id`),
+    unit_id: assertId(input.unit_id, `${label}.unit_id`),
+    role_scope: assertId(input.role_scope, `${label}.role_scope`),
+    reporting_line: strictUniqueStrings(input.reporting_line || [], `${label}.reporting_line`, { ids: true, max: 12 }),
+    approval_points: [], authority_rules: [], resources: [], escalation_paths: []
+  };
+  for (const key of ["peer_functions", "external_counterparts", "goals_pressures"]) {
+    if (hasOwn(input, key)) out[key] = strictUniqueStrings(input[key], `${label}.${key}`, { ids: true, max: 24 });
+  }
+  const normalizeUniqueObjectArray = (raw, collectionLabel, max, idKey, normalizer) => {
+    if (!Array.isArray(raw)) throw new Error(`${collectionLabel} må være array`);
+    if (raw.length > max) throw new Error(`${collectionLabel} kan ha maks ${max} elementer`);
+    const seen = new Set();
+    return raw.map((entry, index) => {
+      const normalized = normalizer(entry, `${collectionLabel}[${index}]`);
+      const key = normalized[idKey];
+      if (seen.has(key)) throw new Error(`${collectionLabel} har duplikat ${idKey}: ${key}`);
+      seen.add(key);
+      return normalized;
+    });
+  };
+  out.approval_points = normalizeUniqueObjectArray(input.approval_points || [], `${label}.approval_points`, 16, "approval_id", (entry, itemLabel) => {
+    const item = assertAllowedKeys(entry, new Set(["approval_id", "action_id", "approver_actor_id", "approval_object_id"]), itemLabel);
+    return { approval_id: assertId(item.approval_id, `${itemLabel}.approval_id`), action_id: assertId(item.action_id, `${itemLabel}.action_id`), approver_actor_id: assertId(item.approver_actor_id, `${itemLabel}.approver_actor_id`), approval_object_id: assertId(item.approval_object_id, `${itemLabel}.approval_object_id`) };
+  });
+  out.resources = normalizeUniqueObjectArray(input.resources || [], `${label}.resources`, 16, "resource_id", (entry, itemLabel) => {
+    const item = assertAllowedKeys(entry, new Set(["resource_id", "baseline_state", "resource_object_id"]), itemLabel);
+    const baselineState = norm(item.baseline_state);
+    if (!["available", "limited", "unavailable"].includes(baselineState)) throw new Error(`${itemLabel}.baseline_state er ukjent`);
+    const resource = { resource_id: assertId(item.resource_id, `${itemLabel}.resource_id`), baseline_state: baselineState };
+    if (hasOwn(item, "resource_object_id")) resource.resource_object_id = assertId(item.resource_object_id, `${itemLabel}.resource_object_id`);
+    return resource;
+  });
+  out.escalation_paths = normalizeUniqueObjectArray(input.escalation_paths || [], `${label}.escalation_paths`, 16, "escalation_id", (entry, itemLabel) => {
+    const item = assertAllowedKeys(entry, new Set(["escalation_id", "action_id", "target_actor_id", "escalation_object_id"]), itemLabel);
+    return { escalation_id: assertId(item.escalation_id, `${itemLabel}.escalation_id`), action_id: assertId(item.action_id, `${itemLabel}.action_id`), target_actor_id: assertId(item.target_actor_id, `${itemLabel}.target_actor_id`), escalation_object_id: assertId(item.escalation_object_id, `${itemLabel}.escalation_object_id`) };
+  });
+  out.authority_rules = normalizeUniqueObjectArray(input.authority_rules || [], `${label}.authority_rules`, 32, "action_id", (entry, itemLabel) => {
+    const item = assertAllowedKeys(entry, new Set(["action_id", "authority", "approval_id", "escalation_id", "requires_resources"]), itemLabel);
+    const authority = norm(item.authority);
+    if (!["direct", "approval_required", "influence_only", "forbidden"].includes(authority)) throw new Error(`${itemLabel}.authority er ukjent`);
+    const rule = { action_id: assertId(item.action_id, `${itemLabel}.action_id`), authority, requires_resources: strictUniqueStrings(item.requires_resources || [], `${itemLabel}.requires_resources`, { ids: true, max: 16 }) };
+    if (hasOwn(item, "approval_id")) rule.approval_id = assertId(item.approval_id, `${itemLabel}.approval_id`);
+    if (hasOwn(item, "escalation_id")) rule.escalation_id = assertId(item.escalation_id, `${itemLabel}.escalation_id`);
+    return rule;
+  });
+  if (!out.authority_rules.length) throw new Error(`${label}.authority_rules må inneholde minst én regel`);
+  return out;
+}
+
+function validateAuthorityBindings(authorityContext, choices, workContext, sourcePath, sceneId) {
+  const authorityChoices = choices.filter((choice) => choice.authority_action);
+  if (!authorityContext) {
+    if (authorityChoices.length) throw new Error(`${sourcePath} :: ${sceneId} authority_action krever authority_context`);
+    return;
+  }
+  if (workContext?.institution_id && workContext.institution_id !== authorityContext.institution_id) throw new Error(`${sourcePath} :: ${sceneId} institution_id mismatch mellom work_context og authority_context`);
+  const rules = new Map(authorityContext.authority_rules.map((rule) => [rule.action_id, rule]));
+  const approvals = new Map(authorityContext.approval_points.map((point) => [point.approval_id, point]));
+  const escalations = new Map(authorityContext.escalation_paths.map((path) => [path.escalation_id, path]));
+  const resources = new Set(authorityContext.resources.map((resource) => resource.resource_id));
+  for (const rule of authorityContext.authority_rules) {
+    if (rule.authority === "approval_required") {
+      const point = rule.approval_id ? approvals.get(rule.approval_id) : null;
+      if (!point || point.action_id !== rule.action_id) throw new Error(`${sourcePath} :: ${sceneId} ${rule.action_id} mangler gyldig approval point`);
+    } else if (rule.approval_id) throw new Error(`${sourcePath} :: ${sceneId} approval_id er bare gyldig for approval_required`);
+    if (rule.escalation_id) {
+      const path = escalations.get(rule.escalation_id);
+      if (!path || path.action_id !== rule.action_id) throw new Error(`${sourcePath} :: ${sceneId} ${rule.action_id} har ugyldig escalation path`);
+    }
+    for (const resourceId of rule.requires_resources) if (!resources.has(resourceId)) throw new Error(`${sourcePath} :: ${sceneId} ${rule.action_id} krever ukjent ressurs ${resourceId}`);
+  }
+  for (const choice of authorityChoices) {
+    const action = choice.authority_action;
+    const rule = rules.get(action.action_id);
+    if (!rule) throw new Error(`${sourcePath} :: ${sceneId} choice ${choice.id} bruker ukjent authority action ${action.action_id}`);
+    const canEscalate = Boolean(rule.escalation_id);
+    const allowedIntent = (rule.authority === "direct" && ["execute", "recommend"].includes(action.intent)) || (rule.authority === "influence_only" && action.intent === "recommend") || (rule.authority === "approval_required" && ["execute", "recommend", "request_approval", "wait"].includes(action.intent)) || (action.intent === "escalate" && canEscalate);
+    if (!allowedIntent) throw new Error(`${sourcePath} :: ${sceneId} choice ${choice.id} har intent som strider mot authority rule`);
+    const ops = Array.isArray(choice.effects?.work_object_ops) ? choice.effects.work_object_ops : [];
+    if (action.intent === "request_approval") {
+      const point = approvals.get(rule.approval_id);
+      const create = ops.find((op) => op.op === "create" && op.work_object?.work_object_id === point?.approval_object_id);
+      if (!create || create.work_object.kind !== "approval" || create.work_object.status !== "pending" || create.work_object.institution_id !== authorityContext.institution_id) throw new Error(`${sourcePath} :: ${sceneId} request_approval må opprette matching pending approval-work-object`);
+    }
+    if (action.intent === "escalate") {
+      const path = escalations.get(rule.escalation_id);
+      const create = ops.find((op) => op.op === "create" && op.work_object?.work_object_id === path?.escalation_object_id);
+      if (!create || create.work_object.kind !== "escalation" || create.work_object.status !== "open" || create.work_object.institution_id !== authorityContext.institution_id) throw new Error(`${sourcePath} :: ${sceneId} escalate må opprette matching open escalation-work-object`);
+    }
+  }
+}
+
+const CREATE_SEED_KEYS = new Set([
+  "work_object_id",
+  "kind",
+  "role_scope",
+  "institution_id",
+  "title",
+  "status",
+  "phase",
+  "people_refs",
+  "place_refs",
+  "knowledge_refs",
+  "open_questions",
+  "deadline",
+  "confidentiality",
+  "flags",
+  "shared"
+]);
+const PATCH_SEED_KEYS = new Set([
+  "work_object_id",
+  "kind",
+  "role_scope",
+  "institution_id",
+  "title",
+  "people_refs",
+  "place_refs",
+  "knowledge_refs",
+  "open_questions",
+  "deadline",
+  "confidentiality",
+  "flags",
+  "shared"
+]);
+
+function normalizeWorkObjectSeed(value, label, mode) {
+  const create = mode === "create";
+  const input = assertAllowedKeys(value, create ? CREATE_SEED_KEYS : PATCH_SEED_KEYS, label);
+  const out = {
+    work_object_id: assertId(input.work_object_id, `${label}.work_object_id`)
+  };
+
+  if (create) {
+    out.kind = assertId(input.kind, `${label}.kind`);
+    out.role_scope = assertId(input.role_scope, `${label}.role_scope`);
+    out.title = optionalStrictText(input.title, `${label}.title`);
+    out.status = assertId(input.status, `${label}.status`);
+    out.phase = assertId(input.phase, `${label}.phase`);
+  } else {
+    if (hasOwn(input, "kind")) out.kind = assertId(input.kind, `${label}.kind`);
+    if (hasOwn(input, "role_scope")) out.role_scope = assertId(input.role_scope, `${label}.role_scope`);
+    if (hasOwn(input, "title")) out.title = optionalStrictText(input.title, `${label}.title`);
+  }
+
+  if (hasOwn(input, "institution_id")) {
+    out.institution_id = assertId(input.institution_id, `${label}.institution_id`);
+  }
+  for (const key of ["people_refs", "place_refs", "knowledge_refs", "open_questions"]) {
+    if (hasOwn(input, key)) out[key] = strictUniqueStrings(input[key], `${label}.${key}`);
+    else if (create) out[key] = [];
+  }
+  if (hasOwn(input, "deadline")) {
+    out.deadline = optionalStrictText(input.deadline, `${label}.deadline`, !create);
+  }
+  if (hasOwn(input, "confidentiality")) {
+    out.confidentiality = optionalStrictText(input.confidentiality, `${label}.confidentiality`, !create);
+  }
+  if (hasOwn(input, "flags")) {
+    out.flags = strictUniqueStrings(input.flags, `${label}.flags`, { ids: true });
+  } else if (create) {
+    out.flags = [];
+  }
+  if (hasOwn(input, "shared")) {
+    if (typeof input.shared !== "boolean") throw new Error(`${label}.shared må være boolean`);
+    out.shared = input.shared;
+  } else if (create) {
+    out.shared = false;
+  }
+
+  return out;
+}
+
+function normalizeWorkObjectOps(value, label) {
+  if (!Array.isArray(value)) throw new Error(`${label} må være array`);
+  if (value.length > 12) throw new Error(`${label} kan ha maks 12 operasjoner`);
+
+  const seenEvents = new Set();
+  const out = [];
+  for (let index = 0; index < value.length; index += 1) {
+    const opLabel = `${label}[${index}]`;
+    const raw = assertPlainObject(value[index], opLabel);
+    const op = norm(raw.op);
+    const allowedByOp = {
+      create: new Set(["op", "event_id", "work_object"]),
+      upsert: new Set(["op", "event_id", "work_object"]),
+      transition: new Set(["op", "event_id", "work_object_id", "to_status", "to_phase", "note"]),
+      add_flag: new Set(["op", "event_id", "work_object_id", "flag"]),
+      remove_flag: new Set(["op", "event_id", "work_object_id", "flag"]),
+      close: new Set(["op", "event_id", "work_object_id", "outcome"]),
+      note: new Set(["op", "event_id", "work_object_id", "note"])
+    };
+    const allowed = allowedByOp[op];
+    if (!allowed) throw new Error(`${opLabel}.op er ukjent: ${op || "<tom>"}`);
+    const input = assertAllowedKeys(raw, allowed, opLabel);
+    const eventId = assertId(input.event_id, `${opLabel}.event_id`);
+    if (seenEvents.has(eventId)) throw new Error(`${label} har duplikat event_id: ${eventId}`);
+    seenEvents.add(eventId);
+
+    if (op === "create" || op === "upsert") {
+      out.push({
+        op,
+        event_id: eventId,
+        work_object: normalizeWorkObjectSeed(input.work_object, `${opLabel}.work_object`, op)
+      });
+      continue;
+    }
+
+    const workObjectId = assertId(input.work_object_id, `${opLabel}.work_object_id`);
+    if (op === "transition") {
+      const transition = { op, event_id: eventId, work_object_id: workObjectId };
+      if (hasOwn(input, "to_status")) {
+        transition.to_status = assertId(input.to_status, `${opLabel}.to_status`);
+      }
+      if (hasOwn(input, "to_phase")) {
+        transition.to_phase = assertId(input.to_phase, `${opLabel}.to_phase`);
+      }
+      if (hasOwn(input, "note")) {
+        transition.note = optionalStrictText(input.note, `${opLabel}.note`);
+      }
+      if (!transition.to_status && !transition.to_phase && !transition.note) {
+        throw new Error(`${opLabel} må endre status/fase eller ha note`);
+      }
+      out.push(transition);
+      continue;
+    }
+
+    if (op === "add_flag" || op === "remove_flag") {
+      out.push({
+        op,
+        event_id: eventId,
+        work_object_id: workObjectId,
+        flag: assertId(input.flag, `${opLabel}.flag`)
+      });
+      continue;
+    }
+
+    if (op === "close") {
+      const close = { op, event_id: eventId, work_object_id: workObjectId };
+      if (hasOwn(input, "outcome")) close.outcome = optionalStrictText(input.outcome, `${opLabel}.outcome`);
+      out.push(close);
+      continue;
+    }
+
+    out.push({
+      op,
+      event_id: eventId,
+      work_object_id: workObjectId,
+      note: optionalStrictText(input.note, `${opLabel}.note`)
+    });
+  }
+  return out;
+}
+
+function normalizeSocialStandingOps(value, label) {
+  if (!Array.isArray(value)) throw new Error(`${label} må være array`);
+  if (value.length > 8) throw new Error(`${label} kan ha maks 8 operasjoner`);
+  const seenEvents = new Set();
+  return value.map((raw, index) => {
+    const opLabel = `${label}[${index}]`;
+    const input = assertAllowedKeys(raw, new Set([
+      "event_id", "audience_id", "delta", "reason", "source_actor_id"
+    ]), opLabel);
+    const eventId = assertId(input.event_id, `${opLabel}.event_id`);
+    if (seenEvents.has(eventId)) throw new Error(`${label} har duplikat event_id: ${eventId}`);
+    seenEvents.add(eventId);
+    const delta = Number(input.delta);
+    if (!Number.isFinite(delta) || delta === 0 || delta < -100 || delta > 100) {
+      throw new Error(`${opLabel}.delta må være et ikke-null tall mellom -100 og 100`);
+    }
+    const out = {
+      event_id: eventId,
+      audience_id: assertSocialAudienceId(input.audience_id, `${opLabel}.audience_id`),
+      delta
+    };
+    if (hasOwn(input, "reason")) out.reason = optionalStrictText(input.reason, `${opLabel}.reason`);
+    if (hasOwn(input, "source_actor_id")) out.source_actor_id = assertId(input.source_actor_id, `${opLabel}.source_actor_id`);
+    return out;
+  });
+}
+
+function normalizeChoiceAffordance(value, label) {
+  if (value == null) return null;
+  const input = assertAllowedKeys(value, new Set(["history_go"]), label);
+  if (!hasOwn(input, "history_go")) throw new Error(`${label}.history_go mangler`);
+  const historyGo = assertAllowedKeys(
+    input.history_go,
+    new Set(["task_mail_ids", "require_task_completed", "require_history_go_correct", "min_effect"]),
+    `${label}.history_go`
+  );
+  if (!hasOwn(historyGo, "task_mail_ids")) throw new Error(`${label}.history_go.task_mail_ids mangler`);
+  const taskMailIds = strictUniqueStrings(
+    historyGo.task_mail_ids,
+    `${label}.history_go.task_mail_ids`,
+    { ids: true, max: 8 }
+  );
+  if (!taskMailIds.length) throw new Error(`${label}.history_go.task_mail_ids må inneholde minst ett id`);
+  const out = {
+    history_go: {
+      task_mail_ids: taskMailIds,
+      require_task_completed: true,
+      require_history_go_correct: true
+    }
+  };
+  for (const key of ["require_task_completed", "require_history_go_correct"]) {
+    if (!hasOwn(historyGo, key)) continue;
+    if (typeof historyGo[key] !== "boolean") throw new Error(`${label}.history_go.${key} må være boolean`);
+    out.history_go[key] = historyGo[key];
+  }
+  if (hasOwn(historyGo, "min_effect")) {
+    const minEffect = Number(historyGo.min_effect);
+    if (!Number.isFinite(minEffect)) throw new Error(`${label}.history_go.min_effect må være et endelig tall`);
+    out.history_go.min_effect = minEffect;
+  }
+  return out;
+}
+
 function normalizeCanonicalChoiceInputs(choices) {
   return (Array.isArray(choices) ? choices : [])
     .filter((choice) => choice && typeof choice === "object")
@@ -163,7 +646,7 @@ function normalizeProgression(value) {
   return out;
 }
 
-function normalizeEffects(value, legacyScoreDelta) {
+function normalizeEffects(value, legacyScoreDelta, label = "effects") {
   const input = value && typeof value === "object" && !Array.isArray(value) ? value : {};
   const out = {};
   const score = Number.isFinite(Number(input.score_delta)) ? Number(input.score_delta) : legacyScoreDelta;
@@ -191,6 +674,14 @@ function normalizeEffects(value, legacyScoreDelta) {
   if (Object.keys(progression).length) out.progression = progression;
   const triggerSceneIds = uniqueIds(input.trigger_scene_ids);
   if (triggerSceneIds.length) out.trigger_scene_ids = triggerSceneIds;
+  if (hasOwn(input, "work_object_ops")) {
+    const workObjectOps = normalizeWorkObjectOps(input.work_object_ops, `${label}.work_object_ops`);
+    if (workObjectOps.length) out.work_object_ops = workObjectOps;
+  }
+  if (hasOwn(input, "social_standing_ops")) {
+    const standingOps = normalizeSocialStandingOps(input.social_standing_ops, `${label}.social_standing_ops`);
+    if (standingOps.length) out.social_standing_ops = standingOps;
+  }
   return out;
 }
 
@@ -199,12 +690,20 @@ function canonicalChoices(runtimeChoices, sourcePath, sceneId) {
     const out = {
       id: assertId(choice.id, `${sourcePath} :: ${sceneId} choice[${index}]`),
       label: norm(choice.label),
-      effects: normalizeEffects(choice.effects, numberOr(choice.effect, 0))
+      effects: normalizeEffects(
+        choice.effects,
+        numberOr(choice.effect, 0),
+        `${sourcePath} :: ${sceneId} choice[${index}].effects`
+      )
     };
     const reply = norm(choice.reply);
     if (reply) out.reply = reply;
     const feedback = norm(choice.feedback);
     if (feedback) out.feedback = feedback;
+    const affordance = normalizeChoiceAffordance(choice.affordance, `${sourcePath} :: ${sceneId} choice[${index}].affordance`);
+    if (affordance) out.affordance = affordance;
+    const authorityAction = normalizeAuthorityAction(choice.authority_action, `${sourcePath} :: ${sceneId} choice[${index}].authority_action`);
+    if (authorityAction) out.authority_action = authorityAction;
     return out;
   });
 }
@@ -342,11 +841,53 @@ function compileMail({ catalog, family, mail, sourcePath }) {
   const mailType = norm(mail?.mail_type || catalog?.mail_type || "job").toLowerCase();
   const sceneId = assertId(mail?.id, `${sourcePath} mail`);
   const canonicalChoiceInputs = normalizeCanonicalChoiceInputs(mail?.choices);
-  const compatibilityChoices = compatibilityChoiceInputs(mail?.choices);
   const choices = canonicalChoices(canonicalChoiceInputs, sourcePath, sceneId);
+  const compatibilityChoices = compatibilityChoiceInputs(mail?.choices).map((choice, index) => {
+    const normalizedOps = choices[index]?.effects?.work_object_ops;
+    const normalizedStandingOps = choices[index]?.effects?.social_standing_ops;
+    const normalizedAuthorityAction = choices[index]?.authority_action;
+    const normalizedAffordance = choices[index]?.affordance;
+    if ((!Array.isArray(normalizedOps) || !normalizedOps.length) &&
+        (!Array.isArray(normalizedStandingOps) || !normalizedStandingOps.length) &&
+        !normalizedAuthorityAction && !normalizedAffordance) return choice;
+    const out = { ...choice };
+    if (normalizedAuthorityAction) out.authority_action = normalizedAuthorityAction;
+    if (normalizedAffordance) out.affordance = normalizedAffordance;
+    if ((Array.isArray(normalizedOps) && normalizedOps.length) ||
+        (Array.isArray(normalizedStandingOps) && normalizedStandingOps.length)) {
+      const rawEffects = choice?.effects && typeof choice.effects === "object" && !Array.isArray(choice.effects) ? choice.effects : {};
+      out.effects = {
+        ...rawEffects,
+        ...(Array.isArray(normalizedOps) && normalizedOps.length ? { work_object_ops: normalizedOps } : {}),
+        ...(Array.isArray(normalizedStandingOps) && normalizedStandingOps.length ? { social_standing_ops: normalizedStandingOps } : {})
+      };
+    }
+    return out;
+  });
   const taskContract = normalizeTaskContract(mail);
+  const workContext = normalizeWorkContext(
+    mail?.work_context,
+    `${sourcePath} :: ${sceneId} work_context`
+  );
+  const socialStandingContext = normalizeSocialStandingContext(
+    mail?.social_standing_context,
+    `${sourcePath} :: ${sceneId} social_standing_context`
+  );
+  const authorityContext = normalizeAuthorityContext(mail?.authority_context, `${sourcePath} :: ${sceneId} authority_context`);
+  validateAuthorityBindings(authorityContext, choices, workContext, sourcePath, sceneId);
+  const sceneEffects = normalizeEffects(
+    mail?.effects,
+    undefined,
+    `${sourcePath} :: ${sceneId} effects`
+  );
   const interactionMode = resolveInteractionMode(mail, choices, taskContract);
   if (interactionMode === "decision" && choices.length < 2) throw new Error(`${sourcePath} :: ${sceneId} decision mangler to reelle valg`);
+  if (interactionMode === "decision" && choices.some((choice) => choice.affordance)) {
+    const baselineChoices = choices.filter((choice) => !choice.affordance);
+    if (baselineChoices.length < 2) {
+      throw new Error(`${sourcePath} :: ${sceneId} affordance-decision må beholde to ungated baseline-valg`);
+    }
+  }
   if (interactionMode === "task" && !taskContract) throw new Error(`${sourcePath} :: ${sceneId} task mangler gyldig task_contract`);
   if (interactionMode === "info" && choices.length) throw new Error(`${sourcePath} :: ${sceneId} info kan ikke ha valg`);
   if (interactionMode === "ack" && choices.length > 1) throw new Error(`${sourcePath} :: ${sceneId} ack kan ikke ha mer enn ett valg`);
@@ -361,9 +902,23 @@ function compileMail({ catalog, family, mail, sourcePath }) {
     mail_family: norm(mail?.mail_family || family?.id),
     choices: compatibilityChoices,
     situation: situation.length ? situation : [norm(mail?.summary)].filter(Boolean),
+    ...(workContext ? { work_context: workContext } : {}),
+    ...(socialStandingContext ? { social_standing_context: socialStandingContext } : {}),
+    ...(authorityContext ? { authority_context: authorityContext } : {}),
     scene_catalog_source_path: sourcePath,
     scene_catalog_version: 1
   };
+  if ((Array.isArray(sceneEffects.work_object_ops) && sceneEffects.work_object_ops.length) ||
+      (Array.isArray(sceneEffects.social_standing_ops) && sceneEffects.social_standing_ops.length)) {
+    const rawEffects = mail?.effects && typeof mail.effects === "object" && !Array.isArray(mail.effects)
+      ? mail.effects
+      : {};
+    compatibilityProjection.effects = {
+      ...rawEffects,
+      ...(Array.isArray(sceneEffects.work_object_ops) && sceneEffects.work_object_ops.length ? { work_object_ops: sceneEffects.work_object_ops } : {}),
+      ...(Array.isArray(sceneEffects.social_standing_ops) && sceneEffects.social_standing_ops.length ? { social_standing_ops: sceneEffects.social_standing_ops } : {})
+    };
+  }
 
   const scene = {
     schema: SCENE_SCHEMA,
@@ -376,9 +931,12 @@ function compileMail({ catalog, family, mail, sourcePath }) {
     arc_stage: resolveArcStage(mail),
     interaction_mode: interactionMode,
     thread_id: canonicalThreadId(mail, roleScope, sceneId),
+    ...(workContext ? { work_context: workContext } : {}),
+    ...(socialStandingContext ? { social_standing_context: socialStandingContext } : {}),
+    ...(authorityContext ? { authority_context: authorityContext } : {}),
     content: canonicalContent(mail, sceneId),
     choices,
-    effects: normalizeEffects(mail?.effects),
+    effects: sceneEffects,
     knowledge_contract: normalizeKnowledgeContract(mail?.knowledge_contract),
     provenance: {
       adapter: "mail_family",
@@ -431,6 +989,28 @@ function duplicateRoutingSignature(entry) {
 
 function canShadowDuplicate(kept, shadowed) {
   return duplicateRoutingSignature(kept) === duplicateRoutingSignature(shadowed);
+}
+
+function validateChoiceAffordanceReferences(entries) {
+  const byId = new Map(entries.map((entry) => [entry.id, entry]));
+  for (const entry of entries) {
+    for (const choice of Array.isArray(entry?.scene?.choices) ? entry.scene.choices : []) {
+      const taskMailIds = choice?.affordance?.history_go?.task_mail_ids;
+      if (!Array.isArray(taskMailIds)) continue;
+      for (const taskMailId of taskMailIds) {
+        const target = byId.get(taskMailId);
+        if (!target) {
+          throw new Error(`${entry.source_path} :: ${entry.id} choice ${choice.id} affordance peker på ukjent task mail ${taskMailId}`);
+        }
+        if (target.scene?.interaction_mode !== "task") {
+          throw new Error(`${entry.source_path} :: ${entry.id} choice ${choice.id} affordance peker på ${taskMailId} som ikke er task-scene`);
+        }
+        if (target.scene?.task_contract?.completion_rule !== "history_go_payload_completed") {
+          throw new Error(`${entry.source_path} :: ${entry.id} choice ${choice.id} affordance peker på ${taskMailId} uten History Go completion-kontrakt`);
+        }
+      }
+    }
+  }
 }
 
 function assertRegistryEntry(entry) {
@@ -511,6 +1091,8 @@ export async function compileRegistryFromRepo(repoRoot = process.cwd()) {
       }
     }
   }
+
+  validateChoiceAffordanceReferences(entries);
 
   // role_index is runtime-semantic: preserve source-rank, source-file and in-file mail order.
   // entries may still be canonically sorted for stable reviewable output after the index is captured.

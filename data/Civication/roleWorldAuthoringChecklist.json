@@ -2,17 +2,24 @@
   "schema": "civication_role_world_authoring_checklist_v1",
   "version": 1,
   "status": "canonical_authoring_workflow",
-  "effective_date": "2026-08-18",
+  "effective_date": "2026-08-25",
   "standard": "docs/CIVICATION_ROLE_WORLD_STANDARD.md",
   "guide": "docs/CIVICATION_ROLE_WORLD_AUTHORING_GUIDE.md",
   "policy": "data/Civication/roleWorldPolicy.json",
+  "realism_matrix_gate": {
+    "path": "data/Civication/roleWorldRealismMatrix.json",
+    "required_before_broad_rollout": true,
+    "role_specific_fields_must_remain_role_owned": true,
+    "completion_statuses_must_remain_independent": true
+  },
   "reference_world": "data/Civication/roleWorlds/naeringsliv/ekspeditor.json",
   "reference_worlds": [
     "data/Civication/roleWorlds/naeringsliv/ekspeditor.json",
     "data/Civication/roleWorlds/naeringsliv/renholder.json",
     "data/Civication/roleWorlds/by/by_radgiver_plan.json",
     "data/Civication/roleWorlds/naeringsliv/controller.json",
-    "data/Civication/roleWorlds/sport/sport_utover.json"
+    "data/Civication/roleWorlds/sport/sport_utover.json",
+    "data/Civication/roleWorlds/media/media_redaksjon.json"
   ],
   "principles": {
     "new_runtime_forbidden": true,
@@ -96,7 +103,8 @@
         "Registrer Role World-filen i data/Civication/roleWorlds/index.json.",
         "Bruk role_world_in_production mens vesentlig innhold fortsatt mangler.",
         "Sett role_world_complete først når den generelle Role World-porten og rolle-spesifikke provenance-/kvalitetstester består.",
-        "Hvis roleModel eller career-komponenter endres, regenerer Career Gameplay Matrix og rapport med eksisterende generator."
+        "Hvis roleModel eller career-komponenter endres, regenerer Career Gameplay Matrix og rapport med eksisterende generator.",
+        "Ved bred rollout: kontroller Role World Realism Matrix og ikke generaliser rolle-eide objektarter, faser, relasjons-ID-er eller profesjonskultur til globale felter."
       ]
     },
     {

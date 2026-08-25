@@ -1,0 +1,1374 @@
+{
+  "targetId": "grev_wedels_plass",
+  "categoryId": "by",
+  "sources": {
+    "grev_byleksikon": "https://oslobyleksikon.no/side/Grev_Wedels_plass",
+    "grev_oppdag": "https://www.oppdagkvadraturen.no/stoppesteder/grev-wedels-plass",
+    "grev_oslobyesvel_event": "https://www.oslobyesvel.no/kalender/avduking-av-osloskulptur/6",
+    "grev_oslobyesvel_news": "https://www.oslobyesvel.no/nyheter/ordfreren-avduket-vr-historiske-gave-lrdag-6-juni/6",
+    "grev_osm": "https://www.openstreetmap.org/way/33610051",
+    "grev_commons_now": "https://commons.wikimedia.org/wiki/File:Grev_Wedels_plass1.JPG",
+    "grev_commons_before": "https://commons.wikimedia.org/wiki/File:Caltex_bensinstasjon,_Grev_Wedels_plass_OB.Ø55-1807.jpg",
+    "grev_snl_wedel": "https://snl.no/Herman_Wedel_Jarlsberg"
+  },
+  "production_context": {
+    "manifest_category": "by",
+    "profile": "rich_5x7",
+    "standard_version": "3.3",
+    "source_brief": "data/quiz/production_briefs/by/grev_wedels_plass.json",
+    "context_artifact": "data/quiz/production_context/by/grev_wedels_plass.json",
+    "resolved_files": {
+      "pensum": "data/fag/by/pensum_by.json",
+      "emner": "data/fag/by/emner_by.json",
+      "fagkart": "data/fag/by/fagkart_by.json",
+      "methods": "data/fag/by/methods_by.json",
+      "supersetQuizMal": "data/fag/by/supersetQUIZMAL_by.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "kur_by_01_byrom_akser_knutepunkt",
+      "kur_by_04_historiske_lag_og_transformasjon",
+      "kur_by_06_makt_symboler_og_representasjon"
+    ],
+    "emne_ids": [
+      "em_by_parker_som_sosial_infrastruktur",
+      "em_by_historiske_lag_i_hverdagsrom",
+      "em_by_offentlige_rom_motesteder"
+    ],
+    "topic_hook_ids": [
+      "byliv_aapne_rom"
+    ],
+    "method_ids": [
+      "met_feltobservasjon"
+    ],
+    "thinker_ids": [
+      "william_h_whyte"
+    ],
+    "works": [
+      "The Social Life of Small Urban Spaces"
+    ],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/by/grev_wedels_plass_sets.json",
+        "data/quiz/arkiv"
+      ],
+      "active_before": {
+        "file": null,
+        "set_count": 0,
+        "question_count": 0,
+        "finding": "Ingen aktiv quizpakke fantes."
+      },
+      "decisions": [
+        "Bygg fem selvstendige læringsjobber fra den dokumenterte parkhistorien.",
+        "Hold nabobygg som relasjoner og ikke som canonical eiere.",
+        "Legg feltobservasjon i sluttsettet."
+      ],
+      "knowledge_migration": "Canonical Knowledge materialiseres deterministisk etter at quizpakken er skrevet."
+    },
+    "profile_decision": {
+      "profile": "rich",
+      "set_count": 5,
+      "questions_per_set": 7,
+      "justification": "Kildene bærer fem selvstendige jobber: identitet og urealiserte planer; bilbruk og restaurering; parkens kunstobjekter; canonical laglesning; feltobservasjon og syntese."
+    },
+    "held_back_candidates": [
+      "Gamle Logen som canonical sted uten egen Place-ID.",
+      "Militærhospitalet som canonical sted uten egen Place-ID.",
+      "Oslo Byes Vel som Brand uten registrert brandprofil og lokal logo."
+    ],
+    "theory_start_phase": "final",
+    "method_start_phase": "final"
+  },
+  "sets": [
+    {
+      "set_id": "by_grev_wedels_plass_set_1",
+      "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "grev_wedels_plass_quiz_1",
+          "quiz_id": "by_grev_wedels_plass_set_1_q1",
+          "categoryId": "by",
+          "placeId": "grev_wedels_plass",
+          "targetId": "grev_wedels_plass",
+          "question_scope": "place",
+          "question": "Hvor ligger Grev Wedels plass?",
+          "options": [
+            "Mellom Kvadraturen og Akershus festning",
+            "Ved Slottet",
+            "På Grünerløkka"
+          ],
+          "answer": "Mellom Kvadraturen og Akershus festning",
+          "answerIndex": 0,
+          "knowledge": "Parken ligger mellom Kvadraturen og Akershus festning.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "grev_oppdag"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Parken ligger mellom Kvadraturen og Akershus festning.",
+          "claim_id": "claim_grev_wedels_plass_quiz_1",
+          "primary_knowledge_unit_id": "ku_by_parken_ligger_mellom_kva_cea31526ad",
+          "knowledge_unit_ids": [
+            "ku_by_parken_ligger_mellom_kva_cea31526ad"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grev_wedels_plass_quiz_2",
+          "quiz_id": "by_grev_wedels_plass_set_1_q2",
+          "categoryId": "by",
+          "placeId": "grev_wedels_plass",
+          "targetId": "grev_wedels_plass",
+          "question_scope": "place",
+          "question": "Når fikk plassen navn etter Herman Wedel Jarlsberg?",
+          "options": [
+            "1814",
+            "1852",
+            "1869"
+          ],
+          "answer": "1852",
+          "answerIndex": 1,
+          "knowledge": "Plassen fikk navn etter Herman Wedel Jarlsberg i 1852.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "grev_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Plassen fikk navn etter Herman Wedel Jarlsberg i 1852.",
+          "claim_id": "claim_grev_wedels_plass_quiz_2",
+          "primary_knowledge_unit_id": "ku_by_plassen_fikk_navn_etter__14a2918a77",
+          "knowledge_unit_ids": [
+            "ku_by_plassen_fikk_navn_etter__14a2918a77"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grev_wedels_plass_quiz_3",
+          "quiz_id": "by_grev_wedels_plass_set_1_q3",
+          "categoryId": "by",
+          "placeId": "grev_wedels_plass",
+          "targetId": "grev_wedels_plass",
+          "question_scope": "place",
+          "question": "Når ble parken anlagt?",
+          "options": [
+            "1852",
+            "1984",
+            "1869"
+          ],
+          "answer": "1869",
+          "answerIndex": 2,
+          "knowledge": "Parken ble anlagt i 1869.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_parker_som_sosial_infrastruktur",
+          "source": [
+            "grev_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Parken ble anlagt i 1869.",
+          "claim_id": "claim_grev_wedels_plass_quiz_3",
+          "primary_knowledge_unit_id": "ku_by_parken_ble_anlagt_i_1869_900c9ca1fa",
+          "knowledge_unit_ids": [
+            "ku_by_parken_ble_anlagt_i_1869_900c9ca1fa"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grev_wedels_plass_quiz_4",
+          "quiz_id": "by_grev_wedels_plass_set_1_q4",
+          "categoryId": "by",
+          "placeId": "grev_wedels_plass",
+          "targetId": "grev_wedels_plass",
+          "question_scope": "place",
+          "question": "Hva var området vurdert som tomt for i 1830-årene?",
+          "options": [
+            "Stortinget og statlige institusjoner",
+            "En jernbanestasjon",
+            "Et universitetssykehus"
+          ],
+          "answer": "Stortinget og statlige institusjoner",
+          "answerIndex": 0,
+          "knowledge": "Området ble vurdert for Stortinget, domstoler, Riksrevisjonen og Riksarkivet.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "grev_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Området ble vurdert for Stortinget, domstoler, Riksrevisjonen og Riksarkivet.",
+          "claim_id": "claim_grev_wedels_plass_quiz_4",
+          "primary_knowledge_unit_id": "ku_by_omradet_ble_vurdert_for__0c0a986641",
+          "knowledge_unit_ids": [
+            "ku_by_omradet_ble_vurdert_for__0c0a986641"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grev_wedels_plass_quiz_5",
+          "quiz_id": "by_grev_wedels_plass_set_1_q5",
+          "categoryId": "by",
+          "placeId": "grev_wedels_plass",
+          "targetId": "grev_wedels_plass",
+          "question_scope": "place",
+          "question": "Hvorfor ble Groschs statsplaner ikke realisert her?",
+          "options": [
+            "Grunnen var privateid",
+            "Militæret bandt området til andre formål",
+            "Byen manglet stein"
+          ],
+          "answer": "Militæret bandt området til andre formål",
+          "answerIndex": 1,
+          "knowledge": "Planene strandet fordi området igjen ble bundet til militære formål.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "grev_oppdag"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Planene strandet fordi området igjen ble bundet til militære formål.",
+          "claim_id": "claim_grev_wedels_plass_quiz_5",
+          "primary_knowledge_unit_id": "ku_by_planene_strandet_fordi_o_9355acb3e5",
+          "knowledge_unit_ids": [
+            "ku_by_planene_strandet_fordi_o_9355acb3e5"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grev_wedels_plass_quiz_6",
+          "quiz_id": "by_grev_wedels_plass_set_1_q6",
+          "categoryId": "by",
+          "placeId": "grev_wedels_plass",
+          "targetId": "grev_wedels_plass",
+          "question_scope": "place",
+          "question": "Hvem er plassen oppkalt etter?",
+          "options": [
+            "Christian Heinrich Grosch",
+            "Kristian Blystad",
+            "Herman Wedel Jarlsberg"
+          ],
+          "answer": "Herman Wedel Jarlsberg",
+          "answerIndex": 2,
+          "knowledge": "Plassen er oppkalt etter politikeren Herman Wedel Jarlsberg.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "grev_oppdag"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Plassen er oppkalt etter politikeren Herman Wedel Jarlsberg.",
+          "claim_id": "claim_grev_wedels_plass_quiz_6",
+          "primary_knowledge_unit_id": "ku_by_plassen_er_oppkalt_etter_446f3307f2",
+          "knowledge_unit_ids": [
+            "ku_by_plassen_er_oppkalt_etter_446f3307f2"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grev_wedels_plass_quiz_7",
+          "quiz_id": "by_grev_wedels_plass_set_1_q7",
+          "categoryId": "by",
+          "placeId": "grev_wedels_plass",
+          "targetId": "grev_wedels_plass",
+          "question_scope": "place",
+          "question": "Hva er canonical sted i History Go?",
+          "options": [
+            "Selve parkrommet",
+            "Gamle Logen",
+            "Militærhospitalet"
+          ],
+          "answer": "Selve parkrommet",
+          "answerIndex": 0,
+          "knowledge": "Canonical sted er selve parken, ikke nabobyggene.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "grev_osm"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Canonical sted er selve parken, ikke nabobyggene.",
+          "claim_id": "claim_grev_wedels_plass_quiz_7",
+          "primary_knowledge_unit_id": "ku_by_canonical_sted_er_selve__6f5240fd73",
+          "knowledge_unit_ids": [
+            "ku_by_canonical_sted_er_selve__6f5240fd73"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "by_grev_wedels_plass_set_2",
+      "level": 2,
+      "order": 2,
+      "phase": "middle",
+      "xp": 60,
+      "questions": [
+        {
+          "id": "grev_wedels_plass_quiz_8",
+          "quiz_id": "by_grev_wedels_plass_set_2_q1",
+          "categoryId": "by",
+          "placeId": "grev_wedels_plass",
+          "targetId": "grev_wedels_plass",
+          "question_scope": "place",
+          "question": "Hva skjøv parkfunksjonen tilbake på 1900-tallet?",
+          "options": [
+            "En kanal",
+            "Biler, parkering og midlertidige anlegg",
+            "Et tivoli"
+          ],
+          "answer": "Biler, parkering og midlertidige anlegg",
+          "answerIndex": 1,
+          "knowledge": "Bilbruk, parkering, bensinstasjon og krigsanlegg tok deler av plassen.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "grev_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Bilbruk, parkering, bensinstasjon og krigsanlegg tok deler av plassen.",
+          "claim_id": "claim_grev_wedels_plass_quiz_8",
+          "primary_knowledge_unit_id": "ku_by_bilbruk_parkering_bensin_47826af3b1",
+          "knowledge_unit_ids": [
+            "ku_by_bilbruk_parkering_bensin_47826af3b1"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grev_wedels_plass_quiz_9",
+          "quiz_id": "by_grev_wedels_plass_set_2_q2",
+          "categoryId": "by",
+          "placeId": "grev_wedels_plass",
+          "targetId": "grev_wedels_plass",
+          "question_scope": "place",
+          "question": "Hva viser Oslo Museums fotografi fra 1955?",
+          "options": [
+            "En trikkeholdeplass",
+            "Et markedstelt",
+            "En Caltex bensinstasjon"
+          ],
+          "answer": "En Caltex bensinstasjon",
+          "answerIndex": 2,
+          "knowledge": "Fotografiet fra 1955 viser Caltex-stasjonen på Grev Wedels plass.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "grev_commons_before"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Fotografiet fra 1955 viser Caltex-stasjonen på Grev Wedels plass.",
+          "claim_id": "claim_grev_wedels_plass_quiz_9",
+          "primary_knowledge_unit_id": "ku_by_fotografiet_fra_1955_vis_7a69528e73",
+          "knowledge_unit_ids": [
+            "ku_by_fotografiet_fra_1955_vis_7a69528e73"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grev_wedels_plass_quiz_10",
+          "quiz_id": "by_grev_wedels_plass_set_2_q3",
+          "categoryId": "by",
+          "placeId": "grev_wedels_plass",
+          "targetId": "grev_wedels_plass",
+          "question_scope": "place",
+          "question": "Hva skjedde med parken på 1980-tallet?",
+          "options": [
+            "Den ble gjenopprettet",
+            "Den ble bygget ned",
+            "Den ble flyttet"
+          ],
+          "answer": "Den ble gjenopprettet",
+          "answerIndex": 0,
+          "knowledge": "Parkfunksjonen ble gjenopprettet på 1980-tallet.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_parker_som_sosial_infrastruktur",
+          "source": [
+            "grev_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Parkfunksjonen ble gjenopprettet på 1980-tallet.",
+          "claim_id": "claim_grev_wedels_plass_quiz_10",
+          "primary_knowledge_unit_id": "ku_by_parkfunksjonen_ble_gjeno_4656607be8",
+          "knowledge_unit_ids": [
+            "ku_by_parkfunksjonen_ble_gjeno_4656607be8"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grev_wedels_plass_quiz_11",
+          "quiz_id": "by_grev_wedels_plass_set_2_q4",
+          "categoryId": "by",
+          "placeId": "grev_wedels_plass",
+          "targetId": "grev_wedels_plass",
+          "question_scope": "place",
+          "question": "Hvilket bygg ble reist på nytt ved plassen i 1981–1984?",
+          "options": [
+            "Stortinget",
+            "Militærhospitalet",
+            "Norges Bank"
+          ],
+          "answer": "Militærhospitalet",
+          "answerIndex": 1,
+          "knowledge": "Militærhospitalet ble satt opp igjen ved plassen i 1981–1984.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "grev_oslobyesvel_event"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Militærhospitalet ble satt opp igjen ved plassen i 1981–1984.",
+          "claim_id": "claim_grev_wedels_plass_quiz_11",
+          "primary_knowledge_unit_id": "ku_by_milit_rhospitalet_ble_sa_dcb5b1c039",
+          "knowledge_unit_ids": [
+            "ku_by_milit_rhospitalet_ble_sa_dcb5b1c039"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grev_wedels_plass_quiz_12",
+          "quiz_id": "by_grev_wedels_plass_set_2_q5",
+          "categoryId": "by",
+          "placeId": "grev_wedels_plass",
+          "targetId": "grev_wedels_plass",
+          "question_scope": "place",
+          "question": "Hvor sto Militærhospitalet opprinnelig?",
+          "options": [
+            "På Bankplassen",
+            "På Karl Johan",
+            "I Akersgata"
+          ],
+          "answer": "I Akersgata",
+          "answerIndex": 2,
+          "knowledge": "Militærhospitalet sto opprinnelig i Akersgata.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "grev_oslobyesvel_event"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Militærhospitalet sto opprinnelig i Akersgata.",
+          "claim_id": "claim_grev_wedels_plass_quiz_12",
+          "primary_knowledge_unit_id": "ku_by_milit_rhospitalet_sto_op_5026de98ed",
+          "knowledge_unit_ids": [
+            "ku_by_milit_rhospitalet_sto_op_5026de98ed"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grev_wedels_plass_quiz_13",
+          "quiz_id": "by_grev_wedels_plass_set_2_q6",
+          "categoryId": "by",
+          "placeId": "grev_wedels_plass",
+          "targetId": "grev_wedels_plass",
+          "question_scope": "place",
+          "question": "Hva er viktig ved omtalen av Gamle Logen?",
+          "options": [
+            "Det er et nabobygg, ikke selve parken",
+            "Det ble bygget som fontene",
+            "Det ligger under bakken"
+          ],
+          "answer": "Det er et nabobygg, ikke selve parken",
+          "answerIndex": 0,
+          "knowledge": "Gamle Logen er et viktig nabobygg, men ikke synonymt med parken.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "grev_oppdag"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Gamle Logen er et viktig nabobygg, men ikke synonymt med parken.",
+          "claim_id": "claim_grev_wedels_plass_quiz_13",
+          "primary_knowledge_unit_id": "ku_by_gamle_logen_er_et_viktig_8ab13326ff",
+          "knowledge_unit_ids": [
+            "ku_by_gamle_logen_er_et_viktig_8ab13326ff"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grev_wedels_plass_quiz_14",
+          "quiz_id": "by_grev_wedels_plass_set_2_q7",
+          "categoryId": "by",
+          "placeId": "grev_wedels_plass",
+          "targetId": "grev_wedels_plass",
+          "question_scope": "place",
+          "question": "Hva gjør plassens historie til et eksempel på historiske lag?",
+          "options": [
+            "Alle bygg er fra samme år",
+            "Flere funksjoner har avløst hverandre på samme grunn",
+            "Plassen har aldri endret bruk"
+          ],
+          "answer": "Flere funksjoner har avløst hverandre på samme grunn",
+          "answerIndex": 1,
+          "knowledge": "Statsplaner, park, bilbruk, krigsanlegg og vern ligger som ulike tidslag.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "grev_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Statsplaner, park, bilbruk, krigsanlegg og vern ligger som ulike tidslag.",
+          "claim_id": "claim_grev_wedels_plass_quiz_14",
+          "primary_knowledge_unit_id": "ku_by_statsplaner_park_bilbruk_889e850b78",
+          "knowledge_unit_ids": [
+            "ku_by_statsplaner_park_bilbruk_889e850b78"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "by_grev_wedels_plass_set_3",
+      "level": 3,
+      "order": 3,
+      "phase": "middle",
+      "xp": 70,
+      "questions": [
+        {
+          "id": "grev_wedels_plass_quiz_15",
+          "quiz_id": "by_grev_wedels_plass_set_3_q1",
+          "categoryId": "by",
+          "placeId": "grev_wedels_plass",
+          "targetId": "grev_wedels_plass",
+          "question_scope": "place",
+          "question": "Hvem laget «Kvinnetorso»?",
+          "options": [
+            "Skule Waksvik",
+            "Christian Heinrich Grosch",
+            "Kristian Blystad"
+          ],
+          "answer": "Kristian Blystad",
+          "answerIndex": 2,
+          "knowledge": "Kristian Blystad laget «Kvinnetorso».",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "grev_oslobyesvel_news"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kristian Blystad laget «Kvinnetorso».",
+          "claim_id": "claim_grev_wedels_plass_quiz_15",
+          "primary_knowledge_unit_id": "ku_by_kristian_blystad_laget_k_0badbd1272",
+          "knowledge_unit_ids": [
+            "ku_by_kristian_blystad_laget_k_0badbd1272"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grev_wedels_plass_quiz_16",
+          "quiz_id": "by_grev_wedels_plass_set_3_q2",
+          "categoryId": "by",
+          "placeId": "grev_wedels_plass",
+          "targetId": "grev_wedels_plass",
+          "question_scope": "place",
+          "question": "Når ble «Kvinnetorso» avduket?",
+          "options": [
+            "6. juni 2026",
+            "17. mai 1869",
+            "6. juni 1984"
+          ],
+          "answer": "6. juni 2026",
+          "answerIndex": 0,
+          "knowledge": "«Kvinnetorso» ble avduket 6. juni 2026.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "grev_oslobyesvel_news"
+          ],
+          "source_origin": "external",
+          "claim_basis": "«Kvinnetorso» ble avduket 6. juni 2026.",
+          "claim_id": "claim_grev_wedels_plass_quiz_16",
+          "primary_knowledge_unit_id": "ku_by_kvinnetorso_ble_avduket__5cc809abab",
+          "knowledge_unit_ids": [
+            "ku_by_kvinnetorso_ble_avduket__5cc809abab"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grev_wedels_plass_quiz_17",
+          "quiz_id": "by_grev_wedels_plass_set_3_q3",
+          "categoryId": "by",
+          "placeId": "grev_wedels_plass",
+          "targetId": "grev_wedels_plass",
+          "question_scope": "place",
+          "question": "Hvem avduket «Kvinnetorso»?",
+          "options": [
+            "Kong Harald",
+            "Ordfører Anne Lindboe",
+            "Riksantikvaren"
+          ],
+          "answer": "Ordfører Anne Lindboe",
+          "answerIndex": 1,
+          "knowledge": "Ordfører Anne Lindboe avduket «Kvinnetorso».",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "grev_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Ordfører Anne Lindboe avduket «Kvinnetorso».",
+          "claim_id": "claim_grev_wedels_plass_quiz_17",
+          "primary_knowledge_unit_id": "ku_by_ordf_rer_anne_lindboe_av_d51a266e46",
+          "knowledge_unit_ids": [
+            "ku_by_ordf_rer_anne_lindboe_av_d51a266e46"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grev_wedels_plass_quiz_18",
+          "quiz_id": "by_grev_wedels_plass_set_3_q4",
+          "categoryId": "by",
+          "placeId": "grev_wedels_plass",
+          "targetId": "grev_wedels_plass",
+          "question_scope": "place",
+          "question": "Hvorfor ble «Kvinnetorso» gitt til Oslo?",
+          "options": [
+            "Som premie i en arkitektkonkurranse",
+            "Som reklame for en bedrift",
+            "Som gave knyttet til Christianias 400-årsmarkering"
+          ],
+          "answer": "Som gave knyttet til Christianias 400-årsmarkering",
+          "answerIndex": 2,
+          "knowledge": "Skulpturen var en gave knyttet til Christianias 400-årsmarkering.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "grev_oslobyesvel_event"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Skulpturen var en gave knyttet til Christianias 400-årsmarkering.",
+          "claim_id": "claim_grev_wedels_plass_quiz_18",
+          "primary_knowledge_unit_id": "ku_by_skulpturen_var_en_gave_k_040a5f5668",
+          "knowledge_unit_ids": [
+            "ku_by_skulpturen_var_en_gave_k_040a5f5668"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grev_wedels_plass_quiz_19",
+          "quiz_id": "by_grev_wedels_plass_set_3_q5",
+          "categoryId": "by",
+          "placeId": "grev_wedels_plass",
+          "targetId": "grev_wedels_plass",
+          "question_scope": "place",
+          "question": "Hvem laget «Hanne på stranden»?",
+          "options": [
+            "Skule Waksvik",
+            "Kristian Blystad",
+            "Herman Wedel Jarlsberg"
+          ],
+          "answer": "Skule Waksvik",
+          "answerIndex": 0,
+          "knowledge": "Skule Waksvik laget «Hanne på stranden».",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "grev_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Skule Waksvik laget «Hanne på stranden».",
+          "claim_id": "claim_grev_wedels_plass_quiz_19",
+          "primary_knowledge_unit_id": "ku_by_skule_waksvik_laget_hann_98a4121dd2",
+          "knowledge_unit_ids": [
+            "ku_by_skule_waksvik_laget_hann_98a4121dd2"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grev_wedels_plass_quiz_20",
+          "quiz_id": "by_grev_wedels_plass_set_3_q6",
+          "categoryId": "by",
+          "placeId": "grev_wedels_plass",
+          "targetId": "grev_wedels_plass",
+          "question_scope": "place",
+          "question": "Hvor i parken står «Hanne på stranden»?",
+          "options": [
+            "Midt i fontenen",
+            "I det nordvestre hjørnet",
+            "Ved festningsporten"
+          ],
+          "answer": "I det nordvestre hjørnet",
+          "answerIndex": 1,
+          "knowledge": "«Hanne på stranden» står i parkens nordvestre hjørne.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "grev_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "«Hanne på stranden» står i parkens nordvestre hjørne.",
+          "claim_id": "claim_grev_wedels_plass_quiz_20",
+          "primary_knowledge_unit_id": "ku_by_hanne_pa_stranden_star_i_8bb6820673",
+          "knowledge_unit_ids": [
+            "ku_by_hanne_pa_stranden_star_i_8bb6820673"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grev_wedels_plass_quiz_21",
+          "quiz_id": "by_grev_wedels_plass_set_3_q7",
+          "categoryId": "by",
+          "placeId": "grev_wedels_plass",
+          "targetId": "grev_wedels_plass",
+          "question_scope": "place",
+          "question": "Hvilket parkelement er synlig på fotografiet fra 2007?",
+          "options": [
+            "Bensinpumpen",
+            "En krigsbrakke",
+            "Fontenen"
+          ],
+          "answer": "Fontenen",
+          "answerIndex": 2,
+          "knowledge": "Fotografiet fra 2007 viser fontenen i parken.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_by_parker_som_sosial_infrastruktur",
+          "source": [
+            "grev_commons_now"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Fotografiet fra 2007 viser fontenen i parken.",
+          "claim_id": "claim_grev_wedels_plass_quiz_21",
+          "primary_knowledge_unit_id": "ku_by_fotografiet_fra_2007_vis_7df97ac87a",
+          "knowledge_unit_ids": [
+            "ku_by_fotografiet_fra_2007_vis_7df97ac87a"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "by_grev_wedels_plass_set_4",
+      "level": 4,
+      "order": 4,
+      "phase": "bridge",
+      "xp": 80,
+      "questions": [
+        {
+          "id": "grev_wedels_plass_quiz_22",
+          "quiz_id": "by_grev_wedels_plass_set_4_q1",
+          "categoryId": "by",
+          "placeId": "grev_wedels_plass",
+          "targetId": "grev_wedels_plass",
+          "question_scope": "place",
+          "question": "Hva forbinder de tre Objects i PlaceCard?",
+          "options": [
+            "De er fysiske spor i selve parkrommet",
+            "De er varemerker",
+            "De er urealiserte bygg"
+          ],
+          "answer": "De er fysiske spor i selve parkrommet",
+          "answerIndex": 0,
+          "knowledge": "Kvinnetorso, Hanne på stranden og fontenen er fysiske spor i parken.",
+          "difficulty": 4,
+          "question_type": "analysis",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "grev_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kvinnetorso, Hanne på stranden og fontenen er fysiske spor i parken.",
+          "claim_id": "claim_grev_wedels_plass_quiz_22",
+          "primary_knowledge_unit_id": "ku_by_kvinnetorso_hanne_pa_str_4a481a0bed",
+          "knowledge_unit_ids": [
+            "ku_by_kvinnetorso_hanne_pa_str_4a481a0bed"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grev_wedels_plass_quiz_23",
+          "quiz_id": "by_grev_wedels_plass_set_4_q2",
+          "categoryId": "by",
+          "placeId": "grev_wedels_plass",
+          "targetId": "grev_wedels_plass",
+          "question_scope": "place",
+          "question": "Hva er den sikreste måten å skille plassen fra nabobyggene?",
+          "options": [
+            "Tell vinduer",
+            "Bruk parkpolygonet og canonical eiergrense",
+            "Følg gatenavnet alene"
+          ],
+          "answer": "Bruk parkpolygonet og canonical eiergrense",
+          "answerIndex": 1,
+          "knowledge": "Parkpolygonet og eiergrensen skiller parken fra nabobyggene.",
+          "difficulty": 4,
+          "question_type": "analysis",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "grev_osm"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Parkpolygonet og eiergrensen skiller parken fra nabobyggene.",
+          "claim_id": "claim_grev_wedels_plass_quiz_23",
+          "primary_knowledge_unit_id": "ku_by_parkpolygonet_og_eiergre_5c95b3ecc2",
+          "knowledge_unit_ids": [
+            "ku_by_parkpolygonet_og_eiergre_5c95b3ecc2"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grev_wedels_plass_quiz_24",
+          "quiz_id": "by_grev_wedels_plass_set_4_q3",
+          "categoryId": "by",
+          "placeId": "grev_wedels_plass",
+          "targetId": "grev_wedels_plass",
+          "question_scope": "place",
+          "question": "Hva viser navnet Grev Wedels plass i byrommet?",
+          "options": [
+            "At stedet var et greveslott",
+            "At parken var privat",
+            "Minnet om Herman Wedel Jarlsberg"
+          ],
+          "answer": "Minnet om Herman Wedel Jarlsberg",
+          "answerIndex": 2,
+          "knowledge": "Navnet gjør Herman Wedel Jarlsberg synlig som historisk eponym.",
+          "difficulty": 4,
+          "question_type": "analysis",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "grev_snl_wedel"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Navnet gjør Herman Wedel Jarlsberg synlig som historisk eponym.",
+          "claim_id": "claim_grev_wedels_plass_quiz_24",
+          "primary_knowledge_unit_id": "ku_by_navnet_gj_r_herman_wedel_a0de31d3b5",
+          "knowledge_unit_ids": [
+            "ku_by_navnet_gj_r_herman_wedel_a0de31d3b5"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grev_wedels_plass_quiz_25",
+          "quiz_id": "by_grev_wedels_plass_set_4_q4",
+          "categoryId": "by",
+          "placeId": "grev_wedels_plass",
+          "targetId": "grev_wedels_plass",
+          "question_scope": "place",
+          "question": "Hvilken rolle hadde Herman Wedel Jarlsberg i 1814?",
+          "options": [
+            "Representant på Riksforsamlingen",
+            "Ordfører i Christiania",
+            "Arkitekt for parken"
+          ],
+          "answer": "Representant på Riksforsamlingen",
+          "answerIndex": 0,
+          "knowledge": "Wedel Jarlsberg representerte Jarlsberg grevskap på Riksforsamlingen.",
+          "difficulty": 4,
+          "question_type": "analysis",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "grev_snl_wedel"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Wedel Jarlsberg representerte Jarlsberg grevskap på Riksforsamlingen.",
+          "claim_id": "claim_grev_wedels_plass_quiz_25",
+          "primary_knowledge_unit_id": "ku_by_wedel_jarlsberg_represen_2d8a2fa90b",
+          "knowledge_unit_ids": [
+            "ku_by_wedel_jarlsberg_represen_2d8a2fa90b"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grev_wedels_plass_quiz_26",
+          "quiz_id": "by_grev_wedels_plass_set_4_q5",
+          "categoryId": "by",
+          "placeId": "grev_wedels_plass",
+          "targetId": "grev_wedels_plass",
+          "question_scope": "place",
+          "question": "Hva kan et ubygd prosjekt fortelle?",
+          "options": [
+            "At området mangler historie",
+            "Hvilke makt- og byplanideer som ble vurdert",
+            "At alle planer blir gjennomført"
+          ],
+          "answer": "Hvilke makt- og byplanideer som ble vurdert",
+          "answerIndex": 1,
+          "knowledge": "Urealiserte planer viser hvilke institusjoner og maktideer som ble vurdert.",
+          "difficulty": 4,
+          "question_type": "analysis",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "grev_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Urealiserte planer viser hvilke institusjoner og maktideer som ble vurdert.",
+          "claim_id": "claim_grev_wedels_plass_quiz_26",
+          "primary_knowledge_unit_id": "ku_by_urealiserte_planer_viser_ed0c0efb27",
+          "knowledge_unit_ids": [
+            "ku_by_urealiserte_planer_viser_ed0c0efb27"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grev_wedels_plass_quiz_27",
+          "quiz_id": "by_grev_wedels_plass_set_4_q6",
+          "categoryId": "by",
+          "placeId": "grev_wedels_plass",
+          "targetId": "grev_wedels_plass",
+          "question_scope": "place",
+          "question": "Hvorfor er 1869 valgt som stedets år?",
+          "options": [
+            "Det er året navnet kom",
+            "Det er året hospitalet ble flyttet",
+            "Det er året parken ble anlagt"
+          ],
+          "answer": "Det er året parken ble anlagt",
+          "answerIndex": 2,
+          "knowledge": "1869 er parkens anleggsår og derfor canonical år.",
+          "difficulty": 4,
+          "question_type": "analysis",
+          "emne_id": "em_by_parker_som_sosial_infrastruktur",
+          "source": [
+            "grev_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "1869 er parkens anleggsår og derfor canonical år.",
+          "claim_id": "claim_grev_wedels_plass_quiz_27",
+          "primary_knowledge_unit_id": "ku_by_1869_er_parkens_anleggsa_4764368215",
+          "knowledge_unit_ids": [
+            "ku_by_1869_er_parkens_anleggsa_4764368215"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grev_wedels_plass_quiz_28",
+          "quiz_id": "by_grev_wedels_plass_set_4_q7",
+          "categoryId": "by",
+          "placeId": "grev_wedels_plass",
+          "targetId": "grev_wedels_plass",
+          "question_scope": "place",
+          "question": "Hva må et før/nå-par her brukes til?",
+          "options": [
+            "Å lese funksjonsskiftet, ikke måle identiske fasader",
+            "Å bevise samme kamerastandpunkt",
+            "Å datere alle trær"
+          ],
+          "answer": "Å lese funksjonsskiftet, ikke måle identiske fasader",
+          "answerIndex": 0,
+          "knowledge": "Bildene har ulike standpunkter og brukes til laglesning.",
+          "difficulty": 4,
+          "question_type": "analysis",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "grev_commons_before"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Bildene har ulike standpunkter og brukes til laglesning.",
+          "claim_id": "claim_grev_wedels_plass_quiz_28",
+          "primary_knowledge_unit_id": "ku_by_bildene_har_ulike_standp_cd4ae4960c",
+          "knowledge_unit_ids": [
+            "ku_by_bildene_har_ulike_standp_cd4ae4960c"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "by_grev_wedels_plass_set_5",
+      "level": 5,
+      "order": 5,
+      "phase": "final",
+      "xp": 90,
+      "questions": [
+        {
+          "id": "grev_wedels_plass_quiz_29",
+          "quiz_id": "by_grev_wedels_plass_set_5_q1",
+          "categoryId": "by",
+          "placeId": "grev_wedels_plass",
+          "targetId": "grev_wedels_plass",
+          "question_scope": "place",
+          "question": "Hva er tydeligste endring mellom 1955 og 2007?",
+          "options": [
+            "Fra havn til flyplass",
+            "Fra bensinstasjon og bilbruk til parkrom",
+            "Fra kirke til skole"
+          ],
+          "answer": "Fra bensinstasjon og bilbruk til parkrom",
+          "answerIndex": 1,
+          "knowledge": "Før/nå-paret viser skiftet fra bensinstasjon og bilbruk til grønt parkrom.",
+          "difficulty": 5,
+          "question_type": "analysis",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "grev_commons_now"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Før/nå-paret viser skiftet fra bensinstasjon og bilbruk til grønt parkrom.",
+          "claim_id": "claim_grev_wedels_plass_quiz_29",
+          "method_id": "met_feltobservasjon",
+          "guidance_basis": [
+            "Observer samme del av parken på minst to tidspunkt.",
+            "Noter synlige stopp, sitteopphold og ganglinjer før du tolker bruken."
+          ],
+          "primary_knowledge_unit_id": "ku_by_f_r_na_paret_viser_skift_79194e48d7",
+          "knowledge_unit_ids": [
+            "ku_by_f_r_na_paret_viser_skift_79194e48d7"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grev_wedels_plass_quiz_30",
+          "quiz_id": "by_grev_wedels_plass_set_5_q2",
+          "categoryId": "by",
+          "placeId": "grev_wedels_plass",
+          "targetId": "grev_wedels_plass",
+          "question_scope": "place",
+          "question": "Hva bør du observere ved fontenen?",
+          "options": [
+            "Hvor mange biler som tanker",
+            "Hvilken bank som eier plassen",
+            "Hvordan ganglinjer og opphold organiseres"
+          ],
+          "answer": "Hvordan ganglinjer og opphold organiseres",
+          "answerIndex": 2,
+          "knowledge": "Fontenen kan brukes til å observere ganglinjer og opphold.",
+          "difficulty": 5,
+          "question_type": "analysis",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "grev_commons_now"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Fontenen kan brukes til å observere ganglinjer og opphold.",
+          "claim_id": "claim_grev_wedels_plass_quiz_30",
+          "method_id": "met_feltobservasjon",
+          "guidance_basis": [
+            "Observer samme del av parken på minst to tidspunkt.",
+            "Noter synlige stopp, sitteopphold og ganglinjer før du tolker bruken."
+          ],
+          "primary_knowledge_unit_id": "ku_by_fontenen_kan_brukes_til__647a9e6d89",
+          "knowledge_unit_ids": [
+            "ku_by_fontenen_kan_brukes_til__647a9e6d89"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grev_wedels_plass_quiz_31",
+          "quiz_id": "by_grev_wedels_plass_set_5_q3",
+          "categoryId": "by",
+          "placeId": "grev_wedels_plass",
+          "targetId": "grev_wedels_plass",
+          "question_scope": "place",
+          "question": "Hvordan kan du undersøke om parken fungerer som møteplass?",
+          "options": [
+            "Observer hvor folk stopper og sitter på flere tidspunkt",
+            "Les bare anleggsåret",
+            "Mål høyden på Gamle Logen"
+          ],
+          "answer": "Observer hvor folk stopper og sitter på flere tidspunkt",
+          "answerIndex": 0,
+          "knowledge": "Gjentatt feltobservasjon kan vise faktisk bruk av parken.",
+          "difficulty": 5,
+          "question_type": "concept",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "grev_osm"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Gjentatt feltobservasjon kan vise faktisk bruk av parken.",
+          "claim_id": "claim_grev_wedels_plass_quiz_31",
+          "topic_hook_id": "byliv_aapne_rom",
+          "thinker_id": "william_h_whyte",
+          "thinker_name": "William H. Whyte",
+          "work": "The Social Life of Small Urban Spaces",
+          "theory_focus": "observer faktisk bruk av små offentlige byrom",
+          "theory_ref": {
+            "topic_hook_id": "byliv_aapne_rom",
+            "thinker_id": "william_h_whyte",
+            "work": "The Social Life of Small Urban Spaces",
+            "why_it_helps": "Whytes observasjonsbaserte byromslesning skiller parkens planlagte form fra faktisk opphold og bevegelse."
+          },
+          "primary_knowledge_unit_id": "ku_by_gjentatt_feltobservasjon_575c6f935e",
+          "knowledge_unit_ids": [
+            "ku_by_gjentatt_feltobservasjon_575c6f935e"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grev_wedels_plass_quiz_32",
+          "quiz_id": "by_grev_wedels_plass_set_5_q4",
+          "categoryId": "by",
+          "placeId": "grev_wedels_plass",
+          "targetId": "grev_wedels_plass",
+          "question_scope": "place",
+          "question": "Hvorfor beviser parkdesign ikke alene sosial bruk?",
+          "options": [
+            "Design har ingen betydning",
+            "Faktisk bruk må observeres",
+            "Historiske kilder er ugyldige"
+          ],
+          "answer": "Faktisk bruk må observeres",
+          "answerIndex": 1,
+          "knowledge": "Utforming gir muligheter, men faktisk bruk må observeres.",
+          "difficulty": 5,
+          "question_type": "concept",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "grev_osm"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Utforming gir muligheter, men faktisk bruk må observeres.",
+          "claim_id": "claim_grev_wedels_plass_quiz_32",
+          "topic_hook_id": "byliv_aapne_rom",
+          "thinker_id": "william_h_whyte",
+          "thinker_name": "William H. Whyte",
+          "work": "The Social Life of Small Urban Spaces",
+          "theory_focus": "observer faktisk bruk av små offentlige byrom",
+          "theory_ref": {
+            "topic_hook_id": "byliv_aapne_rom",
+            "thinker_id": "william_h_whyte",
+            "work": "The Social Life of Small Urban Spaces",
+            "why_it_helps": "Whytes observasjonsbaserte byromslesning skiller parkens planlagte form fra faktisk opphold og bevegelse."
+          },
+          "primary_knowledge_unit_id": "ku_by_utforming_gir_muligheter_947350edc9",
+          "knowledge_unit_ids": [
+            "ku_by_utforming_gir_muligheter_947350edc9"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grev_wedels_plass_quiz_33",
+          "quiz_id": "by_grev_wedels_plass_set_5_q5",
+          "categoryId": "by",
+          "placeId": "grev_wedels_plass",
+          "targetId": "grev_wedels_plass",
+          "question_scope": "place",
+          "question": "Hva bør sammenlignes når du står i parken?",
+          "options": [
+            "To tilfeldige gatenavn",
+            "Prisene på nærliggende varer",
+            "Parkens myke flater og nabobyggenes tyngde"
+          ],
+          "answer": "Parkens myke flater og nabobyggenes tyngde",
+          "answerIndex": 2,
+          "knowledge": "Kontrasten mellom parkflater og monumentale nabobygg gjør rommet lesbart.",
+          "difficulty": 5,
+          "question_type": "concept",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "grev_oppdag"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kontrasten mellom parkflater og monumentale nabobygg gjør rommet lesbart.",
+          "claim_id": "claim_grev_wedels_plass_quiz_33",
+          "topic_hook_id": "byliv_aapne_rom",
+          "thinker_id": "william_h_whyte",
+          "thinker_name": "William H. Whyte",
+          "work": "The Social Life of Small Urban Spaces",
+          "theory_focus": "observer faktisk bruk av små offentlige byrom",
+          "theory_ref": {
+            "topic_hook_id": "byliv_aapne_rom",
+            "thinker_id": "william_h_whyte",
+            "work": "The Social Life of Small Urban Spaces",
+            "why_it_helps": "Whytes observasjonsbaserte byromslesning skiller parkens planlagte form fra faktisk opphold og bevegelse."
+          },
+          "primary_knowledge_unit_id": "ku_by_kontrasten_mellom_parkfl_54aaf1d0bc",
+          "knowledge_unit_ids": [
+            "ku_by_kontrasten_mellom_parkfl_54aaf1d0bc"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grev_wedels_plass_quiz_34",
+          "quiz_id": "by_grev_wedels_plass_set_5_q6",
+          "categoryId": "by",
+          "placeId": "grev_wedels_plass",
+          "targetId": "grev_wedels_plass",
+          "question_scope": "place",
+          "question": "Hvorfor holdes Brands-feltet uten oppdiktet innhold?",
+          "options": [
+            "Ingen registrert merkevare har sterk nok stedskobling",
+            "PlaceCard kan bare ha tre felt",
+            "Alle organisasjoner er forbudt"
+          ],
+          "answer": "Ingen registrert merkevare har sterk nok stedskobling",
+          "answerIndex": 0,
+          "knowledge": "En full visuell flate må fortsatt være redaksjonelt ærlig.",
+          "difficulty": 5,
+          "question_type": "concept",
+          "emne_id": "em_by_offentlige_rom_motesteder",
+          "source": [
+            "grev_oslobyesvel_event"
+          ],
+          "source_origin": "external",
+          "claim_basis": "En full visuell flate må fortsatt være redaksjonelt ærlig.",
+          "claim_id": "claim_grev_wedels_plass_quiz_34",
+          "primary_knowledge_unit_id": "ku_by_en_full_visuell_flate_ma_b1ef6255a8",
+          "knowledge_unit_ids": [
+            "ku_by_en_full_visuell_flate_ma_b1ef6255a8"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grev_wedels_plass_quiz_35",
+          "quiz_id": "by_grev_wedels_plass_set_5_q7",
+          "categoryId": "by",
+          "placeId": "grev_wedels_plass",
+          "targetId": "grev_wedels_plass",
+          "question_scope": "place",
+          "question": "Hva er den beste samlede tolkningen av Grev Wedels plass?",
+          "options": [
+            "Et uendret 1800-tallsanlegg",
+            "Et lite byrom med urealiserte planer, skiftende bruk og nye kunstlag",
+            "Et enkelt museumsområde"
+          ],
+          "answer": "Et lite byrom med urealiserte planer, skiftende bruk og nye kunstlag",
+          "answerIndex": 1,
+          "knowledge": "Plassen samler urealiserte statsplaner, parkhistorie, bilbruk, vern og kunst.",
+          "difficulty": 5,
+          "question_type": "concept",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "grev_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Plassen samler urealiserte statsplaner, parkhistorie, bilbruk, vern og kunst.",
+          "claim_id": "claim_grev_wedels_plass_quiz_35",
+          "primary_knowledge_unit_id": "ku_by_plassen_samler_urealiser_01aceaaf1f",
+          "knowledge_unit_ids": [
+            "ku_by_plassen_samler_urealiser_01aceaaf1f"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    }
+  ]
+}

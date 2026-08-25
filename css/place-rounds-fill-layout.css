@@ -1,4 +1,4 @@
-/* PlaceCard-rundinger: fire sirkler i et 2 × 2-felt til høyre for frontImage. */
+/* PlaceCard-samlinger: alltid et fullt 2 × 2-felt til høyre for frontImage. */
 #placeCard .pc-side-stack{
   width:100%;
   max-width:100%;
@@ -16,26 +16,40 @@
   height:100%;
   min-height:0;
   box-sizing:border-box;
-  justify-content:space-between;
-  align-content:space-between;
+  justify-content:stretch;
+  align-content:center;
   justify-items:center;
   align-items:center;
   gap:var(--pc-round-gap);
 }
 
-#placeCard .pc-icons-quad[data-round-count="4"]{
+#placeCard .pc-icons-quad[data-collection-count="4"]{
   grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
   grid-template-rows:repeat(2, minmax(0, 1fr)) !important;
 }
 
-#placeCard .pc-icons-quad[data-round-count="4"] .pc-round:not([hidden]){
-  width:var(--hg-round-fill-size, var(--place-card-orb-size));
-  height:var(--hg-round-fill-size, var(--place-card-orb-size));
-  min-width:var(--hg-round-fill-size, var(--place-card-orb-size));
-  min-height:var(--hg-round-fill-size, var(--place-card-orb-size));
-  max-width:var(--hg-round-fill-size, var(--place-card-orb-size));
-  max-height:var(--hg-round-fill-size, var(--place-card-orb-size));
-  flex-basis:var(--hg-round-fill-size, var(--place-card-orb-size));
+#placeCard .pc-icons-quad .pc-collection[data-collection-shape="circle"]:not([hidden]){
+  width:var(--hg-collection-circle-size, var(--place-card-orb-size));
+  height:var(--hg-collection-circle-size, var(--place-card-orb-size));
+  min-width:var(--hg-collection-circle-size, var(--place-card-orb-size));
+  min-height:var(--hg-collection-circle-size, var(--place-card-orb-size));
+  max-width:var(--hg-collection-circle-size, var(--place-card-orb-size));
+  max-height:var(--hg-collection-circle-size, var(--place-card-orb-size));
+  flex-basis:var(--hg-collection-circle-size, var(--place-card-orb-size));
+  aspect-ratio:1 / 1;
+  border-radius:50%;
+}
+
+#placeCard .pc-icons-quad .pc-collection[data-collection-shape="rectangle"]:not([hidden]){
+  width:100%;
+  height:var(--hg-collection-fill-height, var(--place-card-orb-size));
+  min-width:0;
+  min-height:var(--hg-collection-fill-height, var(--place-card-orb-size));
+  max-width:100%;
+  max-height:var(--hg-collection-fill-height, var(--place-card-orb-size));
+  flex-basis:auto;
+  aspect-ratio:auto;
+  border-radius:clamp(14px, 12%, 22px);
 }
 
 body.hg-app.hg-phone #placeCard .pc-side-stack,

@@ -88,6 +88,49 @@ test('description-only PR still blocks generated index changes', () => {
   assert.deepEqual(report.issues.map((issue) => issue.code), ['generated_index_in_description_pr']);
 });
 
+test('complete existing Place production may carry its synchronized generated index', () => {
+  const report = applyCanonicalPlaceOnboardingScopePolicy({
+    packetCount: 1,
+    readyPacketCount: 1,
+    errorCount: 2,
+    issues: [
+      { code: 'generated_index_in_description_pr', message: 'indeks' },
+      { code: 'sentence_without_claim', message: 'mangler claim' }
+    ]
+  }, [
+    { status: 'M', file: 'data/places/by/oslo/places/bankplassen.json' },
+    { status: 'A', file: 'data/places/production/bankplassen.json' },
+    { status: 'M', file: 'data/places/places_index.json' }
+  ]);
+
+  assert.equal(report.prScopePolicy.revision, PR_SCOPE_POLICY_REVISION);
+  assert.equal(report.prScopePolicy.canonicalPlaceOnboarding, false);
+  assert.equal(report.prScopePolicy.canonicalPlaceProduction, true);
+  assert.deepEqual(report.prScopePolicy.matchingProductionPlaceIds, ['bankplassen']);
+  assert.equal(report.prScopePolicy.removedGeneratedIndexIssueCount, 1);
+  assert.equal(report.errorCount, 1);
+  assert.deepEqual(report.issues.map((issue) => issue.code), ['sentence_without_claim']);
+});
+
+test('unrelated production packet does not bypass description isolation', () => {
+  const report = applyCanonicalPlaceOnboardingScopePolicy({
+    packetCount: 1,
+    readyPacketCount: 1,
+    errorCount: 1,
+    issues: [
+      { code: 'generated_index_in_description_pr', message: 'indeks' }
+    ]
+  }, [
+    { status: 'M', file: 'data/places/by/oslo/places/sagene.json' },
+    { status: 'M', file: 'data/places/production/bankplassen.json' },
+    { status: 'M', file: 'data/places/places_index.json' }
+  ]);
+
+  assert.equal(report.prScopePolicy, undefined);
+  assert.equal(report.errorCount, 1);
+  assert.deepEqual(report.issues.map((issue) => issue.code), ['generated_index_in_description_pr']);
+});
+
 test('new Place without manifest synchronization does not get the index exception', () => {
   const report = applyCanonicalPlaceOnboardingScopePolicy({
     packetCount: 1,

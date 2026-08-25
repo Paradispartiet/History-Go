@@ -59,11 +59,13 @@ test('Kandidatauditen dokumenterer både inkludering, holdback og logoavgjørels
   assert.match(audit.logo_policy, /Ingen logo er kopiert, generert eller rekonstruert/);
 });
 
-test('Rundingsruntime bruker kategoriavhengig fjerde runding uten stedsspesifikk særkode', () => {
+test('PlaceCard-runtime bruker kategoriens samling uten Images-reserve eller stedsspesifikk særkode', () => {
   assert.match(roundsContract, /\| `politikk` \| `related` \| Relaterte steder \|/);
   assert.match(runtime, /politikk:\s*["']related["']/);
   assert.match(runtime, /GENERAL_BASE = Object\.freeze\(\["people", "objects", "brands"\]\)/);
-  assert.match(runtime, /return collectionItems\(place, preferred\)\.length \? preferred : "images"/);
+  assert.match(runtime, /return normalizedFullGridIds\(place\)/);
+  assert.match(runtime, /const categoryId = requestedCategory \|\| preferredCategoryCollectionId\(place\)/);
+  assert.doesNotMatch(runtime, /id:"images"/);
   assert.doesNotMatch(runtime, /id:\s*["'](?:civication|works|details|spots)["']/);
   assert.doesNotMatch(runtime, /regjeringskvartalet/);
 });

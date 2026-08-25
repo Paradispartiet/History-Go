@@ -14,6 +14,8 @@
     let onPlaceClick = (_id) => {
     };
     let userMarker = null;
+    const placeAreaMarkers = /* @__PURE__ */ new Map();
+    let placeAreaMarkerZoomBound = false;
     const STYLE_STORAGE_KEY = "hg_map_style_mode";
     const STYLE_MODE_STANDARD = "standard";
     const STYLE_MODE_SATELLITE = "satellite";
@@ -28,6 +30,7 @@
     const L_AREA_HIT = "hg-place-areas-hit";
     const L_AREA_DOTS = "hg-place-areas-dots";
     const L_AREA_LAB = "hg-place-areas-label";
+    const PLACE_AREA_MARKER_CLASS = "hg-place-area-marker";
     const PLACE_AREA_LABEL_MIN_ZOOM = 9.5;
     const PLACE_DETAIL_MIN_ZOOM = 11.8;
     const PLACE_DETAIL_HIT_MIN_ZOOM = 12.35;
@@ -554,8 +557,9 @@
       }
       return fallbackColor || "#6c757d";
     }
-    function getPlaceMarkerStrokeWidth() {
-      return isStandardMapStyle() ? 2.4 : 1.8;
+    function getPlaceMarkerStrokeWidth(isArea = false) {
+      if (isArea) return isStandardMapStyle() ? 2.4 : 1.8;
+      return isStandardMapStyle() ? 1.45 : 1.15;
     }
     function getPlaceDetailVisibility() {
       return [
@@ -568,8 +572,76 @@
         1
       ];
     }
+    function interpolatePlaceAreaMarkerSide(zoom, isVisited) {
+      const stops = [[7, 5], [9.5, 6.2], [12, 7.4], [16, 9], [18, 10.5]];
+      const bonus = isVisited ? Math.max(0.2, Math.min(0.5, 0.2 + (zoom - 7) * (0.3 / 11))) : 0;
+      if (zoom <= stops[0][0]) return stops[0][1] + bonus;
+      for (let index = 1; index < stops.length; index += 1) {
+        const [rightZoom, rightSide] = stops[index];
+        const [leftZoom, leftSide] = stops[index - 1];
+        if (zoom <= rightZoom) {
+          const progress = (zoom - leftZoom) / (rightZoom - leftZoom);
+          return leftSide + (rightSide - leftSide) * progress + bonus;
+        }
+      }
+      return stops[stops.length - 1][1] + bonus;
+    }
+    function updatePlaceAreaDomMarkerSizes() {
+      var _a;
+      if (!MAP) return;
+      const zoom = Number(((_a = MAP.getZoom) == null ? void 0 : _a.call(MAP)) || 10);
+      for (const entry of placeAreaMarkers.values()) {
+        const side = interpolatePlaceAreaMarkerSide(zoom, entry.visited);
+        entry.element.style.width = `${side.toFixed(2)}px`;
+        entry.element.style.height = `${side.toFixed(2)}px`;
+      }
+    }
+    function syncPlaceAreaDomMarkers(features) {
+      var _a;
+      if (!MAP || typeof (maplibregl == null ? void 0 : maplibregl.Marker) !== "function") return;
+      const activeIds = /* @__PURE__ */ new Set();
+      for (const feature of features) {
+        if (![PLACE_MAP_LOD_OVERVIEW, PLACE_MAP_LOD_AREA].includes((_a = feature == null ? void 0 : feature.properties) == null ? void 0 : _a.mapLod)) continue;
+        const id = String(feature.properties.id || "").trim();
+        if (!id) continue;
+        activeIds.add(id);
+        let entry = placeAreaMarkers.get(id);
+        if (!entry) {
+          const element = document.createElement("div");
+          element.className = PLACE_AREA_MARKER_CLASS;
+          element.dataset.placeId = id;
+          element.setAttribute("aria-hidden", "true");
+          element.style.boxSizing = "border-box";
+          element.style.borderStyle = "solid";
+          element.style.borderWidth = "1.5px";
+          element.style.borderRadius = "0";
+          element.style.pointerEvents = "none";
+          element.style.zIndex = "4";
+          const marker = new maplibregl.Marker({ element, anchor: "center" }).setLngLat(feature.geometry.coordinates).addTo(MAP);
+          entry = { marker, element, visited: false };
+          placeAreaMarkers.set(id, entry);
+        } else {
+          entry.marker.setLngLat(feature.geometry.coordinates);
+        }
+        entry.visited = feature.properties.visited === 1;
+        entry.element.style.backgroundColor = feature.properties.fill;
+        entry.element.style.borderColor = feature.properties.border;
+        entry.element.style.opacity = ["review", "unknown"].includes(feature.properties.coordinateTrust) ? "0.78" : "1";
+        entry.element.style.boxShadow = `0 0 5px ${feature.properties.fill}`;
+      }
+      for (const [id, entry] of placeAreaMarkers) {
+        if (activeIds.has(id)) continue;
+        entry.marker.remove();
+        placeAreaMarkers.delete(id);
+      }
+      if (!placeAreaMarkerZoomBound) {
+        MAP.on("zoom", updatePlaceAreaDomMarkerSizes);
+        placeAreaMarkerZoomBound = true;
+      }
+      updatePlaceAreaDomMarkerSizes();
+    }
     function getPlaceGlowPaint(isArea = false) {
-      const radius = isArea ? ["interpolate", ["linear"], ["zoom"], 7, 3.5, 9.5, 6, 12, 8.2, 16, 11.5, 18, 15] : ["interpolate", ["linear"], ["zoom"], 10, 2, 12, 3, 14, 5, 16, 9, 18, 14];
+      const radius = isArea ? ["interpolate", ["linear"], ["zoom"], 7, 3.5, 9.5, 6, 12, 8.2, 16, 11.5, 18, 15] : ["interpolate", ["linear"], ["zoom"], 10, 1.8, 12, 2.5, 14, 3.7, 16, 5.2, 18, 7.4];
       const visibility = isArea ? 1 : getPlaceDetailVisibility();
       if (!isStandardMapStyle()) {
         return {
@@ -580,7 +652,7 @@
         };
       }
       return {
-        "circle-radius": isArea ? radius : ["interpolate", ["linear"], ["zoom"], 10, 5, 12, 7, 14, 9, 16, 13, 18, 18],
+        "circle-radius": isArea ? radius : ["interpolate", ["linear"], ["zoom"], 10, 3, 12, 3.8, 14, 5, 16, 6.8, 18, 9.2],
         "circle-color": ["get", "fill"],
         "circle-opacity": [
           "*",
@@ -655,28 +727,26 @@
           ["linear"],
           ["zoom"],
           10,
-          ["+", 2.1, ["*", 0.4, ["get", "visited"]]],
+          ["+", 1.6, ["*", 0.2, ["get", "visited"]]],
           12,
-          ["+", 2.8, ["*", 0.6, ["get", "visited"]]],
+          ["+", 2.2, ["*", 0.3, ["get", "visited"]]],
           14,
-          ["+", 4.1, ["*", 0.8, ["get", "visited"]]],
+          ["+", 3, ["*", 0.4, ["get", "visited"]]],
           16,
-          ["+", 6.1, ["*", 1, ["get", "visited"]]],
+          ["+", 4, ["*", 0.6, ["get", "visited"]]],
           18,
-          ["+", 8.8, ["*", 1.3, ["get", "visited"]]]
+          ["+", 5.6, ["*", 0.8, ["get", "visited"]]]
         ],
         "circle-color": ["get", "fill"],
         "circle-stroke-color": ["get", "border"],
-        "circle-stroke-width": isArea ? getPlaceMarkerStrokeWidth() + 0.5 : getPlaceMarkerStrokeWidth(),
+        "circle-stroke-width": isArea ? getPlaceMarkerStrokeWidth(true) + 0.5 : getPlaceMarkerStrokeWidth(false),
+        // The layer minzoom already owns when detail markers appear. Do not fade
+        // the actual dot away: once a place label can render, its dot must exist.
         "circle-opacity": [
-          "*",
-          [
-            "case",
-            ["in", ["get", "coordinateTrust"], ["literal", ["review", "unknown"]]],
-            0.58,
-            1
-          ],
-          isArea ? 1 : getPlaceDetailVisibility()
+          "case",
+          ["in", ["get", "coordinateTrust"], ["literal", ["review", "unknown"]]],
+          0.58,
+          1
         ]
       };
     }
@@ -748,6 +818,7 @@
       if (!features.length) return;
       const fc = { type: "FeatureCollection", features };
       applyStandardMapPalette();
+      syncPlaceAreaDomMarkers(features);
       const src = MAP.getSource(SRC);
       if (src) {
         src.setData(fc);
@@ -757,26 +828,12 @@
       removeIfExists();
       MAP.addSource(SRC, { type: "geojson", data: fc });
       MAP.addLayer({
-        id: L_AREA_GLOW,
-        filter: PLACE_AREA_LOD_FILTER,
-        type: "circle",
-        source: SRC,
-        paint: getPlaceGlowPaint(true)
-      });
-      MAP.addLayer({
         id: L_GLOW,
         minzoom: PLACE_DETAIL_MIN_ZOOM,
         filter: PLACE_DETAIL_LOD_FILTER,
         type: "circle",
         source: SRC,
         paint: getPlaceGlowPaint(false)
-      });
-      MAP.addLayer({
-        id: L_AREA_DOTS,
-        filter: PLACE_AREA_LOD_FILTER,
-        type: "circle",
-        source: SRC,
-        paint: getPlaceDotPaint(true)
       });
       MAP.addLayer({
         id: L_DOTS,
@@ -900,8 +957,17 @@
       let mapGestureActive = false;
       let suppressPlaceClickUntil = 0;
       let lastOpenedPlace = { id: null, at: 0 };
-      const setPointer = () => {
+      const prefetchFeature = (event) => {
+        var _a2, _b2, _c2;
+        const feature = getPlaceFeatureFromEvent(event);
+        const id = (_a2 = feature == null ? void 0 : feature.properties) == null ? void 0 : _a2.id;
+        if (!id) return;
+        const place = PLACES.find((candidate) => String((candidate == null ? void 0 : candidate.id) || "") === String(id));
+        void ((_c2 = (_b2 = window.HGPlaceOpen) == null ? void 0 : _b2.preload) == null ? void 0 : _c2.call(_b2, place || id));
+      };
+      const setPointer = (event) => {
         canvas.style.cursor = "pointer";
+        prefetchFeature(event);
       };
       const clearPointer = () => {
         canvas.style.cursor = "";
@@ -918,6 +984,7 @@
       const handlePointerDown = (event) => {
         pointerStart = { x: event.clientX, y: event.clientY };
         pointerMoved = false;
+        prefetchFeature({ originalEvent: event });
       };
       const handlePointerMove = (event) => {
         if (!pointerStart || pointerMoved) return;

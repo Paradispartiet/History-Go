@@ -1,0 +1,50 @@
+{
+  "schema": "history_go_fagverk_chapter_brief_v1",
+  "version": "1.0.0",
+  "subject_id": "helse",
+  "chapter_id": "ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster",
+  "primary_domain_id": "ernaering_metabolisme",
+  "purpose": "Lære generell energi- og næringsstoffmetabolisme, referanseverdier, biotilgjengelighet og kostmønsterevidens uten å gi personlig diett, kalorimål, diagnose, tilskuddsdose eller medisinsk ernæringsbehandling.",
+  "sourceStrategy": {
+    "sourceBriefFile": "data/fag/helse/nutrition_metabolism_source_claim_brief_v1.json",
+    "externalSourceCount": 15,
+    "paragraphLevelClaimTrace": true,
+    "everyPlannedClaimResolved": true,
+    "allUsedSourcesInspectable": true
+  },
+  "requiredCriticalDistinctions": [
+    "energibehov vs personlig kalorimål",
+    "dynamisk energibalanse vs enkeltmåltid",
+    "karbohydratmengde vs karbohydratkvalitet",
+    "total fettmengde vs fettkvalitet",
+    "reduksjon vs eksplisitt erstatningsnæringsstoff",
+    "proteinmengde vs proteinkvalitet",
+    "næringsinnhold vs biotilgjengelighet",
+    "dietary reference value vs individuell forskrivning",
+    "mangelrisiko vs diagnose",
+    "kostmønsterassosiasjon vs kausalitet",
+    "mat-/kostmønsterevidens vs kosttilskuddsekvivalens",
+    "populasjonsretningslinje vs individuell behandling"
+  ],
+  "safety": {
+    "contractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json",
+    "individualDiagnosis": false,
+    "individualPrognosis": false,
+    "individualTriage": false,
+    "individualTreatmentAdvice": false,
+    "individualRiskCalculation": false,
+    "individualTestOrImageInterpretation": false,
+    "individualMedicationSelection": false,
+    "individualDosing": false,
+    "individualDietPrescription": false,
+    "individualSupplementDosing": false
+  },
+  "qa": {
+    "topicCoverage": "8/8",
+    "plannedClaimResolution": "32/32",
+    "moduleCount": 4,
+    "sectionCount": 8,
+    "paragraphCount": 32,
+    "assessmentQuestionCount": 8
+  }
+}

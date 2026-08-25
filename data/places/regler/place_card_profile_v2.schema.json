@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://history-go.example/schemas/place-card-profile-v2.json",
+  "title": "History GO canonical PlaceCard collection profile v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "collection_ids", "reason", "verifiedAt"],
+  "properties": {
+    "schema": { "const": "history_go_place_card_profile_v2" },
+    "collection_ids": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "people",
+          "objects",
+          "brands",
+          "map",
+          "flora",
+          "fauna",
+          "productions",
+          "structures",
+          "competitions",
+          "related",
+          "destinations"
+        ]
+      },
+      "contains": {
+        "enum": ["productions", "structures", "competitions", "related", "destinations"]
+      },
+      "minContains": 0,
+      "maxContains": 1
+    },
+    "reason": { "type": "string", "minLength": 20 },
+    "verifiedAt": { "type": "string", "format": "date" }
+  },
+  "oneOf": [
+    {
+      "title": "Vanlig PlaceCard: People + Objects + Brands + én kategori-samling",
+      "properties": {
+        "collection_ids": {
+          "prefixItems": [
+            { "const": "people" },
+            { "const": "objects" },
+            { "const": "brands" },
+            { "enum": ["productions", "structures", "competitions", "related", "destinations"] }
+          ]
+        }
+      }
+    },
+    {
+      "title": "Nature PlaceCard: Flora + Fauna + Map + én kategori-samling",
+      "properties": {
+        "collection_ids": {
+          "prefixItems": [
+            { "const": "flora" },
+            { "const": "fauna" },
+            { "const": "map" },
+            { "enum": ["productions", "structures", "competitions", "related", "destinations"] }
+          ]
+        }
+      }
+    }
+  ]
+}

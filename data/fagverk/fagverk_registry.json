@@ -4134,7 +4134,7 @@
         "schemaFamily": "foundation_v1",
         "sourceOfTruth": true,
         "firstSourceClaimBrief": "data/fag/helse/medical_ethics_evidence_source_claim_brief_v1.json",
-        "note": "Åtte Helse-domener er fulltekstmaterialisert: medisinsk etikk/evidens, anatomi/fysiologi, sykdom/patofysiologi, klinisk medisin, folkehelse, epidemiologi, mikrobiologi/infeksjon og farmakologi. Farmakologi har 8 seksjoner, 32 claimsporede avsnitt, 32 verifiserte claims, 14 inspiserbare kilder og 8 vurderingsoppgaver. Fire domener og strict proof gjenstår.",
+        "note": "Alle tolv Helse-domener er fulltekstmaterialisert source-first og strict completion er bevist per canonicalt hovedfelt. Permanent audit binder 24 modeller, mekanismer eller rammeverk til 24 inspectable scholarly sources, 72 eksakte claim-sporede prosebindings og den blokkerende ikke-individualiserende sikkerhetskontrakten.",
         "firstFulltextChapter": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning.json",
         "secondSourceClaimBrief": "data/fag/helse/anatomy_physiology_source_claim_brief_v1.json",
         "secondFulltextChapter": "data/fagverk/helse/anatomi-fysiologi-struktur-funksjon-og-regulering.json",
@@ -4149,12 +4149,20 @@
         "seventhSourceClaimBrief": "data/fag/helse/microbiology_infection_source_claim_brief_v1.json",
         "seventhFulltextChapter": "data/fagverk/helse/mikrobiologi-infeksjon-mikrober-smitte-vertrespons-og-resistens.json",
         "eighthSourceClaimBrief": "data/fag/helse/pharmacology_source_claim_brief_v1.json",
-        "eighthFulltextChapter": "data/fagverk/helse/farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet.json"
+        "eighthFulltextChapter": "data/fagverk/helse/farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet.json",
+        "ninthSourceClaimBrief": "data/fag/helse/nutrition_metabolism_source_claim_brief_v1.json",
+        "ninthFulltextChapter": "data/fagverk/helse/ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster.json",
+        "tenthSourceClaimBrief": "data/fag/helse/mental_health_source_claim_brief_v1.json",
+        "tenthFulltextChapter": "data/fagverk/helse/psykisk-helse-lidelse-tjenester-recovery-og-rettigheter.json",
+        "eleventhSourceClaimBrief": "data/fag/helse/rehabilitation_function_source_claim_brief_v1.json",
+        "eleventhFulltextChapter": "data/fagverk/helse/rehabilitering-funksjon-icf-mal-deltakelse-og-tverrprofesjonell-praksis.json",
+        "twelfthSourceClaimBrief": "data/fag/helse/health_services_economics_source_claim_brief_v1.json",
+        "twelfthFulltextChapter": "data/fagverk/helse/helsetjenester-helseokonomi-organisering-kvalitet-prioritering-og-ressursbruk.json"
       },
       "editorialPlan": {
         "targetDomainCount": 12,
-        "completedSourceBriefCount": 8,
-        "registeredChapterCount": 8,
+        "completedSourceBriefCount": 12,
+        "registeredChapterCount": 12,
         "completionRequirements": [
           "all_canonical_domains_covered",
           "source_first_claim_trace_complete",
@@ -4162,7 +4170,20 @@
           "fulltext_and_assessment_audits_green",
           "strict_theory_integrity_green"
         ],
-        "nextGate": "produce_next_domain_source_brief_after_pharmacology_fulltext"
+        "nextGate": "complete",
+        "strictCompletionProof": {
+          "status": "strictly_proven",
+          "proof_scope": "per_canonical_major_field",
+          "canonical_major_fields": 12,
+          "model_objects": 24,
+          "scholarly_sources": 24,
+          "actual_prose_bindings": 72,
+          "verified_claims": 384,
+          "bindings_file": "data/fag/helse/theory_integrity_bindings_helse_v1.json",
+          "audit_script": "tools/audit-helse-theory-integrity.mjs",
+          "audit_report": "reports/fagverk/helse-theory-integrity-audit.json",
+          "safety": "blocking_general_non_individualizing"
+        }
       },
       "chapters": [
         {
@@ -4275,6 +4296,62 @@
           "claimsFile": "data/fagverk/helse/farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet/claims.json",
           "briefFile": "data/fagverk/helse/farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet/brief.json",
           "assessmentFile": "data/fagverk/helse/farmakologi-virkning-omsetning-dose-respons-og-legemiddelsikkerhet/assessment.json",
+          "safetyContractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json"
+        },
+        {
+          "id": "ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster",
+          "title": "Ernæring og metabolisme: energi, næringsstoffer, regulering og kostmønster",
+          "subtitle": "Fra energiomsetning og makronæringsstoffer til biotilgjengelighet, referanseverdier og kostmønsterevidens",
+          "file": "data/fagverk/helse/ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster.json",
+          "primary_domain_id": "ernaering_metabolisme",
+          "emne_ids": [
+            "em_helse_ernaering_metabolisme"
+          ],
+          "claimsFile": "data/fagverk/helse/ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster/claims.json",
+          "briefFile": "data/fagverk/helse/ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster/brief.json",
+          "assessmentFile": "data/fagverk/helse/ernaering-metabolisme-energi-naeringsstoffer-regulering-og-kostmonster/assessment.json",
+          "safetyContractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json"
+        },
+        {
+          "id": "psykisk-helse-lidelse-tjenester-recovery-og-rettigheter",
+          "title": "Psykisk helse: lidelse, tjenester, recovery og rettigheter",
+          "subtitle": "Fra psykisk helse-kontinuum og klassifikasjon til tjenester, personlig recovery, medvirkning og rights-based praksis",
+          "file": "data/fagverk/helse/psykisk-helse-lidelse-tjenester-recovery-og-rettigheter.json",
+          "primary_domain_id": "psykisk_helse",
+          "emne_ids": [
+            "em_helse_psykisk_helse"
+          ],
+          "claimsFile": "data/fagverk/helse/psykisk-helse-lidelse-tjenester-recovery-og-rettigheter/claims.json",
+          "briefFile": "data/fagverk/helse/psykisk-helse-lidelse-tjenester-recovery-og-rettigheter/brief.json",
+          "assessmentFile": "data/fagverk/helse/psykisk-helse-lidelse-tjenester-recovery-og-rettigheter/assessment.json",
+          "safetyContractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json"
+        },
+        {
+          "id": "rehabilitering-funksjon-icf-mal-deltakelse-og-tverrprofesjonell-praksis",
+          "title": "Rehabilitering og funksjon: ICF, mål, deltakelse og tverrprofesjonell praksis",
+          "subtitle": "Fra funksjon og kontekst til mål, hjelpemidler, koordinering, utfall, equity og helsesystem",
+          "file": "data/fagverk/helse/rehabilitering-funksjon-icf-mal-deltakelse-og-tverrprofesjonell-praksis.json",
+          "primary_domain_id": "rehabilitering_funksjon",
+          "emne_ids": [
+            "em_helse_rehabilitering_funksjon"
+          ],
+          "claimsFile": "data/fagverk/helse/rehabilitering-funksjon-icf-mal-deltakelse-og-tverrprofesjonell-praksis/claims.json",
+          "briefFile": "data/fagverk/helse/rehabilitering-funksjon-icf-mal-deltakelse-og-tverrprofesjonell-praksis/brief.json",
+          "assessmentFile": "data/fagverk/helse/rehabilitering-funksjon-icf-mal-deltakelse-og-tverrprofesjonell-praksis/assessment.json",
+          "safetyContractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json"
+        },
+        {
+          "id": "helsetjenester-helseokonomi-organisering-kvalitet-prioritering-og-ressursbruk",
+          "title": "Helsetjenester og helseøkonomi: organisering, kvalitet, prioritering og ressursbruk",
+          "subtitle": "Fra systemfunksjoner og tilgang til finansiering, HTA, prioritering, likeverd og styringsdata",
+          "file": "data/fagverk/helse/helsetjenester-helseokonomi-organisering-kvalitet-prioritering-og-ressursbruk.json",
+          "primary_domain_id": "helsetjenester_helseokonomi",
+          "emne_ids": [
+            "em_helse_helsetjenester_helseokonomi"
+          ],
+          "claimsFile": "data/fagverk/helse/helsetjenester-helseokonomi-organisering-kvalitet-prioritering-og-ressursbruk/claims.json",
+          "briefFile": "data/fagverk/helse/helsetjenester-helseokonomi-organisering-kvalitet-prioritering-og-ressursbruk/brief.json",
+          "assessmentFile": "data/fagverk/helse/helsetjenester-helseokonomi-organisering-kvalitet-prioritering-og-ressursbruk/assessment.json",
           "safetyContractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json"
         }
       ]

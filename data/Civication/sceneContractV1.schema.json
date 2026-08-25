@@ -52,6 +52,9 @@
       "default": []
     },
     "place_id": { "$ref": "#/$defs/nonEmptyId" },
+    "work_context": { "$ref": "#/$defs/workContext" },
+    "authority_context": { "$ref": "#/$defs/authorityContext" },
+    "social_standing_context": { "$ref": "#/$defs/socialStandingContext" },
     "content": {
       "type": "object",
       "additionalProperties": false,
@@ -157,7 +160,105 @@
         "label": { "type": "string", "minLength": 1 },
         "reply": { "type": "string", "minLength": 1 },
         "feedback": { "type": "string", "minLength": 1 },
+        "authority_action": { "$ref": "#/$defs/authorityAction" },
+        "affordance": { "$ref": "#/$defs/choiceAffordance" },
         "effects": { "$ref": "#/$defs/effects" }
+      }
+    },
+    "choiceAffordance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["history_go"],
+      "properties": {
+        "history_go": { "$ref": "#/$defs/historyGoChoiceAffordance" }
+      }
+    },
+    "historyGoChoiceAffordance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["task_mail_ids"],
+      "properties": {
+        "task_mail_ids": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/nonEmptyId" },
+          "minItems": 1,
+          "maxItems": 8,
+          "uniqueItems": true
+        },
+        "require_task_completed": { "type": "boolean", "default": true },
+        "require_history_go_correct": { "type": "boolean", "default": true },
+        "min_effect": { "type": "number" }
+      }
+    },
+    "authorityAction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["action_id", "intent"],
+      "properties": {
+        "action_id": { "$ref": "#/$defs/nonEmptyId" },
+        "intent": { "enum": ["execute", "recommend", "request_approval", "wait", "escalate"] }
+      }
+    },
+    "authorityContext": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["institution_id", "unit_id", "role_scope", "reporting_line", "approval_points", "authority_rules", "resources", "escalation_paths"],
+      "properties": {
+        "institution_id": { "$ref": "#/$defs/nonEmptyId" },
+        "unit_id": { "$ref": "#/$defs/nonEmptyId" },
+        "role_scope": { "$ref": "#/$defs/nonEmptyId" },
+        "reporting_line": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyId" }, "uniqueItems": true },
+        "peer_functions": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyId" }, "uniqueItems": true, "default": [] },
+        "external_counterparts": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyId" }, "uniqueItems": true, "default": [] },
+        "goals_pressures": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyId" }, "uniqueItems": true, "default": [] },
+        "approval_points": { "type": "array", "items": { "$ref": "#/$defs/approvalPoint" }, "maxItems": 16 },
+        "authority_rules": { "type": "array", "items": { "$ref": "#/$defs/authorityRule" }, "minItems": 1, "maxItems": 32 },
+        "resources": { "type": "array", "items": { "$ref": "#/$defs/institutionalResource" }, "maxItems": 16 },
+        "escalation_paths": { "type": "array", "items": { "$ref": "#/$defs/escalationPath" }, "maxItems": 16 }
+      }
+    },
+    "approvalPoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["approval_id", "action_id", "approver_actor_id", "approval_object_id"],
+      "properties": {
+        "approval_id": { "$ref": "#/$defs/nonEmptyId" },
+        "action_id": { "$ref": "#/$defs/nonEmptyId" },
+        "approver_actor_id": { "$ref": "#/$defs/nonEmptyId" },
+        "approval_object_id": { "$ref": "#/$defs/nonEmptyId" }
+      }
+    },
+    "authorityRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["action_id", "authority", "requires_resources"],
+      "properties": {
+        "action_id": { "$ref": "#/$defs/nonEmptyId" },
+        "authority": { "enum": ["direct", "approval_required", "influence_only", "forbidden"] },
+        "approval_id": { "$ref": "#/$defs/nonEmptyId" },
+        "escalation_id": { "$ref": "#/$defs/nonEmptyId" },
+        "requires_resources": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyId" }, "uniqueItems": true }
+      }
+    },
+    "institutionalResource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["resource_id", "baseline_state"],
+      "properties": {
+        "resource_id": { "$ref": "#/$defs/nonEmptyId" },
+        "baseline_state": { "enum": ["available", "limited", "unavailable"] },
+        "resource_object_id": { "$ref": "#/$defs/nonEmptyId" }
+      }
+    },
+    "escalationPath": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["escalation_id", "action_id", "target_actor_id", "escalation_object_id"],
+      "properties": {
+        "escalation_id": { "$ref": "#/$defs/nonEmptyId" },
+        "action_id": { "$ref": "#/$defs/nonEmptyId" },
+        "target_actor_id": { "$ref": "#/$defs/nonEmptyId" },
+        "escalation_object_id": { "$ref": "#/$defs/nonEmptyId" }
       }
     },
     "taskContract": {
@@ -221,9 +322,233 @@
           "items": { "$ref": "#/$defs/nonEmptyId" },
           "uniqueItems": true,
           "default": []
+        },
+        "work_object_ops": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/workObjectOp" },
+          "maxItems": 12,
+          "default": []
+        },
+        "social_standing_ops": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/socialStandingOp" },
+          "maxItems": 8,
+          "default": []
         }
       },
       "default": {}
+    },
+    "workContext": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["object_ids"],
+      "properties": {
+        "object_ids": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/nonEmptyId" },
+          "minItems": 1,
+          "maxItems": 8,
+          "uniqueItems": true
+        },
+        "institution_id": { "$ref": "#/$defs/nonEmptyId" },
+        "deadline_ref": { "type": "string", "minLength": 1 },
+        "deadline_day": { "type": "integer", "minimum": 1, "maximum": 366 },
+        "deadline_phase": {
+          "enum": ["morning", "forenoon", "workday", "lunch", "afternoon", "dinner", "evening", "day_end", "any"]
+        },
+        "blocked_by_object_id": { "$ref": "#/$defs/nonEmptyId" },
+        "waiting_for_actor_id": { "$ref": "#/$defs/nonEmptyId" },
+        "handoff_to_actor_id": { "$ref": "#/$defs/nonEmptyId" },
+        "priority": { "enum": ["low", "normal", "high", "urgent"] },
+        "interrupts": { "type": "boolean" },
+        "rework_of_scene_id": { "$ref": "#/$defs/nonEmptyId" },
+        "rework_of_object_transition": { "$ref": "#/$defs/nonEmptyId" }
+      },
+      "dependentRequired": {
+        "deadline_phase": ["deadline_day"]
+      }
+    },
+    "socialStandingContext": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reaction_audience_id": { "$ref": "#/$defs/socialAudienceId" },
+        "requirements": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/socialStandingRequirement" },
+          "maxItems": 8,
+          "default": []
+        }
+      },
+      "anyOf": [
+        { "required": ["reaction_audience_id"] },
+        { "required": ["requirements"] }
+      ]
+    },
+    "socialAudienceId": {
+      "type": "string",
+      "pattern": "^(manager|team|professional|public|source):[a-z0-9][a-z0-9_.:-]{0,95}$"
+    },
+    "socialStandingRequirement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["audience_id"],
+      "properties": {
+        "audience_id": { "$ref": "#/$defs/socialAudienceId" },
+        "min": { "type": "number", "minimum": -100, "maximum": 100 },
+        "max": { "type": "number", "minimum": -100, "maximum": 100 }
+      },
+      "anyOf": [
+        { "required": ["min"] },
+        { "required": ["max"] }
+      ]
+    },
+    "socialStandingOp": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["event_id", "audience_id", "delta"],
+      "properties": {
+        "event_id": { "$ref": "#/$defs/nonEmptyId" },
+        "audience_id": { "$ref": "#/$defs/socialAudienceId" },
+        "delta": { "type": "number", "minimum": -100, "maximum": 100, "not": { "const": 0 } },
+        "reason": { "type": "string", "minLength": 1 },
+        "source_actor_id": { "$ref": "#/$defs/nonEmptyId" }
+      }
+    },
+    "workObjectCreateSeed": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["work_object_id", "kind", "role_scope", "title", "status", "phase"],
+      "properties": {
+        "work_object_id": { "$ref": "#/$defs/nonEmptyId" },
+        "kind": { "$ref": "#/$defs/nonEmptyId" },
+        "role_scope": { "$ref": "#/$defs/nonEmptyId" },
+        "institution_id": { "$ref": "#/$defs/nonEmptyId" },
+        "title": { "type": "string", "minLength": 1 },
+        "status": { "$ref": "#/$defs/nonEmptyId" },
+        "phase": { "$ref": "#/$defs/nonEmptyId" },
+        "people_refs": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true, "default": [] },
+        "place_refs": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true, "default": [] },
+        "knowledge_refs": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true, "default": [] },
+        "open_questions": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true, "default": [] },
+        "deadline": { "type": "string", "minLength": 1 },
+        "confidentiality": { "type": "string", "minLength": 1 },
+        "flags": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyId" }, "uniqueItems": true, "default": [] },
+        "shared": { "type": "boolean", "default": false }
+      }
+    },
+    "workObjectPatch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["work_object_id"],
+      "properties": {
+        "work_object_id": { "$ref": "#/$defs/nonEmptyId" },
+        "kind": { "$ref": "#/$defs/nonEmptyId" },
+        "role_scope": { "$ref": "#/$defs/nonEmptyId" },
+        "institution_id": { "$ref": "#/$defs/nonEmptyId" },
+        "title": { "type": "string", "minLength": 1 },
+        "people_refs": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+        "place_refs": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+        "knowledge_refs": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+        "open_questions": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+        "deadline": { "type": ["string", "null"], "minLength": 1 },
+        "confidentiality": { "type": ["string", "null"], "minLength": 1 },
+        "flags": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyId" }, "uniqueItems": true },
+        "shared": { "type": "boolean" }
+      }
+    },
+    "workObjectOp": {
+      "oneOf": [
+        { "$ref": "#/$defs/workObjectCreateOp" },
+        { "$ref": "#/$defs/workObjectUpsertOp" },
+        { "$ref": "#/$defs/workObjectTransitionOp" },
+        { "$ref": "#/$defs/workObjectFlagOp" },
+        { "$ref": "#/$defs/workObjectCloseOp" },
+        { "$ref": "#/$defs/workObjectNoteOp" },
+        { "$ref": "#/$defs/workObjectRemoveFlagOp" }
+      ]
+    },
+    "workObjectCreateOp": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["op", "event_id", "work_object"],
+      "properties": {
+        "op": { "const": "create" },
+        "event_id": { "$ref": "#/$defs/nonEmptyId" },
+        "work_object": { "$ref": "#/$defs/workObjectCreateSeed" }
+      }
+    },
+    "workObjectUpsertOp": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["op", "event_id", "work_object"],
+      "properties": {
+        "op": { "const": "upsert" },
+        "event_id": { "$ref": "#/$defs/nonEmptyId" },
+        "work_object": { "$ref": "#/$defs/workObjectPatch" }
+      }
+    },
+    "workObjectTransitionOp": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["op", "event_id", "work_object_id"],
+      "properties": {
+        "op": { "const": "transition" },
+        "event_id": { "$ref": "#/$defs/nonEmptyId" },
+        "work_object_id": { "$ref": "#/$defs/nonEmptyId" },
+        "to_status": { "$ref": "#/$defs/nonEmptyId" },
+        "to_phase": { "$ref": "#/$defs/nonEmptyId" },
+        "note": { "type": "string", "minLength": 1 }
+      },
+      "anyOf": [
+        { "required": ["to_status"] },
+        { "required": ["to_phase"] },
+        { "required": ["note"] }
+      ]
+    },
+    "workObjectFlagOp": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["op", "event_id", "work_object_id", "flag"],
+      "properties": {
+        "op": { "const": "add_flag" },
+        "event_id": { "$ref": "#/$defs/nonEmptyId" },
+        "work_object_id": { "$ref": "#/$defs/nonEmptyId" },
+        "flag": { "$ref": "#/$defs/nonEmptyId" }
+      }
+    },
+    "workObjectRemoveFlagOp": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["op", "event_id", "work_object_id", "flag"],
+      "properties": {
+        "op": { "const": "remove_flag" },
+        "event_id": { "$ref": "#/$defs/nonEmptyId" },
+        "work_object_id": { "$ref": "#/$defs/nonEmptyId" },
+        "flag": { "$ref": "#/$defs/nonEmptyId" }
+      }
+    },
+    "workObjectCloseOp": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["op", "event_id", "work_object_id"],
+      "properties": {
+        "op": { "const": "close" },
+        "event_id": { "$ref": "#/$defs/nonEmptyId" },
+        "work_object_id": { "$ref": "#/$defs/nonEmptyId" },
+        "outcome": { "type": "string", "minLength": 1 }
+      }
+    },
+    "workObjectNoteOp": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["op", "event_id", "work_object_id", "note"],
+      "properties": {
+        "op": { "const": "note" },
+        "event_id": { "$ref": "#/$defs/nonEmptyId" },
+        "work_object_id": { "$ref": "#/$defs/nonEmptyId" },
+        "note": { "type": "string", "minLength": 1 }
+      }
     },
     "knowledgeContract": {
       "type": "object",
