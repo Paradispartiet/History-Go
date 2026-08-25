@@ -33,22 +33,33 @@ jobs:
       - name: Materialize Career Gameplay audit outputs
         run: node scripts/audit-civication-career-gameplay.mjs --write
 
-      - name: Verify focused cross-role gates
+      - name: Capture focused cross-role gate
         run: |
-          node tests/civication-cross-role-shared-world.test.js
-          node tests/civication-role-world-realism-matrix.test.js
-          node tests/civication-media-redaksjonell-ledelse-rollout-playability.test.js
-          node scripts/audit-civication-career-gameplay.mjs --check
-          node scripts/build-civication-scene-registry.mjs --check
+          set +e
+          node tests/civication-cross-role-shared-world.test.js > reports/TEMP-cross-role-gate.txt 2>&1
+          echo $? > /tmp/cross-role-exit
+          set -e
+          cat reports/TEMP-cross-role-gate.txt
 
-      - name: Commit generated outputs if changed
+      - name: Commit generated outputs and diagnostic if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/Civication/compiledSceneRegistryV1.json data/Civication/careerGameplayMatrix.json reports/civication-career-gameplay-matrix.md
+          git add data/Civication/compiledSceneRegistryV1.json data/Civication/careerGameplayMatrix.json reports/civication-career-gameplay-matrix.md reports/TEMP-cross-role-gate.txt
           if git diff --cached --quiet; then
             echo "No generated output changes."
           else
             git commit -m "Materialize cross-role shared-world pilot"
             git push origin HEAD:agent/civication-cross-role-shared-world-pilot
           fi
+
+      - name: Verify remaining focused gates
+        run: |
+          if [ "$(cat /tmp/cross-role-exit)" != "0" ]; then
+            echo "Cross-role semantic gate failed; diagnostic committed above."
+            exit 1
+          fi
+          node tests/civication-role-world-realism-matrix.test.js
+          node tests/civication-media-redaksjonell-ledelse-rollout-playability.test.js
+          node scripts/audit-civication-career-gameplay.mjs --check
+          node scripts/build-civication-scene-registry.mjs --check
