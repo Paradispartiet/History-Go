@@ -6,6 +6,7 @@ const ROOT = process.cwd();
 const DATA_ROOT = path.join(ROOT, "data");
 const manifest = JSON.parse(await fs.readFile(path.join(DATA_ROOT, "places/manifest.json"), "utf8"));
 const categoryContract = JSON.parse(await fs.readFile(path.join(DATA_ROOT, "categories/category_contract.json"), "utf8"));
+const microSubcategories = JSON.parse(await fs.readFile(path.join(DATA_ROOT, "places/regler/micro_place_subcategories_v1.json"), "utf8"));
 
 const isObject = (value) => Boolean(value) && typeof value === "object" && !Array.isArray(value);
 const rowsFrom = (value) => {
@@ -28,7 +29,7 @@ for (const rel of Array.isArray(manifest.files) ? manifest.files : []) {
   }
   for (const place of rowsFrom(data)) {
     if (place.placeTier !== "micro") continue;
-    results.push({ sourceFile, id: place.id || null, errors: validateMicroPlace(place, categoryContract) });
+    results.push({ sourceFile, id: place.id || null, errors: validateMicroPlace(place, categoryContract, microSubcategories) });
   }
 }
 
