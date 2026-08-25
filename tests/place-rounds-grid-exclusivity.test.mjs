@@ -50,6 +50,8 @@ test("PlaceCard uses seven small SVG shortcuts and opens Om from title or info t
   assert.match(shortcutsCss, /#placeCard \.pc-icons-quad\{[\s\S]*?gap:3px/);
   assert.doesNotMatch(shortcutsCss, /grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
   assert.match(shortcutsCss, /width:21px/);
+  assert.match(shortcutsCss, /#placeCard #pcMeta\{[\s\S]*?grid-template-columns:minmax\(0,\.9fr\) minmax\(0,1\.25fr\) minmax\(0,1\.1fr\)/);
+  assert.match(shortcutsCss, /#placeCard #pcMeta > \*\{[\s\S]*?white-space:nowrap !important;[\s\S]*?text-overflow:ellipsis/);
 
   w.document.getElementById("pcTitle").click();
   w.document.getElementById("pcDesc").dispatchEvent(new w.KeyboardEvent("keydown", { key: "Enter", bubbles: true }));
