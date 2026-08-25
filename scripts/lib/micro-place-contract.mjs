@@ -17,12 +17,12 @@ export const MICRO_PLACE_QUIZ_MODES = new Set(["none", "place"]);
 const text = (value) => typeof value === "string" ? value.trim() : "";
 const finite = (value) => typeof value === "number" && Number.isFinite(value);
 
-export function findCanonicalSubcategory(categoryContract, category, subcategoryId) {
-  const rows = categoryContract?.canonicalSubcategories?.[category];
+export function findMicroSubcategory(microSubcategories, category, subcategoryId) {
+  const rows = microSubcategories?.subcategories?.[category];
   return Array.isArray(rows) ? rows.find((row) => row?.id === subcategoryId) || null : null;
 }
 
-export function validateMicroPlace(place, categoryContract) {
+export function validateMicroPlace(place, categoryContract, microSubcategories) {
   const errors = [];
   const fail = (field, message) => errors.push({ field, message });
 
@@ -44,8 +44,8 @@ export function validateMicroPlace(place, categoryContract) {
   if (!subcategoryId) {
     fail("subcategory_id", "is required");
   } else {
-    const row = findCanonicalSubcategory(categoryContract, category, subcategoryId);
-    if (!row) fail("subcategory_id", `is not registered under ${category || "the category"}`);
+    const row = findMicroSubcategory(microSubcategories, category, subcategoryId);
+    if (!row) fail("subcategory_id", `is not registered as a Micro Place subcategory under ${category || "the category"}`);
     else if (row.status !== "active") fail("subcategory_id", `must be active, got ${row.status || "missing status"}`);
   }
 
