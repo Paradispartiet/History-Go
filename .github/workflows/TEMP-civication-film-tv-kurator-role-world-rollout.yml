@@ -1,0 +1,61 @@
+name: TEMP Civication Film TV curator Role World rollout
+
+on:
+  push:
+    branches:
+      - agent/civication-film-tv-kurator-role-world-rollout
+
+permissions:
+  contents: write
+
+jobs:
+  materialize-and-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/civication-film-tv-kurator-role-world-rollout
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Materialize curator Role World rollout
+        run: node scripts/TEMP-materialize-civication-film-tv-kurator-role-world-rollout.mjs
+      - name: Rebuild compiled Civication scene registry
+        run: node scripts/build-civication-scene-registry.mjs --write
+      - name: Regenerate Career gameplay audit
+        run: node scripts/audit-civication-career-gameplay.mjs --write
+      - name: Regenerate Role World readiness audit
+        run: node scripts/audit-civication-role-world-rollout-readiness.mjs --write
+      - name: Verify curator controlled rollout
+        run: node tests/civication-film-tv-kurator-role-world-rollout.test.js
+      - name: Verify Role World contract
+        run: node tests/civication-role-world-contract.test.js
+      - name: Verify broad-rollout policy
+        run: node tests/civication-role-world-broad-rollout-policy.test.js
+      - name: Verify compiled registry sync
+        run: node scripts/build-civication-scene-registry.mjs --check
+      - name: Verify Career audit sync
+        run: node scripts/audit-civication-career-gameplay.mjs --check
+      - name: Verify readiness audit sync
+        run: node scripts/audit-civication-role-world-rollout-readiness.mjs --check
+      - name: Run complete Civication suite
+        run: npm run test:civication
+      - name: Publish permanent curator rollout
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/TEMP-civication-film-tv-kurator-role-world-rollout.yml
+          rm -f scripts/TEMP-materialize-civication-film-tv-kurator-role-world-rollout.mjs
+          rm -f scripts/TEMP-curator-rollout-impl.mjs
+          rm -f scripts/TEMP-curator-payload-*.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "Complete Film TV curator Role World rollout"
+          git pull --rebase origin agent/civication-film-tv-kurator-role-world-rollout
+          git push origin HEAD:agent/civication-film-tv-kurator-role-world-rollout
