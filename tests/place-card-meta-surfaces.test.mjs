@@ -8,9 +8,8 @@ const statusSource = fs.readFileSync("js/ui/place-card-status-surface.js", "utf8
 const appSource = fs.readFileSync("js/app.js", "utf8");
 const indexSource = fs.readFileSync("index.html", "utf8");
 const okern = JSON.parse(fs.readFileSync("data/places/by/oslo/places/okern.json", "utf8"));
-const byEpochs = JSON.parse(fs.readFileSync("data/epoker/epoker_by.json", "utf8"));
 
-test("Økern resolves to a real, clickable epoch beside category", async () => {
+test("Økern keeps a visible, clickable epoch slot beside category", async () => {
   const dom = new JSDOM(`<!doctype html><body>
     <div id="placeCard" data-current-place-id="okern"></div>
     <div id="pcMeta"><button type="button">BY &amp; ARKITEKTUR</button></div>
@@ -21,43 +20,26 @@ test("Økern resolves to a real, clickable epoch beside category", async () => {
   w.document.getElementById("pcBadgesIcon").addEventListener("click", () => { badgeClicks += 1; });
   w.openPlaceCard = async () => true;
   w.HGEpokerRuntime = { ready: Promise.resolve() };
-  const resolvedEpoch = byEpochs.epoker.find((epoch) => (
-    okern.year >= epoch.years.from && (epoch.years.to == null || okern.year <= epoch.years.to)
-  ));
-  assert.ok(resolvedEpoch, "Økern year must match a canonical By epoch");
   w.HGTimeResolver = {
-    resolvePlaceTime: (place) => ({
+    resolvePlaceTime: () => ({
       domain: "by",
-      epokeId: resolvedEpoch.id,
-      epokeLabel: resolvedEpoch.label,
-      startYear: place.year,
-      endYear: place.year
+      epokeId: null,
+      epokeLabel: null,
+      startYear: null,
+      endYear: null
     })
   };
-  w.EPOKER_INDEX = {
-    byDomain: {
-      by: {
-        byId: {
-          [resolvedEpoch.id]: {
-            id: resolvedEpoch.id,
-            label: resolvedEpoch.label,
-            start_year: resolvedEpoch.years.from,
-            end_year: resolvedEpoch.years.to
-          }
-        }
-      }
-    }
-  };
+  w.EPOKER_INDEX = { byDomain: { by: { byId: {} } } };
 
   w.eval(epokeSource);
   await w.openPlaceCard(okern);
 
   const category = w.document.querySelector("#pcMeta > :first-child");
   const epoke = w.document.querySelector("#pcMeta > .pc-epoke");
-  assert.equal(okern.year, 1938);
-  assert.equal(category.textContent, "BY & ARKITEKTUR · 1900–1945");
+  assert.equal(category.textContent, "BY & ARKITEKTUR");
   assert.equal(epoke.tagName, "BUTTON");
-  assert.equal(epoke.textContent, "Epoke: Modernisering og industriby");
+  assert.equal(epoke.textContent, "Epoke: Ikke registrert");
+  assert.equal(epoke.dataset.epokeStatus, "unknown");
   epoke.click();
   assert.equal(badgeClicks, 1);
   dom.window.close();

@@ -15,7 +15,8 @@
 //   er lastet (samme mønster som leksikon_loader.js), i stedet for å
 //   gjøre place-card.js mer skjør med stor inline-logikk.
 // - Tåler steder uten år, uten epoke_id og uten domain.
-// - Viser ALDRI "Ikke registrert": finnes ingen epoke, vises ingenting.
+// - Beholder epokeplassen også når tidsdata mangler, slik metadataoppsettet
+//   aldri kollapser til bare én linje.
 // ============================================================
 
 (function () {
@@ -82,10 +83,8 @@
     metaEl.querySelectorAll(".pc-epoke").forEach((node) => node.remove());
 
     const res = resolvePlaceTime(place);
-    const label = txt(res?.epokeLabel);
-
-    // Ingen epoke funnet → vis ingenting (ingen "Ikke registrert"-tekst).
-    if (!label) return;
+    const resolvedLabel = txt(res?.epokeLabel);
+    const label = resolvedLabel || "Ikke registrert";
 
     // Foretrekk epokens egen tidsspenn (f.eks. 1880–1910) for kontekst, og
     // fall tilbake til stedets egne år hvis epoken mangler årstall.
@@ -112,6 +111,7 @@
     line.type = "button";
     line.className = "pc-epoke";
     line.textContent = `Epoke: ${label}`;
+    line.dataset.epokeStatus = resolvedLabel ? "resolved" : "unknown";
     line.setAttribute("aria-label", `Åpne tid og epoke: ${label}`);
     line.title = "Åpne tid og epoke";
     line.addEventListener("click", (event) => {
