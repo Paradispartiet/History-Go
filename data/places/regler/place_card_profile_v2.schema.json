@@ -24,14 +24,13 @@
           "structures",
           "competitions",
           "related",
-          "destinations"
+          "destinations",
+          "reuse",
+          "materials",
+          "environment",
+          "systems"
         ]
-      },
-      "contains": {
-        "enum": ["productions", "structures", "competitions", "related", "destinations"]
-      },
-      "minContains": 0,
-      "maxContains": 1
+      }
     },
     "reason": { "type": "string", "minLength": 20 },
     "verifiedAt": { "type": "string", "format": "date" }
@@ -59,6 +58,19 @@
             { "const": "fauna" },
             { "const": "map" },
             { "enum": ["productions", "structures", "competitions", "related", "destinations"] }
+          ]
+        }
+      }
+    },
+    {
+      "title": "Miljø & gjenbruk: fire sirkulære ressursflater",
+      "properties": {
+        "collection_ids": {
+          "prefixItems": [
+            { "const": "reuse" },
+            { "const": "materials" },
+            { "const": "environment" },
+            { "const": "systems" }
           ]
         }
       }
