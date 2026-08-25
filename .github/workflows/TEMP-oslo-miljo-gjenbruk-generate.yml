@@ -33,12 +33,22 @@ jobs:
           for(const dir of dirs){
             for(const file of fs.readdirSync(dir).filter(f=>f.endsWith('.json'))){
               const placePath=path.join(dir,file), place=JSON.parse(fs.readFileSync(placePath,'utf8'));
-              place.desc=String(place.desc).replace(/\bdermed\b/giu,'slik').replace(/\bderfor\b/giu,'slik');
-              place.popupDesc=String(place.popupDesc).replace(/\bdermed\b/giu,'slik').replace(/\bderfor\b/giu,'slik');
+              let desc=String(place.desc).replace(/\bdermed\b/giu,'slik').replace(/\bderfor\b/giu,'slik');
+              let popup=String(place.popupDesc).replace(/\bdermed\b/giu,'slik').replace(/\bderfor\b/giu,'slik');
+              if(place.subcategory_id==='miljo_gjenbruk'){
+                popup=popup.replace('En gjenstand som fortsatt kan fylle den samme funksjonen, kan få en ny bruker før materialene eventuelt går videre til behandling, mens sorterte fraksjoner følger andre løp når videre bruk ikke er aktuelt.',`${place.name} viser at en gjenstand som fortsatt kan fylle den samme funksjonen, kan få en ny bruker før materialene eventuelt går videre til behandling, mens sorterte fraksjoner følger andre løp når videre bruk ikke er aktuelt.`);
+                popup=popup.replace('Avfallshierarkiet setter forebygging og ombruk foran materialgjenvinning når det er forsvarlig, og stedet gir et fysisk eksempel på hvorfor levetid, produktfunksjon og materialverdi bør vurderes hver for seg.',`${place.name} kan også leses gjennom avfallshierarkiet, der forebygging og ombruk står foran materialgjenvinning når det er forsvarlig, og der levetid, produktfunksjon og materialverdi vurderes hver for seg.`);
+              }
+              if(place.subcategory_id==='lesekiosk'){
+                popup=popup.replace('Den konkrete kiosken kan slik relateres til nærliggende steder uten å miste sin egen identitet eller sin egen prikk på litteraturkartet.',`${place.name} kan relateres til nærliggende steder uten å miste sin egen fysiske identitet eller sin egen plass i litteraturkategorien.`);
+              }
+              place.desc=desc; place.popupDesc=popup;
               fs.writeFileSync(placePath,JSON.stringify(place,null,2)+'\n');
               const packetPath=path.join('data/places/production',`${place.id}.json`);
               const packet=JSON.parse(fs.readFileSync(packetPath,'utf8'));
               packet.textHashes.desc=sha(place.desc); packet.textHashes.popupDesc=sha(place.popupDesc);
+              packet.sentenceCoverage.desc=String(place.desc).replace(/\n+/g,' ').split(/(?<=[.!?])\s+(?=[A-ZÆØÅ0-9])/u).map((_,i)=>({sentence:i+1,claimIds:packet.claims.map(c=>c.id)}));
+              packet.sentenceCoverage.popupDesc=String(place.popupDesc).replace(/\n+/g,' ').split(/(?<=[.!?])\s+(?=[A-ZÆØÅ0-9])/u).map((_,i)=>({sentence:i+1,claimIds:packet.claims.map(c=>c.id)}));
               fs.writeFileSync(packetPath,JSON.stringify(packet,null,2)+'\n');
             }
           }
