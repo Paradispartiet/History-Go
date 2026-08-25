@@ -24,7 +24,7 @@ test("8B is retained as a historical snapshot but the one-item Objects round is 
   assert.equal(Object.prototype.hasOwnProperty.call(place, "objects"), false);
   assert.deepStrictEqual(place.round_profile.content_round_ids, ["people", "images", "brands", "related"]);
   assert.match(place.round_profile.reason, /enslig Objects-post/);
-  assert.match(workcard, /den enslige Objects-posten[\s\S]*fjernet/);
+  assert.match(workcard, /Den enslige Objects-posten er fjernet fra canonical place-data/);
 });
 
 test("Civication is neither promoted to canonical Objects nor selected as a round", () => {

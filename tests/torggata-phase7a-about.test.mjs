@@ -36,6 +36,7 @@ const legacyBatch = readJson('data/leksikon/places/oslo/by/leksikon_oslo_by_batc
 const legacy = legacyBatch.find(row => row.place_id === 'torggata');
 assert.ok(legacy, 'legacy Torggata-post beholdes foreløpig for sporbarhet');
 assert.notEqual(article, legacy);
-assert.equal(article.chronology.length, 0, '7A skal ikke forskuttere 7B Historie');
+assert.equal(article.chronology.length, 6, 'sluttstatus skal bevare den kildebårne 7B-chronologyen');
+assert.deepEqual(article.chronology.map(entry => entry.year), [1846, 1852, 1876, 1929, 1986, 2014]);
 
 console.log('Torggata phase 7A about regression: PASS');
