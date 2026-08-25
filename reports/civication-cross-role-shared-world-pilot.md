@@ -44,7 +44,7 @@ Lederrollen får to legitime direkte handlinger på den samme saken:
 
 Begge handlingene kan endre arbeidsflyt og fase fordi det er nettopp lederens institusjonelle ansvar. De kan derimot ikke endre hvem som eier det reporterproduserte evidenssporet.
 
-En tredje authored handling forsøker bevisst å omskrive reporterens usikre funn til bekreftet premiss bare fordi spilleren er leder. Den har `authority: forbidden` og skal blokkeres av den eksisterende authority-porten før state muteres.
+Authority-kontrakten inneholder i tillegg `overwrite_reporter_evidence` med `authority: forbidden`. Denne handlingen er med vilje **ikke eksponert som en kjørbar choice**. Den permanente gaten evaluerer den direkte mot den eksisterende authority-resolveren og krever `forbidden_action`. Dette følger compiler-kontrakten: en forbudt authority-handling skal stoppes før den kan bli en executable scene-action, ikke representeres som et tilsynelatende spillbart valg som først avvises etterpå.
 
 ## Privilege leakage er eksplisitt blokkert
 
@@ -53,7 +53,7 @@ Piloten tester to forskjellige lekkasjer:
 - **oppover:** redaksjonell rang kan ikke gjøre et kilde- eller dokumentfunn sannere;
 - **nedover:** reporterrollen kan ikke arve lederens direkte rework-/beslutningsmyndighet bare fordi den samme saken nå er shared.
 
-`CivicationInstitutionAuthority.evaluate()` får aktivt role scope ved vurdering. Når lederhandlingen evalueres som `media_redaksjonell_ledelse`, er de to legitime handlingene `direct_authority`. Når identisk handling evalueres med reporterens role scope, returnerer resolveren `role_scope_mismatch`.
+`CivicationInstitutionAuthority.evaluate()` får aktivt role scope ved vurdering. Når lederhandlingen evalueres som `media_redaksjonell_ledelse`, er de to legitime handlingene `direct_authority`. Når identisk handling evalueres med reporterens role scope, returnerer resolveren `role_scope_mismatch`. Den forbudte evidenshandlingen returnerer `forbidden_action` selv for lederrollen, og testen krever samtidig at ingen authored choice eksponerer denne action-ID-en.
 
 Det betyr at shared state ikke er shared privilege.
 
@@ -84,7 +84,7 @@ Bred Role World rollout forblir **false**. Denne piloten beviser den siste ekspl
 - objektet blir shared uten at canonical `role_scope` flyttes;
 - lederens to legitime actions passerer som `direct_authority`;
 - samme actions blokkeres som `role_scope_mismatch` når reporterrollen prøver å bruke dem;
-- lederens forsøk på å omskrive evidens gjennom rang blokkeres som `forbidden_action`;
+- `overwrite_reporter_evidence` ikke kan eksponeres som executable choice og blokkeres som `forbidden_action` av authority-resolveren;
 - source → compiled registry-paritet bevarer begge perspektivene og samme institusjon;
 - Matrix holder broad rollout policy-gated.
 
@@ -98,7 +98,7 @@ Focused materialisering og semantic gate kjøres på branch-head før ordinær P
 | Dekning | målrettet | Scope er ett shared object og to klart forskjellige role scopes; ingen kunstig full Role World-produksjon. |
 | Faglig kvalitet | høy | Reporterens evidensansvar og lederens beslutningsansvar holdes eksplisitt fra hverandre. |
 | Teknisk integritet | høy | Eksisterende WorkWorld, WorkRhythm, Authority og Scene Pipeline gjenbrukes uten ny runtime. |
-| Sikkerhet/ansvarlighet | høy | Hierarki kan ikke gjøre påstander til fakta; authority leakage er en blokkerende test. |
+| Sikkerhet/ansvarlighet | høy | Hierarki kan ikke gjøre påstander til fakta; forbidden-actions kan ikke bli executable choices. |
 | Vedlikeholdbarhet | høy | Én ny scene, én planbinding, én programgate og én permanent test. |
 
 Endelig grønn-status, suite-tall og registry-tall skal først fastslås fra CI på PR-ens eksakte final head.
