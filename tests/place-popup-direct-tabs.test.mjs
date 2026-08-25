@@ -26,19 +26,22 @@ test("Mer er ikke en brukerrettet sluttfane", () => {
   assert.match(popupContract, /ingen brukerrettet [`*]*Mer[`*]*-fane/i);
 });
 
-test("alle kjente Mer-eiere får direkte faner", () => {
-  for (const label of [
-    "Spor & objekter",
-    "Legg merke til",
-    "Betydning",
-    "Motpunkter",
-    "Relasjoner",
-    "Kunnskap",
-    "Observasjoner",
-    "Språk"
+test("alle kjente Mer-eiere får synlige direktefaner", () => {
+  assert.match(directTabs, /const DIRECT_TABS = Object\.freeze\(\[/);
+  for (const [id, label] of [
+    ["language", "Språk"],
+    ["objects", "Spor & objekter"],
+    ["notice", "Legg merke til"],
+    ["meaning", "Betydning"],
+    ["counterpoints", "Motpunkter"],
+    ["relations", "Relasjoner"],
+    ["knowledge", "Kunnskap"],
+    ["observations", "Observasjoner"]
   ]) {
-    assert.ok(directTabs.includes(label), `mangler direktefane: ${label}`);
+    assert.ok(directTabs.includes(`["${id}", "${label}"]`), `mangler fast direktefane: ${label}`);
   }
+  assert.match(directTabs, /ensureAllDirectTabs\(tablist, panelWrap\)/, "alle direktefanene skal materialiseres også uten stedsspesifikt innhold");
+  assert.match(directTabs, /ensureEmptyState\(panel, id\)/, "tomme direktefaner skal ha en eksplisitt tomtilstand i stedet for å forsvinne");
   assert.match(directTabs, /hg-place-relations-section/);
   assert.match(directTabs, /hg-place-knowledge-section/);
   assert.match(directTabs, /hg-place-observations-section/);

@@ -46,7 +46,7 @@ test("Youngstorget has one canonical scope and the fixed PlaceCard contract", ()
   assert.ok(place.externalLinks.every(link => /^https:\/\//.test(link.url)));
   assert.equal(production.roundsReadiness.brandIds.length, 0);
   assert.equal(production.roundsReadiness.brandFallback, "honest_empty_state_after_candidate_and_logo_audit");
-  assert.equal(Object.hasOwn(brandsByPlace, "youngstorget"), false);
+  assert.deepEqual(brandsByPlace.youngstorget, ["mono"], "canonical Civication social-place link is not a production round brand");
   assert.equal(Object.hasOwn(actorsByPlace, "youngstorget"), false);
 });
 

@@ -1,0 +1,962 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "by",
+  "targetId": "storgata",
+  "profile": "rich_5x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1150,
+    "selection_sha256": "1e50f96bbd0847a98acccde5a770c5bbe6e96d1912dd1052cf4985108168351e",
+    "category_id": "by",
+    "target_id": "storgata"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/by/pensum_by.json",
+      "bytes": 16713,
+      "sha256": "8de40f1af13426445083f0f3339cb4892f4833921c3614747c29656d165a0b2b",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/by/emner_by.json",
+      "bytes": 594396,
+      "sha256": "7019313fc4b9efa3aa5393a0dd3180b12abba00b0672cb65b44efd0e5c27e8c6",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/by/fagkart_by.json",
+      "bytes": 374396,
+      "sha256": "88d4d9a5e23f60e88da6542d55d84cae5ae4516fb2130163e6de013f88c50127",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/by/methods_by.json",
+      "bytes": 44201,
+      "sha256": "14f3c0fd567a4a43c4d151867bb3d01bdb73da8c95ce6f3e3128fee0964dfd76",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/by/supersetQUIZMAL_by.json",
+      "bytes": 6860,
+      "sha256": "a42443c293a254519c489a705662c46ae8593f348b329c34c3f4f3eda129945a",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 16882,
+      "sha256": "60804db1e587faae822930a800cfebac7966fa7e009778d46d94d1f28e02545e",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/by/storgata.json",
+      "bytes": 18328,
+      "sha256": "aab455e1eb8afa7068de4820655ff1e09eb8b9b93555955933de314125cf74f5"
+    },
+    "target": {
+      "path": "data/places/by/oslo/places/storgata.json",
+      "bytes": 26937,
+      "sha256": "cab493a61810cb498005479372cfd337383d0686f99eb9ee36c75ea36344504d"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1543,
+      "selection_sha256": "0c0f532a7f37d94c46d7b50f624849574e5daa89eebc5f385e4b2f55a77ffec9"
+    },
+    "relations": [],
+    "stories": [
+      {
+        "path": "data/stories/stories_storgata.json",
+        "matches": 3,
+        "selection_bytes": 7368,
+        "selection_sha256": "e1b39b431df6430a1a92df293b47fb797718f78d21503670e09e10d1b668498f"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/by/storgata_sets.json",
+  "source_registry": {
+    "storgata_byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Storgata",
+      "source_type": "local_history_encyclopedia",
+      "review_status": "reviewed",
+      "review_note": "Gateavgrensning, navnehistorie, Nybrua, sporvei og adresser."
+    },
+    "byplan_2021": {
+      "url": "https://magasin.oslo.kommune.no/byplan/stor-forandring-i-nye-storgata",
+      "source_type": "official_municipality",
+      "review_status": "reviewed",
+      "review_note": "Opprustningen 2018–2021, nye spor, holdeplasser, fortau, overvann og teknisk tunnel."
+    },
+    "sporveien_stop": {
+      "url": "https://www.sporveien.no/vare-tjenester/trikken/trikkeholdeplasser/s/storgata/",
+      "source_type": "primary_operator",
+      "review_status": "reviewed",
+      "review_note": "Åpningsdato, dagens linjer og tilgjengelighet for Storgata holdeplass."
+    },
+    "sporveien_2026": {
+      "url": "https://www.sporveien.no/prosjekter-og-arbeid/sporveksel/",
+      "source_type": "primary_operator",
+      "review_status": "reviewed",
+      "review_note": "Planlagt sporvekselarbeid ved Nybrua høsten 2026."
+    },
+    "nsia_2025": {
+      "url": "https://nsia.no/Rail/Rail/Published-reports/2025-02",
+      "source_type": "official_investigation",
+      "review_status": "reviewed",
+      "review_note": "Hendelsesdato, sted og sikkerhetsundersøkelse etter avsporingen."
+    },
+    "commons_1938": {
+      "url": "https://commons.wikimedia.org/wiki/File:Storgata-1938.jpg",
+      "source_type": "licensed_historical_image",
+      "review_status": "reviewed",
+      "review_note": "1938-motiv østover fra Kirkeristen, Oslo Museum OB.A13429, CC BY-SA 3.0."
+    },
+    "commons_2013": {
+      "url": "https://commons.wikimedia.org/wiki/File:Oslo_Storgata_seen_from_Kirkeristen_IMG_8263.JPG",
+      "source_type": "licensed_comparison_image",
+      "review_status": "reviewed",
+      "review_note": "2013-motiv fra Kirkeristen i samme hovedretning, Bjoertvedt, CC BY-SA 3.0."
+    },
+    "osm_route": {
+      "url": "https://www.openstreetmap.org/way/36973177",
+      "source_type": "open_map_geometry",
+      "review_status": "reviewed",
+      "review_note": "Verifisert 15-segmenters gateløp og lengdemidtpunkt."
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/by/storgata_sets_merged.json",
+      "data/places/by/oslo/places/storgata.json"
+    ],
+    "active_before": {
+      "file": null,
+      "set_count": 0,
+      "question_count": 0,
+      "finding": "Ingen manifest-loadet canonical quiz fantes."
+    },
+    "legacy_before": {
+      "file": "data/quiz/by/storgata_sets_merged.json",
+      "set_count": 3,
+      "question_count": 15,
+      "finding": "Legacy-filen hadde bare faktaspørsmål og manglet source brief, production context og femsetts progresjon."
+    },
+    "decisions": [
+      "Behold dokumenterbare faktakjerner, men materialiser dem i canonical 5×7-kontrakt.",
+      "Hold de første 14 spørsmålene til normal fakta- og kontekstinngang.",
+      "Legg metode og teori bare i sluttsettet og bind alt til ekstern stedsevidens."
+    ],
+    "knowledge_migration": "Legacy-filen er dokumentert her og fjernes etter at faktakjernene er migrert til den nye canonicale pakken; manifestet peker bare på 5×7-pakken og Knowledge regenereres."
+  },
+  "profile_decision": {
+    "profile": "rich",
+    "set_count": 5,
+    "questions_per_set": 7,
+    "justification": "Storgata har fem selvstendige læringsjobber: gateidentitet og byutvidelse, adresser og ombruk, Folketeaterkvartalet og minnespor, trikkeinfrastruktur og opprustning, samt stedlig metode og kildekritikk."
+  },
+  "held_back_candidates": [
+    "Café Sara som Brand – virksomheten ligger i Hausmanns gate og er naboproxy.",
+    "Nåtidsvirksomheter uten fersk kontroll og logo-/wordmarkproveniens.",
+    "Påstand om at 2013-bildet viser resultatet av opprustningen 2018–2021.",
+    "People basert bare på nærhet, generell Oslo-tilknytning eller en egen naboinstitusjon."
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 7,
+      "emner": 82,
+      "topic_hooks": 81,
+      "methods": 14
+    },
+    "candidate_emner": [
+      {
+        "id": "em_by_historiske_lag_i_hverdagsrom",
+        "title": "Historiske lag i hverdagsrom",
+        "score": 125
+      },
+      {
+        "id": "em_by_infrastruktur_mobilitet",
+        "title": "Infrastruktur og mobilitet",
+        "score": 125
+      },
+      {
+        "id": "em_by_kommersielle_gater",
+        "title": "Kommersielle gater og handelsstrøk",
+        "score": 125
+      },
+      {
+        "id": "em_by_opphold_vs_gjennomgang",
+        "title": "Opphold vs gjennomgang",
+        "score": 100
+      },
+      {
+        "id": "em_by_transformasjon_ombruk",
+        "title": "Transformasjon og ombruk",
+        "score": 100
+      },
+      {
+        "id": "em_by_barrierer_forbindelser",
+        "title": "Barrierer og forbindelser",
+        "score": 25
+      },
+      {
+        "id": "em_by_butikkfasader_vindusutstillinger",
+        "title": "Butikkfasader og vindusutstillinger",
+        "score": 25
+      },
+      {
+        "id": "em_by_gateliv_kantsoner",
+        "title": "Gateliv og kantsoner",
+        "score": 25
+      },
+      {
+        "id": "em_by_midlertidig_handel_pop_up",
+        "title": "Midlertidig handel og pop-up",
+        "score": 25
+      },
+      {
+        "id": "em_by_prisniva_kjededominans_tomme_lokaler",
+        "title": "Prisnivå, kjeder og tomme lokaler",
+        "score": 25
+      },
+      {
+        "id": "em_by_synlige_usynlige_grupper",
+        "title": "Synlige og usynlige grupper",
+        "score": 25
+      },
+      {
+        "id": "em_by_uteservering_kommersielt_byliv",
+        "title": "Uteservering og kommersielt byliv",
+        "score": 25
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "his_spor_gatebilde",
+        "title": "Historiske spor i gatebildet",
+        "category_id": "historiske_lag",
+        "score": 33
+      },
+      {
+        "id": "urb_bil_vs_menneske",
+        "title": "Bilby vs menneskeby",
+        "category_id": "urbanisme",
+        "score": 33
+      },
+      {
+        "id": "arb_handel_service",
+        "title": "Handel og service",
+        "category_id": "arbeid_og_naering",
+        "score": 23
+      },
+      {
+        "id": "ark_fasade_inngang",
+        "title": "Fasader og innganger",
+        "category_id": "arkitektur",
+        "score": 23
+      },
+      {
+        "id": "byliv_hverdagskonflikt",
+        "title": "Hverdagskonflikter",
+        "category_id": "byliv",
+        "score": 23
+      },
+      {
+        "id": "makt_uonskede_grupper",
+        "title": "Uønskede grupper",
+        "category_id": "makt_og_konflikt",
+        "score": 23
+      },
+      {
+        "id": "plan_skilting_regulering",
+        "title": "Skilting og regulering",
+        "category_id": "administrasjon_og_plan",
+        "score": 23
+      },
+      {
+        "id": "arb_industri_havn",
+        "title": "Industri og havn",
+        "category_id": "arbeid_og_naering",
+        "score": 10
+      },
+      {
+        "id": "arb_logistikk",
+        "title": "Logistikk og varelevering",
+        "category_id": "arbeid_og_naering",
+        "score": 10
+      },
+      {
+        "id": "arb_transformasjon",
+        "title": "Næring i transformasjon",
+        "category_id": "arbeid_og_naering",
+        "score": 10
+      },
+      {
+        "id": "ark_bygningstyper",
+        "title": "Bygningstyper",
+        "category_id": "arkitektur",
+        "score": 10
+      },
+      {
+        "id": "ark_transformasjon",
+        "title": "Ombygging og transformasjon",
+        "category_id": "arkitektur",
+        "score": 10
+      },
+      {
+        "id": "bolig_endring_tid",
+        "title": "Endring over tid",
+        "category_id": "bolig_og_nabolag",
+        "score": 10
+      },
+      {
+        "id": "byliv_opphold_vs_gjennomgang",
+        "title": "Opphold vs gjennomgang",
+        "category_id": "byliv",
+        "score": 10
+      },
+      {
+        "id": "his_bevaring",
+        "title": "Bevaring",
+        "category_id": "historiske_lag",
+        "score": 10
+      },
+      {
+        "id": "his_epoker",
+        "title": "Arkitektoniske epoker",
+        "category_id": "historiske_lag",
+        "score": 10
+      },
+      {
+        "id": "his_glemt_historie",
+        "title": "Hva som glemmes",
+        "category_id": "historiske_lag",
+        "score": 10
+      },
+      {
+        "id": "his_ombruk",
+        "title": "Ombruk",
+        "category_id": "historiske_lag",
+        "score": 10
+      },
+      {
+        "id": "his_rivning",
+        "title": "Rivning",
+        "category_id": "historiske_lag",
+        "score": 10
+      },
+      {
+        "id": "plan_byggeprosesser",
+        "title": "Byggeprosesser",
+        "category_id": "administrasjon_og_plan",
+        "score": 10
+      },
+      {
+        "id": "plan_midlertidige_tiltak",
+        "title": "Midlertidige tiltak",
+        "category_id": "administrasjon_og_plan",
+        "score": 10
+      },
+      {
+        "id": "urb_byidealer",
+        "title": "Byidealer",
+        "category_id": "urbanisme",
+        "score": 10
+      },
+      {
+        "id": "urb_historiske_visjoner",
+        "title": "Historiske byvisjoner",
+        "category_id": "urbanisme",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "kur_by_03_infrastruktur_og_bevegelse",
+      "kur_by_04_historiske_lag_og_transformasjon"
+    ],
+    "emne_ids": [
+      "em_by_historiske_lag_i_hverdagsrom",
+      "em_by_transformasjon_ombruk",
+      "em_by_infrastruktur_mobilitet",
+      "em_by_opphold_vs_gjennomgang"
+    ],
+    "topic_hook_ids": [
+      "byliv_opphold_vs_gjennomgang"
+    ],
+    "method_ids": [
+      "met_for_etter",
+      "met_gaanalyse"
+    ],
+    "thinker_ids": [
+      "gordon_cullen"
+    ],
+    "works": [
+      "The Concise Townscape"
+    ]
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_storgata_quiz_1",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Storgata går fra Dronningens gate ved Kirkeristen til Nybrua.",
+      "source_ids": [
+        "storgata_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_storgata_quiz_2",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Storgata fram til Brugata og Brugata videre mot Akerselva ble regnet som Vaterlands Storgade.",
+      "source_ids": [
+        "storgata_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_storgata_quiz_3",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Før Nybrua fulgte trafikken Brugata og Vaterlands bru.",
+      "source_ids": [
+        "storgata_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_storgata_quiz_4",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Nybrua gjorde det mulig å føre den nordlige delen av Storgata fram til elva.",
+      "source_ids": [
+        "storgata_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_storgata_quiz_5",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Strekningen sør for Brugata ble innlemmet i byen i 1784.",
+      "source_ids": [
+        "storgata_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_storgata_quiz_6",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Områdene nordover kom inn i byen i 1839.",
+      "source_ids": [
+        "storgata_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_storgata_quiz_7",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "context",
+      "statement": "De to innlemmelsesårene viser en gradvis byutvidelse langs innfartsåren.",
+      "source_ids": [
+        "storgata_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_storgata_quiz_8",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Byens posthus lå i Storgata 23 fra 1813 til 1832.",
+      "source_ids": [
+        "storgata_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_transformasjon_ombruk"
+    },
+    {
+      "claim_id": "claim_storgata_quiz_9",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Storgata 25 huset Olympia kino og senere Scala Teater.",
+      "source_ids": [
+        "storgata_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_transformasjon_ombruk"
+    },
+    {
+      "claim_id": "claim_storgata_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Murgården i Storgata 27 ble oppført i 1837.",
+      "source_ids": [
+        "storgata_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_storgata_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Storgata 27 rommet ulike religiøse og produksjonsrettede funksjoner.",
+      "source_ids": [
+        "storgata_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_transformasjon_ombruk"
+    },
+    {
+      "claim_id": "claim_storgata_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Hornaas musikk har hatt tilhold i Storgata siden 1908.",
+      "source_ids": [
+        "storgata_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_storgata_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Christian Morgenstierne og Arne Eide tegnet Folketeaterbygningen i Storgata 21–23.",
+      "source_ids": [
+        "storgata_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_transformasjon_ombruk"
+    },
+    {
+      "claim_id": "claim_storgata_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Folketeaterbygningen ble tatt i bruk i 1934 og innviet i 1935.",
+      "source_ids": [
+        "storgata_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_transformasjon_ombruk"
+    },
+    {
+      "claim_id": "claim_storgata_quiz_15",
+      "order": 15,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Gateprofilen kan vise bygningen uten å duplisere Folketeaterets separate innhold.",
+      "source_ids": [
+        "storgata_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_transformasjon_ombruk"
+    },
+    {
+      "claim_id": "claim_storgata_quiz_16",
+      "order": 16,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Den Norske Opera brukte salen fra 1959 til 2008.",
+      "source_ids": [
+        "storgata_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_transformasjon_ombruk"
+    },
+    {
+      "claim_id": "claim_storgata_quiz_17",
+      "order": 17,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Snublesteinen ved Storgata 39 minnes Philipp Gosias.",
+      "source_ids": [
+        "storgata_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_storgata_quiz_18",
+      "order": 18,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Minnesmerket gjør én forfulgt persons tilknytning til Storgata fysisk lesbar.",
+      "source_ids": [
+        "storgata_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_storgata_quiz_19",
+      "order": 19,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Storgata holdeplass åpnet 21. juni 2021.",
+      "source_ids": [
+        "sporveien_stop"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_storgata_quiz_20",
+      "order": 20,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Sporveien oppgir linjene 12, 15, 17 og 18 for Storgata holdeplass.",
+      "source_ids": [
+        "sporveien_stop"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_storgata_quiz_21",
+      "order": 21,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Den nye Storgata holdeplass erstattet tidligere Brugata holdeplass.",
+      "source_ids": [
+        "sporveien_stop"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_storgata_quiz_22",
+      "order": 22,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Opprustningen omfattet både synlige flater og tekniske systemer under bakken.",
+      "source_ids": [
+        "byplan_2021"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_storgata_quiz_23",
+      "order": 23,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Den gangbare tunnelen samler kabler og rør under trikkefundamentet.",
+      "source_ids": [
+        "byplan_2021"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_storgata_quiz_24",
+      "order": 24,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Statens havarikommisjon undersøkte SL18-avsporingen i krysset Nygata–Storgata.",
+      "source_ids": [
+        "nsia_2025"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_storgata_quiz_25",
+      "order": 25,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Undersøkelsen var en sikkerhetsundersøkelse og ikke en skyldvurdering.",
+      "source_ids": [
+        "nsia_2025"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_storgata_quiz_26",
+      "order": 26,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Sporveien planlegger å fornye sporarrangementet ved Nybrua høsten 2026.",
+      "source_ids": [
+        "sporveien_2026"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_storgata_quiz_27",
+      "order": 27,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Kirkeristen og den østgående gateaksen er felles ankre i bildene.",
+      "source_ids": [
+        "commons_1938"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_storgata_quiz_28",
+      "order": 28,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Bildets dato setter en tydelig grense for hvilke senere endringer det kan vise.",
+      "source_ids": [
+        "commons_2013"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_storgata_quiz_29",
+      "order": 29,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Begrepet samler fysiske og funksjonelle spor uten å gjøre dem samtidige.",
+      "source_ids": [
+        "storgata_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_storgata_quiz_30",
+      "order": 30,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Ombruk analyseres på riktig enhetsnivå: den dokumenterte bygningen og dens funksjoner.",
+      "source_ids": [
+        "storgata_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_transformasjon_ombruk"
+    },
+    {
+      "claim_id": "claim_storgata_quiz_31",
+      "order": 31,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Gateprofilen er et felles rom der flere bevegelser og stopp må koordineres.",
+      "source_ids": [
+        "byplan_2021"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_opphold_vs_gjennomgang"
+    },
+    {
+      "claim_id": "claim_storgata_quiz_32",
+      "order": 32,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Sammenligningen er sterk når motiv, dato og hva bildene ikke kan bevise oppgis.",
+      "source_ids": [
+        "commons_2013"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+      "method_id": "met_for_etter"
+    },
+    {
+      "claim_id": "claim_storgata_quiz_33",
+      "order": 33,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Gåanalysen gjør det lineære gateløpet til en dokumentert sekvens.",
+      "source_ids": [
+        "osm_route"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet",
+      "method_id": "met_gaanalyse"
+    },
+    {
+      "claim_id": "claim_storgata_quiz_34",
+      "order": 34,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Townscape-perspektivet undersøker hvordan gatebildet endrer seg mens man beveger seg.",
+      "source_ids": [
+        "storgata_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_opphold_vs_gjennomgang",
+      "topic_hook_id": "byliv_opphold_vs_gjennomgang",
+      "thinker_id": "gordon_cullen",
+      "work": "The Concise Townscape"
+    },
+    {
+      "claim_id": "claim_storgata_quiz_35",
+      "order": 35,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Storgatas lange tidsrom krever at hver påstand knyttes til riktig kilde og dato.",
+      "source_ids": [
+        "storgata_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "story",
+      "id": "st_storgata_nybrua_1827",
+      "source_file": "data/stories/stories_storgata.json",
+      "summary": "Nybrua åpnet i 1827 og gjorde den nordlige veien sammenhengende med Storgata fra sentrum. En ny bro endret dermed både gateforløp og innfart til byen."
+    },
+    {
+      "type": "story",
+      "id": "st_storgata_folketeaterbygningen_1935",
+      "source_file": "data/stories/stories_storgata.json",
+      "summary": "Folketeaterbygningen i Storgata 21–23 ble tatt i bruk i 1934 og innviet i 1935. Det store blandingsbygget samlet forretninger, kontorer, organisasjoner og teatersal bak en ny markant gatefront."
+    },
+    {
+      "type": "story",
+      "id": "st_storgata_opprustning_2021",
+      "source_file": "data/stories/stories_storgata.json",
+      "summary": "Opprustningen 2018–2021 fornyet spor, holdeplasser, fortau, overvannsløsninger og teknisk infrastruktur. Storgata ble ikke bare overflatebehandlet; store deler av gatekroppen ble bygd opp på nytt."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "by_storgata_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_storgata_quiz_1",
+        "claim_storgata_quiz_2",
+        "claim_storgata_quiz_3",
+        "claim_storgata_quiz_4",
+        "claim_storgata_quiz_5",
+        "claim_storgata_quiz_6",
+        "claim_storgata_quiz_7"
+      ]
+    },
+    {
+      "set_id": "by_storgata_set_2",
+      "order": 2,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_storgata_quiz_8",
+        "claim_storgata_quiz_9",
+        "claim_storgata_quiz_10",
+        "claim_storgata_quiz_11",
+        "claim_storgata_quiz_12",
+        "claim_storgata_quiz_13",
+        "claim_storgata_quiz_14"
+      ]
+    },
+    {
+      "set_id": "by_storgata_set_3",
+      "order": 3,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_storgata_quiz_15",
+        "claim_storgata_quiz_16",
+        "claim_storgata_quiz_17",
+        "claim_storgata_quiz_18",
+        "claim_storgata_quiz_19",
+        "claim_storgata_quiz_20",
+        "claim_storgata_quiz_21"
+      ]
+    },
+    {
+      "set_id": "by_storgata_set_4",
+      "order": 4,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_storgata_quiz_22",
+        "claim_storgata_quiz_23",
+        "claim_storgata_quiz_24",
+        "claim_storgata_quiz_25",
+        "claim_storgata_quiz_26",
+        "claim_storgata_quiz_27",
+        "claim_storgata_quiz_28"
+      ]
+    },
+    {
+      "set_id": "by_storgata_set_5",
+      "order": 5,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_storgata_quiz_29",
+        "claim_storgata_quiz_30",
+        "claim_storgata_quiz_31",
+        "claim_storgata_quiz_32",
+        "claim_storgata_quiz_33",
+        "claim_storgata_quiz_34",
+        "claim_storgata_quiz_35"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 35,
+    "counts": {
+      "fact": 20,
+      "context": 8,
+      "concept_theory": 7
+    },
+    "ratios": {
+      "fact": 0.571,
+      "context": 0.229,
+      "concept_theory": 0.2
+    }
+  }
+}
