@@ -58,7 +58,7 @@ test("PlaceCard uses six full-width SVG shortcuts and opens Om from title or inf
   assert.match(shortcutsCss, /pc-progress-status-line\{[\s\S]*?grid-column:1 \/ -1;[\s\S]*?grid-row:2/);
   assert.match(shortcutsCss, /#placeCard \.pc-title-row\{[\s\S]*?order:0;[\s\S]*?margin:4px 0 8px/);
   assert.match(shortcutsCss, /#placeCard #pcMeta > \*\{[\s\S]*?white-space:nowrap !important;[\s\S]*?text-overflow:ellipsis/);
-  assert.match(layoutCss, /body\.hg-app #placeCard\{[\s\S]*?top:\\s*calc\(var\(--hg-visual-header-height, 74px\) \+ 58px\);[\s\S]*?bottom:\\s*calc\(var\(--hg-bottom-nav-height\) \+ 14px\)/);
+  assert.match(layoutCss, /body\.hg-app #placeCard\{[\s\S]*?top:\s*calc\(var\(--hg-visual-header-height, 74px\) \+ 58px\);[\s\S]*?bottom:\s*calc\(var\(--hg-bottom-nav-height\) \+ 14px\)/);
   assert.doesNotMatch(layoutCss, /body\.hg-app #placeCard\{[\s\S]*?top:auto/);
   assert.match(placeCardSource, /if \(!samePlace\)[\s\S]*?scrollBody\.scrollTop = 0/);
 
