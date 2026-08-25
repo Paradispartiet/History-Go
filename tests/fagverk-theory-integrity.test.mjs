@@ -10,7 +10,7 @@ test('strict theory integrity audit dekker 19 toppfag og Teknologi nested', () =
   assert.equal(r.subjects.length,20);
 });
 
-test('historisk 18/18 strict utvides med Helse uten å feilmerke Utdanning', () => {
+test('historisk 18/18 strict og Helse forblir proven mens Utdanning 1/14 venter på full strict proof', () => {
   const r=auditFagverkTheoryIntegrity();
   assert.equal(r.status,'strict_audit_open_evidence_gaps');
   assert.equal(r.strictCompletionGateReady,false);
@@ -18,7 +18,7 @@ test('historisk 18/18 strict utvides med Helse uten å feilmerke Utdanning', () 
   assert.equal(r.summary.structured_subject_gate_not_strict,0);
   assert.equal(r.summary.partial_strict_evidence,0);
   assert.equal(r.summary.baseline_only_strict_proof_missing,1);
-  assert.deepEqual(r.expansionProductionQueue,['utdanning']);
+  assert.deepEqual(r.expansionProductionQueue,[]);
 });
 
 test('manglende strict proof blir ikke feiltolket som innholdshull', () => {
@@ -39,10 +39,10 @@ test('alle 19 subject-gates, inkludert Helse, Filosofi og nested Teknologi, er f
   }
 });
 
-test('completion-status er read-only og bare Utdanning gjenstår', () => {
+test('completion-status er read-only og Utdanning 1/14 står i proof reconciliation, ikke expansion queue', () => {
   const r=auditFagverkTheoryIntegrity();
   assert.equal(r.rules.completionStatusReadOnly,true);
-  assert.deepEqual(r.proofReconciliationQueue,[]);
-  assert.deepEqual(r.expansionProductionQueue,['utdanning']);
+  assert.deepEqual(r.proofReconciliationQueue,['utdanning']);
+  assert.deepEqual(r.expansionProductionQueue,[]);
   for(const id of ['film_tv','religion','subkultur','scenekunst','historie','by','kunst','media','musikk','litteratur','natur','naeringsliv','psykologi','sport','vitenskap','politikk','filosofi','teknologi'])assert.ok(!r.proofReconciliationQueue.includes(id));
 });
