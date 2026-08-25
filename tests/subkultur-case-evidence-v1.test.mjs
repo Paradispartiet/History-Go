@@ -15,9 +15,9 @@ test('caseprofilen lukker alle femti kandidater med førtito validerte og åtte 
 
 test('hver validert case har miljønær og uavhengig inspectable kilde', () => {
   const report = buildSubkulturCaseEvidenceReport();
-  assert.equal(report.totals.case_sources, 84);
+  assert.equal(report.totals.case_sources, 85);
   assert.equal(report.totals.environment_near_sources, 42);
-  assert.equal(report.totals.independent_control_sources, 42);
+  assert.equal(report.totals.independent_control_sources, 43);
   assert.ok(report.cases.every((entry) => entry.sources >= 2));
   assert.ok(report.cases.every((entry) => entry.environment_near_sources >= 1));
   assert.ok(report.cases.every((entry) => entry.independent_control_sources >= 1));
