@@ -49,21 +49,6 @@ body.hg-app:not(.hg-loaded):not(.hg-load-failed)::after {
   animation: hgLoaderPulse 1.05s ease-in-out infinite;
 }
 
-/* Smale iPad-/Stage Manager-vinduer bruker tablet-canvas som skaleres ned,
-   mens loading-gaten ligger direkte mot viewporten. Hold også dette faste
-   laget kompakt, så første frame matcher resten av grensesnittet. */
-@media (max-width: 860px) {
-  body.hg-app:not(.hg-loaded)::after {
-    min-width: 180px;
-    padding-top: 58px;
-    font-size: 16px;
-  }
-
-  body.hg-app:not(.hg-loaded):not(.hg-load-failed)::after {
-    background-size: 42px 42px;
-  }
-}
-
 body.hg-app.hg-load-failed::after {
   content: "Appen kunne ikke lastes. Sjekk konsollen.";
   max-width: 320px;
@@ -223,56 +208,6 @@ body.hg-app.hg-load-failed::after {
 
 .hg-onb-primary:hover { background: #3a7022; }
 .hg-onb-primary:active { transform: scale(0.98); }
-
-/* Onboarding er også et fast viewport-lag og må derfor komprimeres eksplisitt
-   i smale nettbrettvinduer, uavhengig av design-canvasets skala. */
-@media (max-width: 860px) {
-  .hg-onboarding-modal {
-    padding: 12px 10px;
-  }
-
-  .hg-onb-inner {
-    max-width: 420px;
-    border-radius: 15px;
-    padding: 20px 18px 18px;
-  }
-
-  .hg-onb-close {
-    top: 8px;
-    right: 8px;
-    width: 30px;
-    height: 30px;
-  }
-
-  .hg-onb-head {
-    margin-bottom: 14px;
-  }
-
-  .hg-onb-title {
-    font-size: 22px;
-  }
-
-  .hg-onb-steps {
-    margin-bottom: 14px;
-    gap: 10px;
-  }
-
-  .hg-onb-steps li {
-    grid-template-columns: 32px 1fr;
-    gap: 10px;
-  }
-
-  .hg-onb-step-icon {
-    width: 32px;
-    height: 32px;
-    font-size: 16px;
-  }
-
-  .hg-onb-primary {
-    padding: 10px 18px;
-    font-size: 14px;
-  }
-}
 
 /* ========== Bedre empty-states i venstre panel ========== */
 
