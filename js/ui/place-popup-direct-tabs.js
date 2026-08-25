@@ -1,257 +1,173 @@
 // js/ui/place-popup-direct-tabs.js
-// Materialiserer alt legacy-innhold som place-popup-tabs tidligere la i «Mer»
-// som egne faner i samme horisontale fanestripe.
-// Alle de tidligere Mer-familiene skal alltid være synlige; manglende innhold
-// vises som en tydelig tomtilstand i stedet for at fanen forsvinner.
-// Source-data og subsystemeierskap endres ikke.
+// Legacy «Mer» er kun et internt staging-panel. Innholdet rutes til riktig
+// brukerflate i stedet for å bli en serie permanente popupfaner.
 (function installPlacePopupDirectTabs(global) {
   "use strict";
 
   const INSTALL_FLAG = "__HG_PLACE_POPUP_DIRECT_TABS_INSTALLED__";
-  const BRIDGE_FLAG = "hgDirectTabBridge";
   const MORE_ID = "more";
   const bridgedDecorators = new WeakSet();
+  const supplementStore = global.__HG_PLACE_COLLECTION_SUPPLEMENTS__ instanceof Map
+    ? global.__HG_PLACE_COLLECTION_SUPPLEMENTS__
+    : new Map();
+  global.__HG_PLACE_COLLECTION_SUPPLEMENTS__ = supplementStore;
 
   const text = value => String(value == null ? "" : value).trim();
-  const slug = value => text(value)
-    .toLowerCase()
-    .normalize("NFKD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "")
-    .slice(0, 48);
+  const esc = value => String(value == null ? "" : value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 
-  const DIRECT_TABS = Object.freeze([
-    ["language", "Språk"],
-    ["objects", "Spor & objekter"],
-    ["notice", "Legg merke til"],
-    ["meaning", "Betydning"],
-    ["counterpoints", "Motpunkter"],
-    ["relations", "Relasjoner"],
-    ["knowledge", "Kunnskap"],
-    ["observations", "Observasjoner"]
+  const REMOVED_DIRECT_TAB_IDS = Object.freeze([
+    "objects", "notice", "meaning", "counterpoints", "relations", "knowledge", "observations"
   ]);
 
-  const HEADING_TABS = Object.freeze({
-    "spor og objekter": ["objects", "Spor & objekter"],
-    "legg merke til": ["notice", "Legg merke til"],
-    "hvorfor det betyr noe": ["meaning", "Betydning"],
-    "motpunkter": ["counterpoints", "Motpunkter"],
-    "språkleksikon": ["language", "Språk"]
-  });
-
-  const CLASS_TABS = Object.freeze([
-    ["hg-place-relations-section", "relations", "Relasjoner"],
-    ["hg-place-knowledge-section", "knowledge", "Kunnskap"],
-    ["hg-place-observations-section", "observations", "Observasjoner"]
-  ]);
-
-  const EMPTY_COPY = Object.freeze({
-    language: "Ingen språkspor er registrert for dette stedet ennå.",
-    objects: "Ingen spor eller objekter er registrert for dette stedet ennå.",
-    notice: "Ingen egne observasjonspunkter er registrert for dette stedet ennå.",
-    meaning: "Ingen egen betydningsforklaring er registrert for dette stedet ennå.",
-    counterpoints: "Ingen motpunkter er registrert for dette stedet ennå.",
-    relations: "Ingen relasjoner er registrert for dette stedet ennå.",
-    knowledge: "Ingen ekstra kunnskapsoppføringer er registrert for dette stedet ennå.",
-    observations: "Ingen observasjoner er registrert for dette stedet ennå."
-  });
-
-  function directChildren(panelWrap) {
-    return [...panelWrap.children].filter(node => node instanceof HTMLElement && node.hasAttribute("data-place-panel"));
+  function currentPlaceId(article) {
+    return text(
+      document.getElementById("placeCard")?.dataset?.currentPlaceId
+      || article?.dataset?.placeId
+      || article?.getAttribute?.("data-place-id")
+    );
   }
 
-  function ensureTab(tablist, panelWrap, id, label) {
-    let button = /** @type {HTMLButtonElement | null} */ (tablist.querySelector(`[data-place-tab="${CSS.escape(id)}"]`));
-    let panel = /** @type {HTMLElement | null} */ (panelWrap.querySelector(`[data-place-panel="${CSS.escape(id)}"]`));
+  function storeSupplement(placeId, kind, node) {
+    if (!placeId || !(node instanceof HTMLElement)) return;
+    const key = `${placeId}:${kind}`;
+    const rows = supplementStore.get(key) || [];
+    const html = node.outerHTML;
+    if (!rows.includes(html)) rows.push(html);
+    supplementStore.set(key, rows);
+  }
 
+  function getSupplements(placeId, kind) {
+    return [...(supplementStore.get(`${text(placeId)}:${text(kind)}`) || [])];
+  }
+
+  function ensureLanguageTab(tablist, panelWrap) {
+    let button = tablist.querySelector('[data-place-tab="language"]');
+    let panel = panelWrap.querySelector('[data-place-panel="language"]');
     if (!button) {
       button = document.createElement("button");
       button.type = "button";
       button.className = "hg-place-tab hg-place-tab-dynamic";
-      button.id = `hg-place-tab-${id}`;
-      button.dataset.placeTab = id;
-      button.textContent = label;
+      button.id = "hg-place-tab-language";
+      button.dataset.placeTab = "language";
+      button.textContent = "Språk";
       button.setAttribute("role", "tab");
-      button.setAttribute("aria-controls", `hg-place-panel-${id}`);
+      button.setAttribute("aria-controls", "hg-place-panel-language");
       button.setAttribute("aria-selected", "false");
       button.tabIndex = -1;
       tablist.appendChild(button);
     }
-
     if (!panel) {
       panel = document.createElement("section");
       panel.className = "hg-place-tab-panel hg-place-tab-panel-dynamic";
-      panel.id = `hg-place-panel-${id}`;
-      panel.dataset.placePanel = id;
+      panel.id = "hg-place-panel-language";
+      panel.dataset.placePanel = "language";
       panel.setAttribute("role", "tabpanel");
       panel.setAttribute("aria-labelledby", button.id);
       panel.hidden = true;
       panelWrap.appendChild(panel);
     }
-
     return panel;
   }
 
-  function removeEmptyState(panel) {
-    panel?.querySelector?.("[data-direct-tab-empty]")?.remove();
+  function moveToAbout(node, panelWrap) {
+    const about = panelWrap.querySelector('[data-place-panel="about"]');
+    if (!(about instanceof HTMLElement) || !(node instanceof HTMLElement)) return node?.remove?.();
+    about.appendChild(node);
   }
 
-  function ensureEmptyState(panel, id) {
-    if (!(panel instanceof HTMLElement)) return;
-    const realChildren = [...panel.children].filter(child => !child.hasAttribute("data-direct-tab-empty"));
-    if (realChildren.length || text(panel.textContent)) return;
-    const empty = document.createElement("div");
-    empty.className = "hg-place-tab-empty";
-    empty.dataset.directTabEmpty = "1";
-    empty.textContent = EMPTY_COPY[id] || "Ingen oppføringer er registrert for dette stedet ennå.";
-    panel.appendChild(empty);
-  }
-
-  function ensureAllDirectTabs(tablist, panelWrap) {
-    DIRECT_TABS.forEach(([id, label]) => {
-      const panel = ensureTab(tablist, panelWrap, id, label);
-      const button = tablist.querySelector(`[data-place-tab="${CSS.escape(id)}"]`);
-      // Hold alle tidligere Mer-faner samlet etter de sju grunnfanene, i fast rekkefølge.
-      if (button) tablist.appendChild(button);
-      panelWrap.appendChild(panel);
-      ensureEmptyState(panel, id);
-    });
-  }
-
-  function activate(tablist, panelWrap, id, focus = false) {
-    const selected = /** @type {HTMLElement | null} */ (tablist.querySelector(`[data-place-tab="${CSS.escape(id)}"]`));
-    if (!selected) return;
-
-    tablist.querySelectorAll("[role=tab]").forEach(button => {
-      const active = button === selected;
-      button.setAttribute("aria-selected", active ? "true" : "false");
-      if (button instanceof HTMLElement) button.tabIndex = active ? 0 : -1;
-    });
-
-    directChildren(panelWrap).forEach(panel => {
-      panel.hidden = panel.dataset.placePanel !== id;
-    });
-
-    try {
-      selected.scrollIntoView({
-        behavior: focus ? "smooth" : "auto",
-        block: "nearest",
-        inline: "nearest"
-      });
-    } catch {}
-    if (focus) selected.focus();
-  }
-
-  function installNavigationBridge(tablist, panelWrap) {
-    if (tablist.dataset[BRIDGE_FLAG] === "1") return;
-    tablist.dataset[BRIDGE_FLAG] = "1";
-
-    tablist.addEventListener("click", event => {
-      const target = event.target instanceof Element ? event.target.closest("[data-place-tab]") : null;
-      if (!(target instanceof HTMLElement) || !tablist.contains(target)) return;
-      event.stopImmediatePropagation();
-      activate(tablist, panelWrap, text(target.dataset.placeTab), false);
-    }, true);
-
-    tablist.addEventListener("keydown", event => {
-      const buttons = [...tablist.querySelectorAll("[role=tab]")].filter(button => button instanceof HTMLElement);
-      const activeElement = document.activeElement;
-      const index = activeElement instanceof HTMLElement ? buttons.indexOf(activeElement) : -1;
-      if (index < 0 || !buttons.length) return;
-      let next = index;
-      if (event.key === "ArrowRight") next = (index + 1) % buttons.length;
-      else if (event.key === "ArrowLeft") next = (index - 1 + buttons.length) % buttons.length;
-      else if (event.key === "Home") next = 0;
-      else if (event.key === "End") next = buttons.length - 1;
-      else return;
-      event.preventDefault();
-      event.stopImmediatePropagation();
-      const nextButton = buttons[next];
-      if (nextButton instanceof HTMLElement) activate(tablist, panelWrap, text(nextButton.dataset.placeTab), true);
-    }, true);
-  }
-
-  function tabSpecForNode(node) {
-    if (!(node instanceof HTMLElement)) return null;
-
-    for (const [className, id, label] of CLASS_TABS) {
-      if (node.classList.contains(className) || node.querySelector(`.${className}`)) return { id, label };
-    }
-
-    const heading = text(node.querySelector("h2,h3,h4")?.textContent).toLowerCase();
-    if (HEADING_TABS[heading]) {
-      const [id, label] = HEADING_TABS[heading];
-      return { id, label };
-    }
-
-    const label = text(node.querySelector("h2,h3,h4")?.textContent) || "Tillegg";
-    return { id: `extra-${slug(label) || "content"}`, label };
-  }
-
-  function moveNode(node, tablist, panelWrap) {
+  function routeNode(node, article, tablist, panelWrap) {
     if (!(node instanceof HTMLElement)) return;
 
-    // renderMore() legger flere faglig ulike seksjoner i én generert holder.
-    // Splitt holderen før flytting slik at hver del blir en ekte direktefane.
+    // renderMore() samler flere semantiske seksjoner i én holder. Splitt den
+    // og rut hver seksjon til sin canonical brukerflate.
     if (node.classList.contains("hg-place-tab-generated") && node.dataset.generated === "more") {
-      [...node.children].forEach(child => moveNode(child, tablist, panelWrap));
+      [...node.children].forEach(child => routeNode(child, article, tablist, panelWrap));
       node.remove();
       return;
     }
 
-    const spec = tabSpecForNode(node);
-    if (!spec) return node.remove();
+    const heading = text(node.querySelector("h2,h3,h4")?.textContent).toLowerCase();
+    const placeId = currentPlaceId(article);
 
-    if (spec.id === "language") {
-      const existingLanguage = panelWrap.querySelector('[data-place-panel="language"]');
-      if (existingLanguage?.classList.contains("hg-place-language-panel") || panelWrap.closest("[data-hg-language-layer=\"1\"]")) {
+    if (heading === "spor og objekter" || heading === "legg merke til") {
+      storeSupplement(placeId, "objects", node);
+      node.remove();
+      return;
+    }
+
+    if (node.classList.contains("hg-place-relations-section") || node.querySelector(".hg-place-relations-section")) {
+      storeSupplement(placeId, "people", node);
+      node.remove();
+      return;
+    }
+
+    if (heading === "språkleksikon") {
+      const languageLayerExists = Boolean(
+        panelWrap.querySelector('.hg-place-language-panel,[data-place-panel="language"]')
+        || article.dataset.hgLanguageLayer === "1"
+      );
+      if (languageLayerExists) {
         node.remove();
         return;
       }
+      ensureLanguageTab(tablist, panelWrap).appendChild(node);
+      return;
     }
 
-    const panel = ensureTab(tablist, panelWrap, spec.id, spec.label);
-    removeEmptyState(panel);
-    panel.appendChild(node);
+    // Betydning, motpunkter, Knowledge og observasjonskunnskap er kunnskap om
+    // stedet og blir seksjoner under Om. De er ikke egne navigasjonsnivåer.
+    if (
+      heading === "hvorfor det betyr noe"
+      || heading === "motpunkter"
+      || node.classList.contains("hg-place-knowledge-section")
+      || node.classList.contains("hg-place-observations-section")
+      || node.querySelector(".hg-place-knowledge-section,.hg-place-observations-section")
+    ) {
+      moveToAbout(node, panelWrap);
+      return;
+    }
+
+    // Ukjent legacy-innhold skal aldri forsvinne eller bli en ny restfane.
+    moveToAbout(node, panelWrap);
   }
 
-  function drainMore(morePanel, tablist, panelWrap) {
-    [...morePanel.children].forEach(node => moveNode(node, tablist, panelWrap));
+  function drainMore(morePanel, article, tablist, panelWrap) {
+    [...morePanel.children].forEach(node => routeNode(node, article, tablist, panelWrap));
+  }
+
+  function cleanupOldDirectTabs(tablist, panelWrap) {
+    for (const id of REMOVED_DIRECT_TAB_IDS) {
+      tablist.querySelector(`[data-place-tab="${CSS.escape(id)}"]`)?.remove();
+      panelWrap.querySelector(`[data-place-panel="${CSS.escape(id)}"]`)?.remove();
+    }
   }
 
   function decoratePopup() {
     const article = document.querySelector('.hg-place-popup-v2[data-hg-place-tabs="1"]');
-    const tablist = /** @type {HTMLElement | null} */ (article?.querySelector(".hg-place-tabs") || null);
-    const panelWrap = /** @type {HTMLElement | null} */ (article?.querySelector(".hg-place-tab-panels") || null);
-    if (!article || !tablist || !panelWrap || article.dataset.hgDirectTabs === "1") return false;
+    const tablist = article?.querySelector(".hg-place-tabs");
+    const panelWrap = article?.querySelector(".hg-place-tab-panels");
+    if (!(article instanceof HTMLElement) || !(tablist instanceof HTMLElement) || !(panelWrap instanceof HTMLElement)) return false;
+    if (article.dataset.hgDirectTabs === "1") return true;
 
-    const moreTab = tablist.querySelector(`[data-place-tab="${MORE_ID}"]`);
-    const morePanel = /** @type {HTMLElement | null} */ (panelWrap.querySelector(`[data-place-panel="${MORE_ID}"]`) || null);
-    if (!morePanel) return false;
+    const morePanel = panelWrap.querySelector(`[data-place-panel="${MORE_ID}"]`);
+    if (!(morePanel instanceof HTMLElement)) return false;
 
     article.dataset.hgDirectTabs = "1";
-    installNavigationBridge(tablist, panelWrap);
+    cleanupOldDirectTabs(tablist, panelWrap);
+    tablist.querySelector(`[data-place-tab="${MORE_ID}"]`)?.remove();
 
-    // Mer er kun et bakoverkompatibelt staging-panel fra den gamle hydratoren.
-    // Det skal aldri være en brukerrettet fane, men alle familiene som lå der
-    // skal være synlige som egne faner selv når et konkret sted ennå mangler data.
-    moreTab?.remove();
-    ensureAllDirectTabs(tablist, panelWrap);
-    morePanel.remove();
-
-    drainMore(morePanel, tablist, panelWrap);
-    const observer = new MutationObserver(() => {
-      drainMore(morePanel, tablist, panelWrap);
-      DIRECT_TABS.forEach(([id]) => {
-        const panel = panelWrap.querySelector(`[data-place-panel="${CSS.escape(id)}"]`);
-        ensureEmptyState(panel, id);
-      });
-    });
+    drainMore(morePanel, article, tablist, panelWrap);
+    const observer = new MutationObserver(() => drainMore(morePanel, article, tablist, panelWrap));
     observer.observe(morePanel, { childList: true, subtree: true });
 
-    const selected = tablist.querySelector('[role="tab"][aria-selected="true"]');
-    if (selected instanceof HTMLElement) activate(tablist, panelWrap, text(selected.dataset.placeTab), false);
+    // Staging-panelet skal ikke inngå i den synlige panelstrukturen, men beholdes
+    // frakoblet så den gamle hydratoren kan skrive til det mens observeren ruter.
+    morePanel.remove();
     return true;
   }
 
@@ -260,7 +176,7 @@
     const currentDecorate = api?.decoratePopup;
     if (typeof currentDecorate !== "function" || bridgedDecorators.has(currentDecorate)) return;
 
-    const wrappedDecorate = function decoratePopupWithDirectTabs(place) {
+    const wrappedDecorate = function decoratePopupWithOwnedSurfaces(place) {
       const result = currentDecorate.apply(this, arguments);
       try { decoratePopup(); } catch (error) { if (global.DEBUG) console.warn("[place-popup-direct-tabs]", error); }
       return result;
@@ -277,14 +193,14 @@
     const current = global.showPlacePopup;
     if (typeof current !== "function" || current.__hgPlacePopupTabs !== true) return false;
 
-    const wrapped = function showPlacePopupWithDirectTabs(place) {
+    const wrapped = function showPlacePopupWithOwnedSurfaces(place) {
       const result = current.apply(this, arguments);
-      const revealDirectTabs = () => {
+      const route = () => {
         try { decoratePopup(); } catch (error) { if (global.DEBUG) console.warn("[place-popup-direct-tabs]", error); }
       };
-      if (result && typeof result.then === "function") void result.then(revealDirectTabs).catch(error => { if (global.DEBUG) console.warn("[place-popup-direct-tabs]", error); });
-      else if (typeof global.queueMicrotask === "function") global.queueMicrotask(revealDirectTabs);
-      else global.setTimeout(revealDirectTabs, 0);
+      if (result && typeof result.then === "function") void result.then(route).catch(error => { if (global.DEBUG) console.warn("[place-popup-direct-tabs]", error); });
+      else if (typeof global.queueMicrotask === "function") global.queueMicrotask(route);
+      else global.setTimeout(route, 0);
       return result;
     };
     wrapped.__hgPlacePopupDirectTabs = true;
@@ -292,7 +208,11 @@
     wrapped.__hgPlacePopupV2 = current.__hgPlacePopupV2 === true;
     wrapped.__previous = current;
     global.showPlacePopup = wrapped;
-    global.HGPlacePopupDirectTabs = { decoratePopup, activate, tabs: DIRECT_TABS.map(([id, label]) => ({ id, label })) };
+    global.HGPlacePopupDirectTabs = {
+      decoratePopup,
+      getSupplements,
+      visibleOptionalTabs: ["language"]
+    };
     installDecoratorBridge();
     global[INSTALL_FLAG] = true;
     try { decoratePopup(); } catch (error) { if (global.DEBUG) console.warn("[place-popup-direct-tabs]", error); }
