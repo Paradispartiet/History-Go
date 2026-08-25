@@ -1,0 +1,1367 @@
+{
+  "targetId": "storgata",
+  "categoryId": "by",
+  "sources": {
+    "storgata_byleksikon": "https://oslobyleksikon.no/side/Storgata",
+    "byplan_2021": "https://magasin.oslo.kommune.no/byplan/stor-forandring-i-nye-storgata",
+    "sporveien_stop": "https://www.sporveien.no/vare-tjenester/trikken/trikkeholdeplasser/s/storgata/",
+    "sporveien_2026": "https://www.sporveien.no/prosjekter-og-arbeid/sporveksel/",
+    "nsia_2025": "https://nsia.no/Rail/Rail/Published-reports/2025-02",
+    "commons_1938": "https://commons.wikimedia.org/wiki/File:Storgata-1938.jpg",
+    "commons_2013": "https://commons.wikimedia.org/wiki/File:Oslo_Storgata_seen_from_Kirkeristen_IMG_8263.JPG",
+    "osm_route": "https://www.openstreetmap.org/way/36973177"
+  },
+  "production_context": {
+    "manifest_category": "by",
+    "profile": "rich_5x7",
+    "standard_version": "3.3",
+    "source_brief": "data/quiz/production_briefs/by/storgata.json",
+    "context_artifact": "data/quiz/production_context/by/storgata.json",
+    "resolved_files": {
+      "pensum": "data/fag/by/pensum_by.json",
+      "emner": "data/fag/by/emner_by.json",
+      "fagkart": "data/fag/by/fagkart_by.json",
+      "methods": "data/fag/by/methods_by.json",
+      "supersetQuizMal": "data/fag/by/supersetQUIZMAL_by.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "kur_by_03_infrastruktur_og_bevegelse",
+      "kur_by_04_historiske_lag_og_transformasjon"
+    ],
+    "emne_ids": [
+      "em_by_historiske_lag_i_hverdagsrom",
+      "em_by_transformasjon_ombruk",
+      "em_by_infrastruktur_mobilitet",
+      "em_by_opphold_vs_gjennomgang"
+    ],
+    "topic_hook_ids": [
+      "byliv_opphold_vs_gjennomgang"
+    ],
+    "method_ids": [
+      "met_for_etter",
+      "met_gaanalyse"
+    ],
+    "thinker_ids": [
+      "gordon_cullen"
+    ],
+    "works": [
+      "The Concise Townscape"
+    ],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/by/storgata_sets_merged.json",
+        "data/places/by/oslo/places/storgata.json"
+      ],
+      "active_before": {
+        "file": null,
+        "set_count": 0,
+        "question_count": 0,
+        "finding": "Ingen manifest-loadet canonical quiz fantes."
+      },
+      "legacy_before": {
+        "file": "data/quiz/by/storgata_sets_merged.json",
+        "set_count": 3,
+        "question_count": 15,
+        "finding": "Legacy-filen hadde bare faktaspørsmål og manglet source brief, production context og femsetts progresjon."
+      },
+      "decisions": [
+        "Behold dokumenterbare faktakjerner, men materialiser dem i canonical 5×7-kontrakt.",
+        "Hold de første 14 spørsmålene til normal fakta- og kontekstinngang.",
+        "Legg metode og teori bare i sluttsettet og bind alt til ekstern stedsevidens."
+      ],
+      "knowledge_migration": "Legacy-filen er dokumentert her og fjernes etter at faktakjernene er migrert til den nye canonicale pakken; manifestet peker bare på 5×7-pakken og Knowledge regenereres."
+    },
+    "profile_decision": {
+      "profile": "rich",
+      "set_count": 5,
+      "questions_per_set": 7,
+      "justification": "Storgata har fem selvstendige læringsjobber: gateidentitet og byutvidelse, adresser og ombruk, Folketeaterkvartalet og minnespor, trikkeinfrastruktur og opprustning, samt stedlig metode og kildekritikk."
+    },
+    "held_back_candidates": [
+      "Café Sara som Brand – virksomheten ligger i Hausmanns gate og er naboproxy.",
+      "Nåtidsvirksomheter uten fersk kontroll og logo-/wordmarkproveniens.",
+      "Påstand om at 2013-bildet viser resultatet av opprustningen 2018–2021.",
+      "People basert bare på nærhet, generell Oslo-tilknytning eller en egen naboinstitusjon."
+    ],
+    "theory_start_phase": "final",
+    "method_start_phase": "final"
+  },
+  "sets": [
+    {
+      "set_id": "by_storgata_set_1",
+      "title": "Gateløp og byutvidelse",
+      "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "storgata_quiz_1",
+          "quiz_id": "by_storgata_set_1_q1",
+          "categoryId": "by",
+          "placeId": "storgata",
+          "targetId": "storgata",
+          "question_scope": "place",
+          "question": "Mellom hvilke to endepunkter går canonical Storgata?",
+          "options": [
+            "Kirkeristen og Nybrua",
+            "Stortorvet og Ankerbrua",
+            "Youngstorget og Akershus festning"
+          ],
+          "answer": "Kirkeristen og Nybrua",
+          "answerIndex": 0,
+          "knowledge": "Storgata går fra Dronningens gate ved Kirkeristen til Nybrua.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "storgata_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Storgata går fra Dronningens gate ved Kirkeristen til Nybrua.",
+          "claim_id": "claim_storgata_quiz_1",
+          "primary_knowledge_unit_id": "ku_by_storgata_01",
+          "knowledge_unit_ids": [
+            "ku_by_storgata_01"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "storgata_quiz_2",
+          "quiz_id": "by_storgata_set_1_q2",
+          "categoryId": "by",
+          "placeId": "storgata",
+          "targetId": "storgata",
+          "question_scope": "place",
+          "question": "Hva het det sammenhengende gateløpet på 1700-tallet?",
+          "options": [
+            "Vaterlands Storgade",
+            "Øvre Torvegade",
+            "Nygata"
+          ],
+          "answer": "Vaterlands Storgade",
+          "answerIndex": 0,
+          "knowledge": "Storgata fram til Brugata og Brugata videre mot Akerselva ble regnet som Vaterlands Storgade.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "storgata_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Storgata fram til Brugata og Brugata videre mot Akerselva ble regnet som Vaterlands Storgade.",
+          "claim_id": "claim_storgata_quiz_2",
+          "primary_knowledge_unit_id": "ku_by_storgata_02",
+          "knowledge_unit_ids": [
+            "ku_by_storgata_02"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "storgata_quiz_3",
+          "quiz_id": "by_storgata_set_1_q3",
+          "categoryId": "by",
+          "placeId": "storgata",
+          "targetId": "storgata",
+          "question_scope": "place",
+          "question": "Hvilken bro brukte innfarten før Nybrua?",
+          "options": [
+            "Vaterlands bru",
+            "Ankerbrua",
+            "Akershusbrua"
+          ],
+          "answer": "Vaterlands bru",
+          "answerIndex": 0,
+          "knowledge": "Før Nybrua fulgte trafikken Brugata og Vaterlands bru.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "storgata_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Før Nybrua fulgte trafikken Brugata og Vaterlands bru.",
+          "claim_id": "claim_storgata_quiz_3",
+          "primary_knowledge_unit_id": "ku_by_storgata_03",
+          "knowledge_unit_ids": [
+            "ku_by_storgata_03"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "storgata_quiz_4",
+          "quiz_id": "by_storgata_set_1_q4",
+          "categoryId": "by",
+          "placeId": "storgata",
+          "targetId": "storgata",
+          "question_scope": "place",
+          "question": "Hva skjedde med Storgata da Nybrua åpnet i 1827?",
+          "options": [
+            "Gaten ble ført sammenhengende fram til Akerselva",
+            "Gaten ble avkortet ved Kirkeristen og gjort til torg",
+            "Gateløpet ble flyttet vestover til Youngstorget"
+          ],
+          "answer": "Gaten ble ført sammenhengende fram til Akerselva",
+          "answerIndex": 0,
+          "knowledge": "Nybrua gjorde det mulig å føre den nordlige delen av Storgata fram til elva.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "storgata_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Nybrua gjorde det mulig å føre den nordlige delen av Storgata fram til elva.",
+          "claim_id": "claim_storgata_quiz_4",
+          "primary_knowledge_unit_id": "ku_by_storgata_04",
+          "knowledge_unit_ids": [
+            "ku_by_storgata_04"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "storgata_quiz_5",
+          "quiz_id": "by_storgata_set_1_q5",
+          "categoryId": "by",
+          "placeId": "storgata",
+          "targetId": "storgata",
+          "question_scope": "place",
+          "question": "Når ble den sørlige delen av Storgata innlemmet i byen?",
+          "options": [
+            "1784",
+            "1827",
+            "1939"
+          ],
+          "answer": "1784",
+          "answerIndex": 0,
+          "knowledge": "Strekningen sør for Brugata ble innlemmet i byen i 1784.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "storgata_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Strekningen sør for Brugata ble innlemmet i byen i 1784.",
+          "claim_id": "claim_storgata_quiz_5",
+          "primary_knowledge_unit_id": "ku_by_storgata_05",
+          "knowledge_unit_ids": [
+            "ku_by_storgata_05"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "storgata_quiz_6",
+          "quiz_id": "by_storgata_set_1_q6",
+          "categoryId": "by",
+          "placeId": "storgata",
+          "targetId": "storgata",
+          "question_scope": "place",
+          "question": "Når ble områdene nordover langs gaten innlemmet i byen?",
+          "options": [
+            "1839",
+            "1784",
+            "1908"
+          ],
+          "answer": "1839",
+          "answerIndex": 0,
+          "knowledge": "Områdene nordover kom inn i byen i 1839.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "storgata_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Områdene nordover kom inn i byen i 1839.",
+          "claim_id": "claim_storgata_quiz_6",
+          "primary_knowledge_unit_id": "ku_by_storgata_06",
+          "knowledge_unit_ids": [
+            "ku_by_storgata_06"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "storgata_quiz_7",
+          "quiz_id": "by_storgata_set_1_q7",
+          "categoryId": "by",
+          "placeId": "storgata",
+          "targetId": "storgata",
+          "question_scope": "place",
+          "question": "Hva viser forskjellen mellom 1784 og 1839?",
+          "options": [
+            "Gateløpet ble innlemmet i byen i etapper",
+            "Hele gaten ble grunnlagt samme dag",
+            "Nybrua lå alltid innenfor byvollen"
+          ],
+          "answer": "Gateløpet ble innlemmet i byen i etapper",
+          "answerIndex": 0,
+          "knowledge": "De to innlemmelsesårene viser en gradvis byutvidelse langs innfartsåren.",
+          "difficulty": 1,
+          "question_type": "context",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "storgata_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "De to innlemmelsesårene viser en gradvis byutvidelse langs innfartsåren.",
+          "claim_id": "claim_storgata_quiz_7",
+          "primary_knowledge_unit_id": "ku_by_storgata_07",
+          "knowledge_unit_ids": [
+            "ku_by_storgata_07"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "by_storgata_set_2",
+      "title": "Historiske adresser",
+      "level": 2,
+      "order": 2,
+      "phase": "middle",
+      "xp": 60,
+      "questions": [
+        {
+          "id": "storgata_quiz_8",
+          "quiz_id": "by_storgata_set_2_q1",
+          "categoryId": "by",
+          "placeId": "storgata",
+          "targetId": "storgata",
+          "question_scope": "place",
+          "question": "Hvilken virksomhet lå i Storgata 23 fra 1813 til 1832?",
+          "options": [
+            "Byens posthus",
+            "Den Norske Opera",
+            "Oslo legevakt"
+          ],
+          "answer": "Byens posthus",
+          "answerIndex": 0,
+          "knowledge": "Byens posthus lå i Storgata 23 fra 1813 til 1832.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "source": [
+            "storgata_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Byens posthus lå i Storgata 23 fra 1813 til 1832.",
+          "claim_id": "claim_storgata_quiz_8",
+          "primary_knowledge_unit_id": "ku_by_storgata_08",
+          "knowledge_unit_ids": [
+            "ku_by_storgata_08"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "storgata_quiz_9",
+          "quiz_id": "by_storgata_set_2_q2",
+          "categoryId": "by",
+          "placeId": "storgata",
+          "targetId": "storgata",
+          "question_scope": "place",
+          "question": "Hva lå i Storgata 25 før Scala Teater?",
+          "options": [
+            "Olympia kino",
+            "Løven apotek",
+            "Gassverket"
+          ],
+          "answer": "Olympia kino",
+          "answerIndex": 0,
+          "knowledge": "Storgata 25 huset Olympia kino og senere Scala Teater.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "source": [
+            "storgata_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Storgata 25 huset Olympia kino og senere Scala Teater.",
+          "claim_id": "claim_storgata_quiz_9",
+          "primary_knowledge_unit_id": "ku_by_storgata_09",
+          "knowledge_unit_ids": [
+            "ku_by_storgata_09"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "storgata_quiz_10",
+          "quiz_id": "by_storgata_set_2_q3",
+          "categoryId": "by",
+          "placeId": "storgata",
+          "targetId": "storgata",
+          "question_scope": "place",
+          "question": "Fra hvilket år er murgården i Storgata 27?",
+          "options": [
+            "1837",
+            "1908",
+            "1935"
+          ],
+          "answer": "1837",
+          "answerIndex": 0,
+          "knowledge": "Murgården i Storgata 27 ble oppført i 1837.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "storgata_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Murgården i Storgata 27 ble oppført i 1837.",
+          "claim_id": "claim_storgata_quiz_10",
+          "primary_knowledge_unit_id": "ku_by_storgata_10",
+          "knowledge_unit_ids": [
+            "ku_by_storgata_10"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "storgata_quiz_11",
+          "quiz_id": "by_storgata_set_2_q4",
+          "categoryId": "by",
+          "placeId": "storgata",
+          "targetId": "storgata",
+          "question_scope": "place",
+          "question": "Hva viser kapell og boktrykkeri i samme gård?",
+          "options": [
+            "Én bygning kan skifte funksjon gjennom tid",
+            "Alle adresser hadde samme bruk",
+            "Storgata var bare transportåre"
+          ],
+          "answer": "Én bygning kan skifte funksjon gjennom tid",
+          "answerIndex": 0,
+          "knowledge": "Storgata 27 rommet ulike religiøse og produksjonsrettede funksjoner.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "source": [
+            "storgata_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Storgata 27 rommet ulike religiøse og produksjonsrettede funksjoner.",
+          "claim_id": "claim_storgata_quiz_11",
+          "primary_knowledge_unit_id": "ku_by_storgata_11",
+          "knowledge_unit_ids": [
+            "ku_by_storgata_11"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "storgata_quiz_12",
+          "quiz_id": "by_storgata_set_2_q5",
+          "categoryId": "by",
+          "placeId": "storgata",
+          "targetId": "storgata",
+          "question_scope": "place",
+          "question": "Hvilken musikkforretning har vært i Storgata siden 1908?",
+          "options": [
+            "Hornaas musikk",
+            "Gunerius",
+            "Tiden Norsk Forlag"
+          ],
+          "answer": "Hornaas musikk",
+          "answerIndex": 0,
+          "knowledge": "Hornaas musikk har hatt tilhold i Storgata siden 1908.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "storgata_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Hornaas musikk har hatt tilhold i Storgata siden 1908.",
+          "claim_id": "claim_storgata_quiz_12",
+          "primary_knowledge_unit_id": "ku_by_storgata_12",
+          "knowledge_unit_ids": [
+            "ku_by_storgata_12"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "storgata_quiz_13",
+          "quiz_id": "by_storgata_set_2_q6",
+          "categoryId": "by",
+          "placeId": "storgata",
+          "targetId": "storgata",
+          "question_scope": "place",
+          "question": "Hvem tegnet Folketeaterbygningen?",
+          "options": [
+            "Christian Morgenstierne og Arne Eide",
+            "Gunder Juel og Aubert",
+            "Harald Thaulow og Frits Thaulow"
+          ],
+          "answer": "Christian Morgenstierne og Arne Eide",
+          "answerIndex": 0,
+          "knowledge": "Christian Morgenstierne og Arne Eide tegnet Folketeaterbygningen i Storgata 21–23.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "source": [
+            "storgata_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Christian Morgenstierne og Arne Eide tegnet Folketeaterbygningen i Storgata 21–23.",
+          "claim_id": "claim_storgata_quiz_13",
+          "primary_knowledge_unit_id": "ku_by_storgata_13",
+          "knowledge_unit_ids": [
+            "ku_by_storgata_13"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "storgata_quiz_14",
+          "quiz_id": "by_storgata_set_2_q7",
+          "categoryId": "by",
+          "placeId": "storgata",
+          "targetId": "storgata",
+          "question_scope": "place",
+          "question": "Når ble Folketeaterbygningen innviet?",
+          "options": [
+            "1935",
+            "1827",
+            "2009"
+          ],
+          "answer": "1935",
+          "answerIndex": 0,
+          "knowledge": "Folketeaterbygningen ble tatt i bruk i 1934 og innviet i 1935.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "source": [
+            "storgata_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Folketeaterbygningen ble tatt i bruk i 1934 og innviet i 1935.",
+          "claim_id": "claim_storgata_quiz_14",
+          "primary_knowledge_unit_id": "ku_by_storgata_14",
+          "knowledge_unit_ids": [
+            "ku_by_storgata_14"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "by_storgata_set_3",
+      "title": "Bygg, minne og ombruk",
+      "level": 3,
+      "order": 3,
+      "phase": "middle",
+      "xp": 70,
+      "questions": [
+        {
+          "id": "storgata_quiz_15",
+          "quiz_id": "by_storgata_set_3_q1",
+          "categoryId": "by",
+          "placeId": "storgata",
+          "targetId": "storgata",
+          "question_scope": "place",
+          "question": "Hvorfor er Folketeaterbygningen relevant, men fortsatt et eget place?",
+          "options": [
+            "Fasaden former Storgata, mens byggets institusjonshistorie har egen canonical eier",
+            "Bygningen vender bare mot Youngstorget og har ingen dokumentert adresse i Storgata",
+            "Hele bygningens institusjonshistorie skal kopieres inn i hvert tilgrensende gatested"
+          ],
+          "answer": "Fasaden former Storgata, mens byggets institusjonshistorie har egen canonical eier",
+          "answerIndex": 0,
+          "knowledge": "Gateprofilen kan vise bygningen uten å duplisere Folketeaterets separate innhold.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "source": [
+            "storgata_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Gateprofilen kan vise bygningen uten å duplisere Folketeaterets separate innhold.",
+          "claim_id": "claim_storgata_quiz_15",
+          "primary_knowledge_unit_id": "ku_by_storgata_15",
+          "knowledge_unit_ids": [
+            "ku_by_storgata_15"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "storgata_quiz_16",
+          "quiz_id": "by_storgata_set_3_q2",
+          "categoryId": "by",
+          "placeId": "storgata",
+          "targetId": "storgata",
+          "question_scope": "place",
+          "question": "Hvor lenge var Folketeaterbygningen hjem for Den Norske Opera?",
+          "options": [
+            "Fra 1959 til 2008",
+            "Fra 1813 til 1832",
+            "Fra 2021 til 2026"
+          ],
+          "answer": "Fra 1959 til 2008",
+          "answerIndex": 0,
+          "knowledge": "Den Norske Opera brukte salen fra 1959 til 2008.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "source": [
+            "storgata_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Den Norske Opera brukte salen fra 1959 til 2008.",
+          "claim_id": "claim_storgata_quiz_16",
+          "primary_knowledge_unit_id": "ku_by_storgata_16",
+          "knowledge_unit_ids": [
+            "ku_by_storgata_16"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "storgata_quiz_17",
+          "quiz_id": "by_storgata_set_3_q3",
+          "categoryId": "by",
+          "placeId": "storgata",
+          "targetId": "storgata",
+          "question_scope": "place",
+          "question": "Hva finnes i fortauet ved Storgata 39?",
+          "options": [
+            "En snublestein for Philipp Gosias",
+            "En statue av Gunder Juel",
+            "En middelalderportal"
+          ],
+          "answer": "En snublestein for Philipp Gosias",
+          "answerIndex": 0,
+          "knowledge": "Snublesteinen ved Storgata 39 minnes Philipp Gosias.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "storgata_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Snublesteinen ved Storgata 39 minnes Philipp Gosias.",
+          "claim_id": "claim_storgata_quiz_17",
+          "primary_knowledge_unit_id": "ku_by_storgata_17",
+          "knowledge_unit_ids": [
+            "ku_by_storgata_17"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "storgata_quiz_18",
+          "quiz_id": "by_storgata_set_3_q4",
+          "categoryId": "by",
+          "placeId": "storgata",
+          "targetId": "storgata",
+          "question_scope": "place",
+          "question": "Hvorfor er snublesteinen et stedsspesifikt minnespor?",
+          "options": [
+            "Den knytter deportasjonshistorien til Gosias' konkrete adresse",
+            "Den markerer den tidligere kommunegrensen langs hele gateløpet",
+            "Den dokumenterer åpningen av trikkeholdeplassen i 2021"
+          ],
+          "answer": "Den knytter deportasjonshistorien til Gosias' konkrete adresse",
+          "answerIndex": 0,
+          "knowledge": "Minnesmerket gjør én forfulgt persons tilknytning til Storgata fysisk lesbar.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "storgata_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Minnesmerket gjør én forfulgt persons tilknytning til Storgata fysisk lesbar.",
+          "claim_id": "claim_storgata_quiz_18",
+          "primary_knowledge_unit_id": "ku_by_storgata_18",
+          "knowledge_unit_ids": [
+            "ku_by_storgata_18"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "storgata_quiz_19",
+          "quiz_id": "by_storgata_set_3_q5",
+          "categoryId": "by",
+          "placeId": "storgata",
+          "targetId": "storgata",
+          "question_scope": "place",
+          "question": "Når åpnet dagens Storgata holdeplass?",
+          "options": [
+            "21. juni 2021",
+            "29. oktober 2024",
+            "13. august 2026"
+          ],
+          "answer": "21. juni 2021",
+          "answerIndex": 0,
+          "knowledge": "Storgata holdeplass åpnet 21. juni 2021.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "sporveien_stop"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Storgata holdeplass åpnet 21. juni 2021.",
+          "claim_id": "claim_storgata_quiz_19",
+          "primary_knowledge_unit_id": "ku_by_storgata_19",
+          "knowledge_unit_ids": [
+            "ku_by_storgata_19"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "storgata_quiz_20",
+          "quiz_id": "by_storgata_set_3_q6",
+          "categoryId": "by",
+          "placeId": "storgata",
+          "targetId": "storgata",
+          "question_scope": "place",
+          "question": "Hvilke trikkelinjer betjener holdeplassen ved kontrollen i 2026?",
+          "options": [
+            "12, 15, 17 og 18",
+            "1, 2 og 3",
+            "19 alene"
+          ],
+          "answer": "12, 15, 17 og 18",
+          "answerIndex": 0,
+          "knowledge": "Sporveien oppgir linjene 12, 15, 17 og 18 for Storgata holdeplass.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "sporveien_stop"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Sporveien oppgir linjene 12, 15, 17 og 18 for Storgata holdeplass.",
+          "claim_id": "claim_storgata_quiz_20",
+          "primary_knowledge_unit_id": "ku_by_storgata_20",
+          "knowledge_unit_ids": [
+            "ku_by_storgata_20"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "storgata_quiz_21",
+          "quiz_id": "by_storgata_set_3_q7",
+          "categoryId": "by",
+          "placeId": "storgata",
+          "targetId": "storgata",
+          "question_scope": "place",
+          "question": "Hva erstattet Storgata holdeplass?",
+          "options": [
+            "Brugata holdeplass",
+            "Nybrua",
+            "Kirkeristen"
+          ],
+          "answer": "Brugata holdeplass",
+          "answerIndex": 0,
+          "knowledge": "Den nye Storgata holdeplass erstattet tidligere Brugata holdeplass.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "sporveien_stop"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Den nye Storgata holdeplass erstattet tidligere Brugata holdeplass.",
+          "claim_id": "claim_storgata_quiz_21",
+          "primary_knowledge_unit_id": "ku_by_storgata_21",
+          "knowledge_unit_ids": [
+            "ku_by_storgata_21"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "by_storgata_set_4",
+      "title": "Trikk, opprustning og sikkerhet",
+      "level": 4,
+      "order": 4,
+      "phase": "bridge",
+      "xp": 80,
+      "questions": [
+        {
+          "id": "storgata_quiz_22",
+          "quiz_id": "by_storgata_set_4_q1",
+          "categoryId": "by",
+          "placeId": "storgata",
+          "targetId": "storgata",
+          "question_scope": "place",
+          "question": "Hva ble fornyet under opprustningen 2018–2021?",
+          "options": [
+            "Spor, fortau, holdeplasser, overvann og teknisk infrastruktur",
+            "Gatenavnskilt, butikkfasader og belysning, men ikke spor eller fortau",
+            "Bare holdeplassen ved Folketeateret og ett kort parti av kjørebanen"
+          ],
+          "answer": "Spor, fortau, holdeplasser, overvann og teknisk infrastruktur",
+          "answerIndex": 0,
+          "knowledge": "Opprustningen omfattet både synlige flater og tekniske systemer under bakken.",
+          "difficulty": 4,
+          "question_type": "fact",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "byplan_2021"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Opprustningen omfattet både synlige flater og tekniske systemer under bakken.",
+          "claim_id": "claim_storgata_quiz_22",
+          "primary_knowledge_unit_id": "ku_by_storgata_22",
+          "knowledge_unit_ids": [
+            "ku_by_storgata_22"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "storgata_quiz_23",
+          "quiz_id": "by_storgata_set_4_q2",
+          "categoryId": "by",
+          "placeId": "storgata",
+          "targetId": "storgata",
+          "question_scope": "place",
+          "question": "Hva viser den 200 meter lange tekniske tunnelen?",
+          "options": [
+            "En gate består også av skjult infrastruktur under overflaten",
+            "At trikketrafikken går i en egen tunnel under hele Storgata",
+            "At Nybrua skjuler en veitunnel som følger Akerselva sørover"
+          ],
+          "answer": "En gate består også av skjult infrastruktur under overflaten",
+          "answerIndex": 0,
+          "knowledge": "Den gangbare tunnelen samler kabler og rør under trikkefundamentet.",
+          "difficulty": 4,
+          "question_type": "context",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "byplan_2021"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Den gangbare tunnelen samler kabler og rør under trikkefundamentet.",
+          "claim_id": "claim_storgata_quiz_23",
+          "primary_knowledge_unit_id": "ku_by_storgata_23",
+          "knowledge_unit_ids": [
+            "ku_by_storgata_23"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "storgata_quiz_24",
+          "quiz_id": "by_storgata_set_4_q3",
+          "categoryId": "by",
+          "placeId": "storgata",
+          "targetId": "storgata",
+          "question_scope": "place",
+          "question": "Hva undersøkte rapport 2025/02?",
+          "options": [
+            "Avsporingen ved Nygata–Storgata 29. oktober 2024",
+            "Bybrannen som rammet kvartalene ved Storgata i 1858",
+            "Anleggsarbeidet da Nybrua og gateløpet åpnet i 1827"
+          ],
+          "answer": "Avsporingen ved Nygata–Storgata 29. oktober 2024",
+          "answerIndex": 0,
+          "knowledge": "Statens havarikommisjon undersøkte SL18-avsporingen i krysset Nygata–Storgata.",
+          "difficulty": 4,
+          "question_type": "fact",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "nsia_2025"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Statens havarikommisjon undersøkte SL18-avsporingen i krysset Nygata–Storgata.",
+          "claim_id": "claim_storgata_quiz_24",
+          "primary_knowledge_unit_id": "ku_by_storgata_24",
+          "knowledge_unit_ids": [
+            "ku_by_storgata_24"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "storgata_quiz_25",
+          "quiz_id": "by_storgata_set_4_q4",
+          "categoryId": "by",
+          "placeId": "storgata",
+          "targetId": "storgata",
+          "question_scope": "place",
+          "question": "Hva var formålet med Havarikommisjonens undersøkelse?",
+          "options": [
+            "Å forbedre sikkerheten, ikke fordele skyld",
+            "Å velge nye butikknavn",
+            "Å datere alle murgårdene"
+          ],
+          "answer": "Å forbedre sikkerheten, ikke fordele skyld",
+          "answerIndex": 0,
+          "knowledge": "Undersøkelsen var en sikkerhetsundersøkelse og ikke en skyldvurdering.",
+          "difficulty": 4,
+          "question_type": "context",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "nsia_2025"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Undersøkelsen var en sikkerhetsundersøkelse og ikke en skyldvurdering.",
+          "claim_id": "claim_storgata_quiz_25",
+          "primary_knowledge_unit_id": "ku_by_storgata_25",
+          "knowledge_unit_ids": [
+            "ku_by_storgata_25"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "storgata_quiz_26",
+          "quiz_id": "by_storgata_set_4_q5",
+          "categoryId": "by",
+          "placeId": "storgata",
+          "targetId": "storgata",
+          "question_scope": "place",
+          "question": "Hva er planlagt ved Nybrua høsten 2026?",
+          "options": [
+            "To nye sporveksler og et skinnekryss",
+            "Riving av Nybrua",
+            "Fjerning av all trikk i Storgata"
+          ],
+          "answer": "To nye sporveksler og et skinnekryss",
+          "answerIndex": 0,
+          "knowledge": "Sporveien planlegger å fornye sporarrangementet ved Nybrua høsten 2026.",
+          "difficulty": 4,
+          "question_type": "fact",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "sporveien_2026"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Sporveien planlegger å fornye sporarrangementet ved Nybrua høsten 2026.",
+          "claim_id": "claim_storgata_quiz_26",
+          "primary_knowledge_unit_id": "ku_by_storgata_26",
+          "knowledge_unit_ids": [
+            "ku_by_storgata_26"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "storgata_quiz_27",
+          "quiz_id": "by_storgata_set_4_q6",
+          "categoryId": "by",
+          "placeId": "storgata",
+          "targetId": "storgata",
+          "question_scope": "place",
+          "question": "Hva gjør 1938- og 2013-bildene reelt sammenlignbare?",
+          "options": [
+            "Begge ser østover inn Storgata fra Kirkeristen",
+            "Begge er tatt etter 2021-opprustningen",
+            "Begge viser Nybrua på nært hold"
+          ],
+          "answer": "Begge ser østover inn Storgata fra Kirkeristen",
+          "answerIndex": 0,
+          "knowledge": "Kirkeristen og den østgående gateaksen er felles ankre i bildene.",
+          "difficulty": 4,
+          "question_type": "context",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "commons_1938"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kirkeristen og den østgående gateaksen er felles ankre i bildene.",
+          "claim_id": "claim_storgata_quiz_27",
+          "primary_knowledge_unit_id": "ku_by_storgata_27",
+          "knowledge_unit_ids": [
+            "ku_by_storgata_27"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "storgata_quiz_28",
+          "quiz_id": "by_storgata_set_4_q7",
+          "categoryId": "by",
+          "placeId": "storgata",
+          "targetId": "storgata",
+          "question_scope": "place",
+          "question": "Hva kan 2013-bildet ikke dokumentere?",
+          "options": [
+            "Den ferdige opprustningen 2018–2021",
+            "At Storgata eksisterte i 2013",
+            "Retningen fra Kirkeristen"
+          ],
+          "answer": "Den ferdige opprustningen 2018–2021",
+          "answerIndex": 0,
+          "knowledge": "Bildets dato setter en tydelig grense for hvilke senere endringer det kan vise.",
+          "difficulty": 4,
+          "question_type": "context",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "commons_2013"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Bildets dato setter en tydelig grense for hvilke senere endringer det kan vise.",
+          "claim_id": "claim_storgata_quiz_28",
+          "primary_knowledge_unit_id": "ku_by_storgata_28",
+          "knowledge_unit_ids": [
+            "ku_by_storgata_28"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "by_storgata_set_5",
+      "title": "Metode, sekvens og kildekritikk",
+      "level": 5,
+      "order": 5,
+      "phase": "final",
+      "xp": 90,
+      "questions": [
+        {
+          "id": "storgata_quiz_29",
+          "quiz_id": "by_storgata_set_5_q1",
+          "categoryId": "by",
+          "placeId": "storgata",
+          "targetId": "storgata",
+          "question_scope": "place",
+          "question": "Hva betyr «historiske lag» i Storgata?",
+          "options": [
+            "At ulike perioders bygg, spor, adresser og bruk kan leses samtidig",
+            "At alle bygg og funksjoner i gaten skriver seg fra samme byggeår",
+            "At bare det eldste bevarte bygningslaget har historisk verdi"
+          ],
+          "answer": "At ulike perioders bygg, spor, adresser og bruk kan leses samtidig",
+          "answerIndex": 0,
+          "knowledge": "Begrepet samler fysiske og funksjonelle spor uten å gjøre dem samtidige.",
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "storgata_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Begrepet samler fysiske og funksjonelle spor uten å gjøre dem samtidige.",
+          "claim_id": "claim_storgata_quiz_29",
+          "primary_knowledge_unit_id": "ku_by_storgata_29",
+          "knowledge_unit_ids": [
+            "ku_by_storgata_29"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "storgata_quiz_30",
+          "quiz_id": "by_storgata_set_5_q2",
+          "categoryId": "by",
+          "placeId": "storgata",
+          "targetId": "storgata",
+          "question_scope": "place",
+          "question": "Hva er en presis transformasjonsanalyse av Storgata 27?",
+          "options": [
+            "Å følge hvordan samme bygning har rommet ulike funksjoner",
+            "Å anta at hele gaten endret funksjon samtidig som denne gården",
+            "Å se bort fra bygningens dato og bare beskrive dagens fasade"
+          ],
+          "answer": "Å følge hvordan samme bygning har rommet ulike funksjoner",
+          "answerIndex": 0,
+          "knowledge": "Ombruk analyseres på riktig enhetsnivå: den dokumenterte bygningen og dens funksjoner.",
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "source": [
+            "storgata_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Ombruk analyseres på riktig enhetsnivå: den dokumenterte bygningen og dens funksjoner.",
+          "claim_id": "claim_storgata_quiz_30",
+          "primary_knowledge_unit_id": "ku_by_storgata_30",
+          "knowledge_unit_ids": [
+            "ku_by_storgata_30"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "storgata_quiz_31",
+          "quiz_id": "by_storgata_set_5_q3",
+          "categoryId": "by",
+          "placeId": "storgata",
+          "targetId": "storgata",
+          "question_scope": "place",
+          "question": "Hva viser spenningen mellom opphold og gjennomgang i Storgata?",
+          "options": [
+            "Samme gatebredde skal romme reisende, gående, handel og transport",
+            "At gaten er planlagt for én brukergruppe og én bevegelsesform om gangen",
+            "At trikk, handel og fortau fungerer uavhengig av hverandre i ulike bydeler"
+          ],
+          "answer": "Samme gatebredde skal romme reisende, gående, handel og transport",
+          "answerIndex": 0,
+          "knowledge": "Gateprofilen er et felles rom der flere bevegelser og stopp må koordineres.",
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_by_opphold_vs_gjennomgang",
+          "source": [
+            "byplan_2021"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Gateprofilen er et felles rom der flere bevegelser og stopp må koordineres.",
+          "claim_id": "claim_storgata_quiz_31",
+          "primary_knowledge_unit_id": "ku_by_storgata_31",
+          "knowledge_unit_ids": [
+            "ku_by_storgata_31"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "storgata_quiz_32",
+          "quiz_id": "by_storgata_set_5_q4",
+          "categoryId": "by",
+          "placeId": "storgata",
+          "targetId": "storgata",
+          "question_scope": "place",
+          "question": "Hva krever før/etter-metoden her?",
+          "options": [
+            "Felles ankre, tydelige datoer og en eksplisitt begrensning",
+            "To bilder uten kjent dato eller kilde, så lenge gatenavnet er likt",
+            "At alle synlige forskjeller forklares med én og samme historiske årsak"
+          ],
+          "answer": "Felles ankre, tydelige datoer og en eksplisitt begrensning",
+          "answerIndex": 0,
+          "knowledge": "Sammenligningen er sterk når motiv, dato og hva bildene ikke kan bevise oppgis.",
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "commons_2013"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Sammenligningen er sterk når motiv, dato og hva bildene ikke kan bevise oppgis.",
+          "claim_id": "claim_storgata_quiz_32",
+          "primary_knowledge_unit_id": "ku_by_storgata_32",
+          "knowledge_unit_ids": [
+            "ku_by_storgata_32"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_for_etter",
+          "guidance_basis": [
+            "data/fag/by/methods_by.json",
+            "data/fag/by/emner_by.json"
+          ]
+        },
+        {
+          "id": "storgata_quiz_33",
+          "quiz_id": "by_storgata_set_5_q5",
+          "categoryId": "by",
+          "placeId": "storgata",
+          "targetId": "storgata",
+          "question_scope": "place",
+          "question": "Hva bør en gåanalyse registrere langs Storgata?",
+          "options": [
+            "Sekvens, terskler, tempo, stopp og hindringer fra Kirkeristen til Nybrua",
+            "Ett tilfeldig fotografi uten notat om sted, retning eller tidspunkt",
+            "Bare gatenavnet og den rettlinjede avstanden mellom endepunktene"
+          ],
+          "answer": "Sekvens, terskler, tempo, stopp og hindringer fra Kirkeristen til Nybrua",
+          "answerIndex": 0,
+          "knowledge": "Gåanalysen gjør det lineære gateløpet til en dokumentert sekvens.",
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_by_infrastruktur_mobilitet",
+          "source": [
+            "osm_route"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Gåanalysen gjør det lineære gateløpet til en dokumentert sekvens.",
+          "claim_id": "claim_storgata_quiz_33",
+          "primary_knowledge_unit_id": "ku_by_storgata_33",
+          "knowledge_unit_ids": [
+            "ku_by_storgata_33"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_gaanalyse",
+          "guidance_basis": [
+            "data/fag/by/methods_by.json",
+            "data/fag/by/emner_by.json"
+          ]
+        },
+        {
+          "id": "storgata_quiz_34",
+          "quiz_id": "by_storgata_set_5_q6",
+          "categoryId": "by",
+          "placeId": "storgata",
+          "targetId": "storgata",
+          "question_scope": "place",
+          "question": "Hvordan kan Gordon Cullens sekvensperspektiv brukes her?",
+          "options": [
+            "Til å lese skiftende fasader, kryss og gateprofiler langs vandringen",
+            "Til å fastslå tekniske årsaker til trikkehendelser uten sikkerhetsdata",
+            "Til å slå sammen Storgata, Torggata og alle nabosteder til ett place"
+          ],
+          "answer": "Til å lese skiftende fasader, kryss og gateprofiler langs vandringen",
+          "answerIndex": 0,
+          "knowledge": "Townscape-perspektivet undersøker hvordan gatebildet endrer seg mens man beveger seg.",
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_by_opphold_vs_gjennomgang",
+          "source": [
+            "storgata_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Townscape-perspektivet undersøker hvordan gatebildet endrer seg mens man beveger seg.",
+          "claim_id": "claim_storgata_quiz_34",
+          "primary_knowledge_unit_id": "ku_by_storgata_34",
+          "knowledge_unit_ids": [
+            "ku_by_storgata_34"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "topic_hook_id": "byliv_opphold_vs_gjennomgang",
+          "thinker_id": "gordon_cullen",
+          "work": "The Concise Townscape",
+          "theory_ref": {
+            "topic_hook_id": "byliv_opphold_vs_gjennomgang",
+            "thinker_id": "gordon_cullen",
+            "work": "The Concise Townscape",
+            "why_it_helps": "Sekvensperspektivet brukes til å analysere det dokumenterte gateløpet, ikke som erstatning for stedskildene."
+          },
+          "guidance_basis": [
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/emner_by.json"
+          ]
+        },
+        {
+          "id": "storgata_quiz_35",
+          "quiz_id": "by_storgata_set_5_q7",
+          "categoryId": "by",
+          "placeId": "storgata",
+          "targetId": "storgata",
+          "question_scope": "place",
+          "question": "Hva er den viktigste kildekritiske slutningen om Storgata?",
+          "options": [
+            "Bilder, historikk, geometri og nåtidsdrift må belegges av kilder som faktisk dekker hvert lag",
+            "Ett fotografi fra 2013 kan alene dokumentere både 1800-tallet og opprustningen som var ferdig i 2021",
+            "Naboskap til Torggata og Folketeateret gjør at deres kilder automatisk gjelder alle påstander om Storgata"
+          ],
+          "answer": "Bilder, historikk, geometri og nåtidsdrift må belegges av kilder som faktisk dekker hvert lag",
+          "answerIndex": 0,
+          "knowledge": "Storgatas lange tidsrom krever at hver påstand knyttes til riktig kilde og dato.",
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "storgata_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Storgatas lange tidsrom krever at hver påstand knyttes til riktig kilde og dato.",
+          "claim_id": "claim_storgata_quiz_35",
+          "primary_knowledge_unit_id": "ku_by_storgata_35",
+          "knowledge_unit_ids": [
+            "ku_by_storgata_35"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    }
+  ]
+}
