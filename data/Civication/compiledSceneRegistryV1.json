@@ -45870,6 +45870,357 @@
     {
       "category": "media",
       "compatibility_projection": {
+        "authority_context": {
+          "approval_points": [],
+          "authority_rules": [
+            {
+              "action_id": "return_shared_case_for_rework",
+              "authority": "direct",
+              "requires_resources": []
+            },
+            {
+              "action_id": "advance_shared_case_to_editorial_decision",
+              "authority": "direct",
+              "requires_resources": []
+            },
+            {
+              "action_id": "overwrite_reporter_evidence",
+              "authority": "forbidden",
+              "requires_resources": []
+            }
+          ],
+          "escalation_paths": [],
+          "external_counterparts": [
+            "kilde_ellen",
+            "motkilde_arvid"
+          ],
+          "goals_pressures": [
+            "verifikasjon",
+            "publiseringstempo",
+            "offentlig_interesse",
+            "kildevern",
+            "kapasitet"
+          ],
+          "institution_id": "fjordby_dagblad_redaksjonen_001",
+          "peer_functions": [
+            "vaktsjef_lina",
+            "deskredaktor_jonas"
+          ],
+          "reporting_line": [
+            "sjefredaktor"
+          ],
+          "resources": [],
+          "role_scope": "media_redaksjonell_ledelse",
+          "unit_id": "nyhetsdesken"
+        },
+        "category": "media",
+        "choice_axis": "lederbeslutning_med_rolleskille_vs_myndighet_som_evidens",
+        "choices": [
+          {
+            "authority_action": {
+              "action_id": "return_shared_case_for_rework",
+              "intent": "execute"
+            },
+            "effect": 2,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "media_cross_role_case_marked_shared_for_editorial_review",
+                  "op": "upsert",
+                  "work_object": {
+                    "shared": true,
+                    "work_object_id": "media_redaksjon_publication_case_001"
+                  }
+                },
+                {
+                  "event_id": "media_cross_role_editor_returns_same_case_for_rework",
+                  "note": "Redaksjonell ledelse har vurdert samme publiseringssak og returnert den for konkret rework uten å endre reporterens evidenshistorikk.",
+                  "op": "transition",
+                  "to_phase": "editorial_review_requires_reporter_rework",
+                  "to_status": "in_progress",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_cross_role_editor_review_recorded",
+                  "flag": "cross_role_editorial_review_recorded",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Lederrollen endrer arbeidsflyten, ikke historikken. Reporteren får et presist rework-oppdrag på samme objekt.",
+            "id": "A",
+            "label": "Returner samme sak for målrettet rework med redaktørpremissene synlige",
+            "reply": "Jeg beholder reporterens kilde- og dokumentspor, peker på de konkrete hullene og sender den samme saken tilbake med tydelig redaktørbegrunnelse."
+          },
+          {
+            "authority_action": {
+              "action_id": "advance_shared_case_to_editorial_decision",
+              "intent": "execute"
+            },
+            "effect": 1,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "media_cross_role_case_marked_shared_for_decision",
+                  "op": "upsert",
+                  "work_object": {
+                    "shared": true,
+                    "work_object_id": "media_redaksjon_publication_case_001"
+                  }
+                },
+                {
+                  "event_id": "media_cross_role_editor_advances_same_case",
+                  "note": "Redaksjonell ledelse har flyttet samme reporter-eide sak til neste beslutningspunkt uten å omskrive kilde- eller dokumentgrunnlaget.",
+                  "op": "transition",
+                  "to_phase": "editorial_review_ready_for_decision",
+                  "to_status": "awaiting_decision",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_cross_role_decision_boundary_recorded",
+                  "flag": "cross_role_authority_boundary_preserved",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Saken får et nytt institusjonelt stadium, mens reporterens arbeid og åpne spørsmål forblir del av samme spor.",
+            "id": "B",
+            "label": "Flytt samme sak til redaksjonell beslutningsberedskap uten å endre belegg",
+            "reply": "Kilde- og dokumentsporet er tydelig nok for neste redaktørpunkt. Jeg flytter saken videre, men låser ikke sannhetsverdien gjennom lederrollen."
+          }
+        ],
+        "competency": "myndighetsavgrenset_redaktorvurdering",
+        "consequence_axis": "delt_arbeidsobjekt_med_integritet_vs_privilege_leakage",
+        "cooldown": 14,
+        "day_phase": "morning",
+        "from": "Vaktsjef Lina",
+        "id": "media_cross_role_editor_shared_case_review_001",
+        "interaction_mode": "decision",
+        "mail_family": "cross_role_shared_publication_case",
+        "mail_type": "job",
+        "narrative_arc": "samme_sak_fra_reporterarbeid_til_redaktoransvar",
+        "people_ref": "media_vaktsjef",
+        "person_id": "vaktsjef_lina",
+        "phase": "intro",
+        "place_id": "vg_huset",
+        "planned_only": true,
+        "pressure": "publiseringstempo_vs_sporbart_bevisgrunnlag",
+        "priority": 145,
+        "purpose": "Bevise at ett persistent arbeidsobjekt kan oppleves fra to roller med ulikt handlingsrom, og at den andre rollen får reell beslutningsmakt uten å arve eller overskrive første rolles evidensarbeid.",
+        "repeatable": false,
+        "role_scope": "media_redaksjonell_ledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/media/job/media_redaksjonell_ledelse_job.json",
+        "scene_catalog_version": 1,
+        "sender": "vaktsjef_lina",
+        "situation": [
+          "Reporteren har allerede åpnet samme publiseringssak og registrert hva som er påstand, dokumentasjon og åpne spørsmål.",
+          "Du har et annet ansvar: kvalitet, kapasitet, publiseringsrisiko og om saken er moden for neste beslutningspunkt.",
+          "Du kan returnere saken for rework eller flytte den til redaksjonell beslutningsberedskap, men du kan ikke gjøre ubekreftede reporterfunn til bekreftede fakta ved ledervedtak."
+        ],
+        "stage": "stable",
+        "stakes": "Lederrollen kan styre beslutningsflyten og kreve rework, men må bevare sporbarheten i kilder, dokumentasjon og reporterens faglige arbeid. Hvis ledermyndighet brukes som rett til å omskrive belegg, forsvinner rollegrensen som piloten skal beskytte.",
+        "subject": "Samme sak, annet ansvar: ta redaktørblikket uten å skrive reporterens belegg om igjen",
+        "summary": "Reporterens innsynssak ligger nå på desken med åpent kilde- og versjonsspor. Som redaksjonell leder skal du vurdere om saken må tilbake til rework eller kan gå videre til formell publiseringsvurdering, uten å omskrive hva reporteren faktisk har dokumentert.",
+        "tags": [
+          "job",
+          "cross_role_shared_world",
+          "role_world_realism",
+          "authority",
+          "media"
+        ],
+        "task_domain": "cross_role_redaksjonell_vurdering",
+        "task_kind": "job",
+        "thread_key": "media_cross_role_innsynssaken_001",
+        "work_context": {
+          "deadline_day": 4,
+          "deadline_phase": "afternoon",
+          "deadline_ref": "redaksjonell_publiseringsvurdering",
+          "institution_id": "fjordby_dagblad_redaksjonen_001",
+          "object_ids": [
+            "media_redaksjon_publication_case_001"
+          ],
+          "priority": "urgent",
+          "rework_of_scene_id": "media_redaksjon_realism_case_open_001"
+        }
+      },
+      "id": "media_cross_role_editor_shared_case_review_001",
+      "mail_type": "job",
+      "role_scope": "media_redaksjonell_ledelse",
+      "scene": {
+        "arc_stage": "intro",
+        "authority_context": {
+          "approval_points": [],
+          "authority_rules": [
+            {
+              "action_id": "return_shared_case_for_rework",
+              "authority": "direct",
+              "requires_resources": []
+            },
+            {
+              "action_id": "advance_shared_case_to_editorial_decision",
+              "authority": "direct",
+              "requires_resources": []
+            },
+            {
+              "action_id": "overwrite_reporter_evidence",
+              "authority": "forbidden",
+              "requires_resources": []
+            }
+          ],
+          "escalation_paths": [],
+          "external_counterparts": [
+            "kilde_ellen",
+            "motkilde_arvid"
+          ],
+          "goals_pressures": [
+            "verifikasjon",
+            "publiseringstempo",
+            "offentlig_interesse",
+            "kildevern",
+            "kapasitet"
+          ],
+          "institution_id": "fjordby_dagblad_redaksjonen_001",
+          "peer_functions": [
+            "vaktsjef_lina",
+            "deskredaktor_jonas"
+          ],
+          "reporting_line": [
+            "sjefredaktor"
+          ],
+          "resources": [],
+          "role_scope": "media_redaksjonell_ledelse",
+          "unit_id": "nyhetsdesken"
+        },
+        "choices": [
+          {
+            "authority_action": {
+              "action_id": "return_shared_case_for_rework",
+              "intent": "execute"
+            },
+            "effects": {
+              "score_delta": 2,
+              "work_object_ops": [
+                {
+                  "event_id": "media_cross_role_case_marked_shared_for_editorial_review",
+                  "op": "upsert",
+                  "work_object": {
+                    "shared": true,
+                    "work_object_id": "media_redaksjon_publication_case_001"
+                  }
+                },
+                {
+                  "event_id": "media_cross_role_editor_returns_same_case_for_rework",
+                  "note": "Redaksjonell ledelse har vurdert samme publiseringssak og returnert den for konkret rework uten å endre reporterens evidenshistorikk.",
+                  "op": "transition",
+                  "to_phase": "editorial_review_requires_reporter_rework",
+                  "to_status": "in_progress",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_cross_role_editor_review_recorded",
+                  "flag": "cross_role_editorial_review_recorded",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Lederrollen endrer arbeidsflyten, ikke historikken. Reporteren får et presist rework-oppdrag på samme objekt.",
+            "id": "A",
+            "label": "Returner samme sak for målrettet rework med redaktørpremissene synlige",
+            "reply": "Jeg beholder reporterens kilde- og dokumentspor, peker på de konkrete hullene og sender den samme saken tilbake med tydelig redaktørbegrunnelse."
+          },
+          {
+            "authority_action": {
+              "action_id": "advance_shared_case_to_editorial_decision",
+              "intent": "execute"
+            },
+            "effects": {
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "media_cross_role_case_marked_shared_for_decision",
+                  "op": "upsert",
+                  "work_object": {
+                    "shared": true,
+                    "work_object_id": "media_redaksjon_publication_case_001"
+                  }
+                },
+                {
+                  "event_id": "media_cross_role_editor_advances_same_case",
+                  "note": "Redaksjonell ledelse har flyttet samme reporter-eide sak til neste beslutningspunkt uten å omskrive kilde- eller dokumentgrunnlaget.",
+                  "op": "transition",
+                  "to_phase": "editorial_review_ready_for_decision",
+                  "to_status": "awaiting_decision",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                },
+                {
+                  "event_id": "media_cross_role_decision_boundary_recorded",
+                  "flag": "cross_role_authority_boundary_preserved",
+                  "op": "add_flag",
+                  "work_object_id": "media_redaksjon_publication_case_001"
+                }
+              ]
+            },
+            "feedback": "Saken får et nytt institusjonelt stadium, mens reporterens arbeid og åpne spørsmål forblir del av samme spor.",
+            "id": "B",
+            "label": "Flytt samme sak til redaksjonell beslutningsberedskap uten å endre belegg",
+            "reply": "Kilde- og dokumentsporet er tydelig nok for neste redaktørpunkt. Jeg flytter saken videre, men låser ikke sannhetsverdien gjennom lederrollen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Reporteren har allerede åpnet samme publiseringssak og registrert hva som er påstand, dokumentasjon og åpne spørsmål.",
+            "Du har et annet ansvar: kvalitet, kapasitet, publiseringsrisiko og om saken er moden for neste beslutningspunkt.",
+            "Du kan returnere saken for rework eller flytte den til redaksjonell beslutningsberedskap, men du kan ikke gjøre ubekreftede reporterfunn til bekreftede fakta ved ledervedtak."
+          ],
+          "subject": "Samme sak, annet ansvar: ta redaktørblikket uten å skrive reporterens belegg om igjen",
+          "summary": "Reporterens innsynssak ligger nå på desken med åpent kilde- og versjonsspor. Som redaksjonell leder skal du vurdere om saken må tilbake til rework eller kan gå videre til formell publiseringsvurdering, uten å omskrive hva reporteren faktisk har dokumentert."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "media_cross_role_editor_shared_case_review_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "vg_huset",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "media_cross_role_editor_shared_case_review_001",
+          "source_path": "data/Civication/mailFamilies/media/job/media_redaksjonell_ledelse_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "media_cross_role_innsynssaken_001",
+        "version": 1,
+        "work_context": {
+          "deadline_day": 4,
+          "deadline_phase": "afternoon",
+          "deadline_ref": "redaksjonell_publiseringsvurdering",
+          "institution_id": "fjordby_dagblad_redaksjonen_001",
+          "object_ids": [
+            "media_redaksjon_publication_case_001"
+          ],
+          "priority": "urgent",
+          "rework_of_scene_id": "media_redaksjon_realism_case_open_001"
+        }
+      },
+      "source_hash": "f29bac214d06a0781919fc2cd4099e64fc267dc24b6d096fff6acd641d7ee9a0",
+      "source_path": "data/Civication/mailFamilies/media/job/media_redaksjonell_ledelse_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "media",
+      "compatibility_projection": {
         "category": "media",
         "choice_axis": "prioritering_vs_volum",
         "choices": [
@@ -176436,7 +176787,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "87dcd44a68485fd10935e6872245cbf3d39b8f6c11c8e900a954a34f4ca1d360",
+  "registry_hash": "4e1de4d5ca7277fdab84facb81c450b873710080a81e38dfdf62bf5e7ecd324c",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -176763,6 +177114,7 @@
     ],
     "media/media_redaksjonell_ledelse": [
       "media_redaksjonell_ledelse_job_prioritering_001",
+      "media_cross_role_editor_shared_case_review_001",
       "media_redaksjonell_ledelse_people_status_001",
       "media_redaksjonell_ledelse_story_tillit_001",
       "media_redaksjonell_ledelse_conflict_press_001",
@@ -177693,7 +178045,7 @@
     "ignored_source_file_count": 1,
     "input_file_count": 348,
     "role_count": 44,
-    "scene_count": 1135,
+    "scene_count": 1136,
     "shadowed_duplicate_count": 0
   },
   "version": 1

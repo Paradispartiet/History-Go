@@ -107,6 +107,24 @@ for (const prefix of ['manager', 'team', 'professional', 'public', 'source']) {
 assert.match(standingSource, /career\.reputation remains the legacy\/global summary/);
 assert.match(standingSource, /it grants no authority/i);
 
+const crossRole = matrix.cross_role_shared_world_proof;
+assert.ok(crossRole, 'Matrix must carry a concrete shared-world proof');
+assert.equal(crossRole.status, 'runtime_proven');
+assert.ok(crossRole.work_object_id);
+assert.ok(crossRole.institution_id);
+assert.equal(crossRole.owner.category, crossRole.second_role.category);
+assert.notEqual(crossRole.owner.role_scope, crossRole.second_role.role_scope);
+assert.equal(crossRole.authority_contract.active_role_scope_mismatch_must_block, true);
+assert.equal(crossRole.authority_contract.second_role_cannot_overwrite_owner_evidence, true);
+assert.equal(crossRole.authority_contract.shared_object_does_not_transfer_owner_role_scope, true);
+for (const ref of Object.values(crossRole.source_refs)) assert.ok(exists(ref), `cross-role source missing: ${ref}`);
+for (const ref of crossRole.evidence_refs) assert.ok(exists(ref), `cross-role evidence missing: ${ref}`);
+
+assert.equal(matrix.program_level_proofs.cross_role_links.status, 'runtime_proven');
+assert.equal(matrix.program_level_proofs.cross_role_links.proof_ref, 'cross_role_shared_world_proof');
+assert.ok(String(matrix.program_level_proofs.cross_role_links.contract || '').trim());
+for (const ref of matrix.program_level_proofs.cross_role_links.evidence_refs) assert.ok(exists(ref), `program proof missing: ${ref}`);
+
 const roleOwned = new Set(matrix.role_owned_not_global || []);
 for (const required of [
   'work_object_kind',
@@ -125,11 +143,12 @@ for (const dimension of matrix.locked_cross_role_dimensions) {
 const deferred = new Map((matrix.deferred_dimensions || []).map((entry) => [entry.id, entry]));
 assert.equal(deferred.get('employment_conditions')?.status, 'editorial_only');
 assert.equal(deferred.get('professional_culture')?.status, 'editorial_only');
-assert.equal(deferred.get('cross_role_links')?.status, 'not_started');
+assert.equal(deferred.has('cross_role_links'), false, 'cross-role links leave deferred debt only after runtime proof exists');
 for (const entry of deferred.values()) assert.ok(String(entry.reason || '').trim(), `${entry.id}: deferred reason required`);
 
 assert.deepEqual(matrix.required_gate_tests, [
   'tests/civication-role-world-realism-matrix.test.js',
+  'tests/civication-cross-role-shared-world.test.js',
   'tests/civication-semantic-playthrough-gate.test.js',
   'tests/civication-compiled-scene-registry-parity.test.js',
   'tests/civication-career-gameplay-matrix.test.js',
@@ -140,4 +159,4 @@ for (const testPath of matrix.required_gate_tests) assert.ok(exists(testPath), `
 assert.equal(policy.reference_wave_complete, true, 'Matrix must not rewrite the existing Role World reference wave');
 assert.equal(policy.next_reference_world, null, 'Matrix must not invent a hidden next reference world');
 
-console.log('PASS: Role World Realism Matrix v1 locks 7 cross-role fields from four structural pilots without completion inflation or new runtime.');
+console.log('PASS: Role World Realism Matrix v1 keeps seven cross-role fields locked, proves shared-world role boundaries, and leaves broad rollout policy-gated.');

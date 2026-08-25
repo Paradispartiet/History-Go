@@ -72,6 +72,48 @@
       ]
     }
   ],
+  "cross_role_shared_world_proof": {
+    "status": "runtime_proven",
+    "work_object_id": "media_redaksjon_publication_case_001",
+    "institution_id": "fjordby_dagblad_redaksjonen_001",
+    "owner": {
+      "category": "media",
+      "role_scope": "media_redaksjon",
+      "lens": "reporterens kilde-, dokument- og versjonsspor"
+    },
+    "second_role": {
+      "category": "media",
+      "role_scope": "media_redaksjonell_ledelse",
+      "lens": "redaksjonell prioritering, rework og beslutningsberedskap"
+    },
+    "source_refs": {
+      "owner_catalog": "data/Civication/mailFamilies/media/job/media_redaksjon_job.json",
+      "second_role_catalog": "data/Civication/mailFamilies/media/job/media_redaksjonell_ledelse_job.json",
+      "second_role_plan": "data/Civication/mailPlans/media/media_redaksjonell_ledelse_plan.json"
+    },
+    "scene_ids": {
+      "owner_open": "media_redaksjon_realism_case_open_001",
+      "second_role_review": "media_cross_role_editor_shared_case_review_001"
+    },
+    "owner_open_choice_id": "A",
+    "authority_contract": {
+      "direct_choice_ids": [
+        "A",
+        "B"
+      ],
+      "forbidden_action_id": "overwrite_reporter_evidence",
+      "forbidden_action_must_not_be_executable_choice": true,
+      "active_role_scope_mismatch_must_block": true,
+      "second_role_cannot_overwrite_owner_evidence": true,
+      "shared_object_does_not_transfer_owner_role_scope": true
+    },
+    "evidence_refs": [
+      "tests/civication-cross-role-shared-world.test.js",
+      "data/Civication/mailFamilies/media/job/media_redaksjonell_ledelse_job.json",
+      "data/Civication/mailPlans/media/media_redaksjonell_ledelse_plan.json",
+      "reports/civication-cross-role-shared-world-pilot.md"
+    ]
+  },
   "locked_cross_role_dimensions": [
     {
       "id": "persistent_work_object",
@@ -156,6 +198,17 @@
       ]
     }
   ],
+  "program_level_proofs": {
+    "cross_role_links": {
+      "status": "runtime_proven",
+      "contract": "Minst ett persistent shared work object skal kunne oppleves fra to canonicale roller med forskjellig lens og authority. Den andre rollen kan endre arbeidsflyt innen eget mandat, men kan ikke arve første rolles myndighet, omskrive evidens gjennom hierarki eller overta objektets canonical role_scope.",
+      "proof_ref": "cross_role_shared_world_proof",
+      "evidence_refs": [
+        "tests/civication-cross-role-shared-world.test.js",
+        "reports/civication-cross-role-shared-world-pilot.md"
+      ]
+    }
+  },
   "role_owned_not_global": [
     "work_object_kind",
     "work_object_phase_names",
@@ -177,15 +230,11 @@
       "id": "professional_culture",
       "status": "editorial_only",
       "reason": "Journalistikk beviser profesjonskultur redaksjonelt, men ett sterkt domene er ikke nok til å låse et globalt runtimefelt."
-    },
-    {
-      "id": "cross_role_links",
-      "status": "not_started",
-      "reason": "Definition of Done krever fortsatt minst ett shared object som oppleves fra to roller med ulikt handlingsrom og uten privilege leakage."
     }
   ],
   "required_gate_tests": [
     "tests/civication-role-world-realism-matrix.test.js",
+    "tests/civication-cross-role-shared-world.test.js",
     "tests/civication-semantic-playthrough-gate.test.js",
     "tests/civication-compiled-scene-registry-parity.test.js",
     "tests/civication-career-gameplay-matrix.test.js",
