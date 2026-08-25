@@ -1,0 +1,802 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "subkultur",
+  "targetId": "brugata_storgata_rusmiljo",
+  "profile": "rich_5x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1345,
+    "selection_sha256": "f30c98ddb3c09b836a1cc7f2c3e1a518ed917b02bcdb1369c6dbe52f7b527db9",
+    "category_id": "subkultur",
+    "target_id": "brugata_storgata_rusmiljo"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/subkultur/subkulturpensum_canonical_v4_5.json",
+      "bytes": 17511,
+      "sha256": "f2c6e23415089be869843158c1ad3a07d717b26b4f6762145be4092df49c1f1c",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/subkultur/emner_subkultur_canonical_v4_5.json",
+      "bytes": 314683,
+      "sha256": "878484dbf75d4be60c5a89bbd07c90328778f0cae5d5217286791897bcc3e0b5",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/subkultur/fagkart_subkultur_canonical_v4_5.json",
+      "bytes": 118098,
+      "sha256": "3552c2598919d77882306d8fb37f5eab0434bafd26b4a0c0e475d47706902319",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/subkultur/methods_subkultur_canonical_v4_5.json",
+      "bytes": 112793,
+      "sha256": "22673da0de3a0913ce3ce5c2afd16ba9c213a81947cbb9c2d8e3c2eeee3d9594",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/subkultur/supersetQUIZMAL_subkultur.json",
+      "bytes": 7431,
+      "sha256": "f6f4f1012800cbc44d68105d22c03e6433e6b55b3405e892d97c5a7b07d5904c",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 16882,
+      "sha256": "60804db1e587faae822930a800cfebac7966fa7e009778d46d94d1f28e02545e",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/subkultur/brugata_storgata_rusmiljo.json",
+      "bytes": 18029,
+      "sha256": "ed339294201be95c0096fb681f632a89a43ed35b427d46422c8a20ca3be2b37d"
+    },
+    "target": {
+      "path": "data/places/subkultur/oslo/places_subkultur/brugata_storgata_rusmiljo.json",
+      "bytes": 19017,
+      "sha256": "fdd1d3f8a5e5687042263c13dc0946eda3c25a35b9ad7152f0cc38bc810ec8fa"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1534,
+      "selection_sha256": "238644dbf6be05dd3b65277046ac288683797a64381e525070c44cb7db0d76e5"
+    },
+    "relations": [],
+    "stories": [
+      {
+        "path": "data/stories/stories_brugata_storgata_rusmiljo.json",
+        "matches": 3,
+        "selection_bytes": 7564,
+        "selection_sha256": "10b55f977c28eeccd99b895ce44eeabf7072bb63a831806e29594aff3db11e72"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/subkultur/brugata_storgata_rusmiljo_sets.json",
+  "source_registry": {
+    "oslo_byplan_2025": {
+      "url": "https://magasin.oslo.kommune.no/byplan/trygghet-og-kriminalitetsforebygging-m%C3%A5-v%C3%A6re-f%C3%B8rende-i-byutviklingen",
+      "source_type": "official_municipality",
+      "review_status": "reviewed",
+      "review_note": "Canonical avgrensning, Storgata 33, arkaden, fysisk byutvikling og medvirkningskartlegging."
+    },
+    "korus_2020": {
+      "url": "https://filer.korus.no/publications/HKH-rapport-web.pdf",
+      "source_type": "institutional_research",
+      "review_status": "reviewed",
+      "review_note": "Felt- og intervjubasert kartlegging av marked, utrygghet, sosial møteplass og tiltak."
+    },
+    "fhr_2025": {
+      "url": "https://humanruspolitikk.no/vil-gi-rusavhengige-et-sted-a-vaere/",
+      "source_type": "community_primary",
+      "review_status": "reviewed",
+      "review_note": "Forflytningshistorie, værestedsforslag, sosialt behov og budsjettstatus."
+    },
+    "storgata_2021": {
+      "url": "https://magasin.oslo.kommune.no/byplan/stor-forandring-i-nye-storgata",
+      "source_type": "official_municipality",
+      "review_status": "reviewed",
+      "review_note": "Fysisk opprustning av spor, fortau og teknisk infrastruktur."
+    },
+    "commons_1870": {
+      "url": "https://commons.wikimedia.org/wiki/File:Brugata_sett_mot_Storgata_OB.OT359.jpg",
+      "source_type": "licensed_historical_image",
+      "review_status": "reviewed",
+      "review_note": "Brugata-aksen mot Storgata ca. 1870, Ole Tobias Olsen, Oslo Museum, CC BY-SA 3.0 NO."
+    },
+    "commons_2026": {
+      "url": "https://commons.wikimedia.org/wiki/File:Brugata,_Oslo_2026.jpg",
+      "source_type": "licensed_comparison_image",
+      "review_status": "reviewed",
+      "review_note": "Vestgående Brugata-akse i 2026 fra et punkt lenger øst, Ssu, CC BY-SA 4.0."
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/places/subkultur/oslo/places_subkultur/brugata_storgata_rusmiljo.json",
+      "data/places/subkultur-production/brugata_storgata_rusmiljo.json"
+    ],
+    "active_before": {
+      "file": null,
+      "set_count": 0,
+      "question_count": 0,
+      "finding": "Ingen manifestlastet canonical stedquiz fantes."
+    },
+    "legacy_before": {
+      "file": null,
+      "set_count": 0,
+      "question_count": 0,
+      "finding": "Ingen separat legacy-quiz ble funnet; den eldre produksjonsrapporten markerte quiz feilaktig N/A."
+    },
+    "decisions": [
+      "Produser canonical rich 5×7 fra ekstern stedsevidens.",
+      "Hold de første 14 spørsmålene til normal fakta- og kontekstinngang.",
+      "Legg metodebegreper i sluttsettet og bind dem til dokumentert case."
+    ],
+    "knowledge_migration": "Ingen legacy-spørsmål migreres; pakken er ny og manifestlastet."
+  },
+  "profile_decision": {
+    "profile": "rich",
+    "set_count": 5,
+    "questions_per_set": 7,
+    "justification": "Stedet krever fem læringsjobber: identitet og forflytning, kartlegging og dobbeltrolle, fysisk rom og medvirkning, værested og etisk besøk, samt stedlig metode og kildekritikk."
+  },
+  "held_back_candidates": [
+    "Private eller sårbare personer som People.",
+    "Synlige personer i bilder eller onsite-observasjon som identitetsbevis.",
+    "Virksomheter ved krysset som Brands uten canonical tilhørighet og logo-proveniens.",
+    "Detaljer om kjøp, politimetoder, oppholdstider eller ruter som kan skade eller fasilitere lovbrudd."
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 8,
+      "emner": 80,
+      "topic_hooks": 80,
+      "methods": 43
+    },
+    "candidate_emner": [
+      {
+        "id": "em_sub_apne_rusmiljoer_gatefellesskap",
+        "title": "Åpne rusmiljøer og gatefellesskap",
+        "score": 100
+      },
+      {
+        "id": "em_sub_personvern_forskningsetikk",
+        "title": "Personvern og forskningsetikk",
+        "score": 100
+      },
+      {
+        "id": "em_sub_rett_til_byen",
+        "title": "Rett til byen",
+        "score": 100
+      },
+      {
+        "id": "em_sub_tilhorighet_miljo",
+        "title": "Tilhørighet og miljø",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "apne_rusmiljoer_gatefellesskap",
+        "title": "Åpne rusmiljøer og gatefellesskap",
+        "category_id": "sosiale_randsoner_omsorg_skadereduksjon",
+        "score": 10
+      },
+      {
+        "id": "personvern_forskningsetikk",
+        "title": "Personvern og forskningsetikk",
+        "category_id": "sosiale_randsoner_omsorg_skadereduksjon",
+        "score": 10
+      },
+      {
+        "id": "rett_til_byen",
+        "title": "Rett til byen",
+        "category_id": "motstand_avvik_kontroll",
+        "score": 10
+      },
+      {
+        "id": "tilhorighet_miljo",
+        "title": "Tilhørighet og miljø",
+        "category_id": "fellesskap_scener_egenorganisering",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "sosiale_randsoner_omsorg_skadereduksjon"
+    ],
+    "emne_ids": [
+      "em_sub_apne_rusmiljoer_gatefellesskap",
+      "em_sub_rett_til_byen",
+      "em_sub_tilhorighet_miljo",
+      "em_sub_personvern_forskningsetikk"
+    ],
+    "topic_hook_ids": [
+      "rett_til_byen"
+    ],
+    "method_ids": [
+      "met_sub_stedsanalyse",
+      "met_sub_romlig_maktanalyse",
+      "met_sub_omsorgslandskapsanalyse",
+      "met_sub_etisk_kildeanalyse"
+    ],
+    "thinker_ids": [
+      "henri_lefebvre"
+    ],
+    "works": [
+      "The Right to the City"
+    ]
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_brugata_storgata_quiz_1",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Place-profilen eier territoriet i og nær krysset, ikke hele gatene eller alle tjenester.",
+      "source_ids": [
+        "oslo_byplan_2025"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_apne_rusmiljoer_gatefellesskap"
+    },
+    {
+      "claim_id": "claim_brugata_storgata_quiz_2",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Storgata 33 er områdeanker, ikke grense for menneskers opphold.",
+      "source_ids": [
+        "oslo_byplan_2025"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_apne_rusmiljoer_gatefellesskap"
+    },
+    {
+      "claim_id": "claim_brugata_storgata_quiz_3",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "context",
+      "statement": "Kildene beskriver en konfliktfylt dobbeltrolle.",
+      "source_ids": [
+        "korus_2020"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_apne_rusmiljoer_gatefellesskap"
+    },
+    {
+      "claim_id": "claim_brugata_storgata_quiz_4",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "context",
+      "statement": "Plata har egen historisk profil og må ikke brukes som alias.",
+      "source_ids": [
+        "fhr_2025"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_apne_rusmiljoer_gatefellesskap"
+    },
+    {
+      "claim_id": "claim_brugata_storgata_quiz_5",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Sentrumssamarbeidet er et vendepunkt i flyttehistorien.",
+      "source_ids": [
+        "fhr_2025"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_apne_rusmiljoer_gatefellesskap"
+    },
+    {
+      "claim_id": "claim_brugata_storgata_quiz_6",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "context",
+      "statement": "Sammenligning kan vise sammenheng, men ikke identitet.",
+      "source_ids": [
+        "fhr_2025"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_apne_rusmiljoer_gatefellesskap"
+    },
+    {
+      "claim_id": "claim_brugata_storgata_quiz_7",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Rapporten kartla det åpne rusmiljøet i Brugata/Storgata.",
+      "source_ids": [
+        "korus_2020"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_apne_rusmiljoer_gatefellesskap"
+    },
+    {
+      "claim_id": "claim_brugata_storgata_quiz_8",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Systematisk kartlegging er noe annet enn å klassifisere forbipasserende.",
+      "source_ids": [
+        "korus_2020"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_personvern_forskningsetikk"
+    },
+    {
+      "claim_id": "claim_brugata_storgata_quiz_9",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Synlighet er ikke identitetsbevis.",
+      "source_ids": [
+        "korus_2020"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_personvern_forskningsetikk"
+    },
+    {
+      "claim_id": "claim_brugata_storgata_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Tiltakene inngår i kartleggingens bakgrunn.",
+      "source_ids": [
+        "korus_2020"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_apne_rusmiljoer_gatefellesskap"
+    },
+    {
+      "claim_id": "claim_brugata_storgata_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Arkaden diskuteres gjennom sikt, lys og opphold.",
+      "source_ids": [
+        "oslo_byplan_2025"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_apne_rusmiljoer_gatefellesskap"
+    },
+    {
+      "claim_id": "claim_brugata_storgata_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Byggesaken er én del av den fysiske stedsdebatten.",
+      "source_ids": [
+        "oslo_byplan_2025"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_apne_rusmiljoer_gatefellesskap"
+    },
+    {
+      "claim_id": "claim_brugata_storgata_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Rom, relasjoner og kontroll må analyseres sammen.",
+      "source_ids": [
+        "oslo_byplan_2025"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_rett_til_byen"
+    },
+    {
+      "claim_id": "claim_brugata_storgata_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Prosjektkilden dokumenterer det fysiske laget.",
+      "source_ids": [
+        "storgata_2021"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_rett_til_byen"
+    },
+    {
+      "claim_id": "claim_brugata_storgata_quiz_15",
+      "order": 15,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Tallet gjelder kontakt gjennom kartleggingen, ikke størrelsen på miljøet.",
+      "source_ids": [
+        "oslo_byplan_2025"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_personvern_forskningsetikk"
+    },
+    {
+      "claim_id": "claim_brugata_storgata_quiz_16",
+      "order": 16,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Medvirkningen synliggjorde mer enn risiko.",
+      "source_ids": [
+        "oslo_byplan_2025"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_tilhorighet_miljo"
+    },
+    {
+      "claim_id": "claim_brugata_storgata_quiz_17",
+      "order": 17,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Metoden søker kunnskap uten å gjøre mennesker til objekter.",
+      "source_ids": [
+        "oslo_byplan_2025"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_personvern_forskningsetikk"
+    },
+    {
+      "claim_id": "claim_brugata_storgata_quiz_18",
+      "order": 18,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Forslaget gjaldt sosialt opphold også utenfor tjenesteåpningstid.",
+      "source_ids": [
+        "fhr_2025"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_rett_til_byen"
+    },
+    {
+      "claim_id": "claim_brugata_storgata_quiz_19",
+      "order": 19,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Forslaget ble avgrenset fra en fristad uten regler.",
+      "source_ids": [
+        "fhr_2025"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_rett_til_byen"
+    },
+    {
+      "claim_id": "claim_brugata_storgata_quiz_20",
+      "order": 20,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Kilden beskriver et forslag, ikke et etablert tilbud.",
+      "source_ids": [
+        "fhr_2025"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_rett_til_byen"
+    },
+    {
+      "claim_id": "claim_brugata_storgata_quiz_21",
+      "order": 21,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Nærhet gjør ikke institusjon og gatefellesskap identiske.",
+      "source_ids": [
+        "oslo_byplan_2025"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_apne_rusmiljoer_gatefellesskap"
+    },
+    {
+      "claim_id": "claim_brugata_storgata_quiz_22",
+      "order": 22,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Canonical eierskap hindrer dobbelt innhold.",
+      "source_ids": [
+        "oslo_byplan_2025"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_apne_rusmiljoer_gatefellesskap"
+    },
+    {
+      "claim_id": "claim_brugata_storgata_quiz_23",
+      "order": 23,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Det historiske fotografiet er fysisk gatehistorie, ikke sosial identitetsdokumentasjon.",
+      "source_ids": [
+        "commons_1870"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_personvern_forskningsetikk"
+    },
+    {
+      "claim_id": "claim_brugata_storgata_quiz_24",
+      "order": 24,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Brugata-aksen kan sammenlignes uten å hevde identisk utsnitt.",
+      "source_ids": [
+        "commons_2026"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_personvern_forskningsetikk"
+    },
+    {
+      "claim_id": "claim_brugata_storgata_quiz_25",
+      "order": 25,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Personer i bildet er ikke bevis for identitet eller atferd.",
+      "source_ids": [
+        "commons_2026"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_personvern_forskningsetikk"
+    },
+    {
+      "claim_id": "claim_brugata_storgata_quiz_26",
+      "order": 26,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Territoriet formes av flere sammenvevde prosesser.",
+      "source_ids": [
+        "fhr_2025"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_apne_rusmiljoer_gatefellesskap"
+    },
+    {
+      "claim_id": "claim_brugata_storgata_quiz_27",
+      "order": 27,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Besøksmetoden avgrenser observasjonen til fysiske spor.",
+      "source_ids": [
+        "oslo_byplan_2025"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_personvern_forskningsetikk"
+    },
+    {
+      "claim_id": "claim_brugata_storgata_quiz_28",
+      "order": 28,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Onsite-opplevelsen skal aldri gå foran egen eller andres sikkerhet.",
+      "source_ids": [
+        "oslo_byplan_2025"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_personvern_forskningsetikk"
+    },
+    {
+      "claim_id": "claim_brugata_storgata_quiz_29",
+      "order": 29,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Stedsanalysen kobler arkade, gateflate, relasjoner og tidslag.",
+      "source_ids": [
+        "oslo_byplan_2025"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_apne_rusmiljoer_gatefellesskap",
+      "method_id": "met_sub_stedsanalyse"
+    },
+    {
+      "claim_id": "claim_brugata_storgata_quiz_30",
+      "order": 30,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kontroll og manglende formell råderett er sentrale maktspørsmål.",
+      "source_ids": [
+        "fhr_2025"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_rett_til_byen",
+      "method_id": "met_sub_romlig_maktanalyse"
+    },
+    {
+      "claim_id": "claim_brugata_storgata_quiz_31",
+      "order": 31,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Omsorg finnes både i tjenester og sosiale relasjoner, men kan ikke kartlegges via private helseopplysninger.",
+      "source_ids": [
+        "korus_2020"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_tilhorighet_miljo",
+      "method_id": "met_sub_omsorgslandskapsanalyse"
+    },
+    {
+      "claim_id": "claim_brugata_storgata_quiz_32",
+      "order": 32,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Begrepet handler om tilgang, stemme og fordeling av byrom, ikke grenseløs råderett.",
+      "source_ids": [
+        "fhr_2025"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_rett_til_byen",
+      "method_id": "met_sub_romlig_maktanalyse",
+      "topic_hook_id": "rett_til_byen",
+      "thinker_id": "henri_lefebvre",
+      "work": "The Right to the City"
+    },
+    {
+      "claim_id": "claim_brugata_storgata_quiz_33",
+      "order": 33,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Personvern og representasjon er del av kunnskapskvaliteten.",
+      "source_ids": [
+        "korus_2020"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_personvern_forskningsetikk",
+      "method_id": "met_sub_etisk_kildeanalyse"
+    },
+    {
+      "claim_id": "claim_brugata_storgata_quiz_34",
+      "order": 34,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Byplan-kilden viser grensene for design som eneste forklaring.",
+      "source_ids": [
+        "oslo_byplan_2025"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_rett_til_byen",
+      "method_id": "met_sub_stedsanalyse"
+    },
+    {
+      "claim_id": "claim_brugata_storgata_quiz_35",
+      "order": 35,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Forskning, kommune, brukerorganisasjon og bilder dekker ulike kunnskapslag.",
+      "source_ids": [
+        "korus_2020"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_sub_personvern_forskningsetikk",
+      "method_id": "met_sub_etisk_kildeanalyse"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "story",
+      "id": "st_brugata_storgata_forflytning_2011",
+      "source_file": "data/stories/stories_brugata_storgata_rusmiljo.json",
+      "summary": "Etter systematisk spredning fra Oslo S og Jernbanetorget ble Brugata/Storgata et viktigere oppholdssted. Historien handler om forflytning mellom steder, ikke om at Plata fikk nytt navn."
+    },
+    {
+      "type": "story",
+      "id": "st_brugata_storgata_utrygg_markedsplass_2020",
+      "source_file": "data/stories/stories_brugata_storgata_rusmiljo.json",
+      "summary": "«Utrygg markedsplass» dokumenterte vold, utrygghet og rusmarked, men også sosial møteplass. Kartleggingen gjorde motstridende erfaringer til en del av samme stedsanalyse."
+    },
+    {
+      "type": "story",
+      "id": "st_brugata_storgata_medvirkning_2025",
+      "source_file": "data/stories/stories_brugata_storgata_rusmiljo.json",
+      "summary": "Bykubens kartlegging nådde nesten 35 personer gjennom flere møteplasser. Vennskap og natur langs Akerselva ble synlige som ressurser i en debatt som ofte starter med utrygghet."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "subkultur_brugata_storgata_rusmiljo_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_brugata_storgata_quiz_1",
+        "claim_brugata_storgata_quiz_2",
+        "claim_brugata_storgata_quiz_3",
+        "claim_brugata_storgata_quiz_4",
+        "claim_brugata_storgata_quiz_5",
+        "claim_brugata_storgata_quiz_6",
+        "claim_brugata_storgata_quiz_7"
+      ]
+    },
+    {
+      "set_id": "subkultur_brugata_storgata_rusmiljo_set_2",
+      "order": 2,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_brugata_storgata_quiz_8",
+        "claim_brugata_storgata_quiz_9",
+        "claim_brugata_storgata_quiz_10",
+        "claim_brugata_storgata_quiz_11",
+        "claim_brugata_storgata_quiz_12",
+        "claim_brugata_storgata_quiz_13",
+        "claim_brugata_storgata_quiz_14"
+      ]
+    },
+    {
+      "set_id": "subkultur_brugata_storgata_rusmiljo_set_3",
+      "order": 3,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_brugata_storgata_quiz_15",
+        "claim_brugata_storgata_quiz_16",
+        "claim_brugata_storgata_quiz_17",
+        "claim_brugata_storgata_quiz_18",
+        "claim_brugata_storgata_quiz_19",
+        "claim_brugata_storgata_quiz_20",
+        "claim_brugata_storgata_quiz_21"
+      ]
+    },
+    {
+      "set_id": "subkultur_brugata_storgata_rusmiljo_set_4",
+      "order": 4,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_brugata_storgata_quiz_22",
+        "claim_brugata_storgata_quiz_23",
+        "claim_brugata_storgata_quiz_24",
+        "claim_brugata_storgata_quiz_25",
+        "claim_brugata_storgata_quiz_26",
+        "claim_brugata_storgata_quiz_27",
+        "claim_brugata_storgata_quiz_28"
+      ]
+    },
+    {
+      "set_id": "subkultur_brugata_storgata_rusmiljo_set_5",
+      "order": 5,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_brugata_storgata_quiz_29",
+        "claim_brugata_storgata_quiz_30",
+        "claim_brugata_storgata_quiz_31",
+        "claim_brugata_storgata_quiz_32",
+        "claim_brugata_storgata_quiz_33",
+        "claim_brugata_storgata_quiz_34",
+        "claim_brugata_storgata_quiz_35"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 35,
+    "counts": {
+      "fact": 12,
+      "context": 16,
+      "concept_theory": 7
+    },
+    "ratios": {
+      "fact": 0.343,
+      "context": 0.457,
+      "concept_theory": 0.2
+    }
+  }
+}

@@ -16,11 +16,13 @@ const standingSource = read('js/Civication/core/civicationSocialStanding.js');
 
 assert.equal(matrix.schema, 'civication_role_world_realism_matrix_v1');
 assert.equal(matrix.version, 1);
-assert.equal(matrix.status, 'gate_active_broad_rollout_blocked');
+assert.equal(matrix.status, 'gate_green_controlled_rollout_open');
 assert.equal(matrix.semantics.no_new_runtime, true);
 assert.equal(matrix.semantics.new_parallel_scene_format_allowed, false);
 assert.equal(matrix.semantics.completion_statuses_unchanged, true);
-assert.equal(matrix.semantics.broad_rollout_allowed, false);
+assert.equal(matrix.semantics.broad_rollout_allowed, true);
+assert.equal(matrix.semantics.rollout_mode, 'controlled_role_by_role');
+assert.equal(matrix.semantics.readiness_gate, 'data/Civication/roleWorldRolloutReadiness.json');
 assert.deepEqual(matrix.semantics.independent_from, ['reference_complete', 'role_world_complete']);
 assert.deepEqual(matrix.semantics.allowed_dimension_statuses, [
   'not_started',
@@ -40,8 +42,8 @@ assert.deepEqual(policy.role_world_statuses, [
 ]);
 assert.equal(policy.realism_matrix_gate.path, matrixPath);
 assert.equal(policy.realism_matrix_gate.schema, matrix.schema);
-assert.equal(policy.realism_matrix_gate.status, 'gate_active');
-assert.equal(policy.realism_matrix_gate.broad_rollout_allowed, false);
+assert.equal(policy.realism_matrix_gate.status, 'gate_green_controlled_rollout_open');
+assert.equal(policy.realism_matrix_gate.broad_rollout_allowed, true);
 assert.equal(policy.realism_matrix_gate.completion_statuses_unchanged, true);
 assert.equal(policy.realism_matrix_gate.new_runtime_allowed, false);
 
@@ -159,4 +161,4 @@ for (const testPath of matrix.required_gate_tests) assert.ok(exists(testPath), `
 assert.equal(policy.reference_wave_complete, true, 'Matrix must not rewrite the existing Role World reference wave');
 assert.equal(policy.next_reference_world, null, 'Matrix must not invent a hidden next reference world');
 
-console.log('PASS: Role World Realism Matrix v1 keeps seven cross-role fields locked, proves shared-world role boundaries, and leaves broad rollout policy-gated.');
+console.log('PASS: Role World Realism Matrix v1 keeps seven cross-role fields locked, proves shared-world role boundaries, and opens only controlled role-by-role rollout.');

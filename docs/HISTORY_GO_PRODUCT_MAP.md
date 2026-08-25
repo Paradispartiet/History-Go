@@ -2,7 +2,7 @@
 
 Status: **canonical produktkart**  
 Eier: `history_go_product_map`  
-Sist kontrollert: **2026-08-23**
+Sist kontrollert: **2026-08-25**
 
 Dette dokumentet beskriver hvilke hovedflater History GO består av og hvordan de henger sammen. Det er et produktkart, ikke en detaljoppskrift for hvert subsystem.
 
@@ -25,11 +25,11 @@ Stedet er navet. Profilen er spillerens samlings- og progresjonsflate. Fagverket
 
 Et History GO-sted har tre tydelig forskjellige brukerroller:
 
-1. **Rundinger** — visuelle samlingsinnganger til identifiserbare ting.
+1. **Rundinger/samlinger** — visuelle samlingsinnganger til identifiserbare ting.
 2. **Stedspopup** — kunnskap om stedet.
 3. **På stedet** — hva som skjer eller kan gjøres der.
 
-Canonical rundingsmodell:
+Canonical samlingsmodell:
 
 ```text
 Badge ved tittelen
@@ -43,19 +43,24 @@ Kategoriens fjerde samling for vanlige steder løses av `data/places/README_plac
 
 PlaceCard-samlinger følger `data/places/README_place_rounds.md`; denne filen gjentar ikke detaljreglene.
 
-Canonical popupfaner:
+Canonical popupfaner for alle Places:
 
 ```text
-Om · Historie · Fortellinger · Før/etter · Nyheter · Lesespor · Kilder · Mer
+Om · Historie · Fortellinger · Før/etter · Nyheter · Lesespor · Kilder · Språk
 ```
 
-På stedet omfatter blant annet Events, Social Meet, Spotmeeting/Kunnskapsmøte, Tasks, Training og Play når disse faktisk er relevante og implementert.
+**Språk er fast og obligatorisk.** Alle steder skal ha reelle, stedsspesifikke begreper/navnespor i Språkleksikonet. Dialekt er derimot et separat underlag som bare produseres når `docs/SPRAKLEKSIKON.md` tillater og kildene bærer det. Legacy Places uten materialisert språkinnhold viser et produksjonsgap; de er ikke Språk=N/A.
+
+`Mer`, `Annet` og `Tillegg` er ikke brukerrettede popupfaner. Tidligere `Mer`-innhold rutes til canonical eier: Objects/Gjenstander, People, Relaterte steder eller Om etter `docs/PLACE_POPUP_SYSTEM.md`.
+
+På stedet omfatter blant annet Events, Social Meet og Spotmeeting/Kunnskapsmøte når disse faktisk er relevante og implementert. Type-spesifikt innhold som trening følger sin egen stedstypekontrakt.
 
 Eiere:
 
 - `docs/PLACE_STANDARD.md`
 - `data/places/README_place_rounds.md`
 - `docs/PLACE_POPUP_SYSTEM.md`
+- `docs/SPRAKLEKSIKON.md`
 - `docs/PLACE_PRODUCTION_CHECKLIST.md`
 
 ## 3. Samling og fysisk besøk er forskjellige ting
@@ -126,7 +131,7 @@ People kan oppdages, låses opp eller samles etter faktisk runtime, men produktk
 
 `category` er stedets primære canonical fag-/badgeidentitet. `underbadge_ids` brukes til underklassifisering.
 
-Badges-rundingen går til stedets fagverkside. Navigasjonsrollene mellom Merket og Faget eies av:
+Badges-flaten går til stedets fagverkside. Navigasjonsrollene mellom Merket og Faget eies av:
 
 - `docs/FAGVERK_NAVIGATION.md`.
 
@@ -225,9 +230,9 @@ søk og gjenbruk eksisterende research
 
 Content Factory har ingen `anchor`/`standard`/`baseline`-modell og ingen annen ordning som tillater et mindre ferdig Place for å spare kostnader.
 
-Alle Places skal vurderes mot hele relevante checklisten. Hvis People, Stories, Quiz, språk, Objects, Brands, historie, før/etter, ruter, observasjoner eller andre flater er relevante og kildebærende, skal de produseres.
+Alle Places skal vurderes mot hele relevante checklisten. **Språk er alltid relevant og obligatorisk:** hvert Place skal ha et reelt Språkleksikon med stedsspesifikke begreper/navnespor. People, Stories, Quiz, Objects, Brands, historie, før/etter, ruter, observasjoner og andre flater produseres når deres egne kontrakter gjør dem relevante og kildebærende.
 
-N/A brukes bare når innholdstypen faktisk er irrelevant eller ikke lar seg forsvare etter ordentlig research — aldri fordi stedet er definert som «long tail» eller fordi tokenbudsjettet er brukt opp.
+N/A brukes bare når innholdstypen faktisk er irrelevant eller ikke lar seg forsvare etter ordentlig research — aldri fordi stedet er definert som «long tail» eller fordi tokenbudsjettet er brukt opp. **Språkleksikon kan ikke settes N/A; dialektlaget kan være begrunnet N/A.**
 
 ### Delt research, individuell forståelse
 
@@ -239,6 +244,7 @@ Hvert Place skal fortsatt få:
 - egen gap-research;
 - egen redaksjonell syntese;
 - egne relevante samlinger og læringsflater;
+- eget Språkleksikon med stedsspesifikke begreper/navnespor;
 - egen manuell produktvurdering.
 
 ### Claim-bank
@@ -270,9 +276,11 @@ Et sted blokkeres dersom place-authored innhold:
 - ikke gir en tydelig lokal lærings-/observasjonsverdi;
 - fremstår fullt bare fordi generisk filler har fylt checklist-flater.
 
+Språkproduksjonen følger samme gate: generelle fagord kan bare brukes når de har en dokumentert, stedsspesifikk forklaring; oppdiktet lokal terminologi eller dialekt er blocker.
+
 ### Fullness gate
 
-Content Factory er ikke vellykket dersom kostnaden faller ved at relevante flater blir mindre utforsket. Et Place kan ikke erklæres ferdig mens relevant, kildebærende innhold fortsatt er materielt underprodusert.
+Content Factory er ikke vellykket dersom kostnaden faller ved at relevante flater blir mindre utforsket. Et Place kan ikke erklæres ferdig mens relevant, kildebærende innhold fortsatt er materielt underprodusert. Manglende Språkleksikon er alltid et slikt produksjonsgap.
 
 ### Skalering
 

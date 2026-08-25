@@ -1,9 +1,9 @@
 # Civication Role World broad-rollout readiness gate
 
-**Status:** GREEN — policy opening may be proposed in a separate PR
+**Status:** GREEN — controlled role-by-role rollout open
 **Canonical career roles audited:** 85
 **Classification:** 35 rollout_ready / 48 needs_role_authored_work / 2 blocked
-**Current broad_rollout_allowed:** false (unchanged in this PR)
+**Current broad_rollout_allowed:** true (controlled rollout open)
 
 ## Gate decision
 
@@ -11,11 +11,13 @@
 - Cross-role shared-world program proof runtime-proven: **true**
 - Every canonical career role classified: **true**
 - Every blocked role has explicit blockers: **true**
-- Existing policy remains closed: **true**
+- Matrix/policy rollout state consistent: **true**
+- Existing policy remains closed: **false**
+- Controlled broad rollout allowed now: **true**
 - Readiness gate: **PASS**
-- Recommendation: **open_with_role_level_gates_in_separate_policy_pr**
+- Recommendation: **controlled_rollout_open_with_role_level_gates**
 
-A PASS here means the program-level pilot proof is sufficient to begin controlled role-by-role rollout under a separate policy change. It does **not** certify every role as realism-complete, does not create runtime, and does not waive role-level blockers.
+A PASS with policy open means controlled role-by-role rollout may proceed. It does **not** certify every role as realism-complete, does not create runtime, and does not waive role-level blockers.
 
 ## Classification contract
 

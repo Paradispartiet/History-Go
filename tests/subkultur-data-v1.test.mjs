@@ -2,12 +2,12 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { auditSubkulturData, buildSubkulturDataReport } from '../scripts/audit-subkultur-data-v1.mjs';
 
-test('alle 68 steder og 66 People-poster har en eksplisitt redaksjonell beslutning', () => {
+test('alle 68 steder og 70 People-poster har en eksplisitt redaksjonell beslutning', () => {
   const report = auditSubkulturData();
   assert.equal(report.totals.audited_places, 68);
-  assert.equal(report.totals.audited_people, 66);
+  assert.equal(report.totals.audited_people, 70);
   assert.equal(report.totals.retained_places + report.totals.reclassified_places, 68);
-  assert.equal(report.totals.retained_people + report.totals.reclassified_people, 66);
+  assert.equal(report.totals.retained_people + report.totals.reclassified_people, 70);
 });
 
 test('beholdte poster har gyldige emnekoblinger og omklassifiseringene er materialisert', () => {

@@ -20,6 +20,18 @@ const t = (id, title, definition, question, mechanism, distinction, methodIds, e
   id, title, definition, question, mechanism, distinction, methodIds, evidence, limitation, ethics
 });
 
+const THEORY_CANON_BY_TOPIC = Object.freeze({
+  em_sub_rett_til_byen: {
+    thinkers: [{
+      id: 'henri_lefebvre',
+      name: 'Henri Lefebvre',
+      why: 'Brukerverdi, hverdagsliv og kollektiv rett til å forme urbane rom.',
+      tier: 'core',
+      works: ['The Right to the City']
+    }]
+  }
+});
+
 const LEGACY_EMNE_IDS = Object.freeze([
   "em_sub_arrangorer_dugnad",
   "em_sub_autentisitet_tap",
@@ -307,7 +319,8 @@ function topicHook(topic) {
     theory_status: 'pending_evidence',
     source_anchor_required: true,
     documented_subcultural_context_required: true,
-    do_not_generate_from_hook_label_only: true
+    do_not_generate_from_hook_label_only: true,
+    ...(THEORY_CANON_BY_TOPIC[topic.id] ? { canon: THEORY_CANON_BY_TOPIC[topic.id] } : {})
   };
 }
 

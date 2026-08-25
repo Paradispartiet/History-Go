@@ -8,6 +8,7 @@ on:
       - 'js/ui/sprakatlas-map-experience-v3.js'
       - 'js/ui/sprakatlas-collection-v4.js'
       - 'js/ui/place-popup-direct-tabs.js'
+      - 'js/ui/place-collection-knowledge-routing.js'
       - 'css/place-language-layer.css'
       - 'css/place-popup-tabs.css'
       - 'js/config.js'
@@ -18,6 +19,7 @@ on:
       - 'docs/SPRAKATLAS_COLLECTION_V4.md'
       - 'docs/PLACE_POPUP_SYSTEM.md'
       - 'docs/PLACE_PRODUCTION_CHECKLIST.md'
+      - 'data/places/README_place_rounds.md'
       - 'data/leksikon/README_LEKSIKON.md'
       - 'tests/place-language-layer.test.mjs'
       - 'tests/place-language-dialect-scope.test.mjs'
@@ -25,6 +27,7 @@ on:
       - 'tests/sprakatlas-map-v3.test.mjs'
       - 'tests/sprakatlas-collection-v4.test.mjs'
       - 'tests/place-popup-direct-tabs.test.mjs'
+      - 'tests/place-popup-all-direct-tabs-visible.test.mjs'
       - 'tests/knowledge-browser-e2e.test.mjs'
       - '.github/workflows/language-layer-checks.yml'
   workflow_dispatch:
@@ -45,15 +48,16 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Check language, atlas and direct-tab runtime syntax
+      - name: Check language, atlas and owner-routing runtime syntax
         run: |
           node --check js/ui/place-language-layer.js
           node --check js/ui/sprakatlas-map-experience-v3.js
           node --check js/ui/sprakatlas-collection-v4.js
           node --check js/ui/place-popup-direct-tabs.js
+          node --check js/ui/place-collection-knowledge-routing.js
 
       - name: Check Knowledge collection syntax
         run: node --check js/knowledgePage.js
 
-      - name: Test language data, dialect checklist, Birkelunden, map v3, collection v4 and direct-tab contract
-        run: node --test tests/place-language-layer.test.mjs tests/place-language-dialect-scope.test.mjs tests/birkelunden-phase7h-language.test.mjs tests/sprakatlas-map-v3.test.mjs tests/sprakatlas-collection-v4.test.mjs tests/place-popup-direct-tabs.test.mjs
+      - name: Test language data, dialect checklist, atlas and owner-routing contract
+        run: node --test tests/place-language-layer.test.mjs tests/place-language-dialect-scope.test.mjs tests/birkelunden-phase7h-language.test.mjs tests/sprakatlas-map-v3.test.mjs tests/sprakatlas-collection-v4.test.mjs tests/place-popup-direct-tabs.test.mjs tests/place-popup-all-direct-tabs-visible.test.mjs

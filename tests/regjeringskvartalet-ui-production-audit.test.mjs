@@ -24,6 +24,7 @@ const report = read('reports/place-production/regjeringskvartalet-politikk-v1.md
 const appRuntime = read('js/app.js');
 const popupRuntime = read('js/ui/place-popup-tabs.js');
 const directTabsRuntime = read('js/ui/place-popup-direct-tabs.js');
+const collectionRouting = read('js/ui/place-collection-knowledge-routing.js');
 const roundsRuntime = read('js/ui/place-rounds-visual-collections.js');
 const popupCss = read('css/place-popup-tabs.css');
 const fagverkHtml = read('fagverk-sted.html');
@@ -94,8 +95,12 @@ assert.match(popupRuntime, /event\.key === "End"/);
 assert.match(popupCss, /overflow-x:\s*auto/);
 assert.match(popupCss, /flex-wrap:\s*nowrap/);
 assert.match(popupCss, /white-space:\s*nowrap/);
-assert.match(directTabsRuntime, /moreTab\?\.remove\(\)/);
+assert.match(directTabsRuntime, /MORE_ID\s*=\s*"more"/);
+assert.match(directTabsRuntime, /requiredTabs:\s*\["language"\]/);
+assert.match(directTabsRuntime, /visibleOptionalTabs:\s*\[\]/);
 assert.match(directTabsRuntime, /scrollIntoView/);
+assert.match(collectionRouting, /objectsSupplement/);
+assert.match(collectionRouting, /peopleSupplement/);
 assert.match(popupCss, /@media \(max-width: 720px\)/);
 assert.match(popupCss, /\.hg-place-before-after-media\{[\s\S]*grid-template-columns:\s*1fr/);
 assert.match(popupCss, /:focus-visible/);
@@ -276,7 +281,7 @@ try {
   });
   await page.goto(`${base}/__audit__/regjeringskvartalet.html`, { waitUntil: 'networkidle' });
   await page.waitForFunction(() => window.__auditReady === true);
-  await page.waitForSelector('[role="tab"]');
+  await page.waitForSelector('[data-place-tab="language"]');
 
   assert.deepEqual(await page.evaluate(() => window.__runtimeContentCounts), {
     stories: 3,
@@ -293,15 +298,19 @@ try {
     'Nyheter',
     'Lesespor',
     'Kilder',
-    'Relasjoner',
-    'Kunnskap',
-    'Observasjoner',
     'Språk'
   ]);
-  assert.equal(await page.locator('[role="tabpanel"]').count(), 11);
+  assert.equal(await page.locator('[role="tabpanel"]').count(), 8);
   assert.equal(await page.locator('[data-place-tab="more"]').count(), 0);
+  for (const removed of ['objects', 'notice', 'meaning', 'counterpoints', 'relations', 'knowledge', 'observations']) {
+    assert.equal(await page.locator(`[data-place-tab="${removed}"]`).count(), 0);
+  }
 
-  for (const id of ['about', 'history', 'stories', 'before-after', 'news', 'reading', 'sources', 'relations', 'knowledge', 'observations', 'language']) {
+  assert.equal(await page.locator('#hg-place-panel-about .hg-place-knowledge-section').count(), 1);
+  assert.equal(await page.locator('#hg-place-panel-about .hg-place-observations-section').count(), 1);
+  assert.equal(await page.locator('.hg-place-relations-section').count(), 0);
+
+  for (const id of ['about', 'history', 'stories', 'before-after', 'news', 'reading', 'sources', 'language']) {
     await page.locator(`[data-place-tab="${id}"]`).click();
     assert.equal(await page.locator(`[data-place-tab="${id}"]`).getAttribute('aria-selected'), 'true');
     assert.equal(await page.locator(`#hg-place-panel-${id}`).evaluate(panel => panel.hidden), false);
@@ -322,6 +331,7 @@ try {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.reload({ waitUntil: 'networkidle' });
   await page.waitForFunction(() => window.__auditReady === true);
+  await page.waitForSelector('[data-place-tab="language"]');
   const mobileTabs = await page.locator('.hg-place-tabs').evaluate(element => ({
     clientWidth: element.clientWidth,
     scrollWidth: element.scrollWidth
@@ -378,7 +388,7 @@ try {
   assert.equal(await fagverk.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 2), true);
 
   await context.close();
-  console.log('Regjeringskvartalet phase 16 Chromium audit: PASS');
+  console.log('Regjeringskvartalet owned-surface Chromium audit: PASS');
 } finally {
   if (browser) await browser.close();
   await new Promise(resolve => server.close(resolve));

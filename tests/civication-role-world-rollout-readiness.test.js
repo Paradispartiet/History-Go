@@ -31,7 +31,7 @@ assert.equal(readiness.semantics.one_role_per_rollout_pr, true);
 assert.equal(readiness.semantics.cross_role_links_only_when_work_is_genuinely_shared, true);
 assert.equal(readiness.semantics.employment_conditions_remain_role_owned_editorial_content, true);
 assert.equal(readiness.semantics.professional_culture_remains_role_owned_editorial_content, true);
-assert.equal(readiness.semantics.this_pr_does_not_open_broad_rollout, true);
+assert.equal(readiness.semantics.readiness_audit_does_not_mutate_broad_rollout_policy, true);
 
 const canonicalCareerWorlds = (career.worlds || []).filter((world) => ['reference_complete', 'playable', 'partial', 'architecture_only'].includes(world.status));
 assert.equal(canonicalCareerWorlds.length, career.summary.career_worlds);
@@ -89,17 +89,18 @@ assert.equal(new Set(readiness.first_wave_candidates.map((row) => row.key)).size
 assert.equal(new Set(readiness.first_wave_candidates.map((row) => row.structural_family)).size, readiness.first_wave_candidates.length, 'First wave must not repeat the same life-world structure');
 for (const row of readiness.first_wave_candidates) assert.equal(row.classification, 'rollout_ready', `${row.key}: first-wave candidate must be rollout_ready`);
 
-assert.equal(realism.semantics.broad_rollout_allowed, false, 'Readiness PR must not open broad rollout in the Realism Matrix');
-assert.equal(policy.realism_matrix_gate.broad_rollout_allowed, false, 'Readiness PR must not open broad rollout in policy');
-assert.equal(readiness.gate.current_policy_still_closed, true);
+assert.equal(realism.semantics.broad_rollout_allowed, true, 'Realism Matrix must explicitly open only controlled broad rollout after the readiness gate');
+assert.equal(policy.realism_matrix_gate.broad_rollout_allowed, true, 'Policy must agree with the Realism Matrix after the dedicated policy PR');
+assert.equal(readiness.gate.policy_state_consistent, true);
+assert.equal(readiness.gate.current_policy_still_closed, false);
 assert.equal(readiness.gate.locked_matrix_dimensions_reference_proven, true);
 assert.equal(readiness.gate.cross_role_program_proof_runtime_proven, true);
 assert.equal(readiness.gate.role_coverage_complete, true);
 assert.equal(readiness.gate.role_blockers_documented, true);
-assert.equal(readiness.gate.gate_pass, true, 'Program-level readiness gate must be green before the separate policy PR');
-assert.equal(readiness.gate.broad_rollout_allowed_now, false);
-assert.equal(readiness.gate.policy_recommendation, 'open_with_role_level_gates_in_separate_policy_pr');
-assert.equal(readiness.gate.next_required_pr, 'Civication Role World broad-rollout policy');
+assert.equal(readiness.gate.gate_pass, true, 'Program-level readiness gate must remain green after policy opening');
+assert.equal(readiness.gate.broad_rollout_allowed_now, true);
+assert.equal(readiness.gate.policy_recommendation, 'controlled_rollout_open_with_role_level_gates');
+assert.match(readiness.gate.next_required_pr, /^Role World rollout: /);
 
 const roleOwned = new Set(realism.role_owned_not_global || []);
 assert.ok(roleOwned.has('role_specific_employment_conditions'));

@@ -358,10 +358,24 @@ if (firstWave.length < 3) {
 
 const lockedDimensionsReady = (realism.locked_cross_role_dimensions || []).every((entry) => entry.status === 'reference_proven');
 const crossRoleProgramReady = realism.program_level_proofs?.cross_role_links?.status === 'runtime_proven';
-const currentPolicyStillClosed = realism.semantics?.broad_rollout_allowed === false && policy.realism_matrix_gate?.broad_rollout_allowed === false;
+const matrixBroadRolloutAllowed = realism.semantics?.broad_rollout_allowed === true;
+const policyBroadRolloutAllowed = policy.realism_matrix_gate?.broad_rollout_allowed === true;
+const policyStateConsistent = matrixBroadRolloutAllowed === policyBroadRolloutAllowed;
+const currentPolicyStillClosed = policyStateConsistent && !matrixBroadRolloutAllowed;
 const roleCoverageComplete = roles.length === career.summary?.career_worlds && roles.every((role) => ROLE_CLASSIFICATIONS.has(role.classification));
 const roleBlockersDocumented = roleLevelBlocked.every((role) => role.blockers.length > 0);
-const gatePass = lockedDimensionsReady && crossRoleProgramReady && currentPolicyStillClosed && roleCoverageComplete && roleBlockersDocumented;
+const gatePass = lockedDimensionsReady && crossRoleProgramReady && policyStateConsistent && roleCoverageComplete && roleBlockersDocumented;
+const broadRolloutAllowedNow = gatePass && matrixBroadRolloutAllowed && policyBroadRolloutAllowed;
+const policyRecommendation = !gatePass
+  ? 'keep_broad_rollout_blocked'
+  : broadRolloutAllowedNow
+    ? 'controlled_rollout_open_with_role_level_gates'
+    : 'open_with_role_level_gates_in_separate_policy_pr';
+const nextRequiredPr = !gatePass
+  ? 'Repair readiness gate blockers before policy change'
+  : broadRolloutAllowedNow
+    ? (firstWave[0]?.key ? `Role World rollout: ${firstWave[0].key}` : 'Select next rollout_ready role')
+    : 'Civication Role World broad-rollout policy';
 
 const output = {
   schema: 'civication_role_world_rollout_readiness_v1',
@@ -384,7 +398,7 @@ const output = {
     employment_conditions_remain_role_owned_editorial_content: true,
     professional_culture_remains_role_owned_editorial_content: true,
     blocked_roles_are_quarantined_from_rollout: true,
-    this_pr_does_not_open_broad_rollout: true
+    readiness_audit_does_not_mutate_broad_rollout_policy: true
   },
   classification_contract: {
     rollout_ready: 'Core career runtime gate, People, Places, knowledge, workday loop, mail and authority are complete enough to enter a dedicated one-role realism rollout PR; any remaining realism dimensions are authored inside that PR.',
@@ -406,10 +420,13 @@ const output = {
     role_coverage_complete: roleCoverageComplete,
     role_blockers_documented: roleBlockersDocumented,
     current_policy_still_closed: currentPolicyStillClosed,
+    policy_state_consistent: policyStateConsistent,
+    matrix_broad_rollout_allowed: matrixBroadRolloutAllowed,
+    policy_broad_rollout_allowed: policyBroadRolloutAllowed,
     gate_pass: gatePass,
-    broad_rollout_allowed_now: false,
-    policy_recommendation: gatePass ? 'open_with_role_level_gates_in_separate_policy_pr' : 'keep_broad_rollout_blocked',
-    next_required_pr: gatePass ? 'Civication Role World broad-rollout policy' : 'Repair readiness gate blockers before policy change',
+    broad_rollout_allowed_now: broadRolloutAllowedNow,
+    policy_recommendation: policyRecommendation,
+    next_required_pr: nextRequiredPr,
     rule: 'A green readiness gate proves the program can safely begin controlled rollout. It does not make every role rollout_ready and it does not itself flip broad_rollout_allowed.'
   },
   first_wave_candidates: firstWave,
@@ -421,19 +438,23 @@ const output = {
 function renderReport(data) {
   const lines = [];
   lines.push('# Civication Role World broad-rollout readiness gate', '');
-  lines.push(`**Status:** ${data.gate.gate_pass ? 'GREEN — policy opening may be proposed in a separate PR' : 'BLOCKED — broad rollout policy must remain closed'}`);
+  lines.push(`**Status:** ${!data.gate.gate_pass ? 'BLOCKED — broad rollout policy must remain closed' : data.gate.broad_rollout_allowed_now ? 'GREEN — controlled role-by-role rollout open' : 'GREEN — policy opening may be proposed in a separate PR'}`);
   lines.push(`**Canonical career roles audited:** ${data.summary.canonical_career_roles}`);
   lines.push(`**Classification:** ${data.summary.classifications.rollout_ready} rollout_ready / ${data.summary.classifications.needs_role_authored_work} needs_role_authored_work / ${data.summary.classifications.blocked} blocked`);
-  lines.push(`**Current broad_rollout_allowed:** false (unchanged in this PR)`, '');
+  lines.push(`**Current broad_rollout_allowed:** ${data.gate.broad_rollout_allowed_now} (${data.gate.broad_rollout_allowed_now ? 'controlled rollout open' : 'policy remains closed'})`, '');
   lines.push('## Gate decision', '');
   lines.push(`- Locked Realism Matrix dimensions reference-proven: **${data.gate.locked_matrix_dimensions_reference_proven}**`);
   lines.push(`- Cross-role shared-world program proof runtime-proven: **${data.gate.cross_role_program_proof_runtime_proven}**`);
   lines.push(`- Every canonical career role classified: **${data.gate.role_coverage_complete}**`);
   lines.push(`- Every blocked role has explicit blockers: **${data.gate.role_blockers_documented}**`);
+  lines.push(`- Matrix/policy rollout state consistent: **${data.gate.policy_state_consistent}**`);
   lines.push(`- Existing policy remains closed: **${data.gate.current_policy_still_closed}**`);
+  lines.push(`- Controlled broad rollout allowed now: **${data.gate.broad_rollout_allowed_now}**`);
   lines.push(`- Readiness gate: **${data.gate.gate_pass ? 'PASS' : 'FAIL'}**`);
   lines.push(`- Recommendation: **${data.gate.policy_recommendation}**`, '');
-  lines.push('A PASS here means the program-level pilot proof is sufficient to begin controlled role-by-role rollout under a separate policy change. It does **not** certify every role as realism-complete, does not create runtime, and does not waive role-level blockers.', '');
+  lines.push(data.gate.broad_rollout_allowed_now
+    ? 'A PASS with policy open means controlled role-by-role rollout may proceed. It does **not** certify every role as realism-complete, does not create runtime, and does not waive role-level blockers.'
+    : 'A PASS while policy is closed means the program-level pilot proof is sufficient to propose the separate policy change. It does **not** certify every role as realism-complete, does not create runtime, and does not waive role-level blockers.', '');
   lines.push('## Classification contract', '');
   lines.push(`- **rollout_ready:** ${data.classification_contract.rollout_ready}`);
   lines.push(`- **needs_role_authored_work:** ${data.classification_contract.needs_role_authored_work}`);
@@ -485,5 +506,5 @@ if (checkMode) {
   if (committedJson !== jsonText) throw new Error(`${OUTPUT_PATH} is stale; run readiness audit with --write.`);
   if (committedReport !== reportText) throw new Error(`${REPORT_PATH} is stale; run readiness audit with --write.`);
   if (!output.gate.gate_pass) throw new Error('Role World broad-rollout readiness gate is not green.');
-  console.log(`PASS: audited ${roles.length} canonical career roles; ${classificationCounts.rollout_ready} rollout_ready, ${classificationCounts.needs_role_authored_work} needs_role_authored_work, ${classificationCounts.blocked} blocked; policy remains closed pending a separate PR.`);
+  console.log(`PASS: audited ${roles.length} canonical career roles; ${classificationCounts.rollout_ready} rollout_ready, ${classificationCounts.needs_role_authored_work} needs_role_authored_work, ${classificationCounts.blocked} blocked; broad rollout ${broadRolloutAllowedNow ? 'open under controlled role-level gates' : 'remains policy-gated'}.`);
 }
