@@ -1428,8 +1428,19 @@ if (!card) return;
       if (venueKind) metaLines.push(`Type: ${venueKind}`);
       if (clubs) metaLines.push(`Klubb/spor: ${clubs}`);
     }
-    const lineNodes = metaLines.map((line) => {
-      const row = document.createElement("div");
+    const lineNodes = metaLines.map((line, index) => {
+      const row = document.createElement(index === 0 ? "button" : "div");
+      if (index === 0) {
+        row.className = "pc-category-meta";
+        row.setAttribute("type", "button");
+        row.setAttribute("aria-label", `Åpne fagområde og epoke for ${String(place.name || "stedet")}`);
+        row.title = "Åpne fagområde og epoke";
+        row.onclick = (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          badgesIcon?.click();
+        };
+      }
       row.textContent = String(line || "");
       return row;
     });
@@ -1441,6 +1452,11 @@ if (!card) return;
       lineNodes.push(qaRow);
     }
     metaEl.replaceChildren(...lineNodes);
+    // Progressive data loads kan åpne samme kort på nytt og erstatter da
+    // innholdet i #pcMeta. Be begge metadata-runtimeene rendere etter hver
+    // replaceChildren, slik at epoke og status aldri forsvinner.
+    void window.HGPlaceCardEpoke?.render?.(place);
+    window.HGPlaceCardStatusSurface?.render?.(place);
   }
   if (descEl)  descEl.textContent  = String(place.desc || "");
   if (lesesporEl) lesesporEl.innerHTML = "";

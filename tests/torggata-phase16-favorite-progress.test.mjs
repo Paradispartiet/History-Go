@@ -9,6 +9,7 @@ const favoritesSource = fs.readFileSync("js/state/favorites.js", "utf8");
 const readerSource = fs.readFileSync("js/progress/profileProgressReader.js", "utf8");
 const placeCardSource = fs.readFileSync("js/ui/place-card.js", "utf8");
 const placeCardStatusSource = fs.readFileSync("js/ui/place-card-status-surface.js", "utf8");
+const placeCardEpokeSource = fs.readFileSync("js/ui/place-card-epoke.js", "utf8");
 const nearbyStatusSource = fs.readFileSync("js/ui/nearby-status-surface.js", "utf8");
 const nearbyControlTest = fs.readFileSync("tests/nearby-card-favorite-control.test.js", "utf8");
 
@@ -78,6 +79,9 @@ test("PlaceCard, Nearby and profile share the canonical favorite/progress source
   assert.match(placeCardSource, /HGPlaceCardStatusSurface\?\.render/);
   assert.match(placeCardStatusSource, /getPlaceProgressSummary/);
   assert.match(placeCardStatusSource, /summary\.favorite/);
+  assert.match(placeCardStatusSource, /document\.createElement\("button"\)/);
+  assert.match(placeCardStatusSource, /const openPlace = currentOpenPlace\(\)/);
+  assert.match(placeCardEpokeSource, /window\.HGPlaceCardEpoke = \{ render \}/);
   assert.match(nearbyStatusSource, /getPlaceProgressSummary/);
   assert.match(nearbyStatusSource, /summary\.favorite/);
   assert.match(nearbyControlTest, /Nearby cards must not create a favorite star button/);

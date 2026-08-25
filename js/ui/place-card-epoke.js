@@ -70,6 +70,10 @@
     }
   }
 
+  function openTimeAndSubject() {
+    document.getElementById("pcBadgesIcon")?.click();
+  }
+
   function renderEpokeLine(place) {
     const metaEl = document.getElementById("pcMeta");
     if (!metaEl || !place) return;
@@ -104,10 +108,29 @@
       }
     }
 
-    const line = document.createElement("div");
+    const line = document.createElement("button");
+    line.type = "button";
     line.className = "pc-epoke";
     line.textContent = `Epoke: ${label}`;
+    line.setAttribute("aria-label", `Åpne tid og epoke: ${label}`);
+    line.title = "Åpne tid og epoke";
+    line.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      openTimeAndSubject();
+    });
     metaEl.appendChild(line);
+    return line;
+  }
+
+  async function render(place) {
+    if (window.HGEpokerRuntime?.ready) {
+      await window.HGEpokerRuntime.ready;
+    }
+    const currentPlaceId = txt(document.getElementById("placeCard")?.dataset?.currentPlaceId);
+    const incomingPlaceId = txt(place?.id || place?.placeId);
+    if (currentPlaceId && incomingPlaceId && currentPlaceId !== incomingPlaceId) return null;
+    return renderEpokeLine(place);
   }
 
   function patchOpenPlaceCard() {
@@ -117,11 +140,7 @@
     window.openPlaceCard = async function (...args) {
       const result = await original.apply(this, args);
       try {
-        // Sørg for at epoke-indexen er klar før vi resolver.
-        if (window.HGEpokerRuntime?.ready) {
-          await window.HGEpokerRuntime.ready;
-        }
-        renderEpokeLine(args[0]);
+        await render(args[0]);
       } catch (err) {
         console.warn("[HGPlaceCardEpoke]", err);
       }
@@ -140,4 +159,6 @@
       if (patchOpenPlaceCard() || tries > 50) clearInterval(timer);
     }, 50);
   }
+
+  window.HGPlaceCardEpoke = { render };
 })();
