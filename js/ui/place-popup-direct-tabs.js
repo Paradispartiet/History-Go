@@ -1,6 +1,8 @@
 // js/ui/place-popup-direct-tabs.js
 // Materialiserer alt legacy-innhold som place-popup-tabs tidligere la i «Mer»
-// som egne datastyrte faner i samme horisontale fanestripe.
+// som egne faner i samme horisontale fanestripe.
+// Alle de tidligere Mer-familiene skal alltid være synlige; manglende innhold
+// vises som en tydelig tomtilstand i stedet for at fanen forsvinner.
 // Source-data og subsystemeierskap endres ikke.
 (function installPlacePopupDirectTabs(global) {
   "use strict";
@@ -19,6 +21,17 @@
     .replace(/^-+|-+$/g, "")
     .slice(0, 48);
 
+  const DIRECT_TABS = Object.freeze([
+    ["language", "Språk"],
+    ["objects", "Spor & objekter"],
+    ["notice", "Legg merke til"],
+    ["meaning", "Betydning"],
+    ["counterpoints", "Motpunkter"],
+    ["relations", "Relasjoner"],
+    ["knowledge", "Kunnskap"],
+    ["observations", "Observasjoner"]
+  ]);
+
   const HEADING_TABS = Object.freeze({
     "spor og objekter": ["objects", "Spor & objekter"],
     "legg merke til": ["notice", "Legg merke til"],
@@ -32,6 +45,17 @@
     ["hg-place-knowledge-section", "knowledge", "Kunnskap"],
     ["hg-place-observations-section", "observations", "Observasjoner"]
   ]);
+
+  const EMPTY_COPY = Object.freeze({
+    language: "Ingen språkspor er registrert for dette stedet ennå.",
+    objects: "Ingen spor eller objekter er registrert for dette stedet ennå.",
+    notice: "Ingen egne observasjonspunkter er registrert for dette stedet ennå.",
+    meaning: "Ingen egen betydningsforklaring er registrert for dette stedet ennå.",
+    counterpoints: "Ingen motpunkter er registrert for dette stedet ennå.",
+    relations: "Ingen relasjoner er registrert for dette stedet ennå.",
+    knowledge: "Ingen ekstra kunnskapsoppføringer er registrert for dette stedet ennå.",
+    observations: "Ingen observasjoner er registrert for dette stedet ennå."
+  });
 
   function directChildren(panelWrap) {
     return [...panelWrap.children].filter(node => node instanceof HTMLElement && node.hasAttribute("data-place-panel"));
@@ -67,6 +91,32 @@
     }
 
     return panel;
+  }
+
+  function removeEmptyState(panel) {
+    panel?.querySelector?.("[data-direct-tab-empty]")?.remove();
+  }
+
+  function ensureEmptyState(panel, id) {
+    if (!(panel instanceof HTMLElement)) return;
+    const realChildren = [...panel.children].filter(child => !child.hasAttribute("data-direct-tab-empty"));
+    if (realChildren.length || text(panel.textContent)) return;
+    const empty = document.createElement("div");
+    empty.className = "hg-place-tab-empty";
+    empty.dataset.directTabEmpty = "1";
+    empty.textContent = EMPTY_COPY[id] || "Ingen oppføringer er registrert for dette stedet ennå.";
+    panel.appendChild(empty);
+  }
+
+  function ensureAllDirectTabs(tablist, panelWrap) {
+    DIRECT_TABS.forEach(([id, label]) => {
+      const panel = ensureTab(tablist, panelWrap, id, label);
+      const button = tablist.querySelector(`[data-place-tab="${CSS.escape(id)}"]`);
+      // Hold alle tidligere Mer-faner samlet etter de sju grunnfanene, i fast rekkefølge.
+      if (button) tablist.appendChild(button);
+      panelWrap.appendChild(panel);
+      ensureEmptyState(panel, id);
+    });
   }
 
   function activate(tablist, panelWrap, id, focus = false) {
@@ -129,7 +179,7 @@
       if (node.classList.contains(className) || node.querySelector(`.${className}`)) return { id, label };
     }
 
-    const heading = text(node.matches("section") ? node.querySelector("h2,h3,h4")?.textContent : node.querySelector("h2,h3,h4")?.textContent).toLowerCase();
+    const heading = text(node.querySelector("h2,h3,h4")?.textContent).toLowerCase();
     if (HEADING_TABS[heading]) {
       const [id, label] = HEADING_TABS[heading];
       return { id, label };
@@ -162,6 +212,7 @@
     }
 
     const panel = ensureTab(tablist, panelWrap, spec.id, spec.label);
+    removeEmptyState(panel);
     panel.appendChild(node);
   }
 
@@ -182,13 +233,21 @@
     article.dataset.hgDirectTabs = "1";
     installNavigationBridge(tablist, panelWrap);
 
-    // More er kun et bakoverkompatibelt staging-panel fra den gamle hydratoren.
-    // Det skal aldri være en brukerrettet fane.
+    // Mer er kun et bakoverkompatibelt staging-panel fra den gamle hydratoren.
+    // Det skal aldri være en brukerrettet fane, men alle familiene som lå der
+    // skal være synlige som egne faner selv når et konkret sted ennå mangler data.
     moreTab?.remove();
+    ensureAllDirectTabs(tablist, panelWrap);
     morePanel.remove();
 
     drainMore(morePanel, tablist, panelWrap);
-    const observer = new MutationObserver(() => drainMore(morePanel, tablist, panelWrap));
+    const observer = new MutationObserver(() => {
+      drainMore(morePanel, tablist, panelWrap);
+      DIRECT_TABS.forEach(([id]) => {
+        const panel = panelWrap.querySelector(`[data-place-panel="${CSS.escape(id)}"]`);
+        ensureEmptyState(panel, id);
+      });
+    });
     observer.observe(morePanel, { childList: true, subtree: true });
 
     const selected = tablist.querySelector('[role="tab"][aria-selected="true"]');
@@ -233,7 +292,7 @@
     wrapped.__hgPlacePopupV2 = current.__hgPlacePopupV2 === true;
     wrapped.__previous = current;
     global.showPlacePopup = wrapped;
-    global.HGPlacePopupDirectTabs = { decoratePopup, activate };
+    global.HGPlacePopupDirectTabs = { decoratePopup, activate, tabs: DIRECT_TABS.map(([id, label]) => ({ id, label })) };
     installDecoratorBridge();
     global[INSTALL_FLAG] = true;
     try { decoratePopup(); } catch (error) { if (global.DEBUG) console.warn("[place-popup-direct-tabs]", error); }
