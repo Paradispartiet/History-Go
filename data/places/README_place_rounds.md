@@ -12,7 +12,7 @@ Schema: `data/places/regler/place_card_profile_v2.schema.json`
 
 Sted-for-sted arbeidsflyt: `docs/PLACE_PRODUCTION_CHECKLIST.md`
 
-Sist kontrollert: **2026-08-24**
+Sist kontrollert: **2026-08-25**
 
 Filnavnet beholdes midlertidig slik at gamle lenker og arbeidsløp ikke brytes. Kontrakten handler nå om **samlinger**, ikke om en kvote med runde elementer.
 
@@ -27,11 +27,21 @@ Den eksisterende PlaceCard-komposisjonen beholdes:
 3. Badges ligger separat ved stedsoverskriften og teller ikke som samling;
 4. de sju små stedspopup-snarveiene står i sitt eksisterende felt;
 5. den obligatoriske, tydelige **Ta quiz**-handlingen beholdes i PlaceCard-footeren;
-6. stedspopupens faner, eierskap og innhold endres ikke av denne kontrakten.
+6. hver samling åpner sin egen brukerrettede popup og kan der vise semantisk eide underseksjoner uten å opprette nye samlingsflater eller dupliserte stedspopupfaner.
 
 Vanlige PlaceCards viser alltid **People** som én sirkel og **Objects**, **Brands** og kategoriens samling som tre avrundede rektangler. Nature PlaceCards viser alltid **Flora** og **Fauna** som to sirkler og **Kart** og **Turmål** som to avrundede rektangler. Badges-rundingene ved overskriften kommer i tillegg og teller ikke blant de fire.
 
 Det finnes ingen femte samlingsplass. En samling uten registrerte treff beholder ikon og forståelig tomtilstand uten å vise tallet 0; den må aldri fjernes slik at kortet får et visuelt hull.
+
+### Samlingspopup er ikke en ny samling
+
+En samlingspopup kan ha flere seksjoner når de beskriver den samme semantiske eieren. Eksempler:
+
+- **Objects/Gjenstander** kan ha canonical gjenstandsliste + «Spor og objekter» + «Legg merke til»;
+- **People** kan ha canonical personliste + personrelasjoner;
+- **Relaterte steder** kan ha place→place-relasjoner.
+
+Disse seksjonene teller aldri som egne PlaceCard-samlinger og skal ikke få egne plasseringer i 2 × 2-feltet.
 
 ## 2. Formregler
 
@@ -93,6 +103,8 @@ Kompatibilitetslaget:
 
 `round_profile` er read-only legacy for nye produksjonsløp. Stedet migreres til `place_card_profile` først når det faktisk fullproduseres eller PlaceCard-kurateres.
 
+Legacy popupinnhold som tidligere ble samlet under `Mer`, migreres **presentasjonsmessig** til riktig samlingspopup eller Om etter `docs/PLACE_POPUP_SYSTEM.md`; dette endrer ikke source-data eller `place_card_profile`.
+
 ## 5. Overgangsprofil for steder uten profil
 
 For at gamle steder ikke skal ødelegges, kan runtime fortsatt utlede en overgangsprofil.
@@ -152,15 +164,43 @@ destinations
 
 `badges` står separat ved overskriften og inngår ikke i poolen.
 
+`Spor og objekter`, `Legg merke til`, `Relasjoner`, `Betydning`, `Motpunkter`, `Kunnskap` og `Observasjoner` er **ikke** samlings-ID-er. De kan være seksjoner hos en canonical eier, men aldri femte/sjette PlaceCard-flater.
+
 ## 7. People
 
 People viser canonical personer med dokumentert stedstilknytning. Place-eierskap vurderes per profil. En personkobling som egentlig gjelder et delsted med egen canonical Place, brukes ikke som proxy for parent-stedet. Previewet filtrerer aldri hvem som finnes i People-popupen, og falsk 0 mens People-data lastes er en blocker.
+
+### Personrelasjoner eies av People-popupen
+
+Når stedet har dokumenterte relasjoner som faktisk involverer personer, kan People-popupen i tillegg vise en seksjon **Relasjoner**. Dette kan omfatte person↔person eller person↔aktør-relasjoner når koblingen er kildebelagt og relevant for stedet.
+
+Regler:
+
+- Relasjoner er en **underseksjon**, ikke en femte samling;
+- en relasjon teller ikke som en ny person i People-antallet;
+- People-previewet og People-antallet eies fortsatt av canonical personlisten;
+- en ren place→place-relasjon skal **ikke** ligge i People; den eies av `related`;
+- relasjonsdata skal ikke dupliseres som en egen `Relasjoner`-fane i stedspopupen.
 
 ## 8. Objects
 
 Objects er en reell samling av fysiske, identifiserbare gjenstander med dokumentert stedstilknytning. Canonical felt er `place.objects`.
 
 En fysisk Civication-post kan leses som compatibility-kilde når den faktisk oppfyller Objects-kontrakten. Det gjør ikke Civication til en samling. En tom eller svak Objects-kilde fylles aldri med en vilkårlig gjenstand; flaten beholder i stedet sin ærlige reservevisning.
+
+### «Spor og objekter» og «Legg merke til» eies av Objects-popupen
+
+Objects-popupen kan supplere canonical gjenstandslisten med stedsspesifikk kunnskap fra Leksikon og andre eide kilder:
+
+- **Spor og objekter** kan vise kildebelagte `artifacts`, object-like Leksikon-oppføringer og dokumenterte fysiske spor;
+- **Legg merke til** kan vise `interpretation.what_to_notice` når dette faktisk handler om de fysiske sporene/gjenstandene brukeren kan se.
+
+Viktig:
+
+- supplementene endrer **ikke** Objects-antallet med mindre elementet faktisk består Objects-kontrakten og materialiseres hos canonical Objects-eier;
+- samme gjenstand skal dedupliseres mot `place.objects`/`place.artifacts`;
+- observasjonstekst skal ikke konstrueres til en falsk gjenstand bare for å øke antallet;
+- disse seksjonene skal ikke samtidig vises som egne `Spor & objekter`- eller `Legg merke til`-faner i stedspopupen.
 
 ## 9. Brands
 
@@ -197,6 +237,8 @@ Gamle `subplaces`-/`spots`-data kan bare brukes som compatibility-kilde når pos
 
 `related` viser faktiske andre History GO-steder med dokumentert relasjon. Samlingen inneholder ikke tekstlige temaer, løse nøkkelord eller oppdiktede punkter. Et sted med egen canonical oppføring vises bare som eksplisitt relasjon, aldri som parent-stedets Object eller Structure.
 
+`related` er den brukerrettede eieren for **place→place-relasjoner**. En slik relasjon skal ikke flyttes til People bare fordi det finnes personer ved begge steder. People eier kun relasjonen når relasjonen semantisk gjelder en person.
+
 ## 15. Destinations
 
 `destinations` viser navngitte turmål ved eller omkring et natursted, som topper, utsiktspunkter, strender, hytter og badeplasser. Et naturfenomen, en løs observasjon eller en terrengdetalj er ikke automatisk et Turmål.
@@ -220,6 +262,7 @@ Følgende er ikke canonical samlinger:
 - generisk `nature`;
 - Civication og Wonderkammer;
 - Før/etter, Fortellinger/Stories, Leksikon, Nyheter og Lesespor;
+- `Spor & objekter`, `Legg merke til`, personrelasjoner, Betydning, Motpunkter, Kunnskap og Observasjoner som egne samlingsflater;
 - Lek, Trening, Oppgaver, Events, Observer og Notat;
 - Quiz;
 - Rute;
@@ -251,11 +294,15 @@ Et sted er PlaceCard-ferdig når:
 6. den fulle 2 × 2-layouten er kontrollert på mobil og desktop;
 7. Bilder finnes bare i medie-/bildeeierne og aldri som samling eller reserve;
 8. hver samling åpner korrekt popupinnhold, antall og datakilde;
-9. ødelagt preview faller tilbake til ikon og antall uten ødelagt bildeikon;
-10. People-previewet filtrerer ikke People-popupen;
-11. naturkartet åpner faktisk detaljkart;
-12. ingen delsted-, Object-/Structure-, Brand- eller relasjonseier er feil;
-13. stedspopupen er uendret og fullverdig kontrollert etter popupkontrakten;
-14. schema, typer, renderer, layout og relevante permanente tester passerer.
+9. Objects-popupen viser eventuelle `Spor og objekter`/`Legg merke til`-supplementer uten å forfalske Objects-antallet;
+10. People-popupen viser relevante personrelasjoner uten å blande inn rene place→place-relasjoner;
+11. `related` beholder place→place-relasjoner;
+12. ingen av disse supplementene dupliseres som egne stedspopupfaner;
+13. ødelagt preview faller tilbake til ikon og antall uten ødelagt bildeikon;
+14. People-previewet filtrerer ikke People-popupen;
+15. naturkartet åpner faktisk detaljkart;
+16. ingen delsted-, Object-/Structure-, Brand- eller relasjonseier er feil;
+17. stedspopupen er fullverdig kontrollert etter popupkontrakten;
+18. schema, typer, renderer, layout og relevante permanente tester passerer.
 
 **Stoppgate:** PlaceCard kan ikke ferdigmeldes før runtime, schema og tester støtter den fulle modellen. Manglende innhold skal registreres som et produksjonsgap, men PlaceCard-komposisjonen skal fortsatt være full og visuelt stabil.
