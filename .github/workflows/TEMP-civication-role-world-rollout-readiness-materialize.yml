@@ -14,6 +14,7 @@ permissions:
 
 jobs:
   materialize-readiness:
+    if: ${{ !contains(github.event.head_commit.message, '[readiness diagnostic]') }}
     runs-on: ubuntu-latest
     steps:
       - name: Check out readiness branch
@@ -39,13 +40,35 @@ jobs:
           node tests/civication-cross-role-shared-world.test.js
 
       - name: Run full Civication suite
-        run: node tests/run-civication-tests.mjs
+        id: full_suite
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          node tests/run-civication-tests.mjs 2>&1 | tee /tmp/civication-suite.log
+
+      - name: Capture full-suite failure
+        if: steps.full_suite.outcome == 'failure'
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports
+          tail -n 1200 /tmp/civication-suite.log > reports/TEMP-civication-suite-failure.log
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/TEMP-civication-suite-failure.log
+          git commit -m "chore: capture readiness suite failure [readiness diagnostic]"
+          git pull --rebase origin agent/civication-role-world-broad-rollout-readiness
+          git push origin HEAD:agent/civication-role-world-broad-rollout-readiness
+          exit 1
 
       - name: Publish generated audit and remove temporary materializer
+        if: steps.full_suite.outcome == 'success'
         shell: bash
         run: |
           set -euo pipefail
           rm -f .github/workflows/TEMP-civication-role-world-rollout-readiness-materialize.yml
+          rm -f reports/TEMP-civication-suite-failure.log
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
