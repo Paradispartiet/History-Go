@@ -96,7 +96,7 @@ export function buildSubkulturRuntimeFinalReport() {
     rejectedCaseCount: 8,
     pathwayCount: 8,
     assessmentQuestionCount: 40,
-    knowledgeUnitCount: 44,
+    knowledgeUnitCount: 79,
     legacyQuestionAuditCount: 83,
     activeLegacyQuestionCount: 0
   };
@@ -106,7 +106,7 @@ export function buildSubkulturRuntimeFinalReport() {
     schema: 'history_go_subkultur_runtime_final_audit_v1',
     version: '1.0.0',
     subject_id: 'subkultur',
-    audited_at: '2026-08-04',
+    audited_at: '2026-08-25',
     status: failures.length ? 'FAIL' : 'COMPLETE',
     summary: expectedSummary,
     runtime: {

@@ -893,20 +893,26 @@ const CASES = [
   },
   {
     placeId: 'brugata_storgata_rusmiljo',
-    verifiedAt: '2026-08-04',
+    verifiedAt: '2026-08-25',
     placeFile: 'data/places/subkultur/oslo/places_subkultur/brugata_storgata_rusmiljo.json',
     anchorType: 'social_territory',
     start: '2011',
-    emneIds: ['em_sub_rett_til_byen', 'em_sub_tilhorighet_miljo'],
+    emneIds: ['em_sub_rett_til_byen', 'em_sub_tilhorighet_miljo', 'em_sub_apne_rusmiljoer_gatefellesskap', 'em_sub_personvern_forskningsetikk'],
     methodId: 'met_sub_romlig_maktanalyse',
     milieuUrl: 'https://humanruspolitikk.no/vil-gi-rusavhengige-et-sted-a-vaere/',
-    milieuLocation: 'Foreningen for human ruspolitikk, 11. juni 2025; dagens miljø, forflytningshistorie, utrygghet og krav om et eget værested',
+    milieuLocation: 'Foreningen for human ruspolitikk, 11. juni 2025; forflytningshistorie, værestedsforslag, sosiale behov og budsjettstatus',
+    milieuProvenance: 'Publisert primærkilde fra en nasjonal bruker- og pårørendeorganisasjon.',
+    milieuLimit: 'Organisasjonens argumentasjon er et partsinnlegg og representerer ikke automatisk alle mennesker i miljøet.',
     outsideUrl: 'https://filer.korus.no/publications/HKH-rapport-web.pdf',
-    outsideLocation: 'KORUS Oslo, «Utrygg markedsplass», kartlegging av det åpne rusmiljøet i Brugata/Storgata med feltarbeid, intervjuer og risikovurdering',
+    outsideLocation: 'KORUS Oslo og Velferdsetaten, «Utrygg markedsplass» (2020); feltarbeid, intervjuer og tiltaksvurdering',
     outsideSourceType: 'scholarly',
     outsidePerspective: 'research',
+    outsideProvenance: 'Institusjonell hurtigkartlegging med dokumentert felt- og intervjugrunnlag.',
     identity: 'Brugata/Storgata er et nåværende sosialt territorium der Oslos åpne rusmiljø kombinerer tilhørighet, marked, risikohåndtering og kontakt med tjenester i et trangt sentrumrom.',
+    canonicalIdentity: 'Brugata/Storgata er et avgrenset sosialt territorium der marked, møteplass, forflytning, kontroll og omsorgslandskap overlapper; synlig rusbruk alene er ikke kvalifikasjonen.',
     relationship: 'Miljøet mangler formell råderett og formes av politi, vektere, næringsdrivende, oppsøkende tjenester, anleggsarbeid og forslag om eget værested.',
+    placeObjectDistinction: 'Rapporten skiller territoriet fra hele Storgata og Brugata, historiske Plata, Storgata 33 som fysisk anker og Prindsen som separat tjeneste.',
+    topicRationale: 'Emnet brukes på dokumenterte relasjoner, forflytning, kontroll og rombruk ved brugata_storgata_rusmiljo; ingen person klassifiseres gjennom synlighet.',
     claim: 'Vedvarende kollektiv bruk, brukerorganisasjonens krav om værested og forskningsbasert kartlegging gjør området til sosialt territorium; synlig rusbruk alene er ikke kvalifikasjonen.',
     practices: ['sosialt møte, tilhørighet og informasjonsdeling', 'gat marked og risikohåndtering', 'kontakt med oppsøkende helse- og sosialtjenester'],
     organization: 'Miljøet er uformelt og skiftende; kildene dokumenterer brukerorganisasjon, aktørmangfold og feltpraksis uten å gjøre enkeltstemmer representative for alle.',
@@ -919,7 +925,37 @@ const CASES = [
     privacySafeguard: 'Rapporten bruker kartlegging og organisasjonsuttalelser på gruppenivå og identifiserer ikke personer, roller, transaksjoner, helse eller oppholdsmønster.',
     current: 'Brugata/Storgata omtales fortsatt i 2025 som et sentralt oppholdssted for Oslos åpne rusmiljø, samtidig som eget værested fortsatt diskuteres.',
     outsideTemporal: 'mixed',
-    outsideLimit: 'KORUS-kartleggingen gir systematisk felt- og intervjudata fra 2020, men kan ikke alene dokumentere alle endringer fram til 2026.'
+    outsideLimit: 'Kartleggingen dekker situasjonen rundt 2019–2020 og kan ikke alene dokumentere alle senere endringer.',
+    additionalSources: [{
+      id: 'source_brugata_storgata_rusmiljo_official',
+      url: 'https://magasin.oslo.kommune.no/byplan/trygghet-og-kriminalitetsforebygging-m%C3%A5-v%C3%A6re-f%C3%B8rende-i-byutviklingen',
+      sourceLocation: 'Oslo kommune Byplan, 9. januar 2025; Storgata 33, arkade, trygghet, byutvikling og medvirkning',
+      sourceType: 'official',
+      perspective: 'authority',
+      verifiedAt: '2026-08-25',
+      temporalCoverage: 'current',
+      provenance: 'Offentlig kommunal stedsanalyse med navngitte fagroller og beskrevet medvirkning.',
+      limitations: 'Artikkelen oppsummerer et prosjekt og må leses sammen med forsknings- og brukerorganiserte kilder.'
+    }],
+    quizOpening: {
+      status: 'PASS',
+      quizTargetId: 'brugata_storgata_rusmiljo',
+      firstTwoSetsQuestionCount: 14,
+      sourceBrief: 'data/quiz/production_briefs/subkultur/brugata_storgata_rusmiljo.json',
+      productionContext: 'data/quiz/production_context/subkultur/brugata_storgata_rusmiljo.json',
+      requiredInputs: ['pensum', 'emner', 'fagkart', 'methods', 'supersetQuizMal', 'quizStandard', 'quizQuestionSchema']
+    },
+    chronologyStories: {
+      status: 'PASS',
+      chronologyReviewed: true,
+      storiesReviewed: true,
+      rationale: 'Åtte kildebelagte kronologipunkter og tre episode_v1-fortellinger dekker forflytning, kartlegging og medvirkning uten å identifisere private deltakere.'
+    },
+    review: {
+      reviewer: 'Subkultur-fagverkredaksjon',
+      reviewedAt: '2026-08-25',
+      notes: 'Canonical avgrensning, stemmebalanse, rommakt, personvern, quiz, chronology, Stories og nåstatus er kontrollert. Ingen private eller sårbare personer og ingen fasiliterende detaljer inngår.'
+    }
   },
   {
     placeId: 'vaterland_bar_scene',
@@ -1207,6 +1243,10 @@ function report(config) {
   const milieu = `source_${config.placeId}_milieu`;
   const outside = `source_${config.placeId}_outside`;
   const caseId = `case_${config.placeId}_environment`;
+  const additionalSources = config.additionalSources ?? [];
+  const identitySourceIds = [milieu, outside, ...additionalSources.map((source) => source.id)];
+  const quizOpening = config.quizOpening ?? { status: 'N/A', rationale: 'Ingen stedquiz produseres eller revideres i denne rapporten.' };
+  const chronologyStories = config.chronologyStories ?? { status: 'N/A', chronologyReviewed: true, storiesReviewed: true, rationale: 'Materialet krever ingen ny chronology-post eller selvstendig Story i denne endringen.' };
   return {
     schemaVersion: 'subkultur_place_production_v1',
     validatorVersion: '1.0.0',
@@ -1214,16 +1254,16 @@ function report(config) {
     placeFile: config.placeFile,
     status: 'ready',
     subculturalIdentity: {
-      statement: config.identity,
+      statement: config.canonicalIdentity ?? config.identity,
       anchorType: config.anchorType,
       mainSocietyRelationship: config.relationship,
-      placeObjectDistinction: 'Rapporten skiller det fysiske stedet, driftsorganisasjonen, arrangementene og miljøene som bruker tilbudet.',
+      placeObjectDistinction: config.placeObjectDistinction ?? 'Rapporten skiller det fysiske stedet, driftsorganisasjonen, arrangementene og miljøene som bruker tilbudet.',
       temporalScope: { start: config.start, end: '2026', precision: 'year', rationale: 'Startåret følger kildene; sluttpunktet følger kontroll av nåværende eller blandet funksjon.' },
-      sourceIds: [milieu, outside]
+      sourceIds: identitySourceIds
     },
     subcultureTopics: config.emneIds.map((emneId) => ({
       emneId,
-      siteSpecificRationale: `Emnet er knyttet til dokumenterte praksiser, organisering og rombruk ved ${config.placeId}, ikke til arenaetiketten alene.`,
+      siteSpecificRationale: config.topicRationale ?? `Emnet er knyttet til dokumenterte praksiser, organisering og rombruk ved ${config.placeId}, ikke til arenaetiketten alene.`,
       caseIds: [caseId]
     })),
     sources: [
@@ -1248,7 +1288,8 @@ function report(config) {
         temporalCoverage: config.outsideTemporal ?? 'current',
         provenance: config.outsideProvenance ?? 'Uavhengig redaksjonell, katalog- eller reiselivsomtale kontrollert mot miljøkilden.',
         limitations: config.outsideLimit
-      }
+      },
+      ...additionalSources
     ],
     subcultureCases: [{
       id: caseId,
@@ -1306,8 +1347,8 @@ function report(config) {
       checkedAt: config.verifiedAt ?? '2026-08-03',
       sourceIds: config.presentUsesOutside ? [outside] : [milieu]
     },
-    quizOpening: { status: 'N/A', rationale: 'Ingen stedquiz produseres eller revideres i denne rapporten.' },
-    chronologyStories: { status: 'N/A', chronologyReviewed: true, storiesReviewed: true, rationale: 'Materialet krever ingen ny chronology-post eller selvstendig Story i denne endringen.' },
+    quizOpening,
+    chronologyStories,
     gates: {
       A: { status: 'PASS', evidenceRefs: ['subculturalIdentity'] },
       B: { status: 'PASS', evidenceRefs: ['subcultureTopics', caseId] },
@@ -1315,10 +1356,14 @@ function report(config) {
       D: { status: 'PASS', evidenceRefs: [`${caseId}.spaceAndPower`] },
       E: { status: 'PASS', evidenceRefs: [`${caseId}.representationAndEthics`, 'sources'] },
       F: { status: 'PASS', evidenceRefs: [`${caseId}.methodAndInference`, `${caseId}.changeOverTime`, 'presentFunction'] },
-      G: { status: 'N/A', rationale: 'Ingen stedquiz produseres eller revideres i denne rapporten.' },
-      H: { status: 'N/A', rationale: 'Ingen chronology eller Story produseres eller revideres.' }
+      G: quizOpening.status === 'PASS'
+        ? { status: 'PASS', evidenceRefs: ['quizOpening', `data/quiz/subkultur/${config.placeId}_sets.json`] }
+        : { status: 'N/A', rationale: 'Ingen stedquiz produseres eller revideres i denne rapporten.' },
+      H: chronologyStories.status === 'PASS'
+        ? { status: 'PASS', evidenceRefs: ['chronologyStories', `data/stories/stories_${config.placeId}.json`] }
+        : { status: 'N/A', rationale: 'Ingen chronology eller Story produseres eller revideres.' }
     },
-    review: { reviewer: 'Subkultur-fagverkredaksjon', reviewedAt: config.verifiedAt ?? '2026-08-03', notes: 'Definisjon, stemmebalanse, rommakt, representasjon, slutningsgrense og nåstatus er kontrollert.' }
+    review: config.review ?? { reviewer: 'Subkultur-fagverkredaksjon', reviewedAt: config.verifiedAt ?? '2026-08-03', notes: 'Definisjon, stemmebalanse, rommakt, representasjon, slutningsgrense og nåstatus er kontrollert.' }
   };
 }
 

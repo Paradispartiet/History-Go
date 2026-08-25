@@ -78,7 +78,7 @@ export function buildSubkulturDataReport() {
 export function auditSubkulturData({ writeReport = false, checkReport = true } = {}) {
   const report = buildSubkulturDataReport();
   assert(report.totals.audited_places === 68, 'Alle 68 opprinnelig relevante steder skal være auditerte');
-  assert(report.totals.audited_people === 66, 'Alle 66 opprinnelig relevante People-poster skal være auditerte');
+  assert(report.totals.audited_people === 70, 'Alle 70 relevante People-poster skal være auditerte');
   for (const [key, values] of Object.entries(report.integrity)) assert(values.length === 0, `${key}: ${values.join(', ')}`);
   if (writeReport) fs.writeFileSync(path.join(ROOT, REPORT_FILE), JSON.stringify(report, null, 2) + '\n');
   if (checkReport && fs.existsSync(path.join(ROOT, REPORT_FILE))) {
