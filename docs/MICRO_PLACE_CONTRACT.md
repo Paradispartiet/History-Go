@@ -72,9 +72,9 @@ I tillegg er hele den relevante koordinatkontrakten obligatorisk: `locatorType`,
 
 ### `subcategory_id`
 
-`subcategory_id` skal finnes som aktiv underkategori under stedets `category` i `data/categories/category_contract.json`.
+Toppkategorien skal fortsatt finnes i `data/categories/category_contract.json`. Micro-underkategorien skal finnes som aktiv underkategori under denne toppkategorien i `data/places/regler/micro_place_subcategories_v1.json`.
 
-Underkategori bestemmer **ikke** kartfargen. Kartprikken bruker fortsatt toppkategorien. En Lesekiosk med `category: "litteratur"` og `subcategory_id: "lesekiosker"` skal derfor vises som en vanlig Litteratur-prikk.
+Micro-registeret er bevisst skilt fra fagkategori-registeret: en micro-underkategori er en stedstype/presentasjonsidentitet, ikke et nytt fag. Underkategori bestemmer **ikke** kartfargen. Kartprikken bruker fortsatt toppkategorien. En Lesekiosk med `category: "litteratur"` og `subcategory_id: "lesekiosker"` skal derfor vises som en vanlig Litteratur-prikk.
 
 ### `micro_place_profile.kind`
 
@@ -185,7 +185,7 @@ Et Micro Place som mangler en obligatorisk micro-gate kan ikke godkjennes ved å
 
 ## 10. Første canonicale underkategorier
 
-Første aktive micro-underkategorier er:
+Første aktive micro-underkategorier i `data/places/regler/micro_place_subcategories_v1.json` er:
 
 - `litteratur / lesekiosker` — røde telefonkiosker og tilsvarende organiserte bokkiosker;
 - `natur / miljostasjoner` — små miljøstasjoner/innsamlingspunkter med egen fysisk destinasjon;
