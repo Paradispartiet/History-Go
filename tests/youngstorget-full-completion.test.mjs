@@ -22,6 +22,8 @@ const mainArticle = read("data/leksikon/places/oslo/politikk/leksikon_youngstorg
 const news = read("data/leksikon/places/oslo/politikk/leksikon_youngstorget_news.json");
 const language = read("data/leksikon/sprak/places/europe/norway/oslo/youngstorget.json");
 const readingsPackage = read("data/lesespor/lesespor_oslo_batch2.json");
+const brandsByPlace = read("data/brands/brands_by_place.json");
+const actorsByPlace = read("data/brands/actors_by_place.json");
 const related = read("data/places/places_index.json").filter(row => place.related_place_ids.includes(row.id));
 
 test("Youngstorget has one canonical scope and the fixed PlaceCard contract", () => {
@@ -37,6 +39,8 @@ test("Youngstorget has one canonical scope and the fixed PlaceCard contract", ()
   assert.ok(place.externalLinks.every(link => /^https:\/\//.test(link.url)));
   assert.equal(production.roundsReadiness.brandIds.length, 0);
   assert.equal(production.roundsReadiness.brandFallback, "honest_empty_state_after_candidate_and_logo_audit");
+  assert.equal(Object.hasOwn(brandsByPlace, "youngstorget"), false);
+  assert.equal(Object.hasOwn(actorsByPlace, "youngstorget"), false);
 });
 
 test("popup-owned collections provide chronology, current news, open reading and language", () => {

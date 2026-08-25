@@ -10,6 +10,11 @@ const write = (file, value) => {
   fs.mkdirSync(path.dirname(target), { recursive: true });
   fs.writeFileSync(target, `${JSON.stringify(value, null, 2)}\n`);
 };
+const writeCompact = (file, value) => {
+  const target = path.join(root, file);
+  fs.mkdirSync(path.dirname(target), { recursive: true });
+  fs.writeFileSync(target, `${JSON.stringify(value)}\n`);
+};
 
 const placeFile = "data/places/politikk/oslo/places_politikk/youngstorget.json";
 const place = read(placeFile);
@@ -111,6 +116,10 @@ write(placeFile, place);
 const brands = read("data/brands/brands_by_place.json");
 delete brands.youngstorget;
 write("data/brands/brands_by_place.json", brands);
+
+const actors = read("data/brands/actors_by_place.json");
+delete actors.youngstorget;
+writeCompact("data/brands/actors_by_place.json", actors);
 
 const peopleManifest = read("data/people/manifest.json");
 const keepPeople = new Set(place.related_people_ids);

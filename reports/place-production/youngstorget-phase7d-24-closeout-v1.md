@@ -10,7 +10,7 @@ Dette closeout-dokumentet supplerer de tidligere mergede leveransene gjennom fas
 - tre stedsspesifikke Språkleksikon-oppføringer;
 - fast PlaceCard-profil med People, Objects, Brands og Related;
 - fire direkte People, fire fysiske Objects og fem canonicale relaterte steder;
-- ærlig Brands-tomtilstand etter konkret kandidat- og logoaudit;
+- ærlig Brands-tomtilstand etter konkret kandidat- og logoaudit, også i legacy `actors_by_place`-flaten;
 - rich Quiz med fem sett à sju spørsmål, 35 eksternt kildebårne claims og canonical Knowledge/Aha-lenker;
 - full engelsk, spansk og portugisisk oversettelse av `desc` og hele `popupDesc`;
 - synkroniserte place index- og place-open-pakker.

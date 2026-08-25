@@ -41,7 +41,7 @@ Youngstorget er selve det navngitte offentlige torget fra anlegget i 1846 til da
 - `year: 1852` beholdes som navnemilepæl; tekst og kronologi skiller 1846, 1852 og 1951.
 - Synlige People er Jørgen Young, Jacob Wilhelm Nordan, Per Palle Storm og Hagbart Solløs. De har hver en direkte Youngstorget-kobling.
 - Objects er Pioneren, Fredsmonumentet, den permanente fotoutstillingen og fontenen. Alle fire er fysiske, stedsspesifikke og kildebelagte.
-- Brands bruker canonical tomtilstand. Internasjonalen, Mono, Sentrum Scene og Stratos var nabo-/virksomhetsproxyer og er fjernet.
+- Brands bruker canonical tomtilstand. Internasjonalen, Mono, Sentrum Scene og Stratos var nabo-/virksomhetsproxyer og er fjernet. LO, Arbeiderpartiet og Arbark tilhører egne bygg/organisasjonssteder rundt torget; Bymiljøetaten mangler den krevde own-place-logo-/wordmark-proveniensen. Derfor er også legacy `actors_by_place`-proxyene fjernet.
 - Related bruker canonicale naboer som relasjon, aldri som Youngstorget-innhold.
 - Max Manus-relasjonen ble fjernet fordi den var en automatisk migrert kobling uten dokumentert egen Youngstorget-evidens.
 - Ingen ny historisk rute materialiseres: 1890-Storyen går til Tullinløkka, som ikke er canonical Place i dagens datagrunnlag. Et falskt eller delvis løst stopp ville bryte rutekontrakten.
