@@ -276,7 +276,7 @@ try {
   });
   await page.goto(`${base}/__audit__/regjeringskvartalet.html`, { waitUntil: 'networkidle' });
   await page.waitForFunction(() => window.__auditReady === true);
-  await page.waitForSelector('[role="tab"]');
+  await page.waitForFunction(() => document.querySelectorAll('[role="tab"]').length === 15);
 
   assert.deepEqual(await page.evaluate(() => window.__runtimeContentCounts), {
     stories: 3,
@@ -293,15 +293,19 @@ try {
     'Nyheter',
     'Lesespor',
     'Kilder',
+    'Språk',
+    'Spor & objekter',
+    'Legg merke til',
+    'Betydning',
+    'Motpunkter',
     'Relasjoner',
     'Kunnskap',
-    'Observasjoner',
-    'Språk'
+    'Observasjoner'
   ]);
-  assert.equal(await page.locator('[role="tabpanel"]').count(), 11);
+  assert.equal(await page.locator('[role="tabpanel"]').count(), 15);
   assert.equal(await page.locator('[data-place-tab="more"]').count(), 0);
 
-  for (const id of ['about', 'history', 'stories', 'before-after', 'news', 'reading', 'sources', 'relations', 'knowledge', 'observations', 'language']) {
+  for (const id of ['about', 'history', 'stories', 'before-after', 'news', 'reading', 'sources', 'language', 'objects', 'notice', 'meaning', 'counterpoints', 'relations', 'knowledge', 'observations']) {
     await page.locator(`[data-place-tab="${id}"]`).click();
     assert.equal(await page.locator(`[data-place-tab="${id}"]`).getAttribute('aria-selected'), 'true');
     assert.equal(await page.locator(`#hg-place-panel-${id}`).evaluate(panel => panel.hidden), false);
@@ -322,6 +326,7 @@ try {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.reload({ waitUntil: 'networkidle' });
   await page.waitForFunction(() => window.__auditReady === true);
+  await page.waitForFunction(() => document.querySelectorAll('[role="tab"]').length === 15);
   const mobileTabs = await page.locator('.hg-place-tabs').evaluate(element => ({
     clientWidth: element.clientWidth,
     scrollWidth: element.scrollWidth
