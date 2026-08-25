@@ -22,17 +22,17 @@ jobs:
           cache: npm
       - name: Install repository dependencies
         run: npm ci
-      - name: Generate canonical Oslo places and production packets
+      - name: Generate canonical Oslo reuse places and Lesekiosker
         run: node tools/TEMP-generate-oslo-miljo-gjenbruk.mjs
-      - name: Normalize coordinates to Coordinate Source Contract v1
-        run: node tools/TEMP-normalize-oslo-miljo-gjenbruk-coordinates.mjs
+      - name: Validate permanent 11 plus 21 materialization contract
+        run: node --test tests/oslo-miljo-gjenbruk-lesekiosk-materialization.test.mjs
       - name: Validate production packets
         run: node scripts/validate-place-description-production-v4_2.mjs --all
       - name: Build and validate place index
         run: |
           npm run places:index:build
           npm run places:index:check
-      - name: Validate new coordinate intake
+      - name: Validate coordinate intake
         run: npm run places:coords:intake
       - name: Validate Miljø & gjenbruk PlaceCard profile
         run: node --test tests/place-subcategory-collections.test.mjs
@@ -40,20 +40,22 @@ jobs:
         run: |
           node - <<'NODE'
           const fs=require('fs'),path=require('path');
-          for(const dir of ['data/places/natur/oslo/miljo_gjenbruk','data/places/production']){
-            for(const f of fs.readdirSync(dir)){ if(!f.endsWith('.json')) continue; if(dir.endsWith('production')&&!/(gjenvinningsstasjon|miljostasjon)/.test(f)) continue; JSON.parse(fs.readFileSync(path.join(dir,f),'utf8')); }
+          for(const dir of ['data/places/natur/oslo/miljo_gjenbruk','data/places/litteratur/oslo/lesekiosk']){
+            const files=fs.readdirSync(dir).filter(f=>f.endsWith('.json'));
+            for(const f of files) JSON.parse(fs.readFileSync(path.join(dir,f),'utf8'));
           }
           JSON.parse(fs.readFileSync('data/places/manifest.json','utf8'));
           JSON.parse(fs.readFileSync('reports/oslo-miljo-gjenbruk-2026/permanent-active-inventory.json','utf8'));
+          JSON.parse(fs.readFileSync('reports/lesekiosker-oslo-2026/materialized-canonical-places.json','utf8'));
           NODE
       - name: Commit generated canonical data
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/places reports/oslo-miljo-gjenbruk-2026
+          git add data/places/manifest.json data/places/natur/oslo/miljo_gjenbruk data/places/litteratur/oslo/lesekiosk data/places/production reports/oslo-miljo-gjenbruk-2026 reports/lesekiosker-oslo-2026/materialized-canonical-places.json
           if git diff --cached --quiet; then
             echo 'No generated changes'
             exit 0
           fi
-          git commit -m 'Produce permanent Oslo miljø og gjenbruk places'
+          git commit -m 'Produce canonical Oslo reuse places and Lesekiosker'
           git push origin HEAD:agent/miljo-gjenbruk-oslo-places-20260825
