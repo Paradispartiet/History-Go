@@ -363,7 +363,6 @@ try {
   assert.ok(await fagverk.locator('#fagverkPlaceQuestions li').count() >= 4);
   assert.ok(await fagverk.locator('#fagverkPlaceChapters a').count() >= 1);
   assert.ok(await fagverk.locator('#fagverkPlaceConcepts a, #fagverkPlaceConcepts span').count() >= 1);
-  assert.ok(await fagverk.locator('#fagverkPlaceEmners a, #fagverkPlaceEmners span').count() >= 0).catch?.(() => {});
   assert.ok(await fagverk.locator('#fagverkPlaceEmner a, #fagverkPlaceEmner span').count() >= 3);
   assert.ok(await fagverk.locator('#fagverkPlaceSources a').count() >= 10);
   assert.equal(await fagverk.locator('#fagverkPlaceImage').isVisible(), true);
