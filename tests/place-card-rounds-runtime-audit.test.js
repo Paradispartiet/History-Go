@@ -6,6 +6,9 @@ const repo = path.resolve(__dirname, '..');
 const card = fs.readFileSync(path.join(repo, 'js/ui/place-card.js'), 'utf8');
 const rounds = fs.readFileSync(path.join(repo, 'js/ui/place-rounds-visual-collections.js'), 'utf8');
 const contract = fs.readFileSync(path.join(repo, 'data/places/README_place_rounds.md'), 'utf8');
+const workflow = fs.readFileSync(path.join(repo, 'docs/PLACE_PRODUCTION_CHECKLIST.md'), 'utf8');
+const checklist = fs.readFileSync(path.join(repo, 'docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md'), 'utf8');
+const productMap = fs.readFileSync(path.join(repo, 'docs/HISTORY_GO_PRODUCT_MAP.md'), 'utf8');
 
 assert(!card.includes('const PLACE_ROUND_REGISTRY = ['));
 assert(!card.includes('CATEGORY_ROUND_PROFILES'));
@@ -45,4 +48,15 @@ assert(contract.includes('**Flora** og **Fauna** som to sirkler'));
 assert(contract.includes('generisk Verk'));
 assert(contract.includes('Detaljer'));
 assert(contract.includes('Punkter'));
+
+for (const document of [workflow, checklist, productMap]) {
+  assert.match(document, /nøyaktig fire samlingsflater|fire samlingsflater vises som et fullt 2 × 2-felt/);
+  assert.doesNotMatch(document, /viser 2, 3 eller 4 kvalifiserte samlinger/i);
+  assert.doesNotMatch(document, /to eller tre sterke samlinger er bedre enn en kunstig fjerde/i);
+  assert.doesNotMatch(document, /balansert 2-\/3-\/4-samlingslayout/i);
+  assert.doesNotMatch(document, /Bilder.*eneste generelle reserve/i);
+}
+
+assert.match(productMap, /Natursted:\s+Flora · Fauna · Kart · Turmål/);
+assert.match(productMap, /Bilder.*kan aldri brukes som samling eller reserve/);
 console.log('Canonical PlaceCard collections v2 audit OK');

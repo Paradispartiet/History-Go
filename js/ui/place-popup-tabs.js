@@ -331,14 +331,18 @@
       button.setAttribute("aria-controls", `hg-place-panel-${id}`);
       button.setAttribute("aria-selected", index === 0 ? "true" : "false");
       button.tabIndex = index === 0 ? 0 : -1;
-      tablist.appendChild(button);
+      if (id !== "more") tablist.appendChild(button);
 
       const panel = document.createElement("section");
       panel.className = "hg-place-tab-panel";
       panel.id = `hg-place-panel-${id}`;
       panel.dataset.placePanel = id;
       panel.setAttribute("role", "tabpanel");
-      panel.setAttribute("aria-labelledby", button.id);
+      if (id !== "more") panel.setAttribute("aria-labelledby", button.id);
+      else {
+        panel.dataset.stagingPanel = "more";
+        panel.setAttribute("aria-hidden", "true");
+      }
       panel.hidden = index !== 0;
       panels[id] = panel;
       panelWrap.appendChild(panel);

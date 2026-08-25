@@ -54,13 +54,13 @@ Arbeidskortet bruker nå feltet:
 
 For PlaceCard-samlinger, Før/etter og direktefaner gjelder:
 
-- PlaceCard beholder dagens komposisjon og viser 2, 3 eller 4 kvalifiserte samlinger balansert ved `frontImage`;
+- PlaceCard beholder dagens komposisjon og viser alltid nøyaktig fire samlingsflater i et fullt 2 × 2-felt ved `frontImage`;
 - People, Flora og Fauna vises som sirkler; øvrige samlinger vises som avrundede rektangler;
 - Bilder er ikke en samling eller reserve, men beholdes i `frontImage`-/medieflaten og hos sine bildeeiere;
 - Quiz er obligatorisk og beholdes som tydelig PlaceCard-handling;
 - en enkelt vilkårlig eller taksonomisk konstruert gjenstand er ikke nok til å gjøre Objects til en kvalitetsmessig ferdig samling;
 - Objects og Structures/Bygg brukes ikke som to separate samlinger når innholdet i praksis er de samme fysiske stedselementene eller forskjellen er uklar for spilleren;
-- en tredje eller fjerde plass skal aldri fylles bare for å oppnå en bestemt layout; mangler stedet fire reelt sterke og distinkte samlinger, brukes to eller tre;
+- de fire faste flatene skal researches og fylles med reelt, stedsspesifikt innhold når slikt kan forsvares; en svak eller tom canonical kilde kollapser aldri layouten, men vises som en ærlig ikon-/statusflate uten oppdiktet innhold eller synlig falsk 0, og registreres som produksjonsgap;
 - nye/fullproduserte steder bruker `place_card_profile.collection_ids`; eksisterende `round_profile` leses bare gjennom kompatibilitetslaget og migreres når stedet faktisk fullproduseres;
 - canonical place-register/manifester er søkt før motivet velges, slik at bygg, virksomheter, parker, plasser eller andre delsteder med egen place-oppføring blir oppdaget;
 - et delsted som har egen canonical place-oppføring brukes ikke som primært Før/etter-stedfortreder for et overordnet sted;

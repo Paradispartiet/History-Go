@@ -12,14 +12,14 @@ const ordinaryCategories = [
 ];
 
 const fixture = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="/css/placeCard.css"><link rel="stylesheet" href="/css/place-rounds-fill-layout.css">
-<style>:root{--pc-round-gap:12px;--place-card-media-height:260px;--place-card-orb-size:110px}body{margin:0;background:#111}.pc-layout{display:grid;grid-template-columns:220px 360px;gap:16px;margin:20px}.pc-frontcard{width:220px;height:260px}.pc-side-stack,.pc-icons-quad{height:260px}.pc-icons-quad{display:grid}.pc-round{box-sizing:border-box;background:#29343b;color:white;border:1px solid #ddd;display:grid;place-items:center}#pcQuiz{display:block}@media(max-width:700px){.pc-layout{grid-template-columns:1fr;width:auto;margin:10px}.pc-side-stack,.pc-icons-quad{height:250px}}</style></head><body>
-<div id="placeCard" data-current-place-id="audit"><div class="pc-body"><div class="pc-title-row"><h2>Audit</h2><div id="pcBadgesIcon" class="pc-round"></div></div><div class="pc-layout">
+<link rel="stylesheet" href="/css/placeCard.css"><link rel="stylesheet" href="/css/place-rounds-fill-layout.css"><link rel="stylesheet" href="/css/place-popup-shortcuts.css">
+<style>:root{--pc-round-gap:12px;--place-card-media-height:260px;--place-card-orb-size:110px}body{margin:0;background:#111}#placeCard .pc-grid{display:grid;grid-template-columns:220px 360px;grid-template-rows:auto auto auto;width:580px;margin:20px}.pc-frontcard{width:220px;height:260px}.pc-side-stack{height:260px}.pc-icons-quad{display:grid;min-height:0}.pc-round{box-sizing:border-box;background:#29343b;color:white;border:1px solid #ddd;display:grid;place-items:center}#pcQuiz{display:block}@media(max-width:700px){#placeCard .pc-grid{grid-template-columns:220px 360px;width:580px;margin:10px}.pc-side-stack{height:250px}}</style></head><body>
+<div id="placeCard" data-current-place-id="audit"><div class="pc-body"><div class="pc-title-row"><h2>Audit</h2><div id="pcBadgesIcon" class="pc-round"></div></div><div id="pcMeta"><span>Politikk &amp; samfunn · 1950–1979</span><span class="pc-epoke">Epoke: Velferdsstat, korporatisme og planlegging</span><span class="pc-progress-status-line">Status: Ikke fullført · Gjenstår: Ta quiz</span></div><div class="pc-grid">
 <div class="pc-frontcard"><div class="pc-card-face pc-card-face-front" data-media-state="fallback"><img id="pcFrontImage" alt=""></div></div>
-<div class="pc-side-stack"><div class="pc-icons-quad"><div id="pcPeopleIcon" class="pc-round"></div><div id="pcBrandsIcon" class="pc-round"></div></div></div></div>
+<div class="pc-side-stack"><div class="pc-icons-quad"><div id="pcPeopleIcon" class="pc-round"></div><div id="pcBrandsIcon" class="pc-round"></div></div></div><div class="pc-events-quad"></div></div>
 <div id="pcPeopleList"></div><div id="pcBrandsList"></div><div id="pcBadgesList"></div></div></div><button id="pcQuiz" hidden>Ta quiz</button>
 <script>const category=new URLSearchParams(location.search).get('category')||'by';window.PLACES=[{id:'audit',name:'Audit',category}];</script>
-<script src="/js/ui/place-rounds-visual-collections.js"></script><script src="/js/ui/place-rounds-fill-layout.js"></script>
+<script src="/js/ui/place-rounds-visual-collections.js"></script><script src="/js/ui/place-rounds-fill-layout.js"></script><script src="/js/ui/place-popup-shortcuts.js"></script>
 <script>addEventListener('DOMContentLoaded',()=>HGPlaceCardCollections.apply(PLACES[0]).then(()=>{HGPlaceRoundsFillLayout.layout();window.__ready=true}).catch(error=>window.__error=String(error)))</script></body></html>`;
 
 const mime = { ".html":"text/html; charset=utf-8", ".js":"text/javascript; charset=utf-8", ".css":"text/css; charset=utf-8" };
@@ -48,6 +48,24 @@ try {
     cells.forEach((cell, index) => expectedShapes[index] === "circle"
       ? assert.ok(Math.abs(cell.w - cell.h) < 2, `${category} circle ${index}`)
       : assert.ok(cell.w > cell.h, `${category} rectangle ${index}`));
+    const shortcuts = await page.locator(".pc-place-popup-shortcut").evaluateAll(nodes => nodes.map(node => { const r=node.getBoundingClientRect(); return { x:r.x, y:r.y, w:r.width, h:r.height }; }));
+    assert.equal(shortcuts.length, 6, `${category} shortcuts`);
+    assert.equal(new Set(shortcuts.map(cell => Math.round(cell.y))).size, 1, `${category} shortcut row`);
+    const collectionBottom = Math.max(...cells.map(cell => cell.y + cell.h));
+    assert.ok(shortcuts.every(cell => cell.y >= collectionBottom), `${category} shortcuts below collections`);
+    const [shortcutRow, frontCard, sideStack] = await Promise.all([
+      page.locator(".pc-place-popup-shortcuts").boundingBox(),
+      page.locator(".pc-frontcard").boundingBox(),
+      page.locator(".pc-side-stack").boundingBox()
+    ]);
+    assert.ok(shortcutRow && frontCard && sideStack, `${category} full-width shortcut geometry`);
+    assert.ok(Math.abs(shortcutRow.x - frontCard.x) < 2, `${category} shortcuts begin under front image`);
+    assert.ok(Math.abs(shortcutRow.x + shortcutRow.width - (sideStack.x + sideStack.width)) < 2, `${category} shortcuts end under collections`);
+    assert.ok(shortcutRow.y >= Math.max(frontCard.y + frontCard.height, sideStack.y + sideStack.height), `${category} shortcuts below both media columns`);
+    const metadata = await page.locator("#pcMeta > *").evaluateAll(nodes => nodes.map(node => { const r=node.getBoundingClientRect(); return { y:r.y, h:r.height, scrollHeight:node.scrollHeight, whiteSpace:getComputedStyle(node).whiteSpace }; }));
+    assert.equal(metadata.length, 3, `${category} metadata items`);
+    assert.equal(new Set(metadata.map(cell => Math.round(cell.y))).size, 1, `${category} metadata row`);
+    assert.ok(metadata.every(cell => cell.whiteSpace === "nowrap" && cell.scrollHeight <= cell.h + 1), `${category} metadata no-wrap`);
     assert.equal(await page.locator("#pcBadgesIcon").evaluate(node => node.parentElement.classList.contains("pc-title-row")), true, category);
     assert.equal(await page.locator("#pcQuiz").isVisible(), true, category);
     assert.match(await page.locator(".pc-card-face-front").evaluate(node => getComputedStyle(node, "::before").content), /HISTORY GO/, category);

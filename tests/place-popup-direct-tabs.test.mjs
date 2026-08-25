@@ -9,12 +9,16 @@ const read = relative => fs.readFileSync(path.join(root, relative), "utf8");
 
 const baseTabs = read("js/ui/place-popup-tabs.js");
 const directTabs = read("js/ui/place-popup-direct-tabs.js");
+const popupLoader = read("js/ui/place-card-status-surface.js");
+const config = read("js/config.js");
 const css = read("css/place-popup-tabs.css");
 const checklist = read("docs/PLACE_PRODUCTION_CHECKLIST.md");
 const popupContract = read("docs/PLACE_POPUP_SYSTEM.md");
 
 test("Mer er ikke en brukerrettet sluttfane", () => {
   assert.match(baseTabs, /\["more", "Mer"\]/, "legacy-hydratoren kan fortsatt ha staging-panelet under migreringen");
+  assert.match(baseTabs, /if \(id !== "more"\) tablist\.appendChild\(button\)/, "staging-panelet skal ikke få synlig fane");
+  assert.match(css, /data-place-tab="more"[\s\S]*?display:none !important/, "CSS-fallback skjuler Mer");
   assert.match(directTabs, /moreTab\?\.remove\(\)/);
   assert.match(directTabs, /morePanel\.remove\(\)/);
   assert.match(directTabs, /staging-panel/);
@@ -39,6 +43,10 @@ test("alle kjente Mer-eiere får direkte faner", () => {
   assert.match(directTabs, /hg-place-knowledge-section/);
   assert.match(directTabs, /hg-place-observations-section/);
   assert.match(directTabs, /dataset\.generated === "more"/);
+  assert.match(popupLoader, /ensureScript\("js\/ui\/place-popup-direct-tabs\.js"\)/, "direktefaner lastes sammen med popupen");
+  assert.match(directTabs, /void result\.then\(revealDirectTabs\)/, "async popup dekoreres først når den er bygget");
+  assert.match(directTabs, /try \{ decoratePopup\(\); \} catch/, "allerede åpen popup repareres ved installasjon");
+  assert.match(config, /if \(document\.querySelector\(`script\[src="\$\{src\}"\]`\)\)/, "paced loader dobbel-laster ikke direktefanene");
 });
 
 test("fanestripen er én horisontalt scrollbar og touch-vennlig linje", () => {

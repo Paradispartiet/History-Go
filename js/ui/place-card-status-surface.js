@@ -11,7 +11,7 @@
   function getReader() { return global.HGProfileProgressReader || null; }
   function safeText(value) { return String(value == null ? "" : value).trim(); }
   function ensureStylesheet(href) { if (document.querySelector(`link[href="${href}"]`)) return; const stylesheet=document.createElement("link"); stylesheet.rel="stylesheet"; stylesheet.href=href; document.head.appendChild(stylesheet); }
-  function ensureScript(src) { if (document.querySelector(`script[src="${src}"]`)) return; const script=document.createElement("script"); script.src=src; script.defer=true; document.body.appendChild(script); }
+  function ensureScript(src) { const existing=document.querySelector(`script[src="${src}"]`); if(existing&&existing.type!=="application/x-history-go-deferred")return; existing?.remove(); const script=document.createElement("script"); script.src=src; script.defer=true; document.body.appendChild(script); }
 
   function loadPlacePopupV2() {
     ensureStylesheet("css/place-popup-v2.css");
@@ -19,6 +19,7 @@
     ensureScript("js/ui/place-popup-sport-training.js");
     ensureStylesheet("css/place-popup-tabs.css");
     ensureScript("js/ui/place-popup-tabs.js");
+    ensureScript("js/ui/place-popup-direct-tabs.js");
     ensureScript("js/ui/nature-detailed-map.js");
     ensureScript("js/ui/place-rounds-visual-collections.js");
     ensureStylesheet("css/place-rounds-fill-layout.css");

@@ -35,7 +35,7 @@
 
     const cellWidth = (width - gap * (cols - 1)) / cols;
     const cellHeight = (height - gap * (rows - 1)) / rows;
-    const collectionHeight = Math.max(1, Math.floor(Math.min(cellHeight, cellWidth * 0.68)));
+    const collectionHeight = Math.max(1, Math.floor(Math.min(cellHeight, cellWidth * 0.92)));
     const circleSize = Math.max(1, Math.floor(Math.min(cellWidth, collectionHeight)));
     grid.style.setProperty("--hg-collection-fill-height", `${collectionHeight}px`);
     grid.style.setProperty("--hg-collection-circle-size", `${circleSize}px`);
