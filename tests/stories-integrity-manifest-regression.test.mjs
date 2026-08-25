@@ -37,7 +37,7 @@ assert.equal(storyCount, expectedStories, output);
 const failureLines = output
   .split('\n')
   .filter((line) => line.startsWith('- '))
-  .filter((line) => !/^-(?: Story-filer| Stories| Place-koblede stories| Person-koblede stories| Next scenes| Place-sourcefiler lest):/.test(line));
+  .filter((line) => !/^-(?: Story-filer| Stories| Place-koblede stories| Person-koblede stories| Next scenes| Episode-v1-filer| Episode-v1-stories| Place-sourcefiler lest):/.test(line));
 assert.ok(
   failureLines.every((line) => line.startsWith('- Ugyldig place_id:')),
   `Unexpected integrity failures:\n${failureLines.join('\n')}`,
