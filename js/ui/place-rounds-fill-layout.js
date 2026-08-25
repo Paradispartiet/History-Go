@@ -8,6 +8,14 @@
   let resizeObserver = null;
   let scheduled = false;
 
+  function ensureSubcategoryCollectionsScript() {
+    if (global.HGPlaceSubcategoryCollections || document.querySelector('script[src="js/ui/place-subcategory-collections.js"]')) return;
+    const script = document.createElement("script");
+    script.src = "js/ui/place-subcategory-collections.js";
+    script.defer = true;
+    document.body.appendChild(script);
+  }
+
   function numericGap(grid) {
     const style = global.getComputedStyle?.(grid);
     const raw = parseFloat(style?.gap || style?.columnGap || "0");
@@ -71,6 +79,7 @@
   }
 
   function init() {
+    ensureSubcategoryCollectionsScript();
     if (!bind()) {
       let attempts = 0;
       const timer = global.setInterval(() => {

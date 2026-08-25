@@ -21,6 +21,7 @@ type PlaceRow = JsonObject & {
   lng?: unknown;
   r?: unknown;
   category?: unknown;
+  subcategory_id?: unknown;
   year?: unknown;
   desc?: unknown;
   aliases?: unknown;
@@ -48,7 +49,10 @@ type PlaceRow = JsonObject & {
 type PlaceExclusions = JsonObject & {
   disabledPlaceIds?: unknown[];
 };
-type LightField = Exclude<keyof PlaceRow, 'lng'>;
+const LIGHT_FIELDS = [
+  'id','name','lat','lon','r','category','subcategory_id','year','desc','aliases','image','cardImage','frontImage','hidden','stub','groundhopper','placeScope','mapLod','locatorType','sourceProvider','sourceObjectId','address','geocodeAccuracy','coordRole','coordType','coordStatus','coordSource','coordVerifiedAt','coordNote','sourceFile'
+] as const;
+type LightField = (typeof LIGHT_FIELDS)[number];
 type LightPlace = Partial<Record<LightField, unknown>>;
 
 type CoordinateOverride = JsonObject & {
@@ -56,10 +60,6 @@ type CoordinateOverride = JsonObject & {
   lat: number;
   lon: number;
 };
-
-const LIGHT_FIELDS: LightField[] = [
-  'id','name','lat','lon','r','category','year','desc','aliases','image','cardImage','frontImage','hidden','stub','groundhopper','placeScope','mapLod','locatorType','sourceProvider','sourceObjectId','address','geocodeAccuracy','coordRole','coordType','coordStatus','coordSource','coordVerifiedAt','coordNote','sourceFile'
-];
 
 const COORDINATE_OVERRIDE_FIELDS = [
   'lat','lon','r','coordType','coordStatus','coordSource','coordSourceId','coordSourceUrl','coordPrecisionM','coordVerifiedAt','coordNote'
