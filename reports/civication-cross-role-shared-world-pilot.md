@@ -88,6 +88,8 @@ Bred Role World rollout forblir **false**. Denne piloten beviser den siste ekspl
 - source → compiled registry-paritet bevarer begge perspektivene og samme institusjon;
 - Matrix holder broad rollout policy-gated.
 
+Focused materialisering og semantic gate kjøres på branch-head før ordinær PR-CI; et grønt Matrix-statusfelt skal aldri brukes som erstatning for faktisk testresultat.
+
 ## Kvalitetsvurdering før merge
 
 | Dimensjon | Vurdering | Begrunnelse |
