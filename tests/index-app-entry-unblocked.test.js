@@ -8,6 +8,10 @@ const app = fs.readFileSync(path.join(__dirname, "..", "js", "app.js"), "utf8");
 const config = fs.readFileSync(path.join(__dirname, "..", "js", "config.js"), "utf8");
 const appEntry = html.indexOf('<script type="module" src="./js/app.js?v=20260824-area-square-dom3"></script>');
 assert.ok(appEntry >= 0, "index must contain the cache-busted app entry");
+assert.ok(
+  html.includes('<script src="js/config.js?v=20260825-app-boot-hotfix"></script>'),
+  "index must cache-bust the config that owns critical boot placeholders"
+);
 
 for (const src of [
   "js/debug/HGTestMode.js",
