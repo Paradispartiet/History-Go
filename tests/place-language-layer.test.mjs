@@ -103,7 +103,7 @@ test("språkflaten lastes etter både Knowledge V2 og popup-loaderen", () => {
   assert.ok(popupLoaderIndex >= 0, "PlaceCard popup-loader mangler i kritisk app-runtime");
   assert.ok(popupLoaderIndex < appReadyIndex, "PlaceCard popup-loader må være klar før post-ready-kjeden");
   assert.ok(languageIndex > knowledgeIndex, "språkflaten må lastes etter Knowledge V2");
-  assert.ok(directTabsIndex > languageIndex, "direktefane-adapteren må lastes etter språkadapteren");
+  assert.ok(directTabsIndex > languageIndex, "eierflate-adapteren må lastes etter språkadapteren");
 });
 
 test("AHA-importgrensen inkluderer hele Knowledge V2 og dermed språkfasetten", () => {
@@ -114,13 +114,14 @@ test("AHA-importgrensen inkluderer hele Knowledge V2 og dermed språkfasetten", 
   assert.match(runtime, /source:\s*\{[\s\S]*type:\s*SOURCE_TYPE/);
 });
 
-test("Språkleksikon-dokumentasjonen låser valgfri språkfane og ingen ny runding", () => {
+test("Språkleksikon-dokumentasjonen låser Språk som eneste definerte valgfrie direktefane", () => {
   const contract = read("docs/SPRAKLEKSIKON.md");
   const popup = read("docs/PLACE_POPUP_SYSTEM.md");
   assert.match(contract, /ikke.*PlaceCard-runding/i);
   assert.match(contract, /hg_knowledge_entries_v2/);
-  assert.match(popup, /datastyrte direktefaner/i);
-  assert.match(popup, /Språk er en valgfri/i);
+  assert.match(popup, /én definert, source-eid \*\*valgfri direktefane\*\*/i);
+  assert.match(popup, /Språk[\s\S]*eneste definerte valgfrie direktefanen/i);
+  assert.match(popup, /Spor & objekter[\s\S]*ikke selvstendige stedspopupfaner/i);
 });
 
 
@@ -138,7 +139,6 @@ test("place-produksjon låser dialektlaget til område-Places", () => {
   assert.match(contract, /nærmeste relevante område-Place/i);
   assert.match(contract, /related_places.*related_entries/i);
 });
-
 
 
 test("områdeeierskap bruker canonical placeScope, ikke koordinatrollen", () => {
