@@ -2,7 +2,7 @@
 
 Status: **canonical produksjonsarbeidsflyt**  
 Eier: `place_by_place_production_workflow`  
-Sist kontrollert: **2026-08-24**
+Sist kontrollert: **2026-08-25**
 
 Dette dokumentet eier **arbeidsrekkefølge, review-checkpoints og mergekadens** for sted-for-sted-produksjon.
 
@@ -29,9 +29,9 @@ For detaljproduksjon gjelder subsystemets canonical kontrakt, akkurat som i v1-r
 - faktisitet: `docs/FACTUALITY_CONTRACT.md`;
 - Place-data: `docs/DATA_PRODUCTION_CONTRACT.md` og `docs/PLACE_STANDARD.md`;
 - `desc`/`popupDesc`: `data/places/regler/PLACE_DESCRIPTION_CANONICAL.md` og v4.2-schema;
-- popupfaner: `docs/PLACE_POPUP_SYSTEM.md`;
+- popupfaner og eierstyrt routing: `docs/PLACE_POPUP_SYSTEM.md`;
 - Språkleksikon: `docs/SPRAKLEKSIKON.md`;
-- PlaceCard-samlinger: `data/places/README_place_rounds.md`;
+- PlaceCard-samlinger og samlingspopuper: `data/places/README_place_rounds.md`;
 - People: `docs/people-of-places-method.md` og `docs/PEOPLE_PROFILE_CANONICAL.md`;
 - Brands: `data/brands/brand_rules_v1_1.json`;
 - Stories: `docs/STORIES_DATA_GOVERNANCE.md`;
@@ -52,7 +52,7 @@ Arbeidskortet bruker nå feltet:
 
 `MÅL FOR PLACECARD-SAMLINGER: alltid fire flater i fast kategori-komposisjon + separat fast Badge + obligatorisk Quiz`
 
-For PlaceCard-samlinger, Før/etter og direktefaner gjelder:
+For PlaceCard-samlinger, Før/etter og eierstyrte popupflater gjelder:
 
 - PlaceCard beholder dagens komposisjon og viser alltid nøyaktig fire samlingsflater i et fullt 2 × 2-felt ved `frontImage`;
 - People, Flora og Fauna vises som sirkler; øvrige samlinger vises som avrundede rektangler;
@@ -62,6 +62,11 @@ For PlaceCard-samlinger, Før/etter og direktefaner gjelder:
 - Objects og Structures/Bygg brukes ikke som to separate samlinger når innholdet i praksis er de samme fysiske stedselementene eller forskjellen er uklar for spilleren;
 - de fire faste flatene skal researches og fylles med reelt, stedsspesifikt innhold når slikt kan forsvares; en svak eller tom canonical kilde kollapser aldri layouten, men vises som en ærlig ikon-/statusflate uten oppdiktet innhold eller synlig falsk 0, og registreres som produksjonsgap;
 - nye/fullproduserte steder bruker `place_card_profile.collection_ids`; eksisterende `round_profile` leses bare gjennom kompatibilitetslaget og migreres når stedet faktisk fullproduseres;
+- **Objects-popupen** eier `Spor og objekter` og `Legg merke til` når innholdet beskriver dokumenterte fysiske gjenstander/spor; supplementene endrer ikke Objects-antallet uten canonical Objects-materialisering;
+- **People-popupen** eier personrelasjoner; en ren place→place-relasjon skal ikke inn i People;
+- **Relaterte steder (`related`)** eier dokumenterte place→place-relasjoner;
+- **Om** eier `Betydning`, `Motpunkter` og generell source-eid stedskunnskap/observasjonskunnskap når ingen smalere canonical eier finnes;
+- **Språk** er den eneste definerte valgfrie direktefanen og vises bare når stedet faktisk har dokumentert språkstoff;
 - canonical place-register/manifester er søkt før motivet velges, slik at bygg, virksomheter, parker, plasser eller andre delsteder med egen place-oppføring blir oppdaget;
 - et delsted som har egen canonical place-oppføring brukes ikke som primært Før/etter-stedfortreder for et overordnet sted;
 - bilder fra ulike kamerastandpunkter kan brukes som supplerende historiske bilder, men består ikke alene som fullverdig primær Før/etter-sammenligning;
@@ -69,7 +74,7 @@ For PlaceCard-samlinger, Før/etter og direktefaner gjelder:
 - Nyheter kan ikke godkjennes som tom/N/A når fanen er relevant for stedet;
 - Lesespor kan ikke godkjennes som tom/N/A når relevant lesestoff finnes eller kan etableres etter kontrakten;
 - betalingslåst er ikke tilstrekkelig N/A-grunn for Lesespor;
-- Innhold som tidligere lå i Mer kan ikke skjules bak en restfane for å få en manglende direktefane til å se ferdig ut.
+- innhold som tidligere lå i `Mer` skal rutes til canonical eierflate uten å slettes, dupliseres eller skjules bak `Mer`, «Annet», «Tillegg» eller en ny generell restfane.
 
 ---
 
@@ -83,7 +88,7 @@ Før første brukerrettede endring skal stedet ha en skriftlig nullmåling og sa
 - kategori, Badges, emner, Fagverk og Nature når relevant;
 - description-produksjon;
 - strukturerte place-profiler;
-- alle relevante popupfaner og direktefaner;
+- alle relevante grunnfaner, valgfri Språk og eierflater i Objects/People/Relaterte steder/Om;
 - People, Objects/Works, Brands og PlaceCard-samlinger;
 - Stories, Quiz, Knowledge/Aha, Lesespor og ruter/relasjoner;
 - kilder, bilder/proveniens og faktisk UI-visning;
@@ -120,7 +125,7 @@ Eksempler:
 
 - verifiserte koordinater som skal bevares;
 - riktig kategori/emne/Fagverk-binding som allerede finnes;
-- en popupfane som allerede har riktig canonical owner og full dekning;
+- en popup-/samlingsflate som allerede har riktig canonical owner og full dekning;
 - et irrelevant subsystem med dokumentert N/A.
 
 ---
@@ -150,7 +155,7 @@ Kan samle flere **sekvensielt reviewede** innholdsfaser, for eksempel:
 - description v4.2;
 - strukturerte place-profiler;
 - Om/Historie/Fortellinger/Før–etter/Nyheter/Lesespor/Kilder/Språk;
-- relevante People/Objects/Brands/PlaceCard-samlinger;
+- relevante People/Objects/Brands/PlaceCard-samlinger og eide underseksjoner;
 - Quiz/Story/Knowledge/ruter når kontraktene tillater samme avgrensede diff.
 
 Det er ikke lov å hoppe over intern review bare fordi fasene ligger i samme PR.
@@ -260,13 +265,17 @@ Et sted kan ikke merkes `produksjonsklart` eller `SLUTTFØRT` før den synlige o
 
 Minimum:
 
-- åpne alle relevante popupfaner og direktefaner;
+- åpne alle sju grunnfaner og valgfri Språk når den finnes;
+- åpne Objects-popupen og kontroller eventuelle `Spor og objekter`/`Legg merke til`-seksjoner;
+- åpne People-popupen og kontroller personrelasjoner når de finnes;
+- kontroller at place→place-relasjoner ligger i Relaterte steder og ikke i People;
+- kontroller at Betydning/Motpunkter/generell stedskunnskap ligger under Om eller annen dokumentert eierflate;
 - kontroller alle valgte PlaceCard-samlinger, form, antall, datakilde og preview;
 - kontroller Før/etter visuelt mot begge bilder;
 - kontroller Nyheter-ferskhet der relevant;
 - kontroller Lesespor-tilgang og Kilder-lenker;
 - kontroller Stories/obligatorisk Quiz/People/Objects/Brands og ruter slik de faktisk vises;
-- registrer tomme faner, svake bildevalg, kunstige PlaceCard-samlinger og taksonomisk korrekte men brukerfiendtlige kombinasjoner som reelle blockers;
+- registrer tomme eller feilroutede flater, svake bildevalg, kunstige PlaceCard-samlinger og taksonomisk korrekte men brukerfiendtlige kombinasjoner som reelle blockers;
 - gjenåpne checkpoint/fase når slutt-QA motsier tidligere godkjenning.
 
 Grønn CI eller komplett schema kan aldri overstyre dokumentert svak sluttflate.

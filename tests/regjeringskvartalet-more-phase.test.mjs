@@ -11,9 +11,11 @@ const language = readJson(languagePath);
 const languageManifest = readJson('data/leksikon/sprak/manifest.json');
 const runtime = fs.readFileSync('js/ui/place-popup-tabs.js', 'utf8');
 const directTabsRuntime = fs.readFileSync('js/ui/place-popup-direct-tabs.js', 'utf8');
+const collectionRouting = fs.readFileSync('js/ui/place-collection-knowledge-routing.js', 'utf8');
+const popupContract = fs.readFileSync('docs/PLACE_POPUP_SYSTEM.md', 'utf8');
 const report = fs.readFileSync('reports/place-production/regjeringskvartalet-politikk-v1.md', 'utf8');
 
-test('Regjeringskvartalet har et lite canonical Språkleksikon for Mer', () => {
+test('Regjeringskvartalet har et lite canonical Språkleksikon for valgfri Språk-fane', () => {
   assert.equal(languageManifest.place_files.regjeringskvartalet, languagePath);
   assert.equal(language.place_id, 'regjeringskvartalet');
   assert.equal(language.source_checked_at, '2026-08-02');
@@ -39,7 +41,7 @@ test('Hvert oppslag er stedskoblet, kontekstualisert og kildebelagt', () => {
   }
 });
 
-test('Mer-tolkningen skiller observasjon, betydning og inferensgrenser', () => {
+test('Tolkningen skiller observasjon, betydning og inferensgrenser', () => {
   assert.equal(main.version, 3);
   assert.equal(main.interpretation.what_to_notice.length, 3);
   assert.equal(main.interpretation.why_it_matters.length, 3);
@@ -52,9 +54,9 @@ test('Mer-tolkningen skiller observasjon, betydning og inferensgrenser', () => {
   assert.match(main.interpretation.counterpoints.join(' '), /beviser ikke.*styringskvalitet/i);
 });
 
-test('Mer holder Knowledge, funfacts, relasjoner og Objects i sine canonicale eierflater', () => {
+test('Kunnskap, funfacts, relasjoner og Objects beholder canonicale eierflater', () => {
   for (const key of ['knowledge', 'funfacts', 'relations', 'artifacts', 'objects']) {
-    assert.equal(Object.hasOwn(main, key), false, `uventet Mer-filler: ${key}`);
+    assert.equal(Object.hasOwn(main, key), false, `uventet filler: ${key}`);
   }
   assert.match(report, /Knowledge i Mer er N\/A.*quizpakken/s);
   assert.match(report, /Funfacts er N\/A.*trivialisere/s);
@@ -62,17 +64,20 @@ test('Mer holder Knowledge, funfacts, relasjoner og Objects i sine canonicale ei
   assert.match(report, /Artifacts\/Objects er N\/A.*fase 11/s);
 });
 
-test('Legacy Mer-hydrering materialiseres som direkte faner', () => {
+test('Legacy Mer-hydrering rutes til Objects, Om og valgfri Språk', () => {
   assert.match(runtime, /section\("Legg merke til"/);
   assert.match(runtime, /section\("Hvorfor det betyr noe"/);
   assert.match(runtime, /section\("Motpunkter"/);
-  assert.match(directTabsRuntime, /"legg merke til": \["notice", "Legg merke til"\]/);
-  assert.match(directTabsRuntime, /"hvorfor det betyr noe": \["meaning", "Betydning"\]/);
-  assert.match(directTabsRuntime, /"motpunkter": \["counterpoints", "Motpunkter"\]/);
-  assert.match(directTabsRuntime, /moreTab\?\.remove\(\)/);
+  assert.match(directTabsRuntime, /heading === "spor og objekter" \|\| heading === "legg merke til"/);
+  assert.match(directTabsRuntime, /heading === "hvorfor det betyr noe"/);
+  assert.match(directTabsRuntime, /heading === "motpunkter"/);
+  assert.match(directTabsRuntime, /moveToAbout\(node, panelWrap\)/);
+  assert.match(collectionRouting, /objectsSupplement/);
+  assert.match(popupContract, /Objects\/Gjenstander-popupen/);
+  assert.match(directTabsRuntime, /morePanel\.remove\(\)/);
 });
 
-test('Fasekortet lukker Kilder, åpner Mer og peker videre til Objects', () => {
+test('Fasekortet beholder historiske mergebevis selv om presentasjonskontrakten er videreutviklet', () => {
   assert.match(report, /\| 7 \| Brukerrettede Kilder \| \*\*GODKJENT – PR #4670, merge `318119d72d63838d487bbaeec85bda2dd58209b1`\*\* \|/);
   assert.match(report, /\| Mer \| PASS – fase 8 \|/);
   assert.match(report, /\| 8 \| Mer \| \*\*GODKJENT – PR #4671, merge `5effd690c06502b68a5870ca2bc089459fac56b9`\*\* \|/);

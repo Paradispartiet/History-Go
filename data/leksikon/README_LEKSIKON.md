@@ -1,13 +1,13 @@
 # History GO — Leksikon for steder
 
-Status: **operativ datakilde for stedspopupen**  
-Sist kontrollert: **2026-08-15**
+Status: **operativ datakilde for stedspopup og samlingspopuper**  
+Sist kontrollert: **2026-08-25**
 
-Leksikon er ikke lenger en egen canonical PlaceCard-runding. Leksikon-dataene er et strukturert kunnskapslag som stedspopupen kan lese inn i riktige faner.
+Leksikon er ikke lenger en egen canonical PlaceCard-runding. Leksikon-dataene er et strukturert kunnskapslag som brukerflatene kan lese inn hos riktig semantisk eier.
 
 ## Hovedregel
 
-> **Leksikon eier kunnskapsdata. Stedspopupen eier presentasjonen.**
+> **Leksikon eier kunnskapsdata. Stedspopupen og samlingspopupene eier presentasjonen.**
 
 Det betyr at data under `data/leksikon/` beholdes og fortsatt lastes gjennom `data/leksikon/manifest.json`, men brukeren skal ikke måtte gå gjennom:
 
@@ -15,9 +15,13 @@ Det betyr at data under `data/leksikon/` beholdes og fortsatt lastes gjennom `da
 
 for å lese om et sted.
 
-Den canonical brukerflyten er:
+Den canonical brukerflyten er enten:
 
-`PlaceCard → stedspopup → riktig fane`.
+`PlaceCard → stedspopup → riktig kunnskapsfane/seksjon`
+
+eller, når opplysningen beskriver en konkret samlingsenhet:
+
+`PlaceCard → riktig samling → eiet underseksjon`.
 
 ## Hva Leksikon-data kan inneholde
 
@@ -39,24 +43,32 @@ Eksisterende stedspakker kan blant annet inneholde:
 
 Disse er ikke én brukerrettet «Leksikon-hub» lenger. De fordeles etter semantisk rolle.
 
-## Mapping til stedspopupfaner
+## Mapping til brukerflater
 
-| Leksikon-data | Stedspopup |
+| Leksikon-data | Brukerrettet eier |
 | --- | --- |
-| hovedartikkel, fakta, bygd miljø | **Om** |
-| `chronology`, historie, bruksspor, historiske hendelser | **Historie** |
-| canonical Stories | **Fortellinger** via Stories-systemet |
-| `historical_news` / gamle avisnotiser | **Nyheter → Gamle nyheter** |
-| `news_notes` / nyere notiser | **Nyheter → Nyere notiser** |
-| Lesespor | **Lesespor** |
-| `externalLinks`, source summaries | **Kilder** |
-| Språkleksikon | valgfri **Språk**-fane når stedet har språkoppføringer |
-| `interpretation.what_to_notice` | valgfri **Legg merke til**-fane |
-| `interpretation.why_it_matters` | valgfri **Betydning**-fane |
-| `interpretation.counterpoints` | valgfri **Motpunkter**-fane |
-| legacy-objekter / `artifacts` | valgfri **Spor & objekter**-fane |
+| hovedartikkel, fakta, bygd miljø | stedspopup → **Om** |
+| `chronology`, historie, bruksspor, historiske hendelser | stedspopup → **Historie** |
+| canonical Stories | stedspopup → **Fortellinger** via Stories-systemet |
+| `historical_news` / gamle avisnotiser | stedspopup → **Nyheter → Gamle nyheter** |
+| `news_notes` / nyere notiser | stedspopup → **Nyheter → Nyere notiser** |
+| Lesespor | stedspopup → **Lesespor** |
+| `externalLinks`, source summaries | stedspopup → **Kilder** |
+| Språkleksikon | valgfri direkte **Språk**-fane når stedet har språkstoff |
+| `interpretation.what_to_notice` | **Objects/Gjenstander-popup → Legg merke til** når det gjelder fysiske spor |
+| `interpretation.why_it_matters` | stedspopup → **Om → Betydning** |
+| `interpretation.counterpoints` | stedspopup → **Om → Motpunkter** |
+| legacy-objekter / `artifacts` / object-like oppføringer | **Objects/Gjenstander-popup → Spor og objekter** |
+
+Personrelasjoner som kommer fra andre canonical place-/People-kilder vises i **People-popupen**. Rene place→place-relasjoner eies av **Relaterte steder (`related`)**. Leksikon skal ikke gjøre en place-relasjon om til en personrelasjon.
 
 `for_na` kommer fra place-data og vises i den separate **Før/etter**-fanen.
+
+### Ingen parallelle direktefaner
+
+`Spor & objekter`, `Legg merke til`, `Betydning`, `Motpunkter`, `Relasjoner`, `Kunnskap` og `Observasjoner` er ikke lenger generelle direktefaner i stedspopupen. Legacy-`Mer` kan eksistere som intern staging i runtime, men staging-innholdet skal rutes til eieren ovenfor uten sletting eller duplisering.
+
+**Språk** er den eneste definerte valgfrie direktefanen utover de sju faste grunnfanene.
 
 ## Hovedartikkel og place-tekst
 
@@ -85,6 +97,18 @@ Leksikon har reelle separate nyhetstyper, og disse skal bevares som korte spor:
 - `news_note`, `nyere_notis`, moderne hendelsesnotiser og tilsvarende → Nyere notiser.
 
 Nyhetsfanen skal være proporsjonal: en liten brann-, politi- eller driftsnotis skal ikke automatisk bli en Story eller del av hovedartikkelen.
+
+## Objects-supplementer
+
+Leksikon kan levere kunnskapsseksjoner til Objects/Gjenstander-popupen uten å overta canonical Objects-registeret.
+
+- `artifacts`, `objects` og object-like Leksikon-oppføringer kan vises som **Spor og objekter**;
+- `interpretation.what_to_notice` kan vises som **Legg merke til** når det handler om fysiske, observerbare spor;
+- et slikt supplement endrer ikke Objects-antallet med mindre elementet faktisk materialiseres som canonical Object etter Objects-kontrakten;
+- samme element skal dedupliseres mot canonical `place.objects` / `place.artifacts`;
+- teksten skal aldri konstrueres om til en falsk gjenstand for å fylle samlingen.
+
+Full presentasjonsgrense ligger i `data/places/README_place_rounds.md` og `docs/PLACE_POPUP_SYSTEM.md`.
 
 ## Lesespor
 
@@ -159,7 +183,7 @@ Datakildene beholdes under:
 - `data/leksikon/sprak/schema_v2.json`;
 - stedsspesifikke filer under `data/leksikon/sprak/places/`.
 
-Når et sted har minst én språkoppføring, fremhever `js/ui/place-language-layer.js` materialet med en valgfri, direkte **Språk**-fane i den horisontalt scrollbar fanestripen og en kompakt «Språk på stedet»-forhåndsvisning i Om. Tomme språkflater vises ikke.
+Når et sted har minst én språkoppføring eller en dokumentert atlasprofil etter Språkleksikon-kontrakten, fremhever `js/ui/place-language-layer.js` materialet med en valgfri, direkte **Språk**-fane i den horisontalt scrollbar fanestripen og en kompakt «Språk på stedet»-forhåndsvisning i Om. Tomme språkflater vises ikke.
 
 Språkleksikon er fortsatt ikke en PlaceCard-runding. Det er et kunnskapslag. En bruker kan eksplisitt samle enkeltoppføringer inn i den eksisterende Knowledge V2-butikken; runtime skal ikke opprette et parallelt dialekt-/språklager.
 
@@ -182,7 +206,7 @@ Leksikon-loaderen kan fortsatt ha legacy-kobling til `WK_BY_PLACE` under migreri
 - laste stedsspesifikt Språkleksikon;
 - støtte global Lesespor-flyt.
 
-`js/ui/place-popup-tabs.js` er den primære brukerrettede adapteren som leser Leksikon-data inn i stedspopupens grunnfaner. `js/ui/place-language-layer.js` er språkadapteren som fremhever Språkleksikonet når data finnes.
+`js/ui/place-popup-tabs.js` er den primære adapteren for de sju faste stedspopupfanene. `js/ui/place-popup-direct-tabs.js` ruter legacy staging til canonical eierflater, `js/ui/place-collection-knowledge-routing.js` kobler Objects-/People-supplementer inn i samlingspopupene, og `js/ui/place-language-layer.js` fremhever Språkleksikonet som valgfri Språk-fane når data finnes.
 
 Legacy Leksikon-hub skal beholdes midlertidig som compatibility-path mens andre kallere migreres. Nye UI-innganger skal ikke bygges mot den.
 
@@ -196,6 +220,7 @@ Ved nye eller reviderte Leksikon-data skal det fortsatt kontrolleres:
 - ingen duplikate leksikon-ID-er;
 - HTTPS for brukerrettede eksterne lenker;
 - tydelig skille mellom historie, nyhet/notis, objekt og språk;
+- riktig eierflate for object-spor, tolkning og språk;
 - ingen fiktive completeness-oppføringer.
 
 Språkdata følger i tillegg kvalitetskravene i `docs/SPRAKLEKSIKON.md`.
@@ -204,6 +229,7 @@ Språkdata følger i tillegg kvalitetskravene i `docs/SPRAKLEKSIKON.md`.
 
 - Ikke gjeninnfør Leksikon som PlaceCard-runding.
 - Ikke gjeninnfør Språkleksikon som egen PlaceCard-runding.
+- Ikke gjeninnfør `Mer`, «Annet» eller en serie faste direktefaner for Leksikonets tilleggslag.
 - Ikke opprett en separat dialektdatabase ved siden av `data/leksikon/sprak/`.
 - Ikke flytt alle Leksikon-records fysisk inn i place-filene.
 - Ikke dupliser canonical Stories i Leksikon for å fylle Fortellinger-fanen.
