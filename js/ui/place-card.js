@@ -1035,6 +1035,10 @@ const worksIcon           = document.getElementById("pcWorksIcon");
 const previousPlaceId = String(card.dataset.currentPlaceId || "").trim();
 const nextPlaceId = String(place.id || "").trim();
 const samePlace = previousPlaceId && previousPlaceId === nextPlaceId;
+if (!samePlace) {
+  const scrollBody = card.querySelector(".pc-body");
+  if (scrollBody instanceof HTMLElement) scrollBody.scrollTop = 0;
+}
 card.dataset.currentPlaceId = nextPlaceId;
 bindPlaceCardQuizFlip(frontCardFlipEl, quizCardImgEl);
   
