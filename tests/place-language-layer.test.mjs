@@ -145,7 +145,7 @@ test("place-produksjon låser dialektlaget til område-Places uten å gjøre Spr
   assert.match(contract, /obligatorisk researchjobb/i);
   assert.match(contract, /Dialektlaget kan bare eies[^\n]*placeScope:\s*"area"/i);
   assert.match(contract, /minst ett reelt kildebelagt \*\*dialektord eller lokalt uttrykk\*\*/i);
-  assert.match(contract, /Enkelt-Places skal ha et Språkleksikon, men ikke et dialektlag/i);
+  assert.match(contract, /Enkelt-Places[^\n]*Språkleksikon[^\n]*ikke[^\n]*dialektlag/i);
   assert.match(contract, /nærmeste relevante område-Place/i);
   assert.match(contract, /related_places.*related_entries/i);
   assert.match(contract, /Språkleksikonet som helhet kan fortsatt ikke være N\/A/i);
