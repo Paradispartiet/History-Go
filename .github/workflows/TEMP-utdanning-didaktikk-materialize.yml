@@ -22,11 +22,17 @@ jobs:
           git fetch origin main
           git merge-base --is-ancestor origin/main HEAD
       - name: Repair materializer emner write
-        shell: bash
         run: |
-          set -euo pipefail
-          sed -i 's/write(P\.emners,emners=emner)/write(P.emner,emner)/' scripts/materialize-utdanning-didactics-fulltext-v1.mjs
-          grep -F 'write(P.emner,emner)' scripts/materialize-utdanning-didactics-fulltext-v1.mjs
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file='scripts/materialize-utdanning-didactics-fulltext-v1.mjs';
+          const before=fs.readFileSync(file,'utf8');
+          const oldText='write(P.emner,emners=emner)';
+          if(!before.includes(oldText)) throw new Error(`Expected materializer typo not found: ${oldText}`);
+          const after=before.replace(oldText,'write(P.emner,emner)');
+          fs.writeFileSync(file,after);
+          if(!fs.readFileSync(file,'utf8').includes('write(P.emner,emner)')) throw new Error('Materializer repair did not persist');
+          NODE
       - name: Audit next source-first port
         run: node scripts/brief-utdanning-early-childhood-learning-sources-v1.mjs --write-report
       - name: Materialize Didaktikk 2 of 14
