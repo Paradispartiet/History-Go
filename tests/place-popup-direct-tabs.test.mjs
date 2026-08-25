@@ -19,7 +19,7 @@ test("Mer er bare et internt staging-panel", () => {
   assert.match(baseTabs, /\["more", "Mer"\]/, "legacy-hydratoren kan beholde staging-panelet");
   assert.match(baseTabs, /if \(id !== "more"\) tablist\.appendChild\(button\)/, "staging-panelet får aldri synlig fane");
   assert.match(css, /data-place-tab="more"[\s\S]*?display:none !important/, "CSS-fallback skjuler Mer");
-  assert.match(directTabs, /data-place-tab=\\?"\$\{MORE_ID\}\\?"|data-place-tab=\\?"more\\?"/);
+  assert.match(directTabs, /MORE_ID\s*=\s*"more"/);
   assert.match(directTabs, /morePanel\.remove\(\)/);
   assert.match(popupContract, /ingen brukerrettet [`*]*Mer[`*]*-fane/i);
 });
@@ -31,22 +31,32 @@ test("bare Språk er definert som valgfri direktefane", () => {
     assert.ok(directTabs.includes(`"${id}"`), `mangler eksplisitt opprydding av gammel direktefane ${id}`);
   }
   assert.match(directTabs, /ensureLanguageTab\(tablist, panelWrap\)/);
+  assert.match(directTabs, /installNavigationBridge\(tablist, panelWrap\)/);
+  assert.match(directTabs, /scrollIntoView/);
   assert.match(popupContract, /Språk[\s\S]*valgfri/i);
 });
 
 test("tidligere Mer-innhold rutes til canonical eierflater", () => {
   assert.match(directTabs, /heading === "spor og objekter" \|\| heading === "legg merke til"/);
-  assert.match(directTabs, /storeSupplement\(placeId, "objects", node\)/);
   assert.match(directTabs, /hg-place-relations-section/);
-  assert.match(directTabs, /storeSupplement\(placeId, "people", node\)/);
   assert.match(directTabs, /heading === "hvorfor det betyr noe"/);
   assert.match(directTabs, /heading === "motpunkter"/);
   assert.match(directTabs, /hg-place-knowledge-section/);
   assert.match(directTabs, /hg-place-observations-section/);
   assert.match(directTabs, /moveToAbout\(node, panelWrap\)/);
-  assert.match(ownershipRouting, /data-collection-supplement=\\?"objects\\?"/);
-  assert.match(ownershipRouting, /data-collection-supplement=\\?"people-relations\\?"/);
-  assert.match(ownershipRouting, /Ikke legg rene place→place-relasjoner i People/);
+  assert.match(ownershipRouting, /data-collection-supplement=\"objects\"/);
+  assert.match(ownershipRouting, /data-collection-supplement=\"people-relations\"/);
+  assert.match(ownershipRouting, /relationTouchesPerson/);
+  assert.match(ownershipRouting, /Rene place→place-relasjoner blir igjen hos Relaterte steder/);
+});
+
+test("eierflatrutingen leser canonical kilder i Objects og People", () => {
+  assert.match(ownershipRouting, /loadLeksikon/);
+  assert.match(ownershipRouting, /interpretation\.what_to_notice/);
+  assert.match(ownershipRouting, /global\.getRelationsForPlace/);
+  assert.match(ownershipRouting, /global\.RELATIONS/);
+  assert.match(ownershipRouting, /global\.renderRelationRow/);
+  assert.match(ownershipRouting, /\["objects", "people"\]\.includes\(kind\)/);
 });
 
 test("eierflatrutingen lastes sammen med PlaceCard og popup", () => {
@@ -69,5 +79,7 @@ test("place-checklisten beholder dialektkrav og eierflater", () => {
   assert.match(checklist, /lokale uttrykk/i);
   assert.match(checklist, /Språkleksikon[\s\S]*kildebelagt/i);
   assert.match(checklist, /skal ikke diktes|ikke dikt/i);
-  assert.match(checklist, /eierflat|Objects|People/i);
+  assert.match(checklist, /Objects-popupen/);
+  assert.match(checklist, /People-popupen/);
+  assert.match(checklist, /Relaterte steder/);
 });
