@@ -93,14 +93,16 @@ test("legacy-arrangementer blir ikke løftet som språkinnhold", () => {
 
 test("språkflaten lastes etter både Knowledge V2 og popup-loaderen", () => {
   const config = read("js/config.js");
+  const app = read("js/app.js");
   const knowledgeIndex = config.indexOf('"dist/web/knowledgeV2.js"');
-  const popupLoaderIndex = config.indexOf('"js/ui/place-card-status-surface.js"');
+  const popupLoaderIndex = app.indexOf('loadPlaceCardStatusSurface');
+  const appReadyIndex = app.indexOf('markAppReady();');
   const languageIndex = config.indexOf('"js/ui/place-language-layer.js"');
   const directTabsIndex = config.indexOf('"js/ui/place-popup-direct-tabs.js"');
   assert.ok(knowledgeIndex >= 0, "Knowledge V2 mangler i runtime-listen");
-  assert.ok(popupLoaderIndex >= 0, "PlaceCard popup-loader mangler i runtime-listen");
+  assert.ok(popupLoaderIndex >= 0, "PlaceCard popup-loader mangler i kritisk app-runtime");
+  assert.ok(popupLoaderIndex < appReadyIndex, "PlaceCard popup-loader må være klar før post-ready-kjeden");
   assert.ok(languageIndex > knowledgeIndex, "språkflaten må lastes etter Knowledge V2");
-  assert.ok(languageIndex > popupLoaderIndex, "språkflaten må lastes etter popup-tab-loaderen");
   assert.ok(directTabsIndex > languageIndex, "direktefane-adapteren må lastes etter språkadapteren");
 });
 

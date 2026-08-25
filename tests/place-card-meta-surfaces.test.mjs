@@ -6,6 +6,7 @@ import { JSDOM } from "jsdom";
 const epokeSource = fs.readFileSync("js/ui/place-card-epoke.js", "utf8");
 const statusSource = fs.readFileSync("js/ui/place-card-status-surface.js", "utf8");
 const appSource = fs.readFileSync("js/app.js", "utf8");
+const configSource = fs.readFileSync("js/config.js", "utf8");
 const indexSource = fs.readFileSync("index.html", "utf8");
 const okern = JSON.parse(fs.readFileSync("data/places/by/oslo/places/okern.json", "utf8"));
 
@@ -81,6 +82,8 @@ test("progress and metadata runtimes load before router and not post-ready", () 
   const statusAt = appSource.indexOf('loadPlaceCardStatusSurface');
   const routerAt = appSource.indexOf('loadAppRouter');
   assert.ok(readerAt > 0 && statusAt > readerAt && routerAt > statusAt);
+  assert.doesNotMatch(configSource, /"js\/progress\/profileProgressReader\.js"/);
+  assert.doesNotMatch(configSource, /"js\/ui\/place-card-status-surface\.js"/);
   assert.doesNotMatch(indexSource, /"js\/progress\/profileProgressReader\.js"/);
   assert.doesNotMatch(indexSource, /"js\/ui\/place-card-status-surface\.js"/);
 });

@@ -59,8 +59,6 @@ window.HG_NATURTRO_STYLE_ID = "streets-v4";
     "dist/web/knowledgeV2.js",
     "js/hgSocialGuards.js",
     "js/knowledgeMatch.js",
-    "js/progress/profileProgressReader.js",
-    "js/ui/place-card-status-surface.js",
     "js/ui/place-language-layer.js",
     "js/ui/sprakatlas-map-experience-v3.js",
     "js/ui/sprakatlas-collection-v4.js",
