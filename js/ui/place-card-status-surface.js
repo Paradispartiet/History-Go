@@ -171,7 +171,7 @@
   function currentOpenPlace() {
     const placeId = safeText(document.getElementById("placeCard")?.dataset?.currentPlaceId);
     if (!placeId || !Array.isArray(global.PLACES)) return null;
-    return global.PLACES.find((place) => safeText(place?.id || place?.placeId) === placeId) || null;
+    return global.PLACES.find((place) => safeText(place?.id) === placeId) || null;
   }
 
   function loadNearbyStatusSurface() {
