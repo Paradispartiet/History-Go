@@ -2,7 +2,7 @@
   "version": "1.9",
   "status": "canonical",
   "updatedAt": "2026-08-25",
-  "rule": "Én kategori har én runtime-id og én fag-id. Populærkultur brukes som tverrgående tagg og mediefaglig analysefelt, ikke som toppkategori. Canonical underkategorier kan styre stedstype, faglig spesialisering og presentasjon uten å opprette en ny toppkategori eller kartfarge.",
+  "rule": "Én kategori har én runtime-id og én fag-id. Populærkultur brukes som tverrgående tagg og mediefaglig analysefelt, ikke som toppkategori. Faglige canonicalSubcategories og stedlige canonicalPlaceSubcategories er separate kontrakter: stedsunderkategorier kan styre stedstype og presentasjon uten å opprette ny toppkategori, fag-id eller kartfarge.",
   "runtimeCategories": [
     "by",
     "historie",
@@ -117,19 +117,21 @@
     "sosial_laering": "Ikke canonical badge, runtimekategori eller fag. ID-en kan kun forekomme som historisk intern HG Social/Civication-namespace i legacy-innhold; den skal ikke registreres i data/badges/index.json eller brukes som kilde for nye jobbtilbud."
   },
   "canonicalSubcategories": {
-    "natur": [
-      { "id": "geografi", "label": "Geografi", "status": "expansion_planned" },
-      { "id": "miljo_gjenbruk", "label": "Miljø & gjenbruk", "status": "foundation_materialized", "fagverkChapterIds": ["miljopavirkning_forvaltning_regenerasjon", "sirkulaer_okonomi_avfall_ombruk"] }
-    ],
-    "litteratur": [
-      { "id": "sprak_lingvistikk", "label": "Språk & lingvistikk", "status": "expansion_planned" },
-      { "id": "lesekiosk", "label": "Lesekiosk", "status": "foundation_materialized", "fagverkChapterIds": ["lesekultur_bokdeling_offentlighet"] }
-    ],
+    "natur": [{ "id": "geografi", "label": "Geografi", "status": "expansion_planned" }],
+    "litteratur": [{ "id": "sprak_lingvistikk", "label": "Språk & lingvistikk", "status": "expansion_planned" }],
     "politikk": [
       { "id": "juss_rettsvitenskap", "label": "Juss & rettsvitenskap", "status": "expansion_planned" },
       { "id": "sosiologi_antropologi", "label": "Sosiologi & antropologi", "status": "expansion_planned" }
     ],
     "helse": [{ "id": "medisin_helsevitenskap", "label": "Medisin & helsevitenskap", "status": "foundation_materialized" }],
     "utdanning": [{ "id": "pedagogikk_utdanningsvitenskap", "label": "Pedagogikk & utdanningsvitenskap", "status": "foundation_materialized" }]
+  },
+  "canonicalPlaceSubcategories": {
+    "natur": [
+      { "id": "miljo_gjenbruk", "label": "Miljø & gjenbruk", "status": "foundation_materialized", "fagverkChapterIds": ["miljopavirkning_forvaltning_regenerasjon", "sirkulaer_okonomi_avfall_ombruk"] }
+    ],
+    "litteratur": [
+      { "id": "lesekiosk", "label": "Lesekiosk", "status": "foundation_materialized", "fagverkChapterIds": ["lesekultur_bokdeling_offentlighet"] }
+    ]
   }
 }
