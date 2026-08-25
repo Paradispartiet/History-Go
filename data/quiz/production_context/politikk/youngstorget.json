@@ -1,0 +1,1211 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "politikk",
+  "targetId": "youngstorget",
+  "profile": "rich_5x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1178,
+    "selection_sha256": "aeff983d43c61a1301da072f4ae4c0483f8927eb452ef759880f1dfe98e8ddcc",
+    "category_id": "politikk",
+    "target_id": "youngstorget"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/politikk/politikkpensum_canonical_v4_5.json",
+      "bytes": 106999,
+      "sha256": "391418e064d0d6c01e25c8ceb605fe1ae48d9fae3e9ccdd5e3091897e185a5a0",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+      "bytes": 1205851,
+      "sha256": "0711d942ab833490f4914d7ed472a99741021bb5fce76dfb90fea573794aaa1f",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+      "bytes": 1099481,
+      "sha256": "5a81d0d09ac89093705b6343f8de09d2565ca00e2086a354caa7f652f0ef63c7",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/politikk/methods_politikk_canonical_v4_5.json",
+      "bytes": 663993,
+      "sha256": "7bd3829f922e9e96d2e5cbe2cf3e901f80dea68b9c6215aa4a0eb2137125dc24",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/politikk/supersetQUIZMAL_politikk.json",
+      "bytes": 17236,
+      "sha256": "47609c9599cdffdf53702152ca3ebf071571cbfa131e1f9a89703964546476de",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 16882,
+      "sha256": "60804db1e587faae822930a800cfebac7966fa7e009778d46d94d1f28e02545e",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/politikk/youngstorget.json",
+      "bytes": 18636,
+      "sha256": "a440131aff9aba9bec1dfb89501d88e112ca8334d323983ba0f97d25b69c0cbb"
+    },
+    "target": {
+      "path": "data/places/politikk/oslo/places_politikk/youngstorget.json",
+      "bytes": 23025,
+      "sha256": "0dc5b97aa5225d7507d51f472d21d9659a417c9df274f4d68f9b87ace707ce5a"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1618,
+      "selection_sha256": "f553770844fe2c31187c6abb97984d6e2fa59aca9c231924291de03743a214b7"
+    },
+    "relations": [],
+    "stories": [
+      {
+        "path": "data/stories/places_by.json",
+        "matches": 1,
+        "selection_bytes": 191,
+        "selection_sha256": "0aced44882cce6c26071cc594b4bb245909dedf3913d18d091896f043730d915"
+      },
+      {
+        "path": "data/stories/stories_youngstorget.json",
+        "matches": 1,
+        "selection_bytes": 3450,
+        "selection_sha256": "8095964ae51a9d04fb367db5a949a73e11a6406612587726ab7f03f56df2a382"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/politikk/youngstorget_sets.json",
+  "source_registry": {
+    "oslo_kommune": {
+      "url": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/youngstorget/",
+      "source_type": "official_municipality",
+      "review_status": "reviewed",
+      "review_note": "Identitet, basar, kunst, fotoutstilling, tiltak og nåværende bruk."
+    },
+    "oslo_byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Youngstorget",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Avgrensning, navn, marked, fontene og 1996-omforming."
+    },
+    "arbark_rode_torg": {
+      "url": "https://www.arbark.no/eldok/Arbeiderhistorie1996_9.pdf",
+      "source_type": "archive_research",
+      "review_status": "reviewed",
+      "review_note": "Torget som arbeiderbevegelsens samlingsrom og dokumenterte massemøter."
+    },
+    "arbark_8timer": {
+      "url": "https://www.arbark.no/Utstilling/8timersdagen/8timersdagen_kap03.htm",
+      "source_type": "archive_exhibition",
+      "review_status": "reviewed",
+      "review_note": "1. mai 1890, rute og omtrent 4 000 deltakere."
+    },
+    "lo_historie": {
+      "url": "https://www.lo.no/nyhetsrommet/det-forste-skritt-til-frihet/",
+      "source_type": "primary_organization_history",
+      "review_status": "reviewed",
+      "review_note": "1. mai-historie, 3 600 deltakere og stopp ved Stortinget."
+    },
+    "oslo_museum_2026": {
+      "url": "https://www.oslomuseum.no/kvinnedagen/",
+      "source_type": "institutional_event",
+      "review_status": "reviewed",
+      "review_note": "Offisielt 8. mars-program på Youngstorget i 2026."
+    },
+    "lo_2026": {
+      "url": "https://www.lo.no/nyhetsrommet/1.-mai-2026",
+      "source_type": "primary_organization_event",
+      "review_status": "reviewed",
+      "review_note": "LOs hovedtale på Youngstorget 1. mai 2026."
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/politikk/youngstorget_sets.json",
+      "data/stories/stories_youngstorget.json",
+      "data/places/production/youngstorget.json"
+    ],
+    "active_before": {
+      "file": "data/quiz/politikk/youngstorget_sets.json",
+      "set_count": 1,
+      "question_count": 5,
+      "finding": "Fem gode kjerner fantes, men pakken manglet source brief, production_context, profilvalg og full 7-spørsmålsprogresjon."
+    },
+    "decisions": [
+      "Bevar temaene marked, basar, Pioneren, Fredsmonumentet og kontrasten til Stortinget i en ny kildebåret pakke.",
+      "Skriv alle spørsmål mot reviewede eksterne source-id-er og egne claim-id-er.",
+      "Hold teori og metode ute av de første 14 spørsmålene."
+    ],
+    "knowledge_migration": "Eksisterende fem kunnskapsforklaringer inngår redaksjonelt i ny pakke; canonical Knowledge-registre regenereres deterministisk etter materialisering."
+  },
+  "profile_decision": {
+    "profile": "rich",
+    "set_count": 5,
+    "questions_per_set": 7,
+    "justification": "Fem selvstendige kildebårne læringsjobber: identitet og marked, arbeiderbevegelse og 1890, synlige minnespor, fysisk omforming og dagens bruk, samt avsluttende offentlighets- og kildeanalyse."
+  },
+  "held_back_candidates": [
+    "Påstander om at et konkret arrangement eller en tale automatisk ga politisk gjennomslag.",
+    "Nabovirksomheter og organisasjoner som Brands uten own-place-eierskap og fullt verifisert logo/wordmark-proveniens.",
+    "People-koblinger basert på generell arbeiderbevegelse, sentrumstilknytning eller nærhet alene.",
+    "Eksakt deltakertall i 1890 som én ubestridt fasit; kildenes 3 600 og rundt 4 000 beholdes som intervall."
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 13,
+      "emner": 123,
+      "topic_hooks": 152,
+      "methods": 71
+    },
+    "candidate_emner": [
+      {
+        "id": "em_pol_arbeidsliv_kollektiv_kamp",
+        "title": "Arbeidsliv og kollektiv kamp",
+        "score": 125
+      },
+      {
+        "id": "em_pol_demonstrasjoner_protest",
+        "title": "Demonstrasjoner og protest",
+        "score": 125
+      },
+      {
+        "id": "em_pol_mediert_offentlighet",
+        "title": "Mediert politisk offentlighet",
+        "score": 125
+      },
+      {
+        "id": "em_pol_demokrati_representasjon",
+        "title": "Demokrati og representasjon",
+        "score": 25
+      },
+      {
+        "id": "em_pol_fordeling_ressurser",
+        "title": "Fordeling og ressurser",
+        "score": 25
+      },
+      {
+        "id": "em_pol_globalisering_gronn_omstilling",
+        "title": "Globalisering og grønn omstilling",
+        "score": 25
+      },
+      {
+        "id": "em_pol_ideologi_konfliktlinjer",
+        "title": "Ideologi og konfliktlinjer",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjoner_styring",
+        "title": "Institusjoner og styring",
+        "score": 25
+      },
+      {
+        "id": "em_pol_interessegrupper_organisasjoner",
+        "title": "Interessegrupper og organisasjoner",
+        "score": 25
+      },
+      {
+        "id": "em_pol_kampanje_deltakelse_ansvar",
+        "title": "Kampanje, deltakelse og ansvarliggjøring",
+        "score": 25
+      },
+      {
+        "id": "em_pol_legitimitet_tillit",
+        "title": "Legitimitet og tillit",
+        "score": 25
+      },
+      {
+        "id": "em_pol_lokaldemokrati",
+        "title": "Lokaldemokrati",
+        "score": 25
+      },
+      {
+        "id": "em_pol_majoritet_minoritet",
+        "title": "Majoritet og minoritet",
+        "score": 25
+      },
+      {
+        "id": "em_pol_makrookonomi_politisk_styring",
+        "title": "Makroøkonomi og politisk styring",
+        "score": 25
+      },
+      {
+        "id": "em_pol_makt_interesser",
+        "title": "Makt og interesser",
+        "score": 25
+      },
+      {
+        "id": "em_pol_maktens_geografi",
+        "title": "Maktens geografi",
+        "score": 25
+      },
+      {
+        "id": "em_pol_minnesteder_politisk_kamp",
+        "title": "Minnesteder og politisk kamp",
+        "score": 25
+      },
+      {
+        "id": "em_pol_norsk_politikk_korporatisme_trepart_interesser",
+        "title": "Korporatisme, trepartssamarbeid og organiserte interesser",
+        "score": 25
+      },
+      {
+        "id": "em_pol_norsk_politikk_partisystem_skillelinjer",
+        "title": "Norsk partisystem, organisasjon og skillelinjer",
+        "score": 25
+      },
+      {
+        "id": "em_pol_offentlighet_debatt",
+        "title": "Offentlighet og debatt",
+        "score": 25
+      },
+      {
+        "id": "em_pol_parlamentarisme_maktbalanse",
+        "title": "Parlamentarisme og maktbalanse",
+        "score": 25
+      },
+      {
+        "id": "em_pol_partier_bevegelser",
+        "title": "Partier og bevegelser",
+        "score": 25
+      },
+      {
+        "id": "em_pol_partisystemer",
+        "title": "Partisystemer og konfliktlinjer",
+        "score": 25
+      },
+      {
+        "id": "em_pol_polarisering_tillit",
+        "title": "Polarisering og tillit",
+        "score": 25
+      },
+      {
+        "id": "em_pol_regjeringsdannelse",
+        "title": "Regjeringsdannelse og koalisjoner",
+        "score": 25
+      },
+      {
+        "id": "em_pol_regulering_markedssvikt",
+        "title": "Regulering og markedssvikt",
+        "score": 25
+      },
+      {
+        "id": "em_pol_representasjon_ulikhet",
+        "title": "Representasjon og ulikhet",
+        "score": 25
+      },
+      {
+        "id": "em_pol_sivilsamfunn_organisering",
+        "title": "Sivilsamfunn og organisering",
+        "score": 25
+      },
+      {
+        "id": "em_pol_skatt_omfordeling_preferanser",
+        "title": "Skatt, omfordeling og preferanser",
+        "score": 25
+      },
+      {
+        "id": "em_pol_stat_marked_institusjoner",
+        "title": "Stat, marked og institusjoner",
+        "score": 25
+      },
+      {
+        "id": "em_pol_symbolsk_makt",
+        "title": "Symbolsk makt",
+        "score": 25
+      },
+      {
+        "id": "em_pol_valg_deltakelse",
+        "title": "Valg og deltakelse",
+        "score": 25
+      },
+      {
+        "id": "em_pol_valgsystemer",
+        "title": "Valgsystemer",
+        "score": 25
+      },
+      {
+        "id": "em_pol_velgeratferd",
+        "title": "Velgeratferd",
+        "score": 25
+      },
+      {
+        "id": "em_pol_ytringsfrihet",
+        "title": "Ytringsfrihet",
+        "score": 25
+      },
+      {
+        "id": "em_pol_teorifordypning_ideologiske_hovedtradisjoner",
+        "title": "Liberalisme, konservatisme og sosialisme",
+        "score": 5
+      },
+      {
+        "id": "em_pol_teorifordypning_sosialdemokrati_demokratisk_sosialisme",
+        "title": "Sosialdemokrati og demokratisk sosialisme",
+        "score": 5
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "arbeidslivspolitikk",
+        "title": "Arbeidslivspolitikk",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 33
+      },
+      {
+        "id": "demonstrasjoner",
+        "title": "Demonstrasjoner",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 33
+      },
+      {
+        "id": "konfliktens_rom",
+        "title": "Konfliktens rom",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 33
+      },
+      {
+        "id": "demokratiets_rom",
+        "title": "Demokratiets rom",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 23
+      },
+      {
+        "id": "globalisering_og_nasjonalt_handlingsrom",
+        "title": "Globalisering og nasjonalt handlingsrom",
+        "category_id": "politisk_okonomi_stat_marked",
+        "score": 23
+      },
+      {
+        "id": "gronn_omstilling_og_fordelingskonflikt",
+        "title": "Grønn omstilling og fordelingskonflikt",
+        "category_id": "politisk_okonomi_stat_marked",
+        "score": 23
+      },
+      {
+        "id": "ideologi",
+        "title": "Ideologi",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "interessegrupper",
+        "title": "Interessegrupper",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "kampanjer_medier_og_dagsorden",
+        "title": "Kampanjer, medier og dagsorden",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "kapital_arbeid_og_forhandlingsmakt",
+        "title": "Kapital, arbeid og forhandlingsmakt",
+        "category_id": "politisk_okonomi_stat_marked",
+        "score": 23
+      },
+      {
+        "id": "klasse_og_ulikhet",
+        "title": "Klasse og ulikhet",
+        "category_id": "fordeling_velferd_ulikhet",
+        "score": 23
+      },
+      {
+        "id": "makt_og_interesser",
+        "title": "Makt og interesser",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "minne_og_makt",
+        "title": "Minne og makt",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "partier_og_bevegelser",
+        "title": "Partier og bevegelser",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 23
+      },
+      {
+        "id": "partiorganisasjon_og_kandidatseleksjon",
+        "title": "Partiorganisasjon og kandidatseleksjon",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "partisystemer_og_konfliktlinjer",
+        "title": "Partisystemer og konfliktlinjer",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "polarisering",
+        "title": "Polarisering",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "politi_og_makt",
+        "title": "Politi og makt",
+        "category_id": "rett_lov_rettssikkerhet",
+        "score": 23
+      },
+      {
+        "id": "politisk_deltakelse_og_valgdeltakelse",
+        "title": "Politisk deltakelse og valgdeltakelse",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "politisk_teori_feminisme_politisk_likhet",
+        "title": "Feminisme og politisk likhet",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "politisk_teori_gronn_politisk_teori",
+        "title": "Grønn politisk teori",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "politisk_teori_ideologiske_hovedtradisjoner",
+        "title": "Liberalisme, konservatisme og sosialisme",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "politisk_teori_nasjonalisme_statsborgerskap",
+        "title": "Nasjonalisme og statsborgerskap",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "politisk_teori_sosialdemokrati_demokratisk_sosialisme",
+        "title": "Sosialdemokrati og demokratisk sosialisme",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "politisk_tillit_og_partilojalitet",
+        "title": "Politisk tillit og partilojalitet",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "populisme_og_anti_etablissement",
+        "title": "Populisme og anti-etablissement",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "regjeringsdannelse_og_koalisjoner",
+        "title": "Regjeringsdannelse og koalisjoner",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "regulering_og_markedssvikt",
+        "title": "Regulering og markedssvikt",
+        "category_id": "politisk_okonomi_stat_marked",
+        "score": 23
+      },
+      {
+        "id": "representasjon_og_ansvarliggjoring",
+        "title": "Representasjon og ansvarliggjøring",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "ressurser_rente_og_statskapasitet",
+        "title": "Ressurser, rente og statskapasitet",
+        "category_id": "politisk_okonomi_stat_marked",
+        "score": 23
+      },
+      {
+        "id": "sentralbank_finanspolitikk_og_uavhengighet",
+        "title": "Sentralbank, finanspolitikk og uavhengighet",
+        "category_id": "politisk_okonomi_stat_marked",
+        "score": 23
+      },
+      {
+        "id": "sivilsamfunn",
+        "title": "Sivilsamfunn",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "skatt_omfordeling_og_preferanser",
+        "title": "Skatt, omfordeling og preferanser",
+        "category_id": "politisk_okonomi_stat_marked",
+        "score": 23
+      },
+      {
+        "id": "stat_marked_og_institusjoner",
+        "title": "Stat, marked og institusjoner",
+        "category_id": "politisk_okonomi_stat_marked",
+        "score": 23
+      },
+      {
+        "id": "teknologi_plattformer_og_markedsmakt",
+        "title": "Teknologi, plattformer og markedsmakt",
+        "category_id": "politisk_okonomi_stat_marked",
+        "score": 23
+      },
+      {
+        "id": "ulikhet_og_politisk_makt",
+        "title": "Ulikhet og politisk makt",
+        "category_id": "politisk_okonomi_stat_marked",
+        "score": 23
+      },
+      {
+        "id": "valg_og_deltakelse",
+        "title": "Valg og deltakelse",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 23
+      },
+      {
+        "id": "valgsystemer_og_mandatfordeling",
+        "title": "Valgsystemer og mandatfordeling",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "velgeratferd_og_partivalg",
+        "title": "Velgeratferd og partivalg",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "miljopolitisk_konflikt",
+        "title": "Miljøpolitisk konflikt",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 10
+      },
+      {
+        "id": "offentlighet",
+        "title": "Offentlighet",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 10
+      },
+      {
+        "id": "norsk_politikk_korporatisme_trepart_interesser",
+        "title": "Korporatisme, trepartssamarbeid og organiserte interesser",
+        "category_id": "norsk_politikk_eos_flernivastyring",
+        "score": 3
+      },
+      {
+        "id": "norsk_politikk_partisystem_skillelinjer",
+        "title": "Norsk partisystem, organisasjon og skillelinjer",
+        "category_id": "norsk_politikk_eos_flernivastyring",
+        "score": 3
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "konflikt_makt_sivilsamfunn",
+      "demokrati_representasjon_offentlighet"
+    ],
+    "emne_ids": [
+      "em_pol_arbeidsliv_kollektiv_kamp",
+      "em_pol_demonstrasjoner_protest",
+      "em_pol_mediert_offentlighet"
+    ],
+    "topic_hook_ids": [
+      "offentlighet"
+    ],
+    "method_ids": [
+      "met_pol_offentlighetsanalyse",
+      "met_pol_dokumentanalyse"
+    ],
+    "thinker_ids": [
+      "jurgen_habermas",
+      "nancy_fraser",
+      "hannah_arendt"
+    ],
+    "works": []
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_youngstorget_quiz_1",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Torget ble anlagt i 1846.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_2",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Nytorvet var offisielt navn fra 1852 til 1951.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_3",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Området der torget ble anlagt hadde tilhørt Jørgen Young.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_4",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Torget var planlagt for landbruksvarer og ble lenge brukt til kveghandel.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_arbeidsliv_kollektiv_kamp"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_5",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Basaren fra 1870-årene er et fysisk spor etter markedsfunksjonen.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_arbeidsliv_kollektiv_kamp"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_6",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Torggata krysser den navngitte plassflaten.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_7",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Canonical identitet er selve torget, ikke nabobygg eller kryssende gater.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_8",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Demonstrasjonen gikk til Tullinløkka og stanset ved Stortinget.",
+      "source_ids": [
+        "lo_historie"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demonstrasjoner_protest"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_9",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Parolen krevde normalarbeidsdag på åtte timer.",
+      "source_ids": [
+        "arbark_8timer"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_arbeidsliv_kollektiv_kamp"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "LO oppgir 3 600, mens Arbark oppgir rundt 4 000; forskjellen beholdes synlig.",
+      "source_ids": [
+        "lo_historie"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demonstrasjoner_protest"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Arbark dokumenterer store massemøter på torget i 1920- og 1930-årene.",
+      "source_ids": [
+        "arbark_rode_torg"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demonstrasjoner_protest"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Torget utviklet seg til et tilbakevendende mobiliseringsrom.",
+      "source_ids": [
+        "arbark_rode_torg"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demonstrasjoner_protest"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Stoppet ved Stortinget viser forbindelsen mellom offentlig krav og parlamentarisk institusjon.",
+      "source_ids": [
+        "lo_historie"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Youngstorget er et mobiliseringsrom, ikke en lovgivende institusjon.",
+      "source_ids": [
+        "arbark_rode_torg"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_15",
+      "order": 15,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Per Palle Storm laget Pioneren.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_arbeidsliv_kollektiv_kamp"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_16",
+      "order": 16,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Pioneren ble avduket på Youngstorget i 1958.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_arbeidsliv_kollektiv_kamp"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_17",
+      "order": 17,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Monumentet ble reist gjennom LO og Nei til atomvåpen.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demonstrasjoner_protest"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_18",
+      "order": 18,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Pioneren gjør kollektivt arbeid og organisering synlig uten å være et personportrett.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_arbeidsliv_kollektiv_kamp"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_19",
+      "order": 19,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Monumentet føyer fredsaktivisme til torgets protesthistorie.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demonstrasjoner_protest"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_20",
+      "order": 20,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Den permanente utstillingen lar historiske funksjoner leses i dagens plassrom.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_21",
+      "order": 21,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Utstillingen består av 24 historiske fotografier.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_22",
+      "order": 22,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Torget åpnet igjen i 1996 med endret trafikkmønster.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_23",
+      "order": 23,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "En ny avstøpning av den historiske fontenen kom på plass.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_24",
+      "order": 24,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Kommunen beskriver en blanding av markeringer, torghandel, servering, kultur og arrangementer.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_25",
+      "order": 25,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Bygningen og fontenen gir faste ankre, mens bruken av plassflaten er tydelig forskjellig.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_26",
+      "order": 26,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Visuell endring er dokumentert, men årsaksforklaringer krever egne kilder.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_27",
+      "order": 27,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Kommunen har arbeidet med regler og tiltak som balanserer daglig bruk og store arrangementer.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_28",
+      "order": 28,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "De daterte hendelsene dokumenterer fortsatt mobiliseringsbruk uten å gjøre hvert program permanent.",
+      "source_ids": [
+        "lo_2026"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_demonstrasjoner_protest"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_29",
+      "order": 29,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Offentlighetsanalyse skiller synlighet, adgang, dagsorden og mulig innflytelse.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet",
+      "method_id": "met_pol_offentlighetsanalyse",
+      "topic_hook_id": "offentlighet",
+      "thinker_id": "jurgen_habermas"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_30",
+      "order": 30,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Offentlig begrunnelse viser hvordan et synlig krav søker gyldighet og innflytelse.",
+      "source_ids": [
+        "lo_2026"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet",
+      "method_id": "met_pol_offentlighetsanalyse",
+      "topic_hook_id": "offentlighet",
+      "thinker_id": "jurgen_habermas"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_31",
+      "order": 31,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Motoffentligheter gjør ulik adgang og deltakelsesparitet til konkrete spørsmål.",
+      "source_ids": [
+        "arbark_rode_torg"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet",
+      "method_id": "met_pol_offentlighetsanalyse",
+      "topic_hook_id": "offentlighet",
+      "thinker_id": "nancy_fraser"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_32",
+      "order": 32,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Torget kan fungere som fremtredelsesrom, men synlighet er fortsatt ikke det samme som beslutningsmakt.",
+      "source_ids": [
+        "arbark_rode_torg"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet",
+      "method_id": "met_pol_offentlighetsanalyse",
+      "topic_hook_id": "offentlighet",
+      "thinker_id": "hannah_arendt"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_33",
+      "order": 33,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Youngstorget dokumenterer synlighet og mobilisering, mens gjennomslag må undersøkes i videre prosesser.",
+      "source_ids": [
+        "lo_historie"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet",
+      "method_id": "met_pol_offentlighetsanalyse",
+      "topic_hook_id": "offentlighet",
+      "thinker_id": "nancy_fraser"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_34",
+      "order": 34,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Stedsobservasjon viser bruk og form; dokumenter viser beslutninger, regler og aktørenes begrunnelser.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet",
+      "method_id": "met_pol_dokumentanalyse",
+      "topic_hook_id": "offentlighet",
+      "thinker_id": "jurgen_habermas"
+    },
+    {
+      "claim_id": "claim_youngstorget_quiz_35",
+      "order": 35,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kilder støtter sted, hendelser og bruk; virkning og representativitet krever egen evidens.",
+      "source_ids": [
+        "arbark_rode_torg"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet",
+      "method_id": "met_pol_dokumentanalyse",
+      "topic_hook_id": "offentlighet",
+      "thinker_id": "hannah_arendt"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "story",
+      "id": "youngstorget",
+      "source_file": "data/stories/places_by.json",
+      "summary": "Youngstorget"
+    },
+    {
+      "type": "story",
+      "id": "st_youngstorget_mayday",
+      "source_file": "data/stories/stories_youngstorget.json",
+      "summary": "1. mai 1890 gikk flere tusen arbeidere fra Youngstorget gjennom sentrum til Stortinget med kravet om lovfestet åttetimersdag, før toget fortsatte til Tullinløkka. Konflikten om arbeidstid ble dermed båret fra et offentlig byrom til den formelle politiske institusjonen."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "politikk_youngstorget_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_youngstorget_quiz_1",
+        "claim_youngstorget_quiz_2",
+        "claim_youngstorget_quiz_3",
+        "claim_youngstorget_quiz_4",
+        "claim_youngstorget_quiz_5",
+        "claim_youngstorget_quiz_6",
+        "claim_youngstorget_quiz_7"
+      ]
+    },
+    {
+      "set_id": "politikk_youngstorget_set_2",
+      "order": 2,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_youngstorget_quiz_8",
+        "claim_youngstorget_quiz_9",
+        "claim_youngstorget_quiz_10",
+        "claim_youngstorget_quiz_11",
+        "claim_youngstorget_quiz_12",
+        "claim_youngstorget_quiz_13",
+        "claim_youngstorget_quiz_14"
+      ]
+    },
+    {
+      "set_id": "politikk_youngstorget_set_3",
+      "order": 3,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_youngstorget_quiz_15",
+        "claim_youngstorget_quiz_16",
+        "claim_youngstorget_quiz_17",
+        "claim_youngstorget_quiz_18",
+        "claim_youngstorget_quiz_19",
+        "claim_youngstorget_quiz_20",
+        "claim_youngstorget_quiz_21"
+      ]
+    },
+    {
+      "set_id": "politikk_youngstorget_set_4",
+      "order": 4,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_youngstorget_quiz_22",
+        "claim_youngstorget_quiz_23",
+        "claim_youngstorget_quiz_24",
+        "claim_youngstorget_quiz_25",
+        "claim_youngstorget_quiz_26",
+        "claim_youngstorget_quiz_27",
+        "claim_youngstorget_quiz_28"
+      ]
+    },
+    {
+      "set_id": "politikk_youngstorget_set_5",
+      "order": 5,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_youngstorget_quiz_29",
+        "claim_youngstorget_quiz_30",
+        "claim_youngstorget_quiz_31",
+        "claim_youngstorget_quiz_32",
+        "claim_youngstorget_quiz_33",
+        "claim_youngstorget_quiz_34",
+        "claim_youngstorget_quiz_35"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 35,
+    "counts": {
+      "fact": 19,
+      "context": 9,
+      "concept_theory": 7
+    },
+    "ratios": {
+      "fact": 0.543,
+      "context": 0.257,
+      "concept_theory": 0.2
+    }
+  }
+}

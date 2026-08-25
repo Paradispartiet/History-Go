@@ -36,7 +36,7 @@ assert(guardJs.includes('kind: "nature"'), 'Popupen skal beholde canonical natur
 assert(guardJs.includes('new MutationObserver(() => hideInlineRoundLists())'), 'Senere DOM-oppdateringer skal ikke lekke rundingsinnhold under stedskortet');
 
 assert(statusSurfaceJs.includes('function loadRoundContentGuard()'), 'PlaceCard-bootstrap skal ha egen loader for rundingsvakten');
-assert(statusSurfaceJs.includes('script.src = "js/ui/place-card-round-content-guard.js"'), 'PlaceCard-bootstrap skal laste rundingsvakten');
+assert(/script\.src\s*=\s*["']js\/ui\/place-card-round-content-guard\.js["']/.test(statusSurfaceJs), 'PlaceCard-bootstrap skal laste rundingsvakten');
 assert(statusSurfaceJs.includes('global.__HG_PLACE_CARD_ROUND_CONTENT_GUARD_REQUESTED__'), 'Loaderen skal hindre dobbel lasting av rundingsvakten');
 assert(statusSurfaceJs.includes('loadRoundContentGuard();'), 'Rundingsvakten skal startes når PlaceCard-statusflaten lastes');
 

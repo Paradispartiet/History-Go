@@ -1,0 +1,119 @@
+{
+  "schema": "history_go_place_phase24_audit_v1",
+  "place_id": "youngstorget",
+  "reviewed_at": "2026-08-25",
+  "authoritative_contracts": [
+    "HG Data/Kilder/PLACE_PRODUCTION_CHECKLIST (2).md",
+    "HG Data/Kilder/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1 (2).md"
+  ],
+  "overall_status": "ready_to_merge",
+  "scope": {
+    "canonical": "the named public square itself from 1846 onward",
+    "excluded_as_own_content": [
+      "torggata",
+      "storgata",
+      "folkets_hus_oslo",
+      "folketeateret",
+      "mollergata_19"
+    ]
+  },
+  "phase_status": {
+    "7D_before_after": "pass",
+    "7E_news": "pass",
+    "7F_reading_trails": "pass",
+    "7G_sources": "pass",
+    "7H_language_and_interpretation": "pass",
+    "8_place_card": "pass",
+    "9_onsite": "pass",
+    "10_quiz": "pass",
+    "11_observer_note_route": "pass_with_route_na",
+    "12_people": "pass",
+    "13_brands": "pass_with_honest_empty_state",
+    "14_discovery_relations_i18n": "pass",
+    "15_physical_visit": "pass",
+    "16_favorites_progress": "pass",
+    "17_profile_unlock": "pass",
+    "18_wonderkammer": "not_applicable_no_new_content",
+    "19_images": "pass",
+    "20_data_qa": "pass_local_and_ci",
+    "21_manual_ui_qa": "pass_desktop_cloud_and_mobile_ci",
+    "22_content_qa": "pass_manual_and_automated",
+    "23_ci": "pass_62_of_62",
+    "24_one_place_gate": "ready_to_merge"
+  },
+  "place_card": {
+    "profile": "history_go_place_card_profile_v2",
+    "collection_ids": ["people", "objects", "brands", "related"],
+    "people_count": 4,
+    "object_count": 4,
+    "brand_state": "honest_empty_after_candidate_and_logo_audit",
+    "related_place_count": 5,
+    "badges_separate": true,
+    "quiz_required_and_prominent": true,
+    "images_used_as_collection": false
+  },
+  "quiz": {
+    "profile": "rich_5x7",
+    "sets": 5,
+    "questions": 35,
+    "families": {"fact": 19, "context": 9, "concept_theory": 7},
+    "normal_opening_questions": 14,
+    "knowledge_contract_errors": 0,
+    "youngstorget_knowledge_warnings": 0
+  },
+  "local_verification": {
+    "relevant_tests": {"passed": 61, "failed": 0, "skipped_browser": 1},
+    "place_health_errors": 0,
+    "people_invalid_refs": 0,
+    "stories_integrity": "pass",
+    "quiz_pipeline": "pass",
+    "knowledge_canonical": "pass",
+    "place_open_payloads": "synchronized"
+  },
+  "ui_verification": {
+    "desktop_cloud": {
+      "viewport": "1363x936",
+      "place_card_collections": 4,
+      "badges_separate": true,
+      "quiz_prominent": true,
+      "horizontal_overflow": false,
+      "popup_tabs_reviewed": ["om", "historie", "fortellinger", "for_etter", "nyheter", "kilder"]
+    },
+    "responsive_ci": {
+      "viewports": ["1100x760", "390x844"],
+      "test": "tests/youngstorget-full-completion.test.mjs",
+      "result": "pass",
+      "skipped": 0
+    }
+  },
+  "ci_verification": {
+    "head_sha": "6ae5dcd0f296828d4540dbde46bb731989bd0834",
+    "workflow_runs": 62,
+    "successful": 62,
+    "failed": 0,
+    "repository_hygiene": "pass",
+    "data_checks": "pass"
+  },
+  "baseline_failures_outside_change_scope": [
+    {
+      "test": "tests/historical-routes.test.js",
+      "reason": "origin/main data already contains an unresolved middelalder_oslo route stop",
+      "changed_by_delivery": false
+    }
+  ],
+  "quality_score": {
+    "correctness_and_evidence": {"score": 5, "evidence": "Canonical scope, 12 inspectable source links, claim-owned quiz and licensed image provenance were reviewed end to end."},
+    "coverage_and_completion": {"score": 5, "evidence": "Phases 7D-24 are covered; all four PlaceCard surfaces, popup layers, quiz, translations, routes/relations and production packages are present or honestly N/A."},
+    "editorial_quality": {"score": 5, "evidence": "Place-specific chronology, stories, news, language and interpretation were manually reviewed; neighbor content and generic proxy actors were removed."},
+    "technical_integrity": {"score": 5, "evidence": "61 relevant local tests passed; all 62 PR workflow runs passed; desktop and 390x844 responsive regressions passed with zero skips in CI."},
+    "safety_and_responsibility": {"score": 4, "evidence": "Image rights, source limits, uncertain causal claims and honest empty states are explicit; the domain has no additional high-risk safety surface."},
+    "maintainability_and_auditability": {"score": 5, "evidence": "Deterministic generator, canonical IDs, production reports, source briefs, registry entry and permanent regression test make the delivery reproducible and reviewable."},
+    "total": 29,
+    "maximum": 30,
+    "classification": "high_quality",
+    "critical_findings": 0,
+    "unresolved_blockers": 0
+  },
+  "pull_request": "https://github.com/Paradispartiet/History-Go/pull/5316",
+  "merge_commit": null
+}
