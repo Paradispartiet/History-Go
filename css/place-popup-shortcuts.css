@@ -11,6 +11,50 @@
   padding:2px 2px 8px;
 }
 
+#placeCard #pcMeta{
+  display:grid;
+  grid-template-columns:minmax(0,.9fr) minmax(0,1.25fr) minmax(0,1.1fr);
+  align-items:center;
+  gap:3px;
+  width:100%;
+  margin:0 0 5px;
+  font-size:clamp(8px,1vw,11px);
+  line-height:1;
+}
+
+#placeCard #pcMeta > *{
+  min-width:0;
+  max-width:100%;
+  margin:0 !important;
+  padding:3px 6px;
+  border-radius:999px;
+  box-sizing:border-box;
+  white-space:nowrap !important;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  letter-spacing:.02em;
+  line-height:1;
+}
+
+#placeCard #pcMeta > .pc-epoke{
+  flex-basis:auto;
+  margin:0 !important;
+  padding:3px 6px;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  font-size:inherit;
+  line-height:1;
+  font-weight:600;
+  color:rgba(255,255,255,.76);
+}
+
+#placeCard #pcMeta > .pc-progress-status-line{
+  font-size:inherit;
+  line-height:1;
+  font-weight:700;
+}
+
 #placeCard .pc-title-row{
   align-items:center;
 }
@@ -163,6 +207,16 @@
     width:calc(100% - 12px);
     margin:6px 6px 2px;
     padding:2px 2px 6px;
+  }
+  #placeCard #pcMeta{
+    grid-template-columns:minmax(0,.9fr) minmax(0,1.2fr) minmax(0,1fr);
+    gap:2px;
+    margin-bottom:4px;
+    font-size:8px;
+  }
+  #placeCard #pcMeta > *,
+  #placeCard #pcMeta > .pc-epoke{
+    padding:2px 4px;
   }
   #placeCard .pc-title-row .pc-title-badge{
     flex-basis:48px;
