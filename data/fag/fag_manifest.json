@@ -405,7 +405,30 @@
     "quizPackageSchema": "../quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json",
     "subjectPathwaySchema": "../quiz/regler/QUIZ_SUBJECT_PATHWAY_PACKAGE_SCHEMA_V1.json",
     "subjectPathwayPackage": "../quiz/subkultur/subkultur_subject_pathways_v1.json",
-    "runtimeManifest": "subkultur/subkultur_runtime_manifest.json"
+    "runtimeManifest": "subkultur/subkultur_runtime_manifest.json",
+    "quizProduction": {
+      "status": "pilot",
+      "required_inputs": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods",
+        "supersetQuizMal",
+        "quizStandard",
+        "quizQuestionSchema"
+      ],
+      "context_builder": "scripts/build-quiz-production-context.mjs",
+      "profile_system": "adaptive_relative_superset",
+      "package_schema": "quizPackageSchema",
+      "context_artifact_root": "data/quiz/production_context",
+      "targets": {
+        "brugata_storgata_rusmiljo": {
+          "source_brief": "../quiz/production_briefs/subkultur/brugata_storgata_rusmiljo.json",
+          "context_artifact": "../quiz/production_context/subkultur/brugata_storgata_rusmiljo.json",
+          "quiz_file": "../quiz/subkultur/brugata_storgata_rusmiljo_sets.json"
+        }
+      }
+    }
   },
   "vitenskap": {
     "pensum": "vitenskap/vitenskappensum_canonical_v4_6.json",
