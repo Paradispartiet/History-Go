@@ -63,3 +63,14 @@ test("source registry and translations close the phase 4-7 gates", () => {
     assert.ok(translation.desc.length > 100 && translation.popupDesc.length > 400);
   }
 });
+
+test("canonical description has a current v4.2 claim packet", () => {
+  const packet = read("data/places/production/olaf_ryes_plass.json");
+  assert.equal(packet.status, "ready_v4_2");
+  assert.equal(packet.placeFile, "data/places/by/oslo/places/olaf_ryes_plass.json");
+  assert.equal(packet.claims.length, 12);
+  assert.deepEqual(packet.completion.claimsVerified, { verified: 12, total: 12 });
+  assert.equal(packet.sentenceCoverage.desc.length, 2);
+  assert.equal(packet.sentenceCoverage.popupDesc.length, 19);
+  assert.equal(packet.quizReadiness.questions.length, 8);
+});

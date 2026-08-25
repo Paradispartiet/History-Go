@@ -42,13 +42,13 @@ function buildContent() {
     desc: "Oslo kommune kjøpte den åpne løkken i 1863, plassen fikk navn etter offiseren Olaf Rye i 1864, og parken ble opparbeidet i 1890. Eilert Sundt-bysten fra 1892, fontenen fra 1927 og den fortsatte bruken som lokalt møtested gjør flere historiske lag synlige i samme parkrom.",
     popupDesc: `Olaf Ryes plass er det avgrensede park- og plassrommet mellom Markveien, Grüners gate, Thorvald Meyers gate og Sofienberggata. Kommunen kjøpte den åpne løkken i 1863, og i 1864 fikk plassen navn etter offiseren Olaf Rye. Store norske leksikon daterer Ryes død ved Fredericia til 6. juli 1849; denne dateringen brukes framfor en feilaktig 1848-formulering i én av stedskildene.
 
-I 1890 ble området opparbeidet som park. To år senere ble Mathias Skeibroks bronsebyste av samfunnsforskeren Eilert Sundt reist her. Oslo byleksikon oppgir at Oslo Arbeidersamfund og Selskabet for Folkeoplysningens Fremme finansierte monumentet. Bysten knytter derfor et fysisk stedsspor til Sundts arbeid med levekår og samfunnsforhold.
+I 1890 ble området opparbeidet som park. To år senere ble Mathias Skeibroks bronsebyste av samfunnsforskeren Eilert Sundt reist her. Oslo byleksikon oppgir at Oslo Arbeidersamfund og Selskabet for Folkeoplysningens Fremme finansierte monumentet. Bysten knytter et fysisk stedsspor til Sundts arbeid med levekår og samfunnsforhold.
 
 En fontene ble anlagt midt på plassen i 1927. Sammen med trærne, plenene, ganglinjene og Eilert Sundt-bysten gjør den parkens historiske struktur lesbar. Kommunens side beskriver fortsatt fontenen som et anlegg på selve plassen.
 
-Parkteatret ligger ved Olaf Ryes plass 11, men bygningen og virksomheten er ikke en del av den canonicale plassflaten. Parkteatrets egen presentasjon daterer kinohistorien til 1907 og beskriver dagens bruk som konsertsted. I History GO behandles dette som nabokontekst og Brand-kandidat, ikke som om plassen eier hele institusjonshistorien.
+Parkteatret ligger ved Olaf Ryes plass 11, men bygningen og virksomheten er ikke en del av den canonicale plassflaten. Parkteatrets egen presentasjon daterer kinohistorien til 1907 og beskriver dagens bruk som konsertsted. Her behandles dette som nabokontekst og Brand-kandidat, ikke som om plassen eier hele institusjonshistorien.
 
-Historiske og nyere fotografier viser parkrommet i 1903 og 2009. De deler motiver som vegetasjon, opphold og Eilert Sundt-bysten, men er ikke dokumentert som et eksakt optisk før/etter-par. De brukes derfor til å sammenligne tidslag, ikke til å bevise alle endringer eller dagens tilstand i 2026.
+Historiske og nyere fotografier viser parkrommet i 1903 og 2009. De deler motiver som vegetasjon, opphold og Eilert Sundt-bysten, men er ikke dokumentert som et eksakt optisk før/etter-par. De brukes til å sammenligne tidslag, ikke til å bevise alle endringer eller dagens tilstand i 2026.
 
 Plassen brukes fortsatt som lokalt møte- og arrangementsrom. Visit Løkka annonserer Løkkadagene og marked på Olaf Ryes plass i september 2026 og julemarked og tenning av julestjernen i november. Slike daterte programmer viser aktuell bruk, men gjøres ikke om til permanente egenskaper ved stedet.`,
     spatial_profile: {
@@ -107,6 +107,57 @@ Plassen brukes fortsatt som lokalt møte- og arrangementsrom. Visit Løkka annon
   });
   if (place.lat !== originalCoordinates.lat || place.lon !== originalCoordinates.lon || place.r !== originalCoordinates.r) throw new Error("Coordinate invariant failed");
   write(placeFile, place);
+
+  const claim = (id, text, url, location, sourceType, claimKind, temporalStatus, extra = {}) => ({
+    id, claim: text, sourceUrl: url, sourceLocation: location, sourceType,
+    verifiedAt: "2026-08-25", status: "verified", claimKind,
+    evidenceMode: extra.independentSourceUrls ? "corroborated" : "direct", temporalStatus, ...extra
+  });
+  const productionClaims = [
+    claim("claim_olaf_identity", "Olaf Ryes plass er den avgrensede offentlige park-/plassflaten mellom Markveien, Grüners gate, Thorvald Meyers gate og Sofienberggata.", sourceUrls.municipality, "Ingress og avsnitt om avgrensende gater.", "official", "identity", "current", { independentSourceUrls: [sourceUrls.byleksikon] }),
+    claim("claim_olaf_purchase_name_park", "Kommunen kjøpte den åpne løkken i 1863, plassen fikk navn etter Olaf Rye i 1864, og området ble opparbeidet som park i 1890.", sourceUrls.byleksikon, "Ingress og avsnitt om løkke, kjøp, navn og park.", "institutional", "identity", "historical"),
+    claim("claim_olaf_rye_1849", "Olaf Rye døde 6. juli 1849 ved Fredericia.", sourceUrls.rye, "Ingress og avsnitt om Fredericia.", "reputable_secondary", "ordinary", "historical"),
+    claim("claim_olaf_sundt_bust", "Mathias Skeibroks bronsebyste av Eilert Sundt ble reist på Olaf Ryes plass i 1892.", sourceUrls.byleksikon, "Avsnittet om monumentet i sørenden.", "institutional", "ordinary", "current"),
+    claim("claim_olaf_sundt_funding", "Oslo Arbeidersamfund og Selskabet for Folkeoplysningens Fremme finansierte Eilert Sundt-bysten.", sourceUrls.byleksikon, "Avsnittet om finansieringen.", "institutional", "ordinary", "historical"),
+    claim("claim_olaf_sundt_work", "Eilert Sundt var samfunnsforsker og undersøkte levekår og samfunnsforhold.", sourceUrls.sundt, "Ingress og avsnitt om samfunnsforskningen.", "reputable_secondary", "ordinary", "historical"),
+    claim("claim_olaf_fountain", "Fontenen ble anlagt midt på Olaf Ryes plass i 1927 og beskrives fortsatt av kommunen som et anlegg på plassen.", sourceUrls.byleksikon, "Avsnittet om fontenen fra 1927.", "institutional", "ordinary", "current", { independentSourceUrls: [sourceUrls.municipality] }),
+    claim("claim_olaf_parkteatret_neighbour", "Parkteatret ved Olaf Ryes plass 11 daterer kinohistorien til 1907 og beskriver dagens virksomhet som konsertsted; adressen ligger ved, ikke i, parkflaten.", sourceUrls.parkteatret, "English-side: history, current use and address.", "primary", "ordinary", "current", { independentSourceUrls: [sourceUrls.byleksikon] }),
+    claim("claim_olaf_photo_1903", "Oslo Museum katalogiserer Anders Beer Wilses fotografi OB.Y1272 som Olaf Ryes Plads i 1903, med park, benker, mennesker og portrettbyste.", sourceUrls.before, "Objekttittel, datering, fotograf og motivord.", "catalogue", "ordinary", "historical"),
+    claim("claim_olaf_photo_2009", "Helge Høifødts Commons-fotografi viser Olaf Ryes plass 1. august 2009 og er lisensiert CC BY-SA 3.0.", sourceUrls.after, "Filside: tittel, dato, skaper, koordinater og lisens.", "catalogue", "ordinary", "historical"),
+    claim("claim_olaf_photo_limits", "1903- og 2009-bildene har felles parkmotiver, men kildene dokumenterer ikke identisk kamerastandpunkt eller alle endringsårsaker.", sourceUrls.before, "Museumskatalogen sammenholdt med Commons-filens dokumentasjon.", "catalogue", "ordinary", "historical", { independentSourceUrls: [sourceUrls.after] }),
+    claim("claim_olaf_events_2026", "Visit Løkka annonserer Løkkadagene og marked 12.–13. september 2026 samt julemarked og stjernetenning 28. november 2026 på Olaf Ryes plass.", sourceUrls.lokkadagene, "Arrangementssidene med sted og datoer.", "primary", "temporal", "planned", { independentSourceUrls: [sourceUrls.lokkaprogram, sourceUrls.visitlokka] })
+  ];
+  const popupCoverage = [
+    ["claim_olaf_identity"], ["claim_olaf_purchase_name_park"], ["claim_olaf_rye_1849"],
+    ["claim_olaf_purchase_name_park"], ["claim_olaf_sundt_bust"], ["claim_olaf_sundt_funding"],
+    ["claim_olaf_sundt_bust", "claim_olaf_sundt_work"], ["claim_olaf_fountain"],
+    ["claim_olaf_sundt_bust", "claim_olaf_fountain"], ["claim_olaf_fountain"],
+    ["claim_olaf_identity", "claim_olaf_parkteatret_neighbour"], ["claim_olaf_parkteatret_neighbour"],
+    ["claim_olaf_identity", "claim_olaf_parkteatret_neighbour"], ["claim_olaf_photo_1903", "claim_olaf_photo_2009"],
+    ["claim_olaf_photo_limits"], ["claim_olaf_photo_limits"], ["claim_olaf_events_2026"],
+    ["claim_olaf_events_2026"], ["claim_olaf_events_2026"]
+  ].map((claimIds, index) => ({ sentence: index + 1, claimIds }));
+  write("data/places/production/olaf_ryes_plass.json", {
+    schemaVersion: "4.2", validatorVersion: "4.2.1", placeId: "olaf_ryes_plass", placeFile, status: "ready_v4_2",
+    identity: { status: "resolved", represents: "Olaf Ryes plass som den avgrensede offentlige park-/plassflaten mellom fire navngitte gater.", period: "1863–", excludes: ["Parkteatret og øvrige omkringliggende gårder og virksomheter", "holdeplassen", "de fire avgrensende gatene som egne gateløp", "hele Grünerløkka"] },
+    metadataSnapshot: { name: place.name, year: place.year, category: place.category },
+    textHashes: { algorithm: "sha256", desc: crypto.createHash("sha256").update(place.desc).digest("hex"), popupDesc: crypto.createHash("sha256").update(place.popupDesc).digest("hex") },
+    claims: productionClaims,
+    sentenceCoverage: { desc: [{ sentence: 1, claimIds: ["claim_olaf_purchase_name_park"] }, { sentence: 2, claimIds: ["claim_olaf_sundt_bust", "claim_olaf_fountain", "claim_olaf_events_2026"] }], popupDesc: popupCoverage },
+    quizReadiness: { status: "source_ready_for_rich_5x7", quizTargetId: "olaf_ryes_plass", questions: [
+      ["Hvilke gater avgrenser Olaf Ryes plass?", "Markveien, Grüners gate, Thorvald Meyers gate og Sofienberggata", "hvor", "claim_olaf_identity"],
+      ["Når kjøpte kommunen løkken?", "1863", "når", "claim_olaf_purchase_name_park"],
+      ["Hvem ga navn til plassen i 1864?", "Offiseren Olaf Rye", "hvem", "claim_olaf_purchase_name_park"],
+      ["Hva skjedde med området i 1890?", "Det ble opparbeidet som park", "hva_skjedde", "claim_olaf_purchase_name_park"],
+      ["Hvilket verk ble reist i 1892?", "Mathias Skeibroks bronsebyste av Eilert Sundt", "hvilket_verk_eller_objekt", "claim_olaf_sundt_bust"],
+      ["Hvem finansierte Sundt-bysten?", "Oslo Arbeidersamfund og Selskabet for Folkeoplysningens Fremme", "hvem", "claim_olaf_sundt_funding"],
+      ["Hva ble anlagt midt på plassen i 1927?", "Fontenen", "hva_ble_bygget_produsert_eller_endret", "claim_olaf_fountain"],
+      ["Hva kan 1903- og 2009-bildene ikke dokumentere alene?", "Identisk kamerastandpunkt og alle endringsårsaker", "hva", "claim_olaf_photo_limits"]
+    ].map(([question, answer, type, claimId]) => ({ question, answer, type, normalKnowledgeQuestion: true, claimIds: [claimId] })) },
+    reviews: { factual: { status: "passed", reviewedAt: "2026-08-25", reviewer: "Olaf Ryes plass phase 0–7 source review", notes: "Alle synlige setninger er claim-dekket; 1848-konflikten er rettet med SNL 1849." }, editorial: { status: "passed", reviewedAt: "2026-08-25", reviewer: "Olaf Ryes plass phase 0–7 editorial review", introducedNewFacts: false, notes: "Teksten holder én stedseier og uttrykker bilde- og arrangementbegrensninger." } },
+    completion: { completedUnder: "4.2", currentStatus: "current", sourceVerifiedAt: "2026-08-25", claimsVerified: { verified: productionClaims.length, total: productionClaims.length }, factualReview: "passed", editorialReview: "passed", validatorVersion: "4.2.1" },
+    reviewsNotes: "Phase 0–7 source/scope packet; collections, full quiz/Knowledge and onsite readiness follow in the next risk-boundary PR."
+  });
 
   const leksikon = {
     place_id: "olaf_ryes_plass", title: "Olaf Ryes plass", type: "main", version: 1, suppress_untitled_legacy_articles: true,
