@@ -317,7 +317,7 @@ try {
 
   await page.locator('[data-place-tab="about"]').focus();
   await page.keyboard.press('End');
-  assert.equal(await page.locator('[data-place-tab="language"]').getAttribute('aria-selected'), 'true');
+  assert.equal(await page.locator('[data-place-tab="observations"]').getAttribute('aria-selected'), 'true');
   await page.keyboard.press('Home');
   assert.equal(await page.locator('[data-place-tab="about"]').getAttribute('aria-selected'), 'true');
   await page.keyboard.press('ArrowRight');
