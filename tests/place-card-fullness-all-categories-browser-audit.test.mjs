@@ -12,12 +12,13 @@ const ordinaryCategories = [
 ];
 
 const fixture = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="/css/placeCard.css"><link rel="stylesheet" href="/css/place-rounds-fill-layout.css"><link rel="stylesheet" href="/css/place-popup-shortcuts.css">
-<style>:root{--pc-round-gap:12px;--place-card-media-height:260px;--place-card-orb-size:110px}body{margin:0;background:#111}#placeCard .pc-grid{display:grid;grid-template-columns:220px 360px;grid-template-rows:auto auto auto;width:580px;margin:20px}.pc-frontcard{width:220px;height:260px}.pc-side-stack{height:260px}.pc-icons-quad{display:grid;min-height:0}.pc-round{box-sizing:border-box;background:#29343b;color:white;border:1px solid #ddd;display:grid;place-items:center}#pcQuiz{display:block}@media(max-width:700px){#placeCard .pc-grid{grid-template-columns:220px 360px;width:580px;margin:10px}.pc-side-stack{height:250px}}</style></head><body>
-<div id="placeCard" data-current-place-id="audit"><div class="pc-body"><div class="pc-title-row"><h2>Audit</h2><div id="pcBadgesIcon" class="pc-round"></div></div><div id="pcMeta"><span>Politikk &amp; samfunn · 1950–1979</span><span class="pc-epoke">Epoke: Velferdsstat, korporatisme og planlegging</span><span class="pc-progress-status-line">Status: Ikke fullført · Gjenstår: Ta quiz</span></div><div class="pc-grid">
+<link rel="stylesheet" href="/css/layout.css"><link rel="stylesheet" href="/css/nearby.css"><link rel="stylesheet" href="/css/placeCard.css"><link rel="stylesheet" href="/css/place-rounds-fill-layout.css"><link rel="stylesheet" href="/css/place-popup-shortcuts.css">
+<style>:root{--pc-round-gap:12px;--place-card-media-height:260px;--place-card-orb-size:110px;--hg-visual-header-height:74px;--hg-visual-footer-height:72px;--hg-bottom-nav-height:72px}body{margin:0;background:#111}#placeCard .pc-grid{display:grid;grid-template-columns:220px 360px;grid-template-rows:auto auto auto;width:580px;margin:20px}.pc-frontcard{width:220px;height:260px}.pc-side-stack{height:260px}.pc-icons-quad{display:grid;min-height:0}.pc-round{box-sizing:border-box;background:#29343b;color:white;border:1px solid #ddd;display:grid;place-items:center}#pcQuiz{display:block}@media(max-width:700px){#placeCard .pc-grid{grid-template-columns:220px 360px;width:580px;margin:10px}.pc-side-stack{height:250px}}</style></head><body class="hg-app">
+<button id="nearbyExploreToggle" type="button"><span>🧭</span><span>Utforsk</span></button>
+<div id="placeCard" data-current-place-id="audit"><div class="pc-body"><div class="pc-text"><div class="pc-title-row"><h2 id="pcTitle">Audit</h2><div id="pcBadgesIcon" class="pc-round"></div></div><div id="pcMeta"><span>Politikk &amp; samfunn · 1950–1979</span><span class="pc-epoke">Epoke: Velferdsstat, korporatisme og planlegging</span><span class="pc-progress-status-line">Status: Ikke fullført · Gjenstår: Ta quiz</span></div><p id="pcDesc">Kort beskrivelse</p></div><div class="pc-grid">
 <div class="pc-frontcard"><div class="pc-card-face pc-card-face-front" data-media-state="fallback"><img id="pcFrontImage" alt=""></div></div>
 <div class="pc-side-stack"><div class="pc-icons-quad"><div id="pcPeopleIcon" class="pc-round"></div><div id="pcBrandsIcon" class="pc-round"></div></div></div><div class="pc-events-quad"></div></div>
-<div id="pcPeopleList"></div><div id="pcBrandsList"></div><div id="pcBadgesList"></div></div></div><button id="pcQuiz" hidden>Ta quiz</button>
+<div id="pcPeopleList"></div><div id="pcBrandsList"></div><div id="pcBadgesList"></div></div></div><button id="pcQuiz" hidden>Ta quiz</button><footer class="app-footer"></footer>
 <script>const category=new URLSearchParams(location.search).get('category')||'by';window.PLACES=[{id:'audit',name:'Audit',category}];</script>
 <script src="/js/ui/place-rounds-visual-collections.js"></script><script src="/js/ui/place-rounds-fill-layout.js"></script><script src="/js/ui/place-popup-shortcuts.js"></script>
 <script>addEventListener('DOMContentLoaded',()=>HGPlaceCardCollections.apply(PLACES[0]).then(()=>{HGPlaceRoundsFillLayout.layout();window.__ready=true}).catch(error=>window.__error=String(error)))</script></body></html>`;
@@ -64,8 +65,19 @@ try {
     assert.ok(shortcutRow.y >= Math.max(frontCard.y + frontCard.height, sideStack.y + sideStack.height), `${category} shortcuts below both media columns`);
     const metadata = await page.locator("#pcMeta > *").evaluateAll(nodes => nodes.map(node => { const r=node.getBoundingClientRect(); return { y:r.y, h:r.height, scrollHeight:node.scrollHeight, whiteSpace:getComputedStyle(node).whiteSpace }; }));
     assert.equal(metadata.length, 3, `${category} metadata items`);
-    assert.equal(new Set(metadata.map(cell => Math.round(cell.y))).size, 1, `${category} metadata row`);
+    assert.equal(new Set(metadata.map(cell => Math.round(cell.y))).size, 2, `${category} metadata uses two rows`);
+    assert.equal(Math.round(metadata[0].y), Math.round(metadata[1].y), `${category} category and epoch share first row`);
+    assert.ok(metadata[2].y > metadata[0].y, `${category} status owns second row`);
     assert.ok(metadata.every(cell => cell.whiteSpace === "nowrap" && cell.scrollHeight <= cell.h + 1), `${category} metadata no-wrap`);
+    const [placeCardRect, exploreRect, titleRect] = await Promise.all([
+      page.locator("#placeCard").boundingBox(),
+      page.locator("#nearbyExploreToggle").boundingBox(),
+      page.locator("#pcTitle").boundingBox()
+    ]);
+    assert.ok(placeCardRect && exploreRect && titleRect, `${category} anchored card geometry`);
+    const exploreGap = placeCardRect.y - (exploreRect.y + exploreRect.height);
+    assert.ok(exploreGap >= 4 && exploreGap <= 16, `${category} PlaceCard starts just below Utforsk`);
+    assert.ok(titleRect.y - placeCardRect.y >= 8 && titleRect.y - placeCardRect.y <= 24, `${category} title stays at card top with breathing room`);
     assert.equal(await page.locator("#pcBadgesIcon").evaluate(node => node.parentElement.classList.contains("pc-title-row")), true, category);
     assert.equal(await page.locator("#pcQuiz").isVisible(), true, category);
     assert.match(await page.locator(".pc-card-face-front").evaluate(node => getComputedStyle(node, "::before").content), /HISTORY GO/, category);
