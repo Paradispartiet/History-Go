@@ -19,10 +19,23 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: npm
+      - name: Install repository dependencies
+        run: npm ci
       - name: Generate canonical Oslo places and production packets
         run: node tools/TEMP-generate-oslo-miljo-gjenbruk.mjs
+      - name: Normalize coordinates to Coordinate Source Contract v1
+        run: node tools/TEMP-normalize-oslo-miljo-gjenbruk-coordinates.mjs
       - name: Validate production packets
         run: node scripts/validate-place-description-production-v4_2.mjs --all
+      - name: Build and validate place index
+        run: |
+          npm run places:index:build
+          npm run places:index:check
+      - name: Validate new coordinate intake
+        run: npm run places:coords:intake
+      - name: Validate Miljø & gjenbruk PlaceCard profile
+        run: node --test tests/place-subcategory-collections.test.mjs
       - name: Validate JSON
         run: |
           node - <<'NODE'
@@ -37,7 +50,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/places/manifest.json data/places/natur/oslo/miljo_gjenbruk data/places/production reports/oslo-miljo-gjenbruk-2026
+          git add data/places reports/oslo-miljo-gjenbruk-2026
           if git diff --cached --quiet; then
             echo 'No generated changes'
             exit 0
