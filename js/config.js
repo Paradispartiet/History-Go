@@ -100,6 +100,10 @@ window.HG_NATURTRO_STYLE_ID = "streets-v4";
         script.dataset.hgPostReadyPlaceholder === "1" && script.getAttribute("src") === src
       );
       placeholder?.remove();
+      if (document.querySelector(`script[src="${src}"]`)) {
+        setTimeout(() => loadAt(index + 1), 40);
+        return;
+      }
 
       const script = document.createElement("script");
       script.src = src;
