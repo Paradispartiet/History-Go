@@ -100,7 +100,7 @@ export type PlaceCardCollectionId =
 
 export interface PlaceCardProfileV2 {
   schema: "history_go_place_card_profile_v2";
-  /** Nøyaktig fire samlinger i fast kategoriavhengig 2 × 2-komposisjon. Bilder eies av medieflaten. */
+  /** Nøyaktig fire samlinger i fast kategoriavhengig 2 × 2-komposisjon for ordinære steder. */
   collection_ids: PlaceCardCollectionId[];
   reason: string;
   verifiedAt: string;
@@ -112,6 +112,28 @@ export interface LegacyPlaceRoundProfileV1 {
   content_round_ids: string[];
   reason: string;
   verifiedAt?: string;
+}
+
+export type PlaceTier = "standard" | "micro";
+export type MicroPlaceCurrentStatus = "active" | "temporary_unavailable" | "historic";
+export type MicroPlaceQuizMode = "none" | "place";
+
+export interface MicroPlaceProfileV1 {
+  schema: "history_go_micro_place_profile_v1";
+  kind:
+    | "lesekiosk"
+    | "bokskap"
+    | "miljostasjon"
+    | "ombruk_gratis"
+    | "minneskilt"
+    | "snublestein"
+    | "annet_dokumentert_mikrosted";
+  currentStatus: MicroPlaceCurrentStatus;
+  sourceUrl: string;
+  sourceLocation: string;
+  verifiedAt: string;
+  quizMode: MicroPlaceQuizMode;
+  parent_place_id?: string;
 }
 
 export interface Place {
@@ -127,6 +149,12 @@ export interface Place {
   lng?: number;
   r?: number;
   category?: string;
+  /** Canonical underkategori. Micro Places krever en aktiv underkategori. */
+  subcategory_id?: string;
+  /** Ordinære steder er implisitt standard; micro gir eget kartpunkt med redusert fullness-kontrakt. */
+  placeTier?: PlaceTier;
+  micro_place_profile?: MicroPlaceProfileV1;
+  parent_place_id?: string;
   year?: number;
   desc?: string;
   popupDesc?: string;
@@ -148,7 +176,7 @@ export interface Place {
   people?: unknown[];
   wonderkammer?: unknown;
 
-  /** Canonical PlaceCard-samlingsprofil for nye og fullproduserte steder. */
+  /** Canonical PlaceCard-samlingsprofil for ordinære nye og fullproduserte steder. */
   place_card_profile?: PlaceCardProfileV2;
   /** Legacy-profil som fortsatt leses, men ikke skal opprettes ved ny produksjon. */
   round_profile?: LegacyPlaceRoundProfileV1;
