@@ -7,13 +7,13 @@ Samling: `HGKnowledgeV2` / `hg_knowledge_entries_v2`
 
 Språkleksikonet er History GOs system for språk som faktisk er knyttet til steder. Det bygger videre på det eksisterende Leksikon-laget; det er **ikke** en ny dialektmotor, en ny PlaceCard-runding, et nytt History GO-fag eller en separat samlingsdatabase.
 
-**Språkleksikon og dialektlag er ikke synonymer.** Språkleksikon kan finnes på alle typer Places når stedet har dokumentert språkstoff. Dialektlaget er en avgrenset innholdsfamilie inne i Språkleksikonet og kan bare eies av et canonical Place med `placeScope: "area"`.
+**Språkleksikon og dialektlag er ikke synonymer. Språkleksikon er obligatorisk for alle canonical Places. Dialektlaget er ikke obligatorisk.** Alle steder har språklige innganger som navn, begreper, fagord, historiske navneformer, lokale betegnelser eller funksjonsord som kan researches og kildebindes. Dialektlaget er en avgrenset innholdsfamilie inne i Språkleksikonet og kan bare eies av et canonical Place med `placeScope: "area"`.
 
 ## 1. Hovedregel
 
-> **Språkdata eies av Språkleksikonet. Stedspopupen eier presentasjonen. Knowledge V2 eier brukerens samlede kunnskap.**
+> **Språkdata eies av Språkleksikonet. Stedspopupen eier presentasjonen. Knowledge V2 eier brukerens samlede kunnskap. Alle canonical Places skal ha et reelt Språkleksikon; dialekt er et separat underlag.**
 
-Et språkspor kan være lite eller omfattende. Et sted uten dokumentert relevant språkstoff skal ikke få kunstig innhold for å fylle en flate.
+Et språkspor kan være lite eller omfattende, men et produksjonsklart sted kan ikke ende med null språkoppføringer eller Språk = N/A. Manglende språkdata på et eldre sted er et **produksjonsgap**, ikke bevis på at stedet mangler språk. Gapet skal ikke fylles med kunstig lokalfarge, oppdiktet slang eller konstruert dialekt; i stedet researches reelle stedsspesifikke begreper og navn.
 
 ## 2. Canonical datakilde
 
@@ -31,6 +31,8 @@ Stedsspesifikke filer ligger under:
 
 Manifestets `place_files` kobler canonical `place.id` til riktig språkfil. Runtime skal ikke kopiere Språkleksikonet inn i place-filen.
 
+**Produksjonsregel:** Når et Place fullproduseres, skal det ha en manifestkoblet språkfil eller annen eksplisitt canonical Språkleksikon-eier som gir minst én reell språkoppføring. En manglende manifestkobling er et produksjonsgap som må lukkes før sluttgodkjenning.
+
 ## 3. Innholdstyper
 
 Runtime normaliserer eksisterende og nye typer til disse brukerrettede familiene:
@@ -46,6 +48,18 @@ Runtime normaliserer eksisterende og nye typer til disse brukerrettede familiene
 | `term` | øvrige begrepstyper | Fallback for relevante språkbegreper |
 
 Eksisterende typer trenger ikke masseomskrives. Normaliseringen er en presentasjons- og samlingsadapter, ikke en ny sannhetskilde.
+
+### Begreper finnes på alle steder
+
+Språkproduksjon skal alltid undersøke hvilke ord og begreper som faktisk hjelper brukeren å forstå akkurat dette stedet. Det kan blant annet være:
+
+- canonical stedsnavn og dokumenterte alternative/historiske navneformer;
+- fagord for stedets funksjon, arkitektur, natur, teknologi, institusjon, praksis eller kultur;
+- navn på stedsspesifikke fenomener, materialer, roller eller bruksmåter;
+- lokalt dokumenterte betegnelser og uttrykk;
+- historiske ord som er nødvendige for å forstå kildene eller stedets tidligere funksjon.
+
+Dette er **ikke** tillatelse til å kopiere generelle fagord fra et emnekart uten stedstilknytning. Begrepet må ha en dokumentert forklaring på hvorfor det er relevant akkurat her.
 
 ## 4. Oppføringsmodell
 
@@ -114,19 +128,20 @@ En språkoppføring skal vurderes for:
 5. **Kategori** — er dette faktisk språk, eller burde materialet ligge i Historie, Om eller en annen kilde?
 6. **Kilder** — brukerrettede kildelenker skal være HTTPS.
 7. **Deduplisering** — samme språkfenomen skal kunne relateres på tvers av steder i stedet for å få motstridende kopier.
-8. **Ingen completeness-fyll** — et sted kan ha null språkoppføringer.
+8. **Ingen completeness-fyll** — null språkoppføringer er et produksjonsgap, men gapet skal aldri lukkes med oppdiktede eller generiske filler-oppføringer.
 9. **Fagkobling** — en samlet oppføring skal beholde et faktisk History GO-subject fra DomainRegistry/place-konteksten; `sprak` skal ikke oppfinnes som et nytt Subject bare for UI-formål.
+10. **Stedsdekning** — et produksjonsklart Place skal ha minst én reell, kildebundet språkoppføring; normalt researches flere relevante begreper når kildene bærer dem.
 
-Vanlige norske ord skal ikke merkes som lokale bare fordi de forekommer i en lokal kilde. Lokalt særpreg må dokumenteres.
+Vanlige norske ord skal ikke merkes som lokale bare fordi de forekommer i en lokal kilde. Et generelt fagord kan likevel være en gyldig `term` når det er nødvendig for å forstå stedet og stedskoblingen er dokumentert; det skal da ikke feilmerkes som lokalt særpreg.
 
 ## 7. Språkleksikon og dialektlag — hardt skille
 
-Språkleksikonet kan brukes på alle typer Places når språkstoffet har en direkte, dokumentert stedstilknytning. **Dialektlaget er strengere:** Dialektlaget kan bare eies av et canonical Place med `placeScope: "area"`. Det finnes ingen unntak for gater, bygg, institusjoner, markeder, havner, arbeidsplasser eller andre enkelt-Places.
+Språkleksikonet er obligatorisk på alle typer Places. **Dialektlaget er strengere og valgfritt:** Dialektlaget kan bare eies av et canonical Place med `placeScope: "area"`. Det finnes ingen unntak for gater, bygg, institusjoner, markeder, havner, arbeidsplasser eller andre enkelt-Places.
 
 Dette betyr:
 
 - et område-Place kan eie både vanlig Språkleksikon og dialektinnhold;
-- enkelt-Places kan ha Språkleksikon med historiske navn, kallenavn, fagord, arbeidsspråk, stedsspesifikke ord og uttrykk eller annen dokumentert språkbruk;
+- enkelt-Places skal ha Språkleksikon med relevante historiske navn, kallenavn, fagord, arbeidsspråk, stedsspesifikke ord/uttrykk eller andre reelle begreper;
 - enkelt-Places skal **ikke** få `layer: "dialect"`, `dialect_area` eller `dialect_feature`, selv når stedet ligger i et dialektområde;
 - et stedsspesifikt uttrykk som faktisk oppstod ved et enkeltsted kan eies av enkeltstedets Språkleksikon som vanlig språkinnhold, men gjør ikke enkeltstedet til dialektområde eller dialekteier;
 - generelle Sagene-, Oslo-, Østfold- eller andre områdeformer eies av nærmeste relevante område-Place og relateres videre, ikke kopieres til underliggende enkeltsteder.
@@ -143,13 +158,13 @@ Nyproduksjon skal merke dialektinnhold eksplisitt med `layer: "dialect"`. En opp
 
 ### Produksjonsregel for område-Places
 
-For Places med `placeScope: "area"` er dialektord og lokale talemålsformer en **obligatorisk researchjobb**. Det skal søkes aktivt i ordbøker, dialektarkiv, lokale historiesamlinger, talemålsmateriale og andre relevante eksterne kilder. Når kildene bærer det, skal minst ett reelt kildebelagt **dialektord eller lokalt uttrykk** produseres som `word` eller `expression` med `layer: "dialect"`.
+For Places med `placeScope: "area"` er dialektord og lokale talemålsformer en **obligatorisk researchjobb**, men et positivt dialektfunn er ikke et universelt resultatkrav. Det skal søkes aktivt i ordbøker, dialektarkiv, lokale historiesamlinger, talemålsmateriale og andre relevante eksterne kilder. Når kildene bærer det, skal minst ett reelt kildebelagt **dialektord eller lokalt uttrykk** produseres som `word` eller `expression` med `layer: "dialect"`.
 
-Betydning, geografisk utbredelse og historisk/moderne status skal avgrenses etter kildene. Dialektord skal aldri konstrueres, moderniseres eller gjøres «mer lokale» av språkmodell eller redaksjonell gjetning. Dersom et dokumentert søk ikke finner et forsvarlig dialektord/lokalt uttrykk, registreres søkte kilder og begrunnet holdback/N/A i stedet for filler.
+Betydning, geografisk utbredelse og historisk/moderne status skal avgrenses etter kildene. Dialektord skal aldri konstrueres, moderniseres eller gjøres «mer lokale» av språkmodell eller redaksjonell gjetning. Dersom et dokumentert søk ikke finner et forsvarlig dialektord/lokalt uttrykk, registreres søkte kilder og begrunnet holdback/N/A for **dialektdeljobben** i stedet for filler. Språkleksikonet som helhet kan fortsatt ikke være N/A.
 
 ### Enkelt-Places og direkte språksteder
 
-Enkelt-Places kan ha et rikt Språkleksikon, men ikke et dialektlag. Historiske gatenavn på Torggata, et dokumentert kallenavn på en bygning, et fagord ved Bislett stadion eller et arbeidsplassuttrykk kan være gyldig språkinnhold når kildene bærer det. Slike oppføringer skal ikke merkes som dialekt og skal ikke bruke et bredere dialektområde som om enkeltstedet eide det.
+Enkelt-Places skal ha et Språkleksikon, men ikke et dialektlag. Historiske gatenavn på Torggata, et dokumentert kallenavn på en bygning, et fagord ved Bislett stadion eller et arbeidsplassuttrykk kan være gyldig språkinnhold når kildene bærer det. Slike oppføringer skal ikke merkes som dialekt og skal ikke bruke et bredere dialektområde som om enkeltstedet eide det.
 
 Gater, markeder, havner og arbeidsmiljøer kan fortsatt være **direkte språksteder** for stedsspesifikke uttrykk. «Direkte språksted» er en Språkleksikon-klassifisering, ikke en dialektklassifisering.
 
@@ -157,11 +172,13 @@ Gater, markeder, havner og arbeidsmiljøer kan fortsatt være **direkte språkst
 
 Et dialektfenomen eies av **nærmeste relevante område-Place**. Et Sagene-ord eies av Sagene når kildene gjelder Sagene som språkmiljø. En skole, fabrikk, gate eller bygning på Sagene kan peke til språksporet gjennom `related_places` / `related_entries`, men oppretter ikke en konkurrerende dialektkopi.
 
-**Stoppgate:** Dialektinnhold på et Place uten `placeScope: "area"` er en datamodellfeil. Flytt innholdet til riktig områdeeier eller klassifiser det som vanlig, direkte stedsspesifikt Språkleksikon dersom det faktisk tilhører enkeltstedet.
+**Stoppgate:** Dialektinnhold på et Place uten `placeScope: "area"` er en datamodellfeil. Flytt innholdet til riktig områdeeier eller klassifiser det som vanlig, direkte stedsspesifikt Språkleksikon dersom det faktisk tilhører enkeltstedet. Manglende dialekt er lov; manglende Språkleksikon på et produksjonsklart sted er ikke lov.
 
 ## 8. Presentasjon i stedspopupen
 
-De faste grunnfanene i stedspopupen består. Når stedet har minst én gyldig språkoppføring, legger `place-language-layer.js` til en valgfri, direkte **Språk**-fane i den samme horisontalt scrollbar fanestripen. Det finnes ingen brukerrettet **Mer**-fane.
+**Språk er en fast fane på alle canonical Places** i den samme horisontalt scrollbar fanestripen som de øvrige grunnfanene. Det finnes ingen brukerrettet **Mer**-fane.
+
+`place-popup-direct-tabs.js` sørger for at Språk-fanen alltid finnes. `place-language-layer.js` fyller den med canonical Språkleksikon-data når språkfilen er materialisert.
 
 Språkfanen viser:
 
@@ -174,9 +191,9 @@ Språkfanen viser:
 - kilder;
 - samlingsstatus.
 
-Når språkdata finnes, vises også en kompakt **Språk på stedet**-forhåndsvisning i Om. Den peker til språkfanen.
+Når språkdata finnes, kan en kompakt **Språk på stedet**-forhåndsvisning i Om peke til språkfanen.
 
-Når språkdata ikke finnes, vises verken tom språkfane eller teaser.
+Når språkdata ennå ikke finnes på et eldre Place, skal Språk-fanen **ikke forsvinne**. Runtime viser en eksplisitt produksjonsgap-tilstand. Et slikt gap kan eksistere under migrering, men stedet kan ikke fullproduseres/sluttgodkjennes før reelle språkoppføringer er materialisert.
 
 Språk er fortsatt **ikke** en PlaceCard-runding.
 
@@ -187,7 +204,6 @@ Brukeren kan eksplisitt samle en språkoppføring med **Samle kunnskapen**.
 Oppføringen lagres i den canonicale Knowledge V2-butikken:
 
 `hg_knowledge_entries_v2`
-
 med blant annet:
 
 - et faktisk `subject_id` / `fagkart_category_id` løst fra oppføringen eller stedet;
@@ -238,10 +254,12 @@ Schemaet reserverer `audio`, men lyd er ikke et krav i v2. Når lyd innføres, m
 - Ikke merk generelt norsk som lokalt uten belegg.
 - Ikke presenter historiske former som moderne uten dokumentasjon.
 - Ikke avslutt et Språkleksikon med bare navn eller generelle fagtermer når kildene dokumenterer lokale ord eller uttrykk.
+- Ikke sett Språk til N/A eller skjul Språk-fanen fordi dialekt ikke er relevant.
+- Ikke konstruer dialekt, slang, kallenavn eller «lokale» uttrykk for å fylle språkkravet.
 - Ikke samle språkoppføringer automatisk ved åpning.
 - Ikke bruk AHA-generert tekst som kilde for nye språkoppføringer.
 
-## 14. Produksjonsklar oppføring
+## 14. Produksjonsklar oppføring og Place
 
 En oppføring er klar når:
 
@@ -253,6 +271,8 @@ En oppføring er klar når:
 6. den ikke dupliserer en eksisterende canonical oppføring uten relasjonsgrunn;
 7. eventuell Knowledge-fagkobling peker til et faktisk canonical Subject;
 8. språk-auditen passerer.
+
+Et **Place** er Språkleksikon-produksjonsklart når det i tillegg har minst én reell, stedsspesifikk språkoppføring og den faste Språk-fanen viser innholdet. Dialekt kan være begrunnet N/A; Språkleksikonet kan ikke være N/A.
 
 
 ## Språkatlas Norge v1
@@ -320,7 +340,7 @@ Språkatlaset og PlaceCard bruker samme canonical språkdata. `atlas_local_ids` 
 
 Når en atlasprofil eller region velges, viser runtime **«Utforsk steder med dokumenterte språkspor»**. Listen bygges fra `data/leksikon/sprak/manifest.json`, språkfilene og runtime `window.PLACES`. Den er derfor aldri en fullstendig oversikt over hvor talemålet finnes. Lokale profiler matches bare via eksplisitt `atlas_local_ids`; runtime får ikke gjette en lokal profil bare fordi et Place ligger i samme brede dialektregion.
 
-Fra et Place med en eksplisitt lokal atlasrelasjon vises **«Se talemålet i Språkatlas»**. Navigasjon til et annet Place går gjennom `HGMapView.openPlace()`, slik at kartet flyttes ferdig før PlaceCard åpnes. Et område-Place kan ha tom `entries`-liste når all konkret talemålsevidens allerede ligger canonical i `local_varieties[].feature_evidence`; Språk-fanen skal likevel vise atlasprofilen.
+Fra et Place med en eksplisitt lokal atlasrelasjon vises **«Se talemålet i Språkatlas»**. Navigasjon til et annet Place går gjennom `HGMapView.openPlace()`, slik at kartet flyttes ferdig før PlaceCard åpnes. Et område-Place kan ha null egne **dialektoppføringer** når all konkret talemålsevidens allerede ligger canonical i `local_varieties[].feature_evidence`, men Place-et skal fortsatt ha ordinære språk-/begrepsoppføringer. Språk-fanen viser da stedets begreper sammen med atlasprofilen uten å duplisere dialektevidensen.
 
 ### Dekningsaudit per 19. august 2026
 
