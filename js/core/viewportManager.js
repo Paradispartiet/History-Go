@@ -25,7 +25,7 @@
   let rafId = null;
   let last = { scale: null, x: null, y: null, w: null, h: null, vw: null, vh: null };
   let stableViewport = null;
-  let lastMode = null;
+  let lastUiMode = null;
   let initialized = false;
 
   function isTextInputActive() {
@@ -90,6 +90,12 @@
     if (!shell) return;
 
     const { mode, designWidth, designHeight } = layout;
+    // Design-canvaset og de faste UI-lagene har ulike behov i et smalt
+    // iPad-/Stage Manager-vindu. Canvaset kan fortsatt bruke tablet-geometri,
+    // men header, PlaceCard, nearby og footer må bruke den kompakte CSS-en.
+    // Hvis body-klassen følger PHONE_BREAKPOINT (520px), blir de faste lagene
+    // stående i 100 % mens canvaset bak dem skaleres ned mot 60–70 %.
+    const uiMode = vw <= COMPACT_HEADER_MAX_VW ? "phone" : "tablet";
     const headerHeight = mode === "phone"
       ? PHONE_HEADER_HEIGHT
       : (vw <= COMPACT_HEADER_MAX_VW ? COMPACT_HEADER_HEIGHT : HEADER_HEIGHT);
@@ -128,10 +134,10 @@
     shell.style.transformOrigin = "top left";
     shell.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${scale})`;
 
-    if (lastMode !== mode) {
-      document.body.classList.toggle("hg-phone", mode === "phone");
-      document.body.classList.toggle("hg-tablet", mode === "tablet");
-      lastMode = mode;
+    if (lastUiMode !== uiMode) {
+      document.body.classList.toggle("hg-phone", uiMode === "phone");
+      document.body.classList.toggle("hg-tablet", uiMode === "tablet");
+      lastUiMode = uiMode;
     }
 
     // Kartlaget: full-bleed mot ekte viewport (ikke design-canvaset).
@@ -171,6 +177,7 @@
       x,
       y,
       mode,
+      uiMode,
       designWidth,
       designHeight,
       visibleWidth: scaledW,
