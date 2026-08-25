@@ -66,7 +66,7 @@ Data skal ikke kopieres inn i én gigantisk place-fil bare fordi flere brukerfla
 
 ## 4. Canonical popupfaner
 
-Popupen har sju faste grunnfaner:
+Popupen har **åtte faste faner** for alle canonical Places:
 
 ```text
 Om
@@ -76,15 +76,14 @@ Før/etter
 Nyheter
 Lesespor
 Kilder
-```
-
-I tillegg finnes én definert, source-eid **valgfri direktefane**:
-
-```text
 Språk
 ```
 
-**Språk** materialiseres bare når stedet faktisk har dokumentert språkstoff etter `docs/SPRAKLEKSIKON.md`. Et sted uten språkstoff skal ikke få en tom Språk-fane.
+**Språk er obligatorisk.** Alle steder har navn, begreper, fagord, historiske navneformer, lokale betegnelser eller andre språklige innganger som kan vurderes etter `docs/SPRAKLEKSIKON.md`. Et produksjonsklart sted kan derfor ikke ha Språk som N/A eller mangle Språk-fanen.
+
+Dette betyr ikke at alle steder har dialekt. **Dialekt er et valgfritt, strengere underlag inne i Språkleksikonet** og følger area-eierskapet i språk-kontrakten. En bygning, gate, institusjon eller annen enkelt-Place skal ikke få et konstruert dialektlag for å oppfylle Språk-kravet.
+
+Hvis et eldre sted ennå mangler materialisert språkdata, beholdes Språk-fanen med en tydelig produksjonsgap-tilstand. Gapet skal lukkes ved fullproduksjon; det er ikke en godkjent sluttstatus og skal aldri fylles med oppdiktede begreper.
 
 Følgende er **ikke selvstendige stedspopupfaner**:
 
@@ -123,7 +122,7 @@ Typisk innhold:
 - kildebelagt `interpretation.why_it_matters` når dette forklarer selve stedet;
 - kildebelagte `interpretation.counterpoints` og inferensgrenser når de nyanserer selve stedet;
 - source-eid Knowledge og dokumenterte observasjonsopplysninger når de er **kunnskap om stedet**, ikke en handling eller en konkret samlingsenhet;
-- en kompakt «Språk på stedet»-teaser når Språkleksikon faktisk har innhold.
+- en kompakt «Språk på stedet»-teaser når den tilfører orientering uten å duplisere Språk-fanen.
 
 ### Én visuell eier per opplysning
 
@@ -232,15 +231,15 @@ Regler:
 
 ## 12. Språk
 
-Språk er en valgfri, stedbundet kunnskapsfane. Produksjons- og datakontrakten eies av `docs/SPRAKLEKSIKON.md`.
+Språk er en **obligatorisk, stedbundet kunnskapsfane på alle canonicale steder**. Produksjons- og datakontrakten eies av `docs/SPRAKLEKSIKON.md`.
 
-Fanen kan vise:
+Hvert sted skal researches for stedsspesifikke begreper. Relevante typer kan være:
 
-- lokale ord;
-- uttrykk og talemåter;
-- dialekttrekk;
-- uttale;
-- stedsnavn og historiske navneformer;
+- fagord og begreper som faktisk hjelper brukeren å forstå stedet;
+- stedsnavn, historiske navneformer, kallenavn og lokale betegnelser;
+- ord knyttet til stedets funksjon, arkitektur, natur, praksiser, institusjoner eller historie;
+- uttrykk og talemåter når de kan dokumenteres;
+- uttale når den tilfører stedsspesifikk verdi;
 - språkhistorie;
 - betydning og eksempelbruk;
 - tidsstatus og geografisk utbredelse;
@@ -248,9 +247,11 @@ Fanen kan vise:
 - relaterte steder og språkspor;
 - kilder.
 
+**Dialekttrekk er ikke et universelt krav.** De vises bare når dialektlaget er relevant og lovlig eiet etter `docs/SPRAKLEKSIKON.md`. Språkkravet skal aldri brukes som begrunnelse for å dikte dialekt, slang eller lokal egenart.
+
 Brukeren kan eksplisitt samle en språkoppføring. Samlingen skrives til canonical Knowledge V2 (`hg_knowledge_entries_v2`) med `source.type = "language_lexicon"`. Det skal ikke opprettes et parallelt språk- eller dialektlager.
 
-Språk skal ikke vises bare for å fylle fanestripen. Mangler dokumentert språkstoff, mangler fanen.
+Et produksjonsklart sted kan ikke ha null språkoppføringer eller sette Språk til N/A. Manglende språkfil/oppføringer på et eldre sted er et **produksjonsgap**, ikke bevis på at stedet mangler språk. Runtime beholder Språk-fanen og viser gapet ærlig til innholdet er materialisert.
 
 ## 13. Eierstyrt routing av tidligere `Mer`-innhold
 
@@ -264,7 +265,7 @@ Legacy-`Mer` er et **internt staging-lag**, ikke en brukerflate. Alt innhold som
 - **Motpunkter** — `interpretation.counterpoints` og tydelige inferensgrenser vises under **Om** som nyansering av stedskunnskapen.
 - **Kunnskap** — source-eid Knowledge/funfacts plasseres under **Om** eller den subsystem-/samlingsflaten som semantisk eier opplysningen. `Kunnskap` er ikke en generell popupfane.
 - **Observasjoner** — dokumenterte observasjonsopplysninger som er kunnskap om stedet plasseres under **Om** eller riktig samling. Selve handlingen Observer beholder sitt eget flow og blir ikke popupfane.
-- **Språk** — eies separat av Språkleksikon-kontrakten og er den eneste definerte valgfrie direktefanen.
+- **Språk** — eies separat av Språkleksikon-kontrakten og er en fast obligatorisk stedspopupfane.
 
 ### Ingen informasjon skal forsvinne
 
@@ -358,16 +359,17 @@ Faktiske tekster følger fortsatt `PLACE_DESCRIPTION_CANONICAL.md`.
 
 Popupen er produksjonsklar når:
 
-1. alle relevante grunnfaner er vurdert;
-2. Språk er vurdert når stedet har dokumentert språkstoff;
-3. tidligere `Mer`-innhold er rutet til riktig eierflate uten tap eller duplisering;
-4. Objects-popupen eier relevante `Spor og objekter`/`Legg merke til`-seksjoner, og People-popupen eier personrelasjoner;
-5. place→place-relasjoner forblir hos `related`;
-6. betydning, motpunkter og generell stedskunnskap ligger under Om eller annen faktisk canonical eier;
-7. innholdet kommer fra riktig canonical eier;
-8. `desc`/`popupDesc` har bestått sin egen produksjonsprotokoll;
-9. Stories/People/Nature/Quiz/Språk ikke er lokalt improvisert;
-10. popupen ikke brukes som restplass for rundinger eller handlinger;
-11. UI og relevante audits/tester passerer.
+1. alle åtte faste faner er vurdert og fungerer;
+2. Språk har reelt, stedsspesifikt og kildebundet innhold; Språk kan ikke være N/A;
+3. dialekt er bare produsert når area-eierskap og kilder tillater det;
+4. tidligere `Mer`-innhold er rutet til riktig eierflate uten tap eller duplisering;
+5. Objects-popupen eier relevante `Spor og objekter`/`Legg merke til`-seksjoner, og People-popupen eier personrelasjoner;
+6. place→place-relasjoner forblir hos `related`;
+7. betydning, motpunkter og generell stedskunnskap ligger under Om eller annen faktisk canonical eier;
+8. innholdet kommer fra riktig canonical eier;
+9. `desc`/`popupDesc` har bestått sin egen produksjonsprotokoll;
+10. Stories/People/Nature/Quiz/Språk ikke er lokalt improvisert;
+11. popupen ikke brukes som restplass for rundinger eller handlinger;
+12. UI og relevante audits/tester passerer.
 
 Full stedsgate ligger i `docs/PLACE_PRODUCTION_CHECKLIST.md`.
