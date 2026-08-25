@@ -10,15 +10,14 @@ const configSource = fs.readFileSync("js/config.js", "utf8");
 const indexSource = fs.readFileSync("index.html", "utf8");
 const okern = JSON.parse(fs.readFileSync("data/places/by/oslo/places/okern.json", "utf8"));
 
-test("Økern keeps a visible, clickable epoch slot beside category", async () => {
+test("Økern keeps a visible epoch slot and routes it to the dedicated timeline", async () => {
   const dom = new JSDOM(`<!doctype html><body>
     <div id="placeCard" data-current-place-id="okern"></div>
     <div id="pcMeta"><button type="button">BY &amp; ARKITEKTUR</button></div>
-    <button id="pcBadgesIcon" type="button"></button>
   </body>`, { url: "https://history-go.test/", runScripts: "outside-only" });
   const w = dom.window;
-  let badgeClicks = 0;
-  w.document.getElementById("pcBadgesIcon").addEventListener("click", () => { badgeClicks += 1; });
+  let viewerOpens = 0;
+  let openedPlaceId = "";
   w.openPlaceCard = async () => true;
   w.HGEpokerRuntime = { ready: Promise.resolve() };
   w.HGTimeResolver = {
@@ -31,6 +30,13 @@ test("Økern keeps a visible, clickable epoch slot beside category", async () =>
     })
   };
   w.EPOKER_INDEX = { byDomain: { by: { byId: {} } } };
+  w.HGEpokeViewer = {
+    open: ({ place }) => {
+      viewerOpens += 1;
+      openedPlaceId = place?.id || "";
+      return true;
+    }
+  };
 
   w.eval(epokeSource);
   await w.openPlaceCard(okern);
@@ -41,8 +47,11 @@ test("Økern keeps a visible, clickable epoch slot beside category", async () =>
   assert.equal(epoke.tagName, "BUTTON");
   assert.equal(epoke.textContent, "Epoke: Ikke registrert");
   assert.equal(epoke.dataset.epokeStatus, "unknown");
+  assert.equal(epoke.title, "Åpne epoketidslinje");
   epoke.click();
-  assert.equal(badgeClicks, 1);
+  assert.equal(viewerOpens, 1);
+  assert.equal(openedPlaceId, okern.id);
+  assert.doesNotMatch(epokeSource, /pcBadgesIcon/);
   dom.window.close();
 });
 
