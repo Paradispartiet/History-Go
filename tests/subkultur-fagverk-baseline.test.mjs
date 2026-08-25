@@ -62,8 +62,8 @@ test('Places og People følger dataauditen mens legacyquiz holdes utenfor fullst
   assert.equal(report.current.primary_subkultur_places, 54);
   assert.equal(report.current.secondary_subkultur_places, 11);
   assert.equal(report.current.places_with_subkultur_emne, 65);
-  assert.equal(report.current.subkultur_people, 41);
-  assert.equal(report.current.people_with_subkultur_emne, 41);
+  assert.equal(report.current.subkultur_people, 45);
+  assert.equal(report.current.people_with_subkultur_emne, 45);
   assert.equal(report.current.legacy_quiz.active_legacy_questions, 73);
   assert.equal(report.current.legacy_quiz.active_without_sources, 73);
   assert.equal(report.current.legacy_quiz.active_without_knowledge, 73);

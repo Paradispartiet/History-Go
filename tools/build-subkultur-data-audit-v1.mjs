@@ -91,7 +91,7 @@ function transform(value, updater) {
 function subcultureEmnerForPerson(record) {
   const corpus = [record.id, record.name, record.desc, record.popupDesc, ...list(record.tags)]
     .join(' ').toLowerCase();
-  const result = new Set();
+  const result = new Set(list(record.emne_ids).filter((id) => String(id).startsWith('em_sub_')));
   const add = (...ids) => ids.forEach((id) => result.add(id));
   if (/skate|skateboard/.test(corpus)) add('em_sub_skate_byrom', 'em_sub_deltakelse_laring');
   if (/graffiti|street_art|gatekunst/.test(corpus)) add('em_sub_graffiti_gatekunst', 'em_sub_territoriale_koder');
@@ -138,7 +138,7 @@ function buildPlaceRows(records) {
 function buildPeopleRows(records) {
   const rows = [];
   for (const record of records.values()) {
-    if (!isRelevantPerson(record)) continue;
+    if (!isRelevantPerson(record) && !PEOPLE_RECLASSIFY[record.id]) continue;
     const category = PEOPLE_RECLASSIFY[record.id];
     const emneIds = category ? [] : subcultureEmnersFor(record);
     rows.push({
@@ -199,7 +199,9 @@ function main() {
   if (fs.existsSync(path.join(ROOT, AUDIT_FILE))) {
     const existing = readJson(AUDIT_FILE);
     placeRows = buildPlaceRows(places);
-    peopleRows = existing.people;
+    const existingPeopleById = new Map(list(existing.people).map((row) => [row.people_id, row]));
+    const newPeopleRows = buildPeopleRows(people).filter((row) => !existingPeopleById.has(row.people_id));
+    peopleRows = [...list(existing.people), ...newPeopleRows].sort((a, b) => a.people_id.localeCompare(b.people_id));
   } else {
     placeRows = buildPlaceRows(places);
     peopleRows = buildPeopleRows(people);
