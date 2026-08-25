@@ -1,0 +1,34 @@
+name: Micro Place contract
+
+on:
+  pull_request:
+    paths:
+      - 'docs/MICRO_PLACE_CONTRACT.md'
+      - 'docs/PLACE_STANDARD.md'
+      - 'data/categories/category_contract.json'
+      - 'data/places/**'
+      - 'schemas/place.ts'
+      - 'tools/build_places_index.mts'
+      - 'scripts/audit-micro-places.mjs'
+      - 'scripts/lib/micro-place-contract.mjs'
+      - 'js/ui/micro-place-card.js'
+      - 'js/ui/place-card-status-surface.js'
+      - 'tests/micro-place-contract.test.mjs'
+      - '.github/workflows/micro-place-contract.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Test Micro Place contract
+        run: node --test tests/micro-place-contract.test.mjs
+      - name: Audit canonical Micro Places
+        run: node scripts/audit-micro-places.mjs
