@@ -9,6 +9,13 @@ const playwrightImport = process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES
   ? pathToFileURL(path.join(process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES, "playwright/index.mjs")).href
   : "playwright";
 const { chromium } = await import(playwrightImport);
+const browserExecutable = [
+  chromium.executablePath(),
+  "/usr/bin/google-chrome",
+  "/usr/bin/google-chrome-stable",
+  "/usr/bin/chromium",
+  "/usr/bin/chromium-browser"
+].find(candidate => candidate && fs.existsSync(candidate));
 
 const root = process.cwd();
 const read = file => JSON.parse(fs.readFileSync(file, "utf8"));
@@ -90,7 +97,7 @@ body{margin:0}.pc-icons-quad{display:grid;width:360px;height:300px}.pc-round{box
 <script src="/js/ui/place-rounds-visual-collections.js"></script><script src="/js/ui/place-rounds-fill-layout.js"></script>
 <script>window.addEventListener("DOMContentLoaded",()=>window.HGPlaceRounds.apply(window.PLACES[0]).then(()=>window.__ready=true).catch(error=>window.__error=String(error&&error.stack||error)))</script></body></html>`;
 
-test("desktop and mobile render four full collections, separate Badge and prominent Quiz", { skip: !fs.existsSync(chromium.executablePath()) }, async () => {
+test("desktop and mobile render four full collections, separate Badge and prominent Quiz", { skip: !browserExecutable }, async () => {
   const mime = { ".html":"text/html; charset=utf-8", ".js":"text/javascript; charset=utf-8", ".css":"text/css; charset=utf-8" };
   const server = http.createServer((request, response) => {
     const pathname = decodeURIComponent(new URL(request.url, "http://localhost").pathname);
@@ -103,7 +110,7 @@ test("desktop and mobile render four full collections, separate Badge and promin
   const { port } = server.address();
   let browser;
   try {
-    browser = await chromium.launch({headless:true});
+    browser = await chromium.launch({headless:true, executablePath:browserExecutable});
     const page = await browser.newPage({viewport:{width:1100,height:760}});
     for (const viewport of [{width:1100,height:760},{width:390,height:844}]) {
       await page.setViewportSize(viewport);
