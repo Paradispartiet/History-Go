@@ -77,7 +77,7 @@
 | 21. UI-QA | **GODKJENT ETTER PRODUKSJONS-RE-QA** | alle hovedflater består, 4+1 består og Personer viser nøyaktig 4 uten falsk 0 |
 | 22. Innholds-QA | **GODKJENT ETTER RE-QA** | alle fem redaksjonelle funn er løst og kontrollert samlet; ingen ny påstand eller filler er introdusert |
 | 23. CI / repository-gates | **GODKJENT** | eksakte grønne Data/Places-, Fagverk By-, TypeScript-, rundings- og Pages-kjøringer registrert |
-| 24. Ett-sted-PR | **GODKJENT FOR FINAL CLOSEOUT-MERGE** | ny seksdelt score er 29/30, ingen blokkere gjenstår og closeout-PR-en omfatter bare Torggata-status, audit og permanente regresjoner |
+| 24. Ett-sted-PR | **SLUTTFØRT, MERGET OG DEPLOYET** | PR #5337 er SHA-låst squash-merget som `85a4029aba1d0dc9aaadc0fb11d5f7c3378b88bf`; Pages-run `32896361659` fullførte med success |
 
 ## Tidligere-arbeid-gate – koordinater
 
@@ -1009,3 +1009,18 @@ NESTE FASE: ingen — Olaf Ryes plass starter først etter closeout-merge og mai
 ```
 
 **Torggata = SLUTTGODKJENT FOR CLOSEOUT-MERGE.**
+
+## Endelig closeout — merget og deployet (2026-08-25)
+
+Closeout-PR #5337 bestod Repository hygiene og Data checks på uendret head `8d3800771cb9d311376a815c06abdbf1e38f951e`. PR-en ble squash-merget som `85a4029aba1d0dc9aaadc0fb11d5f7c3378b88bf`, og samme commit ble verifisert som `main`. GitHub Pages-run `32896361659` (run 14523) fullførte med `success` kl. 20:39:35 UTC.
+
+```text
+AKTIV FASE: ingen
+SISTE GODKJENTE CHECKPOINT: 24 final closeout
+BRANCH STATUS: merget
+LIVE STATUS: deployet fra verifisert main
+ULØSTE BLOKKERE: 0
+NESTE STED: olaf_ryes_plass
+```
+
+**Torggata = SLUTTFØRT, MERGET OG DEPLOYET.**

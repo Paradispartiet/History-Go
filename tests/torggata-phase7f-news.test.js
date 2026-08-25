@@ -81,11 +81,11 @@ assert.strictEqual(backlog.sequence[1].status, 'RESOLVED');
 assert.strictEqual(backlog.sequence[2].status, 'RESOLVED');
 assert.deepStrictEqual(backlog.active_phase, {
   id: 'final_closeout',
-  status: 'READY_TO_MERGE'
+  status: 'COMPLETED'
 });
 
 assert.match(workcard, /Gjenåpnet fase 7F Nyheter = LØST/);
-assert.match(workcard, /Torggata = SLUTTGODKJENT FOR CLOSEOUT-MERGE/);
+assert.match(workcard, /Torggata = SLUTTFØRT, MERGET OG DEPLOYET/);
 assert.match(workcard, /Torggata Bad, Rockefeller og Youngstorget brukes ikke som stedfortredere/);
 assert.match(checklist, /Nyheter kan ikke godkjennes som tom\/N\/A/);
 assert.match(checklist, /nåtidsnotiser er ferskt kontrollert og har tydelig publiserings-\/hendelsesdato/);

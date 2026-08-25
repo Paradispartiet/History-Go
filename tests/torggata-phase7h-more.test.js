@@ -73,7 +73,7 @@ assert.strictEqual(backlog.sequence.find(item => item.id === 'more_missing').sta
 assert.strictEqual(backlog.sequence.find(item => item.id === 'objects_structures_round_overlap').status, 'RESOLVED');
 assert.deepStrictEqual(backlog.active_phase, {
   id: 'final_closeout',
-  status: 'READY_TO_MERGE'
+  status: 'COMPLETED'
 });
 
 assert.match(checklist, /canonical place-register\/manifester er søkt/);
@@ -84,4 +84,4 @@ assert.match(popupContract, /Objects\/Gjenstander-popupen/);
 assert.match(audit, /Torggata Bad, Rockefeller, Youngstorget[\s\S]*brukes ikke som Mer-erstatning/);
 assert.match(audit, /Automatiske tester[\s\S]*beviser ikke alene/);
 assert.match(workcard, /Gjenåpnet fase 7H Mer = LØST/);
-assert.match(workcard, /Torggata = SLUTTGODKJENT FOR CLOSEOUT-MERGE/);
+assert.match(workcard, /Torggata = SLUTTFØRT, MERGET OG DEPLOYET/);

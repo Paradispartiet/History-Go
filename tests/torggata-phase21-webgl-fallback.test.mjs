@@ -167,5 +167,5 @@ test("phase 19 remains historical while production re-QA records the final colle
   assert.equal(Object.prototype.hasOwnProperty.call(place, "structures"), false);
   assert.match(workcard, /People · Bilder · Brands · Relaterte steder/);
   assert.match(workcard, /GODKJENT ETTER PRODUKSJONS-RE-QA/);
-  assert.match(workcard, /Torggata = SLUTTGODKJENT FOR CLOSEOUT-MERGE/);
+  assert.match(workcard, /Torggata = SLUTTFØRT, MERGET OG DEPLOYET/);
 });

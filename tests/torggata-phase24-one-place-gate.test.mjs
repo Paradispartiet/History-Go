@@ -12,7 +12,7 @@ const backlog = readJson("reports/place-production/torggata-quality-improvement-
 const expectedPeople = ["harald_olsen", "alma_fahlstrom", "johan_fahlstrom", "henrik_bull"];
 
 test("Torggata phase 24 is a strict closeout-only one-place gate", () => {
-  assert.equal(gate.status, "APPROVED_READY_TO_MERGE");
+  assert.equal(gate.status, "CLOSED_MERGED_DEPLOYED");
   assert.deepEqual(gate.scope.places, ["torggata"]);
   assert.equal(gate.scope.active_phase, 24);
   assert.deepEqual(gate.scope.content_changes, []);
@@ -34,15 +34,15 @@ test("manual production and content re-QA approve the exact People target", () =
 });
 
 test("all reopened findings are closed and the six-part score passes", () => {
-  assert.equal(backlog.status, "CLOSED_ALL_FINDINGS_RESOLVED");
+  assert.equal(backlog.status, "CLOSED_MERGED_DEPLOYED");
   assert.equal(backlog.findings.length, 5);
   assert.ok(backlog.findings.every(finding => finding.workflow_status.startsWith("RESOLVED_PHASE_")));
   assert.equal(backlog.completion_gate.manual_ui_review_status, "PASS");
   assert.equal(backlog.completion_gate.rescore_status, "PASS");
   assert.equal(backlog.completion_gate.rescore_total, 29);
-  assert.deepEqual(backlog.active_phase, { id: "final_closeout", status: "READY_TO_MERGE" });
+  assert.deepEqual(backlog.active_phase, { id: "final_closeout", status: "COMPLETED" });
   assert.equal(backlog.sequence.find(item => item.id === "manual_ui_and_content_reqa").status, "RESOLVED");
-  assert.equal(backlog.sequence.find(item => item.id === "final_closeout").status, "READY_TO_MERGE");
+  assert.equal(backlog.sequence.find(item => item.id === "final_closeout").status, "COMPLETED");
 
   const assessment = gate.quality_assessment;
   assert.equal(assessment.dimensions.length, 6);
@@ -51,7 +51,17 @@ test("all reopened findings are closed and the six-part score passes", () => {
   assert.ok(assessment.dimensions.every(dimension => dimension.score >= 4));
   assert.deepEqual(assessment.critical_findings, []);
   assert.deepEqual(assessment.unresolved_blockers, []);
-  assert.equal(assessment.gate, "PASS_READY_TO_MERGE");
+  assert.equal(assessment.gate, "PASS_COMPLETE");
+  assert.deepEqual(gate.final_completion_evidence, {
+    closeout_pr: 5337,
+    closeout_head_sha: "8d3800771cb9d311376a815c06abdbf1e38f951e",
+    merge_commit: "85a4029aba1d0dc9aaadc0fb11d5f7c3378b88bf",
+    main_verified: true,
+    pages_run_id: 32896361659,
+    pages_run_number: 14523,
+    pages_status: "SUCCESS",
+    pages_verified_at: "2026-08-25T20:39:35Z"
+  });
 });
 
 test("global checklist keeps the canonical full composition and owner boundaries", () => {
