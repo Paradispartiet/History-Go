@@ -61,7 +61,7 @@ test("micro place rejects a fake full PlaceCard profile and inactive/unknown sub
 });
 
 test("micro runtime hides ordinary collections, badge and quiz-by-default", () => {
-  assert.match(microSource, /placeTier === "micro"/);
+  assert.match(microSource, /place\?\.placeTier === "micro"/);
   assert.match(microSource, /hideOwned\(grid\)/);
   assert.match(microSource, /hideOwned\(badge\)/);
   assert.match(microSource, /quizMode === "place"/);
