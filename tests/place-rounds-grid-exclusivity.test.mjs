@@ -45,7 +45,10 @@ test("PlaceCard uses seven small SVG shortcuts and opens Om from title or info t
   assert.ok(buttons.every(button => button.querySelector("svg")));
   assert.equal(w.document.querySelector('[data-place-popup-tab="about"]'), null);
   assert.deepEqual(buttons.map(button => button.dataset.placePopupTab), ["history", "stories", "before-after", "news", "reading", "sources", "more"]);
-  assert.match(shortcutsCss, /grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
+  assert.match(shortcutsCss, /grid-template-columns:repeat\(7,minmax\(0,1fr\)\)/);
+  assert.match(shortcutsCss, /grid-template-rows:minmax\(0,1fr\) 32px/);
+  assert.match(shortcutsCss, /#placeCard \.pc-icons-quad\{[\s\S]*?gap:3px/);
+  assert.doesNotMatch(shortcutsCss, /grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
   assert.match(shortcutsCss, /width:21px/);
 
   w.document.getElementById("pcTitle").click();
