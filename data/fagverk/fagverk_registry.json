@@ -4355,6 +4355,46 @@
           "safetyContractFile": "data/fag/helse/clinical_safety_contract_helse_v1.json"
         }
       ]
+    },
+    "utdanning": {
+      "title": "Skole & utdanning",
+      "description": "Et kildebasert fagverk om pedagogikk, didaktikk, utdanningsinstitusjoner, vurdering, profesjoner, ulikhet og læringsmiljø.",
+      "canonicalModel": {
+        "manifest": "data/fag/fag_manifest.json",
+        "schemaFamily": "foundation_v1",
+        "sourceOfTruth": true,
+        "firstSourceClaimBrief": "data/fag/utdanning/pedagogy_learning_theory_source_claim_brief_v1.json",
+        "firstFulltextChapter": "data/fagverk/utdanning/pedagogikk-laeringsteori-laering-kunnskap-motivasjon-og-selvregulering.json",
+        "secondSourceClaimBrief": "data/fag/utdanning/didactics_source_claim_brief_v1.json",
+        "note": "Første av 14 canonicale domener er fulltekstmaterialisert med 8 seksjoner, 32 claimsporede avsnitt og 32 verifiserte claims. Didaktikk er source-first-klargjort som neste domene; Utdanning er ikke complete."
+      },
+      "editorialPlan": {
+        "targetDomainCount": 14,
+        "completedSourceBriefCount": 2,
+        "registeredChapterCount": 1,
+        "completionRequirements": [
+          "all_canonical_domains_covered",
+          "source_first_claim_trace_complete",
+          "fulltext_and_assessment_audits_green",
+          "strict_theory_integrity_green"
+        ],
+        "nextGate": "didactics_source_brief_complete_full_chapter_production"
+      },
+      "chapters": [
+        {
+          "id": "pedagogikk-laeringsteori-laering-kunnskap-motivasjon-og-selvregulering",
+          "title": "Pedagogikk og læringsteori: læring, kunnskap, motivasjon og selvregulering",
+          "subtitle": "Fra prestasjon og forkunnskap til gjenhenting, spacing, kognitiv belastning, feedback, selvregulering og pedagogiske formål",
+          "file": "data/fagverk/utdanning/pedagogikk-laeringsteori-laering-kunnskap-motivasjon-og-selvregulering.json",
+          "primary_domain_id": "pedagogikk_laeringsteori",
+          "emne_ids": [
+            "em_utdanning_pedagogikk_laeringsteori"
+          ],
+          "claimsFile": "data/fagverk/utdanning/pedagogikk-laeringsteori-laering-kunnskap-motivasjon-og-selvregulering/claims.json",
+          "briefFile": "data/fagverk/utdanning/pedagogikk-laeringsteori-laering-kunnskap-motivasjon-og-selvregulering/brief.json",
+          "assessmentFile": "data/fagverk/utdanning/pedagogikk-laeringsteori-laering-kunnskap-motivasjon-og-selvregulering/assessment.json"
+        }
+      ]
     }
   },
   "placeLinks": {

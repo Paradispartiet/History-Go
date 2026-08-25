@@ -96,7 +96,8 @@ export function auditFagverkTheoryIntegrity({writeReport=false,checkReport=true}
 
   const baseline=auditFagverkTheoryQuality({checkReport:true});
   assert(baseline.status==='baseline_only_not_completion_gate','Global theory baseline må forbli eksplisitt baseline-only');
-  assert(baseline.summary?.strong_structured_evidence===18,'Strict integrity audit forventer låst 18/18 baseline før strengere klassifisering');
+  assert(baseline.historicalBaseline?.strongStructuredEvidence===18,'Strict integrity audit forventer låst historisk 18/18-baseline');
+  assert(baseline.summary?.strong_structured_evidence>=18,'Aktiv theory-quality baseline kan ikke regressere under historisk 18/18-gulv');
 
   const contractIds=new Set(contract.subjects.map(s=>s.id));
   const adapterById=new Map();
