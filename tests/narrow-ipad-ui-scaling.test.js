@@ -93,8 +93,20 @@ function testFixedLayersHaveNarrowViewportRules() {
   assert.match(onboarding, /@media \(max-width:\s*860px\)[\s\S]*\.hg-onb-title\s*\{\s*font-size:\s*22px;/s);
 }
 
+function testChangedResourcesAreCacheBusted() {
+  const index = fs.readFileSync(path.join(repoRoot, "index.html"), "utf8");
+  const app = fs.readFileSync(path.join(repoRoot, "js/app.js"), "utf8");
+  const release = "20260825-narrow-ipad-scaling1";
+
+  assert.match(index, new RegExp(`css/miniProfile\\.css\\?v=${release}`));
+  assert.match(index, new RegExp(`css/onboarding\\.css\\?v=${release}`));
+  assert.match(index, new RegExp(`js/app\\.js\\?v=${release}`));
+  assert.match(app, new RegExp(`js/core/viewportManager\\.js\\?v=${release}`));
+}
+
 testNarrowIpadKeepsTabletCanvasWithCompactUi();
 testWideViewportUsesTabletUi();
 testFixedLayersHaveNarrowViewportRules();
+testChangedResourcesAreCacheBusted();
 
 console.log("Narrow iPad UI scaling checks passed.");
