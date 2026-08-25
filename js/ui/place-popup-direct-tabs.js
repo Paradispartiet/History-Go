@@ -5,44 +5,64 @@
   "use strict";
 
   const INSTALL_FLAG = "__HG_PLACE_POPUP_DIRECT_TABS_INSTALLED__";
+  const BRIDGE_FLAG = "hgOwnedSurfaceTabBridge";
   const MORE_ID = "more";
   const bridgedDecorators = new WeakSet();
-  const supplementStore = global.__HG_PLACE_COLLECTION_SUPPLEMENTS__ instanceof Map
-    ? global.__HG_PLACE_COLLECTION_SUPPLEMENTS__
-    : new Map();
-  global.__HG_PLACE_COLLECTION_SUPPLEMENTS__ = supplementStore;
 
   const text = value => String(value == null ? "" : value).trim();
-  const esc = value => String(value == null ? "" : value)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
 
   const REMOVED_DIRECT_TAB_IDS = Object.freeze([
     "objects", "notice", "meaning", "counterpoints", "relations", "knowledge", "observations"
   ]);
 
-  function currentPlaceId(article) {
-    return text(
-      document.getElementById("placeCard")?.dataset?.currentPlaceId
-      || article?.dataset?.placeId
-      || article?.getAttribute?.("data-place-id")
-    );
+  function directChildren(panelWrap) {
+    return [...panelWrap.children].filter(node => node instanceof HTMLElement && node.hasAttribute("data-place-panel"));
   }
 
-  function storeSupplement(placeId, kind, node) {
-    if (!placeId || !(node instanceof HTMLElement)) return;
-    const key = `${placeId}:${kind}`;
-    const rows = supplementStore.get(key) || [];
-    const html = node.outerHTML;
-    if (!rows.includes(html)) rows.push(html);
-    supplementStore.set(key, rows);
+  function activate(tablist, panelWrap, id, focus = false) {
+    const selected = tablist.querySelector(`[data-place-tab="${CSS.escape(text(id))}"]`);
+    if (!(selected instanceof HTMLElement)) return;
+
+    tablist.querySelectorAll("[role=tab]").forEach(button => {
+      const active = button === selected;
+      button.setAttribute("aria-selected", active ? "true" : "false");
+      if (button instanceof HTMLElement) button.tabIndex = active ? 0 : -1;
+    });
+    directChildren(panelWrap).forEach(panel => {
+      panel.hidden = panel.dataset.placePanel !== id;
+    });
+    try {
+      selected.scrollIntoView({ behavior: focus ? "smooth" : "auto", block: "nearest", inline: "nearest" });
+    } catch {}
+    if (focus) selected.focus();
   }
 
-  function getSupplements(placeId, kind) {
-    return [...(supplementStore.get(`${text(placeId)}:${text(kind)}`) || [])];
+  function installNavigationBridge(tablist, panelWrap) {
+    if (tablist.dataset[BRIDGE_FLAG] === "1") return;
+    tablist.dataset[BRIDGE_FLAG] = "1";
+
+    tablist.addEventListener("click", event => {
+      const target = event.target instanceof Element ? event.target.closest("[data-place-tab]") : null;
+      if (!(target instanceof HTMLElement) || !tablist.contains(target)) return;
+      event.stopImmediatePropagation();
+      activate(tablist, panelWrap, text(target.dataset.placeTab), false);
+    }, true);
+
+    tablist.addEventListener("keydown", event => {
+      const buttons = [...tablist.querySelectorAll("[role=tab]")].filter(button => button instanceof HTMLElement);
+      const index = document.activeElement instanceof HTMLElement ? buttons.indexOf(document.activeElement) : -1;
+      if (index < 0 || !buttons.length) return;
+      let next = index;
+      if (event.key === "ArrowRight") next = (index + 1) % buttons.length;
+      else if (event.key === "ArrowLeft") next = (index - 1 + buttons.length) % buttons.length;
+      else if (event.key === "Home") next = 0;
+      else if (event.key === "End") next = buttons.length - 1;
+      else return;
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      const button = buttons[next];
+      if (button instanceof HTMLElement) activate(tablist, panelWrap, text(button.dataset.placeTab), true);
+    }, true);
   }
 
   function ensureLanguageTab(tablist, panelWrap) {
@@ -92,16 +112,14 @@
     }
 
     const heading = text(node.querySelector("h2,h3,h4")?.textContent).toLowerCase();
-    const placeId = currentPlaceId(article);
 
+    // Disse dataene beholdes hos Leksikon/relasjonskilden. Collection-routing
+    // leser den samme canonical kilden når Objects/People-popupen åpnes.
     if (heading === "spor og objekter" || heading === "legg merke til") {
-      storeSupplement(placeId, "objects", node);
       node.remove();
       return;
     }
-
     if (node.classList.contains("hg-place-relations-section") || node.querySelector(".hg-place-relations-section")) {
-      storeSupplement(placeId, "people", node);
       node.remove();
       return;
     }
@@ -147,17 +165,19 @@
     }
   }
 
-  function decoratePopup() {
+  function decoratePopup(place = null) {
     const article = document.querySelector('.hg-place-popup-v2[data-hg-place-tabs="1"]');
     const tablist = article?.querySelector(".hg-place-tabs");
     const panelWrap = article?.querySelector(".hg-place-tab-panels");
     if (!(article instanceof HTMLElement) || !(tablist instanceof HTMLElement) || !(panelWrap instanceof HTMLElement)) return false;
+    if (place?.id) article.dataset.placeId = text(place.id);
     if (article.dataset.hgDirectTabs === "1") return true;
 
     const morePanel = panelWrap.querySelector(`[data-place-panel="${MORE_ID}"]`);
     if (!(morePanel instanceof HTMLElement)) return false;
 
     article.dataset.hgDirectTabs = "1";
+    installNavigationBridge(tablist, panelWrap);
     cleanupOldDirectTabs(tablist, panelWrap);
     tablist.querySelector(`[data-place-tab="${MORE_ID}"]`)?.remove();
 
@@ -178,7 +198,7 @@
 
     const wrappedDecorate = function decoratePopupWithOwnedSurfaces(place) {
       const result = currentDecorate.apply(this, arguments);
-      try { decoratePopup(); } catch (error) { if (global.DEBUG) console.warn("[place-popup-direct-tabs]", error); }
+      try { decoratePopup(place); } catch (error) { if (global.DEBUG) console.warn("[place-popup-direct-tabs]", error); }
       return result;
     };
     bridgedDecorators.add(wrappedDecorate);
@@ -196,7 +216,7 @@
     const wrapped = function showPlacePopupWithOwnedSurfaces(place) {
       const result = current.apply(this, arguments);
       const route = () => {
-        try { decoratePopup(); } catch (error) { if (global.DEBUG) console.warn("[place-popup-direct-tabs]", error); }
+        try { decoratePopup(place); } catch (error) { if (global.DEBUG) console.warn("[place-popup-direct-tabs]", error); }
       };
       if (result && typeof result.then === "function") void result.then(route).catch(error => { if (global.DEBUG) console.warn("[place-popup-direct-tabs]", error); });
       else if (typeof global.queueMicrotask === "function") global.queueMicrotask(route);
@@ -210,7 +230,7 @@
     global.showPlacePopup = wrapped;
     global.HGPlacePopupDirectTabs = {
       decoratePopup,
-      getSupplements,
+      activate,
       visibleOptionalTabs: ["language"]
     };
     installDecoratorBridge();
