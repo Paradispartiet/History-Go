@@ -1,7 +1,7 @@
 {
   "schema": "civication_role_world_realism_matrix_v1",
   "version": 1,
-  "status": "gate_active_broad_rollout_blocked",
+  "status": "gate_green_controlled_rollout_open",
   "effective_date": "2026-08-25",
   "purpose": "Lås bare tverrrollefelter som er bevist gjennom strukturelt forskjellige Civication-livsverdener, uten å endre Career- eller Role World-completion og uten å opprette ny runtime.",
   "semantics": {
@@ -18,8 +18,10 @@
     "no_new_runtime": true,
     "new_parallel_scene_format_allowed": false,
     "completion_statuses_unchanged": true,
-    "broad_rollout_allowed": false,
-    "rollout_rule": "Bred rollout kan først åpnes gjennom en egen policyendring etter at denne gaten er grønn og gjenstående programkrav er bevist."
+    "broad_rollout_allowed": true,
+    "rollout_rule": "Bred rollout er åpnet som kontrollert rolle-for-rolle rollout. Hver rolle må fortsatt passere sin egen readiness-, authority- og provenance-gate, full Civication-suite og compiled-registry-paritet; blokkerte roller forblir karantenesatt.",
+    "rollout_mode": "controlled_role_by_role",
+    "readiness_gate": "data/Civication/roleWorldRolloutReadiness.json"
   },
   "pilot_set": [
     {

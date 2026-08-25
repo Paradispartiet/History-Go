@@ -39,11 +39,12 @@
   "realism_matrix_gate": {
     "path": "data/Civication/roleWorldRealismMatrix.json",
     "schema": "civication_role_world_realism_matrix_v1",
-    "status": "gate_active",
-    "broad_rollout_allowed": false,
+    "status": "gate_green_controlled_rollout_open",
+    "broad_rollout_allowed": true,
     "completion_statuses_unchanged": true,
     "new_runtime_allowed": false,
-    "rule": "Matrixen er en separat audit/completion-gate. Den kan bare låse tverrrollefelt som har flerpilotbevis og kan ikke omskrive reference_complete, role_world_complete eller Scene Pipeline-eierskap."
+    "rule": "Matrixen og readiness-auditen åpner bare kontrollert rolle-for-rolle rollout. De kan ikke omskrive reference_complete, role_world_complete, Scene Pipeline-eierskap, authority-grenser eller rolle-nivå blockers.",
+    "readiness_path": "data/Civication/roleWorldRolloutReadiness.json"
   },
   "role_world_statuses": [
     "role_world_not_started",
@@ -179,5 +180,22 @@
     "role_scope": "sport_utover",
     "status": "role_world_complete"
   },
-  "reference_wave_complete": true
+  "reference_wave_complete": true,
+  "broad_rollout_governance": {
+    "mode": "controlled_role_by_role",
+    "one_role_per_pr": true,
+    "blocked_roles_may_roll_out": false,
+    "authority_must_not_be_inferred": true,
+    "cross_role_links_only_when_genuinely_shared": true,
+    "full_civication_suite_required": true,
+    "compiled_registry_parity_required": true,
+    "realism_matrix_gate_required": true,
+    "provenance_required": true,
+    "existing_scene_pipeline_remains_canonical": true,
+    "parallel_scene_engine_allowed": false,
+    "employment_conditions_global_runtime_field": false,
+    "professional_culture_global_runtime_field": false,
+    "rollout_queue_path": "data/Civication/roleWorldRolloutReadiness.json",
+    "rule": "Bred rollout betyr ikke masse-materialisering: hver canonical rolle leveres i egen PR, må være rollout_ready eller få eksplisitt authored debt lukket, og kan ikke omgå blockers, authority, provenance eller registry-paritet."
+  }
 }

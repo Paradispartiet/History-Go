@@ -19,7 +19,7 @@
     "employment_conditions_remain_role_owned_editorial_content": true,
     "professional_culture_remains_role_owned_editorial_content": true,
     "blocked_roles_are_quarantined_from_rollout": true,
-    "this_pr_does_not_open_broad_rollout": true
+    "readiness_audit_does_not_mutate_broad_rollout_policy": true
   },
   "classification_contract": {
     "rollout_ready": "Core career runtime gate, People, Places, knowledge, workday loop, mail and authority are complete enough to enter a dedicated one-role realism rollout PR; any remaining realism dimensions are authored inside that PR.",
@@ -44,11 +44,14 @@
     "cross_role_program_proof_runtime_proven": true,
     "role_coverage_complete": true,
     "role_blockers_documented": true,
-    "current_policy_still_closed": true,
+    "current_policy_still_closed": false,
+    "policy_state_consistent": true,
+    "matrix_broad_rollout_allowed": true,
+    "policy_broad_rollout_allowed": true,
     "gate_pass": true,
-    "broad_rollout_allowed_now": false,
-    "policy_recommendation": "open_with_role_level_gates_in_separate_policy_pr",
-    "next_required_pr": "Civication Role World broad-rollout policy",
+    "broad_rollout_allowed_now": true,
+    "policy_recommendation": "controlled_rollout_open_with_role_level_gates",
+    "next_required_pr": "Role World rollout: naeringsliv/avdelingsleder",
     "rule": "A green readiness gate proves the program can safely begin controlled rollout. It does not make every role rollout_ready and it does not itself flip broad_rollout_allowed."
   },
   "first_wave_candidates": [

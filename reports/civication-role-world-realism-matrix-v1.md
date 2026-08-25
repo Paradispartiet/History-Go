@@ -2,7 +2,7 @@
 
 Dato: **2026-08-25**
 
-Status: **separat Matrix/gate aktiv; bred rollout fortsatt blokkert**
+Status: **Matrix/gate grønn; kontrollert rolle-for-rolle rollout åpnet**
 
 ## Formål
 
@@ -14,7 +14,7 @@ De eksisterende grensene består:
 - `role_world_complete` er fortsatt Role World-status;
 - Role World Realism Matrix er en separat audit/gate;
 - `civication_scene_v1` og eksisterende Scene Pipeline forblir canonical runtime;
-- bred rollout er eksplisitt `false` til en senere policyendring kan vise at gjenstående programkrav er oppfylt.
+- bred rollout er nå eksplisitt `true`, men bare som kontrollert rolle-for-rolle rollout under readiness-, authority-, provenance-, full-suite- og registry-paritetsgater.
 
 ## Fire strukturelle bevis
 
@@ -88,9 +88,9 @@ Sport-piloten viste at eksisterende career/contract-kontekst var tilstrekkelig f
 
 Journalistikk har sterkt redaksjonelt bevis, men ett domene er ikke nok til å låse et globalt runtimefelt. Profesjonskultur forblir primært authored Role World/roleModel/FWG-data.
 
-### Cross-role links — `not_started`
+### Cross-role links — `runtime_proven`
 
-Programmets Definition of Done krever fortsatt minst ett faktisk shared object som kan oppleves fra to roller med samme stabile objekt-ID, ulikt handlingsrom og uten privilege leakage. Matrixen markerer dette som synlig gjeld i stedet for å late som pilotene allerede har bevist det.
+Newsroom-piloten beviser nå ett faktisk shared object med stabil objekt-ID på tvers av to canonicale roller, ulike lenses og egne authority-grenser. Den andre rollen kan påvirke arbeidsflyt innen eget mandat, men kan ikke arve første rolles myndighet, overskrive evidens eller overta objektets canonical role_scope.
 
 ## Permanent gate
 
@@ -103,7 +103,7 @@ Programmets Definition of Done krever fortsatt minst ett faktisk shared object s
 - tap av `source:*` eller andre bounded audience-typer;
 - manglende People/Places/provenance-evidens;
 - at arkivvertikalen feilaktig blir gjort `role_world_complete` av Matrixen;
-- at `employment_conditions`, `professional_culture` eller `cross_role_links` blir fremstilt som ferdigbevist;
+- at `employment_conditions` eller `professional_culture` blir fremstilt som globale runtimefelt, eller at cross-role proof brukes til privilege leakage;
 - manglende semantic playthrough, compiled-registry parity, Career Matrix- eller Role World-kontraktstest i den obligatoriske gate-listen.
 
 Fordi `tests/run-civication-tests.mjs` globber alle `tests/civication-*.test.js`, inngår Matrix-gaten automatisk i full Civication-suite.
@@ -112,7 +112,7 @@ Fordi `tests/run-civication-tests.mjs` globber alle `tests/civication-*.test.js`
 
 De fire strukturelt forskjellige pilotene er nå omgjort til en eksplisitt, maskinlesbar grense for hva som faktisk kan generaliseres. Det betyr at vi kan slutte å diskutere Matrix-feltene som forslag: de sju feltene over er nå den permanente v1-gaten.
 
-Det betyr **ikke** at Role World Realism-programmet er ferdig eller at masse-rollout skal starte automatisk. Den tydeligste gjenværende tekniske realismeprøven er cross-role shared world: ett faktisk arbeidsobjekt må overleve perspektivskifte mellom to roller uten å lekke myndighet, sensitive data eller rolleprivilegier. Først etter et slikt bevis og en eksplisitt rollout-policy kan `broad_rollout_allowed` vurderes endret.
+Det betyr **ikke** masse-rollout. Cross-role shared world er nå runtime-bevist, readiness-gaten er grønn og den eksplisitte policyen åpner derfor `broad_rollout_allowed` som kontrollert rolle-for-rolle rollout. Hver rolle må fortsatt leveres i egen PR og passere sine egne blockers, authority-, provenance-, full-suite- og registry-paritetskrav.
 
 ## Kvalitetsvurdering
 
@@ -125,4 +125,4 @@ Det betyr **ikke** at Role World Realism-programmet er ferdig eller at masse-rol
 | Sikkerhet og ansvarlighet | 5/5 | Authority leakage, People-fiksjon, sosial-score-inflasjon og cross-role privilege leakage forblir eksplisitte grenser. |
 | Vedlikeholdbarhet og etterprøvbarhet | 5/5 | Ett lite maskinlesbart dokument, én permanent test og eksplisitte evidensreferanser holder gaten lesbar og reviderbar. |
 
-**Total: 30/30 innen Matrix/gate-scope.** Bred rollout og hele realism-programmet er fortsatt uferdig til gjenstående gates faktisk er bevist.
+**Total: 30/30 innen Matrix/gate-scope.** Kontrollert bred rollout er åpnet; individuelle roller forblir gated og blir ikke realism-complete av policyendringen alene.
