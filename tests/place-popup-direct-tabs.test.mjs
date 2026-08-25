@@ -24,16 +24,20 @@ test("Mer er bare et internt staging-panel", () => {
   assert.match(popupContract, /ingen brukerrettet [`*]*Mer[`*]*-fane/i);
 });
 
-test("bare Språk er definert som valgfri direktefane", () => {
-  assert.match(directTabs, /visibleOptionalTabs:\s*\["language"\]/);
+test("Språk er en fast obligatorisk stedspopupfane", () => {
+  assert.match(directTabs, /requiredTabs:\s*\["language"\]/);
+  assert.match(directTabs, /visibleOptionalTabs:\s*\[\]/);
   assert.doesNotMatch(directTabs, /const DIRECT_TABS\s*=/);
   for (const id of ["objects", "notice", "meaning", "counterpoints", "relations", "knowledge", "observations"]) {
     assert.ok(directTabs.includes(`"${id}"`), `mangler eksplisitt opprydding av gammel direktefane ${id}`);
   }
   assert.match(directTabs, /ensureLanguageTab\(tablist, panelWrap\)/);
+  assert.match(directTabs, /data\.requiredLanguageGap|dataset\.requiredLanguageGap|data-required-language-gap/);
+  assert.match(directTabs, /Alle steder skal ha stedsspesifikke begreper/);
   assert.match(directTabs, /installNavigationBridge\(tablist, panelWrap\)/);
   assert.match(directTabs, /scrollIntoView/);
-  assert.match(popupContract, /Språk[\s\S]*valgfri/i);
+  assert.match(popupContract, /Språk[\s\S]*obligatorisk/i);
+  assert.doesNotMatch(popupContract, /Språk[^\n]{0,120}valgfri direktefane/i);
 });
 
 test("tidligere Mer-innhold rutes til canonical eierflater", () => {
@@ -66,7 +70,7 @@ test("eierflatrutingen lastes sammen med PlaceCard og popup", () => {
   assert.match(directTabs, /try \{ decoratePopup\(\); \} catch/, "allerede åpen popup kan repareres ved installasjon");
 });
 
-test("fanestripen for grunnfaner og eventuell Språk forblir horisontal og touch-vennlig", () => {
+test("fanestripen med fast Språk forblir horisontal og touch-vennlig", () => {
   assert.match(css, /overflow-x:\s*auto/);
   assert.match(css, /flex-wrap:\s*nowrap/);
   assert.match(css, /white-space:\s*nowrap/);
@@ -74,10 +78,11 @@ test("fanestripen for grunnfaner og eventuell Språk forblir horisontal og touch
   assert.match(css, /scroll-snap-type:\s*x proximity/);
 });
 
-test("place-checklisten beholder dialektkrav og eierflater", () => {
+test("place-checklisten krever språk på alle steder og skiller dialekt", () => {
+  assert.match(checklist, /Språk[\s\S]*alle canonicale steder/i);
+  assert.match(checklist, /begrep/i);
   assert.match(checklist, /dialektord/i);
   assert.match(checklist, /lokale uttrykk/i);
-  assert.match(checklist, /Språkleksikon[\s\S]*kildebelagt/i);
   assert.match(checklist, /skal ikke diktes|ikke dikt/i);
   assert.match(checklist, /Objects-popupen/);
   assert.match(checklist, /People-popupen/);

@@ -10,9 +10,17 @@ const ownership = fs.readFileSync(path.join(root, "js/ui/place-collection-knowle
 
 test("gamle Mer-familier blir ikke faste popupfaner", () => {
   assert.doesNotMatch(directTabs, /const DIRECT_TABS\s*=/);
-  assert.match(directTabs, /visibleOptionalTabs:\s*\["language"\]/);
+  assert.match(directTabs, /requiredTabs:\s*\["language"\]/);
+  assert.match(directTabs, /visibleOptionalTabs:\s*\[\]/);
   assert.match(directTabs, /REMOVED_DIRECT_TAB_IDS/);
   assert.match(directTabs, /cleanupOldDirectTabs\(tablist, panelWrap\)/);
+});
+
+test("Språk materialiseres for alle Places også før språkdata er ferdigprodusert", () => {
+  assert.match(directTabs, /ensureLanguageTab\(tablist, panelWrap\)/);
+  assert.match(directTabs, /requiredLanguageGap/);
+  assert.match(directTabs, /Alle steder skal ha stedsspesifikke begreper/);
+  assert.match(directTabs, /Dialektinnhold er bare aktuelt/);
 });
 
 test("Objects og People eier sine tidligere Mer-lag", () => {

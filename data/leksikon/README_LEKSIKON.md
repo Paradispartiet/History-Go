@@ -54,7 +54,7 @@ Disse er ikke én brukerrettet «Leksikon-hub» lenger. De fordeles etter semant
 | `news_notes` / nyere notiser | stedspopup → **Nyheter → Nyere notiser** |
 | Lesespor | stedspopup → **Lesespor** |
 | `externalLinks`, source summaries | stedspopup → **Kilder** |
-| Språkleksikon | valgfri direkte **Språk**-fane når stedet har språkstoff |
+| Språkleksikon | fast **Språk**-fane på alle canonical Places |
 | `interpretation.what_to_notice` | **Objects/Gjenstander-popup → Legg merke til** når det gjelder fysiske spor |
 | `interpretation.why_it_matters` | stedspopup → **Om → Betydning** |
 | `interpretation.counterpoints` | stedspopup → **Om → Motpunkter** |
@@ -68,7 +68,7 @@ Personrelasjoner som kommer fra andre canonical place-/People-kilder vises i **P
 
 `Spor & objekter`, `Legg merke til`, `Betydning`, `Motpunkter`, `Relasjoner`, `Kunnskap` og `Observasjoner` er ikke lenger generelle direktefaner i stedspopupen. Legacy-`Mer` kan eksistere som intern staging i runtime, men staging-innholdet skal rutes til eieren ovenfor uten sletting eller duplisering.
 
-**Språk** er den eneste definerte valgfrie direktefanen utover de sju faste grunnfanene.
+**Språk er ikke en valgfri tilleggstab. Det er den åttende faste stedspopupfanen.** Språkleksikonet er obligatorisk på alle canonical Places, mens dialektlaget er et separat og strengere underlag som ikke finnes på alle steder.
 
 ## Hovedartikkel og place-tekst
 
@@ -183,7 +183,11 @@ Datakildene beholdes under:
 - `data/leksikon/sprak/schema_v2.json`;
 - stedsspesifikke filer under `data/leksikon/sprak/places/`.
 
-Når et sted har minst én språkoppføring eller en dokumentert atlasprofil etter Språkleksikon-kontrakten, fremhever `js/ui/place-language-layer.js` materialet med en valgfri, direkte **Språk**-fane i den horisontalt scrollbar fanestripen og en kompakt «Språk på stedet»-forhåndsvisning i Om. Tomme språkflater vises ikke.
+**Alle canonical Places skal ha Språkleksikon.** Hvert sted skal researches for reelle, stedsspesifikke navn og begreper: for eksempel stedsnavn/navnehistorie, relevante fagord, funksjonsbegreper, historiske betegnelser eller dokumenterte lokale uttrykk. Et fullprodusert sted kan ikke ha null språkoppføringer eller Språk = N/A.
+
+Dette betyr ikke at alle steder har dialekt. Dialekt er et separat underlag med egen `placeScope: "area"`-regel. Et enkeltsted skal aldri få konstruert dialekt, slang eller lokalt særpreg bare for å fylle Språk-fanen.
+
+`js/ui/place-popup-direct-tabs.js` holder **Språk** synlig som fast fane for alle Places. Når canonical språkdata finnes, fyller `js/ui/place-language-layer.js` fanen med Språkleksikonet og kan vise en kompakt «Språk på stedet»-forhåndsvisning i Om. Når et eldre sted ennå mangler språkfil/oppføringer, beholdes fanen med en eksplisitt produksjonsgap-tilstand. Dette er en migreringstilstand, ikke en godkjent sluttstatus.
 
 Språkleksikon er fortsatt ikke en PlaceCard-runding. Det er et kunnskapslag. En bruker kan eksplisitt samle enkeltoppføringer inn i den eksisterende Knowledge V2-butikken; runtime skal ikke opprette et parallelt dialekt-/språklager.
 
@@ -206,7 +210,7 @@ Leksikon-loaderen kan fortsatt ha legacy-kobling til `WK_BY_PLACE` under migreri
 - laste stedsspesifikt Språkleksikon;
 - støtte global Lesespor-flyt.
 
-`js/ui/place-popup-tabs.js` er den primære adapteren for de sju faste stedspopupfanene. `js/ui/place-popup-direct-tabs.js` ruter legacy staging til canonical eierflater, `js/ui/place-collection-knowledge-routing.js` kobler Objects-/People-supplementer inn i samlingspopupene, og `js/ui/place-language-layer.js` fremhever Språkleksikonet som valgfri Språk-fane når data finnes.
+`js/ui/place-popup-tabs.js` er basisadapteren for stedspopupen. `js/ui/place-popup-direct-tabs.js` ruter legacy staging til canonical eierflater og sikrer den åttende faste **Språk**-fanen, `js/ui/place-collection-knowledge-routing.js` kobler Objects-/People-supplementer inn i samlingspopupene, og `js/ui/place-language-layer.js` fyller Språk-fanen med canonical Språkleksikon-data.
 
 Legacy Leksikon-hub skal beholdes midlertidig som compatibility-path mens andre kallere migreres. Nye UI-innganger skal ikke bygges mot den.
 
@@ -221,6 +225,7 @@ Ved nye eller reviderte Leksikon-data skal det fortsatt kontrolleres:
 - HTTPS for brukerrettede eksterne lenker;
 - tydelig skille mellom historie, nyhet/notis, objekt og språk;
 - riktig eierflate for object-spor, tolkning og språk;
+- Språkleksikon-dekning for hvert fullprodusert Place;
 - ingen fiktive completeness-oppføringer.
 
 Språkdata følger i tillegg kvalitetskravene i `docs/SPRAKLEKSIKON.md`.
@@ -229,6 +234,7 @@ Språkdata følger i tillegg kvalitetskravene i `docs/SPRAKLEKSIKON.md`.
 
 - Ikke gjeninnfør Leksikon som PlaceCard-runding.
 - Ikke gjeninnfør Språkleksikon som egen PlaceCard-runding.
+- Ikke skjul Språk-fanen eller sette Språk til N/A fordi dialekt ikke er relevant.
 - Ikke gjeninnfør `Mer`, «Annet» eller en serie faste direktefaner for Leksikonets tilleggslag.
 - Ikke opprett en separat dialektdatabase ved siden av `data/leksikon/sprak/`.
 - Ikke flytt alle Leksikon-records fysisk inn i place-filene.

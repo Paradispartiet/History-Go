@@ -1,6 +1,7 @@
 // js/ui/place-popup-direct-tabs.js
 // Legacy «Mer» er kun et internt staging-panel. Innholdet rutes til riktig
 // brukerflate i stedet for å bli en serie permanente popupfaner.
+// Språk er en fast stedspopupfane for alle Places; dialektlaget er fortsatt valgfritt.
 (function installPlacePopupDirectTabs(global) {
   "use strict";
 
@@ -91,6 +92,13 @@
       panel.hidden = true;
       panelWrap.appendChild(panel);
     }
+    if (!text(panel.textContent) && !panel.querySelector("[data-required-language-gap]")) {
+      const gap = document.createElement("div");
+      gap.className = "hg-place-tab-empty";
+      gap.dataset.requiredLanguageGap = "1";
+      gap.innerHTML = "<strong>Språkgrunnlaget er ikke materialisert ennå.</strong><p>Alle steder skal ha stedsspesifikke begreper i Språkleksikonet. Dialektinnhold er bare aktuelt når kildene og place-scope tillater det.</p>";
+      panel.appendChild(gap);
+    }
     return panel;
   }
 
@@ -126,14 +134,16 @@
 
     if (heading === "språkleksikon") {
       const languageLayerExists = Boolean(
-        panelWrap.querySelector('.hg-place-language-panel,[data-place-panel="language"]')
+        panelWrap.querySelector(".hg-place-language-panel")
         || article.dataset.hgLanguageLayer === "1"
       );
       if (languageLayerExists) {
         node.remove();
         return;
       }
-      ensureLanguageTab(tablist, panelWrap).appendChild(node);
+      const languagePanel = ensureLanguageTab(tablist, panelWrap);
+      languagePanel.querySelector("[data-required-language-gap]")?.remove();
+      languagePanel.appendChild(node);
       return;
     }
 
@@ -171,7 +181,10 @@
     const panelWrap = article?.querySelector(".hg-place-tab-panels");
     if (!(article instanceof HTMLElement) || !(tablist instanceof HTMLElement) || !(panelWrap instanceof HTMLElement)) return false;
     if (place?.id) article.dataset.placeId = text(place.id);
-    if (article.dataset.hgDirectTabs === "1") return true;
+    if (article.dataset.hgDirectTabs === "1") {
+      ensureLanguageTab(tablist, panelWrap);
+      return true;
+    }
 
     const morePanel = panelWrap.querySelector(`[data-place-panel="${MORE_ID}"]`);
     if (!(morePanel instanceof HTMLElement)) return false;
@@ -180,6 +193,7 @@
     installNavigationBridge(tablist, panelWrap);
     cleanupOldDirectTabs(tablist, panelWrap);
     tablist.querySelector(`[data-place-tab="${MORE_ID}"]`)?.remove();
+    ensureLanguageTab(tablist, panelWrap);
 
     drainMore(morePanel, article, tablist, panelWrap);
     const observer = new MutationObserver(() => drainMore(morePanel, article, tablist, panelWrap));
@@ -231,7 +245,8 @@
     global.HGPlacePopupDirectTabs = {
       decoratePopup,
       activate,
-      visibleOptionalTabs: ["language"]
+      requiredTabs: ["language"],
+      visibleOptionalTabs: []
     };
     installDecoratorBridge();
     global[INSTALL_FLAG] = true;

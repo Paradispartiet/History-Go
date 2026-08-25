@@ -114,30 +114,41 @@ test("AHA-importgrensen inkluderer hele Knowledge V2 og dermed språkfasetten", 
   assert.match(runtime, /source:\s*\{[\s\S]*type:\s*SOURCE_TYPE/);
 });
 
-test("Språkleksikon-dokumentasjonen låser Språk som eneste definerte valgfrie direktefane", () => {
+test("Språk er fast på alle Places mens dialekt er et separat underlag", () => {
   const contract = read("docs/SPRAKLEKSIKON.md");
   const popup = read("docs/PLACE_POPUP_SYSTEM.md");
+  const directTabs = read("js/ui/place-popup-direct-tabs.js");
+  assert.match(contract, /Språkleksikon er obligatorisk for alle canonical Places/i);
+  assert.match(contract, /Dialektlaget er ikke obligatorisk/i);
+  assert.match(contract, /Begreper finnes på alle steder/i);
+  assert.match(contract, /et produksjonsklart sted kan ikke ende med null språkoppføringer/i);
   assert.match(contract, /ikke.*PlaceCard-runding/i);
   assert.match(contract, /hg_knowledge_entries_v2/);
-  assert.match(popup, /én definert, source-eid \*\*valgfri direktefane\*\*/i);
-  assert.match(popup, /Språk[\s\S]*eneste definerte valgfrie direktefanen/i);
+  assert.match(popup, /åtte faste faner/i);
+  assert.match(popup, /Språk er obligatorisk/i);
+  assert.match(popup, /Dialekt er et valgfritt, strengere underlag/i);
   assert.match(popup, /Følgende er \*\*ikke selvstendige stedspopupfaner\*\*[\s\S]*Spor & objekter/i);
+  assert.match(directTabs, /requiredTabs:\s*\["language"\]/);
+  assert.match(directTabs, /visibleOptionalTabs:\s*\[\]/);
+  assert.match(directTabs, /data-required-language-gap|dataset\.requiredLanguageGap/);
 });
 
 
-test("place-produksjon låser dialektlaget til område-Places", () => {
+test("place-produksjon låser dialektlaget til område-Places uten å gjøre Språk valgfritt", () => {
   const checklist = read("docs/PLACE_PRODUCTION_CHECKLIST.md");
   const contract = read("docs/SPRAKLEKSIKON.md");
+  assert.match(checklist, /SPRÅKLEKSIKON — ALLTID \/ ALDRI N\/A/i);
   assert.match(checklist, /DIALEKTLAG — KUN `placeScope: "area"` \/ N\/A/);
-  assert.match(checklist, /dialektinnhold kan kun eies av et område-Place/i);
-  assert.match(checklist, /enkeltsted med Språkleksikon/i);
-  assert.match(checklist, /skal ikke diktes/i);
+  assert.match(checklist, /Dialektinnhold kan kun eies av et område-Place/i);
+  assert.match(checklist, /enkeltsted skal ha Språkleksikon/i);
+  assert.match(checklist, /dialekt skal ikke diktes|skal aldri konstrueres/i);
   assert.match(contract, /obligatorisk researchjobb/i);
   assert.match(contract, /Dialektlaget kan bare eies[^\n]*placeScope:\s*"area"/i);
   assert.match(contract, /minst ett reelt kildebelagt \*\*dialektord eller lokalt uttrykk\*\*/i);
-  assert.match(contract, /Enkelt-Places kan ha et rikt Språkleksikon, men ikke et dialektlag/i);
+  assert.match(contract, /Enkelt-Places[^\n]*Språkleksikon[^\n]*ikke[^\n]*dialektlag/i);
   assert.match(contract, /nærmeste relevante område-Place/i);
   assert.match(contract, /related_places.*related_entries/i);
+  assert.match(contract, /Språkleksikonet som helhet kan fortsatt ikke være N\/A/i);
 });
 
 

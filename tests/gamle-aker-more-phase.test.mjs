@@ -14,7 +14,7 @@ const collectionRouting = fs.readFileSync('js/ui/place-collection-knowledge-rout
 const popupContract = fs.readFileSync('docs/PLACE_POPUP_SYSTEM.md', 'utf8');
 const report = fs.readFileSync('reports/place-production/gamle-aker-kirke-historie-v1.md', 'utf8');
 
-test('Gamle Aker har et lite canonicalt Språkleksikon for direkte Språk-fane', () => {
+test('Gamle Aker har et canonicalt Språkleksikon for den faste Språk-fanen', () => {
   assert.equal(languageManifest.place_files.gamle_aker_kirke, languagePath);
   assert.equal(language.place_id, 'gamle_aker_kirke');
   assert.equal(language.source_checked_at, '2026-08-22');
@@ -77,19 +77,21 @@ test('Fossilsporet får riktig eier uten nytt Story-, funfact- eller Object-fill
   assert.match(report, /Ingen forklarende fossiltekst gjeninnføres som Story/);
 });
 
-test('Runtime viser bare valgfri Språk som direkte tillegg og ruter resten til eierflater', () => {
+test('Runtime viser fast Språk og ruter andre tillegg til eierflater', () => {
   assert.match(languageRuntime, /const MANIFEST_PATH = "data\/leksikon\/sprak\/manifest\.json"/);
   assert.match(languageRuntime, /data-place-panel="\$\{TAB_ID\}"/);
   assert.match(languageRuntime, /Språk på stedet/);
   assert.match(languageRuntime, /Samle kunnskapen/);
   assert.match(languageRuntime, /target="_blank" rel="noopener noreferrer"/);
-  assert.match(directTabsRuntime, /visibleOptionalTabs:\s*\["language"\]/);
+  assert.match(directTabsRuntime, /requiredTabs:\s*\["language"\]/);
+  assert.match(directTabsRuntime, /visibleOptionalTabs:\s*\[\]/);
   assert.match(directTabsRuntime, /heading === "spor og objekter" \|\| heading === "legg merke til"/);
   assert.match(directTabsRuntime, /heading === "hvorfor det betyr noe"/);
   assert.match(directTabsRuntime, /heading === "motpunkter"/);
   assert.match(collectionRouting, /objectsSupplement/);
   assert.match(collectionRouting, /interpretation\.what_to_notice/);
   assert.match(popupContract, /Objects\/Gjenstander-popupen/);
+  assert.match(popupContract, /Språk er obligatorisk/i);
   assert.match(directTabsRuntime, /morePanel\.remove\(\)/);
 });
 
