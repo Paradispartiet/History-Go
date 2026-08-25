@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://history-go.example/schemas/micro-place-v1.json",
+  "title": "History GO Micro Place v1",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "id",
+    "name",
+    "lat",
+    "lon",
+    "category",
+    "subcategory_id",
+    "placeTier",
+    "desc",
+    "locatorType",
+    "sourceProvider",
+    "geocodeAccuracy",
+    "coordRole",
+    "coordType",
+    "coordStatus",
+    "coordNote",
+    "micro_place_profile"
+  ],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "name": { "type": "string", "minLength": 1 },
+    "lat": { "type": "number", "minimum": -90, "maximum": 90 },
+    "lon": { "type": "number", "minimum": -180, "maximum": 180 },
+    "category": { "type": "string", "minLength": 1 },
+    "subcategory_id": { "type": "string", "minLength": 1 },
+    "placeTier": { "const": "micro" },
+    "desc": { "type": "string", "minLength": 20 },
+    "parent_place_id": { "type": "string", "minLength": 1 },
+    "locatorType": { "type": "string", "minLength": 1 },
+    "sourceProvider": { "type": "string", "minLength": 1 },
+    "sourceObjectId": { "type": "string", "minLength": 1 },
+    "address": { "type": "object" },
+    "geocodeAccuracy": { "type": "string", "minLength": 1 },
+    "coordRole": { "type": "string", "minLength": 1 },
+    "coordType": { "type": "string", "minLength": 1 },
+    "coordStatus": { "type": "string", "minLength": 1 },
+    "coordNote": { "type": "string", "minLength": 10 },
+    "micro_place_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "kind",
+        "currentStatus",
+        "sourceUrl",
+        "sourceLocation",
+        "verifiedAt",
+        "quizMode"
+      ],
+      "properties": {
+        "schema": { "const": "history_go_micro_place_profile_v1" },
+        "kind": {
+          "enum": [
+            "lesekiosk",
+            "bokskap",
+            "miljostasjon",
+            "ombruk_gratis",
+            "minneskilt",
+            "snublestein",
+            "annet_dokumentert_mikrosted"
+          ]
+        },
+        "currentStatus": {
+          "enum": ["active", "temporary_unavailable", "historic"]
+        },
+        "sourceUrl": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        },
+        "sourceLocation": { "type": "string", "minLength": 3 },
+        "verifiedAt": { "type": "string", "format": "date" },
+        "quizMode": { "enum": ["none", "place"] },
+        "parent_place_id": { "type": "string", "minLength": 1 }
+      }
+    }
+  },
+  "anyOf": [
+    { "required": ["sourceObjectId"] },
+    { "required": ["address"] }
+  ]
+}
