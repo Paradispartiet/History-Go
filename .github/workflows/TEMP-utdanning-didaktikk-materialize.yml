@@ -1,0 +1,62 @@
+name: TEMP Utdanning Didaktikk materialize
+on:
+  push:
+    branches:
+      - agent/utdanning-didaktikk-fulltext-v1
+permissions:
+  contents: write
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify fresh main ancestry
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git merge-base --is-ancestor origin/main HEAD
+      - name: Repair materializer emner write
+        shell: bash
+        run: |
+          set -euo pipefail
+          sed -i 's/write(P\.emners,emners=emner)/write(P.emner,emner)/' scripts/materialize-utdanning-didactics-fulltext-v1.mjs
+          grep -F 'write(P.emner,emner)' scripts/materialize-utdanning-didactics-fulltext-v1.mjs
+      - name: Audit next source-first port
+        run: node scripts/brief-utdanning-early-childhood-learning-sources-v1.mjs --write-report
+      - name: Materialize Didaktikk 2 of 14
+        run: node scripts/materialize-utdanning-didactics-fulltext-v1.mjs
+      - name: Audit Didaktikk fulltext
+        run: node scripts/audit-utdanning-didactics-fulltext-v1.mjs --write-report
+      - name: Audit Fagverk subject inventory
+        run: node scripts/audit-fagverk-subject-inventory.mjs --write-report --no-check-report
+      - name: Audit Fagverk general engine
+        run: node scripts/audit-fagverk-general-engine.mjs --write-report --no-check-report
+      - name: Audit Fagverk theory quality
+        run: node scripts/audit-fagverk-theory-quality.mjs --write-report --no-check-report
+      - name: Audit Fagverk theory integrity
+        run: node scripts/audit-fagverk-theory-integrity.mjs --write-report --no-check-report
+      - name: Build Fagverk release
+        run: node scripts/build-fagverk-release-manifest.mjs
+      - name: Commit materialized 2 of 14 locally
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/materialize-utdanning-didactics-fulltext-v1.mjs data/fag/fag_manifest.json data/fag/utdanning data/fagverk reports/fagverk
+          if ! git diff --cached --quiet; then
+            git commit -m "Materialize Utdanning Didaktikk at 2/14"
+          fi
+      - name: Run canonical Utdanning registry CI on clean materialized head
+        run: node scripts/run-utdanning-domain-ci-v1.mjs
+      - name: Push materialized head
+        shell: bash
+        run: |
+          set -euo pipefail
+          git push origin HEAD:${GITHUB_REF_NAME}
