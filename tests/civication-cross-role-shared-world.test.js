@@ -73,8 +73,14 @@ assert.ok(secondPlan.sequence.some(step => (step.allowed_families || []).include
 
 const directChoices = proof.authority_contract.direct_choice_ids.map(id => secondReview.choices.find(choice => choice.id === id));
 assert.ok(directChoices.every(Boolean), 'all direct cross-role choices must exist');
-const forbiddenChoice = secondReview.choices.find(choice => choice.id === proof.authority_contract.forbidden_choice_id);
-assert.ok(forbiddenChoice, 'forbidden privilege-leakage choice must exist');
+const forbiddenActionId = proof.authority_contract.forbidden_action_id;
+const forbiddenRule = secondReview.authority_context.authority_rules.find(rule => rule.action_id === forbiddenActionId);
+assert.ok(forbiddenRule, 'forbidden evidentiary-overwrite authority rule must exist');
+assert.equal(forbiddenRule.authority, 'forbidden');
+assert.ok(
+  secondReview.choices.every(choice => choice.authority_action?.action_id !== forbiddenActionId),
+  'a forbidden authority action must never be exposed as an executable authored choice'
+);
 
 for (const directChoice of directChoices) {
   const api = stateApi();
@@ -108,7 +114,10 @@ for (const directChoice of directChoices) {
   assert.equal(leaked.allowed, false, `${directChoice.id}: owner role must not inherit second-role authority`);
   assert.equal(leaked.reason, 'role_scope_mismatch');
 
-  const forbidden = authority.evaluate(secondReview.authority_context, forbiddenChoice.authority_action, {
+  const forbidden = authority.evaluate(secondReview.authority_context, {
+    action_id: forbiddenActionId,
+    intent: 'execute'
+  }, {
     role_scope: proof.second_role.role_scope,
     work_world: adapter
   });
