@@ -784,3 +784,169 @@ body.hg-app .hg-place-popup-v2 .hg-place-source-list li::before{
 @media (max-width:520px){
   body.hg-app .hg-place-popup-v2 .hg-place-metric-grid{grid-template-columns:1fr;}
 }
+
+/* Micro Places own a small source-backed detail surface. This is not the
+   standard Place popup with its hero and production tabs squeezed smaller. */
+body.hg-app .hg-popup.place-popup-v2.micro-place-popup-shell{
+  padding:12px;
+  background:rgba(2,5,9,.72);
+}
+body.hg-app .hg-popup.place-popup-v2.micro-place-popup-shell .hg-popup-inner{
+  width:min(540px,calc(100vw - 24px));
+  max-height:min(82dvh,680px);
+  border-radius:25px;
+  background:linear-gradient(155deg,#171a1e,#090b0e 76%);
+  box-shadow:0 28px 80px rgba(0,0,0,.62),inset 0 1px rgba(255,255,255,.07);
+}
+body.hg-app .hg-popup.place-popup-v2.micro-place-popup-shell .hg-popup-close{
+  top:13px;
+  right:13px;
+  width:36px;
+  height:36px;
+  background:rgba(255,255,255,.055);
+}
+body.hg-app .hg-micro-place-popup{
+  --micro-popup-accent:#e9c85b;
+  width:100%;
+}
+body.hg-app .hg-micro-place-popup[data-micro-kind="lesekiosk"],
+body.hg-app .hg-micro-place-popup[data-micro-kind="bokskap"]{--micro-popup-accent:#e6bf4d}
+body.hg-app .hg-micro-place-popup[data-micro-kind="gjenvinningsstasjon"],
+body.hg-app .hg-micro-place-popup[data-micro-kind="ombrukspunkt"],
+body.hg-app .hg-micro-place-popup[data-micro-kind="miljostasjon"]{--micro-popup-accent:#67c997}
+body.hg-app .hg-micro-place-popup[data-micro-kind="minneskilt"]{--micro-popup-accent:#72aee8}
+body.hg-app .hg-micro-place-popup[data-micro-kind="snublestein"]{--micro-popup-accent:#d6b56d}
+body.hg-app .hg-micro-place-popup .hg-micro-popup-header{
+  display:grid;
+  grid-template-columns:54px minmax(0,1fr);
+  gap:13px;
+  align-items:center;
+  padding:19px 56px 17px 19px;
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+body.hg-app .hg-micro-place-popup .hg-micro-popup-icon{
+  display:grid;
+  place-items:center;
+  width:52px;
+  height:52px;
+  border-radius:16px;
+  color:var(--micro-popup-accent);
+  background:color-mix(in srgb,var(--micro-popup-accent) 11%,rgba(255,255,255,.035));
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--micro-popup-accent) 22%,transparent);
+}
+body.hg-app .hg-micro-place-popup .hg-micro-popup-icon svg{width:28px;height:28px}
+body.hg-app .hg-micro-place-popup .hg-micro-popup-heading{min-width:0}
+body.hg-app .hg-micro-place-popup .hg-micro-popup-eyebrow{
+  margin:0 0 6px;
+  color:var(--micro-popup-accent);
+  font-size:9px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+}
+body.hg-app .hg-micro-place-popup .hg-modal-title{
+  margin:0;
+  font-size:clamp(22px,5vw,30px);
+  line-height:1.06;
+  letter-spacing:-.03em;
+}
+body.hg-app .hg-micro-place-popup .hg-micro-popup-taxonomy{
+  margin:7px 0 0;
+  color:rgba(255,255,255,.5);
+  font-size:11px;
+}
+body.hg-app .hg-micro-place-popup .hg-micro-popup-status{
+  grid-column:2;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  justify-self:start;
+  margin-top:-4px;
+  padding:5px 8px;
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:999px;
+  color:rgba(255,255,255,.72);
+  font-size:10px;
+  font-weight:750;
+}
+body.hg-app .hg-micro-place-popup .hg-micro-popup-status>span{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#67c997;
+  box-shadow:0 0 0 3px rgba(103,201,151,.11);
+}
+body.hg-app .hg-micro-place-popup .hg-micro-popup-status[data-status="temporary_unavailable"]>span{background:#e9a85b;box-shadow:0 0 0 3px rgba(233,168,91,.11)}
+body.hg-app .hg-micro-place-popup .hg-micro-popup-status[data-status="historic"]>span{background:#a9a7a0;box-shadow:0 0 0 3px rgba(169,167,160,.11)}
+body.hg-app .hg-micro-place-popup .hg-micro-popup-body{
+  overflow-y:auto;
+  padding:16px 19px calc(19px + env(safe-area-inset-bottom));
+}
+body.hg-app .hg-micro-place-popup .hg-micro-popup-location{
+  display:flex;
+  gap:8px;
+  align-items:flex-start;
+  margin-bottom:13px;
+  padding:9px 11px;
+  border-radius:12px;
+  background:rgba(255,255,255,.045);
+  color:rgba(255,255,255,.62);
+  font-size:11px;
+  line-height:1.45;
+}
+body.hg-app .hg-micro-place-popup .hg-micro-popup-location>span:first-child{color:var(--micro-popup-accent);font-weight:900}
+body.hg-app .hg-micro-place-popup .hg-micro-popup-description{
+  color:rgba(255,255,255,.84);
+  font-size:14px;
+  line-height:1.58;
+}
+body.hg-app .hg-micro-place-popup .hg-micro-popup-description p{margin:0 0 11px}
+body.hg-app .hg-micro-place-popup .hg-micro-popup-description p:last-child{margin-bottom:0}
+body.hg-app .hg-micro-place-popup .hg-micro-popup-footer{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-top:17px;
+  padding-top:14px;
+  border-top:1px solid rgba(255,255,255,.07);
+}
+body.hg-app .hg-micro-place-popup .hg-micro-popup-verified{
+  color:rgba(255,255,255,.38);
+  font-size:10px;
+  white-space:nowrap;
+}
+body.hg-app .hg-micro-place-popup .hg-micro-popup-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:7px}
+body.hg-app .hg-micro-place-popup .hg-micro-popup-actions a,
+body.hg-app .hg-micro-place-popup .hg-micro-popup-actions button{
+  display:inline-flex;
+  align-items:center;
+  min-height:36px;
+  padding:0 12px;
+  border:1px solid color-mix(in srgb,var(--micro-popup-accent) 28%,rgba(255,255,255,.1));
+  border-radius:11px;
+  background:color-mix(in srgb,var(--micro-popup-accent) 8%,rgba(255,255,255,.025));
+  color:#fff;
+  font:inherit;
+  font-size:11px;
+  font-weight:800;
+  text-decoration:none;
+  cursor:pointer;
+}
+body.hg-app .hg-micro-place-popup .hg-micro-popup-actions a:hover,
+body.hg-app .hg-micro-place-popup .hg-micro-popup-actions a:focus-visible,
+body.hg-app .hg-micro-place-popup .hg-micro-popup-actions button:hover,
+body.hg-app .hg-micro-place-popup .hg-micro-popup-actions button:focus-visible{
+  border-color:var(--micro-popup-accent);
+  outline:none;
+}
+
+@media(max-width:520px){
+  body.hg-app .hg-micro-place-popup .hg-micro-popup-header{grid-template-columns:46px minmax(0,1fr);gap:11px;padding:16px 49px 14px 16px}
+  body.hg-app .hg-micro-place-popup .hg-micro-popup-icon{width:44px;height:44px;border-radius:14px}
+  body.hg-app .hg-micro-place-popup .hg-micro-popup-icon svg{width:24px;height:24px}
+  body.hg-app .hg-micro-place-popup .hg-micro-popup-body{padding:14px 16px calc(16px + env(safe-area-inset-bottom))}
+  body.hg-app .hg-micro-place-popup .hg-micro-popup-footer{align-items:flex-start;flex-direction:column}
+  body.hg-app .hg-micro-place-popup .hg-micro-popup-actions{justify-content:flex-start}
+}

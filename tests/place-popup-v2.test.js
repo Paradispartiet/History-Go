@@ -30,7 +30,7 @@ function createHarness() {
     querySelector(selector) {
       if (selector === "[data-place-hero-media]") return media;
       if (selector === "[data-place-hero-image]") return image;
-      if (selector.includes("data-quiz")) return quizButton;
+      if (selector.includes("data-quiz")) return captured.html.includes("data-quiz=") ? quizButton : null;
       return null;
     }
   };
@@ -139,4 +139,39 @@ test("tries image candidates and hides the image after all candidates fail", () 
   assert.equal(captured.image.src, "");
   assert.equal(captured.image.hidden, true);
   assert.equal(captured.mediaClasses.has("is-missing"), true);
+});
+
+test("renders Micro Places in a dedicated mini popup without full-place chrome", () => {
+  const { window, captured } = createHarness();
+
+  window.showPlacePopup({
+    id: "lesekiosk_50",
+    name: "Lesekiosk 50 – Bislett stadion",
+    category: "litteratur",
+    subcategory_id: "lesekiosk",
+    placeTier: "micro",
+    desc: "En liten lesekiosk ved Bislett stadion.",
+    popupDesc: "Lesekiosken er et eget bokdelingspunkt.\n\nUtvalget i kiosken kan skifte.",
+    micro_place_profile: {
+      schema: "history_go_micro_place_profile_v1",
+      kind: "lesekiosk",
+      currentStatus: "active",
+      sourceUrl: "https://example.test/lesekiosk",
+      sourceLocation: "Bislett stadion",
+      verifiedAt: "2026-08-26",
+      quizMode: "none"
+    },
+    externalLinks: [{ type:"reference", label:"Lang kildetittel", url:"https://example.test/lesekiosk" }]
+  });
+
+  assert.equal(captured.extraClass, "place-popup place-popup-v2 micro-place-popup-shell");
+  assert.match(captured.html, /hg-micro-place-popup/);
+  assert.match(captured.html, /data-place-tier="micro"/);
+  assert.match(captured.html, /Bislett stadion/);
+  assert.match(captured.html, /Hovedkilde/);
+  assert.match(captured.html, /Verifisert 2026-08-26/);
+  assert.doesNotMatch(captured.html, /hg-place-hero/);
+  assert.doesNotMatch(captured.html, /data-place-hero-media/);
+  assert.doesNotMatch(captured.html, /Ta quiz/);
+  assert.equal(captured.quizTarget, "");
 });

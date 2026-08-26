@@ -6,9 +6,13 @@ Basisruntime: `js/ui/place-popup-v2.js`
 Faner: `js/ui/place-popup-tabs.js`  
 Språkadapter: `js/ui/place-language-layer.js`  
 På stedet: `js/ui/place-onsite-surface.js`  
-Sist kontrollert: **2026-08-25**
+Sist kontrollert: **2026-08-26**
 
-Stedspopupen er den komplette brukerrettede **kunnskapsflaten** for ett canonical History GO-sted. PlaceCard er det kompakte kontrollrommet.
+Stedspopupen er den komplette brukerrettede **kunnskapsflaten** for ett standard
+canonical History GO-sted. PlaceCard er det kompakte kontrollrommet. Canonical
+Micro Places følger det eksplisitte miniunntaket i
+`docs/MICRO_PLACE_CONTRACT.md`: de bruker en liten kildebelagt popup og skal
+ikke blåses opp til en tom fullstedspopup.
 
 Sted-for-sted produksjon:
 
@@ -66,7 +70,7 @@ Data skal ikke kopieres inn i én gigantisk place-fil bare fordi flere brukerfla
 
 ## 4. Canonical popupfaner
 
-Popupen har **åtte faste faner** for alle canonical Places:
+Popupen har **åtte faste faner** for alle standard canonical Places:
 
 ```text
 Om
@@ -78,6 +82,11 @@ Lesespor
 Kilder
 Språk
 ```
+
+Et Place med `placeTier: "micro"` og gyldig `micro_place_profile` får ingen av
+disse fanene. Mini-popupen viser bare identitet, status, stedstekst, lokasjon og
+inspiserbare kilder. Dette er et tier-unntak, ikke en svekkelse av standardstedets
+popupkontrakt.
 
 **Språk er obligatorisk.** Alle steder har navn, begreper, fagord, historiske navneformer, lokale betegnelser eller andre språklige innganger som kan vurderes etter `docs/SPRAKLEKSIKON.md`. Et produksjonsklart sted kan derfor ikke ha Språk som N/A eller mangle Språk-fanen.
 

@@ -264,6 +264,7 @@
   }
 
   async function injectLearning(place) {
+    if (String(place?.placeTier || '').trim().toLowerCase() === 'micro') return;
     const registry = await loadRegistry();
     if (!registry) return;
     const popup = document.querySelector('.hg-popup.place-popup-v2');
