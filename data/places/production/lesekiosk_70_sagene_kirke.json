@@ -20,8 +20,8 @@
   },
   "textHashes": {
     "algorithm": "sha256",
-    "desc": "d354d73723b6849f648198c3cf52f74aae85029deacb76d4bc3f89daeae6d307",
-    "popupDesc": "969b5c62af0064ed351b3c42621caeb3ec576d69c918c84d62acc8f3179f2cc8"
+    "desc": "4b27319b163c465c1876249e1001ca075d201cacd82a85a79e10864afde115a5",
+    "popupDesc": "a2b53c11722622bef36954eecfb69632476530865b7a10b31c195f6271c04be6"
   },
   "claims": [
     {
@@ -71,6 +71,18 @@
       "claimKind": "ordinary",
       "evidenceMode": "direct",
       "temporalStatus": "current"
+    },
+    {
+      "id": "claim_lesekiosk_70_sagene_kirke_twin",
+      "claim": "Lesekiosks Sagene-side omtaler kiosk nummer 70 og 71 som tvillingkioskene ved Sagene kirke.",
+      "sourceUrl": "https://lesekiosk.no/lesekiosk/lesekiosken-pa-sagene-nr-71/",
+      "sourceLocation": "Lesekiosken: avsnittet om tvillingkioskene på Sagene.",
+      "sourceType": "institutional",
+      "verifiedAt": "2026-08-26",
+      "status": "verified",
+      "claimKind": "identity",
+      "evidenceMode": "direct",
+      "temporalStatus": "current"
     }
   ],
   "sentenceCoverage": {
@@ -78,13 +90,14 @@
       {
         "sentence": 1,
         "claimIds": [
-          "claim_lesekiosk_70_sagene_kirke_identity"
+          "claim_lesekiosk_70_sagene_kirke_twin"
         ]
       },
       {
         "sentence": 2,
         "claimIds": [
-          "claim_lesekiosk_70_sagene_kirke_function"
+          "claim_lesekiosk_70_sagene_kirke_identity",
+          "claim_lesekiosk_70_sagene_kirke_coordinate"
         ]
       },
       {
@@ -98,27 +111,26 @@
       {
         "sentence": 1,
         "claimIds": [
-          "claim_lesekiosk_70_sagene_kirke_identity",
-          "claim_lesekiosk_70_sagene_kirke_listing"
+          "claim_lesekiosk_70_sagene_kirke_twin"
         ]
       },
       {
         "sentence": 2,
         "claimIds": [
-          "claim_lesekiosk_70_sagene_kirke_coordinate"
+          "claim_lesekiosk_70_sagene_kirke_identity"
         ]
       },
       {
         "sentence": 3,
         "claimIds": [
-          "claim_lesekiosk_70_sagene_kirke_function"
+          "claim_lesekiosk_70_sagene_kirke_coordinate"
         ]
       },
       {
         "sentence": 4,
         "claimIds": [
           "claim_lesekiosk_70_sagene_kirke_identity",
-          "claim_lesekiosk_70_sagene_kirke_function"
+          "claim_lesekiosk_70_sagene_kirke_twin"
         ]
       }
     ]
@@ -144,8 +156,8 @@
     "currentStatus": "current",
     "sourceVerifiedAt": "2026-08-26",
     "claimsVerified": {
-      "verified": 4,
-      "total": 4
+      "verified": 5,
+      "total": 5
     },
     "factualReview": "passed",
     "editorialReview": "passed",

@@ -74,10 +74,9 @@ Badges and Observation. Quiz is shown only when `quizMode: "place"`.
 Opening a standard Place after a Micro Place must fully restore the ordinary
 PlaceCard. The Micro renderer may not mutate Place data or change map styling.
 
-## 5. Oslo v1 classification
+## 5. Oslo classification
 
-The Oslo Lesekiosk and Miljø & gjenbruk onboarding uses Micro Places for all 32
-service-sized points:
+The Oslo foundation onboarding uses Micro Places for 32 service-sized points:
 
 - 21 `litteratur / lesekiosk` Places;
 - 11 `natur / miljo_gjenbruk` Places.
@@ -85,6 +84,16 @@ service-sized points:
 The Miljø & gjenbruk Places additionally keep `circular_profile` for factual
 service and reuse details. The profile does not turn them into full nature
 PlaceCards.
+
+The 2026 expansion adds 25 separately reviewed canonical Micro Places:
+
+- 15 additional `natur / miljo_gjenbruk` service points;
+- four `bla_skilt` Places under the relevant existing top category;
+- six individual `historie / snublestein` Places.
+
+This pilot is not an exhaustive inventory of Oslo's blue plaques or
+Stolpersteine. Every physical plaque or stone keeps its own identity; shared
+addresses or themes are relations, not reasons to merge markers.
 
 ## 6. Review integrity
 

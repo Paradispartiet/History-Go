@@ -1,3 +1,4 @@
+# Permanent gate for canonical Oslo Micro Place foundations and expansions.
 name: Oslo Micro Places governance
 
 on:
@@ -5,6 +6,10 @@ on:
     paths:
       - "data/places/natur/oslo/miljo_gjenbruk/**"
       - "data/places/litteratur/oslo/lesekiosk/**"
+      - "data/places/by/oslo/bla_skilt/**"
+      - "data/places/helse/oslo/bla_skilt/**"
+      - "data/places/historie/oslo/snublestein/**"
+      - "data/places/vitenskap/oslo/bla_skilt/**"
       - "data/places/production/**"
       - "data/places/regler/micro_place_profile_v1.schema.json"
       - "data/places/manifest.json"
@@ -12,6 +17,7 @@ on:
       - "data/places/place_image_backlog_summary.json"
       - "data/runtime/place-open/**"
       - "reports/oslo-micro-places-2026/**"
+      - "reports/oslo-micro-place-expansion-2026/**"
       - "reports/oslo-miljo-gjenbruk-2026/**"
       - "reports/lesekiosker-oslo-2026/**"
       - "schemas/place.ts"
@@ -25,6 +31,8 @@ on:
       - "tests/micro-place-contract.test.mjs"
       - "tests/place-image-audit-changed.test.mjs"
       - "tests/oslo-miljo-gjenbruk-lesekiosk-materialization.test.mjs"
+      - "tests/oslo-micro-place-expansion.test.mjs"
+      - "tools/materialize-oslo-micro-place-expansion.mjs"
       - "tools/build_places_index.mts"
       - "tools/check_places_index_sync.mts"
       - ".github/workflows/oslo-micro-places-governance.yml"
@@ -33,9 +41,14 @@ on:
     paths:
       - "data/places/natur/oslo/miljo_gjenbruk/**"
       - "data/places/litteratur/oslo/lesekiosk/**"
+      - "data/places/by/oslo/bla_skilt/**"
+      - "data/places/helse/oslo/bla_skilt/**"
+      - "data/places/historie/oslo/snublestein/**"
+      - "data/places/vitenskap/oslo/bla_skilt/**"
       - "data/places/regler/micro_place_profile_v1.schema.json"
       - "tests/micro-place-contract.test.mjs"
       - "tests/oslo-miljo-gjenbruk-lesekiosk-materialization.test.mjs"
+      - "tests/oslo-micro-place-expansion.test.mjs"
       - ".github/workflows/oslo-micro-places-governance.yml"
   workflow_dispatch:
 
@@ -55,10 +68,12 @@ jobs:
           cache: npm
       - name: Install repository dependencies
         run: npm ci
-      - name: Validate Micro Place contract and exact 11 plus 21 inventory
-        run: node --test tests/micro-place-contract.test.mjs tests/oslo-miljo-gjenbruk-lesekiosk-materialization.test.mjs
+      - name: Validate Micro Place contract, original 11 plus 21, and expansion 15 plus 4 plus 6
+        run: node --test tests/micro-place-contract.test.mjs tests/oslo-miljo-gjenbruk-lesekiosk-materialization.test.mjs tests/oslo-micro-place-expansion.test.mjs
       - name: Validate independent review promotion
-        run: node scripts/promote-oslo-micro-place-review.mjs
+        run: |
+          node scripts/promote-oslo-micro-place-review.mjs
+          node scripts/promote-oslo-micro-place-review.mjs --audit=reports/oslo-micro-place-expansion-2026/review-audit.json --report=reports/oslo-micro-place-expansion-2026/review-integrity-report.json --expected=26
       - name: Validate production descriptions under Micro Place policy
         run: node scripts/validate-place-description-production-v4_2_policy.mjs --all
       - name: Validate index, manifest and coordinates

@@ -103,6 +103,16 @@ function envText(st,index){
 
 function kioskText(c,index){
   const source=c.officialPage||LESEKIOSK_LIST;
+  if(c.kioskNumber===70){
+    const desc=`${c.name} er kiosk nummer 70 i paret som Lesekiosks Sagene-side omtaler som tvillingkioskene. Den offisielle oversikten fører nummer 70 ved Sagene kirke og bruker samme kartanker som nummer 71. Denne Place-identiteten gjelder bare telefonkiosken med nummer 70.`;
+    const popupDesc=`Lesekiosks Sagene-side dokumenterer nummer 70 og 71 som tvillingkiosker med utsikt mot Sagene kirke. ${c.name} representerer nummer 70 i dette paret.\n\nDen aktuelle Oslo-oversikten bruker kartankeret som et felles punkt for begge kiosknumrene ved kirken.\n\n${c.name} beholdes som et selvstendig litteratursted, adskilt fra tvillingkiosk 71.`;
+    return {desc,popupDesc,sentenceCoverage:{desc:[[`claim_${c.id}_twin`],[`claim_${c.id}_identity`,`claim_${c.id}_coordinate`],[`claim_${c.id}_identity`]],popupDesc:[[`claim_${c.id}_twin`],[`claim_${c.id}_identity`],[`claim_${c.id}_coordinate`],[`claim_${c.id}_identity`,`claim_${c.id}_twin`]]}};
+  }
+  if(c.kioskNumber===71){
+    const desc=`${c.name} er den individuelt dokumenterte kiosk nummer 71 ved Sagene kirke. Lesekiosks egen stedsside beskriver nummer 70 og 71 samlet som tvillingkioskene. Denne Place-identiteten gjelder nummer 71, ikke den andre telefonkiosken i paret.`;
+    const popupDesc=`Den individuelle Lesekiosk-siden for Sagene er knyttet til kiosk nummer 71 og omtaler begge kioskene ved kirken. ${c.name} representerer nummer 71.\n\nStedssiden kaller nummer 70 og 71 tvillingkioskene og viser dem som et fysisk par.\n\n${c.name} får likevel sin egen litteraturidentitet, mens nummer 70 bevares som et annet canonical Place.`;
+    return {desc,popupDesc,sentenceCoverage:{desc:[[`claim_${c.id}_identity`],[`claim_${c.id}_twin`],[`claim_${c.id}_identity`,`claim_${c.id}_twin`]],popupDesc:[[`claim_${c.id}_identity`,`claim_${c.id}_twin`],[`claim_${c.id}_identity`],[`claim_${c.id}_twin`],[`claim_${c.id}_identity`,`claim_${c.id}_twin`]]}};
+  }
   const desc=`${c.name} er Lesekiosk nummer ${c.kioskNumber} ved ${c.officialListLabel} i Oslo. ${c.name} er en rød telefonkiosk som fungerer som et eget fysisk bokdelingspunkt. ${c.name} skilles fra byens øvrige Lesekiosker ved kiosknummer ${c.kioskNumber} og plasseringen.`;
   const p1=`Lesekiosks aktuelle Oslo-oversikt registrerer ${c.name} som kiosk nummer ${c.kioskNumber} ved ${c.officialListLabel}. Kartlenken for ${c.name} oppgir punktet ${c.lat}, ${c.lon}.`;
   const p2=`Ved ${c.name} gir Lesekiosk den røde telefonkiosken en litterær bokdelingsfunksjon uten å gjøre den til et bemannet bibliotek.`;
@@ -158,12 +168,14 @@ function envQuestions(st,claims){
 
 function kioskClaims(c){
   const primary=c.officialPage||LESEKIOSK_LIST;
-  return [
+  const result=[
     {id:`claim_${c.id}_identity`,claim:`${c.name} er kiosk nummer ${c.kioskNumber} ved ${c.officialListLabel} i Lesekiosks aktuelle Oslo-oversikt.`,sourceUrl:primary,sourceLocation:'Lesekiosk: kioskidentitet og stedsangivelse.',sourceType:'institutional',verifiedAt:DATE,status:'verified',claimKind:'identity',evidenceMode:'direct',temporalStatus:'current'},
     {id:`claim_${c.id}_listing`,claim:`Lesekiosk registrerer ${c.name} som et fysisk bokdelingspunkt i Oslo.`,sourceUrl:LESEKIOSK_LIST,sourceLocation:'Finn en kiosk: aktuell Oslo-liste.',sourceType:'institutional',verifiedAt:DATE,status:'verified',claimKind:'ordinary',evidenceMode:'direct',temporalStatus:'current'},
     {id:`claim_${c.id}_function`,claim:'Lesekiosk gir røde telefonkiosker en litterær bokdelingsfunksjon.',sourceUrl:LESEKIOSK_HOME,sourceLocation:'Lesekiosk: prosjektets bokkioskfunksjon.',sourceType:'institutional',verifiedAt:DATE,status:'verified',claimKind:'ordinary',evidenceMode:'direct',temporalStatus:'current'},
     {id:`claim_${c.id}_coordinate`,claim:`Den offisielle Lesekiosk-kartlenken for ${c.name} oppgir kartankeret ${c.lat}, ${c.lon}.`,sourceUrl:LESEKIOSK_LIST,sourceLocation:'Offisiell Lesekiosk-kartlenke fra aktuell kioskoversikt.',sourceType:'institutional',verifiedAt:DATE,status:'verified',claimKind:'ordinary',evidenceMode:'direct',temporalStatus:'current'}
   ];
+  if([70,71].includes(c.kioskNumber))result.push({id:`claim_${c.id}_twin`,claim:'Lesekiosks Sagene-side omtaler kiosk nummer 70 og 71 som tvillingkioskene ved Sagene kirke.',sourceUrl:'https://lesekiosk.no/lesekiosk/lesekiosken-pa-sagene-nr-71/',sourceLocation:'Lesekiosken: avsnittet om tvillingkioskene på Sagene.',sourceType:'institutional',verifiedAt:DATE,status:'verified',claimKind:'identity',evidenceMode:'direct',temporalStatus:'current'});
+  return result;
 }
 
 function kioskQuestions(c,claims){
