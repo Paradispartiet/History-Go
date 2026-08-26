@@ -633,7 +633,7 @@
 
     const urlState = readUrlState();
     const urlPlace = urlState.placeId
-      ? (Array.isArray(window.PLACES) ? window.PLACES : []).find((candidate) => txt(candidate?.id || candidate?.placeId) === urlState.placeId)
+      ? (Array.isArray(window.PLACES) ? window.PLACES : []).find((candidate) => txt(candidate?.id) === urlState.placeId)
       : null;
     const place = options.place || urlPlace || null;
     const currentPlaceId = txt(place?.id || place?.placeId);
@@ -700,7 +700,7 @@
     if (!domain) return null;
     historyOwned = Boolean(history.state?.hgEpokeViewer);
     const place = state.placeId
-      ? (Array.isArray(window.PLACES) ? window.PLACES : []).find((candidate) => txt(candidate?.id || candidate?.placeId) === state.placeId)
+      ? (Array.isArray(window.PLACES) ? window.PLACES : []).find((candidate) => txt(candidate?.id) === state.placeId)
       : null;
     const openOptions = /** @type {any} */ ({ place, resolution: { domain, epokeId: state.epochId }, historyMode: "none" });
     if (["city", "country", "global"].includes(state.scope)) openOptions.locationScope = locationScopeFromUrl(state);
