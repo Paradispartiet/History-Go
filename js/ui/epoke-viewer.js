@@ -13,6 +13,9 @@
   const STYLE_ID = "hgEpokeViewerStyles";
   const URL_EPOCH_PARAM = "epoke";
   const URL_DOMAIN_PARAM = "epoke_domain";
+  const URL_SCOPE_PARAM = "epoke_scope";
+  const URL_COUNTRY_PARAM = "epoke_country";
+  const URL_CITY_PARAM = "epoke_city";
   let previousFocus = /** @type {HTMLElement|null} */ (null);
   let historyOwned = false;
 
@@ -126,6 +129,119 @@
       .sort((a, b) => domainLabel(a).localeCompare(domainLabel(b), "nb"));
   }
 
+  function locationIndex() {
+    return window.HG_EPOKE_PLACE_INDEX?.locations || { places: {}, countries: [] };
+  }
+
+  function hasLocationIndex() {
+    const locations = window.HG_EPOKE_PLACE_INDEX?.locations;
+    return Boolean(
+      locations?.contract === "canonical-place-geography-v1" &&
+      locations?.places && typeof locations.places === "object" &&
+      Array.isArray(locations?.countries)
+    );
+  }
+
+  function placeLocation(place) {
+    const id = txt(place?.id || place?.placeId);
+    const indexed = id ? locationIndex()?.places?.[id] : null;
+    if (indexed) return indexed;
+    return {
+      country_id: txt(place?.address?.country || place?.country || place?.country_id).toLowerCase(),
+      country_label: txt(place?.address?.country || place?.country || place?.country_id),
+      city_id: txt(place?.address?.city || place?.city || place?.cityId).toLowerCase(),
+      city_label: txt(place?.address?.city || place?.cityLabel || place?.city)
+    };
+  }
+
+  function defaultLocationScope(place) {
+    if (!hasLocationIndex()) {
+      return { scope: "global", countryId: "", countryLabel: "", cityId: "", cityLabel: "" };
+    }
+    const location = placeLocation(place);
+    if (txt(location?.city_id)) {
+      return {
+        scope: "city",
+        countryId: txt(location?.country_id),
+        countryLabel: txt(location?.country_label),
+        cityId: txt(location?.city_id),
+        cityLabel: txt(location?.city_label)
+      };
+    }
+    if (txt(location?.country_id)) {
+      return {
+        scope: "country",
+        countryId: txt(location?.country_id),
+        countryLabel: txt(location?.country_label),
+        cityId: "",
+        cityLabel: ""
+      };
+    }
+    return { scope: "global", countryId: "", countryLabel: "", cityId: "", cityLabel: "" };
+  }
+
+  function locationScopeFromUrl(state) {
+    const countries = Array.isArray(locationIndex()?.countries) ? locationIndex().countries : [];
+    const country = countries.find((candidate) => txt(candidate?.id) === txt(state?.countryId));
+    if (state?.scope === "city" && country) {
+      const city = (Array.isArray(country?.cities) ? country.cities : [])
+        .find((candidate) => txt(candidate?.id) === txt(state?.cityId));
+      if (city) return { scope: "city", countryId: txt(country.id), countryLabel: txt(country.label), cityId: txt(city.id), cityLabel: txt(city.label) };
+    }
+    if (state?.scope === "country" && country) {
+      return { scope: "country", countryId: txt(country.id), countryLabel: txt(country.label), cityId: "", cityLabel: "" };
+    }
+    return { scope: "global", countryId: "", countryLabel: "", cityId: "", cityLabel: "" };
+  }
+
+  function locationMatches(place, locationScope) {
+    const scope = locationScope?.scope || "global";
+    if (scope === "global") return true;
+    const location = placeLocation(place);
+    if (scope === "country") return Boolean(locationScope?.countryId && txt(location?.country_id) === txt(locationScope.countryId));
+    return Boolean(
+      locationScope?.countryId && locationScope?.cityId &&
+      txt(location?.country_id) === txt(locationScope.countryId) &&
+      txt(location?.city_id) === txt(locationScope.cityId)
+    );
+  }
+
+  function scopeLabel(locationScope) {
+    if (locationScope?.scope === "city") return txt(locationScope.cityLabel) || "Valgt by";
+    if (locationScope?.scope === "country") return txt(locationScope.countryLabel) || "Valgt land";
+    return "Alle steder";
+  }
+
+  function scopeValue(locationScope) {
+    if (locationScope?.scope === "city") return `city:${txt(locationScope.countryId)}:${txt(locationScope.cityId)}`;
+    if (locationScope?.scope === "country") return `country:${txt(locationScope.countryId)}`;
+    return "global";
+  }
+
+  function locationOptionsHtml(locationScope, currentPlace) {
+    const countries = Array.isArray(locationIndex()?.countries) ? locationIndex().countries : [];
+    const currentLocation = placeLocation(currentPlace);
+    const cityOptions = [];
+    const addCity = (countryId, cityId) => {
+      const country = countries.find((candidate) => txt(candidate?.id) === txt(countryId));
+      const city = (Array.isArray(country?.cities) ? country.cities : []).find((candidate) => txt(candidate?.id) === txt(cityId));
+      if (country && city && !cityOptions.some((candidate) => candidate.cityId === txt(city.id) && candidate.countryId === txt(country.id))) {
+        cityOptions.push({ countryId: txt(country.id), cityId: txt(city.id), label: txt(city.label) });
+      }
+    };
+    addCity(currentLocation?.country_id, currentLocation?.city_id);
+    if (locationScope?.scope === "city") addCity(locationScope.countryId, locationScope.cityId);
+    const selected = scopeValue(locationScope);
+    const cities = cityOptions.length ? `<optgroup label="By">${cityOptions.map((city) => { const value = `city:${city.countryId}:${city.cityId}`; return `<option value="${esc(value)}"${value === selected ? " selected" : ""}>${esc(city.label)}</option>`; }).join("")}</optgroup>` : "";
+    const countryOptions = countries.length ? `<optgroup label="Land">${countries.map((country) => { const value = `country:${txt(country?.id)}`; return `<option value="${esc(value)}"${value === selected ? " selected" : ""}>${esc(country?.label)}</option>`; }).join("")}</optgroup>` : "";
+    return `${cities}${countryOptions}<option value="global"${selected === "global" ? " selected" : ""}>Alle steder</option>`;
+  }
+
+  function scopeFromValue(value) {
+    const [kind, countryId = "", cityId = ""] = txt(value).split(":");
+    return locationScopeFromUrl({ scope: kind, countryId, cityId });
+  }
+
   function chronologicalList(domainIndex) {
     if (Array.isArray(domainIndex?.byStart)) return domainIndex.byStart;
     if (!Array.isArray(domainIndex?.list)) return [];
@@ -134,12 +250,13 @@
     );
   }
 
-  function buildTimeline(domain) {
+  function buildTimeline(domain, locationScope = { scope: "global" }) {
     const epochs = chronologicalList(window.EPOKER_INDEX?.byDomain?.[domain]);
     const parallelEpochs = chronologicalList(window.EPOKER_INDEX?.parallelByDomain?.[domain]);
     const epochIds = new Set(epochs.map((epoch) => txt(epoch?.id)).filter(Boolean));
     const allPlaces = Array.isArray(window.PLACES) ? window.PLACES : [];
     const rows = allPlaces
+      .filter((place) => locationMatches(place, locationScope))
       .filter((place) => runtimeDomain(place) === domain)
       .map((place) => ({ place, resolution: resolvePlace(place) }));
 
@@ -155,6 +272,7 @@
             name: txt(evidence?.name),
             category: txt(evidence?.category)
           };
+          if (!locationMatches(place, locationScope)) return null;
           indexedIds.add(txt(evidence?.place_id));
           const firstYear = num(evidence?.milestones?.[0]?.year);
           return {
@@ -168,7 +286,7 @@
               sortKey: firstYear ?? Number.MAX_SAFE_INTEGER
             }
           };
-        });
+        }).filter(Boolean);
         return { epoch, places: sortPlaces(places), evidence: group };
       });
       const unassigned = rows.filter((row) => !indexedIds.has(txt(row?.place?.id)));
@@ -181,7 +299,9 @@
         parallel,
         unassigned: sortPlaces(unassigned),
         placeCount: new Set([...indexedIds, ...unassigned.map((row) => txt(row?.place?.id))]).size,
-        generated: true
+        generated: true,
+        unknownLocationCount: [...indexedIds, ...unassigned.map((row) => txt(row?.place?.id))]
+          .filter((id) => !txt(locationIndex()?.places?.[id]?.country_id)).length
       };
     }
 
@@ -198,7 +318,8 @@
       parallel: parallelEpochs,
       unassigned: sortPlaces(unassigned),
       placeCount: rows.length,
-      generated: false
+      generated: false,
+      unknownLocationCount: rows.filter((row) => !txt(placeLocation(row?.place)?.country_id)).length
     };
   }
 
@@ -236,7 +357,11 @@
     const url = new URL(window.location.href);
     const epochId = txt(url.searchParams.get(URL_EPOCH_PARAM));
     const domain = txt(url.searchParams.get(URL_DOMAIN_PARAM));
-    return { epochId, domain, active: Boolean(epochId || domain) };
+    const scope = txt(url.searchParams.get(URL_SCOPE_PARAM));
+    const countryId = txt(url.searchParams.get(URL_COUNTRY_PARAM));
+    const cityId = txt(url.searchParams.get(URL_CITY_PARAM));
+    const placeId = txt(url.searchParams.get("place"));
+    return { epochId, domain, scope, countryId, cityId, placeId, active: Boolean(epochId || domain) };
   }
 
   function findEpochContext(epochId) {
@@ -249,12 +374,21 @@
     return null;
   }
 
-  function writeUrlState(domain, epochId, mode = "replace") {
+  function writeUrlState(domain, epochId, locationScope, mode = "replace") {
     const url = new URL(window.location.href);
     if (domain) url.searchParams.set(URL_DOMAIN_PARAM, domain);
     else url.searchParams.delete(URL_DOMAIN_PARAM);
     if (epochId) url.searchParams.set(URL_EPOCH_PARAM, epochId);
     else url.searchParams.delete(URL_EPOCH_PARAM);
+    const scope = locationScope?.scope || "global";
+    url.searchParams.set(URL_SCOPE_PARAM, scope);
+    if ((scope === "city" || scope === "country") && locationScope?.countryId) {
+      url.searchParams.set(URL_COUNTRY_PARAM, txt(locationScope.countryId));
+    } else {
+      url.searchParams.delete(URL_COUNTRY_PARAM);
+    }
+    if (scope === "city" && locationScope?.cityId) url.searchParams.set(URL_CITY_PARAM, txt(locationScope.cityId));
+    else url.searchParams.delete(URL_CITY_PARAM);
     const state = history.state && typeof history.state === "object" ? history.state : {};
     const nextState = { ...state, hgEpokeViewer: true };
     if (mode === "push") history.pushState(nextState, "", url);
@@ -266,6 +400,9 @@
     const url = new URL(window.location.href);
     url.searchParams.delete(URL_EPOCH_PARAM);
     url.searchParams.delete(URL_DOMAIN_PARAM);
+    url.searchParams.delete(URL_SCOPE_PARAM);
+    url.searchParams.delete(URL_COUNTRY_PARAM);
+    url.searchParams.delete(URL_CITY_PARAM);
     const state = history.state && typeof history.state === "object" ? { ...history.state } : {};
     delete state.hgEpokeViewer;
     history.replaceState(state, "", url);
@@ -284,9 +421,9 @@
       .hg-epoke-viewer__title{margin:2px 0 3px;font-size:clamp(26px,4vw,42px);line-height:1;font-weight:850}
       .hg-epoke-viewer__summary{font-size:13px;color:rgba(255,255,255,.7)}
       .hg-epoke-viewer__close{align-self:start;width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;font:inherit;font-size:24px;cursor:pointer}
-      .hg-epoke-viewer__toolbar{display:flex;align-items:center;gap:10px;padding:10px 20px;border-bottom:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.025)}
-      .hg-epoke-viewer__toolbar label{font-size:12px;font-weight:750;color:rgba(255,255,255,.7)}
-      .hg-epoke-viewer__select{min-width:min(330px,70vw);max-width:100%;padding:9px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.18);background:#171611;color:#fff;font:inherit}
+      .hg-epoke-viewer__toolbar{display:flex;align-items:end;flex-wrap:wrap;gap:10px;padding:10px 20px;border-bottom:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.025)}
+      .hg-epoke-viewer__field{display:grid;gap:4px;min-width:min(270px,70vw);flex:1}.hg-epoke-viewer__field label{font-size:12px;font-weight:750;color:rgba(255,255,255,.7)}
+      .hg-epoke-viewer__select{width:100%;max-width:100%;padding:9px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.18);background:#171611;color:#fff;font:inherit}
       .hg-epoke-viewer__body{overflow:auto;padding:20px 20px 30px;scroll-behavior:smooth}
       .hg-epoke-timeline{position:relative;display:flex;flex-direction:column;gap:14px;padding-left:24px}
       .hg-epoke-timeline::before{content:"";position:absolute;left:7px;top:13px;bottom:13px;width:2px;background:rgba(255,255,255,.18)}
@@ -330,7 +467,7 @@
       .hg-epoke-milestones{display:grid;gap:8px;margin-top:9px}.hg-epoke-milestone{display:grid;grid-template-columns:44px 1fr;gap:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,.09)}.hg-epoke-milestone__year{font-size:12px;font-weight:850}.hg-epoke-milestone h5{margin:0;font-size:12px}.hg-epoke-milestone p{margin:3px 0 0;font-size:11px;line-height:1.4;color:rgba(255,255,255,.66)}.hg-epoke-sources{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}.hg-epoke-source{font-size:10px;color:#fff;text-underline-offset:2px}
       .hg-epoke-compact-count{margin-top:9px;font-size:12px;color:rgba(255,255,255,.56)}
       .hg-epoke-track-detail{margin-top:12px;padding:14px;border:1px solid rgba(255,255,255,.16);border-radius:16px;background:rgba(255,255,255,.045)}
-      @media (max-width:640px){.hg-epoke-viewer{padding:0;place-items:stretch}.hg-epoke-viewer__panel{width:100%;height:100dvh;border-radius:0;border-left:0;border-right:0}.hg-epoke-viewer__head{padding:15px 14px 12px}.hg-epoke-viewer__toolbar{padding:9px 14px}.hg-epoke-viewer__body{padding:16px 12px 26px}.hg-epoke-node{grid-template-columns:1fr;gap:6px}.hg-epoke-node__years{font-size:11px}.hg-epoke-viewer__select{min-width:0;flex:1}.hg-epoke-analysis{grid-template-columns:1fr}.hg-epoke-place-cards{grid-template-columns:1fr}}
+      @media (max-width:640px){.hg-epoke-viewer{padding:0;place-items:stretch}.hg-epoke-viewer__panel{width:100%;height:100dvh;border-radius:0;border-left:0;border-right:0}.hg-epoke-viewer__head{padding:15px 14px 12px}.hg-epoke-viewer__toolbar{padding:9px 14px}.hg-epoke-viewer__field{min-width:calc(50% - 5px)}.hg-epoke-viewer__body{padding:16px 12px 26px}.hg-epoke-node{grid-template-columns:1fr;gap:6px}.hg-epoke-node__years{font-size:11px}.hg-epoke-analysis{grid-template-columns:1fr}.hg-epoke-place-cards{grid-template-columns:1fr}}
     `;
     document.head.appendChild(style);
   }
@@ -416,37 +553,40 @@
     return `<div class="hg-epoke-depth">${analysisHtml(epoch)}<h4 class="hg-epoke-section-title">Steder og daterte spor</h4><p class="hg-epoke-section-intro">Hvert treff kommer fra en datert kronologihendelse i stedets leksikon. Kildene under hendelsen kan åpnes direkte.</p>${places.length ? `<div class="hg-epoke-node__places hg-epoke-place-cards">${places.map((row) => placeCardHtml(row, currentPlaceId)).join("")}</div>` : '<div class="hg-epoke-node__empty">Ingen daterte, kildebelagte stedsspor i denne epoken ennå.</div>'}</div>`;
   }
 
-  function trackRows(track) {
+  function trackRows(track, locationScope) {
     return (Array.isArray(track?.evidence?.places) ? track.evidence.places : []).map((evidence) => {
       const place = (Array.isArray(window.PLACES) ? window.PLACES : []).find((candidate) => txt(candidate?.id) === txt(evidence?.place_id)) || {
         id: txt(evidence?.place_id), name: txt(evidence?.name), category: txt(evidence?.category)
       };
+      if (!locationMatches(place, locationScope)) return null;
       return { place, evidence, resolution: { startYear: num(evidence?.milestones?.[0]?.year), sortKey: num(evidence?.milestones?.[0]?.year) } };
-    });
+    }).filter(Boolean);
   }
 
-  function parallelHtml(parallel, selectedTrackId, currentPlaceId) {
+  function parallelHtml(parallel, selectedTrackId, currentPlaceId, locationScope) {
     if (!parallel.length) return "";
     const selected = parallel.find((track) => txt(track?.id) === selectedTrackId) || null;
-    const selectedRows = selected ? trackRows(selected) : [];
+    const selectedRows = selected ? trackRows(selected, locationScope) : [];
     return `<section class="hg-epoke-parallel" aria-labelledby="hgEpokeParallelTitle">
       <h3 class="hg-epoke-parallel__title" id="hgEpokeParallelTitle">Gjennomgående historiske spor</h3>
       <p class="hg-epoke-parallel__intro">Velg et spor for å følge kildebelagte hendelser på tvers av periodene. Sporene er perspektiver, ikke egne trinn i kronologien.</p>
-      <div class="hg-epoke-parallel__grid">${parallel.map((track) => { const selectedNow = txt(track?.id) === selectedTrackId; const count = num(track?.evidence?.milestoneCount) || 0; return `<button type="button" class="hg-epoke-parallel__card" data-parallel-epoke-id="${esc(txt(track?.id))}" aria-pressed="${selectedNow}"><span class="hg-epoke-node__years">${esc(yearRange(track))}</span><span class="hg-epoke-node__name">${esc(epochLabel(track))}</span>${epochDescription(track) ? `<span class="hg-epoke-node__desc">${esc(epochDescription(track))}</span>` : ""}<span class="hg-epoke-compact-count">${count} kildebelagte hendelser</span></button>`; }).join("")}</div>
+      <div class="hg-epoke-parallel__grid">${parallel.map((track) => { const selectedNow = txt(track?.id) === selectedTrackId; const count = trackRows(track, locationScope).reduce((sum, row) => sum + (row?.evidence?.milestones?.length || 0), 0); return `<button type="button" class="hg-epoke-parallel__card" data-parallel-epoke-id="${esc(txt(track?.id))}" aria-pressed="${selectedNow}"><span class="hg-epoke-node__years">${esc(yearRange(track))}</span><span class="hg-epoke-node__name">${esc(epochLabel(track))}</span>${epochDescription(track) ? `<span class="hg-epoke-node__desc">${esc(epochDescription(track))}</span>` : ""}<span class="hg-epoke-compact-count">${count} kildebelagte hendelser</span></button>`; }).join("")}</div>
       ${selected ? `<section class="hg-epoke-track-detail" data-parallel-detail="${esc(txt(selected?.id))}"><h4 class="hg-epoke-section-title">${esc(epochLabel(selected))}</h4><p class="hg-epoke-section-intro">Hendelser som matcher dette sporets canonical markører og emneord.</p>${selectedRows.length ? `<div class="hg-epoke-place-cards">${selectedRows.map((row) => placeCardHtml(row, currentPlaceId)).join("")}</div>` : '<div class="hg-epoke-node__empty">Ingen kildebelagte treff i dette sporet ennå.</div>'}</section>` : ""}
     </section>`;
   }
 
-  function renderTimeline(root, domain, currentPlaceId, currentEpochId, selectedTrackId = "") {
+  function renderTimeline(root, domain, currentPlaceId, currentEpochId, selectedTrackId = "", locationScope = { scope: "global" }) {
     const body = /** @type {HTMLElement|null} */ (root.querySelector("[data-epoke-body]"));
     const summary = /** @type {HTMLElement|null} */ (root.querySelector("[data-epoke-summary]"));
     if (!body) return;
+    root.dataset.epokeCurrentId = txt(currentEpochId);
 
-    const timeline = buildTimeline(domain);
+    const timeline = buildTimeline(domain, locationScope);
     const epochsWithPlaces = timeline.epochs.filter((entry) => entry.places.length).length;
     if (summary) {
       const parallelSummary = timeline.parallel.length ? ` · ${timeline.parallel.length} gjennomgående spor` : "";
-      summary.textContent = `${timeline.epochs.length} epoker · ${timeline.placeCount} steder · ${epochsWithPlaces} epoker med steder${parallelSummary}`;
+      const unknownSummary = timeline.unknownLocationCount ? ` · ${timeline.unknownLocationCount} uten områdedata` : "";
+      summary.textContent = `${scopeLabel(locationScope)} · ${timeline.epochs.length} epoker · ${timeline.placeCount} steder · ${epochsWithPlaces} epoker med steder${parallelSummary}${unknownSummary}`;
     }
 
     const nodes = timeline.epochs.map(({ epoch, places }) => {
@@ -464,18 +604,18 @@
       ? `<section class="hg-epoke-unassigned"><h3>Ingen epoker eller steder registrert ennå</h3><p>${esc(domainLabel(domain))} har foreløpig ingen canonical epoketidslinje.</p></section>`
       : "";
 
-    body.innerHTML = `<div class="hg-epoke-timeline">${nodes}</div>${unassigned}${empty}${parallelHtml(timeline.parallel, selectedTrackId, currentPlaceId)}`;
+    body.innerHTML = `<div class="hg-epoke-timeline">${nodes}</div>${unassigned}${empty}${parallelHtml(timeline.parallel, selectedTrackId, currentPlaceId, locationScope)}`;
     body.querySelectorAll("[data-select-epoke]").forEach((node) => {
       node.addEventListener("click", () => {
         const epochId = txt(node.getAttribute("data-select-epoke"));
-        writeUrlState(domain, epochId, "replace");
-        renderTimeline(root, domain, currentPlaceId, epochId, selectedTrackId);
+        writeUrlState(domain, epochId, locationScope, "replace");
+        renderTimeline(root, domain, currentPlaceId, epochId, selectedTrackId, locationScope);
       });
     });
     body.querySelectorAll("[data-parallel-epoke-id]").forEach((node) => {
       node.addEventListener("click", () => {
         const trackId = txt(node.getAttribute("data-parallel-epoke-id"));
-        renderTimeline(root, domain, currentPlaceId, currentEpochId, trackId === selectedTrackId ? "" : trackId);
+        renderTimeline(root, domain, currentPlaceId, currentEpochId, trackId === selectedTrackId ? "" : trackId, locationScope);
       });
     });
     body.querySelectorAll("[data-epoke-place-id]").forEach((node) => {
@@ -503,7 +643,11 @@
     ensureStyles();
     closeDom();
 
-    const place = options.place || null;
+    const urlState = readUrlState();
+    const urlPlace = urlState.placeId
+      ? (Array.isArray(window.PLACES) ? window.PLACES : []).find((candidate) => txt(candidate?.id) === urlState.placeId)
+      : null;
+    const place = options.place || urlPlace || null;
     const currentPlaceId = txt(place?.id || place?.placeId);
     const resolution = options.resolution || resolvePlace(place) || {};
     const requestedDomain = txt(resolution?.domain) || runtimeDomain(place);
@@ -514,7 +658,11 @@
     let domain = requestedDomain || domains[0] || "";
     const currentEpochId = txt(resolution?.epokeId);
     const historyMode = txt(options.historyMode) || (history.state?.hgEpokeViewer ? "replace" : "push");
-    if (historyMode !== "none") writeUrlState(domain, currentEpochId, historyMode === "push" ? "push" : "replace");
+    const hasUrlScope = ["city", "country", "global"].includes(urlState.scope);
+    let locationScope = options.locationScope || (historyMode === "none" && hasUrlScope
+      ? locationScopeFromUrl(urlState)
+      : defaultLocationScope(place));
+    if (historyMode !== "none") writeUrlState(domain, currentEpochId, locationScope, historyMode === "push" ? "push" : "replace");
 
     previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     const root = document.createElement("div");
@@ -523,7 +671,7 @@
     root.setAttribute("role", "dialog");
     root.setAttribute("aria-modal", "true");
     root.setAttribute("aria-labelledby", "hgEpokeViewerTitle");
-    root.innerHTML = `<section class="hg-epoke-viewer__panel"><header class="hg-epoke-viewer__head"><div><div class="hg-epoke-viewer__kicker">History Go · Epoker</div><h2 class="hg-epoke-viewer__title" id="hgEpokeViewerTitle">Tidslinje</h2><div class="hg-epoke-viewer__summary" data-epoke-summary></div></div><button type="button" class="hg-epoke-viewer__close" aria-label="Lukk epokevisning">×</button></header><div class="hg-epoke-viewer__toolbar"><label for="hgEpokeDomainSelect">Fagområde</label><select id="hgEpokeDomainSelect" class="hg-epoke-viewer__select" data-epoke-domain>${domains.map((candidate) => `<option value="${esc(candidate)}"${candidate === domain ? " selected" : ""}>${esc(domainLabel(candidate))}</option>`).join("")}</select></div><div class="hg-epoke-viewer__body" data-epoke-body></div></section>`;
+    root.innerHTML = `<section class="hg-epoke-viewer__panel"><header class="hg-epoke-viewer__head"><div><div class="hg-epoke-viewer__kicker">History Go · Epoker</div><h2 class="hg-epoke-viewer__title" id="hgEpokeViewerTitle">Tidslinje</h2><div class="hg-epoke-viewer__summary" data-epoke-summary></div></div><button type="button" class="hg-epoke-viewer__close" aria-label="Lukk epokevisning">×</button></header><div class="hg-epoke-viewer__toolbar"><div class="hg-epoke-viewer__field"><label for="hgEpokeDomainSelect">Fagområde</label><select id="hgEpokeDomainSelect" class="hg-epoke-viewer__select" data-epoke-domain>${domains.map((candidate) => `<option value="${esc(candidate)}"${candidate === domain ? " selected" : ""}>${esc(domainLabel(candidate))}</option>`).join("")}</select></div><div class="hg-epoke-viewer__field"><label for="hgEpokeLocationSelect">Område</label><select id="hgEpokeLocationSelect" class="hg-epoke-viewer__select" data-epoke-location>${locationOptionsHtml(locationScope, place)}</select></div></div><div class="hg-epoke-viewer__body" data-epoke-body></div></section>`;
 
     document.body.appendChild(root);
     const closeButton = /** @type {HTMLButtonElement|null} */ (root.querySelector(".hg-epoke-viewer__close"));
@@ -536,11 +684,20 @@
     const select = /** @type {HTMLSelectElement|null} */ (root.querySelector("[data-epoke-domain]"));
     select?.addEventListener("change", () => {
       domain = txt(select.value);
-      writeUrlState(domain, "", "replace");
-      renderTimeline(root, domain, currentPlaceId, domain === txt(resolution?.domain) ? currentEpochId : "");
+      const epochId = domain === txt(resolution?.domain) ? currentEpochId : "";
+      writeUrlState(domain, epochId, locationScope, "replace");
+      renderTimeline(root, domain, currentPlaceId, epochId, "", locationScope);
     });
 
-    renderTimeline(root, domain, currentPlaceId, currentEpochId);
+    const locationSelect = /** @type {HTMLSelectElement|null} */ (root.querySelector("[data-epoke-location]"));
+    locationSelect?.addEventListener("change", () => {
+      locationScope = scopeFromValue(locationSelect.value);
+      const epochId = txt(root.dataset.epokeCurrentId);
+      writeUrlState(domain, epochId, locationScope, "replace");
+      renderTimeline(root, domain, currentPlaceId, epochId, "", locationScope);
+    });
+
+    renderTimeline(root, domain, currentPlaceId, currentEpochId, "", locationScope);
     closeButton?.focus();
     return root;
   }
@@ -554,7 +711,12 @@
     const domain = txt(context?.domain) || state.domain;
     if (!domain) return null;
     historyOwned = Boolean(history.state?.hgEpokeViewer);
-    return open({ resolution: { domain, epokeId: state.epochId }, historyMode: "none" });
+    const place = state.placeId
+      ? (Array.isArray(window.PLACES) ? window.PLACES : []).find((candidate) => txt(candidate?.id) === state.placeId)
+      : null;
+    const openOptions = /** @type {any} */ ({ place, resolution: { domain, epokeId: state.epochId }, historyMode: "none" });
+    if (["city", "country", "global"].includes(state.scope)) openOptions.locationScope = locationScopeFromUrl(state);
+    return open(openOptions);
   }
 
   window.addEventListener("popstate", () => {

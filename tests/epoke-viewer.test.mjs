@@ -76,8 +76,28 @@ function makeWindow() {
     { id: "a", name: "Sted A", domain: "historie", year: 1890, epoke_id: "industrial" },
     { id: "b", name: "Sted B", domain: "historie", year: 1930, epoke_id: "interwar" },
     { id: "c", name: "Sted C", domain: "historie" },
-    { id: "d", name: "Helsested", domain: "helse", year: 2020 }
+    { id: "d", name: "Helsested", domain: "helse", year: 2020 },
+    { id: "e", name: "Bergenssted", domain: "historie", year: 1880, epoke_id: "industrial" },
+    { id: "f", name: "Sted uten område", domain: "historie", year: 1900, epoke_id: "industrial" }
   ];
+  w.HG_EPOKE_PLACE_INDEX = {
+    version: 3,
+    domains: {},
+    locations: {
+      contract: "canonical-place-geography-v1",
+      places: {
+        a: { country_id: "no", country_label: "Norge", city_id: "oslo", city_label: "Oslo" },
+        b: { country_id: "pt", country_label: "Portugal", city_id: "lisboa", city_label: "Lisboa" },
+        c: { country_id: "no", country_label: "Norge", city_id: "oslo", city_label: "Oslo" },
+        d: { country_id: "no", country_label: "Norge", city_id: "oslo", city_label: "Oslo" },
+        e: { country_id: "no", country_label: "Norge", city_id: "bergen", city_label: "Bergen" }
+      },
+      countries: [
+        { id: "no", label: "Norge", cities: [{ id: "bergen", label: "Bergen" }, { id: "oslo", label: "Oslo" }] },
+        { id: "pt", label: "Portugal", cities: [{ id: "lisboa", label: "Lisboa" }] }
+      ]
+    }
+  };
   w.HGTimeResolver = {
     resolvePlaceTime: (place) => ({
       domain: place.domain,
@@ -99,11 +119,12 @@ test("epoch viewer keeps canonical chronology separate from parallel historical 
 
   assert.equal(timeline.epochs.length, 2);
   assert.equal(timeline.epochs[0].epoch.id, "industrial");
-  assert.deepEqual(Array.from(timeline.epochs[0].places, (row) => row.place.id), ["a"]);
+  assert.deepEqual(Array.from(timeline.epochs[0].places, (row) => row.place.id), ["e", "a", "f"]);
   assert.equal(timeline.epochs[1].epoch.id, "interwar");
   assert.deepEqual(Array.from(timeline.epochs[1].places, (row) => row.place.id), ["b"]);
   assert.deepEqual(Array.from(timeline.unassigned, (row) => row.place.id), ["c"]);
-  assert.equal(timeline.placeCount, 3);
+  assert.equal(timeline.placeCount, 5);
+  assert.equal(timeline.unknownLocationCount, 1);
   assert.deepEqual(Array.from(timeline.parallel, (track) => track.id), ["migration"]);
   dom.window.close();
 });
@@ -144,8 +165,18 @@ test("epoch viewer opens timeline, exact Fagverk periods, parallel tracks and na
   assert.ok(broadLink);
   assert.equal(broadLink.getAttribute("href"), "fagverk.html?subject=historie&place=a#historie-kronologi");
 
-  assert.equal(w.location.search, "?epoke_domain=historie&epoke=industrial");
+  assert.equal(w.location.search, "?epoke_domain=historie&epoke=industrial&epoke_scope=city&epoke_country=no&epoke_city=oslo");
   assert.equal(w.history.state.hgEpokeViewer, true);
+
+  assert.match(root.querySelector("[data-epoke-summary]").textContent, /^Oslo ·/);
+  assert.equal(root.querySelector('[data-epoke-place-id="b"]'), null, "Lisboa is excluded from Oslo scope");
+  const locationSelect = root.querySelector("[data-epoke-location]");
+  assert.match(locationSelect.textContent, /Norge/);
+  assert.match(locationSelect.textContent, /Portugal/);
+  assert.match(locationSelect.textContent, /Alle steder/);
+  locationSelect.value = "global";
+  locationSelect.dispatchEvent(new w.Event("change"));
+  assert.equal(w.location.search, "?epoke_domain=historie&epoke=industrial&epoke_scope=global");
 
   root.querySelector('[data-epoke-place-id="b"]').click();
   assert.equal(openedPlaceId, "b");
@@ -156,7 +187,7 @@ test("epoch viewer opens timeline, exact Fagverk periods, parallel tracks and na
 
 test("shared epoch URLs open the correct current epoch without creating a new history entry", async () => {
   const { dom, w } = makeWindow();
-  w.history.replaceState(null, "", "/?epoke_domain=historie&epoke=interwar");
+  w.history.replaceState(null, "", "/?epoke_domain=historie&epoke=interwar&epoke_scope=city&epoke_country=pt&epoke_city=lisboa&place=b");
   const beforeLength = w.history.length;
 
   await w.HGEpokeViewer.openFromUrl();
@@ -164,8 +195,82 @@ test("shared epoch URLs open the correct current epoch without creating a new hi
   const root = w.document.getElementById("hgEpokeViewer");
   assert.ok(root);
   assert.equal(root.querySelector('[data-epoke-id="interwar"]').getAttribute("aria-current"), "true");
+  assert.equal(root.querySelector("[data-epoke-location]").value, "city:pt:lisboa");
+  assert.match(root.querySelector("[data-epoke-summary]").textContent, /^Lisboa ·/);
+  assert.equal(root.querySelector('[data-epoke-place-id="a"]'), null, "Oslo is excluded from Lisboa scope");
   assert.equal(w.history.length, beforeLength);
-  assert.equal(w.location.search, "?epoke_domain=historie&epoke=interwar");
+  assert.equal(w.location.search, "?epoke_domain=historie&epoke=interwar&epoke_scope=city&epoke_country=pt&epoke_city=lisboa&place=b");
+  dom.window.close();
+});
+
+test("location selector expands from current city to country and global scope without mixing countries", async () => {
+  const { dom, w } = makeWindow();
+  await w.HGEpokeViewer.open({
+    place: w.PLACES[0],
+    resolution: w.HGTimeResolver.resolvePlaceTime(w.PLACES[0])
+  });
+
+  const root = w.document.getElementById("hgEpokeViewer");
+  const locationSelect = root.querySelector("[data-epoke-location]");
+  assert.equal(locationSelect.value, "city:no:oslo");
+  assert.ok(root.querySelector('[data-epoke-place-id="a"]'));
+  assert.equal(root.querySelector('[data-epoke-place-id="e"]'), null);
+  assert.equal(root.querySelector('[data-epoke-place-id="b"]'), null);
+
+  root.querySelector('[data-select-epoke="interwar"]').click();
+  assert.equal(root.querySelector('[data-epoke-id="interwar"]').getAttribute("aria-current"), "true");
+
+  locationSelect.value = "country:no";
+  locationSelect.dispatchEvent(new w.Event("change"));
+  assert.ok(root.querySelector('[data-epoke-place-id="e"]'), "country scope includes another Norwegian city");
+  assert.equal(root.querySelector('[data-epoke-place-id="b"]'), null, "country scope excludes Portugal");
+  assert.equal(root.querySelector('[data-epoke-place-id="f"]'), null, "unknown geography is not guessed into Norway");
+  assert.equal(w.location.search, "?epoke_domain=historie&epoke=interwar&epoke_scope=country&epoke_country=no");
+
+  locationSelect.value = "global";
+  locationSelect.dispatchEvent(new w.Event("change"));
+  assert.ok(root.querySelector('[data-epoke-place-id="b"]'), "global scope includes Portugal");
+  assert.ok(root.querySelector('[data-epoke-place-id="f"]'), "global scope keeps places with unknown geography visible");
+  assert.match(root.querySelector("[data-epoke-summary]").textContent, /1 uten områdedata/);
+  dom.window.close();
+});
+
+test("missing geography index falls back visibly and functionally to global scope", async () => {
+  const { dom, w } = makeWindow();
+  w.PLACES[0].address = { country: "Norge", city: "Oslo" };
+  w.HG_EPOKE_PLACE_INDEX = { version: 2, domains: {} };
+
+  await w.HGEpokeViewer.open({
+    place: w.PLACES[0],
+    resolution: w.HGTimeResolver.resolvePlaceTime(w.PLACES[0])
+  });
+
+  const root = w.document.getElementById("hgEpokeViewer");
+  const locationSelect = root.querySelector("[data-epoke-location]");
+  assert.equal(locationSelect.value, "global");
+  assert.equal(locationSelect.options.length, 1);
+  assert.match(root.querySelector("[data-epoke-summary]").textContent, /^Alle steder ·/);
+  assert.ok(root.querySelector('[data-epoke-place-id="b"]'), "global fallback must not apply the current place's address as a hidden filter");
+  assert.equal(w.location.search, "?epoke_domain=historie&epoke=industrial&epoke_scope=global");
+  dom.window.close();
+});
+
+test("Back and Forward URL state restore the selected geography scope", async () => {
+  const { dom, w } = makeWindow();
+  await w.HGEpokeViewer.open({
+    place: w.PLACES[0],
+    resolution: w.HGTimeResolver.resolvePlaceTime(w.PLACES[0])
+  });
+
+  w.history.pushState(null, "", "/?epoke_domain=historie&epoke=interwar&epoke_scope=country&epoke_country=pt");
+  w.dispatchEvent(new w.PopStateEvent("popstate", { state: null }));
+  await new Promise((resolve) => w.setTimeout(resolve, 0));
+
+  const root = w.document.getElementById("hgEpokeViewer");
+  assert.equal(root.querySelector("[data-epoke-location]").value, "country:pt");
+  assert.match(root.querySelector("[data-epoke-summary]").textContent, /^Portugal ·/);
+  assert.ok(root.querySelector('[data-epoke-place-id="b"]'));
+  assert.equal(root.querySelector('[data-epoke-place-id="a"]'), null);
   dom.window.close();
 });
 
@@ -181,11 +286,11 @@ test("a place domain without an epoch catalogue stays in its own domain", async 
   const root = w.document.getElementById("hgEpokeViewer");
   const select = root.querySelector("[data-epoke-domain]");
   assert.equal(select.value, "helse");
-  assert.match(root.querySelector("[data-epoke-summary]").textContent, /^0 epoker · 1 steder/);
+  assert.match(root.querySelector("[data-epoke-summary]").textContent, /^Oslo · 0 epoker · 1 steder/);
   assert.match(root.textContent, /Helsested/);
   assert.doesNotMatch(root.textContent, /Industrialisering/);
   assert.equal(root.querySelector(".hg-epoke-fagverk-link"), null);
-  assert.equal(w.location.search, "?epoke_domain=helse");
+  assert.equal(w.location.search, "?epoke_domain=helse&epoke_scope=city&epoke_country=no&epoke_city=oslo");
   dom.window.close();
 });
 

@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import test from "node:test";
-import { buildEpokePlaceIndex, serializeEpokePlaceIndex } from "../scripts/build-epoke-place-index.mjs";
+import { buildEpokePlaceIndex, geographyForPlace, serializeEpokePlaceIndex } from "../scripts/build-epoke-place-index.mjs";
 
 test("generated epoch-place index is deterministic and current", () => {
   const index = buildEpokePlaceIndex();
@@ -10,6 +10,28 @@ test("generated epoch-place index is deterministic and current", () => {
     serializeEpokePlaceIndex(index)
   );
   assert.equal(index.contract, "source-backed-dated-leksikon-chronology");
+  assert.equal(index.version, 3);
+  assert.equal(index.locations.contract, "canonical-place-geography-v1");
+});
+
+test("canonical place geography separates Oslo, Lisboa and other countries deterministically", () => {
+  const index = buildEpokePlaceIndex();
+  assert.deepEqual(index.locations.places.torggata, {
+    country_id: "no", country_label: "Norge", city_id: "oslo", city_label: "Oslo", source: "canonical_source_path"
+  });
+  assert.deepEqual(index.locations.places.lisbon_city, {
+    country_id: "pt", country_label: "Portugal", city_id: "lisboa", city_label: "Lisboa", source: "canonical_source_path"
+  });
+  assert.deepEqual(index.locations.places.wembley_stadium_london, {
+    country_id: "gb", country_label: "Storbritannia", city_id: "london", city_label: "London", source: "canonical_source_path"
+  });
+  assert.equal(index.stats.located_place_count, index.stats.canonical_place_count);
+  assert.ok(index.stats.city_located_place_count >= 850);
+  assert.deepEqual(index.locations.unknown_place_ids, []);
+
+  assert.deepEqual(geographyForPlace({ id: "unknown", sourceFile: "places/custom/unknown.json" }), {
+    country_id: "", country_label: "", city_id: "", city_label: "", source: "unknown"
+  });
 });
 
 test("history index supports multi-epoch places without changing primary categories", () => {
