@@ -1,0 +1,109 @@
+{
+  "schema": "history_go_place_phase24_audit_v1",
+  "place_id": "sofienbergparken",
+  "reviewed_at": "2026-08-26",
+  "overall_status": "ready_for_pr_ci_and_merge",
+  "scope": {
+    "canonical": "the named public park split by Rathkes gate, including the main park, dog park and children's park",
+    "excluded_as_own_content": [
+      "Sofienberg Church and its culture project",
+      "the recycling station as a separate micro-place",
+      "all park users as one subculture",
+      "the unsupported Sofienberg poetry-park links"
+    ]
+  },
+  "phase_status": {
+    "8_place_card": "pass_exact_people_objects_brands_related",
+    "9_onsite": "pass_safe_observation_prompts_in_object_and_before_after_layers",
+    "10_quiz": "pass_rich_5x7",
+    "11_routes": "reviewed_not_applicable_no_canonical_route",
+    "12_people": "pass_exact_marius_rohne_with_claims",
+    "13_brands": "pass_piknik_i_parken_official_identity_and_logo",
+    "14_discovery_relations_i18n": "pass",
+    "15_physical_visit": "pass_public_surface_observation_only",
+    "16_favorites_progress": "pass_existing_platform_contract",
+    "17_profile_unlock": "pass_existing_platform_contract",
+    "18_wonderkammer": "reviewed_no_new_content",
+    "19_images": "pass_portrait_front_and_four_member_previews",
+    "20_data_qa": "pass_local_validators",
+    "21_manual_ui_qa": "pending_post_deploy_live_check",
+    "22_content_qa": "pass_source_scope_and_ownership_review",
+    "23_ci": "pending_pr_ci",
+    "24_one_place_gate": "ready_for_pr_ci_and_merge"
+  },
+  "place_card": {
+    "profile": "history_go_place_card_profile_v2",
+    "collection_ids": ["people", "objects", "brands", "related"],
+    "people_ids": ["marius_rohne"],
+    "object_ids": ["sofienbergparken_jodisk_gravlund"],
+    "brand_ids": ["piknik_i_parken"],
+    "related_place_count": 5,
+    "preview_image_coverage_percent": 100,
+    "front_image": "portrait_900x1200",
+    "badges_separate": true,
+    "quiz_required": true
+  },
+  "quiz": {
+    "profile": "rich_5x7",
+    "sets": 5,
+    "questions": 35,
+    "families": {"fact": 21, "context": 7, "concept_theory": 7},
+    "normal_opening_questions": 14,
+    "knowledge_contract_errors": 0
+  },
+  "content": {
+    "popup_paragraphs": 6,
+    "chronology_entries": 6,
+    "stories": 1,
+    "reading_trails": 3,
+    "language_entries": 3,
+    "translations": ["en", "es", "pt"],
+    "subculture_layer": "Pride Park 26-29 June 2024 only",
+    "current_events": "reviewed_no_source_driven_future_event",
+    "route": "reviewed_no_canonical_route"
+  },
+  "local_verification": {
+    "description_v4_2": "passed_zero_issues",
+    "subculture_A_H": "passed_42_reports_zero_failures",
+    "people_profiles": "passed_60_claim_files",
+    "quiz_manifest": "passed",
+    "quiz_production_context": "passed",
+    "quiz_progression": "passed",
+    "quiz_theory_binding": "passed",
+    "knowledge_contract_errors": 0,
+    "stories_integrity": "passed_167_files_280_stories",
+    "place_open_payloads": "built_and_hyperfast_tests_passed",
+    "runtime_people_after_round_holdbacks": ["marius_rohne"]
+  },
+  "quality_score": {
+    "correctness_and_evidence": {
+      "score": 5,
+      "evidence": "Official, institutional and reference sources are bound to claims; park, church, cemetery object and time-bounded event ownership are explicitly separated."
+    },
+    "coverage_and_completion": {
+      "score": 5,
+      "evidence": "All requested phase 8-24 surfaces are present, inherited from platform contracts, or recorded as source-reviewed N/A without filler."
+    },
+    "editorial_quality": {
+      "score": 5,
+      "evidence": "The former generic park prose, church proxy and unsupported poetry links were replaced or held back after full place-specific review."
+    },
+    "technical_integrity": {
+      "score": 4,
+      "evidence": "Local canonical validators, generated payloads and focused tests pass; PR CI and post-deploy UI QA remain the explicit next gates."
+    },
+    "safety_and_responsibility": {
+      "score": 4,
+      "evidence": "The cemetery is treated as a respectful historical site, image rights are explicit, and Pride participants are not homogenized or made permanently representative of all park users."
+    },
+    "maintainability_and_auditability": {
+      "score": 5,
+      "evidence": "A deterministic builder, claim packets, source brief, manifests, canonical round holdbacks and a focused regression test make the package reproducible."
+    },
+    "total": 28,
+    "maximum": 30,
+    "classification": "high_quality_ready_for_pr_ci",
+    "critical_findings": 0,
+    "unresolved_blockers": 0
+  }
+}
