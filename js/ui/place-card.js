@@ -361,7 +361,10 @@ function mergePlaceIntoPlaces(placeId, patch) {
 }
 function reopenCurrentPlaceCard(placeId, patch) {
   if (!isCurrentPlaceCard(placeId)) return;
-  const merged = mergePlaceIntoPlaces(placeId, patch);
+  const hydratedPlace = window.HGPlaceOpen?.getPlace?.(placeId);
+  const merged = mergePlaceIntoPlaces(placeId, hydratedPlace && typeof hydratedPlace === "object"
+    ? { ...patch, ...hydratedPlace }
+    : patch);
   if (merged && typeof window.openPlaceCard === "function") void window.openPlaceCard(merged);
 }
 
