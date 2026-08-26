@@ -5,6 +5,11 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const OUTPUT = "data/epoker/epoke-place-index.json";
+const CLAIMS_FILE = "data/fag/historie/claims_historie_canonical_v1.json";
+const SOURCES_FILE = "data/fag/historie/sources_historie_canonical_v1.json";
+const PLACE_EVIDENCE_FILE = "data/fag/historie/place_evidence_historie_v1.json";
+const PERIOD_MODULES_FILE = "data/fag/historie/period_modules_historie_v1.json";
+const EMNER_FILE = "data/fag/historie/emner_historie_canonical_v4_5.json";
 
 function readJson(relativePath) {
   return JSON.parse(fs.readFileSync(path.join(ROOT, relativePath), "utf8"));
@@ -191,6 +196,12 @@ function epochForYear(epochs, year) {
   }) || null;
 }
 
+function canonicalYear(value) {
+  if (typeof value === "number" && Number.isFinite(value)) return value;
+  const match = text(value).match(/^-?\d{1,4}/);
+  return match ? Number(match[0]) : null;
+}
+
 const ROLE_RULES = [
   ["makt_og_styring", "Makt og styring", ["politikk", "regjering", "storting", "kommune", "stat", "kong", "myndighet", "lov", "rett"]],
   ["konflikt_og_motstand", "Konflikt og motstand", ["krig", "okkupasjon", "motstand", "streik", "oppror", "konflikt", "demonstrasjon", "deportasjon"]],
@@ -234,7 +245,98 @@ function trackIdsFor(tracks, place, milestone) {
     .map((track) => track.id);
 }
 
-function ensurePlace(group, place) {
+function sourceBackedStories(placeDetail) {
+  return (Array.isArray(placeDetail?.stories) ? placeDetail.stories : [])
+    .filter((story) => text(story?.id) && text(story?.title) && text(story?.story || story?.summary))
+    .filter(storyHasInspectableSource)
+    .map((story) => ({
+      id: text(story.id),
+      title: text(story.title),
+      year: canonicalYear(story.year),
+      type: text(story.type)
+    }));
+}
+
+function storyHasInspectableSource(story) {
+  return (Array.isArray(story?.sources) ? story.sources : []).some((source) => {
+    const value = typeof source === "string" ? source : source?.url;
+    return /^(https?:\/\/|data\/)/.test(text(value));
+  });
+}
+
+function buildConnectionCatalog() {
+  const storyManifest = readJson("data/runtime/stories-all.json");
+  const storiesByPlace = new Map();
+  for (const shardPath of storyManifest.files || []) {
+    for (const story of readJson(shardPath)) {
+      const placeId = text(story?.place_id);
+      if (!placeId || !storyHasInspectableSource(story)) continue;
+      const list = storiesByPlace.get(placeId) || [];
+      list.push(story);
+      storiesByPlace.set(placeId, list);
+    }
+  }
+
+  const peopleByPlace = new Map();
+  for (const relationFile of ["data/relations.json", "data/relations_philanthropy.json"]) {
+    for (const relation of readJson(relationFile)) {
+      const source = text(relation?.sourceUrl || relation?.source_url || relation?.source);
+      if (!/^https?:\/\//.test(source)) continue;
+      const placeId = text(relation?.place || relation?.place_id || relation?.placeId);
+      const personId = text(relation?.person || relation?.person_id || relation?.personId);
+      if (!placeId || !personId) continue;
+      const ids = peopleByPlace.get(placeId) || new Set();
+      ids.add(personId);
+      peopleByPlace.set(placeId, ids);
+    }
+  }
+  return { storiesByPlace, peopleByPlace };
+}
+
+function connectionPersonIds(placeDetail) {
+  const ids = new Set();
+  for (const relation of Array.isArray(placeDetail?.relations) ? placeDetail.relations : []) {
+    for (const value of [relation?.person, relation?.person_id, relation?.personId]) {
+      if (text(value)) ids.add(text(value));
+    }
+    for (const side of ["from", "to"]) {
+      const type = text(relation?.[`${side}Type`] || relation?.[`${side}_type`]);
+      const id = text(relation?.[`${side}Id`] || relation?.[`${side}_id`]);
+      if (type === "person" && id) ids.add(id);
+    }
+  }
+  return [...ids].sort();
+}
+
+function connectionsForPlace(place, connectionCatalog) {
+  const sourceFile = text(place?.sourceFile);
+  if (!sourceFile) return { person_ids: [], works: [], stories: [] };
+  const relativePath = sourceFile.startsWith("data/") ? sourceFile : `data/${sourceFile}`;
+  const absolutePath = path.join(ROOT, relativePath);
+  if (!fs.existsSync(absolutePath)) return { person_ids: [], works: [], stories: [] };
+  const payload = readJson(relativePath);
+  const detail = Array.isArray(payload)
+    ? payload.find((candidate) => text(candidate?.id) === text(place?.id))
+    : payload;
+  const personIds = new Set([
+    ...connectionPersonIds(detail),
+    ...(connectionCatalog?.peopleByPlace?.get(text(place?.id)) || [])
+  ]);
+  const stories = [
+    ...sourceBackedStories(detail),
+    ...sourceBackedStories({ stories: connectionCatalog?.storiesByPlace?.get(text(place?.id)) || [] })
+  ];
+  return {
+    person_ids: [...personIds].sort(),
+    works: (Array.isArray(detail?.works) ? detail.works : [])
+      .filter((work) => text(work?.id) && text(work?.title || work?.name))
+      .map((work) => ({ id: text(work.id), title: text(work.title || work.name), type: text(work.type) })),
+    stories: [...new Map(stories.map((story) => [story.id, story])).values()]
+      .sort((a, b) => (a.year ?? 999999) - (b.year ?? 999999) || a.title.localeCompare(b.title, "nb"))
+  };
+}
+
+function ensurePlace(group, place, connectionCatalog) {
   let row = group.places.find((candidate) => candidate.place_id === place.id);
   if (!row) {
     row = {
@@ -243,15 +345,17 @@ function ensurePlace(group, place) {
       category: text(place.category || place.domain),
       source_file: text(place.sourceFile),
       roles: [],
-      milestones: []
+      milestones: [],
+      period_cases: [],
+      connections: connectionsForPlace(place, connectionCatalog)
     };
     group.places.push(row);
   }
   return row;
 }
 
-function addMilestone(group, place, milestone, sourceFile, sources, roles) {
-  const row = ensurePlace(group, place);
+function addMilestone(group, place, milestone, sourceFile, sources, roles, connectionCatalog) {
+  const row = ensurePlace(group, place, connectionCatalog);
   for (const role of roles) {
     if (!row.roles.some((candidate) => candidate.id === role.id)) row.roles.push(role);
   }
@@ -262,7 +366,10 @@ function addMilestone(group, place, milestone, sourceFile, sources, roles) {
     consequence: text(milestone.desc || milestone.description),
     confidence: text(milestone.confidence),
     sources,
-    source_file: sourceFile
+    source_file: sourceFile,
+    evidence_type: text(milestone.evidence_type || "leksikon_chronology"),
+    claim_id: text(milestone.claim_id),
+    limitations: (Array.isArray(milestone.limitations) ? milestone.limitations : []).map(text).filter(Boolean)
   };
   const uniqueKey = `${item.year}|${item.title}|${item.consequence}`;
   if (!row.milestones.some((candidate) => `${candidate.year}|${candidate.title}|${candidate.consequence}` === uniqueKey)) {
@@ -275,6 +382,7 @@ function finalizeGroup(group) {
   for (const place of group.places) {
     place.roles.sort((a, b) => a.label.localeCompare(b.label, "nb"));
     place.milestones.sort((a, b) => a.year - b.year || a.title.localeCompare(b.title, "nb"));
+    place.period_cases.sort((a, b) => a.id.localeCompare(b.id));
   }
   group.placeCount = group.places.length;
   group.milestoneCount = group.places.reduce((sum, place) => sum + place.milestones.length, 0);
@@ -287,11 +395,25 @@ export function buildEpokePlaceIndex() {
   const placeById = new Map(places.map((place) => [text(place.id), place]));
   const manifest = readJson("data/leksikon/manifest.json");
   const history = readJson("data/epoker/epoker_historie.json");
+  const claimsRegistry = readJson(CLAIMS_FILE);
+  const sourcesRegistry = readJson(SOURCES_FILE);
+  const placeEvidenceRegistry = readJson(PLACE_EVIDENCE_FILE);
+  const periodModules = readJson(PERIOD_MODULES_FILE);
+  const emner = readJson(EMNER_FILE);
+  const connectionCatalog = buildConnectionCatalog();
   const epochs = history.epoker || [];
   const tracks = history.parallel_epoker || [];
   const epochGroups = Object.fromEntries(epochs.map((epoch) => [epoch.id, { places: [] }]));
   const trackGroups = Object.fromEntries(tracks.map((track) => [track.id, { places: [] }]));
-  const warnings = { missing_source_files: [], unknown_place_ids: [], skipped_undated: 0, skipped_without_url_sources: 0 };
+  const warnings = {
+    missing_source_files: [],
+    unknown_place_ids: [],
+    unknown_evidence_place_ids: [],
+    missing_claim_ids: [],
+    skipped_undated: 0,
+    skipped_without_url_sources: 0,
+    skipped_evidence_without_sources: 0
+  };
 
   for (const sourceFile of manifest.files || []) {
     const absolute = path.join(ROOT, sourceFile);
@@ -321,28 +443,140 @@ export function buildEpokePlaceIndex() {
         const epoch = epochForYear(epochs, year);
         if (!epoch) continue;
         const roles = rolesFor(place, milestone);
-        addMilestone(epochGroups[epoch.id], place, milestone, sourceFile, sources, roles);
+        addMilestone(epochGroups[epoch.id], place, milestone, sourceFile, sources, roles, connectionCatalog);
         for (const trackId of trackIdsFor(tracks, place, milestone)) {
-          addMilestone(trackGroups[trackId], place, milestone, sourceFile, sources, roles);
+          addMilestone(trackGroups[trackId], place, milestone, sourceFile, sources, roles, connectionCatalog);
         }
+      }
+    }
+  }
+
+  const claimById = new Map((claimsRegistry.claims || []).map((claim) => [text(claim?.claim_id), claim]));
+  const canonicalSourceById = new Map((sourcesRegistry.sources || []).map((source) => [text(source?.source_id), source]));
+  const moduleSourceById = new Map((periodModules.sources || []).map((source) => [text(source?.source_id), source]));
+  const emneById = new Map((Array.isArray(emner) ? emner : []).map((emne) => [text(emne?.emne_id), emne]));
+  const sourceRows = (sourceIds, registries = [canonicalSourceById]) => (Array.isArray(sourceIds) ? sourceIds : [])
+    .map((sourceId) => registries.map((registry) => registry.get(text(sourceId))).find(Boolean))
+    .filter(Boolean)
+    .map((source) => ({
+      title: text(source?.title || source?.publisher || source?.source_id),
+      url: text(source?.url),
+      verifiedAt: text(source?.dating?.accessed_at || source?.accessed_at)
+    }))
+    .filter((source) => source.title && /^https?:\/\//.test(source.url));
+
+  for (const evidence of placeEvidenceRegistry.evidence_links || []) {
+    if (!["validated_case", "validated_pilot"].includes(text(evidence?.validation_status))) continue;
+    const placeId = text(evidence?.place_id);
+    const place = placeById.get(placeId);
+    if (!place) {
+      warnings.unknown_evidence_place_ids.push(placeId);
+      continue;
+    }
+    const claimId = text(evidence?.claim_id);
+    const claim = claimById.get(claimId);
+    if (!claim) {
+      warnings.missing_claim_ids.push(claimId);
+      continue;
+    }
+    const year = canonicalYear(claim?.scope?.temporal?.from);
+    if (!Number.isFinite(year)) {
+      warnings.skipped_undated += 1;
+      continue;
+    }
+    const sources = sourceRows(evidence?.source_ids || claim?.source_ids);
+    if (!sources.length) {
+      warnings.skipped_evidence_without_sources += 1;
+      continue;
+    }
+    const epoch = epochForYear(epochs, year);
+    if (!epoch) continue;
+    const emneRows = (evidence?.emne_ids || claim?.emne_ids || []).map((id) => emneById.get(text(id))).filter(Boolean);
+    const roles = emneRows.slice(0, 3).map((emne) => ({
+      id: text(emne?.emne_id),
+      label: text(emne?.short_label || emne?.title)
+    }));
+    const limitations = [
+      text(claim?.uncertainty?.note),
+      ...(Array.isArray(claim?.alternative_interpretations) ? claim.alternative_interpretations : [])
+    ].filter(Boolean);
+    const milestone = {
+      id: `claim_${claimId}`,
+      year,
+      title: text(emneRows[0]?.short_label || emneRows[0]?.title) || "Kildebelagt historisk spor",
+      desc: text(claim?.statement),
+      confidence: text(claim?.confidence),
+      claim_id: claimId,
+      evidence_type: "canonical_place_claim",
+      limitations
+    };
+    addMilestone(epochGroups[epoch.id], place, milestone, PLACE_EVIDENCE_FILE, sources, roles.length ? roles : rolesFor(place, milestone), connectionCatalog);
+    const trackMilestone = { ...milestone, period: emneRows.map((emne) => text(emne?.title)).join(" ") };
+    for (const trackId of trackIdsFor(tracks, place, trackMilestone)) {
+      addMilestone(trackGroups[trackId], place, milestone, PLACE_EVIDENCE_FILE, sources, roles.length ? roles : rolesFor(place, milestone), connectionCatalog);
+    }
+  }
+
+  for (const periodCase of periodModules.cases || []) {
+    const place = placeById.get(text(periodCase?.place_id));
+    if (!place) {
+      warnings.unknown_evidence_place_ids.push(text(periodCase?.place_id));
+      continue;
+    }
+    const sources = sourceRows(periodCase?.source_ids, [moduleSourceById, canonicalSourceById]);
+    if (!sources.length) {
+      warnings.skipped_evidence_without_sources += 1;
+      continue;
+    }
+    const periodId = text(periodCase?.period_id);
+    const matchingEpochs = epochs.filter((epoch) => (epoch?.fagverk_links || []).some((link) => (
+      (link?.period_ids || []).map(text).includes(periodId)
+    )));
+    for (const epoch of matchingEpochs) {
+      const row = ensurePlace(epochGroups[epoch.id], place, connectionCatalog);
+      if (!row.roles.some((role) => role.id === "canonical_fagverk_case")) {
+        row.roles.push({ id: "canonical_fagverk_case", label: "Dokumentert Fagverk-case" });
+      }
+      if (!row.period_cases.some((candidate) => candidate.id === text(periodCase?.case_id))) {
+        row.period_cases.push({
+          id: text(periodCase?.case_id),
+          period_id: periodId,
+          use: text(periodCase?.use),
+          sources,
+          source_file: PERIOD_MODULES_FILE
+        });
       }
     }
   }
 
   warnings.missing_source_files.sort();
   warnings.unknown_place_ids.sort((a, b) => a.place_id.localeCompare(b.place_id) || a.source_file.localeCompare(b.source_file));
+  warnings.unknown_evidence_place_ids = [...new Set(warnings.unknown_evidence_place_ids)].sort();
+  warnings.missing_claim_ids = [...new Set(warnings.missing_claim_ids)].sort();
   for (const group of Object.values(epochGroups)) finalizeGroup(group);
   for (const group of Object.values(trackGroups)) finalizeGroup(group);
   const allEpochPlaces = Object.values(epochGroups).flatMap((group) => group.places);
   const uniquePlaces = new Set(allEpochPlaces.map((place) => place.place_id));
+  const uniquePlaceRows = [...new Map(allEpochPlaces.map((place) => [place.place_id, place])).values()];
+  const connectedPeople = new Set(uniquePlaceRows.flatMap((place) => place.connections?.person_ids || []));
+  const connectedWorks = new Set(uniquePlaceRows.flatMap((place) => (place.connections?.works || []).map((work) => work.id)));
+  const connectedStories = new Set(uniquePlaceRows.flatMap((place) => (place.connections?.stories || []).map((story) => story.id)));
 
   return {
-    version: 3,
-    contract: "source-backed-dated-leksikon-chronology",
+    version: 4,
+    contract: "source-backed-history-coverage-v1",
     generated_from: [
       "data/places/places_index.json",
       "data/leksikon/manifest.json",
-      "data/epoker/epoker_historie.json"
+      "data/epoker/epoker_historie.json",
+      CLAIMS_FILE,
+      SOURCES_FILE,
+      PLACE_EVIDENCE_FILE,
+      PERIOD_MODULES_FILE,
+      EMNER_FILE,
+      "data/runtime/stories-all.json",
+      "data/relations.json",
+      "data/relations_philanthropy.json"
     ],
     domains: {
       historie: {
@@ -355,6 +589,13 @@ export function buildEpokePlaceIndex() {
       canonical_place_count: places.length,
       located_place_count: places.length - locations.unknown_place_ids.length,
       city_located_place_count: Object.values(locations.places).filter((location) => location.city_id).length,
+      canonical_claim_count: (claimsRegistry.claims || []).length,
+      canonical_source_count: (sourcesRegistry.sources || []).length,
+      place_evidence_link_count: (placeEvidenceRegistry.evidence_links || []).length,
+      period_case_count: (periodModules.cases || []).length,
+      connected_people_count: connectedPeople.size,
+      connected_work_count: connectedWorks.size,
+      connected_story_count: connectedStories.size,
       indexed_place_count: uniquePlaces.size,
       epoch_place_relations: allEpochPlaces.length,
       milestone_count: allEpochPlaces.reduce((sum, place) => sum + place.milestones.length, 0)

@@ -72,6 +72,49 @@ function makeWindow() {
       }
     }
   };
+  w.HG_EPOKE_HISTORY_COVERAGE = {
+    contract: "canonical-history-period-coverage-v1",
+    guides: [
+      {
+        period_id: "lange_1800_tallet_1814_1914",
+        title: "Det lange 1800-tallet",
+        date_label: "1814–1914",
+        introduction: "Industrialisering, statsbygging og demokratisering må undersøkes som sammenvevde, men ujevne prosesser.",
+        sections: [{ title: "Arbeid og byvekst", paragraphs: ["Fabrikker, transport og lønnsarbeid endret byene.", "Endringene fordelte makt og risiko ulikt."] }],
+        core_concepts: ["industrialisering", "demokratisering"],
+        connections: ["arbeidshistorie"]
+      },
+      {
+        period_id: "forste_verdenskrig_mellomkrig",
+        title: "Første verdenskrig og mellomkrigstiden",
+        date_label: "1914–1939",
+        introduction: "Krig, økonomiske kriser og massepolitikk endret Europa og verden.",
+        sections: [{ title: "Krise og mobilisering", paragraphs: ["Samfunn ble mobilisert for krig og konflikt.", "Demokratiet ble utfordret av autoritære bevegelser."] }],
+        core_concepts: ["massepolitikk", "økonomisk krise"],
+        connections: ["krigshistorie"]
+      }
+    ],
+    orientation_sources: [{ title: "Åpent oversiktsverk", url: "https://example.test/overview", role: "Globalhistorisk orientering" }],
+    modules: [{
+      period_id: "lange_1800_tallet_1814_1914",
+      title: "Kildebasert 1800-tallsmodul",
+      thesis: "Industrialisering var ikke én ensartet overgang.",
+      historiographical_problem: "Institusjonelle kilder gjør enkelte aktører mer synlige enn andre.",
+      units: [{ title: "Arbeid og produksjon", summary: "Sammenlign teknologi, arbeid og makt.", source_ids: ["src_1800"] }]
+    }],
+    sources: [
+      { source_id: "src_1800", title: "Kildesamling", url: "https://example.test/module" },
+      { source_id: "src_case_a", title: "Casekilde A", url: "https://example.test/case-a" },
+      { source_id: "src_case_b", title: "Casekilde B", url: "https://example.test/case-b" }
+    ],
+    cases: [{
+      case_id: "case_a",
+      place_id: "a",
+      period_id: "lange_1800_tallet_1814_1914",
+      use: "Stedet gjør forholdet mellom arbeid, teknologi og byvekst fysisk undersøkbart.",
+      source_ids: ["src_case_a", "src_case_b"]
+    }]
+  };
   w.PLACES = [
     { id: "a", name: "Sted A", domain: "historie", year: 1890, epoke_id: "industrial" },
     { id: "b", name: "Sted B", domain: "historie", year: 1930, epoke_id: "interwar" },
@@ -149,6 +192,12 @@ test("epoch viewer opens timeline, exact Fagverk periods, parallel tracks and na
   assert.equal(root.getAttribute("role"), "dialog");
   assert.match(root.textContent, /Tidslinje/);
   assert.match(root.textContent, /Industrialisering og urbanisering/);
+  assert.match(root.textContent, /Historisk oversikt/);
+  assert.match(root.textContent, /Fravær er et synlig dokumentasjonsgap/);
+  assert.match(root.textContent, /Arbeid og byvekst/);
+  assert.match(root.textContent, /Industrialisering var ikke én ensartet overgang/);
+  assert.equal(root.querySelector('[data-history-period-id="lange_1800_tallet_1814_1914"]').hasAttribute("open"), true);
+  assert.equal(root.querySelector('.hg-epoke-overview-sources a[href="https://example.test/overview"]')?.textContent.includes("Åpent oversiktsverk"), true);
   assert.match(root.textContent, /Gjennomgående historiske spor/);
   assert.match(root.textContent, /Migrasjon, minoritet og tilhørighet/);
   assert.equal(root.querySelectorAll(".hg-epoke-node").length, 2, "parallel track must not become a canonical epoch node");
@@ -296,6 +345,7 @@ test("a place domain without an epoch catalogue stays in its own domain", async 
 
 test("History v2 renders cross-category evidence, analysis, sources and an interactive parallel track", async () => {
   const { dom, w } = makeWindow();
+  w.PEOPLE = [{ id: "historiker_a", name: "Historiker A", image: "bilder/people/historiker-a.webp" }];
   const industrial = w.EPOKER_INDEX.byDomain.historie.byId.industrial;
   industrial.analysis = {
     what_changed: "Arbeid og transport ble organisert på nye måter.",
@@ -316,6 +366,20 @@ test("History v2 renders cross-category evidence, analysis, sources and an inter
                 name: "Helsested",
                 category: "helse",
                 roles: [{ id: "hverdagsliv", label: "Hverdagsliv og velferd" }],
+                period_cases: [{
+                  id: "case_d",
+                  period_id: "lange_1800_tallet_1814_1914",
+                  use: "Institusjonen brukes som et dokumentert stedscase uten konstruert hendelsesår.",
+                  sources: [
+                    { title: "Casekilde A", url: "https://example.test/case-a" },
+                    { title: "Casekilde B", url: "https://example.test/case-b" }
+                  ]
+                }],
+                connections: {
+                  person_ids: ["historiker_a"],
+                  works: [{ id: "arkivobjekt", title: "Arkivprotokollen", type: "dokument" }],
+                  stories: [{ id: "fortelling_a", title: "Omsorg før velferdsstaten", year: 1890, type: "historical_place" }]
+                },
                 milestones: [{
                   id: "d-1890",
                   year: 1890,
@@ -359,7 +423,14 @@ test("History v2 renders cross-category evidence, analysis, sources and an inter
   assert.match(root.textContent, /Helsested/);
   assert.match(root.textContent, /Hverdagsliv og velferd/);
   assert.match(root.textContent, /Institusjonen endret tilbudet/);
-  assert.equal(root.querySelector(".hg-epoke-source").getAttribute("href"), "https://example.test/source");
+  assert.match(root.textContent, /Dokumenterte stedscaser uten eksakt datering/);
+  assert.match(root.textContent, /uten konstruert hendelsesår/);
+  assert.equal(root.querySelectorAll(".hg-epoke-case .hg-epoke-source").length, 2);
+  assert.match(root.textContent, /Historiker A/);
+  assert.match(root.textContent, /Arkivprotokollen/);
+  assert.match(root.textContent, /Omsorg før velferdsstaten · 1890/);
+  assert.ok(root.querySelector('[data-epoke-person-id="historiker_a"] img'));
+  assert.equal(root.querySelector(".hg-epoke-milestone .hg-epoke-source").getAttribute("href"), "https://example.test/source");
   assert.equal(w.PLACES.find((place) => place.id === "d").domain, "helse", "primary category remains unchanged");
 
   root.querySelector('[data-parallel-epoke-id="migration"]').click();
