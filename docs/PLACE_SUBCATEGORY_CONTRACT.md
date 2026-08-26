@@ -2,7 +2,7 @@
 
 Status: canonical tilleggskontrakt
 
-Sist kontrollert: 2026-08-25
+Sist kontrollert: 2026-08-26
 
 ## Prinsipp
 
@@ -14,7 +14,7 @@ Underkategorier kan eie en avgrenset presentasjonsprofil når toppkategoriens st
 
 Canonical ID: `natur / miljo_gjenbruk`.
 
-Dette er vanlige Places. De skal ha egen kartprikk med Natur & miljø-farge, kilder, koordinatbevis, PlaceCard, obligatorisk quiz og fungerende Fagverk-side. De er ikke Micro Places.
+Dette er canonical Places med egen kartprikk i Natur & miljø-fargen. Små, klart avgrensede servicepunkter materialiseres med `placeTier: "micro"` og den reduserte kontrakten i `MICRO_PLACE_CONTRACT.md`. De skal ha kilde- og koordinatbevis, men skal ikke tvinges inn i full PlaceCard, quiz eller Fagverk-side.
 
 Miljø- og gjenbrukssteder bruker følgende faste 2 × 2-komposisjon:
 
@@ -23,7 +23,7 @@ Miljø- og gjenbrukssteder bruker følgende faste 2 × 2-komposisjon:
 3. `environment` — **Kretsløp & miljø**
 4. `systems` — **Sted & system**
 
-Alle fire er avrundede rektangler. Flora og Fauna skal ikke fylles kunstig på et gjenvinnings- eller ombrukspunkt bare fordi toppkategorien er `natur`.
+Feltene dokumenterer det sirkulære tilbudet og kan vises kompakt for et mikrosted. Flora og Fauna skal ikke fylles kunstig på et gjenvinnings- eller ombrukspunkt bare fordi toppkategorien er `natur`.
 
 Innholdet eies av `circular_profile`, som også kan angi stedstype, driftsstatus og praktiske egenskaper som gratis uthenting, salg, adgangsbegrensning, selvbetjening og mobil tjeneste. Tidsavhengige egenskaper må kildeverifiseres på nytt ved stedsproduksjon.
 
@@ -35,9 +35,21 @@ Canonical ID: `litteratur / lesekiosk`.
 
 En Lesekiosk er et eget fysisk litteratursted og beholder egen Litteratur-prikk selv når den står ved et annet History GO-sted. Den kan relateres til nærliggende sted, men skal ikke skjules som underinnhold hos dette.
 
-Lesekiosker bruker den vanlige Litteratur-PlaceCarden: `people`, `objects`, `brands`, `productions` (Bøker og tekster). Tomme samlinger skal være ærlige tomtilstander og aldri fylles med oppdiktet innhold. Bilder ligger fortsatt bare i medieflaten.
+Lesekiosker er canonical mikrosteder med forenklet PlaceCard og `quizMode: "none"`. De skal ikke få konstruerte `people`, `objects`, `brands` eller `productions` for å oppfylle fullstedskrav.
 
 Faglig grunnmur inkluderer `lesekultur_bokdeling_offentlighet`.
+
+## Blå skilt
+
+Canonical ID: `<toppkategori> / bla_skilt`.
+
+Hvert fysisk skilt er et canonical mikrosted under den toppkategorien som best beskriver personen, virksomheten eller stedet skiltet gjelder. Skiltet skal ha egen identitet, eksakt adresse, kilde til skiltregistreringen og en kort, stedsspesifikk kontekst. Det skal ikke få full Place-produksjon eller kunstig quiz.
+
+## Historie → Snublestein
+
+Canonical ID: `historie / snublestein`.
+
+Hver fysisk snublestein er ett eget, respektfullt canonical mikrosted. Flere steiner ved samme adresse skal ikke slås sammen: personidentiteten og den enkelte steinen bevares. Innholdet begrenses til kildeverifisert identitet, plassering og nødvendig biografisk kontekst.
 
 ## Identitet og duplikater
 

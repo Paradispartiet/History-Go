@@ -17,10 +17,11 @@ const expectedReuseIds=new Set([
   'grefsen_gjenvinningsstasjon','haraldrud_gjenvinningsstasjon','ryen_gjenvinningsstasjon','smestad_gjenvinningsstasjon','lindeberg_gjenvinningsstasjon','kampen_gjenvinningsstasjon','romsas_gjenvinningsstasjon','sofienbergparken_gjenvinningsstasjon','trosterud_gjenvinningsstasjon','haraldrud_ombrukstelt','gronmo_ombrukstelt'
 ]);
 
-test('Oslo Miljø & gjenbruk materialiserer nøyaktig 11 canonical Places',()=>{
-  const files=jsonFiles(ENV_DIR);
-  assert.equal(files.length,11,'Miljø & gjenbruk skal ha nøyaktig 11 materialiserte steder');
-  const places=files.map(file=>read(path.join(ENV_DIR,file)));
+test('den opprinnelige Miljø & gjenbruk-pakken beholder nøyaktig 11 canonical identiteter',()=>{
+  const inventory=read(path.join(ROOT,'reports/oslo-miljo-gjenbruk-2026/permanent-active-inventory.json'));
+  assert.equal(inventory.count,11,'den autoritative opprinnelige pakken skal fortsatt være 11');
+  assert.deepEqual(new Set(inventory.places.map(place=>place.id)),expectedReuseIds);
+  const places=[...expectedReuseIds].map(id=>read(path.join(ENV_DIR,`${id}.json`)));
   assert.deepEqual(new Set(places.map(place=>place.id)),expectedReuseIds);
   for(const place of places){
     assert.equal(place.category,'natur',`${place.id} må beholde Natur-hovedkategori`);
