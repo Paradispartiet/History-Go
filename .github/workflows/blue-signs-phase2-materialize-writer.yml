@@ -4,17 +4,22 @@ on:
   push:
     branches:
       - agent/blue-signs-phase2-20260826
+  pull_request:
+    branches:
+      - main
+    types: [opened, reopened, synchronize]
 
 permissions:
   contents: write
 
 jobs:
   materialize:
-    if: github.actor != 'github-actions[bot]'
+    if: github.actor != 'github-actions[bot]' && (github.event_name != 'pull_request' || github.head_ref == 'agent/blue-signs-phase2-20260826')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: agent/blue-signs-phase2-20260826
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
