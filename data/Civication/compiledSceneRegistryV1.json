@@ -26608,6 +26608,280 @@
       "category": "film_tv",
       "compatibility_projection": {
         "category": "film_tv",
+        "choice_axis": "aksepter_vilkar_og_rework_vs_behold_offentlig_lovnad",
+        "choices": [
+          {
+            "effect": 2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:film_tv_rettighetskoordinator",
+                  "delta": 2,
+                  "event_id": "film_tv_kurator_standing_rights_response_respected",
+                  "reason": "Dokumenterte vilkår blir faktisk omsatt til programendring.",
+                  "source_actor_id": "film_tv_rettighetskoordinator"
+                },
+                {
+                  "audience_id": "manager:film_tv_programansvarlig",
+                  "delta": 1,
+                  "event_id": "film_tv_kurator_standing_manager_response_respected",
+                  "reason": "Ny informasjon endrer status før programlåsing.",
+                  "source_actor_id": "film_tv_programansvarlig"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_kurator_rights_response_to_rework",
+                  "note": "Rettighets- og kopivilkår er mottatt og programsaken går tilbake til kuratorisk rework.",
+                  "op": "transition",
+                  "to_phase": "rights_bounded_rework",
+                  "to_status": "in_progress",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                },
+                {
+                  "event_id": "film_tv_kurator_rights_terms_recorded",
+                  "flag": "rettighetsvilkar_integrert_i_programcase",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                }
+              ]
+            },
+            "feedback": "Rettighetssvaret får endre programmet i stedet for å bli et fotnotert hinder.",
+            "id": "A",
+            "label": "Godta vilkåret og send programmet tilbake til rework",
+            "reply": "Jeg oppdaterer kopistatus, tar ut tilleggsmaterialet og omskriver konteksten til det dokumentasjonen faktisk bærer."
+          },
+          {
+            "effect": -2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:film_tv_rettighetskoordinator",
+                  "delta": -3,
+                  "event_id": "film_tv_kurator_standing_rights_response_ignored",
+                  "reason": "Klareringen blir behandlet som et forslag i stedet for faktisk ramme.",
+                  "source_actor_id": "film_tv_rettighetskoordinator"
+                },
+                {
+                  "audience_id": "manager:film_tv_programansvarlig",
+                  "delta": -2,
+                  "event_id": "film_tv_kurator_standing_manager_response_risk",
+                  "reason": "Programstatusen blir mindre pålitelig når dokumentert vilkår ikke endrer utkastet.",
+                  "source_actor_id": "film_tv_programansvarlig"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_kurator_rights_response_ignored_rework",
+                  "note": "Programsaken er gjenåpnet, men utkastet beholder formuleringer som går lenger enn rettighetsgrunnlaget.",
+                  "op": "transition",
+                  "to_phase": "rights_bounded_rework",
+                  "to_status": "in_progress",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                },
+                {
+                  "event_id": "film_tv_kurator_rights_terms_minimized",
+                  "flag": "rettighetsvilkar_minimert_i_formidling",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                }
+              ]
+            },
+            "feedback": "Du gjør et eksplisitt vilkår til et tolkningsrom du ikke eier.",
+            "id": "B",
+            "label": "Behold teksten og anta at vilkåret ikke gjelder formidlingen",
+            "reply": "Vi justerer det tekniske internt, men lar programteksten og tilleggsmaterialet stå til noen protesterer."
+          }
+        ],
+        "competency": "rettighetssikkerhet",
+        "consequence_axis": "avtalelojalitet_vs_tillitstap",
+        "cooldown": 12,
+        "day_phase": "morning",
+        "from": "Rettighetskoordinator",
+        "id": "film_tv_kurator_realism_rights_response_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_rollout_kurator_rettighetsresponse",
+        "mail_type": "conflict",
+        "narrative_arc": "fra_premiss_til_sporbart_program",
+        "people_ref": "film_tv_rettighetskoordinator",
+        "phase": "mastery",
+        "place_id": "cinemateket_oslo",
+        "planned_only": true,
+        "pressure": "programlas_vs_dokumentert_vilkar",
+        "priority": 96,
+        "purpose": "Bevise at venting og handoff gir ny informasjon som faktisk kan tvinge samme arbeidsobjekt inn i rework.",
+        "repeatable": false,
+        "role_scope": "kurator_film_tv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/conflict/kurator_film_tv_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Visningsretten er avgrenset, ikke generell.",
+          "Kopien som er klarert har dokumentert restaureringshistorikk, men formuleringen i utkastet går lenger enn dokumentasjonen.",
+          "Programansvarlig forventer at ny informasjon endrer programstatusen."
+        ],
+        "stage": "stable",
+        "stakes": "Å beholde den opprinnelige teksten beskytter prestisje og tempo, men gjør en dokumentert begrensning til et avvik mellom avtale og offentlig program.",
+        "subject": "Svaret kom: ankerverket kan vises, men ikke slik programmet nå er skrevet",
+        "summary": "Rettighetshaver godkjenner én bestemt kopi og én visning, men tilleggsmaterialet og formuleringen «restaurert originalversjon» er ikke dekket. Programsaken må endres før intern låsing.",
+        "tags": [
+          "role_world_realism",
+          "controlled_rollout",
+          "film_tv",
+          "kurator_film_tv"
+        ],
+        "task_domain": "rettighetssvar_og_programrevisjon",
+        "task_kind": "conflict",
+        "thread_key": "film_tv_kurator_programserie_realism_001",
+        "work_context": {
+          "institution_id": "cinemateket_programavdeling_001",
+          "object_ids": [
+            "film_tv_kurator_program_case_001"
+          ],
+          "priority": "urgent",
+          "rework_of_scene_id": "film_tv_kurator_realism_rights_handoff_001",
+          "waiting_for_actor_id": "film_tv_rettighetskoordinator"
+        }
+      },
+      "id": "film_tv_kurator_realism_rights_response_001",
+      "mail_type": "conflict",
+      "role_scope": "kurator_film_tv",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:film_tv_rettighetskoordinator",
+                  "delta": 2,
+                  "event_id": "film_tv_kurator_standing_rights_response_respected",
+                  "reason": "Dokumenterte vilkår blir faktisk omsatt til programendring.",
+                  "source_actor_id": "film_tv_rettighetskoordinator"
+                },
+                {
+                  "audience_id": "manager:film_tv_programansvarlig",
+                  "delta": 1,
+                  "event_id": "film_tv_kurator_standing_manager_response_respected",
+                  "reason": "Ny informasjon endrer status før programlåsing.",
+                  "source_actor_id": "film_tv_programansvarlig"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_kurator_rights_response_to_rework",
+                  "note": "Rettighets- og kopivilkår er mottatt og programsaken går tilbake til kuratorisk rework.",
+                  "op": "transition",
+                  "to_phase": "rights_bounded_rework",
+                  "to_status": "in_progress",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                },
+                {
+                  "event_id": "film_tv_kurator_rights_terms_recorded",
+                  "flag": "rettighetsvilkar_integrert_i_programcase",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                }
+              ]
+            },
+            "feedback": "Rettighetssvaret får endre programmet i stedet for å bli et fotnotert hinder.",
+            "id": "A",
+            "label": "Godta vilkåret og send programmet tilbake til rework",
+            "reply": "Jeg oppdaterer kopistatus, tar ut tilleggsmaterialet og omskriver konteksten til det dokumentasjonen faktisk bærer."
+          },
+          {
+            "effects": {
+              "score_delta": -2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:film_tv_rettighetskoordinator",
+                  "delta": -3,
+                  "event_id": "film_tv_kurator_standing_rights_response_ignored",
+                  "reason": "Klareringen blir behandlet som et forslag i stedet for faktisk ramme.",
+                  "source_actor_id": "film_tv_rettighetskoordinator"
+                },
+                {
+                  "audience_id": "manager:film_tv_programansvarlig",
+                  "delta": -2,
+                  "event_id": "film_tv_kurator_standing_manager_response_risk",
+                  "reason": "Programstatusen blir mindre pålitelig når dokumentert vilkår ikke endrer utkastet.",
+                  "source_actor_id": "film_tv_programansvarlig"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_kurator_rights_response_ignored_rework",
+                  "note": "Programsaken er gjenåpnet, men utkastet beholder formuleringer som går lenger enn rettighetsgrunnlaget.",
+                  "op": "transition",
+                  "to_phase": "rights_bounded_rework",
+                  "to_status": "in_progress",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                },
+                {
+                  "event_id": "film_tv_kurator_rights_terms_minimized",
+                  "flag": "rettighetsvilkar_minimert_i_formidling",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                }
+              ]
+            },
+            "feedback": "Du gjør et eksplisitt vilkår til et tolkningsrom du ikke eier.",
+            "id": "B",
+            "label": "Behold teksten og anta at vilkåret ikke gjelder formidlingen",
+            "reply": "Vi justerer det tekniske internt, men lar programteksten og tilleggsmaterialet stå til noen protesterer."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Visningsretten er avgrenset, ikke generell.",
+            "Kopien som er klarert har dokumentert restaureringshistorikk, men formuleringen i utkastet går lenger enn dokumentasjonen.",
+            "Programansvarlig forventer at ny informasjon endrer programstatusen."
+          ],
+          "subject": "Svaret kom: ankerverket kan vises, men ikke slik programmet nå er skrevet",
+          "summary": "Rettighetshaver godkjenner én bestemt kopi og én visning, men tilleggsmaterialet og formuleringen «restaurert originalversjon» er ikke dekket. Programsaken må endres før intern låsing."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_kurator_realism_rights_response_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "cinemateket_oslo",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_kurator_realism_rights_response_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/conflict/kurator_film_tv_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "film_tv_kurator_programserie_realism_001",
+        "version": 1,
+        "work_context": {
+          "institution_id": "cinemateket_programavdeling_001",
+          "object_ids": [
+            "film_tv_kurator_program_case_001"
+          ],
+          "priority": "urgent",
+          "rework_of_scene_id": "film_tv_kurator_realism_rights_handoff_001",
+          "waiting_for_actor_id": "film_tv_rettighetskoordinator"
+        }
+      },
+      "source_hash": "abdd37562c21c18af63ff2d913257f0c50b6ef13a8482adc3110f2e3435e2528",
+      "source_path": "data/Civication/mailFamilies/film_tv/conflict/kurator_film_tv_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
         "choice_axis": "dokumenter_og_rett_avvik_vs_forklar_bort",
         "choices": [
           {
@@ -26731,6 +27005,386 @@
     {
       "category": "film_tv",
       "compatibility_projection": {
+        "authority_context": {
+          "approval_points": [
+            {
+              "action_id": "lock_public_program",
+              "approval_id": "film_tv_program_lock_approval",
+              "approval_object_id": "film_tv_kurator_program_lock_approval_001",
+              "approver_actor_id": "film_tv_programansvarlig"
+            }
+          ],
+          "authority_rules": [
+            {
+              "action_id": "recommend_program_lock",
+              "authority": "influence_only",
+              "requires_resources": []
+            },
+            {
+              "action_id": "lock_public_program",
+              "approval_id": "film_tv_program_lock_approval",
+              "authority": "approval_required",
+              "requires_resources": []
+            },
+            {
+              "action_id": "promise_rights_without_agreement",
+              "authority": "forbidden",
+              "requires_resources": []
+            }
+          ],
+          "escalation_paths": [],
+          "external_counterparts": [
+            "film_tv_distributor_kontakt"
+          ],
+          "goals_pressures": [
+            "programkvalitet",
+            "rettighetssikkerhet",
+            "offentlig_formidling",
+            "programfrist"
+          ],
+          "institution_id": "cinemateket_programavdeling_001",
+          "peer_functions": [
+            "film_tv_rettighetskoordinator",
+            "film_tv_arkivar",
+            "film_tv_formidler"
+          ],
+          "reporting_line": [
+            "film_tv_programansvarlig"
+          ],
+          "resources": [],
+          "role_scope": "kurator_film_tv",
+          "unit_id": "cinemateket_programavdeling"
+        },
+        "category": "film_tv",
+        "choice_axis": "sporbart_anbefalingsgrunnlag_vs_selvautoriser_programlas",
+        "choices": [
+          {
+            "authority_action": {
+              "action_id": "recommend_program_lock",
+              "intent": "recommend"
+            },
+            "effect": 2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:film_tv_programansvarlig",
+                  "delta": 3,
+                  "event_id": "film_tv_kurator_standing_manager_closure",
+                  "reason": "Kuratorens anbefaling er sporbar, myndighetsavgrenset og klar for formell beslutning.",
+                  "source_actor_id": "film_tv_programansvarlig"
+                },
+                {
+                  "audience_id": "professional:film_tv_rettighetskoordinator",
+                  "delta": 2,
+                  "event_id": "film_tv_kurator_standing_rights_closure",
+                  "reason": "Endelig kuratorpakke samsvarer med dokumenterte rettighetsvilkår.",
+                  "source_actor_id": "film_tv_rettighetskoordinator"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_kurator_program_case_completed",
+                  "note": "Kuratorens arbeidsobjekt er fullført som anbefalingsgrunnlag; offentlig programlås forblir hos programansvarlig.",
+                  "op": "transition",
+                  "to_phase": "curatorial_package_ready_for_program_lock",
+                  "to_status": "completed",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                },
+                {
+                  "event_id": "film_tv_kurator_authority_boundary_preserved",
+                  "flag": "kuratorpakke_ferdig_uten_programlas_myndighet",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                }
+              ]
+            },
+            "feedback": "Du fullfører eget ansvar uten å gjøre faglig sikkerhet til formell programlås.",
+            "id": "A",
+            "label": "Ferdigstill sporet og anbefal programmet for lederens låsing",
+            "reply": "Jeg lukker kuratorsaken med kriterier, endringer, vilkår og publikumsnotat synlig, og anbefaler programstatus til programansvarlig."
+          },
+          {
+            "authority_action": {
+              "action_id": "recommend_program_lock",
+              "intent": "recommend"
+            },
+            "effect": 1,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:film_tv_programansvarlig",
+                  "delta": 2,
+                  "event_id": "film_tv_kurator_standing_manager_reserved_closure",
+                  "reason": "Restusikkerhet er synlig i stedet for skjult i en kategorisk anbefaling.",
+                  "source_actor_id": "film_tv_programansvarlig"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_kurator_program_case_completed_reserved",
+                  "note": "Kuratorens arbeidsobjekt er fullført med eksplisitte reservasjoner; programansvarlig beholder offentlig låsing.",
+                  "op": "transition",
+                  "to_phase": "curatorial_package_ready_with_reservations",
+                  "to_status": "completed",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                },
+                {
+                  "event_id": "film_tv_kurator_residual_uncertainty_visible",
+                  "flag": "restusikkerhet_synlig_for_programansvarlig",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                }
+              ]
+            },
+            "feedback": "Også en forsiktig anbefaling kan være profesjonelt komplett når restusikkerhet er synlig.",
+            "id": "B",
+            "label": "Anbefal med tydelig reservasjon der publikums- eller rettighetssporet fortsatt er svakt",
+            "reply": "Jeg lukker min arbeidsdel, markerer restusikkerheten og ber programansvarlig behandle den eksplisitt før offentlig låsing."
+          }
+        ],
+        "competency": "kuratorisk_begrunnelse",
+        "consequence_axis": "institusjonell_tillit_vs_myndighetslekkasje",
+        "cooldown": 14,
+        "day_phase": "afternoon",
+        "from": "Programansvarlig",
+        "id": "film_tv_kurator_realism_program_close_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_rollout_kurator_program_closure",
+        "mail_type": "consequence",
+        "narrative_arc": "fra_premiss_til_sporbart_program",
+        "people_ref": "film_tv_programansvarlig",
+        "phase": "climax",
+        "place_id": "cinemateket_oslo",
+        "planned_only": true,
+        "pressure": "faglig_eierskap_vs_formell_myndighet",
+        "priority": 99,
+        "purpose": "Bevise at persistent arbeid kan fullføres uten at completion eller omdømme fabrikerer myndighet som rollen ikke har.",
+        "repeatable": false,
+        "role_scope": "kurator_film_tv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/consequence/kurator_film_tv_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Rettighetsloggen og programarket kan sammenlignes direkte.",
+          "Publikumsrespons er dokumentert som mottakelseskunnskap, ikke som mandat.",
+          "Programansvarlig eier offentlig programlås; rettighetskoordinatorens dokumenterte vilkår kan ikke overstyres av smak eller standing."
+        ],
+        "social_standing_context": {
+          "reaction_audience_id": "manager:film_tv_programansvarlig"
+        },
+        "stage": "stable",
+        "stakes": "En presis avslutning gir institusjonen et etterprøvbart beslutningsgrunnlag. Å behandle egen faglig sikkerhet som godkjenning blander ekspertise og formell myndighet.",
+        "subject": "Lukk kuratorsaken som anbefaling – programlåsen er fortsatt min beslutning",
+        "summary": "Premiss, rettighetsvilkår, rework og publikumsrespons er samlet. Du skal ferdigstille den kuratoriske pakken og anbefale programstatus, mens programansvarlig beholder beslutningen om offentlig låsing.",
+        "tags": [
+          "role_world_realism",
+          "controlled_rollout",
+          "film_tv",
+          "kurator_film_tv"
+        ],
+        "task_domain": "programavslutning_og_myndighet",
+        "task_kind": "consequence",
+        "thread_key": "film_tv_kurator_programserie_realism_001",
+        "work_context": {
+          "institution_id": "cinemateket_programavdeling_001",
+          "object_ids": [
+            "film_tv_kurator_program_case_001"
+          ],
+          "priority": "urgent",
+          "rework_of_scene_id": "film_tv_kurator_realism_public_preview_001"
+        }
+      },
+      "id": "film_tv_kurator_realism_program_close_001",
+      "mail_type": "consequence",
+      "role_scope": "kurator_film_tv",
+      "scene": {
+        "arc_stage": "climax",
+        "authority_context": {
+          "approval_points": [
+            {
+              "action_id": "lock_public_program",
+              "approval_id": "film_tv_program_lock_approval",
+              "approval_object_id": "film_tv_kurator_program_lock_approval_001",
+              "approver_actor_id": "film_tv_programansvarlig"
+            }
+          ],
+          "authority_rules": [
+            {
+              "action_id": "recommend_program_lock",
+              "authority": "influence_only",
+              "requires_resources": []
+            },
+            {
+              "action_id": "lock_public_program",
+              "approval_id": "film_tv_program_lock_approval",
+              "authority": "approval_required",
+              "requires_resources": []
+            },
+            {
+              "action_id": "promise_rights_without_agreement",
+              "authority": "forbidden",
+              "requires_resources": []
+            }
+          ],
+          "escalation_paths": [],
+          "external_counterparts": [
+            "film_tv_distributor_kontakt"
+          ],
+          "goals_pressures": [
+            "programkvalitet",
+            "rettighetssikkerhet",
+            "offentlig_formidling",
+            "programfrist"
+          ],
+          "institution_id": "cinemateket_programavdeling_001",
+          "peer_functions": [
+            "film_tv_rettighetskoordinator",
+            "film_tv_arkivar",
+            "film_tv_formidler"
+          ],
+          "reporting_line": [
+            "film_tv_programansvarlig"
+          ],
+          "resources": [],
+          "role_scope": "kurator_film_tv",
+          "unit_id": "cinemateket_programavdeling"
+        },
+        "choices": [
+          {
+            "authority_action": {
+              "action_id": "recommend_program_lock",
+              "intent": "recommend"
+            },
+            "effects": {
+              "score_delta": 2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:film_tv_programansvarlig",
+                  "delta": 3,
+                  "event_id": "film_tv_kurator_standing_manager_closure",
+                  "reason": "Kuratorens anbefaling er sporbar, myndighetsavgrenset og klar for formell beslutning.",
+                  "source_actor_id": "film_tv_programansvarlig"
+                },
+                {
+                  "audience_id": "professional:film_tv_rettighetskoordinator",
+                  "delta": 2,
+                  "event_id": "film_tv_kurator_standing_rights_closure",
+                  "reason": "Endelig kuratorpakke samsvarer med dokumenterte rettighetsvilkår.",
+                  "source_actor_id": "film_tv_rettighetskoordinator"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_kurator_program_case_completed",
+                  "note": "Kuratorens arbeidsobjekt er fullført som anbefalingsgrunnlag; offentlig programlås forblir hos programansvarlig.",
+                  "op": "transition",
+                  "to_phase": "curatorial_package_ready_for_program_lock",
+                  "to_status": "completed",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                },
+                {
+                  "event_id": "film_tv_kurator_authority_boundary_preserved",
+                  "flag": "kuratorpakke_ferdig_uten_programlas_myndighet",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                }
+              ]
+            },
+            "feedback": "Du fullfører eget ansvar uten å gjøre faglig sikkerhet til formell programlås.",
+            "id": "A",
+            "label": "Ferdigstill sporet og anbefal programmet for lederens låsing",
+            "reply": "Jeg lukker kuratorsaken med kriterier, endringer, vilkår og publikumsnotat synlig, og anbefaler programstatus til programansvarlig."
+          },
+          {
+            "authority_action": {
+              "action_id": "recommend_program_lock",
+              "intent": "recommend"
+            },
+            "effects": {
+              "score_delta": 1,
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:film_tv_programansvarlig",
+                  "delta": 2,
+                  "event_id": "film_tv_kurator_standing_manager_reserved_closure",
+                  "reason": "Restusikkerhet er synlig i stedet for skjult i en kategorisk anbefaling.",
+                  "source_actor_id": "film_tv_programansvarlig"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_kurator_program_case_completed_reserved",
+                  "note": "Kuratorens arbeidsobjekt er fullført med eksplisitte reservasjoner; programansvarlig beholder offentlig låsing.",
+                  "op": "transition",
+                  "to_phase": "curatorial_package_ready_with_reservations",
+                  "to_status": "completed",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                },
+                {
+                  "event_id": "film_tv_kurator_residual_uncertainty_visible",
+                  "flag": "restusikkerhet_synlig_for_programansvarlig",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                }
+              ]
+            },
+            "feedback": "Også en forsiktig anbefaling kan være profesjonelt komplett når restusikkerhet er synlig.",
+            "id": "B",
+            "label": "Anbefal med tydelig reservasjon der publikums- eller rettighetssporet fortsatt er svakt",
+            "reply": "Jeg lukker min arbeidsdel, markerer restusikkerheten og ber programansvarlig behandle den eksplisitt før offentlig låsing."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Rettighetsloggen og programarket kan sammenlignes direkte.",
+            "Publikumsrespons er dokumentert som mottakelseskunnskap, ikke som mandat.",
+            "Programansvarlig eier offentlig programlås; rettighetskoordinatorens dokumenterte vilkår kan ikke overstyres av smak eller standing."
+          ],
+          "subject": "Lukk kuratorsaken som anbefaling – programlåsen er fortsatt min beslutning",
+          "summary": "Premiss, rettighetsvilkår, rework og publikumsrespons er samlet. Du skal ferdigstille den kuratoriske pakken og anbefale programstatus, mens programansvarlig beholder beslutningen om offentlig låsing."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_kurator_realism_program_close_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "cinemateket_oslo",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_kurator_realism_program_close_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/consequence/kurator_film_tv_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "social_standing_context": {
+          "reaction_audience_id": "manager:film_tv_programansvarlig"
+        },
+        "thread_id": "film_tv_kurator_programserie_realism_001",
+        "version": 1,
+        "work_context": {
+          "institution_id": "cinemateket_programavdeling_001",
+          "object_ids": [
+            "film_tv_kurator_program_case_001"
+          ],
+          "priority": "urgent",
+          "rework_of_scene_id": "film_tv_kurator_realism_public_preview_001"
+        }
+      },
+      "source_hash": "63529155a73ff982ce8191dc494f3652de717be292007fae06022c69504bfdfe",
+      "source_path": "data/Civication/mailFamilies/film_tv/consequence/kurator_film_tv_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
         "category": "film_tv",
         "choice_axis": "revider_programlogikk_vs_fyll_hullet",
         "choices": [
@@ -26848,6 +27502,300 @@
         "version": 1
       },
       "source_hash": "80cb882e93a2347e4be5d455ceb29fd513f841fc0ddac110767c37181cbb8ee0",
+      "source_path": "data/Civication/mailFamilies/film_tv/event/kurator_film_tv_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "bruk_konkret_respons_vs_avfei_smak",
+        "choices": [
+          {
+            "effect": 2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "public:cinemateket_publikum",
+                  "delta": 3,
+                  "event_id": "film_tv_kurator_standing_public_visible_revision",
+                  "reason": "Kuratoren svarer på konkret misforståelse med synlig presisering uten å love at smak styrer utvalget.",
+                  "source_actor_id": "film_tv_formidler"
+                },
+                {
+                  "audience_id": "team:film_tv_formidler",
+                  "delta": 2,
+                  "event_id": "film_tv_kurator_standing_team_public_listening",
+                  "reason": "Publikumsarbeid behandles som etterprøvbar formidlingsfeedback.",
+                  "source_actor_id": "film_tv_formidler"
+                },
+                {
+                  "audience_id": "manager:film_tv_programansvarlig",
+                  "delta": 1,
+                  "event_id": "film_tv_kurator_standing_manager_public_trace",
+                  "reason": "Respons og faglig anbefaling holdes adskilt før programlåsing.",
+                  "source_actor_id": "film_tv_programansvarlig"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_kurator_preview_feedback_integrated",
+                  "note": "Konkrete misforståelser fra prøvepublikum er skilt fra smak og integrert i formidlingen.",
+                  "op": "transition",
+                  "to_phase": "public_preview_feedback_integrated",
+                  "to_status": "in_progress",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                },
+                {
+                  "event_id": "film_tv_kurator_public_feedback_verified",
+                  "flag": "publikumsrespons_brukt_som_mottakelseskunnskap",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                }
+              ]
+            },
+            "feedback": "Publikumsrespons blir kunnskap om mottakelse, ikke en folkeavstemning om kanon.",
+            "id": "A",
+            "label": "Skill konkrete misforståelser fra ren smak og revider formidlingen",
+            "reply": "Jeg bruker det som faktisk kan spores til tittel og kontekst, men lar ikke applaus eller motvilje bli kvalitetsfasit."
+          },
+          {
+            "effect": -2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "public:cinemateket_publikum",
+                  "delta": -3,
+                  "event_id": "film_tv_kurator_standing_public_dismissed",
+                  "reason": "Etterprøvbar misforståelse blir avvist sammen med smakspreferanser.",
+                  "source_actor_id": "film_tv_formidler"
+                },
+                {
+                  "audience_id": "team:film_tv_formidler",
+                  "delta": -2,
+                  "event_id": "film_tv_kurator_standing_team_dismissed",
+                  "reason": "Formidlingsfeedback får ingen virkning på et problem den kan dokumentere.",
+                  "source_actor_id": "film_tv_formidler"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_kurator_preview_feedback_dismissed",
+                  "note": "Prøvepublikummets konkrete misforståelse er registrert, men formidlingen er i hovedsak beholdt.",
+                  "op": "transition",
+                  "to_phase": "public_preview_feedback_integrated",
+                  "to_status": "in_progress",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                },
+                {
+                  "event_id": "film_tv_kurator_public_feedback_dismissed_flag",
+                  "flag": "publikumsfeedback_avvist_som_smak",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                }
+              ]
+            },
+            "feedback": "Du beskytter mandatet ved å late som all respons er smak, også der den viser en konkret kommunikasjonsfeil.",
+            "id": "B",
+            "label": "Avfei responsen som smak og behold tittel og inngang",
+            "reply": "En kuratorisk serie kan ikke styres av et lite prøvepublikum; vi står i den opprinnelige innrammingen."
+          }
+        ],
+        "competency": "publikumsarbeid",
+        "consequence_axis": "offentlig_tillit_vs_statusforsvar",
+        "cooldown": 14,
+        "day_phase": "evening",
+        "from": "Publikumsverten",
+        "id": "film_tv_kurator_realism_public_preview_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_rollout_kurator_public_preview",
+        "mail_type": "event",
+        "narrative_arc": "fra_premiss_til_sporbart_program",
+        "people_ref": "film_tv_formidler",
+        "phase": "climax",
+        "place_id": "cinemateket_oslo",
+        "planned_only": true,
+        "pressure": "status_vs_reviderbar_formidling",
+        "priority": 98,
+        "purpose": "Bevise situert offentlig omdømme: publikum kan reagere på forståelighet og åpenhet uten å avgjøre sannhet, rettighet eller programmandat.",
+        "repeatable": false,
+        "role_scope": "kurator_film_tv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/event/kurator_film_tv_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Publikum reagerer på programrammen, ikke bare på enkeltverk.",
+          "Responsen inneholder både smak og konkrete tegn på misforståelse.",
+          "Programansvarlig trenger en anbefaling som skiller publikumsrespons fra endelig programbeslutning."
+        ],
+        "social_standing_context": {
+          "reaction_audience_id": "public:cinemateket_publikum"
+        },
+        "stage": "stable",
+        "stakes": "Å gjøre responsen synlig kan forbedre formidlingen og koste status. Å avfeie responsen beskytter kuratorens selvbilde, men lar en konkret kommunikasjonssvikt stå.",
+        "subject": "Prøveintroduksjonen traff, men publikum leste programmet smalere enn du mente",
+        "summary": "Etter en liten prøvevisning for abonnenter og studenter viser samtalen at konteksten rundt ett verk fungerer, mens seriens tittel fortsatt får programmet til å fremstå som en bekreftelse av kjent kanon.",
+        "tags": [
+          "role_world_realism",
+          "controlled_rollout",
+          "film_tv",
+          "kurator_film_tv"
+        ],
+        "task_domain": "publikumsrespons_og_programforstaelse",
+        "task_kind": "event",
+        "thread_key": "film_tv_kurator_programserie_realism_001",
+        "work_context": {
+          "institution_id": "cinemateket_programavdeling_001",
+          "interrupts": true,
+          "object_ids": [
+            "film_tv_kurator_program_case_001"
+          ],
+          "priority": "urgent",
+          "rework_of_scene_id": "film_tv_kurator_realism_program_rework_001"
+        }
+      },
+      "id": "film_tv_kurator_realism_public_preview_001",
+      "mail_type": "event",
+      "role_scope": "kurator_film_tv",
+      "scene": {
+        "arc_stage": "climax",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "public:cinemateket_publikum",
+                  "delta": 3,
+                  "event_id": "film_tv_kurator_standing_public_visible_revision",
+                  "reason": "Kuratoren svarer på konkret misforståelse med synlig presisering uten å love at smak styrer utvalget.",
+                  "source_actor_id": "film_tv_formidler"
+                },
+                {
+                  "audience_id": "team:film_tv_formidler",
+                  "delta": 2,
+                  "event_id": "film_tv_kurator_standing_team_public_listening",
+                  "reason": "Publikumsarbeid behandles som etterprøvbar formidlingsfeedback.",
+                  "source_actor_id": "film_tv_formidler"
+                },
+                {
+                  "audience_id": "manager:film_tv_programansvarlig",
+                  "delta": 1,
+                  "event_id": "film_tv_kurator_standing_manager_public_trace",
+                  "reason": "Respons og faglig anbefaling holdes adskilt før programlåsing.",
+                  "source_actor_id": "film_tv_programansvarlig"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_kurator_preview_feedback_integrated",
+                  "note": "Konkrete misforståelser fra prøvepublikum er skilt fra smak og integrert i formidlingen.",
+                  "op": "transition",
+                  "to_phase": "public_preview_feedback_integrated",
+                  "to_status": "in_progress",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                },
+                {
+                  "event_id": "film_tv_kurator_public_feedback_verified",
+                  "flag": "publikumsrespons_brukt_som_mottakelseskunnskap",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                }
+              ]
+            },
+            "feedback": "Publikumsrespons blir kunnskap om mottakelse, ikke en folkeavstemning om kanon.",
+            "id": "A",
+            "label": "Skill konkrete misforståelser fra ren smak og revider formidlingen",
+            "reply": "Jeg bruker det som faktisk kan spores til tittel og kontekst, men lar ikke applaus eller motvilje bli kvalitetsfasit."
+          },
+          {
+            "effects": {
+              "score_delta": -2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "public:cinemateket_publikum",
+                  "delta": -3,
+                  "event_id": "film_tv_kurator_standing_public_dismissed",
+                  "reason": "Etterprøvbar misforståelse blir avvist sammen med smakspreferanser.",
+                  "source_actor_id": "film_tv_formidler"
+                },
+                {
+                  "audience_id": "team:film_tv_formidler",
+                  "delta": -2,
+                  "event_id": "film_tv_kurator_standing_team_dismissed",
+                  "reason": "Formidlingsfeedback får ingen virkning på et problem den kan dokumentere.",
+                  "source_actor_id": "film_tv_formidler"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_kurator_preview_feedback_dismissed",
+                  "note": "Prøvepublikummets konkrete misforståelse er registrert, men formidlingen er i hovedsak beholdt.",
+                  "op": "transition",
+                  "to_phase": "public_preview_feedback_integrated",
+                  "to_status": "in_progress",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                },
+                {
+                  "event_id": "film_tv_kurator_public_feedback_dismissed_flag",
+                  "flag": "publikumsfeedback_avvist_som_smak",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                }
+              ]
+            },
+            "feedback": "Du beskytter mandatet ved å late som all respons er smak, også der den viser en konkret kommunikasjonsfeil.",
+            "id": "B",
+            "label": "Avfei responsen som smak og behold tittel og inngang",
+            "reply": "En kuratorisk serie kan ikke styres av et lite prøvepublikum; vi står i den opprinnelige innrammingen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Publikum reagerer på programrammen, ikke bare på enkeltverk.",
+            "Responsen inneholder både smak og konkrete tegn på misforståelse.",
+            "Programansvarlig trenger en anbefaling som skiller publikumsrespons fra endelig programbeslutning."
+          ],
+          "subject": "Prøveintroduksjonen traff, men publikum leste programmet smalere enn du mente",
+          "summary": "Etter en liten prøvevisning for abonnenter og studenter viser samtalen at konteksten rundt ett verk fungerer, mens seriens tittel fortsatt får programmet til å fremstå som en bekreftelse av kjent kanon."
+        },
+        "day_phase": "evening",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_kurator_realism_public_preview_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "cinemateket_oslo",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_kurator_realism_public_preview_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/event/kurator_film_tv_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "social_standing_context": {
+          "reaction_audience_id": "public:cinemateket_publikum"
+        },
+        "thread_id": "film_tv_kurator_programserie_realism_001",
+        "version": 1,
+        "work_context": {
+          "institution_id": "cinemateket_programavdeling_001",
+          "interrupts": true,
+          "object_ids": [
+            "film_tv_kurator_program_case_001"
+          ],
+          "priority": "urgent",
+          "rework_of_scene_id": "film_tv_kurator_realism_program_rework_001"
+        }
+      },
+      "source_hash": "75b83ae30b523359341082a0c0353fe79f33a0d668e02821cd2a88f22c6f1522",
       "source_path": "data/Civication/mailFamilies/film_tv/event/kurator_film_tv_event.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -26979,6 +27927,358 @@
       "category": "film_tv",
       "compatibility_projection": {
         "category": "film_tv",
+        "choice_axis": "rebygg_programlogikk_vs_kosmetisk_revisjon",
+        "choices": [
+          {
+            "effect": 2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "team:film_tv_formidler",
+                  "delta": 3,
+                  "event_id": "film_tv_kurator_standing_team_rework_real",
+                  "reason": "Kritikken endrer faktisk programtekst og begrunnelse.",
+                  "source_actor_id": "film_tv_formidler"
+                },
+                {
+                  "audience_id": "manager:film_tv_programansvarlig",
+                  "delta": 1,
+                  "event_id": "film_tv_kurator_standing_manager_rework_real",
+                  "reason": "Programsaken blir mer beslutningsklar etter ny informasjon.",
+                  "source_actor_id": "film_tv_programansvarlig"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_kurator_program_reworked",
+                  "note": "Programrekkefølge og tekst er revidert mot dokumenterte kriterier, rettighetsvilkår og faglig feedback.",
+                  "op": "transition",
+                  "to_phase": "contextualized_program_rework",
+                  "to_status": "in_progress",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                }
+              ]
+            },
+            "feedback": "Rework blir en faglig revisjon, ikke en forsvarstale for første utkast.",
+            "id": "A",
+            "label": "Revider rekkefølge og tekst mot kriterier, vilkår og breddekritikk",
+            "reply": "Jeg lar de nye premissene faktisk endre programarket og dokumenterer hvorfor."
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "team:film_tv_formidler",
+                  "delta": -2,
+                  "event_id": "film_tv_kurator_standing_team_rework_cosmetic",
+                  "reason": "Dokumentert kritikk omskrives til retorikk uten reell programrevisjon.",
+                  "source_actor_id": "film_tv_formidler"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_kurator_program_rework_cosmetic",
+                  "note": "Programmet er språklig revidert, men første rekkefølge er i hovedsak bevart.",
+                  "op": "transition",
+                  "to_phase": "contextualized_program_rework",
+                  "to_status": "in_progress",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                },
+                {
+                  "event_id": "film_tv_kurator_cosmetic_rework_flag",
+                  "flag": "rework_beskytter_forste_utvalg",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                }
+              ]
+            },
+            "feedback": "Språket flytter seg mer enn programlogikken og gjør rework til kosmetikk.",
+            "id": "B",
+            "label": "Behold rekkefølgen og skriv en sterkere begrunnelse rundt den",
+            "reply": "Utvalget står; jeg gjør teksten tydeligere slik at kritikken blir adressert uten å flytte verkene."
+          },
+          {
+            "affordance": {
+              "history_go": {
+                "require_history_go_correct": true,
+                "require_task_completed": true,
+                "task_mail_ids": [
+                  "film_tv_kurator_realism_history_go_cinemateket_001"
+                ]
+              }
+            },
+            "effect": 3,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "team:film_tv_formidler",
+                  "delta": 3,
+                  "event_id": "film_tv_kurator_standing_team_history_rework",
+                  "reason": "Kontekst brukes til å presisere programmet uten å maskere smak som institusjonell sannhet.",
+                  "source_actor_id": "film_tv_formidler"
+                },
+                {
+                  "audience_id": "manager:film_tv_programansvarlig",
+                  "delta": 2,
+                  "event_id": "film_tv_kurator_standing_manager_history_rework",
+                  "reason": "Programbegrunnelsen skiller mandat og offentlig oppmerksomhet fra personlig preferanse.",
+                  "source_actor_id": "film_tv_programansvarlig"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_kurator_program_reworked_with_history_go",
+                  "note": "History Go-kontekst er brukt til å skille filmarv, institusjonelt mandat, publikum og smak i revidert program.",
+                  "op": "transition",
+                  "to_phase": "contextualized_program_rework",
+                  "to_status": "in_progress",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                },
+                {
+                  "event_id": "film_tv_kurator_history_go_rework_flag",
+                  "flag": "history_go_kontekst_anvendt_uten_myndighetslekkasje",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                }
+              ]
+            },
+            "feedback": "History Go gir et bedre rework-grep, men ingen ny rettighet eller programmyndighet.",
+            "id": "C",
+            "label": "Bruk Cinemateket-læringen til å skille mandat, arv, oppmerksomhet og smak før du reviderer",
+            "reply": "Jeg bruker History Go-konteksten som sorteringsgrep og lar bare dokumenterte premisser bære institusjonelle påstander."
+          }
+        ],
+        "competency": "kuratorisk_begrunnelse",
+        "consequence_axis": "sporbart_program_vs_statusforsvar",
+        "cooldown": 12,
+        "day_phase": "afternoon",
+        "from": "Formidleren",
+        "id": "film_tv_kurator_realism_program_rework_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_rollout_kurator_program_rework",
+        "mail_type": "followup",
+        "narrative_arc": "fra_premiss_til_sporbart_program",
+        "people_ref": "film_tv_formidler",
+        "phase": "mastery",
+        "place_id": "cinemateket_oslo",
+        "planned_only": true,
+        "pressure": "eierskap_til_forste_utkast_vs_reviderbarhet",
+        "priority": 94,
+        "purpose": "Bevise feedback/rework og at en fullført History Go-oppgave kan åpne en mer presis rework-variant uten å gi ekstra myndighet.",
+        "repeatable": false,
+        "role_scope": "kurator_film_tv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/followup/kurator_film_tv_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Rettighetsvilkåret er nå dokumentert.",
+          "Formidleren har vist at programteksten lover større bredde enn første utkast leverer.",
+          "Cinemateket-konteksten kan brukes til å skille institusjonelt mandat fra personlig kanonpreferanse."
+        ],
+        "social_standing_context": {
+          "reaction_audience_id": "team:film_tv_formidler"
+        },
+        "stage": "stable",
+        "stakes": "En reell revisjon kan endre rekkefølge, tekst og kanskje verkvalg. En kosmetisk revisjon lar første statusvalg fortsette å styre under nye ord.",
+        "subject": "Bygg programmet på nytt: kriterier, rettighet og kontekst må peke samme vei",
+        "summary": "Formidleren returnerer programteksten fordi ankerverket fortsatt beskrives som selvsagt sentrum, selv om rettighetssvaret, breddekritikken og den historiske konteksten nå krever en tydeligere begrunnelse.",
+        "tags": [
+          "role_world_realism",
+          "controlled_rollout",
+          "film_tv",
+          "kurator_film_tv"
+        ],
+        "task_domain": "programrework",
+        "task_kind": "followup",
+        "thread_key": "film_tv_kurator_programserie_realism_001",
+        "work_context": {
+          "institution_id": "cinemateket_programavdeling_001",
+          "object_ids": [
+            "film_tv_kurator_program_case_001"
+          ],
+          "priority": "urgent",
+          "rework_of_scene_id": "film_tv_kurator_realism_rights_response_001"
+        }
+      },
+      "id": "film_tv_kurator_realism_program_rework_001",
+      "mail_type": "followup",
+      "role_scope": "kurator_film_tv",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "team:film_tv_formidler",
+                  "delta": 3,
+                  "event_id": "film_tv_kurator_standing_team_rework_real",
+                  "reason": "Kritikken endrer faktisk programtekst og begrunnelse.",
+                  "source_actor_id": "film_tv_formidler"
+                },
+                {
+                  "audience_id": "manager:film_tv_programansvarlig",
+                  "delta": 1,
+                  "event_id": "film_tv_kurator_standing_manager_rework_real",
+                  "reason": "Programsaken blir mer beslutningsklar etter ny informasjon.",
+                  "source_actor_id": "film_tv_programansvarlig"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_kurator_program_reworked",
+                  "note": "Programrekkefølge og tekst er revidert mot dokumenterte kriterier, rettighetsvilkår og faglig feedback.",
+                  "op": "transition",
+                  "to_phase": "contextualized_program_rework",
+                  "to_status": "in_progress",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                }
+              ]
+            },
+            "feedback": "Rework blir en faglig revisjon, ikke en forsvarstale for første utkast.",
+            "id": "A",
+            "label": "Revider rekkefølge og tekst mot kriterier, vilkår og breddekritikk",
+            "reply": "Jeg lar de nye premissene faktisk endre programarket og dokumenterer hvorfor."
+          },
+          {
+            "effects": {
+              "score_delta": -1,
+              "social_standing_ops": [
+                {
+                  "audience_id": "team:film_tv_formidler",
+                  "delta": -2,
+                  "event_id": "film_tv_kurator_standing_team_rework_cosmetic",
+                  "reason": "Dokumentert kritikk omskrives til retorikk uten reell programrevisjon.",
+                  "source_actor_id": "film_tv_formidler"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_kurator_program_rework_cosmetic",
+                  "note": "Programmet er språklig revidert, men første rekkefølge er i hovedsak bevart.",
+                  "op": "transition",
+                  "to_phase": "contextualized_program_rework",
+                  "to_status": "in_progress",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                },
+                {
+                  "event_id": "film_tv_kurator_cosmetic_rework_flag",
+                  "flag": "rework_beskytter_forste_utvalg",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                }
+              ]
+            },
+            "feedback": "Språket flytter seg mer enn programlogikken og gjør rework til kosmetikk.",
+            "id": "B",
+            "label": "Behold rekkefølgen og skriv en sterkere begrunnelse rundt den",
+            "reply": "Utvalget står; jeg gjør teksten tydeligere slik at kritikken blir adressert uten å flytte verkene."
+          },
+          {
+            "affordance": {
+              "history_go": {
+                "require_history_go_correct": true,
+                "require_task_completed": true,
+                "task_mail_ids": [
+                  "film_tv_kurator_realism_history_go_cinemateket_001"
+                ]
+              }
+            },
+            "effects": {
+              "score_delta": 3,
+              "social_standing_ops": [
+                {
+                  "audience_id": "team:film_tv_formidler",
+                  "delta": 3,
+                  "event_id": "film_tv_kurator_standing_team_history_rework",
+                  "reason": "Kontekst brukes til å presisere programmet uten å maskere smak som institusjonell sannhet.",
+                  "source_actor_id": "film_tv_formidler"
+                },
+                {
+                  "audience_id": "manager:film_tv_programansvarlig",
+                  "delta": 2,
+                  "event_id": "film_tv_kurator_standing_manager_history_rework",
+                  "reason": "Programbegrunnelsen skiller mandat og offentlig oppmerksomhet fra personlig preferanse.",
+                  "source_actor_id": "film_tv_programansvarlig"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_kurator_program_reworked_with_history_go",
+                  "note": "History Go-kontekst er brukt til å skille filmarv, institusjonelt mandat, publikum og smak i revidert program.",
+                  "op": "transition",
+                  "to_phase": "contextualized_program_rework",
+                  "to_status": "in_progress",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                },
+                {
+                  "event_id": "film_tv_kurator_history_go_rework_flag",
+                  "flag": "history_go_kontekst_anvendt_uten_myndighetslekkasje",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                }
+              ]
+            },
+            "feedback": "History Go gir et bedre rework-grep, men ingen ny rettighet eller programmyndighet.",
+            "id": "C",
+            "label": "Bruk Cinemateket-læringen til å skille mandat, arv, oppmerksomhet og smak før du reviderer",
+            "reply": "Jeg bruker History Go-konteksten som sorteringsgrep og lar bare dokumenterte premisser bære institusjonelle påstander."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Rettighetsvilkåret er nå dokumentert.",
+            "Formidleren har vist at programteksten lover større bredde enn første utkast leverer.",
+            "Cinemateket-konteksten kan brukes til å skille institusjonelt mandat fra personlig kanonpreferanse."
+          ],
+          "subject": "Bygg programmet på nytt: kriterier, rettighet og kontekst må peke samme vei",
+          "summary": "Formidleren returnerer programteksten fordi ankerverket fortsatt beskrives som selvsagt sentrum, selv om rettighetssvaret, breddekritikken og den historiske konteksten nå krever en tydeligere begrunnelse."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_kurator_realism_program_rework_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "cinemateket_oslo",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_kurator_realism_program_rework_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/followup/kurator_film_tv_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "social_standing_context": {
+          "reaction_audience_id": "team:film_tv_formidler"
+        },
+        "thread_id": "film_tv_kurator_programserie_realism_001",
+        "version": 1,
+        "work_context": {
+          "institution_id": "cinemateket_programavdeling_001",
+          "object_ids": [
+            "film_tv_kurator_program_case_001"
+          ],
+          "priority": "urgent",
+          "rework_of_scene_id": "film_tv_kurator_realism_rights_response_001"
+        }
+      },
+      "source_hash": "c7a5e1c1ad8871ec287e9dcc40c857cc00c743e64fd0d1b51ef63010c59cb97b",
+      "source_path": "data/Civication/mailFamilies/film_tv/followup/kurator_film_tv_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
         "choice_axis": "eksplisitte_kriterier_vs_kjent_navn",
         "choices": [
           {
@@ -27102,6 +28402,271 @@
       "category": "film_tv",
       "compatibility_projection": {
         "category": "film_tv",
+        "choice_axis": "apent_kriteriespor_vs_last_prestisjeverk",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_kurator_open_criteria_trace",
+                  "flag": "eksplisitte_kriterier_for_utvalg",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                }
+              ]
+            },
+            "feedback": "Programmet blir reviderbart før prestisje og vane rekker å bli skjult regel.",
+            "id": "A",
+            "label": "Åpne kriterie-, kandidat- og rettighetsspor før utvalget låses",
+            "reply": "Jeg registrerer premiss, kandidater, hva vi vet, hva vi antar og hvilke avklaringer som mangler."
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_kurator_prestige_anchor_locked",
+                  "flag": "prestisjeverk_last_for_kriteriekontroll",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                }
+              ]
+            },
+            "feedback": "Ett navn får definere både premiss og blindsoner før rettigheter og bredde er kontrollert.",
+            "id": "B",
+            "label": "Lås det mest prestisjefylte verket først og bygg serien rundt det",
+            "reply": "Det verket gir serien tyngde; jeg tar det som anker og begrunner resten etterpå."
+          }
+        ],
+        "competency": "kuratorisk_begrunnelse",
+        "consequence_axis": "reviderbar_programkvalitet_vs_etterrasjonalisering",
+        "cooldown": 12,
+        "day_phase": "morning",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "film_tv_kurator_program_case_opened",
+              "op": "create",
+              "work_object": {
+                "confidentiality": "internt_program_og_rettighetsspor",
+                "deadline": "intern_programlas_dag_12_ettermiddag",
+                "flags": [
+                  "program_case_opened"
+                ],
+                "institution_id": "cinemateket_programavdeling_001",
+                "kind": "curated_program_case",
+                "knowledge_refs": [
+                  "data/places/film_tv/oslo/cinemateket_oslo.json"
+                ],
+                "open_questions": [
+                  "Hvilke kriterier gjør utvalget etterprøvbart?",
+                  "Hvilke verk er faktisk rettighets- og kopiklarert?",
+                  "Hvilken kontekst trenger publikum for å forstå programmet uten at dagens smak omskriver historien?"
+                ],
+                "people_refs": [
+                  "film_tv_programansvarlig",
+                  "film_tv_rettighetskoordinator",
+                  "film_tv_arkivar",
+                  "film_tv_formidler"
+                ],
+                "phase": "premiss_og_utvalg",
+                "place_refs": [
+                  "cinemateket_oslo",
+                  "kurator_programbord",
+                  "kurator_rettighetslogg",
+                  "kurator_programarkiv"
+                ],
+                "role_scope": "kurator_film_tv",
+                "shared": false,
+                "status": "in_progress",
+                "title": "Cinemateket-program: filmminne, utvalg og visningsgrunnlag",
+                "work_object_id": "film_tv_kurator_program_case_001"
+              }
+            }
+          ]
+        },
+        "from": "Programansvarlig",
+        "id": "film_tv_kurator_realism_program_case_open_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_rollout_kurator_program_case",
+        "mail_type": "job",
+        "narrative_arc": "fra_premiss_til_sporbart_program",
+        "people_ref": "film_tv_programansvarlig",
+        "phase": "advanced",
+        "place_id": "cinemateket_oslo",
+        "planned_only": true,
+        "pressure": "prestisje_og_programfrist",
+        "priority": 88,
+        "purpose": "Bevise et persistent programobjekt som overlever rettighetshandoff, venting, History Go-kontekst, rework, publikumsrespons og avslutning.",
+        "repeatable": false,
+        "role_scope": "kurator_film_tv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/job/kurator_film_tv_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Serien har et institusjonelt mandat om filmhistorisk kontekst, bredde og offentlig formidling.",
+          "Fire kandidater er faglig relevante, men bare deler av rettighets- og kopistatusen er bekreftet.",
+          "Kuratoren kan utvikle og anbefale programmet, men kan ikke love visningsrettigheter eller alene låse institusjonens offentlige program."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis et prestisjeverk låses først kan resten av prosessen bli en etterrasjonalisering. Et åpent programspor gjør endringer dyrere å skjule, men lettere å forklare.",
+        "subject": "Åpne serien som et programarbeid, ikke som en ferdig smaksliste",
+        "summary": "Programansvarlig gir deg ansvar for en serie om hvordan filmarv blir synlig og usynlig. Før tre verk kan velges må premiss, kandidater, rettighetsstatus og begrunnelser inn i ett sporbart arbeidsobjekt.",
+        "tags": [
+          "role_world_realism",
+          "controlled_rollout",
+          "film_tv",
+          "kurator_film_tv"
+        ],
+        "task_domain": "vedvarende_programarbeid",
+        "task_kind": "job",
+        "thread_key": "film_tv_kurator_programserie_realism_001",
+        "work_context": {
+          "deadline_day": 12,
+          "deadline_phase": "afternoon",
+          "deadline_ref": "programklar_for_intern_las",
+          "institution_id": "cinemateket_programavdeling_001",
+          "object_ids": [
+            "film_tv_kurator_program_case_001"
+          ],
+          "priority": "high"
+        }
+      },
+      "id": "film_tv_kurator_realism_program_case_open_001",
+      "mail_type": "job",
+      "role_scope": "kurator_film_tv",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1,
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_kurator_open_criteria_trace",
+                  "flag": "eksplisitte_kriterier_for_utvalg",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                }
+              ]
+            },
+            "feedback": "Programmet blir reviderbart før prestisje og vane rekker å bli skjult regel.",
+            "id": "A",
+            "label": "Åpne kriterie-, kandidat- og rettighetsspor før utvalget låses",
+            "reply": "Jeg registrerer premiss, kandidater, hva vi vet, hva vi antar og hvilke avklaringer som mangler."
+          },
+          {
+            "effects": {
+              "score_delta": -1,
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_kurator_prestige_anchor_locked",
+                  "flag": "prestisjeverk_last_for_kriteriekontroll",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                }
+              ]
+            },
+            "feedback": "Ett navn får definere både premiss og blindsoner før rettigheter og bredde er kontrollert.",
+            "id": "B",
+            "label": "Lås det mest prestisjefylte verket først og bygg serien rundt det",
+            "reply": "Det verket gir serien tyngde; jeg tar det som anker og begrunner resten etterpå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Serien har et institusjonelt mandat om filmhistorisk kontekst, bredde og offentlig formidling.",
+            "Fire kandidater er faglig relevante, men bare deler av rettighets- og kopistatusen er bekreftet.",
+            "Kuratoren kan utvikle og anbefale programmet, men kan ikke love visningsrettigheter eller alene låse institusjonens offentlige program."
+          ],
+          "subject": "Åpne serien som et programarbeid, ikke som en ferdig smaksliste",
+          "summary": "Programansvarlig gir deg ansvar for en serie om hvordan filmarv blir synlig og usynlig. Før tre verk kan velges må premiss, kandidater, rettighetsstatus og begrunnelser inn i ett sporbart arbeidsobjekt."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "film_tv_kurator_program_case_opened",
+              "op": "create",
+              "work_object": {
+                "confidentiality": "internt_program_og_rettighetsspor",
+                "deadline": "intern_programlas_dag_12_ettermiddag",
+                "flags": [
+                  "program_case_opened"
+                ],
+                "institution_id": "cinemateket_programavdeling_001",
+                "kind": "curated_program_case",
+                "knowledge_refs": [
+                  "data/places/film_tv/oslo/cinemateket_oslo.json"
+                ],
+                "open_questions": [
+                  "Hvilke kriterier gjør utvalget etterprøvbart?",
+                  "Hvilke verk er faktisk rettighets- og kopiklarert?",
+                  "Hvilken kontekst trenger publikum for å forstå programmet uten at dagens smak omskriver historien?"
+                ],
+                "people_refs": [
+                  "film_tv_programansvarlig",
+                  "film_tv_rettighetskoordinator",
+                  "film_tv_arkivar",
+                  "film_tv_formidler"
+                ],
+                "phase": "premiss_og_utvalg",
+                "place_refs": [
+                  "cinemateket_oslo",
+                  "kurator_programbord",
+                  "kurator_rettighetslogg",
+                  "kurator_programarkiv"
+                ],
+                "role_scope": "kurator_film_tv",
+                "shared": false,
+                "status": "in_progress",
+                "title": "Cinemateket-program: filmminne, utvalg og visningsgrunnlag",
+                "work_object_id": "film_tv_kurator_program_case_001"
+              }
+            }
+          ]
+        },
+        "id": "film_tv_kurator_realism_program_case_open_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "cinemateket_oslo",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_kurator_realism_program_case_open_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/job/kurator_film_tv_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "film_tv_kurator_programserie_realism_001",
+        "version": 1,
+        "work_context": {
+          "deadline_day": 12,
+          "deadline_phase": "afternoon",
+          "deadline_ref": "programklar_for_intern_las",
+          "institution_id": "cinemateket_programavdeling_001",
+          "object_ids": [
+            "film_tv_kurator_program_case_001"
+          ],
+          "priority": "high"
+        }
+      },
+      "source_hash": "cbc552672774d4a56460f3b65c242de9370a46734d5055b248767e1643f326e5",
+      "source_path": "data/Civication/mailFamilies/film_tv/job/kurator_film_tv_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
         "choice_axis": "skill_bevaring_tilgang_visning_vs_slutt_alt_sammen",
         "choices": [
           {
@@ -27218,6 +28783,224 @@
         "version": 1
       },
       "source_hash": "8f05e8600c06ac3d225d96f2f788d345d4846fab8dd449cb35ef0164e8965578",
+      "source_path": "data/Civication/mailFamilies/film_tv/knowledge/kurator_film_tv_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "skille_mandat_arv_oppmerksomhet_rettighet_vs_institusjonell_prestisje_som_fasit",
+        "choices": [
+          {
+            "effect": 2,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_kurator_history_go_context_applied",
+                  "flag": "cinemateket_kontekst_skilt_fra_rettighet_og_smak",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                },
+                {
+                  "event_id": "film_tv_kurator_history_go_context_note",
+                  "note": "Cinemateket brukes som institusjonell og filmhistorisk kontekst, ikke som rettighets- eller smaksgaranti.",
+                  "op": "note",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                }
+              ]
+            },
+            "feedback": "Kunnskapen blir et bedre sorteringsgrep uten å bli skjult myndighet.",
+            "id": "A",
+            "label": "Skill arv, mandat, oppmerksomhet og rettighet i fire spor",
+            "reply": "Jeg bruker stedet til å forstå institusjonens rolle, men lar rettighetsloggen og programmandatet fortsatt avgjøre hva vi faktisk kan anbefale."
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_kurator_institutional_prestige_as_proof",
+                  "flag": "institusjonell_prestisje_feilbrukt_som_kuratorisk_bevis",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                }
+              ]
+            },
+            "feedback": "Institusjonell status blir brukt til å maskere et smakshierarki og løser fortsatt ingen rettighet.",
+            "id": "B",
+            "label": "Bruk Cinematekets kulturelle tyngde som ekstra argument for ankerverket",
+            "reply": "Når dette er et Cinematek-program, bør institusjonens filmhistoriske autoritet tale for det mest kanoniske verket."
+          }
+        ],
+        "competency": "kontekstualisering",
+        "consequence_axis": "presis_rework_vs_prestisjeforsterkning",
+        "cooldown": 12,
+        "day_phase": "evening",
+        "from": "Filmarkivaren",
+        "id": "film_tv_kurator_realism_history_go_cinemateket_001",
+        "interaction_mode": "task",
+        "mail_family": "role_world_rollout_kurator_history_go",
+        "mail_type": "knowledge",
+        "narrative_arc": "fra_premiss_til_sporbart_program",
+        "people_ref": "film_tv_arkivar",
+        "phase": "advanced",
+        "place_id": "cinemateket_oslo",
+        "planned_only": true,
+        "pressure": "ventetid_og_prestisje",
+        "priority": 78,
+        "purpose": "La History Go-kunnskap forbedre senere rework, men aldri produsere rettighet, godkjenning eller objektiv kanon.",
+        "repeatable": false,
+        "role_scope": "kurator_film_tv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/knowledge/kurator_film_tv_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Cinemateket er en konkret institusjonell arena for filmhistorie og kuratering.",
+          "Et steds kulturelle autoritet er ikke det samme som visningsrett for et bestemt verk.",
+          "Publikumsinteresse kan informere formidling, men kan ikke alene avgjøre kuratorisk eller juridisk status."
+        ],
+        "stage": "stable",
+        "stakes": "Historisk og institusjonell kontekst kan gjøre programmet bedre begrunnet. Feil brukt kan den bare gi prestisje et penere språk.",
+        "subject": "Mens vi venter: les Cinemateket som institusjon, ikke som smaksgaranti",
+        "summary": "Rettighetsklareringen står åpen. Arkivaren ber deg bruke Cinemateket i History Go til å skille filmarv, institusjonelt mandat, offentlig oppmerksomhet og den konkrete retten til å vise et bestemt verk.",
+        "tags": [
+          "role_world_realism",
+          "controlled_rollout",
+          "film_tv",
+          "kurator_film_tv"
+        ],
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/places/film_tv/oslo/cinemateket_oslo.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "film_tv_kurator_history_go_cinemateket_context"
+        },
+        "task_domain": "history_go_kuratorisk_kontekst",
+        "task_kind": "knowledge",
+        "task_payload": {
+          "completion_mode": "open_place",
+          "description": "Åpne Cinemateket og bruk stedet til å skille filmarv, institusjonelt mandat og publikumsoppmerksomhet fra den konkrete visningsretten og fra kuratorens personlige smak.",
+          "place_id": "cinemateket_oslo",
+          "return_context": {
+            "mail_id": "film_tv_kurator_realism_history_go_cinemateket_001",
+            "place_id": "cinemateket_oslo",
+            "role_scope": "kurator_film_tv",
+            "source": "civication"
+          },
+          "target_type": "place",
+          "task_kind": "history_go_place",
+          "title": "Les Cinemateket som filmhistorisk og institusjonell arbeidsflate"
+        },
+        "thread_key": "film_tv_kurator_programserie_realism_001",
+        "work_context": {
+          "institution_id": "cinemateket_programavdeling_001",
+          "object_ids": [
+            "film_tv_kurator_program_case_001"
+          ],
+          "priority": "normal",
+          "waiting_for_actor_id": "film_tv_rettighetskoordinator"
+        }
+      },
+      "id": "film_tv_kurator_realism_history_go_cinemateket_001",
+      "mail_type": "knowledge",
+      "role_scope": "kurator_film_tv",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 2,
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_kurator_history_go_context_applied",
+                  "flag": "cinemateket_kontekst_skilt_fra_rettighet_og_smak",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                },
+                {
+                  "event_id": "film_tv_kurator_history_go_context_note",
+                  "note": "Cinemateket brukes som institusjonell og filmhistorisk kontekst, ikke som rettighets- eller smaksgaranti.",
+                  "op": "note",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                }
+              ]
+            },
+            "feedback": "Kunnskapen blir et bedre sorteringsgrep uten å bli skjult myndighet.",
+            "id": "A",
+            "label": "Skill arv, mandat, oppmerksomhet og rettighet i fire spor",
+            "reply": "Jeg bruker stedet til å forstå institusjonens rolle, men lar rettighetsloggen og programmandatet fortsatt avgjøre hva vi faktisk kan anbefale."
+          },
+          {
+            "effects": {
+              "score_delta": -1,
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_kurator_institutional_prestige_as_proof",
+                  "flag": "institusjonell_prestisje_feilbrukt_som_kuratorisk_bevis",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                }
+              ]
+            },
+            "feedback": "Institusjonell status blir brukt til å maskere et smakshierarki og løser fortsatt ingen rettighet.",
+            "id": "B",
+            "label": "Bruk Cinematekets kulturelle tyngde som ekstra argument for ankerverket",
+            "reply": "Når dette er et Cinematek-program, bør institusjonens filmhistoriske autoritet tale for det mest kanoniske verket."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Cinemateket er en konkret institusjonell arena for filmhistorie og kuratering.",
+            "Et steds kulturelle autoritet er ikke det samme som visningsrett for et bestemt verk.",
+            "Publikumsinteresse kan informere formidling, men kan ikke alene avgjøre kuratorisk eller juridisk status."
+          ],
+          "subject": "Mens vi venter: les Cinemateket som institusjon, ikke som smaksgaranti",
+          "summary": "Rettighetsklareringen står åpen. Arkivaren ber deg bruke Cinemateket i History Go til å skille filmarv, institusjonelt mandat, offentlig oppmerksomhet og den konkrete retten til å vise et bestemt verk."
+        },
+        "day_phase": "evening",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_kurator_realism_history_go_cinemateket_001",
+        "interaction_mode": "task",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "cinemateket_oslo",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_kurator_realism_history_go_cinemateket_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/knowledge/kurator_film_tv_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/places/film_tv/oslo/cinemateket_oslo.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "film_tv_kurator_history_go_cinemateket_context"
+        },
+        "thread_id": "film_tv_kurator_programserie_realism_001",
+        "version": 1,
+        "work_context": {
+          "institution_id": "cinemateket_programavdeling_001",
+          "object_ids": [
+            "film_tv_kurator_program_case_001"
+          ],
+          "priority": "normal",
+          "waiting_for_actor_id": "film_tv_rettighetskoordinator"
+        }
+      },
+      "source_hash": "4480d8cab399fd0af710675334e7852a601795509623031e1f27f37cb2a16372",
       "source_path": "data/Civication/mailFamilies/film_tv/knowledge/kurator_film_tv_knowledge.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -27464,6 +29247,312 @@
         "version": 1
       },
       "source_hash": "04c813394e368d14dc4bac6a7982e7808f0da67c39da7d6ff18db4cc7d2ff6b7",
+      "source_path": "data/Civication/mailFamilies/film_tv/people/kurator_film_tv_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "presist_handoff_vs_press_for_bekreftelse",
+        "choices": [
+          {
+            "effect": 2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:film_tv_rettighetskoordinator",
+                  "delta": 3,
+                  "event_id": "film_tv_kurator_standing_rights_precise",
+                  "reason": "Kuratoren sender et avgrenset og etterprøvbart klareringsgrunnlag.",
+                  "source_actor_id": "film_tv_rettighetskoordinator"
+                },
+                {
+                  "audience_id": "manager:film_tv_programansvarlig",
+                  "delta": 2,
+                  "event_id": "film_tv_kurator_standing_manager_traceable",
+                  "reason": "Programrisiko blir synlig før offentlig løfte.",
+                  "source_actor_id": "film_tv_programansvarlig"
+                },
+                {
+                  "audience_id": "team:film_tv_formidler",
+                  "delta": 1,
+                  "event_id": "film_tv_kurator_standing_team_clear",
+                  "reason": "Formidleren får tydelig skille mellom mulig og bekreftet program.",
+                  "source_actor_id": "film_tv_formidler"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_kurator_rights_handoff_waiting",
+                  "note": "Klareringsgrunnlaget er sendt og programcaset venter på rettighetskoordinator.",
+                  "op": "transition",
+                  "to_phase": "awaiting_rights_clearance",
+                  "to_status": "waiting",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                },
+                {
+                  "event_id": "film_tv_kurator_rights_trace_complete",
+                  "flag": "rettighetshandoff_sporbart",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                }
+              ]
+            },
+            "feedback": "Handoffet kan behandles uten at ønsket program forkles som rettighetsstatus.",
+            "id": "A",
+            "label": "Send verk, kopi, dato og usikkerhet som separate felt",
+            "reply": "Jeg sender det vi faktisk ber om, hva som er dokumentert og hva som fortsatt er betinget."
+          },
+          {
+            "effect": -2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:film_tv_rettighetskoordinator",
+                  "delta": -3,
+                  "event_id": "film_tv_kurator_standing_rights_pressure",
+                  "reason": "Ønske og prestisje brukes som press mot et uavklart rettighetsgrunnlag.",
+                  "source_actor_id": "film_tv_rettighetskoordinator"
+                },
+                {
+                  "audience_id": "manager:film_tv_programansvarlig",
+                  "delta": -2,
+                  "event_id": "film_tv_kurator_standing_manager_risk",
+                  "reason": "Programrisiko blir mindre lesbar når antakelse presenteres som sannsynlig avklaring.",
+                  "source_actor_id": "film_tv_programansvarlig"
+                },
+                {
+                  "audience_id": "team:film_tv_formidler",
+                  "delta": -1,
+                  "event_id": "film_tv_kurator_standing_team_ambiguity",
+                  "reason": "Formidleren får et uklart skille mellom ønsket og bekreftet program.",
+                  "source_actor_id": "film_tv_formidler"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_kurator_rights_handoff_pressured_waiting",
+                  "note": "Programcaset venter, men handoffet inneholder prestisjepress og svakere usikkerhetsmerking.",
+                  "op": "transition",
+                  "to_phase": "awaiting_rights_clearance",
+                  "to_status": "waiting",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                },
+                {
+                  "event_id": "film_tv_kurator_rights_pressure_flag",
+                  "flag": "prestisjepress_i_rettighetsklarering",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                }
+              ]
+            },
+            "feedback": "Du flytter prestisjepress inn i klareringen uten at noen ny rettighet oppstår.",
+            "id": "B",
+            "label": "Be koordinatoren behandle verket som nesten sikkert fordi serien trenger det",
+            "reply": "Dette er bærebjelken i serien, så kan du prioritere det som om avtalen kommer på plass?"
+          }
+        ],
+        "competency": "rettighetssikkerhet",
+        "consequence_axis": "profesjonell_tillit_vs_forventningsgjeld",
+        "cooldown": 12,
+        "day_phase": "afternoon",
+        "from": "Rettighetskoordinator",
+        "id": "film_tv_kurator_realism_rights_handoff_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_rollout_kurator_rettighetshandoff",
+        "mail_type": "people",
+        "narrative_arc": "fra_premiss_til_sporbart_program",
+        "people_ref": "film_tv_rettighetskoordinator",
+        "phase": "advanced",
+        "place_id": "cinemateket_oslo",
+        "planned_only": true,
+        "pressure": "programfrist_vs_klareringskvalitet",
+        "priority": 90,
+        "purpose": "Bevise handoff og at tillit hos koordinator, leder og formidler påvirkes forskjellig av sporbarhet og press.",
+        "repeatable": false,
+        "role_scope": "kurator_film_tv",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/people/kurator_film_tv_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Kopistatus og rettighetshaver er ikke samme spørsmål.",
+          "Programansvarlig trenger realistisk risiko før kommunikasjon starter.",
+          "Formidleren trenger å vite hva som er sikkert nok til å skrive om."
+        ],
+        "social_standing_context": {
+          "reaction_audience_id": "professional:film_tv_rettighetskoordinator"
+        },
+        "stage": "stable",
+        "stakes": "Et presist handoff kan koste fleksibilitet, men gjør ventingen meningsfull. Et presset handoff kan skape sosial fart uten å skape rettighet.",
+        "subject": "Gi meg et handoff jeg faktisk kan klarere, ikke et ønske om at filmen må gå",
+        "summary": "Rettighetskoordinatoren kan starte klareringen dersom du skiller ønsket verk, nødvendig kopi, dato og hvilke deler av programmet som fortsatt bare er kuratoriske antakelser.",
+        "tags": [
+          "role_world_realism",
+          "controlled_rollout",
+          "film_tv",
+          "kurator_film_tv"
+        ],
+        "task_domain": "rettighetshandoff",
+        "task_kind": "people",
+        "thread_key": "film_tv_kurator_programserie_realism_001",
+        "work_context": {
+          "handoff_to_actor_id": "film_tv_rettighetskoordinator",
+          "institution_id": "cinemateket_programavdeling_001",
+          "object_ids": [
+            "film_tv_kurator_program_case_001"
+          ],
+          "priority": "high"
+        }
+      },
+      "id": "film_tv_kurator_realism_rights_handoff_001",
+      "mail_type": "people",
+      "role_scope": "kurator_film_tv",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:film_tv_rettighetskoordinator",
+                  "delta": 3,
+                  "event_id": "film_tv_kurator_standing_rights_precise",
+                  "reason": "Kuratoren sender et avgrenset og etterprøvbart klareringsgrunnlag.",
+                  "source_actor_id": "film_tv_rettighetskoordinator"
+                },
+                {
+                  "audience_id": "manager:film_tv_programansvarlig",
+                  "delta": 2,
+                  "event_id": "film_tv_kurator_standing_manager_traceable",
+                  "reason": "Programrisiko blir synlig før offentlig løfte.",
+                  "source_actor_id": "film_tv_programansvarlig"
+                },
+                {
+                  "audience_id": "team:film_tv_formidler",
+                  "delta": 1,
+                  "event_id": "film_tv_kurator_standing_team_clear",
+                  "reason": "Formidleren får tydelig skille mellom mulig og bekreftet program.",
+                  "source_actor_id": "film_tv_formidler"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_kurator_rights_handoff_waiting",
+                  "note": "Klareringsgrunnlaget er sendt og programcaset venter på rettighetskoordinator.",
+                  "op": "transition",
+                  "to_phase": "awaiting_rights_clearance",
+                  "to_status": "waiting",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                },
+                {
+                  "event_id": "film_tv_kurator_rights_trace_complete",
+                  "flag": "rettighetshandoff_sporbart",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                }
+              ]
+            },
+            "feedback": "Handoffet kan behandles uten at ønsket program forkles som rettighetsstatus.",
+            "id": "A",
+            "label": "Send verk, kopi, dato og usikkerhet som separate felt",
+            "reply": "Jeg sender det vi faktisk ber om, hva som er dokumentert og hva som fortsatt er betinget."
+          },
+          {
+            "effects": {
+              "score_delta": -2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:film_tv_rettighetskoordinator",
+                  "delta": -3,
+                  "event_id": "film_tv_kurator_standing_rights_pressure",
+                  "reason": "Ønske og prestisje brukes som press mot et uavklart rettighetsgrunnlag.",
+                  "source_actor_id": "film_tv_rettighetskoordinator"
+                },
+                {
+                  "audience_id": "manager:film_tv_programansvarlig",
+                  "delta": -2,
+                  "event_id": "film_tv_kurator_standing_manager_risk",
+                  "reason": "Programrisiko blir mindre lesbar når antakelse presenteres som sannsynlig avklaring.",
+                  "source_actor_id": "film_tv_programansvarlig"
+                },
+                {
+                  "audience_id": "team:film_tv_formidler",
+                  "delta": -1,
+                  "event_id": "film_tv_kurator_standing_team_ambiguity",
+                  "reason": "Formidleren får et uklart skille mellom ønsket og bekreftet program.",
+                  "source_actor_id": "film_tv_formidler"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_kurator_rights_handoff_pressured_waiting",
+                  "note": "Programcaset venter, men handoffet inneholder prestisjepress og svakere usikkerhetsmerking.",
+                  "op": "transition",
+                  "to_phase": "awaiting_rights_clearance",
+                  "to_status": "waiting",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                },
+                {
+                  "event_id": "film_tv_kurator_rights_pressure_flag",
+                  "flag": "prestisjepress_i_rettighetsklarering",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_kurator_program_case_001"
+                }
+              ]
+            },
+            "feedback": "Du flytter prestisjepress inn i klareringen uten at noen ny rettighet oppstår.",
+            "id": "B",
+            "label": "Be koordinatoren behandle verket som nesten sikkert fordi serien trenger det",
+            "reply": "Dette er bærebjelken i serien, så kan du prioritere det som om avtalen kommer på plass?"
+          }
+        ],
+        "content": {
+          "situation": [
+            "Kopistatus og rettighetshaver er ikke samme spørsmål.",
+            "Programansvarlig trenger realistisk risiko før kommunikasjon starter.",
+            "Formidleren trenger å vite hva som er sikkert nok til å skrive om."
+          ],
+          "subject": "Gi meg et handoff jeg faktisk kan klarere, ikke et ønske om at filmen må gå",
+          "summary": "Rettighetskoordinatoren kan starte klareringen dersom du skiller ønsket verk, nødvendig kopi, dato og hvilke deler av programmet som fortsatt bare er kuratoriske antakelser."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_kurator_realism_rights_handoff_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "cinemateket_oslo",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_kurator_realism_rights_handoff_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/people/kurator_film_tv_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "social_standing_context": {
+          "reaction_audience_id": "professional:film_tv_rettighetskoordinator"
+        },
+        "thread_id": "film_tv_kurator_programserie_realism_001",
+        "version": 1,
+        "work_context": {
+          "handoff_to_actor_id": "film_tv_rettighetskoordinator",
+          "institution_id": "cinemateket_programavdeling_001",
+          "object_ids": [
+            "film_tv_kurator_program_case_001"
+          ],
+          "priority": "high"
+        }
+      },
+      "source_hash": "bc9814dd539d34a06fb8b18f896c68840a07eb1e934c9ed17b42182bfd083e32",
       "source_path": "data/Civication/mailFamilies/film_tv/people/kurator_film_tv_people.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -176787,7 +178876,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "4e1de4d5ca7277fdab84facb81c450b873710080a81e38dfdf62bf5e7ecd324c",
+  "registry_hash": "5761354984f49d0c00ca16eb3d1e8c8ffdb0e7bcb7cac794baa9da2156adc93b",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -176974,14 +179063,21 @@
     ],
     "film_tv/kurator_film_tv": [
       "film_tv_kurator_job_programutvalg_001",
+      "film_tv_kurator_realism_program_case_open_001",
       "film_tv_kurator_people_programsamtale_001",
+      "film_tv_kurator_realism_rights_handoff_001",
       "film_tv_kurator_story_kontekst_001",
       "film_tv_kurator_conflict_rettigheter_001",
+      "film_tv_kurator_realism_rights_response_001",
       "film_tv_kurator_event_programendring_001",
+      "film_tv_kurator_realism_public_preview_001",
       "film_tv_kurator_micro_metadata_001",
       "film_tv_kurator_followup_rettigheter_001",
+      "film_tv_kurator_realism_program_rework_001",
       "film_tv_kurator_knowledge_bevaring_tilgang_001",
-      "film_tv_kurator_consequence_rettigheter_001"
+      "film_tv_kurator_realism_history_go_cinemateket_001",
+      "film_tv_kurator_consequence_rettigheter_001",
+      "film_tv_kurator_realism_program_close_001"
     ],
     "film_tv/manusmedarbeider": [
       "film_tv_manus_job_versjonsgrunnlag_001",
@@ -178045,7 +180141,7 @@
     "ignored_source_file_count": 1,
     "input_file_count": 348,
     "role_count": 44,
-    "scene_count": 1136,
+    "scene_count": 1143,
     "shadowed_duplicate_count": 0
   },
   "version": 1

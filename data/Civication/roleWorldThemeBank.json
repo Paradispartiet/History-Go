@@ -15,33 +15,156 @@
     "rule": "Tema skal oversettes til generelle menneskelige og sosiologiske konflikter før de brukes i en Role World."
   },
   "themes": [
-    { "id": "alienation", "label": "Fremmedgjøring", "question": "Hvordan kan et menneske være omgitt av aktivitet og likevel miste opplevelsen av mening eller tilhørighet?" },
-    { "id": "class_power", "label": "Klasse og asymmetrisk makt", "question": "Hvem kan kreve noe av hvem, og hvem må bære kostnaden uten å ha tilsvarende innflytelse?" },
-    { "id": "emotional_labor", "label": "Emosjonelt arbeid", "question": "Hva koster det å regulere stemme, ansikt og følelser som en del av arbeidet?" },
-    { "id": "consumption", "label": "Forbruk og verdi", "question": "Hva skjer når mennesker møter hverandre gjennom kjøp, salg, pris og service?" },
-    { "id": "status_anxiety", "label": "Statusangst", "question": "Hvordan former sammenligning, rang og sosial lesbarhet valg og selvbilde?" },
-    { "id": "social_mask", "label": "Masken", "question": "Hvor lenge kan en profesjonell eller sosial rolle holdes adskilt fra privat identitet?" },
-    { "id": "ambition_stagnation", "label": "Ambisjon og stagnasjon", "question": "Når blir ønsket om å komme videre en drivkraft, og når blir det en kilde til avstand eller nederlag?" },
-    { "id": "invisible_work", "label": "Usynlig arbeid", "question": "Hvilket arbeid blir først synlig når det ikke blir gjort, og hva gjør det med verdighet og status?" },
-    { "id": "night_work", "label": "Natt, rytme og fravær", "question": "Hva gjør arbeidstid og døgnrytme med kroppen, familien og tilhørigheten til andre?" },
-    { "id": "bureaucratic_power", "label": "Byråkratisk makt", "question": "Hvordan blir regler, dokumenter og prosedyrer til virkelig makt over mennesker og steder?" },
-    { "id": "numerical_control", "label": "Tall og kontroll", "question": "Hva blir synlig og usynlig når virkeligheten må oversettes til mål, rapporter og avvik?" },
-    { "id": "body_discipline", "label": "Kropp og disiplin", "question": "Hva skjer når kroppen både er identitet, arbeidsredskap og mål på prestasjon?" },
-    { "id": "shame_reputation", "label": "Skam og omdømme", "question": "Hvordan endres handlinger når andre kan se, rangere eller huske det som gikk galt?" },
-    { "id": "precarity", "label": "Utrygghet", "question": "Hvordan påvirker usikker inntekt, kontrakt eller framtid menneskets handlingsrom?" },
-    { "id": "loyalty_up_down", "label": "Lojalitet oppover og nedover", "question": "Hva skjer når ansvar overfor ledelse, kolleger, kunder eller brukere peker i ulike retninger?" },
-    { "id": "care_vs_efficiency", "label": "Omsorg og effektivitet", "question": "Når kolliderer menneskelig hensyn med tempo, kapasitet eller målstyring?" },
-    { "id": "public_private_leakage", "label": "Arbeidet lekker hjem", "question": "Hvordan følger språk, stress, rolle og maktmønstre med fra arbeid inn i privatlivet?" },
-    { "id": "local_knowledge_vs_system", "label": "Lokal kunnskap og formelt system", "question": "Hva skjer når den som kjenner stedet eller praksisen møter en prosedyre som må kunne etterprøves utenfra?" },
-    { "id": "public_attention", "label": "Offentlig oppmerksomhet", "question": "Hva skjer når synlighet, respons og dagsorden både er et samfunnsgode og et press som kan forveksles med sannhet eller verdi?" },
-    { "id": "professional_culture", "label": "Profesjonskultur", "question": "Hvordan lærer en institusjon av tvil, feil og kritikk når kollegial lojalitet, autoritet og offentlig ansvar trekker i ulike retninger?" }
+    {
+      "id": "alienation",
+      "label": "Fremmedgjøring",
+      "question": "Hvordan kan et menneske være omgitt av aktivitet og likevel miste opplevelsen av mening eller tilhørighet?"
+    },
+    {
+      "id": "class_power",
+      "label": "Klasse og asymmetrisk makt",
+      "question": "Hvem kan kreve noe av hvem, og hvem må bære kostnaden uten å ha tilsvarende innflytelse?"
+    },
+    {
+      "id": "emotional_labor",
+      "label": "Emosjonelt arbeid",
+      "question": "Hva koster det å regulere stemme, ansikt og følelser som en del av arbeidet?"
+    },
+    {
+      "id": "consumption",
+      "label": "Forbruk og verdi",
+      "question": "Hva skjer når mennesker møter hverandre gjennom kjøp, salg, pris og service?"
+    },
+    {
+      "id": "status_anxiety",
+      "label": "Statusangst",
+      "question": "Hvordan former sammenligning, rang og sosial lesbarhet valg og selvbilde?"
+    },
+    {
+      "id": "social_mask",
+      "label": "Masken",
+      "question": "Hvor lenge kan en profesjonell eller sosial rolle holdes adskilt fra privat identitet?"
+    },
+    {
+      "id": "ambition_stagnation",
+      "label": "Ambisjon og stagnasjon",
+      "question": "Når blir ønsket om å komme videre en drivkraft, og når blir det en kilde til avstand eller nederlag?"
+    },
+    {
+      "id": "invisible_work",
+      "label": "Usynlig arbeid",
+      "question": "Hvilket arbeid blir først synlig når det ikke blir gjort, og hva gjør det med verdighet og status?"
+    },
+    {
+      "id": "night_work",
+      "label": "Natt, rytme og fravær",
+      "question": "Hva gjør arbeidstid og døgnrytme med kroppen, familien og tilhørigheten til andre?"
+    },
+    {
+      "id": "bureaucratic_power",
+      "label": "Byråkratisk makt",
+      "question": "Hvordan blir regler, dokumenter og prosedyrer til virkelig makt over mennesker og steder?"
+    },
+    {
+      "id": "numerical_control",
+      "label": "Tall og kontroll",
+      "question": "Hva blir synlig og usynlig når virkeligheten må oversettes til mål, rapporter og avvik?"
+    },
+    {
+      "id": "body_discipline",
+      "label": "Kropp og disiplin",
+      "question": "Hva skjer når kroppen både er identitet, arbeidsredskap og mål på prestasjon?"
+    },
+    {
+      "id": "shame_reputation",
+      "label": "Skam og omdømme",
+      "question": "Hvordan endres handlinger når andre kan se, rangere eller huske det som gikk galt?"
+    },
+    {
+      "id": "precarity",
+      "label": "Utrygghet",
+      "question": "Hvordan påvirker usikker inntekt, kontrakt eller framtid menneskets handlingsrom?"
+    },
+    {
+      "id": "loyalty_up_down",
+      "label": "Lojalitet oppover og nedover",
+      "question": "Hva skjer når ansvar overfor ledelse, kolleger, kunder eller brukere peker i ulike retninger?"
+    },
+    {
+      "id": "care_vs_efficiency",
+      "label": "Omsorg og effektivitet",
+      "question": "Når kolliderer menneskelig hensyn med tempo, kapasitet eller målstyring?"
+    },
+    {
+      "id": "public_private_leakage",
+      "label": "Arbeidet lekker hjem",
+      "question": "Hvordan følger språk, stress, rolle og maktmønstre med fra arbeid inn i privatlivet?"
+    },
+    {
+      "id": "local_knowledge_vs_system",
+      "label": "Lokal kunnskap og formelt system",
+      "question": "Hva skjer når den som kjenner stedet eller praksisen møter en prosedyre som må kunne etterprøves utenfra?"
+    },
+    {
+      "id": "public_attention",
+      "label": "Offentlig oppmerksomhet",
+      "question": "Hva skjer når synlighet, respons og dagsorden både er et samfunnsgode og et press som kan forveksles med sannhet eller verdi?"
+    },
+    {
+      "id": "professional_culture",
+      "label": "Profesjonskultur",
+      "question": "Hvordan lærer en institusjon av tvil, feil og kritikk når kollegial lojalitet, autoritet og offentlig ansvar trekker i ulike retninger?"
+    }
   ],
   "reference_profiles": {
-    "naeringsliv/ekspeditor": ["alienation", "class_power", "emotional_labor", "consumption", "status_anxiety", "social_mask", "ambition_stagnation", "public_private_leakage"],
-    "naeringsliv/renholder": ["invisible_work", "night_work", "class_power", "precarity", "public_private_leakage"],
-    "naeringsliv/controller": ["numerical_control", "bureaucratic_power", "loyalty_up_down", "status_anxiety"],
-    "by/by_radgiver_plan": ["bureaucratic_power", "local_knowledge_vs_system", "loyalty_up_down", "status_anxiety"],
-    "sport/sport_utover": ["body_discipline", "shame_reputation", "precarity", "ambition_stagnation"],
-    "media/media_redaksjon": ["public_attention", "professional_culture", "loyalty_up_down", "shame_reputation", "public_private_leakage"]
+    "naeringsliv/ekspeditor": [
+      "alienation",
+      "class_power",
+      "emotional_labor",
+      "consumption",
+      "status_anxiety",
+      "social_mask",
+      "ambition_stagnation",
+      "public_private_leakage"
+    ],
+    "naeringsliv/renholder": [
+      "invisible_work",
+      "night_work",
+      "class_power",
+      "precarity",
+      "public_private_leakage"
+    ],
+    "naeringsliv/controller": [
+      "numerical_control",
+      "bureaucratic_power",
+      "loyalty_up_down",
+      "status_anxiety"
+    ],
+    "by/by_radgiver_plan": [
+      "bureaucratic_power",
+      "local_knowledge_vs_system",
+      "loyalty_up_down",
+      "status_anxiety"
+    ],
+    "sport/sport_utover": [
+      "body_discipline",
+      "shame_reputation",
+      "precarity",
+      "ambition_stagnation"
+    ],
+    "media/media_redaksjon": [
+      "public_attention",
+      "professional_culture",
+      "loyalty_up_down",
+      "shame_reputation",
+      "public_private_leakage"
+    ],
+    "film_tv/kurator_film_tv": [
+      "public_attention",
+      "professional_culture",
+      "status_anxiety",
+      "shame_reputation",
+      "public_private_leakage"
+    ]
   }
 }

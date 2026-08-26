@@ -8,7 +8,11 @@
     {
       "id": "kurator_programhendelse",
       "purpose": "Revidere programmet sporbar når tilgjengelighet eller kontekst endres.",
-      "learning_focus": ["programmering", "beslutningslogg", "reserveplan"],
+      "learning_focus": [
+        "programmering",
+        "beslutningslogg",
+        "reserveplan"
+      ],
       "mails": [
         {
           "role_scope": "kurator_film_tv",
@@ -45,7 +49,11 @@
               "label": "Revider serien rundt det verkbare premisset",
               "reply": "Jeg velger reserven som fortsatt svarer på hovedspørsmålet og oppdaterer begrunnelsen og programteksten.",
               "effect": 1,
-              "tags": ["programming", "fallback", "traceability"],
+              "tags": [
+                "programming",
+                "fallback",
+                "traceability"
+              ],
               "feedback": "Du endrer programmet uten å late som ingenting har skjedd."
             },
             {
@@ -53,10 +61,167 @@
               "label": "Ta den mest publikumsvennlige reserven",
               "reply": "Vi trenger å fylle plassen raskt; det kjente reserveverket får fungere som erstatning.",
               "effect": -1,
-              "tags": ["deadline", "coherence_risk"],
+              "tags": [
+                "deadline",
+                "coherence_risk"
+              ],
               "feedback": "Du redder tittelen på plakaten, men svekker seriens indre logikk."
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_kurator_public_preview",
+      "purpose": "La publikumsrespons bli en situert kunnskaps- og omdømmeflate som kan utløse ny vurdering uten å bli popularitetsfasit.",
+      "learning_focus": [
+        "public_audience",
+        "situated_reputation",
+        "preview_feedback"
+      ],
+      "mails": [
+        {
+          "role_scope": "kurator_film_tv",
+          "place_id": "cinemateket_oslo",
+          "repeatable": false,
+          "stage": "stable",
+          "thread_key": "film_tv_kurator_programserie_realism_001",
+          "planned_only": true,
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "film_tv",
+            "kurator_film_tv"
+          ],
+          "id": "film_tv_kurator_realism_public_preview_001",
+          "mail_type": "event",
+          "mail_family": "role_world_rollout_kurator_public_preview",
+          "phase": "climax",
+          "day_phase": "evening",
+          "priority": 98,
+          "cooldown": 14,
+          "from": "Publikumsverten",
+          "people_ref": "film_tv_formidler",
+          "subject": "Prøveintroduksjonen traff, men publikum leste programmet smalere enn du mente",
+          "summary": "Etter en liten prøvevisning for abonnenter og studenter viser samtalen at konteksten rundt ett verk fungerer, mens seriens tittel fortsatt får programmet til å fremstå som en bekreftelse av kjent kanon.",
+          "purpose": "Bevise situert offentlig omdømme: publikum kan reagere på forståelighet og åpenhet uten å avgjøre sannhet, rettighet eller programmandat.",
+          "stakes": "Å gjøre responsen synlig kan forbedre formidlingen og koste status. Å avfeie responsen beskytter kuratorens selvbilde, men lar en konkret kommunikasjonssvikt stå.",
+          "situation": [
+            "Publikum reagerer på programrammen, ikke bare på enkeltverk.",
+            "Responsen inneholder både smak og konkrete tegn på misforståelse.",
+            "Programansvarlig trenger en anbefaling som skiller publikumsrespons fra endelig programbeslutning."
+          ],
+          "task_domain": "publikumsrespons_og_programforstaelse",
+          "task_kind": "event",
+          "competency": "publikumsarbeid",
+          "pressure": "status_vs_reviderbar_formidling",
+          "choice_axis": "bruk_konkret_respons_vs_avfei_smak",
+          "consequence_axis": "offentlig_tillit_vs_statusforsvar",
+          "narrative_arc": "fra_premiss_til_sporbart_program",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "film_tv_kurator_program_case_001"
+            ],
+            "institution_id": "cinemateket_programavdeling_001",
+            "rework_of_scene_id": "film_tv_kurator_realism_program_rework_001",
+            "priority": "urgent",
+            "interrupts": true
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skill konkrete misforståelser fra ren smak og revider formidlingen",
+              "reply": "Jeg bruker det som faktisk kan spores til tittel og kontekst, men lar ikke applaus eller motvilje bli kvalitetsfasit.",
+              "effect": 2,
+              "feedback": "Publikumsrespons blir kunnskap om mottakelse, ikke en folkeavstemning om kanon.",
+              "effects": {
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_kurator_standing_public_visible_revision",
+                    "audience_id": "public:cinemateket_publikum",
+                    "delta": 3,
+                    "reason": "Kuratoren svarer på konkret misforståelse med synlig presisering uten å love at smak styrer utvalget.",
+                    "source_actor_id": "film_tv_formidler"
+                  },
+                  {
+                    "event_id": "film_tv_kurator_standing_team_public_listening",
+                    "audience_id": "team:film_tv_formidler",
+                    "delta": 2,
+                    "reason": "Publikumsarbeid behandles som etterprøvbar formidlingsfeedback.",
+                    "source_actor_id": "film_tv_formidler"
+                  },
+                  {
+                    "event_id": "film_tv_kurator_standing_manager_public_trace",
+                    "audience_id": "manager:film_tv_programansvarlig",
+                    "delta": 1,
+                    "reason": "Respons og faglig anbefaling holdes adskilt før programlåsing.",
+                    "source_actor_id": "film_tv_programansvarlig"
+                  }
+                ],
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_kurator_preview_feedback_integrated",
+                    "work_object_id": "film_tv_kurator_program_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "public_preview_feedback_integrated",
+                    "note": "Konkrete misforståelser fra prøvepublikum er skilt fra smak og integrert i formidlingen."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_kurator_public_feedback_verified",
+                    "work_object_id": "film_tv_kurator_program_case_001",
+                    "flag": "publikumsrespons_brukt_som_mottakelseskunnskap"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Avfei responsen som smak og behold tittel og inngang",
+              "reply": "En kuratorisk serie kan ikke styres av et lite prøvepublikum; vi står i den opprinnelige innrammingen.",
+              "effect": -2,
+              "feedback": "Du beskytter mandatet ved å late som all respons er smak, også der den viser en konkret kommunikasjonsfeil.",
+              "effects": {
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_kurator_standing_public_dismissed",
+                    "audience_id": "public:cinemateket_publikum",
+                    "delta": -3,
+                    "reason": "Etterprøvbar misforståelse blir avvist sammen med smakspreferanser.",
+                    "source_actor_id": "film_tv_formidler"
+                  },
+                  {
+                    "event_id": "film_tv_kurator_standing_team_dismissed",
+                    "audience_id": "team:film_tv_formidler",
+                    "delta": -2,
+                    "reason": "Formidlingsfeedback får ingen virkning på et problem den kan dokumentere.",
+                    "source_actor_id": "film_tv_formidler"
+                  }
+                ],
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_kurator_preview_feedback_dismissed",
+                    "work_object_id": "film_tv_kurator_program_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "public_preview_feedback_integrated",
+                    "note": "Prøvepublikummets konkrete misforståelse er registrert, men formidlingen er i hovedsak beholdt."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_kurator_public_feedback_dismissed_flag",
+                    "work_object_id": "film_tv_kurator_program_case_001",
+                    "flag": "publikumsfeedback_avvist_som_smak"
+                  }
+                ]
+              }
+            }
+          ],
+          "social_standing_context": {
+            "reaction_audience_id": "public:cinemateket_publikum"
+          }
         }
       ]
     }

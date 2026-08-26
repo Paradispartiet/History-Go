@@ -8,7 +8,11 @@
     {
       "id": "kurator_programsamtale",
       "purpose": "Bruke faglig uenighet som kontroll av premiss og blindsoner.",
-      "learning_focus": ["samarbeid", "bredde_og_representasjon", "mandat"],
+      "learning_focus": [
+        "samarbeid",
+        "bredde_og_representasjon",
+        "mandat"
+      ],
       "mails": [
         {
           "role_scope": "kurator_film_tv",
@@ -45,7 +49,11 @@
               "label": "Test kritikken mot premisset",
               "reply": "La oss sjekke hvert verk mot det vi faktisk lover publikum og endre enten teksten eller utvalget der de ikke stemmer.",
               "effect": 1,
-              "tags": ["collaboration", "breadth", "precision"],
+              "tags": [
+                "collaboration",
+                "breadth",
+                "precision"
+              ],
               "feedback": "Du gjør uenigheten til en kontroll av programmet, ikke en kamp om smak."
             },
             {
@@ -53,10 +61,173 @@
               "label": "Forsvar utvalget som kuratorens prerogativ",
               "reply": "Jeg står for utvalget; teksten får heller gjøre begrunnelsen tydeligere.",
               "effect": -1,
-              "tags": ["status", "blind_spot"],
+              "tags": [
+                "status",
+                "blind_spot"
+              ],
               "feedback": "Du beskytter eierskapet, men lar en dokumentert mismatch bli stående."
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_kurator_rettighetshandoff",
+      "purpose": "Gjøre rettighetsarbeid til en faktisk handoff med situert profesjonell og ledermessig tillit, uten at sosial tillit blir juridisk myndighet.",
+      "learning_focus": [
+        "handoff",
+        "rights",
+        "situated_reputation"
+      ],
+      "mails": [
+        {
+          "role_scope": "kurator_film_tv",
+          "place_id": "cinemateket_oslo",
+          "repeatable": false,
+          "stage": "stable",
+          "thread_key": "film_tv_kurator_programserie_realism_001",
+          "planned_only": true,
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "film_tv",
+            "kurator_film_tv"
+          ],
+          "id": "film_tv_kurator_realism_rights_handoff_001",
+          "mail_type": "people",
+          "mail_family": "role_world_rollout_kurator_rettighetshandoff",
+          "phase": "advanced",
+          "day_phase": "afternoon",
+          "priority": 90,
+          "cooldown": 12,
+          "from": "Rettighetskoordinator",
+          "people_ref": "film_tv_rettighetskoordinator",
+          "subject": "Gi meg et handoff jeg faktisk kan klarere, ikke et ønske om at filmen må gå",
+          "summary": "Rettighetskoordinatoren kan starte klareringen dersom du skiller ønsket verk, nødvendig kopi, dato og hvilke deler av programmet som fortsatt bare er kuratoriske antakelser.",
+          "purpose": "Bevise handoff og at tillit hos koordinator, leder og formidler påvirkes forskjellig av sporbarhet og press.",
+          "stakes": "Et presist handoff kan koste fleksibilitet, men gjør ventingen meningsfull. Et presset handoff kan skape sosial fart uten å skape rettighet.",
+          "situation": [
+            "Kopistatus og rettighetshaver er ikke samme spørsmål.",
+            "Programansvarlig trenger realistisk risiko før kommunikasjon starter.",
+            "Formidleren trenger å vite hva som er sikkert nok til å skrive om."
+          ],
+          "task_domain": "rettighetshandoff",
+          "task_kind": "people",
+          "competency": "rettighetssikkerhet",
+          "pressure": "programfrist_vs_klareringskvalitet",
+          "choice_axis": "presist_handoff_vs_press_for_bekreftelse",
+          "consequence_axis": "profesjonell_tillit_vs_forventningsgjeld",
+          "narrative_arc": "fra_premiss_til_sporbart_program",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "film_tv_kurator_program_case_001"
+            ],
+            "institution_id": "cinemateket_programavdeling_001",
+            "handoff_to_actor_id": "film_tv_rettighetskoordinator",
+            "priority": "high"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Send verk, kopi, dato og usikkerhet som separate felt",
+              "reply": "Jeg sender det vi faktisk ber om, hva som er dokumentert og hva som fortsatt er betinget.",
+              "effect": 2,
+              "feedback": "Handoffet kan behandles uten at ønsket program forkles som rettighetsstatus.",
+              "effects": {
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_kurator_standing_rights_precise",
+                    "audience_id": "professional:film_tv_rettighetskoordinator",
+                    "delta": 3,
+                    "reason": "Kuratoren sender et avgrenset og etterprøvbart klareringsgrunnlag.",
+                    "source_actor_id": "film_tv_rettighetskoordinator"
+                  },
+                  {
+                    "event_id": "film_tv_kurator_standing_manager_traceable",
+                    "audience_id": "manager:film_tv_programansvarlig",
+                    "delta": 2,
+                    "reason": "Programrisiko blir synlig før offentlig løfte.",
+                    "source_actor_id": "film_tv_programansvarlig"
+                  },
+                  {
+                    "event_id": "film_tv_kurator_standing_team_clear",
+                    "audience_id": "team:film_tv_formidler",
+                    "delta": 1,
+                    "reason": "Formidleren får tydelig skille mellom mulig og bekreftet program.",
+                    "source_actor_id": "film_tv_formidler"
+                  }
+                ],
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_kurator_rights_handoff_waiting",
+                    "work_object_id": "film_tv_kurator_program_case_001",
+                    "to_status": "waiting",
+                    "to_phase": "awaiting_rights_clearance",
+                    "note": "Klareringsgrunnlaget er sendt og programcaset venter på rettighetskoordinator."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_kurator_rights_trace_complete",
+                    "work_object_id": "film_tv_kurator_program_case_001",
+                    "flag": "rettighetshandoff_sporbart"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Be koordinatoren behandle verket som nesten sikkert fordi serien trenger det",
+              "reply": "Dette er bærebjelken i serien, så kan du prioritere det som om avtalen kommer på plass?",
+              "effect": -2,
+              "feedback": "Du flytter prestisjepress inn i klareringen uten at noen ny rettighet oppstår.",
+              "effects": {
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_kurator_standing_rights_pressure",
+                    "audience_id": "professional:film_tv_rettighetskoordinator",
+                    "delta": -3,
+                    "reason": "Ønske og prestisje brukes som press mot et uavklart rettighetsgrunnlag.",
+                    "source_actor_id": "film_tv_rettighetskoordinator"
+                  },
+                  {
+                    "event_id": "film_tv_kurator_standing_manager_risk",
+                    "audience_id": "manager:film_tv_programansvarlig",
+                    "delta": -2,
+                    "reason": "Programrisiko blir mindre lesbar når antakelse presenteres som sannsynlig avklaring.",
+                    "source_actor_id": "film_tv_programansvarlig"
+                  },
+                  {
+                    "event_id": "film_tv_kurator_standing_team_ambiguity",
+                    "audience_id": "team:film_tv_formidler",
+                    "delta": -1,
+                    "reason": "Formidleren får et uklart skille mellom ønsket og bekreftet program.",
+                    "source_actor_id": "film_tv_formidler"
+                  }
+                ],
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_kurator_rights_handoff_pressured_waiting",
+                    "work_object_id": "film_tv_kurator_program_case_001",
+                    "to_status": "waiting",
+                    "to_phase": "awaiting_rights_clearance",
+                    "note": "Programcaset venter, men handoffet inneholder prestisjepress og svakere usikkerhetsmerking."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_kurator_rights_pressure_flag",
+                    "work_object_id": "film_tv_kurator_program_case_001",
+                    "flag": "prestisjepress_i_rettighetsklarering"
+                  }
+                ]
+              }
+            }
+          ],
+          "social_standing_context": {
+            "reaction_audience_id": "professional:film_tv_rettighetskoordinator"
+          }
         }
       ]
     }
