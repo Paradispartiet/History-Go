@@ -1,0 +1,249 @@
+{
+  "schemaVersion": "naeringsliv_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "bla_skilt_astri_stockfleth_sofies_gate_74",
+  "placeFile": "data/places/naeringsliv/oslo/bla_skilt/bla_skilt_astri_stockfleth_sofies_gate_74.json",
+  "status": "ready",
+  "economicIdentity": {
+    "statement": "Det blå skiltet ved Sofies gate 74 dokumenterer Astri Stockfleths historiske kaffeforretning og hennes eierskap til gården, uten å gjøre boligen til et tidligere utsalgssted.",
+    "anchorType": "mixed_economic_site",
+    "placeObjectDistinction": "Rapporten skiller det fysiske minneskiltet, Stockfleths bolig og gård, den historiske kaffeforretningen og dens filialer fra hverandre.",
+    "temporalScope": {
+      "start": "1913",
+      "end": "1964",
+      "precision": "period",
+      "rationale": "Oslo Byes Vel og Dagsavisen beskriver omtrent femti års drift fra overtakelsen i 1913 til Stockfleths dødsår 1964."
+    },
+    "sourceIds": [
+      "source_oslo_byes_vel_astri",
+      "source_dagsavisen_astri"
+    ]
+  },
+  "businessTopics": [
+    {
+      "emneId": "em_naering_handel_butikk_byrom",
+      "siteSpecificRationale": "Skiltet formidler en dokumentert Oslo-historie om kaffedetaljhandel, filialutvidelse, firmamerke og arbeid i en kvinnelig ledet virksomhet.",
+      "caseIds": [
+        "case_astri_kaffeforretning"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_oslo_byes_vel_astri",
+      "url": "https://www.oslobyesvel.no/kalender/skiltavduking-astri-stockfleth/9",
+      "sourceLocation": "Arrangementsteksten om avdukingen, kaffeforretningen, filialene, gården og kaffedamene",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-26",
+      "temporalCoverage": "historical",
+      "provenance": "Oslo Byes Vel er ansvarlig for blå-skiltprogrammet og publiserte den stedsspesifikke avdukingsteksten.",
+      "limitations": "Siden er en kort formidlingstekst og gir ikke regnskap, filialoversikt, lønnsdata eller full virksomhetshistorikk."
+    },
+    {
+      "id": "source_dagsavisen_astri",
+      "url": "https://www.dagsavisen.no/nyheter/historien-om-kaffedronningen-astri-stockfleth/7631121",
+      "sourceLocation": "Den redaksjonelle historien om opplæring, overtakelse, navneendring, filialer og kaffedetaljhandel",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-08-26",
+      "temporalCoverage": "historical",
+      "provenance": "Dagsavisen er en redaktørstyrt avis; artikkelen oppgir en navngitt forfatter og viser til historisk bildemateriale og samtidige publikasjoner.",
+      "limitations": "Artikkelen er journalistisk formidling, ikke en komplett foretaksarkivundersøkelse eller kvantitativ analyse av lønnsomhet og sysselsetting."
+    },
+    {
+      "id": "source_geonorge_sofies_gate_74",
+      "url": "https://ws.geonorge.no/adresser/v1/",
+      "sourceLocation": "Offisielt adresserepresentasjonspunkt for Sofies gate 74, 0454 Oslo",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-26",
+      "temporalCoverage": "current",
+      "provenance": "Kartverkets Geonorge Adresser API er den offisielle kilden for den nåværende adresseankringen.",
+      "limitations": "Adressepunktet dokumenterer beliggenhet, men ikke skiltets montering, historisk næringsdrift eller dagens bruk av bygningen."
+    }
+  ],
+  "economicCases": [
+    {
+      "id": "case_astri_kaffeforretning",
+      "claim": "Astri Stockfleth utviklet en kaffedetaljhandel over omtrent femti år, med flere filialer og et firmamerke knyttet til hennes eget navn.",
+      "unitOfAnalysis": {
+        "unit": "Astri Stockfleths historiske kaffeforretning i Oslo",
+        "boundary": "Analysen gjelder den dokumenterte virksomhetshistorien som skiltet formidler, ikke at Sofies gate 74 var et utsalgssted eller at dagens Stockfleths-kjede er samme juridiske foretak.",
+        "scale": "firm",
+        "temporalScope": {
+          "start": "1913",
+          "end": "1964",
+          "precision": "period",
+          "rationale": "Perioden følger den dokumenterte overtakelsen og de femti driftsårene fram til 1964."
+        },
+        "sourceIds": [
+          "source_oslo_byes_vel_astri",
+          "source_dagsavisen_astri"
+        ]
+      },
+      "actors": [
+        {
+          "name": "Astri Stockfleth",
+          "roleOrInterest": "Overtok og ledet kaffeforretningen, utvidet med filialer og brukte sitt eget navn som firmamerke.",
+          "economicPosition": "Hun kontrollerte virksomheten og eide gården der hun bodde.",
+          "sourceIds": [
+            "source_oslo_byes_vel_astri",
+            "source_dagsavisen_astri"
+          ]
+        },
+        {
+          "name": "Ansatte i kaffeforretningen",
+          "roleOrInterest": "Arbeidet i filialene og utførte handel og service knyttet til kaffevirksomheten.",
+          "economicPosition": "Kildene omtaler kvinnelige ansatte, men dokumenterer ikke lønn, kontrakter eller medbestemmelse.",
+          "sourceIds": [
+            "source_oslo_byes_vel_astri",
+            "source_dagsavisen_astri"
+          ]
+        }
+      ],
+      "valueCreation": {
+        "inputs": [
+          {
+            "statement": "Stockfleths arbeidserfaring fra Den danske kaffeforretning ga fagkunnskap før hun overtok virksomheten.",
+            "sourceIds": [
+              "source_dagsavisen_astri"
+            ]
+          }
+        ],
+        "activity": {
+          "statement": "Virksomheten solgte kaffe gjennom en spesialforretning som senere ble utvidet med flere filialer i Oslo.",
+          "sourceIds": [
+            "source_oslo_byes_vel_astri",
+            "source_dagsavisen_astri"
+          ]
+        },
+        "outputs": [
+          {
+            "statement": "Kundene fikk tilgang til kaffe gjennom en spesialisert detaljhandel med flere utsalgssteder.",
+            "sourceIds": [
+              "source_oslo_byes_vel_astri",
+              "source_dagsavisen_astri"
+            ]
+          }
+        ],
+        "valueCreationAssessment": {
+          "statement": "Kildene dokumenterer lang drift, spesialisering og filialutvidelse, men gir ikke grunnlag for å tallfeste omsetning, produktivitet eller markedsandel.",
+          "sourceIds": [
+            "source_oslo_byes_vel_astri",
+            "source_dagsavisen_astri"
+          ]
+        }
+      },
+      "measurement": {
+        "methodId": "met_naering_byhistorisk_naeringsanalyse",
+        "evidenceType": "qualitative",
+        "indicatorOrObservation": "Overtakelsesår, driftslengde, navneendring og dokumentert filialutvidelse brukes som kvalitative virksomhetsspor.",
+        "unit": "historisk kaffeforretning",
+        "period": "1913–1964",
+        "comparability": "Kildene kan kryssleses for virksomhetsforløpet, men inneholder ikke ensartede tall som kan sammenlignes med andre foretak.",
+        "dataLimitations": "Det mangler regnskap, komplett filialregister, priser, salgsvolum, lønn og en sammenhengende tidsserie.",
+        "sourceIds": [
+          "source_oslo_byes_vel_astri",
+          "source_dagsavisen_astri"
+        ]
+      },
+      "distributionAndPower": {
+        "ownershipOrControl": "Stockfleth ledet firmaet og brukte eget navn som firmamerke; hun eide også boliggården i Sofies gate 74.",
+        "laborPosition": "De kvinnelige ansatte utførte butikkarbeid, men kildene gir ikke nok opplysninger til å vurdere arbeidsvilkår eller forhandlingsmakt.",
+        "beneficiaries": [
+          "Virksomheten fikk inntektsmuligheter gjennom kaffedetaljhandel og flere filialer.",
+          "Kundene fikk tilgang til en spesialisert kaffehandel."
+        ],
+        "costRiskBearers": [
+          "Eieren bar forretningsrisikoen ved drift og filialutvidelse.",
+          "De ansatte var avhengige av virksomhetens arbeidsplasser uten at kildene dokumenterer vilkårene."
+        ],
+        "sourceIds": [
+          "source_oslo_byes_vel_astri",
+          "source_dagsavisen_astri"
+        ]
+      },
+      "riskAndExternalities": {
+        "riskAssessment": {
+          "statement": "Kildene viser en virksomhet som måtte håndtere endringer i etterspørsel og varetilgang, blant annet under etterkrigstidens kafferasjonering.",
+          "sourceIds": [
+            "source_dagsavisen_astri"
+          ]
+        },
+        "externalityAssessment": {
+          "status": "not_applicable",
+          "rationale": "Kildene gir ikke sikkert stedsspesifikt grunnlag for miljø-, nabolags- eller fordelingsvirkninger utover den dokumenterte handelen og sysselsettingen."
+        }
+      },
+      "comparisonAndCausality": {
+        "comparisonBasis": "Oslo Byes Vels korte skiltgrunnlag sammenholdes med Dagsavisens mer detaljerte, redaksjonelle virksomhetshistorie.",
+        "causalStatus": "descriptive_only",
+        "causalAssessment": "Materialet beskriver utviklingen fra arbeidserfaring til ledelse og filialutvidelse, men isolerer ikke årsakene til virksomhetens vekst.",
+        "alternativeExplanations": [
+          "Etterspørsel etter kaffe, beliggenhet, varetilgang, markedsføring og generell byvekst kan ha påvirket utviklingen samtidig."
+        ],
+        "uncertainty": "Kildene mangler sammenligningsgruppe, regnskapsdata og en fullstendig serie med samtidige foretaksopplysninger.",
+        "sourceIds": [
+          "source_oslo_byes_vel_astri",
+          "source_dagsavisen_astri"
+        ]
+      }
+    }
+  ],
+  "presentOperation": {
+    "operationalStatus": "former",
+    "statement": "Rapporten dokumenterer ikke nåværende kaffedrift i Sofies gate 74; adressen brukes i dag som besøksanker for det fysiske minneskiltet.",
+    "originalEconomicRoleRelationship": "Minneskiltet formidler den tidligere kaffeforretningen og gårdeierskapet, mens adressepunktet ikke gjør boligen til et dokumentert utsalgssted.",
+    "checkedAt": "2026-08-26",
+    "sourceIds": [
+      "source_geonorge_sofies_gate_74"
+    ]
+  },
+  "quizOpening": {
+    "status": "N/A",
+    "rationale": "Micro Place-profilen har quizMode none, og denne rapporten produserer ingen stedquiz."
+  },
+  "chronologyStories": {
+    "status": "N/A",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "De daterte produksjonskravene er gjennomgått, men rapporten produserer ingen ny chronology eller Story."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": ["economicIdentity"]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": ["businessTopics[0]"]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": ["case_astri_kaffeforretning.valueCreation"]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": ["case_astri_kaffeforretning.actors", "case_astri_kaffeforretning.distributionAndPower"]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": ["case_astri_kaffeforretning.measurement"]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": ["case_astri_kaffeforretning.riskAndExternalities", "case_astri_kaffeforretning.comparisonAndCausality", "presentOperation"]
+    },
+    "G": {
+      "status": "N/A",
+      "rationale": "Ingen stedquiz produseres eller revideres i denne rapporten."
+    },
+    "H": {
+      "status": "N/A",
+      "rationale": "Ingen chronology eller Story produseres eller revideres i denne rapporten."
+    }
+  },
+  "review": {
+    "reviewer": "History GO blue-sign phase 2 Næringsliv audit",
+    "reviewedAt": "2026-08-26",
+    "notes": "Rapporten skiller minneskilt, bolig/gård og historisk kaffeforretning. Den påstår ikke at Sofies gate 74 var utsalgssted eller at kildene dokumenterer økonomiske resultater."
+  }
+}

@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "c5c774193c0eb77f33dd0769bee8f743d6575f312df22c7f5f941e9f774fa455"
+    "content_sha256": "1a96ea8c7735216ec996e8650fe21623579b11aabc854e871b8b06ffd5c39006"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 17,
     "chapter_count": 180,
     "module_file_count": 461,
-    "package_file_count": 279,
+    "package_file_count": 285,
     "chapter_referenced_file_count": 870,
-    "referenced_file_count": 1087,
+    "referenced_file_count": 1093,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -76,9 +76,9 @@
         "supersetQuizMal"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 33,
+      "package_file_count": 39,
       "required_package_file_count": 4,
-      "optional_package_file_count": 29,
+      "optional_package_file_count": 35,
       "package_files": [
         {
           "path": "data/fag/by/emner_by.json",
@@ -201,6 +201,18 @@
           "content_sha256": "359d9ed3e5c65a1f7701dd8fa435b58c4b6f7d7e85c36b358165b9bc7c5e779d"
         },
         {
+          "path": "data/quiz/by/markveien_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.markveien.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "8bce3082cd29f6d8d739ce22251ec7e9526cac6a10c33d5b482609d16e8e64df"
+        },
+        {
           "path": "data/quiz/by/olaf_ryes_plass_sets.json",
           "required": false,
           "fields": [
@@ -211,6 +223,18 @@
           ],
           "exists": true,
           "content_sha256": "fa185331c956c53e14534de89dc3c674a1d8b6d4f7eb56f6f577d86256f71d21"
+        },
+        {
+          "path": "data/quiz/by/sofienbergparken_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.sofienbergparken.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "ce0512b55a7bd4aa636a337acc8c858e34c5529bb3f3a0a60f32f94996b1e7cc"
         },
         {
           "path": "data/quiz/by/storgata_sets.json",
@@ -297,6 +321,18 @@
           "content_sha256": "43643471123d74aaf785c72b90e691e8566a66007eb9c358d3e79113a678ce88"
         },
         {
+          "path": "data/quiz/production_briefs/by/markveien.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.markveien.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "d595c650483dfba61e6a9a728454def73f8d41bfc1ce4b831df0445d8ee28e9a"
+        },
+        {
           "path": "data/quiz/production_briefs/by/olaf_ryes_plass.json",
           "required": false,
           "fields": [
@@ -307,6 +343,18 @@
           ],
           "exists": true,
           "content_sha256": "ec9230a3cd160cf83d7bda0f859f5d61e6b1e6bcf6de35f9bb00b4227b00f2e5"
+        },
+        {
+          "path": "data/quiz/production_briefs/by/sofienbergparken.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.sofienbergparken.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "70cd3e6fac7cb970439acba5d7795460ee7caeb13bbf0d97a1aa9c5b74a03c51"
         },
         {
           "path": "data/quiz/production_briefs/by/storgata.json",
@@ -393,6 +441,18 @@
           "content_sha256": "480ad17eb38fbd3e713c813b0cf8295e98ea2e38281f04ccdbef868a85614cba"
         },
         {
+          "path": "data/quiz/production_context/by/markveien.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.markveien.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "ad6f60658e3fe34d161f0c26312080ace585af82d7e6ae0d8f43ada973a38d4c"
+        },
+        {
           "path": "data/quiz/production_context/by/olaf_ryes_plass.json",
           "required": false,
           "fields": [
@@ -403,6 +463,18 @@
           ],
           "exists": true,
           "content_sha256": "43cf33839d2d8f969a45918199671d7c9e5a4e07662ea92f327f1d83e9e253fa"
+        },
+        {
+          "path": "data/quiz/production_context/by/sofienbergparken.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.sofienbergparken.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "6abe4aabf520c85b66e0a139139f8776033fad53641757832050a9c76c161339"
         },
         {
           "path": "data/quiz/production_context/by/storgata.json",
@@ -477,20 +549,20 @@
           "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
         }
       ],
-      "package_content_sha256": "7850a3f1d57cd128a1499e83c45410e8506de01402cc478d8f3aeb2f648e28e9",
+      "package_content_sha256": "bd0ab73efdfda4ec313cf86182dc954f6b9dd80a34eda794e5767a443c1d461b",
       "chapter_count": 17,
       "module_file_count": 51,
       "brief_file_count": 17,
       "claims_file_count": 17,
       "chapter_referenced_file_count": 102,
       "chapter_content_sha256": "21ed783bb2d9f06494fa9a56eb60af89e5d8c8225a51d930eebddf35203dd283",
-      "referenced_file_count": 135,
+      "referenced_file_count": 141,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "1744801106e413aeee274985f7c6fb9876a427b61feec485cba4b6572b0936f3",
-      "content_sha256": "d17b3499a547e0eb1001455af4c617bf649025c85eb728668c6c49436006a23b",
+      "structure_sha256": "090549c1ca51b3c761abb74771669bce9c21b3dd827aa2ffa886dfc35b861063",
+      "content_sha256": "47a366b4ffcd5c6f8d9e0bb0b3ca49070037a330057839ee1bff1db518686f68",
       "chapters": [
         {
           "chapter_id": "byliv-offentlige-rom",
@@ -5978,5 +6050,5 @@
       ]
     }
   },
-  "release_sha256": "0fa350dd199e6f3859fd08f400e34a1425cd20be576dc075417e2fdedf1dabd2"
+  "release_sha256": "a52ed83032b611a466ae7c9e4e4cfe0f5224dbf96766d236e5abf1fa68671ed9"
 }
