@@ -1,68 +1,146 @@
-/* Compact presentation for canonical Micro Places. */
-#placeCard .pc-micro-identity{ display:none; }
+/* Canonical Micro Places use a deliberately smaller map card, not a hollow
+   version of the full collection card. */
+#placeCard .pc-micro-identity{display:none}
+
+body.hg-app #placeCard.is-micro-place{
+  --micro-accent:#e9c85b;
+  width:min(520px,calc(100vw - 24px));
+  max-width:520px;
+  border-color:rgba(255,255,255,.14);
+  border-radius:24px;
+  background:
+    radial-gradient(circle at 92% 8%,color-mix(in srgb,var(--micro-accent) 14%,transparent),transparent 34%),
+    linear-gradient(155deg,#171a1e,#0b0d10 74%);
+  box-shadow:0 22px 60px rgba(0,0,0,.48),inset 0 1px rgba(255,255,255,.08);
+}
+
+body.hg-app #placeCard.is-micro-place[data-micro-kind="lesekiosk"],
+body.hg-app #placeCard.is-micro-place[data-micro-kind="bokskap"]{--micro-accent:#e6bf4d}
+body.hg-app #placeCard.is-micro-place[data-micro-kind="gjenvinningsstasjon"],
+body.hg-app #placeCard.is-micro-place[data-micro-kind="ombrukspunkt"],
+body.hg-app #placeCard.is-micro-place[data-micro-kind="miljostasjon"]{--micro-accent:#67c997}
+body.hg-app #placeCard.is-micro-place[data-micro-kind="minneskilt"]{--micro-accent:#72aee8}
+body.hg-app #placeCard.is-micro-place[data-micro-kind="snublestein"]{--micro-accent:#d6b56d}
+
+#placeCard.is-micro-place .pc-body{filter:none;overflow:visible}
+#placeCard.is-micro-place .pc-text{
+  width:auto;
+  margin:18px 56px 0 18px;
+  padding:0 0 13px;
+  border-bottom-color:rgba(255,255,255,.07);
+}
+#placeCard.is-micro-place .pc-title-row{margin:0 0 7px;align-items:center}
+#placeCard.is-micro-place #pcTitle{
+  font-size:clamp(22px,4.4vw,29px);
+  line-height:1.08;
+  letter-spacing:-.025em;
+}
+#placeCard.is-micro-place #pcMeta{display:none}
+#placeCard.is-micro-place #pcDesc{
+  margin-top:7px;
+  color:rgba(255,255,255,.72);
+  font-size:14px;
+  line-height:1.48;
+  font-weight:450;
+  -webkit-line-clamp:3;
+}
+#placeCard.is-micro-place .pc-favorite-btn{
+  width:30px;
+  height:30px;
+  border-color:rgba(255,255,255,.18);
+  background:rgba(255,255,255,.055);
+}
+#placeCard.is-micro-place .pc-collapse-btn{color:rgba(255,255,255,.68)}
 
 #placeCard.is-micro-place .pc-grid{
   display:block;
-  padding:12px;
+  padding:10px 18px 18px;
 }
-
 #placeCard.is-micro-place .pc-frontcard,
 #placeCard.is-micro-place .pc-side-stack,
 #placeCard.is-micro-place .pc-events-quad,
 #placeCard.is-micro-place #pcBadgesIcon,
 #placeCard.is-micro-place #pcLesespor,
-body.is-micro-place-open #pcObserve{
-  display:none !important;
-}
-
-body.is-micro-place-quizless #pcQuiz{
-  display:none !important;
-}
+#placeCard.is-micro-place .pc-title-badge,
+#placeCard.is-micro-place .pc-place-popup-shortcuts,
+#placeCard.is-micro-place .pc-body > [id$="List"],
+body.is-micro-place-open #pcObserve{display:none!important}
+body.is-micro-place-quizless #pcQuiz{display:none!important}
 
 #placeCard.is-micro-place .pc-micro-identity:not([hidden]){
-  display:flex;
+  display:grid;
+  grid-template-columns:48px minmax(0,1fr) auto;
   align-items:center;
-  gap:14px;
-  min-height:88px;
-  padding:16px;
-  border:1px solid rgba(255,255,255,.18);
-  border-radius:18px;
-  background:linear-gradient(145deg, rgba(255,255,255,.09), rgba(255,255,255,.035));
-  box-shadow:0 10px 24px rgba(0,0,0,.2);
+  gap:12px;
+  min-height:66px;
+  padding:11px 12px;
+  border:1px solid color-mix(in srgb,var(--micro-accent) 24%,rgba(255,255,255,.09));
+  border-radius:17px;
+  background:color-mix(in srgb,var(--micro-accent) 7%,rgba(255,255,255,.035));
 }
-
 #placeCard.is-micro-place .pc-micro-icon{
   display:grid;
   place-items:center;
-  width:58px;
-  height:58px;
-  flex:0 0 58px;
-  border-radius:16px;
-  background:rgba(255,255,255,.1);
-  font-size:30px;
+  width:46px;
+  height:46px;
+  border-radius:14px;
+  background:color-mix(in srgb,var(--micro-accent) 13%,rgba(255,255,255,.045));
+  color:var(--micro-accent);
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--micro-accent) 20%,transparent);
 }
-
-#placeCard.is-micro-place .pc-micro-copy{
-  display:flex;
-  flex-direction:column;
-  gap:4px;
-  min-width:0;
-  text-transform:capitalize;
+#placeCard.is-micro-place .pc-micro-icon svg{width:25px;height:25px}
+#placeCard.is-micro-place .pc-micro-copy{display:grid;gap:2px;min-width:0}
+#placeCard.is-micro-place .pc-micro-eyebrow{
+  color:var(--micro-accent);
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.13em;
+  text-transform:uppercase;
 }
-
 #placeCard.is-micro-place .pc-micro-copy strong{
+  overflow:hidden;
   color:#fff;
-  font-size:clamp(18px, 3vw, 24px);
-  line-height:1.1;
+  font-size:16px;
+  line-height:1.15;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
-
-#placeCard.is-micro-place .pc-micro-copy span{
-  color:rgba(255,255,255,.78);
-  font-size:14px;
+#placeCard.is-micro-place .pc-micro-taxonomy{
+  overflow:hidden;
+  color:rgba(255,255,255,.54);
+  font-size:11px;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
+#placeCard.is-micro-place .pc-micro-status{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  align-self:start;
+  margin-top:2px;
+  padding:5px 8px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:999px;
+  background:rgba(255,255,255,.045);
+  color:rgba(255,255,255,.76);
+  font-size:10px;
+  font-weight:750;
+  white-space:nowrap;
+}
+#placeCard.is-micro-place .pc-micro-status>span{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#67c997;
+  box-shadow:0 0 0 3px rgba(103,201,151,.11);
+}
+#placeCard.is-micro-place .pc-micro-status[data-status="temporary_unavailable"]>span{background:#e9a85b;box-shadow:0 0 0 3px rgba(233,168,91,.11)}
+#placeCard.is-micro-place .pc-micro-status[data-status="historic"]>span{background:#a9a7a0;box-shadow:0 0 0 3px rgba(169,167,160,.11)}
 
-#placeCard.is-micro-place .pc-micro-copy .pc-micro-status{
-  color:#f5d878;
-  font-weight:700;
-  text-transform:none;
+@media(max-width:520px){
+  #placeCard.is-micro-place .pc-text{margin:15px 49px 0 15px}
+  #placeCard.is-micro-place .pc-grid{padding:8px 15px 15px}
+  #placeCard.is-micro-place .pc-micro-identity:not([hidden]){grid-template-columns:44px minmax(0,1fr);gap:10px}
+  #placeCard.is-micro-place .pc-micro-icon{width:42px;height:42px;border-radius:13px}
+  #placeCard.is-micro-place .pc-micro-status{grid-column:2;margin-top:5px;justify-self:start}
 }

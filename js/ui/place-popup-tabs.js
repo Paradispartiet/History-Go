@@ -462,6 +462,9 @@
     const article = popup?.querySelector(".hg-place-popup-v2");
     const body = article?.querySelector(":scope > .hg-place-popup-body");
     if (!popup || !article || !body || article.hasAttribute(DECORATED_ATTR)) return;
+    // Micro Places own a separate, intentionally small information surface.
+    // Never inflate it into the full eight-tab production popup.
+    if (article.getAttribute("data-place-tier") === "micro") return;
     article.setAttribute(DECORATED_ATTR, "1");
     const tabs = createTabs(body, place);
     distributeExisting(body, tabs);

@@ -71,6 +71,11 @@ The footer keeps useful place actions such as **Mer info**, **Registrer besøk**
 **Rute** and **Notat**. It hides collection surfaces, the on-site social surface,
 Badges and Observation. Quiz is shown only when `quizMode: "place"`.
 
+**Mer info** opens a dedicated mini place popup. It shows identity, status,
+location, the source-backed place text and inspectable source links without the
+full Place hero, eight-tab navigation or empty full-production sections. A
+Micro Place must never be visually presented as a hollow standard Place.
+
 Opening a standard Place after a Micro Place must fully restore the ordinary
 PlaceCard. The Micro renderer may not mutate Place data or change map styling.
 

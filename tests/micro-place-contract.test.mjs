@@ -10,6 +10,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const read = file => fs.readFileSync(path.join(ROOT, file), "utf8");
 const schema = JSON.parse(read("data/places/regler/micro_place_profile_v1.schema.json"));
 const runtime = read("js/ui/micro-place-card.js");
+const popupTabsRuntime = read("js/ui/place-popup-tabs.js");
 const rounds = read("js/ui/place-rounds-visual-collections.js");
 const subcategory = read("js/ui/place-subcategory-collections.js");
 const windows = new Set();
@@ -75,7 +76,7 @@ test("Micro Place renders one compact identity panel and restores a standard car
   assert.equal(window.document.getElementById("pcQuiz").getAttribute("aria-hidden"), "true");
   assert.equal(window.document.getElementById("pcObserve").hidden, true);
   assert.match(panel.textContent, /Lesekiosk/);
-  assert.match(panel.textContent, /Aktivt sted/);
+  assert.match(panel.textContent, /Aktiv/);
 
   await window.openPlaceCard(standard);
   assert.equal(card.classList.contains("is-micro-place"), false);
@@ -85,13 +86,46 @@ test("Micro Place renders one compact identity panel and restores a standard car
   assert.equal(window.document.body.classList.contains("is-micro-place-quizless"), false);
   assert.equal(window.document.getElementById("pcQuiz").hidden, false);
   assert.equal(window.document.getElementById("pcObserve").hidden, false);
+  assert.equal(card.dataset.collectionProfileSource, undefined);
+  assert.equal(card.querySelector(".pc-icons-quad").dataset.collectionProfileSource, undefined);
 });
 
 test("Micro Place footer policy targets actions outside the PlaceCard container", () => {
   const css = read("css/micro-place-card.css");
   assert.match(css, /body\.is-micro-place-quizless #pcQuiz/);
   assert.match(css, /body\.is-micro-place-open #pcObserve/);
+  assert.match(css, /#placeCard\.is-micro-place \.pc-place-popup-shortcuts/);
+  assert.match(css, /max-width:520px/);
   assert.doesNotMatch(css, /#placeCard\.is-micro-place\[data-micro-quiz="none"\] #pcQuiz/);
+});
+
+test("Micro Place popup remains a mini surface and cannot receive standard tabs", () => {
+  const popup = read("js/ui/place-popup-v2.js");
+  const tabs = read("js/ui/place-popup-tabs.js");
+  const css = read("css/place-popup-v2.css");
+  assert.match(popup, /renderMicroPlacePopup/);
+  assert.match(popup, /micro-place-popup-shell/);
+  assert.match(popup, /data-place-tier="micro"/);
+  assert.match(tabs, /getAttribute\("data-place-tier"\) === "micro"/);
+  assert.match(css, /\.hg-popup\.place-popup-v2\.micro-place-popup-shell/);
+  assert.match(css, /width:min\(540px,calc\(100vw - 24px\)\)/);
+});
+
+test("the standard popup tab decorator leaves a rendered Micro popup untouched", () => {
+  const dom = new JSDOM(`<!doctype html><body><div class="hg-popup place-popup-v2"><article class="hg-place-popup-v2 hg-micro-place-popup" data-place-tier="micro"><div class="hg-place-popup-body"><p>Micro-innhold</p></div></article></div></body>`, {
+    url:"https://history-go.test/",
+    runScripts:"outside-only"
+  });
+  const window = dom.window;
+  windows.add(window);
+  window.showPlacePopup = () => undefined;
+  window.showPlacePopup.__hgPlacePopupV2 = true;
+  window.eval(popupTabsRuntime);
+  window.HGPlacePopupTabs.decoratePopup({ id:"micro_test", placeTier:"micro" });
+  const article = window.document.querySelector(".hg-micro-place-popup");
+  assert.equal(article.hasAttribute("data-hg-place-tabs"), false);
+  assert.equal(article.querySelector(".hg-place-tabs"), null);
+  assert.match(article.textContent, /Micro-innhold/);
 });
 
 test("collection runtimes explicitly leave Micro Places out of full grids", () => {
