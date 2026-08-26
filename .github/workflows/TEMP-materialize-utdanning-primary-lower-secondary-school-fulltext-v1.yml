@@ -1,0 +1,45 @@
+name: TEMP materialize Utdanning Grunnskole 4 of 14
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/materialize-utdanning-primary-lower-secondary-school-fulltext-v1.mjs'
+      - 'data/fag/utdanning/primary_lower_secondary_school_source_claim_brief_v1.json'
+      - 'data/fag/utdanning/upper_secondary_vocational_source_claim_brief_v1.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: temp-materialize-utdanning-primary-lower-secondary-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Materialize Grunnskole and next source-first port
+        run: |
+          node scripts/brief-utdanning-upper-secondary-vocational-sources-v1.mjs --write-report
+          node scripts/materialize-utdanning-primary-lower-secondary-school-fulltext-v1.mjs
+          node scripts/audit-utdanning-primary-lower-secondary-school-fulltext-v1.mjs --write-report
+          node scripts/run-utdanning-domain-ci-v1.mjs
+      - name: Commit deterministic outputs
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add data/fag data/fagverk reports/fagverk
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Materialize Utdanning Grunnskole 4/14"
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
