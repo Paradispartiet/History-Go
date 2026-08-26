@@ -8,7 +8,11 @@
     {
       "id": "manusmedarbeider_tabellproven",
       "purpose": "La bordprøven synliggjøre kostnaden ved et tidligere kontinuitets- eller versjonsvalg.",
-      "learning_focus": ["forsinket_konsekvens", "reparasjon", "sporbarhet"],
+      "learning_focus": [
+        "forsinket_konsekvens",
+        "reparasjon",
+        "sporbarhet"
+      ],
       "mails": [
         {
           "id": "film_tv_manus_consequence_bordprove_001",
@@ -46,18 +50,245 @@
               "label": "Stopp, rull tilbake og dokumenter beslutningshullet",
               "reply": "Vi bruker forrige sporbare side, retter kunnskapslinjen og registrerer at endringen manglet beslutningseier.",
               "effect": 1,
-              "tags": ["repair", "traceability"],
+              "tags": [
+                "repair",
+                "traceability"
+              ],
               "feedback": "Bordprøven mister minutter, men neste versjon får både rettelse og læring.",
-              "effects": {"stats": {"quality": 3, "trust": 2, "status": -1, "risk": -3, "energy": -2}}
+              "effects": {
+                "stats": {
+                  "quality": 3,
+                  "trust": 2,
+                  "status": -1,
+                  "risk": -3,
+                  "energy": -2
+                }
+              }
             },
             {
               "id": "B",
               "label": "Forklar hva karakteren egentlig mente og les videre",
               "reply": "Intensjonen er tydelig selv om rekkefølgen skurrer. Vi noterer det og fortsetter.",
               "effect": -1,
-              "tags": ["avoidance", "continuity_risk"],
+              "tags": [
+                "avoidance",
+                "continuity_risk"
+              ],
               "feedback": "Du beskytter bordprøvens tempo, men lar en kjent feil bli grunnlag for neste versjon.",
-              "effects": {"stats": {"status": 1, "quality": -3, "risk": 3, "trust": -2}}
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -3,
+                  "risk": 3,
+                  "trust": -2
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_manus_revision_closure",
+      "purpose": "Avslutte eget arbeidsobjekt som anbefaling uten endelig manus- eller krediteringsmyndighet.",
+      "learning_focus": [
+        "closure",
+        "authority_boundary",
+        "institutional_memory"
+      ],
+      "mails": [
+        {
+          "role_scope": "manusmedarbeider",
+          "place_id": "versjonsarkiv_manus",
+          "repeatable": false,
+          "stage": "stable",
+          "thread_key": "film_tv_manus_revision_realism_001",
+          "planned_only": true,
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "film_tv",
+            "manusmedarbeider"
+          ],
+          "id": "film_tv_manus_realism_revision_case_close_001",
+          "mail_type": "consequence",
+          "mail_family": "role_world_rollout_manus_revision_closure",
+          "phase": "climax",
+          "day_phase": "afternoon",
+          "priority": 99,
+          "cooldown": 12,
+          "from": "Nora, manusredaktør",
+          "people_ref": "nora_manusredaktor",
+          "subject": "Lukk revisjonssaken som anbefaling – endelig manusgodkjenning ligger fortsatt hos Nora",
+          "summary": "Versjon, forfatterrespons, kontinuitet, research og bordprøvenotat er samlet. Du skal ferdigstille det sporbare grunnlaget og anbefale status, mens Nora beholder endelig manusgodkjenning og kreditering eller rettigheter aldri kan endres her.",
+          "purpose": "Bevise at manusmedarbeiderens arbeid kan fullføres uten at kompetanse, synlighet eller høy situert tillit fabrikkerer redaktør- eller forfattermyndighet.",
+          "stakes": "En presis lukking gjør usynlig arbeid etterprøvbart og anvendelig. Selvautorisert manuslås gjør godt fagarbeid til myndighetslekkasje.",
+          "situation": [
+            "Versjon 20 kan spores tilbake til baseline, notatprioritering, Elias sin omskriving og senere rework.",
+            "Researchforbeholdet er enten løst eller eksplisitt synlig for beslutningseier.",
+            "Nora godkjenner endelig manus; Elias beholder forfatterskap; kreditering og rettigheter ligger utenfor revisjonssaken."
+          ],
+          "task_domain": "vedvarende_manusrevisjon",
+          "task_kind": "consequence",
+          "competency": "versjonssporbarhet",
+          "pressure": "faglig_eierskap_vs_formell_myndighet",
+          "choice_axis": "sporbart_anbefalingsgrunnlag_vs_selvautoriser_manuslas",
+          "consequence_axis": "institusjonell_tillit_vs_myndighetslekkasje",
+          "narrative_arc": "fra_motstridende_notater_til_sporbart_anbefalingsgrunnlag",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "film_tv_manus_revision_case_001"
+            ],
+            "institution_id": "film_tv_manusutvikling_001",
+            "rework_of_scene_id": "film_tv_manus_realism_table_read_001",
+            "priority": "urgent"
+          },
+          "authority_context": {
+            "institution_id": "film_tv_manusutvikling_001",
+            "unit_id": "film_tv_manusavdeling",
+            "role_scope": "manusmedarbeider",
+            "reporting_line": [
+              "nora_manusredaktor"
+            ],
+            "peer_functions": [
+              "elias_manusforfatter",
+              "selma_scriptkoordinator",
+              "maja_researchansvarlig"
+            ],
+            "external_counterparts": [
+              "film_tv_produsent"
+            ],
+            "goals_pressures": [
+              "manuskvalitet",
+              "forfattereierskap",
+              "researchintegritet",
+              "produksjonsfrist"
+            ],
+            "approval_points": [
+              {
+                "approval_id": "film_tv_final_script_approval",
+                "action_id": "approve_final_manuscript",
+                "approver_actor_id": "nora_manusredaktor",
+                "approval_object_id": "film_tv_manus_final_approval_001"
+              }
+            ],
+            "authority_rules": [
+              {
+                "action_id": "recommend_script_status",
+                "authority": "influence_only",
+                "requires_resources": []
+              },
+              {
+                "action_id": "approve_final_manuscript",
+                "authority": "approval_required",
+                "approval_id": "film_tv_final_script_approval",
+                "requires_resources": []
+              },
+              {
+                "action_id": "alter_credit_or_rights",
+                "authority": "forbidden",
+                "requires_resources": []
+              }
+            ],
+            "resources": [],
+            "escalation_paths": []
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lukk sporet med endringer, forbehold og eierskap synlig, og anbefal status til Nora",
+              "reply": "Jeg ferdigstiller revisjonssaken som beslutningsgrunnlag og anbefaler manusstatus uten å godkjenne eller endre forfatterskap.",
+              "effect": 2,
+              "authority_action": {
+                "action_id": "recommend_script_status",
+                "intent": "recommend"
+              },
+              "feedback": "Eget arbeid blir komplett samtidig som redaktør-, forfatter- og rettighetsgrensene står.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_manus_revision_case_completed",
+                    "work_object_id": "film_tv_manus_revision_case_001",
+                    "to_status": "completed",
+                    "to_phase": "revision_package_ready_for_editorial_approval",
+                    "note": "Manusmedarbeiderens revisjonssak er fullført som sporbart anbefalingsgrunnlag; endelig godkjenning forblir hos Nora."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_manus_authority_boundary_preserved",
+                    "work_object_id": "film_tv_manus_revision_case_001",
+                    "flag": "revision_complete_without_script_approval_authority"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_manus_standing_manager_closure",
+                    "audience_id": "manager:nora_manusredaktor",
+                    "delta": 3,
+                    "reason": "Anbefalingen er sporbar, avgrenset og klar for formell redaksjonell beslutning.",
+                    "source_actor_id": "nora_manusredaktor"
+                  },
+                  {
+                    "event_id": "film_tv_manus_standing_author_closure",
+                    "audience_id": "professional:elias_manusforfatter",
+                    "delta": 2,
+                    "reason": "Forfatterarbeid og endringshistorikk er synlig uten skjult overtakelse.",
+                    "source_actor_id": "elias_manusforfatter"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lukk arbeidsdelen med eksplisitt reservasjon og eskaler restusikkerheten",
+              "reply": "Jeg markerer hva som fortsatt mangler, anbefaler ingen endelig lås og ber Nora ta stilling til forbeholdet før godkjenning.",
+              "effect": 1,
+              "authority_action": {
+                "action_id": "recommend_script_status",
+                "intent": "recommend"
+              },
+              "feedback": "En avgrenset anbefaling er profesjonelt komplett når restusikkerhet ikke skjules.",
+              "effects": {
+                "stats": {
+                  "quality": 1,
+                  "trust": 2,
+                  "risk": -1,
+                  "energy": -1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_manus_revision_case_completed_reserved",
+                    "work_object_id": "film_tv_manus_revision_case_001",
+                    "to_status": "completed",
+                    "to_phase": "revision_package_ready_with_reservations",
+                    "note": "Revisjonssaken er fullført med synlig restusikkerhet og eskalert til Nora før endelig godkjenning."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_manus_residual_uncertainty_visible",
+                    "work_object_id": "film_tv_manus_revision_case_001",
+                    "flag": "residual_uncertainty_escalated_to_editor"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_manus_standing_manager_reserved_closure",
+                    "audience_id": "manager:nora_manusredaktor",
+                    "delta": 2,
+                    "reason": "Restusikkerhet er synlig i stedet for skjult bak en kategorisk ferdigmelding.",
+                    "source_actor_id": "nora_manusredaktor"
+                  }
+                ]
+              }
             }
           ]
         }

@@ -8,7 +8,11 @@
     {
       "id": "manusmedarbeider_motstridende_notater",
       "purpose": "La framdrift kollidere med behovet for én tydelig redaksjonell retning.",
-      "learning_focus": ["mandat", "prioritering", "konfliktsynliggjøring"],
+      "learning_focus": [
+        "mandat",
+        "prioritering",
+        "konfliktsynliggjøring"
+      ],
       "mails": [
         {
           "id": "film_tv_manus_conflict_motstridende_001",
@@ -46,18 +50,194 @@
               "label": "Sett notatene opp mot hverandre og be Nora prioritere",
               "reply": "Disse notatene kan ikke løses samtidig uten å velge hvor tydelig scenen skal være. Hvilken retning eier vi nå?",
               "effect": 1,
-              "tags": ["authority", "clarity"],
+              "tags": [
+                "authority",
+                "clarity"
+              ],
               "feedback": "Konflikten blir en beslutning hos riktig eier, ikke en skjult omskriving hos deg.",
-              "effects": {"stats": {"quality": 2, "trust": 1, "risk": -2, "energy": -1}}
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 1,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
             },
             {
               "id": "B",
               "label": "Skriv en mellomvariant som forsøker å gjøre begge deler",
               "reply": "Jeg balanserer en kort forklaring med mer undertekst og sender versjonen videre.",
               "effect": -1,
-              "tags": ["avoidance", "rework"],
+              "tags": [
+                "avoidance",
+                "rework"
+              ],
               "feedback": "Du flytter konflikten inn i teksten uten å avklare hvilken retning prosjektet faktisk vil ha.",
-              "effects": {"stats": {"energy": -1, "quality": -2, "risk": 3, "trust": -1}}
+              "effects": {
+                "stats": {
+                  "energy": -1,
+                  "quality": -2,
+                  "risk": 3,
+                  "trust": -1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_manus_author_response",
+      "purpose": "La forfatterens retur åpne rework når briefen fortsatt er motstridende.",
+      "learning_focus": [
+        "author_response",
+        "rework",
+        "editorial_ownership"
+      ],
+      "mails": [
+        {
+          "role_scope": "manusmedarbeider",
+          "place_id": "versjonsarkiv_manus",
+          "repeatable": false,
+          "stage": "stable",
+          "thread_key": "film_tv_manus_revision_realism_001",
+          "planned_only": true,
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "film_tv",
+            "manusmedarbeider"
+          ],
+          "id": "film_tv_manus_realism_author_response_001",
+          "mail_type": "conflict",
+          "mail_family": "role_world_rollout_manus_author_response",
+          "phase": "mastery",
+          "day_phase": "morning",
+          "priority": 96,
+          "cooldown": 12,
+          "from": "Elias, manusforfatter",
+          "people_ref": "elias_manusforfatter",
+          "subject": "Versjon 19 kom tilbake, men den løser bare ett av de motstridende notatene",
+          "summary": "Elias leverer versjon 19 med en sterkere karakterlinje, men produsentnotatet om tempo og Noras krav om tydeligere motivasjon peker fortsatt i ulike retninger. Samme revisjonssak må tilbake i rework.",
+          "purpose": "Bevise at handoff og venting returnerer med ny informasjon som faktisk endrer arbeidsobjektets fase og krever ny prioritering.",
+          "stakes": "Å late som versjonen løser alt beskytter fristen, men skyver motsetningen til bordprøven. Å åpne rework gjør uenighet synlig mens den fortsatt kan behandles.",
+          "situation": [
+            "Elias har levert mot den prioriteringen han faktisk mottok.",
+            "Nora må eie prioriteringen mellom tempo og motivasjon; manusmedarbeideren kan vise konsekvensene.",
+            "Selma har markert to kontinuitetsendringer som følger av versjon 19."
+          ],
+          "task_domain": "vedvarende_manusrevisjon",
+          "task_kind": "conflict",
+          "competency": "dramaturgisk_lesning",
+          "pressure": "ny_versjon_vs_uforlost_brief",
+          "choice_axis": "synlig_rework_vs_lukk_saken_for_tidlig",
+          "consequence_axis": "redaksjonell_tillit_vs_sen_konflikt",
+          "narrative_arc": "fra_motstridende_notater_til_sporbart_anbefalingsgrunnlag",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "film_tv_manus_revision_case_001"
+            ],
+            "institution_id": "film_tv_manusutvikling_001",
+            "waiting_for_actor_id": "elias_manusforfatter",
+            "rework_of_scene_id": "film_tv_manus_realism_author_handoff_001",
+            "priority": "urgent"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Registrer hva versjon 19 løser og eskaler den gjenværende prioriteringen til Nora",
+              "reply": "Jeg skiller leveransen fra restkonflikten og viser hva hvert notat vil koste i karakterlinje, tempo og kontinuitet.",
+              "effect": 2,
+              "feedback": "Forfatterens arbeid blir lest rettferdig, og riktig beslutningseier får et presist rework-grunnlag.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_manus_author_response_rework",
+                    "work_object_id": "film_tv_manus_revision_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "editorial_priority_rework",
+                    "note": "Versjon 19 er mottatt; restkonflikten mellom tempo og motivasjon er sendt til sporbar redaksjonell prioritering."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_manus_response_scope_traced",
+                    "work_object_id": "film_tv_manus_revision_case_001",
+                    "flag": "author_delivery_and_editorial_conflict_separated"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_manus_standing_author_fair_read",
+                    "audience_id": "professional:elias_manusforfatter",
+                    "delta": 2,
+                    "reason": "Leveransen vurderes mot oppdraget i stedet for etter et notat som kom senere.",
+                    "source_actor_id": "elias_manusforfatter"
+                  },
+                  {
+                    "event_id": "film_tv_manus_standing_manager_clear_escalation",
+                    "audience_id": "manager:nora_manusredaktor",
+                    "delta": 2,
+                    "reason": "Nora får et avgrenset valg med synlige konsekvenser.",
+                    "source_actor_id": "nora_manusredaktor"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Kall versjon 19 ferdig og la bordprøven avgjøre resten",
+              "reply": "Denne versjonen er god nok til prøven; vi trenger ikke åpne prioriteringen igjen nå.",
+              "effect": -2,
+              "feedback": "Restkonflikten blir liggende skjult til en dyrere og mer offentlig arbeidsflate.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_manus_author_response_closed_early",
+                    "work_object_id": "film_tv_manus_revision_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "editorial_priority_rework",
+                    "note": "Versjon 19 går videre med en kjent, men uavklart notatkonflikt."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_manus_conflict_deferred",
+                    "work_object_id": "film_tv_manus_revision_case_001",
+                    "flag": "editorial_conflict_deferred_to_table_read"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_manus_standing_author_moving_target",
+                    "audience_id": "professional:elias_manusforfatter",
+                    "delta": -2,
+                    "reason": "Uavklarte forventninger følger versjonen videre uten ny prioritering.",
+                    "source_actor_id": "elias_manusforfatter"
+                  },
+                  {
+                    "event_id": "film_tv_manus_standing_manager_hidden_conflict",
+                    "audience_id": "manager:nora_manusredaktor",
+                    "delta": -2,
+                    "reason": "En kjent redaksjonell konflikt gjøres mindre synlig før bordprøven.",
+                    "source_actor_id": "nora_manusredaktor"
+                  }
+                ]
+              }
             }
           ]
         }

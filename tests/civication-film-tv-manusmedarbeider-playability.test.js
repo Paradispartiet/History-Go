@@ -12,7 +12,7 @@ const category = 'film_tv';
 const roleScope = 'manusmedarbeider';
 const roleId = 'film_tv_manusmedarbeider';
 const mailTypes = ['job', 'people', 'conflict', 'story', 'event', 'micro', 'followup', 'knowledge', 'consequence'];
-const planSequenceTypes = ['job', 'people', 'conflict', 'story', 'event', 'micro', 'knowledge', 'followup', 'consequence'];
+const planSequenceTypes = ['job', 'people', 'conflict', 'story', 'event', 'micro', 'knowledge', 'followup', 'consequence', 'job', 'people', 'knowledge', 'conflict', 'followup', 'event', 'consequence'];
 const fictionalPeople = new Set([
   'nora_manusredaktor',
   'elias_manusforfatter',
@@ -77,7 +77,7 @@ assert.equal(plan.schema, 'civication_mail_plan_v1');
 assert.equal(plan.version, 1);
 assert.equal(plan.category, category);
 assert.equal(plan.role_scope, roleScope);
-assert.equal(plan.sequence.length, 9);
+assert.equal(plan.sequence.length, 16);
 assert.deepEqual(plan.sequence.map(step => step.type), planSequenceTypes);
 assert.ok(plan.outcome_rules?.promoted, 'positive career outcome exists');
 assert.ok(plan.outcome_rules?.fired, 'negative career outcome exists');
