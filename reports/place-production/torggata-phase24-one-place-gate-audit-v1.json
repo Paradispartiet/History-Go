@@ -1,117 +1,104 @@
 {
-  "schema_version": "torggata_phase24_one_place_merge_gate_v1",
+  "schema_version": "torggata_phase24_one_place_merge_gate_v2",
   "place_id": "torggata",
   "phase": 24,
-  "generated_at": "2026-08-14",
-  "status": "REOPENED_EDITORIAL_QUALITY",
+  "generated_at": "2026-08-25",
+  "status": "CLOSED_MERGED_DEPLOYED",
   "base_branch": "main",
-  "base_sha": "6bcb447e8b8501ffa61303b4a9ec00ce8e0dfdd3",
+  "base_sha": "7fdbdd7cb08e7a84ada8121083b0f8a25754623d",
   "scope": {
-    "places": [
-      "torggata"
-    ],
+    "places": ["torggata"],
     "active_phase": 24,
-    "necessary_safeguard_changes": [],
-    "dependent_content_changes": [],
+    "content_changes": [],
+    "closeout_and_regression_maintenance_only": true,
     "next_place_included": false
   },
-  "expected_changed_files": [
-    ".github/workflows/data-checks.yml",
-    "reports/place-production/torggata-phase24-one-place-gate-audit-v1.json",
-    "reports/place-production/torggata-workcard-current.md",
-    "tests/torggata-phase24-one-place-gate.test.mjs"
-  ],
   "prerequisites": {
-    "phase21_ui_qa": "APPROVED_PRODUCTION_VERIFIED",
-    "phase22_content_qa": "APPROVED",
+    "phase21_ui_qa": "APPROVED_PRODUCTION_REQA",
+    "phase22_content_qa": "APPROVED_REQA",
     "phase23_repository_gates": "APPROVED",
     "manual_same_content_ui_qa": true,
     "production_place_id": "torggata",
-    "production_round_contract": "people · objects · brands · structures + separate Badge",
+    "people_count": 4,
+    "people_ids": [
+      "harald_olsen",
+      "alma_fahlstrom",
+      "johan_fahlstrom",
+      "henrik_bull"
+    ],
+    "production_round_count": 4,
+    "badge_separate": true,
     "production_no_webgl_route": true
   },
-  "merge_requirements": [
-    "PR applies to one place and phase 24 only",
-    "final diff equals expected_changed_files",
-    "branch is current with main",
-    "all review threads are resolved",
-    "all relevant workflows succeed on unchanged final head",
-    "manual same-content UI evidence remains approved",
-    "squash merge supplies expected_head_sha",
-    "merged main and Pages deployment are verified before completion is reported"
-  ],
-  "conclusion": "PR #4962 remains historically merged and deployed, but Torggata is not editorially complete. Manual review reopened the place until before/after, News, Reading Trail, More and round coherence are materially improved and re-reviewed.",
-  "completion_evidence": {
-    "pr": 4962,
-    "final_head_sha": "ce1f60231db52e2472fe334cded8eda140ae429a",
-    "merge_commit": "44a9ecf6f11a797194c34573180278bc52e4770d",
-    "main_verified": true,
-    "pages_run_id": 31794520090,
-    "pages_status": "SUCCESS",
-    "production_round_count": 4,
-    "production_rounds": [
-      "people",
-      "objects",
-      "brands",
-      "structures"
-    ],
-    "badge_separate": true
+  "historical_completion_evidence": {
+    "phase24_pr": 4962,
+    "phase24_merge_commit": "44a9ecf6f11a797194c34573180278bc52e4770d",
+    "phase24_pages_run_id": 31794520090,
+    "phase24_pages_status": "SUCCESS",
+    "people_repairs": [4980, 4981, 4982, 4983],
+    "latest_people_repair_merge": "8283fc44",
+    "latest_people_repair_pages_run_id": 31826105423
   },
   "quality_assessment": {
     "scale": "1-5",
     "dimensions": [
       {
         "id": "correctness_and_evidence",
-        "score": 4,
-        "evidence": "Claims and provenance remain strong, but different viewpoints weaken the user-facing before/after comparison."
+        "score": 5,
+        "evidence": "The claim package, sources, chronology, People identities and before/after ownership remain inspectable and consistent."
       },
       {
         "id": "coverage_and_completion",
-        "score": 2,
-        "evidence": "News, Reading Trail and More are empty; a genuinely old-to-current comparison is missing; round selection requires new work."
+        "score": 5,
+        "evidence": "Before/after, News, Reading Trail, language/direct tabs, four collections, People and Quiz are present and rechecked."
       },
       {
         "id": "editorial_quality",
-        "score": 2,
-        "evidence": "The 2009/2017 main pair is not visually comparable enough, and Objects versus Structures is an artificial split in the current Torggata surface."
+        "score": 5,
+        "evidence": "The comparable 1965/2025 pair, open reading tracks and place-specific language/observations resolve the original editorial weaknesses."
       },
       {
         "id": "technical_integrity",
         "score": 5,
-        "evidence": "CI, runtime, no-WebGL routing and the four-plus-Badge layout remain technically verified."
+        "evidence": "The canonical Torggata regression matrix passes, including exact People resolution without false zero."
       },
       {
         "id": "safety_and_responsibility",
-        "score": 4,
-        "evidence": "People holdbacks, source boundaries and asset controls remain valid; no new safety issue was identified."
+        "score": 5,
+        "evidence": "Own-place boundaries, image rights, People holdbacks and source limitations remain explicit."
       },
       {
         "id": "maintainability_and_verifiability",
         "score": 4,
-        "evidence": "Traceability is strong, but the previous quality gate failed to catch visible editorial weakness and has now been tightened."
+        "evidence": "Traceability is strong and stale phase-snapshot assertions are converted to final-state invariants; the long historical workcard remains intentionally preserved."
       }
     ],
-    "total": 21,
+    "total": 29,
     "minimum_per_dimension": 4,
     "required_total": 27,
-    "critical_findings": [
-      "Before/after primary images use different street views and do not provide a strong visual comparison.",
-      "No genuinely old archival-to-current comparison is present.",
-      "News and More are empty in an otherwise content-rich active place.",
-      "Reading Trail is empty; paywalled initial candidates were held back without completing a search for open directly readable alternatives.",
-      "Objects is supported by one artificial item and overlaps semantically with Structures."
-    ],
-    "unresolved_blockers": [
-      "Produce a comparable primary before/after pair and add a genuinely old archival-to-current layer.",
-      "Produce source-reviewed current News content or document a strict fresh-search N/A.",
-      "Produce a substantive More layer from language, archives, observations, knowledge or curated relations.",
-      "Produce an open, directly readable Torggata Reading Trail or document a strict exhaustive N/A search.",
-      "Revise the canonical round choice/contract so four content rounds remain without an artificial Objects/Structures split."
-    ],
-    "automatic_checks_limit": "Green automation, complete schemas, provenance and explicit limitations do not prove that the visible comparison, tab coverage or round composition is good.",
-    "gate": "FAILED_REOPENED_FOR_EDITORIAL_IMPROVEMENT"
+    "critical_findings": [],
+    "unresolved_blockers": [],
+    "gate": "PASS_COMPLETE"
   },
-  "reopened_at": "2026-08-14",
-  "reopen_reason": "Manual review found that technical completion and provenance did not yield a sufficiently strong user-facing result.",
-  "improvement_backlog": "reports/place-production/torggata-quality-improvement-backlog-v1.json"
+  "merge_requirements": [
+    "PR applies to Torggata closeout only",
+    "no new place content or factual claims are introduced",
+    "branch is current with main",
+    "all review threads are resolved",
+    "the complete Torggata regression suite succeeds on unchanged final head",
+    "relevant repository workflows succeed on unchanged final head",
+    "merge uses the expected final head SHA",
+    "merged main and Pages deployment are verified before Olaf Ryes plass starts"
+  ],
+  "final_completion_evidence": {
+    "closeout_pr": 5337,
+    "closeout_head_sha": "8d3800771cb9d311376a815c06abdbf1e38f951e",
+    "merge_commit": "85a4029aba1d0dc9aaadc0fb11d5f7c3378b88bf",
+    "main_verified": true,
+    "pages_run_id": 32896361659,
+    "pages_run_number": 14523,
+    "pages_status": "SUCCESS",
+    "pages_verified_at": "2026-08-25T20:39:35Z"
+  },
+  "conclusion": "Torggata passed the 2026-08-25 manual and content re-QA, PR #5337 was SHA-locked and squash-merged, the exact merge commit was verified as main, and Pages run 32896361659 completed successfully. All five reopened findings are resolved, exactly the four intended people are visible, the score is 29/30, and Torggata is complete."
 }

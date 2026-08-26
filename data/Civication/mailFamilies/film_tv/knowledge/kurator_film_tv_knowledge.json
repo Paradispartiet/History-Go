@@ -8,7 +8,11 @@
     {
       "id": "kurator_kunnskap_i_praksis",
       "purpose": "Bruke Film/TV-fagverkets skille mellom bevaring, tilgang og visning som funksjonell kuratorkunnskap.",
-      "learning_focus": ["filmarv", "tilgang", "rettigheter"],
+      "learning_focus": [
+        "filmarv",
+        "tilgang",
+        "rettigheter"
+      ],
       "mails": [
         {
           "role_scope": "kurator_film_tv",
@@ -45,7 +49,11 @@
               "label": "Skill de tre lagene før du går videre",
               "reply": "At filmen er bevart og tilgjengelig for undersøkelse betyr ikke at offentlig visning er klarert; vi sjekker rettighet og visningskopi separat.",
               "effect": 1,
-              "tags": ["knowledge", "archive", "rights"],
+              "tags": [
+                "knowledge",
+                "archive",
+                "rights"
+              ],
               "feedback": "Du bruker fagkunnskap som praktisk beslutningsstøtte."
             },
             {
@@ -53,8 +61,135 @@
               "label": "Behandle arkivtilgang som visningsklarering",
               "reply": "Når arkivet allerede kan levere filen, må den i praksis være klar for visning.",
               "effect": -1,
-              "tags": ["knowledge_gap", "rights_risk"],
+              "tags": [
+                "knowledge_gap",
+                "rights_risk"
+              ],
               "feedback": "Du gjør teknisk tilgang til en juridisk og kuratorisk konklusjon."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_kurator_history_go",
+      "purpose": "Bruke Cinemateket i History Go som institusjonell og filmhistorisk kontekst mens programcaset faktisk venter, uten at stedskunnskap gir rettighet eller programmyndighet.",
+      "learning_focus": [
+        "History Go",
+        "cinemateket_oslo",
+        "filmarv",
+        "public_attention"
+      ],
+      "mails": [
+        {
+          "role_scope": "kurator_film_tv",
+          "place_id": "cinemateket_oslo",
+          "repeatable": false,
+          "stage": "stable",
+          "thread_key": "film_tv_kurator_programserie_realism_001",
+          "planned_only": true,
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "film_tv",
+            "kurator_film_tv"
+          ],
+          "id": "film_tv_kurator_realism_history_go_cinemateket_001",
+          "mail_type": "knowledge",
+          "mail_family": "role_world_rollout_kurator_history_go",
+          "phase": "advanced",
+          "day_phase": "evening",
+          "priority": 78,
+          "cooldown": 12,
+          "from": "Filmarkivaren",
+          "people_ref": "film_tv_arkivar",
+          "subject": "Mens vi venter: les Cinemateket som institusjon, ikke som smaksgaranti",
+          "summary": "Rettighetsklareringen står åpen. Arkivaren ber deg bruke Cinemateket i History Go til å skille filmarv, institusjonelt mandat, offentlig oppmerksomhet og den konkrete retten til å vise et bestemt verk.",
+          "purpose": "La History Go-kunnskap forbedre senere rework, men aldri produsere rettighet, godkjenning eller objektiv kanon.",
+          "stakes": "Historisk og institusjonell kontekst kan gjøre programmet bedre begrunnet. Feil brukt kan den bare gi prestisje et penere språk.",
+          "situation": [
+            "Cinemateket er en konkret institusjonell arena for filmhistorie og kuratering.",
+            "Et steds kulturelle autoritet er ikke det samme som visningsrett for et bestemt verk.",
+            "Publikumsinteresse kan informere formidling, men kan ikke alene avgjøre kuratorisk eller juridisk status."
+          ],
+          "task_domain": "history_go_kuratorisk_kontekst",
+          "task_kind": "knowledge",
+          "competency": "kontekstualisering",
+          "pressure": "ventetid_og_prestisje",
+          "choice_axis": "skille_mandat_arv_oppmerksomhet_rettighet_vs_institusjonell_prestisje_som_fasit",
+          "consequence_axis": "presis_rework_vs_prestisjeforsterkning",
+          "narrative_arc": "fra_premiss_til_sporbart_program",
+          "interaction_mode": "task",
+          "task_contract": {
+            "task_id": "film_tv_kurator_history_go_cinemateket_context",
+            "completion_rule": "history_go_payload_completed",
+            "failure_rule": "remain_open",
+            "evidence_refs": [
+              "data/places/film_tv/oslo/cinemateket_oslo.json"
+            ]
+          },
+          "task_payload": {
+            "task_kind": "history_go_place",
+            "target_type": "place",
+            "place_id": "cinemateket_oslo",
+            "completion_mode": "open_place",
+            "title": "Les Cinemateket som filmhistorisk og institusjonell arbeidsflate",
+            "description": "Åpne Cinemateket og bruk stedet til å skille filmarv, institusjonelt mandat og publikumsoppmerksomhet fra den konkrete visningsretten og fra kuratorens personlige smak.",
+            "return_context": {
+              "source": "civication",
+              "mail_id": "film_tv_kurator_realism_history_go_cinemateket_001",
+              "role_scope": "kurator_film_tv",
+              "place_id": "cinemateket_oslo"
+            }
+          },
+          "work_context": {
+            "object_ids": [
+              "film_tv_kurator_program_case_001"
+            ],
+            "institution_id": "cinemateket_programavdeling_001",
+            "waiting_for_actor_id": "film_tv_rettighetskoordinator",
+            "priority": "normal"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skill arv, mandat, oppmerksomhet og rettighet i fire spor",
+              "reply": "Jeg bruker stedet til å forstå institusjonens rolle, men lar rettighetsloggen og programmandatet fortsatt avgjøre hva vi faktisk kan anbefale.",
+              "effect": 2,
+              "feedback": "Kunnskapen blir et bedre sorteringsgrep uten å bli skjult myndighet.",
+              "effects": {
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_kurator_history_go_context_applied",
+                    "work_object_id": "film_tv_kurator_program_case_001",
+                    "flag": "cinemateket_kontekst_skilt_fra_rettighet_og_smak"
+                  },
+                  {
+                    "op": "note",
+                    "event_id": "film_tv_kurator_history_go_context_note",
+                    "work_object_id": "film_tv_kurator_program_case_001",
+                    "note": "Cinemateket brukes som institusjonell og filmhistorisk kontekst, ikke som rettighets- eller smaksgaranti."
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Bruk Cinematekets kulturelle tyngde som ekstra argument for ankerverket",
+              "reply": "Når dette er et Cinematek-program, bør institusjonens filmhistoriske autoritet tale for det mest kanoniske verket.",
+              "effect": -1,
+              "feedback": "Institusjonell status blir brukt til å maskere et smakshierarki og løser fortsatt ingen rettighet.",
+              "effects": {
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_kurator_institutional_prestige_as_proof",
+                    "work_object_id": "film_tv_kurator_program_case_001",
+                    "flag": "institusjonell_prestisje_feilbrukt_som_kuratorisk_bevis"
+                  }
+                ]
+              }
             }
           ]
         }

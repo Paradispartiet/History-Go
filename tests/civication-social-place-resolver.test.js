@@ -108,7 +108,7 @@ assert.strictEqual(java.lat, 59.9273);
 assert.strictEqual(java.lon, 10.7414);
 
 for (const [kind, wanted] of Object.entries({
-  culture: ['youngstorget->mono', 'olaf_ryes_plass->parkteatret', 'bla->bla'],
+  culture: ['youngstorget->mono', 'bla->bla'],
   book_library: ['universitetsplassen->tronsmo_bokhandel', 'deichman_bjorvika->(place)'],
   hospitality_food: ['karl_johan->grand_cafe', 'bjorvika->maaemo'],
   retail_social: ['markveien->retro_lykke', 'grensen_kjopesenter->outland']
@@ -116,6 +116,10 @@ for (const [kind, wanted] of Object.entries({
   const found = pairs(resolver.getSocialPlacesByType(kind, opts));
   for (const item of wanted) assert.ok(found.includes(item), `${kind} mangler ${item}`);
 }
+assert.ok(
+  !pairs(resolver.getSocialPlacesByType('culture', opts)).includes('olaf_ryes_plass->parkteatret'),
+  'Parkteatret skal være nabokontekst, ikke et Brand eid av parkflaten'
+);
 
 for (const item of resolver.resolveCivicationSocialPlacesFromBrands(opts)) {
   assert.ok(canonicalSourceIds.has(item.sourcePlaceId), `ukjent brand-place ${item.sourcePlaceId}`);

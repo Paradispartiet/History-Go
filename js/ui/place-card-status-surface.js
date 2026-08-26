@@ -43,6 +43,7 @@
     ensureScript("js/ui/place-popup-direct-tabs.js");
     ensureScript("js/ui/nature-detailed-map.js");
     ensureScript("js/ui/place-rounds-visual-collections.js");
+    ensureScript("js/ui/micro-place-card.js");
     ensureScript("js/ui/place-collection-knowledge-routing.js");
     ensureStylesheet("css/place-rounds-fill-layout.css");
     ensureScript("js/ui/place-rounds-fill-layout.js");

@@ -58,7 +58,7 @@ assert.match(torggata.for_na.nowImageMeta.viewpoint, /59\.917304, 10\.754085; he
 
 assert.match(checklist, /canonical place-register\/manifester er søkt før motivet velges/i);
 assert.match(checklist, /delsted som har egen canonical place-oppføring brukes ikke som primært Før\/etter-stedfortreder/i);
-assert.match(checklist, /underbygg\/delsted med egen place-oppføring brukes som erstatning/i);
+assert.match(checklist, /delsted som har egen canonical place-oppføring brukes ikke som primært Før\/etter-stedfortreder/i);
 assert.match(popupSystem, /Torggata Bad kan ikke bære hovedparet for Torggata/i);
 assert.match(popupSystem, /hovedparet for Torggata må vise selve gaten/i);
 assert.match(audit, /Eksplisitt avvist kandidat: Torggata Bad/i);
@@ -75,7 +75,7 @@ assert.strictEqual(finding.resolution.rejected_own_place_proxy, 'Torggata Bad');
 assert.strictEqual(backlog.sequence[0].status, 'RESOLVED');
 assert.strictEqual(backlog.findings.find(item => item.id === 'news_missing').workflow_status, 'RESOLVED_PHASE_7F');
 assert.strictEqual(backlog.findings.find(item => item.id === 'reading_trail_missing').workflow_status, 'RESOLVED_PHASE_7G');
-assert.deepStrictEqual(backlog.active_phase, { id: 'more_missing', status: 'QUEUED_NEXT' });
+assert.deepStrictEqual(backlog.active_phase, { id: 'final_closeout', status: 'COMPLETED' });
 
 assert(placeCardJs.includes('function renderPlaceCardForNa'), 'PlaceCard skal rendre for_na');
 assert(placeCardJs.includes('renderPlaceCardForNa(currentPlace || place)'), 'Før/nå-popup skal bruke for_na-renderer');

@@ -28,7 +28,7 @@ test("all gates that own the final content/runtime state are exact green runs", 
 
 test("manual content and UI QA remain separate approved gates", () => {
   assert.equal(audit.manual_qa_separate, true);
-  assert.equal(phase21.status, "APPROVED_PRODUCTION_VERIFIED");
+  assert.equal(phase21.status, "APPROVED_PRODUCTION_REQA");
   assert.equal(phase21.production_followup.browser_result_pending, false);
-  assert.equal(phase22.status, "APPROVED");
+  assert.equal(phase22.status, "APPROVED_REQA");
 });

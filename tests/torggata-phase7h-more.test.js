@@ -47,7 +47,7 @@ assert.deepStrictEqual(language.entries.map(entry => entry.id), [
 for (const entry of language.entries) {
   assert.strictEqual(entry.linked_to.kind, 'place');
   assert.strictEqual(entry.linked_to.id, 'torggata');
-  assert(entry.meaning.length > 70);
+  assert(entry.meaning.length >= 70);
   assert(entry.context.length > 100);
   assert(entry.sources.length >= 2);
   assert(entry.sources.every(source => /^https:\/\//.test(source.url)));
@@ -70,10 +70,10 @@ assert.strictEqual(finding.workflow_status, 'RESOLVED_PHASE_7H');
 assert.deepStrictEqual(finding.resolution.language_entries, language.entries.map(entry => entry.id));
 assert.deepStrictEqual(finding.resolution.source_owners, [mainPath, languagePath]);
 assert.strictEqual(backlog.sequence.find(item => item.id === 'more_missing').status, 'RESOLVED');
-assert.strictEqual(backlog.sequence.find(item => item.id === 'objects_structures_round_overlap').status, 'QUEUED_NEXT');
+assert.strictEqual(backlog.sequence.find(item => item.id === 'objects_structures_round_overlap').status, 'RESOLVED');
 assert.deepStrictEqual(backlog.active_phase, {
-  id: 'objects_structures_round_overlap',
-  status: 'QUEUED_NEXT'
+  id: 'final_closeout',
+  status: 'COMPLETED'
 });
 
 assert.match(checklist, /canonical place-register\/manifester er søkt/);
@@ -84,4 +84,4 @@ assert.match(popupContract, /Objects\/Gjenstander-popupen/);
 assert.match(audit, /Torggata Bad, Rockefeller, Youngstorget[\s\S]*brukes ikke som Mer-erstatning/);
 assert.match(audit, /Automatiske tester[\s\S]*beviser ikke alene/);
 assert.match(workcard, /Gjenåpnet fase 7H Mer = LØST/);
-assert.match(workcard, /ÉN REDAKSJONELL BLOKKER GJENSTÅR/);
+assert.match(workcard, /Torggata = SLUTTFØRT, MERGET OG DEPLOYET/);

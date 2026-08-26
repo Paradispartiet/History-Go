@@ -4,6 +4,12 @@ Status: **canonical produksjonsarbeidsflyt**
 Eier: `place_by_place_production_workflow`  
 Sist kontrollert: **2026-08-25**
 
+> **Micro Place-unntak:** Denne fullproduksjonschecklisten gjelder ordinære
+> Places. Steder med `placeTier: "micro"` følger den reduserte, men fortsatt
+> kilde- og identitetsstrenge kontrakten i `docs/MICRO_PLACE_CONTRACT.md`. De skal
+> ikke fylles med People, Stories, Quiz, språkpakker, Fagverk eller fire
+> PlaceCard-samlinger bare for å bestå en fullhetsregel.
+
 Dette dokumentet eier **arbeidsrekkefølge, review-checkpoints og mergekadens** for sted-for-sted-produksjon.
 
 Den komplette detaljerte sjekklisten er bevart og kontraktsoppdatert i:

@@ -1,8 +1,8 @@
 {
   "schema_version": "torggata_quality_improvement_backlog_v1",
   "place_id": "torggata",
-  "generated_at": "2026-08-14",
-  "status": "OPEN_BLOCKING_COMPLETION",
+  "generated_at": "2026-08-25",
+  "status": "CLOSED_MERGED_DEPLOYED",
   "source": "manual_user_quality_review",
   "invariant": {
     "content_rounds_total": 4,
@@ -151,11 +151,16 @@
     "manual_ui_review_required": true,
     "rescore_required": true,
     "minimum_dimension_score": 4,
-    "minimum_total_score": 27
+    "minimum_total_score": 27,
+    "manual_ui_review_status": "PASS",
+    "rescore_status": "PASS",
+    "rescore_total": 29,
+    "verified_at": "2026-08-25",
+    "evidence": "reports/place-production/torggata-phase24-one-place-gate-audit-v1.json"
   },
   "active_phase": {
-    "id": "manual_ui_and_content_reqa",
-    "status": "QUEUED_NEXT"
+    "id": "final_closeout",
+    "status": "COMPLETED"
   },
   "sequence": [
     {
@@ -186,12 +191,12 @@
     {
       "order": 6,
       "id": "manual_ui_and_content_reqa",
-      "status": "QUEUED_NEXT"
+      "status": "RESOLVED"
     },
     {
       "order": 7,
       "id": "final_closeout",
-      "status": "QUEUED"
+      "status": "COMPLETED"
     }
   ]
 }

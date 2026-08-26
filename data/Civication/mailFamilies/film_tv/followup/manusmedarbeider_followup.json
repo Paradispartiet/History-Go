@@ -8,7 +8,11 @@
     {
       "id": "manusmedarbeider_notatoppfolging",
       "purpose": "La forfatteren reagere på hvordan notatet ble formulert og eid.",
-      "learning_focus": ["sosial_hukommelse", "forfattereierskap", "revisjon"],
+      "learning_focus": [
+        "sosial_hukommelse",
+        "forfattereierskap",
+        "revisjon"
+      ],
       "mails": [
         {
           "id": "film_tv_manus_followup_forfatter_001",
@@ -46,18 +50,248 @@
               "label": "Sammenlign variantene mot den senere karakterbuen",
               "reply": "La oss velge ut fra hva hovedpersonen kan vite i scene 37, ikke hvilken replikk jeg liker best.",
               "effect": 1,
-              "tags": ["whole_read", "authorship"],
+              "tags": [
+                "whole_read",
+                "authorship"
+              ],
               "feedback": "Oppfølgingen bruker et delt kriterium og gjør samarbeidet mer presist.",
-              "effects": {"stats": {"quality": 2, "trust": 2, "risk": -1, "energy": -1}}
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -1,
+                  "energy": -1
+                }
+              }
             },
             {
               "id": "B",
               "label": "Velg den mest elegante varianten med en gang",
               "reply": "Variant to leser best. Vi tar den og går videre.",
               "effect": 0,
-              "tags": ["taste", "tempo"],
+              "tags": [
+                "taste",
+                "tempo"
+              ],
               "feedback": "Du gir et tydelig svar, men begrunnelsen kan ikke brukes når konsekvensen viser seg senere.",
-              "effects": {"stats": {"status": 1, "quality": -1, "risk": 1}}
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -1,
+                  "risk": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_manus_continuity_rework",
+      "purpose": "Følge redaksjonell endring gjennom versjon, kontinuitet og research.",
+      "learning_focus": [
+        "rework",
+        "continuity",
+        "research"
+      ],
+      "mails": [
+        {
+          "role_scope": "manusmedarbeider",
+          "place_id": "versjonsarkiv_manus",
+          "repeatable": false,
+          "stage": "stable",
+          "thread_key": "film_tv_manus_revision_realism_001",
+          "planned_only": true,
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "film_tv",
+            "manusmedarbeider"
+          ],
+          "id": "film_tv_manus_realism_continuity_rework_001",
+          "mail_type": "followup",
+          "mail_family": "role_world_rollout_manus_continuity_rework",
+          "phase": "mastery",
+          "day_phase": "afternoon",
+          "priority": 97,
+          "cooldown": 12,
+          "from": "Selma, scriptkoordinator",
+          "people_ref": "selma_scriptkoordinator",
+          "subject": "Reworken flyttet motivasjonen – nå må versjon, kontinuitet og research møtes",
+          "summary": "Nora har prioritert motivasjon foran tempo. Selma finner at den nye løsningen flytter hva karakteren vet i scene 42, mens Maja fortsatt har et kildeforbehold ved den historiske detaljen som utløser valget.",
+          "purpose": "Gjøre rework til substansiell manuspraksis der en redaksjonell prioritering faktisk endrer samme arbeidsobjekt, senere scener og dokumentert usikkerhet.",
+          "stakes": "Kosmetisk rework kan få notatrunden til å se lukket ut, men etterlater et kontinuitetsbrudd og en plausibel opplysning som produksjonsfakta.",
+          "situation": [
+            "Nora har tatt den formelle notatprioriteringen, men ikke skrevet løsningen.",
+            "Selma eier versjons- og kontinuitetssporingen, mens Maja eier researchstatusen.",
+            "Elias skal kunne se hvorfor en ny endring foreslås før han eventuelt skriver den."
+          ],
+          "task_domain": "vedvarende_manusrevisjon",
+          "task_kind": "followup",
+          "competency": "kontinuitet_og_research",
+          "pressure": "reworkfrist_vs_sammenheng",
+          "choice_axis": "konsekvensanalyse_vs_kosmetisk_lukking",
+          "consequence_axis": "fagkollegial_tillit_vs_omarbeidingsgjeld",
+          "narrative_arc": "fra_motstridende_notater_til_sporbart_anbefalingsgrunnlag",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "film_tv_manus_revision_case_001"
+            ],
+            "institution_id": "film_tv_manusutvikling_001",
+            "rework_of_scene_id": "film_tv_manus_realism_author_response_001",
+            "priority": "urgent"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Følg endringen gjennom scene 42 og merk researchforbeholdet før ny levering",
+              "reply": "Jeg lager et endringskart for karakterkunnskap, versjon og kildebelegg og sender bare det avgrensede rework-behovet tilbake.",
+              "effect": 2,
+              "feedback": "Reworken endrer faktisk manussporet uten å skjule hvem som eier tekst, research eller redaksjonell prioritering.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_manus_continuity_reworked",
+                    "work_object_id": "film_tv_manus_revision_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "continuity_and_research_review",
+                    "note": "Motivasjonsendringen er sporet gjennom senere scene, versjon og researchforbehold."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_manus_rework_trace_complete",
+                    "work_object_id": "film_tv_manus_revision_case_001",
+                    "flag": "rework_updates_continuity_and_research"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_manus_standing_script_coordination",
+                    "audience_id": "team:film_tv_script_team",
+                    "delta": 3,
+                    "reason": "Kontinuitet og versjon behandles som felles produksjonsinfrastruktur.",
+                    "source_actor_id": "selma_scriptkoordinator"
+                  },
+                  {
+                    "event_id": "film_tv_manus_standing_research_boundary",
+                    "audience_id": "professional:maja_researchansvarlig",
+                    "delta": 2,
+                    "reason": "Kildeusikkerheten forblir synlig i reworken.",
+                    "source_actor_id": "maja_researchansvarlig"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Juster bare scene 35 og noter at resten tas etter bordprøven",
+              "reply": "Jeg holder omfanget nede nå og lar scene 42 og researchdetaljen bli vurdert etter at vi har hørt teksten.",
+              "effect": -1,
+              "feedback": "Reworken blir lokal og rask, men kjent avhengighet flyttes til en dyrere fase.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_manus_continuity_rework_partial",
+                    "work_object_id": "film_tv_manus_revision_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "continuity_and_research_review",
+                    "note": "Scene 35 er revidert, mens kjent kontinuitets- og researchgjeld følger saken videre."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_manus_rework_debt_carried",
+                    "work_object_id": "film_tv_manus_revision_case_001",
+                    "flag": "known_continuity_research_debt"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_manus_standing_script_debt",
+                    "audience_id": "team:film_tv_script_team",
+                    "delta": -2,
+                    "reason": "En kjent sammenheng behandles som fremtidig ryddearbeid.",
+                    "source_actor_id": "selma_scriptkoordinator"
+                  },
+                  {
+                    "event_id": "film_tv_manus_standing_research_debt",
+                    "audience_id": "professional:maja_researchansvarlig",
+                    "delta": -2,
+                    "reason": "Kildeusikkerhet blir stående nær produksjonstekst.",
+                    "source_actor_id": "maja_researchansvarlig"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Bruk History Go-notatet til å skjerpe spørsmålet uten å låne historisk autoritet",
+              "reply": "Jeg bruker konteksten til å skille hva scenen undersøker fra hva kilden faktisk dokumenterer, og lar Elias eie den nye formuleringen.",
+              "effect": 3,
+              "affordance": {
+                "history_go": {
+                  "task_mail_ids": [
+                    "film_tv_manus_realism_history_go_skouen_context_001"
+                  ],
+                  "require_task_completed": true,
+                  "require_history_go_correct": true
+                }
+              },
+              "feedback": "Historiekunnskapen gjør reworken mer presis uten å bli fasit for karakter, dialog eller godkjenning.",
+              "effects": {
+                "stats": {
+                  "quality": 3,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_manus_history_context_rework",
+                    "work_object_id": "film_tv_manus_revision_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "continuity_and_research_review",
+                    "note": "History Go-kontekst er brukt som avgrenset spørsmålsgrunnlag i kontinuitets- og researchrework."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_manus_history_rework_bounded",
+                    "work_object_id": "film_tv_manus_revision_case_001",
+                    "flag": "history_go_informs_without_authority"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_manus_standing_history_rework",
+                    "audience_id": "professional:maja_researchansvarlig",
+                    "delta": 3,
+                    "reason": "Historisk kontekst og kildebelegg holdes adskilt.",
+                    "source_actor_id": "maja_researchansvarlig"
+                  },
+                  {
+                    "event_id": "film_tv_manus_standing_team_history_trace",
+                    "audience_id": "team:film_tv_script_team",
+                    "delta": 2,
+                    "reason": "Kontekst forbedrer reworken uten å skjule forfattereierskap.",
+                    "source_actor_id": "selma_scriptkoordinator"
+                  }
+                ]
+              }
             }
           ]
         }

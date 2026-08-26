@@ -22,7 +22,9 @@
   const esc = value => String(value ?? "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\"/g,"&quot;").replace(/'/g,"&#39;");
 
   function isTarget(place) {
-    return s(place?.category).toLowerCase() === TARGET_CATEGORY && s(place?.subcategory_id).toLowerCase() === TARGET_SUBCATEGORY;
+    return s(place?.placeTier).toLowerCase() !== "micro"
+      && s(place?.category).toLowerCase() === TARGET_CATEGORY
+      && s(place?.subcategory_id).toLowerCase() === TARGET_SUBCATEGORY;
   }
 
   function currentPlace() {

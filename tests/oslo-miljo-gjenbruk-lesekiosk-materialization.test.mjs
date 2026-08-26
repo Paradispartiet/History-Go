@@ -25,12 +25,17 @@ test('Oslo Miljø & gjenbruk materialiserer nøyaktig 11 canonical Places',()=>{
   for(const place of places){
     assert.equal(place.category,'natur',`${place.id} må beholde Natur-hovedkategori`);
     assert.equal(place.subcategory_id,'miljo_gjenbruk',`${place.id} må bruke canonical underkategori`);
-    assert.deepEqual(place.place_card_profile?.collection_ids,['reuse','materials','environment','systems']);
+    assert.equal(place.placeTier,'micro',`${place.id} skal bruke redusert canonical mikrostedkontrakt`);
+    assert.equal(place.micro_place_profile?.schema,'history_go_micro_place_profile_v1');
+    assert.equal(place.micro_place_profile?.quizMode,'none');
+    assert.equal(place.place_card_profile,undefined,`${place.id} skal ikke ha et kunstig fireflaters PlaceCard`);
     for(const key of ['reuse','materials','environment','systems']) assert.ok(Array.isArray(place.circular_profile?.[key])&&place.circular_profile[key].length>0,`${place.id} mangler circular_profile.${key}`);
     assert.ok(Number.isFinite(place.lat)&&Number.isFinite(place.lon),`${place.id} mangler koordinater`);
     const packet=read(path.join(PROD_DIR,`${place.id}.json`));
     assert.equal(packet.status,'ready_v4_2',`${place.id} mangler ferdig 4.2-produksjonspakke`);
-    assert.ok(packet.quizReadiness?.questions?.length>=8,`${place.id} mangler obligatorisk quiz`);
+    assert.equal(packet.quizReadiness?.questions?.length,0,`${place.id} skal ikke få konstruert quiz`);
+    assert.equal(packet.reviews?.factual?.status,'passed');
+    assert.equal(packet.reviews?.editorial?.status,'passed');
   }
 });
 
@@ -47,13 +52,16 @@ test('alle 21 Lesekiosker er egne litteratursteder med egne stabile ID-er',()=>{
   for(const place of places){
     assert.equal(place.category,'litteratur',`${place.id} må gi litteraturprikk`);
     assert.equal(place.subcategory_id,'lesekiosk',`${place.id} må være Lesekiosk-underkategori`);
-    assert.deepEqual(place.place_card_profile?.collection_ids,['people','objects','brands','productions']);
+    assert.equal(place.placeTier,'micro',`${place.id} skal være canonical mikrosted`);
+    assert.equal(place.micro_place_profile?.kind,'lesekiosk');
+    assert.equal(place.micro_place_profile?.quizMode,'none');
+    assert.equal(place.place_card_profile,undefined,`${place.id} skal bruke forenklet PlaceCard`);
     assert.ok(Number.isFinite(place.lat)&&Number.isFinite(place.lon),`${place.id} mangler kartanker`);
     assert.equal(place.sourceProvider,'official_map');
     assert.equal(place.coordStatus,'needs_manual_visual_qa');
     const packet=read(path.join(PROD_DIR,`${place.id}.json`));
     assert.equal(packet.status,'ready_v4_2',`${place.id} mangler ferdig 4.2-produksjonspakke`);
-    assert.ok(packet.quizReadiness?.questions?.length>=8,`${place.id} mangler obligatorisk quiz`);
+    assert.equal(packet.quizReadiness?.questions?.length,0,`${place.id} skal ikke få konstruert quiz`);
   }
 });
 
@@ -64,4 +72,35 @@ test('manifestet inneholder alle 32 nye canonical Place-filer uten duplikat-ID',
   expected.push(...source.candidates.map(candidate=>`places/litteratur/oslo/lesekiosk/${candidate.id}.json`));
   for(const rel of expected) assert.ok(manifest.files.includes(rel),`manifest mangler ${rel}`);
   assert.equal(new Set(expected).size,32);
+  const index=read(path.join(ROOT,'data/places/places_index.json'));
+  const expectedIds=new Set([...expectedReuseIds,...source.candidates.map(candidate=>candidate.id)]);
+  const indexed=index.filter(place=>expectedIds.has(place.id));
+  assert.equal(indexed.length,32,'hver ny ID skal finnes nøyaktig én gang i kartindeksen');
+  assert.equal(new Set(indexed.map(place=>place.id)).size,32,'ingen ny ID kan kollidere i kartindeksen');
+  for(const place of indexed){
+    assert.equal(place.placeTier,'micro',`${place.id} må beholde Micro Place-tier i kartindeksen`);
+    assert.equal(place.micro_place_profile?.schema,'history_go_micro_place_profile_v1');
+    assert.ok(place.lat>=59&&place.lat<=61&&place.lon>=9&&place.lon<=12,`${place.id} må ha gyldig Oslo-kartanker`);
+  }
+});
+
+test('Sagene 70 og 71 forblir to separate canonical litteraturmarkører',()=>{
+  const seventy=read(path.join(KIOSK_DIR,'lesekiosk_70_sagene_kirke.json'));
+  const seventyOne=read(path.join(KIOSK_DIR,'lesekiosk_71_sagene_kirke.json'));
+  assert.notEqual(seventy.id,seventyOne.id);
+  assert.match(seventy.name,/70/);
+  assert.match(seventyOne.name,/71/);
+  assert.equal(seventy.category,'litteratur');
+  assert.equal(seventyOne.category,'litteratur');
+});
+
+test('materialisering kan ikke godkjenne sin egen review',()=>{
+  const materializer=fs.readFileSync(path.join(ROOT,'tools/materialize-oslo-micro-places.mjs'),'utf8');
+  assert.doesNotMatch(materializer,/status:\s*['"]ready_v4_2['"]/u);
+  assert.doesNotMatch(materializer,/factual:\s*\{status:\s*['"]passed['"]/u);
+  assert.match(materializer,/factual:\s*\{status:\s*['"]pending['"]/u);
+  const report=read(path.join(ROOT,'reports/oslo-micro-places-2026/review-integrity-report.json'));
+  assert.equal(report.passed,true);
+  assert.equal(report.placeCount,32);
+  assert.doesNotMatch(report.reviewer,/generator|materializer/iu);
 });

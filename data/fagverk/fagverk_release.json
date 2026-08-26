@@ -11,14 +11,14 @@
     "schema": "history_go_fagverk_registry_v1",
     "version": "3.14.0",
     "updated_at": "2026-08-21",
-    "content_sha256": "85b79e7116d85cf8305e4e99b3fe81ff51a171cc9364d81b236da9c226a65888"
+    "content_sha256": "4dabdfc1d3aa7edaf7f83188eb2a7244b8b4836ca754759153fbbf5a74a6912d"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
     "schema": "history_go_fagverk_subject_inventory_v1",
     "version": "1.12.0",
     "updated_at": "2026-08-20",
-    "content_sha256": "5cefdaa14b36c1c8962b96e132766e0ca4cba8ddfe1e64c079da0935decf2c6f",
+    "content_sha256": "ffeac66504a3ddd98ca52d9f344f9e103affac4abddc8cc73b1e2adc98933680",
     "root_subject_count": 19,
     "specialization_count": 1
   },
@@ -27,18 +27,18 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "56f332f062f9c5d25a258b50de0263ae64378cc96d4dadb86e7909734b4f2eb2"
+    "content_sha256": "8e0cc12a87fb9be7f3aa81694d9148842b672ef8a66debb6010aa2a9e9fa2d0c"
   },
   "summary": {
     "subject_count": 20,
     "root_subject_count": 19,
     "specialization_count": 1,
-    "chapter_subject_count": 16,
-    "chapter_count": 175,
-    "module_file_count": 441,
-    "package_file_count": 265,
-    "chapter_referenced_file_count": 835,
-    "referenced_file_count": 1043,
+    "chapter_subject_count": 17,
+    "chapter_count": 178,
+    "module_file_count": 453,
+    "package_file_count": 275,
+    "chapter_referenced_file_count": 856,
+    "referenced_file_count": 1071,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -76,9 +76,9 @@
         "supersetQuizMal"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 30,
+      "package_file_count": 33,
       "required_package_file_count": 4,
-      "optional_package_file_count": 26,
+      "optional_package_file_count": 29,
       "package_files": [
         {
           "path": "data/fag/by/emner_by.json",
@@ -201,6 +201,18 @@
           "content_sha256": "359d9ed3e5c65a1f7701dd8fa435b58c4b6f7d7e85c36b358165b9bc7c5e779d"
         },
         {
+          "path": "data/quiz/by/olaf_ryes_plass_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.olaf_ryes_plass.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "b43b28af344b9df603998bde8b9177430a3ca52e1c1b325d5a8abbbc034e2a08"
+        },
+        {
           "path": "data/quiz/by/storgata_sets.json",
           "required": false,
           "fields": [
@@ -283,6 +295,18 @@
           ],
           "exists": true,
           "content_sha256": "43643471123d74aaf785c72b90e691e8566a66007eb9c358d3e79113a678ce88"
+        },
+        {
+          "path": "data/quiz/production_briefs/by/olaf_ryes_plass.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.olaf_ryes_plass.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "92c3dd69051f6769f158e86c9824b40a7d02111c720dc630dbbe5f2a03d7f788"
         },
         {
           "path": "data/quiz/production_briefs/by/storgata.json",
@@ -369,6 +393,18 @@
           "content_sha256": "480ad17eb38fbd3e713c813b0cf8295e98ea2e38281f04ccdbef868a85614cba"
         },
         {
+          "path": "data/quiz/production_context/by/olaf_ryes_plass.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.olaf_ryes_plass.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "706c9155ac3efe1503f34251713b1febdf37266adf83e92077f448617494cf05"
+        },
+        {
           "path": "data/quiz/production_context/by/storgata.json",
           "required": false,
           "fields": [
@@ -441,20 +477,20 @@
           "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
         }
       ],
-      "package_content_sha256": "b307c4bcc29988f3f00fe460590eaccc919b5325540171eb670043861a4c06c8",
+      "package_content_sha256": "aa01c51a3a2639f5b8f6879d5b6b45f8b21429997dfcd9a0b87b56e14ed86151",
       "chapter_count": 17,
       "module_file_count": 51,
       "brief_file_count": 17,
       "claims_file_count": 17,
       "chapter_referenced_file_count": 102,
       "chapter_content_sha256": "21ed783bb2d9f06494fa9a56eb60af89e5d8c8225a51d930eebddf35203dd283",
-      "referenced_file_count": 132,
+      "referenced_file_count": 135,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "6697139e299b1970e9b6c512ea5fe826965e9fde21dc39a723633512013564a8",
-      "content_sha256": "1b61a7c2c2e21ee9ab27c0cdb6dced2b85a5928adbbc57268e0a9a45f378e48e",
+      "structure_sha256": "1744801106e413aeee274985f7c6fb9876a427b61feec485cba4b6572b0936f3",
+      "content_sha256": "8bd6c2f9c9cf6f97fc410423dd61d4b8d59e8f99d04e3ce1f6a411c1fdb167cd",
       "chapters": [
         {
           "chapter_id": "byliv-offentlige-rom",
@@ -5452,13 +5488,13 @@
       "chapters": []
     },
     "utdanning": {
-      "title": "utdanning",
+      "title": "Skole & utdanning",
       "kind": "subject",
       "parent_subject_id": null,
       "schema_family": "foundation_v1",
       "pilot": false,
       "package_status": "complete",
-      "chapter_status": "not_materialized",
+      "chapter_status": "materialized",
       "required_manifest_fields": [
         "pensum",
         "emner",
@@ -5469,23 +5505,51 @@
         "supersetQuizMal",
         "status",
         "quizStandard",
-        "quizQuestionSchema"
+        "quizQuestionSchema",
+        "sourceClaimBriefs",
+        "chapters"
       ],
       "present_manifest_fields": [
+        "chapters",
         "emner",
         "fagkart",
         "methods",
         "pensum",
         "quizQuestionSchema",
         "quizStandard",
+        "sourceClaimBriefs",
         "status",
         "supersetQuizMal"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 7,
+      "package_file_count": 14,
       "required_package_file_count": 4,
-      "optional_package_file_count": 3,
+      "optional_package_file_count": 10,
       "package_files": [
+        {
+          "path": "data/fag/utdanning/didactics_source_claim_brief_v1.json",
+          "required": false,
+          "fields": [
+            "sourceClaimBriefs"
+          ],
+          "key_paths": [
+            "sourceClaimBriefs[1]"
+          ],
+          "exists": true,
+          "content_sha256": "55e272a3a3c513af38e05079b9d191277832b873f760e32ef6e2a695c71cbbaa"
+        },
+        {
+          "path": "data/fag/utdanning/early_childhood_learning_source_claim_brief_v1.json",
+          "required": false,
+          "fields": [
+            "sourceClaimBriefs"
+          ],
+          "key_paths": [
+            "sourceClaimBriefs[2]"
+          ],
+          "exists": true,
+          "content_sha256": "0e29aedf64b8e1b0e0d4d3c63a5aa1e87b2f8c31e7b53fccbef1bd7dce23e823"
+        },
         {
           "path": "data/fag/utdanning/emner_utdanning_canonical_v1.json",
           "required": true,
@@ -5496,7 +5560,7 @@
             "emner"
           ],
           "exists": true,
-          "content_sha256": "9349eedb4991d0fbb364685c1a30ae1f9f69dbf6ebf23b9b4a5d81b1b653e891"
+          "content_sha256": "27387f7da4c28988413abfcb1fae90648da376f18eba81a15a3dbbadabd58928"
         },
         {
           "path": "data/fag/utdanning/fagkart_utdanning_canonical_v1.json",
@@ -5520,7 +5584,31 @@
             "methods"
           ],
           "exists": true,
-          "content_sha256": "d03cdc2712cf4472849ea7c02f1fcd9969ab9645ad210a3ae093b71b9406123a"
+          "content_sha256": "536a9dc3ec98beb4bbea00a6ae645d03994ed4bf9924af3429fbd934fbc021c7"
+        },
+        {
+          "path": "data/fag/utdanning/pedagogy_learning_theory_source_claim_brief_v1.json",
+          "required": false,
+          "fields": [
+            "sourceClaimBriefs"
+          ],
+          "key_paths": [
+            "sourceClaimBriefs[0]"
+          ],
+          "exists": true,
+          "content_sha256": "0afce9fa2df0f565cab94eb15428218270f289d65a11a6b3141f2827fa724d2b"
+        },
+        {
+          "path": "data/fag/utdanning/primary_lower_secondary_school_source_claim_brief_v1.json",
+          "required": false,
+          "fields": [
+            "sourceClaimBriefs"
+          ],
+          "key_paths": [
+            "sourceClaimBriefs[3]"
+          ],
+          "exists": true,
+          "content_sha256": "c0e2cfe63ec2ca1b4b454439ed8698bfc8a8408f5f7d61f5f98791c74866e437"
         },
         {
           "path": "data/fag/utdanning/supersetQUIZMAL_utdanning.json",
@@ -5544,7 +5632,43 @@
             "pensum"
           ],
           "exists": true,
-          "content_sha256": "117d9f79cbd62c24bbe1b1cb822e47a7f86fb345c388b2bcb1b1f4254867ef59"
+          "content_sha256": "0e125debe07e218ef6bbf1e0219c73e04642d28adb4dd41a2744d264966172fe"
+        },
+        {
+          "path": "data/fagverk/utdanning/barnehage-tidlig-laering-lek-sprak-samspill-og-utvikling.json",
+          "required": false,
+          "fields": [
+            "chapters"
+          ],
+          "key_paths": [
+            "chapters[2]"
+          ],
+          "exists": true,
+          "content_sha256": "75465622e226845b4a9811807e52b08da88f8d45fa8ee9f41cdd73e4df7946e2"
+        },
+        {
+          "path": "data/fagverk/utdanning/didaktikk-mal-innhold-arbeidsformer-vurdering-og-kontekst.json",
+          "required": false,
+          "fields": [
+            "chapters"
+          ],
+          "key_paths": [
+            "chapters[1]"
+          ],
+          "exists": true,
+          "content_sha256": "c79b0c77b80b65827d2e209b6b2ae719c77311f9eea508aa5a178f14142db8f4"
+        },
+        {
+          "path": "data/fagverk/utdanning/pedagogikk-laeringsteori-laering-kunnskap-motivasjon-og-selvregulering.json",
+          "required": false,
+          "fields": [
+            "chapters"
+          ],
+          "key_paths": [
+            "chapters[0]"
+          ],
+          "exists": true,
+          "content_sha256": "4ebcc70b3fb863bf7181629e5c000f79570b10ad7c11fc7e6a16f670ccc405ce"
         },
         {
           "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
@@ -5571,21 +5695,46 @@
           "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
         }
       ],
-      "package_content_sha256": "7ca5101f8870446274672667b5f1e5ed57561eacf3ad085d8c0095662b62132d",
-      "chapter_count": 0,
-      "module_file_count": 0,
-      "brief_file_count": 0,
-      "claims_file_count": 0,
-      "chapter_referenced_file_count": 0,
-      "chapter_content_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-      "referenced_file_count": 7,
+      "package_content_sha256": "dbd7f6e361292513c3b6275d6fad0b43653ac3f9d96cc6d47e7c78825e9a824b",
+      "chapter_count": 3,
+      "module_file_count": 12,
+      "brief_file_count": 3,
+      "claims_file_count": 3,
+      "chapter_referenced_file_count": 21,
+      "chapter_content_sha256": "88f1a8e32f0102780215a05f578124a5b847a26edbab9daf1722b0dd95079cb4",
+      "referenced_file_count": 32,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "7277c52cf1665ad71f60f075f0487fb8c21c1fc0d9d790f9dbff24d7f397113f",
-      "content_sha256": "7ca5101f8870446274672667b5f1e5ed57561eacf3ad085d8c0095662b62132d",
-      "chapters": []
+      "structure_sha256": "d4ff495868fd1b836c8cd658cd8572e43b738967076ecb5d499c655bf2ba6cf9",
+      "content_sha256": "03ea9f703abc1d040b620dc08a75f040e3c6561ef8ce56daab8bd57d9689af50",
+      "chapters": [
+        {
+          "chapter_id": "pedagogikk-laeringsteori-laering-kunnskap-motivasjon-og-selvregulering",
+          "title": "Pedagogikk og læringsteori: læring, kunnskap, motivasjon og selvregulering",
+          "file": "data/fagverk/utdanning/pedagogikk-laeringsteori-laering-kunnskap-motivasjon-og-selvregulering.json",
+          "module_file_count": 4,
+          "referenced_file_count": 7,
+          "content_sha256": "488b943652fc4b787bc70ac7e6ca3b68cd54a6bd5e1d2be236d0b5b892659225"
+        },
+        {
+          "chapter_id": "didaktikk-mal-innhold-arbeidsformer-vurdering-og-kontekst",
+          "title": "Didaktikk: mål, innhold, arbeidsformer, vurdering og kontekst",
+          "file": "data/fagverk/utdanning/didaktikk-mal-innhold-arbeidsformer-vurdering-og-kontekst.json",
+          "module_file_count": 4,
+          "referenced_file_count": 7,
+          "content_sha256": "6f700dab3146a363410377631ce270ab38363fcf87a1ab4b82e28bc8648386b7"
+        },
+        {
+          "chapter_id": "barnehage-tidlig-laering-lek-sprak-samspill-og-utvikling",
+          "title": "Barnehage og tidlig læring: lek, språk, samspill og utvikling",
+          "file": "data/fagverk/utdanning/barnehage-tidlig-laering-lek-sprak-samspill-og-utvikling.json",
+          "module_file_count": 4,
+          "referenced_file_count": 7,
+          "content_sha256": "12126bd737b8d1c9d49cf905ddff7962c034f4bb9c48dc92c7e4d961570a3c4f"
+        }
+      ]
     },
     "vitenskap": {
       "title": "Vitenskap & teknologi",
@@ -5765,5 +5914,5 @@
       ]
     }
   },
-  "release_sha256": "83dc1702f71a5512a5337c98d4dbc77a4297ba98c78c62c0b9c7abc05de7f140"
+  "release_sha256": "826b808059d8dc55e3628ea248ee78e7b5782553f1946440736c5904345b8d61"
 }

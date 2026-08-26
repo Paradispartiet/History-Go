@@ -8,7 +8,11 @@
     {
       "id": "manusmedarbeider_versjonsgrunnlag",
       "purpose": "Åpne arbeidsdagen med et konkret versjons- og beslutningsproblem.",
-      "learning_focus": ["versjonskontroll", "beslutningseier", "notatspor"],
+      "learning_focus": [
+        "versjonskontroll",
+        "beslutningseier",
+        "notatspor"
+      ],
       "mails": [
         {
           "id": "film_tv_manus_job_versjonsgrunnlag_001",
@@ -45,18 +49,190 @@
               "label": "Frys versjon 12 og registrer 12b som åpne forslag",
               "reply": "Jeg bruker levert versjon 12 som baseline og lister 12b-endringene med eier og status før de vurderes.",
               "effect": 1,
-              "tags": ["traceability", "clarity"],
+              "tags": [
+                "traceability",
+                "clarity"
+              ],
               "feedback": "Notatrunden får ett felles grunnlag uten at forslag blir presentert som vedtak.",
-              "effects": {"stats": {"quality": 2, "trust": 2, "risk": -2, "energy": -1}}
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
             },
             {
               "id": "B",
               "label": "Bruk 12b fordi den inneholder de siste endringene",
               "reply": "Jeg antar at 12b er den reelle arbeidsversjonen og skriver notatene derfra.",
               "effect": -1,
-              "tags": ["tempo", "version_risk"],
+              "tags": [
+                "tempo",
+                "version_risk"
+              ],
               "feedback": "Du sparer tid nå, men gjør uavklarte forslag til skjulte beslutninger.",
-              "effects": {"stats": {"status": 1, "quality": -2, "risk": 3, "trust": -2}}
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "risk": 3,
+                  "trust": -2
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_manus_revision_case",
+      "purpose": "Åpne ett vedvarende og sporbart revisjonsobjekt før forslag blir skjult tekst.",
+      "learning_focus": [
+        "persistent_work_object",
+        "version_trace",
+        "authority_boundary"
+      ],
+      "mails": [
+        {
+          "role_scope": "manusmedarbeider",
+          "place_id": "manusrommet_produksjon",
+          "repeatable": false,
+          "stage": "stable",
+          "thread_key": "film_tv_manus_revision_realism_001",
+          "planned_only": true,
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "film_tv",
+            "manusmedarbeider"
+          ],
+          "id": "film_tv_manus_realism_revision_case_open_001",
+          "mail_type": "job",
+          "mail_family": "role_world_rollout_manus_revision_case",
+          "phase": "advanced",
+          "day_phase": "morning",
+          "priority": 90,
+          "cooldown": 12,
+          "from": "Nora, manusredaktør",
+          "people_ref": "nora_manusredaktor",
+          "subject": "Åpne omskrivningen som én sporbar sak før notatene blir tekst",
+          "summary": "Nora legger tre produsentnotater, to forfatterforbehold og en uavklart researchdetalj på bordet. Du må åpne ett versjonert revisjonsobjekt før noen formulering behandles som besluttet.",
+          "purpose": "Bevise et vedvarende manusobjekt som kan overleve forfatterhandoff, venting, research, rework, bordprøve og redaksjonell avslutning.",
+          "stakes": "Hvis første løsning skrives direkte inn i teksten, kan både beslutningseier, forfatterstemme og kildeusikkerhet forsvinne bak en tilsynelatende ryddig versjon.",
+          "situation": [
+            "Versjon 18 er levert baseline, mens 18b inneholder uavklarte forslag fra flere avsendere.",
+            "Elias eier forfatterstemmen; Nora eier prioriteringen av redaksjonelle notater.",
+            "Manusmedarbeideren kan analysere, strukturere og foreslå, men ikke godkjenne endelig manus eller overta kreditering."
+          ],
+          "task_domain": "vedvarende_manusrevisjon",
+          "task_kind": "job",
+          "competency": "versjonssporbarhet",
+          "pressure": "frist_og_motstridende_notater",
+          "choice_axis": "apent_beslutningsspor_vs_skjult_omskriving",
+          "consequence_axis": "reviderbarhet_vs_forfatterskapslekkasje",
+          "narrative_arc": "fra_motstridende_notater_til_sporbart_anbefalingsgrunnlag",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "film_tv_manus_revision_case_001"
+            ],
+            "institution_id": "film_tv_manusutvikling_001",
+            "deadline_ref": "produksjonsutkast_for_bordprove",
+            "deadline_day": 12,
+            "deadline_phase": "afternoon",
+            "priority": "high"
+          },
+          "effects": {
+            "work_object_ops": [
+              {
+                "op": "create",
+                "event_id": "film_tv_manus_revision_case_opened",
+                "work_object": {
+                  "work_object_id": "film_tv_manus_revision_case_001",
+                  "kind": "script_revision_case",
+                  "role_scope": "manusmedarbeider",
+                  "institution_id": "film_tv_manusutvikling_001",
+                  "title": "Manusrevisjon: scene 35, versjon 18 og bordprøve",
+                  "status": "in_progress",
+                  "phase": "brief_and_version_baseline",
+                  "people_refs": [
+                    "nora_manusredaktor",
+                    "elias_manusforfatter",
+                    "selma_scriptkoordinator",
+                    "maja_researchansvarlig"
+                  ],
+                  "place_refs": [
+                    "manusrommet_produksjon",
+                    "versjonsarkiv_manus",
+                    "researchbord_film_tv",
+                    "cinemateket_oslo"
+                  ],
+                  "knowledge_refs": [
+                    "data/people/film_tv/oslo/people_film_tv_oslo.json"
+                  ],
+                  "open_questions": [
+                    "Hvilket problem skal scenen faktisk løse?",
+                    "Hvem eier prioriteringen når notater motsier hverandre?",
+                    "Hvilken historisk detalj er kildebelagt, og hva er fortsatt bare plausibelt?"
+                  ],
+                  "deadline": "bordprove_dag_12_ettermiddag",
+                  "confidentiality": "internt_manus_og_researchspor",
+                  "flags": [
+                    "revision_case_opened"
+                  ],
+                  "shared": false
+                }
+              }
+            ]
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Frys baseline og registrer problem, eier og usikkerhet hver for seg",
+              "reply": "Jeg åpner versjon 18 som baseline og fører forslag, beslutningseier og researchstatus som egne spor.",
+              "effect": 2,
+              "feedback": "Omskrivningen blir lesbar før den blir tekst, og ingen foreløpig idé presenteres som vedtak.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_manus_baseline_traced",
+                    "work_object_id": "film_tv_manus_revision_case_001",
+                    "flag": "baseline_problem_owner_uncertainty_traced"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Start i 18b og rydd eierskapet når teksten sitter",
+              "reply": "Jeg samler de nyeste forslagene i 18b først; vi kan rekonstruere beslutningene etterpå.",
+              "effect": -2,
+              "feedback": "Tempoet øker, men uavklarte forslag blir skjult premiss for forfatterens neste arbeid.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                },
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_manus_baseline_blurred",
+                    "work_object_id": "film_tv_manus_revision_case_001",
+                    "flag": "draft_precedes_decision_trace"
+                  }
+                ]
+              }
             }
           ]
         }

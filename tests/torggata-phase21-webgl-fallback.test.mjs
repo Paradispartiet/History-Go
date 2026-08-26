@@ -157,7 +157,7 @@ test("no-WebGL place routing opens Torggata directly instead of requiring map fl
   assert.equal(classNames.has("hg-view-map"), true);
 });
 
-test("phase 19/21 remain historical snapshots while 8F queues new manual QA", () => {
+test("phase 19 remains historical while production re-QA records the final collection state", () => {
   assert.equal(place.category, "by");
   assert.deepEqual(Object.keys(phase19.rounds), ["people", "objects", "brands", "structures"]);
   assert.deepEqual(phase21.round_contract.content_rounds, ["people", "objects", "brands", "structures"]);
@@ -166,5 +166,6 @@ test("phase 19/21 remain historical snapshots while 8F queues new manual QA", ()
   assert.equal(Object.prototype.hasOwnProperty.call(place, "objects"), false);
   assert.equal(Object.prototype.hasOwnProperty.call(place, "structures"), false);
   assert.match(workcard, /People · Bilder · Brands · Relaterte steder/);
-  assert.match(workcard, /GJENÅPNET FOR RE-QA/);
+  assert.match(workcard, /GODKJENT ETTER PRODUKSJONS-RE-QA/);
+  assert.match(workcard, /Torggata = SLUTTFØRT, MERGET OG DEPLOYET/);
 });

@@ -14,7 +14,7 @@ const brands = readJson("reports/place-production/torggata-phase13-brands-audit-
 const images = readJson("reports/place-production/torggata-phase19-images-audit-v1.json");
 
 test("Torggata phase 22 covers every content-QA checklist item", () => {
-  assert.equal(audit.status, "APPROVED");
+  assert.equal(audit.status, "APPROVED_REQA");
   assert.equal(audit.checklist.length, 11);
   assert.ok(audit.checklist.every((item) => ["PASS", "N_A"].includes(item.status)));
   assert.equal(audit.checklist.find((item) => item.id === "nature_ownership")?.status, "N_A");
@@ -55,9 +55,9 @@ test("quiz, people, brands and images retain reviewed populations and holdbacks"
   assert.equal(images.generated_or_reconstructed_assets, 0);
 });
 
-test("historical production evidence is retained and current 8F profile awaits re-QA", () => {
+test("historical production evidence is retained and final re-QA is approved", () => {
   assert.equal(place.category, "by");
-  assert.equal(phase21.status, "APPROVED_PRODUCTION_VERIFIED");
+  assert.equal(phase21.status, "APPROVED_PRODUCTION_REQA");
   assert.equal(phase21.production_followup.observed_round_count, 4);
   assert.deepEqual(phase21.production_followup.observed_visible_rounds, ["people", "objects", "brands", "structures"]);
   assert.equal(phase21.production_followup.observed_badge_separate, true);
@@ -66,4 +66,6 @@ test("historical production evidence is retained and current 8F profile awaits r
   assert.deepEqual(place.round_profile.content_round_ids, ["people", "images", "brands", "related"]);
   assert.equal(Object.prototype.hasOwnProperty.call(place, "objects"), false);
   assert.equal(Object.prototype.hasOwnProperty.call(place, "structures"), false);
+  assert.equal(phase21.final_reqa_2026_08_25.status, "PASS");
+  assert.equal(audit.final_reqa_2026_08_25.status, "PASS");
 });

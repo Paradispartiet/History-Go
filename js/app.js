@@ -106,6 +106,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // entry-handleren må derfor være lastet før brukeren kan klikke dem.
     await safeRun("loadWonderkammerEntry", () => loadScriptOnce("js/ui/wonderkammer-entry.js"));
     await safeRun("loadPlaceCard", () => loadScriptOnce("js/ui/place-card.js"));
+    await safeRun("loadMicroPlaceCard", () => loadScriptOnce("js/ui/micro-place-card.js"));
     await safeRun("loadPlacePopupV2", () => loadScriptOnce("js/ui/place-popup-v2.js"));
     await safeRun("loadPlacePopupTabs", () => loadScriptOnce("js/ui/place-popup-tabs.js"));
 

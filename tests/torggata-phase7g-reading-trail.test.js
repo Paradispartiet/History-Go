@@ -89,14 +89,14 @@ assert.strictEqual(finding.resolution.verified_at, '2026-08-14');
 assert.strictEqual(backlog.sequence[0].status, 'RESOLVED');
 assert.strictEqual(backlog.sequence[1].status, 'RESOLVED');
 assert.strictEqual(backlog.sequence[2].status, 'RESOLVED');
-assert.strictEqual(backlog.sequence[3].status, 'QUEUED_NEXT');
+assert.strictEqual(backlog.sequence[3].status, 'RESOLVED');
 assert.deepStrictEqual(backlog.active_phase, {
-  id: 'more_missing',
-  status: 'QUEUED_NEXT'
+  id: 'final_closeout',
+  status: 'COMPLETED'
 });
 
-assert.match(workcard, /7G LESESPOR LØST; MER NESTE/);
-assert.match(workcard, /TO REDAKSJONELLE BLOKKERE GJENSTÅR/);
+assert.match(workcard, /Gjenåpnet fase 7G Lesespor = LØST/);
+assert.match(workcard, /Torggata = SLUTTFØRT, MERGET OG DEPLOYET/);
 assert.match(workcard, /Ingen oppføring bruker Torggata Bad, Rockefeller eller Youngstorget som stedfortreder/);
 assert.match(checklist, /Lesespor kan ikke godkjennes som tom\/N\/A/);
 assert.match(checklist, /betalingslåst er ikke tilstrekkelig N\/A-grunn/);

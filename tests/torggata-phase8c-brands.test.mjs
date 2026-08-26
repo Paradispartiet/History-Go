@@ -79,10 +79,10 @@ test('brand-reglene og runtime bruker catalog-mappingen uten stedsspesifikk sær
   assert.doesNotMatch(loader, /torggata/);
 });
 
-test('workcard beholder 8C som godkjent etter at fase 8 er lukket', () => {
-  assert.match(workcard, /\*\*8C Brands GODKJENT\*\*/);
-  assert.match(workcard, /\*\*8C Brands = GODKJENT\.\*\*/);
-  assert.match(workcard, /\| 8\. Rundinger \| \*\*GODKJENT\*\*/);
-  assert.match(workcard, /Neste aktive fase: \*\*9\. På stedet\*\*\./);
+test('workcard beholder Brands som godkjent i sluttstatusen', () => {
+  assert.match(workcard, /\| 13\. Brands \| \*\*GODKJENT\*\*/);
+  assert.match(workcard, /13\/13 canonical brands/);
+  assert.match(workcard, /\| 8\. PlaceCard-samlinger \| \*\*GODKJENT ETTER RE-QA\*\*/);
+  assert.match(workcard, /Torggata = SLUTTFØRT, MERGET OG DEPLOYET/);
   assert.doesNotMatch(workcard, /\| 8\. Rundinger \| \*\*PÅGÅR – 8C Brands\*\*/);
 });

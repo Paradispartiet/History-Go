@@ -22,6 +22,8 @@ type PlaceRow = JsonObject & {
   r?: unknown;
   category?: unknown;
   subcategory_id?: unknown;
+  placeTier?: unknown;
+  micro_place_profile?: unknown;
   year?: unknown;
   desc?: unknown;
   aliases?: unknown;
@@ -50,7 +52,7 @@ type PlaceExclusions = JsonObject & {
   disabledPlaceIds?: unknown[];
 };
 const LIGHT_FIELDS = [
-  'id','name','lat','lon','r','category','subcategory_id','year','desc','aliases','image','cardImage','frontImage','hidden','stub','groundhopper','placeScope','mapLod','locatorType','sourceProvider','sourceObjectId','address','geocodeAccuracy','coordRole','coordType','coordStatus','coordSource','coordVerifiedAt','coordNote','sourceFile'
+  'id','name','lat','lon','r','category','subcategory_id','placeTier','micro_place_profile','year','desc','aliases','image','cardImage','frontImage','hidden','stub','groundhopper','placeScope','mapLod','locatorType','sourceProvider','sourceObjectId','address','geocodeAccuracy','coordRole','coordType','coordStatus','coordSource','coordVerifiedAt','coordNote','sourceFile'
 ] as const;
 type LightField = (typeof LIGHT_FIELDS)[number];
 type LightPlace = Partial<Record<LightField, unknown>>;
