@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://history-go.example/schemas/micro-place-profile-v1.json",
+  "title": "History GO canonical Micro Place profile v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "kind",
+    "currentStatus",
+    "sourceUrl",
+    "sourceLocation",
+    "verifiedAt",
+    "quizMode"
+  ],
+  "properties": {
+    "schema": { "const": "history_go_micro_place_profile_v1" },
+    "kind": {
+      "enum": [
+        "lesekiosk",
+        "bokskap",
+        "gjenvinningsstasjon",
+        "ombrukspunkt",
+        "miljostasjon",
+        "minneskilt",
+        "snublestein",
+        "annet_dokumentert_mikrosted"
+      ]
+    },
+    "currentStatus": { "enum": ["active", "temporary_unavailable", "historic"] },
+    "sourceUrl": { "type": "string", "format": "uri", "pattern": "^https://" },
+    "sourceLocation": { "type": "string", "minLength": 3 },
+    "verifiedAt": { "type": "string", "format": "date" },
+    "quizMode": { "enum": ["none", "place"] },
+    "parent_place_id": { "type": "string", "minLength": 1 }
+  }
+}

@@ -53,7 +53,7 @@ test("place loader coalesces requests and hydrates all opening surfaces", async 
 
   assert.equal(requests.length, 1, "concurrent preloads share one HTTP request");
   assert.match(requests[0].url, /data\/runtime\/place-open\/regjeringskvartalet\.json$/);
-  assert.equal(requests[0].options.cache, "force-cache");
+  assert.equal(requests[0].options.cache, "no-cache");
   assert.equal(first.popupDesc || first.description, second.popupDesc || second.description);
   assert.equal(context.PEOPLE.length, 22);
   assert.equal(context.HGStories.byPlace.regjeringskvartalet.length, payload.stories.length);

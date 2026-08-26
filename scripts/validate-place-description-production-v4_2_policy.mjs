@@ -6,6 +6,7 @@ import { validateRepository } from './validate-place-description-production-v4_2
 
 export const LENGTH_POLICY_REVISION = '4.2.1-source-led-length';
 export const PR_SCOPE_POLICY_REVISION = '4.2.2-canonical-place-production-index';
+export const MICRO_PLACE_POLICY_REVISION = '4.2.3-micro-place-reduced-quiz';
 
 const WORD_COUNT_ONLY_CODES = new Set([
   'desc_outside_normal_range',
@@ -13,6 +14,11 @@ const WORD_COUNT_ONLY_CODES = new Set([
   'popup_above_maximum'
 ]);
 const GENERATED_INDEX_ISSUE_CODE = 'generated_index_in_description_pr';
+const MICRO_QUIZ_CODES = new Set([
+  'too_few_quiz_questions',
+  'too_few_normal_quiz_questions',
+  'too_few_quiz_types'
+]);
 const PLACE_PREFIX = 'data/places/';
 const PACKET_PREFIX = 'data/places/production/';
 const RULES_PREFIX = 'data/places/regler/';
@@ -93,6 +99,47 @@ export function applySourceLedLengthPolicy(report) {
     },
     errorCount: blockingIssues.length,
     issues: blockingIssues
+  };
+}
+
+/**
+ * A canonical Micro Place may explicitly choose quizMode=none. Only the three
+ * quiz-volume findings are removed for that exact profile; source, claims,
+ * identity, review, coordinates and all other production gates stay blocking.
+ */
+export function applyMicroPlaceQuizPolicy(report) {
+  const cache = new Map();
+  const isQuizlessMicroPacket = (packetFile) => {
+    const key = String(packetFile ?? '');
+    if (!key.startsWith(PACKET_PREFIX) || !key.endsWith('.json')) return false;
+    if (cache.has(key)) return cache.get(key);
+    let eligible = false;
+    try {
+      const packet = JSON.parse(fs.readFileSync(path.join(process.cwd(), key), 'utf8'));
+      const place = JSON.parse(fs.readFileSync(path.join(process.cwd(), packet.placeFile), 'utf8'));
+      eligible = place?.placeTier === 'micro'
+        && place?.micro_place_profile?.schema === 'history_go_micro_place_profile_v1'
+        && place?.micro_place_profile?.quizMode === 'none';
+    } catch {
+      eligible = false;
+    }
+    cache.set(key, eligible);
+    return eligible;
+  };
+  const issues = Array.isArray(report?.issues) ? report.issues : [];
+  const removed = issues.filter(issue => MICRO_QUIZ_CODES.has(String(issue?.code ?? '')) && isQuizlessMicroPacket(issue?.packetFile));
+  if (removed.length === 0) return report;
+  const blocking = issues.filter(issue => !removed.includes(issue));
+  return {
+    ...report,
+    microPlacePolicy: {
+      revision: MICRO_PLACE_POLICY_REVISION,
+      quizModeNoneSkipsQuizVolumeOnly: true,
+      removedQuizIssueCount: removed.length,
+      removedQuizIssues: removed
+    },
+    errorCount: blocking.length,
+    issues: blocking
   };
 }
 
@@ -199,9 +246,10 @@ function main() {
     reportPath: ''
   });
   const lengthAdjusted = applySourceLedLengthPolicy(raw);
+  const microAdjusted = applyMicroPlaceQuizPolicy(lengthAdjusted);
   const report = options.changed
-    ? applyCanonicalPlaceOnboardingScopePolicy(lengthAdjusted, readChangedEntries(options.base, options.head))
-    : lengthAdjusted;
+    ? applyCanonicalPlaceOnboardingScopePolicy(microAdjusted, readChangedEntries(options.base, options.head))
+    : microAdjusted;
   writeReport(options.reportPath, report);
 
   console.log(`Place description v4.2.1: ${report.packetCount} pakker, ${report.readyPacketCount} ready, ${report.errorCount} blokkerende feil`);
@@ -210,6 +258,9 @@ function main() {
   }
   if (report.prScopePolicy?.removedGeneratedIndexIssueCount) {
     console.log(`- ${report.prScopePolicy.removedGeneratedIndexIssueCount} generert indeks-funn ble tillatt for canonical Place-onboarding.`);
+  }
+  if (report.microPlacePolicy?.removedQuizIssueCount) {
+    console.log(`- ${report.microPlacePolicy.removedQuizIssueCount} quizvolum-funn ble tillatt for Micro Places med quizMode=none.`);
   }
   for (const issue of report.issues.slice(0, 100)) console.error(`- ${issue.code}: ${issue.message}`);
   if (report.issues.length > 100) console.error(`- ... ${report.issues.length - 100} flere feil`);

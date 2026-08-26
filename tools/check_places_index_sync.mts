@@ -15,6 +15,9 @@ type PlaceRow = JsonObject & {
   lng?: unknown;
   r?: unknown;
   category?: unknown;
+  subcategory_id?: unknown;
+  placeTier?: unknown;
+  micro_place_profile?: unknown;
   year?: unknown;
   desc?: unknown;
   aliases?: unknown;
@@ -66,6 +69,9 @@ const LIGHT_FIELDS: LightField[] = [
   'lon',
   'r',
   'category',
+  'subcategory_id',
+  'placeTier',
+  'micro_place_profile',
   'year',
   'desc',
   'aliases',

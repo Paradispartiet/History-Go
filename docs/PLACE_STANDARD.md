@@ -2,13 +2,14 @@
 
 Status: **canonical produktstandard for et History GO-sted**  
 Eier: `place_product_standard`  
-Sist kontrollert: **2026-08-03**
+Sist kontrollert: **2026-08-26**
 
 Dette dokumentet definerer **hva et History GO-sted er og hvilke roller stedssystemet har**. Det er ikke detaljoppskrift for tekst, quiz, rundinger, People eller koordinater.
 
 Sted-for-sted arbeidsrekkefølge:
 
 - `docs/PLACE_PRODUCTION_CHECKLIST.md`
+- `docs/MICRO_PLACE_CONTRACT.md` for små canonicale kartpunkter med redusert innholdskontrakt
 
 ## 1. Autoritetskart
 
@@ -83,6 +84,7 @@ Relevante og dokumenterte felt kan blant annet være:
   image,
   cardImage,
   frontImage,
+  frontImageMeta,
   emne_ids,
   rounds,
   rounds_exclude,
@@ -102,6 +104,8 @@ Relevante og dokumenterte felt kan blant annet være:
   source_notes
 }
 ```
+
+For nye og fullproduserte Places er `frontImage` alltid en stående fil/variant med høyde større enn bredde. `frontImageMeta` eller tilsvarende canonical metadata dokumenterer kilde, lisens, original- og outputdimensjoner samt eventuelt crop. En liggende fil som bare maskeres av en stående CSS-ramme er ikke tilstrekkelig. Hver av de fire PlaceCard-samlingene skal samtidig ha et lastende previewbilde av ett faktisk canonical medlem; ikon-/antallsfallback er runtime-feilhåndtering, ikke godkjent closeout.
 
 Felt brukes når de faktisk har en rolle. Manglende relevant informasjon skal ikke fylles med plausibelt innhold.
 
@@ -157,6 +161,16 @@ Stedspopupens hero skal gi orientering og primær handling, ikke gjenta nøkkelt
 ## 7. PlaceCard
 
 PlaceCard er det kompakte kontrollrommet for stedet.
+
+### Micro Places
+
+Små, presist stedfestede punkter som trenger egen kartmarkør, men ikke en full
+Content Factory-pakke, bruker `placeTier: "micro"` og
+`micro_place_profile`. De er fortsatt canonical Places med egen identitet,
+kategori, underkategori og koordinater. De bruker det kompakte PlaceCard-et og er
+unntatt kravet om fire samlinger og kunstig fullprodusert innhold.
+
+Den komplette regelen eies av `docs/MICRO_PLACE_CONTRACT.md`.
 
 Det skal kunne vise, når relevant og implementert:
 

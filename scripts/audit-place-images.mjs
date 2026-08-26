@@ -4,7 +4,7 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
-import { isPlaceScopeOnlyJsonChange } from './lib/place-image-change-classifier.mjs';
+import { isImageOptionalMicroPlace, isPlaceScopeOnlyJsonChange } from './lib/place-image-change-classifier.mjs';
 
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const args=new Set(process.argv.slice(2));
@@ -67,6 +67,7 @@ function inspect(entry){
   const id=text(entry.place?.id)||'(mangler id)';
   const category=text(entry.place?.category)||'ukjent';
   const candidate=imageCandidate(entry.place);
+  if(!candidate.value&&isImageOptionalMicroPlace(entry.place))return{id,category,sourceFile:entry.sourceFile,status:'optional',field:'',value:'',reason:'Canonical Micro Place har ikke obligatorisk bilde'};
   if(!candidate.value)return{id,category,sourceFile:entry.sourceFile,status:'missing',field:'',value:'',reason:'Ingen popupImage, cardImage eller image'};
   const asset=localAssetPath(candidate.value);
   if(asset.kind==='remote')return{id,category,sourceFile:entry.sourceFile,status:'remote',field:candidate.field,value:candidate.value,reason:''};
@@ -86,7 +87,7 @@ function placeScopeOnlyFiles(changed){
     const currentPath=path.resolve(ROOT,sourceFile);
     if(!currentPath.startsWith(`${ROOT}${path.sep}`)||!fs.existsSync(currentPath))continue;
     try{
-      const before=JSON.parse(execFileSync('git',['show',`origin/${baseRef()}:${sourceFile}`],{cwd:ROOT,encoding:'utf8'}));
+      const before=JSON.parse(execFileSync('git',['show',`origin/${baseRef()}:${sourceFile}`],{cwd:ROOT,encoding:'utf8',stdio:['ignore','pipe','ignore']}));
       const after=readJson(currentPath);
       if(isPlaceScopeOnlyJsonChange(before,after))ignored.add(sourceFile);
     }catch{}
@@ -95,8 +96,8 @@ function placeScopeOnlyFiles(changed){
 }
 function verifySummary(report,file){
   const saved=readJson(file);
-  const expected={totalPlaces:report.totalPlaces,validLocal:report.summary.local,validRemote:report.summary.remote,missing:report.summary.missing,invalidLocalPath:report.summary.invalid,remaining:report.summary.missing+report.summary.invalid};
-  const actual={totalPlaces:saved.totalPlaces,validLocal:saved.summary?.validLocal,validRemote:saved.summary?.validRemote,missing:saved.summary?.missing,invalidLocalPath:saved.summary?.invalidLocalPath,remaining:saved.summary?.remaining};
+  const expected={totalPlaces:report.totalPlaces,validLocal:report.summary.local,validRemote:report.summary.remote,optionalMissing:report.summary.optional,missing:report.summary.missing,invalidLocalPath:report.summary.invalid,remaining:report.summary.missing+report.summary.invalid};
+  const actual={totalPlaces:saved.totalPlaces,validLocal:saved.summary?.validLocal,validRemote:saved.summary?.validRemote,optionalMissing:saved.summary?.optionalMissing,missing:saved.summary?.missing,invalidLocalPath:saved.summary?.invalidLocalPath,remaining:saved.summary?.remaining};
   if(JSON.stringify(actual)!==JSON.stringify(expected))throw new Error(`Bildebacklog-summary er utdatert. Forventet ${JSON.stringify(expected)}, fant ${JSON.stringify(actual)}`);
 }
 
@@ -107,11 +108,11 @@ const scopeOnly=changed?placeScopeOnlyFiles(changed):new Set();
 const inspected=allRows.filter((row)=>!changed||(changed.has(row.sourceFile)&&!scopeOnly.has(row.sourceFile)));
 const failures=inspected.filter((row)=>row.status==='missing'||row.status==='invalid');
 const byCategory={};
-for(const row of allRows){const bucket=byCategory[row.category]||(byCategory[row.category]={total:0,local:0,remote:0,missing:0,invalid:0});bucket.total+=1;bucket[row.status]+=1;}
-const report={schema:'history_go_place_image_audit_v1',generatedAt:new Date().toISOString(),mode,totalPlaces:entries.length,checkedPlaces:inspected.length,summary:{local:allRows.filter((row)=>row.status==='local').length,remote:allRows.filter((row)=>row.status==='remote').length,missing:allRows.filter((row)=>row.status==='missing').length,invalid:allRows.filter((row)=>row.status==='invalid').length},byCategory,failures:allRows.filter((row)=>row.status==='missing'||row.status==='invalid')};
+for(const row of allRows){const bucket=byCategory[row.category]||(byCategory[row.category]={total:0,local:0,remote:0,optional:0,missing:0,invalid:0});bucket.total+=1;bucket[row.status]+=1;}
+const report={schema:'history_go_place_image_audit_v1',generatedAt:new Date().toISOString(),mode,totalPlaces:entries.length,checkedPlaces:inspected.length,summary:{local:allRows.filter((row)=>row.status==='local').length,remote:allRows.filter((row)=>row.status==='remote').length,optional:allRows.filter((row)=>row.status==='optional').length,missing:allRows.filter((row)=>row.status==='missing').length,invalid:allRows.filter((row)=>row.status==='invalid').length},byCategory,failures:allRows.filter((row)=>row.status==='missing'||row.status==='invalid')};
 if(reportPath){fs.mkdirSync(path.dirname(reportPath),{recursive:true});fs.writeFileSync(reportPath,JSON.stringify(report,null,2)+'\n');}
 if(summaryPath)verifySummary(report,summaryPath);
-console.log(`Place image audit: ${report.totalPlaces} steder · ${report.summary.local} lokale · ${report.summary.remote} eksterne · ${report.summary.missing} mangler · ${report.summary.invalid} ugyldige`);
+console.log(`Place image audit: ${report.totalPlaces} steder · ${report.summary.local} lokale · ${report.summary.remote} eksterne · ${report.summary.optional} valgfrie Micro Place-bilder · ${report.summary.missing} mangler · ${report.summary.invalid} ugyldige`);
 if(scopeOnly.size)console.log(`Place image audit: ${scopeOnly.size} filer med kun placeScope-metadata er utenfor changed-bildeporten.`);
 if(failures.length){for(const row of failures.slice(0,80))console.error(`- ${row.id} [${row.category}] ${row.sourceFile}: ${row.reason}${row.value?` (${row.value})`:''}`);if(failures.length>80)console.error(`… og ${failures.length-80} til`);}
 if((mode==='changed'||strict)&&failures.length)process.exitCode=1;

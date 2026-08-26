@@ -1,0 +1,585 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "categoryId": "by",
+  "targetId": "olaf_ryes_plass",
+  "profile_hint": "rich",
+  "reviewed_at": "2026-08-25",
+  "review_note": "Kildene skiller parkflaten fra nabobygg, løser 1848/1849-konflikten og bærer fem kildekritiske læringsjobber.",
+  "scope": {
+    "place": "Olaf Ryes plass",
+    "production_profile": "rich",
+    "set_count": 5,
+    "questions_per_set": 7,
+    "total_questions": 35,
+    "normal_opening_questions": 14
+  },
+  "sources": {
+    "municipality": {
+      "url": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/parker-og-lekeplasser/olaf-ryes-plass/",
+      "source_type": "official_municipality",
+      "review_status": "reviewed",
+      "review_note": "Canonical avgrensning og fontene på plassen."
+    },
+    "byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Olaf_Ryes_plass",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Kjøp, navn, park, byste, finansiering og fontene."
+    },
+    "rye": {
+      "url": "https://snl.no/Olaf_Rye",
+      "source_type": "reputable_encyclopedia",
+      "review_status": "reviewed",
+      "review_note": "Olaf Ryes biografi og korrekt dødsår 1849."
+    },
+    "sundt": {
+      "url": "https://snl.no/Eilert_Sundt",
+      "source_type": "reputable_encyclopedia",
+      "review_status": "reviewed",
+      "review_note": "Eilert Sundts samfunnsforskning og levekårsarbeid."
+    },
+    "parkteatret": {
+      "url": "https://www.parkteatret.no/english",
+      "source_type": "primary_venue",
+      "review_status": "reviewed",
+      "review_note": "Adresse, kinohistorie fra 1907 og dagens konsertbruk; nabokontekst."
+    },
+    "before": {
+      "url": "https://www.oslobilder.no/OMU/OB.Y1272",
+      "source_type": "museum_catalogue",
+      "review_status": "reviewed",
+      "review_note": "1903-fotografi, fotograf og motiv."
+    },
+    "after": {
+      "url": "https://commons.wikimedia.org/wiki/File:Olaf_Ryes_plass_sommer.JPG",
+      "source_type": "licensed_media_catalogue",
+      "review_status": "reviewed",
+      "review_note": "2009-fotografi, fotograf, dato og lisens."
+    },
+    "events": {
+      "url": "https://visitlokka.no/lokkadagene/",
+      "source_type": "primary_event_program",
+      "review_status": "reviewed",
+      "review_note": "Daterte 2026-arrangementer; ikke permanent stedsegenskap."
+    },
+    "byokologi": {
+      "url": "https://magasin.oslo.kommune.no/byplan/byokologi-hva-er-det-egentlig",
+      "source_type": "official_municipal_article",
+      "review_status": "reviewed",
+      "review_note": "Byøkologi og offentlig rom med plassen som observasjonssted."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "kur_by_04_historiske_lag_og_transformasjon",
+      "kur_by_07_gronn_blaa_og_offentlig_natur"
+    ],
+    "emne_ids": [
+      "em_by_parker_som_sosial_infrastruktur",
+      "em_by_opphold_vs_gjennomgang",
+      "em_by_historiske_lag_i_hverdagsrom"
+    ],
+    "topic_hook_ids": [
+      "byliv_aapne_rom",
+      "byliv_opphold_vs_gjennomgang",
+      "his_spor_gatebilde"
+    ],
+    "method_ids": [
+      "met_for_etter"
+    ],
+    "thinker_ids": [
+      "william_h_whyte",
+      "michel_de_certeau",
+      "walter_benjamin",
+      "kevin_lynch"
+    ],
+    "works": [
+      "The Social Life of Small Urban Spaces",
+      "The Practice of Everyday Life",
+      "The Arcades Project",
+      "The Image of the City"
+    ]
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/by/",
+      "data/places/by/oslo/places/olaf_ryes_plass.json"
+    ],
+    "active_before": {
+      "file": null,
+      "set_count": 0,
+      "question_count": 0,
+      "finding": "Ingen manifest-loadet quizpakke med targetId=olaf_ryes_plass."
+    },
+    "decisions": [
+      "Opprett rich 5x7 fra reviewede eksterne kilder.",
+      "Hold teori og metode ute av de første 28 spørsmålene.",
+      "Ikke bruk Parkteatret som proxy for parkflaten."
+    ],
+    "knowledge_migration": "Nytt target har ingen canonical Knowledge-eier; registre genereres deterministisk fra pakken."
+  },
+  "profile_decision": {
+    "profile": "rich",
+    "set_count": 5,
+    "questions_per_set": 7,
+    "justification": "Fem selvstendige læringsjobber: identitet/navn, park og personer, fysiske tidslag/bilder, nabo og datert bruk, samt avsluttende stedsobservasjon og kildekritikk."
+  },
+  "held_back_candidates": [
+    "Parkteatrets bygning og fulle institusjonshistorie som park-eid innhold; bare venue-identiteten materialiseres i Brands.",
+    "Eksakt optisk før/etter-påstand for 1903/2009.",
+    "Generalisering fra daterte arrangementer til permanent bruk.",
+    "Den feilaktige 1848-formuleringen om Olaf Ryes død."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_olaf_ryes_plass_quiz_1",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kommunen avgrenser plassen med disse fire gatene.",
+      "source_ids": [
+        "municipality"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_olaf_ryes_plass_quiz_2",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kommunen kjøpte løkken i 1863.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_olaf_ryes_plass_quiz_3",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Plassen fikk navnet Olaf Ryes plass i 1864.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_olaf_ryes_plass_quiz_4",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Navnet viser til offiseren Olaf Rye.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_olaf_ryes_plass_quiz_5",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Store norske leksikon daterer Olaf Ryes død til 6. juli 1849.",
+      "source_ids": [
+        "rye"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_olaf_ryes_plass_quiz_6",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Området ble opparbeidet som park i 1890.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_olaf_ryes_plass_quiz_7",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Bronsebysten av Eilert Sundt ble reist i 1892.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_olaf_ryes_plass_quiz_8",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Mathias Skeibrok utførte bronsebysten.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_olaf_ryes_plass_quiz_9",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "To folkeopplysnings- og arbeidersamfunn finansierte monumentet.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_olaf_ryes_plass_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Sundt undersøkte levekår og samfunnsforhold.",
+      "source_ids": [
+        "sundt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_olaf_ryes_plass_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Det fysiske monumentet binder personen til det offentlige parkrommet.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_olaf_ryes_plass_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Fontenen ble anlagt midt på plassen i 1927.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_olaf_ryes_plass_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Fontenen legger et mellomkrigslag til parken fra 1890.",
+      "source_ids": [
+        "municipality"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_olaf_ryes_plass_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Canonical avgrensning skiller parkflaten fra naboene.",
+      "source_ids": [
+        "municipality"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_olaf_ryes_plass_quiz_15",
+      "order": 15,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Parkteatrets primærside oppgir Olaf Ryes plass 11.",
+      "source_ids": [
+        "parkteatret"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_olaf_ryes_plass_quiz_16",
+      "order": 16,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Parkteatret daterer kinohistorien i huset til 1907.",
+      "source_ids": [
+        "parkteatret"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_olaf_ryes_plass_quiz_17",
+      "order": 17,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Nabokontekst bevares uten at parken overtar institusjonshistorien.",
+      "source_ids": [
+        "parkteatret"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_olaf_ryes_plass_quiz_18",
+      "order": 18,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo Museum katalogiserer fotografiet til 1903.",
+      "source_ids": [
+        "before"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_olaf_ryes_plass_quiz_19",
+      "order": 19,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Museumskatalogen oppgir Anders Beer Wilse som fotograf.",
+      "source_ids": [
+        "before"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_olaf_ryes_plass_quiz_20",
+      "order": 20,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Bildene deler flere parkmotiver på tvers av tid.",
+      "source_ids": [
+        "before"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_olaf_ryes_plass_quiz_21",
+      "order": 21,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Commons-filsiden daterer bildet til 1. august 2009.",
+      "source_ids": [
+        "after"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_olaf_ryes_plass_quiz_22",
+      "order": 22,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Commons-filsiden oppgir Helge Høifødt.",
+      "source_ids": [
+        "after"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_olaf_ryes_plass_quiz_23",
+      "order": 23,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Kildekritikken holder optisk likhet og årsaksforklaring tilbake.",
+      "source_ids": [
+        "after"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_olaf_ryes_plass_quiz_24",
+      "order": 24,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Visit Løkka annonserer Løkkadagene disse datoene.",
+      "source_ids": [
+        "events"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_olaf_ryes_plass_quiz_25",
+      "order": 25,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Programmet dokumenterer en datert aktivitet på selve plassen.",
+      "source_ids": [
+        "events"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_olaf_ryes_plass_quiz_26",
+      "order": 26,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Visit Løkka annonserer julemarked og stjernetenning 28. november 2026.",
+      "source_ids": [
+        "events"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_olaf_ryes_plass_quiz_27",
+      "order": 27,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Et arrangement dokumenterer datert bruk, ikke en varig universaltilstand.",
+      "source_ids": [
+        "events"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_opphold_vs_gjennomgang"
+    },
+    {
+      "claim_id": "claim_olaf_ryes_plass_quiz_28",
+      "order": 28,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "De to fysiske objektene kan observeres på selve plassen.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_olaf_ryes_plass_quiz_29",
+      "order": 29,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Parkens kanter, ganglinjer, benker og ankre kan analyseres som støtte for sosialt liv.",
+      "source_ids": [
+        "byokologi"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur",
+      "method_id": "met_for_etter",
+      "topic_hook_id": "byliv_aapne_rom",
+      "thinker_id": "william_h_whyte",
+      "work": "The Social Life of Small Urban Spaces"
+    },
+    {
+      "claim_id": "claim_olaf_ryes_plass_quiz_30",
+      "order": 30,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Systematisk observasjon skiller opphold, ferdsel og mønstre i bruk.",
+      "source_ids": [
+        "municipality"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_opphold_vs_gjennomgang",
+      "method_id": "met_for_etter",
+      "topic_hook_id": "byliv_opphold_vs_gjennomgang",
+      "thinker_id": "michel_de_certeau",
+      "work": "The Practice of Everyday Life"
+    },
+    {
+      "claim_id": "claim_olaf_ryes_plass_quiz_31",
+      "order": 31,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Metoden begynner med sammenlignbare elementer og uttrykte begrensninger.",
+      "source_ids": [
+        "before"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+      "method_id": "met_for_etter",
+      "topic_hook_id": "his_spor_gatebilde",
+      "thinker_id": "walter_benjamin",
+      "work": "The Arcades Project"
+    },
+    {
+      "claim_id": "claim_olaf_ryes_plass_quiz_32",
+      "order": 32,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Romlig observasjon kan skille ferdsel fra lengre opphold uten å gjette motiv.",
+      "source_ids": [
+        "municipality"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_opphold_vs_gjennomgang",
+      "method_id": "met_for_etter",
+      "topic_hook_id": "byliv_opphold_vs_gjennomgang",
+      "thinker_id": "michel_de_certeau",
+      "work": "The Practice of Everyday Life"
+    },
+    {
+      "claim_id": "claim_olaf_ryes_plass_quiz_33",
+      "order": 33,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Analysen beholder relevant kontekst uten falskt eierskap.",
+      "source_ids": [
+        "parkteatret"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur",
+      "method_id": "met_for_etter",
+      "topic_hook_id": "byliv_aapne_rom",
+      "thinker_id": "william_h_whyte",
+      "work": "The Social Life of Small Urban Spaces"
+    },
+    {
+      "claim_id": "claim_olaf_ryes_plass_quiz_34",
+      "order": 34,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kildetriangulering fordeler ulike dokumentasjonsjobber på egnede kildetyper.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+      "method_id": "met_for_etter",
+      "topic_hook_id": "his_spor_gatebilde",
+      "thinker_id": "walter_benjamin",
+      "work": "The Arcades Project"
+    },
+    {
+      "claim_id": "claim_olaf_ryes_plass_quiz_35",
+      "order": 35,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Stedet tåler en flerlagsanalyse når identitet, tid, observasjon og kildegrenser holdes tydelige.",
+      "source_ids": [
+        "after"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+      "method_id": "met_for_etter",
+      "topic_hook_id": "his_spor_gatebilde",
+      "thinker_id": "kevin_lynch",
+      "work": "The Image of the City"
+    }
+  ]
+}

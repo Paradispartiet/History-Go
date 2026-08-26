@@ -47,6 +47,101 @@
     return cleaned.slice(0, Math.max(0, maxLength - 1)).trimEnd() + "…";
   }
 
+  const MICRO_KIND = Object.freeze({
+    lesekiosk: { label:"Lesekiosk", icon:'<path d="M5 5.5c2.5-.8 4.7-.4 7 1.1v12c-2.3-1.5-4.5-1.9-7-1.1z"/><path d="M19 5.5c-2.5-.8-4.7-.4-7 1.1v12c2.3-1.5 4.5-1.9 7-1.1z"/>' },
+    bokskap: { label:"Bokskap", icon:'<path d="M5 5.5c2.5-.8 4.7-.4 7 1.1v12c-2.3-1.5-4.5-1.9-7-1.1z"/><path d="M19 5.5c-2.5-.8-4.7-.4-7 1.1v12c2.3-1.5 4.5-1.9 7-1.1z"/>' },
+    gjenvinningsstasjon: { label:"Gjenvinningsstasjon", icon:'<path d="M6.2 8.4A6.8 6.8 0 0 1 18 7l1.6 2.2"/><path d="m19.7 5.6-.1 3.7-3.7-.1"/><path d="M17.8 15.6A6.8 6.8 0 0 1 6 17l-1.6-2.2"/><path d="m4.3 18.4.1-3.7 3.7.1"/>' },
+    ombrukspunkt: { label:"Ombrukspunkt", icon:'<path d="M6.2 8.4A6.8 6.8 0 0 1 18 7l1.6 2.2"/><path d="m19.7 5.6-.1 3.7-3.7-.1"/><path d="M17.8 15.6A6.8 6.8 0 0 1 6 17l-1.6-2.2"/><path d="m4.3 18.4.1-3.7 3.7.1"/>' },
+    miljostasjon: { label:"Miljøstasjon", icon:'<path d="M19.5 4.5C12 4.7 6.6 7.8 6.2 13.2c-.2 2.7 1.7 5 4.5 5.1 5.4.2 8.5-5.6 8.8-13.8Z"/><path d="M5 20c2.1-4.1 5.1-7.3 9.4-9.5"/>' },
+    minneskilt: { label:"Minneskilt", icon:'<rect x="5" y="4.5" width="14" height="15" rx="2"/><path d="M8.5 8.5h7M8.5 12h7M8.5 15.5h4"/>' },
+    snublestein: { label:"Snublestein", icon:'<path d="M7.2 5.2 12 3.8l4.8 1.4 1.4 4.8-1.4 8.8-4.8 1.4-4.8-1.4L5.8 10z"/><path d="M9 9h6M9 12h6M9 15h4"/>' },
+    annet_dokumentert_mikrosted: { label:"Mikrosted", icon:'<path d="M12 21s6-5.3 6-11a6 6 0 1 0-12 0c0 5.7 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/>' }
+  });
+  const MICRO_STATUS = Object.freeze({
+    active:"Aktiv",
+    temporary_unavailable:"Midlertidig stengt",
+    historic:"Historisk"
+  });
+
+  function isMicroPlace(place) {
+    return text(place?.placeTier).toLowerCase() === "micro"
+      && text(place?.micro_place_profile?.schema) === "history_go_micro_place_profile_v1";
+  }
+
+  function microIcon(paths) {
+    return `<svg viewBox="0 0 24 24" focusable="false" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${paths}</svg>`;
+  }
+
+  function safeHttpUrl(value) {
+    const url = text(value);
+    return /^https?:\/\/[^\s]+$/i.test(url) ? url : "";
+  }
+
+  function microTaxonomy(place) {
+    const category = humanize(firstText(place?.category, place?.categoryId));
+    const subcategory = humanize(place?.subcategory_id).replace("Miljo gjenbruk", "Miljø og gjenbruk");
+    return uniqueStrings([category, subcategory]).join(" · ");
+  }
+
+  function microAddress(place) {
+    const address = objectValue(place?.address);
+    const street = [firstText(address.street), firstText(address.number)].filter(Boolean).join(" ");
+    const city = [firstText(address.postcode), firstText(address.city)].filter(Boolean).join(" ");
+    return [street, city].filter(Boolean).join(", ");
+  }
+
+  function microSources(place) {
+    const profile = objectValue(place?.micro_place_profile);
+    const links = list(place?.externalLinks)
+      .map(item => ({
+        label:text(item?.type) === "coordinate_source" ? "Koordinatkilde" : "Hovedkilde",
+        url:safeHttpUrl(item?.url)
+      }))
+      .filter(item => item.url);
+    const profileUrl = safeHttpUrl(profile.sourceUrl);
+    if (profileUrl && !links.some(item => item.url === profileUrl)) links.unshift({ label:"Åpne hovedkilde", url:profileUrl });
+    return links.filter((item, index, all) => all.findIndex(candidate => candidate.url === item.url) === index).slice(0, 2);
+  }
+
+  function renderMicroPlacePopup(place) {
+    const profile = objectValue(place?.micro_place_profile);
+    const kind = MICRO_KIND[text(profile.kind)] || MICRO_KIND.annet_dokumentert_mikrosted;
+    const statusCode = text(profile.currentStatus) || "documented";
+    const status = MICRO_STATUS[statusCode] || "Dokumentert";
+    const name = firstText(place?.name, place?.title, place?.id);
+    const taxonomy = microTaxonomy(place);
+    const location = firstText(microAddress(place), profile.sourceLocation);
+    const verified = firstText(profile.verifiedAt);
+    const fullText = popupText(place);
+    const sources = microSources(place);
+    const quizMode = text(profile.quizMode) === "place" ? "place" : "none";
+
+    return `
+      <article class="hg-modal hg-place-popup-v2 hg-micro-place-popup" data-place-tier="micro" data-micro-kind="${escapeAttr(profile.kind || "annet_dokumentert_mikrosted")}">
+        <header class="hg-micro-popup-header">
+          <span class="hg-micro-popup-icon">${microIcon(kind.icon)}</span>
+          <div class="hg-micro-popup-heading">
+            <p class="hg-micro-popup-eyebrow">Mikrosted · ${escapeHtml(kind.label)}</p>
+            <h2 class="hg-popup-title hg-modal-title">${escapeHtml(name)}</h2>
+            <p class="hg-micro-popup-taxonomy">${escapeHtml(taxonomy)}</p>
+          </div>
+          <span class="hg-micro-popup-status" data-status="${escapeAttr(statusCode)}"><span aria-hidden="true"></span>${escapeHtml(status)}</span>
+        </header>
+        <div class="hg-modal-body hg-place-popup-body hg-micro-popup-body">
+          ${location ? `<div class="hg-micro-popup-location"><span aria-hidden="true">⌖</span><span>${escapeHtml(location)}</span></div>` : ""}
+          ${fullText ? `<div class="hg-micro-popup-description">${renderParagraphs(fullText)}</div>` : ""}
+          <footer class="hg-micro-popup-footer">
+            ${verified ? `<span class="hg-micro-popup-verified">Verifisert ${escapeHtml(verified)}</span>` : "<span></span>"}
+            <div class="hg-micro-popup-actions">
+              ${sources.map(source => `<a href="${escapeAttr(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.label)} <span aria-hidden="true">↗</span></a>`).join("")}
+              ${quizMode === "place" ? `<button class="hg-quiz-btn hg-place-quiz-btn" data-quiz="${escapeAttr(place?.id)}">Ta quiz</button>` : ""}
+            </div>
+          </footer>
+        </div>
+      </article>
+    `;
+  }
+
   function localizePlace(place) {
     try {
       if (typeof global.HG_I18N?.localizePlace === "function") {
@@ -590,6 +685,14 @@
 
     const makePopup = helper("makePopup");
     if (!makePopup) return;
+
+    if (isMicroPlace(place)) {
+      makePopup(renderMicroPlacePopup(place), "place-popup place-popup-v2 micro-place-popup-shell");
+      const popup = document.querySelector(".hg-popup.place-popup-v2");
+      const quizButton = popup?.querySelector?.("[data-quiz]");
+      if (quizButton) helper("enhanceQuizButton")?.(quizButton, place?.id);
+      return;
+    }
 
     const name = firstText(place?.name, place?.title, place?.id);
     const category = humanize(firstText(place?.category, place?.categoryId));

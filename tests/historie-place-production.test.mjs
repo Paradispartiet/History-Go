@@ -7,6 +7,7 @@ import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import {
   auditHistoriePlaceProduction,
+  isCanonicalMicroPlace,
   requiredReportsForChanges,
   validateHistoriePlaceReport
 } from '../scripts/audit-historie-place-production.mjs';
@@ -236,6 +237,30 @@ test('changed-mode krever rapport ved brukerrettet Historie-stedsendring, men ik
 
   fs.writeFileSync(path.join(fixtureRoot, placePath), JSON.stringify({ ...original, lat: 59.91 }));
   assert.equal(requiredReportsForChanges(fixtureRoot, [placePath], base).size, 0);
+
+  const micro = {
+    ...original,
+    desc: 'Kort, kildeverifisert tekst for et canonical mikrosted.',
+    placeTier: 'micro',
+    micro_place_profile: {
+      schema: 'history_go_micro_place_profile_v1',
+      kind: 'snublestein',
+      currentStatus: 'active',
+      sourceUrl: 'https://example.org/snublestein',
+      sourceLocation: 'individuell oppføring',
+      verifiedAt: '2026-08-26',
+      quizMode: 'none'
+    }
+  };
+  fs.writeFileSync(path.join(fixtureRoot, placePath), JSON.stringify(micro));
+  assert.equal(isCanonicalMicroPlace(micro), true);
+  assert.equal(requiredReportsForChanges(fixtureRoot, [placePath], base).size, 0, 'canonical Micro Place skal følge redusert kontrakt, ikke full A–H-rapport');
+});
+
+test('bare eksplisitt canonical Micro Place-profil kan fritas fra full Historie-rapport', () => {
+  assert.equal(isCanonicalMicroPlace({ category: 'historie', placeTier: 'micro' }), false);
+  assert.equal(isCanonicalMicroPlace({ category: 'historie', micro_place_profile: { schema: 'history_go_micro_place_profile_v1' } }), false);
+  assert.equal(isCanonicalMicroPlace({ category: 'historie', placeTier: 'micro', micro_place_profile: { schema: 'history_go_micro_place_profile_v1' } }), true);
 });
 
 test('changed-mode blokkerer sletting av rapport når stedet fortsatt er Historie-sted', (t) => {

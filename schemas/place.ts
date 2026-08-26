@@ -136,6 +136,35 @@ export interface LegacyPlaceRoundProfileV1 {
   verifiedAt?: string;
 }
 
+export type PlaceTier = "standard" | "micro";
+export type MicroPlaceCurrentStatus = "active" | "temporary_unavailable" | "historic";
+export type MicroPlaceQuizMode = "none" | "place";
+
+/**
+ * A Micro Place is still a canonical map Place. The profile only reduces the
+ * content and PlaceCard obligations; it never changes category, marker colour,
+ * identity or coordinate ownership.
+ */
+export interface MicroPlaceProfileV1 {
+  schema: "history_go_micro_place_profile_v1";
+  kind:
+    | "lesekiosk"
+    | "bokskap"
+    | "gjenvinningsstasjon"
+    | "ombrukspunkt"
+    | "miljostasjon"
+    | "minneskilt"
+    | "snublestein"
+    | "annet_dokumentert_mikrosted";
+  currentStatus: MicroPlaceCurrentStatus;
+  sourceUrl: string;
+  sourceLocation: string;
+  verifiedAt: string;
+  quizMode: MicroPlaceQuizMode;
+  /** Optional relation only. A parent never absorbs the Micro Place marker. */
+  parent_place_id?: string;
+}
+
 export interface Place {
   id: string;
   name?: string;
@@ -151,6 +180,10 @@ export interface Place {
   category?: string;
   /** Canonical specialization beneath the existing top category. Never creates a new map color. */
   subcategory_id?: string;
+  /** Standard is implicit for old Places; micro selects the reduced canonical contract. */
+  placeTier?: PlaceTier;
+  micro_place_profile?: MicroPlaceProfileV1;
+  parent_place_id?: string;
   year?: number;
   desc?: string;
   popupDesc?: string;
@@ -173,7 +206,7 @@ export interface Place {
   people?: unknown[];
   wonderkammer?: unknown;
 
-  /** Canonical PlaceCard-samlingsprofil for nye og fullproduserte steder. */
+  /** Canonical PlaceCard-samlingsprofil for standard Places; Micro Places omit it. */
   place_card_profile?: PlaceCardProfileV2;
   /** Legacy-profil som fortsatt leses, men ikke skal opprettes ved ny produksjon. */
   round_profile?: LegacyPlaceRoundProfileV1;

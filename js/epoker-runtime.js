@@ -136,6 +136,9 @@ const EPOKER_FILES = [
   { domain: "media", path: "data/epoker/epoker_media.json" },
 ];
 
+const HISTORY_PERIOD_GUIDES_FILE = "data/fag/historie/period_guides_historie_v1.json";
+const HISTORY_PERIOD_MODULES_FILE = "data/fag/historie/period_modules_historie_v1.json";
+
 function normalizeEpokerFilePayload(payload, fallbackDomain) {
   const raw = payload ?? null;
   if (!raw) return { domain: epS(fallbackDomain), list: [], parallel: [] };
@@ -164,6 +167,10 @@ function normalizeEpokerFilePayload(payload, fallbackDomain) {
 const HGEpokerRuntime = (() => {
   let loadPromise = null;
   let cache = null;
+  let placeIndexPromise = null;
+  let placeIndexCache = null;
+  let historyCoveragePromise = null;
+  let historyCoverageCache = null;
   const status = {
     loaded: false,
     state: "idle", // idle | loading | complete | partial | failed
@@ -275,6 +282,114 @@ const HGEpokerRuntime = (() => {
     return loadPromise;
   }
 
+  async function loadPlaceIndex() {
+    if (placeIndexCache) return placeIndexCache;
+    if (placeIndexPromise) return placeIndexPromise;
+    placeIndexPromise = (async () => {
+      const response = await fetch("data/epoker/epoke-place-index.json", { cache: "no-store" });
+      if (!response.ok) throw new Error(`Epoke place index: HTTP ${response.status}`);
+      const payload = await response.json();
+      if (Number(payload?.version) < 2 || !payload?.domains || typeof payload.domains !== "object") {
+        throw new Error("Epoke place index has an invalid contract");
+      }
+      if (Number(payload?.version) >= 3 && (
+        payload?.locations?.contract !== "canonical-place-geography-v1" ||
+        !payload?.locations?.places || typeof payload.locations.places !== "object" ||
+        !Array.isArray(payload?.locations?.countries)
+      )) {
+        throw new Error("Epoke place index has an invalid geography contract");
+      }
+      if (Number(payload?.version) >= 4 && (
+        payload?.contract !== "source-backed-history-coverage-v1" ||
+        !Number.isFinite(Number(payload?.stats?.canonical_claim_count)) ||
+        Number(payload.stats.canonical_claim_count) < 1 ||
+        !Number.isFinite(Number(payload?.stats?.place_evidence_link_count)) ||
+        Number(payload.stats.place_evidence_link_count) < 1
+      )) {
+        throw new Error("Epoke place index has an invalid historical coverage contract");
+      }
+      if (Number(payload?.version) >= 5) {
+        const osloCoverage = payload?.domains?.historie?.oslo_coverage;
+        const classifiedCount = Number(osloCoverage?.dated_evidence_place_count) +
+          Number(osloCoverage?.documented_case_place_count) +
+          Number(osloCoverage?.awaiting_source_backed_history_count);
+        if (
+          osloCoverage?.contract !== "oslo-history-coverage-v1" ||
+          !Array.isArray(osloCoverage?.places) ||
+          !Array.isArray(osloCoverage?.categories) ||
+          !Number.isFinite(Number(osloCoverage?.canonical_place_count)) ||
+          osloCoverage.places.length !== Number(osloCoverage.canonical_place_count) ||
+          classifiedCount !== Number(osloCoverage.canonical_place_count)
+        ) {
+          throw new Error("Epoke place index has an invalid Oslo coverage contract");
+        }
+      }
+      if (Number(payload?.version) >= 6 && (
+        !Number.isFinite(Number(payload?.stats?.verified_place_production_milestone_count)) ||
+        Number(payload.stats.verified_place_production_milestone_count) < 1
+      )) {
+        throw new Error("Epoke place index has an invalid verified place-production contract");
+      }
+      placeIndexCache = payload;
+      window.HG_EPOKE_PLACE_INDEX = payload;
+      return payload;
+    })().catch((err) => {
+      console.warn("[HGEpokerRuntime] place index load failed; next call will retry", err);
+      return null;
+    }).finally(() => {
+      if (!placeIndexCache) placeIndexPromise = null;
+    });
+    return placeIndexPromise;
+  }
+
+  async function loadHistoryCoverage() {
+    if (historyCoverageCache) return historyCoverageCache;
+    if (historyCoveragePromise) return historyCoveragePromise;
+    historyCoveragePromise = (async () => {
+      const [guidesResponse, modulesResponse] = await Promise.all([
+        fetch(HISTORY_PERIOD_GUIDES_FILE, { cache: "no-store" }),
+        fetch(HISTORY_PERIOD_MODULES_FILE, { cache: "no-store" })
+      ]);
+      if (!guidesResponse.ok) throw new Error(`History period guides: HTTP ${guidesResponse.status}`);
+      if (!modulesResponse.ok) throw new Error(`History period modules: HTTP ${modulesResponse.status}`);
+      const [guidesPayload, modulesPayload] = await Promise.all([guidesResponse.json(), modulesResponse.json()]);
+      if (
+        guidesPayload?.subject_id !== "historie" ||
+        guidesPayload?.status !== "editorially_complete" ||
+        !Array.isArray(guidesPayload?.guides) ||
+        guidesPayload.guides.length < 9 ||
+        !Array.isArray(guidesPayload?.orientation_sources)
+      ) {
+        throw new Error("History period guides have an invalid coverage contract");
+      }
+      if (
+        modulesPayload?.subject_id !== "historie" ||
+        modulesPayload?.status !== "evidence_ready" ||
+        !Array.isArray(modulesPayload?.modules) ||
+        !Array.isArray(modulesPayload?.sources) ||
+        !Array.isArray(modulesPayload?.cases)
+      ) {
+        throw new Error("History period modules have an invalid evidence contract");
+      }
+      historyCoverageCache = {
+        contract: "canonical-history-period-coverage-v1",
+        guides: guidesPayload.guides,
+        orientation_sources: guidesPayload.orientation_sources,
+        modules: modulesPayload.modules,
+        sources: modulesPayload.sources,
+        cases: modulesPayload.cases
+      };
+      window.HG_EPOKE_HISTORY_COVERAGE = historyCoverageCache;
+      return historyCoverageCache;
+    })().catch((err) => {
+      console.warn("[HGEpokerRuntime] History coverage load failed; next call will retry", err);
+      return null;
+    }).finally(() => {
+      if (!historyCoverageCache) historyCoveragePromise = null;
+    });
+    return historyCoveragePromise;
+  }
+
   function debug() {
     const index = window.EPOKER_INDEX || null;
     const byDomain = index?.byDomain || {};
@@ -292,6 +407,9 @@ const HGEpokerRuntime = (() => {
       missingDomains: status.missingDomains.slice(),
       startedAt: status.startedAt,
       finishedAt: status.finishedAt,
+      hasPlaceIndex: Boolean(window.HG_EPOKE_PLACE_INDEX),
+      hasLocationIndex: Boolean(window.HG_EPOKE_PLACE_INDEX?.locations?.places),
+      hasHistoryCoverage: window.HG_EPOKE_HISTORY_COVERAGE?.contract === "canonical-history-period-coverage-v1",
     };
 
     console.log("[HGEpokerRuntime.debug]", info);
@@ -300,6 +418,8 @@ const HGEpokerRuntime = (() => {
 
   return {
     load,
+    loadPlaceIndex,
+    loadHistoryCoverage,
     debug,
     ready: null,
     get status() { return { ...status }; },

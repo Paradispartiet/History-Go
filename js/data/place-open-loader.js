@@ -139,7 +139,10 @@
     if (promises.has(placeId)) return promises.get(placeId);
 
     const url = new URL(`data/runtime/place-open/${encodeURIComponent(placeId)}.json`, document.baseURI);
-    const promise = fetch(url, { cache: "force-cache" })
+    // Place-open is the canonical payload for the card currently being opened.
+    // Revalidate it instead of pinning an older HTTP-cache entry: the service
+    // worker provides the bounded offline fallback when the network is down.
+    const promise = fetch(url, { cache: "no-cache" })
       .then(response => {
         if (!response.ok) throw new Error(`${response.status} ${url}`);
         return response.json();

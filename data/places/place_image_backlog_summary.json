@@ -1,30 +1,32 @@
 {
   "schema": "history_go_place_image_backlog_summary_v1",
-  "generatedAt": "2026-08-25",
-  "generatedFromCommit": "olaf_ryes_plass_phase_0_7",
-  "totalPlaces": 1453,
+  "generatedAt": "2026-08-26",
+  "generatedFromCommit": "oslo_micro_place_expansion_2026",
+  "totalPlaces": 1510,
   "summary": {
     "validLocal": 55,
     "validRemote": 35,
+    "optionalMissing": 57,
     "missing": 1332,
     "invalidLocalPath": 31,
     "remaining": 1363
   },
   "byCategory": {
-    "by": {"total": 252, "valid": 34, "missing": 187, "invalid": 31},
-    "historie": {"total": 517, "valid": 4, "missing": 513, "invalid": 0},
+    "by": {"total": 253, "valid": 34, "optional": 1, "missing": 187, "invalid": 31},
+    "historie": {"total": 523, "valid": 4, "optional": 6, "missing": 513, "invalid": 0},
     "kunst": {"total": 64, "valid": 3, "missing": 61, "invalid": 0},
     "scenekunst": {"total": 62, "valid": 2, "missing": 60, "invalid": 0},
-    "litteratur": {"total": 45, "valid": 17, "missing": 28, "invalid": 0},
+    "litteratur": {"total": 66, "valid": 17, "optional": 21, "missing": 28, "invalid": 0},
     "musikk": {"total": 16, "valid": 0, "missing": 16, "invalid": 0},
     "naeringsliv": {"total": 151, "valid": 5, "missing": 146, "invalid": 0},
-    "natur": {"total": 104, "valid": 0, "missing": 104, "invalid": 0},
+    "natur": {"total": 130, "valid": 0, "optional": 26, "missing": 104, "invalid": 0},
     "politikk": {"total": 39, "valid": 4, "missing": 35, "invalid": 0},
     "psykologi": {"total": 5, "valid": 2, "missing": 3, "invalid": 0},
     "religion": {"total": 4, "valid": 0, "missing": 4, "invalid": 0},
     "sport": {"total": 83, "valid": 0, "missing": 83, "invalid": 0},
     "subkultur": {"total": 45, "valid": 6, "missing": 39, "invalid": 0},
-    "vitenskap": {"total": 44, "valid": 12, "missing": 32, "invalid": 0},
+    "vitenskap": {"total": 45, "valid": 12, "optional": 1, "missing": 32, "invalid": 0},
+    "helse": {"total": 2, "valid": 0, "optional": 2, "missing": 0, "invalid": 0},
     "media": {"total": 13, "valid": 0, "missing": 13, "invalid": 0, "designAlias": "popkultur"},
     "film_tv": {"total": 9, "valid": 1, "missing": 8, "invalid": 0, "designAlias": "popkultur"}
   },
@@ -35,5 +37,5 @@
     "nature_and_scenekunst",
     "remaining_categories_by_verified_source_availability"
   ],
-  "note": "Dette er en materialisert status, ikke en allowlist. Nye og endrede steder stoppes allerede av CI dersom de mangler gyldig stedsbilde. Full rapport med place-id-er regenereres av scripts/audit-place-images.mjs."
+  "note": "Dette er en materialisert status, ikke en allowlist. Nye og endrede standardsteder stoppes av CI dersom de mangler gyldig stedsbilde. Canonical Micro Places kan mangle bilde etter den eksplisitte Micro Place-kontrakten; oppgitte, ugyldige bilder er fortsatt blokkerende. Full rapport med place-id-er regenereres av scripts/audit-place-images.mjs."
 }

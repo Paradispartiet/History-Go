@@ -8,7 +8,11 @@
     {
       "id": "manusmedarbeider_bordproveendring",
       "purpose": "Teste versjon og overlevering når bordprøvens rekkefølge endres.",
-      "learning_focus": ["overlevering", "versjon", "scenerekkefølge"],
+      "learning_focus": [
+        "overlevering",
+        "versjon",
+        "scenerekkefølge"
+      ],
       "mails": [
         {
           "id": "film_tv_manus_event_bordprove_001",
@@ -45,18 +49,201 @@
               "label": "Publiser én bordprøvepakke og hent bekreftelser",
               "reply": "Jeg låser riktig scene 35, nummererer ny rekkefølge og ber deltakerne bekrefte at de åpner samme pakke.",
               "effect": 1,
-              "tags": ["traceability", "coordination"],
+              "tags": [
+                "traceability",
+                "coordination"
+              ],
               "feedback": "Tidsendringen blir synlig uten å skape en ny versjonskonflikt.",
-              "effects": {"stats": {"quality": 2, "trust": 1, "risk": -2, "energy": -1}}
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 1,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
             },
             {
               "id": "B",
               "label": "Send de fire scenene enkeltvis i chatten",
               "reply": "Jeg sender sidene i riktig rekkefølge nå og forklarer muntlig hvilken variant som gjelder.",
               "effect": -1,
-              "tags": ["tempo", "version_risk"],
+              "tags": [
+                "tempo",
+                "version_risk"
+              ],
               "feedback": "Materialet kommer raskt ut, men ingen kan se om alle åpner samme variant.",
-              "effects": {"stats": {"status": 1, "quality": -1, "risk": 3, "energy": -1}}
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -1,
+                  "risk": 3,
+                  "energy": -1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_manus_table_read",
+      "purpose": "Gjøre bordprøven til en situert teamflate uten å la sosial flyt produsere faktastatus.",
+      "learning_focus": [
+        "table_read",
+        "situated_reputation",
+        "research_boundary"
+      ],
+      "mails": [
+        {
+          "role_scope": "manusmedarbeider",
+          "place_id": "manusrommet_produksjon",
+          "repeatable": false,
+          "stage": "stable",
+          "thread_key": "film_tv_manus_revision_realism_001",
+          "planned_only": true,
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "film_tv",
+            "manusmedarbeider"
+          ],
+          "id": "film_tv_manus_realism_table_read_001",
+          "mail_type": "event",
+          "mail_family": "role_world_rollout_manus_table_read",
+          "phase": "climax",
+          "day_phase": "evening",
+          "priority": 98,
+          "cooldown": 12,
+          "from": "Selma, scriptkoordinator",
+          "people_ref": "selma_scriptkoordinator",
+          "subject": "Bordprøven gjør det usynlige revisjonsarbeidet hørbart for hele teamet",
+          "summary": "Under bordprøven fungerer motivasjonen bedre, men et ordvalg får regissør og produsent til å tolke researchforbeholdet som etablert fakta. Teamets reaksjon må inn i revisjonssaken uten å bli ny godkjenningsmyndighet.",
+          "purpose": "Bevise situert omdømme i teamet: presis korrigering kan styrke tillit, men applaus, hierarki og flyt kan aldri gjøre en uverifisert detalj sann.",
+          "stakes": "Å avbryte med et avgrenset forbehold kan koste sosial flyt. Å tie beskytter øyeblikket, men lar en kjent researchrisiko bli delt produksjonsforståelse.",
+          "situation": [
+            "Bordprøven er en kollektiv arbeidsflate, ikke en formell endelig manuslås.",
+            "Maja har fortsatt markert detaljen som plausibel, men ikke kildebekreftet.",
+            "Nora kan prioritere videre rework; produsentens entusiasme endrer ikke kreditering, rettighet eller faktastatus."
+          ],
+          "task_domain": "vedvarende_manusrevisjon",
+          "task_kind": "event",
+          "competency": "feedback_og_samarbeid",
+          "pressure": "sosial_flyt_vs_researchintegritet",
+          "choice_axis": "synlig_forbehold_vs_teamets_falske_sikkerhet",
+          "consequence_axis": "situert_teamtillit_vs_produksjonsrisiko",
+          "narrative_arc": "fra_motstridende_notater_til_sporbart_anbefalingsgrunnlag",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "film_tv_manus_revision_case_001"
+            ],
+            "institution_id": "film_tv_manusutvikling_001",
+            "rework_of_scene_id": "film_tv_manus_realism_continuity_rework_001",
+            "priority": "urgent",
+            "interrupts": true
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Stopp kort, marker faktastatus og avtal hvem som følger opp etter prøven",
+              "reply": "Det ordet høres sikrere ut enn researchen er; jeg markerer forbeholdet nå og lar Maja og Nora avklare neste steg.",
+              "effect": 2,
+              "feedback": "Teamet mister litt flyt, men får et sant bilde av hva versjonen faktisk bærer.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_manus_table_read_feedback_integrated",
+                    "work_object_id": "film_tv_manus_revision_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "table_read_feedback_and_fact_check",
+                    "note": "Bordprøverespons og kildeforbehold er skilt og ført tilbake til revisjonssaken."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_manus_table_read_fact_boundary",
+                    "work_object_id": "film_tv_manus_revision_case_001",
+                    "flag": "table_read_did_not_convert_plausibility_to_fact"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_manus_standing_table_read_transparency",
+                    "audience_id": "team:film_tv_table_read",
+                    "delta": 3,
+                    "reason": "Et presist forbehold hindrer at sosial flyt blir falsk faktasikkerhet.",
+                    "source_actor_id": "selma_scriptkoordinator"
+                  },
+                  {
+                    "event_id": "film_tv_manus_standing_research_publicly_respected",
+                    "audience_id": "professional:maja_researchansvarlig",
+                    "delta": 2,
+                    "reason": "Researchstatusen bevares også i en sosialt presset arbeidsflate.",
+                    "source_actor_id": "maja_researchansvarlig"
+                  },
+                  {
+                    "event_id": "film_tv_manus_standing_manager_table_read",
+                    "audience_id": "manager:nora_manusredaktor",
+                    "delta": 1,
+                    "reason": "Nora får et klart oppfølgingspunkt etter prøven.",
+                    "source_actor_id": "nora_manusredaktor"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "La prøven gå og rydd faktastatusen i neste versjon",
+              "reply": "Vi holder flyten nå; jeg retter formuleringen i etterkant uten å ta opp forbeholdet i rommet.",
+              "effect": -2,
+              "feedback": "Rommet beholder energien, men teamet går videre med en sikkerhet manussporet ikke kan dokumentere.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_manus_table_read_feedback_deferred",
+                    "work_object_id": "film_tv_manus_revision_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "table_read_feedback_and_fact_check",
+                    "note": "Bordprøven er gjennomført, men teamets feiltolkning av faktastatus ble ikke korrigert i rommet."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_manus_table_read_false_certainty",
+                    "work_object_id": "film_tv_manus_revision_case_001",
+                    "flag": "team_heard_unverified_detail_as_fact"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_manus_standing_table_read_silence",
+                    "audience_id": "team:film_tv_table_read",
+                    "delta": -3,
+                    "reason": "Teamet får sosial flyt på bekostning av korrekt produksjonsforståelse.",
+                    "source_actor_id": "selma_scriptkoordinator"
+                  },
+                  {
+                    "event_id": "film_tv_manus_standing_research_overridden",
+                    "audience_id": "professional:maja_researchansvarlig",
+                    "delta": -2,
+                    "reason": "Et kjent forbehold blir usynlig når flere begynner å handle på teksten.",
+                    "source_actor_id": "maja_researchansvarlig"
+                  }
+                ]
+              }
             }
           ]
         }

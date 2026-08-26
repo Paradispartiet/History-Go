@@ -12,6 +12,8 @@
     "typecheck:tools": "tsc -p tsconfig.tools.json",
     "build:tools": "tsc -p tsconfig.tools.build.json",
     "typecheck:web": "tsc -p tsconfig.web.json",
+    "epoker:places:build": "node scripts/build-epoke-place-index.mjs",
+    "epoker:places:check": "node scripts/build-epoke-place-index.mjs --check",
     "build:web": "node build/build-web.mjs",
     "build:web:watch": "node build/build-web.mjs --watch",
     "build:web:check": "npm run build:web && node -e \"const s=require('child_process').execSync('git status --porcelain dist/web').toString().trim(); if(s){console.error('dist/web er ute av sync med kilden \\u2014 kjor npm run build:web og commit:\\n'+s);process.exit(1)} else console.log('dist/web i sync \\u2705')\"",

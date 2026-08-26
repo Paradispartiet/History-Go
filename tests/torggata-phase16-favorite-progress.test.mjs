@@ -81,7 +81,7 @@ test("PlaceCard, Nearby and profile share the canonical favorite/progress source
   assert.match(placeCardStatusSource, /summary\.favorite/);
   assert.match(placeCardStatusSource, /document\.createElement\("button"\)/);
   assert.match(placeCardStatusSource, /const openPlace = currentOpenPlace\(\)/);
-  assert.match(placeCardEpokeSource, /window\.HGPlaceCardEpoke = \{ render \}/);
+  assert.match(placeCardEpokeSource, /(?:window\.HGPlaceCardEpoke = \{ render \}|HGPlaceCardEpoke:\s*\{ render(?:,|\s*\}))/);
   assert.match(nearbyStatusSource, /getPlaceProgressSummary/);
   assert.match(nearbyStatusSource, /summary\.favorite/);
   assert.match(nearbyControlTest, /Nearby cards must not create a favorite star button/);

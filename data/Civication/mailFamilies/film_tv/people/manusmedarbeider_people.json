@@ -8,7 +8,11 @@
     {
       "id": "manusmedarbeider_forfatterstemme",
       "purpose": "Gjøre forfattereierskap og presis tilbakemelding til et relasjonelt valg.",
-      "learning_focus": ["forfattereierskap", "tilbakemelding", "samarbeid"],
+      "learning_focus": [
+        "forfattereierskap",
+        "tilbakemelding",
+        "samarbeid"
+      ],
       "mails": [
         {
           "id": "film_tv_manus_people_forfatterstemme_001",
@@ -46,18 +50,206 @@
               "label": "Beskriv tempoproblemet og be Elias foreslå to løsninger",
               "reply": "Problemet er at vendepunktet kommer sent, ikke at karakteren forklarer for lite. Kan du foreslå to kortere veier som beholder stemmen?",
               "effect": 1,
-              "tags": ["authorship", "clarity"],
+              "tags": [
+                "authorship",
+                "clarity"
+              ],
               "feedback": "Elias beholder eierskapet, mens bestillingen blir konkret nok til å arbeide med.",
-              "effects": {"stats": {"quality": 2, "trust": 2, "risk": -1}}
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -1
+                }
+              }
             },
             {
               "id": "B",
               "label": "Skriv om replikkene direkte for å vise hva du mener",
               "reply": "Jeg legger inn en strammere replikkversjon, så kan du justere den etterpå.",
               "effect": -1,
-              "tags": ["overreach", "tempo"],
+              "tags": [
+                "overreach",
+                "tempo"
+              ],
               "feedback": "Du leverer en rask løsning, men flytter notatet fra problem til uavklart medforfatterskap.",
-              "effects": {"stats": {"status": 1, "trust": -3, "quality": -1, "risk": 2}}
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "trust": -3,
+                  "quality": -1,
+                  "risk": 2
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_manus_author_handoff",
+      "purpose": "Gjøre forfatteroppdraget til et faktisk handoff med situert tillit og eksplisitt eierskap.",
+      "learning_focus": [
+        "handoff",
+        "waiting",
+        "situated_reputation"
+      ],
+      "mails": [
+        {
+          "role_scope": "manusmedarbeider",
+          "place_id": "manusrommet_produksjon",
+          "repeatable": false,
+          "stage": "stable",
+          "thread_key": "film_tv_manus_revision_realism_001",
+          "planned_only": true,
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "film_tv",
+            "manusmedarbeider"
+          ],
+          "id": "film_tv_manus_realism_author_handoff_001",
+          "mail_type": "people",
+          "mail_family": "role_world_rollout_manus_author_handoff",
+          "phase": "advanced",
+          "day_phase": "afternoon",
+          "priority": 90,
+          "cooldown": 12,
+          "from": "Elias, manusforfatter",
+          "people_ref": "elias_manusforfatter",
+          "subject": "Gi meg et handoff som lar meg skrive – ikke et skjult ferdig svar",
+          "summary": "Elias kan ta omskrivningen dersom notatpakken skiller observerbart problem, ønsket virkning, åpne alternativer og hvem som faktisk avgjør. Etter handoffet må produksjonen vente på forfatterens nye versjon.",
+          "purpose": "Gjøre forfatterarbeidet til et faktisk handoff og måle situert tillit uten å gjøre godt omdømme til eierskap over teksten.",
+          "stakes": "Et presist handoff kan synliggjøre uenighet og koste tid. Et løsningsdiktert handoff kan se effektivt ut, men flytter forfatteransvar og kreditering uten mandat.",
+          "situation": [
+            "Elias ber om problemet og rammene, ikke ferdig dialog skrevet i hans navn.",
+            "Nora trenger å kunne se hvilke notater som er prioriterte før forfatteren bruker tid.",
+            "Selma må vite hvilken baseline den nye versjonen skal avledes fra."
+          ],
+          "task_domain": "vedvarende_manusrevisjon",
+          "task_kind": "people",
+          "competency": "feedback_og_samarbeid",
+          "pressure": "tempo_vs_forfattereierskap",
+          "choice_axis": "presist_handoff_vs_losningsdiktat",
+          "consequence_axis": "forfattertillit_vs_skjult_overtakelse",
+          "narrative_arc": "fra_motstridende_notater_til_sporbart_anbefalingsgrunnlag",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "film_tv_manus_revision_case_001"
+            ],
+            "institution_id": "film_tv_manusutvikling_001",
+            "handoff_to_actor_id": "elias_manusforfatter",
+            "priority": "high"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Send problem, virkning, rammer og beslutningseier – la løsningen stå åpen",
+              "reply": "Jeg sender hva scenen nå gjør, hva notatene ber om, hva som er uavklart, og lar deg eie den konkrete omskrivningen.",
+              "effect": 2,
+              "feedback": "Elias får et behandlingsbart oppdrag uten at manusmedarbeiderens forslag blir usynlig forfatterskap.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_manus_author_handoff_waiting",
+                    "work_object_id": "film_tv_manus_revision_case_001",
+                    "to_status": "waiting",
+                    "to_phase": "awaiting_author_revision",
+                    "note": "Sporbar notatpakke er overlevert til Elias, og revisjonssaken venter på ny forfatterversjon."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_manus_author_handoff_traced",
+                    "work_object_id": "film_tv_manus_revision_case_001",
+                    "flag": "author_handoff_problem_not_solution"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_manus_standing_author_precise",
+                    "audience_id": "professional:elias_manusforfatter",
+                    "delta": 3,
+                    "reason": "Handoffet beskytter forfatterens løsningsrom og gjør prioriteringene lesbare.",
+                    "source_actor_id": "elias_manusforfatter"
+                  },
+                  {
+                    "event_id": "film_tv_manus_standing_manager_traceable",
+                    "audience_id": "manager:nora_manusredaktor",
+                    "delta": 2,
+                    "reason": "Redaktørens prioritering kan spores uten å bli presentert som ferdig tekst.",
+                    "source_actor_id": "nora_manusredaktor"
+                  },
+                  {
+                    "event_id": "film_tv_manus_standing_team_baseline",
+                    "audience_id": "team:film_tv_script_team",
+                    "delta": 1,
+                    "reason": "Versjonsgrunnlaget er tydelig for manus- og kontinuitetsarbeidet.",
+                    "source_actor_id": "selma_scriptkoordinator"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Send den ferdigskrevne løsningen som den raskeste veien videre",
+              "reply": "Jeg har skrevet dialogen slik notatene trolig mener; du kan justere tonen og levere den.",
+              "effect": -2,
+              "feedback": "Handoffet ser raskt ut, men gjør medforfatterskap og beslutningsansvar uklart.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_manus_author_handoff_pressured_waiting",
+                    "work_object_id": "film_tv_manus_revision_case_001",
+                    "to_status": "waiting",
+                    "to_phase": "awaiting_author_revision",
+                    "note": "Saken venter på Elias etter et løsningsdiktert handoff med uklart forfatterskap."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_manus_author_voice_pressure",
+                    "work_object_id": "film_tv_manus_revision_case_001",
+                    "flag": "solution_dictated_in_author_handoff"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_manus_standing_author_overwritten",
+                    "audience_id": "professional:elias_manusforfatter",
+                    "delta": -3,
+                    "reason": "Notatpakken leverer skjult ferdigtekst i stedet for et avgrenset problem.",
+                    "source_actor_id": "elias_manusforfatter"
+                  },
+                  {
+                    "event_id": "film_tv_manus_standing_manager_ownership_risk",
+                    "audience_id": "manager:nora_manusredaktor",
+                    "delta": -2,
+                    "reason": "Tempo skjuler hvem som eier tekst og redaksjonell beslutning.",
+                    "source_actor_id": "nora_manusredaktor"
+                  },
+                  {
+                    "event_id": "film_tv_manus_standing_team_version_ambiguity",
+                    "audience_id": "team:film_tv_script_team",
+                    "delta": -1,
+                    "reason": "Ny tekst mangler et tydelig avlednings- og beslutningsspor.",
+                    "source_actor_id": "selma_scriptkoordinator"
+                  }
+                ]
+              }
             }
           ]
         }

@@ -12,11 +12,15 @@ Schema: `data/places/regler/place_card_profile_v2.schema.json`
 
 Sted-for-sted arbeidsflyt: `docs/PLACE_PRODUCTION_CHECKLIST.md`
 
-Sist kontrollert: **2026-08-25**
+Sist kontrollert: **2026-08-26**
 
 Filnavnet beholdes midlertidig slik at gamle lenker og arbeidsløp ikke brytes. Kontrakten handler nå om **samlinger**, ikke om en kvote med runde elementer.
 
-> **PlaceCard har alltid en full, fast 2 × 2-komposisjon. Tomme registre gir en ærlig ikon-/statusflate; de skal aldri kollapse layouten eller fylles med oppdiktet innhold.**
+> **PlaceCard har alltid en full, fast 2 × 2-komposisjon. På nye og fullproduserte steder skal hver flate vise et faktisk bilde av ett canonical medlem i samlingen. Ikon-/statusfallback er bare en runtime-sikring ved lasting eller feil og er aldri godkjent ferdigstatus.**
+
+Denne fireflatersregelen gjelder standard Places. Canonical Micro Places med
+`placeTier: "micro"` bruker i stedet det forenklede kortet definert i
+`docs/MICRO_PLACE_CONTRACT.md` og skal ikke ha `place_card_profile`.
 
 ## 1. Fast PlaceCard-komposisjon
 
@@ -29,9 +33,11 @@ Den eksisterende PlaceCard-komposisjonen beholdes:
 5. den obligatoriske, tydelige **Ta quiz**-handlingen beholdes i PlaceCard-footeren;
 6. hver samling åpner sin egen brukerrettede popup og kan der vise semantisk eide underseksjoner uten å opprette nye samlingsflater eller dupliserte stedspopupfaner.
 
+`frontImage` skal være et stående bilde eller et ferdig, kildeført stående utsnitt. Den publiserte filen/varianten skal ha høyde større enn bredde, med dokumentert orientering, dimensjoner, utsnitt og proveniens. Å plassere en liggende kildefil i en stående CSS-ramme med `object-fit` oppfyller ikke kravet alene.
+
 Vanlige PlaceCards viser alltid **People** som én sirkel og **Objects**, **Brands** og kategoriens samling som tre avrundede rektangler. Nature PlaceCards viser alltid **Flora** og **Fauna** som to sirkler og **Kart** og **Turmål** som to avrundede rektangler. Badges-rundingene ved overskriften kommer i tillegg og teller ikke blant de fire.
 
-Det finnes ingen femte samlingsplass. En samling uten registrerte treff beholder ikon og forståelig tomtilstand uten å vise tallet 0; den må aldri fjernes slik at kortet får et visuelt hull.
+Det finnes ingen femte samlingsplass. En samling uten registrerte treff beholder ikon og forståelig tomtilstand uten å vise tallet 0; den må aldri fjernes slik at kortet får et visuelt hull. For et nytt eller fullprodusert sted er denne tomtilstanden samtidig en produksjonsblocker: samlingen og minst ett bildeklart canonical medlem må produseres før closeout.
 
 ### Samlingspopup er ikke en ny samling
 
@@ -49,7 +55,9 @@ Disse seksjonene teller aldri som egne PlaceCard-samlinger og skal ikke få egne
 - alle øvrige samlinger vises som avrundede rektangler;
 - Badges er en separat handling ved overskriften og kan beholde sin sirkelform;
 - formen endrer bare presentasjonen, aldri popupens data eller samlingens innhold;
-- bilde-preview kan brukes inne i en kvalifisert samling, men previewet filtrerer aldri popupinnholdet.
+- hver av de fire flatene viser et bilde av ett faktisk medlem fra sin kvalifiserte samling; previewet filtrerer aldri popupinnholdet;
+- People/Flora/Fauna bruker et bilde av personen/arten, Objects bruker det konkrete objektet, Brands bruker verifisert logo/brandmark, og øvrige samlinger bruker et bilde av det viste medlemmet eller et faktisk detaljkart for `map`;
+- generisk ikon, navn, antall eller stedets `frontImage` kan ikke brukes som ferdig samlingspreview.
 
 ## 3. Canonical profil for nye og fullproduserte steder
 
@@ -70,7 +78,7 @@ Krav:
 
 - `collection_ids` har nøyaktig fire unike canonical IDs;
 - rekkefølgen følger den faste standard- eller naturkomposisjonen;
-- innhold skal være reelt og stedsspesifikt; et tomt register vises som en ærlig reserveflate og aldri som oppdiktet innhold eller synlig 0;
+- innhold skal være reelt og stedsspesifikt; alle fire samlinger skal ha minst ett canonical medlem med validert bilde før fullproduksjon kan lukkes;
 - maksimalt én kategori-eid samling (`productions`, `structures`, `competitions`, `related` eller `destinations`) kan velges fordi de deler runtime-visningsplass;
 - `reason` forklarer kategori-komposisjonen og dokumenterer hvilke tomme flater som fortsatt er reelle produksjonsgap;
 - `verifiedAt` viser siste reelle innholds- og UI-kontroll;
@@ -121,7 +129,7 @@ Natursteder bruker alltid:
 flora · fauna · map · destinations
 ```
 
-Kategoriens naturlige samling fyller alltid den fjerde plassen. Manglende registrerte treff vises som ikon-/statusreserve uten falskt innhold:
+Kategoriens naturlige samling fyller alltid den fjerde plassen. For legacy-/overgangssteder vises manglende treff som ikon-/statusreserve uten falskt innhold. Denne kompatibilitetsvisningen teller aldri som ferdig produksjon:
 
 | Kategori | Kategori-eid samling | Brukerrettet navn |
 | --- | --- | --- |
@@ -249,6 +257,8 @@ Gamle `subplaces`-/`spots`-data kan bare brukes som compatibility-kilde når pos
 
 Hovedbilder, galleri, historiske bilder og før-/nå-bilder beholdes hos sine eksisterende eiere og kan vises i `frontImage`-/medieflaten eller i riktig popupfane. Bilder skal dedupliseres, kilde- og lisensføres, og aldri kopieres eller gis ny identitet for å fylle PlaceCard.
 
+`frontImage` skal publiseres i stående orientering (`height > width`). Dersom kilden er liggende, produseres en egen, redaksjonelt kontrollert stående variant med kilde, lisens, originaldimensjoner, outputdimensjoner og crop dokumentert i `frontImageMeta` eller tilsvarende canonical metadata.
+
 Fjerningen av Bilder som samling reduserer ikke bildeproduksjonen eller provenienskravene.
 
 ## 17. Ikke PlaceCard-samlinger
@@ -289,20 +299,20 @@ Et sted er PlaceCard-ferdig når:
 1. Badges vises separat ved overskriften og åpner riktig fagverk-side;
 2. Quiz vises som obligatorisk, tydelig handling og åpner riktig stedquiz;
 3. nøyaktig fire samlingsflater er valgt i `place_card_profile` etter kategoriens faste komposisjon;
-4. samlinger med innhold er relevante og stedsspesifikke; tomme registre viser ærlig reserveflate uten falskt 0;
+4. hver av de fire samlingene har reelt, stedsspesifikt innhold og viser et faktisk bilde av ett av sine canonicale medlemmer;
 5. vanlige kort har People som sirkel og tre rektangler; Nature har Flora og Fauna som sirkler og to rektangler;
 6. den fulle 2 × 2-layouten er kontrollert på mobil og desktop;
-7. Bilder finnes bare i medie-/bildeeierne og aldri som samling eller reserve;
+7. `frontImage` er en validert stående fil/variant med dokumentert crop og proveniens; Bilder finnes bare i medie-/bildeeierne og aldri som samling eller reserve;
 8. hver samling åpner korrekt popupinnhold, antall og datakilde;
 9. Objects-popupen viser eventuelle `Spor og objekter`/`Legg merke til`-supplementer uten å forfalske Objects-antallet;
 10. People-popupen viser relevante personrelasjoner uten å blande inn rene place→place-relasjoner;
 11. `related` beholder place→place-relasjoner;
 12. ingen av disse supplementene dupliseres som egne stedspopupfaner;
-13. ødelagt preview faller tilbake til ikon og antall uten ødelagt bildeikon;
+13. ødelagt preview faller trygt tilbake uten ødelagt bildeikon, men fallbacken registreres som blocker og kan ikke godkjennes i closeout;
 14. People-previewet filtrerer ikke People-popupen;
 15. naturkartet åpner faktisk detaljkart;
 16. ingen delsted-, Object-/Structure-, Brand- eller relasjonseier er feil;
 17. stedspopupen er fullverdig kontrollert etter popupkontrakten;
 18. schema, typer, renderer, layout og relevante permanente tester passerer.
 
-**Stoppgate:** PlaceCard kan ikke ferdigmeldes før runtime, schema og tester støtter den fulle modellen. Manglende innhold skal registreres som et produksjonsgap, men PlaceCard-komposisjonen skal fortsatt være full og visuelt stabil.
+**Stoppgate:** PlaceCard kan ikke ferdigmeldes før runtime, schema og tester støtter den fulle modellen, `frontImage` er stående, og alle fire samlingsflater har lastende bilder av faktiske canonicale medlemmer. Manglende innhold eller mediefil registreres som et produksjonsgap, mens runtime fortsatt holder komposisjonen full og visuelt stabil.

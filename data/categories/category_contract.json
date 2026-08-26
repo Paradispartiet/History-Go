@@ -1,7 +1,7 @@
 {
-  "version": "1.9",
+  "version": "1.10",
   "status": "canonical",
-  "updatedAt": "2026-08-25",
+  "updatedAt": "2026-08-26",
   "rule": "Én kategori har én runtime-id og én fag-id. Populærkultur brukes som tverrgående tagg og mediefaglig analysefelt, ikke som toppkategori. Faglige canonicalSubcategories og stedlige canonicalPlaceSubcategories er separate kontrakter: stedsunderkategorier kan styre stedstype og presentasjon uten å opprette ny toppkategori, fag-id eller kartfarge.",
   "runtimeCategories": [
     "by",
@@ -127,11 +127,23 @@
     "utdanning": [{ "id": "pedagogikk_utdanningsvitenskap", "label": "Pedagogikk & utdanningsvitenskap", "status": "foundation_materialized" }]
   },
   "canonicalPlaceSubcategories": {
+    "by": [
+      { "id": "bla_skilt", "label": "Blått skilt", "status": "pilot_materialized" }
+    ],
+    "helse": [
+      { "id": "bla_skilt", "label": "Blått skilt", "status": "pilot_materialized" }
+    ],
+    "historie": [
+      { "id": "snublestein", "label": "Snublestein", "status": "pilot_materialized" }
+    ],
     "natur": [
       { "id": "miljo_gjenbruk", "label": "Miljø & gjenbruk", "status": "foundation_materialized", "fagverkChapterIds": ["miljopavirkning_forvaltning_regenerasjon", "sirkulaer_okonomi_avfall_ombruk"] }
     ],
     "litteratur": [
       { "id": "lesekiosk", "label": "Lesekiosk", "status": "foundation_materialized", "fagverkChapterIds": ["lesekultur_bokdeling_offentlighet"] }
+    ],
+    "vitenskap": [
+      { "id": "bla_skilt", "label": "Blått skilt", "status": "pilot_materialized" }
     ]
   }
 }

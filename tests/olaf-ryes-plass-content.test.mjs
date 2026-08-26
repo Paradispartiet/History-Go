@@ -71,6 +71,6 @@ test("canonical description has a current v4.2 claim packet", () => {
   assert.equal(packet.claims.length, 12);
   assert.deepEqual(packet.completion.claimsVerified, { verified: 12, total: 12 });
   assert.equal(packet.sentenceCoverage.desc.length, 2);
-  assert.equal(packet.sentenceCoverage.popupDesc.length, 19);
+  assert.equal(packet.sentenceCoverage.popupDesc.length, 20);
   assert.equal(packet.quizReadiness.questions.length, 8);
 });
