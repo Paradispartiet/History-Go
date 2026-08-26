@@ -93,10 +93,10 @@ test("Oslo coverage classifies every canonical place exactly once without overst
     .sort();
 
   assert.equal(coverage.contract, "oslo-history-coverage-v1");
-  assert.equal(coverage.canonical_place_count, 563);
+  assert.equal(coverage.canonical_place_count, 567);
   assert.equal(coverage.dated_evidence_place_count, 168);
   assert.equal(coverage.documented_case_place_count, 2);
-  assert.equal(coverage.awaiting_source_backed_history_count, 393);
+  assert.equal(coverage.awaiting_source_backed_history_count, 397);
   assert.deepEqual(coverage.places.map((place) => place.place_id).sort(), osloPlaceIds);
   assert.equal(new Set(coverage.places.map((place) => place.place_id)).size, coverage.canonical_place_count);
   assert.ok(coverage.places.every((place) => allowedStatuses.has(place.status)));
