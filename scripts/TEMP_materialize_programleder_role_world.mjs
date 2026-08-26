@@ -755,4 +755,4 @@ const report = [
 ].join('\n') + '\n';
 fs.writeFileSync(path.join(ROOT, 'reports/CIVICATION_FILM_TV_PROGRAMLEDER_ROLE_WORLD_ROLLOUT.md'), report);
 
-console.log('Materialized Film/TV Programleder Role World rollout.');
+console.log('Materialized controlled Film/TV Programleder Role World rollout.');
