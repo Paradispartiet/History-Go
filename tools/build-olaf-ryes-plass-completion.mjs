@@ -218,9 +218,9 @@ Plassen brukes fortsatt som lokalt møte- og arrangementsrom. Visit Løkka annon
 
   const readings = read("data/lesespor/lesespor_oslo_batch2.json");
   for (const item of [
-    { id: "lesespor_olaf_ryes_plass_byleksikon", title: "Olaf Ryes plass", author: null, publication: "Oslo byleksikon", date: null, year: null, type: "reference_article", subjects: ["Olaf Ryes plass", "parkhistorie", "Eilert Sundt"], place_ids: ["olaf_ryes_plass"], person_ids: ["olaf_rye", "eilert_sundt"], category_hints: ["by", "historie"], url: sourceUrls.byleksikon, access: "open", rights: "link_only", source_quality: "institutional_reference", curation_status: "strong_candidate", relevance: "Stedsspesifikk oversikt over avgrensning, navngiving, park, byste og fontene." },
-    { id: "lesespor_olaf_ryes_plass_byokologi", title: "Byøkologi – hva er det, egentlig?", author: null, publication: "Oslo kommune / Byplan", date: null, year: null, type: "municipal_article", subjects: ["byøkologi", "offentlig rom", "Olaf Ryes plass"], place_ids: ["olaf_ryes_plass"], person_ids: [], category_hints: ["by", "natur"], url: sourceUrls.byokologi, access: "open", rights: "link_only", source_quality: "official_municipality", curation_status: "strong_candidate", relevance: "Kommunal refleksjon om byøkologi med Olaf Ryes plass som konkret samtale- og observasjonssted." },
-    { id: "lesespor_olaf_ryes_plass_oslobilder_1903", title: "Olaf Ryes Plads", author: "Anders Beer Wilse", publication: "Oslo Museum / Oslobilder", date: "1903-01-01", year: 1903, type: "historical_photo", subjects: ["park", "byste", "offentlig rom"], place_ids: ["olaf_ryes_plass"], person_ids: ["eilert_sundt"], category_hints: ["by", "historie"], url: sourceUrls.before, access: "open", rights: "cc_3_0", source_quality: "museum_collection", curation_status: "strong_candidate", relevance: "Katalogisert 1903-fotografi av selve parkrommet med benker, mennesker og portrettbyste." }
+    { id: "lesespor_olaf_ryes_plass_byleksikon", title: "Olaf Ryes plass", author: null, publication: "Oslo byleksikon", date: null, year: null, type: "reference_article", subjects: ["Olaf Ryes plass", "parkhistorie", "Eilert Sundt"], place_ids: ["olaf_ryes_plass"], person_ids: ["olaf_rye", "eilert_sundt"], category_hints: ["by", "historie"], url: sourceUrls.byleksikon, access: "open", rights: "link_only", source_quality: "institutional", curation_status: "strong_candidate", relevance: "Stedsspesifikk oversikt over avgrensning, navngiving, park, byste og fontene." },
+    { id: "lesespor_olaf_ryes_plass_byokologi", title: "Byøkologi – hva er det, egentlig?", author: null, publication: "Oslo kommune / Byplan", date: null, year: null, type: "municipal_article", subjects: ["byøkologi", "offentlig rom", "Olaf Ryes plass"], place_ids: ["olaf_ryes_plass"], person_ids: [], category_hints: ["by", "natur"], url: sourceUrls.byokologi, access: "open", rights: "link_only", source_quality: "institutional", curation_status: "strong_candidate", relevance: "Kommunal refleksjon om byøkologi med Olaf Ryes plass som konkret samtale- og observasjonssted." },
+    { id: "lesespor_olaf_ryes_plass_oslobilder_1903", title: "Olaf Ryes Plads", author: "Anders Beer Wilse", publication: "Oslo Museum / Oslobilder", date: "1903-01-01", year: 1903, type: "historical_photo", subjects: ["park", "byste", "offentlig rom"], place_ids: ["olaf_ryes_plass"], person_ids: ["eilert_sundt"], category_hints: ["by", "historie"], url: sourceUrls.before, access: "open", rights: "cc_3_0", source_quality: "institutional", curation_status: "strong_candidate", relevance: "Katalogisert 1903-fotografi av selve parkrommet med benker, mennesker og portrettbyste." }
   ]) addUnique(readings.items, item, row => row.id);
   write("data/lesespor/lesespor_oslo_batch2.json", readings);
 
@@ -239,8 +239,157 @@ Plassen brukes fortsatt som lokalt møte- og arrangementsrom. Visit Løkka annon
   }
 }
 
+function buildQuiz(place, production) {
+  const E1 = "em_by_parker_som_sosial_infrastruktur";
+  const E2 = "em_by_opphold_vs_gjennomgang";
+  const E3 = "em_by_historiske_lag_i_hverdagsrom";
+  const sources = {
+    municipality: { url: sourceUrls.municipality, source_type: "official_municipality", review_status: "reviewed", review_note: "Canonical avgrensning og fontene på plassen." },
+    byleksikon: { url: sourceUrls.byleksikon, source_type: "institutional_reference", review_status: "reviewed", review_note: "Kjøp, navn, park, byste, finansiering og fontene." },
+    rye: { url: sourceUrls.rye, source_type: "reputable_encyclopedia", review_status: "reviewed", review_note: "Olaf Ryes biografi og korrekt dødsår 1849." },
+    sundt: { url: sourceUrls.sundt, source_type: "reputable_encyclopedia", review_status: "reviewed", review_note: "Eilert Sundts samfunnsforskning og levekårsarbeid." },
+    parkteatret: { url: sourceUrls.parkteatret, source_type: "primary_venue", review_status: "reviewed", review_note: "Adresse, kinohistorie fra 1907 og dagens konsertbruk; nabokontekst." },
+    before: { url: sourceUrls.before, source_type: "museum_catalogue", review_status: "reviewed", review_note: "1903-fotografi, fotograf og motiv." },
+    after: { url: sourceUrls.after, source_type: "licensed_media_catalogue", review_status: "reviewed", review_note: "2009-fotografi, fotograf, dato og lisens." },
+    events: { url: sourceUrls.lokkadagene, source_type: "primary_event_program", review_status: "reviewed", review_note: "Daterte 2026-arrangementer; ikke permanent stedsegenskap." },
+    byokologi: { url: sourceUrls.byokologi, source_type: "official_municipal_article", review_status: "reviewed", review_note: "Byøkologi og offentlig rom med plassen som observasjonssted." }
+  };
+  const specs = [
+    ["fact","Hvilke fire gater avgrenser Olaf Ryes plass?",["Markveien, Grüners gate, Thorvald Meyers gate og Sofienberggata","Toftes gate, Seilduksgata, Fossveien og Sannergata","Torggata, Storgata, Brugata og Hausmanns gate"],"Markveien, Grüners gate, Thorvald Meyers gate og Sofienberggata","Kommunen avgrenser plassen med disse fire gatene.","municipality",E1],
+    ["fact","Når kjøpte kommunen den åpne løkken?",["1863","1890","1927"],"1863","Kommunen kjøpte løkken i 1863.","byleksikon",E3],
+    ["fact","Når fikk plassen navn etter Olaf Rye?",["1864","1849","1907"],"1864","Plassen fikk navnet Olaf Ryes plass i 1864.","byleksikon",E3],
+    ["fact","Hvem var navnet hentet fra?",["Offiseren Olaf Rye","Samfunnsforskeren Eilert Sundt","Billedhuggeren Mathias Skeibrok"],"Offiseren Olaf Rye","Navnet viser til offiseren Olaf Rye.","byleksikon",E3],
+    ["fact","Hvilket dødsår for Olaf Rye brukes etter kildekontrollen?",["1849","1848","1864"],"1849","Store norske leksikon daterer Olaf Ryes død til 6. juli 1849.","rye",E3],
+    ["fact","Hva skjedde med området i 1890?",["Det ble opparbeidet som park","Fontenen ble anlagt","Parkteatret åpnet som kino"],"Det ble opparbeidet som park","Området ble opparbeidet som park i 1890.","byleksikon",E3],
+    ["fact","Hvilket monument ble reist i 1892?",["Eilert Sundt-bysten","Olaf Rye-statuen","Fontenen"],"Eilert Sundt-bysten","Bronsebysten av Eilert Sundt ble reist i 1892.","byleksikon",E3],
+    ["fact","Hvem laget Eilert Sundt-bysten?",["Mathias Skeibrok","Olaf Rye","Helge Høifødt"],"Mathias Skeibrok","Mathias Skeibrok utførte bronsebysten.","byleksikon",E3],
+    ["fact","Hvem finansierte Sundt-bysten?",["Oslo Arbeidersamfund og Selskabet for Folkeoplysningens Fremme","Parkteatret og Oslo kommune","Visit Løkka og Oslo Museum"],"Oslo Arbeidersamfund og Selskabet for Folkeoplysningens Fremme","To folkeopplysnings- og arbeidersamfunn finansierte monumentet.","byleksikon",E3],
+    ["fact","Hva arbeidet Eilert Sundt med?",["Levekår og samfunnsforhold","Militær strategi ved Fredericia","Kinodrift og konsertprogram"],"Levekår og samfunnsforhold","Sundt undersøkte levekår og samfunnsforhold.","sundt",E1],
+    ["context","Hvorfor passer Eilert Sundt inn i plassens historie?",["Bysten gjør samfunnsforskning og folkeopplysning fysisk synlig","Han tegnet parkens fire gater","Han åpnet kinoen i 1907"],"Bysten gjør samfunnsforskning og folkeopplysning fysisk synlig","Det fysiske monumentet binder personen til det offentlige parkrommet.","byleksikon",E1],
+    ["fact","Hva ble anlagt midt på plassen i 1927?",["Fontenen","Kinoen","Nybrua"],"Fontenen","Fontenen ble anlagt midt på plassen i 1927.","byleksikon",E3],
+    ["context","Hvorfor er fontenen et historisk lag?",["Den kom etter parkopparbeidelsen og ble et fast parkanker","Den viser at parken først åpnet i 1927","Den gjør alle nabobygg til parkobjekter"],"Den kom etter parkopparbeidelsen og ble et fast parkanker","Fontenen legger et mellomkrigslag til parken fra 1890.","municipality",E3],
+    ["context","Hva betyr own-place-grensen ved parkens kanter?",["Parkflaten eier ikke automatisk fasader og virksomheter rundt","Alle adresser ved plassen er del av samme sted","Holdeplassen og hele Grünerløkka inngår i parken"],"Parkflaten eier ikke automatisk fasader og virksomheter rundt","Canonical avgrensning skiller parkflaten fra naboene.","municipality",E1],
+    ["fact","Hvilken adresse oppgir Parkteatret?",["Olaf Ryes plass 11","Markveien 1","Sofienberggata 27"],"Olaf Ryes plass 11","Parkteatrets primærside oppgir Olaf Ryes plass 11.","parkteatret",E1],
+    ["fact","Hvilket år daterer Parkteatret kinohistorien til?",["1907","1890","1927"],"1907","Parkteatret daterer kinohistorien i huset til 1907.","parkteatret",E3],
+    ["context","Hvordan brukes Parkteatret i denne pakken?",["Som eget nabobygg og kontekst, ikke parkobjekt","Som fontenens opprinnelige eier","Som synonym for hele plassflaten"],"Som eget nabobygg og kontekst, ikke parkobjekt","Nabokontekst bevares uten at parken overtar institusjonshistorien.","parkteatret",E1],
+    ["fact","Hvilket år er Oslo Museums fotografi fra?",["1903","1892","2009"],"1903","Oslo Museum katalogiserer fotografiet til 1903.","before",E3],
+    ["fact","Hvem tok fotografiet fra 1903?",["Anders Beer Wilse","Helge Høifødt","Mathias Skeibrok"],"Anders Beer Wilse","Museumskatalogen oppgir Anders Beer Wilse som fotograf.","before",E3],
+    ["context","Hvilke motiver kan sammenlignes i 1903 og 2009?",["Park, vegetasjon, opphold og bysten","Et identisk kinointeriør","Den samme julemarkedsboden"],"Park, vegetasjon, opphold og bysten","Bildene deler flere parkmotiver på tvers av tid.","before",E3],
+    ["fact","Når ble det nyere sammenligningsbildet tatt?",["1. august 2009","12. september 2026","6. juli 1849"],"1. august 2009","Commons-filsiden daterer bildet til 1. august 2009.","after",E3],
+    ["fact","Hvem tok sammenligningsbildet fra 2009?",["Helge Høifødt","Anders Beer Wilse","Eilert Sundt"],"Helge Høifødt","Commons-filsiden oppgir Helge Høifødt.","after",E3],
+    ["context","Hva kan bildeparet ikke bevise alene?",["Identisk kamerastandpunkt og alle endringsårsaker","At begge bildene viser Oslo","At parken har vegetasjon"],"Identisk kamerastandpunkt og alle endringsårsaker","Kildekritikken holder optisk likhet og årsaksforklaring tilbake.","after",E3],
+    ["fact","Når er Løkkadagene annonsert i 2026?",["12.–13. september","1.–2. januar","24.–25. desember"],"12.–13. september","Visit Løkka annonserer Løkkadagene disse datoene.","events",E1],
+    ["context","Hva er den presise stedskoblingen for Løkkadagene?",["Løkkamarkedet er annonsert på Olaf Ryes plass","Hele arrangementet gjør alle nabobygg til parkobjekter","Programmet dokumenterer permanent bruk hver dag"],"Løkkamarkedet er annonsert på Olaf Ryes plass","Programmet dokumenterer en datert aktivitet på selve plassen.","events",E1],
+    ["fact","Når er julemarked og stjernetenning annonsert?",["28. november 2026","28. november 1903","13. september 1927"],"28. november 2026","Visit Løkka annonserer julemarked og stjernetenning 28. november 2026.","events",E1],
+    ["context","Hva viser et datert 2026-program?",["Bruk på bestemte datoer","En permanent bruksgaranti","At alle besøkende gjør det samme"],"Bruk på bestemte datoer","Et arrangement dokumenterer datert bruk, ikke en varig universaltilstand.","events",E2],
+    ["context","Hvilke to objekter fungerer som faste parkankre?",["Eilert Sundt-bysten og fontenen","Parkteatret og Markveien","Løkkamarkedet og julemarkedet"],"Eilert Sundt-bysten og fontenen","De to fysiske objektene kan observeres på selve plassen.","byleksikon",E3],
+    ["concept","Hva betyr det å lese en park som sosial infrastruktur?",["Å undersøke hvordan utforming støtter møter og opphold","Å telle bare trær","Å behandle alle naboer som samme sted"],"Å undersøke hvordan utforming støtter møter og opphold","Parkens kanter, ganglinjer, benker og ankre kan analyseres som støtte for sosialt liv.","byokologi",E1,"met_for_etter","byliv_aapne_rom","william_h_whyte","The Social Life of Small Urban Spaces"],
+    ["concept","Hva ville en systematisk observasjon registrere?",["Hvor mennesker sitter, stopper og beveger seg","Kun plassens navneår","Bare byggehøyder rundt parken"],"Hvor mennesker sitter, stopper og beveger seg","Systematisk observasjon skiller opphold, ferdsel og mønstre i bruk.","municipality",E2,"met_for_etter","byliv_opphold_vs_gjennomgang","michel_de_certeau","The Practice of Everyday Life"],
+    ["concept","Hva er første steg i en forsvarlig før/etter-analyse?",["Finn felles ankre og noter ulikt standpunkt","Anta identisk kamera","Forklar årsaken uten tekstkilder"],"Finn felles ankre og noter ulikt standpunkt","Metoden begynner med sammenlignbare elementer og uttrykte begrensninger.","before",E3,"met_for_etter","his_spor_gatebilde","walter_benjamin","The Arcades Project"],
+    ["concept","Hvordan skiller man gjennomgang fra opphold?",["Observer bevegelseslinjer og steder der folk stanser","Bruk bare arrangementskalenderen","Spør bare hvem plassen er oppkalt etter"],"Observer bevegelseslinjer og steder der folk stanser","Romlig observasjon kan skille ferdsel fra lengre opphold uten å gjette motiv.","municipality",E2,"met_for_etter","byliv_opphold_vs_gjennomgang","michel_de_certeau","The Practice of Everyday Life"],
+    ["concept","Hva er en own-place-analyse av Parkteatret?",["Skille naboens virksomhet fra parkens egne objekter","Flytte hele kinohistorien inn i parken","Fjerne all nabokontekst"],"Skille naboens virksomhet fra parkens egne objekter","Analysen beholder relevant kontekst uten falskt eierskap.","parkteatret",E1,"met_for_etter","byliv_aapne_rom","william_h_whyte","The Social Life of Small Urban Spaces"],
+    ["concept","Hvorfor kombineres kommune-, oppslags- og museumskilder?",["De belyser grense, historikk og visuelle tidslag","Én kilde kan erstattes med filler","Flere lenker gjør alle påstander sanne"],"De belyser grense, historikk og visuelle tidslag","Kildetriangulering fordeler ulike dokumentasjonsjobber på egnede kildetyper.","byleksikon",E3,"met_for_etter","his_spor_gatebilde","walter_benjamin","The Arcades Project"],
+    ["concept","Hva er den mest kildekritiske helhetslesningen?",["Parken har dokumenterte historiske lag, mens bruk og endringsårsak må belegges særskilt","Alle bilder og arrangementer viser samme tilstand","Nabobyggene er automatisk parkobjekter"],"Parken har dokumenterte historiske lag, mens bruk og endringsårsak må belegges særskilt","Stedet tåler en flerlagsanalyse når identitet, tid, observasjon og kildegrenser holdes tydelige.","after",E3,"met_for_etter","his_spor_gatebilde","kevin_lynch","The Image of the City"]
+  ];
+  const phases = ["opening", "middle", "middle", "bridge", "final"];
+  const claims = specs.map((row, index) => ({
+    claim_id: `claim_olaf_ryes_plass_quiz_${index + 1}`, order: index + 1,
+    planned_phase: phases[Math.floor(index / 7)], family: row[0] === "concept" ? "concept_theory" : row[0],
+    statement: row[4], source_ids: [row[5]], source_origin: "external", emne_id: row[6],
+    ...(row[7] ? { method_id: row[7], topic_hook_id: row[8], thinker_id: row[9], work: row[10] } : {})
+  }));
+  const existing_quiz_audit = { searched_paths: ["data/quiz/manifest.json", "data/quiz/by/", placeFile], active_before: { file: null, set_count: 0, question_count: 0, finding: "Ingen manifest-loadet quizpakke med targetId=olaf_ryes_plass." }, decisions: ["Opprett rich 5x7 fra reviewede eksterne kilder.", "Hold teori og metode ute av de første 28 spørsmålene.", "Ikke bruk Parkteatret som proxy for parkflaten."], knowledge_migration: "Nytt target har ingen canonical Knowledge-eier; registre genereres deterministisk fra pakken." };
+  const profile_decision = { profile: "rich", set_count: 5, questions_per_set: 7, justification: "Fem selvstendige læringsjobber: identitet/navn, park og personer, fysiske tidslag/bilder, nabo og datert bruk, samt avsluttende stedsobservasjon og kildekritikk." };
+  const held_back_candidates = ["Parkteatret som synlig Brand uten verifisert logo/wordmark.", "Eksakt optisk før/etter-påstand for 1903/2009.", "Generalisering fra daterte arrangementer til permanent bruk.", "Den feilaktige 1848-formuleringen om Olaf Ryes død."];
+  const selected_curriculum = { module_ids: ["kur_by_04_historiske_lag_og_transformasjon", "kur_by_07_gronn_blaa_og_offentlig_natur"], emne_ids: [E1,E2,E3], topic_hook_ids: ["byliv_aapne_rom","byliv_opphold_vs_gjennomgang","his_spor_gatebilde"], method_ids: ["met_for_etter"], thinker_ids: ["william_h_whyte","michel_de_certeau","walter_benjamin","kevin_lynch"], works: ["The Social Life of Small Urban Spaces","The Practice of Everyday Life","The Arcades Project","The Image of the City"] };
+  const briefFile = "data/quiz/production_briefs/by/olaf_ryes_plass.json";
+  const brief = { schema_version: "1.0", status: "reviewed", categoryId: "by", targetId: "olaf_ryes_plass", profile_hint: "rich", reviewed_at: "2026-08-25", review_note: "Kildene skiller parkflaten fra nabobygg, løser 1848/1849-konflikten og bærer fem kildekritiske læringsjobber.", scope: { place: "Olaf Ryes plass", production_profile: "rich", set_count: 5, questions_per_set: 7, total_questions: 35, normal_opening_questions: 14 }, sources, selected_curriculum, existing_quiz_audit, profile_decision, held_back_candidates, claims };
+  write(briefFile, brief);
+  const production_context = { manifest_category: "by", profile: "rich_5x7", standard_version: "3.3", source_brief: briefFile, context_artifact: "data/quiz/production_context/by/olaf_ryes_plass.json", resolved_files: { pensum: "data/fag/by/pensum_by.json", emner: "data/fag/by/emner_by.json", fagkart: "data/fag/by/fagkart_by.json", methods: "data/fag/by/methods_by.json", supersetQuizMal: "data/fag/by/supersetQUIZMAL_by.json", quizStandard: "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md", quizQuestionSchema: "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json" }, required_inputs_loaded: ["pensum","emner","fagkart","methods","supersetQuizMal","quizStandard","quizQuestionSchema"], pensum_module_ids: selected_curriculum.module_ids, emne_ids: selected_curriculum.emne_ids, topic_hook_ids: selected_curriculum.topic_hook_ids, method_ids: selected_curriculum.method_ids, thinker_ids: selected_curriculum.thinker_ids, works: selected_curriculum.works, source_review_status: "reviewed", existing_quiz_audit, profile_decision, held_back_candidates, theory_start_phase: "final", method_start_phase: "final" };
+  const questions = specs.map((row, index) => {
+    const [family, question, options, answer, knowledge, sourceId, emne, method_id, topic_hook_id, thinker_id, work] = row;
+    const setNo = Math.floor(index / 7) + 1;
+    const value = { id: `olaf_ryes_plass_quiz_${index + 1}`, quiz_id: `by_olaf_ryes_plass_set_${setNo}_q${index % 7 + 1}`, categoryId: "by", placeId: "olaf_ryes_plass", targetId: "olaf_ryes_plass", question_scope: "place", question, options, answer, answerIndex: options.indexOf(answer), knowledge, difficulty: Math.min(4, setNo), question_type: family, emne_id: emne, source: [sourceId], source_origin: "external", claim_basis: claims[index].statement, claim_id: claims[index].claim_id, primary_knowledge_unit_id: `ku_by_olaf_ryes_plass_${String(index + 1).padStart(2, "0")}`, knowledge_unit_ids: [`ku_by_olaf_ryes_plass_${String(index + 1).padStart(2, "0")}`], concepts: [emne === E1 ? "offentlig park" : emne === E2 ? "opphold og gjennomgang" : "historiske lag"], concept_ids: [], term_ids: [], knowledge_contract_version: 1, knowledge_link_status: "linked" };
+    if (method_id) Object.assign(value, { method_id, topic_hook_id, thinker_id, work, theory_ref: { topic_hook_id, thinker_id, work, why_it_helps: "Teoriperspektivet strukturerer observasjon, romlig lesning og bildesammenligning uten å erstatte stedskildene." }, guidance_basis: ["data/fag/by/fagkart_by.json","data/fag/by/methods_by.json"] });
+    return value;
+  });
+  const titles = ["Løkken, navnet og grensen","Park, mennesker og monument","Fontene og fotografiske tidslag","Naboer og datert bruk","Observasjon, metode og kildekritikk"];
+  const quizFile = "data/quiz/by/olaf_ryes_plass_sets.json";
+  write(quizFile, { targetId: "olaf_ryes_plass", categoryId: "by", sources: Object.fromEntries(Object.entries(sources).map(([id, source]) => [id, source.url])), production_context, sets: titles.map((title, index) => ({ set_id: `by_olaf_ryes_plass_set_${index + 1}`, title, level: index + 1, order: index + 1, phase: phases[index], xp: 50 + index * 10, questions: questions.slice(index * 7, index * 7 + 7) })) });
+  const quizManifest = read("data/quiz/manifest.json");
+  addUnique(quizManifest.sets, { targetId: "olaf_ryes_plass", file: quizFile }, item => item.targetId);
+  write("data/quiz/manifest.json", quizManifest);
+  const fagManifest = read("data/fag/fag_manifest.json");
+  fagManifest.by.quizProduction.targets.olaf_ryes_plass = { source_brief: "../quiz/production_briefs/by/olaf_ryes_plass.json", context_artifact: "../quiz/production_context/by/olaf_ryes_plass.json", quiz_file: "../quiz/by/olaf_ryes_plass_sets.json" };
+  write("data/fag/fag_manifest.json", fagManifest);
+  production.quizReadiness = { status: "canonical_rich_5x7", quizTargetId: "olaf_ryes_plass", sourceBrief: briefFile, productionContext: "data/quiz/production_context/by/olaf_ryes_plass.json", normalOpeningQuestions: 14, totalQuestions: 35, questions: production.quizReadiness.questions };
+  write("data/places/production/olaf_ryes_plass.json", production);
+}
+
 function buildIntegration() {
-  throw new Error("Integration phase is added after the source/content risk boundary is merged.");
+  const place = read(placeFile);
+  const ownerSentence = "De fire gatene fungerer som kontrollpunkter for hva stedet eier: parkens ganglinjer, vegetasjon, byste og fontene hører til plassfortellingen, mens fasader og virksomheter rundt behandles som egne steder eller nabokontekst.";
+  if (!place.popupDesc.includes(ownerSentence)) place.popupDesc = `${place.popupDesc} ${ownerSentence}`;
+  place.place_card_profile = { schema: "history_go_place_card_profile_v2", collection_ids: ["people","objects","brands","related"], reason: "Olaf Ryes plass er et vanlig bysted. People og Objects har direkte stedsevidens, Related viser separate canonicale nabosteder, og Brands bruker ærlig tomtilstand etter avvist Parkteatret-logo.", verifiedAt: "2026-08-25" };
+  place.related_people_ids = ["olaf_rye","eilert_sundt"];
+  place.related_place_ids = ["birkelunden","sofienbergparken","markveien","daelenenga_idrettspark"];
+  place.objects = [
+    { id: "olaf_ryes_plass_eilert_sundt_bust", title: "Eilert Sundt-bysten", type: "bronsebyste", kind: "physical_object", desc: "Mathias Skeibroks bronsebyste av samfunnsforskeren Eilert Sundt ble reist i sørenden av plassen i 1892.", why_here: "Bysten gjør forbindelsen mellom folkeopplysning, samfunnsforskning og det offentlige parkrommet fysisk lesbar.", placeSpecificReason: "Oslo byleksikon plasserer og daterer bysten eksplisitt på Olaf Ryes plass.", historicalFunction: "Offentlig minnespor finansiert av Oslo Arbeidersamfund og Selskabet for Folkeoplysningens Fremme.", physicalObject: true, placeSpecific: true, collectable: true, storePrice: 30, currency: "PC", collection: "olaf_ryes_plass_minnespor", unlock: "Finn bysten i sørenden og les navnet før du åpner Eilert Sundt-kortet.", source_urls: [sourceUrls.byleksikon,sourceUrls.sundt] },
+    { id: "olaf_ryes_plass_fontene", title: "Fontenen", type: "fontene", kind: "physical_object", desc: "Fontenen ble anlagt midt på Olaf Ryes plass i 1927 og er fortsatt et fast orienteringspunkt i parkrommet.", why_here: "Fontenen viser at parken fikk nye fysiske lag også etter opparbeidelsen i 1890.", placeSpecificReason: "Oslo byleksikon daterer fontenen, og Oslo kommune lister den som anlegg på selve plassen.", historicalFunction: "Sentralt park- og oppholdselement fra mellomkrigstiden.", physicalObject: true, placeSpecific: true, collectable: true, storePrice: 25, currency: "PC", collection: "olaf_ryes_plass_parkstruktur", unlock: "Finn fontenen og bruk den som anker når du sammenligner ganglinjer og oppholdssoner.", source_urls: [sourceUrls.byleksikon,sourceUrls.municipality] }
+  ];
+  place.tasks_profile = { title: "Les parkrommets lag på stedet", summary: "Tre korte oppgaver bruker offentlige ganglinjer og synlige stedsankre uten å kreve inngang til nabovirksomheter.", safety: "Hold ganglinjer og innganger frie. Utfør oppgavene fra offentlig parkflate og avbryt ved tett arrangementstrafikk eller glatt underlag.", tasks: [
+    { id: "olaf_ryes_plass_oppgave_grense", title: "Finn fire kanter", instruction: "Stå inne i parken og orienter deg mot Markveien, Grüners gate, Thorvald Meyers gate og Sofienberggata.", why: "Oppgaven skiller plassflaten fra gatene, gårdene og virksomhetene rundt." },
+    { id: "olaf_ryes_plass_oppgave_byste", title: "Les hvem som minnes", instruction: "Finn Eilert Sundt-bysten, les navnet og se hvordan monumentet er plassert i forhold til ganglinjene.", why: "Bysten gjør samfunnsforskning og folkeopplysning til et fysisk stedsminne." },
+    { id: "olaf_ryes_plass_oppgave_tidslag", title: "Sammenlign to parkankre", instruction: "Bruk bysten og fontenen som faste punkter og sammenlign dem med 1903- og 2009-bildene uten å anta identisk kamerastandpunkt.", why: "Oppgaven trener skillet mellom det bildene viser og forklaringer som krever tekstkilder." }
+  ] };
+  write(placeFile, place);
+
+  const brands = read("data/brands/brands_by_place.json"); delete brands.olaf_ryes_plass; write("data/brands/brands_by_place.json",brands);
+  const actors = read("data/brands/actors_by_place.json");
+  if (Object.hasOwn(actors,"olaf_ryes_plass")) { delete actors.olaf_ryes_plass; write("data/brands/actors_by_place.json",actors); }
+  const historyFile = "data/people/historie/oslo/people_historie_oslo.json";
+  const history = read(historyFile); const olaf = history.find(person => person.id === "olaf_rye");
+  Object.assign(olaf, { desc: "Offiseren Olaf Rye (1791–1849), som plassen fikk navn etter i 1864.", popupDesc: "Olaf Rye deltok som offiser i krigen i 1814 og gikk senere i dansk tjeneste. Store norske leksikon daterer hans død ved Fredericia til 6. juli 1849. Olaf Ryes plass fikk navn etter ham i 1864, og personkoblingen gjelder derfor selve stedsnavnet, ikke en påstand om at han bodde eller virket på Grünerløkka.", source_urls: [sourceUrls.rye,sourceUrls.byleksikon], externalLinks: [{ type:"source",label:"Store norske leksikon – Olaf Rye",url:sourceUrls.rye,verifiedAt:"2026-08-25" },{ type:"source",label:"Oslo byleksikon – Olaf Ryes plass",url:sourceUrls.byleksikon,verifiedAt:"2026-08-25" }] });
+  write(historyFile, history);
+  const scienceFile = "data/people/vitenskap/oslo/people_vitenskap_oslo.json";
+  const science = read(scienceFile); const sundt = science.find(person => person.id === "eilert_sundt");
+  sundt.places = [...new Set([...(sundt.places || []),"olaf_ryes_plass"])];
+  sundt.source_urls = [...new Set([...(sundt.source_urls || []),sourceUrls.sundt,sourceUrls.byleksikon])];
+  sundt.externalLinks = [{ type:"source",label:"Store norske leksikon – Eilert Sundt",url:sourceUrls.sundt,verifiedAt:"2026-08-25" },{ type:"source",label:"Oslo byleksikon – Olaf Ryes plass",url:sourceUrls.byleksikon,verifiedAt:"2026-08-25" }];
+  sundt.popupDesc = "Eilert Sundt var samfunnsforsker og undersøkte levekår, arbeid og samfunnsforhold på 1800-tallet. Mathias Skeibroks bronsebyste av ham ble reist i sørenden av Olaf Ryes plass i 1892, finansiert av Oslo Arbeidersamfund og Selskabet for Folkeoplysningens Fremme. Koblingen til plassen er det fysiske monumentet, mens hans øvrige liv og virksomhet hører til den bredere personprofilen.";
+  write(scienceFile, science);
+
+  const readingBatch = read("data/lesespor/lesespor_oslo_batch2.json");
+  const placeReadings = readingBatch.items.filter(item => item.place_ids?.includes("olaf_ryes_plass"));
+  if (placeReadings.length !== 3) throw new Error(`Expected three Olaf Ryes plass readings, found ${placeReadings.length}`);
+  const readingFile = "data/lesespor/oslo/lesespor_oslo_by.json";
+  const readingPack = read(readingFile);
+  for (const item of placeReadings) addUnique(readingPack.items, item, row => row.id);
+  write(readingFile, readingPack);
+  const dedicatedReadingFile = path.join(root, "data/lesespor/oslo/lesespor_oslo_olaf_ryes_plass.json");
+  if (fs.existsSync(dedicatedReadingFile)) fs.unlinkSync(dedicatedReadingFile);
+  const readingManifest = read("data/lesespor/manifest.json");
+  readingManifest.files = readingManifest.files.filter(file => file !== "oslo/lesespor_oslo_olaf_ryes_plass.json");
+  write("data/lesespor/manifest.json",readingManifest);
+  const eventsFile = "data/events/by/events_olaf_ryes_plass.json";
+  write(eventsFile,[
+    { id:"evt_olaf_ryes_plass_lokkadagene_2026",place_id:"olaf_ryes_plass",title:"Løkkadagene og Løkkamarkedet",start:"2026-09-12",end:"2026-09-13",status:"upcoming",source:"Visit Løkka",source_url:sourceUrls.lokkadagene,organizer:"Visit Løkka",category:"marked_og_nabolagsarrangement",description:"Visit Løkka annonserer Løkkadagene 12.–13. september 2026 med Løkkamarkedet på Olaf Ryes plass. Kontroller arrangørens program før besøk.",tags:["grünerløkka","marked","nabolag"],valid_through:"2026-09-13",verified_at:"2026-08-25",additional_source_urls:[sourceUrls.lokkaprogram] },
+    { id:"evt_olaf_ryes_plass_julemarked_2026",place_id:"olaf_ryes_plass",title:"Julemarked og tenning av julestjernen",start:"2026-11-28",end:"2026-11-28",status:"upcoming",source:"Visit Løkka",source_url:sourceUrls.visitlokka,organizer:"Visit Løkka",category:"julemarked",description:"Visit Løkka annonserer julemarked og tenning av julestjernen på Olaf Ryes plass 28. november 2026. Kontroller arrangørens program før besøk.",tags:["grünerløkka","julemarked","nabolag"],valid_through:"2026-11-28",verified_at:"2026-08-25" }
+  ]);
+  const eventManifest = read("data/events/events_manifest.json"); addUnique(eventManifest.files,{category:"by",entity_id:"olaf_ryes_plass",path:eventsFile},item=>item.entity_id); write("data/events/events_manifest.json",eventManifest);
+
+  const normalize = value => String(value || "").normalize("NFC").replace(/\r\n?/g,"\n").replace(/[ \t]+/g," ").trim();
+  const sourceHash = crypto.createHash("sha256").update(JSON.stringify({name:normalize(place.name),desc:normalize(place.desc),popupDesc:normalize(place.popupDesc)})).digest("hex").slice(0,16);
+  const translatedOwner = { en:"The four streets also act as ownership checks: the paths, vegetation, bust and fountain belong to the square narrative, while surrounding façades and businesses remain separate places or neighbouring context.", es:"Las cuatro calles también sirven para controlar la pertenencia: senderos, vegetación, busto y fuente forman parte de la plaza, mientras fachadas y negocios circundantes siguen siendo lugares propios o contexto vecino.", pt:"As quatro ruas também controlam o pertencimento: caminhos, vegetação, busto e fonte integram a narrativa da praça, enquanto fachadas e negócios ao redor permanecem lugares próprios ou contexto vizinho." };
+  for (const [lang, sentence] of Object.entries(translatedOwner)) { const file=`data/i18n/content/places/${lang}.json`; const pack=read(file); if (!pack.olaf_ryes_plass.popupDesc.includes(sentence)) pack.olaf_ryes_plass.popupDesc=`${pack.olaf_ryes_plass.popupDesc} ${sentence}`; pack.olaf_ryes_plass._sourceHash=sourceHash; write(file,pack); }
+
+  const production = read("data/places/production/olaf_ryes_plass.json");
+  if (production.sentenceCoverage.popupDesc.length === 19) production.sentenceCoverage.popupDesc.push({ sentence:20,claimIds:["claim_olaf_identity","claim_olaf_sundt_bust","claim_olaf_fountain","claim_olaf_parkteatret_neighbour"] });
+  production.textHashes.popupDesc = crypto.createHash("sha256").update(place.popupDesc).digest("hex");
+  production.roundsReadiness = { status:"production_ready",reviewedAt:"2026-08-25",auditFile:"reports/place-production/olaf-ryes-plass-phase20-24-gate-audit-v1.json",badgePlacement:"separate_header",contentRoundIds:place.place_card_profile.collection_ids,placeCardProfile:place.place_card_profile.schema,peopleIds:place.related_people_ids,objectIds:place.objects.map(item=>item.id),brandIds:[],brandFallback:"honest_empty_state_after_candidate_and_logo_audit",relatedPlaceIds:place.related_place_ids,objectSourceCoveragePercent:100,routeStopResolutionPercent:100 };
+  production.reviewsNotes = "Full phase 0–24 production: exact two-person target, two sourced Objects, four related canonical places, honest empty Brands after Parkteatret logo holdback, rich 5x7 quiz/Knowledge, safe onsite tasks and final gate evidence.";
+  write("data/places/production/olaf_ryes_plass.json",production);
+  buildQuiz(place,production);
 }
 
 if (mode === "content" || mode === "all") buildContent();
