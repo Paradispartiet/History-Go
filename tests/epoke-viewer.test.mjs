@@ -188,3 +188,78 @@ test("a place domain without an epoch catalogue stays in its own domain", async 
   assert.equal(w.location.search, "?epoke_domain=helse");
   dom.window.close();
 });
+
+test("History v2 renders cross-category evidence, analysis, sources and an interactive parallel track", async () => {
+  const { dom, w } = makeWindow();
+  const industrial = w.EPOKER_INDEX.byDomain.historie.byId.industrial;
+  industrial.analysis = {
+    what_changed: "Arbeid og transport ble organisert på nye måter.",
+    what_continued: "Eldre eierskap la fortsatt føringer.",
+    power_and_conflict: "Arbeidere og eiere forhandlet om makt.",
+    visible_traces: "Fabrikker og jernbane er synlige spor.",
+    guiding_questions: ["Hvem bar kostnadene?"]
+  };
+  w.HG_EPOKE_PLACE_INDEX = {
+    version: 2,
+    domains: {
+      historie: {
+        epochs: {
+          industrial: {
+            places: [
+              {
+                place_id: "d",
+                name: "Helsested",
+                category: "helse",
+                roles: [{ id: "hverdagsliv", label: "Hverdagsliv og velferd" }],
+                milestones: [{
+                  id: "d-1890",
+                  year: 1890,
+                  title: "Ny institusjon",
+                  consequence: "Institusjonen endret tilbudet i byen.",
+                  sources: [{ title: "Arkivkilde", url: "https://example.test/source" }]
+                }]
+              }
+            ],
+            placeCount: 1,
+            milestoneCount: 1
+          },
+          interwar: { places: [], placeCount: 0, milestoneCount: 0 }
+        },
+        parallel_tracks: {
+          migration: {
+            places: [{
+              place_id: "d",
+              name: "Helsested",
+              category: "helse",
+              roles: [{ id: "migrasjon", label: "Migrasjon og tilhørighet" }],
+              milestones: [{
+                id: "d-1930",
+                year: 1930,
+                title: "Nytt fellesskap",
+                consequence: "Stedet ble en møteplass.",
+                sources: [{ title: "Historisk kilde", url: "https://example.test/track" }]
+              }]
+            }],
+            placeCount: 1,
+            milestoneCount: 1
+          }
+        }
+      }
+    }
+  };
+
+  await w.HGEpokeViewer.open({ resolution: { domain: "historie", epokeId: "industrial" } });
+  const root = w.document.getElementById("hgEpokeViewer");
+  assert.match(root.textContent, /Hva endret seg\?/);
+  assert.match(root.textContent, /Helsested/);
+  assert.match(root.textContent, /Hverdagsliv og velferd/);
+  assert.match(root.textContent, /Institusjonen endret tilbudet/);
+  assert.equal(root.querySelector(".hg-epoke-source").getAttribute("href"), "https://example.test/source");
+  assert.equal(w.PLACES.find((place) => place.id === "d").domain, "helse", "primary category remains unchanged");
+
+  root.querySelector('[data-parallel-epoke-id="migration"]').click();
+  assert.ok(root.querySelector('[data-parallel-detail="migration"]'));
+  assert.match(root.querySelector('[data-parallel-detail="migration"]').textContent, /Nytt fellesskap/);
+  assert.equal(root.querySelectorAll(".hg-epoke-node").length, 2, "parallel track is not a canonical epoch");
+  dom.window.close();
+});

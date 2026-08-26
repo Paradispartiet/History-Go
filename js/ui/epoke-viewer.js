@@ -1,8 +1,9 @@
 // ============================================================
 // HG Epoke Viewer – dedicated timeline for canonical epochs
 // ------------------------------------------------------------
-// Reads existing runtime data only. Canonical epochs remain the time resolver's
-// timeline; optional parallel tracks are rendered separately as perspectives.
+// Canonical epochs remain the time resolver's timeline. A generated relation
+// index adds dated, source-backed place evidence without changing place data;
+// optional parallel tracks are rendered separately as perspectives.
 // ============================================================
 
 (function () {
@@ -135,11 +136,54 @@
 
   function buildTimeline(domain) {
     const epochs = chronologicalList(window.EPOKER_INDEX?.byDomain?.[domain]);
-    const parallel = chronologicalList(window.EPOKER_INDEX?.parallelByDomain?.[domain]);
+    const parallelEpochs = chronologicalList(window.EPOKER_INDEX?.parallelByDomain?.[domain]);
     const epochIds = new Set(epochs.map((epoch) => txt(epoch?.id)).filter(Boolean));
-    const rows = (Array.isArray(window.PLACES) ? window.PLACES : [])
+    const allPlaces = Array.isArray(window.PLACES) ? window.PLACES : [];
+    const rows = allPlaces
       .filter((place) => runtimeDomain(place) === domain)
       .map((place) => ({ place, resolution: resolvePlace(place) }));
+
+    const generatedDomain = window.HG_EPOKE_PLACE_INDEX?.domains?.[domain];
+    if (generatedDomain?.epochs && domain === "historie") {
+      const placeById = new Map(allPlaces.map((place) => [txt(place?.id), place]));
+      const indexedIds = new Set();
+      const epochRows = epochs.map((epoch) => {
+        const group = generatedDomain.epochs?.[txt(epoch?.id)] || { places: [] };
+        const places = (Array.isArray(group.places) ? group.places : []).map((evidence) => {
+          const place = placeById.get(txt(evidence?.place_id)) || {
+            id: txt(evidence?.place_id),
+            name: txt(evidence?.name),
+            category: txt(evidence?.category)
+          };
+          indexedIds.add(txt(evidence?.place_id));
+          const firstYear = num(evidence?.milestones?.[0]?.year);
+          return {
+            place,
+            evidence,
+            resolution: {
+              domain,
+              epokeId: txt(epoch?.id),
+              startYear: firstYear,
+              endYear: num(evidence?.milestones?.at?.(-1)?.year) ?? firstYear,
+              sortKey: firstYear ?? Number.MAX_SAFE_INTEGER
+            }
+          };
+        });
+        return { epoch, places: sortPlaces(places), evidence: group };
+      });
+      const unassigned = rows.filter((row) => !indexedIds.has(txt(row?.place?.id)));
+      const parallel = parallelEpochs.map((track) => ({
+        ...track,
+        evidence: generatedDomain.parallel_tracks?.[txt(track?.id)] || { places: [], placeCount: 0, milestoneCount: 0 }
+      }));
+      return {
+        epochs: epochRows,
+        parallel,
+        unassigned: sortPlaces(unassigned),
+        placeCount: new Set([...indexedIds, ...unassigned.map((row) => txt(row?.place?.id))]).size,
+        generated: true
+      };
+    }
 
     const byEpoch = new Map(epochs.map((epoch) => [txt(epoch?.id), []]));
     const unassigned = [];
@@ -151,9 +195,10 @@
 
     return {
       epochs: epochs.map((epoch) => ({ epoch, places: sortPlaces(byEpoch.get(txt(epoch?.id)) || []) })),
-      parallel,
+      parallel: parallelEpochs,
       unassigned: sortPlaces(unassigned),
-      placeCount: rows.length
+      placeCount: rows.length,
+      generated: false
     };
   }
 
@@ -251,6 +296,8 @@
       .hg-epoke-node.is-current::before{width:15px;height:15px;left:-23.5px;top:21.5px}
       .hg-epoke-node__years{font-size:13px;font-weight:800;letter-spacing:.04em;color:rgba(255,255,255,.72)}
       .hg-epoke-node__name{margin:0;font-size:19px;line-height:1.15}
+      .hg-epoke-node__select{display:block;width:100%;padding:0;border:0;background:transparent;color:inherit;font:inherit;text-align:left;cursor:pointer}
+      .hg-epoke-node__select:hover .hg-epoke-node__name,.hg-epoke-node__select:focus-visible .hg-epoke-node__name{text-decoration:underline;text-underline-offset:3px}.hg-epoke-node__select:focus-visible{outline:2px solid #fff;outline-offset:5px;border-radius:4px}
       .hg-epoke-node__desc{margin:6px 0 0;font-size:13px;line-height:1.4;color:rgba(255,255,255,.68)}
       .hg-epoke-node__fagverk{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-top:10px}
       .hg-epoke-node__fagverk-kicker{font-size:10px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.48)}
@@ -270,8 +317,20 @@
       .hg-epoke-parallel__intro{margin:5px 0 12px;font-size:12px;line-height:1.45;color:rgba(255,255,255,.6)}
       .hg-epoke-parallel__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
       .hg-epoke-parallel__card{padding:13px;border:1px solid rgba(255,255,255,.12);border-radius:16px;background:rgba(255,255,255,.035)}
+      .hg-epoke-parallel__card{width:100%;color:inherit;font:inherit;text-align:left;cursor:pointer}.hg-epoke-parallel__card[aria-pressed="true"]{border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.11)}
       .hg-epoke-parallel__card .hg-epoke-node__years{margin-bottom:4px}
-      @media (max-width:640px){.hg-epoke-viewer{padding:0;place-items:stretch}.hg-epoke-viewer__panel{width:100%;height:100dvh;border-radius:0;border-left:0;border-right:0}.hg-epoke-viewer__head{padding:15px 14px 12px}.hg-epoke-viewer__toolbar{padding:9px 14px}.hg-epoke-viewer__body{padding:16px 12px 26px}.hg-epoke-node{grid-template-columns:1fr;gap:6px}.hg-epoke-node__years{font-size:11px}.hg-epoke-viewer__select{min-width:0;flex:1}}
+      .hg-epoke-depth{grid-column:1/-1;margin-top:4px;padding-top:14px;border-top:1px solid rgba(255,255,255,.12)}
+      .hg-epoke-analysis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:12px}
+      .hg-epoke-analysis__item{padding:11px;border-radius:13px;background:rgba(0,0,0,.25)}.hg-epoke-analysis__item h4{margin:0 0 5px;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.58)}.hg-epoke-analysis__item p{margin:0;font-size:13px;line-height:1.45;color:rgba(255,255,255,.82)}
+      .hg-epoke-questions{margin:12px 0 0;padding:11px 11px 11px 28px;border-left:3px solid rgba(255,255,255,.4);background:rgba(255,255,255,.04);font-size:13px;line-height:1.45}.hg-epoke-questions li+li{margin-top:5px}
+      .hg-epoke-section-title{margin:18px 0 5px;font-size:16px}.hg-epoke-section-intro{margin:0 0 10px;font-size:12px;color:rgba(255,255,255,.57)}
+      .hg-epoke-place-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:9px}
+      .hg-epoke-place-card{position:relative;padding:12px;border:1px solid rgba(255,255,255,.13);border-radius:14px;background:rgba(0,0,0,.25)}.hg-epoke-place-card.is-current{border-color:#fff}.hg-epoke-place-card__head{display:flex;justify-content:space-between;gap:8px;align-items:start}.hg-epoke-place-card .hg-epoke-place{padding:0;border:0;border-radius:0;background:transparent;font-size:14px}.hg-epoke-place-card .hg-epoke-place:hover,.hg-epoke-place-card .hg-epoke-place:focus-visible{text-decoration:underline;background:transparent}.hg-epoke-place-card__category{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:rgba(255,255,255,.48)}
+      .hg-epoke-role-list{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}.hg-epoke-role{padding:3px 6px;border-radius:999px;background:rgba(255,255,255,.1);font-size:10px;font-weight:700}
+      .hg-epoke-milestones{display:grid;gap:8px;margin-top:9px}.hg-epoke-milestone{display:grid;grid-template-columns:44px 1fr;gap:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,.09)}.hg-epoke-milestone__year{font-size:12px;font-weight:850}.hg-epoke-milestone h5{margin:0;font-size:12px}.hg-epoke-milestone p{margin:3px 0 0;font-size:11px;line-height:1.4;color:rgba(255,255,255,.66)}.hg-epoke-sources{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}.hg-epoke-source{font-size:10px;color:#fff;text-underline-offset:2px}
+      .hg-epoke-compact-count{margin-top:9px;font-size:12px;color:rgba(255,255,255,.56)}
+      .hg-epoke-track-detail{margin-top:12px;padding:14px;border:1px solid rgba(255,255,255,.16);border-radius:16px;background:rgba(255,255,255,.045)}
+      @media (max-width:640px){.hg-epoke-viewer{padding:0;place-items:stretch}.hg-epoke-viewer__panel{width:100%;height:100dvh;border-radius:0;border-left:0;border-right:0}.hg-epoke-viewer__head{padding:15px 14px 12px}.hg-epoke-viewer__toolbar{padding:9px 14px}.hg-epoke-viewer__body{padding:16px 12px 26px}.hg-epoke-node{grid-template-columns:1fr;gap:6px}.hg-epoke-node__years{font-size:11px}.hg-epoke-viewer__select{min-width:0;flex:1}.hg-epoke-analysis{grid-template-columns:1fr}.hg-epoke-place-cards{grid-template-columns:1fr}}
     `;
     document.head.appendChild(style);
   }
@@ -320,16 +379,65 @@
     return `<button type="button" class="hg-epoke-place${current ? " is-current" : ""}" data-epoke-place-id="${esc(id)}"${current ? ' aria-current="true"' : ""}><span>${esc(label)}</span>${years ? `<span class="hg-epoke-place__year">${esc(years)}</span>` : ""}</button>`;
   }
 
-  function parallelHtml(parallel) {
+  function milestonesHtml(milestones) {
+    const list = Array.isArray(milestones) ? milestones : [];
+    return `<div class="hg-epoke-milestones">${list.map((milestone) => {
+      const sources = (Array.isArray(milestone?.sources) ? milestone.sources : []).filter((source) => /^https?:\/\//.test(txt(source?.url)));
+      return `<article class="hg-epoke-milestone"><div class="hg-epoke-milestone__year">${esc(milestone?.year)}</div><div><h5>${esc(milestone?.title || "Historisk hendelse")}</h5>${txt(milestone?.consequence) ? `<p>${esc(milestone.consequence)}</p>` : ""}${sources.length ? `<div class="hg-epoke-sources" aria-label="Kilder">${sources.map((source) => `<a class="hg-epoke-source" href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">${esc(source.title)} ↗</a>`).join("")}</div>` : ""}</div></article>`;
+    }).join("")}</div>`;
+  }
+
+  function placeCardHtml(row, currentPlaceId) {
+    const place = row?.place || {};
+    const evidence = row?.evidence || {};
+    const id = txt(place?.id || place?.placeId || evidence?.place_id);
+    const current = Boolean(id && id === currentPlaceId);
+    const roles = Array.isArray(evidence?.roles) ? evidence.roles : [];
+    return `<article class="hg-epoke-place-card${current ? " is-current" : ""}"><div class="hg-epoke-place-card__head">${placeButtonHtml(row, currentPlaceId)}${txt(evidence?.category || place?.category) ? `<span class="hg-epoke-place-card__category">${esc(domainLabel(txt(evidence?.category || place?.category)))}</span>` : ""}</div>${roles.length ? `<div class="hg-epoke-role-list" aria-label="Historisk rolle">${roles.map((role) => `<span class="hg-epoke-role">${esc(role?.label)}</span>`).join("")}</div>` : ""}${milestonesHtml(evidence?.milestones)}</article>`;
+  }
+
+  function analysisHtml(epoch) {
+    const analysis = epoch?.analysis;
+    if (!analysis || typeof analysis !== "object") return "";
+    const sections = [
+      ["Hva endret seg?", analysis.what_changed],
+      ["Hva fortsatte?", analysis.what_continued],
+      ["Makt og konflikt", analysis.power_and_conflict],
+      ["Synlige spor", analysis.visible_traces]
+    ].filter(([, value]) => txt(value));
+    const questions = (Array.isArray(analysis.guiding_questions) ? analysis.guiding_questions : []).map(txt).filter(Boolean);
+    return `${sections.length ? `<div class="hg-epoke-analysis">${sections.map(([label, value]) => `<section class="hg-epoke-analysis__item"><h4>${esc(label)}</h4><p>${esc(value)}</p></section>`).join("")}</div>` : ""}${questions.length ? `<ol class="hg-epoke-questions" aria-label="Undersøkende spørsmål">${questions.map((question) => `<li>${esc(question)}</li>`).join("")}</ol>` : ""}`;
+  }
+
+  function depthHtml(epoch, places, currentPlaceId, generated) {
+    if (!generated) {
+      return places.length ? `<div class="hg-epoke-node__places">${places.map((row) => placeButtonHtml(row, currentPlaceId)).join("")}</div>` : '<div class="hg-epoke-node__empty">Ingen registrerte steder i denne epoken ennå.</div>';
+    }
+    return `<div class="hg-epoke-depth">${analysisHtml(epoch)}<h4 class="hg-epoke-section-title">Steder og daterte spor</h4><p class="hg-epoke-section-intro">Hvert treff kommer fra en datert kronologihendelse i stedets leksikon. Kildene under hendelsen kan åpnes direkte.</p>${places.length ? `<div class="hg-epoke-node__places hg-epoke-place-cards">${places.map((row) => placeCardHtml(row, currentPlaceId)).join("")}</div>` : '<div class="hg-epoke-node__empty">Ingen daterte, kildebelagte stedsspor i denne epoken ennå.</div>'}</div>`;
+  }
+
+  function trackRows(track) {
+    return (Array.isArray(track?.evidence?.places) ? track.evidence.places : []).map((evidence) => {
+      const place = (Array.isArray(window.PLACES) ? window.PLACES : []).find((candidate) => txt(candidate?.id) === txt(evidence?.place_id)) || {
+        id: txt(evidence?.place_id), name: txt(evidence?.name), category: txt(evidence?.category)
+      };
+      return { place, evidence, resolution: { startYear: num(evidence?.milestones?.[0]?.year), sortKey: num(evidence?.milestones?.[0]?.year) } };
+    });
+  }
+
+  function parallelHtml(parallel, selectedTrackId, currentPlaceId) {
     if (!parallel.length) return "";
+    const selected = parallel.find((track) => txt(track?.id) === selectedTrackId) || null;
+    const selectedRows = selected ? trackRows(selected) : [];
     return `<section class="hg-epoke-parallel" aria-labelledby="hgEpokeParallelTitle">
       <h3 class="hg-epoke-parallel__title" id="hgEpokeParallelTitle">Gjennomgående historiske spor</h3>
-      <p class="hg-epoke-parallel__intro">Disse sporene går på tvers av flere perioder. De er perspektiver å følge gjennom tidslinjen, ikke egne trinn i kronologien.</p>
-      <div class="hg-epoke-parallel__grid">${parallel.map((track) => `<article class="hg-epoke-parallel__card" data-parallel-epoke-id="${esc(txt(track?.id))}"><div class="hg-epoke-node__years">${esc(yearRange(track))}</div><h4 class="hg-epoke-node__name">${esc(epochLabel(track))}</h4>${epochDescription(track) ? `<p class="hg-epoke-node__desc">${esc(epochDescription(track))}</p>` : ""}</article>`).join("")}</div>
+      <p class="hg-epoke-parallel__intro">Velg et spor for å følge kildebelagte hendelser på tvers av periodene. Sporene er perspektiver, ikke egne trinn i kronologien.</p>
+      <div class="hg-epoke-parallel__grid">${parallel.map((track) => { const selectedNow = txt(track?.id) === selectedTrackId; const count = num(track?.evidence?.milestoneCount) || 0; return `<button type="button" class="hg-epoke-parallel__card" data-parallel-epoke-id="${esc(txt(track?.id))}" aria-pressed="${selectedNow}"><span class="hg-epoke-node__years">${esc(yearRange(track))}</span><span class="hg-epoke-node__name">${esc(epochLabel(track))}</span>${epochDescription(track) ? `<span class="hg-epoke-node__desc">${esc(epochDescription(track))}</span>` : ""}<span class="hg-epoke-compact-count">${count} kildebelagte hendelser</span></button>`; }).join("")}</div>
+      ${selected ? `<section class="hg-epoke-track-detail" data-parallel-detail="${esc(txt(selected?.id))}"><h4 class="hg-epoke-section-title">${esc(epochLabel(selected))}</h4><p class="hg-epoke-section-intro">Hendelser som matcher dette sporets canonical markører og emneord.</p>${selectedRows.length ? `<div class="hg-epoke-place-cards">${selectedRows.map((row) => placeCardHtml(row, currentPlaceId)).join("")}</div>` : '<div class="hg-epoke-node__empty">Ingen kildebelagte treff i dette sporet ennå.</div>'}</section>` : ""}
     </section>`;
   }
 
-  function renderTimeline(root, domain, currentPlaceId, currentEpochId) {
+  function renderTimeline(root, domain, currentPlaceId, currentEpochId, selectedTrackId = "") {
     const body = /** @type {HTMLElement|null} */ (root.querySelector("[data-epoke-body]"));
     const summary = /** @type {HTMLElement|null} */ (root.querySelector("[data-epoke-summary]"));
     if (!body) return;
@@ -347,7 +455,7 @@
       const description = epochDescription(epoch);
       return `<article class="hg-epoke-node${current ? " is-current" : ""}" data-epoke-id="${esc(id)}"${current ? ' aria-current="true"' : ""}>
         <div class="hg-epoke-node__years">${esc(yearRange(epoch))}</div>
-        <div><h3 class="hg-epoke-node__name">${esc(epochLabel(epoch))}</h3>${description ? `<p class="hg-epoke-node__desc">${esc(description)}</p>` : ""}${fagverkLinksHtml(epoch, currentPlaceId)}${places.length ? `<div class="hg-epoke-node__places">${places.map((row) => placeButtonHtml(row, currentPlaceId)).join("")}</div>` : '<div class="hg-epoke-node__empty">Ingen registrerte steder i denne epoken ennå.</div>'}</div>
+        <div><button type="button" class="hg-epoke-node__select" data-select-epoke="${esc(id)}" aria-expanded="${current}"><h3 class="hg-epoke-node__name">${esc(epochLabel(epoch))}</h3>${description ? `<p class="hg-epoke-node__desc">${esc(description)}</p>` : ""}<span class="hg-epoke-compact-count">${places.length} steder · ${places.reduce((sum, row) => sum + (row?.evidence?.milestones?.length || 0), 0)} hendelser</span></button>${fagverkLinksHtml(epoch, currentPlaceId)}${!current && !timeline.generated ? depthHtml(epoch, places, currentPlaceId, false) : ""}</div>${current ? depthHtml(epoch, places, currentPlaceId, timeline.generated) : ""}
       </article>`;
     }).join("");
 
@@ -356,7 +464,20 @@
       ? `<section class="hg-epoke-unassigned"><h3>Ingen epoker eller steder registrert ennå</h3><p>${esc(domainLabel(domain))} har foreløpig ingen canonical epoketidslinje.</p></section>`
       : "";
 
-    body.innerHTML = `<div class="hg-epoke-timeline">${nodes}</div>${unassigned}${empty}${parallelHtml(timeline.parallel)}`;
+    body.innerHTML = `<div class="hg-epoke-timeline">${nodes}</div>${unassigned}${empty}${parallelHtml(timeline.parallel, selectedTrackId, currentPlaceId)}`;
+    body.querySelectorAll("[data-select-epoke]").forEach((node) => {
+      node.addEventListener("click", () => {
+        const epochId = txt(node.getAttribute("data-select-epoke"));
+        writeUrlState(domain, epochId, "replace");
+        renderTimeline(root, domain, currentPlaceId, epochId, selectedTrackId);
+      });
+    });
+    body.querySelectorAll("[data-parallel-epoke-id]").forEach((node) => {
+      node.addEventListener("click", () => {
+        const trackId = txt(node.getAttribute("data-parallel-epoke-id"));
+        renderTimeline(root, domain, currentPlaceId, currentEpochId, trackId === selectedTrackId ? "" : trackId);
+      });
+    });
     body.querySelectorAll("[data-epoke-place-id]").forEach((node) => {
       const button = /** @type {HTMLElement} */ (node);
       button.addEventListener("click", () => {
@@ -371,13 +492,14 @@
 
     requestAnimationFrame(() => {
       const currentNode = /** @type {HTMLElement|null} */ (body.querySelector(".hg-epoke-node.is-current"));
-      currentNode?.scrollIntoView({ block: "center", behavior: "smooth" });
+      currentNode?.scrollIntoView?.({ block: "center", behavior: "smooth" });
     });
   }
 
   /** @param {any} [options] */
   async function open(options = {}) {
     if (window.HGEpokerRuntime?.ready) await window.HGEpokerRuntime.ready;
+    if (window.HGEpokerRuntime?.loadPlaceIndex) await window.HGEpokerRuntime.loadPlaceIndex();
     ensureStyles();
     closeDom();
 
@@ -425,6 +547,7 @@
 
   async function openFromUrl() {
     if (window.HGEpokerRuntime?.ready) await window.HGEpokerRuntime.ready;
+    if (window.HGEpokerRuntime?.loadPlaceIndex) await window.HGEpokerRuntime.loadPlaceIndex();
     const state = readUrlState();
     if (!state.active) return null;
     const context = state.epochId ? findEpochContext(state.epochId) : null;
