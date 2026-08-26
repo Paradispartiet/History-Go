@@ -124,8 +124,24 @@ function makeWindow() {
     { id: "f", name: "Sted uten område", domain: "historie", year: 1900, epoke_id: "industrial" }
   ];
   w.HG_EPOKE_PLACE_INDEX = {
-    version: 3,
-    domains: {},
+    version: 5,
+    domains: {
+      historie: {
+        oslo_coverage: {
+          contract: "oslo-history-coverage-v1",
+          canonical_place_count: 3,
+          dated_evidence_place_count: 1,
+          documented_case_place_count: 1,
+          awaiting_source_backed_history_count: 1,
+          categories: [{ category: "historie", total: 3, dated_evidence: 1, documented_case: 1, awaiting_source_backed_history: 1 }],
+          places: [
+            { place_id: "a", status: "dated_evidence" },
+            { place_id: "c", status: "documented_case" },
+            { place_id: "d", status: "awaiting_source_backed_history" }
+          ]
+        }
+      }
+    },
     locations: {
       contract: "canonical-place-geography-v1",
       places: {
@@ -194,6 +210,10 @@ test("epoch viewer opens timeline, exact Fagverk periods, parallel tracks and na
   assert.match(root.textContent, /Industrialisering og urbanisering/);
   assert.match(root.textContent, /Historisk oversikt/);
   assert.match(root.textContent, /Fravær er et synlig dokumentasjonsgap/);
+  assert.match(root.textContent, /Oslo: dokumentert historisk dekning/);
+  assert.match(root.textContent, /Alle 3 canonical Oslo-steder er klassifisert/);
+  assert.match(root.textContent, /1 av 3 steder minst ett datert, kildebelagt spor/);
+  assert.equal(root.querySelector("[data-oslo-history-coverage]") !== null, true);
   assert.match(root.textContent, /Arbeid og byvekst/);
   assert.match(root.textContent, /Industrialisering var ikke én ensartet overgang/);
   assert.equal(root.querySelector('[data-history-period-id="lange_1800_tallet_1814_1914"]').hasAttribute("open"), true);
@@ -378,12 +398,17 @@ test("History v2 renders cross-category evidence, analysis, sources and an inter
                 connections: {
                   person_ids: ["historiker_a"],
                   works: [{ id: "arkivobjekt", title: "Arkivprotokollen", type: "dokument" }],
-                  stories: [{ id: "fortelling_a", title: "Omsorg før velferdsstaten", year: 1890, type: "historical_place" }]
+                  stories: [
+                    { id: "fortelling_a", title: "Omsorg før velferdsstaten", year: 1890, type: "historical_place" },
+                    { id: "fortelling_b", title: "Et annet kildespor", year: 1895, type: "historical_place" }
+                  ]
                 },
                 milestones: [{
                   id: "d-1890",
+                  story_id: "fortelling_a",
+                  evidence_type: "canonical_story",
                   year: 1890,
-                  title: "Ny institusjon",
+                  title: "Omsorg før velferdsstaten",
                   consequence: "Institusjonen endret tilbudet i byen.",
                   sources: [{ title: "Arkivkilde", url: "https://example.test/source" }]
                 }]
@@ -428,7 +453,10 @@ test("History v2 renders cross-category evidence, analysis, sources and an inter
   assert.equal(root.querySelectorAll(".hg-epoke-case .hg-epoke-source").length, 2);
   assert.match(root.textContent, /Historiker A/);
   assert.match(root.textContent, /Arkivprotokollen/);
-  assert.match(root.textContent, /Omsorg før velferdsstaten · 1890/);
+  assert.match(root.textContent, /Kildebelagt fortelling/);
+  assert.match(root.textContent, /Et annet kildespor · 1895/);
+  assert.equal(root.querySelectorAll('[data-story-id="fortelling_a"]').length, 1);
+  assert.doesNotMatch(root.querySelector(".hg-epoke-connections").textContent, /Omsorg før velferdsstaten/);
   assert.ok(root.querySelector('[data-epoke-person-id="historiker_a"] img'));
   assert.equal(root.querySelector(".hg-epoke-milestone .hg-epoke-source").getAttribute("href"), "https://example.test/source");
   assert.equal(w.PLACES.find((place) => place.id === "d").domain, "helse", "primary category remains unchanged");
