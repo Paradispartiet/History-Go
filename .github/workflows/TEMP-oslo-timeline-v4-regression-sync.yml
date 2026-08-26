@@ -1,0 +1,54 @@
+name: TEMP Oslo timeline v4 regression sync
+
+on:
+  push:
+    branches:
+      - agent/oslo-timeline-anchors-v4-20260826
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Fold exact-anchor regression into ordinary epoch CI test
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const path = 'tests/epoke-place-index.test.mjs';
+          let source = fs.readFileSync(path, 'utf8');
+          const title = 'Gamlebyen leksikon chronology materializes only reviewed exact anchors';
+          const marker = 'test("verified production claims fail closed for uncertainty, current-only state and non-Oslo places", () => {';
+          const block = `test("${title}", () => {\n  const index = buildEpokePlaceIndex();\n  const chronologyMilestonesFor = (placeId) => Object.values(index.domains.historie.epochs)\n    .flatMap((group) => group.places)\n    .filter((place) => place.place_id === placeId)\n    .flatMap((place) => place.milestones)\n    .filter((milestone) => milestone.evidence_type === "leksikon_chronology");\n  const yearsFor = (placeId) => [...new Set(chronologyMilestonesFor(placeId).map((milestone) => milestone.year))].sort((a, b) => a - b);\n\n  assert.deepEqual(yearsFor("clemenskirken_ruin_oslo"), [1920, 1970, 2000]);\n  assert.deepEqual(yearsFor("minneparken_gamlebyen"), [1932, 2024]);\n  assert.deepEqual(yearsFor("saxegarden"), [1334, 1624]);\n  assert.equal(chronologyMilestonesFor("clemenskirken_ruin_oslo").some((milestone) => milestone.year === 1135), false);\n});\n\n`;
+          if (!source.includes(title)) {
+            if (!source.includes(marker)) throw new Error('Could not find insertion marker');
+            source = source.replace(marker, block + marker);
+            fs.writeFileSync(path, source);
+          }
+          if (fs.existsSync('tests/oslo-medieval-timeline-v4.test.mjs')) fs.unlinkSync('tests/oslo-medieval-timeline-v4.test.mjs');
+          NODE
+      - name: Verify exact anchors through the ordinary CI test target
+        shell: bash
+        run: |
+          node --test tests/epoke-place-index.test.mjs
+          node scripts/build-epoke-place-index.mjs --check
+          git diff --check
+      - name: Commit permanent regression and remove temporary workflow
+        shell: bash
+        run: |
+          rm .github/workflows/TEMP-oslo-timeline-v4-regression-sync.yml
+          git config user.name "Paradispartiet"
+          git config user.email "paradispartiet@gmail.com"
+          git add tests/epoke-place-index.test.mjs tests/oslo-medieval-timeline-v4.test.mjs .github/workflows/TEMP-oslo-timeline-v4-regression-sync.yml
+          git diff --cached --check
+          git diff --cached --name-status
+          git commit -m "Lock Gamlebyen exact timeline regression"
+          git push origin HEAD:agent/oslo-timeline-anchors-v4-20260826
