@@ -35,6 +35,7 @@ jobs:
           node scripts/materialize-utdanning-primary-lower-secondary-school-fulltext-v1.mjs
           node scripts/audit-utdanning-primary-lower-secondary-school-fulltext-v1.mjs --write-report
           node scripts/audit-fagverk-general-engine.mjs --write-report
+          node scripts/build-fagverk-release-manifest.mjs
           node scripts/run-utdanning-domain-ci-v1.mjs
       - name: Commit deterministic outputs
         run: |
