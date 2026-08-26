@@ -448,7 +448,10 @@
     const visualPreviewSignature = preview?.image
       ? `member-image|${s(preview.id)}|${s(preview.image)}|${s(preview.title)}`
       : `fallback|${s(def.id)}|${Number(count) || 0}`;
-    if (icon.dataset.visualPreviewSignature === visualPreviewSignature) return;
+    const previewDomMatches = preview?.image
+      ? Boolean(icon.querySelector(":scope > img.pc-person-img"))
+      : Boolean(icon.querySelector(":scope > .pc-round-label"));
+    if (icon.dataset.visualPreviewSignature === visualPreviewSignature && previewDomMatches) return;
     icon.dataset.visualPreviewSignature = visualPreviewSignature;
     if (!preview?.image) {
       icon.innerHTML = fallback;
