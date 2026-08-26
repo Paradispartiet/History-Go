@@ -23,7 +23,9 @@ function buildEpokerRuntimeIndex(epokerByDomain) {
   const idx = {
     byKey: Object.create(null),       // "domain:id" -> epoke
     byDomain: Object.create(null),    // domain -> { list, byId, byStart }
-    all: []                           // flat liste (med domain)
+    all: [],                          // flat liste (med domain)
+    parallelByDomain: Object.create(null),
+    parallelAll: []
   };
 
   const input = epokerByDomain && typeof epokerByDomain === "object" ? epokerByDomain : {};
@@ -136,12 +138,13 @@ const EPOKER_FILES = [
 
 function normalizeEpokerFilePayload(payload, fallbackDomain) {
   const raw = payload ?? null;
-  if (!raw) return { domain: epS(fallbackDomain), list: [] };
+  if (!raw) return { domain: epS(fallbackDomain), list: [], parallel: [] };
 
   if (Array.isArray(raw)) {
     return {
       domain: epS(fallbackDomain),
-      list: raw
+      list: raw,
+      parallel: []
     };
   }
 
@@ -153,8 +156,9 @@ function normalizeEpokerFilePayload(payload, fallbackDomain) {
     epArr(obj.epoker).length ? epArr(obj.epoker) :
     epArr(obj.items).length ? epArr(obj.items) :
     [] ;
+  const parallel = epArr(obj.parallel_epoker);
 
-  return { domain, list };
+  return { domain, list, parallel };
 }
 
 const HGEpokerRuntime = (() => {
@@ -186,6 +190,7 @@ const HGEpokerRuntime = (() => {
 
     loadPromise = (async () => {
       const epokerByDomain = Object.create(null);
+      const parallelByDomain = Object.create(null);
       status.domainsLoaded = [];
       status.missingFiles = [];
       status.failedFiles = [];
@@ -215,14 +220,23 @@ const HGEpokerRuntime = (() => {
 
           if (!epokerByDomain[domain]) epokerByDomain[domain] = [];
           epokerByDomain[domain].push(...epArr(normalized.list));
+          if (!parallelByDomain[domain]) parallelByDomain[domain] = [];
+          parallelByDomain[domain].push(...epArr(normalized.parallel));
 
           for (const alias of aliases) {
             if (!alias) continue;
             if (!epokerByDomain[alias]) epokerByDomain[alias] = [];
             epokerByDomain[alias].push(...epArr(normalized.list));
+            if (!parallelByDomain[alias]) parallelByDomain[alias] = [];
+            parallelByDomain[alias].push(...epArr(normalized.parallel));
           }
 
-          status.domainsLoaded.push({ domain, path, count: epArr(normalized.list).length });
+          status.domainsLoaded.push({
+            domain,
+            path,
+            count: epArr(normalized.list).length,
+            parallelCount: epArr(normalized.parallel).length
+          });
           status.successfulFiles += 1;
         } catch (err) {
           status.failedFiles.push({
@@ -234,6 +248,9 @@ const HGEpokerRuntime = (() => {
       }
 
       const idx = buildEpokerRuntimeIndex(epokerByDomain);
+      const parallelIdx = buildEpokerRuntimeIndex(parallelByDomain);
+      idx.parallelByDomain = parallelIdx.byDomain;
+      idx.parallelAll = parallelIdx.all;
       status.missingDomains = MAIN_DOMAINS.filter((domain) => !idx.byDomain?.[domain]);
       window.EPOKER_INDEX = idx;
       const failedCount = status.failedFiles.length + status.missingFiles.length;
@@ -269,6 +286,7 @@ const HGEpokerRuntime = (() => {
       hasIndex: Boolean(index),
       loadedDomains: Object.keys(byDomain),
       domainCounts,
+      parallelCount: epArr(index?.parallelAll).length,
       missingFiles: status.missingFiles.slice(),
       failedFiles: status.failedFiles.slice(),
       missingDomains: status.missingDomains.slice(),
