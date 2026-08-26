@@ -308,6 +308,22 @@ const HGEpokerRuntime = (() => {
       )) {
         throw new Error("Epoke place index has an invalid historical coverage contract");
       }
+      if (Number(payload?.version) >= 5) {
+        const osloCoverage = payload?.domains?.historie?.oslo_coverage;
+        const classifiedCount = Number(osloCoverage?.dated_evidence_place_count) +
+          Number(osloCoverage?.documented_case_place_count) +
+          Number(osloCoverage?.awaiting_source_backed_history_count);
+        if (
+          osloCoverage?.contract !== "oslo-history-coverage-v1" ||
+          !Array.isArray(osloCoverage?.places) ||
+          !Array.isArray(osloCoverage?.categories) ||
+          !Number.isFinite(Number(osloCoverage?.canonical_place_count)) ||
+          osloCoverage.places.length !== Number(osloCoverage.canonical_place_count) ||
+          classifiedCount !== Number(osloCoverage.canonical_place_count)
+        ) {
+          throw new Error("Epoke place index has an invalid Oslo coverage contract");
+        }
+      }
       placeIndexCache = payload;
       window.HG_EPOKE_PLACE_INDEX = payload;
       return payload;

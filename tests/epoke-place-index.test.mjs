@@ -10,12 +10,13 @@ test("generated epoch-place index is deterministic and current", () => {
     serializeEpokePlaceIndex(index)
   );
   assert.equal(index.contract, "source-backed-history-coverage-v1");
-  assert.equal(index.version, 4);
+  assert.equal(index.version, 5);
   assert.equal(index.locations.contract, "canonical-place-geography-v1");
   assert.equal(index.stats.canonical_claim_count, 315);
   assert.equal(index.stats.canonical_source_count, 256);
   assert.equal(index.stats.place_evidence_link_count, 325);
   assert.equal(index.stats.period_case_count, 9);
+  assert.equal(index.stats.canonical_story_milestone_count, 172);
 });
 
 test("canonical place geography separates Oslo, Lisboa and other countries deterministically", () => {
@@ -58,22 +59,54 @@ test("history index supports multi-epoch places without changing primary categor
 
 test("every indexed milestone is dated, inspectable and sourced from an approved canonical evidence lane", () => {
   const index = buildEpokePlaceIndex();
-  const allowedTypes = new Set(["leksikon_chronology", "canonical_place_claim"]);
+  const allowedTypes = new Set(["leksikon_chronology", "canonical_place_claim", "canonical_story"]);
   for (const group of Object.values(index.domains.historie.epochs)) {
     for (const place of group.places) {
       assert.ok(place.source_file.startsWith("places/"), `primary source file missing for ${place.place_id}`);
       for (const milestone of place.milestones) {
         assert.ok(Number.isFinite(milestone.year), `${place.place_id}:${milestone.id} must be dated`);
         assert.ok(
-          milestone.source_file.startsWith("data/leksikon/") || milestone.source_file.startsWith("data/fag/historie/"),
+          milestone.source_file.startsWith("data/leksikon/") || milestone.source_file.startsWith("data/fag/historie/") || milestone.source_file.startsWith("data/runtime/stories-all/"),
           `${place.place_id}:${milestone.id} must point to canonical History evidence`
         );
         assert.ok(allowedTypes.has(milestone.evidence_type), `${place.place_id}:${milestone.id} has an unknown evidence type`);
         assert.ok(milestone.sources.length > 0, `${place.place_id}:${milestone.id} must have a source`);
         assert.ok(milestone.sources.every((source) => /^https?:\/\//.test(source.url)));
         if (milestone.evidence_type === "canonical_place_claim") assert.ok(milestone.claim_id, `${place.place_id}:${milestone.id} lacks claim id`);
+        if (milestone.evidence_type === "canonical_story") {
+          assert.ok(milestone.story_id, `${place.place_id}:${milestone.id} lacks story id`);
+          assert.equal(index.locations.places[place.place_id]?.country_id, "no", `${place.place_id}:${milestone.id} must belong to Norway`);
+          assert.equal(index.locations.places[place.place_id]?.city_id, "oslo", `${place.place_id}:${milestone.id} must belong to Oslo`);
+        }
       }
     }
+  }
+});
+
+test("Oslo coverage classifies every canonical place exactly once without overstating completeness", () => {
+  const index = buildEpokePlaceIndex();
+  const coverage = index.domains.historie.oslo_coverage;
+  const allowedStatuses = new Set(["dated_evidence", "documented_case", "awaiting_source_backed_history"]);
+  const osloPlaceIds = Object.entries(index.locations.places)
+    .filter(([, location]) => location.country_id === "no" && location.city_id === "oslo")
+    .map(([placeId]) => placeId)
+    .sort();
+
+  assert.equal(coverage.contract, "oslo-history-coverage-v1");
+  assert.equal(coverage.canonical_place_count, 563);
+  assert.equal(coverage.dated_evidence_place_count, 168);
+  assert.equal(coverage.documented_case_place_count, 2);
+  assert.equal(coverage.awaiting_source_backed_history_count, 393);
+  assert.deepEqual(coverage.places.map((place) => place.place_id).sort(), osloPlaceIds);
+  assert.equal(new Set(coverage.places.map((place) => place.place_id)).size, coverage.canonical_place_count);
+  assert.ok(coverage.places.every((place) => allowedStatuses.has(place.status)));
+  assert.equal(
+    coverage.dated_evidence_place_count + coverage.documented_case_place_count + coverage.awaiting_source_backed_history_count,
+    coverage.canonical_place_count
+  );
+  assert.equal(coverage.categories.reduce((sum, category) => sum + category.total, 0), coverage.canonical_place_count);
+  for (const category of coverage.categories) {
+    assert.equal(category.dated_evidence + category.documented_case + category.awaiting_source_backed_history, category.total);
   }
 });
 

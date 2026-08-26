@@ -272,7 +272,7 @@ function buildConnectionCatalog() {
       const placeId = text(story?.place_id);
       if (!placeId || !storyHasInspectableSource(story)) continue;
       const list = storiesByPlace.get(placeId) || [];
-      list.push(story);
+      list.push({ ...story, source_file: shardPath });
       storiesByPlace.set(placeId, list);
     }
   }
@@ -369,6 +369,7 @@ function addMilestone(group, place, milestone, sourceFile, sources, roles, conne
     source_file: sourceFile,
     evidence_type: text(milestone.evidence_type || "leksikon_chronology"),
     claim_id: text(milestone.claim_id),
+    story_id: text(milestone.story_id),
     limitations: (Array.isArray(milestone.limitations) ? milestone.limitations : []).map(text).filter(Boolean)
   };
   const uniqueKey = `${item.year}|${item.title}|${item.consequence}`;
@@ -447,6 +448,42 @@ export function buildEpokePlaceIndex() {
         for (const trackId of trackIdsFor(tracks, place, milestone)) {
           addMilestone(trackGroups[trackId], place, milestone, sourceFile, sources, roles, connectionCatalog);
         }
+      }
+    }
+  }
+
+  // Runtime Stories are already canonical, source-inspectable History GO
+  // material. Only Oslo stories with an explicit year and HTTP sources become
+  // timeline evidence here; no date is inferred from prose or place metadata.
+  for (const place of places) {
+    const location = locations.places[text(place?.id)];
+    if (location?.country_id !== "no" || location?.city_id !== "oslo") continue;
+    for (const story of connectionCatalog.storiesByPlace.get(text(place?.id)) || []) {
+      const year = canonicalYear(story?.year);
+      const sources = (Array.isArray(story?.sources) ? story.sources : [])
+        .map((source) => typeof source === "string" ? { title: source, url: source } : {
+          title: text(source?.title || source?.label || source?.url),
+          url: text(source?.url),
+          verifiedAt: text(source?.verifiedAt)
+        })
+        .filter((source) => source.title && /^https?:\/\//.test(source.url));
+      if (!Number.isFinite(year) || !text(story?.id) || !text(story?.title) || !text(story?.summary || story?.story) || !sources.length) continue;
+      const epoch = epochForYear(epochs, year);
+      if (!epoch) continue;
+      const milestone = {
+        id: `story_${text(story.id)}`,
+        story_id: text(story.id),
+        year,
+        title: text(story.title),
+        desc: text(story.summary || story.story),
+        evidence_type: "canonical_story",
+        period: (Array.isArray(story?.tags) ? story.tags : []).map(text).join(" ")
+      };
+      const roles = rolesFor(place, milestone);
+      const sourceFile = text(story?.source_file);
+      addMilestone(epochGroups[epoch.id], place, milestone, sourceFile, sources, roles, connectionCatalog);
+      for (const trackId of trackIdsFor(tracks, place, milestone)) {
+        addMilestone(trackGroups[trackId], place, milestone, sourceFile, sources, roles, connectionCatalog);
       }
     }
   }
@@ -561,9 +598,47 @@ export function buildEpokePlaceIndex() {
   const connectedPeople = new Set(uniquePlaceRows.flatMap((place) => place.connections?.person_ids || []));
   const connectedWorks = new Set(uniquePlaceRows.flatMap((place) => (place.connections?.works || []).map((work) => work.id)));
   const connectedStories = new Set(uniquePlaceRows.flatMap((place) => (place.connections?.stories || []).map((story) => story.id)));
+  const datedPlaceIds = new Set(uniquePlaceRows.filter((place) => place.milestones.length).map((place) => place.place_id));
+  const casePlaceIds = new Set(uniquePlaceRows.filter((place) => place.period_cases.length && !datedPlaceIds.has(place.place_id)).map((place) => place.place_id));
+  const osloPlaces = places.filter((place) => {
+    const location = locations.places[text(place?.id)];
+    return location?.country_id === "no" && location?.city_id === "oslo";
+  });
+  const osloCoveragePlaces = osloPlaces.map((place) => {
+    const placeId = text(place?.id);
+    const status = datedPlaceIds.has(placeId)
+      ? "dated_evidence"
+      : casePlaceIds.has(placeId) ? "documented_case" : "awaiting_source_backed_history";
+    return {
+      place_id: placeId,
+      name: text(place?.name || place?.title || placeId),
+      category: text(place?.category || place?.domain),
+      source_file: text(place?.sourceFile),
+      status
+    };
+  }).sort((a, b) => a.name.localeCompare(b.name, "nb") || a.place_id.localeCompare(b.place_id));
+  const osloCategories = [...new Set(osloCoveragePlaces.map((place) => place.category))].sort((a, b) => a.localeCompare(b, "nb")).map((category) => {
+    const categoryPlaces = osloCoveragePlaces.filter((place) => place.category === category);
+    return {
+      category,
+      total: categoryPlaces.length,
+      dated_evidence: categoryPlaces.filter((place) => place.status === "dated_evidence").length,
+      documented_case: categoryPlaces.filter((place) => place.status === "documented_case").length,
+      awaiting_source_backed_history: categoryPlaces.filter((place) => place.status === "awaiting_source_backed_history").length
+    };
+  });
+  const osloCoverage = {
+    contract: "oslo-history-coverage-v1",
+    canonical_place_count: osloCoveragePlaces.length,
+    dated_evidence_place_count: osloCoveragePlaces.filter((place) => place.status === "dated_evidence").length,
+    documented_case_place_count: osloCoveragePlaces.filter((place) => place.status === "documented_case").length,
+    awaiting_source_backed_history_count: osloCoveragePlaces.filter((place) => place.status === "awaiting_source_backed_history").length,
+    categories: osloCategories,
+    places: osloCoveragePlaces
+  };
 
   return {
-    version: 4,
+    version: 5,
     contract: "source-backed-history-coverage-v1",
     generated_from: [
       "data/places/places_index.json",
@@ -581,7 +656,8 @@ export function buildEpokePlaceIndex() {
     domains: {
       historie: {
         epochs: epochGroups,
-        parallel_tracks: trackGroups
+        parallel_tracks: trackGroups,
+        oslo_coverage: osloCoverage
       }
     },
     locations,
@@ -596,6 +672,7 @@ export function buildEpokePlaceIndex() {
       connected_people_count: connectedPeople.size,
       connected_work_count: connectedWorks.size,
       connected_story_count: connectedStories.size,
+      canonical_story_milestone_count: allEpochPlaces.reduce((sum, place) => sum + place.milestones.filter((milestone) => milestone.evidence_type === "canonical_story").length, 0),
       indexed_place_count: uniquePlaces.size,
       epoch_place_relations: allEpochPlaces.length,
       milestone_count: allEpochPlaces.reduce((sum, place) => sum + place.milestones.length, 0)
