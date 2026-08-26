@@ -124,7 +124,7 @@ function makeWindow() {
     { id: "f", name: "Sted uten område", domain: "historie", year: 1900, epoke_id: "industrial" }
   ];
   w.HG_EPOKE_PLACE_INDEX = {
-    version: 5,
+    version: 6,
     domains: {
       historie: {
         oslo_coverage: {
@@ -411,6 +411,13 @@ test("History v2 renders cross-category evidence, analysis, sources and an inter
                   title: "Omsorg før velferdsstaten",
                   consequence: "Institusjonen endret tilbudet i byen.",
                   sources: [{ title: "Arkivkilde", url: "https://example.test/source" }]
+                }, {
+                  id: "production_claim_d_1885",
+                  evidence_type: "verified_place_production_claim",
+                  year: 1885,
+                  title: "Institusjonen åpnet i 1885.",
+                  consequence: "",
+                  sources: [{ title: "Stedskilde", url: "https://example.test/place-year" }]
                 }]
               }
             ],
@@ -454,6 +461,7 @@ test("History v2 renders cross-category evidence, analysis, sources and an inter
   assert.match(root.textContent, /Historiker A/);
   assert.match(root.textContent, /Arkivprotokollen/);
   assert.match(root.textContent, /Kildebelagt fortelling/);
+  assert.match(root.textContent, /Verifisert stedsclaim/);
   assert.match(root.textContent, /Et annet kildespor · 1895/);
   assert.equal(root.querySelectorAll('[data-story-id="fortelling_a"]').length, 1);
   assert.doesNotMatch(root.querySelector(".hg-epoke-connections").textContent, /Omsorg før velferdsstaten/);
