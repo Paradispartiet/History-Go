@@ -724,5 +724,5 @@
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, { once:true });
   else init();
-  ["hg:appReady", "hg:place-selected", "hg:places-ready", "hg:placesUpdated", "updateProfile", "hg:nature-detailed-map-ready"].forEach(name => global.addEventListener?.(name, () => { patchOpenPlaceCard(); scheduleApply(); }));
+  ["hg:appReady", "hg:place-selected", "hg:place-open-ready", "hg:places-ready", "hg:placesUpdated", "updateProfile", "hg:nature-detailed-map-ready"].forEach(name => global.addEventListener?.(name, () => { patchOpenPlaceCard(); scheduleApply(); }));
 })(window);

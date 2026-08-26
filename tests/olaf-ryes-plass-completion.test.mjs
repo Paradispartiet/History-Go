@@ -31,6 +31,8 @@ const knowledge = read("data/knowledge/knowledge_units.generated.json").units;
 const related = read("data/places/places_index.json").filter(row => place.related_place_ids.includes(row.id));
 const productionChecklist = fs.readFileSync(path.join(root, "docs/PLACE_PRODUCTION_CHECKLIST.md"), "utf8");
 const placeStandard = fs.readFileSync(path.join(root, "docs/PLACE_STANDARD.md"), "utf8");
+const roundsRuntime = fs.readFileSync(path.join(root, "js/ui/place-rounds-visual-collections.js"), "utf8");
+const placeCardRuntime = fs.readFileSync(path.join(root, "js/ui/place-card.js"), "utf8");
 
 test("verified geometry, scope and historical correction remain exact", () => {
   assert.deepEqual([place.lat, place.lon, place.r], [59.9231, 10.7589, 170]);
@@ -72,6 +74,11 @@ test("global production contract requires member images and a real portrait fron
   assert.match(placeStandard, /alltid en stående fil\/variant med høyde større enn bredde/i);
   assert.match(placeStandard, /previewbilde av ett faktisk canonical medlem/i);
   assert.match(placeStandard, /fallback er runtime-feilhåndtering, ikke godkjent closeout/i);
+});
+
+test("place-open hydration refreshes previews and cannot be downgraded by a later full-place response", () => {
+  assert.match(roundsRuntime, /"hg:place-open-ready"/);
+  assert.match(placeCardRuntime, /\{ \.\.\.patch, \.\.\.hydratedPlace \}/);
 });
 
 test("content layers and date boundaries are complete", () => {
