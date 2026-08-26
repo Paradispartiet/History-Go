@@ -2,7 +2,7 @@
   "schema": "history_go_place_phase24_audit_v1",
   "place_id": "olaf_ryes_plass",
   "reviewed_at": "2026-08-26",
-  "overall_status": "correction_ready_for_pr_live_reqa_pending",
+  "overall_status": "closed_merged_deployed_live_verified",
   "scope": {
     "canonical": "the named public park and square surface between Markveien, Grüners gate, Thorvald Meyers gate and Sofienberggata",
     "excluded_as_own_content": ["parkteatret", "surrounding buildings and businesses", "the tram/bus stop", "all of Grünerløkka"]
@@ -14,18 +14,18 @@
     "10_quiz": "pass_rich_5x7_and_live_open",
     "11_observer_note_route": "pass_with_route_not_applicable_for_bounded_square",
     "12_people": "pass_exact_two_live",
-    "13_brands": "pass_local_parkteatret_verified_logo_live_pending",
+    "13_brands": "pass_live_parkteatret_verified_official_logo",
     "14_discovery_relations_i18n": "pass",
     "15_physical_visit": "pass_safe_public_surface_tasks",
     "16_favorites_progress": "pass_existing_platform_contract",
     "17_profile_unlock": "pass_existing_platform_contract",
     "18_wonderkammer": "not_applicable_no_new_content",
-    "19_images": "pass_local_portrait_front_and_member_images_with_provenance",
-    "20_data_qa": "pass_local_pr_ci_pending",
-    "21_manual_ui_qa": "pending_post_deploy_reqa",
+    "19_images": "pass_live_portrait_front_and_four_member_image_previews_with_provenance",
+    "20_data_qa": "pass_local_and_ci",
+    "21_manual_ui_qa": "pass_post_deploy_live_reqa",
     "22_content_qa": "pass_manual_source_and_ownership_review",
-    "23_ci": "pending_correction_pr",
-    "24_one_place_gate": "reopened_for_visual_contract_correction"
+    "23_ci": "pass_pr_5353_5357_5358",
+    "24_one_place_gate": "closed_merged_deployed_live_verified"
   },
   "place_card": {
     "profile": "history_go_place_card_profile_v2",
@@ -63,7 +63,7 @@
     "live_open": "pass_set_1_of_5_question_1_of_7"
   },
   "local_verification": {
-    "status": "passed",
+    "status": "passed_after_visual_and_cache_regressions",
     "relevant_tests": {"passed": 17, "failed": 0, "skipped_browser": 1},
     "quiz_card_runtime_regression": "passed",
     "quiz_pipeline": "passed",
@@ -77,14 +77,33 @@
     "runtime_readings": 3
   },
   "ui_verification": {
-    "live_url": "https://paradispartiet.github.io/History-Go/?qa=9f9acad849b23ffeda12148d1bd9c48a650a56c0#/place/olaf_ryes_plass",
+    "live_url": "https://paradispartiet.github.io/History-Go/?qa=ee19135ea46e40aac62009e5670f58dbecc5b4af#/place/olaf_ryes_plass",
     "manual_browser": {
       "viewport": "1363x936",
-      "result": "passed",
+      "result": "passed_after_pages_run_32959957239",
       "horizontal_overflow": false,
       "quiz_card_flip": "passed_byquiz_10_questions_and_answer_key",
       "quiz_open": "passed_rich_set_1_of_5",
-      "people_objects_brands_related_counts": "2_2_0_4"
+      "people_objects_brands_related_counts": "2_2_1_4",
+      "front_image": {
+        "path": "bilder/places/olaf_ryes_plass_front_portrait.webp",
+        "natural_dimensions": "900x1200",
+        "portrait": true
+      },
+      "round_previews": {
+        "people": "member-image: bilder/kort/people/olaf_rye.webp (496x800)",
+        "objects": "member-image: bilder/kort/objects/olaf_ryes_plass_eilert_sundt_bust.webp (899x520)",
+        "brands": "member-image: bilder/kort/brands/parkteatret.webp (900x520)",
+        "related": "member-image: bilder/places/sofienbergparken.JPG (3992x2242)"
+      },
+      "round_open_checks": {
+        "people": "passed_two_people_with_images",
+        "objects": "passed_bust_and_fountain",
+        "brands": "passed_parkteatret",
+        "related": "passed_four_canonical_places"
+      },
+      "application_console_errors": 0,
+      "environment_only_logs": ["cloud_browser_extension_metadata", "webgl_map_unavailable"]
     },
     "responsive_ci": {
       "viewports": ["1100x760", "390x844"],
@@ -95,9 +114,12 @@
   "ci_verification": {
     "integration": {"pull_request": 5342, "head_sha": "66283cfa922a1e68651a93f7b81a2db6661a797f", "workflow_runs": 65, "successful": 65, "failed": 0},
     "quiz_card_fix": {"pull_request": 5346, "head_sha": "ddc3c321ff179509d32627ecb0e48c739e7908c8", "workflow_runs": 2, "successful": 2, "failed": 0},
-    "closeout": {"pull_request": 5348, "head_sha": "a7a1727757a5f13de0a94e99371136310ee9b6d4", "workflow_runs": 2, "successful": 2, "failed": 0, "responsive_browser_tests": {"passed": 9, "failed": 0, "skipped": 0}, "result": "passed"}
+    "closeout": {"pull_request": 5348, "head_sha": "a7a1727757a5f13de0a94e99371136310ee9b6d4", "workflow_runs": 2, "successful": 2, "failed": 0, "responsive_browser_tests": {"passed": 9, "failed": 0, "skipped": 0}, "result": "passed"},
+    "visual_contract": {"pull_request": 5353, "merge_sha": "b9373e0bcc2b1c20e6c9f2cbdf66e2f98401403d", "workflow_runs": 18, "successful": 18, "failed": 0, "pages_run": 32958019219, "result": "passed"},
+    "hydration_refresh": {"pull_request": 5357, "head_sha": "d87263a2c73af7bba1fabf77d763a6cc2e829946", "merge_sha": "982348819218e7f19dcc5b4e6b6065b3face242d", "workflow_runs": 2, "successful": 2, "failed": 0, "pages_run": 32959030440, "result": "passed"},
+    "place_open_cache_freshness": {"pull_request": 5358, "head_sha": "5cd41598ff22559dde1c4d9aaadd37482a9a1703", "merge_sha": "ee19135ea46e40aac62009e5670f58dbecc5b4af", "workflow_runs": 2, "successful": 2, "failed": 0, "pages_run": 32959957239, "result": "passed"}
   },
-  "pull_requests": ["https://github.com/Paradispartiet/History-Go/pull/5342", "https://github.com/Paradispartiet/History-Go/pull/5346", "https://github.com/Paradispartiet/History-Go/pull/5348"],
-  "merge_commits": ["127e4058c84feebc172e546c1ef20fb9f15d07d3", "9f9acad849b23ffeda12148d1bd9c48a650a56c0"],
-  "pages_deployments": ["https://github.com/Paradispartiet/History-Go/actions/runs/32940525846", "https://github.com/Paradispartiet/History-Go/actions/runs/32941952695"]
+  "pull_requests": ["https://github.com/Paradispartiet/History-Go/pull/5342", "https://github.com/Paradispartiet/History-Go/pull/5346", "https://github.com/Paradispartiet/History-Go/pull/5348", "https://github.com/Paradispartiet/History-Go/pull/5353", "https://github.com/Paradispartiet/History-Go/pull/5357", "https://github.com/Paradispartiet/History-Go/pull/5358"],
+  "merge_commits": ["127e4058c84feebc172e546c1ef20fb9f15d07d3", "9f9acad849b23ffeda12148d1bd9c48a650a56c0", "b9373e0bcc2b1c20e6c9f2cbdf66e2f98401403d", "982348819218e7f19dcc5b4e6b6065b3face242d", "ee19135ea46e40aac62009e5670f58dbecc5b4af"],
+  "pages_deployments": ["https://github.com/Paradispartiet/History-Go/actions/runs/32940525846", "https://github.com/Paradispartiet/History-Go/actions/runs/32941952695", "https://github.com/Paradispartiet/History-Go/actions/runs/32958019219", "https://github.com/Paradispartiet/History-Go/actions/runs/32959030440", "https://github.com/Paradispartiet/History-Go/actions/runs/32959957239"]
 }
