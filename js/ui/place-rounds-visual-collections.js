@@ -160,6 +160,26 @@
     ]);
   }
 
+  function peopleItems(place) {
+    let direct = [];
+    try { direct = arr(global.getPeopleForPlace?.(s(place?.id))); } catch { direct = []; }
+    return flattenSources([[direct, "people"]]);
+  }
+
+  function brandItems(place) {
+    const placeId = s(place?.id);
+    let direct = [];
+    try { direct = arr(global.HGBrands?.getByPlace?.(placeId)); } catch { direct = []; }
+    if (!direct.length) {
+      direct = [
+        ...arr(global.BRANDS_BY_PLACE?.[placeId]),
+        ...arr(place?.brands),
+        ...arr(place?.brand_ids)
+      ].map(value => typeof value === "string" ? (global.HGBrands?.getById?.(value) || arr(global.BRANDS).find(brand => s(brand?.id) === s(value)) || value) : value);
+    }
+    return flattenSources([[direct, "brands"]]);
+  }
+
   function productionItems(place) {
     const category = normalizeCategory(place);
     const profiles = [place?.music_profile, place?.music, place?.literature_profile, place?.film_profile, place?.stage_profile, place?.media_profile, place?.subculture_profile, place?.art_profile];
@@ -245,6 +265,8 @@
 
   function collectionItems(place, id) {
     if (!place) return [];
+    if (id === "people") return peopleItems(place);
+    if (id === "brands") return brandItems(place);
     if (id === "objects") return objectItems(place);
     if (id === "productions") return productionItems(place);
     if (id === "structures") return structureItems(place);
@@ -423,14 +445,33 @@
 
   function renderCollectionPreview(icon, preview, def, count) {
     const fallback = fallbackCollectionHtml(def, count);
+    const visualPreviewSignature = preview?.image
+      ? `member-image|${s(preview.id)}|${s(preview.image)}|${s(preview.title)}`
+      : `fallback|${s(def.id)}|${Number(count) || 0}`;
+    const previewDomMatches = preview?.image
+      ? Boolean(icon.querySelector(":scope > img.pc-person-img"))
+      : Boolean(icon.querySelector(":scope > .pc-round-label"));
+    if (icon.dataset.visualPreviewSignature === visualPreviewSignature && previewDomMatches) return;
+    icon.dataset.visualPreviewSignature = visualPreviewSignature;
     if (!preview?.image) {
       icon.innerHTML = fallback;
+      icon.dataset.previewStatus = "missing";
       return;
     }
     icon.innerHTML = `<img src="${esc(preview.image)}" class="pc-person-img" alt="${esc(preview.title)}">`;
+    icon.dataset.previewStatus = "member-image";
     icon.querySelector("img")?.addEventListener("error", () => {
       icon.innerHTML = fallback;
+      icon.dataset.previewStatus = "error";
+      icon.dataset.visualPreviewSignature = `error|${visualPreviewSignature}`;
     }, { once:true });
+  }
+
+  function renderExistingCollectionPreview(place, def) {
+    const icon = document.getElementById(def.iconId);
+    if (!icon) return;
+    const items = collectionItems(place, def.id);
+    renderCollectionPreview(icon, items.find(item => item.image), def, items.length);
   }
 
 
@@ -540,6 +581,9 @@
     bindBadge();
     ensureBadgePlacement();
     ensureQuizAction();
+    for (const def of FIXED_DEFS.filter(item => ["people", "brands"].includes(item.id))) {
+      renderExistingCollectionPreview(place, def);
+    }
     for (const def of FIXED_DEFS.filter(item => ["objects", "map", "flora", "fauna"].includes(item.id))) {
       await renderFixed(place, def);
       bindFixed(def);

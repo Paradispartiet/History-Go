@@ -100,7 +100,7 @@ Et sted kan ikke merkes `produksjonsklart` når nullmålingen eller fasesporinge
 
 - [ ] den synlige spilleropplevelsen vurderes som helhet etter at alle tekniske faser er merget;
 - [ ] hver av de fire PlaceCard-samlingene åpnes på faktisk produksjonsflate; synlig antall, popupinnhold og datakilde må stemme, og en samling som viser falsk 0 under lasting er et blockerfunn;
-- [ ] alle samlings-preview kontrolleres; manglende mediefil skal gi et tydelig ikon-/antallsfallback, aldri et ødelagt bildeikon;
+- [ ] alle samlings-preview kontrolleres; hver av de fire flatene skal vise et lastet bilde av et faktisk canonical medlem, mens ikon-/antallsfallback kun er trygg runtime-feilhåndtering og alltid er en blocker for fullproduksjon;
 - [ ] Før/etter-tekstens retning, høyre/venstre, motivanker og observasjonsinstruks kontrolleres visuelt mot begge bildene;
 - [ ] tomme faner, svake bildevalg, kunstige samlinger og taksonomisk korrekte men brukerfiendtlige kombinasjoner registreres som reelle kvalitetsavvik;
 - [ ] manuell kvalitetskritikk kan gjenåpne en tidligere godkjent fase og oppheve `SLUTTFØRT`;
@@ -966,6 +966,8 @@ Denne oppskriften gjentar ikke samlingspool, profiler eller naturkartkrav. **Pla
 - [ ] Badges vises fast og separat ved stedsoverskriften og teller ikke blant samlingene;
 - [ ] obligatorisk Quiz vises som tydelig PlaceCard-handling og fungerer;
 - [ ] fire samlingsflater vises som et fullt 2 × 2-felt ved `frontImage`: vanlige kort har People-sirkel + tre rektangler; Nature har Flora- og Fauna-sirkler + to rektangler;
+- [ ] `frontImage` er en stående fil/variant (`height > width`) med kontrollert motiv, crop, dimensjoner og proveniens; en liggende fil i stående CSS-ramme teller ikke;
+- [ ] alle fire samlingsflater viser et bilde av ett faktisk medlem i sin egen samling; ikon, navn og antall teller ikke som ferdig preview;
 - [ ] People, Flora og Fauna er sirkler; øvrige samlinger er avrundede rektangler;
 - [ ] Bilder ligger i `frontImage`-/medieflaten eller hos riktig bildeeier og brukes aldri som samling/reserve;
 - [ ] hver samling har en naturlig brukerforståelse, tydelig egen innholdstype og reell stedsspesifikk substans;
@@ -1264,10 +1266,12 @@ For hvert bilde som publiseres:
 - [ ] nabosted, feil bygg, feil avdeling eller navnelik entitet er utelukket;
 - [ ] fil/URL eksisterer og laster;
 - [ ] crop/aspect ratio fungerer i aktuell flate;
+- [ ] `frontImage` er publisert i stående orientering med høyde større enn bredde og dokumentert `frontImageMeta`/tilsvarende metadata;
 - [ ] historisk bilde presenteres som historisk;
 - [ ] illustrasjon presenteres ikke som dokumentarfoto;
 - [ ] attribusjon/lisens lagres der datamodellen krever det;
-- [ ] hver valgt samling har et ærlig preview; der egnet bilde mangler brukes samlingens ikon og antall;
+- [ ] hver av de fire valgte samlingene har et previewbilde av et faktisk canonical medlem i samlingen;
+- [ ] generisk ikon-/antallsfallback kan brukes ved runtime-feil, men manglende eller ødelagt previewbilde blokkerer produksjonsklar status;
 - [ ] Objects/Details/Spots viser det konkrete elementet, ikke bare generisk hovedbilde;
 - [ ] People-bilder følger `docs/PEOPLE_IMAGES.md`.
 
@@ -1317,7 +1321,7 @@ En valgt samling med ødelagt, misvisende eller falskt preview er ikke produksjo
 - [ ] fire samlingsflater vises som et fullt 2 × 2-felt ved `frontImage`;
 - [ ] People, Flora og Fauna er sirkler; øvrige samlinger er avrundede rektangler;
 - [ ] Bilder ligger i medieflaten/riktig popupflate og aldri som PlaceCard-samling eller reserve;
-- [ ] alle valgte samlinger har korrekte preview eller robust ikonfallback;
+- [ ] alle fire valgte samlinger har korrekte, lastende previewbilder av canonicale medlemmer; robust ikonfallback er bare feilhåndtering og ikke ferdigstatus;
 - [ ] People-kortet viser personens korte `desc`, ikke hele `popupDesc`;
 - [ ] full People-tekst vises først i personpopupen;
 - [ ] Badges åpner riktig sted/fagverk;
@@ -1560,9 +1564,10 @@ Mål: [ ] alltid fire flater i fast kategori-komposisjon + separat Badge + oblig
 - [ ] Badge separat ved overskriften
 - [ ] Quiz tydelig og fungerende
 - [ ] full 2 × 2-layout balansert ved `frontImage`
+- [ ] `frontImage` er stående (`height > width`) med kontrollert motiv og dokumentert crop/proveniens
 - [ ] People/Flora/Fauna sirkler; øvrige samlinger avrundede rektangler
 - [ ] Bilder bare i medie-/bildeflater, aldri som samling/reserve
-For hver samling: [ ] relevant  [ ] stedsspesifikk  [ ] substansiell  [ ] previewklart  [ ] riktig flow
+For hver samling: [ ] relevant  [ ] stedsspesifikk  [ ] substansiell  [ ] faktisk medlemsbilde laster  [ ] riktig flow
 Samlet: [ ] tydelig forskjellige samlinger  [ ] ingen kunstig Objects/Structures-splitt  [ ] ingen enkel gjenstand som fyll  [ ] ingen kunstig fjerde samling
 
 ### G. People / Stories / Quiz
@@ -1607,6 +1612,8 @@ Samlet: [ ] tydelig forskjellige samlinger  [ ] ingen kunstig Objects/Structures
 ### K. Bilder og slutt-QA
 - [ ] hovedbilder
 - [ ] samlingsbilder
+- [ ] stående `frontImage`-fil/variant (`height > width`), ikke bare CSS-ramme
+- [ ] fire av fire samlingsflater viser faktisk canonical medlemsbilde uten ikon-/antallsfallback
 - [ ] Før/etter: sammenlignbart utsnitt + gammel–nå-lag + faktisk nåbilde
 - [ ] Nyheter, Lesespor og Mer: innhold eller strengt dokumentert N/A etter søk
 - [ ] identitet/attribusjon

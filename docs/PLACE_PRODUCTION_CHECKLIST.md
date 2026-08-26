@@ -70,10 +70,12 @@ For PlaceCard-samlinger, Før/etter og eierstyrte popupflater gjelder:
 - PlaceCard beholder dagens komposisjon og viser alltid nøyaktig fire samlingsflater i et fullt 2 × 2-felt ved `frontImage`;
 - People, Flora og Fauna vises som sirkler; øvrige samlinger vises som avrundede rektangler;
 - Bilder er ikke en samling eller reserve, men beholdes i `frontImage`-/medieflaten og hos sine bildeeiere;
+- `frontImage` skal være en faktisk stående fil/variant (`height > width`), ikke bare en liggende fil vist i en stående CSS-ramme; crop, dimensjoner, kilde og lisens dokumenteres;
+- hver av de fire samlingsflatene skal vise et faktisk bilde av ett canonical medlem i samlingen; generisk ikon, navn eller antall er kun runtime-fallback og kan aldri lukke produksjonsgaten;
 - Quiz er obligatorisk og beholdes som tydelig PlaceCard-handling;
 - en enkelt vilkårlig eller taksonomisk konstruert gjenstand er ikke nok til å gjøre Objects til en kvalitetsmessig ferdig samling;
 - Objects og Structures/Bygg brukes ikke som to separate samlinger når innholdet i praksis er de samme fysiske stedselementene eller forskjellen er uklar for spilleren;
-- de fire faste flatene skal researches og fylles med reelt, stedsspesifikt innhold når slikt kan forsvares; en svak eller tom canonical kilde kollapser aldri layouten, men vises som en ærlig ikon-/statusflate uten oppdiktet innhold eller synlig falsk 0, og registreres som produksjonsgap;
+- de fire faste flatene skal researches og fylles med reelt, stedsspesifikt, bildeklart innhold; en svak eller tom canonical kilde kollapser aldri layouten i runtime, men ikon-/statusflaten registreres som produksjonsblocker og kan ikke godkjennes ved fullproduksjon;
 - nye/fullproduserte steder bruker `place_card_profile.collection_ids`; eksisterende `round_profile` leses bare gjennom kompatibilitetslaget og migreres når stedet faktisk fullproduseres;
 - **Objects-popupen** eier `Spor og objekter` og `Legg merke til` når innholdet beskriver dokumenterte fysiske gjenstander/spor; supplementene endrer ikke Objects-antallet uten canonical Objects-materialisering;
 - **People-popupen** eier personrelasjoner; en ren place→place-relasjon skal ikke inn i People;
@@ -296,6 +298,8 @@ Minimum:
 - kontroller at place→place-relasjoner ligger i Relaterte steder og ikke i People;
 - kontroller at Betydning/Motpunkter/generell stedskunnskap ligger under Om eller annen dokumentert eierflate;
 - kontroller alle valgte PlaceCard-samlinger, form, antall, datakilde og preview;
+- kontroller at hvert preview faktisk er et lastet bilde av et medlem i den aktuelle samlingen, og at ingen flate står på ikon-/antallsfallback;
+- kontroller at `frontImage`-filen/varianten er stående og at motivet fortsatt identifiserer riktig sted etter crop;
 - kontroller Før/etter visuelt mot begge bilder;
 - kontroller Nyheter-ferskhet der relevant;
 - kontroller Lesespor-tilgang og Kilder-lenker;

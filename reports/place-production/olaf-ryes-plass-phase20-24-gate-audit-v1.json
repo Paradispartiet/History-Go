@@ -2,7 +2,7 @@
   "schema": "history_go_place_phase24_audit_v1",
   "place_id": "olaf_ryes_plass",
   "reviewed_at": "2026-08-26",
-  "overall_status": "closed_merged_deployed",
+  "overall_status": "correction_ready_for_pr_live_reqa_pending",
   "scope": {
     "canonical": "the named public park and square surface between Markveien, Grüners gate, Thorvald Meyers gate and Sofienberggata",
     "excluded_as_own_content": ["parkteatret", "surrounding buildings and businesses", "the tram/bus stop", "all of Grünerløkka"]
@@ -14,30 +14,33 @@
     "10_quiz": "pass_rich_5x7_and_live_open",
     "11_observer_note_route": "pass_with_route_not_applicable_for_bounded_square",
     "12_people": "pass_exact_two_live",
-    "13_brands": "pass_with_honest_empty_state_live",
+    "13_brands": "pass_local_parkteatret_verified_logo_live_pending",
     "14_discovery_relations_i18n": "pass",
     "15_physical_visit": "pass_safe_public_surface_tasks",
     "16_favorites_progress": "pass_existing_platform_contract",
     "17_profile_unlock": "pass_existing_platform_contract",
     "18_wonderkammer": "not_applicable_no_new_content",
-    "19_images": "pass_remote_licensed_provenance",
-    "20_data_qa": "pass_local_and_pr_ci",
-    "21_manual_ui_qa": "pass_live_desktop_and_responsive_ci",
+    "19_images": "pass_local_portrait_front_and_member_images_with_provenance",
+    "20_data_qa": "pass_local_pr_ci_pending",
+    "21_manual_ui_qa": "pending_post_deploy_reqa",
     "22_content_qa": "pass_manual_source_and_ownership_review",
-    "23_ci": "pass_integration_quiz_fix_and_closeout",
-    "24_one_place_gate": "closed_merged_deployed_live_verified"
+    "23_ci": "pending_correction_pr",
+    "24_one_place_gate": "reopened_for_visual_contract_correction"
   },
   "place_card": {
     "profile": "history_go_place_card_profile_v2",
     "collection_ids": ["people", "objects", "brands", "related"],
     "people_count": 2,
     "object_count": 2,
-    "brand_state": "honest_empty_after_candidate_logo_and_ownership_audit",
+    "brand_state": "parkteatret_verified_venue_identity_with_official_logo",
+    "preview_image_coverage_percent": 100,
+    "front_image": "portrait_900x1200",
     "related_place_count": 4,
     "badges_separate": true,
     "quiz_required_and_prominent": true,
     "quiz_card": "live_byquiz_10_questions",
-    "images_used_as_collection": false
+    "images_used_as_collection": false,
+    "all_collection_previews_use_canonical_member_images": true
   },
   "content": {
     "popup_paragraphs": 6,
