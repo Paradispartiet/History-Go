@@ -1,9 +1,9 @@
 /* ============================================================
    History Go – Service Worker (precache synkronisert mot index.html)
-   Oppdatert: 2026-08-24
+   Oppdatert: 2026-08-26
    ============================================================ */
 
-const SW_VERSION = "hg-sw-2026-08-24-v1.3.147";
+const SW_VERSION = "hg-sw-2026-08-26-v1.3.148";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
@@ -343,7 +343,14 @@ self.addEventListener("fetch", (/** @type {any} */ event) => {
 
     // Data (JSON) – network-first under utvikling
     if (path.startsWith("/History-Go/data/") || path.includes("/data/")) {
-      if (path.includes("/data/runtime/place-open/") || path.includes("/data/runtime/")) {
+      // The currently opened card must not render an obsolete canonical
+      // payload after a deploy. networkFirst is bounded (4.5 s) and retains
+      // the cached payload strictly as the offline/timeout fallback.
+      if (path.includes("/data/runtime/place-open/")) {
+        event.respondWith(networkFirst(req, CACHE_RUNTIME));
+        return;
+      }
+      if (path.includes("/data/runtime/")) {
         event.respondWith(staleWhileRevalidate(req, CACHE_RUNTIME));
         return;
       }
