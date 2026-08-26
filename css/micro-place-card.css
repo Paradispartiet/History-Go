@@ -68,15 +68,63 @@ body.is-micro-place-open #pcObserve{display:none!important}
 body.is-micro-place-quizless #pcQuiz{display:none!important}
 
 #placeCard.is-micro-place .pc-micro-identity:not([hidden]){
+  display:block;
+  overflow:hidden;
+  border:1px solid color-mix(in srgb,var(--micro-accent) 24%,rgba(255,255,255,.09));
+  border-radius:17px;
+  background:color-mix(in srgb,var(--micro-accent) 7%,rgba(255,255,255,.035));
+}
+#placeCard.is-micro-place .pc-micro-identity-row{
   display:grid;
   grid-template-columns:48px minmax(0,1fr) auto;
   align-items:center;
   gap:12px;
   min-height:66px;
   padding:11px 12px;
-  border:1px solid color-mix(in srgb,var(--micro-accent) 24%,rgba(255,255,255,.09));
-  border-radius:17px;
-  background:color-mix(in srgb,var(--micro-accent) 7%,rgba(255,255,255,.035));
+}
+#placeCard.is-micro-place .pc-micro-media{
+  position:relative;
+  height:142px;
+  margin:0;
+  overflow:hidden;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  background:rgba(0,0,0,.22);
+}
+#placeCard.is-micro-place .pc-micro-media>a{
+  display:block;
+  width:100%;
+  height:100%;
+}
+#placeCard.is-micro-place .pc-micro-media img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+}
+#placeCard.is-micro-place .pc-micro-media::after{
+  content:"";
+  position:absolute;
+  inset:auto 0 0;
+  height:44%;
+  pointer-events:none;
+  background:linear-gradient(180deg,transparent,rgba(0,0,0,.68));
+}
+#placeCard.is-micro-place .pc-micro-media figcaption{
+  position:absolute;
+  z-index:1;
+  right:9px;
+  bottom:7px;
+  left:9px;
+  overflow:hidden;
+  color:rgba(255,255,255,.84);
+  font-size:9px;
+  line-height:1.25;
+  font-weight:650;
+  text-overflow:ellipsis;
+  text-shadow:0 1px 6px rgba(0,0,0,.8);
+  white-space:nowrap;
+  pointer-events:none;
 }
 #placeCard.is-micro-place .pc-micro-icon{
   display:grid;
@@ -140,7 +188,8 @@ body.is-micro-place-quizless #pcQuiz{display:none!important}
 @media(max-width:520px){
   #placeCard.is-micro-place .pc-text{margin:15px 49px 0 15px}
   #placeCard.is-micro-place .pc-grid{padding:8px 15px 15px}
-  #placeCard.is-micro-place .pc-micro-identity:not([hidden]){grid-template-columns:44px minmax(0,1fr);gap:10px}
+  #placeCard.is-micro-place .pc-micro-identity-row{grid-template-columns:44px minmax(0,1fr);gap:10px}
+  #placeCard.is-micro-place .pc-micro-media{height:118px}
   #placeCard.is-micro-place .pc-micro-icon{width:42px;height:42px;border-radius:13px}
   #placeCard.is-micro-place .pc-micro-status{grid-column:2;margin-top:5px;justify-self:start}
 }
