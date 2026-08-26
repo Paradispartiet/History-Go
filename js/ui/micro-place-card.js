@@ -8,7 +8,7 @@
     circular:'<path d="M6.2 8.4A6.8 6.8 0 0 1 18 7l1.6 2.2"/><path d="m19.7 5.6-.1 3.7-3.7-.1"/><path d="M17.8 15.6A6.8 6.8 0 0 1 6 17l-1.6-2.2"/><path d="m4.3 18.4.1-3.7 3.7.1"/>',
     leaf:'<path d="M19.5 4.5C12 4.7 6.6 7.8 6.2 13.2c-.2 2.7 1.7 5 4.5 5.1 5.4.2 8.5-5.6 8.8-13.8Z"/><path d="M5 20c2.1-4.1 5.1-7.3 9.4-9.5"/>',
     plaque:'<rect x="5" y="4.5" width="14" height="15" rx="2"/><path d="M8.5 8.5h7M8.5 12h7M8.5 15.5h4"/>',
-    stone:'<path d="M7.2 5.2 12 3.8l4.8 1.4 1.4 4.8-1.4 8.8-4.8 1.4-4.8-1.4L5.8 10z"/><path d="M9 9h6M9 12h6M9 15h4"/>',
+    stone:'<path d="M7.2 5.2 12 3.8l4.8 1.4 1.4 4.8-1.4 1.4-4.8 1.4-4.8-1.4L5.8 10z"/><path d="M9 9h6M9 12h6M9 15h4"/>',
     pin:'<path d="M12 21s6-5.3 6-11a6 6 0 1 0-12 0c0 5.7 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/>'
   });
   const KIND = Object.freeze({
@@ -30,10 +30,20 @@
 
   const text = value => String(value == null ? "" : value).trim();
   const esc = value => String(value ?? "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\"/g,"&quot;").replace(/'/g,"&#39;");
+  const safeHttpUrl = value => /^https?:\/\/[^\s]+$/i.test(text(value)) ? text(value) : "";
 
   function isMicro(place) {
     return text(place?.placeTier).toLowerCase() === "micro"
       && text(place?.micro_place_profile?.schema) === "history_go_micro_place_profile_v1";
+  }
+
+  function governedMedia(place) {
+    const image = safeHttpUrl(place?.image || place?.cardImage || place?.popupImage);
+    const sourceUrl = safeHttpUrl(place?.imageSourceUrl);
+    const credit = text(place?.imageCredit);
+    const license = text(place?.imageLicense);
+    if (!image || !sourceUrl || !credit || !license) return null;
+    return { image, sourceUrl, credit, license };
   }
 
   function ensureStylesheet() {
@@ -80,7 +90,10 @@
     const kind = KIND[text(profile.kind)] || KIND.annet_dokumentert_mikrosted;
     const status = STATUS[text(profile.currentStatus)] || "Dokumentert mikrosted";
     const statusCode = text(profile.currentStatus) || "documented";
-    panel.innerHTML = `<span class="pc-micro-icon">${iconSvg(kind.icon)}</span><span class="pc-micro-copy"><span class="pc-micro-eyebrow">Mikrosted</span><strong>${esc(kind.label)}</strong><span class="pc-micro-taxonomy">${esc(categoryLabel(place))}</span></span><span class="pc-micro-status" data-status="${esc(statusCode)}"><span aria-hidden="true"></span>${esc(status)}</span>`;
+    const media = governedMedia(place);
+    const name = text(place?.name || place?.title || place?.id) || "Mikrosted";
+    panel.classList.toggle("has-governed-media", Boolean(media));
+    panel.innerHTML = `${media ? `<figure class="pc-micro-media"><a href="${esc(media.sourceUrl)}" target="_blank" rel="noopener noreferrer" aria-label="Åpne bildekilde for ${esc(name)}"><img src="${esc(media.image)}" alt="${esc(name)}" loading="lazy" decoding="async"></a><figcaption>${esc(media.credit)} · ${esc(media.license)}</figcaption></figure>` : ""}<div class="pc-micro-identity-row"><span class="pc-micro-icon">${iconSvg(kind.icon)}</span><span class="pc-micro-copy"><span class="pc-micro-eyebrow">Mikrosted</span><strong>${esc(kind.label)}</strong><span class="pc-micro-taxonomy">${esc(categoryLabel(place))}</span></span><span class="pc-micro-status" data-status="${esc(statusCode)}"><span aria-hidden="true"></span>${esc(status)}</span></div>`;
     panel.setAttribute("aria-label", `${kind.label}. ${categoryLabel(place)}. ${status}.`);
   }
 
@@ -98,6 +111,8 @@
     panel.setAttribute("aria-hidden", micro ? "false" : "true");
 
     if (!micro) {
+      panel.classList.remove("has-governed-media");
+      panel.replaceChildren();
       document.body?.classList.remove("is-micro-place-quizless");
       for (const id of ["pcQuiz", "pcObserve"]) {
         const action = document.getElementById(id);
@@ -191,7 +206,7 @@
     schedule();
   }
 
-  global.HGMicroPlaceCard = { isMicro, apply, schedule, __canonicalMicroPlaceCardV1:true };
+  global.HGMicroPlaceCard = { isMicro, governedMedia, apply, schedule, __canonicalMicroPlaceCardV1:true };
   ["hg:appReady", "hg:place-selected", "hg:places-ready", "hg:placesUpdated"].forEach(name => global.addEventListener?.(name, () => schedule()));
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, { once:true });
   else init();
