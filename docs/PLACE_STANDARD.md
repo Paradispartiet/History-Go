@@ -2,7 +2,7 @@
 
 Status: **canonical produktstandard for et History GO-sted**  
 Eier: `place_product_standard`  
-Sist kontrollert: **2026-08-03**
+Sist kontrollert: **2026-08-26**
 
 Dette dokumentet definerer **hva et History GO-sted er og hvilke roller stedssystemet har**. Det er ikke detaljoppskrift for tekst, quiz, rundinger, People eller koordinater.
 
@@ -84,6 +84,7 @@ Relevante og dokumenterte felt kan blant annet være:
   image,
   cardImage,
   frontImage,
+  frontImageMeta,
   emne_ids,
   rounds,
   rounds_exclude,
@@ -103,6 +104,8 @@ Relevante og dokumenterte felt kan blant annet være:
   source_notes
 }
 ```
+
+For nye og fullproduserte Places er `frontImage` alltid en stående fil/variant med høyde større enn bredde. `frontImageMeta` eller tilsvarende canonical metadata dokumenterer kilde, lisens, original- og outputdimensjoner samt eventuelt crop. En liggende fil som bare maskeres av en stående CSS-ramme er ikke tilstrekkelig. Hver av de fire PlaceCard-samlingene skal samtidig ha et lastende previewbilde av ett faktisk canonical medlem; ikon-/antallsfallback er runtime-feilhåndtering, ikke godkjent closeout.
 
 Felt brukes når de faktisk har en rolle. Manglende relevant informasjon skal ikke fylles med plausibelt innhold.
 

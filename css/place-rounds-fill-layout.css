@@ -52,6 +52,24 @@
   border-radius:clamp(14px, 12%, 22px);
 }
 
+#placeCard .pc-icons-quad .pc-collection > img.pc-person-img{
+  display:block;
+  width:100%;
+  height:100%;
+  max-width:none;
+  max-height:none;
+  padding:0;
+  border:0;
+  border-radius:inherit;
+  object-fit:cover;
+  object-position:center;
+}
+
+#placeCard .pc-icons-quad .pc-collection[data-collection-id="brands"] > img.pc-person-img{
+  object-fit:contain;
+  background:#fff;
+}
+
 body.hg-app.hg-phone #placeCard .pc-side-stack,
 body.hg-app.hg-phone #placeCard .pc-icons-quad{
   width:100%;
