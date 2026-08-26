@@ -163,12 +163,6 @@
   function peopleItems(place) {
     let direct = [];
     try { direct = arr(global.getPeopleForPlace?.(s(place?.id))); } catch { direct = []; }
-    if (!direct.length) {
-      const registry = [
-        ...arr(global.PEOPLE), ...arr(global.PEOPLE_LIST), ...arr(global.PEOPLE_MASTER)
-      ];
-      direct = arr(place?.related_people_ids || place?.people_ids).map(id => registry.find(person => s(person?.id) === s(id)) || id);
-    }
     return flattenSources([[direct, "people"]]);
   }
 
