@@ -4,33 +4,248 @@
   "category": "film_tv",
   "role_scope": "produksjonsassistent",
   "mail_type": "people",
-  "families": [{
-    "id": "produksjonsassistent_settfolk",
-    "purpose": "Gjøre kollegarelasjon og mandat til et praktisk valg.",
-    "learning_focus": ["samarbeid", "rolleforstaelse", "prioritering"],
-    "mails": [{
-      "id": "film_tv_pa_people_line_hasteonske",
-      "mail_type": "people",
-      "mail_family": "produksjonsassistent_settfolk",
-      "role_scope": "produksjonsassistent",
-      "phase": "intro",
-      "priority": 120,
-      "from": "Line, produksjonskoordinator",
-      "people_ref": "line_produksjonskoordinator",
-      "place_id": "produksjonskontor_callbord",
-      "subject": "Kan du bare flytte transporten?",
-      "summary": "Line trenger bilen ved en annen inngang og ber deg endre kjøreplanen før lokasjonsansvarlig svarer.",
-      "situation": ["Ønsket er forståelig og kan spare tid.", "Sara eier adgang og har ikke godkjent den alternative inngangen.", "Du kan gjøre forarbeidet, men du kan ikke love tilgang."],
-      "task_domain": "avdelingskoordinering",
-      "competency": "kommunikasjon",
-      "pressure": "kollegialt_hastepress",
-      "choice_axis": "hjelpsom_innen_mandat_vs_uformell_overstyring",
-      "consequence_axis": "tillit_vs_adgangsrisiko",
-      "narrative_arc": "transport_og_adgang",
-      "choices": [
-        {"id": "A", "label": "Forbered alternativet og be Sara godkjenne", "reply": "Jeg sjekker rute og timing nå, men flytter ikke bilen før Sara har bekreftet adgang.", "effect": 1, "tags": ["collaboration", "authority"], "feedback": "Line får hjelp uten at du later som du eier lokasjonen.", "effects": {"stats": {"trust": 2, "quality": 1, "risk": -1}}},
-        {"id": "B", "label": "Flytt bilen for å være løsningsorientert", "reply": "Jeg sender ny inngang til sjåføren med en gang.", "effect": -1, "tags": ["tempo", "risk"], "feedback": "Du ser effektiv ut helt til adgangsspørsmålet møter porten.", "effects": {"stats": {"status": 1, "risk": 2, "trust": -1}}}
+  "families": [
+    {
+      "id": "produksjonsassistent_settfolk",
+      "purpose": "Gjøre kollegarelasjon og mandat til et praktisk valg.",
+      "learning_focus": [
+        "samarbeid",
+        "rolleforstaelse",
+        "prioritering"
+      ],
+      "mails": [
+        {
+          "id": "film_tv_pa_people_line_hasteonske",
+          "mail_type": "people",
+          "mail_family": "produksjonsassistent_settfolk",
+          "role_scope": "produksjonsassistent",
+          "phase": "intro",
+          "priority": 120,
+          "from": "Line, produksjonskoordinator",
+          "people_ref": "line_produksjonskoordinator",
+          "place_id": "produksjonskontor_callbord",
+          "subject": "Kan du bare flytte transporten?",
+          "summary": "Line trenger bilen ved en annen inngang og ber deg endre kjøreplanen før lokasjonsansvarlig svarer.",
+          "situation": [
+            "Ønsket er forståelig og kan spare tid.",
+            "Sara eier adgang og har ikke godkjent den alternative inngangen.",
+            "Du kan gjøre forarbeidet, men du kan ikke love tilgang."
+          ],
+          "task_domain": "avdelingskoordinering",
+          "competency": "kommunikasjon",
+          "pressure": "kollegialt_hastepress",
+          "choice_axis": "hjelpsom_innen_mandat_vs_uformell_overstyring",
+          "consequence_axis": "tillit_vs_adgangsrisiko",
+          "narrative_arc": "transport_og_adgang",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Forbered alternativet og be Sara godkjenne",
+              "reply": "Jeg sjekker rute og timing nå, men flytter ikke bilen før Sara har bekreftet adgang.",
+              "effect": 1,
+              "tags": [
+                "collaboration",
+                "authority"
+              ],
+              "feedback": "Line får hjelp uten at du later som du eier lokasjonen.",
+              "effects": {
+                "stats": {
+                  "trust": 2,
+                  "quality": 1,
+                  "risk": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Flytt bilen for å være løsningsorientert",
+              "reply": "Jeg sender ny inngang til sjåføren med en gang.",
+              "effect": -1,
+              "tags": [
+                "tempo",
+                "risk"
+              ],
+              "feedback": "Du ser effektiv ut helt til adgangsspørsmålet møter porten.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "risk": 2,
+                  "trust": -1
+                }
+              }
+            }
+          ]
+        }
       ]
-    }]
-  }]
+    },
+    {
+      "id": "role_world_rollout_pa_location_handoff",
+      "purpose": "Gjøre lokasjonsavklaringen til et faktisk handoff med venting og situert tillit.",
+      "learning_focus": [
+        "handoff",
+        "waiting",
+        "situated_reputation"
+      ],
+      "mails": [
+        {
+          "role_scope": "produksjonsassistent",
+          "place_id": "opptakslokasjon_inngang",
+          "repeatable": false,
+          "stage": "stable",
+          "thread_key": "film_tv_pa_shoot_day_realism_001",
+          "planned_only": true,
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "film_tv",
+            "produksjonsassistent"
+          ],
+          "id": "film_tv_pa_realism_location_handoff_001",
+          "mail_type": "people",
+          "mail_family": "role_world_rollout_pa_location_handoff",
+          "phase": "advanced",
+          "day_phase": "afternoon",
+          "priority": 90,
+          "cooldown": 12,
+          "from": "Sara, lokasjonsansvarlig",
+          "people_ref": "sara_lokasjonsansvarlig",
+          "subject": "Gi meg et adgangshandoff jeg kan behandle – ikke et løfte til et ventende crew",
+          "summary": "Sara kan avklare inngang og kjøremønster dersom du sender antall biler, tidsvindu, berørte soner og hvilke deler av call-endringen Amir faktisk har prioritert. Etter handoffet må produksjonen vente på lokasjonsklarering.",
+          "purpose": "Gjøre lokasjonsarbeidet til et faktisk handoff og la tillit hos Sara, Amir og transport utvikles forskjellig uten at standing skaper adgang.",
+          "stakes": "Et presist handoff kan synliggjøre at planen må vente. Et presset løfte kan roe crevet nå, men gjør forventning til falsk lokasjonsmyndighet.",
+          "situation": [
+            "Sara kan frigi godkjente soner, men ikke bekrefte en rute hun ennå ikke har kontrollert.",
+            "Amir trenger realistisk ventestatus før han prioriterer opptaksrekkefølgen.",
+            "Transport trenger bare de opplysningene som er nødvendige for kjøring og mottak."
+          ],
+          "task_domain": "vedvarende_opptaksdagkoordinering",
+          "task_kind": "people",
+          "competency": "lokasjon_og_logistikk",
+          "pressure": "ventende_crew_vs_adgangskontroll",
+          "choice_axis": "presist_handoff_vs_presset_lovnad",
+          "consequence_axis": "situert_tillit_vs_forventningsgjeld",
+          "narrative_arc": "fra_sprikende_call_til_sporbart_operativt_handoff",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "film_tv_pa_shoot_day_case_001"
+            ],
+            "institution_id": "film_tv_produksjonsenhet_001",
+            "handoff_to_actor_id": "sara_lokasjonsansvarlig",
+            "priority": "high"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Send kjøretøy, tidsvindu, soner og godkjent prioritering hver for seg",
+              "reply": "Jeg sender det Sara trenger for kontrollen, markerer hva Amir har besluttet, og forteller transport at status fortsatt er ventende.",
+              "effect": 2,
+              "feedback": "Handoffet kan behandles uten at praktisk tillit eller utålmodighet blir adgangstillatelse.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_pa_location_handoff_waiting",
+                    "work_object_id": "film_tv_pa_shoot_day_case_001",
+                    "to_status": "waiting",
+                    "to_phase": "awaiting_location_clearance",
+                    "note": "Lokasjonsgrunnlaget er sendt til Sara, og opptakscaset venter på kontrollert adgangssvar."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_pa_location_handoff_traced",
+                    "work_object_id": "film_tv_pa_shoot_day_case_001",
+                    "flag": "location_handoff_scope_and_owner_clear"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_pa_standing_location_precise",
+                    "audience_id": "professional:sara_lokasjonsansvarlig",
+                    "delta": 3,
+                    "reason": "Sara får et avgrenset grunnlag hun faktisk kan kontrollere.",
+                    "source_actor_id": "sara_lokasjonsansvarlig"
+                  },
+                  {
+                    "event_id": "film_tv_pa_standing_manager_wait_visible",
+                    "audience_id": "manager:amir_innspillingsleder",
+                    "delta": 2,
+                    "reason": "Ventestatus og operativ konsekvens er synlig før ny prioritering.",
+                    "source_actor_id": "amir_innspillingsleder"
+                  },
+                  {
+                    "event_id": "film_tv_pa_standing_transport_clear",
+                    "audience_id": "team:film_tv_transport",
+                    "delta": 1,
+                    "reason": "Transport mottar nødvendig informasjon uten falsk adgangsbekreftelse.",
+                    "source_actor_id": "line_produksjonskoordinator"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Be Sara behandle sideinngangen som nesten klar fordi hele crevet venter",
+              "reply": "Vi er allerede på vei, så kan du bekrefte den planlagte inngangen mens du fullfører kontrollen?",
+              "effect": -2,
+              "feedback": "Sosialt og tidsmessig press flyttes inn i adgangskontrollen uten at noen sikker sone oppstår.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_pa_location_handoff_pressured_waiting",
+                    "work_object_id": "film_tv_pa_shoot_day_case_001",
+                    "to_status": "waiting",
+                    "to_phase": "awaiting_location_clearance",
+                    "note": "Caset venter, men handoffet inneholder tidspress og et uklart skille mellom ønsket og frigitt inngang."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_pa_location_pressure_flag",
+                    "work_object_id": "film_tv_pa_shoot_day_case_001",
+                    "flag": "crew_pressure_in_location_clearance"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_pa_standing_location_pressured",
+                    "audience_id": "professional:sara_lokasjonsansvarlig",
+                    "delta": -3,
+                    "reason": "Ventende crew brukes som press mot uferdig kontroll.",
+                    "source_actor_id": "sara_lokasjonsansvarlig"
+                  },
+                  {
+                    "event_id": "film_tv_pa_standing_manager_risk_hidden",
+                    "audience_id": "manager:amir_innspillingsleder",
+                    "delta": -2,
+                    "reason": "Operativ risiko blir mindre lesbar når ønske presenteres som sannsynlig adgang.",
+                    "source_actor_id": "amir_innspillingsleder"
+                  },
+                  {
+                    "event_id": "film_tv_pa_standing_transport_ambiguity",
+                    "audience_id": "team:film_tv_transport",
+                    "delta": -1,
+                    "reason": "Transport får et uklart skille mellom ruteplan og frigitt rute.",
+                    "source_actor_id": "line_produksjonskoordinator"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

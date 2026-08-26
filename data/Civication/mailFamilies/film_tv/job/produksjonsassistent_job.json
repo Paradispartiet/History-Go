@@ -4,34 +4,251 @@
   "category": "film_tv",
   "role_scope": "produksjonsassistent",
   "mail_type": "job",
-  "families": [{
-    "id": "produksjonsassistent_call_sheet",
-    "purpose": "Åpne første opptaksdag med en reell versjonskonflikt.",
-    "learning_focus": ["versjonskontroll", "beslutningseier", "mottaksbekreftelse"],
-    "mails": [{
-      "id": "film_tv_pa_job_to_call_sheet",
-      "mail_type": "job",
-      "mail_family": "produksjonsassistent_call_sheet",
-      "role_scope": "produksjonsassistent",
-      "phase": "intro",
-      "priority": 130,
-      "stage": "stable",
-      "from": "Line, produksjonskoordinator",
-      "place_id": "produksjonskontor_callbord",
-      "subject": "To call sheets, én opptaksstart",
-      "summary": "Lys bruker versjon 7, transport bruker versjon 8, og begge ber deg bekrefte hvilken plan som gjelder før første bil kjører.",
-      "situation": ["Versjon 7 er merket 21:43 i går. Versjon 8 kom 05:52 uten tydelig endringslogg.", "Amir står som beslutningseier, men er i sikkerhetsbrief.", "Hvis du velger feil, møter folk på ulike steder; hvis du venter passivt, stopper transporten."],
-      "task_domain": "call_og_tidsplan",
-      "competency": "tidsplanpresisjon",
-      "pressure": "opptaksstart_om_18_minutter",
-      "choice_axis": "sporbar_avklaring_vs_antatt_svar",
-      "consequence_axis": "felles_flyt_vs_forsinkelse",
-      "narrative_arc": "call_sheet_versjonsbrudd",
-      "choices": [
-        {"id": "A", "label": "Be Amir bekrefte versjon og logg endringen", "reply": "Jeg stanser videresendingen, ber om én eksplisitt bekreftelse og sender canonical lenke til berørte avdelinger.", "effect": 1, "tags": ["process", "trust"], "feedback": "Det koster tre minutter, men alle får samme grunnlag.", "effects": {"stats": {"quality": 2, "trust": 2, "risk": -2, "energy": -1}}},
-        {"id": "B", "label": "Velg versjon 8 fordi den er nyest", "reply": "Jeg sender versjon 8 som gjeldende uten å forstyrre briefen.", "effect": -1, "tags": ["tempo", "risk"], "feedback": "Transporten kjører, men ingen kan forklare hva som faktisk ble godkjent.", "effects": {"stats": {"status": 1, "risk": 3, "trust": -2}}},
-        {"id": "C", "label": "Send begge og la avdelingene velge", "reply": "Jeg videresender begge versjoner med beskjed om at de må sjekke lokalt.", "effect": -1, "tags": ["avoidance", "risk"], "feedback": "Du flytter versjonskonflikten nedover i produksjonen.", "effects": {"stats": {"energy": 1, "quality": -2, "risk": 2}}}
+  "families": [
+    {
+      "id": "produksjonsassistent_call_sheet",
+      "purpose": "Åpne første opptaksdag med en reell versjonskonflikt.",
+      "learning_focus": [
+        "versjonskontroll",
+        "beslutningseier",
+        "mottaksbekreftelse"
+      ],
+      "mails": [
+        {
+          "id": "film_tv_pa_job_to_call_sheet",
+          "mail_type": "job",
+          "mail_family": "produksjonsassistent_call_sheet",
+          "role_scope": "produksjonsassistent",
+          "phase": "intro",
+          "priority": 130,
+          "stage": "stable",
+          "from": "Line, produksjonskoordinator",
+          "place_id": "produksjonskontor_callbord",
+          "subject": "To call sheets, én opptaksstart",
+          "summary": "Lys bruker versjon 7, transport bruker versjon 8, og begge ber deg bekrefte hvilken plan som gjelder før første bil kjører.",
+          "situation": [
+            "Versjon 7 er merket 21:43 i går. Versjon 8 kom 05:52 uten tydelig endringslogg.",
+            "Amir står som beslutningseier, men er i sikkerhetsbrief.",
+            "Hvis du velger feil, møter folk på ulike steder; hvis du venter passivt, stopper transporten."
+          ],
+          "task_domain": "call_og_tidsplan",
+          "competency": "tidsplanpresisjon",
+          "pressure": "opptaksstart_om_18_minutter",
+          "choice_axis": "sporbar_avklaring_vs_antatt_svar",
+          "consequence_axis": "felles_flyt_vs_forsinkelse",
+          "narrative_arc": "call_sheet_versjonsbrudd",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Be Amir bekrefte versjon og logg endringen",
+              "reply": "Jeg stanser videresendingen, ber om én eksplisitt bekreftelse og sender canonical lenke til berørte avdelinger.",
+              "effect": 1,
+              "tags": [
+                "process",
+                "trust"
+              ],
+              "feedback": "Det koster tre minutter, men alle får samme grunnlag.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Velg versjon 8 fordi den er nyest",
+              "reply": "Jeg sender versjon 8 som gjeldende uten å forstyrre briefen.",
+              "effect": -1,
+              "tags": [
+                "tempo",
+                "risk"
+              ],
+              "feedback": "Transporten kjører, men ingen kan forklare hva som faktisk ble godkjent.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "risk": 3,
+                  "trust": -2
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Send begge og la avdelingene velge",
+              "reply": "Jeg videresender begge versjoner med beskjed om at de må sjekke lokalt.",
+              "effect": -1,
+              "tags": [
+                "avoidance",
+                "risk"
+              ],
+              "feedback": "Du flytter versjonskonflikten nedover i produksjonen.",
+              "effects": {
+                "stats": {
+                  "energy": 1,
+                  "quality": -2,
+                  "risk": 2
+                }
+              }
+            }
+          ]
+        }
       ]
-    }]
-  }]
+    },
+    {
+      "id": "role_world_rollout_pa_shoot_day_case",
+      "purpose": "Åpne ett vedvarende opptaksdagcase før muntlige tillegg blir skjult call.",
+      "learning_focus": [
+        "persistent_work_object",
+        "call_baseline",
+        "authority_boundary"
+      ],
+      "mails": [
+        {
+          "role_scope": "produksjonsassistent",
+          "place_id": "produksjonskontor_callbord",
+          "repeatable": false,
+          "stage": "stable",
+          "thread_key": "film_tv_pa_shoot_day_realism_001",
+          "planned_only": true,
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "film_tv",
+            "produksjonsassistent"
+          ],
+          "id": "film_tv_pa_realism_shoot_day_case_open_001",
+          "mail_type": "job",
+          "mail_family": "role_world_rollout_pa_shoot_day_case",
+          "phase": "advanced",
+          "day_phase": "morning",
+          "priority": 90,
+          "cooldown": 12,
+          "from": "Line, produksjonskoordinator",
+          "people_ref": "line_produksjonskoordinator",
+          "subject": "Åpne opptaksdagen som ett sporbart koordineringscase før bilene kjører",
+          "summary": "Call sheet versjon 12 er godkjent, men transport, lys og lokasjon har tre ulike muntlige tillegg. Line ber deg samle baseline, mottakere, adgangsstatus og åpne avvik i ett arbeidsobjekt før første unit move.",
+          "purpose": "Bevise et vedvarende opptaksdagobjekt som overlever handoff, venting, History Go-kontekst, lokasjonsrework, teamhendelse og myndighetsavgrenset avslutning.",
+          "stakes": "Hvis assistenten reparerer hvert avvik i private meldinger, kan produksjonen se effektiv ut samtidig som ansvar, sikkerhet og siste gyldige versjon blir umulig å etterprøve.",
+          "situation": [
+            "Versjon 12 er eneste godkjente call sheet, mens muntlige tillegg mangler beslutningseier og mottaksbekreftelse.",
+            "Sara eier lokasjonsadgang, Amir eier operative prioriteringer og Line eier den koordinerte produksjonsflaten.",
+            "Produksjonsassistenten kan samle, logge og eskalere, men ikke godkjenne call-endring eller utføre ukjent sikkerhetskritisk arbeid."
+          ],
+          "task_domain": "vedvarende_opptaksdagkoordinering",
+          "task_kind": "job",
+          "competency": "kall_og_tidsplan",
+          "pressure": "avgangstid_vs_sporbarhet",
+          "choice_axis": "felles_case_vs_private_hurtigfikser",
+          "consequence_axis": "produksjonsflyt_vs_skjult_avviksgjeld",
+          "narrative_arc": "fra_sprikende_call_til_sporbart_operativt_handoff",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "film_tv_pa_shoot_day_case_001"
+            ],
+            "institution_id": "film_tv_produksjonsenhet_001",
+            "deadline_ref": "unit_move_klar_for_avgang",
+            "deadline_day": 12,
+            "deadline_phase": "afternoon",
+            "priority": "high"
+          },
+          "effects": {
+            "work_object_ops": [
+              {
+                "op": "create",
+                "event_id": "film_tv_pa_shoot_day_case_opened",
+                "work_object": {
+                  "work_object_id": "film_tv_pa_shoot_day_case_001",
+                  "kind": "shoot_day_coordination_case",
+                  "role_scope": "produksjonsassistent",
+                  "institution_id": "film_tv_produksjonsenhet_001",
+                  "title": "Opptaksdag: call 12, lokasjonsadgang og unit move",
+                  "status": "in_progress",
+                  "phase": "call_baseline_and_open_deviations",
+                  "people_refs": [
+                    "amir_innspillingsleder",
+                    "sara_lokasjonsansvarlig",
+                    "line_produksjonskoordinator",
+                    "ida_personvernkontakt"
+                  ],
+                  "place_refs": [
+                    "produksjonskontor_callbord",
+                    "opptakslokasjon_inngang",
+                    "sett_sikkerhetssone",
+                    "produksjonskanal_tilgang",
+                    "cinemateket_oslo"
+                  ],
+                  "knowledge_refs": [
+                    "data/places/film_tv/oslo/cinemateket_oslo.json"
+                  ],
+                  "open_questions": [
+                    "Hvilken call-versjon er godkjent og hvem har bekreftet mottak?",
+                    "Hvilken inngang og rute har Sara faktisk frigitt?",
+                    "Hvilke kontakt- og transportdata trenger hver mottaker, og ikke flere?"
+                  ],
+                  "deadline": "unit_move_dag_12_ettermiddag",
+                  "confidentiality": "internt_call_lokasjon_og_minste_nodvendige_persondata",
+                  "flags": [
+                    "shoot_day_case_opened"
+                  ],
+                  "shared": false
+                }
+              }
+            ]
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Frys call 12 og registrer tillegg, eier og mottak som separate spor",
+              "reply": "Jeg åpner ett case fra call 12 og fører hvert tillegg med beslutningseier, berørt avdeling og bekreftet status.",
+              "effect": 2,
+              "feedback": "Arbeidsdagen kan endres uten at muntlig hast blir skjult versjonsmyndighet.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_pa_call_baseline_traced",
+                    "work_object_id": "film_tv_pa_shoot_day_case_001",
+                    "flag": "call_baseline_owner_receipt_traced"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Send den mest sannsynlige planen til alle og rydd versjonen etter avgang",
+              "reply": "Jeg samler de nyeste beskjedene i én melding nå; endringsloggen kan oppdateres når bilene er ute.",
+              "effect": -2,
+              "feedback": "Farten øker, men antakelser og godkjente endringer blir uatskillelige for avdelingene som skal handle.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                },
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_pa_call_baseline_blurred",
+                    "work_object_id": "film_tv_pa_shoot_day_case_001",
+                    "flag": "departure_precedes_version_control"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

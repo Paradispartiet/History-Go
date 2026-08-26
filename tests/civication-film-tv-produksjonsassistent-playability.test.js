@@ -46,7 +46,7 @@ async function run() {
   const requiredTypes = grammar.mail_generation_contract.required_mail_types;
 
   assert.deepStrictEqual(requiredTypes, ['job', 'people', 'conflict', 'event', 'followup', 'knowledge', 'consequence']);
-  assert.deepStrictEqual(plan.sequence.map((step) => step.type), ['job', 'people', 'conflict', 'event']);
+  assert.deepStrictEqual(plan.sequence.map((step) => step.type), ['job', 'people', 'conflict', 'event', 'job', 'people', 'knowledge', 'conflict', 'followup', 'event', 'consequence']);
   assert.strictEqual(roleModel.related_people.length, 4, 'the work world must have named colleagues and responsibility owners');
   assert.strictEqual(roleModel.related_places.length, 4, 'the work world must use concrete physical and digital work surfaces');
   assert(roleModel.required_knowledge.concepts.length >= 4, 'knowledge must be declared as functional production knowledge');

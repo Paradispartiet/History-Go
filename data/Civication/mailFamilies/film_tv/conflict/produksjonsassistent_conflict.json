@@ -4,33 +4,236 @@
   "category": "film_tv",
   "role_scope": "produksjonsassistent",
   "mail_type": "conflict",
-  "families": [{
-    "id": "produksjonsassistent_lokasjonskonflikt",
-    "purpose": "La tempo kollidere med lokasjonens sikkerhets- og adgangsgrenser.",
-    "learning_focus": ["sikkerhet", "eskalering", "praktisk_flyt"],
-    "mails": [{
-      "id": "film_tv_pa_conflict_sperret_sideinngang",
-      "mail_type": "conflict",
-      "mail_family": "produksjonsassistent_lokasjonskonflikt",
-      "role_scope": "produksjonsassistent",
-      "phase": "intro",
-      "priority": 115,
-      "from": "Sara, lokasjonsansvarlig",
-      "people_ref": "sara_lokasjonsansvarlig",
-      "place_id": "opptakslokasjon_inngang",
-      "subject": "Sideinngangen er ikke frigitt",
-      "summary": "Crewet står i regnet, men sideinngangen mangler sikkerhetskontroll og kan ikke åpnes ennå.",
-      "situation": ["Innspillingsleder vil vinne inn forsinkelsen.", "Sara sier det gjenstår en fysisk kontroll av rømningsvei og kabelgate.", "Du kan organisere ventingen og en godkjent alternativ flyt, men ikke åpne området selv."],
-      "task_domain": "lokasjon_og_logistikk",
-      "competency": "avvikshandtering",
-      "pressure": "sikkerhet_vs_tidsplan",
-      "choice_axis": "godkjent_omlegging_vs_snarvei",
-      "consequence_axis": "sikkerhet_og_tillit_vs_forsinkelsesrisiko",
-      "narrative_arc": "lokasjon_ikke_klar",
-      "choices": [
-        {"id": "A", "label": "Lag venteflyt og få Sara til å godkjenne alternativet", "reply": "Jeg samler crewet under tak, prioriterer hvem som må inn først og ber Sara bekrefte ny rute.", "effect": 1, "tags": ["safety", "coordination"], "feedback": "Du beskytter både mennesker og tidsplan ved å koordinere rundt grensen.", "effects": {"stats": {"quality": 2, "trust": 2, "risk": -2, "energy": -1}}},
-        {"id": "B", "label": "Slipp inn et lite team mens kontrollen pågår", "reply": "Jeg åpner for kamera og lyd først, så sparer vi noen minutter.", "effect": -1, "tags": ["tempo", "safety_risk"], "feedback": "En produksjonsassistent kan ikke oppheve en uferdig sikkerhetskontroll.", "effects": {"stats": {"status": 1, "risk": 4, "trust": -3}}}
+  "families": [
+    {
+      "id": "produksjonsassistent_lokasjonskonflikt",
+      "purpose": "La tempo kollidere med lokasjonens sikkerhets- og adgangsgrenser.",
+      "learning_focus": [
+        "sikkerhet",
+        "eskalering",
+        "praktisk_flyt"
+      ],
+      "mails": [
+        {
+          "id": "film_tv_pa_conflict_sperret_sideinngang",
+          "mail_type": "conflict",
+          "mail_family": "produksjonsassistent_lokasjonskonflikt",
+          "role_scope": "produksjonsassistent",
+          "phase": "intro",
+          "priority": 115,
+          "from": "Sara, lokasjonsansvarlig",
+          "people_ref": "sara_lokasjonsansvarlig",
+          "place_id": "opptakslokasjon_inngang",
+          "subject": "Sideinngangen er ikke frigitt",
+          "summary": "Crewet står i regnet, men sideinngangen mangler sikkerhetskontroll og kan ikke åpnes ennå.",
+          "situation": [
+            "Innspillingsleder vil vinne inn forsinkelsen.",
+            "Sara sier det gjenstår en fysisk kontroll av rømningsvei og kabelgate.",
+            "Du kan organisere ventingen og en godkjent alternativ flyt, men ikke åpne området selv."
+          ],
+          "task_domain": "lokasjon_og_logistikk",
+          "competency": "avvikshandtering",
+          "pressure": "sikkerhet_vs_tidsplan",
+          "choice_axis": "godkjent_omlegging_vs_snarvei",
+          "consequence_axis": "sikkerhet_og_tillit_vs_forsinkelsesrisiko",
+          "narrative_arc": "lokasjon_ikke_klar",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lag venteflyt og få Sara til å godkjenne alternativet",
+              "reply": "Jeg samler crewet under tak, prioriterer hvem som må inn først og ber Sara bekrefte ny rute.",
+              "effect": 1,
+              "tags": [
+                "safety",
+                "coordination"
+              ],
+              "feedback": "Du beskytter både mennesker og tidsplan ved å koordinere rundt grensen.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Slipp inn et lite team mens kontrollen pågår",
+              "reply": "Jeg åpner for kamera og lyd først, så sparer vi noen minutter.",
+              "effect": -1,
+              "tags": [
+                "tempo",
+                "safety_risk"
+              ],
+              "feedback": "En produksjonsassistent kan ikke oppheve en uferdig sikkerhetskontroll.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "risk": 4,
+                  "trust": -3
+                }
+              }
+            }
+          ]
+        }
       ]
-    }]
-  }]
+    },
+    {
+      "id": "role_world_rollout_pa_location_response",
+      "purpose": "La lokasjonssvaret tvinge samme call- og ruteobjekt inn i rework.",
+      "learning_focus": [
+        "location_response",
+        "rework",
+        "authority_boundary"
+      ],
+      "mails": [
+        {
+          "role_scope": "produksjonsassistent",
+          "place_id": "opptakslokasjon_inngang",
+          "repeatable": false,
+          "stage": "stable",
+          "thread_key": "film_tv_pa_shoot_day_realism_001",
+          "planned_only": true,
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "film_tv",
+            "produksjonsassistent"
+          ],
+          "id": "film_tv_pa_realism_location_response_001",
+          "mail_type": "conflict",
+          "mail_family": "role_world_rollout_pa_location_response",
+          "phase": "mastery",
+          "day_phase": "morning",
+          "priority": 96,
+          "cooldown": 12,
+          "from": "Sara, lokasjonsansvarlig",
+          "people_ref": "sara_lokasjonsansvarlig",
+          "subject": "Svaret kom: én rute er frigitt, men sideinngangen og felles lossing faller bort",
+          "summary": "Sara frigir hovedinngangen for personell og en separat kjøreport for utstyr, men sideinngangen kan ikke brukes. Transportplan, møtetider og call-tillegg må derfor tilbake i samme case som rework.",
+          "purpose": "Bevise at venting og handoff returnerer med ny informasjon som faktisk endrer arbeidsobjektets fase og avdelingenes konkrete plan.",
+          "stakes": "Å beholde den lovede snarveien beskytter tempo og ansikt, men gjør et dokumentert adgangsvilkår til sikkerhets- og tillitsgjeld for hele crevet.",
+          "situation": [
+            "Personell og utstyr må skilles fordi bare to kontrollerte ruter er frigitt.",
+            "Sara eier adgangsstatusen; Amir må prioritere tidskonsekvensen.",
+            "Line trenger en sporbar call-endring og mottaksbekreftelse fra transport, kamera og lys."
+          ],
+          "task_domain": "vedvarende_opptaksdagkoordinering",
+          "task_kind": "conflict",
+          "competency": "avvikshandtering",
+          "pressure": "avgangsfrist_vs_dokumentert_adgang",
+          "choice_axis": "aksepter_vilkar_og_rework_vs_behold_lovet_snarvei",
+          "consequence_axis": "sikkerhetslojalitet_vs_tillitstap",
+          "narrative_arc": "fra_sprikende_call_til_sporbart_operativt_handoff",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "film_tv_pa_shoot_day_case_001"
+            ],
+            "institution_id": "film_tv_produksjonsenhet_001",
+            "waiting_for_actor_id": "sara_lokasjonsansvarlig",
+            "rework_of_scene_id": "film_tv_pa_realism_location_handoff_001",
+            "priority": "urgent"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Godta rutedelingen og send tidskonsekvensen til Amir før call oppdateres",
+              "reply": "Jeg registrerer frigitt personell- og utstyrsrute, synliggjør forsinkelsen og ber Amir prioritere rekkefølgen.",
+              "effect": 2,
+              "feedback": "Adgangssvaret får faktisk endre caset, mens operative prioriteringer blir hos riktig eier.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_pa_location_response_rework",
+                    "work_object_id": "film_tv_pa_shoot_day_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "route_and_call_rework",
+                    "note": "Lokasjonssvaret er mottatt; call og transportplan revideres mot to frigitt ruter og synlig tidskonsekvens."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_pa_location_terms_traced",
+                    "work_object_id": "film_tv_pa_shoot_day_case_001",
+                    "flag": "released_routes_and_time_cost_visible"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_pa_standing_location_terms_respected",
+                    "audience_id": "professional:sara_lokasjonsansvarlig",
+                    "delta": 2,
+                    "reason": "Dokumenterte adgangsvilkår får faktisk virkning på planen.",
+                    "source_actor_id": "sara_lokasjonsansvarlig"
+                  },
+                  {
+                    "event_id": "film_tv_pa_standing_manager_clear_choice",
+                    "audience_id": "manager:amir_innspillingsleder",
+                    "delta": 2,
+                    "reason": "Amir får et tydelig operativt valg med synlig tidskostnad.",
+                    "source_actor_id": "amir_innspillingsleder"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Behold sideinngangen i transportmeldingen til første bil faktisk blir avvist",
+              "reply": "Vi prøver den opprinnelige ruten først; hvis den ikke går, flytter vi bilene ved ankomst.",
+              "effect": -2,
+              "feedback": "En bekreftet begrensning blir gjort til et eksperiment som andre må bære kostnaden for.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_pa_location_response_ignored",
+                    "work_object_id": "film_tv_pa_shoot_day_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "route_and_call_rework",
+                    "note": "Caset går videre med kjent avvik mellom frigitt rute og kommunisert transportplan."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_pa_location_terms_ignored",
+                    "work_object_id": "film_tv_pa_shoot_day_case_001",
+                    "flag": "confirmed_access_limit_ignored"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_pa_standing_location_terms_ignored",
+                    "audience_id": "professional:sara_lokasjonsansvarlig",
+                    "delta": -3,
+                    "reason": "Bekreftet adgangsstatus behandles som valgfritt råd.",
+                    "source_actor_id": "sara_lokasjonsansvarlig"
+                  },
+                  {
+                    "event_id": "film_tv_pa_standing_manager_risk_shifted",
+                    "audience_id": "manager:amir_innspillingsleder",
+                    "delta": -2,
+                    "reason": "Tids- og sikkerhetsrisiko flyttes til ankomst uten eksplisitt prioritering.",
+                    "source_actor_id": "amir_innspillingsleder"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
