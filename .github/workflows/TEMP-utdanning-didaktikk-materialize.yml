@@ -32,6 +32,29 @@ jobs:
           const after=fs.readFileSync(file,'utf8');
           if(!after.includes('write(P.emner,emner)') || after.includes(oldText)) throw new Error('Materializer repair failed');
           NODE
+      - name: Advance shared inventory test to 2 of 14
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file='tests/fagverk-subject-inventory.test.mjs';
+          let text=fs.readFileSync(file,'utf8');
+          const required = [
+            "didactics_source_brief_complete_full_chapter_production",
+            "Utdanning låser konsistent 1/14-fremdrift",
+            "assert.equal(registry.subjects.utdanning.editorialPlan.registeredChapterCount, 1);",
+            "assert.equal(registry.subjects.utdanning.editorialPlan.completedSourceBriefCount, 2);",
+            "assert.equal(pensum.domains.filter((domain) => domain.status === 'materialized').length, 1);",
+            "assert.equal(pensum.domains[0].domain_id, 'pedagogikk_laeringsteori');"
+          ];
+          for (const needle of required) if(!text.includes(needle)) throw new Error(`Expected stale 1/14 inventory assertion missing: ${needle}`);
+          text=text.replaceAll('didactics_source_brief_complete_full_chapter_production','early_childhood_learning_source_brief_complete_full_chapter_production');
+          text=text.replace('Utdanning låser konsistent 1/14-fremdrift','Utdanning låser konsistent 2/14-fremdrift');
+          text=text.replace('assert.equal(registry.subjects.utdanning.editorialPlan.registeredChapterCount, 1);','assert.equal(registry.subjects.utdanning.editorialPlan.registeredChapterCount, 2);');
+          text=text.replace('assert.equal(registry.subjects.utdanning.editorialPlan.completedSourceBriefCount, 2);','assert.equal(registry.subjects.utdanning.editorialPlan.completedSourceBriefCount, 3);');
+          text=text.replace("assert.equal(pensum.domains.filter((domain) => domain.status === 'materialized').length, 1);","assert.equal(pensum.domains.filter((domain) => domain.status === 'materialized').length, 2);");
+          text=text.replace("assert.equal(pensum.domains[0].domain_id, 'pedagogikk_laeringsteori');","assert.equal(pensum.domains[0].domain_id, 'pedagogikk_laeringsteori');\n      assert.equal(pensum.domains[1].domain_id, 'didaktikk');");
+          fs.writeFileSync(file,text);
+          NODE
       - name: Audit next source-first port
         run: node scripts/brief-utdanning-early-childhood-learning-sources-v1.mjs --write-report
       - name: Materialize Didaktikk 2 of 14
@@ -54,7 +77,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add scripts/materialize-utdanning-didactics-fulltext-v1.mjs data/fag/fag_manifest.json data/fag/utdanning data/fagverk reports/fagverk
+          git add scripts/materialize-utdanning-didactics-fulltext-v1.mjs tests/fagverk-subject-inventory.test.mjs data/fag/fag_manifest.json data/fag/utdanning data/fagverk reports/fagverk
           if ! git diff --cached --quiet; then git commit -m "Materialize Utdanning Didaktikk at 2/14"; fi
       - name: Canonical next source-first check
         run: node scripts/brief-utdanning-early-childhood-learning-sources-v1.mjs
