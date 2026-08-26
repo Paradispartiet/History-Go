@@ -1,6 +1,9 @@
 name: TEMP materialize Utdanning Higher Education 6 of 14
 
 on:
+  push:
+    branches:
+      - 'agent/utdanning-higher-education-fulltext-v1'
   pull_request:
     branches: [main]
     paths:
@@ -12,17 +15,17 @@ permissions:
   contents: write
 
 concurrency:
-  group: temp-materialize-utdanning-higher-education-${{ github.event.pull_request.number }}
+  group: temp-materialize-utdanning-higher-education-${{ github.event.pull_request.number || github.ref_name }}
   cancel-in-progress: false
 
 jobs:
   materialize:
-    if: github.event.pull_request.head.repo.full_name == github.repository
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
+          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
@@ -47,5 +50,5 @@ jobs:
         run: node scripts/run-utdanning-domain-ci-v1.mjs
       - name: Push verified materialization
         run: |
-          if git rev-parse HEAD^ >/dev/null 2>&1 && git diff --quiet origin/${{ github.event.pull_request.head.ref }}..HEAD; then exit 0; fi
-          git push origin HEAD:${{ github.event.pull_request.head.ref }}
+          if git rev-parse HEAD^ >/dev/null 2>&1 && git diff --quiet origin/${{ github.event.pull_request.head.ref || github.ref_name }}..HEAD; then exit 0; fi
+          git push origin HEAD:${{ github.event.pull_request.head.ref || github.ref_name }}
