@@ -1,0 +1,41 @@
+name: Blue signs phase 2 epoch writer
+
+on:
+  push:
+    branches:
+      - agent/blue-signs-phase2-20260826
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/blue-signs-phase2-20260826
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+      - name: Install repository dependencies
+        run: npm ci
+      - name: Refresh derived epoch index
+        run: |
+          npm run epoker:places:build
+          npm run epoker:places:check
+          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Commit derived epoch index
+        run: |
+          git add data/epoker/epoke-place-index.json
+          if git diff --cached --quiet; then
+            echo "No epoch index changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Refresh epoch place index for blue-sign phase 2"
+          git push origin HEAD:agent/blue-signs-phase2-20260826
