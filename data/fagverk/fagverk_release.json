@@ -11,7 +11,7 @@
     "schema": "history_go_fagverk_registry_v1",
     "version": "3.14.0",
     "updated_at": "2026-08-21",
-    "content_sha256": "e8d7c06e20ca78ed05dd54310fccb6dd94761a35378ee5fd7239b3a5c6af0019"
+    "content_sha256": "06bcda577e7cd4a5aa034f0bce0fc1bd4185a5080d96cb7c9264eb6d0c26b9d5"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,18 +27,18 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "41ae9850c31fe0c45fc95d23158eaceee0232a9517af028f1186d364f7cae941"
+    "content_sha256": "beec37b8e118c041f3d0049c2272dfa0c0d9da19ff835ce9989ee60f02aa0e6e"
   },
   "summary": {
     "subject_count": 20,
     "root_subject_count": 19,
     "specialization_count": 1,
     "chapter_subject_count": 17,
-    "chapter_count": 176,
-    "module_file_count": 445,
-    "package_file_count": 268,
-    "chapter_referenced_file_count": 842,
-    "referenced_file_count": 1052,
+    "chapter_count": 177,
+    "module_file_count": 449,
+    "package_file_count": 270,
+    "chapter_referenced_file_count": 849,
+    "referenced_file_count": 1060,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -5486,9 +5486,9 @@
         "supersetQuizMal"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 10,
+      "package_file_count": 12,
       "required_package_file_count": 4,
-      "optional_package_file_count": 6,
+      "optional_package_file_count": 8,
       "package_files": [
         {
           "path": "data/fag/utdanning/didactics_source_claim_brief_v1.json",
@@ -5503,6 +5503,18 @@
           "content_sha256": "55e272a3a3c513af38e05079b9d191277832b873f760e32ef6e2a695c71cbbaa"
         },
         {
+          "path": "data/fag/utdanning/early_childhood_learning_source_claim_brief_v1.json",
+          "required": false,
+          "fields": [
+            "sourceClaimBriefs"
+          ],
+          "key_paths": [
+            "sourceClaimBriefs[2]"
+          ],
+          "exists": true,
+          "content_sha256": "0e29aedf64b8e1b0e0d4d3c63a5aa1e87b2f8c31e7b53fccbef1bd7dce23e823"
+        },
+        {
           "path": "data/fag/utdanning/emner_utdanning_canonical_v1.json",
           "required": true,
           "fields": [
@@ -5512,7 +5524,7 @@
             "emner"
           ],
           "exists": true,
-          "content_sha256": "ac306b5b0358fe5d1285f534367875aa3603e8ff26a2b0a35be8c5e3cfb2168c"
+          "content_sha256": "ea0cbd327d0e725b7857cfd020efa48207f24f9bda7dd5127674b90948947e01"
         },
         {
           "path": "data/fag/utdanning/fagkart_utdanning_canonical_v1.json",
@@ -5536,7 +5548,7 @@
             "methods"
           ],
           "exists": true,
-          "content_sha256": "67a9699208c6077daa3946402b5437ab7fd6b93b9e517456ae80f1c36c1870f3"
+          "content_sha256": "cb6b8c4d3b44099c3545347c2ee171e9927d43516e2e9a1e0b5ce3683978df72"
         },
         {
           "path": "data/fag/utdanning/pedagogy_learning_theory_source_claim_brief_v1.json",
@@ -5572,7 +5584,19 @@
             "pensum"
           ],
           "exists": true,
-          "content_sha256": "1e8f45023beaf6169a6686e3352f756e806cb09a86b305de9c444bed7cb90f68"
+          "content_sha256": "a54d6221ace39cd1a7be3e47015e971708865fbb67f11d52708ecda7bb00a453"
+        },
+        {
+          "path": "data/fagverk/utdanning/didaktikk-mal-innhold-arbeidsformer-vurdering-og-kontekst.json",
+          "required": false,
+          "fields": [
+            "chapters"
+          ],
+          "key_paths": [
+            "chapters[1]"
+          ],
+          "exists": true,
+          "content_sha256": "c79b0c77b80b65827d2e209b6b2ae719c77311f9eea508aa5a178f14142db8f4"
         },
         {
           "path": "data/fagverk/utdanning/pedagogikk-laeringsteori-laering-kunnskap-motivasjon-og-selvregulering.json",
@@ -5611,20 +5635,20 @@
           "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
         }
       ],
-      "package_content_sha256": "dad666f145218842d5c0ecea85c453a0a003ed3a5eff2b806cf95fa29a6a7920",
-      "chapter_count": 1,
-      "module_file_count": 4,
-      "brief_file_count": 1,
-      "claims_file_count": 1,
-      "chapter_referenced_file_count": 7,
-      "chapter_content_sha256": "488b943652fc4b787bc70ac7e6ca3b68cd54a6bd5e1d2be236d0b5b892659225",
-      "referenced_file_count": 16,
+      "package_content_sha256": "27060e108e520a30821806bd08b6f6e31c3bdae0d54f5cc649ba09c8464d2e3a",
+      "chapter_count": 2,
+      "module_file_count": 8,
+      "brief_file_count": 2,
+      "claims_file_count": 2,
+      "chapter_referenced_file_count": 14,
+      "chapter_content_sha256": "d7f6bb28604caf7ee631bb31276c6ff67529308213b7090d929f42d717f487e0",
+      "referenced_file_count": 24,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "0983537a957ef160421fa8bb559273b08d509978927d8df867910b6c610fdc1f",
-      "content_sha256": "5680c16bad1dc0ed88f54fe8f09395bf38a09f57e65b90054af6efdbbf9b888d",
+      "structure_sha256": "16e15e89298bc6d591af9ade5b9657f3e7958b9ecc59113ce1410dcadaf58116",
+      "content_sha256": "8afd3c4e102f12b904bdf2298b6c1b85adb32957868f51225ba1658db7a992c7",
       "chapters": [
         {
           "chapter_id": "pedagogikk-laeringsteori-laering-kunnskap-motivasjon-og-selvregulering",
@@ -5633,6 +5657,14 @@
           "module_file_count": 4,
           "referenced_file_count": 7,
           "content_sha256": "488b943652fc4b787bc70ac7e6ca3b68cd54a6bd5e1d2be236d0b5b892659225"
+        },
+        {
+          "chapter_id": "didaktikk-mal-innhold-arbeidsformer-vurdering-og-kontekst",
+          "title": "Didaktikk: mål, innhold, arbeidsformer, vurdering og kontekst",
+          "file": "data/fagverk/utdanning/didaktikk-mal-innhold-arbeidsformer-vurdering-og-kontekst.json",
+          "module_file_count": 4,
+          "referenced_file_count": 7,
+          "content_sha256": "6f700dab3146a363410377631ce270ab38363fcf87a1ab4b82e28bc8648386b7"
         }
       ]
     },
@@ -5814,5 +5846,5 @@
       ]
     }
   },
-  "release_sha256": "9d9a09f5a08af4492f823bbaff954e581c9e14a9097ec5d9ed73be2235bffb4f"
+  "release_sha256": "ed61f70e1e4ff733fe68ef6ee44643dbe6a7ba1b8be9eddb300eb3a86f5303ee"
 }
