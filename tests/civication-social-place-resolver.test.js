@@ -111,7 +111,7 @@ for (const [kind, wanted] of Object.entries({
   culture: ['youngstorget->mono', 'bla->bla', 'olaf_ryes_plass->parkteatret'],
   book_library: ['universitetsplassen->tronsmo_bokhandel', 'deichman_bjorvika->(place)'],
   hospitality_food: ['karl_johan->grand_cafe', 'bjorvika->maaemo'],
-  retail_social: ['markveien->retro_lykke', 'grensen_kjopesenter->outland']
+  retail_social: ['markveien->froken_dianas_salonger', 'grensen_kjopesenter->outland']
 })) {
   const found = pairs(resolver.getSocialPlacesByType(kind, opts));
   for (const item of wanted) assert.ok(found.includes(item), `${kind} mangler ${item}`);
