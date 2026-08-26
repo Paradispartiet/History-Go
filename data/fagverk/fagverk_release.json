@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "9ccb3bc45aa1e4ca1882ffe9e78f7e309102d8fa2bba61008a58e79e748f4ffc"
+    "content_sha256": "8e0cc12a87fb9be7f3aa81694d9148842b672ef8a66debb6010aa2a9e9fa2d0c"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 17,
     "chapter_count": 178,
     "module_file_count": 453,
-    "package_file_count": 272,
+    "package_file_count": 275,
     "chapter_referenced_file_count": 856,
-    "referenced_file_count": 1068,
+    "referenced_file_count": 1071,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -76,9 +76,9 @@
         "supersetQuizMal"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 30,
+      "package_file_count": 33,
       "required_package_file_count": 4,
-      "optional_package_file_count": 26,
+      "optional_package_file_count": 29,
       "package_files": [
         {
           "path": "data/fag/by/emner_by.json",
@@ -201,6 +201,18 @@
           "content_sha256": "359d9ed3e5c65a1f7701dd8fa435b58c4b6f7d7e85c36b358165b9bc7c5e779d"
         },
         {
+          "path": "data/quiz/by/olaf_ryes_plass_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.olaf_ryes_plass.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "b43b28af344b9df603998bde8b9177430a3ca52e1c1b325d5a8abbbc034e2a08"
+        },
+        {
           "path": "data/quiz/by/storgata_sets.json",
           "required": false,
           "fields": [
@@ -283,6 +295,18 @@
           ],
           "exists": true,
           "content_sha256": "43643471123d74aaf785c72b90e691e8566a66007eb9c358d3e79113a678ce88"
+        },
+        {
+          "path": "data/quiz/production_briefs/by/olaf_ryes_plass.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.olaf_ryes_plass.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "92c3dd69051f6769f158e86c9824b40a7d02111c720dc630dbbe5f2a03d7f788"
         },
         {
           "path": "data/quiz/production_briefs/by/storgata.json",
@@ -369,6 +393,18 @@
           "content_sha256": "480ad17eb38fbd3e713c813b0cf8295e98ea2e38281f04ccdbef868a85614cba"
         },
         {
+          "path": "data/quiz/production_context/by/olaf_ryes_plass.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.olaf_ryes_plass.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "706c9155ac3efe1503f34251713b1febdf37266adf83e92077f448617494cf05"
+        },
+        {
           "path": "data/quiz/production_context/by/storgata.json",
           "required": false,
           "fields": [
@@ -441,20 +477,20 @@
           "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
         }
       ],
-      "package_content_sha256": "b307c4bcc29988f3f00fe460590eaccc919b5325540171eb670043861a4c06c8",
+      "package_content_sha256": "aa01c51a3a2639f5b8f6879d5b6b45f8b21429997dfcd9a0b87b56e14ed86151",
       "chapter_count": 17,
       "module_file_count": 51,
       "brief_file_count": 17,
       "claims_file_count": 17,
       "chapter_referenced_file_count": 102,
       "chapter_content_sha256": "21ed783bb2d9f06494fa9a56eb60af89e5d8c8225a51d930eebddf35203dd283",
-      "referenced_file_count": 132,
+      "referenced_file_count": 135,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "6697139e299b1970e9b6c512ea5fe826965e9fde21dc39a723633512013564a8",
-      "content_sha256": "1b61a7c2c2e21ee9ab27c0cdb6dced2b85a5928adbbc57268e0a9a45f378e48e",
+      "structure_sha256": "1744801106e413aeee274985f7c6fb9876a427b61feec485cba4b6572b0936f3",
+      "content_sha256": "8bd6c2f9c9cf6f97fc410423dd61d4b8d59e8f99d04e3ce1f6a411c1fdb167cd",
       "chapters": [
         {
           "chapter_id": "byliv-offentlige-rom",
@@ -5878,5 +5914,5 @@
       ]
     }
   },
-  "release_sha256": "316936f32d85ed5f6b18176ed22441a9a98f2f623945ce4c0ac83bd5b41c9b84"
+  "release_sha256": "826b808059d8dc55e3628ea248ee78e7b5782553f1946440736c5904345b8d61"
 }

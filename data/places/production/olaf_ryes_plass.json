@@ -23,7 +23,7 @@
   "textHashes": {
     "algorithm": "sha256",
     "desc": "bd3ace1671aca557cb78167e4c9ea789c68b6c5e2c873a0874db53fae344c0e9",
-    "popupDesc": "33c0004a23ea2787061e748481c1835d81a1d82c251ff90530a62735ff192779"
+    "popupDesc": "dcdec199b861bfbad4144f079b1fd1aa547c1984b55ca90b3ead3b480a357f21"
   },
   "claims": [
     {
@@ -323,12 +323,25 @@
         "claimIds": [
           "claim_olaf_events_2026"
         ]
+      },
+      {
+        "sentence": 20,
+        "claimIds": [
+          "claim_olaf_identity",
+          "claim_olaf_sundt_bust",
+          "claim_olaf_fountain",
+          "claim_olaf_parkteatret_neighbour"
+        ]
       }
     ]
   },
   "quizReadiness": {
-    "status": "source_ready_for_rich_5x7",
+    "status": "canonical_rich_5x7",
     "quizTargetId": "olaf_ryes_plass",
+    "sourceBrief": "data/quiz/production_briefs/by/olaf_ryes_plass.json",
+    "productionContext": "data/quiz/production_context/by/olaf_ryes_plass.json",
+    "normalOpeningQuestions": 14,
+    "totalQuestions": 35,
     "questions": [
       {
         "question": "Hvilke gater avgrenser Olaf Ryes plass?",
@@ -431,5 +444,36 @@
     "editorialReview": "passed",
     "validatorVersion": "4.2.1"
   },
-  "reviewsNotes": "Phase 0–7 source/scope packet; collections, full quiz/Knowledge and onsite readiness follow in the next risk-boundary PR."
+  "reviewsNotes": "Full phase 0–24 production: exact two-person target, two sourced Objects, four related canonical places, honest empty Brands after Parkteatret logo holdback, rich 5x7 quiz/Knowledge, safe onsite tasks and final gate evidence.",
+  "roundsReadiness": {
+    "status": "production_ready",
+    "reviewedAt": "2026-08-25",
+    "auditFile": "reports/place-production/olaf-ryes-plass-phase20-24-gate-audit-v1.json",
+    "badgePlacement": "separate_header",
+    "contentRoundIds": [
+      "people",
+      "objects",
+      "brands",
+      "related"
+    ],
+    "placeCardProfile": "history_go_place_card_profile_v2",
+    "peopleIds": [
+      "olaf_rye",
+      "eilert_sundt"
+    ],
+    "objectIds": [
+      "olaf_ryes_plass_eilert_sundt_bust",
+      "olaf_ryes_plass_fontene"
+    ],
+    "brandIds": [],
+    "brandFallback": "honest_empty_state_after_candidate_and_logo_audit",
+    "relatedPlaceIds": [
+      "birkelunden",
+      "sofienbergparken",
+      "markveien",
+      "daelenenga_idrettspark"
+    ],
+    "objectSourceCoveragePercent": 100,
+    "routeStopResolutionPercent": 100
+  }
 }
