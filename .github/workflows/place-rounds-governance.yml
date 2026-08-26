@@ -11,6 +11,8 @@ on:
       - "js/ui/place-rounds-fill-layout.js"
       - "js/ui/nature-detailed-map.js"
       - "js/ui/place-card.js"
+      - "js/ui/place-card-quizcards-patch.js"
+      - "js/ui/placeQuizCards.ts"
       - "js/ui/popup-utils.js"
       - "js/ui/place-popup-tabs.js"
       - "css/place-rounds-fill-layout.css"
@@ -19,6 +21,8 @@ on:
       - "tests/place-rounds-visual-collections.test.mjs"
       - "tests/place-rounds-grid-exclusivity.test.mjs"
       - "tests/place-rounds-fill-layout.test.mjs"
+      - "tests/place-quizcards-category-manifests.test.mjs"
+      - "tests/olaf-ryes-plass-completion.test.mjs"
       - "tests/nature-detailed-map.test.mjs"
       - "tests/place-card-rounds-runtime-audit.test.js"
       - "tests/place-people-ids-runtime.test.js"
@@ -101,6 +105,7 @@ on:
       - "data/places/by/oslo/places/christiania_torv.json"
       - "data/quiz/production_context/by/christiania_torv.json"
       - "reports/place-production/christiania-torv-*.md"
+      - "reports/place-production/olaf-ryes-plass-*"
       - ".github/workflows/place-rounds-governance.yml"
   push:
     branches: [main]
@@ -113,6 +118,8 @@ on:
       - "js/ui/place-rounds-fill-layout.js"
       - "js/ui/nature-detailed-map.js"
       - "js/ui/place-card.js"
+      - "js/ui/place-card-quizcards-patch.js"
+      - "js/ui/placeQuizCards.ts"
       - "js/ui/popup-utils.js"
       - "js/ui/place-popup-tabs.js"
       - "css/place-rounds-fill-layout.css"
@@ -121,6 +128,8 @@ on:
       - "tests/place-rounds-visual-collections.test.mjs"
       - "tests/place-rounds-grid-exclusivity.test.mjs"
       - "tests/place-rounds-fill-layout.test.mjs"
+      - "tests/place-quizcards-category-manifests.test.mjs"
+      - "tests/olaf-ryes-plass-completion.test.mjs"
       - "tests/nature-detailed-map.test.mjs"
       - "tests/place-card-rounds-runtime-audit.test.js"
       - "tests/place-people-ids-runtime.test.js"
@@ -203,6 +212,7 @@ on:
       - "data/places/by/oslo/places/christiania_torv.json"
       - "data/quiz/production_context/by/christiania_torv.json"
       - "reports/place-production/christiania-torv-*.md"
+      - "reports/place-production/olaf-ryes-plass-*"
       - ".github/workflows/place-rounds-governance.yml"
   workflow_dispatch:
 
@@ -251,3 +261,4 @@ jobs:
           node tests/place-card-fullness-all-categories-browser-audit.test.mjs
           node tests/bankplassen-place-completion-v1-browser-audit.test.mjs
           node --test tests/brugata-storgata-rusmiljo-full-completion.test.mjs
+          node --test tests/olaf-ryes-plass-completion.test.mjs tests/place-quizcards-category-manifests.test.mjs

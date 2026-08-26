@@ -10,4 +10,6 @@ Quiz er rich 5×7 med 19 fakta-, 9 kontekst- og 7 konsept-/teorispørsmål. De f
 
 Olaf Ryes død er satt til 1849 etter Store norske leksikon. 1903/2009-bildene brukes som kildebelagte tidslag, ikke som identisk optisk før/etter-par. Daterte arrangementer beskrives som planlagt bruk. Parkteatret forblir nabokontekst og eies ikke av parkflaten.
 
-Lokal nettleserbinær var ikke tilgjengelig. Den permanente responsive testen er derfor satt opp for CI på desktop- og mobilbredde, mens kilde-, innholds-, runtime- og own-place-QA er utført lokalt.
+Produksjonspakken ble mergret i PR #5342 og Pages-deployet fra `127e4058c84feebc172e546c1ef20fb9f15d07d3`. Live-QA avdekket at quizkort-runtime bare lastet litteraturmanifestet selv om Olaf-kortet allerede lå i By-katalogen. Den generelle katalogkoblingen ble rettet, testet og mergret i PR #5346, med vellykket Pages-deploy fra `9f9acad849b23ffeda12148d1bd9c48a650a56c0`.
+
+Live re-QA på 1363×936 bekreftet riktig stedskort, People 2, Objects 2, ærlig tom Brands, Related 4, Events 2 og ingen horisontal overflow. Flippen viser nå `Byquiz`, Olaf Ryes plass, 10 spørsmål og fasit. `Ta quiz` åpner rich 5×7 med sett 1/5 og spørsmål 1/7. Den permanente responsive testen for 1100×760 og 390×844 er koblet inn i Place rounds governance og må være grønn i closeout-PR før fase 21–24 lukkes endelig.
