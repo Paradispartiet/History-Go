@@ -164,6 +164,8 @@ function normalizeEpokerFilePayload(payload, fallbackDomain) {
 const HGEpokerRuntime = (() => {
   let loadPromise = null;
   let cache = null;
+  let placeIndexPromise = null;
+  let placeIndexCache = null;
   const status = {
     loaded: false,
     state: "idle", // idle | loading | complete | partial | failed
@@ -275,6 +277,28 @@ const HGEpokerRuntime = (() => {
     return loadPromise;
   }
 
+  async function loadPlaceIndex() {
+    if (placeIndexCache) return placeIndexCache;
+    if (placeIndexPromise) return placeIndexPromise;
+    placeIndexPromise = (async () => {
+      const response = await fetch("data/epoker/epoke-place-index.json", { cache: "no-store" });
+      if (!response.ok) throw new Error(`Epoke place index: HTTP ${response.status}`);
+      const payload = await response.json();
+      if (Number(payload?.version) < 2 || !payload?.domains || typeof payload.domains !== "object") {
+        throw new Error("Epoke place index has an invalid contract");
+      }
+      placeIndexCache = payload;
+      window.HG_EPOKE_PLACE_INDEX = payload;
+      return payload;
+    })().catch((err) => {
+      console.warn("[HGEpokerRuntime] place index load failed; next call will retry", err);
+      return null;
+    }).finally(() => {
+      if (!placeIndexCache) placeIndexPromise = null;
+    });
+    return placeIndexPromise;
+  }
+
   function debug() {
     const index = window.EPOKER_INDEX || null;
     const byDomain = index?.byDomain || {};
@@ -292,6 +316,7 @@ const HGEpokerRuntime = (() => {
       missingDomains: status.missingDomains.slice(),
       startedAt: status.startedAt,
       finishedAt: status.finishedAt,
+      hasPlaceIndex: Boolean(window.HG_EPOKE_PLACE_INDEX),
     };
 
     console.log("[HGEpokerRuntime.debug]", info);
@@ -300,6 +325,7 @@ const HGEpokerRuntime = (() => {
 
   return {
     load,
+    loadPlaceIndex,
     debug,
     ready: null,
     get status() { return { ...status }; },

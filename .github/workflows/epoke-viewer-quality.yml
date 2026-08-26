@@ -1,0 +1,76 @@
+name: Epoch viewer quality
+
+on:
+  pull_request:
+    paths:
+      - 'data/epoker/epoker_historie.json'
+      - 'data/leksikon/**'
+      - 'data/places/**'
+      - 'data/epoker/epoke-place-index.json'
+      - 'js/epoker-runtime.js'
+      - 'js/ui/epoke-viewer.js'
+      - 'js/ui/place-card-epoke.js'
+      - 'js/fagverk-history-period-deeplink.js'
+      - 'scripts/build-epoke-place-index.mjs'
+      - 'tests/epoke-*.test.mjs'
+      - 'tests/epoker-*.test.mjs'
+      - 'tests/fagverk-history-period-deeplink.test.mjs'
+      - 'tests/place-card-meta-surfaces.test.mjs'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/epoke-viewer-quality.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'data/epoker/epoker_historie.json'
+      - 'data/leksikon/**'
+      - 'data/places/**'
+      - 'data/epoker/epoke-place-index.json'
+      - 'js/epoker-runtime.js'
+      - 'js/ui/epoke-viewer.js'
+      - 'js/ui/place-card-epoke.js'
+      - 'js/fagverk-history-period-deeplink.js'
+      - 'scripts/build-epoke-place-index.mjs'
+      - 'tests/epoke-*.test.mjs'
+      - 'tests/epoker-*.test.mjs'
+      - 'tests/fagverk-history-period-deeplink.test.mjs'
+      - 'tests/place-card-meta-surfaces.test.mjs'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/epoke-viewer-quality.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  epoch-viewer:
+    name: Source-backed timeline contract
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Verify generated epoch-place index
+        run: npm run epoker:places:check
+
+      - name: Typecheck browser runtime
+        run: npm run typecheck:web
+
+      - name: Run epoch viewer contracts
+        run: |
+          node --test \
+            tests/epoke-place-index.test.mjs \
+            tests/epoker-runtime-place-index.test.mjs \
+            tests/epoke-viewer.test.mjs \
+            tests/fagverk-history-period-deeplink.test.mjs \
+            tests/place-card-meta-surfaces.test.mjs
