@@ -1,0 +1,506 @@
+{
+  "schema": "history_go_fagverk_chapter_claims_v1",
+  "version": "1.0.0",
+  "subject_id": "utdanning",
+  "chapter_id": "vurdering-pedagogiske-malinger-validitet-reliabilitet-og-bruk",
+  "sourceBriefFile": "data/fag/utdanning/assessment_educational_measurement_source_claim_brief_v1.json",
+  "sources": [
+    {
+      "id": "vm01-lovdata-vurdering",
+      "publisher": "Lovdata",
+      "title": "Forskrift om grunnskoleopplæringa og den vidaregåande opplæringa – kapittel 9",
+      "url": "https://lovdata.no/forskrift/2024-06-03-900/kap9",
+      "type": "official-regulation",
+      "evidence_role": "purpose-basis-rights-final-assessment",
+      "source_location": "Gjeldende kapittel 9 om individuell vurdering, underveisvurdering, sluttvurdering og dokumentasjon.",
+      "retrieval_status": "verified_2026-08-26",
+      "label": "Lovdata – Forskrift om grunnskoleopplæringa og den vidaregåande opplæringa – kapittel 9"
+    },
+    {
+      "id": "vm02-udir-vurdering",
+      "publisher": "Utdanningsdirektoratet",
+      "title": "Vurdering",
+      "url": "https://www.udir.no/eksamen-og-prover/vurdering/",
+      "type": "official-practice-guidance",
+      "evidence_role": "formative-summative-practice-regulation",
+      "source_location": "Udirs inngang til regelverk og støtte for underveis-, standpunkt- og sluttvurdering.",
+      "retrieval_status": "verified_2026-08-26",
+      "label": "Utdanningsdirektoratet – Vurdering"
+    },
+    {
+      "id": "vm03-udir-sluttvurdering",
+      "publisher": "Utdanningsdirektoratet",
+      "title": "Hvordan skal vi sikre kvalitet i sluttvurderingen?",
+      "url": "https://www.udir.no/eksamen-og-prover/eksamen/vurderinger-og-anbefalinger-fremtidens-eksamen/14-hvordan-skal-vi-sikre-kvalitet-i-sluttvurderingen/",
+      "type": "official-system-analysis",
+      "evidence_role": "standpoint-exam-validity-reliability-quality",
+      "source_location": "Analyse av forskjellen mellom standpunkt og eksamen og krav til kvalitet i sluttvurderingen.",
+      "retrieval_status": "verified_2026-08-26",
+      "label": "Utdanningsdirektoratet – Hvordan skal vi sikre kvalitet i sluttvurderingen?"
+    },
+    {
+      "id": "vm04-testing-standards-2014",
+      "publisher": "AERA, APA and NCME",
+      "title": "Standards for Educational and Psychological Testing",
+      "url": "https://www.testingstandards.net/uploads/7/6/6/4/76643089/standards_2014edition.pdf",
+      "type": "professional-testing-standard",
+      "evidence_role": "validity-reliability-fairness-development-use",
+      "source_location": "2014-utgaven; del I om konstruksjon og dokumentasjon, del II om fairness og del III om anvendelser.",
+      "retrieval_status": "verified_2026-08-26",
+      "label": "AERA, APA and NCME – Standards for Educational and Psychological Testing"
+    },
+    {
+      "id": "vm05-kane-2013",
+      "publisher": "Journal of Educational Measurement",
+      "title": "Validating the Interpretations and Uses of Test Scores",
+      "url": "https://doi.org/10.1111/jedm.12000",
+      "type": "validity-theory-article",
+      "evidence_role": "interpretation-use-argument-inferences-assumptions",
+      "source_location": "Vol. 50(1), pp. 1–73; argumentbasert validering av skårfortolkning og bruk.",
+      "retrieval_status": "verified_2026-08-26",
+      "label": "Journal of Educational Measurement – Validating the Interpretations and Uses of Test Scores"
+    },
+    {
+      "id": "vm06-messick-1995",
+      "publisher": "American Psychologist",
+      "title": "Validity of Psychological Assessment",
+      "url": "https://doi.org/10.1037/0003-066X.50.9.741",
+      "type": "validity-theory-article",
+      "evidence_role": "construct-validity-values-consequences",
+      "source_location": "Vol. 50(9), pp. 741–749; samlet validitetsforståelse og konsekvensspørsmål.",
+      "retrieval_status": "verified_2026-08-26",
+      "label": "American Psychologist – Validity of Psychological Assessment"
+    },
+    {
+      "id": "vm07-cronbach-mehl-1955",
+      "publisher": "Psychological Bulletin",
+      "title": "Construct Validity in Psychological Tests",
+      "url": "https://doi.org/10.1037/h0040957",
+      "type": "construct-validation-article",
+      "evidence_role": "nomological-network-convergent-discriminant-evidence",
+      "source_location": "Vol. 52(4), pp. 281–302; konstruktvalidering gjennom teoretisk nettverk og empirisk evidens.",
+      "retrieval_status": "verified_2026-08-26",
+      "label": "Psychological Bulletin – Construct Validity in Psychological Tests"
+    },
+    {
+      "id": "vm08-cronbach-1951",
+      "publisher": "Psychometrika",
+      "title": "Coefficient Alpha and the Internal Structure of Tests",
+      "url": "https://doi.org/10.1007/BF02310555",
+      "type": "reliability-method-article",
+      "evidence_role": "internal-consistency-alpha-assumptions",
+      "source_location": "Vol. 16, pp. 297–334; koeffisient alfa og intern struktur.",
+      "retrieval_status": "verified_2026-08-26",
+      "label": "Psychometrika – Coefficient Alpha and the Internal Structure of Tests"
+    },
+    {
+      "id": "vm09-lord-novick-1968",
+      "publisher": "Addison-Wesley",
+      "title": "Statistical Theories of Mental Test Scores",
+      "url": "https://psycnet.apa.org/record/1968-35040-000",
+      "type": "measurement-theory-monograph",
+      "evidence_role": "classical-test-theory-error-generalizability",
+      "source_location": "Bokverk om klassisk testteori, sanne skårer, feil og statistiske målemodeller.",
+      "retrieval_status": "verified_2026-08-26",
+      "label": "Addison-Wesley – Statistical Theories of Mental Test Scores"
+    },
+    {
+      "id": "vm10-van-der-linden-hambleton-1997",
+      "publisher": "Springer",
+      "title": "Handbook of Modern Item Response Theory",
+      "url": "https://doi.org/10.1007/978-1-4757-2691-6",
+      "type": "irt-handbook",
+      "evidence_role": "item-response-models-information-fit-linking",
+      "source_location": "Håndbok om IRT-modeller, item information, estimering, fit og testkonstruksjon.",
+      "retrieval_status": "verified_2026-08-26",
+      "label": "Springer – Handbook of Modern Item Response Theory"
+    },
+    {
+      "id": "vm11-black-wiliam-1998",
+      "publisher": "Assessment in Education",
+      "title": "Assessment and Classroom Learning",
+      "url": "https://doi.org/10.1080/0969595980050102",
+      "type": "research-review",
+      "evidence_role": "formative-assessment-feedback-classroom-learning",
+      "source_location": "Vol. 5(1), pp. 7–74; review av formativ vurdering og læring.",
+      "retrieval_status": "verified_2026-08-26",
+      "label": "Assessment in Education – Assessment and Classroom Learning"
+    },
+    {
+      "id": "vm12-shepard-2000",
+      "publisher": "Educational Researcher",
+      "title": "The Role of Assessment in a Learning Culture",
+      "url": "https://doi.org/10.3102/0013189X029007004",
+      "type": "theory-synthesis",
+      "evidence_role": "assessment-learning-culture-sociocultural-change",
+      "source_location": "Vol. 29(7), pp. 4–14; vurderingens rolle i læringskultur og reform.",
+      "retrieval_status": "verified_2026-08-26",
+      "label": "Educational Researcher – The Role of Assessment in a Learning Culture"
+    },
+    {
+      "id": "vm13-brookhart-2013",
+      "publisher": "ASCD",
+      "title": "How to Create and Use Rubrics for Formative Assessment and Grading",
+      "url": "https://www.ascd.org/books/how-to-create-and-use-rubrics-for-formative-assessment-and-grading",
+      "type": "assessment-design-monograph",
+      "evidence_role": "criteria-rubrics-scoring-feedback-limitations",
+      "source_location": "Bok om kriterier, rubrikker, skåring, feedback og elevbruk.",
+      "retrieval_status": "verified_2026-08-26",
+      "label": "ASCD – How to Create and Use Rubrics for Formative Assessment and Grading"
+    }
+  ],
+  "claims": [
+    {
+      "id": "vm-01",
+      "claim": "Vurdering samler og fortolker evidens om kompetanse for læring, dokumentasjon eller beslutning, og formålet bestemmer hvilke kvalitetskrav som må prøves.",
+      "source_ids": [
+        "vm01-lovdata-vurdering",
+        "vm04-testing-standards-2014"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-27"
+    },
+    {
+      "id": "vm-02",
+      "claim": "En observasjon eller skår er ikke kompetansen selv, men et avgrenset tegn som må fortolkes gjennom oppgave, skåring og kontekst.",
+      "source_ids": [
+        "vm05-kane-2013",
+        "vm06-messick-1995"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-27"
+    },
+    {
+      "id": "vm-03",
+      "claim": "Høyrisikobeslutninger krever sterkere og bredere evidens enn lavrisiko feedback fordi feil får større konsekvenser.",
+      "source_ids": [
+        "vm04-testing-standards-2014",
+        "vm05-kane-2013"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-27"
+    },
+    {
+      "id": "vm-04",
+      "claim": "Standpunkt og eksamen gir ulike evidensvinduer og kan ikke behandles som utskiftbare målinger av en enkel, kontekstfri størrelse.",
+      "source_ids": [
+        "vm03-udir-sluttvurdering",
+        "vm01-lovdata-vurdering"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-27"
+    },
+    {
+      "id": "vm-05",
+      "claim": "Kanes argumentbaserte validering gjør slutninger fra respons til skår, generalisering, ekstrapolering og beslutning eksplisitte og prøvbare.",
+      "source_ids": [
+        "vm05-kane-2013",
+        "vm04-testing-standards-2014"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-27"
+    },
+    {
+      "id": "vm-06",
+      "claim": "Konstruktunderrepresentasjon oppstår når vurderingen utelater viktige deler av kompetansen, mens konstruktirrelevant varians kommer fra krav som ikke hører til målet.",
+      "source_ids": [
+        "vm06-messick-1995",
+        "vm04-testing-standards-2014"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-27"
+    },
+    {
+      "id": "vm-07",
+      "claim": "Konstruktvaliditet bygges gjennom et nettverk av teoretiske forventninger og konvergerende, diskriminerende og konsekvensrelevant evidens.",
+      "source_ids": [
+        "vm07-cronbach-mehl-1955",
+        "vm06-messick-1995"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-27"
+    },
+    {
+      "id": "vm-08",
+      "claim": "Et validitetsargument må revideres når oppgaver, populasjon, administrasjon eller bruk endres, selv om testnavnet forblir det samme.",
+      "source_ids": [
+        "vm05-kane-2013",
+        "vm04-testing-standards-2014"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-27"
+    },
+    {
+      "id": "vm-09",
+      "claim": "Klassisk testteori uttrykker observert skår som sann skår under definerte betingelser pluss målefeil, ikke som feilfri egenskap ved personen.",
+      "source_ids": [
+        "vm09-lord-novick-1968",
+        "vm04-testing-standards-2014"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-27"
+    },
+    {
+      "id": "vm-10",
+      "claim": "Reliabilitet avhenger av hvilke feilkilder og generaliseringer analysen omfatter, som oppgaver, tidspunkter, bedømmere eller situasjoner.",
+      "source_ids": [
+        "vm09-lord-novick-1968",
+        "vm04-testing-standards-2014"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-27"
+    },
+    {
+      "id": "vm-11",
+      "claim": "Cronbachs alfa kan beskrive intern konsistens under antakelser, men høy alfa beviser verken endimensjonalitet, validitet eller rettferdighet.",
+      "source_ids": [
+        "vm08-cronbach-1951",
+        "vm04-testing-standards-2014"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-27"
+    },
+    {
+      "id": "vm-12",
+      "claim": "Usikkerhet bør kommuniseres gjennom relevante feilestimater, intervaller eller beslutningsrisiko fremfor å rapportere skåren som eksakt.",
+      "source_ids": [
+        "vm09-lord-novick-1968",
+        "vm05-kane-2013"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-27"
+    },
+    {
+      "id": "vm-13",
+      "claim": "Klassisk testteori gir skår- og testnivåbeskrivelser som er knyttet til aktuell populasjon og testform.",
+      "source_ids": [
+        "vm09-lord-novick-1968",
+        "vm04-testing-standards-2014"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-27"
+    },
+    {
+      "id": "vm-14",
+      "claim": "IRT modellerer sannsynligheten for en respons som funksjon av latent egenskap og oppgaveparametere under spesifikke antakelser.",
+      "source_ids": [
+        "vm10-van-der-linden-hambleton-1997",
+        "vm04-testing-standards-2014"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-27"
+    },
+    {
+      "id": "vm-15",
+      "claim": "Item information viser hvor på skalaen en oppgave bidrar med presisjon, slik at en test ikke er like informativ for alle nivåer.",
+      "source_ids": [
+        "vm10-van-der-linden-hambleton-1997",
+        "vm09-lord-novick-1968"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-27"
+    },
+    {
+      "id": "vm-16",
+      "claim": "Modellfit, lokal uavhengighet og invarians må undersøkes før IRT-skårer sammenlignes eller lenkes på tvers av grupper og former.",
+      "source_ids": [
+        "vm10-van-der-linden-hambleton-1997",
+        "vm04-testing-standards-2014"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-27"
+    },
+    {
+      "id": "vm-17",
+      "claim": "Oppgaveutvikling bør begynne med domenebeskrivelse og evidenskrav før format, vanskelighetsgrad og praktiske begrensninger velges.",
+      "source_ids": [
+        "vm04-testing-standards-2014",
+        "vm05-kane-2013"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-27"
+    },
+    {
+      "id": "vm-18",
+      "claim": "Flervalg kan måle komplekst resonnement når alternativer og stimulus er godt designet, mens åpne svar ikke automatisk gir dyp eller valid evidens.",
+      "source_ids": [
+        "vm04-testing-standards-2014",
+        "vm05-kane-2013"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-27"
+    },
+    {
+      "id": "vm-19",
+      "claim": "Rubrikker bør uttrykke kvalitativ faglig progresjon og brukes med eksempler; mekaniske trekk kan ellers fortrenge konstruktet.",
+      "source_ids": [
+        "vm13-brookhart-2013",
+        "vm06-messick-1995"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-27"
+    },
+    {
+      "id": "vm-20",
+      "claim": "Bedømmersamsvar forbedres gjennom kriterier, trening, kalibrering og moderering, men konsensus alene garanterer ikke valid fortolkning.",
+      "source_ids": [
+        "vm04-testing-standards-2014",
+        "vm13-brookhart-2013"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-27"
+    },
+    {
+      "id": "vm-21",
+      "claim": "Black og Wiliam knytter formativ vurdering til hvordan evidens om læring innhentes og brukes til å justere undervisning og elevhandling.",
+      "source_ids": [
+        "vm11-black-wiliam-1998",
+        "vm02-udir-vurdering"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-27"
+    },
+    {
+      "id": "vm-22",
+      "claim": "Feedback må gi forståelig retning og handlingsrom for revisjon; informasjon som kommer etter siste mulighet kan ha liten læringsfunksjon.",
+      "source_ids": [
+        "vm11-black-wiliam-1998",
+        "vm13-brookhart-2013"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-27"
+    },
+    {
+      "id": "vm-23",
+      "claim": "Shepards læringskultur integrerer vurdering med faglig deltakelse og elevens utvikling av kriterieforståelse fremfor ekstern kontroll alene.",
+      "source_ids": [
+        "vm12-shepard-2000",
+        "vm11-black-wiliam-1998"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-27"
+    },
+    {
+      "id": "vm-24",
+      "claim": "Hyppig testing kan støtte gjenhenting eller synliggjøre forståelse, men blir formativ først når resultatene påvirker videre læringsarbeid.",
+      "source_ids": [
+        "vm11-black-wiliam-1998",
+        "vm02-udir-vurdering"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-27"
+    },
+    {
+      "id": "vm-25",
+      "claim": "Rettferdig vurdering krever at irrelevante språk-, funksjons- og kontekstkrav identifiseres uten at fagets nødvendige krav skjules.",
+      "source_ids": [
+        "vm04-testing-standards-2014",
+        "vm01-lovdata-vurdering"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-27"
+    },
+    {
+      "id": "vm-26",
+      "claim": "Tilrettelegging er forsvarlig når den reduserer en irrelevant barriere og bevarer fortolkningen som skåren skal støtte.",
+      "source_ids": [
+        "vm04-testing-standards-2014",
+        "vm05-kane-2013"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-27"
+    },
+    {
+      "id": "vm-27",
+      "claim": "Gruppeforskjeller kan utløse undersøkelse av bias og systembarrierer, men avgjør ikke årsak eller et bestemt individs kompetanse.",
+      "source_ids": [
+        "vm04-testing-standards-2014",
+        "vm06-messick-1995"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-27"
+    },
+    {
+      "id": "vm-28",
+      "claim": "Etisk testbruk krever informasjon om formål, rettigheter, personvern, klage, usikkerhet og konsekvenser for dem som vurderes.",
+      "source_ids": [
+        "vm04-testing-standards-2014",
+        "vm01-lovdata-vurdering"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-27"
+    },
+    {
+      "id": "vm-29",
+      "claim": "Standardsetting kombinerer ekspertvurdering, prestasjonsevidens og konsekvensanalyse; kuttverdier er ikke naturgitte skiller i kompetanse.",
+      "source_ids": [
+        "vm04-testing-standards-2014",
+        "vm05-kane-2013"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-27"
+    },
+    {
+      "id": "vm-30",
+      "claim": "Storskalamålinger kan beskrive systemmønstre når utvalg, skala og usikkerhet håndteres, men er svake som individtilbakemelding uten særskilt design.",
+      "source_ids": [
+        "vm04-testing-standards-2014",
+        "vm03-udir-sluttvurdering"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-27"
+    },
+    {
+      "id": "vm-31",
+      "claim": "Når målinger får sterke insentiver, kan undervisning og rapportering tilpasse seg indikatoren slik at skårvekst ikke tilsvarer bred kompetansevekst.",
+      "source_ids": [
+        "vm06-messick-1995",
+        "vm12-shepard-2000"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-27"
+    },
+    {
+      "id": "vm-32",
+      "claim": "Et ansvarlig vurderingssystem overvåker validitet, reliabilitet, fairness og konsekvenser over tid og reviderer bruk når evidensen svekkes.",
+      "source_ids": [
+        "vm04-testing-standards-2014",
+        "vm05-kane-2013"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-27"
+    }
+  ]
+}
