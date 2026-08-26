@@ -2,7 +2,7 @@
   "schema": "history_go_place_phase24_audit_v1",
   "place_id": "olaf_ryes_plass",
   "reviewed_at": "2026-08-26",
-  "overall_status": "ready_for_responsive_closeout_ci",
+  "overall_status": "closed_merged_deployed",
   "scope": {
     "canonical": "the named public park and square surface between Markveien, Grüners gate, Thorvald Meyers gate and Sofienberggata",
     "excluded_as_own_content": ["parkteatret", "surrounding buildings and businesses", "the tram/bus stop", "all of Grünerløkka"]
@@ -22,10 +22,10 @@
     "18_wonderkammer": "not_applicable_no_new_content",
     "19_images": "pass_remote_licensed_provenance",
     "20_data_qa": "pass_local_and_pr_ci",
-    "21_manual_ui_qa": "desktop_live_pass_responsive_ci_pending",
+    "21_manual_ui_qa": "pass_live_desktop_and_responsive_ci",
     "22_content_qa": "pass_manual_source_and_ownership_review",
-    "23_ci": "integration_and_quiz_fix_pass_closeout_pending",
-    "24_one_place_gate": "product_merged_deployed_live_closeout_ci_pending"
+    "23_ci": "pass_integration_quiz_fix_and_closeout",
+    "24_one_place_gate": "closed_merged_deployed_live_verified"
   },
   "place_card": {
     "profile": "history_go_place_card_profile_v2",
@@ -86,15 +86,15 @@
     "responsive_ci": {
       "viewports": ["1100x760", "390x844"],
       "test": "tests/olaf-ryes-plass-completion.test.mjs",
-      "result": "pending_closeout_ci"
+      "result": "passed_pr_5348_head_a7a1727757a5f13de0a94e99371136310ee9b6d4"
     }
   },
   "ci_verification": {
     "integration": {"pull_request": 5342, "head_sha": "66283cfa922a1e68651a93f7b81a2db6661a797f", "workflow_runs": 65, "successful": 65, "failed": 0},
     "quiz_card_fix": {"pull_request": 5346, "head_sha": "ddc3c321ff179509d32627ecb0e48c739e7908c8", "workflow_runs": 2, "successful": 2, "failed": 0},
-    "closeout": {"pull_request": null, "head_sha": null, "result": "pending"}
+    "closeout": {"pull_request": 5348, "head_sha": "a7a1727757a5f13de0a94e99371136310ee9b6d4", "workflow_runs": 2, "successful": 2, "failed": 0, "responsive_browser_tests": {"passed": 9, "failed": 0, "skipped": 0}, "result": "passed"}
   },
-  "pull_requests": ["https://github.com/Paradispartiet/History-Go/pull/5342", "https://github.com/Paradispartiet/History-Go/pull/5346"],
+  "pull_requests": ["https://github.com/Paradispartiet/History-Go/pull/5342", "https://github.com/Paradispartiet/History-Go/pull/5346", "https://github.com/Paradispartiet/History-Go/pull/5348"],
   "merge_commits": ["127e4058c84feebc172e546c1ef20fb9f15d07d3", "9f9acad849b23ffeda12148d1bd9c48a650a56c0"],
   "pages_deployments": ["https://github.com/Paradispartiet/History-Go/actions/runs/32940525846", "https://github.com/Paradispartiet/History-Go/actions/runs/32941952695"]
 }
