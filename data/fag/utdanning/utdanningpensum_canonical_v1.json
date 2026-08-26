@@ -4,28 +4,150 @@
   "scope": "universell_fagarkitektur_med_senere_stedsankre",
   "type": "pensum",
   "version": "1.0",
-  "status": "canonical_expansion_foundation",
+  "status": "active_foundation",
   "complete_ready": false,
   "domain_order": [
-    "pedagogikk_laeringsteori", "didaktikk", "barnehage_tidlig_laering", "grunnskole",
-    "videregaende_yrkesfag", "hoyere_utdanning", "vurdering_pedagogiske_malinger", "spesialpedagogikk",
-    "inkludering_tilpasset_opplaering", "utdanningshistorie", "utdanningspolitikk", "skoleledelse_organisasjon",
-    "profesjoner_laererrollen", "teknologi_medier_laering"
+    "pedagogikk_laeringsteori",
+    "didaktikk",
+    "barnehage_tidlig_laering",
+    "grunnskole",
+    "videregaende_yrkesfag",
+    "hoyere_utdanning",
+    "vurdering_pedagogiske_malinger",
+    "spesialpedagogikk",
+    "inkludering_tilpasset_opplaering",
+    "utdanningshistorie",
+    "utdanningspolitikk",
+    "skoleledelse_organisasjon",
+    "profesjoner_laererrollen",
+    "teknologi_medier_laering"
   ],
   "domains": [
-    { "domain_id": "pedagogikk_laeringsteori", "label": "Pedagogikk og læringsteori", "definition": "Teorier om læring, utvikling, danning, motivasjon og kunnskap i pedagogiske sammenhenger.", "status": "planned", "emne_ids": ["em_utdanning_pedagogikk_laeringsteori"] },
-    { "domain_id": "didaktikk", "label": "Didaktikk", "definition": "Forholdet mellom mål, innhold, arbeidsformer, vurdering, elevforutsetninger og kontekst.", "status": "planned", "emne_ids": ["em_utdanning_didaktikk"] },
-    { "domain_id": "barnehage_tidlig_laering", "label": "Barnehage og tidlig læring", "definition": "Lek, omsorg, språk, utvikling og pedagogiske miljøer i tidlig barndom.", "status": "planned", "emne_ids": ["em_utdanning_barnehage_tidlig_laering"] },
-    { "domain_id": "grunnskole", "label": "Grunnskole", "definition": "Opplæring, fag, fellesskap og progresjon i grunnskolens institusjonelle rammer.", "status": "planned", "emne_ids": ["em_utdanning_grunnskole"] },
-    { "domain_id": "videregaende_yrkesfag", "label": "Videregående og yrkesfag", "definition": "Studieforberedende og yrkesfaglige løp, læreplasser, gjennomføring og overgang.", "status": "planned", "emne_ids": ["em_utdanning_videregaende_yrkesfag"] },
-    { "domain_id": "hoyere_utdanning", "label": "Høyere utdanning", "definition": "Universiteter, høyskoler, fag, studieprogram, akademisk læring og kunnskapsinstitusjoner.", "status": "planned", "emne_ids": ["em_utdanning_hoyere_utdanning"] },
-    { "domain_id": "vurdering_pedagogiske_malinger", "label": "Vurdering og pedagogiske målinger", "definition": "Formativ og summativ vurdering, prøver, validitet, reliabilitet og konsekvenser.", "status": "planned", "emne_ids": ["em_utdanning_vurdering_pedagogiske_malinger"] },
-    { "domain_id": "spesialpedagogikk", "label": "Spesialpedagogikk", "definition": "Barrierer, støttebehov, rettigheter og pedagogiske tiltak i samspill mellom individ og miljø.", "status": "planned", "emne_ids": ["em_utdanning_spesialpedagogikk"] },
-    { "domain_id": "inkludering_tilpasset_opplaering", "label": "Inkludering og tilpasset opplæring", "definition": "Deltakelse, fellesskap, universell utforming, differensiering og likeverdige læringsmuligheter.", "status": "planned", "emne_ids": ["em_utdanning_inkludering_tilpasset_opplaering"] },
-    { "domain_id": "utdanningshistorie", "label": "Utdanningshistorie", "definition": "Skole, danning, profesjoner, reformer og institusjoner i historisk endring.", "status": "planned", "emne_ids": ["em_utdanning_utdanningshistorie"] },
-    { "domain_id": "utdanningspolitikk", "label": "Utdanningspolitikk", "definition": "Rettigheter, styring, finansiering, reform, ulikhet og politiske konflikter om utdanning.", "status": "planned", "emne_ids": ["em_utdanning_utdanningspolitikk"] },
-    { "domain_id": "skoleledelse_organisasjon", "label": "Skoleledelse og organisasjon", "definition": "Ledelse, profesjonsfellesskap, ansvar, kvalitet, arbeidsmiljø og institusjonell organisering.", "status": "planned", "emne_ids": ["em_utdanning_skoleledelse_organisasjon"] },
-    { "domain_id": "profesjoner_laererrollen", "label": "Profesjoner og lærerrollen", "definition": "Lærerarbeid, profesjonsetikk, skjønn, relasjoner, samarbeid og profesjonskunnskap.", "status": "planned", "emne_ids": ["em_utdanning_profesjoner_laererrollen"] },
-    { "domain_id": "teknologi_medier_laering", "label": "Teknologi, medier og læring", "definition": "Digitale læringsmiljøer, læremidler, plattformer, data, KI og mediekritikk i utdanning.", "status": "planned", "emne_ids": ["em_utdanning_teknologi_medier_laering"] }
+    {
+      "domain_id": "pedagogikk_laeringsteori",
+      "label": "Pedagogikk og læringsteori",
+      "definition": "Teorier om læring, utvikling, danning, motivasjon og kunnskap i pedagogiske sammenhenger.",
+      "status": "materialized",
+      "emne_ids": [
+        "em_utdanning_pedagogikk_laeringsteori"
+      ]
+    },
+    {
+      "domain_id": "didaktikk",
+      "label": "Didaktikk",
+      "definition": "Forholdet mellom mål, innhold, arbeidsformer, vurdering, elevforutsetninger og kontekst.",
+      "status": "planned",
+      "emne_ids": [
+        "em_utdanning_didaktikk"
+      ]
+    },
+    {
+      "domain_id": "barnehage_tidlig_laering",
+      "label": "Barnehage og tidlig læring",
+      "definition": "Lek, omsorg, språk, utvikling og pedagogiske miljøer i tidlig barndom.",
+      "status": "planned",
+      "emne_ids": [
+        "em_utdanning_barnehage_tidlig_laering"
+      ]
+    },
+    {
+      "domain_id": "grunnskole",
+      "label": "Grunnskole",
+      "definition": "Opplæring, fag, fellesskap og progresjon i grunnskolens institusjonelle rammer.",
+      "status": "planned",
+      "emne_ids": [
+        "em_utdanning_grunnskole"
+      ]
+    },
+    {
+      "domain_id": "videregaende_yrkesfag",
+      "label": "Videregående og yrkesfag",
+      "definition": "Studieforberedende og yrkesfaglige løp, læreplasser, gjennomføring og overgang.",
+      "status": "planned",
+      "emne_ids": [
+        "em_utdanning_videregaende_yrkesfag"
+      ]
+    },
+    {
+      "domain_id": "hoyere_utdanning",
+      "label": "Høyere utdanning",
+      "definition": "Universiteter, høyskoler, fag, studieprogram, akademisk læring og kunnskapsinstitusjoner.",
+      "status": "planned",
+      "emne_ids": [
+        "em_utdanning_hoyere_utdanning"
+      ]
+    },
+    {
+      "domain_id": "vurdering_pedagogiske_malinger",
+      "label": "Vurdering og pedagogiske målinger",
+      "definition": "Formativ og summativ vurdering, prøver, validitet, reliabilitet og konsekvenser.",
+      "status": "planned",
+      "emne_ids": [
+        "em_utdanning_vurdering_pedagogiske_malinger"
+      ]
+    },
+    {
+      "domain_id": "spesialpedagogikk",
+      "label": "Spesialpedagogikk",
+      "definition": "Barrierer, støttebehov, rettigheter og pedagogiske tiltak i samspill mellom individ og miljø.",
+      "status": "planned",
+      "emne_ids": [
+        "em_utdanning_spesialpedagogikk"
+      ]
+    },
+    {
+      "domain_id": "inkludering_tilpasset_opplaering",
+      "label": "Inkludering og tilpasset opplæring",
+      "definition": "Deltakelse, fellesskap, universell utforming, differensiering og likeverdige læringsmuligheter.",
+      "status": "planned",
+      "emne_ids": [
+        "em_utdanning_inkludering_tilpasset_opplaering"
+      ]
+    },
+    {
+      "domain_id": "utdanningshistorie",
+      "label": "Utdanningshistorie",
+      "definition": "Skole, danning, profesjoner, reformer og institusjoner i historisk endring.",
+      "status": "planned",
+      "emne_ids": [
+        "em_utdanning_utdanningshistorie"
+      ]
+    },
+    {
+      "domain_id": "utdanningspolitikk",
+      "label": "Utdanningspolitikk",
+      "definition": "Rettigheter, styring, finansiering, reform, ulikhet og politiske konflikter om utdanning.",
+      "status": "planned",
+      "emne_ids": [
+        "em_utdanning_utdanningspolitikk"
+      ]
+    },
+    {
+      "domain_id": "skoleledelse_organisasjon",
+      "label": "Skoleledelse og organisasjon",
+      "definition": "Ledelse, profesjonsfellesskap, ansvar, kvalitet, arbeidsmiljø og institusjonell organisering.",
+      "status": "planned",
+      "emne_ids": [
+        "em_utdanning_skoleledelse_organisasjon"
+      ]
+    },
+    {
+      "domain_id": "profesjoner_laererrollen",
+      "label": "Profesjoner og lærerrollen",
+      "definition": "Lærerarbeid, profesjonsetikk, skjønn, relasjoner, samarbeid og profesjonskunnskap.",
+      "status": "planned",
+      "emne_ids": [
+        "em_utdanning_profesjoner_laererrollen"
+      ]
+    },
+    {
+      "domain_id": "teknologi_medier_laering",
+      "label": "Teknologi, medier og læring",
+      "definition": "Digitale læringsmiljøer, læremidler, plattformer, data, KI og mediekritikk i utdanning.",
+      "status": "planned",
+      "emne_ids": [
+        "em_utdanning_teknologi_medier_laering"
+      ]
+    }
   ]
 }

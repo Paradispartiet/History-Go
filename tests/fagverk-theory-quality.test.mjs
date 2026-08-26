@@ -20,9 +20,9 @@ test('den historiske 18/18-baselinen forblir sterk under 19+1-utvidelsen', () =>
   const r = auditFagverkTheoryQuality();
   const byId = new Map(r.subjects.map(s => [s.id, s]));
   for (const id of STRONG_FLOOR) assert.equal(byId.get(id)?.baseline, 'strong_structured_evidence', `${id} har theory-quality-regresjon`);
-  assert.equal(r.summary.strong_structured_evidence, 18);
+  assert.equal(r.summary.strong_structured_evidence, 19);
   assert.equal(r.historicalBaseline.strongStructuredEvidence, 18);
-  assert.deepEqual(r.expansionProductionQueue, ['utdanning']);
+  assert.deepEqual(r.expansionProductionQueue, []);
 });
 
 test('bare ufullført Helse står i theory-reparasjonskø og completion-status forblir urørt', () => {

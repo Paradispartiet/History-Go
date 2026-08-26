@@ -101,9 +101,10 @@
   }
 
   async function openSharedEpokeUrl() {
-    const params = new URL(window.location.href).searchParams;
-    if (!params.has("epoke") && !params.has("epoke_domain")) return null;
     try {
+      if (typeof URL !== "function" || !window.location?.href) return null;
+      const params = new URL(window.location.href).searchParams;
+      if (!params.has("epoke") && !params.has("epoke_domain")) return null;
       const viewer = getEpokeViewer()?.openFromUrl ? getEpokeViewer() : await loadEpokeViewer();
       return await viewer?.openFromUrl?.();
     } catch (err) {
