@@ -1,0 +1,52 @@
+name: Blue signs phase 2 materialize writer
+
+on:
+  push:
+    branches:
+      - agent/blue-signs-phase2-20260826
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+      - name: Install repository dependencies
+        run: npm ci
+      - name: Normalize curated intake
+        run: node tools/normalize-oslo-blue-signs-phase2-intake.mjs
+      - name: Materialize blue-sign phase 2
+        run: node tools/materialize-oslo-blue-signs-phase2.mjs
+      - name: Build canonical place index and runtime payloads
+        run: |
+          npm run places:index:build
+          npm run place-open:build
+      - name: Validate Micro Place phase 2 before write
+        run: |
+          node --check js/ui/micro-place-card.js
+          node --test tests/micro-place-contract.test.mjs tests/micro-place-blue-sign-media.test.mjs tests/oslo-blue-signs-phase2.test.mjs
+      - name: Validate generated coordinate and manifest state
+        run: |
+          npm run places:index:check
+          npm run audit:places-split-manifest-sync
+          npm run places:coords:quality
+      - name: Commit materialized canonical data
+        run: |
+          git add reports/oslo-blue-signs-phase2-2026 data/places data/runtime/place-open data/categories/category_contract.json
+          if git diff --cached --quiet; then
+            echo "No materialized changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Materialize blue signs phase 2"
+          git push origin HEAD:agent/blue-signs-phase2-20260826
