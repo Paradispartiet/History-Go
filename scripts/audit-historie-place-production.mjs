@@ -104,6 +104,11 @@ function isHistoryPlace(place) {
   return place?.category === 'historie' || historyEmneIds(place).length > 0;
 }
 
+export function isCanonicalMicroPlace(place) {
+  return place?.placeTier === 'micro'
+    && place?.micro_place_profile?.schema === 'history_go_micro_place_profile_v1';
+}
+
 function sameValue(a, b) {
   return JSON.stringify(a ?? null) === JSON.stringify(b ?? null);
 }
@@ -200,7 +205,7 @@ export function requiredReportsForChanges(root, paths, base) {
     const previousById = new Map(previousPlaces.map((place) => [String(place.id), place]));
 
     for (const place of currentPlaces) {
-      if (!isHistoryPlace(place)) continue;
+      if (!isHistoryPlace(place) || isCanonicalMicroPlace(place)) continue;
       const placeId = String(place.id ?? '');
       if (!placeId || !productionFieldsChanged(previousById.get(placeId), place)) continue;
       required.set(placeId, {
@@ -536,7 +541,7 @@ export function auditHistoriePlaceProduction({
         const placeFile = repoPath(previousReport?.placeFile);
         const placeId = String(previousReport?.placeId ?? '');
         const currentPlace = findPlace(root, placeFile, placeId);
-        if (currentPlace && isHistoryPlace(currentPlace)) {
+        if (currentPlace && isHistoryPlace(currentPlace) && !isCanonicalMicroPlace(currentPlace)) {
           failures.push(`${placeId}: Historie-produksjonsrapporten er slettet mens stedet fortsatt er et Historie-sted`);
         }
       } catch {
