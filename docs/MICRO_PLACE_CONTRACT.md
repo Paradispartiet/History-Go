@@ -40,7 +40,9 @@ the materializer that generated the candidate.
 
 Micro Places do **not** require artificial People, Objects, Brands, Stories,
 Reading Trails, Fagverk, language packages, badges, four PlaceCard collections or
-an eight-question quiz. Such content may be connected later only when real,
+an eight-question quiz. A Micro Place may also omit all image fields; if an
+image is supplied, the ordinary path and provenance validation still applies.
+Such content may be connected later only when real,
 place-specific evidence supports it.
 
 The minimum editorial gate is:

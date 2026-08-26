@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { isPlaceScopeOnlyJsonChange } from '../scripts/lib/place-image-change-classifier.mjs';
+import { isImageOptionalMicroPlace, isPlaceScopeOnlyJsonChange } from '../scripts/lib/place-image-change-classifier.mjs';
 
 test('ren top-level placeScope-metadata klassifiseres som scope-only', () => {
   assert.equal(isPlaceScopeOnlyJsonChange(
@@ -43,4 +43,16 @@ test('uendret data og ikke-Place objekter unntas ikke', () => {
     { metadata: { version: 1 } },
     { metadata: { version: 1 }, placeScope: 'area' },
   ), false);
+});
+
+test('bare canonical Micro Places kan mangle bilde i changed-porten', () => {
+  assert.equal(isImageOptionalMicroPlace({
+    placeTier: 'micro',
+    micro_place_profile: { schema: 'history_go_micro_place_profile_v1' },
+  }), true);
+  assert.equal(isImageOptionalMicroPlace({ placeTier: 'micro' }), false);
+  assert.equal(isImageOptionalMicroPlace({
+    placeTier: 'standard',
+    micro_place_profile: { schema: 'history_go_micro_place_profile_v1' },
+  }), false);
 });

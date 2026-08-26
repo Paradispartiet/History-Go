@@ -9,6 +9,7 @@ on:
       - "data/places/regler/micro_place_profile_v1.schema.json"
       - "data/places/manifest.json"
       - "data/places/places_index.json"
+      - "data/places/place_image_backlog_summary.json"
       - "data/runtime/place-open/**"
       - "reports/oslo-micro-places-2026/**"
       - "reports/oslo-miljo-gjenbruk-2026/**"
@@ -18,8 +19,11 @@ on:
       - "js/ui/micro-place-card.js"
       - "css/micro-place-card.css"
       - "scripts/promote-oslo-micro-place-review.mjs"
+      - "scripts/audit-place-images.mjs"
+      - "scripts/lib/place-image-change-classifier.mjs"
       - "scripts/validate-place-description-production-v4_2_policy.mjs"
       - "tests/micro-place-contract.test.mjs"
+      - "tests/place-image-audit-changed.test.mjs"
       - "tests/oslo-miljo-gjenbruk-lesekiosk-materialization.test.mjs"
       - "tools/build_places_index.mts"
       - "tools/check_places_index_sync.mts"
@@ -66,6 +70,11 @@ jobs:
           npm run places:coords:intake
       - name: Validate compact card runtime syntax
         run: node --check js/ui/micro-place-card.js
+      - name: Validate optional Micro Place image policy
+        run: |
+          node --test tests/place-image-audit-changed.test.mjs
+          node scripts/audit-place-images.mjs --mode=changed
+          node scripts/audit-place-images.mjs --mode=all --report=reports/place-image-audit.json --verify-summary=data/places/place_image_backlog_summary.json
       - name: Validate committed place-open payloads
         run: |
           npm run place-open:build

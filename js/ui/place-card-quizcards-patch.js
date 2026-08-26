@@ -174,7 +174,14 @@
   }
 
   // js/ui/placeQuizCards.ts
+  var QUIZ_CARD_MANIFESTS = Object.freeze([
+    "by/manifest.json",
+    "historie/manifest.json",
+    "litteratur/manifest.json"
+  ]);
   var FALLBACK_COLLECTIONS = Object.freeze([
+    "by/topp10_by_kort_batch1.json",
+    "historie/topp10_historie_sted_kort_batch1.json",
     "litteratur/topp10_lit_kort.json"
   ]);
   function isRecord(value) {
@@ -244,13 +251,15 @@
       (entry) => `${escapeHTML(entry == null ? void 0 : entry.number)}. ${escapeHTML(entry == null ? void 0 : entry.answer)}`
     ).join(" \xB7 ");
     const title = escapeHTML(cardData.title || "Quizkort");
+    const categoryId = normalizeKey(cardData.categoryId);
+    const kicker = categoryId === "by" ? "Byquiz" : categoryId === "historie" ? "Historiequiz" : categoryId === "litteratur" ? "Litteraturquiz" : "Quizkort";
     const subtitle = escapeHTML(
       cardData.subtitle || `${questions.length} sp\xF8rsm\xE5l \xB7 fasit nederst`
     );
     return `
       <div class="pc-rendered-quiz-card">
         <div class="pc-rendered-quiz-head">
-          <div class="pc-rendered-quiz-kicker">Litteraturquiz</div>
+          <div class="pc-rendered-quiz-kicker">${kicker}</div>
           <h3>${title}</h3>
           <p>${subtitle}</p>
         </div>
@@ -266,12 +275,20 @@
       var _a;
       const loader = (_a = runtime.DataHub) == null ? void 0 : _a.loadQuizCardsCollection;
       if (typeof loader !== "function") return FALLBACK_COLLECTIONS.slice();
-      const manifest = await Promise.resolve(
-        loader("litteratur/manifest.json", { cache: "default" })
-      ).catch(() => null);
-      const collections = isRecord(manifest) && Array.isArray(manifest.collections) ? manifest.collections : [];
-      const files = collections.map((file) => String(file != null ? file : "").trim()).map((file) => file.replace(/^\/+/, "")).map((file) => file.replace(/^data\/quizcards\/litteratur\//, "")).filter(Boolean);
-      return files.length ? files.map((file) => `litteratur/${file}`) : FALLBACK_COLLECTIONS.slice();
+      const manifests = await Promise.all(
+        QUIZ_CARD_MANIFESTS.map(async (manifestPath) => ({
+          manifestPath,
+          manifest: await Promise.resolve(
+            loader(manifestPath, { cache: "default" })
+          ).catch(() => null)
+        }))
+      );
+      const files = manifests.flatMap(({ manifestPath, manifest }) => {
+        if (!isRecord(manifest) || !Array.isArray(manifest.collections)) return [];
+        const category = manifestPath.split("/")[0];
+        return manifest.collections.map((file) => String(file != null ? file : "").trim()).map((file) => file.replace(/^\/+/, "")).map((file) => file.replace(/^data\/quizcards\//, "")).map((file) => file.includes("/") ? file : `${category}/${file}`).filter(Boolean);
+      });
+      return files.length ? [...new Set(files)] : FALLBACK_COLLECTIONS.slice();
     };
     const loadCollections = async () => {
       var _a;
