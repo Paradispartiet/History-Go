@@ -1,0 +1,883 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "historie",
+  "targetId": "paulus_kirke",
+  "profile": "rich_5x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1773,
+    "selection_sha256": "d950a3c7ee84f916e9ac57b7b1cbedb87ccaa62cdacaecc82340ce56d8e98ced",
+    "category_id": "historie",
+    "target_id": "paulus_kirke"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "bytes": 93945,
+      "sha256": "37abfe99b9f3f1db23bb0cb307b2076407076a405c15868b0524ef5b9e31c72d",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "bytes": 2142053,
+      "sha256": "bcb20665e0a013c4f57e17719b610224874552b942b9bcd7421a7239463931ec",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "bytes": 1127330,
+      "sha256": "6db315c9b911fc04b99dd7609e493e744f919448668cf35fe3c72d3dabff59b1",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "bytes": 252328,
+      "sha256": "9462f9fc4a07c9c08593abaa75e4ee1bddd6af9e45a87304b52df66bcdb654be",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "bytes": 6935,
+      "sha256": "162f166d3c5be89d77b7529ba9186a552b791e9dbd04a590a01fdaad28944098",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 16882,
+      "sha256": "60804db1e587faae822930a800cfebac7966fa7e009778d46d94d1f28e02545e",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/historie/paulus_kirke.json",
+      "bytes": 17237,
+      "sha256": "afd249ecc097679e976040c26072becb5115663eec54d2c3ca2b7e08308b56d1"
+    },
+    "target": {
+      "path": "data/places/historie/oslo/places_historie/paulus_kirke.json",
+      "bytes": 12590,
+      "sha256": "11a2b64a59634f8c111cf4248c0b7f43cddd9988306c7b8bdcfeaf210bfc3392"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1358,
+      "selection_sha256": "61d6e8fdc3d46b13837f8d933ee10d84f064d75a571d7853e139cbfe3cb67494"
+    },
+    "relations": [],
+    "stories": [
+      {
+        "path": "data/stories/stories_paulus_kirke.json",
+        "matches": 1,
+        "selection_bytes": 2148,
+        "selection_sha256": "669437ceab014d4378e8e5f848e3243eb1fd0f5aef8ab215508b2fbf3f2bdf10"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/historie/paulus_kirke_sets.json",
+  "source_registry": {
+    "official": {
+      "url": "https://www.kirken.no/nn-NO/fellesrad/kirkeneioslo/menigheter/paulus-sofienberg/paulus-kirke/",
+      "source_type": "official_place_information",
+      "review_status": "reviewed",
+      "review_note": "Arkitektur, plan, interiør og orgel."
+    },
+    "use": {
+      "url": "https://www.kirken.no/nb-NO/fellesrad/kirkeneioslo/menigheter/paulus-sofienberg/utleie/uteleie-av-kirken/",
+      "source_type": "official_current_use",
+      "review_status": "reviewed",
+      "review_note": "Dagens kirkelige og kulturelle bruk."
+    },
+    "byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Paulus_kirke",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Konkurranse, kronologi, kunst, rehabilitering og fredning."
+    },
+    "historic": {
+      "url": "https://commons.wikimedia.org/wiki/File:Paulus_kirke_Oslo_OB.Z06219.jpg",
+      "source_type": "museum_image_record",
+      "review_status": "reviewed",
+      "review_note": "Historisk bybilde omkring 1900."
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/historie/",
+      "data/places/historie/oslo/places_historie/paulus_kirke.json"
+    ],
+    "active_before": {
+      "file": null,
+      "set_count": 0,
+      "question_count": 0,
+      "finding": "Ingen manifest-loadet canonical Paulus-quiz fantes."
+    },
+    "decisions": [
+      "Opprett rich 5x7 etter gjeldende standard.",
+      "Bruk de åtte readiness-spørsmålene som faktagrunnlag.",
+      "Hold metode og teori til finalsettet."
+    ],
+    "knowledge_migration": "Nye Knowledge-enheter genereres deterministisk fra canonical quizpakke."
+  },
+  "profile_decision": {
+    "profile": "rich",
+    "set_count": 5,
+    "questions_per_set": 7,
+    "justification": "Fem læringsjobber: identitet og arkitektur, bygging og plan, endringer og vern, visuelle og sosiale lag, samt metode og teori."
+  },
+  "held_back_candidates": [
+    "Eksakt tårnhøyde uten sterk kilde.",
+    "Illustrasjonen som historisk fotografi.",
+    "Birkelunden som kirkens eiendom.",
+    "Dagens program som permanent identitet."
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 23,
+      "emner": 230,
+      "topic_hooks": 230,
+      "methods": 105
+    },
+    "candidate_emner": [
+      {
+        "id": "em_his_brudd_kontinuitet",
+        "title": "Brudd og kontinuitet",
+        "score": 100
+      },
+      {
+        "id": "em_his_hendelse_prosess_tidsforlop",
+        "title": "Hendelse, prosess og tidsforløp",
+        "score": 100
+      },
+      {
+        "id": "em_his_historiske_lag_i_byrom",
+        "title": "Historiske lag i byrom",
+        "score": 100
+      },
+      {
+        "id": "em_his_kildekritikk_arkiv_spor",
+        "title": "Kildekritikk, arkiv og spor",
+        "score": 100
+      },
+      {
+        "id": "em_his_kulturminner_bevaring",
+        "title": "Kulturminner, utvelgelse og bevaring",
+        "score": 100
+      },
+      {
+        "id": "em_his_lang_varighet_strukturer",
+        "title": "Lang varighet og historiske strukturer",
+        "score": 100
+      },
+      {
+        "id": "em_his_restaurering_autentisitet",
+        "title": "Restaurering, rekonstruksjon og autentisitet",
+        "score": 100
+      },
+      {
+        "id": "em_his_sosialhistorie_hverdagsliv",
+        "title": "Sosialhistorie og hverdagsliv",
+        "score": 100
+      },
+      {
+        "id": "em_his_spor_materialitet",
+        "title": "Spor og materialitet",
+        "score": 100
+      },
+      {
+        "id": "em_his_stat_institusjoner",
+        "title": "Stat og institusjoner",
+        "score": 100
+      },
+      {
+        "id": "em_his_visuelle_kilder_fotografi",
+        "title": "Visuelle kilder og fotografi",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "his_arbeiderbolig_hushold_livsvilkar",
+        "title": "Arbeiderbolig, hushold og livsvilkår",
+        "category_id": "his_industri_arbeid_sosialhistorie",
+        "score": 10
+      },
+      {
+        "id": "his_arbeidstid_lonn_ferdighet",
+        "title": "Arbeidstid, lønn og ferdighet",
+        "category_id": "his_industri_arbeid_sosialhistorie",
+        "score": 10
+      },
+      {
+        "id": "his_bevaring_restaurering_autentisitet",
+        "title": "Bevaring, restaurering og autentisitet",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 10
+      },
+      {
+        "id": "his_brudd_kontinuitet",
+        "title": "Brudd, kontinuitet og omforming",
+        "category_id": "his_tid_periodisering",
+        "score": 10
+      },
+      {
+        "id": "his_digitale_kilder",
+        "title": "Digitale kilder, metadata og søk",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 10
+      },
+      {
+        "id": "his_hendelse_prosess",
+        "title": "Hendelse, forløp og konsekvens",
+        "category_id": "his_tid_periodisering",
+        "score": 10
+      },
+      {
+        "id": "his_institusjonsbygging_funksjon",
+        "title": "Institusjonsbygging, mandat og funksjon",
+        "category_id": "his_makt_stat_institusjoner",
+        "score": 10
+      },
+      {
+        "id": "his_kildekritikk",
+        "title": "Kildekritikk, opphav og formål",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 10
+      },
+      {
+        "id": "his_kjonn_arbeidsdeling_lonn",
+        "title": "Kjønn, arbeidsdeling og lønn",
+        "category_id": "his_industri_arbeid_sosialhistorie",
+        "score": 10
+      },
+      {
+        "id": "his_kulturminneutvelgelse_verdi",
+        "title": "Kulturminneutvelgelse og verdi",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 10
+      },
+      {
+        "id": "his_lang_varighet_strukturer",
+        "title": "Lang varighet og strukturell endring",
+        "category_id": "his_tid_periodisering",
+        "score": 10
+      },
+      {
+        "id": "his_spor_materialitet",
+        "title": "Materielle spor og sted som kilde",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 10
+      },
+      {
+        "id": "his_tidslag_samtidighet",
+        "title": "Tidslag og samtidighet i sted",
+        "category_id": "his_tid_periodisering",
+        "score": 10
+      },
+      {
+        "id": "his_visuelle_kilder",
+        "title": "Bilder, fotografi og visuelle kilder",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_makt_stat_institusjoner",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_hendelse_prosess_tidsforlop",
+      "em_his_spor_materialitet",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_kulturminner_bevaring",
+      "em_his_restaurering_autentisitet",
+      "em_his_sosialhistorie_hverdagsliv",
+      "em_his_visuelle_kilder_fotografi",
+      "em_his_brudd_kontinuitet",
+      "em_his_stat_institusjoner",
+      "em_his_kildekritikk_arkiv_spor",
+      "em_his_lang_varighet_strukturer"
+    ],
+    "topic_hook_ids": [
+      "his_institusjonsbygging_funksjon",
+      "his_spor_materialitet",
+      "his_kildekritikk",
+      "his_bevaring_restaurering_autentisitet",
+      "his_kulturminneutvelgelse_verdi",
+      "his_tidslag_samtidighet",
+      "his_lang_varighet_strukturer"
+    ],
+    "method_ids": [
+      "met_institusjonshistorisk_analyse",
+      "met_sporlesning",
+      "met_kildekritikk",
+      "met_restaurerings_autentisitetsanalyse",
+      "met_kulturarvutvelgelsesanalyse",
+      "met_tidslagsanalyse",
+      "met_langvarighetsanalyse"
+    ],
+    "thinker_ids": [
+      "max_weber",
+      "carlo_ginzburg",
+      "marc_bloch",
+      "alois_riegl",
+      "fernand_braudel"
+    ],
+    "works": [
+      "Economy and Society",
+      "Clues, Myths, and the Historical Method",
+      "The Historian's Craft",
+      "The Modern Cult of Monuments",
+      "The Mediterranean and the Mediterranean World"
+    ]
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_paulus_kirke_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kirken ble innviet 30. desember 1892.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_hendelse_prosess_tidsforlop"
+    },
+    {
+      "claim_id": "claim_paulus_kirke_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Henrik Bull tegnet kirken etter å ha vunnet arkitektkonkurransen.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_paulus_kirke_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Den offisielle adressen er Thorvald Meyers gate 31, rett overfor Birkelunden.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_paulus_kirke_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Paulus kirke er oppført i rød tegl.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_paulus_kirke_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kildene beskriver kirken som inspirert av tysk gotikk.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_paulus_kirke_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Det høye, smale tårnet er plassert over inngangspartiet.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_paulus_kirke_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Henrik Bull vant konkurransen om kirken i 1887.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_hendelse_prosess_tidsforlop"
+    },
+    {
+      "claim_id": "claim_paulus_kirke_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Henrik Bull tegnet kirken i 1889.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_hendelse_prosess_tidsforlop"
+    },
+    {
+      "claim_id": "claim_paulus_kirke_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Biskop Essendrop innviet kirken 30. desember 1892.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_hendelse_prosess_tidsforlop"
+    },
+    {
+      "claim_id": "claim_paulus_kirke_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Planen er en langkirke med korte korsarmer og grunt kor.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_paulus_kirke_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Inngangen og tårnet vender kirken mot plassen og Birkelunden.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_paulus_kirke_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Albert Hollenbach bygde orgelet til åpningen i 1892.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_paulus_kirke_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Kirken ble fredet sammen med bygningsmiljøet rundt Birkelunden.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_paulus_kirke_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Orgelet ble restaurert i 2010 med den opprinnelige fasaden bevart.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_restaurering_autentisitet"
+    },
+    {
+      "claim_id": "claim_paulus_kirke_quiz_15",
+      "order": 15,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Rehabiliteringen gjenskapte eldre veggdekor fra arbeidene i 1917–1918.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_restaurering_autentisitet"
+    },
+    {
+      "claim_id": "claim_paulus_kirke_quiz_16",
+      "order": 16,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Kirken brukes også til konserter og andre kulturproduksjoner.",
+      "source_ids": [
+        "use"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_paulus_kirke_quiz_17",
+      "order": 17,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Kirken er plassert rett overfor parken og inngår i det fredede miljøet.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_paulus_kirke_quiz_18",
+      "order": 18,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "De er fysisk forbundet, men har ulike funksjoner og egne stedsidentiteter.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_paulus_kirke_quiz_19",
+      "order": 19,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Planlagte alterarbeider ble avvist, og interiøret fikk en annen løsning.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_paulus_kirke_quiz_20",
+      "order": 20,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Museumsfotografiet er en visuell kilde til bygningen og omgivelsene omkring 1900.",
+      "source_ids": [
+        "historic"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_visuelle_kilder_fotografi"
+    },
+    {
+      "claim_id": "claim_paulus_kirke_quiz_21",
+      "order": 21,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Den nye illustrasjonen tolker arkitekturen og kan ikke brukes som fotografisk dokumentasjon.",
+      "source_ids": [
+        "historic"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_visuelle_kilder_fotografi"
+    },
+    {
+      "claim_id": "claim_paulus_kirke_quiz_22",
+      "order": 22,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Kirkebygningen har fortsatt kirkelig bruk selv om interiør og teknikk er endret.",
+      "source_ids": [
+        "use"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_brudd_kontinuitet"
+    },
+    {
+      "claim_id": "claim_paulus_kirke_quiz_23",
+      "order": 23,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Arbeidene i 1917–1918 og 2014–2017 viser at uttrykket har blitt endret og senere gjenskapt.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_brudd_kontinuitet"
+    },
+    {
+      "claim_id": "claim_paulus_kirke_quiz_24",
+      "order": 24,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Den offentlige utsiden gir grunnlag for arkitektur- og byromslesning uten å gripe inn i kirkelig praksis.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_paulus_kirke_quiz_25",
+      "order": 25,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Konkurransen plasserer arkitekturen i en institusjonell beslutningsprosess, ikke bare i én arkitekts idé.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_paulus_kirke_quiz_26",
+      "order": 26,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Nåværende gudstjenester, åpen kirke og kulturbruk er tidsavhengige opplysninger.",
+      "source_ids": [
+        "use"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kildekritikk_arkiv_spor"
+    },
+    {
+      "claim_id": "claim_paulus_kirke_quiz_27",
+      "order": 27,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Orgelet fra åpningen er utvidet og restaurert, mens den opprinnelige fasaden er bevart.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_brudd_kontinuitet"
+    },
+    {
+      "claim_id": "claim_paulus_kirke_quiz_28",
+      "order": 28,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Observasjon av fasaden dokumenterer fysiske trekk, ikke menneskers private erfaringer.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kildekritikk_arkiv_spor"
+    },
+    {
+      "claim_id": "claim_paulus_kirke_quiz_29",
+      "order": 29,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Institusjonshistorie undersøker hvordan organisasjon, funksjon og fysisk ramme utvikles sammen.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_paulus_kirke_quiz_30",
+      "order": 30,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Sporlesning bruker fysiske trekk som kilder og kontrollerer tolkningen mot dokumentasjon.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_paulus_kirke_quiz_31",
+      "order": 31,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kildekritikk vurderer opphav, nærhet, formål og kryssjekk før en opplysning brukes.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kildekritikk_arkiv_spor"
+    },
+    {
+      "claim_id": "claim_paulus_kirke_quiz_32",
+      "order": 32,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Autentisitetsanalyse skiller mellom originalt materiale, senere lag og dokumentert rekonstruksjon.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_restaurering_autentisitet"
+    },
+    {
+      "claim_id": "claim_paulus_kirke_quiz_33",
+      "order": 33,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Riegls perspektiv kan belyse hvordan alder, fortsatt bruk og fredning gir ulike verdier til samme kirkebygg.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_paulus_kirke_quiz_34",
+      "order": 34,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Paulus kirke må leses som arkitektur, institusjon, brukssted og kulturminne samtidig.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_paulus_kirke_quiz_35",
+      "order": 35,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Langvarighetsanalyse kan holde sammen byplan, fortsatt bruk, rehabiliteringer og fredning uten å gjøre historien uforanderlig.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_lang_varighet_strukturer"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "story",
+      "id": "st_paulus_kirke_alterstriden_1892",
+      "source_file": "data/stories/stories_paulus_kirke.json",
+      "summary": "Da kirken skulle åpne i 1892, ble Gustav Wentzels alterbilder avvist, og Jo Visdals opprinnelige Kristusfigur fikk heller ikke den planlagte plasseringen."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "historie_paulus_kirke_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_paulus_kirke_quiz_01",
+        "claim_paulus_kirke_quiz_02",
+        "claim_paulus_kirke_quiz_03",
+        "claim_paulus_kirke_quiz_04",
+        "claim_paulus_kirke_quiz_05",
+        "claim_paulus_kirke_quiz_06",
+        "claim_paulus_kirke_quiz_07"
+      ]
+    },
+    {
+      "set_id": "historie_paulus_kirke_set_2",
+      "order": 2,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_paulus_kirke_quiz_08",
+        "claim_paulus_kirke_quiz_09",
+        "claim_paulus_kirke_quiz_10",
+        "claim_paulus_kirke_quiz_11",
+        "claim_paulus_kirke_quiz_12",
+        "claim_paulus_kirke_quiz_13",
+        "claim_paulus_kirke_quiz_14"
+      ]
+    },
+    {
+      "set_id": "historie_paulus_kirke_set_3",
+      "order": 3,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_paulus_kirke_quiz_15",
+        "claim_paulus_kirke_quiz_16",
+        "claim_paulus_kirke_quiz_17",
+        "claim_paulus_kirke_quiz_18",
+        "claim_paulus_kirke_quiz_19",
+        "claim_paulus_kirke_quiz_20",
+        "claim_paulus_kirke_quiz_21"
+      ]
+    },
+    {
+      "set_id": "historie_paulus_kirke_set_4",
+      "order": 4,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_paulus_kirke_quiz_22",
+        "claim_paulus_kirke_quiz_23",
+        "claim_paulus_kirke_quiz_24",
+        "claim_paulus_kirke_quiz_25",
+        "claim_paulus_kirke_quiz_26",
+        "claim_paulus_kirke_quiz_27",
+        "claim_paulus_kirke_quiz_28"
+      ]
+    },
+    {
+      "set_id": "historie_paulus_kirke_set_5",
+      "order": 5,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_paulus_kirke_quiz_29",
+        "claim_paulus_kirke_quiz_30",
+        "claim_paulus_kirke_quiz_31",
+        "claim_paulus_kirke_quiz_32",
+        "claim_paulus_kirke_quiz_33",
+        "claim_paulus_kirke_quiz_34",
+        "claim_paulus_kirke_quiz_35"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 35,
+    "counts": {
+      "fact": 18,
+      "context": 10,
+      "concept_theory": 7
+    },
+    "ratios": {
+      "fact": 0.514,
+      "context": 0.286,
+      "concept_theory": 0.2
+    }
+  }
+}
