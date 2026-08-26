@@ -202,6 +202,38 @@ function canonicalYear(value) {
   return match ? Number(match[0]) : null;
 }
 
+const APPROXIMATE_YEAR_CONTEXT = /(?:\bca\.?|\bcirka|\bomkring|\bomtrent|\brundt|\bmidt(?:en)?\s+av|\bslutten\s+av|\bbegynnelsen\s+av|\btrolig|\bantakelig|\bkanskje)[^.!?\n]{0,35}$/i;
+const UNCERTAIN_YEAR_CLAIM = /(?:dateringen er usikker|teknisk midtpunkt|kildene (?:spriker|varierer)|omtrentlig datering)/i;
+
+function placeDetailFor(place) {
+  const sourceFile = text(place?.sourceFile);
+  if (!sourceFile) return null;
+  const relativePath = sourceFile.startsWith("data/") ? sourceFile : `data/${sourceFile}`;
+  const absolutePath = path.join(ROOT, relativePath);
+  if (!fs.existsSync(absolutePath)) return null;
+  const payload = readJson(relativePath);
+  return Array.isArray(payload)
+    ? payload.find((candidate) => text(candidate?.id) === text(place?.id)) || null
+    : payload;
+}
+
+function exactProductionClaimYears(statement) {
+  const value = text(statement);
+  if (!value || UNCERTAIN_YEAR_CLAIM.test(value)) return [];
+  const years = [];
+  const matcher = /(^|[^0-9])(\d{4})(?![0-9]|\s*[-–]\s*årene|[-–]tallet)/gi;
+  let match;
+  while ((match = matcher.exec(value))) {
+    const year = Number(match[2]);
+    const yearPosition = match.index + text(match[1]).length;
+    if (
+      year >= 1000 && year <= 2026 &&
+      !APPROXIMATE_YEAR_CONTEXT.test(value.slice(Math.max(0, yearPosition - 45), yearPosition))
+    ) years.push(year);
+  }
+  return [...new Set(years)];
+}
+
 const ROLE_RULES = [
   ["makt_og_styring", "Makt og styring", ["politikk", "regjering", "storting", "kommune", "stat", "kong", "myndighet", "lov", "rett"]],
   ["konflikt_og_motstand", "Konflikt og motstand", ["krig", "okkupasjon", "motstand", "streik", "oppror", "konflikt", "demonstrasjon", "deportasjon"]],
@@ -309,15 +341,8 @@ function connectionPersonIds(placeDetail) {
 }
 
 function connectionsForPlace(place, connectionCatalog) {
-  const sourceFile = text(place?.sourceFile);
-  if (!sourceFile) return { person_ids: [], works: [], stories: [] };
-  const relativePath = sourceFile.startsWith("data/") ? sourceFile : `data/${sourceFile}`;
-  const absolutePath = path.join(ROOT, relativePath);
-  if (!fs.existsSync(absolutePath)) return { person_ids: [], works: [], stories: [] };
-  const payload = readJson(relativePath);
-  const detail = Array.isArray(payload)
-    ? payload.find((candidate) => text(candidate?.id) === text(place?.id))
-    : payload;
+  const detail = placeDetailFor(place);
+  if (!detail) return { person_ids: [], works: [], stories: [] };
   const personIds = new Set([
     ...connectionPersonIds(detail),
     ...(connectionCatalog?.peopleByPlace?.get(text(place?.id)) || [])
@@ -488,6 +513,52 @@ export function buildEpokePlaceIndex() {
     }
   }
 
+  // Production claims have claim-level provenance: the exact assertion,
+  // source URL and source location were reviewed together. Only verified,
+  // explicitly historical Oslo claims with unambiguous exact years enter the
+  // timeline. Legacy packages without temporalStatus remain eligible, while
+  // claims explicitly marked current are excluded. All years in one claim
+  // must resolve to the same canonical epoch.
+  const productionDirectory = "data/places/production";
+  for (const fileName of fs.readdirSync(path.join(ROOT, productionDirectory)).filter((name) => name.endsWith(".json")).sort()) {
+    const sourceFile = `${productionDirectory}/${fileName}`;
+    const production = readJson(sourceFile);
+    const place = placeById.get(text(production?.placeId));
+    const location = locations.places[text(production?.placeId)];
+    if (!place || location?.country_id !== "no" || location?.city_id !== "oslo") continue;
+    for (const claim of Array.isArray(production?.claims) ? production.claims : []) {
+      const claimText = text(claim?.claim);
+      const sourceUrl = text(claim?.sourceUrl);
+      const years = exactProductionClaimYears(claimText);
+      const matchingEpochs = [...new Set(years.map((year) => epochForYear(epochs, year)?.id).filter(Boolean))];
+      if (
+        text(claim?.status) !== "verified" ||
+        (text(claim?.temporalStatus) && text(claim.temporalStatus) !== "historical") ||
+        !/^https?:\/\//.test(sourceUrl) ||
+        !text(claim?.id) || !claimText || !years.length || matchingEpochs.length !== 1
+      ) continue;
+      const epoch = epochs.find((candidate) => candidate.id === matchingEpochs[0]);
+      if (!epoch) continue;
+      const sources = [{
+        title: text(claim?.sourceLocation || claim?.sourceType || sourceUrl),
+        url: sourceUrl,
+        verifiedAt: text(claim?.verifiedAt)
+      }];
+      const milestone = {
+        id: `production_${text(claim.id)}`,
+        claim_id: text(claim.id),
+        year: years[0],
+        title: claimText,
+        evidence_type: "verified_place_production_claim"
+      };
+      const roles = rolesFor(place, milestone);
+      addMilestone(epochGroups[epoch.id], place, milestone, sourceFile, sources, roles, connectionCatalog);
+      for (const trackId of trackIdsFor(tracks, place, milestone)) {
+        addMilestone(trackGroups[trackId], place, milestone, sourceFile, sources, roles, connectionCatalog);
+      }
+    }
+  }
+
   const claimById = new Map((claimsRegistry.claims || []).map((claim) => [text(claim?.claim_id), claim]));
   const canonicalSourceById = new Map((sourcesRegistry.sources || []).map((source) => [text(source?.source_id), source]));
   const moduleSourceById = new Map((periodModules.sources || []).map((source) => [text(source?.source_id), source]));
@@ -638,7 +709,7 @@ export function buildEpokePlaceIndex() {
   };
 
   return {
-    version: 5,
+    version: 6,
     contract: "source-backed-history-coverage-v1",
     generated_from: [
       "data/places/places_index.json",
@@ -650,6 +721,7 @@ export function buildEpokePlaceIndex() {
       PERIOD_MODULES_FILE,
       EMNER_FILE,
       "data/runtime/stories-all.json",
+      "data/places/production/*.json",
       "data/relations.json",
       "data/relations_philanthropy.json"
     ],
@@ -673,6 +745,7 @@ export function buildEpokePlaceIndex() {
       connected_work_count: connectedWorks.size,
       connected_story_count: connectedStories.size,
       canonical_story_milestone_count: allEpochPlaces.reduce((sum, place) => sum + place.milestones.filter((milestone) => milestone.evidence_type === "canonical_story").length, 0),
+      verified_place_production_milestone_count: allEpochPlaces.reduce((sum, place) => sum + place.milestones.filter((milestone) => milestone.evidence_type === "verified_place_production_claim").length, 0),
       indexed_place_count: uniquePlaces.size,
       epoch_place_relations: allEpochPlaces.length,
       milestone_count: allEpochPlaces.reduce((sum, place) => sum + place.milestones.length, 0)
