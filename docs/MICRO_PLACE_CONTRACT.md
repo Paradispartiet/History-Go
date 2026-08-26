@@ -40,7 +40,11 @@ the materializer that generated the candidate.
 
 Micro Places do **not** require artificial People, Objects, Brands, Stories,
 Reading Trails, Fagverk, language packages, badges, four PlaceCard collections or
-an eight-question quiz. A Micro Place may also omit all image fields; if an
+an eight-question quiz. They also do not require a second, full subject-specific
+Place production report when the canonical v4.2 Micro production packet has
+passed the independent factual and editorial review below. A missing, pending or
+self-approved Micro packet fails closed and restores the ordinary subject gate.
+A Micro Place may also omit all image fields; if an
 image is supplied, the ordinary path and provenance validation still applies.
 Such content may be connected later only when real,
 place-specific evidence supports it.
@@ -90,15 +94,17 @@ The Miljø & gjenbruk Places additionally keep `circular_profile` for factual
 service and reuse details. The profile does not turn them into full nature
 PlaceCards.
 
-The 2026 expansion adds 25 separately reviewed canonical Micro Places:
+The 2026 expansion adds 29 separately reviewed canonical Micro Places:
 
-- 15 additional `natur / miljo_gjenbruk` service points;
-- four `bla_skilt` Places under the relevant existing top category;
+- 16 additional `natur / miljo_gjenbruk` service points;
+- seven `bla_skilt` Places under the relevant existing top category;
 - six individual `historie / snublestein` Places.
 
-This pilot is not an exhaustive inventory of Oslo's blue plaques or
-Stolpersteine. Every physical plaque or stone keeps its own identity; shared
-addresses or themes are relations, not reasons to merge markers.
+The six Stolpersteine are a deliberately curated, geographically dispersed
+pilot. Dense address clusters must not be mass-imported merely to chase a total.
+The blue-plaque pilot is also source-driven rather than exhaustive. Every
+selected physical plaque or stone keeps its own identity; shared addresses or
+themes are relations, not reasons to merge markers.
 
 ## 6. Review integrity
 

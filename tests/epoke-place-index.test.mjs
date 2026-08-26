@@ -118,10 +118,23 @@ test("Oslo coverage classifies every canonical place exactly once without overst
     .sort();
 
   assert.equal(coverage.contract, "oslo-history-coverage-v1");
-  assert.equal(coverage.canonical_place_count, 563);
+  // The curated Micro Place expansion adds four Oslo places; none claims dated History evidence yet.
+  assert.equal(coverage.canonical_place_count, 567);
   assert.equal(coverage.dated_evidence_place_count, 180);
   assert.equal(coverage.documented_case_place_count, 2);
-  assert.equal(coverage.awaiting_source_backed_history_count, 381);
+  assert.equal(coverage.awaiting_source_backed_history_count, 385);
+  for (const placeId of [
+    "hoybraten_miljostasjon",
+    "bla_skilt_kjeglebanen_briskebyveien_21",
+    "bla_skilt_fredrikke_qvam_pilestredet_81",
+    "bla_skilt_sophie_borchgrevink_cort_adelers_gate_33"
+  ]) {
+    assert.equal(
+      coverage.places.find((place) => place.place_id === placeId)?.status,
+      "awaiting_source_backed_history",
+      `${placeId} must not claim dated History evidence before a separate evidence package exists`
+    );
+  }
   assert.deepEqual(coverage.places.map((place) => place.place_id).sort(), osloPlaceIds);
   assert.equal(new Set(coverage.places.map((place) => place.place_id)).size, coverage.canonical_place_count);
   assert.ok(coverage.places.every((place) => allowedStatuses.has(place.status)));
