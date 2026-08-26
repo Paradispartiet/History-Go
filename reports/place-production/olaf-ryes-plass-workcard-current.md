@@ -1,8 +1,8 @@
 # Olaf Ryes plass — arbeidskort
 
 Oppdatert: 2026-08-25  
-Samlet status: `IN_PRODUCTION_PHASE_8`  
-Neste risikogrense: collections / People / quiz / Knowledge / onsite.
+Samlet status: `READY_FOR_PR_CI_AND_RESPONSIVE_QA`
+Neste risikogrense: PR-head, CI, merge og Pages-deploy.
 
 | Fase | Status | Evidens |
 |---:|---|---|
@@ -14,10 +14,13 @@ Neste risikogrense: collections / People / quiz / Knowledge / onsite.
 | 5 | COMPLETE | Hovedtekst, kronologi og 3 Stories |
 | 6 | COMPLETE | 1903/2009, språk, nytt, lesespor og EN/ES/PT |
 | 7 | COMPLETE | Source/own-place/før-etter audit og test |
-| 8–19 | PENDING | Integrasjonspakke etter første merge |
-| 20–24 | PENDING | Endelig QA, audit, merge og deploy |
+| 8–19 | COMPLETE | Fire samlingsflater, eksakt People/Objects/Related, ærlig tom Brands, rich 5×7, Knowledge, onsite og runtime |
+| 20 | COMPLETE | 13 relevante tester, quiz/Knowledge, place-open, indeks, Stories og People-porter grønne |
+| 21 | PENDING CI | Responsiv desktop/mobil-fixture; lokal nettleserbinær mangler |
+| 22 | COMPLETE | Manuell kilde-, innholds-, bildegrense- og own-place-QA |
+| 23 | PENDING | PR-head og alle CI-jobber |
+| 24 | PENDING | One-place gate, merge og Pages-deploy |
 
 ## Aktiv holdback
 
-Parkteatret finnes i legacy Brand-katalogen uten verifisert logo/wordmark-proveniens. Synlig Brand-runding avgjøres i fase 8 etter bilde- og own-place-gate; tomtilstand er akseptabelt, falsk badge er ikke.
-
+Parkteatret finnes i legacy Brand-katalogen uten verifisert logo/wordmark-proveniens og er dessuten et eget nabobygg. Brands er derfor produksjonsklart som ærlig tomtilstand; kandidaten forblir holdt tilbake.
