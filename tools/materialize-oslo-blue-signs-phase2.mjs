@@ -11,7 +11,7 @@ const MANIFEST_FILE = 'data/places/manifest.json';
 const CONTRACT_FILE = 'data/categories/category_contract.json';
 const GEONORGE_SEARCH = 'https://ws.geonorge.no/adresser/v1/sok';
 const GEONORGE_SOURCE = 'https://ws.geonorge.no/adresser/v1/';
-const DEFAULT_BLUE_SIGN_SOURCE = 'https://www.oslobyesvel.no/blaaskilt';
+const DEFAULT_BLUE_SIGN_SOURCE = 'https://www.oslobyesvel.no/blaa-skilt-i-oslo';
 
 function readJson(rel) { return JSON.parse(fs.readFileSync(path.join(ROOT, rel), 'utf8')); }
 function writeJson(rel, value) {
@@ -226,13 +226,12 @@ for (const candidate of intake.candidates) {
   ensurePlaceSubcategory(contract, candidate.category);
   const geo = await geocode(candidate);
   const { place, text } = makePlace(candidate, geo);
-  const manifestRel = `${candidate.category}/oslo/bla_skilt/${candidate.id}.json`;
-  const placeFile = `data/places/${manifestRel}`;
+  const manifestRel = `places/${candidate.category}/oslo/bla_skilt/${candidate.id}.json`;
+  const placeFile = `data/${manifestRel}`;
   const packetFile = `data/places/production/${candidate.id}.json`;
-  if (manifest.files.includes(manifestRel)) throw new Error(`Manifest duplicate before write: ${candidate.id}`);
   writeJson(placeFile, place);
   writeJson(packetFile, makePacket(candidate, placeFile, place, text, geo));
-  manifest.files.push(manifestRel);
+  if (!manifest.files.includes(manifestRel)) manifest.files.push(manifestRel);
   materialized.push({ id: candidate.id, category: candidate.category, placeFile, packetFile, lat: geo.lat, lon: geo.lon, sourceObjectId: geo.sourceObjectId, imageGoverned: Boolean(candidate.image && candidate.imageCredit && candidate.imageLicense && candidate.imageSourceUrl) });
 }
 

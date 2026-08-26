@@ -8,6 +8,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const read = rel => JSON.parse(fs.readFileSync(path.join(ROOT, rel), 'utf8'));
 const exists = rel => fs.existsSync(path.join(ROOT, rel));
 const intake = read('reports/oslo-blue-signs-phase2-2026/intake.json');
+const manifest = read('data/places/manifest.json');
 
 const EXISTING_BASELINE = new Set([
   'bla_skilt_aud_schonemann_vetlandsveien_69d',
@@ -79,6 +80,7 @@ test('all 15 new plaques materialize as separate canonical Micro Places with ver
     assert.ok(place.address?.street);
     assert.ok(place.address?.number);
     assert.ok(place.externalLinks?.some(link => /oslobyesvel\.no/i.test(link?.url || '')));
+    assert.ok(manifest.files.includes(`places/${candidate.category}/oslo/bla_skilt/${candidate.id}.json`), `${candidate.id} missing from manifest`);
   }
 });
 

@@ -27,8 +27,6 @@ jobs:
           cache: npm
       - name: Install repository dependencies
         run: npm ci
-      - name: Normalize curated intake
-        run: node tools/normalize-oslo-blue-signs-phase2-intake.mjs
       - name: Materialize blue-sign phase 2
         run: node tools/materialize-oslo-blue-signs-phase2.mjs
       - name: Build canonical place index and runtime payloads

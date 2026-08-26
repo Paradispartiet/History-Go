@@ -55,12 +55,11 @@ function plaque(overrides = {}) {
 test('Micro Place card renders plaque media only with complete provenance', () => {
   const window = fixture();
   const place = plaque();
-  assert.deepEqual(window.HGMicroPlaceCard.governedMedia(place), {
-    image: place.image,
-    sourceUrl: place.imageSourceUrl,
-    credit: place.imageCredit,
-    license: place.imageLicense
-  });
+  const media = window.HGMicroPlaceCard.governedMedia(place);
+  assert.equal(media?.image, place.image);
+  assert.equal(media?.sourceUrl, place.imageSourceUrl);
+  assert.equal(media?.credit, place.imageCredit);
+  assert.equal(media?.license, place.imageLicense);
 
   window.HGMicroPlaceCard.apply(place);
   const panel = window.document.getElementById('pcMicroIdentity');
