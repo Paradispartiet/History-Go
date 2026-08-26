@@ -349,6 +349,20 @@ export function validatePacket({ packet, place, packetFile = '(packet)', now = n
     if (!normalizeText(claim?.sourceLocation)) addIssue(issues, 'missing_source_location', `${id || 'Claim'} mangler sourceLocation.`, { packetFile });
     if (!ALLOWED_SOURCE_TYPES.has(claim?.sourceType)) addIssue(issues, 'invalid_source_type', `${id || 'Claim'} har ugyldig sourceType.`, { packetFile });
     if (!parseDate(claim?.verifiedAt)) addIssue(issues, 'invalid_verified_date', `${id || 'Claim'} har ugyldig verifiedAt.`, { packetFile });
+    if (claim?.timelineYear !== undefined) {
+      const timelineYear = Number(claim.timelineYear);
+      if (!Number.isInteger(timelineYear) || timelineYear < 1000 || timelineYear > 9999) {
+        addIssue(issues, 'invalid_timeline_year', `${id || 'Claim'} har ugyldig timelineYear.`, { packetFile });
+      } else {
+        const exactYear = new RegExp(`(^|[^0-9])${timelineYear}(?![0-9])`, 'u');
+        if (!exactYear.test(String(claim?.claim ?? ''))) {
+          addIssue(issues, 'timeline_year_missing_from_claim', `${id || 'Claim'} må nevne timelineYear eksplisitt i claim-teksten.`, { packetFile });
+        }
+        if (claim?.temporalStatus !== 'historical') {
+          addIssue(issues, 'timeline_year_requires_historical_status', `${id || 'Claim'} kan bare ha timelineYear når temporalStatus er historical.`, { packetFile });
+        }
+      }
+    }
     if (claim?.status === 'verified' && claim?.claimKind === 'strong') {
       const independent = new Set([claim.sourceUrl, ...(Array.isArray(claim.independentSourceUrls) ? claim.independentSourceUrls : [])].filter(Boolean));
       if (independent.size < 2) addIssue(issues, 'strong_claim_needs_two_sources', `${id} er strong og må ha minst to uavhengige kilder.`, { packetFile });

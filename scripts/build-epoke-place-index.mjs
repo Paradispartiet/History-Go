@@ -217,7 +217,7 @@ function placeDetailFor(place) {
     : payload;
 }
 
-function exactProductionClaimYears(statement) {
+export function exactProductionClaimYears(statement) {
   const value = text(statement);
   if (!value || UNCERTAIN_YEAR_CLAIM.test(value)) return [];
   const years = [];
@@ -225,10 +225,14 @@ function exactProductionClaimYears(statement) {
   let match;
   while ((match = matcher.exec(value))) {
     const year = Number(match[2]);
-    const yearPosition = match.index + text(match[1]).length;
+    const yearPosition = match.index + match[1].length;
+    const beforeYear = value.slice(Math.max(0, yearPosition - 24), yearPosition);
+    const afterYear = value.slice(yearPosition + match[2].length, yearPosition + match[2].length + 24);
     if (
       year >= 1000 && year <= 2026 &&
-      !APPROXIMATE_YEAR_CONTEXT.test(value.slice(Math.max(0, yearPosition - 45), yearPosition))
+      !APPROXIMATE_YEAR_CONTEXT.test(value.slice(Math.max(0, yearPosition - 45), yearPosition)) &&
+      !/\brema\s*$/i.test(beforeYear) &&
+      !(/,\s*$/.test(beforeYear) && /^\s+oslo\b/i.test(afterYear))
     ) years.push(year);
   }
   return [...new Set(years)];
@@ -518,7 +522,8 @@ export function buildEpokePlaceIndex() {
   // explicitly historical Oslo claims with unambiguous exact years enter the
   // timeline. Legacy packages without temporalStatus remain eligible, while
   // claims explicitly marked current are excluded. All years in one claim
-  // must resolve to the same canonical epoch.
+  // must resolve to the same canonical epoch unless a reviewed timelineYear
+  // explicitly anchors a multi-year claim to one of the years it names.
   const productionDirectory = "data/places/production";
   for (const fileName of fs.readdirSync(path.join(ROOT, productionDirectory)).filter((name) => name.endsWith(".json")).sort()) {
     const sourceFile = `${productionDirectory}/${fileName}`;
@@ -530,12 +535,16 @@ export function buildEpokePlaceIndex() {
       const claimText = text(claim?.claim);
       const sourceUrl = text(claim?.sourceUrl);
       const years = exactProductionClaimYears(claimText);
-      const matchingEpochs = [...new Set(years.map((year) => epochForYear(epochs, year)?.id).filter(Boolean))];
+      const declaredTimelineYear = Number.isInteger(claim?.timelineYear) ? Number(claim.timelineYear) : null;
+      const eligibleYears = declaredTimelineYear == null
+        ? years
+        : years.includes(declaredTimelineYear) ? [declaredTimelineYear] : [];
+      const matchingEpochs = [...new Set(eligibleYears.map((year) => epochForYear(epochs, year)?.id).filter(Boolean))];
       if (
         text(claim?.status) !== "verified" ||
         (text(claim?.temporalStatus) && text(claim.temporalStatus) !== "historical") ||
         !/^https?:\/\//.test(sourceUrl) ||
-        !text(claim?.id) || !claimText || !years.length || matchingEpochs.length !== 1
+        !text(claim?.id) || !claimText || !eligibleYears.length || matchingEpochs.length !== 1
       ) continue;
       const epoch = epochs.find((candidate) => candidate.id === matchingEpochs[0]);
       if (!epoch) continue;
@@ -547,7 +556,7 @@ export function buildEpokePlaceIndex() {
       const milestone = {
         id: `production_${text(claim.id)}`,
         claim_id: text(claim.id),
-        year: years[0],
+        year: eligibleYears[0],
         title: claimText,
         evidence_type: "verified_place_production_claim"
       };

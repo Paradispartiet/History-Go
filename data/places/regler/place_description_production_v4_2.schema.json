@@ -89,6 +89,7 @@
           "claimKind": { "enum": ["ordinary", "identity", "strong", "temporal", "disputed"] },
           "evidenceMode": { "enum": ["explicit", "direct", "corroborated"] },
           "temporalStatus": { "enum": ["historical", "current", "planned", "superseded"] },
+          "timelineYear": { "type": "integer", "minimum": 1000, "maximum": 9999 },
           "independentSourceUrls": {
             "type": "array",
             "items": { "type": "string", "format": "uri", "pattern": "^https://" },
