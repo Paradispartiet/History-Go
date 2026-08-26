@@ -122,6 +122,50 @@ test("version 5 place index requires an exhaustive Oslo coverage contract", asyn
   dom.window.close();
 });
 
+test("version 6 place index requires materialized verified place-production evidence", async () => {
+  const dom = new JSDOM("<!doctype html>", { runScripts: "outside-only", url: "https://history-go.test/" });
+  const w = dom.window;
+  let attempts = 0;
+  w.fetch = async (url) => {
+    if (String(url).includes("epoke-place-index.json")) {
+      attempts += 1;
+      const coverage = {
+        contract: "oslo-history-coverage-v1",
+        canonical_place_count: 1,
+        dated_evidence_place_count: 1,
+        documented_case_place_count: 0,
+        awaiting_source_backed_history_count: 0,
+        categories: [{ category: "historie", total: 1 }],
+        places: [{ place_id: "a", status: "dated_evidence" }]
+      };
+      const base = {
+        version: 6,
+        contract: "source-backed-history-coverage-v1",
+        stats: { canonical_claim_count: 315, place_evidence_link_count: 325 },
+        domains: { historie: { oslo_coverage: coverage } },
+        locations: { contract: "canonical-place-geography-v1", places: {}, countries: [] }
+      };
+      return {
+        ok: true,
+        status: 200,
+        json: async () => attempts === 1 ? base : ({
+          ...base,
+          stats: { ...base.stats, verified_place_production_milestone_count: 97 }
+        })
+      };
+    }
+    return { ok: true, status: 200, json: async () => ({ domain: "historie", epoker: [] }) };
+  };
+  w.eval(runtimeSource);
+  await w.HGEpokerRuntime.ready;
+
+  assert.equal(await w.HGEpokerRuntime.loadPlaceIndex(), null);
+  const recovered = await w.HGEpokerRuntime.loadPlaceIndex();
+  assert.equal(attempts, 2);
+  assert.equal(recovered.stats.verified_place_production_milestone_count, 97);
+  dom.window.close();
+});
+
 test("canonical History period coverage is lazy, validated and retryable", async () => {
   const dom = new JSDOM("<!doctype html>", { runScripts: "outside-only", url: "https://history-go.test/" });
   const w = dom.window;

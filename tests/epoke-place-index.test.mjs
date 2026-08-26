@@ -10,13 +10,14 @@ test("generated epoch-place index is deterministic and current", () => {
     serializeEpokePlaceIndex(index)
   );
   assert.equal(index.contract, "source-backed-history-coverage-v1");
-  assert.equal(index.version, 5);
+  assert.equal(index.version, 6);
   assert.equal(index.locations.contract, "canonical-place-geography-v1");
   assert.equal(index.stats.canonical_claim_count, 315);
   assert.equal(index.stats.canonical_source_count, 256);
   assert.equal(index.stats.place_evidence_link_count, 325);
   assert.equal(index.stats.period_case_count, 9);
   assert.equal(index.stats.canonical_story_milestone_count, 172);
+  assert.equal(index.stats.verified_place_production_milestone_count, 97);
 });
 
 test("canonical place geography separates Oslo, Lisboa and other countries deterministically", () => {
@@ -59,14 +60,14 @@ test("history index supports multi-epoch places without changing primary categor
 
 test("every indexed milestone is dated, inspectable and sourced from an approved canonical evidence lane", () => {
   const index = buildEpokePlaceIndex();
-  const allowedTypes = new Set(["leksikon_chronology", "canonical_place_claim", "canonical_story"]);
+  const allowedTypes = new Set(["leksikon_chronology", "canonical_place_claim", "canonical_story", "verified_place_production_claim"]);
   for (const group of Object.values(index.domains.historie.epochs)) {
     for (const place of group.places) {
       assert.ok(place.source_file.startsWith("places/"), `primary source file missing for ${place.place_id}`);
       for (const milestone of place.milestones) {
         assert.ok(Number.isFinite(milestone.year), `${place.place_id}:${milestone.id} must be dated`);
         assert.ok(
-          milestone.source_file.startsWith("data/leksikon/") || milestone.source_file.startsWith("data/fag/historie/") || milestone.source_file.startsWith("data/runtime/stories-all/"),
+          milestone.source_file.startsWith("data/leksikon/") || milestone.source_file.startsWith("data/fag/historie/") || milestone.source_file.startsWith("data/runtime/stories-all/") || milestone.source_file.startsWith("data/places/"),
           `${place.place_id}:${milestone.id} must point to canonical History evidence`
         );
         assert.ok(allowedTypes.has(milestone.evidence_type), `${place.place_id}:${milestone.id} has an unknown evidence type`);
@@ -77,6 +78,29 @@ test("every indexed milestone is dated, inspectable and sourced from an approved
           assert.ok(milestone.story_id, `${place.place_id}:${milestone.id} lacks story id`);
           assert.equal(index.locations.places[place.place_id]?.country_id, "no", `${place.place_id}:${milestone.id} must belong to Norway`);
           assert.equal(index.locations.places[place.place_id]?.city_id, "oslo", `${place.place_id}:${milestone.id} must belong to Oslo`);
+        }
+        if (milestone.evidence_type === "verified_place_production_claim") {
+          assert.equal(index.locations.places[place.place_id]?.country_id, "no", `${place.place_id}:${milestone.id} must belong to Norway`);
+          assert.equal(index.locations.places[place.place_id]?.city_id, "oslo", `${place.place_id}:${milestone.id} must belong to Oslo`);
+          assert.ok(milestone.source_file.startsWith("data/places/production/"), `${place.place_id}:${milestone.id} must point to its production package`);
+          assert.equal(milestone.id, `production_${milestone.claim_id}`);
+          const production = JSON.parse(fs.readFileSync(milestone.source_file, "utf8"));
+          assert.equal(production.placeId, place.place_id);
+          const claim = production.claims.find((candidate) => candidate.id === milestone.claim_id);
+          assert.ok(claim, `${place.place_id}:${milestone.id} must resolve its production claim`);
+          assert.equal(claim.status, "verified");
+          assert.ok(!claim.temporalStatus || claim.temporalStatus === "historical");
+          assert.equal(milestone.title, claim.claim);
+          assert.equal(milestone.sources.length, 1);
+          assert.equal(milestone.sources[0].url, claim.sourceUrl);
+          assert.equal(milestone.sources[0].title, claim.sourceLocation || claim.sourceType || claim.sourceUrl);
+          assert.equal(milestone.sources[0].verifiedAt, claim.verifiedAt || "");
+          const anchorMatch = milestone.title.match(new RegExp(`(^|[^0-9])${milestone.year}(?![0-9])`));
+          assert.ok(anchorMatch);
+          const anchorPosition = anchorMatch.index + String(anchorMatch[1] || "").length;
+          assert.doesNotMatch(milestone.title.slice(Math.max(0, anchorPosition - 45), anchorPosition), /(?:\bca\.?|\bcirka|\bomkring|\bomtrent|\brundt|\btrolig|\bantakelig|\bkanskje)[^.!?\n]{0,35}$/i);
+          assert.doesNotMatch(milestone.title.slice(anchorPosition, anchorPosition + 24), new RegExp(`^${milestone.year}(?:\\s*[-–]\\s*årene|[-–]tallet)`, "i"));
+          assert.doesNotMatch(milestone.title, /(?:dateringen er usikker|teknisk midtpunkt|kildene (?:spriker|varierer)|omtrentlig datering)/i);
         }
       }
     }
@@ -95,9 +119,9 @@ test("Oslo coverage classifies every canonical place exactly once without overst
   assert.equal(coverage.contract, "oslo-history-coverage-v1");
   // The curated Micro Place expansion adds four Oslo places; none claims dated History evidence yet.
   assert.equal(coverage.canonical_place_count, 567);
-  assert.equal(coverage.dated_evidence_place_count, 168);
+  assert.equal(coverage.dated_evidence_place_count, 172);
   assert.equal(coverage.documented_case_place_count, 2);
-  assert.equal(coverage.awaiting_source_backed_history_count, 397);
+  assert.equal(coverage.awaiting_source_backed_history_count, 393);
   for (const placeId of [
     "hoybraten_miljostasjon",
     "bla_skilt_kjeglebanen_briskebyveien_21",
@@ -121,6 +145,20 @@ test("Oslo coverage classifies every canonical place exactly once without overst
   for (const category of coverage.categories) {
     assert.equal(category.dated_evidence + category.documented_case + category.awaiting_source_backed_history, category.total);
   }
+});
+
+test("verified production claims fail closed for uncertainty, current-only state and non-Oslo places", () => {
+  const index = buildEpokePlaceIndex();
+  const productionClaimsFor = (placeId) => Object.values(index.domains.historie.epochs)
+    .flatMap((group) => group.places)
+    .filter((place) => place.place_id === placeId)
+    .flatMap((place) => place.milestones)
+    .filter((milestone) => milestone.evidence_type === "verified_place_production_claim");
+
+  assert.ok(productionClaimsFor("bankplassen").some((milestone) => milestone.claim_id === "claim_bankplassen_first_bank_1828"));
+  assert.equal(productionClaimsFor("gamle_aker_kirke").some((milestone) => milestone.claim_id === "claim_gak_dating_uncertain"), false);
+  assert.equal(productionClaimsFor("bankplassen").some((milestone) => milestone.claim_id === "claim_bankplassen_current_bank_1986"), false);
+  assert.equal(productionClaimsFor("lisbon_anjos70").length, 0);
 });
 
 test("every epoch and parallel track has substantial canonical place coverage", () => {
