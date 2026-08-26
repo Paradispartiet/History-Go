@@ -8,7 +8,11 @@
     {
       "id": "kurator_programutvalg",
       "purpose": "Gjøre kuratorisk premiss, verkutvalg og dokumenterte kriterier til første arbeidsvalg.",
-      "learning_focus": ["kuratorisk_begrunnelse", "verkforstaelse", "bredde"],
+      "learning_focus": [
+        "kuratorisk_begrunnelse",
+        "verkforstaelse",
+        "bredde"
+      ],
       "mails": [
         {
           "role_scope": "kurator_film_tv",
@@ -45,7 +49,11 @@
               "label": "Lås kriteriene før du velger",
               "reply": "Jeg skriver ned hvilke spørsmål serien skal svare på og vurderer alle fire verk mot de samme kriteriene.",
               "effect": 1,
-              "tags": ["curation", "criteria", "breadth"],
+              "tags": [
+                "curation",
+                "criteria",
+                "breadth"
+              ],
               "feedback": "Du gjør utvalget etterprøvbart og kan forklare både valg og fravalg."
             },
             {
@@ -53,8 +61,151 @@
               "label": "Start med det sikreste publikumsnavnet",
               "reply": "Jeg setter inn det kjente verket først og former resten av programmet rundt det.",
               "effect": -1,
-              "tags": ["audience", "canon_risk"],
+              "tags": [
+                "audience",
+                "canon_risk"
+              ],
               "feedback": "Du får en enkel start, men lar ett navn definere programmet før premisset er testet."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_kurator_program_case",
+      "purpose": "Åpne ett vedvarende kuratorisk programarbeid der premiss, verkutvalg, rettigheter, kontekst og publikumsansvar kan endres uten at første smaksvurdering blir skjult fasit.",
+      "learning_focus": [
+        "persistent_program_case",
+        "kuratorisk_begrunnelse",
+        "sporbarhet"
+      ],
+      "mails": [
+        {
+          "role_scope": "kurator_film_tv",
+          "place_id": "cinemateket_oslo",
+          "repeatable": false,
+          "stage": "stable",
+          "thread_key": "film_tv_kurator_programserie_realism_001",
+          "planned_only": true,
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "film_tv",
+            "kurator_film_tv"
+          ],
+          "id": "film_tv_kurator_realism_program_case_open_001",
+          "mail_type": "job",
+          "mail_family": "role_world_rollout_kurator_program_case",
+          "phase": "advanced",
+          "day_phase": "morning",
+          "priority": 88,
+          "cooldown": 12,
+          "from": "Programansvarlig",
+          "people_ref": "film_tv_programansvarlig",
+          "subject": "Åpne serien som et programarbeid, ikke som en ferdig smaksliste",
+          "summary": "Programansvarlig gir deg ansvar for en serie om hvordan filmarv blir synlig og usynlig. Før tre verk kan velges må premiss, kandidater, rettighetsstatus og begrunnelser inn i ett sporbart arbeidsobjekt.",
+          "purpose": "Bevise et persistent programobjekt som overlever rettighetshandoff, venting, History Go-kontekst, rework, publikumsrespons og avslutning.",
+          "stakes": "Hvis et prestisjeverk låses først kan resten av prosessen bli en etterrasjonalisering. Et åpent programspor gjør endringer dyrere å skjule, men lettere å forklare.",
+          "situation": [
+            "Serien har et institusjonelt mandat om filmhistorisk kontekst, bredde og offentlig formidling.",
+            "Fire kandidater er faglig relevante, men bare deler av rettighets- og kopistatusen er bekreftet.",
+            "Kuratoren kan utvikle og anbefale programmet, men kan ikke love visningsrettigheter eller alene låse institusjonens offentlige program."
+          ],
+          "task_domain": "vedvarende_programarbeid",
+          "task_kind": "job",
+          "competency": "kuratorisk_begrunnelse",
+          "pressure": "prestisje_og_programfrist",
+          "choice_axis": "apent_kriteriespor_vs_last_prestisjeverk",
+          "consequence_axis": "reviderbar_programkvalitet_vs_etterrasjonalisering",
+          "narrative_arc": "fra_premiss_til_sporbart_program",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "film_tv_kurator_program_case_001"
+            ],
+            "institution_id": "cinemateket_programavdeling_001",
+            "deadline_ref": "programklar_for_intern_las",
+            "deadline_day": 12,
+            "deadline_phase": "afternoon",
+            "priority": "high"
+          },
+          "effects": {
+            "work_object_ops": [
+              {
+                "op": "create",
+                "event_id": "film_tv_kurator_program_case_opened",
+                "work_object": {
+                  "work_object_id": "film_tv_kurator_program_case_001",
+                  "kind": "curated_program_case",
+                  "role_scope": "kurator_film_tv",
+                  "institution_id": "cinemateket_programavdeling_001",
+                  "title": "Cinemateket-program: filmminne, utvalg og visningsgrunnlag",
+                  "status": "in_progress",
+                  "phase": "premiss_og_utvalg",
+                  "people_refs": [
+                    "film_tv_programansvarlig",
+                    "film_tv_rettighetskoordinator",
+                    "film_tv_arkivar",
+                    "film_tv_formidler"
+                  ],
+                  "place_refs": [
+                    "cinemateket_oslo",
+                    "kurator_programbord",
+                    "kurator_rettighetslogg",
+                    "kurator_programarkiv"
+                  ],
+                  "knowledge_refs": [
+                    "data/places/film_tv/oslo/cinemateket_oslo.json"
+                  ],
+                  "open_questions": [
+                    "Hvilke kriterier gjør utvalget etterprøvbart?",
+                    "Hvilke verk er faktisk rettighets- og kopiklarert?",
+                    "Hvilken kontekst trenger publikum for å forstå programmet uten at dagens smak omskriver historien?"
+                  ],
+                  "deadline": "intern_programlas_dag_12_ettermiddag",
+                  "confidentiality": "internt_program_og_rettighetsspor",
+                  "flags": [
+                    "program_case_opened"
+                  ],
+                  "shared": false
+                }
+              }
+            ]
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Åpne kriterie-, kandidat- og rettighetsspor før utvalget låses",
+              "reply": "Jeg registrerer premiss, kandidater, hva vi vet, hva vi antar og hvilke avklaringer som mangler.",
+              "effect": 1,
+              "feedback": "Programmet blir reviderbart før prestisje og vane rekker å bli skjult regel.",
+              "effects": {
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_kurator_open_criteria_trace",
+                    "work_object_id": "film_tv_kurator_program_case_001",
+                    "flag": "eksplisitte_kriterier_for_utvalg"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lås det mest prestisjefylte verket først og bygg serien rundt det",
+              "reply": "Det verket gir serien tyngde; jeg tar det som anker og begrunner resten etterpå.",
+              "effect": -1,
+              "feedback": "Ett navn får definere både premiss og blindsoner før rettigheter og bredde er kontrollert.",
+              "effects": {
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_kurator_prestige_anchor_locked",
+                    "work_object_id": "film_tv_kurator_program_case_001",
+                    "flag": "prestisjeverk_last_for_kriteriekontroll"
+                  }
+                ]
+              }
             }
           ]
         }

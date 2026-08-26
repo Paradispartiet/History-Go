@@ -8,7 +8,11 @@
     {
       "id": "kurator_rettighetskonsekvens",
       "purpose": "La et tidligere rettighetsvalg få en synlig senere konsekvens for tillit og programstabilitet.",
-      "learning_focus": ["konsekvens", "rettigheter", "institusjonell_tillit"],
+      "learning_focus": [
+        "konsekvens",
+        "rettigheter",
+        "institusjonell_tillit"
+      ],
       "mails": [
         {
           "role_scope": "kurator_film_tv",
@@ -46,7 +50,11 @@
               "label": "Dokumenter status og rett eventuelle avvik",
               "reply": "Jeg sammenholder avtalen, programarket og det som faktisk ble publisert, og retter avvik før neste runde.",
               "effect": 1,
-              "tags": ["consequence", "trust", "rights"],
+              "tags": [
+                "consequence",
+                "trust",
+                "rights"
+              ],
               "feedback": "Du gjør etterkontroll til en del av kuratorisk kvalitet."
             },
             {
@@ -54,10 +62,210 @@
               "label": "Behandle avvik som ubetydelige hvis visningen gikk bra",
               "reply": "Publikum fikk en god kveld, så små forskjeller mellom logg og program trenger ikke mer arbeid.",
               "effect": -2,
-              "tags": ["trust_risk", "rights_risk"],
+              "tags": [
+                "trust_risk",
+                "rights_risk"
+              ],
               "feedback": "Du måler kvalitet bare i om kvelden gikk, ikke i om institusjonen kan stole på prosessen."
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_kurator_program_closure",
+      "purpose": "Avslutte kuratorens eget programsaksarbeid som en sporbar anbefaling uten å lekke lederens programlås eller rettighetsmyndighet til kuratoren.",
+      "learning_focus": [
+        "closure",
+        "authority_boundary",
+        "institutional_memory"
+      ],
+      "mails": [
+        {
+          "role_scope": "kurator_film_tv",
+          "place_id": "cinemateket_oslo",
+          "repeatable": false,
+          "stage": "stable",
+          "thread_key": "film_tv_kurator_programserie_realism_001",
+          "planned_only": true,
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "film_tv",
+            "kurator_film_tv"
+          ],
+          "id": "film_tv_kurator_realism_program_close_001",
+          "mail_type": "consequence",
+          "mail_family": "role_world_rollout_kurator_program_closure",
+          "phase": "climax",
+          "day_phase": "afternoon",
+          "priority": 99,
+          "cooldown": 14,
+          "from": "Programansvarlig",
+          "people_ref": "film_tv_programansvarlig",
+          "subject": "Lukk kuratorsaken som anbefaling – programlåsen er fortsatt min beslutning",
+          "summary": "Premiss, rettighetsvilkår, rework og publikumsrespons er samlet. Du skal ferdigstille den kuratoriske pakken og anbefale programstatus, mens programansvarlig beholder beslutningen om offentlig låsing.",
+          "purpose": "Bevise at persistent arbeid kan fullføres uten at completion eller omdømme fabrikerer myndighet som rollen ikke har.",
+          "stakes": "En presis avslutning gir institusjonen et etterprøvbart beslutningsgrunnlag. Å behandle egen faglig sikkerhet som godkjenning blander ekspertise og formell myndighet.",
+          "situation": [
+            "Rettighetsloggen og programarket kan sammenlignes direkte.",
+            "Publikumsrespons er dokumentert som mottakelseskunnskap, ikke som mandat.",
+            "Programansvarlig eier offentlig programlås; rettighetskoordinatorens dokumenterte vilkår kan ikke overstyres av smak eller standing."
+          ],
+          "task_domain": "programavslutning_og_myndighet",
+          "task_kind": "consequence",
+          "competency": "kuratorisk_begrunnelse",
+          "pressure": "faglig_eierskap_vs_formell_myndighet",
+          "choice_axis": "sporbart_anbefalingsgrunnlag_vs_selvautoriser_programlas",
+          "consequence_axis": "institusjonell_tillit_vs_myndighetslekkasje",
+          "narrative_arc": "fra_premiss_til_sporbart_program",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "film_tv_kurator_program_case_001"
+            ],
+            "institution_id": "cinemateket_programavdeling_001",
+            "rework_of_scene_id": "film_tv_kurator_realism_public_preview_001",
+            "priority": "urgent"
+          },
+          "authority_context": {
+            "institution_id": "cinemateket_programavdeling_001",
+            "unit_id": "cinemateket_programavdeling",
+            "role_scope": "kurator_film_tv",
+            "reporting_line": [
+              "film_tv_programansvarlig"
+            ],
+            "peer_functions": [
+              "film_tv_rettighetskoordinator",
+              "film_tv_arkivar",
+              "film_tv_formidler"
+            ],
+            "external_counterparts": [
+              "film_tv_distributor_kontakt"
+            ],
+            "goals_pressures": [
+              "programkvalitet",
+              "rettighetssikkerhet",
+              "offentlig_formidling",
+              "programfrist"
+            ],
+            "approval_points": [
+              {
+                "approval_id": "film_tv_program_lock_approval",
+                "action_id": "lock_public_program",
+                "approver_actor_id": "film_tv_programansvarlig",
+                "approval_object_id": "film_tv_kurator_program_lock_approval_001"
+              }
+            ],
+            "authority_rules": [
+              {
+                "action_id": "recommend_program_lock",
+                "authority": "influence_only",
+                "requires_resources": []
+              },
+              {
+                "action_id": "lock_public_program",
+                "authority": "approval_required",
+                "approval_id": "film_tv_program_lock_approval",
+                "requires_resources": []
+              },
+              {
+                "action_id": "promise_rights_without_agreement",
+                "authority": "forbidden",
+                "requires_resources": []
+              }
+            ],
+            "resources": [],
+            "escalation_paths": []
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ferdigstill sporet og anbefal programmet for lederens låsing",
+              "reply": "Jeg lukker kuratorsaken med kriterier, endringer, vilkår og publikumsnotat synlig, og anbefaler programstatus til programansvarlig.",
+              "effect": 2,
+              "authority_action": {
+                "action_id": "recommend_program_lock",
+                "intent": "recommend"
+              },
+              "feedback": "Du fullfører eget ansvar uten å gjøre faglig sikkerhet til formell programlås.",
+              "effects": {
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_kurator_standing_manager_closure",
+                    "audience_id": "manager:film_tv_programansvarlig",
+                    "delta": 3,
+                    "reason": "Kuratorens anbefaling er sporbar, myndighetsavgrenset og klar for formell beslutning.",
+                    "source_actor_id": "film_tv_programansvarlig"
+                  },
+                  {
+                    "event_id": "film_tv_kurator_standing_rights_closure",
+                    "audience_id": "professional:film_tv_rettighetskoordinator",
+                    "delta": 2,
+                    "reason": "Endelig kuratorpakke samsvarer med dokumenterte rettighetsvilkår.",
+                    "source_actor_id": "film_tv_rettighetskoordinator"
+                  }
+                ],
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_kurator_program_case_completed",
+                    "work_object_id": "film_tv_kurator_program_case_001",
+                    "to_status": "completed",
+                    "to_phase": "curatorial_package_ready_for_program_lock",
+                    "note": "Kuratorens arbeidsobjekt er fullført som anbefalingsgrunnlag; offentlig programlås forblir hos programansvarlig."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_kurator_authority_boundary_preserved",
+                    "work_object_id": "film_tv_kurator_program_case_001",
+                    "flag": "kuratorpakke_ferdig_uten_programlas_myndighet"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Anbefal med tydelig reservasjon der publikums- eller rettighetssporet fortsatt er svakt",
+              "reply": "Jeg lukker min arbeidsdel, markerer restusikkerheten og ber programansvarlig behandle den eksplisitt før offentlig låsing.",
+              "effect": 1,
+              "authority_action": {
+                "action_id": "recommend_program_lock",
+                "intent": "recommend"
+              },
+              "feedback": "Også en forsiktig anbefaling kan være profesjonelt komplett når restusikkerhet er synlig.",
+              "effects": {
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_kurator_standing_manager_reserved_closure",
+                    "audience_id": "manager:film_tv_programansvarlig",
+                    "delta": 2,
+                    "reason": "Restusikkerhet er synlig i stedet for skjult i en kategorisk anbefaling.",
+                    "source_actor_id": "film_tv_programansvarlig"
+                  }
+                ],
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_kurator_program_case_completed_reserved",
+                    "work_object_id": "film_tv_kurator_program_case_001",
+                    "to_status": "completed",
+                    "to_phase": "curatorial_package_ready_with_reservations",
+                    "note": "Kuratorens arbeidsobjekt er fullført med eksplisitte reservasjoner; programansvarlig beholder offentlig låsing."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_kurator_residual_uncertainty_visible",
+                    "work_object_id": "film_tv_kurator_program_case_001",
+                    "flag": "restusikkerhet_synlig_for_programansvarlig"
+                  }
+                ]
+              }
+            }
+          ],
+          "social_standing_context": {
+            "reaction_audience_id": "manager:film_tv_programansvarlig"
+          }
         }
       ]
     }

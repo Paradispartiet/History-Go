@@ -8,7 +8,11 @@
     {
       "id": "kurator_rettighetsoppfolging",
       "purpose": "Følge en tidligere rettighetsavklaring helt fram til dokumentert programstatus.",
-      "learning_focus": ["oppfolging", "rettigheter", "sporbarhet"],
+      "learning_focus": [
+        "oppfolging",
+        "rettigheter",
+        "sporbarhet"
+      ],
       "mails": [
         {
           "role_scope": "kurator_film_tv",
@@ -46,7 +50,11 @@
               "label": "Oppdater program og kommunikasjon etter vilkåret",
               "reply": "Vi låser den godkjente kopien, tar ut tilleggsmaterialet og oppdaterer teksten før publisering.",
               "effect": 1,
-              "tags": ["rights", "followup", "traceability"],
+              "tags": [
+                "rights",
+                "followup",
+                "traceability"
+              ],
               "feedback": "Du gjør avtalen til faktisk programstatus."
             },
             {
@@ -54,10 +62,196 @@
               "label": "Behold tilleggsmaterialet fordi det ikke er hovedverket",
               "reply": "Vilkåret gjelder sikkert bare selve filmen; vi lar introduksjonsfilmen stå.",
               "effect": -2,
-              "tags": ["rights_risk", "assumption"],
+              "tags": [
+                "rights_risk",
+                "assumption"
+              ],
               "feedback": "Du erstatter et eksplisitt vilkår med din egen tolkning."
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_kurator_program_rework",
+      "purpose": "Gjøre programrevisjon til ekte rework der History Go-kontekst kan åpne et bedre grep uten å overstyre rettighet, lederlinje eller kuratorisk ansvar.",
+      "learning_focus": [
+        "rework",
+        "History Go affordance",
+        "professional_feedback"
+      ],
+      "mails": [
+        {
+          "role_scope": "kurator_film_tv",
+          "place_id": "cinemateket_oslo",
+          "repeatable": false,
+          "stage": "stable",
+          "thread_key": "film_tv_kurator_programserie_realism_001",
+          "planned_only": true,
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "film_tv",
+            "kurator_film_tv"
+          ],
+          "id": "film_tv_kurator_realism_program_rework_001",
+          "mail_type": "followup",
+          "mail_family": "role_world_rollout_kurator_program_rework",
+          "phase": "mastery",
+          "day_phase": "afternoon",
+          "priority": 94,
+          "cooldown": 12,
+          "from": "Formidleren",
+          "people_ref": "film_tv_formidler",
+          "subject": "Bygg programmet på nytt: kriterier, rettighet og kontekst må peke samme vei",
+          "summary": "Formidleren returnerer programteksten fordi ankerverket fortsatt beskrives som selvsagt sentrum, selv om rettighetssvaret, breddekritikken og den historiske konteksten nå krever en tydeligere begrunnelse.",
+          "purpose": "Bevise feedback/rework og at en fullført History Go-oppgave kan åpne en mer presis rework-variant uten å gi ekstra myndighet.",
+          "stakes": "En reell revisjon kan endre rekkefølge, tekst og kanskje verkvalg. En kosmetisk revisjon lar første statusvalg fortsette å styre under nye ord.",
+          "situation": [
+            "Rettighetsvilkåret er nå dokumentert.",
+            "Formidleren har vist at programteksten lover større bredde enn første utkast leverer.",
+            "Cinemateket-konteksten kan brukes til å skille institusjonelt mandat fra personlig kanonpreferanse."
+          ],
+          "task_domain": "programrework",
+          "task_kind": "followup",
+          "competency": "kuratorisk_begrunnelse",
+          "pressure": "eierskap_til_forste_utkast_vs_reviderbarhet",
+          "choice_axis": "rebygg_programlogikk_vs_kosmetisk_revisjon",
+          "consequence_axis": "sporbart_program_vs_statusforsvar",
+          "narrative_arc": "fra_premiss_til_sporbart_program",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "film_tv_kurator_program_case_001"
+            ],
+            "institution_id": "cinemateket_programavdeling_001",
+            "rework_of_scene_id": "film_tv_kurator_realism_rights_response_001",
+            "priority": "urgent"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Revider rekkefølge og tekst mot kriterier, vilkår og breddekritikk",
+              "reply": "Jeg lar de nye premissene faktisk endre programarket og dokumenterer hvorfor.",
+              "effect": 2,
+              "feedback": "Rework blir en faglig revisjon, ikke en forsvarstale for første utkast.",
+              "effects": {
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_kurator_standing_team_rework_real",
+                    "audience_id": "team:film_tv_formidler",
+                    "delta": 3,
+                    "reason": "Kritikken endrer faktisk programtekst og begrunnelse.",
+                    "source_actor_id": "film_tv_formidler"
+                  },
+                  {
+                    "event_id": "film_tv_kurator_standing_manager_rework_real",
+                    "audience_id": "manager:film_tv_programansvarlig",
+                    "delta": 1,
+                    "reason": "Programsaken blir mer beslutningsklar etter ny informasjon.",
+                    "source_actor_id": "film_tv_programansvarlig"
+                  }
+                ],
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_kurator_program_reworked",
+                    "work_object_id": "film_tv_kurator_program_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "contextualized_program_rework",
+                    "note": "Programrekkefølge og tekst er revidert mot dokumenterte kriterier, rettighetsvilkår og faglig feedback."
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Behold rekkefølgen og skriv en sterkere begrunnelse rundt den",
+              "reply": "Utvalget står; jeg gjør teksten tydeligere slik at kritikken blir adressert uten å flytte verkene.",
+              "effect": -1,
+              "feedback": "Språket flytter seg mer enn programlogikken og gjør rework til kosmetikk.",
+              "effects": {
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_kurator_standing_team_rework_cosmetic",
+                    "audience_id": "team:film_tv_formidler",
+                    "delta": -2,
+                    "reason": "Dokumentert kritikk omskrives til retorikk uten reell programrevisjon.",
+                    "source_actor_id": "film_tv_formidler"
+                  }
+                ],
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_kurator_program_rework_cosmetic",
+                    "work_object_id": "film_tv_kurator_program_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "contextualized_program_rework",
+                    "note": "Programmet er språklig revidert, men første rekkefølge er i hovedsak bevart."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_kurator_cosmetic_rework_flag",
+                    "work_object_id": "film_tv_kurator_program_case_001",
+                    "flag": "rework_beskytter_forste_utvalg"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Bruk Cinemateket-læringen til å skille mandat, arv, oppmerksomhet og smak før du reviderer",
+              "reply": "Jeg bruker History Go-konteksten som sorteringsgrep og lar bare dokumenterte premisser bære institusjonelle påstander.",
+              "effect": 3,
+              "affordance": {
+                "history_go": {
+                  "task_mail_ids": [
+                    "film_tv_kurator_realism_history_go_cinemateket_001"
+                  ],
+                  "require_task_completed": true,
+                  "require_history_go_correct": true
+                }
+              },
+              "feedback": "History Go gir et bedre rework-grep, men ingen ny rettighet eller programmyndighet.",
+              "effects": {
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_kurator_standing_team_history_rework",
+                    "audience_id": "team:film_tv_formidler",
+                    "delta": 3,
+                    "reason": "Kontekst brukes til å presisere programmet uten å maskere smak som institusjonell sannhet.",
+                    "source_actor_id": "film_tv_formidler"
+                  },
+                  {
+                    "event_id": "film_tv_kurator_standing_manager_history_rework",
+                    "audience_id": "manager:film_tv_programansvarlig",
+                    "delta": 2,
+                    "reason": "Programbegrunnelsen skiller mandat og offentlig oppmerksomhet fra personlig preferanse.",
+                    "source_actor_id": "film_tv_programansvarlig"
+                  }
+                ],
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_kurator_program_reworked_with_history_go",
+                    "work_object_id": "film_tv_kurator_program_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "contextualized_program_rework",
+                    "note": "History Go-kontekst er brukt til å skille filmarv, institusjonelt mandat, publikum og smak i revidert program."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_kurator_history_go_rework_flag",
+                    "work_object_id": "film_tv_kurator_program_case_001",
+                    "flag": "history_go_kontekst_anvendt_uten_myndighetslekkasje"
+                  }
+                ]
+              }
+            }
+          ],
+          "social_standing_context": {
+            "reaction_audience_id": "team:film_tv_formidler"
+          }
         }
       ]
     }
