@@ -47,7 +47,7 @@ test('Auditerte fag har dokumentert og statusriktig fremdrift gjennom den genere
     [utdanning.navigationStatus, utdanning.assessmentStatus, utdanning.editorialStatus],
     ['materialized', 'audited', 'chapters_in_progress']
   );
-  assert.equal(utdanning.nextGate, 'higher_education_source_brief_complete_full_chapter_production');
+  assert.equal(utdanning.nextGate, 'assessment_educational_measurement_source_brief_complete_full_chapter_production');
   const helse = s.subjects.find((x) => x.id === 'helse');
   assert.deepEqual([helse.navigationStatus, helse.assessmentStatus, helse.editorialStatus], ['materialized', 'audited', 'complete']);
   for (const id of audited.map((x) => x.id)) {
@@ -214,7 +214,7 @@ test('19+1-utvidelsen låser seks eksplisitte canonicale underkategorier', () =>
   assert.equal(c.labels.litteratur, 'Språk & litteratur');
 });
 
-test('Helse er strict-complete og Utdanning låser konsistent 5/14-fremdrift', () => {
+test('Helse er strict-complete og Utdanning låser konsistent 6/14-fremdrift', () => {
   const manifest = readJson('data/fag/fag_manifest.json');
   const status = readJson('data/fagverk/subject_status.json');
   const registry = readJson('data/fagverk/fagverk_registry.json');
@@ -254,15 +254,16 @@ test('Helse er strict-complete og Utdanning låser konsistent 5/14-fremdrift', (
       assert.equal(registry.subjects.helse.editorialPlan.strictCompletionProof.status, 'strictly_proven');
       assert.equal(registry.subjects.helse.editorialPlan.strictCompletionProof.canonical_major_fields, 12);
     } else {
-      assert.equal(subjectStatus.nextGate, 'higher_education_source_brief_complete_full_chapter_production');
-      assert.equal(registry.subjects.utdanning.editorialPlan.registeredChapterCount, 5);
-      assert.equal(registry.subjects.utdanning.editorialPlan.completedSourceBriefCount, 6);
-      assert.equal(pensum.domains.filter((domain) => domain.status === 'materialized').length, 5);
+      assert.equal(subjectStatus.nextGate, 'assessment_educational_measurement_source_brief_complete_full_chapter_production');
+      assert.equal(registry.subjects.utdanning.editorialPlan.registeredChapterCount, 6);
+      assert.equal(registry.subjects.utdanning.editorialPlan.completedSourceBriefCount, 7);
+      assert.equal(pensum.domains.filter((domain) => domain.status === 'materialized').length, 6);
       assert.equal(pensum.domains[0].domain_id, 'pedagogikk_laeringsteori');
       assert.equal(pensum.domains[1].domain_id, 'didaktikk');
       assert.equal(pensum.domains[2].domain_id, 'barnehage_tidlig_laering');
       assert.equal(pensum.domains[3].domain_id, 'grunnskole');
       assert.equal(pensum.domains[4].domain_id, 'videregaende_yrkesfag');
+      assert.equal(pensum.domains[5].domain_id, 'hoyere_utdanning');
     }
   }
 
