@@ -93,6 +93,7 @@ test("Oslo coverage classifies every canonical place exactly once without overst
     .sort();
 
   assert.equal(coverage.contract, "oslo-history-coverage-v1");
+  // The curated Micro Place expansion adds four Oslo places; none claims dated History evidence yet.
   assert.equal(coverage.canonical_place_count, 567);
   assert.equal(coverage.dated_evidence_place_count, 168);
   assert.equal(coverage.documented_case_place_count, 2);
