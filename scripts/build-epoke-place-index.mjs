@@ -23,6 +23,139 @@ function normalized(value) {
     .trim();
 }
 
+const COUNTRY_ALIASES = new Map([
+  ["no", { id: "no", label: "Norge" }],
+  ["norge", { id: "no", label: "Norge" }],
+  ["norway", { id: "no", label: "Norge" }],
+  ["pt", { id: "pt", label: "Portugal" }],
+  ["portugal", { id: "pt", label: "Portugal" }],
+  ["gb", { id: "gb", label: "Storbritannia" }],
+  ["uk", { id: "gb", label: "Storbritannia" }],
+  ["england", { id: "gb", label: "Storbritannia" }],
+  ["united kingdom", { id: "gb", label: "Storbritannia" }]
+]);
+
+const NORWAY_PATH_SEGMENTS = new Set([
+  "oslo", "akershus", "agder", "buskerud", "finnmark", "innlandet", "more_og_romsdal",
+  "nordland", "norge", "ostfold", "rogaland", "telemark", "troms", "trondelag", "vestfold", "vestland"
+]);
+
+const CITY_ALIASES = new Map([
+  ["oslo", { id: "oslo", label: "Oslo", country_id: "no" }],
+  ["lisbon", { id: "lisboa", label: "Lisboa", country_id: "pt" }],
+  ["lisboa", { id: "lisboa", label: "Lisboa", country_id: "pt" }],
+  ["london", { id: "london", label: "London", country_id: "gb" }],
+  ["york", { id: "york", label: "York", country_id: "gb" }],
+  ["etne", { id: "etne", label: "Etne", country_id: "no" }]
+]);
+
+function slug(value) {
+  return text(value)
+    .toLowerCase()
+    .replace(/æ/g, "ae")
+    .replace(/ø/g, "o")
+    .replace(/å/g, "a")
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "_")
+    .replace(/^_+|_+$/g, "");
+}
+
+function countryFrom(value) {
+  return COUNTRY_ALIASES.get(normalized(value)) || null;
+}
+
+function cityFrom(value) {
+  const raw = text(value);
+  if (!raw) return null;
+  const alias = CITY_ALIASES.get(normalized(raw));
+  if (alias) return alias;
+  return { id: slug(raw), label: raw, country_id: "" };
+}
+
+export function geographyForPlace(place) {
+  const sourceFile = text(place?.sourceFile).replace(/^data\//, "");
+  const segments = sourceFile.split("/").map(slug);
+  const explicitCountry = countryFrom(place?.address?.country || place?.country || place?.country_id);
+  const explicitCity = cityFrom(place?.address?.city || place?.city || place?.cityLabel || place?.municipality || place?.kommune);
+  let country = explicitCountry;
+  let city = explicitCity;
+  let source = explicitCity || explicitCountry ? "canonical_place_fields" : "";
+
+  if (!country) {
+    if (segments.includes("portugal")) country = countryFrom("portugal");
+    else if (segments.includes("england") || segments.includes("utland_england")) country = countryFrom("england");
+    else if (segments.includes("norway") || NORWAY_PATH_SEGMENTS.has(segments[2])) country = countryFrom("no");
+    if (country) source = "canonical_source_path";
+  }
+
+  if (!city) {
+    const knownPathCity = [...CITY_ALIASES.keys()].find((candidate) => segments.some((segment) => (
+      segment === candidate || segment.startsWith(`${candidate}_`) || segment.endsWith(`_${candidate}`)
+    )));
+    if (knownPathCity) city = cityFrom(knownPathCity);
+    else if (segments.includes("footballgrounds_london")) city = cityFrom("london");
+    else if (segments.includes("york_jorvik")) city = cityFrom("york");
+    if (city) source = "canonical_source_path";
+  }
+
+  if (!country && city?.country_id) country = countryFrom(city.country_id);
+  if (country && city?.country_id && city.country_id !== country.id) city = null;
+
+  return {
+    country_id: text(country?.id),
+    country_label: text(country?.label),
+    city_id: text(city?.id),
+    city_label: text(city?.label),
+    source: source || "unknown"
+  };
+}
+
+function buildLocationIndex(places) {
+  const placeLocations = Object.create(null);
+  const countries = new Map();
+  const unknownPlaceIds = [];
+
+  for (const place of places) {
+    const placeId = text(place?.id);
+    if (!placeId) continue;
+    const location = geographyForPlace(place);
+    placeLocations[placeId] = location;
+    if (!location.country_id) {
+      unknownPlaceIds.push(placeId);
+      continue;
+    }
+    let country = countries.get(location.country_id);
+    if (!country) {
+      country = { id: location.country_id, label: location.country_label, place_count: 0, cities: new Map() };
+      countries.set(location.country_id, country);
+    }
+    country.place_count += 1;
+    if (location.city_id) {
+      let city = country.cities.get(location.city_id);
+      if (!city) {
+        city = { id: location.city_id, label: location.city_label, place_count: 0 };
+        country.cities.set(location.city_id, city);
+      }
+      city.place_count += 1;
+    }
+  }
+
+  return {
+    contract: "canonical-place-geography-v1",
+    places: placeLocations,
+    countries: [...countries.values()]
+      .map((country) => ({
+        id: country.id,
+        label: country.label,
+        place_count: country.place_count,
+        cities: [...country.cities.values()].sort((a, b) => a.label.localeCompare(b.label, "nb"))
+      }))
+      .sort((a, b) => a.label.localeCompare(b.label, "nb")),
+    unknown_place_ids: unknownPlaceIds.sort()
+  };
+}
+
 function articleList(payload) {
   if (Array.isArray(payload)) return payload;
   for (const key of ["articles", "entries", "items", "places"]) {
@@ -150,6 +283,7 @@ function finalizeGroup(group) {
 
 export function buildEpokePlaceIndex() {
   const places = readJson("data/places/places_index.json");
+  const locations = buildLocationIndex(places);
   const placeById = new Map(places.map((place) => [text(place.id), place]));
   const manifest = readJson("data/leksikon/manifest.json");
   const history = readJson("data/epoker/epoker_historie.json");
@@ -203,7 +337,7 @@ export function buildEpokePlaceIndex() {
   const uniquePlaces = new Set(allEpochPlaces.map((place) => place.place_id));
 
   return {
-    version: 2,
+    version: 3,
     contract: "source-backed-dated-leksikon-chronology",
     generated_from: [
       "data/places/places_index.json",
@@ -216,8 +350,11 @@ export function buildEpokePlaceIndex() {
         parallel_tracks: trackGroups
       }
     },
+    locations,
     stats: {
       canonical_place_count: places.length,
+      located_place_count: places.length - locations.unknown_place_ids.length,
+      city_located_place_count: Object.values(locations.places).filter((location) => location.city_id).length,
       indexed_place_count: uniquePlaces.size,
       epoch_place_relations: allEpochPlaces.length,
       milestone_count: allEpochPlaces.reduce((sum, place) => sum + place.milestones.length, 0)

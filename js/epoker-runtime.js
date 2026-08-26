@@ -287,6 +287,13 @@ const HGEpokerRuntime = (() => {
       if (Number(payload?.version) < 2 || !payload?.domains || typeof payload.domains !== "object") {
         throw new Error("Epoke place index has an invalid contract");
       }
+      if (Number(payload?.version) >= 3 && (
+        payload?.locations?.contract !== "canonical-place-geography-v1" ||
+        !payload?.locations?.places || typeof payload.locations.places !== "object" ||
+        !Array.isArray(payload?.locations?.countries)
+      )) {
+        throw new Error("Epoke place index has an invalid geography contract");
+      }
       placeIndexCache = payload;
       window.HG_EPOKE_PLACE_INDEX = payload;
       return payload;
@@ -317,6 +324,7 @@ const HGEpokerRuntime = (() => {
       startedAt: status.startedAt,
       finishedAt: status.finishedAt,
       hasPlaceIndex: Boolean(window.HG_EPOKE_PLACE_INDEX),
+      hasLocationIndex: Boolean(window.HG_EPOKE_PLACE_INDEX?.locations?.places),
     };
 
     console.log("[HGEpokerRuntime.debug]", info);
