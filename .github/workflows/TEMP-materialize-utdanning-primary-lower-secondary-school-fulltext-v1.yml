@@ -36,12 +36,16 @@ jobs:
           node scripts/audit-utdanning-primary-lower-secondary-school-fulltext-v1.mjs --write-report
           node scripts/audit-fagverk-general-engine.mjs --write-report
           node scripts/build-fagverk-release-manifest.mjs
-          node scripts/run-utdanning-domain-ci-v1.mjs
-      - name: Commit deterministic outputs
+      - name: Commit deterministic outputs locally
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add data/fag data/fagverk reports/fagverk
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "Materialize Utdanning Grunnskole 4/14"
+      - name: Verify canonical Utdanning CI
+        run: node scripts/run-utdanning-domain-ci-v1.mjs
+      - name: Push verified materialization
+        run: |
+          if git rev-parse HEAD^ >/dev/null 2>&1 && git diff --quiet origin/${{ github.event.pull_request.head.ref }}..HEAD; then exit 0; fi
           git push origin HEAD:${{ github.event.pull_request.head.ref }}
