@@ -1,0 +1,36 @@
+name: Temporary fix PR 5367 Markveien hash
+
+on:
+  push:
+    branches:
+      - agent/oslo-timeline-anchors-v3-20260826
+    paths:
+      - .github/workflows/_tmp-fix-pr5367-markveien-hash.yml
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-timeline-anchors-v3-20260826
+      - name: Restore canonical popupDesc hash and remove helper
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const p='data/places/production/markveien.json';
+          const x=JSON.parse(fs.readFileSync(p,'utf8'));
+          x.textHashes.popupDesc='fa3694ca562f822b355f81e03069809eacb2578f09b0a9da4e58a54a5911ed16';
+          fs.writeFileSync(p,JSON.stringify(x,null,2)+'\n');
+          NODE
+          git rm .github/workflows/_tmp-fix-pr5367-markveien-hash.yml
+          git add data/places/production/markveien.json
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git commit -m 'fix: restore Markveien canonical text hash'
+          git push origin HEAD:agent/oslo-timeline-anchors-v3-20260826
