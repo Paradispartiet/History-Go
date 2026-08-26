@@ -1,0 +1,506 @@
+{
+  "schema": "history_go_fagverk_chapter_claims_v1",
+  "version": "1.0.0",
+  "subject_id": "utdanning",
+  "chapter_id": "videregaende-yrkesfag-overgang-fordypning-og-laering-i-arbeid",
+  "sourceBriefFile": "data/fag/utdanning/upper_secondary_vocational_source_claim_brief_v1.json",
+  "sources": [
+    {
+      "id": "vg01-udir-lareplanverket",
+      "publisher": "Utdanningsdirektoratet",
+      "title": "Læreplanverket",
+      "url": "https://www.udir.no/laring-og-trivsel/lareplanverket/",
+      "type": "official-norwegian-curriculum-framework",
+      "evidence_role": "curriculum-programmes-competence",
+      "source_location": "LK20; overordnet del, fag- og timefordeling og læreplaner for studieforberedende og yrkesfag.",
+      "retrieval_status": "verified_2026-08-26",
+      "label": "Utdanningsdirektoratet – Læreplanverket"
+    },
+    {
+      "id": "vg02-lovdata-opplaringslova",
+      "publisher": "Lovdata",
+      "title": "Lov om grunnskoleopplæringa og den vidaregåande opplæringa",
+      "url": "https://lovdata.no/lov/2023-06-09-30",
+      "type": "official-law",
+      "evidence_role": "rights-completion-apprenticeship-environment",
+      "source_location": "Gjeldende opplæringslov; rett til videregående opplæring og kapittel 7 om opplæring i bedrift.",
+      "retrieval_status": "verified_2026-08-26",
+      "label": "Lovdata – Lov om grunnskoleopplæringa og den vidaregåande opplæringa"
+    },
+    {
+      "id": "vg03-lovdata-opplaringsforskrifta",
+      "publisher": "Lovdata",
+      "title": "Forskrift om grunnskoleopplæringa og den vidaregåande opplæringa",
+      "url": "https://lovdata.no/forskrift/2024-06-03-900",
+      "type": "official-regulation",
+      "evidence_role": "admission-mediation-assessment-documentation",
+      "source_location": "Gjeldende opplæringsforskrift; inntak, formidling til læreplass, vurdering og dokumentasjon.",
+      "retrieval_status": "verified_2026-08-26",
+      "label": "Lovdata – Forskrift om grunnskoleopplæringa og den vidaregåande opplæringa"
+    },
+    {
+      "id": "vg04-kd-fullforingsreformen",
+      "publisher": "Kunnskapsdepartementet",
+      "title": "Meld. St. 21 (2020–2021) Fullføringsreformen",
+      "url": "https://www.regjeringen.no/no/dokumenter/meld.-st.-21-20202021/id2840771/",
+      "type": "official-policy-analysis",
+      "evidence_role": "completion-flexibility-qualification-transitions",
+      "source_location": "Stortingsmeldingens problemforståelse, kunnskapsgrunnlag og reformgrep for fullføring og kvalifisering.",
+      "retrieval_status": "verified_2026-08-26",
+      "label": "Kunnskapsdepartementet – Meld. St. 21 (2020–2021) Fullføringsreformen"
+    },
+    {
+      "id": "vg05-oecd-norway-vet-2025",
+      "publisher": "OECD",
+      "title": "Vocational education and training in Norway",
+      "url": "https://www.oecd.org/en/publications/vocational-education-and-training-systems-in-nine-countries_1a86eb6c-en/full-report/vocational-education-and-training-in-norway_a7480854.html",
+      "type": "comparative-system-review",
+      "evidence_role": "norwegian-vet-system-apprenticeship-quality",
+      "source_location": "Country chapter in Vocational Education and Training Systems in Nine Countries, 2025.",
+      "retrieval_status": "verified_2026-08-26",
+      "label": "OECD – Vocational education and training in Norway"
+    },
+    {
+      "id": "vg06-oecd-learning-for-jobs-norway",
+      "publisher": "OECD",
+      "title": "A Learning for Jobs Review of Norway",
+      "url": "https://www.oecd.org/content/dam/oecd/en/publications/reports/2008/10/oecd-reviews-of-vocational-education-and-training-a-learning-for-jobs-review-of-norway-2008_g1g13a68/9789264113947-en.pdf",
+      "type": "country-policy-review",
+      "evidence_role": "workplace-training-quality-assurance-partnership",
+      "source_location": "Norway VET review; system strengths, workplace training and quality recommendations.",
+      "retrieval_status": "verified_2026-08-26",
+      "label": "OECD – A Learning for Jobs Review of Norway"
+    },
+    {
+      "id": "vg07-akkerman-bakker-2011",
+      "publisher": "Review of Educational Research",
+      "title": "Boundary Crossing and Boundary Objects",
+      "url": "https://doi.org/10.3102/0034654311404435",
+      "type": "theory-review",
+      "evidence_role": "boundary-learning-identification-coordination-reflection-transformation",
+      "source_location": "Vol. 81(2), pp. 132–169; review of boundary-crossing mechanisms.",
+      "retrieval_status": "verified_2026-08-26",
+      "label": "Review of Educational Research – Boundary Crossing and Boundary Objects"
+    },
+    {
+      "id": "vg08-akkerman-bakker-2012",
+      "publisher": "Vocations and Learning",
+      "title": "Crossing Boundaries Between School and Work During Apprenticeships",
+      "url": "https://doi.org/10.1007/s12186-011-9073-6",
+      "type": "vocational-learning-study",
+      "evidence_role": "apprenticeship-school-work-continuity",
+      "source_location": "Vol. 5(2), pp. 153–173; apprentices' boundary crossing between school and work.",
+      "retrieval_status": "verified_2026-08-26",
+      "label": "Vocations and Learning – Crossing Boundaries Between School and Work During Apprenticeships"
+    },
+    {
+      "id": "vg09-eraut-2004",
+      "publisher": "Studies in Continuing Education",
+      "title": "Informal Learning in the Workplace",
+      "url": "https://doi.org/10.1080/158037042000225245",
+      "type": "theory-empirical-synthesis",
+      "evidence_role": "informal-workplace-learning-context-feedback",
+      "source_location": "Vol. 26(2), pp. 247–273; frameworks and empirical findings on workplace learning.",
+      "retrieval_status": "verified_2026-08-26",
+      "label": "Studies in Continuing Education – Informal Learning in the Workplace"
+    },
+    {
+      "id": "vg10-tynjala-2014",
+      "publisher": "British Journal of Educational Technology",
+      "title": "TEL@work: Toward Integration of Theory and Practice",
+      "url": "https://doi.org/10.1111/bjet.12164",
+      "type": "integrative-pedagogy-framework",
+      "evidence_role": "theoretical-practical-self-regulative-sociocultural-integration",
+      "source_location": "Vol. 45(6), pp. 990–1000; integrative pedagogy model and design examples.",
+      "retrieval_status": "verified_2026-08-26",
+      "label": "British Journal of Educational Technology – TEL@work: Toward Integration of Theory and Practice"
+    },
+    {
+      "id": "vg11-billett-2011",
+      "publisher": "Springer",
+      "title": "Vocational Education: Purposes, Traditions and Prospects",
+      "url": "https://doi.org/10.1007/978-94-007-1954-5",
+      "type": "scholarly-monograph",
+      "evidence_role": "vocational-purpose-knowledge-identity-participation",
+      "source_location": "Book-length analysis of vocational education purposes, traditions, participation and occupational knowledge.",
+      "retrieval_status": "verified_2026-08-26",
+      "label": "Springer – Vocational Education: Purposes, Traditions and Prospects"
+    },
+    {
+      "id": "vg12-ryan-deci-2020",
+      "publisher": "Contemporary Educational Psychology",
+      "title": "Intrinsic and Extrinsic Motivation from a Self-Determination Theory Perspective",
+      "url": "https://doi.org/10.1016/j.cedpsych.2020.101860",
+      "type": "theory-evidence-review",
+      "evidence_role": "motivation-autonomy-competence-relatedness",
+      "source_location": "Vol. 61, 101860; review of motivation quality in educational contexts.",
+      "retrieval_status": "verified_2026-08-26",
+      "label": "Contemporary Educational Psychology – Intrinsic and Extrinsic Motivation from a Self-Determination Theory Perspective"
+    },
+    {
+      "id": "vg13-unesco-tvet-2022-2029",
+      "publisher": "UNESCO",
+      "title": "Strategy for TVET 2022–2029: Transforming TVET for Successful and Just Transitions",
+      "url": "https://www.unesco.org/en/articles/transforming-technical-and-vocational-education-and-training-successful-and-just-transitions-unesco",
+      "type": "global-policy-strategy",
+      "evidence_role": "inclusive-green-digital-transition-lifelong-learning",
+      "source_location": "UNESCO strategy 2022–2029; empowerment, decent work, digital, green and just transitions.",
+      "retrieval_status": "verified_2026-08-26",
+      "label": "UNESCO – Strategy for TVET 2022–2029: Transforming TVET for Successful and Just Transitions"
+    }
+  ],
+  "claims": [
+    {
+      "id": "vg-01",
+      "claim": "Videregående opplæring skal kvalifisere til studie- eller yrkeskompetanse innen et rettighetsregime som også må håndtere omvalg, ulik progresjon og behov for mer tid.",
+      "source_ids": [
+        "vg02-lovdata-opplaringslova",
+        "vg04-kd-fullforingsreformen"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-26"
+    },
+    {
+      "id": "vg-02",
+      "claim": "Utdanningsprogram og fagfordeling organiserer progresjon, men et tidlig programvalg kan ikke behandles som en endelig beskrivelse av elevens evner eller fremtid.",
+      "source_ids": [
+        "vg01-udir-lareplanverket",
+        "vg04-kd-fullforingsreformen"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-26"
+    },
+    {
+      "id": "vg-03",
+      "claim": "Inntak og formidling til læreplass er institusjonelle prosesser som påvirker reell tilgang og derfor må analyseres sammen med elevens faglige forutsetninger.",
+      "source_ids": [
+        "vg03-lovdata-opplaringsforskrifta",
+        "vg02-lovdata-opplaringslova"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-26"
+    },
+    {
+      "id": "vg-04",
+      "claim": "Gjennomføring bør undersøkes som et samspill mellom løpsstruktur, støtte, læringsmiljø, livssituasjon og faglige krav fremfor som et fast individuelt risikotrekk.",
+      "source_ids": [
+        "vg04-kd-fullforingsreformen",
+        "vg12-ryan-deci-2020"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-26"
+    },
+    {
+      "id": "vg-05",
+      "claim": "Yrkeskompetanse omfatter både utførelse, begrunnelse, kvalitetsvurdering, samarbeid og evne til å håndtere variasjon i arbeidssituasjoner.",
+      "source_ids": [
+        "vg11-billett-2011",
+        "vg01-udir-lareplanverket"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-26"
+    },
+    {
+      "id": "vg-06",
+      "claim": "Faglig teori og praktisk kunnskap utvikles i ulike representasjoner, men må kobles dersom eleven skal forstå hvorfor en prosedyre virker og når den må endres.",
+      "source_ids": [
+        "vg10-tynjala-2014",
+        "vg11-billett-2011"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-26"
+    },
+    {
+      "id": "vg-07",
+      "claim": "Autentiske arbeidsoppgaver er pedagogisk sterke når de gir tilgang til faglige begrunnelser og variasjon, ikke bare når de ligner produksjon.",
+      "source_ids": [
+        "vg11-billett-2011",
+        "vg09-eraut-2004"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-26"
+    },
+    {
+      "id": "vg-08",
+      "claim": "Brede kunnskapsressurser og omstillingsevne beskytter mot at yrkesopplæring reduseres til kortsiktige behov i én bedrift eller teknologi.",
+      "source_ids": [
+        "vg13-unesco-tvet-2022-2029",
+        "vg11-billett-2011"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-26"
+    },
+    {
+      "id": "vg-09",
+      "claim": "Arbeidsplassen tilbyr læringsmuligheter gjennom oppgaver, observasjon, samarbeid og feedback, men tilgangen er ulikt fordelt og må organiseres.",
+      "source_ids": [
+        "vg09-eraut-2004",
+        "vg11-billett-2011"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-26"
+    },
+    {
+      "id": "vg-10",
+      "claim": "Gradvis ansvar krever at lærlingen får utføre stadig mer komplekse oppgaver med sikkerhetsgrenser og støtte som endres med dokumentert mestring.",
+      "source_ids": [
+        "vg05-oecd-norway-vet-2025",
+        "vg09-eraut-2004"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-26"
+    },
+    {
+      "id": "vg-11",
+      "claim": "Produktiv drift kan begrense læring dersom eleven bare gjentar oppgaver bedriften trenger og ikke får møte bredden i kompetansemålene.",
+      "source_ids": [
+        "vg06-oecd-learning-for-jobs-norway",
+        "vg01-udir-lareplanverket"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-26"
+    },
+    {
+      "id": "vg-12",
+      "claim": "Uformell læring i arbeid er ofte taus og situert og trenger samtale og dokumentasjon for å bli tilgjengelig for refleksjon og overføring.",
+      "source_ids": [
+        "vg09-eraut-2004",
+        "vg10-tynjala-2014"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-26"
+    },
+    {
+      "id": "vg-13",
+      "claim": "Skole og arbeidsplass har ulike mål, språk og ansvar, slik at kunnskapsoverføring krever aktivt grensearbeid fremfor antatt direkte transfer.",
+      "source_ids": [
+        "vg07-akkerman-bakker-2011",
+        "vg08-akkerman-bakker-2012"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-26"
+    },
+    {
+      "id": "vg-14",
+      "claim": "Grenseobjekter som logger, tegninger og felles oppgaver kan koordinere arenaer når begge parter bruker dem i reell faglig bearbeiding.",
+      "source_ids": [
+        "vg07-akkerman-bakker-2011",
+        "vg10-tynjala-2014"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-26"
+    },
+    {
+      "id": "vg-15",
+      "claim": "Refleksjon over forskjeller mellom skole og arbeid kan utvikle perspektiv, men forskjellene skal ikke automatisk forstås som feil ved én arena.",
+      "source_ids": [
+        "vg07-akkerman-bakker-2011",
+        "vg08-akkerman-bakker-2012"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-26"
+    },
+    {
+      "id": "vg-16",
+      "claim": "Koordinering krever tydelig ansvar og informasjonsflyt mellom elev, skole, lærebedrift og eventuelt opplæringskontor.",
+      "source_ids": [
+        "vg02-lovdata-opplaringslova",
+        "vg05-oecd-norway-vet-2025"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-26"
+    },
+    {
+      "id": "vg-17",
+      "claim": "Yrkesfaglig vurdering må undersøke både resultat, arbeidsprosess, sikkerhet, begrunnelse og håndtering av avvik der læreplanen krever dette.",
+      "source_ids": [
+        "vg01-udir-lareplanverket",
+        "vg03-lovdata-opplaringsforskrifta"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-26"
+    },
+    {
+      "id": "vg-18",
+      "claim": "Autentiske oppgaver styrker relevans, men variasjon i arbeidssted, utstyr og bedømmere skaper reliabilitetsutfordringer som må håndteres eksplisitt.",
+      "source_ids": [
+        "vg03-lovdata-opplaringsforskrifta",
+        "vg05-oecd-norway-vet-2025"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-26"
+    },
+    {
+      "id": "vg-19",
+      "claim": "Dokumentasjon har læringsverdi når den brukes til feedback, planlegging og begrunnelse fremfor å være en løsrevet rapporteringsbyrde.",
+      "source_ids": [
+        "vg09-eraut-2004",
+        "vg10-tynjala-2014"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-26"
+    },
+    {
+      "id": "vg-20",
+      "claim": "Fagprøven gir viktig standardisert evidens om kompetanse, men må tolkes innen rammen av oppgaven og kan ikke alene beskrive hele læringsforløpet.",
+      "source_ids": [
+        "vg03-lovdata-opplaringsforskrifta",
+        "vg05-oecd-norway-vet-2025"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-26"
+    },
+    {
+      "id": "vg-21",
+      "claim": "Yrkesidentitet utvikles gjennom møte med arbeidsoppgaver, faglige standarder, kolleger og elevens egne verdier og fremtidsfortolkninger.",
+      "source_ids": [
+        "vg11-billett-2011",
+        "vg09-eraut-2004"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-26"
+    },
+    {
+      "id": "vg-22",
+      "claim": "Autonomi, opplevd kompetanse og tilhørighet kan støtte motivasjon i videregående, men påvirkes av program, relasjoner og arbeidsbetingelser.",
+      "source_ids": [
+        "vg12-ryan-deci-2020",
+        "vg11-billett-2011"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-26"
+    },
+    {
+      "id": "vg-23",
+      "claim": "Fravær eller avbrudd må analyseres sammen med læringsmiljø, helse, økonomi, støtte og løpsfleksibilitet før stabile individforklaringer brukes.",
+      "source_ids": [
+        "vg04-kd-fullforingsreformen",
+        "vg02-lovdata-opplaringslova"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-26"
+    },
+    {
+      "id": "vg-24",
+      "claim": "Gjennomføring er ikke bare å bli værende, men å oppnå relevant kompetanse og en overgang som gir reelle videre utdannings- eller arbeidsmuligheter.",
+      "source_ids": [
+        "vg04-kd-fullforingsreformen",
+        "vg13-unesco-tvet-2022-2029"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-26"
+    },
+    {
+      "id": "vg-25",
+      "claim": "Reell inkludering i videregående krever tilgang til program, fag, læreplass, sosialt miljø og støtte som gjør deltakelse mulig.",
+      "source_ids": [
+        "vg02-lovdata-opplaringslova",
+        "vg04-kd-fullforingsreformen"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-26"
+    },
+    {
+      "id": "vg-26",
+      "claim": "Variasjon i lokale læreplasser og partnerskap kan skape geografisk og sosial ulikhet som ikke kan forklares av elevvalg alene.",
+      "source_ids": [
+        "vg05-oecd-norway-vet-2025",
+        "vg06-oecd-learning-for-jobs-norway"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-26"
+    },
+    {
+      "id": "vg-27",
+      "claim": "Tilpasning må bevare tilgang til meningsfull kompetanse og ikke bli et permanent redusert forventningsnivå uten videre progresjonsmulighet.",
+      "source_ids": [
+        "vg02-lovdata-opplaringslova",
+        "vg04-kd-fullforingsreformen"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-26"
+    },
+    {
+      "id": "vg-28",
+      "claim": "Elevdata om gjennomføring og overgang kan brukes til systemforbedring, men gruppestatistikk kan ikke avgjøre et bestemt individs potensial.",
+      "source_ids": [
+        "vg04-kd-fullforingsreformen",
+        "vg13-unesco-tvet-2022-2029"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-26"
+    },
+    {
+      "id": "vg-29",
+      "claim": "Grønn og digital omstilling endrer oppgaver og kompetansekrav ulikt mellom sektorer og krever fagspesifikk analyse fremfor generelle framtidsord.",
+      "source_ids": [
+        "vg13-unesco-tvet-2022-2029",
+        "vg05-oecd-norway-vet-2025"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-26"
+    },
+    {
+      "id": "vg-30",
+      "claim": "Omstillingsevne bygger på kombinasjoner av konseptuell forståelse, praktisk repertoar, samarbeid og selvregulering, ikke bare korte verktøykurs.",
+      "source_ids": [
+        "vg10-tynjala-2014",
+        "vg11-billett-2011"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-26"
+    },
+    {
+      "id": "vg-31",
+      "claim": "Arbeidsmarkedsprognoser kan informere dimensjonering og læreplanarbeid, men usikkerhet gjør dem uegnet som individuelle skjebneutsagn.",
+      "source_ids": [
+        "vg13-unesco-tvet-2022-2029",
+        "vg04-kd-fullforingsreformen"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-26"
+    },
+    {
+      "id": "vg-32",
+      "claim": "Videregående og yrkesfag har et bredt mandat som omfatter kompetanse, danning, inkludering, medborgerskap og mulighet for videre læring gjennom livet.",
+      "source_ids": [
+        "vg01-udir-lareplanverket",
+        "vg13-unesco-tvet-2022-2029"
+      ],
+      "classification": "verified_scholarly_source_synthesis",
+      "status": "verified",
+      "verified_at": "2026-08-26"
+    }
+  ]
+}

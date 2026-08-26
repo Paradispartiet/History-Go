@@ -11,7 +11,7 @@
     "schema": "history_go_fagverk_registry_v1",
     "version": "3.14.0",
     "updated_at": "2026-08-21",
-    "content_sha256": "99841159ed84ae956d6f86196a41a321cad580cf0050625f291425c142e56216"
+    "content_sha256": "a875f92831349661c4ff5219ea3dffcd143ec2f6ec7ca4028e0a600dd981e3af"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,18 +27,18 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "e191fe4a7e4ab0c6da83064101cf832f57d0ad94cb09bde45b62be1438bb58e2"
+    "content_sha256": "c5c774193c0eb77f33dd0769bee8f743d6575f312df22c7f5f941e9f774fa455"
   },
   "summary": {
     "subject_count": 20,
     "root_subject_count": 19,
     "specialization_count": 1,
     "chapter_subject_count": 17,
-    "chapter_count": 179,
-    "module_file_count": 457,
-    "package_file_count": 277,
-    "chapter_referenced_file_count": 863,
-    "referenced_file_count": 1079,
+    "chapter_count": 180,
+    "module_file_count": 461,
+    "package_file_count": 279,
+    "chapter_referenced_file_count": 870,
+    "referenced_file_count": 1087,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -5522,9 +5522,9 @@
         "supersetQuizMal"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 16,
+      "package_file_count": 18,
       "required_package_file_count": 4,
-      "optional_package_file_count": 12,
+      "optional_package_file_count": 14,
       "package_files": [
         {
           "path": "data/fag/utdanning/didactics_source_claim_brief_v1.json",
@@ -5560,7 +5560,7 @@
             "emner"
           ],
           "exists": true,
-          "content_sha256": "e94bd7768237d15b60e1eca4faec34bcc01daf997f9bf14d76c0dbdd9df766c7"
+          "content_sha256": "4774b0e475f88d7614aa22e728ea867eee9c1df5bd98acd6ca25796d77967ccb"
         },
         {
           "path": "data/fag/utdanning/fagkart_utdanning_canonical_v1.json",
@@ -5573,6 +5573,18 @@
           ],
           "exists": true,
           "content_sha256": "3751da533dc7c9edc2c474487be39cdfe1e099f19a49115bfcab8acf1ca016e9"
+        },
+        {
+          "path": "data/fag/utdanning/higher_education_source_claim_brief_v1.json",
+          "required": false,
+          "fields": [
+            "sourceClaimBriefs"
+          ],
+          "key_paths": [
+            "sourceClaimBriefs[5]"
+          ],
+          "exists": true,
+          "content_sha256": "0e9e9a68e43a537fcee7e71167f5c47c4d828cb5288a03ffc13c75d09707ad37"
         },
         {
           "path": "data/fag/utdanning/methods_utdanning_canonical_v1.json",
@@ -5644,7 +5656,7 @@
             "pensum"
           ],
           "exists": true,
-          "content_sha256": "ef7629f7484eeb040f9ed26fb9f5b7b985a205875a106fef3e2a12f566257700"
+          "content_sha256": "8fdf7288ddc0ab7932b5356a90b89772bbf2ed93b4d489eb91de28a85cbab5ca"
         },
         {
           "path": "data/fagverk/utdanning/barnehage-tidlig-laering-lek-sprak-samspill-og-utvikling.json",
@@ -5695,6 +5707,18 @@
           "content_sha256": "4ebcc70b3fb863bf7181629e5c000f79570b10ad7c11fc7e6a16f670ccc405ce"
         },
         {
+          "path": "data/fagverk/utdanning/videregaende-yrkesfag-overgang-fordypning-og-laering-i-arbeid.json",
+          "required": false,
+          "fields": [
+            "chapters"
+          ],
+          "key_paths": [
+            "chapters[4]"
+          ],
+          "exists": true,
+          "content_sha256": "4134217e40d0f3139ca12852c1da7a0e6a9d15598b2592c0d07c990ec419133d"
+        },
+        {
           "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
           "required": false,
           "fields": [
@@ -5719,20 +5743,20 @@
           "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
         }
       ],
-      "package_content_sha256": "6cf063a2e0892dbecb3e147662c26ba3a549f22d4944f387051633149a7b6904",
-      "chapter_count": 4,
-      "module_file_count": 16,
-      "brief_file_count": 4,
-      "claims_file_count": 4,
-      "chapter_referenced_file_count": 28,
-      "chapter_content_sha256": "49603d28b7db75a0d42061a9eafd44a9774f1c8865604032b6dea45efb7e39a4",
-      "referenced_file_count": 40,
+      "package_content_sha256": "bbfe5dec14ebb75e7808be1c45b3c0a7cc0959fbb51105b44009628ba09ba71f",
+      "chapter_count": 5,
+      "module_file_count": 20,
+      "brief_file_count": 5,
+      "claims_file_count": 5,
+      "chapter_referenced_file_count": 35,
+      "chapter_content_sha256": "8484c6e668644bd7613585a6b55ddddb6e6cf639f48a498b905477c49ed2d72b",
+      "referenced_file_count": 48,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "de79735300001791ad6162ca1302bc22b288efd698b93bfecca50552c3512679",
-      "content_sha256": "ccf96461ec485ffa466ef4db5ad5eab6cb7917951f5df47bdd0d68a12d77f8a1",
+      "structure_sha256": "c2c1e51a7b6db7b84e2a043489834d056a6d607cf22c7ba9b99d90eb25226ca6",
+      "content_sha256": "8fa1c77f6094ea4ce9a87fed04cc143fe32f5b89f6e3bb4d6bf1d82960f9c26d",
       "chapters": [
         {
           "chapter_id": "pedagogikk-laeringsteori-laering-kunnskap-motivasjon-og-selvregulering",
@@ -5765,6 +5789,14 @@
           "module_file_count": 4,
           "referenced_file_count": 7,
           "content_sha256": "ce6303fdd1557c3b7a51809416a4966f4dae3b77bf78a13dcbae44b11c923670"
+        },
+        {
+          "chapter_id": "videregaende-yrkesfag-overgang-fordypning-og-laering-i-arbeid",
+          "title": "Videregående og yrkesfag: overgang, fordypning og læring i arbeid",
+          "file": "data/fagverk/utdanning/videregaende-yrkesfag-overgang-fordypning-og-laering-i-arbeid.json",
+          "module_file_count": 4,
+          "referenced_file_count": 7,
+          "content_sha256": "17d4b00b844d61f801a9ee676bf77b70090c4dabd84d19e757d4fb0bc40a9330"
         }
       ]
     },
@@ -5946,5 +5978,5 @@
       ]
     }
   },
-  "release_sha256": "b76a1070e2bc6235697ab4c6aa34befe2c395d71bb1e03f59d1004a2c45bfdb0"
+  "release_sha256": "0fa350dd199e6f3859fd08f400e34a1425cd20be576dc075417e2fdedf1dabd2"
 }
