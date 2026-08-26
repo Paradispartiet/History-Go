@@ -4,33 +4,234 @@
   "category": "film_tv",
   "role_scope": "produksjonsassistent",
   "mail_type": "event",
-  "families": [{
-    "id": "produksjonsassistent_avvikshendelse",
-    "purpose": "Teste sporbar status under en plutselig planendring.",
-    "learning_focus": ["avvikslogg", "overlevering", "mottaksbekreftelse"],
-    "mails": [{
-      "id": "film_tv_pa_event_scene_rekkefolge_endret",
-      "mail_type": "event",
-      "mail_family": "produksjonsassistent_avvikshendelse",
-      "role_scope": "produksjonsassistent",
-      "phase": "intro",
-      "priority": 95,
-      "from": "Amir, innspillingsleder",
-      "people_ref": "amir_innspillingsleder",
-      "place_id": "sett_sikkerhetssone",
-      "subject": "Scene 14 flyttes foran scene 11",
-      "summary": "En medvirkende må dra tidlig, og tre avdelinger trenger samme endring i løpet av få minutter.",
-      "situation": ["Amir har besluttet ny rekkefølge.", "Sminke, rekvisitt og transport har ulike deler av informasjonen.", "Oppgaven er å samle beslutningen i én sporbar status og bekrefte mottak."],
-      "task_domain": "avvik_og_overlevering",
-      "competency": "sporbarhet",
-      "pressure": "mange_mottakere_kort_tid",
-      "choice_axis": "samlet_endringslogg_vs_muntlig_stafett",
-      "consequence_axis": "koordinert_omstilling_vs_nytt_avvik",
-      "narrative_arc": "scenerekkefolge_endret",
-      "choices": [
-        {"id": "A", "label": "Publiser én endringslinje og hent bekreftelser", "reply": "Jeg skriver hvem som besluttet, hva som flyttes og hvilke avdelinger som må bekrefte.", "effect": 1, "tags": ["process", "coordination"], "feedback": "Kort tekst og eksplisitte mottakere gjør endringen håndterbar.", "effects": {"stats": {"quality": 2, "trust": 1, "risk": -1}}},
-        {"id": "B", "label": "Løp rundt og fortell det muntlig", "reply": "Jeg tar avdelingene én etter én for å spare tid på skriving.", "effect": 0, "tags": ["tempo", "fragility"], "feedback": "Noen får beskjed raskt, men ingen ser hvem som fortsatt mangler den.", "effects": {"stats": {"energy": -2, "risk": 2}}}
+  "families": [
+    {
+      "id": "produksjonsassistent_avvikshendelse",
+      "purpose": "Teste sporbar status under en plutselig planendring.",
+      "learning_focus": [
+        "avvikslogg",
+        "overlevering",
+        "mottaksbekreftelse"
+      ],
+      "mails": [
+        {
+          "id": "film_tv_pa_event_scene_rekkefolge_endret",
+          "mail_type": "event",
+          "mail_family": "produksjonsassistent_avvikshendelse",
+          "role_scope": "produksjonsassistent",
+          "phase": "intro",
+          "priority": 95,
+          "from": "Amir, innspillingsleder",
+          "people_ref": "amir_innspillingsleder",
+          "place_id": "sett_sikkerhetssone",
+          "subject": "Scene 14 flyttes foran scene 11",
+          "summary": "En medvirkende må dra tidlig, og tre avdelinger trenger samme endring i løpet av få minutter.",
+          "situation": [
+            "Amir har besluttet ny rekkefølge.",
+            "Sminke, rekvisitt og transport har ulike deler av informasjonen.",
+            "Oppgaven er å samle beslutningen i én sporbar status og bekrefte mottak."
+          ],
+          "task_domain": "avvik_og_overlevering",
+          "competency": "sporbarhet",
+          "pressure": "mange_mottakere_kort_tid",
+          "choice_axis": "samlet_endringslogg_vs_muntlig_stafett",
+          "consequence_axis": "koordinert_omstilling_vs_nytt_avvik",
+          "narrative_arc": "scenerekkefolge_endret",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Publiser én endringslinje og hent bekreftelser",
+              "reply": "Jeg skriver hvem som besluttet, hva som flyttes og hvilke avdelinger som må bekrefte.",
+              "effect": 1,
+              "tags": [
+                "process",
+                "coordination"
+              ],
+              "feedback": "Kort tekst og eksplisitte mottakere gjør endringen håndterbar.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 1,
+                  "risk": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Løp rundt og fortell det muntlig",
+              "reply": "Jeg tar avdelingene én etter én for å spare tid på skriving.",
+              "effect": 0,
+              "tags": [
+                "tempo",
+                "fragility"
+              ],
+              "feedback": "Noen får beskjed raskt, men ingen ser hvem som fortsatt mangler den.",
+              "effects": {
+                "stats": {
+                  "energy": -2,
+                  "risk": 2
+                }
+              }
+            }
+          ]
+        }
       ]
-    }]
-  }]
+    },
+    {
+      "id": "role_world_rollout_pa_unit_move_event",
+      "purpose": "Gjøre unit move til en situert teamflate uten sikkerhetsmyndighetslekkasje.",
+      "learning_focus": [
+        "safety",
+        "situated_reputation",
+        "escalation"
+      ],
+      "mails": [
+        {
+          "role_scope": "produksjonsassistent",
+          "place_id": "sett_sikkerhetssone",
+          "repeatable": false,
+          "stage": "stable",
+          "thread_key": "film_tv_pa_shoot_day_realism_001",
+          "planned_only": true,
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "film_tv",
+            "produksjonsassistent"
+          ],
+          "id": "film_tv_pa_realism_unit_move_event_001",
+          "mail_type": "event",
+          "mail_family": "role_world_rollout_pa_unit_move_event",
+          "phase": "climax",
+          "day_phase": "evening",
+          "priority": 98,
+          "cooldown": 12,
+          "from": "Amir, innspillingsleder",
+          "people_ref": "amir_innspillingsleder",
+          "subject": "Unit move starter, men regnet gjør den frigjorte utstyrsruten utrygg for håndbæring",
+          "summary": "Første personellpulje er framme og planen virker, men kraftig regn gjør rampen glatt. Crewet ser på deg for en rask løsning mens Amir og fagansvarlig står opptatt i en annen avklaring.",
+          "purpose": "Bevise situert teamomdømme: assistenten kan stanse egen oppgave og gjøre risiko synlig uten å utføre ukjent arbeid eller overta sikkerhetsansvaret.",
+          "stakes": "Å vente på fagansvarlig koster minutter og sosial flyt. Å improvisere håndtering eller presse crevet videre kan gjøre lavstatusarbeidere til bærere av en risiko de ikke valgte.",
+          "situation": [
+            "Ruten er adgangsgodkjent, men den nye værtilstanden er ikke vurdert for håndbæring.",
+            "Produksjonsassistenten kan stanse egen oppgave, sikre området praktisk og hente ansvarlig.",
+            "Crewets tillit eller irritasjon kan ikke gi assistenten sikkerhetsmyndighet."
+          ],
+          "task_domain": "vedvarende_opptaksdagkoordinering",
+          "task_kind": "event",
+          "competency": "rolle_og_mandat",
+          "pressure": "teamtempo_vs_sikkerhetsgrense",
+          "choice_axis": "stans_og_eskaler_vs_improviser_under_press",
+          "consequence_axis": "situert_crewtillit_vs_skade_og_myndighetslekkasje",
+          "narrative_arc": "fra_sprikende_call_til_sporbart_operativt_handoff",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "film_tv_pa_shoot_day_case_001"
+            ],
+            "institution_id": "film_tv_produksjonsenhet_001",
+            "rework_of_scene_id": "film_tv_pa_realism_call_rework_001",
+            "priority": "urgent",
+            "interrupts": true
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Stans egen håndbæringsoppgave, sperr praktisk av og hent fagansvarlig",
+              "reply": "Jeg markerer rampen, holder crevet tilbake og ber Amir hente riktig fagansvarlig før utstyret flyttes.",
+              "effect": 2,
+              "feedback": "Du bruker rollen til å stoppe og eskalere uten å late som du kan godkjenne den nye risikoen.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_pa_unit_move_safety_escalated",
+                    "work_object_id": "film_tv_pa_shoot_day_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "weather_safety_escalation_and_recovery",
+                    "note": "Unit move er midlertidig stanset; væravviket er synlig og sendt til riktig sikkerhets- og operativ beslutning."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_pa_safety_boundary_preserved",
+                    "work_object_id": "film_tv_pa_shoot_day_case_001",
+                    "flag": "assistant_stopped_own_task_and_escalated"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_pa_standing_crew_safety",
+                    "audience_id": "team:film_tv_settcrew",
+                    "delta": 3,
+                    "reason": "Crevet ser at lavstatus og tidspress ikke brukes til å skyve risiko nedover.",
+                    "source_actor_id": "amir_innspillingsleder"
+                  },
+                  {
+                    "event_id": "film_tv_pa_standing_manager_safety",
+                    "audience_id": "manager:amir_innspillingsleder",
+                    "delta": 2,
+                    "reason": "Avviket er avgrenset og eskalert uten selvautorisert sikkerhetsbeslutning.",
+                    "source_actor_id": "amir_innspillingsleder"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Organiser en rask bærekjede før noen rekker å stoppe flyten",
+              "reply": "Vi tar mindre kolli og flere personer; dette løser vi på to minutter mens Amir er opptatt.",
+              "effect": -2,
+              "feedback": "Sosial handlekraft blir brukt til å overta en sikkerhetskritisk vurdering uten opplæring eller mandat.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_pa_unit_move_safety_improvised",
+                    "work_object_id": "film_tv_pa_shoot_day_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "weather_safety_escalation_and_recovery",
+                    "note": "Crewet er satt i improvisert håndbæring før væravviket er faglig vurdert."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_pa_untrained_safety_work",
+                    "work_object_id": "film_tv_pa_shoot_day_case_001",
+                    "flag": "assistant_improvised_safety_critical_work"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_pa_standing_crew_risk_shifted",
+                    "audience_id": "team:film_tv_settcrew",
+                    "delta": -3,
+                    "reason": "Tidspresset gjøres til crewets kroppslige risiko.",
+                    "source_actor_id": "amir_innspillingsleder"
+                  },
+                  {
+                    "event_id": "film_tv_pa_standing_manager_authority_leak",
+                    "audience_id": "manager:amir_innspillingsleder",
+                    "delta": -3,
+                    "reason": "Assistenten overtar sikkerhetskritisk beslutning under sosialt press.",
+                    "source_actor_id": "amir_innspillingsleder"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

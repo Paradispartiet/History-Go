@@ -4,33 +4,297 @@
   "category": "film_tv",
   "role_scope": "produksjonsassistent",
   "mail_type": "followup",
-  "families": [{
-    "id": "produksjonsassistent_lokasjonsoppfolging",
-    "purpose": "La en tidligere lokasjonsavgjørelse kreve ny koordinering samme dag.",
-    "learning_focus": ["oppfolging", "status", "konsekvens"],
-    "mails": [{
-      "id": "film_tv_pa_followup_sideinngang_status",
-      "mail_type": "followup",
-      "mail_family": "produksjonsassistent_lokasjonsoppfolging",
-      "role_scope": "produksjonsassistent",
-      "phase": "workday",
-      "priority": 110,
-      "from": "Sara, lokasjonsansvarlig",
-      "people_ref": "sara_lokasjonsansvarlig",
-      "place_id": "opptakslokasjon_inngang",
-      "subject": "Rømningsveien er klar — kabelgaten er det ikke",
-      "summary": "Halve sideinngangen kan nå brukes, men bare dersom transport og kamera får ulike ruter.",
-      "situation": ["Avviket er mindre enn i morges, men ikke borte.", "En presis status kan hente inn tid uten å late som hele området er frigitt.", "En vag grønnmelding kan sende feil team inn i kabelgaten."],
-      "task_domain": "lokasjon_og_logistikk",
-      "competency": "avvikshandtering",
-      "pressure": "delvis_avklart",
-      "choice_axis": "presis_delstatus_vs_forenklet_gronnmelding",
-      "consequence_axis": "kontrollert_flyt_vs_ny_stans",
-      "narrative_arc": "lokasjon_delvis_frigitt",
-      "choices": [
-        {"id": "A", "label": "Send rutekart med tydelig begrensning", "reply": "Transport bruker nordruten; kamera venter. Kabelgaten er fortsatt sperret.", "effect": 1, "tags": ["clarity", "safety"], "feedback": "Avdelingene kan handle på en status som sier både ja og nei.", "effects": {"stats": {"quality": 2, "trust": 1, "risk": -2}}},
-        {"id": "B", "label": "Meld at sideinngangen er åpnet", "reply": "Sideinngangen er klar — kom inn fortløpende.", "effect": -1, "tags": ["tempo", "risk"], "feedback": "Den korte meldingen skjuler den viktigste begrensningen.", "effects": {"stats": {"status": 1, "risk": 3, "trust": -1}}}
+  "families": [
+    {
+      "id": "produksjonsassistent_lokasjonsoppfolging",
+      "purpose": "La en tidligere lokasjonsavgjørelse kreve ny koordinering samme dag.",
+      "learning_focus": [
+        "oppfolging",
+        "status",
+        "konsekvens"
+      ],
+      "mails": [
+        {
+          "id": "film_tv_pa_followup_sideinngang_status",
+          "mail_type": "followup",
+          "mail_family": "produksjonsassistent_lokasjonsoppfolging",
+          "role_scope": "produksjonsassistent",
+          "phase": "workday",
+          "priority": 110,
+          "from": "Sara, lokasjonsansvarlig",
+          "people_ref": "sara_lokasjonsansvarlig",
+          "place_id": "opptakslokasjon_inngang",
+          "subject": "Rømningsveien er klar — kabelgaten er det ikke",
+          "summary": "Halve sideinngangen kan nå brukes, men bare dersom transport og kamera får ulike ruter.",
+          "situation": [
+            "Avviket er mindre enn i morges, men ikke borte.",
+            "En presis status kan hente inn tid uten å late som hele området er frigitt.",
+            "En vag grønnmelding kan sende feil team inn i kabelgaten."
+          ],
+          "task_domain": "lokasjon_og_logistikk",
+          "competency": "avvikshandtering",
+          "pressure": "delvis_avklart",
+          "choice_axis": "presis_delstatus_vs_forenklet_gronnmelding",
+          "consequence_axis": "kontrollert_flyt_vs_ny_stans",
+          "narrative_arc": "lokasjon_delvis_frigitt",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Send rutekart med tydelig begrensning",
+              "reply": "Transport bruker nordruten; kamera venter. Kabelgaten er fortsatt sperret.",
+              "effect": 1,
+              "tags": [
+                "clarity",
+                "safety"
+              ],
+              "feedback": "Avdelingene kan handle på en status som sier både ja og nei.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 1,
+                  "risk": -2
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Meld at sideinngangen er åpnet",
+              "reply": "Sideinngangen er klar — kom inn fortløpende.",
+              "effect": -1,
+              "tags": [
+                "tempo",
+                "risk"
+              ],
+              "feedback": "Den korte meldingen skjuler den viktigste begrensningen.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "risk": 3,
+                  "trust": -1
+                }
+              }
+            }
+          ]
+        }
       ]
-    }]
-  }]
+    },
+    {
+      "id": "role_world_rollout_pa_call_rework",
+      "purpose": "Følge prioriteringen gjennom canonical call, dataminimering og avdelingsmottak.",
+      "learning_focus": [
+        "rework",
+        "receipts",
+        "privacy"
+      ],
+      "mails": [
+        {
+          "role_scope": "produksjonsassistent",
+          "place_id": "produksjonskontor_callbord",
+          "repeatable": false,
+          "stage": "stable",
+          "thread_key": "film_tv_pa_shoot_day_realism_001",
+          "planned_only": true,
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "film_tv",
+            "produksjonsassistent"
+          ],
+          "id": "film_tv_pa_realism_call_rework_001",
+          "mail_type": "followup",
+          "mail_family": "role_world_rollout_pa_call_rework",
+          "phase": "mastery",
+          "day_phase": "afternoon",
+          "priority": 97,
+          "cooldown": 12,
+          "from": "Line, produksjonskoordinator",
+          "people_ref": "line_produksjonskoordinator",
+          "subject": "Reworken må nå nå hver avdeling uten å spre mer persondata enn nødvendig",
+          "summary": "Amir har prioritert personell først og utstyr i to puljer. Line ber deg oppdatere call-tillegget, skille avdelingsmeldinger og få mottaksbekreftelse uten å kopiere hele kontaktlisten til alle.",
+          "purpose": "Gjøre rework til konkret produksjonspraksis der rute, tid, mottak og informasjonskontroll endres i samme arbeidsobjekt.",
+          "stakes": "Én stor melding kan føles rask, men skjuler hvem som har mottatt hvilken instruks og sprer kontaktdata til flere enn oppgaven krever.",
+          "situation": [
+            "Amirs prioritering er dokumentert og skal oversettes, ikke nytolkes.",
+            "Line eier den koordinerte call-flaten og kan bekrefte publisering av tillegget.",
+            "Ida krever minste nødvendige tilgang til medvirkende- og transportdata."
+          ],
+          "task_domain": "vedvarende_opptaksdagkoordinering",
+          "task_kind": "followup",
+          "competency": "kommunikasjon",
+          "pressure": "fart_vs_mottak_og_personvern",
+          "choice_axis": "avdelingsvist_spor_vs_alt_til_alle",
+          "consequence_axis": "teamtillit_vs_informasjonsgjeld",
+          "narrative_arc": "fra_sprikende_call_til_sporbart_operativt_handoff",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "film_tv_pa_shoot_day_case_001"
+            ],
+            "institution_id": "film_tv_produksjonsenhet_001",
+            "rework_of_scene_id": "film_tv_pa_realism_location_response_001",
+            "priority": "urgent"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Oppdater canonical tillegg og send minste nødvendige beskjed per avdeling",
+              "reply": "Jeg fører beslutningen i call-sporet, deler rute og tid per behov og registrerer hvem som har bekreftet mottak.",
+              "effect": 2,
+              "feedback": "Reworken blir etterprøvbar uten at effektivitet krever unødvendig persondatadeling.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_pa_call_reworked",
+                    "work_object_id": "film_tv_pa_shoot_day_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "department_receipts_and_dispatch",
+                    "note": "Call-tillegg, ruter og avdelingsvise mottak er oppdatert med minste nødvendige data."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_pa_call_rework_trace_complete",
+                    "work_object_id": "film_tv_pa_shoot_day_case_001",
+                    "flag": "call_rework_receipts_and_data_scope_traced"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_pa_standing_office_rework",
+                    "audience_id": "team:film_tv_produksjonskontor",
+                    "delta": 3,
+                    "reason": "Call-endringen er canonical og mottaksstatusen lesbar.",
+                    "source_actor_id": "line_produksjonskoordinator"
+                  },
+                  {
+                    "event_id": "film_tv_pa_standing_privacy_bounded",
+                    "audience_id": "professional:ida_personvernkontakt",
+                    "delta": 2,
+                    "reason": "Avdelingene mottar bare data de trenger for oppgaven.",
+                    "source_actor_id": "ida_personvernkontakt"
+                  },
+                  {
+                    "event_id": "film_tv_pa_standing_transport_receipt",
+                    "audience_id": "team:film_tv_transport",
+                    "delta": 2,
+                    "reason": "Transportens rute, tidspunkt og mottak er tydelig dokumentert.",
+                    "source_actor_id": "line_produksjonskoordinator"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Send ett komplett oppdatert ark til alle for å sikre at ingen mangler noe",
+              "reply": "Jeg sender samme fulle plan og kontaktliste til alle avdelinger; da kan de finne det de trenger selv.",
+              "effect": -2,
+              "feedback": "Distribusjonen går raskt, men mottak blir uklart og flere får persondata uten arbeidsbehov.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_pa_call_rework_broadcast",
+                    "work_object_id": "film_tv_pa_shoot_day_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "department_receipts_and_dispatch",
+                    "note": "Call-endringen er sendt bredt uten avdelingsvis dataminimering eller tydelig mottaksspor."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_pa_data_scope_broad",
+                    "work_object_id": "film_tv_pa_shoot_day_case_001",
+                    "flag": "full_contact_sheet_broadcast"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_pa_standing_office_broadcast",
+                    "audience_id": "team:film_tv_produksjonskontor",
+                    "delta": -2,
+                    "reason": "Ett masseutsendelsesgrep erstatter behandlingsbart mottaksspor.",
+                    "source_actor_id": "line_produksjonskoordinator"
+                  },
+                  {
+                    "event_id": "film_tv_pa_standing_privacy_breach",
+                    "audience_id": "professional:ida_personvernkontakt",
+                    "delta": -3,
+                    "reason": "Kontaktdata deles bredere enn oppgaven krever.",
+                    "source_actor_id": "ida_personvernkontakt"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Bruk Cinemateket-konteksten til å skille publikum, crew og avgrensede soner i meldingen",
+              "reply": "Jeg bruker stedskonteksten til tydelig skilting og rollebasert informasjon, men lar bare Saras frigivelse definere ruten.",
+              "effect": 3,
+              "affordance": {
+                "history_go": {
+                  "task_mail_ids": [
+                    "film_tv_pa_realism_history_go_cinemateket_logistics_001"
+                  ],
+                  "require_task_completed": true,
+                  "require_history_go_correct": true
+                }
+              },
+              "feedback": "History Go gir et bedre kommunikasjonsgrep uten å produsere adgang eller operativ myndighet.",
+              "effects": {
+                "stats": {
+                  "quality": 3,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_pa_history_context_call_rework",
+                    "work_object_id": "film_tv_pa_shoot_day_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "department_receipts_and_dispatch",
+                    "note": "Stedskontekst er brukt til å skille offentlige flater, crew-ruter og avgrensede soner i call-reworken."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_pa_history_rework_bounded",
+                    "work_object_id": "film_tv_pa_shoot_day_case_001",
+                    "flag": "history_go_informs_logistics_without_access_authority"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_pa_standing_location_history_rework",
+                    "audience_id": "professional:sara_lokasjonsansvarlig",
+                    "delta": 2,
+                    "reason": "Stedskontekst brukes innenfor dokumentert adgang.",
+                    "source_actor_id": "sara_lokasjonsansvarlig"
+                  },
+                  {
+                    "event_id": "film_tv_pa_standing_office_history_rework",
+                    "audience_id": "team:film_tv_produksjonskontor",
+                    "delta": 2,
+                    "reason": "Meldingen skiller publikum, crew og soner uten nye antakelser.",
+                    "source_actor_id": "line_produksjonskoordinator"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

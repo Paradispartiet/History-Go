@@ -4,34 +4,233 @@
   "category": "film_tv",
   "role_scope": "produksjonsassistent",
   "mail_type": "knowledge",
-  "families": [{
-    "id": "produksjonsassistent_kunnskap_i_bruk",
-    "purpose": "Gjøre kunnskap om tilgang og minst nødvendig deling funksjonell.",
-    "learning_focus": ["informasjonskontroll", "minst_nodvendig_tilgang", "be_om_hjelp"],
-    "mails": [{
-      "id": "film_tv_pa_knowledge_apen_kontaktliste",
-      "mail_type": "knowledge",
-      "mail_family": "produksjonsassistent_kunnskap_i_bruk",
-      "role_scope": "produksjonsassistent",
-      "phase": "forenoon",
-      "priority": 125,
-      "from": "Ida, personvernkontakt",
-      "people_ref": "ida_personvernkontakt",
-      "place_id": "produksjonskanal_tilgang",
-      "subject": "Kontaktlisten ligger i åpen kanal",
-      "summary": "Telefonnumre og hentetider for medvirkende er limt inn i en kanal flere enn transportteamet kan lese.",
-      "situation": ["Minst nødvendig tilgang betyr at praktisk informasjon deles med dem som trenger den — ikke automatisk med hele produksjonen.", "Du kan flytte informasjonen og varsle ansvarlig.", "Hvis du er usikker på oppbevaring, kan du be Ida om konkret hjelp uten å stoppe hele dagen."],
-      "task_domain": "informasjonskontroll",
-      "competency": "fagkunnskap_i_praksis",
-      "pressure": "transport_trenger_svar_na",
-      "choice_axis": "riktig_tilgang_og_hjelp_vs_bekvemmelig_deling",
-      "consequence_axis": "personvern_og_flyt_vs_eksponering",
-      "narrative_arc": "kontaktliste_tilgang",
-      "choices": [
-        {"id": "A", "label": "Flytt listen og gi transport tilgang", "reply": "Jeg fjerner innlegget, legger listen i riktig kanal og ber Ida kontrollere lagringen.", "effect": 1, "tags": ["knowledge", "privacy"], "feedback": "Kunnskapen brukes som arbeidsmåte, og usikkerheten håndteres med hjelp.", "effects": {"stats": {"quality": 2, "trust": 1, "risk": -2, "energy": -1}}},
-        {"id": "B", "label": "La den stå til hentingen er ferdig", "reply": "Vi trenger numrene nå; jeg rydder kanalen senere.", "effect": -1, "tags": ["tempo", "privacy_risk"], "feedback": "Behovet for fart forklarer delingen, men fjerner ikke eksponeringen.", "effects": {"stats": {"status": 1, "risk": 3, "trust": -2}}},
-        {"id": "C", "label": "Slett alt uten å lage ny tilgang", "reply": "Jeg sletter listen med en gang og ber alle vente.", "effect": 0, "tags": ["safety", "flow_cost"], "feedback": "Du reduserer eksponeringen, men mangler en løsning for dem som faktisk trenger dataene.", "effects": {"stats": {"risk": -1, "quality": -1, "energy": -1}}}
+  "families": [
+    {
+      "id": "produksjonsassistent_kunnskap_i_bruk",
+      "purpose": "Gjøre kunnskap om tilgang og minst nødvendig deling funksjonell.",
+      "learning_focus": [
+        "informasjonskontroll",
+        "minst_nodvendig_tilgang",
+        "be_om_hjelp"
+      ],
+      "mails": [
+        {
+          "id": "film_tv_pa_knowledge_apen_kontaktliste",
+          "mail_type": "knowledge",
+          "mail_family": "produksjonsassistent_kunnskap_i_bruk",
+          "role_scope": "produksjonsassistent",
+          "phase": "forenoon",
+          "priority": 125,
+          "from": "Ida, personvernkontakt",
+          "people_ref": "ida_personvernkontakt",
+          "place_id": "produksjonskanal_tilgang",
+          "subject": "Kontaktlisten ligger i åpen kanal",
+          "summary": "Telefonnumre og hentetider for medvirkende er limt inn i en kanal flere enn transportteamet kan lese.",
+          "situation": [
+            "Minst nødvendig tilgang betyr at praktisk informasjon deles med dem som trenger den — ikke automatisk med hele produksjonen.",
+            "Du kan flytte informasjonen og varsle ansvarlig.",
+            "Hvis du er usikker på oppbevaring, kan du be Ida om konkret hjelp uten å stoppe hele dagen."
+          ],
+          "task_domain": "informasjonskontroll",
+          "competency": "fagkunnskap_i_praksis",
+          "pressure": "transport_trenger_svar_na",
+          "choice_axis": "riktig_tilgang_og_hjelp_vs_bekvemmelig_deling",
+          "consequence_axis": "personvern_og_flyt_vs_eksponering",
+          "narrative_arc": "kontaktliste_tilgang",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Flytt listen og gi transport tilgang",
+              "reply": "Jeg fjerner innlegget, legger listen i riktig kanal og ber Ida kontrollere lagringen.",
+              "effect": 1,
+              "tags": [
+                "knowledge",
+                "privacy"
+              ],
+              "feedback": "Kunnskapen brukes som arbeidsmåte, og usikkerheten håndteres med hjelp.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 1,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "La den stå til hentingen er ferdig",
+              "reply": "Vi trenger numrene nå; jeg rydder kanalen senere.",
+              "effect": -1,
+              "tags": [
+                "tempo",
+                "privacy_risk"
+              ],
+              "feedback": "Behovet for fart forklarer delingen, men fjerner ikke eksponeringen.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "risk": 3,
+                  "trust": -2
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Slett alt uten å lage ny tilgang",
+              "reply": "Jeg sletter listen med en gang og ber alle vente.",
+              "effect": 0,
+              "tags": [
+                "safety",
+                "flow_cost"
+              ],
+              "feedback": "Du reduserer eksponeringen, men mangler en løsning for dem som faktisk trenger dataene.",
+              "effects": {
+                "stats": {
+                  "risk": -1,
+                  "quality": -1,
+                  "energy": -1
+                }
+              }
+            }
+          ]
+        }
       ]
-    }]
-  }]
+    },
+    {
+      "id": "role_world_rollout_pa_history_go",
+      "purpose": "Bruke History Go-stedskontekst mens caset venter uten å produsere adgang.",
+      "learning_focus": [
+        "history_go",
+        "place_integrity",
+        "waiting"
+      ],
+      "mails": [
+        {
+          "role_scope": "produksjonsassistent",
+          "place_id": "cinemateket_oslo",
+          "repeatable": false,
+          "stage": "stable",
+          "thread_key": "film_tv_pa_shoot_day_realism_001",
+          "planned_only": true,
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "film_tv",
+            "produksjonsassistent"
+          ],
+          "id": "film_tv_pa_realism_history_go_cinemateket_logistics_001",
+          "mail_type": "knowledge",
+          "mail_family": "role_world_rollout_pa_history_go",
+          "phase": "advanced",
+          "day_phase": "evening",
+          "priority": 90,
+          "cooldown": 12,
+          "from": "Sara, lokasjonsansvarlig",
+          "people_ref": "sara_lokasjonsansvarlig",
+          "subject": "Mens vi venter: les Cinemateket som offentlig sted og arbeidsflate, ikke som adgangsbevis",
+          "summary": "Lokasjonskontrollen står åpen. Sara ber deg bruke Cinemateket i History Go til å skille publikumsinngang, institusjonell funksjon, naboflater og produksjonens konkrete adgangsavtale før transportplanen revideres.",
+          "purpose": "La ventetid inneholde rolle-relevant stedskunnskap som forbedrer senere logistikkrework uten å produsere tillatelse, sikkerhetsgodkjenning eller ny call-myndighet.",
+          "stakes": "God stedskontekst kan gjøre spørsmål og skilting presise. Feil brukt kan den gjøre et offentlig kjent sted til argument for at crevet sikkert får bruke enhver inngang.",
+          "situation": [
+            "Cinemateket er en canonical filmhistorisk og offentlig institusjonell arena.",
+            "Offentlig tilgjengelighet er ikke det samme som produksjonsadgang til en bestemt sone eller på et bestemt tidspunkt.",
+            "Opptakscaset står fortsatt i ventestatus hos Sara mens History Go-oppgaven utføres."
+          ],
+          "task_domain": "vedvarende_opptaksdagkoordinering",
+          "task_kind": "knowledge",
+          "competency": "praktisk_koordinering",
+          "pressure": "ventetid_og_stedskunnskap",
+          "choice_axis": "stedskontekst_vs_adgangsantakelse",
+          "consequence_axis": "presis_rework_vs_lant_institusjonsautoritet",
+          "narrative_arc": "fra_sprikende_call_til_sporbart_operativt_handoff",
+          "interaction_mode": "task",
+          "task_contract": {
+            "task_id": "film_tv_pa_history_go_cinemateket_logistics",
+            "completion_rule": "history_go_payload_completed",
+            "failure_rule": "remain_open",
+            "evidence_refs": [
+              "data/places/film_tv/oslo/cinemateket_oslo.json"
+            ]
+          },
+          "task_payload": {
+            "task_kind": "history_go_place",
+            "target_type": "place",
+            "place_id": "cinemateket_oslo",
+            "completion_mode": "open_place",
+            "title": "Les Cinemateket som offentlig sted og avgrenset arbeidsflate",
+            "description": "Åpne stedet og skill institusjon, publikumsflate og filmhistorisk funksjon fra produksjonens konkrete adgang, kjøremønster og sikkerhetsavklaring.",
+            "return_context": {
+              "source": "civication",
+              "mail_id": "film_tv_pa_realism_history_go_cinemateket_logistics_001",
+              "role_scope": "produksjonsassistent",
+              "place_id": "cinemateket_oslo"
+            }
+          },
+          "work_context": {
+            "object_ids": [
+              "film_tv_pa_shoot_day_case_001"
+            ],
+            "institution_id": "film_tv_produksjonsenhet_001",
+            "waiting_for_actor_id": "sara_lokasjonsansvarlig",
+            "priority": "normal"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skill offentlig sted, institusjon og avtalt produksjonsadgang i tre spor",
+              "reply": "Jeg bruker stedet til å stille bedre logistikkspørsmål, men lar Saras kontroll og den konkrete avtalen avgjøre hvor crevet kan gå.",
+              "effect": 2,
+              "feedback": "History Go forbedrer reworken uten å gjøre stedskunnskap til skjult adgangsmyndighet.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_pa_history_place_context_applied",
+                    "work_object_id": "film_tv_pa_shoot_day_case_001",
+                    "flag": "cinemateket_context_bounded_from_access"
+                  },
+                  {
+                    "op": "note",
+                    "event_id": "film_tv_pa_history_place_context_note",
+                    "work_object_id": "film_tv_pa_shoot_day_case_001",
+                    "note": "Cinemateket brukes som stedskontekst; konkret produksjonsadgang forblir hos lokasjonsansvarlig og avtalen."
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Bruk den offentlige institusjonen som argument for at inngangen bør være uproblematisk",
+              "reply": "Dette er et offentlig filmsted, så jeg antar at vår planlagte inngang kan brukes mens Sara fullfører detaljene.",
+              "effect": -1,
+              "feedback": "Offentlig synlighet og institusjonsstatus blir feilaktig behandlet som produksjonstillatelse.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                },
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_pa_public_place_as_access_proof",
+                    "work_object_id": "film_tv_pa_shoot_day_case_001",
+                    "flag": "public_institution_misused_as_access_authority"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
