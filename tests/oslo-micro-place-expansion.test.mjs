@@ -12,16 +12,16 @@ const report=read('reports/oslo-micro-place-expansion-2026/materialized-canonica
 const audit=read('reports/oslo-micro-place-expansion-2026/review-audit.json');
 const review=read('reports/oslo-micro-place-expansion-2026/review-integrity-report.json');
 
-test('utvidelsen låser nøyaktig 15 miljøpunkter, fire blå skilt og seks snublesteiner',()=>{
-  assert.equal(intake.places.length,25);
+test('utvidelsen låser nøyaktig 16 miljøpunkter, sju blå skilt og seks kuraterte snublesteiner',()=>{
+  assert.equal(intake.places.length,29);
   const counts=Object.fromEntries(['miljo_gjenbruk','bla_skilt','snublestein'].map(group=>[group,intake.places.filter(row=>row.group===group).length]));
-  assert.deepEqual(counts,{miljo_gjenbruk:15,bla_skilt:4,snublestein:6});
+  assert.deepEqual(counts,{miljo_gjenbruk:16,bla_skilt:7,snublestein:6});
   assert.deepEqual(report.counts,counts);
-  assert.equal(report.newPlaceCount,25);
-  assert.equal(new Set(intake.places.map(row=>row.id)).size,25);
+  assert.equal(report.newPlaceCount,29);
+  assert.equal(new Set(intake.places.map(row=>row.id)).size,29);
 });
 
-test('alle 25 er separate canonical Micro Places med riktig kategori, underkategori og kartpunkt',()=>{
+test('alle 29 er separate canonical Micro Places med riktig kategori, underkategori og kartpunkt',()=>{
   const manifest=read('data/places/manifest.json');
   const index=read('data/places/places_index.json');
   for(const row of report.places){
@@ -61,38 +61,58 @@ test('miljøutvidelsen bruker circular_profile og ærlige driftsstatuser',()=>{
   assert.equal(haraldrud.circular_profile.operation_status,'temporary_unavailable');
   assert.match(haraldrud.popupDesc,/Brobekkveien 101/);
   assert.match(haraldrud.popupDesc,/midlertidig utilgjengelig/u);
+  const hoybraten=read('data/places/natur/oslo/miljo_gjenbruk/hoybraten_miljostasjon.json');
+  assert.equal(hoybraten.micro_place_profile.currentStatus,'active');
+  assert.equal(hoybraten.circular_profile.operation_status,'active');
+  assert.equal(hoybraten.address.street,'Fredheimveien');
 });
 
 test('blå skilt og snublesteiner bevarer én fysisk identitet per Place',()=>{
   const plaques=report.places.filter(row=>row.group==='bla_skilt').map(row=>read(row.placeFile));
   const stones=report.places.filter(row=>row.group==='snublestein').map(row=>read(row.placeFile));
-  assert.equal(plaques.length,4);
-  assert.deepEqual(new Set(plaques.map(row=>row.category)),new Set(['by','helse','vitenskap']));
+  assert.equal(plaques.length,7);
+  assert.deepEqual(new Set(plaques.map(row=>row.id)),new Set([
+    'bla_skilt_gartnerlokka_urtegata_50',
+    'bla_skilt_cathinka_guldberg_lovisenberggata_15a',
+    'bla_skilt_sulpen_keysers_gate_5',
+    'bla_skilt_vebjorn_tandberg_kongens_gate_15',
+    'bla_skilt_kjeglebanen_briskebyveien_21',
+    'bla_skilt_fredrikke_qvam_pilestredet_81',
+    'bla_skilt_sophie_borchgrevink_cort_adelers_gate_33'
+  ]));
+  assert.deepEqual(new Set(plaques.map(row=>row.category)),new Set(['by','helse','politikk','sport','vitenskap']));
   assert.ok(plaques.every(row=>row.subcategory_id==='bla_skilt'&&row.micro_place_profile.kind==='minneskilt'));
   assert.equal(stones.length,6);
   assert.ok(stones.every(row=>row.category==='historie'&&row.subcategory_id==='snublestein'&&row.micro_place_profile.kind==='snublestein'));
   assert.equal(new Set(stones.map(row=>row.id)).size,6);
   assert.equal(new Set(stones.map(row=>`${row.lat},${row.lon}`)).size,6);
+  assert.ok(stones.every(row=>!row.id.includes('calmeyer')),'Calmeyers gate skal ikke masseimporteres');
+  const plaque=read('data/places/sport/oslo/bla_skilt/bla_skilt_kjeglebanen_briskebyveien_21.json');
+  assert.notEqual(plaque.id,'kjeglebanen_langgaardslokken');
+  assert.equal(plaque.parent_place_id,'kjeglebanen_langgaardslokken');
+  assert.equal(plaque.micro_place_profile.parent_place_id,'kjeglebanen_langgaardslokken');
+  assert.equal(plaque.category,'sport');
 });
 
 test('underkategoriene er registrert uten nye toppkategorier',()=>{
   const contract=read('data/categories/category_contract.json');
   assert.ok(contract.canonicalPlaceSubcategories.historie.some(row=>row.id==='snublestein'));
-  for(const category of ['by','helse','vitenskap'])assert.ok(contract.canonicalPlaceSubcategories[category].some(row=>row.id==='bla_skilt'));
+  for(const category of ['by','helse','politikk','sport','vitenskap'])assert.ok(contract.canonicalPlaceSubcategories[category].some(row=>row.id==='bla_skilt'));
   assert.ok(contract.runtimeCategories.includes('historie'));
   assert.ok(!contract.runtimeCategories.includes('snublestein'));
   assert.ok(!contract.runtimeCategories.includes('bla_skilt'));
 });
 
-test('materialiseringen kan ikke godkjenne seg selv, mens separat audit dekker alle 26 pakker',()=>{
+test('materialiseringen kan ikke godkjenne seg selv, mens separat audit dekker alle 30 pakker',()=>{
   const source=fs.readFileSync(path.join(ROOT,'tools/materialize-oslo-micro-place-expansion.mjs'),'utf8');
   assert.doesNotMatch(source,/status:\s*['"]ready_v4_2['"]/u);
   assert.doesNotMatch(source,/factual:\s*\{status:\s*['"]passed['"]/u);
   assert.match(source,/factual:\s*\{status:\s*['"]pending['"]/u);
-  assert.equal(audit.places.length,26);
+  assert.equal(audit.places.length,30);
+  assert.deepEqual(new Set(audit.places.map(row=>row.placeId)),new Set([...report.places.map(row=>row.id),'haraldrud_ombrukstelt']));
   assert.doesNotMatch(audit.reviewer,/generator|materializer/iu);
   assert.equal(review.passed,true);
-  assert.equal(review.placeCount,26);
+  assert.equal(review.placeCount,30);
 });
 
 test('review-integriteten avviser svake claims og gjenbrukt generisk tekst',()=>{
