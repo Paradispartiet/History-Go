@@ -79,7 +79,9 @@ try {
     assert.ok(placeCardRect && exploreRect && titleRect && footerRect, `${category} anchored card geometry`);
     const exploreGap = placeCardRect.y - (exploreRect.y + exploreRect.height);
     assert.ok(exploreGap >= 4 && exploreGap <= 16, `${category} PlaceCard starts just below Utforsk`);
-    assert.ok(Math.abs(placeCardRect.y + placeCardRect.height - footerRect.y) <= 2, `${category} PlaceCard reaches footer`);
+    const footerGap = footerRect.y - (placeCardRect.y + placeCardRect.height);
+    assert.ok(footerGap >= 10, `${category} PlaceCard keeps a visible footer gap`);
+    assert.equal(await page.locator("#placeCard").evaluate(node => getComputedStyle(node).bottom), "auto", `${category} PlaceCard is not bottom-anchored`);
     assert.ok(titleRect.y - placeCardRect.y >= 8 && titleRect.y - placeCardRect.y <= 24, `${category} title stays at card top with breathing room`);
     assert.equal(await page.locator("#pcBadgesIcon").evaluate(node => node.parentElement.classList.contains("pc-title-row")), true, category);
     assert.equal(await page.locator("#pcQuiz").isVisible(), true, category);
