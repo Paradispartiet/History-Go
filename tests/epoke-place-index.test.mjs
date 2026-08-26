@@ -17,7 +17,7 @@ test("generated epoch-place index is deterministic and current", () => {
   assert.equal(index.stats.place_evidence_link_count, 325);
   assert.equal(index.stats.period_case_count, 9);
   assert.equal(index.stats.canonical_story_milestone_count, 173);
-  assert.equal(index.stats.verified_place_production_milestone_count, 122);
+  assert.equal(index.stats.verified_place_production_milestone_count, 134);
 });
 
 test("canonical place geography separates Oslo, Lisboa and other countries deterministically", () => {
@@ -118,11 +118,11 @@ test("Oslo coverage classifies every canonical place exactly once without overst
     .sort();
 
   assert.equal(coverage.contract, "oslo-history-coverage-v1");
-  // Six individually reviewed Oslo places now carry dated, source-backed History evidence.
-  assert.equal(coverage.canonical_place_count, 567);
-  assert.equal(coverage.dated_evidence_place_count, 186);
+  // Reviewed Oslo places, including the phase-2 blue signs, carry dated, source-backed History evidence.
+  assert.equal(coverage.canonical_place_count, 582);
+  assert.equal(coverage.dated_evidence_place_count, 197);
   assert.equal(coverage.documented_case_place_count, 2);
-  assert.equal(coverage.awaiting_source_backed_history_count, 379);
+  assert.equal(coverage.awaiting_source_backed_history_count, 383);
   for (const placeId of ["markveien", "paulus_kirke", "arbeidermuseet", "clemenskirken_ruin_oslo", "minneparken_gamlebyen", "saxegarden"]) {
     assert.equal(
       coverage.places.find((place) => place.place_id === placeId)?.status,
