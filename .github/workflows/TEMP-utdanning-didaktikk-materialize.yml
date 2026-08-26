@@ -28,10 +28,12 @@ jobs:
           const file='scripts/materialize-utdanning-didactics-fulltext-v1.mjs';
           const before=fs.readFileSync(file,'utf8');
           const oldText='write(P.emner,emners=emner)';
-          if(!before.includes(oldText)) throw new Error(`Expected materializer typo not found: ${oldText}`);
-          const after=before.replace(oldText,'write(P.emner,emner)');
-          fs.writeFileSync(file,after);
-          if(!fs.readFileSync(file,'utf8').includes('write(P.emner,emner)')) throw new Error('Materializer repair did not persist');
+          if (before.includes(oldText)) {
+            fs.writeFileSync(file,before.replace(oldText,'write(P.emner,emner)'));
+          }
+          const after=fs.readFileSync(file,'utf8');
+          if(!after.includes('write(P.emner,emner)')) throw new Error('Materializer repair did not persist');
+          if(after.includes(oldText)) throw new Error('Materializer typo still present');
           NODE
       - name: Audit next source-first port
         run: node scripts/brief-utdanning-early-childhood-learning-sources-v1.mjs --write-report
@@ -59,7 +61,40 @@ jobs:
           if ! git diff --cached --quiet; then
             git commit -m "Materialize Utdanning Didaktikk at 2/14"
           fi
-      - name: Run canonical Utdanning registry CI on clean materialized head
+      - name: Canonical next source-first check
+        run: node scripts/brief-utdanning-early-childhood-learning-sources-v1.mjs
+      - name: Canonical deterministic Didaktikk rematerialization
+        run: node scripts/materialize-utdanning-didactics-fulltext-v1.mjs
+      - name: Canonical Didaktikk audit check
+        run: node scripts/audit-utdanning-didactics-fulltext-v1.mjs
+      - name: Canonical shared inventory check
+        run: node scripts/audit-fagverk-subject-inventory.mjs
+      - name: Canonical shared general-engine check
+        run: node scripts/audit-fagverk-general-engine.mjs
+      - name: Canonical shared theory-quality check
+        run: node scripts/audit-fagverk-theory-quality.mjs
+      - name: Canonical shared theory-integrity check
+        run: node scripts/audit-fagverk-theory-integrity.mjs
+      - name: Canonical release check
+        run: node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Canonical active Utdanning tests
+        run: >-
+          node --test
+          tests/utdanning-early-childhood-learning-source-brief-v1.test.mjs
+          tests/utdanning-didactics-fulltext-v1.test.mjs
+          tests/fagverk-subject-inventory.test.mjs
+          tests/fagverk-general-engine.test.mjs
+          tests/fagverk-release-manifest.test.mjs
+      - name: Canonical deterministic output diff
+        run: >-
+          git diff --exit-code --
+          data/fag/utdanning
+          data/fagverk/utdanning
+          data/fagverk/fagverk_registry.json
+          data/fagverk/subject_status.json
+          data/fagverk/fagverk_release.json
+          reports/fagverk
+      - name: Full canonical Utdanning registry CI
         run: node scripts/run-utdanning-domain-ci-v1.mjs
       - name: Push materialized head
         shell: bash
