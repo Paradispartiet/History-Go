@@ -155,6 +155,21 @@ test("Oslo coverage classifies every canonical place exactly once without overst
   }
 });
 
+test("Gamlebyen leksikon chronology materializes only reviewed exact anchors", () => {
+  const index = buildEpokePlaceIndex();
+  const chronologyMilestonesFor = (placeId) => Object.values(index.domains.historie.epochs)
+    .flatMap((group) => group.places)
+    .filter((place) => place.place_id === placeId)
+    .flatMap((place) => place.milestones)
+    .filter((milestone) => milestone.evidence_type === "leksikon_chronology");
+  const yearsFor = (placeId) => [...new Set(chronologyMilestonesFor(placeId).map((milestone) => milestone.year))].sort((a, b) => a - b);
+
+  assert.deepEqual(yearsFor("clemenskirken_ruin_oslo"), [1920, 1970, 2000]);
+  assert.deepEqual(yearsFor("minneparken_gamlebyen"), [1932, 2024]);
+  assert.deepEqual(yearsFor("saxegarden"), [1334, 1624]);
+  assert.equal(chronologyMilestonesFor("clemenskirken_ruin_oslo").some((milestone) => milestone.year === 1135), false);
+});
+
 test("verified production claims fail closed for uncertainty, current-only state and non-Oslo places", () => {
   const index = buildEpokePlaceIndex();
   const productionClaimsFor = (placeId) => Object.values(index.domains.historie.epochs)
