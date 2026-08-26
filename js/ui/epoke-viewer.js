@@ -467,6 +467,12 @@
       .hg-epoke-milestones{display:grid;gap:8px;margin-top:9px}.hg-epoke-milestone{display:grid;grid-template-columns:44px 1fr;gap:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,.09)}.hg-epoke-milestone__year{font-size:12px;font-weight:850}.hg-epoke-milestone h5{margin:0;font-size:12px}.hg-epoke-milestone p{margin:3px 0 0;font-size:11px;line-height:1.4;color:rgba(255,255,255,.66)}.hg-epoke-sources{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}.hg-epoke-source{font-size:10px;color:#fff;text-underline-offset:2px}
       .hg-epoke-compact-count{margin-top:9px;font-size:12px;color:rgba(255,255,255,.56)}
       .hg-epoke-track-detail{margin-top:12px;padding:14px;border:1px solid rgba(255,255,255,.16);border-radius:16px;background:rgba(255,255,255,.045)}
+      .hg-epoke-overview{margin-top:2px}.hg-epoke-overview__head{margin-bottom:10px}.hg-epoke-overview__head h4{margin:0 0 4px;font-size:18px}.hg-epoke-overview__head p{margin:0;font-size:12px;line-height:1.45;color:rgba(255,255,255,.62)}.hg-epoke-overview__head .hg-epoke-coverage-status{margin-top:8px;padding:8px 9px;border-left:3px solid rgba(255,203,107,.75);border-radius:7px;background:rgba(255,203,107,.07);color:rgba(255,255,255,.76)}
+      .hg-epoke-period{margin-top:9px;border:1px solid rgba(255,255,255,.13);border-radius:14px;background:rgba(255,255,255,.035);overflow:hidden}.hg-epoke-period>summary{padding:12px 14px;cursor:pointer;font-weight:800}.hg-epoke-period__body{padding:0 14px 14px}.hg-epoke-period__date{margin:-3px 0 9px;font-size:11px;color:rgba(255,255,255,.55)}.hg-epoke-period__intro{font-size:13px;line-height:1.55}.hg-epoke-period__section{margin-top:14px}.hg-epoke-period__section h5{margin:0 0 5px;font-size:13px}.hg-epoke-period__section p{margin:0;font-size:12px;line-height:1.55;color:rgba(255,255,255,.76)}.hg-epoke-period__section p+p{margin-top:7px}
+      .hg-epoke-concepts{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px}.hg-epoke-concept{padding:4px 7px;border-radius:999px;background:rgba(255,255,255,.09);font-size:10px}.hg-epoke-module{margin-top:13px;padding:12px;border-left:3px solid rgba(255,255,255,.45);background:rgba(0,0,0,.24)}.hg-epoke-module h5{margin:0 0 5px;font-size:13px}.hg-epoke-module p{margin:4px 0;font-size:12px;line-height:1.5}.hg-epoke-module__problem{color:rgba(255,255,255,.66)}.hg-epoke-module__units{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:7px;margin-top:9px}.hg-epoke-module__unit{padding:9px;border-radius:10px;background:rgba(255,255,255,.055)}.hg-epoke-module__unit strong{display:block;font-size:11px}.hg-epoke-module__unit span{display:block;margin-top:3px;font-size:11px;line-height:1.4;color:rgba(255,255,255,.67)}
+      .hg-epoke-cases{display:grid;gap:7px;margin-top:10px}.hg-epoke-cases>h5{margin:0;font-size:12px}.hg-epoke-case{padding:8px;border:1px solid rgba(255,255,255,.1);border-radius:9px;background:rgba(255,255,255,.025)}.hg-epoke-case p{margin:0 0 6px;font-size:11px;line-height:1.45;color:rgba(255,255,255,.73)}.hg-epoke-overview-sources{margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,.1)}.hg-epoke-overview-sources strong{display:block;margin-bottom:6px;font-size:11px}.hg-epoke-overview-sources__links{display:flex;flex-wrap:wrap;gap:6px}
+      .hg-epoke-evidence-kind{display:inline-block;margin-top:5px;font-size:9px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,.47)}.hg-epoke-limitation{margin-top:5px;font-size:10px;color:rgba(255,255,255,.58)}.hg-epoke-limitation summary{cursor:pointer}.hg-epoke-limitation p{font-size:10px}
+      .hg-epoke-connections{display:grid;gap:7px;margin-top:10px;padding-top:9px;border-top:1px solid rgba(255,255,255,.09)}.hg-epoke-connection-group strong{display:block;margin-bottom:4px;font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,.5)}.hg-epoke-connection-list{display:flex;flex-wrap:wrap;gap:5px}.hg-epoke-connection{display:inline-flex;align-items:center;gap:5px;padding:5px 7px;border:1px solid rgba(255,255,255,.13);border-radius:9px;background:rgba(255,255,255,.055);color:#fff;font:inherit;font-size:10px;cursor:pointer}.hg-epoke-connection img{width:22px;height:22px;border-radius:50%;object-fit:cover}.hg-epoke-connection:hover,.hg-epoke-connection:focus-visible{border-color:rgba(255,255,255,.45);outline:none;background:rgba(255,255,255,.11)}
       @media (max-width:640px){.hg-epoke-viewer{padding:0;place-items:stretch}.hg-epoke-viewer__panel{width:100%;height:100dvh;border-radius:0;border-left:0;border-right:0}.hg-epoke-viewer__head{padding:15px 14px 12px}.hg-epoke-viewer__toolbar{padding:9px 14px}.hg-epoke-viewer__field{min-width:calc(50% - 5px)}.hg-epoke-viewer__body{padding:16px 12px 26px}.hg-epoke-node{grid-template-columns:1fr;gap:6px}.hg-epoke-node__years{font-size:11px}.hg-epoke-analysis{grid-template-columns:1fr}.hg-epoke-place-cards{grid-template-columns:1fr}}
     `;
     document.head.appendChild(style);
@@ -507,6 +513,13 @@
     void window.openPlaceCard?.(place);
   }
 
+  function navigateToPerson(person) {
+    if (!person) return;
+    if (readUrlState().active) clearUrlState();
+    closeDom();
+    void window.showPersonPopup?.(person);
+  }
+
   function placeButtonHtml(row, currentPlaceId) {
     const place = row?.place || {};
     const id = txt(place?.id || place?.placeId);
@@ -520,8 +533,34 @@
     const list = Array.isArray(milestones) ? milestones : [];
     return `<div class="hg-epoke-milestones">${list.map((milestone) => {
       const sources = (Array.isArray(milestone?.sources) ? milestone.sources : []).filter((source) => /^https?:\/\//.test(txt(source?.url)));
-      return `<article class="hg-epoke-milestone"><div class="hg-epoke-milestone__year">${esc(milestone?.year)}</div><div><h5>${esc(milestone?.title || "Historisk hendelse")}</h5>${txt(milestone?.consequence) ? `<p>${esc(milestone.consequence)}</p>` : ""}${sources.length ? `<div class="hg-epoke-sources" aria-label="Kilder">${sources.map((source) => `<a class="hg-epoke-source" href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">${esc(source.title)} ↗</a>`).join("")}</div>` : ""}</div></article>`;
+      const evidenceLabel = milestone?.evidence_type === "canonical_place_claim"
+        ? "Canonical claim"
+        : "Datert leksikonspor";
+      const limitations = (Array.isArray(milestone?.limitations) ? milestone.limitations : []).map(txt).filter(Boolean);
+      return `<article class="hg-epoke-milestone"${txt(milestone?.claim_id) ? ` data-claim-id="${esc(milestone.claim_id)}"` : ""}><div class="hg-epoke-milestone__year">${esc(milestone?.year)}</div><div><h5>${esc(milestone?.title || "Historisk hendelse")}</h5>${txt(milestone?.consequence) ? `<p>${esc(milestone.consequence)}</p>` : ""}<span class="hg-epoke-evidence-kind">${esc(evidenceLabel)}</span>${sources.length ? `<div class="hg-epoke-sources" aria-label="Kilder">${sources.map((source) => `<a class="hg-epoke-source" href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">${esc(source.title)} ↗</a>`).join("")}</div>` : ""}${limitations.length ? `<details class="hg-epoke-limitation"><summary>Usikkerhet og avgrensning</summary>${limitations.map((limitation) => `<p>${esc(limitation)}</p>`).join("")}</details>` : ""}</div></article>`;
     }).join("")}</div>`;
+  }
+
+  function connectionHtml(evidence, placeId) {
+    const connections = evidence?.connections || {};
+    const people = (Array.isArray(connections?.person_ids) ? connections.person_ids : [])
+      .map((id) => (Array.isArray(window.PEOPLE) ? window.PEOPLE : []).find((person) => txt(person?.id) === txt(id)))
+      .filter(Boolean);
+    const works = Array.isArray(connections?.works) ? connections.works : [];
+    const stories = Array.isArray(connections?.stories) ? connections.stories : [];
+    const group = (label, items) => items.length ? `<div class="hg-epoke-connection-group"><strong>${esc(label)}</strong><div class="hg-epoke-connection-list">${items.join("")}</div></div>` : "";
+    const peopleHtml = group("Mennesker", people.map((person) => `<button type="button" class="hg-epoke-connection" data-epoke-person-id="${esc(txt(person?.id))}">${txt(person?.image || person?.cardImage) ? `<img src="${esc(person.image || person.cardImage)}" alt="">` : ""}<span>${esc(person?.name || person?.id)}</span></button>`));
+    const worksHtml = group("Verk og objekter", works.slice(0, 5).map((work) => `<button type="button" class="hg-epoke-connection" data-epoke-place-id="${esc(placeId)}">${esc(work?.title || work?.id)}</button>`));
+    const storiesHtml = group("Fortellinger", stories.slice(0, 5).map((story) => `<button type="button" class="hg-epoke-connection" data-epoke-place-id="${esc(placeId)}">${esc(story?.title || story?.id)}${Number.isFinite(story?.year) ? ` · ${esc(story.year)}` : ""}</button>`));
+    return peopleHtml || worksHtml || storiesHtml ? `<div class="hg-epoke-connections">${peopleHtml}${worksHtml}${storiesHtml}</div>` : "";
+  }
+
+  function periodCasesHtml(periodCases) {
+    const cases = Array.isArray(periodCases) ? periodCases : [];
+    return cases.length ? `<section class="hg-epoke-cases"><h5>Dokumenterte stedscaser uten eksakt datering</h5>${cases.map((periodCase) => {
+      const sources = (periodCase?.sources || []).filter((source) => /^https?:\/\//.test(txt(source?.url)));
+      return `<article class="hg-epoke-case"><p>${esc(periodCase?.use)}</p>${sources.length ? `<div class="hg-epoke-sources" aria-label="Casekilder">${sources.map((source) => `<a class="hg-epoke-source" href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">${esc(source?.title || source.url)} ↗</a>`).join("")}</div>` : ""}</article>`;
+    }).join("")}</section>` : "";
   }
 
   function placeCardHtml(row, currentPlaceId) {
@@ -530,7 +569,43 @@
     const id = txt(place?.id || place?.placeId || evidence?.place_id);
     const current = Boolean(id && id === currentPlaceId);
     const roles = Array.isArray(evidence?.roles) ? evidence.roles : [];
-    return `<article class="hg-epoke-place-card${current ? " is-current" : ""}"><div class="hg-epoke-place-card__head">${placeButtonHtml(row, currentPlaceId)}${txt(evidence?.category || place?.category) ? `<span class="hg-epoke-place-card__category">${esc(domainLabel(txt(evidence?.category || place?.category)))}</span>` : ""}</div>${roles.length ? `<div class="hg-epoke-role-list" aria-label="Historisk rolle">${roles.map((role) => `<span class="hg-epoke-role">${esc(role?.label)}</span>`).join("")}</div>` : ""}${milestonesHtml(evidence?.milestones)}</article>`;
+    return `<article class="hg-epoke-place-card${current ? " is-current" : ""}"><div class="hg-epoke-place-card__head">${placeButtonHtml(row, currentPlaceId)}${txt(evidence?.category || place?.category) ? `<span class="hg-epoke-place-card__category">${esc(domainLabel(txt(evidence?.category || place?.category)))}</span>` : ""}</div>${roles.length ? `<div class="hg-epoke-role-list" aria-label="Historisk rolle">${roles.map((role) => `<span class="hg-epoke-role">${esc(role?.label)}</span>`).join("")}</div>` : ""}${milestonesHtml(evidence?.milestones)}${periodCasesHtml(evidence?.period_cases)}${connectionHtml(evidence, id)}</article>`;
+  }
+
+  function periodIdsForEpoch(epoch) {
+    return [...new Set((epoch?.fagverk_links || []).flatMap((link) => Array.isArray(link?.period_ids) ? link.period_ids : []).map(txt).filter(Boolean))];
+  }
+
+  function historyOverviewHtml(epoch) {
+    const coverage = window.HG_EPOKE_HISTORY_COVERAGE;
+    if (coverage?.contract !== "canonical-history-period-coverage-v1") return "";
+    const periodIds = periodIdsForEpoch(epoch);
+    const guides = periodIds.map((periodId) => (coverage.guides || []).find((guide) => txt(guide?.period_id) === periodId)).filter(Boolean);
+    if (!guides.length) return "";
+    const coverageStats = window.HG_EPOKE_PLACE_INDEX?.stats || {};
+    const indexedPlaceCount = num(coverageStats?.indexed_place_count);
+    const canonicalPlaceCount = num(coverageStats?.canonical_place_count);
+    const placeCoverage = Number.isFinite(indexedPlaceCount) && Number.isFinite(canonicalPlaceCount)
+      ? ` Stedsindeksen har godkjent evidens eller dokumenterte caser for ${indexedPlaceCount} av ${canonicalPlaceCount} canonical steder.`
+      : " Stedsindeksen viser bare steder med godkjent evidens eller dokumenterte caser.";
+    const coverageStatus = `Fagverksoversikten dekker alle ${coverage.guides.length} canonical Historie-perioder.${placeCoverage} Fravær er et synlig dokumentasjonsgap, ikke bevis på at et sted mangler historie.`;
+    const modules = periodIds.map((periodId) => (coverage.modules || []).find((module) => txt(module?.period_id) === periodId)).filter(Boolean);
+    const sourceById = new Map((coverage.sources || []).map((source) => [txt(source?.source_id), source]));
+    const relevantModuleSourceIds = new Set(modules.flatMap((module) => (module?.units || []).flatMap((unit) => unit?.source_ids || []).map(txt)));
+    const sources = [
+      ...(coverage.orientation_sources || []).map((source) => ({ title: source?.title, url: source?.url, role: source?.role })),
+      ...[...relevantModuleSourceIds].map((id) => sourceById.get(id)).filter(Boolean)
+    ];
+    const uniqueSources = [...new Map(sources.filter((source) => /^https?:\/\//.test(txt(source?.url))).map((source) => [txt(source.url), source])).values()];
+    const moduleFor = (periodId) => modules.find((module) => txt(module?.period_id) === txt(periodId));
+    const guideHtml = guides.map((guide, index) => {
+      const module = moduleFor(guide?.period_id);
+      const concepts = [...(guide?.core_concepts || []), ...(guide?.connections || [])].map(txt).filter(Boolean);
+      const moduleHtml = module ? `<section class="hg-epoke-module"><h5>${esc(module?.title || "Kildebasert fordypning")}</h5>${txt(module?.thesis) ? `<p>${esc(module.thesis)}</p>` : ""}${txt(module?.historiographical_problem) ? `<p class="hg-epoke-module__problem"><strong>Historisk problem:</strong> ${esc(module.historiographical_problem)}</p>` : ""}<div class="hg-epoke-module__units">${(module?.units || []).map((unit) => `<div class="hg-epoke-module__unit"><strong>${esc(unit?.title)}</strong><span>${esc(unit?.summary)}</span></div>`).join("")}</div></section>` : "";
+      return `<details class="hg-epoke-period"${index === 0 ? " open" : ""} data-history-period-id="${esc(guide?.period_id)}"><summary>${esc(guide?.title || guide?.period_id)}</summary><div class="hg-epoke-period__body"><div class="hg-epoke-period__date">${esc(guide?.date_label)}</div><p class="hg-epoke-period__intro">${esc(guide?.introduction)}</p>${(guide?.sections || []).map((section) => `<section class="hg-epoke-period__section"><h5>${esc(section?.title)}</h5>${(section?.paragraphs || []).map((paragraph) => `<p>${esc(paragraph)}</p>`).join("")}</section>`).join("")}${concepts.length ? `<div class="hg-epoke-concepts" aria-label="Begreper og forbindelser">${concepts.map((concept) => `<span class="hg-epoke-concept">${esc(concept)}</span>`).join("")}</div>` : ""}${moduleHtml}</div></details>`;
+    }).join("");
+    const sourcesHtml = uniqueSources.length ? `<div class="hg-epoke-overview-sources"><strong>Oversiktskilder og modulgrunnlag</strong><div class="hg-epoke-overview-sources__links">${uniqueSources.map((source) => `<a class="hg-epoke-source" href="${esc(source.url)}" target="_blank" rel="noopener noreferrer"${txt(source?.role) ? ` title="${esc(source.role)}"` : ""}>${esc(source?.title || source.url)} ↗</a>`).join("")}</div></div>` : "";
+    return `<section class="hg-epoke-overview" data-epoke-history-overview><div class="hg-epoke-overview__head"><h4>Historisk oversikt</h4><p>Canonical Historie-fagverk: globalt, nasjonalt og stedlig perspektiv, med eksplisitte begreper, forbindelser og kildegrunnlag.</p><p class="hg-epoke-coverage-status">${esc(coverageStatus)}</p></div>${guideHtml}${sourcesHtml}</section>`;
   }
 
   function analysisHtml(epoch) {
@@ -548,9 +623,11 @@
 
   function depthHtml(epoch, places, currentPlaceId, generated) {
     if (!generated) {
-      return places.length ? `<div class="hg-epoke-node__places">${places.map((row) => placeButtonHtml(row, currentPlaceId)).join("")}</div>` : '<div class="hg-epoke-node__empty">Ingen registrerte steder i denne epoken ennå.</div>';
+      const overview = historyOverviewHtml(epoch);
+      const placeList = places.length ? `<div class="hg-epoke-node__places">${places.map((row) => placeButtonHtml(row, currentPlaceId)).join("")}</div>` : '<div class="hg-epoke-node__empty">Ingen registrerte steder i denne epoken ennå.</div>';
+      return overview ? `<div class="hg-epoke-depth">${overview}${placeList}</div>` : placeList;
     }
-    return `<div class="hg-epoke-depth">${analysisHtml(epoch)}<h4 class="hg-epoke-section-title">Steder og daterte spor</h4><p class="hg-epoke-section-intro">Hvert treff kommer fra en datert kronologihendelse i stedets leksikon. Kildene under hendelsen kan åpnes direkte.</p>${places.length ? `<div class="hg-epoke-node__places hg-epoke-place-cards">${places.map((row) => placeCardHtml(row, currentPlaceId)).join("")}</div>` : '<div class="hg-epoke-node__empty">Ingen daterte, kildebelagte stedsspor i denne epoken ennå.</div>'}</div>`;
+    return `<div class="hg-epoke-depth">${historyOverviewHtml(epoch)}${analysisHtml(epoch)}<h4 class="hg-epoke-section-title">Steder og kildebelagte spor</h4><p class="hg-epoke-section-intro">Treffene kommer fra validerte place–claim–source-koblinger og daterte leksikonhendelser. Udaterte Fagverk-caser vises separat uten konstruerte årstall. Kilder og registrerte avgrensninger kan undersøkes direkte.</p>${places.length ? `<div class="hg-epoke-node__places hg-epoke-place-cards">${places.map((row) => placeCardHtml(row, currentPlaceId)).join("")}</div>` : '<div class="hg-epoke-node__empty">Ingen daterte, kildebelagte stedsspor i denne epoken ennå.</div>'}</div>`;
   }
 
   function trackRows(track, locationScope) {
@@ -583,10 +660,11 @@
 
     const timeline = buildTimeline(domain, locationScope);
     const epochsWithPlaces = timeline.epochs.filter((entry) => entry.places.length).length;
+    const milestoneCount = timeline.epochs.reduce((sum, entry) => sum + entry.places.reduce((placeSum, row) => placeSum + (row?.evidence?.milestones?.length || 0), 0), 0);
     if (summary) {
       const parallelSummary = timeline.parallel.length ? ` · ${timeline.parallel.length} gjennomgående spor` : "";
       const unknownSummary = timeline.unknownLocationCount ? ` · ${timeline.unknownLocationCount} uten områdedata` : "";
-      summary.textContent = `${scopeLabel(locationScope)} · ${timeline.epochs.length} epoker · ${timeline.placeCount} steder · ${epochsWithPlaces} epoker med steder${parallelSummary}${unknownSummary}`;
+      summary.textContent = `${scopeLabel(locationScope)} · ${timeline.epochs.length} epoker · ${timeline.placeCount} steder · ${milestoneCount} kildebelagte spor · ${epochsWithPlaces} epoker med steder${parallelSummary}${unknownSummary}`;
     }
 
     const nodes = timeline.epochs.map(({ epoch, places }) => {
@@ -629,6 +707,14 @@
         if (place) navigateToPlace(place);
       });
     });
+    body.querySelectorAll("[data-epoke-person-id]").forEach((node) => {
+      const button = /** @type {HTMLElement} */ (node);
+      button.addEventListener("click", () => {
+        const personId = txt(button.getAttribute("data-epoke-person-id"));
+        const person = (Array.isArray(window.PEOPLE) ? window.PEOPLE : []).find((candidate) => txt(candidate?.id) === personId);
+        if (person) navigateToPerson(person);
+      });
+    });
 
     requestAnimationFrame(() => {
       const currentNode = /** @type {HTMLElement|null} */ (body.querySelector(".hg-epoke-node.is-current"));
@@ -640,6 +726,7 @@
   async function open(options = {}) {
     if (window.HGEpokerRuntime?.ready) await window.HGEpokerRuntime.ready;
     if (window.HGEpokerRuntime?.loadPlaceIndex) await window.HGEpokerRuntime.loadPlaceIndex();
+    if (window.HGEpokerRuntime?.loadHistoryCoverage) await window.HGEpokerRuntime.loadHistoryCoverage();
     ensureStyles();
     closeDom();
 
