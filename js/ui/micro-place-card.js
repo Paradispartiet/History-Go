@@ -74,11 +74,19 @@
 
     const micro = isMicro(place);
     card.classList.toggle("is-micro-place", micro);
+    document.body?.classList.toggle("is-micro-place-open", micro);
     card.dataset.placeTier = micro ? "micro" : "standard";
     panel.hidden = !micro;
     panel.setAttribute("aria-hidden", micro ? "false" : "true");
 
     if (!micro) {
+      document.body?.classList.remove("is-micro-place-quizless");
+      for (const id of ["pcQuiz", "pcObserve"]) {
+        const action = document.getElementById(id);
+        if (!action) continue;
+        action.hidden = false;
+        action.setAttribute("aria-hidden", "false");
+      }
       card.removeAttribute("data-micro-quiz");
       return false;
     }
@@ -86,6 +94,17 @@
     renderPanel(place, panel);
     const quizMode = text(place.micro_place_profile?.quizMode) === "place" ? "place" : "none";
     card.dataset.microQuiz = quizMode;
+    document.body?.classList.toggle("is-micro-place-quizless", quizMode === "none");
+    const quiz = document.getElementById("pcQuiz");
+    if (quiz) {
+      quiz.hidden = quizMode === "none";
+      quiz.setAttribute("aria-hidden", quizMode === "none" ? "true" : "false");
+    }
+    const observe = document.getElementById("pcObserve");
+    if (observe) {
+      observe.hidden = true;
+      observe.setAttribute("aria-hidden", "true");
+    }
     const grid = card.querySelector(".pc-icons-quad");
     if (grid) {
       grid.dataset.collectionCount = "0";

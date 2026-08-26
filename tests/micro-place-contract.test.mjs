@@ -16,7 +16,7 @@ const windows = new Set();
 afterEach(() => { for (const window of windows) window.close(); windows.clear(); });
 
 function fixture(places) {
-  const dom = new JSDOM(`<!doctype html><html><head></head><body><div id="placeCard"><div class="pc-body"><div class="pc-title-row"><div id="pcBadgesIcon"></div></div><div class="pc-grid"><div class="pc-frontcard"></div><div class="pc-side-stack"><div class="pc-icons-quad"></div></div><div id="pcEventsBox" class="pc-events-quad"></div></div><div id="pcLesespor"></div></div><footer><button id="pcInfo"></button><button id="pcQuiz"></button><button id="pcVisit"></button><button id="pcRoute"></button><button id="pcObserve"></button><button id="pcNote"></button></footer></div></body></html>`, {
+  const dom = new JSDOM(`<!doctype html><html><head></head><body><div id="placeCard"><div class="pc-body"><div class="pc-title-row"><div id="pcBadgesIcon"></div></div><div class="pc-grid"><div class="pc-frontcard"></div><div class="pc-side-stack"><div class="pc-icons-quad"></div></div><div id="pcEventsBox" class="pc-events-quad"></div></div><div id="pcLesespor"></div></div></div><footer><button id="pcInfo"></button><button id="pcQuiz"></button><button id="pcVisit"></button><button id="pcRoute"></button><button id="pcObserve"></button><button id="pcNote"></button></footer></body></html>`, {
     url:"https://history-go.test/",
     runScripts:"outside-only"
   });
@@ -69,6 +69,11 @@ test("Micro Place renders one compact identity panel and restores a standard car
   assert.equal(card.dataset.placeTier, "micro");
   assert.equal(card.dataset.microQuiz, "none");
   assert.equal(panel.hidden, false);
+  assert.equal(window.document.body.classList.contains("is-micro-place-open"), true);
+  assert.equal(window.document.body.classList.contains("is-micro-place-quizless"), true);
+  assert.equal(window.document.getElementById("pcQuiz").hidden, true);
+  assert.equal(window.document.getElementById("pcQuiz").getAttribute("aria-hidden"), "true");
+  assert.equal(window.document.getElementById("pcObserve").hidden, true);
   assert.match(panel.textContent, /Lesekiosk/);
   assert.match(panel.textContent, /Aktivt sted/);
 
@@ -76,6 +81,17 @@ test("Micro Place renders one compact identity panel and restores a standard car
   assert.equal(card.classList.contains("is-micro-place"), false);
   assert.equal(card.dataset.placeTier, "standard");
   assert.equal(panel.hidden, true);
+  assert.equal(window.document.body.classList.contains("is-micro-place-open"), false);
+  assert.equal(window.document.body.classList.contains("is-micro-place-quizless"), false);
+  assert.equal(window.document.getElementById("pcQuiz").hidden, false);
+  assert.equal(window.document.getElementById("pcObserve").hidden, false);
+});
+
+test("Micro Place footer policy targets actions outside the PlaceCard container", () => {
+  const css = read("css/micro-place-card.css");
+  assert.match(css, /body\.is-micro-place-quizless #pcQuiz/);
+  assert.match(css, /body\.is-micro-place-open #pcObserve/);
+  assert.doesNotMatch(css, /#placeCard\.is-micro-place\[data-micro-quiz="none"\] #pcQuiz/);
 });
 
 test("collection runtimes explicitly leave Micro Places out of full grids", () => {
