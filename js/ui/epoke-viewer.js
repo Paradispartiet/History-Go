@@ -361,7 +361,10 @@
       const button = /** @type {HTMLElement} */ (node);
       button.addEventListener("click", () => {
         const placeId = txt(button.getAttribute("data-epoke-place-id"));
-        const place = (Array.isArray(window.PLACES) ? window.PLACES : []).find((candidate) => txt(candidate?.id || candidate?.placeId) === placeId);
+        const place = (Array.isArray(window.PLACES) ? window.PLACES : []).find((candidate) => {
+          const candidatePlace = /** @type {any} */ (candidate);
+          return txt(candidatePlace?.id || candidatePlace?.placeId) === placeId;
+        });
         if (place) navigateToPlace(place);
       });
     });
