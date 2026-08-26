@@ -40,7 +40,11 @@ the materializer that generated the candidate.
 
 Micro Places do **not** require artificial People, Objects, Brands, Stories,
 Reading Trails, Fagverk, language packages, badges, four PlaceCard collections or
-an eight-question quiz. A Micro Place may also omit all image fields; if an
+an eight-question quiz. They also do not require a second, full subject-specific
+Place production report when the canonical v4.2 Micro production packet has
+passed the independent factual and editorial review below. A missing, pending or
+self-approved Micro packet fails closed and restores the ordinary subject gate.
+A Micro Place may also omit all image fields; if an
 image is supplied, the ordinary path and provenance validation still applies.
 Such content may be connected later only when real,
 place-specific evidence supports it.

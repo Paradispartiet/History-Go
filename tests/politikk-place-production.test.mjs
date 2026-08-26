@@ -162,6 +162,36 @@ test('changed-mode krever rapport ved brukerrettet Politikk-stedsendring, men ik
 
   fs.writeFileSync(path.join(fixtureRoot, placePath), JSON.stringify({ ...original, lat: 59.91 }));
   assert.equal(requiredReportsForChanges(fixtureRoot, [placePath], base).size, 0);
+
+  const micro = {
+    ...original,
+    desc: 'Kort, kildebelagt Micro Place-tekst.',
+    placeTier: 'micro',
+    micro_place_profile: { schema: 'history_go_micro_place_profile_v1', kind: 'minneskilt', quizMode: 'none' }
+  };
+  fs.writeFileSync(path.join(fixtureRoot, placePath), JSON.stringify(micro));
+  fs.mkdirSync(path.join(fixtureRoot, 'data/places/production'), { recursive: true });
+  const packetPath = path.join(fixtureRoot, 'data/places/production/test_tinghus.json');
+  const packet = {
+    schemaVersion: '4.2',
+    validatorVersion: '4.2.1',
+    placeId: 'test_tinghus',
+    placeFile: placePath,
+    status: 'ready_v4_2',
+    claims: [{ id: 'claim_identity' }],
+    sentenceCoverage: { desc: [{ sentence: 1, claimIds: ['claim_identity'] }] },
+    reviews: {
+      factual: { status: 'passed', reviewer: 'independent source audit' },
+      editorial: { status: 'passed', reviewer: 'independent editorial audit' }
+    },
+    completion: { factualReview: 'passed', editorialReview: 'passed' }
+  };
+  fs.writeFileSync(packetPath, JSON.stringify(packet));
+  assert.equal(requiredReportsForChanges(fixtureRoot, [placePath], base).size, 0, 'approved Micro Places use the reduced contract');
+
+  packet.reviews.factual.reviewer = 'materializer';
+  fs.writeFileSync(packetPath, JSON.stringify(packet));
+  assert.equal(requiredReportsForChanges(fixtureRoot, [placePath], base).size, 1, 'self-approved Micro packets remain blocked');
 });
 
 test('all-mode kan kjøres permanent selv før første produksjonsrapport er lagt inn', () => {

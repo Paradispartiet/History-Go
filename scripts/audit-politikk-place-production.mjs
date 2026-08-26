@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 export const VALIDATOR_VERSION = '1.0.0';
 
 const REPORT_DIR = 'data/places/politikk-production';
+const MICRO_PRODUCTION_DIR = 'data/places/production';
 const SCHEMA_PATH = 'data/places/regler/politikk_place_production_v1.schema.json';
 const MANIFEST_PATH = 'data/places/manifest.json';
 const POLITIKK_MANIFEST_PATH = 'data/fag/politikk/politikk_runtime_manifest.json';
@@ -154,6 +155,33 @@ function manifestPlacePaths(root) {
   return new Set((manifest.files ?? []).map((entry) => repoPath(path.posix.join('data', entry))));
 }
 
+export function hasApprovedMicroPlacePacket(root, place, placeFile) {
+  if (place?.placeTier !== 'micro' || place?.micro_place_profile?.schema !== 'history_go_micro_place_profile_v1') return false;
+  const placeId = String(place?.id ?? '');
+  if (!placeId) return false;
+  const packetPath = `${MICRO_PRODUCTION_DIR}/${placeId}.json`;
+  if (!fs.existsSync(path.join(root, packetPath))) return false;
+  try {
+    const packet = readJson(root, packetPath);
+    const reviewers = [packet?.reviews?.factual?.reviewer, packet?.reviews?.editorial?.reviewer].map((value) => String(value ?? '').trim());
+    return packet?.schemaVersion === '4.2'
+      && packet?.validatorVersion === '4.2.1'
+      && packet?.placeId === placeId
+      && repoPath(packet?.placeFile) === placeFile
+      && packet?.status === 'ready_v4_2'
+      && Array.isArray(packet?.claims)
+      && packet.claims.length > 0
+      && isObject(packet?.sentenceCoverage)
+      && packet?.reviews?.factual?.status === 'passed'
+      && packet?.reviews?.editorial?.status === 'passed'
+      && reviewers.every((reviewer) => reviewer.length > 0 && !/generator|materializer/iu.test(reviewer))
+      && packet?.completion?.factualReview === 'passed'
+      && packet?.completion?.editorialReview === 'passed';
+  } catch {
+    return false;
+  }
+}
+
 export function requiredReportsForChanges(root, paths, base) {
   const canonicalPaths = manifestPlacePaths(root);
   const required = new Map();
@@ -170,6 +198,7 @@ export function requiredReportsForChanges(root, paths, base) {
       if (!isPoliticsPlace(place)) continue;
       const placeId = String(place.id ?? '');
       if (!placeId || !productionFieldsChanged(previousById.get(placeId), place)) continue;
+      if (hasApprovedMicroPlacePacket(root, place, changedPath)) continue;
       required.set(placeId, {
         place,
         placeFile: changedPath,
