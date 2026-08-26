@@ -1,5 +1,5 @@
 {
-  "version": 5,
+  "version": 6,
   "contract": "source-backed-history-coverage-v1",
   "generated_from": [
     "data/places/places_index.json",
@@ -11,6 +11,7 @@
     "data/fag/historie/period_modules_historie_v1.json",
     "data/fag/historie/emner_historie_canonical_v4_5.json",
     "data/runtime/stories-all.json",
+    "data/places/production/*.json",
     "data/relations.json",
     "data/relations_philanthropy.json"
   ],
@@ -1876,6 +1877,10 @@
                   "label": "Reformasjon og konfesjonalisering"
                 },
                 {
+                  "id": "religion_og_livssyn",
+                  "label": "Religion og livssyn"
+                },
+                {
                   "id": "em_his_religion_reformasjon_religion_kjonn_og_hverdagsliv",
                   "label": "Religion, kjønn og hverdagsliv"
                 },
@@ -1999,6 +2004,25 @@
                     "Tallet gjelder et oppsummert tidspunkt og gir ikke varighet, inntektsnivå eller eierskapsform for hver av de 272 gårdene.",
                     "Eiendomsnettverket kan vise regional institusjonsmakt, men antall gårder er ikke det samme som ensartet direkte drift eller kontroll."
                   ]
+                },
+                {
+                  "id": "production_claim_gak_nonneseter",
+                  "year": 1186,
+                  "title": "Nonneseter kloster overtok Gamle Aker kirke i 1186.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Avsnittet «Datering og eldre historie»",
+                      "url": "https://snl.no/Gamle_Aker_kirke",
+                      "verifiedAt": "2026-08-02"
+                    }
+                  ],
+                  "source_file": "data/places/production/gamle_aker_kirke.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_gak_nonneseter",
+                  "story_id": "",
+                  "limitations": []
                 },
                 {
                   "id": "claim_claim_his_gamle_aker_nonneseter_ownership_1186_1536",
@@ -3641,7 +3665,7 @@
             }
           ],
           "placeCount": 18,
-          "milestoneCount": 59
+          "milestoneCount": 60
         },
         "historie_tidlig_moderne_stat_handel_og_reformasjon": {
           "places": [
@@ -3958,8 +3982,20 @@
               "source_file": "places/by/oslo/places/christiania_torv.json",
               "roles": [
                 {
+                  "id": "arbeid_og_okonomi",
+                  "label": "Arbeid og økonomi"
+                },
+                {
                   "id": "by_og_infrastruktur",
                   "label": "By og infrastruktur"
+                },
+                {
+                  "id": "religion_og_livssyn",
+                  "label": "Religion og livssyn"
+                },
+                {
+                  "id": "stedshistorisk_spor",
+                  "label": "Stedshistorisk spor"
                 }
               ],
               "milestones": [
@@ -3990,6 +4026,101 @@
                   "evidence_type": "canonical_story",
                   "claim_id": "",
                   "story_id": "st_christiania_torv_byflyttingen_1624",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_christiania_1624_relocation",
+                  "year": 1624,
+                  "title": "Etter storbrannen i Oslo i august 1624 bestemte Christian IV at byen skulle flyttes til området ved Akershus festning og bygges som Christiania med et regulert gatenett.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Historien – brannen i 1624, flyttingen og den nye regulerte byen.",
+                      "url": "https://www.oppdagkvadraturen.no/historien",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/christiania_torv.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_christiania_1624_relocation",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_christiania_church_1639",
+                  "year": 1639,
+                  "title": "Hellig Trefoldighets kirke ble innviet på Christiania Torv i 1639.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Bygninger og kirkehistorie ved torget.",
+                      "url": "https://oslobyleksikon.no/side/Christiania_Torv",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/christiania_torv.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_christiania_church_1639",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_christiania_townhall_1641",
+                  "year": 1641,
+                  "title": "Gamle Rådhus sto ferdig ved Christiania Torv i 1641; før rådhuset ble reist lå byens tingstue ved plassen.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Gamle Rådhus og den tidlige tingstuen ved torget.",
+                      "url": "https://oslobyleksikon.no/side/Christiania_Torv",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/christiania_torv.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_christiania_townhall_1641",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_christiania_church_fire_shift",
+                  "year": 1686,
+                  "title": "Hellig Trefoldighets kirke brant i 1686; en ny domkirke ble reist utenfor Kvadraturen og sto ferdig ved Stortorvet i 1697, noe som inngikk i forskyvningen av sentrumsfunksjoner bort fra Christiania Torv.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Nye tider – kirkebrannen, ny domkirke ved Stortorvet og forskyvning av sentrum.",
+                      "url": "https://www.oppdagkvadraturen.no/stoppesteder/christiania-torv",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/christiania_torv.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_christiania_church_fire_shift",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_christiania_market",
+                  "year": 1736,
+                  "title": "Christianiamarkedet ble holdt på Christiania Torv i januar og februar fra 1640-årene til 1736, da markedet ble flyttet til Stortorvet.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Avsnittet om Christianiamarkedet og flyttingen til Stortorvet.",
+                      "url": "https://oslobyleksikon.no/side/Christiania_Torv",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/christiania_torv.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_christiania_market",
+                  "story_id": "",
                   "limitations": []
                 }
               ],
@@ -4302,6 +4433,10 @@
                   "label": "Pietisme, vekkelse og lekmannsbevegelse"
                 },
                 {
+                  "id": "religion_og_livssyn",
+                  "label": "Religion og livssyn"
+                },
+                {
                   "id": "em_his_religion_reformasjon_religion_politikk_og_offentlighet",
                   "label": "Religion, politikk og offentlighet"
                 },
@@ -4311,6 +4446,25 @@
                 }
               ],
               "milestones": [
+                {
+                  "id": "production_claim_gak_fires",
+                  "year": 1592,
+                  "title": "Kirken ble skadet av brann i 1592 og av en ny brann etter lynnedslag i 1703.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Avsnittet om brannene og bygningshistorien",
+                      "url": "https://riksantikvaren.no/eksempelsamling/energieffektivisering/gamle-aker-med-ny-energi/",
+                      "verifiedAt": "2026-08-02"
+                    }
+                  ],
+                  "source_file": "data/places/production/gamle_aker_kirke.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_gak_fires",
+                  "story_id": "",
+                  "limitations": []
+                },
                 {
                   "id": "claim_claim_his_hauge_conventicle_lay_movement_1796_1814",
                   "year": 1796,
@@ -5477,11 +5631,34 @@
                   "label": "Embetsstat"
                 },
                 {
+                  "id": "makt_og_styring",
+                  "label": "Makt og styring"
+                },
+                {
                   "id": "em_his_stat_institusjoner",
                   "label": "Stat/institusjon"
                 }
               ],
               "milestones": [
+                {
+                  "id": "production_claim_post1814_colocation",
+                  "year": 1814,
+                  "title": "Diskusjonen om samlokalisering av regjeringskontorene startet kort tid etter 1814.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Boks 1.2 Regjeringskvartalet",
+                      "url": "https://www.regjeringen.no/no/dokumenter/meld.-st.-21-20182019/id2641647/?ch=1",
+                      "verifiedAt": "2026-07-27"
+                    }
+                  ],
+                  "source_file": "data/places/production/regjeringskvartalet.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_post1814_colocation",
+                  "story_id": "",
+                  "limitations": []
+                },
                 {
                   "id": "claim_claim_his_departments_1814_specialized_offices_staff",
                   "year": 1814,
@@ -6450,10 +6627,75 @@
                   }
                 ]
               }
+            },
+            {
+              "place_id": "var_frelsers_gravlund",
+              "name": "Vår Frelsers gravlund",
+              "category": "historie",
+              "source_file": "places/historie/oslo/places_historie/var_frelsers_gravlund.json",
+              "roles": [
+                {
+                  "id": "religion_og_livssyn",
+                  "label": "Religion og livssyn"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "production_claim_vfg_outside_city_reform",
+                  "year": 1805,
+                  "title": "Gravlunden ble anlagt på bymarken utenfor den tette byen etter 1805-forbudet mot gravlegging inne i kirker og kravet om kirkegård utenfor kjøpstedet.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Historikk, avsnittet om 1805–1808",
+                      "url": "https://oslobyleksikon.no/side/Kirkeg%C3%A5rder_og_gravlunder",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/var_frelsers_gravlund.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_vfg_outside_city_reform",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_vfg_identity_establishment",
+                  "year": 1807,
+                  "title": "Vår Frelsers gravlund ble anlagt i 1807, tatt i bruk sommeren 1808 og ligger sør for Gamle Aker kirke.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Om Vår Frelsers gravlund og besøksadresse",
+                      "url": "https://www.oslo.kommune.no/natur-kultur-og-fritid/gravplasser-og-kremasjoner/vare-gravplasser/var-frelsers-gravlund/",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/var_frelsers_gravlund.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_vfg_identity_establishment",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_var_frelsers_gravlund_for_barnetoget",
+                    "title": "Før barnetoget får gravene nye stemmer",
+                    "year": 2026,
+                    "type": "cultural"
+                  }
+                ]
+              }
             }
           ],
-          "placeCount": 34,
-          "milestoneCount": 49
+          "placeCount": 35,
+          "milestoneCount": 58
         },
         "historie_revolusjoner_industri_og_demokratisering": {
           "places": [
@@ -7013,6 +7255,91 @@
               }
             },
             {
+              "place_id": "bankplassen",
+              "name": "Bankplassen",
+              "category": "by",
+              "source_file": "places/by/oslo/places/bankplassen.json",
+              "roles": [
+                {
+                  "id": "arbeid_og_okonomi",
+                  "label": "Arbeid og økonomi"
+                },
+                {
+                  "id": "by_og_infrastruktur",
+                  "label": "By og infrastruktur"
+                },
+                {
+                  "id": "kultur_og_offentlighet",
+                  "label": "Kultur og offentlighet"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "production_claim_bankplassen_first_bank_1828",
+                  "year": 1828,
+                  "title": "Norges Banks første bygning i Christiania sto ferdig ved Bankplassen i 1828 etter tegninger av Christian Heinrich Grosch.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Avsnittet om Norges Banks første filial og Groschs bygning.",
+                      "url": "https://www.oppdagkvadraturen.no/stoppesteder/grev-wedels-plass-bankplassen",
+                      "verifiedAt": "2026-08-24"
+                    }
+                  ],
+                  "source_file": "data/places/production/bankplassen.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_bankplassen_first_bank_1828",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_bankplassen_theater",
+                  "year": 1837,
+                  "title": "Christiania Theater lå ved Bankplassen fra 1837 til det ble revet i 1899.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Historikken for teaterbygningen ved Bankplassen.",
+                      "url": "https://oslobyleksikon.no/side/Christiania_Theater",
+                      "verifiedAt": "2026-08-24"
+                    }
+                  ],
+                  "source_file": "data/places/production/bankplassen.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_bankplassen_theater",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_bankplassen_planting_1860",
+                  "year": 1860,
+                  "title": "Selskabet for Oslo Byes Vel anla parkmessig beplantning mellom teateret og den gamle banken i 1860.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Avsnittet om plassen som parkanlegg.",
+                      "url": "https://oslobyleksikon.no/side/Bankplassen",
+                      "verifiedAt": "2026-08-24"
+                    }
+                  ],
+                  "source_file": "data/places/production/bankplassen.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_bankplassen_planting_1860",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [],
+                "works": [],
+                "stories": []
+              }
+            },
+            {
               "place_id": "beierbrua",
               "name": "Beierbrua",
               "category": "by",
@@ -7129,6 +7456,75 @@
                     "title": "Fabrikkjentenes bro",
                     "year": 1837,
                     "type": "urban_labour_literature_history"
+                  }
+                ]
+              }
+            },
+            {
+              "place_id": "birkelunden",
+              "name": "Birkelunden",
+              "category": "by",
+              "source_file": "places/by/oslo/places/birkelunden.json",
+              "roles": [
+                {
+                  "id": "makt_og_styring",
+                  "label": "Makt og styring"
+                },
+                {
+                  "id": "stedshistorisk_spor",
+                  "label": "Stedshistorisk spor"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "production_claim_bir_gift_condition",
+                  "year": 1882,
+                  "title": "Overdragelsen i 1882 hadde som vilkår at Birkelunden ikke skulle bebygges.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Seksjonen om Birkelunden og Thorvald Meyers gavevilkår.",
+                      "url": "https://www.riksantikvaren.no/kulturhistorie/birkelunden-murbyens-hjerte/",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/birkelunden.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_bir_gift_condition",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_bir_transfer_1882",
+                  "year": 1882,
+                  "title": "Thorvald Meyer overlot Birkelunden gratis til kommunens beplantningsvesen i 1882.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Avsnittet om overdragelsen til kommunens beplantningsvesen.",
+                      "url": "https://oslobyleksikon.no/side/Birkelunden",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/birkelunden.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_bir_transfer_1882",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_birkelunden_bench_to_association",
+                    "title": "Da parkbenken ble en forening",
+                    "year": 1937,
+                    "type": "turning_point"
                   }
                 ]
               }
@@ -7733,9 +8129,32 @@
                 {
                   "id": "minne_og_historiebruk",
                   "label": "Minne og historiebruk"
+                },
+                {
+                  "id": "stedshistorisk_spor",
+                  "label": "Stedshistorisk spor"
                 }
               ],
               "milestones": [
+                {
+                  "id": "production_claim_telthus_settlement",
+                  "year": 1815,
+                  "title": "Telthusbakken fikk navn etter et militært telthus, og marginal grunn i Bymarken ble bebygd av fattigfolk før tomteforholdene ble formalisert i 1815–16.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Ingress og gatehistorie",
+                      "url": "https://oslobyleksikon.no/side/Telthusbakken",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/damstredet_telthusbakken.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_telthus_settlement",
+                  "story_id": "",
+                  "limitations": []
+                },
                 {
                   "id": "story_st_damstredet_wergeland_veslebrunen",
                   "year": 1839,
@@ -8006,6 +8425,56 @@
               }
             },
             {
+              "place_id": "ekebergparken",
+              "name": "Ekebergparken skulpturpark",
+              "category": "kunst",
+              "source_file": "places/kunst/oslo/places_kunst/ekebergparken.json",
+              "roles": [
+                {
+                  "id": "by_og_infrastruktur",
+                  "label": "By og infrastruktur"
+                },
+                {
+                  "id": "kultur_og_offentlighet",
+                  "label": "Kultur og offentlighet"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "production_claim_ekeberg_public_park_1889",
+                  "year": 1889,
+                  "title": "En offentlig park ble etablert på Ekeberg i 1889.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Historien om Ekeberg som folkepark og rekreasjonsområde.",
+                      "url": "https://ekebergparken.com/historie",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/ekebergparken.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_ekeberg_public_park_1889",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_ekebergparken_skulptur_i_landskap_2013",
+                    "title": "Da skulpturparken åpnet i et eldre Ekeberg-landskap",
+                    "year": 2013,
+                    "type": "cultural"
+                  }
+                ]
+              }
+            },
+            {
               "place_id": "forsvarsmuseet",
               "name": "Forsvarsmuseet",
               "category": "historie",
@@ -8068,6 +8537,14 @@
                 {
                   "id": "em_his_byhistorie_stedsendring_sentrum_periferi_og_byutvidelse",
                   "label": "Klasse, segregasjon og offentlige rom"
+                },
+                {
+                  "id": "makt_og_styring",
+                  "label": "Makt og styring"
+                },
+                {
+                  "id": "religion_og_livssyn",
+                  "label": "Religion og livssyn"
                 }
               ],
               "milestones": [
@@ -8092,6 +8569,44 @@
                     "Kilden dokumenterer rekkefølgen av administrative grenseendringer, men batchen inneholder ikke matrikkelkart eller primærvedtak som rekonstruerer hver grense geometrisk. Stedsankrene representerer Aker- og Oslo-siden institusjonelt, ikke hele grenselinjen.",
                     "Grenseoverføringene kan leses som del av Oslos territorielle vekst, men administrativ innlemmelse er ikke det samme som at de overførte områdene allerede var fullt urbanisert eller sosialt integrert i samme tempo."
                   ]
+                },
+                {
+                  "id": "production_claim_gak_demolition_purchase",
+                  "year": 1852,
+                  "title": "Aker herredsstyre vedtok riving 3. april 1852, men Christiania kommune kjøpte kirken samme år.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Avsnittet «Nyere historie»",
+                      "url": "https://snl.no/Gamle_Aker_kirke",
+                      "verifiedAt": "2026-08-02"
+                    }
+                  ],
+                  "source_file": "data/places/production/gamle_aker_kirke.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_gak_demolition_purchase",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_gak_restoration_19c",
+                  "year": 1858,
+                  "title": "Heinrich Ernst Schirmer og Wilhelm von Hanno ledet restaureringen i 1858–1861, da kirken fikk dagens tårn og endrede vinduer.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Avsnittet «Restaurering og rehabilitering»",
+                      "url": "https://snl.no/Gamle_Aker_kirke",
+                      "verifiedAt": "2026-08-02"
+                    }
+                  ],
+                  "source_file": "data/places/production/gamle_aker_kirke.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_gak_restoration_19c",
+                  "story_id": "",
+                  "limitations": []
                 }
               ],
               "period_cases": [],
@@ -8321,6 +8836,68 @@
                     "type": "turning_point"
                   }
                 ]
+              }
+            },
+            {
+              "place_id": "grev_wedels_plass",
+              "name": "Grev Wedels plass",
+              "category": "by",
+              "source_file": "places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03/grev_wedels_plass.json",
+              "roles": [
+                {
+                  "id": "by_og_infrastruktur",
+                  "label": "By og infrastruktur"
+                },
+                {
+                  "id": "stedshistorisk_spor",
+                  "label": "Stedshistorisk spor"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "production_claim_grev_name",
+                  "year": 1852,
+                  "title": "Plassen fikk navn etter Herman Wedel Jarlsberg i 1852.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Relevant steds- eller verkshistorikk.",
+                      "url": "https://www.oppdagkvadraturen.no/stoppesteder/grev-wedels-plass",
+                      "verifiedAt": "2026-08-24"
+                    }
+                  ],
+                  "source_file": "data/places/production/grev_wedels_plass.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_grev_name",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_grev_park",
+                  "year": 1869,
+                  "title": "Parken ble anlagt i 1869.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Relevant steds- eller verkshistorikk.",
+                      "url": "https://oslobyleksikon.no/side/Grev_Wedels_plass",
+                      "verifiedAt": "2026-08-24"
+                    }
+                  ],
+                  "source_file": "data/places/production/grev_wedels_plass.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_grev_park",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [],
+                "works": [],
+                "stories": []
               }
             },
             {
@@ -9350,6 +9927,10 @@
               "source_file": "places/scenekunst/oslo/places_scenekunst/nationaltheatret.json",
               "roles": [
                 {
+                  "id": "arbeid_og_okonomi",
+                  "label": "Arbeid og økonomi"
+                },
+                {
                   "id": "kultur_og_offentlighet",
                   "label": "Kultur og offentlighet"
                 },
@@ -9359,6 +9940,82 @@
                 }
               ],
               "milestones": [
+                {
+                  "id": "production_claim_studenterlunden_1888",
+                  "year": 1888,
+                  "title": "Tillatelsen til å legge det nye Nationaltheatret i Studenterlunden kom i 1888.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Avsnittet før «Henrik Bull vant arkitektkonkurranse».",
+                      "url": "https://www.nationaltheatret.no/om-oss/organisasjon/historie/",
+                      "verifiedAt": "2026-07-29"
+                    }
+                  ],
+                  "source_file": "data/places/production/nationaltheatret.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_studenterlunden_1888",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_construction_start_1891",
+                  "year": 1891,
+                  "title": "Byggearbeidet startet med spadetak 18. november 1891.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Seksjonen «Henrik Bull vant arkitektkonkurranse», avsnittet om 18. november 1891.",
+                      "url": "https://www.nationaltheatret.no/om-oss/organisasjon/historie/historien-bak-nationaltheatret",
+                      "verifiedAt": "2026-07-29"
+                    }
+                  ],
+                  "source_file": "data/places/production/nationaltheatret.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_construction_start_1891",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_bull_competition_1891",
+                  "year": 1891,
+                  "title": "Henrik Bull vant arkitektkonkurransen for Nationaltheatret i 1891.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Seksjonen «Henrik Bull vant arkitektkonkurranse».",
+                      "url": "https://www.nationaltheatret.no/om-oss/organisasjon/historie/",
+                      "verifiedAt": "2026-07-29"
+                    }
+                  ],
+                  "source_file": "data/places/production/nationaltheatret.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_bull_competition_1891",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_building_period_bull",
+                  "year": 1891,
+                  "title": "Nationaltheatret ble oppført 1891–1899 etter tegninger av arkitekt Henrik Bull.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "«BYGNING 9901925 Nationaltheatret» – feltet Oppført og Arkitekt samt sammendrag bygningsbeskrivelse.",
+                      "url": "https://riksantikvaren.no/content/uploads/2019/10/nationaltheateret.pdf",
+                      "verifiedAt": "2026-07-29"
+                    }
+                  ],
+                  "source_file": "data/places/production/nationaltheatret.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_building_period_bull",
+                  "story_id": "",
+                  "limitations": []
+                },
                 {
                   "id": "story_st_nationaltheatret_apning_1899",
                   "year": 1899,
@@ -9381,6 +10038,44 @@
                   "evidence_type": "canonical_story",
                   "claim_id": "",
                   "story_id": "st_nationaltheatret_apning_1899",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_opening_role",
+                  "year": 1899,
+                  "title": "Nationaltheatret åpnet 1. september 1899 og overtok rollen som Norges nasjonale teater etter Christiania Theater, som ble revet samme år.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Innledningen: åpningen 1. september 1899 og avsnittet om overtakelsen etter Christiania Theater.",
+                      "url": "https://www.nationaltheatret.no/om-oss/organisasjon/historie/",
+                      "verifiedAt": "2026-07-29"
+                    }
+                  ],
+                  "source_file": "data/places/production/nationaltheatret.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_opening_role",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_opening_program",
+                  "year": 1899,
+                  "title": "Åpningsprogrammet var Holbergs «Barselstuen» og «Mester Gert Westphaler» 1. september, Ibsens «En folkefiende» 2. september og Bjørnsons «Sigurd Jorsalfar» 3. september 1899.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Seksjonen «Jeg er eldre enn din far!» med programmet for 1., 2. og 3. september.",
+                      "url": "https://www.nationaltheatret.no/om-oss/organisasjon/historie/historien-bak-nationaltheatret",
+                      "verifiedAt": "2026-07-29"
+                    }
+                  ],
+                  "source_file": "data/places/production/nationaltheatret.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_opening_program",
+                  "story_id": "",
                   "limitations": []
                 }
               ],
@@ -9985,6 +10680,25 @@
               ],
               "milestones": [
                 {
+                  "id": "production_claim_olaf_rye_1849",
+                  "year": 1849,
+                  "title": "Olaf Rye døde 6. juli 1849 ved Fredericia.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Ingress og avsnitt om Fredericia.",
+                      "url": "https://snl.no/Olaf_Rye",
+                      "verifiedAt": "2026-08-25"
+                    }
+                  ],
+                  "source_file": "data/places/production/olaf_ryes_plass.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_olaf_rye_1849",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
                   "id": "chrono_olaf_ryes_plass_1863_1",
                   "year": 1863,
                   "title": "Kommunen kjøper løkken",
@@ -10000,6 +10714,25 @@
                   "source_file": "data/leksikon/places/oslo/by/leksikon_olaf_ryes_plass.json",
                   "evidence_type": "leksikon_chronology",
                   "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_olaf_purchase_name_park",
+                  "year": 1863,
+                  "title": "Kommunen kjøpte den åpne løkken i 1863, plassen fikk navn etter Olaf Rye i 1864, og området ble opparbeidet som park i 1890.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Ingress og avsnitt om løkke, kjøp, navn og park.",
+                      "url": "https://oslobyleksikon.no/side/Olaf_Ryes_plass",
+                      "verifiedAt": "2026-08-25"
+                    }
+                  ],
+                  "source_file": "data/places/production/olaf_ryes_plass.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_olaf_purchase_name_park",
                   "story_id": "",
                   "limitations": []
                 },
@@ -10463,6 +11196,73 @@
                     "title": "Arbeid, tvang og asyl i Storgata 36",
                     "year": 1809,
                     "type": "social"
+                  }
+                ]
+              }
+            },
+            {
+              "place_id": "regjeringskvartalet",
+              "name": "Regjeringskvartalet",
+              "category": "politikk",
+              "source_file": "places/politikk/oslo/places_politikk/regjeringskvartalet.json",
+              "roles": [
+                {
+                  "id": "by_og_infrastruktur",
+                  "label": "By og infrastruktur"
+                },
+                {
+                  "id": "makt_og_styring",
+                  "label": "Makt og styring"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "production_claim_competitions_1887_1891",
+                  "year": 1887,
+                  "title": "Det ble arrangert arkitektkonkurranser om regjeringsbygningen i Empirekvartalet i 1887 og 1891.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Boks 1.2 Regjeringskvartalet",
+                      "url": "https://www.regjeringen.no/no/dokumenter/meld.-st.-21-20182019/id2641647/?ch=1",
+                      "verifiedAt": "2026-07-27"
+                    }
+                  ],
+                  "source_file": "data/places/production/regjeringskvartalet.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_competitions_1887_1891",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [
+                  "carl_nesjar",
+                  "erling_viksjo",
+                  "henrik_bull",
+                  "pablo_picasso"
+                ],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_regjeringskvartalet_empire_til_regjering",
+                    "title": "Staten leter etter et hjem",
+                    "year": 1946,
+                    "type": "turning_point"
+                  },
+                  {
+                    "id": "st_regjeringskvartalet_hoyblokka_kunsten",
+                    "title": "Kunst støpt inn i staten",
+                    "year": 1958,
+                    "type": "cultural"
+                  },
+                  {
+                    "id": "st_regjeringskvartalet_terror_2011",
+                    "title": "Etter bomben",
+                    "year": 2011,
+                    "type": "turning_point"
                   }
                 ]
               }
@@ -10946,8 +11746,20 @@
               "source_file": "places/by/oslo/places/storgata.json",
               "roles": [
                 {
+                  "id": "arbeid_og_okonomi",
+                  "label": "Arbeid og økonomi"
+                },
+                {
                   "id": "by_og_infrastruktur",
                   "label": "By og infrastruktur"
+                },
+                {
+                  "id": "kultur_og_offentlighet",
+                  "label": "Kultur og offentlighet"
+                },
+                {
+                  "id": "stedshistorisk_spor",
+                  "label": "Stedshistorisk spor"
                 }
               ],
               "milestones": [
@@ -10973,6 +11785,63 @@
                   "evidence_type": "canonical_story",
                   "claim_id": "",
                   "story_id": "st_storgata_nybrua_1827",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_storgata_popup_06",
+                  "year": 1827,
+                  "title": "Den nordlige delen fantes som vei til løkkeeiendommene, men fikk først dagens sammenheng da Nybrua stod ferdig i 1827.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Oslo byleksikon, avsnittet om Nybrua, opparbeidelse og byutvidelsene i 1784 og 1839.",
+                      "url": "https://oslobyleksikon.no/side/Storgata",
+                      "verifiedAt": "2026-08-25"
+                    }
+                  ],
+                  "source_file": "data/places/production/storgata.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_storgata_popup_06",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_storgata_desc_02",
+                  "year": 1827,
+                  "title": "Gaten ble forlenget til Akerselva da Nybrua åpnet i 1827.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Oslo byleksikon, ingress og avsnitt om gateforløp, Nybrua, sporvei og Folketeaterbygningen.",
+                      "url": "https://oslobyleksikon.no/side/Storgata",
+                      "verifiedAt": "2026-08-25"
+                    }
+                  ],
+                  "source_file": "data/places/production/storgata.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_storgata_desc_02",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_storgata_popup_29",
+                  "year": 1827,
+                  "title": "Nybrua fra 1827, de gamle murgårdene, sporene i kjørebanen og Folketeaterbygningen gjør det mulig å følge utviklingen fra forstad og innfartsvei til moderne kollektiv- og handelsgate.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Oslo byleksikon og Oslo kommunes Byplan-artikkel, samlet dokumentasjon av gateforløp, adresser og transportfunksjon.",
+                      "url": "https://oslobyleksikon.no/side/Storgata",
+                      "verifiedAt": "2026-08-25"
+                    }
+                  ],
+                  "source_file": "data/places/production/storgata.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_storgata_popup_29",
+                  "story_id": "",
                   "limitations": []
                 },
                 {
@@ -11010,6 +11879,25 @@
                   "source_file": "data/leksikon/places/oslo/by/leksikon_storgata.json",
                   "evidence_type": "leksikon_chronology",
                   "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_storgata_popup_19",
+                  "year": 1837,
+                  "title": "Nummer 27, en murgård fra 1837, huset på 1800-tallet både et katolsk kapell og et boktrykkeri.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Oslo byleksikon, adresseoppslagene for Storgata 21–27.",
+                      "url": "https://oslobyleksikon.no/side/Storgata",
+                      "verifiedAt": "2026-08-25"
+                    }
+                  ],
+                  "source_file": "data/places/production/storgata.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_storgata_popup_19",
                   "story_id": "",
                   "limitations": []
                 },
@@ -11744,6 +12632,14 @@
                   "label": "By og infrastruktur"
                 },
                 {
+                  "id": "kultur_og_offentlighet",
+                  "label": "Kultur og offentlighet"
+                },
+                {
+                  "id": "makt_og_styring",
+                  "label": "Makt og styring"
+                },
+                {
                   "id": "stedshistorisk_spor",
                   "label": "Stedshistorisk spor"
                 }
@@ -11769,6 +12665,25 @@
                   "limitations": []
                 },
                 {
+                  "id": "production_claim_torggata_gate_development",
+                  "year": 1846,
+                  "title": "Torggata ble opparbeidet fra Stortorvet til Youngstorget i 1846, navneformen Torvegaden ble vedtatt i 1852, gaten ble videreført fra Youngstorget i 1857 og fram til Ankerbrua i 1876.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Ingressen og avsnittet om opparbeiding og navnehistorie.",
+                      "url": "https://oslobyleksikon.no/index.php/Torggata",
+                      "verifiedAt": "2026-08-11"
+                    }
+                  ],
+                  "source_file": "data/places/production/torggata.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_torggata_gate_development",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
                   "id": "chrono_torggata_1852",
                   "year": 1852,
                   "title": "Torvegaden blir vedtatt",
@@ -11788,6 +12703,44 @@
                   "limitations": []
                 },
                 {
+                  "id": "production_claim_torggata_lots_buildout",
+                  "year": 1855,
+                  "title": "Tomtene på vestsiden ble stykket ut 1855–1862 og på østsiden 1859–1872; de første gårdene kom i 1850-årene, mens siste ledige tomt, nummer 36, ble bebygd i 1894.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Avsnittet om tomteutparsellering og den tidlige bebyggelsen.",
+                      "url": "https://oslobyleksikon.no/index.php/Torggata",
+                      "verifiedAt": "2026-08-11"
+                    }
+                  ],
+                  "source_file": "data/places/production/torggata.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_torggata_lots_buildout",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_torggata_bath_origin",
+                  "year": 1861,
+                  "title": "Thorvald Meyer lot Thøger Binneballe oppføre Bade- og Vadskeanstalten i 1861 og ga anlegget til Christiania kommune året etter.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Historikk-avsnittet om det første badet fra 1861.",
+                      "url": "https://oslobyleksikon.no/index.php/Torggata_bad",
+                      "verifiedAt": "2026-08-11"
+                    }
+                  ],
+                  "source_file": "data/places/production/torggata.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_torggata_bath_origin",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
                   "id": "chrono_torggata_1876",
                   "year": 1876,
                   "title": "Gaten når Ankerbrua",
@@ -11803,6 +12756,25 @@
                   "source_file": "data/leksikon/places/oslo/by/leksikon_oslo_by_torggata.json",
                   "evidence_type": "leksikon_chronology",
                   "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_torggata_eldorado_origin",
+                  "year": 1891,
+                  "title": "Eldorado i Torggata 9 ble tegnet av Harald Olsen, innviet som varietéteater 12. november 1891 med publikumsåpning dagen etter, og teatersalen var 23 meter bred med 13 meter under taket mens forbygningen rommet kontorer og butikker.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Ingressen og Historikk-avsnittet om varietéteateret og bygningen.",
+                      "url": "https://oslobyleksikon.no/index.php?title=Eldorado",
+                      "verifiedAt": "2026-08-11"
+                    }
+                  ],
+                  "source_file": "data/places/production/torggata.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_torggata_eldorado_origin",
                   "story_id": "",
                   "limitations": []
                 }
@@ -12770,6 +13742,75 @@
               }
             },
             {
+              "place_id": "var_frelsers_gravlund",
+              "name": "Vår Frelsers gravlund",
+              "category": "historie",
+              "source_file": "places/historie/oslo/places_historie/var_frelsers_gravlund.json",
+              "roles": [
+                {
+                  "id": "by_og_infrastruktur",
+                  "label": "By og infrastruktur"
+                },
+                {
+                  "id": "stedshistorisk_spor",
+                  "label": "Stedshistorisk spor"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "production_claim_vfg_class_contrast",
+                  "year": 1839,
+                  "title": "Fra 1839 dominerte fattiggravene på Ankerløkken, mens Vår Frelsers på samme tid nesten bare var forbeholdt festede familiegraver.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Historikk, avsnittet om Ankerløkken fra 1839",
+                      "url": "https://oslobyleksikon.no/side/Kirkeg%C3%A5rder_og_gravlunder",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/var_frelsers_gravlund.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_vfg_class_contrast",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_vfg_chapel_1864",
+                  "year": 1864,
+                  "title": "Likkapell og graverbolig ble oppført i 1864, og kapellet ble utvidet og endret i 1879.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Avsnittene om oppføring, funksjon og endring i 1879",
+                      "url": "https://oslobyleksikon.no/side/V%C3%A5r_Frelsers_gravlund_kapell",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/var_frelsers_gravlund.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_vfg_chapel_1864",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_var_frelsers_gravlund_for_barnetoget",
+                    "title": "Før barnetoget får gravene nye stemmer",
+                    "year": 2026,
+                    "type": "cultural"
+                  }
+                ]
+              }
+            },
+            {
               "place_id": "youngstorget",
               "name": "Youngstorget",
               "category": "politikk",
@@ -12837,6 +13878,25 @@
                   "limitations": []
                 },
                 {
+                  "id": "production_claim_young_established",
+                  "year": 1846,
+                  "title": "Youngstorget ble anlagt/etablert i 1846.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Ingressen om etableringen av Youngstorget.",
+                      "url": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/youngstorget/",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/youngstorget.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_young_established",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
                   "id": "claim_claim_his_youngstorget_nytorvet_rename_1852_1951",
                   "year": 1852,
                   "title": "Navnepolitikk",
@@ -12893,6 +13953,25 @@
                   "source_file": "data/leksikon/places/oslo/politikk/leksikon_youngstorget.json",
                   "evidence_type": "leksikon_chronology",
                   "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_young_1890",
+                  "year": 1890,
+                  "title": "1. mai 1890 gikk en arbeiderdemonstrasjon fra Youngstorget til Tullinløkka; Arbeiderbevegelsens arkiv og bibliotek oppgir om lag 4 000 deltakere.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Avsnittet om 1. mai og åttetimersdagen i 1890.",
+                      "url": "https://www.arbark.no/Utstilling/8timersdagen/8timersdagen_kap03.htm",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/youngstorget.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_young_1890",
                   "story_id": "",
                   "limitations": []
                 },
@@ -13181,8 +14260,8 @@
               }
             }
           ],
-          "placeCount": 69,
-          "milestoneCount": 151
+          "placeCount": 75,
+          "milestoneCount": 183
         },
         "historie_nasjon_massepolitikk_og_moderne_institusjoner": {
           "places": [
@@ -13687,6 +14766,45 @@
               }
             },
             {
+              "place_id": "bankplassen",
+              "name": "Bankplassen",
+              "category": "by",
+              "source_file": "places/by/oslo/places/bankplassen.json",
+              "roles": [
+                {
+                  "id": "arbeid_og_okonomi",
+                  "label": "Arbeid og økonomi"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "production_claim_bankplassen_second_bank_1906",
+                  "year": 1906,
+                  "title": "Etter at Christiania Theater ble revet, ble Norges Banks nye hovedsete reist på tomten og tatt i bruk i 1906.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Tidslinjen for hovedsetet i Kristiania og bygningen fra 1906.",
+                      "url": "https://www.norges-bank.no/en/topics/about/history/history-of-norges-bank/",
+                      "verifiedAt": "2026-08-24"
+                    }
+                  ],
+                  "source_file": "data/places/production/bankplassen.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_bankplassen_second_bank_1906",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [],
+                "works": [],
+                "stories": []
+              }
+            },
+            {
               "place_id": "birkelunden",
               "name": "Birkelunden",
               "category": "by",
@@ -13695,9 +14813,74 @@
                 {
                   "id": "by_og_infrastruktur",
                   "label": "By og infrastruktur"
+                },
+                {
+                  "id": "kultur_og_offentlighet",
+                  "label": "Kultur og offentlighet"
+                },
+                {
+                  "id": "stedshistorisk_spor",
+                  "label": "Stedshistorisk spor"
                 }
               ],
               "milestones": [
+                {
+                  "id": "production_claim_bir_rework_1916_1920",
+                  "year": 1916,
+                  "title": "Parken ble lagt om i 1916–1920 for å gi plass til lek, lekeapparater og skøytebane.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Avsnittet om omleggingen og fornyelsen av parken 1916–1920.",
+                      "url": "https://oslobyleksikon.no/side/Birkelunden",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/birkelunden.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_bir_rework_1916_1920",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_bir_pavilion_1926",
+                  "year": 1926,
+                  "title": "Dagens musikkpaviljong i Birkelunden ble oppført i 1926 etter tegninger av arkitekt Otto Hald etter en arkitektkonkurranse.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Avsnittet om musikkpaviljongen og Otto Hald.",
+                      "url": "https://oslobyleksikon.no/side/Birkelunden",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/birkelunden.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_bir_pavilion_1926",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_bir_basin_1927_1928",
+                  "year": 1927,
+                  "title": "Et vannbasseng ble anlagt i Birkelunden i 1927–1928.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Avsnittet om paviljongen og vannbassenget.",
+                      "url": "https://oslobyleksikon.no/side/Birkelunden",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/birkelunden.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_bir_basin_1927_1928",
+                  "story_id": "",
+                  "limitations": []
+                },
                 {
                   "id": "story_st_birkelunden_bench_to_association",
                   "year": 1937,
@@ -13725,6 +14908,25 @@
                   "evidence_type": "canonical_story",
                   "claim_id": "",
                   "story_id": "st_birkelunden_bench_to_association",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_bir_jack_johnsen_1937",
+                  "year": 1937,
+                  "title": "Jack Johnsen samlet 10–12 pensjonister på en benk i Birkelunden, og i 1937 stiftet 18 personer Venner i Bjerkelunden.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Seksjonen om Jack Johnsen og Venner i Bjerkelunden.",
+                      "url": "https://www.pensjonistforbundet.no/om-oss/var-historie",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/birkelunden.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_bir_jack_johnsen_1937",
+                  "story_id": "",
                   "limitations": []
                 }
               ],
@@ -15139,6 +16341,52 @@
               }
             },
             {
+              "place_id": "nationaltheatret",
+              "name": "Nationaltheatret",
+              "category": "scenekunst",
+              "source_file": "places/scenekunst/oslo/places_scenekunst/nationaltheatret.json",
+              "roles": [
+                {
+                  "id": "kultur_og_offentlighet",
+                  "label": "Kultur og offentlighet"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "production_claim_revolve_1917",
+                  "year": 1917,
+                  "title": "Hovedscenen fikk dreiescene i 1917.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Innledende avsnitt om Hovedscenens utforming og dreiescenen.",
+                      "url": "https://www.nationaltheatret.no/om-oss/vare-scener/hovedscenen",
+                      "verifiedAt": "2026-07-29"
+                    }
+                  ],
+                  "source_file": "data/places/production/nationaltheatret.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_revolve_1917",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_nationaltheatret_apning_1899",
+                    "title": "Hvem skulle få åpne Nationaltheatret?",
+                    "year": 1899,
+                    "type": "cultural"
+                  }
+                ]
+              }
+            },
+            {
               "place_id": "nobelinstituttet",
               "name": "Nobelinstituttet",
               "category": "vitenskap",
@@ -16115,6 +17363,73 @@
               }
             },
             {
+              "place_id": "regjeringskvartalet",
+              "name": "Regjeringskvartalet",
+              "category": "politikk",
+              "source_file": "places/politikk/oslo/places_politikk/regjeringskvartalet.json",
+              "roles": [
+                {
+                  "id": "by_og_infrastruktur",
+                  "label": "By og infrastruktur"
+                },
+                {
+                  "id": "makt_og_styring",
+                  "label": "Makt og styring"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "production_claim_g_block_1906",
+                  "year": 1906,
+                  "title": "G-blokka sto ferdig i 1906, ble tegnet av Henrik Bull som en jugendinspirert steinbygning, og Finansdepartementet tok bygningen i bruk.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Ingressen, avsnittet om arkitekturen og opplysningen om Finansdepartementets kontorer",
+                      "url": "https://www.regjeringen.no/no/dep/fin/dep/om-den-gamle-regjeringsbygningen-g-blokka/id450008/",
+                      "verifiedAt": "2026-07-27"
+                    }
+                  ],
+                  "source_file": "data/places/production/regjeringskvartalet.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_g_block_1906",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [
+                  "carl_nesjar",
+                  "erling_viksjo",
+                  "henrik_bull",
+                  "pablo_picasso"
+                ],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_regjeringskvartalet_empire_til_regjering",
+                    "title": "Staten leter etter et hjem",
+                    "year": 1946,
+                    "type": "turning_point"
+                  },
+                  {
+                    "id": "st_regjeringskvartalet_hoyblokka_kunsten",
+                    "title": "Kunst støpt inn i staten",
+                    "year": 1958,
+                    "type": "cultural"
+                  },
+                  {
+                    "id": "st_regjeringskvartalet_terror_2011",
+                    "title": "Etter bomben",
+                    "year": 2011,
+                    "type": "turning_point"
+                  }
+                ]
+              }
+            },
+            {
               "place_id": "sagene_skole",
               "name": "Sagene skole",
               "category": "historie",
@@ -16166,6 +17481,64 @@
               }
             },
             {
+              "place_id": "st_hanshaugen_park",
+              "name": "St. Hanshaugen park",
+              "category": "by",
+              "source_file": "places/by/oslo/places/st_hanshaugen_park.json",
+              "roles": [
+                {
+                  "id": "by_og_infrastruktur",
+                  "label": "By og infrastruktur"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "production_claim_sth_attraction",
+                  "year": 1936,
+                  "title": "Hasselbakken, underholdning og dyr gjorde parken til attraksjon; restaurantbygningen brant i 1936.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Parkhistorie og kontroll mot park-/brannoppslag",
+                      "url": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/parker-og-lekeplasser/st-hanshaugen/",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/st_hanshaugen_park.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_sth_attraction",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_st_hanshaugen_maerrahaugen_til_st_hans",
+                    "title": "Bålet som ga haugen nytt navn",
+                    "year": 1817,
+                    "type": "place_name"
+                  },
+                  {
+                    "id": "st_st_hanshaugen_vann_og_vaer",
+                    "title": "Da toppen meldte regn",
+                    "year": 1875,
+                    "type": "infrastructure"
+                  },
+                  {
+                    "id": "st_st_hanshaugen_hasselbakken",
+                    "title": "Attraksjonen som forsvant",
+                    "year": 1890,
+                    "type": "lost_place"
+                  }
+                ]
+              }
+            },
+            {
               "place_id": "storgata",
               "name": "Storgata",
               "category": "by",
@@ -16178,6 +17551,10 @@
                 {
                   "id": "kultur_og_offentlighet",
                   "label": "Kultur og offentlighet"
+                },
+                {
+                  "id": "stedshistorisk_spor",
+                  "label": "Stedshistorisk spor"
                 }
               ],
               "milestones": [
@@ -16197,6 +17574,44 @@
                   "source_file": "data/leksikon/places/oslo/by/leksikon_storgata.json",
                   "evidence_type": "leksikon_chronology",
                   "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_storgata_popup_27",
+                  "year": 1908,
+                  "title": "Nummer 43 har huset Hornaas musikk siden 1908, mens tomten i nummer 53 tidligere tilhørte Gassverket.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Oslo byleksikon, adresseoppslagene for Storgata 43 og 53.",
+                      "url": "https://oslobyleksikon.no/side/Storgata",
+                      "verifiedAt": "2026-08-25"
+                    }
+                  ],
+                  "source_file": "data/places/production/storgata.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_storgata_popup_27",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_storgata_popup_21",
+                  "year": 1934,
+                  "title": "Christian Morgenstierne og Arne Eide tegnet den store art deco-pregede forretningsgården, som ble tatt i bruk i 1934 og innviet i 1935.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Oslo byleksikon, oppslaget om Folketeaterbygningen i Storgata 21–23.",
+                      "url": "https://oslobyleksikon.no/side/Storgata",
+                      "verifiedAt": "2026-08-25"
+                    }
+                  ],
+                  "source_file": "data/places/production/storgata.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_storgata_popup_21",
                   "story_id": "",
                   "limitations": []
                 },
@@ -16649,6 +18064,25 @@
                 }
               ],
               "milestones": [
+                {
+                  "id": "production_claim_torggata_sound_cinema",
+                  "year": 1929,
+                  "title": "Eldorado gjenåpnet 2. september 1929 som Norges første lydfilmkino, med The Singing Fool som den første lydfilmen vist i Norge.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Historikk-avsnittet om gjenåpningen som lydfilmkino i 1929.",
+                      "url": "https://oslobyleksikon.no/index.php?title=Eldorado",
+                      "verifiedAt": "2026-08-11"
+                    }
+                  ],
+                  "source_file": "data/places/production/torggata.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_torggata_sound_cinema",
+                  "story_id": "",
+                  "limitations": []
+                },
                 {
                   "id": "chrono_torggata_1929",
                   "year": 1929,
@@ -17511,6 +18945,10 @@
               "source_file": "places/politikk/oslo/places_politikk/youngstorget.json",
               "roles": [
                 {
+                  "id": "arbeid_og_okonomi",
+                  "label": "Arbeid og økonomi"
+                },
+                {
                   "id": "konflikt_og_motstand",
                   "label": "Konflikt og motstand"
                 },
@@ -17520,6 +18958,25 @@
                 }
               ],
               "milestones": [
+                {
+                  "id": "production_claim_young_labour",
+                  "year": 1920,
+                  "title": "Youngstorget utviklet seg til et tilbakevendende samlings- og demonstrasjonssted for arbeiderbevegelsen, med store massemøter dokumentert blant annet i 1920- og 1930-årene.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Avsnittene om Youngstorget som samlingsplass og massemøter i mellomkrigstiden.",
+                      "url": "https://www.arbark.no/eldok/Arbeiderhistorie1996_9.pdf",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/youngstorget.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_young_labour",
+                  "story_id": "",
+                  "limitations": []
+                },
                 {
                   "id": "chrono_youngstorget_1930_5",
                   "year": 1930,
@@ -17555,8 +19012,8 @@
               }
             }
           ],
-          "placeCount": 53,
-          "milestoneCount": 94
+          "placeCount": 57,
+          "milestoneCount": 106
         },
         "historie_krig_okkupasjon_og_etterkrigsoppgjor": {
           "places": [
@@ -18681,12 +20138,24 @@
                   "label": "Folkerett, rettsoppgjør og overgangsrettferdighet"
                 },
                 {
+                  "id": "konflikt_og_motstand",
+                  "label": "Konflikt og motstand"
+                },
+                {
                   "id": "em_his_krig_okkupasjon_propaganda_sensur_og_informasjonskontroll",
                   "label": "Krigsminne, veteraner og ettervirkninger"
                 },
                 {
+                  "id": "kultur_og_offentlighet",
+                  "label": "Kultur og offentlighet"
+                },
+                {
                   "id": "em_his_okkupasjon_motstand",
                   "label": "Okkupasjon"
+                },
+                {
+                  "id": "religion_og_livssyn",
+                  "label": "Religion og livssyn"
                 }
               ],
               "milestones": [
@@ -18777,6 +20246,25 @@
                     "Kilden dokumenterer styreinngrep, lederinnsettelse og boikott, men gir ikke et representativt mål på hvem som boikottet, hvorfor, eller hvor fullstendig boikotten var over hele perioden.",
                     "Publikumsfraværet kan behandles som resepsjon og motstand mot okkupasjonsstyringen, men det må ikke gjøres til et direkte mål på hele befolkningens holdninger."
                   ]
+                },
+                {
+                  "id": "production_claim_strike_arrests_1941",
+                  "year": 1941,
+                  "title": "Skuespillere ved Nationaltheatret gikk til streik i 1941 under nazistenes kontrollforsøk, og femten skuespillere ble arrestert.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Historikkdelen om okkupasjonen, «Tre par» og teaterstreiken i 1941.",
+                      "url": "https://www.nationaltheatret.no/om-oss/organisasjon/historie/",
+                      "verifiedAt": "2026-07-29"
+                    }
+                  ],
+                  "source_file": "data/places/production/nationaltheatret.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_strike_arrests_1941",
+                  "story_id": "",
+                  "limitations": []
                 }
               ],
               "period_cases": [],
@@ -19325,6 +20813,64 @@
               }
             },
             {
+              "place_id": "storgata",
+              "name": "Storgata",
+              "category": "by",
+              "source_file": "places/by/oslo/places/storgata.json",
+              "roles": [
+                {
+                  "id": "minne_og_historiebruk",
+                  "label": "Minne og historiebruk"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "production_claim_storgata_popup_26",
+                  "year": 1943,
+                  "title": "I nummer 39 bodde den jødiske forretningsmannen Philipp Gosias, som ble deportert med «Gotenland» i februar 1943 og drept i Auschwitz; en snublestein er satt ned til minne om ham.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Oslo byleksikon, adresseoppslaget for Storgata 39 og Philipp Gosias.",
+                      "url": "https://oslobyleksikon.no/side/Storgata",
+                      "verifiedAt": "2026-08-25"
+                    }
+                  ],
+                  "source_file": "data/places/production/storgata.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_storgata_popup_26",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_storgata_nybrua_1827",
+                    "title": "Da Nybrua fullførte gateløpet",
+                    "year": 1827,
+                    "type": "turning_point"
+                  },
+                  {
+                    "id": "st_storgata_folketeaterbygningen_1935",
+                    "title": "Da et helt organisasjons- og teaterhus reiste seg i gaten",
+                    "year": 1935,
+                    "type": "cultural"
+                  },
+                  {
+                    "id": "st_storgata_opprustning_2021",
+                    "title": "Da gaten ble bygd om både over og under bakken",
+                    "year": 2021,
+                    "type": "turning_point"
+                  }
+                ]
+              }
+            },
+            {
               "place_id": "stortinget",
               "name": "Stortinget",
               "category": "politikk",
@@ -19572,6 +21118,87 @@
                     "title": "Dalen der skogen og industrien deler elva",
                     "year": 2011,
                     "type": "environmental"
+                  }
+                ]
+              }
+            },
+            {
+              "place_id": "torggata",
+              "name": "Torggata",
+              "category": "by",
+              "source_file": "places/by/oslo/places/torggata.json",
+              "roles": [
+                {
+                  "id": "konflikt_og_motstand",
+                  "label": "Konflikt og motstand"
+                },
+                {
+                  "id": "makt_og_styring",
+                  "label": "Makt og styring"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "production_claim_torggata_bath_occupation",
+                  "year": 1941,
+                  "title": "Torggata bad ble beslaglagt av de tyske okkupasjonsmyndighetene fra 4. september 1941 til frigjøringen.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Historikk-avsnittet om okkupasjonen.",
+                      "url": "https://oslobyleksikon.no/index.php/Torggata_bad",
+                      "verifiedAt": "2026-08-11"
+                    }
+                  ],
+                  "source_file": "data/places/production/torggata.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_torggata_bath_occupation",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [
+                  "alma_fahlstrom",
+                  "harald_olsen",
+                  "henrik_bull",
+                  "johan_fahlstrom"
+                ],
+                "works": [
+                  {
+                    "id": "torggata_work_torggata_bad",
+                    "title": "Torggata Bad / Rockefeller-komplekset",
+                    "type": "arkitektur_og_kulturinstitusjon"
+                  },
+                  {
+                    "id": "torggata_work_rockefeller_live_scene",
+                    "title": "Rockefeller Music Hall som live-scene",
+                    "type": "scene"
+                  },
+                  {
+                    "id": "torggata_work_john_dee_intimscene",
+                    "title": "John Dee som intimscene",
+                    "type": "scene"
+                  },
+                  {
+                    "id": "torggata_work_eldorado_kino_bokhandel",
+                    "title": "Eldorado som kino- og bokhandelshistorie",
+                    "type": "kultursted"
+                  },
+                  {
+                    "id": "torggata_work_miljogate_ombygging",
+                    "title": "Miljøgateombyggingen",
+                    "type": "byplan_og_design"
+                  }
+                ],
+                "stories": [
+                  {
+                    "id": "st_torggata_ga_og_sykkelgate_2010",
+                    "title": "Gata som ble forhandlet mellom handel, sykkel og opphold",
+                    "year": 2010,
+                    "type": "conflict"
                   }
                 ]
               }
@@ -19871,8 +21498,8 @@
               }
             }
           ],
-          "placeCount": 22,
-          "milestoneCount": 54
+          "placeCount": 24,
+          "milestoneCount": 57
         },
         "historie_velferdsstat_kald_krig_og_sosialdemokrati": {
           "places": [
@@ -20151,6 +21778,52 @@
               }
             },
             {
+              "place_id": "birkelunden",
+              "name": "Birkelunden",
+              "category": "by",
+              "source_file": "places/by/oslo/places/birkelunden.json",
+              "roles": [
+                {
+                  "id": "stedshistorisk_spor",
+                  "label": "Stedshistorisk spor"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "production_claim_bir_foell_1953",
+                  "year": 1953,
+                  "title": "Ørnulf Basts bronsegruppe Føll ble reist i Birkelunden i 1953.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Avsnittet om skulpturer og minnesmerker i parken.",
+                      "url": "https://oslobyleksikon.no/side/Birkelunden",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/birkelunden.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_bir_foell_1953",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_birkelunden_bench_to_association",
+                    "title": "Da parkbenken ble en forening",
+                    "year": 1937,
+                    "type": "turning_point"
+                  }
+                ]
+              }
+            },
+            {
               "place_id": "bislett_stadion",
               "name": "Bislett Stadion",
               "category": "sport",
@@ -20338,6 +22011,75 @@
                     "title": "Da de stille stemmene kom først",
                     "year": 2025,
                     "type": "historical_event"
+                  }
+                ]
+              }
+            },
+            {
+              "place_id": "christiania_torv",
+              "name": "Christiania Torv",
+              "category": "by",
+              "source_file": "places/by/oslo/places/christiania_torv.json",
+              "roles": [
+                {
+                  "id": "kultur_og_offentlighet",
+                  "label": "Kultur og offentlighet"
+                },
+                {
+                  "id": "stedshistorisk_spor",
+                  "label": "Stedshistorisk spor"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "production_claim_christiania_name_1958",
+                  "year": 1958,
+                  "title": "Navnet Christiania Torv ble vedtatt i 1958.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Ingress/navnehistorie.",
+                      "url": "https://oslobyleksikon.no/side/Christiania_Torv",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/christiania_torv.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_christiania_name_1958",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_christiania_1964",
+                  "year": 1964,
+                  "title": "I 1964 ble Christiania Torv innhegnet og steinsatt og fikk en ny vannkunst.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Avsnittet om 1964-omformingen.",
+                      "url": "https://oslobyleksikon.no/side/Christiania_Torv",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/christiania_torv.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_christiania_1964",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_christiania_torv_byflyttingen_1624",
+                    "title": "Da brannen flyttet byen",
+                    "year": 1624,
+                    "type": "turning_point"
                   }
                 ]
               }
@@ -20982,6 +22724,71 @@
               }
             },
             {
+              "place_id": "gamle_aker_kirke",
+              "name": "Gamle Aker kirke",
+              "category": "religion",
+              "source_file": "places/historie/oslo/places_historie/gamle_aker_kirke.json",
+              "roles": [
+                {
+                  "id": "religion_og_livssyn",
+                  "label": "Religion og livssyn"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "production_claim_gak_restoration_1950s",
+                  "year": 1950,
+                  "title": "Restaureringen i 1950–1955 fjernet innvendig puss og skapte et bart steinpreg som uttrykker 1950-tallets middelalderideal.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Avsnittene «Interiør» og «Restaurering og rehabilitering»",
+                      "url": "https://snl.no/Gamle_Aker_kirke",
+                      "verifiedAt": "2026-08-02"
+                    }
+                  ],
+                  "source_file": "data/places/production/gamle_aker_kirke.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_gak_restoration_1950s",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_gak_moseid_windows",
+                  "year": 1955,
+                  "title": "Torvald Moseids glassmalerier ble satt inn i 1955.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Avsnittet «Interiør»",
+                      "url": "https://snl.no/Gamle_Aker_kirke",
+                      "verifiedAt": "2026-08-02"
+                    }
+                  ],
+                  "source_file": "data/places/production/gamle_aker_kirke.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_gak_moseid_windows",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_gamle_aker_kirke_dronning_maud_i_krypten",
+                    "title": "Da dronning Maud ble flyttet til krypten",
+                    "year": 1940,
+                    "type": "historical_event"
+                  }
+                ]
+              }
+            },
+            {
               "place_id": "jordal_amfi",
               "name": "Jordal Amfi",
               "category": "sport",
@@ -21390,6 +23197,68 @@
                     "type": "historical"
                   }
                 ]
+              }
+            },
+            {
+              "place_id": "nic_waals_institutt",
+              "name": "Nic Waals Institutt",
+              "category": "psykologi",
+              "source_file": "places/psykologi/oslo/places_psykologi/nic_waals_institutt.json",
+              "roles": [
+                {
+                  "id": "makt_og_styring",
+                  "label": "Makt og styring"
+                },
+                {
+                  "id": "stedshistorisk_spor",
+                  "label": "Stedshistorisk spor"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "production_claim_nic_waals_institutt_6",
+                  "year": 1953,
+                  "title": "Nic Waal var lege og psykiater med psykoanalytisk bakgrunn og grunnla instituttet som bar hennes navn fra 1953.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Ingress og avsnittet om instituttet",
+                      "url": "https://snl.no/Nic_Waal",
+                      "verifiedAt": "2026-08-20"
+                    }
+                  ],
+                  "source_file": "data/places/production/nic_waals_institutt.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_nic_waals_institutt_6",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_nic_waals_institutt_2",
+                  "year": 1953,
+                  "title": "Nic Waals Institutt ble opprettet i 1953 av psykiater og barnepsykiater Nic Waal.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Ingress",
+                      "url": "https://snl.no/Nic_Waals_Institutt",
+                      "verifiedAt": "2026-08-20"
+                    }
+                  ],
+                  "source_file": "data/places/production/nic_waals_institutt.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_nic_waals_institutt_2",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [],
+                "works": [],
+                "stories": []
               }
             },
             {
@@ -21968,6 +23837,44 @@
               ],
               "milestones": [
                 {
+                  "id": "production_claim_h_block_1958",
+                  "year": 1958,
+                  "title": "Høyblokka, tegnet av Erling Viksjø, sto ferdig i 1958.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Bygglisten og avsnittet om Høyblokka",
+                      "url": "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/bygninger/id712727/",
+                      "verifiedAt": "2026-07-27"
+                    }
+                  ],
+                  "source_file": "data/places/production/regjeringskvartalet.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_h_block_1958",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_smk_justis_1958",
+                  "year": 1958,
+                  "title": "Justisdepartementet forlot Empirekvartal-bygningen i 1958, og Statsministerens kontor flyttet inn i Høyblokka samme år.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Avsnittene om Empirekvartalet, Høyblokka og innflyttingen i 1958",
+                      "url": "https://www.regjeringen.no/no/dep/smk/ansvarsomrader/forloperne/1946--nyere-tid/1958-Statsministeren-flytter-til-Hoyblokken/id759096/",
+                      "verifiedAt": "2026-07-27"
+                    }
+                  ],
+                  "source_file": "data/places/production/regjeringskvartalet.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_smk_justis_1958",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
                   "id": "story_st_regjeringskvartalet_hoyblokka_kunsten",
                   "year": 1958,
                   "title": "Kunst støpt inn i staten",
@@ -21994,6 +23901,25 @@
                   "evidence_type": "canonical_story",
                   "claim_id": "",
                   "story_id": "st_regjeringskvartalet_hoyblokka_kunsten",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_y_block_1969",
+                  "year": 1969,
+                  "title": "Y-blokka, tegnet av Erling Viksjø, sto ferdig i 1969 og hadde en lav, forgrenet bygningsform.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Bygglisten og avsnittene om Y-blokka",
+                      "url": "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/bygninger/id712727/",
+                      "verifiedAt": "2026-07-27"
+                    }
+                  ],
+                  "source_file": "data/places/production/regjeringskvartalet.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_y_block_1969",
+                  "story_id": "",
                   "limitations": []
                 }
               ],
@@ -22389,6 +24315,83 @@
                     "title": "Da folkestyret måtte settes i gang igjen",
                     "year": 1945,
                     "type": "turning_point"
+                  }
+                ]
+              }
+            },
+            {
+              "place_id": "torggata",
+              "name": "Torggata",
+              "category": "by",
+              "source_file": "places/by/oslo/places/torggata.json",
+              "roles": [
+                {
+                  "id": "stedshistorisk_spor",
+                  "label": "Stedshistorisk spor"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "production_claim_torggata_stroget",
+                  "year": 1969,
+                  "title": "Strøget er den bilfrie passasjen mellom Torggata og Storgata; flere butikker åpnet til julesalget i 1969 og selve passasjen åpnet i mai 1970.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Ingressen om plassering og åpning.",
+                      "url": "https://oslobyleksikon.no/side/Str%C3%B8get",
+                      "verifiedAt": "2026-08-11"
+                    }
+                  ],
+                  "source_file": "data/places/production/torggata.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_torggata_stroget",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [
+                  "alma_fahlstrom",
+                  "harald_olsen",
+                  "henrik_bull",
+                  "johan_fahlstrom"
+                ],
+                "works": [
+                  {
+                    "id": "torggata_work_torggata_bad",
+                    "title": "Torggata Bad / Rockefeller-komplekset",
+                    "type": "arkitektur_og_kulturinstitusjon"
+                  },
+                  {
+                    "id": "torggata_work_rockefeller_live_scene",
+                    "title": "Rockefeller Music Hall som live-scene",
+                    "type": "scene"
+                  },
+                  {
+                    "id": "torggata_work_john_dee_intimscene",
+                    "title": "John Dee som intimscene",
+                    "type": "scene"
+                  },
+                  {
+                    "id": "torggata_work_eldorado_kino_bokhandel",
+                    "title": "Eldorado som kino- og bokhandelshistorie",
+                    "type": "kultursted"
+                  },
+                  {
+                    "id": "torggata_work_miljogate_ombygging",
+                    "title": "Miljøgateombyggingen",
+                    "type": "byplan_og_design"
+                  }
+                ],
+                "stories": [
+                  {
+                    "id": "st_torggata_ga_og_sykkelgate_2010",
+                    "title": "Gata som ble forhandlet mellom handel, sykkel og opphold",
+                    "year": 2010,
+                    "type": "conflict"
                   }
                 ]
               }
@@ -22886,8 +24889,8 @@
               }
             }
           ],
-          "placeCount": 34,
-          "milestoneCount": 63
+          "placeCount": 39,
+          "milestoneCount": 74
         },
         "historie_senmoderne_globalisering_og_markedsvending": {
           "places": [
@@ -23942,6 +25945,129 @@
               }
             },
             {
+              "place_id": "birkelunden",
+              "name": "Birkelunden",
+              "category": "by",
+              "source_file": "places/by/oslo/places/birkelunden.json",
+              "roles": [
+                {
+                  "id": "arbeid_og_okonomi",
+                  "label": "Arbeid og økonomi"
+                },
+                {
+                  "id": "by_og_infrastruktur",
+                  "label": "By og infrastruktur"
+                },
+                {
+                  "id": "konflikt_og_motstand",
+                  "label": "Konflikt og motstand"
+                },
+                {
+                  "id": "kultur_og_offentlighet",
+                  "label": "Kultur og offentlighet"
+                },
+                {
+                  "id": "minne_og_historiebruk",
+                  "label": "Minne og historiebruk"
+                },
+                {
+                  "id": "stedshistorisk_spor",
+                  "label": "Stedshistorisk spor"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "production_claim_bir_renovation_1984_1986",
+                  "year": 1984,
+                  "title": "Birkelunden fikk parkopprusting med arbeid på basseng og beplantning i 1984–1986.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Avsnittet om parkforbedringer i 1984–1986.",
+                      "url": "https://oslobyleksikon.no/side/Birkelunden",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/birkelunden.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_bir_renovation_1984_1986",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_bir_johnsen_bust_1984",
+                  "year": 1984,
+                  "title": "En byste av Jack Johnsen ble reist i Birkelunden i 1984.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Avsnittet om skulpturer og Jack Johnsen-bysten.",
+                      "url": "https://oslobyleksikon.no/side/Birkelunden",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/birkelunden.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_bir_johnsen_bust_1984",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_bir_spain_memorial_1989",
+                  "year": 1989,
+                  "title": "Nils Aas laget Birkelundens minnesmerke over nordmenn som kjempet med de internasjonale brigadene under den spanske borgerkrigen; minnesmerket ble reist i 1989.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Avsnittet om minnesmerket over de norske Spania-frivillige.",
+                      "url": "https://oslobyleksikon.no/side/Birkelunden",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/birkelunden.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_bir_spain_memorial_1989",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_bir_cultural_environment_date",
+                  "year": 1996,
+                  "title": "Fredningsprosessen for Birkelunden kulturmiljø startet i 1996, og kulturmiljøet ble fredet 28. april 2006.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Faktalisten om fredningsprosessen og fredningsdatoen.",
+                      "url": "https://www.riksantikvaren.no/kulturhistorie/birkelunden-murbyens-hjerte/",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/birkelunden.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_bir_cultural_environment_date",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_birkelunden_bench_to_association",
+                    "title": "Da parkbenken ble en forening",
+                    "year": 1937,
+                    "type": "turning_point"
+                  }
+                ]
+              }
+            },
+            {
               "place_id": "blitzhuset",
               "name": "Blitzhuset",
               "category": "subkultur",
@@ -24271,6 +26397,75 @@
               }
             },
             {
+              "place_id": "christiania_torv",
+              "name": "Christiania Torv",
+              "category": "by",
+              "source_file": "places/by/oslo/places/christiania_torv.json",
+              "roles": [
+                {
+                  "id": "by_og_infrastruktur",
+                  "label": "By og infrastruktur"
+                },
+                {
+                  "id": "kultur_og_offentlighet",
+                  "label": "Kultur og offentlighet"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "production_claim_christiania_glove",
+                  "year": 1997,
+                  "title": "Wenche Gulbransens fonteneskulptur «Christian IVs hanske» kom på Christiania Torv i 1997, på stedet knyttet til den eldre vannkunsten.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Avsnittet om fontenen «Christian IVs hanske».",
+                      "url": "https://oslobyleksikon.no/side/Christiania_Torv",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/christiania_torv.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_christiania_glove",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_christiania_arch_prize",
+                  "year": 2003,
+                  "title": "Utformingen av Christiania Torv ble tildelt Oslo bys arkitekturpris i 2003.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Avsnittet om arkitekturprisen 2003.",
+                      "url": "https://oslobyleksikon.no/side/Christiania_Torv",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/christiania_torv.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_christiania_arch_prize",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_christiania_torv_byflyttingen_1624",
+                    "title": "Da brannen flyttet byen",
+                    "year": 1624,
+                    "type": "turning_point"
+                  }
+                ]
+              }
+            },
+            {
               "place_id": "cinemateket_oslo",
               "name": "Cinemateket i Oslo",
               "category": "film_tv",
@@ -24548,6 +26743,49 @@
                     "type": "sports_culture"
                   }
                 ]
+              }
+            },
+            {
+              "place_id": "grev_wedels_plass",
+              "name": "Grev Wedels plass",
+              "category": "by",
+              "source_file": "places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03/grev_wedels_plass.json",
+              "roles": [
+                {
+                  "id": "by_og_infrastruktur",
+                  "label": "By og infrastruktur"
+                },
+                {
+                  "id": "makt_og_styring",
+                  "label": "Makt og styring"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "production_claim_grev_restoration",
+                  "year": 1981,
+                  "title": "Parken ble gjenopprettet og Militærhospitalet reist på nytt ved plassen i 1981–1984.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Relevant steds- eller verkshistorikk.",
+                      "url": "https://www.oslobyesvel.no/kalender/avduking-av-osloskulptur/6",
+                      "verifiedAt": "2026-08-24"
+                    }
+                  ],
+                  "source_file": "data/places/production/grev_wedels_plass.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_grev_restoration",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [],
+                "works": [],
+                "stories": []
               }
             },
             {
@@ -25439,6 +27677,60 @@
               }
             },
             {
+              "place_id": "nationaltheatret",
+              "name": "Nationaltheatret",
+              "category": "scenekunst",
+              "source_file": "places/scenekunst/oslo/places_scenekunst/nationaltheatret.json",
+              "roles": [
+                {
+                  "id": "by_og_infrastruktur",
+                  "label": "By og infrastruktur"
+                },
+                {
+                  "id": "kultur_og_offentlighet",
+                  "label": "Kultur og offentlighet"
+                },
+                {
+                  "id": "makt_og_styring",
+                  "label": "Makt og styring"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "production_claim_fredning_1983",
+                  "year": 1983,
+                  "title": "Nationaltheaterbygningen ble vedtaksfredet etter kulturminneloven § 15 den 23. desember 1983.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "«BYGNING 9901925 Nationaltheatret» – feltet Vernestatus.",
+                      "url": "https://riksantikvaren.no/content/uploads/2019/10/nationaltheateret.pdf",
+                      "verifiedAt": "2026-07-29"
+                    }
+                  ],
+                  "source_file": "data/places/production/nationaltheatret.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_fredning_1983",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_nationaltheatret_apning_1899",
+                    "title": "Hvem skulle få åpne Nationaltheatret?",
+                    "year": 1899,
+                    "type": "cultural"
+                  }
+                ]
+              }
+            },
+            {
               "place_id": "naturhistorisk_museum",
               "name": "Naturhistorisk museum",
               "category": "vitenskap",
@@ -25565,6 +27857,45 @@
                     "type": "urban_industrial_river_history"
                   }
                 ]
+              }
+            },
+            {
+              "place_id": "nkvts_nydalen",
+              "name": "NKVTS – Nasjonalt kunnskapssenter om vold og traumatisk stress",
+              "category": "psykologi",
+              "source_file": "places/psykologi/oslo/places_psykologi/nkvts_nydalen.json",
+              "roles": [
+                {
+                  "id": "stedshistorisk_spor",
+                  "label": "Stedshistorisk spor"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "production_claim_nkvts_nydalen_2",
+                  "year": 2004,
+                  "title": "NKVTS ble etablert i 2004.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Organisering",
+                      "url": "https://www.nkvts.no/om-oss/",
+                      "verifiedAt": "2026-08-20"
+                    }
+                  ],
+                  "source_file": "data/places/production/nkvts_nydalen.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_nkvts_nydalen_2",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [],
+                "works": [],
+                "stories": []
               }
             },
             {
@@ -25941,6 +28272,64 @@
               }
             },
             {
+              "place_id": "olaf_ryes_plass",
+              "name": "Olaf Ryes plass",
+              "category": "by",
+              "source_file": "places/by/oslo/places/olaf_ryes_plass.json",
+              "roles": [
+                {
+                  "id": "stedshistorisk_spor",
+                  "label": "Stedshistorisk spor"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "production_claim_olaf_photo_2009",
+                  "year": 2009,
+                  "title": "Helge Høifødts Commons-fotografi viser Olaf Ryes plass 1. august 2009 og er lisensiert CC BY-SA 3.0.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Filside: tittel, dato, skaper, koordinater og lisens.",
+                      "url": "https://commons.wikimedia.org/wiki/File:Olaf_Ryes_plass_sommer.JPG",
+                      "verifiedAt": "2026-08-25"
+                    }
+                  ],
+                  "source_file": "data/places/production/olaf_ryes_plass.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_olaf_photo_2009",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_olaf_ryes_plass_park_1890",
+                    "title": "Da løkken ble offentlig park",
+                    "year": 1890,
+                    "type": "turning_point"
+                  },
+                  {
+                    "id": "st_olaf_ryes_plass_sundt_1892",
+                    "title": "Da samfunnsforskningen fikk et ansikt i parken",
+                    "year": 1892,
+                    "type": "cultural"
+                  },
+                  {
+                    "id": "st_olaf_ryes_plass_fontene_1927",
+                    "title": "Da fontenen ble et nytt parkanker",
+                    "year": 1927,
+                    "type": "turning_point"
+                  }
+                ]
+              }
+            },
+            {
               "place_id": "operahuset",
               "name": "Operahuset",
               "category": "scenekunst",
@@ -26137,6 +28526,52 @@
                     "title": "Fredsprisen flytter inn i Rådhushallen",
                     "year": 1990,
                     "type": "cultural"
+                  }
+                ]
+              }
+            },
+            {
+              "place_id": "tinghuset",
+              "name": "Oslo tinghus",
+              "category": "politikk",
+              "source_file": "places/politikk/oslo/places_politikk/tinghuset.json",
+              "roles": [
+                {
+                  "id": "makt_og_styring",
+                  "label": "Makt og styring"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "production_claim_tinghuset_completion_block",
+                  "year": 1994,
+                  "title": "Oslo tinghus ble ferdigstilt i 1994, dekker et helt kvartal og har hovedinngang mot Hambros plass.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Avsnittet «Utsmykning og arkitektur»",
+                      "url": "https://www.domstol.no/no/domstoler/tingrett/oslo-tingrett/om-oslo-tingrett/praktisk-informasjon-om-oslo-tinghus/",
+                      "verifiedAt": "2026-08-01"
+                    }
+                  ],
+                  "source_file": "data/places/production/tinghuset.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_tinghuset_completion_block",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_oslo_tinghus_to_sakkyndigsvar",
+                    "title": "Da retten måtte velge mellom to svar",
+                    "year": 2012,
+                    "type": "conflict"
                   }
                 ]
               }
@@ -26908,6 +29343,25 @@
               ],
               "milestones": [
                 {
+                  "id": "production_claim_torggata_bath_closure",
+                  "year": 1980,
+                  "title": "Badevirksomheten i Torggata bad opphørte i 1980.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Ingressen og Historikk-avsnittet om nedleggelsen.",
+                      "url": "https://oslobyleksikon.no/index.php/Torggata_bad",
+                      "verifiedAt": "2026-08-11"
+                    }
+                  ],
+                  "source_file": "data/places/production/torggata.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_torggata_bath_closure",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
                   "id": "chrono_torggata_1986",
                   "year": 1986,
                   "title": "Rockefeller åpner",
@@ -27654,11 +30108,61 @@
               }
             },
             {
+              "place_id": "var_frelsers_gravlund",
+              "name": "Vår Frelsers gravlund",
+              "category": "historie",
+              "source_file": "places/historie/oslo/places_historie/var_frelsers_gravlund.json",
+              "roles": [
+                {
+                  "id": "religion_og_livssyn",
+                  "label": "Religion og livssyn"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "production_claim_vfg_chapel_orthodox",
+                  "year": 2003,
+                  "title": "Det tidligere kapellet ble leid ut til Hellige Olga menighet i 2003 og vigslet som ortodoks kirke i 2004.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Avsnittet om graverbolig og kapell",
+                      "url": "https://snl.no/V%C3%A5r_Frelsers_gravlund",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/var_frelsers_gravlund.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_vfg_chapel_orthodox",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_var_frelsers_gravlund_for_barnetoget",
+                    "title": "Før barnetoget får gravene nye stemmer",
+                    "year": 2026,
+                    "type": "cultural"
+                  }
+                ]
+              }
+            },
+            {
               "place_id": "youngstorget",
               "name": "Youngstorget",
               "category": "politikk",
               "source_file": "places/politikk/oslo/places_politikk/youngstorget.json",
               "roles": [
+                {
+                  "id": "arbeid_og_okonomi",
+                  "label": "Arbeid og økonomi"
+                },
                 {
                   "id": "makt_og_styring",
                   "label": "Makt og styring"
@@ -27685,6 +30189,25 @@
                   "source_file": "data/leksikon/places/oslo/politikk/leksikon_youngstorget.json",
                   "evidence_type": "leksikon_chronology",
                   "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_young_1996_change",
+                  "year": 1996,
+                  "title": "Youngstorget ble omfattende omarbeidet i 1990-årene; kildene dokumenterer en gjenåpning/trafikkendring i 1996 og at en ny avstøpning av den historiske fontenen kom på plass.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Avsnittet om opprustningen i 1990-årene.",
+                      "url": "https://oslobyleksikon.no/side/Youngstorget",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/youngstorget.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_young_1996_change",
                   "story_id": "",
                   "limitations": []
                 },
@@ -27779,8 +30302,8 @@
               }
             }
           ],
-          "placeCount": 64,
-          "milestoneCount": 106
+          "placeCount": 72,
+          "milestoneCount": 120
         },
         "historie_digital_samtid_kriser_og_ny_offentlighet": {
           "places": [
@@ -28974,6 +31497,25 @@
                   "limitations": []
                 },
                 {
+                  "id": "production_claim_brugata_storgata_popup_05",
+                  "year": 2011,
+                  "title": "Foreningen for human ruspolitikk knytter dagens situasjon til systematisk spredning etter Sentrumssamarbeidet fra 2011, da miljøet ble presset bort fra Oslo S og Jernbanetorget og siden flyttet mellom blant annet Brugata/Storgata, Elgsletta og Hausmannsområdet.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Forflytningshistorie, værestedsforslag, sosialt behov og budsjettstatus.",
+                      "url": "https://humanruspolitikk.no/vil-gi-rusavhengige-et-sted-a-vaere/",
+                      "verifiedAt": "2026-08-25"
+                    }
+                  ],
+                  "source_file": "data/places/production/brugata_storgata_rusmiljo.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_brugata_storgata_popup_05",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
                   "id": "chrono_brugata_storgata_2011_2",
                   "year": 2011,
                   "title": "Systematisk spredning fra Oslo S",
@@ -29055,6 +31597,25 @@
                   "limitations": []
                 },
                 {
+                  "id": "production_claim_brugata_storgata_popup_07",
+                  "year": 2020,
+                  "title": "KORUS-rapporten «Utrygg markedsplass» fra 2020 bygger på feltarbeid og intervjuer i Brugata/Storgata.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Felt- og intervjubasert kartlegging av marked, utrygghet, sosial møteplass og tiltak.",
+                      "url": "https://filer.korus.no/publications/HKH-rapport-web.pdf",
+                      "verifiedAt": "2026-08-25"
+                    }
+                  ],
+                  "source_file": "data/places/production/brugata_storgata_rusmiljo.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_brugata_storgata_popup_07",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
                   "id": "chrono_brugata_storgata_2021_5",
                   "year": 2021,
                   "title": "Den ombygde Storgata åpner",
@@ -29070,6 +31631,25 @@
                   "source_file": "data/leksikon/places/oslo/subkultur/leksikon_brugata_storgata_rusmiljo.json",
                   "evidence_type": "leksikon_chronology",
                   "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_brugata_storgata_popup_11",
+                  "year": 2021,
+                  "title": "Opprustningen av Storgata som stod ferdig i 2021 endret spor, fortau og teknisk infrastruktur, men Byplan beskriver at fysisk oppgradering alene ikke løste den opplevde utryggheten.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Felt- og intervjubasert kartlegging av marked, utrygghet, sosial møteplass og tiltak.",
+                      "url": "https://filer.korus.no/publications/HKH-rapport-web.pdf",
+                      "verifiedAt": "2026-08-25"
+                    }
+                  ],
+                  "source_file": "data/places/production/brugata_storgata_rusmiljo.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_brugata_storgata_popup_11",
                   "story_id": "",
                   "limitations": []
                 },
@@ -29255,6 +31835,10 @@
                 {
                   "id": "kultur_og_offentlighet",
                   "label": "Kultur og offentlighet"
+                },
+                {
+                  "id": "minne_og_historiebruk",
+                  "label": "Minne og historiebruk"
                 }
               ],
               "milestones": [
@@ -29300,6 +31884,25 @@
                   "evidence_type": "canonical_story",
                   "claim_id": "",
                   "story_id": "st_ekebergparken_skulptur_i_landskap_2013",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_ekeberg_opening",
+                  "year": 2013,
+                  "title": "Skulptur- og kulturminneparken åpnet 26. september 2013, etter at Oslo bystyre hadde godkjent rammene for prosjektet 24. august 2011.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Historikken for parkprosjektet og åpningen.",
+                      "url": "https://ekebergparken.com/om-stiftelsen",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/ekebergparken.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_ekeberg_opening",
+                  "story_id": "",
                   "limitations": []
                 }
               ],
@@ -29513,6 +32116,52 @@
               }
             },
             {
+              "place_id": "gamle_aker_kirke",
+              "name": "Gamle Aker kirke",
+              "category": "religion",
+              "source_file": "places/historie/oslo/places_historie/gamle_aker_kirke.json",
+              "roles": [
+                {
+                  "id": "religion_og_livssyn",
+                  "label": "Religion og livssyn"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "production_claim_gak_rehab_2023_2024",
+                  "year": 2023,
+                  "title": "Kirken var stengt fra 2. januar 2023 til 24. mai 2024 mens blant annet tak, murverk, vinduer, elektriske anlegg og tilgjengelighet ble rehabilitert.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Tidslinjen og punktlisten over utførte arbeider",
+                      "url": "https://www.kirken.no/sthans/rehabilitering",
+                      "verifiedAt": "2026-08-02"
+                    }
+                  ],
+                  "source_file": "data/places/production/gamle_aker_kirke.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_gak_rehab_2023_2024",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_gamle_aker_kirke_dronning_maud_i_krypten",
+                    "title": "Da dronning Maud ble flyttet til krypten",
+                    "year": 1940,
+                    "type": "historical_event"
+                  }
+                ]
+              }
+            },
+            {
               "place_id": "gamle_deichman",
               "name": "Gamle Deichman",
               "category": "litteratur",
@@ -29567,6 +32216,45 @@
                     "type": "historical"
                   }
                 ]
+              }
+            },
+            {
+              "place_id": "grev_wedels_plass",
+              "name": "Grev Wedels plass",
+              "category": "by",
+              "source_file": "places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03/grev_wedels_plass.json",
+              "roles": [
+                {
+                  "id": "stedshistorisk_spor",
+                  "label": "Stedshistorisk spor"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "production_claim_grev_torso",
+                  "year": 2026,
+                  "title": "Kristian Blystads «Kvinnetorso» ble avduket 6. juni 2026.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Relevant steds- eller verkshistorikk.",
+                      "url": "https://www.oslobyesvel.no/nyheter/ordfreren-avduket-vr-historiske-gave-lrdag-6-juni/6",
+                      "verifiedAt": "2026-08-24"
+                    }
+                  ],
+                  "source_file": "data/places/production/grev_wedels_plass.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_grev_torso",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [],
+                "works": [],
+                "stories": []
               }
             },
             {
@@ -30612,6 +33300,10 @@
               "source_file": "places/politikk/oslo/places_politikk/regjeringskvartalet.json",
               "roles": [
                 {
+                  "id": "by_og_infrastruktur",
+                  "label": "By og infrastruktur"
+                },
+                {
                   "id": "canonical_fagverk_case",
                   "label": "Dokumentert Fagverk-case"
                 },
@@ -30646,6 +33338,10 @@
                 {
                   "id": "em_his_minnesteder_historiebruk",
                   "label": "Minnesteder"
+                },
+                {
+                  "id": "religion_og_livssyn",
+                  "label": "Religion og livssyn"
                 },
                 {
                   "id": "em_his_samtid_ettertid_fortelling",
@@ -30692,6 +33388,25 @@
                   "limitations": []
                 },
                 {
+                  "id": "production_claim_attack",
+                  "year": 2011,
+                  "title": "Terrorangrepet 22. juli 2011 drepte åtte mennesker i regjeringskvartalet, skadet flere hundre og gjorde flere bygninger ubrukelige.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Avsnittet om terrorangrepet og minnestedet",
+                      "url": "https://www.regjeringen.no/no/aktuelt/det-nye-regjeringskvartalet-offisielt-apnet/id3155987/",
+                      "verifiedAt": "2026-07-27"
+                    }
+                  ],
+                  "source_file": "data/places/production/regjeringskvartalet.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_attack",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
                   "id": "claim_claim_his_regjeringskvartalet_terror_preparedness_followup_2013",
                   "year": 2012,
                   "title": "Langsomme katastrofer og miljøskade",
@@ -30717,6 +33432,25 @@
                     "Meldingen dokumenterer regjeringens vurderinger og planlagte tiltak i 2013; senere implementering, øving, ressursbruk og effekt må dokumenteres med egne oppfølgingskilder.",
                     "Tiltakspakken kan uttrykke reell institusjonell læring, men kan også overvurdere læring dersom vedtak og planverk behandles som gjennomføring og målte resultater."
                   ]
+                },
+                {
+                  "id": "production_claim_temporary_rebuild",
+                  "year": 2012,
+                  "title": "Statsbygg ryddet, sikret og sanerte området, skaffet midlertidige lokaler for rundt 1800 ansatte, og regjeringen gikk i januar 2012 videre med utredning av gjenoppbyggingen.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Kapittel 2, innledningen og avsnitt 2.1 om opprydding, midlertidige lokaler og januar 2012",
+                      "url": "https://www.regjeringen.no/no/dokumenter/meld.-st.-21-20182019/id2641647/?ch=2",
+                      "verifiedAt": "2026-07-27"
+                    }
+                  ],
+                  "source_file": "data/places/production/regjeringskvartalet.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_temporary_rebuild",
+                  "story_id": "",
+                  "limitations": []
                 },
                 {
                   "id": "claim_claim_his_regjeringskvartalet_22july_memorial_2015_wreath_speeches",
@@ -30766,6 +33500,44 @@
                     "Sammenligningen dokumenterer programendring mellom to år, men ikke kontinuerlig utvikling for hvert mellomliggende år.",
                     "Endringene kan tolkes som modning av minnepraksisen, men kan også skyldes jubileumsformat, byggeprosesser og skiftende arrangører."
                   ]
+                },
+                {
+                  "id": "production_claim_stage1_start_scope",
+                  "year": 2020,
+                  "title": "Stortinget sluttet seg i desember 2020 til oppstart i 2021; byggetrinn 1 omfattet Høyblokka, A- og D-blokka, kjeller, uteområder, perimetersikring og eksternt kontrollsenter.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Avsnittet om Stortingets beslutning og punktet om byggetrinn 1",
+                      "url": "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/nytt-RKV/id712726/",
+                      "verifiedAt": "2026-07-27"
+                    }
+                  ],
+                  "source_file": "data/places/production/regjeringskvartalet.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_stage1_start_scope",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_y_art_move",
+                  "year": 2020,
+                  "title": "Y-blokka ble revet i 2020 etter at «Fiskerne» og «Måken» var skåret løs og sikret; verkene ble senere montert i A-blokka.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Avsnittene om demontering fra Y-blokka og montering i A-blokka",
+                      "url": "https://www.statsbygg.no/nyheter/her-flyr-maken-for-siste-gang/",
+                      "verifiedAt": "2026-07-27"
+                    }
+                  ],
+                  "source_file": "data/places/production/regjeringskvartalet.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_y_art_move",
+                  "story_id": "",
+                  "limitations": []
                 },
                 {
                   "id": "claim_claim_his_departments_embetsverk_neutral_continuity_2025",
@@ -31084,6 +33856,25 @@
                   "source_file": "data/leksikon/places/oslo/by/leksikon_storgata.json",
                   "evidence_type": "leksikon_chronology",
                   "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_storgata_popup_25",
+                  "year": 2023,
+                  "title": "Den kommunale legevakten lå i Storgata 40 fram til november 2023, sammen med Krohgstøttens sykehus.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Oslo byleksikon, adresseoppslaget for Storgata 40 og Krohgstøtten.",
+                      "url": "https://oslobyleksikon.no/side/Storgata",
+                      "verifiedAt": "2026-08-25"
+                    }
+                  ],
+                  "source_file": "data/places/production/storgata.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_storgata_popup_25",
                   "story_id": "",
                   "limitations": []
                 },
@@ -31462,6 +34253,25 @@
                   "evidence_type": "canonical_story",
                   "claim_id": "",
                   "story_id": "st_torggata_ga_og_sykkelgate_2010",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_torggata_eldorado_end",
+                  "year": 2012,
+                  "title": "Kinodriften i Eldorado varte til 2012, og lokalene ble omgjort til bokhandel i 2013.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Ingressen og avslutningen av Historikk.",
+                      "url": "https://oslobyleksikon.no/index.php?title=Eldorado",
+                      "verifiedAt": "2026-08-11"
+                    }
+                  ],
+                  "source_file": "data/places/production/torggata.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_torggata_eldorado_end",
+                  "story_id": "",
                   "limitations": []
                 },
                 {
@@ -31868,6 +34678,10 @@
                   "label": "Kultur og offentlighet"
                 },
                 {
+                  "id": "makt_og_styring",
+                  "label": "Makt og styring"
+                },
+                {
                   "id": "minne_og_historiebruk",
                   "label": "Minne og historiebruk"
                 }
@@ -31896,6 +34710,25 @@
                   "claim_id": "",
                   "story_id": "st_var_frelsers_gravlund_for_barnetoget",
                   "limitations": []
+                },
+                {
+                  "id": "production_claim_vfg_wreaths_2026",
+                  "year": 2026,
+                  "title": "Oslo kommunes program for 17. mai 2026 la bekransninger til gravene til Wergeland, Bjørnson, Ibsen, Hansteen og Wickstrøm og Anna Rogstad.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Programmet for bekransninger på Vår Frelsers gravlund i 2026",
+                      "url": "https://www.oslo.kommune.no/natur-kultur-og-fritid/17-mai/17-mai-program/program-for-bekransninger/",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/var_frelsers_gravlund.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_vfg_wreaths_2026",
+                  "story_id": "",
+                  "limitations": []
                 }
               ],
               "period_cases": [],
@@ -31919,11 +34752,57 @@
               "source_file": "places/politikk/oslo/places_politikk/youngstorget.json",
               "roles": [
                 {
+                  "id": "kultur_og_offentlighet",
+                  "label": "Kultur og offentlighet"
+                },
+                {
                   "id": "makt_og_styring",
                   "label": "Makt og styring"
+                },
+                {
+                  "id": "minne_og_historiebruk",
+                  "label": "Minne og historiebruk"
                 }
               ],
               "milestones": [
+                {
+                  "id": "production_claim_young_mayday_2026",
+                  "year": 2026,
+                  "title": "LOs Oslo-program 1. mai 2026 brukte Youngstorget til markeringen med tale før toget gikk videre.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Oslo/Youngstorget-programmet for 1. mai 2026.",
+                      "url": "https://www.lo.no/nyhetsrommet/1.-mai-2026",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/youngstorget.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_young_mayday_2026",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_young_womens_day_2026",
+                  "year": 2026,
+                  "title": "Oslo Museums informasjon om kvinnedagen 2026 la det offisielle Oslo-programmet til Youngstorget 8. mars 2026.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Programinformasjonen for den offisielle markeringen i Oslo.",
+                      "url": "https://www.oslomuseum.no/kvinnedagen/",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/youngstorget.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_young_womens_day_2026",
+                  "story_id": "",
+                  "limitations": []
+                },
                 {
                   "id": "chrono_youngstorget_2026_10",
                   "year": 2026,
@@ -31959,8 +34838,8 @@
               }
             }
           ],
-          "placeCount": 50,
-          "milestoneCount": 91
+          "placeCount": 52,
+          "milestoneCount": 106
         }
       },
       "parallel_tracks": {
@@ -35569,11 +38448,42 @@
               "source_file": "places/by/oslo/places/storgata.json",
               "roles": [
                 {
+                  "id": "arbeid_og_okonomi",
+                  "label": "Arbeid og økonomi"
+                },
+                {
+                  "id": "by_og_infrastruktur",
+                  "label": "By og infrastruktur"
+                },
+                {
+                  "id": "kultur_og_offentlighet",
+                  "label": "Kultur og offentlighet"
+                },
+                {
                   "id": "stedshistorisk_spor",
                   "label": "Stedshistorisk spor"
                 }
               ],
               "milestones": [
+                {
+                  "id": "production_claim_storgata_popup_29",
+                  "year": 1827,
+                  "title": "Nybrua fra 1827, de gamle murgårdene, sporene i kjørebanen og Folketeaterbygningen gjør det mulig å følge utviklingen fra forstad og innfartsvei til moderne kollektiv- og handelsgate.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Oslo byleksikon og Oslo kommunes Byplan-artikkel, samlet dokumentasjon av gateforløp, adresser og transportfunksjon.",
+                      "url": "https://oslobyleksikon.no/side/Storgata",
+                      "verifiedAt": "2026-08-25"
+                    }
+                  ],
+                  "source_file": "data/places/production/storgata.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_storgata_popup_29",
+                  "story_id": "",
+                  "limitations": []
+                },
                 {
                   "id": "chrono_storgata_2025_10",
                   "year": 2025,
@@ -36172,6 +39082,25 @@
                   "evidence_type": "canonical_story",
                   "claim_id": "",
                   "story_id": "st_torggata_ga_og_sykkelgate_2010",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_torggata_eldorado_end",
+                  "year": 2012,
+                  "title": "Kinodriften i Eldorado varte til 2012, og lokalene ble omgjort til bokhandel i 2013.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Ingressen og avslutningen av Historikk.",
+                      "url": "https://oslobyleksikon.no/index.php?title=Eldorado",
+                      "verifiedAt": "2026-08-11"
+                    }
+                  ],
+                  "source_file": "data/places/production/torggata.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_torggata_eldorado_end",
+                  "story_id": "",
                   "limitations": []
                 }
               ],
@@ -36867,10 +39796,64 @@
                 "works": [],
                 "stories": []
               }
+            },
+            {
+              "place_id": "youngstorget",
+              "name": "Youngstorget",
+              "category": "politikk",
+              "source_file": "places/politikk/oslo/places_politikk/youngstorget.json",
+              "roles": [
+                {
+                  "id": "kultur_og_offentlighet",
+                  "label": "Kultur og offentlighet"
+                },
+                {
+                  "id": "makt_og_styring",
+                  "label": "Makt og styring"
+                },
+                {
+                  "id": "minne_og_historiebruk",
+                  "label": "Minne og historiebruk"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "production_claim_young_womens_day_2026",
+                  "year": 2026,
+                  "title": "Oslo Museums informasjon om kvinnedagen 2026 la det offisielle Oslo-programmet til Youngstorget 8. mars 2026.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Programinformasjonen for den offisielle markeringen i Oslo.",
+                      "url": "https://www.oslomuseum.no/kvinnedagen/",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/youngstorget.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_young_womens_day_2026",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_youngstorget_mayday",
+                    "title": "Da åttetimerskravet gikk fra Youngstorget til Stortinget",
+                    "year": 1890,
+                    "type": "political"
+                  }
+                ]
+              }
             }
           ],
-          "placeCount": 51,
-          "milestoneCount": 114
+          "placeCount": 52,
+          "milestoneCount": 117
         },
         "historie_migrasjon_minoritet_og_tilhorighet": {
           "places": [
@@ -39270,6 +42253,56 @@
                     "title": "Elva som grunnla byen og forsvant under bakken",
                     "year": 1922,
                     "type": "environmental"
+                  }
+                ]
+              }
+            },
+            {
+              "place_id": "birkelunden",
+              "name": "Birkelunden",
+              "category": "by",
+              "source_file": "places/by/oslo/places/birkelunden.json",
+              "roles": [
+                {
+                  "id": "konflikt_og_motstand",
+                  "label": "Konflikt og motstand"
+                },
+                {
+                  "id": "minne_og_historiebruk",
+                  "label": "Minne og historiebruk"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "production_claim_bir_spain_memorial_1989",
+                  "year": 1989,
+                  "title": "Nils Aas laget Birkelundens minnesmerke over nordmenn som kjempet med de internasjonale brigadene under den spanske borgerkrigen; minnesmerket ble reist i 1989.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Avsnittet om minnesmerket over de norske Spania-frivillige.",
+                      "url": "https://oslobyleksikon.no/side/Birkelunden",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/birkelunden.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_bir_spain_memorial_1989",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_birkelunden_bench_to_association",
+                    "title": "Da parkbenken ble en forening",
+                    "year": 1937,
+                    "type": "turning_point"
                   }
                 ]
               }
@@ -42665,6 +45698,10 @@
               "source_file": "places/politikk/oslo/places_politikk/youngstorget.json",
               "roles": [
                 {
+                  "id": "kultur_og_offentlighet",
+                  "label": "Kultur og offentlighet"
+                },
+                {
                   "id": "makt_og_styring",
                   "label": "Makt og styring"
                 },
@@ -42726,6 +45763,25 @@
                   "claim_id": "",
                   "story_id": "",
                   "limitations": []
+                },
+                {
+                  "id": "production_claim_young_womens_day_2026",
+                  "year": 2026,
+                  "title": "Oslo Museums informasjon om kvinnedagen 2026 la det offisielle Oslo-programmet til Youngstorget 8. mars 2026.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Programinformasjonen for den offisielle markeringen i Oslo.",
+                      "url": "https://www.oslomuseum.no/kvinnedagen/",
+                      "verifiedAt": "2026-08-23"
+                    }
+                  ],
+                  "source_file": "data/places/production/youngstorget.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_young_womens_day_2026",
+                  "story_id": "",
+                  "limitations": []
                 }
               ],
               "period_cases": [],
@@ -42743,23 +45799,23 @@
               }
             }
           ],
-          "placeCount": 38,
-          "milestoneCount": 90
+          "placeCount": 39,
+          "milestoneCount": 92
         }
       },
       "oslo_coverage": {
         "contract": "oslo-history-coverage-v1",
         "canonical_place_count": 563,
-        "dated_evidence_place_count": 168,
+        "dated_evidence_place_count": 172,
         "documented_case_place_count": 2,
-        "awaiting_source_backed_history_count": 393,
+        "awaiting_source_backed_history_count": 389,
         "categories": [
           {
             "category": "by",
             "total": 95,
-            "dated_evidence": 29,
+            "dated_evidence": 31,
             "documented_case": 0,
-            "awaiting_source_backed_history": 66
+            "awaiting_source_backed_history": 64
           },
           {
             "category": "film_tv",
@@ -42834,9 +45890,9 @@
           {
             "category": "psykologi",
             "total": 3,
-            "dated_evidence": 1,
+            "dated_evidence": 3,
             "documented_case": 0,
-            "awaiting_source_backed_history": 2
+            "awaiting_source_backed_history": 0
           },
           {
             "category": "religion",
@@ -43083,7 +46139,7 @@
             "name": "Bankplassen",
             "category": "by",
             "source_file": "places/by/oslo/places/bankplassen.json",
-            "status": "awaiting_source_backed_history"
+            "status": "dated_evidence"
           },
           {
             "place_id": "barcode",
@@ -44105,7 +47161,7 @@
             "name": "Grev Wedels plass",
             "category": "by",
             "source_file": "places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03/grev_wedels_plass.json",
-            "status": "awaiting_source_backed_history"
+            "status": "dated_evidence"
           },
           {
             "place_id": "grorud",
@@ -45204,14 +48260,14 @@
             "name": "Nic Waals Institutt",
             "category": "psykologi",
             "source_file": "places/psykologi/oslo/places_psykologi/nic_waals_institutt.json",
-            "status": "awaiting_source_backed_history"
+            "status": "dated_evidence"
           },
           {
             "place_id": "nkvts_nydalen",
             "name": "NKVTS – Nasjonalt kunnskapssenter om vold og traumatisk stress",
             "category": "psykologi",
             "source_file": "places/psykologi/oslo/places_psykologi/nkvts_nydalen.json",
-            "status": "awaiting_source_backed_history"
+            "status": "dated_evidence"
           },
           {
             "place_id": "nobelinstituttet",
@@ -57791,9 +60847,10 @@
     "connected_work_count": 163,
     "connected_story_count": 203,
     "canonical_story_milestone_count": 172,
-    "indexed_place_count": 214,
-    "epoch_place_relations": 368,
-    "milestone_count": 698
+    "verified_place_production_milestone_count": 97,
+    "indexed_place_count": 218,
+    "epoch_place_relations": 396,
+    "milestone_count": 795
   },
   "warnings": {
     "missing_source_files": [

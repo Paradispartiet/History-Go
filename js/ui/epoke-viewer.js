@@ -536,7 +536,9 @@
       const sources = (Array.isArray(milestone?.sources) ? milestone.sources : []).filter((source) => /^https?:\/\//.test(txt(source?.url)));
       const evidenceLabel = milestone?.evidence_type === "canonical_place_claim"
         ? "Canonical claim"
-        : milestone?.evidence_type === "canonical_story" ? "Kildebelagt fortelling" : "Datert leksikonspor";
+        : milestone?.evidence_type === "canonical_story"
+          ? "Kildebelagt fortelling"
+          : milestone?.evidence_type === "verified_place_production_claim" ? "Verifisert stedsclaim" : "Datert leksikonspor";
       const limitations = (Array.isArray(milestone?.limitations) ? milestone.limitations : []).map(txt).filter(Boolean);
       return `<article class="hg-epoke-milestone"${txt(milestone?.claim_id) ? ` data-claim-id="${esc(milestone.claim_id)}"` : ""}${txt(milestone?.story_id) ? ` data-story-id="${esc(milestone.story_id)}"` : ""}><div class="hg-epoke-milestone__year">${esc(milestone?.year)}</div><div><h5>${esc(milestone?.title || "Historisk hendelse")}</h5>${txt(milestone?.consequence) ? `<p>${esc(milestone.consequence)}</p>` : ""}<span class="hg-epoke-evidence-kind">${esc(evidenceLabel)}</span>${sources.length ? `<div class="hg-epoke-sources" aria-label="Kilder">${sources.map((source) => `<a class="hg-epoke-source" href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">${esc(source.title)} ↗</a>`).join("")}</div>` : ""}${limitations.length ? `<details class="hg-epoke-limitation"><summary>Usikkerhet og avgrensning</summary>${limitations.map((limitation) => `<p>${esc(limitation)}</p>`).join("")}</details>` : ""}</div></article>`;
     }).join("")}</div>`;
@@ -642,7 +644,7 @@
       const placeList = places.length ? `<div class="hg-epoke-node__places">${places.map((row) => placeButtonHtml(row, currentPlaceId)).join("")}</div>` : '<div class="hg-epoke-node__empty">Ingen registrerte steder i denne epoken ennå.</div>';
       return overview ? `<div class="hg-epoke-depth">${overview}${placeList}</div>` : placeList;
     }
-    return `<div class="hg-epoke-depth">${historyOverviewHtml(epoch, locationScope)}${analysisHtml(epoch)}<h4 class="hg-epoke-section-title">Steder og kildebelagte spor</h4><p class="hg-epoke-section-intro">Treffene kommer fra validerte place–claim–source-koblinger, daterte leksikonhendelser og canonical fortellinger med eksplisitt år og inspiserbare nettkilder. Udaterte Fagverk-caser vises separat uten konstruerte årstall. Kilder og registrerte avgrensninger kan undersøkes direkte.</p>${places.length ? `<div class="hg-epoke-node__places hg-epoke-place-cards">${places.map((row) => placeCardHtml(row, currentPlaceId)).join("")}</div>` : '<div class="hg-epoke-node__empty">Ingen daterte, kildebelagte stedsspor i denne epoken ennå.</div>'}</div>`;
+    return `<div class="hg-epoke-depth">${historyOverviewHtml(epoch, locationScope)}${analysisHtml(epoch)}<h4 class="hg-epoke-section-title">Steder og kildebelagte spor</h4><p class="hg-epoke-section-intro">Treffene kommer fra validerte place–claim–source-koblinger, daterte leksikonhendelser, canonical fortellinger og verifiserte historiske produksjonsclaims med påstandsnære kilder. Udaterte Fagverk-caser vises separat uten konstruerte årstall. Kilder og registrerte avgrensninger kan undersøkes direkte.</p>${places.length ? `<div class="hg-epoke-node__places hg-epoke-place-cards">${places.map((row) => placeCardHtml(row, currentPlaceId)).join("")}</div>` : '<div class="hg-epoke-node__empty">Ingen daterte, kildebelagte stedsspor i denne epoken ennå.</div>'}</div>`;
   }
 
   function trackRows(track, locationScope) {
