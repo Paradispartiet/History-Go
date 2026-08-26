@@ -12,6 +12,8 @@ Hver pakke skal følge:
 
 Pakken skal ikke lastes av brukergrensesnittet. Den dokumenterer identitetsport, claims, setning–claim-dekning, teksthash, metadata-snapshot, faktareview, redaksjonell review, quiz-readiness og versjonert ferdigstatus.
 
+Et verifisert historisk claim kan angi `timelineYear` når claim-teksten nevner flere eksakte år, men bare ett av dem er det redaksjonelt riktige tidslinjeankeret. Året må stå eksplisitt i claim-teksten, og `temporalStatus` må være `historical`. Feltet skal ikke brukes til å datere påstander som bare inneholder postnummer, merkenavn, omtrentlige perioder eller utledede årstall.
+
 ## Lengde
 
 Ordtall er redaksjonell veiledning, ikke en validatorport. Rundt 300–1200 ord er et mulig orienteringsrom for mange `popupDesc`, men stofftilgang, stedets kompleksitet, identitetsavgrensning og inspectable kilder bestemmer faktisk lengde.
