@@ -11,7 +11,7 @@
     "schema": "history_go_fagverk_registry_v1",
     "version": "3.14.0",
     "updated_at": "2026-08-21",
-    "content_sha256": "a875f92831349661c4ff5219ea3dffcd143ec2f6ec7ca4028e0a600dd981e3af"
+    "content_sha256": "6a5f2387ebaeedb93570989e1f355a99eacdecf671893d01d5e7a2468d810687"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,18 +27,18 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "1a96ea8c7735216ec996e8650fe21623579b11aabc854e871b8b06ffd5c39006"
+    "content_sha256": "3928f786317c5fc71f692ea70e3931f78db6b32f1fbad0046766953219570bac"
   },
   "summary": {
     "subject_count": 20,
     "root_subject_count": 19,
     "specialization_count": 1,
     "chapter_subject_count": 17,
-    "chapter_count": 180,
-    "module_file_count": 461,
-    "package_file_count": 285,
-    "chapter_referenced_file_count": 870,
-    "referenced_file_count": 1093,
+    "chapter_count": 181,
+    "module_file_count": 465,
+    "package_file_count": 287,
+    "chapter_referenced_file_count": 877,
+    "referenced_file_count": 1101,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -5594,10 +5594,22 @@
         "supersetQuizMal"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 18,
+      "package_file_count": 20,
       "required_package_file_count": 4,
-      "optional_package_file_count": 14,
+      "optional_package_file_count": 16,
       "package_files": [
+        {
+          "path": "data/fag/utdanning/assessment_educational_measurement_source_claim_brief_v1.json",
+          "required": false,
+          "fields": [
+            "sourceClaimBriefs"
+          ],
+          "key_paths": [
+            "sourceClaimBriefs[6]"
+          ],
+          "exists": true,
+          "content_sha256": "268510951358f32b2e610a7788783c3bd5c280cd7597a36f5432d6a1249a08cd"
+        },
         {
           "path": "data/fag/utdanning/didactics_source_claim_brief_v1.json",
           "required": false,
@@ -5632,7 +5644,7 @@
             "emner"
           ],
           "exists": true,
-          "content_sha256": "4774b0e475f88d7614aa22e728ea867eee9c1df5bd98acd6ca25796d77967ccb"
+          "content_sha256": "c245b05506143af10153501ea53058d3dc93dcdbc4ef0fbca865aa1eaac63173"
         },
         {
           "path": "data/fag/utdanning/fagkart_utdanning_canonical_v1.json",
@@ -5728,7 +5740,7 @@
             "pensum"
           ],
           "exists": true,
-          "content_sha256": "8fdf7288ddc0ab7932b5356a90b89772bbf2ed93b4d489eb91de28a85cbab5ca"
+          "content_sha256": "b084b77349a9848b06174963d963227b35d2083274ec5487b9653570b0d0f243"
         },
         {
           "path": "data/fagverk/utdanning/barnehage-tidlig-laering-lek-sprak-samspill-og-utvikling.json",
@@ -5765,6 +5777,18 @@
           ],
           "exists": true,
           "content_sha256": "2fc695faddfb3982a52cf47914d97e7b68bef06ff41afef24e98d990a648b3ce"
+        },
+        {
+          "path": "data/fagverk/utdanning/hoyere-utdanning-kunnskap-studiekvalitet-og-deltakelse.json",
+          "required": false,
+          "fields": [
+            "chapters"
+          ],
+          "key_paths": [
+            "chapters[5]"
+          ],
+          "exists": true,
+          "content_sha256": "a0690c5b82f0165752c580ecd23380645efce62afef02d1f42034c4445ac4de5"
         },
         {
           "path": "data/fagverk/utdanning/pedagogikk-laeringsteori-laering-kunnskap-motivasjon-og-selvregulering.json",
@@ -5815,20 +5839,20 @@
           "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
         }
       ],
-      "package_content_sha256": "bbfe5dec14ebb75e7808be1c45b3c0a7cc0959fbb51105b44009628ba09ba71f",
-      "chapter_count": 5,
-      "module_file_count": 20,
-      "brief_file_count": 5,
-      "claims_file_count": 5,
-      "chapter_referenced_file_count": 35,
-      "chapter_content_sha256": "8484c6e668644bd7613585a6b55ddddb6e6cf639f48a498b905477c49ed2d72b",
-      "referenced_file_count": 48,
+      "package_content_sha256": "8c4af6c7418a09d9a696a6595e8b9129be0c9a553e3f048a3c18a87900228947",
+      "chapter_count": 6,
+      "module_file_count": 24,
+      "brief_file_count": 6,
+      "claims_file_count": 6,
+      "chapter_referenced_file_count": 42,
+      "chapter_content_sha256": "cc29dbe4ef86d32ee36e29d163ddc369a2e3c3394074d74643428d4f655247bd",
+      "referenced_file_count": 56,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "c2c1e51a7b6db7b84e2a043489834d056a6d607cf22c7ba9b99d90eb25226ca6",
-      "content_sha256": "8fa1c77f6094ea4ce9a87fed04cc143fe32f5b89f6e3bb4d6bf1d82960f9c26d",
+      "structure_sha256": "7ed71c344246b2513585f9b1c77856ef43f5aa597892bc7b708df0bdcabb156b",
+      "content_sha256": "cc7c5234e34331650b6217e8898c47f7634eb674755c6789e720cabba61528f3",
       "chapters": [
         {
           "chapter_id": "pedagogikk-laeringsteori-laering-kunnskap-motivasjon-og-selvregulering",
@@ -5869,6 +5893,14 @@
           "module_file_count": 4,
           "referenced_file_count": 7,
           "content_sha256": "17d4b00b844d61f801a9ee676bf77b70090c4dabd84d19e757d4fb0bc40a9330"
+        },
+        {
+          "chapter_id": "hoyere-utdanning-kunnskap-studiekvalitet-og-deltakelse",
+          "title": "Høyere utdanning: kunnskap, studiekvalitet og deltakelse",
+          "file": "data/fagverk/utdanning/hoyere-utdanning-kunnskap-studiekvalitet-og-deltakelse.json",
+          "module_file_count": 4,
+          "referenced_file_count": 7,
+          "content_sha256": "f5d2c7f9e3f56a615800aef2b7308f1db4f7eb082e4eecfa2e67aa8573821629"
         }
       ]
     },
@@ -6050,5 +6082,5 @@
       ]
     }
   },
-  "release_sha256": "a52ed83032b611a466ae7c9e4e4cfe0f5224dbf96766d236e5abf1fa68671ed9"
+  "release_sha256": "fcffe199d0728441d6485de27c0b8b89b7b1ff670097625f1d0326b0a14b78dd"
 }
