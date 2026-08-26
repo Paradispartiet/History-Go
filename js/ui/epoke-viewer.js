@@ -133,6 +133,15 @@
     return window.HG_EPOKE_PLACE_INDEX?.locations || { places: {}, countries: [] };
   }
 
+  function hasLocationIndex() {
+    const locations = window.HG_EPOKE_PLACE_INDEX?.locations;
+    return Boolean(
+      locations?.contract === "canonical-place-geography-v1" &&
+      locations?.places && typeof locations.places === "object" &&
+      Array.isArray(locations?.countries)
+    );
+  }
+
   function placeLocation(place) {
     const id = txt(place?.id || place?.placeId);
     const indexed = id ? locationIndex()?.places?.[id] : null;
@@ -146,6 +155,9 @@
   }
 
   function defaultLocationScope(place) {
+    if (!hasLocationIndex()) {
+      return { scope: "global", countryId: "", countryLabel: "", cityId: "", cityLabel: "" };
+    }
     const location = placeLocation(place);
     if (txt(location?.city_id)) {
       return {

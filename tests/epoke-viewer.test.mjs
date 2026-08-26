@@ -84,6 +84,7 @@ function makeWindow() {
     version: 3,
     domains: {},
     locations: {
+      contract: "canonical-place-geography-v1",
       places: {
         a: { country_id: "no", country_label: "Norge", city_id: "oslo", city_label: "Oslo" },
         b: { country_id: "pt", country_label: "Portugal", city_id: "lisboa", city_label: "Lisboa" },
@@ -231,6 +232,26 @@ test("location selector expands from current city to country and global scope wi
   assert.ok(root.querySelector('[data-epoke-place-id="b"]'), "global scope includes Portugal");
   assert.ok(root.querySelector('[data-epoke-place-id="f"]'), "global scope keeps places with unknown geography visible");
   assert.match(root.querySelector("[data-epoke-summary]").textContent, /1 uten områdedata/);
+  dom.window.close();
+});
+
+test("missing geography index falls back visibly and functionally to global scope", async () => {
+  const { dom, w } = makeWindow();
+  w.PLACES[0].address = { country: "Norge", city: "Oslo" };
+  w.HG_EPOKE_PLACE_INDEX = { version: 2, domains: {} };
+
+  await w.HGEpokeViewer.open({
+    place: w.PLACES[0],
+    resolution: w.HGTimeResolver.resolvePlaceTime(w.PLACES[0])
+  });
+
+  const root = w.document.getElementById("hgEpokeViewer");
+  const locationSelect = root.querySelector("[data-epoke-location]");
+  assert.equal(locationSelect.value, "global");
+  assert.equal(locationSelect.options.length, 1);
+  assert.match(root.querySelector("[data-epoke-summary]").textContent, /^Alle steder ·/);
+  assert.ok(root.querySelector('[data-epoke-place-id="b"]'), "global fallback must not apply the current place's address as a hidden filter");
+  assert.equal(w.location.search, "?epoke_domain=historie&epoke=industrial&epoke_scope=global");
   dom.window.close();
 });
 
