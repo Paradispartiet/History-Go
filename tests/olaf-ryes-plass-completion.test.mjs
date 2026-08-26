@@ -47,7 +47,7 @@ test("four PlaceCard collections have image-ready own-place content", () => {
   assert.deepEqual(place.related_people_ids, ["olaf_rye", "eilert_sundt"]);
   assert.deepEqual(place.objects.map(item => item.id), ["olaf_ryes_plass_eilert_sundt_bust", "olaf_ryes_plass_fontene"]);
   assert.ok(place.objects.every(item => item.physicalObject && item.placeSpecific && item.source_urls.length >= 2 && item.image && item.imageMeta?.sourcePage));
-  assert.deepEqual(place.related_place_ids, ["birkelunden", "sofienbergparken", "markveien", "daelenenga_idrettspark"]);
+  assert.deepEqual(place.related_place_ids, ["sofienbergparken", "birkelunden", "markveien", "daelenenga_idrettspark"]);
   assert.deepEqual(brands.olaf_ryes_plass, ["parkteatret"]);
   const parkteatret = brandMaster.find(brand => brand.id === "parkteatret");
   assert.equal(parkteatret.logo, "bilder/kort/brands/parkteatret.webp");
