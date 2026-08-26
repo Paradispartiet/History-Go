@@ -15,6 +15,9 @@ const implementationPath = path.join(ROOT, 'scripts', 'TEMP-curator-rollout-impl
 fs.writeFileSync(implementationPath, implementation);
 try {
   await import(`${pathToFileURL(implementationPath).href}?run=${Date.now()}`);
+  const rolloutTestPath = path.join(ROOT, 'tests', 'civication-film-tv-kurator-role-world-rollout.test.js');
+  const rolloutTest = fs.readFileSync(rolloutTestPath, 'utf8');
+  fs.writeFileSync(rolloutTestPath, `${rolloutTest.trimEnd()}\n`);
 } finally {
   fs.rmSync(implementationPath, { force: true });
 }
