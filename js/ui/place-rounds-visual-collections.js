@@ -258,11 +258,17 @@
     return normalizeCategory(place) === "natur";
   }
 
+  function isMicroPlace(place) {
+    return s(place?.placeTier).toLowerCase() === "micro"
+      && s(place?.micro_place_profile?.schema) === "history_go_micro_place_profile_v1";
+  }
+
   function preferredCategoryCollectionId(place) {
     return CATEGORY_FOURTH[normalizeCategory(place)] || "related";
   }
 
   function normalizedFullGridIds(place, requestedIds = []) {
+    if (isMicroPlace(place)) return [];
     const requestedCategory = requestedIds.find(id => CATEGORY_COLLECTION_IDS.has(id));
     const categoryId = requestedCategory || preferredCategoryCollectionId(place);
     return isNature(place)
@@ -271,6 +277,7 @@
   }
 
   function structurallyValidIds(place, ids) {
+    if (isMicroPlace(place)) return false;
     if (ids.length !== 4 || new Set(ids).size !== 4 || !ids.every(id => COLLECTION_IDS.has(id))) return false;
     const expected = normalizedFullGridIds(place, ids);
     return expected.every((id, index) => ids[index] === id);
@@ -302,6 +309,7 @@
   }
 
   function profileSource(place) {
+    if (isMicroPlace(place)) return "micro_place_profile_v1";
     if (canonicalConfiguredIds(place)) return "place_card_profile_v2";
     if (legacyConfiguredIds(place)) return "round_profile_v1_adapter";
     return "category_default";
@@ -623,6 +631,7 @@
       categoryCollectionByCategory:CATEGORY_FOURTH,
       byId,
       getConfigured:configuredCollectionIds,
+      isMicroPlace,
       getProfileSource:profileSource,
       get:place => selectedIds(place).map(id => defFor(place, id)).filter(Boolean),
       getCategoryCollection:compatibilityFourthId,

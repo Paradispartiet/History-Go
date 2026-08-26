@@ -19,3 +19,8 @@ export function isPlaceScopeOnlyJsonChange(before, after) {
   if (isDeepStrictEqual(before, after)) return false;
   return isDeepStrictEqual(withoutTopLevelPlaceScope(before), withoutTopLevelPlaceScope(after));
 }
+
+export function isImageOptionalMicroPlace(place) {
+  return place?.placeTier === 'micro'
+    && place?.micro_place_profile?.schema === 'history_go_micro_place_profile_v1';
+}

@@ -9,6 +9,7 @@ Dette dokumentet definerer **hva et History GO-sted er og hvilke roller stedssys
 Sted-for-sted arbeidsrekkefølge:
 
 - `docs/PLACE_PRODUCTION_CHECKLIST.md`
+- `docs/MICRO_PLACE_CONTRACT.md` for små canonicale kartpunkter med redusert innholdskontrakt
 
 ## 1. Autoritetskart
 
@@ -157,6 +158,16 @@ Stedspopupens hero skal gi orientering og primær handling, ikke gjenta nøkkelt
 ## 7. PlaceCard
 
 PlaceCard er det kompakte kontrollrommet for stedet.
+
+### Micro Places
+
+Små, presist stedfestede punkter som trenger egen kartmarkør, men ikke en full
+Content Factory-pakke, bruker `placeTier: "micro"` og
+`micro_place_profile`. De er fortsatt canonical Places med egen identitet,
+kategori, underkategori og koordinater. De bruker det kompakte PlaceCard-et og er
+unntatt kravet om fire samlinger og kunstig fullprodusert innhold.
+
+Den komplette regelen eies av `docs/MICRO_PLACE_CONTRACT.md`.
 
 Det skal kunne vise, når relevant og implementert:
 

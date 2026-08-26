@@ -1,0 +1,68 @@
+/* Compact presentation for canonical Micro Places. */
+#placeCard .pc-micro-identity{ display:none; }
+
+#placeCard.is-micro-place .pc-grid{
+  display:block;
+  padding:12px;
+}
+
+#placeCard.is-micro-place .pc-frontcard,
+#placeCard.is-micro-place .pc-side-stack,
+#placeCard.is-micro-place .pc-events-quad,
+#placeCard.is-micro-place #pcBadgesIcon,
+#placeCard.is-micro-place #pcLesespor,
+#placeCard.is-micro-place #pcObserve{
+  display:none !important;
+}
+
+#placeCard.is-micro-place[data-micro-quiz="none"] #pcQuiz{
+  display:none !important;
+}
+
+#placeCard.is-micro-place .pc-micro-identity:not([hidden]){
+  display:flex;
+  align-items:center;
+  gap:14px;
+  min-height:88px;
+  padding:16px;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:18px;
+  background:linear-gradient(145deg, rgba(255,255,255,.09), rgba(255,255,255,.035));
+  box-shadow:0 10px 24px rgba(0,0,0,.2);
+}
+
+#placeCard.is-micro-place .pc-micro-icon{
+  display:grid;
+  place-items:center;
+  width:58px;
+  height:58px;
+  flex:0 0 58px;
+  border-radius:16px;
+  background:rgba(255,255,255,.1);
+  font-size:30px;
+}
+
+#placeCard.is-micro-place .pc-micro-copy{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  min-width:0;
+  text-transform:capitalize;
+}
+
+#placeCard.is-micro-place .pc-micro-copy strong{
+  color:#fff;
+  font-size:clamp(18px, 3vw, 24px);
+  line-height:1.1;
+}
+
+#placeCard.is-micro-place .pc-micro-copy span{
+  color:rgba(255,255,255,.78);
+  font-size:14px;
+}
+
+#placeCard.is-micro-place .pc-micro-copy .pc-micro-status{
+  color:#f5d878;
+  font-weight:700;
+  text-transform:none;
+}

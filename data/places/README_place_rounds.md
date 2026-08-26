@@ -18,6 +18,10 @@ Filnavnet beholdes midlertidig slik at gamle lenker og arbeidsløp ikke brytes. 
 
 > **PlaceCard har alltid en full, fast 2 × 2-komposisjon. Tomme registre gir en ærlig ikon-/statusflate; de skal aldri kollapse layouten eller fylles med oppdiktet innhold.**
 
+Denne fireflatersregelen gjelder standard Places. Canonical Micro Places med
+`placeTier: "micro"` bruker i stedet det forenklede kortet definert i
+`docs/MICRO_PLACE_CONTRACT.md` og skal ikke ha `place_card_profile`.
+
 ## 1. Fast PlaceCard-komposisjon
 
 Den eksisterende PlaceCard-komposisjonen beholdes:

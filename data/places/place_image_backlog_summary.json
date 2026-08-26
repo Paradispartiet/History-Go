@@ -2,10 +2,11 @@
   "schema": "history_go_place_image_backlog_summary_v1",
   "generatedAt": "2026-08-25",
   "generatedFromCommit": "olaf_ryes_plass_phase_0_7",
-  "totalPlaces": 1453,
+  "totalPlaces": 1485,
   "summary": {
     "validLocal": 55,
     "validRemote": 35,
+    "optionalMissing": 32,
     "missing": 1332,
     "invalidLocalPath": 31,
     "remaining": 1363
@@ -15,10 +16,10 @@
     "historie": {"total": 517, "valid": 4, "missing": 513, "invalid": 0},
     "kunst": {"total": 64, "valid": 3, "missing": 61, "invalid": 0},
     "scenekunst": {"total": 62, "valid": 2, "missing": 60, "invalid": 0},
-    "litteratur": {"total": 45, "valid": 17, "missing": 28, "invalid": 0},
+    "litteratur": {"total": 66, "valid": 17, "optional": 21, "missing": 28, "invalid": 0},
     "musikk": {"total": 16, "valid": 0, "missing": 16, "invalid": 0},
     "naeringsliv": {"total": 151, "valid": 5, "missing": 146, "invalid": 0},
-    "natur": {"total": 104, "valid": 0, "missing": 104, "invalid": 0},
+    "natur": {"total": 115, "valid": 0, "optional": 11, "missing": 104, "invalid": 0},
     "politikk": {"total": 39, "valid": 4, "missing": 35, "invalid": 0},
     "psykologi": {"total": 5, "valid": 2, "missing": 3, "invalid": 0},
     "religion": {"total": 4, "valid": 0, "missing": 4, "invalid": 0},
@@ -35,5 +36,5 @@
     "nature_and_scenekunst",
     "remaining_categories_by_verified_source_availability"
   ],
-  "note": "Dette er en materialisert status, ikke en allowlist. Nye og endrede steder stoppes allerede av CI dersom de mangler gyldig stedsbilde. Full rapport med place-id-er regenereres av scripts/audit-place-images.mjs."
+  "note": "Dette er en materialisert status, ikke en allowlist. Nye og endrede standardsteder stoppes av CI dersom de mangler gyldig stedsbilde. Canonical Micro Places kan mangle bilde etter den eksplisitte Micro Place-kontrakten; oppgitte, ugyldige bilder er fortsatt blokkerende. Full rapport med place-id-er regenereres av scripts/audit-place-images.mjs."
 }
