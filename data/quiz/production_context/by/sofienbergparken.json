@@ -1,0 +1,833 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "by",
+  "targetId": "sofienbergparken",
+  "profile": "rich_5x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1182,
+    "selection_sha256": "ba7baca6b0e10ba2975d2af3aa9f812613e167d5410a3fc76718a08dfbff6441",
+    "category_id": "by",
+    "target_id": "sofienbergparken"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/by/pensum_by.json",
+      "bytes": 16713,
+      "sha256": "8de40f1af13426445083f0f3339cb4892f4833921c3614747c29656d165a0b2b",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/by/emner_by.json",
+      "bytes": 594396,
+      "sha256": "7019313fc4b9efa3aa5393a0dd3180b12abba00b0672cb65b44efd0e5c27e8c6",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/by/fagkart_by.json",
+      "bytes": 374396,
+      "sha256": "88d4d9a5e23f60e88da6542d55d84cae5ae4516fb2130163e6de013f88c50127",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/by/methods_by.json",
+      "bytes": 44201,
+      "sha256": "14f3c0fd567a4a43c4d151867bb3d01bdb73da8c95ce6f3e3128fee0964dfd76",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/by/supersetQUIZMAL_by.json",
+      "bytes": 6860,
+      "sha256": "a42443c293a254519c489a705662c46ae8593f348b329c34c3f4f3eda129945a",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 16882,
+      "sha256": "60804db1e587faae822930a800cfebac7966fa7e009778d46d94d1f28e02545e",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/by/sofienbergparken.json",
+      "bytes": 17458,
+      "sha256": "362e1d840a83173301892662df8bf516099641442aa04383fa82c5b547036214"
+    },
+    "target": {
+      "path": "data/places/by/oslo/sofienbergparken.json",
+      "bytes": 15388,
+      "sha256": "e36f3e2579cf3333d84f3a788527e44f84fa27cd9968186881986eecae08cd02"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1331,
+      "selection_sha256": "a6bcf8175c54828297961f2ef2158e162b77556be37db5d6b81d054b983c241f"
+    },
+    "relations": [],
+    "stories": [
+      {
+        "path": "data/stories/stories_sofienbergparken_subkultur.json",
+        "matches": 1,
+        "selection_bytes": 2294,
+        "selection_sha256": "165baf992781deb2480798e94ad9f90a74e3b517c535b7dbca189883f219b98f"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/by/sofienbergparken_sets.json",
+  "source_registry": {
+    "municipality": {
+      "url": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/parker-og-lekeplasser/sofienbergparken/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Kilde kontrollert for municipality."
+    },
+    "cemetery": {
+      "url": "https://lokalhistoriewiki.no/wiki/Sofienberg_gravlund",
+      "source_type": "institutional_or_primary",
+      "review_status": "reviewed",
+      "review_note": "Kilde kontrollert for cemetery."
+    },
+    "parks": {
+      "url": "https://lokalhistoriewiki.no/wiki/Parker_i_Oslo_kommune",
+      "source_type": "institutional_or_primary",
+      "review_status": "reviewed",
+      "review_note": "Kilde kontrollert for parks."
+    },
+    "rohne": {
+      "url": "https://nbl.snl.no/Marius_R%C3%B8hne",
+      "source_type": "recognized_reference",
+      "review_status": "reviewed",
+      "review_note": "Kilde kontrollert for rohne."
+    },
+    "upgrade": {
+      "url": "https://www.arkitektur.no/aktuelt/byutvikling/oppgraderte-sofienbergparken-endelig-aapnet-vi-har-aldri-gitt-oss/",
+      "source_type": "institutional_or_primary",
+      "review_status": "reviewed",
+      "review_note": "Kilde kontrollert for upgrade."
+    },
+    "pip": {
+      "url": "https://pipfest.no/",
+      "source_type": "institutional_or_primary",
+      "review_status": "reviewed",
+      "review_note": "Kilde kontrollert for pip."
+    },
+    "pride": {
+      "url": "https://aktuelt.oslo.kommune.no/oslo-kommune-feirer-det-skeive-oslo-2",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Kilde kontrollert for pride."
+    },
+    "before": {
+      "url": "https://commons.wikimedia.org/wiki/File:Sofienberg_OB.Z02498.jpg",
+      "source_type": "institutional_or_primary",
+      "review_status": "reviewed",
+      "review_note": "Kilde kontrollert for before."
+    },
+    "now": {
+      "url": "https://commons.wikimedia.org/wiki/File:Sofienbergparken_Oslo_2022-08-17_01.jpg",
+      "source_type": "institutional_or_primary",
+      "review_status": "reviewed",
+      "review_note": "Kilde kontrollert for now."
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/by/",
+      "data/places/by/oslo/sofienbergparken.json"
+    ],
+    "active_before": {
+      "file": null,
+      "set_count": 0,
+      "question_count": 0,
+      "finding": "Ingen manifest-loadet canonical quizpakke for stedet."
+    },
+    "decisions": [
+      "Opprett rich 5x7.",
+      "Hold teori ute av de første 28 spørsmålene.",
+      "Ikke bruk kirken eller udokumentert poesipark som proxy."
+    ],
+    "knowledge_migration": "Nytt target genereres deterministisk fra pakken."
+  },
+  "profile_decision": {
+    "profile": "rich",
+    "set_count": 5,
+    "questions_per_set": 7,
+    "justification": "Fem læringsjobber: parkgrense, gravlundstransformasjon, parkvesen og oppgradering, arrangementer og bilder, samt metode og kildekritikk."
+  },
+  "held_back_candidates": [
+    "Sofienbergprosjektet i kirken som parkeid innhold.",
+    "Pride Park 2024 som permanent identitet.",
+    "Marius Røhne som eneopphav.",
+    "Eksakt optisk før/etter-påstand."
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 7,
+      "emner": 82,
+      "topic_hooks": 81,
+      "methods": 14
+    },
+    "candidate_emner": [
+      {
+        "id": "em_by_parker_som_sosial_infrastruktur",
+        "title": "Parker som sosial infrastruktur",
+        "score": 105
+      },
+      {
+        "id": "em_by_historiske_lag_i_hverdagsrom",
+        "title": "Historiske lag i hverdagsrom",
+        "score": 100
+      },
+      {
+        "id": "em_by_opphold_vs_gjennomgang",
+        "title": "Opphold vs gjennomgang",
+        "score": 100
+      },
+      {
+        "id": "em_by_stillhet_vs_aktivitet_i_grontrom",
+        "title": "Stillhet vs aktivitet i grøntrom",
+        "score": 25
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "ark_bygningstyper",
+        "title": "Bygningstyper",
+        "category_id": "arkitektur",
+        "score": 10
+      },
+      {
+        "id": "bolig_endring_tid",
+        "title": "Endring over tid",
+        "category_id": "bolig_og_nabolag",
+        "score": 10
+      },
+      {
+        "id": "byliv_aapne_rom",
+        "title": "Bruk av åpne rom",
+        "category_id": "byliv",
+        "score": 10
+      },
+      {
+        "id": "byliv_opphold_vs_gjennomgang",
+        "title": "Opphold vs gjennomgang",
+        "category_id": "byliv",
+        "score": 10
+      },
+      {
+        "id": "his_bevaring",
+        "title": "Bevaring",
+        "category_id": "historiske_lag",
+        "score": 10
+      },
+      {
+        "id": "his_epoker",
+        "title": "Arkitektoniske epoker",
+        "category_id": "historiske_lag",
+        "score": 10
+      },
+      {
+        "id": "his_glemt_historie",
+        "title": "Hva som glemmes",
+        "category_id": "historiske_lag",
+        "score": 10
+      },
+      {
+        "id": "his_spor_gatebilde",
+        "title": "Historiske spor i gatebildet",
+        "category_id": "historiske_lag",
+        "score": 10
+      },
+      {
+        "id": "urb_byidealer",
+        "title": "Byidealer",
+        "category_id": "urbanisme",
+        "score": 10
+      },
+      {
+        "id": "urb_historiske_visjoner",
+        "title": "Historiske byvisjoner",
+        "category_id": "urbanisme",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "kur_by_04_historiske_lag_og_transformasjon",
+      "kur_by_07_gronn_blaa_og_offentlig_natur"
+    ],
+    "emne_ids": [
+      "em_by_parker_som_sosial_infrastruktur",
+      "em_by_opphold_vs_gjennomgang",
+      "em_by_historiske_lag_i_hverdagsrom"
+    ],
+    "topic_hook_ids": [
+      "byliv_aapne_rom",
+      "byliv_opphold_vs_gjennomgang",
+      "his_spor_gatebilde"
+    ],
+    "method_ids": [
+      "met_for_etter"
+    ],
+    "thinker_ids": [
+      "william_h_whyte",
+      "michel_de_certeau",
+      "walter_benjamin",
+      "kevin_lynch"
+    ],
+    "works": [
+      "The Social Life of Small Urban Spaces",
+      "The Practice of Everyday Life",
+      "The Arcades Project",
+      "The Image of the City"
+    ]
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_sofienbergparken_quiz_1",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kommunen beskriver hovedpark, Hundeparken og barnepark som deler av anlegget.",
+      "source_ids": [
+        "municipality"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_sofienbergparken_quiz_2",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Rathkes gate deler parkarealet i to.",
+      "source_ids": [
+        "municipality"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_sofienbergparken_quiz_3",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "context",
+      "statement": "Kirken ligger ved parken, men har egen stedseier og institusjonshistorie.",
+      "source_ids": [
+        "municipality"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_sofienbergparken_quiz_4",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Parken vokste fram på deler av den tidligere Sofienberg gravlund.",
+      "source_ids": [
+        "cemetery"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_sofienbergparken_quiz_5",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Det kommunale vendepunktet kom i 1918.",
+      "source_ids": [
+        "cemetery"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_sofienbergparken_quiz_6",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "context",
+      "statement": "Striden gjaldt om arealet skulle fortsette som gravplass eller bli friområde og park.",
+      "source_ids": [
+        "cemetery"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_sofienbergparken_quiz_7",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "De første parkdelene ble tatt i bruk rundt 1920.",
+      "source_ids": [
+        "parks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_sofienbergparken_quiz_8",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Parkomformingen strakte seg over flere tiår, med gravfjerning fram til 1972.",
+      "source_ids": [
+        "parks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_sofienbergparken_quiz_9",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Den jødiske gravlunden er det bevarte gravlundslaget.",
+      "source_ids": [
+        "cemetery"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_sofienbergparken_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Den bevarte gravlunden gjør tidligere arealbruk fysisk lesbar.",
+      "source_ids": [
+        "cemetery"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_sofienbergparken_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Røhne var landskapsarkitekt og bygartner.",
+      "source_ids": [
+        "rohne"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_sofienbergparken_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Røhne ledet Kristianias og Oslos parkvesen fra 1916 til 1948.",
+      "source_ids": [
+        "rohne"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_sofienbergparken_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Personkoblingen gjelder ledelse av parkvesenet og parkpolitikken i omformingsperioden.",
+      "source_ids": [
+        "parks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_sofienbergparken_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Kildene bærer ikke et udokumentert eneopphav til hele dagens park.",
+      "source_ids": [
+        "rohne"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_sofienbergparken_quiz_15",
+      "order": 15,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Vedtaket i 1918 og avslutningen i 1972 viser en lang gjennomføringsperiode.",
+      "source_ids": [
+        "parks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_sofienbergparken_quiz_16",
+      "order": 16,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Parkene skulle gi tilgjengelige friområder i tett bebyggelse.",
+      "source_ids": [
+        "rohne"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_sofienbergparken_quiz_17",
+      "order": 17,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Bordtennis er blant de oppgitte fasilitetene.",
+      "source_ids": [
+        "municipality"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_opphold_vs_gjennomgang"
+    },
+    {
+      "claim_id": "claim_sofienbergparken_quiz_18",
+      "order": 18,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Kommunen oppgir drikkevann i parken.",
+      "source_ids": [
+        "municipality"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_sofienbergparken_quiz_19",
+      "order": 19,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Offentlig toalett står i fasilitetsoversikten.",
+      "source_ids": [
+        "municipality"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_sofienbergparken_quiz_20",
+      "order": 20,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Fontenen er listet som parkfasilitet.",
+      "source_ids": [
+        "municipality"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_sofienbergparken_quiz_21",
+      "order": 21,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Kommunen oppgir bysykkelstasjon ved parken.",
+      "source_ids": [
+        "municipality"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_opphold_vs_gjennomgang"
+    },
+    {
+      "claim_id": "claim_sofienbergparken_quiz_22",
+      "order": 22,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Oppgraderingen gjaldt parkens østlige del.",
+      "source_ids": [
+        "upgrade"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_sofienbergparken_quiz_23",
+      "order": 23,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Prosjektet la til møteplasser, lys og oppholdselementer.",
+      "source_ids": [
+        "upgrade"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_sofienbergparken_quiz_24",
+      "order": 24,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Tilgjengeligheten ble kritisert og inngår i vurderingen av tiltaket.",
+      "source_ids": [
+        "upgrade"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_sofienbergparken_quiz_25",
+      "order": 25,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "PiP vises som dokumentert festivalidentitet, uten eierskap eller endorsement.",
+      "source_ids": [
+        "pip"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_sofienbergparken_quiz_26",
+      "order": 26,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Kommunen dokumenterer Pride Park i parken 26.–29. juni 2024.",
+      "source_ids": [
+        "pride"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_sofienbergparken_quiz_27",
+      "order": 27,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Arrangementet dokumenterer en skeiv offentlighetsbruk i 2024, ikke en permanent merkelapp.",
+      "source_ids": [
+        "pride"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_sofienbergparken_quiz_28",
+      "order": 28,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Kamerastandpunktene er ikke dokumentert som identiske.",
+      "source_ids": [
+        "before"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_sofienbergparken_quiz_29",
+      "order": 29,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Sosial infrastruktur handler om hvordan offentlig utforming muliggjør hverdagsliv.",
+      "source_ids": [
+        "municipality"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_parker_som_sosial_infrastruktur"
+    },
+    {
+      "claim_id": "claim_sofienbergparken_quiz_30",
+      "order": 30,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Observasjon kan registrere hvor folk beveger seg, stopper og oppholder seg uten å gjette motiv.",
+      "source_ids": [
+        "municipality"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_opphold_vs_gjennomgang"
+    },
+    {
+      "claim_id": "claim_sofienbergparken_quiz_31",
+      "order": 31,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Metoden starter med sammenlignbare elementer og uttrykte begrensninger.",
+      "source_ids": [
+        "before"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_sofienbergparken_quiz_32",
+      "order": 32,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Et bevart element kan synliggjøre både kontinuitet og endring.",
+      "source_ids": [
+        "cemetery"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_sofienbergparken_quiz_33",
+      "order": 33,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Own-place-prinsippet beholder relevant nabokontekst uten falskt eierskap.",
+      "source_ids": [
+        "municipality"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_sofienbergparken_quiz_34",
+      "order": 34,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kildetriangulering fordeler ulike dokumentasjonsjobber på egnede kildetyper.",
+      "source_ids": [
+        "parks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_sofienbergparken_quiz_35",
+      "order": 35,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "En flerlagslesning virker når identitet, tid, observasjon og kildegrenser holdes tydelige.",
+      "source_ids": [
+        "now"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "story",
+      "id": "st_sofienbergparken_parkvedtak_1918",
+      "source_file": "data/stories/stories_sofienbergparken_subkultur.json",
+      "summary": "Etter en offentlig strid vedtok kommunen i 1918 å avvikle Sofienberg gravlund og gradvis gjøre arealet til park."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "by_sofienbergparken_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_sofienbergparken_quiz_1",
+        "claim_sofienbergparken_quiz_2",
+        "claim_sofienbergparken_quiz_3",
+        "claim_sofienbergparken_quiz_4",
+        "claim_sofienbergparken_quiz_5",
+        "claim_sofienbergparken_quiz_6",
+        "claim_sofienbergparken_quiz_7"
+      ]
+    },
+    {
+      "set_id": "by_sofienbergparken_set_2",
+      "order": 2,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_sofienbergparken_quiz_8",
+        "claim_sofienbergparken_quiz_9",
+        "claim_sofienbergparken_quiz_10",
+        "claim_sofienbergparken_quiz_11",
+        "claim_sofienbergparken_quiz_12",
+        "claim_sofienbergparken_quiz_13",
+        "claim_sofienbergparken_quiz_14"
+      ]
+    },
+    {
+      "set_id": "by_sofienbergparken_set_3",
+      "order": 3,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_sofienbergparken_quiz_15",
+        "claim_sofienbergparken_quiz_16",
+        "claim_sofienbergparken_quiz_17",
+        "claim_sofienbergparken_quiz_18",
+        "claim_sofienbergparken_quiz_19",
+        "claim_sofienbergparken_quiz_20",
+        "claim_sofienbergparken_quiz_21"
+      ]
+    },
+    {
+      "set_id": "by_sofienbergparken_set_4",
+      "order": 4,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_sofienbergparken_quiz_22",
+        "claim_sofienbergparken_quiz_23",
+        "claim_sofienbergparken_quiz_24",
+        "claim_sofienbergparken_quiz_25",
+        "claim_sofienbergparken_quiz_26",
+        "claim_sofienbergparken_quiz_27",
+        "claim_sofienbergparken_quiz_28"
+      ]
+    },
+    {
+      "set_id": "by_sofienbergparken_set_5",
+      "order": 5,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_sofienbergparken_quiz_29",
+        "claim_sofienbergparken_quiz_30",
+        "claim_sofienbergparken_quiz_31",
+        "claim_sofienbergparken_quiz_32",
+        "claim_sofienbergparken_quiz_33",
+        "claim_sofienbergparken_quiz_34",
+        "claim_sofienbergparken_quiz_35"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 35,
+    "counts": {
+      "fact": 21,
+      "context": 7,
+      "concept_theory": 7
+    },
+    "ratios": {
+      "fact": 0.6,
+      "context": 0.2,
+      "concept_theory": 0.2
+    }
+  }
+}

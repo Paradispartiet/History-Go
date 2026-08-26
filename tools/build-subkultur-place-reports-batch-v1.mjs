@@ -983,33 +983,9 @@ const CASES = [
     current: 'Vaterland publiserer fortsatt daglige åpningstider og løpende konsertprogram i Brugata, mens sceneguiden dokumenterer metalprofilen.',
     outsideLimit: 'Metal Travel Database er en uavhengig nisjeguide og miljønær kontroll, men er ikke forskning eller full analyse av intern organisering.'
   },
-  {
-    placeId: 'sofienbergparken',
-    verifiedAt: '2026-08-04',
-    placeFile: 'data/places/by/oslo/sofienbergparken.json',
-    anchorType: 'mixed_subcultural_site',
-    start: '2023',
-    emneIds: ['em_sub_tilhorighet_miljo', 'em_sub_ungdomskultur_identitet'],
-    methodId: 'met_sub_deltakelsesanalyse',
-    milieuUrl: 'https://www.byantropologene.no/prosjekter/sofienbergprosjektet',
-    milieuLocation: 'Byantropologene, Sofienbergprosjektet; samskaping med skoler, frivillige, ungdom og lokale kulturaktører i kirke- og parkmiljøet fra 2023',
-    outsideUrl: 'https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/parker-og-lekeplasser/sofienbergparken/',
-    outsideLocation: 'Oslo kommune, Sofienbergparken; fysisk avgrensning, offentlige fasiliteter og parkfunksjon',
-    outsidePerspective: 'authority',
-    identity: 'Sofienbergparkens dokumenterbare Subkultur-lag er den samskapte kultur- og møteplasspraksisen rundt kirken og parken, der ungdom og lokale aktører utvikler aktivitet sammen.',
-    relationship: 'Prosjektet åpner et tidligere kirkebygg og tilhørende uterom for lokal medvirkning, men finansiering, bygningsforvaltning og programansvar setter institusjonelle rammer.',
-    claim: 'Samskaping med ungdom, skoler og lokale kulturaktører dokumenterer ett konkret miljølag i Sofienbergparken; generell ungdomsbruk, festival eller parkpopularitet alene er ikke kvalifikasjonen.',
-    practices: ['ungdomsdrevet kulturaktivitet', 'samskaping og lokal medvirkning', 'verksteder, forestillinger og åpne møteaktiviteter'],
-    organization: 'Byantropologene beskriver en aksjonsbasert modell med skoler, frivillige organisasjoner og lokale kulturaktører; kommunen dokumenterer parkens offentlige ramme.',
-    expressions: 'Ungdomsteater, byttemarked og andre deltakerutviklede aktiviteter gjør uttrykk synlige, men rapporten gjør ikke alle parkbrukere til ett miljø.',
-    access: 'Parken er offentlig, mens aktivitet i kirkebygget og organiserte prosjekter følger program, kapasitet og trygghetsrammer.',
-    regulation: 'Parkforvaltning, kulturminnehensyn, prosjektfinansiering og arrangøransvar regulerer hvilke aktiviteter som kan gjennomføres.',
-    negotiation: 'Kildene dokumenterer ikke én pågående konflikt; analysen avgrenser seg til den dokumenterte samskapingen og hevder ikke at hele parken er en subkulturell scene.',
-    institutionalization: 'Et tidligere kirkebygg prøves fra 2024 til 2027 ut som samskapt kulturarena i og ved parken.',
-    stigmaRisk: 'Ungdom må ikke framstilles som problemgruppe eller som en enhetlig kreativ suksesshistorie, og ordinær parkbruk må ikke feilmerkes som subkultur.',
-    current: 'Sofienbergprosjektet pågår fra 2024 til 2027 og dokumenterer fortsatt samarbeid mellom ungdom, nabolag og kulturaktører.',
-    outsideLimit: 'Kommunesiden dokumenterer parkens fysiske og offentlige funksjon, men ikke deltakernes erfaringer eller hele kulturprosjektet.'
-  },
+  // Sofienbergparken is owned by build-sofienbergparken-completion.mjs.
+  // Its secondary badge is a time-bounded Pride Park 2024 layer; the former
+  // church-project proxy is intentionally excluded from this generic batch.
   {
     placeId: 'voldslokka_pumptrack',
     verifiedAt: '2026-08-04',

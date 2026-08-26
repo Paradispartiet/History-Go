@@ -16,8 +16,8 @@ test("generated epoch-place index is deterministic and current", () => {
   assert.equal(index.stats.canonical_source_count, 256);
   assert.equal(index.stats.place_evidence_link_count, 325);
   assert.equal(index.stats.period_case_count, 9);
-  assert.equal(index.stats.canonical_story_milestone_count, 172);
-  assert.equal(index.stats.verified_place_production_milestone_count, 105);
+  assert.equal(index.stats.canonical_story_milestone_count, 173);
+  assert.equal(index.stats.verified_place_production_milestone_count, 122);
 });
 
 test("canonical place geography separates Oslo, Lisboa and other countries deterministically", () => {
@@ -118,11 +118,18 @@ test("Oslo coverage classifies every canonical place exactly once without overst
     .sort();
 
   assert.equal(coverage.contract, "oslo-history-coverage-v1");
-  // The curated Micro Place expansion adds four Oslo places; none claims dated History evidence yet.
+  // Six individually reviewed Oslo places now carry dated, source-backed History evidence.
   assert.equal(coverage.canonical_place_count, 567);
-  assert.equal(coverage.dated_evidence_place_count, 180);
+  assert.equal(coverage.dated_evidence_place_count, 186);
   assert.equal(coverage.documented_case_place_count, 2);
-  assert.equal(coverage.awaiting_source_backed_history_count, 385);
+  assert.equal(coverage.awaiting_source_backed_history_count, 379);
+  for (const placeId of ["markveien", "paulus_kirke", "arbeidermuseet", "clemenskirken_ruin_oslo", "minneparken_gamlebyen", "saxegarden"]) {
+    assert.equal(
+      coverage.places.find((place) => place.place_id === placeId)?.status,
+      "dated_evidence",
+      `${placeId} must materialize its reviewed historical claims`
+    );
+  }
   for (const placeId of [
     "hoybraten_miljostasjon",
     "bla_skilt_kjeglebanen_briskebyveien_21",
@@ -146,6 +153,21 @@ test("Oslo coverage classifies every canonical place exactly once without overst
   for (const category of coverage.categories) {
     assert.equal(category.dated_evidence + category.documented_case + category.awaiting_source_backed_history, category.total);
   }
+});
+
+test("Gamlebyen leksikon chronology materializes only reviewed exact anchors", () => {
+  const index = buildEpokePlaceIndex();
+  const chronologyMilestonesFor = (placeId) => Object.values(index.domains.historie.epochs)
+    .flatMap((group) => group.places)
+    .filter((place) => place.place_id === placeId)
+    .flatMap((place) => place.milestones)
+    .filter((milestone) => milestone.evidence_type === "leksikon_chronology");
+  const yearsFor = (placeId) => [...new Set(chronologyMilestonesFor(placeId).map((milestone) => milestone.year))].sort((a, b) => a - b);
+
+  assert.deepEqual(yearsFor("clemenskirken_ruin_oslo"), [1920, 1970, 2000]);
+  assert.deepEqual(yearsFor("minneparken_gamlebyen"), [1932, 2024]);
+  assert.deepEqual(yearsFor("saxegarden"), [1334, 1624]);
+  assert.equal(chronologyMilestonesFor("clemenskirken_ruin_oslo").some((milestone) => milestone.year === 1135), false);
 });
 
 test("verified production claims fail closed for uncertainty, current-only state and non-Oslo places", () => {
