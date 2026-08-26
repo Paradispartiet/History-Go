@@ -1,0 +1,100 @@
+name: Temporary regenerate PR 5367
+
+on:
+  push:
+    branches:
+      - agent/oslo-timeline-anchors-v3-20260826
+    paths:
+      - .github/workflows/_tmp-regenerate-pr5367.yml
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-timeline-anchors-v3-20260826
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Preserve current-main Markveien and rebuild derived artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git checkout origin/main -- data/places/by/oslo/places/markveien.json
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const p='data/places/production/markveien.json';
+          const x=JSON.parse(fs.readFileSync(p,'utf8'));
+          x.textHashes ??= {};
+          x.textHashes.popupDesc='a4ed438423165c80743cd216a58b67605e7ff522880f43a83c5def2d1d087456';
+          fs.writeFileSync(p,JSON.stringify(x,null,2)+'\n');
+          NODE
+          npm run places:index:build
+          npm run place-open:build
+          npm run epoker:places:build
+          node scripts/build-quiz-production-context.mjs --category by --target sofienbergparken --output data/quiz/production_context/by/sofienbergparken.json
+          node scripts/build-quiz-production-context.mjs --category by --target markveien --output data/quiz/production_context/by/markveien.json
+          node scripts/audit-place-images.mjs --mode=all --report=/tmp/place-images.json
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const path='data/places/place_image_backlog_summary.json';
+          const saved=JSON.parse(fs.readFileSync(path,'utf8'));
+          const report=JSON.parse(fs.readFileSync('/tmp/place-images.json','utf8'));
+          saved.totalPlaces=report.totalPlaces;
+          saved.summary={
+            validLocal: report.summary.local,
+            validRemote: report.summary.remote,
+            optionalMissing: report.summary.optional,
+            missing: report.summary.missing,
+            invalidLocalPath: report.summary.invalid,
+            remaining: report.summary.missing+report.summary.invalid
+          };
+          const old=saved.byCategory||{};
+          const next={};
+          for (const [id,b] of Object.entries(report.byCategory)) {
+            const row={total:b.total,valid:b.local+b.remote};
+            if (b.optional) row.optional=b.optional;
+            row.missing=b.missing;
+            row.invalid=b.invalid;
+            if (old[id]?.designAlias) row.designAlias=old[id].designAlias;
+            next[id]=row;
+          }
+          saved.byCategory=next;
+          if (Array.isArray(saved.productionOrder) && saved.productionOrder.length) {
+            saved.productionOrder[0]=`repair_${report.summary.invalid}_invalid_local_paths`;
+          }
+          fs.writeFileSync(path,JSON.stringify(saved,null,2)+'\n');
+          NODE
+          node scripts/audit-quiz-production-context.mjs
+          node scripts/build-epoke-place-index.mjs --check
+          node scripts/build-place-open-payloads.mjs --check
+          node scripts/audit-place-images.mjs --mode=all --verify-summary=data/places/place_image_backlog_summary.json
+      - name: Commit regenerated artifacts and remove helper
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rm .github/workflows/_tmp-regenerate-pr5367.yml
+          git add data/places/by/oslo/places/markveien.json \
+                  data/places/production/markveien.json \
+                  data/places/places_index.json \
+                  data/runtime/place-open \
+                  data/epoker/epoke-place-index.json \
+                  data/quiz/production_context/by/sofienbergparken.json \
+                  data/quiz/production_context/by/markveien.json \
+                  data/places/place_image_backlog_summary.json
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          if git diff --cached --quiet; then
+            echo 'No derived changes to commit.'
+            exit 0
+          fi
+          git commit -m 'fix: synchronize timeline-derived artifacts'
+          git push origin HEAD:agent/oslo-timeline-anchors-v3-20260826
