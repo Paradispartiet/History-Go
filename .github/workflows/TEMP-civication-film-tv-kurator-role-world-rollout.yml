@@ -30,6 +30,8 @@ jobs:
         run: node scripts/audit-civication-career-gameplay.mjs --write
       - name: Regenerate Role World readiness audit
         run: node scripts/audit-civication-role-world-rollout-readiness.mjs --write
+      - name: Diagnose curator plan sequence
+        run: node -e "const p=require('./data/Civication/mailPlans/film_tv/kurator_film_tv_plan.json'); console.log(JSON.stringify(p.sequence.map(s => ({ id: s.id, type: s.type, scene_id: s.scene_id, mail_id: s.mail_id }))))"
       - name: Verify curator controlled rollout
         run: node tests/civication-film-tv-kurator-role-world-rollout.test.js
       - name: Verify Role World contract
