@@ -1,0 +1,105 @@
+{
+  "schema": "history_go_place_phase24_audit_v1",
+  "place_id": "markveien",
+  "reviewed_at": "2026-08-26",
+  "overall_status": "ready_for_pr_ci_and_merge",
+  "scope": {
+    "canonical": "Markveien from Sannergata to Søndre gate, read through address history, commerce, memory and preservation",
+    "excluded_or_held_back": [
+      "Lucky Eddie, located in Trondheimsveien 63",
+      "Retro Lykke, no longer a current Markveien business",
+      "Velouria Vintage, located in Thorvald Meyers gate",
+      "a subculture badge inferred only from commercial vintage style"
+    ]
+  },
+  "phase_status": {
+    "8_place_card": "pass_exact_people_objects_brands_related",
+    "9_onsite": "pass_safe_public_street_observation",
+    "10_quiz": "pass_existing_rich_6x7_reused",
+    "11_routes": "reviewed_not_applicable_no_canonical_route",
+    "12_people": "pass_thorvald_meyer_with_sources",
+    "13_brands": "pass_two_current_officially_verified_businesses",
+    "14_discovery_relations_i18n": "pass",
+    "15_physical_visit": "pass_public_surface_observation_only",
+    "16_favorites_progress": "pass_existing_platform_contract",
+    "17_profile_unlock": "pass_existing_platform_contract",
+    "18_wonderkammer": "reviewed_no_new_content",
+    "19_images": "pass_existing_place_and_people_plus_exact_object_image",
+    "20_data_qa": "pass_local_validators",
+    "21_manual_ui_qa": "pending_post_deploy_live_check",
+    "22_content_qa": "pass_source_scope_and_current_business_review",
+    "23_ci": "pending_pr_ci",
+    "24_one_place_gate": "ready_for_pr_ci_and_merge"
+  },
+  "place_card": {
+    "profile": "history_go_place_card_profile_v2",
+    "collection_ids": ["people", "objects", "brands", "related"],
+    "people_ids": ["thorvald_meyer"],
+    "object_ids": ["markveien_57"],
+    "brand_ids": ["froken_dianas_salonger", "robot"],
+    "related_place_count": 7,
+    "badges_separate": true,
+    "quiz_required": true
+  },
+  "quiz": {
+    "profile": "rich_6x7",
+    "sets": 6,
+    "questions": 42,
+    "families": {"fact": 25, "context": 10, "concept_theory": 7},
+    "normal_opening_questions": 14,
+    "reuse_decision": "The active place-specific bank was retained and enriched instead of replaced.",
+    "knowledge_contract_errors": 0
+  },
+  "content": {
+    "verified_description_claims": 11,
+    "stories": 1,
+    "reading_trails": 3,
+    "language_entries": 3,
+    "translations": ["en", "es", "pt"],
+    "current_brands": 2,
+    "route": "reviewed_no_canonical_route",
+    "subculture": "reviewed_no_evidence_for_place_badge"
+  },
+  "local_verification": {
+    "description_v4_2": "passed_zero_blocking_errors",
+    "people_profiles": "passed",
+    "quiz_production_context": "passed_23_packages",
+    "quiz_progression": "passed",
+    "quiz_theory_binding": "passed",
+    "knowledge_contract_errors": 0,
+    "stories_integrity": "passed_168_files_281_stories",
+    "place_open_payloads": "built_and_check_passed_1514",
+    "runtime_leksikon_entries": 1
+  },
+  "quality_score": {
+    "correctness_and_evidence": {
+      "score": 5,
+      "evidence": "Institutional and first-party sources support street history, the Watchman memorial, Markveien 57 and both current businesses."
+    },
+    "coverage_and_completion": {
+      "score": 5,
+      "evidence": "All phase 8-24 surfaces are materialized, inherited from platform contracts, or explicitly reviewed as not applicable."
+    },
+    "editorial_quality": {
+      "score": 5,
+      "evidence": "Address-level history, workers' housing, wartime memory and the 1977 preservation conflict replace generic shopping-street framing."
+    },
+    "technical_integrity": {
+      "score": 5,
+      "evidence": "Canonical validators, generated payload checks and focused regression tests pass locally with one leksikon entry and deterministic generation."
+    },
+    "safety_and_responsibility": {
+      "score": 4,
+      "evidence": "On-site prompts remain on public surfaces, the deportation record is handled precisely, and closed or differently located businesses are not represented as current."
+    },
+    "maintainability_and_auditability": {
+      "score": 5,
+      "evidence": "A deterministic builder, explicit source brief, production context, claims, manifests, audit and regression test make the package reproducible."
+    },
+    "total": 29,
+    "maximum": 30,
+    "classification": "high_quality_ready_for_pr_ci",
+    "critical_findings": 0,
+    "unresolved_blockers": 0
+  }
+}
