@@ -1,0 +1,83 @@
+name: TEMP Utdanning Barnehage materialize
+on:
+  push:
+    branches:
+      - agent/utdanning-early-childhood-learning-fulltext-v1
+permissions:
+  contents: write
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify fresh main ancestry
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git merge-base --is-ancestor origin/main HEAD
+      - name: Normalize 3 of 14 materializer and shared inventory contract
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const mat='scripts/materialize-utdanning-early-childhood-learning-fulltext-v1.mjs';
+          let m=fs.readFileSync(mat,'utf8');
+          m=m.replace('write(P.emners??P.emner,emner)','write(P.emner,emner)');
+          if(!m.includes('write(P.emner,emner)')||m.includes('P.emners??P.emner')) throw new Error('Materializer normalization failed');
+          fs.writeFileSync(mat,m);
+
+          const file='tests/fagverk-subject-inventory.test.mjs';
+          let text=fs.readFileSync(file,'utf8');
+          const required=[
+            "early_childhood_learning_source_brief_complete_full_chapter_production",
+            "Utdanning låser konsistent 2/14-fremdrift",
+            "assert.equal(registry.subjects.utdanning.editorialPlan.registeredChapterCount, 2);",
+            "assert.equal(registry.subjects.utdanning.editorialPlan.completedSourceBriefCount, 3);",
+            "assert.equal(pensum.domains.filter((domain) => domain.status === 'materialized').length, 2);",
+            "assert.equal(pensum.domains[1].domain_id, 'didaktikk');"
+          ];
+          for(const needle of required) if(!text.includes(needle)) throw new Error(`Expected stale 2/14 assertion missing: ${needle}`);
+          text=text.replaceAll('early_childhood_learning_source_brief_complete_full_chapter_production','primary_lower_secondary_school_source_brief_complete_full_chapter_production');
+          text=text.replace('Utdanning låser konsistent 2/14-fremdrift','Utdanning låser konsistent 3/14-fremdrift');
+          text=text.replace('assert.equal(registry.subjects.utdanning.editorialPlan.registeredChapterCount, 2);','assert.equal(registry.subjects.utdanning.editorialPlan.registeredChapterCount, 3);');
+          text=text.replace('assert.equal(registry.subjects.utdanning.editorialPlan.completedSourceBriefCount, 3);','assert.equal(registry.subjects.utdanning.editorialPlan.completedSourceBriefCount, 4);');
+          text=text.replace("assert.equal(pensum.domains.filter((domain) => domain.status === 'materialized').length, 2);","assert.equal(pensum.domains.filter((domain) => domain.status === 'materialized').length, 3);");
+          text=text.replace("assert.equal(pensum.domains[1].domain_id, 'didaktikk');","assert.equal(pensum.domains[1].domain_id, 'didaktikk');\n      assert.equal(pensum.domains[2].domain_id, 'barnehage_tidlig_laering');");
+          fs.writeFileSync(file,text);
+          NODE
+      - name: Audit next Grunnskole source-first port
+        run: node scripts/brief-utdanning-primary-lower-secondary-school-sources-v1.mjs --write-report
+      - name: Materialize Barnehage and early learning 3 of 14
+        run: node scripts/materialize-utdanning-early-childhood-learning-fulltext-v1.mjs
+      - name: Audit Barnehage and early learning fulltext
+        run: node scripts/audit-utdanning-early-childhood-learning-fulltext-v1.mjs --write-report
+      - name: Audit Fagverk subject inventory
+        run: node scripts/audit-fagverk-subject-inventory.mjs --write-report --no-check-report
+      - name: Audit Fagverk general engine
+        run: node scripts/audit-fagverk-general-engine.mjs --write-report --no-check-report
+      - name: Audit Fagverk theory quality
+        run: node scripts/audit-fagverk-theory-quality.mjs --write-report --no-check-report
+      - name: Audit Fagverk theory integrity
+        run: node scripts/audit-fagverk-theory-integrity.mjs --write-report --no-check-report
+      - name: Build Fagverk release
+        run: node scripts/build-fagverk-release-manifest.mjs
+      - name: Commit materialized 3 of 14 locally
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/materialize-utdanning-early-childhood-learning-fulltext-v1.mjs tests/fagverk-subject-inventory.test.mjs data/fag/fag_manifest.json data/fag/utdanning data/fagverk reports/fagverk
+          if ! git diff --cached --quiet; then git commit -m "Materialize Utdanning Barnehage at 3/14"; fi
+      - name: Run canonical Utdanning registry CI on clean materialized head
+        run: node scripts/run-utdanning-domain-ci-v1.mjs
+      - name: Push materialized head
+        shell: bash
+        run: |
+          set -euo pipefail
+          git push origin HEAD:${GITHUB_REF_NAME}
