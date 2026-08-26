@@ -1,19 +1,21 @@
 # Olaf Ryes plass — arbeidskort
 
 Oppdatert: 2026-08-26
-Samlet status: `CORRECTION_READY_FOR_PR_LIVE_REQA_PENDING`
+Samlet status: `CLOSED_MERGED_DEPLOYED_LIVE_VERIFIED`
 
 | Fase | Status | Evidens |
 |---:|---|---|
 | 0–7 | COMPLETE | Kilde, scope, geometri og grunninnhold mergret i PR #5339 |
-| 8–19 | CORRECTED | Fire bildeklare samlingsflater: People 2, Objects 2, Parkteatret Brand 1 og Related 4. FrontImage er en faktisk stående 900×1200-variant |
-| 20 | COMPLETE | Olaf-kontrakt, description v4.2, place-open, runtime-synk og JS-syntaks er grønne lokalt |
-| 21 | PENDING | Ny manuell live-QA skal kjøres etter merge og Pages-deploy |
+| 8–19 | COMPLETE | Fire live-verifiserte bildesamlinger: People 2, Objects 2, Parkteatret Brand 1 og Related 4. FrontImage er faktisk stående 900×1200 |
+| 20 | COMPLETE | Olaf-kontrakt, description v4.2, place-open, cachekontrakt, runtime-synk og JS-syntaks er grønne lokalt og i CI |
+| 21 | COMPLETE | Manuell live-QA på 1363×936: fire `member-image`-forhåndsvisninger, portrettfront og riktig innhold ved åpning |
 | 22 | COMPLETE | Manuell kilde-, innholds-, bildegrense- og own-place-QA |
-| 23 | PENDING | Korreksjons-PR og CI gjenstår |
-| 24 | REOPENED | Den tidligere closeouten manglet Brand, medlemsbilder i rundingene og stående frontImage |
+| 23 | COMPLETE | PR #5353: 18/18; PR #5357: 2/2; PR #5358: 2/2; alle merget og Pages-deployet |
+| 24 | CLOSED | Sluttstatus er merget, deployet og live-verifisert på `ee19135ea46e40aac62009e5670f58dbecc5b4af` |
 
-Den nye lokale QA-en bekrefter at Parkteatret er materialisert som verifisert venue-Brand med offisiell logo, at People, Objects, Brands og Related har bilde av et canonical medlem, og at frontImage er en lokal stående variant. Endelig status lukkes først etter merge, vellykket deploy og manuell live re-QA.
+Live-QA bekrefter Parkteatret som verifisert venue-Brand med offisiell logo, bilde av canonical medlem i People, Objects, Brands og Related, og lokal stående frontImage. Alle fire Rundinger åpner riktig innhold. Cache- og hydreringsfunnene fra re-QA er dekket av egne regresjonstester og produksjonsfikser.
+
+Live-URL: https://paradispartiet.github.io/History-Go/?qa=ee19135ea46e40aac62009e5670f58dbecc5b4af#/place/olaf_ryes_plass
 
 ## Avgrensning
 
