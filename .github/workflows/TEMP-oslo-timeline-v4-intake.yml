@@ -1,0 +1,93 @@
+name: TEMP Oslo timeline v4 intake
+
+on:
+  push:
+    branches:
+      - agent/oslo-timeline-anchors-v4-20260826
+
+permissions:
+  contents: read
+
+jobs:
+  intake:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Rank actual Oslo history gaps
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import { buildEpokePlaceIndex, exactProductionClaimYears } from './scripts/build-epoke-place-index.mjs';
+
+          const root = process.cwd();
+          const index = buildEpokePlaceIndex();
+          const coverage = index.domains.historie.oslo_coverage;
+          const readJson = (p) => JSON.parse(fs.readFileSync(path.join(root, p), 'utf8'));
+          const text = (v) => String(v ?? '').trim();
+          const categoryWeight = new Map([
+            ['historie', 8], ['politikk', 7], ['samfunn', 6], ['religion', 5], ['naeringsliv', 5],
+            ['kunst', 4], ['litteratur', 4], ['musikk', 4], ['arkitektur', 4], ['by', 4], ['sport', 3], ['natur', 2]
+          ]);
+
+          const rows = [];
+          for (const place of coverage.places.filter((p) => p.status === 'awaiting_source_backed_history')) {
+            const sourcePath = place.source_file.startsWith('data/') ? place.source_file : `data/${place.source_file}`;
+            if (!fs.existsSync(path.join(root, sourcePath))) continue;
+            const raw = readJson(sourcePath);
+            const detail = Array.isArray(raw) ? raw.find((p) => text(p.id) === place.place_id) : raw;
+            if (!detail) continue;
+            const prodPath = `data/places/production/${place.place_id}.json`;
+            const production = fs.existsSync(path.join(root, prodPath)) ? readJson(prodPath) : null;
+            const claims = Array.isArray(production?.claims) ? production.claims : [];
+            const historical = claims.filter((c) => text(c.status) === 'verified' && (!text(c.temporalStatus) || text(c.temporalStatus) === 'historical'));
+            const datedClaims = historical.map((c) => ({
+              id: text(c.id),
+              claim: text(c.claim),
+              years: exactProductionClaimYears(c.claim),
+              timelineYear: Number.isInteger(c.timelineYear) ? c.timelineYear : null,
+              sourceUrl: text(c.sourceUrl)
+            })).filter((c) => c.years.length);
+            const externalLinks = Array.isArray(detail.externalLinks) ? detail.externalLinks.filter((l) => /^https?:\/\//.test(text(l?.url))) : [];
+            const embeddedSources = Array.isArray(detail.sources) ? detail.sources.filter((s) => /^https?:\/\//.test(text(typeof s === 'string' ? s : s?.url))) : [];
+            const placeTier = text(detail.placeTier || detail.place_tier || '');
+            const micro = placeTier === 'micro' || text(detail.microPlaceType || detail.micro_place_type);
+            let score = categoryWeight.get(place.category) || 1;
+            if (!micro) score += 6;
+            if (production) score += 4;
+            score += Math.min(8, historical.length * 2);
+            score += Math.min(8, datedClaims.length * 2);
+            score += Math.min(3, externalLinks.length + embeddedSources.length);
+            if (text(detail.popupDesc).length >= 500) score += 2;
+            if (text(detail.desc).length >= 180) score += 1;
+            rows.push({
+              score,
+              place_id: place.place_id,
+              name: place.name,
+              category: place.category,
+              source_file: place.source_file,
+              placeTier: placeTier || null,
+              micro: Boolean(micro),
+              production: Boolean(production),
+              verifiedHistoricalClaims: historical.length,
+              datedClaimCandidates: datedClaims,
+              inspectableCanonicalSources: externalLinks.length + embeddedSources.length,
+              descLength: text(detail.desc).length,
+              popupDescLength: text(detail.popupDesc).length
+            });
+          }
+          rows.sort((a, b) => b.score - a.score || a.name.localeCompare(b.name, 'nb'));
+          console.log('OSLO_COVERAGE', JSON.stringify({
+            canonical: coverage.canonical_place_count,
+            dated: coverage.dated_evidence_place_count,
+            cases: coverage.documented_case_place_count,
+            awaiting: coverage.awaiting_source_backed_history_count,
+            categories: coverage.categories
+          }));
+          console.log('TOP_AWAITING_START');
+          console.log(JSON.stringify(rows.slice(0, 80), null, 2));
+          console.log('TOP_AWAITING_END');
+          NODE
