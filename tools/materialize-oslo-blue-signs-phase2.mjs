@@ -108,6 +108,7 @@ function makePlace(candidate, geo) {
     subcategory_id: 'bla_skilt',
     placeTier: 'micro',
     secondaryBadgeIds: candidate.secondaryBadgeIds || [],
+    ...(Array.isArray(candidate.emneIds) && candidate.emneIds.length ? { emne_ids: candidate.emneIds } : {}),
     desc: text.desc,
     popupDesc: text.popupDesc,
     micro_place_profile: {
