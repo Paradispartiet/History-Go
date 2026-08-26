@@ -17,7 +17,7 @@ test("generated epoch-place index is deterministic and current", () => {
   assert.equal(index.stats.place_evidence_link_count, 325);
   assert.equal(index.stats.period_case_count, 9);
   assert.equal(index.stats.canonical_story_milestone_count, 173);
-  assert.equal(index.stats.verified_place_production_milestone_count, 117);
+  assert.equal(index.stats.verified_place_production_milestone_count, 122);
 });
 
 test("canonical place geography separates Oslo, Lisboa and other countries deterministically", () => {
@@ -118,12 +118,18 @@ test("Oslo coverage classifies every canonical place exactly once without overst
     .sort();
 
   assert.equal(coverage.contract, "oslo-history-coverage-v1");
-  // The curated Micro Place expansion adds four Oslo places; none claims dated History evidence yet.
-  // Completed canonical places can move from the waiting bucket as source-backed timelines land.
+  // Three individually reviewed Oslo places now carry dated, source-backed History evidence.
   assert.equal(coverage.canonical_place_count, 567);
-  assert.equal(coverage.dated_evidence_place_count, 181);
+  assert.equal(coverage.dated_evidence_place_count, 183);
   assert.equal(coverage.documented_case_place_count, 2);
-  assert.equal(coverage.awaiting_source_backed_history_count, 384);
+  assert.equal(coverage.awaiting_source_backed_history_count, 382);
+  for (const placeId of ["markveien", "paulus_kirke", "arbeidermuseet"]) {
+    assert.equal(
+      coverage.places.find((place) => place.place_id === placeId)?.status,
+      "dated_evidence",
+      `${placeId} must materialize its reviewed historical claims`
+    );
+  }
   for (const placeId of [
     "hoybraten_miljostasjon",
     "bla_skilt_kjeglebanen_briskebyveien_21",
