@@ -8,7 +8,11 @@
     {
       "id": "manusmedarbeider_filmhistorie",
       "purpose": "Koble rollen til canonical filmhistorisk People-kunnskap uten å gjøre historien til fasit for dagens manus.",
-      "learning_focus": ["filmhistorie", "manusarbeid", "kildegrense"],
+      "learning_focus": [
+        "filmhistorie",
+        "manusarbeid",
+        "kildegrense"
+      ],
       "mails": [
         {
           "id": "film_tv_manus_knowledge_skouen_001",
@@ -69,18 +73,173 @@
               "label": "Åpne profilen og noter hva kilden faktisk kan belyse",
               "reply": "Jeg leser profilen som filmhistorie og formulerer spørsmål til vår produksjon uten å låne en ferdig fasit.",
               "effect": 1,
-              "tags": ["history_go_person", "source_boundary"],
+              "tags": [
+                "history_go_person",
+                "source_boundary"
+              ],
               "feedback": "Oppgaven fullføres bare gjennom registrert History Go-lesing av den canonicale personen.",
-              "effects": {"stats": {"quality": 1, "trust": 1, "energy": -1}}
+              "effects": {
+                "stats": {
+                  "quality": 1,
+                  "trust": 1,
+                  "energy": -1
+                }
+              }
             },
             {
               "id": "B",
               "label": "Bruk den historiske statusen som argument for én løsning",
               "reply": "Jeg viser til filmhistorien for å lukke diskusjonen om hvilken manusretning som er riktig.",
               "effect": -1,
-              "tags": ["authority_slippage", "anachronism"],
+              "tags": [
+                "authority_slippage",
+                "anachronism"
+              ],
               "feedback": "Du gjør en faktaprofil til autoritet for et manusvalg den ikke dokumenterer.",
-              "effects": {"stats": {"quality": -3, "trust": -1, "risk": 2}}
+              "effects": {
+                "stats": {
+                  "quality": -3,
+                  "trust": -1,
+                  "risk": 2
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_manus_history_go",
+      "purpose": "Bruke History Go-kontekst mens saken venter uten å produsere manusmyndighet.",
+      "learning_focus": [
+        "history_go",
+        "research_integrity",
+        "waiting"
+      ],
+      "mails": [
+        {
+          "role_scope": "manusmedarbeider",
+          "place_id": "cinemateket_oslo",
+          "repeatable": false,
+          "stage": "stable",
+          "thread_key": "film_tv_manus_revision_realism_001",
+          "planned_only": true,
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "film_tv",
+            "manusmedarbeider"
+          ],
+          "id": "film_tv_manus_realism_history_go_skouen_context_001",
+          "mail_type": "knowledge",
+          "mail_family": "role_world_rollout_manus_history_go",
+          "phase": "advanced",
+          "day_phase": "evening",
+          "priority": 90,
+          "cooldown": 12,
+          "from": "Maja, researchansvarlig",
+          "people_ref": "maja_researchansvarlig",
+          "subject": "Mens vi venter: les Arne Skouen som kontekst, ikke som fasit for dagens scene",
+          "summary": "Forfatterversjonen er fortsatt ute. Maja ber deg bruke Arne Skouens History Go-profil til å undersøke manusarbeidets historiske sammenheng, samtidig som dagens karaktervalg og researchkrav forblir prosjektets egne beslutninger.",
+          "purpose": "La ventetid inneholde rolle-relevant kunnskapsarbeid som kan forbedre senere rework uten å produsere forfatter-, redaktør- eller faktamyndighet.",
+          "stakes": "Historisk kontekst kan åpne presise spørsmål om scene og samfunn. Feil brukt kan den bli et autoritetsargument som presser dagens forfatter til å etterligne en kanon.",
+          "situation": [
+            "Arne Skouens profil er en canonical History Go-kilde med dokumentert relevans for manus og film.",
+            "Historisk arbeid kan informere lesningen, men kan ikke godkjenne dagens dialog eller researchpåstand.",
+            "Revisjonssaken står fortsatt i ventestatus hos Elias mens oppgaven utføres."
+          ],
+          "task_domain": "vedvarende_manusrevisjon",
+          "task_kind": "knowledge",
+          "competency": "research_integritet",
+          "pressure": "ventetid_og_kulturell_autoritet",
+          "choice_axis": "historisk_kontekst_vs_kanon_som_fasit",
+          "consequence_axis": "presis_rework_vs_autoritetslån",
+          "narrative_arc": "fra_motstridende_notater_til_sporbart_anbefalingsgrunnlag",
+          "interaction_mode": "task",
+          "task_contract": {
+            "task_id": "film_tv_manus_history_go_skouen_revision_context",
+            "completion_rule": "history_go_payload_completed",
+            "failure_rule": "remain_open",
+            "evidence_refs": [
+              "data/people/film_tv/oslo/people_film_tv_oslo.json"
+            ]
+          },
+          "task_payload": {
+            "task_kind": "history_go_person",
+            "target_type": "person",
+            "person_id": "arne_skouen",
+            "place_id": "cinemateket_oslo",
+            "completion_mode": "read_profile",
+            "title": "Les Arne Skouen som manus- og filmhistorisk kontekst",
+            "description": "Åpne profilen og skill historisk kontekst, arbeidsmåte og ettertidens status fra beslutningene i dagens manusrevisjon.",
+            "return_context": {
+              "source": "civication",
+              "mail_id": "film_tv_manus_realism_history_go_skouen_context_001",
+              "role_scope": "manusmedarbeider",
+              "person_id": "arne_skouen",
+              "place_id": "cinemateket_oslo"
+            }
+          },
+          "work_context": {
+            "object_ids": [
+              "film_tv_manus_revision_case_001"
+            ],
+            "institution_id": "film_tv_manusutvikling_001",
+            "waiting_for_actor_id": "elias_manusforfatter",
+            "priority": "normal"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bruk profilen til å formulere nye spørsmål, ikke ferdige svar",
+              "reply": "Jeg skiller historisk kontekst fra prosjektets beslutninger og fører bare kildebelagte observasjoner tilbake til revisjonssaken.",
+              "effect": 2,
+              "feedback": "History Go styrker rework-sporet uten å gi en historisk person myndighet over dagens manus.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_manus_history_context_applied",
+                    "work_object_id": "film_tv_manus_revision_case_001",
+                    "flag": "history_go_context_bounded"
+                  },
+                  {
+                    "op": "note",
+                    "event_id": "film_tv_manus_history_context_note",
+                    "work_object_id": "film_tv_manus_revision_case_001",
+                    "note": "Skouen-profilen brukes som historisk kontekst og spørsmålsgrunnlag, ikke som norm for dagens scene."
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Bruk Skouens status som argument for hvordan en god scene bør skrives",
+              "reply": "Denne tradisjonen viser hva filmmanus bør være; jeg sender prinsippet videre som retning til Elias.",
+              "effect": -1,
+              "feedback": "Kanonisk status blir lånt som skjult redaksjonell myndighet og gjør historiekunnskap til norm.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                },
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_manus_history_authority_borrowed",
+                    "work_object_id": "film_tv_manus_revision_case_001",
+                    "flag": "historical_status_misused_as_script_authority"
+                  }
+                ]
+              }
             }
           ]
         }

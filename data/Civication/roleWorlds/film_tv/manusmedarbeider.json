@@ -1,0 +1,1033 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "manusmedarbeider",
+  "title": "Manusmedarbeider — hvem eier teksten når alle har notater?",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "Å gjøre notater, research, versjoner og konsekvenser lesbare uten å overta forfatterens stemme eller gjøre nærhet til redaktør og produksjon til skjult beslutningsmyndighet",
+    "description": "Manusmedarbeideren utfører mye av infrastrukturen som gjør en omskrivning mulig: problemformulering, notatsyntese, research, versjonskontroll, kontinuitet og oppfølging. Arbeidet er avgjørende, men ofte usynlig og utføres under asymmetrisk kreditering, korte kontrakter og krysspress mellom forfatter, redaktør og produksjon. Role World-en undersøker hvordan ett sporbart revisjonsobjekt kan beskytte både kvalitet og eierskap gjennom handoff, venting, rework og bordprøve, uten at kompetanse eller situert omdømme blir til endelig manusmyndighet."
+  },
+  "theme_ids": [
+    "invisible_work",
+    "professional_culture",
+    "loyalty_up_down",
+    "shame_reputation",
+    "precarity",
+    "public_private_leakage"
+  ],
+  "social_environments": [
+    "Manusrommet der muntlige notater raskt kan bli usynlige premisser for tekst som noen andre må eie og signere.",
+    "Versjonsarkivet der baseline, avledninger, beslutningseiere og kontinuitetsendringer gjør forfatterskap og ansvar etterprøvbart.",
+    "Researchbordet der plausible detaljer, kildebelegg og forbehold må overleve presset mot en ren og produksjonsklar tekst.",
+    "Handoffet til manusforfatteren der et presist problem kan åpne kreativt rom, mens en ferdig løsning kan bli skjult medforfatterskap.",
+    "Bordprøven der skuespillere, regi, produsent og manusfunksjoner hører teksten sammen og skaper sosialt press for raske konklusjoner.",
+    "Cinemateket og History Go-profilen til Arne Skouen som filmhistorisk kontekst uten autoritet over dagens manusbeslutninger.",
+    "Hjem, venner og familie der utrygg kontrakt, sen rework og frykt for manglende kreditering fortsetter etter arbeidsdagen."
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "nora_manusredaktor",
+      "social_function": "redaksjonell leder som prioriterer notater og eier endelig manusgodkjenning",
+      "class_position": "fast ansatt faglig mellomleder mellom produksjon, forfatter og finansiering",
+      "status": "høy formell status i manusprosessen",
+      "power_over_player": "kan prioritere briefs, kreve rework, godkjenne endelig manus og påvirke videre oppdrag",
+      "wants": "et beslutningsklart manusspor der uenighet og restusikkerhet er synlig før produksjonslås",
+      "conceals": "hvor ofte frist og produsentpress gjør det fristende å formulere prioriteringer som om de var faglig enstemmige",
+      "speech_style": "kort, presis og konsekvensorientert; spør hva som må avgjøres, av hvem og før hvilken versjon",
+      "teaches_player": "at redaktørtillit kan gi handlingsrom, men aldri flytter endelig godkjenning til manusmedarbeideren"
+    },
+    {
+      "id": "elias_manusforfatter",
+      "social_function": "forfatter som eier den konkrete stemmen, løsningen og krediteringen i manusarbeidet",
+      "class_position": "prosjektansatt kreativ fagarbeider med navngitt forfatterskap, men avhengig av redaksjonelle og økonomiske beslutninger",
+      "status": "høy kreativ autoritet og sårbar kontraktsposisjon",
+      "power_over_player": "kan akseptere, avvise eller omforme forslag og kan synliggjøre når notatpraksis blir skjult omskriving",
+      "wants": "notater som beskriver problem og rammer uten å late som én løsning allerede er vedtatt",
+      "conceals": "frykten for at samarbeidsvilje tolkes som samtykke til å miste stemme, tid eller kreditering",
+      "speech_style": "undersøkende og billedlig; svarer best på presise problemer og blir knapp når teksten leveres ferdig i hans navn",
+      "teaches_player": "at godt handoff beskytter både samarbeid og forfattereierskap gjennom flere versjoner"
+    },
+    {
+      "id": "selma_scriptkoordinator",
+      "social_function": "fagperson som holder versjoner, sceneavhengigheter og bordprøvemateriale sammen",
+      "class_position": "operativ spesialist med lavere symbolsk status enn forfatter og redaktør, men høy systemkunnskap",
+      "status": "situert autoritet over versjon og kontinuitet",
+      "power_over_player": "kan avdekke at en lokal løsning bygger på feil baseline eller skaper brudd senere i manus og produksjon",
+      "wants": "entydige versjonsnavn, beslutningsspor og endringskart som andre faktisk følger",
+      "conceals": "hvor mye manuelt ekstraarbeid som brukes på å reparere muntlige beslutninger etter at fristen allerede har passert",
+      "speech_style": "nøktern, tidsstemplet og konkret; spør hvilken fil, hvilken scene og hvem som bekreftet endringen",
+      "teaches_player": "at usynlig koordinering er produksjonsinfrastruktur, ikke administrativ pynt"
+    },
+    {
+      "id": "maja_researchansvarlig",
+      "social_function": "kildeansvarlig som skiller dokumentert opplysning, plausibel tolkning og dramatisk frihet",
+      "class_position": "fagspesialist med kunnskapsautoritet, men uten eierskap til dialog eller endelig manuslås",
+      "status": "høy faglig status i researchspørsmål",
+      "power_over_player": "kan holde en detalj åpen, kreve forbehold og vise at elegant dialog går lenger enn kildene",
+      "wants": "at usikkerhet forblir synlig helt til riktig beslutning om bruk og formulering er tatt",
+      "conceals": "frustrasjon over at kildeforbehold ofte forsvinner når teksten skal høres sikker og produksjonsklar ut",
+      "speech_style": "kildebevisst og avgrensende; sier hva dokumentet støtter, hva det ikke støtter og hva som må undersøkes",
+      "teaches_player": "at kunnskap kan begrense og forbedre en scene uten å skrive eller godkjenne den"
+    },
+    {
+      "id": "film_tv_produsent",
+      "social_function": "ressurs- og leveranseansvarlig som presser på for et filmbar manus innen budsjett og plan",
+      "class_position": "øverste prosjektledelse med økonomisk makt og høy innflytelse over videre arbeid",
+      "status": "høy institusjonell status, men ikke automatisk forfatter- eller researchautoritet",
+      "power_over_player": "kan endre rammer, bestille prioriteringer og påvirke kontraktsforlengelse, men må bruke riktige godkjenningslinjer",
+      "wants": "forutsigbare konsekvenser, rask risikosynlighet og et manus som kan planlegges uten skjult restarbeid",
+      "conceals": "hvor mye ønsket om fremdrift påvirker hvilke faglige innvendinger som omtales som detaljer",
+      "speech_style": "direkte, milepælsstyrt og konsekvensfokusert; spør hva som stopper opptak og hva det koster",
+      "teaches_player": "at produksjonspress er reelt, men ikke kan omskrive kreditering, kildebelegg eller rollemyndighet"
+    },
+    {
+      "id": "film_tv_regissor",
+      "social_function": "senere bruker og fortolker av manus som ser hvordan tekst fungerer i rom, rytme og skuespillerarbeid",
+      "class_position": "kunstnerisk leder med sterk produksjonsinnflytelse og et annet mandat enn redaktør og forfatter",
+      "status": "høy situert status ved bordprøve og opptak",
+      "power_over_player": "kan gjøre et manusproblem hørbart og be om endring, men eier ikke alene forfatterskap eller researchstatus",
+      "wants": "tekst som tåler iscenesettelse og tydelige avklaringer om hva som er låst, åpent eller betinget",
+      "conceals": "hvor lett en sterk muntlig løsning i prøverommet kan bli behandlet som vedtak uten versjonsspor",
+      "speech_style": "sanselig og handlingsorientert; beskriver hva skuespilleren gjør, hva rommet trenger og hvor rytmen faller",
+      "teaches_player": "å skille verdifull bruksfeedback fra formell redaksjonell beslutning"
+    },
+    {
+      "id": "venn",
+      "social_function": "privat likemann som merker når manusmedarbeideren bruker profesjonell problemløsing til å redigere nære samtaler",
+      "class_position": "privat relasjon uten prosjektmakt eller avhengighet",
+      "status": "emosjonell nærhet uten faglig rang",
+      "power_over_player": "kan speile statusangst, krediteringsfrykt og behovet for å være den som alltid ser problemet først",
+      "wants": "et vennskap der uenighet ikke blir en notatrunde og der arbeidets hierarki kan legges bort",
+      "conceals": "at hun beundrer innsatsen, men blir sliten av å få egne formuleringer analysert som manusproblemer",
+      "speech_style": "uformell og direkte; avbryter faglige forklaringer med spørsmål om hva spilleren selv føler og trenger",
+      "teaches_player": "at profesjonell presisjon ikke erstatter privat gjensidighet eller trygghet"
+    },
+    {
+      "id": "familie",
+      "social_function": "nær relasjon som møter sen rework, midlertidig kontrakt og arbeidets usynlige kostnader utenfor bransjespråket",
+      "class_position": "privat husholdningsrelasjon uten innflytelse på manusprosessen",
+      "status": "emosjonell autoritet og praktisk korrektiv",
+      "power_over_player": "kan synliggjøre hvordan gratis ekstratid, usikker kreditering og tilgjengelighet påvirker økonomi og tilstedeværelse",
+      "wants": "forutsigbarhet, grenser og et språk for hva arbeidet faktisk krever og gir tilbake",
+      "conceals": "bekymring for at løftet om neste kreditering brukes til å normalisere stadig mer ubeskrevet arbeid",
+      "speech_style": "konkret og hverdagslig; spør når arbeidsdagen slutter, hvem som betaler og om navnet faktisk står på rulleteksten",
+      "teaches_player": "at profesjonell lojalitet og håp om videre arbeid ikke opphever private kostnader eller behovet for grenser"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "versjonssporbarhet",
+      "meaning": "om baseline, forslag, beslutninger og avledede versjoner kan følges gjennom hele revisjonssaken",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "forfattertillit",
+      "meaning": "Elias sin situerte tillit til at problem og rammer deles uten at teksten eller krediteringen overtas",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "research_integritet",
+      "meaning": "om kildebelegg, plausibilitet og dramatisk frihet forblir adskilt når teksten nærmer seg produksjon",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "mandatklarhet",
+      "meaning": "om redaktør, forfatter, research, koordinering og produksjon beholder hver sin beslutnings- og faggrense",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "fagkollegial_tillit",
+      "meaning": "situert standing hos redaktør, forfatter, research og script-team basert på observerbar arbeidspraksis",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "kontrakt_og_krediteringsutrygghet",
+      "meaning": "presset til å utføre mer skjult arbeid for å sikre neste oppdrag eller synlig kreditering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "privat_rollemaske",
+      "meaning": "om manusarbeidets problemløsing, hierarki og selvkontroll kan legges ned i vennskap og familie",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Versjon 18 fryses som baseline, og den første notatkonflikten må skilles fra forslag som ennå ikke har en beslutningseier. Morgenen etablerer dagens konkrete arbeidsstatus og viser hva som har endret seg siden forrige versjon.",
+        "thread_ids": [
+          "revisjonssak_og_nora"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/job/manusmedarbeider_job.json#film_tv_manus_job_versjonsgrunnlag_001"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Versjon 18 fryses som baseline, og den første notatkonflikten må skilles fra forslag som ennå ikke har en beslutningseier. I lunsjsamtalen blir forskjellen mellom sosial tillit, faglig innflytelse og formell beslutningsmyndighet synlig.",
+        "thread_ids": [
+          "kontinuitet_research_og_selma_maja"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/people/manusmedarbeider_people.json#film_tv_manus_people_forfatterstemme_001"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 1, afternoon: Versjon 18 fryses som baseline, og den første notatkonflikten må skilles fra forslag som ennå ikke har en beslutningseier. Ettermiddagens arbeid krever en sporbar handling i samme revisjonsobjekt og fordeler ansvar mellom riktige fagfunksjoner.",
+        "thread_ids": [
+          "forfattereierskap_og_elias"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/conflict/manusmedarbeider_conflict.json#film_tv_manus_conflict_motstridende_001"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Versjon 18 fryses som baseline, og den første notatkonflikten må skilles fra forslag som ennå ikke har en beslutningseier. Kvelden viser en senere eller privat kostnad som ikke kan ryddes bort ved å erklære manusversjonen ferdig.",
+        "thread_ids": [
+          "privat_rollemaske_og_utrygghet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/story/manusmedarbeider_story.json#film_tv_manus_story_kontinuitet_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Elias mottar et avgrenset handoff, mens Selma kontrollerer at ny tekst kan avledes fra riktig versjon uten skjulte sprang. Morgenen etablerer dagens konkrete arbeidsstatus og viser hva som har endret seg siden forrige versjon.",
+        "thread_ids": [
+          "kontinuitet_research_og_selma_maja"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/event/manusmedarbeider_event.json#film_tv_manus_event_bordprove_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Elias mottar et avgrenset handoff, mens Selma kontrollerer at ny tekst kan avledes fra riktig versjon uten skjulte sprang. I lunsjsamtalen blir forskjellen mellom sosial tillit, faglig innflytelse og formell beslutningsmyndighet synlig.",
+        "thread_ids": [
+          "revisjonssak_og_nora"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/micro/manusmedarbeider_micro.json#film_tv_manus_micro_research_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 2, afternoon: Elias mottar et avgrenset handoff, mens Selma kontrollerer at ny tekst kan avledes fra riktig versjon uten skjulte sprang. Ettermiddagens arbeid krever en sporbar handling i samme revisjonsobjekt og fordeler ansvar mellom riktige fagfunksjoner.",
+        "thread_ids": [
+          "privat_rollemaske_og_utrygghet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/knowledge/manusmedarbeider_knowledge.json#film_tv_manus_knowledge_skouen_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Elias mottar et avgrenset handoff, mens Selma kontrollerer at ny tekst kan avledes fra riktig versjon uten skjulte sprang. Kvelden viser en senere eller privat kostnad som ikke kan ryddes bort ved å erklære manusversjonen ferdig.",
+        "thread_ids": [
+          "forfattereierskap_og_elias"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/followup/manusmedarbeider_followup.json#film_tv_manus_followup_forfatter_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Ventetiden brukes til research og relasjonsarbeid; fravær av svar får ikke bli en unnskyldning for å skrive over forfatteren. Morgenen etablerer dagens konkrete arbeidsstatus og viser hva som har endret seg siden forrige versjon.",
+        "thread_ids": [
+          "teamtillit_og_bordprove"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/consequence/manusmedarbeider_consequence.json#film_tv_manus_consequence_bordprove_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Ventetiden brukes til research og relasjonsarbeid; fravær av svar får ikke bli en unnskyldning for å skrive over forfatteren. I lunsjsamtalen blir forskjellen mellom sosial tillit, faglig innflytelse og formell beslutningsmyndighet synlig.",
+        "thread_ids": [
+          "teamtillit_og_bordprove"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/job/manusmedarbeider_job.json#film_tv_manus_realism_revision_case_open_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 3, afternoon: Ventetiden brukes til research og relasjonsarbeid; fravær av svar får ikke bli en unnskyldning for å skrive over forfatteren. Ettermiddagens arbeid krever en sporbar handling i samme revisjonsobjekt og fordeler ansvar mellom riktige fagfunksjoner.",
+        "thread_ids": [
+          "kontinuitet_research_og_selma_maja"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/people/manusmedarbeider_people.json#film_tv_manus_realism_author_handoff_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Ventetiden brukes til research og relasjonsarbeid; fravær av svar får ikke bli en unnskyldning for å skrive over forfatteren. Kvelden viser en senere eller privat kostnad som ikke kan ryddes bort ved å erklære manusversjonen ferdig.",
+        "thread_ids": [
+          "privat_rollemaske_og_utrygghet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/knowledge/manusmedarbeider_knowledge.json#film_tv_manus_realism_history_go_skouen_context_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Versjon 19 returnerer med en forbedring og en restkonflikt som Nora må prioritere før rework kan kalles reelt. Morgenen etablerer dagens konkrete arbeidsstatus og viser hva som har endret seg siden forrige versjon.",
+        "thread_ids": [
+          "forfattereierskap_og_elias"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/conflict/manusmedarbeider_conflict.json#film_tv_manus_realism_author_response_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Versjon 19 returnerer med en forbedring og en restkonflikt som Nora må prioritere før rework kan kalles reelt. I lunsjsamtalen blir forskjellen mellom sosial tillit, faglig innflytelse og formell beslutningsmyndighet synlig.",
+        "thread_ids": [
+          "revisjonssak_og_nora"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/followup/manusmedarbeider_followup.json#film_tv_manus_realism_continuity_rework_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 4, afternoon: Versjon 19 returnerer med en forbedring og en restkonflikt som Nora må prioritere før rework kan kalles reelt. Ettermiddagens arbeid krever en sporbar handling i samme revisjonsobjekt og fordeler ansvar mellom riktige fagfunksjoner.",
+        "thread_ids": [
+          "revisjonssak_og_nora"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/event/manusmedarbeider_event.json#film_tv_manus_realism_table_read_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Versjon 19 returnerer med en forbedring og en restkonflikt som Nora må prioritere før rework kan kalles reelt. Kvelden viser en senere eller privat kostnad som ikke kan ryddes bort ved å erklære manusversjonen ferdig.",
+        "thread_ids": [
+          "kontinuitet_research_og_selma_maja"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/consequence/manusmedarbeider_consequence.json#film_tv_manus_realism_revision_case_close_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Forfatterens reaksjon viser om notatpakken var et åpent problem eller en ferdig løsning forkledd som samarbeid. Morgenen etablerer dagens konkrete arbeidsstatus og viser hva som har endret seg siden forrige versjon.",
+        "thread_ids": [
+          "revisjonssak_og_nora"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/job/manusmedarbeider_job.json#film_tv_manus_job_versjonsgrunnlag_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Forfatterens reaksjon viser om notatpakken var et åpent problem eller en ferdig løsning forkledd som samarbeid. I lunsjsamtalen blir forskjellen mellom sosial tillit, faglig innflytelse og formell beslutningsmyndighet synlig.",
+        "thread_ids": [
+          "forfattereierskap_og_elias"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/people/manusmedarbeider_people.json#film_tv_manus_people_forfatterstemme_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 5, afternoon: Forfatterens reaksjon viser om notatpakken var et åpent problem eller en ferdig løsning forkledd som samarbeid. Ettermiddagens arbeid krever en sporbar handling i samme revisjonsobjekt og fordeler ansvar mellom riktige fagfunksjoner.",
+        "thread_ids": [
+          "teamtillit_og_bordprove"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/conflict/manusmedarbeider_conflict.json#film_tv_manus_conflict_motstridende_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Forfatterens reaksjon viser om notatpakken var et åpent problem eller en ferdig løsning forkledd som samarbeid. Kvelden viser en senere eller privat kostnad som ikke kan ryddes bort ved å erklære manusversjonen ferdig.",
+        "thread_ids": [
+          "teamtillit_og_bordprove"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/story/manusmedarbeider_story.json#film_tv_manus_story_kontinuitet_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Kontinuitetskartet avslører at motivasjonsendringen flytter karakterkunnskap og gjør ett researchforbehold produksjonskritisk. Morgenen etablerer dagens konkrete arbeidsstatus og viser hva som har endret seg siden forrige versjon.",
+        "thread_ids": [
+          "kontinuitet_research_og_selma_maja"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/event/manusmedarbeider_event.json#film_tv_manus_event_bordprove_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Kontinuitetskartet avslører at motivasjonsendringen flytter karakterkunnskap og gjør ett researchforbehold produksjonskritisk. I lunsjsamtalen blir forskjellen mellom sosial tillit, faglig innflytelse og formell beslutningsmyndighet synlig.",
+        "thread_ids": [
+          "kontinuitet_research_og_selma_maja"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/micro/manusmedarbeider_micro.json#film_tv_manus_micro_research_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 6, afternoon: Kontinuitetskartet avslører at motivasjonsendringen flytter karakterkunnskap og gjør ett researchforbehold produksjonskritisk. Ettermiddagens arbeid krever en sporbar handling i samme revisjonsobjekt og fordeler ansvar mellom riktige fagfunksjoner.",
+        "thread_ids": [
+          "teamtillit_og_bordprove"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/knowledge/manusmedarbeider_knowledge.json#film_tv_manus_knowledge_skouen_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Kontinuitetskartet avslører at motivasjonsendringen flytter karakterkunnskap og gjør ett researchforbehold produksjonskritisk. Kvelden viser en senere eller privat kostnad som ikke kan ryddes bort ved å erklære manusversjonen ferdig.",
+        "thread_ids": [
+          "privat_rollemaske_og_utrygghet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/followup/manusmedarbeider_followup.json#film_tv_manus_followup_forfatter_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Nora prioriterer notatene, og manusmedarbeideren må oversette beslutningen til sporbare konsekvenser uten å overta selve teksten. Morgenen etablerer dagens konkrete arbeidsstatus og viser hva som har endret seg siden forrige versjon.",
+        "thread_ids": [
+          "revisjonssak_og_nora"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/consequence/manusmedarbeider_consequence.json#film_tv_manus_consequence_bordprove_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Nora prioriterer notatene, og manusmedarbeideren må oversette beslutningen til sporbare konsekvenser uten å overta selve teksten. I lunsjsamtalen blir forskjellen mellom sosial tillit, faglig innflytelse og formell beslutningsmyndighet synlig.",
+        "thread_ids": [
+          "teamtillit_og_bordprove"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/job/manusmedarbeider_job.json#film_tv_manus_realism_revision_case_open_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 7, afternoon: Nora prioriterer notatene, og manusmedarbeideren må oversette beslutningen til sporbare konsekvenser uten å overta selve teksten. Ettermiddagens arbeid krever en sporbar handling i samme revisjonsobjekt og fordeler ansvar mellom riktige fagfunksjoner.",
+        "thread_ids": [
+          "privat_rollemaske_og_utrygghet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/people/manusmedarbeider_people.json#film_tv_manus_realism_author_handoff_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Nora prioriterer notatene, og manusmedarbeideren må oversette beslutningen til sporbare konsekvenser uten å overta selve teksten. Kvelden viser en senere eller privat kostnad som ikke kan ryddes bort ved å erklære manusversjonen ferdig.",
+        "thread_ids": [
+          "kontinuitet_research_og_selma_maja"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/knowledge/manusmedarbeider_knowledge.json#film_tv_manus_realism_history_go_skouen_context_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Elias skriver ny løsning etter rework, mens forskjellen mellom redaksjonell retning og forfatterens konkrete formulering må bevares. Morgenen etablerer dagens konkrete arbeidsstatus og viser hva som har endret seg siden forrige versjon.",
+        "thread_ids": [
+          "teamtillit_og_bordprove"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/conflict/manusmedarbeider_conflict.json#film_tv_manus_realism_author_response_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Elias skriver ny løsning etter rework, mens forskjellen mellom redaksjonell retning og forfatterens konkrete formulering må bevares. I lunsjsamtalen blir forskjellen mellom sosial tillit, faglig innflytelse og formell beslutningsmyndighet synlig.",
+        "thread_ids": [
+          "privat_rollemaske_og_utrygghet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/followup/manusmedarbeider_followup.json#film_tv_manus_realism_continuity_rework_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 8, afternoon: Elias skriver ny løsning etter rework, mens forskjellen mellom redaksjonell retning og forfatterens konkrete formulering må bevares. Ettermiddagens arbeid krever en sporbar handling i samme revisjonsobjekt og fordeler ansvar mellom riktige fagfunksjoner.",
+        "thread_ids": [
+          "forfattereierskap_og_elias"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/event/manusmedarbeider_event.json#film_tv_manus_realism_table_read_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Elias skriver ny løsning etter rework, mens forskjellen mellom redaksjonell retning og forfatterens konkrete formulering må bevares. Kvelden viser en senere eller privat kostnad som ikke kan ryddes bort ved å erklære manusversjonen ferdig.",
+        "thread_ids": [
+          "teamtillit_og_bordprove"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/consequence/manusmedarbeider_consequence.json#film_tv_manus_realism_revision_case_close_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Maja og Selma tester versjon 20 mot kildebelegg og senere scener, slik at lokal forbedring ikke skaper ny skjult gjeld. Morgenen etablerer dagens konkrete arbeidsstatus og viser hva som har endret seg siden forrige versjon.",
+        "thread_ids": [
+          "privat_rollemaske_og_utrygghet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/job/manusmedarbeider_job.json#film_tv_manus_job_versjonsgrunnlag_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Maja og Selma tester versjon 20 mot kildebelegg og senere scener, slik at lokal forbedring ikke skaper ny skjult gjeld. I lunsjsamtalen blir forskjellen mellom sosial tillit, faglig innflytelse og formell beslutningsmyndighet synlig.",
+        "thread_ids": [
+          "revisjonssak_og_nora"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/people/manusmedarbeider_people.json#film_tv_manus_people_forfatterstemme_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 9, afternoon: Maja og Selma tester versjon 20 mot kildebelegg og senere scener, slik at lokal forbedring ikke skaper ny skjult gjeld. Ettermiddagens arbeid krever en sporbar handling i samme revisjonsobjekt og fordeler ansvar mellom riktige fagfunksjoner.",
+        "thread_ids": [
+          "kontinuitet_research_og_selma_maja"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/conflict/manusmedarbeider_conflict.json#film_tv_manus_conflict_motstridende_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Maja og Selma tester versjon 20 mot kildebelegg og senere scener, slik at lokal forbedring ikke skaper ny skjult gjeld. Kvelden viser en senere eller privat kostnad som ikke kan ryddes bort ved å erklære manusversjonen ferdig.",
+        "thread_ids": [
+          "privat_rollemaske_og_utrygghet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/story/manusmedarbeider_story.json#film_tv_manus_story_kontinuitet_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Teamet forbereder bordprøven og presser på for en ren presentasjon, selv om revisjonssaken fortsatt inneholder synlige forbehold. Morgenen etablerer dagens konkrete arbeidsstatus og viser hva som har endret seg siden forrige versjon.",
+        "thread_ids": [
+          "teamtillit_og_bordprove"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/event/manusmedarbeider_event.json#film_tv_manus_event_bordprove_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Teamet forbereder bordprøven og presser på for en ren presentasjon, selv om revisjonssaken fortsatt inneholder synlige forbehold. I lunsjsamtalen blir forskjellen mellom sosial tillit, faglig innflytelse og formell beslutningsmyndighet synlig.",
+        "thread_ids": [
+          "forfattereierskap_og_elias"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/micro/manusmedarbeider_micro.json#film_tv_manus_micro_research_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 10, afternoon: Teamet forbereder bordprøven og presser på for en ren presentasjon, selv om revisjonssaken fortsatt inneholder synlige forbehold. Ettermiddagens arbeid krever en sporbar handling i samme revisjonsobjekt og fordeler ansvar mellom riktige fagfunksjoner.",
+        "thread_ids": [
+          "revisjonssak_og_nora"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/knowledge/manusmedarbeider_knowledge.json#film_tv_manus_knowledge_skouen_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Teamet forbereder bordprøven og presser på for en ren presentasjon, selv om revisjonssaken fortsatt inneholder synlige forbehold. Kvelden viser en senere eller privat kostnad som ikke kan ryddes bort ved å erklære manusversjonen ferdig.",
+        "thread_ids": [
+          "teamtillit_og_bordprove"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/followup/manusmedarbeider_followup.json#film_tv_manus_followup_forfatter_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Kontraktsuro og krediteringsfrykt gjør det fristende å gjøre usynlig ekstraarbeid uten å registrere hvem som faktisk har skrevet eller besluttet. Morgenen etablerer dagens konkrete arbeidsstatus og viser hva som har endret seg siden forrige versjon.",
+        "thread_ids": [
+          "forfattereierskap_og_elias"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/consequence/manusmedarbeider_consequence.json#film_tv_manus_consequence_bordprove_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Kontraktsuro og krediteringsfrykt gjør det fristende å gjøre usynlig ekstraarbeid uten å registrere hvem som faktisk har skrevet eller besluttet. I lunsjsamtalen blir forskjellen mellom sosial tillit, faglig innflytelse og formell beslutningsmyndighet synlig.",
+        "thread_ids": [
+          "forfattereierskap_og_elias"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/job/manusmedarbeider_job.json#film_tv_manus_realism_revision_case_open_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 11, afternoon: Kontraktsuro og krediteringsfrykt gjør det fristende å gjøre usynlig ekstraarbeid uten å registrere hvem som faktisk har skrevet eller besluttet. Ettermiddagens arbeid krever en sporbar handling i samme revisjonsobjekt og fordeler ansvar mellom riktige fagfunksjoner.",
+        "thread_ids": [
+          "privat_rollemaske_og_utrygghet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/people/manusmedarbeider_people.json#film_tv_manus_realism_author_handoff_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Kontraktsuro og krediteringsfrykt gjør det fristende å gjøre usynlig ekstraarbeid uten å registrere hvem som faktisk har skrevet eller besluttet. Kvelden viser en senere eller privat kostnad som ikke kan ryddes bort ved å erklære manusversjonen ferdig.",
+        "thread_ids": [
+          "teamtillit_og_bordprove"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/knowledge/manusmedarbeider_knowledge.json#film_tv_manus_realism_history_go_skouen_context_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Bordprøven gjør motivasjon og researchstatus hørbar; sosial entusiasme kan ikke omdefinere en plausibel detalj til dokumentert fakta. Morgenen etablerer dagens konkrete arbeidsstatus og viser hva som har endret seg siden forrige versjon.",
+        "thread_ids": [
+          "kontinuitet_research_og_selma_maja"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/conflict/manusmedarbeider_conflict.json#film_tv_manus_realism_author_response_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Bordprøven gjør motivasjon og researchstatus hørbar; sosial entusiasme kan ikke omdefinere en plausibel detalj til dokumentert fakta. I lunsjsamtalen blir forskjellen mellom sosial tillit, faglig innflytelse og formell beslutningsmyndighet synlig.",
+        "thread_ids": [
+          "teamtillit_og_bordprove"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/followup/manusmedarbeider_followup.json#film_tv_manus_realism_continuity_rework_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 12, afternoon: Bordprøven gjør motivasjon og researchstatus hørbar; sosial entusiasme kan ikke omdefinere en plausibel detalj til dokumentert fakta. Ettermiddagens arbeid krever en sporbar handling i samme revisjonsobjekt og fordeler ansvar mellom riktige fagfunksjoner.",
+        "thread_ids": [
+          "teamtillit_og_bordprove"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/event/manusmedarbeider_event.json#film_tv_manus_realism_table_read_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "decision",
+        "summary": "Dag 12, evening: Bordprøven gjør motivasjon og researchstatus hørbar; sosial entusiasme kan ikke omdefinere en plausibel detalj til dokumentert fakta. Kvelden viser en senere eller privat kostnad som ikke kan ryddes bort ved å erklære manusversjonen ferdig.",
+        "thread_ids": [
+          "revisjonssak_og_nora"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/consequence/manusmedarbeider_consequence.json#film_tv_manus_realism_revision_case_close_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Tilbakemeldingene sorteres mellom skuespillerlesning, regigrep, redaksjonell prioritering og faktisk manusfeil før siste anbefaling. Morgenen etablerer dagens konkrete arbeidsstatus og viser hva som har endret seg siden forrige versjon.",
+        "thread_ids": [
+          "teamtillit_og_bordprove"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/job/manusmedarbeider_job.json#film_tv_manus_job_versjonsgrunnlag_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Tilbakemeldingene sorteres mellom skuespillerlesning, regigrep, redaksjonell prioritering og faktisk manusfeil før siste anbefaling. I lunsjsamtalen blir forskjellen mellom sosial tillit, faglig innflytelse og formell beslutningsmyndighet synlig.",
+        "thread_ids": [
+          "privat_rollemaske_og_utrygghet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/people/manusmedarbeider_people.json#film_tv_manus_people_forfatterstemme_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 13, afternoon: Tilbakemeldingene sorteres mellom skuespillerlesning, regigrep, redaksjonell prioritering og faktisk manusfeil før siste anbefaling. Ettermiddagens arbeid krever en sporbar handling i samme revisjonsobjekt og fordeler ansvar mellom riktige fagfunksjoner.",
+        "thread_ids": [
+          "kontinuitet_research_og_selma_maja"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/conflict/manusmedarbeider_conflict.json#film_tv_manus_conflict_motstridende_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Tilbakemeldingene sorteres mellom skuespillerlesning, regigrep, redaksjonell prioritering og faktisk manusfeil før siste anbefaling. Kvelden viser en senere eller privat kostnad som ikke kan ryddes bort ved å erklære manusversjonen ferdig.",
+        "thread_ids": [
+          "teamtillit_og_bordprove"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/story/manusmedarbeider_story.json#film_tv_manus_story_kontinuitet_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Revisjonssaken lukkes som beslutningsgrunnlag for Nora, mens Elias beholder forfatterskap og formell manuslås forblir eksplisitt. Morgenen etablerer dagens konkrete arbeidsstatus og viser hva som har endret seg siden forrige versjon.",
+        "thread_ids": [
+          "privat_rollemaske_og_utrygghet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/event/manusmedarbeider_event.json#film_tv_manus_event_bordprove_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Revisjonssaken lukkes som beslutningsgrunnlag for Nora, mens Elias beholder forfatterskap og formell manuslås forblir eksplisitt. I lunsjsamtalen blir forskjellen mellom sosial tillit, faglig innflytelse og formell beslutningsmyndighet synlig.",
+        "thread_ids": [
+          "forfattereierskap_og_elias"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/micro/manusmedarbeider_micro.json#film_tv_manus_micro_research_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "consequence",
+        "summary": "Dag 14, afternoon: Revisjonssaken lukkes som beslutningsgrunnlag for Nora, mens Elias beholder forfatterskap og formell manuslås forblir eksplisitt. Ettermiddagens arbeid krever en sporbar handling i samme revisjonsobjekt og fordeler ansvar mellom riktige fagfunksjoner.",
+        "thread_ids": [
+          "revisjonssak_og_nora"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/knowledge/manusmedarbeider_knowledge.json#film_tv_manus_knowledge_skouen_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Revisjonssaken lukkes som beslutningsgrunnlag for Nora, mens Elias beholder forfatterskap og formell manuslås forblir eksplisitt. Kvelden viser en senere eller privat kostnad som ikke kan ryddes bort ved å erklære manusversjonen ferdig.",
+        "thread_ids": [
+          "privat_rollemaske_og_utrygghet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/followup/manusmedarbeider_followup.json#film_tv_manus_followup_forfatter_001"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "revisjonssak_og_nora",
+      "relationship": "Manusmedarbeiderens arbeidsobjekt og tillit hos Nora utvikles fra baseline via prioritering og bordprøve til myndighetsavgrenset avslutning.",
+      "beat_refs": [
+        "1/morning",
+        "2/lunch",
+        "4/afternoon",
+        "7/morning",
+        "10/afternoon",
+        "12/evening",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "forfattereierskap_og_elias",
+      "relationship": "Elias reagerer på om problemer overleveres åpent, om leveransen leses rettferdig, og om rework og kreditering forblir sporbare.",
+      "beat_refs": [
+        "1/afternoon",
+        "2/evening",
+        "4/morning",
+        "5/lunch",
+        "8/afternoon",
+        "11/lunch",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "kontinuitet_research_og_selma_maja",
+      "relationship": "Selma og Maja gjør versjon, karakterkunnskap og kildeforbehold til sammenhengende produksjonsinfrastruktur fremfor etterarbeid.",
+      "beat_refs": [
+        "2/morning",
+        "3/afternoon",
+        "6/morning",
+        "7/evening",
+        "9/afternoon",
+        "12/morning",
+        "13/afternoon"
+      ]
+    },
+    {
+      "id": "teamtillit_og_bordprove",
+      "relationship": "Det bredere teamet lærer om manusmedarbeideren gjør usynlige grenser synlige når tempo, hierarki og sosial flyt presser.",
+      "beat_refs": [
+        "3/lunch",
+        "5/afternoon",
+        "8/evening",
+        "10/morning",
+        "11/evening",
+        "12/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "privat_rollemaske_og_utrygghet",
+      "relationship": "Venn og familie merker hvordan krediteringsfrykt, kontraktsuro og ansvar uten endelig myndighet følger spilleren hjem.",
+      "beat_refs": [
+        "1/evening",
+        "3/evening",
+        "6/evening",
+        "9/evening",
+        "11/afternoon",
+        "13/lunch",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "forfatterstemme_folger_hjem",
+      "description": "Et løsningsdiktert handoff gjør spilleren redd for å ha skrevet i Elias sitt navn, og uroen preger en privat samtale lenge før kreditering kan avklares.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/film_tv/people/manusmedarbeider_people.json#film_tv_manus_realism_author_handoff_001"
+      ]
+    },
+    {
+      "id": "venting_blir_overarbeid",
+      "description": "Når Elias arbeider, fylles ventetiden med uavgrenset research og gratis finpuss som familien opplever som en arbeidsdag uten slutt.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/film_tv/knowledge/manusmedarbeider_knowledge.json#film_tv_manus_realism_history_go_skouen_context_001"
+      ]
+    },
+    {
+      "id": "bordprove_skam",
+      "description": "Et synlig researchforbehold kan kjennes sosialt pinlig i rommet, men taushet gir sterkere skam når feilen senere spores tilbake.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/film_tv/event/manusmedarbeider_event.json#film_tv_manus_realism_table_read_001"
+      ]
+    },
+    {
+      "id": "kreditering_og_kontrakt",
+      "description": "Lukking av saken uten skjult medforfatterskap gjør det mulig å snakke konkret hjemme om bidrag, kreditering og grensene for neste oppdrag.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/film_tv/consequence/manusmedarbeider_consequence.json#film_tv_manus_realism_revision_case_close_001"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "baseline_returnerer_i_versjon_20",
+      "setup_ref": "1/morning",
+      "return_ref": "9/afternoon",
+      "domains": [
+        "job",
+        "narrative"
+      ]
+    },
+    {
+      "id": "handoff_former_forfatterrespons",
+      "setup_ref": "1/afternoon",
+      "return_ref": "5/lunch",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "ventetidsresearch_former_rework",
+      "setup_ref": "3/afternoon",
+      "return_ref": "7/evening",
+      "domains": [
+        "job",
+        "narrative"
+      ]
+    },
+    {
+      "id": "skjult_notatkonflikt_treffer_bordprove",
+      "setup_ref": "4/morning",
+      "return_ref": "12/evening",
+      "domains": [
+        "job",
+        "reputation"
+      ]
+    },
+    {
+      "id": "kontinuitetsvalg_treffer_scene_42",
+      "setup_ref": "6/morning",
+      "return_ref": "9/afternoon",
+      "domains": [
+        "job",
+        "narrative"
+      ]
+    },
+    {
+      "id": "gratis_ekstraarbeid_treffer_hjemmet",
+      "setup_ref": "6/evening",
+      "return_ref": "11/afternoon",
+      "domains": [
+        "livelihood",
+        "relationship",
+        "psyche"
+      ]
+    },
+    {
+      "id": "researchforbehold_treffer_teamtillit",
+      "setup_ref": "7/evening",
+      "return_ref": "12/evening",
+      "domains": [
+        "reputation",
+        "job"
+      ]
+    },
+    {
+      "id": "myndighetsgrensen_treffer_sluttstatus",
+      "setup_ref": "10/afternoon",
+      "return_ref": "14/afternoon",
+      "domains": [
+        "job",
+        "reputation",
+        "narrative"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/mailFamilies/film_tv/job/manusmedarbeider_job.json#film_tv_manus_job_versjonsgrunnlag_001",
+      "data/Civication/mailFamilies/film_tv/people/manusmedarbeider_people.json#film_tv_manus_people_forfatterstemme_001",
+      "data/Civication/mailFamilies/film_tv/conflict/manusmedarbeider_conflict.json#film_tv_manus_conflict_motstridende_001",
+      "data/Civication/mailFamilies/film_tv/story/manusmedarbeider_story.json#film_tv_manus_story_kontinuitet_001",
+      "data/Civication/mailFamilies/film_tv/event/manusmedarbeider_event.json#film_tv_manus_event_bordprove_001",
+      "data/Civication/mailFamilies/film_tv/micro/manusmedarbeider_micro.json#film_tv_manus_micro_research_001",
+      "data/Civication/mailFamilies/film_tv/knowledge/manusmedarbeider_knowledge.json#film_tv_manus_knowledge_skouen_001",
+      "data/Civication/mailFamilies/film_tv/followup/manusmedarbeider_followup.json#film_tv_manus_followup_forfatter_001",
+      "data/Civication/mailFamilies/film_tv/consequence/manusmedarbeider_consequence.json#film_tv_manus_consequence_bordprove_001",
+      "data/Civication/mailFamilies/film_tv/job/manusmedarbeider_job.json#film_tv_manus_realism_revision_case_open_001",
+      "data/Civication/mailFamilies/film_tv/people/manusmedarbeider_people.json#film_tv_manus_realism_author_handoff_001",
+      "data/Civication/mailFamilies/film_tv/knowledge/manusmedarbeider_knowledge.json#film_tv_manus_realism_history_go_skouen_context_001",
+      "data/Civication/mailFamilies/film_tv/conflict/manusmedarbeider_conflict.json#film_tv_manus_realism_author_response_001",
+      "data/Civication/mailFamilies/film_tv/followup/manusmedarbeider_followup.json#film_tv_manus_realism_continuity_rework_001",
+      "data/Civication/mailFamilies/film_tv/event/manusmedarbeider_event.json#film_tv_manus_realism_table_read_001",
+      "data/Civication/mailFamilies/film_tv/consequence/manusmedarbeider_consequence.json#film_tv_manus_realism_revision_case_close_001"
+    ]
+  }
+}
