@@ -43,17 +43,22 @@ function content(candidate){
       descRows:[['identity'],['service'],['access']],popupRows:[['identity'],['service'],['access'],['current']]
     };
   }
-  if(candidate.group==='bla_skilt')return {
+  if(candidate.group==='bla_skilt'){
+    const coordinateClaim=candidate.coordSourceUrl
+      ?`Kartmarkøren for ${candidate.name} bruker et verifisert adressepunkt for ${candidate.address}.`
+      :`Kartmarkøren for ${candidate.name} bruker det offisielle adressepunktet for ${candidate.address}.`;
+    return {
     desc:`${candidate.name} er et fysisk minneskilt ved ${candidate.address}. ${candidate.fact} ${candidate.context}`,
-    popupDesc:`Oslo Byes Vels skiltoversikt knytter ${candidate.name} til ${candidate.address}. ${candidate.fact}\n\n${candidate.context}\n\nKartmarkøren for ${candidate.name} bruker det offisielle adressepunktet for skiltadressen.`,
+    popupDesc:`Oslo Byes Vels skiltoversikt knytter ${candidate.name} til ${candidate.address}. ${candidate.fact}\n\n${candidate.context}\n\n${coordinateClaim}`,
     claims:[
       {suffix:'identity',claim:`Oslo Byes Vels skiltoversikt knytter ${candidate.name} til ${candidate.address}.`,sourceUrl:candidate.sourceUrl,sourceLocation:'Blå skilt-oversikten: skiltets navn og adresse.',kind:'identity'},
       {suffix:'listing',claim:candidate.fact,sourceUrl:candidate.sourceUrl,sourceLocation:'Blå skilt-oversikten: aktuell oppføring.',kind:'ordinary'},
-      {suffix:'context',claim:candidate.context,sourceUrl:candidate.secondarySourceUrl,sourceLocation:'Oppslagsartikkel om personen eller stedet som skiltet gjelder.',kind:'ordinary'},
-      {suffix:'coordinate',claim:`Kartmarkøren for ${candidate.name} bruker det offisielle adressepunktet for ${candidate.address}.`,sourceUrl:GEONORGE,sourceLocation:'Geonorge Adresser API: representasjonspunkt for adressen.',kind:'ordinary'}
+      {suffix:'context',claim:candidate.context,sourceUrl:candidate.secondarySourceUrl,sourceLocation:'Oppslagsartikkel om personen eller stedet som skiltet gjelder.',kind:candidate.contextClaimKind||'ordinary',mode:candidate.contextEvidenceMode,independentSourceUrls:candidate.contextIndependentSourceUrls},
+      {suffix:'coordinate',claim:coordinateClaim,sourceUrl:candidate.coordSourceUrl||GEONORGE,sourceLocation:candidate.coordSourceLocation||'Geonorge Adresser API: representasjonspunkt for adressen.',kind:'ordinary'}
     ],
     descRows:[['identity'],['listing'],['context']],popupRows:[['identity'],['listing'],['context'],['coordinate']]
-  };
+    };
+  }
   return {
     desc:`${candidate.name} er en individuell snublestein ved ${candidate.address}. ${candidate.fact} ${candidate.context}`,
     popupDesc:`Jødisk Museums snublesteinportal plasserer ${candidate.name} ved ${candidate.address}. ${candidate.fact}\n\n${candidate.context}\n\n${candidate.name} beholdes som ett eget fysisk minnepunkt, adskilt fra andre steiner og nærliggende steder.`,
@@ -67,20 +72,22 @@ function content(candidate){
   };
 }
 
-function claims(candidate,rows){return rows.map(row=>({id:`claim_${candidate.id}_${row.suffix}`,claim:row.claim,sourceUrl:row.sourceUrl,sourceLocation:row.sourceLocation,sourceType:candidate.group==='snublestein'?'institutional':'official',verifiedAt:DATE,status:'verified',claimKind:row.kind,evidenceMode:row.mode||'direct',temporalStatus:'current'}));}
+function claims(candidate,rows){return rows.map(row=>({id:`claim_${candidate.id}_${row.suffix}`,claim:row.claim,sourceUrl:row.sourceUrl,sourceLocation:row.sourceLocation,sourceType:candidate.group==='snublestein'?'institutional':'official',verifiedAt:DATE,status:'verified',claimKind:row.kind,evidenceMode:row.mode||'direct',temporalStatus:'current',...(row.independentSourceUrls?{independentSourceUrls:row.independentSourceUrls}:{})}));}
 function ids(candidate,rows){return rows.map(suffix=>`claim_${candidate.id}_${suffix}`);}
 
 function makePlace(candidate){
   const contract=groupContract(candidate);const text=content(candidate);
-  const sourceObjectId=candidate.group==='bla_skilt'?`geonorge-address:${candidate.id}`:`${contract.provider}:${candidate.id}`;
+  const sourceObjectId=candidate.coordSourceId||(candidate.group==='bla_skilt'?`geonorge-address:${candidate.id}`:`${contract.provider}:${candidate.id}`);
+  const coordinateUrl=candidate.coordSourceUrl||(candidate.group==='bla_skilt'?GEONORGE:candidate.sourceUrl);
   const place={
     id:candidate.id,name:candidate.name,lat:candidate.lat,lon:candidate.lon,r:candidate.group==='snublestein'?35:45,
     category:contract.category,subcategory_id:contract.subcategory,placeTier:'micro',desc:text.desc,popupDesc:text.popupDesc,
     micro_place_profile:{schema:'history_go_micro_place_profile_v1',kind:candidate.kind,currentStatus:candidate.status,sourceUrl:candidate.sourceUrl,sourceLocation:`Autoritativ oppføring for ${candidate.name}`,verifiedAt:DATE,quizMode:'none'},
-    locatorType:'current_place',sourceProvider:contract.provider,sourceObjectId,geocodeAccuracy:'rooftop',coordRole:'display_marker',coordType:contract.coordType,coordStatus:'verified',coordSource:contract.provider==='official_address'?'Kartverket / Geonorge Adresser API':candidate.group==='snublestein'?'Jødisk Museum i Oslo – Snublesteiner':'Oslo kommune – tjenestekart',coordSourceId:sourceObjectId,coordSourceUrl:candidate.group==='bla_skilt'?GEONORGE:candidate.sourceUrl,coordNote:`Kildeverifisert kartpunkt for ${candidate.name}.`,coordVerifiedAt:DATE,
+    locatorType:'current_place',sourceProvider:contract.provider,sourceObjectId,geocodeAccuracy:'rooftop',coordRole:'display_marker',coordType:contract.coordType,coordStatus:'verified',coordSource:candidate.coordSource||(contract.provider==='official_address'?'Kartverket / Geonorge Adresser API':candidate.group==='snublestein'?'Jødisk Museum i Oslo – Snublesteiner':'Oslo kommune – tjenestekart'),coordSourceId:sourceObjectId,coordSourceUrl:coordinateUrl,coordNote:`Kildeverifisert kartpunkt for ${candidate.name}.`,coordVerifiedAt:DATE,
     address:structuredAddress(candidate.address),
-    externalLinks:[{type:'reference',label:`Kilde – ${candidate.name}`,url:candidate.sourceUrl,lang:'nb',verifiedAt:DATE},{type:'coordinate_source',label:'Koordinatkilde',url:candidate.group==='bla_skilt'?GEONORGE:candidate.sourceUrl,lang:'nb',verifiedAt:DATE}]
+    externalLinks:[{type:'reference',label:`Kilde – ${candidate.name}`,url:candidate.sourceUrl,lang:'nb',verifiedAt:DATE},{type:'coordinate_source',label:'Koordinatkilde',url:coordinateUrl,lang:'nb',verifiedAt:DATE}]
   };
+  if(candidate.parentPlaceId){place.parent_place_id=candidate.parentPlaceId;place.micro_place_profile.parent_place_id=candidate.parentPlaceId;}
   if(candidate.secondarySourceUrl)place.externalLinks.splice(1,0,{type:'reference',label:'Kontekstkilde',url:candidate.secondarySourceUrl,lang:'nb',verifiedAt:DATE});
   if(candidate.group==='miljo_gjenbruk')place.circular_profile={schema:'history_go_circular_place_profile_v1',place_type:candidate.placeType,operation_status:candidate.status,free_takeaway:candidate.id==='gronmo_gjenvinningsstasjon',reuse_sale:false,restricted_access:false,self_service:candidate.id!=='gronmo_gjenvinningsstasjon',mobile_service:false,reuse:[{id:`${candidate.id}_service`,title:candidate.kind==='miljostasjon'?'Farlig avfall':'Innlevering og ombruk',description:candidate.fact}],materials:[{id:`${candidate.id}_materials`,title:'Materialer',description:`Leveringsreglene ved ${candidate.name} følger Oslo kommunes aktuelle stedsside.`}],environment:[{id:`${candidate.id}_environment`,title:'Kretsløp & miljø',description:`${candidate.name} er et fysisk punkt i kommunens system for forsvarlig avfallshåndtering.`}],systems:[{id:`${candidate.id}_systems`,title:'Sted & system',description:candidate.access}],source_url:candidate.sourceUrl,verified_at:DATE};
   return {place,text,contract};
@@ -116,10 +123,10 @@ function updateHaraldrud(){
 
 function main(){
   const intake=readJson(INTAKE);const candidates=intake.places||[];
-  if(candidates.length!==25)throw new Error(`Expected 25 candidates, got ${candidates.length}`);
+  if(candidates.length!==29)throw new Error(`Expected 29 candidates, got ${candidates.length}`);
   const groups=candidates.reduce((result,row)=>{(result[row.group]??=[]).push(row);return result;},{});
-  if(groups.miljo_gjenbruk?.length!==15||groups.bla_skilt?.length!==4||groups.snublestein?.length!==6)throw new Error('Expected group counts 15 + 4 + 6');
-  if(new Set(candidates.map(row=>row.id)).size!==25)throw new Error('Duplicate candidate ID');
+  if(groups.miljo_gjenbruk?.length!==16||groups.bla_skilt?.length!==7||groups.snublestein?.length!==6)throw new Error('Expected group counts 16 + 7 + 6');
+  if(new Set(candidates.map(row=>row.id)).size!==29)throw new Error('Duplicate candidate ID');
   const manifest=readJson('data/places/manifest.json');const materialized=[];
   for(const candidate of candidates){
     if(!Number.isFinite(candidate.lat)||!Number.isFinite(candidate.lon)||candidate.lat<59||candidate.lat>61||candidate.lon<9||candidate.lon>12)throw new Error(`Invalid Oslo coordinate: ${candidate.id}`);
@@ -130,7 +137,7 @@ function main(){
     console.log(`materialized pending ${candidate.id}`);
   }
   updateHaraldrud();writeJson('data/places/manifest.json',manifest);
-  writeJson(REPORT,{schema:'history_go_oslo_micro_place_expansion_materialization_v1',generatedAt:DATE,sourceIntake:INTAKE,newPlaceCount:25,reviewedPacketCount:26,counts:{miljo_gjenbruk:15,bla_skilt:4,snublestein:6},status:'pending_independent_review',places:materialized,correctedPlaces:[HARALDRUD_ID]});
+  writeJson(REPORT,{schema:'history_go_oslo_micro_place_expansion_materialization_v1',generatedAt:DATE,sourceIntake:INTAKE,newPlaceCount:29,reviewedPacketCount:30,counts:{miljo_gjenbruk:16,bla_skilt:7,snublestein:6},status:'pending_independent_review',places:materialized,correctedPlaces:[HARALDRUD_ID]});
 }
 
 main();

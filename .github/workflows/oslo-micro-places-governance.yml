@@ -9,6 +9,8 @@ on:
       - "data/places/by/oslo/bla_skilt/**"
       - "data/places/helse/oslo/bla_skilt/**"
       - "data/places/historie/oslo/snublestein/**"
+      - "data/places/politikk/oslo/bla_skilt/**"
+      - "data/places/sport/oslo/bla_skilt/**"
       - "data/places/vitenskap/oslo/bla_skilt/**"
       - "data/places/production/**"
       - "data/places/regler/micro_place_profile_v1.schema.json"
@@ -44,6 +46,8 @@ on:
       - "data/places/by/oslo/bla_skilt/**"
       - "data/places/helse/oslo/bla_skilt/**"
       - "data/places/historie/oslo/snublestein/**"
+      - "data/places/politikk/oslo/bla_skilt/**"
+      - "data/places/sport/oslo/bla_skilt/**"
       - "data/places/vitenskap/oslo/bla_skilt/**"
       - "data/places/regler/micro_place_profile_v1.schema.json"
       - "tests/micro-place-contract.test.mjs"
@@ -68,12 +72,12 @@ jobs:
           cache: npm
       - name: Install repository dependencies
         run: npm ci
-      - name: Validate Micro Place contract, original 11 plus 21, and expansion 15 plus 4 plus 6
+      - name: Validate Micro Place contract, original 11 plus 21, and expansion 16 plus 7 plus 6
         run: node --test tests/micro-place-contract.test.mjs tests/oslo-miljo-gjenbruk-lesekiosk-materialization.test.mjs tests/oslo-micro-place-expansion.test.mjs
       - name: Validate independent review promotion
         run: |
           node scripts/promote-oslo-micro-place-review.mjs
-          node scripts/promote-oslo-micro-place-review.mjs --audit=reports/oslo-micro-place-expansion-2026/review-audit.json --report=reports/oslo-micro-place-expansion-2026/review-integrity-report.json --expected=26
+          node scripts/promote-oslo-micro-place-review.mjs --audit=reports/oslo-micro-place-expansion-2026/review-audit.json --report=reports/oslo-micro-place-expansion-2026/review-integrity-report.json --expected=30
       - name: Validate production descriptions under Micro Place policy
         run: node scripts/validate-place-description-production-v4_2_policy.mjs --all
       - name: Validate index, manifest and coordinates
