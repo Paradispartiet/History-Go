@@ -8,6 +8,13 @@ on:
       - scripts/TEMP_materialize_programleder_role_world.mjs
       - tests/civication-film-tv-programleder-role-world-rollout.test.js
       - .github/workflows/TEMP-civication-programleder-role-world-materialize.yml
+  pull_request:
+    branches:
+      - main
+    paths:
+      - scripts/TEMP_materialize_programleder_role_world.mjs
+      - tests/civication-film-tv-programleder-role-world-rollout.test.js
+      - .github/workflows/TEMP-civication-programleder-role-world-materialize.yml
 
 permissions:
   contents: write
