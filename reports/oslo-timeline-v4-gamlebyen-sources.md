@@ -5,7 +5,7 @@ Base: `4119e5e8fe1467508b647ef81cf7cbe55c2a836a`
 
 ## Scope
 
-This tranche closes three actual `awaiting_source_backed_history` gaps without changing canonical Place payloads, runtime payloads, validation thresholds, Lisboa data or approximate dates.
+This tranche closes three actual `awaiting_source_backed_history` gaps without changing canonical Place payloads, validation thresholds, Lisboa data or approximate dates. The leksikon additions are synchronized into the existing deterministic place-open runtime; no runtime content is authored independently of the generator.
 
 ### Clemenskirkeruinen
 
@@ -50,6 +50,21 @@ Sources:
 
 - https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/saxegarden/
 - https://oslobyleksikon.no/side/Saxeg%C3%A5rden
+
+## Deterministic runtime synchronization
+
+`npm run place-open:build` changed only the runtime outputs that directly depend on the three new leksikon entries:
+
+- `data/runtime/leksikon-all/part-006.json`
+- `data/runtime/place-open/clemenskirken_ruin_oslo.json`
+- `data/runtime/place-open/minneparken_gamlebyen.json`
+- `data/runtime/place-open/saxegarden.json`
+
+The synchronization gate rejected any generator change outside `data/runtime/**`.
+
+## Regression contract
+
+The ordinary `tests/epoke-place-index.test.mjs` target asserts the exact reviewed year sets for all three places and explicitly rejects `1135` as a Clemenskirken milestone. This keeps the approximate canonical medieval dating from being promoted to an exact year in later deterministic rebuilds.
 
 ## Expected coverage delta
 
