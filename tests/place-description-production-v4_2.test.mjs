@@ -144,6 +144,21 @@ test('a complete ready_v4_2 packet passes packet validation', () => {
   assert.deepEqual(result.issues, []);
 });
 
+test('timelineYear is an explicit historical anchor present in the claim', () => {
+  const fixture = makeReadyFixture();
+  fixture.packet.claims[0].timelineYear = 1912;
+  assert.deepEqual(validatePacket({ ...fixture, now: new Date('2026-07-27T12:00:00Z') }).issues, []);
+
+  fixture.packet.claims[0].timelineYear = 1942;
+  let codes = new Set(validatePacket({ ...fixture, now: new Date('2026-07-27T12:00:00Z') }).issues.map((issue) => issue.code));
+  assert.equal(codes.has('timeline_year_missing_from_claim'), true);
+
+  fixture.packet.claims[0].timelineYear = 1912;
+  fixture.packet.claims[0].temporalStatus = 'current';
+  codes = new Set(validatePacket({ ...fixture, now: new Date('2026-07-27T12:00:00Z') }).issues.map((issue) => issue.code));
+  assert.equal(codes.has('timeline_year_requires_historical_status'), true);
+});
+
 test('stale text and missing sentence claims are blocking errors', () => {
   const fixture = makeReadyFixture();
   fixture.place.desc = `${fixture.place.desc} Ny udokumentert setning.`;
