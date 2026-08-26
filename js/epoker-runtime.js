@@ -324,6 +324,12 @@ const HGEpokerRuntime = (() => {
           throw new Error("Epoke place index has an invalid Oslo coverage contract");
         }
       }
+      if (Number(payload?.version) >= 6 && (
+        !Number.isFinite(Number(payload?.stats?.verified_place_production_milestone_count)) ||
+        Number(payload.stats.verified_place_production_milestone_count) < 1
+      )) {
+        throw new Error("Epoke place index has an invalid verified place-production contract");
+      }
       placeIndexCache = payload;
       window.HG_EPOKE_PLACE_INDEX = payload;
       return payload;
