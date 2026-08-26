@@ -118,12 +118,12 @@ test("Oslo coverage classifies every canonical place exactly once without overst
     .sort();
 
   assert.equal(coverage.contract, "oslo-history-coverage-v1");
-  // Three individually reviewed Oslo places now carry dated, source-backed History evidence.
+  // Six individually reviewed Oslo places now carry dated, source-backed History evidence.
   assert.equal(coverage.canonical_place_count, 567);
-  assert.equal(coverage.dated_evidence_place_count, 183);
+  assert.equal(coverage.dated_evidence_place_count, 186);
   assert.equal(coverage.documented_case_place_count, 2);
-  assert.equal(coverage.awaiting_source_backed_history_count, 382);
-  for (const placeId of ["markveien", "paulus_kirke", "arbeidermuseet"]) {
+  assert.equal(coverage.awaiting_source_backed_history_count, 379);
+  for (const placeId of ["markveien", "paulus_kirke", "arbeidermuseet", "clemenskirken_ruin_oslo", "minneparken_gamlebyen", "saxegarden"]) {
     assert.equal(
       coverage.places.find((place) => place.place_id === placeId)?.status,
       "dated_evidence",
