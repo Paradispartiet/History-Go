@@ -647,6 +647,9 @@
     if (id === norm(context?.planned_primary_id)) return false;
     if (evaluateWorkRhythm(mail, context).eligible !== true) return false;
     if (evaluateSocialStanding(mail, context).eligible !== true) return false;
+    // Keep SceneDirector parity with CivicationDailyMailBuilder: authored
+    // planned-only scenes belong to their role-plan step, never daily_extra.
+    if (mail?.planned_only === true) return false;
     const text = progressionText(mail);
     const week = extractProgressionWeek(mail);
     const maxWeek = Math.max(1, Number(context?.max_week || 1));

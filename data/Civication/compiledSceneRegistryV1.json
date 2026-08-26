@@ -33270,6 +33270,292 @@
       "category": "film_tv",
       "compatibility_projection": {
         "category": "film_tv",
+        "choice_axis": "aksepter_vilkar_og_rework_vs_behold_lovet_snarvei",
+        "choices": [
+          {
+            "effect": 2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:sara_lokasjonsansvarlig",
+                  "delta": 2,
+                  "event_id": "film_tv_pa_standing_location_terms_respected",
+                  "reason": "Dokumenterte adgangsvilkår får faktisk virkning på planen.",
+                  "source_actor_id": "sara_lokasjonsansvarlig"
+                },
+                {
+                  "audience_id": "manager:amir_innspillingsleder",
+                  "delta": 2,
+                  "event_id": "film_tv_pa_standing_manager_clear_choice",
+                  "reason": "Amir får et tydelig operativt valg med synlig tidskostnad.",
+                  "source_actor_id": "amir_innspillingsleder"
+                }
+              ],
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_location_response_rework",
+                  "note": "Lokasjonssvaret er mottatt; call og transportplan revideres mot to frigitt ruter og synlig tidskonsekvens.",
+                  "op": "transition",
+                  "to_phase": "route_and_call_rework",
+                  "to_status": "in_progress",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_location_terms_traced",
+                  "flag": "released_routes_and_time_cost_visible",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                }
+              ]
+            },
+            "feedback": "Adgangssvaret får faktisk endre caset, mens operative prioriteringer blir hos riktig eier.",
+            "id": "A",
+            "label": "Godta rutedelingen og send tidskonsekvensen til Amir før call oppdateres",
+            "reply": "Jeg registrerer frigitt personell- og utstyrsrute, synliggjør forsinkelsen og ber Amir prioritere rekkefølgen."
+          },
+          {
+            "effect": -2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:sara_lokasjonsansvarlig",
+                  "delta": -3,
+                  "event_id": "film_tv_pa_standing_location_terms_ignored",
+                  "reason": "Bekreftet adgangsstatus behandles som valgfritt råd.",
+                  "source_actor_id": "sara_lokasjonsansvarlig"
+                },
+                {
+                  "audience_id": "manager:amir_innspillingsleder",
+                  "delta": -2,
+                  "event_id": "film_tv_pa_standing_manager_risk_shifted",
+                  "reason": "Tids- og sikkerhetsrisiko flyttes til ankomst uten eksplisitt prioritering.",
+                  "source_actor_id": "amir_innspillingsleder"
+                }
+              ],
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_location_response_ignored",
+                  "note": "Caset går videre med kjent avvik mellom frigitt rute og kommunisert transportplan.",
+                  "op": "transition",
+                  "to_phase": "route_and_call_rework",
+                  "to_status": "in_progress",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_location_terms_ignored",
+                  "flag": "confirmed_access_limit_ignored",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                }
+              ]
+            },
+            "feedback": "En bekreftet begrensning blir gjort til et eksperiment som andre må bære kostnaden for.",
+            "id": "B",
+            "label": "Behold sideinngangen i transportmeldingen til første bil faktisk blir avvist",
+            "reply": "Vi prøver den opprinnelige ruten først; hvis den ikke går, flytter vi bilene ved ankomst."
+          }
+        ],
+        "competency": "avvikshandtering",
+        "consequence_axis": "sikkerhetslojalitet_vs_tillitstap",
+        "cooldown": 12,
+        "day_phase": "morning",
+        "from": "Sara, lokasjonsansvarlig",
+        "id": "film_tv_pa_realism_location_response_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_rollout_pa_location_response",
+        "mail_type": "conflict",
+        "narrative_arc": "fra_sprikende_call_til_sporbart_operativt_handoff",
+        "people_ref": "sara_lokasjonsansvarlig",
+        "phase": "mastery",
+        "place_id": "opptakslokasjon_inngang",
+        "planned_only": true,
+        "pressure": "avgangsfrist_vs_dokumentert_adgang",
+        "priority": 96,
+        "purpose": "Bevise at venting og handoff returnerer med ny informasjon som faktisk endrer arbeidsobjektets fase og avdelingenes konkrete plan.",
+        "repeatable": false,
+        "role_scope": "produksjonsassistent",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/conflict/produksjonsassistent_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Personell og utstyr må skilles fordi bare to kontrollerte ruter er frigitt.",
+          "Sara eier adgangsstatusen; Amir må prioritere tidskonsekvensen.",
+          "Line trenger en sporbar call-endring og mottaksbekreftelse fra transport, kamera og lys."
+        ],
+        "stage": "stable",
+        "stakes": "Å beholde den lovede snarveien beskytter tempo og ansikt, men gjør et dokumentert adgangsvilkår til sikkerhets- og tillitsgjeld for hele crevet.",
+        "subject": "Svaret kom: én rute er frigitt, men sideinngangen og felles lossing faller bort",
+        "summary": "Sara frigir hovedinngangen for personell og en separat kjøreport for utstyr, men sideinngangen kan ikke brukes. Transportplan, møtetider og call-tillegg må derfor tilbake i samme case som rework.",
+        "tags": [
+          "role_world_realism",
+          "controlled_rollout",
+          "film_tv",
+          "produksjonsassistent"
+        ],
+        "task_domain": "vedvarende_opptaksdagkoordinering",
+        "task_kind": "conflict",
+        "thread_key": "film_tv_pa_shoot_day_realism_001",
+        "work_context": {
+          "institution_id": "film_tv_produksjonsenhet_001",
+          "object_ids": [
+            "film_tv_pa_shoot_day_case_001"
+          ],
+          "priority": "urgent",
+          "rework_of_scene_id": "film_tv_pa_realism_location_handoff_001",
+          "waiting_for_actor_id": "sara_lokasjonsansvarlig"
+        }
+      },
+      "id": "film_tv_pa_realism_location_response_001",
+      "mail_type": "conflict",
+      "role_scope": "produksjonsassistent",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:sara_lokasjonsansvarlig",
+                  "delta": 2,
+                  "event_id": "film_tv_pa_standing_location_terms_respected",
+                  "reason": "Dokumenterte adgangsvilkår får faktisk virkning på planen.",
+                  "source_actor_id": "sara_lokasjonsansvarlig"
+                },
+                {
+                  "audience_id": "manager:amir_innspillingsleder",
+                  "delta": 2,
+                  "event_id": "film_tv_pa_standing_manager_clear_choice",
+                  "reason": "Amir får et tydelig operativt valg med synlig tidskostnad.",
+                  "source_actor_id": "amir_innspillingsleder"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_location_response_rework",
+                  "note": "Lokasjonssvaret er mottatt; call og transportplan revideres mot to frigitt ruter og synlig tidskonsekvens.",
+                  "op": "transition",
+                  "to_phase": "route_and_call_rework",
+                  "to_status": "in_progress",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_location_terms_traced",
+                  "flag": "released_routes_and_time_cost_visible",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                }
+              ]
+            },
+            "feedback": "Adgangssvaret får faktisk endre caset, mens operative prioriteringer blir hos riktig eier.",
+            "id": "A",
+            "label": "Godta rutedelingen og send tidskonsekvensen til Amir før call oppdateres",
+            "reply": "Jeg registrerer frigitt personell- og utstyrsrute, synliggjør forsinkelsen og ber Amir prioritere rekkefølgen."
+          },
+          {
+            "effects": {
+              "score_delta": -2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:sara_lokasjonsansvarlig",
+                  "delta": -3,
+                  "event_id": "film_tv_pa_standing_location_terms_ignored",
+                  "reason": "Bekreftet adgangsstatus behandles som valgfritt råd.",
+                  "source_actor_id": "sara_lokasjonsansvarlig"
+                },
+                {
+                  "audience_id": "manager:amir_innspillingsleder",
+                  "delta": -2,
+                  "event_id": "film_tv_pa_standing_manager_risk_shifted",
+                  "reason": "Tids- og sikkerhetsrisiko flyttes til ankomst uten eksplisitt prioritering.",
+                  "source_actor_id": "amir_innspillingsleder"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_location_response_ignored",
+                  "note": "Caset går videre med kjent avvik mellom frigitt rute og kommunisert transportplan.",
+                  "op": "transition",
+                  "to_phase": "route_and_call_rework",
+                  "to_status": "in_progress",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_location_terms_ignored",
+                  "flag": "confirmed_access_limit_ignored",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                }
+              ]
+            },
+            "feedback": "En bekreftet begrensning blir gjort til et eksperiment som andre må bære kostnaden for.",
+            "id": "B",
+            "label": "Behold sideinngangen i transportmeldingen til første bil faktisk blir avvist",
+            "reply": "Vi prøver den opprinnelige ruten først; hvis den ikke går, flytter vi bilene ved ankomst."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Personell og utstyr må skilles fordi bare to kontrollerte ruter er frigitt.",
+            "Sara eier adgangsstatusen; Amir må prioritere tidskonsekvensen.",
+            "Line trenger en sporbar call-endring og mottaksbekreftelse fra transport, kamera og lys."
+          ],
+          "subject": "Svaret kom: én rute er frigitt, men sideinngangen og felles lossing faller bort",
+          "summary": "Sara frigir hovedinngangen for personell og en separat kjøreport for utstyr, men sideinngangen kan ikke brukes. Transportplan, møtetider og call-tillegg må derfor tilbake i samme case som rework."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_pa_realism_location_response_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "opptakslokasjon_inngang",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_pa_realism_location_response_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/conflict/produksjonsassistent_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "film_tv_pa_shoot_day_realism_001",
+        "version": 1,
+        "work_context": {
+          "institution_id": "film_tv_produksjonsenhet_001",
+          "object_ids": [
+            "film_tv_pa_shoot_day_case_001"
+          ],
+          "priority": "urgent",
+          "rework_of_scene_id": "film_tv_pa_realism_location_handoff_001",
+          "waiting_for_actor_id": "sara_lokasjonsansvarlig"
+        }
+      },
+      "source_hash": "ba7955ed007a243609640cae91f71cc17fbec90f08a10611398685ae4b5e02ad",
+      "source_path": "data/Civication/mailFamilies/film_tv/conflict/produksjonsassistent_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
         "choice_axis": "apen_reparasjon_vs_ansvarsforskyvning",
         "choices": [
           {
@@ -33395,6 +33681,404 @@
         "version": 1
       },
       "source_hash": "aba2254ce76b2c631610efa7800922c12e5ff51f11d89e7352cca2c13622ec94",
+      "source_path": "data/Civication/mailFamilies/film_tv/consequence/produksjonsassistent_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "authority_context": {
+          "approval_points": [
+            {
+              "action_id": "approve_operational_change",
+              "approval_id": "film_tv_operational_change_approval",
+              "approval_object_id": "film_tv_pa_operational_approval_001",
+              "approver_actor_id": "amir_innspillingsleder"
+            }
+          ],
+          "authority_rules": [
+            {
+              "action_id": "recommend_shoot_day_status",
+              "authority": "influence_only",
+              "requires_resources": []
+            },
+            {
+              "action_id": "approve_operational_change",
+              "approval_id": "film_tv_operational_change_approval",
+              "authority": "approval_required",
+              "requires_resources": []
+            },
+            {
+              "action_id": "perform_untrained_safety_critical_work",
+              "authority": "forbidden",
+              "requires_resources": []
+            },
+            {
+              "action_id": "promise_pay_credit_or_working_terms",
+              "authority": "forbidden",
+              "requires_resources": []
+            }
+          ],
+          "escalation_paths": [],
+          "external_counterparts": [
+            "film_tv_transportleverandor"
+          ],
+          "goals_pressures": [
+            "sikker_framdrift",
+            "call_presisjon",
+            "lokasjonsvilkar",
+            "minste_nodvendige_persondata",
+            "opptaksfrist"
+          ],
+          "institution_id": "film_tv_produksjonsenhet_001",
+          "peer_functions": [
+            "sara_lokasjonsansvarlig",
+            "ida_personvernkontakt"
+          ],
+          "reporting_line": [
+            "amir_innspillingsleder",
+            "line_produksjonskoordinator"
+          ],
+          "resources": [],
+          "role_scope": "produksjonsassistent",
+          "unit_id": "film_tv_opptaksenhet"
+        },
+        "category": "film_tv",
+        "choice_axis": "sporbart_statushandoff_vs_selvautoriser_ferdigmelding",
+        "choices": [
+          {
+            "authority_action": {
+              "action_id": "recommend_shoot_day_status",
+              "intent": "recommend"
+            },
+            "effect": 2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:amir_innspillingsleder",
+                  "delta": 3,
+                  "event_id": "film_tv_pa_standing_manager_closure",
+                  "reason": "Statusen er sporbar, avgrenset og klar for operativ beslutning.",
+                  "source_actor_id": "amir_innspillingsleder"
+                },
+                {
+                  "audience_id": "team:film_tv_produksjonskontor",
+                  "delta": 2,
+                  "event_id": "film_tv_pa_standing_office_closure",
+                  "reason": "Mottak, avvik og overlevering kan brukes av neste skift.",
+                  "source_actor_id": "line_produksjonskoordinator"
+                }
+              ],
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_shoot_day_case_completed",
+                  "note": "Produksjonsassistentens case er fullført som sporbart status-handoff; operativ godkjenning forblir hos Amir.",
+                  "op": "transition",
+                  "to_phase": "coordination_handoff_ready_for_operational_approval",
+                  "to_status": "completed",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_authority_boundary_preserved",
+                  "flag": "coordination_complete_without_operational_authority",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                }
+              ]
+            },
+            "feedback": "Bidraget blir synlig og anvendelig samtidig som leder-, sikkerhets- og kontraktsgrensene står.",
+            "id": "A",
+            "label": "Lukk eget spor med mottak, restavvik og ansvar synlig, og anbefal status til Amir",
+            "reply": "Jeg ferdigstiller koordineringscaset som handoff og anbefaler status uten å godkjenne den operative endringen eller nye arbeidsvilkår."
+          },
+          {
+            "authority_action": {
+              "action_id": "recommend_shoot_day_status",
+              "intent": "recommend"
+            },
+            "effect": 1,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:amir_innspillingsleder",
+                  "delta": 2,
+                  "event_id": "film_tv_pa_standing_manager_reserved_closure",
+                  "reason": "Restavviket er synlig i stedet for skjult bak en ferdigmelding.",
+                  "source_actor_id": "amir_innspillingsleder"
+                }
+              ],
+              "stats": {
+                "energy": -1,
+                "quality": 1,
+                "risk": -1,
+                "trust": 2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_shoot_day_case_completed_reserved",
+                  "note": "Assistentens case er fullført med synlig vær- og sikkerhetsreservasjon for Amir og fagansvarlig.",
+                  "op": "transition",
+                  "to_phase": "coordination_handoff_ready_with_reservations",
+                  "to_status": "completed",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_residual_risk_visible",
+                  "flag": "weather_safety_reservation_escalated",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                }
+              ]
+            },
+            "feedback": "Et avgrenset handoff er komplett når restusikkerhet ikke skjules.",
+            "id": "B",
+            "label": "Lukk arbeidsdelen med reservasjon og eskaler det uløste væravviket",
+            "reply": "Jeg markerer hva som fortsatt er stoppet og ber Amir og fagansvarlig behandle det før caset brukes som operativ ferdigstatus."
+          }
+        ],
+        "competency": "avvik_og_overlevering",
+        "consequence_axis": "institusjonell_tillit_vs_myndighetslekkasje",
+        "cooldown": 12,
+        "day_phase": "afternoon",
+        "from": "Amir, innspillingsleder",
+        "id": "film_tv_pa_realism_shoot_day_case_close_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_rollout_pa_shoot_day_closure",
+        "mail_type": "consequence",
+        "narrative_arc": "fra_sprikende_call_til_sporbart_operativt_handoff",
+        "people_ref": "amir_innspillingsleder",
+        "phase": "climax",
+        "place_id": "produksjonskontor_callbord",
+        "planned_only": true,
+        "pressure": "synlig_bidragsarbeid_vs_formell_myndighet",
+        "priority": 99,
+        "purpose": "Bevise at usynlig koordineringsarbeid kan fullføres og bli synlig uten at kompetanse eller situert standing fabrikkerer leder-, sikkerhets- eller kontraktsmyndighet.",
+        "repeatable": false,
+        "role_scope": "produksjonsassistent",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/consequence/produksjonsassistent_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Canonical call-tillegg og avdelingsmottak kan sammenlignes med faktisk rute og ankomst.",
+          "Væravviket er enten faglig løst eller eksplisitt overlevert som åpent stoppunkt.",
+          "Amir eier operative prioriteringer; fagansvarlig eier sikkerhetsfrigivelse; arbeidsvilkår og kreditering ligger utenfor caset."
+        ],
+        "stage": "stable",
+        "stakes": "Et presist slutt-handoff gjør neste skift i stand til å handle. Selvautorisert ferdigmelding skjuler restavvik og gjør assistentens pålitelighet til falsk beslutningsrett.",
+        "subject": "Lukk koordineringscaset som status og handoff – operativ godkjenning ligger fortsatt hos Amir",
+        "summary": "Call-endring, lokasjonsvilkår, mottak, persondatagrense og væravvik er samlet. Du skal avslutte assistentens arbeidsobjekt og anbefale status, mens Amir beholder operativ godkjenning og ingen kan love lønn, kreditering eller nye vilkår her.",
+        "tags": [
+          "role_world_realism",
+          "controlled_rollout",
+          "film_tv",
+          "produksjonsassistent"
+        ],
+        "task_domain": "vedvarende_opptaksdagkoordinering",
+        "task_kind": "consequence",
+        "thread_key": "film_tv_pa_shoot_day_realism_001",
+        "work_context": {
+          "institution_id": "film_tv_produksjonsenhet_001",
+          "object_ids": [
+            "film_tv_pa_shoot_day_case_001"
+          ],
+          "priority": "urgent",
+          "rework_of_scene_id": "film_tv_pa_realism_unit_move_event_001"
+        }
+      },
+      "id": "film_tv_pa_realism_shoot_day_case_close_001",
+      "mail_type": "consequence",
+      "role_scope": "produksjonsassistent",
+      "scene": {
+        "arc_stage": "climax",
+        "authority_context": {
+          "approval_points": [
+            {
+              "action_id": "approve_operational_change",
+              "approval_id": "film_tv_operational_change_approval",
+              "approval_object_id": "film_tv_pa_operational_approval_001",
+              "approver_actor_id": "amir_innspillingsleder"
+            }
+          ],
+          "authority_rules": [
+            {
+              "action_id": "recommend_shoot_day_status",
+              "authority": "influence_only",
+              "requires_resources": []
+            },
+            {
+              "action_id": "approve_operational_change",
+              "approval_id": "film_tv_operational_change_approval",
+              "authority": "approval_required",
+              "requires_resources": []
+            },
+            {
+              "action_id": "perform_untrained_safety_critical_work",
+              "authority": "forbidden",
+              "requires_resources": []
+            },
+            {
+              "action_id": "promise_pay_credit_or_working_terms",
+              "authority": "forbidden",
+              "requires_resources": []
+            }
+          ],
+          "escalation_paths": [],
+          "external_counterparts": [
+            "film_tv_transportleverandor"
+          ],
+          "goals_pressures": [
+            "sikker_framdrift",
+            "call_presisjon",
+            "lokasjonsvilkar",
+            "minste_nodvendige_persondata",
+            "opptaksfrist"
+          ],
+          "institution_id": "film_tv_produksjonsenhet_001",
+          "peer_functions": [
+            "sara_lokasjonsansvarlig",
+            "ida_personvernkontakt"
+          ],
+          "reporting_line": [
+            "amir_innspillingsleder",
+            "line_produksjonskoordinator"
+          ],
+          "resources": [],
+          "role_scope": "produksjonsassistent",
+          "unit_id": "film_tv_opptaksenhet"
+        },
+        "choices": [
+          {
+            "authority_action": {
+              "action_id": "recommend_shoot_day_status",
+              "intent": "recommend"
+            },
+            "effects": {
+              "score_delta": 2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:amir_innspillingsleder",
+                  "delta": 3,
+                  "event_id": "film_tv_pa_standing_manager_closure",
+                  "reason": "Statusen er sporbar, avgrenset og klar for operativ beslutning.",
+                  "source_actor_id": "amir_innspillingsleder"
+                },
+                {
+                  "audience_id": "team:film_tv_produksjonskontor",
+                  "delta": 2,
+                  "event_id": "film_tv_pa_standing_office_closure",
+                  "reason": "Mottak, avvik og overlevering kan brukes av neste skift.",
+                  "source_actor_id": "line_produksjonskoordinator"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_shoot_day_case_completed",
+                  "note": "Produksjonsassistentens case er fullført som sporbart status-handoff; operativ godkjenning forblir hos Amir.",
+                  "op": "transition",
+                  "to_phase": "coordination_handoff_ready_for_operational_approval",
+                  "to_status": "completed",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_authority_boundary_preserved",
+                  "flag": "coordination_complete_without_operational_authority",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                }
+              ]
+            },
+            "feedback": "Bidraget blir synlig og anvendelig samtidig som leder-, sikkerhets- og kontraktsgrensene står.",
+            "id": "A",
+            "label": "Lukk eget spor med mottak, restavvik og ansvar synlig, og anbefal status til Amir",
+            "reply": "Jeg ferdigstiller koordineringscaset som handoff og anbefaler status uten å godkjenne den operative endringen eller nye arbeidsvilkår."
+          },
+          {
+            "authority_action": {
+              "action_id": "recommend_shoot_day_status",
+              "intent": "recommend"
+            },
+            "effects": {
+              "score_delta": 1,
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:amir_innspillingsleder",
+                  "delta": 2,
+                  "event_id": "film_tv_pa_standing_manager_reserved_closure",
+                  "reason": "Restavviket er synlig i stedet for skjult bak en ferdigmelding.",
+                  "source_actor_id": "amir_innspillingsleder"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_shoot_day_case_completed_reserved",
+                  "note": "Assistentens case er fullført med synlig vær- og sikkerhetsreservasjon for Amir og fagansvarlig.",
+                  "op": "transition",
+                  "to_phase": "coordination_handoff_ready_with_reservations",
+                  "to_status": "completed",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_residual_risk_visible",
+                  "flag": "weather_safety_reservation_escalated",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                }
+              ]
+            },
+            "feedback": "Et avgrenset handoff er komplett når restusikkerhet ikke skjules.",
+            "id": "B",
+            "label": "Lukk arbeidsdelen med reservasjon og eskaler det uløste væravviket",
+            "reply": "Jeg markerer hva som fortsatt er stoppet og ber Amir og fagansvarlig behandle det før caset brukes som operativ ferdigstatus."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Canonical call-tillegg og avdelingsmottak kan sammenlignes med faktisk rute og ankomst.",
+            "Væravviket er enten faglig løst eller eksplisitt overlevert som åpent stoppunkt.",
+            "Amir eier operative prioriteringer; fagansvarlig eier sikkerhetsfrigivelse; arbeidsvilkår og kreditering ligger utenfor caset."
+          ],
+          "subject": "Lukk koordineringscaset som status og handoff – operativ godkjenning ligger fortsatt hos Amir",
+          "summary": "Call-endring, lokasjonsvilkår, mottak, persondatagrense og væravvik er samlet. Du skal avslutte assistentens arbeidsobjekt og anbefale status, mens Amir beholder operativ godkjenning og ingen kan love lønn, kreditering eller nye vilkår her."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_pa_realism_shoot_day_case_close_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "produksjonskontor_callbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_pa_realism_shoot_day_case_close_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/consequence/produksjonsassistent_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "film_tv_pa_shoot_day_realism_001",
+        "version": 1,
+        "work_context": {
+          "institution_id": "film_tv_produksjonsenhet_001",
+          "object_ids": [
+            "film_tv_pa_shoot_day_case_001"
+          ],
+          "priority": "urgent",
+          "rework_of_scene_id": "film_tv_pa_realism_unit_move_event_001"
+        }
+      },
+      "source_hash": "c2a95be48e3c666b8cffc18c35b92dde43a327607a3dd9959d85cf1d07c0ee1f",
       "source_path": "data/Civication/mailFamilies/film_tv/consequence/produksjonsassistent_consequence.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -33531,6 +34215,292 @@
       "category": "film_tv",
       "compatibility_projection": {
         "category": "film_tv",
+        "choice_axis": "stans_og_eskaler_vs_improviser_under_press",
+        "choices": [
+          {
+            "effect": 2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "team:film_tv_settcrew",
+                  "delta": 3,
+                  "event_id": "film_tv_pa_standing_crew_safety",
+                  "reason": "Crevet ser at lavstatus og tidspress ikke brukes til å skyve risiko nedover.",
+                  "source_actor_id": "amir_innspillingsleder"
+                },
+                {
+                  "audience_id": "manager:amir_innspillingsleder",
+                  "delta": 2,
+                  "event_id": "film_tv_pa_standing_manager_safety",
+                  "reason": "Avviket er avgrenset og eskalert uten selvautorisert sikkerhetsbeslutning.",
+                  "source_actor_id": "amir_innspillingsleder"
+                }
+              ],
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_unit_move_safety_escalated",
+                  "note": "Unit move er midlertidig stanset; væravviket er synlig og sendt til riktig sikkerhets- og operativ beslutning.",
+                  "op": "transition",
+                  "to_phase": "weather_safety_escalation_and_recovery",
+                  "to_status": "in_progress",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_safety_boundary_preserved",
+                  "flag": "assistant_stopped_own_task_and_escalated",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                }
+              ]
+            },
+            "feedback": "Du bruker rollen til å stoppe og eskalere uten å late som du kan godkjenne den nye risikoen.",
+            "id": "A",
+            "label": "Stans egen håndbæringsoppgave, sperr praktisk av og hent fagansvarlig",
+            "reply": "Jeg markerer rampen, holder crevet tilbake og ber Amir hente riktig fagansvarlig før utstyret flyttes."
+          },
+          {
+            "effect": -2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "team:film_tv_settcrew",
+                  "delta": -3,
+                  "event_id": "film_tv_pa_standing_crew_risk_shifted",
+                  "reason": "Tidspresset gjøres til crewets kroppslige risiko.",
+                  "source_actor_id": "amir_innspillingsleder"
+                },
+                {
+                  "audience_id": "manager:amir_innspillingsleder",
+                  "delta": -3,
+                  "event_id": "film_tv_pa_standing_manager_authority_leak",
+                  "reason": "Assistenten overtar sikkerhetskritisk beslutning under sosialt press.",
+                  "source_actor_id": "amir_innspillingsleder"
+                }
+              ],
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_unit_move_safety_improvised",
+                  "note": "Crewet er satt i improvisert håndbæring før væravviket er faglig vurdert.",
+                  "op": "transition",
+                  "to_phase": "weather_safety_escalation_and_recovery",
+                  "to_status": "in_progress",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_untrained_safety_work",
+                  "flag": "assistant_improvised_safety_critical_work",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                }
+              ]
+            },
+            "feedback": "Sosial handlekraft blir brukt til å overta en sikkerhetskritisk vurdering uten opplæring eller mandat.",
+            "id": "B",
+            "label": "Organiser en rask bærekjede før noen rekker å stoppe flyten",
+            "reply": "Vi tar mindre kolli og flere personer; dette løser vi på to minutter mens Amir er opptatt."
+          }
+        ],
+        "competency": "rolle_og_mandat",
+        "consequence_axis": "situert_crewtillit_vs_skade_og_myndighetslekkasje",
+        "cooldown": 12,
+        "day_phase": "evening",
+        "from": "Amir, innspillingsleder",
+        "id": "film_tv_pa_realism_unit_move_event_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_rollout_pa_unit_move_event",
+        "mail_type": "event",
+        "narrative_arc": "fra_sprikende_call_til_sporbart_operativt_handoff",
+        "people_ref": "amir_innspillingsleder",
+        "phase": "climax",
+        "place_id": "sett_sikkerhetssone",
+        "planned_only": true,
+        "pressure": "teamtempo_vs_sikkerhetsgrense",
+        "priority": 98,
+        "purpose": "Bevise situert teamomdømme: assistenten kan stanse egen oppgave og gjøre risiko synlig uten å utføre ukjent arbeid eller overta sikkerhetsansvaret.",
+        "repeatable": false,
+        "role_scope": "produksjonsassistent",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/event/produksjonsassistent_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Ruten er adgangsgodkjent, men den nye værtilstanden er ikke vurdert for håndbæring.",
+          "Produksjonsassistenten kan stanse egen oppgave, sikre området praktisk og hente ansvarlig.",
+          "Crewets tillit eller irritasjon kan ikke gi assistenten sikkerhetsmyndighet."
+        ],
+        "stage": "stable",
+        "stakes": "Å vente på fagansvarlig koster minutter og sosial flyt. Å improvisere håndtering eller presse crevet videre kan gjøre lavstatusarbeidere til bærere av en risiko de ikke valgte.",
+        "subject": "Unit move starter, men regnet gjør den frigjorte utstyrsruten utrygg for håndbæring",
+        "summary": "Første personellpulje er framme og planen virker, men kraftig regn gjør rampen glatt. Crewet ser på deg for en rask løsning mens Amir og fagansvarlig står opptatt i en annen avklaring.",
+        "tags": [
+          "role_world_realism",
+          "controlled_rollout",
+          "film_tv",
+          "produksjonsassistent"
+        ],
+        "task_domain": "vedvarende_opptaksdagkoordinering",
+        "task_kind": "event",
+        "thread_key": "film_tv_pa_shoot_day_realism_001",
+        "work_context": {
+          "institution_id": "film_tv_produksjonsenhet_001",
+          "interrupts": true,
+          "object_ids": [
+            "film_tv_pa_shoot_day_case_001"
+          ],
+          "priority": "urgent",
+          "rework_of_scene_id": "film_tv_pa_realism_call_rework_001"
+        }
+      },
+      "id": "film_tv_pa_realism_unit_move_event_001",
+      "mail_type": "event",
+      "role_scope": "produksjonsassistent",
+      "scene": {
+        "arc_stage": "climax",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "team:film_tv_settcrew",
+                  "delta": 3,
+                  "event_id": "film_tv_pa_standing_crew_safety",
+                  "reason": "Crevet ser at lavstatus og tidspress ikke brukes til å skyve risiko nedover.",
+                  "source_actor_id": "amir_innspillingsleder"
+                },
+                {
+                  "audience_id": "manager:amir_innspillingsleder",
+                  "delta": 2,
+                  "event_id": "film_tv_pa_standing_manager_safety",
+                  "reason": "Avviket er avgrenset og eskalert uten selvautorisert sikkerhetsbeslutning.",
+                  "source_actor_id": "amir_innspillingsleder"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_unit_move_safety_escalated",
+                  "note": "Unit move er midlertidig stanset; væravviket er synlig og sendt til riktig sikkerhets- og operativ beslutning.",
+                  "op": "transition",
+                  "to_phase": "weather_safety_escalation_and_recovery",
+                  "to_status": "in_progress",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_safety_boundary_preserved",
+                  "flag": "assistant_stopped_own_task_and_escalated",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                }
+              ]
+            },
+            "feedback": "Du bruker rollen til å stoppe og eskalere uten å late som du kan godkjenne den nye risikoen.",
+            "id": "A",
+            "label": "Stans egen håndbæringsoppgave, sperr praktisk av og hent fagansvarlig",
+            "reply": "Jeg markerer rampen, holder crevet tilbake og ber Amir hente riktig fagansvarlig før utstyret flyttes."
+          },
+          {
+            "effects": {
+              "score_delta": -2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "team:film_tv_settcrew",
+                  "delta": -3,
+                  "event_id": "film_tv_pa_standing_crew_risk_shifted",
+                  "reason": "Tidspresset gjøres til crewets kroppslige risiko.",
+                  "source_actor_id": "amir_innspillingsleder"
+                },
+                {
+                  "audience_id": "manager:amir_innspillingsleder",
+                  "delta": -3,
+                  "event_id": "film_tv_pa_standing_manager_authority_leak",
+                  "reason": "Assistenten overtar sikkerhetskritisk beslutning under sosialt press.",
+                  "source_actor_id": "amir_innspillingsleder"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_unit_move_safety_improvised",
+                  "note": "Crewet er satt i improvisert håndbæring før væravviket er faglig vurdert.",
+                  "op": "transition",
+                  "to_phase": "weather_safety_escalation_and_recovery",
+                  "to_status": "in_progress",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_untrained_safety_work",
+                  "flag": "assistant_improvised_safety_critical_work",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                }
+              ]
+            },
+            "feedback": "Sosial handlekraft blir brukt til å overta en sikkerhetskritisk vurdering uten opplæring eller mandat.",
+            "id": "B",
+            "label": "Organiser en rask bærekjede før noen rekker å stoppe flyten",
+            "reply": "Vi tar mindre kolli og flere personer; dette løser vi på to minutter mens Amir er opptatt."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Ruten er adgangsgodkjent, men den nye værtilstanden er ikke vurdert for håndbæring.",
+            "Produksjonsassistenten kan stanse egen oppgave, sikre området praktisk og hente ansvarlig.",
+            "Crewets tillit eller irritasjon kan ikke gi assistenten sikkerhetsmyndighet."
+          ],
+          "subject": "Unit move starter, men regnet gjør den frigjorte utstyrsruten utrygg for håndbæring",
+          "summary": "Første personellpulje er framme og planen virker, men kraftig regn gjør rampen glatt. Crewet ser på deg for en rask løsning mens Amir og fagansvarlig står opptatt i en annen avklaring."
+        },
+        "day_phase": "evening",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_pa_realism_unit_move_event_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "sett_sikkerhetssone",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_pa_realism_unit_move_event_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/event/produksjonsassistent_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "film_tv_pa_shoot_day_realism_001",
+        "version": 1,
+        "work_context": {
+          "institution_id": "film_tv_produksjonsenhet_001",
+          "interrupts": true,
+          "object_ids": [
+            "film_tv_pa_shoot_day_case_001"
+          ],
+          "priority": "urgent",
+          "rework_of_scene_id": "film_tv_pa_realism_call_rework_001"
+        }
+      },
+      "source_hash": "a9a3b3ff507bec5a18e5ef9ed6364ac3b2f0e605fb802c5fffae953e4c69de03",
+      "source_path": "data/Civication/mailFamilies/film_tv/event/produksjonsassistent_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
         "choice_axis": "presis_delstatus_vs_forenklet_gronnmelding",
         "choices": [
           {
@@ -33654,6 +34624,410 @@
         "version": 1
       },
       "source_hash": "2e6711a80a1b9ed0e99dab9ea27b91f85c6a84dfe760f1e4bb40475a81429351",
+      "source_path": "data/Civication/mailFamilies/film_tv/followup/produksjonsassistent_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "avdelingsvist_spor_vs_alt_til_alle",
+        "choices": [
+          {
+            "effect": 2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "team:film_tv_produksjonskontor",
+                  "delta": 3,
+                  "event_id": "film_tv_pa_standing_office_rework",
+                  "reason": "Call-endringen er canonical og mottaksstatusen lesbar.",
+                  "source_actor_id": "line_produksjonskoordinator"
+                },
+                {
+                  "audience_id": "professional:ida_personvernkontakt",
+                  "delta": 2,
+                  "event_id": "film_tv_pa_standing_privacy_bounded",
+                  "reason": "Avdelingene mottar bare data de trenger for oppgaven.",
+                  "source_actor_id": "ida_personvernkontakt"
+                },
+                {
+                  "audience_id": "team:film_tv_transport",
+                  "delta": 2,
+                  "event_id": "film_tv_pa_standing_transport_receipt",
+                  "reason": "Transportens rute, tidspunkt og mottak er tydelig dokumentert.",
+                  "source_actor_id": "line_produksjonskoordinator"
+                }
+              ],
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_call_reworked",
+                  "note": "Call-tillegg, ruter og avdelingsvise mottak er oppdatert med minste nødvendige data.",
+                  "op": "transition",
+                  "to_phase": "department_receipts_and_dispatch",
+                  "to_status": "in_progress",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_call_rework_trace_complete",
+                  "flag": "call_rework_receipts_and_data_scope_traced",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                }
+              ]
+            },
+            "feedback": "Reworken blir etterprøvbar uten at effektivitet krever unødvendig persondatadeling.",
+            "id": "A",
+            "label": "Oppdater canonical tillegg og send minste nødvendige beskjed per avdeling",
+            "reply": "Jeg fører beslutningen i call-sporet, deler rute og tid per behov og registrerer hvem som har bekreftet mottak."
+          },
+          {
+            "effect": -2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "team:film_tv_produksjonskontor",
+                  "delta": -2,
+                  "event_id": "film_tv_pa_standing_office_broadcast",
+                  "reason": "Ett masseutsendelsesgrep erstatter behandlingsbart mottaksspor.",
+                  "source_actor_id": "line_produksjonskoordinator"
+                },
+                {
+                  "audience_id": "professional:ida_personvernkontakt",
+                  "delta": -3,
+                  "event_id": "film_tv_pa_standing_privacy_breach",
+                  "reason": "Kontaktdata deles bredere enn oppgaven krever.",
+                  "source_actor_id": "ida_personvernkontakt"
+                }
+              ],
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_call_rework_broadcast",
+                  "note": "Call-endringen er sendt bredt uten avdelingsvis dataminimering eller tydelig mottaksspor.",
+                  "op": "transition",
+                  "to_phase": "department_receipts_and_dispatch",
+                  "to_status": "in_progress",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_data_scope_broad",
+                  "flag": "full_contact_sheet_broadcast",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                }
+              ]
+            },
+            "feedback": "Distribusjonen går raskt, men mottak blir uklart og flere får persondata uten arbeidsbehov.",
+            "id": "B",
+            "label": "Send ett komplett oppdatert ark til alle for å sikre at ingen mangler noe",
+            "reply": "Jeg sender samme fulle plan og kontaktliste til alle avdelinger; da kan de finne det de trenger selv."
+          },
+          {
+            "affordance": {
+              "history_go": {
+                "require_history_go_correct": true,
+                "require_task_completed": true,
+                "task_mail_ids": [
+                  "film_tv_pa_realism_history_go_cinemateket_logistics_001"
+                ]
+              }
+            },
+            "effect": 3,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:sara_lokasjonsansvarlig",
+                  "delta": 2,
+                  "event_id": "film_tv_pa_standing_location_history_rework",
+                  "reason": "Stedskontekst brukes innenfor dokumentert adgang.",
+                  "source_actor_id": "sara_lokasjonsansvarlig"
+                },
+                {
+                  "audience_id": "team:film_tv_produksjonskontor",
+                  "delta": 2,
+                  "event_id": "film_tv_pa_standing_office_history_rework",
+                  "reason": "Meldingen skiller publikum, crew og soner uten nye antakelser.",
+                  "source_actor_id": "line_produksjonskoordinator"
+                }
+              ],
+              "stats": {
+                "energy": -1,
+                "quality": 3,
+                "risk": -2,
+                "trust": 2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_history_context_call_rework",
+                  "note": "Stedskontekst er brukt til å skille offentlige flater, crew-ruter og avgrensede soner i call-reworken.",
+                  "op": "transition",
+                  "to_phase": "department_receipts_and_dispatch",
+                  "to_status": "in_progress",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_history_rework_bounded",
+                  "flag": "history_go_informs_logistics_without_access_authority",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                }
+              ]
+            },
+            "feedback": "History Go gir et bedre kommunikasjonsgrep uten å produsere adgang eller operativ myndighet.",
+            "id": "C",
+            "label": "Bruk Cinemateket-konteksten til å skille publikum, crew og avgrensede soner i meldingen",
+            "reply": "Jeg bruker stedskonteksten til tydelig skilting og rollebasert informasjon, men lar bare Saras frigivelse definere ruten."
+          }
+        ],
+        "competency": "kommunikasjon",
+        "consequence_axis": "teamtillit_vs_informasjonsgjeld",
+        "cooldown": 12,
+        "day_phase": "afternoon",
+        "from": "Line, produksjonskoordinator",
+        "id": "film_tv_pa_realism_call_rework_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_rollout_pa_call_rework",
+        "mail_type": "followup",
+        "narrative_arc": "fra_sprikende_call_til_sporbart_operativt_handoff",
+        "people_ref": "line_produksjonskoordinator",
+        "phase": "mastery",
+        "place_id": "produksjonskontor_callbord",
+        "planned_only": true,
+        "pressure": "fart_vs_mottak_og_personvern",
+        "priority": 97,
+        "purpose": "Gjøre rework til konkret produksjonspraksis der rute, tid, mottak og informasjonskontroll endres i samme arbeidsobjekt.",
+        "repeatable": false,
+        "role_scope": "produksjonsassistent",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/followup/produksjonsassistent_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Amirs prioritering er dokumentert og skal oversettes, ikke nytolkes.",
+          "Line eier den koordinerte call-flaten og kan bekrefte publisering av tillegget.",
+          "Ida krever minste nødvendige tilgang til medvirkende- og transportdata."
+        ],
+        "stage": "stable",
+        "stakes": "Én stor melding kan føles rask, men skjuler hvem som har mottatt hvilken instruks og sprer kontaktdata til flere enn oppgaven krever.",
+        "subject": "Reworken må nå nå hver avdeling uten å spre mer persondata enn nødvendig",
+        "summary": "Amir har prioritert personell først og utstyr i to puljer. Line ber deg oppdatere call-tillegget, skille avdelingsmeldinger og få mottaksbekreftelse uten å kopiere hele kontaktlisten til alle.",
+        "tags": [
+          "role_world_realism",
+          "controlled_rollout",
+          "film_tv",
+          "produksjonsassistent"
+        ],
+        "task_domain": "vedvarende_opptaksdagkoordinering",
+        "task_kind": "followup",
+        "thread_key": "film_tv_pa_shoot_day_realism_001",
+        "work_context": {
+          "institution_id": "film_tv_produksjonsenhet_001",
+          "object_ids": [
+            "film_tv_pa_shoot_day_case_001"
+          ],
+          "priority": "urgent",
+          "rework_of_scene_id": "film_tv_pa_realism_location_response_001"
+        }
+      },
+      "id": "film_tv_pa_realism_call_rework_001",
+      "mail_type": "followup",
+      "role_scope": "produksjonsassistent",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "team:film_tv_produksjonskontor",
+                  "delta": 3,
+                  "event_id": "film_tv_pa_standing_office_rework",
+                  "reason": "Call-endringen er canonical og mottaksstatusen lesbar.",
+                  "source_actor_id": "line_produksjonskoordinator"
+                },
+                {
+                  "audience_id": "professional:ida_personvernkontakt",
+                  "delta": 2,
+                  "event_id": "film_tv_pa_standing_privacy_bounded",
+                  "reason": "Avdelingene mottar bare data de trenger for oppgaven.",
+                  "source_actor_id": "ida_personvernkontakt"
+                },
+                {
+                  "audience_id": "team:film_tv_transport",
+                  "delta": 2,
+                  "event_id": "film_tv_pa_standing_transport_receipt",
+                  "reason": "Transportens rute, tidspunkt og mottak er tydelig dokumentert.",
+                  "source_actor_id": "line_produksjonskoordinator"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_call_reworked",
+                  "note": "Call-tillegg, ruter og avdelingsvise mottak er oppdatert med minste nødvendige data.",
+                  "op": "transition",
+                  "to_phase": "department_receipts_and_dispatch",
+                  "to_status": "in_progress",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_call_rework_trace_complete",
+                  "flag": "call_rework_receipts_and_data_scope_traced",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                }
+              ]
+            },
+            "feedback": "Reworken blir etterprøvbar uten at effektivitet krever unødvendig persondatadeling.",
+            "id": "A",
+            "label": "Oppdater canonical tillegg og send minste nødvendige beskjed per avdeling",
+            "reply": "Jeg fører beslutningen i call-sporet, deler rute og tid per behov og registrerer hvem som har bekreftet mottak."
+          },
+          {
+            "effects": {
+              "score_delta": -2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "team:film_tv_produksjonskontor",
+                  "delta": -2,
+                  "event_id": "film_tv_pa_standing_office_broadcast",
+                  "reason": "Ett masseutsendelsesgrep erstatter behandlingsbart mottaksspor.",
+                  "source_actor_id": "line_produksjonskoordinator"
+                },
+                {
+                  "audience_id": "professional:ida_personvernkontakt",
+                  "delta": -3,
+                  "event_id": "film_tv_pa_standing_privacy_breach",
+                  "reason": "Kontaktdata deles bredere enn oppgaven krever.",
+                  "source_actor_id": "ida_personvernkontakt"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_call_rework_broadcast",
+                  "note": "Call-endringen er sendt bredt uten avdelingsvis dataminimering eller tydelig mottaksspor.",
+                  "op": "transition",
+                  "to_phase": "department_receipts_and_dispatch",
+                  "to_status": "in_progress",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_data_scope_broad",
+                  "flag": "full_contact_sheet_broadcast",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                }
+              ]
+            },
+            "feedback": "Distribusjonen går raskt, men mottak blir uklart og flere får persondata uten arbeidsbehov.",
+            "id": "B",
+            "label": "Send ett komplett oppdatert ark til alle for å sikre at ingen mangler noe",
+            "reply": "Jeg sender samme fulle plan og kontaktliste til alle avdelinger; da kan de finne det de trenger selv."
+          },
+          {
+            "affordance": {
+              "history_go": {
+                "require_history_go_correct": true,
+                "require_task_completed": true,
+                "task_mail_ids": [
+                  "film_tv_pa_realism_history_go_cinemateket_logistics_001"
+                ]
+              }
+            },
+            "effects": {
+              "score_delta": 3,
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:sara_lokasjonsansvarlig",
+                  "delta": 2,
+                  "event_id": "film_tv_pa_standing_location_history_rework",
+                  "reason": "Stedskontekst brukes innenfor dokumentert adgang.",
+                  "source_actor_id": "sara_lokasjonsansvarlig"
+                },
+                {
+                  "audience_id": "team:film_tv_produksjonskontor",
+                  "delta": 2,
+                  "event_id": "film_tv_pa_standing_office_history_rework",
+                  "reason": "Meldingen skiller publikum, crew og soner uten nye antakelser.",
+                  "source_actor_id": "line_produksjonskoordinator"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_history_context_call_rework",
+                  "note": "Stedskontekst er brukt til å skille offentlige flater, crew-ruter og avgrensede soner i call-reworken.",
+                  "op": "transition",
+                  "to_phase": "department_receipts_and_dispatch",
+                  "to_status": "in_progress",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_history_rework_bounded",
+                  "flag": "history_go_informs_logistics_without_access_authority",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                }
+              ]
+            },
+            "feedback": "History Go gir et bedre kommunikasjonsgrep uten å produsere adgang eller operativ myndighet.",
+            "id": "C",
+            "label": "Bruk Cinemateket-konteksten til å skille publikum, crew og avgrensede soner i meldingen",
+            "reply": "Jeg bruker stedskonteksten til tydelig skilting og rollebasert informasjon, men lar bare Saras frigivelse definere ruten."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Amirs prioritering er dokumentert og skal oversettes, ikke nytolkes.",
+            "Line eier den koordinerte call-flaten og kan bekrefte publisering av tillegget.",
+            "Ida krever minste nødvendige tilgang til medvirkende- og transportdata."
+          ],
+          "subject": "Reworken må nå nå hver avdeling uten å spre mer persondata enn nødvendig",
+          "summary": "Amir har prioritert personell først og utstyr i to puljer. Line ber deg oppdatere call-tillegget, skille avdelingsmeldinger og få mottaksbekreftelse uten å kopiere hele kontaktlisten til alle."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_pa_realism_call_rework_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "produksjonskontor_callbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_pa_realism_call_rework_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/followup/produksjonsassistent_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "film_tv_pa_shoot_day_realism_001",
+        "version": 1,
+        "work_context": {
+          "institution_id": "film_tv_produksjonsenhet_001",
+          "object_ids": [
+            "film_tv_pa_shoot_day_case_001"
+          ],
+          "priority": "urgent",
+          "rework_of_scene_id": "film_tv_pa_realism_location_response_001"
+        }
+      },
+      "source_hash": "c444a9e0496891e8c1487575208f28602105bd3627ed7643666c9f17247e14a1",
       "source_path": "data/Civication/mailFamilies/film_tv/followup/produksjonsassistent_followup.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -33819,6 +35193,285 @@
       "category": "film_tv",
       "compatibility_projection": {
         "category": "film_tv",
+        "choice_axis": "felles_case_vs_private_hurtigfikser",
+        "choices": [
+          {
+            "effect": 2,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_call_baseline_traced",
+                  "flag": "call_baseline_owner_receipt_traced",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                }
+              ]
+            },
+            "feedback": "Arbeidsdagen kan endres uten at muntlig hast blir skjult versjonsmyndighet.",
+            "id": "A",
+            "label": "Frys call 12 og registrer tillegg, eier og mottak som separate spor",
+            "reply": "Jeg åpner ett case fra call 12 og fører hvert tillegg med beslutningseier, berørt avdeling og bekreftet status."
+          },
+          {
+            "effect": -2,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_call_baseline_blurred",
+                  "flag": "departure_precedes_version_control",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                }
+              ]
+            },
+            "feedback": "Farten øker, men antakelser og godkjente endringer blir uatskillelige for avdelingene som skal handle.",
+            "id": "B",
+            "label": "Send den mest sannsynlige planen til alle og rydd versjonen etter avgang",
+            "reply": "Jeg samler de nyeste beskjedene i én melding nå; endringsloggen kan oppdateres når bilene er ute."
+          }
+        ],
+        "competency": "kall_og_tidsplan",
+        "consequence_axis": "produksjonsflyt_vs_skjult_avviksgjeld",
+        "cooldown": 12,
+        "day_phase": "morning",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "film_tv_pa_shoot_day_case_opened",
+              "op": "create",
+              "work_object": {
+                "confidentiality": "internt_call_lokasjon_og_minste_nodvendige_persondata",
+                "deadline": "unit_move_dag_12_ettermiddag",
+                "flags": [
+                  "shoot_day_case_opened"
+                ],
+                "institution_id": "film_tv_produksjonsenhet_001",
+                "kind": "shoot_day_coordination_case",
+                "knowledge_refs": [
+                  "data/places/film_tv/oslo/cinemateket_oslo.json"
+                ],
+                "open_questions": [
+                  "Hvilken call-versjon er godkjent og hvem har bekreftet mottak?",
+                  "Hvilken inngang og rute har Sara faktisk frigitt?",
+                  "Hvilke kontakt- og transportdata trenger hver mottaker, og ikke flere?"
+                ],
+                "people_refs": [
+                  "amir_innspillingsleder",
+                  "sara_lokasjonsansvarlig",
+                  "line_produksjonskoordinator",
+                  "ida_personvernkontakt"
+                ],
+                "phase": "call_baseline_and_open_deviations",
+                "place_refs": [
+                  "produksjonskontor_callbord",
+                  "opptakslokasjon_inngang",
+                  "sett_sikkerhetssone",
+                  "produksjonskanal_tilgang",
+                  "cinemateket_oslo"
+                ],
+                "role_scope": "produksjonsassistent",
+                "shared": false,
+                "status": "in_progress",
+                "title": "Opptaksdag: call 12, lokasjonsadgang og unit move",
+                "work_object_id": "film_tv_pa_shoot_day_case_001"
+              }
+            }
+          ]
+        },
+        "from": "Line, produksjonskoordinator",
+        "id": "film_tv_pa_realism_shoot_day_case_open_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_rollout_pa_shoot_day_case",
+        "mail_type": "job",
+        "narrative_arc": "fra_sprikende_call_til_sporbart_operativt_handoff",
+        "people_ref": "line_produksjonskoordinator",
+        "phase": "advanced",
+        "place_id": "produksjonskontor_callbord",
+        "planned_only": true,
+        "pressure": "avgangstid_vs_sporbarhet",
+        "priority": 90,
+        "purpose": "Bevise et vedvarende opptaksdagobjekt som overlever handoff, venting, History Go-kontekst, lokasjonsrework, teamhendelse og myndighetsavgrenset avslutning.",
+        "repeatable": false,
+        "role_scope": "produksjonsassistent",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/job/produksjonsassistent_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Versjon 12 er eneste godkjente call sheet, mens muntlige tillegg mangler beslutningseier og mottaksbekreftelse.",
+          "Sara eier lokasjonsadgang, Amir eier operative prioriteringer og Line eier den koordinerte produksjonsflaten.",
+          "Produksjonsassistenten kan samle, logge og eskalere, men ikke godkjenne call-endring eller utføre ukjent sikkerhetskritisk arbeid."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis assistenten reparerer hvert avvik i private meldinger, kan produksjonen se effektiv ut samtidig som ansvar, sikkerhet og siste gyldige versjon blir umulig å etterprøve.",
+        "subject": "Åpne opptaksdagen som ett sporbart koordineringscase før bilene kjører",
+        "summary": "Call sheet versjon 12 er godkjent, men transport, lys og lokasjon har tre ulike muntlige tillegg. Line ber deg samle baseline, mottakere, adgangsstatus og åpne avvik i ett arbeidsobjekt før første unit move.",
+        "tags": [
+          "role_world_realism",
+          "controlled_rollout",
+          "film_tv",
+          "produksjonsassistent"
+        ],
+        "task_domain": "vedvarende_opptaksdagkoordinering",
+        "task_kind": "job",
+        "thread_key": "film_tv_pa_shoot_day_realism_001",
+        "work_context": {
+          "deadline_day": 12,
+          "deadline_phase": "afternoon",
+          "deadline_ref": "unit_move_klar_for_avgang",
+          "institution_id": "film_tv_produksjonsenhet_001",
+          "object_ids": [
+            "film_tv_pa_shoot_day_case_001"
+          ],
+          "priority": "high"
+        }
+      },
+      "id": "film_tv_pa_realism_shoot_day_case_open_001",
+      "mail_type": "job",
+      "role_scope": "produksjonsassistent",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 2,
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_call_baseline_traced",
+                  "flag": "call_baseline_owner_receipt_traced",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                }
+              ]
+            },
+            "feedback": "Arbeidsdagen kan endres uten at muntlig hast blir skjult versjonsmyndighet.",
+            "id": "A",
+            "label": "Frys call 12 og registrer tillegg, eier og mottak som separate spor",
+            "reply": "Jeg åpner ett case fra call 12 og fører hvert tillegg med beslutningseier, berørt avdeling og bekreftet status."
+          },
+          {
+            "effects": {
+              "score_delta": -2,
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_call_baseline_blurred",
+                  "flag": "departure_precedes_version_control",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                }
+              ]
+            },
+            "feedback": "Farten øker, men antakelser og godkjente endringer blir uatskillelige for avdelingene som skal handle.",
+            "id": "B",
+            "label": "Send den mest sannsynlige planen til alle og rydd versjonen etter avgang",
+            "reply": "Jeg samler de nyeste beskjedene i én melding nå; endringsloggen kan oppdateres når bilene er ute."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Versjon 12 er eneste godkjente call sheet, mens muntlige tillegg mangler beslutningseier og mottaksbekreftelse.",
+            "Sara eier lokasjonsadgang, Amir eier operative prioriteringer og Line eier den koordinerte produksjonsflaten.",
+            "Produksjonsassistenten kan samle, logge og eskalere, men ikke godkjenne call-endring eller utføre ukjent sikkerhetskritisk arbeid."
+          ],
+          "subject": "Åpne opptaksdagen som ett sporbart koordineringscase før bilene kjører",
+          "summary": "Call sheet versjon 12 er godkjent, men transport, lys og lokasjon har tre ulike muntlige tillegg. Line ber deg samle baseline, mottakere, adgangsstatus og åpne avvik i ett arbeidsobjekt før første unit move."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "film_tv_pa_shoot_day_case_opened",
+              "op": "create",
+              "work_object": {
+                "confidentiality": "internt_call_lokasjon_og_minste_nodvendige_persondata",
+                "deadline": "unit_move_dag_12_ettermiddag",
+                "flags": [
+                  "shoot_day_case_opened"
+                ],
+                "institution_id": "film_tv_produksjonsenhet_001",
+                "kind": "shoot_day_coordination_case",
+                "knowledge_refs": [
+                  "data/places/film_tv/oslo/cinemateket_oslo.json"
+                ],
+                "open_questions": [
+                  "Hvilken call-versjon er godkjent og hvem har bekreftet mottak?",
+                  "Hvilken inngang og rute har Sara faktisk frigitt?",
+                  "Hvilke kontakt- og transportdata trenger hver mottaker, og ikke flere?"
+                ],
+                "people_refs": [
+                  "amir_innspillingsleder",
+                  "sara_lokasjonsansvarlig",
+                  "line_produksjonskoordinator",
+                  "ida_personvernkontakt"
+                ],
+                "phase": "call_baseline_and_open_deviations",
+                "place_refs": [
+                  "produksjonskontor_callbord",
+                  "opptakslokasjon_inngang",
+                  "sett_sikkerhetssone",
+                  "produksjonskanal_tilgang",
+                  "cinemateket_oslo"
+                ],
+                "role_scope": "produksjonsassistent",
+                "shared": false,
+                "status": "in_progress",
+                "title": "Opptaksdag: call 12, lokasjonsadgang og unit move",
+                "work_object_id": "film_tv_pa_shoot_day_case_001"
+              }
+            }
+          ]
+        },
+        "id": "film_tv_pa_realism_shoot_day_case_open_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "produksjonskontor_callbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_pa_realism_shoot_day_case_open_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/job/produksjonsassistent_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "film_tv_pa_shoot_day_realism_001",
+        "version": 1,
+        "work_context": {
+          "deadline_day": 12,
+          "deadline_phase": "afternoon",
+          "deadline_ref": "unit_move_klar_for_avgang",
+          "institution_id": "film_tv_produksjonsenhet_001",
+          "object_ids": [
+            "film_tv_pa_shoot_day_case_001"
+          ],
+          "priority": "high"
+        }
+      },
+      "source_hash": "8d1fe0784527ae87d9f0737c2e3a9e3e1c7997dc70585ebb91b9b99143fb3be1",
+      "source_path": "data/Civication/mailFamilies/film_tv/job/produksjonsassistent_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
         "choice_axis": "riktig_tilgang_og_hjelp_vs_bekvemmelig_deling",
         "choices": [
           {
@@ -33977,6 +35630,236 @@
       "category": "film_tv",
       "compatibility_projection": {
         "category": "film_tv",
+        "choice_axis": "stedskontekst_vs_adgangsantakelse",
+        "choices": [
+          {
+            "effect": 2,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_history_place_context_applied",
+                  "flag": "cinemateket_context_bounded_from_access",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_history_place_context_note",
+                  "note": "Cinemateket brukes som stedskontekst; konkret produksjonsadgang forblir hos lokasjonsansvarlig og avtalen.",
+                  "op": "note",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                }
+              ]
+            },
+            "feedback": "History Go forbedrer reworken uten å gjøre stedskunnskap til skjult adgangsmyndighet.",
+            "id": "A",
+            "label": "Skill offentlig sted, institusjon og avtalt produksjonsadgang i tre spor",
+            "reply": "Jeg bruker stedet til å stille bedre logistikkspørsmål, men lar Saras kontroll og den konkrete avtalen avgjøre hvor crevet kan gå."
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_public_place_as_access_proof",
+                  "flag": "public_institution_misused_as_access_authority",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                }
+              ]
+            },
+            "feedback": "Offentlig synlighet og institusjonsstatus blir feilaktig behandlet som produksjonstillatelse.",
+            "id": "B",
+            "label": "Bruk den offentlige institusjonen som argument for at inngangen bør være uproblematisk",
+            "reply": "Dette er et offentlig filmsted, så jeg antar at vår planlagte inngang kan brukes mens Sara fullfører detaljene."
+          }
+        ],
+        "competency": "praktisk_koordinering",
+        "consequence_axis": "presis_rework_vs_lant_institusjonsautoritet",
+        "cooldown": 12,
+        "day_phase": "evening",
+        "from": "Sara, lokasjonsansvarlig",
+        "id": "film_tv_pa_realism_history_go_cinemateket_logistics_001",
+        "interaction_mode": "task",
+        "mail_family": "role_world_rollout_pa_history_go",
+        "mail_type": "knowledge",
+        "narrative_arc": "fra_sprikende_call_til_sporbart_operativt_handoff",
+        "people_ref": "sara_lokasjonsansvarlig",
+        "phase": "advanced",
+        "place_id": "cinemateket_oslo",
+        "planned_only": true,
+        "pressure": "ventetid_og_stedskunnskap",
+        "priority": 90,
+        "purpose": "La ventetid inneholde rolle-relevant stedskunnskap som forbedrer senere logistikkrework uten å produsere tillatelse, sikkerhetsgodkjenning eller ny call-myndighet.",
+        "repeatable": false,
+        "role_scope": "produksjonsassistent",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/knowledge/produksjonsassistent_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Cinemateket er en canonical filmhistorisk og offentlig institusjonell arena.",
+          "Offentlig tilgjengelighet er ikke det samme som produksjonsadgang til en bestemt sone eller på et bestemt tidspunkt.",
+          "Opptakscaset står fortsatt i ventestatus hos Sara mens History Go-oppgaven utføres."
+        ],
+        "stage": "stable",
+        "stakes": "God stedskontekst kan gjøre spørsmål og skilting presise. Feil brukt kan den gjøre et offentlig kjent sted til argument for at crevet sikkert får bruke enhver inngang.",
+        "subject": "Mens vi venter: les Cinemateket som offentlig sted og arbeidsflate, ikke som adgangsbevis",
+        "summary": "Lokasjonskontrollen står åpen. Sara ber deg bruke Cinemateket i History Go til å skille publikumsinngang, institusjonell funksjon, naboflater og produksjonens konkrete adgangsavtale før transportplanen revideres.",
+        "tags": [
+          "role_world_realism",
+          "controlled_rollout",
+          "film_tv",
+          "produksjonsassistent"
+        ],
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/places/film_tv/oslo/cinemateket_oslo.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "film_tv_pa_history_go_cinemateket_logistics"
+        },
+        "task_domain": "vedvarende_opptaksdagkoordinering",
+        "task_kind": "knowledge",
+        "task_payload": {
+          "completion_mode": "open_place",
+          "description": "Åpne stedet og skill institusjon, publikumsflate og filmhistorisk funksjon fra produksjonens konkrete adgang, kjøremønster og sikkerhetsavklaring.",
+          "place_id": "cinemateket_oslo",
+          "return_context": {
+            "mail_id": "film_tv_pa_realism_history_go_cinemateket_logistics_001",
+            "place_id": "cinemateket_oslo",
+            "role_scope": "produksjonsassistent",
+            "source": "civication"
+          },
+          "target_type": "place",
+          "task_kind": "history_go_place",
+          "title": "Les Cinemateket som offentlig sted og avgrenset arbeidsflate"
+        },
+        "thread_key": "film_tv_pa_shoot_day_realism_001",
+        "work_context": {
+          "institution_id": "film_tv_produksjonsenhet_001",
+          "object_ids": [
+            "film_tv_pa_shoot_day_case_001"
+          ],
+          "priority": "normal",
+          "waiting_for_actor_id": "sara_lokasjonsansvarlig"
+        }
+      },
+      "id": "film_tv_pa_realism_history_go_cinemateket_logistics_001",
+      "mail_type": "knowledge",
+      "role_scope": "produksjonsassistent",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 2,
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_history_place_context_applied",
+                  "flag": "cinemateket_context_bounded_from_access",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_history_place_context_note",
+                  "note": "Cinemateket brukes som stedskontekst; konkret produksjonsadgang forblir hos lokasjonsansvarlig og avtalen.",
+                  "op": "note",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                }
+              ]
+            },
+            "feedback": "History Go forbedrer reworken uten å gjøre stedskunnskap til skjult adgangsmyndighet.",
+            "id": "A",
+            "label": "Skill offentlig sted, institusjon og avtalt produksjonsadgang i tre spor",
+            "reply": "Jeg bruker stedet til å stille bedre logistikkspørsmål, men lar Saras kontroll og den konkrete avtalen avgjøre hvor crevet kan gå."
+          },
+          {
+            "effects": {
+              "score_delta": -1,
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_public_place_as_access_proof",
+                  "flag": "public_institution_misused_as_access_authority",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                }
+              ]
+            },
+            "feedback": "Offentlig synlighet og institusjonsstatus blir feilaktig behandlet som produksjonstillatelse.",
+            "id": "B",
+            "label": "Bruk den offentlige institusjonen som argument for at inngangen bør være uproblematisk",
+            "reply": "Dette er et offentlig filmsted, så jeg antar at vår planlagte inngang kan brukes mens Sara fullfører detaljene."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Cinemateket er en canonical filmhistorisk og offentlig institusjonell arena.",
+            "Offentlig tilgjengelighet er ikke det samme som produksjonsadgang til en bestemt sone eller på et bestemt tidspunkt.",
+            "Opptakscaset står fortsatt i ventestatus hos Sara mens History Go-oppgaven utføres."
+          ],
+          "subject": "Mens vi venter: les Cinemateket som offentlig sted og arbeidsflate, ikke som adgangsbevis",
+          "summary": "Lokasjonskontrollen står åpen. Sara ber deg bruke Cinemateket i History Go til å skille publikumsinngang, institusjonell funksjon, naboflater og produksjonens konkrete adgangsavtale før transportplanen revideres."
+        },
+        "day_phase": "evening",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_pa_realism_history_go_cinemateket_logistics_001",
+        "interaction_mode": "task",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "cinemateket_oslo",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_pa_realism_history_go_cinemateket_logistics_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/knowledge/produksjonsassistent_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "task_contract": {
+          "completion_rule": "history_go_payload_completed",
+          "evidence_refs": [
+            "data/places/film_tv/oslo/cinemateket_oslo.json"
+          ],
+          "failure_rule": "remain_open",
+          "task_id": "film_tv_pa_history_go_cinemateket_logistics"
+        },
+        "thread_id": "film_tv_pa_shoot_day_realism_001",
+        "version": 1,
+        "work_context": {
+          "institution_id": "film_tv_produksjonsenhet_001",
+          "object_ids": [
+            "film_tv_pa_shoot_day_case_001"
+          ],
+          "priority": "normal",
+          "waiting_for_actor_id": "sara_lokasjonsansvarlig"
+        }
+      },
+      "source_hash": "e41b1baa51382a10388dd51532296b78187dfb5d8a4021d71869f36af5fd7215",
+      "source_path": "data/Civication/mailFamilies/film_tv/knowledge/produksjonsassistent_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
         "choice_axis": "hjelpsom_innen_mandat_vs_uformell_overstyring",
         "choices": [
           {
@@ -34100,6 +35983,318 @@
         "version": 1
       },
       "source_hash": "cc8f3491b00652d8cac5b5f91d523604aaa42eab3f25e4c21abe3bd672d7e8d7",
+      "source_path": "data/Civication/mailFamilies/film_tv/people/produksjonsassistent_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "film_tv",
+      "compatibility_projection": {
+        "category": "film_tv",
+        "choice_axis": "presist_handoff_vs_presset_lovnad",
+        "choices": [
+          {
+            "effect": 2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:sara_lokasjonsansvarlig",
+                  "delta": 3,
+                  "event_id": "film_tv_pa_standing_location_precise",
+                  "reason": "Sara får et avgrenset grunnlag hun faktisk kan kontrollere.",
+                  "source_actor_id": "sara_lokasjonsansvarlig"
+                },
+                {
+                  "audience_id": "manager:amir_innspillingsleder",
+                  "delta": 2,
+                  "event_id": "film_tv_pa_standing_manager_wait_visible",
+                  "reason": "Ventestatus og operativ konsekvens er synlig før ny prioritering.",
+                  "source_actor_id": "amir_innspillingsleder"
+                },
+                {
+                  "audience_id": "team:film_tv_transport",
+                  "delta": 1,
+                  "event_id": "film_tv_pa_standing_transport_clear",
+                  "reason": "Transport mottar nødvendig informasjon uten falsk adgangsbekreftelse.",
+                  "source_actor_id": "line_produksjonskoordinator"
+                }
+              ],
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_location_handoff_waiting",
+                  "note": "Lokasjonsgrunnlaget er sendt til Sara, og opptakscaset venter på kontrollert adgangssvar.",
+                  "op": "transition",
+                  "to_phase": "awaiting_location_clearance",
+                  "to_status": "waiting",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_location_handoff_traced",
+                  "flag": "location_handoff_scope_and_owner_clear",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                }
+              ]
+            },
+            "feedback": "Handoffet kan behandles uten at praktisk tillit eller utålmodighet blir adgangstillatelse.",
+            "id": "A",
+            "label": "Send kjøretøy, tidsvindu, soner og godkjent prioritering hver for seg",
+            "reply": "Jeg sender det Sara trenger for kontrollen, markerer hva Amir har besluttet, og forteller transport at status fortsatt er ventende."
+          },
+          {
+            "effect": -2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:sara_lokasjonsansvarlig",
+                  "delta": -3,
+                  "event_id": "film_tv_pa_standing_location_pressured",
+                  "reason": "Ventende crew brukes som press mot uferdig kontroll.",
+                  "source_actor_id": "sara_lokasjonsansvarlig"
+                },
+                {
+                  "audience_id": "manager:amir_innspillingsleder",
+                  "delta": -2,
+                  "event_id": "film_tv_pa_standing_manager_risk_hidden",
+                  "reason": "Operativ risiko blir mindre lesbar når ønske presenteres som sannsynlig adgang.",
+                  "source_actor_id": "amir_innspillingsleder"
+                },
+                {
+                  "audience_id": "team:film_tv_transport",
+                  "delta": -1,
+                  "event_id": "film_tv_pa_standing_transport_ambiguity",
+                  "reason": "Transport får et uklart skille mellom ruteplan og frigitt rute.",
+                  "source_actor_id": "line_produksjonskoordinator"
+                }
+              ],
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_location_handoff_pressured_waiting",
+                  "note": "Caset venter, men handoffet inneholder tidspress og et uklart skille mellom ønsket og frigitt inngang.",
+                  "op": "transition",
+                  "to_phase": "awaiting_location_clearance",
+                  "to_status": "waiting",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_location_pressure_flag",
+                  "flag": "crew_pressure_in_location_clearance",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                }
+              ]
+            },
+            "feedback": "Sosialt og tidsmessig press flyttes inn i adgangskontrollen uten at noen sikker sone oppstår.",
+            "id": "B",
+            "label": "Be Sara behandle sideinngangen som nesten klar fordi hele crevet venter",
+            "reply": "Vi er allerede på vei, så kan du bekrefte den planlagte inngangen mens du fullfører kontrollen?"
+          }
+        ],
+        "competency": "lokasjon_og_logistikk",
+        "consequence_axis": "situert_tillit_vs_forventningsgjeld",
+        "cooldown": 12,
+        "day_phase": "afternoon",
+        "from": "Sara, lokasjonsansvarlig",
+        "id": "film_tv_pa_realism_location_handoff_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_rollout_pa_location_handoff",
+        "mail_type": "people",
+        "narrative_arc": "fra_sprikende_call_til_sporbart_operativt_handoff",
+        "people_ref": "sara_lokasjonsansvarlig",
+        "phase": "advanced",
+        "place_id": "opptakslokasjon_inngang",
+        "planned_only": true,
+        "pressure": "ventende_crew_vs_adgangskontroll",
+        "priority": 90,
+        "purpose": "Gjøre lokasjonsarbeidet til et faktisk handoff og la tillit hos Sara, Amir og transport utvikles forskjellig uten at standing skaper adgang.",
+        "repeatable": false,
+        "role_scope": "produksjonsassistent",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/film_tv/people/produksjonsassistent_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Sara kan frigi godkjente soner, men ikke bekrefte en rute hun ennå ikke har kontrollert.",
+          "Amir trenger realistisk ventestatus før han prioriterer opptaksrekkefølgen.",
+          "Transport trenger bare de opplysningene som er nødvendige for kjøring og mottak."
+        ],
+        "stage": "stable",
+        "stakes": "Et presist handoff kan synliggjøre at planen må vente. Et presset løfte kan roe crevet nå, men gjør forventning til falsk lokasjonsmyndighet.",
+        "subject": "Gi meg et adgangshandoff jeg kan behandle – ikke et løfte til et ventende crew",
+        "summary": "Sara kan avklare inngang og kjøremønster dersom du sender antall biler, tidsvindu, berørte soner og hvilke deler av call-endringen Amir faktisk har prioritert. Etter handoffet må produksjonen vente på lokasjonsklarering.",
+        "tags": [
+          "role_world_realism",
+          "controlled_rollout",
+          "film_tv",
+          "produksjonsassistent"
+        ],
+        "task_domain": "vedvarende_opptaksdagkoordinering",
+        "task_kind": "people",
+        "thread_key": "film_tv_pa_shoot_day_realism_001",
+        "work_context": {
+          "handoff_to_actor_id": "sara_lokasjonsansvarlig",
+          "institution_id": "film_tv_produksjonsenhet_001",
+          "object_ids": [
+            "film_tv_pa_shoot_day_case_001"
+          ],
+          "priority": "high"
+        }
+      },
+      "id": "film_tv_pa_realism_location_handoff_001",
+      "mail_type": "people",
+      "role_scope": "produksjonsassistent",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:sara_lokasjonsansvarlig",
+                  "delta": 3,
+                  "event_id": "film_tv_pa_standing_location_precise",
+                  "reason": "Sara får et avgrenset grunnlag hun faktisk kan kontrollere.",
+                  "source_actor_id": "sara_lokasjonsansvarlig"
+                },
+                {
+                  "audience_id": "manager:amir_innspillingsleder",
+                  "delta": 2,
+                  "event_id": "film_tv_pa_standing_manager_wait_visible",
+                  "reason": "Ventestatus og operativ konsekvens er synlig før ny prioritering.",
+                  "source_actor_id": "amir_innspillingsleder"
+                },
+                {
+                  "audience_id": "team:film_tv_transport",
+                  "delta": 1,
+                  "event_id": "film_tv_pa_standing_transport_clear",
+                  "reason": "Transport mottar nødvendig informasjon uten falsk adgangsbekreftelse.",
+                  "source_actor_id": "line_produksjonskoordinator"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_location_handoff_waiting",
+                  "note": "Lokasjonsgrunnlaget er sendt til Sara, og opptakscaset venter på kontrollert adgangssvar.",
+                  "op": "transition",
+                  "to_phase": "awaiting_location_clearance",
+                  "to_status": "waiting",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_location_handoff_traced",
+                  "flag": "location_handoff_scope_and_owner_clear",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                }
+              ]
+            },
+            "feedback": "Handoffet kan behandles uten at praktisk tillit eller utålmodighet blir adgangstillatelse.",
+            "id": "A",
+            "label": "Send kjøretøy, tidsvindu, soner og godkjent prioritering hver for seg",
+            "reply": "Jeg sender det Sara trenger for kontrollen, markerer hva Amir har besluttet, og forteller transport at status fortsatt er ventende."
+          },
+          {
+            "effects": {
+              "score_delta": -2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:sara_lokasjonsansvarlig",
+                  "delta": -3,
+                  "event_id": "film_tv_pa_standing_location_pressured",
+                  "reason": "Ventende crew brukes som press mot uferdig kontroll.",
+                  "source_actor_id": "sara_lokasjonsansvarlig"
+                },
+                {
+                  "audience_id": "manager:amir_innspillingsleder",
+                  "delta": -2,
+                  "event_id": "film_tv_pa_standing_manager_risk_hidden",
+                  "reason": "Operativ risiko blir mindre lesbar når ønske presenteres som sannsynlig adgang.",
+                  "source_actor_id": "amir_innspillingsleder"
+                },
+                {
+                  "audience_id": "team:film_tv_transport",
+                  "delta": -1,
+                  "event_id": "film_tv_pa_standing_transport_ambiguity",
+                  "reason": "Transport får et uklart skille mellom ruteplan og frigitt rute.",
+                  "source_actor_id": "line_produksjonskoordinator"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "film_tv_pa_location_handoff_pressured_waiting",
+                  "note": "Caset venter, men handoffet inneholder tidspress og et uklart skille mellom ønsket og frigitt inngang.",
+                  "op": "transition",
+                  "to_phase": "awaiting_location_clearance",
+                  "to_status": "waiting",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                },
+                {
+                  "event_id": "film_tv_pa_location_pressure_flag",
+                  "flag": "crew_pressure_in_location_clearance",
+                  "op": "add_flag",
+                  "work_object_id": "film_tv_pa_shoot_day_case_001"
+                }
+              ]
+            },
+            "feedback": "Sosialt og tidsmessig press flyttes inn i adgangskontrollen uten at noen sikker sone oppstår.",
+            "id": "B",
+            "label": "Be Sara behandle sideinngangen som nesten klar fordi hele crevet venter",
+            "reply": "Vi er allerede på vei, så kan du bekrefte den planlagte inngangen mens du fullfører kontrollen?"
+          }
+        ],
+        "content": {
+          "situation": [
+            "Sara kan frigi godkjente soner, men ikke bekrefte en rute hun ennå ikke har kontrollert.",
+            "Amir trenger realistisk ventestatus før han prioriterer opptaksrekkefølgen.",
+            "Transport trenger bare de opplysningene som er nødvendige for kjøring og mottak."
+          ],
+          "subject": "Gi meg et adgangshandoff jeg kan behandle – ikke et løfte til et ventende crew",
+          "summary": "Sara kan avklare inngang og kjøremønster dersom du sender antall biler, tidsvindu, berørte soner og hvilke deler av call-endringen Amir faktisk har prioritert. Etter handoffet må produksjonen vente på lokasjonsklarering."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "film_tv_pa_realism_location_handoff_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "opptakslokasjon_inngang",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "film_tv_pa_realism_location_handoff_001",
+          "source_path": "data/Civication/mailFamilies/film_tv/people/produksjonsassistent_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "film_tv_pa_shoot_day_realism_001",
+        "version": 1,
+        "work_context": {
+          "handoff_to_actor_id": "sara_lokasjonsansvarlig",
+          "institution_id": "film_tv_produksjonsenhet_001",
+          "object_ids": [
+            "film_tv_pa_shoot_day_case_001"
+          ],
+          "priority": "high"
+        }
+      },
+      "source_hash": "d08665629721ce4c9099e61dc98214cd6e487f01aeac7525dc41040a82338a5f",
       "source_path": "data/Civication/mailFamilies/film_tv/people/produksjonsassistent_people.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -181059,7 +183254,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "bbd55b27b013d1bc60fceb0e0440605caf7eecb2f9339ae726e0cee7efdb7fdd",
+  "registry_hash": "b8d6ca9e6b8d258eff044408a96c276484f8d8caa0d8865b2dbb6b8775f189bd",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -181282,12 +183477,19 @@
     ],
     "film_tv/produksjonsassistent": [
       "film_tv_pa_job_to_call_sheet",
+      "film_tv_pa_realism_shoot_day_case_open_001",
       "film_tv_pa_people_line_hasteonske",
+      "film_tv_pa_realism_location_handoff_001",
       "film_tv_pa_conflict_sperret_sideinngang",
+      "film_tv_pa_realism_location_response_001",
       "film_tv_pa_event_scene_rekkefolge_endret",
+      "film_tv_pa_realism_unit_move_event_001",
       "film_tv_pa_followup_sideinngang_status",
+      "film_tv_pa_realism_call_rework_001",
       "film_tv_pa_knowledge_apen_kontaktliste",
-      "film_tv_pa_consequence_transport_motte_feil"
+      "film_tv_pa_realism_history_go_cinemateket_logistics_001",
+      "film_tv_pa_consequence_transport_motte_feil",
+      "film_tv_pa_realism_shoot_day_case_close_001"
     ],
     "film_tv/programleder": [
       "film_tv_program_job_brief_001",
@@ -182331,7 +184533,7 @@
     "ignored_source_file_count": 1,
     "input_file_count": 348,
     "role_count": 44,
-    "scene_count": 1150,
+    "scene_count": 1157,
     "shadowed_duplicate_count": 0
   },
   "version": 1

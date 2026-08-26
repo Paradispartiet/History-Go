@@ -4,10 +4,10 @@
   "category": "film_tv",
   "role_scope": "produksjonsassistent",
   "title": "Produksjonsassistent",
-  "description": "Første spillbare Film/TV-løype: én konkret opptaksdag med versjonskontroll, mennesker, lokasjon, sikkerhet, fagkunnskap og forsinkede konsekvenser.",
+  "description": "Et sammenhengende opptaksdagløp der call, lokasjonsadgang, transport, persondata og sikkerhetsavvik holdes sporbare gjennom handoff, venting, rework, unit move og operativ overlevering.",
   "arc": {
     "from": "Ny produksjonsassistent som forsøker å holde tempo uten å kjenne hele beslutningskartet.",
-    "to": "Pålitelig produksjonsassistent som koordinerer presist, verner sikkerhet og eskalerer til riktig ansvarlig.",
+    "to": "Pålitelig produksjonsassistent som holder ett sporbart koordineringscase, bygger situert tillit gjennom presise handoffs og avslutter eget ansvar uten å overta leder- eller sikkerhetsmyndighet.",
     "core_questions": [
       "Hvordan holder du framdrift når informasjonen spriker?",
       "Når skal du løse selv, og når må du eskalere?",
@@ -15,18 +15,138 @@
     ]
   },
   "outcome_rules": {
-    "fired": {"stability_values": ["FIRED"], "strikes_gte": 3, "score_lte": -3},
-    "promoted": {"completion_ratio_gte": 1, "score_gte": 2, "strikes_lte": 0, "allow_warning": false},
+    "fired": {
+      "stability_values": [
+        "FIRED"
+      ],
+      "strikes_gte": 3,
+      "score_lte": -3
+    },
+    "promoted": {
+      "completion_ratio_gte": 1,
+      "score_gte": 2,
+      "strikes_lte": 0,
+      "allow_warning": false
+    },
     "stagnated": {
       "autonomy_delta": -8,
       "stability": "STAGNATED",
-      "add_branch_flags": ["career_stagnated", "film_tv_production_assistant_stalled"]
+      "add_branch_flags": [
+        "career_stagnated",
+        "film_tv_production_assistant_stalled"
+      ]
     }
   },
   "sequence": [
-    {"step": 1, "type": "job", "phase": "intro", "step_goal": "Finn canonical call sheet før teamene går hver sin vei.", "allowed_families": ["produksjonsassistent_call_sheet"], "fallback_types": []},
-    {"step": 2, "type": "people", "phase": "early", "step_goal": "Håndter en kollegas hasteønske uten å late som du eier prioriteringen.", "allowed_families": ["produksjonsassistent_settfolk"], "fallback_types": []},
-    {"step": 3, "type": "conflict", "phase": "mid", "step_goal": "Beskytt sikkerhet og adgang når lokasjonen ikke er klar.", "allowed_families": ["produksjonsassistent_lokasjonskonflikt"], "fallback_types": []},
-    {"step": 4, "type": "event", "phase": "mid", "step_goal": "Lever sporbar status når tidsplanen endres.", "allowed_families": ["produksjonsassistent_avvikshendelse"], "fallback_types": []}
+    {
+      "step": 1,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Finn canonical call sheet før teamene går hver sin vei.",
+      "allowed_families": [
+        "produksjonsassistent_call_sheet"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 2,
+      "type": "people",
+      "phase": "early",
+      "step_goal": "Håndter en kollegas hasteønske uten å late som du eier prioriteringen.",
+      "allowed_families": [
+        "produksjonsassistent_settfolk"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 3,
+      "type": "conflict",
+      "phase": "mid",
+      "step_goal": "Beskytt sikkerhet og adgang når lokasjonen ikke er klar.",
+      "allowed_families": [
+        "produksjonsassistent_lokasjonskonflikt"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 4,
+      "type": "event",
+      "phase": "mid",
+      "step_goal": "Lever sporbar status når tidsplanen endres.",
+      "allowed_families": [
+        "produksjonsassistent_avvikshendelse"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 5,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "Åpne et vedvarende opptaksdagcase med call-baseline, eiere og åpne avvik.",
+      "allowed_families": [
+        "role_world_rollout_pa_shoot_day_case"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 6,
+      "type": "people",
+      "phase": "advanced",
+      "step_goal": "Overlever et avgrenset lokasjonsgrunnlag og gå inn i reell ventestatus.",
+      "allowed_families": [
+        "role_world_rollout_pa_location_handoff"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 7,
+      "type": "knowledge",
+      "phase": "advanced",
+      "step_goal": "Bruk Cinemateket som avgrenset stedskontekst mens lokasjonssvaret ventes.",
+      "allowed_families": [
+        "role_world_rollout_pa_history_go"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 8,
+      "type": "conflict",
+      "phase": "mastery",
+      "step_goal": "La adgangssvaret sende rute og call tilbake til rework.",
+      "allowed_families": [
+        "role_world_rollout_pa_location_response"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 9,
+      "type": "followup",
+      "phase": "mastery",
+      "step_goal": "Følg prioriteringen gjennom call, dataminimering og mottaksbekreftelser.",
+      "allowed_families": [
+        "role_world_rollout_pa_call_rework"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 10,
+      "type": "event",
+      "phase": "climax",
+      "step_goal": "Stans og eskaler et nytt sikkerhetsavvik uten å overta fagansvar.",
+      "allowed_families": [
+        "role_world_rollout_pa_unit_move_event"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 11,
+      "type": "consequence",
+      "phase": "climax",
+      "step_goal": "Lukk koordineringscaset som status-handoff innenfor rollemyndigheten.",
+      "allowed_families": [
+        "role_world_rollout_pa_shoot_day_closure"
+      ],
+      "fallback_types": []
+    }
   ]
 }

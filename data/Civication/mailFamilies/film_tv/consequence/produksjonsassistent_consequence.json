@@ -4,33 +4,293 @@
   "category": "film_tv",
   "role_scope": "produksjonsassistent",
   "mail_type": "consequence",
-  "families": [{
-    "id": "produksjonsassistent_forsinket_konsekvens",
-    "purpose": "Vise at tidlige versjonsvalg får en senere produksjonskostnad.",
-    "learning_focus": ["sen_konsekvens", "tillit", "reparasjon"],
-    "mails": [{
-      "id": "film_tv_pa_consequence_transport_motte_feil",
-      "mail_type": "consequence",
-      "mail_family": "produksjonsassistent_forsinket_konsekvens",
-      "role_scope": "produksjonsassistent",
-      "phase": "workday",
-      "priority": 105,
-      "from": "Amir, innspillingsleder",
-      "people_ref": "amir_innspillingsleder",
-      "place_id": "produksjonskontor_callbord",
-      "subject": "Transporten møtte på gammel base",
-      "summary": "Én sjåfør brukte en lokal kopi av call sheet og manglet den bekreftede endringen.",
-      "situation": ["Konsekvensen kommer etter at første valget føltes ferdig.", "Du må skille mellom å skjule avviket, reparere det og dokumentere hvorfor mottaksbekreftelsen sviktet.", "God reparasjon kan koste status nå og bygge tillit senere."],
-      "task_domain": "avvik_og_overlevering",
-      "competency": "sporbarhet",
-      "pressure": "forsinkelse_er_synlig",
-      "choice_axis": "apen_reparasjon_vs_ansvarsforskyvning",
-      "consequence_axis": "langsiktig_tillit_vs_kortsiktig_fasade",
-      "narrative_arc": "call_sheet_sen_konsekvens",
-      "choices": [
-        {"id": "A", "label": "Logg bruddet, ring sjåføren og reparer flyten", "reply": "Jeg tar ansvar for mottakskontrollen, får bilen omdirigert og oppdaterer rutinen.", "effect": 1, "tags": ["repair", "trust"], "feedback": "Forsinkelsen forsvinner ikke, men produksjonen lærer hvor kjeden brast.", "effects": {"stats": {"quality": 2, "trust": 2, "status": -1, "risk": -2, "energy": -2}}},
-        {"id": "B", "label": "Si at sjåføren burde ha sjekket kanalen", "reply": "Riktig versjon lå ute; dette må transport følge bedre.", "effect": -1, "tags": ["blame", "risk"], "feedback": "Du beskytter egen status i øyeblikket og svekker tilliten i overleveringen.", "effects": {"stats": {"status": 1, "trust": -3, "risk": 2}}}
+  "families": [
+    {
+      "id": "produksjonsassistent_forsinket_konsekvens",
+      "purpose": "Vise at tidlige versjonsvalg får en senere produksjonskostnad.",
+      "learning_focus": [
+        "sen_konsekvens",
+        "tillit",
+        "reparasjon"
+      ],
+      "mails": [
+        {
+          "id": "film_tv_pa_consequence_transport_motte_feil",
+          "mail_type": "consequence",
+          "mail_family": "produksjonsassistent_forsinket_konsekvens",
+          "role_scope": "produksjonsassistent",
+          "phase": "workday",
+          "priority": 105,
+          "from": "Amir, innspillingsleder",
+          "people_ref": "amir_innspillingsleder",
+          "place_id": "produksjonskontor_callbord",
+          "subject": "Transporten møtte på gammel base",
+          "summary": "Én sjåfør brukte en lokal kopi av call sheet og manglet den bekreftede endringen.",
+          "situation": [
+            "Konsekvensen kommer etter at første valget føltes ferdig.",
+            "Du må skille mellom å skjule avviket, reparere det og dokumentere hvorfor mottaksbekreftelsen sviktet.",
+            "God reparasjon kan koste status nå og bygge tillit senere."
+          ],
+          "task_domain": "avvik_og_overlevering",
+          "competency": "sporbarhet",
+          "pressure": "forsinkelse_er_synlig",
+          "choice_axis": "apen_reparasjon_vs_ansvarsforskyvning",
+          "consequence_axis": "langsiktig_tillit_vs_kortsiktig_fasade",
+          "narrative_arc": "call_sheet_sen_konsekvens",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Logg bruddet, ring sjåføren og reparer flyten",
+              "reply": "Jeg tar ansvar for mottakskontrollen, får bilen omdirigert og oppdaterer rutinen.",
+              "effect": 1,
+              "tags": [
+                "repair",
+                "trust"
+              ],
+              "feedback": "Forsinkelsen forsvinner ikke, men produksjonen lærer hvor kjeden brast.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "status": -1,
+                  "risk": -2,
+                  "energy": -2
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Si at sjåføren burde ha sjekket kanalen",
+              "reply": "Riktig versjon lå ute; dette må transport følge bedre.",
+              "effect": -1,
+              "tags": [
+                "blame",
+                "risk"
+              ],
+              "feedback": "Du beskytter egen status i øyeblikket og svekker tilliten i overleveringen.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "trust": -3,
+                  "risk": 2
+                }
+              }
+            }
+          ]
+        }
       ]
-    }]
-  }]
+    },
+    {
+      "id": "role_world_rollout_pa_shoot_day_closure",
+      "purpose": "Avslutte eget koordineringsobjekt som handoff uten leder- eller kontraktsmyndighet.",
+      "learning_focus": [
+        "closure",
+        "handoff",
+        "institutional_memory"
+      ],
+      "mails": [
+        {
+          "role_scope": "produksjonsassistent",
+          "place_id": "produksjonskontor_callbord",
+          "repeatable": false,
+          "stage": "stable",
+          "thread_key": "film_tv_pa_shoot_day_realism_001",
+          "planned_only": true,
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "film_tv",
+            "produksjonsassistent"
+          ],
+          "id": "film_tv_pa_realism_shoot_day_case_close_001",
+          "mail_type": "consequence",
+          "mail_family": "role_world_rollout_pa_shoot_day_closure",
+          "phase": "climax",
+          "day_phase": "afternoon",
+          "priority": 99,
+          "cooldown": 12,
+          "from": "Amir, innspillingsleder",
+          "people_ref": "amir_innspillingsleder",
+          "subject": "Lukk koordineringscaset som status og handoff – operativ godkjenning ligger fortsatt hos Amir",
+          "summary": "Call-endring, lokasjonsvilkår, mottak, persondatagrense og væravvik er samlet. Du skal avslutte assistentens arbeidsobjekt og anbefale status, mens Amir beholder operativ godkjenning og ingen kan love lønn, kreditering eller nye vilkår her.",
+          "purpose": "Bevise at usynlig koordineringsarbeid kan fullføres og bli synlig uten at kompetanse eller situert standing fabrikkerer leder-, sikkerhets- eller kontraktsmyndighet.",
+          "stakes": "Et presist slutt-handoff gjør neste skift i stand til å handle. Selvautorisert ferdigmelding skjuler restavvik og gjør assistentens pålitelighet til falsk beslutningsrett.",
+          "situation": [
+            "Canonical call-tillegg og avdelingsmottak kan sammenlignes med faktisk rute og ankomst.",
+            "Væravviket er enten faglig løst eller eksplisitt overlevert som åpent stoppunkt.",
+            "Amir eier operative prioriteringer; fagansvarlig eier sikkerhetsfrigivelse; arbeidsvilkår og kreditering ligger utenfor caset."
+          ],
+          "task_domain": "vedvarende_opptaksdagkoordinering",
+          "task_kind": "consequence",
+          "competency": "avvik_og_overlevering",
+          "pressure": "synlig_bidragsarbeid_vs_formell_myndighet",
+          "choice_axis": "sporbart_statushandoff_vs_selvautoriser_ferdigmelding",
+          "consequence_axis": "institusjonell_tillit_vs_myndighetslekkasje",
+          "narrative_arc": "fra_sprikende_call_til_sporbart_operativt_handoff",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "film_tv_pa_shoot_day_case_001"
+            ],
+            "institution_id": "film_tv_produksjonsenhet_001",
+            "rework_of_scene_id": "film_tv_pa_realism_unit_move_event_001",
+            "priority": "urgent"
+          },
+          "authority_context": {
+            "institution_id": "film_tv_produksjonsenhet_001",
+            "unit_id": "film_tv_opptaksenhet",
+            "role_scope": "produksjonsassistent",
+            "reporting_line": [
+              "amir_innspillingsleder",
+              "line_produksjonskoordinator"
+            ],
+            "peer_functions": [
+              "sara_lokasjonsansvarlig",
+              "ida_personvernkontakt"
+            ],
+            "external_counterparts": [
+              "film_tv_transportleverandor"
+            ],
+            "goals_pressures": [
+              "sikker_framdrift",
+              "call_presisjon",
+              "lokasjonsvilkar",
+              "minste_nodvendige_persondata",
+              "opptaksfrist"
+            ],
+            "approval_points": [
+              {
+                "approval_id": "film_tv_operational_change_approval",
+                "action_id": "approve_operational_change",
+                "approver_actor_id": "amir_innspillingsleder",
+                "approval_object_id": "film_tv_pa_operational_approval_001"
+              }
+            ],
+            "authority_rules": [
+              {
+                "action_id": "recommend_shoot_day_status",
+                "authority": "influence_only",
+                "requires_resources": []
+              },
+              {
+                "action_id": "approve_operational_change",
+                "authority": "approval_required",
+                "approval_id": "film_tv_operational_change_approval",
+                "requires_resources": []
+              },
+              {
+                "action_id": "perform_untrained_safety_critical_work",
+                "authority": "forbidden",
+                "requires_resources": []
+              },
+              {
+                "action_id": "promise_pay_credit_or_working_terms",
+                "authority": "forbidden",
+                "requires_resources": []
+              }
+            ],
+            "resources": [],
+            "escalation_paths": []
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lukk eget spor med mottak, restavvik og ansvar synlig, og anbefal status til Amir",
+              "reply": "Jeg ferdigstiller koordineringscaset som handoff og anbefaler status uten å godkjenne den operative endringen eller nye arbeidsvilkår.",
+              "effect": 2,
+              "authority_action": {
+                "action_id": "recommend_shoot_day_status",
+                "intent": "recommend"
+              },
+              "feedback": "Bidraget blir synlig og anvendelig samtidig som leder-, sikkerhets- og kontraktsgrensene står.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_pa_shoot_day_case_completed",
+                    "work_object_id": "film_tv_pa_shoot_day_case_001",
+                    "to_status": "completed",
+                    "to_phase": "coordination_handoff_ready_for_operational_approval",
+                    "note": "Produksjonsassistentens case er fullført som sporbart status-handoff; operativ godkjenning forblir hos Amir."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_pa_authority_boundary_preserved",
+                    "work_object_id": "film_tv_pa_shoot_day_case_001",
+                    "flag": "coordination_complete_without_operational_authority"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_pa_standing_manager_closure",
+                    "audience_id": "manager:amir_innspillingsleder",
+                    "delta": 3,
+                    "reason": "Statusen er sporbar, avgrenset og klar for operativ beslutning.",
+                    "source_actor_id": "amir_innspillingsleder"
+                  },
+                  {
+                    "event_id": "film_tv_pa_standing_office_closure",
+                    "audience_id": "team:film_tv_produksjonskontor",
+                    "delta": 2,
+                    "reason": "Mottak, avvik og overlevering kan brukes av neste skift.",
+                    "source_actor_id": "line_produksjonskoordinator"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lukk arbeidsdelen med reservasjon og eskaler det uløste væravviket",
+              "reply": "Jeg markerer hva som fortsatt er stoppet og ber Amir og fagansvarlig behandle det før caset brukes som operativ ferdigstatus.",
+              "effect": 1,
+              "authority_action": {
+                "action_id": "recommend_shoot_day_status",
+                "intent": "recommend"
+              },
+              "feedback": "Et avgrenset handoff er komplett når restusikkerhet ikke skjules.",
+              "effects": {
+                "stats": {
+                  "quality": 1,
+                  "trust": 2,
+                  "risk": -1,
+                  "energy": -1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_pa_shoot_day_case_completed_reserved",
+                    "work_object_id": "film_tv_pa_shoot_day_case_001",
+                    "to_status": "completed",
+                    "to_phase": "coordination_handoff_ready_with_reservations",
+                    "note": "Assistentens case er fullført med synlig vær- og sikkerhetsreservasjon for Amir og fagansvarlig."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_pa_residual_risk_visible",
+                    "work_object_id": "film_tv_pa_shoot_day_case_001",
+                    "flag": "weather_safety_reservation_escalated"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_pa_standing_manager_reserved_closure",
+                    "audience_id": "manager:amir_innspillingsleder",
+                    "delta": 2,
+                    "reason": "Restavviket er synlig i stedet for skjult bak en ferdigmelding.",
+                    "source_actor_id": "amir_innspillingsleder"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
