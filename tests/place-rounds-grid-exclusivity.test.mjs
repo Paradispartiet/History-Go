@@ -60,9 +60,12 @@ test("PlaceCard uses six full-width SVG shortcuts and opens Om from title or inf
   assert.match(shortcutsCss, /#placeCard \.pc-title-row\{[\s\S]*?order:0;[\s\S]*?margin:4px 0 8px/);
   assert.match(shortcutsCss, /#placeCard #pcMeta > \*\{[\s\S]*?white-space:nowrap !important;[\s\S]*?text-overflow:ellipsis/);
   assert.match(shortcutsCss, /#placeCard #pcMeta > button\{[\s\S]*?cursor:pointer/);
-  assert.match(layoutCss, /body\.hg-app #placeCard\{[\s\S]*?top:\s*calc\(var\(--hg-visual-header-height, 74px\) \+ 58px\);[\s\S]*?bottom:\s*var\(--hg-bottom-nav-height\);[\s\S]*?max-height:\s*none/);
-  assert.match(placeCardCss, /#placeCard\{[\s\S]*?top:\s*calc\(var\(--hg-visual-header-height, 74px\) \+ 58px\);[\s\S]*?bottom:\s*var\([\s\S]*?--hg-bottom-nav-height,[\s\S]*?max-height:\s*none/);
+  assert.match(layoutCss, /body\.hg-app #placeCard\{[\s\S]*?--hg-place-card-footer-gap:\s*12px;[\s\S]*?top:\s*calc\(var\(--hg-visual-header-height, 74px\) \+ 58px\);[\s\S]*?bottom:\s*auto;[\s\S]*?height:\s*auto/);
+  assert.match(layoutCss, /body\.hg-app #placeCard\{[\s\S]*?max-height:\s*calc\([\s\S]*?100vh[\s\S]*?var\(--hg-bottom-nav-height\)[\s\S]*?var\(--hg-place-card-footer-gap\)[\s\S]*?\);/);
+  assert.match(layoutCss, /body\.hg-app #placeCard\{[\s\S]*?max-height:\s*calc\([\s\S]*?100dvh[\s\S]*?var\(--hg-bottom-nav-height\)[\s\S]*?var\(--hg-place-card-footer-gap\)[\s\S]*?\);/);
+  assert.doesNotMatch(layoutCss, /body\.hg-app #placeCard\{[\s\S]*?bottom:\s*var\(--hg-bottom-nav-height\)/);
   assert.doesNotMatch(layoutCss, /body\.hg-app #placeCard\{[\s\S]*?top:auto/);
+  assert.match(placeCardCss, /#placeCard \.pc-body\{[\s\S]*?overflow-y:\s*auto/);
   assert.match(placeCardCss, /#placeCard #pcDesc\{[\s\S]*?-webkit-line-clamp:\s*5/);
   assert.match(placeCardCss, /body\.hg-app\.hg-phone #placeCard #pcDesc\{[\s\S]*?-webkit-line-clamp:\s*4/);
   assert.match(placeCardSource, /if \(!samePlace\)[\s\S]*?scrollBody\.scrollTop = 0/);
