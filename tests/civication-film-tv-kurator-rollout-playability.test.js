@@ -41,8 +41,11 @@ assert.ok(grammar.practice_stories?.length >= 5);
 assert.equal(plan.schema, 'civication_mail_plan_v1');
 assert.equal(plan.category, 'film_tv');
 assert.equal(plan.role_scope, 'kurator_film_tv');
-assert.equal(plan.sequence.length, 4);
-assert.deepEqual(plan.sequence.map(step => step.type), ['job', 'people', 'conflict', 'event']);
+assert.equal(plan.sequence.length, 11, 'Role World rollout preserves the starter arc and adds the complete curator work cycle');
+assert.deepEqual(
+  plan.sequence.map(step => step.type),
+  ['job', 'people', 'conflict', 'event', 'job', 'people', 'knowledge', 'conflict', 'followup', 'event', 'consequence'],
+);
 assert.ok(plan.outcome_rules?.promoted, 'positive runtime outcome exists');
 assert.ok(plan.outcome_rules?.fired, 'negative runtime outcome exists');
 
