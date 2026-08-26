@@ -8,7 +8,11 @@
     {
       "id": "kurator_rettighetskonflikt",
       "purpose": "Holde programmet fail-closed når rettigheter og visningsvilkår ikke er bekreftet.",
-      "learning_focus": ["rettighetssikkerhet", "sporbarhet", "mandat"],
+      "learning_focus": [
+        "rettighetssikkerhet",
+        "sporbarhet",
+        "mandat"
+      ],
       "mails": [
         {
           "role_scope": "kurator_film_tv",
@@ -45,7 +49,11 @@
               "label": "Hold verket betinget til avtalen er bekreftet",
               "reply": "Vi merker filmen som ikke bekreftet og låser en reserve før vi annonserer.",
               "effect": 1,
-              "tags": ["rights", "traceability", "fallback"],
+              "tags": [
+                "rights",
+                "traceability",
+                "fallback"
+              ],
               "feedback": "Du beskytter både programmet og publikum mot en rettighet som ennå ikke finnes."
             },
             {
@@ -53,8 +61,155 @@
               "label": "Annonsér og forvent at papirene ordner seg",
               "reply": "Kopien er jo tilgjengelig, så vi går ut med filmen og rydder avtalen etterpå.",
               "effect": -2,
-              "tags": ["rights_risk", "deadline"],
+              "tags": [
+                "rights_risk",
+                "deadline"
+              ],
               "feedback": "Du gjør et uavklart vilkår til et offentlig løfte."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_kurator_rettighetsresponse",
+      "purpose": "La venting ende i et faktisk rettighetssvar som endrer den samme programsaken og tvinger fram rework framfor ønsketenkning.",
+      "learning_focus": [
+        "waiting",
+        "rights_response",
+        "rework_trigger"
+      ],
+      "mails": [
+        {
+          "role_scope": "kurator_film_tv",
+          "place_id": "cinemateket_oslo",
+          "repeatable": false,
+          "stage": "stable",
+          "thread_key": "film_tv_kurator_programserie_realism_001",
+          "planned_only": true,
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "film_tv",
+            "kurator_film_tv"
+          ],
+          "id": "film_tv_kurator_realism_rights_response_001",
+          "mail_type": "conflict",
+          "mail_family": "role_world_rollout_kurator_rettighetsresponse",
+          "phase": "mastery",
+          "day_phase": "morning",
+          "priority": 96,
+          "cooldown": 12,
+          "from": "Rettighetskoordinator",
+          "people_ref": "film_tv_rettighetskoordinator",
+          "subject": "Svaret kom: ankerverket kan vises, men ikke slik programmet nå er skrevet",
+          "summary": "Rettighetshaver godkjenner én bestemt kopi og én visning, men tilleggsmaterialet og formuleringen «restaurert originalversjon» er ikke dekket. Programsaken må endres før intern låsing.",
+          "purpose": "Bevise at venting og handoff gir ny informasjon som faktisk kan tvinge samme arbeidsobjekt inn i rework.",
+          "stakes": "Å beholde den opprinnelige teksten beskytter prestisje og tempo, men gjør en dokumentert begrensning til et avvik mellom avtale og offentlig program.",
+          "situation": [
+            "Visningsretten er avgrenset, ikke generell.",
+            "Kopien som er klarert har dokumentert restaureringshistorikk, men formuleringen i utkastet går lenger enn dokumentasjonen.",
+            "Programansvarlig forventer at ny informasjon endrer programstatusen."
+          ],
+          "task_domain": "rettighetssvar_og_programrevisjon",
+          "task_kind": "conflict",
+          "competency": "rettighetssikkerhet",
+          "pressure": "programlas_vs_dokumentert_vilkar",
+          "choice_axis": "aksepter_vilkar_og_rework_vs_behold_offentlig_lovnad",
+          "consequence_axis": "avtalelojalitet_vs_tillitstap",
+          "narrative_arc": "fra_premiss_til_sporbart_program",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "film_tv_kurator_program_case_001"
+            ],
+            "institution_id": "cinemateket_programavdeling_001",
+            "waiting_for_actor_id": "film_tv_rettighetskoordinator",
+            "rework_of_scene_id": "film_tv_kurator_realism_rights_handoff_001",
+            "priority": "urgent"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Godta vilkåret og send programmet tilbake til rework",
+              "reply": "Jeg oppdaterer kopistatus, tar ut tilleggsmaterialet og omskriver konteksten til det dokumentasjonen faktisk bærer.",
+              "effect": 2,
+              "feedback": "Rettighetssvaret får endre programmet i stedet for å bli et fotnotert hinder.",
+              "effects": {
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_kurator_standing_rights_response_respected",
+                    "audience_id": "professional:film_tv_rettighetskoordinator",
+                    "delta": 2,
+                    "reason": "Dokumenterte vilkår blir faktisk omsatt til programendring.",
+                    "source_actor_id": "film_tv_rettighetskoordinator"
+                  },
+                  {
+                    "event_id": "film_tv_kurator_standing_manager_response_respected",
+                    "audience_id": "manager:film_tv_programansvarlig",
+                    "delta": 1,
+                    "reason": "Ny informasjon endrer status før programlåsing.",
+                    "source_actor_id": "film_tv_programansvarlig"
+                  }
+                ],
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_kurator_rights_response_to_rework",
+                    "work_object_id": "film_tv_kurator_program_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "rights_bounded_rework",
+                    "note": "Rettighets- og kopivilkår er mottatt og programsaken går tilbake til kuratorisk rework."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_kurator_rights_terms_recorded",
+                    "work_object_id": "film_tv_kurator_program_case_001",
+                    "flag": "rettighetsvilkar_integrert_i_programcase"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Behold teksten og anta at vilkåret ikke gjelder formidlingen",
+              "reply": "Vi justerer det tekniske internt, men lar programteksten og tilleggsmaterialet stå til noen protesterer.",
+              "effect": -2,
+              "feedback": "Du gjør et eksplisitt vilkår til et tolkningsrom du ikke eier.",
+              "effects": {
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_kurator_standing_rights_response_ignored",
+                    "audience_id": "professional:film_tv_rettighetskoordinator",
+                    "delta": -3,
+                    "reason": "Klareringen blir behandlet som et forslag i stedet for faktisk ramme.",
+                    "source_actor_id": "film_tv_rettighetskoordinator"
+                  },
+                  {
+                    "event_id": "film_tv_kurator_standing_manager_response_risk",
+                    "audience_id": "manager:film_tv_programansvarlig",
+                    "delta": -2,
+                    "reason": "Programstatusen blir mindre pålitelig når dokumentert vilkår ikke endrer utkastet.",
+                    "source_actor_id": "film_tv_programansvarlig"
+                  }
+                ],
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_kurator_rights_response_ignored_rework",
+                    "work_object_id": "film_tv_kurator_program_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "rights_bounded_rework",
+                    "note": "Programsaken er gjenåpnet, men utkastet beholder formuleringer som går lenger enn rettighetsgrunnlaget."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_kurator_rights_terms_minimized",
+                    "work_object_id": "film_tv_kurator_program_case_001",
+                    "flag": "rettighetsvilkar_minimert_i_formidling"
+                  }
+                ]
+              }
             }
           ]
         }
