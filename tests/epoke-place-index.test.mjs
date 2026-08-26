@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import test from "node:test";
-import { buildEpokePlaceIndex, geographyForPlace, serializeEpokePlaceIndex } from "../scripts/build-epoke-place-index.mjs";
+import { buildEpokePlaceIndex, exactProductionClaimYears, geographyForPlace, serializeEpokePlaceIndex } from "../scripts/build-epoke-place-index.mjs";
 
 test("generated epoch-place index is deterministic and current", () => {
   const index = buildEpokePlaceIndex();
@@ -17,7 +17,7 @@ test("generated epoch-place index is deterministic and current", () => {
   assert.equal(index.stats.place_evidence_link_count, 325);
   assert.equal(index.stats.period_case_count, 9);
   assert.equal(index.stats.canonical_story_milestone_count, 172);
-  assert.equal(index.stats.verified_place_production_milestone_count, 97);
+  assert.equal(index.stats.verified_place_production_milestone_count, 105);
 });
 
 test("canonical place geography separates Oslo, Lisboa and other countries deterministically", () => {
@@ -95,6 +95,7 @@ test("every indexed milestone is dated, inspectable and sourced from an approved
           assert.equal(milestone.sources[0].url, claim.sourceUrl);
           assert.equal(milestone.sources[0].title, claim.sourceLocation || claim.sourceType || claim.sourceUrl);
           assert.equal(milestone.sources[0].verifiedAt, claim.verifiedAt || "");
+          if (claim.timelineYear !== undefined) assert.equal(milestone.year, claim.timelineYear);
           const anchorMatch = milestone.title.match(new RegExp(`(^|[^0-9])${milestone.year}(?![0-9])`));
           assert.ok(anchorMatch);
           const anchorPosition = anchorMatch.index + String(anchorMatch[1] || "").length;
@@ -118,9 +119,9 @@ test("Oslo coverage classifies every canonical place exactly once without overst
 
   assert.equal(coverage.contract, "oslo-history-coverage-v1");
   assert.equal(coverage.canonical_place_count, 563);
-  assert.equal(coverage.dated_evidence_place_count, 172);
+  assert.equal(coverage.dated_evidence_place_count, 180);
   assert.equal(coverage.documented_case_place_count, 2);
-  assert.equal(coverage.awaiting_source_backed_history_count, 389);
+  assert.equal(coverage.awaiting_source_backed_history_count, 381);
   assert.deepEqual(coverage.places.map((place) => place.place_id).sort(), osloPlaceIds);
   assert.equal(new Set(coverage.places.map((place) => place.place_id)).size, coverage.canonical_place_count);
   assert.ok(coverage.places.every((place) => allowedStatuses.has(place.status)));
@@ -146,6 +147,32 @@ test("verified production claims fail closed for uncertainty, current-only state
   assert.equal(productionClaimsFor("gamle_aker_kirke").some((milestone) => milestone.claim_id === "claim_gak_dating_uncertain"), false);
   assert.equal(productionClaimsFor("bankplassen").some((milestone) => milestone.claim_id === "claim_bankplassen_current_bank_1986"), false);
   assert.equal(productionClaimsFor("lisbon_anjos70").length, 0);
+  assert.equal(productionClaimsFor("frysja_miljostasjon").length, 0, "Rema 1000 is not a historical year");
+  assert.equal(productionClaimsFor("gronmo_gjenvinningsstasjon").length, 0, "1279 Oslo is a postal code, not a historical year");
+});
+
+test("production year extraction rejects commercial names and Oslo postal codes", () => {
+  assert.deepEqual(exactProductionClaimYears("Den står ved Rema 1000 Frysja."), []);
+  assert.deepEqual(exactProductionClaimYears("Stedet ligger i Sørliveien 1, 1279 Oslo."), []);
+  assert.deepEqual(exactProductionClaimYears("Tandbergs Radiofabrikk startet her i 1933."), [1933]);
+});
+
+test("explicit timeline anchors materialize reviewed multi-year historical claims", () => {
+  const index = buildEpokePlaceIndex();
+  const milestoneFor = (placeId, claimId) => Object.values(index.domains.historie.epochs)
+    .flatMap((group) => group.places)
+    .filter((place) => place.place_id === placeId)
+    .flatMap((place) => place.milestones)
+    .find((milestone) => milestone.claim_id === claimId);
+
+  assert.equal(milestoneFor("bla_skilt_vebjorn_tandberg_kongens_gate_15", "claim_bla_skilt_vebjorn_tandberg_kongens_gate_15_context")?.year, 1933);
+  assert.equal(milestoneFor("haraldrud_ombrukstelt", "claim_haraldrud_ombrukstelt_closed")?.year, 2026);
+  assert.equal(milestoneFor("snublestein_benno_damelin_schonings_gate_14", "claim_snublestein_benno_damelin_schonings_gate_14_context")?.year, 1943);
+  assert.equal(milestoneFor("snublestein_fanny_steinsapir_bjerregaards_gate_68", "claim_snublestein_fanny_steinsapir_bjerregaards_gate_68_context")?.year, 1942);
+  assert.equal(milestoneFor("snublestein_harry_isidor_mendel_ullevalsveien_97", "claim_snublestein_harry_isidor_mendel_ullevalsveien_97_context")?.year, 1942);
+  assert.equal(milestoneFor("snublestein_isak_kaplan_kirkegardsgata_2", "claim_snublestein_isak_kaplan_kirkegardsgata_2_context")?.year, 1943);
+  assert.equal(milestoneFor("snublestein_rebekka_blatt_nordre_gate_13", "claim_snublestein_rebekka_blatt_nordre_gate_13_context")?.year, 1943);
+  assert.equal(milestoneFor("snublestein_salomon_bogomolno_d_y_jens_bjelkes_gate_64", "claim_snublestein_salomon_bogomolno_d_y_jens_bjelkes_gate_64_context")?.year, 1942);
 });
 
 test("every epoch and parallel track has substantial canonical place coverage", () => {
