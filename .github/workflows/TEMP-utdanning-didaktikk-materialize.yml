@@ -28,12 +28,9 @@ jobs:
           const file='scripts/materialize-utdanning-didactics-fulltext-v1.mjs';
           const before=fs.readFileSync(file,'utf8');
           const oldText='write(P.emner,emners=emner)';
-          if (before.includes(oldText)) {
-            fs.writeFileSync(file,before.replace(oldText,'write(P.emner,emner)'));
-          }
+          if (before.includes(oldText)) fs.writeFileSync(file,before.replace(oldText,'write(P.emner,emner)'));
           const after=fs.readFileSync(file,'utf8');
-          if(!after.includes('write(P.emner,emner)')) throw new Error('Materializer repair did not persist');
-          if(after.includes(oldText)) throw new Error('Materializer typo still present');
+          if(!after.includes('write(P.emner,emner)') || after.includes(oldText)) throw new Error('Materializer repair failed');
           NODE
       - name: Audit next source-first port
         run: node scripts/brief-utdanning-early-childhood-learning-sources-v1.mjs --write-report
@@ -58,9 +55,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add scripts/materialize-utdanning-didactics-fulltext-v1.mjs data/fag/fag_manifest.json data/fag/utdanning data/fagverk reports/fagverk
-          if ! git diff --cached --quiet; then
-            git commit -m "Materialize Utdanning Didaktikk at 2/14"
-          fi
+          if ! git diff --cached --quiet; then git commit -m "Materialize Utdanning Didaktikk at 2/14"; fi
       - name: Canonical next source-first check
         run: node scripts/brief-utdanning-early-childhood-learning-sources-v1.mjs
       - name: Canonical deterministic Didaktikk rematerialization
@@ -77,14 +72,16 @@ jobs:
         run: node scripts/audit-fagverk-theory-integrity.mjs
       - name: Canonical release check
         run: node scripts/build-fagverk-release-manifest.mjs --check
-      - name: Canonical active Utdanning tests
-        run: >-
-          node --test
-          tests/utdanning-early-childhood-learning-source-brief-v1.test.mjs
-          tests/utdanning-didactics-fulltext-v1.test.mjs
-          tests/fagverk-subject-inventory.test.mjs
-          tests/fagverk-general-engine.test.mjs
-          tests/fagverk-release-manifest.test.mjs
+      - name: Test early-childhood source brief
+        run: node --test tests/utdanning-early-childhood-learning-source-brief-v1.test.mjs
+      - name: Test Didaktikk fulltext
+        run: node --test tests/utdanning-didactics-fulltext-v1.test.mjs
+      - name: Test Fagverk subject inventory
+        run: node --test tests/fagverk-subject-inventory.test.mjs
+      - name: Test Fagverk general engine
+        run: node --test tests/fagverk-general-engine.test.mjs
+      - name: Test Fagverk release manifest
+        run: node --test tests/fagverk-release-manifest.test.mjs
       - name: Canonical deterministic output diff
         run: >-
           git diff --exit-code --
