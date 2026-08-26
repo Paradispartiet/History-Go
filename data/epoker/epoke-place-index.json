@@ -11450,11 +11450,123 @@
               "source_file": "places/historie/oslo/places_historie/paulus_kirke.json",
               "roles": [
                 {
+                  "id": "arbeid_og_okonomi",
+                  "label": "Arbeid og økonomi"
+                },
+                {
+                  "id": "kultur_og_offentlighet",
+                  "label": "Kultur og offentlighet"
+                },
+                {
+                  "id": "makt_og_styring",
+                  "label": "Makt og styring"
+                },
+                {
                   "id": "religion_og_livssyn",
                   "label": "Religion og livssyn"
                 }
               ],
               "milestones": [
+                {
+                  "id": "chrono_paulus_1874_1",
+                  "year": 1874,
+                  "title": "Menigheten opprettes",
+                  "consequence": "Paulus menighet ble opprettet.",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Oslo byleksikon",
+                      "url": "https://oslobyleksikon.no/side/Paulus_kirke",
+                      "verifiedAt": ""
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_paulus_kirke.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_paulus_1887_2",
+                  "year": 1887,
+                  "title": "Arkitektkonkurransen",
+                  "consequence": "Henrik Bull vant konkurransen som 25-åring.",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Oslo byleksikon",
+                      "url": "https://oslobyleksikon.no/side/Paulus_kirke",
+                      "verifiedAt": ""
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_paulus_kirke.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_paulus_1889_3",
+                  "year": 1889,
+                  "title": "Kirken tegnes",
+                  "consequence": "Bull utarbeidet tegningene til teglkirken.",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Oslo byleksikon",
+                      "url": "https://oslobyleksikon.no/side/Paulus_kirke",
+                      "verifiedAt": ""
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_paulus_kirke.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "story_st_paulus_kirke_alterstriden_1892",
+                  "year": 1892,
+                  "title": "Alterbildene som ikke kom på plass",
+                  "consequence": "Da kirken skulle åpne i 1892, ble Gustav Wentzels alterbilder avvist, og Jo Visdals opprinnelige Kristusfigur fikk heller ikke den planlagte plasseringen.",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Oslo byleksikon – Paulus kirke",
+                      "url": "https://oslobyleksikon.no/side/Paulus_kirke",
+                      "verifiedAt": ""
+                    },
+                    {
+                      "title": "Den norske kirke – Paulus kirke",
+                      "url": "https://www.kirken.no/nn-NO/fellesrad/kirkeneioslo/menigheter/paulus-sofienberg/paulus-kirke/",
+                      "verifiedAt": ""
+                    }
+                  ],
+                  "source_file": "data/runtime/stories-all/part-003.json",
+                  "evidence_type": "canonical_story",
+                  "claim_id": "",
+                  "story_id": "st_paulus_kirke_alterstriden_1892",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_paulus_1892_4",
+                  "year": 1892,
+                  "title": "Kirken innvies",
+                  "consequence": "Biskop Essendrop innviet kirken 30. desember.",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Oslo byleksikon",
+                      "url": "https://oslobyleksikon.no/side/Paulus_kirke",
+                      "verifiedAt": ""
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_paulus_kirke.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
                 {
                   "id": "production_claim_paulus_kirke_opening_architecture",
                   "year": 1892,
@@ -11463,7 +11575,7 @@
                   "confidence": "",
                   "sources": [
                     {
-                      "title": "Bygningsbeskrivelsen: innvielse, arkitekt, materiale, stil og tårn.",
+                      "title": "Bygningsbeskrivelsen.",
                       "url": "https://www.kirken.no/nn-NO/fellesrad/kirkeneioslo/menigheter/paulus-sofienberg/paulus-kirke/",
                       "verifiedAt": "2026-08-26"
                     }
@@ -11479,7 +11591,14 @@
               "connections": {
                 "person_ids": [],
                 "works": [],
-                "stories": []
+                "stories": [
+                  {
+                    "id": "st_paulus_kirke_alterstriden_1892",
+                    "title": "Alterbildene som ikke kom på plass",
+                    "year": 1892,
+                    "type": "conflict"
+                  }
+                ]
               }
             },
             {
@@ -14646,7 +14765,7 @@
             }
           ],
           "placeCount": 80,
-          "milestoneCount": 192
+          "milestoneCount": 197
         },
         "historie_nasjon_massepolitikk_og_moderne_institusjoner": {
           "places": [
@@ -17978,6 +18097,56 @@
               }
             },
             {
+              "place_id": "paulus_kirke",
+              "name": "Paulus kirke",
+              "category": "religion",
+              "source_file": "places/historie/oslo/places_historie/paulus_kirke.json",
+              "roles": [
+                {
+                  "id": "arbeid_og_okonomi",
+                  "label": "Arbeid og økonomi"
+                },
+                {
+                  "id": "religion_og_livssyn",
+                  "label": "Religion og livssyn"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "chrono_paulus_1918_5",
+                  "year": 1918,
+                  "title": "Interiøret endres",
+                  "consequence": "Veggene fikk dekor under arbeidene i 1917–1918.",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Oslo byleksikon",
+                      "url": "https://oslobyleksikon.no/side/Paulus_kirke",
+                      "verifiedAt": ""
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_paulus_kirke.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_paulus_kirke_alterstriden_1892",
+                    "title": "Alterbildene som ikke kom på plass",
+                    "year": 1892,
+                    "type": "conflict"
+                  }
+                ]
+              }
+            },
+            {
               "place_id": "psykologisk_institutt_uio",
               "name": "Psykologisk institutt, UiO",
               "category": "psykologi",
@@ -19846,8 +20015,8 @@
               }
             }
           ],
-          "placeCount": 63,
-          "milestoneCount": 121
+          "placeCount": 64,
+          "milestoneCount": 122
         },
         "historie_krig_okkupasjon_og_etterkrigsoppgjor": {
           "places": [
@@ -21610,6 +21779,52 @@
               }
             },
             {
+              "place_id": "paulus_kirke",
+              "name": "Paulus kirke",
+              "category": "religion",
+              "source_file": "places/historie/oslo/places_historie/paulus_kirke.json",
+              "roles": [
+                {
+                  "id": "religion_og_livssyn",
+                  "label": "Religion og livssyn"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "chrono_paulus_1943_6",
+                  "year": 1943,
+                  "title": "Orgelet utvides",
+                  "consequence": "Hollenbach-orgelet ble bygget ut.",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Oslo byleksikon",
+                      "url": "https://oslobyleksikon.no/side/Paulus_kirke",
+                      "verifiedAt": ""
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_paulus_kirke.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_paulus_kirke_alterstriden_1892",
+                    "title": "Alterbildene som ikke kom på plass",
+                    "year": 1892,
+                    "type": "conflict"
+                  }
+                ]
+              }
+            },
+            {
               "place_id": "regjeringskvartalet",
               "name": "Regjeringskvartalet",
               "category": "politikk",
@@ -22700,8 +22915,8 @@
               }
             }
           ],
-          "placeCount": 32,
-          "milestoneCount": 67
+          "placeCount": 33,
+          "milestoneCount": 68
         },
         "historie_velferdsstat_kald_krig_og_sosialdemokrati": {
           "places": [
@@ -30273,14 +30488,52 @@
               ],
               "milestones": [
                 {
+                  "id": "chrono_paulus_1992_7",
+                  "year": 1992,
+                  "title": "Nye friser",
+                  "consequence": "Nye friser kom til ved hundreårsjubileet.",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Oslo byleksikon",
+                      "url": "https://oslobyleksikon.no/side/Paulus_kirke",
+                      "verifiedAt": ""
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_paulus_kirke.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_paulus_2006_8",
+                  "year": 2006,
+                  "title": "Kirken fredes",
+                  "consequence": "Fredningen omfattet kirken og miljøet rundt Birkelunden.",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Oslo byleksikon",
+                      "url": "https://oslobyleksikon.no/side/Paulus_kirke",
+                      "verifiedAt": ""
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_paulus_kirke.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
                   "id": "production_claim_paulus_kirke_protection",
                   "year": 2006,
-                  "title": "Paulus kirke ble fredet i 2006 sammen med det enhetlige bygningsmiljøet rundt Birkelunden.",
+                  "title": "Paulus kirke ble fredet i 2006 sammen med bygningsmiljøet rundt Birkelunden.",
                   "consequence": "",
                   "confidence": "",
                   "sources": [
                     {
-                      "title": "Siste avsnitt: fredningen i 2006.",
+                      "title": "Avsnittet om fredning.",
                       "url": "https://oslobyleksikon.no/side/Paulus_kirke",
                       "verifiedAt": "2026-08-26"
                     }
@@ -30296,7 +30549,14 @@
               "connections": {
                 "person_ids": [],
                 "works": [],
-                "stories": []
+                "stories": [
+                  {
+                    "id": "st_paulus_kirke_alterstriden_1892",
+                    "title": "Alterbildene som ikke kom på plass",
+                    "year": 1892,
+                    "type": "conflict"
+                  }
+                ]
               }
             },
             {
@@ -31976,7 +32236,7 @@
             }
           ],
           "placeCount": 76,
-          "milestoneCount": 124
+          "milestoneCount": 126
         },
         "historie_digital_samtid_kriser_og_ny_offentlighet": {
           "places": [
@@ -35382,6 +35642,75 @@
               }
             },
             {
+              "place_id": "paulus_kirke",
+              "name": "Paulus kirke",
+              "category": "religion",
+              "source_file": "places/historie/oslo/places_historie/paulus_kirke.json",
+              "roles": [
+                {
+                  "id": "arbeid_og_okonomi",
+                  "label": "Arbeid og økonomi"
+                },
+                {
+                  "id": "religion_og_livssyn",
+                  "label": "Religion og livssyn"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "chrono_paulus_2010_9",
+                  "year": 2010,
+                  "title": "Orgelet restaureres",
+                  "consequence": "Orgelet ble restaurert med den opprinnelige fasaden bevart.",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Oslo byleksikon",
+                      "url": "https://oslobyleksikon.no/side/Paulus_kirke",
+                      "verifiedAt": ""
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_paulus_kirke.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_paulus_2017_10",
+                  "year": 2017,
+                  "title": "Rehabilitering avsluttes",
+                  "consequence": "Arbeidene fra 2014 til 2017 gjenskapte eldre veggdekor.",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Oslo byleksikon",
+                      "url": "https://oslobyleksikon.no/side/Paulus_kirke",
+                      "verifiedAt": ""
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/historie/leksikon_paulus_kirke.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_paulus_kirke_alterstriden_1892",
+                    "title": "Alterbildene som ikke kom på plass",
+                    "year": 1892,
+                    "type": "conflict"
+                  }
+                ]
+              }
+            },
+            {
               "place_id": "regjeringskvartalet",
               "name": "Regjeringskvartalet",
               "category": "politikk",
@@ -37029,8 +37358,8 @@
               }
             }
           ],
-          "placeCount": 63,
-          "milestoneCount": 120
+          "placeCount": 64,
+          "milestoneCount": 122
         }
       },
       "parallel_tracks": {
@@ -63451,12 +63780,12 @@
     "period_case_count": 9,
     "connected_people_count": 37,
     "connected_work_count": 163,
-    "connected_story_count": 204,
-    "canonical_story_milestone_count": 173,
+    "connected_story_count": 205,
+    "canonical_story_milestone_count": 174,
     "verified_place_production_milestone_count": 134,
     "indexed_place_count": 243,
-    "epoch_place_relations": 437,
-    "milestone_count": 858
+    "epoch_place_relations": 440,
+    "milestone_count": 869
   },
   "warnings": {
     "missing_source_files": [

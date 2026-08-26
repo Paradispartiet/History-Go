@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "487c0fae0b91ea6aa13127bb6c4e17a7bf46b5b6f685d2abf69b0abd43d7f693"
+    "content_sha256": "2031101c7e3105e0413956932f440c8308a9734a3fd3dc998f7c47fc232c464e"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 17,
     "chapter_count": 182,
     "module_file_count": 469,
-    "package_file_count": 289,
+    "package_file_count": 292,
     "chapter_referenced_file_count": 884,
-    "referenced_file_count": 1109,
+    "referenced_file_count": 1112,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -1876,9 +1876,9 @@
         "version"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 35,
+      "package_file_count": 38,
       "required_package_file_count": 4,
-      "optional_package_file_count": 31,
+      "optional_package_file_count": 34,
       "package_files": [
         {
           "path": "data/fag/historie/case_requirements_historie_canonical_v1.json",
@@ -2097,6 +2097,18 @@
           "content_sha256": "03b329a3d5754efcf3f9248ea677e9ca269cbc8f76b0e850e626aff47e1e2f59"
         },
         {
+          "path": "data/quiz/historie/paulus_kirke_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.paulus_kirke.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "b664d05acec84d146b9a771cf0832ea999fec3d6e785131d64eb286326d3be18"
+        },
+        {
           "path": "data/quiz/historie/var_frelsers_gravlund_sets.json",
           "required": false,
           "fields": [
@@ -2167,6 +2179,18 @@
           ],
           "exists": true,
           "content_sha256": "309ed881d26d29421f1b6442e2c892e021cbf55789ed1a3eb1b41723bc6127a5"
+        },
+        {
+          "path": "data/quiz/production_briefs/historie/paulus_kirke.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.paulus_kirke.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "afc441af7400f1e700cf93a046dc1584f3d3054ee4e0d6f66a40135e966738de"
         },
         {
           "path": "data/quiz/production_briefs/historie/var_frelsers_gravlund.json",
@@ -2241,6 +2265,18 @@
           "content_sha256": "4b5adc965f5b3d481b65d124914493f87415ce649ff0852e149988088bd0966b"
         },
         {
+          "path": "data/quiz/production_context/historie/paulus_kirke.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.paulus_kirke.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "1d0c17686b75bf97db2491be6f33d5432dea192b8706a31f866ca45c2eee9ffe"
+        },
+        {
           "path": "data/quiz/production_context/historie/var_frelsers_gravlund.json",
           "required": false,
           "fields": [
@@ -2301,20 +2337,20 @@
           "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
         }
       ],
-      "package_content_sha256": "03f668d8a99a7c161359a2d3c4dcd3970f5375ac86363c918dce849cf159f2ed",
+      "package_content_sha256": "967e1a33c0bae5b12018a0e20abe4338bdf10947921c3bfaa7008bc4d446bead",
       "chapter_count": 23,
       "module_file_count": 69,
       "brief_file_count": 0,
       "claims_file_count": 0,
       "chapter_referenced_file_count": 92,
       "chapter_content_sha256": "bedfd019dc2fa60ba92a540bf6b9f2504e0f6b1680350762a5fe074e82153148",
-      "referenced_file_count": 127,
+      "referenced_file_count": 130,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "7b9a8ef7f33a13ceed3a26e1d988cad029e2fa0915fb79a7a4d0b60575c759b5",
-      "content_sha256": "e8124eecf6cc6eccc960c1d4458d5f13198d16f4d9dbf447da6439d74d7d06c1",
+      "structure_sha256": "4c0b73d756558f524df7aa7743d177d3f7b37dbfd0608e7bd2e23dcb35631146",
+      "content_sha256": "c2b07de53311281c310075ce92bde6f26beef2741d58d6b9d334aaaf3a56d809",
       "chapters": [
         {
           "chapter_id": "historisk_tid_periodisering",
@@ -6114,5 +6150,5 @@
       ]
     }
   },
-  "release_sha256": "eda50aa6684859bf32e2d69dc12b953dadf25b1f78b133e9f766e1b950ebe301"
+  "release_sha256": "9e399eef3c84683e421b5e85d148ca088a16ee31e4a51861aab43c200ca866a3"
 }
