@@ -742,8 +742,14 @@ function setPlaceCardQuizImage(card, quizImgEl, place) {
 // ------------------------------------------------------------
 // Data-renderet quizkort på baksiden av frontImage-flippen
 // ------------------------------------------------------------
-const PLACE_CARD_QUIZ_CARD_MANIFEST_PATH = "data/quizcards/litteratur/manifest.json";
+const PLACE_CARD_QUIZ_CARD_MANIFEST_PATHS = Object.freeze([
+  "data/quizcards/by/manifest.json",
+  "data/quizcards/historie/manifest.json",
+  "data/quizcards/litteratur/manifest.json"
+]);
 const PLACE_CARD_QUIZ_CARD_FALLBACK_COLLECTIONS = Object.freeze([
+  "by/topp10_by_kort_batch1.json",
+  "historie/topp10_historie_sted_kort_batch1.json",
   "litteratur/topp10_lit_kort.json"
 ]);
 
@@ -751,19 +757,27 @@ let placeCardQuizCollectionsPromise = null;
 
 async function loadPlaceCardQuizCollectionPaths() {
   try {
-    const response = await fetch(PLACE_CARD_QUIZ_CARD_MANIFEST_PATH, { cache: "default" });
-    if (!response.ok) throw new Error(`Kunne ikke laste quizkort-manifest (${response.status})`);
+    const manifests = await Promise.all(PLACE_CARD_QUIZ_CARD_MANIFEST_PATHS.map(async path => {
+      const response = await fetch(path, { cache: "default" });
+      if (!response.ok) throw new Error(`Kunne ikke laste quizkort-manifest (${response.status})`);
+      return { path, manifest: await response.json() };
+    }));
 
-    const manifest = await response.json();
-    const files = Array.isArray(manifest?.collections)
-      ? manifest.collections
-          .map(file => String(file || "").trim())
-          .filter(Boolean)
-      : [];
+    const files = manifests.flatMap(({ path, manifest }) => {
+      const category = path.split("/").at(-2);
+      return Array.isArray(manifest?.collections)
+        ? manifest.collections
+            .map(file => String(file || "").trim())
+            .map(file => file.replace(/^\/+/, ""))
+            .map(file => file.replace(/^data\/quizcards\//, ""))
+            .map(file => file.includes("/") ? file : `${category}/${file}`)
+            .filter(Boolean)
+        : [];
+    });
 
     if (!files.length) throw new Error("Quizkort-manifest mangler collections");
 
-    return files.map(file => `litteratur/${file.replace(/^\/+/, "")}`);
+    return [...new Set(files)];
   } catch {
     return [...PLACE_CARD_QUIZ_CARD_FALLBACK_COLLECTIONS];
   }
@@ -857,6 +871,14 @@ async function resolvePlaceCardQuizData(place) {
 function renderPlaceCardQuizData(cardData) {
   const title = escapePlaceCardHTML(cardData?.title || "Quizkort");
   const subtitle = escapePlaceCardHTML(cardData?.subtitle || "");
+  const categoryId = String(cardData?.categoryId || "").trim().toLowerCase();
+  const kicker = categoryId === "by"
+    ? "Byquiz"
+    : categoryId === "historie"
+      ? "Historiequiz"
+      : categoryId === "litteratur"
+        ? tUI("ui.place.litteratureQuiz", "Litteraturquiz")
+        : "Quizkort";
 
   const questions = Array.isArray(cardData?.questions) ? cardData.questions : [];
   const optionLetters = ["A", "B", "C", "D", "E", "F"];
@@ -883,7 +905,7 @@ function renderPlaceCardQuizData(cardData) {
   return `
     <div class="pc-rendered-quiz-card">
       <div class="pc-rendered-quiz-head">
-        <div class="pc-rendered-quiz-kicker">${escapePlaceCardHTML(tUI("ui.place.litteratureQuiz", "Litteraturquiz"))}</div>
+        <div class="pc-rendered-quiz-kicker">${escapePlaceCardHTML(kicker)}</div>
         <h3>${title}</h3>
         <p>${subtitle || `${questions.length} spørsmål · fasit nederst`}</p>
       </div>
