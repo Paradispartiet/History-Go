@@ -243,7 +243,7 @@ const matrixWorld = matrix.worlds.find(row => row.key === KEY);
 assert.ok(matrixWorld);
 assert.equal(matrixWorld.status, 'playable');
 assert.equal(matrixWorld.audit.runtime_gate, true);
-assert.ok(matrixWorld.role_tests.includes('tests/civication-film-tv-programleder-role-world-rollout.test.js'));
+assert.ok(matrixWorld.artifacts.role_tests.includes('tests/civication-film-tv-programleder-role-world-rollout.test.js'));
 
 const readiness = read('data/Civication/roleWorldRolloutReadiness.json');
 assert.ok(!readiness.rollout_queue.some(row => row.key === KEY), 'completed role must leave rollout queue');
