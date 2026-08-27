@@ -1,0 +1,127 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "christian_julius_schou",
+  "profile_file": "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json",
+  "identity": {
+    "canonical_identity": "Kjøpmannen og bryggerieieren Christian Julius Schou (1792–1874), som kjøpte Jørgen Youngs bryggeri i 1837.",
+    "name_variants": [
+      "Christian Julius Schou",
+      "Christian Schou"
+    ],
+    "not": [
+      "sønnen Halvor Schou",
+      "andre medlemmer av Schou-familien"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "identity_birth",
+      "claim": "Christian Julius Schou var kjøpmann og bryggerieier, født i 1792.",
+      "status": "verified",
+      "source_url": "https://snl.no/Christian_Schou",
+      "source_location": "Faktaboks og ingress",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-27",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "takeover",
+      "claim": "Christian Julius Schou kjøpte Jørgen Youngs bryggeri i 1837, moderniserte virksomheten og ga den Schou-navnet.",
+      "status": "verified",
+      "source_url": "https://snl.no/Christian_Schou",
+      "source_location": "Schous bryggeri – Grunnlegging",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-27",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "bayer",
+      "claim": "Bryggeriet lyktes i 1843 med produksjon av undergjæret bayerøl.",
+      "status": "verified",
+      "source_url": "https://snl.no/Christian_Schou",
+      "source_location": "Den bayerske metoden",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-27",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "move",
+      "claim": "Christian Julius Schou avsatte grunn på Schousløkken til kjellere og bryggeribygg, og virksomheten flyttet dit i 1873.",
+      "status": "verified",
+      "source_url": "https://snl.no/Christian_Schou",
+      "source_location": "Schousløkken",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-27",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "identity_birth"
+    ],
+    "year": [
+      "identity_birth"
+    ],
+    "placeId": [
+      "takeover",
+      "move"
+    ],
+    "places[schous_bryggeri]": [
+      "takeover",
+      "move"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity_birth",
+          "takeover"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "takeover"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "takeover",
+          "bayer"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "move"
+        ]
+      },
+      {
+        "sentence": 4,
+        "claim_ids": [
+          "takeover"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "4/4",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-08-27",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}

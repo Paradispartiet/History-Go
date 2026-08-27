@@ -17,7 +17,7 @@ test("generated epoch-place index is deterministic and current", () => {
   assert.equal(index.stats.place_evidence_link_count, 325);
   assert.equal(index.stats.period_case_count, 9);
   assert.equal(index.stats.canonical_story_milestone_count, 174);
-  assert.equal(index.stats.verified_place_production_milestone_count, 134);
+  assert.equal(index.stats.verified_place_production_milestone_count, 143);
 });
 
 test("canonical place geography separates Oslo, Lisboa and other countries deterministically", () => {
