@@ -9,13 +9,7 @@ on:
       - "data/places/**/bla_skilt/**"
       - "data/places/**/bla_skilt_*.json"
       - "data/places/historie/oslo/snublestein/**"
-      - "data/places/production/**"
       - "data/places/regler/micro_place_profile_v1.schema.json"
-      - "data/places/manifest.json"
-      - "data/places/places_index.json"
-      - "data/places/place_image_backlog_summary.json"
-      - "data/categories/category_contract.json"
-      - "data/runtime/place-open/**"
       - "reports/oslo-micro-places-2026/**"
       - "reports/oslo-micro-place-expansion-2026/**"
       - "reports/oslo-blue-signs-phase2-2026/**"
@@ -42,29 +36,14 @@ on:
       - "tools/build_places_index.mts"
       - "tools/check_places_index_sync.mts"
       - ".github/workflows/oslo-micro-places-governance.yml"
-  push:
-    branches: [main]
-    paths:
-      - "data/places/natur/oslo/miljo_gjenbruk/**"
-      - "data/places/litteratur/oslo/lesekiosk/**"
-      - "data/places/**/bla_skilt/**"
-      - "data/places/**/bla_skilt_*.json"
-      - "data/places/historie/oslo/snublestein/**"
-      - "data/places/regler/micro_place_profile_v1.schema.json"
-      - "data/categories/category_contract.json"
-      - "reports/oslo-blue-signs-phase2-2026/**"
-      - "js/ui/micro-place-card.js"
-      - "css/micro-place-card.css"
-      - "tests/micro-place-contract.test.mjs"
-      - "tests/micro-place-blue-sign-media.test.mjs"
-      - "tests/oslo-blue-signs-phase2.test.mjs"
-      - "tests/oslo-miljo-gjenbruk-lesekiosk-materialization.test.mjs"
-      - "tests/oslo-micro-place-expansion.test.mjs"
-      - ".github/workflows/oslo-micro-places-governance.yml"
   workflow_dispatch:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   validate:

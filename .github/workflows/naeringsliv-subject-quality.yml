@@ -5,33 +5,18 @@ on:
     paths:
       - 'data/fag/naeringsliv/**'
       - 'data/badges/naeringsliv.json'
-      - 'data/fagverk/**'
+      - 'data/fagverk/naeringsliv/**'
       - 'tools/validate-okonomi-naeringsliv-*.mjs'
       - 'tools/audit-naeringsliv-theory-integrity.mjs'
       - 'scripts/audit-naeringsliv-*.mjs'
       - 'tests/naeringsliv-*.test.mjs'
-      - 'tests/fagverk-subject-inventory.test.mjs'
       - 'reports/fagverk/naeringsliv-*.json'
-      - 'reports/fagverk/general-engine-audit.json'
       - 'reports/fagverk/subject-baseline.json'
       - 'reports/fagverk/README.md'
       - '.github/workflows/naeringsliv-subject-quality.yml'
-  push:
-    branches: [main]
-    paths:
-      - 'data/fag/naeringsliv/**'
-      - 'data/badges/naeringsliv.json'
-      - 'data/fagverk/**'
-      - 'tools/validate-okonomi-naeringsliv-*.mjs'
-      - 'tools/audit-naeringsliv-theory-integrity.mjs'
-      - 'scripts/audit-naeringsliv-*.mjs'
-      - 'tests/naeringsliv-*.test.mjs'
-      - 'tests/fagverk-subject-inventory.test.mjs'
-      - 'reports/fagverk/naeringsliv-*.json'
-      - 'reports/fagverk/general-engine-audit.json'
-      - 'reports/fagverk/subject-baseline.json'
-      - 'reports/fagverk/README.md'
-      - '.github/workflows/naeringsliv-subject-quality.yml'
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   quality:

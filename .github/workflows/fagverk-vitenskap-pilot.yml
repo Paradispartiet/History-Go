@@ -5,17 +5,13 @@ on:
     paths:
       - 'fagverk.html'
       - 'fagverk-forside.html'
-      - 'data/categories/category_contract.json'
-      - 'data/fag/fag_manifest.json'
       - 'data/fag/vitenskap/**'
       - 'data/fag/teknologi/**'
       - 'data/badges/vitenskap.json'
-      - 'data/fagverk/**'
+      - 'data/fagverk/vitenskap/**'
       - 'js/fagverk-subject-core.js'
       - 'js/fagverk-subject-model.js'
       - 'js/fagverk.js'
-      - 'scripts/audit-fagverk-subject-inventory.mjs'
-      - 'scripts/audit-fagverk-general-engine.mjs'
       - 'scripts/audit-fagverk-vitenskap-breadth-reconciliation.mjs'
       - 'scripts/audit-fagverk-vitenskap-pilot.mjs'
       - 'scripts/audit-fagverk-vitenskap-university-readiness.mjs'
@@ -28,9 +24,6 @@ on:
       - 'scripts/audit-fagverk-vitenskap-chemistry-material-science-fulltext.mjs'
       - 'scripts/audit-fagverk-vitenskap-medicine-biomedicine-public-health-source-brief.mjs'
       - 'tools/audit-vitenskap-theory-integrity.mjs'
-      - 'scripts/build-fagverk-release-manifest.mjs'
-      - 'tests/fagverk-subject-inventory.test.mjs'
-      - 'tests/fagverk-general-engine.test.mjs'
       - 'tests/fagverk-vitenskap-breadth-reconciliation.test.mjs'
       - 'tests/fagverk-vitenskap-pilot.test.mjs'
       - 'tests/fagverk-vitenskap-university-readiness.test.mjs'
@@ -45,45 +38,15 @@ on:
       - 'tests/vitenskap-theory-integrity.test.mjs'
       - 'tests/fagverk-release-manifest.test.mjs'
       - 'tests/vitenskap-teknologi-category-contract.test.mjs'
-      - 'reports/fagverk/**'
-      - '.github/workflows/fagverk-vitenskap-pilot.yml'
-  push:
-    branches: [main]
-    paths:
-      - 'data/fag/vitenskap/**'
-      - 'data/fag/teknologi/**'
-      - 'data/badges/vitenskap.json'
-      - 'data/fagverk/**'
-      - 'scripts/audit-fagverk-vitenskap-breadth-reconciliation.mjs'
-      - 'scripts/audit-fagverk-vitenskap-pilot.mjs'
-      - 'scripts/audit-fagverk-vitenskap-university-readiness.mjs'
-      - 'scripts/audit-fagverk-vitenskap-unit1.mjs'
-      - 'scripts/audit-fagverk-vitenskap-mathematics-source-brief.mjs'
-      - 'scripts/audit-fagverk-vitenskap-mathematics-fulltext.mjs'
-      - 'scripts/audit-fagverk-vitenskap-physics-astronomy-source-brief.mjs'
-      - 'scripts/audit-fagverk-vitenskap-physics-astronomy-fulltext.mjs'
-      - 'scripts/audit-fagverk-vitenskap-chemistry-material-science-source-brief.mjs'
-      - 'scripts/audit-fagverk-vitenskap-chemistry-material-science-fulltext.mjs'
-      - 'scripts/audit-fagverk-vitenskap-medicine-biomedicine-public-health-source-brief.mjs'
-      - 'tools/audit-vitenskap-theory-integrity.mjs'
-      - 'tests/fagverk-vitenskap-breadth-reconciliation.test.mjs'
-      - 'tests/fagverk-vitenskap-pilot.test.mjs'
-      - 'tests/fagverk-vitenskap-university-readiness.test.mjs'
-      - 'tests/fagverk-vitenskap-unit1.test.mjs'
-      - 'tests/fagverk-vitenskap-mathematics-source-brief.test.mjs'
-      - 'tests/fagverk-vitenskap-mathematics-fulltext.test.mjs'
-      - 'tests/fagverk-vitenskap-physics-astronomy-source-brief.test.mjs'
-      - 'tests/fagverk-vitenskap-physics-astronomy-fulltext.test.mjs'
-      - 'tests/fagverk-vitenskap-chemistry-material-science-source-brief.test.mjs'
-      - 'tests/fagverk-vitenskap-chemistry-material-science-fulltext.test.mjs'
-      - 'tests/fagverk-vitenskap-medicine-biomedicine-public-health-source-brief.test.mjs'
-      - 'tests/vitenskap-theory-integrity.test.mjs'
-      - 'reports/fagverk/**'
       - '.github/workflows/fagverk-vitenskap-pilot.yml'
   workflow_dispatch:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   validate:

@@ -5,26 +5,7 @@ on:
     paths:
       - 'data/fag/scenekunst/**'
       - 'data/fagverk/scenekunst/**'
-      - 'data/fagverk/fagverk_registry.json'
-      - 'data/fagverk/fagverk_release.json'
-      - 'data/fagverk/subject_status.json'
       - 'reports/fagverk/scenekunst-*.json'
-      - 'reports/fagverk/general-engine-audit.json'
-      - 'scripts/audit-fagverk-scenekunst-*.mjs'
-      - 'scripts/materialize-fagverk-scenekunst-completion.mjs'
-      - 'tests/fagverk-scenekunst-*.test.mjs'
-      - '.github/workflows/fagverk-scenekunst-*.yml'
-  push:
-    branches:
-      - main
-    paths:
-      - 'data/fag/scenekunst/**'
-      - 'data/fagverk/scenekunst/**'
-      - 'data/fagverk/fagverk_registry.json'
-      - 'data/fagverk/fagverk_release.json'
-      - 'data/fagverk/subject_status.json'
-      - 'reports/fagverk/scenekunst-*.json'
-      - 'reports/fagverk/general-engine-audit.json'
       - 'scripts/audit-fagverk-scenekunst-*.mjs'
       - 'scripts/materialize-fagverk-scenekunst-completion.mjs'
       - 'tests/fagverk-scenekunst-*.test.mjs'
@@ -33,6 +14,10 @@ on:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   completion:

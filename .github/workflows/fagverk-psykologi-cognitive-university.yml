@@ -10,20 +10,14 @@ on:
       - "tests/fagverk-psykologi-cognitive-university.test.mjs"
       - "reports/fagverk/psykologi-cognitive-university-audit.json"
       - ".github/workflows/fagverk-psykologi-cognitive-university.yml"
-  push:
-    branches: [main]
-    paths:
-      - "data/fag/psykologi/kognitiv_psykologi_university_v1.json"
-      - "data/fag/psykologi/psykologi_university_readiness_v1.json"
-      - "scripts/audit-fagverk-psykologi-cognitive-university.mjs"
-      - "scripts/audit-fagverk-psykologi-university-readiness.mjs"
-      - "tests/fagverk-psykologi-cognitive-university.test.mjs"
-      - "reports/fagverk/psykologi-cognitive-university-audit.json"
-      - ".github/workflows/fagverk-psykologi-cognitive-university.yml"
   workflow_dispatch:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   validate:

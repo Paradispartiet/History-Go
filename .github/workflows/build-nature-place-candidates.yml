@@ -12,27 +12,16 @@ on:
     paths:
       - "tools/build_nature_place_candidates*.mts"
       - "tools/validate_nature_maps.mts"
-      - "data/places/**"
+      - "data/places/natur/**"
       - "data/natur/**"
       - "!data/natur/nature_place_map_candidates.json"
       - ".github/workflows/build-nature-place-candidates.yml"
-  push:
-    branches:
-      - main
-    paths:
-      - "tools/build_nature_place_candidates*.mts"
-      - "tools/validate_nature_maps.mts"
-      - "data/places/**"
-      - "data/natur/**"
-      - "!data/natur/nature_place_map_candidates.json"
-      - ".github/workflows/build-nature-place-candidates.yml"
-
 permissions:
   contents: write
 
 concurrency:
   group: nature-place-candidates-${{ github.event_name }}-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 env:
   NATURE_CANDIDATES_FINAL: data/natur/nature_place_map_candidates.json

@@ -7,10 +7,8 @@ on:
       - 'data/badges/index.json'
       - 'data/badges/vitenskap.json'
       - 'data/badges/teknologi.json'
-      - 'data/fag/fag_manifest.json'
       - 'data/fag/teknologi/**'
-      - 'data/fagverk/**'
-      - 'data/quiz/manifest.json'
+      - 'data/fagverk/vitenskap/**'
       - 'data/quiz/teknologi/**'
       - 'data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json'
       - 'js/DomainRegistry.js'
@@ -24,9 +22,7 @@ on:
       - 'scripts/validate-teknologi-editorial-v3.mjs'
       - 'scripts/audit-category-governance.mjs'
       - 'scripts/audit-quiz-template-governance.mjs'
-      - 'scripts/audit-fagverk-subject-inventory.mjs'
       - 'tests/vitenskap-teknologi-category-contract.test.mjs'
-      - 'tests/fagverk-subject-inventory.test.mjs'
       - 'docs/DOMAIN_CONTRACT.md'
       - 'docs/FAGVERK.md'
       - '.github/workflows/vitenskap-teknologi-category.yml'
@@ -34,6 +30,10 @@ on:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   validate:

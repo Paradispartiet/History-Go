@@ -4,42 +4,15 @@ on:
   pull_request:
     paths:
       - "data/fag/TV_og_Film/**"
-      - "data/fagverk/**"
+      - "data/fagverk/film_tv/**"
       - "scripts/audit-film-tv-holistic-completion-v1.mjs"
       - "scripts/audit-film-tv-cultural-heritage-canon-stars-memory-editorial-v1.mjs"
       - "scripts/audit-film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.mjs"
-      - "scripts/audit-fagverk-subject-inventory.mjs"
-      - "scripts/audit-fagverk-general-engine.mjs"
       - "scripts/audit-fagverk-film-tv-phase3.mjs"
-      - "scripts/build-fagverk-release-manifest.mjs"
       - "tests/film-tv-holistic-completion-v1.test.mjs"
       - "tests/film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.test.mjs"
       - "tests/film-tv-unit15-fulltext-predecessor-monotonicity-v1.test.mjs"
       - "tests/film-tv-final-gate-monotonicity-v1.test.mjs"
-      - "tests/fagverk-subject-inventory.test.mjs"
-      - "tests/fagverk-general-engine.test.mjs"
-      - "tests/fagverk-film-tv-phase3.test.mjs"
-      - "tests/fagverk-release-manifest.test.mjs"
-      - "reports/fagverk/film-tv-holistic-completion-v1-audit.json"
-      - ".github/workflows/fagverk-film-tv-holistic-completion.yml"
-  push:
-    branches: [main]
-    paths:
-      - "data/fag/TV_og_Film/**"
-      - "data/fagverk/**"
-      - "scripts/audit-film-tv-holistic-completion-v1.mjs"
-      - "scripts/audit-film-tv-cultural-heritage-canon-stars-memory-editorial-v1.mjs"
-      - "scripts/audit-film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.mjs"
-      - "scripts/audit-fagverk-subject-inventory.mjs"
-      - "scripts/audit-fagverk-general-engine.mjs"
-      - "scripts/audit-fagverk-film-tv-phase3.mjs"
-      - "scripts/build-fagverk-release-manifest.mjs"
-      - "tests/film-tv-holistic-completion-v1.test.mjs"
-      - "tests/film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.test.mjs"
-      - "tests/film-tv-unit15-fulltext-predecessor-monotonicity-v1.test.mjs"
-      - "tests/film-tv-final-gate-monotonicity-v1.test.mjs"
-      - "tests/fagverk-subject-inventory.test.mjs"
-      - "tests/fagverk-general-engine.test.mjs"
       - "tests/fagverk-film-tv-phase3.test.mjs"
       - "tests/fagverk-release-manifest.test.mjs"
       - "reports/fagverk/film-tv-holistic-completion-v1-audit.json"
@@ -48,6 +21,10 @@ on:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   validate:

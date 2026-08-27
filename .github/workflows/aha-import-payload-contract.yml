@@ -10,17 +10,12 @@ on:
       - "tests/aha-import-payload-v1-contract.test.js"
       - "tests/aha-ownership-boundary.test.js"
       - ".github/workflows/aha-import-payload-contract.yml"
-  push:
-    branches: [main]
-    paths:
-      - "js/aha.js"
-      - "AHA/contracts/**"
-      - "tests/aha-import-payload-v1-contract.test.js"
-      - "tests/aha-ownership-boundary.test.js"
-      - ".github/workflows/aha-import-payload-contract.yml"
-
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   contract:

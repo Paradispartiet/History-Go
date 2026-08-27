@@ -6,17 +6,13 @@ on:
       - 'fagverk.html'
       - 'fagverk-forside.html'
       - 'css/fagverk-general.css'
-      - 'data/categories/category_contract.json'
-      - 'data/fag/fag_manifest.json'
       - 'data/fag/historie/**'
       - 'data/fag/profiles/**'
       - 'data/badges/historie.json'
-      - 'data/fagverk/**'
+      - 'data/fagverk/historie/**'
       - 'js/fagverk-subject-core.js'
       - 'js/fagverk-subject-model.js'
       - 'js/fagverk.js'
-      - 'scripts/audit-fagverk-subject-inventory.mjs'
-      - 'scripts/audit-fagverk-general-engine.mjs'
       - 'scripts/audit-fagverk-historie.mjs'
       - 'tools/audit-historie-universal-coverage.mjs'
       - 'tools/validate-historie-curriculum-architecture.mjs'
@@ -30,8 +26,6 @@ on:
       - 'tools/validate-historie-editorial-quality.mjs'
       - 'tools/materialize-historie-editorial-chapters.mjs'
       - 'package.json'
-      - 'tests/fagverk-subject-inventory.test.mjs'
-      - 'tests/fagverk-general-engine.test.mjs'
       - 'tests/fagverk-historie.test.mjs'
       - 'tests/historie-curriculum-architecture.test.mjs'
       - 'tests/historie-period-modules.test.mjs'
@@ -41,7 +35,6 @@ on:
       - 'tests/historie-completion.test.mjs'
       - 'tests/historie-theory-integrity.test.mjs'
       - 'docs/HISTORY_CURRICULUM_ARCHITECTURE_V1.md'
-      - 'reports/fagverk/**'
       - 'reports/historie-canonical-migration/**'
       - 'reports/historie-universal-coverage/**'
       - '.github/workflows/fagverk-historie.yml'
@@ -49,6 +42,10 @@ on:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   validate:

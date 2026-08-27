@@ -3,77 +3,8 @@ name: Fagverk theory integrity audit
 on:
   pull_request:
     paths:
-      - 'data/fag/**'
-      - 'data/fagverk/**'
-      - 'docs/FAGVERK.md'
-      - 'docs/SUBJECT_FILE_CONTRACT.md'
-      - 'reports/fagverk/fagverk-theory-integrity-audit.json'
-      - 'reports/fagverk/by-theory-integrity-audit.json'
-      - 'reports/fagverk/kunst-complete-audit.json'
-      - 'reports/fagverk/kunst-theory-integrity-audit.json'
-      - 'reports/fagverk/media-complete-audit.json'
-      - 'reports/fagverk/media-theory-integrity-audit.json'
-      - 'reports/fagverk/musikk-subject-audit.json'
-      - 'reports/fagverk/musikk-theory-integrity-audit.json'
-      - 'reports/fagverk/litteratur-theory-integrity-audit.json'
-      - 'reports/fagverk/natur-theory-integrity-audit.json'
-      - 'reports/fagverk/helse-theory-integrity-audit.json'
-      - 'reports/fagverk/helse-strict-completion-v1-audit.json'
-      - 'reports/fagverk/naeringsliv-theory-integrity-audit.json'
-      - 'reports/fagverk/psykologi-theory-integrity-audit.json'
-      - 'reports/fagverk/sport-theory-integrity-audit.json'
-      - 'reports/fagverk/vitenskap-theory-integrity-audit.json'
-      - 'reports/fagverk/politikk-theory-integrity-audit.json'
-      - 'reports/fagverk/filosofi-theory-integrity-audit.json'
-      - 'reports/fagverk/teknologi-theory-integrity-audit.json'
-      - 'reports/historie-theory-evidence/**'
-      - 'scripts/audit-fagverk-theory-integrity.mjs'
-      - 'scripts/audit-fagverk-theory-quality.mjs'
-      - 'scripts/audit-fagverk-film-tv-theory-canon.mjs'
-      - 'scripts/audit-fagverk-religion-theory-canon.mjs'
-      - 'scripts/audit-fagverk-scenekunst-theory-canon.mjs'
-      - 'scripts/audit-fagverk-kunst-complete.mjs'
-      - 'scripts/audit-fagverk-media-complete.mjs'
-      - 'scripts/audit-fagverk-musikk.mjs'
-      - 'scripts/audit-subkultur-theory-attribution-v1.mjs'
-      - 'tools/audit-historie-theory-integrity.mjs'
-      - 'tools/audit-by-theory-integrity.mjs'
-      - 'tools/audit-kunst-theory-integrity.mjs'
-      - 'tools/audit-media-theory-integrity.mjs'
-      - 'tools/audit-musikk-theory-integrity.mjs'
-      - 'tools/audit-litteratur-theory-integrity.mjs'
-      - 'tools/audit-natur-theory-integrity.mjs'
-      - 'tools/audit-helse-theory-integrity.mjs'
-      - 'tools/audit-naeringsliv-theory-integrity.mjs'
-      - 'tools/audit-psykologi-theory-integrity.mjs'
-      - 'tools/audit-sport-theory-integrity.mjs'
-      - 'tools/audit-vitenskap-theory-integrity.mjs'
-      - 'tools/audit-politikk-theory-integrity.mjs'
-      - 'tools/audit-filosofi-theory-integrity.mjs'
-      - 'tools/audit-teknologi-theory-integrity.mjs'
-      - 'tests/by-theory-integrity.test.mjs'
-      - 'tests/kunst-theory-integrity.test.mjs'
-      - 'tests/media-theory-integrity.test.mjs'
-      - 'tests/musikk-theory-integrity.test.mjs'
-      - 'tests/litteratur-theory-integrity.test.mjs'
-      - 'tests/natur-theory-integrity.test.mjs'
-      - 'tests/helse-theory-integrity.test.mjs'
-      - 'tests/naeringsliv-theory-integrity.test.mjs'
-      - 'tests/psykologi-theory-integrity.test.mjs'
-      - 'tests/sport-theory-integrity.test.mjs'
-      - 'tests/vitenskap-theory-integrity.test.mjs'
-      - 'tests/politikk-theory-integrity.test.mjs'
-      - 'tests/filosofi-theory-integrity.test.mjs'
-      - 'tests/teknologi-theory-integrity.test.mjs'
-      - 'tests/fagverk-documentation-contract.test.mjs'
-      - 'tests/fagverk-theory-integrity.test.mjs'
-      - '.github/workflows/fagverk-theory-integrity.yml'
-  push:
-    branches:
-      - main
-    paths:
-      - 'data/fag/**'
-      - 'data/fagverk/**'
+      - 'data/fag/*/**'
+      - 'data/fagverk/*/**'
       - 'docs/FAGVERK.md'
       - 'docs/SUBJECT_FILE_CONTRACT.md'
       - 'reports/fagverk/fagverk-theory-integrity-audit.json'
@@ -141,6 +72,10 @@ on:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   audit:

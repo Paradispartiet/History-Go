@@ -12,7 +12,6 @@ on:
       - "data/fag/sport/methods_sport_quality_v5.json"
       - "data/fag/sport/sportpensum_canonical_v4_5.json"
       - "data/fag/sport/theory_integrity_bindings_sport_v1.json"
-      - "data/fagverk/fagverk_registry.json"
       - "data/fagverk/sport/**"
       - "scripts/materialize-sport-editorial-depth.mjs"
       - "scripts/enrich-sport-editorial-claim-provenance.mjs"
@@ -27,27 +26,14 @@ on:
       - "reports/fagverk/sport-editorial-depth-audit.json"
       - "reports/fagverk/sport-theory-integrity-audit.json"
       - ".github/workflows/fagverk-sport-editorial-depth.yml"
-  push:
-    branches: [main]
-    paths:
-      - "data/fag/sport/**"
-      - "data/fagverk/fagverk_registry.json"
-      - "data/fagverk/sport/**"
-      - "scripts/materialize-sport-editorial-depth.mjs"
-      - "scripts/enrich-sport-editorial-claim-provenance.mjs"
-      - "scripts/polish-sport-editorial-depth.mjs"
-      - "scripts/audit-fagverk-sport-editorial-depth.mjs"
-      - "tools/audit-sport-theory-integrity.mjs"
-      - "tests/fagverk-sport-editorial-depth.test.mjs"
-      - "tests/fagverk-sport-editorial-style.test.mjs"
-      - "tests/sport-theory-integrity.test.mjs"
-      - "reports/fagverk/sport-editorial-depth-audit.json"
-      - "reports/fagverk/sport-theory-integrity-audit.json"
-      - ".github/workflows/fagverk-sport-editorial-depth.yml"
   workflow_dispatch:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   validate:

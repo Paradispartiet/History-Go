@@ -4,7 +4,7 @@ on:
   pull_request:
     paths:
       - 'data/fag/natur/**'
-      - 'data/fagverk/**'
+      - 'data/fagverk/natur/**'
       - 'js/fagverk-subject-core.js'
       - 'js/fagverk.js'
       - 'scripts/materialize-natur-biology-phase-1.mjs'
@@ -22,28 +22,9 @@ on:
       - 'reports/fagverk/natur-universal-coverage-audit.json'
       - 'reports/fagverk/natur-pilot-audit.json'
       - '.github/workflows/natur-subject-quality.yml'
-  push:
-    branches: [main]
-    paths:
-      - 'data/fag/natur/**'
-      - 'data/fagverk/**'
-      - 'js/fagverk-subject-core.js'
-      - 'js/fagverk.js'
-      - 'scripts/materialize-natur-biology-phase-1.mjs'
-      - 'scripts/materialize-natur-biology-phase-2.mjs'
-      - 'scripts/audit-natur-subject-quality.mjs'
-      - 'scripts/audit-natur-fagkart-quality.mjs'
-      - 'scripts/audit-natur-universal-coverage.mjs'
-      - 'scripts/audit-fagverk-natur-pilot.mjs'
-      - 'tests/natur-subject-quality.test.mjs'
-      - 'tests/natur-fagkart-quality.test.mjs'
-      - 'tests/natur-universal-coverage.test.mjs'
-      - 'tests/fagverk-natur-pilot.test.mjs'
-      - 'reports/fagverk/natur-quality-audit.json'
-      - 'reports/fagverk/natur-fagkart-quality-audit.json'
-      - 'reports/fagverk/natur-universal-coverage-audit.json'
-      - 'reports/fagverk/natur-pilot-audit.json'
-      - '.github/workflows/natur-subject-quality.yml'
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   quality:

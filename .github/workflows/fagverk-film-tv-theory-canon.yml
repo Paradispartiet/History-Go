@@ -10,20 +10,14 @@ on:
       - 'tests/fagverk-film-tv-theory-canon.test.mjs'
       - 'tests/film-tv-source-authority-quality-v1.test.mjs'
       - '.github/workflows/fagverk-film-tv-theory-canon.yml'
-  push:
-    branches: [main]
-    paths:
-      - 'data/fag/TV_og_Film/**'
-      - 'data/fagverk/film_tv/**'
-      - 'scripts/audit-fagverk-film-tv-theory-canon.mjs'
-      - 'scripts/audit-film-tv-source-authority-quality-v1.mjs'
-      - 'tests/fagverk-film-tv-theory-canon.test.mjs'
-      - 'tests/film-tv-source-authority-quality-v1.test.mjs'
-      - '.github/workflows/fagverk-film-tv-theory-canon.yml'
   workflow_dispatch:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   theory-canon:

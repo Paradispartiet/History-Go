@@ -10,20 +10,14 @@ on:
       - "tests/fagverk-psykologi-social-university.test.mjs"
       - "reports/fagverk/psykologi-social-university-audit.json"
       - ".github/workflows/fagverk-psykologi-social-university.yml"
-  push:
-    branches: [main]
-    paths:
-      - "data/fag/psykologi/sosialpsykologi_university_v1.json"
-      - "data/fag/psykologi/psykologi_university_readiness_v1.json"
-      - "scripts/audit-fagverk-psykologi-social-university.mjs"
-      - "scripts/audit-fagverk-psykologi-university-readiness.mjs"
-      - "tests/fagverk-psykologi-social-university.test.mjs"
-      - "reports/fagverk/psykologi-social-university-audit.json"
-      - ".github/workflows/fagverk-psykologi-social-university.yml"
   workflow_dispatch:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   validate:

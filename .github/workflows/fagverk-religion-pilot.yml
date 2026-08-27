@@ -5,16 +5,12 @@ on:
     paths:
       - 'fagverk.html'
       - 'fagverk-forside.html'
-      - 'data/categories/category_contract.json'
-      - 'data/fag/fag_manifest.json'
       - 'data/fag/religion/**'
       - 'data/badges/religion.json'
-      - 'data/fagverk/**'
+      - 'data/fagverk/religion/**'
       - 'js/fagverk-subject-core.js'
       - 'js/fagverk-subject-model.js'
       - 'js/fagverk.js'
-      - 'scripts/audit-fagverk-subject-inventory.mjs'
-      - 'scripts/audit-fagverk-general-engine.mjs'
       - 'scripts/audit-fagverk-religion-pilot.mjs'
       - 'scripts/audit-fagverk-religion-university-readiness.mjs'
       - 'scripts/audit-fagverk-religion-theory-method-articles-v1.mjs'
@@ -29,9 +25,6 @@ on:
       - 'scripts/audit-fagverk-religion-lived-identity-migration-articles-v1.mjs'
       - 'scripts/audit-fagverk-religion-secular-new-media-articles-v1.mjs'
       - 'scripts/audit-fagverk-religion-nature-science-ethics-articles-v1.mjs'
-      - 'scripts/build-fagverk-release-manifest.mjs'
-      - 'tests/fagverk-subject-inventory.test.mjs'
-      - 'tests/fagverk-general-engine.test.mjs'
       - 'tests/fagverk-religion-pilot.test.mjs'
       - 'tests/fagverk-religion-university-readiness.test.mjs'
       - 'tests/fagverk-religion-theory-method-articles-v1.test.mjs'
@@ -48,49 +41,15 @@ on:
       - 'tests/fagverk-religion-nature-science-ethics-articles-v1.test.mjs'
       - 'tests/fagverk-religion-completion-state.test.mjs'
       - 'tests/fagverk-release-manifest.test.mjs'
-      - 'reports/fagverk/**'
-      - '.github/workflows/fagverk-religion-pilot.yml'
-  push:
-    branches: [main]
-    paths:
-      - 'data/fag/religion/**'
-      - 'data/badges/religion.json'
-      - 'data/fagverk/**'
-      - 'scripts/audit-fagverk-religion-pilot.mjs'
-      - 'scripts/audit-fagverk-religion-university-readiness.mjs'
-      - 'scripts/audit-fagverk-religion-theory-method-articles-v1.mjs'
-      - 'scripts/audit-fagverk-religion-history-comparison-articles-v1.mjs'
-      - 'scripts/audit-fagverk-religion-abrahamic-traditions-articles-v1.mjs'
-      - 'scripts/audit-fagverk-religion-south-asian-articles-v1.mjs'
-      - 'scripts/audit-fagverk-religion-east-asian-articles-v1.mjs'
-      - 'scripts/audit-fagverk-religion-indigenous-sami-articles-v1.mjs'
-      - 'scripts/audit-fagverk-religion-ritual-materiality-space-articles-v1.mjs'
-      - 'scripts/audit-fagverk-religion-texts-myths-authority-articles-v1.mjs'
-      - 'scripts/audit-fagverk-religion-society-politics-law-articles-v1.mjs'
-      - 'scripts/audit-fagverk-religion-lived-identity-migration-articles-v1.mjs'
-      - 'scripts/audit-fagverk-religion-secular-new-media-articles-v1.mjs'
-      - 'scripts/audit-fagverk-religion-nature-science-ethics-articles-v1.mjs'
-      - 'tests/fagverk-religion-pilot.test.mjs'
-      - 'tests/fagverk-religion-university-readiness.test.mjs'
-      - 'tests/fagverk-religion-theory-method-articles-v1.test.mjs'
-      - 'tests/fagverk-religion-history-comparison-articles-v1.test.mjs'
-      - 'tests/fagverk-religion-abrahamic-traditions-articles-v1.test.mjs'
-      - 'tests/fagverk-religion-south-asian-articles-v1.test.mjs'
-      - 'tests/fagverk-religion-east-asian-articles-v1.test.mjs'
-      - 'tests/fagverk-religion-indigenous-sami-articles-v1.test.mjs'
-      - 'tests/fagverk-religion-ritual-materiality-space-articles-v1.test.mjs'
-      - 'tests/fagverk-religion-texts-myths-authority-articles-v1.test.mjs'
-      - 'tests/fagverk-religion-society-politics-law-articles-v1.test.mjs'
-      - 'tests/fagverk-religion-lived-identity-migration-articles-v1.test.mjs'
-      - 'tests/fagverk-religion-secular-new-media-articles-v1.test.mjs'
-      - 'tests/fagverk-religion-nature-science-ethics-articles-v1.test.mjs'
-      - 'tests/fagverk-religion-completion-state.test.mjs'
-      - 'reports/fagverk/**'
       - '.github/workflows/fagverk-religion-pilot.yml'
   workflow_dispatch:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   validate:

@@ -5,34 +5,17 @@ on:
     paths:
       - 'data/fagverk/kunst/tid-og-transformasjon.json'
       - 'data/fagverk/kunst/tid-og-transformasjon/**'
-      - 'data/fagverk/fagverk_registry.json'
-      - 'data/fagverk/subject_status.json'
-      - 'data/fagverk/fagverk_release.json'
       - 'reports/fagverk/kunst-*-audit.json'
-      - 'reports/fagverk/general-engine-audit.json'
       - 'scripts/audit-fagverk-kunst-*.mjs'
       - 'scripts/materialize-kunst-tid-transformasjon-phase4.mjs'
       - 'tests/fagverk-kunst-*.test.mjs'
-      - 'tests/fagverk-general-engine.test.mjs'
       - '.github/workflows/fagverk-kunst-tid-transformasjon-phase4.yml'
-  push:
-    branches: [main]
-    paths:
-      - 'data/fagverk/kunst/tid-og-transformasjon.json'
-      - 'data/fagverk/kunst/tid-og-transformasjon/**'
-      - 'data/fagverk/fagverk_registry.json'
-      - 'data/fagverk/subject_status.json'
-      - 'data/fagverk/fagverk_release.json'
-      - 'reports/fagverk/kunst-*-audit.json'
-      - 'reports/fagverk/general-engine-audit.json'
-      - 'scripts/audit-fagverk-kunst-*.mjs'
-      - 'scripts/materialize-kunst-tid-transformasjon-phase4.mjs'
-      - 'tests/fagverk-kunst-*.test.mjs'
-      - 'tests/fagverk-general-engine.test.mjs'
-      - '.github/workflows/fagverk-kunst-tid-transformasjon-phase4.yml'
-
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   audit:

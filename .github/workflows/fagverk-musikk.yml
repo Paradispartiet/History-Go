@@ -4,19 +4,13 @@ on:
   pull_request:
     paths:
       - 'fagverk.html'
-      - 'data/categories/category_contract.json'
-      - 'data/fag/fag_manifest.json'
       - 'data/fag/musikk/**'
       - 'data/quiz/musikk/musikk_subject_pathways_v1.json'
-      - 'data/quiz/manifest.json'
-      - 'data/knowledge/**'
       - 'data/badges/musikk.json'
-      - 'data/fagverk/**'
+      - 'data/fagverk/musikk/**'
       - 'js/fagverk-subject-core.js'
       - 'js/fagverk-subject-model.js'
       - 'js/fagverk.js'
-      - 'scripts/audit-fagverk-subject-inventory.mjs'
-      - 'scripts/audit-fagverk-general-engine.mjs'
       - 'scripts/audit-fagverk-musikk.mjs'
       - 'scripts/knowledge-canonical-data.mts'
       - 'tools/build-musikk-melody-subject-pathway-v1.mjs'
@@ -39,17 +33,17 @@ on:
       - 'tools/validate-musikk-subject-pathway-source-metadata-v1.mjs'
       - 'tools/audit-musikk-theory-integrity.mjs'
       - 'tests/musikk-theory-integrity.test.mjs'
-      - 'tests/fagverk-subject-inventory.test.mjs'
-      - 'tests/fagverk-general-engine.test.mjs'
       - 'tests/fagverk-musikk.test.mjs'
-      - 'reports/fagverk/**'
-      - 'reports/knowledge-id-backfill.json'
       - 'reports/musikk-canonical-migration/**'
       - '.github/workflows/fagverk-musikk.yml'
   workflow_dispatch:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   validate:

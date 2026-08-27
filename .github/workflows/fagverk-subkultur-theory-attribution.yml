@@ -13,23 +13,14 @@ on:
       - 'scripts/audit-subkultur-theory-attribution-v1.mjs'
       - 'tests/subkultur-theory-attribution-v1.test.mjs'
       - '.github/workflows/fagverk-subkultur-theory-attribution.yml'
-  push:
-    branches: [main]
-    paths:
-      - 'data/fag/subkultur/theory_objects_subkultur_canonical_v1.json'
-      - 'data/fag/subkultur/sources_subkultur_canonical_v1.json'
-      - 'data/fag/subkultur/theory_attribution_subkultur_canonical_v1.json'
-      - 'data/fag/subkultur/subkulturpensum_canonical_v4_5.json'
-      - 'data/fag/subkultur/claims_subkultur_canonical_v1.json'
-      - 'data/fag/subkultur/evidence_links_subkultur_canonical_v1.json'
-      - 'data/fag/subkultur/emner_subkultur_canonical_v4_5.json'
-      - 'scripts/audit-subkultur-theory-attribution-v1.mjs'
-      - 'tests/subkultur-theory-attribution-v1.test.mjs'
-      - '.github/workflows/fagverk-subkultur-theory-attribution.yml'
   workflow_dispatch:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   theory-attribution:

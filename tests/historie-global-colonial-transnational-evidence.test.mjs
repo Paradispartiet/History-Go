@@ -8,6 +8,7 @@ const claims = readJson('data/fag/historie/claims_historie_canonical_v1.json').c
 const registry = readJson('data/fag/historie/theory_evidence_historie_canonical_v1.json').entries;
 const dossier = readJson('data/fag/historie/source_dossiers/global_colonial_transnational_v1.json');
 const historyEvidenceWorkflow = fs.readFileSync('.github/workflows/history-theory-evidence.yml', 'utf8');
+const mainIntegrityWorkflow = fs.readFileSync('.github/workflows/main-integrity.yml', 'utf8');
 const claimById = new Map(claims.map((claim) => [claim.claim_id, claim]));
 
 const targetTheoryIds = new Set(theories
@@ -137,7 +138,7 @@ test('collection and decision institutions remain anchors rather than foreign ev
   }
 });
 
-test('History CI watches the delegated domain validator and all of its canonical inputs', () => {
+test('History CI owns delegated validation on pull requests without duplicating it after merge', () => {
   for (const path of [
     'tools/validate-historie-domain.mjs',
     'data/fag/historie/historiepensum_canonical_v4_5.json',
@@ -146,8 +147,10 @@ test('History CI watches the delegated domain validator and all of its canonical
     'data/fag/historie/fagkart_historie_canonical_v4_5.json',
   ]) {
     const pathFilter = `- '${path}'`;
-    assert.equal(historyEvidenceWorkflow.split(pathFilter).length - 1, 2, `${path} must be watched for PR and push`);
+    assert.equal(historyEvidenceWorkflow.split(pathFilter).length - 1, 1, `${path} must be watched once on pull requests`);
   }
+  assert.doesNotMatch(historyEvidenceWorkflow, /^  push:/m);
+  assert.match(mainIntegrityWorkflow, /node scripts\/audit-ci-workflow-routing\.mjs/);
   assert.match(historyEvidenceWorkflow, /node tools\/validate-historie-global-kolonial-transnasjonal\.mjs/);
   assert.match(historyEvidenceWorkflow, /node --test .*historie-global-colonial-transnational-evidence\.test\.mjs/);
 });

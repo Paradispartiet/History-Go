@@ -3,18 +3,8 @@ name: Fagverk theory quality baseline
 on:
   pull_request:
     paths:
-      - 'data/fag/**'
-      - 'data/fagverk/**'
-      - 'reports/fagverk/fagverk-theory-quality-audit.json'
-      - 'scripts/audit-fagverk-theory-quality.mjs'
-      - 'tests/fagverk-theory-quality.test.mjs'
-      - '.github/workflows/fagverk-theory-quality.yml'
-  push:
-    branches:
-      - main
-    paths:
-      - 'data/fag/**'
-      - 'data/fagverk/**'
+      - 'data/fag/*/**'
+      - 'data/fagverk/*/**'
       - 'reports/fagverk/fagverk-theory-quality-audit.json'
       - 'scripts/audit-fagverk-theory-quality.mjs'
       - 'tests/fagverk-theory-quality.test.mjs'
@@ -23,6 +13,10 @@ on:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   audit:

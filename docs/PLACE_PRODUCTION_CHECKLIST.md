@@ -173,6 +173,10 @@ Et valgt samlingskort uten entity eller bilde er BLOCKED. Løsningen er enten å
 
 ## 5. Fagverk-sted — obligatorisk
 
+Alle canonicale steder skal ha sin egen fungerende fagverkside.
+
+**fagverk-sted — obligatorisk, fungerende og aldri N/A.** Kravet gjelder hvert sted, kan ikke settes til N/A og er en egen ferdigport.
+
 Alle ordinære canonical Places skal ha fungerende stedsspesifikk Fagverk-side. Fagverkets faglige vekt skal samsvare med Hovedbadge, underbadges, emner og dokumentert stedskunnskap.
 
 Arbeidskortet skal føre:

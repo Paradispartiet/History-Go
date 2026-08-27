@@ -6,16 +6,12 @@ on:
     paths:
       - "fagverk.html"
       - "fagverk-forside.html"
-      - "data/categories/category_contract.json"
-      - "data/fag/fag_manifest.json"
       - "data/fag/psykologi/**"
       - "data/badges/psykologi.json"
-      - "data/fagverk/**"
+      - "data/fagverk/psykologi/**"
       - "js/fagverk-subject-core.js"
       - "js/fagverk-subject-model.js"
       - "js/fagverk.js"
-      - "scripts/audit-fagverk-subject-inventory.mjs"
-      - "scripts/audit-fagverk-general-engine.mjs"
       - "scripts/audit-fagverk-psykologi-phase3.mjs"
       - "scripts/materialize-psykologi-psykisk-helse-institusjoner-behandling-phase4.mjs"
       - "scripts/enrich-psykologi-psykisk-helse-source-evidence-phase4.mjs"
@@ -47,9 +43,6 @@ on:
       - "scripts/audit-fagverk-psykologi-editorial-quality-v2.mjs"
       - "scripts/audit-fagverk-psykologi-university-readiness.mjs"
       - "scripts/psykologi-subject-state.mjs"
-      - "scripts/build-fagverk-release-manifest.mjs"
-      - "tests/fagverk-subject-inventory.test.mjs"
-      - "tests/fagverk-general-engine.test.mjs"
       - "tests/fagverk-psykologi-phase3.test.mjs"
       - "tests/fagverk-psykologi-psykisk-helse-phase4.test.mjs"
       - "tests/fagverk-psykologi-fagtradisjoner-teori-phase4.test.mjs"
@@ -71,75 +64,15 @@ on:
       - "tests/fagverk-psykologi-metadata-monotonic.test.mjs"
       - "tests/fagverk-psykologi-university-readiness.test.mjs"
       - "tests/fagverk-release-manifest.test.mjs"
-      - "reports/fagverk/**"
-      - ".github/workflows/fagverk-psykologi-phase3.yml"
-  push:
-    branches: [main]
-    paths:
-      - "data/fag/psykologi/**"
-      - "data/badges/psykologi.json"
-      - "data/fagverk/**"
-      - "scripts/audit-fagverk-psykologi-phase3.mjs"
-      - "scripts/materialize-psykologi-psykisk-helse-institusjoner-behandling-phase4.mjs"
-      - "scripts/enrich-psykologi-psykisk-helse-source-evidence-phase4.mjs"
-      - "scripts/audit-fagverk-psykologi-psykisk-helse-phase4.mjs"
-      - "scripts/materialize-psykologi-fagtradisjoner-teori-phase4.mjs"
-      - "scripts/audit-fagverk-psykologi-fagtradisjoner-teori-phase4.mjs"
-      - "scripts/materialize-psykologi-utvikling-oppvekst-laring-phase4.mjs"
-      - "scripts/audit-fagverk-psykologi-utvikling-oppvekst-laring-phase4.mjs"
-      - "scripts/materialize-psykologi-kognisjon-folelser-atferd-phase4.mjs"
-      - "scripts/audit-fagverk-psykologi-kognisjon-folelser-atferd-phase4.mjs"
-      - "scripts/materialize-psykologi-sosialpsykologi-normalitet-stigma-phase4.mjs"
-      - "scripts/audit-fagverk-psykologi-sosialpsykologi-normalitet-stigma-phase4.mjs"
-      - "scripts/materialize-psykologi-traume-krise-resiliens-omsorg-phase4.mjs"
-      - "scripts/audit-fagverk-psykologi-traume-krise-resiliens-omsorg-phase4.mjs"
-      - "scripts/audit-fagverk-psykologi-complete.mjs"
-      - "tools/audit-psykologi-theory-integrity.mjs"
-      - "scripts/audit-fagverk-psykologi-biological-university.mjs"
-      - "scripts/audit-fagverk-psykologi-cognitive-university.mjs"
-      - "scripts/audit-fagverk-psykologi-developmental-university.mjs"
-      - "scripts/audit-fagverk-psykologi-social-university.mjs"
-      - "scripts/audit-fagverk-psykologi-personality-university.mjs"
-      - "scripts/audit-fagverk-psykologi-history-science-theory-university.mjs"
-      - "scripts/materialize-psykologi-topic-articles-mental-health-v1.mjs"
-      - "scripts/audit-fagverk-psykologi-topic-articles-mental-health-v1.mjs"
-      - "scripts/materialize-psykologi-university-completion-v1.mjs"
-      - "scripts/lib/psykologi-editorial-curation-v2.mjs"
-      - "scripts/lib/preserve-fagverk-metadata.mjs"
-      - "scripts/audit-fagverk-psykologi-university-completion-v1.mjs"
-      - "scripts/audit-fagverk-psykologi-editorial-quality-v2.mjs"
-      - "scripts/audit-fagverk-psykologi-university-readiness.mjs"
-      - "scripts/psykologi-subject-state.mjs"
-      - "tests/fagverk-psykologi-phase3.test.mjs"
-      - "tests/fagverk-psykologi-psykisk-helse-phase4.test.mjs"
-      - "tests/fagverk-psykologi-fagtradisjoner-teori-phase4.test.mjs"
-      - "tests/fagverk-psykologi-utvikling-oppvekst-laring-phase4.test.mjs"
-      - "tests/fagverk-psykologi-kognisjon-folelser-atferd-phase4.test.mjs"
-      - "tests/fagverk-psykologi-sosialpsykologi-normalitet-stigma-phase4.test.mjs"
-      - "tests/fagverk-psykologi-traume-krise-resiliens-omsorg-phase4.test.mjs"
-      - "tests/fagverk-psykologi-complete.test.mjs"
-      - "tests/psykologi-theory-integrity.test.mjs"
-      - "tests/fagverk-psykologi-biological-university.test.mjs"
-      - "tests/fagverk-psykologi-cognitive-university.test.mjs"
-      - "tests/fagverk-psykologi-developmental-university.test.mjs"
-      - "tests/fagverk-psykologi-social-university.test.mjs"
-      - "tests/fagverk-psykologi-personality-university.test.mjs"
-      - "tests/fagverk-psykologi-history-science-theory-university.test.mjs"
-      - "tests/fagverk-psykologi-topic-articles-mental-health-v1.test.mjs"
-      - "tests/fagverk-psykologi-university-completion-v1.test.mjs"
-      - "tests/fagverk-psykologi-editorial-quality-v2.test.mjs"
-      - "tests/fagverk-psykologi-metadata-monotonic.test.mjs"
-      - "tests/fagverk-psykologi-university-readiness.test.mjs"
-      - "reports/fagverk/**"
       - ".github/workflows/fagverk-psykologi-phase3.yml"
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: fagverk-psykologi-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   validate:
@@ -148,7 +81,6 @@ jobs:
     steps:
       - uses: actions/checkout@v5
         with:
-          ref: ${{ github.head_ref || github.ref_name }}
           fetch-depth: 0
       - uses: actions/setup-node@v5
         with:
@@ -230,8 +162,8 @@ jobs:
           node scripts/audit-fagverk-subject-inventory.mjs
           node scripts/audit-fagverk-general-engine.mjs
 
-      - name: Build deterministic Fagverk release
-        run: node scripts/build-fagverk-release-manifest.mjs
+      - name: Verify deterministic Fagverk release
+        run: node scripts/build-fagverk-release-manifest.mjs --check
 
       - name: Validate Fagverk and Psychology contracts
         run: |
@@ -315,56 +247,11 @@ jobs:
       - name: Verify deterministic release
         run: node scripts/build-fagverk-release-manifest.mjs --check
 
-      - name: Materialize generated Psychology files on PR branch
-        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
-        env:
-          HEAD_BRANCH: ${{ github.head_ref }}
+      - name: Reject uncommitted generated Psychology changes
         run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add \
-            data/fag/psykologi/psykologi_university_readiness_v1.json \
-            data/fag/psykologi/begreper_psykologi_canonical_v1.json \
-            data/fag/psykologi/anvendte_fagfelt_psykologi_university_v1.json \
-            data/fagverk/psykologi/psykisk-helse-institusjoner-og-behandling.json \
-            data/fagverk/psykologi/psykisk-helse-institusjoner-og-behandling \
-            data/fagverk/psykologi/fagtradisjoner-teori-og-sinnet.json \
-            data/fagverk/psykologi/fagtradisjoner-teori-og-sinnet \
-            data/fagverk/psykologi/utvikling-oppvekst-og-laring.json \
-            data/fagverk/psykologi/utvikling-oppvekst-og-laring \
-            data/fagverk/psykologi/kognisjon-folelser-og-atferd.json \
-            data/fagverk/psykologi/kognisjon-folelser-og-atferd \
-            data/fagverk/psykologi/sosialpsykologi-normalitet-og-stigma.json \
-            data/fagverk/psykologi/sosialpsykologi-normalitet-og-stigma \
-            data/fagverk/psykologi/traume-krise-resiliens-og-omsorg.json \
-            data/fagverk/psykologi/traume-krise-resiliens-og-omsorg \
-            data/fagverk/psykologi/emneartikler \
-            data/fagverk/fagverk_registry.json \
-            data/fagverk/subject_status.json \
-            data/fagverk/fagverk_release.json \
-            reports/fagverk/subject-baseline.json \
-            reports/fagverk/general-engine-audit.json \
-            reports/fagverk/psykologi-phase3-audit.json \
-            reports/fagverk/psykologi-psykisk-helse-phase4-audit.json \
-            reports/fagverk/psykologi-fagtradisjoner-teori-phase4-audit.json \
-            reports/fagverk/psykologi-utvikling-oppvekst-laring-phase4-audit.json \
-            reports/fagverk/psykologi-kognisjon-folelser-atferd-phase4-audit.json \
-            reports/fagverk/psykologi-sosialpsykologi-normalitet-stigma-phase4-audit.json \
-            reports/fagverk/psykologi-traume-krise-resiliens-omsorg-phase4-audit.json \
-            reports/fagverk/psykologi-complete-audit.json \
-            reports/fagverk/psykologi-biological-university-audit.json \
-            reports/fagverk/psykologi-cognitive-university-audit.json \
-            reports/fagverk/psykologi-developmental-university-audit.json \
-            reports/fagverk/psykologi-social-university-audit.json \
-            reports/fagverk/psykologi-personality-university-audit.json \
-            reports/fagverk/psykologi-history-science-theory-university-audit.json \
-            reports/fagverk/psykologi-topic-articles-mental-health-v1-audit.json \
-            reports/fagverk/psykologi-university-completion-v1-audit.json \
-            reports/fagverk/psykologi-editorial-quality-v2-audit.json \
-            reports/fagverk/psykologi-university-readiness-audit.json
-          if git diff --cached --quiet; then
-            echo 'Psychology materialization already matches.'
-            exit 0
+          if [ -n "$(git status --porcelain)" ]; then
+            git status --short
+            git diff --stat
+            echo 'Run the deterministic Psychology generators locally and commit their outputs.' >&2
+            exit 1
           fi
-          git commit -m 'Materialize Psychology university-readiness baseline'
-          git push origin "HEAD:${HEAD_BRANCH}"

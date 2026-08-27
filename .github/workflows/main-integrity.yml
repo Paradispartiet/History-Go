@@ -1,0 +1,42 @@
+name: Main integrity
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [closed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: main-integrity-${{ github.event.pull_request.merge_commit_sha || github.sha }}
+  cancel-in-progress: true
+
+jobs:
+  composition:
+    name: Verify composed repository state
+    if: github.event_name != 'pull_request' || github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.merge_commit_sha || github.sha }}
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Audit CI routing before installing dependencies
+        run: node scripts/audit-ci-workflow-routing.mjs
+      - name: Install repository dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Verify generated web runtime
+        run: npm run build:web:check
+      - name: Verify composed canonical data
+        run: |
+          npm run places:index:check
+          npm run knowledge:canonical:check
+          node scripts/build-fagverk-release-manifest.mjs --check

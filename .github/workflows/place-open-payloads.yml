@@ -21,32 +21,14 @@ on:
       - 'package.json'
       - 'package-lock.json'
       - '.github/workflows/place-open-payloads.yml'
-  push:
-    branches:
-      - main
-    paths:
-      - 'data/people/**'
-      - 'data/places/**'
-      - 'data/relations*.json'
-      - 'data/stories/**'
-      - 'data/leksikon/**'
-      - 'data/lesespor/**'
-      - 'data/natur/**'
-      - 'data/wonderkammer/**'
-      - 'data/events/**'
-      - 'data/brands/**'
-      - 'data/runtime/**'
-      - 'js/data/place-open-loader.js'
-      - 'scripts/build-place-open-payloads.mjs'
-      - 'tests/place-open-hyperfast.test.mjs'
-      - 'tests/place-popup-lesespor-place-open-race.test.mjs'
-      - 'package.json'
-      - 'package-lock.json'
-      - '.github/workflows/place-open-payloads.yml'
   workflow_dispatch:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   verify:

@@ -6,23 +6,25 @@ on:
       - 'fagverk.html'
       - 'data/categories/category_contract.json'
       - 'data/fag/fag_manifest.json'
-      - 'data/fagverk/**'
+      - 'data/fagverk/*/**'
       - 'data/badges/**'
       - 'js/fagverk-subject-core.js'
       - 'js/fagverk-subject-model.js'
       - 'js/fagverk.js'
       - 'css/fagverk-general.css'
-      - 'scripts/audit-fagverk-subject-inventory.mjs'
       - 'scripts/audit-fagverk-general-engine.mjs'
-      - 'tests/fagverk-subject-inventory.test.mjs'
       - 'tests/fagverk-general-engine.test.mjs'
+      - 'reports/fagverk/general-engine-audit.json'
       - 'tests/politikk-fag-integration.test.mjs'
-      - 'reports/fagverk/**'
       - '.github/workflows/fagverk-general-engine.yml'
   workflow_dispatch:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   validate:

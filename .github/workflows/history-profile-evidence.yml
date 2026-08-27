@@ -21,32 +21,14 @@ on:
       - 'docs/SUBJECT_FILE_CONTRACT.md'
       - 'docs/DATA_PRODUCTION_CONTRACT.md'
       - '.github/workflows/history-profile-evidence.yml'
-  push:
-    branches:
-      - main
-    paths:
-      - 'data/fag/profiles/**'
-      - 'data/fag/historie/case_requirements_historie_canonical_v1.json'
-      - 'data/fag/historie/claims_historie_canonical_v1.json'
-      - 'data/fag/historie/sources_historie_canonical_v1.json'
-      - 'data/fag/historie/place_evidence_historie_v1.json'
-      - 'data/fag/historie/emner_historie_canonical_v4_5.json'
-      - 'data/fag/historie/historie_universal_coverage_contract_v1.json'
-      - 'data/fag/historie/historie_v5_contract.json'
-      - 'tools/validate-historie-profile-evidence.mjs'
-      - 'tools/audit-historie-geographic-profile.mjs'
-      - 'tools/audit-historie-universal-coverage.mjs'
-      - 'reports/historie-profile-evidence/**'
-      - 'reports/historie-geographic-profiles/**'
-      - 'reports/historie-universal-coverage/**'
-      - 'docs/HISTORY_UNIVERSAL_COVERAGE.md'
-      - 'docs/SUBJECT_FILE_CONTRACT.md'
-      - 'docs/DATA_PRODUCTION_CONTRACT.md'
-      - '.github/workflows/history-profile-evidence.yml'
   workflow_dispatch:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   profile-evidence:

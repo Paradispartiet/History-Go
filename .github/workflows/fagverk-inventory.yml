@@ -3,30 +3,19 @@ name: Fagverk subject inventory
 on:
   pull_request:
     paths:
-      - 'data/categories/category_contract.json'
       - 'data/fag/fag_manifest.json'
       - 'data/fag/**'
       - 'data/fagverk/fagverk_portal.json'
       - 'data/fagverk/subject_inventory.json'
       - 'data/fagverk/subject_status.json'
       - 'reports/fagverk/subject-baseline.json'
+      - 'reports/fagverk/subject-inventory-audit.json'
       - 'scripts/audit-fagverk-subject-inventory.mjs'
       - 'tests/fagverk-subject-inventory.test.mjs'
       - '.github/workflows/fagverk-inventory.yml'
-  push:
-    branches:
-      - main
-    paths:
-      - 'data/categories/category_contract.json'
-      - 'data/fag/fag_manifest.json'
-      - 'data/fag/**'
-      - 'data/fagverk/fagverk_portal.json'
-      - 'data/fagverk/subject_inventory.json'
-      - 'data/fagverk/subject_status.json'
-      - 'reports/fagverk/subject-baseline.json'
-      - 'scripts/audit-fagverk-subject-inventory.mjs'
-      - 'tests/fagverk-subject-inventory.test.mjs'
-      - '.github/workflows/fagverk-inventory.yml'
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   audit:

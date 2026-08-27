@@ -8,18 +8,14 @@ on:
       - 'scripts/audit-fagverk-religion-theory-canon.mjs'
       - 'tests/fagverk-religion-theory-canon.test.mjs'
       - '.github/workflows/fagverk-religion-theory-canon.yml'
-  push:
-    branches: [main]
-    paths:
-      - 'data/fag/religion/**'
-      - 'data/fagverk/religion/**'
-      - 'scripts/audit-fagverk-religion-theory-canon.mjs'
-      - 'tests/fagverk-religion-theory-canon.test.mjs'
-      - '.github/workflows/fagverk-religion-theory-canon.yml'
   workflow_dispatch:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   theory-canon:

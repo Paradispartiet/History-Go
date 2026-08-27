@@ -96,7 +96,7 @@ test('canonical sources extracted from the final dossier resolve to snapshots', 
   }
 });
 
-test('History CI permanently runs the final-domain validator and regressions', () => {
+test('History CI runs the final-domain validator and regressions once on pull requests', () => {
   const workflow = fs.readFileSync('.github/workflows/history-theory-evidence.yml', 'utf8');
   const workflowLines = workflow.split('\n');
   const eventBlock = (eventName) => {
@@ -112,5 +112,5 @@ test('History CI permanently runs the final-domain validator and regressions', (
   ]) assert.ok(workflow.includes(file), `History CI does not include ${file}`);
   const profilePath = "      - 'data/fag/profiles/historie/oslo_akershus/profile.json'";
   assert.ok(eventBlock('pull_request').includes(profilePath), 'History CI must watch the tested profile on pull requests');
-  assert.ok(eventBlock('push').includes(profilePath), 'History CI must watch the tested profile on pushes');
+  assert.equal(workflowLines.findIndex((line) => line === '  push:'), -1, 'History CI must not duplicate validation after merge');
 });

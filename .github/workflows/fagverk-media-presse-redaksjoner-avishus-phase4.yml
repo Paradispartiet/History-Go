@@ -5,38 +5,17 @@ on:
     paths:
       - 'data/fagverk/media/presse-redaksjoner-og-avishus.json'
       - 'data/fagverk/media/presse-redaksjoner-og-avishus/**'
-      - 'data/fagverk/fagverk_registry.json'
-      - 'data/fagverk/subject_status.json'
-      - 'data/fagverk/fagverk_release.json'
       - 'reports/fagverk/media-*-audit.json'
-      - 'reports/fagverk/general-engine-audit.json'
-      - 'reports/fagverk/subject-inventory-audit.json'
       - 'scripts/audit-fagverk-media-*.mjs'
       - 'scripts/materialize-media-presse-redaksjoner-avishus-phase4.mjs'
       - 'tests/fagverk-media-*.test.mjs'
-      - 'tests/fagverk-general-engine.test.mjs'
-      - 'tests/fagverk-subject-inventory.test.mjs'
       - '.github/workflows/fagverk-media-presse-redaksjoner-avishus-phase4.yml'
-  push:
-    branches: [main]
-    paths:
-      - 'data/fagverk/media/presse-redaksjoner-og-avishus.json'
-      - 'data/fagverk/media/presse-redaksjoner-og-avishus/**'
-      - 'data/fagverk/fagverk_registry.json'
-      - 'data/fagverk/subject_status.json'
-      - 'data/fagverk/fagverk_release.json'
-      - 'reports/fagverk/media-*-audit.json'
-      - 'reports/fagverk/general-engine-audit.json'
-      - 'reports/fagverk/subject-inventory-audit.json'
-      - 'scripts/audit-fagverk-media-*.mjs'
-      - 'scripts/materialize-media-presse-redaksjoner-avishus-phase4.mjs'
-      - 'tests/fagverk-media-*.test.mjs'
-      - 'tests/fagverk-general-engine.test.mjs'
-      - 'tests/fagverk-subject-inventory.test.mjs'
-      - '.github/workflows/fagverk-media-presse-redaksjoner-avishus-phase4.yml'
-
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   audit:

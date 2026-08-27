@@ -6,12 +6,9 @@ on:
       - "data/fag/musikk/**"
       - "tools/validate-musikk-*.mjs"
       - ".github/workflows/musikk-scientific-quality.yml"
-  push:
-    branches: [main]
-    paths:
-      - "data/fag/musikk/**"
-      - "tools/validate-musikk-*.mjs"
-      - ".github/workflows/musikk-scientific-quality.yml"
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   validate:

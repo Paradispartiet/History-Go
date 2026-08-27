@@ -4,21 +4,9 @@ on:
   pull_request:
     paths:
       - 'data/Civication/**'
-      - 'data/badges/**'
-      - 'js/Civication/**'
-      - 'tests/civication-*.test.js'
-      - 'tests/run-civication-tests.mjs'
-      - 'scripts/audit-civication-*.mjs'
-      - 'scripts/auditJobLearningProfiles.*'
-      - 'scripts/auditJobKnowledgeRequirements.*'
-      - 'package.json'
-      - 'package-lock.json'
-      - '.github/workflows/civication.yml'
-  push:
-    branches:
-      - main
-    paths:
-      - 'data/Civication/**'
+      - '!data/Civication/historyPeople_index.json'
+      - '!data/Civication/scenarioPeople/**'
+      - '!data/Civication/scenarioPeople_index.json'
       - 'data/badges/**'
       - 'js/Civication/**'
       - 'tests/civication-*.test.js'
@@ -33,6 +21,10 @@ on:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   regression:

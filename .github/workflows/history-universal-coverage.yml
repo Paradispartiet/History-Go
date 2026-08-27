@@ -13,24 +13,14 @@ on:
       - 'docs/HISTORY_UNIVERSAL_COVERAGE.md'
       - 'docs/HISTORY_V5_5_FREEZE.md'
       - '.github/workflows/history-universal-coverage.yml'
-  push:
-    branches:
-      - main
-    paths:
-      - 'data/fag/historie/**'
-      - 'data/fag/profiles/**'
-      - 'tools/audit-historie-universal-coverage.mjs'
-      - 'tools/audit-historie-geographic-profile.mjs'
-      - 'tools/validate-historie-profile-evidence.mjs'
-      - 'reports/historie-universal-coverage/**'
-      - 'reports/historie-geographic-profiles/**'
-      - 'docs/HISTORY_UNIVERSAL_COVERAGE.md'
-      - 'docs/HISTORY_V5_5_FREEZE.md'
-      - '.github/workflows/history-universal-coverage.yml'
   workflow_dispatch:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   universal-coverage:
