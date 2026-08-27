@@ -30,20 +30,34 @@
           "choice_axis": "gjeld_vs_egenkapital",
           "consequence_axis": "kontroll_vs_robusthet",
           "narrative_arc": "kapitalens_pris",
-          "learning_focus": ["gjeld", "egenkapital", "utvanning", "covenant", "kapitalstruktur"],
+          "learning_focus": [
+            "gjeld",
+            "egenkapital",
+            "utvanning",
+            "covenant",
+            "kapitalstruktur"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Anbefal en balansert finansiering med mindre gjeld og noe egenkapital.",
               "effect": 1,
-              "tags": ["kapitalstruktur", "risiko", "governance"],
+              "tags": [
+                "kapitalstruktur",
+                "risiko",
+                "governance"
+              ],
               "feedback": "Du gjør finansieringen mindre elegant, men mer robust. Eierne må dele oppsiden, men selskapet får mer luft."
             },
             {
               "id": "B",
               "label": "Anbefal økt låneramme for å unngå eierutvanning.",
               "effect": -1,
-              "tags": ["gjeld", "risk", "vekst"],
+              "tags": [
+                "gjeld",
+                "risk",
+                "vekst"
+              ],
               "feedback": "Kontrollen bevares, men risikobufferen blir tynnere. Du har kjøpt vekst med mindre rom for feil."
             }
           ]
@@ -75,23 +89,221 @@
           "choice_axis": "strategisk_verdi_vs_prestisje",
           "consequence_axis": "langsiktig_styrke_vs_kortsiktig_posisjon",
           "narrative_arc": "oppkjopets_pris",
-          "learning_focus": ["M&A", "integrasjonsrisiko", "synergier", "oppkjøpspremie", "strategisk verdi"],
+          "learning_focus": [
+            "M&A",
+            "integrasjonsrisiko",
+            "synergier",
+            "oppkjøpspremie",
+            "strategisk verdi"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Anbefal videre prosess bare med tydelig integrasjonsbudsjett og downside-case.",
               "effect": 1,
-              "tags": ["m_a", "risiko", "integritet"],
+              "tags": [
+                "m_a",
+                "risiko",
+                "integritet"
+              ],
               "feedback": "Du dreper ikke caset, men tvinger det til å tåle sin egen virkelighet. Oppkjøpet må bevise mer enn at det ser bra ut."
             },
             {
               "id": "B",
               "label": "Støtt caset nå for å bevare momentum i forhandlingene.",
               "effect": -1,
-              "tags": ["tempo", "prestisje", "risk"],
+              "tags": [
+                "tempo",
+                "prestisje",
+                "risk"
+              ],
               "feedback": "Du holder transaksjonen varm, men integrasjonsrisikoen havner bak i prosessen. Der blir den ofte dyrere."
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_finansdirektor_case_open",
+      "purpose": "Åpner ett vedvarende refinansieringscase med kapitalbehov, covenant og mandatspor.",
+      "learning_focus": [
+        "persistent_work_object",
+        "capital_structure",
+        "authority_boundary"
+      ],
+      "mails": [
+        {
+          "id": "naeringsliv_finansdirektor_realism_refinancing_case_open_001",
+          "mail_type": "job",
+          "mail_family": "role_world_rollout_finansdirektor_case_open",
+          "role_scope": "finansdirektor",
+          "phase": "advanced",
+          "day_phase": "morning",
+          "priority": 99,
+          "cooldown": 10,
+          "repeatable": false,
+          "stage": "stable",
+          "planned_only": true,
+          "thread_key": "naeringsliv_finansdirektor_refinancing_realism_001",
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "naeringsliv",
+            "finansdirektor",
+            "persistent_work",
+            "situated_reputation"
+          ],
+          "from": "Nora, daglig leder",
+          "people_ref": "nora_daglig_leder",
+          "person_id": "nora_daglig_leder",
+          "place_id": "barcode",
+          "subject": "Refinansieringen må bli ett styrbart kapitalcase før banken blir en tidsfrist",
+          "summary": "Nora vil sikre finansiering for vekstplanen før eksisterende låneramme blir trang. Du åpner ett refinansieringscase som samler likviditetsbehov, covenantbuffer, renteantakelser, styremandat og åpne spørsmål i samme spor før bankdialogen får sitt eget momentum.",
+          "purpose": "Etablere ett vedvarende kapitalarbeidsobjekt som senere kan overleveres til banken, stå legitimt i venting, reworkes når vilkår endrer seg og til slutt overleveres til styret uten at forhandling blir forvekslet med bindende fullmakt.",
+          "stakes": "Hvis finansieringen organiseres som løse presentasjoner og e-poster, kan et tidlig banksignal bli behandlet som om vilkårene allerede er akseptert. Da blir selskapets handlingsrom sosialt låst før styret har sett total kapitalpris, covenant og downside.",
+          "situation": [
+            "Vekstplanen trenger finansiering, men selskapet har fortsatt tid til å sammenligne alternativer og dokumentere en reell covenantbuffer.",
+            "Bankkontakten kan diskutere pris og struktur, mens styret må eie vesentlige endringer i kapitalstruktur og bindende forpliktelser.",
+            "Du kan lede analyse, forhandle alternativer og anbefale retning; du kan ikke signere eller love finansiering uten nødvendig fullmakt."
+          ],
+          "task_domain": "refinancing_case_baseline",
+          "task_kind": "job",
+          "competency": "kapitalstruktur_og_mandatspor",
+          "pressure": "veksttempo_vs_sporbart_kapitalrom",
+          "choice_axis": "ett_sporbart_refinansieringscase_vs_løse_banksignaler",
+          "consequence_axis": "finansiell_tillit_vs_forventningsgjeld",
+          "narrative_arc": "fra_refinansieringsbehov_til_sporbart_styrevedtak_og_kapitaletterspill",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "naeringsliv_finansdirektor_refinancing_case_001"
+            ],
+            "institution_id": "naeringsliv_konsernfinans_001",
+            "priority": "high"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lås kapitalbehov, covenantbuffer, beslutningsmandat og åpne vilkår i ett case",
+              "reply": "Jeg oppretter ett refinansieringscase med behov, downside, covenantbuffer og eksplisitt styregrense før vi går videre med banken.",
+              "effect": 2,
+              "feedback": "Nora får retning uten falsk sikkerhet. Banken kan møte ett konsistent kapitalspor, og styret kan senere se hvilke vilkår som faktisk endret seg før beslutningen.",
+              "effects": {
+                "stats": {
+                  "quality": 3,
+                  "trust": 2,
+                  "risk": -2
+                },
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "cfo_case_baseline_traced",
+                    "work_object_id": "naeringsliv_finansdirektor_refinancing_case_001",
+                    "flag": "capital_need_covenant_and_mandate_traced"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "cfo_standing_nora_open",
+                    "audience_id": "manager:nora_daglig_leder",
+                    "delta": 3,
+                    "reason": "Nora får et kapitalgrunnlag der vekstbehov, covenantbuffer og beslutningsmandat er synlige før bankdialogen blir behandlet som en ferdig finansieringsretning.",
+                    "source_actor_id": "nora_daglig_leder"
+                  },
+                  {
+                    "event_id": "cfo_standing_board_open",
+                    "audience_id": "professional:styreleder",
+                    "delta": 2,
+                    "reason": "Styreleder får et senere beslutningsspor som viser hvilke antakelser og fullmaktsgrenser som var kjent før banken presenterte konkrete vilkår.",
+                    "source_actor_id": "styreleder"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Start bankdialogen med ønsket låneramme og dokumenter mandatet etterpå",
+              "reply": "Jeg gir banken ønsket finansieringsretning nå og rydder covenant, downside og styremandat når vi har et konkret tilbud å reagere på.",
+              "effect": -2,
+              "feedback": "Du skaper tempo, men også forventningsgjeld. Når banken svarer, kan et uformelt utgangspunkt allerede føles som selskapets valgte kapitalstrategi.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                },
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "cfo_case_baseline_blurred",
+                    "work_object_id": "naeringsliv_finansdirektor_refinancing_case_001",
+                    "flag": "bank_direction_precedes_mandate_and_downside_lock"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "cfo_standing_nora_blurred",
+                    "audience_id": "manager:nora_daglig_leder",
+                    "delta": -2,
+                    "reason": "Nora får raskere markedskontakt, men svakere kontroll over hvilke premisser banken kan oppfatte som ledelsens allerede valgte finansieringsretning.",
+                    "source_actor_id": "nora_daglig_leder"
+                  },
+                  {
+                    "event_id": "cfo_standing_board_blurred",
+                    "audience_id": "professional:styreleder",
+                    "delta": -3,
+                    "reason": "Styreleder risikerer å motta et kapitalvalg som sosialt er kommet lenger enn det formelle mandatet, før styret har sett total risiko og fleksibilitet.",
+                    "source_actor_id": "styreleder"
+                  }
+                ]
+              }
+            }
+          ],
+          "effects": {
+            "work_object_ops": [
+              {
+                "op": "create",
+                "event_id": "cfo_refinancing_case_created",
+                "work_object": {
+                  "work_object_id": "naeringsliv_finansdirektor_refinancing_case_001",
+                  "kind": "refinancing_capital_case",
+                  "role_scope": "finansdirektor",
+                  "institution_id": "naeringsliv_konsernfinans_001",
+                  "title": "Refinansieringscase: kapitalbehov, covenant, vilkår og styrevedtak",
+                  "status": "in_progress",
+                  "phase": "baseline_and_mandate_lock",
+                  "people_refs": [
+                    "nora_daglig_leder",
+                    "bankkontakt",
+                    "styreleder",
+                    "eierrepresentant"
+                  ],
+                  "place_refs": [
+                    "barcode",
+                    "bankplassen",
+                    "oslo_bors"
+                  ],
+                  "knowledge_refs": [
+                    "data/Civication/roleModels/naeringsliv/finansdirektor.json",
+                    "data/Civication/workGrammars/naeringsliv/finansdirektor.json",
+                    "data/Civication/mailFamilies/naeringsliv/followup/finansdirektor_followup.json"
+                  ],
+                  "open_questions": [
+                    "Hvor stort kapitalbehov tåler downside-scenarioet uten å presse covenantbufferen for langt?",
+                    "Hvilke finansieringsvilkår kan forhandles administrativt, og hvilke må styret eksplisitt eie?",
+                    "Hva må banken, daglig leder og styret få vite dersom markedsvilkårene endrer seg før beslutningen?"
+                  ],
+                  "deadline": "styremote_refinansiering_dag_12",
+                  "confidentiality": "konfidensielt_kapitalgrunnlag",
+                  "flags": [
+                    "cfo_refinancing_case_opened"
+                  ],
+                  "shared": false
+                }
+              }
+            ]
+          }
         }
       ]
     }

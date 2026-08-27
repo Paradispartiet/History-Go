@@ -1,0 +1,979 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "finansdirektor",
+  "title": "Finansdirektør — refinansiering, venting, rework og kapitalmyndighet",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "Å gjøre selskapets kapitalbehov beslutningsklart uten at vekstpress, banktempo eller CFOens høye standing gjør indikative vilkår til løfter eller faglig innflytelse til bindende kapitalmyndighet.",
+    "description": "Denne Role World-en følger ett vedvarende refinansieringscase fra kapital- og mandatlås via bank-handoff, legitim venting og rente-/covenantdrevet rework til styrebehandling og kapitaletterspill. Nora, banken, styret og eierne vurderer samme arbeid fra ulike ståsteder, mens fullmaktsgrensen forblir uendret: finansdirektøren kan analysere, forhandle og anbefale, men kan ikke binde selskapet uten nødvendig mandat."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "numerical_control",
+    "status_anxiety",
+    "shame_reputation",
+    "loyalty_up_down",
+    "social_mask",
+    "bureaucratic_power",
+    "public_private_leakage"
+  ],
+  "social_environments": [
+    "Barcode-kontoret der vekstplan, likviditetsbehov og styreforberedelse gjør kapitalvalg til både faglige og politiske spørsmål.",
+    "Bankplassen som History Go-kontekst for kreditt, finansinstitusjoner og tillit uten at stedstilknytningen gir spilleren noen moderne institusjonell fullmakt.",
+    "Oslo Børs som stedlig kontekst for kapital, markedsrente og eierforventninger som kan endre selskapets finansielle handlingsrom raskt.",
+    "Bankens kredittprosess der refinansieringscaset legitimt kan stå i waiting mens pris, covenant og vilkår behandles av en ekstern beslutningskjede.",
+    "Lederflaten med Nora der strategisk tempo og behovet for sikre budskap trekker mot tydeligere løfter enn finansieringen faktisk tåler.",
+    "Styret der CFOens faglige tyngde stopper ved anbefalingen og bindende kapitalmyndighet må forbli hos riktig beslutningsorgan.",
+    "Den private kvelden etter styremøtet der kontroll, status og ansvar kan følge finansdirektøren hjem selv når beslutningen var institusjonelt delt."
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "nora_daglig_leder",
+      "social_function": "daglig leder som trenger finansielt handlingsrom for strategi og vekst",
+      "class_position": "øverste operative leder med høy formell makt og sterkt behov for kapitalforutsigbarhet",
+      "status": "svært høy formell status",
+      "power_over_player": "kan prioritere strategi, sette tempo og evaluere finansdirektørens bidrag, men kan ikke alene gjøre alle styrepliktige kapitalvalg bindende",
+      "wants": "en finansieringsretning som gir vekstkapasitet uten uventede covenant- eller likviditetsproblemer",
+      "conceals": "hvor mye organisasjonens forventninger allerede bygger på at finansieringen skal lykkes",
+      "speech_style": "strategisk og kort; spør hva vi kan gjøre, når pengene er sikre og hva som kan stoppe planen",
+      "teaches_player": "at tydelighet for ledelsen må bygges på faktisk kapitalrom, ikke på ønsket forutsigbarhet"
+    },
+    {
+      "id": "bankkontakt",
+      "social_function": "bankens relasjons- og kredittflate som priser risiko og formidler vilkår mellom selskap og bank",
+      "class_position": "ekstern profesjonell motpart med høy informasjons- og forhandlingsmakt",
+      "status": "høy situert status i finansieringsprosessen",
+      "power_over_player": "kan påvirke pris, covenant og prosess, men kan ikke bestemme selskapets interne mandat eller styrets endelige kapitalvalg",
+      "wants": "et troverdig grunnlag med realistisk downside, tydelig likviditetsbehov og ledelse som ikke foregriper kredittbeslutningen",
+      "conceals": "hvor mye bankens egen appetitt, kapitalbruk og interne kredittprosess kan flytte vilkårene etter første positive signal",
+      "speech_style": "kontrollert og vilkårsorientert; skiller indikasjon, term sheet, kredittgodkjenning og bindende dokumentasjon",
+      "teaches_player": "at bankdialog har flere beslutningsnivåer og at venting ikke er det samme som manglende fremdrift"
+    },
+    {
+      "id": "styreleder",
+      "social_function": "leder beslutningsorganet som må eie vesentlige endringer i kapitalstruktur og risikoramme",
+      "class_position": "øverste governance-posisjon over finansdirektørens faglige anbefaling i styrepliktige saker",
+      "status": "svært høy formell status",
+      "power_over_player": "kan utfordre, godkjenne eller avvise kapitalanbefalingen og påvirke CFOens standing, men skal få et selvstendig og etterprøvbart beslutningsgrunnlag",
+      "wants": "et kort råd som viser total kapitalpris, downside, covenant og hvilke valg styret faktisk må eie",
+      "conceals": "at styret også kan være utsatt for eierpress og prestisje knyttet til vekst, oppkjøp eller offensiv kapitalfortelling",
+      "speech_style": "komprimert og ansvarssøkende; spør hva vi vedtar, hva som kan gå galt, hvilke vilkår som binder oss og hvem som eier risikoen",
+      "teaches_player": "at CFOens innflytelse blir sterkere når den ikke forsøker å erstatte styrets mandat"
+    },
+    {
+      "id": "eierrepresentant",
+      "social_function": "eierperspektiv som vurderer avkastning, utvanning, kontroll og kapitaldisiplin",
+      "class_position": "kapitaleier med sterk indirekte makt over styre og strategi",
+      "status": "høy formell og økonomisk status",
+      "power_over_player": "kan påvirke forventninger og styrepress, men kan ikke gjøre ønsket avkastning til dokumentert finansielt faktum",
+      "wants": "vekst og avkastning uten unødvendig utvanning eller skjult finansieringsrisiko",
+      "conceals": "hvor mye preferansen for kontroll kan trekke kapitalstrukturen mot mer gjeld enn downside egentlig tåler",
+      "speech_style": "eierorientert og resultatdrevet; spør hva finansieringen gjør med kontroll, avkastning og fremtidig fleksibilitet",
+      "teaches_player": "at kapitalstruktur fordeler både kontroll og risiko mellom flere aktører"
+    },
+    {
+      "id": "cfo_privat_partner",
+      "social_function": "privat nærperson som møter spilleren etter bank- og styrepress uten organisatorisk agenda",
+      "class_position": "privat relasjon uten formell arbeids- eller kapitalmakt",
+      "status": "emosjonell nærhet uten arbeidsrang",
+      "power_over_player": "kan utfordre kontrollmasken og vise når ansvarsfølelse blir til behov for å bære hele utfallet alene",
+      "wants": "en samtale der usikkerhet og ansvar kan være menneskelig uten å bli omgjort til ny scenarioanalyse",
+      "conceals": "at hun blir sliten av at hver bekymring møtes som et problem som skal optimaliseres og kontrolleres",
+      "speech_style": "direkte og jordnær; spør hva som faktisk var ditt valg, hva styret eide og hva du ikke kan kontrollere",
+      "teaches_player": "at profesjonell status og kapitalmakt ikke bestemmer privat verdi eller gjør usikkerhet til personlig svikt"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "standing_ceo",
+      "meaning": "Noras situerte tillit til at finansdirektøren gir brukbar retning uten å gjøre uavklarte bankvilkår til løfter",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "standing_bank",
+      "meaning": "bankkontaktens situerte tillit til at selskapet skiller indikasjon, kredittbehandling, forhandling og bindende mandat",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "standing_board",
+      "meaning": "styrets situerte tillit til at CFOens råd viser total kapitalpris, covenant, downside og faktisk beslutningsgrense",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "capital_integrity",
+      "meaning": "om kapitalbehov, vilkår, covenantbuffer og downside forblir sporbare gjennom hele refinansieringscaset",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "waiting_cost",
+      "meaning": "presset til å love fremdrift når caset legitimt venter på bankens kredittprosess eller styrets beslutning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "rework_debt",
+      "meaning": "kostnaden ved å bevare gammel vekstfortelling når markedsrente eller bankvilkår faktisk endrer kapitalrommet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "authority_clarity",
+      "meaning": "om forhandling, CFO-anbefaling, daglig leders strategi og styrets bindende kapitalvedtak holdes institusjonelt adskilt",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "private_control_mask",
+      "meaning": "om høy profesjonell status gjør at kontrollbehov og ansvar følger spilleren hjem etter bank- og styreprosessen",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Refinansieringscaset åpnes med kapitalbehov, covenantbuffer og fullmaktsgrense i ett spor før markedskontakt blir til forventning. Morgenen låser siste bekreftede kapitalpremiss, covenantstatus og neste eier før nye signaler blir behandlet som fakta.",
+        "thread_ids": [
+          "kapital_og_mandatspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/finansdirektor_job.json#naeringsliv_finansdirektor_realism_refinancing_case_open_001"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Refinansieringscaset åpnes med kapitalbehov, covenantbuffer og fullmaktsgrense i ett spor før markedskontakt blir til forventning. Lunsjflaten gjør forskjellen mellom Noras strategibehov, bankens kredittperspektiv og styrets formelle kapitalmyndighet sosialt lesbar.",
+        "thread_ids": [
+          "bank_styre_og_tillit"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/finansdirektor_people.json#naeringsliv_finansdirektor_realism_bank_handoff_wait_001"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 1, afternoon: Refinansieringscaset åpnes med kapitalbehov, covenantbuffer og fullmaktsgrense i ett spor før markedskontakt blir til forventning. Ettermiddagen krever konkret arbeid i samme case: handoff, bankdialog, scenario, rework eller beslutningsklar styreanbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "venting_handoff_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/finansdirektor_story.json#finansdirektor_story_001"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Refinansieringscaset åpnes med kapitalbehov, covenantbuffer og fullmaktsgrense i ett spor før markedskontakt blir til forventning. Kvelden viser hva venting, kontrollbehov og høy status gjør med CFOens identitet når kapitalprosessen ikke kan løses ved å love et utfall.",
+        "thread_ids": [
+          "cfo_identitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/knowledge/finansdirektor_knowledge.json#finansdirektor_knowledge_kapitalstruktur_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Bank-handoffet gjør kredittbehandling og venting til eksplisitt arbeid; spilleren kan forberede alternativer uten å foregripe bankens beslutning. Morgenen låser siste bekreftede kapitalpremiss, covenantstatus og neste eier før nye signaler blir behandlet som fakta.",
+        "thread_ids": [
+          "kapital_og_mandatspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/micro/finansdirektor_micro.json#finansdirektor_micro_covenant_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Bank-handoffet gjør kredittbehandling og venting til eksplisitt arbeid; spilleren kan forberede alternativer uten å foregripe bankens beslutning. Lunsjflaten gjør forskjellen mellom Noras strategibehov, bankens kredittperspektiv og styrets formelle kapitalmyndighet sosialt lesbar.",
+        "thread_ids": [
+          "bank_styre_og_tillit"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/conflict/finansdirektor_conflict.json#finansdirektor_conflict_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 2, afternoon: Bank-handoffet gjør kredittbehandling og venting til eksplisitt arbeid; spilleren kan forberede alternativer uten å foregripe bankens beslutning. Ettermiddagen krever konkret arbeid i samme case: handoff, bankdialog, scenario, rework eller beslutningsklar styreanbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "venting_handoff_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/event/finansdirektor_event.json#naeringsliv_finansdirektor_realism_rate_covenant_rework_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Bank-handoffet gjør kredittbehandling og venting til eksplisitt arbeid; spilleren kan forberede alternativer uten å foregripe bankens beslutning. Kvelden viser hva venting, kontrollbehov og høy status gjør med CFOens identitet når kapitalprosessen ikke kan løses ved å love et utfall.",
+        "thread_ids": [
+          "cfo_identitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/followup/finansdirektor_followup.json#naeringsliv_finansdirektor_realism_board_handoff_wait_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Covenant og likviditetsberedskap brukes til å kvalitetssikre samme kapitalcase mens banken arbeider med sine egne prosesser. Morgenen låser siste bekreftede kapitalpremiss, covenantstatus og neste eier før nye signaler blir behandlet som fakta.",
+        "thread_ids": [
+          "kapital_og_mandatspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/consequence/finansdirektor_consequence.json#naeringsliv_finansdirektor_realism_board_aftermath_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Covenant og likviditetsberedskap brukes til å kvalitetssikre samme kapitalcase mens banken arbeider med sine egne prosesser. Lunsjflaten gjør forskjellen mellom Noras strategibehov, bankens kredittperspektiv og styrets formelle kapitalmyndighet sosialt lesbar.",
+        "thread_ids": [
+          "bank_styre_og_tillit"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/finansdirektor_job.json#naeringsliv_finansdirektor_realism_refinancing_case_open_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 3, afternoon: Covenant og likviditetsberedskap brukes til å kvalitetssikre samme kapitalcase mens banken arbeider med sine egne prosesser. Ettermiddagen krever konkret arbeid i samme case: handoff, bankdialog, scenario, rework eller beslutningsklar styreanbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "venting_handoff_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/finansdirektor_people.json#naeringsliv_finansdirektor_realism_bank_handoff_wait_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Covenant og likviditetsberedskap brukes til å kvalitetssikre samme kapitalcase mens banken arbeider med sine egne prosesser. Kvelden viser hva venting, kontrollbehov og høy status gjør med CFOens identitet når kapitalprosessen ikke kan løses ved å love et utfall.",
+        "thread_ids": [
+          "cfo_identitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/finansdirektor_story.json#finansdirektor_story_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Nora trenger en tydelig vekstretning, men situert standing hos daglig leder kan ikke gjøre uavklart finansiering mer sikker enn den er. Morgenen låser siste bekreftede kapitalpremiss, covenantstatus og neste eier før nye signaler blir behandlet som fakta.",
+        "thread_ids": [
+          "kapital_og_mandatspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/knowledge/finansdirektor_knowledge.json#finansdirektor_knowledge_kapitalstruktur_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Nora trenger en tydelig vekstretning, men situert standing hos daglig leder kan ikke gjøre uavklart finansiering mer sikker enn den er. Lunsjflaten gjør forskjellen mellom Noras strategibehov, bankens kredittperspektiv og styrets formelle kapitalmyndighet sosialt lesbar.",
+        "thread_ids": [
+          "bank_styre_og_tillit"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/micro/finansdirektor_micro.json#finansdirektor_micro_covenant_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 4, afternoon: Nora trenger en tydelig vekstretning, men situert standing hos daglig leder kan ikke gjøre uavklart finansiering mer sikker enn den er. Ettermiddagen krever konkret arbeid i samme case: handoff, bankdialog, scenario, rework eller beslutningsklar styreanbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "venting_handoff_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/conflict/finansdirektor_conflict.json#finansdirektor_conflict_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Nora trenger en tydelig vekstretning, men situert standing hos daglig leder kan ikke gjøre uavklart finansiering mer sikker enn den er. Kvelden viser hva venting, kontrollbehov og høy status gjør med CFOens identitet når kapitalprosessen ikke kan løses ved å love et utfall.",
+        "thread_ids": [
+          "cfo_identitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/event/finansdirektor_event.json#naeringsliv_finansdirektor_realism_rate_covenant_rework_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Nye rente- og term-sheet-vilkår bryter inn og tvinger samme refinansieringscase tilbake til rework med synlig endringsspor. Morgenen låser siste bekreftede kapitalpremiss, covenantstatus og neste eier før nye signaler blir behandlet som fakta.",
+        "thread_ids": [
+          "kapital_og_mandatspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/followup/finansdirektor_followup.json#naeringsliv_finansdirektor_realism_board_handoff_wait_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Nye rente- og term-sheet-vilkår bryter inn og tvinger samme refinansieringscase tilbake til rework med synlig endringsspor. Lunsjflaten gjør forskjellen mellom Noras strategibehov, bankens kredittperspektiv og styrets formelle kapitalmyndighet sosialt lesbar.",
+        "thread_ids": [
+          "bank_styre_og_tillit"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/consequence/finansdirektor_consequence.json#naeringsliv_finansdirektor_realism_board_aftermath_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 5, afternoon: Nye rente- og term-sheet-vilkår bryter inn og tvinger samme refinansieringscase tilbake til rework med synlig endringsspor. Ettermiddagen krever konkret arbeid i samme case: handoff, bankdialog, scenario, rework eller beslutningsklar styreanbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "venting_handoff_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/finansdirektor_job.json#naeringsliv_finansdirektor_realism_refinancing_case_open_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Nye rente- og term-sheet-vilkår bryter inn og tvinger samme refinansieringscase tilbake til rework med synlig endringsspor. Kvelden viser hva venting, kontrollbehov og høy status gjør med CFOens identitet når kapitalprosessen ikke kan løses ved å love et utfall.",
+        "thread_ids": [
+          "cfo_identitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/finansdirektor_people.json#naeringsliv_finansdirektor_realism_bank_handoff_wait_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Banken, Nora og styret leser samme rework fra ulike ståsteder: kreditt, strategi og governance må derfor forbli separate publikumsflater. Morgenen låser siste bekreftede kapitalpremiss, covenantstatus og neste eier før nye signaler blir behandlet som fakta.",
+        "thread_ids": [
+          "kapital_og_mandatspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/finansdirektor_story.json#finansdirektor_story_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Banken, Nora og styret leser samme rework fra ulike ståsteder: kreditt, strategi og governance må derfor forbli separate publikumsflater. Lunsjflaten gjør forskjellen mellom Noras strategibehov, bankens kredittperspektiv og styrets formelle kapitalmyndighet sosialt lesbar.",
+        "thread_ids": [
+          "bank_styre_og_tillit"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/knowledge/finansdirektor_knowledge.json#finansdirektor_knowledge_kapitalstruktur_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 6, afternoon: Banken, Nora og styret leser samme rework fra ulike ståsteder: kreditt, strategi og governance må derfor forbli separate publikumsflater. Ettermiddagen krever konkret arbeid i samme case: handoff, bankdialog, scenario, rework eller beslutningsklar styreanbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "venting_handoff_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/micro/finansdirektor_micro.json#finansdirektor_micro_covenant_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Banken, Nora og styret leser samme rework fra ulike ståsteder: kreditt, strategi og governance må derfor forbli separate publikumsflater. Kvelden viser hva venting, kontrollbehov og høy status gjør med CFOens identitet når kapitalprosessen ikke kan løses ved å love et utfall.",
+        "thread_ids": [
+          "cfo_identitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/conflict/finansdirektor_conflict.json#finansdirektor_conflict_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Kapitalpris, covenantbuffer og downside samles i en anbefaling som viser hva selskapet faktisk kjøper av fleksibilitet og risiko. Morgenen låser siste bekreftede kapitalpremiss, covenantstatus og neste eier før nye signaler blir behandlet som fakta.",
+        "thread_ids": [
+          "kapital_og_mandatspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/event/finansdirektor_event.json#naeringsliv_finansdirektor_realism_rate_covenant_rework_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Kapitalpris, covenantbuffer og downside samles i en anbefaling som viser hva selskapet faktisk kjøper av fleksibilitet og risiko. Lunsjflaten gjør forskjellen mellom Noras strategibehov, bankens kredittperspektiv og styrets formelle kapitalmyndighet sosialt lesbar.",
+        "thread_ids": [
+          "bank_styre_og_tillit"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/followup/finansdirektor_followup.json#naeringsliv_finansdirektor_realism_board_handoff_wait_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 7, afternoon: Kapitalpris, covenantbuffer og downside samles i en anbefaling som viser hva selskapet faktisk kjøper av fleksibilitet og risiko. Ettermiddagen krever konkret arbeid i samme case: handoff, bankdialog, scenario, rework eller beslutningsklar styreanbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "venting_handoff_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/consequence/finansdirektor_consequence.json#naeringsliv_finansdirektor_realism_board_aftermath_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Kapitalpris, covenantbuffer og downside samles i en anbefaling som viser hva selskapet faktisk kjøper av fleksibilitet og risiko. Kvelden viser hva venting, kontrollbehov og høy status gjør med CFOens identitet når kapitalprosessen ikke kan løses ved å love et utfall.",
+        "thread_ids": [
+          "cfo_identitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/finansdirektor_job.json#naeringsliv_finansdirektor_realism_refinancing_case_open_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Eier- og vekstpress gjør et raskt ja sosialt attraktivt, men CFOens anbefaling må fortsatt skilles fra bindende kapitalmyndighet. Morgenen låser siste bekreftede kapitalpremiss, covenantstatus og neste eier før nye signaler blir behandlet som fakta.",
+        "thread_ids": [
+          "kapital_og_mandatspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/finansdirektor_people.json#naeringsliv_finansdirektor_realism_bank_handoff_wait_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Eier- og vekstpress gjør et raskt ja sosialt attraktivt, men CFOens anbefaling må fortsatt skilles fra bindende kapitalmyndighet. Lunsjflaten gjør forskjellen mellom Noras strategibehov, bankens kredittperspektiv og styrets formelle kapitalmyndighet sosialt lesbar.",
+        "thread_ids": [
+          "bank_styre_og_tillit"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/finansdirektor_story.json#finansdirektor_story_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 8, afternoon: Eier- og vekstpress gjør et raskt ja sosialt attraktivt, men CFOens anbefaling må fortsatt skilles fra bindende kapitalmyndighet. Ettermiddagen krever konkret arbeid i samme case: handoff, bankdialog, scenario, rework eller beslutningsklar styreanbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "venting_handoff_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/knowledge/finansdirektor_knowledge.json#finansdirektor_knowledge_kapitalstruktur_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Eier- og vekstpress gjør et raskt ja sosialt attraktivt, men CFOens anbefaling må fortsatt skilles fra bindende kapitalmyndighet. Kvelden viser hva venting, kontrollbehov og høy status gjør med CFOens identitet når kapitalprosessen ikke kan løses ved å love et utfall.",
+        "thread_ids": [
+          "cfo_identitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/micro/finansdirektor_micro.json#finansdirektor_micro_covenant_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Caset overlever nye spørsmål uten å miste baseline, bank-handoff eller hvem som eier neste handling og beslutning. Morgenen låser siste bekreftede kapitalpremiss, covenantstatus og neste eier før nye signaler blir behandlet som fakta.",
+        "thread_ids": [
+          "kapital_og_mandatspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/conflict/finansdirektor_conflict.json#finansdirektor_conflict_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Caset overlever nye spørsmål uten å miste baseline, bank-handoff eller hvem som eier neste handling og beslutning. Lunsjflaten gjør forskjellen mellom Noras strategibehov, bankens kredittperspektiv og styrets formelle kapitalmyndighet sosialt lesbar.",
+        "thread_ids": [
+          "bank_styre_og_tillit"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/event/finansdirektor_event.json#naeringsliv_finansdirektor_realism_rate_covenant_rework_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 9, afternoon: Caset overlever nye spørsmål uten å miste baseline, bank-handoff eller hvem som eier neste handling og beslutning. Ettermiddagen krever konkret arbeid i samme case: handoff, bankdialog, scenario, rework eller beslutningsklar styreanbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "venting_handoff_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/followup/finansdirektor_followup.json#naeringsliv_finansdirektor_realism_board_handoff_wait_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Caset overlever nye spørsmål uten å miste baseline, bank-handoff eller hvem som eier neste handling og beslutning. Kvelden viser hva venting, kontrollbehov og høy status gjør med CFOens identitet når kapitalprosessen ikke kan løses ved å love et utfall.",
+        "thread_ids": [
+          "cfo_identitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/consequence/finansdirektor_consequence.json#naeringsliv_finansdirektor_realism_board_aftermath_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Finansdirektøren forbereder styrehandoffet og gjør eksplisitt hva som kan forhandles videre og hva bare styret kan godkjenne. Morgenen låser siste bekreftede kapitalpremiss, covenantstatus og neste eier før nye signaler blir behandlet som fakta.",
+        "thread_ids": [
+          "kapital_og_mandatspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/finansdirektor_job.json#naeringsliv_finansdirektor_realism_refinancing_case_open_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Finansdirektøren forbereder styrehandoffet og gjør eksplisitt hva som kan forhandles videre og hva bare styret kan godkjenne. Lunsjflaten gjør forskjellen mellom Noras strategibehov, bankens kredittperspektiv og styrets formelle kapitalmyndighet sosialt lesbar.",
+        "thread_ids": [
+          "bank_styre_og_tillit"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/finansdirektor_people.json#naeringsliv_finansdirektor_realism_bank_handoff_wait_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 10, afternoon: Finansdirektøren forbereder styrehandoffet og gjør eksplisitt hva som kan forhandles videre og hva bare styret kan godkjenne. Ettermiddagen krever konkret arbeid i samme case: handoff, bankdialog, scenario, rework eller beslutningsklar styreanbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "venting_handoff_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/finansdirektor_story.json#finansdirektor_story_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Finansdirektøren forbereder styrehandoffet og gjør eksplisitt hva som kan forhandles videre og hva bare styret kan godkjenne. Kvelden viser hva venting, kontrollbehov og høy status gjør med CFOens identitet når kapitalprosessen ikke kan løses ved å love et utfall.",
+        "thread_ids": [
+          "cfo_identitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/knowledge/finansdirektor_knowledge.json#finansdirektor_knowledge_kapitalstruktur_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Anbefalingen er ferdig, men spilleren må tåle waiting på styret uten å kommunisere finansieringen som allerede besluttet. Morgenen låser siste bekreftede kapitalpremiss, covenantstatus og neste eier før nye signaler blir behandlet som fakta.",
+        "thread_ids": [
+          "kapital_og_mandatspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/micro/finansdirektor_micro.json#finansdirektor_micro_covenant_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Anbefalingen er ferdig, men spilleren må tåle waiting på styret uten å kommunisere finansieringen som allerede besluttet. Lunsjflaten gjør forskjellen mellom Noras strategibehov, bankens kredittperspektiv og styrets formelle kapitalmyndighet sosialt lesbar.",
+        "thread_ids": [
+          "bank_styre_og_tillit"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/conflict/finansdirektor_conflict.json#finansdirektor_conflict_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 11, afternoon: Anbefalingen er ferdig, men spilleren må tåle waiting på styret uten å kommunisere finansieringen som allerede besluttet. Ettermiddagen krever konkret arbeid i samme case: handoff, bankdialog, scenario, rework eller beslutningsklar styreanbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "venting_handoff_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/event/finansdirektor_event.json#naeringsliv_finansdirektor_realism_rate_covenant_rework_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Anbefalingen er ferdig, men spilleren må tåle waiting på styret uten å kommunisere finansieringen som allerede besluttet. Kvelden viser hva venting, kontrollbehov og høy status gjør med CFOens identitet når kapitalprosessen ikke kan løses ved å love et utfall.",
+        "thread_ids": [
+          "cfo_identitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/followup/finansdirektor_followup.json#naeringsliv_finansdirektor_realism_board_handoff_wait_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Styret behandler kapitalvalget; høy standing kan gi CFOens råd stor vekt, men kan aldri oppgradere råd til bindende vedtak. Morgenen låser siste bekreftede kapitalpremiss, covenantstatus og neste eier før nye signaler blir behandlet som fakta.",
+        "thread_ids": [
+          "kapital_og_mandatspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/consequence/finansdirektor_consequence.json#naeringsliv_finansdirektor_realism_board_aftermath_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Styret behandler kapitalvalget; høy standing kan gi CFOens råd stor vekt, men kan aldri oppgradere råd til bindende vedtak. Lunsjflaten gjør forskjellen mellom Noras strategibehov, bankens kredittperspektiv og styrets formelle kapitalmyndighet sosialt lesbar.",
+        "thread_ids": [
+          "bank_styre_og_tillit"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/finansdirektor_job.json#naeringsliv_finansdirektor_realism_refinancing_case_open_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 12, afternoon: Styret behandler kapitalvalget; høy standing kan gi CFOens råd stor vekt, men kan aldri oppgradere råd til bindende vedtak. Ettermiddagen krever konkret arbeid i samme case: handoff, bankdialog, scenario, rework eller beslutningsklar styreanbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "venting_handoff_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/finansdirektor_people.json#naeringsliv_finansdirektor_realism_bank_handoff_wait_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Styret behandler kapitalvalget; høy standing kan gi CFOens råd stor vekt, men kan aldri oppgradere råd til bindende vedtak. Kvelden viser hva venting, kontrollbehov og høy status gjør med CFOens identitet når kapitalprosessen ikke kan løses ved å love et utfall.",
+        "thread_ids": [
+          "cfo_identitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/finansdirektor_story.json#finansdirektor_story_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Styrets beslutning returnerer og samme arbeidsobjekt går fra waiting til beslutningsetterspill med mandat og vilkår som separate lag. Morgenen låser siste bekreftede kapitalpremiss, covenantstatus og neste eier før nye signaler blir behandlet som fakta.",
+        "thread_ids": [
+          "kapital_og_mandatspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/knowledge/finansdirektor_knowledge.json#finansdirektor_knowledge_kapitalstruktur_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Styrets beslutning returnerer og samme arbeidsobjekt går fra waiting til beslutningsetterspill med mandat og vilkår som separate lag. Lunsjflaten gjør forskjellen mellom Noras strategibehov, bankens kredittperspektiv og styrets formelle kapitalmyndighet sosialt lesbar.",
+        "thread_ids": [
+          "bank_styre_og_tillit"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/micro/finansdirektor_micro.json#finansdirektor_micro_covenant_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 13, afternoon: Styrets beslutning returnerer og samme arbeidsobjekt går fra waiting til beslutningsetterspill med mandat og vilkår som separate lag. Ettermiddagen krever konkret arbeid i samme case: handoff, bankdialog, scenario, rework eller beslutningsklar styreanbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "venting_handoff_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/conflict/finansdirektor_conflict.json#finansdirektor_conflict_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Styrets beslutning returnerer og samme arbeidsobjekt går fra waiting til beslutningsetterspill med mandat og vilkår som separate lag. Kvelden viser hva venting, kontrollbehov og høy status gjør med CFOens identitet når kapitalprosessen ikke kan løses ved å love et utfall.",
+        "thread_ids": [
+          "cfo_identitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/event/finansdirektor_event.json#naeringsliv_finansdirektor_realism_rate_covenant_rework_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Caset lukkes med governance-læring og privat etterklang: kontrollbehov og status må ikke omskrive hvem som eide risikoen og beslutningen. Morgenen låser siste bekreftede kapitalpremiss, covenantstatus og neste eier før nye signaler blir behandlet som fakta.",
+        "thread_ids": [
+          "kapital_og_mandatspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/followup/finansdirektor_followup.json#naeringsliv_finansdirektor_realism_board_handoff_wait_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Caset lukkes med governance-læring og privat etterklang: kontrollbehov og status må ikke omskrive hvem som eide risikoen og beslutningen. Lunsjflaten gjør forskjellen mellom Noras strategibehov, bankens kredittperspektiv og styrets formelle kapitalmyndighet sosialt lesbar.",
+        "thread_ids": [
+          "bank_styre_og_tillit"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/consequence/finansdirektor_consequence.json#naeringsliv_finansdirektor_realism_board_aftermath_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 14, afternoon: Caset lukkes med governance-læring og privat etterklang: kontrollbehov og status må ikke omskrive hvem som eide risikoen og beslutningen. Ettermiddagen krever konkret arbeid i samme case: handoff, bankdialog, scenario, rework eller beslutningsklar styreanbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "venting_handoff_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/finansdirektor_job.json#naeringsliv_finansdirektor_realism_refinancing_case_open_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Caset lukkes med governance-læring og privat etterklang: kontrollbehov og status må ikke omskrive hvem som eide risikoen og beslutningen. Kvelden viser hva venting, kontrollbehov og høy status gjør med CFOens identitet når kapitalprosessen ikke kan løses ved å love et utfall.",
+        "thread_ids": [
+          "cfo_identitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/finansdirektor_people.json#naeringsliv_finansdirektor_realism_bank_handoff_wait_001"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "kapital_og_mandatspor",
+      "relationship": "Forholdet mellom kapitalbehov, covenant, vilkår og eksplisitt fullmakt gjennom samme refinansieringscase.",
+      "beat_refs": [
+        "1/morning",
+        "2/morning",
+        "3/afternoon",
+        "5/morning",
+        "7/afternoon",
+        "10/morning",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "bank_styre_og_tillit",
+      "relationship": "Hvordan bankkontakt, Nora og styreleder vurderer samme kapitalarbeid fra forskjellige posisjoner og husker tidligere signaler.",
+      "beat_refs": [
+        "1/lunch",
+        "2/lunch",
+        "2/afternoon",
+        "4/lunch",
+        "6/lunch",
+        "9/lunch",
+        "12/lunch",
+        "13/lunch"
+      ]
+    },
+    {
+      "id": "venting_handoff_og_rework",
+      "relationship": "Hvordan bankventing og endrede markedsvilkår åpner samme arbeidsobjekt for sporbar rework uten parallelt beslutningsspor.",
+      "beat_refs": [
+        "3/afternoon",
+        "5/afternoon",
+        "6/afternoon",
+        "7/morning",
+        "8/afternoon",
+        "9/afternoon",
+        "11/afternoon"
+      ]
+    },
+    {
+      "id": "cfo_myndighet_og_styre",
+      "relationship": "Skillet mellom CFOens forhandling og anbefaling, Noras strategibehov og styrets faktiske myndighet til å binde kapital.",
+      "beat_refs": [
+        "7/lunch",
+        "8/lunch",
+        "9/morning",
+        "10/lunch",
+        "11/lunch",
+        "12/afternoon",
+        "13/afternoon"
+      ]
+    },
+    {
+      "id": "cfo_identitet_og_etterspill",
+      "relationship": "Hvordan kontroll, status og ansvar påvirker profesjonsmasken før og etter styrets beslutning.",
+      "beat_refs": [
+        "1/evening",
+        "4/evening",
+        "7/evening",
+        "10/evening",
+        "11/evening",
+        "12/evening",
+        "13/evening",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "bank_waiting_feels_like_loss_of_control",
+      "description": "Mens kredittkomiteen behandler caset, merker spilleren hvor raskt legitim venting kan føles som tap av kontroll og friste til å love Nora mer enn banken faktisk har besluttet.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/naeringsliv/people/finansdirektor_people.json#naeringsliv_finansdirektor_realism_bank_handoff_wait_001",
+        "data/Civication/mailFamilies/naeringsliv/micro/finansdirektor_micro.json#finansdirektor_micro_covenant_001"
+      ]
+    },
+    {
+      "id": "board_clarity_becomes_identity",
+      "description": "Før styremøtet kan ønsket om å være den CFOen som alltid har et klart svar gjøre betingede råd og synlig downside personlig vanskeligere å stå i.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/naeringsliv/conflict/finansdirektor_conflict.json#finansdirektor_conflict_001",
+        "data/Civication/mailFamilies/naeringsliv/story/finansdirektor_story.json#finansdirektor_story_001"
+      ]
+    },
+    {
+      "id": "mandate_is_not_status",
+      "description": "Når caset venter på styret, må spilleren skille egen verdi og standing fra om styret følger den anbefalte finansieringsretningen.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/naeringsliv/followup/finansdirektor_followup.json#naeringsliv_finansdirektor_realism_board_handoff_wait_001",
+        "data/Civication/mailFamilies/naeringsliv/story/finansdirektor_story.json#finansdirektor_story_001"
+      ]
+    },
+    {
+      "id": "capital_outcome_home",
+      "description": "Etter styrevedtaket utfordres spilleren til å holde senere vekst eller kapitalpress adskilt fra hva som faktisk var kjent, anbefalt og besluttet på beslutningstidspunktet.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/naeringsliv/consequence/finansdirektor_consequence.json#naeringsliv_finansdirektor_realism_board_aftermath_001",
+        "data/Civication/mailFamilies/naeringsliv/knowledge/finansdirektor_knowledge.json#finansdirektor_knowledge_kapitalstruktur_001"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "bank_signal_returns",
+      "setup_ref": "2/afternoon",
+      "return_ref": "5/afternoon",
+      "domains": [
+        "job",
+        "reputation"
+      ]
+    },
+    {
+      "id": "rate_change_returns",
+      "setup_ref": "5/morning",
+      "return_ref": "8/afternoon",
+      "domains": [
+        "job",
+        "economy",
+        "reputation"
+      ]
+    },
+    {
+      "id": "covenant_buffer_returns",
+      "setup_ref": "7/afternoon",
+      "return_ref": "11/afternoon",
+      "domains": [
+        "job",
+        "economy"
+      ]
+    },
+    {
+      "id": "board_mandate_returns",
+      "setup_ref": "10/lunch",
+      "return_ref": "12/afternoon",
+      "domains": [
+        "job",
+        "reputation"
+      ]
+    },
+    {
+      "id": "control_mask_returns",
+      "setup_ref": "13/evening",
+      "return_ref": "14/evening",
+      "domains": [
+        "psyche",
+        "narrative",
+        "reputation"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/mailFamilies/naeringsliv/job/finansdirektor_job.json#naeringsliv_finansdirektor_realism_refinancing_case_open_001",
+      "data/Civication/mailFamilies/naeringsliv/people/finansdirektor_people.json#naeringsliv_finansdirektor_realism_bank_handoff_wait_001",
+      "data/Civication/mailFamilies/naeringsliv/story/finansdirektor_story.json#finansdirektor_story_001",
+      "data/Civication/mailFamilies/naeringsliv/knowledge/finansdirektor_knowledge.json#finansdirektor_knowledge_kapitalstruktur_001",
+      "data/Civication/mailFamilies/naeringsliv/micro/finansdirektor_micro.json#finansdirektor_micro_covenant_001",
+      "data/Civication/mailFamilies/naeringsliv/conflict/finansdirektor_conflict.json#finansdirektor_conflict_001",
+      "data/Civication/mailFamilies/naeringsliv/event/finansdirektor_event.json#naeringsliv_finansdirektor_realism_rate_covenant_rework_001",
+      "data/Civication/mailFamilies/naeringsliv/followup/finansdirektor_followup.json#naeringsliv_finansdirektor_realism_board_handoff_wait_001",
+      "data/Civication/mailFamilies/naeringsliv/consequence/finansdirektor_consequence.json#naeringsliv_finansdirektor_realism_board_aftermath_001"
+    ]
+  }
+}

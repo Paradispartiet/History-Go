@@ -10316,11 +10316,11 @@
         "mail_families": {
           "job": {
             "path": "data/Civication/mailFamilies/naeringsliv/job/finansdirektor_job.json",
-            "count": 2
+            "count": 3
           },
           "people": {
             "path": "data/Civication/mailFamilies/naeringsliv/people/finansdirektor_people.json",
-            "count": 1
+            "count": 2
           },
           "conflict": {
             "path": "data/Civication/mailFamilies/naeringsliv/conflict/finansdirektor_conflict.json",
@@ -10332,7 +10332,7 @@
           },
           "event": {
             "path": "data/Civication/mailFamilies/naeringsliv/event/finansdirektor_event.json",
-            "count": 2
+            "count": 3
           },
           "micro": {
             "path": "data/Civication/mailFamilies/naeringsliv/micro/finansdirektor_micro.json",
@@ -10340,7 +10340,7 @@
           },
           "followup": {
             "path": "data/Civication/mailFamilies/naeringsliv/followup/finansdirektor_followup.json",
-            "count": 1
+            "count": 2
           },
           "knowledge": {
             "path": "data/Civication/mailFamilies/naeringsliv/knowledge/finansdirektor_knowledge.json",
@@ -10348,10 +10348,11 @@
           },
           "consequence": {
             "path": "data/Civication/mailFamilies/naeringsliv/consequence/finansdirektor_consequence.json",
-            "count": 1
+            "count": 2
           }
         },
         "role_tests": [
+          "tests/civication-naeringsliv-finansdirektor-role-world-rollout.test.js",
           "tests/civication-naeringsliv-finansdirektor-rollout-playability.test.js"
         ],
         "life_story": null
@@ -10371,6 +10372,7 @@
             "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/naeringsliv/finansdirektor_plan.json",
+              "tests/civication-naeringsliv-finansdirektor-role-world-rollout.test.js",
               "tests/civication-naeringsliv-finansdirektor-rollout-playability.test.js"
             ],
             "note": "Role plan and role-specific test prove a first playable day."
@@ -10381,6 +10383,7 @@
               "data/Civication/mailFamilies/naeringsliv/job/finansdirektor_job.json",
               "data/Civication/mailPlans/naeringsliv/finansdirektor_plan.json",
               "data/Civication/workGrammars/naeringsliv/finansdirektor.json",
+              "tests/civication-naeringsliv-finansdirektor-role-world-rollout.test.js",
               "tests/civication-naeringsliv-finansdirektor-rollout-playability.test.js"
             ],
             "note": "Repeatable work content is connected to a tested plan."
@@ -10457,6 +10460,7 @@
             "evidence": [
               "data/Civication/mailFamilies/naeringsliv/consequence/finansdirektor_consequence.json",
               "data/Civication/mailFamilies/naeringsliv/followup/finansdirektor_followup.json",
+              "tests/civication-naeringsliv-finansdirektor-role-world-rollout.test.js",
               "tests/civication-naeringsliv-finansdirektor-rollout-playability.test.js"
             ],
             "note": "Later consequence/follow-up path is role-tested."
@@ -10466,6 +10470,7 @@
             "evidence": [
               "data/Civication/mailPlans/naeringsliv/finansdirektor_plan.json",
               "tests/civication-career-outcomes.test.js",
+              "tests/civication-naeringsliv-finansdirektor-role-world-rollout.test.js",
               "tests/civication-naeringsliv-finansdirektor-rollout-playability.test.js"
             ],
             "note": "Positive and negative outcomes are defined and role-tested."

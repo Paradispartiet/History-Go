@@ -1,1 +1,235 @@
-{"schema":"civication_mail_family_catalog_v1","version":1,"category":"naeringsliv","role_scope":"finansdirektor","mail_type":"people","families":[{"id":"styrets_finansielle_tillit","purpose":"Gjør relasjonen til styreleder til en runtimeflate for faglig uavhengighet, fullmakt og kapitalråd under tidspress.","learning_focus":["styrekommunikasjon","fullmakt","kapitalintegritet"],"mails":[{"id":"finansdirektor_people_styreleder_001","mail_type":"people","mail_family":"styrets_finansielle_tillit","role_scope":"finansdirektor","phase":"morning","priority":61,"cooldown":2,"repeatable":false,"stage":"stable","from":"styreleder","sender":"styreleder","person_id":"styreleder","place_id":"oslo_bors","subject":"Styreleder vil ha en klar finansieringsanbefaling før vilkårene er endelige","summary":"Styreleder trenger retning før et møte med eierne, men de endelige bankvilkårene og covenantmarginen er fortsatt under avklaring.","purpose":"Teste om finansdirektøren kan gi et tydelig råd uten å late som uavklarte finansieringsvilkår allerede er besluttet.","stakes":"Et kategorisk råd kan gi styret tempo, men skjule at kapitalprisen og risikorammen fortsatt kan flytte seg. Et betinget råd bevarer beslutningskraft uten å overskride faglig eller formell myndighet.","situation":["Styret må snart velge retning for vekstfinansieringen.","Bankdialogen er positiv, men endelige vilkår foreligger ikke.","Du kan anbefale og avgrense, men kan ikke binde selskapet til finansiering uten riktig fullmakt."],"task_domain":"styrekommunikasjon_og_finansieringsrad","task_kind":"people","competency":"styre_og_eierkommunikasjon","pressure":"styretempo_vs_finansiell_klarhet","choice_axis":"betinget_anbefaling_vs_kategorisk_lovnad","consequence_axis":"styretillit_og_fullmakt_vs_falsk_sikkerhet","narrative_arc":"Finansdirektøren lærer å være tydelig om retning samtidig som usikkerhet og beslutningsmyndighet forblir synlig.","choices":[{"id":"A","label":"Gi en betinget anbefaling med eksplisitte vilkår, downside og beslutningsgrense","reply":"Jeg anbefaler retningen betinget av de definerte vilkårene, viser downside-effekten og markerer hva styret fortsatt må beslutte.","effect":1,"tags":["people","governance","capital_integrity"],"feedback":"Du gir styret et råd de kan bruke uten å gjøre uavklart finansiering om til et løfte."},{"id":"B","label":"Gi én tydelig finansieringsretning nå og håndter vilkårene når de er endelige","reply":"Jeg gir styret én tydelig retning nå og tar eventuelle justeringer når de endelige vilkårene foreligger.","effect":-1,"tags":["premature_commitment","governance_risk"],"feedback":"Du øker tempoet, men gjør styrets forventning mer bindende før kapitalprisen og risikorammen er ferdig dokumentert."}]}]}]}
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "finansdirektor",
+  "mail_type": "people",
+  "families": [
+    {
+      "id": "styrets_finansielle_tillit",
+      "purpose": "Gjør relasjonen til styreleder til en runtimeflate for faglig uavhengighet, fullmakt og kapitalråd under tidspress.",
+      "learning_focus": [
+        "styrekommunikasjon",
+        "fullmakt",
+        "kapitalintegritet"
+      ],
+      "mails": [
+        {
+          "id": "finansdirektor_people_styreleder_001",
+          "mail_type": "people",
+          "mail_family": "styrets_finansielle_tillit",
+          "role_scope": "finansdirektor",
+          "phase": "morning",
+          "priority": 61,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "styreleder",
+          "sender": "styreleder",
+          "person_id": "styreleder",
+          "place_id": "oslo_bors",
+          "subject": "Styreleder vil ha en klar finansieringsanbefaling før vilkårene er endelige",
+          "summary": "Styreleder trenger retning før et møte med eierne, men de endelige bankvilkårene og covenantmarginen er fortsatt under avklaring.",
+          "purpose": "Teste om finansdirektøren kan gi et tydelig råd uten å late som uavklarte finansieringsvilkår allerede er besluttet.",
+          "stakes": "Et kategorisk råd kan gi styret tempo, men skjule at kapitalprisen og risikorammen fortsatt kan flytte seg. Et betinget råd bevarer beslutningskraft uten å overskride faglig eller formell myndighet.",
+          "situation": [
+            "Styret må snart velge retning for vekstfinansieringen.",
+            "Bankdialogen er positiv, men endelige vilkår foreligger ikke.",
+            "Du kan anbefale og avgrense, men kan ikke binde selskapet til finansiering uten riktig fullmakt."
+          ],
+          "task_domain": "styrekommunikasjon_og_finansieringsrad",
+          "task_kind": "people",
+          "competency": "styre_og_eierkommunikasjon",
+          "pressure": "styretempo_vs_finansiell_klarhet",
+          "choice_axis": "betinget_anbefaling_vs_kategorisk_lovnad",
+          "consequence_axis": "styretillit_og_fullmakt_vs_falsk_sikkerhet",
+          "narrative_arc": "Finansdirektøren lærer å være tydelig om retning samtidig som usikkerhet og beslutningsmyndighet forblir synlig.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gi en betinget anbefaling med eksplisitte vilkår, downside og beslutningsgrense",
+              "reply": "Jeg anbefaler retningen betinget av de definerte vilkårene, viser downside-effekten og markerer hva styret fortsatt må beslutte.",
+              "effect": 1,
+              "tags": [
+                "people",
+                "governance",
+                "capital_integrity"
+              ],
+              "feedback": "Du gir styret et råd de kan bruke uten å gjøre uavklart finansiering om til et løfte."
+            },
+            {
+              "id": "B",
+              "label": "Gi én tydelig finansieringsretning nå og håndter vilkårene når de er endelige",
+              "reply": "Jeg gir styret én tydelig retning nå og tar eventuelle justeringer når de endelige vilkårene foreligger.",
+              "effect": -1,
+              "tags": [
+                "premature_commitment",
+                "governance_risk"
+              ],
+              "feedback": "Du øker tempoet, men gjør styrets forventning mer bindende før kapitalprisen og risikorammen er ferdig dokumentert."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_finansdirektor_bank_handoff",
+      "purpose": "Gjør bankens kredittbehandling til eksplisitt handoff med legitim venting.",
+      "learning_focus": [
+        "handoff",
+        "waiting",
+        "bank_trust"
+      ],
+      "mails": [
+        {
+          "id": "naeringsliv_finansdirektor_realism_bank_handoff_wait_001",
+          "mail_type": "people",
+          "mail_family": "role_world_rollout_finansdirektor_bank_handoff",
+          "role_scope": "finansdirektor",
+          "phase": "advanced",
+          "day_phase": "afternoon",
+          "priority": 98,
+          "cooldown": 10,
+          "repeatable": false,
+          "stage": "stable",
+          "planned_only": true,
+          "thread_key": "naeringsliv_finansdirektor_refinancing_realism_001",
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "naeringsliv",
+            "finansdirektor",
+            "persistent_work",
+            "situated_reputation"
+          ],
+          "from": "Bankkontakt",
+          "people_ref": "bankkontakt",
+          "person_id": "bankkontakt",
+          "place_id": "bankplassen",
+          "subject": "Kredittkomiteen har caset – nå må finansdirektøren tåle en ekte bankventing",
+          "summary": "Du overleverer låst kapitalbehov, scenario, covenantbuffer og mandat til bankkontakten for kredittbehandling. Mens banken vurderer caset kan du forberede alternative strukturer, men du skal ikke love styret eller Nora at et indikativt banksignal allerede er finansiering.",
+          "purpose": "Gjøre bank-handoff og legitim venting eksplisitt som del av finansdirektørens arbeidsrytme, samtidig som samme refinansieringscase beholder én autoritativ versjon og ett tydelig beslutningsspor.",
+          "stakes": "Hvis venting behandles som et tomrom som må fylles med løfter, kan et uavklart bankløp bli presentert internt som sikret kapital. Da blir senere rework tolket som svikt i stedet for normal finansieringsprosess.",
+          "situation": [
+            "Banken eier kredittbehandlingen i denne fasen; finansdirektøren kan svare og forhandle, men ikke kontrollere utfallet.",
+            "Nora ønsker en dato og en sannsynlig pris til neste ledermøte, selv om kredittkomiteen ikke har returnert.",
+            "Alternativ finansiering kan forberedes uten å opprette et konkurrerende beslutningsspor eller foregripe styrets mandat."
+          ],
+          "task_domain": "bank_credit_handoff",
+          "task_kind": "people",
+          "competency": "finansiering_og_bank",
+          "pressure": "intern_forutsigbarhet_vs_legitim_ekstern_venting",
+          "choice_axis": "sporbar_venting_vs_foregripe_bankutfall",
+          "consequence_axis": "bank_og_ledertillit_vs_forventningsgjeld",
+          "narrative_arc": "fra_refinansieringsbehov_til_sporbart_styrevedtak_og_kapitaletterspill",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "naeringsliv_finansdirektor_refinancing_case_001"
+            ],
+            "institution_id": "naeringsliv_konsernfinans_001",
+            "handoff_to_actor_id": "bankkontakt",
+            "waiting_for_actor_id": "bankkontakt",
+            "rework_of_scene_id": "naeringsliv_finansdirektor_realism_refinancing_case_open_001",
+            "priority": "high"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Marker caset waiting på banken og bruk tiden på dokumenterte alternativer",
+              "reply": "Jeg fryser bankgrunnlaget, markerer neste eier og forbereder alternativer uten å omtale finansieringen som avklart.",
+              "effect": 2,
+              "feedback": "Ventingen blir synlig arbeid. Banken kan behandle én autoritativ pakke, mens Nora får en presis status som skiller forberedelse fra et faktisk kreditttilsagn.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 3,
+                  "risk": -2
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "cfo_case_waiting_for_bank",
+                    "work_object_id": "naeringsliv_finansdirektor_refinancing_case_001",
+                    "to_status": "waiting",
+                    "to_phase": "awaiting_bank_credit_review",
+                    "note": "Kapitalgrunnlaget er overlevert; refinansieringscaset venter på bankens kredittbehandling."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "cfo_bank_handoff_traced",
+                    "work_object_id": "naeringsliv_finansdirektor_refinancing_case_001",
+                    "flag": "bank_review_version_frozen"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "cfo_standing_bank_wait",
+                    "audience_id": "professional:bankkontakt",
+                    "delta": 4,
+                    "reason": "Bankkontakten kan stole på at kredittgrunnlaget fortsatt er den autoritative versjonen mens banken behandler pris, covenant og øvrige vilkår.",
+                    "source_actor_id": "bankkontakt"
+                  },
+                  {
+                    "event_id": "cfo_standing_nora_wait",
+                    "audience_id": "manager:nora_daglig_leder",
+                    "delta": 2,
+                    "reason": "Nora får en presis ventestatus som skiller sannsynlig finansieringsretning fra et faktisk banktilsagn og lar henne planlegge uten falsk sikkerhet.",
+                    "source_actor_id": "nora_daglig_leder"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Presenter internt at finansieringen i praksis er sikret mens banken behandler saken",
+              "reply": "Jeg gir Nora en klar retning nå og omtaler bankløpet som i praksis avklart, med forbehold om endelige detaljer.",
+              "effect": -2,
+              "feedback": "Du reduserer ubehaget ved venting, men gjør kredittbehandlingen til en formalitet før banken selv har gjort den. Senere vilkårsendringer får dermed større sosial kostnad.",
+              "effects": {
+                "stats": {
+                  "status": 2,
+                  "quality": -2,
+                  "trust": -3,
+                  "risk": 4
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "cfo_case_waiting_prejudged_bank",
+                    "work_object_id": "naeringsliv_finansdirektor_refinancing_case_001",
+                    "to_status": "waiting",
+                    "to_phase": "awaiting_bank_credit_review",
+                    "note": "Caset venter på banken, men utfallet er sosialt foregrepet internt."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "cfo_bank_outcome_prejudged",
+                    "work_object_id": "naeringsliv_finansdirektor_refinancing_case_001",
+                    "flag": "credit_outcome_presented_as_nearly_certain"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "cfo_standing_bank_prejudged",
+                    "audience_id": "professional:bankkontakt",
+                    "delta": -4,
+                    "reason": "Bankkontakten opplever at et pågående kredittløp allerede brukes som intern sikkerhet, noe som gjør senere vilkårsforhandling vanskeligere og reduserer rommet for ny informasjon.",
+                    "source_actor_id": "bankkontakt"
+                  },
+                  {
+                    "event_id": "cfo_standing_nora_prejudged",
+                    "audience_id": "manager:nora_daglig_leder",
+                    "delta": -2,
+                    "reason": "Nora får et enklere budskap, men må senere håndtere forventningsbrudd dersom banken priser risikoen eller covenantene annerledes enn antydet.",
+                    "source_actor_id": "nora_daglig_leder"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
