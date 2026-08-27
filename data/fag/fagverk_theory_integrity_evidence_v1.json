@@ -527,6 +527,32 @@
         "anti_trivia_rule": "verified",
         "universal_subject_scope": "verified"
       }
+    },
+    {
+      "subject_id": "utdanning",
+      "proof_scope": "structured_subject_gate",
+      "audit_script": "tools/audit-utdanning-theory-integrity.mjs",
+      "test": "tests/utdanning-theory-integrity.test.mjs",
+      "workflow": ".github/workflows/fagverk-domain-registry.yml",
+      "evidence_files": [
+        "data/fag/utdanning/utdanningpensum_canonical_v1.json",
+        "data/fag/utdanning/theory_integrity_bindings_utdanning_v1.json",
+        "data/fagverk/fagverk_registry.json",
+        "reports/fagverk/utdanning-theory-integrity-audit.json",
+        "reports/fagverk/utdanning-strict-completion-v1-audit.json"
+      ],
+      "existing_gate_proves": {
+        "canonical_field_coverage": "verified",
+        "structured_scope_mechanism": "verified",
+        "limitations": "verified",
+        "rival_or_alternative": "verified",
+        "person_work_binding": "verified",
+        "scholarly_source_quality": "verified",
+        "claim_or_content_binding": "verified",
+        "actual_prose_binding": "verified",
+        "anti_trivia_rule": "verified",
+        "universal_subject_scope": "verified"
+      }
     }
   ]
 }
