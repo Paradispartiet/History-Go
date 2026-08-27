@@ -76,6 +76,35 @@ jobs:
             source = source.replace(before, after);
           }
 
+          for (const [before, after] of [
+            [
+              "Ingrid ber deg samle verifiserte fakta, åpne hypoteser, gjestens avtalte ramme, reservespor og beslutningseiere i ett arbeidsobjekt før studiomøtet.",
+              "Ingrid ber deg samle verifiserte fakta, åpne hypoteser, gjestens avtalte ramme, reservespor og beslutningseiere i ett arbeidsobjekt før studiomøtet, slik at restspørsmål og mandat er synlige."
+            ],
+            [
+              "Gjesten vil delta, men trenger en ny avklaring om familiedetaljen og klippebruk. Thea kan behandle et presist handoff; redaksjonen må vente på svar.",
+              "Gjesten vil delta, men trenger en ny avklaring om familiedetaljen og klippebruk. Thea kan behandle et presist handoff; redaksjonen må vente på svar før premiss og etterbruk kan regnes som avklart."
+            ],
+            [
+              "I ventetiden forteller gjesten om en belastning som kan gi sterk TV, men sier samtidig at hen ikke vet om det skal bli del av programmet.",
+              "I ventetiden forteller gjesten om en belastning som kan gi sterk TV, men sier samtidig at hen ikke vet om det skal bli del av programmet; den nye sårbarheten må derfor forbli utenfor sendeflyten til avklaringen er reell."
+            ],
+            [
+              "Ingrid vil beholde konfliktkraften etter gjesteavklaringen og ber deg anbefale en åpning som er skarp uten å gjøre hypotesen til konklusjon.",
+              "Ingrid vil beholde konfliktkraften etter gjesteavklaringen og ber deg anbefale en åpning som er skarp uten å gjøre hypotesen til konklusjon, samtidig som hennes eksplisitte godkjenningspunkt består."
+            ],
+            [
+              "Samtalen holdt seg innen avtalt premiss, men en sterk generell formulering kan lett klippes sammen med kontekst gjesten ba om å holde utenfor.",
+              "Samtalen holdt seg innen avtalt premiss, men en sterk generell formulering kan lett klippes sammen med kontekst gjesten ba om å holde utenfor; etterbruk må derfor håndteres som nytt, sporbart handoff."
+            ]
+          ]) {
+            const matches = source.split(before).length - 1;
+            if (matches !== 1) {
+              throw new Error(`Expected exactly one shallow Programleder scene summary, found ${matches}`);
+            }
+            source = source.replace(before, after);
+          }
+
           const fieldsStartMarker = "  fields: {\n    authority_context: {";
           const scenesMarker = "\n});\n\nconst scenes =";
           const fieldsStart = source.lastIndexOf(fieldsStartMarker);
