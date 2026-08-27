@@ -8,13 +8,6 @@ on:
       - scripts/TEMP_materialize_programleder_role_world.mjs
       - tests/civication-film-tv-programleder-role-world-rollout.test.js
       - .github/workflows/TEMP-civication-programleder-role-world-materialize.yml
-  pull_request:
-    branches:
-      - main
-    paths:
-      - scripts/TEMP_materialize_programleder_role_world.mjs
-      - tests/civication-film-tv-programleder-role-world-rollout.test.js
-      - .github/workflows/TEMP-civication-programleder-role-world-materialize.yml
 
 permissions:
   contents: write
@@ -33,60 +26,40 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - name: Canonicalize temporary authority source
+      - name: Canonicalize temporary source and registry assertion
         shell: bash
         run: |
           node <<'NODE'
           const fs = require('node:fs');
-          const file = 'scripts/TEMP_materialize_programleder_role_world.mjs';
-          let source = fs.readFileSync(file, 'utf8');
+          const sourcePath = 'scripts/TEMP_materialize_programleder_role_world.mjs';
+          let source = fs.readFileSync(sourcePath, 'utf8');
+          const replaceExact = (before, after, expected = 1, label = before) => {
+            const count = source.split(before).length - 1;
+            if (count !== expected) throw new Error(`Expected ${expected} ${label}, found ${count}`);
+            source = source.split(before).join(after);
+          };
 
-          const legacyIntents = source.match(/intent:'approve'/g) || [];
-          if (legacyIntents.length !== 2) {
-            throw new Error(`Expected exactly two legacy approve intents, found ${legacyIntents.length}`);
-          }
-          source = source.replaceAll("intent:'approve'", "intent:'execute'");
-
-          for (const [legacyId, canonicalId] of [
-            ['venn', 'programleder_privathjem_venn'],
-            ['familie', 'programleder_privathjem_familie']
-          ]) {
-            const anchor = `person('${legacyId}',`;
-            const matches = source.split(anchor).length - 1;
-            if (matches !== 1) throw new Error(`Expected exactly one recurring-person archetype ${legacyId}, found ${matches}`);
-            source = source.replace(anchor, `person('${canonicalId}',`);
-          }
-
+          replaceExact("intent:'approve'", "intent:'execute'", 2, 'legacy approve intents');
+          replaceExact("person('venn',", "person('programleder_privathjem_venn',", 1, 'venn archetype');
+          replaceExact("person('familie',", "person('programleder_privathjem_familie',", 1, 'familie archetype');
+          replaceExact(
+            'Amina og Ingrid reagerer på om programlederens skarphet bevarer kildestatus og godkjenningslinje.',
+            'Amina og Ingrid reagerer på om programlederens skarphet bevarer kildestatus og godkjenningslinje gjennom hele løpet.'
+          );
+          replaceExact(
+            'Thea og gjesten husker om venting ble respektert, og om differensiert samtykke overlever etterbruk.',
+            'Thea og gjesten husker om venting ble respektert, og om differensiert samtykke overlever etterbruk når konteksten endres.'
+          );
           for (const [before, after] of [
-            ["Amina og Ingrid reagerer på om programlederens skarphet bevarer kildestatus og godkjenningslinje.","Amina og Ingrid reagerer på om programlederens skarphet bevarer kildestatus og godkjenningslinje gjennom hele løpet."],
-            ["Thea og gjesten husker om venting ble respektert, og om differensiert samtykke overlever etterbruk.","Thea og gjesten husker om venting ble respektert, og om differensiert samtykke overlever etterbruk når konteksten endres."]
-          ]) {
-            const matches = source.split(before).length - 1;
-            if (matches !== 1) throw new Error(`Expected exactly one shallow Programleder thread relationship, found ${matches}`);
-            source = source.replace(before, after);
-          }
-
-          for (const [before, after] of [
-            ["Ingrid ber deg samle verifiserte fakta, åpne hypoteser, gjestens avtalte ramme, reservespor og beslutningseiere i ett arbeidsobjekt før studiomøtet.","Ingrid ber deg samle verifiserte fakta, åpne hypoteser, gjestens avtalte ramme, reservespor og beslutningseiere i ett arbeidsobjekt før studiomøtet, slik at restspørsmål og mandat er synlige."],
-            ["Gjesten vil delta, men trenger en ny avklaring om familiedetaljen og klippebruk. Thea kan behandle et presist handoff; redaksjonen må vente på svar.","Gjesten vil delta, men trenger en ny avklaring om familiedetaljen og klippebruk. Thea kan behandle et presist handoff; redaksjonen må vente på svar før premiss og etterbruk kan regnes som avklart."],
-            ["I ventetiden forteller gjesten om en belastning som kan gi sterk TV, men sier samtidig at hen ikke vet om det skal bli del av programmet.","I ventetiden forteller gjesten om en belastning som kan gi sterk TV, men sier samtidig at hen ikke vet om det skal bli del av programmet; den nye sårbarheten må derfor forbli utenfor sendeflyten til avklaringen er reell."],
-            ["Ingrid vil beholde konfliktkraften etter gjesteavklaringen og ber deg anbefale en åpning som er skarp uten å gjøre hypotesen til konklusjon.","Ingrid vil beholde konfliktkraften etter gjesteavklaringen og ber deg anbefale en åpning som er skarp uten å gjøre hypotesen til konklusjon, samtidig som hennes eksplisitte godkjenningspunkt består."],
-            ["Samtalen holdt seg innen avtalt premiss, men en sterk generell formulering kan lett klippes sammen med kontekst gjesten ba om å holde utenfor.","Samtalen holdt seg innen avtalt premiss, men en sterk generell formulering kan lett klippes sammen med kontekst gjesten ba om å holde utenfor; etterbruk må derfor håndteres som nytt, sporbart handoff."]
-          ]) {
-            const matches = source.split(before).length - 1;
-            if (matches !== 1) throw new Error(`Expected exactly one shallow Programleder scene summary, found ${matches}`);
-            source = source.replace(before, after);
-          }
-
-          for (const [before, after] of [
-            ["En uavklart betroelse gjøres til taktisk reserve, selv om gjesten ba om tid.","En uavklart betroelse gjøres til taktisk reserve, selv om gjesten ba om tid, og den faktiske ventingen undergraves."],
-            ["Synlighet og situert tillit brukes som erstatning for redaksjonell godkjenning.","Synlighet og situert tillit brukes som erstatning for redaksjonell godkjenning, slik at mandatgrensen blir uleselig."],
-            ["Bruksgrensen blir operativ for hele redaksjonen og kan etterprøves senere.","Bruksgrensen blir operativ for hele redaksjonen, følger materialet videre og kan etterprøves senere."]
-          ]) {
-            const matches = source.split(before).length - 1;
-            if (matches !== 1) throw new Error(`Expected exactly one shallow Programleder choice feedback, found ${matches}`);
-            source = source.replace(before, after);
-          }
+            ['Ingrid ber deg samle verifiserte fakta, åpne hypoteser, gjestens avtalte ramme, reservespor og beslutningseiere i ett arbeidsobjekt før studiomøtet.','Ingrid ber deg samle verifiserte fakta, åpne hypoteser, gjestens avtalte ramme, reservespor og beslutningseiere i ett arbeidsobjekt før studiomøtet, slik at restspørsmål og mandat er synlige.'],
+            ['Gjesten vil delta, men trenger en ny avklaring om familiedetaljen og klippebruk. Thea kan behandle et presist handoff; redaksjonen må vente på svar.','Gjesten vil delta, men trenger en ny avklaring om familiedetaljen og klippebruk. Thea kan behandle et presist handoff; redaksjonen må vente på svar før premiss og etterbruk kan regnes som avklart.'],
+            ['I ventetiden forteller gjesten om en belastning som kan gi sterk TV, men sier samtidig at hen ikke vet om det skal bli del av programmet.','I ventetiden forteller gjesten om en belastning som kan gi sterk TV, men sier samtidig at hen ikke vet om det skal bli del av programmet; den nye sårbarheten må derfor forbli utenfor sendeflyten til avklaringen er reell.'],
+            ['Ingrid vil beholde konfliktkraften etter gjesteavklaringen og ber deg anbefale en åpning som er skarp uten å gjøre hypotesen til konklusjon.','Ingrid vil beholde konfliktkraften etter gjesteavklaringen og ber deg anbefale en åpning som er skarp uten å gjøre hypotesen til konklusjon, samtidig som hennes eksplisitte godkjenningspunkt består.'],
+            ['Samtalen holdt seg innen avtalt premiss, men en sterk generell formulering kan lett klippes sammen med kontekst gjesten ba om å holde utenfor.','Samtalen holdt seg innen avtalt premiss, men en sterk generell formulering kan lett klippes sammen med kontekst gjesten ba om å holde utenfor; etterbruk må derfor håndteres som nytt, sporbart handoff.'],
+            ['En uavklart betroelse gjøres til taktisk reserve, selv om gjesten ba om tid.','En uavklart betroelse gjøres til taktisk reserve, selv om gjesten ba om tid, og den faktiske ventingen undergraves.'],
+            ['Synlighet og situert tillit brukes som erstatning for redaksjonell godkjenning.','Synlighet og situert tillit brukes som erstatning for redaksjonell godkjenning, slik at mandatgrensen blir uleselig.'],
+            ['Bruksgrensen blir operativ for hele redaksjonen og kan etterprøves senere.','Bruksgrensen blir operativ for hele redaksjonen, følger materialet videre og kan etterprøves senere.']
+          ]) replaceExact(before, after);
 
           const fieldsStartMarker = "  fields: {\n    authority_context: {";
           const scenesMarker = "\n});\n\nconst scenes =";
@@ -96,77 +69,39 @@ jobs:
           const fieldsEnd = source.lastIndexOf("\n  }", scenesAt);
           if (fieldsEnd < fieldsStart) throw new Error('Could not locate end of canonical Programleder authority_context block');
           const authorityFields = source.slice(fieldsStart, fieldsEnd + "\n  }".length);
-
           const conflictAnchor = "    ],{action_id:'approve_editorial_premise',intent:'execute'})\n  ]\n});\n\nconst event =";
-          const conflictMatches = source.split(conflictAnchor).length - 1;
-          if (conflictMatches !== 1) throw new Error(`Expected exactly one Programleder conflict authority anchor, found ${conflictMatches}`);
-          source = source.replace(conflictAnchor,"    ],{action_id:'approve_editorial_premise',intent:'execute'})\n  ],\n" + authorityFields + "\n});\n\nconst event =");
+          const conflictCount = source.split(conflictAnchor).length - 1;
+          if (conflictCount !== 1) throw new Error(`Expected one conflict authority anchor, found ${conflictCount}`);
+          source = source.replace(conflictAnchor, "    ],{action_id:'approve_editorial_premise',intent:'execute'})\n  ],\n" + authorityFields + "\n});\n\nconst event =");
+          fs.writeFileSync(sourcePath, source);
 
-          fs.writeFileSync(file, source);
+          const testPath = 'tests/civication-film-tv-programleder-role-world-rollout.test.js';
+          let test = fs.readFileSync(testPath, 'utf8');
+          const wrong = '  assert.equal(entry.scene.role_scope, ROLE);';
+          const correct = '  assert.equal(entry.role_scope, ROLE);';
+          const count = test.split(wrong).length - 1;
+          if (count !== 1) throw new Error(`Expected one non-canonical scene.role_scope assertion, found ${count}`);
+          test = test.replace(wrong, correct);
+          fs.writeFileSync(testPath, test);
           NODE
       - name: Materialize permanent authored data
         run: node scripts/TEMP_materialize_programleder_role_world.mjs
-      - name: Regenerate scene registry
-        run: node scripts/build-civication-scene-registry.mjs --write
-      - name: Regenerate career gameplay audit
-        run: node scripts/audit-civication-career-gameplay.mjs --write
-      - name: Regenerate role-world rollout readiness audit
-        run: node scripts/audit-civication-role-world-rollout-readiness.mjs --write
-      - name: Prepare Programleder prefix diagnostics
-        shell: bash
+      - name: Regenerate canonical derived artifacts
         run: |
-          cat > /tmp/run-programleder-prefix.cjs <<'NODE'
-          const fs = require('node:fs');
-          const { spawnSync } = require('node:child_process');
-          const sourcePath = 'tests/civication-film-tv-programleder-role-world-rollout.test.js';
-          const marker = process.argv[2];
-          const source = fs.readFileSync(sourcePath, 'utf8');
-          const index = source.indexOf(marker);
-          if (index < 0) throw new Error(`Missing diagnostic marker: ${marker}`);
-          const tmp = 'tests/.TEMP-programleder-prefix.test.js';
-          fs.writeFileSync(tmp, source.slice(0, index) + "\nconsole.log('PASS prefix before: " + marker.replaceAll("'", "\\'") + "');\n");
-          const result = spawnSync(process.execPath, [tmp], { stdio: 'inherit' });
-          fs.rmSync(tmp, { force: true });
-          process.exit(result.status ?? 1);
-          NODE
-      - name: Diagnose Programleder world model
-        run: node /tmp/run-programleder-prefix.cjs "const catalogPaths ="
-      - name: Diagnose Programleder scene mechanics
-        run: node /tmp/run-programleder-prefix.cjs "const audiences ="
-      - name: Diagnose Programleder situated audiences
-        run: node /tmp/run-programleder-prefix.cjs "const rules ="
-      - name: Diagnose Programleder authority contract
-        run: node /tmp/run-programleder-prefix.cjs "const provenanceUses ="
-      - name: Diagnose Programleder provenance
-        run: node /tmp/run-programleder-prefix.cjs "const plan ="
-      - name: Diagnose Programleder plan integration
-        run: node /tmp/run-programleder-prefix.cjs "const registry ="
-      - name: Diagnose Programleder registry index count
-        run: node /tmp/run-programleder-prefix.cjs "for (const id of Object.values(ids)) {"
-      - name: Diagnose Programleder registry scene references
-        run: node /tmp/run-programleder-prefix.cjs "const compiledKnowledge ="
-      - name: Diagnose Programleder compiled task contract
-        run: node /tmp/run-programleder-prefix.cjs "assert.equal(compiledKnowledge.compatibility_projection.task_payload.person_id"
-      - name: Diagnose Programleder compiled registry integration
-        run: node /tmp/run-programleder-prefix.cjs "const matrix ="
-      - name: Diagnose Programleder gameplay matrix integration
-        run: node /tmp/run-programleder-prefix.cjs "const readiness ="
-      - name: Diagnose Programleder readiness integration
-        run: node /tmp/run-programleder-prefix.cjs "const sourceText ="
-      - name: Verify Programleder role-world rollout
-        run: node tests/civication-film-tv-programleder-role-world-rollout.test.js
-      - name: Verify Programleder playability
-        run: node tests/civication-film-tv-programleder-playability.test.js
-      - name: Verify role-world contract
-        run: node tests/civication-role-world-contract.test.js
-      - name: Verify broad rollout policy
-        run: node tests/civication-role-world-broad-rollout-policy.test.js
-      - name: Check scene registry
-        run: node scripts/build-civication-scene-registry.mjs --check
-      - name: Check career gameplay audit
-        run: node scripts/audit-civication-career-gameplay.mjs --check
-      - name: Check role-world rollout readiness audit
-        run: node scripts/audit-civication-role-world-rollout-readiness.mjs --check
+          node scripts/build-civication-scene-registry.mjs --write
+          node scripts/audit-civication-career-gameplay.mjs --write
+          node scripts/audit-civication-role-world-rollout-readiness.mjs --write
+      - name: Verify Programleder rollout and policy
+        run: |
+          node tests/civication-film-tv-programleder-role-world-rollout.test.js
+          node tests/civication-film-tv-programleder-playability.test.js
+          node tests/civication-role-world-contract.test.js
+          node tests/civication-role-world-broad-rollout-policy.test.js
+      - name: Verify derived artifacts
+        run: |
+          node scripts/build-civication-scene-registry.mjs --check
+          node scripts/audit-civication-career-gameplay.mjs --check
+          node scripts/audit-civication-role-world-rollout-readiness.mjs --check
       - name: Run full Civication suite
         run: npm run test:civication
       - name: Remove temporary materialization surface
