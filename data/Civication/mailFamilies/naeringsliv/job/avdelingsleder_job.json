@@ -2435,6 +2435,190 @@
           ]
         }
       ]
+    },
+    {
+      "id": "role_world_rollout_avdelingsleder_capacity_open",
+      "purpose": "Etablere ett vedvarende avdelingscase som binder prioritering, kapasitet, rapportering, teamreaksjoner og ressursbehov sammen gjennom samme arbeidsobjekt.",
+      "learning_focus": [
+        "prioritering_og_rapportering",
+        "leveransefasade_vs_reell_baereevne",
+        "situated_reputation"
+      ],
+      "mails": [
+        {
+          "id": "naeringsliv_avdelingsleder_realism_capacity_case_open_001",
+          "mail_type": "job",
+          "mail_family": "role_world_rollout_avdelingsleder_capacity_open",
+          "role_scope": "avdelingsleder",
+          "phase": "advanced",
+          "day_phase": "morning",
+          "priority": 99,
+          "cooldown": 12,
+          "repeatable": false,
+          "stage": "stable",
+          "planned_only": true,
+          "thread_key": "naeringsliv_avdelingsleder_capacity_realism_001",
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "naeringsliv",
+            "avdelingsleder",
+            "situated_reputation"
+          ],
+          "from": "Inger, regionleder",
+          "people_ref": "inger_overordnet_leder",
+          "person_id": "inger_overordnet_leder",
+          "place_id": "ledermoterom",
+          "subject": "Åpne ukeprioriteringen som ett kapasitetsspor – ikke som en pen statuslinje",
+          "summary": "Inger ber om en beslutningsklar ukeprioritering. Leveransen ligger nær mål, men fravær, opplæring, overtid og sene avvik viser at samme resultat bæres av ulik belastning. Du må gjøre kapasitet, eiere og åpne spørsmål synlige uten å late som du kan vedta nye rammer selv.",
+          "purpose": "Etablere ett vedvarende avdelingscase som binder prioritering, kapasitet, rapportering, teamreaksjoner og ressursbehov sammen gjennom samme arbeidsobjekt.",
+          "stakes": "Hvis avdelingen bare sender et grønt leveransetall oppover, kan ledelsen belønne fasaden mens teamet lærer at belastning ikke teller før den blir sykefravær eller kvalitetsbrudd.",
+          "situation": [
+            "Leveransegraden er 96 prosent, men overtid og innleie holder deler av planen oppe.",
+            "Rana melder at to nye ansatte fortsatt trenger tett opplæring, og fraværet stiger svakt.",
+            "Inger eier endelige ramme- og ressursbeslutninger; avdelingslederen eier prioritering av arbeid innen gjeldende fullmakt."
+          ],
+          "task_domain": "kapasitet_og_ukeprioritering",
+          "task_kind": "job",
+          "competency": "prioritering_og_rapportering",
+          "pressure": "leveransefasade_vs_reell_baereevne",
+          "choice_axis": "sporbar_prioritering_vs_polert_status",
+          "consequence_axis": "situert_tillit_vs_skjult_belastning",
+          "narrative_arc": "fra_uklar_kapasitet_til_sporbart_prioriterings_og_ressurshandoff",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "naeringsliv_avdelingsleder_capacity_case_001"
+            ],
+            "institution_id": "naeringsliv_operativ_enhet_001",
+            "priority": "high"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Samle leveranse, belastning, opplæring og åpne beslutninger i ett case",
+              "reply": "Jeg sender en prioritert status som viser både leveransen, kapasitetskostnaden og hva Inger faktisk må ta stilling til.",
+              "effect": 2,
+              "feedback": "Inger får et styrbart grunnlag uten at teamets belastning forsvinner. Rana ser samtidig at det hun rapporterte faktisk når opp som del av beslutningsgrunnlaget, ikke som en privat bekymring.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "avdelingsleder_baseline_traced",
+                    "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001",
+                    "flag": "capacity_baseline_and_owners_traced"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "avdelingsleder_standing_inger_open",
+                    "audience_id": "manager:inger_overordnet_leder",
+                    "delta": 3,
+                    "reason": "Inger får en kort status som fortsatt viser reelle kapasitetsgrenser og beslutningsbehov.",
+                    "source_actor_id": "inger_overordnet_leder"
+                  },
+                  {
+                    "event_id": "avdelingsleder_standing_team_open",
+                    "audience_id": "team:avdelingsleder_team",
+                    "delta": 3,
+                    "reason": "Teamets belastning blir representert som styringsinformasjon i stedet for støy.",
+                    "source_actor_id": "rana_teamkoordinator"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Rapporter leveransen som stabil og ta belastningen internt senere",
+              "reply": "Jeg sender at avdelingen er på plan og håndterer restpunktene internt før de eventuelt blir et ledertema.",
+              "effect": -2,
+              "feedback": "Rapporten blir lett å lese, men Inger mister informasjon hun trenger for å prioritere, mens teamet ser at ekstraarbeidet deres blir brukt til å produsere et grønnere bilde enn arbeidshverdagen tilsier.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                },
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "avdelingsleder_baseline_polished",
+                    "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001",
+                    "flag": "capacity_cost_hidden_from_manager"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "avdelingsleder_standing_inger_polished",
+                    "audience_id": "manager:inger_overordnet_leder",
+                    "delta": -2,
+                    "reason": "Inger får mindre beslutningsrelevant informasjon selv om rapporten ser rolig ut.",
+                    "source_actor_id": "inger_overordnet_leder"
+                  },
+                  {
+                    "event_id": "avdelingsleder_standing_team_polished",
+                    "audience_id": "team:avdelingsleder_team",
+                    "delta": -4,
+                    "reason": "Teamet ser at egen belastning ikke teller i statusen så lenge leveransen fortsatt holder.",
+                    "source_actor_id": "rana_teamkoordinator"
+                  }
+                ]
+              }
+            }
+          ],
+          "effects": {
+            "work_object_ops": [
+              {
+                "op": "create",
+                "event_id": "avdelingsleder_capacity_case_opened",
+                "work_object": {
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001",
+                  "kind": "department_capacity_and_priority_case",
+                  "role_scope": "avdelingsleder",
+                  "institution_id": "naeringsliv_operativ_enhet_001",
+                  "title": "Avdelingskapasitet: leveranse, bemanning, opplæring og ressursvalg",
+                  "status": "in_progress",
+                  "phase": "baseline_and_priority",
+                  "people_refs": [
+                    "inger_overordnet_leder",
+                    "rana_teamkoordinator",
+                    "mads_sidestilt_avdelingsleder",
+                    "oyvind_okonomicontroller"
+                  ],
+                  "place_refs": [
+                    "avdelingsgulv",
+                    "teamrom_og_vaktplan",
+                    "driftskontor",
+                    "ledermoterom"
+                  ],
+                  "knowledge_refs": [
+                    "data/Civication/roleModels/naeringsliv/avdelingsleder.json",
+                    "data/Civication/workGrammars/naeringsliv/naeringsliv_operativ_ledelse.json"
+                  ],
+                  "open_questions": [
+                    "Hvilket arbeid må faktisk prioriteres ned hvis kapasiteten ikke øker?",
+                    "Hvilken del av budsjettavviket er nødvendig kapasitetskostnad, og hvem kan godkjenne unntak?",
+                    "Hvilke belastningssignaler må følges før de blir fravær eller kvalitetsbrudd?"
+                  ],
+                  "deadline": "avdelingsstatus_dag_14",
+                  "confidentiality": "internt_ledelses_og_arbeidsmiljogrunnlag",
+                  "flags": [
+                    "capacity_case_opened"
+                  ],
+                  "shared": false
+                }
+              }
+            ]
+          }
+        }
+      ]
     }
   ]
 }

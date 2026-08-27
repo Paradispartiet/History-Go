@@ -1,0 +1,306 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "avdelingsleder",
+  "mail_type": "consequence",
+  "families": [
+    {
+      "id": "role_world_rollout_avdelingsleder_capacity_close",
+      "purpose": "Bevise at audience-spesifikk standing er varig sosial informasjon, men aldri en kilde til ekstra myndighet; sluttscenen må skille direkte fullmakt, påvirkning, godkjenningskrav og forbudte handlinger.",
+      "learning_focus": [
+        "myndighetsklar_ledelse",
+        "hoy_standing_vs_formell_myndighet",
+        "situated_reputation"
+      ],
+      "mails": [
+        {
+          "id": "naeringsliv_avdelingsleder_realism_capacity_case_close_001",
+          "mail_type": "consequence",
+          "mail_family": "role_world_rollout_avdelingsleder_capacity_close",
+          "role_scope": "avdelingsleder",
+          "phase": "advanced",
+          "day_phase": "evening",
+          "priority": 91,
+          "cooldown": 12,
+          "repeatable": false,
+          "stage": "stable",
+          "planned_only": true,
+          "thread_key": "naeringsliv_avdelingsleder_capacity_realism_001",
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "naeringsliv",
+            "avdelingsleder",
+            "situated_reputation"
+          ],
+          "from": "Inger, regionleder",
+          "people_ref": "inger_overordnet_leder",
+          "person_id": "inger_overordnet_leder",
+          "place_id": "ledermoterom",
+          "subject": "Lukk caset med anbefaling, ståsted per publikum og tydelig beslutningseier",
+          "summary": "Etter to uker skal kapasitetssaken lukkes som et sporbar ledergrunnlag: hva du prioriterte innen egen fullmakt, hva teamet lærte, hva Øyvind kan dokumentere, hvordan standing utviklet seg hos ulike publikum, og hva Inger fortsatt må godkjenne.",
+          "purpose": "Bevise at audience-spesifikk standing er varig sosial informasjon, men aldri en kilde til ekstra myndighet; sluttscenen må skille direkte fullmakt, påvirkning, godkjenningskrav og forbudte handlinger.",
+          "stakes": "Hvis høy standing hos team eller lederkolleger lar spilleren erklære ressursutfallet som godkjent, blir omdømmesystemet en skjult privilegie-escalation. Det er eksplisitt forbudt i Role World-kontrakten.",
+          "situation": [
+            "Du har legitimt omprioritert arbeid innen fullmakt og dokumentert konsekvensene.",
+            "Rana, Mads, Øyvind og Inger har ulike grunner til tillit eller skepsis som skal beholdes separat.",
+            "Varig budsjett-, bemannings- og formell personalendring krever fortsatt de oppgitte godkjenningspunktene."
+          ],
+          "task_domain": "case_close_og_authority_boundary",
+          "task_kind": "consequence",
+          "competency": "myndighetsklar_ledelse",
+          "pressure": "hoy_standing_vs_formell_myndighet",
+          "choice_axis": "anbefal_og_overlever_vs_selvgodkjenn",
+          "consequence_axis": "legitim_ledelse_vs_privilegie_lekkasje",
+          "narrative_arc": "fra_uklar_kapasitet_til_sporbart_prioriterings_og_ressurshandoff",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "naeringsliv_avdelingsleder_capacity_case_001"
+            ],
+            "institution_id": "naeringsliv_operativ_enhet_001",
+            "rework_of_scene_id": "naeringsliv_avdelingsleder_realism_resource_handoff_followup_001",
+            "priority": "high"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lukk som anbefaling og overlever godkjenningspunktene til eierne",
+              "reply": "Jeg dokumenterer hva jeg har besluttet innen fullmakt, hva jeg anbefaler videre, og hva Inger eller økonomi fortsatt må godkjenne.",
+              "effect": 2,
+              "feedback": "Caset blir beslutningsklart uten å gjøre høy standing til myndighet. Team, økonomi og regionleder kan alle ha egne vurderinger av deg samtidig som den formelle beslutningslinjen forblir identisk.",
+              "effects": {
+                "stats": {
+                  "quality": 4,
+                  "trust": 4,
+                  "risk": -4
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "avdelingsleder_case_closed_recommendation",
+                    "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001",
+                    "to_status": "completed",
+                    "to_phase": "recommendation_and_approval_handoff",
+                    "note": "Caset er lukket med lokal prioritering dokumentert og varige ressursvalg overlevert til riktige godkjennere."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "avdelingsleder_authority_preserved",
+                    "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001",
+                    "flag": "situated_standing_did_not_grant_authority"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "avdelingsleder_standing_inger_close",
+                    "audience_id": "manager:inger_overordnet_leder",
+                    "delta": 5,
+                    "reason": "Inger får et sluttgrunnlag som skiller utført lokal ledelse fra anbefalte varige ressursvalg.",
+                    "source_actor_id": "inger_overordnet_leder"
+                  },
+                  {
+                    "event_id": "avdelingsleder_standing_rana_close",
+                    "audience_id": "professional:rana_teamkoordinator",
+                    "delta": 4,
+                    "reason": "Rana ser at teamets evidens påvirket prioritering uten å bli omgjort til falske løfter.",
+                    "source_actor_id": "rana_teamkoordinator"
+                  },
+                  {
+                    "event_id": "avdelingsleder_standing_oyvind_close",
+                    "audience_id": "professional:oyvind_okonomicontroller",
+                    "delta": 4,
+                    "reason": "Øyvind får et sporbar kostnads- og beslutningsskille. Denne vurderingen gjelder dette publikummets situerte tillit og gir ingen ny formell fullmakt.",
+                    "source_actor_id": "oyvind_okonomicontroller"
+                  },
+                  {
+                    "event_id": "avdelingsleder_standing_mads_close",
+                    "audience_id": "professional:mads_sidestilt_avdelingsleder",
+                    "delta": 2,
+                    "reason": "Mads ser en lederform som tåler å være tydelig om friksjon uten å miste rollegrenser.",
+                    "source_actor_id": "mads_sidestilt_avdelingsleder"
+                  }
+                ]
+              },
+              "authority_action": {
+                "action_id": "recommend_resource_adjustment",
+                "intent": "recommend"
+              }
+            },
+            {
+              "id": "B",
+              "label": "Erklær ressursendringen godkjent fordi du har teamet og faggrunnlaget med deg",
+              "reply": "Jeg lukker saken som vedtatt og informerer Inger og økonomi om gjennomføringen.",
+              "effect": -2,
+              "feedback": "Du gjør situert tillit om til formell privilegieøkning. Nettopp fordi teamet og flere fagpersoner kan ha høy standing til deg, må kontrakten slå fast at godkjenningsmyndighet ikke kan opptjenes gjennom omdømme.",
+              "effects": {
+                "stats": {
+                  "status": 2,
+                  "quality": -4,
+                  "trust": -4,
+                  "risk": 6
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "avdelingsleder_case_closed_authority_breach",
+                    "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001",
+                    "to_status": "completed",
+                    "to_phase": "authority_breached",
+                    "note": "Caset er erklært vedtatt uten påkrevd ressursgodkjenning."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "avdelingsleder_authority_breach",
+                    "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001",
+                    "flag": "standing_used_as_budget_approval"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "avdelingsleder_standing_inger_breach",
+                    "audience_id": "manager:inger_overordnet_leder",
+                    "delta": -6,
+                    "reason": "Ingers ressursmyndighet er overtatt i stedet for å bli brukt som godkjenningspunkt.",
+                    "source_actor_id": "inger_overordnet_leder"
+                  },
+                  {
+                    "event_id": "avdelingsleder_standing_oyvind_breach",
+                    "audience_id": "professional:oyvind_okonomicontroller",
+                    "delta": -5,
+                    "reason": "Øyvind får et økonomisk utfall presentert som bindende uten riktig beslutning.",
+                    "source_actor_id": "oyvind_okonomicontroller"
+                  },
+                  {
+                    "event_id": "avdelingsleder_standing_team_breach",
+                    "audience_id": "team:avdelingsleder_team",
+                    "delta": -2,
+                    "reason": "Teamets tillit blir brukt som begrunnelse for en fullmakt rollen ikke har.",
+                    "source_actor_id": "rana_teamkoordinator"
+                  }
+                ]
+              },
+              "authority_action": {
+                "action_id": "approve_budget_exception",
+                "intent": "execute"
+              }
+            }
+          ],
+          "authority_context": {
+            "institution_id": "naeringsliv_operativ_enhet_001",
+            "unit_id": "naeringsliv_avdeling_001",
+            "role_scope": "avdelingsleder",
+            "reporting_line": [
+              "inger_overordnet_leder"
+            ],
+            "peer_functions": [
+              "mads_sidestilt_avdelingsleder",
+              "oyvind_okonomicontroller",
+              "rana_teamkoordinator"
+            ],
+            "external_counterparts": [],
+            "goals_pressures": [
+              "leveranse",
+              "kapasitet",
+              "arbeidsmiljo",
+              "kvalitet",
+              "budsjett",
+              "sannferdig_rapportering"
+            ],
+            "approval_points": [
+              {
+                "approval_id": "avdelingsleder_budget_exception_approval",
+                "action_id": "approve_budget_exception",
+                "approver_actor_id": "inger_overordnet_leder",
+                "approval_object_id": "avdelingsleder_budget_exception_001"
+              },
+              {
+                "approval_id": "avdelingsleder_headcount_approval",
+                "action_id": "approve_headcount_change",
+                "approver_actor_id": "inger_overordnet_leder",
+                "approval_object_id": "avdelingsleder_headcount_change_001"
+              },
+              {
+                "approval_id": "avdelingsleder_formal_personnel_approval",
+                "action_id": "approve_formal_personnel_measure",
+                "approver_actor_id": "inger_overordnet_leder",
+                "approval_object_id": "avdelingsleder_formal_personnel_measure_001"
+              }
+            ],
+            "authority_rules": [
+              {
+                "action_id": "prioritize_work_within_mandate",
+                "authority": "direct",
+                "requires_resources": []
+              },
+              {
+                "action_id": "allocate_daily_work",
+                "authority": "direct",
+                "requires_resources": []
+              },
+              {
+                "action_id": "escalate_capacity_conflict",
+                "authority": "direct",
+                "requires_resources": [],
+                "escalation_id": "avdelingsleder_capacity_conflict_to_region"
+              },
+              {
+                "action_id": "recommend_resource_adjustment",
+                "authority": "influence_only",
+                "requires_resources": []
+              },
+              {
+                "action_id": "recommend_staffing_plan",
+                "authority": "influence_only",
+                "requires_resources": []
+              },
+              {
+                "action_id": "approve_budget_exception",
+                "authority": "approval_required",
+                "approval_id": "avdelingsleder_budget_exception_approval",
+                "requires_resources": []
+              },
+              {
+                "action_id": "approve_headcount_change",
+                "authority": "approval_required",
+                "approval_id": "avdelingsleder_headcount_approval",
+                "requires_resources": []
+              },
+              {
+                "action_id": "approve_formal_personnel_measure",
+                "authority": "approval_required",
+                "approval_id": "avdelingsleder_formal_personnel_approval",
+                "requires_resources": []
+              },
+              {
+                "action_id": "hide_safety_or_quality_incident",
+                "authority": "forbidden",
+                "requires_resources": []
+              },
+              {
+                "action_id": "promise_resource_outcome",
+                "authority": "forbidden",
+                "requires_resources": []
+              },
+              {
+                "action_id": "bypass_formal_personnel_process",
+                "authority": "forbidden",
+                "requires_resources": []
+              }
+            ],
+            "resources": [],
+            "escalation_paths": [
+              {
+                "escalation_id": "avdelingsleder_capacity_conflict_to_region",
+                "action_id": "escalate_capacity_conflict",
+                "target_actor_id": "inger_overordnet_leder",
+                "escalation_object_id": "avdelingsleder_capacity_conflict_escalation_001"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

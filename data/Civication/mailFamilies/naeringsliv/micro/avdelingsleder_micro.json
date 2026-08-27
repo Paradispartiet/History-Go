@@ -30,20 +30,30 @@
           "choice_axis": "fleksibilitet_vs_sporbarhet",
           "consequence_axis": "tillit_vs_uklarhet",
           "narrative_arc": "hverdagsmakt",
-          "learning_focus": ["vaktplan", "uformell makt", "rettferdighet"],
+          "learning_focus": [
+            "vaktplan",
+            "uformell makt",
+            "rettferdighet"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Oppdater planen og be dem melde bytter formelt fremover.",
               "effect": 1,
-              "tags": ["process", "fairness"],
+              "tags": [
+                "process",
+                "fairness"
+              ],
               "feedback": "Du gjør ikke byttet til en stor sak, men setter en grense for usynlig fleksibilitet."
             },
             {
               "id": "B",
               "label": "La byttet stå og fokuser på dagens leveranse.",
               "effect": 0,
-              "tags": ["tempo", "risk"],
+              "tags": [
+                "tempo",
+                "risk"
+              ],
               "feedback": "Dagen kommer raskere i gang, men systemet lærer at planen kan endres uten spor."
             }
           ]
@@ -69,20 +79,30 @@
           "choice_axis": "tall_vs_erfaring",
           "consequence_axis": "styring_vs_blindhet",
           "narrative_arc": "rapportering_vs_sannhet",
-          "learning_focus": ["KPI", "arbeidsmiljø", "rapportering"],
+          "learning_focus": [
+            "KPI",
+            "arbeidsmiljø",
+            "rapportering"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Legg inn kommentar om belastning bak grønn KPI.",
               "effect": 1,
-              "tags": ["integrity", "learning"],
+              "tags": [
+                "integrity",
+                "learning"
+              ],
               "feedback": "Du gjør rapporten mindre blank, men mer styrbar."
             },
             {
               "id": "B",
               "label": "La KPI-en stå alene siden målet faktisk ble nådd.",
               "effect": -1,
-              "tags": ["visibility", "risk"],
+              "tags": [
+                "visibility",
+                "risk"
+              ],
               "feedback": "Rapporten ser god ut, men mister signalet som kunne forklart prisen på leveransen."
             }
           ]
@@ -108,20 +128,30 @@
           "choice_axis": "tilgjengelighet_vs_frist",
           "consequence_axis": "tillit_vs_tempo",
           "narrative_arc": "mennesker_i_planen",
-          "learning_focus": ["oppfølging", "arbeidsmiljø", "prioritering"],
+          "learning_focus": [
+            "oppfølging",
+            "arbeidsmiljø",
+            "prioritering"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Ta fem minutter nå og avklar om det haster.",
               "effect": 1,
-              "tags": ["trust", "people"],
+              "tags": [
+                "trust",
+                "people"
+              ],
               "feedback": "Du mister litt tempo, men viser at mennesker ikke alltid må vente på systemet."
             },
             {
               "id": "B",
               "label": "Be om at dere tar det etter rapportfristen.",
               "effect": 0,
-              "tags": ["process", "tempo"],
+              "tags": [
+                "process",
+                "tempo"
+              ],
               "feedback": "Du holder fristen, men skyver et mulig signal videre. Det krever at du faktisk følger opp."
             }
           ]
@@ -147,20 +177,30 @@
           "choice_axis": "lukke_vs_lare",
           "consequence_axis": "tempo_vs_laring",
           "narrative_arc": "systemsignal",
-          "learning_focus": ["avvik", "kvalitet", "mønster"],
+          "learning_focus": [
+            "avvik",
+            "kvalitet",
+            "mønster"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Koble avviket til de to forrige og be om mønstergjennomgang.",
               "effect": 1,
-              "tags": ["learning", "quality"],
+              "tags": [
+                "learning",
+                "quality"
+              ],
               "feedback": "Du gjør et lite avvik til et nyttig signal. Det er slik systemer lærer før feilene vokser."
             },
             {
               "id": "B",
               "label": "Lukk avviket raskt med kort kommentar.",
               "effect": 0,
-              "tags": ["tempo", "risk"],
+              "tags": [
+                "tempo",
+                "risk"
+              ],
               "feedback": "Du sparer tid nå, men mister muligheten til å se om avviket er et mønster."
             }
           ]
@@ -186,20 +226,30 @@
           "choice_axis": "hjelpsomhet_vs_grense",
           "consequence_axis": "synlighet_vs_slitasje",
           "narrative_arc": "uformell_makt",
-          "learning_focus": ["grenser", "uformell makt", "ekstraarbeid"],
+          "learning_focus": [
+            "grenser",
+            "uformell makt",
+            "ekstraarbeid"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Ta oppgaven, men marker at dette må planlegges tidligere neste gang.",
               "effect": 1,
-              "tags": ["diplomacy", "boundary"],
+              "tags": [
+                "diplomacy",
+                "boundary"
+              ],
               "feedback": "Du hjelper uten å gjøre grensene usynlige."
             },
             {
               "id": "B",
               "label": "Si at du tar den i morgen fordi arbeidsdagen er slutt.",
               "effect": 0,
-              "tags": ["boundary", "process"],
+              "tags": [
+                "boundary",
+                "process"
+              ],
               "feedback": "Du beskytter kvelden, men risikerer at det leses som lav fleksibilitet."
             }
           ]
@@ -225,21 +275,185 @@
           "choice_axis": "skyld_vs_system",
           "consequence_axis": "rettferdighet_vs_enkelhet",
           "narrative_arc": "rapportens_makt",
-          "learning_focus": ["rapportering", "språk", "systemansvar"],
+          "learning_focus": [
+            "rapportering",
+            "språk",
+            "systemansvar"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Skriv at forsinkelsen skyldes kombinasjon av bemanning, opplæring og planendring.",
               "effect": 1,
-              "tags": ["integrity", "system"],
+              "tags": [
+                "integrity",
+                "system"
+              ],
               "feedback": "Du gjør linjen lengre, men mer rettferdig. Rapporten peker mot årsak, ikke bare skyld."
             },
             {
               "id": "B",
               "label": "Skriv kort at teamet ikke holdt planlagt tempo.",
               "effect": -1,
-              "tags": ["shortcut", "risk"],
+              "tags": [
+                "shortcut",
+                "risk"
+              ],
               "feedback": "Linjen blir enkel, men legger ansvaret lavere enn årsaken egentlig ligger."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_avdelingsleder_standing_pulse",
+      "purpose": "Gjøre situert omdømme til en repeterbar sosial lesning med eksplisitte audience-id-er, uten å introdusere ny runtime eller en parallell omdømmemotor.",
+      "learning_focus": [
+        "sosial_lesning",
+        "global_status_vs_publikumsspesifikk_tillit",
+        "situated_reputation"
+      ],
+      "mails": [
+        {
+          "id": "naeringsliv_avdelingsleder_realism_standing_pulse_001",
+          "mail_type": "micro",
+          "mail_family": "role_world_rollout_avdelingsleder_standing_pulse",
+          "role_scope": "avdelingsleder",
+          "phase": "advanced",
+          "day_phase": "afternoon",
+          "priority": 95,
+          "cooldown": 12,
+          "repeatable": false,
+          "stage": "stable",
+          "planned_only": true,
+          "thread_key": "naeringsliv_avdelingsleder_capacity_realism_001",
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "naeringsliv",
+            "avdelingsleder",
+            "situated_reputation"
+          ],
+          "from": "Rana, teamkoordinator",
+          "people_ref": "rana_teamkoordinator",
+          "person_id": "rana_teamkoordinator",
+          "place_id": "avdelingsgulv",
+          "subject": "Fem minutter på gulvet viser hvorfor én omdømmescore ikke kan forklare avdelingen",
+          "summary": "Et kort gulvmøte viser at teamet verdsetter tydelige prioriteringer, mens Mads synes du gjør belastning for synlig og Øyvind først og fremst belønner sporbarhet. Samme lederhandling må derfor gi forskjellige standing-effekter hos forskjellige mottakere.",
+          "purpose": "Gjøre situert omdømme til en repeterbar sosial lesning med eksplisitte audience-id-er, uten å introdusere ny runtime eller en parallell omdømmemotor.",
+          "stakes": "Hvis alle reaksjoner kollapser til status, mister spilleren grunnen til å forstå hvem som faktisk har tillit, hvem som bare liker resultatet, og hvem som har formell beslutningsmakt.",
+          "situation": [
+            "Rana reagerer på om prioriteringen er rettferdig og gjennomførbar.",
+            "Mads reagerer på hvordan avdelingen fremstår i lederkollegiet.",
+            "Øyvind reagerer på om årsak og tall kan spores; ingen av disse standing-aksene flytter formell myndighet."
+          ],
+          "task_domain": "situert_standing_pulse",
+          "task_kind": "micro",
+          "competency": "sosial_lesning",
+          "pressure": "global_status_vs_publikumsspesifikk_tillit",
+          "choice_axis": "les_publikum_hver_for_seg_vs_jag_en_score",
+          "consequence_axis": "rolleforstaelse_vs_statusblindhet",
+          "narrative_arc": "fra_uklar_kapasitet_til_sporbart_prioriterings_og_ressurshandoff",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "naeringsliv_avdelingsleder_capacity_case_001"
+            ],
+            "institution_id": "naeringsliv_operativ_enhet_001",
+            "rework_of_scene_id": "naeringsliv_avdelingsleder_realism_history_go_workplace_context_001",
+            "priority": "high"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Oppdater handoffet etter hvem som trenger hva, uten å endre fakta",
+              "reply": "Jeg beholder samme faktagrunnlag, men gjør team-, økonomi- og lederbehov eksplisitte som ulike mottakerperspektiver.",
+              "effect": 2,
+              "feedback": "Rana, Øyvind og Inger får hver sin lesbare grunn til å stole mer på arbeidet uten at noen får late som standing hos én målgruppe opphever kravene fra de andre eller skaper ny fullmakt.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 3,
+                  "risk": -2
+                },
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "avdelingsleder_standing_pulse_split",
+                    "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001",
+                    "flag": "standing_audiences_kept_separate"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "avdelingsleder_standing_rana_pulse",
+                    "audience_id": "professional:rana_teamkoordinator",
+                    "delta": 3,
+                    "reason": "Rana ser at teamets gjennomførbarhet ikke blir redusert til et generelt omdømmetall.",
+                    "source_actor_id": "rana_teamkoordinator"
+                  },
+                  {
+                    "event_id": "avdelingsleder_standing_oyvind_pulse",
+                    "audience_id": "professional:oyvind_okonomicontroller",
+                    "delta": 3,
+                    "reason": "Øyvind ser at tallsporet beholdes selv når budskapet tilpasses mottakeren.",
+                    "source_actor_id": "oyvind_okonomicontroller"
+                  },
+                  {
+                    "event_id": "avdelingsleder_standing_inger_pulse",
+                    "audience_id": "manager:inger_overordnet_leder",
+                    "delta": 2,
+                    "reason": "Inger får et lederrelevant sammendrag som fortsatt peker til det samme underlaget.",
+                    "source_actor_id": "inger_overordnet_leder"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Optimaliser bare for ledergruppens inntrykk",
+              "reply": "Jeg gjør statusen så sterk og kort som mulig oppover og lar de andre relasjonene håndteres senere.",
+              "effect": -2,
+              "feedback": "Standing hos lederkolleger kan stige kortsiktig, men Rana og Øyvind får hver sin grunn til å miste tillit. Den situerte modellen gjør nettopp dette tapet synlig i stedet for å la én positiv statusscore skjule det.",
+              "effects": {
+                "stats": {
+                  "status": 2,
+                  "quality": -2,
+                  "trust": -3,
+                  "risk": 3
+                },
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "avdelingsleder_standing_pulse_collapsed",
+                    "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001",
+                    "flag": "standing_optimized_for_powerful_audience_only"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "avdelingsleder_standing_mads_pulse",
+                    "audience_id": "professional:mads_sidestilt_avdelingsleder",
+                    "delta": 3,
+                    "reason": "Mads liker den mer politisk polerte lederformen. Denne vurderingen gjelder dette publikummets situerte tillit og gir ingen ny formell fullmakt.",
+                    "source_actor_id": "mads_sidestilt_avdelingsleder"
+                  },
+                  {
+                    "event_id": "avdelingsleder_standing_rana_pulse_loss",
+                    "audience_id": "professional:rana_teamkoordinator",
+                    "delta": -4,
+                    "reason": "Rana ser at teamets signaler forsvinner når de konkurrerer med lederstatus.",
+                    "source_actor_id": "rana_teamkoordinator"
+                  },
+                  {
+                    "event_id": "avdelingsleder_standing_oyvind_pulse_loss",
+                    "audience_id": "professional:oyvind_okonomicontroller",
+                    "delta": -3,
+                    "reason": "Øyvind får mindre etterprøvbar årsaksinformasjon i bytte mot et penere budskap.",
+                    "source_actor_id": "oyvind_okonomicontroller"
+                  }
+                ]
+              }
             }
           ]
         }

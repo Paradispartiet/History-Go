@@ -1,0 +1,161 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "avdelingsleder",
+  "mail_type": "knowledge",
+  "families": [
+    {
+      "id": "role_world_rollout_avdelingsleder_history_go_context",
+      "purpose": "Koble eksisterende History Go-/Næringsliv-kunnskap til et bedre profesjonelt handlingsrom uten å gjøre kunnskap til formell autoritet eller et ferdig normativt svar.",
+      "learning_focus": [
+        "kunnskapsanvendelse",
+        "faglig_innsikt_vs_mandatglidning",
+        "situated_reputation"
+      ],
+      "mails": [
+        {
+          "id": "naeringsliv_avdelingsleder_realism_history_go_workplace_context_001",
+          "mail_type": "knowledge",
+          "mail_family": "role_world_rollout_avdelingsleder_history_go_context",
+          "role_scope": "avdelingsleder",
+          "phase": "advanced",
+          "day_phase": "morning",
+          "priority": 96,
+          "cooldown": 12,
+          "repeatable": false,
+          "stage": "stable",
+          "planned_only": true,
+          "thread_key": "naeringsliv_avdelingsleder_capacity_realism_001",
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "naeringsliv",
+            "avdelingsleder",
+            "situated_reputation"
+          ],
+          "from": "Øyvind, økonomicontroller",
+          "people_ref": "oyvind_okonomicontroller",
+          "person_id": "oyvind_okonomicontroller",
+          "place_id": "lilleborg_fabrikker",
+          "subject": "Bruk industrikonteksten til å stille et bedre kapasitets-spørsmål – ikke til å kreve et bestemt svar",
+          "summary": "Øyvind ber deg forklare hvorfor opplæring, innleie og kvalitet bør leses samlet. History Go-kunnskap om arbeidsdeling, produksjon og industri kan gjøre årsaksspørsmålet bedre, men historisk kontekst gir ingen moderne budsjett- eller personalmyndighet.",
+          "purpose": "Koble eksisterende History Go-/Næringsliv-kunnskap til et bedre profesjonelt handlingsrom uten å gjøre kunnskap til formell autoritet eller et ferdig normativt svar.",
+          "stakes": "Når kunnskap forveksles med myndighet, kan en faglig sterk avdelingsleder begynne å presentere egne ressursvalg som om historisk eller organisatorisk innsikt gjorde godkjenning unødvendig.",
+          "situation": [
+            "Lilleborg-fabrikkene gir et konkret stedlig anker for hvordan produksjon, arbeidsdeling og teknologi har organisert arbeid over tid.",
+            "Øyvind trenger en nåtidig årsaksforklaring basert på dagens tall, ikke en historisk analogi som fasit.",
+            "Inger beholder ressursmyndigheten uansett hvor god den faglige analysen er."
+          ],
+          "task_domain": "history_go_og_kapasitetsanalyse",
+          "task_kind": "knowledge",
+          "competency": "kunnskapsanvendelse",
+          "pressure": "faglig_innsikt_vs_mandatglidning",
+          "choice_axis": "bruk_kontekst_til_sporsmal_vs_bruk_kontekst_som_fasit",
+          "consequence_axis": "bedre_analyse_vs_falsk_autoritet",
+          "narrative_arc": "fra_uklar_kapasitet_til_sporbart_prioriterings_og_ressurshandoff",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "naeringsliv_avdelingsleder_capacity_case_001"
+            ],
+            "institution_id": "naeringsliv_operativ_enhet_001",
+            "waiting_for_actor_id": "inger_overordnet_leder",
+            "rework_of_scene_id": "naeringsliv_avdelingsleder_realism_peer_reputation_split_001",
+            "priority": "high"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bruk konteksten til å teste om dagens kapasitetstall skjuler arbeidsdeling og opplæringskostnad",
+              "reply": "Jeg bruker kunnskapen til å formulere bedre spørsmål til Øyvind og Rana, og lar dagens underlag avgjøre konklusjonen.",
+              "effect": 2,
+              "feedback": "Øyvind får et bedre analysekart uten at historien blir brukt som bevis for et budsjettvedtak. Teamet opplever at kunnskap hjelper avdelingen å forstå arbeidet i stedet for å overstyre dem som gjør det.",
+              "effects": {
+                "stats": {
+                  "quality": 3,
+                  "trust": 2,
+                  "risk": -2
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "avdelingsleder_history_context_applied",
+                    "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "evidence_reframed",
+                    "note": "History Go-kontekst brukes til å forbedre spørsmål og årsaksmodell, ikke til å vedta ressursutfall."
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "avdelingsleder_standing_oyvind_context",
+                    "audience_id": "professional:oyvind_okonomicontroller",
+                    "delta": 3,
+                    "reason": "Øyvind får tydeligere spørsmål uten at økonomiunderlaget erstattes av historisk analogi.",
+                    "source_actor_id": "oyvind_okonomicontroller"
+                  },
+                  {
+                    "event_id": "avdelingsleder_standing_team_context",
+                    "audience_id": "team:avdelingsleder_team",
+                    "delta": 2,
+                    "reason": "Teamets nåtidige erfaring beholdes som nødvendig evidens ved siden av faglig kontekst.",
+                    "source_actor_id": "rana_teamkoordinator"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Bruk industrikonteksten til å argumentere for at ekstra kapasitet åpenbart må godkjennes",
+              "reply": "Jeg viser at historisk produksjonskunnskap tilsier at vi trenger mer bemanning, så dette bør behandles som avgjort.",
+              "effect": -2,
+              "feedback": "Analysen kan være interessant, men du hopper fra kunnskap til formell konklusjon. Øyvind mister tillit til sporbarheten, og Ingers myndighet blir indirekte omgått gjennom faglig status.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                },
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "avdelingsleder_knowledge_authority_leak",
+                    "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001",
+                    "flag": "knowledge_presented_as_resource_approval"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "avdelingsleder_standing_oyvind_overreach",
+                    "audience_id": "professional:oyvind_okonomicontroller",
+                    "delta": -3,
+                    "reason": "Øyvind ser at historisk kontekst brukes til å lukke et spørsmål dagens tall fortsatt må besvare.",
+                    "source_actor_id": "oyvind_okonomicontroller"
+                  },
+                  {
+                    "event_id": "avdelingsleder_standing_inger_knowledge_overreach",
+                    "audience_id": "manager:inger_overordnet_leder",
+                    "delta": -3,
+                    "reason": "Faglig innsikt blir brukt som om den erstattet regionlederens ressursbeslutning.",
+                    "source_actor_id": "inger_overordnet_leder"
+                  }
+                ]
+              }
+            }
+          ],
+          "knowledge_context": {
+            "source_refs": [
+              "data/Civication/roleModels/naeringsliv/avdelingsleder.json",
+              "data/Civication/workGrammars/naeringsliv/naeringsliv_operativ_ledelse.json"
+            ],
+            "place_ref": "lilleborg_fabrikker",
+            "affordance": "better_capacity_question",
+            "authority_grant": false
+          }
+        }
+      ]
+    }
+  ]
+}

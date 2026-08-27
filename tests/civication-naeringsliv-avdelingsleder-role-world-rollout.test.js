@@ -196,7 +196,10 @@ assert.equal(rules.get('bypass_formal_personnel_process'), 'forbidden');
 assert.equal(close.choices[0].authority_action.action_id, 'recommend_resource_adjustment');
 assert.equal(close.choices[0].authority_action.intent, 'recommend');
 assert.equal(close.choices[1].authority_action.action_id, 'approve_budget_exception');
-assert.equal(close.choices[1].authority_action.intent, 'approve');
+assert.equal(close.choices[1].authority_action.intent, 'execute');
+assert.equal(close.authority_context.escalation_paths.length, 1);
+assert.equal(close.authority_context.escalation_paths[0].target_actor_id, 'inger_overordnet_leder');
+assert.equal(close.authority_context.authority_rules.find(rule => rule.action_id === 'escalate_capacity_conflict').escalation_id, 'avdelingsleder_capacity_conflict_to_region');
 
 const provenanceUses = new Set();
 for (const beat of world.season.coverage) for (const ref of beat.materialization_refs) provenanceUses.add(ref);

@@ -1,0 +1,1037 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "avdelingsleder",
+  "title": "Avdelingsleder — ansvar, standing og mandat i krysspress",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "Å få en avdeling til å levere gjennom andre mennesker når spilleren har reell hverdagsmakt og høy situert standing, men bare avgrenset myndighet over budsjett, bemanning og formelle personalsaker.",
+    "description": "Avdelingslederen lever mellom strategi og drift. Rollen kan prioritere arbeid, fordele oppgaver og eskalere kapasitetskonflikter, men må samtidig tåle at team, økonomi, regionleder og sidestilte ledere vurderer samme handling ulikt. Denne Role World-en følger ett vedvarende kapasitetscase og gjør situated reputation eksplisitt uten å gjøre omdømme til privilegie- eller myndighetsøkning."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "emotional_labor",
+    "social_mask",
+    "shame_reputation",
+    "loyalty_up_down",
+    "care_vs_efficiency",
+    "status_anxiety",
+    "bureaucratic_power"
+  ],
+  "social_environments": [
+    "Avdelingsgulvet der leveranse, fravær, kvalitet og skjult ekstraarbeid blir synlig før de blir lederrapport.",
+    "Teamrommet og vaktplanen der prioritering avgjør hvem som får tid, opplæring, avlastning og forklaring.",
+    "Driftskontoret der KPI, avvik, kostnad og medarbeidersignaler må oversettes til samme beslutningsgrunnlag.",
+    "Ledermøterommet der korte statuslinjer konkurrerer med behovet for å vise reell kapasitet og beslutningseiere.",
+    "Økonomihandoffet der ressursbehov må kostnadsfestes uten at anbefaling blir presentert som godkjent vedtak.",
+    "Lilleborg-fabrikkene som stedlig History Go-kontekst for industri, arbeidsdeling og produksjon uten normativ myndighet over dagens driftsvalg.",
+    "Hjem og nære relasjoner der lederens profesjonelle kontroll, statusbehov og ansvarsfølelse kan fortsette etter arbeidstid."
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "inger_overordnet_leder",
+      "social_function": "regionleder som eier varige ramme- og ressursbeslutninger",
+      "class_position": "formell linjeleder med høy beslutningsmakt",
+      "status": "høy formell status",
+      "power_over_player": "kan godkjenne eller avslå ressursendringer og påvirke videre lederansvar",
+      "wants": "en kort og sann status som viser hva hun faktisk må beslutte",
+      "conceals": "hvor sterkt hun selv presses til å vise stabilitet oppover",
+      "speech_style": "kort, styringsorientert og opptatt av valg, risiko og eier",
+      "teaches_player": "at god ledelse oppover betyr beslutningsklarhet uten ettergodkjenning"
+    },
+    {
+      "id": "rana_teamkoordinator",
+      "social_function": "teamnær koordinator som ser belastning, opplæring og arbeidsflyt før tallene",
+      "class_position": "faglig mellomposisjon med høy lokal informasjonsmakt",
+      "status": "høy situert teamstatus",
+      "power_over_player": "kan styrke eller svekke teamets tillit til lederens rettferdighet og gjennomførbarhet",
+      "wants": "at belastning og prioriteringskostnad behandles som reell styringsinformasjon",
+      "conceals": "hvor mye ekstraarbeid teamet allerede absorberer uformelt",
+      "speech_style": "konkret og hverdagsnær; sier hvem som gjør hva og hva som ikke rekker",
+      "teaches_player": "at lokal tillit avhenger av at lederen faktisk velger bort arbeid når kapasiteten er brukt"
+    },
+    {
+      "id": "mads_sidestilt_avdelingsleder",
+      "social_function": "sidestilt leder som leser politikk, status og hva som oppfattes som ro i lederkollegiet",
+      "class_position": "lederkollega uten formell myndighet over spilleren",
+      "status": "middels formell status og høy sosial status",
+      "power_over_player": "kan påvirke normer, rykte og støtte i ledergruppen uten å godkjenne spillerens ressurser",
+      "wants": "en lederkollega som kommuniserer kort og ikke gjør egen avdeling til et problem",
+      "conceals": "hvor ofte politisk smidighet også betyr at belastning blir privat",
+      "speech_style": "uformell og taktisk; snakker om hva ledelsen kommer til å høre",
+      "teaches_player": "at standing hos lederkolleger kan stige samtidig som teamtillit faller"
+    },
+    {
+      "id": "oyvind_okonomicontroller",
+      "social_function": "økonomifaglig motpart som gjør kostnader og alternativer etterprøvbare",
+      "class_position": "spesialist med høy informasjonsmakt og avgrenset beslutningsmyndighet",
+      "status": "høy situert fagstatus",
+      "power_over_player": "kan gjøre ressursforslag troverdige eller vise at kostnadsgrunnlaget ikke holder",
+      "wants": "at anbefalinger skiller fakta, antakelse, kostnad og godkjenningspunkt",
+      "conceals": "hvor ofte økonomi forventes å rydde opp etter beslutninger som allerede er sosialt lovet",
+      "speech_style": "nøktern og sporbar; spør hva som driver kostnaden og hvem som har godkjent",
+      "teaches_player": "at økonomisk sporbarhet er en egen tillitsakse, ikke global status"
+    },
+    {
+      "id": "teamrepresentant",
+      "social_function": "ansatt eller tillitsperson som gjør rettferdighet og arbeidsmiljø sosialt lesbart",
+      "class_position": "arbeidstakerposisjon med liten formell ledermakt og høy erfaringsautoritet",
+      "status": "høy situert legitimitet i teamet",
+      "power_over_player": "kan gjøre uformell misnøye til tydelig kollektiv respons",
+      "wants": "at prioritering fordeler belastning rettferdig og forklares før den blir permanent kultur",
+      "conceals": "hvor ulikt ansatte tør å melde fra avhengig av tidligere lederrespons",
+      "speech_style": "direkte og eksempelorientert; peker på mønstre fremfor lederretorikk",
+      "teaches_player": "at standing nedenfra bygges gjennom konsekvent rettferdighet, ikke bare vennlighet"
+    },
+    {
+      "id": "hr_partner_avdeling",
+      "social_function": "HR-funksjon som beskytter prosessgrensen rundt formelle personalsaker",
+      "class_position": "støttefunksjon med institusjonell prosessmyndighet",
+      "status": "middels formell status og høy situert prosessautoritet",
+      "power_over_player": "kan blokkere eller korrigere uformelle snarveier i personalsaker",
+      "wants": "at lederen skiller daglig oppfølging fra formelle tiltak og dokumenterer riktig",
+      "conceals": "hvor ofte HR først blir koblet på etter at en konflikt allerede er personliggjort",
+      "speech_style": "presis og prosessorientert; spør hva som er observasjon, samtale og formelt tiltak",
+      "teaches_player": "at personalansvar ikke betyr ubegrenset personalmyndighet"
+    },
+    {
+      "id": "avdelingsleder_privathjem_venn",
+      "social_function": "privat likemann som møter lederens behov for å analysere og prioritere alt",
+      "class_position": "privat relasjon uten organisatorisk makt",
+      "status": "emosjonell nærhet uten arbeidsrang",
+      "power_over_player": "kan utfordre ledermasken og trekke seg unna når samtalen blir styringsmøte",
+      "wants": "å bli møtt uten KPI, handlingsliste eller skjult vurdering",
+      "conceals": "at hun blir sliten av å konkurrere med arbeidets alvor og språk",
+      "speech_style": "uformell og direkte; sier når du høres ut som du leder et møte",
+      "teaches_player": "at profesjonell tydelighet ikke automatisk er privat gjensidighet"
+    },
+    {
+      "id": "avdelingsleder_privathjem_familie",
+      "social_function": "nær relasjon som bærer tidskostnaden og etterklangen av lederansvar",
+      "class_position": "privat relasjon uten innflytelse på arbeidsplassen",
+      "status": "høy emosjonell og praktisk betydning",
+      "power_over_player": "kan gjøre grensen mellom ansvar og selvpålagt totalansvar konkret",
+      "wants": "forutsigbarhet om når jobben faktisk er ferdig og hva som kan vente",
+      "conceals": "bekymring for at hver arbeidskrise behandles som om bare spilleren kan løse den",
+      "speech_style": "hverdagslig og konkret; spør hva som faktisk må skje i kveld",
+      "teaches_player": "at sosial verdi hjemme ikke følger standing i avdelingen"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "standing_manager",
+      "meaning": "Ingers situerte tillit til at spilleren leverer beslutningsklar og sann status uten å foregripe godkjenning",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "standing_team",
+      "meaning": "teamets situerte tillit til at belastning, opplæring og rettferdighet faktisk påvirker prioritering",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "standing_peer",
+      "meaning": "sidestilte lederes vurdering av spillerens politiske og organisatoriske lesbarhet",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "standing_finance",
+      "meaning": "økonomifunksjonens tillit til sporbarhet mellom årsak, kostnad, anbefaling og vedtak",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "capacity_truth",
+      "meaning": "om leveransebildet beholder synlig sammenheng med bemanning, opplæring, fravær og kvalitetsrisiko",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "authority_clarity",
+      "meaning": "om direkte fullmakt, påvirkning, godkjenningskrav og forbud holdes adskilt gjennom hele caset",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "leadership_mask",
+      "meaning": "presset til å fremstå rolig og kontrollert selv når ansvaret overstiger myndigheten",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "private_role_leakage",
+      "meaning": "om prioriterings- og kontrollspråket følger spilleren inn i private relasjoner",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Ukeprioriteringen åpnes som ett felles kapasitetscase der leveranse, opplæring, fravær og beslutningseiere må være synlige samtidig, slik at status ikke kan bli penere enn arbeidet den bygger på. Morgenen etablerer siste bekreftede kapasitetsstatus, hvem som eier observasjonen og hvilket beslutningsnivå som gjelder før ny handling, slik at standing ikke kan erstatte fakta eller fullmakt.",
+        "thread_ids": [
+          "kapasitet_og_prioritering"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/avdelingsleder_job.json#naeringsliv_avdelingsleder_realism_capacity_case_open_001"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Ukeprioriteringen åpnes som ett felles kapasitetscase der leveranse, opplæring, fravær og beslutningseiere må være synlige samtidig, slik at status ikke kan bli penere enn arbeidet den bygger på. I lunsjflaten blir forskjellen mellom teamtillit, sidestilt lederstatus, økonomisk sporbarhet og regionlederens formelle beslutningsrolle sosialt lesbar uten at de kollapser til én global score.",
+        "thread_ids": [
+          "lederstatus_og_sidestilt_politikk"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/avdelingsleder_people.json#naeringsliv_avdelingsleder_realism_team_handoff_001"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 1, afternoon: Ukeprioriteringen åpnes som ett felles kapasitetscase der leveranse, opplæring, fravær og beslutningseiere må være synlige samtidig, slik at status ikke kan bli penere enn arbeidet den bygger på. Ettermiddagen krever et konkret handoff, en omprioritering eller en beslutningsklar anbefaling i det samme arbeidsobjektet, med audience-spesifikke reaksjoner og eksplisitt eier for neste steg.",
+        "thread_ids": [
+          "teamtillit_og_rettferdighet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/avdelingsleder_story.json#naeringsliv_avdelingsleder_realism_peer_reputation_split_001"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Ukeprioriteringen åpnes som ett felles kapasitetscase der leveranse, opplæring, fravær og beslutningseiere må være synlige samtidig, slik at status ikke kan bli penere enn arbeidet den bygger på. Kvelden viser forsinket sosial eller privat etterklang: hvem som stoler mer eller mindre på deg og hvorfor, samtidig som denne standing-endringen uttrykkelig ikke flytter budsjett-, HR- eller bemanningsmyndighet.",
+        "thread_ids": [
+          "mandat_og_omdomme"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/knowledge/avdelingsleder_knowledge.json#naeringsliv_avdelingsleder_realism_history_go_workplace_context_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Rana gjør teamets belastning konkret, mens Inger trenger et ledergrunnlag som skiller observasjon, lokal prioritering og varige ressursvalg som fortsatt krever godkjenning. Morgenen etablerer siste bekreftede kapasitetsstatus, hvem som eier observasjonen og hvilket beslutningsnivå som gjelder før ny handling, slik at standing ikke kan erstatte fakta eller fullmakt.",
+        "thread_ids": [
+          "rapportering_og_sporbarhet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/micro/avdelingsleder_micro.json#naeringsliv_avdelingsleder_realism_standing_pulse_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Rana gjør teamets belastning konkret, mens Inger trenger et ledergrunnlag som skiller observasjon, lokal prioritering og varige ressursvalg som fortsatt krever godkjenning. I lunsjflaten blir forskjellen mellom teamtillit, sidestilt lederstatus, økonomisk sporbarhet og regionlederens formelle beslutningsrolle sosialt lesbar uten at de kollapser til én global score.",
+        "thread_ids": [
+          "rapportering_og_sporbarhet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/conflict/avdelingsleder_conflict.json#naeringsliv_avdelingsleder_realism_reporting_conflict_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 2, afternoon: Rana gjør teamets belastning konkret, mens Inger trenger et ledergrunnlag som skiller observasjon, lokal prioritering og varige ressursvalg som fortsatt krever godkjenning. Ettermiddagen krever et konkret handoff, en omprioritering eller en beslutningsklar anbefaling i det samme arbeidsobjektet, med audience-spesifikke reaksjoner og eksplisitt eier for neste steg.",
+        "thread_ids": [
+          "kapasitet_og_prioritering"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/event/avdelingsleder_event.json#naeringsliv_avdelingsleder_realism_capacity_incident_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Rana gjør teamets belastning konkret, mens Inger trenger et ledergrunnlag som skiller observasjon, lokal prioritering og varige ressursvalg som fortsatt krever godkjenning. Kvelden viser forsinket sosial eller privat etterklang: hvem som stoler mer eller mindre på deg og hvorfor, samtidig som denne standing-endringen uttrykkelig ikke flytter budsjett-, HR- eller bemanningsmyndighet.",
+        "thread_ids": [
+          "lederstatus_og_sidestilt_politikk"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/followup/avdelingsleder_followup.json#naeringsliv_avdelingsleder_realism_resource_handoff_followup_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Mads viser at sidestilte ledere kan belønne en roligere rapport samtidig som teamets standing faller hvis belastningen deres blir filtrert bort, og omdømme blir derfor eksplisitt situert. Morgenen etablerer siste bekreftede kapasitetsstatus, hvem som eier observasjonen og hvilket beslutningsnivå som gjelder før ny handling, slik at standing ikke kan erstatte fakta eller fullmakt.",
+        "thread_ids": [
+          "rapportering_og_sporbarhet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/consequence/avdelingsleder_consequence.json#naeringsliv_avdelingsleder_realism_capacity_case_close_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Mads viser at sidestilte ledere kan belønne en roligere rapport samtidig som teamets standing faller hvis belastningen deres blir filtrert bort, og omdømme blir derfor eksplisitt situert. I lunsjflaten blir forskjellen mellom teamtillit, sidestilt lederstatus, økonomisk sporbarhet og regionlederens formelle beslutningsrolle sosialt lesbar uten at de kollapser til én global score.",
+        "thread_ids": [
+          "mandat_og_omdomme"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/avdelingsleder_job.json#naeringsliv_avdelingsleder_realism_capacity_case_open_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 3, afternoon: Mads viser at sidestilte ledere kan belønne en roligere rapport samtidig som teamets standing faller hvis belastningen deres blir filtrert bort, og omdømme blir derfor eksplisitt situert. Ettermiddagen krever et konkret handoff, en omprioritering eller en beslutningsklar anbefaling i det samme arbeidsobjektet, med audience-spesifikke reaksjoner og eksplisitt eier for neste steg.",
+        "thread_ids": [
+          "mandat_og_omdomme"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/avdelingsleder_people.json#naeringsliv_avdelingsleder_realism_team_handoff_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Mads viser at sidestilte ledere kan belønne en roligere rapport samtidig som teamets standing faller hvis belastningen deres blir filtrert bort, og omdømme blir derfor eksplisitt situert. Kvelden viser forsinket sosial eller privat etterklang: hvem som stoler mer eller mindre på deg og hvorfor, samtidig som denne standing-endringen uttrykkelig ikke flytter budsjett-, HR- eller bemanningsmyndighet.",
+        "thread_ids": [
+          "teamtillit_og_rettferdighet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/avdelingsleder_story.json#naeringsliv_avdelingsleder_realism_peer_reputation_split_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Øyvind tester om kostnad, innleie og opplæring kan forklares uten at én økonomisk kategori blir hele årsaksfortellingen eller får avgjøre hvem som har skylden. Morgenen etablerer siste bekreftede kapasitetsstatus, hvem som eier observasjonen og hvilket beslutningsnivå som gjelder før ny handling, slik at standing ikke kan erstatte fakta eller fullmakt.",
+        "thread_ids": [
+          "teamtillit_og_rettferdighet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/knowledge/avdelingsleder_knowledge.json#naeringsliv_avdelingsleder_realism_history_go_workplace_context_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Øyvind tester om kostnad, innleie og opplæring kan forklares uten at én økonomisk kategori blir hele årsaksfortellingen eller får avgjøre hvem som har skylden. I lunsjflaten blir forskjellen mellom teamtillit, sidestilt lederstatus, økonomisk sporbarhet og regionlederens formelle beslutningsrolle sosialt lesbar uten at de kollapser til én global score.",
+        "thread_ids": [
+          "kapasitet_og_prioritering"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/micro/avdelingsleder_micro.json#naeringsliv_avdelingsleder_realism_standing_pulse_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 4, afternoon: Øyvind tester om kostnad, innleie og opplæring kan forklares uten at én økonomisk kategori blir hele årsaksfortellingen eller får avgjøre hvem som har skylden. Ettermiddagen krever et konkret handoff, en omprioritering eller en beslutningsklar anbefaling i det samme arbeidsobjektet, med audience-spesifikke reaksjoner og eksplisitt eier for neste steg.",
+        "thread_ids": [
+          "rapportering_og_sporbarhet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/conflict/avdelingsleder_conflict.json#naeringsliv_avdelingsleder_realism_reporting_conflict_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Øyvind tester om kostnad, innleie og opplæring kan forklares uten at én økonomisk kategori blir hele årsaksfortellingen eller får avgjøre hvem som har skylden. Kvelden viser forsinket sosial eller privat etterklang: hvem som stoler mer eller mindre på deg og hvorfor, samtidig som denne standing-endringen uttrykkelig ikke flytter budsjett-, HR- eller bemanningsmyndighet.",
+        "thread_ids": [
+          "lederstatus_og_sidestilt_politikk"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/event/avdelingsleder_event.json#naeringsliv_avdelingsleder_realism_capacity_incident_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: History Go-/industrikontekst brukes til å stille bedre spørsmål om arbeidsdeling og produksjon, men kunnskap gir ingen moderne budsjett-, bemannings- eller personalmyndighet. Morgenen etablerer siste bekreftede kapasitetsstatus, hvem som eier observasjonen og hvilket beslutningsnivå som gjelder før ny handling, slik at standing ikke kan erstatte fakta eller fullmakt.",
+        "thread_ids": [
+          "kapasitet_og_prioritering"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/followup/avdelingsleder_followup.json#naeringsliv_avdelingsleder_realism_resource_handoff_followup_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: History Go-/industrikontekst brukes til å stille bedre spørsmål om arbeidsdeling og produksjon, men kunnskap gir ingen moderne budsjett-, bemannings- eller personalmyndighet. I lunsjflaten blir forskjellen mellom teamtillit, sidestilt lederstatus, økonomisk sporbarhet og regionlederens formelle beslutningsrolle sosialt lesbar uten at de kollapser til én global score.",
+        "thread_ids": [
+          "teamtillit_og_rettferdighet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/consequence/avdelingsleder_consequence.json#naeringsliv_avdelingsleder_realism_capacity_case_close_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 5, afternoon: History Go-/industrikontekst brukes til å stille bedre spørsmål om arbeidsdeling og produksjon, men kunnskap gir ingen moderne budsjett-, bemannings- eller personalmyndighet. Ettermiddagen krever et konkret handoff, en omprioritering eller en beslutningsklar anbefaling i det samme arbeidsobjektet, med audience-spesifikke reaksjoner og eksplisitt eier for neste steg.",
+        "thread_ids": [
+          "lederstatus_og_sidestilt_politikk"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/avdelingsleder_job.json#naeringsliv_avdelingsleder_realism_capacity_case_open_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: History Go-/industrikontekst brukes til å stille bedre spørsmål om arbeidsdeling og produksjon, men kunnskap gir ingen moderne budsjett-, bemannings- eller personalmyndighet. Kvelden viser forsinket sosial eller privat etterklang: hvem som stoler mer eller mindre på deg og hvorfor, samtidig som denne standing-endringen uttrykkelig ikke flytter budsjett-, HR- eller bemanningsmyndighet.",
+        "thread_ids": [
+          "rapportering_og_sporbarhet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/avdelingsleder_people.json#naeringsliv_avdelingsleder_realism_team_handoff_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Det korte standing-pulset skiller reaksjonen hos Rana, Mads, Øyvind og Inger, slik at én positiv lederstatus ikke kan skjule tillitstap i teamet eller svakere sporbarhet hos økonomi. Morgenen etablerer siste bekreftede kapasitetsstatus, hvem som eier observasjonen og hvilket beslutningsnivå som gjelder før ny handling, slik at standing ikke kan erstatte fakta eller fullmakt.",
+        "thread_ids": [
+          "mandat_og_omdomme"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/avdelingsleder_story.json#naeringsliv_avdelingsleder_realism_peer_reputation_split_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Det korte standing-pulset skiller reaksjonen hos Rana, Mads, Øyvind og Inger, slik at én positiv lederstatus ikke kan skjule tillitstap i teamet eller svakere sporbarhet hos økonomi. I lunsjflaten blir forskjellen mellom teamtillit, sidestilt lederstatus, økonomisk sporbarhet og regionlederens formelle beslutningsrolle sosialt lesbar uten at de kollapser til én global score.",
+        "thread_ids": [
+          "lederstatus_og_sidestilt_politikk"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/knowledge/avdelingsleder_knowledge.json#naeringsliv_avdelingsleder_realism_history_go_workplace_context_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 6, afternoon: Det korte standing-pulset skiller reaksjonen hos Rana, Mads, Øyvind og Inger, slik at én positiv lederstatus ikke kan skjule tillitstap i teamet eller svakere sporbarhet hos økonomi. Ettermiddagen krever et konkret handoff, en omprioritering eller en beslutningsklar anbefaling i det samme arbeidsobjektet, med audience-spesifikke reaksjoner og eksplisitt eier for neste steg.",
+        "thread_ids": [
+          "teamtillit_og_rettferdighet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/micro/avdelingsleder_micro.json#naeringsliv_avdelingsleder_realism_standing_pulse_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Det korte standing-pulset skiller reaksjonen hos Rana, Mads, Øyvind og Inger, slik at én positiv lederstatus ikke kan skjule tillitstap i teamet eller svakere sporbarhet hos økonomi. Kvelden viser forsinket sosial eller privat etterklang: hvem som stoler mer eller mindre på deg og hvorfor, samtidig som denne standing-endringen uttrykkelig ikke flytter budsjett-, HR- eller bemanningsmyndighet.",
+        "thread_ids": [
+          "rapportering_og_sporbarhet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/conflict/avdelingsleder_conflict.json#naeringsliv_avdelingsleder_realism_reporting_conflict_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Rapporten må komprimeres til tre linjer uten å fjerne kapasitetsrisikoen, og spilleren må skille anbefaling til regionleder fra noe som faktisk er godkjent. Morgenen etablerer siste bekreftede kapasitetsstatus, hvem som eier observasjonen og hvilket beslutningsnivå som gjelder før ny handling, slik at standing ikke kan erstatte fakta eller fullmakt.",
+        "thread_ids": [
+          "lederstatus_og_sidestilt_politikk"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/event/avdelingsleder_event.json#naeringsliv_avdelingsleder_realism_capacity_incident_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Rapporten må komprimeres til tre linjer uten å fjerne kapasitetsrisikoen, og spilleren må skille anbefaling til regionleder fra noe som faktisk er godkjent. I lunsjflaten blir forskjellen mellom teamtillit, sidestilt lederstatus, økonomisk sporbarhet og regionlederens formelle beslutningsrolle sosialt lesbar uten at de kollapser til én global score.",
+        "thread_ids": [
+          "rapportering_og_sporbarhet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/followup/avdelingsleder_followup.json#naeringsliv_avdelingsleder_realism_resource_handoff_followup_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 7, afternoon: Rapporten må komprimeres til tre linjer uten å fjerne kapasitetsrisikoen, og spilleren må skille anbefaling til regionleder fra noe som faktisk er godkjent. Ettermiddagen krever et konkret handoff, en omprioritering eller en beslutningsklar anbefaling i det samme arbeidsobjektet, med audience-spesifikke reaksjoner og eksplisitt eier for neste steg.",
+        "thread_ids": [
+          "kapasitet_og_prioritering"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/consequence/avdelingsleder_consequence.json#naeringsliv_avdelingsleder_realism_capacity_case_close_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Rapporten må komprimeres til tre linjer uten å fjerne kapasitetsrisikoen, og spilleren må skille anbefaling til regionleder fra noe som faktisk er godkjent. Kvelden viser forsinket sosial eller privat etterklang: hvem som stoler mer eller mindre på deg og hvorfor, samtidig som denne standing-endringen uttrykkelig ikke flytter budsjett-, HR- eller bemanningsmyndighet.",
+        "thread_ids": [
+          "lederstatus_og_sidestilt_politikk"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/avdelingsleder_job.json#naeringsliv_avdelingsleder_realism_capacity_case_open_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Ledergruppen leser den reviderte statusen, og de ulike mottakerne viser at samme fakta kan ha forskjellig sosial betydning uten at beslutningskartet endres. Morgenen etablerer siste bekreftede kapasitetsstatus, hvem som eier observasjonen og hvilket beslutningsnivå som gjelder før ny handling, slik at standing ikke kan erstatte fakta eller fullmakt.",
+        "thread_ids": [
+          "rapportering_og_sporbarhet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/avdelingsleder_people.json#naeringsliv_avdelingsleder_realism_team_handoff_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Ledergruppen leser den reviderte statusen, og de ulike mottakerne viser at samme fakta kan ha forskjellig sosial betydning uten at beslutningskartet endres. I lunsjflaten blir forskjellen mellom teamtillit, sidestilt lederstatus, økonomisk sporbarhet og regionlederens formelle beslutningsrolle sosialt lesbar uten at de kollapser til én global score.",
+        "thread_ids": [
+          "mandat_og_omdomme"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/avdelingsleder_story.json#naeringsliv_avdelingsleder_realism_peer_reputation_split_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 8, afternoon: Ledergruppen leser den reviderte statusen, og de ulike mottakerne viser at samme fakta kan ha forskjellig sosial betydning uten at beslutningskartet endres. Ettermiddagen krever et konkret handoff, en omprioritering eller en beslutningsklar anbefaling i det samme arbeidsobjektet, med audience-spesifikke reaksjoner og eksplisitt eier for neste steg.",
+        "thread_ids": [
+          "rapportering_og_sporbarhet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/knowledge/avdelingsleder_knowledge.json#naeringsliv_avdelingsleder_realism_history_go_workplace_context_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Ledergruppen leser den reviderte statusen, og de ulike mottakerne viser at samme fakta kan ha forskjellig sosial betydning uten at beslutningskartet endres. Kvelden viser forsinket sosial eller privat etterklang: hvem som stoler mer eller mindre på deg og hvorfor, samtidig som denne standing-endringen uttrykkelig ikke flytter budsjett-, HR- eller bemanningsmyndighet.",
+        "thread_ids": [
+          "mandat_og_omdomme"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/micro/avdelingsleder_micro.json#naeringsliv_avdelingsleder_realism_standing_pulse_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "decision",
+        "summary": "Dag 9, morning: Et nytt fravær gjør rollen konkret: avdelingslederen kan prioritere dagens arbeid innen mandat og eskalere rammen, men kan ikke selv vedta varig ressursendring. Morgenen etablerer siste bekreftede kapasitetsstatus, hvem som eier observasjonen og hvilket beslutningsnivå som gjelder før ny handling, slik at standing ikke kan erstatte fakta eller fullmakt.",
+        "thread_ids": [
+          "teamtillit_og_rettferdighet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/conflict/avdelingsleder_conflict.json#naeringsliv_avdelingsleder_realism_reporting_conflict_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Et nytt fravær gjør rollen konkret: avdelingslederen kan prioritere dagens arbeid innen mandat og eskalere rammen, men kan ikke selv vedta varig ressursendring. I lunsjflaten blir forskjellen mellom teamtillit, sidestilt lederstatus, økonomisk sporbarhet og regionlederens formelle beslutningsrolle sosialt lesbar uten at de kollapser til én global score.",
+        "thread_ids": [
+          "kapasitet_og_prioritering"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/event/avdelingsleder_event.json#naeringsliv_avdelingsleder_realism_capacity_incident_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 9, afternoon: Et nytt fravær gjør rollen konkret: avdelingslederen kan prioritere dagens arbeid innen mandat og eskalere rammen, men kan ikke selv vedta varig ressursendring. Ettermiddagen krever et konkret handoff, en omprioritering eller en beslutningsklar anbefaling i det samme arbeidsobjektet, med audience-spesifikke reaksjoner og eksplisitt eier for neste steg.",
+        "thread_ids": [
+          "lederstatus_og_sidestilt_politikk"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/followup/avdelingsleder_followup.json#naeringsliv_avdelingsleder_realism_resource_handoff_followup_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Et nytt fravær gjør rollen konkret: avdelingslederen kan prioritere dagens arbeid innen mandat og eskalere rammen, men kan ikke selv vedta varig ressursendring. Kvelden viser forsinket sosial eller privat etterklang: hvem som stoler mer eller mindre på deg og hvorfor, samtidig som denne standing-endringen uttrykkelig ikke flytter budsjett-, HR- eller bemanningsmyndighet.",
+        "thread_ids": [
+          "lederstatus_og_sidestilt_politikk"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/consequence/avdelingsleder_consequence.json#naeringsliv_avdelingsleder_realism_capacity_case_close_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Teamet ser virkningen av lokal omprioritering mens ledergruppen ser konsekvensen i leveransebildet, og standing påvirkes av om handlekraften respekterte de formelle grensene. Morgenen etablerer siste bekreftede kapasitetsstatus, hvem som eier observasjonen og hvilket beslutningsnivå som gjelder før ny handling, slik at standing ikke kan erstatte fakta eller fullmakt.",
+        "thread_ids": [
+          "kapasitet_og_prioritering"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/avdelingsleder_job.json#naeringsliv_avdelingsleder_realism_capacity_case_open_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Teamet ser virkningen av lokal omprioritering mens ledergruppen ser konsekvensen i leveransebildet, og standing påvirkes av om handlekraften respekterte de formelle grensene. I lunsjflaten blir forskjellen mellom teamtillit, sidestilt lederstatus, økonomisk sporbarhet og regionlederens formelle beslutningsrolle sosialt lesbar uten at de kollapser til én global score.",
+        "thread_ids": [
+          "teamtillit_og_rettferdighet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/avdelingsleder_people.json#naeringsliv_avdelingsleder_realism_team_handoff_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 10, afternoon: Teamet ser virkningen av lokal omprioritering mens ledergruppen ser konsekvensen i leveransebildet, og standing påvirkes av om handlekraften respekterte de formelle grensene. Ettermiddagen krever et konkret handoff, en omprioritering eller en beslutningsklar anbefaling i det samme arbeidsobjektet, med audience-spesifikke reaksjoner og eksplisitt eier for neste steg.",
+        "thread_ids": [
+          "mandat_og_omdomme"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/avdelingsleder_story.json#naeringsliv_avdelingsleder_realism_peer_reputation_split_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Teamet ser virkningen av lokal omprioritering mens ledergruppen ser konsekvensen i leveransebildet, og standing påvirkes av om handlekraften respekterte de formelle grensene. Kvelden viser forsinket sosial eller privat etterklang: hvem som stoler mer eller mindre på deg og hvorfor, samtidig som denne standing-endringen uttrykkelig ikke flytter budsjett-, HR- eller bemanningsmyndighet.",
+        "thread_ids": [
+          "lederstatus_og_sidestilt_politikk"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/knowledge/avdelingsleder_knowledge.json#naeringsliv_avdelingsleder_realism_history_go_workplace_context_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Øyvind kostnadsfester alternativer og caset går gjennom rework fra driftsproblem til beslutningsklart ressursnotat med åpne forutsetninger og synlig eier. Morgenen etablerer siste bekreftede kapasitetsstatus, hvem som eier observasjonen og hvilket beslutningsnivå som gjelder før ny handling, slik at standing ikke kan erstatte fakta eller fullmakt.",
+        "thread_ids": [
+          "rapportering_og_sporbarhet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/micro/avdelingsleder_micro.json#naeringsliv_avdelingsleder_realism_standing_pulse_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Øyvind kostnadsfester alternativer og caset går gjennom rework fra driftsproblem til beslutningsklart ressursnotat med åpne forutsetninger og synlig eier. I lunsjflaten blir forskjellen mellom teamtillit, sidestilt lederstatus, økonomisk sporbarhet og regionlederens formelle beslutningsrolle sosialt lesbar uten at de kollapser til én global score.",
+        "thread_ids": [
+          "lederstatus_og_sidestilt_politikk"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/conflict/avdelingsleder_conflict.json#naeringsliv_avdelingsleder_realism_reporting_conflict_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 11, afternoon: Øyvind kostnadsfester alternativer og caset går gjennom rework fra driftsproblem til beslutningsklart ressursnotat med åpne forutsetninger og synlig eier. Ettermiddagen krever et konkret handoff, en omprioritering eller en beslutningsklar anbefaling i det samme arbeidsobjektet, med audience-spesifikke reaksjoner og eksplisitt eier for neste steg.",
+        "thread_ids": [
+          "rapportering_og_sporbarhet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/event/avdelingsleder_event.json#naeringsliv_avdelingsleder_realism_capacity_incident_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Øyvind kostnadsfester alternativer og caset går gjennom rework fra driftsproblem til beslutningsklart ressursnotat med åpne forutsetninger og synlig eier. Kvelden viser forsinket sosial eller privat etterklang: hvem som stoler mer eller mindre på deg og hvorfor, samtidig som denne standing-endringen uttrykkelig ikke flytter budsjett-, HR- eller bemanningsmyndighet.",
+        "thread_ids": [
+          "mandat_og_omdomme"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/followup/avdelingsleder_followup.json#naeringsliv_avdelingsleder_realism_resource_handoff_followup_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Ressurshandoffet må overleve overgangen mellom avdeling, økonomi og regionleder uten at anbefaling blir omtalt som vedtak eller teamets håp blir gjort til løfte. Morgenen etablerer siste bekreftede kapasitetsstatus, hvem som eier observasjonen og hvilket beslutningsnivå som gjelder før ny handling, slik at standing ikke kan erstatte fakta eller fullmakt.",
+        "thread_ids": [
+          "mandat_og_omdomme"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/consequence/avdelingsleder_consequence.json#naeringsliv_avdelingsleder_realism_capacity_case_close_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Ressurshandoffet må overleve overgangen mellom avdeling, økonomi og regionleder uten at anbefaling blir omtalt som vedtak eller teamets håp blir gjort til løfte. I lunsjflaten blir forskjellen mellom teamtillit, sidestilt lederstatus, økonomisk sporbarhet og regionlederens formelle beslutningsrolle sosialt lesbar uten at de kollapser til én global score.",
+        "thread_ids": [
+          "rapportering_og_sporbarhet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/avdelingsleder_job.json#naeringsliv_avdelingsleder_realism_capacity_case_open_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 12, afternoon: Ressurshandoffet må overleve overgangen mellom avdeling, økonomi og regionleder uten at anbefaling blir omtalt som vedtak eller teamets håp blir gjort til løfte. Ettermiddagen krever et konkret handoff, en omprioritering eller en beslutningsklar anbefaling i det samme arbeidsobjektet, med audience-spesifikke reaksjoner og eksplisitt eier for neste steg.",
+        "thread_ids": [
+          "kapasitet_og_prioritering"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/avdelingsleder_people.json#naeringsliv_avdelingsleder_realism_team_handoff_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Ressurshandoffet må overleve overgangen mellom avdeling, økonomi og regionleder uten at anbefaling blir omtalt som vedtak eller teamets håp blir gjort til løfte. Kvelden viser forsinket sosial eller privat etterklang: hvem som stoler mer eller mindre på deg og hvorfor, samtidig som denne standing-endringen uttrykkelig ikke flytter budsjett-, HR- eller bemanningsmyndighet.",
+        "thread_ids": [
+          "lederstatus_og_sidestilt_politikk"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/avdelingsleder_story.json#naeringsliv_avdelingsleder_realism_peer_reputation_split_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Privat og sosial etterklang viser hvordan ledermasken følger hjem når spilleren både skal være tydelig for teamet og politisk lesbar i lederkollegiet uten å kontrollere alles vurdering. Morgenen etablerer siste bekreftede kapasitetsstatus, hvem som eier observasjonen og hvilket beslutningsnivå som gjelder før ny handling, slik at standing ikke kan erstatte fakta eller fullmakt.",
+        "thread_ids": [
+          "rapportering_og_sporbarhet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/knowledge/avdelingsleder_knowledge.json#naeringsliv_avdelingsleder_realism_history_go_workplace_context_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Privat og sosial etterklang viser hvordan ledermasken følger hjem når spilleren både skal være tydelig for teamet og politisk lesbar i lederkollegiet uten å kontrollere alles vurdering. I lunsjflaten blir forskjellen mellom teamtillit, sidestilt lederstatus, økonomisk sporbarhet og regionlederens formelle beslutningsrolle sosialt lesbar uten at de kollapser til én global score.",
+        "thread_ids": [
+          "mandat_og_omdomme"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/micro/avdelingsleder_micro.json#naeringsliv_avdelingsleder_realism_standing_pulse_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 13, afternoon: Privat og sosial etterklang viser hvordan ledermasken følger hjem når spilleren både skal være tydelig for teamet og politisk lesbar i lederkollegiet uten å kontrollere alles vurdering. Ettermiddagen krever et konkret handoff, en omprioritering eller en beslutningsklar anbefaling i det samme arbeidsobjektet, med audience-spesifikke reaksjoner og eksplisitt eier for neste steg.",
+        "thread_ids": [
+          "rapportering_og_sporbarhet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/conflict/avdelingsleder_conflict.json#naeringsliv_avdelingsleder_realism_reporting_conflict_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Privat og sosial etterklang viser hvordan ledermasken følger hjem når spilleren både skal være tydelig for teamet og politisk lesbar i lederkollegiet uten å kontrollere alles vurdering. Kvelden viser forsinket sosial eller privat etterklang: hvem som stoler mer eller mindre på deg og hvorfor, samtidig som denne standing-endringen uttrykkelig ikke flytter budsjett-, HR- eller bemanningsmyndighet.",
+        "thread_ids": [
+          "teamtillit_og_rettferdighet",
+          "mandat_og_omdomme"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/event/avdelingsleder_event.json#naeringsliv_avdelingsleder_realism_capacity_incident_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Caset lukkes med lokal prioritering, standing per publikum, sporbar anbefaling og eksplisitte godkjenningspunkter, slik at omdømme aldri kan opptjenes som myndighet. Morgenen etablerer siste bekreftede kapasitetsstatus, hvem som eier observasjonen og hvilket beslutningsnivå som gjelder før ny handling, slik at standing ikke kan erstatte fakta eller fullmakt.",
+        "thread_ids": [
+          "teamtillit_og_rettferdighet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/followup/avdelingsleder_followup.json#naeringsliv_avdelingsleder_realism_resource_handoff_followup_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Caset lukkes med lokal prioritering, standing per publikum, sporbar anbefaling og eksplisitte godkjenningspunkter, slik at omdømme aldri kan opptjenes som myndighet. I lunsjflaten blir forskjellen mellom teamtillit, sidestilt lederstatus, økonomisk sporbarhet og regionlederens formelle beslutningsrolle sosialt lesbar uten at de kollapser til én global score.",
+        "thread_ids": [
+          "kapasitet_og_prioritering"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/consequence/avdelingsleder_consequence.json#naeringsliv_avdelingsleder_realism_capacity_case_close_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "consequence",
+        "summary": "Dag 14, afternoon: Caset lukkes med lokal prioritering, standing per publikum, sporbar anbefaling og eksplisitte godkjenningspunkter, slik at omdømme aldri kan opptjenes som myndighet. Ettermiddagen krever et konkret handoff, en omprioritering eller en beslutningsklar anbefaling i det samme arbeidsobjektet, med audience-spesifikke reaksjoner og eksplisitt eier for neste steg.",
+        "thread_ids": [
+          "kapasitet_og_prioritering",
+          "lederstatus_og_sidestilt_politikk"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/avdelingsleder_job.json#naeringsliv_avdelingsleder_realism_capacity_case_open_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Caset lukkes med lokal prioritering, standing per publikum, sporbar anbefaling og eksplisitte godkjenningspunkter, slik at omdømme aldri kan opptjenes som myndighet. Kvelden viser forsinket sosial eller privat etterklang: hvem som stoler mer eller mindre på deg og hvorfor, samtidig som denne standing-endringen uttrykkelig ikke flytter budsjett-, HR- eller bemanningsmyndighet.",
+        "thread_ids": [
+          "rapportering_og_sporbarhet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/avdelingsleder_people.json#naeringsliv_avdelingsleder_realism_team_handoff_001"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "kapasitet_og_prioritering",
+      "relationship": "Rana og Inger husker om leveranse, opplæring og fravær ble gjort til ett lesbart kapasitetsgrunnlag uten at lokal lederstatus ble forvekslet med nye ressurser.",
+      "beat_refs": [
+        "1/morning",
+        "2/afternoon",
+        "5/morning",
+        "7/afternoon",
+        "10/morning",
+        "12/afternoon",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "teamtillit_og_rettferdighet",
+      "relationship": "Teamet reagerer på om belastning og prioriteringskostnader faktisk overlever oppover, og om lederen kan si nei til arbeid uten å love rammer hun ikke eier.",
+      "beat_refs": [
+        "1/afternoon",
+        "3/evening",
+        "4/morning",
+        "6/afternoon",
+        "9/morning",
+        "13/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "lederstatus_og_sidestilt_politikk",
+      "relationship": "Mads og lederkollegiet vurderer hvor smidig og rolig avdelingen fremstår, mens samme valg kan gi en helt annen standing hos teamet og økonomi.",
+      "beat_refs": [
+        "2/evening",
+        "5/afternoon",
+        "7/evening",
+        "9/afternoon",
+        "10/evening",
+        "12/evening",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "rapportering_og_sporbarhet",
+      "relationship": "Øyvind og Inger reagerer på om tall, årsak, risiko og beslutningseier beholdes gjennom komprimering, rework og ressursoppfølging.",
+      "beat_refs": [
+        "2/morning",
+        "4/afternoon",
+        "6/evening",
+        "8/afternoon",
+        "11/morning",
+        "13/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "mandat_og_omdomme",
+      "relationship": "Hele løpet tester om høy standing hos team, fagpersoner eller lederkolleger kan påvirke samarbeid uten noen gang å utvide avdelingslederens formelle myndighet.",
+      "beat_refs": [
+        "1/evening",
+        "3/afternoon",
+        "6/morning",
+        "8/evening",
+        "10/afternoon",
+        "12/morning",
+        "13/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "teamets_belastning_folger_hjem",
+      "description": "Når teamets skjulte ekstraarbeid blir synlig, kan avdelingslederen fortsette å bære ansvar privat selv etter at saken er eskalert.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/naeringsliv/people/avdelingsleder_people.json#naeringsliv_avdelingsleder_realism_team_handoff_001",
+        "data/Civication/mailFamilies/naeringsliv/micro/avdelingsleder_micro.json#naeringsliv_avdelingsleder_realism_standing_pulse_001"
+      ]
+    },
+    {
+      "id": "lederstatus_som_maske",
+      "description": "Ros for rolig lederkommunikasjon kan gjøre det vanskeligere å innrømme usikkerhet eller utilstrekkelig mandat både på jobb og hjemme.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/naeringsliv/story/avdelingsleder_story.json#naeringsliv_avdelingsleder_realism_peer_reputation_split_001",
+        "data/Civication/mailFamilies/naeringsliv/conflict/avdelingsleder_conflict.json#naeringsliv_avdelingsleder_realism_reporting_conflict_001"
+      ]
+    },
+    {
+      "id": "driftsavvik_og_skyld",
+      "description": "Et fraværs- eller kvalitetsavvik kan oppleves personlig selv når spilleren faktisk gjorde riktig lokal prioritering og eskalerte resten.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/naeringsliv/event/avdelingsleder_event.json#naeringsliv_avdelingsleder_realism_capacity_incident_001"
+      ]
+    },
+    {
+      "id": "ressurshandoff_uten_slutt",
+      "description": "Ventingen på formell ressursbeslutning kan forlenge arbeidsdagen mentalt uten at spilleren derfor får rett til å selvgodkjenne utfallet.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/naeringsliv/followup/avdelingsleder_followup.json#naeringsliv_avdelingsleder_realism_resource_handoff_followup_001",
+        "data/Civication/mailFamilies/naeringsliv/consequence/avdelingsleder_consequence.json#naeringsliv_avdelingsleder_realism_capacity_case_close_001"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "baseline_returnerer_i_lederrapport",
+      "setup_ref": "1/morning",
+      "return_ref": "7/afternoon",
+      "domains": [
+        "job",
+        "reputation"
+      ]
+    },
+    {
+      "id": "teamhandoff_returnerer_i_omprioritering",
+      "setup_ref": "1/afternoon",
+      "return_ref": "9/morning",
+      "domains": [
+        "relationship",
+        "job"
+      ]
+    },
+    {
+      "id": "peerstanding_returnerer_i_ledergruppe",
+      "setup_ref": "3/evening",
+      "return_ref": "8/afternoon",
+      "domains": [
+        "reputation",
+        "relationship"
+      ]
+    },
+    {
+      "id": "history_context_returnerer_i_ressursnotat",
+      "setup_ref": "5/morning",
+      "return_ref": "11/morning",
+      "domains": [
+        "knowledge",
+        "job"
+      ]
+    },
+    {
+      "id": "standing_pulse_returnerer_i_komprimering",
+      "setup_ref": "6/afternoon",
+      "return_ref": "7/afternoon",
+      "domains": [
+        "reputation",
+        "job"
+      ]
+    },
+    {
+      "id": "reporting_conflict_returnerer_i_handoff",
+      "setup_ref": "7/afternoon",
+      "return_ref": "12/afternoon",
+      "domains": [
+        "job",
+        "reputation"
+      ]
+    },
+    {
+      "id": "capacity_incident_returnerer_i_close",
+      "setup_ref": "9/morning",
+      "return_ref": "14/afternoon",
+      "domains": [
+        "job",
+        "reputation"
+      ]
+    },
+    {
+      "id": "authority_boundary_returnerer_i_sluttvalg",
+      "setup_ref": "10/afternoon",
+      "return_ref": "14/afternoon",
+      "domains": [
+        "job",
+        "reputation",
+        "relationship"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/mailFamilies/naeringsliv/job/avdelingsleder_job.json#naeringsliv_avdelingsleder_realism_capacity_case_open_001",
+      "data/Civication/mailFamilies/naeringsliv/people/avdelingsleder_people.json#naeringsliv_avdelingsleder_realism_team_handoff_001",
+      "data/Civication/mailFamilies/naeringsliv/story/avdelingsleder_story.json#naeringsliv_avdelingsleder_realism_peer_reputation_split_001",
+      "data/Civication/mailFamilies/naeringsliv/knowledge/avdelingsleder_knowledge.json#naeringsliv_avdelingsleder_realism_history_go_workplace_context_001",
+      "data/Civication/mailFamilies/naeringsliv/micro/avdelingsleder_micro.json#naeringsliv_avdelingsleder_realism_standing_pulse_001",
+      "data/Civication/mailFamilies/naeringsliv/conflict/avdelingsleder_conflict.json#naeringsliv_avdelingsleder_realism_reporting_conflict_001",
+      "data/Civication/mailFamilies/naeringsliv/event/avdelingsleder_event.json#naeringsliv_avdelingsleder_realism_capacity_incident_001",
+      "data/Civication/mailFamilies/naeringsliv/followup/avdelingsleder_followup.json#naeringsliv_avdelingsleder_realism_resource_handoff_followup_001",
+      "data/Civication/mailFamilies/naeringsliv/consequence/avdelingsleder_consequence.json#naeringsliv_avdelingsleder_realism_capacity_case_close_001"
+    ]
+  }
+}

@@ -2233,6 +2233,163 @@
           ]
         }
       ]
+    },
+    {
+      "id": "role_world_rollout_avdelingsleder_team_handoff",
+      "purpose": "Gjøre ståstedet til teamet situert og operativt uten at høy teamtillit gir avdelingslederen ekstra budsjett-, HR- eller bemanningsmyndighet.",
+      "learning_focus": [
+        "relasjonell_ledelse",
+        "teamforventning_vs_formelt_mandat",
+        "situated_reputation"
+      ],
+      "mails": [
+        {
+          "id": "naeringsliv_avdelingsleder_realism_team_handoff_001",
+          "mail_type": "people",
+          "mail_family": "role_world_rollout_avdelingsleder_team_handoff",
+          "role_scope": "avdelingsleder",
+          "phase": "advanced",
+          "day_phase": "afternoon",
+          "priority": 98,
+          "cooldown": 12,
+          "repeatable": false,
+          "stage": "stable",
+          "planned_only": true,
+          "thread_key": "naeringsliv_avdelingsleder_capacity_realism_001",
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "naeringsliv",
+            "avdelingsleder",
+            "situated_reputation"
+          ],
+          "from": "Rana, teamkoordinator",
+          "people_ref": "rana_teamkoordinator",
+          "person_id": "rana_teamkoordinator",
+          "place_id": "teamrom_og_vaktplan",
+          "subject": "Handoffet må skille det teamet vet fra det regionleder må beslutte",
+          "summary": "Rana samler vaktbytter, opplæringsbehov og gjentatt overtidsbelastning. Hun kan levere et konkret gulv-perspektiv, men trenger at du skiller observasjoner fra formelle ressursvalg og lar Inger eie beslutningen om varige rammeendringer.",
+          "purpose": "Gjøre ståstedet til teamet situert og operativt uten at høy teamtillit gir avdelingslederen ekstra budsjett-, HR- eller bemanningsmyndighet.",
+          "stakes": "Et uklart handoff gjør avdelingslederen til flaskehals og kan få teamets tillit til å bli tolket som fullmakt til å love løsninger organisasjonen ikke har godkjent.",
+          "situation": [
+            "Rana har konkrete eksempler på hvor opplæring og fravær flytter arbeid mellom personer.",
+            "Teamet ønsker svar på om ekstra kapasitet faktisk kommer, men Inger har ikke besluttet dette.",
+            "Du kan prioritere arbeid innen mandat og eskalere kapasitetskonflikten, men ikke love nye stillinger eller et budsjettunntak."
+          ],
+          "task_domain": "team_handoff_og_bemanning",
+          "task_kind": "people",
+          "competency": "relasjonell_ledelse",
+          "pressure": "teamforventning_vs_formelt_mandat",
+          "choice_axis": "presist_handoff_vs_personlig_lovnad",
+          "consequence_axis": "teamtillit_vs_forventningsgjeld",
+          "narrative_arc": "fra_uklar_kapasitet_til_sporbart_prioriterings_og_ressurshandoff",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "naeringsliv_avdelingsleder_capacity_case_001"
+            ],
+            "institution_id": "naeringsliv_operativ_enhet_001",
+            "handoff_to_actor_id": "rana_teamkoordinator",
+            "waiting_for_actor_id": "inger_overordnet_leder",
+            "rework_of_scene_id": "naeringsliv_avdelingsleder_realism_capacity_case_open_001",
+            "priority": "high"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Send observasjoner, risikosignal og beslutningsbehov som tre separate deler",
+              "reply": "Jeg dokumenterer hva teamet ser, hva vi kan omprioritere nå, og hva som må avgjøres av Inger.",
+              "effect": 2,
+              "feedback": "Rana får et handoff som beholder gulvets erfaring som egen evidens. Inger får et tydelig spørsmål i stedet for et ferdig vedtak, og teamets tillit øker uten at rollegrensen flyttes.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "avdelingsleder_team_handoff_waiting",
+                    "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001",
+                    "to_status": "waiting",
+                    "to_phase": "awaiting_resource_direction",
+                    "note": "Teamets kapasitetsgrunnlag er dokumentert; varige ressursvalg venter på regionleder."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "avdelingsleder_team_handoff_traced",
+                    "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001",
+                    "flag": "team_evidence_and_decision_owner_separated"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "avdelingsleder_standing_rana_handoff",
+                    "audience_id": "professional:rana_teamkoordinator",
+                    "delta": 4,
+                    "reason": "Rana ser at observasjonene hennes blir bevart uten å bli omskrevet til et lederløfte.",
+                    "source_actor_id": "rana_teamkoordinator"
+                  },
+                  {
+                    "event_id": "avdelingsleder_standing_inger_handoff",
+                    "audience_id": "manager:inger_overordnet_leder",
+                    "delta": 2,
+                    "reason": "Inger får et eksplisitt beslutningspunkt uten at avdelingslederen har tatt beslutningen på forskudd.",
+                    "source_actor_id": "inger_overordnet_leder"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Si til teamet at du skal sørge for ekstra kapasitet",
+              "reply": "Jeg sier at dette ordner jeg, og at vi får inn den kapasiteten vi trenger.",
+              "effect": -2,
+              "feedback": "Teamet kan oppleve kortsiktig trygghet, men lovnaden binder deg til et ressursutfall du ikke eier. Hvis Inger velger annerledes, blir høy lokal tillit omgjort til både forventningsgjeld og mandatlekkasje.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "trust": -2,
+                  "risk": 4
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "avdelingsleder_team_handoff_promise",
+                    "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001",
+                    "to_status": "waiting",
+                    "to_phase": "awaiting_resource_direction",
+                    "note": "Caset venter fortsatt på regionleder selv om spilleren har lovet et bestemt utfall."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "avdelingsleder_resource_promise",
+                    "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001",
+                    "flag": "resource_outcome_promised_without_authority"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "avdelingsleder_standing_rana_promise",
+                    "audience_id": "professional:rana_teamkoordinator",
+                    "delta": -3,
+                    "reason": "Rana må senere forklare et løfte som ikke var forankret i faktisk fullmakt.",
+                    "source_actor_id": "rana_teamkoordinator"
+                  },
+                  {
+                    "event_id": "avdelingsleder_standing_inger_promise",
+                    "audience_id": "manager:inger_overordnet_leder",
+                    "delta": -4,
+                    "reason": "Inger oppdager at hennes ressursmyndighet er blitt fremstilt som avdelingslederens personlige beslutning.",
+                    "source_actor_id": "inger_overordnet_leder"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
     }
   ]
 }

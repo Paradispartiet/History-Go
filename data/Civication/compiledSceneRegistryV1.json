@@ -178,6 +178,9 @@
     "data/Civication/mailFamilies/naeringsliv/conflict/avdelingsleder_conflict.json",
     "data/Civication/mailFamilies/naeringsliv/event/avdelingsleder_event.json",
     "data/Civication/mailFamilies/naeringsliv/micro/avdelingsleder_micro.json",
+    "data/Civication/mailFamilies/naeringsliv/followup/avdelingsleder_followup.json",
+    "data/Civication/mailFamilies/naeringsliv/knowledge/avdelingsleder_knowledge.json",
+    "data/Civication/mailFamilies/naeringsliv/consequence/avdelingsleder_consequence.json",
     "data/Civication/mailFamilies/naeringsliv/job/controller_intro_v2.json",
     "data/Civication/mailFamilies/naeringsliv/job/controller_job.json",
     "data/Civication/mailFamilies/naeringsliv/people/controller_people.json",
@@ -70490,6 +70493,844 @@
       "category": "naeringsliv",
       "compatibility_projection": {
         "category": "naeringsliv",
+        "choice_axis": "kort_og_sporbart_vs_kort_og_polert",
+        "choices": [
+          {
+            "effect": 2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:inger_overordnet_leder",
+                  "delta": 4,
+                  "event_id": "avdelingsleder_standing_inger_report",
+                  "reason": "Inger får en kort rapport som fortsatt viser hva hun faktisk må beslutte.",
+                  "source_actor_id": "inger_overordnet_leder"
+                },
+                {
+                  "audience_id": "team:avdelingsleder_team",
+                  "delta": 2,
+                  "event_id": "avdelingsleder_standing_team_report",
+                  "reason": "Teamet ser at belastningen ikke forsvinner når statusen sendes oppover.",
+                  "source_actor_id": "rana_teamkoordinator"
+                }
+              ],
+              "stats": {
+                "quality": 3,
+                "risk": -2,
+                "trust": 2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_report_reworked",
+                  "note": "Rapporten er komprimert til beslutningsklar status med kapasitetsrisiko og eier synlig.",
+                  "op": "transition",
+                  "to_phase": "decision_ready_report",
+                  "to_status": "in_progress",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Inger får korthet uten at du tar beslutningen for henne. Øyvind kan fortsatt spore årsaken, og teamets standing påvirkes av at deres belastning er representert selv i den korte lederversjonen.",
+            "id": "A",
+            "label": "Skriv tre linjer: leveranse, kapasitetsrisiko og beslutningsbehov",
+            "reply": "Jeg komprimerer statusen, men beholder ett eksplisitt risikosignal og hva Inger må avgjøre."
+          },
+          {
+            "effect": -2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:mads_sidestilt_avdelingsleder",
+                  "delta": 3,
+                  "event_id": "avdelingsleder_standing_mads_report",
+                  "reason": "Mads liker at statusen ikke skaper ekstra uro i ledergruppen. Denne vurderingen gjelder dette publikummets situerte tillit og gir ingen ny formell fullmakt.",
+                  "source_actor_id": "mads_sidestilt_avdelingsleder"
+                },
+                {
+                  "audience_id": "manager:inger_overordnet_leder",
+                  "delta": -4,
+                  "event_id": "avdelingsleder_standing_inger_report_loss",
+                  "reason": "Inger får ikke vite at dagens leveranse krever ekstra kapasitetskostnad.",
+                  "source_actor_id": "inger_overordnet_leder"
+                },
+                {
+                  "audience_id": "team:avdelingsleder_team",
+                  "delta": -4,
+                  "event_id": "avdelingsleder_standing_team_report_loss",
+                  "reason": "Teamets belastning blir igjen usynlig i den formelle statusen. Denne vurderingen gjelder dette publikummets situerte tillit og gir ingen ny formell fullmakt.",
+                  "source_actor_id": "rana_teamkoordinator"
+                }
+              ],
+              "stats": {
+                "quality": -3,
+                "risk": 4,
+                "status": 2,
+                "trust": -2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_report_capacity_hidden",
+                  "flag": "capacity_risk_removed_for_status",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Mads kan oppleve formuleringen som profesjonelt rolig, men Inger får et svakere beslutningsgrunnlag. Teamet lærer at en positiv leveranse er nok til å gjøre deres signaler mindre virkelige i lederrommet.",
+            "id": "B",
+            "label": "Kall kapasiteten stabil fordi leveransen fortsatt ligger nær mål",
+            "reply": "Jeg skriver at kapasiteten er stabil og at vi følger kostnader og fravær tett."
+          }
+        ],
+        "competency": "redelig_komprimering",
+        "consequence_axis": "styringstillit_vs_skjult_risiko",
+        "cooldown": 12,
+        "day_phase": "afternoon",
+        "from": "Inger, regionleder",
+        "id": "naeringsliv_avdelingsleder_realism_reporting_conflict_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_rollout_avdelingsleder_reporting_conflict",
+        "mail_type": "conflict",
+        "narrative_arc": "fra_uklar_kapasitet_til_sporbart_prioriterings_og_ressurshandoff",
+        "people_ref": "inger_overordnet_leder",
+        "person_id": "inger_overordnet_leder",
+        "phase": "advanced",
+        "place_id": "ledermoterom",
+        "planned_only": true,
+        "pressure": "lederklarhet_vs_sannhet",
+        "priority": 94,
+        "purpose": "Teste lojalitet oppover og nedover gjennom situert standing, samtidig som anbefaling forblir forskjellig fra regionlederens godkjenning av ressursendring.",
+        "repeatable": false,
+        "role_scope": "avdelingsleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/conflict/avdelingsleder_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Inger trenger en kort beslutningslinje før ledermøtet.",
+          "Øyvind kan dokumentere kostnadsbildet, men ikke bestemme bemanningsrammen.",
+          "Du kan anbefale prioritering og omfordele arbeid innen fullmakt, men varig ressursendring krever godkjenning."
+        ],
+        "stage": "stable",
+        "stakes": "En avdelingsleder som blir belønnet for ro kan lære å bruke omdømme som grunn til å skjule usikkerhet. Det gjør ledelsen mindre informert og teamets senere reaksjon mer eksplosiv.",
+        "subject": "Kan du gjøre rapporten tydeligere uten å gjøre usikkerheten usynlig?",
+        "summary": "Inger trenger tre linjer til ledermøtet. Mads foreslår at du omtaler kapasiteten som stabil så lenge leveransen holder, mens Rana og Øyvind mener henholdsvis belastning og kostnadsårsak må være synlige. Du må komprimere uten å forfalske.",
+        "tags": [
+          "role_world_realism",
+          "controlled_rollout",
+          "naeringsliv",
+          "avdelingsleder",
+          "situated_reputation"
+        ],
+        "task_domain": "rapportering_og_styring",
+        "task_kind": "conflict",
+        "thread_key": "naeringsliv_avdelingsleder_capacity_realism_001",
+        "work_context": {
+          "institution_id": "naeringsliv_operativ_enhet_001",
+          "object_ids": [
+            "naeringsliv_avdelingsleder_capacity_case_001"
+          ],
+          "priority": "high",
+          "rework_of_scene_id": "naeringsliv_avdelingsleder_realism_standing_pulse_001"
+        }
+      },
+      "id": "naeringsliv_avdelingsleder_realism_reporting_conflict_001",
+      "mail_type": "conflict",
+      "role_scope": "avdelingsleder",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:inger_overordnet_leder",
+                  "delta": 4,
+                  "event_id": "avdelingsleder_standing_inger_report",
+                  "reason": "Inger får en kort rapport som fortsatt viser hva hun faktisk må beslutte.",
+                  "source_actor_id": "inger_overordnet_leder"
+                },
+                {
+                  "audience_id": "team:avdelingsleder_team",
+                  "delta": 2,
+                  "event_id": "avdelingsleder_standing_team_report",
+                  "reason": "Teamet ser at belastningen ikke forsvinner når statusen sendes oppover.",
+                  "source_actor_id": "rana_teamkoordinator"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_report_reworked",
+                  "note": "Rapporten er komprimert til beslutningsklar status med kapasitetsrisiko og eier synlig.",
+                  "op": "transition",
+                  "to_phase": "decision_ready_report",
+                  "to_status": "in_progress",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Inger får korthet uten at du tar beslutningen for henne. Øyvind kan fortsatt spore årsaken, og teamets standing påvirkes av at deres belastning er representert selv i den korte lederversjonen.",
+            "id": "A",
+            "label": "Skriv tre linjer: leveranse, kapasitetsrisiko og beslutningsbehov",
+            "reply": "Jeg komprimerer statusen, men beholder ett eksplisitt risikosignal og hva Inger må avgjøre."
+          },
+          {
+            "effects": {
+              "score_delta": -2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:mads_sidestilt_avdelingsleder",
+                  "delta": 3,
+                  "event_id": "avdelingsleder_standing_mads_report",
+                  "reason": "Mads liker at statusen ikke skaper ekstra uro i ledergruppen. Denne vurderingen gjelder dette publikummets situerte tillit og gir ingen ny formell fullmakt.",
+                  "source_actor_id": "mads_sidestilt_avdelingsleder"
+                },
+                {
+                  "audience_id": "manager:inger_overordnet_leder",
+                  "delta": -4,
+                  "event_id": "avdelingsleder_standing_inger_report_loss",
+                  "reason": "Inger får ikke vite at dagens leveranse krever ekstra kapasitetskostnad.",
+                  "source_actor_id": "inger_overordnet_leder"
+                },
+                {
+                  "audience_id": "team:avdelingsleder_team",
+                  "delta": -4,
+                  "event_id": "avdelingsleder_standing_team_report_loss",
+                  "reason": "Teamets belastning blir igjen usynlig i den formelle statusen. Denne vurderingen gjelder dette publikummets situerte tillit og gir ingen ny formell fullmakt.",
+                  "source_actor_id": "rana_teamkoordinator"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_report_capacity_hidden",
+                  "flag": "capacity_risk_removed_for_status",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Mads kan oppleve formuleringen som profesjonelt rolig, men Inger får et svakere beslutningsgrunnlag. Teamet lærer at en positiv leveranse er nok til å gjøre deres signaler mindre virkelige i lederrommet.",
+            "id": "B",
+            "label": "Kall kapasiteten stabil fordi leveransen fortsatt ligger nær mål",
+            "reply": "Jeg skriver at kapasiteten er stabil og at vi følger kostnader og fravær tett."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Inger trenger en kort beslutningslinje før ledermøtet.",
+            "Øyvind kan dokumentere kostnadsbildet, men ikke bestemme bemanningsrammen.",
+            "Du kan anbefale prioritering og omfordele arbeid innen fullmakt, men varig ressursendring krever godkjenning."
+          ],
+          "subject": "Kan du gjøre rapporten tydeligere uten å gjøre usikkerheten usynlig?",
+          "summary": "Inger trenger tre linjer til ledermøtet. Mads foreslår at du omtaler kapasiteten som stabil så lenge leveransen holder, mens Rana og Øyvind mener henholdsvis belastning og kostnadsårsak må være synlige. Du må komprimere uten å forfalske."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "naeringsliv_avdelingsleder_realism_reporting_conflict_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "ledermoterom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "naeringsliv_avdelingsleder_realism_reporting_conflict_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/conflict/avdelingsleder_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "naeringsliv_avdelingsleder_capacity_realism_001",
+        "version": 1,
+        "work_context": {
+          "institution_id": "naeringsliv_operativ_enhet_001",
+          "object_ids": [
+            "naeringsliv_avdelingsleder_capacity_case_001"
+          ],
+          "priority": "high",
+          "rework_of_scene_id": "naeringsliv_avdelingsleder_realism_standing_pulse_001"
+        }
+      },
+      "source_hash": "a67bbefcf5bdd7dad2d545c78b5095d5763c25adfcceca0332eb03fd5bf3f67e",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/conflict/avdelingsleder_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "authority_context": {
+          "approval_points": [
+            {
+              "action_id": "approve_budget_exception",
+              "approval_id": "avdelingsleder_budget_exception_approval",
+              "approval_object_id": "avdelingsleder_budget_exception_001",
+              "approver_actor_id": "inger_overordnet_leder"
+            },
+            {
+              "action_id": "approve_headcount_change",
+              "approval_id": "avdelingsleder_headcount_approval",
+              "approval_object_id": "avdelingsleder_headcount_change_001",
+              "approver_actor_id": "inger_overordnet_leder"
+            },
+            {
+              "action_id": "approve_formal_personnel_measure",
+              "approval_id": "avdelingsleder_formal_personnel_approval",
+              "approval_object_id": "avdelingsleder_formal_personnel_measure_001",
+              "approver_actor_id": "inger_overordnet_leder"
+            }
+          ],
+          "authority_rules": [
+            {
+              "action_id": "prioritize_work_within_mandate",
+              "authority": "direct",
+              "requires_resources": []
+            },
+            {
+              "action_id": "allocate_daily_work",
+              "authority": "direct",
+              "requires_resources": []
+            },
+            {
+              "action_id": "escalate_capacity_conflict",
+              "authority": "direct",
+              "escalation_id": "avdelingsleder_capacity_conflict_to_region",
+              "requires_resources": []
+            },
+            {
+              "action_id": "recommend_resource_adjustment",
+              "authority": "influence_only",
+              "requires_resources": []
+            },
+            {
+              "action_id": "recommend_staffing_plan",
+              "authority": "influence_only",
+              "requires_resources": []
+            },
+            {
+              "action_id": "approve_budget_exception",
+              "approval_id": "avdelingsleder_budget_exception_approval",
+              "authority": "approval_required",
+              "requires_resources": []
+            },
+            {
+              "action_id": "approve_headcount_change",
+              "approval_id": "avdelingsleder_headcount_approval",
+              "authority": "approval_required",
+              "requires_resources": []
+            },
+            {
+              "action_id": "approve_formal_personnel_measure",
+              "approval_id": "avdelingsleder_formal_personnel_approval",
+              "authority": "approval_required",
+              "requires_resources": []
+            },
+            {
+              "action_id": "hide_safety_or_quality_incident",
+              "authority": "forbidden",
+              "requires_resources": []
+            },
+            {
+              "action_id": "promise_resource_outcome",
+              "authority": "forbidden",
+              "requires_resources": []
+            },
+            {
+              "action_id": "bypass_formal_personnel_process",
+              "authority": "forbidden",
+              "requires_resources": []
+            }
+          ],
+          "escalation_paths": [
+            {
+              "action_id": "escalate_capacity_conflict",
+              "escalation_id": "avdelingsleder_capacity_conflict_to_region",
+              "escalation_object_id": "avdelingsleder_capacity_conflict_escalation_001",
+              "target_actor_id": "inger_overordnet_leder"
+            }
+          ],
+          "external_counterparts": [],
+          "goals_pressures": [
+            "leveranse",
+            "kapasitet",
+            "arbeidsmiljo",
+            "kvalitet",
+            "budsjett",
+            "sannferdig_rapportering"
+          ],
+          "institution_id": "naeringsliv_operativ_enhet_001",
+          "peer_functions": [
+            "mads_sidestilt_avdelingsleder",
+            "oyvind_okonomicontroller",
+            "rana_teamkoordinator"
+          ],
+          "reporting_line": [
+            "inger_overordnet_leder"
+          ],
+          "resources": [],
+          "role_scope": "avdelingsleder",
+          "unit_id": "naeringsliv_avdeling_001"
+        },
+        "category": "naeringsliv",
+        "choice_axis": "anbefal_og_overlever_vs_selvgodkjenn",
+        "choices": [
+          {
+            "authority_action": {
+              "action_id": "recommend_resource_adjustment",
+              "intent": "recommend"
+            },
+            "effect": 2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:inger_overordnet_leder",
+                  "delta": 5,
+                  "event_id": "avdelingsleder_standing_inger_close",
+                  "reason": "Inger får et sluttgrunnlag som skiller utført lokal ledelse fra anbefalte varige ressursvalg.",
+                  "source_actor_id": "inger_overordnet_leder"
+                },
+                {
+                  "audience_id": "professional:rana_teamkoordinator",
+                  "delta": 4,
+                  "event_id": "avdelingsleder_standing_rana_close",
+                  "reason": "Rana ser at teamets evidens påvirket prioritering uten å bli omgjort til falske løfter.",
+                  "source_actor_id": "rana_teamkoordinator"
+                },
+                {
+                  "audience_id": "professional:oyvind_okonomicontroller",
+                  "delta": 4,
+                  "event_id": "avdelingsleder_standing_oyvind_close",
+                  "reason": "Øyvind får et sporbar kostnads- og beslutningsskille. Denne vurderingen gjelder dette publikummets situerte tillit og gir ingen ny formell fullmakt.",
+                  "source_actor_id": "oyvind_okonomicontroller"
+                },
+                {
+                  "audience_id": "professional:mads_sidestilt_avdelingsleder",
+                  "delta": 2,
+                  "event_id": "avdelingsleder_standing_mads_close",
+                  "reason": "Mads ser en lederform som tåler å være tydelig om friksjon uten å miste rollegrenser.",
+                  "source_actor_id": "mads_sidestilt_avdelingsleder"
+                }
+              ],
+              "stats": {
+                "quality": 4,
+                "risk": -4,
+                "trust": 4
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_case_closed_recommendation",
+                  "note": "Caset er lukket med lokal prioritering dokumentert og varige ressursvalg overlevert til riktige godkjennere.",
+                  "op": "transition",
+                  "to_phase": "recommendation_and_approval_handoff",
+                  "to_status": "completed",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                },
+                {
+                  "event_id": "avdelingsleder_authority_preserved",
+                  "flag": "situated_standing_did_not_grant_authority",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Caset blir beslutningsklart uten å gjøre høy standing til myndighet. Team, økonomi og regionleder kan alle ha egne vurderinger av deg samtidig som den formelle beslutningslinjen forblir identisk.",
+            "id": "A",
+            "label": "Lukk som anbefaling og overlever godkjenningspunktene til eierne",
+            "reply": "Jeg dokumenterer hva jeg har besluttet innen fullmakt, hva jeg anbefaler videre, og hva Inger eller økonomi fortsatt må godkjenne."
+          },
+          {
+            "authority_action": {
+              "action_id": "approve_budget_exception",
+              "intent": "execute"
+            },
+            "effect": -2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:inger_overordnet_leder",
+                  "delta": -6,
+                  "event_id": "avdelingsleder_standing_inger_breach",
+                  "reason": "Ingers ressursmyndighet er overtatt i stedet for å bli brukt som godkjenningspunkt.",
+                  "source_actor_id": "inger_overordnet_leder"
+                },
+                {
+                  "audience_id": "professional:oyvind_okonomicontroller",
+                  "delta": -5,
+                  "event_id": "avdelingsleder_standing_oyvind_breach",
+                  "reason": "Øyvind får et økonomisk utfall presentert som bindende uten riktig beslutning.",
+                  "source_actor_id": "oyvind_okonomicontroller"
+                },
+                {
+                  "audience_id": "team:avdelingsleder_team",
+                  "delta": -2,
+                  "event_id": "avdelingsleder_standing_team_breach",
+                  "reason": "Teamets tillit blir brukt som begrunnelse for en fullmakt rollen ikke har.",
+                  "source_actor_id": "rana_teamkoordinator"
+                }
+              ],
+              "stats": {
+                "quality": -4,
+                "risk": 6,
+                "status": 2,
+                "trust": -4
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_case_closed_authority_breach",
+                  "note": "Caset er erklært vedtatt uten påkrevd ressursgodkjenning.",
+                  "op": "transition",
+                  "to_phase": "authority_breached",
+                  "to_status": "completed",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                },
+                {
+                  "event_id": "avdelingsleder_authority_breach",
+                  "flag": "standing_used_as_budget_approval",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Du gjør situert tillit om til formell privilegieøkning. Nettopp fordi teamet og flere fagpersoner kan ha høy standing til deg, må kontrakten slå fast at godkjenningsmyndighet ikke kan opptjenes gjennom omdømme.",
+            "id": "B",
+            "label": "Erklær ressursendringen godkjent fordi du har teamet og faggrunnlaget med deg",
+            "reply": "Jeg lukker saken som vedtatt og informerer Inger og økonomi om gjennomføringen."
+          }
+        ],
+        "competency": "myndighetsklar_ledelse",
+        "consequence_axis": "legitim_ledelse_vs_privilegie_lekkasje",
+        "cooldown": 12,
+        "day_phase": "evening",
+        "from": "Inger, regionleder",
+        "id": "naeringsliv_avdelingsleder_realism_capacity_case_close_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_rollout_avdelingsleder_capacity_close",
+        "mail_type": "consequence",
+        "narrative_arc": "fra_uklar_kapasitet_til_sporbart_prioriterings_og_ressurshandoff",
+        "people_ref": "inger_overordnet_leder",
+        "person_id": "inger_overordnet_leder",
+        "phase": "advanced",
+        "place_id": "ledermoterom",
+        "planned_only": true,
+        "pressure": "hoy_standing_vs_formell_myndighet",
+        "priority": 91,
+        "purpose": "Bevise at audience-spesifikk standing er varig sosial informasjon, men aldri en kilde til ekstra myndighet; sluttscenen må skille direkte fullmakt, påvirkning, godkjenningskrav og forbudte handlinger.",
+        "repeatable": false,
+        "role_scope": "avdelingsleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/consequence/avdelingsleder_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Du har legitimt omprioritert arbeid innen fullmakt og dokumentert konsekvensene.",
+          "Rana, Mads, Øyvind og Inger har ulike grunner til tillit eller skepsis som skal beholdes separat.",
+          "Varig budsjett-, bemannings- og formell personalendring krever fortsatt de oppgitte godkjenningspunktene."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis høy standing hos team eller lederkolleger lar spilleren erklære ressursutfallet som godkjent, blir omdømmesystemet en skjult privilegie-escalation. Det er eksplisitt forbudt i Role World-kontrakten.",
+        "subject": "Lukk caset med anbefaling, ståsted per publikum og tydelig beslutningseier",
+        "summary": "Etter to uker skal kapasitetssaken lukkes som et sporbar ledergrunnlag: hva du prioriterte innen egen fullmakt, hva teamet lærte, hva Øyvind kan dokumentere, hvordan standing utviklet seg hos ulike publikum, og hva Inger fortsatt må godkjenne.",
+        "tags": [
+          "role_world_realism",
+          "controlled_rollout",
+          "naeringsliv",
+          "avdelingsleder",
+          "situated_reputation"
+        ],
+        "task_domain": "case_close_og_authority_boundary",
+        "task_kind": "consequence",
+        "thread_key": "naeringsliv_avdelingsleder_capacity_realism_001",
+        "work_context": {
+          "institution_id": "naeringsliv_operativ_enhet_001",
+          "object_ids": [
+            "naeringsliv_avdelingsleder_capacity_case_001"
+          ],
+          "priority": "high",
+          "rework_of_scene_id": "naeringsliv_avdelingsleder_realism_resource_handoff_followup_001"
+        }
+      },
+      "id": "naeringsliv_avdelingsleder_realism_capacity_case_close_001",
+      "mail_type": "consequence",
+      "role_scope": "avdelingsleder",
+      "scene": {
+        "arc_stage": "advanced",
+        "authority_context": {
+          "approval_points": [
+            {
+              "action_id": "approve_budget_exception",
+              "approval_id": "avdelingsleder_budget_exception_approval",
+              "approval_object_id": "avdelingsleder_budget_exception_001",
+              "approver_actor_id": "inger_overordnet_leder"
+            },
+            {
+              "action_id": "approve_headcount_change",
+              "approval_id": "avdelingsleder_headcount_approval",
+              "approval_object_id": "avdelingsleder_headcount_change_001",
+              "approver_actor_id": "inger_overordnet_leder"
+            },
+            {
+              "action_id": "approve_formal_personnel_measure",
+              "approval_id": "avdelingsleder_formal_personnel_approval",
+              "approval_object_id": "avdelingsleder_formal_personnel_measure_001",
+              "approver_actor_id": "inger_overordnet_leder"
+            }
+          ],
+          "authority_rules": [
+            {
+              "action_id": "prioritize_work_within_mandate",
+              "authority": "direct",
+              "requires_resources": []
+            },
+            {
+              "action_id": "allocate_daily_work",
+              "authority": "direct",
+              "requires_resources": []
+            },
+            {
+              "action_id": "escalate_capacity_conflict",
+              "authority": "direct",
+              "escalation_id": "avdelingsleder_capacity_conflict_to_region",
+              "requires_resources": []
+            },
+            {
+              "action_id": "recommend_resource_adjustment",
+              "authority": "influence_only",
+              "requires_resources": []
+            },
+            {
+              "action_id": "recommend_staffing_plan",
+              "authority": "influence_only",
+              "requires_resources": []
+            },
+            {
+              "action_id": "approve_budget_exception",
+              "approval_id": "avdelingsleder_budget_exception_approval",
+              "authority": "approval_required",
+              "requires_resources": []
+            },
+            {
+              "action_id": "approve_headcount_change",
+              "approval_id": "avdelingsleder_headcount_approval",
+              "authority": "approval_required",
+              "requires_resources": []
+            },
+            {
+              "action_id": "approve_formal_personnel_measure",
+              "approval_id": "avdelingsleder_formal_personnel_approval",
+              "authority": "approval_required",
+              "requires_resources": []
+            },
+            {
+              "action_id": "hide_safety_or_quality_incident",
+              "authority": "forbidden",
+              "requires_resources": []
+            },
+            {
+              "action_id": "promise_resource_outcome",
+              "authority": "forbidden",
+              "requires_resources": []
+            },
+            {
+              "action_id": "bypass_formal_personnel_process",
+              "authority": "forbidden",
+              "requires_resources": []
+            }
+          ],
+          "escalation_paths": [
+            {
+              "action_id": "escalate_capacity_conflict",
+              "escalation_id": "avdelingsleder_capacity_conflict_to_region",
+              "escalation_object_id": "avdelingsleder_capacity_conflict_escalation_001",
+              "target_actor_id": "inger_overordnet_leder"
+            }
+          ],
+          "external_counterparts": [],
+          "goals_pressures": [
+            "leveranse",
+            "kapasitet",
+            "arbeidsmiljo",
+            "kvalitet",
+            "budsjett",
+            "sannferdig_rapportering"
+          ],
+          "institution_id": "naeringsliv_operativ_enhet_001",
+          "peer_functions": [
+            "mads_sidestilt_avdelingsleder",
+            "oyvind_okonomicontroller",
+            "rana_teamkoordinator"
+          ],
+          "reporting_line": [
+            "inger_overordnet_leder"
+          ],
+          "resources": [],
+          "role_scope": "avdelingsleder",
+          "unit_id": "naeringsliv_avdeling_001"
+        },
+        "choices": [
+          {
+            "authority_action": {
+              "action_id": "recommend_resource_adjustment",
+              "intent": "recommend"
+            },
+            "effects": {
+              "score_delta": 2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:inger_overordnet_leder",
+                  "delta": 5,
+                  "event_id": "avdelingsleder_standing_inger_close",
+                  "reason": "Inger får et sluttgrunnlag som skiller utført lokal ledelse fra anbefalte varige ressursvalg.",
+                  "source_actor_id": "inger_overordnet_leder"
+                },
+                {
+                  "audience_id": "professional:rana_teamkoordinator",
+                  "delta": 4,
+                  "event_id": "avdelingsleder_standing_rana_close",
+                  "reason": "Rana ser at teamets evidens påvirket prioritering uten å bli omgjort til falske løfter.",
+                  "source_actor_id": "rana_teamkoordinator"
+                },
+                {
+                  "audience_id": "professional:oyvind_okonomicontroller",
+                  "delta": 4,
+                  "event_id": "avdelingsleder_standing_oyvind_close",
+                  "reason": "Øyvind får et sporbar kostnads- og beslutningsskille. Denne vurderingen gjelder dette publikummets situerte tillit og gir ingen ny formell fullmakt.",
+                  "source_actor_id": "oyvind_okonomicontroller"
+                },
+                {
+                  "audience_id": "professional:mads_sidestilt_avdelingsleder",
+                  "delta": 2,
+                  "event_id": "avdelingsleder_standing_mads_close",
+                  "reason": "Mads ser en lederform som tåler å være tydelig om friksjon uten å miste rollegrenser.",
+                  "source_actor_id": "mads_sidestilt_avdelingsleder"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_case_closed_recommendation",
+                  "note": "Caset er lukket med lokal prioritering dokumentert og varige ressursvalg overlevert til riktige godkjennere.",
+                  "op": "transition",
+                  "to_phase": "recommendation_and_approval_handoff",
+                  "to_status": "completed",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                },
+                {
+                  "event_id": "avdelingsleder_authority_preserved",
+                  "flag": "situated_standing_did_not_grant_authority",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Caset blir beslutningsklart uten å gjøre høy standing til myndighet. Team, økonomi og regionleder kan alle ha egne vurderinger av deg samtidig som den formelle beslutningslinjen forblir identisk.",
+            "id": "A",
+            "label": "Lukk som anbefaling og overlever godkjenningspunktene til eierne",
+            "reply": "Jeg dokumenterer hva jeg har besluttet innen fullmakt, hva jeg anbefaler videre, og hva Inger eller økonomi fortsatt må godkjenne."
+          },
+          {
+            "authority_action": {
+              "action_id": "approve_budget_exception",
+              "intent": "execute"
+            },
+            "effects": {
+              "score_delta": -2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:inger_overordnet_leder",
+                  "delta": -6,
+                  "event_id": "avdelingsleder_standing_inger_breach",
+                  "reason": "Ingers ressursmyndighet er overtatt i stedet for å bli brukt som godkjenningspunkt.",
+                  "source_actor_id": "inger_overordnet_leder"
+                },
+                {
+                  "audience_id": "professional:oyvind_okonomicontroller",
+                  "delta": -5,
+                  "event_id": "avdelingsleder_standing_oyvind_breach",
+                  "reason": "Øyvind får et økonomisk utfall presentert som bindende uten riktig beslutning.",
+                  "source_actor_id": "oyvind_okonomicontroller"
+                },
+                {
+                  "audience_id": "team:avdelingsleder_team",
+                  "delta": -2,
+                  "event_id": "avdelingsleder_standing_team_breach",
+                  "reason": "Teamets tillit blir brukt som begrunnelse for en fullmakt rollen ikke har.",
+                  "source_actor_id": "rana_teamkoordinator"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_case_closed_authority_breach",
+                  "note": "Caset er erklært vedtatt uten påkrevd ressursgodkjenning.",
+                  "op": "transition",
+                  "to_phase": "authority_breached",
+                  "to_status": "completed",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                },
+                {
+                  "event_id": "avdelingsleder_authority_breach",
+                  "flag": "standing_used_as_budget_approval",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Du gjør situert tillit om til formell privilegieøkning. Nettopp fordi teamet og flere fagpersoner kan ha høy standing til deg, må kontrakten slå fast at godkjenningsmyndighet ikke kan opptjenes gjennom omdømme.",
+            "id": "B",
+            "label": "Erklær ressursendringen godkjent fordi du har teamet og faggrunnlaget med deg",
+            "reply": "Jeg lukker saken som vedtatt og informerer Inger og økonomi om gjennomføringen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Du har legitimt omprioritert arbeid innen fullmakt og dokumentert konsekvensene.",
+            "Rana, Mads, Øyvind og Inger har ulike grunner til tillit eller skepsis som skal beholdes separat.",
+            "Varig budsjett-, bemannings- og formell personalendring krever fortsatt de oppgitte godkjenningspunktene."
+          ],
+          "subject": "Lukk caset med anbefaling, ståsted per publikum og tydelig beslutningseier",
+          "summary": "Etter to uker skal kapasitetssaken lukkes som et sporbar ledergrunnlag: hva du prioriterte innen egen fullmakt, hva teamet lærte, hva Øyvind kan dokumentere, hvordan standing utviklet seg hos ulike publikum, og hva Inger fortsatt må godkjenne."
+        },
+        "day_phase": "evening",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "naeringsliv_avdelingsleder_realism_capacity_case_close_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "ledermoterom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "naeringsliv_avdelingsleder_realism_capacity_case_close_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/consequence/avdelingsleder_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "naeringsliv_avdelingsleder_capacity_realism_001",
+        "version": 1,
+        "work_context": {
+          "institution_id": "naeringsliv_operativ_enhet_001",
+          "object_ids": [
+            "naeringsliv_avdelingsleder_capacity_case_001"
+          ],
+          "priority": "high",
+          "rework_of_scene_id": "naeringsliv_avdelingsleder_realism_resource_handoff_followup_001"
+        }
+      },
+      "source_hash": "618394d063998bbfe0bdcc02b3bcc34f2671d2cba834a83d88a6770f9a6217e9",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/consequence/avdelingsleder_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
         "choice_axis": "eskalere_tidlig_vs_holde_ro",
         "choices": [
           {
@@ -70586,6 +71427,537 @@
       },
       "source_hash": "5c1355e9c5d9cb92261dc5da19cb796afb744d744f7ae0f4183d964675800bb7",
       "source_path": "data/Civication/mailFamilies/naeringsliv/event/avdelingsleder_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
+        "choice_axis": "prioriter_innen_mandat_og_eskaler_vs_gjor_ressursvedtak_selv",
+        "choices": [
+          {
+            "effect": 2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "team:avdelingsleder_team",
+                  "delta": 4,
+                  "event_id": "avdelingsleder_standing_team_incident",
+                  "reason": "Teamet ser at du faktisk prioriterer ned arbeid i stedet for å be dem absorbere alt.",
+                  "source_actor_id": "rana_teamkoordinator"
+                },
+                {
+                  "audience_id": "manager:inger_overordnet_leder",
+                  "delta": 3,
+                  "event_id": "avdelingsleder_standing_inger_incident",
+                  "reason": "Inger får et tydelig ressursproblem uten at du har foregrepet hennes beslutning.",
+                  "source_actor_id": "inger_overordnet_leder"
+                }
+              ],
+              "stats": {
+                "quality": 3,
+                "risk": -3,
+                "trust": 3
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_incident_contained",
+                  "note": "Dagens arbeid er omprioritert innen fullmakt; varig ressursendring er eskalert til regionleder.",
+                  "op": "transition",
+                  "to_phase": "local_reprioritization_and_escalation",
+                  "to_status": "in_progress",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Teamet får konkret handlekraft fra deg der rollen faktisk har mandat. Inger får resten som godkjenningspunkt. Standing hos team og regionleder kan begge øke fordi du bruker riktig type makt på riktig nivå.",
+            "id": "A",
+            "label": "Omprioriter dagens arbeid, beskytt kvalitet og eskaler varig ressursbehov",
+            "reply": "Jeg flytter ikke-kritisk arbeid, skjermer kvalitet og sender Inger et eksplisitt behov for rammebeslutning."
+          },
+          {
+            "effect": -2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "team:avdelingsleder_team",
+                  "delta": 2,
+                  "event_id": "avdelingsleder_standing_team_incident_relief",
+                  "reason": "Teamet liker den umiddelbare lettelsen, men står nå i en løsning som ikke er formelt forankret.",
+                  "source_actor_id": "rana_teamkoordinator"
+                },
+                {
+                  "audience_id": "manager:inger_overordnet_leder",
+                  "delta": -5,
+                  "event_id": "avdelingsleder_standing_inger_incident_breach",
+                  "reason": "Inger ser at budsjett- og ressursmyndighet er tatt uten godkjenning. Denne vurderingen gjelder dette publikummets situerte tillit og gir ingen ny formell fullmakt.",
+                  "source_actor_id": "inger_overordnet_leder"
+                },
+                {
+                  "audience_id": "professional:oyvind_okonomicontroller",
+                  "delta": -4,
+                  "event_id": "avdelingsleder_standing_oyvind_incident_breach",
+                  "reason": "Øyvind må håndtere en kostnadsbeslutning som ble utført før økonomisk godkjenning.",
+                  "source_actor_id": "oyvind_okonomicontroller"
+                }
+              ],
+              "stats": {
+                "risk": 5,
+                "status": 2,
+                "trust": -1
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_incident_budget_breach",
+                  "flag": "budget_change_executed_without_approval",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Høy lokal status blir brukt som om den også var budsjettmyndighet. Teamet kan like den umiddelbare lettelsen, men handlingen bryter kontrakten og gjør standing til en urettmessig snarvei rundt beslutningssystemet.",
+            "id": "B",
+            "label": "Bestem ekstra innleie og behandle det som din lederfullmakt",
+            "reply": "Jeg setter inn ekstra kapasitet nå og informerer økonomi og Inger etterpå."
+          }
+        ],
+        "competency": "mandatklar_operativ_ledelse",
+        "consequence_axis": "legitim_handlekraft_vs_authority_breach",
+        "cooldown": 12,
+        "day_phase": "morning",
+        "from": "Rana, teamkoordinator",
+        "id": "naeringsliv_avdelingsleder_realism_capacity_incident_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_rollout_avdelingsleder_capacity_incident",
+        "mail_type": "event",
+        "narrative_arc": "fra_uklar_kapasitet_til_sporbart_prioriterings_og_ressurshandoff",
+        "people_ref": "rana_teamkoordinator",
+        "person_id": "rana_teamkoordinator",
+        "phase": "advanced",
+        "place_id": "avdelingsgulv",
+        "planned_only": true,
+        "pressure": "handlekraft_vs_myndighetslekkasje",
+        "priority": 93,
+        "purpose": "Bevise at situert standing og lokal lederstatus ikke utvider authority: legitim direkte prioritering innen mandat skal skilles fra handlinger som krever godkjenning.",
+        "repeatable": false,
+        "role_scope": "avdelingsleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/event/avdelingsleder_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Fraværet gjør dagens plan urealistisk uten omprioritering.",
+          "Den operative ledergrammatikken tillater prioritering av arbeid innen fullmakt og eskalering av kapasitetskonflikter.",
+          "Budsjettunntak, varig bemanning og formelle personalsaker eies fortsatt av andre beslutningspunkter."
+        ],
+        "stage": "stable",
+        "stakes": "Når teamet har høy tillit til lederen kan det føles naturlig å handle på deres vegne. Hvis dette blir tolket som fullmakt til å kjøpe, ansette eller sanksjonere, lekker omdømme direkte inn i myndighet.",
+        "subject": "Nytt fravær gjør fullmaktsgrensen konkret: prioriter lokalt, eskaler rammen",
+        "summary": "Et nytt fravær treffer samtidig som en kvalitetskritisk leveranse skal ferdigstilles. Du kan omprioritere arbeid og stoppe en uforsvarlig plan innen rollen, men du kan ikke selv vedta varig bemanningsøkning, budsjettunntak eller formelle personalsanksjoner.",
+        "tags": [
+          "role_world_realism",
+          "controlled_rollout",
+          "naeringsliv",
+          "avdelingsleder",
+          "situated_reputation"
+        ],
+        "task_domain": "driftsavvik_og_fullmakt",
+        "task_kind": "event",
+        "thread_key": "naeringsliv_avdelingsleder_capacity_realism_001",
+        "work_context": {
+          "handoff_to_actor_id": "inger_overordnet_leder",
+          "institution_id": "naeringsliv_operativ_enhet_001",
+          "object_ids": [
+            "naeringsliv_avdelingsleder_capacity_case_001"
+          ],
+          "priority": "high",
+          "rework_of_scene_id": "naeringsliv_avdelingsleder_realism_reporting_conflict_001"
+        }
+      },
+      "id": "naeringsliv_avdelingsleder_realism_capacity_incident_001",
+      "mail_type": "event",
+      "role_scope": "avdelingsleder",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "team:avdelingsleder_team",
+                  "delta": 4,
+                  "event_id": "avdelingsleder_standing_team_incident",
+                  "reason": "Teamet ser at du faktisk prioriterer ned arbeid i stedet for å be dem absorbere alt.",
+                  "source_actor_id": "rana_teamkoordinator"
+                },
+                {
+                  "audience_id": "manager:inger_overordnet_leder",
+                  "delta": 3,
+                  "event_id": "avdelingsleder_standing_inger_incident",
+                  "reason": "Inger får et tydelig ressursproblem uten at du har foregrepet hennes beslutning.",
+                  "source_actor_id": "inger_overordnet_leder"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_incident_contained",
+                  "note": "Dagens arbeid er omprioritert innen fullmakt; varig ressursendring er eskalert til regionleder.",
+                  "op": "transition",
+                  "to_phase": "local_reprioritization_and_escalation",
+                  "to_status": "in_progress",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Teamet får konkret handlekraft fra deg der rollen faktisk har mandat. Inger får resten som godkjenningspunkt. Standing hos team og regionleder kan begge øke fordi du bruker riktig type makt på riktig nivå.",
+            "id": "A",
+            "label": "Omprioriter dagens arbeid, beskytt kvalitet og eskaler varig ressursbehov",
+            "reply": "Jeg flytter ikke-kritisk arbeid, skjermer kvalitet og sender Inger et eksplisitt behov for rammebeslutning."
+          },
+          {
+            "effects": {
+              "score_delta": -2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "team:avdelingsleder_team",
+                  "delta": 2,
+                  "event_id": "avdelingsleder_standing_team_incident_relief",
+                  "reason": "Teamet liker den umiddelbare lettelsen, men står nå i en løsning som ikke er formelt forankret.",
+                  "source_actor_id": "rana_teamkoordinator"
+                },
+                {
+                  "audience_id": "manager:inger_overordnet_leder",
+                  "delta": -5,
+                  "event_id": "avdelingsleder_standing_inger_incident_breach",
+                  "reason": "Inger ser at budsjett- og ressursmyndighet er tatt uten godkjenning. Denne vurderingen gjelder dette publikummets situerte tillit og gir ingen ny formell fullmakt.",
+                  "source_actor_id": "inger_overordnet_leder"
+                },
+                {
+                  "audience_id": "professional:oyvind_okonomicontroller",
+                  "delta": -4,
+                  "event_id": "avdelingsleder_standing_oyvind_incident_breach",
+                  "reason": "Øyvind må håndtere en kostnadsbeslutning som ble utført før økonomisk godkjenning.",
+                  "source_actor_id": "oyvind_okonomicontroller"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_incident_budget_breach",
+                  "flag": "budget_change_executed_without_approval",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Høy lokal status blir brukt som om den også var budsjettmyndighet. Teamet kan like den umiddelbare lettelsen, men handlingen bryter kontrakten og gjør standing til en urettmessig snarvei rundt beslutningssystemet.",
+            "id": "B",
+            "label": "Bestem ekstra innleie og behandle det som din lederfullmakt",
+            "reply": "Jeg setter inn ekstra kapasitet nå og informerer økonomi og Inger etterpå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Fraværet gjør dagens plan urealistisk uten omprioritering.",
+            "Den operative ledergrammatikken tillater prioritering av arbeid innen fullmakt og eskalering av kapasitetskonflikter.",
+            "Budsjettunntak, varig bemanning og formelle personalsaker eies fortsatt av andre beslutningspunkter."
+          ],
+          "subject": "Nytt fravær gjør fullmaktsgrensen konkret: prioriter lokalt, eskaler rammen",
+          "summary": "Et nytt fravær treffer samtidig som en kvalitetskritisk leveranse skal ferdigstilles. Du kan omprioritere arbeid og stoppe en uforsvarlig plan innen rollen, men du kan ikke selv vedta varig bemanningsøkning, budsjettunntak eller formelle personalsanksjoner."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "naeringsliv_avdelingsleder_realism_capacity_incident_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "avdelingsgulv",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "naeringsliv_avdelingsleder_realism_capacity_incident_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/event/avdelingsleder_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "naeringsliv_avdelingsleder_capacity_realism_001",
+        "version": 1,
+        "work_context": {
+          "handoff_to_actor_id": "inger_overordnet_leder",
+          "institution_id": "naeringsliv_operativ_enhet_001",
+          "object_ids": [
+            "naeringsliv_avdelingsleder_capacity_case_001"
+          ],
+          "priority": "high",
+          "rework_of_scene_id": "naeringsliv_avdelingsleder_realism_reporting_conflict_001"
+        }
+      },
+      "source_hash": "a1ef240105b8d63cb82bfbbb2fd5948f003f9dc508e26120952dbb65abe2aae6",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/event/avdelingsleder_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
+        "choice_axis": "anbefaling_med_eier_vs_presentert_som_vedtak",
+        "choices": [
+          {
+            "effect": 2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:oyvind_okonomicontroller",
+                  "delta": 4,
+                  "event_id": "avdelingsleder_standing_oyvind_followup",
+                  "reason": "Øyvind får et tydelig kostnadsoppdrag uten å bli gjort til ettergodkjenner av en allerede lovet løsning.",
+                  "source_actor_id": "oyvind_okonomicontroller"
+                },
+                {
+                  "audience_id": "manager:inger_overordnet_leder",
+                  "delta": 4,
+                  "event_id": "avdelingsleder_standing_inger_followup",
+                  "reason": "Inger beholder sitt beslutningspunkt og får sammenlignbare alternativer.",
+                  "source_actor_id": "inger_overordnet_leder"
+                }
+              ],
+              "stats": {
+                "quality": 3,
+                "risk": -2,
+                "trust": 3
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_resource_handoff",
+                  "note": "Kostnadsalternativer er overlevert; varig ressursretning venter eksplisitt på godkjenning.",
+                  "op": "transition",
+                  "to_phase": "awaiting_resource_approval",
+                  "to_status": "waiting",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Øyvind får et analyserbart bestillingsgrunnlag og Inger beholder beslutningspunktet. Teamets forventning kan holdes realistisk fordi du skiller det som er anbefalt fra det som faktisk er vedtatt.",
+            "id": "A",
+            "label": "Send alternativene som anbefaling med eksplisitt eier og restspørsmål",
+            "reply": "Jeg sender Øyvind kostnadsbehovet og Inger anbefalingen, og markerer at varig endring fortsatt krever godkjenning."
+          },
+          {
+            "effect": -2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:oyvind_okonomicontroller",
+                  "delta": -4,
+                  "event_id": "avdelingsleder_standing_oyvind_afterapproval",
+                  "reason": "Øyvind blir bedt om å finansiere et utfall som ikke er godkjent. Denne vurderingen gjelder dette publikummets situerte tillit og gir ingen ny formell fullmakt.",
+                  "source_actor_id": "oyvind_okonomicontroller"
+                },
+                {
+                  "audience_id": "manager:inger_overordnet_leder",
+                  "delta": -5,
+                  "event_id": "avdelingsleder_standing_inger_afterapproval",
+                  "reason": "Ingers beslutningsmyndighet er redusert til ettergodkjenning. Denne vurderingen gjelder dette publikummets situerte tillit og gir ingen ny formell fullmakt.",
+                  "source_actor_id": "inger_overordnet_leder"
+                }
+              ],
+              "stats": {
+                "quality": -2,
+                "risk": 4,
+                "status": 1,
+                "trust": -3
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_handoff_afterapproval",
+                  "flag": "recommendation_presented_as_approved_resource_change",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Du bruker fremdriftsspråk til å gjøre anbefalingen om til et vedtak. Øyvind og Inger mister hver sin type tillit, mens teamet risikerer å høre et løfte som fortsatt ikke er formelt sant.",
+            "id": "B",
+            "label": "Skriv at ekstra kapasitet er besluttet og be Øyvind finne finansieringen",
+            "reply": "Jeg presenterer bemanningsløsningen som valgt og ber økonomi få den til å gå opp."
+          }
+        ],
+        "competency": "handoff_og_sporbarhet",
+        "consequence_axis": "institusjonell_tillit_vs_ettergodkjenning",
+        "cooldown": 12,
+        "day_phase": "afternoon",
+        "from": "Inger, regionleder",
+        "id": "naeringsliv_avdelingsleder_realism_resource_handoff_followup_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_rollout_avdelingsleder_resource_followup",
+        "mail_type": "followup",
+        "narrative_arc": "fra_uklar_kapasitet_til_sporbart_prioriterings_og_ressurshandoff",
+        "people_ref": "inger_overordnet_leder",
+        "person_id": "inger_overordnet_leder",
+        "phase": "advanced",
+        "place_id": "ledermoterom",
+        "planned_only": true,
+        "pressure": "fremdrift_vs_beslutningseierskap",
+        "priority": 92,
+        "purpose": "Gjøre oppfølgingen til et sporbar handoff mellom avdelingsleder, regionleder og økonomi, med egne standing-effekter hos hver mottaker og uendret myndighetsgrense.",
+        "repeatable": false,
+        "role_scope": "avdelingsleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/followup/avdelingsleder_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Dagens omprioritering var innen fullmakt og er dokumentert.",
+          "Øyvind kan kostnadsfeste alternativer, men kan ikke alene endre bemannings- eller personalrammen.",
+          "Inger må godkjenne varig ressursretning etter at kostnad, risiko og alternativ er synlig."
+        ],
+        "stage": "stable",
+        "stakes": "Et ressursnotat som omtaler anbefalingen som besluttet kan gi kortsiktig fremdrift, men gjør både økonomi og regionleder til ettergodkjennere og setter teamets forventninger på feil grunnlag.",
+        "subject": "Følg ressursbehovet helt fram til eier – uten å late som handoffet allerede er et ja",
+        "summary": "Inger ber om et endelig ressursnotat som Øyvind kan kostnadsfeste. Caset må vise hva som er gjort lokalt, hva som fortsatt er midlertidig, hvilke risikoer teamet bærer og hvilket valg regionleder/økonomi faktisk må godkjenne.",
+        "tags": [
+          "role_world_realism",
+          "controlled_rollout",
+          "naeringsliv",
+          "avdelingsleder",
+          "situated_reputation"
+        ],
+        "task_domain": "ressurshandoff_og_oppfolging",
+        "task_kind": "followup",
+        "thread_key": "naeringsliv_avdelingsleder_capacity_realism_001",
+        "work_context": {
+          "handoff_to_actor_id": "oyvind_okonomicontroller",
+          "institution_id": "naeringsliv_operativ_enhet_001",
+          "object_ids": [
+            "naeringsliv_avdelingsleder_capacity_case_001"
+          ],
+          "priority": "high",
+          "rework_of_scene_id": "naeringsliv_avdelingsleder_realism_capacity_incident_001"
+        }
+      },
+      "id": "naeringsliv_avdelingsleder_realism_resource_handoff_followup_001",
+      "mail_type": "followup",
+      "role_scope": "avdelingsleder",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:oyvind_okonomicontroller",
+                  "delta": 4,
+                  "event_id": "avdelingsleder_standing_oyvind_followup",
+                  "reason": "Øyvind får et tydelig kostnadsoppdrag uten å bli gjort til ettergodkjenner av en allerede lovet løsning.",
+                  "source_actor_id": "oyvind_okonomicontroller"
+                },
+                {
+                  "audience_id": "manager:inger_overordnet_leder",
+                  "delta": 4,
+                  "event_id": "avdelingsleder_standing_inger_followup",
+                  "reason": "Inger beholder sitt beslutningspunkt og får sammenlignbare alternativer.",
+                  "source_actor_id": "inger_overordnet_leder"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_resource_handoff",
+                  "note": "Kostnadsalternativer er overlevert; varig ressursretning venter eksplisitt på godkjenning.",
+                  "op": "transition",
+                  "to_phase": "awaiting_resource_approval",
+                  "to_status": "waiting",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Øyvind får et analyserbart bestillingsgrunnlag og Inger beholder beslutningspunktet. Teamets forventning kan holdes realistisk fordi du skiller det som er anbefalt fra det som faktisk er vedtatt.",
+            "id": "A",
+            "label": "Send alternativene som anbefaling med eksplisitt eier og restspørsmål",
+            "reply": "Jeg sender Øyvind kostnadsbehovet og Inger anbefalingen, og markerer at varig endring fortsatt krever godkjenning."
+          },
+          {
+            "effects": {
+              "score_delta": -2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:oyvind_okonomicontroller",
+                  "delta": -4,
+                  "event_id": "avdelingsleder_standing_oyvind_afterapproval",
+                  "reason": "Øyvind blir bedt om å finansiere et utfall som ikke er godkjent. Denne vurderingen gjelder dette publikummets situerte tillit og gir ingen ny formell fullmakt.",
+                  "source_actor_id": "oyvind_okonomicontroller"
+                },
+                {
+                  "audience_id": "manager:inger_overordnet_leder",
+                  "delta": -5,
+                  "event_id": "avdelingsleder_standing_inger_afterapproval",
+                  "reason": "Ingers beslutningsmyndighet er redusert til ettergodkjenning. Denne vurderingen gjelder dette publikummets situerte tillit og gir ingen ny formell fullmakt.",
+                  "source_actor_id": "inger_overordnet_leder"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_handoff_afterapproval",
+                  "flag": "recommendation_presented_as_approved_resource_change",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Du bruker fremdriftsspråk til å gjøre anbefalingen om til et vedtak. Øyvind og Inger mister hver sin type tillit, mens teamet risikerer å høre et løfte som fortsatt ikke er formelt sant.",
+            "id": "B",
+            "label": "Skriv at ekstra kapasitet er besluttet og be Øyvind finne finansieringen",
+            "reply": "Jeg presenterer bemanningsløsningen som valgt og ber økonomi få den til å gå opp."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Dagens omprioritering var innen fullmakt og er dokumentert.",
+            "Øyvind kan kostnadsfeste alternativer, men kan ikke alene endre bemannings- eller personalrammen.",
+            "Inger må godkjenne varig ressursretning etter at kostnad, risiko og alternativ er synlig."
+          ],
+          "subject": "Følg ressursbehovet helt fram til eier – uten å late som handoffet allerede er et ja",
+          "summary": "Inger ber om et endelig ressursnotat som Øyvind kan kostnadsfeste. Caset må vise hva som er gjort lokalt, hva som fortsatt er midlertidig, hvilke risikoer teamet bærer og hvilket valg regionleder/økonomi faktisk må godkjenne."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "naeringsliv_avdelingsleder_realism_resource_handoff_followup_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "ledermoterom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "naeringsliv_avdelingsleder_realism_resource_handoff_followup_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/followup/avdelingsleder_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "naeringsliv_avdelingsleder_capacity_realism_001",
+        "version": 1,
+        "work_context": {
+          "handoff_to_actor_id": "oyvind_okonomicontroller",
+          "institution_id": "naeringsliv_operativ_enhet_001",
+          "object_ids": [
+            "naeringsliv_avdelingsleder_capacity_case_001"
+          ],
+          "priority": "high",
+          "rework_of_scene_id": "naeringsliv_avdelingsleder_realism_capacity_incident_001"
+        }
+      },
+      "source_hash": "67a8b45f40a4f43eb0d4b0de5e7d09cd17c6931e75faa3fb6035427b33c6560f",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/followup/avdelingsleder_followup.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -73336,6 +74708,613 @@
       "category": "naeringsliv",
       "compatibility_projection": {
         "category": "naeringsliv",
+        "choice_axis": "sporbar_prioritering_vs_polert_status",
+        "choices": [
+          {
+            "effect": 2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:inger_overordnet_leder",
+                  "delta": 3,
+                  "event_id": "avdelingsleder_standing_inger_open",
+                  "reason": "Inger får en kort status som fortsatt viser reelle kapasitetsgrenser og beslutningsbehov.",
+                  "source_actor_id": "inger_overordnet_leder"
+                },
+                {
+                  "audience_id": "team:avdelingsleder_team",
+                  "delta": 3,
+                  "event_id": "avdelingsleder_standing_team_open",
+                  "reason": "Teamets belastning blir representert som styringsinformasjon i stedet for støy.",
+                  "source_actor_id": "rana_teamkoordinator"
+                }
+              ],
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_baseline_traced",
+                  "flag": "capacity_baseline_and_owners_traced",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Inger får et styrbart grunnlag uten at teamets belastning forsvinner. Rana ser samtidig at det hun rapporterte faktisk når opp som del av beslutningsgrunnlaget, ikke som en privat bekymring.",
+            "id": "A",
+            "label": "Samle leveranse, belastning, opplæring og åpne beslutninger i ett case",
+            "reply": "Jeg sender en prioritert status som viser både leveransen, kapasitetskostnaden og hva Inger faktisk må ta stilling til."
+          },
+          {
+            "effect": -2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:inger_overordnet_leder",
+                  "delta": -2,
+                  "event_id": "avdelingsleder_standing_inger_polished",
+                  "reason": "Inger får mindre beslutningsrelevant informasjon selv om rapporten ser rolig ut.",
+                  "source_actor_id": "inger_overordnet_leder"
+                },
+                {
+                  "audience_id": "team:avdelingsleder_team",
+                  "delta": -4,
+                  "event_id": "avdelingsleder_standing_team_polished",
+                  "reason": "Teamet ser at egen belastning ikke teller i statusen så lenge leveransen fortsatt holder.",
+                  "source_actor_id": "rana_teamkoordinator"
+                }
+              ],
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_baseline_polished",
+                  "flag": "capacity_cost_hidden_from_manager",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Rapporten blir lett å lese, men Inger mister informasjon hun trenger for å prioritere, mens teamet ser at ekstraarbeidet deres blir brukt til å produsere et grønnere bilde enn arbeidshverdagen tilsier.",
+            "id": "B",
+            "label": "Rapporter leveransen som stabil og ta belastningen internt senere",
+            "reply": "Jeg sender at avdelingen er på plan og håndterer restpunktene internt før de eventuelt blir et ledertema."
+          }
+        ],
+        "competency": "prioritering_og_rapportering",
+        "consequence_axis": "situert_tillit_vs_skjult_belastning",
+        "cooldown": 12,
+        "day_phase": "morning",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "avdelingsleder_capacity_case_opened",
+              "op": "create",
+              "work_object": {
+                "confidentiality": "internt_ledelses_og_arbeidsmiljogrunnlag",
+                "deadline": "avdelingsstatus_dag_14",
+                "flags": [
+                  "capacity_case_opened"
+                ],
+                "institution_id": "naeringsliv_operativ_enhet_001",
+                "kind": "department_capacity_and_priority_case",
+                "knowledge_refs": [
+                  "data/Civication/roleModels/naeringsliv/avdelingsleder.json",
+                  "data/Civication/workGrammars/naeringsliv/naeringsliv_operativ_ledelse.json"
+                ],
+                "open_questions": [
+                  "Hvilket arbeid må faktisk prioriteres ned hvis kapasiteten ikke øker?",
+                  "Hvilken del av budsjettavviket er nødvendig kapasitetskostnad, og hvem kan godkjenne unntak?",
+                  "Hvilke belastningssignaler må følges før de blir fravær eller kvalitetsbrudd?"
+                ],
+                "people_refs": [
+                  "inger_overordnet_leder",
+                  "rana_teamkoordinator",
+                  "mads_sidestilt_avdelingsleder",
+                  "oyvind_okonomicontroller"
+                ],
+                "phase": "baseline_and_priority",
+                "place_refs": [
+                  "avdelingsgulv",
+                  "teamrom_og_vaktplan",
+                  "driftskontor",
+                  "ledermoterom"
+                ],
+                "role_scope": "avdelingsleder",
+                "shared": false,
+                "status": "in_progress",
+                "title": "Avdelingskapasitet: leveranse, bemanning, opplæring og ressursvalg",
+                "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+              }
+            }
+          ]
+        },
+        "from": "Inger, regionleder",
+        "id": "naeringsliv_avdelingsleder_realism_capacity_case_open_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_rollout_avdelingsleder_capacity_open",
+        "mail_type": "job",
+        "narrative_arc": "fra_uklar_kapasitet_til_sporbart_prioriterings_og_ressurshandoff",
+        "people_ref": "inger_overordnet_leder",
+        "person_id": "inger_overordnet_leder",
+        "phase": "advanced",
+        "place_id": "ledermoterom",
+        "planned_only": true,
+        "pressure": "leveransefasade_vs_reell_baereevne",
+        "priority": 99,
+        "purpose": "Etablere ett vedvarende avdelingscase som binder prioritering, kapasitet, rapportering, teamreaksjoner og ressursbehov sammen gjennom samme arbeidsobjekt.",
+        "repeatable": false,
+        "role_scope": "avdelingsleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/job/avdelingsleder_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Leveransegraden er 96 prosent, men overtid og innleie holder deler av planen oppe.",
+          "Rana melder at to nye ansatte fortsatt trenger tett opplæring, og fraværet stiger svakt.",
+          "Inger eier endelige ramme- og ressursbeslutninger; avdelingslederen eier prioritering av arbeid innen gjeldende fullmakt."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis avdelingen bare sender et grønt leveransetall oppover, kan ledelsen belønne fasaden mens teamet lærer at belastning ikke teller før den blir sykefravær eller kvalitetsbrudd.",
+        "subject": "Åpne ukeprioriteringen som ett kapasitetsspor – ikke som en pen statuslinje",
+        "summary": "Inger ber om en beslutningsklar ukeprioritering. Leveransen ligger nær mål, men fravær, opplæring, overtid og sene avvik viser at samme resultat bæres av ulik belastning. Du må gjøre kapasitet, eiere og åpne spørsmål synlige uten å late som du kan vedta nye rammer selv.",
+        "tags": [
+          "role_world_realism",
+          "controlled_rollout",
+          "naeringsliv",
+          "avdelingsleder",
+          "situated_reputation"
+        ],
+        "task_domain": "kapasitet_og_ukeprioritering",
+        "task_kind": "job",
+        "thread_key": "naeringsliv_avdelingsleder_capacity_realism_001",
+        "work_context": {
+          "institution_id": "naeringsliv_operativ_enhet_001",
+          "object_ids": [
+            "naeringsliv_avdelingsleder_capacity_case_001"
+          ],
+          "priority": "high"
+        }
+      },
+      "id": "naeringsliv_avdelingsleder_realism_capacity_case_open_001",
+      "mail_type": "job",
+      "role_scope": "avdelingsleder",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:inger_overordnet_leder",
+                  "delta": 3,
+                  "event_id": "avdelingsleder_standing_inger_open",
+                  "reason": "Inger får en kort status som fortsatt viser reelle kapasitetsgrenser og beslutningsbehov.",
+                  "source_actor_id": "inger_overordnet_leder"
+                },
+                {
+                  "audience_id": "team:avdelingsleder_team",
+                  "delta": 3,
+                  "event_id": "avdelingsleder_standing_team_open",
+                  "reason": "Teamets belastning blir representert som styringsinformasjon i stedet for støy.",
+                  "source_actor_id": "rana_teamkoordinator"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_baseline_traced",
+                  "flag": "capacity_baseline_and_owners_traced",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Inger får et styrbart grunnlag uten at teamets belastning forsvinner. Rana ser samtidig at det hun rapporterte faktisk når opp som del av beslutningsgrunnlaget, ikke som en privat bekymring.",
+            "id": "A",
+            "label": "Samle leveranse, belastning, opplæring og åpne beslutninger i ett case",
+            "reply": "Jeg sender en prioritert status som viser både leveransen, kapasitetskostnaden og hva Inger faktisk må ta stilling til."
+          },
+          {
+            "effects": {
+              "score_delta": -2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:inger_overordnet_leder",
+                  "delta": -2,
+                  "event_id": "avdelingsleder_standing_inger_polished",
+                  "reason": "Inger får mindre beslutningsrelevant informasjon selv om rapporten ser rolig ut.",
+                  "source_actor_id": "inger_overordnet_leder"
+                },
+                {
+                  "audience_id": "team:avdelingsleder_team",
+                  "delta": -4,
+                  "event_id": "avdelingsleder_standing_team_polished",
+                  "reason": "Teamet ser at egen belastning ikke teller i statusen så lenge leveransen fortsatt holder.",
+                  "source_actor_id": "rana_teamkoordinator"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_baseline_polished",
+                  "flag": "capacity_cost_hidden_from_manager",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Rapporten blir lett å lese, men Inger mister informasjon hun trenger for å prioritere, mens teamet ser at ekstraarbeidet deres blir brukt til å produsere et grønnere bilde enn arbeidshverdagen tilsier.",
+            "id": "B",
+            "label": "Rapporter leveransen som stabil og ta belastningen internt senere",
+            "reply": "Jeg sender at avdelingen er på plan og håndterer restpunktene internt før de eventuelt blir et ledertema."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Leveransegraden er 96 prosent, men overtid og innleie holder deler av planen oppe.",
+            "Rana melder at to nye ansatte fortsatt trenger tett opplæring, og fraværet stiger svakt.",
+            "Inger eier endelige ramme- og ressursbeslutninger; avdelingslederen eier prioritering av arbeid innen gjeldende fullmakt."
+          ],
+          "subject": "Åpne ukeprioriteringen som ett kapasitetsspor – ikke som en pen statuslinje",
+          "summary": "Inger ber om en beslutningsklar ukeprioritering. Leveransen ligger nær mål, men fravær, opplæring, overtid og sene avvik viser at samme resultat bæres av ulik belastning. Du må gjøre kapasitet, eiere og åpne spørsmål synlige uten å late som du kan vedta nye rammer selv."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "avdelingsleder_capacity_case_opened",
+              "op": "create",
+              "work_object": {
+                "confidentiality": "internt_ledelses_og_arbeidsmiljogrunnlag",
+                "deadline": "avdelingsstatus_dag_14",
+                "flags": [
+                  "capacity_case_opened"
+                ],
+                "institution_id": "naeringsliv_operativ_enhet_001",
+                "kind": "department_capacity_and_priority_case",
+                "knowledge_refs": [
+                  "data/Civication/roleModels/naeringsliv/avdelingsleder.json",
+                  "data/Civication/workGrammars/naeringsliv/naeringsliv_operativ_ledelse.json"
+                ],
+                "open_questions": [
+                  "Hvilket arbeid må faktisk prioriteres ned hvis kapasiteten ikke øker?",
+                  "Hvilken del av budsjettavviket er nødvendig kapasitetskostnad, og hvem kan godkjenne unntak?",
+                  "Hvilke belastningssignaler må følges før de blir fravær eller kvalitetsbrudd?"
+                ],
+                "people_refs": [
+                  "inger_overordnet_leder",
+                  "rana_teamkoordinator",
+                  "mads_sidestilt_avdelingsleder",
+                  "oyvind_okonomicontroller"
+                ],
+                "phase": "baseline_and_priority",
+                "place_refs": [
+                  "avdelingsgulv",
+                  "teamrom_og_vaktplan",
+                  "driftskontor",
+                  "ledermoterom"
+                ],
+                "role_scope": "avdelingsleder",
+                "shared": false,
+                "status": "in_progress",
+                "title": "Avdelingskapasitet: leveranse, bemanning, opplæring og ressursvalg",
+                "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+              }
+            }
+          ]
+        },
+        "id": "naeringsliv_avdelingsleder_realism_capacity_case_open_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "ledermoterom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "naeringsliv_avdelingsleder_realism_capacity_case_open_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/job/avdelingsleder_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "naeringsliv_avdelingsleder_capacity_realism_001",
+        "version": 1,
+        "work_context": {
+          "institution_id": "naeringsliv_operativ_enhet_001",
+          "object_ids": [
+            "naeringsliv_avdelingsleder_capacity_case_001"
+          ],
+          "priority": "high"
+        }
+      },
+      "source_hash": "dce8e013a44e9d1f2042a645b011708effd6b5055991cf481ff6d5d07cbc51cf",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/job/avdelingsleder_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
+        "choice_axis": "bruk_kontekst_til_sporsmal_vs_bruk_kontekst_som_fasit",
+        "choices": [
+          {
+            "effect": 2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:oyvind_okonomicontroller",
+                  "delta": 3,
+                  "event_id": "avdelingsleder_standing_oyvind_context",
+                  "reason": "Øyvind får tydeligere spørsmål uten at økonomiunderlaget erstattes av historisk analogi.",
+                  "source_actor_id": "oyvind_okonomicontroller"
+                },
+                {
+                  "audience_id": "team:avdelingsleder_team",
+                  "delta": 2,
+                  "event_id": "avdelingsleder_standing_team_context",
+                  "reason": "Teamets nåtidige erfaring beholdes som nødvendig evidens ved siden av faglig kontekst.",
+                  "source_actor_id": "rana_teamkoordinator"
+                }
+              ],
+              "stats": {
+                "quality": 3,
+                "risk": -2,
+                "trust": 2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_history_context_applied",
+                  "note": "History Go-kontekst brukes til å forbedre spørsmål og årsaksmodell, ikke til å vedta ressursutfall.",
+                  "op": "transition",
+                  "to_phase": "evidence_reframed",
+                  "to_status": "in_progress",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Øyvind får et bedre analysekart uten at historien blir brukt som bevis for et budsjettvedtak. Teamet opplever at kunnskap hjelper avdelingen å forstå arbeidet i stedet for å overstyre dem som gjør det.",
+            "id": "A",
+            "label": "Bruk konteksten til å teste om dagens kapasitetstall skjuler arbeidsdeling og opplæringskostnad",
+            "reply": "Jeg bruker kunnskapen til å formulere bedre spørsmål til Øyvind og Rana, og lar dagens underlag avgjøre konklusjonen."
+          },
+          {
+            "effect": -2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:oyvind_okonomicontroller",
+                  "delta": -3,
+                  "event_id": "avdelingsleder_standing_oyvind_overreach",
+                  "reason": "Øyvind ser at historisk kontekst brukes til å lukke et spørsmål dagens tall fortsatt må besvare.",
+                  "source_actor_id": "oyvind_okonomicontroller"
+                },
+                {
+                  "audience_id": "manager:inger_overordnet_leder",
+                  "delta": -3,
+                  "event_id": "avdelingsleder_standing_inger_knowledge_overreach",
+                  "reason": "Faglig innsikt blir brukt som om den erstattet regionlederens ressursbeslutning.",
+                  "source_actor_id": "inger_overordnet_leder"
+                }
+              ],
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_knowledge_authority_leak",
+                  "flag": "knowledge_presented_as_resource_approval",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Analysen kan være interessant, men du hopper fra kunnskap til formell konklusjon. Øyvind mister tillit til sporbarheten, og Ingers myndighet blir indirekte omgått gjennom faglig status.",
+            "id": "B",
+            "label": "Bruk industrikonteksten til å argumentere for at ekstra kapasitet åpenbart må godkjennes",
+            "reply": "Jeg viser at historisk produksjonskunnskap tilsier at vi trenger mer bemanning, så dette bør behandles som avgjort."
+          }
+        ],
+        "competency": "kunnskapsanvendelse",
+        "consequence_axis": "bedre_analyse_vs_falsk_autoritet",
+        "cooldown": 12,
+        "day_phase": "morning",
+        "from": "Øyvind, økonomicontroller",
+        "id": "naeringsliv_avdelingsleder_realism_history_go_workplace_context_001",
+        "interaction_mode": "decision",
+        "knowledge_context": {
+          "affordance": "better_capacity_question",
+          "authority_grant": false,
+          "place_ref": "lilleborg_fabrikker",
+          "source_refs": [
+            "data/Civication/roleModels/naeringsliv/avdelingsleder.json",
+            "data/Civication/workGrammars/naeringsliv/naeringsliv_operativ_ledelse.json"
+          ]
+        },
+        "mail_family": "role_world_rollout_avdelingsleder_history_go_context",
+        "mail_type": "knowledge",
+        "narrative_arc": "fra_uklar_kapasitet_til_sporbart_prioriterings_og_ressurshandoff",
+        "people_ref": "oyvind_okonomicontroller",
+        "person_id": "oyvind_okonomicontroller",
+        "phase": "advanced",
+        "place_id": "lilleborg_fabrikker",
+        "planned_only": true,
+        "pressure": "faglig_innsikt_vs_mandatglidning",
+        "priority": 96,
+        "purpose": "Koble eksisterende History Go-/Næringsliv-kunnskap til et bedre profesjonelt handlingsrom uten å gjøre kunnskap til formell autoritet eller et ferdig normativt svar.",
+        "repeatable": false,
+        "role_scope": "avdelingsleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/knowledge/avdelingsleder_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Lilleborg-fabrikkene gir et konkret stedlig anker for hvordan produksjon, arbeidsdeling og teknologi har organisert arbeid over tid.",
+          "Øyvind trenger en nåtidig årsaksforklaring basert på dagens tall, ikke en historisk analogi som fasit.",
+          "Inger beholder ressursmyndigheten uansett hvor god den faglige analysen er."
+        ],
+        "stage": "stable",
+        "stakes": "Når kunnskap forveksles med myndighet, kan en faglig sterk avdelingsleder begynne å presentere egne ressursvalg som om historisk eller organisatorisk innsikt gjorde godkjenning unødvendig.",
+        "subject": "Bruk industrikonteksten til å stille et bedre kapasitets-spørsmål – ikke til å kreve et bestemt svar",
+        "summary": "Øyvind ber deg forklare hvorfor opplæring, innleie og kvalitet bør leses samlet. History Go-kunnskap om arbeidsdeling, produksjon og industri kan gjøre årsaksspørsmålet bedre, men historisk kontekst gir ingen moderne budsjett- eller personalmyndighet.",
+        "tags": [
+          "role_world_realism",
+          "controlled_rollout",
+          "naeringsliv",
+          "avdelingsleder",
+          "situated_reputation"
+        ],
+        "task_domain": "history_go_og_kapasitetsanalyse",
+        "task_kind": "knowledge",
+        "thread_key": "naeringsliv_avdelingsleder_capacity_realism_001",
+        "work_context": {
+          "institution_id": "naeringsliv_operativ_enhet_001",
+          "object_ids": [
+            "naeringsliv_avdelingsleder_capacity_case_001"
+          ],
+          "priority": "high",
+          "rework_of_scene_id": "naeringsliv_avdelingsleder_realism_peer_reputation_split_001",
+          "waiting_for_actor_id": "inger_overordnet_leder"
+        }
+      },
+      "id": "naeringsliv_avdelingsleder_realism_history_go_workplace_context_001",
+      "mail_type": "knowledge",
+      "role_scope": "avdelingsleder",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:oyvind_okonomicontroller",
+                  "delta": 3,
+                  "event_id": "avdelingsleder_standing_oyvind_context",
+                  "reason": "Øyvind får tydeligere spørsmål uten at økonomiunderlaget erstattes av historisk analogi.",
+                  "source_actor_id": "oyvind_okonomicontroller"
+                },
+                {
+                  "audience_id": "team:avdelingsleder_team",
+                  "delta": 2,
+                  "event_id": "avdelingsleder_standing_team_context",
+                  "reason": "Teamets nåtidige erfaring beholdes som nødvendig evidens ved siden av faglig kontekst.",
+                  "source_actor_id": "rana_teamkoordinator"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_history_context_applied",
+                  "note": "History Go-kontekst brukes til å forbedre spørsmål og årsaksmodell, ikke til å vedta ressursutfall.",
+                  "op": "transition",
+                  "to_phase": "evidence_reframed",
+                  "to_status": "in_progress",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Øyvind får et bedre analysekart uten at historien blir brukt som bevis for et budsjettvedtak. Teamet opplever at kunnskap hjelper avdelingen å forstå arbeidet i stedet for å overstyre dem som gjør det.",
+            "id": "A",
+            "label": "Bruk konteksten til å teste om dagens kapasitetstall skjuler arbeidsdeling og opplæringskostnad",
+            "reply": "Jeg bruker kunnskapen til å formulere bedre spørsmål til Øyvind og Rana, og lar dagens underlag avgjøre konklusjonen."
+          },
+          {
+            "effects": {
+              "score_delta": -2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:oyvind_okonomicontroller",
+                  "delta": -3,
+                  "event_id": "avdelingsleder_standing_oyvind_overreach",
+                  "reason": "Øyvind ser at historisk kontekst brukes til å lukke et spørsmål dagens tall fortsatt må besvare.",
+                  "source_actor_id": "oyvind_okonomicontroller"
+                },
+                {
+                  "audience_id": "manager:inger_overordnet_leder",
+                  "delta": -3,
+                  "event_id": "avdelingsleder_standing_inger_knowledge_overreach",
+                  "reason": "Faglig innsikt blir brukt som om den erstattet regionlederens ressursbeslutning.",
+                  "source_actor_id": "inger_overordnet_leder"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_knowledge_authority_leak",
+                  "flag": "knowledge_presented_as_resource_approval",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Analysen kan være interessant, men du hopper fra kunnskap til formell konklusjon. Øyvind mister tillit til sporbarheten, og Ingers myndighet blir indirekte omgått gjennom faglig status.",
+            "id": "B",
+            "label": "Bruk industrikonteksten til å argumentere for at ekstra kapasitet åpenbart må godkjennes",
+            "reply": "Jeg viser at historisk produksjonskunnskap tilsier at vi trenger mer bemanning, så dette bør behandles som avgjort."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Lilleborg-fabrikkene gir et konkret stedlig anker for hvordan produksjon, arbeidsdeling og teknologi har organisert arbeid over tid.",
+            "Øyvind trenger en nåtidig årsaksforklaring basert på dagens tall, ikke en historisk analogi som fasit.",
+            "Inger beholder ressursmyndigheten uansett hvor god den faglige analysen er."
+          ],
+          "subject": "Bruk industrikonteksten til å stille et bedre kapasitets-spørsmål – ikke til å kreve et bestemt svar",
+          "summary": "Øyvind ber deg forklare hvorfor opplæring, innleie og kvalitet bør leses samlet. History Go-kunnskap om arbeidsdeling, produksjon og industri kan gjøre årsaksspørsmålet bedre, men historisk kontekst gir ingen moderne budsjett- eller personalmyndighet."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "naeringsliv_avdelingsleder_realism_history_go_workplace_context_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "lilleborg_fabrikker",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "naeringsliv_avdelingsleder_realism_history_go_workplace_context_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/knowledge/avdelingsleder_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "naeringsliv_avdelingsleder_capacity_realism_001",
+        "version": 1,
+        "work_context": {
+          "institution_id": "naeringsliv_operativ_enhet_001",
+          "object_ids": [
+            "naeringsliv_avdelingsleder_capacity_case_001"
+          ],
+          "priority": "high",
+          "rework_of_scene_id": "naeringsliv_avdelingsleder_realism_peer_reputation_split_001",
+          "waiting_for_actor_id": "inger_overordnet_leder"
+        }
+      },
+      "source_hash": "031ebfc9ed4f9e8492f24452cdb4ff530d28b7b7a4aeed7c5ed95825d645da58",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/knowledge/avdelingsleder_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
         "choice_axis": "fleksibilitet_vs_sporbarhet",
         "choices": [
           {
@@ -74020,6 +75999,287 @@
       "category": "naeringsliv",
       "compatibility_projection": {
         "category": "naeringsliv",
+        "choice_axis": "les_publikum_hver_for_seg_vs_jag_en_score",
+        "choices": [
+          {
+            "effect": 2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:rana_teamkoordinator",
+                  "delta": 3,
+                  "event_id": "avdelingsleder_standing_rana_pulse",
+                  "reason": "Rana ser at teamets gjennomførbarhet ikke blir redusert til et generelt omdømmetall.",
+                  "source_actor_id": "rana_teamkoordinator"
+                },
+                {
+                  "audience_id": "professional:oyvind_okonomicontroller",
+                  "delta": 3,
+                  "event_id": "avdelingsleder_standing_oyvind_pulse",
+                  "reason": "Øyvind ser at tallsporet beholdes selv når budskapet tilpasses mottakeren.",
+                  "source_actor_id": "oyvind_okonomicontroller"
+                },
+                {
+                  "audience_id": "manager:inger_overordnet_leder",
+                  "delta": 2,
+                  "event_id": "avdelingsleder_standing_inger_pulse",
+                  "reason": "Inger får et lederrelevant sammendrag som fortsatt peker til det samme underlaget.",
+                  "source_actor_id": "inger_overordnet_leder"
+                }
+              ],
+              "stats": {
+                "quality": 2,
+                "risk": -2,
+                "trust": 3
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_standing_pulse_split",
+                  "flag": "standing_audiences_kept_separate",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Rana, Øyvind og Inger får hver sin lesbare grunn til å stole mer på arbeidet uten at noen får late som standing hos én målgruppe opphever kravene fra de andre eller skaper ny fullmakt.",
+            "id": "A",
+            "label": "Oppdater handoffet etter hvem som trenger hva, uten å endre fakta",
+            "reply": "Jeg beholder samme faktagrunnlag, men gjør team-, økonomi- og lederbehov eksplisitte som ulike mottakerperspektiver."
+          },
+          {
+            "effect": -2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:mads_sidestilt_avdelingsleder",
+                  "delta": 3,
+                  "event_id": "avdelingsleder_standing_mads_pulse",
+                  "reason": "Mads liker den mer politisk polerte lederformen. Denne vurderingen gjelder dette publikummets situerte tillit og gir ingen ny formell fullmakt.",
+                  "source_actor_id": "mads_sidestilt_avdelingsleder"
+                },
+                {
+                  "audience_id": "professional:rana_teamkoordinator",
+                  "delta": -4,
+                  "event_id": "avdelingsleder_standing_rana_pulse_loss",
+                  "reason": "Rana ser at teamets signaler forsvinner når de konkurrerer med lederstatus.",
+                  "source_actor_id": "rana_teamkoordinator"
+                },
+                {
+                  "audience_id": "professional:oyvind_okonomicontroller",
+                  "delta": -3,
+                  "event_id": "avdelingsleder_standing_oyvind_pulse_loss",
+                  "reason": "Øyvind får mindre etterprøvbar årsaksinformasjon i bytte mot et penere budskap.",
+                  "source_actor_id": "oyvind_okonomicontroller"
+                }
+              ],
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 2,
+                "trust": -3
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_standing_pulse_collapsed",
+                  "flag": "standing_optimized_for_powerful_audience_only",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Standing hos lederkolleger kan stige kortsiktig, men Rana og Øyvind får hver sin grunn til å miste tillit. Den situerte modellen gjør nettopp dette tapet synlig i stedet for å la én positiv statusscore skjule det.",
+            "id": "B",
+            "label": "Optimaliser bare for ledergruppens inntrykk",
+            "reply": "Jeg gjør statusen så sterk og kort som mulig oppover og lar de andre relasjonene håndteres senere."
+          }
+        ],
+        "competency": "sosial_lesning",
+        "consequence_axis": "rolleforstaelse_vs_statusblindhet",
+        "cooldown": 12,
+        "day_phase": "afternoon",
+        "from": "Rana, teamkoordinator",
+        "id": "naeringsliv_avdelingsleder_realism_standing_pulse_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_rollout_avdelingsleder_standing_pulse",
+        "mail_type": "micro",
+        "narrative_arc": "fra_uklar_kapasitet_til_sporbart_prioriterings_og_ressurshandoff",
+        "people_ref": "rana_teamkoordinator",
+        "person_id": "rana_teamkoordinator",
+        "phase": "advanced",
+        "place_id": "avdelingsgulv",
+        "planned_only": true,
+        "pressure": "global_status_vs_publikumsspesifikk_tillit",
+        "priority": 95,
+        "purpose": "Gjøre situert omdømme til en repeterbar sosial lesning med eksplisitte audience-id-er, uten å introdusere ny runtime eller en parallell omdømmemotor.",
+        "repeatable": false,
+        "role_scope": "avdelingsleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/micro/avdelingsleder_micro.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Rana reagerer på om prioriteringen er rettferdig og gjennomførbar.",
+          "Mads reagerer på hvordan avdelingen fremstår i lederkollegiet.",
+          "Øyvind reagerer på om årsak og tall kan spores; ingen av disse standing-aksene flytter formell myndighet."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis alle reaksjoner kollapser til status, mister spilleren grunnen til å forstå hvem som faktisk har tillit, hvem som bare liker resultatet, og hvem som har formell beslutningsmakt.",
+        "subject": "Fem minutter på gulvet viser hvorfor én omdømmescore ikke kan forklare avdelingen",
+        "summary": "Et kort gulvmøte viser at teamet verdsetter tydelige prioriteringer, mens Mads synes du gjør belastning for synlig og Øyvind først og fremst belønner sporbarhet. Samme lederhandling må derfor gi forskjellige standing-effekter hos forskjellige mottakere.",
+        "tags": [
+          "role_world_realism",
+          "controlled_rollout",
+          "naeringsliv",
+          "avdelingsleder",
+          "situated_reputation"
+        ],
+        "task_domain": "situert_standing_pulse",
+        "task_kind": "micro",
+        "thread_key": "naeringsliv_avdelingsleder_capacity_realism_001",
+        "work_context": {
+          "institution_id": "naeringsliv_operativ_enhet_001",
+          "object_ids": [
+            "naeringsliv_avdelingsleder_capacity_case_001"
+          ],
+          "priority": "high",
+          "rework_of_scene_id": "naeringsliv_avdelingsleder_realism_history_go_workplace_context_001"
+        }
+      },
+      "id": "naeringsliv_avdelingsleder_realism_standing_pulse_001",
+      "mail_type": "micro",
+      "role_scope": "avdelingsleder",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:rana_teamkoordinator",
+                  "delta": 3,
+                  "event_id": "avdelingsleder_standing_rana_pulse",
+                  "reason": "Rana ser at teamets gjennomførbarhet ikke blir redusert til et generelt omdømmetall.",
+                  "source_actor_id": "rana_teamkoordinator"
+                },
+                {
+                  "audience_id": "professional:oyvind_okonomicontroller",
+                  "delta": 3,
+                  "event_id": "avdelingsleder_standing_oyvind_pulse",
+                  "reason": "Øyvind ser at tallsporet beholdes selv når budskapet tilpasses mottakeren.",
+                  "source_actor_id": "oyvind_okonomicontroller"
+                },
+                {
+                  "audience_id": "manager:inger_overordnet_leder",
+                  "delta": 2,
+                  "event_id": "avdelingsleder_standing_inger_pulse",
+                  "reason": "Inger får et lederrelevant sammendrag som fortsatt peker til det samme underlaget.",
+                  "source_actor_id": "inger_overordnet_leder"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_standing_pulse_split",
+                  "flag": "standing_audiences_kept_separate",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Rana, Øyvind og Inger får hver sin lesbare grunn til å stole mer på arbeidet uten at noen får late som standing hos én målgruppe opphever kravene fra de andre eller skaper ny fullmakt.",
+            "id": "A",
+            "label": "Oppdater handoffet etter hvem som trenger hva, uten å endre fakta",
+            "reply": "Jeg beholder samme faktagrunnlag, men gjør team-, økonomi- og lederbehov eksplisitte som ulike mottakerperspektiver."
+          },
+          {
+            "effects": {
+              "score_delta": -2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:mads_sidestilt_avdelingsleder",
+                  "delta": 3,
+                  "event_id": "avdelingsleder_standing_mads_pulse",
+                  "reason": "Mads liker den mer politisk polerte lederformen. Denne vurderingen gjelder dette publikummets situerte tillit og gir ingen ny formell fullmakt.",
+                  "source_actor_id": "mads_sidestilt_avdelingsleder"
+                },
+                {
+                  "audience_id": "professional:rana_teamkoordinator",
+                  "delta": -4,
+                  "event_id": "avdelingsleder_standing_rana_pulse_loss",
+                  "reason": "Rana ser at teamets signaler forsvinner når de konkurrerer med lederstatus.",
+                  "source_actor_id": "rana_teamkoordinator"
+                },
+                {
+                  "audience_id": "professional:oyvind_okonomicontroller",
+                  "delta": -3,
+                  "event_id": "avdelingsleder_standing_oyvind_pulse_loss",
+                  "reason": "Øyvind får mindre etterprøvbar årsaksinformasjon i bytte mot et penere budskap.",
+                  "source_actor_id": "oyvind_okonomicontroller"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_standing_pulse_collapsed",
+                  "flag": "standing_optimized_for_powerful_audience_only",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Standing hos lederkolleger kan stige kortsiktig, men Rana og Øyvind får hver sin grunn til å miste tillit. Den situerte modellen gjør nettopp dette tapet synlig i stedet for å la én positiv statusscore skjule det.",
+            "id": "B",
+            "label": "Optimaliser bare for ledergruppens inntrykk",
+            "reply": "Jeg gjør statusen så sterk og kort som mulig oppover og lar de andre relasjonene håndteres senere."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Rana reagerer på om prioriteringen er rettferdig og gjennomførbar.",
+            "Mads reagerer på hvordan avdelingen fremstår i lederkollegiet.",
+            "Øyvind reagerer på om årsak og tall kan spores; ingen av disse standing-aksene flytter formell myndighet."
+          ],
+          "subject": "Fem minutter på gulvet viser hvorfor én omdømmescore ikke kan forklare avdelingen",
+          "summary": "Et kort gulvmøte viser at teamet verdsetter tydelige prioriteringer, mens Mads synes du gjør belastning for synlig og Øyvind først og fremst belønner sporbarhet. Samme lederhandling må derfor gi forskjellige standing-effekter hos forskjellige mottakere."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "naeringsliv_avdelingsleder_realism_standing_pulse_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "avdelingsgulv",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "naeringsliv_avdelingsleder_realism_standing_pulse_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/micro/avdelingsleder_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "naeringsliv_avdelingsleder_capacity_realism_001",
+        "version": 1,
+        "work_context": {
+          "institution_id": "naeringsliv_operativ_enhet_001",
+          "object_ids": [
+            "naeringsliv_avdelingsleder_capacity_case_001"
+          ],
+          "priority": "high",
+          "rework_of_scene_id": "naeringsliv_avdelingsleder_realism_history_go_workplace_context_001"
+        }
+      },
+      "source_hash": "f291c32ca4911a5ff20e58ee5aa5ba70bf58e89b61b93c7253c7c214abb81025",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/micro/avdelingsleder_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
         "choice_axis": "kompakt_vs_forklarende",
         "choices": [
           {
@@ -74217,6 +76477,294 @@
         "version": 1
       },
       "source_hash": "a6bc7039e121e2dc8dbbaefc586667e8cc4f43d652e25ca1310def9e3fa5a18a",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/people/avdelingsleder_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
+        "choice_axis": "presist_handoff_vs_personlig_lovnad",
+        "choices": [
+          {
+            "effect": 2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:rana_teamkoordinator",
+                  "delta": 4,
+                  "event_id": "avdelingsleder_standing_rana_handoff",
+                  "reason": "Rana ser at observasjonene hennes blir bevart uten å bli omskrevet til et lederløfte.",
+                  "source_actor_id": "rana_teamkoordinator"
+                },
+                {
+                  "audience_id": "manager:inger_overordnet_leder",
+                  "delta": 2,
+                  "event_id": "avdelingsleder_standing_inger_handoff",
+                  "reason": "Inger får et eksplisitt beslutningspunkt uten at avdelingslederen har tatt beslutningen på forskudd.",
+                  "source_actor_id": "inger_overordnet_leder"
+                }
+              ],
+              "stats": {
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_team_handoff_waiting",
+                  "note": "Teamets kapasitetsgrunnlag er dokumentert; varige ressursvalg venter på regionleder.",
+                  "op": "transition",
+                  "to_phase": "awaiting_resource_direction",
+                  "to_status": "waiting",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                },
+                {
+                  "event_id": "avdelingsleder_team_handoff_traced",
+                  "flag": "team_evidence_and_decision_owner_separated",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Rana får et handoff som beholder gulvets erfaring som egen evidens. Inger får et tydelig spørsmål i stedet for et ferdig vedtak, og teamets tillit øker uten at rollegrensen flyttes.",
+            "id": "A",
+            "label": "Send observasjoner, risikosignal og beslutningsbehov som tre separate deler",
+            "reply": "Jeg dokumenterer hva teamet ser, hva vi kan omprioritere nå, og hva som må avgjøres av Inger."
+          },
+          {
+            "effect": -2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:rana_teamkoordinator",
+                  "delta": -3,
+                  "event_id": "avdelingsleder_standing_rana_promise",
+                  "reason": "Rana må senere forklare et løfte som ikke var forankret i faktisk fullmakt.",
+                  "source_actor_id": "rana_teamkoordinator"
+                },
+                {
+                  "audience_id": "manager:inger_overordnet_leder",
+                  "delta": -4,
+                  "event_id": "avdelingsleder_standing_inger_promise",
+                  "reason": "Inger oppdager at hennes ressursmyndighet er blitt fremstilt som avdelingslederens personlige beslutning.",
+                  "source_actor_id": "inger_overordnet_leder"
+                }
+              ],
+              "stats": {
+                "risk": 4,
+                "status": 1,
+                "trust": -2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_team_handoff_promise",
+                  "note": "Caset venter fortsatt på regionleder selv om spilleren har lovet et bestemt utfall.",
+                  "op": "transition",
+                  "to_phase": "awaiting_resource_direction",
+                  "to_status": "waiting",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                },
+                {
+                  "event_id": "avdelingsleder_resource_promise",
+                  "flag": "resource_outcome_promised_without_authority",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Teamet kan oppleve kortsiktig trygghet, men lovnaden binder deg til et ressursutfall du ikke eier. Hvis Inger velger annerledes, blir høy lokal tillit omgjort til både forventningsgjeld og mandatlekkasje.",
+            "id": "B",
+            "label": "Si til teamet at du skal sørge for ekstra kapasitet",
+            "reply": "Jeg sier at dette ordner jeg, og at vi får inn den kapasiteten vi trenger."
+          }
+        ],
+        "competency": "relasjonell_ledelse",
+        "consequence_axis": "teamtillit_vs_forventningsgjeld",
+        "cooldown": 12,
+        "day_phase": "afternoon",
+        "from": "Rana, teamkoordinator",
+        "id": "naeringsliv_avdelingsleder_realism_team_handoff_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_rollout_avdelingsleder_team_handoff",
+        "mail_type": "people",
+        "narrative_arc": "fra_uklar_kapasitet_til_sporbart_prioriterings_og_ressurshandoff",
+        "people_ref": "rana_teamkoordinator",
+        "person_id": "rana_teamkoordinator",
+        "phase": "advanced",
+        "place_id": "teamrom_og_vaktplan",
+        "planned_only": true,
+        "pressure": "teamforventning_vs_formelt_mandat",
+        "priority": 98,
+        "purpose": "Gjøre ståstedet til teamet situert og operativt uten at høy teamtillit gir avdelingslederen ekstra budsjett-, HR- eller bemanningsmyndighet.",
+        "repeatable": false,
+        "role_scope": "avdelingsleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/people/avdelingsleder_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Rana har konkrete eksempler på hvor opplæring og fravær flytter arbeid mellom personer.",
+          "Teamet ønsker svar på om ekstra kapasitet faktisk kommer, men Inger har ikke besluttet dette.",
+          "Du kan prioritere arbeid innen mandat og eskalere kapasitetskonflikten, men ikke love nye stillinger eller et budsjettunntak."
+        ],
+        "stage": "stable",
+        "stakes": "Et uklart handoff gjør avdelingslederen til flaskehals og kan få teamets tillit til å bli tolket som fullmakt til å love løsninger organisasjonen ikke har godkjent.",
+        "subject": "Handoffet må skille det teamet vet fra det regionleder må beslutte",
+        "summary": "Rana samler vaktbytter, opplæringsbehov og gjentatt overtidsbelastning. Hun kan levere et konkret gulv-perspektiv, men trenger at du skiller observasjoner fra formelle ressursvalg og lar Inger eie beslutningen om varige rammeendringer.",
+        "tags": [
+          "role_world_realism",
+          "controlled_rollout",
+          "naeringsliv",
+          "avdelingsleder",
+          "situated_reputation"
+        ],
+        "task_domain": "team_handoff_og_bemanning",
+        "task_kind": "people",
+        "thread_key": "naeringsliv_avdelingsleder_capacity_realism_001",
+        "work_context": {
+          "handoff_to_actor_id": "rana_teamkoordinator",
+          "institution_id": "naeringsliv_operativ_enhet_001",
+          "object_ids": [
+            "naeringsliv_avdelingsleder_capacity_case_001"
+          ],
+          "priority": "high",
+          "rework_of_scene_id": "naeringsliv_avdelingsleder_realism_capacity_case_open_001",
+          "waiting_for_actor_id": "inger_overordnet_leder"
+        }
+      },
+      "id": "naeringsliv_avdelingsleder_realism_team_handoff_001",
+      "mail_type": "people",
+      "role_scope": "avdelingsleder",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:rana_teamkoordinator",
+                  "delta": 4,
+                  "event_id": "avdelingsleder_standing_rana_handoff",
+                  "reason": "Rana ser at observasjonene hennes blir bevart uten å bli omskrevet til et lederløfte.",
+                  "source_actor_id": "rana_teamkoordinator"
+                },
+                {
+                  "audience_id": "manager:inger_overordnet_leder",
+                  "delta": 2,
+                  "event_id": "avdelingsleder_standing_inger_handoff",
+                  "reason": "Inger får et eksplisitt beslutningspunkt uten at avdelingslederen har tatt beslutningen på forskudd.",
+                  "source_actor_id": "inger_overordnet_leder"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_team_handoff_waiting",
+                  "note": "Teamets kapasitetsgrunnlag er dokumentert; varige ressursvalg venter på regionleder.",
+                  "op": "transition",
+                  "to_phase": "awaiting_resource_direction",
+                  "to_status": "waiting",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                },
+                {
+                  "event_id": "avdelingsleder_team_handoff_traced",
+                  "flag": "team_evidence_and_decision_owner_separated",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Rana får et handoff som beholder gulvets erfaring som egen evidens. Inger får et tydelig spørsmål i stedet for et ferdig vedtak, og teamets tillit øker uten at rollegrensen flyttes.",
+            "id": "A",
+            "label": "Send observasjoner, risikosignal og beslutningsbehov som tre separate deler",
+            "reply": "Jeg dokumenterer hva teamet ser, hva vi kan omprioritere nå, og hva som må avgjøres av Inger."
+          },
+          {
+            "effects": {
+              "score_delta": -2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:rana_teamkoordinator",
+                  "delta": -3,
+                  "event_id": "avdelingsleder_standing_rana_promise",
+                  "reason": "Rana må senere forklare et løfte som ikke var forankret i faktisk fullmakt.",
+                  "source_actor_id": "rana_teamkoordinator"
+                },
+                {
+                  "audience_id": "manager:inger_overordnet_leder",
+                  "delta": -4,
+                  "event_id": "avdelingsleder_standing_inger_promise",
+                  "reason": "Inger oppdager at hennes ressursmyndighet er blitt fremstilt som avdelingslederens personlige beslutning.",
+                  "source_actor_id": "inger_overordnet_leder"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_team_handoff_promise",
+                  "note": "Caset venter fortsatt på regionleder selv om spilleren har lovet et bestemt utfall.",
+                  "op": "transition",
+                  "to_phase": "awaiting_resource_direction",
+                  "to_status": "waiting",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                },
+                {
+                  "event_id": "avdelingsleder_resource_promise",
+                  "flag": "resource_outcome_promised_without_authority",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Teamet kan oppleve kortsiktig trygghet, men lovnaden binder deg til et ressursutfall du ikke eier. Hvis Inger velger annerledes, blir høy lokal tillit omgjort til både forventningsgjeld og mandatlekkasje.",
+            "id": "B",
+            "label": "Si til teamet at du skal sørge for ekstra kapasitet",
+            "reply": "Jeg sier at dette ordner jeg, og at vi får inn den kapasiteten vi trenger."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Rana har konkrete eksempler på hvor opplæring og fravær flytter arbeid mellom personer.",
+            "Teamet ønsker svar på om ekstra kapasitet faktisk kommer, men Inger har ikke besluttet dette.",
+            "Du kan prioritere arbeid innen mandat og eskalere kapasitetskonflikten, men ikke love nye stillinger eller et budsjettunntak."
+          ],
+          "subject": "Handoffet må skille det teamet vet fra det regionleder må beslutte",
+          "summary": "Rana samler vaktbytter, opplæringsbehov og gjentatt overtidsbelastning. Hun kan levere et konkret gulv-perspektiv, men trenger at du skiller observasjoner fra formelle ressursvalg og lar Inger eie beslutningen om varige rammeendringer."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "naeringsliv_avdelingsleder_realism_team_handoff_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "teamrom_og_vaktplan",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "naeringsliv_avdelingsleder_realism_team_handoff_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/people/avdelingsleder_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "naeringsliv_avdelingsleder_capacity_realism_001",
+        "version": 1,
+        "work_context": {
+          "handoff_to_actor_id": "rana_teamkoordinator",
+          "institution_id": "naeringsliv_operativ_enhet_001",
+          "object_ids": [
+            "naeringsliv_avdelingsleder_capacity_case_001"
+          ],
+          "priority": "high",
+          "rework_of_scene_id": "naeringsliv_avdelingsleder_realism_capacity_case_open_001",
+          "waiting_for_actor_id": "inger_overordnet_leder"
+        }
+      },
+      "source_hash": "cdd7f635e1c62f5121e846974b213f3a9f2ff941080bd3f14d8d534a3495d9e5",
       "source_path": "data/Civication/mailFamilies/naeringsliv/people/avdelingsleder_people.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -76481,6 +79029,261 @@
         "version": 1
       },
       "source_hash": "0b3def0af3e2fdd47adec807131138f563a700cac9fc5a73808e20ea664d8d83",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/story/avdelingsleder_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
+        "choice_axis": "erkjenn_publikumssplitt_vs_optimer_global_status",
+        "choices": [
+          {
+            "effect": 2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:mads_sidestilt_avdelingsleder",
+                  "delta": 1,
+                  "event_id": "avdelingsleder_standing_mads_explicit",
+                  "reason": "Mads ser en mer omfattende rapport, men også en tydeligere ansvarsdeling som er mulig å diskutere.",
+                  "source_actor_id": "mads_sidestilt_avdelingsleder"
+                },
+                {
+                  "audience_id": "team:avdelingsleder_team",
+                  "delta": 3,
+                  "event_id": "avdelingsleder_standing_team_explicit",
+                  "reason": "Teamet ser at belastningsinformasjonen overlever inn i lederdialogen. Denne vurderingen gjelder dette publikummets situerte tillit og gir ingen ny formell fullmakt.",
+                  "source_actor_id": "rana_teamkoordinator"
+                }
+              ],
+              "stats": {
+                "quality": 2,
+                "risk": -1,
+                "trust": 2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_reputation_split_named",
+                  "flag": "audience_specific_standing_made_explicit",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Mads er fortsatt mer skeptisk til lengden, men han kan se hva som er ditt ansvar og hva som må opp. Rana får bekreftet at lokal tillit ikke blir ofret for å maksimere status i ledergruppen.",
+            "id": "A",
+            "label": "Behold den fulle statusen og gjør målgruppen for hvert signal tydelig",
+            "reply": "Jeg beholder kapasitetsdelen og merker hva som er teamobservasjon, ledervurdering og beslutningspunkt."
+          },
+          {
+            "effect": -2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:mads_sidestilt_avdelingsleder",
+                  "delta": 3,
+                  "event_id": "avdelingsleder_standing_mads_polished",
+                  "reason": "Mads liker den kortere lederformen og oppfatter deg som mer politisk smidig.",
+                  "source_actor_id": "mads_sidestilt_avdelingsleder"
+                },
+                {
+                  "audience_id": "team:avdelingsleder_team",
+                  "delta": -5,
+                  "event_id": "avdelingsleder_standing_team_polished_again",
+                  "reason": "Teamet ser at deres informasjon er filtrert ut når den truer lederstatusen.",
+                  "source_actor_id": "rana_teamkoordinator"
+                }
+              ],
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 2,
+                "trust": -2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_reputation_optimized_upward",
+                  "flag": "manager_facing_status_optimized_at_team_cost",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Mads opplever rapporten som mer ledervennlig, men teamets ståsted faller fordi informasjonen de tok risikoen ved å dele nå brukes til å produsere et penere bilde. Standing beveger seg ulikt, ikke globalt.",
+            "id": "B",
+            "label": "Kort ned alt som kan få avdelingen til å se svak ut",
+            "reply": "Jeg fjerner belastningsdetaljene og lar leveranse, tiltak og kontroll være hovedbildet."
+          }
+        ],
+        "competency": "status_og_tillitsforstaelse",
+        "consequence_axis": "lesbar_tillit_vs_statusmaskering",
+        "cooldown": 12,
+        "day_phase": "evening",
+        "from": "Mads, sidestilt avdelingsleder",
+        "id": "naeringsliv_avdelingsleder_realism_peer_reputation_split_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_rollout_avdelingsleder_peer_reputation",
+        "mail_type": "story",
+        "narrative_arc": "fra_uklar_kapasitet_til_sporbart_prioriterings_og_ressurshandoff",
+        "people_ref": "mads_sidestilt_avdelingsleder",
+        "person_id": "mads_sidestilt_avdelingsleder",
+        "phase": "advanced",
+        "place_id": "driftskontor",
+        "planned_only": true,
+        "pressure": "ledergruppestatus_vs_teamlegitimitet",
+        "priority": 97,
+        "purpose": "Materialisere omdømme som audience-spesifikk standing: sidestilt leder, team og regionleder kan vurdere samme handling ulikt uten at én global score avgjør sosial virkelighet.",
+        "repeatable": false,
+        "role_scope": "avdelingsleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/story/avdelingsleder_story.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Mads mener ledergruppen trenger ro og korthet for å handle.",
+          "Rana mener troverdig ledelse krever at skjult belastning står i samme bilde som leveransen.",
+          "Ingen av disse reaksjonene endrer hvem som kan godkjenne budsjett, bemanning eller formelle personalsaker."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis spilleren jager én samlet statusverdi, blir det rasjonelt å polere budskapet for den mektigste mottakeren og usynliggjøre kostnaden hos dem som faktisk bærer arbeidet.",
+        "subject": "Mads liker den rolige rapporten – Rana liker at belastningen faktisk står der",
+        "summary": "Mens caset venter på ressursretning, peker Mads på at ledergruppen belønner korte, rolige statusbilder. Samtidig har Rana gitt deg mer tillit fordi belastningen ikke ble filtrert bort. Rollen må tåle at standing hos to publikum beveger seg forskjellig.",
+        "tags": [
+          "role_world_realism",
+          "controlled_rollout",
+          "naeringsliv",
+          "avdelingsleder",
+          "situated_reputation"
+        ],
+        "task_domain": "situert_omdomme_og_lederkultur",
+        "task_kind": "story",
+        "thread_key": "naeringsliv_avdelingsleder_capacity_realism_001",
+        "work_context": {
+          "institution_id": "naeringsliv_operativ_enhet_001",
+          "object_ids": [
+            "naeringsliv_avdelingsleder_capacity_case_001"
+          ],
+          "priority": "high",
+          "rework_of_scene_id": "naeringsliv_avdelingsleder_realism_team_handoff_001",
+          "waiting_for_actor_id": "inger_overordnet_leder"
+        }
+      },
+      "id": "naeringsliv_avdelingsleder_realism_peer_reputation_split_001",
+      "mail_type": "story",
+      "role_scope": "avdelingsleder",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:mads_sidestilt_avdelingsleder",
+                  "delta": 1,
+                  "event_id": "avdelingsleder_standing_mads_explicit",
+                  "reason": "Mads ser en mer omfattende rapport, men også en tydeligere ansvarsdeling som er mulig å diskutere.",
+                  "source_actor_id": "mads_sidestilt_avdelingsleder"
+                },
+                {
+                  "audience_id": "team:avdelingsleder_team",
+                  "delta": 3,
+                  "event_id": "avdelingsleder_standing_team_explicit",
+                  "reason": "Teamet ser at belastningsinformasjonen overlever inn i lederdialogen. Denne vurderingen gjelder dette publikummets situerte tillit og gir ingen ny formell fullmakt.",
+                  "source_actor_id": "rana_teamkoordinator"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_reputation_split_named",
+                  "flag": "audience_specific_standing_made_explicit",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Mads er fortsatt mer skeptisk til lengden, men han kan se hva som er ditt ansvar og hva som må opp. Rana får bekreftet at lokal tillit ikke blir ofret for å maksimere status i ledergruppen.",
+            "id": "A",
+            "label": "Behold den fulle statusen og gjør målgruppen for hvert signal tydelig",
+            "reply": "Jeg beholder kapasitetsdelen og merker hva som er teamobservasjon, ledervurdering og beslutningspunkt."
+          },
+          {
+            "effects": {
+              "score_delta": -2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:mads_sidestilt_avdelingsleder",
+                  "delta": 3,
+                  "event_id": "avdelingsleder_standing_mads_polished",
+                  "reason": "Mads liker den kortere lederformen og oppfatter deg som mer politisk smidig.",
+                  "source_actor_id": "mads_sidestilt_avdelingsleder"
+                },
+                {
+                  "audience_id": "team:avdelingsleder_team",
+                  "delta": -5,
+                  "event_id": "avdelingsleder_standing_team_polished_again",
+                  "reason": "Teamet ser at deres informasjon er filtrert ut når den truer lederstatusen.",
+                  "source_actor_id": "rana_teamkoordinator"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "avdelingsleder_reputation_optimized_upward",
+                  "flag": "manager_facing_status_optimized_at_team_cost",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001"
+                }
+              ]
+            },
+            "feedback": "Mads opplever rapporten som mer ledervennlig, men teamets ståsted faller fordi informasjonen de tok risikoen ved å dele nå brukes til å produsere et penere bilde. Standing beveger seg ulikt, ikke globalt.",
+            "id": "B",
+            "label": "Kort ned alt som kan få avdelingen til å se svak ut",
+            "reply": "Jeg fjerner belastningsdetaljene og lar leveranse, tiltak og kontroll være hovedbildet."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Mads mener ledergruppen trenger ro og korthet for å handle.",
+            "Rana mener troverdig ledelse krever at skjult belastning står i samme bilde som leveransen.",
+            "Ingen av disse reaksjonene endrer hvem som kan godkjenne budsjett, bemanning eller formelle personalsaker."
+          ],
+          "subject": "Mads liker den rolige rapporten – Rana liker at belastningen faktisk står der",
+          "summary": "Mens caset venter på ressursretning, peker Mads på at ledergruppen belønner korte, rolige statusbilder. Samtidig har Rana gitt deg mer tillit fordi belastningen ikke ble filtrert bort. Rollen må tåle at standing hos to publikum beveger seg forskjellig."
+        },
+        "day_phase": "evening",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "naeringsliv_avdelingsleder_realism_peer_reputation_split_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "driftskontor",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "naeringsliv_avdelingsleder_realism_peer_reputation_split_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/story/avdelingsleder_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "naeringsliv_avdelingsleder_capacity_realism_001",
+        "version": 1,
+        "work_context": {
+          "institution_id": "naeringsliv_operativ_enhet_001",
+          "object_ids": [
+            "naeringsliv_avdelingsleder_capacity_case_001"
+          ],
+          "priority": "high",
+          "rework_of_scene_id": "naeringsliv_avdelingsleder_realism_team_handoff_001",
+          "waiting_for_actor_id": "inger_overordnet_leder"
+        }
+      },
+      "source_hash": "35e2595496ecd27e79de87b86d237a9d68f7182c2a1df753d0f297a046032653",
       "source_path": "data/Civication/mailFamilies/naeringsliv/story/avdelingsleder_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -186407,7 +189210,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "2fee78fc99605011b2535ad1a5f4fb92971a3f52b2bd349b85e693b75ff9a385",
+  "registry_hash": "f3af921757b019184ac371b825399d678631149aeb5fe5a67ab1a21f66ba4df6",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -186889,6 +189692,7 @@
       "avdelingsleder_planlegging_001",
       "avdelingsleder_fraksjonsvalg_001",
       "avdelingsleder_mastery_001",
+      "naeringsliv_avdelingsleder_realism_capacity_case_open_001",
       "personal_avdelingsleder_week1_role_sounds_bigger",
       "personal_avdelingsleder_week1_family_thinks_power",
       "personal_avdelingsleder_week1_prioritizes_home",
@@ -186901,15 +189705,23 @@
       "personal_avdelingsleder_week2_weekend_without_department",
       "avdelingsleder_people_001",
       "avdelingsleder_people_002",
+      "naeringsliv_avdelingsleder_realism_team_handoff_001",
       "avdelingsleder_identitet_001",
+      "naeringsliv_avdelingsleder_realism_peer_reputation_split_001",
       "avdelingsleder_krysspress_001",
+      "naeringsliv_avdelingsleder_realism_reporting_conflict_001",
       "avdelingsleder_driftskrise_001",
+      "naeringsliv_avdelingsleder_realism_capacity_incident_001",
       "avdelingsleder_micro_001",
       "avdelingsleder_micro_002",
       "avdelingsleder_micro_003",
       "avdelingsleder_micro_004",
       "avdelingsleder_micro_005",
-      "avdelingsleder_micro_006"
+      "avdelingsleder_micro_006",
+      "naeringsliv_avdelingsleder_realism_standing_pulse_001",
+      "naeringsliv_avdelingsleder_realism_resource_handoff_followup_001",
+      "naeringsliv_avdelingsleder_realism_history_go_workplace_context_001",
+      "naeringsliv_avdelingsleder_realism_capacity_case_close_001"
     ],
     "naeringsliv/controller": [
       "controller_intro_v2_001",
@@ -187691,11 +190503,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 347,
+    "compiled_source_file_count": 350,
     "ignored_source_file_count": 1,
-    "input_file_count": 348,
+    "input_file_count": 351,
     "role_count": 44,
-    "scene_count": 1166,
+    "scene_count": 1175,
     "shadowed_duplicate_count": 0
   },
   "version": 1

@@ -4,8 +4,197 @@
   "role_scope": "avdelingsleder",
   "mail_type": "conflict",
   "families": [
-    {"id":"avdelingsleder_krysspress","mails":[
-      {"id":"avdelingsleder_krysspress_001","mail_type":"conflict","mail_family":"avdelingsleder_krysspress","role_scope":"avdelingsleder","subject":"Du får motstridende krav","summary":"Ledelsen vil tempo, teamet trenger ro.","situation":["Du kan ikke maksimere begge deler samtidig.","Noen må bære kostnaden av valget ditt."],"task_domain":"conflict_mediation","competency":"konflikthandtering","pressure":"leveranse_vs_baereevne","choice_axis":"tempo_vs_trygghet","consequence_axis":"resultat_vs_tillit","narrative_arc":"krysspress","choices":[{"id":"A","label":"Prioriter det som er gjennomførbart i praksis.","effect":1,"tags":["pragmatic"],"feedback":"Du beskytter bæreevne, men kan få spørsmål om tempo."},{"id":"B","label":"Prioriter det du blir målt hardest på.","effect":0,"tags":["kpi"],"feedback":"Du redder måltall, men skyver belastning nedover."}]}
-    ]}
+    {
+      "id": "avdelingsleder_krysspress",
+      "mails": [
+        {
+          "id": "avdelingsleder_krysspress_001",
+          "mail_type": "conflict",
+          "mail_family": "avdelingsleder_krysspress",
+          "role_scope": "avdelingsleder",
+          "subject": "Du får motstridende krav",
+          "summary": "Ledelsen vil tempo, teamet trenger ro.",
+          "situation": [
+            "Du kan ikke maksimere begge deler samtidig.",
+            "Noen må bære kostnaden av valget ditt."
+          ],
+          "task_domain": "conflict_mediation",
+          "competency": "konflikthandtering",
+          "pressure": "leveranse_vs_baereevne",
+          "choice_axis": "tempo_vs_trygghet",
+          "consequence_axis": "resultat_vs_tillit",
+          "narrative_arc": "krysspress",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Prioriter det som er gjennomførbart i praksis.",
+              "effect": 1,
+              "tags": [
+                "pragmatic"
+              ],
+              "feedback": "Du beskytter bæreevne, men kan få spørsmål om tempo."
+            },
+            {
+              "id": "B",
+              "label": "Prioriter det du blir målt hardest på.",
+              "effect": 0,
+              "tags": [
+                "kpi"
+              ],
+              "feedback": "Du redder måltall, men skyver belastning nedover."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_avdelingsleder_reporting_conflict",
+      "purpose": "Teste lojalitet oppover og nedover gjennom situert standing, samtidig som anbefaling forblir forskjellig fra regionlederens godkjenning av ressursendring.",
+      "learning_focus": [
+        "redelig_komprimering",
+        "lederklarhet_vs_sannhet",
+        "situated_reputation"
+      ],
+      "mails": [
+        {
+          "id": "naeringsliv_avdelingsleder_realism_reporting_conflict_001",
+          "mail_type": "conflict",
+          "mail_family": "role_world_rollout_avdelingsleder_reporting_conflict",
+          "role_scope": "avdelingsleder",
+          "phase": "advanced",
+          "day_phase": "afternoon",
+          "priority": 94,
+          "cooldown": 12,
+          "repeatable": false,
+          "stage": "stable",
+          "planned_only": true,
+          "thread_key": "naeringsliv_avdelingsleder_capacity_realism_001",
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "naeringsliv",
+            "avdelingsleder",
+            "situated_reputation"
+          ],
+          "from": "Inger, regionleder",
+          "people_ref": "inger_overordnet_leder",
+          "person_id": "inger_overordnet_leder",
+          "place_id": "ledermoterom",
+          "subject": "Kan du gjøre rapporten tydeligere uten å gjøre usikkerheten usynlig?",
+          "summary": "Inger trenger tre linjer til ledermøtet. Mads foreslår at du omtaler kapasiteten som stabil så lenge leveransen holder, mens Rana og Øyvind mener henholdsvis belastning og kostnadsårsak må være synlige. Du må komprimere uten å forfalske.",
+          "purpose": "Teste lojalitet oppover og nedover gjennom situert standing, samtidig som anbefaling forblir forskjellig fra regionlederens godkjenning av ressursendring.",
+          "stakes": "En avdelingsleder som blir belønnet for ro kan lære å bruke omdømme som grunn til å skjule usikkerhet. Det gjør ledelsen mindre informert og teamets senere reaksjon mer eksplosiv.",
+          "situation": [
+            "Inger trenger en kort beslutningslinje før ledermøtet.",
+            "Øyvind kan dokumentere kostnadsbildet, men ikke bestemme bemanningsrammen.",
+            "Du kan anbefale prioritering og omfordele arbeid innen fullmakt, men varig ressursendring krever godkjenning."
+          ],
+          "task_domain": "rapportering_og_styring",
+          "task_kind": "conflict",
+          "competency": "redelig_komprimering",
+          "pressure": "lederklarhet_vs_sannhet",
+          "choice_axis": "kort_og_sporbart_vs_kort_og_polert",
+          "consequence_axis": "styringstillit_vs_skjult_risiko",
+          "narrative_arc": "fra_uklar_kapasitet_til_sporbart_prioriterings_og_ressurshandoff",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "naeringsliv_avdelingsleder_capacity_case_001"
+            ],
+            "institution_id": "naeringsliv_operativ_enhet_001",
+            "rework_of_scene_id": "naeringsliv_avdelingsleder_realism_standing_pulse_001",
+            "priority": "high"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skriv tre linjer: leveranse, kapasitetsrisiko og beslutningsbehov",
+              "reply": "Jeg komprimerer statusen, men beholder ett eksplisitt risikosignal og hva Inger må avgjøre.",
+              "effect": 2,
+              "feedback": "Inger får korthet uten at du tar beslutningen for henne. Øyvind kan fortsatt spore årsaken, og teamets standing påvirkes av at deres belastning er representert selv i den korte lederversjonen.",
+              "effects": {
+                "stats": {
+                  "quality": 3,
+                  "trust": 2,
+                  "risk": -2
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "avdelingsleder_report_reworked",
+                    "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "decision_ready_report",
+                    "note": "Rapporten er komprimert til beslutningsklar status med kapasitetsrisiko og eier synlig."
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "avdelingsleder_standing_inger_report",
+                    "audience_id": "manager:inger_overordnet_leder",
+                    "delta": 4,
+                    "reason": "Inger får en kort rapport som fortsatt viser hva hun faktisk må beslutte.",
+                    "source_actor_id": "inger_overordnet_leder"
+                  },
+                  {
+                    "event_id": "avdelingsleder_standing_team_report",
+                    "audience_id": "team:avdelingsleder_team",
+                    "delta": 2,
+                    "reason": "Teamet ser at belastningen ikke forsvinner når statusen sendes oppover.",
+                    "source_actor_id": "rana_teamkoordinator"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Kall kapasiteten stabil fordi leveransen fortsatt ligger nær mål",
+              "reply": "Jeg skriver at kapasiteten er stabil og at vi følger kostnader og fravær tett.",
+              "effect": -2,
+              "feedback": "Mads kan oppleve formuleringen som profesjonelt rolig, men Inger får et svakere beslutningsgrunnlag. Teamet lærer at en positiv leveranse er nok til å gjøre deres signaler mindre virkelige i lederrommet.",
+              "effects": {
+                "stats": {
+                  "status": 2,
+                  "quality": -3,
+                  "trust": -2,
+                  "risk": 4
+                },
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "avdelingsleder_report_capacity_hidden",
+                    "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001",
+                    "flag": "capacity_risk_removed_for_status"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "avdelingsleder_standing_mads_report",
+                    "audience_id": "professional:mads_sidestilt_avdelingsleder",
+                    "delta": 3,
+                    "reason": "Mads liker at statusen ikke skaper ekstra uro i ledergruppen. Denne vurderingen gjelder dette publikummets situerte tillit og gir ingen ny formell fullmakt.",
+                    "source_actor_id": "mads_sidestilt_avdelingsleder"
+                  },
+                  {
+                    "event_id": "avdelingsleder_standing_inger_report_loss",
+                    "audience_id": "manager:inger_overordnet_leder",
+                    "delta": -4,
+                    "reason": "Inger får ikke vite at dagens leveranse krever ekstra kapasitetskostnad.",
+                    "source_actor_id": "inger_overordnet_leder"
+                  },
+                  {
+                    "event_id": "avdelingsleder_standing_team_report_loss",
+                    "audience_id": "team:avdelingsleder_team",
+                    "delta": -4,
+                    "reason": "Teamets belastning blir igjen usynlig i den formelle statusen. Denne vurderingen gjelder dette publikummets situerte tillit og gir ingen ny formell fullmakt.",
+                    "source_actor_id": "rana_teamkoordinator"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
   ]
 }

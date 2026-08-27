@@ -1,0 +1,152 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "avdelingsleder",
+  "mail_type": "followup",
+  "families": [
+    {
+      "id": "role_world_rollout_avdelingsleder_resource_followup",
+      "purpose": "Gjøre oppfølgingen til et sporbar handoff mellom avdelingsleder, regionleder og økonomi, med egne standing-effekter hos hver mottaker og uendret myndighetsgrense.",
+      "learning_focus": [
+        "handoff_og_sporbarhet",
+        "fremdrift_vs_beslutningseierskap",
+        "situated_reputation"
+      ],
+      "mails": [
+        {
+          "id": "naeringsliv_avdelingsleder_realism_resource_handoff_followup_001",
+          "mail_type": "followup",
+          "mail_family": "role_world_rollout_avdelingsleder_resource_followup",
+          "role_scope": "avdelingsleder",
+          "phase": "advanced",
+          "day_phase": "afternoon",
+          "priority": 92,
+          "cooldown": 12,
+          "repeatable": false,
+          "stage": "stable",
+          "planned_only": true,
+          "thread_key": "naeringsliv_avdelingsleder_capacity_realism_001",
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "naeringsliv",
+            "avdelingsleder",
+            "situated_reputation"
+          ],
+          "from": "Inger, regionleder",
+          "people_ref": "inger_overordnet_leder",
+          "person_id": "inger_overordnet_leder",
+          "place_id": "ledermoterom",
+          "subject": "Følg ressursbehovet helt fram til eier – uten å late som handoffet allerede er et ja",
+          "summary": "Inger ber om et endelig ressursnotat som Øyvind kan kostnadsfeste. Caset må vise hva som er gjort lokalt, hva som fortsatt er midlertidig, hvilke risikoer teamet bærer og hvilket valg regionleder/økonomi faktisk må godkjenne.",
+          "purpose": "Gjøre oppfølgingen til et sporbar handoff mellom avdelingsleder, regionleder og økonomi, med egne standing-effekter hos hver mottaker og uendret myndighetsgrense.",
+          "stakes": "Et ressursnotat som omtaler anbefalingen som besluttet kan gi kortsiktig fremdrift, men gjør både økonomi og regionleder til ettergodkjennere og setter teamets forventninger på feil grunnlag.",
+          "situation": [
+            "Dagens omprioritering var innen fullmakt og er dokumentert.",
+            "Øyvind kan kostnadsfeste alternativer, men kan ikke alene endre bemannings- eller personalrammen.",
+            "Inger må godkjenne varig ressursretning etter at kostnad, risiko og alternativ er synlig."
+          ],
+          "task_domain": "ressurshandoff_og_oppfolging",
+          "task_kind": "followup",
+          "competency": "handoff_og_sporbarhet",
+          "pressure": "fremdrift_vs_beslutningseierskap",
+          "choice_axis": "anbefaling_med_eier_vs_presentert_som_vedtak",
+          "consequence_axis": "institusjonell_tillit_vs_ettergodkjenning",
+          "narrative_arc": "fra_uklar_kapasitet_til_sporbart_prioriterings_og_ressurshandoff",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "naeringsliv_avdelingsleder_capacity_case_001"
+            ],
+            "institution_id": "naeringsliv_operativ_enhet_001",
+            "handoff_to_actor_id": "oyvind_okonomicontroller",
+            "rework_of_scene_id": "naeringsliv_avdelingsleder_realism_capacity_incident_001",
+            "priority": "high"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Send alternativene som anbefaling med eksplisitt eier og restspørsmål",
+              "reply": "Jeg sender Øyvind kostnadsbehovet og Inger anbefalingen, og markerer at varig endring fortsatt krever godkjenning.",
+              "effect": 2,
+              "feedback": "Øyvind får et analyserbart bestillingsgrunnlag og Inger beholder beslutningspunktet. Teamets forventning kan holdes realistisk fordi du skiller det som er anbefalt fra det som faktisk er vedtatt.",
+              "effects": {
+                "stats": {
+                  "quality": 3,
+                  "trust": 3,
+                  "risk": -2
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "avdelingsleder_resource_handoff",
+                    "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001",
+                    "to_status": "waiting",
+                    "to_phase": "awaiting_resource_approval",
+                    "note": "Kostnadsalternativer er overlevert; varig ressursretning venter eksplisitt på godkjenning."
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "avdelingsleder_standing_oyvind_followup",
+                    "audience_id": "professional:oyvind_okonomicontroller",
+                    "delta": 4,
+                    "reason": "Øyvind får et tydelig kostnadsoppdrag uten å bli gjort til ettergodkjenner av en allerede lovet løsning.",
+                    "source_actor_id": "oyvind_okonomicontroller"
+                  },
+                  {
+                    "event_id": "avdelingsleder_standing_inger_followup",
+                    "audience_id": "manager:inger_overordnet_leder",
+                    "delta": 4,
+                    "reason": "Inger beholder sitt beslutningspunkt og får sammenlignbare alternativer.",
+                    "source_actor_id": "inger_overordnet_leder"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Skriv at ekstra kapasitet er besluttet og be Øyvind finne finansieringen",
+              "reply": "Jeg presenterer bemanningsløsningen som valgt og ber økonomi få den til å gå opp.",
+              "effect": -2,
+              "feedback": "Du bruker fremdriftsspråk til å gjøre anbefalingen om til et vedtak. Øyvind og Inger mister hver sin type tillit, mens teamet risikerer å høre et løfte som fortsatt ikke er formelt sant.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -3,
+                  "risk": 4
+                },
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "avdelingsleder_handoff_afterapproval",
+                    "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001",
+                    "flag": "recommendation_presented_as_approved_resource_change"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "avdelingsleder_standing_oyvind_afterapproval",
+                    "audience_id": "professional:oyvind_okonomicontroller",
+                    "delta": -4,
+                    "reason": "Øyvind blir bedt om å finansiere et utfall som ikke er godkjent. Denne vurderingen gjelder dette publikummets situerte tillit og gir ingen ny formell fullmakt.",
+                    "source_actor_id": "oyvind_okonomicontroller"
+                  },
+                  {
+                    "event_id": "avdelingsleder_standing_inger_afterapproval",
+                    "audience_id": "manager:inger_overordnet_leder",
+                    "delta": -5,
+                    "reason": "Ingers beslutningsmyndighet er redusert til ettergodkjenning. Denne vurderingen gjelder dette publikummets situerte tillit og gir ingen ny formell fullmakt.",
+                    "source_actor_id": "inger_overordnet_leder"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

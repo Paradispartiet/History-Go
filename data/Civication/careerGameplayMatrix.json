@@ -8592,39 +8592,39 @@
         "mail_families": {
           "job": {
             "path": "data/Civication/mailFamilies/naeringsliv/job/avdelingsleder_job.json",
-            "count": 45
+            "count": 46
           },
           "people": {
             "path": "data/Civication/mailFamilies/naeringsliv/people/avdelingsleder_people.json",
-            "count": 44
+            "count": 45
           },
           "conflict": {
             "path": "data/Civication/mailFamilies/naeringsliv/conflict/avdelingsleder_conflict.json",
-            "count": 1
+            "count": 2
           },
           "story": {
             "path": "data/Civication/mailFamilies/naeringsliv/story/avdelingsleder_story.json",
-            "count": 1
+            "count": 2
           },
           "event": {
             "path": "data/Civication/mailFamilies/naeringsliv/event/avdelingsleder_event.json",
-            "count": 1
+            "count": 2
           },
           "micro": {
             "path": "data/Civication/mailFamilies/naeringsliv/micro/avdelingsleder_micro.json",
-            "count": 6
+            "count": 7
           },
           "followup": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/naeringsliv/followup/avdelingsleder_followup.json",
+            "count": 1
           },
           "knowledge": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/naeringsliv/knowledge/avdelingsleder_knowledge.json",
+            "count": 1
           },
           "consequence": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/naeringsliv/consequence/avdelingsleder_consequence.json",
+            "count": 1
           }
         },
         "role_tests": [
@@ -8633,6 +8633,7 @@
           "tests/civication-avdelingsleder-second-week-praksisfortellinger.test.js",
           "tests/civication-avdelingsleder-two-week-flow.test.js",
           "tests/civication-history-life-career-split.test.js",
+          "tests/civication-naeringsliv-avdelingsleder-role-world-rollout.test.js",
           "tests/civication-naeringsliv-life-career-split.test.js",
           "tests/civication-religion-life-career-split.test.js",
           "tests/civication-renholder-role-package.test.js"
@@ -8659,6 +8660,7 @@
               "tests/civication-avdelingsleder-second-week-praksisfortellinger.test.js",
               "tests/civication-avdelingsleder-two-week-flow.test.js",
               "tests/civication-history-life-career-split.test.js",
+              "tests/civication-naeringsliv-avdelingsleder-role-world-rollout.test.js",
               "tests/civication-naeringsliv-life-career-split.test.js",
               "tests/civication-religion-life-career-split.test.js",
               "tests/civication-renholder-role-package.test.js"
@@ -8677,6 +8679,7 @@
               "tests/civication-avdelingsleder-second-week-praksisfortellinger.test.js",
               "tests/civication-avdelingsleder-two-week-flow.test.js",
               "tests/civication-history-life-career-split.test.js",
+              "tests/civication-naeringsliv-avdelingsleder-role-world-rollout.test.js",
               "tests/civication-naeringsliv-life-career-split.test.js",
               "tests/civication-religion-life-career-split.test.js",
               "tests/civication-renholder-role-package.test.js"
@@ -8716,8 +8719,11 @@
             "level": "complete",
             "evidence": [
               "data/Civication/mailFamilies/naeringsliv/conflict/avdelingsleder_conflict.json",
+              "data/Civication/mailFamilies/naeringsliv/consequence/avdelingsleder_consequence.json",
               "data/Civication/mailFamilies/naeringsliv/event/avdelingsleder_event.json",
+              "data/Civication/mailFamilies/naeringsliv/followup/avdelingsleder_followup.json",
               "data/Civication/mailFamilies/naeringsliv/job/avdelingsleder_job.json",
+              "data/Civication/mailFamilies/naeringsliv/knowledge/avdelingsleder_knowledge.json",
               "data/Civication/mailFamilies/naeringsliv/micro/avdelingsleder_micro.json",
               "data/Civication/mailFamilies/naeringsliv/people/avdelingsleder_people.json",
               "data/Civication/mailFamilies/naeringsliv/story/avdelingsleder_story.json",
@@ -8726,12 +8732,13 @@
               "tests/civication-avdelingsleder-second-week-praksisfortellinger.test.js",
               "tests/civication-avdelingsleder-two-week-flow.test.js"
             ],
-            "note": "6/9 standard mail types plus tested plan/practice coverage."
+            "note": "9/9 standard mail types plus tested plan/practice coverage."
           },
           "knowledge": {
             "level": "complete",
             "evidence": [
               "data/Civication/jobKnowledgeRequirements.json",
+              "data/Civication/mailFamilies/naeringsliv/knowledge/avdelingsleder_knowledge.json",
               "data/Civication/roleModels/naeringsliv/avdelingsleder.json",
               "data/Civication/workGrammars/naeringsliv/naeringsliv_operativ_ledelse.json",
               "data/Civication/workGrammars/naeringsliv/naeringsliv_virksomhetsledelse.json"
@@ -8760,11 +8767,14 @@
           "consequences": {
             "level": "complete",
             "evidence": [
+              "data/Civication/mailFamilies/naeringsliv/consequence/avdelingsleder_consequence.json",
+              "data/Civication/mailFamilies/naeringsliv/followup/avdelingsleder_followup.json",
               "tests/civication-avdelingsleder-first-week-praksisfortellinger.test.js",
               "tests/civication-avdelingsleder-playability.test.js",
               "tests/civication-avdelingsleder-second-week-praksisfortellinger.test.js",
               "tests/civication-avdelingsleder-two-week-flow.test.js",
               "tests/civication-history-life-career-split.test.js",
+              "tests/civication-naeringsliv-avdelingsleder-role-world-rollout.test.js",
               "tests/civication-naeringsliv-life-career-split.test.js",
               "tests/civication-religion-life-career-split.test.js",
               "tests/civication-renholder-role-package.test.js"
@@ -8781,6 +8791,7 @@
               "tests/civication-avdelingsleder-two-week-flow.test.js",
               "tests/civication-career-outcomes.test.js",
               "tests/civication-history-life-career-split.test.js",
+              "tests/civication-naeringsliv-avdelingsleder-role-world-rollout.test.js",
               "tests/civication-naeringsliv-life-career-split.test.js",
               "tests/civication-religion-life-career-split.test.js",
               "tests/civication-renholder-role-package.test.js"
