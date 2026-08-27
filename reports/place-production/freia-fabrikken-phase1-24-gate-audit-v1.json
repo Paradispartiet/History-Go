@@ -1,0 +1,48 @@
+{
+  "schema": "history_go_phase1_24_quality_gate_v1",
+  "place_id": "freia_fabrikken",
+  "verified_at": "2026-08-27",
+  "null_measurement": {
+    "existing_place": false,
+    "duplicate_brand_reused": "freia",
+    "held_back_person_materialized": "johan_thrane_holst_freia",
+    "official_blue_sign_role": "supplementary_source_not_import_reason",
+    "war_history_in_scope": false
+  },
+  "source_conflicts": [
+    {
+      "claim": "Johan Throne Holst kjøpte Freia i 1882.",
+      "status": "rejected",
+      "reason": "Fabrikken ble grunnlagt i 1889; Oslo byleksikon og SNL dokumenterer kjøpet i 1892. Riksantikvarens 1882 er en åpenbar feil og er ikke publisert."
+    }
+  ],
+  "quality_score": {
+    "correctness_and_evidence": {
+      "score": 5,
+      "note": "Sted, person, brand, bilder, koordinat og 21 quizspørsmål har inspiserbare kilder; kildekonflikten 1882/1892 er eksplisitt løst."
+    },
+    "coverage_and_completion": {
+      "score": 5,
+      "note": "Identitet, koordinat, fire bildeklare samlinger, Badge/Fagverk, quiz, popup, leksikon, språk, story, lesespor, People og Brand er materialisert."
+    },
+    "editorial_quality": {
+      "score": 5,
+      "note": "Fabrikk, arbeid og organisasjon er hovedsaken; park, kunst og merkevare utdyper stedet uten å bli lokalhistorisk katalogfyll."
+    },
+    "technical_integrity": {
+      "score": 5,
+      "note": "Én deterministisk builder, 3x7-quiz, v4.2-description packet, næringslivspakke, People-claims og fokuserte tester låser leveransen."
+    },
+    "safety_and_responsibility": {
+      "score": 5,
+      "note": "Privat fabrikktilgang respekteres, generert bilde er merket, logoen er autentisk og ingen endorsement hevdes. Alt krigsrelatert stoff er utenfor scope."
+    },
+    "maintainability_and_auditability": {
+      "score": 5,
+      "note": "Canonical manifester, kilde-ID-er, transformasjonsmetadata og permanente tester gjør pakken etterprøvbar og reproduserbar."
+    },
+    "total": 30,
+    "critical_findings": 0,
+    "unresolved_blockers": 0
+  }
+}
