@@ -6,38 +6,38 @@ Rapporten måler om runtime kan presentere tilgjengelige canonical People-felt. 
 
 People-produksjon, claims og ferdigstatus eies av `docs/PEOPLE_PROFILE_CANONICAL.md`. Profiler uten v1-claims er `legacy_unreviewed`, selv når presentasjonsstatusen er `complete`.
 
-Source fingerprint: `73ee8ce1bc523c9efcc38eec27bb4ecfe8505479bd8ee511dd2abc82b30924d5`
+Source fingerprint: `65f7f424961c810fa6c4bccfb0308832db5c1d51d91ce86f9baefce2815d7f41`
 
 ## Sammendrag
 
 | Måling | Antall |
 |---|---:|
-| Personer | 1417 |
-| Presentasjon complete | 59 |
+| Personer | 1418 |
+| Presentasjon complete | 60 |
 | Presentasjon strong | 406 |
 | Presentasjon partial | 936 |
 | Presentasjon sparse | 16 |
-| People Profile v1 ready | 65 |
+| People Profile v1 ready | 66 |
 | Legacy uten v1-claims | 1352 |
 | Ødelagte bildereferanser | 287 |
 | Eksplisitt initialfallback | 1003 |
 | Implisitt initialfallback | 27 |
-| Gjennomsnittspoeng | 65.2 |
+| Gjennomsnittspoeng | 65.3 |
 
 ## Feltdekning
 
 | Presentasjonsdel | Dekket | Andel |
 |---|---:|---:|
-| identity | 116 | 8.2 % |
-| popupDesc | 1395 | 98.4 % |
-| lifeData | 56 | 4 % |
-| contributionsDeclared | 56 | 4 % |
-| educationDeclared | 56 | 4 % |
-| practiceDeclared | 1398 | 98.7 % |
-| placeGrounding | 1417 | 100 % |
-| sources | 454 | 32 % |
-| imageContract | 1130 | 79.7 % |
-| profileStandard | 65 | 4.6 % |
+| identity | 117 | 8.3 % |
+| popupDesc | 1396 | 98.4 % |
+| lifeData | 57 | 4 % |
+| contributionsDeclared | 57 | 4 % |
+| educationDeclared | 57 | 4 % |
+| practiceDeclared | 1399 | 98.7 % |
+| placeGrounding | 1418 | 100 % |
+| sources | 455 | 32.1 % |
+| imageContract | 1131 | 79.8 % |
+| profileStandard | 66 | 4.7 % |
 
 ## Kategorier
 
@@ -49,8 +49,8 @@ Source fingerprint: `73ee8ce1bc523c9efcc38eec27bb4ecfe8505479bd8ee511dd2abc82b30
 | musikk | 124 | 0 | 15 | 109 | 0 | 0 | 124 | 62.2 |
 | politikk | 114 | 4 | 51 | 59 | 0 | 15 | 99 | 67.9 |
 | kunst | 84 | 7 | 64 | 13 | 0 | 9 | 75 | 73.1 |
+| naeringsliv | 81 | 3 | 31 | 32 | 15 | 6 | 75 | 61.7 |
 | by | 80 | 8 | 56 | 16 | 0 | 19 | 61 | 73.8 |
-| naeringsliv | 80 | 2 | 31 | 32 | 15 | 5 | 75 | 61.2 |
 | scenekunst | 48 | 1 | 16 | 31 | 0 | 1 | 47 | 64.6 |
 | subkultur | 41 | 0 | 5 | 36 | 0 | 0 | 41 | 61.9 |
 | vitenskap | 34 | 0 | 3 | 30 | 1 | 0 | 34 | 57.9 |
