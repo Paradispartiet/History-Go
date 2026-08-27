@@ -106,7 +106,22 @@ jobs:
           node scripts/audit-civication-career-gameplay.mjs --write
           node scripts/audit-civication-role-world-rollout-readiness.mjs --write
       - name: Verify Programleder rollout
-        run: node tests/civication-film-tv-programleder-role-world-rollout.test.js
+        id: rollout
+        continue-on-error: true
+        shell: bash
+        run: node tests/civication-film-tv-programleder-role-world-rollout.test.js > /tmp/programleder-rollout.log 2>&1
+      - name: Upload Programleder rollout failure
+        if: steps.rollout.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: programleder-rollout-failure
+          path: /tmp/programleder-rollout.log
+          retention-days: 1
+      - name: Enforce Programleder rollout
+        if: steps.rollout.outcome == 'failure'
+        run: |
+          cat /tmp/programleder-rollout.log
+          exit 1
       - name: Verify Programleder playability
         run: node tests/civication-film-tv-programleder-playability.test.js
       - name: Verify Role World contract
