@@ -46,16 +46,18 @@ for (const count of ['1', '2', '3', '4']) {
 assert(layout.includes('data-collection-position="2"'));
 
 for (const document of [contract, workflow, profiles]) {
-  assert.match(document, /1.?[–-].?4|1–4/);
-  assert.match(document, /ingen tomme|Ingen tomme/i);
+  assert.match(document, /nøyaktig fire/i);
+  assert.match(document, /2\s*[×x]\s*2/);
+  assert.match(document, /related.*aldri.*samling|related.*ikke.*samling/i);
+  assert.match(document, /ingen tomme|tomt samlingskort|et tomt kort/i);
   assert.match(document, /filler/i);
   assert.doesNotMatch(document, /tomt kort.*sluttstatus/i);
 }
 
-assert(contract.includes('Bilder / `images`'));
-assert(contract.includes('People/Flora/Fauna'));
+assert.match(contract, /`images` er ikke en samling eller reserve/);
+assert.match(contract, /`people`, `flora` og `fauna` vises som sirkler/);
 assert(contract.includes('Generisk') || contract.includes('generisk'));
 assert(contract.includes('Details') || contract.includes('details'));
 assert(contract.includes('Spots') || contract.includes('spots'));
 
-console.log('Adaptive canonical PlaceCard collections audit OK');
+console.log('Canonical four-collection documentation and compatibility runtime audit OK');

@@ -100,34 +100,37 @@ Det betyr identitetsport, inspectable kilder, claims, setning→claim-paritet, t
 
 Ikke produser `desc`/`popupDesc` fra en løs stedstype-mal eller læringsmål alene.
 
-## 7. Rundinger
+## 7. PlaceCard-samlinger
 
-Rundinger er visuell presentasjon, ikke kategori- eller progresjonslogikk.
+PlaceCard-samlinger er kuraterte innholdsflater, ikke kategori-, popup- eller progresjonslogikk.
 
 Canonical eier:
 
 - `data/places/README_place_rounds.md`.
 
-Paletten er:
+For nye og fullproduserte ordinære Places gjelder:
 
 ```text
-badges · people · works · objects · details · spots · nature · brands
+People · Objects · Brands · kategoriuttrykk
 ```
 
-For nye/reviderte places:
+Nature bruker det faste firersettet:
 
-- `badges` er obligatorisk;
-- rundingssettet følger `data/places/README_place_rounds.md`;
-- valgt samling skal være stedsspesifikk og bildeklart;
-- `rounds` brukes som canonical kurateringsfelt;
-- nye Objects bruker normalt `place.objects`;
-- nye Details bruker normalt `place.details`;
-- nye Spots bruker normalt `place.spots`;
-- legacy aliases brukes bare som compatibility/migreringskilder;
-- Nature er valgfri;
-- Brands følger hele definisjonen i `data/brands/brand_rules_v1_1.json`, ikke bare forbrukermerker og butikker;
-- Civication Store er ikke runding;
-- Wonderkammer er ikke ny runding eller ny produksjonsmodell.
+```text
+Map · Flora · Fauna · Destinations
+```
+
+Krav:
+
+- `place_card_profile.collection_ids` har nøyaktig fire ferdige canonical IDs;
+- alle fire samlinger er stedsspesifikke, substansielle og bildeklare;
+- kategoriuttrykket og brukerrettet navn følger 19-kategorimatrisen i `data/places/README_place_rounds.md`;
+- `related` er et relasjons-/navigasjonssystem og aldri PlaceCard-samling;
+- `badges`, bilder, Details, Spots, Stories, popupfaner, Quiz og Civication teller ikke blant de fire;
+- `round_profile`, `rounds` og legacy-aliaser brukes bare som compatibility-/migreringskilder;
+- nye Objects bruker normalt `place.objects` og følger `docs/PLACE_OBJECTS_CANONICAL.md`;
+- Brands er fast i ordinære fullprofiler og følger hele definisjonen i `data/brands/brand_rules_v1_1.json`, ikke bare forbrukermerker og butikker;
+- Civication Store og Wonderkammer er separate systemer, ikke samlinger eller nye produksjonsmodeller.
 
 ## 8. People
 
@@ -220,7 +223,9 @@ Nature-mapping følger:
 
 - `README/nature_mapping_workflow.md`.
 
-Nature-rundingen er valgfri og skal ikke fylles fordi et sted tilfeldigvis har vegetasjon i nærheten. Naturkoblinger skal være dokumenterte og canonical.
+Et fullprodusert Nature-Place bruker alltid Map, Flora, Fauna og Destinations. Alle fire krever stedsspesifikk dokumentasjon; generiske arter eller turmål brukes aldri som filler.
+
+Naturkoblinger ved Places i andre hovedkategorier er betingede subsystemdata og gjør ikke `nature` til en ekstra PlaceCard-samling. Slike koblinger skal fortsatt være dokumenterte og canonical.
 
 ## 15. Wonderkammer
 
