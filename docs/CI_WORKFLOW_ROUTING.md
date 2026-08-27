@@ -44,11 +44,16 @@ SHA and deduplicates both event paths by that SHA.
 
 Validation and mutation use separate event paths:
 
+- Every active pull-request workflow declares `contents: read` at workflow level.
+  The routing audit rejects missing or workflow-wide write permission.
 - `coordinate-branch-runner.yml` runs only on pushes to dedicated one-shot
   coordinate branches (or an explicit manual dispatch); it never executes
   pull-request code with a write-capable token.
 - `fagverk-release.yml` validates active Fagverk pull requests read-only and
   dispatches only after the same PR is confirmed merged.
+- `build-nature-place-candidates.yml` validates maps and produces its artifact
+  read-only. Only its manually requested, artifact-dependent publish job receives
+  `contents: write`; pull-request code cannot enter that job.
 
 Every active pull-request workflow has a concurrency group and cancels stale
 runs. Closed-PR cleanup and post-merge finalization are not active pull-request
@@ -71,7 +76,8 @@ pull-request workflows lacked stale-run cancellation; none do now.
 
 `CI workflow routing governance` runs for every workflow, routing-audit or policy
 documentation change and enforces ownership, cancellation, duplication rules and
-the production fan-out budgets above. It also rejects the return of completed
+the production fan-out budgets above. It also enforces read-only pull-request
+tokens and rejects the return of completed
 `split-*` writeback workflows; historical migrations belong in Git history, not
 the permanent Actions inventory.
 
