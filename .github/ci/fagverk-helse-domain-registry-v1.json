@@ -2,6 +2,37 @@
   "version": 1,
   "subject": "helse",
   "totalDomains": 12,
+  "ci": {
+    "changeTokens": [
+      "helse"
+    ],
+    "progress": {
+      "kind": "registered_chapter_count",
+      "source": "data/fagverk/fagverk_registry.json",
+      "pointer": [
+        "subjects",
+        "helse",
+        "editorialPlan",
+        "registeredChapterCount"
+      ]
+    },
+    "cumulativeAudits": [
+      "scripts/audit-helse-cumulative-progress-v1.mjs"
+    ],
+    "cumulativeTests": [
+      "tests/helse-cumulative-progress-v1.test.mjs"
+    ],
+    "deterministicPaths": [
+      "data/fag/fag_manifest.json",
+      "data/fag/helse",
+      "data/fagverk/helse",
+      "data/fagverk/fagverk_registry.json",
+      "data/fagverk/subject_inventory.json",
+      "data/fagverk/subject_status.json",
+      "data/fagverk/fagverk_release.json",
+      "reports/fagverk"
+    ]
+  },
   "domains": [
     {
       "ordinal": 1,
@@ -113,6 +144,7 @@
     }
   ],
   "strictCompletion": {
+    "runBeforeLatestAudit": true,
     "bindings": "data/fag/helse/theory_integrity_bindings_helse_v1.json",
     "audit": "tools/audit-helse-theory-integrity.mjs",
     "auditTest": "tests/helse-theory-integrity.test.mjs",

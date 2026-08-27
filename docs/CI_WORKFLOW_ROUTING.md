@@ -74,3 +74,7 @@ documentation change and enforces ownership, cancellation, duplication rules and
 the production fan-out budgets above. It also rejects the return of completed
 `split-*` writeback workflows; historical migrations belong in Git history, not
 the permanent Actions inventory.
+
+Helse og Utdanning deler én registry-drevet domenegate. Fagspesifikke endringer
+velger bare berørt registry; delte kontrakter validerer begge i samme jobb og
+kjører de felles Fagverk-auditene én gang.
