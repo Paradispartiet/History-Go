@@ -29,13 +29,17 @@ jobs:
       - run: npm ci
       - name: Materialize permanent authored data
         run: node scripts/TEMP_materialize_avdelingsleder_role_world.mjs
-      - name: Normalize strict authority bindings
+      - name: Normalize strict authority and standing bindings
         shell: bash
         run: |
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
-          const catalogPath = 'data/Civication/mailFamilies/naeringsliv/consequence/avdelingsleder_consequence.json';
-          const catalog = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
+          const types = ['job','people','story','knowledge','micro','conflict','event','followup','consequence'];
+          const prefix = 'naeringsliv_avdelingsleder_realism_';
+          const catalogPath = type => `data/Civication/mailFamilies/naeringsliv/${type}/avdelingsleder_${type}.json`;
+
+          const consequencePath = catalogPath('consequence');
+          const catalog = JSON.parse(fs.readFileSync(consequencePath, 'utf8'));
           const mail = catalog.families.flatMap(family => family.mails || []).find(item => item.id === 'naeringsliv_avdelingsleder_realism_capacity_case_close_001');
           if (!mail) throw new Error('Missing Avdelingsleder close scene after materialization');
 
@@ -61,7 +65,29 @@ jobs:
             target_actor_id: 'inger_overordnet_leder',
             escalation_object_id: 'avdelingsleder_capacity_conflict_escalation_001'
           }];
-          fs.writeFileSync(catalogPath, JSON.stringify(catalog, null, 2) + '\n');
+          fs.writeFileSync(consequencePath, JSON.stringify(catalog, null, 2) + '\n');
+
+          let extendedStandingReasons = 0;
+          for (const type of types) {
+            const file = catalogPath(type);
+            const doc = JSON.parse(fs.readFileSync(file, 'utf8'));
+            let changed = false;
+            for (const item of doc.families.flatMap(family => family.mails || [])) {
+              if (!item.id.startsWith(prefix)) continue;
+              for (const choice of item.choices || []) {
+                for (const op of choice.effects?.social_standing_ops || []) {
+                  if (typeof op.reason !== 'string') throw new Error(`${item.id}/${choice.id} standing reason missing`);
+                  if (op.reason.length >= 70) continue;
+                  op.reason = `${op.reason} Denne vurderingen gjelder dette publikummets situerte tillit og gir ingen ny formell fullmakt.`;
+                  extendedStandingReasons += 1;
+                  changed = true;
+                }
+              }
+            }
+            if (changed) fs.writeFileSync(file, JSON.stringify(doc, null, 2) + '\n');
+          }
+          if (extendedStandingReasons < 1) throw new Error('Expected at least one short situated-standing reason to strengthen');
+          console.log(`Strengthened ${extendedStandingReasons} situated-standing reasons without changing effects or authority.`);
 
           const testPath = 'tests/civication-naeringsliv-avdelingsleder-role-world-rollout.test.js';
           let source = fs.readFileSync(testPath, 'utf8');
