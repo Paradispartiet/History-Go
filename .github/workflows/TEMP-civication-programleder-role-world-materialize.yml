@@ -80,6 +80,35 @@ jobs:
         run: node scripts/audit-civication-career-gameplay.mjs --write
       - name: Regenerate role-world rollout readiness audit
         run: node scripts/audit-civication-role-world-rollout-readiness.mjs --write
+      - name: Prepare Programleder prefix diagnostics
+        shell: bash
+        run: |
+          cat > /tmp/run-programleder-prefix.cjs <<'NODE'
+          const fs = require('node:fs');
+          const { spawnSync } = require('node:child_process');
+          const sourcePath = 'tests/civication-film-tv-programleder-role-world-rollout.test.js';
+          const marker = process.argv[2];
+          const source = fs.readFileSync(sourcePath, 'utf8');
+          const index = source.indexOf(marker);
+          if (index < 0) throw new Error(`Missing diagnostic marker: ${marker}`);
+          const tmp = 'tests/.TEMP-programleder-prefix.test.js';
+          fs.writeFileSync(tmp, source.slice(0, index) + "\nconsole.log('PASS prefix before: " + marker.replaceAll("'", "\\'") + "');\n");
+          const result = spawnSync(process.execPath, [tmp], { stdio: 'inherit' });
+          fs.rmSync(tmp, { force: true });
+          process.exit(result.status ?? 1);
+          NODE
+      - name: Diagnose Programleder world model
+        run: node /tmp/run-programleder-prefix.cjs "const catalogPaths ="
+      - name: Diagnose Programleder scene mechanics
+        run: node /tmp/run-programleder-prefix.cjs "const audiences ="
+      - name: Diagnose Programleder situated audiences
+        run: node /tmp/run-programleder-prefix.cjs "const rules ="
+      - name: Diagnose Programleder authority contract
+        run: node /tmp/run-programleder-prefix.cjs "const provenanceUses ="
+      - name: Diagnose Programleder provenance
+        run: node /tmp/run-programleder-prefix.cjs "const plan ="
+      - name: Diagnose Programleder registry and readiness integration
+        run: node /tmp/run-programleder-prefix.cjs "const sourceText ="
       - name: Verify Programleder role-world rollout
         run: node tests/civication-film-tv-programleder-role-world-rollout.test.js
       - name: Verify Programleder playability
