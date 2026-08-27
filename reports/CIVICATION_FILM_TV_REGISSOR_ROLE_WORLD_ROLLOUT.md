@@ -17,6 +17,13 @@ Status: Materialisert som world-only kontrollert rollout; completion gjelder fø
 - 5 vedvarende dramaturgiske tråder, 5 tilbakevendende rollearketyper, 8 slow axes, 4 private aftermath og 6 delayed consequences.
 - Mailplanen skal forbli eksakt 9 steg.
 
+## Fail-closed verifikasjon
+
+- Materialisering, theme-normalisering, scene registry, Career Gameplay Matrix og rollout readiness regenereres før kontroll.
+- En eldre Programleder-test hadde hardkodet Regissør som neste køhode. Den assertionen er gjort progresjonssikker: Programleder må fortsatt være ute av køen, beholde runtime-gaten og la den globale readiness-gaten bevise deterministisk kørekkefølge.
+- Den korrigerte testmigreringen skjer før canonical audit-regenerering, slik at genererte artefakter ikke kan bli stale av selve migreringen.
+- Full Civication-suite må passere før TEMP-overflaten slettes og den verifiserte canonical tilstanden kan committes.
+
 ## Kvalitetsgrense
 
 Rollouten skal feile lukket hvis 9/9 provenance, eksisterende plan, authority boundaries, History Go-kildegrense, compiled registry, Career Gameplay Matrix eller readiness ikke kan bevises samlet.
