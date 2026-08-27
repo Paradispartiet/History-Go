@@ -1,21 +1,24 @@
-# History GO — Place Production Profiles
+# History GO — Produksjonsprofiler og innholdsplan for Places
 
-Status: **canonical scope contract for place production depth**  
-Owner: `place_by_place_production_workflow`  
-Last reviewed: **2026-08-27**
+Status: **canonical scope-kontrakt for stedsproduksjon**  
+Eier: `place_by_place_production_workflow`  
+Sist kontrollert: **2026-08-27**
 
-This contract defines **how extensive a place production should be**. It does not replace the place's subject `category` (`historie`, `naeringsliv`, `natur`, etc.), and it is not a quality ladder.
+Denne kontrakten bestemmer både **hvor omfattende et sted skal produseres** og hvordan produksjonen velger innhold som faktisk passer stedet. Den erstatter ikke stedets faglige `category`, og den er ikke en kvalitetsstige.
 
-A `focused` place must be just as factual, source-bound and canonical as a `major` place. The difference is how many independent content surfaces the source material and the place's significance genuinely support.
+Et `focused` Place skal være like korrekt, kildebundet, pent og ferdig som et `major` Place. Forskjellen er reell stoffbredde, ikke hvor mye arbeid produsenten ønsker å gjøre.
 
-## 1. Two different classifications
+## 1. Tre separate beslutninger
 
-Never mix these concepts:
+Disse skal aldri blandes:
 
-- `category` = what kind of subject/place this is;
-- `production_profile` = how broad the production should be.
+1. **Kategori** — hva slags faglig sted dette er (`historie`, `naeringsliv`, `natur`, `kunst`, `sport` osv.).
+2. **Produksjonsprofil** — hvor bredt det kildebårne stedet faktisk er: `major`, `standard`, `focused` eller `micro`.
+3. **Innholdsplan** — hvilke konkrete moduler og PlaceCard-samlinger som er riktige for akkurat dette stedet.
 
-Canonical production profiles:
+Det er derfor feil å si «Næringsliv = alltid Brands» eller «Historie = alltid People». Kategorien styrer hva som undersøkes først; kildene og stedets karakter bestemmer hva som faktisk produseres.
+
+Canonical produksjonsprofiler:
 
 ```text
 major
@@ -24,234 +27,212 @@ focused
 micro
 ```
 
-`micro` continues to be represented technically by `placeTier: "micro"` and `docs/MICRO_PLACE_CONTRACT.md`. The `production_profile` vocabulary is used in planning/workcards so the whole catalog can be triaged consistently.
+`micro` representeres teknisk av `placeTier: "micro"` og følger `docs/MICRO_PLACE_CONTRACT.md`.
 
 ## 2. Universal canonical core
 
-For every ordinary canonical Place (`major`, `standard`, `focused`), the following is never removed by a smaller production profile:
+For alle ordinære Places (`major`, `standard`, `focused`) er følgende obligatorisk uansett profil:
 
-1. resolved identity, scope and own-place boundary;
-2. verified coordinate/geometry evidence with an honest `coordRole`;
-3. reviewed, inspectable sources and source → claim discipline;
-4. canonical `desc`/`popupDesc` at the required factual/editorial quality;
-5. correct category, relevant subject ownership and working place-specific Fagverk;
-6. image provenance for published media, including a real portrait `frontImage` when the ordinary PlaceCard contract requires it;
-7. chronology/epoch research with dating precision and materialization of supported exact anchors;
-8. canonical Språkleksikon ownership with at least one genuine place-specific language/name trace;
-9. relation/own-place audit so separate Places are not collapsed into People, Objects or Structures;
-10. runtime/materialization, relevant CI gates and manual final QA.
+1. løst identitet, scope og own-place-grense;
+2. verifisert koordinat/geometri med ærlig `coordRole`;
+3. inspiserte, sporbare kilder og source → claim-disiplin;
+4. canonical `desc` og `popupDesc` i korrekt kvalitet;
+5. riktig kategori, relevante emner og fungerende stedsspesifikk Fagverk-side;
+6. publiserte bilder med proveniens og et faktisk stående `frontImage` der ordinær PlaceCard bruker det;
+7. chronology/epoke-research med korrekt dateringspresisjon og materialisering av kvalifiserte eksakte år;
+8. canonical Språkleksikon med minst ett reelt stedsspesifikt navn-/begrepsspor;
+9. own-place-/relasjonsaudit, slik at separate steder ikke feilaktig blir People, Objects eller Structures;
+10. runtime/materialisering, relevante CI-gater og manuell slutt-QA.
 
-A production profile can reduce **breadth**, never evidence quality.
+En mindre profil reduserer **stoffbredde**, aldri factuality, source-kvalitet eller sluttføring.
 
-## 3. Conditional subsystems
+## 3. Betingede innholdsmoduler
 
-The following surfaces must be **assessed** for every ordinary Place, but they are materialized only when the place and sources genuinely support them:
+Følgende skal **vurderes**, men produseres bare når de er reelt relevante:
 
 - People;
 - Objects;
 - Brands;
-- Structures / category-owned collections;
+- kategori-eid samling (`structures`, `related`, `productions`, `competitions`, `destinations`);
 - Stories;
 - Før/etter;
 - Nyheter;
 - Lesespor;
-- routes / narrative links;
-- additional deep Fagverk tracks;
-- additional media and collection assets.
+- ruter/narrative koblinger;
+- ekstra Fagverk-spor;
+- ekstra medier.
 
-`N/A` is a researched conclusion, not a shortcut. The workcard must name the candidate pass and the reason the subsystem does not qualify. Existing subsystem contracts still decide what counts as a valid candidate.
+`BEGRUNNET N/A` betyr bare at modulen ikke tilhører stedet. Det betyr **aldri** at et tomt kort skal stå igjen i brukergrensesnittet.
 
-**Never create filler to satisfy fullness.** A Place may not gain a fake Brand, marginal person, arbitrary object, weak Story or duplicate Structure because a template contains that slot.
+**Ingen tomme PlaceCard-samlinger ved fullført ny/full produksjon. Ingen filler.** Hvis en samling ikke har et ekte canonical medlem med riktig bilde, skal samlingen ikke velges i `place_card_profile`.
 
-## 4. Profiles
+## 4. Kategori styrer kandidatene — ikke resultatet
+
+Dette er research-ruting, ikke tvangsmaler:
+
+| Kategori / stedstype | Sterke kandidater som undersøkes først | Typiske betingede kandidater |
+| --- | --- | --- |
+| `naeringsliv` / industri | Structures/anlegg, produksjonsspor, People | Objects, Brands, related, Story |
+| `historie` / hendelsessted | related, chronology, fysiske spor | People, Objects, Structures, Story |
+| `by` / urbant sted | Structures/byrom, related | People, Objects, Brands, Story |
+| `religion` | Structures, People | Objects, related, Story |
+| `kunst` | productions | People, Objects, related, Brands |
+| `litteratur` | productions/tekster | People, Objects, related, Brands |
+| `musikk` / `scenekunst` / `film_tv` | productions | People, Objects, Brands, related |
+| `sport` | competitions | People, Objects, Brands, Structures |
+| `politikk` | related, chronology | People, Objects, Story |
+| `vitenskap` / `teknologi` | related, faglig prosess | People, Objects, Structures, Story |
+| `natur` | map/destinations og stedsspesifikk natur | Flora, Fauna, related etter faktisk økologi |
+
+Eksempler:
+
+- et industristed uten dokumentert selvstendig merkeidentitet skal ikke få et konstruert Brand;
+- et historisk sted uten en sentral canonical person skal ikke få en perifer People-post bare for PlaceCard;
+- et natursted skal ikke få generisk Flora/Fauna som ikke er dokumentert for stedet;
+- ett sterkt fysisk spor skal ikke splittes kunstig til både Object og Structure;
+- et sted med én god narrativ akse trenger ikke flere Stories bare for å se omfattende ut.
+
+## 5. Produksjonsprofiler
 
 ### `major`
 
-Use for a place with exceptional historical/cultural/system importance **and** broad source-backed material that supports several independent learning or narrative tracks.
+Brukes når stedet både har stor betydning **og** bredt kildebåret stoff som bærer flere selvstendige lærings-, material- eller narrative spor.
 
-Typical signals:
+Typiske signaler:
 
-- several meaningful historical periods or transformations;
-- multiple central people/actors with direct place relationships;
-- several distinct material/architectural/organizational layers;
-- strong cross-place importance;
-- multiple non-duplicative narrative or learning tracks;
-- unusually strong playable/interpretive depth.
+- flere meningsfulle historiske perioder eller transformasjoner;
+- flere sentrale personer/aktører med direkte stedstilknytning;
+- flere distinkte materielle, arkitektoniske eller organisatoriske lag;
+- sterk betydning på tvers av byen/faget;
+- flere ikke-dupliserende lærings- eller fortellingsløp.
 
-Expectations:
-
-- deepest research pass;
-- all conditional subsystems receive an explicit candidate audit;
-- relevant People/Objects/Brands/category collections should normally be rich, but no subsystem is fabricated;
-- multiple strong chronology anchors where sources support them;
-- Stories are expected when genuine narrative axes exist, but the Story contract's anti-duplication rule still wins;
-- Quiz is selected adaptively from the canonical Quiz contract and will often be `rich` or `major` when the evidence supports it.
-
-A famous place is not automatically `major`. The source-backed content must actually carry the breadth.
+Forventning: dypest research og ofte 4 sterke PlaceCard-samlinger, men heller 3 ekte enn 4 der den fjerde måtte konstrueres.
 
 ### `standard`
 
-The default profile for a substantial canonical Place with enough material for a full place experience but without the exceptional breadth required for `major`.
+Default for et betydelig canonical Place med en komplett stedsopplevelse, flere reelle innholdsvinkler og nok materiale til et solid Fagverk/quiz uten at stedet har Major-bredde.
 
-Typical signals:
-
-- a clear historical identity and chronology;
-- more than one meaningful content angle;
-- some strong People/Object/Structure/Brand/related material, but not necessarily all of them;
-- a solid Fagverk and playable knowledge base;
-- enough source material for a complete place experience without filler.
-
-Expectations:
-
-- full universal canonical core;
-- conditional subsystems are researched and materialized when relevant;
-- documented `N/A` is valid for semantically unsupported subsystems;
-- Quiz profile remains evidence-driven (`normal`, `rich`, or another profile allowed by the Quiz contract);
-- one strong Story is preferable to several chronology-shaped pseudo-Stories.
+Forventning: full universal core og normalt 2–4 sterke PlaceCard-samlinger, valgt etter innholdsplanen.
 
 ### `focused`
 
-Use for a real canonical Place whose historical/cultural value is concentrated in one dominant function, event, structure, trace or narrowly bounded theme.
+Brukes når et ekte canonical Place har historisk/kulturell verdi konsentrert i én hovedfunksjon, hendelse, struktur, spor eller snevert tema.
 
-Typical signals:
+Forventning: full universal core, men ingen sideveis utvidelse bare for å ligne et Standard-sted. Et Focused Place kan være fullstendig med 1–3 sterke PlaceCard-samlinger dersom det er det stedet faktisk bærer.
 
-- one main historical job or interpretive question;
-- limited temporal/entity breadth after real research;
-- fewer independent People/Object/Brand/Structure candidates;
-- the place remains map-worthy and historically meaningful even though the content surface is narrow.
-
-Expectations:
-
-- full universal canonical core remains mandatory;
-- research does **not** expand sideways merely to make the place look `standard`;
-- People/Objects/Brands/Stories/Før–etter/Nyheter/Lesespor may be `N/A` when the candidate audit supports that conclusion;
-- Quiz is not pre-sized by the place profile: if the source bank supports a canonical narrow quiz without repetition, produce it; otherwise record the evidence-bounded decision required by the active Quiz/product contract rather than inventing questions;
-- chronology and Språkleksikon remain mandatory research lanes.
-
-`focused` must never be chosen because a producer wants a cheaper or faster task. It is a source- and scope-based classification.
+`focused` kan aldri velges bare fordi oppgaven ønskes billigere eller raskere.
 
 ### `micro`
 
-Use only when the place qualifies under `docs/MICRO_PLACE_CONTRACT.md`.
+Brukes bare når stedet kvalifiserer etter `docs/MICRO_PLACE_CONTRACT.md`. Micro har sin egen kort- og innholdskontrakt.
 
-Typical examples include small marked points, selected blue plaques, Lesekiosker and other intentionally lightweight map entities whose value is location-specific but does not justify ordinary Place production.
+## 6. Profilavgjørelse
 
-Micro Places do not inherit the ordinary universal core wholesale. Their separate contract remains authoritative.
+Preflight vurderer fem dimensjoner:
 
-## 5. Profile decision
+1. **historisk dybde** — hvor mange reelt ulike perioder/transformasjoner finnes;
+2. **entity-dybde** — hvor mange betydelige People/Objects/Brands/Structures/related Places faktisk kvalifiserer;
+3. **kildedybde** — bredde og kvalitet i inspiserbare kilder;
+4. **tolkningsdybde** — hvor mange selvstendige spørsmål, konflikter, prosesser eller læringsspor stedet bærer;
+5. **stedets betydning** — lokal, bymessig, nasjonal eller systemisk betydning av det fysiske stedet.
 
-The preflight evaluates five dimensions:
+- `major` krever at flere dimensjoner er tydelig høye;
+- `focused` brukes når canonical verdi er høy nok, men bredden etter research er reelt smal;
+- `standard` er hovedprofilen i midten;
+- `micro` følger egen kontrakt.
 
-1. **historical depth** — number of genuinely distinct periods/transformations;
-2. **entity depth** — number and importance of independently valid People/Objects/Brands/Structures/related Places;
-3. **source depth** — breadth and quality of inspectable material;
-4. **interpretive depth** — number of independent questions, conflicts, processes or learning tracks;
-5. **place significance** — local/city/national/system importance of the physical place itself.
+Ingen mekanisk poengsum er endelig autoritet. Arbeidskortet skal ha en kort evidensbasert begrunnelse.
 
-Decision rule:
+## 7. Katalogtriage før videre produksjon
 
-- choose `major` only when several dimensions are clearly high and the content can sustain multiple independent tracks;
-- choose `focused` when the place remains canonical but the researched breadth is genuinely narrow;
-- choose `standard` in the broad middle and as the default when evidence does not justify either extreme;
-- choose `micro` only under the separate Micro Place contract.
+Vi bruker en hybridmodell.
 
-Do not use a mechanical point score as the final authority. The workcard must give a short evidence-based reason.
+### Stage A — lett provisional triage
 
-## 6. Catalog-wide triage before further production
-
-History GO uses a **two-stage classification**, not a full research freeze.
-
-### Stage A — provisional catalog triage
-
-Before continuing the ordinary place-production queue after adoption of this contract, make one lightweight pass over the existing canonical Place catalog and assign:
+Før videre ordinær stedsproduksjon gjøres én lett passering av eksisterende katalog:
 
 ```text
 production_profile: major | standard | focused | micro
 profile_status: provisional
-profile_reason: <short reason based on existing canonical data>
+profile_reason: <kort grunn fra eksisterende canonical data>
 ```
 
-This pass is planning metadata, not a new content audit. It should use existing canonical metadata, known scope, already-materialized content and obvious place significance. It must **not** trigger full research of every Place.
+Dette er **ikke full research** og skal ikke produsere innhold. Det brukes til backlog, prioritering og realistisk kost/omfang.
 
-Purpose:
+### Stage B — confirmed preflight
 
-- reveal how much of the backlog is actually Major/Standard/Focused/Micro;
-- prevent the production queue from assuming every Place has the same cost;
-- identify likely profile mistakes before expensive production begins;
-- make cluster planning and sequencing realistic.
-
-### Stage B — confirmed preflight classification
-
-When a Place reaches active production, its null measurement must confirm or override the provisional classification after real source review:
+Når et sted faktisk går inn i produksjon, bekreftes eller endres profilen etter ekte source review:
 
 ```text
 production_profile: ...
 profile_status: confirmed
 profile_reason: ...
-profile_changed_from: <optional provisional profile>
+profile_changed_from: <valgfritt>
 ```
 
-The confirmed profile controls that production. A provisional profile never overrides stronger evidence found during the real preflight.
+Nye steder som ikke finnes i katalogen klassifiseres direkte som `confirmed` i preflight.
 
-New Places that do not yet exist in the catalog (for example the next canonical intake) are classified directly during preflight and enter with `profile_status: confirmed`.
+## 8. Quizprofil er et separat system
 
-## 7. Quiz profile is separate
+`production_profile` og quizprofil er ikke det samme.
 
-`production_profile` and Quiz profile are different systems.
-
-The canonical Quiz contract independently chooses:
+Canonical Quiz-kontrakt velger adaptivt:
 
 - `narrow`: 3 × 7;
 - `normal`: 4 × 7;
 - `rich`: 5–8 × 7;
-- `major`: 8–10 × 7;
+- `major`: 8–10 × 7.
 
-based on the actual claim bank and learning breadth. A `standard` Place can legitimately carry a `rich` quiz, and a `major` Place must not be padded to 10 sets when ten distinct source-backed set plans do not exist.
+Valget følger påstandsbank og faktisk læringsbredde. Et `standard` Place kan derfor ha `rich` quiz, og et `major` Place skal ikke polstres til 10 sett hvis ti selvstendige settplaner ikke finnes.
 
-## 8. PlaceCard relationship
+## 9. PlaceCard: ferdig innhold, aldri tomme kort
 
-The current ordinary PlaceCard runtime remains a fixed four-slot visual grid until a dedicated UI/schema migration changes that contract.
+For nye og fullproduserte ordinære Places er `place_card_profile.collection_ids` en eksplisitt kuratert liste over **bare ferdige, relevante samlinger**.
 
-Production profiles change **semantic completion**, not the number of current visual slots:
+Regler:
 
-- every relevant collection must still meet its own canonical contract and visual-preview requirements;
-- a collection that is genuinely unsupported after the required candidate audit must be recorded as `BEGRUNNET N/A` instead of filled with fake content;
-- an honest empty/fallback state for a profile-approved N/A slot is preferable to fabricated content;
-- `major` places should normally avoid N/A slots because their breadth is part of why they are `major`, but evidence still wins;
-- a future 2/3/4-slot UI migration must be handled as a separate cross-runtime contract change and must not be smuggled into an individual place PR.
+- 1–4 samlinger er gyldig;
+- hver valgt samling må ha minst ett ekte canonical medlem og et validert, lastbart previewbilde;
+- samlinger uten kvalifisert innhold utelates helt fra PlaceCard;
+- runtime skal gi 1, 2, 3 og 4 samlinger egne balanserte komposisjoner — ikke tomme reserver;
+- former beholdes semantisk: People/Flora/Fauna er sirkler; øvrige samlinger er avrundede rektangler;
+- `frontImage` forblir den stående hovedflaten og skal ikke gjenbrukes som falskt samlingspreview;
+- gamle Places uten ny eksplisitt profil beholder kompatibilitetsvisningen til de faktisk revideres;
+- ingen bulk-migrasjon skal slette eksisterende korrekt innhold.
 
-## 9. Workcard fields
+Designregel: **Færre samlinger skal se kuratert ut, ikke mangelfullt.** Ett kort sentreres og får visuell tyngde; to vises som et balansert par; tre får en 2+1-komposisjon; fire beholder 2×2.
 
-Every ordinary active place-production workcard must contain:
+## 10. Arbeidskort
+
+Hvert ordinære aktive sted skal minst føre:
 
 ```text
 PRODUKSJONSPROFIL: major | standard | focused
 PROFILSTATUS: provisional | confirmed
 PROFILBEGRUNNELSE:
-PROFILENDRING FRA TRIAGE: none | <old profile → new profile + reason>
+INNHOLDSPLAN:
+  People: PRODUSER | N/A + grunn
+  Objects: PRODUSER | N/A + grunn
+  Brands: PRODUSER | N/A + grunn
+  Category collection: PRODUSER | N/A + grunn
+  Stories: PRODUSER | N/A + grunn
+  Før/etter: PRODUSER | N/A + grunn
+  Nyheter: PRODUSER | N/A + grunn
+  Lesespor: PRODUSER | N/A + grunn
+PLACECARD-SAMLINGER: <1–4 ferdige IDs, ingen tomme>
 UNIVERSAL CORE STATUS:
-BETINGEDE SUBSYSTEMER:
-  People: PASS | BEGRUNNET N/A | BLOCKED
-  Objects: PASS | BEGRUNNET N/A | BLOCKED
-  Brands: PASS | BEGRUNNET N/A | BLOCKED
-  Category collection: PASS | BEGRUNNET N/A | BLOCKED
-  Stories: PASS | BEGRUNNET N/A | BLOCKED
-  Før/etter: PASS | BEGRUNNET N/A | BLOCKED
-  Nyheter: PASS | BEGRUNNET N/A | BLOCKED
-  Lesespor: PASS | BEGRUNNET N/A | BLOCKED
 ```
 
-Additional subsystem-specific fields remain required where their own contracts demand them.
+## 11. Anti-snarvei
 
-## 10. Anti-downgrade rule
+Produksjonsprofilen er aldri en snarvei:
 
-Production profiles must never become a mechanism for silently weakening previously strong Places.
+- eksisterende korrekt innhold beholdes;
+- et relevant source-backed subsystem kan ikke hoppes over fordi stedet er `focused`;
+- en modul som er N/A skal være ferdig vurdert og deretter **ikke vises som tom PlaceCard-flate**;
+- `focused` betyr smalt komplett, ikke halvferdig;
+- grønn CI kan ikke overstyre svak redaksjonell eller visuell sluttflate.
 
-- Existing correct content is preserved unless separately invalidated.
-- A profile change does not delete valid People, Objects, Brands, Stories, Quiz or other content merely because the new minimum is smaller.
-- `focused` means narrowly scoped by evidence, not intentionally incomplete.
-- A place cannot be marked complete while a **relevant** source-backed subsystem is missing merely because another profile would have required less.
+## Kort regel
 
-## Short rule
-
-**Classify the catalog lightly first, confirm each Place as it reaches production, keep one universal canonical core, and scale only the breadth that the sources and the place genuinely support. Never manufacture content to satisfy a template.**
+**Triage katalogen lett, bekreft profil i ekte preflight, behold samme harde canonical core, og produser bare innhold som passer akkurat stedet. PlaceCard viser bare ferdige samlinger og skal alltid se bevisst, balansert og komplett ut.**
