@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import test from "node:test";
 import { validatePacket } from "../scripts/validate-place-description-production-v4_2.mjs";
+import { auditHistoriePlaceProduction } from "../scripts/audit-historie-place-production.mjs";
 import { auditNaeringslivPlaceProduction } from "../scripts/audit-naeringsliv-place-production.mjs";
 
 const root = process.cwd();
@@ -77,7 +78,9 @@ test("the reused quiz is canonical rich 5x7 with a normal opening", () => {
   assert.equal(brief.claims.length, 35);
 });
 
-test("both production contracts and the six-part quality gate are blocker-free", () => {
+test("all three production contracts and the six-part quality gate are blocker-free", () => {
+  const historyAudit = auditHistoriePlaceProduction({ root, mode: "all", now: new Date("2026-08-27T12:00:00Z") });
+  assert.deepEqual(historyAudit.failures, []);
   const subjectAudit = auditNaeringslivPlaceProduction({ root, mode: "all", now: new Date("2026-08-27T12:00:00Z") });
   assert.deepEqual(subjectAudit.failures, []);
   const dimensions = Object.values(audit.quality_score).filter(value => value && typeof value === "object" && "score" in value);
