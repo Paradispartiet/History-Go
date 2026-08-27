@@ -52,9 +52,27 @@ jobs:
         run: node scripts/audit-civication-career-gameplay.mjs --write
       - name: Regenerate rollout readiness
         run: node scripts/audit-civication-role-world-rollout-readiness.mjs --write
+      - name: Make Programleder completion assertion progression-safe
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const testPath = 'tests/civication-film-tv-programleder-role-world-rollout.test.js';
+          const source = fs.readFileSync(testPath, 'utf8');
+          const stale = "assert.equal(readiness.rollout_queue[0].key, 'film_tv/regissor');";
+          const replacement = [
+            "const readinessRole = readiness.roles.find(row => row.key === KEY);",
+            "assert.ok(readinessRole, 'completed role must remain classified by readiness');",
+            "assert.equal(readinessRole.runtime_gate, true, 'completed Programleder must keep its runtime gate');",
+            "assert.equal(readiness.gate.gate_pass, true, 'program-level readiness gate must remain green');",
+            "assert.notEqual(readiness.rollout_queue[0]?.key, KEY, 'completed role cannot return to rollout head');"
+          ].join('\n');
+          if (!source.includes(stale)) throw new Error('Expected stale Programleder queue assertion not found');
+          fs.writeFileSync(testPath, source.replace(stale, replacement));
+          NODE
       - name: Verify focused rollout and canonical gates
         run: |
           node tests/civication-film-tv-regissor-role-world-rollout.test.js
+          node tests/civication-film-tv-programleder-role-world-rollout.test.js
           node tests/civication-role-world-contract.test.js
           node tests/civication-role-world-broad-rollout-policy.test.js
           node scripts/build-civication-scene-registry.mjs --check
