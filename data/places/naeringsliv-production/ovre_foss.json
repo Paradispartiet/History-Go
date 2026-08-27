@@ -1,0 +1,345 @@
+{
+  "schemaVersion": "naeringsliv_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "ovre_foss",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv/ovre_foss.json",
+  "status": "ready",
+  "economicIdentity": {
+    "statement": "Hjula Væverier var et vannkraftdrevet bomulls- og ullveveri ved Hjulafossen, i drift fra 1855 til 1957.",
+    "anchorType": "factory",
+    "placeObjectDistinction": "Rapporten skiller fabrikkstedet fra fossene, Halvor Schou som eier, Wilhelm Peters' maleri som objekt og det bredere industrilandskapet på Sagene.",
+    "temporalScope": {
+      "start": "1855",
+      "end": "1957",
+      "precision": "period",
+      "rationale": "Perioden følger dokumentert driftsstart og nedleggelse; 1849 og 1854 behandles som forhistorie, 1971 og 1974 som bygningsetterhistorie."
+    },
+    "sourceIds": [
+      "source_hjula_snl",
+      "source_hjula_byleksikon",
+      "source_halvor_schou_nbl",
+      "source_hjula_kulturminnesok"
+    ]
+  },
+  "businessTopics": [
+    {
+      "emneId": "em_naering_arbeid_verdiskaping",
+      "siteSpecificRationale": "Hundrevis av arbeidere drev vevstoler og tekstilprosesser; kildene synliggjør særlig den store kvinnelige arbeidsstyrken.",
+      "caseIds": [
+        "case_hjula_textile_system"
+      ]
+    },
+    {
+      "emneId": "em_naering_industri_og_mekanisering",
+      "siteSpecificRationale": "Vannkraft, hovedaksling og mekaniske vevstoler gjorde Hjula til et stort fabrikkproduksjonssystem.",
+      "caseIds": [
+        "case_hjula_textile_system"
+      ]
+    },
+    {
+      "emneId": "em_naering_produksjon_produktivitet",
+      "siteSpecificRationale": "Vevstolkapasitet, arbeidsstyrke og omsetningsendring er dokumenterte indikatorer, men ikke et komplett produktivitetsmål.",
+      "caseIds": [
+        "case_hjula_textile_system"
+      ]
+    },
+    {
+      "emneId": "em_naering_makt_ulikhet_arbeidsliv",
+      "siteSpecificRationale": "Schou kontrollerte kapital- og leverandørvalg, mens en stor og hovedsakelig kvinnelig arbeidsstyrke skapte tekstilene.",
+      "caseIds": [
+        "case_hjula_textile_system"
+      ]
+    },
+    {
+      "emneId": "em_naering_omstilling_kriser_skift",
+      "siteSpecificRationale": "Markedsfall, råvaremangel, TEFAS-sammenslåing og nedleggelse viser flere typer industriell sårbarhet.",
+      "caseIds": [
+        "case_hjula_textile_system"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_hjula_snl",
+      "url": "https://snl.no/Hjula_V%C3%A6veri",
+      "sourceLocation": "Hele oppslaget, særlig etablering, produksjon, arbeidsstyrke, marked, kriser og nedleggelse",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-08-27",
+      "temporalCoverage": "historical",
+      "provenance": "Fagredigert oppslag i Store norske leksikon.",
+      "limitations": "Oppslaget gir utvalgte kapasitets-, sysselsettings- og omsetningstall, men ikke fullstendige tidsserier."
+    },
+    {
+      "id": "source_hjula_byleksikon",
+      "url": "https://oslobyleksikon.no/side/Hjula_V%C3%A6verier",
+      "sourceLocation": "Sted, adresse, bygning og etterhistorie",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-08-27",
+      "temporalCoverage": "mixed",
+      "provenance": "Oslo byleksikons redaksjonelle stedspost.",
+      "limitations": "Kilden er sterk på lokal identitet og bygg, men kort om priser, lønn og produksjonsvolum."
+    },
+    {
+      "id": "source_halvor_schou_nbl",
+      "url": "https://nbl.snl.no/Halvor_Schou",
+      "sourceLocation": "Biografi og avsnitt om Hjula og Myrens",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-08-27",
+      "temporalCoverage": "historical",
+      "provenance": "Fagredigert biografi i Norsk biografisk leksikon.",
+      "limitations": "Biografien belyser eierens valg og gir ikke arbeidernes perspektiv eller komplett bedriftshistorie."
+    },
+    {
+      "id": "source_hjula_kulturminnesok",
+      "url": "https://www.kulturminnesok.no/",
+      "sourceLocation": "Riksantikvarens nåværende registerpost for kulturminne 164747, Hjula Væverier",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-27",
+      "temporalCoverage": "current",
+      "provenance": "Riksantikvarens offisielle Kulturminnesøk-register identifiserer Hjula Væverier som eksisterende kulturminneanlegg.",
+      "limitations": "Registerposten dokumenterer kulturminneidentiteten og fysisk bestand, men ikke dagens leietakere, produksjonsvolum eller historiske arbeidsvilkår."
+    }
+  ],
+  "economicCases": [
+    {
+      "id": "case_hjula_textile_system",
+      "claim": "Hjula skapte verdi ved å koble vannkraft, maskiner, kapital og lønnsarbeid til produksjon av bomulls- og ullstoffer for norske og svenske markeder.",
+      "unitOfAnalysis": {
+        "unit": "Hjula Væverier ved Hjulafossen",
+        "boundary": "Analysen omfatter fabrikkstedets kraft, teknologi, produksjon, arbeidsstyrke, markeder, kriser og nedleggelse, ikke hele Schou-konsernet eller all tekstilindustri langs Akerselva.",
+        "scale": "site",
+        "temporalScope": {
+          "start": "1855",
+          "end": "1957",
+          "precision": "period",
+          "rationale": "Driftsperioden avgrenser det stedbundne produksjonssystemet."
+        },
+        "sourceIds": [
+          "source_hjula_snl",
+          "source_hjula_byleksikon",
+          "source_halvor_schou_nbl",
+          "source_hjula_kulturminnesok"
+        ]
+      },
+      "actors": [
+        {
+          "name": "Halvor Schou og senere eiere",
+          "roleOrInterest": "Kontrollerte kapital, investeringer, maskinvalg, markeder og omstilling.",
+          "economicPosition": "Eiersiden tok strategiske valg og hadde krav på virksomhetens overskudd.",
+          "sourceIds": [
+            "source_hjula_snl",
+            "source_halvor_schou_nbl"
+          ]
+        },
+        {
+          "name": "Fabrikkarbeiderne",
+          "roleOrInterest": "Drev veving og tilknyttede tekstilprosesser.",
+          "economicPosition": "Skapte varene gjennom lønnsarbeid uten å kontrollere eierskapet; mange var lavtlønte kvinner.",
+          "sourceIds": [
+            "source_hjula_snl"
+          ]
+        },
+        {
+          "name": "Myrens Verksted",
+          "roleOrInterest": "Leverandør av turbin og hovedaksling.",
+          "economicPosition": "Fikk betalt oppdrag og erfaring gjennom en krevende lokal leveranse.",
+          "sourceIds": [
+            "source_hjula_snl",
+            "source_halvor_schou_nbl"
+          ]
+        },
+        {
+          "name": "Kunder i Norge og Sverige",
+          "roleOrInterest": "Etterspurte tekstilene og ga produksjonen markedsverdi.",
+          "economicPosition": "Markedsadgangen påvirket omsetningen, særlig rundt regelendringen i 1897.",
+          "sourceIds": [
+            "source_hjula_snl"
+          ]
+        }
+      ],
+      "valueCreation": {
+        "inputs": [
+          {
+            "statement": "Bomull og ull, garn, vannkraft, fabrikkbygning, engelske maskiner, lokal turbin- og verkstedkompetanse, kapital og arbeid var sentrale innsatsfaktorer.",
+            "sourceIds": [
+              "source_hjula_snl",
+              "source_hjula_byleksikon",
+              "source_halvor_schou_nbl",
+              "source_hjula_kulturminnesok"
+            ]
+          }
+        ],
+        "activity": {
+          "statement": "Innsatsfaktorene ble organisert som mekanisk veving og tilknyttet bearbeiding i et kraftoverført fabrikksystem.",
+          "sourceIds": [
+            "source_hjula_snl",
+            "source_hjula_byleksikon"
+          ]
+        },
+        "outputs": [
+          {
+            "statement": "Hjula produserte blant annet blåtøy, bekledningsstoffer, skjortestoff, vatt, rullegardinstoff og senere ullvarer.",
+            "sourceIds": [
+              "source_hjula_snl"
+            ]
+          }
+        ],
+        "valueCreationAssessment": {
+          "statement": "Kildene dokumenterer et stort tekstilproduksjonssystem og markedsomsetning, men mangler sammenlignbare serier for innsats, volum og priser som kreves for å beregne verdiskaping eller produktivitet over tid.",
+          "sourceIds": [
+            "source_hjula_snl"
+          ]
+        }
+      },
+      "measurement": {
+        "methodId": "met_naering_statistikk_og_indikatoranalyse",
+        "evidenceType": "mixed",
+        "indicatorOrObservation": "400 vevstoler som planlagt kapasitet, omkring 800 ansatte i 1880-årene og om lag 30 prosent omsetningsfall 1897–1900 behandles som separate indikatorer.",
+        "unit": "kapasitet, personer og prosentvis omsetningsendring",
+        "period": "1855–1900",
+        "comparability": "Indikatorene gjelder ulike måleobjekter og tidspunkter og kan ikke summeres eller brukes som én ytelsesserie.",
+        "dataLimitations": "Arbeidstimer, produksjonsvolum, priser, lønnsserier, kapitalbeholdning og kvalitetsendringer mangler.",
+        "sourceIds": [
+          "source_hjula_snl",
+          "source_halvor_schou_nbl"
+        ]
+      },
+      "distributionAndPower": {
+        "ownershipOrControl": "Halvor Schou og senere eiere kontrollerte kapital, investeringer, leverandørvalg og markedsstrategi.",
+        "laborPosition": "Arbeiderne, mange av dem kvinner, drev produksjonen og mottok lønn uten eierskapskontroll.",
+        "beneficiaries": [
+          "Eiere kunne motta avkastning fra tekstilproduksjonen.",
+          "Arbeidere mottok lønn og utviklet fabrikkkompetanse.",
+          "Myrens Verksted fikk oppdrag og erfaring.",
+          "Kunder fikk tilgang til produserte tekstiler."
+        ],
+        "costRiskBearers": [
+          "Eierne bar investerings- og markedsrisiko.",
+          "Arbeiderne bar belastning og risiko for inntektsbortfall ved stans og nedleggelse.",
+          "Kildene tallfester ikke lokale miljøkostnader fra produksjonen."
+        ],
+        "sourceIds": [
+          "source_hjula_snl",
+          "source_hjula_byleksikon",
+          "source_halvor_schou_nbl",
+          "source_hjula_kulturminnesok"
+        ]
+      },
+      "riskAndExternalities": {
+        "riskAssessment": {
+          "statement": "Hjula var avhengig av råvaretilgang, markedsadgang, handelsregler, maskindrift, kapital og etterspørsel; hendelsene i 1897, 1918 og etterkrigstiden viser ulike sårbarheter.",
+          "sourceIds": [
+            "source_hjula_snl"
+          ]
+        },
+        "externalityAssessment": {
+          "status": "not_applicable",
+          "rationale": "De gjennomgåtte hovedkildene gir ikke sikkert stedsspesifikt grunnlag for å tallfeste utslipp, helsebelastning eller andre miljøeksternaliteter."
+        }
+      },
+      "comparisonAndCausality": {
+        "comparisonBasis": "SNL belyser produksjon, arbeid og markeder; Oslo byleksikon kontrollerer stedet og bygget; NBL belyser Schous og Myrens' beslutningsforløp; Riksantikvarens Kulturminnesøk kontrollerer dagens offisielle kulturminneidentitet.",
+        "causalStatus": "descriptive_only",
+        "causalAssessment": "Kildene viser rekkefølgen mellom etablering, teknologi, vekst, markedssjokk, råvaremangel, sammenslåing og nedleggelse, men isolerer ikke én årsak til vekst eller krise.",
+        "alternativeExplanations": [
+          "Råvarepriser, teknologi, lønnskostnader, konkurranse, handelspolitikk, kapital og etterspørsel kan alle ha påvirket utviklingen."
+        ],
+        "uncertainty": "Uten sammenlignbare bedriftsregnskaper og kontrollgrupper kan virkninger ikke tilskrives én faktor.",
+        "sourceIds": [
+          "source_hjula_snl",
+          "source_hjula_byleksikon",
+          "source_halvor_schou_nbl",
+          "source_hjula_kulturminnesok"
+        ]
+      }
+    }
+  ],
+  "presentOperation": {
+    "operationalStatus": "former",
+    "statement": "Tekstilproduksjonen ved Hjula sluttet i 1957. Fabrikkbygningen står etter brann og gjenoppføring og brukes til andre formål; Riksantikvarens aktuelle register identifiserer fortsatt anlegget som Hjula Væverier.",
+    "originalEconomicRoleRelationship": "Den stedbundne veveridriften er avsluttet; bevarte og gjenoppførte bygg dokumenterer industristedet uten å videreføre den opprinnelige tekstilproduksjonen.",
+    "checkedAt": "2026-08-27",
+    "sourceIds": [
+      "source_hjula_snl",
+      "source_hjula_byleksikon",
+      "source_hjula_kulturminnesok"
+    ]
+  },
+  "quizOpening": {
+    "status": "PASS",
+    "quizTargetId": "ovre_foss",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/naeringsliv/ovre_foss.json",
+    "productionContext": "data/quiz/production_context/naeringsliv/ovre_foss.json",
+    "requiredInputs": [
+      "data/fag/naeringsliv/naeringslivpensum_canonical_v4_5.json",
+      "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+      "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+      "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+      "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+      "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    ]
+  },
+  "chronologyStories": {
+    "status": "PASS",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Leksikonets fjorten milepæler eier tidslinjen; storyen om hovedakslingen har en egen narrativ akse om et konkret leverandørvalg og lokal kompetansebygging."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicIdentity"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "businessTopics"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].valueCreation"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].distributionAndPower"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].measurement"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].comparisonAndCausality"
+      ]
+    },
+    "G": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "quizOpening"
+      ]
+    },
+    "H": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "chronologyStories"
+      ]
+    }
+  },
+  "review": {
+    "reviewer": "History GO Næringsliv source audit",
+    "reviewedAt": "2026-08-27",
+    "notes": "Stedsidentitet, teknologi, produksjon, arbeidsstyrke, kjønnsfordeling, marked, kriser, nedleggelse, målegrenser og nåstatus er kontrollert."
+  }
+}

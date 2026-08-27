@@ -1,0 +1,118 @@
+{
+  "schema": "history_go_phase1_24_quality_gate_v1",
+  "place_id": "ovre_foss",
+  "verified_at": "2026-08-27",
+  "null_measurement": {
+    "existing_place": true,
+    "canonical_id_reused": "ovre_foss",
+    "coordinate_changed": false,
+    "coordinate_status_preserved": "verified_historical_source",
+    "existing_quiz_audit": "5 flat questions plus 5x6 merged set file",
+    "existing_person_reused": "halvor_schou",
+    "existing_person_primary_anchor_preserved": "glads_molle",
+    "prior_coordinate_commits": [
+      "2fb6e491b",
+      "45c56ead1",
+      "19e242941",
+      "608f42991",
+      "e1d9ca1a9"
+    ],
+    "brand_candidate_audited": "not_applicable",
+    "before_after_exact_pair": false
+  },
+  "source_conflicts": [
+    {
+      "claim": "Øvre Foss og Hjulafossen er samme eksakte fossepunkt.",
+      "status": "rejected",
+      "reason": "Oslo byleksikon omtaler dem separat; Hjula-kildene plasserer fabrikken ved Hjulafossen i Sagveien 23."
+    },
+    {
+      "claim": "400 vevstoler og 800 ansatte dokumenterer produktiviteten.",
+      "status": "rejected",
+      "reason": "Tallene gjelder kapasitet og arbeidsstyrke på forskjellige tidspunkter og mangler produksjonsvolum og arbeidstimer."
+    },
+    {
+      "claim": "Hjula ble lagt ned umiddelbart etter TEFAS-konkursen i 1955.",
+      "status": "resolved",
+      "reason": "TEFAS gikk konkurs i 1955; Hjula-anlegget ble lagt ned i 1957."
+    }
+  ],
+  "validation": {
+    "schema": "history_go_ovre_foss_hjula_completion_audit_v1",
+    "status": "high_quality",
+    "checks": {
+      "correctness_and_evidence": {
+        "canonical_identity_and_coordinates_preserved": true,
+        "all_place_claims_verified_and_sourced": true,
+        "people_claims_complete": true,
+        "geographic_name_boundary_explicit": true,
+        "article_bindings_resolve": true
+      },
+      "coverage_and_completion": {
+        "three_real_image_ready_collections": true,
+        "all_expected_article_fields_exist": true,
+        "normal_quiz_is_four_by_seven": true,
+        "popup_deliveries_materialized": true,
+        "people_story_and_readings_resolve": true
+      },
+      "editorial_quality": {
+        "definition_and_background_are_substantive": true,
+        "named_researchers_and_frameworks_are_explicit": true,
+        "methods_include_limitations": true,
+        "disagreements_are_substantive": true,
+        "two_documented_cases_are_declared": true,
+        "key_questions_and_user_facing_prose_exist": true
+      },
+      "technical_integrity": {
+        "production_packets_ready": true,
+        "quiz_context_and_brief_match": true,
+        "scholarly_methods_resolve_to_canonical_registry": true,
+        "all_local_assets_exist": true,
+        "no_unresolved_runtime_delivery": true
+      },
+      "safety_and_responsibility": {
+        "theory_is_labeled_as_lens_not_cause": true,
+        "uncertainty_and_missing_measurement_are_explicit": true,
+        "gender_and_labor_claim_is_bounded": true,
+        "current_use_is_separated_from_historic_factory": true
+      },
+      "maintainability_and_auditability": {
+        "article_references_are_machine_resolvable": true,
+        "source_and_claim_ids_are_unique": true,
+        "canonical_builder_and_artifact_paths_are_recorded": true,
+        "chronology_and_story_ownership_are_separate": true
+      }
+    },
+    "failed_checks": [],
+    "conclusion": "Alle maskinelt etterprøvbare Øvre Foss–Hjula-porter består; redaksjonell score er begrenset til 4/5 fordi automatisering ikke alene kan erklære teksten perfekt."
+  },
+  "quality_score": {
+    "correctness_and_evidence": {
+      "score": 5,
+      "note": "5/5 eksplisitte kontroller bestod."
+    },
+    "coverage_and_completion": {
+      "score": 5,
+      "note": "5/5 eksplisitte kontroller bestod."
+    },
+    "editorial_quality": {
+      "score": 4,
+      "note": "6/6 eksplisitte kontroller bestod; automatisk kontroll er bevisst avgrenset til 4/5."
+    },
+    "technical_integrity": {
+      "score": 5,
+      "note": "5/5 eksplisitte kontroller bestod."
+    },
+    "safety_and_responsibility": {
+      "score": 5,
+      "note": "4/4 eksplisitte kontroller bestod."
+    },
+    "maintainability_and_auditability": {
+      "score": 5,
+      "note": "4/4 eksplisitte kontroller bestod."
+    },
+    "total": 29,
+    "critical_findings": 0,
+    "unresolved_blockers": 0
+  }
+}
