@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "02929e8b83e645baa9d1ed95bbf5836240d937b45c74c1e8fd869edb38cfbcf6"
+    "content_sha256": "8facec7427cba1de30caa4115470d48e4d62e5fe7af1d8ccf70509a81d75d8c6"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 17,
     "chapter_count": 184,
     "module_file_count": 477,
-    "package_file_count": 299,
+    "package_file_count": 302,
     "chapter_referenced_file_count": 898,
-    "referenced_file_count": 1131,
+    "referenced_file_count": 1134,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -3447,9 +3447,9 @@
         "universityFramework"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 31,
+      "package_file_count": 34,
       "required_package_file_count": 4,
-      "optional_package_file_count": 27,
+      "optional_package_file_count": 30,
       "package_files": [
         {
           "path": "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
@@ -3668,6 +3668,18 @@
           "content_sha256": "76917e1ee563e2c64768199041473fab1830432077e54916c4d56c0a4c628ce6"
         },
         {
+          "path": "data/quiz/naeringsliv/schous_bryggeri_sets_merged.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.schous_bryggeri.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "de6ae26d86310f1055a4d65e5138f954fa20c8fde02e986bc387f564d4d956c8"
+        },
+        {
           "path": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
           "required": false,
           "fields": [
@@ -3716,6 +3728,18 @@
           "content_sha256": "c303a57ed0e975cbb1b82b03ec5424b0fa09c7ed893f222f33bcb033124577a6"
         },
         {
+          "path": "data/quiz/production_briefs/naeringsliv/schous_bryggeri.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.schous_bryggeri.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "002b63a1e01bc2d702f3f456e7723199b705b8da7e7b30e58c258e919eeb11bc"
+        },
+        {
           "path": "data/quiz/production_briefs/naeringsliv/telegrafbygningen.json",
           "required": false,
           "fields": [
@@ -3762,6 +3786,18 @@
           ],
           "exists": true,
           "content_sha256": "5a188dec0578c9599220202373f05a155aaf969962abc8680def4a6cc8c35f1a"
+        },
+        {
+          "path": "data/quiz/production_context/naeringsliv/schous_bryggeri.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.schous_bryggeri.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "03027557401a1838aeda98691bba972f9f78ea2d8bfc9650ef3b390bab407a57"
         },
         {
           "path": "data/quiz/production_context/naeringsliv/telegrafbygningen.json",
@@ -3824,20 +3860,20 @@
           "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
         }
       ],
-      "package_content_sha256": "b2c9c3c2d43291978b77cfb40e5f0b882e5df759b74cb3322b8ea4a63db0aa5a",
+      "package_content_sha256": "fff82665a79a8bbb89c253113f1ec812053e0f39bd7f1d2276215dec1a41f3a1",
       "chapter_count": 12,
       "module_file_count": 36,
       "brief_file_count": 12,
       "claims_file_count": 12,
       "chapter_referenced_file_count": 72,
       "chapter_content_sha256": "06d3f52d2c3e2ff12545cbbc2fc0c1a783071c46a79f1e46ae368e44562143d1",
-      "referenced_file_count": 103,
+      "referenced_file_count": 106,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "24ff9c074d93f8afe26fef56ebcaf8dbe9c53f2c0a232fadbb6d356238cefbe7",
-      "content_sha256": "178d9fcf78a0b3594651b4c3cb6db82c280d883a6d6bbf84fccfaf1418c29f9b",
+      "structure_sha256": "87c04642aaad0a6bcb61ef1b8cacbca4a674354346b2466804f3a860e7f583d1",
+      "content_sha256": "c670176aeccc6fab85b592c93a2dea41aab9a0f6c207d45ff1ef289c6b04b50f",
       "chapters": [
         {
           "chapter_id": "arbeid-produksjon-verdiskaping",
@@ -6250,5 +6286,5 @@
       ]
     }
   },
-  "release_sha256": "eeb2a24f9c93fed6d2a6efc62e97f7e2ed66940b24bc95133d7f1be9cb4109bc"
+  "release_sha256": "96ca94c3d4b331269a6219dace86080d8fa4a9ec4e527d71ca62d0fda294c26b"
 }
