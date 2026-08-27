@@ -1,0 +1,459 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "categoryId": "naeringsliv",
+  "targetId": "myrens_verksted",
+  "profile_hint": "normal",
+  "reviewed_at": "2026-08-27",
+  "review_note": "SNL, Oslo byleksikon og Myren Eiendom gir fire adskilte læringsjobber om etablering, maskinproduksjon, konserneierskap og ombruk. Feil grunnleggerfasit og udokumenterte kausalpåstander er holdt ute.",
+  "scope": {
+    "place": "Myrens Verksted",
+    "production_profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "total_questions": 28,
+    "normal_opening_questions": 14
+  },
+  "sources": {
+    "snl": {
+      "url": "https://snl.no/Myrens_Verksted",
+      "source_type": "recognized_reference",
+      "review_status": "reviewed",
+      "review_note": "Grunnleggelse, produksjon, ansatte, eksport, eierskap, nedleggelse og ombruk."
+    },
+    "byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Myrens_Verksted",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Stedsidentitet, turbinleveranse, bygninger, arbeidsliv og senere bruk."
+    },
+    "current": {
+      "url": "https://myreneiendom.no/om-myrens-verksted/",
+      "source_type": "primary_business",
+      "review_status": "reviewed",
+      "review_note": "Eierskap fra 1997, dagens eiendomsdrift, bygninger og næringsområde."
+    },
+    "snl_jens": {
+      "url": "https://snl.no/Jens_Jacob_Jensen",
+      "source_type": "recognized_reference",
+      "review_status": "reviewed",
+      "review_note": "Jens Jacob Jensens identitet og dokumenterte industrigründervirke."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "arbeid_produksjon_verdiskaping",
+      "logistikk_infrastruktur_rom"
+    ],
+    "emne_ids": [
+      "em_naering_industri_og_mekanisering",
+      "em_naering_arbeid_verdiskaping",
+      "em_naering_byens_okonomiske_rom",
+      "em_naering_logistikk_verdikjeder",
+      "em_naering_produksjon_produktivitet",
+      "em_naering_forbruk_marked",
+      "em_naering_eierskap_styring",
+      "em_naering_innovasjon_teknologisk_skift",
+      "em_naering_omstilling_kriser_skift",
+      "em_naering_eiendom_kapital_byutvikling",
+      "em_naering_makt_ulikhet_arbeidsliv"
+    ],
+    "topic_hook_ids": [
+      "maskin_menneske_produksjon",
+      "verdikjede_spor",
+      "eierskap_og_styring",
+      "omstilling_av_naeringsrom"
+    ],
+    "method_ids": [
+      "met_naering_logistikk_og_verdikjedeanalyse",
+      "met_naering_statistikk_og_indikatoranalyse",
+      "met_naering_eierskaps_og_styringsanalyse",
+      "met_naering_omstilling_og_endringsanalyse",
+      "met_naering_industrihistorisk_analyse"
+    ],
+    "thinker_ids": [
+      "david_harvey"
+    ],
+    "works": []
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/quiz_naeringsliv.json",
+      "data/quiz/naeringsliv/myrens_verksted_sets_merged.json",
+      "data/places/naeringsliv/oslo/places_naeringsliv/myrens_verksted.json"
+    ],
+    "active_before": {
+      "file": "data/quiz/naeringsliv/myrens_verksted_sets_merged.json",
+      "set_count": 5,
+      "question_count": 30,
+      "finding": "30 spørsmål fordelt på fem eldre sett med seks spørsmål og fem legacy-spørsmål i flatfil ble funnet; den flate grunnleggerfasiten var feil."
+    },
+    "decisions": [
+      "Bevar alle kildebårne læringsjobber som passer dagens kontrakt.",
+      "Korriger grunnleggerfasiten til Jens Jacob og Andreas Jensen.",
+      "Materialiser normal 4x7 med fjorten vanlige åpningsspørsmål og metode først fra sett tre."
+    ],
+    "knowledge_migration": "De 28 valgte spørsmålene får stabile Knowledge-ID-er; utelatte spørsmål er dokumentert i produksjonsbriefen."
+  },
+  "profile_decision": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "justification": "Fire læringsjobber dekker etablering og sted, maskin- og arbeidsprosesser, eierskap og eksport samt nedleggelse og eiendomsombruk uten å splitte stedet i parallelle quizer."
+  },
+  "held_back_candidates": [
+    "Legacy-fasiten Jacob og Thorvald Meyer som grunnleggere.",
+    "Den ubetingede påstanden om eksport til over 30 land.",
+    "Påstanden om at dagens bygningsombruk dokumenterer et godt utfall for tidligere ansatte.",
+    "Myrens-navnet som levende industriselskap etter 1988."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_myrens_verksted_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Verkstedet ble grunnlagt i 1848.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_industri_og_mekanisering"
+    },
+    {
+      "claim_id": "claim_myrens_verksted_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Brødrene Jens Jacob og Andreas Jensen grunnla verkstedet.",
+      "source_ids": [
+        "snl",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping"
+    },
+    {
+      "claim_id": "claim_myrens_verksted_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Det første navnet var Øvre Foss Mechaniske Værksted.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_industri_og_mekanisering"
+    },
+    {
+      "claim_id": "claim_myrens_verksted_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Møllebygging var verkstedets første hovedsatsing.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping"
+    },
+    {
+      "claim_id": "claim_myrens_verksted_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Produksjonen flyttet til Myraløkka i 1854.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_byens_okonomiske_rom"
+    },
+    {
+      "claim_id": "claim_myrens_verksted_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo byleksikon oppgir at den første vannturbinen ble bygd i 1850.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_industri_og_mekanisering"
+    },
+    {
+      "claim_id": "claim_myrens_verksted_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Det første store oppdraget var turbin og hovedaksling til Hjula Væverier.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_myrens_verksted_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Myrens produserte blant annet turbiner, dampmaskiner og kjeler.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_produksjon_produktivitet"
+    },
+    {
+      "claim_id": "claim_myrens_verksted_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Myrens ble en ledende leverandør av utstyr til sagbruk og tresliperier.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_myrens_verksted_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Opphevelsen bidro til flere sagbruk og større etterspørsel etter utstyr.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_forbruk_marked"
+    },
+    {
+      "claim_id": "claim_myrens_verksted_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Bedriften fikk Kongens gullmedalje for maskiner, møller og motorer.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_industri_og_mekanisering"
+    },
+    {
+      "claim_id": "claim_myrens_verksted_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Myrens var blant landets største bedrifter med rundt 1000 ansatte inkludert filialen.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping"
+    },
+    {
+      "claim_id": "claim_myrens_verksted_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Virksomheten ble omdannet til Myrens Verksted A/S i 1907.",
+      "source_ids": [
+        "snl",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_eierskap_styring"
+    },
+    {
+      "claim_id": "claim_myrens_verksted_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Fra 1909 produserte Myrens utstyr for fiskemel og fiskeolje.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_produksjon_produktivitet"
+    },
+    {
+      "claim_id": "claim_myrens_verksted_quiz_15",
+      "order": 15,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Samarbeidet med Karlstad Mekaniske Verkstad utviklet KaMyr for celluloseutstyr.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_innovasjon_teknologisk_skift"
+    },
+    {
+      "claim_id": "claim_myrens_verksted_quiz_16",
+      "order": 16,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Kværner kjøpte Myrens Verksted i 1928.",
+      "source_ids": [
+        "snl",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_eierskap_styring"
+    },
+    {
+      "claim_id": "claim_myrens_verksted_quiz_17",
+      "order": 17,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Eksporten utgjorde 80 prosent av omsetningen i 1973.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_myrens_verksted_quiz_18",
+      "order": 18,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "SNL oppgir 96 millioner kroner i omsetning og 350 ansatte i 1978.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_produksjon_produktivitet"
+    },
+    {
+      "claim_id": "claim_myrens_verksted_quiz_19",
+      "order": 19,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Produksjonen i Oslo ble lagt ned i 1988.",
+      "source_ids": [
+        "snl",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_myrens_verksted_quiz_20",
+      "order": 20,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Myrens ble slått sammen med Thune-Eureka til Kværner Eureka.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_eierskap_styring"
+    },
+    {
+      "claim_id": "claim_myrens_verksted_quiz_21",
+      "order": 21,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "En investorgruppe kjøpte området og etablerte Myren Eiendom.",
+      "source_ids": [
+        "current",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_eiendom_kapital_byutvikling"
+    },
+    {
+      "claim_id": "claim_myrens_verksted_quiz_22",
+      "order": 22,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Myrens var en leverandørindustri for sagbruk, treforedling, fiskeforedling og celluloseproduksjon.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_myrens_verksted_quiz_23",
+      "order": 23,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Eksportandel måler omsetningens markedsfordeling, ikke lønnsomhet eller produktivitet.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_produksjon_produktivitet"
+    },
+    {
+      "claim_id": "claim_myrens_verksted_quiz_24",
+      "order": 24,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Oppkjøpet i 1928 flyttet kontrollen over virksomheten inn i Kværner-konsernet.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_eierskap_styring"
+    },
+    {
+      "claim_id": "claim_myrens_verksted_quiz_25",
+      "order": 25,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Området gikk fra mekanisk produksjon til kontorer, medier, trening og servering.",
+      "source_ids": [
+        "current",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_myrens_verksted_quiz_26",
+      "order": 26,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Eiendomsombruk dokumenterer arealendring, men ikke arbeidsmarkedsutfallet for dem som mistet industrijobbene.",
+      "source_ids": [
+        "snl",
+        "current"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_myrens_verksted_quiz_27",
+      "order": 27,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kildene knytter omstruktureringen og flyttingen av produksjonen til Kværner.",
+      "source_ids": [
+        "snl",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_makt_ulikhet_arbeidsliv"
+    },
+    {
+      "claim_id": "claim_myrens_verksted_quiz_28",
+      "order": 28,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Stedet binder produksjonssystem, marked, konsernendring og eiendomsombruk sammen.",
+      "source_ids": [
+        "snl",
+        "byleksikon",
+        "current"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_industri_og_mekanisering"
+    }
+  ]
+}

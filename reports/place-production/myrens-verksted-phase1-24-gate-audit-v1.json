@@ -1,0 +1,59 @@
+{
+  "schema": "history_go_phase1_24_quality_gate_v1",
+  "place_id": "myrens_verksted",
+  "verified_at": "2026-08-27",
+  "null_measurement": {
+    "existing_place": true,
+    "canonical_id_reused": "myrens_verksted",
+    "coordinate_changed": false,
+    "coordinate_status_preserved": "verified_geometry",
+    "existing_quiz_audit": "5 flat questions plus 5x6 merged set file",
+    "brand_candidate_audited": "myrens_verksted_company",
+    "held_back_persons": [
+      "Andreas Jensen – documented founder but no verified reusable portrait/profile package in this tranche",
+      "Knud Dahl – documented co-owner but no verified reusable portrait/profile package in this tranche"
+    ],
+    "before_after_exact_pair": false
+  },
+  "source_conflicts": [
+    {
+      "claim": "Jacob og Thorvald Meyer grunnla Myrens Verksted.",
+      "status": "rejected",
+      "reason": "SNL, Oslo byleksikon og Jens Jacob Jensen-biografien dokumenterer Jens Jacob og Andreas Jensen som grunnleggere."
+    },
+    {
+      "claim": "KaMyr ble opprettet i 1920 eller 1923.",
+      "status": "qualified",
+      "reason": "SNL daterer samarbeidets start til 1920, mens Oslo byleksikon daterer selskapsdannelsen til 1923; quizen spør derfor om funksjonen og bruker 1920 bare for samarbeidets start."
+    }
+  ],
+  "quality_score": {
+    "correctness_and_evidence": {
+      "score": 5,
+      "note": "Sted, person, brand, bilder, uendret koordinat, 28 quizspørsmål og nåstatus har inspiserbare kilder; to kildekonflikter er eksplisitt løst."
+    },
+    "coverage_and_completion": {
+      "score": 5,
+      "note": "Identitet, koordinat, fire bildeklare samlinger, Badge/Fagverk, quiz, popup, 13-punkts kronologi, språk, story, lesespor, People og Brand er materialisert."
+    },
+    "editorial_quality": {
+      "score": 5,
+      "note": "Maskinleverandørrollen binder sammen arbeid, elv, markeder, konserneierskap og ombruk uten å gjøre stedet til en katalog over leietakere."
+    },
+    "technical_integrity": {
+      "score": 5,
+      "note": "Én deterministisk builder, normal 4x7-quiz, v4.2-description packet, næringslivspakke, People-claims og fokuserte tester låser leveransen."
+    },
+    "safety_and_responsibility": {
+      "score": 5,
+      "note": "Museums- og eiendomstilgang respekteres, alle bilder og brandmerket er kildeført, og ingen endorsement eller udokumentert arbeidstakerutfall hevdes."
+    },
+    "maintainability_and_auditability": {
+      "score": 5,
+      "note": "Canonical manifester, kilde-ID-er, transformasjonsmetadata, konfliktnotater og permanente tester gjør pakken etterprøvbar og reproduserbar."
+    },
+    "total": 30,
+    "critical_findings": 0,
+    "unresolved_blockers": 0
+  }
+}

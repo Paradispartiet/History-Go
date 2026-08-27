@@ -1,0 +1,1151 @@
+{
+  "targetId": "myrens_verksted",
+  "categoryId": "naeringsliv",
+  "sources": {
+    "snl": "https://snl.no/Myrens_Verksted",
+    "byleksikon": "https://oslobyleksikon.no/side/Myrens_Verksted",
+    "current": "https://myreneiendom.no/om-myrens-verksted/",
+    "snl_jens": "https://snl.no/Jens_Jacob_Jensen"
+  },
+  "production_context": {
+    "manifest_category": "naeringsliv",
+    "profile": "normal_4x7",
+    "standard_version": "3.3",
+    "source_brief": "data/quiz/production_briefs/naeringsliv/myrens_verksted.json",
+    "context_artifact": "data/quiz/production_context/naeringsliv/myrens_verksted.json",
+    "resolved_files": {
+      "pensum": "data/fag/naeringsliv/naeringslivpensum_canonical_v4_5.json",
+      "emner": "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+      "fagkart": "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+      "methods": "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "arbeid_produksjon_verdiskaping",
+      "logistikk_infrastruktur_rom"
+    ],
+    "emne_ids": [
+      "em_naering_industri_og_mekanisering",
+      "em_naering_arbeid_verdiskaping",
+      "em_naering_byens_okonomiske_rom",
+      "em_naering_logistikk_verdikjeder",
+      "em_naering_produksjon_produktivitet",
+      "em_naering_forbruk_marked",
+      "em_naering_eierskap_styring",
+      "em_naering_innovasjon_teknologisk_skift",
+      "em_naering_omstilling_kriser_skift",
+      "em_naering_eiendom_kapital_byutvikling",
+      "em_naering_makt_ulikhet_arbeidsliv"
+    ],
+    "topic_hook_ids": [
+      "maskin_menneske_produksjon",
+      "verdikjede_spor",
+      "eierskap_og_styring",
+      "omstilling_av_naeringsrom"
+    ],
+    "method_ids": [
+      "met_naering_logistikk_og_verdikjedeanalyse",
+      "met_naering_statistikk_og_indikatoranalyse",
+      "met_naering_eierskaps_og_styringsanalyse",
+      "met_naering_omstilling_og_endringsanalyse",
+      "met_naering_industrihistorisk_analyse"
+    ],
+    "thinker_ids": [
+      "david_harvey"
+    ],
+    "works": [],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/quiz_naeringsliv.json",
+        "data/quiz/naeringsliv/myrens_verksted_sets_merged.json",
+        "data/places/naeringsliv/oslo/places_naeringsliv/myrens_verksted.json"
+      ],
+      "active_before": {
+        "file": "data/quiz/naeringsliv/myrens_verksted_sets_merged.json",
+        "set_count": 5,
+        "question_count": 30,
+        "finding": "30 spørsmål fordelt på fem eldre sett med seks spørsmål og fem legacy-spørsmål i flatfil ble funnet; den flate grunnleggerfasiten var feil."
+      },
+      "decisions": [
+        "Bevar alle kildebårne læringsjobber som passer dagens kontrakt.",
+        "Korriger grunnleggerfasiten til Jens Jacob og Andreas Jensen.",
+        "Materialiser normal 4x7 med fjorten vanlige åpningsspørsmål og metode først fra sett tre."
+      ],
+      "knowledge_migration": "De 28 valgte spørsmålene får stabile Knowledge-ID-er; utelatte spørsmål er dokumentert i produksjonsbriefen."
+    },
+    "profile_decision": {
+      "profile": "normal",
+      "set_count": 4,
+      "questions_per_set": 7,
+      "justification": "Fire læringsjobber dekker etablering og sted, maskin- og arbeidsprosesser, eierskap og eksport samt nedleggelse og eiendomsombruk uten å splitte stedet i parallelle quizer."
+    },
+    "held_back_candidates": [
+      "Legacy-fasiten Jacob og Thorvald Meyer som grunnleggere.",
+      "Den ubetingede påstanden om eksport til over 30 land.",
+      "Påstanden om at dagens bygningsombruk dokumenterer et godt utfall for tidligere ansatte.",
+      "Myrens-navnet som levende industriselskap etter 1988."
+    ],
+    "normal_opening_questions": 14,
+    "theory_start_phase": "final",
+    "method_start_phase": "final"
+  },
+  "sets": [
+    {
+      "set_id": "naeringsliv_myrens_verksted_set_1",
+      "title": "Grunnleggelsen og elva",
+      "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "myrens_verksted_quiz_01",
+          "quiz_id": "naeringsliv_myrens_verksted_set_1_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "myrens_verksted",
+          "targetId": "myrens_verksted",
+          "question_scope": "place",
+          "question": "Når ble Myrens Verksted grunnlagt?",
+          "options": [
+            "1848",
+            "1854",
+            "1863"
+          ],
+          "answer": "1848",
+          "answerIndex": 0,
+          "knowledge": "Verkstedet ble grunnlagt i 1848.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_industri_og_mekanisering",
+          "source": [
+            "snl"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Verkstedet ble grunnlagt i 1848.",
+          "claim_id": "claim_myrens_verksted_quiz_01",
+          "primary_knowledge_unit_id": "ku_naeringsliv_myrens_verksted_01",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_myrens_verksted_01"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "myrens_verksted_quiz_02",
+          "quiz_id": "naeringsliv_myrens_verksted_set_1_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "myrens_verksted",
+          "targetId": "myrens_verksted",
+          "question_scope": "place",
+          "question": "Hvem grunnla verkstedet?",
+          "options": [
+            "Jens Jacob og Andreas Jensen",
+            "Jacob og Thorvald Meyer",
+            "Knud og Harald Dahl"
+          ],
+          "answer": "Jens Jacob og Andreas Jensen",
+          "answerIndex": 0,
+          "knowledge": "Brødrene Jens Jacob og Andreas Jensen grunnla verkstedet.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_arbeid_verdiskaping",
+          "source": [
+            "snl",
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Brødrene Jens Jacob og Andreas Jensen grunnla verkstedet.",
+          "claim_id": "claim_myrens_verksted_quiz_02",
+          "primary_knowledge_unit_id": "ku_naeringsliv_myrens_verksted_02",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_myrens_verksted_02"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "myrens_verksted_quiz_03",
+          "quiz_id": "naeringsliv_myrens_verksted_set_1_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "myrens_verksted",
+          "targetId": "myrens_verksted",
+          "question_scope": "place",
+          "question": "Hva het virksomheten først?",
+          "options": [
+            "Øvre Foss Mechaniske Værksted",
+            "Myrens Turbinfabrik",
+            "Akerselvens Maskin Compagni"
+          ],
+          "answer": "Øvre Foss Mechaniske Værksted",
+          "answerIndex": 0,
+          "knowledge": "Det første navnet var Øvre Foss Mechaniske Værksted.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_industri_og_mekanisering",
+          "source": [
+            "snl"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Det første navnet var Øvre Foss Mechaniske Værksted.",
+          "claim_id": "claim_myrens_verksted_quiz_03",
+          "primary_knowledge_unit_id": "ku_naeringsliv_myrens_verksted_03",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_myrens_verksted_03"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "myrens_verksted_quiz_04",
+          "quiz_id": "naeringsliv_myrens_verksted_set_1_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "myrens_verksted",
+          "targetId": "myrens_verksted",
+          "question_scope": "place",
+          "question": "Hva var hovedsatsingen i starten?",
+          "options": [
+            "Møllebygging",
+            "Skipsbygging",
+            "Tekstilfarging"
+          ],
+          "answer": "Møllebygging",
+          "answerIndex": 0,
+          "knowledge": "Møllebygging var verkstedets første hovedsatsing.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_arbeid_verdiskaping",
+          "source": [
+            "snl"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Møllebygging var verkstedets første hovedsatsing.",
+          "claim_id": "claim_myrens_verksted_quiz_04",
+          "primary_knowledge_unit_id": "ku_naeringsliv_myrens_verksted_04",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_myrens_verksted_04"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "myrens_verksted_quiz_05",
+          "quiz_id": "naeringsliv_myrens_verksted_set_1_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "myrens_verksted",
+          "targetId": "myrens_verksted",
+          "question_scope": "place",
+          "question": "Når flyttet produksjonen til Myraløkka?",
+          "options": [
+            "1854",
+            "1848",
+            "1870"
+          ],
+          "answer": "1854",
+          "answerIndex": 0,
+          "knowledge": "Produksjonen flyttet til Myraløkka i 1854.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_byens_okonomiske_rom",
+          "source": [
+            "snl"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Produksjonen flyttet til Myraløkka i 1854.",
+          "claim_id": "claim_myrens_verksted_quiz_05",
+          "primary_knowledge_unit_id": "ku_naeringsliv_myrens_verksted_05",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_myrens_verksted_05"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "myrens_verksted_quiz_06",
+          "quiz_id": "naeringsliv_myrens_verksted_set_1_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "myrens_verksted",
+          "targetId": "myrens_verksted",
+          "question_scope": "place",
+          "question": "Hva bygde verkstedet for første gang i 1850?",
+          "options": [
+            "En vannturbin",
+            "En elektrisk motor",
+            "En dieselmotor"
+          ],
+          "answer": "En vannturbin",
+          "answerIndex": 0,
+          "knowledge": "Oslo byleksikon oppgir at den første vannturbinen ble bygd i 1850.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_industri_og_mekanisering",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Oslo byleksikon oppgir at den første vannturbinen ble bygd i 1850.",
+          "claim_id": "claim_myrens_verksted_quiz_06",
+          "primary_knowledge_unit_id": "ku_naeringsliv_myrens_verksted_06",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_myrens_verksted_06"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "myrens_verksted_quiz_07",
+          "quiz_id": "naeringsliv_myrens_verksted_set_1_q7",
+          "categoryId": "naeringsliv",
+          "placeId": "myrens_verksted",
+          "targetId": "myrens_verksted",
+          "question_scope": "place",
+          "question": "Hvem mottok verkstedets første store turbinoppdrag?",
+          "options": [
+            "Hjula Væverier",
+            "Freia",
+            "Christiania Spigerverk"
+          ],
+          "answer": "Hjula Væverier",
+          "answerIndex": 0,
+          "knowledge": "Det første store oppdraget var turbin og hovedaksling til Hjula Væverier.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_logistikk_verdikjeder",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Det første store oppdraget var turbin og hovedaksling til Hjula Væverier.",
+          "claim_id": "claim_myrens_verksted_quiz_07",
+          "primary_knowledge_unit_id": "ku_naeringsliv_myrens_verksted_07",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_myrens_verksted_07"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        }
+      ]
+    },
+    {
+      "set_id": "naeringsliv_myrens_verksted_set_2",
+      "title": "Maskiner og industrivekst",
+      "level": 2,
+      "order": 2,
+      "phase": "middle",
+      "xp": 75,
+      "questions": [
+        {
+          "id": "myrens_verksted_quiz_08",
+          "quiz_id": "naeringsliv_myrens_verksted_set_2_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "myrens_verksted",
+          "targetId": "myrens_verksted",
+          "question_scope": "place",
+          "question": "Hvilket produkt inngikk i Myrens produksjon?",
+          "options": [
+            "Dampmaskiner",
+            "Telefonapparater",
+            "Trykkpresser for aviser"
+          ],
+          "answer": "Dampmaskiner",
+          "answerIndex": 0,
+          "knowledge": "Myrens produserte blant annet turbiner, dampmaskiner og kjeler.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_naering_produksjon_produktivitet",
+          "source": [
+            "snl"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Myrens produserte blant annet turbiner, dampmaskiner og kjeler.",
+          "claim_id": "claim_myrens_verksted_quiz_08",
+          "primary_knowledge_unit_id": "ku_naeringsliv_myrens_verksted_08",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_myrens_verksted_08"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "myrens_verksted_quiz_09",
+          "quiz_id": "naeringsliv_myrens_verksted_set_2_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "myrens_verksted",
+          "targetId": "myrens_verksted",
+          "question_scope": "place",
+          "question": "Hvilken næring ble Myrens særlig viktig for etter 1860?",
+          "options": [
+            "Treforedlingsindustrien",
+            "Tekstilindustrien",
+            "Tobakksindustrien"
+          ],
+          "answer": "Treforedlingsindustrien",
+          "answerIndex": 0,
+          "knowledge": "Myrens ble en ledende leverandør av utstyr til sagbruk og tresliperier.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_naering_logistikk_verdikjeder",
+          "source": [
+            "snl"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Myrens ble en ledende leverandør av utstyr til sagbruk og tresliperier.",
+          "claim_id": "claim_myrens_verksted_quiz_09",
+          "primary_knowledge_unit_id": "ku_naeringsliv_myrens_verksted_09",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_myrens_verksted_09"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "myrens_verksted_quiz_10",
+          "quiz_id": "naeringsliv_myrens_verksted_set_2_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "myrens_verksted",
+          "targetId": "myrens_verksted",
+          "question_scope": "place",
+          "question": "Hvilken endring i 1860 bidro til større marked?",
+          "options": [
+            "Sagbruksprivilegiene ble opphevet",
+            "Kværner kjøpte verkstedet",
+            "Fiskemel ble patentert"
+          ],
+          "answer": "Sagbruksprivilegiene ble opphevet",
+          "answerIndex": 0,
+          "knowledge": "Opphevelsen bidro til flere sagbruk og større etterspørsel etter utstyr.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_naering_forbruk_marked",
+          "source": [
+            "snl"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Opphevelsen bidro til flere sagbruk og større etterspørsel etter utstyr.",
+          "claim_id": "claim_myrens_verksted_quiz_10",
+          "primary_knowledge_unit_id": "ku_naeringsliv_myrens_verksted_10",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_myrens_verksted_10"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "myrens_verksted_quiz_11",
+          "quiz_id": "naeringsliv_myrens_verksted_set_2_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "myrens_verksted",
+          "targetId": "myrens_verksted",
+          "question_scope": "place",
+          "question": "Hvilken utmerkelse fikk bedriften i 1883?",
+          "options": [
+            "Kongens gullmedalje",
+            "St. Hallvard-medaljen",
+            "Nobelprisen"
+          ],
+          "answer": "Kongens gullmedalje",
+          "answerIndex": 0,
+          "knowledge": "Bedriften fikk Kongens gullmedalje for maskiner, møller og motorer.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_naering_industri_og_mekanisering",
+          "source": [
+            "snl"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Bedriften fikk Kongens gullmedalje for maskiner, møller og motorer.",
+          "claim_id": "claim_myrens_verksted_quiz_11",
+          "primary_knowledge_unit_id": "ku_naeringsliv_myrens_verksted_11",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_myrens_verksted_11"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "myrens_verksted_quiz_12",
+          "quiz_id": "naeringsliv_myrens_verksted_set_2_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "myrens_verksted",
+          "targetId": "myrens_verksted",
+          "question_scope": "place",
+          "question": "Hvor stor var virksomheten rundt 1890 når Fredrikstad-filialen regnes med?",
+          "options": [
+            "Omkring 1000 ansatte",
+            "Omkring 100 ansatte",
+            "Omkring 5000 ansatte"
+          ],
+          "answer": "Omkring 1000 ansatte",
+          "answerIndex": 0,
+          "knowledge": "Myrens var blant landets største bedrifter med rundt 1000 ansatte inkludert filialen.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_naering_arbeid_verdiskaping",
+          "source": [
+            "snl"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Myrens var blant landets største bedrifter med rundt 1000 ansatte inkludert filialen.",
+          "claim_id": "claim_myrens_verksted_quiz_12",
+          "primary_knowledge_unit_id": "ku_naeringsliv_myrens_verksted_12",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_myrens_verksted_12"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "myrens_verksted_quiz_13",
+          "quiz_id": "naeringsliv_myrens_verksted_set_2_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "myrens_verksted",
+          "targetId": "myrens_verksted",
+          "question_scope": "place",
+          "question": "Når ble Myrens Verksted et aksjeselskap?",
+          "options": [
+            "1907",
+            "1928",
+            "1988"
+          ],
+          "answer": "1907",
+          "answerIndex": 0,
+          "knowledge": "Virksomheten ble omdannet til Myrens Verksted A/S i 1907.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_naering_eierskap_styring",
+          "source": [
+            "snl",
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Virksomheten ble omdannet til Myrens Verksted A/S i 1907.",
+          "claim_id": "claim_myrens_verksted_quiz_13",
+          "primary_knowledge_unit_id": "ku_naeringsliv_myrens_verksted_13",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_myrens_verksted_13"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "myrens_verksted_quiz_14",
+          "quiz_id": "naeringsliv_myrens_verksted_set_2_q7",
+          "categoryId": "naeringsliv",
+          "placeId": "myrens_verksted",
+          "targetId": "myrens_verksted",
+          "question_scope": "place",
+          "question": "Hvilken ny industri fikk Myrens utstyr fra 1909?",
+          "options": [
+            "Fiskeforedlingsindustrien",
+            "Bilindustrien",
+            "Flyindustrien"
+          ],
+          "answer": "Fiskeforedlingsindustrien",
+          "answerIndex": 0,
+          "knowledge": "Fra 1909 produserte Myrens utstyr for fiskemel og fiskeolje.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_naering_produksjon_produktivitet",
+          "source": [
+            "snl"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Fra 1909 produserte Myrens utstyr for fiskemel og fiskeolje.",
+          "claim_id": "claim_myrens_verksted_quiz_14",
+          "primary_knowledge_unit_id": "ku_naeringsliv_myrens_verksted_14",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_myrens_verksted_14"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        }
+      ]
+    },
+    {
+      "set_id": "naeringsliv_myrens_verksted_set_3",
+      "title": "Eierskap, eksport og nedleggelse",
+      "level": 3,
+      "order": 3,
+      "phase": "bridge",
+      "xp": 100,
+      "questions": [
+        {
+          "id": "myrens_verksted_quiz_15",
+          "quiz_id": "naeringsliv_myrens_verksted_set_3_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "myrens_verksted",
+          "targetId": "myrens_verksted",
+          "question_scope": "place",
+          "question": "Hva var KaMyr knyttet til?",
+          "options": [
+            "Utstyr til celluloseindustrien",
+            "Boligbygging",
+            "Bryggerimaskiner"
+          ],
+          "answer": "Utstyr til celluloseindustrien",
+          "answerIndex": 0,
+          "knowledge": "Samarbeidet med Karlstad Mekaniske Verkstad utviklet KaMyr for celluloseutstyr.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_naering_innovasjon_teknologisk_skift",
+          "source": [
+            "snl"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Samarbeidet med Karlstad Mekaniske Verkstad utviklet KaMyr for celluloseutstyr.",
+          "claim_id": "claim_myrens_verksted_quiz_15",
+          "primary_knowledge_unit_id": "ku_naeringsliv_myrens_verksted_15",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_myrens_verksted_15"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "myrens_verksted_quiz_16",
+          "quiz_id": "naeringsliv_myrens_verksted_set_3_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "myrens_verksted",
+          "targetId": "myrens_verksted",
+          "question_scope": "place",
+          "question": "Hvem kjøpte Myrens Verksted i 1928?",
+          "options": [
+            "Kværner",
+            "Orkla",
+            "Norsk Hydro"
+          ],
+          "answer": "Kværner",
+          "answerIndex": 0,
+          "knowledge": "Kværner kjøpte Myrens Verksted i 1928.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_naering_eierskap_styring",
+          "source": [
+            "snl",
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kværner kjøpte Myrens Verksted i 1928.",
+          "claim_id": "claim_myrens_verksted_quiz_16",
+          "primary_knowledge_unit_id": "ku_naeringsliv_myrens_verksted_16",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_myrens_verksted_16"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "myrens_verksted_quiz_17",
+          "quiz_id": "naeringsliv_myrens_verksted_set_3_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "myrens_verksted",
+          "targetId": "myrens_verksted",
+          "question_scope": "place",
+          "question": "Hva utgjorde eksporten i 1973?",
+          "options": [
+            "80 prosent av omsetningen",
+            "8 prosent av omsetningen",
+            "Hele omsetningen"
+          ],
+          "answer": "80 prosent av omsetningen",
+          "answerIndex": 0,
+          "knowledge": "Eksporten utgjorde 80 prosent av omsetningen i 1973.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_naering_logistikk_verdikjeder",
+          "source": [
+            "snl"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Eksporten utgjorde 80 prosent av omsetningen i 1973.",
+          "claim_id": "claim_myrens_verksted_quiz_17",
+          "primary_knowledge_unit_id": "ku_naeringsliv_myrens_verksted_17",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_myrens_verksted_17"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "myrens_verksted_quiz_18",
+          "quiz_id": "naeringsliv_myrens_verksted_set_3_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "myrens_verksted",
+          "targetId": "myrens_verksted",
+          "question_scope": "place",
+          "question": "Hva oppgir SNL om selskapet i 1978?",
+          "options": [
+            "96 millioner kroner i omsetning og 350 ansatte",
+            "350 millioner kroner i omsetning og 96 ansatte",
+            "96 ansatte og ingen eksport"
+          ],
+          "answer": "96 millioner kroner i omsetning og 350 ansatte",
+          "answerIndex": 0,
+          "knowledge": "SNL oppgir 96 millioner kroner i omsetning og 350 ansatte i 1978.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_naering_produksjon_produktivitet",
+          "source": [
+            "snl"
+          ],
+          "source_origin": "external",
+          "claim_basis": "SNL oppgir 96 millioner kroner i omsetning og 350 ansatte i 1978.",
+          "claim_id": "claim_myrens_verksted_quiz_18",
+          "primary_knowledge_unit_id": "ku_naeringsliv_myrens_verksted_18",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_myrens_verksted_18"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "myrens_verksted_quiz_19",
+          "quiz_id": "naeringsliv_myrens_verksted_set_3_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "myrens_verksted",
+          "targetId": "myrens_verksted",
+          "question_scope": "place",
+          "question": "Når ble industrivirksomheten i Oslo lagt ned?",
+          "options": [
+            "1988",
+            "1973",
+            "1997"
+          ],
+          "answer": "1988",
+          "answerIndex": 0,
+          "knowledge": "Produksjonen i Oslo ble lagt ned i 1988.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "source": [
+            "snl",
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Produksjonen i Oslo ble lagt ned i 1988.",
+          "claim_id": "claim_myrens_verksted_quiz_19",
+          "primary_knowledge_unit_id": "ku_naeringsliv_myrens_verksted_19",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_myrens_verksted_19"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "myrens_verksted_quiz_20",
+          "quiz_id": "naeringsliv_myrens_verksted_set_3_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "myrens_verksted",
+          "targetId": "myrens_verksted",
+          "question_scope": "place",
+          "question": "Hva ble Myrens slått sammen med ved nedleggelsen?",
+          "options": [
+            "Thune-Eureka",
+            "Fredrikstad Mekaniske Verksted",
+            "Karlstad Mekaniske Verkstad"
+          ],
+          "answer": "Thune-Eureka",
+          "answerIndex": 0,
+          "knowledge": "Myrens ble slått sammen med Thune-Eureka til Kværner Eureka.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_naering_eierskap_styring",
+          "source": [
+            "snl"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Myrens ble slått sammen med Thune-Eureka til Kværner Eureka.",
+          "claim_id": "claim_myrens_verksted_quiz_20",
+          "primary_knowledge_unit_id": "ku_naeringsliv_myrens_verksted_20",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_myrens_verksted_20"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "myrens_verksted_quiz_21",
+          "quiz_id": "naeringsliv_myrens_verksted_set_3_q7",
+          "categoryId": "naeringsliv",
+          "placeId": "myrens_verksted",
+          "targetId": "myrens_verksted",
+          "question_scope": "place",
+          "question": "Hva skjedde med området i 1997?",
+          "options": [
+            "Det ble kjøpt og Myren Eiendom ble etablert",
+            "Alle bygningene ble revet",
+            "Maskinproduksjonen startet på nytt"
+          ],
+          "answer": "Det ble kjøpt og Myren Eiendom ble etablert",
+          "answerIndex": 0,
+          "knowledge": "En investorgruppe kjøpte området og etablerte Myren Eiendom.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_naering_eiendom_kapital_byutvikling",
+          "source": [
+            "current",
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "En investorgruppe kjøpte området og etablerte Myren Eiendom.",
+          "claim_id": "claim_myrens_verksted_quiz_21",
+          "primary_knowledge_unit_id": "ku_naeringsliv_myrens_verksted_21",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_myrens_verksted_21"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        }
+      ]
+    },
+    {
+      "set_id": "naeringsliv_myrens_verksted_set_4",
+      "title": "Fra verksted til nytt næringsområde",
+      "level": 4,
+      "order": 4,
+      "phase": "final",
+      "xp": 125,
+      "questions": [
+        {
+          "id": "myrens_verksted_quiz_22",
+          "quiz_id": "naeringsliv_myrens_verksted_set_4_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "myrens_verksted",
+          "targetId": "myrens_verksted",
+          "question_scope": "place",
+          "question": "Hvilken verdikjederolle hadde Myrens?",
+          "options": [
+            "Det leverte maskiner som andre fabrikker brukte i produksjonen",
+            "Det solgte bare råtømmer",
+            "Det drev bare transport"
+          ],
+          "answer": "Det leverte maskiner som andre fabrikker brukte i produksjonen",
+          "answerIndex": 0,
+          "knowledge": "Myrens var en leverandørindustri for sagbruk, treforedling, fiskeforedling og celluloseproduksjon.",
+          "difficulty": 4,
+          "question_type": "analysis",
+          "emne_id": "em_naering_logistikk_verdikjeder",
+          "method_id": "met_naering_logistikk_og_verdikjedeanalyse",
+          "source": [
+            "snl"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Myrens var en leverandørindustri for sagbruk, treforedling, fiskeforedling og celluloseproduksjon.",
+          "claim_id": "claim_myrens_verksted_quiz_22",
+          "primary_knowledge_unit_id": "ku_naeringsliv_myrens_verksted_22",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_myrens_verksted_22"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": [],
+          "guidance_basis": [
+            "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "myrens_verksted_quiz_23",
+          "quiz_id": "naeringsliv_myrens_verksted_set_4_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "myrens_verksted",
+          "targetId": "myrens_verksted",
+          "question_scope": "place",
+          "question": "Hva kan 80 prosent eksportandel dokumentere direkte?",
+          "options": [
+            "Hvor stor del av omsetningen som kom fra eksport",
+            "At bedriften var lønnsom",
+            "At produktiviteten økte"
+          ],
+          "answer": "Hvor stor del av omsetningen som kom fra eksport",
+          "answerIndex": 0,
+          "knowledge": "Eksportandel måler omsetningens markedsfordeling, ikke lønnsomhet eller produktivitet.",
+          "difficulty": 4,
+          "question_type": "analysis",
+          "emne_id": "em_naering_produksjon_produktivitet",
+          "method_id": "met_naering_statistikk_og_indikatoranalyse",
+          "source": [
+            "snl"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Eksportandel måler omsetningens markedsfordeling, ikke lønnsomhet eller produktivitet.",
+          "claim_id": "claim_myrens_verksted_quiz_23",
+          "primary_knowledge_unit_id": "ku_naeringsliv_myrens_verksted_23",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_myrens_verksted_23"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": [],
+          "guidance_basis": [
+            "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "myrens_verksted_quiz_24",
+          "quiz_id": "naeringsliv_myrens_verksted_set_4_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "myrens_verksted",
+          "targetId": "myrens_verksted",
+          "question_scope": "place",
+          "question": "Hva endret Kværner-oppkjøpet først og fremst?",
+          "options": [
+            "Eierskap og konserntilknytning",
+            "Akerselvas løp",
+            "Verkstedets grunnleggelsesår"
+          ],
+          "answer": "Eierskap og konserntilknytning",
+          "answerIndex": 0,
+          "knowledge": "Oppkjøpet i 1928 flyttet kontrollen over virksomheten inn i Kværner-konsernet.",
+          "difficulty": 4,
+          "question_type": "analysis",
+          "emne_id": "em_naering_eierskap_styring",
+          "method_id": "met_naering_eierskaps_og_styringsanalyse",
+          "source": [
+            "snl"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Oppkjøpet i 1928 flyttet kontrollen over virksomheten inn i Kværner-konsernet.",
+          "claim_id": "claim_myrens_verksted_quiz_24",
+          "primary_knowledge_unit_id": "ku_naeringsliv_myrens_verksted_24",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_myrens_verksted_24"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": [],
+          "guidance_basis": [
+            "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "myrens_verksted_quiz_25",
+          "quiz_id": "naeringsliv_myrens_verksted_set_4_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "myrens_verksted",
+          "targetId": "myrens_verksted",
+          "question_scope": "place",
+          "question": "Hvilken omstilling viser dagens bruk av fabrikkbyggene?",
+          "options": [
+            "Fra maskinindustri til eiendom og tjenester",
+            "Fra jordbruk til gruvedrift",
+            "Fra havn til flyplass"
+          ],
+          "answer": "Fra maskinindustri til eiendom og tjenester",
+          "answerIndex": 0,
+          "knowledge": "Området gikk fra mekanisk produksjon til kontorer, medier, trening og servering.",
+          "difficulty": 4,
+          "question_type": "analysis",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_omstilling_og_endringsanalyse",
+          "source": [
+            "current",
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Området gikk fra mekanisk produksjon til kontorer, medier, trening og servering.",
+          "claim_id": "claim_myrens_verksted_quiz_25",
+          "primary_knowledge_unit_id": "ku_naeringsliv_myrens_verksted_25",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_myrens_verksted_25"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": [],
+          "guidance_basis": [
+            "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json"
+          ],
+          "topic_hook_id": "omstilling_av_naeringsrom",
+          "thinker_id": "david_harvey",
+          "theory_ref": {
+            "topic_hook_id": "omstilling_av_naeringsrom",
+            "thinker_id": "david_harvey",
+            "why_it_helps": "Et romlig kapitalperspektiv undersøker hvordan et tidligere produksjonsanlegg får nye eiendoms- og tjenestefunksjoner etter industrinedleggelsen."
+          }
+        },
+        {
+          "id": "myrens_verksted_quiz_26",
+          "quiz_id": "naeringsliv_myrens_verksted_set_4_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "myrens_verksted",
+          "targetId": "myrens_verksted",
+          "question_scope": "place",
+          "question": "Hvorfor kan ikke ombruk alene måle utfallet for de tidligere ansatte?",
+          "options": [
+            "Bygningsbruk viser ikke deres senere arbeid, inntekt eller kompetanse",
+            "Fordi bygninger aldri kan brukes på nytt",
+            "Fordi nedleggelsen ikke er dokumentert"
+          ],
+          "answer": "Bygningsbruk viser ikke deres senere arbeid, inntekt eller kompetanse",
+          "answerIndex": 0,
+          "knowledge": "Eiendomsombruk dokumenterer arealendring, men ikke arbeidsmarkedsutfallet for dem som mistet industrijobbene.",
+          "difficulty": 4,
+          "question_type": "analysis",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_omstilling_og_endringsanalyse",
+          "source": [
+            "snl",
+            "current"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Eiendomsombruk dokumenterer arealendring, men ikke arbeidsmarkedsutfallet for dem som mistet industrijobbene.",
+          "claim_id": "claim_myrens_verksted_quiz_26",
+          "primary_knowledge_unit_id": "ku_naeringsliv_myrens_verksted_26",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_myrens_verksted_26"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": [],
+          "guidance_basis": [
+            "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "myrens_verksted_quiz_27",
+          "quiz_id": "naeringsliv_myrens_verksted_set_4_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "myrens_verksted",
+          "targetId": "myrens_verksted",
+          "question_scope": "place",
+          "question": "Hvem kontrollerte beslutningen om nedleggelse innenfor kildenes beskrivelse?",
+          "options": [
+            "Kværner-systemet som eier og konsern",
+            "De besøkende ved Akerselva",
+            "Dagens leietakere"
+          ],
+          "answer": "Kværner-systemet som eier og konsern",
+          "answerIndex": 0,
+          "knowledge": "Kildene knytter omstruktureringen og flyttingen av produksjonen til Kværner.",
+          "difficulty": 4,
+          "question_type": "analysis",
+          "emne_id": "em_naering_makt_ulikhet_arbeidsliv",
+          "method_id": "met_naering_eierskaps_og_styringsanalyse",
+          "source": [
+            "snl",
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kildene knytter omstruktureringen og flyttingen av produksjonen til Kværner.",
+          "claim_id": "claim_myrens_verksted_quiz_27",
+          "primary_knowledge_unit_id": "ku_naeringsliv_myrens_verksted_27",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_myrens_verksted_27"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": [],
+          "guidance_basis": [
+            "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "myrens_verksted_quiz_28",
+          "quiz_id": "naeringsliv_myrens_verksted_set_4_q7",
+          "categoryId": "naeringsliv",
+          "placeId": "myrens_verksted",
+          "targetId": "myrens_verksted",
+          "question_scope": "place",
+          "question": "Hvilken samlet analyse passer best for Myrens Verksted?",
+          "options": [
+            "Vannkraft, fagarbeid, maskiner, eksport, eierskap og ombruk må leses sammen",
+            "Bare fasaden er relevant",
+            "Dagens leietakere forklarer hele historien"
+          ],
+          "answer": "Vannkraft, fagarbeid, maskiner, eksport, eierskap og ombruk må leses sammen",
+          "answerIndex": 0,
+          "knowledge": "Stedet binder produksjonssystem, marked, konsernendring og eiendomsombruk sammen.",
+          "difficulty": 4,
+          "question_type": "analysis",
+          "emne_id": "em_naering_industri_og_mekanisering",
+          "method_id": "met_naering_industrihistorisk_analyse",
+          "source": [
+            "snl",
+            "byleksikon",
+            "current"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Stedet binder produksjonssystem, marked, konsernendring og eiendomsombruk sammen.",
+          "claim_id": "claim_myrens_verksted_quiz_28",
+          "primary_knowledge_unit_id": "ku_naeringsliv_myrens_verksted_28",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_myrens_verksted_28"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": [],
+          "guidance_basis": [
+            "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json"
+          ]
+        }
+      ]
+    }
+  ]
+}
