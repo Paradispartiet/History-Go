@@ -1,0 +1,64 @@
+{
+  "schema": "history_go_phase1_24_quality_gate_v1",
+  "place_id": "alunverket",
+  "verified_at": "2026-08-27",
+  "null_measurement": {
+    "existing_place": false,
+    "canonical_id_created": "alunverket",
+    "coordinate_changed": false,
+    "coordinate_status_created": "verified_historical_source",
+    "existing_quiz_audit": "no existing quiz, flat questions or manifest entry",
+    "brand_candidate_audited": "alunverket_company",
+    "held_back_people": [
+      "Peder Leuch – medgrunnlegger, men ingen verifisert gjenbrukbar identitetsportrett-pakke i denne produksjonen",
+      "James Collett og Morten Leuch – gjenopptok driften, men holdes som kildebelagte aktører uten separate profiler"
+    ],
+    "before_after_exact_pair": false
+  },
+  "source_conflicts": [
+    {
+      "claim": "Grunnleggerens navn var Peter Leuch.",
+      "status": "resolved",
+      "reason": "Oslo byleksikon bruker Peter Leuch, mens SNL og Ekebergparken bruker Peder Leuch; brukerteksten følger de to samstemmende institusjonelle kildene."
+    },
+    {
+      "claim": "Skolen fra 1806 var Norges første verksskole.",
+      "status": "held_back",
+      "reason": "Rekordpåstanden er omstridt; bare den kildebårne etableringen av en skole for arbeidernes barn publiseres."
+    },
+    {
+      "claim": "44 arbeidere og 138 personer viser vekst.",
+      "status": "rejected",
+      "reason": "Tallene gjelder ulike år og ulike enheter og kan ikke behandles som én serie."
+    }
+  ],
+  "quality_score": {
+    "correctness_and_evidence": {
+      "score": 5,
+      "note": "Sted, person, brand, bilder, historisk koordinatanker, 28 quizspørsmål og driftsperioden har inspiserbare kilder; navne- og tallkonflikter er eksplisitt løst."
+    },
+    "coverage_and_completion": {
+      "score": 5,
+      "note": "Identitet, koordinat, fire bildeklare samlinger, Badge/Fagverk, quiz, popup, 12-punkts kronologi, språk, story, lesespor, People og Brand er materialisert."
+    },
+    "editorial_quality": {
+      "score": 5,
+      "note": "Råvare- og produksjonskjeden binder sammen arbeid, politikk, marked, sosial makt og miljøspor uten å gjøre villaen eller hele Grønlia til stedfortreder."
+    },
+    "technical_integrity": {
+      "score": 5,
+      "note": "Én deterministisk builder, normal 4x7-quiz, v4.2-description packet, næringslivspakke, People-claims og fokuserte tester låser leveransen."
+    },
+    "safety_and_responsibility": {
+      "score": 5,
+      "note": "Museums- og offentlig tilgang respekteres, alle bilder og brandmerket er kildeført, og ingen rekordpåstand, eksakt lønnsomhet eller falsk endorsement hevdes."
+    },
+    "maintainability_and_auditability": {
+      "score": 5,
+      "note": "Canonical manifester, kilde-ID-er, transformasjonsmetadata, konfliktnotater og permanente tester gjør pakken etterprøvbar og reproduserbar."
+    },
+    "total": 30,
+    "critical_findings": 0,
+    "unresolved_blockers": 0
+  }
+}

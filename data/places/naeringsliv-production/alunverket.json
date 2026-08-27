@@ -1,0 +1,383 @@
+{
+  "schemaVersion": "naeringsliv_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "alunverket",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv/alunverket.json",
+  "status": "ready",
+  "economicIdentity": {
+    "statement": "Alunverket var et stedbundet kjemisk industriverk der alunskifer fra Ekebergskrenten ble foredlet til alun i perioden 1737–1815.",
+    "anchorType": "production_site",
+    "placeObjectDistinction": "Rapporten skiller det historiske bruddet og verksanlegget fra Alunverket-brandet, Edys akvatint, den gjenværende fabrikkbygningen, den senere villaen og dagens virksomheter i området.",
+    "temporalScope": {
+      "start": "1737",
+      "end": "1815",
+      "precision": "period",
+      "rationale": "Perioden følger dokumentert opprettelse, gjenopptakelse, utvidelse og nedleggelse av alunproduksjonen."
+    },
+    "sourceIds": [
+      "source_alunverket_snl",
+      "source_alunverket_byleksikon",
+      "source_alunverket_byarkiv",
+      "source_alunverket_ekebergparken",
+      "source_alunverket_osm"
+    ]
+  },
+  "businessTopics": [
+    {
+      "emneId": "em_naering_arbeid_verdiskaping",
+      "siteSpecificRationale": "Arbeidere brøt, brente, lutet og kokte skifer i en stedbundet produksjonskjede.",
+      "caseIds": [
+        "case_alunverket_alum_chain"
+      ]
+    },
+    {
+      "emneId": "em_naering_industri_og_mekanisering",
+      "siteSpecificRationale": "Anlegget gjør tidlig kjemisk industriproduksjon og spesialisert prosessutstyr konkret.",
+      "caseIds": [
+        "case_alunverket_alum_chain"
+      ]
+    },
+    {
+      "emneId": "em_naering_produksjon_produktivitet",
+      "siteSpecificRationale": "Kildene dokumenterer produksjonstrinn og punktvise persontall, men ingen sammenlignbar produktivitetsserie.",
+      "caseIds": [
+        "case_alunverket_alum_chain"
+      ]
+    },
+    {
+      "emneId": "em_naering_logistikk_verdikjeder",
+      "siteSpecificRationale": "Råvareuttaket ble koblet til alun for tekstilfarging og garving og pottaske fra 1776.",
+      "caseIds": [
+        "case_alunverket_alum_chain"
+      ]
+    },
+    {
+      "emneId": "em_naering_baerekraft_eksternaliteter",
+      "siteSpecificRationale": "Den varig endrede fjellsiden synliggjør en fysisk kostnad ved råvareuttaket.",
+      "caseIds": [
+        "case_alunverket_alum_chain"
+      ]
+    },
+    {
+      "emneId": "em_naering_makt_ulikhet_arbeidsliv",
+      "siteSpecificRationale": "Privilegier, eierkontroll og den paternalistiske skolen viser hvordan stat, eiere og arbeidere sto ulikt.",
+      "caseIds": [
+        "case_alunverket_alum_chain"
+      ]
+    },
+    {
+      "emneId": "em_naering_omstilling_kriser_skift",
+      "siteSpecificRationale": "Første stans, gjenopptakelsen i 1758 og nedleggelsen i 1815 viser en ujevn industriell utvikling.",
+      "caseIds": [
+        "case_alunverket_alum_chain"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_alunverket_snl",
+      "url": "https://snl.no/Alunverket",
+      "sourceLocation": "Hele fagartikkelen, særlig opprettelse, gjenopptakelse, pottaske, skole og nedleggelse",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-08-27",
+      "temporalCoverage": "historical",
+      "provenance": "Fagredigert Store norske leksikon-artikkel.",
+      "limitations": "Artikkelen gir ikke en komplett regnskaps- eller produktivitetsserie og brukes ikke for rekordpåstanden om verksskolen."
+    },
+    {
+      "id": "source_alunverket_byleksikon",
+      "url": "https://oslobyleksikon.no/side/Alunverket",
+      "sourceLocation": "Stedsposten om bruddet, produksjonsprosessen, produktene og senere eiendomshistorie",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-08-27",
+      "temporalCoverage": "mixed",
+      "provenance": "Oslo byleksikons redaksjonelle stedspost.",
+      "limitations": "Stedsposten alene avgrenser ikke én eksakt historisk anleggsgeometri."
+    },
+    {
+      "id": "source_alunverket_byarkiv",
+      "url": "https://www.dagsavisen.no/nyheter/gamlebyens-skjulte-industrihistorie/5040330",
+      "sourceLocation": "Artikkelen om merkantilisme, anlegget, prosessen, arbeidssamfunnet og Wollstonecraft",
+      "sourceType": "archive",
+      "verifiedAt": "2026-08-27",
+      "temporalCoverage": "historical",
+      "provenance": "Oslo Byarkiv-historiker Johanne Bergkvists kildebelagte formidling.",
+      "limitations": "44 arbeidere og 138 personer gjelder ulike år og enheter og kan ikke sammenlignes som én serie."
+    },
+    {
+      "id": "source_alunverket_ekebergparken",
+      "url": "https://ekebergparken.com/historisk-tidslinje",
+      "sourceLocation": "Historisk tidslinje om opprettelse, produkter og 44 arbeidere i 1790-årene",
+      "sourceType": "museum_or_heritage",
+      "verifiedAt": "2026-08-27",
+      "temporalCoverage": "historical",
+      "provenance": "Ekebergparkens institusjonelle kulturhistoriske tidslinje.",
+      "limitations": "Tidslinjen er kort og brukes sammen med de fagredigerte stedskildene."
+    },
+    {
+      "id": "source_alunverket_osm",
+      "url": "https://www.openstreetmap.org/node/12732634365",
+      "sourceLocation": "Navngitt node Alunverket 1737–1815 ved bruddsporene",
+      "sourceType": "registry",
+      "verifiedAt": "2026-08-27",
+      "temporalCoverage": "current",
+      "provenance": "OpenStreetMaps navngitte, versjonerte kartobjekt brukes som publikumsanker.",
+      "limitations": "Kartnoden dokumenterer dagens anker og navn, ikke hele det historiske anleggets geometri eller driftsforløp."
+    }
+  ],
+  "economicCases": [
+    {
+      "id": "case_alunverket_alum_chain",
+      "claim": "Alunverket skapte verdi ved å omforme stedbundet alunskifer til alun for tekstil- og lærverdikjeder, støttet av merkantilistiske privilegier og med arbeid, risiko og landskapskostnader fordelt ulikt.",
+      "unitOfAnalysis": {
+        "unit": "Det historiske Alunverket ved Ekebergskrenten og Grønlia",
+        "boundary": "Analysen omfatter råvarebruddet, den dokumenterte produksjonskjeden, eier- og arbeiderrelasjoner, markedsstøtte og nedleggelse 1737–1815; den omfatter ikke den senere villaen eller hele Grønlia.",
+        "scale": "site",
+        "temporalScope": {
+          "start": "1737",
+          "end": "1815",
+          "precision": "period",
+          "rationale": "Perioden følger den dokumenterte industrivirksomheten fra opprettelse til nedleggelse."
+        },
+        "sourceIds": [
+          "source_alunverket_snl",
+          "source_alunverket_byleksikon",
+          "source_alunverket_byarkiv",
+          "source_alunverket_ekebergparken",
+          "source_alunverket_osm"
+        ]
+      },
+      "actors": [
+        {
+          "name": "Eierne i Collett- og Leuch-kretsen",
+          "roleOrInterest": "Organiserte kapital, privilegier, produksjon og marked.",
+          "economicPosition": "Kontrollerte virksomheten og arbeidssamfunnets sentrale institusjoner.",
+          "sourceIds": [
+            "source_alunverket_snl",
+            "source_alunverket_byarkiv"
+          ]
+        },
+        {
+          "name": "Arbeiderne ved bruddet og verket",
+          "roleOrInterest": "Brøt, brente, lutet, kokte og transporterte materialene.",
+          "economicPosition": "Skapte produktet gjennom lønnet og fysisk krevende arbeid uten å kontrollere eierskapet.",
+          "sourceIds": [
+            "source_alunverket_byarkiv",
+            "source_alunverket_ekebergparken"
+          ]
+        },
+        {
+          "name": "Kongen og myndighetene",
+          "roleOrInterest": "Ga privilegier, tollfrihet og importvern for å fremme innenlandsk produksjon.",
+          "economicPosition": "Formet markedsvilkårene gjennom merkantilistisk politikk.",
+          "sourceIds": [
+            "source_alunverket_byarkiv"
+          ]
+        },
+        {
+          "name": "Tekstilfargere og garvere",
+          "roleOrInterest": "Brukte alun som innsatsvare i videre produksjon.",
+          "economicPosition": "Var nedstrøms kjøpere i verdikjeden, men kildene her gir ikke en komplett kundeliste.",
+          "sourceIds": [
+            "source_alunverket_snl",
+            "source_alunverket_byleksikon"
+          ]
+        }
+      ],
+      "valueCreation": {
+        "inputs": [
+          {
+            "statement": "Alunskifer, ved eller annet brensel, vann, blypanner, kar, kapital, arbeid og prosesskunnskap var sentrale innsatsfaktorer.",
+            "sourceIds": [
+              "source_alunverket_byleksikon",
+              "source_alunverket_byarkiv"
+            ]
+          }
+        ],
+        "activity": {
+          "statement": "Råvaren ble brutt, brent, lutet, kokt inn og krystallisert i en flerleddet kjemisk prosess.",
+          "sourceIds": [
+            "source_alunverket_byleksikon",
+            "source_alunverket_byarkiv"
+          ]
+        },
+        "outputs": [
+          {
+            "statement": "Verket framstilte alun og fra 1776 også pottaske; prosessrester kunne brukes som pigmentråstoff.",
+            "sourceIds": [
+              "source_alunverket_snl",
+              "source_alunverket_byleksikon"
+            ]
+          }
+        ],
+        "valueCreationAssessment": {
+          "statement": "Kildene dokumenterer en verdikjede fra lokal råvare til innsatsvarer for tekstilfarging og garving, men gir ikke konsistente tall for å beregne lønnsomhet eller produktivitet.",
+          "sourceIds": [
+            "source_alunverket_snl",
+            "source_alunverket_byleksikon",
+            "source_alunverket_byarkiv"
+          ]
+        }
+      },
+      "measurement": {
+        "methodId": "met_naering_industrihistorisk_analyse",
+        "evidenceType": "mixed",
+        "indicatorOrObservation": "Produksjonstrinn, milepæler, 44 arbeidere i 1790-årene, 138 personer i 1801 og synlige bruddspor sammenholdes som ulike typer evidens.",
+        "unit": "stedbundne industri-, arbeids- og landskapsindikatorer",
+        "period": "1737–1815",
+        "comparability": "Milepæler og fysiske spor kan sammenholdes kvalitativt, men 44 arbeidere og 138 personer gjelder ulike år og måleenheter.",
+        "dataLimitations": "Kildene gir ikke en ubrutt serie for produksjonsvolum, priser, lønn, kostnader, fortjeneste eller sysselsetting.",
+        "sourceIds": [
+          "source_alunverket_snl",
+          "source_alunverket_byleksikon",
+          "source_alunverket_byarkiv",
+          "source_alunverket_ekebergparken",
+          "source_alunverket_osm"
+        ]
+      },
+      "distributionAndPower": {
+        "ownershipOrControl": "Eierkretsen kontrollerte kapital, produksjon og arbeidssamfunnets institusjoner, mens staten formet markedet gjennom privilegier og importvern.",
+        "laborPosition": "Arbeiderne utførte den fysiske og kjemiske prosessen og levde i et paternalistisk lokalsamfunn uten å kontrollere eierskapet.",
+        "beneficiaries": [
+          "Eiere kunne søke avkastning fra en beskyttet innenlandsk produksjon.",
+          "Tekstil- og lærprodusenter fikk tilgang til en innenlandsk innsatsvare.",
+          "Arbeiderfamilier fikk lønn og fra 1806 en skole, samtidig som eierkontrollen besto."
+        ],
+        "costRiskBearers": [
+          "Eiere bar investerings- og markedsrisiko.",
+          "Arbeidere bar arbeidsbelastning og sosial avhengighet.",
+          "Landskapet bar varige fysiske inngrep fra uttak og brenning."
+        ],
+        "sourceIds": [
+          "source_alunverket_snl",
+          "source_alunverket_byleksikon",
+          "source_alunverket_byarkiv",
+          "source_alunverket_ekebergparken",
+          "source_alunverket_osm"
+        ]
+      },
+      "riskAndExternalities": {
+        "riskAssessment": {
+          "statement": "Virksomheten var avhengig av prosesskunnskap, brensel, avsetning, kostnader og fortsatt politisk beskyttelse.",
+          "sourceIds": [
+            "source_alunverket_snl",
+            "source_alunverket_byarkiv"
+          ]
+        },
+        "externalityAssessment": {
+          "status": "documented",
+          "statement": "Edys samtidige motiv, Wollstonecrafts observasjon og de kartfestede bruddsporene dokumenterer en synlig, varig endring av fjellsiden; kildene tallfester ikke full miljøbelastning.",
+          "sourceIds": [
+            "source_alunverket_byarkiv",
+            "source_alunverket_osm"
+          ]
+        }
+      },
+      "comparisonAndCausality": {
+        "comparisonBasis": "SNL gir hovedkronologien, Oslo byleksikon produksjonsprosessen og stedet, Oslo Byarkiv arbeidssamfunn og politikk, mens Ekebergparken kontrollerer arbeidertallet.",
+        "causalStatus": "descriptive_only",
+        "causalAssessment": "Materialet beskriver privilegier, første stans, gjenopptakelse, avsetnings- og kostnadsproblemer og nedleggelse, men isolerer ikke én årsak eller et sikkert lønnsomhetsforløp.",
+        "alternativeExplanations": [
+          "Tekniske problemer, kapitalbehov, brensel- og driftskostnader, marked, importpolitikk og ledelse kan alle ha påvirket utviklingen."
+        ],
+        "uncertainty": "Uten sammenlignbare regnskaps- og markedsdata kan utfallet ikke tilskrives én faktor.",
+        "sourceIds": [
+          "source_alunverket_snl",
+          "source_alunverket_byleksikon",
+          "source_alunverket_byarkiv",
+          "source_alunverket_ekebergparken",
+          "source_alunverket_osm"
+        ]
+      }
+    }
+  ],
+  "presentOperation": {
+    "operationalStatus": "former",
+    "statement": "Alunproduksjonen ble nedlagt i 1815; stedet formidles i dag gjennom synlige bruddspor, en navngitt minnemarkør og historiske kilder.",
+    "originalEconomicRoleRelationship": "Den økonomiske virksomheten er avsluttet. Dagens fjellflate er et historisk spor etter råvareuttaket, ikke et aktivt industriverk.",
+    "checkedAt": "2026-08-27",
+    "sourceIds": [
+      "source_alunverket_snl",
+      "source_alunverket_byleksikon",
+      "source_alunverket_byarkiv",
+      "source_alunverket_osm"
+    ]
+  },
+  "quizOpening": {
+    "status": "PASS",
+    "quizTargetId": "alunverket",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/naeringsliv/alunverket.json",
+    "productionContext": "data/quiz/production_context/naeringsliv/alunverket.json",
+    "requiredInputs": [
+      "data/fag/naeringsliv/naeringslivpensum_canonical_v4_5.json",
+      "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+      "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+      "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+      "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+      "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    ]
+  },
+  "chronologyStories": {
+    "status": "PASS",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Leksikonets 12 milepæler eier tidslinjen; storyen om Mary Wollstonecraft har en egen narrativ akse om råvareuttak og landskapsendring."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicIdentity"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "businessTopics"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].valueCreation"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].distributionAndPower"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].measurement"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].comparisonAndCausality"
+      ]
+    },
+    "G": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "quizOpening"
+      ]
+    },
+    "H": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "chronologyStories"
+      ]
+    }
+  },
+  "review": {
+    "reviewer": "History GO Næringsliv source audit",
+    "reviewedAt": "2026-08-27",
+    "notes": "Stedsidentitet, råvare, kjemisk produksjon, verdikjede, arbeidssamfunn, privilegier, miljøspor, nedleggelse og målegrenser er kontrollert. Rapporten skiller arbeidertall fra befolkningstall og handelsvern fra dokumentert lønnsomhet."
+  }
+}
