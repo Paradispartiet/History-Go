@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "a84209437b5674faa5e52b76a29d6029cab28d5ae166e84dba5d6f993c26a587"
+    "content_sha256": "02929e8b83e645baa9d1ed95bbf5836240d937b45c74c1e8fd869edb38cfbcf6"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 17,
     "chapter_count": 184,
     "module_file_count": 477,
-    "package_file_count": 296,
+    "package_file_count": 299,
     "chapter_referenced_file_count": 898,
-    "referenced_file_count": 1128,
+    "referenced_file_count": 1131,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -3447,9 +3447,9 @@
         "universityFramework"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 28,
+      "package_file_count": 31,
       "required_package_file_count": 4,
-      "optional_package_file_count": 24,
+      "optional_package_file_count": 27,
       "package_files": [
         {
           "path": "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
@@ -3632,6 +3632,18 @@
           "content_sha256": "07f7d4df74275325d75a683886beda0d21c3f43a4703d58661a05d767f563b47"
         },
         {
+          "path": "data/quiz/naeringsliv/freia_fabrikken_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.freia_fabrikken.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "bb45460e325f78ad5fc9e02d2428f4085a26496662757a4b581da23a9ea03335"
+        },
+        {
           "path": "data/quiz/naeringsliv/havnelageret_sets_merged.json",
           "required": false,
           "fields": [
@@ -3668,6 +3680,18 @@
           "content_sha256": "39f8fb6985fe8ee9891959dadb582fc0bf9963b2669319a7ab5b29a34ac526dd"
         },
         {
+          "path": "data/quiz/production_briefs/naeringsliv/freia_fabrikken.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.freia_fabrikken.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "508689dbcc81664bf499782674c3e5657a9bc932a671a57fee6c042ab11ec3d5"
+        },
+        {
           "path": "data/quiz/production_briefs/naeringsliv/havnelageret.json",
           "required": false,
           "fields": [
@@ -3702,6 +3726,18 @@
           ],
           "exists": true,
           "content_sha256": "2bfd115a43be6af78830e6e7634154b84c038b2193b4e71a4858578fdc902e4a"
+        },
+        {
+          "path": "data/quiz/production_context/naeringsliv/freia_fabrikken.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.freia_fabrikken.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "0f2b6e1b2a66d18506ff334c0b4d64100871c337a86bc42fbb6839e3cd4709e1"
         },
         {
           "path": "data/quiz/production_context/naeringsliv/havnelageret.json",
@@ -3788,20 +3824,20 @@
           "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
         }
       ],
-      "package_content_sha256": "e317d09709e9a5e06be272cf1c9bed10199c86517e07f4c2e642acb5a8778d4f",
+      "package_content_sha256": "8fc236afaa3dcb59329749d93e22b984f241d657553b50121c136d46d8e9ae65",
       "chapter_count": 12,
       "module_file_count": 36,
       "brief_file_count": 12,
       "claims_file_count": 12,
       "chapter_referenced_file_count": 72,
       "chapter_content_sha256": "06d3f52d2c3e2ff12545cbbc2fc0c1a783071c46a79f1e46ae368e44562143d1",
-      "referenced_file_count": 100,
+      "referenced_file_count": 103,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "226987d65ef23ec22dddb60dd34256f9be96bda55607c14c84825b337378905f",
-      "content_sha256": "41e35ea18bf69a24149cd42fae09cd0e6d12e9016715b93aa47349548b6a3941",
+      "structure_sha256": "24ff9c074d93f8afe26fef56ebcaf8dbe9c53f2c0a232fadbb6d356238cefbe7",
+      "content_sha256": "f48d5b5cd19b779bfe9bdf4e3945b38a6444044e1228a8e33deecd5a6632207c",
       "chapters": [
         {
           "chapter_id": "arbeid-produksjon-verdiskaping",
@@ -6214,5 +6250,5 @@
       ]
     }
   },
-  "release_sha256": "8e39a37cfe6d495edd3835dc35a3e39b5d7ab408bb6ddd101f4d3768c0d69ab6"
+  "release_sha256": "c5002f0713943905fd247faf5eb30b72ee12b59a53787048439caec4371f2170"
 }
