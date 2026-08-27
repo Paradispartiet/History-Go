@@ -59,6 +59,23 @@ jobs:
             source = source.replace(anchor, `person('${canonicalId}',`);
           }
 
+          for (const [before, after] of [
+            [
+              "Amina og Ingrid reagerer på om programlederens skarphet bevarer kildestatus og godkjenningslinje.",
+              "Amina og Ingrid reagerer på om programlederens skarphet bevarer kildestatus og godkjenningslinje gjennom hele løpet."
+            ],
+            [
+              "Thea og gjesten husker om venting ble respektert, og om differensiert samtykke overlever etterbruk.",
+              "Thea og gjesten husker om venting ble respektert, og om differensiert samtykke overlever etterbruk når konteksten endres."
+            ]
+          ]) {
+            const matches = source.split(before).length - 1;
+            if (matches !== 1) {
+              throw new Error(`Expected exactly one shallow Programleder thread relationship, found ${matches}`);
+            }
+            source = source.replace(before, after);
+          }
+
           const fieldsStartMarker = "  fields: {\n    authority_context: {";
           const scenesMarker = "\n});\n\nconst scenes =";
           const fieldsStart = source.lastIndexOf(fieldsStartMarker);
