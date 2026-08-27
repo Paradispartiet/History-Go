@@ -22,6 +22,7 @@ import { auditVitenskapTheoryIntegrity } from '../tools/audit-vitenskap-theory-i
 import { auditPolitikkTheoryIntegrity } from '../tools/audit-politikk-theory-integrity.mjs';
 import { auditFilosofiTheoryIntegrity } from '../tools/audit-filosofi-theory-integrity.mjs';
 import { auditTechnologyTheoryIntegrity } from '../tools/audit-teknologi-theory-integrity.mjs';
+import { auditUtdanningTheoryIntegrity } from '../tools/audit-utdanning-theory-integrity.mjs';
 
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const CONTRACT='data/fag/fagverk_theory_quality_contract_v1.json';
@@ -51,7 +52,8 @@ const RUNNERS={
   vitenskap:()=>auditVitenskapTheoryIntegrity(),
   politikk:()=>auditPolitikkTheoryIntegrity(),
   filosofi:()=>auditFilosofiTheoryIntegrity(),
-  teknologi:()=>auditTechnologyTheoryIntegrity()
+  teknologi:()=>auditTechnologyTheoryIntegrity(),
+  utdanning:()=>auditUtdanningTheoryIntegrity()
 };
 
 const STRICT_KEYS=[
@@ -159,6 +161,9 @@ export function auditFagverkTheoryIntegrity({writeReport=false,checkReport=true}
   const teknologiAdapter=adapterById.get('teknologi');
   assert(teknologiAdapter?.proof_scope==='structured_subject_gate','Teknologi må bruke permanent structured subject gate etter 12-felts reconciliation');
   assert(allVerified(teknologiAdapter?.existing_gate_proves),'Teknologi structured subject gate må dokumentere alle strict proof-dimensjoner');
+  const utdanningAdapter=adapterById.get('utdanning');
+  assert(utdanningAdapter?.proof_scope==='structured_subject_gate','Utdanning må bruke permanent structured subject gate etter 14-felts reconciliation');
+  assert(allVerified(utdanningAdapter?.existing_gate_proves),'Utdanning structured subject gate må dokumentere alle strict proof-dimensjoner');
 
   const baselineById=new Map(baseline.subjects.map(s=>[s.id,s]));
   const subjects=contract.subjects.map(entry=>{

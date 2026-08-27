@@ -45,9 +45,9 @@ test('Auditerte fag har dokumentert og statusriktig fremdrift gjennom den genere
   const utdanning = s.subjects.find((x) => x.id === 'utdanning');
   assert.deepEqual(
     [utdanning.navigationStatus, utdanning.assessmentStatus, utdanning.editorialStatus],
-    ['materialized', 'audited', 'chapters_in_progress']
+    ['materialized', 'audited', 'complete']
   );
-  assert.equal(utdanning.nextGate, 'technology_media_learning_source_brief_complete_full_chapter_production');
+  assert.equal(utdanning.nextGate, 'complete');
   const helse = s.subjects.find((x) => x.id === 'helse');
   assert.deepEqual([helse.navigationStatus, helse.assessmentStatus, helse.editorialStatus], ['materialized', 'audited', 'complete']);
   for (const id of audited.map((x) => x.id)) {
@@ -214,7 +214,7 @@ test('19+1-utvidelsen låser seks eksplisitte canonicale underkategorier', () =>
   assert.equal(c.labels.litteratur, 'Språk & litteratur');
 });
 
-test('Helse er strict-complete og Utdanning låser konsistent 13/14-fremdrift', () => {
+test('Helse og Utdanning er strict-complete med monotont fulltekstgrunnlag', () => {
   const manifest = readJson('data/fag/fag_manifest.json');
   const status = readJson('data/fagverk/subject_status.json');
   const registry = readJson('data/fagverk/fagverk_registry.json');
@@ -233,8 +233,8 @@ test('Helse er strict-complete og Utdanning låser konsistent 13/14-fremdrift', 
 
     assert.equal(entry.status, 'active_foundation');
     assert.equal(pensum.subject_id, id);
-    assert.equal(pensum.status, id === 'helse' ? 'complete' : 'active_foundation');
-    assert.equal(pensum.complete_ready, id === 'helse');
+    assert.equal(pensum.status, 'complete');
+    assert.equal(pensum.complete_ready, true);
     assert.deepEqual(pensum.domain_order, pensum.domains.map((domain) => domain.domain_id));
     assert.deepEqual(emner.map((emne) => emne.domain), pensum.domain_order);
     assert.deepEqual(fagkart.categories.map((category) => category.id), pensum.domain_order);
@@ -248,16 +248,16 @@ test('Helse er strict-complete og Utdanning låser konsistent 13/14-fremdrift', 
     assert.equal(quizProfile.governance.authority, 'category_content_only');
     assert.equal(subjectStatus.navigationStatus, 'materialized');
     assert.equal(subjectStatus.assessmentStatus, 'audited');
-    assert.equal(subjectStatus.editorialStatus, id === 'helse' ? 'complete' : 'chapters_in_progress');
+    assert.equal(subjectStatus.editorialStatus, 'complete');
     if (id === 'helse') {
       assert.equal(subjectStatus.nextGate, 'complete');
       assert.equal(registry.subjects.helse.editorialPlan.strictCompletionProof.status, 'strictly_proven');
       assert.equal(registry.subjects.helse.editorialPlan.strictCompletionProof.canonical_major_fields, 12);
     } else {
-      assert.equal(subjectStatus.nextGate, 'technology_media_learning_source_brief_complete_full_chapter_production');
-      assert.equal(registry.subjects.utdanning.editorialPlan.registeredChapterCount, 13);
+      assert.equal(subjectStatus.nextGate, 'complete');
+      assert.equal(registry.subjects.utdanning.editorialPlan.registeredChapterCount, 14);
       assert.equal(registry.subjects.utdanning.editorialPlan.completedSourceBriefCount, 14);
-      assert.equal(pensum.domains.filter((domain) => domain.status === 'materialized').length, 13);
+      assert.equal(pensum.domains.filter((domain) => domain.status === 'materialized').length, 14);
       assert.equal(pensum.domains[0].domain_id, 'pedagogikk_laeringsteori');
       assert.equal(pensum.domains[1].domain_id, 'didaktikk');
       assert.equal(pensum.domains[2].domain_id, 'barnehage_tidlig_laering');
@@ -271,6 +271,9 @@ test('Helse er strict-complete og Utdanning låser konsistent 13/14-fremdrift', 
       assert.equal(pensum.domains[10].domain_id, 'utdanningspolitikk');
       assert.equal(pensum.domains[11].domain_id, 'skoleledelse_organisasjon');
       assert.equal(pensum.domains[12].domain_id, 'profesjoner_laererrollen');
+      assert.equal(pensum.domains[13].domain_id, 'teknologi_medier_laering');
+      assert.equal(registry.subjects.utdanning.editorialPlan.strictCompletionProof.status, 'strictly_proven');
+      assert.equal(registry.subjects.utdanning.editorialPlan.strictCompletionProof.canonical_major_fields, 14);
     }
   }
 
