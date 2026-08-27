@@ -2,7 +2,7 @@
 
 Status: **canonical produksjonsarbeidsflyt**  
 Eier: `place_by_place_production_workflow`  
-Sist kontrollert: **2026-08-25**
+Sist kontrollert: **2026-08-27**
 
 > **Micro Place-unntak:** Denne fullproduksjonschecklisten gjelder ordinære
 > Places. Steder med `placeTier: "micro"` følger den reduserte, men fortsatt
@@ -29,6 +29,10 @@ Arbeidskortet skal eksplisitt føre `FAGVERK-STED-STATUS:`. `fagverk-sted` er al
 
 **DIALEKTLAG — KUN `placeScope: "area"` / N/A.** Dialekt er et separat underlag og er ikke synonymt med Språkleksikon. Dialektinnhold kan kun eies av et område-Place med `placeScope: "area"`. Et enkeltsted skal ikke diktes om til dialekteier. `coordRole` beskriver koordinatgeometri og gir aldri dialekt-eierskap. Når dialektlaget researches på et område-Place, skal minst ett reelt dialektord eller lokalt uttrykk produseres når kildene bærer det; dersom kildene ikke bærer et forsvarlig dialektfunn kan **dialektdeljobben** settes begrunnet N/A/holdback. Språkleksikonet som helhet kan aldri settes N/A.
 
+**KRONOLOGI / EPOKE — OBLIGATORISK I FULL STEDSPRODUKSJON.** For hvert ordinært canonical Place skal kildearbeidet samtidig undersøke og materialisere stedets relevante historiske tidsankere. Dette er ikke separat etterarbeid og skal ikke skyves til en senere timeline-gap-runde. Hvert tidslinjepunkt skal ha en inspectable kilde som støtter både hendelsen og dateringen. Et tiår, århundre, «omkring», «ca.» eller annen omtrentlig datering skal aldri gjøres om til et oppdiktet enkeltår. Når kildene faktisk bærer eksakte år, materialiseres de gjennom en canonical evidensbane som `scripts/build-epoke-place-index.mjs` leser, og epokeindeks/runtime/epokeviser regenereres og kontrolleres i samme stedsproduksjon. Dersom dokumentert research ikke finner en kvalifisert eksakt datering, registreres **SOURCE-BOUNDED HOLDBACK** med søkte kilder; kronologivurderingen kan aldri hoppes over eller stå uavklart.
+
+Arbeidskortet skal eksplisitt føre `KRONOLOGI/EPOKE-STATUS:`, `KRONOLOGI-KILDER/ANKERE:`, `EPOKE-INDEX/RUNTIME-STATUS:` og `EPOKEVISER-QA:`. Eldre Places som allerede var ferdigstilt før denne regelen kan fortsatt lukkes gjennom separate legacy gap-transer, men ny/full stedsproduksjon skal ikke skape nye slike gap.
+
 > **Ett sted ferdig før neste. Faser reviewes sekvensielt. Mergegrenser følger reell risiko — ikke antall faser.**
 
 ---
@@ -38,6 +42,7 @@ Arbeidskortet skal eksplisitt føre `FAGVERK-STED-STATUS:`. `fagverk-sted` er al
 For detaljproduksjon gjelder subsystemets canonical kontrakt, akkurat som i v1-referansen. Blant annet:
 
 - faktisitet: `docs/FACTUALITY_CONTRACT.md`;
+- kronologi/epoker: `scripts/build-epoke-place-index.mjs`, `data/epoker/epoke-place-index.json`, `.github/workflows/epoke-viewer-quality.yml` og `tests/epoke-place-index.test.mjs` / `tests/epoker-runtime-place-index.test.mjs` / `tests/epoke-viewer.test.mjs`;
 - Place-data: `docs/DATA_PRODUCTION_CONTRACT.md` og `docs/PLACE_STANDARD.md`;
 - `desc`/`popupDesc`: `data/places/regler/PLACE_DESCRIPTION_CANONICAL.md` og v4.2-schema;
 - popupfaner og eierstyrt routing: `docs/PLACE_POPUP_SYSTEM.md`;
@@ -108,6 +113,7 @@ Før første brukerrettede endring skal stedet ha en skriftlig nullmåling og sa
 - Språkleksikon-eier, eksisterende begreper/navnespor og eventuelt separat dialektlag;
 - People, Objects/Works, Brands og PlaceCard-samlinger;
 - Stories, Quiz, Knowledge/Aha, Lesespor og ruter/relasjoner;
+- eksisterende chronology/leksikon, kildebelagte årankere, epokedekning, epokeindex/runtime og epokeviserstatus;
 - kilder, bilder/proveniens og faktisk UI-visning;
 - relevante fagspesifikke place-gates.
 
@@ -174,6 +180,7 @@ Kan samle flere **sekvensielt reviewede** innholdsfaser, for eksempel:
 - description v4.2;
 - strukturerte place-profiler;
 - Om/Historie/Fortellinger/Før–etter/Nyheter/Lesespor/Kilder/Språk;
+- kildebelagt chronology med relevante eksakte tidsankere og dokumentert dateringspresisjon;
 - obligatoriske Språkleksikon-begreper/navnespor og eventuelt separat dialektlag;
 - relevante People/Objects/Brands/PlaceCard-samlinger og eide underseksjoner;
 - Quiz/Story/Knowledge/ruter når kontraktene tillater samme avgrensede diff.
@@ -185,6 +192,7 @@ Det er ikke lov å hoppe over intern review bare fordi fasene ligger i samme PR.
 Brukes når det er behov for en egen sluttgrense for:
 
 - genererte indekser/manifester;
+- regenerert epoke-place-index/runtime og kontrollert epokeviser etter chronology-endringer;
 - bred integrasjon;
 - faktisk popup-/runde-/rute-QA;
 - final completion report og produksjonsklar-status.
@@ -248,6 +256,21 @@ Fortsatt obligatorisk:
 
 Disse ankerreglene gjentas her fordi permanente governance-tester og produksjonsreview skal kunne lese dem direkte fra den aktive sjekklisten. De endrer ikke v2-mergekadensen.
 
+#### Kronologi og epoker
+
+**KRONOLOGI/EPOKE — ALLE ORDINÆRE PLACES / RESEARCH ALDRI N/A**
+
+- hvert sted researches for relevante historiske hendelser med eksplisitt dateringspresisjon i samme kildepass som øvrig stedsinnhold;
+- eksakte år materialiseres bare når kilden faktisk støtter det eksakte året; tiår, århundrer, intervaller og omtrentlige dateringer konverteres ikke til tekniske enkeltår;
+- prioriter identitetsbærende hendelser som etablering, bygging/åpning, funksjonsskifte, eierskifte med stedshistorisk betydning, utvidelse, nedleggelse, ombruk, navne-/institusjonsskifte og andre dokumenterte vendepunkter fremfor årstallsstøy;
+- chronology materialiseres gjennom en canonical evidensbane som epokebyggeren faktisk leser, blant annet manifest-loadet leksikon-`chronology[]`, verifiserte historiske place-production-claims med eksakt år og HTTP-kilde, source-backed canonical Stories med eksplisitt år eller validert Historie-evidens;
+- chronology brukes for **hva som skjedde når**; Story brukes bare når materialet også har selvstendig narrativ kvalitet etter Stories-kontrakten;
+- etter chronology-endring regenereres epokeindeksen, og runtime/viewer-testene kjøres på den samme PR-headen;
+- ferdigstatus er **PASS** når kvalifiserte kilder er undersøkt, relevante eksakte ankere er materialisert og epokeviseren viser stedet korrekt;
+- **SOURCE-BOUNDED HOLDBACK** er kun tillatt når dokumentert research ikke finner en kilde som bærer en kvalifisert eksakt datering;
+- dersom researchen har en kvalifisert, relevant og source-backed eksakt dato som ikke er materialisert, er stedet **BLOKKERT** fra fullproduksjonsstatus;
+- legacy timeline-gap kan ryddes separat for eldre ferdigproduserte steder, men ny/full stedsproduksjon skal ikke skape nye `awaiting_source_backed_history`-gap som kunne vært lukket med researchen som allerede er gjort.
+
 #### Språkleksikon og dialekt
 
 **SPRÅKLEKSIKON — ALLE PLACES / ALDRI N/A**
@@ -273,6 +296,16 @@ Eksisterende quiz skal auditeres før profilvalg, og auditen skal omfatte alle a
 Kjør relevante gates når deres eide flate endres. Ikke bruk urelaterte brede gates som erstatning for presise kvalitetskontroller.
 
 På en flercheckpoint-PR skal hver canonical endring fortsatt være beskyttet av sin relevante permanente test/audit. Final PR-head skal være grønn før merge.
+
+Når chronology/epoke berøres, er minimumsgaten i tillegg:
+
+```bash
+npm run epoker:places:build
+npm run epoker:places:check
+node --test tests/epoke-place-index.test.mjs tests/epoker-runtime-place-index.test.mjs tests/epoke-viewer.test.mjs
+```
+
+Den genererte epokeindeksen skal committes fra source-bygging, aldri håndredigeres for å få et sted inn i epokeviseren. Manuell slutt-QA skal åpne epokeviseren og kontrollere riktig sted, riktig epoke, source-proveniens og at omtrentlig datering ikke fremstilles som et eksakt år.
 
 Main-/produksjonskontroll gjøres:
 
@@ -329,4 +362,4 @@ Alle øvrige kvalitets-, innholds-, source-, UI- og slutt-QA-krav består. Diale
 
 ## Kort regel
 
-**Review hver fase. Merge ved reelle risikogrenser. Behold full kvalitet. Alle Places har Språk; bare dialekt kan mangle. Ikke bruk GitHub-PR-er som fasebokføring.**
+**Review hver fase. Merge ved reelle risikogrenser. Behold full kvalitet. Produser kildebelagt kronologi og epokedekning samtidig med stedet. Alle Places har Språk; bare dialekt kan mangle. Ikke bruk GitHub-PR-er som fasebokføring.**

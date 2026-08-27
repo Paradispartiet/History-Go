@@ -2,7 +2,7 @@
 
 Status: **canonical produksjonsarbeidsflyt**  
 Eier: `place_by_place_production_workflow`  
-Sist kontrollert: **2026-08-24**
+Sist kontrollert: **2026-08-27**
 
 Dette dokumentet er arbeidsoppskriften for å ferdigstille **ett History GO-sted om gangen**.
 
@@ -33,6 +33,7 @@ Det er en **ruterings- og sjekkliste**, ikke en erstatning for subsystemenes egn
 | Historie — canonical V5.8-fagmodell | `data/fag/historie/historie_v5_contract.json` |
 | Historie — casekrav, claims, kilder og stedsevidens | `data/fag/historie/case_requirements_historie_canonical_v1.json`, `claims_historie_canonical_v1.json`, `sources_historie_canonical_v1.json` og `place_evidence_historie_v1.json` |
 | Historie — stedsgate og produksjonsrapport | `data/places/regler/historie_place_production_v1.schema.json` og `scripts/audit-historie-place-production.mjs` |
+| Kronologi / epokeviser | `scripts/build-epoke-place-index.mjs`, `data/epoker/epoke-place-index.json`, `.github/workflows/epoke-viewer-quality.yml`, `tests/epoke-place-index.test.mjs`, `tests/epoker-runtime-place-index.test.mjs` og `tests/epoke-viewer.test.mjs` |
 | Økonomi og næringsliv — canonical fagmodell | `data/fag/naeringsliv/naeringsliv_runtime_manifest.json`, `emner_naeringsliv_canonical_v4_5.json` og `methods_naeringsliv_canonical_v4_5.json` |
 | Økonomi og næringsliv — faglig standard og kildeprioritet | `data/fag/naeringsliv/universitetsramme_okonomi_og_naeringsliv_v1.json`, `quiz_generator_rules_naeringsliv_v5_1_source_priority_patch.json` og `scripts/audit-naeringsliv-source-maintenance.mjs` |
 | Økonomi og næringsliv — stedsgate og produksjonsrapport | `data/places/regler/naeringsliv_place_production_v1.schema.json` og `scripts/audit-naeringsliv-place-production.mjs` |
@@ -74,7 +75,7 @@ Det er derfor ikke lov å:
 
 ## Obligatorisk arbeidsmåte — nullmåling og én fase om gangen
 
-Før et eksisterende eller nytt sted fylles, skal det lages en skriftlig nullmåling og sanerings-/produksjonsplan. Nullmålingen skal minst dekke canonical identitet, Politikk-, Historie-, Næringsliv- og Subkultur-gate når relevant, alle relevante popupfaner, inkludert datastyrte direktefaner, PlaceCard-samlinger, People, Objects, Brands, Badges, Stories, Quiz, Knowledge, kilder og faktisk UI-visning.
+Før et eksisterende eller nytt sted fylles, skal det lages en skriftlig nullmåling og sanerings-/produksjonsplan. Nullmålingen skal minst dekke canonical identitet, Politikk-, Historie-, Næringsliv- og Subkultur-gate når relevant, alle relevante popupfaner, inkludert datastyrte direktefaner, PlaceCard-samlinger, People, Objects, Brands, Badges, Stories, Quiz, Knowledge, kildebelagt chronology/epokedekning, kilder og faktisk UI-visning.
 
 Produksjonen deles deretter i små faser. Bare én fase kan ha status `PÅGÅR` om gangen:
 
@@ -150,6 +151,10 @@ KOORDINATSTATUS:
 PLACE-SCOPE (canonical): `area` / ikke satt
 DESCRIPTION-PRODUCTION-PACKAGE:
 LEKSIKON-ID/FIL:
+KRONOLOGI/EPOKE-STATUS — PASS / SOURCE-BOUNDED HOLDBACK / BLOKKERT:
+KRONOLOGI-KILDER/ANKERE:
+EPOKE-INDEX/RUNTIME-STATUS:
+EPOKEVISER-QA:
 SPRÅKLEKSIKON-STATUS:
 SPRÅKLEKSIKON-TYPE — OMRÅDE / DIREKTE SPRÅKSTED / ENKELTSTED:
 DIALEKTLAG — KUN `placeScope: "area"` / N/A:
@@ -241,6 +246,74 @@ Minimum for vesentlige fakta:
 ```text
 påstand → konkret kilde → konkret kildeplassering → kontrollstatus
 ```
+
+---
+
+## 2A. Kildebelagt kronologi og epoker — universell ferdigport
+
+Denne fasen gjelder **alle ordinære canonicale Places**, uavhengig av primærkategori. Historie-gaten kan skjerpe kravene for et Historie-sted, men kronologi/epoke er ikke forbeholdt Historie-kategorien. Researchen gjøres mens kildegrunnlaget er ferskt, og materialiseringen ferdigstilles i samme stedsproduksjon.
+
+**LES FØRST — obligatorisk:**
+
+- `docs/FACTUALITY_CONTRACT.md`;
+- `scripts/build-epoke-place-index.mjs`;
+- `.github/workflows/epoke-viewer-quality.yml`;
+- relevante leksikon-/place-production-/Historie-/Stories-kontrakter for evidensbanen som brukes.
+
+### A. Research kronologi samtidig med stedet
+
+- [ ] søk etter relevante, stedsspesifikke historiske hendelser mens de samme kildene brukes til description, Historie, People, Brands, Før/etter og øvrig research;
+- [ ] registrer eksplisitt hvilke kilder som støtter hvilke daterte hendelser;
+- [ ] prioriter identitetsbærende og forklarende tidsankere: etablering, bygging/åpning, funksjonsskifte, viktige utvidelser, dokumenterte eierskifter når de forklarer stedet, nedleggelse, ombruk, institusjons-/navneskifte og andre reelle vendepunkter;
+- [ ] ikke fyll timeline med trivielle årstall bare fordi en kilde inneholder dem;
+- [ ] eksisterende chronology og epokedekning auditeres før nye ankere opprettes, slik at samme hendelse ikke dupliseres.
+
+### B. Dateringspresisjon er source-bounded
+
+- [ ] et eksakt år brukes bare når kilden faktisk støtter et eksakt år;
+- [ ] `ca.`, `cirka`, `omkring`, `rundt`, usikker datering, tiår, århundre eller periode gjøres aldri om til et oppdiktet enkeltår;
+- [ ] flere år i samme claim skilles til egne hendelser eller får eksplisitt `timelineYear` bare når claimet og kilden faktisk bærer den valgte ankeringen;
+- [ ] hendelsesår, publiseringsår, byggeperiode, flytteår og senere minne-/jubileumsår blandes ikke;
+- [ ] chronology brukes ikke som årsaksbevis; den dokumenterer først og fremst **hva som skjedde når**.
+
+### C. Materialiser gjennom canonical evidensbane
+
+`scripts/build-epoke-place-index.mjs` leser flere source-backed baner. Bruk banen som faktisk eier evidensen; ikke håndrediger den genererte epokeindeksen.
+
+- [ ] manifest-loadet leksikon-`chronology[]` kan brukes når posten har numerisk `year` og inspectable HTTP-kilde;
+- [ ] verifiserte place-production-claims kan brukes når claimet er historisk, har eksakt kvalifisert år, inspectable `sourceUrl` og claim-/source-location-proveniens;
+- [ ] canonical Story kan bidra bare når den allerede består Stories-kontrakten, har eksplisitt år og inspectable kilde; et årstall alene er aldri grunn til å lage en Story;
+- [ ] validert Historie-evidens kan brukes når den canonicale Historie-banen og kildeproveniensen faktisk er komplett;
+- [ ] samme hendelse dupliseres ikke mekanisk mellom leksikon, claim, Story og Historie-evidens bare for å øke antall milestones.
+
+### D. Bygg epokeindeksen og kontroller spillerflaten
+
+Etter chronology-endringer kjøres minst:
+
+```bash
+npm run epoker:places:build
+npm run epoker:places:check
+node --test tests/epoke-place-index.test.mjs tests/epoker-runtime-place-index.test.mjs tests/epoke-viewer.test.mjs
+```
+
+- [ ] generert `data/epoker/epoke-place-index.json` er resultat av source-bygging, ikke håndredigering;
+- [ ] hvert nytt milestone ligger i riktig canonical epoke;
+- [ ] stedets navn/ID/geografi løses riktig i epokeviseren;
+- [ ] kilde og konsekvenstekst peker tilbake til riktig hendelse uten å overdrive kilden;
+- [ ] land-/byfiltrering og stedskobling fungerer der det er relevant;
+- [ ] endringen skaper ikke nye ubegrunnede `awaiting_source_backed_history`-gap.
+
+### E. Ferdigstatus
+
+Kronologivurderingen er **aldri N/A** for et ordinært fullprodusert Place. Den ender i én av tre eksplisitte statuser:
+
+- **PASS** — kvalifiserte kilder er undersøkt, relevante source-backed eksakte ankere er materialisert, genererte flater er i sync og epokeviseren er kontrollert;
+- **SOURCE-BOUNDED HOLDBACK** — dokumentert research er utført, men ingen kvalifisert kilde bærer en relevant eksakt datering som dagens epokebygger kan materialisere uten å dikte presisjon;
+- **BLOKKERT** — researchen har en relevant, kvalifisert og source-backed eksakt dato som ikke er materialisert, eller epokeindex/runtime/viewer er ute av sync.
+
+Et sted kan ikke merkes fullprodusert med **BLOKKERT** status. **SOURCE-BOUNDED HOLDBACK** skal føre hvilke kilder som er søkt og hvorfor presisjonen ikke kan materialiseres; det er en dokumentert kildegrense, ikke en snarvei eller N/A.
+
+Separate timeline-gap-transer er kun en legacy-mekanisme for steder som ble ferdigstilt før denne regelen. Ny/full stedsproduksjon skal lukke chronology/epoke samtidig og skal ikke bevisst skyve kvalifiserte tidsankere til en senere backlog.
 
 ---
 
@@ -817,6 +890,15 @@ Kontroller spesielt der relevant:
 `nature_profile` i Om betyr ikke automatisk en PlaceCard-samling.
 
 ---
+
+### Kronologi og epoke — slutt-QA
+
+- [ ] chronology/epoke er eksplisitt vurdert og står ikke uavklart;
+- [ ] relevante source-backed eksakte tidsankere fra stedsresearchen er materialisert gjennom canonical evidensbane;
+- [ ] omtrentlig eller usikker datering er ikke gjort om til oppdiktet enkeltår;
+- [ ] epokeindex/runtime/viewer er regenerert og kontrollert når chronology er endret;
+- [ ] status er PASS, eller SOURCE-BOUNDED HOLDBACK med dokumentert kildesøk og presis begrunnelse;
+- [ ] BLOKKERT chronology/epoke-status forekommer ikke ved sluttgodkjenning.
 
 # DEL C — STEDSPOPUPEN
 
