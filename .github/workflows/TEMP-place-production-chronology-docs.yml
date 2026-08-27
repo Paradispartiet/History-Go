@@ -1,0 +1,52 @@
+name: TEMP Place production chronology governance
+
+on:
+  push:
+    branches:
+      - docs/place-production-chronology-epoch-gate-20260827
+
+permissions:
+  contents: write
+
+jobs:
+  update-docs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Update both canonical place-production checklists
+        run: node tools/TEMP-update-place-production-chronology-docs.mjs
+      - name: Validate governance invariants
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -F 'KRONOLOGI / EPOKE — OBLIGATORISK I FULL STEDSPRODUKSJON' docs/PLACE_PRODUCTION_CHECKLIST.md
+          grep -F '## 2A. Kildebelagt kronologi og epoker — universell ferdigport' docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md
+          grep -F 'KRONOLOGI/EPOKE-STATUS — PASS / SOURCE-BOUNDED HOLDBACK / BLOKKERT:' docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md
+          grep -F 'npm run epoker:places:check' docs/PLACE_PRODUCTION_CHECKLIST.md
+          grep -F 'npm run epoker:places:check' docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md
+          grep -F 'Ny/full stedsproduksjon skal lukke chronology/epoke samtidig' docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md
+          git diff --check
+      - name: Ensure only the two canonical docs remain changed
+        shell: bash
+        run: |
+          set -euo pipefail
+          changed="$(git diff --name-only | sort)"
+          printf '%s\n' "$changed"
+          expected=$'docs/PLACE_PRODUCTION_CHECKLIST.md\ndocs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md'
+          test "$changed" = "$expected"
+      - name: Commit verified documentation and remove TEMP files
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm .github/workflows/TEMP-place-production-chronology-docs.yml
+          rm tools/TEMP-update-place-production-chronology-docs.mjs
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git diff --cached --check
+          test "$(git diff --cached --name-only | sort)" = $'docs/PLACE_PRODUCTION_CHECKLIST.md\ndocs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md'
+          git commit -m 'Integrate chronology and epochs into place production'
+          git push origin HEAD:docs/place-production-chronology-epoch-gate-20260827
