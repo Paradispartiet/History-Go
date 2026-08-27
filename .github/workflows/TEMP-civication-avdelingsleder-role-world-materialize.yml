@@ -1,0 +1,58 @@
+name: TEMP Materialize Avdelingsleder Role World
+
+on:
+  push:
+    branches:
+      - agent/civication-naeringsliv-avdelingsleder-role-world-rollout
+    paths:
+      - scripts/TEMP_materialize_avdelingsleder_role_world.mjs
+      - tests/civication-naeringsliv-avdelingsleder-role-world-rollout.test.js
+      - .github/workflows/TEMP-civication-avdelingsleder-role-world-materialize.yml
+
+permissions:
+  contents: write
+
+jobs:
+  materialize-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/civication-naeringsliv-avdelingsleder-role-world-rollout
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Materialize permanent authored data
+        run: node scripts/TEMP_materialize_avdelingsleder_role_world.mjs
+      - name: Regenerate canonical artifacts
+        run: |
+          node scripts/build-civication-scene-registry.mjs --write
+          node scripts/audit-civication-career-gameplay.mjs --write
+          node scripts/audit-civication-role-world-rollout-readiness.mjs --write
+      - name: Verify focused rollout and canonical gates
+        run: |
+          node tests/civication-naeringsliv-avdelingsleder-role-world-rollout.test.js
+          node tests/civication-avdelingsleder-playability.test.js
+          node tests/civication-role-world-contract.test.js
+          node tests/civication-role-world-broad-rollout-policy.test.js
+          node scripts/build-civication-scene-registry.mjs --check
+          node scripts/audit-civication-career-gameplay.mjs --check
+          node scripts/audit-civication-role-world-rollout-readiness.mjs --check
+      - name: Run full Civication suite
+        run: npm run test:civication
+      - name: Remove temporary materialization surface
+        run: |
+          rm scripts/TEMP_materialize_avdelingsleder_role_world.mjs
+          rm .github/workflows/TEMP-civication-avdelingsleder-role-world-materialize.yml
+      - name: Commit exact verified result
+        run: |
+          git config user.name "Civication rollout agent"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "Complete Næringsliv Avdelingsleder Role World rollout"
+          git push origin HEAD:agent/civication-naeringsliv-avdelingsleder-role-world-rollout
