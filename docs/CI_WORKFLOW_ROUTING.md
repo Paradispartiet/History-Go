@@ -13,8 +13,8 @@ gate.
 - `fagverk-inventory.yml` owns the subject-inventory audit, test and report.
 - `fagverk-general-engine.yml` owns the general-engine audit, test and report.
 - `fagverk-release.yml` owns the release builder and whole-architecture release
-  inputs. It remains a main-push workflow because it dispatches the committed
-  release digest to AHA-EchoNet.
+  inputs. After a Fagverk PR is confirmed merged, it checks out the exact merge
+  SHA and dispatches the committed release digest to AHA-EchoNet.
 - The category contract is owned by the central general-engine and category
   gates, rather than every Fagverk domain.
 - Fagverk pull-request validation is read-only. A stale generated artifact fails
@@ -37,18 +37,22 @@ gate.
 ## Pull requests versus main
 
 Read-only validation runs on pull requests. `main-integrity.yml` then verifies the
-composed repository state once after merge: CI routing, generated web runtime,
-place indexes, canonical Knowledge data and the Fagverk release manifest.
+composed repository state after merge: CI routing, generated web runtime, place
+indexes, canonical Knowledge data and the Fagverk release manifest. It listens to
+both `main` pushes and closed, merged pull requests, locks checkout to the merge
+SHA and deduplicates both event paths by that SHA.
 
-The only workflows allowed to combine pull requests and pushes are workflows
-with a distinct push-side effect:
+Validation and mutation use separate event paths:
 
-- `coordinate-branch-runner.yml` mutates dedicated one-shot coordinate branches.
-- `fagverk-release.yml` dispatches the committed release digest after a main push.
+- `coordinate-branch-runner.yml` runs only on pushes to dedicated one-shot
+  coordinate branches (or an explicit manual dispatch); it never executes
+  pull-request code with a write-capable token.
+- `fagverk-release.yml` validates active Fagverk pull requests read-only and
+  dispatches only after the same PR is confirmed merged.
 
 Every active pull-request workflow has a concurrency group and cancels stale
-runs, except the mutating coordinate runner where cancellation could strand a
-half-finished branch. The closed-PR cleanup workflow is not a validation workflow.
+runs. Closed-PR cleanup and post-merge finalization are not active pull-request
+validation workflows.
 
 ## Measured routing budgets
 
@@ -62,7 +66,7 @@ regression above the budget.
 | Oslo Micro Place production | 26 | 13 | 16 |
 
 At the repository level, 84 workflows previously combined pull-request and push
-validation. Only the two effectful exceptions remain. Twenty-six active
+validation. No active pull-request workflow does now. Twenty-six active
 pull-request workflows lacked stale-run cancellation; none do now.
 
 `CI workflow routing governance` runs for every workflow, routing-audit or policy

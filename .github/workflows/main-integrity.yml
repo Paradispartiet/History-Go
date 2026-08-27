@@ -4,22 +4,27 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    types: [closed]
   workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: main-integrity-${{ github.ref }}
+  group: main-integrity-${{ github.event.pull_request.merge_commit_sha || github.sha }}
   cancel-in-progress: true
 
 jobs:
   composition:
     name: Verify composed repository state
+    if: github.event_name != 'pull_request' || github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.merge_commit_sha || github.sha }}
       - uses: actions/setup-node@v5
         with:
           node-version: '24'

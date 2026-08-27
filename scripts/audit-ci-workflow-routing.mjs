@@ -48,18 +48,6 @@ const requiredDomainPaths = new Map([
   ['vitenskap-teknologi-category.yml', 'data/fagverk/vitenskap/**'],
 ]);
 
-const allowedPullRequestAndPush = new Set([
-  // This one-shot worker writes only to dedicated coordinate branches.
-  'coordinate-branch-runner.yml',
-  // Main pushes dispatch the committed release digest to AHA-EchoNet.
-  'fagverk-release.yml',
-]);
-
-const cancellationExempt = new Set([
-  // Cancelling a mutating one-shot job could strand a half-finished branch.
-  'coordinate-branch-runner.yml',
-]);
-
 const routingRules = new Map([
   ['knowledge-checks.yml', new Set(['scripts/knowledge-canonical-data.mts', 'data/knowledge/**', 'data/quiz/**'])],
   ['data-checks.yml', new Set(['data/fag/**'])],
@@ -240,12 +228,12 @@ export function auditWorkflowRouting() {
     if (activePullRequest(source)) {
       activePullRequestWorkflows += 1;
       if (!/^concurrency:\s*$/m.test(source)) failures.push(`${file}: missing top-level concurrency policy`);
-      if (!cancellationExempt.has(file) && !/^\s{2}cancel-in-progress:\s*true\s*$/m.test(source)) {
+      if (!/^\s{2}cancel-in-progress:\s*true\s*$/m.test(source)) {
         failures.push(`${file}: stale pull-request runs are not cancelled`);
       }
     }
 
-    if (eventBlock(source, 'push') && !allowedPullRequestAndPush.has(file)) {
+    if (activePullRequest(source) && eventBlock(source, 'push')) {
       failures.push(`${file}: duplicates pull-request validation on push; use main-integrity.yml`);
     }
 
@@ -317,6 +305,28 @@ export function auditWorkflowRouting() {
   if (!/build-fagverk-release-manifest\.mjs --check/.test(releaseSource)) {
     failures.push('fagverk-release.yml: deterministic release check is missing');
   }
+  const releasePullRequest = eventBlock(releaseSource, 'pull_request') ?? '';
+  if (!/types:\s*\[[^\]]*\bclosed\b[^\]]*\]/.test(releasePullRequest)) {
+    failures.push('fagverk-release.yml: merged-PR release dispatch trigger is missing');
+  }
+  if (eventBlock(releaseSource, 'push')) {
+    failures.push('fagverk-release.yml: release dispatch must use the merged PR SHA instead of a push fallback');
+  }
+  if (!/github\.event\.pull_request\.merged == true/.test(releaseSource)
+      || !/github\.event\.pull_request\.merge_commit_sha/.test(releaseSource)) {
+    failures.push('fagverk-release.yml: release dispatch is not locked to a confirmed merge SHA');
+  }
+
+  const coordinateSource = workflows.find(({ file }) => file === 'coordinate-branch-runner.yml')?.source ?? '';
+  if (eventBlock(coordinateSource, 'pull_request')) {
+    failures.push('coordinate-branch-runner.yml: write-capable runner must not execute pull-request code');
+  }
+  if (!eventBlock(coordinateSource, 'push')) {
+    failures.push('coordinate-branch-runner.yml: dedicated branch push trigger is missing');
+  }
+  if (!/^permissions:\s*\n\s{2}contents:\s*write\s*$/m.test(coordinateSource)) {
+    failures.push('coordinate-branch-runner.yml: dedicated branch writer needs explicit contents-write permission');
+  }
 
   const routingSource = workflows.find(({ file }) => file === 'ci-workflow-routing.yml').source;
   if (!declaredPaths(eventBlock(routingSource, 'pull_request')).includes('.github/workflows/**')) {
@@ -335,6 +345,14 @@ export function auditWorkflowRouting() {
   }
   if (!/^permissions:\s*\n\s{2}contents:\s*read\s*$/m.test(mainIntegritySource)) {
     failures.push('main-integrity.yml: must be contents-read-only');
+  }
+  const mainIntegrityPullRequest = eventBlock(mainIntegritySource, 'pull_request') ?? '';
+  if (!/^\s*types:\s*\[closed\]\s*$/m.test(mainIntegrityPullRequest)) {
+    failures.push('main-integrity.yml: merged-PR fallback trigger is missing');
+  }
+  if (!/github\.event\.pull_request\.merged == true/.test(mainIntegritySource)
+      || !/github\.event\.pull_request\.merge_commit_sha/.test(mainIntegritySource)) {
+    failures.push('main-integrity.yml: merged-PR fallback is not locked to the merge SHA');
   }
 
   const scenarios = [];

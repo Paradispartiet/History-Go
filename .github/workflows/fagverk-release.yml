@@ -2,16 +2,7 @@ name: Fagverk release feed
 
 on:
   pull_request:
-    paths:
-      - 'data/fag/**'
-      - 'data/fagverk/**'
-      - 'scripts/build-fagverk-release-manifest.mjs'
-      - 'scripts/natur-final-phase-compose.mjs'
-      - 'scripts/materialize-natur-final-registry.mjs'
-      - 'tests/fagverk-release-manifest.test.mjs'
-      - '.github/workflows/fagverk-release.yml'
-  push:
-    branches: [main]
+    types: [opened, synchronize, reopened, closed]
     paths:
       - 'data/fag/**'
       - 'data/fagverk/**'
@@ -26,13 +17,13 @@ permissions:
   contents: read
 
 concurrency:
-  group: fagverk-release-${{ github.event.pull_request.number || github.ref }}
+  group: fagverk-release-${{ github.event.action == 'closed' && github.event.pull_request.merge_commit_sha || github.event.pull_request.number || github.sha }}
   cancel-in-progress: true
 
 jobs:
   release:
     name: Verify deterministic whole-architecture Fagverk release
-    if: github.event_name != 'push'
+    if: github.event_name == 'workflow_dispatch' || github.event.action != 'closed'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -112,14 +103,19 @@ jobs:
           retention-days: 30
   notify:
     name: Dispatch committed release digest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.event.action == 'closed' &&
+      github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.merge_commit_sha }}
       - name: Notify AHA-EchoNet after main update
         env:
           AHA_DISPATCH_TOKEN: ${{ secrets.AHA_ECHONET_DISPATCH_TOKEN }}
-          SOURCE_SHA: ${{ github.sha }}
+          SOURCE_SHA: ${{ github.event.pull_request.merge_commit_sha }}
         run: |
           if [ -z "$AHA_DISPATCH_TOKEN" ]; then
             echo 'AHA_ECHONET_DISPATCH_TOKEN is not configured; the AHA scheduled poll remains the fallback.'
