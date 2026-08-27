@@ -105,6 +105,27 @@ jobs:
             source = source.replace(before, after);
           }
 
+          for (const [before, after] of [
+            [
+              "En uavklart betroelse gjøres til taktisk reserve, selv om gjesten ba om tid.",
+              "En uavklart betroelse gjøres til taktisk reserve, selv om gjesten ba om tid, og den faktiske ventingen undergraves."
+            ],
+            [
+              "Synlighet og situert tillit brukes som erstatning for redaksjonell godkjenning.",
+              "Synlighet og situert tillit brukes som erstatning for redaksjonell godkjenning, slik at mandatgrensen blir uleselig."
+            ],
+            [
+              "Bruksgrensen blir operativ for hele redaksjonen og kan etterprøves senere.",
+              "Bruksgrensen blir operativ for hele redaksjonen, følger materialet videre og kan etterprøves senere."
+            ]
+          ]) {
+            const matches = source.split(before).length - 1;
+            if (matches !== 1) {
+              throw new Error(`Expected exactly one shallow Programleder choice feedback, found ${matches}`);
+            }
+            source = source.replace(before, after);
+          }
+
           const fieldsStartMarker = "  fields: {\n    authority_context: {";
           const scenesMarker = "\n});\n\nconst scenes =";
           const fieldsStart = source.lastIndexOf(fieldsStartMarker);
