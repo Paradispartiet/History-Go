@@ -52,6 +52,10 @@
     if (ids.some(id => SUBCATEGORY_IDS.has(id))) return null;
     if (ids.some(id => !ICON_BY_ID[id])) return null;
     if (ids.filter(id => CATEGORY_IDS.has(id)).length > 1) return null;
+    // Firefeltsprofiler har allerede en stabil 2 x 2-renderer. Behold den som
+    // bakoverkompatibilitet for eksisterende v2-profiler; den adaptive
+    // synlighetsgaten eier bare de nye komposisjonene med 1–3 samlinger.
+    if (ids.length === 4) return null;
     return ids;
   }
 

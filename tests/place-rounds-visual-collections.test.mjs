@@ -76,7 +76,7 @@ test("nature keeps circular Flora and Fauna while Map and destinations are recta
   assert.equal(w.document.getElementById("pcCategoryCollectionIcon").dataset.collectionShape, "rectangle");
 });
 
-test("canonical profiles require the fixed full grid and incomplete profiles fall back safely", () => {
+test("canonical profiles accept curated one-to-four collections and reject structurally invalid profiles", () => {
   const complete = {
     id: "complete", category: "by", related_place_ids: ["r"],
     place_card_profile: {
@@ -85,19 +85,29 @@ test("canonical profiles require the fixed full grid and incomplete profiles fal
       reason: "Den faste fulle komposisjonen er kontrollert.", verifiedAt: "2026-08-24"
     }
   };
-  const incomplete = {
-    id: "incomplete", category: "historie",
+  const curated = {
+    id: "curated", category: "historie",
     place_card_profile: {
       schema: "history_go_place_card_profile_v2",
       collection_ids: ["people", "objects", "related"],
-      reason: "En gammel ufullstendig profil skal ikke kollapse rutenettet.", verifiedAt: "2026-08-24"
+      reason: "Tre kildebårne samlinger er den ferdige komposisjonen.", verifiedAt: "2026-08-27"
     }
   };
-  const w = make(complete, { PLACES: [complete, incomplete, { id: "r", name: "Relatert" }] });
+  const invalid = {
+    id: "invalid", category: "historie",
+    place_card_profile: {
+      schema: "history_go_place_card_profile_v2",
+      collection_ids: [],
+      reason: "En tom profil skal falle tilbake.", verifiedAt: "2026-08-27"
+    }
+  };
+  const w = make(complete, { PLACES: [complete, curated, invalid, { id: "r", name: "Relatert" }] });
   assert.deepEqual(ids(w, complete), ["people", "objects", "brands", "structures"]);
   assert.equal(w.HGPlaceCardCollections.getProfileSource(complete), "place_card_profile_v2");
-  assert.deepEqual(ids(w, incomplete), ["people", "objects", "brands", "related"]);
-  assert.equal(w.HGPlaceCardCollections.getProfileSource(incomplete), "category_default");
+  assert.deepEqual(ids(w, curated), ["people", "objects", "related"]);
+  assert.equal(w.HGPlaceCardCollections.getProfileSource(curated), "place_card_profile_v2");
+  assert.deepEqual(ids(w, invalid), ["people", "objects", "brands", "related"]);
+  assert.equal(w.HGPlaceCardCollections.getProfileSource(invalid), "category_default");
 });
 
 test("legacy round_profile remains readable and silently drops Images", async () => {

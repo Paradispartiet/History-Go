@@ -38,7 +38,7 @@ Micro Places følger `docs/MICRO_PLACE_CONTRACT.md` og skal ikke få ordinær `p
 
 Formen følger semantikken:
 
-- `people`, `flora`, `fauna` → sirkel;
+- People/Flora/Fauna (`people`, `flora`, `fauna`) → sirkel;
 - øvrige samlinger → avrundet rektangel;
 - Badges står separat ved tittelen;
 - Quiz står separat som handling og er aldri en samling.
@@ -228,6 +228,7 @@ Eksisterende Places migreres ikke samlet bare fordi denne kontrakten innføres.
 
 - legacy `round_profile` leses fortsatt gjennom kompatibilitetsadapteren;
 - steder uten eksplisitt ny profil kan fortsatt få den gamle firefelts-defaulten;
+- eksisterende firefeltsprofiler beholder den stabile 2 × 2-rendereren til stedet faktisk fullproduseres/revideres;
 - når et sted fullproduseres/revideres, skal det få eksplisitt `place_card_profile` med 1–4 faktisk ferdige samlinger;
 - gammelt korrekt innhold slettes ikke bare fordi den nye kuraterte profilen er mindre.
 

@@ -110,6 +110,8 @@ For nye og fullproduserte ordinære Places er `frontImage` alltid en stående fi
 
 `place_card_profile.collection_ids` inneholder ved ny/full produksjon **1–4 ferdige, relevante samlinger**. Hver valgt samling skal ha et lastende previewbilde av ett faktisk canonical medlem. Et tomt samlingskort er aldri godkjent closeout; en irrelevant samling utelates i stedet.
 
+Fallback er runtime-feilhåndtering, ikke godkjent closeout.
+
 Felt brukes når de faktisk har en rolle. Manglende relevant informasjon skal ikke fylles med plausibelt innhold.
 
 Canonical data kan også eies utenfor place-recorden: People, Works/Productions, Brands, Stories, Leksikon, Før/etter, Lesespor, Quiz, Nature mappings, observations, routes, events og På stedet-profiler.

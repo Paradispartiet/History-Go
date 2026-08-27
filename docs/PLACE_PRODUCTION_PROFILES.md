@@ -195,7 +195,7 @@ Canonical Quiz-kontrakt velger adaptivt:
 - `rich`: 5–8 × 7;
 - `major`: 8–10 × 7.
 
-Badge/underbadge og eventuell `quizFocus` styrer hvilke kunnskapsområder som undersøkes; påstandsbank og faktisk læringsbredde bestemmer quizprofil og eksakt lengde.
+Badge, underbadges og eventuell `quizFocus` brukes til å planlegge hvilke kunnskapsområder som undersøkes; påstandsbank og faktisk læringsbredde bestemmer quizprofil og eksakt lengde.
 
 ## 9. PlaceCard: ferdig innhold, aldri tomme kort
 

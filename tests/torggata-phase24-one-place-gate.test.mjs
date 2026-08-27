@@ -64,17 +64,18 @@ test("all reopened findings are closed and the six-part score passes", () => {
   });
 });
 
-test("global checklist keeps the canonical full composition and owner boundaries", () => {
+test("global checklist keeps the adaptive composition and owner boundaries", () => {
   const workflow = fs.readFileSync("docs/PLACE_PRODUCTION_CHECKLIST.md", "utf8");
   const checklist = fs.readFileSync("docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md", "utf8");
   const contract = fs.readFileSync("data/places/README_place_rounds.md", "utf8");
 
   assert.match(workflow, /PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1\.md/);
   assert.match(workflow, /Alle faglige, redaksjonelle, faktuelle og subsystemspesifikke krav i referansen er fortsatt bindende/);
-  assert.match(contract, /nøyaktig fire samlingsflater ligger i et balansert 2 × 2-felt/);
-  assert.match(contract, /Badges teller ikke blant de fire samlingene/);
-  assert.match(contract, /fjerner `images`, fordi Bilder ikke lenger er en samling/);
-  assert.match(checklist, /MÅL FOR PLACECARD-SAMLINGER: alltid fire flater i fast kategori-komposisjon \+ separat fast Badge \+ obligatorisk Quiz/);
+  assert.match(contract, /1–4 ferdige, relevante samlinger/);
+  assert.match(contract, /Badges står separat ved tittelen/);
+  assert.match(contract, /Bilder \/ `images`/);
+  assert.match(workflow, /`place_card_profile\.collection_ids` inneholder \*\*1–4 ferdige, relevante samlinger\*\*/);
+  assert.match(workflow, /ingen tomme PlaceCard-kort er tillatt ved closeout/i);
   assert.match(checklist, /delsted som har egen canonical place-oppføring brukes ikke som primært Før\/etter-stedfortreder/i);
   assert.match(checklist, /Nyheter kan ikke godkjennes som tom\/N\/A/);
   assert.match(checklist, /Lesespor kan ikke godkjennes som tom\/N\/A/);

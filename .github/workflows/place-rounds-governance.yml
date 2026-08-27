@@ -240,7 +240,7 @@ jobs:
       - name: Install Chromium for PlaceCard UI audits
         run: npx playwright install --with-deps chromium
 
-      - name: Test canonical full four-cell PlaceCard plus Badges contract
+      - name: Test canonical adaptive PlaceCard plus Badges contract
         run: |
           node --check js/ui/place-popup-tabs.js
           node --check js/ui/nature-detailed-map.js

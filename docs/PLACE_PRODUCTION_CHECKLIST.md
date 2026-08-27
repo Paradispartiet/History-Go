@@ -10,6 +10,8 @@ Detaljkravene fra tidligere full checklist består gjennom:
 
 - `docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md`
 
+Alle faglige, redaksjonelle, faktuelle og subsystemspesifikke krav i referansen er fortsatt bindende, med bare de eksplisitte aktive overstyringene i denne checklisten.
+
 Produksjonsprofil og innholdsplan eies av:
 
 - `docs/PLACE_PRODUCTION_PROFILES.md`
@@ -158,8 +160,10 @@ For nye og fullproduserte ordinære Places gjelder:
 - 3 samlinger bruker en balansert 2+1-komposisjon;
 - 4 samlinger bruker 2×2;
 - People/Flora/Fauna beholder sirkelform; øvrige samlinger er avrundede rektangler;
-- `frontImage` er den stående hovedflaten og kan aldri brukes som falskt samlingspreview;
-- gamle Places uten ny eksplisitt profil beholder kompatibilitetsvisningen til de faktisk fullproduseres/revideres.
+- `frontImage` er den stående hovedflaten og skal være en faktisk stående fil/variant (`height > width`), aldri bare en liggende fil beskåret av CSS;
+- hvert samlingspreview er et faktisk bilde av ett canonical medlem, aldri `frontImage` brukt som falskt samlingspreview;
+- ikon-/statusvisning er bare runtime-fallback ved lastingsfeil og kan aldri lukke produksjonsgaten;
+- gamle Places uten ny eksplisitt profil og eksisterende firefeltsprofiler beholder kompatibilitetsvisningen til de faktisk fullproduseres/revideres; nye adaptive 1–3-profiler viser bare bildeklare samlinger.
 
 Slutt-QA skal eksplisitt vurdere at kortet ser **pent, tilsiktet, balansert og komplett for akkurat denne typen sted og dens Badges** ut på mobil og desktop.
 
@@ -183,20 +187,24 @@ FAGVERK-STED-STATUS:
 
 ## 6. Språkleksikon og dialekt
 
-**SPRÅKLEKSIKON — ALLE ORDINÆRE PLACES / ALDRI N/A**
+**SPRÅKLEKSIKON — ALLTID / ALDRI N/A**
 
-Alle ordinære canonical Places skal researches for og materialisere minst ett reelt stedsspesifikt språkspor. Dette kan være:
+Språk er obligatorisk på alle canonicale steder. Alle ordinære canonical Places skal researches for og materialisere minst ett reelt stedsspesifikt språkspor. Dette kan være:
 
 - stedsnavn/navnehistorie;
 - historisk betegnelse;
 - funksjons-/fagbegrep med dokumentert stedskobling;
-- lokalt uttrykk eller annen kildebundet språkbruk.
+- lokale uttrykk eller annen kildebundet språkbruk.
 
 Badge/underbadge kan peke mot relevante fagbegreper, men generelle fagord uten dokumentert stedskobling brukes aldri som filler.
 
 **DIALEKTLAG — KUN `placeScope: "area"` / N/A**
 
-Dialekt er et separat area-eid lag. Et enkeltsted skal ikke konstrueres til dialekteier. Fravær av dialekt betyr aldri fravær av obligatorisk Språkleksikon.
+Dialektinnhold kan kun eies av et område-Place med `placeScope: "area"`.
+
+Et enkeltsted skal ha Språkleksikon, men skal ikke diktes eller konstrueres til dialekteier. Dialekt skal ikke diktes. `coordRole` beskriver koordinatgeometri og gir aldri dialekt-eierskap. Fravær av dialekt betyr aldri fravær av obligatorisk Språkleksikon.
+
+Når dialektlaget researches på et område-Place, skal minst ett reelt kildebelagt **dialektord eller lokalt uttrykk** produseres når kildene bærer det. Hvis kildene ikke bærer et forsvarlig dialektfunn, kan bare dialektdeljobben settes begrunnet N/A/holdback; Språkleksikonet som helhet kan aldri settes N/A.
 
 ---
 
@@ -245,6 +253,8 @@ Canonical metode:
 Objects skal være fysiske, identifiserbare gjenstander med dokumentert stedstilknytning. Badge kan peke mot relevante objekttyper, men observasjonstekst eller et bygg gjøres ikke om til Object for å øke antallet.
 
 `Spor og objekter` / `Legg merke til` kan være eide underseksjoner i Objects-popupen uten å bli egne samlinger.
+
+**People-popupen** eier dokumenterte personrelasjoner. **Relaterte steder** eier dokumenterte place→place-relasjoner; slike relasjoner skal ikke flyttes inn i People bare for å fylle en samling.
 
 ### Brands
 

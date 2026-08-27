@@ -59,8 +59,10 @@ test('Kandidatauditen dokumenterer både inkludering, holdback og logoavgjørels
   assert.match(audit.logo_policy, /Ingen logo er kopiert, generert eller rekonstruert/);
 });
 
-test('PlaceCard-runtime bruker kategoriens samling uten Images-reserve eller stedsspesifikk særkode', () => {
-  assert.match(roundsContract, /\| `politikk` \| `related` \| Relaterte steder \|/);
+test('PlaceCard-runtime beholder politikk-fallback uten å gjøre kandidatsettet til en innholdskvote', () => {
+  assert.match(roundsContract, /\| `politikk` \| People, Objects, Related \|/);
+  assert.match(roundsContract, /Kategoriens default brukes til legacy-kompatibilitet og research-ruting/);
+  assert.match(roundsContract, /Fullproduksjon velger bare samlinger som faktisk passer stedet/);
   assert.match(runtime, /politikk:\s*["']related["']/);
   assert.match(runtime, /GENERAL_BASE = Object\.freeze\(\["people", "objects", "brands"\]\)/);
   assert.match(runtime, /return normalizedFullGridIds\(place\)/);
