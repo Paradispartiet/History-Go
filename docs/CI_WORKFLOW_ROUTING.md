@@ -67,7 +67,7 @@ regression above the budget.
 | Production change | Before | Current | Budget |
 | --- | ---: | ---: | ---: |
 | Full place production | 20 | 9 | 16 |
-| Utdanning subject production | 46 | 12 | 12 |
+| Utdanning subject production | 46 | 11 | 12 |
 | Oslo Micro Place production | 26 | 13 | 16 |
 
 At the repository level, 84 workflows previously combined pull-request and push
