@@ -23,6 +23,7 @@ const allowedAggregatePaths = new Map([
   ['fagverk-general-engine.yml', new Set(['data/fag/fag_manifest.json'])],
   ['fagverk-phase3.yml', new Set(['data/fag/fag_manifest.json'])],
   ['fagverk.yml', new Set(['data/fag/fag_manifest.json'])],
+  ['data-checks.yml', new Set(['data/fag/fag_manifest.json'])],
 ]);
 
 const exclusivePathOwners = new Map([
@@ -106,7 +107,7 @@ const routingScenarios = [
     maxWorkflows: 12,
     forbidden: new Set(['fagverk-film-tv-phase3.yml', 'fagverk-musikk.yml', 'fagverk-natur-pilot.yml']),
     paths: [
-      'data/fag/utdanning/manifest.json',
+      'data/fag/utdanning/emner_utdanning_canonical_v1.json',
       'data/fagverk/utdanning/subject.json',
       'data/fagverk/fagverk_registry.json',
       'data/fagverk/subject_status.json',
@@ -299,6 +300,14 @@ export function auditWorkflowRouting() {
     '!data/Civication/scenarioPeople_index.json',
   ]) {
     if (!civicationPaths.has(exclusion)) failures.push(`civication.yml: specialized exclusion is missing: ${exclusion}`);
+  }
+
+  const dataCheckPaths = new Set(declaredPaths(eventBlock(
+    workflows.find(({ file }) => file === 'data-checks.yml').source,
+    'pull_request',
+  )));
+  for (const knowledgeInput of ['data/fag/fag_manifest.json', 'data/fag/*/emner*.json']) {
+    if (!dataCheckPaths.has(knowledgeInput)) failures.push(`data-checks.yml: canonical Knowledge input is missing: ${knowledgeInput}`);
   }
 
   const releaseSource = workflows.find(({ file }) => file === 'fagverk-release.yml').source;

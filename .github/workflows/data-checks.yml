@@ -10,6 +10,8 @@ on:
       - 'data/leksikon/places/oslo/historie/leksikon_oslo_historie.json'
       - 'data/quiz/**'
       - 'data/knowledge/**'
+      - 'data/fag/fag_manifest.json'
+      - 'data/fag/*/emner*.json'
       - 'data/badges/**'
       - 'data/categories/**'
       - 'bilder/merker/**'
@@ -138,6 +140,9 @@ jobs:
                 quiz=true
                 ;;
               data/knowledge/*|scripts/knowledge-canonical-data.mts|scripts/audit-knowledge-links.mjs|js/knowledgeV2.ts|js/knowledgeClaimCore.ts|dist/web/knowledgeV2.js|js/knowledgePage.js|tests/knowledge-v2-model.test.js|tests/knowledge-canonical-storage-contract.test.js)
+                knowledge=true
+                ;;
+              data/fag/fag_manifest.json|data/fag/*/emner*.json)
                 knowledge=true
                 ;;
               data/categories/*|js/DomainRegistry.js|js/core/categories.ts|js/core/categories.js|dist/web/categories.js|bilder/merker/*)

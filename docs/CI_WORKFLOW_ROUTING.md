@@ -24,7 +24,8 @@ gate.
 
 - `data-checks.yml` owns Knowledge, quiz, people and place content integrity.
   `knowledge-checks.yml` owns the browser/UI surface and does not run Chromium for
-  content-only changes.
+  content-only changes. Fagverk manifest and canonical emne changes route only to
+  the Knowledge content job because canonical Knowledge inference reads them.
 - The specialized Civication Scenario People gate owns its generated indexes;
   the full Civication suite excludes those paths.
 - Oslo Micro Places listens only to Micro Place source, contract, UI and audit
@@ -57,7 +58,7 @@ regression above the budget.
 | Production change | Before | Current | Budget |
 | --- | ---: | ---: | ---: |
 | Full place production | 20 | 9 | 16 |
-| Utdanning subject production | 46 | 11 | 12 |
+| Utdanning subject production | 46 | 12 | 12 |
 | Oslo Micro Place production | 26 | 13 | 16 |
 
 At the repository level, 84 workflows previously combined pull-request and push
