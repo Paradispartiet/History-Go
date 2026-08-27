@@ -78,7 +78,7 @@ test("description, People claims and Næringsliv packets are complete", () => {
   assert.equal(peopleClaims.completion.current_status, "ready_people_v1");
   assert.equal(peopleClaims.completion.claims_verified, "7/7");
   assert.equal(business.status, "ready");
-  assert.equal(business.economicIdentity.anchorType, "former_economic_site");
+  assert.equal(business.economicIdentity.anchorType, "factory");
   assert.equal(business.quizOpening.status, "PASS");
   assert.equal(business.quizOpening.firstTwoSetsQuestionCount, 14);
   assert.ok(Object.values(business.gates).every(gate => gate.status === "PASS"));
