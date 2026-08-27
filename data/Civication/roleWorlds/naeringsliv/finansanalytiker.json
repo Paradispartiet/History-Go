@@ -1,0 +1,987 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "finansanalytiker",
+  "title": "Finansanalytiker — modell, venting, rework og kapitalmyndighet",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "Å gjøre usikker framtid beslutningsklar gjennom modeller uten at tempo, intern standing eller ønsket konklusjon gjør antakelser til fakta eller analytisk innflytelse til kapitalmyndighet.",
+    "description": "Denne Role World-en følger ett vedvarende investeringscase fra kilde- og versjonslås via Theo-handoff, legitim venting og markedsdrevet rework til komitebehandling og beslutningsetterspill. Elin, Theo og investeringskomiteen vurderer samme arbeid fra ulike ståsteder, mens rollens myndighetsgrense forblir uendret: analytikeren kan analysere og anbefale, men ikke godkjenne investering eller flytte kapital."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "numerical_control",
+    "status_anxiety",
+    "shame_reputation",
+    "loyalty_up_down",
+    "social_mask",
+    "bureaucratic_power",
+    "public_private_leakage"
+  ],
+  "social_environments": [
+    "Barcode-kontoret der regneark, modellversjoner og korte presentasjonsfrister gjør metodevalg sosialt synlige.",
+    "Bankplassen som History Go-kontekst for finansinstitusjoner, kapital, dokumentasjon og beslutningsmakt uten å gi spilleren moderne institusjonell myndighet.",
+    "Oslo Børs som stedlig kontekst for prisdannelse, notering og markedsinformasjon som kan endre analysepremisser raskt.",
+    "Seniorreviewet med Theo, der venting og versjonsfrys må behandles som legitimt arbeid fremfor produktivitetstap.",
+    "Porteføljeflaten med Elin, der beslutningsklarhet, risiko og intern standing trekker analysen mot tydeligere konklusjoner.",
+    "Investeringskomiteen der analytisk innflytelse stopper ved anbefalingen og faktisk kapitalmyndighet ligger hos beslutningsorganet.",
+    "Den private kvelden etter komitémøtet, der behovet for å ha rett kan følge analytikeren hjem og gjøre usikkerhet personlig."
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "elin_portefoljeansvarlig",
+      "social_function": "porteføljeansvarlig som trenger beslutningsklar analyse og eier overleveringen til komiteen",
+      "class_position": "senior beslutningsnær rolle med høy organisatorisk innflytelse",
+      "status": "høy formell og situert status",
+      "power_over_player": "kan prioritere analysearbeid, vurdere spillerens ansvar og avgjøre hvilke råd som tas videre",
+      "wants": "en klar anbefaling med synlige usikkerhetsdrivere og et spor hun kan forsvare",
+      "conceals": "hvor sterkt hun presses til å komme til møtet med én retning selv når datagrunnlaget er betinget",
+      "speech_style": "kort og beslutningsorientert; spør hva du mener, hva som må være sant og hva som kan endre rådet",
+      "teaches_player": "at beslutningsklarhet er verdifullt når den ikke kjøpes ved å skjule usikkerhet"
+    },
+    {
+      "id": "theo_senioranalytiker",
+      "social_function": "senioranalytiker som eier metode-review, versjonskontroll og faglig motstand",
+      "class_position": "senior fagspesialist uten investeringskomiteens formelle kapitalmyndighet",
+      "status": "høy situert fagstatus",
+      "power_over_player": "kan styrke eller svekke tilliten til modell, kildebruk og analytisk håndverk",
+      "wants": "én autoritativ modellversjon med kildetype, sensitivitet og endringsspor som tåler review",
+      "conceals": "hvor mye egen standing også påvirkes av om teamets modeller senere viser seg å være etterprøvbare",
+      "speech_style": "presis og teknisk; spør hvilken celle, kilde, versjon og sensitivitet som faktisk bærer konklusjonen",
+      "teaches_player": "at venting og rework er deler av god metode når de bevarer sporbarhet"
+    },
+    {
+      "id": "investeringskomite",
+      "social_function": "beslutningsgruppe som mottar analyse og faktisk kan godkjenne eller avvise kapitalbeslutningen",
+      "class_position": "formelt beslutningsorgan med høy kapitalmyndighet",
+      "status": "svært høy formell status",
+      "power_over_player": "kan bruke, utfordre eller avvise analysen og påvirke spillerens videre standing uten å overta metodeansvaret",
+      "wants": "et kort beslutningsgrunnlag som fortsatt viser hva anbefalingen avhenger av og hvem som bærer nedsiden",
+      "conceals": "at komiteens behov for et vedtak kan gjøre betinget usikkerhet sosialt mindre attraktiv enn skarpe svar",
+      "speech_style": "komprimert og utfordrende; spør kjøp eller ikke, hvorfor nå, hva kan gå galt og hvem eier premisset",
+      "teaches_player": "at analytisk autoritet stopper ved rådet selv når komiteen stoler på spilleren"
+    },
+    {
+      "id": "selskap_ir_kontakt",
+      "social_function": "ekstern informasjonskilde som representerer selskapets rapportering og guiding",
+      "class_position": "selskapets profesjonelle kommunikasjonsflate med informasjonsmakt men uten kontroll over spillerens metode",
+      "status": "middels formell status og høy kildebetydning",
+      "power_over_player": "kan tilføre ny guiding og forklaringer som endrer modellpremisser, men kan ikke bestemme hvordan analysen klassifiserer usikkerheten",
+      "wants": "at markedet forstår selskapets strategi og fremtidsforventninger på en sammenhengende måte",
+      "conceals": "hvor grensen går mellom legitim guiding, optimistisk framing og informasjon som ennå ikke er bevist",
+      "speech_style": "kontrollert og investorrettet; skiller rapporterte fakta fra fremoverskuende budskap når den presses",
+      "teaches_player": "at kilde og interesse må klassifiseres før informasjon får samme status som historiske tall"
+    },
+    {
+      "id": "finansanalytiker_privat_venn",
+      "social_function": "privat likemann som møter spilleren etter timer med modeller, komitepress og behov for å være sikker",
+      "class_position": "privat relasjon uten organisatorisk eller kapitalmessig makt",
+      "status": "emosjonell nærhet uten arbeidsrang",
+      "power_over_player": "kan utfordre profesjonsmasken og vise når ønsket om å ha rett blir identitet fremfor metode",
+      "wants": "en samtale der usikkerhet kan være ekte uten å bli omgjort til scenario, prosent eller prestasjonsfortelling",
+      "conceals": "at hun blir sliten av å bli møtt som et publikum som skal overbevises i stedet for en person",
+      "speech_style": "uformell og direkte; spør om du faktisk vet det eller bare trenger å føle deg sikker",
+      "teaches_player": "at standing i finansmiljøet ikke bestemmer sosial verdi eller sannhet privat"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "standing_manager",
+      "meaning": "Elins situerte tillit til at spilleren leverer beslutningsklar analyse uten å skjule hva rådet avhenger av",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "standing_senior",
+      "meaning": "Theos situerte tillit til modellversjon, kildeklassifisering, sensitivitet og sporbar rework",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "standing_committee",
+      "meaning": "komiteens situerte vurdering av analysens brukbarhet uten at standing gir spilleren kapitalmyndighet",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "model_integrity",
+      "meaning": "om historikk, guiding, egne estimater og scenarioer forblir adskilt gjennom hele arbeidsobjektet",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "waiting_cost",
+      "meaning": "presset til å produsere ny aktivitet når caset legitimt venter på review eller beslutning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "rework_debt",
+      "meaning": "kostnaden ved parallelle versjoner og umerkede premissendringer som må ryddes før anbefalingen kan brukes",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "authority_clarity",
+      "meaning": "om analyse, anbefaling, porteføljeoverlevering og komitevedtak holdes institusjonelt adskilt",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "private_certainty_mask",
+      "meaning": "om profesjonell sikkerhet og resultatbehov lekker inn i privat identitet etter beslutningen",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Caset åpnes med skille mellom historikk, guiding og egne antakelser, og samme arbeidsobjekt får én autoritativ modellversjon. Morgenen låser siste bekreftede premiss, versjon og neste eier før nye handlinger.",
+        "thread_ids": [
+          "modell_og_kildespor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/finansanalytiker_job.json#naeringsliv_finansanalytiker_realism_investment_case_open_001"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Caset åpnes med skille mellom historikk, guiding og egne antakelser, og samme arbeidsobjekt får én autoritativ modellversjon. Lunsjflaten gjør forskjellen mellom Elins beslutningsbehov, Theos metodetillit og komiteens formelle myndighet sosialt lesbar.",
+        "thread_ids": [
+          "seniorreview_og_venting"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/finansanalytiker_people.json#naeringsliv_finansanalytiker_realism_senior_handoff_wait_001"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 1, afternoon: Caset åpnes med skille mellom historikk, guiding og egne antakelser, og samme arbeidsobjekt får én autoritativ modellversjon. Ettermiddagen krever konkret arbeid i det samme caset: review, sensitivitet, handoff, rework eller beslutningsklar anbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "markedsdrevet_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/finansanalytiker_story.json#finansanalytiker_story_001"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Caset åpnes med skille mellom historikk, guiding og egne antakelser, og samme arbeidsobjekt får én autoritativ modellversjon. Kvelden viser hva venting, statusbehov og ønsket om å ha rett gjør med analytikerens identitet når arbeidet ikke kan løses med enda en celle.",
+        "thread_ids": [
+          "analytikeridentitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/knowledge/finansanalytiker_knowledge.json#finansanalytiker_knowledge_kildetype_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Theo-handoffet gjør reviewkø og venting til eksplisitt arbeid; spilleren må tåle at fremdrift også kan være å ikke skape en ny kopi. Morgenen låser siste bekreftede premiss, versjon og neste eier før nye handlinger.",
+        "thread_ids": [
+          "modell_og_kildespor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/micro/finansanalytiker_micro.json#finansanalytiker_micro_antakelse_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Theo-handoffet gjør reviewkø og venting til eksplisitt arbeid; spilleren må tåle at fremdrift også kan være å ikke skape en ny kopi. Lunsjflaten gjør forskjellen mellom Elins beslutningsbehov, Theos metodetillit og komiteens formelle myndighet sosialt lesbar.",
+        "thread_ids": [
+          "seniorreview_og_venting"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/conflict/finansanalytiker_conflict.json#finansanalytiker_conflict_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 2, afternoon: Theo-handoffet gjør reviewkø og venting til eksplisitt arbeid; spilleren må tåle at fremdrift også kan være å ikke skape en ny kopi. Ettermiddagen krever konkret arbeid i det samme caset: review, sensitivitet, handoff, rework eller beslutningsklar anbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "markedsdrevet_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/event/finansanalytiker_event.json#naeringsliv_finansanalytiker_realism_market_rework_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Theo-handoffet gjør reviewkø og venting til eksplisitt arbeid; spilleren må tåle at fremdrift også kan være å ikke skape en ny kopi. Kvelden viser hva venting, statusbehov og ønsket om å ha rett gjør med analytikerens identitet når arbeidet ikke kan løses med enda en celle.",
+        "thread_ids": [
+          "analytikeridentitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/followup/finansanalytiker_followup.json#naeringsliv_finansanalytiker_realism_committee_wait_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Sensitivitet og kildetype blir brukt til å forberede review uten å endre den versjonen som allerede er overlevert. Morgenen låser siste bekreftede premiss, versjon og neste eier før nye handlinger.",
+        "thread_ids": [
+          "modell_og_kildespor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/consequence/finansanalytiker_consequence.json#naeringsliv_finansanalytiker_realism_committee_aftermath_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Sensitivitet og kildetype blir brukt til å forberede review uten å endre den versjonen som allerede er overlevert. Lunsjflaten gjør forskjellen mellom Elins beslutningsbehov, Theos metodetillit og komiteens formelle myndighet sosialt lesbar.",
+        "thread_ids": [
+          "seniorreview_og_venting"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/finansanalytiker_job.json#naeringsliv_finansanalytiker_realism_investment_case_open_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 3, afternoon: Sensitivitet og kildetype blir brukt til å forberede review uten å endre den versjonen som allerede er overlevert. Ettermiddagen krever konkret arbeid i det samme caset: review, sensitivitet, handoff, rework eller beslutningsklar anbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "markedsdrevet_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/finansanalytiker_people.json#naeringsliv_finansanalytiker_realism_senior_handoff_wait_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Sensitivitet og kildetype blir brukt til å forberede review uten å endre den versjonen som allerede er overlevert. Kvelden viser hva venting, statusbehov og ønsket om å ha rett gjør med analytikerens identitet når arbeidet ikke kan løses med enda en celle.",
+        "thread_ids": [
+          "analytikeridentitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/finansanalytiker_story.json#finansanalytiker_story_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Elin trenger en tydelig anbefaling, men standing hos porteføljeansvarlig kan ikke gjøre usikkerheten eller myndighetsgrensen mindre. Morgenen låser siste bekreftede premiss, versjon og neste eier før nye handlinger.",
+        "thread_ids": [
+          "modell_og_kildespor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/knowledge/finansanalytiker_knowledge.json#finansanalytiker_knowledge_kildetype_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Elin trenger en tydelig anbefaling, men standing hos porteføljeansvarlig kan ikke gjøre usikkerheten eller myndighetsgrensen mindre. Lunsjflaten gjør forskjellen mellom Elins beslutningsbehov, Theos metodetillit og komiteens formelle myndighet sosialt lesbar.",
+        "thread_ids": [
+          "seniorreview_og_venting"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/micro/finansanalytiker_micro.json#finansanalytiker_micro_antakelse_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 4, afternoon: Elin trenger en tydelig anbefaling, men standing hos porteføljeansvarlig kan ikke gjøre usikkerheten eller myndighetsgrensen mindre. Ettermiddagen krever konkret arbeid i det samme caset: review, sensitivitet, handoff, rework eller beslutningsklar anbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "markedsdrevet_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/conflict/finansanalytiker_conflict.json#finansanalytiker_conflict_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Elin trenger en tydelig anbefaling, men standing hos porteføljeansvarlig kan ikke gjøre usikkerheten eller myndighetsgrensen mindre. Kvelden viser hva venting, statusbehov og ønsket om å ha rett gjør med analytikerens identitet når arbeidet ikke kan løses med enda en celle.",
+        "thread_ids": [
+          "analytikeridentitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/event/finansanalytiker_event.json#naeringsliv_finansanalytiker_realism_market_rework_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Ny markedsinformasjon bryter inn og tvinger samme analysecase tilbake til rework med sporbar endring av premissene. Morgenen låser siste bekreftede premiss, versjon og neste eier før nye handlinger.",
+        "thread_ids": [
+          "modell_og_kildespor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/followup/finansanalytiker_followup.json#naeringsliv_finansanalytiker_realism_committee_wait_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Ny markedsinformasjon bryter inn og tvinger samme analysecase tilbake til rework med sporbar endring av premissene. Lunsjflaten gjør forskjellen mellom Elins beslutningsbehov, Theos metodetillit og komiteens formelle myndighet sosialt lesbar.",
+        "thread_ids": [
+          "seniorreview_og_venting"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/consequence/finansanalytiker_consequence.json#naeringsliv_finansanalytiker_realism_committee_aftermath_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 5, afternoon: Ny markedsinformasjon bryter inn og tvinger samme analysecase tilbake til rework med sporbar endring av premissene. Ettermiddagen krever konkret arbeid i det samme caset: review, sensitivitet, handoff, rework eller beslutningsklar anbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "markedsdrevet_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/finansanalytiker_job.json#naeringsliv_finansanalytiker_realism_investment_case_open_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Ny markedsinformasjon bryter inn og tvinger samme analysecase tilbake til rework med sporbar endring av premissene. Kvelden viser hva venting, statusbehov og ønsket om å ha rett gjør med analytikerens identitet når arbeidet ikke kan løses med enda en celle.",
+        "thread_ids": [
+          "analytikeridentitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/finansanalytiker_people.json#naeringsliv_finansanalytiker_realism_senior_handoff_wait_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Theo og Elin leser reworket forskjellig: metode, beslutningsklarhet og intern status er separate publikumsflater. Morgenen låser siste bekreftede premiss, versjon og neste eier før nye handlinger.",
+        "thread_ids": [
+          "modell_og_kildespor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/finansanalytiker_story.json#finansanalytiker_story_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Theo og Elin leser reworket forskjellig: metode, beslutningsklarhet og intern status er separate publikumsflater. Lunsjflaten gjør forskjellen mellom Elins beslutningsbehov, Theos metodetillit og komiteens formelle myndighet sosialt lesbar.",
+        "thread_ids": [
+          "seniorreview_og_venting"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/knowledge/finansanalytiker_knowledge.json#finansanalytiker_knowledge_kildetype_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 6, afternoon: Theo og Elin leser reworket forskjellig: metode, beslutningsklarhet og intern status er separate publikumsflater. Ettermiddagen krever konkret arbeid i det samme caset: review, sensitivitet, handoff, rework eller beslutningsklar anbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "markedsdrevet_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/micro/finansanalytiker_micro.json#finansanalytiker_micro_antakelse_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Theo og Elin leser reworket forskjellig: metode, beslutningsklarhet og intern status er separate publikumsflater. Kvelden viser hva venting, statusbehov og ønsket om å ha rett gjør med analytikerens identitet når arbeidet ikke kan løses med enda en celle.",
+        "thread_ids": [
+          "analytikeridentitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/conflict/finansanalytiker_conflict.json#finansanalytiker_conflict_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Peer-gruppe, margin og downside samles i en anbefaling der hvert scenario viser hva som må være sant før kapitalbeslutningen. Morgenen låser siste bekreftede premiss, versjon og neste eier før nye handlinger.",
+        "thread_ids": [
+          "modell_og_kildespor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/event/finansanalytiker_event.json#naeringsliv_finansanalytiker_realism_market_rework_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Peer-gruppe, margin og downside samles i en anbefaling der hvert scenario viser hva som må være sant før kapitalbeslutningen. Lunsjflaten gjør forskjellen mellom Elins beslutningsbehov, Theos metodetillit og komiteens formelle myndighet sosialt lesbar.",
+        "thread_ids": [
+          "seniorreview_og_venting"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/followup/finansanalytiker_followup.json#naeringsliv_finansanalytiker_realism_committee_wait_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 7, afternoon: Peer-gruppe, margin og downside samles i en anbefaling der hvert scenario viser hva som må være sant før kapitalbeslutningen. Ettermiddagen krever konkret arbeid i det samme caset: review, sensitivitet, handoff, rework eller beslutningsklar anbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "markedsdrevet_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/consequence/finansanalytiker_consequence.json#naeringsliv_finansanalytiker_realism_committee_aftermath_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Peer-gruppe, margin og downside samles i en anbefaling der hvert scenario viser hva som må være sant før kapitalbeslutningen. Kvelden viser hva venting, statusbehov og ønsket om å ha rett gjør med analytikerens identitet når arbeidet ikke kan løses med enda en celle.",
+        "thread_ids": [
+          "analytikeridentitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/finansanalytiker_job.json#naeringsliv_finansanalytiker_realism_investment_case_open_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Komitepresset gjør skarpe konklusjoner sosialt attraktive, men anbefalingen må fortsatt skille råd fra vedtak. Morgenen låser siste bekreftede premiss, versjon og neste eier før nye handlinger.",
+        "thread_ids": [
+          "modell_og_kildespor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/finansanalytiker_people.json#naeringsliv_finansanalytiker_realism_senior_handoff_wait_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Komitepresset gjør skarpe konklusjoner sosialt attraktive, men anbefalingen må fortsatt skille råd fra vedtak. Lunsjflaten gjør forskjellen mellom Elins beslutningsbehov, Theos metodetillit og komiteens formelle myndighet sosialt lesbar.",
+        "thread_ids": [
+          "seniorreview_og_venting"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/finansanalytiker_story.json#finansanalytiker_story_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 8, afternoon: Komitepresset gjør skarpe konklusjoner sosialt attraktive, men anbefalingen må fortsatt skille råd fra vedtak. Ettermiddagen krever konkret arbeid i det samme caset: review, sensitivitet, handoff, rework eller beslutningsklar anbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "markedsdrevet_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/knowledge/finansanalytiker_knowledge.json#finansanalytiker_knowledge_kildetype_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Komitepresset gjør skarpe konklusjoner sosialt attraktive, men anbefalingen må fortsatt skille råd fra vedtak. Kvelden viser hva venting, statusbehov og ønsket om å ha rett gjør med analytikerens identitet når arbeidet ikke kan løses med enda en celle.",
+        "thread_ids": [
+          "analytikeridentitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/micro/finansanalytiker_micro.json#finansanalytiker_micro_antakelse_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Caset overlever en ny runde med spørsmål uten å miste modellversjon, tidligere review eller hvem som eier neste handling. Morgenen låser siste bekreftede premiss, versjon og neste eier før nye handlinger.",
+        "thread_ids": [
+          "modell_og_kildespor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/conflict/finansanalytiker_conflict.json#finansanalytiker_conflict_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Caset overlever en ny runde med spørsmål uten å miste modellversjon, tidligere review eller hvem som eier neste handling. Lunsjflaten gjør forskjellen mellom Elins beslutningsbehov, Theos metodetillit og komiteens formelle myndighet sosialt lesbar.",
+        "thread_ids": [
+          "seniorreview_og_venting"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/event/finansanalytiker_event.json#naeringsliv_finansanalytiker_realism_market_rework_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 9, afternoon: Caset overlever en ny runde med spørsmål uten å miste modellversjon, tidligere review eller hvem som eier neste handling. Ettermiddagen krever konkret arbeid i det samme caset: review, sensitivitet, handoff, rework eller beslutningsklar anbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "markedsdrevet_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/followup/finansanalytiker_followup.json#naeringsliv_finansanalytiker_realism_committee_wait_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Caset overlever en ny runde med spørsmål uten å miste modellversjon, tidligere review eller hvem som eier neste handling. Kvelden viser hva venting, statusbehov og ønsket om å ha rett gjør med analytikerens identitet når arbeidet ikke kan løses med enda en celle.",
+        "thread_ids": [
+          "analytikeridentitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/consequence/finansanalytiker_consequence.json#naeringsliv_finansanalytiker_realism_committee_aftermath_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Analytikeren forbereder komitehandoffet og gjør eksplisitt hva Elin kan anbefale videre og hva bare komiteen kan beslutte. Morgenen låser siste bekreftede premiss, versjon og neste eier før nye handlinger.",
+        "thread_ids": [
+          "modell_og_kildespor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/finansanalytiker_job.json#naeringsliv_finansanalytiker_realism_investment_case_open_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Analytikeren forbereder komitehandoffet og gjør eksplisitt hva Elin kan anbefale videre og hva bare komiteen kan beslutte. Lunsjflaten gjør forskjellen mellom Elins beslutningsbehov, Theos metodetillit og komiteens formelle myndighet sosialt lesbar.",
+        "thread_ids": [
+          "seniorreview_og_venting"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/finansanalytiker_people.json#naeringsliv_finansanalytiker_realism_senior_handoff_wait_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 10, afternoon: Analytikeren forbereder komitehandoffet og gjør eksplisitt hva Elin kan anbefale videre og hva bare komiteen kan beslutte. Ettermiddagen krever konkret arbeid i det samme caset: review, sensitivitet, handoff, rework eller beslutningsklar anbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "markedsdrevet_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/finansanalytiker_story.json#finansanalytiker_story_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Analytikeren forbereder komitehandoffet og gjør eksplisitt hva Elin kan anbefale videre og hva bare komiteen kan beslutte. Kvelden viser hva venting, statusbehov og ønsket om å ha rett gjør med analytikerens identitet når arbeidet ikke kan løses med enda en celle.",
+        "thread_ids": [
+          "analytikeridentitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/knowledge/finansanalytiker_knowledge.json#finansanalytiker_knowledge_kildetype_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Anbefalingen er ferdig, men spilleren må tåle venting på investeringskomiteen uten å omtale et mulig utfall som allerede vedtatt. Morgenen låser siste bekreftede premiss, versjon og neste eier før nye handlinger.",
+        "thread_ids": [
+          "modell_og_kildespor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/micro/finansanalytiker_micro.json#finansanalytiker_micro_antakelse_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Anbefalingen er ferdig, men spilleren må tåle venting på investeringskomiteen uten å omtale et mulig utfall som allerede vedtatt. Lunsjflaten gjør forskjellen mellom Elins beslutningsbehov, Theos metodetillit og komiteens formelle myndighet sosialt lesbar.",
+        "thread_ids": [
+          "seniorreview_og_venting"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/conflict/finansanalytiker_conflict.json#finansanalytiker_conflict_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 11, afternoon: Anbefalingen er ferdig, men spilleren må tåle venting på investeringskomiteen uten å omtale et mulig utfall som allerede vedtatt. Ettermiddagen krever konkret arbeid i det samme caset: review, sensitivitet, handoff, rework eller beslutningsklar anbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "markedsdrevet_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/event/finansanalytiker_event.json#naeringsliv_finansanalytiker_realism_market_rework_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Anbefalingen er ferdig, men spilleren må tåle venting på investeringskomiteen uten å omtale et mulig utfall som allerede vedtatt. Kvelden viser hva venting, statusbehov og ønsket om å ha rett gjør med analytikerens identitet når arbeidet ikke kan løses med enda en celle.",
+        "thread_ids": [
+          "analytikeridentitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/followup/finansanalytiker_followup.json#naeringsliv_finansanalytiker_realism_committee_wait_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Komiteen behandler caset; standing kan påvirke hvor mye analysen blir lyttet til, men kan aldri gi analytikeren rett til å flytte kapital. Morgenen låser siste bekreftede premiss, versjon og neste eier før nye handlinger.",
+        "thread_ids": [
+          "modell_og_kildespor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/consequence/finansanalytiker_consequence.json#naeringsliv_finansanalytiker_realism_committee_aftermath_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Komiteen behandler caset; standing kan påvirke hvor mye analysen blir lyttet til, men kan aldri gi analytikeren rett til å flytte kapital. Lunsjflaten gjør forskjellen mellom Elins beslutningsbehov, Theos metodetillit og komiteens formelle myndighet sosialt lesbar.",
+        "thread_ids": [
+          "seniorreview_og_venting"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/finansanalytiker_job.json#naeringsliv_finansanalytiker_realism_investment_case_open_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 12, afternoon: Komiteen behandler caset; standing kan påvirke hvor mye analysen blir lyttet til, men kan aldri gi analytikeren rett til å flytte kapital. Ettermiddagen krever konkret arbeid i det samme caset: review, sensitivitet, handoff, rework eller beslutningsklar anbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "markedsdrevet_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/finansanalytiker_people.json#naeringsliv_finansanalytiker_realism_senior_handoff_wait_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Komiteen behandler caset; standing kan påvirke hvor mye analysen blir lyttet til, men kan aldri gi analytikeren rett til å flytte kapital. Kvelden viser hva venting, statusbehov og ønsket om å ha rett gjør med analytikerens identitet når arbeidet ikke kan løses med enda en celle.",
+        "thread_ids": [
+          "analytikeridentitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/finansanalytiker_story.json#finansanalytiker_story_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Vedtaket returnerer og samme arbeidsobjekt går fra waiting til beslutningsetterspill, med analyse og vedtak dokumentert som ulike lag. Morgenen låser siste bekreftede premiss, versjon og neste eier før nye handlinger.",
+        "thread_ids": [
+          "modell_og_kildespor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/knowledge/finansanalytiker_knowledge.json#finansanalytiker_knowledge_kildetype_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Vedtaket returnerer og samme arbeidsobjekt går fra waiting til beslutningsetterspill, med analyse og vedtak dokumentert som ulike lag. Lunsjflaten gjør forskjellen mellom Elins beslutningsbehov, Theos metodetillit og komiteens formelle myndighet sosialt lesbar.",
+        "thread_ids": [
+          "seniorreview_og_venting"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/micro/finansanalytiker_micro.json#finansanalytiker_micro_antakelse_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 13, afternoon: Vedtaket returnerer og samme arbeidsobjekt går fra waiting til beslutningsetterspill, med analyse og vedtak dokumentert som ulike lag. Ettermiddagen krever konkret arbeid i det samme caset: review, sensitivitet, handoff, rework eller beslutningsklar anbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "markedsdrevet_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/conflict/finansanalytiker_conflict.json#finansanalytiker_conflict_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Vedtaket returnerer og samme arbeidsobjekt går fra waiting til beslutningsetterspill, med analyse og vedtak dokumentert som ulike lag. Kvelden viser hva venting, statusbehov og ønsket om å ha rett gjør med analytikerens identitet når arbeidet ikke kan løses med enda en celle.",
+        "thread_ids": [
+          "analytikeridentitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/event/finansanalytiker_event.json#naeringsliv_finansanalytiker_realism_market_rework_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Caset lukkes med resultatbias-kontroll og privat etterklang: profesjonell sikkerhet må ikke bli en maske som later som usikkerhet aldri fantes. Morgenen låser siste bekreftede premiss, versjon og neste eier før nye handlinger.",
+        "thread_ids": [
+          "modell_og_kildespor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/followup/finansanalytiker_followup.json#naeringsliv_finansanalytiker_realism_committee_wait_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Caset lukkes med resultatbias-kontroll og privat etterklang: profesjonell sikkerhet må ikke bli en maske som later som usikkerhet aldri fantes. Lunsjflaten gjør forskjellen mellom Elins beslutningsbehov, Theos metodetillit og komiteens formelle myndighet sosialt lesbar.",
+        "thread_ids": [
+          "seniorreview_og_venting"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/consequence/finansanalytiker_consequence.json#naeringsliv_finansanalytiker_realism_committee_aftermath_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 14, afternoon: Caset lukkes med resultatbias-kontroll og privat etterklang: profesjonell sikkerhet må ikke bli en maske som later som usikkerhet aldri fantes. Ettermiddagen krever konkret arbeid i det samme caset: review, sensitivitet, handoff, rework eller beslutningsklar anbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "markedsdrevet_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/finansanalytiker_job.json#naeringsliv_finansanalytiker_realism_investment_case_open_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Caset lukkes med resultatbias-kontroll og privat etterklang: profesjonell sikkerhet må ikke bli en maske som later som usikkerhet aldri fantes. Kvelden viser hva venting, statusbehov og ønsket om å ha rett gjør med analytikerens identitet når arbeidet ikke kan løses med enda en celle.",
+        "thread_ids": [
+          "analytikeridentitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/finansanalytiker_people.json#naeringsliv_finansanalytiker_realism_senior_handoff_wait_001"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "modell_og_kildespor",
+      "relationship": "Forholdet mellom spillerens modell, kildetype og én autoritativ versjon gjennom hele investeringscaset.",
+      "beat_refs": [
+        "1/morning",
+        "2/morning",
+        "3/afternoon",
+        "5/morning",
+        "7/afternoon",
+        "10/morning",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "seniorreview_og_venting",
+      "relationship": "Forholdet til Theo der faglig tillit bygges gjennom handoff, venting, review og sporbar retur.",
+      "beat_refs": [
+        "1/lunch",
+        "2/lunch",
+        "2/afternoon",
+        "3/lunch",
+        "5/lunch",
+        "6/lunch",
+        "9/lunch",
+        "13/lunch"
+      ]
+    },
+    {
+      "id": "markedsdrevet_rework",
+      "relationship": "Hvordan ny guiding og markedsinformasjon kan legitimt åpne samme arbeidsobjekt for rework uten versjonsbrudd.",
+      "beat_refs": [
+        "4/afternoon",
+        "5/afternoon",
+        "6/afternoon",
+        "7/morning",
+        "8/afternoon",
+        "9/afternoon",
+        "10/afternoon"
+      ]
+    },
+    {
+      "id": "komite_og_myndighet",
+      "relationship": "Skillet mellom analytisk anbefaling, Elins overlevering og komiteens faktiske myndighet til å beslutte kapital.",
+      "beat_refs": [
+        "7/lunch",
+        "8/lunch",
+        "9/morning",
+        "10/lunch",
+        "11/afternoon",
+        "12/afternoon",
+        "13/afternoon"
+      ]
+    },
+    {
+      "id": "analytikeridentitet_og_etterspill",
+      "relationship": "Hvordan standing, ønsket om skarpe svar og senere utfall påvirker profesjonsmasken og læringen etter caset.",
+      "beat_refs": [
+        "1/evening",
+        "4/evening",
+        "7/evening",
+        "10/evening",
+        "11/evening",
+        "12/evening",
+        "13/evening",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "waiting_feels_like_failure",
+      "description": "Mens Theo reviewer, merker spilleren hvor sterkt finansmiljøet kan gjøre legitim venting til en følelse av å være mindre nyttig, og fristelsen til å lage en parallell modell følger med hjem.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/naeringsliv/people/finansanalytiker_people.json#naeringsliv_finansanalytiker_realism_senior_handoff_wait_001",
+        "data/Civication/mailFamilies/naeringsliv/micro/finansanalytiker_micro.json#finansanalytiker_micro_antakelse_001"
+      ]
+    },
+    {
+      "id": "sharp_answer_identity",
+      "description": "Etter komitepresset kan ønsket om en ren kjøp/ikke-kjøp-konklusjon bli en personlig målestokk på om analytikeren virker smart nok, selv når faglig kvalitet krever betingelser.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/naeringsliv/conflict/finansanalytiker_conflict.json#finansanalytiker_conflict_001",
+        "data/Civication/mailFamilies/naeringsliv/story/finansanalytiker_story.json#finansanalytiker_story_001"
+      ]
+    },
+    {
+      "id": "decision_is_not_self",
+      "description": "Når caset venter på komiteen, må spilleren skille egen verdi og standing fra om beslutningsorganet følger anbefalingen.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/naeringsliv/followup/finansanalytiker_followup.json#naeringsliv_finansanalytiker_realism_committee_wait_001",
+        "data/Civication/mailFamilies/naeringsliv/story/finansanalytiker_story.json#finansanalytiker_story_001"
+      ]
+    },
+    {
+      "id": "outcome_bias_home",
+      "description": "Etter vedtaket og senere markedsbevegelse utfordres spilleren til å huske hva som faktisk var kjent på beslutningstidspunktet i stedet for å bruke utfallet som identitet.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/naeringsliv/consequence/finansanalytiker_consequence.json#naeringsliv_finansanalytiker_realism_committee_aftermath_001",
+        "data/Civication/mailFamilies/naeringsliv/story/finansanalytiker_story.json#finansanalytiker_story_001"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "version_debt_returns",
+      "setup_ref": "2/afternoon",
+      "return_ref": "5/afternoon",
+      "domains": [
+        "job",
+        "reputation"
+      ]
+    },
+    {
+      "id": "source_blur_returns",
+      "setup_ref": "1/morning",
+      "return_ref": "7/afternoon",
+      "domains": [
+        "job",
+        "narrative"
+      ]
+    },
+    {
+      "id": "senior_trust_returns",
+      "setup_ref": "2/lunch",
+      "return_ref": "9/lunch",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "market_rework_returns",
+      "setup_ref": "5/morning",
+      "return_ref": "10/afternoon",
+      "domains": [
+        "job",
+        "economy"
+      ]
+    },
+    {
+      "id": "authority_boundary_returns",
+      "setup_ref": "10/lunch",
+      "return_ref": "12/afternoon",
+      "domains": [
+        "job",
+        "reputation"
+      ]
+    },
+    {
+      "id": "result_bias_returns",
+      "setup_ref": "13/evening",
+      "return_ref": "14/evening",
+      "domains": [
+        "psyche",
+        "narrative",
+        "reputation"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/mailFamilies/naeringsliv/job/finansanalytiker_job.json#naeringsliv_finansanalytiker_realism_investment_case_open_001",
+      "data/Civication/mailFamilies/naeringsliv/people/finansanalytiker_people.json#naeringsliv_finansanalytiker_realism_senior_handoff_wait_001",
+      "data/Civication/mailFamilies/naeringsliv/story/finansanalytiker_story.json#finansanalytiker_story_001",
+      "data/Civication/mailFamilies/naeringsliv/knowledge/finansanalytiker_knowledge.json#finansanalytiker_knowledge_kildetype_001",
+      "data/Civication/mailFamilies/naeringsliv/micro/finansanalytiker_micro.json#finansanalytiker_micro_antakelse_001",
+      "data/Civication/mailFamilies/naeringsliv/conflict/finansanalytiker_conflict.json#finansanalytiker_conflict_001",
+      "data/Civication/mailFamilies/naeringsliv/event/finansanalytiker_event.json#naeringsliv_finansanalytiker_realism_market_rework_001",
+      "data/Civication/mailFamilies/naeringsliv/followup/finansanalytiker_followup.json#naeringsliv_finansanalytiker_realism_committee_wait_001",
+      "data/Civication/mailFamilies/naeringsliv/consequence/finansanalytiker_consequence.json#naeringsliv_finansanalytiker_realism_committee_aftermath_001"
+    ]
+  }
+}

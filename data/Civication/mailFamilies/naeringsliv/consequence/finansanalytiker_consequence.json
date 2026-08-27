@@ -1,1 +1,248 @@
-{"schema":"civication_mail_family_catalog_v1","version":1,"category":"naeringsliv","role_scope":"finansanalytiker","mail_type":"consequence","families":[{"id":"forsinket_effekt_av_endret_premiss","purpose":"Gjør den senere konsekvensen av å revidere eller ignorere et endret premiss synlig i kapitalbeslutningen.","learning_focus":["konsekvens","beslutningsspor","modellansvar"],"mails":[{"id":"finansanalytiker_consequence_premiss_001","mail_type":"consequence","mail_family":"forsinket_effekt_av_endret_premiss","role_scope":"finansanalytiker","thread_key":"finansanalytiker.case.premiss_og_anbefaling","phase":"day_end","priority":62,"cooldown":3,"repeatable":false,"stage":"mastery","from":"elin_portefoljeansvarlig","sender":"elin_portefoljeansvarlig","person_id":"elin_portefoljeansvarlig","place_id":"oslo_bors","subject":"Komiteen ser nå hva den endrede forutsetningen gjorde med nedsiden","summary":"Den reviderte analysen viser at oppsiden fortsatt finnes, men at nedsiden og sannsynlighetsbildet er annerledes enn i det opprinnelige notatet.","purpose":"Vise at metodeintegritet ikke bare handler om ryddige modeller, men om hvilke kapitalvalg andre tar senere.","stakes":"Du kan behandle forskjellen som en mindre modelloppdatering, eller bruke den til å gjøre beslutningssporet og risikobildet eksplisitt før kapital bindes.","situation":["Det opprinnelige notatet kan sammenlignes med den reviderte modellen.","Nøkkelantakelsen endrer først og fremst nedsiderisikoen.","Komiteen skal ta stilling til om caset fortsatt passer mandatet."],"task_domain":"forsinket_analyseeffekt","task_kind":"consequence","competency":"risikoformidling","pressure":"beholde_investeringsfortellingen_vs_oppdatere_risikobildet","choice_axis":"vise_endringsspor_og_nedside_vs_behandle_som_teknisk_oppdatering","consequence_axis":"ansvarlig_kapitalbeslutning_vs_skjult_premissendring","narrative_arc":"Analytikeren ser at sporbare premissendringer kan endre kapitalbeslutningen selv når hovedfortellingen fortsatt ser attraktiv ut.","choices":[{"id":"A","label":"Vis endringssporet og la komiteen vurdere caset mot det nye risikobildet","reply":"Jeg viser hva som endret seg fra første notat og lar komiteen vurdere caset mot det nye nedsidescenariet.","effect":1,"tags":["consequence","risk","traceability"],"feedback":"Beslutningen kan nå ta høyde for både oppside og den risikoen premissendringen gjorde synlig."},{"id":"B","label":"Presenter oppdateringen som teknisk siden hovedcaset fortsatt er attraktivt","reply":"Jeg presenterer dette som en teknisk modelloppdatering siden hovedcaset fortsatt er attraktivt.","effect":-1,"tags":["narrative_bias","risk_hidden"],"feedback":"Du bevarer fortellingen, men gjør en beslutningsrelevant endring mindre synlig enn den er."}]}]}]}
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "finansanalytiker",
+  "mail_type": "consequence",
+  "families": [
+    {
+      "id": "forsinket_effekt_av_endret_premiss",
+      "purpose": "Gjør den senere konsekvensen av å revidere eller ignorere et endret premiss synlig i kapitalbeslutningen.",
+      "learning_focus": [
+        "konsekvens",
+        "beslutningsspor",
+        "modellansvar"
+      ],
+      "mails": [
+        {
+          "id": "finansanalytiker_consequence_premiss_001",
+          "mail_type": "consequence",
+          "mail_family": "forsinket_effekt_av_endret_premiss",
+          "role_scope": "finansanalytiker",
+          "thread_key": "finansanalytiker.case.premiss_og_anbefaling",
+          "phase": "day_end",
+          "priority": 62,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "mastery",
+          "from": "elin_portefoljeansvarlig",
+          "sender": "elin_portefoljeansvarlig",
+          "person_id": "elin_portefoljeansvarlig",
+          "place_id": "oslo_bors",
+          "subject": "Komiteen ser nå hva den endrede forutsetningen gjorde med nedsiden",
+          "summary": "Den reviderte analysen viser at oppsiden fortsatt finnes, men at nedsiden og sannsynlighetsbildet er annerledes enn i det opprinnelige notatet.",
+          "purpose": "Vise at metodeintegritet ikke bare handler om ryddige modeller, men om hvilke kapitalvalg andre tar senere.",
+          "stakes": "Du kan behandle forskjellen som en mindre modelloppdatering, eller bruke den til å gjøre beslutningssporet og risikobildet eksplisitt før kapital bindes.",
+          "situation": [
+            "Det opprinnelige notatet kan sammenlignes med den reviderte modellen.",
+            "Nøkkelantakelsen endrer først og fremst nedsiderisikoen.",
+            "Komiteen skal ta stilling til om caset fortsatt passer mandatet."
+          ],
+          "task_domain": "forsinket_analyseeffekt",
+          "task_kind": "consequence",
+          "competency": "risikoformidling",
+          "pressure": "beholde_investeringsfortellingen_vs_oppdatere_risikobildet",
+          "choice_axis": "vise_endringsspor_og_nedside_vs_behandle_som_teknisk_oppdatering",
+          "consequence_axis": "ansvarlig_kapitalbeslutning_vs_skjult_premissendring",
+          "narrative_arc": "Analytikeren ser at sporbare premissendringer kan endre kapitalbeslutningen selv når hovedfortellingen fortsatt ser attraktiv ut.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Vis endringssporet og la komiteen vurdere caset mot det nye risikobildet",
+              "reply": "Jeg viser hva som endret seg fra første notat og lar komiteen vurdere caset mot det nye nedsidescenariet.",
+              "effect": 1,
+              "tags": [
+                "consequence",
+                "risk",
+                "traceability"
+              ],
+              "feedback": "Beslutningen kan nå ta høyde for både oppside og den risikoen premissendringen gjorde synlig."
+            },
+            {
+              "id": "B",
+              "label": "Presenter oppdateringen som teknisk siden hovedcaset fortsatt er attraktivt",
+              "reply": "Jeg presenterer dette som en teknisk modelloppdatering siden hovedcaset fortsatt er attraktivt.",
+              "effect": -1,
+              "tags": [
+                "narrative_bias",
+                "risk_hidden"
+              ],
+              "feedback": "Du bevarer fortellingen, men gjør en beslutningsrelevant endring mindre synlig enn den er."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_finansanalytiker_committee_aftermath",
+      "purpose": "Lukker caset med skille mellom analyse, vedtak, senere utfall og situert standing.",
+      "learning_focus": [
+        "aftermath",
+        "result_bias",
+        "situated_reputation"
+      ],
+      "mails": [
+        {
+          "id": "naeringsliv_finansanalytiker_realism_committee_aftermath_001",
+          "mail_type": "consequence",
+          "mail_family": "role_world_rollout_finansanalytiker_committee_aftermath",
+          "role_scope": "finansanalytiker",
+          "phase": "advanced",
+          "day_phase": "evening",
+          "priority": 95,
+          "cooldown": 10,
+          "repeatable": false,
+          "stage": "stable",
+          "planned_only": true,
+          "thread_key": "naeringsliv_finansanalytiker_investment_case_realism_001",
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "naeringsliv",
+            "finansanalytiker",
+            "persistent_work",
+            "situated_reputation"
+          ],
+          "from": "Investeringskomiteen",
+          "people_ref": "investeringskomite",
+          "person_id": "investeringskomite",
+          "place_id": "bankplassen",
+          "subject": "Vedtaket kom – nå må analyse, beslutning og resultat holdes fra hverandre",
+          "summary": "Komiteen har tatt beslutningen. Uansett om utfallet følger din anbefaling, skal caset lukkes med dokumentert modellversjon, usikkerhet, rework og faktisk beslutningseier. Standing etterpå skal handle om metode og brukbarhet, ikke om å omskrive historien slik at du alltid «hadde rett».",
+          "purpose": "Materialisere beslutningsetterspill og resultatbias: samme analyse kan være metodisk god selv om markedet senere går mot den, og en god markedsutvikling kan ikke gjøre en svak metode retroaktivt riktig.",
+          "stakes": "Hvis spilleren bruker utfallet som eneste kvalitetsmål, lærer rollen å jage treff fremfor sporbar analyse. Da vil standing belønne flaks og straffe ærlig usikkerhet, og neste investeringscase starter med feil læring.",
+          "situation": [
+            "Komiteens vedtak er et eget institusjonelt event, ikke en forlengelse av analytikerens anbefaling.",
+            "Caset inneholder nå baseline, Theo-handoff, venting, markedsrework og komitehandoff i samme spor.",
+            "Etterspillet skal bevare hva analysen faktisk sa på beslutningstidspunktet før senere markedsutfall er kjent."
+          ],
+          "task_domain": "decision_aftermath_and_learning",
+          "task_kind": "consequence",
+          "competency": "resultatbias_og_metodelaering",
+          "pressure": "ha_rett_vs_vaere_sporbar",
+          "choice_axis": "lukk_med_beslutningsspor_vs_omskriv_historien",
+          "consequence_axis": "langsiktig_metodetillit_vs_resultatjakt",
+          "narrative_arc": "fra_modellpremiss_til_sporbart_investeringsvedtak_og_etterspill",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "naeringsliv_finansanalytiker_investment_case_001"
+            ],
+            "institution_id": "naeringsliv_investeringsanalyse_enhet_001",
+            "rework_of_scene_id": "naeringsliv_finansanalytiker_realism_committee_wait_001",
+            "priority": "high"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lukk caset med anbefaling, usikkerhet, vedtak og læringspunkter som separate lag",
+              "reply": "Jeg arkiverer hva modellen viste, hva vi ikke visste, hva komiteen vedtok og hvilke senere signaler som faktisk bør endre neste analyse.",
+              "effect": 2,
+              "feedback": "Caset blir et institusjonelt minne i stedet for en seiers- eller tapsfortelling. Elin, Theo og komiteen kan vurdere samme arbeid fra sine egne ståsteder uten at én global status bestemmer historien.",
+              "effects": {
+                "stats": {
+                  "quality": 3,
+                  "trust": 3,
+                  "risk": -2
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "finance_case_closed_with_decision_record",
+                    "work_object_id": "naeringsliv_finansanalytiker_investment_case_001",
+                    "to_status": "closed",
+                    "to_phase": "decision_recorded",
+                    "note": "Komiteens beslutning og analysens samtidige premisser er skilt og dokumentert; caset lukkes."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "finance_case_learning_closed",
+                    "work_object_id": "naeringsliv_finansanalytiker_investment_case_001",
+                    "flag": "decision_and_analysis_recorded_separately"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "finance_standing_elin_aftermath",
+                    "audience_id": "manager:elin_portefoljeansvarlig",
+                    "delta": 3,
+                    "reason": "Elin får et etterprøvbart beslutningsminne som gjør det mulig å lære av caset uten å forveksle markedets senere utfall med kvaliteten på datagrunnlaget.",
+                    "source_actor_id": "elin_portefoljeansvarlig"
+                  },
+                  {
+                    "event_id": "finance_standing_theo_aftermath",
+                    "audience_id": "professional:theo_senioranalytiker",
+                    "delta": 3,
+                    "reason": "Theo ser at metode-review, venting og rework er bevart som del av historikken, slik at neste analyse kan forbedres fra faktiske prosessdata.",
+                    "source_actor_id": "theo_senioranalytiker"
+                  },
+                  {
+                    "event_id": "finance_standing_committee_aftermath",
+                    "audience_id": "professional:investeringskomite",
+                    "delta": 2,
+                    "reason": "Komiteen får et klart skille mellom rådet de mottok og vedtaket de selv tok, noe som bevarer ansvar selv når utfallet senere blir kjent.",
+                    "source_actor_id": "investeringskomite"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Skriv etterspillet som bevis på at anbefalingen var riktig eller feil",
+              "reply": "Jeg oppsummerer caset ut fra om markedet senere bekreftet anbefalingen, og lar det være hovedmålet på analysekvalitet.",
+              "effect": -2,
+              "feedback": "Du får en enklere prestasjonsfortelling, men taper skillet mellom metode og utfall. Flaks kan bli standing, og ærlig usikkerhet kan bli behandlet som svakhet.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -3,
+                  "trust": -2,
+                  "risk": 3
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "finance_case_closed_with_result_bias",
+                    "work_object_id": "naeringsliv_finansanalytiker_investment_case_001",
+                    "to_status": "closed",
+                    "to_phase": "decision_recorded",
+                    "note": "Caset lukkes, men læringen domineres av resultatbias fremfor samtidige premisser."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "finance_result_bias",
+                    "work_object_id": "naeringsliv_finansanalytiker_investment_case_001",
+                    "flag": "later_outcome_overwrites_decision_time_reasoning"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "finance_standing_elin_resultbias",
+                    "audience_id": "manager:elin_portefoljeansvarlig",
+                    "delta": -2,
+                    "reason": "Elin mister et presist beslutningsminne fordi senere markedsutfall får overskrive hvilke premisser og usikkerheter som faktisk var kjent da rådet ble gitt.",
+                    "source_actor_id": "elin_portefoljeansvarlig"
+                  },
+                  {
+                    "event_id": "finance_standing_theo_resultbias",
+                    "audience_id": "professional:theo_senioranalytiker",
+                    "delta": -3,
+                    "reason": "Theo ser at metodearbeidet blir vurdert gjennom senere utfall i stedet for gjennom sporbarheten og kvaliteten som kunne kontrolleres på beslutningstidspunktet.",
+                    "source_actor_id": "theo_senioranalytiker"
+                  },
+                  {
+                    "event_id": "finance_standing_committee_resultbias",
+                    "audience_id": "professional:investeringskomite",
+                    "delta": -2,
+                    "reason": "Komiteens eget ansvar blir uklart når analytikerens treffsikkerhet brukes som etterpåforklaring på et vedtak som faktisk hadde flere eiere og usikkerheter.",
+                    "source_actor_id": "investeringskomite"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

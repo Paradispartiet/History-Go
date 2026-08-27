@@ -30,21 +30,191 @@
           "choice_axis": "oppdatere_case_vs_fortsette_plan",
           "consequence_axis": "relevans_vs_tempo",
           "narrative_arc": "markedet_bryter_inn",
-          "learning_focus": ["markedsnyhet", "marginpress", "modelloppdatering", "presentasjonsrisiko", "relevans"],
+          "learning_focus": [
+            "markedsnyhet",
+            "marginpress",
+            "modelloppdatering",
+            "presentasjonsrisiko",
+            "relevans"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Oppdater sensitiviteten og vis effekten på caset.",
               "effect": 1,
-              "tags": ["analyse", "risiko", "kvalitet"],
+              "tags": [
+                "analyse",
+                "risiko",
+                "kvalitet"
+              ],
               "feedback": "Du gjør presentasjonen mer aktuell, selv om den blir mindre glatt. Modellen viser at den lytter til markedet."
             },
             {
               "id": "B",
               "label": "Nevn nyheten muntlig, men behold modellen uendret.",
               "effect": -1,
-              "tags": ["tempo", "risk"],
+              "tags": [
+                "tempo",
+                "risk"
+              ],
               "feedback": "Du sparer tid, men modellen blir liggende et skritt bak markedet. En muntlig advarsel er svakere enn en oppdatert analyse."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_finansanalytiker_market_rework",
+      "purpose": "Lar ny markedsinformasjon åpne samme case for sporbar rework.",
+      "learning_focus": [
+        "rework",
+        "new_information",
+        "scenario"
+      ],
+      "mails": [
+        {
+          "id": "naeringsliv_finansanalytiker_realism_market_rework_001",
+          "mail_type": "event",
+          "mail_family": "role_world_rollout_finansanalytiker_market_rework",
+          "role_scope": "finansanalytiker",
+          "phase": "advanced",
+          "day_phase": "morning",
+          "priority": 97,
+          "cooldown": 10,
+          "repeatable": false,
+          "stage": "stable",
+          "planned_only": true,
+          "thread_key": "naeringsliv_finansanalytiker_investment_case_realism_001",
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "naeringsliv",
+            "finansanalytiker",
+            "persistent_work",
+            "situated_reputation"
+          ],
+          "from": "Elin, porteføljeansvarlig",
+          "people_ref": "elin_portefoljeansvarlig",
+          "person_id": "elin_portefoljeansvarlig",
+          "place_id": "oslo_bors",
+          "subject": "Ny guiding endrer premisset – reviewet må føre til rework, ikke kosmetikk",
+          "summary": "Etter Theos review kommer ny guiding som svekker marginforutsetningen og flytter nedsiden. Den gamle modellen var metodisk ryddig da den ble reviewet, men er ikke lenger beslutningsrelevant. Caset må åpnes for kontrollert rework med tydelig endringsspor.",
+          "purpose": "Bevise at role rhythm ikke stopper ved handoff: ny informasjon kan legitimt åpne samme arbeidsobjekt igjen, og kvalitet måles i sporbar rework fremfor å beskytte tidligere arbeid.",
+          "stakes": "Hvis ny guiding bare legges i en fotnote for å redde presentasjonen, får komiteen en modell som er teknisk reviewet, men faglig foreldet. Hvis hele modellen bygges om uten spor, mister Theo muligheten til å se hva som faktisk endret seg.",
+          "situation": [
+            "Ny guiding er et nytt premiss, ikke en feil i den gamle historikken.",
+            "Theo har allerede reviewet kilde- og versjonsstrukturen, så reworket må bevare hans sporbarhet.",
+            "Elin trenger å vite om anbefalingen endres, men hun kan ikke kreve at analysen later som ny informasjon er uvesentlig."
+          ],
+          "task_domain": "market_triggered_rework",
+          "task_kind": "event",
+          "competency": "scenario_og_endringsspor",
+          "pressure": "presentasjonsstabilitet_vs_ny_relevans",
+          "choice_axis": "sporbar_rework_vs_fotnote",
+          "consequence_axis": "beslutningsrelevans_vs_hindsightforsvar",
+          "narrative_arc": "fra_modellpremiss_til_sporbart_investeringsvedtak_og_etterspill",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "naeringsliv_finansanalytiker_investment_case_001"
+            ],
+            "institution_id": "naeringsliv_investeringsanalyse_enhet_001",
+            "rework_of_scene_id": "naeringsliv_finansanalytiker_realism_senior_handoff_wait_001",
+            "priority": "high"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Åpne caset for rework og vis eksakt hvilke drivere som endres",
+              "reply": "Jeg markerer ny guiding som nytt premiss, oppdaterer scenarioene og sender endringssporet tilbake til Theo og Elin.",
+              "effect": 2,
+              "feedback": "Samme case overlever nyheten fordi review, venting og rework henger sammen. Theo kan kontrollere endringen, og Elin ser om konklusjonen faktisk flytter seg.",
+              "effects": {
+                "stats": {
+                  "quality": 3,
+                  "trust": 2,
+                  "risk": -3
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "finance_case_market_rework",
+                    "work_object_id": "naeringsliv_finansanalytiker_investment_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "market_rework",
+                    "note": "Ny guiding endrer marginpremiss og scenario; samme case åpnes for sporbar rework."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "finance_market_rework_traced",
+                    "work_object_id": "naeringsliv_finansanalytiker_investment_case_001",
+                    "flag": "new_guidance_reworked_with_change_log"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "finance_standing_theo_rework",
+                    "audience_id": "professional:theo_senioranalytiker",
+                    "delta": 3,
+                    "reason": "Theo ser at reviewet hans brukes som kontrollpunkt for en eksplisitt endring, ikke som kvalitetsstempel på en modell som nå har andre premisser.",
+                    "source_actor_id": "theo_senioranalytiker"
+                  },
+                  {
+                    "event_id": "finance_standing_elin_rework",
+                    "audience_id": "manager:elin_portefoljeansvarlig",
+                    "delta": 3,
+                    "reason": "Elin får vite nøyaktig hvorfor anbefalingen kan endres etter ny guiding og kan forklare reworket som metode, ikke ubesluttsomhet.",
+                    "source_actor_id": "elin_portefoljeansvarlig"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Behold hovedmodellen og legg ny guiding i risikofotnoten",
+              "reply": "Jeg lar hovedcaset stå så komitepresentasjonen er stabil, og legger den nye guidingen inn som et risikomoment vi kan følge senere.",
+              "effect": -2,
+              "feedback": "Presentasjonen endrer seg mindre, men modellen later som et endret premiss bare er perifer risiko. Metodisk standing kan falle selv om historien blir enklere å selge.",
+              "effects": {
+                "stats": {
+                  "status": 2,
+                  "quality": -3,
+                  "trust": -2,
+                  "risk": 4
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "finance_case_market_rework_avoided",
+                    "work_object_id": "naeringsliv_finansanalytiker_investment_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "market_rework",
+                    "note": "Ny guiding er kjent, men spilleren forsøker å holde hovedmodellen uendret."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "finance_guidance_footnote",
+                    "work_object_id": "naeringsliv_finansanalytiker_investment_case_001",
+                    "flag": "material_guidance_reduced_to_footnote"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "finance_standing_theo_footnote",
+                    "audience_id": "professional:theo_senioranalytiker",
+                    "delta": -4,
+                    "reason": "Theo ser at et premiss som burde utløse ny modellkontroll er skjøvet ut av modellen for å bevare en tidligere konklusjon.",
+                    "source_actor_id": "theo_senioranalytiker"
+                  },
+                  {
+                    "event_id": "finance_standing_elin_footnote",
+                    "audience_id": "manager:elin_portefoljeansvarlig",
+                    "delta": -2,
+                    "reason": "Elin får en stabil presentasjon, men et svakere grunnlag for å vite om investeringsrådet fortsatt gjelder etter den nye guidingen.",
+                    "source_actor_id": "elin_portefoljeansvarlig"
+                  }
+                ]
+              }
             }
           ]
         }

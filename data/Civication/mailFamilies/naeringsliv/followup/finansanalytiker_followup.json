@@ -1,1 +1,236 @@
-{"schema":"civication_mail_family_catalog_v1","version":1,"category":"naeringsliv","role_scope":"finansanalytiker","mail_type":"followup","families":[{"id":"anbefaling_og_senere_databrudd","purpose":"Følger en tidligere anbefaling når ny informasjon endrer en sentral forutsetning.","learning_focus":["oppfolging","modellrevisjon","ansvar"],"mails":[{"id":"finansanalytiker_followup_premiss_001","mail_type":"followup","mail_family":"anbefaling_og_senere_databrudd","role_scope":"finansanalytiker","thread_key":"finansanalytiker.case.premiss_og_anbefaling","phase":"morning","priority":60,"cooldown":2,"repeatable":false,"stage":"advanced","from":"elin_portefoljeansvarlig","sender":"elin_portefoljeansvarlig","person_id":"elin_portefoljeansvarlig","place_id":"oslo_bors","subject":"En sentral forutsetning fra notatet ditt har endret seg","summary":"Elin peker på ny markedsinformasjon som svekker basecaset i et notat som allerede ligger til grunn for videre vurdering.","purpose":"Teste om analytikeren følger anbefalingen etter levering og oppdaterer premissene før gammel konklusjon får leve videre.","stakes":"Å la notatet stå sparer arbeid, men gjør en kjent endring usynlig. Å revidere analysen kan svekke din tidligere anbefaling, men beskytter beslutningsgrunnlaget.","situation":["Notatet ditt er allerede delt.","Ny informasjon treffer en nøkkelantakelse i basecaset.","Elin trenger å vite om anbefalingen fortsatt står på samme grunnlag."],"task_domain":"anbefalingsoppfolging","task_kind":"followup","competency":"risikoformidling","pressure":"eget_tidligere_standpunkt_vs_nytt_premiss","choice_axis":"revidere_modell_og_anbefaling_vs_la_notatet_sta","consequence_axis":"oppdatert_beslutningsgrunnlag_vs_ankring_i_gammel_konklusjon","narrative_arc":"Analytikeren lærer at ansvar for analysen fortsetter når premissene endrer seg.","choices":[{"id":"A","label":"Oppdater modellen, vis hva som endret seg og revider anbefalingen hvis nødvendig","reply":"Jeg oppdaterer modellen, viser hvilket premiss som endret seg og reviderer anbefalingen hvis effekten er vesentlig.","effect":1,"tags":["followup","revision","integrity"],"feedback":"Den gamle analysen blir et sporbart utgangspunkt, ikke en konklusjon du må forsvare for enhver pris."},{"id":"B","label":"La notatet stå til neste ordinære oppdatering","reply":"Jeg lar notatet stå til neste ordinære oppdatering siden beslutningen allerede er i prosess.","effect":-1,"tags":["anchoring","stale_analysis"],"feedback":"Du unngår uro nå, men lar kjent ny informasjon være frakoblet beslutningsgrunnlaget."}]}]}]}
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "finansanalytiker",
+  "mail_type": "followup",
+  "families": [
+    {
+      "id": "anbefaling_og_senere_databrudd",
+      "purpose": "Følger en tidligere anbefaling når ny informasjon endrer en sentral forutsetning.",
+      "learning_focus": [
+        "oppfolging",
+        "modellrevisjon",
+        "ansvar"
+      ],
+      "mails": [
+        {
+          "id": "finansanalytiker_followup_premiss_001",
+          "mail_type": "followup",
+          "mail_family": "anbefaling_og_senere_databrudd",
+          "role_scope": "finansanalytiker",
+          "thread_key": "finansanalytiker.case.premiss_og_anbefaling",
+          "phase": "morning",
+          "priority": 60,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "advanced",
+          "from": "elin_portefoljeansvarlig",
+          "sender": "elin_portefoljeansvarlig",
+          "person_id": "elin_portefoljeansvarlig",
+          "place_id": "oslo_bors",
+          "subject": "En sentral forutsetning fra notatet ditt har endret seg",
+          "summary": "Elin peker på ny markedsinformasjon som svekker basecaset i et notat som allerede ligger til grunn for videre vurdering.",
+          "purpose": "Teste om analytikeren følger anbefalingen etter levering og oppdaterer premissene før gammel konklusjon får leve videre.",
+          "stakes": "Å la notatet stå sparer arbeid, men gjør en kjent endring usynlig. Å revidere analysen kan svekke din tidligere anbefaling, men beskytter beslutningsgrunnlaget.",
+          "situation": [
+            "Notatet ditt er allerede delt.",
+            "Ny informasjon treffer en nøkkelantakelse i basecaset.",
+            "Elin trenger å vite om anbefalingen fortsatt står på samme grunnlag."
+          ],
+          "task_domain": "anbefalingsoppfolging",
+          "task_kind": "followup",
+          "competency": "risikoformidling",
+          "pressure": "eget_tidligere_standpunkt_vs_nytt_premiss",
+          "choice_axis": "revidere_modell_og_anbefaling_vs_la_notatet_sta",
+          "consequence_axis": "oppdatert_beslutningsgrunnlag_vs_ankring_i_gammel_konklusjon",
+          "narrative_arc": "Analytikeren lærer at ansvar for analysen fortsetter når premissene endrer seg.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Oppdater modellen, vis hva som endret seg og revider anbefalingen hvis nødvendig",
+              "reply": "Jeg oppdaterer modellen, viser hvilket premiss som endret seg og reviderer anbefalingen hvis effekten er vesentlig.",
+              "effect": 1,
+              "tags": [
+                "followup",
+                "revision",
+                "integrity"
+              ],
+              "feedback": "Den gamle analysen blir et sporbart utgangspunkt, ikke en konklusjon du må forsvare for enhver pris."
+            },
+            {
+              "id": "B",
+              "label": "La notatet stå til neste ordinære oppdatering",
+              "reply": "Jeg lar notatet stå til neste ordinære oppdatering siden beslutningen allerede er i prosess.",
+              "effect": -1,
+              "tags": [
+                "anchoring",
+                "stale_analysis"
+              ],
+              "feedback": "Du unngår uro nå, men lar kjent ny informasjon være frakoblet beslutningsgrunnlaget."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_finansanalytiker_committee_wait",
+      "purpose": "Overleverer analysen til beslutningsorganet og gjør venting på kapitalvedtak eksplisitt.",
+      "learning_focus": [
+        "handoff",
+        "waiting",
+        "authority_boundary"
+      ],
+      "mails": [
+        {
+          "id": "naeringsliv_finansanalytiker_realism_committee_wait_001",
+          "mail_type": "followup",
+          "mail_family": "role_world_rollout_finansanalytiker_committee_wait",
+          "role_scope": "finansanalytiker",
+          "phase": "advanced",
+          "day_phase": "afternoon",
+          "priority": 96,
+          "cooldown": 10,
+          "repeatable": false,
+          "stage": "stable",
+          "planned_only": true,
+          "thread_key": "naeringsliv_finansanalytiker_investment_case_realism_001",
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "naeringsliv",
+            "finansanalytiker",
+            "persistent_work",
+            "situated_reputation"
+          ],
+          "from": "Elin, porteføljeansvarlig",
+          "people_ref": "elin_portefoljeansvarlig",
+          "person_id": "elin_portefoljeansvarlig",
+          "place_id": "bankplassen",
+          "subject": "Analysen er klar – nå må du overlevere og vente på den som faktisk kan flytte kapital",
+          "summary": "Reworket er ferdig, Theo har kontrollert endringssporet og Elin sender anbefalingen til investeringskomiteen. Din rolle går fra aktiv modellering til eksplisitt waiting: du kan svare på metode og scenario, men kan verken forhåndsgodkjenne eller opptre som om kapitalbeslutningen allerede er tatt.",
+          "purpose": "Koble handoff og venting direkte til myndighetsgrensen: analytikerens standing kan påvirke hvor mye anbefalingen blir lyttet til, men kan aldri oppgradere rollen til beslutningsorgan.",
+          "stakes": "Hvis analytikeren omtaler investeringen som vedtatt fordi caset er sterkt og Elin støtter det, flyttes sosial forventning foran formell beslutning. Da blir et analytisk råd i praksis behandlet som kapitalfullmakt.",
+          "situation": [
+            "Elin eier porteføljesiden av overleveringen; investeringskomiteen eier selve beslutningen.",
+            "Theo har faglig standing i metode, men heller ikke han kan godkjenne kapitalflyttingen.",
+            "Spilleren må tåle at et godt analysecaset kan stå stille mens beslutningstakerne gjør sitt arbeid."
+          ],
+          "task_domain": "investment_committee_handoff",
+          "task_kind": "followup",
+          "competency": "anbefaling_og_myndighetsklarhet",
+          "pressure": "analytisk_selvsikkerhet_vs_formell_beslutning",
+          "choice_axis": "overlevere_og_vente_vs_foregripe_vedtak",
+          "consequence_axis": "institusjonell_tillit_vs_mandatlekkasje",
+          "narrative_arc": "fra_modellpremiss_til_sporbart_investeringsvedtak_og_etterspill",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "naeringsliv_finansanalytiker_investment_case_001"
+            ],
+            "institution_id": "naeringsliv_investeringsanalyse_enhet_001",
+            "handoff_to_actor_id": "investeringskomite",
+            "waiting_for_actor_id": "investeringskomite",
+            "rework_of_scene_id": "naeringsliv_finansanalytiker_realism_market_rework_001",
+            "priority": "high"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Overlever anbefalingen som analyse og marker caset waiting på komiteen",
+              "reply": "Jeg sender anbefaling, scenario og usikkerhet som beslutningsgrunnlag og markerer at investeringsvedtaket eies av komiteen.",
+              "effect": 2,
+              "feedback": "Elin og komiteen kan bruke analysen uten at den låner beslutningsmyndighet. Ventingen blir en del av arbeidsobjektets livsløp, ikke et hull spilleren må fylle med mer sikker retorikk.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 3,
+                  "risk": -3
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "finance_case_waiting_for_committee",
+                    "work_object_id": "naeringsliv_finansanalytiker_investment_case_001",
+                    "to_status": "waiting",
+                    "to_phase": "awaiting_investment_committee",
+                    "note": "Analyse og rework er overlevert; caset venter på investeringskomiteens beslutning."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "finance_committee_handoff_traced",
+                    "work_object_id": "naeringsliv_finansanalytiker_investment_case_001",
+                    "flag": "recommendation_separated_from_capital_decision"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "finance_standing_elin_committee",
+                    "audience_id": "manager:elin_portefoljeansvarlig",
+                    "delta": 3,
+                    "reason": "Elin kan presentere et tydelig råd samtidig som hennes og analytikerens roller forblir adskilt fra komiteens faktiske kapitalmyndighet.",
+                    "source_actor_id": "elin_portefoljeansvarlig"
+                  },
+                  {
+                    "event_id": "finance_standing_committee_clear",
+                    "audience_id": "professional:investeringskomite",
+                    "delta": 3,
+                    "reason": "Komiteen mottar et beslutningsgrunnlag som skiller analyse, usikkerhet og anbefaling fra selve vedtaket de er satt til å eie.",
+                    "source_actor_id": "investeringskomite"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Kommuniser internt at investeringen i praksis er klar siden alle faglige signaler peker samme vei",
+              "reply": "Jeg sier at caset i praksis er godkjent faglig og at vi bare venter på den formelle komitebekreftelsen.",
+              "effect": -2,
+              "feedback": "Du gjør waiting mindre ubehagelig ved å late som beslutningen allerede finnes. Det øker forventningsgjeld og svekker den tydelige grensen mellom analytisk innflytelse og kapitalmyndighet.",
+              "effects": {
+                "stats": {
+                  "status": 2,
+                  "quality": -2,
+                  "trust": -3,
+                  "risk": 5
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "finance_case_waiting_prejudged",
+                    "work_object_id": "naeringsliv_finansanalytiker_investment_case_001",
+                    "to_status": "waiting",
+                    "to_phase": "awaiting_investment_committee",
+                    "note": "Caset venter fortsatt på komiteen selv om spilleren sosialt har foregrepet utfallet."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "finance_decision_prejudged",
+                    "work_object_id": "naeringsliv_finansanalytiker_investment_case_001",
+                    "flag": "committee_outcome_socially_prejudged"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "finance_standing_elin_prejudged",
+                    "audience_id": "manager:elin_portefoljeansvarlig",
+                    "delta": -3,
+                    "reason": "Elin må rydde opp i en forventning om at investeringen allerede er avgjort før beslutningsorganet faktisk har behandlet caset.",
+                    "source_actor_id": "elin_portefoljeansvarlig"
+                  },
+                  {
+                    "event_id": "finance_standing_committee_prejudged",
+                    "audience_id": "professional:investeringskomite",
+                    "delta": -4,
+                    "reason": "Komiteen ser at analytisk selvsikkerhet er brukt til å sosialt redusere deres beslutning til en formalitet, i strid med den faktiske myndighetsgrensen.",
+                    "source_actor_id": "investeringskomite"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
