@@ -1,0 +1,464 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "categoryId": "naeringsliv",
+  "targetId": "ovre_foss",
+  "profile_hint": "normal",
+  "reviewed_at": "2026-08-27",
+  "review_note": "SNL, Oslo byleksikon og NBL gir fire adskilte læringsjobber om sted, teknologi, arbeid, marked og omstilling. Sammenblanding av fosse-navn og usammenlignbare tall er holdt ute.",
+  "scope": {
+    "place": "Øvre Foss–Hjula Veveri",
+    "production_profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "total_questions": 28,
+    "normal_opening_questions": 14
+  },
+  "sources": {
+    "snl_hjula": {
+      "url": "https://snl.no/Hjula_V%C3%A6veri",
+      "source_type": "recognized_reference",
+      "review_status": "reviewed",
+      "review_note": "Etablering, teknologi, produkter, arbeidsstyrke, marked, kriser og nedleggelse."
+    },
+    "byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Hjula_V%C3%A6verier",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Adresse, bygningshistorie, Hjulafossen, brann, gjenoppføring og bevaring."
+    },
+    "ovre_foss": {
+      "url": "https://oslobyleksikon.no/side/%C3%98vre_Foss",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Avgrenser Øvre Foss fra Hjulafossen og dokumenterer det bredere industrilandskapet."
+    },
+    "nbl_schou": {
+      "url": "https://nbl.snl.no/Halvor_Schou",
+      "source_type": "recognized_reference",
+      "review_status": "reviewed",
+      "review_note": "Halvor Schou, fabrikkprosjektet og beslutningen om Myrens-leveransen."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "arbeid_produksjon_verdiskaping",
+      "logistikk_infrastruktur_rom"
+    ],
+    "emne_ids": [
+      "em_naering_industri_og_mekanisering",
+      "em_naering_eierskap_styring",
+      "em_naering_byens_okonomiske_rom",
+      "em_naering_produksjon_produktivitet",
+      "em_naering_innovasjon_teknologisk_skift",
+      "em_naering_logistikk_verdikjeder",
+      "em_naering_arbeid_verdiskaping",
+      "em_naering_makt_ulikhet_arbeidsliv",
+      "em_naering_omstilling_kriser_skift",
+      "em_naering_forbruk_marked"
+    ],
+    "topic_hook_ids": [
+      "maskin_menneske_produksjon",
+      "verdikjede_spor",
+      "kapitalmakt",
+      "omstilling_av_naeringsrom"
+    ],
+    "method_ids": [
+      "met_naering_innovasjonsanalyse",
+      "met_naering_statistikk_og_indikatoranalyse",
+      "met_naering_markedsanalyse",
+      "met_naering_makt_og_ulikhetsanalyse",
+      "met_naering_romlig_okonomisk_analyse",
+      "met_naering_logistikk_og_verdikjedeanalyse",
+      "met_naering_industrihistorisk_analyse"
+    ],
+    "thinker_ids": [
+      "thomas_piketty"
+    ],
+    "works": []
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/quiz_naeringsliv.json",
+      "data/quiz/naeringsliv/ovre_foss_sets_merged.json",
+      "data/places/naeringsliv/oslo/places_naeringsliv/ovre_foss.json"
+    ],
+    "active_before": {
+      "file": "data/quiz/naeringsliv/ovre_foss_sets_merged.json",
+      "set_count": 5,
+      "question_count": 30,
+      "finding": "Fem eldre sett med seks spørsmål og fem flatfilspørsmål ble funnet. Kjernefakta om 1855, Halvor Schou, kvinnearbeid og ombruk var nyttige, mens metodespørsmål kom for tidlig og Øvre Foss/Hjulafossen ble delvis blandet."
+    },
+    "decisions": [
+      "Bevar og skjerp dokumenterte kjernefakta.",
+      "Skill Øvre Foss fra Hjulafossen eksplisitt.",
+      "Materialiser normal 4x7 med fjorten vanlige åpningsspørsmål og metode først i siste sett."
+    ],
+    "knowledge_migration": "Tjueåtte kildebårne læringsjobber får stabile Knowledge-ID-er; overflødige eller for brede legacy-spørsmål holdes ute."
+  },
+  "profile_decision": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "justification": "Fire læringsjobber dekker identitet og teknologi, produksjon og arbeid, marked og krise samt kildekritisk analyse uten å splitte stedet i parallelle quizer."
+  },
+  "held_back_candidates": [
+    "Øvre Foss og Hjulafossen som synonymer.",
+    "800 ansatte som et tall for hele driftsperioden.",
+    "Vevstolkapasitet som produktivitetsmål.",
+    "Lav lønn som presist nivå uten sammenlignbar lønnsserie."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_ovre_foss_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Hjula Væverier kom i drift ved Hjulafossen i 1855.",
+      "source_ids": [
+        "snl_hjula",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_industri_og_mekanisering"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Halvor Schou kjøpte Hjulafossen og etablerte veveriet.",
+      "source_ids": [
+        "snl_hjula",
+        "nbl_schou"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_eierskap_styring"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kjøpet av Hjulafossen ga fabrikkprosjektet et vannkraftgrunnlag.",
+      "source_ids": [
+        "snl_hjula"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_byens_okonomiske_rom"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Ingeniøren Oluf Nicolai Roll tegnet bygningen.",
+      "source_ids": [
+        "byleksikon",
+        "nbl_schou"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_industri_og_mekanisering"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Schou begynte med tjue engelske vevstoler i 1849.",
+      "source_ids": [
+        "snl_hjula"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_produksjon_produktivitet"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Anlegget var dimensjonert for 400 vevstoler.",
+      "source_ids": [
+        "nbl_schou"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_produksjon_produktivitet"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Myrens Verksted leverte Hjulas 65 hk turbin og hovedaksling.",
+      "source_ids": [
+        "snl_hjula",
+        "nbl_schou"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_innovasjon_teknologisk_skift"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "SNL oppgir en vannturbin på 65 hestekrefter.",
+      "source_ids": [
+        "snl_hjula"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_produksjon_produktivitet"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Hjula startet som bomullsveveri og utvidet senere med ullvarer.",
+      "source_ids": [
+        "snl_hjula",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Hjula utvidet med ullvarefabrikk i 1863.",
+      "source_ids": [
+        "snl_hjula",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_industri_og_mekanisering"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "I 1880-årene hadde bedriften omkring 800 ansatte.",
+      "source_ids": [
+        "snl_hjula"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Mange av Hjulas ansatte var kvinner i lavt lønnet fabrikkarbeid.",
+      "source_ids": [
+        "snl_hjula"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_makt_ulikhet_arbeidsliv"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Tekstilproduksjonen ved Hjula stanset i 1957.",
+      "source_ids": [
+        "snl_hjula",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Bygningen brant i 1971 og ble gjenoppført i 1974.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_15",
+      "order": 15,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Hjula solgte tekstiler i det norske og svenske markedet.",
+      "source_ids": [
+        "snl_hjula"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_forbruk_marked"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_16",
+      "order": 16,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "SNL knytter en omsetningsnedgang på om lag tretti prosent til perioden etter regelendringen.",
+      "source_ids": [
+        "snl_hjula"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_forbruk_marked"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_17",
+      "order": 17,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Råvaremangel stanset produksjonen midlertidig i 1918.",
+      "source_ids": [
+        "snl_hjula"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_18",
+      "order": 18,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Maleriet Fra Hjula Veveri dokumenterer arbeidere og vevstoler i fabrikkrommet.",
+      "source_ids": [
+        "snl_hjula"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_makt_ulikhet_arbeidsliv"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_19",
+      "order": 19,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "TEFAS samlet produksjon på Frysja før konkursen i 1955.",
+      "source_ids": [
+        "snl_hjula"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_20",
+      "order": 20,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Vannkraften drev systemet, men skapte ikke produkter uten teknologi, organisering og arbeidskraft.",
+      "source_ids": [
+        "snl_hjula",
+        "nbl_schou"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_21",
+      "order": 21,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Bygningen dokumenterer sted og struktur, mens arbeidsforhold krever andre kilder.",
+      "source_ids": [
+        "byleksikon",
+        "snl_hjula"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_industri_og_mekanisering"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_22",
+      "order": 22,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Schou valgte lokal kompetansebygging framfor å bestille hovedakslingen utenlands.",
+      "source_ids": [
+        "nbl_schou"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_innovasjon_teknologisk_skift"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_23",
+      "order": 23,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kapasitet og sysselsetting mangler arbeidstimer, volum og priser som trengs for et produktivitetsmål.",
+      "source_ids": [
+        "snl_hjula",
+        "nbl_schou"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_produksjon_produktivitet"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_24",
+      "order": 24,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Regelendringen er tidsmessig knyttet til fallet, men priser, konkurranse og konjunkturer er ikke isolert.",
+      "source_ids": [
+        "snl_hjula"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_forbruk_marked"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_25",
+      "order": 25,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Schou tok kapital- og leverandørvalg; en stor arbeidsstyrke, mange kvinner, drev produksjonen.",
+      "source_ids": [
+        "snl_hjula",
+        "nbl_schou"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_makt_ulikhet_arbeidsliv"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_26",
+      "order": 26,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Place-navnet er sammensatt, men kartankeret og Hjula-kildene gjelder Sagveien 23 ved Hjulafossen.",
+      "source_ids": [
+        "byleksikon",
+        "ovre_foss"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_byens_okonomiske_rom"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_27",
+      "order": 27,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Hjula koblet råvarer og energi til mekanisk tekstilproduksjon og salg.",
+      "source_ids": [
+        "snl_hjula"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_28",
+      "order": 28,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Stedets økonomi oppstod i koblingen mellom foss, maskiner, kapital, arbeidere, råvarer og markeder.",
+      "source_ids": [
+        "snl_hjula",
+        "byleksikon",
+        "nbl_schou"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_industri_og_mekanisering"
+    }
+  ]
+}

@@ -3,7 +3,7 @@
   "contract": "docs/PEOPLE_POPUP_SYSTEM.md",
   "productionContract": "docs/PEOPLE_PROFILE_CANONICAL.md",
   "generatedBy": "tools/audit-people-popup-readiness.mts",
-  "sourceFingerprint": "9b0f91585b8f663b0424a963dfd4938c8ca4473b4eef4808ec406a4eb003901b",
+  "sourceFingerprint": "9f6d99de5c4bfdad2cc9f46977a0ada8754d7b9431e3582b7ccc10f7f0fdc404",
   "thresholds": {
     "complete": 85,
     "strong": 65,
@@ -18,37 +18,37 @@
   },
   "summary": {
     "totalPeople": 1418,
-    "complete": 61,
-    "strong": 406,
+    "complete": 62,
+    "strong": 405,
     "partial": 936,
     "sparse": 15,
-    "readyPeopleV1": 67,
-    "legacyUnreviewed": 1351,
+    "readyPeopleV1": 68,
+    "legacyUnreviewed": 1350,
     "brokenImages": 287,
-    "explicitFallbacks": 1003,
+    "explicitFallbacks": 1002,
     "implicitFallbacks": 26,
     "averageScore": 65.3
   },
   "fieldCoverage": {
     "identity": {
-      "count": 118,
-      "percent": 8.3
+      "count": 119,
+      "percent": 8.4
     },
     "popupDesc": {
       "count": 1397,
       "percent": 98.5
     },
     "lifeData": {
-      "count": 58,
-      "percent": 4.1
+      "count": 59,
+      "percent": 4.2
     },
     "contributionsDeclared": {
-      "count": 58,
-      "percent": 4.1
+      "count": 59,
+      "percent": 4.2
     },
     "educationDeclared": {
-      "count": 58,
-      "percent": 4.1
+      "count": 59,
+      "percent": 4.2
     },
     "practiceDeclared": {
       "count": 1400,
@@ -67,8 +67,8 @@
       "percent": 79.8
     },
     "profileStandard": {
-      "count": 67,
-      "percent": 4.7
+      "count": 68,
+      "percent": 4.8
     }
   },
   "categories": [
@@ -141,13 +141,13 @@
     {
       "category": "naeringsliv",
       "total": 81,
-      "complete": 4,
-      "strong": 31,
+      "complete": 5,
+      "strong": 30,
       "partial": 32,
       "sparse": 14,
-      "readyPeopleV1": 7,
-      "legacyUnreviewed": 74,
-      "averageScore": 62.5
+      "readyPeopleV1": 8,
+      "legacyUnreviewed": 73,
+      "averageScore": 62.9
     },
     {
       "category": "by",
@@ -5168,37 +5168,6 @@
       ]
     },
     {
-      "placeId": "glads_molle",
-      "totalIncomplete": 3,
-      "sparse": 0,
-      "partial": 0,
-      "strong": 3,
-      "averageScore": 72,
-      "people": [
-        {
-          "id": "fredrik_glad_glads_molle",
-          "name": "Fredrik Glad",
-          "score": 72,
-          "status": "strong",
-          "productionStatus": "legacy_unreviewed"
-        },
-        {
-          "id": "halvor_schou",
-          "name": "Halvor Schou",
-          "score": 72,
-          "status": "strong",
-          "productionStatus": "legacy_unreviewed"
-        },
-        {
-          "id": "iver_elieson_glads_molle",
-          "name": "Iver Elieson",
-          "score": 72,
-          "status": "strong",
-          "productionStatus": "legacy_unreviewed"
-        }
-      ]
-    },
-    {
       "placeId": "gol_stavkirke_bygdoy",
       "totalIncomplete": 3,
       "sparse": 0,
@@ -6658,6 +6627,30 @@
         {
           "id": "torvald_moseid",
           "name": "Torvald Moseid",
+          "score": 72,
+          "status": "strong",
+          "productionStatus": "legacy_unreviewed"
+        }
+      ]
+    },
+    {
+      "placeId": "glads_molle",
+      "totalIncomplete": 2,
+      "sparse": 0,
+      "partial": 0,
+      "strong": 2,
+      "averageScore": 72,
+      "people": [
+        {
+          "id": "fredrik_glad_glads_molle",
+          "name": "Fredrik Glad",
+          "score": 72,
+          "status": "strong",
+          "productionStatus": "legacy_unreviewed"
+        },
+        {
+          "id": "iver_elieson_glads_molle",
+          "name": "Iver Elieson",
           "score": 72,
           "status": "strong",
           "productionStatus": "legacy_unreviewed"
@@ -59492,50 +59485,6 @@
       ]
     },
     {
-      "id": "halvor_schou",
-      "name": "Halvor Schou",
-      "category": "naeringsliv",
-      "kindLabel": "",
-      "sourceFile": "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json",
-      "primaryPlace": "glads_molle",
-      "places": [
-        "glads_molle",
-        "voienfossen"
-      ],
-      "score": 72,
-      "priority": 43,
-      "status": "strong",
-      "productionStatus": "legacy_unreviewed",
-      "profileStandard": "",
-      "claimsFile": "",
-      "paragraphCount": 1,
-      "popupLength": 378,
-      "contributionCount": 0,
-      "educationCount": 0,
-      "practiceCount": 5,
-      "sourceCount": 6,
-      "imageState": "explicit_fallback",
-      "imagePath": "",
-      "coverage": {
-        "identity": false,
-        "popupDesc": true,
-        "lifeData": false,
-        "contributionsDeclared": false,
-        "educationDeclared": false,
-        "practiceDeclared": true,
-        "placeGrounding": true,
-        "sources": true,
-        "imageContract": true,
-        "profileStandard": false
-      },
-      "issues": [
-        "missing_role_label",
-        "missing_birth_data",
-        "missing_contributions_field",
-        "legacy_unreviewed"
-      ]
-    },
-    {
       "id": "hannibal_sehested",
       "name": "Hannibal Sehested",
       "category": "historie",
@@ -72735,6 +72684,46 @@
       "sourceCount": 11,
       "imageState": "explicit_fallback",
       "imagePath": "",
+      "coverage": {
+        "identity": true,
+        "popupDesc": true,
+        "lifeData": true,
+        "contributionsDeclared": true,
+        "educationDeclared": true,
+        "practiceDeclared": true,
+        "placeGrounding": true,
+        "sources": true,
+        "imageContract": true,
+        "profileStandard": true
+      },
+      "issues": []
+    },
+    {
+      "id": "halvor_schou",
+      "name": "Halvor Schou",
+      "category": "naeringsliv",
+      "kindLabel": "Industrigründer",
+      "sourceFile": "data/people/naeringsliv/oslo/ovre_foss/halvor_schou.json",
+      "primaryPlace": "glads_molle",
+      "places": [
+        "glads_molle",
+        "ovre_foss",
+        "voienfossen"
+      ],
+      "score": 100,
+      "priority": 0,
+      "status": "complete",
+      "productionStatus": "ready_people_v1",
+      "profileStandard": "people_profile_v1.0",
+      "claimsFile": "data/people/claims/naeringsliv/oslo/ovre_foss/halvor_schou.claims.json",
+      "paragraphCount": 3,
+      "popupLength": 687,
+      "contributionCount": 2,
+      "educationCount": 0,
+      "practiceCount": 9,
+      "sourceCount": 11,
+      "imageState": "valid_image",
+      "imagePath": "bilder/kort/people/halvor_schou.webp",
       "coverage": {
         "identity": true,
         "popupDesc": true,

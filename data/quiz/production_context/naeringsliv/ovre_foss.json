@@ -1,0 +1,904 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "naeringsliv",
+  "targetId": "ovre_foss",
+  "profile": "normal_4x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1938,
+    "selection_sha256": "497de4b784d22946fae56a549831e92fead1a682d69a99e1206ef750a89fac21",
+    "category_id": "naeringsliv",
+    "target_id": "ovre_foss"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/naeringsliv/naeringslivpensum_canonical_v4_5.json",
+      "bytes": 33041,
+      "sha256": "d9ceba9645ed472e0448e274cac37ff09bb2de84c54abe44d99d59c7a260f2fd",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+      "bytes": 383560,
+      "sha256": "6c7c48150ebdb77d07177d015bbfe104d0eb5d206c6a9104f4bc52a7e0ee0bbe",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+      "bytes": 305981,
+      "sha256": "40a00fa3910248b779763d7746760140509741410aa046d4f694c367e7c6e345",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+      "bytes": 89971,
+      "sha256": "a109a5e6eaab0f96fdb0b14aa8139a35714b67473efa860a3f1a8448a204cad3",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+      "bytes": 17470,
+      "sha256": "f6c4a94ebfa99cff3042ae3398ab92d633150d8fc6f4bd16d7b71679540c9585",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 16882,
+      "sha256": "60804db1e587faae822930a800cfebac7966fa7e009778d46d94d1f28e02545e",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/naeringsliv/ovre_foss.json",
+      "bytes": 14955,
+      "sha256": "5bfc52188c079465626e4e631832ec38abff13794d167f2f57be7d4393809fb5"
+    },
+    "target": {
+      "path": "data/places/naeringsliv/oslo/places_naeringsliv/ovre_foss.json",
+      "bytes": 14834,
+      "sha256": "78ef71cc20e83d01d3de72aaee782020b86c2d0475012d881f86509be726d8a9"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1519,
+      "selection_sha256": "925144068929ebe49b408a0417059ecb9b2441a7807149787876c82727dc20ee"
+    },
+    "relations": [],
+    "stories": [
+      {
+        "path": "data/stories/stories_ovre_foss.json",
+        "matches": 1,
+        "selection_bytes": 2419,
+        "selection_sha256": "70c347b5378369f229e30404727c12a93f93e6b8a2ac1c8a6351d6d8557e0b87"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/naeringsliv/ovre_foss_sets.json",
+  "source_registry": {
+    "snl_hjula": {
+      "url": "https://snl.no/Hjula_V%C3%A6veri",
+      "source_type": "recognized_reference",
+      "review_status": "reviewed",
+      "review_note": "Etablering, teknologi, produkter, arbeidsstyrke, marked, kriser og nedleggelse."
+    },
+    "byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Hjula_V%C3%A6verier",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Adresse, bygningshistorie, Hjulafossen, brann, gjenoppføring og bevaring."
+    },
+    "ovre_foss": {
+      "url": "https://oslobyleksikon.no/side/%C3%98vre_Foss",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Avgrenser Øvre Foss fra Hjulafossen og dokumenterer det bredere industrilandskapet."
+    },
+    "nbl_schou": {
+      "url": "https://nbl.snl.no/Halvor_Schou",
+      "source_type": "recognized_reference",
+      "review_status": "reviewed",
+      "review_note": "Halvor Schou, fabrikkprosjektet og beslutningen om Myrens-leveransen."
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/quiz_naeringsliv.json",
+      "data/quiz/naeringsliv/ovre_foss_sets_merged.json",
+      "data/places/naeringsliv/oslo/places_naeringsliv/ovre_foss.json"
+    ],
+    "active_before": {
+      "file": "data/quiz/naeringsliv/ovre_foss_sets_merged.json",
+      "set_count": 5,
+      "question_count": 30,
+      "finding": "Fem eldre sett med seks spørsmål og fem flatfilspørsmål ble funnet. Kjernefakta om 1855, Halvor Schou, kvinnearbeid og ombruk var nyttige, mens metodespørsmål kom for tidlig og Øvre Foss/Hjulafossen ble delvis blandet."
+    },
+    "decisions": [
+      "Bevar og skjerp dokumenterte kjernefakta.",
+      "Skill Øvre Foss fra Hjulafossen eksplisitt.",
+      "Materialiser normal 4x7 med fjorten vanlige åpningsspørsmål og metode først i siste sett."
+    ],
+    "knowledge_migration": "Tjueåtte kildebårne læringsjobber får stabile Knowledge-ID-er; overflødige eller for brede legacy-spørsmål holdes ute."
+  },
+  "profile_decision": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "justification": "Fire læringsjobber dekker identitet og teknologi, produksjon og arbeid, marked og krise samt kildekritisk analyse uten å splitte stedet i parallelle quizer."
+  },
+  "held_back_candidates": [
+    "Øvre Foss og Hjulafossen som synonymer.",
+    "800 ansatte som et tall for hele driftsperioden.",
+    "Vevstolkapasitet som produktivitetsmål.",
+    "Lav lønn som presist nivå uten sammenlignbar lønnsserie."
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 6,
+      "emner": 38,
+      "topic_hooks": 60,
+      "methods": 27
+    },
+    "candidate_emner": [
+      {
+        "id": "em_naering_arbeid_verdiskaping",
+        "title": "Arbeid og verdiskaping",
+        "score": 100
+      },
+      {
+        "id": "em_naering_byens_okonomiske_rom",
+        "title": "Byens økonomiske rom",
+        "score": 100
+      },
+      {
+        "id": "em_naering_eierskap_styring",
+        "title": "Eierskap og styring",
+        "score": 100
+      },
+      {
+        "id": "em_naering_forbruk_marked",
+        "title": "Forbruk og marked",
+        "score": 100
+      },
+      {
+        "id": "em_naering_industri_og_mekanisering",
+        "title": "Industri og mekanisering",
+        "score": 100
+      },
+      {
+        "id": "em_naering_innovasjon_teknologisk_skift",
+        "title": "Innovasjon og teknologisk skift",
+        "score": 100
+      },
+      {
+        "id": "em_naering_logistikk_verdikjeder",
+        "title": "Logistikk og verdikjeder",
+        "score": 100
+      },
+      {
+        "id": "em_naering_makt_ulikhet_arbeidsliv",
+        "title": "Makt, ulikhet og arbeidsliv",
+        "score": 100
+      },
+      {
+        "id": "em_naering_omstilling_kriser_skift",
+        "title": "Omstilling, kriser og skift",
+        "score": 100
+      },
+      {
+        "id": "em_naering_produksjon_produktivitet",
+        "title": "Produksjon og produktivitet",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "ansvarlig_naeringsliv",
+        "title": "Ansvarlig næringsliv",
+        "category_id": "makt_regulering_baerekraft",
+        "score": 10
+      },
+      {
+        "id": "arbeid_kapital_konflikt",
+        "title": "Arbeid–kapital-konflikt",
+        "category_id": "makt_regulering_baerekraft",
+        "score": 10
+      },
+      {
+        "id": "arbeid_som_verdiskaping",
+        "title": "Arbeid som verdiskaping",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "arbeidsdisiplin_tid",
+        "title": "Arbeidsdisiplin og tid",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "arbeidslivets_omstilling",
+        "title": "Arbeidslivets omstilling",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "automatisering_arbeid",
+        "title": "Automatisering og arbeid",
+        "category_id": "teknologi_innovasjon_plattform",
+        "score": 10
+      },
+      {
+        "id": "byrom_som_marked",
+        "title": "Byrom som marked",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "eierskap_og_styring",
+        "title": "Eierskap og styring",
+        "category_id": "kapital_eierskap_finans",
+        "score": 10
+      },
+      {
+        "id": "forbrukeradferd",
+        "title": "Forbrukeradferd",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "handel_som_bystruktur",
+        "title": "Handel som bystruktur",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "handelens_arbeid",
+        "title": "Handelens arbeid",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "havn_og_varestrommer",
+        "title": "Havn og varestrømmer",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "industriell_bystruktur",
+        "title": "Industriell bystruktur",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "infrastrukturmakt",
+        "title": "Infrastrukturmakt",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "innovasjon_som_ideal",
+        "title": "Innovasjon som ideal",
+        "category_id": "teknologi_innovasjon_plattform",
+        "score": 10
+      },
+      {
+        "id": "kapitalmakt",
+        "title": "Kapitalmakt",
+        "category_id": "kapital_eierskap_finans",
+        "score": 10
+      },
+      {
+        "id": "krise_og_omfordeling",
+        "title": "Krise og omfordeling",
+        "category_id": "makt_regulering_baerekraft",
+        "score": 10
+      },
+      {
+        "id": "lager_og_distribusjon",
+        "title": "Lager og distribusjon",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "marked_og_ulikhet",
+        "title": "Marked og ulikhet",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "markedets_doxa",
+        "title": "Markedets doxa",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "maskin_menneske_produksjon",
+        "title": "Maskin, menneske og produksjon",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "merkevare_status",
+        "title": "Merkevare og status",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "miljokostnader",
+        "title": "Miljøkostnader og eksternaliteter",
+        "category_id": "makt_regulering_baerekraft",
+        "score": 10
+      },
+      {
+        "id": "omstilling_av_naeringsrom",
+        "title": "Omstilling av næringsrom",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "plattformokonomi",
+        "title": "Plattformøkonomi",
+        "category_id": "teknologi_innovasjon_plattform",
+        "score": 10
+      },
+      {
+        "id": "produksjonsprosess",
+        "title": "Produksjonsprosess",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "produktivitet_og_optimalisering",
+        "title": "Produktivitet og optimalisering",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "profesjon_kompetanse",
+        "title": "Profesjon og kompetanse",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "ressursbruk",
+        "title": "Ressursbruk",
+        "category_id": "makt_regulering_baerekraft",
+        "score": 10
+      },
+      {
+        "id": "teknologisk_omstilling",
+        "title": "Teknologisk omstilling",
+        "category_id": "teknologi_innovasjon_plattform",
+        "score": 10
+      },
+      {
+        "id": "tjenester_og_servicearbeid",
+        "title": "Tjenester og servicearbeid",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "transport_og_arbeid",
+        "title": "Transport og arbeid",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "ulikhet_og_ekskludering",
+        "title": "Ulikhet og ekskludering",
+        "category_id": "makt_regulering_baerekraft",
+        "score": 10
+      },
+      {
+        "id": "usynlig_arbeid",
+        "title": "Usynlig arbeid",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "verdikjede_spor",
+        "title": "Verdikjedens spor",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "arbeid_produksjon_verdiskaping",
+      "logistikk_infrastruktur_rom"
+    ],
+    "emne_ids": [
+      "em_naering_industri_og_mekanisering",
+      "em_naering_eierskap_styring",
+      "em_naering_byens_okonomiske_rom",
+      "em_naering_produksjon_produktivitet",
+      "em_naering_innovasjon_teknologisk_skift",
+      "em_naering_logistikk_verdikjeder",
+      "em_naering_arbeid_verdiskaping",
+      "em_naering_makt_ulikhet_arbeidsliv",
+      "em_naering_omstilling_kriser_skift",
+      "em_naering_forbruk_marked"
+    ],
+    "topic_hook_ids": [
+      "maskin_menneske_produksjon",
+      "verdikjede_spor",
+      "kapitalmakt",
+      "omstilling_av_naeringsrom"
+    ],
+    "method_ids": [
+      "met_naering_innovasjonsanalyse",
+      "met_naering_statistikk_og_indikatoranalyse",
+      "met_naering_markedsanalyse",
+      "met_naering_makt_og_ulikhetsanalyse",
+      "met_naering_romlig_okonomisk_analyse",
+      "met_naering_logistikk_og_verdikjedeanalyse",
+      "met_naering_industrihistorisk_analyse"
+    ],
+    "thinker_ids": [
+      "thomas_piketty"
+    ],
+    "works": []
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_ovre_foss_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Hjula Væverier kom i drift ved Hjulafossen i 1855.",
+      "source_ids": [
+        "snl_hjula",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_industri_og_mekanisering"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Halvor Schou kjøpte Hjulafossen og etablerte veveriet.",
+      "source_ids": [
+        "snl_hjula",
+        "nbl_schou"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_eierskap_styring"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kjøpet av Hjulafossen ga fabrikkprosjektet et vannkraftgrunnlag.",
+      "source_ids": [
+        "snl_hjula"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_byens_okonomiske_rom"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Ingeniøren Oluf Nicolai Roll tegnet bygningen.",
+      "source_ids": [
+        "byleksikon",
+        "nbl_schou"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_industri_og_mekanisering"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Schou begynte med tjue engelske vevstoler i 1849.",
+      "source_ids": [
+        "snl_hjula"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_produksjon_produktivitet"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Anlegget var dimensjonert for 400 vevstoler.",
+      "source_ids": [
+        "nbl_schou"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_produksjon_produktivitet"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Myrens Verksted leverte Hjulas 65 hk turbin og hovedaksling.",
+      "source_ids": [
+        "snl_hjula",
+        "nbl_schou"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_innovasjon_teknologisk_skift"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "SNL oppgir en vannturbin på 65 hestekrefter.",
+      "source_ids": [
+        "snl_hjula"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_produksjon_produktivitet"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Hjula startet som bomullsveveri og utvidet senere med ullvarer.",
+      "source_ids": [
+        "snl_hjula",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Hjula utvidet med ullvarefabrikk i 1863.",
+      "source_ids": [
+        "snl_hjula",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_industri_og_mekanisering"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "I 1880-årene hadde bedriften omkring 800 ansatte.",
+      "source_ids": [
+        "snl_hjula"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Mange av Hjulas ansatte var kvinner i lavt lønnet fabrikkarbeid.",
+      "source_ids": [
+        "snl_hjula"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_makt_ulikhet_arbeidsliv"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Tekstilproduksjonen ved Hjula stanset i 1957.",
+      "source_ids": [
+        "snl_hjula",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Bygningen brant i 1971 og ble gjenoppført i 1974.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_15",
+      "order": 15,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Hjula solgte tekstiler i det norske og svenske markedet.",
+      "source_ids": [
+        "snl_hjula"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_forbruk_marked"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_16",
+      "order": 16,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "SNL knytter en omsetningsnedgang på om lag tretti prosent til perioden etter regelendringen.",
+      "source_ids": [
+        "snl_hjula"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_forbruk_marked"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_17",
+      "order": 17,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Råvaremangel stanset produksjonen midlertidig i 1918.",
+      "source_ids": [
+        "snl_hjula"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_18",
+      "order": 18,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Maleriet Fra Hjula Veveri dokumenterer arbeidere og vevstoler i fabrikkrommet.",
+      "source_ids": [
+        "snl_hjula"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_makt_ulikhet_arbeidsliv"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_19",
+      "order": 19,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "TEFAS samlet produksjon på Frysja før konkursen i 1955.",
+      "source_ids": [
+        "snl_hjula"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_20",
+      "order": 20,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Vannkraften drev systemet, men skapte ikke produkter uten teknologi, organisering og arbeidskraft.",
+      "source_ids": [
+        "snl_hjula",
+        "nbl_schou"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_21",
+      "order": 21,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Bygningen dokumenterer sted og struktur, mens arbeidsforhold krever andre kilder.",
+      "source_ids": [
+        "byleksikon",
+        "snl_hjula"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_industri_og_mekanisering"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_22",
+      "order": 22,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Schou valgte lokal kompetansebygging framfor å bestille hovedakslingen utenlands.",
+      "source_ids": [
+        "nbl_schou"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_innovasjon_teknologisk_skift"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_23",
+      "order": 23,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kapasitet og sysselsetting mangler arbeidstimer, volum og priser som trengs for et produktivitetsmål.",
+      "source_ids": [
+        "snl_hjula",
+        "nbl_schou"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_produksjon_produktivitet"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_24",
+      "order": 24,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Regelendringen er tidsmessig knyttet til fallet, men priser, konkurranse og konjunkturer er ikke isolert.",
+      "source_ids": [
+        "snl_hjula"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_forbruk_marked"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_25",
+      "order": 25,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Schou tok kapital- og leverandørvalg; en stor arbeidsstyrke, mange kvinner, drev produksjonen.",
+      "source_ids": [
+        "snl_hjula",
+        "nbl_schou"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_makt_ulikhet_arbeidsliv"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_26",
+      "order": 26,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Place-navnet er sammensatt, men kartankeret og Hjula-kildene gjelder Sagveien 23 ved Hjulafossen.",
+      "source_ids": [
+        "byleksikon",
+        "ovre_foss"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_byens_okonomiske_rom"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_27",
+      "order": 27,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Hjula koblet råvarer og energi til mekanisk tekstilproduksjon og salg.",
+      "source_ids": [
+        "snl_hjula"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_ovre_foss_quiz_28",
+      "order": 28,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Stedets økonomi oppstod i koblingen mellom foss, maskiner, kapital, arbeidere, råvarer og markeder.",
+      "source_ids": [
+        "snl_hjula",
+        "byleksikon",
+        "nbl_schou"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_industri_og_mekanisering"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "story",
+      "id": "st_hjula_hovedakslingen_som_ble_i_byen",
+      "source_file": "data/stories/stories_ovre_foss.json",
+      "summary": "Da Oluf Nicolai Roll tvilte på Myrens Verksted, valgte Halvor Schou mer tid og lokal læring framfor å bestille Hjulas hovedaksling utenlands."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "naeringsliv_ovre_foss_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_ovre_foss_quiz_01",
+        "claim_ovre_foss_quiz_02",
+        "claim_ovre_foss_quiz_03",
+        "claim_ovre_foss_quiz_04",
+        "claim_ovre_foss_quiz_05",
+        "claim_ovre_foss_quiz_06",
+        "claim_ovre_foss_quiz_07"
+      ]
+    },
+    {
+      "set_id": "naeringsliv_ovre_foss_set_2",
+      "order": 2,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_ovre_foss_quiz_08",
+        "claim_ovre_foss_quiz_09",
+        "claim_ovre_foss_quiz_10",
+        "claim_ovre_foss_quiz_11",
+        "claim_ovre_foss_quiz_12",
+        "claim_ovre_foss_quiz_13",
+        "claim_ovre_foss_quiz_14"
+      ]
+    },
+    {
+      "set_id": "naeringsliv_ovre_foss_set_3",
+      "order": 3,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_ovre_foss_quiz_15",
+        "claim_ovre_foss_quiz_16",
+        "claim_ovre_foss_quiz_17",
+        "claim_ovre_foss_quiz_18",
+        "claim_ovre_foss_quiz_19",
+        "claim_ovre_foss_quiz_20",
+        "claim_ovre_foss_quiz_21"
+      ]
+    },
+    {
+      "set_id": "naeringsliv_ovre_foss_set_4",
+      "order": 4,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_ovre_foss_quiz_22",
+        "claim_ovre_foss_quiz_23",
+        "claim_ovre_foss_quiz_24",
+        "claim_ovre_foss_quiz_25",
+        "claim_ovre_foss_quiz_26",
+        "claim_ovre_foss_quiz_27",
+        "claim_ovre_foss_quiz_28"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 28,
+    "counts": {
+      "fact": 14,
+      "context": 7,
+      "concept_theory": 7
+    },
+    "ratios": {
+      "fact": 0.5,
+      "context": 0.25,
+      "concept_theory": 0.25
+    }
+  }
+}

@@ -1,0 +1,1156 @@
+{
+  "targetId": "ovre_foss",
+  "categoryId": "naeringsliv",
+  "sources": {
+    "snl_hjula": "https://snl.no/Hjula_V%C3%A6veri",
+    "byleksikon": "https://oslobyleksikon.no/side/Hjula_V%C3%A6verier",
+    "ovre_foss": "https://oslobyleksikon.no/side/%C3%98vre_Foss",
+    "nbl_schou": "https://nbl.snl.no/Halvor_Schou"
+  },
+  "production_context": {
+    "manifest_category": "naeringsliv",
+    "profile": "normal_4x7",
+    "standard_version": "3.3",
+    "source_brief": "data/quiz/production_briefs/naeringsliv/ovre_foss.json",
+    "context_artifact": "data/quiz/production_context/naeringsliv/ovre_foss.json",
+    "resolved_files": {
+      "pensum": "data/fag/naeringsliv/naeringslivpensum_canonical_v4_5.json",
+      "emner": "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+      "fagkart": "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+      "methods": "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "arbeid_produksjon_verdiskaping",
+      "logistikk_infrastruktur_rom"
+    ],
+    "emne_ids": [
+      "em_naering_industri_og_mekanisering",
+      "em_naering_eierskap_styring",
+      "em_naering_byens_okonomiske_rom",
+      "em_naering_produksjon_produktivitet",
+      "em_naering_innovasjon_teknologisk_skift",
+      "em_naering_logistikk_verdikjeder",
+      "em_naering_arbeid_verdiskaping",
+      "em_naering_makt_ulikhet_arbeidsliv",
+      "em_naering_omstilling_kriser_skift",
+      "em_naering_forbruk_marked"
+    ],
+    "topic_hook_ids": [
+      "maskin_menneske_produksjon",
+      "verdikjede_spor",
+      "kapitalmakt",
+      "omstilling_av_naeringsrom"
+    ],
+    "method_ids": [
+      "met_naering_innovasjonsanalyse",
+      "met_naering_statistikk_og_indikatoranalyse",
+      "met_naering_markedsanalyse",
+      "met_naering_makt_og_ulikhetsanalyse",
+      "met_naering_romlig_okonomisk_analyse",
+      "met_naering_logistikk_og_verdikjedeanalyse",
+      "met_naering_industrihistorisk_analyse"
+    ],
+    "thinker_ids": [
+      "thomas_piketty"
+    ],
+    "works": [],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/quiz_naeringsliv.json",
+        "data/quiz/naeringsliv/ovre_foss_sets_merged.json",
+        "data/places/naeringsliv/oslo/places_naeringsliv/ovre_foss.json"
+      ],
+      "active_before": {
+        "file": "data/quiz/naeringsliv/ovre_foss_sets_merged.json",
+        "set_count": 5,
+        "question_count": 30,
+        "finding": "Fem eldre sett med seks spørsmål og fem flatfilspørsmål ble funnet. Kjernefakta om 1855, Halvor Schou, kvinnearbeid og ombruk var nyttige, mens metodespørsmål kom for tidlig og Øvre Foss/Hjulafossen ble delvis blandet."
+      },
+      "decisions": [
+        "Bevar og skjerp dokumenterte kjernefakta.",
+        "Skill Øvre Foss fra Hjulafossen eksplisitt.",
+        "Materialiser normal 4x7 med fjorten vanlige åpningsspørsmål og metode først i siste sett."
+      ],
+      "knowledge_migration": "Tjueåtte kildebårne læringsjobber får stabile Knowledge-ID-er; overflødige eller for brede legacy-spørsmål holdes ute."
+    },
+    "profile_decision": {
+      "profile": "normal",
+      "set_count": 4,
+      "questions_per_set": 7,
+      "justification": "Fire læringsjobber dekker identitet og teknologi, produksjon og arbeid, marked og krise samt kildekritisk analyse uten å splitte stedet i parallelle quizer."
+    },
+    "held_back_candidates": [
+      "Øvre Foss og Hjulafossen som synonymer.",
+      "800 ansatte som et tall for hele driftsperioden.",
+      "Vevstolkapasitet som produktivitetsmål.",
+      "Lav lønn som presist nivå uten sammenlignbar lønnsserie."
+    ],
+    "normal_opening_questions": 14,
+    "theory_start_phase": "final",
+    "method_start_phase": "final"
+  },
+  "sets": [
+    {
+      "set_id": "naeringsliv_ovre_foss_set_1",
+      "title": "Fossen, grunnleggeren og maskinene",
+      "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "ovre_foss_quiz_01",
+          "quiz_id": "naeringsliv_ovre_foss_set_1_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "ovre_foss",
+          "targetId": "ovre_foss",
+          "question_scope": "place",
+          "question": "Når kom Hjula Væverier i drift?",
+          "options": [
+            "1855",
+            "1849",
+            "1863"
+          ],
+          "answer": "1855",
+          "answerIndex": 0,
+          "knowledge": "Hjula Væverier kom i drift ved Hjulafossen i 1855.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_industri_og_mekanisering",
+          "source": [
+            "snl_hjula",
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Hjula Væverier kom i drift ved Hjulafossen i 1855.",
+          "claim_id": "claim_ovre_foss_quiz_01",
+          "primary_knowledge_unit_id": "ku_naeringsliv_ovre_foss_01",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_ovre_foss_01"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "ovre_foss_quiz_02",
+          "quiz_id": "naeringsliv_ovre_foss_set_1_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "ovre_foss",
+          "targetId": "ovre_foss",
+          "question_scope": "place",
+          "question": "Hvem grunnla Hjula Væverier?",
+          "options": [
+            "Halvor Schou",
+            "Oluf Nicolai Roll",
+            "Wilhelm Peters"
+          ],
+          "answer": "Halvor Schou",
+          "answerIndex": 0,
+          "knowledge": "Halvor Schou kjøpte Hjulafossen og etablerte veveriet.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_eierskap_styring",
+          "source": [
+            "snl_hjula",
+            "nbl_schou"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Halvor Schou kjøpte Hjulafossen og etablerte veveriet.",
+          "claim_id": "claim_ovre_foss_quiz_02",
+          "primary_knowledge_unit_id": "ku_naeringsliv_ovre_foss_02",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_ovre_foss_02"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "ovre_foss_quiz_03",
+          "quiz_id": "naeringsliv_ovre_foss_set_1_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "ovre_foss",
+          "targetId": "ovre_foss",
+          "question_scope": "place",
+          "question": "Hva kjøpte Schou i 1854?",
+          "options": [
+            "Hjulafossen",
+            "Akers mekaniske Verksted",
+            "Svenskemarkedet"
+          ],
+          "answer": "Hjulafossen",
+          "answerIndex": 0,
+          "knowledge": "Kjøpet av Hjulafossen ga fabrikkprosjektet et vannkraftgrunnlag.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_byens_okonomiske_rom",
+          "source": [
+            "snl_hjula"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kjøpet av Hjulafossen ga fabrikkprosjektet et vannkraftgrunnlag.",
+          "claim_id": "claim_ovre_foss_quiz_03",
+          "primary_knowledge_unit_id": "ku_naeringsliv_ovre_foss_03",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_ovre_foss_03"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "ovre_foss_quiz_04",
+          "quiz_id": "naeringsliv_ovre_foss_set_1_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "ovre_foss",
+          "targetId": "ovre_foss",
+          "question_scope": "place",
+          "question": "Hvem tegnet Hjulas fabrikkbygning?",
+          "options": [
+            "Oluf Nicolai Roll",
+            "Magnus Poulsson",
+            "Thorvald Astrup"
+          ],
+          "answer": "Oluf Nicolai Roll",
+          "answerIndex": 0,
+          "knowledge": "Ingeniøren Oluf Nicolai Roll tegnet bygningen.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_industri_og_mekanisering",
+          "source": [
+            "byleksikon",
+            "nbl_schou"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Ingeniøren Oluf Nicolai Roll tegnet bygningen.",
+          "claim_id": "claim_ovre_foss_quiz_04",
+          "primary_knowledge_unit_id": "ku_naeringsliv_ovre_foss_04",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_ovre_foss_04"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "ovre_foss_quiz_05",
+          "quiz_id": "naeringsliv_ovre_foss_set_1_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "ovre_foss",
+          "targetId": "ovre_foss",
+          "question_scope": "place",
+          "question": "Hvor mange engelske vevstoler hadde Schou ved starten i Brenneribakken?",
+          "options": [
+            "20",
+            "65",
+            "400"
+          ],
+          "answer": "20",
+          "answerIndex": 0,
+          "knowledge": "Schou begynte med tjue engelske vevstoler i 1849.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_produksjon_produktivitet",
+          "source": [
+            "snl_hjula"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Schou begynte med tjue engelske vevstoler i 1849.",
+          "claim_id": "claim_ovre_foss_quiz_05",
+          "primary_knowledge_unit_id": "ku_naeringsliv_ovre_foss_05",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_ovre_foss_05"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "ovre_foss_quiz_06",
+          "quiz_id": "naeringsliv_ovre_foss_set_1_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "ovre_foss",
+          "targetId": "ovre_foss",
+          "question_scope": "place",
+          "question": "Hvor stor vevstolkapasitet var Hjula-anlegget dimensjonert for?",
+          "options": [
+            "400",
+            "40",
+            "800"
+          ],
+          "answer": "400",
+          "answerIndex": 0,
+          "knowledge": "Anlegget var dimensjonert for 400 vevstoler.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_produksjon_produktivitet",
+          "source": [
+            "nbl_schou"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Anlegget var dimensjonert for 400 vevstoler.",
+          "claim_id": "claim_ovre_foss_quiz_06",
+          "primary_knowledge_unit_id": "ku_naeringsliv_ovre_foss_06",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_ovre_foss_06"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "ovre_foss_quiz_07",
+          "quiz_id": "naeringsliv_ovre_foss_set_1_q7",
+          "categoryId": "naeringsliv",
+          "placeId": "ovre_foss",
+          "targetId": "ovre_foss",
+          "question_scope": "place",
+          "question": "Hvilket verksted leverte turbin og hovedaksling?",
+          "options": [
+            "Myrens Verksted",
+            "Kværner Brug",
+            "Akers mekaniske Værksted"
+          ],
+          "answer": "Myrens Verksted",
+          "answerIndex": 0,
+          "knowledge": "Myrens Verksted leverte Hjulas 65 hk turbin og hovedaksling.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_innovasjon_teknologisk_skift",
+          "source": [
+            "snl_hjula",
+            "nbl_schou"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Myrens Verksted leverte Hjulas 65 hk turbin og hovedaksling.",
+          "claim_id": "claim_ovre_foss_quiz_07",
+          "primary_knowledge_unit_id": "ku_naeringsliv_ovre_foss_07",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_ovre_foss_07"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        }
+      ]
+    },
+    {
+      "set_id": "naeringsliv_ovre_foss_set_2",
+      "title": "Produksjon, arbeid og nedleggelse",
+      "level": 2,
+      "order": 2,
+      "phase": "middle",
+      "xp": 75,
+      "questions": [
+        {
+          "id": "ovre_foss_quiz_08",
+          "quiz_id": "naeringsliv_ovre_foss_set_2_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "ovre_foss",
+          "targetId": "ovre_foss",
+          "question_scope": "place",
+          "question": "Hvor sterk var vannturbinen ifølge SNL?",
+          "options": [
+            "65 hestekrefter",
+            "6,5 hestekrefter",
+            "650 hestekrefter"
+          ],
+          "answer": "65 hestekrefter",
+          "answerIndex": 0,
+          "knowledge": "SNL oppgir en vannturbin på 65 hestekrefter.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_naering_produksjon_produktivitet",
+          "source": [
+            "snl_hjula"
+          ],
+          "source_origin": "external",
+          "claim_basis": "SNL oppgir en vannturbin på 65 hestekrefter.",
+          "claim_id": "claim_ovre_foss_quiz_08",
+          "primary_knowledge_unit_id": "ku_naeringsliv_ovre_foss_08",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_ovre_foss_08"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "ovre_foss_quiz_09",
+          "quiz_id": "naeringsliv_ovre_foss_set_2_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "ovre_foss",
+          "targetId": "ovre_foss",
+          "question_scope": "place",
+          "question": "Hvilken råvaretype var Hjulas tidlige hovedgrunnlag?",
+          "options": [
+            "Bomull",
+            "Jernmalm",
+            "Tømmer"
+          ],
+          "answer": "Bomull",
+          "answerIndex": 0,
+          "knowledge": "Hjula startet som bomullsveveri og utvidet senere med ullvarer.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_naering_logistikk_verdikjeder",
+          "source": [
+            "snl_hjula",
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Hjula startet som bomullsveveri og utvidet senere med ullvarer.",
+          "claim_id": "claim_ovre_foss_quiz_09",
+          "primary_knowledge_unit_id": "ku_naeringsliv_ovre_foss_09",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_ovre_foss_09"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "ovre_foss_quiz_10",
+          "quiz_id": "naeringsliv_ovre_foss_set_2_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "ovre_foss",
+          "targetId": "ovre_foss",
+          "question_scope": "place",
+          "question": "Hva ble lagt til produksjonen i 1863?",
+          "options": [
+            "En ullvarefabrikk",
+            "Et skipsverft",
+            "En papirfabrikk"
+          ],
+          "answer": "En ullvarefabrikk",
+          "answerIndex": 0,
+          "knowledge": "Hjula utvidet med ullvarefabrikk i 1863.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_naering_industri_og_mekanisering",
+          "source": [
+            "snl_hjula",
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Hjula utvidet med ullvarefabrikk i 1863.",
+          "claim_id": "claim_ovre_foss_quiz_10",
+          "primary_knowledge_unit_id": "ku_naeringsliv_ovre_foss_10",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_ovre_foss_10"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "ovre_foss_quiz_11",
+          "quiz_id": "naeringsliv_ovre_foss_set_2_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "ovre_foss",
+          "targetId": "ovre_foss",
+          "question_scope": "place",
+          "question": "Omtrent hvor mange ansatte hadde Hjula i 1880-årene?",
+          "options": [
+            "800",
+            "80",
+            "8000"
+          ],
+          "answer": "800",
+          "answerIndex": 0,
+          "knowledge": "I 1880-årene hadde bedriften omkring 800 ansatte.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_naering_arbeid_verdiskaping",
+          "source": [
+            "snl_hjula"
+          ],
+          "source_origin": "external",
+          "claim_basis": "I 1880-årene hadde bedriften omkring 800 ansatte.",
+          "claim_id": "claim_ovre_foss_quiz_11",
+          "primary_knowledge_unit_id": "ku_naeringsliv_ovre_foss_11",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_ovre_foss_11"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "ovre_foss_quiz_12",
+          "quiz_id": "naeringsliv_ovre_foss_set_2_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "ovre_foss",
+          "targetId": "ovre_foss",
+          "question_scope": "place",
+          "question": "Hvilken gruppe utgjorde en stor del av arbeidsstyrken?",
+          "options": [
+            "Kvinner",
+            "Sjøfolk",
+            "Bønder med egen jord"
+          ],
+          "answer": "Kvinner",
+          "answerIndex": 0,
+          "knowledge": "Mange av Hjulas ansatte var kvinner i lavt lønnet fabrikkarbeid.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_naering_makt_ulikhet_arbeidsliv",
+          "source": [
+            "snl_hjula"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Mange av Hjulas ansatte var kvinner i lavt lønnet fabrikkarbeid.",
+          "claim_id": "claim_ovre_foss_quiz_12",
+          "primary_knowledge_unit_id": "ku_naeringsliv_ovre_foss_12",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_ovre_foss_12"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "ovre_foss_quiz_13",
+          "quiz_id": "naeringsliv_ovre_foss_set_2_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "ovre_foss",
+          "targetId": "ovre_foss",
+          "question_scope": "place",
+          "question": "Når ble Hjula Væverier lagt ned?",
+          "options": [
+            "1957",
+            "1946",
+            "1974"
+          ],
+          "answer": "1957",
+          "answerIndex": 0,
+          "knowledge": "Tekstilproduksjonen ved Hjula stanset i 1957.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "source": [
+            "snl_hjula",
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Tekstilproduksjonen ved Hjula stanset i 1957.",
+          "claim_id": "claim_ovre_foss_quiz_13",
+          "primary_knowledge_unit_id": "ku_naeringsliv_ovre_foss_13",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_ovre_foss_13"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "ovre_foss_quiz_14",
+          "quiz_id": "naeringsliv_ovre_foss_set_2_q7",
+          "categoryId": "naeringsliv",
+          "placeId": "ovre_foss",
+          "targetId": "ovre_foss",
+          "question_scope": "place",
+          "question": "Hva skjedde med fabrikkbygningen i 1971?",
+          "options": [
+            "Den brant",
+            "Den åpnet",
+            "Den ble flyttet"
+          ],
+          "answer": "Den brant",
+          "answerIndex": 0,
+          "knowledge": "Bygningen brant i 1971 og ble gjenoppført i 1974.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Bygningen brant i 1971 og ble gjenoppført i 1974.",
+          "claim_id": "claim_ovre_foss_quiz_14",
+          "primary_knowledge_unit_id": "ku_naeringsliv_ovre_foss_14",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_ovre_foss_14"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        }
+      ]
+    },
+    {
+      "set_id": "naeringsliv_ovre_foss_set_3",
+      "title": "Marked, råvarer og fabrikkrom",
+      "level": 3,
+      "order": 3,
+      "phase": "bridge",
+      "xp": 100,
+      "questions": [
+        {
+          "id": "ovre_foss_quiz_15",
+          "quiz_id": "naeringsliv_ovre_foss_set_3_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "ovre_foss",
+          "targetId": "ovre_foss",
+          "question_scope": "place",
+          "question": "Hvilke markeder solgte Hjula til?",
+          "options": [
+            "Norge og Sverige",
+            "Bare USA",
+            "Bare Danmark"
+          ],
+          "answer": "Norge og Sverige",
+          "answerIndex": 0,
+          "knowledge": "Hjula solgte tekstiler i det norske og svenske markedet.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_naering_forbruk_marked",
+          "source": [
+            "snl_hjula"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Hjula solgte tekstiler i det norske og svenske markedet.",
+          "claim_id": "claim_ovre_foss_quiz_15",
+          "primary_knowledge_unit_id": "ku_naeringsliv_ovre_foss_15",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_ovre_foss_15"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "ovre_foss_quiz_16",
+          "quiz_id": "naeringsliv_ovre_foss_set_3_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "ovre_foss",
+          "targetId": "ovre_foss",
+          "question_scope": "place",
+          "question": "Hva fulgte etter opphevelsen av Mellomriksloven i 1897?",
+          "options": [
+            "Omsetningen falt omtrent 30 prosent fram mot 1900",
+            "Fabrikken doblet alle lønninger",
+            "Hjulafossen tørket ut"
+          ],
+          "answer": "Omsetningen falt omtrent 30 prosent fram mot 1900",
+          "answerIndex": 0,
+          "knowledge": "SNL knytter en omsetningsnedgang på om lag tretti prosent til perioden etter regelendringen.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_naering_forbruk_marked",
+          "source": [
+            "snl_hjula"
+          ],
+          "source_origin": "external",
+          "claim_basis": "SNL knytter en omsetningsnedgang på om lag tretti prosent til perioden etter regelendringen.",
+          "claim_id": "claim_ovre_foss_quiz_16",
+          "primary_knowledge_unit_id": "ku_naeringsliv_ovre_foss_16",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_ovre_foss_16"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "ovre_foss_quiz_17",
+          "quiz_id": "naeringsliv_ovre_foss_set_3_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "ovre_foss",
+          "targetId": "ovre_foss",
+          "question_scope": "place",
+          "question": "Hvorfor stanset produksjonen midlertidig i 1918?",
+          "options": [
+            "Garnlageret tok slutt",
+            "Bygningen brant",
+            "Turbinen ble solgt"
+          ],
+          "answer": "Garnlageret tok slutt",
+          "answerIndex": 0,
+          "knowledge": "Råvaremangel stanset produksjonen midlertidig i 1918.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_naering_logistikk_verdikjeder",
+          "source": [
+            "snl_hjula"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Råvaremangel stanset produksjonen midlertidig i 1918.",
+          "claim_id": "claim_ovre_foss_quiz_17",
+          "primary_knowledge_unit_id": "ku_naeringsliv_ovre_foss_17",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_ovre_foss_17"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "ovre_foss_quiz_18",
+          "quiz_id": "naeringsliv_ovre_foss_set_3_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "ovre_foss",
+          "targetId": "ovre_foss",
+          "question_scope": "place",
+          "question": "Hva viser Wilhelm Peters' maleri fra 1886?",
+          "options": [
+            "Arbeid i Hjulas fabrikkinteriør",
+            "En skipsverftskran",
+            "Et svensk marked"
+          ],
+          "answer": "Arbeid i Hjulas fabrikkinteriør",
+          "answerIndex": 0,
+          "knowledge": "Maleriet Fra Hjula Veveri dokumenterer arbeidere og vevstoler i fabrikkrommet.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_naering_makt_ulikhet_arbeidsliv",
+          "source": [
+            "snl_hjula"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Maleriet Fra Hjula Veveri dokumenterer arbeidere og vevstoler i fabrikkrommet.",
+          "claim_id": "claim_ovre_foss_quiz_18",
+          "primary_knowledge_unit_id": "ku_naeringsliv_ovre_foss_18",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_ovre_foss_18"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "ovre_foss_quiz_19",
+          "quiz_id": "naeringsliv_ovre_foss_set_3_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "ovre_foss",
+          "targetId": "ovre_foss",
+          "question_scope": "place",
+          "question": "Hva skjedde med tekstilproduksjonen etter TEFAS-sammenslåingen?",
+          "options": [
+            "Den ble konsentrert på Frysja",
+            "Den flyttet til Hjulafossen",
+            "Den gikk over til skipsbygging"
+          ],
+          "answer": "Den ble konsentrert på Frysja",
+          "answerIndex": 0,
+          "knowledge": "TEFAS samlet produksjon på Frysja før konkursen i 1955.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "source": [
+            "snl_hjula"
+          ],
+          "source_origin": "external",
+          "claim_basis": "TEFAS samlet produksjon på Frysja før konkursen i 1955.",
+          "claim_id": "claim_ovre_foss_quiz_19",
+          "primary_knowledge_unit_id": "ku_naeringsliv_ovre_foss_19",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_ovre_foss_19"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "ovre_foss_quiz_20",
+          "quiz_id": "naeringsliv_ovre_foss_set_3_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "ovre_foss",
+          "targetId": "ovre_foss",
+          "question_scope": "place",
+          "question": "Hvorfor er vannfallet bare én del av forklaringen på Hjula?",
+          "options": [
+            "Maskiner, kapital, arbeid, råvarer og markeder måtte også kobles",
+            "Fossen ble aldri brukt",
+            "Tekstiler krevde ikke arbeid"
+          ],
+          "answer": "Maskiner, kapital, arbeid, råvarer og markeder måtte også kobles",
+          "answerIndex": 0,
+          "knowledge": "Vannkraften drev systemet, men skapte ikke produkter uten teknologi, organisering og arbeidskraft.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_naering_arbeid_verdiskaping",
+          "source": [
+            "snl_hjula",
+            "nbl_schou"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Vannkraften drev systemet, men skapte ikke produkter uten teknologi, organisering og arbeidskraft.",
+          "claim_id": "claim_ovre_foss_quiz_20",
+          "primary_knowledge_unit_id": "ku_naeringsliv_ovre_foss_20",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_ovre_foss_20"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "ovre_foss_quiz_21",
+          "quiz_id": "naeringsliv_ovre_foss_set_3_q7",
+          "categoryId": "naeringsliv",
+          "placeId": "ovre_foss",
+          "targetId": "ovre_foss",
+          "question_scope": "place",
+          "question": "Hva er den sikreste tolkningen av dagens teglfasade?",
+          "options": [
+            "Den er et fysisk spor etter fabrikken, ikke en full dokumentasjon av arbeidslivet",
+            "Den viser nøyaktig lønn for alle ansatte",
+            "Den beviser at alle maskiner er bevart"
+          ],
+          "answer": "Den er et fysisk spor etter fabrikken, ikke en full dokumentasjon av arbeidslivet",
+          "answerIndex": 0,
+          "knowledge": "Bygningen dokumenterer sted og struktur, mens arbeidsforhold krever andre kilder.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_naering_industri_og_mekanisering",
+          "source": [
+            "byleksikon",
+            "snl_hjula"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Bygningen dokumenterer sted og struktur, mens arbeidsforhold krever andre kilder.",
+          "claim_id": "claim_ovre_foss_quiz_21",
+          "primary_knowledge_unit_id": "ku_naeringsliv_ovre_foss_21",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_ovre_foss_21"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        }
+      ]
+    },
+    {
+      "set_id": "naeringsliv_ovre_foss_set_4",
+      "title": "Makt, måling og sted",
+      "level": 4,
+      "order": 4,
+      "phase": "final",
+      "xp": 125,
+      "questions": [
+        {
+          "id": "ovre_foss_quiz_22",
+          "quiz_id": "naeringsliv_ovre_foss_set_4_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "ovre_foss",
+          "targetId": "ovre_foss",
+          "question_scope": "place",
+          "question": "Hvilket valg tok Schou da Roll tvilte på Myrens?",
+          "options": [
+            "Han ga Myrens mer tid",
+            "Han stanset fabrikkprosjektet",
+            "Han kjøpte svenske vevstoler"
+          ],
+          "answer": "Han ga Myrens mer tid",
+          "answerIndex": 0,
+          "knowledge": "Schou valgte lokal kompetansebygging framfor å bestille hovedakslingen utenlands.",
+          "difficulty": 4,
+          "question_type": "analysis",
+          "emne_id": "em_naering_innovasjon_teknologisk_skift",
+          "method_id": "met_naering_innovasjonsanalyse",
+          "source": [
+            "nbl_schou"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Schou valgte lokal kompetansebygging framfor å bestille hovedakslingen utenlands.",
+          "claim_id": "claim_ovre_foss_quiz_22",
+          "primary_knowledge_unit_id": "ku_naeringsliv_ovre_foss_22",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_ovre_foss_22"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": [],
+          "guidance_basis": [
+            "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "ovre_foss_quiz_23",
+          "quiz_id": "naeringsliv_ovre_foss_set_4_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "ovre_foss",
+          "targetId": "ovre_foss",
+          "question_scope": "place",
+          "question": "Hva kan 400 vevstoler og 800 ansatte ikke alene fortelle?",
+          "options": [
+            "Produktivitet per arbeidstime",
+            "At fabrikken var stor",
+            "At tekstiler ble produsert"
+          ],
+          "answer": "Produktivitet per arbeidstime",
+          "answerIndex": 0,
+          "knowledge": "Kapasitet og sysselsetting mangler arbeidstimer, volum og priser som trengs for et produktivitetsmål.",
+          "difficulty": 4,
+          "question_type": "analysis",
+          "emne_id": "em_naering_produksjon_produktivitet",
+          "method_id": "met_naering_statistikk_og_indikatoranalyse",
+          "source": [
+            "snl_hjula",
+            "nbl_schou"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kapasitet og sysselsetting mangler arbeidstimer, volum og priser som trengs for et produktivitetsmål.",
+          "claim_id": "claim_ovre_foss_quiz_23",
+          "primary_knowledge_unit_id": "ku_naeringsliv_ovre_foss_23",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_ovre_foss_23"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": [],
+          "guidance_basis": [
+            "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "ovre_foss_quiz_24",
+          "quiz_id": "naeringsliv_ovre_foss_set_4_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "ovre_foss",
+          "targetId": "ovre_foss",
+          "question_scope": "place",
+          "question": "Hvordan bør omsetningsfallet etter 1897 tolkes?",
+          "options": [
+            "Som dokumentert endring med flere mulige medvirkende årsaker",
+            "Som bevis på at vannkraften sluttet",
+            "Som et lønnsmål"
+          ],
+          "answer": "Som dokumentert endring med flere mulige medvirkende årsaker",
+          "answerIndex": 0,
+          "knowledge": "Regelendringen er tidsmessig knyttet til fallet, men priser, konkurranse og konjunkturer er ikke isolert.",
+          "difficulty": 4,
+          "question_type": "analysis",
+          "emne_id": "em_naering_forbruk_marked",
+          "method_id": "met_naering_markedsanalyse",
+          "source": [
+            "snl_hjula"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Regelendringen er tidsmessig knyttet til fallet, men priser, konkurranse og konjunkturer er ikke isolert.",
+          "claim_id": "claim_ovre_foss_quiz_24",
+          "primary_knowledge_unit_id": "ku_naeringsliv_ovre_foss_24",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_ovre_foss_24"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": [],
+          "guidance_basis": [
+            "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "ovre_foss_quiz_25",
+          "quiz_id": "naeringsliv_ovre_foss_set_4_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "ovre_foss",
+          "targetId": "ovre_foss",
+          "question_scope": "place",
+          "question": "Hvilket maktforhold er tydeligst dokumentert?",
+          "options": [
+            "Eieren kontrollerte investeringene, mens arbeiderne utførte produksjonen",
+            "Arbeiderne eide alle vevstolene",
+            "Svenske kunder styrte fossen"
+          ],
+          "answer": "Eieren kontrollerte investeringene, mens arbeiderne utførte produksjonen",
+          "answerIndex": 0,
+          "knowledge": "Schou tok kapital- og leverandørvalg; en stor arbeidsstyrke, mange kvinner, drev produksjonen.",
+          "difficulty": 4,
+          "question_type": "analysis",
+          "emne_id": "em_naering_makt_ulikhet_arbeidsliv",
+          "method_id": "met_naering_makt_og_ulikhetsanalyse",
+          "source": [
+            "snl_hjula",
+            "nbl_schou"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Schou tok kapital- og leverandørvalg; en stor arbeidsstyrke, mange kvinner, drev produksjonen.",
+          "claim_id": "claim_ovre_foss_quiz_25",
+          "primary_knowledge_unit_id": "ku_naeringsliv_ovre_foss_25",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_ovre_foss_25"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": [],
+          "guidance_basis": [
+            "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json"
+          ],
+          "topic_hook_id": "kapitalmakt",
+          "thinker_id": "thomas_piketty",
+          "theory_ref": {
+            "topic_hook_id": "kapitalmakt",
+            "thinker_id": "thomas_piketty",
+            "why_it_helps": "Et eierskaps- og maktperspektiv tydeliggjør forskjellen mellom kontroll over investeringer og arbeidets bidrag til produksjonen."
+          }
+        },
+        {
+          "id": "ovre_foss_quiz_26",
+          "quiz_id": "naeringsliv_ovre_foss_set_4_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "ovre_foss",
+          "targetId": "ovre_foss",
+          "question_scope": "place",
+          "question": "Hvorfor må Øvre Foss og Hjulafossen skilles?",
+          "options": [
+            "Kildene bruker dem om forskjellige fosse- og stedsavsnitt",
+            "Bare ett av navnene finnes",
+            "Hjula lå i en annen by"
+          ],
+          "answer": "Kildene bruker dem om forskjellige fosse- og stedsavsnitt",
+          "answerIndex": 0,
+          "knowledge": "Place-navnet er sammensatt, men kartankeret og Hjula-kildene gjelder Sagveien 23 ved Hjulafossen.",
+          "difficulty": 4,
+          "question_type": "analysis",
+          "emne_id": "em_naering_byens_okonomiske_rom",
+          "method_id": "met_naering_romlig_okonomisk_analyse",
+          "source": [
+            "byleksikon",
+            "ovre_foss"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Place-navnet er sammensatt, men kartankeret og Hjula-kildene gjelder Sagveien 23 ved Hjulafossen.",
+          "claim_id": "claim_ovre_foss_quiz_26",
+          "primary_knowledge_unit_id": "ku_naeringsliv_ovre_foss_26",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_ovre_foss_26"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": [],
+          "guidance_basis": [
+            "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "ovre_foss_quiz_27",
+          "quiz_id": "naeringsliv_ovre_foss_set_4_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "ovre_foss",
+          "targetId": "ovre_foss",
+          "question_scope": "place",
+          "question": "Hvilken verdikjede beskriver Hjula best?",
+          "options": [
+            "Bomull og garn, energi, veving, etterbehandling og tekstilmarked",
+            "Jernmalm, masovn og skipsverft",
+            "Tømmer, papir og avisbud"
+          ],
+          "answer": "Bomull og garn, energi, veving, etterbehandling og tekstilmarked",
+          "answerIndex": 0,
+          "knowledge": "Hjula koblet råvarer og energi til mekanisk tekstilproduksjon og salg.",
+          "difficulty": 4,
+          "question_type": "analysis",
+          "emne_id": "em_naering_logistikk_verdikjeder",
+          "method_id": "met_naering_logistikk_og_verdikjedeanalyse",
+          "source": [
+            "snl_hjula"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Hjula koblet råvarer og energi til mekanisk tekstilproduksjon og salg.",
+          "claim_id": "claim_ovre_foss_quiz_27",
+          "primary_knowledge_unit_id": "ku_naeringsliv_ovre_foss_27",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_ovre_foss_27"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": [],
+          "guidance_basis": [
+            "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "ovre_foss_quiz_28",
+          "quiz_id": "naeringsliv_ovre_foss_set_4_q7",
+          "categoryId": "naeringsliv",
+          "placeId": "ovre_foss",
+          "targetId": "ovre_foss",
+          "question_scope": "place",
+          "question": "Hvilken samlet analyse passer best for Hjula?",
+          "options": [
+            "Vannkraft, teknologi, arbeid, marked og omstilling må leses sammen",
+            "Bare arkitekturen er relevant",
+            "Nedleggelsen forklarer etableringen"
+          ],
+          "answer": "Vannkraft, teknologi, arbeid, marked og omstilling må leses sammen",
+          "answerIndex": 0,
+          "knowledge": "Stedets økonomi oppstod i koblingen mellom foss, maskiner, kapital, arbeidere, råvarer og markeder.",
+          "difficulty": 4,
+          "question_type": "analysis",
+          "emne_id": "em_naering_industri_og_mekanisering",
+          "method_id": "met_naering_industrihistorisk_analyse",
+          "source": [
+            "snl_hjula",
+            "byleksikon",
+            "nbl_schou"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Stedets økonomi oppstod i koblingen mellom foss, maskiner, kapital, arbeidere, råvarer og markeder.",
+          "claim_id": "claim_ovre_foss_quiz_28",
+          "primary_knowledge_unit_id": "ku_naeringsliv_ovre_foss_28",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_ovre_foss_28"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": [],
+          "guidance_basis": [
+            "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json"
+          ]
+        }
+      ]
+    }
+  ]
+}
