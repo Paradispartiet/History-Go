@@ -29,7 +29,7 @@ jobs:
       - run: npm ci
       - name: Materialize permanent authored data
         run: node scripts/TEMP_materialize_avdelingsleder_role_world.mjs
-      - name: Normalize approval-required authority attempt
+      - name: Normalize strict authority bindings
         shell: bash
         run: |
           node --input-type=module <<'NODE'
@@ -38,19 +38,38 @@ jobs:
           const catalog = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
           const mail = catalog.families.flatMap(family => family.mails || []).find(item => item.id === 'naeringsliv_avdelingsleder_realism_capacity_case_close_001');
           if (!mail) throw new Error('Missing Avdelingsleder close scene after materialization');
+
           const candidate = mail.choices?.find(choice => choice.id === 'B');
           if (candidate?.authority_action?.action_id !== 'approve_budget_exception' || candidate.authority_action.intent !== 'approve') {
             throw new Error('Unexpected authority-action source shape; refusing blind rewrite');
           }
           candidate.authority_action.intent = 'execute';
+
+          const authority = mail.authority_context;
+          if (!authority || JSON.stringify(authority.escalation_paths) !== JSON.stringify(['inger_overordnet_leder','oyvind_okonomicontroller'])) {
+            throw new Error('Unexpected escalation-path source shape; refusing blind rewrite');
+          }
+          const capacityRule = authority.authority_rules?.find(rule => rule.action_id === 'escalate_capacity_conflict');
+          if (!capacityRule || capacityRule.authority !== 'direct' || Object.prototype.hasOwnProperty.call(capacityRule, 'escalation_id')) {
+            throw new Error('Unexpected capacity escalation rule; refusing blind rewrite');
+          }
+          const escalationId = 'avdelingsleder_capacity_conflict_to_region';
+          capacityRule.escalation_id = escalationId;
+          authority.escalation_paths = [{
+            escalation_id: escalationId,
+            action_id: 'escalate_capacity_conflict',
+            target_actor_id: 'inger_overordnet_leder',
+            escalation_object_id: 'avdelingsleder_capacity_conflict_escalation_001'
+          }];
           fs.writeFileSync(catalogPath, JSON.stringify(catalog, null, 2) + '\n');
 
           const testPath = 'tests/civication-naeringsliv-avdelingsleder-role-world-rollout.test.js';
-          const source = fs.readFileSync(testPath, 'utf8');
+          let source = fs.readFileSync(testPath, 'utf8');
           const before = "assert.equal(close.choices[1].authority_action.intent, 'approve');";
-          const after = "assert.equal(close.choices[1].authority_action.intent, 'execute');";
+          const after = "assert.equal(close.choices[1].authority_action.intent, 'execute');\nassert.equal(close.authority_context.escalation_paths.length, 1);\nassert.equal(close.authority_context.escalation_paths[0].target_actor_id, 'inger_overordnet_leder');\nassert.equal(close.authority_context.authority_rules.find(rule => rule.action_id === 'escalate_capacity_conflict').escalation_id, 'avdelingsleder_capacity_conflict_to_region');";
           if (!source.includes(before)) throw new Error('Expected strict-test authority assertion not found');
-          fs.writeFileSync(testPath, source.replace(before, after));
+          source = source.replace(before, after);
+          fs.writeFileSync(testPath, source);
           NODE
       - name: Regenerate scene registry
         run: node scripts/build-civication-scene-registry.mjs --write
