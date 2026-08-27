@@ -14,7 +14,7 @@ on:
     paths:
       - scripts/TEMP_materialize_programleder_role_world.mjs
       - tests/civication-film-tv-programleder-role-world-rollout.test.js
-      - .github/workflows/TEMP-civication-programleder-role-world-materialize.yml
+      - .github/workflows/TEMP-civication-film-tv-programleder-role-world-materialize.yml
 
 permissions:
   contents: write
@@ -35,11 +35,12 @@ jobs:
       - run: npm ci
       - name: Materialize permanent authored data
         run: node scripts/TEMP_materialize_programleder_role_world.mjs
-      - name: Regenerate canonical artifacts
-        run: |
-          node scripts/build-civication-scene-registry.mjs --write
-          node scripts/audit-civication-career-gameplay.mjs --write
-          node scripts/audit-civication-role-world-rollout-readiness.mjs --write
+      - name: Regenerate scene registry
+        run: node scripts/build-civication-scene-registry.mjs --write
+      - name: Regenerate career gameplay audit
+        run: node scripts/audit-civication-career-gameplay.mjs --write
+      - name: Regenerate role-world rollout readiness audit
+        run: node scripts/audit-civication-role-world-rollout-readiness.mjs --write
       - name: Verify focused rollout and canonical gates
         run: |
           node tests/civication-film-tv-programleder-role-world-rollout.test.js
@@ -63,5 +64,3 @@ jobs:
           git diff --cached --check
           git commit -m "Complete Film TV Programleder Role World rollout"
           git push origin HEAD:agent/civication-film-tv-programleder-role-world-rollout
-
-# retrigger: 2026-08-27 connector write
