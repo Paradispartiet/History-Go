@@ -8,31 +8,12 @@ on:
       - 'reports/fagverk/kunst-phase3-audit.json'
       - 'reports/fagverk/kunst-produksjon-praksis-phase4-audit.json'
       - 'reports/fagverk/subject-baseline.json'
-      - 'reports/fagverk/general-engine-audit.json'
       - 'scripts/audit-fagverk-kunst-phase3.mjs'
       - 'scripts/audit-fagverk-kunst-produksjon-praksis-phase4.mjs'
       - 'scripts/materialize-kunst-produksjon-praksis-phase4.mjs'
       - 'tests/fagverk-kunst-phase3.test.mjs'
       - 'tests/fagverk-kunst-produksjon-praksis-phase4.test.mjs'
-      - 'tests/fagverk-general-engine.test.mjs'
       - '.github/workflows/fagverk-kunst-produksjon-praksis-phase4.yml'
-  push:
-    branches: [main]
-    paths:
-      - 'data/fagverk/kunst/produksjon-og-praksis.json'
-      - 'data/fagverk/kunst/produksjon-og-praksis/**'
-      - 'reports/fagverk/kunst-phase3-audit.json'
-      - 'reports/fagverk/kunst-produksjon-praksis-phase4-audit.json'
-      - 'reports/fagverk/subject-baseline.json'
-      - 'reports/fagverk/general-engine-audit.json'
-      - 'scripts/audit-fagverk-kunst-phase3.mjs'
-      - 'scripts/audit-fagverk-kunst-produksjon-praksis-phase4.mjs'
-      - 'scripts/materialize-kunst-produksjon-praksis-phase4.mjs'
-      - 'tests/fagverk-kunst-phase3.test.mjs'
-      - 'tests/fagverk-kunst-produksjon-praksis-phase4.test.mjs'
-      - 'tests/fagverk-general-engine.test.mjs'
-      - '.github/workflows/fagverk-kunst-produksjon-praksis-phase4.yml'
-
 permissions:
   contents: read
 

@@ -1,30 +1,70 @@
 # CI workflow routing
 
-History GO routes pull-request validation by the canonical source files that can
-affect each domain. Generated, repository-wide Fagverk outputs must not fan out
-into every domain workflow.
+History GO routes pull-request validation by canonical ownership. A generated or
+repository-wide artifact must have one owner; it must not fan out into every
+domain workflow. Assertions remain in the workflows where they protect a domain,
+but edits to shared test helpers, reports and builders trigger only their owning
+gate.
 
-## Binding rules
+## Ownership rules
 
-- Domain workflows listen to their own `data/fag/<domain>/**` and
-  `data/fagverk/<domain>/**` inputs, plus their own scripts, tests and reports.
-- `data/fagverk/fagverk_registry.json`, `subject_status.json` and
-  `fagverk_release.json` are owned by central integrity workflows.
-- `data/fag/fag_manifest.json` is owned by the central general-engine,
-  inventory, phase-3 and release gates.
-- Fagverk pull-request validation is read-only. A workflow must fail with the exact
-  deterministic command needed to repair stale generated files; it must never
-  commit or push a replacement head.
-- Fagverk pull-request workflows cancel stale runs when a newer head is pushed.
+- Domain workflows listen to their own `data/fag/<domain>/**`,
+  `data/fagverk/<domain>/**`, scripts, tests and domain-prefixed reports.
+- `fagverk-inventory.yml` owns the subject-inventory audit, test and report.
+- `fagverk-general-engine.yml` owns the general-engine audit, test and report.
+- `fagverk-release.yml` owns the release builder and whole-architecture release
+  inputs. It remains a main-push workflow because it dispatches the committed
+  release digest to AHA-EchoNet.
+- The category contract is owned by the central general-engine and category
+  gates, rather than every Fagverk domain.
+- Fagverk pull-request validation is read-only. A stale generated artifact fails
+  with the deterministic repair command; CI never replaces the pull-request head.
 
-The permanent `CI workflow routing governance` check enforces these rules.
+## Product routing
 
-## Baseline and target
+- `data-checks.yml` owns Knowledge, quiz, people and place content integrity.
+  `knowledge-checks.yml` owns the browser/UI surface and does not run Chromium for
+  content-only changes. Fagverk manifest and canonical emne changes route only to
+  the Knowledge content job because canonical Knowledge inference reads them.
+- The specialized Civication Scenario People gate owns its generated indexes;
+  the full Civication suite excludes those paths.
+- Oslo Micro Places listens only to Micro Place source, contract, UI and audit
+  paths. Global place indexes, runtime payloads and generic production outputs do
+  not trigger it.
+- Place Rounds owns its shared UI and explicitly named legacy place contracts.
+  Global story, people, brand and place-index outputs do not trigger it.
 
-The Freia production pull request started 68 ordinary workflows. Forty-eight
-were triggered only by the global Fagverk manifest/release outputs. Those runs
-used 23.5 of 41.1 runner-minutes, including 15 minutes of checkout and setup.
+## Pull requests versus main
 
-This routing policy preserves the central whole-architecture checks and every
-domain's own tests while preventing unrelated domain suites from running on a
-place-only change.
+Read-only validation runs on pull requests. `main-integrity.yml` then verifies the
+composed repository state once after merge: CI routing, generated web runtime,
+place indexes, canonical Knowledge data and the Fagverk release manifest.
+
+The only workflows allowed to combine pull requests and pushes are workflows
+with a distinct push-side effect:
+
+- `coordinate-branch-runner.yml` mutates dedicated one-shot coordinate branches.
+- `fagverk-release.yml` dispatches the committed release digest after a main push.
+
+Every active pull-request workflow has a concurrency group and cancels stale
+runs, except the mutating coordinate runner where cancellation could strand a
+half-finished branch. The closed-PR cleanup workflow is not a validation workflow.
+
+## Measured routing budgets
+
+The permanent audit simulates representative production changes and rejects a
+regression above the budget.
+
+| Production change | Before | Current | Budget |
+| --- | ---: | ---: | ---: |
+| Full place production | 20 | 9 | 16 |
+| Utdanning subject production | 46 | 12 | 12 |
+| Oslo Micro Place production | 26 | 13 | 16 |
+
+At the repository level, 84 workflows previously combined pull-request and push
+validation. Only the two effectful exceptions remain. Twenty-six active
+pull-request workflows lacked stale-run cancellation; none do now.
+
+`CI workflow routing governance` runs for every workflow, routing-audit or policy
+documentation change and enforces ownership, cancellation, duplication rules and
+the production fan-out budgets above.

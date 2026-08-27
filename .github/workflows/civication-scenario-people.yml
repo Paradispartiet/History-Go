@@ -12,22 +12,12 @@ on:
       - 'tests/civication-scenario-people.test.mjs'
       - 'docs/CIVICATION_SCENARIO_PEOPLE.md'
       - '.github/workflows/civication-scenario-people.yml'
-  push:
-    branches:
-      - main
-    paths:
-      - 'data/Civication/historyPeople_index.json'
-      - 'data/Civication/roleModels/**'
-      - 'data/Civication/scenarioPeople/**'
-      - 'data/Civication/scenarioPeople_index.json'
-      - 'data/fag/**/theory_integrity_bindings*.json'
-      - 'scripts/build-civication-scenario-people-index.mts'
-      - 'tests/civication-scenario-people.test.mjs'
-      - 'docs/CIVICATION_SCENARIO_PEOPLE.md'
-      - '.github/workflows/civication-scenario-people.yml'
-
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   verify:

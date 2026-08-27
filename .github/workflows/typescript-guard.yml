@@ -15,23 +15,11 @@ on:
       - 'package.json'
       - 'package-lock.json'
       - '.github/workflows/typescript-guard.yml'
-  push:
-    branches:
-      - main
-    paths:
-      - 'js/**'
-      - 'scripts/**'
-      - 'tools/**'
-      - 'types/**'
-      - 'schemas/**'
-      - 'build/**'
-      - 'dist/web/**'
-      - '*.js'
-      - 'tsconfig*.json'
-      - 'package.json'
-      - 'package-lock.json'
-      - '.github/workflows/typescript-guard.yml'
   workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   scope:

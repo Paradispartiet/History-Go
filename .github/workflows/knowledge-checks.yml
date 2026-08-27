@@ -12,9 +12,6 @@ on:
       - 'js/knowledge*.ts'
       - 'dist/web/knowledge*.js'
       - 'scripts/audit-knowledge-*.mjs'
-      - 'scripts/knowledge-canonical-data.mts'
-      - 'data/knowledge/**'
-      - 'data/quiz/**'
       - 'tests/knowledge-*.test.*'
       - 'tests/quiz-knowledge-memory.test.*'
       - 'tests/oslo-tinghuset-knowledge-phase.test.mjs'
@@ -25,6 +22,10 @@ on:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   knowledge:

@@ -32,6 +32,7 @@ concurrency:
 jobs:
   release:
     name: Verify deterministic whole-architecture Fagverk release
+    if: github.event_name != 'push'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -109,8 +110,13 @@ jobs:
           path: data/fagverk/fagverk_release.json
           if-no-files-found: error
           retention-days: 30
+  notify:
+    name: Dispatch committed release digest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
       - name: Notify AHA-EchoNet after main update
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         env:
           AHA_DISPATCH_TOKEN: ${{ secrets.AHA_ECHONET_DISPATCH_TOKEN }}
           SOURCE_SHA: ${{ github.sha }}

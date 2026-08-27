@@ -6,15 +6,12 @@ on:
       - "data/fag/by/**"
       - "scripts/validate-by-editorial-integrity.mjs"
       - ".github/workflows/by-editorial-integrity.yml"
-  push:
-    branches: [main]
-    paths:
-      - "data/fag/by/**"
-      - "scripts/validate-by-editorial-integrity.mjs"
-      - ".github/workflows/by-editorial-integrity.yml"
-
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   validate:

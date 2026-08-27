@@ -11,21 +11,12 @@ on:
       - 'tests/stories-governance-metrics.test.mjs'
       - 'tests/birkelunden-phase7c-story.test.mjs'
       - '.github/workflows/stories-governance.yml'
-  push:
-    branches:
-      - main
-    paths:
-      - 'data/stories/**'
-      - 'data/places/manifest.json'
-      - 'tools/check_stories_integrity.mts'
-      - 'tools/report_stories_governance.mts'
-      - 'tests/oslo-tinghuset-story-phase.test.mjs'
-      - 'tests/stories-governance-metrics.test.mjs'
-      - 'tests/birkelunden-phase7c-story.test.mjs'
-      - '.github/workflows/stories-governance.yml'
-
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   stories-governance:

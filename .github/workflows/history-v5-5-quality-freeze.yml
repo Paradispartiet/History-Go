@@ -7,17 +7,14 @@ on:
       - 'reports/historie-v5/**'
       - 'tools/audit-historie-v5-5-quality-depth.mjs'
       - '.github/workflows/history-v5-5-quality-freeze.yml'
-  push:
-    branches:
-      - main
-    paths:
-      - 'data/fag/historie/**'
-      - 'tools/audit-historie-v5-5-quality-depth.mjs'
-      - '.github/workflows/history-v5-5-quality-freeze.yml'
   workflow_dispatch:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   quality-freeze:
