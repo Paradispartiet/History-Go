@@ -1,1 +1,234 @@
-{"schema":"civication_mail_family_catalog_v1","version":1,"category":"naeringsliv","role_scope":"okonomi_og_finanssjef","mail_type":"consequence","families":[{"id":"forsinket_covenantkonsekvens","purpose":"Gjør den senere effekten av tidlig eller sen likviditetskommunikasjon synlig i banktillit og virksomhetens handlingsrom.","learning_focus":["konsekvens","banktillit","handlingsrom"],"mails":[{"id":"okonomi_og_finanssjef_consequence_covenant_001","mail_type":"consequence","mail_family":"forsinket_covenantkonsekvens","role_scope":"okonomi_og_finanssjef","thread_key":"okonomi_og_finanssjef.case.likviditet_og_covenant","phase":"day_end","priority":62,"cooldown":3,"repeatable":false,"stage":"mastery","from":"bankkontakt","sender":"bankkontakt","person_id":"bankkontakt","place_id":"bankplassen","subject":"Noen uker senere avgjør tidligere åpenhet hvor mye fleksibilitet banken vil gi","summary":"Utviklingen ble svakere enn baseprognosen, og virksomheten trenger å justere finansierings- eller betalingsplanen før marginen mot covenant blir for liten.","purpose":"Vise at tidlig risikokommunikasjon får forsinkede konsekvenser for tillit og tilgjengelige alternativer.","stakes":"Banken vurderer ikke bare tallene, men også hvor tidlig og presist risikoen ble kommunisert. Det påvirker hvor mye fleksibilitet som fortsatt finnes.","situation":["Det opprinnelige risikosignalet kan nå sammenlignes med faktisk utvikling.","Virksomheten trenger et tiltak som krever bankens eller styrets medvirkning.","Beslutningen må bygge på dokumentert prognose og riktig fullmakt, ikke på økonomisjefens løfte alene."],"task_domain":"forsinket_covenantkonsekvens","task_kind":"consequence","competency":"risikokommunikasjon","pressure":"bevare_fortellingen_vs_bevare_tilliten","choice_axis":"vise_endringsspor_og_fullmakt_vs_selge_en_beroligende_forklaring","consequence_axis":"finansiell_fleksibilitet_vs_tillitsrabatt","narrative_arc":"Økonomisjefen ser at åpenhet før krisen kan bli konkret finansielt handlingsrom senere.","choices":[{"id":"A","label":"Vis endringssporet, tiltakene og hvilket beslutningsnivå som eier neste steg","reply":"Jeg viser hvordan prognosen utviklet seg, hvilke tiltak som er vurdert og hvem som må beslutte neste steg.","effect":1,"tags":["consequence","trust","governance"],"feedback":"Bankdialogen bygger på sporbarhet og reell fullmakt, noe som bevarer flere muligheter."},{"id":"B","label":"Fokuser på at hovedplanen fortsatt kan nås og be om fleksibilitet uten å dvele ved tidligere avvik","reply":"Jeg fokuserer på at hovedplanen fortsatt kan nås og ber om fleksibilitet uten å legge for stor vekt på tidligere avvik.","effect":-1,"tags":["narrative_bias","trust_risk"],"feedback":"Du forsøker å beskytte fortellingen, men gjør bankens vurdering mer avhengig av tillit du ikke lenger dokumenterer like godt."}]}]}]}
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "okonomi_og_finanssjef",
+  "mail_type": "consequence",
+  "families": [
+    {
+      "id": "forsinket_covenantkonsekvens",
+      "purpose": "Gjør den senere effekten av tidlig eller sen likviditetskommunikasjon synlig i banktillit og virksomhetens handlingsrom.",
+      "learning_focus": [
+        "konsekvens",
+        "banktillit",
+        "handlingsrom"
+      ],
+      "mails": [
+        {
+          "id": "okonomi_og_finanssjef_consequence_covenant_001",
+          "mail_type": "consequence",
+          "mail_family": "forsinket_covenantkonsekvens",
+          "role_scope": "okonomi_og_finanssjef",
+          "thread_key": "okonomi_og_finanssjef.case.likviditet_og_covenant",
+          "phase": "day_end",
+          "priority": 62,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "mastery",
+          "from": "bankkontakt",
+          "sender": "bankkontakt",
+          "person_id": "bankkontakt",
+          "place_id": "bankplassen",
+          "subject": "Noen uker senere avgjør tidligere åpenhet hvor mye fleksibilitet banken vil gi",
+          "summary": "Utviklingen ble svakere enn baseprognosen, og virksomheten trenger å justere finansierings- eller betalingsplanen før marginen mot covenant blir for liten.",
+          "purpose": "Vise at tidlig risikokommunikasjon får forsinkede konsekvenser for tillit og tilgjengelige alternativer.",
+          "stakes": "Banken vurderer ikke bare tallene, men også hvor tidlig og presist risikoen ble kommunisert. Det påvirker hvor mye fleksibilitet som fortsatt finnes.",
+          "situation": [
+            "Det opprinnelige risikosignalet kan nå sammenlignes med faktisk utvikling.",
+            "Virksomheten trenger et tiltak som krever bankens eller styrets medvirkning.",
+            "Beslutningen må bygge på dokumentert prognose og riktig fullmakt, ikke på økonomisjefens løfte alene."
+          ],
+          "task_domain": "forsinket_covenantkonsekvens",
+          "task_kind": "consequence",
+          "competency": "risikokommunikasjon",
+          "pressure": "bevare_fortellingen_vs_bevare_tilliten",
+          "choice_axis": "vise_endringsspor_og_fullmakt_vs_selge_en_beroligende_forklaring",
+          "consequence_axis": "finansiell_fleksibilitet_vs_tillitsrabatt",
+          "narrative_arc": "Økonomisjefen ser at åpenhet før krisen kan bli konkret finansielt handlingsrom senere.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Vis endringssporet, tiltakene og hvilket beslutningsnivå som eier neste steg",
+              "reply": "Jeg viser hvordan prognosen utviklet seg, hvilke tiltak som er vurdert og hvem som må beslutte neste steg.",
+              "effect": 1,
+              "tags": [
+                "consequence",
+                "trust",
+                "governance"
+              ],
+              "feedback": "Bankdialogen bygger på sporbarhet og reell fullmakt, noe som bevarer flere muligheter."
+            },
+            {
+              "id": "B",
+              "label": "Fokuser på at hovedplanen fortsatt kan nås og be om fleksibilitet uten å dvele ved tidligere avvik",
+              "reply": "Jeg fokuserer på at hovedplanen fortsatt kan nås og ber om fleksibilitet uten å legge for stor vekt på tidligere avvik.",
+              "effect": -1,
+              "tags": [
+                "narrative_bias",
+                "trust_risk"
+              ],
+              "feedback": "Du forsøker å beskytte fortellingen, men gjør bankens vurdering mer avhengig av tillit du ikke lenger dokumenterer like godt."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_okonomi_finanssjef_board_aftermath",
+      "purpose": "Lukker caset med prognose, råd, vedtak og læring som separate lag.",
+      "learning_focus": [
+        "aftermath",
+        "institutional_memory",
+        "governance"
+      ],
+      "mails": [
+        {
+          "id": "naeringsliv_okonomi_finanssjef_realism_board_aftermath_001",
+          "mail_type": "consequence",
+          "mail_family": "role_world_rollout_okonomi_finanssjef_board_aftermath",
+          "role_scope": "okonomi_og_finanssjef",
+          "phase": "advanced",
+          "day_phase": "evening",
+          "priority": 95,
+          "cooldown": 10,
+          "repeatable": false,
+          "stage": "stable",
+          "planned_only": true,
+          "thread_key": "naeringsliv_okonomi_finanssjef_liquidity_realism_001",
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "naeringsliv",
+            "okonomi_og_finanssjef",
+            "persistent_work",
+            "situated_reputation"
+          ],
+          "from": "Styreleder",
+          "people_ref": "styreleder",
+          "person_id": "styreleder",
+          "place_id": "oslo_bors",
+          "subject": "Styret har besluttet – nå må økonomifunksjonen skille prognose, råd, vedtak og faktisk effekt",
+          "summary": "Styret har valgt tiltak. Uansett om beslutningen følger din foretrukne løsning, skal samme case lukkes med opprinnelig prognose, Ingrid-review, likviditetsrework, bankdialog, økonomifaglig anbefaling og faktisk beslutningseier som separate lag. Standing etterpå skal handle om sporbar styring, ikke om å omskrive historien.",
+          "purpose": "Materialisere styringsetterspill og ansvar uten resultatbias: økonomisjefen skal kunne lære av hva som faktisk var kjent og besluttet, uten å gjøre senere utfall til bevis for at usikkerheten aldri fantes.",
+          "stakes": "Hvis etterspillet reduseres til om tiltaket «virket», lærer økonomifunksjonen å beskytte egen status fremfor å forbedre prognoser, handoff og governance. Da starter neste case med dårligere institusjonell hukommelse.",
+          "situation": [
+            "Styrets vedtak er et eget institusjonelt event, ikke en forlengelse av økonomisjefens anbefaling.",
+            "Caset inneholder nå baseline, Ingrid-handoff, waiting, likviditetsrework og styrehandoff i samme spor.",
+            "Etterspillet skal bevare hva økonomifunksjonen faktisk visste og anbefalte på beslutningstidspunktet."
+          ],
+          "task_domain": "board_decision_aftermath",
+          "task_kind": "consequence",
+          "competency": "okonomiledelse",
+          "pressure": "ha_rett_vs_bygge_institusjonell_hukommelse",
+          "choice_axis": "lukk_med_beslutningsspor_vs_omskriv_historien",
+          "consequence_axis": "langsiktig_tillit_vs_statusforsvar",
+          "narrative_arc": "fra_likviditetssignal_til_sporbart_styrevalg_og_finansielt_etterspill",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+            ],
+            "institution_id": "naeringsliv_okonomifunksjon_001",
+            "rework_of_scene_id": "naeringsliv_okonomi_finanssjef_realism_board_handoff_wait_001",
+            "priority": "high"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lukk caset med prognose, rework, anbefaling, vedtak og læring som separate lag",
+              "reply": "Jeg arkiverer hva vi visste, hva Ingrid kontrollerte, hva som endret likviditeten, hva vi anbefalte, hva styret besluttet og hva vi skal lære.",
+              "effect": 2,
+              "feedback": "Caset blir institusjonell hukommelse. Nora, Ingrid, banken og styret kan vurdere økonomifunksjonen på metode, timing og brukbarhet fremfor etterpåklokskap.",
+              "effects": {
+                "stats": {
+                  "quality": 3,
+                  "trust": 3,
+                  "risk": -2
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "finance_mgr_case_closed",
+                    "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001",
+                    "to_status": "closed",
+                    "to_phase": "decision_recorded",
+                    "note": "Styrevedtak, prognosespor, rework og læringspunkter er dokumentert og caset er lukket."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "finance_mgr_aftermath_traced",
+                    "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001",
+                    "flag": "forecast_recommendation_decision_and_outcome_separated"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "finance_mgr_standing_ingrid_aftermath",
+                    "audience_id": "professional:ingrid_controller",
+                    "delta": 3,
+                    "reason": "Ingrid ser at kontrollarbeidet hennes fortsatt er synlig i det avsluttede beslutningssporet og ikke blir skrevet ut av historien av det endelige utfallet.",
+                    "source_actor_id": "ingrid_controller"
+                  },
+                  {
+                    "event_id": "finance_mgr_standing_board_aftermath",
+                    "audience_id": "professional:styreleder",
+                    "delta": 3,
+                    "reason": "Styreleder får et etterprøvbart spor som skiller økonomifunksjonens råd fra styrets eget vedtak og gjør senere læring mulig uten å flytte ansvar bakover.",
+                    "source_actor_id": "styreleder"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Oppsummer caset rundt at den valgte løsningen var riktig og ton ned de tidligere usikkerhetene",
+              "reply": "Jeg gjør etterspillet kort: tiltaket var riktig retning, og jeg rydder bort de fleste mellomversjonene så vi kan gå videre.",
+              "effect": -2,
+              "feedback": "Du får en penere avslutning, men mister dokumentasjonen som forklarer hvorfor beslutningen var rimelig med den kunnskapen som faktisk fantes da den ble tatt.",
+              "effects": {
+                "stats": {
+                  "status": 2,
+                  "quality": -3,
+                  "trust": -3,
+                  "risk": 4
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "finance_mgr_case_closed_sanitized",
+                    "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001",
+                    "to_status": "closed",
+                    "to_phase": "decision_recorded",
+                    "note": "Caset lukkes, men tidligere usikkerhet og endringsspor tones ned i etterdokumentasjonen."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "finance_mgr_aftermath_sanitized",
+                    "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001",
+                    "flag": "decision_history_sanitized_for_status"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "finance_mgr_standing_ingrid_sanitized",
+                    "audience_id": "professional:ingrid_controller",
+                    "delta": -3,
+                    "reason": "Ingrid ser at tidligere avvik, review og rework blir mindre synlige når caset lukkes, noe som svekker teamets tillit til at vanskelige funn faktisk blir bevart.",
+                    "source_actor_id": "ingrid_controller"
+                  },
+                  {
+                    "event_id": "finance_mgr_standing_board_sanitized",
+                    "audience_id": "professional:styreleder",
+                    "delta": -3,
+                    "reason": "Styreleder får en enklere historie, men svakere grunnlag for å skille god styring fra et godt utfall og for å evaluere hvilke premisser som bør endres neste gang.",
+                    "source_actor_id": "styreleder"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

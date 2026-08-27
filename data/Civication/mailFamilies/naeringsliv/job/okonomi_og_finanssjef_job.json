@@ -30,20 +30,33 @@
           "choice_axis": "strategisk_prioritering_vs_relationsbalanse",
           "consequence_axis": "handlingsrom_vs_tillit",
           "narrative_arc": "budsjett_som_makt",
-          "learning_focus": ["kapitalprioritering", "investeringsramme", "budsjettmakt", "ledergruppe"],
+          "learning_focus": [
+            "kapitalprioritering",
+            "investeringsramme",
+            "budsjettmakt",
+            "ledergruppe"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Prioriter tiltak etter dokumentert risiko og effekt, og forklar resten som utsatt beslutning.",
               "effect": 1,
-              "tags": ["styring", "kapitaldisiplin", "integritet"],
+              "tags": [
+                "styring",
+                "kapitaldisiplin",
+                "integritet"
+              ],
               "feedback": "Du gjør knapphet til metode. Avdelingene får ikke alt, men de får en forståelig prioriteringslogikk."
             },
             {
               "id": "B",
               "label": "Fordel rammen jevnt for å bevare ro mellom avdelingene.",
               "effect": -1,
-              "tags": ["relationsfred", "risk", "snarvei"],
+              "tags": [
+                "relationsfred",
+                "risk",
+                "snarvei"
+              ],
               "feedback": "Alle får litt, men ingen får nok. Du kjøper ro, men svekker budsjettets evne til å skape faktisk endring."
             }
           ]
@@ -69,20 +82,34 @@
           "choice_axis": "flate_kutt_vs_evnebasert_prioritering",
           "consequence_axis": "kort_resultat_vs_lang_kapasitet",
           "narrative_arc": "kostnadens_menneskelige_form",
-          "learning_focus": ["kostnadsstyring", "bemanning", "kapasitet", "kvalitet", "strategiske kutt"],
+          "learning_focus": [
+            "kostnadsstyring",
+            "bemanning",
+            "kapasitet",
+            "kvalitet",
+            "strategiske kutt"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Foreslå kutt etter effekt på kapasitet, risiko og kvalitet.",
               "effect": 1,
-              "tags": ["analyse", "styring", "ansvar"],
+              "tags": [
+                "analyse",
+                "styring",
+                "ansvar"
+              ],
               "feedback": "Du gjør kuttene vanskeligere å forklare, men mer ansvarlige. Tallene mister sin falske flathet."
             },
             {
               "id": "B",
               "label": "Legg frem prosentvise flate kutt for alle avdelinger.",
               "effect": -1,
-              "tags": ["tempo", "risk", "relationsbalanse"],
+              "tags": [
+                "tempo",
+                "risk",
+                "relationsbalanse"
+              ],
               "feedback": "Forslaget virker rettferdig, men rammer ulikt. Lik prosent betyr ikke lik konsekvens."
             }
           ]
@@ -114,23 +141,220 @@
           "choice_axis": "faglig_lojalitet_vs_ledelsesro",
           "consequence_axis": "integritet_vs_handlingsrom",
           "narrative_arc": "teamets_tillit",
-          "learning_focus": ["teamledelse", "faglig integritet", "marginforutsetninger", "ledergruppe"],
+          "learning_focus": [
+            "teamledelse",
+            "faglig integritet",
+            "marginforutsetninger",
+            "ledergruppe"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Løft funnet tydelig og gi controlleren faglig støtte.",
               "effect": 1,
-              "tags": ["integritet", "team", "kvalitet"],
+              "tags": [
+                "integritet",
+                "team",
+                "kvalitet"
+              ],
               "feedback": "Du beskytter økonomifunksjonens faglige ryggrad. Ledergruppen får en vanskeligere, men sannere plan."
             },
             {
               "id": "B",
               "label": "Pakk funnet inn som et mulig justeringspunkt for ikke å svekke planen for brått.",
               "effect": -1,
-              "tags": ["politikk", "risk", "avoidance"],
+              "tags": [
+                "politikk",
+                "risk",
+                "avoidance"
+              ],
               "feedback": "Du kjøper tid i ledergruppen, men teamet lærer at presisjon må forhandles før den får stå."
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_okonomi_finanssjef_case_open",
+      "purpose": "Åpner ett vedvarende likviditets- og covenantcase med tydelig myndighetsgrense.",
+      "learning_focus": [
+        "likviditet",
+        "covenant",
+        "persistent_work"
+      ],
+      "mails": [
+        {
+          "id": "naeringsliv_okonomi_finanssjef_realism_liquidity_case_open_001",
+          "mail_type": "job",
+          "mail_family": "role_world_rollout_okonomi_finanssjef_case_open",
+          "role_scope": "okonomi_og_finanssjef",
+          "phase": "advanced",
+          "day_phase": "morning",
+          "priority": 99,
+          "cooldown": 10,
+          "repeatable": false,
+          "stage": "stable",
+          "planned_only": true,
+          "thread_key": "naeringsliv_okonomi_finanssjef_liquidity_realism_001",
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "naeringsliv",
+            "okonomi_og_finanssjef",
+            "persistent_work",
+            "situated_reputation"
+          ],
+          "from": "Nora, daglig leder",
+          "people_ref": "nora_daglig_leder",
+          "person_id": "nora_daglig_leder",
+          "place_id": "barcode",
+          "subject": "Åpne likviditetscaset som ett styringsspor – ikke som en penere månedsrapport",
+          "summary": "Nora trenger et oppdatert beslutningsgrunnlag før leder- og styrebehandling. Resultatet er brukbart, men arbeidskapital, kontantstrøm og covenantbuffer peker mot mindre handlingsrom. Du skal eie økonomifunksjonens styringsspor, men ikke gjøre investeringer eller finansiering bindende uten riktig mandat.",
+          "purpose": "Etablere ett vedvarende likviditets- og covenantcase som kan overleveres, vente, reworkes og lukkes uten at økonomisjefens organisatoriske status blir forvekslet med ubegrenset kapitalmyndighet.",
+          "stakes": "Hvis resultatfortellingen blir hovedsporet, kan ledelsen binde seg til tiltak før kontantrom, covenant og fullmakt er synlige. Hvis caset splittes i flere løse filer, blir det uklart hvilket bilde styret faktisk skal eie.",
+          "situation": [
+            "Resultat, kontantstrøm og covenant er ulike styringssignaler og må stå i samme spor uten å blandes.",
+            "Ingrid skal kvalitetssikre prognosedriverne før saken går videre til bank og styre.",
+            "Du kan lede, prioritere og anbefale innen delegert ansvar; finansiering og kapitalbruk utenfor mandat må til riktig beslutningsnivå."
+          ],
+          "task_domain": "liquidity_case_baseline",
+          "task_kind": "job",
+          "competency": "likviditetsstyring",
+          "pressure": "ledertempo_vs_sporbart_handlingsrom",
+          "choice_axis": "ett_styringscase_vs_resultatfortelling",
+          "consequence_axis": "beslutningskvalitet_vs_kapitalblindhet",
+          "narrative_arc": "fra_likviditetssignal_til_sporbart_styrevalg_og_finansielt_etterspill",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+            ],
+            "institution_id": "naeringsliv_okonomifunksjon_001",
+            "priority": "high"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lås resultat, kontantstrøm, covenant og beslutningseier i ett case",
+              "reply": "Jeg oppretter ett styringscase med prognosedrivere, likviditetsrom, covenantbuffer og neste beslutningseier eksplisitt.",
+              "effect": 2,
+              "feedback": "Nora får retning uten falsk sikkerhet, og Ingrid kan kvalitetssikre ett autoritativt spor før økonomifunksjonen eskalerer tiltak.",
+              "effects": {
+                "stats": {
+                  "quality": 3,
+                  "trust": 2,
+                  "risk": -2
+                },
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "finance_mgr_case_baseline_traced",
+                    "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001",
+                    "flag": "result_cash_covenant_and_decision_owner_traced"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "finance_mgr_standing_nora_open",
+                    "audience_id": "manager:nora_daglig_leder",
+                    "delta": 3,
+                    "reason": "Nora får et beslutningsgrunnlag der resultat, kontantstrøm, covenant og neste beslutningseier er synlige før planen brukes som løfte om handlingsrom.",
+                    "source_actor_id": "nora_daglig_leder"
+                  },
+                  {
+                    "event_id": "finance_mgr_standing_ingrid_open",
+                    "audience_id": "professional:ingrid_controller",
+                    "delta": 3,
+                    "reason": "Ingrid får et autoritativt styringsspor der hennes prognosefunn kan kvalitetssikres og beholdes synlige selv når ledergruppen ønsker en enklere fortelling.",
+                    "source_actor_id": "ingrid_controller"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Hold resultatrapporten som hovedspor og legg likviditet i risikovedlegget",
+              "reply": "Jeg lar hovedpakken styres av resultatbildet og legger likviditet og covenant som risiko vi kan utdype ved behov.",
+              "effect": -2,
+              "feedback": "Du gjør pakken lettere å lese, men det mest handlingskritiske signalet blir sekundært akkurat når organisasjonen trenger å prioritere etter faktisk kontantrom.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -3,
+                  "trust": -2,
+                  "risk": 4
+                },
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "finance_mgr_case_blurred",
+                    "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001",
+                    "flag": "liquidity_and_covenant_reduced_to_appendix"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "finance_mgr_standing_nora_blurred",
+                    "audience_id": "manager:nora_daglig_leder",
+                    "delta": -2,
+                    "reason": "Nora får et roligere hovedbilde, men svakere grunnlag for å forstå hvilke deler av vekstplanen som faktisk kan gjennomføres innen kontant- og covenantrommet.",
+                    "source_actor_id": "nora_daglig_leder"
+                  },
+                  {
+                    "event_id": "finance_mgr_standing_ingrid_blurred",
+                    "audience_id": "professional:ingrid_controller",
+                    "delta": -3,
+                    "reason": "Ingrid ser at dokumenterte likviditets- og covenantfunn er skjøvet bak resultatfortellingen, noe som svekker teamets forventning om at presisjon beskyttes oppover.",
+                    "source_actor_id": "ingrid_controller"
+                  }
+                ]
+              }
+            }
+          ],
+          "effects": {
+            "work_object_ops": [
+              {
+                "op": "create",
+                "event_id": "finance_mgr_liquidity_case_created",
+                "work_object": {
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001",
+                  "kind": "liquidity_and_covenant_case",
+                  "role_scope": "okonomi_og_finanssjef",
+                  "institution_id": "naeringsliv_okonomifunksjon_001",
+                  "title": "Likviditets- og covenantcase: prognose, tiltak og beslutningsspor",
+                  "status": "in_progress",
+                  "phase": "baseline_and_driver_lock",
+                  "people_refs": [
+                    "nora_daglig_leder",
+                    "ingrid_controller",
+                    "bankkontakt",
+                    "styreleder"
+                  ],
+                  "place_refs": [
+                    "barcode",
+                    "bankplassen",
+                    "oslo_bors"
+                  ],
+                  "knowledge_refs": [
+                    "data/Civication/roleModels/naeringsliv/okonomi_og_finanssjef.json",
+                    "data/Civication/workGrammars/naeringsliv/okonomi_og_finanssjef.json",
+                    "data/Civication/mailFamilies/naeringsliv/knowledge/okonomi_og_finanssjef_knowledge.json"
+                  ],
+                  "open_questions": [
+                    "Hva er resultat, kontantstrøm og covenantbuffer i samme prognoseversjon?",
+                    "Hvilke drivere må Ingrid kvalitetssikre før bank- og styrekommunikasjon?",
+                    "Hvilke tiltak ligger innen delegert ansvar, og hvilke må besluttes av daglig leder eller styre?"
+                  ],
+                  "deadline": "styrebehandling_dag_12",
+                  "confidentiality": "internt_styringsgrunnlag",
+                  "flags": [
+                    "finance_mgr_liquidity_case_opened"
+                  ],
+                  "shared": false
+                }
+              }
+            ]
+          }
         }
       ]
     }

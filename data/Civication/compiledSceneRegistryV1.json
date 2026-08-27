@@ -134880,6 +134880,292 @@
       "category": "naeringsliv",
       "compatibility_projection": {
         "category": "naeringsliv",
+        "choice_axis": "lukk_med_beslutningsspor_vs_omskriv_historien",
+        "choices": [
+          {
+            "effect": 2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:ingrid_controller",
+                  "delta": 3,
+                  "event_id": "finance_mgr_standing_ingrid_aftermath",
+                  "reason": "Ingrid ser at kontrollarbeidet hennes fortsatt er synlig i det avsluttede beslutningssporet og ikke blir skrevet ut av historien av det endelige utfallet.",
+                  "source_actor_id": "ingrid_controller"
+                },
+                {
+                  "audience_id": "professional:styreleder",
+                  "delta": 3,
+                  "event_id": "finance_mgr_standing_board_aftermath",
+                  "reason": "Styreleder får et etterprøvbart spor som skiller økonomifunksjonens råd fra styrets eget vedtak og gjør senere læring mulig uten å flytte ansvar bakover.",
+                  "source_actor_id": "styreleder"
+                }
+              ],
+              "stats": {
+                "quality": 3,
+                "risk": -2,
+                "trust": 3
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "finance_mgr_case_closed",
+                  "note": "Styrevedtak, prognosespor, rework og læringspunkter er dokumentert og caset er lukket.",
+                  "op": "transition",
+                  "to_phase": "decision_recorded",
+                  "to_status": "closed",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                },
+                {
+                  "event_id": "finance_mgr_aftermath_traced",
+                  "flag": "forecast_recommendation_decision_and_outcome_separated",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                }
+              ]
+            },
+            "feedback": "Caset blir institusjonell hukommelse. Nora, Ingrid, banken og styret kan vurdere økonomifunksjonen på metode, timing og brukbarhet fremfor etterpåklokskap.",
+            "id": "A",
+            "label": "Lukk caset med prognose, rework, anbefaling, vedtak og læring som separate lag",
+            "reply": "Jeg arkiverer hva vi visste, hva Ingrid kontrollerte, hva som endret likviditeten, hva vi anbefalte, hva styret besluttet og hva vi skal lære."
+          },
+          {
+            "effect": -2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:ingrid_controller",
+                  "delta": -3,
+                  "event_id": "finance_mgr_standing_ingrid_sanitized",
+                  "reason": "Ingrid ser at tidligere avvik, review og rework blir mindre synlige når caset lukkes, noe som svekker teamets tillit til at vanskelige funn faktisk blir bevart.",
+                  "source_actor_id": "ingrid_controller"
+                },
+                {
+                  "audience_id": "professional:styreleder",
+                  "delta": -3,
+                  "event_id": "finance_mgr_standing_board_sanitized",
+                  "reason": "Styreleder får en enklere historie, men svakere grunnlag for å skille god styring fra et godt utfall og for å evaluere hvilke premisser som bør endres neste gang.",
+                  "source_actor_id": "styreleder"
+                }
+              ],
+              "stats": {
+                "quality": -3,
+                "risk": 4,
+                "status": 2,
+                "trust": -3
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "finance_mgr_case_closed_sanitized",
+                  "note": "Caset lukkes, men tidligere usikkerhet og endringsspor tones ned i etterdokumentasjonen.",
+                  "op": "transition",
+                  "to_phase": "decision_recorded",
+                  "to_status": "closed",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                },
+                {
+                  "event_id": "finance_mgr_aftermath_sanitized",
+                  "flag": "decision_history_sanitized_for_status",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                }
+              ]
+            },
+            "feedback": "Du får en penere avslutning, men mister dokumentasjonen som forklarer hvorfor beslutningen var rimelig med den kunnskapen som faktisk fantes da den ble tatt.",
+            "id": "B",
+            "label": "Oppsummer caset rundt at den valgte løsningen var riktig og ton ned de tidligere usikkerhetene",
+            "reply": "Jeg gjør etterspillet kort: tiltaket var riktig retning, og jeg rydder bort de fleste mellomversjonene så vi kan gå videre."
+          }
+        ],
+        "competency": "okonomiledelse",
+        "consequence_axis": "langsiktig_tillit_vs_statusforsvar",
+        "cooldown": 10,
+        "day_phase": "evening",
+        "from": "Styreleder",
+        "id": "naeringsliv_okonomi_finanssjef_realism_board_aftermath_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_rollout_okonomi_finanssjef_board_aftermath",
+        "mail_type": "consequence",
+        "narrative_arc": "fra_likviditetssignal_til_sporbart_styrevalg_og_finansielt_etterspill",
+        "people_ref": "styreleder",
+        "person_id": "styreleder",
+        "phase": "advanced",
+        "place_id": "oslo_bors",
+        "planned_only": true,
+        "pressure": "ha_rett_vs_bygge_institusjonell_hukommelse",
+        "priority": 95,
+        "purpose": "Materialisere styringsetterspill og ansvar uten resultatbias: økonomisjefen skal kunne lære av hva som faktisk var kjent og besluttet, uten å gjøre senere utfall til bevis for at usikkerheten aldri fantes.",
+        "repeatable": false,
+        "role_scope": "okonomi_og_finanssjef",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/consequence/okonomi_og_finanssjef_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Styrets vedtak er et eget institusjonelt event, ikke en forlengelse av økonomisjefens anbefaling.",
+          "Caset inneholder nå baseline, Ingrid-handoff, waiting, likviditetsrework og styrehandoff i samme spor.",
+          "Etterspillet skal bevare hva økonomifunksjonen faktisk visste og anbefalte på beslutningstidspunktet."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis etterspillet reduseres til om tiltaket «virket», lærer økonomifunksjonen å beskytte egen status fremfor å forbedre prognoser, handoff og governance. Da starter neste case med dårligere institusjonell hukommelse.",
+        "subject": "Styret har besluttet – nå må økonomifunksjonen skille prognose, råd, vedtak og faktisk effekt",
+        "summary": "Styret har valgt tiltak. Uansett om beslutningen følger din foretrukne løsning, skal samme case lukkes med opprinnelig prognose, Ingrid-review, likviditetsrework, bankdialog, økonomifaglig anbefaling og faktisk beslutningseier som separate lag. Standing etterpå skal handle om sporbar styring, ikke om å omskrive historien.",
+        "tags": [
+          "role_world_realism",
+          "controlled_rollout",
+          "naeringsliv",
+          "okonomi_og_finanssjef",
+          "persistent_work",
+          "situated_reputation"
+        ],
+        "task_domain": "board_decision_aftermath",
+        "task_kind": "consequence",
+        "thread_key": "naeringsliv_okonomi_finanssjef_liquidity_realism_001",
+        "work_context": {
+          "institution_id": "naeringsliv_okonomifunksjon_001",
+          "object_ids": [
+            "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+          ],
+          "priority": "high",
+          "rework_of_scene_id": "naeringsliv_okonomi_finanssjef_realism_board_handoff_wait_001"
+        }
+      },
+      "id": "naeringsliv_okonomi_finanssjef_realism_board_aftermath_001",
+      "mail_type": "consequence",
+      "role_scope": "okonomi_og_finanssjef",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:ingrid_controller",
+                  "delta": 3,
+                  "event_id": "finance_mgr_standing_ingrid_aftermath",
+                  "reason": "Ingrid ser at kontrollarbeidet hennes fortsatt er synlig i det avsluttede beslutningssporet og ikke blir skrevet ut av historien av det endelige utfallet.",
+                  "source_actor_id": "ingrid_controller"
+                },
+                {
+                  "audience_id": "professional:styreleder",
+                  "delta": 3,
+                  "event_id": "finance_mgr_standing_board_aftermath",
+                  "reason": "Styreleder får et etterprøvbart spor som skiller økonomifunksjonens råd fra styrets eget vedtak og gjør senere læring mulig uten å flytte ansvar bakover.",
+                  "source_actor_id": "styreleder"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "finance_mgr_case_closed",
+                  "note": "Styrevedtak, prognosespor, rework og læringspunkter er dokumentert og caset er lukket.",
+                  "op": "transition",
+                  "to_phase": "decision_recorded",
+                  "to_status": "closed",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                },
+                {
+                  "event_id": "finance_mgr_aftermath_traced",
+                  "flag": "forecast_recommendation_decision_and_outcome_separated",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                }
+              ]
+            },
+            "feedback": "Caset blir institusjonell hukommelse. Nora, Ingrid, banken og styret kan vurdere økonomifunksjonen på metode, timing og brukbarhet fremfor etterpåklokskap.",
+            "id": "A",
+            "label": "Lukk caset med prognose, rework, anbefaling, vedtak og læring som separate lag",
+            "reply": "Jeg arkiverer hva vi visste, hva Ingrid kontrollerte, hva som endret likviditeten, hva vi anbefalte, hva styret besluttet og hva vi skal lære."
+          },
+          {
+            "effects": {
+              "score_delta": -2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:ingrid_controller",
+                  "delta": -3,
+                  "event_id": "finance_mgr_standing_ingrid_sanitized",
+                  "reason": "Ingrid ser at tidligere avvik, review og rework blir mindre synlige når caset lukkes, noe som svekker teamets tillit til at vanskelige funn faktisk blir bevart.",
+                  "source_actor_id": "ingrid_controller"
+                },
+                {
+                  "audience_id": "professional:styreleder",
+                  "delta": -3,
+                  "event_id": "finance_mgr_standing_board_sanitized",
+                  "reason": "Styreleder får en enklere historie, men svakere grunnlag for å skille god styring fra et godt utfall og for å evaluere hvilke premisser som bør endres neste gang.",
+                  "source_actor_id": "styreleder"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "finance_mgr_case_closed_sanitized",
+                  "note": "Caset lukkes, men tidligere usikkerhet og endringsspor tones ned i etterdokumentasjonen.",
+                  "op": "transition",
+                  "to_phase": "decision_recorded",
+                  "to_status": "closed",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                },
+                {
+                  "event_id": "finance_mgr_aftermath_sanitized",
+                  "flag": "decision_history_sanitized_for_status",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                }
+              ]
+            },
+            "feedback": "Du får en penere avslutning, men mister dokumentasjonen som forklarer hvorfor beslutningen var rimelig med den kunnskapen som faktisk fantes da den ble tatt.",
+            "id": "B",
+            "label": "Oppsummer caset rundt at den valgte løsningen var riktig og ton ned de tidligere usikkerhetene",
+            "reply": "Jeg gjør etterspillet kort: tiltaket var riktig retning, og jeg rydder bort de fleste mellomversjonene så vi kan gå videre."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Styrets vedtak er et eget institusjonelt event, ikke en forlengelse av økonomisjefens anbefaling.",
+            "Caset inneholder nå baseline, Ingrid-handoff, waiting, likviditetsrework og styrehandoff i samme spor.",
+            "Etterspillet skal bevare hva økonomifunksjonen faktisk visste og anbefalte på beslutningstidspunktet."
+          ],
+          "subject": "Styret har besluttet – nå må økonomifunksjonen skille prognose, råd, vedtak og faktisk effekt",
+          "summary": "Styret har valgt tiltak. Uansett om beslutningen følger din foretrukne løsning, skal samme case lukkes med opprinnelig prognose, Ingrid-review, likviditetsrework, bankdialog, økonomifaglig anbefaling og faktisk beslutningseier som separate lag. Standing etterpå skal handle om sporbar styring, ikke om å omskrive historien."
+        },
+        "day_phase": "evening",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "naeringsliv_okonomi_finanssjef_realism_board_aftermath_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "oslo_bors",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "naeringsliv_okonomi_finanssjef_realism_board_aftermath_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/consequence/okonomi_og_finanssjef_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "naeringsliv_okonomi_finanssjef_liquidity_realism_001",
+        "version": 1,
+        "work_context": {
+          "institution_id": "naeringsliv_okonomifunksjon_001",
+          "object_ids": [
+            "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+          ],
+          "priority": "high",
+          "rework_of_scene_id": "naeringsliv_okonomi_finanssjef_realism_board_handoff_wait_001"
+        }
+      },
+      "source_hash": "44b91e7e3c21311bde6af700c48ec621b344d65b7c5f800dd39a55f6fa8a07ad",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/consequence/okonomi_og_finanssjef_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
         "choice_axis": "vise_endringsspor_og_fullmakt_vs_selge_en_beroligende_forklaring",
         "choices": [
           {
@@ -134999,6 +135285,292 @@
       },
       "source_hash": "f014a04980539708676a3f706411ff61ae85f6b24796116b7b6a5b079a8c3442",
       "source_path": "data/Civication/mailFamilies/naeringsliv/consequence/okonomi_og_finanssjef_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
+        "choice_axis": "sporbar_rework_vs_risikofotnote",
+        "choices": [
+          {
+            "effect": 2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:ingrid_controller",
+                  "delta": 3,
+                  "event_id": "finance_mgr_standing_ingrid_rework",
+                  "reason": "Ingrid ser at kvalitetssikringen hennes brukes som et faktisk kontrollpunkt og at nye likviditetsdata åpner et eksplisitt endringsspor i stedet for å viske ut reviewet.",
+                  "source_actor_id": "ingrid_controller"
+                },
+                {
+                  "audience_id": "professional:bankkontakt",
+                  "delta": 3,
+                  "event_id": "finance_mgr_standing_bank_rework",
+                  "reason": "Bankkontakten får et styringsgrunnlag som skiller opprinnelig prognose fra ny kontantinformasjon og viser hvordan covenantbufferen faktisk er revidert.",
+                  "source_actor_id": "bankkontakt"
+                }
+              ],
+              "stats": {
+                "quality": 3,
+                "risk": -3,
+                "trust": 3
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "finance_mgr_case_liquidity_rework",
+                  "note": "Utsatt innbetaling og arbeidskapital flytter likviditets- og covenantbildet; samme case åpnes for sporbar rework.",
+                  "op": "transition",
+                  "to_phase": "liquidity_rework",
+                  "to_status": "in_progress",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                },
+                {
+                  "event_id": "finance_mgr_rework_traced",
+                  "flag": "cash_and_covenant_reworked_with_change_log",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                }
+              ]
+            },
+            "feedback": "Reviewet blir et kontrollpunkt i et levende styringsspor. Alle kan se hva som var sant før, hva som endret seg og hvorfor anbefalingen må revideres.",
+            "id": "A",
+            "label": "Åpne samme case for rework og vis eksakt hvilke drivere som flyttet likviditet og covenant",
+            "reply": "Jeg markerer innbetalingen som nytt premiss, oppdaterer likviditet/covenant og sender endringssporet tilbake til Ingrid, Nora og bankforberedelsen."
+          },
+          {
+            "effect": -2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:ingrid_controller",
+                  "delta": -4,
+                  "event_id": "finance_mgr_standing_ingrid_footnote",
+                  "reason": "Ingrid ser at et funn som endrer styringsrommet blir redusert til fotnote etter at hun nettopp har kvalitetssikret prognosen som beslutningsgrunnlag.",
+                  "source_actor_id": "ingrid_controller"
+                },
+                {
+                  "audience_id": "professional:bankkontakt",
+                  "delta": -3,
+                  "event_id": "finance_mgr_standing_bank_footnote",
+                  "reason": "Bankkontakten får et roligere hovedbilde, men svakere grunnlag for å forstå hvorfor kontant- og covenantrommet er mindre enn den tidligere prognosen viste.",
+                  "source_actor_id": "bankkontakt"
+                }
+              ],
+              "stats": {
+                "quality": -3,
+                "risk": 5,
+                "status": 2,
+                "trust": -3
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "finance_mgr_case_rework_avoided",
+                  "note": "Ny kontantinformasjon er kjent, men spilleren forsøker å holde hovedprognosen uendret.",
+                  "op": "transition",
+                  "to_phase": "liquidity_rework",
+                  "to_status": "in_progress",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                },
+                {
+                  "event_id": "finance_mgr_cash_footnote",
+                  "flag": "material_cash_change_reduced_to_risk_note",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                }
+              ]
+            },
+            "feedback": "Pakken endrer seg mindre, men caset later som et endret betalingsrom ikke skal påvirke styringen før konsekvensen blir større.",
+            "id": "B",
+            "label": "Behold hovedprognosen og legg innbetalingen som midlertidig risiko",
+            "reply": "Jeg beholder hovedprognosen så leder- og styrepakken står stabilt, og beskriver den utsatte innbetalingen som et midlertidig risikopunkt."
+          }
+        ],
+        "competency": "likviditetsstyring",
+        "consequence_axis": "tidlig_handlingsrom_vs_sen_overraskelse",
+        "cooldown": 10,
+        "day_phase": "morning",
+        "from": "Ingrid, controller",
+        "id": "naeringsliv_okonomi_finanssjef_realism_liquidity_rework_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_rollout_okonomi_finanssjef_liquidity_rework",
+        "mail_type": "event",
+        "narrative_arc": "fra_likviditetssignal_til_sporbart_styrevalg_og_finansielt_etterspill",
+        "people_ref": "ingrid_controller",
+        "person_id": "ingrid_controller",
+        "phase": "advanced",
+        "place_id": "bankplassen",
+        "planned_only": true,
+        "pressure": "presentasjonsstabilitet_vs_nytt_kontantrom",
+        "priority": 97,
+        "purpose": "Bevise at økonomiledelsens arbeidsrytme fortsetter etter review: ny likviditetsinformasjon kan legitimt åpne samme arbeidsobjekt igjen uten å gjøre tidligere kvalitetssikring meningsløs.",
+        "repeatable": false,
+        "role_scope": "okonomi_og_finanssjef",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/event/okonomi_og_finanssjef_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den utsatte innbetalingen endrer kontanttiming uten å endre periodisert resultat på samme måte.",
+          "Covenantbufferen blir mindre, men det foreligger ikke brudd; tiltak og tidlig kommunikasjon kan fortsatt bevare alternativer.",
+          "Nora må få vite om prioriteringer må endres, men kan ikke kreve at økonomifunksjonen reduserer et reelt likviditetssignal til presentasjonsstøy."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis endringen bare legges i en risikofotnote, kan bank og styre få en kontrollert, men utdatert prognose. Hvis hele modellen bygges om uten endringsspor, forsvinner Ingrids reviewpunkt og læringen om hva som faktisk flyttet handlingsrommet.",
+        "subject": "Ny innbetalingsforsinkelse flytter covenantbufferen – reviewet må åpne caset for rework",
+        "summary": "Ingrid fullfører reviewet samtidig som en stor kundeinnbetaling flyttes og arbeidskapitalen binder mer enn baseprognosen. Den gamle versjonen var kontrollert, men er ikke lenger beslutningsrelevant. Samme case må åpnes for sporbar rework før bankdialog og styrepakke.",
+        "tags": [
+          "role_world_realism",
+          "controlled_rollout",
+          "naeringsliv",
+          "okonomi_og_finanssjef",
+          "persistent_work",
+          "situated_reputation"
+        ],
+        "task_domain": "liquidity_triggered_rework",
+        "task_kind": "event",
+        "thread_key": "naeringsliv_okonomi_finanssjef_liquidity_realism_001",
+        "work_context": {
+          "institution_id": "naeringsliv_okonomifunksjon_001",
+          "object_ids": [
+            "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+          ],
+          "priority": "high",
+          "rework_of_scene_id": "naeringsliv_okonomi_finanssjef_realism_controller_handoff_wait_001"
+        }
+      },
+      "id": "naeringsliv_okonomi_finanssjef_realism_liquidity_rework_001",
+      "mail_type": "event",
+      "role_scope": "okonomi_og_finanssjef",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:ingrid_controller",
+                  "delta": 3,
+                  "event_id": "finance_mgr_standing_ingrid_rework",
+                  "reason": "Ingrid ser at kvalitetssikringen hennes brukes som et faktisk kontrollpunkt og at nye likviditetsdata åpner et eksplisitt endringsspor i stedet for å viske ut reviewet.",
+                  "source_actor_id": "ingrid_controller"
+                },
+                {
+                  "audience_id": "professional:bankkontakt",
+                  "delta": 3,
+                  "event_id": "finance_mgr_standing_bank_rework",
+                  "reason": "Bankkontakten får et styringsgrunnlag som skiller opprinnelig prognose fra ny kontantinformasjon og viser hvordan covenantbufferen faktisk er revidert.",
+                  "source_actor_id": "bankkontakt"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "finance_mgr_case_liquidity_rework",
+                  "note": "Utsatt innbetaling og arbeidskapital flytter likviditets- og covenantbildet; samme case åpnes for sporbar rework.",
+                  "op": "transition",
+                  "to_phase": "liquidity_rework",
+                  "to_status": "in_progress",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                },
+                {
+                  "event_id": "finance_mgr_rework_traced",
+                  "flag": "cash_and_covenant_reworked_with_change_log",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                }
+              ]
+            },
+            "feedback": "Reviewet blir et kontrollpunkt i et levende styringsspor. Alle kan se hva som var sant før, hva som endret seg og hvorfor anbefalingen må revideres.",
+            "id": "A",
+            "label": "Åpne samme case for rework og vis eksakt hvilke drivere som flyttet likviditet og covenant",
+            "reply": "Jeg markerer innbetalingen som nytt premiss, oppdaterer likviditet/covenant og sender endringssporet tilbake til Ingrid, Nora og bankforberedelsen."
+          },
+          {
+            "effects": {
+              "score_delta": -2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:ingrid_controller",
+                  "delta": -4,
+                  "event_id": "finance_mgr_standing_ingrid_footnote",
+                  "reason": "Ingrid ser at et funn som endrer styringsrommet blir redusert til fotnote etter at hun nettopp har kvalitetssikret prognosen som beslutningsgrunnlag.",
+                  "source_actor_id": "ingrid_controller"
+                },
+                {
+                  "audience_id": "professional:bankkontakt",
+                  "delta": -3,
+                  "event_id": "finance_mgr_standing_bank_footnote",
+                  "reason": "Bankkontakten får et roligere hovedbilde, men svakere grunnlag for å forstå hvorfor kontant- og covenantrommet er mindre enn den tidligere prognosen viste.",
+                  "source_actor_id": "bankkontakt"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "finance_mgr_case_rework_avoided",
+                  "note": "Ny kontantinformasjon er kjent, men spilleren forsøker å holde hovedprognosen uendret.",
+                  "op": "transition",
+                  "to_phase": "liquidity_rework",
+                  "to_status": "in_progress",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                },
+                {
+                  "event_id": "finance_mgr_cash_footnote",
+                  "flag": "material_cash_change_reduced_to_risk_note",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                }
+              ]
+            },
+            "feedback": "Pakken endrer seg mindre, men caset later som et endret betalingsrom ikke skal påvirke styringen før konsekvensen blir større.",
+            "id": "B",
+            "label": "Behold hovedprognosen og legg innbetalingen som midlertidig risiko",
+            "reply": "Jeg beholder hovedprognosen så leder- og styrepakken står stabilt, og beskriver den utsatte innbetalingen som et midlertidig risikopunkt."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den utsatte innbetalingen endrer kontanttiming uten å endre periodisert resultat på samme måte.",
+            "Covenantbufferen blir mindre, men det foreligger ikke brudd; tiltak og tidlig kommunikasjon kan fortsatt bevare alternativer.",
+            "Nora må få vite om prioriteringer må endres, men kan ikke kreve at økonomifunksjonen reduserer et reelt likviditetssignal til presentasjonsstøy."
+          ],
+          "subject": "Ny innbetalingsforsinkelse flytter covenantbufferen – reviewet må åpne caset for rework",
+          "summary": "Ingrid fullfører reviewet samtidig som en stor kundeinnbetaling flyttes og arbeidskapitalen binder mer enn baseprognosen. Den gamle versjonen var kontrollert, men er ikke lenger beslutningsrelevant. Samme case må åpnes for sporbar rework før bankdialog og styrepakke."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "naeringsliv_okonomi_finanssjef_realism_liquidity_rework_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "bankplassen",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "naeringsliv_okonomi_finanssjef_realism_liquidity_rework_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/event/okonomi_og_finanssjef_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "naeringsliv_okonomi_finanssjef_liquidity_realism_001",
+        "version": 1,
+        "work_context": {
+          "institution_id": "naeringsliv_okonomifunksjon_001",
+          "object_ids": [
+            "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+          ],
+          "priority": "high",
+          "rework_of_scene_id": "naeringsliv_okonomi_finanssjef_realism_controller_handoff_wait_001"
+        }
+      },
+      "source_hash": "d2f89cd3d57e7e656f538b31bca4d657e77540d21e81026ae694303efd011b79",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/event/okonomi_og_finanssjef_event.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -135243,6 +135815,296 @@
       "category": "naeringsliv",
       "compatibility_projection": {
         "category": "naeringsliv",
+        "choice_axis": "overlevere_og_vente_vs_foregripe_vedtak",
+        "choices": [
+          {
+            "effect": 2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:nora_daglig_leder",
+                  "delta": 3,
+                  "event_id": "finance_mgr_standing_nora_board",
+                  "reason": "Nora får en tydelig anbefaling hun kan lede etter samtidig som grensene mellom operativ prioritering, økonomifaglig råd og styrets bindende kapitalvedtak forblir synlige.",
+                  "source_actor_id": "nora_daglig_leder"
+                },
+                {
+                  "audience_id": "professional:styreleder",
+                  "delta": 4,
+                  "event_id": "finance_mgr_standing_board_clear",
+                  "reason": "Styreleder mottar et beslutningsgrunnlag som viser likviditet, covenant, tiltak og fullmakt uten at økonomifunksjonen allerede har sosialt avgjort saken.",
+                  "source_actor_id": "styreleder"
+                }
+              ],
+              "stats": {
+                "quality": 2,
+                "risk": -3,
+                "trust": 3
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "finance_mgr_case_waiting_for_board",
+                  "note": "Oppdatert styringsgrunnlag er overlevert; caset venter på styrets beslutning om tiltak utenfor delegert ramme.",
+                  "op": "transition",
+                  "to_phase": "awaiting_board_decision",
+                  "to_status": "waiting",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                },
+                {
+                  "event_id": "finance_mgr_board_handoff_traced",
+                  "flag": "recommendation_separated_from_board_decision",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                }
+              ]
+            },
+            "feedback": "Nora og styret kan bruke økonomifunksjonens arbeid uten at faglig tyngde blir gjort om til beslutningsmyndighet. Ventingen blir en eksplisitt del av casets livsløp.",
+            "id": "A",
+            "label": "Overlever anbefalingen med tiltak, downside og tydelig styrebeslutning – og marker waiting",
+            "reply": "Jeg sender tiltak, likviditetseffekt, covenant og min anbefaling som beslutningsgrunnlag, og markerer at de bindende valgene eies av styret."
+          },
+          {
+            "effect": -2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:nora_daglig_leder",
+                  "delta": -3,
+                  "event_id": "finance_mgr_standing_nora_prejudged",
+                  "reason": "Nora må håndtere organisasjonsforventninger som økonomifunksjonen har skapt før styret faktisk har eid beslutningen om kapital- og likviditetstiltakene.",
+                  "source_actor_id": "nora_daglig_leder"
+                },
+                {
+                  "audience_id": "professional:styreleder",
+                  "delta": -4,
+                  "event_id": "finance_mgr_standing_board_prejudged",
+                  "reason": "Styreleder ser at økonomisjefens høye interne status er brukt til å redusere et reelt styrevalg til en formalitet før beslutningsorganet har behandlet saken.",
+                  "source_actor_id": "styreleder"
+                }
+              ],
+              "stats": {
+                "quality": -2,
+                "risk": 5,
+                "status": 2,
+                "trust": -4
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "finance_mgr_case_waiting_prejudged",
+                  "note": "Caset venter fortsatt på styret selv om spilleren sosialt har foregrepet utfallet.",
+                  "op": "transition",
+                  "to_phase": "awaiting_board_decision",
+                  "to_status": "waiting",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                },
+                {
+                  "event_id": "finance_mgr_board_prejudged",
+                  "flag": "board_outcome_socially_prejudged",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                }
+              ]
+            },
+            "feedback": "Du reduserer ubehaget ved waiting ved å gjøre styrets beslutning til etterarbeid. Det kan få organisasjonen til å handle før mandatet faktisk finnes.",
+            "id": "B",
+            "label": "Kommuniser internt at tiltakspakken i praksis er besluttet siden tallene peker så tydelig",
+            "reply": "Jeg sier at tiltakene i praksis er klare og at vi bare venter på styrets formelle bekreftelse."
+          }
+        ],
+        "competency": "styrekommunikasjon",
+        "consequence_axis": "governance_tillit_vs_mandatlekkasje",
+        "cooldown": 10,
+        "day_phase": "afternoon",
+        "from": "Nora, daglig leder",
+        "id": "naeringsliv_okonomi_finanssjef_realism_board_handoff_wait_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_rollout_okonomi_finanssjef_board_wait",
+        "mail_type": "followup",
+        "narrative_arc": "fra_likviditetssignal_til_sporbart_styrevalg_og_finansielt_etterspill",
+        "people_ref": "nora_daglig_leder",
+        "person_id": "nora_daglig_leder",
+        "phase": "advanced",
+        "place_id": "oslo_bors",
+        "planned_only": true,
+        "pressure": "organisatorisk_handlingspress_vs_formell_beslutning",
+        "priority": 96,
+        "purpose": "Koble handoff og venting direkte til fullmaktsgrensen: økonomisjefens standing kan påvirke hvor mye rådet blir lyttet til, men kan ikke gjøre styrets kapitalvalg til en administrativ formalitet.",
+        "repeatable": false,
+        "role_scope": "okonomi_og_finanssjef",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/followup/okonomi_og_finanssjef_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Nora eier den operative strategien, men vesentlige kapitalvalg må til styret når de ligger utenfor delegert ramme.",
+          "Ingrid har faglig standing i prognosen og banken i kredittrisiko, men ingen av dem kan erstatte styrets beslutning.",
+          "Spilleren må tåle at et godt styringsgrunnlag står stille mens beslutningsorganet gjør sitt arbeid."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis økonomisjefen begynner å kommunisere tiltakene som vedtatt før styret har behandlet saken, flyttes forventninger og organisasjonsatferd foran formell myndighet. Da kan økonomifunksjonens høye status bli en skjult omvei rundt governance.",
+        "subject": "Styringsgrunnlaget er klart – nå må økonomisjefen overlevere og vente på riktig beslutningsnivå",
+        "summary": "Likviditetsreworket er ferdig, Ingrid har kontrollert endringssporet og banken har fått et tidlig bilde. Nora sender saken til styret fordi investeringsbrems, finansieringsgrep eller kapitalprioritering går utover ditt delegerte mandat. Din rolle går fra aktiv styring til eksplisitt waiting på styrets beslutning.",
+        "tags": [
+          "role_world_realism",
+          "controlled_rollout",
+          "naeringsliv",
+          "okonomi_og_finanssjef",
+          "persistent_work",
+          "situated_reputation"
+        ],
+        "task_domain": "board_handoff_and_waiting",
+        "task_kind": "followup",
+        "thread_key": "naeringsliv_okonomi_finanssjef_liquidity_realism_001",
+        "work_context": {
+          "handoff_to_actor_id": "styreleder",
+          "institution_id": "naeringsliv_okonomifunksjon_001",
+          "object_ids": [
+            "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+          ],
+          "priority": "high",
+          "rework_of_scene_id": "naeringsliv_okonomi_finanssjef_realism_liquidity_rework_001",
+          "waiting_for_actor_id": "styreleder"
+        }
+      },
+      "id": "naeringsliv_okonomi_finanssjef_realism_board_handoff_wait_001",
+      "mail_type": "followup",
+      "role_scope": "okonomi_og_finanssjef",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:nora_daglig_leder",
+                  "delta": 3,
+                  "event_id": "finance_mgr_standing_nora_board",
+                  "reason": "Nora får en tydelig anbefaling hun kan lede etter samtidig som grensene mellom operativ prioritering, økonomifaglig råd og styrets bindende kapitalvedtak forblir synlige.",
+                  "source_actor_id": "nora_daglig_leder"
+                },
+                {
+                  "audience_id": "professional:styreleder",
+                  "delta": 4,
+                  "event_id": "finance_mgr_standing_board_clear",
+                  "reason": "Styreleder mottar et beslutningsgrunnlag som viser likviditet, covenant, tiltak og fullmakt uten at økonomifunksjonen allerede har sosialt avgjort saken.",
+                  "source_actor_id": "styreleder"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "finance_mgr_case_waiting_for_board",
+                  "note": "Oppdatert styringsgrunnlag er overlevert; caset venter på styrets beslutning om tiltak utenfor delegert ramme.",
+                  "op": "transition",
+                  "to_phase": "awaiting_board_decision",
+                  "to_status": "waiting",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                },
+                {
+                  "event_id": "finance_mgr_board_handoff_traced",
+                  "flag": "recommendation_separated_from_board_decision",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                }
+              ]
+            },
+            "feedback": "Nora og styret kan bruke økonomifunksjonens arbeid uten at faglig tyngde blir gjort om til beslutningsmyndighet. Ventingen blir en eksplisitt del av casets livsløp.",
+            "id": "A",
+            "label": "Overlever anbefalingen med tiltak, downside og tydelig styrebeslutning – og marker waiting",
+            "reply": "Jeg sender tiltak, likviditetseffekt, covenant og min anbefaling som beslutningsgrunnlag, og markerer at de bindende valgene eies av styret."
+          },
+          {
+            "effects": {
+              "score_delta": -2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:nora_daglig_leder",
+                  "delta": -3,
+                  "event_id": "finance_mgr_standing_nora_prejudged",
+                  "reason": "Nora må håndtere organisasjonsforventninger som økonomifunksjonen har skapt før styret faktisk har eid beslutningen om kapital- og likviditetstiltakene.",
+                  "source_actor_id": "nora_daglig_leder"
+                },
+                {
+                  "audience_id": "professional:styreleder",
+                  "delta": -4,
+                  "event_id": "finance_mgr_standing_board_prejudged",
+                  "reason": "Styreleder ser at økonomisjefens høye interne status er brukt til å redusere et reelt styrevalg til en formalitet før beslutningsorganet har behandlet saken.",
+                  "source_actor_id": "styreleder"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "finance_mgr_case_waiting_prejudged",
+                  "note": "Caset venter fortsatt på styret selv om spilleren sosialt har foregrepet utfallet.",
+                  "op": "transition",
+                  "to_phase": "awaiting_board_decision",
+                  "to_status": "waiting",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                },
+                {
+                  "event_id": "finance_mgr_board_prejudged",
+                  "flag": "board_outcome_socially_prejudged",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                }
+              ]
+            },
+            "feedback": "Du reduserer ubehaget ved waiting ved å gjøre styrets beslutning til etterarbeid. Det kan få organisasjonen til å handle før mandatet faktisk finnes.",
+            "id": "B",
+            "label": "Kommuniser internt at tiltakspakken i praksis er besluttet siden tallene peker så tydelig",
+            "reply": "Jeg sier at tiltakene i praksis er klare og at vi bare venter på styrets formelle bekreftelse."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Nora eier den operative strategien, men vesentlige kapitalvalg må til styret når de ligger utenfor delegert ramme.",
+            "Ingrid har faglig standing i prognosen og banken i kredittrisiko, men ingen av dem kan erstatte styrets beslutning.",
+            "Spilleren må tåle at et godt styringsgrunnlag står stille mens beslutningsorganet gjør sitt arbeid."
+          ],
+          "subject": "Styringsgrunnlaget er klart – nå må økonomisjefen overlevere og vente på riktig beslutningsnivå",
+          "summary": "Likviditetsreworket er ferdig, Ingrid har kontrollert endringssporet og banken har fått et tidlig bilde. Nora sender saken til styret fordi investeringsbrems, finansieringsgrep eller kapitalprioritering går utover ditt delegerte mandat. Din rolle går fra aktiv styring til eksplisitt waiting på styrets beslutning."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "naeringsliv_okonomi_finanssjef_realism_board_handoff_wait_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "oslo_bors",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "naeringsliv_okonomi_finanssjef_realism_board_handoff_wait_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/followup/okonomi_og_finanssjef_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "naeringsliv_okonomi_finanssjef_liquidity_realism_001",
+        "version": 1,
+        "work_context": {
+          "handoff_to_actor_id": "styreleder",
+          "institution_id": "naeringsliv_okonomifunksjon_001",
+          "object_ids": [
+            "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+          ],
+          "priority": "high",
+          "rework_of_scene_id": "naeringsliv_okonomi_finanssjef_realism_liquidity_rework_001",
+          "waiting_for_actor_id": "styreleder"
+        }
+      },
+      "source_hash": "b490904f072cc7a5ad98d4c167144f7ab5d38c7cd6a520c25da5a595249cf7eb",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/followup/okonomi_og_finanssjef_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
         "choice_axis": "oppdatere_og_eskalere_vs_minimere_endringen",
         "choices": [
           {
@@ -135362,6 +136224,345 @@
       },
       "source_hash": "2c2e2f62f104381cd17ad42c4b3ec8911b904055127d7e9a7c5a48cd2117b0ed",
       "source_path": "data/Civication/mailFamilies/naeringsliv/followup/okonomi_og_finanssjef_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
+        "choice_axis": "ett_styringscase_vs_resultatfortelling",
+        "choices": [
+          {
+            "effect": 2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:nora_daglig_leder",
+                  "delta": 3,
+                  "event_id": "finance_mgr_standing_nora_open",
+                  "reason": "Nora får et beslutningsgrunnlag der resultat, kontantstrøm, covenant og neste beslutningseier er synlige før planen brukes som løfte om handlingsrom.",
+                  "source_actor_id": "nora_daglig_leder"
+                },
+                {
+                  "audience_id": "professional:ingrid_controller",
+                  "delta": 3,
+                  "event_id": "finance_mgr_standing_ingrid_open",
+                  "reason": "Ingrid får et autoritativt styringsspor der hennes prognosefunn kan kvalitetssikres og beholdes synlige selv når ledergruppen ønsker en enklere fortelling.",
+                  "source_actor_id": "ingrid_controller"
+                }
+              ],
+              "stats": {
+                "quality": 3,
+                "risk": -2,
+                "trust": 2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "finance_mgr_case_baseline_traced",
+                  "flag": "result_cash_covenant_and_decision_owner_traced",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                }
+              ]
+            },
+            "feedback": "Nora får retning uten falsk sikkerhet, og Ingrid kan kvalitetssikre ett autoritativt spor før økonomifunksjonen eskalerer tiltak.",
+            "id": "A",
+            "label": "Lås resultat, kontantstrøm, covenant og beslutningseier i ett case",
+            "reply": "Jeg oppretter ett styringscase med prognosedrivere, likviditetsrom, covenantbuffer og neste beslutningseier eksplisitt."
+          },
+          {
+            "effect": -2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:nora_daglig_leder",
+                  "delta": -2,
+                  "event_id": "finance_mgr_standing_nora_blurred",
+                  "reason": "Nora får et roligere hovedbilde, men svakere grunnlag for å forstå hvilke deler av vekstplanen som faktisk kan gjennomføres innen kontant- og covenantrommet.",
+                  "source_actor_id": "nora_daglig_leder"
+                },
+                {
+                  "audience_id": "professional:ingrid_controller",
+                  "delta": -3,
+                  "event_id": "finance_mgr_standing_ingrid_blurred",
+                  "reason": "Ingrid ser at dokumenterte likviditets- og covenantfunn er skjøvet bak resultatfortellingen, noe som svekker teamets forventning om at presisjon beskyttes oppover.",
+                  "source_actor_id": "ingrid_controller"
+                }
+              ],
+              "stats": {
+                "quality": -3,
+                "risk": 4,
+                "status": 1,
+                "trust": -2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "finance_mgr_case_blurred",
+                  "flag": "liquidity_and_covenant_reduced_to_appendix",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                }
+              ]
+            },
+            "feedback": "Du gjør pakken lettere å lese, men det mest handlingskritiske signalet blir sekundært akkurat når organisasjonen trenger å prioritere etter faktisk kontantrom.",
+            "id": "B",
+            "label": "Hold resultatrapporten som hovedspor og legg likviditet i risikovedlegget",
+            "reply": "Jeg lar hovedpakken styres av resultatbildet og legger likviditet og covenant som risiko vi kan utdype ved behov."
+          }
+        ],
+        "competency": "likviditetsstyring",
+        "consequence_axis": "beslutningskvalitet_vs_kapitalblindhet",
+        "cooldown": 10,
+        "day_phase": "morning",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "finance_mgr_liquidity_case_created",
+              "op": "create",
+              "work_object": {
+                "confidentiality": "internt_styringsgrunnlag",
+                "deadline": "styrebehandling_dag_12",
+                "flags": [
+                  "finance_mgr_liquidity_case_opened"
+                ],
+                "institution_id": "naeringsliv_okonomifunksjon_001",
+                "kind": "liquidity_and_covenant_case",
+                "knowledge_refs": [
+                  "data/Civication/roleModels/naeringsliv/okonomi_og_finanssjef.json",
+                  "data/Civication/workGrammars/naeringsliv/okonomi_og_finanssjef.json",
+                  "data/Civication/mailFamilies/naeringsliv/knowledge/okonomi_og_finanssjef_knowledge.json"
+                ],
+                "open_questions": [
+                  "Hva er resultat, kontantstrøm og covenantbuffer i samme prognoseversjon?",
+                  "Hvilke drivere må Ingrid kvalitetssikre før bank- og styrekommunikasjon?",
+                  "Hvilke tiltak ligger innen delegert ansvar, og hvilke må besluttes av daglig leder eller styre?"
+                ],
+                "people_refs": [
+                  "nora_daglig_leder",
+                  "ingrid_controller",
+                  "bankkontakt",
+                  "styreleder"
+                ],
+                "phase": "baseline_and_driver_lock",
+                "place_refs": [
+                  "barcode",
+                  "bankplassen",
+                  "oslo_bors"
+                ],
+                "role_scope": "okonomi_og_finanssjef",
+                "shared": false,
+                "status": "in_progress",
+                "title": "Likviditets- og covenantcase: prognose, tiltak og beslutningsspor",
+                "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+              }
+            }
+          ]
+        },
+        "from": "Nora, daglig leder",
+        "id": "naeringsliv_okonomi_finanssjef_realism_liquidity_case_open_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_rollout_okonomi_finanssjef_case_open",
+        "mail_type": "job",
+        "narrative_arc": "fra_likviditetssignal_til_sporbart_styrevalg_og_finansielt_etterspill",
+        "people_ref": "nora_daglig_leder",
+        "person_id": "nora_daglig_leder",
+        "phase": "advanced",
+        "place_id": "barcode",
+        "planned_only": true,
+        "pressure": "ledertempo_vs_sporbart_handlingsrom",
+        "priority": 99,
+        "purpose": "Etablere ett vedvarende likviditets- og covenantcase som kan overleveres, vente, reworkes og lukkes uten at økonomisjefens organisatoriske status blir forvekslet med ubegrenset kapitalmyndighet.",
+        "repeatable": false,
+        "role_scope": "okonomi_og_finanssjef",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/job/okonomi_og_finanssjef_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Resultat, kontantstrøm og covenant er ulike styringssignaler og må stå i samme spor uten å blandes.",
+          "Ingrid skal kvalitetssikre prognosedriverne før saken går videre til bank og styre.",
+          "Du kan lede, prioritere og anbefale innen delegert ansvar; finansiering og kapitalbruk utenfor mandat må til riktig beslutningsnivå."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis resultatfortellingen blir hovedsporet, kan ledelsen binde seg til tiltak før kontantrom, covenant og fullmakt er synlige. Hvis caset splittes i flere løse filer, blir det uklart hvilket bilde styret faktisk skal eie.",
+        "subject": "Åpne likviditetscaset som ett styringsspor – ikke som en penere månedsrapport",
+        "summary": "Nora trenger et oppdatert beslutningsgrunnlag før leder- og styrebehandling. Resultatet er brukbart, men arbeidskapital, kontantstrøm og covenantbuffer peker mot mindre handlingsrom. Du skal eie økonomifunksjonens styringsspor, men ikke gjøre investeringer eller finansiering bindende uten riktig mandat.",
+        "tags": [
+          "role_world_realism",
+          "controlled_rollout",
+          "naeringsliv",
+          "okonomi_og_finanssjef",
+          "persistent_work",
+          "situated_reputation"
+        ],
+        "task_domain": "liquidity_case_baseline",
+        "task_kind": "job",
+        "thread_key": "naeringsliv_okonomi_finanssjef_liquidity_realism_001",
+        "work_context": {
+          "institution_id": "naeringsliv_okonomifunksjon_001",
+          "object_ids": [
+            "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+          ],
+          "priority": "high"
+        }
+      },
+      "id": "naeringsliv_okonomi_finanssjef_realism_liquidity_case_open_001",
+      "mail_type": "job",
+      "role_scope": "okonomi_og_finanssjef",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:nora_daglig_leder",
+                  "delta": 3,
+                  "event_id": "finance_mgr_standing_nora_open",
+                  "reason": "Nora får et beslutningsgrunnlag der resultat, kontantstrøm, covenant og neste beslutningseier er synlige før planen brukes som løfte om handlingsrom.",
+                  "source_actor_id": "nora_daglig_leder"
+                },
+                {
+                  "audience_id": "professional:ingrid_controller",
+                  "delta": 3,
+                  "event_id": "finance_mgr_standing_ingrid_open",
+                  "reason": "Ingrid får et autoritativt styringsspor der hennes prognosefunn kan kvalitetssikres og beholdes synlige selv når ledergruppen ønsker en enklere fortelling.",
+                  "source_actor_id": "ingrid_controller"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "finance_mgr_case_baseline_traced",
+                  "flag": "result_cash_covenant_and_decision_owner_traced",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                }
+              ]
+            },
+            "feedback": "Nora får retning uten falsk sikkerhet, og Ingrid kan kvalitetssikre ett autoritativt spor før økonomifunksjonen eskalerer tiltak.",
+            "id": "A",
+            "label": "Lås resultat, kontantstrøm, covenant og beslutningseier i ett case",
+            "reply": "Jeg oppretter ett styringscase med prognosedrivere, likviditetsrom, covenantbuffer og neste beslutningseier eksplisitt."
+          },
+          {
+            "effects": {
+              "score_delta": -2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:nora_daglig_leder",
+                  "delta": -2,
+                  "event_id": "finance_mgr_standing_nora_blurred",
+                  "reason": "Nora får et roligere hovedbilde, men svakere grunnlag for å forstå hvilke deler av vekstplanen som faktisk kan gjennomføres innen kontant- og covenantrommet.",
+                  "source_actor_id": "nora_daglig_leder"
+                },
+                {
+                  "audience_id": "professional:ingrid_controller",
+                  "delta": -3,
+                  "event_id": "finance_mgr_standing_ingrid_blurred",
+                  "reason": "Ingrid ser at dokumenterte likviditets- og covenantfunn er skjøvet bak resultatfortellingen, noe som svekker teamets forventning om at presisjon beskyttes oppover.",
+                  "source_actor_id": "ingrid_controller"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "finance_mgr_case_blurred",
+                  "flag": "liquidity_and_covenant_reduced_to_appendix",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                }
+              ]
+            },
+            "feedback": "Du gjør pakken lettere å lese, men det mest handlingskritiske signalet blir sekundært akkurat når organisasjonen trenger å prioritere etter faktisk kontantrom.",
+            "id": "B",
+            "label": "Hold resultatrapporten som hovedspor og legg likviditet i risikovedlegget",
+            "reply": "Jeg lar hovedpakken styres av resultatbildet og legger likviditet og covenant som risiko vi kan utdype ved behov."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Resultat, kontantstrøm og covenant er ulike styringssignaler og må stå i samme spor uten å blandes.",
+            "Ingrid skal kvalitetssikre prognosedriverne før saken går videre til bank og styre.",
+            "Du kan lede, prioritere og anbefale innen delegert ansvar; finansiering og kapitalbruk utenfor mandat må til riktig beslutningsnivå."
+          ],
+          "subject": "Åpne likviditetscaset som ett styringsspor – ikke som en penere månedsrapport",
+          "summary": "Nora trenger et oppdatert beslutningsgrunnlag før leder- og styrebehandling. Resultatet er brukbart, men arbeidskapital, kontantstrøm og covenantbuffer peker mot mindre handlingsrom. Du skal eie økonomifunksjonens styringsspor, men ikke gjøre investeringer eller finansiering bindende uten riktig mandat."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "finance_mgr_liquidity_case_created",
+              "op": "create",
+              "work_object": {
+                "confidentiality": "internt_styringsgrunnlag",
+                "deadline": "styrebehandling_dag_12",
+                "flags": [
+                  "finance_mgr_liquidity_case_opened"
+                ],
+                "institution_id": "naeringsliv_okonomifunksjon_001",
+                "kind": "liquidity_and_covenant_case",
+                "knowledge_refs": [
+                  "data/Civication/roleModels/naeringsliv/okonomi_og_finanssjef.json",
+                  "data/Civication/workGrammars/naeringsliv/okonomi_og_finanssjef.json",
+                  "data/Civication/mailFamilies/naeringsliv/knowledge/okonomi_og_finanssjef_knowledge.json"
+                ],
+                "open_questions": [
+                  "Hva er resultat, kontantstrøm og covenantbuffer i samme prognoseversjon?",
+                  "Hvilke drivere må Ingrid kvalitetssikre før bank- og styrekommunikasjon?",
+                  "Hvilke tiltak ligger innen delegert ansvar, og hvilke må besluttes av daglig leder eller styre?"
+                ],
+                "people_refs": [
+                  "nora_daglig_leder",
+                  "ingrid_controller",
+                  "bankkontakt",
+                  "styreleder"
+                ],
+                "phase": "baseline_and_driver_lock",
+                "place_refs": [
+                  "barcode",
+                  "bankplassen",
+                  "oslo_bors"
+                ],
+                "role_scope": "okonomi_og_finanssjef",
+                "shared": false,
+                "status": "in_progress",
+                "title": "Likviditets- og covenantcase: prognose, tiltak og beslutningsspor",
+                "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+              }
+            }
+          ]
+        },
+        "id": "naeringsliv_okonomi_finanssjef_realism_liquidity_case_open_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "barcode",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "naeringsliv_okonomi_finanssjef_realism_liquidity_case_open_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/job/okonomi_og_finanssjef_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "naeringsliv_okonomi_finanssjef_liquidity_realism_001",
+        "version": 1,
+        "work_context": {
+          "institution_id": "naeringsliv_okonomifunksjon_001",
+          "object_ids": [
+            "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+          ],
+          "priority": "high"
+        }
+      },
+      "source_hash": "1bb8ec211629258fd50b1dc230f18bceb0cb30eb1192eedd93e6893c87e269c2",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/job/okonomi_og_finanssjef_job.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -136213,6 +137414,296 @@
       },
       "source_hash": "69b58fa15c25169903707e003f6b0f9515c3e25d835712e02ec95a31bdf1afc2",
       "source_path": "data/Civication/mailFamilies/naeringsliv/micro/okonomi_og_finanssjef_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
+        "choice_axis": "respektere_handoff_vs_parallel_prognose",
+        "choices": [
+          {
+            "effect": 2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:ingrid_controller",
+                  "delta": 4,
+                  "event_id": "finance_mgr_standing_ingrid_handoff",
+                  "reason": "Ingrid kan stole på at prognosen hun kontrollerer fortsatt er den autoritative versjonen når funnene hennes returnerer til økonomisjefen og ledergruppen.",
+                  "source_actor_id": "ingrid_controller"
+                },
+                {
+                  "audience_id": "manager:nora_daglig_leder",
+                  "delta": 2,
+                  "event_id": "finance_mgr_standing_nora_wait",
+                  "reason": "Nora får en presis ventestatus med faglig eier og neste steg, og kan skille nødvendig kvalitetssikring fra faktisk forsinkelse i økonomifunksjonen.",
+                  "source_actor_id": "nora_daglig_leder"
+                }
+              ],
+              "stats": {
+                "quality": 2,
+                "risk": -2,
+                "trust": 3
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "finance_mgr_case_waiting_for_ingrid",
+                  "note": "Prognose og covenantgrunnlag er overlevert til Ingrid; caset venter på kvalitetssikring av drivere.",
+                  "op": "transition",
+                  "to_phase": "awaiting_controller_review",
+                  "to_status": "waiting",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                },
+                {
+                  "event_id": "finance_mgr_handoff_traced",
+                  "flag": "controller_review_version_frozen",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                }
+              ]
+            },
+            "feedback": "Ingrid får reell faglig autoritet i sitt kontrollarbeid, og Nora kan se at venting er et bevisst kvalitetspunkt fremfor passivitet.",
+            "id": "A",
+            "label": "Frys reviewversjonen og marker caset waiting på Ingrid",
+            "reply": "Jeg fryser prognosen Ingrid kontrollerer, markerer caset waiting og forbereder bare tiltak som kan spores tilbake til samme versjon."
+          },
+          {
+            "effect": -2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:ingrid_controller",
+                  "delta": -4,
+                  "event_id": "finance_mgr_standing_ingrid_parallel",
+                  "reason": "Ingrid opplever at kontrollarbeidet hennes er delegert uten faktisk autoritet fordi hovedprognosen allerede flyttes videre før hun har levert reviewet.",
+                  "source_actor_id": "ingrid_controller"
+                },
+                {
+                  "audience_id": "manager:nora_daglig_leder",
+                  "delta": -2,
+                  "event_id": "finance_mgr_standing_nora_parallel",
+                  "reason": "Nora får mer aktivitet, men svakere kontroll på hvilken prognose økonomifunksjonen faktisk står bak når beslutningsgrunnlaget skal brukes.",
+                  "source_actor_id": "nora_daglig_leder"
+                }
+              ],
+              "stats": {
+                "quality": -2,
+                "risk": 4,
+                "status": 1,
+                "trust": -4
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "finance_mgr_case_waiting_parallel",
+                  "note": "Caset venter formelt på Ingrid, men en parallell prognose skaper rework- og versjonsgjeld.",
+                  "op": "transition",
+                  "to_phase": "awaiting_controller_review",
+                  "to_status": "waiting",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                },
+                {
+                  "event_id": "finance_mgr_parallel_forecast",
+                  "flag": "parallel_forecast_created_during_handoff",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                }
+              ]
+            },
+            "feedback": "Du ser handlekraftig ut, men delegasjonen mister realitet. Når Ingrid svarer, må teamet først avgjøre hvilken prognose som faktisk er styringsgrunnlaget.",
+            "id": "B",
+            "label": "La Ingrid reviewe den låste filen mens du bygger en nyere prognose parallelt",
+            "reply": "Jeg lar Ingrid kontrollere den avtalte versjonen, men jobber videre i en ny prognose så ledergruppen slipper å miste tempo."
+          }
+        ],
+        "competency": "okonomiledelse",
+        "consequence_axis": "teamtillit_vs_reworkgjeld",
+        "cooldown": 10,
+        "day_phase": "afternoon",
+        "from": "Ingrid, controller",
+        "id": "naeringsliv_okonomi_finanssjef_realism_controller_handoff_wait_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_rollout_okonomi_finanssjef_controller_handoff",
+        "mail_type": "people",
+        "narrative_arc": "fra_likviditetssignal_til_sporbart_styrevalg_og_finansielt_etterspill",
+        "people_ref": "ingrid_controller",
+        "person_id": "ingrid_controller",
+        "phase": "advanced",
+        "place_id": "barcode",
+        "planned_only": true,
+        "pressure": "ledertempo_vs_legitim_kvalitetssikring",
+        "priority": 98,
+        "purpose": "Gjøre intern handoff og legitim venting eksplisitt i økonomiledelse, og vise at faglig støtte til teamet også betyr å respektere et kontrollpunkt man selv har delegert.",
+        "repeatable": false,
+        "role_scope": "okonomi_og_finanssjef",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/people/okonomi_og_finanssjef_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Ingrid eier kvalitetssikringen av driverne i denne fasen, mens du fortsatt eier lederansvaret for helheten.",
+          "Caset kan stå i waiting uten at økonomisjefen mister fremdrift; tiltak, mandat og spørsmål kan forberedes mot samme versjon.",
+          "Nora trenger en presis status på hva som faktisk venter og hvorfor reviewet beskytter beslutningskvaliteten."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis du fortsetter å justere tallene mens Ingrid reviewer, blir hennes kontroll symbolsk. Da må økonomifunksjonen senere bruke tid på å rekonstruere hvilken prognose som lå bak bank- og styregrunnlaget.",
+        "subject": "Ingrid har prognosen – nå må handoff og venting få være ekte arbeid",
+        "summary": "Du overleverer den låste prognoseversjonen, arbeidskapitaldriverne og covenantberegningen til Ingrid for kvalitetssikring. Mens hun kontrollerer grunnlaget, kan du forberede tiltak og beslutningsspørsmål, men du skal ikke flytte hovedprognosen i en parallell fil som gjør reviewet utdatert.",
+        "tags": [
+          "role_world_realism",
+          "controlled_rollout",
+          "naeringsliv",
+          "okonomi_og_finanssjef",
+          "persistent_work",
+          "situated_reputation"
+        ],
+        "task_domain": "controller_review_handoff",
+        "task_kind": "people",
+        "thread_key": "naeringsliv_okonomi_finanssjef_liquidity_realism_001",
+        "work_context": {
+          "handoff_to_actor_id": "ingrid_controller",
+          "institution_id": "naeringsliv_okonomifunksjon_001",
+          "object_ids": [
+            "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+          ],
+          "priority": "high",
+          "rework_of_scene_id": "naeringsliv_okonomi_finanssjef_realism_liquidity_case_open_001",
+          "waiting_for_actor_id": "ingrid_controller"
+        }
+      },
+      "id": "naeringsliv_okonomi_finanssjef_realism_controller_handoff_wait_001",
+      "mail_type": "people",
+      "role_scope": "okonomi_og_finanssjef",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:ingrid_controller",
+                  "delta": 4,
+                  "event_id": "finance_mgr_standing_ingrid_handoff",
+                  "reason": "Ingrid kan stole på at prognosen hun kontrollerer fortsatt er den autoritative versjonen når funnene hennes returnerer til økonomisjefen og ledergruppen.",
+                  "source_actor_id": "ingrid_controller"
+                },
+                {
+                  "audience_id": "manager:nora_daglig_leder",
+                  "delta": 2,
+                  "event_id": "finance_mgr_standing_nora_wait",
+                  "reason": "Nora får en presis ventestatus med faglig eier og neste steg, og kan skille nødvendig kvalitetssikring fra faktisk forsinkelse i økonomifunksjonen.",
+                  "source_actor_id": "nora_daglig_leder"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "finance_mgr_case_waiting_for_ingrid",
+                  "note": "Prognose og covenantgrunnlag er overlevert til Ingrid; caset venter på kvalitetssikring av drivere.",
+                  "op": "transition",
+                  "to_phase": "awaiting_controller_review",
+                  "to_status": "waiting",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                },
+                {
+                  "event_id": "finance_mgr_handoff_traced",
+                  "flag": "controller_review_version_frozen",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                }
+              ]
+            },
+            "feedback": "Ingrid får reell faglig autoritet i sitt kontrollarbeid, og Nora kan se at venting er et bevisst kvalitetspunkt fremfor passivitet.",
+            "id": "A",
+            "label": "Frys reviewversjonen og marker caset waiting på Ingrid",
+            "reply": "Jeg fryser prognosen Ingrid kontrollerer, markerer caset waiting og forbereder bare tiltak som kan spores tilbake til samme versjon."
+          },
+          {
+            "effects": {
+              "score_delta": -2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:ingrid_controller",
+                  "delta": -4,
+                  "event_id": "finance_mgr_standing_ingrid_parallel",
+                  "reason": "Ingrid opplever at kontrollarbeidet hennes er delegert uten faktisk autoritet fordi hovedprognosen allerede flyttes videre før hun har levert reviewet.",
+                  "source_actor_id": "ingrid_controller"
+                },
+                {
+                  "audience_id": "manager:nora_daglig_leder",
+                  "delta": -2,
+                  "event_id": "finance_mgr_standing_nora_parallel",
+                  "reason": "Nora får mer aktivitet, men svakere kontroll på hvilken prognose økonomifunksjonen faktisk står bak når beslutningsgrunnlaget skal brukes.",
+                  "source_actor_id": "nora_daglig_leder"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "finance_mgr_case_waiting_parallel",
+                  "note": "Caset venter formelt på Ingrid, men en parallell prognose skaper rework- og versjonsgjeld.",
+                  "op": "transition",
+                  "to_phase": "awaiting_controller_review",
+                  "to_status": "waiting",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                },
+                {
+                  "event_id": "finance_mgr_parallel_forecast",
+                  "flag": "parallel_forecast_created_during_handoff",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+                }
+              ]
+            },
+            "feedback": "Du ser handlekraftig ut, men delegasjonen mister realitet. Når Ingrid svarer, må teamet først avgjøre hvilken prognose som faktisk er styringsgrunnlaget.",
+            "id": "B",
+            "label": "La Ingrid reviewe den låste filen mens du bygger en nyere prognose parallelt",
+            "reply": "Jeg lar Ingrid kontrollere den avtalte versjonen, men jobber videre i en ny prognose så ledergruppen slipper å miste tempo."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Ingrid eier kvalitetssikringen av driverne i denne fasen, mens du fortsatt eier lederansvaret for helheten.",
+            "Caset kan stå i waiting uten at økonomisjefen mister fremdrift; tiltak, mandat og spørsmål kan forberedes mot samme versjon.",
+            "Nora trenger en presis status på hva som faktisk venter og hvorfor reviewet beskytter beslutningskvaliteten."
+          ],
+          "subject": "Ingrid har prognosen – nå må handoff og venting få være ekte arbeid",
+          "summary": "Du overleverer den låste prognoseversjonen, arbeidskapitaldriverne og covenantberegningen til Ingrid for kvalitetssikring. Mens hun kontrollerer grunnlaget, kan du forberede tiltak og beslutningsspørsmål, men du skal ikke flytte hovedprognosen i en parallell fil som gjør reviewet utdatert."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "naeringsliv_okonomi_finanssjef_realism_controller_handoff_wait_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "barcode",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "naeringsliv_okonomi_finanssjef_realism_controller_handoff_wait_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/people/okonomi_og_finanssjef_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "naeringsliv_okonomi_finanssjef_liquidity_realism_001",
+        "version": 1,
+        "work_context": {
+          "handoff_to_actor_id": "ingrid_controller",
+          "institution_id": "naeringsliv_okonomifunksjon_001",
+          "object_ids": [
+            "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+          ],
+          "priority": "high",
+          "rework_of_scene_id": "naeringsliv_okonomi_finanssjef_realism_liquidity_case_open_001",
+          "waiting_for_actor_id": "ingrid_controller"
+        }
+      },
+      "source_hash": "9965d2a94be630f5c2c0eb012166f03962da51fbe22779f74ad9c4333d80fac1",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/people/okonomi_og_finanssjef_people.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -192246,7 +193737,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "84cd3c55c39c52758405c8441a809dc152be06ba11a499c1760e3faf6e483a04",
+  "registry_hash": "4fd2cd05e109995720479a49f4c48ffe203d672ed930190f554be2868d0fdeaf",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -193145,16 +194636,21 @@
       "okonomi_og_finanssjef_job_001",
       "okonomi_og_finanssjef_job_002",
       "okonomi_og_finanssjef_job_003",
+      "naeringsliv_okonomi_finanssjef_realism_liquidity_case_open_001",
       "okonomi_og_finanssjef_people_ingrid_001",
+      "naeringsliv_okonomi_finanssjef_realism_controller_handoff_wait_001",
       "okonomi_og_finanssjef_story_001",
       "okonomi_og_finanssjef_conflict_001",
       "okonomi_og_finanssjef_conflict_002",
       "okonomi_og_finanssjef_event_001",
       "okonomi_og_finanssjef_event_002",
+      "naeringsliv_okonomi_finanssjef_realism_liquidity_rework_001",
       "okonomi_og_finanssjef_micro_likviditet_001",
       "okonomi_og_finanssjef_followup_covenant_001",
+      "naeringsliv_okonomi_finanssjef_realism_board_handoff_wait_001",
       "okonomi_og_finanssjef_knowledge_likviditet_001",
-      "okonomi_og_finanssjef_consequence_covenant_001"
+      "okonomi_og_finanssjef_consequence_covenant_001",
+      "naeringsliv_okonomi_finanssjef_realism_board_aftermath_001"
     ],
     "naeringsliv/renholder": [
       "job_renholder_week1_room_looked_clean",
@@ -193553,7 +195049,7 @@
     "ignored_source_file_count": 1,
     "input_file_count": 351,
     "role_count": 44,
-    "scene_count": 1185,
+    "scene_count": 1190,
     "shadowed_duplicate_count": 0
   },
   "version": 1
