@@ -343,6 +343,24 @@ export function auditWorkflowRouting() {
     }
   }
 
+  const domainRegistrySource = workflows.find(({ file }) => file === 'fagverk-domain-registry.yml')?.source ?? '';
+  for (const legacyWorkflow of ['fagverk-helse.yml', 'fagverk-utdanning.yml']) {
+    if (workflows.some(({ file }) => file === legacyWorkflow)) {
+      failures.push(`${legacyWorkflow}: duplicated domain gate must use fagverk-domain-registry.yml`);
+    }
+  }
+  for (const registryPath of [
+    '.github/ci/fagverk-helse-domain-registry-v1.json',
+    '.github/ci/fagverk-utdanning-domain-registry-v1.json',
+  ]) {
+    if (!domainRegistrySource.includes(registryPath)) {
+      failures.push(`fagverk-domain-registry.yml: registry trigger is missing: ${registryPath}`);
+    }
+  }
+  if (!domainRegistrySource.includes('node scripts/run-fagverk-domain-ci-v1.mjs')) {
+    failures.push('fagverk-domain-registry.yml: shared registry runner is missing');
+  }
+
   const routingSource = workflows.find(({ file }) => file === 'ci-workflow-routing.yml').source;
   if (!declaredPaths(eventBlock(routingSource, 'pull_request')).includes('.github/workflows/**')) {
     failures.push('ci-workflow-routing.yml: must audit every workflow change');
