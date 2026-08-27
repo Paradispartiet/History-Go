@@ -220,10 +220,9 @@ write(personClaimsFile, {
   completion: { completed_under: "people_profile_v1.0", claims_verified: `${personClaims.length}/${personClaims.length}`, fact_review: "passed", editorial_review: "passed", source_verified_at: verifiedAt, validator_version: "1.0.0", current_status: "ready_people_v1" }
 });
 
-const relations = read("data/relations.json");
+const relations = read("data/relations.json").filter(relation => relation.id !== "rel_freia_edvard_munch");
 for (const relation of [
   { id: "rel_freia_johan_thrane_holst", type: "ledet_og_utviklet", place: placeId, person: personId, label: "Ledet og utviklet fabrikken", why: "Kjøpte Freia i 1892 og ledet utbygging, arbeidsmiljøprogram og markedsarbeid.", source: urls.snlJohan },
-  { id: "rel_freia_edvard_munch", type: "utsmykket", place: placeId, person: "edvard_munch", label: "Utsmykket Freiasalen", why: "Utførte de tolv maleriene som ble integrert i Freiasalen.", source: urls.heritage },
   { id: "rel_freia_ole_sverre", type: "tegnet", place: placeId, person: "ole_sverre", label: "Tegnet park og spisesal", why: "Utformet Freiaparken i 1922 og den nye spisesalsbygningen som stod ferdig i 1934.", source: urls.heritage }
 ]) upsertById(relations, relation);
 write("data/relations.json", relations);

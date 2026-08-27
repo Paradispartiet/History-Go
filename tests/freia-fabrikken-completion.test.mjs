@@ -45,6 +45,7 @@ test("Freia-fabrikken is one canonical factory place with an official address an
 test("Freia exposes only primary-function, image-ready collections", () => {
   assert.deepEqual(place.place_card_profile.collection_ids, ["people", "brands", "structures"]);
   assert.deepEqual(runtime.people.map(person => person.id).sort(), ["johan_thrane_holst_freia", "ole_sverre"].sort());
+  assert.ok(runtime.relations.every(relation => relation.id !== "rel_freia_edvard_munch"));
   assert.deepEqual(place.objects, []);
   assert.equal(production.roundsReadiness.objects, "held_back_pending_source_and_image_verified_factory_objects");
   assert.match(place.place_card_profile.reason, /Munch.*sekundært kultur- og velferdsspor/i);
