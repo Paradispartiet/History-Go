@@ -56,6 +56,11 @@ export function audit({ writeReport = false } = {}) {
   );
   const usedSources = new Set(claims.flatMap((claim) => claim.source_ids));
   assert([...sourceIds].every((id) => usedSources.has(id)), 'Alle 13 kilder må brukes');
+  const allowedMethods = new Set(brief.allowed_method_ids);
+  assert(
+    topics.flatMap((topic) => topic.method_ids).every((methodId) => allowedMethods.has(methodId)),
+    'Alle topic-metoder må være eksplisitt tillatt',
+  );
   assert(
     brief.source_policy.rights_and_participation_are_primary
       && brief.source_policy.diagnosis_does_not_determine_instruction

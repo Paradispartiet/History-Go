@@ -11,7 +11,7 @@
     "schema": "history_go_fagverk_registry_v1",
     "version": "3.14.0",
     "updated_at": "2026-08-21",
-    "content_sha256": "35a4874fb2c0dd7b6e93c17f52fa199e0357db1bc224b345c6b3f9aed9092688"
+    "content_sha256": "851e27ad1a383f6404a3d2cf0ddb48c28409718e2c19d447c4e54d45f64b0767"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,18 +27,18 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "2031101c7e3105e0413956932f440c8308a9734a3fd3dc998f7c47fc232c464e"
+    "content_sha256": "5657671b483f339bc1dc139fca9ea88d501229879c3ed326c9d1fc33d71094c3"
   },
   "summary": {
     "subject_count": 20,
     "root_subject_count": 19,
     "specialization_count": 1,
     "chapter_subject_count": 17,
-    "chapter_count": 182,
-    "module_file_count": 469,
-    "package_file_count": 292,
-    "chapter_referenced_file_count": 884,
-    "referenced_file_count": 1112,
+    "chapter_count": 183,
+    "module_file_count": 473,
+    "package_file_count": 294,
+    "chapter_referenced_file_count": 891,
+    "referenced_file_count": 1120,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -5630,9 +5630,9 @@
         "supersetQuizMal"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 22,
+      "package_file_count": 24,
       "required_package_file_count": 4,
-      "optional_package_file_count": 18,
+      "optional_package_file_count": 20,
       "package_files": [
         {
           "path": "data/fag/utdanning/assessment_educational_measurement_source_claim_brief_v1.json",
@@ -5680,7 +5680,7 @@
             "emner"
           ],
           "exists": true,
-          "content_sha256": "c8dd2e7fbf4ae8b1b617a4b1e46c6bbaf323c17e6909bb4da4ac7417997efec5"
+          "content_sha256": "0f6b4771c7511f00473d53172bb61afce4f809815b377fe5b0bf7b50fce5c1d1"
         },
         {
           "path": "data/fag/utdanning/fagkart_utdanning_canonical_v1.json",
@@ -5707,6 +5707,18 @@
           "content_sha256": "0e9e9a68e43a537fcee7e71167f5c47c4d828cb5288a03ffc13c75d09707ad37"
         },
         {
+          "path": "data/fag/utdanning/inclusion_adapted_education_source_claim_brief_v1.json",
+          "required": false,
+          "fields": [
+            "sourceClaimBriefs"
+          ],
+          "key_paths": [
+            "sourceClaimBriefs[8]"
+          ],
+          "exists": true,
+          "content_sha256": "e6195e8f025f734599773f9f8757e192fba363acf74a6ca9e8357fcaa6c524bc"
+        },
+        {
           "path": "data/fag/utdanning/methods_utdanning_canonical_v1.json",
           "required": true,
           "fields": [
@@ -5716,7 +5728,7 @@
             "methods"
           ],
           "exists": true,
-          "content_sha256": "d63b8221a215335f1eee9af92342ec10e68bc454ec476f2b5778107359c80eec"
+          "content_sha256": "bc46360ea94634ae20cda3441c2c55f9aeaa8cf3f89449aea2f29ff8ebfe13b7"
         },
         {
           "path": "data/fag/utdanning/pedagogy_learning_theory_source_claim_brief_v1.json",
@@ -5752,7 +5764,7 @@
             "sourceClaimBriefs[7]"
           ],
           "exists": true,
-          "content_sha256": "adcb9f1009946cad476ffd952a6086f2ff9214498a87d04620658dd94c825fc3"
+          "content_sha256": "6db5c65b670d97a91507bc7308e559d70b3e95e609e1299d5f93cd5129731121"
         },
         {
           "path": "data/fag/utdanning/supersetQUIZMAL_utdanning.json",
@@ -5788,7 +5800,7 @@
             "pensum"
           ],
           "exists": true,
-          "content_sha256": "0510e5dcc209d2c3b7956602e05b81ec327d8bfe1f81273c2d4149b8fe3e1567"
+          "content_sha256": "9bf163545fbce2c96fddc648526e08c8cb8319896743dc35271d7e0340356da5"
         },
         {
           "path": "data/fagverk/utdanning/barnehage-tidlig-laering-lek-sprak-samspill-og-utvikling.json",
@@ -5851,6 +5863,18 @@
           "content_sha256": "4ebcc70b3fb863bf7181629e5c000f79570b10ad7c11fc7e6a16f670ccc405ce"
         },
         {
+          "path": "data/fagverk/utdanning/spesialpedagogikk-rettigheter-deltakelse-og-malrettet-stotte.json",
+          "required": false,
+          "fields": [
+            "chapters"
+          ],
+          "key_paths": [
+            "chapters[7]"
+          ],
+          "exists": true,
+          "content_sha256": "2c2f4ad05db558dbb5813e654ad5544280f4d4837b71c8cbca3c52c543ca7fc6"
+        },
+        {
           "path": "data/fagverk/utdanning/videregaende-yrkesfag-overgang-fordypning-og-laering-i-arbeid.json",
           "required": false,
           "fields": [
@@ -5899,20 +5923,20 @@
           "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
         }
       ],
-      "package_content_sha256": "152c8dea43bc4ad810990b6c53772a536df50e66614b71407d86f7e6fe064cc7",
-      "chapter_count": 7,
-      "module_file_count": 28,
-      "brief_file_count": 7,
-      "claims_file_count": 7,
-      "chapter_referenced_file_count": 49,
-      "chapter_content_sha256": "d16085bd90705d76572330e7c26aff01ae7516f2003a2efddc37dc3d093dcc3e",
-      "referenced_file_count": 64,
+      "package_content_sha256": "edd8d56f0297a3e95a8182fde44d45f8abb28fb409287216f9f639c108d18f0e",
+      "chapter_count": 8,
+      "module_file_count": 32,
+      "brief_file_count": 8,
+      "claims_file_count": 8,
+      "chapter_referenced_file_count": 56,
+      "chapter_content_sha256": "91f9a66376b1fa06bd8fd547071a3ac801d36f4d01539c048dc7c2a577d273a1",
+      "referenced_file_count": 72,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "541764f22cc6fe1a1678451c6dd3af2f8a640479f256107701132279f6481be7",
-      "content_sha256": "c143590f452e451cea8448c10ae5c3adeab1d5a2e43ac07350b2defd93472ca5",
+      "structure_sha256": "c2bd56e1ad6379404cfdaba27d33465785daffabb0e88ba4d8c8a0baf6f54fd9",
+      "content_sha256": "93049b305d270b637533033e22f24f86dd1ee5f9448dae753086f0a60a5f82a7",
       "chapters": [
         {
           "chapter_id": "pedagogikk-laeringsteori-laering-kunnskap-motivasjon-og-selvregulering",
@@ -5969,6 +5993,14 @@
           "module_file_count": 4,
           "referenced_file_count": 7,
           "content_sha256": "9c97a9614fca063c7a03c1550b69a08a23cd0ab454fbb6bc1145fc2458a648c9"
+        },
+        {
+          "chapter_id": "spesialpedagogikk-rettigheter-deltakelse-og-malrettet-stotte",
+          "title": "Spesialpedagogikk: rettigheter, deltakelse og målrettet støtte",
+          "file": "data/fagverk/utdanning/spesialpedagogikk-rettigheter-deltakelse-og-malrettet-stotte.json",
+          "module_file_count": 4,
+          "referenced_file_count": 7,
+          "content_sha256": "ea6c480a9c145a129acfd8aa0865e2b385aa70e9861f5b269a0ed8fefff9787d"
         }
       ]
     },
@@ -6150,5 +6182,5 @@
       ]
     }
   },
-  "release_sha256": "9e399eef3c84683e421b5e85d148ca088a16ee31e4a51861aab43c200ca866a3"
+  "release_sha256": "7395706b0bb53f78e40e7fb00e81dc781d30f82c207fe99b30852d7291ea09c7"
 }
