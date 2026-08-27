@@ -24,6 +24,7 @@ For full sted-for-sted arbeidsrekkefølge brukes:
 | Quiz | `data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md` |
 | People–sted | `docs/people-of-places-method.md` |
 | People-profiler | `docs/PEOPLE_PROFILE_CANONICAL.md` |
+| Objects | `docs/PLACE_OBJECTS_CANONICAL.md` |
 | People-bilder | `docs/PEOPLE_IMAGES.md` |
 | Stories | `docs/STORIES_DATA_GOVERNANCE.md` |
 | Koordinater | `docs/coordinates/coordinate-source-contract-v1.md` |

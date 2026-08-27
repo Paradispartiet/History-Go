@@ -40,7 +40,6 @@ const urls = {
   geonorge: "https://ws.geonorge.no/adresser/v1/sok?sok=Johan%20Throne%20Holsts%20plass%201%20Oslo",
   factoryPhoto: "https://commons.wikimedia.org/wiki/File:Freia_Ny-fab.jpg",
   johanPortrait: "https://commons.wikimedia.org/wiki/File:Johan_Throne_Holst.jpg",
-  friezePhoto: "https://commons.wikimedia.org/wiki/File:Dance_on_the_Beach_(The_Freia_Frieze_VII).jpg",
   hallPhoto: "https://commons.wikimedia.org/wiki/File:Munchmaleriene_i_Freiasalen_%C3%85pne_hus_2018_(145748).jpg",
   workersPhoto: "https://commons.wikimedia.org/wiki/File:Freia_sjokoladefabrikk.jpeg"
 };
@@ -108,28 +107,15 @@ const place = {
     representationScope: "Illustrasjonen er en nålaget tolkning av industriarkitektur og skal ikke leses som historisk fotografi eller nøyaktig dokumentasjon av en bestemt fabrikkfløy.",
     architecturalReferenceUrls: [urls.heritage, urls.byleksikon, urls.factoryPhoto], verifiedAt
   },
-  related_people_ids: [personId, "edvard_munch", "ole_sverre"],
+  related_people_ids: [personId, "ole_sverre"],
   related_place_ids: ["rodelokka", "karl_johan", "daelenenga_idrettspark", "ringnes_bryggeri", "schous_bryggeri"],
   place_card_profile: {
     schema: "history_go_place_card_profile_v2",
-    collection_ids: ["people", "objects", "brands", "structures"],
-    reason: "Næringslivskomposisjonen er full: Johan Throne Holst har verifisert portrett, Freiafrisen har et bilde av det konkrete verket, Freia har autentisk dokumentert ordmerke, og Freiasalen har et dokumentarfoto. Badge og quiz ligger separat.",
+    collection_ids: ["people", "brands", "structures"],
+    reason: "Freia-fabrikkens primære samlingsflate følger hovedfunksjonen: dokumenterte bedriftsaktører, Freia-identiteten og fabrikkanleggets strukturer. Munch og Freiafrisen beholdes som et sekundært kultur- og velferdsspor i fortellingen om Freiasalen, ikke som People- eller Objects-hovedinnhold. Objects holdes tilbake til en sammenhengende gruppe kilde- og bildeverifiserte produksjonsgjenstander er klar.",
     verifiedAt
   },
-  objects: [{
-    id: "freiafrisen_dans_pa_stranden", title: "Dans på stranden", type: "veggmaleri", kind: "physical_artwork",
-    artist: "Edvard Munch", year: 1922,
-    desc: "Ett av de tolv oljemaleriene som danner Freiafrisen i spisesalen.",
-    whereToFind: "I Freiasalen inne på fabrikkanlegget; tilgang følger eierens åpninger og arrangementer.",
-    why_here: "Maleriene ble bestilt for Freias spisesaler og ble integrert i den nye Freiasalen.",
-    placeSpecificReason: "Riksantikvaren dokumenterer at tolv store Munch-malerier er del av den fredede spisesalsbygningen.",
-    historicalFunction: "Kunsten gjorde arbeidernes spiserom til en del av bedriftens kultur- og velferdsprogram.",
-    physicalObject: true, placeSpecific: true, collectable: true, storePrice: 40, currency: "PC", collection: "freiafrisen",
-    unlock: "Studer verket i den åpne Commons-kilden eller ved lovlig adgang til Freiasalen; ikke gå inn på avstengt fabrikkområde.",
-    image: "bilder/kort/objects/freiafrisen_dans_pa_stranden.webp",
-    imageMeta: { source: "wikimedia_commons", sourcePage: urls.friezePhoto, creator: "Edvard Munch", credit: "Edvard Munch / Wikimedia Commons", license: "Public domain", assetType: "artwork_reproduction", originalDimensions: "1000x345", outputDimensions: "900x520", transformation: "Proporsjonal skalering og sentrert kortutsnitt.", verifiedAt },
-    source_urls: [urls.heritage, urls.byleksikon, urls.friezePhoto]
-  }],
+  objects: [],
   structures: [{
     id: "freiasalen", name: "Freiasalen", type: "spisesalsbygning", kind: "industrial_welfare_structure", year: 1934,
     architect: "Ole Sverre",
@@ -483,7 +469,7 @@ write("data/places/production/freia_fabrikken.json", {
   identity: { status: "resolved", represents: "Det aktive og historiske Freia-fabrikkanlegget på Johan Throne Holsts plass 1.", period: "1889–", excludes: ["Freia-butikken og lysreklamen på Karl Johan", "Freiaparken som eget kartsted", "Freiasalen som eget kartsted", "hele Rodeløkka"] },
   metadataSnapshot: { name: place.name, year: place.year, category: place.category }, textHashes: { algorithm: "sha256", desc: sha256(place.desc), popupDesc: sha256(place.popupDesc) }, claims: placeClaims,
   sentenceCoverage: { desc: coverage(place.desc), popupDesc: coverage(place.popupDesc) },
-  roundsReadiness: { people: "ready_new_verified_profile_plus_existing_direct_actors", objects: "ready_public_domain_freiafrieze_member", brands: "ready_authentic_wordmark_100_percent", structures: "ready_freiasalen_and_freiaparken", badges: "ready_category_and_emne_binding", quiz: "ready_new_standard_3x7", leksikon: "ready", sprak: "ready", stories: "ready", for_na: "reviewed_historical_image_link_only_no_exact_pair", readings: "ready", events: "reviewed_no_stable_current_event", routes: "reviewed_related_graph", fagverk: "ready", frontImage: "ready_portrait_3x4" },
+  roundsReadiness: { people: "ready_main_function_actors_only", objects: "held_back_pending_source_and_image_verified_factory_objects", brands: "ready_authentic_wordmark_100_percent", structures: "ready_freiasalen_and_freiaparken", badges: "ready_category_and_emne_binding", quiz: "ready_new_standard_3x7", leksikon: "ready", sprak: "ready", stories: "ready", for_na: "reviewed_historical_image_link_only_no_exact_pair", readings: "ready", events: "reviewed_no_stable_current_event", routes: "reviewed_related_graph", fagverk: "ready", frontImage: "ready_portrait_3x4" },
   quizReadiness: { status: "canonical_narrow_3x7", quizTargetId: placeId, sourceBrief: "data/quiz/production_briefs/naeringsliv/freia_fabrikken.json", productionContext: "data/quiz/production_context/naeringsliv/freia_fabrikken.json", normalOpeningQuestions: 14, totalQuestions: 21, reuseDecision: "Ingen tidligere canonical quiz fantes; alle spørsmål er skrevet fra den kontrollerte stedspakken.", questions: readinessQuestions },
   reviews: { factual: { status: "passed", reviewedAt: verifiedAt, reviewer: "Freia-fabrikken source review", notes: "Riksantikvaren, Oslo byleksikon, SNL, Geonorge og Commons-metadata er kontrollert. Riksantikvarens feilår 1882 er eksplisitt avvist." }, editorial: { status: "passed", reviewedAt: verifiedAt, reviewer: "Freia-fabrikken editorial review", introducedNewFacts: false, notes: "Stedet prioriterer fabrikk, arbeid, ledelse og marked; produktnostalgi og krigshistorie er holdt ute." } },
   reviewsNotes: ["Fabrikken er skilt fra Freia-sporene på Karl Johan.", "Park og sal er strukturer i parent-stedet, ikke nye kartnåler.", "Generert frontillustrasjon er tydelig merket og brukes ikke som evidens.", "Brand-assetet er et autentisk ordmerkeutsnitt, ikke rekonstruert logo."],

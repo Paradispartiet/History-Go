@@ -254,7 +254,11 @@ Canonical metode:
 
 ### Objects
 
-Objects skal være fysiske, identifiserbare gjenstander med dokumentert stedstilknytning. Badge kan peke mot relevante objekttyper, men observasjonstekst eller et bygg gjøres ikke om til Object for å øke antallet.
+Objects følger `docs/PLACE_OBJECTS_CANONICAL.md`.
+
+Utvalget skal først forklare stedets hovedfunksjon. På industri- og produksjonssteder undersøkes former/verktøy, maskiner, måle- og kvalitetsutstyr, emballasje-/håndteringsutstyr og andre dokumenterte produksjonsgjenstander før sekundære kulturspor.
+
+Objects skal være fysiske, identifiserbare gjenstander med dokumentert stedstilknytning og egne medlemsbilder. En kjent person eller et kjent verk skal ikke gjøre et sekundært tema til stedets hovedsamling. Når en relevant Object-gruppe mangler tilstrekkelig objekt-, kilde- eller bildebevis, føres den som `SOURCE-BOUNDED HOLDBACK` og utelates fra `place_card_profile`.
 
 `Spor og objekter` / `Legg merke til` kan være eide underseksjoner i Objects-popupen uten å bli egne samlinger.
 
