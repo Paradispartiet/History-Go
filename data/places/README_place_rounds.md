@@ -12,13 +12,15 @@ Schema: `data/places/regler/place_card_profile_v2.schema.json`
 
 Sted-for-sted arbeidsflyt: `docs/PLACE_PRODUCTION_CHECKLIST.md`
 
-Sist kontrollert: **2026-08-26**
+Produksjonsprofiler: `docs/PLACE_PRODUCTION_PROFILES.md`
+
+Sist kontrollert: **2026-08-27**
 
 Filnavnet beholdes midlertidig slik at gamle lenker og arbeidsløp ikke brytes. Kontrakten handler nå om **samlinger**, ikke om en kvote med runde elementer.
 
-> **PlaceCard har alltid en full, fast 2 × 2-komposisjon. På nye og fullproduserte steder skal hver flate vise et faktisk bilde av ett canonical medlem i samlingen. Ikon-/statusfallback er bare en runtime-sikring ved lasting eller feil og er aldri godkjent ferdigstatus.**
+> **PlaceCard har fortsatt en full, fast 2 × 2-komposisjon. En relevant og kvalifisert samlingsflate skal vise et faktisk bilde av ett canonical medlem. Dersom korrekt kandidataudit etter stedets bekreftede produksjonsprofil ender `BEGRUNNET N/A`, er en ærlig ikon-/statusfallback tillatt som sluttstatus for akkurat den semantisk tomme flaten. Filler er aldri tillatt.**
 
-Denne fireflatersregelen gjelder standard Places. Canonical Micro Places med
+Denne fireflatersregelen gjelder ordinære Places. Canonical Micro Places med
 `placeTier: "micro"` bruker i stedet det forenklede kortet definert i
 `docs/MICRO_PLACE_CONTRACT.md` og skal ikke ha `place_card_profile`.
 
@@ -37,7 +39,7 @@ Den eksisterende PlaceCard-komposisjonen beholdes:
 
 Vanlige PlaceCards viser alltid **People** som én sirkel og **Objects**, **Brands** og kategoriens samling som tre avrundede rektangler. Nature PlaceCards viser alltid **Flora** og **Fauna** som to sirkler og **Kart** og **Turmål** som to avrundede rektangler. Badges-rundingene ved overskriften kommer i tillegg og teller ikke blant de fire.
 
-Det finnes ingen femte samlingsplass. En samling uten registrerte treff beholder ikon og forståelig tomtilstand uten å vise tallet 0; den må aldri fjernes slik at kortet får et visuelt hull. For et nytt eller fullprodusert sted er denne tomtilstanden samtidig en produksjonsblocker: samlingen og minst ett bildeklart canonical medlem må produseres før closeout.
+Det finnes ingen femte samlingsplass. En samling uten registrerte treff beholder ikon og forståelig tomtilstand uten å vise tallet 0; den må aldri fjernes slik at kortet får et visuelt hull. For et nytt eller fullprodusert sted er tomtilstanden en produksjonsblocker **når samlingen er relevant og burde ha kvalifisert innhold**. Når produksjonsprofilens dokumenterte kandidataudit har konkludert `BEGRUNNET N/A`, skal tomtilstanden beholdes ærlig og er ikke i seg selv en blocker.
 
 ### Samlingspopup er ikke en ny samling
 
@@ -55,20 +57,21 @@ Disse seksjonene teller aldri som egne PlaceCard-samlinger og skal ikke få egne
 - alle øvrige samlinger vises som avrundede rektangler;
 - Badges er en separat handling ved overskriften og kan beholde sin sirkelform;
 - formen endrer bare presentasjonen, aldri popupens data eller samlingens innhold;
-- hver av de fire flatene viser et bilde av ett faktisk medlem fra sin kvalifiserte samling; previewet filtrerer aldri popupinnholdet;
+- hver relevant og kvalifisert flate viser et bilde av ett faktisk medlem fra sin samling; previewet filtrerer aldri popupinnholdet;
 - People/Flora/Fauna bruker et bilde av personen/arten, Objects bruker det konkrete objektet, Brands bruker verifisert logo/brandmark, og øvrige samlinger bruker et bilde av det viste medlemmet eller et faktisk detaljkart for `map`;
-- generisk ikon, navn, antall eller stedets `frontImage` kan ikke brukes som ferdig samlingspreview.
+- generisk ikon, navn, antall eller stedets `frontImage` kan ikke brukes som ferdig samlingspreview for en relevant samling;
+- en profilgodkjent `BEGRUNNET N/A`-flate bruker runtime-fallback som en **ærlig tomtilstand**, ikke som en falsk ferdig preview.
 
 ## 3. Canonical profil for nye og fullproduserte steder
 
-Nye og vesentlig reviderte steder bruker:
+Nye og vesentlig reviderte ordinære steder bruker:
 
 ```json
 {
   "place_card_profile": {
     "schema": "history_go_place_card_profile_v2",
     "collection_ids": ["people", "objects", "brands", "related"],
-    "reason": "Den faste fulle standardkomposisjonen er kontrollert med én sirkel og tre rektangler.",
+    "reason": "Den faste standardkomposisjonen er kandidatvurdert mot bekreftet produksjonsprofil; relevante samlinger er fylt og eventuelle N/A-flater er dokumentert i arbeidskortet.",
     "verifiedAt": "YYYY-MM-DD"
   }
 }
@@ -78,11 +81,13 @@ Krav:
 
 - `collection_ids` har nøyaktig fire unike canonical IDs;
 - rekkefølgen følger den faste standard- eller naturkomposisjonen;
-- innhold skal være reelt og stedsspesifikt; alle fire samlinger skal ha minst ett canonical medlem med validert bilde før fullproduksjon kan lukkes;
+- hver **relevant** samling skal ha reelt, stedsspesifikt canonical innhold med validert bilde før fullproduksjon kan lukkes;
+- en tom flate kan bare være ferdig når stedets `PRODUKSJONSPROFIL` er `confirmed` og samlingen er eksplisitt dokumentert `BEGRUNNET N/A` etter korrekt kandidataudit;
 - maksimalt én kategori-eid samling (`productions`, `structures`, `competitions`, `related` eller `destinations`) kan velges fordi de deler runtime-visningsplass;
-- `reason` forklarer kategori-komposisjonen og dokumenterer hvilke tomme flater som fortsatt er reelle produksjonsgap;
+- `reason` forklarer kategori-komposisjonen; arbeidskortet eier den detaljerte PASS/N/A/BLOCKED-beslutningen for hver betinget samling;
 - `verifiedAt` viser siste reelle innholds- og UI-kontroll;
-- schemaet skal valideres, men strukturell schema-PASS erstatter aldri redaksjonell kontroll.
+- schemaet skal valideres, men strukturell schema-PASS erstatter aldri redaksjonell kontroll;
+- `BEGRUNNET N/A` kan aldri brukes hvis research faktisk har funnet en kvalifisert entity som bare mangler materialisering eller bilde.
 
 ## 4. Bakoverkompatibilitet
 
@@ -129,7 +134,7 @@ Natursteder bruker alltid:
 flora · fauna · map · destinations
 ```
 
-Kategoriens naturlige samling fyller alltid den fjerde plassen. For legacy-/overgangssteder vises manglende treff som ikon-/statusreserve uten falskt innhold. Denne kompatibilitetsvisningen teller aldri som ferdig produksjon:
+Kategoriens naturlige samling fyller alltid den fjerde plassen. For legacy-/overgangssteder vises manglende treff som ikon-/statusreserve uten falskt innhold. Denne kompatibilitetsvisningen er ikke i seg selv bevis på verken PASS eller N/A; status avgjøres først ved profilert stedsproduksjon og kandidataudit.
 
 | Kategori | Kategori-eid samling | Brukerrettet navn |
 | --- | --- | --- |
@@ -152,7 +157,7 @@ Kategoriens naturlige samling fyller alltid den fjerde plassen. For legacy-/over
 | `filosofi` | `related` | Relaterte steder |
 | `psykologi` | `related` | Relaterte steder |
 
-Overgangsprofilen er kompatibilitet, ikke redaksjonell ferdigstatus. Ved fullproduksjon skal alle kandidatene vurderes, og den nye eksplisitte profilen skal velges.
+Overgangsprofilen er kompatibilitet, ikke redaksjonell ferdigstatus. Ved fullproduksjon skal kandidatene vurderes, og den nye eksplisitte profilen skal brukes sammen med den bekreftede produksjonsprofilen.
 
 ## 6. Canonical samlingspool
 
@@ -178,6 +183,8 @@ destinations
 
 People viser canonical personer med dokumentert stedstilknytning. Place-eierskap vurderes per profil. En personkobling som egentlig gjelder et delsted med egen canonical Place, brukes ikke som proxy for parent-stedet. Previewet filtrerer aldri hvem som finnes i People-popupen, og falsk 0 mens People-data lastes er en blocker.
 
+En faktisk tom People-kandidataudit kan ende `BEGRUNNET N/A` for `standard`/`focused` når det ikke finnes en person som består People-kontrakten. Det er bedre enn å produsere en perifer person bare for å fylle sirkelen. `major` forventes normalt å ha sterk People-dekning, men evidens vinner også der.
+
 ### Personrelasjoner eies av People-popupen
 
 Når stedet har dokumenterte relasjoner som faktisk involverer personer, kan People-popupen i tillegg vise en seksjon **Relasjoner**. Dette kan omfatte person↔person eller person↔aktør-relasjoner når koblingen er kildebelagt og relevant for stedet.
@@ -194,7 +201,7 @@ Regler:
 
 Objects er en reell samling av fysiske, identifiserbare gjenstander med dokumentert stedstilknytning. Canonical felt er `place.objects`.
 
-En fysisk Civication-post kan leses som compatibility-kilde når den faktisk oppfyller Objects-kontrakten. Det gjør ikke Civication til en samling. En tom eller svak Objects-kilde fylles aldri med en vilkårlig gjenstand; flaten beholder i stedet sin ærlige reservevisning.
+En fysisk Civication-post kan leses som compatibility-kilde når den faktisk oppfyller Objects-kontrakten. Det gjør ikke Civication til en samling. En tom eller svak Objects-kilde fylles aldri med en vilkårlig gjenstand; flaten beholder i stedet sin ærlige reservevisning. Etter full kandidataudit kan dette være `BEGRUNNET N/A` i den bekreftede produksjonsprofilen.
 
 ### «Spor og objekter» og «Legg merke til» eies av Objects-popupen
 
@@ -216,6 +223,8 @@ Canonical semantisk eier er `data/brands/brand_rules_v1_1.json`.
 
 Brands betyr selvstendige, sosialt gjenkjennelige navn og identiteter med dokumentert stedskobling. Profesjonelle firmaer, arkitektur- og ingeniørfirmaer, historiske virksomheter, venue-identiteter og institusjonsbrands kan kvalifisere når Brand-reglene består; aktørtypen er heller ikke et avslag i seg selv. Brands er ikke en restkategori, og null treff i dagens register er ikke alene grunnlag for N/A.
 
+Brand-kandidater skal alltid researches etter Brand-kontrakten. Når alle plausible kandidater er vurdert og ingen består definisjonen, er `BEGRUNNET N/A` en gyldig profilstatus. Det skal **aldri** konstrueres et historisk «brand» fra virksomhetsnavn, stedets navn, eiernavn eller et tilfeldig skilt bare for å få et bilde i Brands-flaten.
+
 ## 10. Map, Flora og Fauna
 
 - `map` åpner et faktisk tur-/naturkart og faller aldri tilbake til det generelle hovedkartet;
@@ -235,7 +244,7 @@ En produksjon er ikke det samme som en fysisk gjenstand: en sang kan høre til i
 
 `structures` betyr navngitte bygninger og anlegg som utgjør en reell samling ved stedet, som haller, tårn, tribuner, broer, verksteder eller andre identifiserbare konstruksjoner.
 
-Gamle `subplaces`-/`spots`-data kan bare brukes som compatibility-kilde når posten uttrykkelig beskriver en bygning eller et anlegg. Objects og Structures kan ha hver sin faste flate, men samme fysiske element må aldri dupliseres eller gis et kunstig skille mellom samlingene.
+Gamle `subplaces`-/`spots`-data kan bare brukes som compatibility-kilde når posten uttrykkelig beskriver en bygning eller et anlegg. Objects og Structures kan ha hver sin faste flate, men samme fysiske element må aldri dupliseres eller gis et kunstig skille mellom samlingene. Hvis stedet ikke bærer en reell Structures-samling etter audit, brukes `BEGRUNNET N/A` fremfor å splitte ett fysisk spor kunstig.
 
 ## 13. Competitions
 
@@ -278,7 +287,7 @@ Følgende er ikke canonical samlinger:
 - Rute;
 - de sju stedspopup-SVG-ene.
 
-Disse kan fortsatt være viktige deler av den samlede stedsopplevelsen hos sine canonical eiere. At de ikke er PlaceCard-samlinger betyr aldri at de er valgfrie i stedsproduksjonen.
+Disse kan fortsatt være viktige deler av den samlede stedsopplevelsen hos sine canonical eiere. At de ikke er PlaceCard-samlinger betyr at relevans og produksjonskrav avgjøres av `docs/PLACE_PRODUCTION_CHECKLIST.md`, `docs/PLACE_PRODUCTION_PROFILES.md` og subsystemets egen kontrakt — ikke av et behov for å fylle PlaceCard.
 
 ## 18. Badges og Quiz
 
@@ -288,31 +297,32 @@ Badges står separat ved stedsoverskriften og åpner:
 fagverk-sted.html?place=<place_id>
 ```
 
-Badges teller ikke blant de fire samlingene. Hvert sted skal ha fungerende fagverk-side etter produksjonssjekklisten.
+Badges teller ikke blant de fire samlingene. Hvert ordinært sted skal ha fungerende fagverk-side etter produksjonssjekklisten.
 
-Quiz er en obligatorisk, tydelig PlaceCard-handling i footeren. Quiz skal ikke gjøres valgfri, skjules eller flyttes inn i samlingsfeltet. Samlingsantall har ingen innvirkning på quizkravet.
+Quiz beholdes som en tydelig PlaceCard-handling i footeren. Quizens produksjonsomfang og eventuelle evidensbaserte avgrensning avgjøres av den canonicale Quiz-kontrakten og produksjonsprofilen; samlingsfullness kan aldri brukes som grunn til å skrive svake eller dupliserte spørsmål.
 
 ## 19. Produksjonsgate
 
-Et sted er PlaceCard-ferdig når:
+Et ordinært sted er PlaceCard-ferdig når:
 
 1. Badges vises separat ved overskriften og åpner riktig fagverk-side;
-2. Quiz vises som obligatorisk, tydelig handling og åpner riktig stedquiz;
-3. nøyaktig fire samlingsflater er valgt i `place_card_profile` etter kategoriens faste komposisjon;
-4. hver av de fire samlingene har reelt, stedsspesifikt innhold og viser et faktisk bilde av ett av sine canonicale medlemmer;
-5. vanlige kort har People som sirkel og tre rektangler; Nature har Flora og Fauna som sirkler og to rektangler;
-6. den fulle 2 × 2-layouten er kontrollert på mobil og desktop;
-7. `frontImage` er en validert stående fil/variant med dokumentert crop og proveniens; Bilder finnes bare i medie-/bildeeierne og aldri som samling eller reserve;
-8. hver samling åpner korrekt popupinnhold, antall og datakilde;
-9. Objects-popupen viser eventuelle `Spor og objekter`/`Legg merke til`-supplementer uten å forfalske Objects-antallet;
-10. People-popupen viser relevante personrelasjoner uten å blande inn rene place→place-relasjoner;
-11. `related` beholder place→place-relasjoner;
-12. ingen av disse supplementene dupliseres som egne stedspopupfaner;
-13. ødelagt preview faller trygt tilbake uten ødelagt bildeikon, men fallbacken registreres som blocker og kan ikke godkjennes i closeout;
-14. People-previewet filtrerer ikke People-popupen;
-15. naturkartet åpner faktisk detaljkart;
-16. ingen delsted-, Object-/Structure-, Brand- eller relasjonseier er feil;
-17. stedspopupen er fullverdig kontrollert etter popupkontrakten;
-18. schema, typer, renderer, layout og relevante permanente tester passerer.
+2. Quiz-handlingen følger gjeldende Quiz-/produktkontrakt for stedet;
+3. nøyaktig fire samlingsflater er valgt i `place_card_profile` etter dagens faste runtime-komposisjon;
+4. hver **relevant** samling har reelt, stedsspesifikt innhold og viser et faktisk bilde av ett av sine canonicale medlemmer;
+5. hver tom samling som godkjennes som sluttstatus er dokumentert `BEGRUNNET N/A` under en `confirmed` produksjonsprofil og har en etterprøvbar kandidataudit;
+6. vanlige kort har People som sirkel og tre rektangler; Nature har Flora og Fauna som sirkler og to rektangler;
+7. den fulle 2 × 2-layouten er kontrollert på mobil og desktop;
+8. `frontImage` er en validert stående fil/variant med dokumentert crop og proveniens; Bilder finnes bare i medie-/bildeeierne og aldri som samling eller reserve;
+9. hver relevant samling åpner korrekt popupinnhold, antall og datakilde; en N/A-samling viser en ærlig tomtilstand uten falske entities;
+10. Objects-popupen viser eventuelle `Spor og objekter`/`Legg merke til`-supplementer uten å forfalske Objects-antallet;
+11. People-popupen viser relevante personrelasjoner uten å blande inn rene place→place-relasjoner;
+12. `related` beholder place→place-relasjoner;
+13. ingen av disse supplementene dupliseres som egne stedspopupfaner;
+14. ødelagt preview for en **relevant** samling faller trygt tilbake, men registreres som blocker; profilgodkjent N/A-fallback er derimot en gyldig tomtilstand;
+15. People-previewet filtrerer ikke People-popupen;
+16. naturkartet åpner faktisk detaljkart når `map` er relevant;
+17. ingen delsted-, Object-/Structure-, Brand- eller relasjonseier er feil;
+18. stedspopupen er fullverdig kontrollert etter popupkontrakten og den bekreftede produksjonsprofilen;
+19. schema, typer, renderer, layout og relevante permanente tester passerer.
 
-**Stoppgate:** PlaceCard kan ikke ferdigmeldes før runtime, schema og tester støtter den fulle modellen, `frontImage` er stående, og alle fire samlingsflater har lastende bilder av faktiske canonicale medlemmer. Manglende innhold eller mediefil registreres som et produksjonsgap, mens runtime fortsatt holder komposisjonen full og visuelt stabil.
+**Stoppgate:** PlaceCard kan ikke ferdigmeldes før runtime, schema og tester støtter den faste modellen, `frontImage` er stående, alle relevante samlingsflater har lastende bilder av faktiske canonicale medlemmer, og alle tomme flater er eksplisitt dokumentert `BEGRUNNET N/A`. Manglende relevant innhold eller mediefil er fortsatt et produksjonsgap. Manglende semantisk kandidat etter korrekt audit skal aldri repareres med filler.
