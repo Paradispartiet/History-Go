@@ -4,8 +4,189 @@
   "role_scope": "avdelingsleder",
   "mail_type": "story",
   "families": [
-    {"id":"avdelingsleder_identitet","mails":[
-      {"id":"avdelingsleder_identitet_001","mail_type":"story","mail_family":"avdelingsleder_identitet","role_scope":"avdelingsleder","subject":"Hvem blir du i denne rollen?","summary":"En mentor utfordrer deg på om du leder mennesker eller bare flytter tall.","situation":["Du får ros for leveranse, men teamet beskriver slitasje.","Spørsmålet er ikke om du kan levere, men hva leveransen koster."],"task_domain":"leadership_identity","competency":"arbeidsmiljo","pressure":"identitet_vs_resultat","choice_axis":"effektivitet_vs_rettferdighet","consequence_axis":"karriere_vs_legitimitet","narrative_arc":"identitet","choices":[{"id":"A","label":"Definer suksess som både tall og bæreevne.","effect":1,"tags":["ethics"],"feedback":"Du bygger en rolle som tåler tid, ikke bare kvartal."},{"id":"B","label":"Definer suksess som levering over alt annet.","effect":0,"tags":["performance"],"feedback":"Du blir tydelig, men risikoen flyttes til folkene."}]}
-    ]}
+    {
+      "id": "avdelingsleder_identitet",
+      "mails": [
+        {
+          "id": "avdelingsleder_identitet_001",
+          "mail_type": "story",
+          "mail_family": "avdelingsleder_identitet",
+          "role_scope": "avdelingsleder",
+          "subject": "Hvem blir du i denne rollen?",
+          "summary": "En mentor utfordrer deg på om du leder mennesker eller bare flytter tall.",
+          "situation": [
+            "Du får ros for leveranse, men teamet beskriver slitasje.",
+            "Spørsmålet er ikke om du kan levere, men hva leveransen koster."
+          ],
+          "task_domain": "leadership_identity",
+          "competency": "arbeidsmiljo",
+          "pressure": "identitet_vs_resultat",
+          "choice_axis": "effektivitet_vs_rettferdighet",
+          "consequence_axis": "karriere_vs_legitimitet",
+          "narrative_arc": "identitet",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Definer suksess som både tall og bæreevne.",
+              "effect": 1,
+              "tags": [
+                "ethics"
+              ],
+              "feedback": "Du bygger en rolle som tåler tid, ikke bare kvartal."
+            },
+            {
+              "id": "B",
+              "label": "Definer suksess som levering over alt annet.",
+              "effect": 0,
+              "tags": [
+                "performance"
+              ],
+              "feedback": "Du blir tydelig, men risikoen flyttes til folkene."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_avdelingsleder_peer_reputation",
+      "purpose": "Materialisere omdømme som audience-spesifikk standing: sidestilt leder, team og regionleder kan vurdere samme handling ulikt uten at én global score avgjør sosial virkelighet.",
+      "learning_focus": [
+        "status_og_tillitsforstaelse",
+        "ledergruppestatus_vs_teamlegitimitet",
+        "situated_reputation"
+      ],
+      "mails": [
+        {
+          "id": "naeringsliv_avdelingsleder_realism_peer_reputation_split_001",
+          "mail_type": "story",
+          "mail_family": "role_world_rollout_avdelingsleder_peer_reputation",
+          "role_scope": "avdelingsleder",
+          "phase": "advanced",
+          "day_phase": "evening",
+          "priority": 97,
+          "cooldown": 12,
+          "repeatable": false,
+          "stage": "stable",
+          "planned_only": true,
+          "thread_key": "naeringsliv_avdelingsleder_capacity_realism_001",
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "naeringsliv",
+            "avdelingsleder",
+            "situated_reputation"
+          ],
+          "from": "Mads, sidestilt avdelingsleder",
+          "people_ref": "mads_sidestilt_avdelingsleder",
+          "person_id": "mads_sidestilt_avdelingsleder",
+          "place_id": "driftskontor",
+          "subject": "Mads liker den rolige rapporten – Rana liker at belastningen faktisk står der",
+          "summary": "Mens caset venter på ressursretning, peker Mads på at ledergruppen belønner korte, rolige statusbilder. Samtidig har Rana gitt deg mer tillit fordi belastningen ikke ble filtrert bort. Rollen må tåle at standing hos to publikum beveger seg forskjellig.",
+          "purpose": "Materialisere omdømme som audience-spesifikk standing: sidestilt leder, team og regionleder kan vurdere samme handling ulikt uten at én global score avgjør sosial virkelighet.",
+          "stakes": "Hvis spilleren jager én samlet statusverdi, blir det rasjonelt å polere budskapet for den mektigste mottakeren og usynliggjøre kostnaden hos dem som faktisk bærer arbeidet.",
+          "situation": [
+            "Mads mener ledergruppen trenger ro og korthet for å handle.",
+            "Rana mener troverdig ledelse krever at skjult belastning står i samme bilde som leveransen.",
+            "Ingen av disse reaksjonene endrer hvem som kan godkjenne budsjett, bemanning eller formelle personalsaker."
+          ],
+          "task_domain": "situert_omdomme_og_lederkultur",
+          "task_kind": "story",
+          "competency": "status_og_tillitsforstaelse",
+          "pressure": "ledergruppestatus_vs_teamlegitimitet",
+          "choice_axis": "erkjenn_publikumssplitt_vs_optimer_global_status",
+          "consequence_axis": "lesbar_tillit_vs_statusmaskering",
+          "narrative_arc": "fra_uklar_kapasitet_til_sporbart_prioriterings_og_ressurshandoff",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "naeringsliv_avdelingsleder_capacity_case_001"
+            ],
+            "institution_id": "naeringsliv_operativ_enhet_001",
+            "waiting_for_actor_id": "inger_overordnet_leder",
+            "rework_of_scene_id": "naeringsliv_avdelingsleder_realism_team_handoff_001",
+            "priority": "high"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Behold den fulle statusen og gjør målgruppen for hvert signal tydelig",
+              "reply": "Jeg beholder kapasitetsdelen og merker hva som er teamobservasjon, ledervurdering og beslutningspunkt.",
+              "effect": 2,
+              "feedback": "Mads er fortsatt mer skeptisk til lengden, men han kan se hva som er ditt ansvar og hva som må opp. Rana får bekreftet at lokal tillit ikke blir ofret for å maksimere status i ledergruppen.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "avdelingsleder_reputation_split_named",
+                    "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001",
+                    "flag": "audience_specific_standing_made_explicit"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "avdelingsleder_standing_mads_explicit",
+                    "audience_id": "professional:mads_sidestilt_avdelingsleder",
+                    "delta": 1,
+                    "reason": "Mads ser en mer omfattende rapport, men også en tydeligere ansvarsdeling som er mulig å diskutere.",
+                    "source_actor_id": "mads_sidestilt_avdelingsleder"
+                  },
+                  {
+                    "event_id": "avdelingsleder_standing_team_explicit",
+                    "audience_id": "team:avdelingsleder_team",
+                    "delta": 3,
+                    "reason": "Teamet ser at belastningsinformasjonen overlever inn i lederdialogen. Denne vurderingen gjelder dette publikummets situerte tillit og gir ingen ny formell fullmakt.",
+                    "source_actor_id": "rana_teamkoordinator"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Kort ned alt som kan få avdelingen til å se svak ut",
+              "reply": "Jeg fjerner belastningsdetaljene og lar leveranse, tiltak og kontroll være hovedbildet.",
+              "effect": -2,
+              "feedback": "Mads opplever rapporten som mer ledervennlig, men teamets ståsted faller fordi informasjonen de tok risikoen ved å dele nå brukes til å produsere et penere bilde. Standing beveger seg ulikt, ikke globalt.",
+              "effects": {
+                "stats": {
+                  "status": 2,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                },
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "avdelingsleder_reputation_optimized_upward",
+                    "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001",
+                    "flag": "manager_facing_status_optimized_at_team_cost"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "avdelingsleder_standing_mads_polished",
+                    "audience_id": "professional:mads_sidestilt_avdelingsleder",
+                    "delta": 3,
+                    "reason": "Mads liker den kortere lederformen og oppfatter deg som mer politisk smidig.",
+                    "source_actor_id": "mads_sidestilt_avdelingsleder"
+                  },
+                  {
+                    "event_id": "avdelingsleder_standing_team_polished_again",
+                    "audience_id": "team:avdelingsleder_team",
+                    "delta": -5,
+                    "reason": "Teamet ser at deres informasjon er filtrert ut når den truer lederstatusen.",
+                    "source_actor_id": "rana_teamkoordinator"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
   ]
 }

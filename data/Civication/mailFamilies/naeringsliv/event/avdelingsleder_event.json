@@ -4,8 +4,197 @@
   "role_scope": "avdelingsleder",
   "mail_type": "event",
   "families": [
-    {"id":"avdelingsleder_driftskrise","mails":[
-      {"id":"avdelingsleder_driftskrise_001","mail_type":"event","mail_family":"avdelingsleder_driftskrise","role_scope":"avdelingsleder","subject":"Driftsstans før leveringsvindu","summary":"Et teknisk avvik stopper leveransen rett før kritisk frist.","situation":["Kunder venter, teamet er allerede presset.","Du må velge om du skjuler risiko eller eskalerer tidlig."],"task_domain":"incident_response","competency":"prioritering","pressure":"krise_og_tid","choice_axis":"eskalere_tidlig_vs_holde_ro","consequence_axis":"tillit_vs_ansiktstap","narrative_arc":"driftskrise","choices":[{"id":"A","label":"Eskalér med tydelig risikobilde og alternativ plan.","effect":1,"tags":["transparency"],"feedback":"Du mister glans, men øker sjansen for reell støtte."},{"id":"B","label":"Forsøk å løse alt lokalt før du varsler oppover.","effect":0,"tags":["control"],"feedback":"Du beholder kontroll kortsiktig, men forsterker konsekvensen hvis det glipper."}]}
-    ]}
+    {
+      "id": "avdelingsleder_driftskrise",
+      "mails": [
+        {
+          "id": "avdelingsleder_driftskrise_001",
+          "mail_type": "event",
+          "mail_family": "avdelingsleder_driftskrise",
+          "role_scope": "avdelingsleder",
+          "subject": "Driftsstans før leveringsvindu",
+          "summary": "Et teknisk avvik stopper leveransen rett før kritisk frist.",
+          "situation": [
+            "Kunder venter, teamet er allerede presset.",
+            "Du må velge om du skjuler risiko eller eskalerer tidlig."
+          ],
+          "task_domain": "incident_response",
+          "competency": "prioritering",
+          "pressure": "krise_og_tid",
+          "choice_axis": "eskalere_tidlig_vs_holde_ro",
+          "consequence_axis": "tillit_vs_ansiktstap",
+          "narrative_arc": "driftskrise",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Eskalér med tydelig risikobilde og alternativ plan.",
+              "effect": 1,
+              "tags": [
+                "transparency"
+              ],
+              "feedback": "Du mister glans, men øker sjansen for reell støtte."
+            },
+            {
+              "id": "B",
+              "label": "Forsøk å løse alt lokalt før du varsler oppover.",
+              "effect": 0,
+              "tags": [
+                "control"
+              ],
+              "feedback": "Du beholder kontroll kortsiktig, men forsterker konsekvensen hvis det glipper."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_avdelingsleder_capacity_incident",
+      "purpose": "Bevise at situert standing og lokal lederstatus ikke utvider authority: legitim direkte prioritering innen mandat skal skilles fra handlinger som krever godkjenning.",
+      "learning_focus": [
+        "mandatklar_operativ_ledelse",
+        "handlekraft_vs_myndighetslekkasje",
+        "situated_reputation"
+      ],
+      "mails": [
+        {
+          "id": "naeringsliv_avdelingsleder_realism_capacity_incident_001",
+          "mail_type": "event",
+          "mail_family": "role_world_rollout_avdelingsleder_capacity_incident",
+          "role_scope": "avdelingsleder",
+          "phase": "advanced",
+          "day_phase": "morning",
+          "priority": 93,
+          "cooldown": 12,
+          "repeatable": false,
+          "stage": "stable",
+          "planned_only": true,
+          "thread_key": "naeringsliv_avdelingsleder_capacity_realism_001",
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "naeringsliv",
+            "avdelingsleder",
+            "situated_reputation"
+          ],
+          "from": "Rana, teamkoordinator",
+          "people_ref": "rana_teamkoordinator",
+          "person_id": "rana_teamkoordinator",
+          "place_id": "avdelingsgulv",
+          "subject": "Nytt fravær gjør fullmaktsgrensen konkret: prioriter lokalt, eskaler rammen",
+          "summary": "Et nytt fravær treffer samtidig som en kvalitetskritisk leveranse skal ferdigstilles. Du kan omprioritere arbeid og stoppe en uforsvarlig plan innen rollen, men du kan ikke selv vedta varig bemanningsøkning, budsjettunntak eller formelle personalsanksjoner.",
+          "purpose": "Bevise at situert standing og lokal lederstatus ikke utvider authority: legitim direkte prioritering innen mandat skal skilles fra handlinger som krever godkjenning.",
+          "stakes": "Når teamet har høy tillit til lederen kan det føles naturlig å handle på deres vegne. Hvis dette blir tolket som fullmakt til å kjøpe, ansette eller sanksjonere, lekker omdømme direkte inn i myndighet.",
+          "situation": [
+            "Fraværet gjør dagens plan urealistisk uten omprioritering.",
+            "Den operative ledergrammatikken tillater prioritering av arbeid innen fullmakt og eskalering av kapasitetskonflikter.",
+            "Budsjettunntak, varig bemanning og formelle personalsaker eies fortsatt av andre beslutningspunkter."
+          ],
+          "task_domain": "driftsavvik_og_fullmakt",
+          "task_kind": "event",
+          "competency": "mandatklar_operativ_ledelse",
+          "pressure": "handlekraft_vs_myndighetslekkasje",
+          "choice_axis": "prioriter_innen_mandat_og_eskaler_vs_gjor_ressursvedtak_selv",
+          "consequence_axis": "legitim_handlekraft_vs_authority_breach",
+          "narrative_arc": "fra_uklar_kapasitet_til_sporbart_prioriterings_og_ressurshandoff",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "naeringsliv_avdelingsleder_capacity_case_001"
+            ],
+            "institution_id": "naeringsliv_operativ_enhet_001",
+            "handoff_to_actor_id": "inger_overordnet_leder",
+            "rework_of_scene_id": "naeringsliv_avdelingsleder_realism_reporting_conflict_001",
+            "priority": "high"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Omprioriter dagens arbeid, beskytt kvalitet og eskaler varig ressursbehov",
+              "reply": "Jeg flytter ikke-kritisk arbeid, skjermer kvalitet og sender Inger et eksplisitt behov for rammebeslutning.",
+              "effect": 2,
+              "feedback": "Teamet får konkret handlekraft fra deg der rollen faktisk har mandat. Inger får resten som godkjenningspunkt. Standing hos team og regionleder kan begge øke fordi du bruker riktig type makt på riktig nivå.",
+              "effects": {
+                "stats": {
+                  "quality": 3,
+                  "trust": 3,
+                  "risk": -3
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "avdelingsleder_incident_contained",
+                    "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "local_reprioritization_and_escalation",
+                    "note": "Dagens arbeid er omprioritert innen fullmakt; varig ressursendring er eskalert til regionleder."
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "avdelingsleder_standing_team_incident",
+                    "audience_id": "team:avdelingsleder_team",
+                    "delta": 4,
+                    "reason": "Teamet ser at du faktisk prioriterer ned arbeid i stedet for å be dem absorbere alt.",
+                    "source_actor_id": "rana_teamkoordinator"
+                  },
+                  {
+                    "event_id": "avdelingsleder_standing_inger_incident",
+                    "audience_id": "manager:inger_overordnet_leder",
+                    "delta": 3,
+                    "reason": "Inger får et tydelig ressursproblem uten at du har foregrepet hennes beslutning.",
+                    "source_actor_id": "inger_overordnet_leder"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Bestem ekstra innleie og behandle det som din lederfullmakt",
+              "reply": "Jeg setter inn ekstra kapasitet nå og informerer økonomi og Inger etterpå.",
+              "effect": -2,
+              "feedback": "Høy lokal status blir brukt som om den også var budsjettmyndighet. Teamet kan like den umiddelbare lettelsen, men handlingen bryter kontrakten og gjør standing til en urettmessig snarvei rundt beslutningssystemet.",
+              "effects": {
+                "stats": {
+                  "status": 2,
+                  "trust": -1,
+                  "risk": 5
+                },
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "avdelingsleder_incident_budget_breach",
+                    "work_object_id": "naeringsliv_avdelingsleder_capacity_case_001",
+                    "flag": "budget_change_executed_without_approval"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "avdelingsleder_standing_team_incident_relief",
+                    "audience_id": "team:avdelingsleder_team",
+                    "delta": 2,
+                    "reason": "Teamet liker den umiddelbare lettelsen, men står nå i en løsning som ikke er formelt forankret.",
+                    "source_actor_id": "rana_teamkoordinator"
+                  },
+                  {
+                    "event_id": "avdelingsleder_standing_inger_incident_breach",
+                    "audience_id": "manager:inger_overordnet_leder",
+                    "delta": -5,
+                    "reason": "Inger ser at budsjett- og ressursmyndighet er tatt uten godkjenning. Denne vurderingen gjelder dette publikummets situerte tillit og gir ingen ny formell fullmakt.",
+                    "source_actor_id": "inger_overordnet_leder"
+                  },
+                  {
+                    "event_id": "avdelingsleder_standing_oyvind_incident_breach",
+                    "audience_id": "professional:oyvind_okonomicontroller",
+                    "delta": -4,
+                    "reason": "Øyvind må håndtere en kostnadsbeslutning som ble utført før økonomisk godkjenning.",
+                    "source_actor_id": "oyvind_okonomicontroller"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
   ]
 }
