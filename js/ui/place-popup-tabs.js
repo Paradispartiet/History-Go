@@ -91,13 +91,25 @@
     try { return list(global.HGStories?.getByPlace?.(placeId)); } catch { return []; }
   }
 
-  async function loadLesespor() {
+  function mergeLesesporSources(...sources) {
+    return uniqueBy(sources.flatMap(list), item => text(item?.id)
+      || [item?.title, item?.author, item?.publication, item?.year || item?.date].map(text).join("|"));
+  }
+
+  function placeOpenLesespor(placeId) {
+    return list(global.HGPlaceOpen?.get?.(placeId)?.lesespor);
+  }
+
+  async function loadLesespor(placeId) {
+    const canonical = placeOpenLesespor(placeId);
+    if (canonical.length) return mergeLesesporSources(global.LESESPOR, canonical);
     if (Array.isArray(global.LESESPOR)) return global.LESESPOR;
     try {
       const value = await global.DataHub?.loadLesespor?.({ cache: "default" });
-      return Array.isArray(value?.items) ? value.items : list(value);
+      const aggregate = Array.isArray(value?.items) ? value.items : list(value);
+      return mergeLesesporSources(aggregate, placeOpenLesespor(placeId));
     } catch {
-      return list(global.LESESPOR);
+      return mergeLesesporSources(global.LESESPOR, placeOpenLesespor(placeId));
     }
   }
 
@@ -417,7 +429,7 @@
     const placeId = text(place?.id);
     if (!placeId || !popup?.isConnected) return;
     const [articles, stories, lesespor, language] = await Promise.all([
-      loadLeksikon(placeId), loadStories(placeId), loadLesespor(), loadLanguage(placeId)
+      loadLeksikon(placeId), loadStories(placeId), loadLesespor(placeId), loadLanguage(placeId)
     ]);
     if (!popup.isConnected) return;
 
@@ -489,7 +501,11 @@
     wrapped.__hgPlacePopupV2 = true;
     wrapped.__previous = current;
     global.showPlacePopup = wrapped;
-    global.HGPlacePopupTabs = { decoratePopup: decorate, tabs: TAB_DEFS.map(([id, label]) => ({ id, label })) };
+    global.HGPlacePopupTabs = {
+      decoratePopup: decorate,
+      resolveLesespor: loadLesespor,
+      tabs: TAB_DEFS.map(([id, label]) => ({ id, label }))
+    };
     global[INSTALL_FLAG] = true;
     return true;
   }
