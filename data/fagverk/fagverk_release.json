@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "8facec7427cba1de30caa4115470d48e4d62e5fe7af1d8ccf70509a81d75d8c6"
+    "content_sha256": "67b4990755e0f021353d431d2d447736bb3c2fb44112b0c13165ebae9f285284"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 17,
     "chapter_count": 184,
     "module_file_count": 477,
-    "package_file_count": 302,
+    "package_file_count": 305,
     "chapter_referenced_file_count": 898,
-    "referenced_file_count": 1134,
+    "referenced_file_count": 1137,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -3447,9 +3447,9 @@
         "universityFramework"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 34,
+      "package_file_count": 37,
       "required_package_file_count": 4,
-      "optional_package_file_count": 30,
+      "optional_package_file_count": 33,
       "package_files": [
         {
           "path": "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
@@ -3656,6 +3656,18 @@
           "content_sha256": "15508c98b148ed60838bd2624a843900aaa1288676d6d81787652694c99845c7"
         },
         {
+          "path": "data/quiz/naeringsliv/myrens_verksted_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.myrens_verksted.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "757e59ec0acad2fafc55e0bf8c8c604d9ce47e066ccebebd4530fcb101307656"
+        },
+        {
           "path": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
           "required": false,
           "fields": [
@@ -3716,6 +3728,18 @@
           "content_sha256": "e905ac7285377827dc06624dd0d1dc578b1d003329c9430a7ffd220db7b338c7"
         },
         {
+          "path": "data/quiz/production_briefs/naeringsliv/myrens_verksted.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.myrens_verksted.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "fdd387cb996720ecf46f71f813cec9732773a7248a81a60f97567d17076013ad"
+        },
+        {
           "path": "data/quiz/production_briefs/naeringsliv/oslo_posthus.json",
           "required": false,
           "fields": [
@@ -3774,6 +3798,18 @@
           ],
           "exists": true,
           "content_sha256": "cf65d9819b08f767bf862f7a7447f4b8f0546c6382c0d3b8a162bd33b5255ae0"
+        },
+        {
+          "path": "data/quiz/production_context/naeringsliv/myrens_verksted.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.myrens_verksted.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "a4f4c0c736437f1e2e4d8580ab7e09c413056f648f63e7b41aa053ba80e9ac01"
         },
         {
           "path": "data/quiz/production_context/naeringsliv/oslo_posthus.json",
@@ -3860,20 +3896,20 @@
           "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
         }
       ],
-      "package_content_sha256": "fff82665a79a8bbb89c253113f1ec812053e0f39bd7f1d2276215dec1a41f3a1",
+      "package_content_sha256": "0fe5710c0e9bdceb8f9e925af9392af7c0453299e594bd53ee78b4547f73e5bb",
       "chapter_count": 12,
       "module_file_count": 36,
       "brief_file_count": 12,
       "claims_file_count": 12,
       "chapter_referenced_file_count": 72,
       "chapter_content_sha256": "06d3f52d2c3e2ff12545cbbc2fc0c1a783071c46a79f1e46ae368e44562143d1",
-      "referenced_file_count": 106,
+      "referenced_file_count": 109,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "87c04642aaad0a6bcb61ef1b8cacbca4a674354346b2466804f3a860e7f583d1",
-      "content_sha256": "c670176aeccc6fab85b592c93a2dea41aab9a0f6c207d45ff1ef289c6b04b50f",
+      "structure_sha256": "81af3c695b6728979de865145b9fb9aa1cb4cb326cc172337570c4b83c483c3a",
+      "content_sha256": "98c936bc2d0e1b2fd23573557c032f248402ca089d62d13fe003ffd899647ce1",
       "chapters": [
         {
           "chapter_id": "arbeid-produksjon-verdiskaping",
@@ -6286,5 +6322,5 @@
       ]
     }
   },
-  "release_sha256": "96ca94c3d4b331269a6219dace86080d8fa4a9ec4e527d71ca62d0fda294c26b"
+  "release_sha256": "f8ecb533ac83fb6732909cd910defcef17c2950f9c366d57c9cd33c87eda94f9"
 }

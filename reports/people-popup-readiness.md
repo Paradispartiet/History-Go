@@ -6,18 +6,18 @@ Rapporten måler om runtime kan presentere tilgjengelige canonical People-felt. 
 
 People-produksjon, claims og ferdigstatus eies av `docs/PEOPLE_PROFILE_CANONICAL.md`. Profiler uten v1-claims er `legacy_unreviewed`, selv når presentasjonsstatusen er `complete`.
 
-Source fingerprint: `88381db13c9b99cf7149dbc5be98a20b2b1c9f95f8e28f7d4a039e2f6da3e9f4`
+Source fingerprint: `536d5150e3e97137da13a0d36ecab1d7f9597ee9da52696627340ab0d08f04ef`
 
 ## Sammendrag
 
 | Måling | Antall |
 |---|---:|
-| Personer | 1418 |
-| Presentasjon complete | 58 |
+| Personer | 1419 |
+| Presentasjon complete | 59 |
 | Presentasjon strong | 404 |
 | Presentasjon partial | 938 |
 | Presentasjon sparse | 18 |
-| People Profile v1 ready | 62 |
+| People Profile v1 ready | 63 |
 | Legacy uten v1-claims | 1356 |
 | Ødelagte bildereferanser | 287 |
 | Eksplisitt initialfallback | 1005 |
@@ -28,16 +28,16 @@ Source fingerprint: `88381db13c9b99cf7149dbc5be98a20b2b1c9f95f8e28f7d4a039e2f6da
 
 | Presentasjonsdel | Dekket | Andel |
 |---|---:|---:|
-| identity | 115 | 8.1 % |
-| popupDesc | 1394 | 98.3 % |
-| lifeData | 55 | 3.9 % |
-| contributionsDeclared | 55 | 3.9 % |
-| educationDeclared | 55 | 3.9 % |
-| practiceDeclared | 1397 | 98.5 % |
-| placeGrounding | 1418 | 100 % |
-| sources | 451 | 31.8 % |
-| imageContract | 1131 | 79.8 % |
-| profileStandard | 62 | 4.4 % |
+| identity | 116 | 8.2 % |
+| popupDesc | 1395 | 98.3 % |
+| lifeData | 56 | 3.9 % |
+| contributionsDeclared | 56 | 3.9 % |
+| educationDeclared | 56 | 3.9 % |
+| practiceDeclared | 1398 | 98.5 % |
+| placeGrounding | 1419 | 100 % |
+| sources | 452 | 31.9 % |
+| imageContract | 1132 | 79.8 % |
+| profileStandard | 63 | 4.4 % |
 
 ## Kategorier
 
@@ -49,7 +49,7 @@ Source fingerprint: `88381db13c9b99cf7149dbc5be98a20b2b1c9f95f8e28f7d4a039e2f6da
 | musikk | 124 | 0 | 15 | 109 | 0 | 0 | 124 | 62.2 |
 | politikk | 114 | 4 | 51 | 59 | 0 | 15 | 99 | 67.9 |
 | kunst | 84 | 7 | 64 | 13 | 0 | 9 | 75 | 73.1 |
-| naeringsliv | 81 | 1 | 29 | 34 | 17 | 2 | 79 | 59.8 |
+| naeringsliv | 82 | 2 | 29 | 34 | 17 | 3 | 79 | 60.2 |
 | by | 80 | 8 | 56 | 16 | 0 | 19 | 61 | 73.8 |
 | scenekunst | 48 | 1 | 16 | 31 | 0 | 1 | 47 | 64.6 |
 | subkultur | 41 | 0 | 5 | 36 | 0 | 0 | 41 | 61.9 |
