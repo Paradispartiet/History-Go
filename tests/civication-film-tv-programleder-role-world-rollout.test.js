@@ -231,7 +231,7 @@ for (const id of Object.values(ids)) {
   assert.ok(roleRegistryIds.has(id), id + ' absent from role index');
   const entry = registry.entries.find(row => row.id === id);
   assert.ok(entry, id + ' absent from registry');
-  assert.equal(entry.scene.role_scope, ROLE);
+  assert.equal(entry.role_scope, ROLE);
   assert.equal(entry.compatibility_projection.role_scope, ROLE);
 }
 const compiledKnowledge = registry.entries.find(row => row.id === knowledge.id);
