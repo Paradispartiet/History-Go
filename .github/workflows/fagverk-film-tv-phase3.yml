@@ -8,11 +8,10 @@ on:
       - "fagverk.html"
       - "fagverk-forside.html"
       - "data/categories/category_contract.json"
-      - "data/fag/fag_manifest.json"
       - "data/fag/TV_og_Film/**"
       - "docs/FILM_TV_CURRICULUM_COMPLETENESS_V1.md"
       - "data/badges/film_tv.json"
-      - "data/fagverk/**"
+      - "data/fagverk/film_tv/**"
       - "js/fagverk-subject-core.js"
       - "js/fagverk-subject-model.js"
       - "js/fagverk.js"
@@ -50,11 +49,10 @@ on:
     branches: [main]
     paths:
       - "data/categories/category_contract.json"
-      - "data/fag/fag_manifest.json"
       - "data/fag/TV_og_Film/**"
       - "docs/FILM_TV_CURRICULUM_COMPLETENESS_V1.md"
       - "data/badges/film_tv.json"
-      - "data/fagverk/**"
+      - "data/fagverk/film_tv/**"
       - "js/fagverk-subject-core.js"
       - "js/fagverk-subject-model.js"
       - "js/fagverk.js"
@@ -92,6 +90,10 @@ on:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   validate:

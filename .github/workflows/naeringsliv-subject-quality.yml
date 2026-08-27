@@ -5,7 +5,7 @@ on:
     paths:
       - 'data/fag/naeringsliv/**'
       - 'data/badges/naeringsliv.json'
-      - 'data/fagverk/**'
+      - 'data/fagverk/naeringsliv/**'
       - 'tools/validate-okonomi-naeringsliv-*.mjs'
       - 'tools/audit-naeringsliv-theory-integrity.mjs'
       - 'scripts/audit-naeringsliv-*.mjs'
@@ -21,7 +21,7 @@ on:
     paths:
       - 'data/fag/naeringsliv/**'
       - 'data/badges/naeringsliv.json'
-      - 'data/fagverk/**'
+      - 'data/fagverk/naeringsliv/**'
       - 'tools/validate-okonomi-naeringsliv-*.mjs'
       - 'tools/audit-naeringsliv-theory-integrity.mjs'
       - 'scripts/audit-naeringsliv-*.mjs'
@@ -32,6 +32,10 @@ on:
       - 'reports/fagverk/subject-baseline.json'
       - 'reports/fagverk/README.md'
       - '.github/workflows/naeringsliv-subject-quality.yml'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   quality:

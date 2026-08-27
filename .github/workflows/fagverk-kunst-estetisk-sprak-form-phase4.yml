@@ -5,9 +5,6 @@ on:
     paths:
       - 'data/fagverk/kunst/estetisk-sprak-og-form.json'
       - 'data/fagverk/kunst/estetisk-sprak-og-form/**'
-      - 'data/fagverk/fagverk_registry.json'
-      - 'data/fagverk/subject_status.json'
-      - 'data/fagverk/fagverk_release.json'
       - 'reports/fagverk/kunst-phase3-audit.json'
       - 'reports/fagverk/kunst-*-phase4-audit.json'
       - 'reports/fagverk/general-engine-audit.json'
@@ -21,9 +18,6 @@ on:
     paths:
       - 'data/fagverk/kunst/estetisk-sprak-og-form.json'
       - 'data/fagverk/kunst/estetisk-sprak-og-form/**'
-      - 'data/fagverk/fagverk_registry.json'
-      - 'data/fagverk/subject_status.json'
-      - 'data/fagverk/fagverk_release.json'
       - 'reports/fagverk/kunst-phase3-audit.json'
       - 'reports/fagverk/kunst-*-phase4-audit.json'
       - 'reports/fagverk/general-engine-audit.json'
@@ -35,6 +29,10 @@ on:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   audit:

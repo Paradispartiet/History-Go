@@ -5,9 +5,6 @@ on:
     paths:
       - 'data/fagverk/media/medieokonomi-eierskap-og-arbeid.json'
       - 'data/fagverk/media/medieokonomi-eierskap-og-arbeid/**'
-      - 'data/fagverk/fagverk_registry.json'
-      - 'data/fagverk/subject_status.json'
-      - 'data/fagverk/fagverk_release.json'
       - 'reports/fagverk/media-*-audit.json'
       - 'reports/fagverk/general-engine-audit.json'
       - 'reports/fagverk/subject-inventory-audit.json'
@@ -22,9 +19,6 @@ on:
     paths:
       - 'data/fagverk/media/medieokonomi-eierskap-og-arbeid.json'
       - 'data/fagverk/media/medieokonomi-eierskap-og-arbeid/**'
-      - 'data/fagverk/fagverk_registry.json'
-      - 'data/fagverk/subject_status.json'
-      - 'data/fagverk/fagverk_release.json'
       - 'reports/fagverk/media-*-audit.json'
       - 'reports/fagverk/general-engine-audit.json'
       - 'reports/fagverk/subject-inventory-audit.json'
@@ -37,6 +31,10 @@ on:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   audit:

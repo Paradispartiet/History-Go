@@ -3,8 +3,8 @@ name: Fagverk theory integrity audit
 on:
   pull_request:
     paths:
-      - 'data/fag/**'
-      - 'data/fagverk/**'
+      - 'data/fag/*/**'
+      - 'data/fagverk/*/**'
       - 'docs/FAGVERK.md'
       - 'docs/SUBJECT_FILE_CONTRACT.md'
       - 'reports/fagverk/fagverk-theory-integrity-audit.json'
@@ -72,8 +72,8 @@ on:
     branches:
       - main
     paths:
-      - 'data/fag/**'
-      - 'data/fagverk/**'
+      - 'data/fag/*/**'
+      - 'data/fagverk/*/**'
       - 'docs/FAGVERK.md'
       - 'docs/SUBJECT_FILE_CONTRACT.md'
       - 'reports/fagverk/fagverk-theory-integrity-audit.json'
@@ -141,6 +141,10 @@ on:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   audit:

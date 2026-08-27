@@ -3,15 +3,11 @@ name: Technology scientific quality
 on:
   pull_request:
     paths:
-      - 'data/fag/fag_manifest.json'
       - 'data/fag/teknologi/**'
-      - 'data/quiz/manifest.json'
       - 'data/quiz/teknologi/**'
       - 'data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json'
       - 'data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json'
       - 'data/quiz/regler/QUIZ_SUBJECT_PATHWAY_PACKAGE_SCHEMA_V1.json'
-      - 'data/knowledge/knowledge_manifest.json'
-      - 'data/knowledge/*.generated.json'
       - 'scripts/knowledge-canonical-data.mts'
       - 'scripts/validate-teknologi-editorial-v3.mjs'
       - 'tools/audit-teknologi-theory-integrity.mjs'
@@ -29,6 +25,10 @@ on:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   scientific-quality:

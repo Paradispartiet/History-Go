@@ -4,9 +4,6 @@ on:
   pull_request:
     paths:
       - "data/fag/TV_og_Film/film_tv_location_production_place_ethics_*.json"
-      - "data/fagverk/fagverk_registry.json"
-      - "data/fagverk/subject_status.json"
-      - "data/fagverk/fagverk_release.json"
       - "scripts/brief-film-tv-location-production-place-ethics-sources-v1.mjs"
       - "scripts/brief-film-tv-screen-places-identity-circulation-sources-v1.mjs"
       - "scripts/materialize-film-tv-screen-places-identity-circulation-fulltext-v1.mjs"
@@ -24,9 +21,6 @@ on:
     branches: [main]
     paths:
       - "data/fag/TV_og_Film/film_tv_location_production_place_ethics_*.json"
-      - "data/fagverk/fagverk_registry.json"
-      - "data/fagverk/subject_status.json"
-      - "data/fagverk/fagverk_release.json"
       - "scripts/brief-film-tv-location-production-place-ethics-sources-v1.mjs"
       - "scripts/brief-film-tv-screen-places-identity-circulation-sources-v1.mjs"
       - "scripts/materialize-film-tv-screen-places-identity-circulation-fulltext-v1.mjs"
@@ -47,7 +41,7 @@ permissions:
 
 concurrency:
   group: fagverk-film-tv-unit13-source-brief-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   validate:

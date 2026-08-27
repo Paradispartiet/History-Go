@@ -6,10 +6,9 @@ on:
       - 'fagverk.html'
       - 'fagverk-forside.html'
       - 'data/categories/category_contract.json'
-      - 'data/fag/fag_manifest.json'
       - 'data/fag/by/**'
       - 'data/badges/by.json'
-      - 'data/fagverk/**'
+      - 'data/fagverk/by/**'
       - 'js/fagverk-subject-core.js'
       - 'js/fagverk-subject-model.js'
       - 'js/fagverk.js'
@@ -30,7 +29,7 @@ on:
     paths:
       - 'data/fag/by/**'
       - 'data/badges/by.json'
-      - 'data/fagverk/**'
+      - 'data/fagverk/by/**'
       - 'scripts/audit-fagverk-by-pilot.mjs'
       - 'tools/audit-by-theory-integrity.mjs'
       - 'tests/fagverk-by-pilot.test.mjs'
@@ -41,6 +40,10 @@ on:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   validate:

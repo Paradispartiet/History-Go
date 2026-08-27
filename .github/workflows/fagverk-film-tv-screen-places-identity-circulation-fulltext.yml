@@ -6,9 +6,6 @@ on:
       - "data/fag/TV_og_Film/film_tv_screen_places_identity_circulation_*.json"
       - "data/fagverk/film_tv/skjermsteder-identitet-og-sirkulasjon.json"
       - "data/fagverk/film_tv/skjermsteder-identitet-og-sirkulasjon/**"
-      - "data/fagverk/fagverk_registry.json"
-      - "data/fagverk/subject_status.json"
-      - "data/fagverk/fagverk_release.json"
       - "scripts/brief-film-tv-screen-places-identity-circulation-sources-v1.mjs"
       - "scripts/materialize-film-tv-screen-places-identity-circulation-fulltext-v1.mjs"
       - "scripts/audit-film-tv-screen-places-identity-circulation-fulltext-v1.mjs"
@@ -32,9 +29,6 @@ on:
       - "data/fag/TV_og_Film/film_tv_screen_places_identity_circulation_*.json"
       - "data/fagverk/film_tv/skjermsteder-identitet-og-sirkulasjon.json"
       - "data/fagverk/film_tv/skjermsteder-identitet-og-sirkulasjon/**"
-      - "data/fagverk/fagverk_registry.json"
-      - "data/fagverk/subject_status.json"
-      - "data/fagverk/fagverk_release.json"
       - "scripts/brief-film-tv-screen-places-identity-circulation-sources-v1.mjs"
       - "scripts/materialize-film-tv-screen-places-identity-circulation-fulltext-v1.mjs"
       - "scripts/audit-film-tv-screen-places-identity-circulation-fulltext-v1.mjs"
@@ -59,7 +53,7 @@ permissions:
 
 concurrency:
   group: fagverk-film-tv-unit12-fulltext-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   validate:

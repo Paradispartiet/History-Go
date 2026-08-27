@@ -6,9 +6,6 @@ on:
       - "data/fag/TV_og_Film/film_tv_industry_regulation_distribution_*.json"
       - "data/fagverk/film_tv/industri-regulering-og-distribusjon.json"
       - "data/fagverk/film_tv/industri-regulering-og-distribusjon/**"
-      - "data/fagverk/fagverk_registry.json"
-      - "data/fagverk/subject_status.json"
-      - "data/fagverk/fagverk_release.json"
       - "scripts/brief-film-tv-industry-regulation-distribution-sources-v1.mjs"
       - "scripts/materialize-film-tv-industry-regulation-distribution-fulltext-v1.mjs"
       - "scripts/audit-film-tv-industry-regulation-distribution-fulltext-v1.mjs"
@@ -26,9 +23,6 @@ on:
       - "data/fag/TV_og_Film/film_tv_industry_regulation_distribution_*.json"
       - "data/fagverk/film_tv/industri-regulering-og-distribusjon.json"
       - "data/fagverk/film_tv/industri-regulering-og-distribusjon/**"
-      - "data/fagverk/fagverk_registry.json"
-      - "data/fagverk/subject_status.json"
-      - "data/fagverk/fagverk_release.json"
       - "scripts/brief-film-tv-industry-regulation-distribution-sources-v1.mjs"
       - "scripts/materialize-film-tv-industry-regulation-distribution-fulltext-v1.mjs"
       - "scripts/audit-film-tv-industry-regulation-distribution-fulltext-v1.mjs"
@@ -44,6 +38,10 @@ on:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   validate:

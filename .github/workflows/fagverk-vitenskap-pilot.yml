@@ -6,11 +6,10 @@ on:
       - 'fagverk.html'
       - 'fagverk-forside.html'
       - 'data/categories/category_contract.json'
-      - 'data/fag/fag_manifest.json'
       - 'data/fag/vitenskap/**'
       - 'data/fag/teknologi/**'
       - 'data/badges/vitenskap.json'
-      - 'data/fagverk/**'
+      - 'data/fagverk/vitenskap/**'
       - 'js/fagverk-subject-core.js'
       - 'js/fagverk-subject-model.js'
       - 'js/fagverk.js'
@@ -53,7 +52,7 @@ on:
       - 'data/fag/vitenskap/**'
       - 'data/fag/teknologi/**'
       - 'data/badges/vitenskap.json'
-      - 'data/fagverk/**'
+      - 'data/fagverk/vitenskap/**'
       - 'scripts/audit-fagverk-vitenskap-breadth-reconciliation.mjs'
       - 'scripts/audit-fagverk-vitenskap-pilot.mjs'
       - 'scripts/audit-fagverk-vitenskap-university-readiness.mjs'
@@ -84,6 +83,10 @@ on:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   validate:

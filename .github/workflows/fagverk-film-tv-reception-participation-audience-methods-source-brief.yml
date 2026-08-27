@@ -4,9 +4,6 @@ on:
   pull_request:
     paths:
       - "data/fag/TV_og_Film/film_tv_reception_participation_audience_methods_*.json"
-      - "data/fagverk/fagverk_registry.json"
-      - "data/fagverk/subject_status.json"
-      - "data/fagverk/fagverk_release.json"
       - "scripts/brief-film-tv-reception-participation-audience-methods-sources-v1.mjs"
       - "scripts/audit-film-tv-industry-regulation-distribution-fulltext-v1.mjs"
       - "tests/film-tv-reception-participation-audience-methods-source-brief-v1.test.mjs"
@@ -20,9 +17,6 @@ on:
     branches: [main]
     paths:
       - "data/fag/TV_og_Film/film_tv_reception_participation_audience_methods_*.json"
-      - "data/fagverk/fagverk_registry.json"
-      - "data/fagverk/subject_status.json"
-      - "data/fagverk/fagverk_release.json"
       - "scripts/brief-film-tv-reception-participation-audience-methods-sources-v1.mjs"
       - "scripts/audit-film-tv-industry-regulation-distribution-fulltext-v1.mjs"
       - "tests/film-tv-reception-participation-audience-methods-source-brief-v1.test.mjs"
@@ -39,7 +33,7 @@ permissions:
 
 concurrency:
   group: fagverk-film-tv-unit11-source-brief-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   validate:

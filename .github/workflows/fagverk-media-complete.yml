@@ -5,9 +5,6 @@ on:
     paths:
       - 'data/fag/media/**'
       - 'data/fagverk/media/**'
-      - 'data/fagverk/fagverk_registry.json'
-      - 'data/fagverk/subject_status.json'
-      - 'data/fagverk/fagverk_release.json'
       - 'scripts/audit-fagverk-media-*.mjs'
       - 'tools/audit-media-theory-integrity.mjs'
       - 'tests/fagverk-media-*.test.mjs'
@@ -18,6 +15,10 @@ on:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   audit:

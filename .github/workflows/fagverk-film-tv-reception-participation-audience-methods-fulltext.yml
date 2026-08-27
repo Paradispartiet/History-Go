@@ -5,9 +5,6 @@ on:
     paths:
       - "data/fagverk/film_tv/resepsjon-deltakelse-og-publikumsmetoder.json"
       - "data/fagverk/film_tv/resepsjon-deltakelse-og-publikumsmetoder/**"
-      - "data/fagverk/fagverk_registry.json"
-      - "data/fagverk/subject_status.json"
-      - "data/fagverk/fagverk_release.json"
       - "scripts/materialize-film-tv-reception-participation-audience-methods-fulltext-v1.mjs"
       - "scripts/audit-film-tv-reception-participation-audience-methods-fulltext-v1.mjs"
       - "scripts/brief-film-tv-reception-participation-audience-methods-sources-v1.mjs"
@@ -25,9 +22,6 @@ on:
     paths:
       - "data/fagverk/film_tv/resepsjon-deltakelse-og-publikumsmetoder.json"
       - "data/fagverk/film_tv/resepsjon-deltakelse-og-publikumsmetoder/**"
-      - "data/fagverk/fagverk_registry.json"
-      - "data/fagverk/subject_status.json"
-      - "data/fagverk/fagverk_release.json"
       - "scripts/materialize-film-tv-reception-participation-audience-methods-fulltext-v1.mjs"
       - "scripts/audit-film-tv-reception-participation-audience-methods-fulltext-v1.mjs"
       - "scripts/brief-film-tv-reception-participation-audience-methods-sources-v1.mjs"
@@ -47,7 +41,7 @@ permissions:
 
 concurrency:
   group: fagverk-film-tv-unit11-fulltext-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   validate:

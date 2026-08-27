@@ -6,7 +6,7 @@ on:
       - 'fagverk.html'
       - 'data/categories/category_contract.json'
       - 'data/fag/fag_manifest.json'
-      - 'data/fagverk/**'
+      - 'data/fagverk/*/**'
       - 'data/badges/**'
       - 'js/fagverk-subject-core.js'
       - 'js/fagverk-subject-model.js'
@@ -23,6 +23,10 @@ on:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   validate:

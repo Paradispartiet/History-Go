@@ -6,9 +6,6 @@ on:
       - "data/fag/TV_og_Film/film_tv_location_production_place_ethics_*.json"
       - "data/fagverk/film_tv/location-produksjon-og-stedsetikk.json"
       - "data/fagverk/film_tv/location-produksjon-og-stedsetikk/**"
-      - "data/fagverk/fagverk_registry.json"
-      - "data/fagverk/subject_status.json"
-      - "data/fagverk/fagverk_release.json"
       - "scripts/brief-film-tv-location-production-place-ethics-sources-v1.mjs"
       - "scripts/materialize-film-tv-location-production-place-ethics-fulltext-v1.mjs"
       - "scripts/audit-film-tv-location-production-place-ethics-fulltext-v1.mjs"
@@ -32,9 +29,6 @@ on:
       - "data/fag/TV_og_Film/film_tv_location_production_place_ethics_*.json"
       - "data/fagverk/film_tv/location-produksjon-og-stedsetikk.json"
       - "data/fagverk/film_tv/location-produksjon-og-stedsetikk/**"
-      - "data/fagverk/fagverk_registry.json"
-      - "data/fagverk/subject_status.json"
-      - "data/fagverk/fagverk_release.json"
       - "scripts/brief-film-tv-location-production-place-ethics-sources-v1.mjs"
       - "scripts/materialize-film-tv-location-production-place-ethics-fulltext-v1.mjs"
       - "scripts/audit-film-tv-location-production-place-ethics-fulltext-v1.mjs"
@@ -52,7 +46,7 @@ permissions:
 
 concurrency:
   group: fagverk-film-tv-unit13-fulltext-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   validate:

@@ -1,0 +1,35 @@
+name: CI workflow routing governance
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/fagverk-*.yml'
+      - '.github/workflows/ci-workflow-routing.yml'
+      - 'scripts/audit-ci-workflow-routing.mjs'
+      - 'docs/CI_WORKFLOW_ROUTING.md'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fagverk-*.yml'
+      - '.github/workflows/ci-workflow-routing.yml'
+      - 'scripts/audit-ci-workflow-routing.mjs'
+      - 'docs/CI_WORKFLOW_ROUTING.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  routing:
+    name: Prevent global Fagverk fan-out and CI self-mutation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+      - run: node scripts/audit-ci-workflow-routing.mjs

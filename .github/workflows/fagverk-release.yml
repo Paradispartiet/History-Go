@@ -23,20 +23,19 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: fagverk-release-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   release:
-    name: Build deterministic whole-architecture Fagverk release
+    name: Verify deterministic whole-architecture Fagverk release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
         with:
-          ref: ${{ github.head_ref || github.ref_name }}
           fetch-depth: 0
       - uses: actions/setup-node@v5
         with:
@@ -49,8 +48,8 @@ jobs:
         run: |
           node --check scripts/build-fagverk-release-manifest.mjs
           node --test tests/fagverk-release-manifest.test.mjs
-      - name: Build release manifest
-        run: node scripts/build-fagverk-release-manifest.mjs
+      - name: Verify release manifest is current
+        run: node scripts/build-fagverk-release-manifest.mjs --check
       - name: Verify release v2 contract
         run: |
           node - <<'NODE'
@@ -97,20 +96,12 @@ jobs:
           }
           console.log(`Fagverk release ${release.release_sha256}: ${release.summary.subject_count} packages, ${release.summary.chapter_count} chapters, ${release.summary.module_file_count} modules, ${release.summary.optional_gap_count} optional gaps.`);
           NODE
-      - name: Materialize release manifest on PR branch
-        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
-        env:
-          HEAD_BRANCH: ${{ github.head_ref }}
+      - name: Reject uncommitted generated release changes
         run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/fagverk/fagverk_registry.json data/fagverk/subject_status.json data/fagverk/fagverk_release.json
-          if git diff --cached --quiet; then
-            echo 'Registry, status and release manifest already match.'
-            exit 0
-          fi
-          git commit -m 'Materialize Natur registry and whole-architecture Fagverk release v2'
-          git push origin "HEAD:${HEAD_BRANCH}"
+          git diff --exit-code -- \
+            data/fagverk/fagverk_registry.json \
+            data/fagverk/subject_status.json \
+            data/fagverk/fagverk_release.json
       - name: Upload release artifact
         uses: actions/upload-artifact@v4
         with:

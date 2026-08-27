@@ -5,9 +5,6 @@ on:
     paths:
       - 'data/fag/vitenskap/**'
       - 'data/fagverk/vitenskap/**'
-      - 'data/fagverk/fagverk_registry.json'
-      - 'data/fagverk/fagverk_release.json'
-      - 'data/fagverk/subject_status.json'
       - 'reports/fagverk/vitenskap-holistic-university-breadth-completion-audit.json'
       - 'reports/fagverk/vitenskap-holistic-quality-review-audit.json'
       - 'reports/fagverk/vitenskap-theory-integrity-audit.json'
@@ -26,9 +23,6 @@ on:
     paths:
       - 'data/fag/vitenskap/**'
       - 'data/fagverk/vitenskap/**'
-      - 'data/fagverk/fagverk_registry.json'
-      - 'data/fagverk/fagverk_release.json'
-      - 'data/fagverk/subject_status.json'
       - 'reports/fagverk/vitenskap-holistic-university-breadth-completion-audit.json'
       - 'reports/fagverk/vitenskap-holistic-quality-review-audit.json'
       - 'reports/fagverk/vitenskap-theory-integrity-audit.json'
@@ -43,6 +37,10 @@ on:
       - 'tests/fagverk-vitenskap-*-coverage.test.mjs'
       - '.github/workflows/fagverk-vitenskap-holistic-university-breadth-completion.yml'
   workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   audit:
