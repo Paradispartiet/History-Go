@@ -17,6 +17,7 @@ Status: Materialisert på kontrollert rollout-branch; completion gjelder først 
 - 5 nye rolle-spesifikke scener: case-open, controller-handoff/waiting, liquidity-rework, board-waiting og board-aftermath.
 - Eksisterende story, knowledge, micro og conflict-scener brukes som provenance i sesonggridet.
 - Mailplan utvides fra 8 til 13 steg uten å skrive om den eksisterende faglige buen.
+- Fail-closed materialiseringsrun `33116073668` passerte generatorer, fokuserte Role World-porter og full Civication-suite før TEMP-flatene ble fjernet og permanent resultat ble pushet.
 
 ## Kvalitetsgrense
 
