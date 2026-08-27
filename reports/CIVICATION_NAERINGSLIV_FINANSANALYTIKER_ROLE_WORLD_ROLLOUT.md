@@ -17,6 +17,7 @@ Status: Materialisert på kontrollert rollout-branch; completion gjelder først 
 - 5 nye rolle-spesifikke scener: case-open, senior-handoff/waiting, market-rework, committee-waiting og committee-aftermath.
 - Eksisterende story, knowledge, micro og conflict-scener brukes som provenance i sesonggridet.
 - Mailplan utvides fra 8 til 13 steg uten å skrive om den eksisterende faglige buen.
+- Fail-closed materialization run `33105152353` passerte generatorene, den fokuserte Finansanalytiker-/Role World-porten og hele `test:civication` før TEMP-flatene ble fjernet og den verifiserte permanente diffen ble pushet.
 
 ## Kvalitetsgrense
 
