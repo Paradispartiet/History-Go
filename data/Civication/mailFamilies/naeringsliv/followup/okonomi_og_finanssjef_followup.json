@@ -1,1 +1,236 @@
-{"schema":"civication_mail_family_catalog_v1","version":1,"category":"naeringsliv","role_scope":"okonomi_og_finanssjef","mail_type":"followup","families":[{"id":"covenant_og_tidlig_oppfolging","purpose":"Følger et tidlig likviditets- og covenant-signal videre inn i ledelses- og bankarbeidet.","learning_focus":["oppfolging","covenant","risikokommunikasjon"],"mails":[{"id":"okonomi_og_finanssjef_followup_covenant_001","mail_type":"followup","mail_family":"covenant_og_tidlig_oppfolging","role_scope":"okonomi_og_finanssjef","thread_key":"okonomi_og_finanssjef.case.likviditet_og_covenant","phase":"morning","priority":60,"cooldown":2,"repeatable":false,"stage":"advanced","from":"bankkontakt","sender":"bankkontakt","person_id":"bankkontakt","place_id":"bankplassen","subject":"Den nye prognosen gjør marginen mot lånevilkåret mindre enn sist","summary":"Bankkontakten ber om oppdatert prognose og forklaring fordi ny likviditets- og resultatbane reduserer marginen mot et sentralt covenant.","purpose":"Teste om økonomisjefen følger et kjent risikosignal med oppdatert analyse, riktig fullmakt og tidlig kommunikasjon.","stakes":"En glatt oppdatering kan unngå uro, men svekker tilliten hvis banken senere oppdager at handlingsrommet var smalere. Tidlig åpenhet kan koste komfort, men gir flere tiltaksmuligheter.","situation":["Covenant er ikke brutt, men marginen har falt tydelig.","Prognosen er dokumentert og forklares av flere reelle drivere.","Tiltak kan kreve beslutning fra daglig leder eller styre og skal derfor ikke improviseres av økonomisjefen alene."],"task_domain":"covenant_oppfolging","task_kind":"followup","competency":"likviditetsstyring","pressure":"tidlig_apenhet_vs_kortsiktig_ro","choice_axis":"oppdatere_og_eskalere_vs_minimere_endringen","consequence_axis":"banktillit_og_handlingsrom_vs_sen_risikoreaksjon","narrative_arc":"Økonomisjefen lærer at tidlig covenant-oppfølging handler om å bevare valg før et mulig brudd låser dem.","choices":[{"id":"A","label":"Del oppdatert prognose, vis driverne og eskaler nødvendige tiltak til riktig beslutningsnivå","reply":"Jeg deler den oppdaterte prognosen, viser driverne og løfter tiltak som krever høyere fullmakt til riktig beslutningsnivå.","effect":1,"tags":["followup","covenant","governance"],"feedback":"Du bruker åpenhet til å bevare flere reelle alternativer før risikoen blir akutt."},{"id":"B","label":"Beskriv endringen som midlertidig og vent med større eskalering til marginen blir kritisk","reply":"Jeg beskriver endringen som midlertidig og venter med større eskalering til vi vet om marginen faktisk blir kritisk.","effect":-1,"tags":["delay","covenant_risk"],"feedback":"Du beholder ro nå, men reduserer tiden og tilliten som kan være nødvendig hvis utviklingen fortsetter."}]}]}]}
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "okonomi_og_finanssjef",
+  "mail_type": "followup",
+  "families": [
+    {
+      "id": "covenant_og_tidlig_oppfolging",
+      "purpose": "Følger et tidlig likviditets- og covenant-signal videre inn i ledelses- og bankarbeidet.",
+      "learning_focus": [
+        "oppfolging",
+        "covenant",
+        "risikokommunikasjon"
+      ],
+      "mails": [
+        {
+          "id": "okonomi_og_finanssjef_followup_covenant_001",
+          "mail_type": "followup",
+          "mail_family": "covenant_og_tidlig_oppfolging",
+          "role_scope": "okonomi_og_finanssjef",
+          "thread_key": "okonomi_og_finanssjef.case.likviditet_og_covenant",
+          "phase": "morning",
+          "priority": 60,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "advanced",
+          "from": "bankkontakt",
+          "sender": "bankkontakt",
+          "person_id": "bankkontakt",
+          "place_id": "bankplassen",
+          "subject": "Den nye prognosen gjør marginen mot lånevilkåret mindre enn sist",
+          "summary": "Bankkontakten ber om oppdatert prognose og forklaring fordi ny likviditets- og resultatbane reduserer marginen mot et sentralt covenant.",
+          "purpose": "Teste om økonomisjefen følger et kjent risikosignal med oppdatert analyse, riktig fullmakt og tidlig kommunikasjon.",
+          "stakes": "En glatt oppdatering kan unngå uro, men svekker tilliten hvis banken senere oppdager at handlingsrommet var smalere. Tidlig åpenhet kan koste komfort, men gir flere tiltaksmuligheter.",
+          "situation": [
+            "Covenant er ikke brutt, men marginen har falt tydelig.",
+            "Prognosen er dokumentert og forklares av flere reelle drivere.",
+            "Tiltak kan kreve beslutning fra daglig leder eller styre og skal derfor ikke improviseres av økonomisjefen alene."
+          ],
+          "task_domain": "covenant_oppfolging",
+          "task_kind": "followup",
+          "competency": "likviditetsstyring",
+          "pressure": "tidlig_apenhet_vs_kortsiktig_ro",
+          "choice_axis": "oppdatere_og_eskalere_vs_minimere_endringen",
+          "consequence_axis": "banktillit_og_handlingsrom_vs_sen_risikoreaksjon",
+          "narrative_arc": "Økonomisjefen lærer at tidlig covenant-oppfølging handler om å bevare valg før et mulig brudd låser dem.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Del oppdatert prognose, vis driverne og eskaler nødvendige tiltak til riktig beslutningsnivå",
+              "reply": "Jeg deler den oppdaterte prognosen, viser driverne og løfter tiltak som krever høyere fullmakt til riktig beslutningsnivå.",
+              "effect": 1,
+              "tags": [
+                "followup",
+                "covenant",
+                "governance"
+              ],
+              "feedback": "Du bruker åpenhet til å bevare flere reelle alternativer før risikoen blir akutt."
+            },
+            {
+              "id": "B",
+              "label": "Beskriv endringen som midlertidig og vent med større eskalering til marginen blir kritisk",
+              "reply": "Jeg beskriver endringen som midlertidig og venter med større eskalering til vi vet om marginen faktisk blir kritisk.",
+              "effect": -1,
+              "tags": [
+                "delay",
+                "covenant_risk"
+              ],
+              "feedback": "Du beholder ro nå, men reduserer tiden og tilliten som kan være nødvendig hvis utviklingen fortsetter."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_okonomi_finanssjef_board_wait",
+      "purpose": "Overleverer revidert styringsgrunnlag til styret og markerer eksplisitt waiting.",
+      "learning_focus": [
+        "handoff",
+        "governance",
+        "authority"
+      ],
+      "mails": [
+        {
+          "id": "naeringsliv_okonomi_finanssjef_realism_board_handoff_wait_001",
+          "mail_type": "followup",
+          "mail_family": "role_world_rollout_okonomi_finanssjef_board_wait",
+          "role_scope": "okonomi_og_finanssjef",
+          "phase": "advanced",
+          "day_phase": "afternoon",
+          "priority": 96,
+          "cooldown": 10,
+          "repeatable": false,
+          "stage": "stable",
+          "planned_only": true,
+          "thread_key": "naeringsliv_okonomi_finanssjef_liquidity_realism_001",
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "naeringsliv",
+            "okonomi_og_finanssjef",
+            "persistent_work",
+            "situated_reputation"
+          ],
+          "from": "Nora, daglig leder",
+          "people_ref": "nora_daglig_leder",
+          "person_id": "nora_daglig_leder",
+          "place_id": "oslo_bors",
+          "subject": "Styringsgrunnlaget er klart – nå må økonomisjefen overlevere og vente på riktig beslutningsnivå",
+          "summary": "Likviditetsreworket er ferdig, Ingrid har kontrollert endringssporet og banken har fått et tidlig bilde. Nora sender saken til styret fordi investeringsbrems, finansieringsgrep eller kapitalprioritering går utover ditt delegerte mandat. Din rolle går fra aktiv styring til eksplisitt waiting på styrets beslutning.",
+          "purpose": "Koble handoff og venting direkte til fullmaktsgrensen: økonomisjefens standing kan påvirke hvor mye rådet blir lyttet til, men kan ikke gjøre styrets kapitalvalg til en administrativ formalitet.",
+          "stakes": "Hvis økonomisjefen begynner å kommunisere tiltakene som vedtatt før styret har behandlet saken, flyttes forventninger og organisasjonsatferd foran formell myndighet. Da kan økonomifunksjonens høye status bli en skjult omvei rundt governance.",
+          "situation": [
+            "Nora eier den operative strategien, men vesentlige kapitalvalg må til styret når de ligger utenfor delegert ramme.",
+            "Ingrid har faglig standing i prognosen og banken i kredittrisiko, men ingen av dem kan erstatte styrets beslutning.",
+            "Spilleren må tåle at et godt styringsgrunnlag står stille mens beslutningsorganet gjør sitt arbeid."
+          ],
+          "task_domain": "board_handoff_and_waiting",
+          "task_kind": "followup",
+          "competency": "styrekommunikasjon",
+          "pressure": "organisatorisk_handlingspress_vs_formell_beslutning",
+          "choice_axis": "overlevere_og_vente_vs_foregripe_vedtak",
+          "consequence_axis": "governance_tillit_vs_mandatlekkasje",
+          "narrative_arc": "fra_likviditetssignal_til_sporbart_styrevalg_og_finansielt_etterspill",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+            ],
+            "institution_id": "naeringsliv_okonomifunksjon_001",
+            "handoff_to_actor_id": "styreleder",
+            "waiting_for_actor_id": "styreleder",
+            "rework_of_scene_id": "naeringsliv_okonomi_finanssjef_realism_liquidity_rework_001",
+            "priority": "high"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Overlever anbefalingen med tiltak, downside og tydelig styrebeslutning – og marker waiting",
+              "reply": "Jeg sender tiltak, likviditetseffekt, covenant og min anbefaling som beslutningsgrunnlag, og markerer at de bindende valgene eies av styret.",
+              "effect": 2,
+              "feedback": "Nora og styret kan bruke økonomifunksjonens arbeid uten at faglig tyngde blir gjort om til beslutningsmyndighet. Ventingen blir en eksplisitt del av casets livsløp.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 3,
+                  "risk": -3
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "finance_mgr_case_waiting_for_board",
+                    "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001",
+                    "to_status": "waiting",
+                    "to_phase": "awaiting_board_decision",
+                    "note": "Oppdatert styringsgrunnlag er overlevert; caset venter på styrets beslutning om tiltak utenfor delegert ramme."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "finance_mgr_board_handoff_traced",
+                    "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001",
+                    "flag": "recommendation_separated_from_board_decision"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "finance_mgr_standing_nora_board",
+                    "audience_id": "manager:nora_daglig_leder",
+                    "delta": 3,
+                    "reason": "Nora får en tydelig anbefaling hun kan lede etter samtidig som grensene mellom operativ prioritering, økonomifaglig råd og styrets bindende kapitalvedtak forblir synlige.",
+                    "source_actor_id": "nora_daglig_leder"
+                  },
+                  {
+                    "event_id": "finance_mgr_standing_board_clear",
+                    "audience_id": "professional:styreleder",
+                    "delta": 4,
+                    "reason": "Styreleder mottar et beslutningsgrunnlag som viser likviditet, covenant, tiltak og fullmakt uten at økonomifunksjonen allerede har sosialt avgjort saken.",
+                    "source_actor_id": "styreleder"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Kommuniser internt at tiltakspakken i praksis er besluttet siden tallene peker så tydelig",
+              "reply": "Jeg sier at tiltakene i praksis er klare og at vi bare venter på styrets formelle bekreftelse.",
+              "effect": -2,
+              "feedback": "Du reduserer ubehaget ved waiting ved å gjøre styrets beslutning til etterarbeid. Det kan få organisasjonen til å handle før mandatet faktisk finnes.",
+              "effects": {
+                "stats": {
+                  "status": 2,
+                  "quality": -2,
+                  "trust": -4,
+                  "risk": 5
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "finance_mgr_case_waiting_prejudged",
+                    "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001",
+                    "to_status": "waiting",
+                    "to_phase": "awaiting_board_decision",
+                    "note": "Caset venter fortsatt på styret selv om spilleren sosialt har foregrepet utfallet."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "finance_mgr_board_prejudged",
+                    "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001",
+                    "flag": "board_outcome_socially_prejudged"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "finance_mgr_standing_nora_prejudged",
+                    "audience_id": "manager:nora_daglig_leder",
+                    "delta": -3,
+                    "reason": "Nora må håndtere organisasjonsforventninger som økonomifunksjonen har skapt før styret faktisk har eid beslutningen om kapital- og likviditetstiltakene.",
+                    "source_actor_id": "nora_daglig_leder"
+                  },
+                  {
+                    "event_id": "finance_mgr_standing_board_prejudged",
+                    "audience_id": "professional:styreleder",
+                    "delta": -4,
+                    "reason": "Styreleder ser at økonomisjefens høye interne status er brukt til å redusere et reelt styrevalg til en formalitet før beslutningsorganet har behandlet saken.",
+                    "source_actor_id": "styreleder"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

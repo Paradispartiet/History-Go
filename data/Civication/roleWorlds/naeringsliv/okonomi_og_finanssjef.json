@@ -1,0 +1,979 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "okonomi_og_finanssjef",
+  "title": "Økonomi- og finanssjef — likviditet, handoff, rework og styremyndighet",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "Å gjøre virksomhetens økonomiske handlingsrom beslutningsklart uten at resultatfortelling, ledertempo eller økonomifunksjonens høye status skjuler likviditetsrisiko eller gjør faglig innflytelse til ubegrenset kapitalmyndighet.",
+    "description": "Denne Role World-en følger ett vedvarende likviditets- og covenantcase fra prognose- og driverlås via Ingrid-handoff, legitim venting og kontantdrevet rework til bankdialog, styrebehandling og beslutningsetterspill. Nora, Ingrid, banken og styret vurderer samme arbeid fra ulike ståsteder, mens fullmaktsgrensen forblir uendret."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "numerical_control",
+    "status_anxiety",
+    "shame_reputation",
+    "loyalty_up_down",
+    "social_mask",
+    "bureaucratic_power",
+    "public_private_leakage"
+  ],
+  "social_environments": [
+    "Barcode-kontoret der resultat, budsjett og likviditet konkurrerer om å definere hvilket økonomisk bilde ledergruppen handler på.",
+    "Bankplassen som History Go-kontekst for kreditt, covenant og finansiell tillit uten at stedstilknytningen gir spilleren moderne institusjonell fullmakt.",
+    "Oslo Børs som stedlig kontekst for kapital, markedsforventninger og governance som gjør økonomisk handlingsrom sosialt og institusjonelt synlig.",
+    "Controller-reviewet med Ingrid der delegert kvalitetssikring, versjonsfrys og legitim venting må respekteres av lederen selv.",
+    "Lederflaten med Nora der ønsket om vekst og raske beslutninger trekker mot mer sikker økonomisk retorikk enn kontantbildet tåler.",
+    "Bankdialogen der tidlig risikokommunikasjon kan koste komfort nå, men bevare finansielle alternativer senere.",
+    "Styret der økonomifunksjonens faglige tyngde stopper ved anbefalingen og bindende kapitalvalg må forbli hos riktig beslutningsorgan.",
+    "Den private kvelden etter beslutningen der kontrollansvar og frykt for å ha oversett noe kan følge økonomilederen hjem."
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "nora_daglig_leder",
+      "social_function": "daglig leder som trenger retning, prioritering og troverdig økonomisk handlingsrom",
+      "class_position": "øverste operative leder med høy formell makt",
+      "status": "svært høy formell status",
+      "power_over_player": "kan sette tempo, prioritere strategi og evaluere økonomifunksjonens bidrag, men ikke gjøre alle styrepliktige kapitalvalg bindende alene",
+      "wants": "et styringsbilde som viser hva virksomheten faktisk kan gjøre nå og hva som må utsettes",
+      "conceals": "hvor mye organisasjonens forventninger allerede bygger på at vekstplanen blir stående",
+      "speech_style": "kort og handlingsorientert; spør hva vi kan gjøre, hva som må stoppes og når det er sikkert",
+      "teaches_player": "at lederklarhet må bygges på faktisk likviditetsrom, ikke på ønsket forutsigbarhet"
+    },
+    {
+      "id": "ingrid_controller",
+      "social_function": "controller som kvalitetssikrer prognosedrivere og representerer økonomiteamets faglige integritet",
+      "class_position": "fagspesialist under økonomisjefen med delegert kontrollansvar",
+      "status": "høy situert fagstatus",
+      "power_over_player": "kan styrke eller svekke kvaliteten og teamets tillit gjennom dokumenterte funn som lederen må velge å beskytte",
+      "wants": "én autoritativ prognoseversjon der avvik og usikkerhet forblir synlige gjennom review og rework",
+      "conceals": "hvor mye egen trygghet i rollen avhenger av om lederen faktisk står ved ubehagelige funn oppover",
+      "speech_style": "presis og årsaksorientert; spør hvilken driver, versjon og likviditetseffekt som bærer konklusjonen",
+      "teaches_player": "at delegert kontroll bare er reell når lederen respekterer handoff og review"
+    },
+    {
+      "id": "bankkontakt",
+      "social_function": "ekstern kredittmotpart som vurderer likviditet, covenant, timing og troverdig risikokommunikasjon",
+      "class_position": "ekstern profesjonell motpart med høy informasjons- og finansieringsmakt",
+      "status": "høy situert status",
+      "power_over_player": "kan påvirke finansielt handlingsrom og vilkår, men ikke selskapets interne mandat eller styrets beslutning",
+      "wants": "et tidlig og etterprøvbart bilde av prognose, drivere, tiltak og hvem som kan beslutte dem",
+      "conceals": "hvor mye bankens egen kredittappetitt og timing påvirker fleksibiliteten selskapet tilbys",
+      "speech_style": "kontrollert og vilkårsorientert; spør hva som endret seg, hva dere gjør og hvem som har fullmakt",
+      "teaches_player": "at tidlig åpenhet kan bli konkret finansielt handlingsrom senere"
+    },
+    {
+      "id": "styreleder",
+      "social_function": "leder beslutningsorganet som må eie vesentlige kapital-, finansierings- og risikovalgsom går utover delegert ramme",
+      "class_position": "øverste governance-posisjon over økonomisjefens faglige anbefaling i styrepliktige saker",
+      "status": "svært høy formell status",
+      "power_over_player": "kan utfordre, godkjenne eller avvise anbefalingen og påvirke økonomisjefens standing",
+      "wants": "et kort grunnlag som viser likviditet, covenant, downside, tiltak og faktisk beslutningsgrense",
+      "conceals": "at styret også kan være utsatt for eier- og vekstpress som gjør en enklere fortelling attraktiv",
+      "speech_style": "komprimert og ansvarssøkende; spør hva vi vedtar, hva som kan gå galt og hvem som eier neste steg",
+      "teaches_player": "at økonomifaglig innflytelse blir sterkere når den ikke forsøker å erstatte styrets mandat"
+    },
+    {
+      "id": "finanssjef_privat_partner",
+      "social_function": "privat nærperson som møter spilleren etter leder-, bank- og styrepress uten organisatorisk agenda",
+      "class_position": "privat relasjon uten formell arbeids- eller kapitalmakt",
+      "status": "emosjonell nærhet uten arbeidsrang",
+      "power_over_player": "kan utfordre kontrollmasken og vise når ansvar blir til behov for å bære hele utfallet alene",
+      "wants": "en samtale der usikkerhet kan være menneskelig uten å bli omgjort til ny prognose eller tiltaksliste",
+      "conceals": "at hun blir sliten av at hver bekymring møtes som et styringsproblem som skal løses",
+      "speech_style": "direkte og jordnær; spør hva som faktisk var ditt ansvar og hva andre måtte eie",
+      "teaches_player": "at profesjonell status ikke gjør usikkerhet til personlig svikt"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "standing_ceo",
+      "meaning": "Noras situerte tillit til at økonomisjefen gir handlingsklar retning uten å skjule likviditet eller fullmaktsgrense",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "standing_controller",
+      "meaning": "Ingrids situerte tillit til at faglige funn, review og rework faktisk beskyttes av lederen",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "standing_bank",
+      "meaning": "bankkontaktens situerte tillit til tidlig, sporbar risikokommunikasjon og riktig beslutningsnivå",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "standing_board",
+      "meaning": "styrets situerte tillit til at råd viser likviditet, covenant, downside og faktisk myndighetsgrense",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "liquidity_integrity",
+      "meaning": "om resultat, kontantstrøm, arbeidskapital og covenant forblir adskilt og sporbare gjennom hele caset",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "waiting_cost",
+      "meaning": "presset til å produsere aktivitet når caset legitimt venter på controller-review eller styrebeslutning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "rework_debt",
+      "meaning": "kostnaden ved parallelle prognoser og umerkede driverendringer som må ryddes før beslutningsgrunnlaget kan brukes",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "authority_clarity",
+      "meaning": "om teamledelse, økonomifaglig anbefaling, operativ prioritering og styrets bindende kapitalvedtak holdes institusjonelt adskilt",
+      "runtime_binding": "existing"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Likviditetscaset åpnes med skille mellom resultat, kontantstrøm og covenant, og samme arbeidsobjekt får én autoritativ prognoseversjon. Morgenen låser siste bekreftede prognose, likviditetsrom og neste eier før nye handlinger.",
+        "thread_ids": [
+          "likviditet_og_styringsspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/okonomi_og_finanssjef_job.json#naeringsliv_okonomi_finanssjef_realism_liquidity_case_open_001"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Likviditetscaset åpnes med skille mellom resultat, kontantstrøm og covenant, og samme arbeidsobjekt får én autoritativ prognoseversjon. Lunsjflaten gjør forskjellen mellom Noras strategibehov, Ingrids faglige kontroll, bankens kredittblikk og styrets myndighet sosialt lesbar.",
+        "thread_ids": [
+          "team_bank_og_tillit"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/okonomi_og_finanssjef_people.json#naeringsliv_okonomi_finanssjef_realism_controller_handoff_wait_001"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 1, afternoon: Likviditetscaset åpnes med skille mellom resultat, kontantstrøm og covenant, og samme arbeidsobjekt får én autoritativ prognoseversjon. Ettermiddagen krever konkret arbeid i samme case: review, tiltak, handoff, rework eller beslutningsklar anbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "handoff_waiting_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/okonomi_og_finanssjef_story.json#okonomi_og_finanssjef_story_001"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Likviditetscaset åpnes med skille mellom resultat, kontantstrøm og covenant, og samme arbeidsobjekt får én autoritativ prognoseversjon. Kvelden viser hva venting, kontrollbehov og organisatorisk status gjør med økonomilederens identitet når arbeidet ikke kan løses med en penere rapport.",
+        "thread_ids": [
+          "okonomilederidentitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/knowledge/okonomi_og_finanssjef_knowledge.json#okonomi_og_finanssjef_knowledge_likviditet_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Ingrid-handoffet gjør kvalitetssikring og venting til eksplisitt arbeid; spilleren må tåle at delegert review faktisk kan stoppe hovedprognosen. Morgenen låser siste bekreftede prognose, likviditetsrom og neste eier før nye handlinger.",
+        "thread_ids": [
+          "likviditet_og_styringsspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/micro/okonomi_og_finanssjef_micro.json#okonomi_og_finanssjef_micro_likviditet_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Ingrid-handoffet gjør kvalitetssikring og venting til eksplisitt arbeid; spilleren må tåle at delegert review faktisk kan stoppe hovedprognosen. Lunsjflaten gjør forskjellen mellom Noras strategibehov, Ingrids faglige kontroll, bankens kredittblikk og styrets myndighet sosialt lesbar.",
+        "thread_ids": [
+          "team_bank_og_tillit"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/conflict/okonomi_og_finanssjef_conflict.json#okonomi_og_finanssjef_conflict_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 2, afternoon: Ingrid-handoffet gjør kvalitetssikring og venting til eksplisitt arbeid; spilleren må tåle at delegert review faktisk kan stoppe hovedprognosen. Ettermiddagen krever konkret arbeid i samme case: review, tiltak, handoff, rework eller beslutningsklar anbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "handoff_waiting_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/event/okonomi_og_finanssjef_event.json#naeringsliv_okonomi_finanssjef_realism_liquidity_rework_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Ingrid-handoffet gjør kvalitetssikring og venting til eksplisitt arbeid; spilleren må tåle at delegert review faktisk kan stoppe hovedprognosen. Kvelden viser hva venting, kontrollbehov og organisatorisk status gjør med økonomilederens identitet når arbeidet ikke kan løses med en penere rapport.",
+        "thread_ids": [
+          "okonomilederidentitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/followup/okonomi_og_finanssjef_followup.json#naeringsliv_okonomi_finanssjef_realism_board_handoff_wait_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Arbeidskapital og innbetalingstiming brukes til å forberede tiltak uten å endre versjonen Ingrid allerede kontrollerer. Morgenen låser siste bekreftede prognose, likviditetsrom og neste eier før nye handlinger.",
+        "thread_ids": [
+          "likviditet_og_styringsspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/consequence/okonomi_og_finanssjef_consequence.json#naeringsliv_okonomi_finanssjef_realism_board_aftermath_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Arbeidskapital og innbetalingstiming brukes til å forberede tiltak uten å endre versjonen Ingrid allerede kontrollerer. Lunsjflaten gjør forskjellen mellom Noras strategibehov, Ingrids faglige kontroll, bankens kredittblikk og styrets myndighet sosialt lesbar.",
+        "thread_ids": [
+          "team_bank_og_tillit"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/okonomi_og_finanssjef_job.json#naeringsliv_okonomi_finanssjef_realism_liquidity_case_open_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 3, afternoon: Arbeidskapital og innbetalingstiming brukes til å forberede tiltak uten å endre versjonen Ingrid allerede kontrollerer. Ettermiddagen krever konkret arbeid i samme case: review, tiltak, handoff, rework eller beslutningsklar anbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "handoff_waiting_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/okonomi_og_finanssjef_people.json#naeringsliv_okonomi_finanssjef_realism_controller_handoff_wait_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Arbeidskapital og innbetalingstiming brukes til å forberede tiltak uten å endre versjonen Ingrid allerede kontrollerer. Kvelden viser hva venting, kontrollbehov og organisatorisk status gjør med økonomilederens identitet når arbeidet ikke kan løses med en penere rapport.",
+        "thread_ids": [
+          "okonomilederidentitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/okonomi_og_finanssjef_story.json#okonomi_og_finanssjef_story_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Nora trenger tydelig retning, men hennes standing og strategipress kan ikke gjøre et betinget likviditetsbilde til et sikkert handlingsrom. Morgenen låser siste bekreftede prognose, likviditetsrom og neste eier før nye handlinger.",
+        "thread_ids": [
+          "likviditet_og_styringsspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/knowledge/okonomi_og_finanssjef_knowledge.json#okonomi_og_finanssjef_knowledge_likviditet_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Nora trenger tydelig retning, men hennes standing og strategipress kan ikke gjøre et betinget likviditetsbilde til et sikkert handlingsrom. Lunsjflaten gjør forskjellen mellom Noras strategibehov, Ingrids faglige kontroll, bankens kredittblikk og styrets myndighet sosialt lesbar.",
+        "thread_ids": [
+          "team_bank_og_tillit"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/micro/okonomi_og_finanssjef_micro.json#okonomi_og_finanssjef_micro_likviditet_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 4, afternoon: Nora trenger tydelig retning, men hennes standing og strategipress kan ikke gjøre et betinget likviditetsbilde til et sikkert handlingsrom. Ettermiddagen krever konkret arbeid i samme case: review, tiltak, handoff, rework eller beslutningsklar anbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "handoff_waiting_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/conflict/okonomi_og_finanssjef_conflict.json#okonomi_og_finanssjef_conflict_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Nora trenger tydelig retning, men hennes standing og strategipress kan ikke gjøre et betinget likviditetsbilde til et sikkert handlingsrom. Kvelden viser hva venting, kontrollbehov og organisatorisk status gjør med økonomilederens identitet når arbeidet ikke kan løses med en penere rapport.",
+        "thread_ids": [
+          "okonomilederidentitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/event/okonomi_og_finanssjef_event.json#naeringsliv_okonomi_finanssjef_realism_liquidity_rework_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Ny kontantinformasjon bryter inn og tvinger samme styringscase tilbake til rework med sporbar endring av prognosedriverne. Morgenen låser siste bekreftede prognose, likviditetsrom og neste eier før nye handlinger.",
+        "thread_ids": [
+          "likviditet_og_styringsspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/followup/okonomi_og_finanssjef_followup.json#naeringsliv_okonomi_finanssjef_realism_board_handoff_wait_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Ny kontantinformasjon bryter inn og tvinger samme styringscase tilbake til rework med sporbar endring av prognosedriverne. Lunsjflaten gjør forskjellen mellom Noras strategibehov, Ingrids faglige kontroll, bankens kredittblikk og styrets myndighet sosialt lesbar.",
+        "thread_ids": [
+          "team_bank_og_tillit"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/consequence/okonomi_og_finanssjef_consequence.json#naeringsliv_okonomi_finanssjef_realism_board_aftermath_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 5, afternoon: Ny kontantinformasjon bryter inn og tvinger samme styringscase tilbake til rework med sporbar endring av prognosedriverne. Ettermiddagen krever konkret arbeid i samme case: review, tiltak, handoff, rework eller beslutningsklar anbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "handoff_waiting_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/okonomi_og_finanssjef_job.json#naeringsliv_okonomi_finanssjef_realism_liquidity_case_open_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Ny kontantinformasjon bryter inn og tvinger samme styringscase tilbake til rework med sporbar endring av prognosedriverne. Kvelden viser hva venting, kontrollbehov og organisatorisk status gjør med økonomilederens identitet når arbeidet ikke kan løses med en penere rapport.",
+        "thread_ids": [
+          "okonomilederidentitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/okonomi_og_finanssjef_people.json#naeringsliv_okonomi_finanssjef_realism_controller_handoff_wait_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Ingrid og banken leser reworket forskjellig: intern kontroll, ekstern kredittillit og lederstatus er separate publikumsflater. Morgenen låser siste bekreftede prognose, likviditetsrom og neste eier før nye handlinger.",
+        "thread_ids": [
+          "likviditet_og_styringsspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/okonomi_og_finanssjef_story.json#okonomi_og_finanssjef_story_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Ingrid og banken leser reworket forskjellig: intern kontroll, ekstern kredittillit og lederstatus er separate publikumsflater. Lunsjflaten gjør forskjellen mellom Noras strategibehov, Ingrids faglige kontroll, bankens kredittblikk og styrets myndighet sosialt lesbar.",
+        "thread_ids": [
+          "team_bank_og_tillit"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/knowledge/okonomi_og_finanssjef_knowledge.json#okonomi_og_finanssjef_knowledge_likviditet_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 6, afternoon: Ingrid og banken leser reworket forskjellig: intern kontroll, ekstern kredittillit og lederstatus er separate publikumsflater. Ettermiddagen krever konkret arbeid i samme case: review, tiltak, handoff, rework eller beslutningsklar anbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "handoff_waiting_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/micro/okonomi_og_finanssjef_micro.json#okonomi_og_finanssjef_micro_likviditet_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Ingrid og banken leser reworket forskjellig: intern kontroll, ekstern kredittillit og lederstatus er separate publikumsflater. Kvelden viser hva venting, kontrollbehov og organisatorisk status gjør med økonomilederens identitet når arbeidet ikke kan løses med en penere rapport.",
+        "thread_ids": [
+          "okonomilederidentitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/conflict/okonomi_og_finanssjef_conflict.json#okonomi_og_finanssjef_conflict_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Tiltak, investeringsbrems og finansieringsalternativer samles i et grunnlag der hvert alternativ viser likviditet, covenant og fullmakt. Morgenen låser siste bekreftede prognose, likviditetsrom og neste eier før nye handlinger.",
+        "thread_ids": [
+          "likviditet_og_styringsspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/event/okonomi_og_finanssjef_event.json#naeringsliv_okonomi_finanssjef_realism_liquidity_rework_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Tiltak, investeringsbrems og finansieringsalternativer samles i et grunnlag der hvert alternativ viser likviditet, covenant og fullmakt. Lunsjflaten gjør forskjellen mellom Noras strategibehov, Ingrids faglige kontroll, bankens kredittblikk og styrets myndighet sosialt lesbar.",
+        "thread_ids": [
+          "team_bank_og_tillit"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/followup/okonomi_og_finanssjef_followup.json#naeringsliv_okonomi_finanssjef_realism_board_handoff_wait_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 7, afternoon: Tiltak, investeringsbrems og finansieringsalternativer samles i et grunnlag der hvert alternativ viser likviditet, covenant og fullmakt. Ettermiddagen krever konkret arbeid i samme case: review, tiltak, handoff, rework eller beslutningsklar anbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "handoff_waiting_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/consequence/okonomi_og_finanssjef_consequence.json#naeringsliv_okonomi_finanssjef_realism_board_aftermath_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Tiltak, investeringsbrems og finansieringsalternativer samles i et grunnlag der hvert alternativ viser likviditet, covenant og fullmakt. Kvelden viser hva venting, kontrollbehov og organisatorisk status gjør med økonomilederens identitet når arbeidet ikke kan løses med en penere rapport.",
+        "thread_ids": [
+          "okonomilederidentitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/okonomi_og_finanssjef_job.json#naeringsliv_okonomi_finanssjef_realism_liquidity_case_open_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Lederpresset gjør en glatt hovedplan sosialt attraktiv, men økonomifunksjonen må fortsatt holde reelle risikodrivere synlige. Morgenen låser siste bekreftede prognose, likviditetsrom og neste eier før nye handlinger.",
+        "thread_ids": [
+          "likviditet_og_styringsspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/okonomi_og_finanssjef_people.json#naeringsliv_okonomi_finanssjef_realism_controller_handoff_wait_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Lederpresset gjør en glatt hovedplan sosialt attraktiv, men økonomifunksjonen må fortsatt holde reelle risikodrivere synlige. Lunsjflaten gjør forskjellen mellom Noras strategibehov, Ingrids faglige kontroll, bankens kredittblikk og styrets myndighet sosialt lesbar.",
+        "thread_ids": [
+          "team_bank_og_tillit"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/okonomi_og_finanssjef_story.json#okonomi_og_finanssjef_story_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 8, afternoon: Lederpresset gjør en glatt hovedplan sosialt attraktiv, men økonomifunksjonen må fortsatt holde reelle risikodrivere synlige. Ettermiddagen krever konkret arbeid i samme case: review, tiltak, handoff, rework eller beslutningsklar anbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "handoff_waiting_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/knowledge/okonomi_og_finanssjef_knowledge.json#okonomi_og_finanssjef_knowledge_likviditet_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Lederpresset gjør en glatt hovedplan sosialt attraktiv, men økonomifunksjonen må fortsatt holde reelle risikodrivere synlige. Kvelden viser hva venting, kontrollbehov og organisatorisk status gjør med økonomilederens identitet når arbeidet ikke kan løses med en penere rapport.",
+        "thread_ids": [
+          "okonomilederidentitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/micro/okonomi_og_finanssjef_micro.json#okonomi_og_finanssjef_micro_likviditet_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Caset overlever en ny runde med spørsmål uten å miste prognoseversjon, tidligere review eller hvem som eier neste handling. Morgenen låser siste bekreftede prognose, likviditetsrom og neste eier før nye handlinger.",
+        "thread_ids": [
+          "likviditet_og_styringsspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/conflict/okonomi_og_finanssjef_conflict.json#okonomi_og_finanssjef_conflict_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Caset overlever en ny runde med spørsmål uten å miste prognoseversjon, tidligere review eller hvem som eier neste handling. Lunsjflaten gjør forskjellen mellom Noras strategibehov, Ingrids faglige kontroll, bankens kredittblikk og styrets myndighet sosialt lesbar.",
+        "thread_ids": [
+          "team_bank_og_tillit"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/event/okonomi_og_finanssjef_event.json#naeringsliv_okonomi_finanssjef_realism_liquidity_rework_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 9, afternoon: Caset overlever en ny runde med spørsmål uten å miste prognoseversjon, tidligere review eller hvem som eier neste handling. Ettermiddagen krever konkret arbeid i samme case: review, tiltak, handoff, rework eller beslutningsklar anbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "handoff_waiting_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/followup/okonomi_og_finanssjef_followup.json#naeringsliv_okonomi_finanssjef_realism_board_handoff_wait_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Caset overlever en ny runde med spørsmål uten å miste prognoseversjon, tidligere review eller hvem som eier neste handling. Kvelden viser hva venting, kontrollbehov og organisatorisk status gjør med økonomilederens identitet når arbeidet ikke kan løses med en penere rapport.",
+        "thread_ids": [
+          "okonomilederidentitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/consequence/okonomi_og_finanssjef_consequence.json#naeringsliv_okonomi_finanssjef_realism_board_aftermath_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Økonomisjefen forbereder styrehandoffet og gjør eksplisitt hva Nora kan prioritere operativt og hva bare styret kan binde. Morgenen låser siste bekreftede prognose, likviditetsrom og neste eier før nye handlinger.",
+        "thread_ids": [
+          "likviditet_og_styringsspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/okonomi_og_finanssjef_job.json#naeringsliv_okonomi_finanssjef_realism_liquidity_case_open_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Økonomisjefen forbereder styrehandoffet og gjør eksplisitt hva Nora kan prioritere operativt og hva bare styret kan binde. Lunsjflaten gjør forskjellen mellom Noras strategibehov, Ingrids faglige kontroll, bankens kredittblikk og styrets myndighet sosialt lesbar.",
+        "thread_ids": [
+          "team_bank_og_tillit"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/okonomi_og_finanssjef_people.json#naeringsliv_okonomi_finanssjef_realism_controller_handoff_wait_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 10, afternoon: Økonomisjefen forbereder styrehandoffet og gjør eksplisitt hva Nora kan prioritere operativt og hva bare styret kan binde. Ettermiddagen krever konkret arbeid i samme case: review, tiltak, handoff, rework eller beslutningsklar anbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "handoff_waiting_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/okonomi_og_finanssjef_story.json#okonomi_og_finanssjef_story_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Økonomisjefen forbereder styrehandoffet og gjør eksplisitt hva Nora kan prioritere operativt og hva bare styret kan binde. Kvelden viser hva venting, kontrollbehov og organisatorisk status gjør med økonomilederens identitet når arbeidet ikke kan løses med en penere rapport.",
+        "thread_ids": [
+          "okonomilederidentitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/knowledge/okonomi_og_finanssjef_knowledge.json#okonomi_og_finanssjef_knowledge_likviditet_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Anbefalingen er ferdig, men spilleren må tåle venting på styret uten å omtale mulige tiltak som allerede vedtatt. Morgenen låser siste bekreftede prognose, likviditetsrom og neste eier før nye handlinger.",
+        "thread_ids": [
+          "likviditet_og_styringsspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/micro/okonomi_og_finanssjef_micro.json#okonomi_og_finanssjef_micro_likviditet_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Anbefalingen er ferdig, men spilleren må tåle venting på styret uten å omtale mulige tiltak som allerede vedtatt. Lunsjflaten gjør forskjellen mellom Noras strategibehov, Ingrids faglige kontroll, bankens kredittblikk og styrets myndighet sosialt lesbar.",
+        "thread_ids": [
+          "team_bank_og_tillit"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/conflict/okonomi_og_finanssjef_conflict.json#okonomi_og_finanssjef_conflict_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 11, afternoon: Anbefalingen er ferdig, men spilleren må tåle venting på styret uten å omtale mulige tiltak som allerede vedtatt. Ettermiddagen krever konkret arbeid i samme case: review, tiltak, handoff, rework eller beslutningsklar anbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "handoff_waiting_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/event/okonomi_og_finanssjef_event.json#naeringsliv_okonomi_finanssjef_realism_liquidity_rework_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Anbefalingen er ferdig, men spilleren må tåle venting på styret uten å omtale mulige tiltak som allerede vedtatt. Kvelden viser hva venting, kontrollbehov og organisatorisk status gjør med økonomilederens identitet når arbeidet ikke kan løses med en penere rapport.",
+        "thread_ids": [
+          "okonomilederidentitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/followup/okonomi_og_finanssjef_followup.json#naeringsliv_okonomi_finanssjef_realism_board_handoff_wait_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Styret behandler caset; standing kan påvirke hvor mye økonomifunksjonen blir lyttet til, men kan aldri gi ubegrenset kapitalmyndighet. Morgenen låser siste bekreftede prognose, likviditetsrom og neste eier før nye handlinger.",
+        "thread_ids": [
+          "likviditet_og_styringsspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/consequence/okonomi_og_finanssjef_consequence.json#naeringsliv_okonomi_finanssjef_realism_board_aftermath_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Styret behandler caset; standing kan påvirke hvor mye økonomifunksjonen blir lyttet til, men kan aldri gi ubegrenset kapitalmyndighet. Lunsjflaten gjør forskjellen mellom Noras strategibehov, Ingrids faglige kontroll, bankens kredittblikk og styrets myndighet sosialt lesbar.",
+        "thread_ids": [
+          "team_bank_og_tillit"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/okonomi_og_finanssjef_job.json#naeringsliv_okonomi_finanssjef_realism_liquidity_case_open_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 12, afternoon: Styret behandler caset; standing kan påvirke hvor mye økonomifunksjonen blir lyttet til, men kan aldri gi ubegrenset kapitalmyndighet. Ettermiddagen krever konkret arbeid i samme case: review, tiltak, handoff, rework eller beslutningsklar anbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "handoff_waiting_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/okonomi_og_finanssjef_people.json#naeringsliv_okonomi_finanssjef_realism_controller_handoff_wait_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Styret behandler caset; standing kan påvirke hvor mye økonomifunksjonen blir lyttet til, men kan aldri gi ubegrenset kapitalmyndighet. Kvelden viser hva venting, kontrollbehov og organisatorisk status gjør med økonomilederens identitet når arbeidet ikke kan løses med en penere rapport.",
+        "thread_ids": [
+          "okonomilederidentitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/okonomi_og_finanssjef_story.json#okonomi_og_finanssjef_story_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Vedtaket returnerer og samme arbeidsobjekt går fra waiting til beslutningsetterspill, med økonomifaglig råd og styrevedtak som ulike lag. Morgenen låser siste bekreftede prognose, likviditetsrom og neste eier før nye handlinger.",
+        "thread_ids": [
+          "likviditet_og_styringsspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/knowledge/okonomi_og_finanssjef_knowledge.json#okonomi_og_finanssjef_knowledge_likviditet_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Vedtaket returnerer og samme arbeidsobjekt går fra waiting til beslutningsetterspill, med økonomifaglig råd og styrevedtak som ulike lag. Lunsjflaten gjør forskjellen mellom Noras strategibehov, Ingrids faglige kontroll, bankens kredittblikk og styrets myndighet sosialt lesbar.",
+        "thread_ids": [
+          "team_bank_og_tillit"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/micro/okonomi_og_finanssjef_micro.json#okonomi_og_finanssjef_micro_likviditet_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 13, afternoon: Vedtaket returnerer og samme arbeidsobjekt går fra waiting til beslutningsetterspill, med økonomifaglig råd og styrevedtak som ulike lag. Ettermiddagen krever konkret arbeid i samme case: review, tiltak, handoff, rework eller beslutningsklar anbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "handoff_waiting_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/conflict/okonomi_og_finanssjef_conflict.json#okonomi_og_finanssjef_conflict_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Vedtaket returnerer og samme arbeidsobjekt går fra waiting til beslutningsetterspill, med økonomifaglig råd og styrevedtak som ulike lag. Kvelden viser hva venting, kontrollbehov og organisatorisk status gjør med økonomilederens identitet når arbeidet ikke kan løses med en penere rapport.",
+        "thread_ids": [
+          "okonomilederidentitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/event/okonomi_og_finanssjef_event.json#naeringsliv_okonomi_finanssjef_realism_liquidity_rework_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Caset lukkes med institusjonell hukommelse og privat etterklang: kontrollbehov må ikke bli en maske som later som usikkerheten aldri fantes. Morgenen låser siste bekreftede prognose, likviditetsrom og neste eier før nye handlinger.",
+        "thread_ids": [
+          "likviditet_og_styringsspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/followup/okonomi_og_finanssjef_followup.json#naeringsliv_okonomi_finanssjef_realism_board_handoff_wait_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Caset lukkes med institusjonell hukommelse og privat etterklang: kontrollbehov må ikke bli en maske som later som usikkerheten aldri fantes. Lunsjflaten gjør forskjellen mellom Noras strategibehov, Ingrids faglige kontroll, bankens kredittblikk og styrets myndighet sosialt lesbar.",
+        "thread_ids": [
+          "team_bank_og_tillit"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/consequence/okonomi_og_finanssjef_consequence.json#naeringsliv_okonomi_finanssjef_realism_board_aftermath_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 14, afternoon: Caset lukkes med institusjonell hukommelse og privat etterklang: kontrollbehov må ikke bli en maske som later som usikkerheten aldri fantes. Ettermiddagen krever konkret arbeid i samme case: review, tiltak, handoff, rework eller beslutningsklar anbefaling med sporbar neste eier.",
+        "thread_ids": [
+          "handoff_waiting_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/okonomi_og_finanssjef_job.json#naeringsliv_okonomi_finanssjef_realism_liquidity_case_open_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Caset lukkes med institusjonell hukommelse og privat etterklang: kontrollbehov må ikke bli en maske som later som usikkerheten aldri fantes. Kvelden viser hva venting, kontrollbehov og organisatorisk status gjør med økonomilederens identitet når arbeidet ikke kan løses med en penere rapport.",
+        "thread_ids": [
+          "okonomilederidentitet_og_etterspill"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/okonomi_og_finanssjef_people.json#naeringsliv_okonomi_finanssjef_realism_controller_handoff_wait_001"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "likviditet_og_styringsspor",
+      "relationship": "Forholdet mellom resultat, kontantstrøm, covenant og én autoritativ prognose gjennom hele styringscaset.",
+      "beat_refs": [
+        "1/morning",
+        "2/morning",
+        "3/afternoon",
+        "5/morning",
+        "7/afternoon",
+        "10/morning",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "team_bank_og_tillit",
+      "relationship": "Forholdet til Ingrid og banken der faglig og ekstern tillit bygges gjennom review, tidlig kommunikasjon og sporbare endringer.",
+      "beat_refs": [
+        "1/lunch",
+        "2/lunch",
+        "2/afternoon",
+        "3/lunch",
+        "5/lunch",
+        "6/lunch",
+        "9/lunch",
+        "13/lunch"
+      ]
+    },
+    {
+      "id": "handoff_waiting_og_rework",
+      "relationship": "Hvordan delegert review, legitim venting og ny kontantinformasjon flytter samme arbeidsobjekt uten versjonsbrudd.",
+      "beat_refs": [
+        "4/afternoon",
+        "5/afternoon",
+        "6/afternoon",
+        "7/morning",
+        "8/afternoon",
+        "9/afternoon",
+        "10/afternoon"
+      ]
+    },
+    {
+      "id": "styre_og_myndighet",
+      "relationship": "Skillet mellom økonomifaglig anbefaling, Noras operative ledelse og styrets faktiske myndighet til bindende kapitalvalg.",
+      "beat_refs": [
+        "7/lunch",
+        "8/lunch",
+        "9/morning",
+        "10/lunch",
+        "11/afternoon",
+        "12/afternoon",
+        "13/afternoon"
+      ]
+    },
+    {
+      "id": "okonomilederidentitet_og_etterspill",
+      "relationship": "Hvordan standing, kontrollbehov og senere utfall påvirker profesjonsmasken og læringen etter caset.",
+      "beat_refs": [
+        "1/evening",
+        "4/evening",
+        "7/evening",
+        "10/evening",
+        "11/evening",
+        "12/evening",
+        "13/evening",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "delegated_review_feels_slow",
+      "description": "Mens Ingrid reviewer, merker spilleren hvor lett lederansvar kan forveksles med behovet for selv å holde alle modeller i bevegelse.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/naeringsliv/people/okonomi_og_finanssjef_people.json#naeringsliv_okonomi_finanssjef_realism_controller_handoff_wait_001",
+        "data/Civication/mailFamilies/naeringsliv/micro/okonomi_og_finanssjef_micro.json#okonomi_og_finanssjef_micro_likviditet_001"
+      ]
+    },
+    {
+      "id": "liquidity_signal_status_cost",
+      "description": "Når likviditetsbildet svekker vekstplanen, utfordres spilleren til å tåle at faglig presisjon kan koste status og ro i ledergruppen.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/naeringsliv/event/okonomi_og_finanssjef_event.json#naeringsliv_okonomi_finanssjef_realism_liquidity_rework_001",
+        "data/Civication/mailFamilies/naeringsliv/conflict/okonomi_og_finanssjef_conflict.json#okonomi_og_finanssjef_conflict_001"
+      ]
+    },
+    {
+      "id": "board_waiting_is_not_failure",
+      "description": "Når saken venter på styret, må spilleren skille egen verdi og handlekraft fra beslutninger som faktisk ligger utenfor eget mandat.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/naeringsliv/followup/okonomi_og_finanssjef_followup.json#naeringsliv_okonomi_finanssjef_realism_board_handoff_wait_001",
+        "data/Civication/mailFamilies/naeringsliv/story/okonomi_og_finanssjef_story.json#okonomi_og_finanssjef_story_001"
+      ]
+    },
+    {
+      "id": "control_mask_home",
+      "description": "Etter vedtaket må spilleren tåle at god økonomiledelse ikke betyr å ha kontrollert alle utfall, men å ha gjort premissene og ansvaret sporbare.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/naeringsliv/consequence/okonomi_og_finanssjef_consequence.json#naeringsliv_okonomi_finanssjef_realism_board_aftermath_001",
+        "data/Civication/mailFamilies/naeringsliv/story/okonomi_og_finanssjef_story.json#okonomi_og_finanssjef_story_001"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "controller_trust_returns",
+      "setup_ref": "2/lunch",
+      "return_ref": "6/lunch",
+      "domains": [
+        "reputation",
+        "work"
+      ]
+    },
+    {
+      "id": "liquidity_rework_returns",
+      "setup_ref": "5/morning",
+      "return_ref": "9/afternoon",
+      "domains": [
+        "work",
+        "risk"
+      ]
+    },
+    {
+      "id": "bank_trust_returns",
+      "setup_ref": "6/lunch",
+      "return_ref": "11/morning",
+      "domains": [
+        "reputation",
+        "capital"
+      ]
+    },
+    {
+      "id": "authority_boundary_returns",
+      "setup_ref": "10/lunch",
+      "return_ref": "12/afternoon",
+      "domains": [
+        "job",
+        "reputation"
+      ]
+    },
+    {
+      "id": "decision_memory_returns",
+      "setup_ref": "13/evening",
+      "return_ref": "14/evening",
+      "domains": [
+        "psyche",
+        "narrative",
+        "reputation"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/mailFamilies/naeringsliv/job/okonomi_og_finanssjef_job.json#naeringsliv_okonomi_finanssjef_realism_liquidity_case_open_001",
+      "data/Civication/mailFamilies/naeringsliv/people/okonomi_og_finanssjef_people.json#naeringsliv_okonomi_finanssjef_realism_controller_handoff_wait_001",
+      "data/Civication/mailFamilies/naeringsliv/story/okonomi_og_finanssjef_story.json#okonomi_og_finanssjef_story_001",
+      "data/Civication/mailFamilies/naeringsliv/knowledge/okonomi_og_finanssjef_knowledge.json#okonomi_og_finanssjef_knowledge_likviditet_001",
+      "data/Civication/mailFamilies/naeringsliv/micro/okonomi_og_finanssjef_micro.json#okonomi_og_finanssjef_micro_likviditet_001",
+      "data/Civication/mailFamilies/naeringsliv/conflict/okonomi_og_finanssjef_conflict.json#okonomi_og_finanssjef_conflict_001",
+      "data/Civication/mailFamilies/naeringsliv/event/okonomi_og_finanssjef_event.json#naeringsliv_okonomi_finanssjef_realism_liquidity_rework_001",
+      "data/Civication/mailFamilies/naeringsliv/followup/okonomi_og_finanssjef_followup.json#naeringsliv_okonomi_finanssjef_realism_board_handoff_wait_001",
+      "data/Civication/mailFamilies/naeringsliv/consequence/okonomi_og_finanssjef_consequence.json#naeringsliv_okonomi_finanssjef_realism_board_aftermath_001"
+    ]
+  }
+}

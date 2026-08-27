@@ -30,20 +30,34 @@
           "choice_axis": "kontantdisiplin_vs_resultatro",
           "consequence_axis": "overlevelse_vs_status",
           "narrative_arc": "likviditet_for_resultat",
-          "learning_focus": ["likviditet", "arbeidskapital", "kontantstrøm", "investering", "bankvilkår"],
+          "learning_focus": [
+            "likviditet",
+            "arbeidskapital",
+            "kontantstrøm",
+            "investering",
+            "bankvilkår"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Løft likviditetsrisikoen først og foreslå investeringsbrems.",
               "effect": 1,
-              "tags": ["likviditet", "risiko", "styring"],
+              "tags": [
+                "likviditet",
+                "risiko",
+                "styring"
+              ],
               "feedback": "Du gjør møtet mindre optimistisk, men mer ansvarlig. Kontanter er ikke en detalj; de er virksomhetens oksygen."
             },
             {
               "id": "B",
               "label": "Presenter resultatforbedringen først og legg likviditet i risikodelen.",
               "effect": -1,
-              "tags": ["visibility", "risk", "status"],
+              "tags": [
+                "visibility",
+                "risk",
+                "status"
+              ],
               "feedback": "Fortellingen blir penere, men prioriteringen blir svakere. Det mest akutte havner bak det mest behagelige."
             }
           ]
@@ -75,21 +89,192 @@
           "choice_axis": "tidlig_apenhet_vs_sen_kontrollert_fortelling",
           "consequence_axis": "troverdighet_vs_ro",
           "narrative_arc": "bankens_tillit",
-          "learning_focus": ["covenant", "bankdialog", "finansiering", "tillit", "risikorapportering"],
+          "learning_focus": [
+            "covenant",
+            "bankdialog",
+            "finansiering",
+            "tillit",
+            "risikorapportering"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Svar tidlig med foreløpig bilde, tiltak og når endelig tall kommer.",
               "effect": 1,
-              "tags": ["tillit", "risiko", "styring"],
+              "tags": [
+                "tillit",
+                "risiko",
+                "styring"
+              ],
               "feedback": "Du skaper kontrollert uro, men viser at økonomifunksjonen ser risiko før banken må forklare den for deg."
             },
             {
               "id": "B",
               "label": "Vent til budsjettet er revidert og send én samlet forklaring senere.",
               "effect": -1,
-              "tags": ["avoidance", "risk", "ro"],
+              "tags": [
+                "avoidance",
+                "risk",
+                "ro"
+              ],
               "feedback": "Svaret blir penere, men senere. Banken kan lese stillheten som at dere ikke har kontroll på utviklingen."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_okonomi_finanssjef_liquidity_rework",
+      "purpose": "Lar ny kontantinformasjon åpne samme styringscase for sporbar rework.",
+      "learning_focus": [
+        "rework",
+        "likviditet",
+        "covenant"
+      ],
+      "mails": [
+        {
+          "id": "naeringsliv_okonomi_finanssjef_realism_liquidity_rework_001",
+          "mail_type": "event",
+          "mail_family": "role_world_rollout_okonomi_finanssjef_liquidity_rework",
+          "role_scope": "okonomi_og_finanssjef",
+          "phase": "advanced",
+          "day_phase": "morning",
+          "priority": 97,
+          "cooldown": 10,
+          "repeatable": false,
+          "stage": "stable",
+          "planned_only": true,
+          "thread_key": "naeringsliv_okonomi_finanssjef_liquidity_realism_001",
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "naeringsliv",
+            "okonomi_og_finanssjef",
+            "persistent_work",
+            "situated_reputation"
+          ],
+          "from": "Ingrid, controller",
+          "people_ref": "ingrid_controller",
+          "person_id": "ingrid_controller",
+          "place_id": "bankplassen",
+          "subject": "Ny innbetalingsforsinkelse flytter covenantbufferen – reviewet må åpne caset for rework",
+          "summary": "Ingrid fullfører reviewet samtidig som en stor kundeinnbetaling flyttes og arbeidskapitalen binder mer enn baseprognosen. Den gamle versjonen var kontrollert, men er ikke lenger beslutningsrelevant. Samme case må åpnes for sporbar rework før bankdialog og styrepakke.",
+          "purpose": "Bevise at økonomiledelsens arbeidsrytme fortsetter etter review: ny likviditetsinformasjon kan legitimt åpne samme arbeidsobjekt igjen uten å gjøre tidligere kvalitetssikring meningsløs.",
+          "stakes": "Hvis endringen bare legges i en risikofotnote, kan bank og styre få en kontrollert, men utdatert prognose. Hvis hele modellen bygges om uten endringsspor, forsvinner Ingrids reviewpunkt og læringen om hva som faktisk flyttet handlingsrommet.",
+          "situation": [
+            "Den utsatte innbetalingen endrer kontanttiming uten å endre periodisert resultat på samme måte.",
+            "Covenantbufferen blir mindre, men det foreligger ikke brudd; tiltak og tidlig kommunikasjon kan fortsatt bevare alternativer.",
+            "Nora må få vite om prioriteringer må endres, men kan ikke kreve at økonomifunksjonen reduserer et reelt likviditetssignal til presentasjonsstøy."
+          ],
+          "task_domain": "liquidity_triggered_rework",
+          "task_kind": "event",
+          "competency": "likviditetsstyring",
+          "pressure": "presentasjonsstabilitet_vs_nytt_kontantrom",
+          "choice_axis": "sporbar_rework_vs_risikofotnote",
+          "consequence_axis": "tidlig_handlingsrom_vs_sen_overraskelse",
+          "narrative_arc": "fra_likviditetssignal_til_sporbart_styrevalg_og_finansielt_etterspill",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "naeringsliv_okonomi_finanssjef_liquidity_case_001"
+            ],
+            "institution_id": "naeringsliv_okonomifunksjon_001",
+            "rework_of_scene_id": "naeringsliv_okonomi_finanssjef_realism_controller_handoff_wait_001",
+            "priority": "high"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Åpne samme case for rework og vis eksakt hvilke drivere som flyttet likviditet og covenant",
+              "reply": "Jeg markerer innbetalingen som nytt premiss, oppdaterer likviditet/covenant og sender endringssporet tilbake til Ingrid, Nora og bankforberedelsen.",
+              "effect": 2,
+              "feedback": "Reviewet blir et kontrollpunkt i et levende styringsspor. Alle kan se hva som var sant før, hva som endret seg og hvorfor anbefalingen må revideres.",
+              "effects": {
+                "stats": {
+                  "quality": 3,
+                  "trust": 3,
+                  "risk": -3
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "finance_mgr_case_liquidity_rework",
+                    "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "liquidity_rework",
+                    "note": "Utsatt innbetaling og arbeidskapital flytter likviditets- og covenantbildet; samme case åpnes for sporbar rework."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "finance_mgr_rework_traced",
+                    "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001",
+                    "flag": "cash_and_covenant_reworked_with_change_log"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "finance_mgr_standing_ingrid_rework",
+                    "audience_id": "professional:ingrid_controller",
+                    "delta": 3,
+                    "reason": "Ingrid ser at kvalitetssikringen hennes brukes som et faktisk kontrollpunkt og at nye likviditetsdata åpner et eksplisitt endringsspor i stedet for å viske ut reviewet.",
+                    "source_actor_id": "ingrid_controller"
+                  },
+                  {
+                    "event_id": "finance_mgr_standing_bank_rework",
+                    "audience_id": "professional:bankkontakt",
+                    "delta": 3,
+                    "reason": "Bankkontakten får et styringsgrunnlag som skiller opprinnelig prognose fra ny kontantinformasjon og viser hvordan covenantbufferen faktisk er revidert.",
+                    "source_actor_id": "bankkontakt"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Behold hovedprognosen og legg innbetalingen som midlertidig risiko",
+              "reply": "Jeg beholder hovedprognosen så leder- og styrepakken står stabilt, og beskriver den utsatte innbetalingen som et midlertidig risikopunkt.",
+              "effect": -2,
+              "feedback": "Pakken endrer seg mindre, men caset later som et endret betalingsrom ikke skal påvirke styringen før konsekvensen blir større.",
+              "effects": {
+                "stats": {
+                  "status": 2,
+                  "quality": -3,
+                  "trust": -3,
+                  "risk": 5
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "finance_mgr_case_rework_avoided",
+                    "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "liquidity_rework",
+                    "note": "Ny kontantinformasjon er kjent, men spilleren forsøker å holde hovedprognosen uendret."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "finance_mgr_cash_footnote",
+                    "work_object_id": "naeringsliv_okonomi_finanssjef_liquidity_case_001",
+                    "flag": "material_cash_change_reduced_to_risk_note"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "finance_mgr_standing_ingrid_footnote",
+                    "audience_id": "professional:ingrid_controller",
+                    "delta": -4,
+                    "reason": "Ingrid ser at et funn som endrer styringsrommet blir redusert til fotnote etter at hun nettopp har kvalitetssikret prognosen som beslutningsgrunnlag.",
+                    "source_actor_id": "ingrid_controller"
+                  },
+                  {
+                    "event_id": "finance_mgr_standing_bank_footnote",
+                    "audience_id": "professional:bankkontakt",
+                    "delta": -3,
+                    "reason": "Bankkontakten får et roligere hovedbilde, men svakere grunnlag for å forstå hvorfor kontant- og covenantrommet er mindre enn den tidligere prognosen viste.",
+                    "source_actor_id": "bankkontakt"
+                  }
+                ]
+              }
             }
           ]
         }
