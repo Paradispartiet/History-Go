@@ -105,12 +105,14 @@ jobs:
           node scripts/build-civication-scene-registry.mjs --write
           node scripts/audit-civication-career-gameplay.mjs --write
           node scripts/audit-civication-role-world-rollout-readiness.mjs --write
-      - name: Verify Programleder rollout and policy
-        run: |
-          node tests/civication-film-tv-programleder-role-world-rollout.test.js
-          node tests/civication-film-tv-programleder-playability.test.js
-          node tests/civication-role-world-contract.test.js
-          node tests/civication-role-world-broad-rollout-policy.test.js
+      - name: Verify Programleder rollout
+        run: node tests/civication-film-tv-programleder-role-world-rollout.test.js
+      - name: Verify Programleder playability
+        run: node tests/civication-film-tv-programleder-playability.test.js
+      - name: Verify Role World contract
+        run: node tests/civication-role-world-contract.test.js
+      - name: Verify broad rollout policy
+        run: node tests/civication-role-world-broad-rollout-policy.test.js
       - name: Verify derived artifacts
         run: |
           node scripts/build-civication-scene-registry.mjs --check
