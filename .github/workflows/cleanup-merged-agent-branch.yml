@@ -1,25 +1,48 @@
-name: Cleanup merged agent branch
+name: Cleanup merged work branches
 
 on:
   pull_request:
     types: [closed]
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/cleanup-merged-agent-branch.yml'
+  schedule:
+    - cron: '23 4 * * 0'
+  workflow_dispatch:
 
 permissions:
   contents: write
 
+concurrency:
+  group: repository-branch-hygiene
+  cancel-in-progress: false
+
 jobs:
   cleanup:
     if: >-
+      github.event_name == 'pull_request' &&
       github.event.pull_request.merged == true &&
-      github.event.pull_request.head.repo.full_name == github.repository &&
-      startsWith(github.event.pull_request.head.ref, 'agent/')
+      github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
-      - name: Delete merged agent branch
+      - name: Delete merged disposable branch
         uses: actions/github-script@v7
         with:
           script: |
             const ref = context.payload.pull_request.head.ref;
+            const disposablePrefixes = [
+              'agent/',
+              'automation/',
+              'codex/',
+              'data/audit-unsplit-',
+              'data/split-',
+            ];
+            if (!disposablePrefixes.some((prefix) => ref.startsWith(prefix))) {
+              core.info(`Keeping merged branch ${ref}: prefix is not disposable.`);
+              return;
+            }
             try {
               await github.rest.git.deleteRef({
                 owner: context.repo.owner,
@@ -34,3 +57,81 @@ jobs:
               }
               throw error;
             }
+
+  backfill:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out a minimal authenticated worktree
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout: .github/workflows
+
+      - name: Inventory old merged disposable branches
+        id: inventory
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('node:fs');
+            const path = require('node:path');
+            const disposablePrefixes = [
+              'agent/',
+              'automation/',
+              'codex/',
+              'data/audit-unsplit-',
+              'data/split-',
+            ];
+            const [branches, pulls] = await Promise.all([
+              github.paginate(github.rest.repos.listBranches, {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                per_page: 100,
+              }),
+              github.paginate(github.rest.pulls.list, {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                state: 'closed',
+                sort: 'updated',
+                direction: 'desc',
+                per_page: 100,
+              }),
+            ]);
+
+            const existing = new Set(branches.map((branch) => branch.name));
+            const safetyCutoff = Date.now() - 10 * 60 * 1000;
+            const disposable = [...new Set(pulls
+              .filter((pull) => pull.merged_at)
+              .filter((pull) => pull.head?.repo?.full_name === context.payload.repository.full_name)
+              .filter((pull) => new Date(pull.merged_at).getTime() < safetyCutoff)
+              .map((pull) => pull.head.ref)
+              .filter((ref) => disposablePrefixes.some((prefix) => ref.startsWith(prefix)))
+              .filter((ref) => existing.has(ref)))]
+              .sort();
+
+            core.info(`Found ${disposable.length} old merged disposable branches.`);
+            const inventoryFile = path.join(process.env.RUNNER_TEMP, 'merged-disposable-branches.txt');
+            fs.writeFileSync(inventoryFile, disposable.join('\n'), 'utf8');
+            core.setOutput('inventory-file', inventoryFile);
+            await core.summary
+              .addHeading('Merged branch hygiene')
+              .addRaw(`${disposable.length} old merged disposable branches selected for deletion.`)
+              .write();
+
+      - name: Delete inventoried merged branches
+        env:
+          MERGED_BRANCHES_FILE: ${{ steps.inventory.outputs.inventory-file }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t merged_branches < "$MERGED_BRANCHES_FILE"
+          if (( ${#merged_branches[@]} == 0 )); then
+            echo 'No old merged disposable branches remain.'
+            exit 0
+          fi
+          for ((start = 0; start < ${#merged_branches[@]}; start += 100)); do
+            batch=("${merged_branches[@]:start:100}")
+            git push origin --delete "${batch[@]}"
+          done

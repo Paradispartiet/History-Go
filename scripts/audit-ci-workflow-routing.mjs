@@ -221,12 +221,22 @@ export function auditWorkflowRouting() {
 
   let activePullRequestWorkflows = 0;
   for (const { file, source } of workflows) {
+    if (file.startsWith('split-') || file === 'audit-unsplit-place-manifest-files.yml') {
+      failures.push(`${file}: completed one-shot split workflows must not remain in the permanent workflow inventory`);
+    }
     const pullRequest = eventBlock(source, 'pull_request');
     if (!pullRequest) continue;
     const paths = new Set(declaredPaths(pullRequest));
 
     if (activePullRequest(source)) {
       activePullRequestWorkflows += 1;
+      const topLevelPermissions = source.match(/^permissions:\s*\n((?:  [^\n]+\n?)*)/m)?.[1] ?? '';
+      if (!/^  contents:\s*read\s*$/m.test(topLevelPermissions)) {
+        failures.push(`${file}: active pull-request validation must declare top-level contents-read permission`);
+      }
+      if (/\bwrite\b/.test(topLevelPermissions)) {
+        failures.push(`${file}: active pull-request validation must not have top-level write permission`);
+      }
       if (!/^concurrency:\s*$/m.test(source)) failures.push(`${file}: missing top-level concurrency policy`);
       if (!/^\s{2}cancel-in-progress:\s*true\s*$/m.test(source)) {
         failures.push(`${file}: stale pull-request runs are not cancelled`);
@@ -326,6 +336,52 @@ export function auditWorkflowRouting() {
   }
   if (!/^permissions:\s*\n\s{2}contents:\s*write\s*$/m.test(coordinateSource)) {
     failures.push('coordinate-branch-runner.yml: dedicated branch writer needs explicit contents-write permission');
+  }
+
+  const branchCleanupSource = workflows.find(({ file }) => file === 'cleanup-merged-agent-branch.yml')?.source ?? '';
+  for (const prefix of ['agent/', 'automation/', 'codex/', 'data/audit-unsplit-', 'data/split-']) {
+    if (!branchCleanupSource.includes(`'${prefix}'`)) {
+      failures.push(`cleanup-merged-agent-branch.yml: disposable prefix is not governed: ${prefix}`);
+    }
+  }
+  for (const safetyContract of ['pull.merged_at', 'pull.head?.repo?.full_name', 'existing.has(ref)', 'safetyCutoff']) {
+    if (!branchCleanupSource.includes(safetyContract)) {
+      failures.push(`cleanup-merged-agent-branch.yml: branch backfill safety contract is missing: ${safetyContract}`);
+    }
+  }
+
+  const domainRegistrySource = workflows.find(({ file }) => file === 'fagverk-domain-registry.yml')?.source ?? '';
+  for (const legacyWorkflow of ['fagverk-helse.yml', 'fagverk-utdanning.yml']) {
+    if (workflows.some(({ file }) => file === legacyWorkflow)) {
+      failures.push(`${legacyWorkflow}: duplicated domain gate must use fagverk-domain-registry.yml`);
+    }
+  }
+  for (const registryPath of [
+    '.github/ci/fagverk-helse-domain-registry-v1.json',
+    '.github/ci/fagverk-utdanning-domain-registry-v1.json',
+  ]) {
+    if (!domainRegistrySource.includes(registryPath)) {
+      failures.push(`fagverk-domain-registry.yml: registry trigger is missing: ${registryPath}`);
+    }
+  }
+  if (!domainRegistrySource.includes('node scripts/run-fagverk-domain-ci-v1.mjs')) {
+    failures.push('fagverk-domain-registry.yml: shared registry runner is missing');
+  }
+
+  const natureCandidatesSource = workflows.find(({ file }) => file === 'build-nature-place-candidates.yml')?.source ?? '';
+  if (!/^permissions:\s*\n\s{2}contents:\s*read\s*$/m.test(natureCandidatesSource)) {
+    failures.push('build-nature-place-candidates.yml: pull-request validation must be contents-read-only');
+  }
+  for (const publishContract of [
+    /^\s{2}publish:\s*$/m,
+    /github\.event_name == 'workflow_dispatch' && inputs\.commit_output == true/,
+    /^\s{4}needs:\s*validate\s*$/m,
+    /^\s{4}permissions:\s*\n\s{6}contents:\s*write\s*$/m,
+    /actions\/download-artifact@v4/,
+  ]) {
+    if (!publishContract.test(natureCandidatesSource)) {
+      failures.push(`build-nature-place-candidates.yml: isolated publish contract is missing: ${publishContract}`);
+    }
   }
 
   const routingSource = workflows.find(({ file }) => file === 'ci-workflow-routing.yml').source;

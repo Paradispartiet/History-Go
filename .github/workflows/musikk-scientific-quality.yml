@@ -6,6 +6,10 @@ on:
       - "data/fag/musikk/**"
       - "tools/validate-musikk-*.mjs"
       - ".github/workflows/musikk-scientific-quality.yml"
+
+permissions:
+  contents: read
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true

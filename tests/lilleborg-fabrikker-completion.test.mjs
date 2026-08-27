@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import test from "node:test";
+import { evaluateLilleborgArtifacts, loadLilleborgArtifacts } from "../scripts/audit-lilleborg-fabrikker-completion.mjs";
 import { validatePacket } from "../scripts/validate-place-description-production-v4_2.mjs";
 
 const root = process.cwd();
@@ -18,6 +19,7 @@ const stories = read("data/stories/stories_lilleborg_fabrikker.json");
 const brands = read("data/brands/brands_master.json");
 const brandsByPlace = read("data/brands/brands_by_place.json");
 const peopleClaims = read("data/people/claims/naeringsliv/oslo/lilleborg_fabrikker/peter_wessel_wind_kildal_lilleborg.claims.json");
+const leksikon = read("data/leksikon/places/oslo/naeringsliv/leksikon_lilleborg_fabrikker.json");
 const audit = read("reports/place-production/lilleborg-fabrikker-phase1-24-gate-audit-v1.json");
 
 const webpDimensions = file => {
@@ -107,6 +109,36 @@ test("popup systems include chronology, language, story and readings", () => {
   assert.deepEqual(stories[0].related_people, []);
 });
 
+test("knowledge article contains the complete scholarly contract with resolved bindings", () => {
+  const article = leksikon.scholarly_article;
+  assert.ok(article.definition.length >= 100);
+  assert.ok(article.historical_or_systemic_background.length >= 2);
+  assert.deepEqual(article.theories_researchers_and_findings.map(item => item.researcher), ["Adam Smith", "Joseph Schumpeter"]);
+  assert.ok(article.methods_and_limitations.length >= 2);
+  assert.ok(article.methods_and_limitations.every(item => item.application.length >= 80 && item.limitations.length >= 80));
+  assert.ok(article.boundaries_and_disagreements.length >= 2);
+  assert.ok(article.documented_cases_or_teaching_scenarios.length >= 2);
+  assert.ok(article.documented_cases_or_teaching_scenarios.every(item => item.kind === "documented_case"));
+  assert.ok(article.key_questions.length >= 3);
+  assert.ok(leksikon.wikiText.length >= 8);
+});
+
+test("completion status is computed and fails closed when article coverage regresses", () => {
+  const artifacts = loadLilleborgArtifacts(root);
+  const current = evaluateLilleborgArtifacts(artifacts, { root });
+  assert.equal(current.status, "high_quality");
+  assert.deepEqual(current.failed_checks, []);
+  assert.equal(current.quality_score.editorial_quality.score, 4);
+  assert.equal(current.quality_score.total, 29);
+
+  const regressed = structuredClone(artifacts);
+  regressed.leksikon.scholarly_article.documented_cases_or_teaching_scenarios = [];
+  const failed = evaluateLilleborgArtifacts(regressed, { root });
+  assert.equal(failed.status, "blocked");
+  assert.ok(failed.failed_checks.includes("editorial_quality.two_documented_cases_are_declared"));
+  assert.ok(failed.quality_score.unresolved_blockers > 0);
+});
+
 test("source conflicts and final quality gate are explicit and blocker-free", () => {
   assert.deepEqual(audit.source_conflicts.map(item => item.status), ["resolved", "rejected", "rejected"]);
   assert.match(audit.source_conflicts[0].reason, /1897/);
@@ -116,4 +148,6 @@ test("source conflicts and final quality gate are explicit and blocker-free", ()
   assert.ok(audit.quality_score.total >= 27);
   assert.equal(audit.quality_score.critical_findings, 0);
   assert.equal(audit.quality_score.unresolved_blockers, 0);
+  assert.equal(audit.validation.status, "high_quality");
+  assert.deepEqual(audit.validation.failed_checks, []);
 });

@@ -8,8 +8,8 @@ Helse bruker én registry-drevet kvalitetsgate. Nye domener skal ikke opprette e
 ## Canonical eiere
 
 - Domenerekkefølge og script/test-kontrakter: `.github/ci/fagverk-helse-domain-registry-v1.json`
-- Permanent CI-runner: `scripts/run-helse-domain-ci-v1.mjs`
-- Permanent workflow: `.github/workflows/fagverk-helse.yml`
+- Felles permanent CI-runner: `scripts/run-fagverk-domain-ci-v1.mjs`
+- Felles permanent workflow: `.github/workflows/fagverk-domain-registry.yml`
 - Cumulative kvalitet: eksisterende Helse-/Fagverk-auditer, aktiv domenetest og cumulative tester
 
 CI-registryet ligger bevisst under `.github/ci/`, ikke under `data/fagverk/**`. Det er orkestreringsmetadata, ikke produktdata, og skal derfor ikke vekke irrelevante fagspesifikke workflows bare fordi Helse-gaten endres.
@@ -62,7 +62,7 @@ Når et framtidig Helse-domene legges til eller kontrakten utvides:
 1. legg/oppdater domain entry i `.github/ci/fagverk-helse-domain-registry-v1.json`;
 2. legg source brief-script + test;
 3. legg fulltext materializer + audit + test når innholdet materialiseres;
-4. bruk den eksisterende `.github/workflows/fagverk-helse.yml`;
+4. bruk den eksisterende `.github/workflows/fagverk-domain-registry.yml`;
 5. endre den generiske runneren bare dersom selve Helse-produksjonskontrakten har fått en ny generell capability.
 
 Ikke kopier en workflow fra et gammelt domene.
