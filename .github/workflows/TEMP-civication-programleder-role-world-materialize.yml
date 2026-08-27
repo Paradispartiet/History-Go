@@ -84,6 +84,15 @@ jobs:
           } else if (!(conflictCount === 0 && canonicalConflictCount === 1)) {
             throw new Error(`Unexpected conflict authority state: legacy=${conflictCount}, canonical=${canonicalConflictCount}`);
           }
+
+          const stalePlanTarget = '  "const planSequenceTypes = [\'job\', \'people\', \'conflict\', \'story\', \'event\', \'micro\', \'knowledge\', \'followup\', \'consequence\', \'job\', \'people\', \'story\', \'knowledge\', \'micro\', \'conflict\', \'event\', \'followup\', \'consequence\'];"';
+          const canonicalPlanTarget = '  "const planSequenceTypes = [\'job\', \'people\', \'conflict\', \'story\', \'event\', \'micro\', \'knowledge\', \'followup\', \'consequence\'];"';
+          const stalePlanTargetCount = source.split(stalePlanTarget).length - 1;
+          if (stalePlanTargetCount === 1) {
+            source = source.replace(stalePlanTarget, canonicalPlanTarget);
+          } else if (!(stalePlanTargetCount === 0 && source.split(canonicalPlanTarget).length - 1 === 2)) {
+            throw new Error(`Unexpected playability materializer state: stale=${stalePlanTargetCount}, canonical=${source.split(canonicalPlanTarget).length - 1}`);
+          }
           fs.writeFileSync(sourcePath, source);
 
           const testPath = 'tests/civication-film-tv-programleder-role-world-rollout.test.js';
