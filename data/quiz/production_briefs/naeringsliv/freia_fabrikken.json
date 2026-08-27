@@ -1,0 +1,367 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "categoryId": "naeringsliv",
+  "targetId": "freia_fabrikken",
+  "profile_hint": "narrow",
+  "reviewed_at": "2026-08-27",
+  "review_note": "Riksantikvaren, Oslo byleksikon og Store norske leksikon gir tre adskilte læringsjobber om produksjon, arbeidsorganisering og merkevare. Feilåret 1882 og alt krigsrelatert stoff er eksplisitt holdt ute.",
+  "scope": {
+    "place": "Freia-fabrikken",
+    "production_profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "total_questions": 21,
+    "normal_opening_questions": 14
+  },
+  "sources": {
+    "heritage": {
+      "url": "https://riksantikvaren.no/fredninger/freia/",
+      "source_type": "official_heritage_authority",
+      "review_status": "reviewed",
+      "review_note": "Arbeidsmiljø, park, spisesalsbygning, Munch-frise og fredning; feilåret 1882 er avvist."
+    },
+    "byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Freia",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Grunnleggelse, overtakelse, produksjon, marked, arbeidsliv, utbygging og omforming."
+    },
+    "snl_freia": {
+      "url": "https://snl.no/Freia_-_sjokoladefabrikk",
+      "source_type": "recognized_reference",
+      "review_status": "reviewed",
+      "review_note": "Virksomhets-, varemerke- og produksjonshistorie samt nåværende produksjon i Oslo."
+    },
+    "snl_johan": {
+      "url": "https://snl.no/Johan_Throne_Holst",
+      "source_type": "recognized_reference",
+      "review_status": "reviewed",
+      "review_note": "Johan Throne Holsts identitet, ledelse, industriprogram og offentlige roller."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "arbeid_produksjon_verdiskaping",
+      "handel_forbruk_marked"
+    ],
+    "emne_ids": [
+      "em_naering_industri_og_mekanisering",
+      "em_naering_organisasjoner_ledelse",
+      "em_naering_geografi_infrastruktur",
+      "em_naering_produksjon_produktivitet",
+      "em_naering_eierskap_styring",
+      "em_naering_handel_butikk_byrom",
+      "em_naering_merkevare_og_status",
+      "em_naering_arbeidsliv_organisering",
+      "em_naering_eiendom_kapital_byutvikling",
+      "em_naering_logistikk_verdikjeder",
+      "em_naering_makt_ulikhet_arbeidsliv",
+      "em_naering_omstilling_kriser_skift"
+    ],
+    "topic_hook_ids": [
+      "verdikjede_spor",
+      "usynlig_arbeid",
+      "merkevare_status",
+      "eierskap_og_styring"
+    ],
+    "method_ids": [
+      "met_naering_logistikk_og_verdikjedeanalyse",
+      "met_naering_arbeidslivsanalyse",
+      "met_naering_merkevare_og_posisjoneringsanalyse",
+      "met_naering_organisasjonsanalyse"
+    ],
+    "thinker_ids": [
+      "anna_tsing",
+      "max_weber",
+      "adam_smith",
+      "joseph_schumpeter"
+    ],
+    "works": []
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/naeringsliv/",
+      "data/places/naeringsliv/oslo/places_naeringsliv/freia_fabrikken.json"
+    ],
+    "active_before": {
+      "file": null,
+      "set_count": 0,
+      "question_count": 0,
+      "finding": "Ingen manifest-loadet canonical Freia-fabrikken-quiz fantes."
+    },
+    "decisions": [
+      "Opprett standard 3x7 etter gjeldende adaptive profil.",
+      "Lås de første fjorten som normale faktaspørsmål.",
+      "Bruk metode og teori bare i finalsettet."
+    ],
+    "knowledge_migration": "Nye Knowledge-enheter genereres deterministisk fra canonical quizpakke."
+  },
+  "profile_decision": {
+    "profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "justification": "Tre læringsjobber dekker identitet og produksjon, arbeidsmiljø og kultur, samt næringslivsanalyse uten å gjenta samme fabrikkhistorie."
+  },
+  "held_back_candidates": [
+    "Riksantikvarens feilaktige kjøpsår 1882.",
+    "Påstand om at velferdstiltak fjernet arbeidskonflikt.",
+    "Utdaterte eller ukontrollerte markedstall.",
+    "Den genererte illustrasjonen som historisk fotografi."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Freia ble grunnlagt i 1889.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_industri_og_mekanisering"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Johan Throne Holst kjøpte fabrikken i 1892.",
+      "source_ids": [
+        "snl_johan"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_organisasjoner_ledelse"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Fabrikkanleggets adresse er Johan Throne Holsts plass 1.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_geografi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Freia er et næringsmiddel- og sjokoladeproduksjonssted.",
+      "source_ids": [
+        "snl_freia"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_produksjon_produktivitet"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Virksomheten ble A/S Freia Chocolade Fabrik i 1898.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_eierskap_styring"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Freia koblet fabrikken til markedet gjennom et butikkutsalg.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_handel_butikk_byrom"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Freia tok marabustorken i bruk som logo og kjennetegn.",
+      "source_ids": [
+        "snl_freia"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_merkevare_og_status"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_08",
+      "order": 8,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Ole Sverre utformet Freiaparken i 1922.",
+      "source_ids": [
+        "heritage"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeidsliv_organisering"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_09",
+      "order": 9,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Parken var et uteområde for ansatte og arrangementer.",
+      "source_ids": [
+        "heritage"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeidsliv_organisering"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_10",
+      "order": 10,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Den nye spisesalsbygningen stod ferdig i 1934.",
+      "source_ids": [
+        "heritage"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_industri_og_mekanisering"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_11",
+      "order": 11,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Edvard Munch laget de tolv maleriene som danner frisen.",
+      "source_ids": [
+        "heritage"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeidsliv_organisering"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_12",
+      "order": 12,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "En bedriftslegeordning ble etablert ved fabrikken i 1917.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeidsliv_organisering"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_13",
+      "order": 13,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Freia innførte 48-timers arbeidsuke i 1918.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeidsliv_organisering"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_14",
+      "order": 14,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Parken og Freiasalen fikk varig vern i 2015.",
+      "source_ids": [
+        "heritage"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_eiendom_kapital_byutvikling"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_15",
+      "order": 15,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Fabrikken ble koblet til forbrukerne gjennom distribusjon, butikk og reklame.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_16",
+      "order": 16,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Arbeidsmiljøtiltakene var både reelle goder og del av bedriftens organisering.",
+      "source_ids": [
+        "snl_johan"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_makt_ulikhet_arbeidsliv"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_17",
+      "order": 17,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Industrihistorisk analyse følger samspillet mellom produksjonsanlegg, organisasjon og marked.",
+      "source_ids": [
+        "heritage"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_industri_og_mekanisering"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_18",
+      "order": 18,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Freia-navnet, storken, butikken og reklamen kan analyseres som merkevareelementer.",
+      "source_ids": [
+        "snl_freia"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_merkevare_og_status"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_19",
+      "order": 19,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Spisesalen knyttet ledelsesvalg til rom, måltider, kunst og pauser.",
+      "source_ids": [
+        "heritage"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_organisasjoner_ledelse"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_20",
+      "order": 20,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Dokumenterte tiltak er ikke i seg selv bevis på fravær av konflikt eller ulik makt.",
+      "source_ids": [
+        "snl_johan"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_makt_ulikhet_arbeidsliv"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_21",
+      "order": 21,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Deler av anlegget ble avviklet og omformet til bolig, mens annen produksjon fortsatte.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    }
+  ]
+}
