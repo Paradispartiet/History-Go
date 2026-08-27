@@ -42,10 +42,13 @@ test("Freia-fabrikken is one canonical factory place with an official address an
   assert.ok(!place.related_place_ids.includes("freiasalen"));
 });
 
-test("all four Næringsliv collections have real image-ready members", () => {
-  assert.deepEqual(place.place_card_profile.collection_ids, ["people", "objects", "brands", "structures"]);
-  assert.deepEqual(runtime.people.map(person => person.id).sort(), ["edvard_munch", "johan_thrane_holst_freia", "ole_sverre"].sort());
-  assert.deepEqual(place.objects.map(item => item.id), ["freiafrisen_dans_pa_stranden"]);
+test("Freia exposes only primary-function, image-ready collections", () => {
+  assert.deepEqual(place.place_card_profile.collection_ids, ["people", "brands", "structures"]);
+  assert.deepEqual(runtime.people.map(person => person.id).sort(), ["johan_thrane_holst_freia", "ole_sverre"].sort());
+  assert.ok(runtime.relations.every(relation => relation.id !== "rel_freia_edvard_munch"));
+  assert.deepEqual(place.objects, []);
+  assert.equal(production.roundsReadiness.objects, "held_back_pending_source_and_image_verified_factory_objects");
+  assert.match(place.place_card_profile.reason, /Munch.*sekundært kultur- og velferdsspor/i);
   assert.deepEqual(place.structures.map(item => item.id), ["freiasalen", "freiaparken"]);
   assert.deepEqual(brandsByPlace.freia_fabrikken, ["freia"]);
   const freia = brands.filter(brand => brand.id === "freia");
@@ -55,13 +58,13 @@ test("all four Næringsliv collections have real image-ready members", () => {
   assert.equal(freia[0].imageMeta.generated, false);
   assert.equal(freia[0].imageMeta.reconstructed, false);
   assert.equal(freia[0].imageMeta.noEndorsement, true);
-  for (const file of [runtime.people.find(person => person.id === "johan_thrane_holst_freia").image, place.objects[0].image, place.structures[0].image, freia[0].logo]) {
+  for (const file of [runtime.people.find(person => person.id === "johan_thrane_holst_freia").image, place.structures[0].image, freia[0].logo]) {
     assert.equal(exists(file), true, file);
   }
 });
 
-test("front, place, object, structure, person and wordmark assets are local and documented", () => {
-  for (const file of [place.frontImage, place.image, place.cardImage, place.objects[0].image, place.structures[0].image, "bilder/kort/people/johan_thrane_holst_freia.webp", "bilder/kort/brands/freia_wordmark.webp"]) {
+test("front, place, structure, person and wordmark assets are local and documented", () => {
+  for (const file of [place.frontImage, place.image, place.cardImage, place.structures[0].image, "bilder/kort/people/johan_thrane_holst_freia.webp", "bilder/kort/brands/freia_wordmark.webp"]) {
     assert.equal(exists(file), true, file);
   }
   assert.deepEqual(webpDimensions(place.frontImage), { width: 900, height: 1200 });
@@ -70,7 +73,6 @@ test("front, place, object, structure, person and wordmark assets are local and 
   assert.equal(place.frontImageMeta.generationMethod, "openai_imagegen");
   assert.match(place.frontImageMeta.representationScope, /ikke.*historisk fotografi/i);
   assert.equal(place.imageMeta.license, "Public domain");
-  assert.equal(place.objects[0].imageMeta.license, "Public domain");
   assert.equal(place.structures[0].imageMeta.license, "Public domain");
 });
 

@@ -89,7 +89,7 @@ Når Badge-filen har `groups`, `children` eller `quizFocus`, skal disse brukes s
 - `utdanning + utdanningshistorie` prioriterer institusjonshistorie, lærere/elever, skolebygg og læremidler;
 - `helse + helsetjenester_helseokonomi` prioriterer institusjon, system, profesjoner og historiske tjenester fremfor individuell klinikk.
 
-Dette er kandidatstyring, aldri en kvote.
+Dette er kandidatstyring, aldri en kvote. Objects-kandidater følger i tillegg `docs/PLACE_OBJECTS_CANONICAL.md`: stedets hovedfunksjon styrer utvalget, og på industristeder prioriteres produksjonsverktøy, former, maskiner og annet fabrikkutstyr før sekundære kulturspor.
 
 ## 4. Betingede innholdsmoduler
 

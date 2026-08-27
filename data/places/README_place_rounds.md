@@ -158,11 +158,15 @@ People viser canonical personer med dokumentert direkte stedstilknytning.
 
 ## 8. Objects
 
-Objects er fysiske, identifiserbare gjenstander med dokumentert stedstilknytning.
+Objects følger `docs/PLACE_OBJECTS_CANONICAL.md` og er fysiske, identifiserbare gjenstander med dokumentert stedstilknytning.
 
 - canonical eier er `place.objects`;
+- utvalget skal representere stedets hovedfunksjon før sekundære historier;
+- industri- og produksjonssteder undersøker produksjonsverktøy, former, maskiner, måle-/kvalitetsutstyr og emballasje-/håndteringsutstyr før kunst og andre sidespor;
+- samlingen krever en sammenhengende, bildeverifisert gruppe; ett medlem er bare nok når det er et dokumentert signaturobjekt for hovedfunksjonen;
 - `artifacts` eller fysiske Civication-poster kan brukes som compatibility-kilder når de faktisk består Objects-kontrakten;
-- observasjonstekst eller et fysisk bygg skal ikke omdøpes til Object for å få et kort;
+- observasjonstekst, et fysisk bygg eller et sekundært kulturverk skal ikke omdøpes til Object for å få et kort;
+- manglende medlemsevidens gir `SOURCE-BOUNDED HOLDBACK`, ikke filler og ikke automatisk `BEGRUNNET N/A`;
 - `Spor og objekter` og `Legg merke til` kan være underseksjoner i Objects-popupen uten å øke Objects-antallet.
 
 ## 9. Brands
