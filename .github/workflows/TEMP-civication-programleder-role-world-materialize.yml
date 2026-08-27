@@ -33,18 +33,43 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - name: Canonicalize authority intents in temporary source
+      - name: Canonicalize temporary authority source
         shell: bash
         run: |
           node <<'NODE'
           const fs = require('node:fs');
           const file = 'scripts/TEMP_materialize_programleder_role_world.mjs';
           let source = fs.readFileSync(file, 'utf8');
-          const matches = source.match(/intent:'approve'/g) || [];
-          if (matches.length !== 2) {
-            throw new Error(`Expected exactly two legacy approve intents, found ${matches.length}`);
+
+          const legacyIntents = source.match(/intent:'approve'/g) || [];
+          if (legacyIntents.length !== 2) {
+            throw new Error(`Expected exactly two legacy approve intents, found ${legacyIntents.length}`);
           }
           source = source.replaceAll("intent:'approve'", "intent:'execute'");
+
+          const fieldsStartMarker = "  fields: {\n    authority_context: {";
+          const scenesMarker = "\n});\n\nconst scenes =";
+          const fieldsStart = source.lastIndexOf(fieldsStartMarker);
+          const scenesAt = source.indexOf(scenesMarker, fieldsStart);
+          if (fieldsStart < 0 || scenesAt < 0) {
+            throw new Error('Could not locate canonical Programleder authority_context block');
+          }
+          const fieldsEnd = source.lastIndexOf("\n  }", scenesAt);
+          if (fieldsEnd < fieldsStart) {
+            throw new Error('Could not locate end of canonical Programleder authority_context block');
+          }
+          const authorityFields = source.slice(fieldsStart, fieldsEnd + "\n  }".length);
+
+          const conflictAnchor = "    ],{action_id:'approve_editorial_premise',intent:'execute'})\n  ]\n});\n\nconst event =";
+          const conflictMatches = source.split(conflictAnchor).length - 1;
+          if (conflictMatches !== 1) {
+            throw new Error(`Expected exactly one Programleder conflict authority anchor, found ${conflictMatches}`);
+          }
+          source = source.replace(
+            conflictAnchor,
+            "    ],{action_id:'approve_editorial_premise',intent:'execute'})\n  ],\n" + authorityFields + "\n});\n\nconst event ="
+          );
+
           fs.writeFileSync(file, source);
           NODE
       - name: Materialize permanent authored data
