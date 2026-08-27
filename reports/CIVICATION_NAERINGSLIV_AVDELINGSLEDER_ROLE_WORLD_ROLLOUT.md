@@ -17,6 +17,7 @@ Status: Materialized on the controlled-rollout branch; completion is valid only 
 - Nine authored rollout scenes across all canonical mail types; the three previously absent Avdelingsleder catalog types are created in the canonical mail-family structure
 - Situated standing is audience-specific for Inger, Rana, Mads, Øyvind, the team and relevant professional counterparts
 - Standing changes collaboration and social interpretation only; it never grants approval rights
+- Fail-closed materialization run 33092957195 passed focused rollout gates and the full `test:civication` suite before TEMP surfaces were removed and the verified permanent result was committed.
 
 ## Quality assessment
 
