@@ -1,0 +1,1152 @@
+{
+  "targetId": "lilleborg_fabrikker",
+  "categoryId": "naeringsliv",
+  "sources": {
+    "byleksikon": "https://oslobyleksikon.no/side/Lilleborg_AS",
+    "snl_kildal": "https://snl.no/Peter_Wessel_Wind_Kildal",
+    "industrimuseum": "https://industrimuseum.no/bedrifter/lilleborgfabrikera_s",
+    "orkla": "https://www.orkla.com/media/press-releases/2024/orkla-announces-the-sale-of-lilleborg/",
+    "solenis": "https://www.solenis.com/en/resources/news-releases/2024/lilleborg-acquisition/"
+  },
+  "production_context": {
+    "manifest_category": "naeringsliv",
+    "profile": "normal_4x7",
+    "standard_version": "3.3",
+    "source_brief": "data/quiz/production_briefs/naeringsliv/lilleborg_fabrikker.json",
+    "context_artifact": "data/quiz/production_context/naeringsliv/lilleborg_fabrikker.json",
+    "resolved_files": {
+      "pensum": "data/fag/naeringsliv/naeringslivpensum_canonical_v4_5.json",
+      "emner": "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+      "fagkart": "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+      "methods": "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "arbeid_produksjon_verdiskaping",
+      "logistikk_infrastruktur_rom"
+    ],
+    "emne_ids": [
+      "em_naering_eierskap_styring",
+      "em_naering_industri_og_mekanisering",
+      "em_naering_produksjon_produktivitet",
+      "em_naering_byens_okonomiske_rom",
+      "em_naering_innovasjon_teknologisk_skift",
+      "em_naering_eiendom_kapital_byutvikling",
+      "em_naering_omstilling_kriser_skift",
+      "em_naering_logistikk_verdikjeder",
+      "em_naering_forbruk_marked",
+      "em_naering_makt_ulikhet_arbeidsliv"
+    ],
+    "topic_hook_ids": [
+      "maskin_menneske_produksjon",
+      "verdikjede_spor",
+      "eierskap_og_styring",
+      "omstilling_av_naeringsrom"
+    ],
+    "method_ids": [
+      "met_naering_eierskaps_og_styringsanalyse",
+      "met_naering_logistikk_og_verdikjedeanalyse",
+      "met_naering_industrihistorisk_analyse",
+      "met_naering_omstilling_og_endringsanalyse"
+    ],
+    "thinker_ids": [
+      "thomas_piketty"
+    ],
+    "works": [],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/quiz_naeringsliv.json",
+        "data/quiz/naeringsliv/lilleborg_fabrikker_sets_merged.json",
+        "data/places/naeringsliv/oslo/places_naeringsliv/lilleborg_fabrikker.json"
+      ],
+      "active_before": {
+        "file": "data/quiz/naeringsliv/lilleborg_fabrikker_sets_merged.json",
+        "set_count": 5,
+        "question_count": 30,
+        "finding": "30 spørsmål fordelt på fem eldre sett med seks spørsmål og fem legacy-spørsmål i flatfil ble funnet; pakken blandet 1812, 1833, 1842 og 1897 som parallelle etableringsår."
+      },
+      "decisions": [
+        "Bevar kildebårne læringsjobber som skiller tidslag og selskapsidentitet.",
+        "Bruk 1897 for A/S Lilleborg Fabriker og la 1812, 1833 og 1842 beskrive forhistorien.",
+        "Materialiser normal 4x7 med fjorten vanlige åpningsspørsmål og metode først i siste sett."
+      ],
+      "knowledge_migration": "De 28 valgte spørsmålene får stabile Knowledge-ID-er; utelatte spørsmål er dokumentert i produksjonsbriefen."
+    },
+    "profile_decision": {
+      "profile": "normal",
+      "set_count": 4,
+      "questions_per_set": 7,
+      "justification": "Fire læringsjobber dekker tidslag og identitet, produksjon og bygg, krig og eierskap samt verdikjede og omforming uten å splitte stedet i parallelle quizer."
+    },
+    "held_back_candidates": [
+      "1833 som grunnleggelsesår for A/S Lilleborg Fabriker.",
+      "Alf Bjercke som kvalitetsleder uten dokumentert Lilleborg-kobling.",
+      "Solenis-oppkjøpet som bevis på ny produksjon ved Sandaker.",
+      "Boligomforming som mål på utfallet for tidligere ansatte."
+    ],
+    "normal_opening_questions": 14,
+    "theory_start_phase": "final",
+    "method_start_phase": "final"
+  },
+  "sets": [
+    {
+      "set_id": "naeringsliv_lilleborg_fabrikker_set_1",
+      "title": "Tidslagene ved elva",
+      "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "lilleborg_fabrikker_quiz_01",
+          "quiz_id": "naeringsliv_lilleborg_fabrikker_set_1_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "lilleborg_fabrikker",
+          "targetId": "lilleborg_fabrikker",
+          "question_scope": "place",
+          "question": "Når ble A/S Lilleborg Fabriker grunnlagt?",
+          "options": [
+            "1897",
+            "1833",
+            "1842"
+          ],
+          "answer": "1897",
+          "answerIndex": 0,
+          "knowledge": "A/S Lilleborg Fabriker ble grunnlagt i 1897 som videreføring av eldre fabrikkvirksomhet.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_eierskap_styring",
+          "source": [
+            "byleksikon",
+            "industrimuseum"
+          ],
+          "source_origin": "external",
+          "claim_basis": "A/S Lilleborg Fabriker ble grunnlagt i 1897 som videreføring av eldre fabrikkvirksomhet.",
+          "claim_id": "claim_lilleborg_fabrikker_quiz_01",
+          "primary_knowledge_unit_id": "ku_naeringsliv_lilleborg_fabrikker_01",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_lilleborg_fabrikker_01"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "lilleborg_fabrikker_quiz_02",
+          "quiz_id": "naeringsliv_lilleborg_fabrikker_set_1_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "lilleborg_fabrikker",
+          "targetId": "lilleborg_fabrikker",
+          "question_scope": "place",
+          "question": "Hvilken virksomhet kom til på eiendommen i 1812?",
+          "options": [
+            "En tekstilfabrikk",
+            "En sjokoladefabrikk",
+            "Et jernstøperi"
+          ],
+          "answer": "En tekstilfabrikk",
+          "answerIndex": 0,
+          "knowledge": "Ludvig Mariboe opprettet en tekstilfabrikk på eiendommen i 1812.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_industri_og_mekanisering",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Ludvig Mariboe opprettet en tekstilfabrikk på eiendommen i 1812.",
+          "claim_id": "claim_lilleborg_fabrikker_quiz_02",
+          "primary_knowledge_unit_id": "ku_naeringsliv_lilleborg_fabrikker_02",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_lilleborg_fabrikker_02"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "lilleborg_fabrikker_quiz_03",
+          "quiz_id": "naeringsliv_lilleborg_fabrikker_set_1_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "lilleborg_fabrikker",
+          "targetId": "lilleborg_fabrikker",
+          "question_scope": "place",
+          "question": "Hva ble etablert ved Lilleborg i 1833?",
+          "options": [
+            "En oljemølle",
+            "Et skipsverft",
+            "Et bryggeri"
+          ],
+          "answer": "En oljemølle",
+          "answerIndex": 0,
+          "knowledge": "Oljemøllen fra 1833 inngår i Lilleborgs industrielle forhistorie.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_produksjon_produktivitet",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Oljemøllen fra 1833 inngår i Lilleborgs industrielle forhistorie.",
+          "claim_id": "claim_lilleborg_fabrikker_quiz_03",
+          "primary_knowledge_unit_id": "ku_naeringsliv_lilleborg_fabrikker_03",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_lilleborg_fabrikker_03"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "lilleborg_fabrikker_quiz_04",
+          "quiz_id": "naeringsliv_lilleborg_fabrikker_set_1_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "lilleborg_fabrikker",
+          "targetId": "lilleborg_fabrikker",
+          "question_scope": "place",
+          "question": "Når ble såpefabrikken etablert?",
+          "options": [
+            "1842",
+            "1897",
+            "1916"
+          ],
+          "answer": "1842",
+          "answerIndex": 0,
+          "knowledge": "Et sæbesyderi, eller såpekokeri, ble etablert i 1842.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_produksjon_produktivitet",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Et sæbesyderi, eller såpekokeri, ble etablert i 1842.",
+          "claim_id": "claim_lilleborg_fabrikker_quiz_04",
+          "primary_knowledge_unit_id": "ku_naeringsliv_lilleborg_fabrikker_04",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_lilleborg_fabrikker_04"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "lilleborg_fabrikker_quiz_05",
+          "quiz_id": "naeringsliv_lilleborg_fabrikker_set_1_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "lilleborg_fabrikker",
+          "targetId": "lilleborg_fabrikker",
+          "question_scope": "place",
+          "question": "Hvem overtok Lilleborg i 1863?",
+          "options": [
+            "Peter Wessel Wind Kildal",
+            "Johan Throne Holst",
+            "Jens Jacob Jensen"
+          ],
+          "answer": "Peter Wessel Wind Kildal",
+          "answerIndex": 0,
+          "knowledge": "Peter Wessel Wind Kildal kjøpte Lilleborg-anlegget i 1863.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_eierskap_styring",
+          "source": [
+            "snl_kildal",
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Peter Wessel Wind Kildal kjøpte Lilleborg-anlegget i 1863.",
+          "claim_id": "claim_lilleborg_fabrikker_quiz_05",
+          "primary_knowledge_unit_id": "ku_naeringsliv_lilleborg_fabrikker_05",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_lilleborg_fabrikker_05"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "lilleborg_fabrikker_quiz_06",
+          "quiz_id": "naeringsliv_lilleborg_fabrikker_set_1_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "lilleborg_fabrikker",
+          "targetId": "lilleborg_fabrikker",
+          "question_scope": "place",
+          "question": "Hva konsentrerte Kildal produksjonen om?",
+          "options": [
+            "Lampeolje og såpe",
+            "Turbiner og dampmaskiner",
+            "Papir og cellulose"
+          ],
+          "answer": "Lampeolje og såpe",
+          "answerIndex": 0,
+          "knowledge": "Under Kildals ledelse fikk lampeolje og såpe hovedvekten i produksjonen.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_produksjon_produktivitet",
+          "source": [
+            "snl_kildal",
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Under Kildals ledelse fikk lampeolje og såpe hovedvekten i produksjonen.",
+          "claim_id": "claim_lilleborg_fabrikker_quiz_06",
+          "primary_knowledge_unit_id": "ku_naeringsliv_lilleborg_fabrikker_06",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_lilleborg_fabrikker_06"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "lilleborg_fabrikker_quiz_07",
+          "quiz_id": "naeringsliv_lilleborg_fabrikker_set_1_q7",
+          "categoryId": "naeringsliv",
+          "placeId": "lilleborg_fabrikker",
+          "targetId": "lilleborg_fabrikker",
+          "question_scope": "place",
+          "question": "Hvorfor var Akerselva viktig for industristedet?",
+          "options": [
+            "Den ga et etablert industri- og kraftmiljø",
+            "Den var en havn for atlanterhavsskip",
+            "Den leverte kull fra gruver"
+          ],
+          "answer": "Den ga et etablert industri- og kraftmiljø",
+          "answerIndex": 0,
+          "knowledge": "Lilleborg vokste fram i et eldre industrimiljø ved Akerselva, der vannfall og fabrikkarealer allerede var tatt i bruk.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_naering_byens_okonomiske_rom",
+          "source": [
+            "byleksikon",
+            "industrimuseum"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Lilleborg vokste fram i et eldre industrimiljø ved Akerselva, der vannfall og fabrikkarealer allerede var tatt i bruk.",
+          "claim_id": "claim_lilleborg_fabrikker_quiz_07",
+          "primary_knowledge_unit_id": "ku_naeringsliv_lilleborg_fabrikker_07",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_lilleborg_fabrikker_07"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        }
+      ]
+    },
+    {
+      "set_id": "naeringsliv_lilleborg_fabrikker_set_2",
+      "title": "Selskap, bygg og produksjonsstopp",
+      "level": 2,
+      "order": 2,
+      "phase": "middle",
+      "xp": 75,
+      "questions": [
+        {
+          "id": "lilleborg_fabrikker_quiz_08",
+          "quiz_id": "naeringsliv_lilleborg_fabrikker_set_2_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "lilleborg_fabrikker",
+          "targetId": "lilleborg_fabrikker",
+          "question_scope": "place",
+          "question": "Hva skiller 1897 fra de eldre årstallene?",
+          "options": [
+            "Da ble A/S Lilleborg Fabriker dannet",
+            "Da startet all industri på stedet",
+            "Da ble kontorbygningen revet"
+          ],
+          "answer": "Da ble A/S Lilleborg Fabriker dannet",
+          "answerIndex": 0,
+          "knowledge": "1812, 1833 og 1842 gjelder eldre virksomhetslag, mens 1897 gjelder aksjeselskapet.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_naering_eierskap_styring",
+          "source": [
+            "byleksikon",
+            "industrimuseum"
+          ],
+          "source_origin": "external",
+          "claim_basis": "1812, 1833 og 1842 gjelder eldre virksomhetslag, mens 1897 gjelder aksjeselskapet.",
+          "claim_id": "claim_lilleborg_fabrikker_quiz_08",
+          "primary_knowledge_unit_id": "ku_naeringsliv_lilleborg_fabrikker_08",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_lilleborg_fabrikker_08"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "lilleborg_fabrikker_quiz_09",
+          "quiz_id": "naeringsliv_lilleborg_fabrikker_set_2_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "lilleborg_fabrikker",
+          "targetId": "lilleborg_fabrikker",
+          "question_scope": "place",
+          "question": "Hvem innledet Lilleborg samarbeid med i 1925?",
+          "options": [
+            "De-No-Fa",
+            "Kværner",
+            "Norsk Hydro"
+          ],
+          "answer": "De-No-Fa",
+          "answerIndex": 0,
+          "knowledge": "Lilleborg inngikk samarbeid med De-No-Fa i 1925.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_naering_eierskap_styring",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Lilleborg inngikk samarbeid med De-No-Fa i 1925.",
+          "claim_id": "claim_lilleborg_fabrikker_quiz_09",
+          "primary_knowledge_unit_id": "ku_naeringsliv_lilleborg_fabrikker_09",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_lilleborg_fabrikker_09"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "lilleborg_fabrikker_quiz_10",
+          "quiz_id": "naeringsliv_lilleborg_fabrikker_set_2_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "lilleborg_fabrikker",
+          "targetId": "lilleborg_fabrikker",
+          "question_scope": "place",
+          "question": "Hva skjedde med eierskapet i 1930?",
+          "options": [
+            "Unilever ble deleier",
+            "Staten overtok hele selskapet",
+            "Arbeiderne kjøpte fabrikken"
+          ],
+          "answer": "Unilever ble deleier",
+          "answerIndex": 0,
+          "knowledge": "Unilever ble deleier i Lilleborg i 1930.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_naering_eierskap_styring",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Unilever ble deleier i Lilleborg i 1930.",
+          "claim_id": "claim_lilleborg_fabrikker_quiz_10",
+          "primary_knowledge_unit_id": "ku_naeringsliv_lilleborg_fabrikker_10",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_lilleborg_fabrikker_10"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "lilleborg_fabrikker_quiz_11",
+          "quiz_id": "naeringsliv_lilleborg_fabrikker_set_2_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "lilleborg_fabrikker",
+          "targetId": "lilleborg_fabrikker",
+          "question_scope": "place",
+          "question": "Hva fikk Lilleborg tilgang til gjennom Unilever?",
+          "options": [
+            "Varemerker og produksjonsmetoder",
+            "Gruver og jernmalm",
+            "Jernbanespor til Bergen"
+          ],
+          "answer": "Varemerker og produksjonsmetoder",
+          "answerIndex": 0,
+          "knowledge": "Unilever-koblingen ga tilgang til varemerker og produksjonsmetoder.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_naering_innovasjon_teknologisk_skift",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Unilever-koblingen ga tilgang til varemerker og produksjonsmetoder.",
+          "claim_id": "claim_lilleborg_fabrikker_quiz_11",
+          "primary_knowledge_unit_id": "ku_naeringsliv_lilleborg_fabrikker_11",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_lilleborg_fabrikker_11"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "lilleborg_fabrikker_quiz_12",
+          "quiz_id": "naeringsliv_lilleborg_fabrikker_set_2_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "lilleborg_fabrikker",
+          "targetId": "lilleborg_fabrikker",
+          "question_scope": "place",
+          "question": "Når ble den bevarte kontorbygningen oppført?",
+          "options": [
+            "1916",
+            "1897",
+            "1959"
+          ],
+          "answer": "1916",
+          "answerIndex": 0,
+          "knowledge": "Kontorbygningen tegnet av Magnus Poulsson ble oppført i 1916 og senere utvidet.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_naering_eiendom_kapital_byutvikling",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kontorbygningen tegnet av Magnus Poulsson ble oppført i 1916 og senere utvidet.",
+          "claim_id": "claim_lilleborg_fabrikker_quiz_12",
+          "primary_knowledge_unit_id": "ku_naeringsliv_lilleborg_fabrikker_12",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_lilleborg_fabrikker_12"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "lilleborg_fabrikker_quiz_13",
+          "quiz_id": "naeringsliv_lilleborg_fabrikker_set_2_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "lilleborg_fabrikker",
+          "targetId": "lilleborg_fabrikker",
+          "question_scope": "place",
+          "question": "Når sluttet produksjonen på Sandaker?",
+          "options": [
+            "1997",
+            "1988",
+            "2003"
+          ],
+          "answer": "1997",
+          "answerIndex": 0,
+          "knowledge": "Produksjonen på Sandaker ble avsluttet i 1997.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Produksjonen på Sandaker ble avsluttet i 1997.",
+          "claim_id": "claim_lilleborg_fabrikker_quiz_13",
+          "primary_knowledge_unit_id": "ku_naeringsliv_lilleborg_fabrikker_13",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_lilleborg_fabrikker_13"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "lilleborg_fabrikker_quiz_14",
+          "quiz_id": "naeringsliv_lilleborg_fabrikker_set_2_q7",
+          "categoryId": "naeringsliv",
+          "placeId": "lilleborg_fabrikker",
+          "targetId": "lilleborg_fabrikker",
+          "question_scope": "place",
+          "question": "Hvor ble produksjonen flyttet i 1997?",
+          "options": [
+            "Til Ski",
+            "Til Bergen",
+            "Til Kongsberg"
+          ],
+          "answer": "Til Ski",
+          "answerIndex": 0,
+          "knowledge": "Produksjonen ble flyttet fra Sandaker til Ski.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_naering_logistikk_verdikjeder",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Produksjonen ble flyttet fra Sandaker til Ski.",
+          "claim_id": "claim_lilleborg_fabrikker_quiz_14",
+          "primary_knowledge_unit_id": "ku_naeringsliv_lilleborg_fabrikker_14",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_lilleborg_fabrikker_14"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        }
+      ]
+    },
+    {
+      "set_id": "naeringsliv_lilleborg_fabrikker_set_3",
+      "title": "Krig, eierskap og omforming",
+      "level": 3,
+      "order": 3,
+      "phase": "bridge",
+      "xp": 100,
+      "questions": [
+        {
+          "id": "lilleborg_fabrikker_quiz_15",
+          "quiz_id": "naeringsliv_lilleborg_fabrikker_set_3_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "lilleborg_fabrikker",
+          "targetId": "lilleborg_fabrikker",
+          "question_scope": "place",
+          "question": "Hva skjedde med store deler av fabrikkarealet i 2000–03?",
+          "options": [
+            "Det ble omformet til boliger",
+            "Det ble en flyplass",
+            "Såpeproduksjonen startet på nytt"
+          ],
+          "answer": "Det ble omformet til boliger",
+          "answerIndex": 0,
+          "knowledge": "Store deler av det tidligere fabrikkarealet ble omformet til boliger i 2000–03.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_naering_eiendom_kapital_byutvikling",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Store deler av det tidligere fabrikkarealet ble omformet til boliger i 2000–03.",
+          "claim_id": "claim_lilleborg_fabrikker_quiz_15",
+          "primary_knowledge_unit_id": "ku_naeringsliv_lilleborg_fabrikker_15",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_lilleborg_fabrikker_15"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "lilleborg_fabrikker_quiz_16",
+          "quiz_id": "naeringsliv_lilleborg_fabrikker_set_3_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "lilleborg_fabrikker",
+          "targetId": "lilleborg_fabrikker",
+          "question_scope": "place",
+          "question": "Hvilken bygning er et tydelig bevart spor?",
+          "options": [
+            "Kontorbygningen fra 1916",
+            "En middelalderkirke",
+            "En turbinhall fra 1750"
+          ],
+          "answer": "Kontorbygningen fra 1916",
+          "answerIndex": 0,
+          "knowledge": "Kontorbygningen fra 1916, utvidet i 1930, er bevart som et fysisk spor etter fabrikken.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_naering_eiendom_kapital_byutvikling",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kontorbygningen fra 1916, utvidet i 1930, er bevart som et fysisk spor etter fabrikken.",
+          "claim_id": "claim_lilleborg_fabrikker_quiz_16",
+          "primary_knowledge_unit_id": "ku_naeringsliv_lilleborg_fabrikker_16",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_lilleborg_fabrikker_16"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "lilleborg_fabrikker_quiz_17",
+          "quiz_id": "naeringsliv_lilleborg_fabrikker_set_3_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "lilleborg_fabrikker",
+          "targetId": "lilleborg_fabrikker",
+          "question_scope": "place",
+          "question": "Hva produserte Lilleborg for okkupasjonsmakten under krigen?",
+          "options": [
+            "Fett",
+            "Lokomotiver",
+            "Radioapparater"
+          ],
+          "answer": "Fett",
+          "answerIndex": 0,
+          "knowledge": "Oslo byleksikon beskriver at Lilleborg produserte fett til okkupasjonsmakten.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_naering_produksjon_produktivitet",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Oslo byleksikon beskriver at Lilleborg produserte fett til okkupasjonsmakten.",
+          "claim_id": "claim_lilleborg_fabrikker_quiz_17",
+          "primary_knowledge_unit_id": "ku_naeringsliv_lilleborg_fabrikker_17",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_lilleborg_fabrikker_17"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "lilleborg_fabrikker_quiz_18",
+          "quiz_id": "naeringsliv_lilleborg_fabrikker_set_3_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "lilleborg_fabrikker",
+          "targetId": "lilleborg_fabrikker",
+          "question_scope": "place",
+          "question": "Hvilke sivile varer ble også produsert under krigen?",
+          "options": [
+            "Såpe og vaskemidler",
+            "Flymotorer",
+            "Jernbaneskinner"
+          ],
+          "answer": "Såpe og vaskemidler",
+          "answerIndex": 0,
+          "knowledge": "Fabrikken produserte samtidig såpe og vaskemidler som sivilbefolkningen trengte.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_naering_forbruk_marked",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Fabrikken produserte samtidig såpe og vaskemidler som sivilbefolkningen trengte.",
+          "claim_id": "claim_lilleborg_fabrikker_quiz_18",
+          "primary_knowledge_unit_id": "ku_naeringsliv_lilleborg_fabrikker_18",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_lilleborg_fabrikker_18"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "lilleborg_fabrikker_quiz_19",
+          "quiz_id": "naeringsliv_lilleborg_fabrikker_set_3_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "lilleborg_fabrikker",
+          "targetId": "lilleborg_fabrikker",
+          "question_scope": "place",
+          "question": "Hvorfor motsatte motstandsbevegelsen seg sabotasje?",
+          "options": [
+            "Et angrep ville også ramme sivile forsyninger",
+            "Fabrikken var allerede nedlagt",
+            "Bygningen var et museum"
+          ],
+          "answer": "Et angrep ville også ramme sivile forsyninger",
+          "answerIndex": 0,
+          "knowledge": "Motstandsbevegelsen vurderte at sabotasje også ville ramme befolkningens tilgang til nødvendige varer.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_naering_makt_ulikhet_arbeidsliv",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Motstandsbevegelsen vurderte at sabotasje også ville ramme befolkningens tilgang til nødvendige varer.",
+          "claim_id": "claim_lilleborg_fabrikker_quiz_19",
+          "primary_knowledge_unit_id": "ku_naeringsliv_lilleborg_fabrikker_19",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_lilleborg_fabrikker_19"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "lilleborg_fabrikker_quiz_20",
+          "quiz_id": "naeringsliv_lilleborg_fabrikker_set_3_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "lilleborg_fabrikker",
+          "targetId": "lilleborg_fabrikker",
+          "question_scope": "place",
+          "question": "Hvilket navn ble tatt i bruk i 1959?",
+          "options": [
+            "DeNoFa-Lilleborg",
+            "Lilleborg-Kværner",
+            "Akerselva Såpeverk"
+          ],
+          "answer": "DeNoFa-Lilleborg",
+          "answerIndex": 0,
+          "knowledge": "Virksomheten ble samlet under navnet DeNoFa-Lilleborg i 1959.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_naering_eierskap_styring",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Virksomheten ble samlet under navnet DeNoFa-Lilleborg i 1959.",
+          "claim_id": "claim_lilleborg_fabrikker_quiz_20",
+          "primary_knowledge_unit_id": "ku_naeringsliv_lilleborg_fabrikker_20",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_lilleborg_fabrikker_20"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        },
+        {
+          "id": "lilleborg_fabrikker_quiz_21",
+          "quiz_id": "naeringsliv_lilleborg_fabrikker_set_3_q7",
+          "categoryId": "naeringsliv",
+          "placeId": "lilleborg_fabrikker",
+          "targetId": "lilleborg_fabrikker",
+          "question_scope": "place",
+          "question": "Hvor ble Lilleborg organisert i 1996?",
+          "options": [
+            "Under Orkla Brands",
+            "Under Norges Bank",
+            "Under Oslo kommune"
+          ],
+          "answer": "Under Orkla Brands",
+          "answerIndex": 0,
+          "knowledge": "Lilleborg ble skilt ut som egen virksomhet under Orkla Brands i 1996.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_naering_eierskap_styring",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Lilleborg ble skilt ut som egen virksomhet under Orkla Brands i 1996.",
+          "claim_id": "claim_lilleborg_fabrikker_quiz_21",
+          "primary_knowledge_unit_id": "ku_naeringsliv_lilleborg_fabrikker_21",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_lilleborg_fabrikker_21"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": []
+        }
+      ]
+    },
+    {
+      "set_id": "naeringsliv_lilleborg_fabrikker_set_4",
+      "title": "Verdikjede, makt og sted",
+      "level": 4,
+      "order": 4,
+      "phase": "final",
+      "xp": 125,
+      "questions": [
+        {
+          "id": "lilleborg_fabrikker_quiz_22",
+          "quiz_id": "naeringsliv_lilleborg_fabrikker_set_4_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "lilleborg_fabrikker",
+          "targetId": "lilleborg_fabrikker",
+          "question_scope": "place",
+          "question": "Hvem kjøpte Lilleborgs profesjonelle rengjøringsvirksomhet i 2024?",
+          "options": [
+            "Solenis",
+            "Unilever",
+            "Kværner"
+          ],
+          "answer": "Solenis",
+          "answerIndex": 0,
+          "knowledge": "Solenis kjøpte den videreførte profesjonelle rengjøringsvirksomheten Lilleborg fra Orkla i 2024.",
+          "difficulty": 4,
+          "question_type": "analysis",
+          "emne_id": "em_naering_eierskap_styring",
+          "method_id": "met_naering_eierskaps_og_styringsanalyse",
+          "source": [
+            "orkla",
+            "solenis"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Solenis kjøpte den videreførte profesjonelle rengjøringsvirksomheten Lilleborg fra Orkla i 2024.",
+          "claim_id": "claim_lilleborg_fabrikker_quiz_22",
+          "primary_knowledge_unit_id": "ku_naeringsliv_lilleborg_fabrikker_22",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_lilleborg_fabrikker_22"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": [],
+          "guidance_basis": [
+            "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "lilleborg_fabrikker_quiz_23",
+          "quiz_id": "naeringsliv_lilleborg_fabrikker_set_4_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "lilleborg_fabrikker",
+          "targetId": "lilleborg_fabrikker",
+          "question_scope": "place",
+          "question": "Hvilken verdikjede passer best for Lilleborg?",
+          "options": [
+            "Oljer og fett, kjemisk prosess, emballasje, merkevare og distribusjon",
+            "Jernmalm, masovn og skipsverft",
+            "Tømmer, sagblad og papiravis"
+          ],
+          "answer": "Oljer og fett, kjemisk prosess, emballasje, merkevare og distribusjon",
+          "answerIndex": 0,
+          "knowledge": "Lilleborg bandt råvarer, kjemisk produksjon, emballasje, reklame og varemarked sammen.",
+          "difficulty": 4,
+          "question_type": "analysis",
+          "emne_id": "em_naering_logistikk_verdikjeder",
+          "method_id": "met_naering_logistikk_og_verdikjedeanalyse",
+          "source": [
+            "byleksikon",
+            "industrimuseum"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Lilleborg bandt råvarer, kjemisk produksjon, emballasje, reklame og varemarked sammen.",
+          "claim_id": "claim_lilleborg_fabrikker_quiz_23",
+          "primary_knowledge_unit_id": "ku_naeringsliv_lilleborg_fabrikker_23",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_lilleborg_fabrikker_23"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": [],
+          "guidance_basis": [
+            "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "lilleborg_fabrikker_quiz_24",
+          "quiz_id": "naeringsliv_lilleborg_fabrikker_set_4_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "lilleborg_fabrikker",
+          "targetId": "lilleborg_fabrikker",
+          "question_scope": "place",
+          "question": "Hva representerer kartpunktet i Sandakerveien 54?",
+          "options": [
+            "Fabrikkporten som inngangsanker",
+            "Geometrisk sentrum for alle historiske bygg",
+            "Dagens Solenis-fabrikk"
+          ],
+          "answer": "Fabrikkporten som inngangsanker",
+          "answerIndex": 0,
+          "knowledge": "Kartpunktet viser den dokumenterte fabrikkporten og må ikke leses som sentrum for hele det tidligere komplekset.",
+          "difficulty": 4,
+          "question_type": "analysis",
+          "emne_id": "em_naering_byens_okonomiske_rom",
+          "method_id": "met_naering_industrihistorisk_analyse",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kartpunktet viser den dokumenterte fabrikkporten og må ikke leses som sentrum for hele det tidligere komplekset.",
+          "claim_id": "claim_lilleborg_fabrikker_quiz_24",
+          "primary_knowledge_unit_id": "ku_naeringsliv_lilleborg_fabrikker_24",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_lilleborg_fabrikker_24"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": [],
+          "guidance_basis": [
+            "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "lilleborg_fabrikker_quiz_25",
+          "quiz_id": "naeringsliv_lilleborg_fabrikker_set_4_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "lilleborg_fabrikker",
+          "targetId": "lilleborg_fabrikker",
+          "question_scope": "place",
+          "question": "Hva endret Unilevers deleierskap først og fremst?",
+          "options": [
+            "Eierskap, varemerketilgang og produksjonskunnskap",
+            "Akerselvas løp",
+            "Året oljemøllen startet"
+          ],
+          "answer": "Eierskap, varemerketilgang og produksjonskunnskap",
+          "answerIndex": 0,
+          "knowledge": "Deleierskapet endret styringen og ga tilgang til varemerker og produksjonsmetoder.",
+          "difficulty": 4,
+          "question_type": "analysis",
+          "emne_id": "em_naering_eierskap_styring",
+          "method_id": "met_naering_eierskaps_og_styringsanalyse",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Deleierskapet endret styringen og ga tilgang til varemerker og produksjonsmetoder.",
+          "claim_id": "claim_lilleborg_fabrikker_quiz_25",
+          "primary_knowledge_unit_id": "ku_naeringsliv_lilleborg_fabrikker_25",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_lilleborg_fabrikker_25"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": [],
+          "guidance_basis": [
+            "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json"
+          ],
+          "topic_hook_id": "eierskap_og_styring",
+          "thinker_id": "thomas_piketty",
+          "theory_ref": {
+            "topic_hook_id": "eierskap_og_styring",
+            "thinker_id": "thomas_piketty",
+            "why_it_helps": "Et eierskaps- og maktperspektiv undersøker hvordan kontroll over varemerker, produksjonskunnskap og investeringer flyttet seg mellom familie, samarbeidspartnere og konsern."
+          }
+        },
+        {
+          "id": "lilleborg_fabrikker_quiz_26",
+          "quiz_id": "naeringsliv_lilleborg_fabrikker_set_4_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "lilleborg_fabrikker",
+          "targetId": "lilleborg_fabrikker",
+          "question_scope": "place",
+          "question": "Hvilken konflikt viser krigstidshistorien?",
+          "options": [
+            "Militær nytte mot sivile forsyningsbehov",
+            "Jordbruk mot gruvedrift",
+            "Turisme mot flytrafikk"
+          ],
+          "answer": "Militær nytte mot sivile forsyningsbehov",
+          "answerIndex": 0,
+          "knowledge": "Samme fabrikk leverte til okkupasjonsmakten og sivile, slik at sabotasje kunne få motstridende virkninger.",
+          "difficulty": 4,
+          "question_type": "analysis",
+          "emne_id": "em_naering_makt_ulikhet_arbeidsliv",
+          "method_id": "met_naering_industrihistorisk_analyse",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Samme fabrikk leverte til okkupasjonsmakten og sivile, slik at sabotasje kunne få motstridende virkninger.",
+          "claim_id": "claim_lilleborg_fabrikker_quiz_26",
+          "primary_knowledge_unit_id": "ku_naeringsliv_lilleborg_fabrikker_26",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_lilleborg_fabrikker_26"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": [],
+          "guidance_basis": [
+            "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "lilleborg_fabrikker_quiz_27",
+          "quiz_id": "naeringsliv_lilleborg_fabrikker_set_4_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "lilleborg_fabrikker",
+          "targetId": "lilleborg_fabrikker",
+          "question_scope": "place",
+          "question": "Hvorfor må 2024-oppkjøpet skilles fra Sandaker-stedet?",
+          "options": [
+            "Det gjelder en videreført virksomhet etter at produksjonen på Sandaker var slutt",
+            "Det startet oljemøllen i 1833",
+            "Det gjenreiste alle fabrikkbyggene"
+          ],
+          "answer": "Det gjelder en videreført virksomhet etter at produksjonen på Sandaker var slutt",
+          "answerIndex": 0,
+          "knowledge": "Solenis kjøpte selskapsvirksomheten i 2024, mens produksjonen på Sandaker hadde vært avsluttet siden 1997.",
+          "difficulty": 4,
+          "question_type": "analysis",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_omstilling_og_endringsanalyse",
+          "source": [
+            "byleksikon",
+            "orkla",
+            "solenis"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Solenis kjøpte selskapsvirksomheten i 2024, mens produksjonen på Sandaker hadde vært avsluttet siden 1997.",
+          "claim_id": "claim_lilleborg_fabrikker_quiz_27",
+          "primary_knowledge_unit_id": "ku_naeringsliv_lilleborg_fabrikker_27",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_lilleborg_fabrikker_27"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": [],
+          "guidance_basis": [
+            "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "lilleborg_fabrikker_quiz_28",
+          "quiz_id": "naeringsliv_lilleborg_fabrikker_set_4_q7",
+          "categoryId": "naeringsliv",
+          "placeId": "lilleborg_fabrikker",
+          "targetId": "lilleborg_fabrikker",
+          "question_scope": "place",
+          "question": "Hvilken samlet analyse passer best for Lilleborg Fabrikker?",
+          "options": [
+            "Tidslag, produksjon, merkevarer, eierskap, arbeid og ombruk må leses sammen",
+            "Bare dagens kontorbygning er relevant",
+            "1897 forklarer all eldre virksomhet"
+          ],
+          "answer": "Tidslag, produksjon, merkevarer, eierskap, arbeid og ombruk må leses sammen",
+          "answerIndex": 0,
+          "knowledge": "Stedet binder eldre industri, aksjeselskap, forbruksvarekjede, maktforhold og boligomforming sammen.",
+          "difficulty": 4,
+          "question_type": "analysis",
+          "emne_id": "em_naering_industri_og_mekanisering",
+          "method_id": "met_naering_industrihistorisk_analyse",
+          "source": [
+            "byleksikon",
+            "snl_kildal",
+            "industrimuseum",
+            "solenis"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Stedet binder eldre industri, aksjeselskap, forbruksvarekjede, maktforhold og boligomforming sammen.",
+          "claim_id": "claim_lilleborg_fabrikker_quiz_28",
+          "primary_knowledge_unit_id": "ku_naeringsliv_lilleborg_fabrikker_28",
+          "knowledge_unit_ids": [
+            "ku_naeringsliv_lilleborg_fabrikker_28"
+          ],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "concept_ids": [],
+          "term_ids": [],
+          "guidance_basis": [
+            "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json"
+          ]
+        }
+      ]
+    }
+  ]
+}

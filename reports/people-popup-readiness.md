@@ -6,38 +6,38 @@ Rapporten måler om runtime kan presentere tilgjengelige canonical People-felt. 
 
 People-produksjon, claims og ferdigstatus eies av `docs/PEOPLE_PROFILE_CANONICAL.md`. Profiler uten v1-claims er `legacy_unreviewed`, selv når presentasjonsstatusen er `complete`.
 
-Source fingerprint: `65f7f424961c810fa6c4bccfb0308832db5c1d51d91ce86f9baefce2815d7f41`
+Source fingerprint: `9b0f91585b8f663b0424a963dfd4938c8ca4473b4eef4808ec406a4eb003901b`
 
 ## Sammendrag
 
 | Måling | Antall |
 |---|---:|
 | Personer | 1418 |
-| Presentasjon complete | 60 |
+| Presentasjon complete | 61 |
 | Presentasjon strong | 406 |
 | Presentasjon partial | 936 |
-| Presentasjon sparse | 16 |
-| People Profile v1 ready | 66 |
-| Legacy uten v1-claims | 1352 |
+| Presentasjon sparse | 15 |
+| People Profile v1 ready | 67 |
+| Legacy uten v1-claims | 1351 |
 | Ødelagte bildereferanser | 287 |
 | Eksplisitt initialfallback | 1003 |
-| Implisitt initialfallback | 27 |
+| Implisitt initialfallback | 26 |
 | Gjennomsnittspoeng | 65.3 |
 
 ## Feltdekning
 
 | Presentasjonsdel | Dekket | Andel |
 |---|---:|---:|
-| identity | 117 | 8.3 % |
-| popupDesc | 1396 | 98.4 % |
-| lifeData | 57 | 4 % |
-| contributionsDeclared | 57 | 4 % |
-| educationDeclared | 57 | 4 % |
-| practiceDeclared | 1399 | 98.7 % |
+| identity | 118 | 8.3 % |
+| popupDesc | 1397 | 98.5 % |
+| lifeData | 58 | 4.1 % |
+| contributionsDeclared | 58 | 4.1 % |
+| educationDeclared | 58 | 4.1 % |
+| practiceDeclared | 1400 | 98.7 % |
 | placeGrounding | 1418 | 100 % |
-| sources | 455 | 32.1 % |
+| sources | 456 | 32.2 % |
 | imageContract | 1131 | 79.8 % |
-| profileStandard | 66 | 4.7 % |
+| profileStandard | 67 | 4.7 % |
 
 ## Kategorier
 
@@ -49,7 +49,7 @@ Source fingerprint: `65f7f424961c810fa6c4bccfb0308832db5c1d51d91ce86f9baefce2815
 | musikk | 124 | 0 | 15 | 109 | 0 | 0 | 124 | 62.2 |
 | politikk | 114 | 4 | 51 | 59 | 0 | 15 | 99 | 67.9 |
 | kunst | 84 | 7 | 64 | 13 | 0 | 9 | 75 | 73.1 |
-| naeringsliv | 81 | 3 | 31 | 32 | 15 | 6 | 75 | 61.7 |
+| naeringsliv | 81 | 4 | 31 | 32 | 14 | 7 | 74 | 62.5 |
 | by | 80 | 8 | 56 | 16 | 0 | 19 | 61 | 73.8 |
 | scenekunst | 48 | 1 | 16 | 31 | 0 | 1 | 47 | 64.6 |
 | subkultur | 41 | 0 | 5 | 36 | 0 | 0 | 41 | 61.9 |
@@ -120,7 +120,6 @@ Source fingerprint: `65f7f424961c810fa6c4bccfb0308832db5c1d51d91ce86f9baefce2815
 | Prioritet | Person | Kategori | Primærsted | Score | Presentasjon | Produksjon | Mangler | Fil |
 |---:|---|---|---|---:|---|---|---|---|
 | 130 | Edvard Moser | vitenskap | nobelinstituttet | 37 | sparse | legacy_unreviewed | missing_role_label, missing_popup_desc, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/vitenskap/oslo/people_vitenskap_oslo.json` |
-| 115 | Alf Bjercke | naeringsliv | lilleborg_fabrikker | 32 | sparse | legacy_unreviewed | missing_role_label, missing_popup_desc, missing_birth_data, missing_contributions_field, missing_sources, implicit_image_fallback, legacy_unreviewed | `data/people/naeringsliv/oslo/people_naeringsliv_oslo.json` |
 | 115 | Anders Jahre | naeringsliv | akershus_kaier | 32 | sparse | legacy_unreviewed | missing_role_label, missing_popup_desc, missing_birth_data, missing_contributions_field, missing_sources, implicit_image_fallback, legacy_unreviewed | `data/people/naeringsliv/oslo/people_naeringsliv_oslo.json` |
 | 115 | Anton Martin Schweigaard | naeringsliv | grunnlovsbygget_bankplassen | 32 | sparse | legacy_unreviewed | missing_role_label, missing_popup_desc, missing_birth_data, missing_contributions_field, missing_sources, implicit_image_fallback, legacy_unreviewed | `data/people/naeringsliv/oslo/people_naeringsliv_oslo.json` |
 | 115 | Christian Schweigaard | naeringsliv | oslo_posthus | 32 | sparse | legacy_unreviewed | missing_role_label, missing_popup_desc, missing_birth_data, missing_contributions_field, missing_sources, implicit_image_fallback, legacy_unreviewed | `data/people/naeringsliv/oslo/people_naeringsliv_oslo.json` |
@@ -269,6 +268,7 @@ Source fingerprint: `65f7f424961c810fa6c4bccfb0308832db5c1d51d91ce86f9baefce2815
 | 92 | Jon Elster | vitenskap | universitetets_gamle_hovedbygning | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/vitenskap/oslo/people_vitenskap_oslo.json` |
 | 92 | Jon Raude | historie | nidarosdomen | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json` |
 | 92 | Jonas Collett | litteratur | camilla_collett_statue | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/litteratur/oslo/people_litteratur_oslo.json` |
+| 92 | José Alberto Carvalho | media | lisbon_rtp | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/media/europe/portugal/lisbon/people_media_lisbon.json` |
 
 ## Tolkning
 
