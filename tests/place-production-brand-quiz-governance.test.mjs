@@ -13,6 +13,7 @@ const rounds = read('data/places/README_place_rounds.md');
 const standard = read('docs/PLACE_STANDARD.md');
 const dataContract = read('docs/DATA_PRODUCTION_CONTRACT.md');
 const checklist = read('docs/PLACE_PRODUCTION_CHECKLIST.md');
+const profiles = read('docs/PLACE_PRODUCTION_PROFILES.md');
 const quiz = read('data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md');
 const packageSchema = readJson('data/quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json');
 const productionLibrary = read('scripts/quiz-production-lib.mjs');
@@ -36,29 +37,31 @@ test('Brand-definisjonen omfatter profesjonelle og arkitektoniske identiteter ut
   assert.ok(brandRules.inclusion_rules.include.some(value => /Professional brands.*architecture firms/i.test(value)));
   assert.ok(brands.some(brand => brand.brand_type === 'architecture_brand'));
   assert.ok(brands.some(brand => brand.brand_type === 'professional_brand'));
-  assert.match(rounds, /aktørtypen er heller ikke et avslag i seg selv/);
-  assert.match(checklist, /aktørtype alene brukes verken som godkjenning eller avslag/);
+  assert.match(brandRules.place_production_gate.project_actor_rule, /not automatically filler.*not automatically a Brand/i);
   assert.match(dataContract, /ikke brukes som generell restkategori/);
+  assert.match(checklist, /aldri Brand bare fordi PlaceCard/i);
 });
 
 test('Brands-N/A krever kandidatsøk og kan ikke utledes av null registertreff', () => {
   assert.match(brandRules.place_production_gate.na_rule, /Zero hits.*not evidence of N\/A/i);
-  assert.match(rounds, /null treff.*ikke.*alene grunnlag for N\/A/is);
-  assert.match(checklist, /null treff.*behandles som «må researches», ikke som N\/A/is);
-  assert.match(checklist, /kandidatspesifikke avvisningsgrunner/);
+  assert.match(checklist, /Null treff.*må researches.*ikke automatisk N\/A/is);
+  assert.match(checklist, /faktisk kandidatsøk/i);
+  assert.match(profiles, /Badge\/underbadge.*kan ikke brukes til å dikte/i);
 });
 
-test('Quizkontrakten krever eksisterende-quiz-audit og eksplisitt settantall', () => {
+test('Quizkontrakten krever eksisterende-quiz-audit og evidensstyrt eksakt settantall', () => {
   assert.match(quiz, /\*\*Versjon:\*\* 3\.3/);
   assert.match(quiz, /Eksisterende quiz skal auditeres før profilvalg/);
   assert.match(quiz, /`narrow` \| 3/);
   assert.match(quiz, /`normal` \| 4/);
   assert.match(quiz, /`rich` \| 5–8/);
   assert.match(quiz, /`major` \| 8–10/);
-  assert.match(quiz, /`major`-sted skal ha \*\*10 × 7\*\*/);
+  assert.match(quiz, /`major`-sted skal ha \*\*10 × 7\*\* når kildene bærer ti reelt forskjellige settplaner/);
   assert.match(quiz, /`profile_hint`.*kan forhåndslåse/s);
-  assert.match(checklist, /alle aktive, arkiverte og alternative quizfiler/);
-  assert.match(checklist, /`major`-sted bruker 10 sett/);
+  assert.match(checklist, /aktive, arkiverte og alternative quizfiler/);
+  assert.match(checklist, /Stedsprofil `major` kan ikke alene tvinge 10 sett/);
+  assert.match(profiles, /Badge, underbadges.*quizFocus.*planlegge/s);
+  assert.match(profiles, /påstandsbank.*bestemmer quizprofil/i);
   for (const field of ['existing_quiz_audit', 'profile_decision', 'held_back_candidates']) {
     assert.ok(packageSchema.production_context.required_fields.includes(field));
     assert.ok(packageSchema.source_brief_contract.required_fields.includes(field));
