@@ -221,6 +221,9 @@ export function auditWorkflowRouting() {
 
   let activePullRequestWorkflows = 0;
   for (const { file, source } of workflows) {
+    if (file.startsWith('split-') || file === 'audit-unsplit-place-manifest-files.yml') {
+      failures.push(`${file}: completed one-shot split workflows must not remain in the permanent workflow inventory`);
+    }
     const pullRequest = eventBlock(source, 'pull_request');
     if (!pullRequest) continue;
     const paths = new Set(declaredPaths(pullRequest));
@@ -326,6 +329,18 @@ export function auditWorkflowRouting() {
   }
   if (!/^permissions:\s*\n\s{2}contents:\s*write\s*$/m.test(coordinateSource)) {
     failures.push('coordinate-branch-runner.yml: dedicated branch writer needs explicit contents-write permission');
+  }
+
+  const branchCleanupSource = workflows.find(({ file }) => file === 'cleanup-merged-agent-branch.yml')?.source ?? '';
+  for (const prefix of ['agent/', 'automation/', 'codex/', 'data/audit-unsplit-', 'data/split-']) {
+    if (!branchCleanupSource.includes(`'${prefix}'`)) {
+      failures.push(`cleanup-merged-agent-branch.yml: disposable prefix is not governed: ${prefix}`);
+    }
+  }
+  for (const safetyContract of ['pull.merged_at', 'pull.head?.repo?.full_name', 'existing.has(ref)', 'safetyCutoff']) {
+    if (!branchCleanupSource.includes(safetyContract)) {
+      failures.push(`cleanup-merged-agent-branch.yml: branch backfill safety contract is missing: ${safetyContract}`);
+    }
   }
 
   const routingSource = workflows.find(({ file }) => file === 'ci-workflow-routing.yml').source;
