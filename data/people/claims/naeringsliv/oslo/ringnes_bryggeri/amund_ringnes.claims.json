@@ -1,0 +1,114 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "amund_ringnes",
+  "profile_file": "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json",
+  "identity": {
+    "canonical_identity": "Amund Ringnes, bryggerieier og medgrunnlegger av Ringnes & Co. i 1876.",
+    "name_variants": [
+      "Amund Ringnes"
+    ],
+    "not": [
+      "broren Ellef Ringnes"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "identity_birth",
+      "claim": "Amund Ringnes var bryggerieier, født i 1840.",
+      "status": "verified",
+      "source_url": "https://nbl.snl.no/Amund_Ringnes",
+      "source_location": "Faktaboks og ingress",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-27",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "founding",
+      "claim": "Amund Ringnes grunnla Ringnes & Co. i 1876 sammen med Ellef Ringnes og Axel Heiberg.",
+      "status": "verified",
+      "source_url": "https://nbl.snl.no/Amund_Ringnes",
+      "source_location": "Biografi og virksomhet",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-27",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "role",
+      "claim": "Amund Ringnes ledet brygging, malting og teknisk drift.",
+      "status": "verified",
+      "source_url": "https://nbl.snl.no/Amund_Ringnes",
+      "source_location": "Ringnes Bryggeri og rollefordeling",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-27",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "identity_birth"
+    ],
+    "year": [
+      "identity_birth"
+    ],
+    "placeId": [
+      "founding",
+      "role"
+    ],
+    "places[ringnes_bryggeri]": [
+      "founding",
+      "role"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity_birth",
+          "founding",
+          "role"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity_birth"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "founding"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "founding"
+        ]
+      },
+      {
+        "sentence": 4,
+        "claim_ids": [
+          "role"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "3/3",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-08-27",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}

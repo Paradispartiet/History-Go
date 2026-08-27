@@ -6903,7 +6903,7 @@
                       "verifiedAt": ""
                     }
                   ],
-                  "source_file": "data/runtime/stories-all/part-005.json",
+                  "source_file": "data/runtime/stories-all/part-004.json",
                   "evidence_type": "canonical_story",
                   "claim_id": "",
                   "story_id": "st_voienvolden_lokken_som_byen_vokste_rundt",
@@ -8154,7 +8154,7 @@
                       "verifiedAt": ""
                     }
                   ],
-                  "source_file": "data/runtime/stories-all/part-003.json",
+                  "source_file": "data/runtime/stories-all/part-002.json",
                   "evidence_type": "canonical_story",
                   "claim_id": "",
                   "story_id": "st_bla_skilt_enerhaugen_samfund_fra_bedehus_til_sanert_by",
@@ -8228,7 +8228,7 @@
                       "verifiedAt": ""
                     }
                   ],
-                  "source_file": "data/runtime/stories-all/part-003.json",
+                  "source_file": "data/runtime/stories-all/part-002.json",
                   "evidence_type": "canonical_story",
                   "claim_id": "",
                   "story_id": "st_bla_skilt_helverschous_fra_lokke_til_minneskilt",
@@ -12651,36 +12651,214 @@
                 {
                   "id": "arbeid_og_okonomi",
                   "label": "Arbeid og økonomi"
+                },
+                {
+                  "id": "by_og_infrastruktur",
+                  "label": "By og infrastruktur"
+                },
+                {
+                  "id": "kultur_og_offentlighet",
+                  "label": "Kultur og offentlighet"
+                },
+                {
+                  "id": "stedshistorisk_spor",
+                  "label": "Stedshistorisk spor"
                 }
               ],
               "milestones": [
                 {
-                  "id": "story_st_ringnes_bryggeri_industriell_olproduksjon_1877",
-                  "year": 1877,
-                  "title": "Bryggeriet som fylte kvartalet",
-                  "consequence": "Ringnes & Co. ble grunnlagt i 1876, brygget sitt første øl i eget hus i 1877 og vokste til et stort bryggerianlegg på Grünerløkka.",
+                  "id": "production_claim_ringnes_bryggeri_identity",
+                  "year": 1876,
+                  "title": "Ringnes & Co. ble grunnlagt i Thorvald Meyers gate 2 i 1876 av Amund Ringnes, Ellef Ringnes og Axel Heiberg.",
+                  "consequence": "",
                   "confidence": "",
                   "sources": [
                     {
-                      "title": "Ringnes AS: Historie",
-                      "url": "https://www.ringnes.no/om-ringnes/historie/",
-                      "verifiedAt": ""
-                    },
+                      "title": "Ingress og historikk",
+                      "url": "https://oslobyleksikon.no/side/Ringnes_Bryggeri",
+                      "verifiedAt": "2026-08-27"
+                    }
+                  ],
+                  "source_file": "data/places/production/ringnes_bryggeri.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_ringnes_bryggeri_identity",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_ringnes_1876_1",
+                  "year": 1876,
+                  "title": "Ringnes & Co. grunnlegges",
+                  "consequence": "Amund og Ellef Ringnes og Axel Heiberg etablerer selskapet.",
+                  "confidence": "high",
+                  "sources": [
                     {
-                      "title": "Lokalhistoriewiki: Ringnes Bryggeri",
-                      "url": "https://lokalhistoriewiki.no/wiki/Ringnes_Bryggeri",
-                      "verifiedAt": ""
-                    },
-                    {
-                      "title": "Store norske leksikon: Ellef Ringnes",
-                      "url": "https://snl.no/Ellef_Ringnes",
+                      "title": "Oslo byleksikon",
+                      "url": "https://oslobyleksikon.no/side/Ringnes_Bryggeri",
                       "verifiedAt": ""
                     }
                   ],
-                  "source_file": "data/runtime/stories-all/part-001.json",
+                  "source_file": "data/leksikon/places/oslo/naeringsliv/leksikon_ringnes_bryggeri.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_ringnes_1877_2",
+                  "year": 1877,
+                  "title": "Produksjonen starter",
+                  "consequence": "Bryggingen kommer i gang i Thorvald Meyers gate.",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Oslo byleksikon",
+                      "url": "https://oslobyleksikon.no/side/Ringnes_Bryggeri",
+                      "verifiedAt": ""
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/naeringsliv/leksikon_ringnes_bryggeri.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_ringnes_bryggeri_production_start",
+                  "year": 1877,
+                  "title": "Produksjonen startet i 1877.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Historikk",
+                      "url": "https://oslobyleksikon.no/side/Ringnes_Bryggeri",
+                      "verifiedAt": "2026-08-27"
+                    }
+                  ],
+                  "source_file": "data/places/production/ringnes_bryggeri.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_ringnes_bryggeri_production_start",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "story_st_ringnes_bryggeri_renkultur_1887",
+                  "year": 1887,
+                  "title": "Gjæren som måtte bli lik hver gang",
+                  "consequence": "Da Olav Johan Sopp ledet Ringnes-laboratoriet 1887–1890, ble dyrking av egne gjærstammer et norsk bryggerigjennombrudd.",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Store norske leksikon – Ringnes AS",
+                      "url": "https://snl.no/Ringnes_AS",
+                      "verifiedAt": ""
+                    },
+                    {
+                      "title": "Store norske leksikon – Olav Johan Sopp",
+                      "url": "https://snl.no/Olav_Johan_Sopp",
+                      "verifiedAt": ""
+                    }
+                  ],
+                  "source_file": "data/runtime/stories-all/part-003.json",
                   "evidence_type": "canonical_story",
                   "claim_id": "",
-                  "story_id": "st_ringnes_bryggeri_industriell_olproduksjon_1877",
+                  "story_id": "st_ringnes_bryggeri_renkultur_1887",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_ringnes_1887_3",
+                  "year": 1887,
+                  "title": "Laboratoriet får ny leder",
+                  "consequence": "Olav Johan Sopp begynner arbeidet med renkultivert gjær.",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Oslo byleksikon",
+                      "url": "https://oslobyleksikon.no/side/Ringnes_Bryggeri",
+                      "verifiedAt": ""
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/naeringsliv/leksikon_ringnes_bryggeri.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_ringnes_bryggeri_yeast",
+                  "year": 1887,
+                  "title": "Ringnes var det første norske bryggeriet som dyrket egne gjærstammer; Olav Johan Sopp ledet laboratoriet 1887–1890 og innførte renkultur.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Produksjon og laboratorium",
+                      "url": "https://snl.no/Ringnes_AS",
+                      "verifiedAt": "2026-08-27"
+                    }
+                  ],
+                  "source_file": "data/places/production/ringnes_bryggeri.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_ringnes_bryggeri_yeast",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_ringnes_1890_4",
+                  "year": 1890,
+                  "title": "Renkultur er innført",
+                  "consequence": "Gjærarbeidet er tatt inn i den industrielle produksjonen.",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Oslo byleksikon",
+                      "url": "https://oslobyleksikon.no/side/Ringnes_Bryggeri",
+                      "verifiedAt": ""
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/naeringsliv/leksikon_ringnes_bryggeri.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_ringnes_1899_5",
+                  "year": 1899,
+                  "title": "Aksjeselskap",
+                  "consequence": "Virksomheten blir A/S Ringnes Bryggeri.",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Oslo byleksikon",
+                      "url": "https://oslobyleksikon.no/side/Ringnes_Bryggeri",
+                      "verifiedAt": ""
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/naeringsliv/leksikon_ringnes_bryggeri.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_ringnes_bryggeri_company",
+                  "year": 1899,
+                  "title": "Virksomheten ble A/S Ringnes Bryggeri i 1899.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Selskapsform",
+                      "url": "https://oslobyleksikon.no/side/Ringnes_Bryggeri",
+                      "verifiedAt": "2026-08-27"
+                    }
+                  ],
+                  "source_file": "data/places/production/ringnes_bryggeri.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_ringnes_bryggeri_company",
+                  "story_id": "",
                   "limitations": []
                 }
               ],
@@ -12690,10 +12868,10 @@
                 "works": [],
                 "stories": [
                   {
-                    "id": "st_ringnes_bryggeri_industriell_olproduksjon_1877",
-                    "title": "Bryggeriet som fylte kvartalet",
-                    "year": 1877,
-                    "type": "industrial"
+                    "id": "st_ringnes_bryggeri_renkultur_1887",
+                    "title": "Gjæren som måtte bli lik hver gang",
+                    "year": 1887,
+                    "type": "turning_point"
                   }
                 ]
               }
@@ -15930,7 +16108,7 @@
             }
           ],
           "placeCount": 87,
-          "milestoneCount": 232
+          "milestoneCount": 241
         },
         "historie_nasjon_massepolitikk_og_moderne_institusjoner": {
           "places": [
@@ -16690,7 +16868,7 @@
                       "verifiedAt": ""
                     }
                   ],
-                  "source_file": "data/runtime/stories-all/part-003.json",
+                  "source_file": "data/runtime/stories-all/part-002.json",
                   "evidence_type": "canonical_story",
                   "claim_id": "",
                   "story_id": "st_bla_skilt_hornsrud_fra_hjem_til_statsministerhistorie",
@@ -17170,7 +17348,7 @@
                       "verifiedAt": ""
                     }
                   ],
-                  "source_file": "data/runtime/stories-all/part-002.json",
+                  "source_file": "data/runtime/stories-all/part-001.json",
                   "evidence_type": "canonical_story",
                   "claim_id": "",
                   "story_id": "st_folketeateret_folkets_scene",
@@ -17199,7 +17377,7 @@
                       "verifiedAt": ""
                     }
                   ],
-                  "source_file": "data/runtime/stories-all/part-002.json",
+                  "source_file": "data/runtime/stories-all/part-001.json",
                   "evidence_type": "canonical_story",
                   "claim_id": "",
                   "story_id": "st_folketeateret_kino_teater_opera_musikal",
@@ -27787,6 +27965,71 @@
               }
             },
             {
+              "place_id": "ringnes_bryggeri",
+              "name": "Ringnes bryggeri",
+              "category": "naeringsliv",
+              "source_file": "places/naeringsliv/oslo/places_naeringsliv/ringnes_bryggeri.json",
+              "roles": [
+                {
+                  "id": "stedshistorisk_spor",
+                  "label": "Stedshistorisk spor"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "chrono_ringnes_1978_6",
+                  "year": 1978,
+                  "title": "Inn i Nora-systemet",
+                  "consequence": "Ringnes, Frydenlund og Schous samles under Nora.",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Store norske leksikon",
+                      "url": "https://snl.no/Ringnes_AS",
+                      "verifiedAt": ""
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/naeringsliv/leksikon_ringnes_bryggeri.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_ringnes_bryggeri_consolidation",
+                  "year": 1978,
+                  "title": "Ringnes, Frydenlund og Schous gikk inn i Nora-systemet i 1978; senere fulgte Orkla, Pripps og Carlsberg.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Selskapsendringer",
+                      "url": "https://snl.no/Ringnes_AS",
+                      "verifiedAt": "2026-08-27"
+                    }
+                  ],
+                  "source_file": "data/places/production/ringnes_bryggeri.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_ringnes_bryggeri_consolidation",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_ringnes_bryggeri_renkultur_1887",
+                    "title": "Gjæren som måtte bli lik hver gang",
+                    "year": 1887,
+                    "type": "turning_point"
+                  }
+                ]
+              }
+            },
+            {
               "place_id": "schous_bryggeri",
               "name": "Schous bryggeri",
               "category": "naeringsliv",
@@ -28826,8 +29069,8 @@
               }
             }
           ],
-          "placeCount": 49,
-          "milestoneCount": 90
+          "placeCount": 50,
+          "milestoneCount": 92
         },
         "historie_senmoderne_globalisering_og_markedsvending": {
           "places": [
@@ -33199,6 +33442,117 @@
               }
             },
             {
+              "place_id": "ringnes_bryggeri",
+              "name": "Ringnes bryggeri",
+              "category": "naeringsliv",
+              "source_file": "places/naeringsliv/oslo/places_naeringsliv/ringnes_bryggeri.json",
+              "roles": [
+                {
+                  "id": "arbeid_og_okonomi",
+                  "label": "Arbeid og økonomi"
+                },
+                {
+                  "id": "by_og_infrastruktur",
+                  "label": "By og infrastruktur"
+                },
+                {
+                  "id": "stedshistorisk_spor",
+                  "label": "Stedshistorisk spor"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "chrono_ringnes_1988_7",
+                  "year": 1988,
+                  "title": "Ringnes AS",
+                  "consequence": "Ringnes etableres som egen divisjon.",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Store norske leksikon",
+                      "url": "https://snl.no/Ringnes_AS",
+                      "verifiedAt": ""
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/naeringsliv/leksikon_ringnes_bryggeri.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_ringnes_2001_8",
+                  "year": 2001,
+                  "title": "Produksjonen flytter",
+                  "consequence": "Storskalaproduksjonen flyttes til Gjelleråsen.",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Store norske leksikon",
+                      "url": "https://snl.no/Ringnes_AS",
+                      "verifiedAt": ""
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/naeringsliv/leksikon_ringnes_bryggeri.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "production_claim_ringnes_bryggeri_move",
+                  "year": 2001,
+                  "title": "Produksjonen i Thorvald Meyers gate flyttet til Gjelleråsen i 2001.",
+                  "consequence": "",
+                  "confidence": "",
+                  "sources": [
+                    {
+                      "title": "Flytting og etterbruk",
+                      "url": "https://oslobyleksikon.no/side/Ringnes_Bryggeri",
+                      "verifiedAt": "2026-08-27"
+                    }
+                  ],
+                  "source_file": "data/places/production/ringnes_bryggeri.json",
+                  "evidence_type": "verified_place_production_claim",
+                  "claim_id": "claim_ringnes_bryggeri_move",
+                  "story_id": "",
+                  "limitations": []
+                },
+                {
+                  "id": "chrono_ringnes_2004_9",
+                  "year": 2004,
+                  "title": "Carlsberg eneeier",
+                  "consequence": "Carlsberg blir eneeier av Ringnes.",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Store norske leksikon",
+                      "url": "https://snl.no/Ringnes_AS",
+                      "verifiedAt": ""
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/naeringsliv/leksikon_ringnes_bryggeri.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_ringnes_bryggeri_renkultur_1887",
+                    "title": "Gjæren som måtte bli lik hver gang",
+                    "year": 1887,
+                    "type": "turning_point"
+                  }
+                ]
+              }
+            },
+            {
               "place_id": "radhusplassen",
               "name": "Rådhusplassen",
               "category": "by",
@@ -34921,8 +35275,8 @@
               }
             }
           ],
-          "placeCount": 83,
-          "milestoneCount": 139
+          "placeCount": 84,
+          "milestoneCount": 143
         },
         "historie_digital_samtid_kriser_og_ny_offentlighet": {
           "places": [
@@ -38985,6 +39339,52 @@
               }
             },
             {
+              "place_id": "ringnes_bryggeri",
+              "name": "Ringnes bryggeri",
+              "category": "naeringsliv",
+              "source_file": "places/naeringsliv/oslo/places_naeringsliv/ringnes_bryggeri.json",
+              "roles": [
+                {
+                  "id": "stedshistorisk_spor",
+                  "label": "Stedshistorisk spor"
+                }
+              ],
+              "milestones": [
+                {
+                  "id": "chrono_ringnes_2018_10",
+                  "year": 2018,
+                  "title": "Ringnes Brygghus åpner",
+                  "consequence": "Mikrobryggeri og serveringssted åpner i det gamle brygghuset.",
+                  "confidence": "high",
+                  "sources": [
+                    {
+                      "title": "Ringnes Brygghus",
+                      "url": "https://ringnesbrygghus.no/",
+                      "verifiedAt": "2026-08-27"
+                    }
+                  ],
+                  "source_file": "data/leksikon/places/oslo/naeringsliv/leksikon_ringnes_bryggeri.json",
+                  "evidence_type": "leksikon_chronology",
+                  "claim_id": "",
+                  "story_id": "",
+                  "limitations": []
+                }
+              ],
+              "period_cases": [],
+              "connections": {
+                "person_ids": [],
+                "works": [],
+                "stories": [
+                  {
+                    "id": "st_ringnes_bryggeri_renkultur_1887",
+                    "title": "Gjæren som måtte bli lik hver gang",
+                    "year": 1887,
+                    "type": "turning_point"
+                  }
+                ]
+              }
+            },
+            {
               "place_id": "radhusplassen",
               "name": "Rådhusplassen",
               "category": "by",
@@ -40264,8 +40664,8 @@
               }
             }
           ],
-          "placeCount": 67,
-          "milestoneCount": 128
+          "placeCount": 68,
+          "milestoneCount": 129
         }
       },
       "parallel_tracks": {
@@ -66702,10 +67102,10 @@
     "connected_work_count": 163,
     "connected_story_count": 207,
     "canonical_story_milestone_count": 175,
-    "verified_place_production_milestone_count": 148,
+    "verified_place_production_milestone_count": 154,
     "indexed_place_count": 255,
-    "epoch_place_relations": 479,
-    "milestone_count": 964
+    "epoch_place_relations": 482,
+    "milestone_count": 980
   },
   "warnings": {
     "missing_source_files": [

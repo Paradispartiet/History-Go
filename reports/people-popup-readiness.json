@@ -3,7 +3,7 @@
   "contract": "docs/PEOPLE_POPUP_SYSTEM.md",
   "productionContract": "docs/PEOPLE_PROFILE_CANONICAL.md",
   "generatedBy": "tools/audit-people-popup-readiness.mts",
-  "sourceFingerprint": "88381db13c9b99cf7149dbc5be98a20b2b1c9f95f8e28f7d4a039e2f6da3e9f4",
+  "sourceFingerprint": "dfc4c68c1a8239fc1b3bc9e908f48d65b2fe10122d5ac3892035af5ce1d9a966",
   "thresholds": {
     "complete": 85,
     "strong": 65,
@@ -17,16 +17,16 @@
     "legacyWithoutClaimsStatus": "legacy_unreviewed"
   },
   "summary": {
-    "totalPeople": 1418,
+    "totalPeople": 1416,
     "complete": 58,
-    "strong": 404,
-    "partial": 938,
-    "sparse": 18,
-    "readyPeopleV1": 62,
-    "legacyUnreviewed": 1356,
+    "strong": 406,
+    "partial": 936,
+    "sparse": 16,
+    "readyPeopleV1": 64,
+    "legacyUnreviewed": 1352,
     "brokenImages": 287,
-    "explicitFallbacks": 1005,
-    "implicitFallbacks": 29,
+    "explicitFallbacks": 1003,
+    "implicitFallbacks": 27,
     "averageScore": 65.2
   },
   "fieldCoverage": {
@@ -36,7 +36,7 @@
     },
     "popupDesc": {
       "count": 1394,
-      "percent": 98.3
+      "percent": 98.4
     },
     "lifeData": {
       "count": 55,
@@ -52,23 +52,23 @@
     },
     "practiceDeclared": {
       "count": 1397,
-      "percent": 98.5
+      "percent": 98.7
     },
     "placeGrounding": {
-      "count": 1418,
+      "count": 1416,
       "percent": 100
     },
     "sources": {
-      "count": 451,
-      "percent": 31.8
+      "count": 453,
+      "percent": 32
     },
     "imageContract": {
-      "count": 1131,
-      "percent": 79.8
+      "count": 1129,
+      "percent": 79.7
     },
     "profileStandard": {
-      "count": 62,
-      "percent": 4.4
+      "count": 64,
+      "percent": 4.5
     }
   },
   "categories": [
@@ -139,17 +139,6 @@
       "averageScore": 73.1
     },
     {
-      "category": "naeringsliv",
-      "total": 81,
-      "complete": 1,
-      "strong": 29,
-      "partial": 34,
-      "sparse": 17,
-      "readyPeopleV1": 2,
-      "legacyUnreviewed": 79,
-      "averageScore": 59.8
-    },
-    {
       "category": "by",
       "total": 80,
       "complete": 8,
@@ -159,6 +148,17 @@
       "readyPeopleV1": 19,
       "legacyUnreviewed": 61,
       "averageScore": 73.8
+    },
+    {
+      "category": "naeringsliv",
+      "total": 79,
+      "complete": 1,
+      "strong": 31,
+      "partial": 32,
+      "sparse": 15,
+      "readyPeopleV1": 4,
+      "legacyUnreviewed": 75,
+      "averageScore": 60.7
     },
     {
       "category": "scenekunst",
@@ -3858,44 +3858,6 @@
       ]
     },
     {
-      "placeId": "ringnes_bryggeri",
-      "totalIncomplete": 4,
-      "sparse": 2,
-      "partial": 2,
-      "strong": 0,
-      "averageScore": 47,
-      "people": [
-        {
-          "id": "amund_ringnes_bryggeri",
-          "name": "Amund Ringnes",
-          "score": 32,
-          "status": "sparse",
-          "productionStatus": "legacy_unreviewed"
-        },
-        {
-          "id": "ellef_ringnes_bryggeri_og_ledelse",
-          "name": "Ellef Ringnes",
-          "score": 32,
-          "status": "sparse",
-          "productionStatus": "legacy_unreviewed"
-        },
-        {
-          "id": "amund_ringnes",
-          "name": "Amund Ringnes",
-          "score": 62,
-          "status": "partial",
-          "productionStatus": "legacy_unreviewed"
-        },
-        {
-          "id": "ellef_ringnes",
-          "name": "Ellef Ringnes",
-          "score": 62,
-          "status": "partial",
-          "productionStatus": "legacy_unreviewed"
-        }
-      ]
-    },
-    {
       "placeId": "aker_brygge",
       "totalIncomplete": 4,
       "sparse": 2,
@@ -6939,6 +6901,30 @@
           "score": 72,
           "status": "strong",
           "productionStatus": "legacy_unreviewed"
+        }
+      ]
+    },
+    {
+      "placeId": "ringnes_bryggeri",
+      "totalIncomplete": 2,
+      "sparse": 0,
+      "partial": 0,
+      "strong": 2,
+      "averageScore": 72,
+      "people": [
+        {
+          "id": "amund_ringnes",
+          "name": "Amund Ringnes",
+          "score": 72,
+          "status": "strong",
+          "productionStatus": "ready_people_v1"
+        },
+        {
+          "id": "ellef_ringnes",
+          "name": "Ellef Ringnes",
+          "score": 72,
+          "status": "strong",
+          "productionStatus": "ready_people_v1"
         }
       ]
     },
@@ -10653,52 +10639,6 @@
       ]
     },
     {
-      "id": "amund_ringnes_bryggeri",
-      "name": "Amund Ringnes",
-      "category": "naeringsliv",
-      "kindLabel": "",
-      "sourceFile": "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json",
-      "primaryPlace": "ringnes_bryggeri",
-      "places": [
-        "ringnes_bryggeri"
-      ],
-      "score": 32,
-      "priority": 115,
-      "status": "sparse",
-      "productionStatus": "legacy_unreviewed",
-      "profileStandard": "",
-      "claimsFile": "",
-      "paragraphCount": 0,
-      "popupLength": 0,
-      "contributionCount": 0,
-      "educationCount": 0,
-      "practiceCount": 0,
-      "sourceCount": 0,
-      "imageState": "implicit_fallback",
-      "imagePath": "",
-      "coverage": {
-        "identity": false,
-        "popupDesc": false,
-        "lifeData": false,
-        "contributionsDeclared": false,
-        "educationDeclared": false,
-        "practiceDeclared": false,
-        "placeGrounding": true,
-        "sources": false,
-        "imageContract": true,
-        "profileStandard": false
-      },
-      "issues": [
-        "missing_role_label",
-        "missing_popup_desc",
-        "missing_birth_data",
-        "missing_contributions_field",
-        "missing_sources",
-        "implicit_image_fallback",
-        "legacy_unreviewed"
-      ]
-    },
-    {
       "id": "anders_jahre_shipping",
       "name": "Anders Jahre",
       "category": "naeringsliv",
@@ -10799,52 +10739,6 @@
       "primaryPlace": "oslo_posthus",
       "places": [
         "oslo_posthus"
-      ],
-      "score": 32,
-      "priority": 115,
-      "status": "sparse",
-      "productionStatus": "legacy_unreviewed",
-      "profileStandard": "",
-      "claimsFile": "",
-      "paragraphCount": 0,
-      "popupLength": 0,
-      "contributionCount": 0,
-      "educationCount": 0,
-      "practiceCount": 0,
-      "sourceCount": 0,
-      "imageState": "implicit_fallback",
-      "imagePath": "",
-      "coverage": {
-        "identity": false,
-        "popupDesc": false,
-        "lifeData": false,
-        "contributionsDeclared": false,
-        "educationDeclared": false,
-        "practiceDeclared": false,
-        "placeGrounding": true,
-        "sources": false,
-        "imageContract": true,
-        "profileStandard": false
-      },
-      "issues": [
-        "missing_role_label",
-        "missing_popup_desc",
-        "missing_birth_data",
-        "missing_contributions_field",
-        "missing_sources",
-        "implicit_image_fallback",
-        "legacy_unreviewed"
-      ]
-    },
-    {
-      "id": "ellef_ringnes_bryggeri_og_ledelse",
-      "name": "Ellef Ringnes",
-      "category": "naeringsliv",
-      "kindLabel": "",
-      "sourceFile": "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json",
-      "primaryPlace": "ringnes_bryggeri",
-      "places": [
-        "ringnes_bryggeri"
       ],
       "score": 32,
       "priority": 115,
@@ -25103,50 +24997,6 @@
       ]
     },
     {
-      "id": "amund_ringnes",
-      "name": "Amund Ringnes",
-      "category": "naeringsliv",
-      "kindLabel": "",
-      "sourceFile": "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json",
-      "primaryPlace": "ringnes_bryggeri",
-      "places": [
-        "ringnes_bryggeri"
-      ],
-      "score": 62,
-      "priority": 67,
-      "status": "partial",
-      "productionStatus": "legacy_unreviewed",
-      "profileStandard": "",
-      "claimsFile": "",
-      "paragraphCount": 1,
-      "popupLength": 234,
-      "contributionCount": 0,
-      "educationCount": 0,
-      "practiceCount": 3,
-      "sourceCount": 0,
-      "imageState": "explicit_fallback",
-      "imagePath": "",
-      "coverage": {
-        "identity": false,
-        "popupDesc": true,
-        "lifeData": false,
-        "contributionsDeclared": false,
-        "educationDeclared": false,
-        "practiceDeclared": true,
-        "placeGrounding": true,
-        "sources": false,
-        "imageContract": true,
-        "profileStandard": false
-      },
-      "issues": [
-        "missing_role_label",
-        "missing_birth_data",
-        "missing_contributions_field",
-        "missing_sources",
-        "legacy_unreviewed"
-      ]
-    },
-    {
       "id": "amund_rydland",
       "name": "Amund Rydland",
       "category": "musikk",
@@ -30108,50 +29958,6 @@
       "contributionCount": 0,
       "educationCount": 0,
       "practiceCount": 9,
-      "sourceCount": 0,
-      "imageState": "explicit_fallback",
-      "imagePath": "",
-      "coverage": {
-        "identity": false,
-        "popupDesc": true,
-        "lifeData": false,
-        "contributionsDeclared": false,
-        "educationDeclared": false,
-        "practiceDeclared": true,
-        "placeGrounding": true,
-        "sources": false,
-        "imageContract": true,
-        "profileStandard": false
-      },
-      "issues": [
-        "missing_role_label",
-        "missing_birth_data",
-        "missing_contributions_field",
-        "missing_sources",
-        "legacy_unreviewed"
-      ]
-    },
-    {
-      "id": "ellef_ringnes",
-      "name": "Ellef Ringnes",
-      "category": "naeringsliv",
-      "kindLabel": "",
-      "sourceFile": "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json",
-      "primaryPlace": "ringnes_bryggeri",
-      "places": [
-        "ringnes_bryggeri"
-      ],
-      "score": 62,
-      "priority": 67,
-      "status": "partial",
-      "productionStatus": "legacy_unreviewed",
-      "profileStandard": "",
-      "claimsFile": "",
-      "paragraphCount": 1,
-      "popupLength": 265,
-      "contributionCount": 0,
-      "educationCount": 0,
-      "practiceCount": 3,
       "sourceCount": 0,
       "imageState": "explicit_fallback",
       "imagePath": "",
@@ -68633,6 +68439,48 @@
       ]
     },
     {
+      "id": "amund_ringnes",
+      "name": "Amund Ringnes",
+      "category": "naeringsliv",
+      "kindLabel": "",
+      "sourceFile": "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json",
+      "primaryPlace": "ringnes_bryggeri",
+      "places": [
+        "ringnes_bryggeri"
+      ],
+      "score": 72,
+      "priority": 38,
+      "status": "strong",
+      "productionStatus": "ready_people_v1",
+      "profileStandard": "people_profile_v1.0",
+      "claimsFile": "data/people/claims/naeringsliv/oslo/ringnes_bryggeri/amund_ringnes.claims.json",
+      "paragraphCount": 1,
+      "popupLength": 314,
+      "contributionCount": 0,
+      "educationCount": 0,
+      "practiceCount": 5,
+      "sourceCount": 3,
+      "imageState": "valid_image",
+      "imagePath": "bilder/kort/people/amund_ringnes.webp",
+      "coverage": {
+        "identity": false,
+        "popupDesc": true,
+        "lifeData": false,
+        "contributionsDeclared": false,
+        "educationDeclared": false,
+        "practiceDeclared": true,
+        "placeGrounding": true,
+        "sources": true,
+        "imageContract": true,
+        "profileStandard": true
+      },
+      "issues": [
+        "missing_role_label",
+        "missing_birth_data",
+        "missing_contributions_field"
+      ]
+    },
+    {
       "id": "christian_julius_schou",
       "name": "Christian Julius Schou",
       "category": "naeringsliv",
@@ -68656,6 +68504,48 @@
       "sourceCount": 3,
       "imageState": "valid_image",
       "imagePath": "bilder/kort/people/christian_julius_schou.webp",
+      "coverage": {
+        "identity": false,
+        "popupDesc": true,
+        "lifeData": false,
+        "contributionsDeclared": false,
+        "educationDeclared": false,
+        "practiceDeclared": true,
+        "placeGrounding": true,
+        "sources": true,
+        "imageContract": true,
+        "profileStandard": true
+      },
+      "issues": [
+        "missing_role_label",
+        "missing_birth_data",
+        "missing_contributions_field"
+      ]
+    },
+    {
+      "id": "ellef_ringnes",
+      "name": "Ellef Ringnes",
+      "category": "naeringsliv",
+      "kindLabel": "",
+      "sourceFile": "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json",
+      "primaryPlace": "ringnes_bryggeri",
+      "places": [
+        "ringnes_bryggeri"
+      ],
+      "score": 72,
+      "priority": 38,
+      "status": "strong",
+      "productionStatus": "ready_people_v1",
+      "profileStandard": "people_profile_v1.0",
+      "claimsFile": "data/people/claims/naeringsliv/oslo/ringnes_bryggeri/ellef_ringnes.claims.json",
+      "paragraphCount": 1,
+      "popupLength": 357,
+      "contributionCount": 0,
+      "educationCount": 0,
+      "practiceCount": 5,
+      "sourceCount": 3,
+      "imageState": "valid_image",
+      "imagePath": "bilder/kort/people/ellef_ringnes.webp",
       "coverage": {
         "identity": false,
         "popupDesc": true,

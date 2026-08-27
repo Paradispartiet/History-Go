@@ -1,0 +1,266 @@
+{
+  "schemaVersion": "historie_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "ringnes_bryggeri",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv/ringnes_bryggeri.json",
+  "status": "ready",
+  "historicalIdentity": {
+    "statement": "Ringnes Bryggeri var en industriell bryggerivirksomhet grunnlagt i Thorvald Meyers gate i 1876, med produksjon på stedet 1877–2001 og bevarte bygg i aktiv etterbruk.",
+    "placeRelationType": "institution_site",
+    "placeRelationStatement": "Place-ID-en representerer opphavsstedet og det historiske produksjonsanlegget, ikke produksjonsanlegget på Gjelleråsen, hele Ringnes Park eller merkevaren alene.",
+    "temporalScope": {
+      "start": "1876",
+      "end": "2026",
+      "precision": "period",
+      "rationale": "Perioden dekker grunnleggelse, produksjon, laboratorieinnovasjon, selskapsendringer, flytting og kontrollert nåbruk."
+    },
+    "sourceIds": [
+      "source_snl_ringnes_historie",
+      "source_byleksikon_ringnes_historie",
+      "source_klp_ringnes_historie"
+    ]
+  },
+  "historyTopics": [
+    {
+      "emneId": "em_his_industriby_1900",
+      "siteSpecificRationale": "Bryggeri- og gjærhus, lager, tappehall, malteri, portbygning og motorisert varetransport gjør sammenhengen mellom industriby, arbeidsdeling, teknologi og logistikk lesbar på stedet.",
+      "caseIds": [
+        "case_ringnes_industrialisering_og_ombruk"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_snl_ringnes_historie",
+      "url": "https://snl.no/Ringnes_AS",
+      "sourceLocation": "Produksjon, laboratorium og selskapsendringer",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-08-27",
+      "temporalCoverage": "mixed",
+      "provenance": "Redaksjonelt kontrollert oppslagsverk.",
+      "limitations": "Gir ikke komplette regnskaps- eller arbeidslivsserier."
+    },
+    {
+      "id": "source_byleksikon_ringnes_historie",
+      "url": "https://oslobyleksikon.no/side/Ringnes_Bryggeri",
+      "sourceLocation": "Grunnleggelse, anlegg, flytting og etterbruk",
+      "sourceType": "museum_or_heritage",
+      "verifiedAt": "2026-08-27",
+      "temporalCoverage": "mixed",
+      "provenance": "Institusjonelt lokalhistorisk oppslagsverk.",
+      "limitations": "Sammenfatter utviklingen uten full bygge- eller beslutningsdokumentasjon."
+    },
+    {
+      "id": "source_byleksikon_kvartalet_historie",
+      "url": "https://eiendomsspar.no/eiendommer/thorvald-meyers-gate-2a/",
+      "sourceLocation": "Bevarte bygg og dagens bruk",
+      "sourceType": "primary",
+      "verifiedAt": "2026-08-27",
+      "temporalCoverage": "current",
+      "provenance": "Gårdeierens eiendomspresentasjon.",
+      "limitations": "Kommersiell primærkilde til nåbruk."
+    },
+    {
+      "id": "source_klp_ringnes_historie",
+      "url": "https://ringnesbrygghus.no/",
+      "sourceLocation": "Mikrobryggeri og serveringssted",
+      "sourceType": "primary",
+      "verifiedAt": "2026-08-27",
+      "temporalCoverage": "current",
+      "provenance": "Virksomhetens egen presentasjon.",
+      "limitations": "Dokumenterer egen drift, ikke hele eiendommen."
+    }
+  ],
+  "caseRealizations": [
+    {
+      "id": "case_ringnes_industrialisering_og_ombruk",
+      "claim": "Ringnes-anlegget utviklet seg fra et gründerstyrt bryggeri til et stort industrielt produksjonssystem med laboratorium, før produksjonen flyttet og de bevarte byggene fikk nye funksjoner.",
+      "temporalSequence": {
+        "scope": {
+          "start": "1876",
+          "end": "2026",
+          "precision": "period",
+          "rationale": "Caset følger grunnleggelse, gjærinnovasjon, selskapskonsolidering, produksjonsflytting og etterbruk."
+        },
+        "startPoint": "Amund og Ellef Ringnes og Axel Heiberg grunnla Ringnes & Co. i 1876; produksjonen startet i 1877.",
+        "endPoint": "Storskalaproduksjonen foregår på Gjelleråsen, mens bevarte bygg i Thorvald Meyers gate brukes til hovedkontor, museum og brygghus.",
+        "breaks": [
+          "Laboratoriearbeidet 1887–1890 innførte egne gjærstammer og renkultur.",
+          "Aksjeselskapsformen fra 1899 endret eierskapsrammen.",
+          "Konsolideringen fra 1978 knyttet Ringnes til større selskapsgrupper.",
+          "Produksjonsflyttingen i 2001 skilte merkevaren fra opphavsstedets produksjonsfunksjon."
+        ],
+        "continuities": [
+          "Ringnes-navnet brukes fortsatt av selskapet og på stedet.",
+          "Flere bryggeribygg er bevart.",
+          "Brygging finnes fortsatt i liten skala gjennom Ringnes Brygghus."
+        ],
+        "sourceIds": [
+          "source_snl_ringnes_historie",
+          "source_byleksikon_ringnes_historie",
+          "source_byleksikon_kvartalet_historie",
+          "source_klp_ringnes_historie"
+        ]
+      },
+      "actors": [
+        {
+          "name": "Amund og Ellef Ringnes og Axel Heiberg",
+          "roleOrInterest": "Grunnla og finansierte virksomheten; brødrene delte teknisk og utadvendt ledelse.",
+          "powerPosition": "Kontrollerte kapital, produksjon og forretningsledelse i etableringsfasen.",
+          "sourceIds": [
+            "source_byleksikon_ringnes_historie",
+            "source_snl_ringnes_historie"
+          ]
+        },
+        {
+          "name": "Olav Johan Sopp og bryggeriets fagarbeidere",
+          "roleOrInterest": "Utviklet og brukte laboratoriekunnskap, gjærkulturer og produksjonspraksis.",
+          "powerPosition": "Fagkunnskapen var nødvendig, men åpne kilder gir ikke grunnlag for lønns- eller medbestemmelsesanalyse.",
+          "sourceIds": [
+            "source_snl_ringnes_historie"
+          ]
+        },
+        {
+          "name": "Senere eiere, gårdeier og dagens brukere",
+          "roleOrInterest": "Flyttet produksjonen og forvaltet bevarte bygg til nye formål.",
+          "powerPosition": "Selskapseiere kontrollerte produksjonsstrategien; gårdeier og brukere kontrollerer dagens lokaler og tilbud.",
+          "sourceIds": [
+            "source_snl_ringnes_historie",
+            "source_byleksikon_kvartalet_historie",
+            "source_klp_ringnes_historie"
+          ]
+        }
+      ],
+      "conflictOrNegotiation": {
+        "statement": "Etterbruken forhandler mellom lesbar industrihistorie, eiendomsutvikling og nye virksomheter; kildene dokumenterer utfallet, men ikke alle beslutningskonflikter.",
+        "sourceIds": [
+          "source_byleksikon_ringnes_historie",
+          "source_byleksikon_kvartalet_historie"
+        ]
+      },
+      "sourceComparison": {
+        "sourceIds": [
+          "source_snl_ringnes_historie",
+          "source_byleksikon_ringnes_historie",
+          "source_byleksikon_kvartalet_historie"
+        ],
+        "comparison": "SNL bærer teknologi- og selskapslinjen, Oslo byleksikon bærer stedskronologien, og gårdeier dokumenterer nåbruk.",
+        "contradictionsOrSilences": "Kildene sier lite om arbeidernes erfaringer, produksjonsvolum og beslutningsforløpet bak flyttingen.",
+        "conclusionLimits": "Materialet støtter kronologi og stedsspor, men ikke én uttømmende årsaksforklaring."
+      },
+      "comparativeScale": {
+        "localFinding": "Ringnes viser hvordan laboratorium, brygging, lager og distribusjon kunne samles i et byindustrielt kvartal.",
+        "widerContext": "Standardisering, selskapskonsolidering og flytting av produksjon knytter stedet til bredere industrialiserings- og omstillingsforløp.",
+        "scale": "european",
+        "sourceIds": [
+          "source_snl_ringnes_historie",
+          "source_byleksikon_ringnes_historie"
+        ]
+      },
+      "causationAndUncertainty": {
+        "causalAssessment": "Kildene dokumenterer rekkefølgen fra vekst via konsolidering til flytting, men isolerer ikke én tilstrekkelig årsak.",
+        "alternativeExplanations": [
+          "Teknologi, kapitalbehov, logistikk, eiendomsverdi og stordriftsfordeler kan ha virket sammen."
+        ],
+        "uncertainty": "Åpne kilder mangler komplette produksjons-, arbeidslivs- og regnskapsserier.",
+        "sourceIds": [
+          "source_snl_ringnes_historie",
+          "source_byleksikon_ringnes_historie"
+        ]
+      }
+    }
+  ],
+  "presentTrace": {
+    "objectStatus": "altered",
+    "statement": "Det gamle brygghuset og flere nordlige industribygg står igjen, mens store deler av fabrikkvartalet er omformet.",
+    "originalSiteRelationship": "Markøren peker til opphavsstedet i Thorvald Meyers gate; bygningene er historiske produksjonsspor, men dagens storskala produksjon ligger på Gjelleråsen.",
+    "sourceIds": [
+      "source_byleksikon_ringnes_historie",
+      "source_byleksikon_kvartalet_historie",
+      "source_klp_ringnes_historie"
+    ]
+  },
+  "quizOpening": {
+    "status": "PASS",
+    "quizTargetId": "ringnes_bryggeri",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/naeringsliv/ringnes_bryggeri.json",
+    "productionContext": "data/quiz/production_context/naeringsliv/ringnes_bryggeri.json",
+    "requiredInputs": [
+      "data/fag/naeringsliv/naeringslivpensum_canonical_v4_5.json",
+      "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+      "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+      "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+      "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+      "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    ]
+  },
+  "chronologyStories": {
+    "status": "PASS",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Leksikonet følger 1876, 1877, 1887–1890, 1899, 1978, 2001 og 2018; episode_v1-historien om renkultur er separat og kildekontrollert."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "historicalIdentity",
+        "presentTrace"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "historyTopics",
+        "caseRealizations.case_ringnes_industrialisering_og_ombruk"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "caseRealizations.case_ringnes_industrialisering_og_ombruk.temporalSequence"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "caseRealizations.case_ringnes_industrialisering_og_ombruk.actors",
+        "caseRealizations.case_ringnes_industrialisering_og_ombruk.conflictOrNegotiation"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "sources",
+        "caseRealizations.case_ringnes_industrialisering_og_ombruk.sourceComparison"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "caseRealizations.case_ringnes_industrialisering_og_ombruk.comparativeScale",
+        "caseRealizations.case_ringnes_industrialisering_og_ombruk.causationAndUncertainty"
+      ]
+    },
+    "G": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "quizOpening"
+      ]
+    },
+    "H": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "chronologyStories",
+        "data/leksikon/places/oslo/naeringsliv/leksikon_ringnes_bryggeri.json#chronology"
+      ]
+    }
+  },
+  "review": {
+    "reviewer": "Ringnes Bryggeri phase 8–24 Historie review",
+    "reviewedAt": "2026-08-27",
+    "notes": "Virksomhet, varemerke, anlegg, kvartal og dagens brukere er avgrenset. Kronologi, materielle spor, aktører, kildetyper, quizåpning og Story er kontrollert; årsaker, arbeidsvilkår og økonomiske virkninger hevdes ikke utover kildenes dekning."
+  }
+}
