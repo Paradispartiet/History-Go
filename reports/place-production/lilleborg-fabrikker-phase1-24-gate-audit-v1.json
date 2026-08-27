@@ -1,0 +1,67 @@
+{
+  "schema": "history_go_phase1_24_quality_gate_v1",
+  "place_id": "lilleborg_fabrikker",
+  "verified_at": "2026-08-27",
+  "null_measurement": {
+    "existing_place": true,
+    "canonical_id_reused": "lilleborg_fabrikker",
+    "coordinate_changed": false,
+    "coordinate_status_preserved": "verified",
+    "existing_quiz_audit": "5 flat questions plus 5x6 merged set file",
+    "brand_candidate_audited": "lilleborg_fabrikker_company",
+    "removed_unverified_people": [
+      "alf_bjercke_industri_og_kvalitet – ingen kildebelagt Lilleborg-rolle i eksisterende profil"
+    ],
+    "held_back_persons": [
+      "Ludvig Mariboe – dokumentert i forhistorien, men ikke nødvendig for 1897-identiteten i denne produksjonen",
+      "Birger Kildal – knyttet til familievirksomheten, men holdes utenfor til egen identitetspakke er kildebelagt"
+    ],
+    "before_after_exact_pair": false
+  },
+  "source_conflicts": [
+    {
+      "claim": "Lilleborg ble grunnlagt i 1833.",
+      "status": "resolved",
+      "reason": "1833 gjelder oljemøllen; A/S Lilleborg Fabriker ble grunnlagt i 1897. 1812 og 1842 beskriver andre virksomhetslag på stedet."
+    },
+    {
+      "claim": "Alf Bjercke var kvalitets- og produksjonsleder ved Lilleborg.",
+      "status": "rejected",
+      "reason": "Den eksisterende People-posten manglet kilder, datoer og dokumentert rolle ved Lilleborg og er derfor fjernet."
+    },
+    {
+      "claim": "Solenis driver fabrikkproduksjon på Sandaker etter oppkjøpet i 2024.",
+      "status": "rejected",
+      "reason": "Orkla og Solenis dokumenterer selskapsoppkjøpet; Oslo byleksikon dokumenterer at produksjonen på Sandaker sluttet i 1997."
+    }
+  ],
+  "quality_score": {
+    "correctness_and_evidence": {
+      "score": 5,
+      "note": "Sted, Kildal-profil, brand, produktobjekt, bilder, uendret koordinat, 28 quizspørsmål og 2024-selskapsstatus har inspiserbare kilder; tre konflikter er eksplisitt løst."
+    },
+    "coverage_and_completion": {
+      "score": 5,
+      "note": "Identitet, koordinat, fire bildeklare samlinger, Badge/Fagverk, quiz, popup, 14-punkts kronologi, språk, story, fire lesespor, People og Brand er materialisert."
+    },
+    "editorial_quality": {
+      "score": 5,
+      "note": "Tidslag og forbruksvarekjede binder sammen arbeid, råvarer, merkevarer, krigstid, eierskap og boligomforming uten å blande historisk sted og dagens selskap."
+    },
+    "technical_integrity": {
+      "score": 5,
+      "note": "Én deterministisk builder, normal 4x7-quiz, v4.2-description packet, næringslivspakke, People-claims og fokuserte tester låser leveransen."
+    },
+    "safety_and_responsibility": {
+      "score": 5,
+      "note": "Museums- og eiendomstilgang respekteres, alle bilder og brandmerket er kildeført, og ingen endorsement, falsk personkobling eller udokumentert arbeidstakerutfall hevdes."
+    },
+    "maintainability_and_auditability": {
+      "score": 5,
+      "note": "Canonical manifester, kilde-ID-er, transformasjonsmetadata, konfliktnotater og permanente tester gjør pakken etterprøvbar og reproduserbar."
+    },
+    "total": 30,
+    "critical_findings": 0,
+    "unresolved_blockers": 0
+  }
+}

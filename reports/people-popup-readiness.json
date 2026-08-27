@@ -3,7 +3,7 @@
   "contract": "docs/PEOPLE_POPUP_SYSTEM.md",
   "productionContract": "docs/PEOPLE_PROFILE_CANONICAL.md",
   "generatedBy": "tools/audit-people-popup-readiness.mts",
-  "sourceFingerprint": "65f7f424961c810fa6c4bccfb0308832db5c1d51d91ce86f9baefce2815d7f41",
+  "sourceFingerprint": "9b0f91585b8f663b0424a963dfd4938c8ca4473b4eef4808ec406a4eb003901b",
   "thresholds": {
     "complete": 85,
     "strong": 65,
@@ -18,40 +18,40 @@
   },
   "summary": {
     "totalPeople": 1418,
-    "complete": 60,
+    "complete": 61,
     "strong": 406,
     "partial": 936,
-    "sparse": 16,
-    "readyPeopleV1": 66,
-    "legacyUnreviewed": 1352,
+    "sparse": 15,
+    "readyPeopleV1": 67,
+    "legacyUnreviewed": 1351,
     "brokenImages": 287,
     "explicitFallbacks": 1003,
-    "implicitFallbacks": 27,
+    "implicitFallbacks": 26,
     "averageScore": 65.3
   },
   "fieldCoverage": {
     "identity": {
-      "count": 117,
+      "count": 118,
       "percent": 8.3
     },
     "popupDesc": {
-      "count": 1396,
-      "percent": 98.4
+      "count": 1397,
+      "percent": 98.5
     },
     "lifeData": {
-      "count": 57,
-      "percent": 4
+      "count": 58,
+      "percent": 4.1
     },
     "contributionsDeclared": {
-      "count": 57,
-      "percent": 4
+      "count": 58,
+      "percent": 4.1
     },
     "educationDeclared": {
-      "count": 57,
-      "percent": 4
+      "count": 58,
+      "percent": 4.1
     },
     "practiceDeclared": {
-      "count": 1399,
+      "count": 1400,
       "percent": 98.7
     },
     "placeGrounding": {
@@ -59,15 +59,15 @@
       "percent": 100
     },
     "sources": {
-      "count": 455,
-      "percent": 32.1
+      "count": 456,
+      "percent": 32.2
     },
     "imageContract": {
       "count": 1131,
       "percent": 79.8
     },
     "profileStandard": {
-      "count": 66,
+      "count": 67,
       "percent": 4.7
     }
   },
@@ -141,13 +141,13 @@
     {
       "category": "naeringsliv",
       "total": 81,
-      "complete": 3,
+      "complete": 4,
       "strong": 31,
       "partial": 32,
-      "sparse": 15,
-      "readyPeopleV1": 6,
-      "legacyUnreviewed": 75,
-      "averageScore": 61.7
+      "sparse": 14,
+      "readyPeopleV1": 7,
+      "legacyUnreviewed": 74,
+      "averageScore": 62.5
     },
     {
       "category": "by",
@@ -7145,23 +7145,6 @@
       ]
     },
     {
-      "placeId": "lilleborg_fabrikker",
-      "totalIncomplete": 1,
-      "sparse": 1,
-      "partial": 0,
-      "strong": 0,
-      "averageScore": 32,
-      "people": [
-        {
-          "id": "alf_bjercke_industri_og_kvalitet",
-          "name": "Alf Bjercke",
-          "score": 32,
-          "status": "sparse",
-          "productionStatus": "legacy_unreviewed"
-        }
-      ]
-    },
-    {
       "placeId": "oslo_posthus",
       "totalIncomplete": 1,
       "sparse": 1,
@@ -10589,52 +10572,6 @@
         "missing_contributions_field",
         "missing_sources",
         "broken_image_reference",
-        "legacy_unreviewed"
-      ]
-    },
-    {
-      "id": "alf_bjercke_industri_og_kvalitet",
-      "name": "Alf Bjercke",
-      "category": "naeringsliv",
-      "kindLabel": "",
-      "sourceFile": "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json",
-      "primaryPlace": "lilleborg_fabrikker",
-      "places": [
-        "lilleborg_fabrikker"
-      ],
-      "score": 32,
-      "priority": 115,
-      "status": "sparse",
-      "productionStatus": "legacy_unreviewed",
-      "profileStandard": "",
-      "claimsFile": "",
-      "paragraphCount": 0,
-      "popupLength": 0,
-      "contributionCount": 0,
-      "educationCount": 0,
-      "practiceCount": 0,
-      "sourceCount": 0,
-      "imageState": "implicit_fallback",
-      "imagePath": "",
-      "coverage": {
-        "identity": false,
-        "popupDesc": false,
-        "lifeData": false,
-        "contributionsDeclared": false,
-        "educationDeclared": false,
-        "practiceDeclared": false,
-        "placeGrounding": true,
-        "sources": false,
-        "imageContract": true,
-        "profileStandard": false
-      },
-      "issues": [
-        "missing_role_label",
-        "missing_popup_desc",
-        "missing_birth_data",
-        "missing_contributions_field",
-        "missing_sources",
-        "implicit_image_fallback",
         "legacy_unreviewed"
       ]
     },
@@ -72912,6 +72849,44 @@
       "sourceCount": 9,
       "imageState": "valid_image",
       "imagePath": "bilder/kort/people/peter_collett_alunverket.webp",
+      "coverage": {
+        "identity": true,
+        "popupDesc": true,
+        "lifeData": true,
+        "contributionsDeclared": true,
+        "educationDeclared": true,
+        "practiceDeclared": true,
+        "placeGrounding": true,
+        "sources": true,
+        "imageContract": true,
+        "profileStandard": true
+      },
+      "issues": []
+    },
+    {
+      "id": "peter_wessel_wind_kildal_lilleborg",
+      "name": "Peter Wessel Wind Kildal",
+      "category": "naeringsliv",
+      "kindLabel": "Forretningsmann og industrigründer",
+      "sourceFile": "data/people/naeringsliv/oslo/lilleborg_fabrikker/peter_wessel_wind_kildal_lilleborg.json",
+      "primaryPlace": "lilleborg_fabrikker",
+      "places": [
+        "lilleborg_fabrikker"
+      ],
+      "score": 100,
+      "priority": 0,
+      "status": "complete",
+      "productionStatus": "ready_people_v1",
+      "profileStandard": "people_profile_v1.0",
+      "claimsFile": "data/people/claims/naeringsliv/oslo/lilleborg_fabrikker/peter_wessel_wind_kildal_lilleborg.claims.json",
+      "paragraphCount": 3,
+      "popupLength": 622,
+      "contributionCount": 2,
+      "educationCount": 0,
+      "practiceCount": 8,
+      "sourceCount": 10,
+      "imageState": "valid_image",
+      "imagePath": "bilder/kort/people/peter_wessel_wind_kildal_lilleborg.webp",
       "coverage": {
         "identity": true,
         "popupDesc": true,

@@ -1,0 +1,911 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "naeringsliv",
+  "targetId": "lilleborg_fabrikker",
+  "profile": "normal_4x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1978,
+    "selection_sha256": "638e11d6309c31b45e3163a250113b52f4c98ba67e6d28ac8d4afce44069851f",
+    "category_id": "naeringsliv",
+    "target_id": "lilleborg_fabrikker"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/naeringsliv/naeringslivpensum_canonical_v4_5.json",
+      "bytes": 33041,
+      "sha256": "d9ceba9645ed472e0448e274cac37ff09bb2de84c54abe44d99d59c7a260f2fd",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+      "bytes": 383560,
+      "sha256": "6c7c48150ebdb77d07177d015bbfe104d0eb5d206c6a9104f4bc52a7e0ee0bbe",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+      "bytes": 305981,
+      "sha256": "40a00fa3910248b779763d7746760140509741410aa046d4f694c367e7c6e345",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+      "bytes": 89971,
+      "sha256": "a109a5e6eaab0f96fdb0b14aa8139a35714b67473efa860a3f1a8448a204cad3",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+      "bytes": 17470,
+      "sha256": "f6c4a94ebfa99cff3042ae3398ab92d633150d8fc6f4bd16d7b71679540c9585",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 16882,
+      "sha256": "60804db1e587faae822930a800cfebac7966fa7e009778d46d94d1f28e02545e",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/naeringsliv/lilleborg_fabrikker.json",
+      "bytes": 15824,
+      "sha256": "50e7fbfa684cae216b34b16d4444e7eea2a1237375c4f27014c230ecc073430b"
+    },
+    "target": {
+      "path": "data/places/naeringsliv/oslo/places_naeringsliv/lilleborg_fabrikker.json",
+      "bytes": 15651,
+      "sha256": "3a5ca9383c818c0633d6bb700d08689f20436aef3edf2d05ad27fb93959b2d5a"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1665,
+      "selection_sha256": "a033420b49cfa592a21ecf4cb3a44bc541ec09956dcd5aadada4320dd698e626"
+    },
+    "relations": [
+      {
+        "path": "data/relations.json",
+        "matches": 1,
+        "selection_bytes": 385,
+        "selection_sha256": "f7f218754842d7ec4db151021279febabe63d1e535878414528406786a515992"
+      }
+    ],
+    "stories": [
+      {
+        "path": "data/stories/stories_lilleborg_fabrikker.json",
+        "matches": 1,
+        "selection_bytes": 2102,
+        "selection_sha256": "7ebb8bf81867031562a10871ce0fa6dc5a3d598d8bff45c58f46471f4cc4d7c0"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/naeringsliv/lilleborg_fabrikker_sets.json",
+  "source_registry": {
+    "byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Lilleborg_AS",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Stedsidentitet, tidslag, produksjon, eierskap, krigstid, bygninger og omforming."
+    },
+    "snl_kildal": {
+      "url": "https://snl.no/Peter_Wessel_Wind_Kildal",
+      "source_type": "recognized_reference",
+      "review_status": "reviewed",
+      "review_note": "Peter Wessel Wind Kildals identitet, overtakelse og utvikling av Lilleborg."
+    },
+    "industrimuseum": {
+      "url": "https://industrimuseum.no/bedrifter/lilleborgfabrikera_s",
+      "source_type": "museum_or_heritage",
+      "review_status": "reviewed",
+      "review_note": "Bedriftsidentitet og industrikontekst."
+    },
+    "orkla": {
+      "url": "https://www.orkla.com/media/press-releases/2024/orkla-announces-the-sale-of-lilleborg/",
+      "source_type": "primary_business",
+      "review_status": "reviewed",
+      "review_note": "Salgsavtalen og avgrensningen av virksomheten i 2024."
+    },
+    "solenis": {
+      "url": "https://www.solenis.com/en/resources/news-releases/2024/lilleborg-acquisition/",
+      "source_type": "primary_business",
+      "review_status": "reviewed",
+      "review_note": "Gjennomført oppkjøp, dato, selskapslinje og nåstatus i 2024."
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/quiz_naeringsliv.json",
+      "data/quiz/naeringsliv/lilleborg_fabrikker_sets_merged.json",
+      "data/places/naeringsliv/oslo/places_naeringsliv/lilleborg_fabrikker.json"
+    ],
+    "active_before": {
+      "file": "data/quiz/naeringsliv/lilleborg_fabrikker_sets_merged.json",
+      "set_count": 5,
+      "question_count": 30,
+      "finding": "30 spørsmål fordelt på fem eldre sett med seks spørsmål og fem legacy-spørsmål i flatfil ble funnet; pakken blandet 1812, 1833, 1842 og 1897 som parallelle etableringsår."
+    },
+    "decisions": [
+      "Bevar kildebårne læringsjobber som skiller tidslag og selskapsidentitet.",
+      "Bruk 1897 for A/S Lilleborg Fabriker og la 1812, 1833 og 1842 beskrive forhistorien.",
+      "Materialiser normal 4x7 med fjorten vanlige åpningsspørsmål og metode først i siste sett."
+    ],
+    "knowledge_migration": "De 28 valgte spørsmålene får stabile Knowledge-ID-er; utelatte spørsmål er dokumentert i produksjonsbriefen."
+  },
+  "profile_decision": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "justification": "Fire læringsjobber dekker tidslag og identitet, produksjon og bygg, krig og eierskap samt verdikjede og omforming uten å splitte stedet i parallelle quizer."
+  },
+  "held_back_candidates": [
+    "1833 som grunnleggelsesår for A/S Lilleborg Fabriker.",
+    "Alf Bjercke som kvalitetsleder uten dokumentert Lilleborg-kobling.",
+    "Solenis-oppkjøpet som bevis på ny produksjon ved Sandaker.",
+    "Boligomforming som mål på utfallet for tidligere ansatte."
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 6,
+      "emner": 38,
+      "topic_hooks": 60,
+      "methods": 27
+    },
+    "candidate_emner": [
+      {
+        "id": "em_naering_arbeid_verdiskaping",
+        "title": "Arbeid og verdiskaping",
+        "score": 100
+      },
+      {
+        "id": "em_naering_byens_okonomiske_rom",
+        "title": "Byens økonomiske rom",
+        "score": 100
+      },
+      {
+        "id": "em_naering_eiendom_kapital_byutvikling",
+        "title": "Eiendom, kapital og byutvikling",
+        "score": 100
+      },
+      {
+        "id": "em_naering_eierskap_styring",
+        "title": "Eierskap og styring",
+        "score": 100
+      },
+      {
+        "id": "em_naering_forbruk_marked",
+        "title": "Forbruk og marked",
+        "score": 100
+      },
+      {
+        "id": "em_naering_industri_og_mekanisering",
+        "title": "Industri og mekanisering",
+        "score": 100
+      },
+      {
+        "id": "em_naering_innovasjon_teknologisk_skift",
+        "title": "Innovasjon og teknologisk skift",
+        "score": 100
+      },
+      {
+        "id": "em_naering_logistikk_verdikjeder",
+        "title": "Logistikk og verdikjeder",
+        "score": 100
+      },
+      {
+        "id": "em_naering_makt_ulikhet_arbeidsliv",
+        "title": "Makt, ulikhet og arbeidsliv",
+        "score": 100
+      },
+      {
+        "id": "em_naering_omstilling_kriser_skift",
+        "title": "Omstilling, kriser og skift",
+        "score": 100
+      },
+      {
+        "id": "em_naering_produksjon_produktivitet",
+        "title": "Produksjon og produktivitet",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "ansvarlig_naeringsliv",
+        "title": "Ansvarlig næringsliv",
+        "category_id": "makt_regulering_baerekraft",
+        "score": 10
+      },
+      {
+        "id": "arbeid_kapital_konflikt",
+        "title": "Arbeid–kapital-konflikt",
+        "category_id": "makt_regulering_baerekraft",
+        "score": 10
+      },
+      {
+        "id": "arbeid_som_verdiskaping",
+        "title": "Arbeid som verdiskaping",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "arbeidsdisiplin_tid",
+        "title": "Arbeidsdisiplin og tid",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "arbeidslivets_omstilling",
+        "title": "Arbeidslivets omstilling",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "byrom_som_marked",
+        "title": "Byrom som marked",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "eierskap_og_styring",
+        "title": "Eierskap og styring",
+        "category_id": "kapital_eierskap_finans",
+        "score": 10
+      },
+      {
+        "id": "finansdistrikt",
+        "title": "Finansdistrikt og symbolsk økonomi",
+        "category_id": "kapital_eierskap_finans",
+        "score": 10
+      },
+      {
+        "id": "forbrukeradferd",
+        "title": "Forbrukeradferd",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "handel_som_bystruktur",
+        "title": "Handel som bystruktur",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "havn_og_varestrommer",
+        "title": "Havn og varestrømmer",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "industriell_bystruktur",
+        "title": "Industriell bystruktur",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "infrastrukturmakt",
+        "title": "Infrastrukturmakt",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "innovasjon_som_ideal",
+        "title": "Innovasjon som ideal",
+        "category_id": "teknologi_innovasjon_plattform",
+        "score": 10
+      },
+      {
+        "id": "investering_eiendom",
+        "title": "Investering og eiendom",
+        "category_id": "kapital_eierskap_finans",
+        "score": 10
+      },
+      {
+        "id": "kapitalmakt",
+        "title": "Kapitalmakt",
+        "category_id": "kapital_eierskap_finans",
+        "score": 10
+      },
+      {
+        "id": "krise_og_omfordeling",
+        "title": "Krise og omfordeling",
+        "category_id": "makt_regulering_baerekraft",
+        "score": 10
+      },
+      {
+        "id": "lager_og_distribusjon",
+        "title": "Lager og distribusjon",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "marked_og_ulikhet",
+        "title": "Marked og ulikhet",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "markedets_doxa",
+        "title": "Markedets doxa",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "maskin_menneske_produksjon",
+        "title": "Maskin, menneske og produksjon",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "merkevare_status",
+        "title": "Merkevare og status",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "miljokostnader",
+        "title": "Miljøkostnader og eksternaliteter",
+        "category_id": "makt_regulering_baerekraft",
+        "score": 10
+      },
+      {
+        "id": "omstilling_av_naeringsrom",
+        "title": "Omstilling av næringsrom",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "plattformokonomi",
+        "title": "Plattformøkonomi",
+        "category_id": "teknologi_innovasjon_plattform",
+        "score": 10
+      },
+      {
+        "id": "produksjonsprosess",
+        "title": "Produksjonsprosess",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "produktivitet_og_optimalisering",
+        "title": "Produktivitet og optimalisering",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "ressursbruk",
+        "title": "Ressursbruk",
+        "category_id": "makt_regulering_baerekraft",
+        "score": 10
+      },
+      {
+        "id": "teknologisk_omstilling",
+        "title": "Teknologisk omstilling",
+        "category_id": "teknologi_innovasjon_plattform",
+        "score": 10
+      },
+      {
+        "id": "tjenester_og_servicearbeid",
+        "title": "Tjenester og servicearbeid",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "ulikhet_og_ekskludering",
+        "title": "Ulikhet og ekskludering",
+        "category_id": "makt_regulering_baerekraft",
+        "score": 10
+      },
+      {
+        "id": "usynlig_arbeid",
+        "title": "Usynlig arbeid",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "verdikjede_spor",
+        "title": "Verdikjedens spor",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "arbeid_produksjon_verdiskaping",
+      "logistikk_infrastruktur_rom"
+    ],
+    "emne_ids": [
+      "em_naering_eierskap_styring",
+      "em_naering_industri_og_mekanisering",
+      "em_naering_produksjon_produktivitet",
+      "em_naering_byens_okonomiske_rom",
+      "em_naering_innovasjon_teknologisk_skift",
+      "em_naering_eiendom_kapital_byutvikling",
+      "em_naering_omstilling_kriser_skift",
+      "em_naering_logistikk_verdikjeder",
+      "em_naering_forbruk_marked",
+      "em_naering_makt_ulikhet_arbeidsliv"
+    ],
+    "topic_hook_ids": [
+      "maskin_menneske_produksjon",
+      "verdikjede_spor",
+      "eierskap_og_styring",
+      "omstilling_av_naeringsrom"
+    ],
+    "method_ids": [
+      "met_naering_eierskaps_og_styringsanalyse",
+      "met_naering_logistikk_og_verdikjedeanalyse",
+      "met_naering_industrihistorisk_analyse",
+      "met_naering_omstilling_og_endringsanalyse"
+    ],
+    "thinker_ids": [
+      "thomas_piketty"
+    ],
+    "works": []
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_lilleborg_fabrikker_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "A/S Lilleborg Fabriker ble grunnlagt i 1897 som videreføring av eldre fabrikkvirksomhet.",
+      "source_ids": [
+        "byleksikon",
+        "industrimuseum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_eierskap_styring"
+    },
+    {
+      "claim_id": "claim_lilleborg_fabrikker_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Ludvig Mariboe opprettet en tekstilfabrikk på eiendommen i 1812.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_industri_og_mekanisering"
+    },
+    {
+      "claim_id": "claim_lilleborg_fabrikker_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oljemøllen fra 1833 inngår i Lilleborgs industrielle forhistorie.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_produksjon_produktivitet"
+    },
+    {
+      "claim_id": "claim_lilleborg_fabrikker_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Et sæbesyderi, eller såpekokeri, ble etablert i 1842.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_produksjon_produktivitet"
+    },
+    {
+      "claim_id": "claim_lilleborg_fabrikker_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Peter Wessel Wind Kildal kjøpte Lilleborg-anlegget i 1863.",
+      "source_ids": [
+        "snl_kildal",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_eierskap_styring"
+    },
+    {
+      "claim_id": "claim_lilleborg_fabrikker_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Under Kildals ledelse fikk lampeolje og såpe hovedvekten i produksjonen.",
+      "source_ids": [
+        "snl_kildal",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_produksjon_produktivitet"
+    },
+    {
+      "claim_id": "claim_lilleborg_fabrikker_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Lilleborg vokste fram i et eldre industrimiljø ved Akerselva, der vannfall og fabrikkarealer allerede var tatt i bruk.",
+      "source_ids": [
+        "byleksikon",
+        "industrimuseum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_byens_okonomiske_rom"
+    },
+    {
+      "claim_id": "claim_lilleborg_fabrikker_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "1812, 1833 og 1842 gjelder eldre virksomhetslag, mens 1897 gjelder aksjeselskapet.",
+      "source_ids": [
+        "byleksikon",
+        "industrimuseum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_eierskap_styring"
+    },
+    {
+      "claim_id": "claim_lilleborg_fabrikker_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Lilleborg inngikk samarbeid med De-No-Fa i 1925.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_eierskap_styring"
+    },
+    {
+      "claim_id": "claim_lilleborg_fabrikker_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Unilever ble deleier i Lilleborg i 1930.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_eierskap_styring"
+    },
+    {
+      "claim_id": "claim_lilleborg_fabrikker_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Unilever-koblingen ga tilgang til varemerker og produksjonsmetoder.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_innovasjon_teknologisk_skift"
+    },
+    {
+      "claim_id": "claim_lilleborg_fabrikker_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Kontorbygningen tegnet av Magnus Poulsson ble oppført i 1916 og senere utvidet.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_eiendom_kapital_byutvikling"
+    },
+    {
+      "claim_id": "claim_lilleborg_fabrikker_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Produksjonen på Sandaker ble avsluttet i 1997.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_lilleborg_fabrikker_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Produksjonen ble flyttet fra Sandaker til Ski.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_lilleborg_fabrikker_quiz_15",
+      "order": 15,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Store deler av det tidligere fabrikkarealet ble omformet til boliger i 2000–03.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_eiendom_kapital_byutvikling"
+    },
+    {
+      "claim_id": "claim_lilleborg_fabrikker_quiz_16",
+      "order": 16,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Kontorbygningen fra 1916, utvidet i 1930, er bevart som et fysisk spor etter fabrikken.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_eiendom_kapital_byutvikling"
+    },
+    {
+      "claim_id": "claim_lilleborg_fabrikker_quiz_17",
+      "order": 17,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Oslo byleksikon beskriver at Lilleborg produserte fett til okkupasjonsmakten.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_produksjon_produktivitet"
+    },
+    {
+      "claim_id": "claim_lilleborg_fabrikker_quiz_18",
+      "order": 18,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Fabrikken produserte samtidig såpe og vaskemidler som sivilbefolkningen trengte.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_forbruk_marked"
+    },
+    {
+      "claim_id": "claim_lilleborg_fabrikker_quiz_19",
+      "order": 19,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Motstandsbevegelsen vurderte at sabotasje også ville ramme befolkningens tilgang til nødvendige varer.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_makt_ulikhet_arbeidsliv"
+    },
+    {
+      "claim_id": "claim_lilleborg_fabrikker_quiz_20",
+      "order": 20,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Virksomheten ble samlet under navnet DeNoFa-Lilleborg i 1959.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_eierskap_styring"
+    },
+    {
+      "claim_id": "claim_lilleborg_fabrikker_quiz_21",
+      "order": 21,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Lilleborg ble skilt ut som egen virksomhet under Orkla Brands i 1996.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_eierskap_styring"
+    },
+    {
+      "claim_id": "claim_lilleborg_fabrikker_quiz_22",
+      "order": 22,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Solenis kjøpte den videreførte profesjonelle rengjøringsvirksomheten Lilleborg fra Orkla i 2024.",
+      "source_ids": [
+        "orkla",
+        "solenis"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_eierskap_styring"
+    },
+    {
+      "claim_id": "claim_lilleborg_fabrikker_quiz_23",
+      "order": 23,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Lilleborg bandt råvarer, kjemisk produksjon, emballasje, reklame og varemarked sammen.",
+      "source_ids": [
+        "byleksikon",
+        "industrimuseum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_lilleborg_fabrikker_quiz_24",
+      "order": 24,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kartpunktet viser den dokumenterte fabrikkporten og må ikke leses som sentrum for hele det tidligere komplekset.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_byens_okonomiske_rom"
+    },
+    {
+      "claim_id": "claim_lilleborg_fabrikker_quiz_25",
+      "order": 25,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Deleierskapet endret styringen og ga tilgang til varemerker og produksjonsmetoder.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_eierskap_styring"
+    },
+    {
+      "claim_id": "claim_lilleborg_fabrikker_quiz_26",
+      "order": 26,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Samme fabrikk leverte til okkupasjonsmakten og sivile, slik at sabotasje kunne få motstridende virkninger.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_makt_ulikhet_arbeidsliv"
+    },
+    {
+      "claim_id": "claim_lilleborg_fabrikker_quiz_27",
+      "order": 27,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Solenis kjøpte selskapsvirksomheten i 2024, mens produksjonen på Sandaker hadde vært avsluttet siden 1997.",
+      "source_ids": [
+        "byleksikon",
+        "orkla",
+        "solenis"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_lilleborg_fabrikker_quiz_28",
+      "order": 28,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Stedet binder eldre industri, aksjeselskap, forbruksvarekjede, maktforhold og boligomforming sammen.",
+      "source_ids": [
+        "byleksikon",
+        "snl_kildal",
+        "industrimuseum",
+        "solenis"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_industri_og_mekanisering"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "relation",
+      "id": "rel_lilleborg_peter_wessel_wind_kildal",
+      "source_file": "data/relations.json",
+      "summary": "Kjøpte Lilleborg i 1863, konsentrerte produksjonen om lampeolje og såpe og utviklet virksomheten til landets ledende i sitt slag."
+    },
+    {
+      "type": "story",
+      "id": "st_lilleborg_sabotasjedilemmaet",
+      "source_file": "data/stories/stories_lilleborg_fabrikker.json",
+      "summary": "Under okkupasjonen produserte Lilleborg både fett til tyske formål og nødvendige såpevarer for sivile, noe som gjorde fabrikken til et vanskelig sabotasjevalg."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "naeringsliv_lilleborg_fabrikker_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_lilleborg_fabrikker_quiz_01",
+        "claim_lilleborg_fabrikker_quiz_02",
+        "claim_lilleborg_fabrikker_quiz_03",
+        "claim_lilleborg_fabrikker_quiz_04",
+        "claim_lilleborg_fabrikker_quiz_05",
+        "claim_lilleborg_fabrikker_quiz_06",
+        "claim_lilleborg_fabrikker_quiz_07"
+      ]
+    },
+    {
+      "set_id": "naeringsliv_lilleborg_fabrikker_set_2",
+      "order": 2,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_lilleborg_fabrikker_quiz_08",
+        "claim_lilleborg_fabrikker_quiz_09",
+        "claim_lilleborg_fabrikker_quiz_10",
+        "claim_lilleborg_fabrikker_quiz_11",
+        "claim_lilleborg_fabrikker_quiz_12",
+        "claim_lilleborg_fabrikker_quiz_13",
+        "claim_lilleborg_fabrikker_quiz_14"
+      ]
+    },
+    {
+      "set_id": "naeringsliv_lilleborg_fabrikker_set_3",
+      "order": 3,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_lilleborg_fabrikker_quiz_15",
+        "claim_lilleborg_fabrikker_quiz_16",
+        "claim_lilleborg_fabrikker_quiz_17",
+        "claim_lilleborg_fabrikker_quiz_18",
+        "claim_lilleborg_fabrikker_quiz_19",
+        "claim_lilleborg_fabrikker_quiz_20",
+        "claim_lilleborg_fabrikker_quiz_21"
+      ]
+    },
+    {
+      "set_id": "naeringsliv_lilleborg_fabrikker_set_4",
+      "order": 4,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_lilleborg_fabrikker_quiz_22",
+        "claim_lilleborg_fabrikker_quiz_23",
+        "claim_lilleborg_fabrikker_quiz_24",
+        "claim_lilleborg_fabrikker_quiz_25",
+        "claim_lilleborg_fabrikker_quiz_26",
+        "claim_lilleborg_fabrikker_quiz_27",
+        "claim_lilleborg_fabrikker_quiz_28"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 28,
+    "counts": {
+      "fact": 14,
+      "context": 7,
+      "concept_theory": 7
+    },
+    "ratios": {
+      "fact": 0.5,
+      "context": 0.25,
+      "concept_theory": 0.25
+    }
+  }
+}
