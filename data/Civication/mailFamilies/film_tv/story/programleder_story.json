@@ -1,14 +1,249 @@
 {
-  "schema": "civication_mail_family_catalog_v1", "version": 1, "category": "film_tv", "role_scope": "programleder", "mail_type": "story",
-  "families": [{"id": "programleder_sensitiv_betroelse", "purpose": "La gjestens grense møte en konkret, uventet betroelse før sending.", "learning_focus": ["lytting", "samtykke", "oppfolging"], "mails": [{
-    "id": "film_tv_program_story_betroelse_001", "mail_type": "story", "mail_family": "programleder_sensitiv_betroelse", "role_scope": "programleder", "phase": "mid", "day_phase": "forenoon", "priority": 120, "cooldown": 4, "repeatable": false, "stage": "stable",
-    "from": "Thea, gjestekoordinator", "people_ref": "thea_gjestekoordinator", "person_id": "thea_gjestekoordinator", "place_id": "studio_program_film_tv", "thread_key": "film_tv_program_gjestegrense_001",
-    "subject": "Gjesten nevnte familieforløpet i lydprøven", "summary": "Under en uformell lydprøve fortalte gjesten en detalj som ville gitt et sterkt TV-øyeblikk, men som lå utenfor avtalt premiss.", "purpose": "Teste om programlederen skiller en betroelse fra publiserbart samtykke.", "stakes": "Detaljen kan berike samtalen, men opptakssituasjonen og den tidligere grensen gjør videre bruk uavklart.",
-    "situation": ["Uttalelsen kom før det formelle opptaket.", "Gjesten tok selv opp temaet.", "Det finnes ennå ingen ny avklaring om bruk i sending eller klipp."],
-    "task_domain": "intervju", "task_kind": "story", "competency": "gjestetillit", "pressure": "sterkt_oyeblikk_vs_ny_avklaring", "choice_axis": "stans_og_avklar_bruk_vs_bygg_sporsmal_rundt_detaljen", "consequence_axis": "informert_deltakelse_vs_utnyttet_betroelse", "narrative_arc": "gjestens_grense_blir_testet", "interaction_mode": "decision",
-    "choices": [
-      {"id": "A", "label": "Stans og be Thea avklare hva som kan brukes", "reply": "Det var en viktig opplysning, men vi bruker den ikke før gjesten har valgt premiss og omfang på nytt.", "effect": 1, "tags": ["consent", "pause"], "feedback": "Betroelsen blir et spørsmål om ny avklaring, ikke et automatisk programpoeng.", "effects": {"stats": {"trust": 2, "quality": 1, "risk": -3, "energy": -1}}},
-      {"id": "B", "label": "Skriv et indirekte spørsmål som lokker fram detaljen", "reply": "Jeg spør bredt nok til at gjesten kan fortelle det samme på kamera.", "effect": -1, "tags": ["covert_pressure", "boundary_risk"], "feedback": "Du forsøker å omgå grensen uten å gjøre bruken tydelig for gjesten.", "effects": {"stats": {"trust": -3, "quality": -1, "risk": 3}}}
-    ]
-  }]}]
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "programleder",
+  "mail_type": "story",
+  "families": [
+    {
+      "id": "programleder_sensitiv_betroelse",
+      "purpose": "La gjestens grense møte en konkret, uventet betroelse før sending.",
+      "learning_focus": [
+        "lytting",
+        "samtykke",
+        "oppfolging"
+      ],
+      "mails": [
+        {
+          "id": "film_tv_program_story_betroelse_001",
+          "mail_type": "story",
+          "mail_family": "programleder_sensitiv_betroelse",
+          "role_scope": "programleder",
+          "phase": "mid",
+          "day_phase": "forenoon",
+          "priority": 120,
+          "cooldown": 4,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Thea, gjestekoordinator",
+          "people_ref": "thea_gjestekoordinator",
+          "person_id": "thea_gjestekoordinator",
+          "place_id": "studio_program_film_tv",
+          "thread_key": "film_tv_program_gjestegrense_001",
+          "subject": "Gjesten nevnte familieforløpet i lydprøven",
+          "summary": "Under en uformell lydprøve fortalte gjesten en detalj som ville gitt et sterkt TV-øyeblikk, men som lå utenfor avtalt premiss.",
+          "purpose": "Teste om programlederen skiller en betroelse fra publiserbart samtykke.",
+          "stakes": "Detaljen kan berike samtalen, men opptakssituasjonen og den tidligere grensen gjør videre bruk uavklart.",
+          "situation": [
+            "Uttalelsen kom før det formelle opptaket.",
+            "Gjesten tok selv opp temaet.",
+            "Det finnes ennå ingen ny avklaring om bruk i sending eller klipp."
+          ],
+          "task_domain": "intervju",
+          "task_kind": "story",
+          "competency": "gjestetillit",
+          "pressure": "sterkt_oyeblikk_vs_ny_avklaring",
+          "choice_axis": "stans_og_avklar_bruk_vs_bygg_sporsmal_rundt_detaljen",
+          "consequence_axis": "informert_deltakelse_vs_utnyttet_betroelse",
+          "narrative_arc": "gjestens_grense_blir_testet",
+          "interaction_mode": "decision",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Stans og be Thea avklare hva som kan brukes",
+              "reply": "Det var en viktig opplysning, men vi bruker den ikke før gjesten har valgt premiss og omfang på nytt.",
+              "effect": 1,
+              "tags": [
+                "consent",
+                "pause"
+              ],
+              "feedback": "Betroelsen blir et spørsmål om ny avklaring, ikke et automatisk programpoeng.",
+              "effects": {
+                "stats": {
+                  "trust": 2,
+                  "quality": 1,
+                  "risk": -3,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Skriv et indirekte spørsmål som lokker fram detaljen",
+              "reply": "Jeg spør bredt nok til at gjesten kan fortelle det samme på kamera.",
+              "effect": -1,
+              "tags": [
+                "covert_pressure",
+                "boundary_risk"
+              ],
+              "feedback": "Du forsøker å omgå grensen uten å gjøre bruken tydelig for gjesten.",
+              "effects": {
+                "stats": {
+                  "trust": -3,
+                  "quality": -1,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_program_guest_waiting_disclosure",
+      "purpose": "La venting ha menneskelig og redaksjonell kostnad uten å gjøre sårbarhet til automatisk innhold.",
+      "learning_focus": [
+        "lytting_og_rolleforstaelse",
+        "sterkt_oyeblikk_vs_ikke_avklart_bruk"
+      ],
+      "mails": [
+        {
+          "role_scope": "programleder",
+          "place_id": "studio_program_film_tv",
+          "repeatable": false,
+          "stage": "stable",
+          "thread_key": "film_tv_program_live_interview_realism_001",
+          "planned_only": true,
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "film_tv",
+            "programleder"
+          ],
+          "id": "film_tv_program_realism_guest_waiting_disclosure_001",
+          "mail_type": "story",
+          "mail_family": "role_world_rollout_program_guest_waiting_disclosure",
+          "phase": "advanced",
+          "day_phase": "evening",
+          "priority": 96,
+          "cooldown": 12,
+          "from": "Thea, gjestekoordinator",
+          "people_ref": "thea_gjestekoordinator",
+          "person_id": "thea_gjestekoordinator",
+          "subject": "Lydprøven åpner et sterkere tema mens gjesteavklaringen fortsatt venter",
+          "summary": "I ventetiden forteller gjesten om en belastning som kan gi sterk TV, men sier samtidig at hen ikke vet om det skal bli del av programmet; den nye sårbarheten må derfor forbli utenfor sendeflyten til avklaringen er reell.",
+          "purpose": "La venting ha menneskelig og redaksjonell kostnad uten å gjøre sårbarhet til automatisk innhold.",
+          "stakes": "Programlederens varme kan bygge tillit, men nærhet i lydprøven er ikke publiseringssamtykke.",
+          "situation": [
+            "Samtalen skjer før formelt opptak.",
+            "Gjesten ber om tid til å tenke sammen med Thea.",
+            "Kontrollrommet har ikke endret kjøreplan eller premiss."
+          ],
+          "task_domain": "gjestegrense_og_venting",
+          "task_kind": "story",
+          "competency": "lytting_og_rolleforstaelse",
+          "pressure": "sterkt_oyeblikk_vs_ikke_avklart_bruk",
+          "choice_axis": "hold_rom_og_vent_vs_merk_sitat_for_sending",
+          "consequence_axis": "menneskelig_tillit_vs_utnyttet_narhet",
+          "narrative_arc": "fra_uavklart_premiss_til_sporbart_sende_og_brukshandoff",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "film_tv_program_live_interview_case_001"
+            ],
+            "institution_id": "film_tv_programredaksjon_001",
+            "waiting_for_actor_id": "thea_gjestekoordinator",
+            "rework_of_scene_id": "film_tv_program_realism_guest_boundary_handoff_001",
+            "priority": "high"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lytt, stans innholdsarbeidet og la Thea følge opp",
+              "reply": "Dette blir ikke del av programmet før du og Thea har avklart om og hvordan det kan brukes.",
+              "effect": 2,
+              "feedback": "Gjesten får tid, og redaksjonen beholder et sant skille mellom samtale og publiserbart materiale.",
+              "effects": {
+                "stats": {
+                  "trust": 3,
+                  "quality": 2,
+                  "risk": -3,
+                  "energy": -1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_program_disclosure_stays_waiting",
+                    "work_object_id": "film_tv_program_live_interview_case_001",
+                    "to_status": "waiting",
+                    "to_phase": "awaiting_guest_scope_confirmation",
+                    "note": "Den sensitive opplysningen holdes utenfor innholdsarbeidet mens gjesten avklarer med Thea."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_program_disclosure_protected",
+                    "work_object_id": "film_tv_program_live_interview_case_001",
+                    "flag": "soundcheck_disclosure_not_cleared_for_use"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_program_standing_thea_care",
+                    "audience_id": "professional:thea_gjestekoordinator",
+                    "delta": 3,
+                    "reason": "Programlederen gir koordinatoren rom til reell oppfølging.",
+                    "source_actor_id": "thea_gjestekoordinator"
+                  },
+                  {
+                    "event_id": "film_tv_program_standing_studio_boundary",
+                    "audience_id": "team:film_tv_programstudio",
+                    "delta": 2,
+                    "reason": "Studioteamet lærer at et sterkt øyeblikk kan være utenfor sending.",
+                    "source_actor_id": "jonas_liveprodusent"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Noter sitatet som reserve dersom sendingen mister energi",
+              "reply": "Jeg bruker det bare hvis samtalen trenger mer nerve.",
+              "effect": -2,
+              "feedback": "En uavklart betroelse gjøres til taktisk reserve, selv om gjesten ba om tid, og den faktiske ventingen undergraves.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -3,
+                  "risk": 3
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_program_disclosure_exploited_waiting",
+                    "work_object_id": "film_tv_program_live_interview_case_001",
+                    "to_status": "waiting",
+                    "to_phase": "awaiting_guest_scope_confirmation",
+                    "note": "Caset venter formelt, men den sensitive opplysningen er likevel gjort til innholdsreserve."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_program_disclosure_exploitation",
+                    "work_object_id": "film_tv_program_live_interview_case_001",
+                    "flag": "uncleared_disclosure_marked_as_content"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_program_standing_thea_exploit",
+                    "audience_id": "professional:thea_gjestekoordinator",
+                    "delta": -4,
+                    "reason": "Gjesteoppfølgingen undergraves av at uavklart materiale allerede behandles som innhold.",
+                    "source_actor_id": "thea_gjestekoordinator"
+                  },
+                  {
+                    "event_id": "film_tv_program_standing_studio_sensation",
+                    "audience_id": "team:film_tv_programstudio",
+                    "delta": -2,
+                    "reason": "Studioet lærer at energi kan trumfe uttrykkelig usikkerhet.",
+                    "source_actor_id": "jonas_liveprodusent"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

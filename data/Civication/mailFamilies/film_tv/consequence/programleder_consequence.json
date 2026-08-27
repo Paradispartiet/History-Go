@@ -1,14 +1,403 @@
 {
-  "schema": "civication_mail_family_catalog_v1", "version": 1, "category": "film_tv", "role_scope": "programleder", "mail_type": "consequence",
-  "families": [{"id": "programleder_rettelse_i_sending", "purpose": "Koble tidligere faktasnarvei til en synlig og reparerbar publikumskostnad.", "learning_focus": ["rettelse", "ansvar", "publikumstillit"], "mails": [{
-    "id": "film_tv_program_consequence_rettelse_001", "mail_type": "consequence", "mail_family": "programleder_rettelse_i_sending", "role_scope": "programleder", "phase": "mastery", "day_phase": "evening", "priority": 100, "cooldown": 6, "repeatable": false, "stage": "stable",
-    "from": "Jonas, liveprodusent", "people_ref": "jonas_liveprodusent", "person_id": "jonas_liveprodusent", "place_id": "kontrollrom_program_film_tv",
-    "subject": "Publikum spør hvilket tall som faktisk gjelder", "summary": "Etter introduksjonen har flere seere reagert på forskjellen mellom antall søknader og antall ferdige produksjoner. Jonas trenger en kort rettelse før sendingen avsluttes.", "purpose": "Teste om programlederen retter konkret og åpent uten å skyve ansvaret over på research eller gjest.", "stakes": "En tydelig rettelse koster noen sekunder; en vag bortforklaring gjør tillitsbruddet større.",
-    "situation": ["Canonical brief viser korrekt søknadstall.", "Feil formulering ble lest på lufta.", "Det er tid til én kort og presis rettelse før avslutning."],
-    "task_domain": "redaksjonell_oppfolging", "task_kind": "consequence", "competency": "redaksjonell_integritet", "pressure": "fasade_vs_apen_rettelse", "choice_axis": "rett_konkret_og_ta_ansvar_vs_formuler_vagt", "consequence_axis": "reparert_tillit_vs_varig_usikkerhet", "narrative_arc": "fra_brief_til_sending", "interaction_mode": "decision",
-    "choices": [
-      {"id": "A", "label": "Rett tallet konkret og si hva det faktisk måler", "reply": "Vi sa antall ferdige produksjoner. Det riktige er antall søknader, og vi beklager feilen.", "effect": 1, "tags": ["repair", "accountability"], "feedback": "Publikum får både korrekt talltype og en tydelig forklaring på feilen.", "effects": {"stats": {"quality": 3, "trust": 2, "risk": -3, "status": -1}}},
-      {"id": "B", "label": "Si at tall kan tolkes ulikt", "reply": "Det finnes flere måter å telle aktiviteten på, og bildet er derfor sammensatt.", "effect": -1, "tags": ["avoidance", "trust_risk"], "feedback": "Du skjuler en konkret feil bak en vag formulering og lar publikum stå uten svar.", "effects": {"stats": {"quality": -3, "trust": -3, "risk": 2, "status": 1}}}
-    ]
-  }]}]
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "programleder",
+  "mail_type": "consequence",
+  "families": [
+    {
+      "id": "programleder_rettelse_i_sending",
+      "purpose": "Koble tidligere faktasnarvei til en synlig og reparerbar publikumskostnad.",
+      "learning_focus": [
+        "rettelse",
+        "ansvar",
+        "publikumstillit"
+      ],
+      "mails": [
+        {
+          "id": "film_tv_program_consequence_rettelse_001",
+          "mail_type": "consequence",
+          "mail_family": "programleder_rettelse_i_sending",
+          "role_scope": "programleder",
+          "phase": "mastery",
+          "day_phase": "evening",
+          "priority": 100,
+          "cooldown": 6,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Jonas, liveprodusent",
+          "people_ref": "jonas_liveprodusent",
+          "person_id": "jonas_liveprodusent",
+          "place_id": "kontrollrom_program_film_tv",
+          "subject": "Publikum spør hvilket tall som faktisk gjelder",
+          "summary": "Etter introduksjonen har flere seere reagert på forskjellen mellom antall søknader og antall ferdige produksjoner. Jonas trenger en kort rettelse før sendingen avsluttes.",
+          "purpose": "Teste om programlederen retter konkret og åpent uten å skyve ansvaret over på research eller gjest.",
+          "stakes": "En tydelig rettelse koster noen sekunder; en vag bortforklaring gjør tillitsbruddet større.",
+          "situation": [
+            "Canonical brief viser korrekt søknadstall.",
+            "Feil formulering ble lest på lufta.",
+            "Det er tid til én kort og presis rettelse før avslutning."
+          ],
+          "task_domain": "redaksjonell_oppfolging",
+          "task_kind": "consequence",
+          "competency": "redaksjonell_integritet",
+          "pressure": "fasade_vs_apen_rettelse",
+          "choice_axis": "rett_konkret_og_ta_ansvar_vs_formuler_vagt",
+          "consequence_axis": "reparert_tillit_vs_varig_usikkerhet",
+          "narrative_arc": "fra_brief_til_sending",
+          "interaction_mode": "decision",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Rett tallet konkret og si hva det faktisk måler",
+              "reply": "Vi sa antall ferdige produksjoner. Det riktige er antall søknader, og vi beklager feilen.",
+              "effect": 1,
+              "tags": [
+                "repair",
+                "accountability"
+              ],
+              "feedback": "Publikum får både korrekt talltype og en tydelig forklaring på feilen.",
+              "effects": {
+                "stats": {
+                  "quality": 3,
+                  "trust": 2,
+                  "risk": -3,
+                  "status": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Si at tall kan tolkes ulikt",
+              "reply": "Det finnes flere måter å telle aktiviteten på, og bildet er derfor sammensatt.",
+              "effect": -1,
+              "tags": [
+                "avoidance",
+                "trust_risk"
+              ],
+              "feedback": "Du skjuler en konkret feil bak en vag formulering og lar publikum stå uten svar.",
+              "effects": {
+                "stats": {
+                  "quality": -3,
+                  "trust": -3,
+                  "risk": 2,
+                  "status": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_program_live_interview_close",
+      "purpose": "Avslutte det vedvarende caset uten å gjøre standing eller synlighet til publiseringsmyndighet.",
+      "learning_focus": [
+        "redaksjonell_integritet",
+        "personlig_eierskap_vs_institusjonell_beslutning"
+      ],
+      "mails": [
+        {
+          "role_scope": "programleder",
+          "place_id": "kontrollrom_program_film_tv",
+          "repeatable": false,
+          "stage": "stable",
+          "thread_key": "film_tv_program_live_interview_realism_001",
+          "planned_only": true,
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "film_tv",
+            "programleder"
+          ],
+          "id": "film_tv_program_realism_live_interview_case_close_001",
+          "mail_type": "consequence",
+          "mail_family": "role_world_rollout_program_live_interview_close",
+          "phase": "mastery",
+          "day_phase": "afternoon",
+          "priority": 101,
+          "cooldown": 12,
+          "from": "Ingrid, redaksjonsleder",
+          "people_ref": "ingrid_redaksjonsleder_program",
+          "person_id": "ingrid_redaksjonsleder_program",
+          "subject": "Lukk programlederens case som anbefaling – Ingrid beholder publiseringsavgjørelsen",
+          "summary": "Fakta, gjestegrense, liveavvik og etterbruk er samlet. Ingrid trenger programlederens begrunnede anbefaling og restspørsmål før hun godkjenner sluttstatus.",
+          "purpose": "Avslutte det vedvarende caset uten å gjøre standing eller synlighet til publiseringsmyndighet.",
+          "stakes": "Et ryddig case kan gi sterk situert tillit. Den tilliten utvider påvirkning, men flytter ikke godkjenning, sikkerhet eller redaksjonelt ansvar.",
+          "situation": [
+            "Faktakort og premissrework er dokumentert.",
+            "Gjestegrensen er registrert per bruksflate.",
+            "Ingrid eier publisering og vesentlige redaksjonelle endringer."
+          ],
+          "task_domain": "redaksjonelt_slutthandoff",
+          "task_kind": "consequence",
+          "competency": "redaksjonell_integritet",
+          "pressure": "personlig_eierskap_vs_institusjonell_beslutning",
+          "choice_axis": "anbefal_status_med_restsporsmal_vs_erklar_selv_godkjent",
+          "consequence_axis": "situert_tillit_med_grense_vs_autoritetslekkasje",
+          "narrative_arc": "fra_uavklart_premiss_til_sporbart_sende_og_brukshandoff",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "film_tv_program_live_interview_case_001"
+            ],
+            "institution_id": "film_tv_programredaksjon_001",
+            "handoff_to_actor_id": "ingrid_redaksjonsleder_program",
+            "rework_of_scene_id": "film_tv_program_realism_reuse_boundary_handoff_001",
+            "priority": "high"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Anbefal publiseringsklar status og list restspørsmålene Ingrid må avgjøre",
+              "reply": "Jeg anbefaler status på dette grunnlaget; Ingrid avgjør publisering og eventuelle vesentlige endringer.",
+              "effect": 2,
+              "feedback": "Caset lukkes som sporbart handoff med programlederens bidrag og beslutningseier tydelig adskilt.",
+              "effects": {
+                "stats": {
+                  "quality": 3,
+                  "trust": 3,
+                  "risk": -3,
+                  "status": 1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_program_case_completed",
+                    "work_object_id": "film_tv_program_live_interview_case_001",
+                    "to_status": "completed",
+                    "to_phase": "editorial_handoff_ready_for_publication_approval",
+                    "note": "Programlederens case er fullført som anbefaling; publiseringsgodkjenning forblir hos Ingrid."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_program_case_authority_bounded",
+                    "work_object_id": "film_tv_program_live_interview_case_001",
+                    "flag": "host_recommendation_and_editorial_approval_separated"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_program_standing_ingrid_close",
+                    "audience_id": "manager:ingrid_redaksjonsleder_program",
+                    "delta": 3,
+                    "reason": "Ingrid får et komplett handoff med eksplisitte restbeslutninger.",
+                    "source_actor_id": "ingrid_redaksjonsleder_program"
+                  },
+                  {
+                    "event_id": "film_tv_program_standing_research_close",
+                    "audience_id": "professional:amina_researcher_program",
+                    "delta": 2,
+                    "reason": "Kildegrunnlaget overlever fra brief til etterbruk.",
+                    "source_actor_id": "amina_researcher_program"
+                  },
+                  {
+                    "event_id": "film_tv_program_standing_jonas_close",
+                    "audience_id": "professional:jonas_liveprodusent",
+                    "delta": 2,
+                    "reason": "Liveavviket er dokumentert uten mandatglidning.",
+                    "source_actor_id": "jonas_liveprodusent"
+                  },
+                  {
+                    "event_id": "film_tv_program_standing_thea_close",
+                    "audience_id": "professional:thea_gjestekoordinator",
+                    "delta": 2,
+                    "reason": "Gjestegrensen overlever alle bruksflater.",
+                    "source_actor_id": "thea_gjestekoordinator"
+                  },
+                  {
+                    "event_id": "film_tv_program_standing_editorial_close",
+                    "audience_id": "team:film_tv_programredaksjon",
+                    "delta": 2,
+                    "reason": "Redaksjonen kan etterprøve hele løpet.",
+                    "source_actor_id": "ingrid_redaksjonsleder_program"
+                  },
+                  {
+                    "event_id": "film_tv_program_standing_studio_close",
+                    "audience_id": "team:film_tv_programstudio",
+                    "delta": 1,
+                    "reason": "Studioets bidrag og avvik er synlige i samme case.",
+                    "source_actor_id": "jonas_liveprodusent"
+                  }
+                ]
+              },
+              "authority_action": {
+                "action_id": "recommend_interview_readiness",
+                "intent": "recommend"
+              }
+            },
+            {
+              "id": "B",
+              "label": "Erklær programmet godkjent fordi du bar sendingen og kjenner materialet best",
+              "reply": "Jeg godkjenner sluttstatusen; resten er bare administrativ oppfølging.",
+              "effect": -2,
+              "feedback": "Situert tillit og synlighet gjøres til publiseringsmyndighet, og restspørsmålene forsvinner fra handoffet.",
+              "effects": {
+                "stats": {
+                  "status": 2,
+                  "quality": -3,
+                  "trust": -3,
+                  "risk": 4
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_program_case_self_approved",
+                    "work_object_id": "film_tv_program_live_interview_case_001",
+                    "to_status": "completed",
+                    "to_phase": "editorial_authority_breached",
+                    "note": "Programlederen har erklært publiseringsstatus uten godkjenning."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_program_case_self_approval",
+                    "work_object_id": "film_tv_program_live_interview_case_001",
+                    "flag": "host_claimed_publication_authority"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_program_standing_ingrid_self_approval",
+                    "audience_id": "manager:ingrid_redaksjonsleder_program",
+                    "delta": -5,
+                    "reason": "Programlederen overtar redaksjonslederens eksplisitte beslutning.",
+                    "source_actor_id": "ingrid_redaksjonsleder_program"
+                  },
+                  {
+                    "event_id": "film_tv_program_standing_research_self_approval",
+                    "audience_id": "professional:amina_researcher_program",
+                    "delta": -2,
+                    "reason": "Kildeusikkerhet blir usynlig i sluttstatusen.",
+                    "source_actor_id": "amina_researcher_program"
+                  },
+                  {
+                    "event_id": "film_tv_program_standing_jonas_self_approval",
+                    "audience_id": "professional:jonas_liveprodusent",
+                    "delta": -2,
+                    "reason": "Liveavvikets restpunkter underordnes programlederens personlige fasade.",
+                    "source_actor_id": "jonas_liveprodusent"
+                  },
+                  {
+                    "event_id": "film_tv_program_standing_thea_self_approval",
+                    "audience_id": "professional:thea_gjestekoordinator",
+                    "delta": -3,
+                    "reason": "Gjestegrensen behandles som ferdig bare fordi sendingen er over.",
+                    "source_actor_id": "thea_gjestekoordinator"
+                  },
+                  {
+                    "event_id": "film_tv_program_standing_editorial_self_approval",
+                    "audience_id": "team:film_tv_programredaksjon",
+                    "delta": -4,
+                    "reason": "Institusjonell godkjenning kollapser til synlighetsmakt.",
+                    "source_actor_id": "ingrid_redaksjonsleder_program"
+                  },
+                  {
+                    "event_id": "film_tv_program_standing_studio_self_approval",
+                    "audience_id": "team:film_tv_programstudio",
+                    "delta": -2,
+                    "reason": "Studioet lærer at den synlige rollen kan overstyre resten av produksjonen.",
+                    "source_actor_id": "jonas_liveprodusent"
+                  }
+                ]
+              },
+              "authority_action": {
+                "action_id": "approve_publication",
+                "intent": "execute"
+              }
+            }
+          ],
+          "authority_context": {
+            "institution_id": "film_tv_programredaksjon_001",
+            "unit_id": "film_tv_liveprogram",
+            "role_scope": "programleder",
+            "reporting_line": [
+              "ingrid_redaksjonsleder_program",
+              "jonas_liveprodusent"
+            ],
+            "peer_functions": [
+              "amina_researcher_program",
+              "thea_gjestekoordinator"
+            ],
+            "external_counterparts": [
+              "film_tv_programgjest"
+            ],
+            "goals_pressures": [
+              "faktapresisjon",
+              "gjestetillit",
+              "liveflyt",
+              "publikumstillit",
+              "sendefrist"
+            ],
+            "approval_points": [
+              {
+                "approval_id": "film_tv_program_premise_approval",
+                "action_id": "approve_editorial_premise",
+                "approver_actor_id": "ingrid_redaksjonsleder_program",
+                "approval_object_id": "film_tv_program_premise_approval_001"
+              },
+              {
+                "approval_id": "film_tv_program_publication_approval",
+                "action_id": "approve_publication",
+                "approver_actor_id": "ingrid_redaksjonsleder_program",
+                "approval_object_id": "film_tv_program_publication_approval_001"
+              },
+              {
+                "approval_id": "film_tv_program_live_rundown_approval",
+                "action_id": "release_live_rundown",
+                "approver_actor_id": "jonas_liveprodusent",
+                "approval_object_id": "film_tv_program_live_rundown_001"
+              }
+            ],
+            "authority_rules": [
+              {
+                "action_id": "recommend_interview_readiness",
+                "authority": "influence_only",
+                "requires_resources": []
+              },
+              {
+                "action_id": "recommend_interview_premise",
+                "authority": "influence_only",
+                "requires_resources": []
+              },
+              {
+                "action_id": "approve_editorial_premise",
+                "authority": "approval_required",
+                "approval_id": "film_tv_program_premise_approval",
+                "requires_resources": []
+              },
+              {
+                "action_id": "approve_publication",
+                "authority": "approval_required",
+                "approval_id": "film_tv_program_publication_approval",
+                "requires_resources": []
+              },
+              {
+                "action_id": "release_live_rundown",
+                "authority": "approval_required",
+                "approval_id": "film_tv_program_live_rundown_approval",
+                "requires_resources": []
+              },
+              {
+                "action_id": "expand_sensitive_guest_scope",
+                "authority": "forbidden",
+                "requires_resources": []
+              },
+              {
+                "action_id": "operate_untrained_studio_system",
+                "authority": "forbidden",
+                "requires_resources": []
+              },
+              {
+                "action_id": "promise_editorial_outcome",
+                "authority": "forbidden",
+                "requires_resources": []
+              }
+            ],
+            "resources": [],
+            "escalation_paths": []
+          }
+        }
+      ]
+    }
+  ]
 }
