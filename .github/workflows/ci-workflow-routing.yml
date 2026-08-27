@@ -3,15 +3,7 @@ name: CI workflow routing governance
 on:
   pull_request:
     paths:
-      - '.github/workflows/fagverk-*.yml'
-      - '.github/workflows/ci-workflow-routing.yml'
-      - 'scripts/audit-ci-workflow-routing.mjs'
-      - 'docs/CI_WORKFLOW_ROUTING.md'
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/fagverk-*.yml'
-      - '.github/workflows/ci-workflow-routing.yml'
+      - '.github/workflows/**'
       - 'scripts/audit-ci-workflow-routing.mjs'
       - 'docs/CI_WORKFLOW_ROUTING.md'
   workflow_dispatch:
@@ -25,7 +17,7 @@ concurrency:
 
 jobs:
   routing:
-    name: Prevent global Fagverk fan-out and CI self-mutation
+    name: Enforce workflow ownership, cancellation and fan-out budgets
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5

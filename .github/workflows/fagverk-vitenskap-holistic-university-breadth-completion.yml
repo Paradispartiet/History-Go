@@ -18,24 +18,6 @@ on:
       - 'tests/vitenskap-theory-integrity.test.mjs'
       - 'tests/fagverk-vitenskap-*-coverage.test.mjs'
       - '.github/workflows/fagverk-vitenskap-holistic-university-breadth-completion.yml'
-  push:
-    branches: [main]
-    paths:
-      - 'data/fag/vitenskap/**'
-      - 'data/fagverk/vitenskap/**'
-      - 'reports/fagverk/vitenskap-holistic-university-breadth-completion-audit.json'
-      - 'reports/fagverk/vitenskap-holistic-quality-review-audit.json'
-      - 'reports/fagverk/vitenskap-theory-integrity-audit.json'
-      - 'reports/fagverk/vitenskap-*-coverage-audit.json'
-      - 'scripts/audit-fagverk-vitenskap-holistic-university-breadth-completion.mjs'
-      - 'scripts/audit-fagverk-vitenskap-holistic-quality-review.mjs'
-      - 'tools/audit-vitenskap-theory-integrity.mjs'
-      - 'scripts/audit-fagverk-vitenskap-*-coverage.mjs'
-      - 'tests/fagverk-vitenskap-holistic-university-breadth-completion.test.mjs'
-      - 'tests/fagverk-vitenskap-holistic-quality-review.test.mjs'
-      - 'tests/vitenskap-theory-integrity.test.mjs'
-      - 'tests/fagverk-vitenskap-*-coverage.test.mjs'
-      - '.github/workflows/fagverk-vitenskap-holistic-university-breadth-completion.yml'
   workflow_dispatch:
 
 concurrency:

@@ -12,23 +12,14 @@ on:
       - "reports/README.md"
       - "scripts/check-documentation-governance.mts"
       - ".github/workflows/documentation-governance.yml"
-  push:
-    branches:
-      - main
-    paths:
-      - "README.md"
-      - "DOCS.md"
-      - "AGENTS.md"
-      - "CLAUDE.md"
-      - "README/**"
-      - "docs/**"
-      - "reports/README.md"
-      - "scripts/check-documentation-governance.mts"
-      - ".github/workflows/documentation-governance.yml"
   workflow_dispatch:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   documentation-governance:

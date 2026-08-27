@@ -10,18 +10,6 @@ on:
       - 'tools/audit-filosofi-theory-integrity.mjs'
       - 'reports/fagverk/filosofi-theory-integrity-audit.json'
       - '.github/workflows/fagverk-filosofi-source-integrity.yml'
-  push:
-    branches:
-      - main
-    paths:
-      - 'data/fag/filosofi/**'
-      - 'data/fagverk/filosofi/**'
-      - 'tests/fagverk-filosofi-source-integrity.test.mjs'
-      - 'tests/filosofi-theory-integrity.test.mjs'
-      - 'tools/audit-filosofi-theory-integrity.mjs'
-      - 'reports/fagverk/filosofi-theory-integrity-audit.json'
-      - '.github/workflows/fagverk-filosofi-source-integrity.yml'
-
 permissions:
   contents: read
 

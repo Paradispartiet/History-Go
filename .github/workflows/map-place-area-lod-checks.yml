@@ -10,20 +10,14 @@ on:
       - 'tests/map-place-area-lod.test.mjs'
       - 'data/places/**'
       - '.github/workflows/map-place-area-lod-checks.yml'
-  push:
-    branches: [main]
-    paths:
-      - 'js/map.ts'
-      - 'js/map.js'
-      - 'dist/web/map.js'
-      - 'dist/web/map.js.map'
-      - 'tests/map-place-area-lod.test.mjs'
-      - 'data/places/**'
-      - '.github/workflows/map-place-area-lod-checks.yml'
   workflow_dispatch:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   area-lod:

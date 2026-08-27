@@ -10,7 +10,6 @@ on:
       - 'data/leksikon/places/oslo/historie/leksikon_oslo_historie.json'
       - 'data/quiz/**'
       - 'data/knowledge/**'
-      - 'data/fag/**'
       - 'data/badges/**'
       - 'data/categories/**'
       - 'bilder/merker/**'
@@ -45,6 +44,7 @@ on:
       - '.github/ci/place-regression-registry-v1.json'
       - 'scripts/build-civication-history-people-index.mts'
       - 'scripts/knowledge-canonical-data.mts'
+      - 'scripts/audit-knowledge-links.mjs'
       - 'scripts/audit-category-governance.mjs'
       - 'scripts/audit-politikk-place-production.mjs'
       - 'scripts/audit-historie-place-production.mjs'
@@ -137,14 +137,14 @@ jobs:
               data/quiz/*|scripts/audit-quiz-*|scripts/build-quiz-production-context.mjs|scripts/quiz-production-lib.mjs|tests/quiz-*|tests/quiz-content-quality-audit.test.mjs)
                 quiz=true
                 ;;
-              data/knowledge/*|scripts/knowledge-canonical-data.mts|js/knowledgeV2.ts|js/knowledgeClaimCore.ts|dist/web/knowledgeV2.js|js/knowledgePage.js|tests/knowledge-v2-model.test.js|tests/knowledge-canonical-storage-contract.test.js)
+              data/knowledge/*|scripts/knowledge-canonical-data.mts|scripts/audit-knowledge-links.mjs|js/knowledgeV2.ts|js/knowledgeClaimCore.ts|dist/web/knowledgeV2.js|js/knowledgePage.js|tests/knowledge-v2-model.test.js|tests/knowledge-canonical-storage-contract.test.js)
                 knowledge=true
                 ;;
               data/categories/*|js/DomainRegistry.js|js/core/categories.ts|js/core/categories.js|dist/web/categories.js|bilder/merker/*)
                 places=true
                 quiz=true
                 ;;
-              data/fag/*|data/badges/*)
+              data/badges/*)
                 places=true
                 quiz=true
                 knowledge=true
@@ -307,9 +307,10 @@ jobs:
           npm run knowledge:canonical:check
           npm run knowledge:legacy:check
           npm run audit:knowledge
+          node scripts/audit-knowledge-links.mjs
       - name: Run Knowledge V2 and storage contract tests
         run: |
-          npm run test:knowledge-v2
+          npm run test:knowledge-core
           node --test tests/knowledge-canonical-storage-contract.test.js
       - name: Upload Knowledge contract audit
         if: always()
@@ -318,6 +319,7 @@ jobs:
           name: knowledge-contract-audit
           path: |
             reports/knowledge-contract-audit.json
+            reports/knowledge-link-audit.json
             reports/knowledge-id-backfill.json
             reports/knowledge-universe-readers.json
           if-no-files-found: warn

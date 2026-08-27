@@ -34,45 +34,14 @@ on:
       - 'reports/historie-universal-coverage/**'
       - 'docs/HISTORY_THEORY_EVIDENCE.md'
       - '.github/workflows/history-theory-evidence.yml'
-  push:
-    branches:
-      - main
-    paths:
-      - 'data/fag/historie/theory_evidence_historie_contract_v1.json'
-      - 'data/fag/historie/theory_evidence_historie_canonical_v1.json'
-      - 'data/fag/historie/theory_objects_historie_canonical_v5_5.json'
-      - 'data/fag/historie/historiepensum_canonical_v4_5.json'
-      - 'data/fag/historie/emner_historie_canonical_v4_5.json'
-      - 'data/fag/historie/emnemapping_historie_canonical_v4_5.json'
-      - 'data/fag/historie/fagkart_historie_canonical_v4_5.json'
-      - 'data/fag/historie/claims_historie_canonical_v1.json'
-      - 'data/fag/historie/sources_historie_canonical_v1.json'
-      - 'data/fag/historie/place_evidence_historie_v1.json'
-      - 'data/fag/profiles/historie/oslo_akershus/profile.json'
-      - 'data/fag/historie/historie_universal_coverage_contract_v1.json'
-      - 'tools/validate-historie-theory-evidence.mjs'
-      - 'tools/validate-historie-domain.mjs'
-      - 'tools/validate-historie-forste-verdenskrig-mellomkrig.mjs'
-      - 'tools/validate-historie-kjonn-familie-livslop.mjs'
-      - 'tools/validate-historie-kald-krig-etterkrig.mjs'
-      - 'tools/validate-historie-global-kolonial-transnasjonal.mjs'
-      - 'tools/audit-historie-universal-coverage.mjs'
-      - 'tests/historie-global-colonial-transnational-evidence.test.mjs'
-      - 'tests/historie-first-world-war-interwar-evidence.test.mjs'
-      - 'tests/historie-gender-family-lifecourse-evidence.test.mjs'
-      - 'tests/historie-cold-war-postwar-evidence.test.mjs'
-      - 'data/fag/historie/source_dossiers/global_colonial_transnational_v1.json'
-      - 'data/fag/historie/source_dossiers/first_world_war_interwar_v1.json'
-      - 'data/fag/historie/source_dossiers/gender_family_lifecourse_v1.json'
-      - 'data/fag/historie/source_dossiers/cold_war_postwar_v1.json'
-      - 'reports/historie-theory-evidence/**'
-      - 'reports/historie-universal-coverage/**'
-      - 'docs/HISTORY_THEORY_EVIDENCE.md'
-      - '.github/workflows/history-theory-evidence.yml'
   workflow_dispatch:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   theory-evidence:

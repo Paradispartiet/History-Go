@@ -19,29 +19,14 @@ on:
       - 'package.json'
       - 'package-lock.json'
       - '.github/workflows/epoke-viewer-quality.yml'
-  push:
-    branches: [main]
-    paths:
-      - 'data/epoker/epoker_historie.json'
-      - 'data/leksikon/**'
-      - 'data/places/**'
-      - 'data/epoker/epoke-place-index.json'
-      - 'js/epoker-runtime.js'
-      - 'js/ui/epoke-viewer.js'
-      - 'js/ui/place-card-epoke.js'
-      - 'js/fagverk-history-period-deeplink.js'
-      - 'scripts/build-epoke-place-index.mjs'
-      - 'tests/epoke-*.test.mjs'
-      - 'tests/epoker-*.test.mjs'
-      - 'tests/fagverk-history-period-deeplink.test.mjs'
-      - 'tests/place-card-meta-surfaces.test.mjs'
-      - 'package.json'
-      - 'package-lock.json'
-      - '.github/workflows/epoke-viewer-quality.yml'
   workflow_dispatch:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   epoch-viewer:

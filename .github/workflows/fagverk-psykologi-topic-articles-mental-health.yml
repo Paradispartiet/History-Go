@@ -21,27 +21,6 @@ on:
       - "reports/fagverk/psykologi-university-completion-v1-audit.json"
       - "reports/fagverk/psykologi-editorial-quality-v2-audit.json"
       - ".github/workflows/fagverk-psykologi-topic-articles-mental-health.yml"
-  push:
-    branches: [main]
-    paths:
-      - "data/fagverk/psykologi/emneartikler/**"
-      - "data/fag/psykologi/psykologi_university_readiness_v1.json"
-      - "data/fag/psykologi/begreper_psykologi_canonical_v1.json"
-      - "data/fag/psykologi/anvendte_fagfelt_psykologi_university_v1.json"
-      - "scripts/materialize-psykologi-topic-articles-mental-health-v1.mjs"
-      - "scripts/audit-fagverk-psykologi-topic-articles-mental-health-v1.mjs"
-      - "scripts/materialize-psykologi-university-completion-v1.mjs"
-      - "scripts/lib/psykologi-editorial-curation-v2.mjs"
-      - "scripts/audit-fagverk-psykologi-university-completion-v1.mjs"
-      - "scripts/audit-fagverk-psykologi-editorial-quality-v2.mjs"
-      - "scripts/audit-fagverk-psykologi-university-readiness.mjs"
-      - "tests/fagverk-psykologi-topic-articles-mental-health-v1.test.mjs"
-      - "tests/fagverk-psykologi-university-completion-v1.test.mjs"
-      - "tests/fagverk-psykologi-editorial-quality-v2.test.mjs"
-      - "reports/fagverk/psykologi-topic-articles-mental-health-v1-audit.json"
-      - "reports/fagverk/psykologi-university-completion-v1-audit.json"
-      - "reports/fagverk/psykologi-editorial-quality-v2-audit.json"
-      - ".github/workflows/fagverk-psykologi-topic-articles-mental-health.yml"
   workflow_dispatch:
 
 permissions:

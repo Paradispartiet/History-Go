@@ -5,36 +5,17 @@ on:
     paths:
       - 'fagverk.html'
       - 'fagverk-forside.html'
-      - 'data/categories/category_contract.json'
       - 'data/fag/by/**'
       - 'data/badges/by.json'
       - 'data/fagverk/by/**'
       - 'js/fagverk-subject-core.js'
       - 'js/fagverk-subject-model.js'
       - 'js/fagverk.js'
-      - 'scripts/audit-fagverk-subject-inventory.mjs'
-      - 'scripts/audit-fagverk-general-engine.mjs'
       - 'scripts/audit-fagverk-by-pilot.mjs'
       - 'tools/audit-by-theory-integrity.mjs'
-      - 'scripts/build-fagverk-release-manifest.mjs'
-      - 'tests/fagverk-subject-inventory.test.mjs'
-      - 'tests/fagverk-general-engine.test.mjs'
       - 'tests/fagverk-by-pilot.test.mjs'
       - 'tests/by-theory-integrity.test.mjs'
       - 'tests/fagverk-release-manifest.test.mjs'
-      - 'reports/fagverk/**'
-      - '.github/workflows/fagverk-by-pilot.yml'
-  push:
-    branches: [main]
-    paths:
-      - 'data/fag/by/**'
-      - 'data/badges/by.json'
-      - 'data/fagverk/by/**'
-      - 'scripts/audit-fagverk-by-pilot.mjs'
-      - 'tools/audit-by-theory-integrity.mjs'
-      - 'tests/fagverk-by-pilot.test.mjs'
-      - 'tests/by-theory-integrity.test.mjs'
-      - 'reports/fagverk/**'
       - '.github/workflows/fagverk-by-pilot.yml'
   workflow_dispatch:
 
