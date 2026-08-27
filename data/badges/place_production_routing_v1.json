@@ -1,0 +1,124 @@
+{
+  "schema": "history_go_badge_driven_place_production_v1",
+  "version": 1,
+  "status": "canonical",
+  "owner": "place_by_place_production_workflow",
+  "badge_index": "data/badges/index.json",
+  "production_profiles": "docs/PLACE_PRODUCTION_PROFILES.md",
+  "rules": {
+    "primary_badge_source": "place.category resolves the primary badge family",
+    "underbadge_source": "place.underbadge_ids must be interpreted against the primary badge file listed in data/badges/index.json",
+    "routing_order": [
+      "universal_canonical_core",
+      "primary_badge_family",
+      "active_underbadge_ids",
+      "place_specific_source_review",
+      "confirmed_production_profile",
+      "final_content_plan"
+    ],
+    "underbadges_refine_not_fill": true,
+    "sources_override_candidate_hints": true,
+    "production_profile_controls_depth_not_truth": true,
+    "no_filler": true,
+    "no_empty_placecard_collections": true,
+    "groups_and_quiz_focus": "When the badge file provides groups/children/quizFocus, those fields are canonical semantic hints for research and quiz planning. They do not replace source evidence."
+  },
+  "badges": {
+    "historie": {
+      "candidate_collections": ["related", "people", "objects", "structures"],
+      "research_lanes": ["chronology", "historical_periods", "material_traces", "actors", "social_context", "preservation_and_memory"],
+      "underbadge_examples": {
+        "industrihistorie": ["production_process", "work", "technology", "industrial_structures", "ownership"],
+        "byhistorie": ["urban_change", "structures", "public_space", "related_places"],
+        "sosialhistorie": ["people", "institutions", "daily_life", "work_and_class"],
+        "kulturminner_og_bevaring": ["material_traces", "preservation", "reuse", "heritage_status"]
+      }
+    },
+    "religion": {
+      "candidate_collections": ["structures", "people", "objects", "related"],
+      "research_lanes": ["sacred_space", "ritual", "community", "belief_history", "religious_art_and_architecture", "social_role"]
+    },
+    "vitenskap": {
+      "candidate_collections": ["people", "objects", "related", "structures"],
+      "research_lanes": ["methods", "instruments", "experiments", "technology", "institutions", "knowledge_change", "engineering"]
+    },
+    "filosofi": {
+      "candidate_collections": ["people", "objects", "related"],
+      "research_lanes": ["thinkers", "texts", "concepts", "arguments", "intellectual_history", "institutions"]
+    },
+    "kunst": {
+      "candidate_collections": ["productions", "people", "objects", "brands"],
+      "research_lanes": ["artworks", "artists", "materials", "techniques", "commissions", "institutions", "public_reception"]
+    },
+    "scenekunst": {
+      "candidate_collections": ["productions", "people", "objects", "brands"],
+      "research_lanes": ["performances", "performers", "directors", "stagecraft", "dramaturgy", "production_history", "venue_identity"]
+    },
+    "by": {
+      "candidate_collections": ["structures", "people", "objects", "brands"],
+      "research_lanes": ["architecture", "urban_planning", "infrastructure", "public_space", "housing", "designers_and_builders", "urban_change"]
+    },
+    "musikk": {
+      "candidate_collections": ["productions", "people", "objects", "brands"],
+      "research_lanes": ["music_works", "artists", "concert_history", "instruments_and_equipment", "recording_and_sound", "venue_identity", "scene_history"]
+    },
+    "litteratur": {
+      "candidate_collections": ["productions", "people", "objects", "related"],
+      "research_lanes": ["works_and_texts", "authors", "manuscripts_and_objects", "publishing", "literary_places", "language_and_reception"]
+    },
+    "natur": {
+      "candidate_collections": ["flora", "fauna", "map", "destinations"],
+      "research_lanes": ["habitat", "species", "landform", "water", "ecology", "conservation", "outdoor_use", "seasonality"],
+      "use_badge_groups": true,
+      "use_badge_quiz_focus": true
+    },
+    "sport": {
+      "candidate_collections": ["competitions", "people", "objects", "brands"],
+      "research_lanes": ["sport_form", "competitions", "athletes_and_clubs", "facilities", "equipment", "spectator_culture", "sport_history"],
+      "use_badge_groups": true,
+      "use_badge_quiz_focus": true
+    },
+    "politikk": {
+      "candidate_collections": ["people", "related", "objects", "structures"],
+      "research_lanes": ["institutions", "office_holders", "decisions", "elections", "movements", "protest", "law_and_governance", "welfare_and_public_services"]
+    },
+    "naeringsliv": {
+      "candidate_collections": ["structures", "people", "objects", "brands"],
+      "research_lanes": ["production_or_service", "work", "technology", "capital_and_ownership", "markets", "logistics", "business_identity", "industrial_or_commercial_change"],
+      "underbadge_examples": {
+        "industri": ["production_process", "industrial_structures", "machinery_and_objects", "workers_and_owners", "technology", "inputs_and_outputs"],
+        "handel_og_markeder": ["goods", "customers", "marketplace", "merchant_identity", "trade_networks"],
+        "bank_og_finans": ["institutions", "finance_products", "ownership", "architecture", "financial_actors"],
+        "shipping_og_havn": ["harbour_infrastructure", "ships_and_cargo", "companies", "workers", "trade_routes"],
+        "teknologi_og_startups": ["founders", "products", "technology", "company_identity", "innovation_networks"],
+        "mat_og_servering": ["products_and_dishes", "operators", "brand_identity", "premises", "food_culture"],
+        "butikkhistorie_og_kjeder": ["brand_identity", "retail_objects", "premises", "founders", "distribution"],
+        "arbeidsliv_og_fag": ["workers", "skills", "labour_relations", "tools", "institutions"]
+      }
+    },
+    "subkultur": {
+      "candidate_collections": ["productions", "people", "objects", "brands"],
+      "research_lanes": ["scene_and_community", "practices", "publications_and_expressions", "objects", "venues_and_shops", "identity", "conflict_and_territory"]
+    },
+    "film_tv": {
+      "candidate_collections": ["productions", "people", "objects", "related"],
+      "research_lanes": ["films_and_series", "creators_and_cast", "production", "locations", "screening_places", "archives", "broadcast_and_reception"]
+    },
+    "media": {
+      "candidate_collections": ["productions", "people", "objects", "brands"],
+      "research_lanes": ["publications_and_broadcasts", "journalists_and_editors", "newsroom_history", "media_technology", "media_identity", "public_sphere"]
+    },
+    "psykologi": {
+      "candidate_collections": ["people", "related", "objects", "structures"],
+      "research_lanes": ["psychology_history", "research_and_methods", "institutions", "thinkers_and_practitioners", "concepts", "social_context"]
+    },
+    "helse": {
+      "candidate_collections": ["people", "structures", "objects", "related"],
+      "research_lanes": ["medical_history", "health_institutions", "professionals", "instruments_and_objects", "public_health", "care_systems", "medical_ethics_and_evidence"]
+    },
+    "utdanning": {
+      "candidate_collections": ["people", "structures", "objects", "related"],
+      "research_lanes": ["institution_history", "teachers_and_learners", "pedagogy", "learning_spaces", "school_objects", "education_policy", "inclusion_and_assessment"]
+    }
+  }
+}

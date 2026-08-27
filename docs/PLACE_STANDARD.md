@@ -2,13 +2,14 @@
 
 Status: **canonical produktstandard for et History GO-sted**  
 Eier: `place_product_standard`  
-Sist kontrollert: **2026-08-26**
+Sist kontrollert: **2026-08-27**
 
-Dette dokumentet definerer **hva et History GO-sted er og hvilke roller stedssystemet har**. Det er ikke detaljoppskrift for tekst, quiz, rundinger, People eller koordinater.
+Dette dokumentet definerer **hva et History GO-sted er og hvilke roller stedssystemet har**. Det er ikke detaljoppskrift for tekst, quiz, samlinger, People eller koordinater.
 
 Sted-for-sted arbeidsrekkefølge:
 
 - `docs/PLACE_PRODUCTION_CHECKLIST.md`
+- `docs/PLACE_PRODUCTION_PROFILES.md`
 - `docs/MICRO_PLACE_CONTRACT.md` for små canonicale kartpunkter med redusert innholdskontrakt
 
 ## 1. Autoritetskart
@@ -17,9 +18,11 @@ Sted-for-sted arbeidsrekkefølge:
 | --- | --- |
 | Faktisitet | `docs/FACTUALITY_CONTRACT.md` |
 | Place-data/manifester/referanser | `docs/DATA_PRODUCTION_CONTRACT.md` |
+| Badge-/underbadge-drevet produksjonsruting | `data/badges/place_production_routing_v1.json` + `data/badges/<badge>.json` |
+| Produksjonsprofil/innholdsplan | `docs/PLACE_PRODUCTION_PROFILES.md` |
 | `desc` / `popupDesc` produksjon | `data/places/regler/PLACE_DESCRIPTION_CANONICAL.md` |
 | Popup-presentasjon | `docs/PLACE_POPUP_SYSTEM.md` |
-| Rundinger | `data/places/README_place_rounds.md` |
+| PlaceCard-samlinger | `data/places/README_place_rounds.md` |
 | Brands-semantikk og place-kobling | `data/brands/brand_rules_v1_1.json` |
 | Kategorier | `data/categories/category_contract.json` |
 | Koordinater | `docs/coordinates/coordinate-source-contract-v1.md` |
@@ -42,11 +45,12 @@ Harde regler:
 
 1. `id` er unik.
 2. Canonical source er manifest-loadet.
-3. `category` er én canonical primærkategori.
-4. Tverrfaglighet uttrykkes gjennom eide koblingssystemer, ikke dupliserte places.
-5. Koordinatet representerer det faktiske History GO-objektet etter coordinate-kontrakten.
-6. Brukerrettede fakta er source-led.
-7. Genererte indekser er build-output og håndredigeres ikke.
+3. `category` er én canonical primærkategori og samtidig stedets Hovedbadge-familie.
+4. `underbadge_ids` beskriver hvilke deler av Hovedbadgen stedet faktisk representerer.
+5. Tverrfaglighet uttrykkes gjennom eide koblingssystemer, ikke dupliserte places.
+6. Koordinatet representerer det faktiske History GO-objektet etter coordinate-kontrakten.
+7. Brukerrettede fakta er source-led.
+8. Genererte indekser er build-output og håndredigeres ikke.
 
 ## 3. Minimum place-object
 
@@ -86,11 +90,8 @@ Relevante og dokumenterte felt kan blant annet være:
   frontImage,
   frontImageMeta,
   emne_ids,
-  rounds,
-  rounds_exclude,
+  place_card_profile,
   objects,
-  details,
-  spots,
   spatial_profile,
   temporal_profile,
   subplaces,
@@ -105,13 +106,44 @@ Relevante og dokumenterte felt kan blant annet være:
 }
 ```
 
-For nye og fullproduserte Places er `frontImage` alltid en stående fil/variant med høyde større enn bredde. `frontImageMeta` eller tilsvarende canonical metadata dokumenterer kilde, lisens, original- og outputdimensjoner samt eventuelt crop. En liggende fil som bare maskeres av en stående CSS-ramme er ikke tilstrekkelig. Hver av de fire PlaceCard-samlingene skal samtidig ha et lastende previewbilde av ett faktisk canonical medlem; ikon-/antallsfallback er runtime-feilhåndtering, ikke godkjent closeout.
+For nye og fullproduserte ordinære Places er `frontImage` alltid en stående fil/variant med høyde større enn bredde. `frontImageMeta` eller tilsvarende canonical metadata dokumenterer kilde, lisens, original- og outputdimensjoner samt eventuelt crop. En liggende fil som bare maskeres av en stående CSS-ramme er ikke tilstrekkelig.
+
+`place_card_profile.collection_ids` inneholder ved ny/full produksjon **1–4 ferdige, relevante samlinger**. Hver valgt samling skal ha et lastende previewbilde av ett faktisk canonical medlem. Et tomt samlingskort er aldri godkjent closeout; en irrelevant samling utelates i stedet.
+
+Fallback er runtime-feilhåndtering, ikke godkjent closeout.
 
 Felt brukes når de faktisk har en rolle. Manglende relevant informasjon skal ikke fylles med plausibelt innhold.
 
-Canonical data kan også eies utenfor place-recorden: People, Works, Brands, Stories, Leksikon, Før/etter, Lesespor, Quiz, Nature mappings, observations, routes, events og På stedet-profiler.
+Canonical data kan også eies utenfor place-recorden: People, Works/Productions, Brands, Stories, Leksikon, Før/etter, Lesespor, Quiz, Nature mappings, observations, routes, events og På stedet-profiler.
 
-## 5. `desc` og `popupDesc`
+## 5. Badge-/underbadge-drevet innhold
+
+`category` er stedets primære Hovedbadge. `underbadge_ids` er den canonicale spesialiseringen under hovedbadgen.
+
+Produksjon skal følge:
+
+```text
+category/Hovedbadge
+→ underbadge_ids
+→ data/badges/place_production_routing_v1.json
+→ stedsspesifikke kilder
+→ confirmed produksjonsprofil
+→ endelig innholdsplan
+```
+
+Badge-systemet sier hva produsenten skal undersøke, ikke hva som automatisk finnes.
+
+Eksempler:
+
+- Næringsliv + industri gjør produksjonsprosess/anlegg/arbeid/teknologi til sterke kandidater, men skaper ikke automatisk et Brand;
+- Historie + kulturminner/bevaring prioriterer materielle spor, vern og ombruk;
+- Musikk + konsertsteder prioriterer scene, artister, konserter og lyd-/venuehistorie;
+- Sport + stadion og Sport + supporterkultur skal ikke ende med identiske innholdsplaner;
+- Natur-underbadges og eventuell `quizFocus` peker mot relevante arter, habitat, vann, geologi eller friluftsliv, men bare source-backed innhold materialiseres.
+
+Badge-/underbadge-rutingen er obligatorisk i preflight etter `docs/PLACE_PRODUCTION_CHECKLIST.md`.
+
+## 6. `desc` og `popupDesc`
 
 Denne filen eier **ikke** produksjonsmetoden for tekstene.
 
@@ -127,11 +159,13 @@ Denne stedstandarden fastslår bare rollen:
 - `desc` = kort leksikalsk inngang;
 - `popupDesc` = full stedartikkel til Om-fanen.
 
-## 6. De tre brukerrettede stedflatene
+## 7. De tre brukerrettede stedflatene
 
-### Rundinger
+### PlaceCard-samlinger
 
-Rundingsmodellen eies **kun** av `data/places/README_place_rounds.md`. Denne filen vedlikeholder ikke egen palett, profil eller antallsregel.
+Samlingsmodellen eies **kun** av `data/places/README_place_rounds.md`.
+
+For nye/fullproduserte ordinære steder viser PlaceCard bare 1–4 ferdige samlinger. Færre samlinger får egen balansert layout, ikke tomme reservekort.
 
 ### På stedet
 
@@ -148,51 +182,53 @@ Quiz, Observer, Notat og Rute kan ha egne flows.
 
 ### Stedspopup
 
-Kunnskapsflaten:
-
-```text
-Om · Historie · Fortellinger · Før/etter · Nyheter · Lesespor · Kilder · Mer
-```
+Kunnskapsflaten eies av `docs/PLACE_POPUP_SYSTEM.md`. Språk er obligatorisk for ordinære Places. Betingede moduler produseres etter Badge-drevet innholdsplan og subsystemkontrakt; irrelevante moduler skal ikke fylles med generisk stoff.
 
 Disse tre rollene skal ikke blandes for å fylle UI.
 
-Stedspopupens hero skal gi orientering og primær handling, ikke gjenta nøkkeltall som allerede eies av type-spesifikke detaljseksjoner. Se `docs/PLACE_POPUP_SYSTEM.md` for regelen om én visuell eier per opplysning.
-
-## 7. PlaceCard
+## 8. PlaceCard
 
 PlaceCard er det kompakte kontrollrommet for stedet.
 
-### Micro Places
+### Ordinære Places
 
-Små, presist stedfestede punkter som trenger egen kartmarkør, men ikke en full
-Content Factory-pakke, bruker `placeTier: "micro"` og
-`micro_place_profile`. De er fortsatt canonical Places med egen identitet,
-kategori, underkategori og koordinater. De bruker det kompakte PlaceCard-et og er
-unntatt kravet om fire samlinger og kunstig fullprodusert innhold.
+Det skal kunne vise:
 
-Den komplette regelen eies av `docs/MICRO_PLACE_CONTRACT.md`.
-
-Det skal kunne vise, når relevant og implementert:
-
-- navn og kategori;
-- korrekt stedbilde;
+- navn og Hovedbadge/category;
+- korrekte Badge-/underbadge-signaler;
+- stedstro stående `frontImage`;
+- 1–4 kuraterte samlinger med reelle previews;
 - `desc`;
-- rundingssett etter canonical rundingskontrakt;
-- På stedet;
-- handlingsknapper;
+- relevante handlinger;
 - favoritt;
 - fysisk visit/status;
-- quiz/progress-signaler.
+- quiz/progress-signaler der de gjelder.
+
+Visuell sluttregel:
+
+- 1 samling → stor og sentrert;
+- 2 → balansert par;
+- 3 → 2+1;
+- 4 → 2×2;
+- ingen tomme kort;
+- ingen filler;
+- kortet skal se tilsiktet og pent ut for akkurat stedstypen.
+
+### Micro Places
+
+Små, presist stedfestede punkter som trenger egen kartmarkør, men ikke ordinær Content Factory-pakke, bruker `placeTier: "micro"` og `micro_place_profile`. De er fortsatt canonical Places med egen identitet, kategori, underkategori og koordinater. De bruker det kompakte Micro PlaceCard-et og følger `docs/MICRO_PLACE_CONTRACT.md`.
 
 Lang kunnskap hører i popupen, ikke i selve PlaceCard.
 
-## 8. Badges og fagverk
+## 9. Badges og Fagverk
 
 `category` er stedets primære canonical kategori/badgeidentitet.
 
-`underbadge_ids` brukes til canonical underbadges.
+`underbadge_ids` brukes til canonical underbadges og skal være en reell del av produksjonsroutingen, ikke bare dekorativ metadata.
 
-Badges-rundingen åpner:
+Badge-familiene eies av `data/badges/index.json` og de 19 `data/badges/<badge>.json`-filene. Produksjonsruting eies av `data/badges/place_production_routing_v1.json`.
+
+Badges-handlingen åpner:
 
 ```text
 fagverk-sted.html?place=<place_id>
@@ -200,23 +236,22 @@ fagverk-sted.html?place=<place_id>
 
 Merke- og fagsider har forskjellige roller; se `docs/FAGVERK_NAVIGATION.md`.
 
-## 9. Rundinger og canonical place-felt
+## 10. PlaceCard-felt og entities
 
 Detaljreglene eies av `data/places/README_place_rounds.md`.
 
 For ny/revidert stedproduksjon:
 
-- `rounds` = legacy presentasjonsfelt; rundingsvalg eies av canonical rundingskontrakt;
-- `objects` = nye Object-kort;
-- `details` = nye Detail-kort;
-- `spots` = nye Spot-kort;
-- `subplaces` beholdes for reell stedstruktur/soner og kan også være compatibility-kilde for Spots.
+- `place_card_profile` = eksplisitt kuratering av 1–4 ferdige samlinger;
+- `round_profile` / `rounds` = legacy presentasjonsfelt og compatibility;
+- `objects` = canonical fysiske Object-kort;
+- `subplaces` beholdes for reell stedstruktur/soner og kan være compatibility-kilde når semantic owner tillater det.
 
 Legacy aliaser skal ikke bli nye standarder.
 
-Nature er valgfri. Brands-semantikken eies av `data/brands/brand_rules_v1_1.json`: også profesjonelle, arkitektur-, venue-, institusjons-, legacy- og skiltidentiteter kan kvalifisere når navnet har selvstendig gjenkjennelse og dokumentert stedskobling. Aktørtype alene er verken godkjenning eller avslag.
+Brands-semantikken eies av `data/brands/brand_rules_v1_1.json`: profesjonelle, arkitektur-, venue-, institusjons-, legacy- og skiltidentiteter kan kvalifisere når navnet har selvstendig gjenkjennelse og dokumentert stedskobling. Aktørtype alene er verken godkjenning eller avslag. Null treff er ikke alene N/A; et kvalifisert Brand skal heller aldri konstrueres bare fordi Badge-rutingen gjør Brand til kandidat.
 
-## 10. Strukturerte place-profiler
+## 11. Strukturerte place-profiler
 
 ### `spatial_profile`
 
@@ -236,13 +271,13 @@ Kort historisk lagdeling som kan brukes i Historie-fanen. Det erstatter ikke can
 
 ### `nature_profile`
 
-Landskap, habitat, sesong og observerbar naturkarakter til Om. Det er ikke automatisk en Nature-runding.
+Landskap, habitat, sesong og observerbar naturkarakter til Om. Badge-/underbadge-evidens kan gjøre naturmoduler relevante, men Nature-data må fortsatt være stedsspesifikke.
 
 ### `source_summary`
 
 Brukerrettede sikre kilder til Kilder-fanen. Interne audits/researchnotater skal ikke lekke hit.
 
-## 11. Samling, besøk og completion
+## 12. Samling, besøk og completion
 
 Steddata og spillerstatus er forskjellige ting.
 
@@ -257,16 +292,25 @@ Aktuell produkt/runtimemodell skiller blant annet:
 
 Se `docs/COMPLETION_DEFINITIONS.md`, `docs/PROGRESSION_MODEL.md` og `docs/QUIZ_AND_PHYSICAL_VISIT_MODEL.md`.
 
-## 12. Wonderkammer og Civication
+## 13. Wonderkammer og Civication
 
-Wonderkammer er legacy migreringsgrunnlag, ikke ny PlaceCard-runding eller ny stedproduksjonsmodell.
+Wonderkammer er legacy migreringsgrunnlag, ikke ny PlaceCard-samling eller ny stedproduksjonsmodell.
 
 Civication er et separat spillsystem. En fysisk Civication-ting kan vises som Object når den også kvalifiserer som et virkelig stedsspesifikt objekt.
 
-## 13. Produksjonsferdig sted
+## 14. Produksjonsferdig sted
 
 Et sted er ikke produksjonsferdig bare fordi basisobjektet validerer.
 
-Ferdigstatus bestemmes gjennom `docs/PLACE_PRODUCTION_CHECKLIST.md`, som krever eksplisitt vurdering av alle relevante subsystemer, kilder, bilder, UI, spillerstatus og CI.
+Ferdigstatus bestemmes gjennom `docs/PLACE_PRODUCTION_CHECKLIST.md`, som krever:
 
-**Manglende relevant innhold kan være N/A. Glemt kontroll kan ikke være N/A.**
+- bekreftet Badge-/underbadge-grunnlag;
+- bekreftet produksjonsprofil;
+- komplett Universal canonical core;
+- ferdig produksjon av alle relevante source-backed moduler;
+- eksplisitt begrunnelse for irrelevante moduler;
+- PlaceCard uten tomme samlingskort;
+- visuell QA på mobil og desktop;
+- relevante tester/CI.
+
+**Manglende relevant innhold kan være N/A bare etter ordentlig audit. Glemt kontroll kan ikke være N/A. Et N/A-modul skal ikke etterlate et tomt kort.**

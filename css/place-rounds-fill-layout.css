@@ -1,4 +1,4 @@
-/* PlaceCard-samlinger: alltid et fullt 2 × 2-felt til høyre for frontImage. */
+/* PlaceCard-samlinger: 1–4 ferdige samlinger skal alltid se kuraterte og balanserte ut. */
 #placeCard .pc-side-stack{
   width:100%;
   max-width:100%;
@@ -23,9 +23,36 @@
   gap:var(--pc-round-gap);
 }
 
+#placeCard .pc-icons-quad[data-collection-count="1"]{
+  grid-template-columns:minmax(0, 1fr) !important;
+  grid-template-rows:minmax(0, 1fr) !important;
+}
+
+#placeCard .pc-icons-quad[data-collection-count="2"]{
+  grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+  grid-template-rows:minmax(0, 1fr) !important;
+}
+
+#placeCard .pc-icons-quad[data-collection-count="3"]{
+  grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+  grid-template-rows:repeat(2, minmax(0, 1fr)) !important;
+}
+
+#placeCard .pc-icons-quad[data-collection-count="3"] .pc-collection[data-collection-position="2"]:not([hidden]){
+  grid-column:1 / -1;
+  width:min(100%, var(--hg-collection-wide-width, 70%));
+  justify-self:center;
+}
+
 #placeCard .pc-icons-quad[data-collection-count="4"]{
   grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
   grid-template-rows:repeat(2, minmax(0, 1fr)) !important;
+}
+
+#placeCard .pc-icons-quad[data-collection-count="1"] .pc-collection:not([hidden]){
+  width:min(100%, var(--hg-collection-wide-width, 82%));
+  justify-self:center;
+  align-self:center;
 }
 
 #placeCard .pc-icons-quad .pc-collection[data-collection-shape="circle"]:not([hidden]){
@@ -50,6 +77,11 @@
   flex-basis:auto;
   aspect-ratio:auto;
   border-radius:clamp(14px, 12%, 22px);
+}
+
+#placeCard .pc-icons-quad[data-collection-count="1"] .pc-collection[data-collection-shape="rectangle"]:not([hidden]),
+#placeCard .pc-icons-quad[data-collection-count="3"] .pc-collection[data-collection-position="2"][data-collection-shape="rectangle"]:not([hidden]){
+  width:min(100%, var(--hg-collection-wide-width, 82%));
 }
 
 #placeCard .pc-icons-quad .pc-collection > img.pc-person-img{

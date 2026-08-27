@@ -122,7 +122,7 @@ export type PlaceCardCollectionId =
 
 export interface PlaceCardProfileV2 {
   schema: "history_go_place_card_profile_v2";
-  /** Nøyaktig fire samlinger i fast kategori-/underkategoriavhengig 2 × 2-komposisjon. Bilder eies av medieflaten. */
+  /** 1–4 ferdige, relevante samlinger. Bilder eies av medieflaten; tomme kort er ikke gyldig closeout. */
   collection_ids: PlaceCardCollectionId[];
   reason: string;
   verifiedAt: string;
@@ -177,7 +177,10 @@ export interface Place {
    */
   lng?: number;
   r?: number;
+  /** Primary canonical category and Badge family. */
   category?: string;
+  /** Canonical Badge specializations used by Badge-driven place-production routing. */
+  underbadge_ids?: string[];
   /** Canonical specialization beneath the existing top category. Never creates a new map color. */
   subcategory_id?: string;
   /** Standard is implicit for old Places; micro selects the reduced canonical contract. */
@@ -230,7 +233,7 @@ export interface Place {
   performances?: PlaceVisualRoundItem[];
   releases?: PlaceVisualRoundItem[];
 
-  /** Navngitte bygninger og anlegg som kan kvalifisere til fjerde runding. */
+  /** Navngitte bygninger og anlegg som kan kvalifisere som PlaceCard-samling. */
   buildings?: PlaceVisualRoundItem[];
   structures?: PlaceVisualRoundItem[];
   facilities?: PlaceVisualRoundItem[];
@@ -263,7 +266,7 @@ export interface Place {
   imageGallery?: Array<string | PlaceVisualRoundItem>;
   media?: { images?: Array<string | PlaceVisualRoundItem>; [key: string]: unknown };
 
-  /** Steddata som ikke automatisk gir en PlaceCard-runding. */
+  /** Steddata som ikke automatisk gir en PlaceCard-samling. */
   details?: PlaceVisualRoundItem[];
   visual_details?: PlaceVisualRoundItem[];
   site_details?: PlaceVisualRoundItem[];
@@ -272,13 +275,13 @@ export interface Place {
   subPlaces?: PlaceVisualRoundItem[];
 
   /**
-   * Legacy presentasjonsfelt. Hele rundingskontrakten eies av
+   * Legacy presentasjonsfelt. Hele samlingskontrakten eies av
    * data/places/README_place_rounds.md; schemaet gjentar ikke profiler eller palett.
    */
   rounds?: string[];
   /** Alias for `rounds` (legacy). Foretrekk `rounds` i nye data. */
   rundinger?: string[];
-  /** Legacy presentasjonsfelt; skal ikke styre nye/reviderte canonical rundingssett. */
+  /** Legacy presentasjonsfelt; skal ikke styre nye/reviderte canonical samlingssett. */
   rounds_exclude?: string[];
   /** Legacy nature fields: arrays of flora/fauna ids attached to a place. */
   flora?: string[];

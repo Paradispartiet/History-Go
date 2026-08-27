@@ -25,9 +25,8 @@
 
   const ALL_DEFS = Object.freeze([...FIXED_DEFS, ...Object.values(CATEGORY_DEFS)]);
   const BY_ID = new Map(ALL_DEFS.map(def => [def.id, def]));
-  // Fire faste visuelle plasser. Badges ligger separat ved tittelen.
-  // Vanlige steder: én sirkel + tre rektangler.
-  // Natursteder: to sirkler + to rektangler.
+  // GENERAL_BASE/NATURE_BASE og CATEGORY_FOURTH er legacy/default-kompatibilitet.
+  // Nye/fullproduserte Places bruker eksplisitt 1–4 collection_ids i place_card_profile.
   const GENERAL_BASE = Object.freeze(["people", "objects", "brands"]);
   const NATURE_BASE = Object.freeze(["flora", "fauna", "map"]);
   const COLLECTION_IDS = new Set(ALL_DEFS.filter(def => def.id !== "badges").map(def => def.id));
@@ -300,9 +299,8 @@
 
   function structurallyValidIds(place, ids) {
     if (isMicroPlace(place)) return false;
-    if (ids.length !== 4 || new Set(ids).size !== 4 || !ids.every(id => COLLECTION_IDS.has(id))) return false;
-    const expected = normalizedFullGridIds(place, ids);
-    return expected.every((id, index) => ids[index] === id);
+    if (ids.length < 1 || ids.length > 4 || new Set(ids).size !== ids.length || !ids.every(id => COLLECTION_IDS.has(id))) return false;
+    return ids.filter(id => CATEGORY_COLLECTION_IDS.has(id)).length <= 1;
   }
 
   function canonicalConfiguredIds(place) {
@@ -474,7 +472,6 @@
     renderCollectionPreview(icon, items.find(item => item.image), def, items.length);
   }
 
-
   async function renderFixed(place, def) {
     const icon = document.getElementById(def.iconId);
     const list = document.getElementById(def.listId);
@@ -482,6 +479,7 @@
     if (def.id === "map") {
       const preview = await Promise.resolve(global.HGNatureDetailedMap?.getPreview?.(place)).catch(() => "");
       icon.innerHTML = preview ? `<img src="${esc(preview)}" class="pc-person-img" alt="Turkart">` : `<div class="pc-round-label"><span class="pc-round-emoji">${def.fallbackIcon}</span></div>`;
+      icon.dataset.previewStatus = preview ? "member-image" : "missing";
       list.innerHTML = '<div class="pc-empty">Tur- og naturkart åpnes fra Kart-samlingen.</div>';
       return;
     }
