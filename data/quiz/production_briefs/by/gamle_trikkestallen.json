@@ -1,0 +1,453 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "categoryId": "by",
+  "targetId": "gamle_trikkestallen",
+  "profile_hint": "normal",
+  "reviewed_at": "2026-08-27",
+  "review_note": "Fire læringsjobber dekker åpningen, driftsfasene, kulturhusombruk og kildekritisk helhetslesning.",
+  "scope": {
+    "place": "Gamle trikkestallen på Torshov",
+    "production_profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "total_questions": 28,
+    "normal_opening_questions": 14
+  },
+  "sources": {
+    "sporveien": {
+      "url": "https://www.sporveien.no/vare-tjenester/trikken/trikkeholdeplasser/t-o/torshov/",
+      "source_type": "official_operator_history",
+      "review_status": "reviewed",
+      "review_note": "Åpning, kapasitet, arkitekt og 1957/1977-skillet er kontrollert."
+    },
+    "byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Torshovgata",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Adresse, ombygging og 1974-avviket er kontrollert; avviket publiseres eksplisitt."
+    },
+    "oslo_nye": {
+      "url": "https://oslonye.no/historikk/",
+      "source_type": "official_theatre_history",
+      "review_status": "reviewed",
+      "review_note": "Innflytting og avslutning i 2025 er kontrollert."
+    },
+    "egal": {
+      "url": "https://egalteater.no/om/trikkestallen/",
+      "source_type": "current_primary_venue_source",
+      "review_status": "reviewed",
+      "review_note": "Nåværende presentert bruk, åpningsdato og salstørrelse er kontrollert."
+    },
+    "sceneweb": {
+      "url": "https://sceneweb.no/nb/venue/1970/Trikkestallen_p%C3%A5%20Torshov",
+      "source_type": "institutional_performing_arts_archive",
+      "review_status": "reviewed",
+      "review_note": "Ombygging, aktører og 2003-åpning er kontrollert."
+    },
+    "staff": {
+      "url": "https://digitaltmuseum.no/021018364302/vognbetjening-og-verkstedpersonale-ved-torshov-vognhall",
+      "source_type": "museum_object_record",
+      "review_status": "reviewed",
+      "review_note": "OB.L0226, motiv, datering, fotograf og CC0-status er kontrollert."
+    },
+    "exterior": {
+      "url": "https://commons.wikimedia.org/wiki/File:Torshovgata_33.jpg",
+      "source_type": "licensed_image_record",
+      "review_status": "reviewed",
+      "review_note": "2016-datering og CC BY-SA 4.0-status er kontrollert."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "kur_by_03_infrastruktur_og_bevegelse",
+      "kur_by_04_historiske_lag_og_transformasjon"
+    ],
+    "emne_ids": [
+      "em_by_historiske_lag_i_hverdagsrom",
+      "em_by_infrastruktur_mobilitet",
+      "em_by_materialitet_og_sanseerfaring",
+      "em_by_transformasjon_ombruk"
+    ],
+    "topic_hook_ids": [
+      "his_spor_gatebilde"
+    ],
+    "method_ids": [
+      "met_arkiv_minne_spor",
+      "met_for_etter"
+    ],
+    "thinker_ids": [
+      "pierre_nora"
+    ],
+    "works": [
+      "Les Lieux de Mémoire"
+    ]
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/historie/gamle_trikkestallen_sets.json",
+      "data/quiz/manifest.json"
+    ],
+    "active_before": {
+      "file": "data/quiz/historie/gamle_trikkestallen_sets.json",
+      "set_count": 1,
+      "question_count": 2,
+      "finding": "To generiske legacy-spørsmål uten ekstern kildeproveniens."
+    },
+    "decisions": [
+      "Migrer målpakken til stedets canonical by-kategori.",
+      "Erstatt den svake 1×2-banken med normalprofil 4×7.",
+      "Hold teori og metode bare i finalsettets fire siste spørsmål."
+    ],
+    "knowledge_migration": "Alle spørsmål får stabile by-, claim- og Knowledge-ID-er."
+  },
+  "profile_decision": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "justification": "Stedet har fire tydelige læringsjobber og tilstrekkelig kildedybde for 28 spørsmål, men ikke behov for rich-profil."
+  },
+  "held_back_candidates": [
+    "1974 som ubetinget sluttår for all verksteddrift.",
+    "Påstander om hver enkelt arbeidsoppgave ut fra fotografiet alene.",
+    "Oslo Nye som dagens operatør."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_gamle_trikkestallen_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Den elektriske Torshovlinjen åpnet 29. september 1899.",
+      "source_ids": [
+        "sporveien"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_gamle_trikkestallen_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kristiania Sporveisselskab oppførte vognhallen og verkstedet.",
+      "source_ids": [
+        "sporveien"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_gamle_trikkestallen_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Vognhallen ble bygd med plass til 28 vogner.",
+      "source_ids": [
+        "sporveien"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_gamle_trikkestallen_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Sporveien oppgir O. Ekman som arkitekt for anlegget.",
+      "source_ids": [
+        "sporveien"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_gamle_trikkestallen_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Fotografiet viser vognbetjening, verkstedpersonale og motorvogner ved Torshov vognhall omkring åpningen.",
+      "source_ids": [
+        "staff"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_gamle_trikkestallen_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Anlegget kombinerte vognhall og verksted for den elektriske sporveien.",
+      "source_ids": [
+        "sporveien"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_infrastruktur_mobilitet"
+    },
+    {
+      "claim_id": "claim_gamle_trikkestallen_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Sporveien beskriver lisenene som en del av fasadeutformingen.",
+      "source_ids": [
+        "sporveien"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_gamle_trikkestallen_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Vognhallen gikk ut av trikkedrift i 1957.",
+      "source_ids": [
+        "sporveien"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_gamle_trikkestallen_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Et karosseriverksted fortsatte i bygningen etter at hallen gikk ut av trikkedrift.",
+      "source_ids": [
+        "sporveien"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_transformasjon_ombruk"
+    },
+    {
+      "claim_id": "claim_gamle_trikkestallen_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Sporveiens historikk daterer karosseriverkstedets avslutning til 1977.",
+      "source_ids": [
+        "sporveien"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_gamle_trikkestallen_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon oppgir at sørdelen ble bygd om til to etasjer i 1930-årene.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_gamle_trikkestallen_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Trikkestallen åpnet som kulturhus 18. februar 2003.",
+      "source_ids": [
+        "sceneweb"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_transformasjon_ombruk"
+    },
+    {
+      "claim_id": "claim_gamle_trikkestallen_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Kulturhuset fikk en teatersal med 220 plasser.",
+      "source_ids": [
+        "egal"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_gamle_trikkestallen_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo Nye Dukketeatret flyttet til Trikkestallen i februar 2003.",
+      "source_ids": [
+        "oslo_nye"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_transformasjon_ombruk"
+    },
+    {
+      "claim_id": "claim_gamle_trikkestallen_quiz_15",
+      "order": 15,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Oslo Nye oppgir 15. mars 2025 som siste forestillingsdato i Trikkestallen.",
+      "source_ids": [
+        "oslo_nye"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_gamle_trikkestallen_quiz_16",
+      "order": 16,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Égal Teater presenterer Trikkestallen som sitt teaterlokale.",
+      "source_ids": [
+        "egal"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_transformasjon_ombruk"
+    },
+    {
+      "claim_id": "claim_gamle_trikkestallen_quiz_17",
+      "order": 17,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Fotografiet er fra 2016 og dokumenterer Oslo Nye-perioden, ikke dagens operatør.",
+      "source_ids": [
+        "exterior"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_gamle_trikkestallen_quiz_18",
+      "order": 18,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "1957 gjelder vognhalldriften, mens 1977 gjelder karosseriverkstedet.",
+      "source_ids": [
+        "sporveien"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_gamle_trikkestallen_quiz_19",
+      "order": 19,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Portene og de store hallrommene gjør den tidligere sporveisfunksjonen lesbar.",
+      "source_ids": [
+        "sporveien"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_materialitet_og_sanseerfaring"
+    },
+    {
+      "claim_id": "claim_gamle_trikkestallen_quiz_20",
+      "order": 20,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Kulturhuset ga det tidligere sporveisanlegget en ny offentlig bruk.",
+      "source_ids": [
+        "sceneweb"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_transformasjon_ombruk"
+    },
+    {
+      "claim_id": "claim_gamle_trikkestallen_quiz_21",
+      "order": 21,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Virksomhetens egen side er en primærkilde til dagens presenterte bruk, men ikke en uavhengig fullhistorie.",
+      "source_ids": [
+        "egal"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_gamle_trikkestallen_quiz_22",
+      "order": 22,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Vognhall, karosseriverksted og kulturhus er ulike tidslag i samme bygning.",
+      "source_ids": [
+        "sporveien"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_gamle_trikkestallen_quiz_23",
+      "order": 23,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Kildekritikk krever at avviket dokumenteres og at valget av 1977 begrunnes med Sporveiens funksjonsskille.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_gamle_trikkestallen_quiz_24",
+      "order": 24,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Bildet dokumenterer motivet og stedet, men ikke hver persons konkrete arbeidsoppgaver.",
+      "source_ids": [
+        "staff"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_gamle_trikkestallen_quiz_25",
+      "order": 25,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Sporlesning sammenholder det synlige bygningssporet med daterte kilder om funksjonen.",
+      "source_ids": [
+        "sporveien"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_gamle_trikkestallen_quiz_26",
+      "order": 26,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Tidslagsanalyse skiller vognhall, verksted og kulturhus uten å late som de er samme virksomhet.",
+      "source_ids": [
+        "sceneweb"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_gamle_trikkestallen_quiz_27",
+      "order": 27,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Logoens kilde og tidsstatus avgrenser den til Égal Teaters nåværende identitet.",
+      "source_ids": [
+        "egal"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    },
+    {
+      "claim_id": "claim_gamle_trikkestallen_quiz_28",
+      "order": 28,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Bygningen knytter sammen elektrifisering, arbeid, verkstedavvikling og kulturbruk, men funksjonene må holdes adskilt.",
+      "source_ids": [
+        "sporveien"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_by_historiske_lag_i_hverdagsrom"
+    }
+  ]
+}

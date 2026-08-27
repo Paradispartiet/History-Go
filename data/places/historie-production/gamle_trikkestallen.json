@@ -1,0 +1,298 @@
+{
+  "schemaVersion": "historie_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "gamle_trikkestallen",
+  "placeFile": "data/places/by/oslo/gamle_trikkestallen/gamle_trikkestallen.json",
+  "status": "ready",
+  "historicalIdentity": {
+    "statement": "Et sporveisanlegg fra elektrifiseringen i 1899 som gikk fra vognhall via karosseriverksted til kulturhus og teaterlokale.",
+    "placeRelationType": "institution_site",
+    "placeRelationStatement": "Place-ID-en representerer vognhall- og verkstedanlegget i Torshovgata 33, ikke Trikkestallen Sagene i Pontoppidans gate 7, hele Torshov eller sporveisselskapet alene.",
+    "temporalScope": {
+      "start": "1899",
+      "end": "2026",
+      "precision": "period",
+      "rationale": "Perioden dekker oppføring, trinnvis driftsavvikling, ombruk og siste kontrollerte kulturbruk."
+    },
+    "sourceIds": [
+      "source_sporveien",
+      "source_byleksikon",
+      "source_sceneweb",
+      "source_egal"
+    ]
+  },
+  "historyTopics": [
+    {
+      "emneId": "em_his_industriby_1900",
+      "siteSpecificRationale": "Vognhall, verksted, personale og motorvogner viser kollektivtrafikk som teknisk arbeidsplass og infrastruktursystem i den industrialiserte byen.",
+      "caseIds": [
+        "case_torshov_elektrifisering_og_ombruk"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_sporveien",
+      "url": "https://www.sporveien.no/vare-tjenester/trikken/trikkeholdeplasser/t-o/torshov/",
+      "sourceLocation": "Åpningen, anlegget, 1957/1977 og gul liste",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-27",
+      "temporalCoverage": "mixed",
+      "provenance": "Sporveiens offisielle stedshistorikk for Torshov.",
+      "limitations": "Institusjonell tilbakeblikkskilde uten komplett bemannings- eller verkstedprotokoll."
+    },
+    {
+      "id": "source_byleksikon",
+      "url": "https://oslobyleksikon.no/side/Torshovgata",
+      "sourceLocation": "Torshovgata 33 og bygningsendringer",
+      "sourceType": "museum_or_heritage",
+      "verifiedAt": "2026-08-27",
+      "temporalCoverage": "mixed",
+      "provenance": "Oslo byleksikons redaksjonelle stedsspesifikke oppslag.",
+      "limitations": "Oppgir 1974 for verksteddriften, i konflikt med Sporveiens 1977."
+    },
+    {
+      "id": "source_staff_photo",
+      "url": "https://digitaltmuseum.no/021018364302/vognbetjening-og-verkstedpersonale-ved-torshov-vognhall",
+      "sourceLocation": "OB.L0226, katalogpost og fotografi",
+      "sourceType": "archive",
+      "verifiedAt": "2026-08-27",
+      "temporalCoverage": "contemporary_to_event",
+      "provenance": "Oslo Museums digitaliserte fotografi med datering, fotograf og rettighetsstatus.",
+      "limitations": "Motivet kan ikke alene dokumentere hver persons rolle eller konkrete arbeidsoppgave."
+    },
+    {
+      "id": "source_sceneweb",
+      "url": "https://sceneweb.no/nb/venue/1970/Trikkestallen_p%C3%A5%20Torshov",
+      "sourceLocation": "Spillestedshistorikk og åpningen i 2003",
+      "sourceType": "institutional",
+      "verifiedAt": "2026-08-27",
+      "temporalCoverage": "retrospective",
+      "provenance": "Nasjonal scenekunstdatabase med spillestedsrelasjon og historikk.",
+      "limitations": "Teaterkilde og ikke et teknisk sporveisarkiv."
+    },
+    {
+      "id": "source_egal",
+      "url": "https://egalteater.no/om/trikkestallen/",
+      "sourceLocation": "Om Trikkestallen og aktuell teaterbruk",
+      "sourceType": "primary",
+      "verifiedAt": "2026-08-27",
+      "temporalCoverage": "current",
+      "provenance": "Den nåværende teateraktørens offisielle presentasjon.",
+      "limitations": "Dokumenterer egen bruk best; historiske opplysninger må krysskontrolleres."
+    },
+    {
+      "id": "source_ung_media",
+      "url": "https://www.oslo.kommune.no/natur-kultur-og-fritid/fritidsklubber/ung-media/",
+      "sourceLocation": "Besøksadresse og aktivitetstilbud",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-27",
+      "temporalCoverage": "current",
+      "provenance": "Oslo kommunes offisielle side for Ung Media.",
+      "limitations": "Dokumenterer aktuell aktivitet og adresse, ikke anleggets fulle historie."
+    }
+  ],
+  "caseRealizations": [
+    {
+      "id": "case_torshov_elektrifisering_og_ombruk",
+      "claim": "Anlegget viser hvordan elektrisk kollektivtransport skapte ny infrastruktur og arbeid, før den samme bygningsmassen ble bevart gjennom kulturbruk.",
+      "temporalSequence": {
+        "scope": {
+          "start": "1899",
+          "end": "2026",
+          "precision": "period",
+          "rationale": "Caset følger etablering, trinnvis avslutning av sporveisfunksjoner og ombruk som kulturhus."
+        },
+        "startPoint": "Den elektriske Torshovlinjen og vognhallen med verksted åpnet i 1899.",
+        "endPoint": "Égal Teater og Ung Media dokumenterer kulturbruk i Torshovgata 33 ved kontrollen i 2026.",
+        "breaks": [
+          "Vognhalldriften ble avsluttet i 1957.",
+          "Karosseriverkstedet opphørte i 1977 etter Sporveiens historikk.",
+          "Kulturhuset åpnet i 2003, og Oslo Nye forlot lokalet i 2025."
+        ],
+        "continuities": [
+          "Teglhallen, hallportene og fasadeinndelingen står som lesbare materielle spor.",
+          "Bygningen har fortsatt en offentlig og arbeidsrelatert funksjon gjennom kulturaktivitet."
+        ],
+        "sourceIds": [
+          "source_sporveien",
+          "source_byleksikon",
+          "source_staff_photo",
+          "source_sceneweb",
+          "source_egal",
+          "source_ung_media"
+        ]
+      },
+      "actors": [
+        {
+          "name": "Kristiania Sporveisselskab",
+          "roleOrInterest": "Byggherre og operatør ved elektrifiseringen og oppføringen i 1899.",
+          "powerPosition": "Kontrollerte anlegg, kjøretøy og sporveisdrift i etableringsfasen.",
+          "sourceIds": [
+            "source_sporveien",
+            "source_staff_photo"
+          ]
+        },
+        {
+          "name": "Vognbetjening og verkstedpersonale",
+          "roleOrInterest": "Betjente vogner og verkstedfunksjoner som arkivfotografiet knytter til anlegget.",
+          "powerPosition": "Utførte det tekniske arbeidet, mens åpne kilder ikke dokumenterer medbestemmelse eller arbeidsvilkår.",
+          "sourceIds": [
+            "source_staff_photo",
+            "source_sporveien"
+          ]
+        },
+        {
+          "name": "Bydel Sagene-Torshov, Oslo Nye og Per Horn",
+          "roleOrInterest": "Utviklet kulturhus- og dukketeaterbruken fram mot åpningen i 2003.",
+          "powerPosition": "Kommunale og institusjonelle aktører kontrollerte ombygging og sceneprogram; Per Horn bar dokumentert faginnflytelse.",
+          "sourceIds": [
+            "source_sceneweb",
+            "source_egal"
+          ]
+        },
+        {
+          "name": "Égal Teater og Ung Media",
+          "roleOrInterest": "Bruker og presenterer lokaler i anlegget ved siste kontroll.",
+          "powerPosition": "Forvalter egne tilbud, men ikke anleggets historiske fortelling alene.",
+          "sourceIds": [
+            "source_egal",
+            "source_ung_media"
+          ]
+        }
+      ],
+      "conflictOrNegotiation": {
+        "statement": "Etterbruken forhandler mellom vern av et teknisk kulturminne, nye kulturfunksjoner og skiftende institusjonelle brukere; kildene dokumenterer utfallet bedre enn beslutningskonfliktene.",
+        "sourceIds": [
+          "source_sporveien",
+          "source_sceneweb",
+          "source_egal"
+        ]
+      },
+      "sourceComparison": {
+        "sourceIds": [
+          "source_sporveien",
+          "source_byleksikon",
+          "source_staff_photo"
+        ],
+        "comparison": "Sporveien bærer funksjonsskillet mellom vognhall og karosseriverksted, Oslo byleksikon bærer bygningshistorien, og arkivfotografiet dokumenterer personale og vogner ved anlegget.",
+        "contradictionsOrSilences": "Sporveien oppgir karosseriverksted til 1977, mens Oslo byleksikon oppgir verksteddrift til 1974; ingen av kildene gir komplette arbeidslivsserier.",
+        "conclusionLimits": "1977 publiseres for det særskilt navngitte karosseriverkstedet, men kildeavviket skjules ikke og årsaken til ulik datering fastslås ikke."
+      },
+      "comparativeScale": {
+        "localFinding": "Torshov fikk både en elektrisk linje og et støtteanlegg som bandt rutetrafikken til en lokal teknisk arbeidsplass.",
+        "widerContext": "Stedet viser nasjonalt hvordan elektrisk kollektivtransport krevde haller, verksteder, kjøretøy og personale utenfor selve holdeplassen.",
+        "scale": "national",
+        "sourceIds": [
+          "source_sporveien",
+          "source_staff_photo"
+        ]
+      },
+      "causationAndUncertainty": {
+        "causalAssessment": "Elektrifiseringen forklarer den dokumenterte etableringen i 1899; åpne kilder isolerer ikke én tilstrekkelig årsak til den senere kulturhusombyggingen.",
+        "alternativeExplanations": [
+          "Vernestatus, hallenes størrelse, kommunalt samarbeid og behov for kulturarena kan ha virket sammen."
+        ],
+        "uncertainty": "Åpne kilder gir ikke komplette beslutningsarkiver, kostnader, bemanningsserier eller en sikker forklaring på 1974/1977-avviket.",
+        "sourceIds": [
+          "source_sporveien",
+          "source_byleksikon",
+          "source_sceneweb"
+        ]
+      }
+    }
+  ],
+  "presentTrace": {
+    "objectStatus": "altered",
+    "statement": "Hallvolum, porter og fasadeinndeling står som lesbare spor, mens rommene er bygd om for kultur- og teaterbruk.",
+    "originalSiteRelationship": "Markøren peker til Torshovgata 33 der vognhallen og verkstedet ble oppført i 1899; Pontoppidans gate 7 er et annet anlegg.",
+    "sourceIds": [
+      "source_sporveien",
+      "source_egal",
+      "source_ung_media"
+    ]
+  },
+  "quizOpening": {
+    "status": "PASS",
+    "quizTargetId": "gamle_trikkestallen",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/by/gamle_trikkestallen.json",
+    "productionContext": "data/quiz/production_context/by/gamle_trikkestallen.json",
+    "requiredInputs": [
+      "data/fag/by/pensum_by.json",
+      "data/fag/by/emner_by.json",
+      "data/fag/by/fagkart_by.json",
+      "data/fag/by/methods_by.json",
+      "data/fag/by/supersetQUIZMAL_by.json",
+      "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    ]
+  },
+  "chronologyStories": {
+    "status": "PASS",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Leksikonet følger 1899, 1957, 1977, 2003, 2025 og 2026; Story avgrenser 2003 som dokumentert vendepunkt."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "historicalIdentity",
+        "presentTrace"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "historyTopics",
+        "caseRealizations.case_torshov_elektrifisering_og_ombruk"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "caseRealizations.case_torshov_elektrifisering_og_ombruk.temporalSequence"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "caseRealizations.case_torshov_elektrifisering_og_ombruk.actors",
+        "caseRealizations.case_torshov_elektrifisering_og_ombruk.conflictOrNegotiation"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "sources",
+        "caseRealizations.case_torshov_elektrifisering_og_ombruk.sourceComparison"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "caseRealizations.case_torshov_elektrifisering_og_ombruk.comparativeScale",
+        "caseRealizations.case_torshov_elektrifisering_og_ombruk.causationAndUncertainty"
+      ]
+    },
+    "G": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "quizOpening"
+      ]
+    },
+    "H": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "chronologyStories",
+        "data/leksikon/places/oslo/by/leksikon_gamle_trikkestallen.json#chronology"
+      ]
+    }
+  },
+  "review": {
+    "reviewer": "Gamle trikkestallen phase 1–24 Historie review",
+    "reviewedAt": "2026-08-27",
+    "notes": "Vognhall, verksted, kulturhus, tidligere Oslo Nye-bruk og nåværende aktører er avgrenset. Kildeavviket 1974/1977 og adressegrensen publiseres eksplisitt; årsaker og arbeidsvilkår hevdes ikke utover kildenes dekning."
+  }
+}

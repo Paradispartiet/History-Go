@@ -1,0 +1,170 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "per_horn",
+  "profile_file": "data/people/by/oslo/gamle_trikkestallen/per_horn.json",
+  "identity": {
+    "canonical_identity": "Den norske scenografen Per Kristian Horn, født 28. oktober 1941.",
+    "name_variants": [
+      "Per Horn",
+      "Per Kristian Horn"
+    ],
+    "not": [
+      "botanikeren Kristian Horn",
+      "andre personer med etternavnet Horn"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "identity",
+      "claim": "Per Kristian Horn er en norsk scenograf, født 28. oktober 1941.",
+      "status": "verified",
+      "source_url": "https://sceneweb.no/nb/artist/2466/Per_Horn",
+      "source_location": "Informasjon: navn, fødselsdato og funksjon",
+      "source_type": "archive",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-27",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "career",
+      "claim": "Sceneweb registrerer Horn som scenograf i en lang rekke Oslo Nye-produksjoner.",
+      "status": "verified",
+      "source_url": "https://sceneweb.no/nb/artist/2466/Per_Horn",
+      "source_location": "Medvirket i produksjoner",
+      "source_type": "archive",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-27",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "rehabilitation",
+      "claim": "Per Horn var en drivkraft i rehabiliteringen av Trikkestallen og arbeidet med scenens tekniske krav.",
+      "status": "verified",
+      "source_url": "https://www.unima.no/new-page-1",
+      "source_location": "Avsnittet om flyttingen til Trikkestallen",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-27",
+      "evidence_level": "explicit"
+    },
+    {
+      "id": "stage_elements",
+      "claim": "Égal Teater oppgir at dukketeaterscenens elementer i Trikkestallen ble bygget av Per Horn.",
+      "status": "verified",
+      "source_url": "https://egalteater.no/om/trikkestallen/",
+      "source_location": "Andre avsnitt under Trikkestallen",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-27",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "place",
+      "claim": "Horn er direkte knyttet til ombyggingen av Trikkestallen før åpningen i 2003.",
+      "status": "verified",
+      "source_url": "https://sceneweb.no/nb/venue/1970/Trikkestallen_p%C3%A5%20Torshov",
+      "source_location": "Historikken om rehabiliteringen og åpningen",
+      "source_type": "archive",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-27",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "image_identity",
+      "claim": "Sceneweb identifiserer Per Horn som personen til høyre i gruppefotografiet med Grethe Wang og Kirsten Sørlie.",
+      "status": "verified",
+      "source_url": "https://sceneweb.no/nb/multimedia/113233",
+      "source_location": "Tittel, beskrivelse og personkoblinger",
+      "source_type": "archive",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-27",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "identity"
+    ],
+    "kindLabel": [
+      "identity",
+      "career"
+    ],
+    "year": [
+      "rehabilitation",
+      "place"
+    ],
+    "placeId": [
+      "rehabilitation",
+      "place"
+    ],
+    "places[gamle_trikkestallen]": [
+      "rehabilitation",
+      "place"
+    ],
+    "image": [
+      "image_identity"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "rehabilitation",
+          "stage_elements",
+          "place"
+        ],
+        "evidence_mode": "explicit"
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "career"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "rehabilitation"
+        ]
+      },
+      {
+        "sentence": 4,
+        "claim_ids": [
+          "stage_elements"
+        ]
+      },
+      {
+        "sentence": 5,
+        "claim_ids": [
+          "place"
+        ]
+      },
+      {
+        "sentence": 6,
+        "claim_ids": [
+          "image_identity"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "6/6",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-08-27",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}
