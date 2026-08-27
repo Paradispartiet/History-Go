@@ -18,7 +18,9 @@
   },
   "outcome_rules": {
     "fired": {
-      "stability_values": ["FIRED"],
+      "stability_values": [
+        "FIRED"
+      ],
       "strikes_gte": 3,
       "score_lte": -3
     },
@@ -31,7 +33,11 @@
     "stagnated": {
       "autonomy_delta": -10,
       "stability": "STAGNATED",
-      "add_branch_flags": ["career_stagnated", "finansanalytiker_metodepress_loop", "evening_pressure"]
+      "add_branch_flags": [
+        "career_stagnated",
+        "finansanalytiker_metodepress_loop",
+        "evening_pressure"
+      ]
     }
   },
   "sequence": [
@@ -40,64 +46,184 @@
       "type": "job",
       "phase": "intro",
       "step_goal": "Etablere finansanalytikerrollen gjennom datasett, modellversjon og første investeringsnotat.",
-      "allowed_families": ["finansanalytiker_intro_v2"],
-      "fallback_types": ["job", "conflict", "story"]
+      "allowed_families": [
+        "finansanalytiker_intro_v2"
+      ],
+      "fallback_types": [
+        "job",
+        "conflict",
+        "story"
+      ]
     },
     {
       "step": 2,
       "type": "job",
       "phase": "early",
       "step_goal": "La spilleren håndtere datakvalitet, multipler og dokumenterte antakelser.",
-      "allowed_families": ["modell_og_antakelser", "marked_og_sammenligning"],
-      "fallback_types": ["conflict", "story", "event"]
+      "allowed_families": [
+        "modell_og_antakelser",
+        "marked_og_sammenligning"
+      ],
+      "fallback_types": [
+        "conflict",
+        "story",
+        "event"
+      ]
     },
     {
       "step": 3,
       "type": "conflict",
       "phase": "early",
       "step_goal": "Introdusere presset mellom tydelig anbefaling og usikker datakvalitet.",
-      "allowed_families": ["anbefaling_og_usikkerhet"],
-      "fallback_types": ["job", "event", "story"]
+      "allowed_families": [
+        "anbefaling_og_usikkerhet"
+      ],
+      "fallback_types": [
+        "job",
+        "event",
+        "story"
+      ]
     },
     {
       "step": 4,
       "type": "story",
       "phase": "mid",
       "step_goal": "Løfte rollen fra regneark til kapitalfortelling: modellen skaper et bilde av fremtiden.",
-      "allowed_families": ["kapitalfortelling"],
-      "fallback_types": ["job", "conflict", "event"]
+      "allowed_families": [
+        "kapitalfortelling"
+      ],
+      "fallback_types": [
+        "job",
+        "conflict",
+        "event"
+      ]
     },
     {
       "step": 5,
       "type": "event",
       "phase": "mid",
       "step_goal": "Utløse markedsnyhet, presentasjon eller databrudd som tester modellens robusthet.",
-      "allowed_families": ["markedsnyhet_og_presentasjon"],
-      "fallback_types": ["job", "conflict", "story"]
+      "allowed_families": [
+        "markedsnyhet_og_presentasjon"
+      ],
+      "fallback_types": [
+        "job",
+        "conflict",
+        "story"
+      ]
     },
     {
       "step": 6,
       "type": "job",
       "phase": "advanced",
       "step_goal": "Gi spilleren ansvar for scenarioanalyse, sensitivitet og risikobilde.",
-      "allowed_families": ["scenario_og_risiko", "modell_og_antakelser"],
-      "fallback_types": ["conflict", "event", "story"]
+      "allowed_families": [
+        "scenario_og_risiko",
+        "modell_og_antakelser"
+      ],
+      "fallback_types": [
+        "conflict",
+        "event",
+        "story"
+      ]
     },
     {
       "step": 7,
       "type": "conflict",
       "phase": "mastery",
       "step_goal": "Teste analytikerens integritet når en ønsket konklusjon kolliderer med usikkerheten i modellen.",
-      "allowed_families": ["konklusjon_og_integritet"],
-      "fallback_types": ["job", "event", "story"]
+      "allowed_families": [
+        "konklusjon_og_integritet"
+      ],
+      "fallback_types": [
+        "job",
+        "event",
+        "story"
+      ]
     },
     {
       "step": 8,
       "type": "story",
       "phase": "climax",
       "step_goal": "Avrunde finansanalytikerbuen: spilleren ser at analyse er en form for ansvarlig framtidsfortelling.",
-      "allowed_families": ["analytiker_identitet"],
-      "fallback_types": ["event", "conflict", "job"]
+      "allowed_families": [
+        "analytiker_identitet"
+      ],
+      "fallback_types": [
+        "event",
+        "conflict",
+        "job"
+      ]
+    },
+    {
+      "step": 9,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "Åpne ett vedvarende investeringscase med sporbar kilde, modellversjon og beslutningseier.",
+      "allowed_families": [
+        "role_world_rollout_finansanalytiker_case_open"
+      ],
+      "fallback_types": [
+        "people",
+        "knowledge",
+        "micro"
+      ]
+    },
+    {
+      "step": 10,
+      "type": "people",
+      "phase": "advanced",
+      "step_goal": "Overlever låst reviewversjon til Theo og gjør legitim venting synlig uten parallell modellkopi.",
+      "allowed_families": [
+        "role_world_rollout_finansanalytiker_senior_handoff"
+      ],
+      "fallback_types": [
+        "knowledge",
+        "micro",
+        "job"
+      ]
+    },
+    {
+      "step": 11,
+      "type": "event",
+      "phase": "mastery",
+      "step_goal": "Rework samme case når ny markedsinformasjon endrer premisset etter seniorreview.",
+      "allowed_families": [
+        "role_world_rollout_finansanalytiker_market_rework"
+      ],
+      "fallback_types": [
+        "job",
+        "conflict",
+        "knowledge"
+      ]
+    },
+    {
+      "step": 12,
+      "type": "followup",
+      "phase": "climax",
+      "step_goal": "Overlever anbefalingen til investeringskomiteen og vent på faktisk beslutningsmyndighet.",
+      "allowed_families": [
+        "role_world_rollout_finansanalytiker_committee_wait"
+      ],
+      "fallback_types": [
+        "conflict",
+        "story",
+        "event"
+      ]
+    },
+    {
+      "step": 13,
+      "type": "consequence",
+      "phase": "climax",
+      "step_goal": "Lukk caset med beslutningsspor og resultatbias-kontroll etter komiteens vedtak.",
+      "allowed_families": [
+        "role_world_rollout_finansanalytiker_committee_aftermath"
+      ],
+      "fallback_types": [
+        "story",
+        "knowledge",
+        "people"
+      ]
     }
   ]
 }

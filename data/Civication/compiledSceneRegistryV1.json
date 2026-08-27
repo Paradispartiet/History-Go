@@ -105738,6 +105738,320 @@
       "category": "naeringsliv",
       "compatibility_projection": {
         "category": "naeringsliv",
+        "choice_axis": "lukk_med_beslutningsspor_vs_omskriv_historien",
+        "choices": [
+          {
+            "effect": 2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:elin_portefoljeansvarlig",
+                  "delta": 3,
+                  "event_id": "finance_standing_elin_aftermath",
+                  "reason": "Elin får et etterprøvbart beslutningsminne som gjør det mulig å lære av caset uten å forveksle markedets senere utfall med kvaliteten på datagrunnlaget.",
+                  "source_actor_id": "elin_portefoljeansvarlig"
+                },
+                {
+                  "audience_id": "professional:theo_senioranalytiker",
+                  "delta": 3,
+                  "event_id": "finance_standing_theo_aftermath",
+                  "reason": "Theo ser at metode-review, venting og rework er bevart som del av historikken, slik at neste analyse kan forbedres fra faktiske prosessdata.",
+                  "source_actor_id": "theo_senioranalytiker"
+                },
+                {
+                  "audience_id": "professional:investeringskomite",
+                  "delta": 2,
+                  "event_id": "finance_standing_committee_aftermath",
+                  "reason": "Komiteen får et klart skille mellom rådet de mottok og vedtaket de selv tok, noe som bevarer ansvar selv når utfallet senere blir kjent.",
+                  "source_actor_id": "investeringskomite"
+                }
+              ],
+              "stats": {
+                "quality": 3,
+                "risk": -2,
+                "trust": 3
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "finance_case_closed_with_decision_record",
+                  "note": "Komiteens beslutning og analysens samtidige premisser er skilt og dokumentert; caset lukkes.",
+                  "op": "transition",
+                  "to_phase": "decision_recorded",
+                  "to_status": "closed",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                },
+                {
+                  "event_id": "finance_case_learning_closed",
+                  "flag": "decision_and_analysis_recorded_separately",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                }
+              ]
+            },
+            "feedback": "Caset blir et institusjonelt minne i stedet for en seiers- eller tapsfortelling. Elin, Theo og komiteen kan vurdere samme arbeid fra sine egne ståsteder uten at én global status bestemmer historien.",
+            "id": "A",
+            "label": "Lukk caset med anbefaling, usikkerhet, vedtak og læringspunkter som separate lag",
+            "reply": "Jeg arkiverer hva modellen viste, hva vi ikke visste, hva komiteen vedtok og hvilke senere signaler som faktisk bør endre neste analyse."
+          },
+          {
+            "effect": -2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:elin_portefoljeansvarlig",
+                  "delta": -2,
+                  "event_id": "finance_standing_elin_resultbias",
+                  "reason": "Elin mister et presist beslutningsminne fordi senere markedsutfall får overskrive hvilke premisser og usikkerheter som faktisk var kjent da rådet ble gitt.",
+                  "source_actor_id": "elin_portefoljeansvarlig"
+                },
+                {
+                  "audience_id": "professional:theo_senioranalytiker",
+                  "delta": -3,
+                  "event_id": "finance_standing_theo_resultbias",
+                  "reason": "Theo ser at metodearbeidet blir vurdert gjennom senere utfall i stedet for gjennom sporbarheten og kvaliteten som kunne kontrolleres på beslutningstidspunktet.",
+                  "source_actor_id": "theo_senioranalytiker"
+                },
+                {
+                  "audience_id": "professional:investeringskomite",
+                  "delta": -2,
+                  "event_id": "finance_standing_committee_resultbias",
+                  "reason": "Komiteens eget ansvar blir uklart når analytikerens treffsikkerhet brukes som etterpåforklaring på et vedtak som faktisk hadde flere eiere og usikkerheter.",
+                  "source_actor_id": "investeringskomite"
+                }
+              ],
+              "stats": {
+                "quality": -3,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "finance_case_closed_with_result_bias",
+                  "note": "Caset lukkes, men læringen domineres av resultatbias fremfor samtidige premisser.",
+                  "op": "transition",
+                  "to_phase": "decision_recorded",
+                  "to_status": "closed",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                },
+                {
+                  "event_id": "finance_result_bias",
+                  "flag": "later_outcome_overwrites_decision_time_reasoning",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                }
+              ]
+            },
+            "feedback": "Du får en enklere prestasjonsfortelling, men taper skillet mellom metode og utfall. Flaks kan bli standing, og ærlig usikkerhet kan bli behandlet som svakhet.",
+            "id": "B",
+            "label": "Skriv etterspillet som bevis på at anbefalingen var riktig eller feil",
+            "reply": "Jeg oppsummerer caset ut fra om markedet senere bekreftet anbefalingen, og lar det være hovedmålet på analysekvalitet."
+          }
+        ],
+        "competency": "resultatbias_og_metodelaering",
+        "consequence_axis": "langsiktig_metodetillit_vs_resultatjakt",
+        "cooldown": 10,
+        "day_phase": "evening",
+        "from": "Investeringskomiteen",
+        "id": "naeringsliv_finansanalytiker_realism_committee_aftermath_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_rollout_finansanalytiker_committee_aftermath",
+        "mail_type": "consequence",
+        "narrative_arc": "fra_modellpremiss_til_sporbart_investeringsvedtak_og_etterspill",
+        "people_ref": "investeringskomite",
+        "person_id": "investeringskomite",
+        "phase": "advanced",
+        "place_id": "bankplassen",
+        "planned_only": true,
+        "pressure": "ha_rett_vs_vaere_sporbar",
+        "priority": 95,
+        "purpose": "Materialisere beslutningsetterspill og resultatbias: samme analyse kan være metodisk god selv om markedet senere går mot den, og en god markedsutvikling kan ikke gjøre en svak metode retroaktivt riktig.",
+        "repeatable": false,
+        "role_scope": "finansanalytiker",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/consequence/finansanalytiker_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Komiteens vedtak er et eget institusjonelt event, ikke en forlengelse av analytikerens anbefaling.",
+          "Caset inneholder nå baseline, Theo-handoff, venting, markedsrework og komitehandoff i samme spor.",
+          "Etterspillet skal bevare hva analysen faktisk sa på beslutningstidspunktet før senere markedsutfall er kjent."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis spilleren bruker utfallet som eneste kvalitetsmål, lærer rollen å jage treff fremfor sporbar analyse. Da vil standing belønne flaks og straffe ærlig usikkerhet, og neste investeringscase starter med feil læring.",
+        "subject": "Vedtaket kom – nå må analyse, beslutning og resultat holdes fra hverandre",
+        "summary": "Komiteen har tatt beslutningen. Uansett om utfallet følger din anbefaling, skal caset lukkes med dokumentert modellversjon, usikkerhet, rework og faktisk beslutningseier. Standing etterpå skal handle om metode og brukbarhet, ikke om å omskrive historien slik at du alltid «hadde rett».",
+        "tags": [
+          "role_world_realism",
+          "controlled_rollout",
+          "naeringsliv",
+          "finansanalytiker",
+          "persistent_work",
+          "situated_reputation"
+        ],
+        "task_domain": "decision_aftermath_and_learning",
+        "task_kind": "consequence",
+        "thread_key": "naeringsliv_finansanalytiker_investment_case_realism_001",
+        "work_context": {
+          "institution_id": "naeringsliv_investeringsanalyse_enhet_001",
+          "object_ids": [
+            "naeringsliv_finansanalytiker_investment_case_001"
+          ],
+          "priority": "high",
+          "rework_of_scene_id": "naeringsliv_finansanalytiker_realism_committee_wait_001"
+        }
+      },
+      "id": "naeringsliv_finansanalytiker_realism_committee_aftermath_001",
+      "mail_type": "consequence",
+      "role_scope": "finansanalytiker",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:elin_portefoljeansvarlig",
+                  "delta": 3,
+                  "event_id": "finance_standing_elin_aftermath",
+                  "reason": "Elin får et etterprøvbart beslutningsminne som gjør det mulig å lære av caset uten å forveksle markedets senere utfall med kvaliteten på datagrunnlaget.",
+                  "source_actor_id": "elin_portefoljeansvarlig"
+                },
+                {
+                  "audience_id": "professional:theo_senioranalytiker",
+                  "delta": 3,
+                  "event_id": "finance_standing_theo_aftermath",
+                  "reason": "Theo ser at metode-review, venting og rework er bevart som del av historikken, slik at neste analyse kan forbedres fra faktiske prosessdata.",
+                  "source_actor_id": "theo_senioranalytiker"
+                },
+                {
+                  "audience_id": "professional:investeringskomite",
+                  "delta": 2,
+                  "event_id": "finance_standing_committee_aftermath",
+                  "reason": "Komiteen får et klart skille mellom rådet de mottok og vedtaket de selv tok, noe som bevarer ansvar selv når utfallet senere blir kjent.",
+                  "source_actor_id": "investeringskomite"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "finance_case_closed_with_decision_record",
+                  "note": "Komiteens beslutning og analysens samtidige premisser er skilt og dokumentert; caset lukkes.",
+                  "op": "transition",
+                  "to_phase": "decision_recorded",
+                  "to_status": "closed",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                },
+                {
+                  "event_id": "finance_case_learning_closed",
+                  "flag": "decision_and_analysis_recorded_separately",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                }
+              ]
+            },
+            "feedback": "Caset blir et institusjonelt minne i stedet for en seiers- eller tapsfortelling. Elin, Theo og komiteen kan vurdere samme arbeid fra sine egne ståsteder uten at én global status bestemmer historien.",
+            "id": "A",
+            "label": "Lukk caset med anbefaling, usikkerhet, vedtak og læringspunkter som separate lag",
+            "reply": "Jeg arkiverer hva modellen viste, hva vi ikke visste, hva komiteen vedtok og hvilke senere signaler som faktisk bør endre neste analyse."
+          },
+          {
+            "effects": {
+              "score_delta": -2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:elin_portefoljeansvarlig",
+                  "delta": -2,
+                  "event_id": "finance_standing_elin_resultbias",
+                  "reason": "Elin mister et presist beslutningsminne fordi senere markedsutfall får overskrive hvilke premisser og usikkerheter som faktisk var kjent da rådet ble gitt.",
+                  "source_actor_id": "elin_portefoljeansvarlig"
+                },
+                {
+                  "audience_id": "professional:theo_senioranalytiker",
+                  "delta": -3,
+                  "event_id": "finance_standing_theo_resultbias",
+                  "reason": "Theo ser at metodearbeidet blir vurdert gjennom senere utfall i stedet for gjennom sporbarheten og kvaliteten som kunne kontrolleres på beslutningstidspunktet.",
+                  "source_actor_id": "theo_senioranalytiker"
+                },
+                {
+                  "audience_id": "professional:investeringskomite",
+                  "delta": -2,
+                  "event_id": "finance_standing_committee_resultbias",
+                  "reason": "Komiteens eget ansvar blir uklart når analytikerens treffsikkerhet brukes som etterpåforklaring på et vedtak som faktisk hadde flere eiere og usikkerheter.",
+                  "source_actor_id": "investeringskomite"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "finance_case_closed_with_result_bias",
+                  "note": "Caset lukkes, men læringen domineres av resultatbias fremfor samtidige premisser.",
+                  "op": "transition",
+                  "to_phase": "decision_recorded",
+                  "to_status": "closed",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                },
+                {
+                  "event_id": "finance_result_bias",
+                  "flag": "later_outcome_overwrites_decision_time_reasoning",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                }
+              ]
+            },
+            "feedback": "Du får en enklere prestasjonsfortelling, men taper skillet mellom metode og utfall. Flaks kan bli standing, og ærlig usikkerhet kan bli behandlet som svakhet.",
+            "id": "B",
+            "label": "Skriv etterspillet som bevis på at anbefalingen var riktig eller feil",
+            "reply": "Jeg oppsummerer caset ut fra om markedet senere bekreftet anbefalingen, og lar det være hovedmålet på analysekvalitet."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Komiteens vedtak er et eget institusjonelt event, ikke en forlengelse av analytikerens anbefaling.",
+            "Caset inneholder nå baseline, Theo-handoff, venting, markedsrework og komitehandoff i samme spor.",
+            "Etterspillet skal bevare hva analysen faktisk sa på beslutningstidspunktet før senere markedsutfall er kjent."
+          ],
+          "subject": "Vedtaket kom – nå må analyse, beslutning og resultat holdes fra hverandre",
+          "summary": "Komiteen har tatt beslutningen. Uansett om utfallet følger din anbefaling, skal caset lukkes med dokumentert modellversjon, usikkerhet, rework og faktisk beslutningseier. Standing etterpå skal handle om metode og brukbarhet, ikke om å omskrive historien slik at du alltid «hadde rett»."
+        },
+        "day_phase": "evening",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "naeringsliv_finansanalytiker_realism_committee_aftermath_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "bankplassen",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "naeringsliv_finansanalytiker_realism_committee_aftermath_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/consequence/finansanalytiker_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "naeringsliv_finansanalytiker_investment_case_realism_001",
+        "version": 1,
+        "work_context": {
+          "institution_id": "naeringsliv_investeringsanalyse_enhet_001",
+          "object_ids": [
+            "naeringsliv_finansanalytiker_investment_case_001"
+          ],
+          "priority": "high",
+          "rework_of_scene_id": "naeringsliv_finansanalytiker_realism_committee_wait_001"
+        }
+      },
+      "source_hash": "46a6ea59c0b67906fb5d9826677fc11a89062c6f714c4c01d1412f48c106432e",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/consequence/finansanalytiker_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
         "choice_axis": "oppdatere_case_vs_fortsette_plan",
         "choices": [
           {
@@ -105849,6 +106163,292 @@
         "version": 1
       },
       "source_hash": "cfa9698c3046a984d353c1dfda2d1c9f7bc2db660008774198fe12c48d342711",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/event/finansanalytiker_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
+        "choice_axis": "sporbar_rework_vs_fotnote",
+        "choices": [
+          {
+            "effect": 2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:theo_senioranalytiker",
+                  "delta": 3,
+                  "event_id": "finance_standing_theo_rework",
+                  "reason": "Theo ser at reviewet hans brukes som kontrollpunkt for en eksplisitt endring, ikke som kvalitetsstempel på en modell som nå har andre premisser.",
+                  "source_actor_id": "theo_senioranalytiker"
+                },
+                {
+                  "audience_id": "manager:elin_portefoljeansvarlig",
+                  "delta": 3,
+                  "event_id": "finance_standing_elin_rework",
+                  "reason": "Elin får vite nøyaktig hvorfor anbefalingen kan endres etter ny guiding og kan forklare reworket som metode, ikke ubesluttsomhet.",
+                  "source_actor_id": "elin_portefoljeansvarlig"
+                }
+              ],
+              "stats": {
+                "quality": 3,
+                "risk": -3,
+                "trust": 2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "finance_case_market_rework",
+                  "note": "Ny guiding endrer marginpremiss og scenario; samme case åpnes for sporbar rework.",
+                  "op": "transition",
+                  "to_phase": "market_rework",
+                  "to_status": "in_progress",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                },
+                {
+                  "event_id": "finance_market_rework_traced",
+                  "flag": "new_guidance_reworked_with_change_log",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                }
+              ]
+            },
+            "feedback": "Samme case overlever nyheten fordi review, venting og rework henger sammen. Theo kan kontrollere endringen, og Elin ser om konklusjonen faktisk flytter seg.",
+            "id": "A",
+            "label": "Åpne caset for rework og vis eksakt hvilke drivere som endres",
+            "reply": "Jeg markerer ny guiding som nytt premiss, oppdaterer scenarioene og sender endringssporet tilbake til Theo og Elin."
+          },
+          {
+            "effect": -2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:theo_senioranalytiker",
+                  "delta": -4,
+                  "event_id": "finance_standing_theo_footnote",
+                  "reason": "Theo ser at et premiss som burde utløse ny modellkontroll er skjøvet ut av modellen for å bevare en tidligere konklusjon.",
+                  "source_actor_id": "theo_senioranalytiker"
+                },
+                {
+                  "audience_id": "manager:elin_portefoljeansvarlig",
+                  "delta": -2,
+                  "event_id": "finance_standing_elin_footnote",
+                  "reason": "Elin får en stabil presentasjon, men et svakere grunnlag for å vite om investeringsrådet fortsatt gjelder etter den nye guidingen.",
+                  "source_actor_id": "elin_portefoljeansvarlig"
+                }
+              ],
+              "stats": {
+                "quality": -3,
+                "risk": 4,
+                "status": 2,
+                "trust": -2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "finance_case_market_rework_avoided",
+                  "note": "Ny guiding er kjent, men spilleren forsøker å holde hovedmodellen uendret.",
+                  "op": "transition",
+                  "to_phase": "market_rework",
+                  "to_status": "in_progress",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                },
+                {
+                  "event_id": "finance_guidance_footnote",
+                  "flag": "material_guidance_reduced_to_footnote",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                }
+              ]
+            },
+            "feedback": "Presentasjonen endrer seg mindre, men modellen later som et endret premiss bare er perifer risiko. Metodisk standing kan falle selv om historien blir enklere å selge.",
+            "id": "B",
+            "label": "Behold hovedmodellen og legg ny guiding i risikofotnoten",
+            "reply": "Jeg lar hovedcaset stå så komitepresentasjonen er stabil, og legger den nye guidingen inn som et risikomoment vi kan følge senere."
+          }
+        ],
+        "competency": "scenario_og_endringsspor",
+        "consequence_axis": "beslutningsrelevans_vs_hindsightforsvar",
+        "cooldown": 10,
+        "day_phase": "morning",
+        "from": "Elin, porteføljeansvarlig",
+        "id": "naeringsliv_finansanalytiker_realism_market_rework_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_rollout_finansanalytiker_market_rework",
+        "mail_type": "event",
+        "narrative_arc": "fra_modellpremiss_til_sporbart_investeringsvedtak_og_etterspill",
+        "people_ref": "elin_portefoljeansvarlig",
+        "person_id": "elin_portefoljeansvarlig",
+        "phase": "advanced",
+        "place_id": "oslo_bors",
+        "planned_only": true,
+        "pressure": "presentasjonsstabilitet_vs_ny_relevans",
+        "priority": 97,
+        "purpose": "Bevise at role rhythm ikke stopper ved handoff: ny informasjon kan legitimt åpne samme arbeidsobjekt igjen, og kvalitet måles i sporbar rework fremfor å beskytte tidligere arbeid.",
+        "repeatable": false,
+        "role_scope": "finansanalytiker",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/event/finansanalytiker_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Ny guiding er et nytt premiss, ikke en feil i den gamle historikken.",
+          "Theo har allerede reviewet kilde- og versjonsstrukturen, så reworket må bevare hans sporbarhet.",
+          "Elin trenger å vite om anbefalingen endres, men hun kan ikke kreve at analysen later som ny informasjon er uvesentlig."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis ny guiding bare legges i en fotnote for å redde presentasjonen, får komiteen en modell som er teknisk reviewet, men faglig foreldet. Hvis hele modellen bygges om uten spor, mister Theo muligheten til å se hva som faktisk endret seg.",
+        "subject": "Ny guiding endrer premisset – reviewet må føre til rework, ikke kosmetikk",
+        "summary": "Etter Theos review kommer ny guiding som svekker marginforutsetningen og flytter nedsiden. Den gamle modellen var metodisk ryddig da den ble reviewet, men er ikke lenger beslutningsrelevant. Caset må åpnes for kontrollert rework med tydelig endringsspor.",
+        "tags": [
+          "role_world_realism",
+          "controlled_rollout",
+          "naeringsliv",
+          "finansanalytiker",
+          "persistent_work",
+          "situated_reputation"
+        ],
+        "task_domain": "market_triggered_rework",
+        "task_kind": "event",
+        "thread_key": "naeringsliv_finansanalytiker_investment_case_realism_001",
+        "work_context": {
+          "institution_id": "naeringsliv_investeringsanalyse_enhet_001",
+          "object_ids": [
+            "naeringsliv_finansanalytiker_investment_case_001"
+          ],
+          "priority": "high",
+          "rework_of_scene_id": "naeringsliv_finansanalytiker_realism_senior_handoff_wait_001"
+        }
+      },
+      "id": "naeringsliv_finansanalytiker_realism_market_rework_001",
+      "mail_type": "event",
+      "role_scope": "finansanalytiker",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:theo_senioranalytiker",
+                  "delta": 3,
+                  "event_id": "finance_standing_theo_rework",
+                  "reason": "Theo ser at reviewet hans brukes som kontrollpunkt for en eksplisitt endring, ikke som kvalitetsstempel på en modell som nå har andre premisser.",
+                  "source_actor_id": "theo_senioranalytiker"
+                },
+                {
+                  "audience_id": "manager:elin_portefoljeansvarlig",
+                  "delta": 3,
+                  "event_id": "finance_standing_elin_rework",
+                  "reason": "Elin får vite nøyaktig hvorfor anbefalingen kan endres etter ny guiding og kan forklare reworket som metode, ikke ubesluttsomhet.",
+                  "source_actor_id": "elin_portefoljeansvarlig"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "finance_case_market_rework",
+                  "note": "Ny guiding endrer marginpremiss og scenario; samme case åpnes for sporbar rework.",
+                  "op": "transition",
+                  "to_phase": "market_rework",
+                  "to_status": "in_progress",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                },
+                {
+                  "event_id": "finance_market_rework_traced",
+                  "flag": "new_guidance_reworked_with_change_log",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                }
+              ]
+            },
+            "feedback": "Samme case overlever nyheten fordi review, venting og rework henger sammen. Theo kan kontrollere endringen, og Elin ser om konklusjonen faktisk flytter seg.",
+            "id": "A",
+            "label": "Åpne caset for rework og vis eksakt hvilke drivere som endres",
+            "reply": "Jeg markerer ny guiding som nytt premiss, oppdaterer scenarioene og sender endringssporet tilbake til Theo og Elin."
+          },
+          {
+            "effects": {
+              "score_delta": -2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:theo_senioranalytiker",
+                  "delta": -4,
+                  "event_id": "finance_standing_theo_footnote",
+                  "reason": "Theo ser at et premiss som burde utløse ny modellkontroll er skjøvet ut av modellen for å bevare en tidligere konklusjon.",
+                  "source_actor_id": "theo_senioranalytiker"
+                },
+                {
+                  "audience_id": "manager:elin_portefoljeansvarlig",
+                  "delta": -2,
+                  "event_id": "finance_standing_elin_footnote",
+                  "reason": "Elin får en stabil presentasjon, men et svakere grunnlag for å vite om investeringsrådet fortsatt gjelder etter den nye guidingen.",
+                  "source_actor_id": "elin_portefoljeansvarlig"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "finance_case_market_rework_avoided",
+                  "note": "Ny guiding er kjent, men spilleren forsøker å holde hovedmodellen uendret.",
+                  "op": "transition",
+                  "to_phase": "market_rework",
+                  "to_status": "in_progress",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                },
+                {
+                  "event_id": "finance_guidance_footnote",
+                  "flag": "material_guidance_reduced_to_footnote",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                }
+              ]
+            },
+            "feedback": "Presentasjonen endrer seg mindre, men modellen later som et endret premiss bare er perifer risiko. Metodisk standing kan falle selv om historien blir enklere å selge.",
+            "id": "B",
+            "label": "Behold hovedmodellen og legg ny guiding i risikofotnoten",
+            "reply": "Jeg lar hovedcaset stå så komitepresentasjonen er stabil, og legger den nye guidingen inn som et risikomoment vi kan følge senere."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Ny guiding er et nytt premiss, ikke en feil i den gamle historikken.",
+            "Theo har allerede reviewet kilde- og versjonsstrukturen, så reworket må bevare hans sporbarhet.",
+            "Elin trenger å vite om anbefalingen endres, men hun kan ikke kreve at analysen later som ny informasjon er uvesentlig."
+          ],
+          "subject": "Ny guiding endrer premisset – reviewet må føre til rework, ikke kosmetikk",
+          "summary": "Etter Theos review kommer ny guiding som svekker marginforutsetningen og flytter nedsiden. Den gamle modellen var metodisk ryddig da den ble reviewet, men er ikke lenger beslutningsrelevant. Caset må åpnes for kontrollert rework med tydelig endringsspor."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "naeringsliv_finansanalytiker_realism_market_rework_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "oslo_bors",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "naeringsliv_finansanalytiker_realism_market_rework_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/event/finansanalytiker_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "naeringsliv_finansanalytiker_investment_case_realism_001",
+        "version": 1,
+        "work_context": {
+          "institution_id": "naeringsliv_investeringsanalyse_enhet_001",
+          "object_ids": [
+            "naeringsliv_finansanalytiker_investment_case_001"
+          ],
+          "priority": "high",
+          "rework_of_scene_id": "naeringsliv_finansanalytiker_realism_senior_handoff_wait_001"
+        }
+      },
+      "source_hash": "1077b24f9968ecff872f604f7164a45f48f2134705f45c782f177d44ee252fcc",
       "source_path": "data/Civication/mailFamilies/naeringsliv/event/finansanalytiker_event.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -105974,6 +106574,296 @@
         "version": 1
       },
       "source_hash": "d3114da3ac17e8e67186328fe2ab0ecbaf59f7da9460a6334b42e8314f48de85",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/followup/finansanalytiker_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
+        "choice_axis": "overlevere_og_vente_vs_foregripe_vedtak",
+        "choices": [
+          {
+            "effect": 2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:elin_portefoljeansvarlig",
+                  "delta": 3,
+                  "event_id": "finance_standing_elin_committee",
+                  "reason": "Elin kan presentere et tydelig råd samtidig som hennes og analytikerens roller forblir adskilt fra komiteens faktiske kapitalmyndighet.",
+                  "source_actor_id": "elin_portefoljeansvarlig"
+                },
+                {
+                  "audience_id": "professional:investeringskomite",
+                  "delta": 3,
+                  "event_id": "finance_standing_committee_clear",
+                  "reason": "Komiteen mottar et beslutningsgrunnlag som skiller analyse, usikkerhet og anbefaling fra selve vedtaket de er satt til å eie.",
+                  "source_actor_id": "investeringskomite"
+                }
+              ],
+              "stats": {
+                "quality": 2,
+                "risk": -3,
+                "trust": 3
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "finance_case_waiting_for_committee",
+                  "note": "Analyse og rework er overlevert; caset venter på investeringskomiteens beslutning.",
+                  "op": "transition",
+                  "to_phase": "awaiting_investment_committee",
+                  "to_status": "waiting",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                },
+                {
+                  "event_id": "finance_committee_handoff_traced",
+                  "flag": "recommendation_separated_from_capital_decision",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                }
+              ]
+            },
+            "feedback": "Elin og komiteen kan bruke analysen uten at den låner beslutningsmyndighet. Ventingen blir en del av arbeidsobjektets livsløp, ikke et hull spilleren må fylle med mer sikker retorikk.",
+            "id": "A",
+            "label": "Overlever anbefalingen som analyse og marker caset waiting på komiteen",
+            "reply": "Jeg sender anbefaling, scenario og usikkerhet som beslutningsgrunnlag og markerer at investeringsvedtaket eies av komiteen."
+          },
+          {
+            "effect": -2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:elin_portefoljeansvarlig",
+                  "delta": -3,
+                  "event_id": "finance_standing_elin_prejudged",
+                  "reason": "Elin må rydde opp i en forventning om at investeringen allerede er avgjort før beslutningsorganet faktisk har behandlet caset.",
+                  "source_actor_id": "elin_portefoljeansvarlig"
+                },
+                {
+                  "audience_id": "professional:investeringskomite",
+                  "delta": -4,
+                  "event_id": "finance_standing_committee_prejudged",
+                  "reason": "Komiteen ser at analytisk selvsikkerhet er brukt til å sosialt redusere deres beslutning til en formalitet, i strid med den faktiske myndighetsgrensen.",
+                  "source_actor_id": "investeringskomite"
+                }
+              ],
+              "stats": {
+                "quality": -2,
+                "risk": 5,
+                "status": 2,
+                "trust": -3
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "finance_case_waiting_prejudged",
+                  "note": "Caset venter fortsatt på komiteen selv om spilleren sosialt har foregrepet utfallet.",
+                  "op": "transition",
+                  "to_phase": "awaiting_investment_committee",
+                  "to_status": "waiting",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                },
+                {
+                  "event_id": "finance_decision_prejudged",
+                  "flag": "committee_outcome_socially_prejudged",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                }
+              ]
+            },
+            "feedback": "Du gjør waiting mindre ubehagelig ved å late som beslutningen allerede finnes. Det øker forventningsgjeld og svekker den tydelige grensen mellom analytisk innflytelse og kapitalmyndighet.",
+            "id": "B",
+            "label": "Kommuniser internt at investeringen i praksis er klar siden alle faglige signaler peker samme vei",
+            "reply": "Jeg sier at caset i praksis er godkjent faglig og at vi bare venter på den formelle komitebekreftelsen."
+          }
+        ],
+        "competency": "anbefaling_og_myndighetsklarhet",
+        "consequence_axis": "institusjonell_tillit_vs_mandatlekkasje",
+        "cooldown": 10,
+        "day_phase": "afternoon",
+        "from": "Elin, porteføljeansvarlig",
+        "id": "naeringsliv_finansanalytiker_realism_committee_wait_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_rollout_finansanalytiker_committee_wait",
+        "mail_type": "followup",
+        "narrative_arc": "fra_modellpremiss_til_sporbart_investeringsvedtak_og_etterspill",
+        "people_ref": "elin_portefoljeansvarlig",
+        "person_id": "elin_portefoljeansvarlig",
+        "phase": "advanced",
+        "place_id": "bankplassen",
+        "planned_only": true,
+        "pressure": "analytisk_selvsikkerhet_vs_formell_beslutning",
+        "priority": 96,
+        "purpose": "Koble handoff og venting direkte til myndighetsgrensen: analytikerens standing kan påvirke hvor mye anbefalingen blir lyttet til, men kan aldri oppgradere rollen til beslutningsorgan.",
+        "repeatable": false,
+        "role_scope": "finansanalytiker",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/followup/finansanalytiker_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Elin eier porteføljesiden av overleveringen; investeringskomiteen eier selve beslutningen.",
+          "Theo har faglig standing i metode, men heller ikke han kan godkjenne kapitalflyttingen.",
+          "Spilleren må tåle at et godt analysecaset kan stå stille mens beslutningstakerne gjør sitt arbeid."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis analytikeren omtaler investeringen som vedtatt fordi caset er sterkt og Elin støtter det, flyttes sosial forventning foran formell beslutning. Da blir et analytisk råd i praksis behandlet som kapitalfullmakt.",
+        "subject": "Analysen er klar – nå må du overlevere og vente på den som faktisk kan flytte kapital",
+        "summary": "Reworket er ferdig, Theo har kontrollert endringssporet og Elin sender anbefalingen til investeringskomiteen. Din rolle går fra aktiv modellering til eksplisitt waiting: du kan svare på metode og scenario, men kan verken forhåndsgodkjenne eller opptre som om kapitalbeslutningen allerede er tatt.",
+        "tags": [
+          "role_world_realism",
+          "controlled_rollout",
+          "naeringsliv",
+          "finansanalytiker",
+          "persistent_work",
+          "situated_reputation"
+        ],
+        "task_domain": "investment_committee_handoff",
+        "task_kind": "followup",
+        "thread_key": "naeringsliv_finansanalytiker_investment_case_realism_001",
+        "work_context": {
+          "handoff_to_actor_id": "investeringskomite",
+          "institution_id": "naeringsliv_investeringsanalyse_enhet_001",
+          "object_ids": [
+            "naeringsliv_finansanalytiker_investment_case_001"
+          ],
+          "priority": "high",
+          "rework_of_scene_id": "naeringsliv_finansanalytiker_realism_market_rework_001",
+          "waiting_for_actor_id": "investeringskomite"
+        }
+      },
+      "id": "naeringsliv_finansanalytiker_realism_committee_wait_001",
+      "mail_type": "followup",
+      "role_scope": "finansanalytiker",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:elin_portefoljeansvarlig",
+                  "delta": 3,
+                  "event_id": "finance_standing_elin_committee",
+                  "reason": "Elin kan presentere et tydelig råd samtidig som hennes og analytikerens roller forblir adskilt fra komiteens faktiske kapitalmyndighet.",
+                  "source_actor_id": "elin_portefoljeansvarlig"
+                },
+                {
+                  "audience_id": "professional:investeringskomite",
+                  "delta": 3,
+                  "event_id": "finance_standing_committee_clear",
+                  "reason": "Komiteen mottar et beslutningsgrunnlag som skiller analyse, usikkerhet og anbefaling fra selve vedtaket de er satt til å eie.",
+                  "source_actor_id": "investeringskomite"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "finance_case_waiting_for_committee",
+                  "note": "Analyse og rework er overlevert; caset venter på investeringskomiteens beslutning.",
+                  "op": "transition",
+                  "to_phase": "awaiting_investment_committee",
+                  "to_status": "waiting",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                },
+                {
+                  "event_id": "finance_committee_handoff_traced",
+                  "flag": "recommendation_separated_from_capital_decision",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                }
+              ]
+            },
+            "feedback": "Elin og komiteen kan bruke analysen uten at den låner beslutningsmyndighet. Ventingen blir en del av arbeidsobjektets livsløp, ikke et hull spilleren må fylle med mer sikker retorikk.",
+            "id": "A",
+            "label": "Overlever anbefalingen som analyse og marker caset waiting på komiteen",
+            "reply": "Jeg sender anbefaling, scenario og usikkerhet som beslutningsgrunnlag og markerer at investeringsvedtaket eies av komiteen."
+          },
+          {
+            "effects": {
+              "score_delta": -2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:elin_portefoljeansvarlig",
+                  "delta": -3,
+                  "event_id": "finance_standing_elin_prejudged",
+                  "reason": "Elin må rydde opp i en forventning om at investeringen allerede er avgjort før beslutningsorganet faktisk har behandlet caset.",
+                  "source_actor_id": "elin_portefoljeansvarlig"
+                },
+                {
+                  "audience_id": "professional:investeringskomite",
+                  "delta": -4,
+                  "event_id": "finance_standing_committee_prejudged",
+                  "reason": "Komiteen ser at analytisk selvsikkerhet er brukt til å sosialt redusere deres beslutning til en formalitet, i strid med den faktiske myndighetsgrensen.",
+                  "source_actor_id": "investeringskomite"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "finance_case_waiting_prejudged",
+                  "note": "Caset venter fortsatt på komiteen selv om spilleren sosialt har foregrepet utfallet.",
+                  "op": "transition",
+                  "to_phase": "awaiting_investment_committee",
+                  "to_status": "waiting",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                },
+                {
+                  "event_id": "finance_decision_prejudged",
+                  "flag": "committee_outcome_socially_prejudged",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                }
+              ]
+            },
+            "feedback": "Du gjør waiting mindre ubehagelig ved å late som beslutningen allerede finnes. Det øker forventningsgjeld og svekker den tydelige grensen mellom analytisk innflytelse og kapitalmyndighet.",
+            "id": "B",
+            "label": "Kommuniser internt at investeringen i praksis er klar siden alle faglige signaler peker samme vei",
+            "reply": "Jeg sier at caset i praksis er godkjent faglig og at vi bare venter på den formelle komitebekreftelsen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Elin eier porteføljesiden av overleveringen; investeringskomiteen eier selve beslutningen.",
+            "Theo har faglig standing i metode, men heller ikke han kan godkjenne kapitalflyttingen.",
+            "Spilleren må tåle at et godt analysecaset kan stå stille mens beslutningstakerne gjør sitt arbeid."
+          ],
+          "subject": "Analysen er klar – nå må du overlevere og vente på den som faktisk kan flytte kapital",
+          "summary": "Reworket er ferdig, Theo har kontrollert endringssporet og Elin sender anbefalingen til investeringskomiteen. Din rolle går fra aktiv modellering til eksplisitt waiting: du kan svare på metode og scenario, men kan verken forhåndsgodkjenne eller opptre som om kapitalbeslutningen allerede er tatt."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "naeringsliv_finansanalytiker_realism_committee_wait_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "bankplassen",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "naeringsliv_finansanalytiker_realism_committee_wait_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/followup/finansanalytiker_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "naeringsliv_finansanalytiker_investment_case_realism_001",
+        "version": 1,
+        "work_context": {
+          "handoff_to_actor_id": "investeringskomite",
+          "institution_id": "naeringsliv_investeringsanalyse_enhet_001",
+          "object_ids": [
+            "naeringsliv_finansanalytiker_investment_case_001"
+          ],
+          "priority": "high",
+          "rework_of_scene_id": "naeringsliv_finansanalytiker_realism_market_rework_001",
+          "waiting_for_actor_id": "investeringskomite"
+        }
+      },
+      "source_hash": "c9e3cf6f459a469a1b5a73381c27d71d61dcccd0658f5032f29ebbf8932d08e1",
       "source_path": "data/Civication/mailFamilies/naeringsliv/followup/finansanalytiker_followup.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -106590,6 +107480,343 @@
       "category": "naeringsliv",
       "compatibility_projection": {
         "category": "naeringsliv",
+        "choice_axis": "ett_sporbart_case_vs_løse_presentasjonsfiler",
+        "choices": [
+          {
+            "effect": 2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:elin_portefoljeansvarlig",
+                  "delta": 3,
+                  "event_id": "finance_standing_elin_open",
+                  "reason": "Elin får et analysegrunnlag der premisser, versjon og beslutningseier er synlige før konklusjonen blir presentert som investeringsråd.",
+                  "source_actor_id": "elin_portefoljeansvarlig"
+                },
+                {
+                  "audience_id": "professional:theo_senioranalytiker",
+                  "delta": 2,
+                  "event_id": "finance_standing_theo_open",
+                  "reason": "Theo får et reviewbart modellspor med tydelig kildeklassifisering, slik at metodekritikk kan skje før anbefalingen låses.",
+                  "source_actor_id": "theo_senioranalytiker"
+                }
+              ],
+              "stats": {
+                "quality": 3,
+                "risk": -2,
+                "trust": 2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "finance_case_baseline_traced",
+                  "flag": "sources_versions_and_decision_owner_traced",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                }
+              ]
+            },
+            "feedback": "Elin får et beslutningsspor som kan følges uten at analysen later som den eier investeringen. Theo kan se nøyaktig hvilken versjon og hvilke premisser han skal reviewe.",
+            "id": "A",
+            "label": "Lås kildetype, modellversjon, scenario og åpne spørsmål i ett case",
+            "reply": "Jeg oppretter ett analysecase med historikk, guiding og egne antakelser skilt, og markerer hvem som eier neste review og beslutning."
+          },
+          {
+            "effect": -2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:elin_portefoljeansvarlig",
+                  "delta": -2,
+                  "event_id": "finance_standing_elin_blurred",
+                  "reason": "Elin får et skarpere lysbilde, men svakere sporbarhet mellom kildene og anbefalingen hun senere skal forsvare overfor komiteen.",
+                  "source_actor_id": "elin_portefoljeansvarlig"
+                },
+                {
+                  "audience_id": "professional:theo_senioranalytiker",
+                  "delta": -3,
+                  "event_id": "finance_standing_theo_blurred",
+                  "reason": "Theo må begynne reviewet med å rekonstruere hvilken modell og hvilke antakelser som allerede har lekket inn i presentasjonen.",
+                  "source_actor_id": "theo_senioranalytiker"
+                }
+              ],
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "finance_case_baseline_blurred",
+                  "flag": "presentation_precedes_source_and_version_lock",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                }
+              ]
+            },
+            "feedback": "Caset blir raskt presentabelt, men samme hastighet gjør det vanskeligere å vite hvilke tall som er observasjon, forventning eller ønsket retning når reviewet starter.",
+            "id": "B",
+            "label": "Bygg presentasjonen først og rydd kildene når komiteen har sett retningen",
+            "reply": "Jeg lager et ryddig hovedcase nå og dokumenterer versjon, guiding og egne antakelser etter at retningen er avklart."
+          }
+        ],
+        "competency": "datakritikk_og_modellsporbarhet",
+        "consequence_axis": "metodetillit_vs_versjonsgjeld",
+        "cooldown": 10,
+        "day_phase": "morning",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "finance_investment_case_created",
+              "op": "create",
+              "work_object": {
+                "confidentiality": "internt_investeringsgrunnlag",
+                "deadline": "investeringskomite_dag_12",
+                "flags": [
+                  "finance_investment_case_opened"
+                ],
+                "institution_id": "naeringsliv_investeringsanalyse_enhet_001",
+                "kind": "investment_analysis_case",
+                "knowledge_refs": [
+                  "data/Civication/roleModels/naeringsliv/finansanalytiker.json",
+                  "data/Civication/workGrammars/naeringsliv/finansanalytiker.json",
+                  "data/Civication/mailFamilies/naeringsliv/knowledge/finansanalytiker_knowledge.json"
+                ],
+                "open_questions": [
+                  "Hvilke tall er rapportert historikk, guiding og egne estimater?",
+                  "Hvilken modellversjon tåler seniorreview og sensitivitetstest?",
+                  "Hva kan analytikeren anbefale, og hvem kan faktisk godkjenne eller flytte kapital?"
+                ],
+                "people_refs": [
+                  "elin_portefoljeansvarlig",
+                  "theo_senioranalytiker",
+                  "investeringskomite"
+                ],
+                "phase": "baseline_and_source_lock",
+                "place_refs": [
+                  "barcode",
+                  "bankplassen",
+                  "oslo_bors"
+                ],
+                "role_scope": "finansanalytiker",
+                "shared": false,
+                "status": "in_progress",
+                "title": "Investeringscase: modell, scenario, anbefaling og beslutningsspor",
+                "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+              }
+            }
+          ]
+        },
+        "from": "Elin, porteføljeansvarlig",
+        "id": "naeringsliv_finansanalytiker_realism_investment_case_open_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_rollout_finansanalytiker_case_open",
+        "mail_type": "job",
+        "narrative_arc": "fra_modellpremiss_til_sporbart_investeringsvedtak_og_etterspill",
+        "people_ref": "elin_portefoljeansvarlig",
+        "person_id": "elin_portefoljeansvarlig",
+        "phase": "advanced",
+        "place_id": "barcode",
+        "planned_only": true,
+        "pressure": "beslutningstempo_vs_sporbart_premiss",
+        "priority": 99,
+        "purpose": "Etablere ett vedvarende investeringscase som senere scener kan vente på, overlevere, reworke og lukke uten at anbefaling blir forvekslet med kapitalmyndighet.",
+        "repeatable": false,
+        "role_scope": "finansanalytiker",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/job/finansanalytiker_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Årsrapport og markedsdata er tilgjengelige, men ledelsens guiding og ditt eget marginestimat må skilles fra rapportert historikk.",
+          "Theo skal kvalitetssikre modellversjon og metode før caset går til Elin og investeringskomiteen.",
+          "Du kan analysere og anbefale; bare faktisk beslutningsorgan kan godkjenne investering eller flytte kapital."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis hver oppdatering behandles som et nytt dokument, kan gamle antakelser overleve uten eier, og komiteen kan få en skarp konklusjon uten å se hvilken versjon eller usikkerhet som faktisk bærer den.",
+        "subject": "Åpne investeringscaset som ett sporbar arbeidsobjekt – ikke fem løse regneark",
+        "summary": "Elin trenger et investeringsgrunnlag til komiteen. Historikk, guiding, egen marginantakelse og peer-gruppe peker ikke helt samme vei. Du skal eie analysesporet, men ikke investeringsbeslutningen, og må gjøre kilder, modellversjon, åpne spørsmål og neste beslutningseier eksplisitte fra starten.",
+        "tags": [
+          "role_world_realism",
+          "controlled_rollout",
+          "naeringsliv",
+          "finansanalytiker",
+          "persistent_work",
+          "situated_reputation"
+        ],
+        "task_domain": "investment_case_baseline",
+        "task_kind": "job",
+        "thread_key": "naeringsliv_finansanalytiker_investment_case_realism_001",
+        "work_context": {
+          "institution_id": "naeringsliv_investeringsanalyse_enhet_001",
+          "object_ids": [
+            "naeringsliv_finansanalytiker_investment_case_001"
+          ],
+          "priority": "high"
+        }
+      },
+      "id": "naeringsliv_finansanalytiker_realism_investment_case_open_001",
+      "mail_type": "job",
+      "role_scope": "finansanalytiker",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:elin_portefoljeansvarlig",
+                  "delta": 3,
+                  "event_id": "finance_standing_elin_open",
+                  "reason": "Elin får et analysegrunnlag der premisser, versjon og beslutningseier er synlige før konklusjonen blir presentert som investeringsråd.",
+                  "source_actor_id": "elin_portefoljeansvarlig"
+                },
+                {
+                  "audience_id": "professional:theo_senioranalytiker",
+                  "delta": 2,
+                  "event_id": "finance_standing_theo_open",
+                  "reason": "Theo får et reviewbart modellspor med tydelig kildeklassifisering, slik at metodekritikk kan skje før anbefalingen låses.",
+                  "source_actor_id": "theo_senioranalytiker"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "finance_case_baseline_traced",
+                  "flag": "sources_versions_and_decision_owner_traced",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                }
+              ]
+            },
+            "feedback": "Elin får et beslutningsspor som kan følges uten at analysen later som den eier investeringen. Theo kan se nøyaktig hvilken versjon og hvilke premisser han skal reviewe.",
+            "id": "A",
+            "label": "Lås kildetype, modellversjon, scenario og åpne spørsmål i ett case",
+            "reply": "Jeg oppretter ett analysecase med historikk, guiding og egne antakelser skilt, og markerer hvem som eier neste review og beslutning."
+          },
+          {
+            "effects": {
+              "score_delta": -2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "manager:elin_portefoljeansvarlig",
+                  "delta": -2,
+                  "event_id": "finance_standing_elin_blurred",
+                  "reason": "Elin får et skarpere lysbilde, men svakere sporbarhet mellom kildene og anbefalingen hun senere skal forsvare overfor komiteen.",
+                  "source_actor_id": "elin_portefoljeansvarlig"
+                },
+                {
+                  "audience_id": "professional:theo_senioranalytiker",
+                  "delta": -3,
+                  "event_id": "finance_standing_theo_blurred",
+                  "reason": "Theo må begynne reviewet med å rekonstruere hvilken modell og hvilke antakelser som allerede har lekket inn i presentasjonen.",
+                  "source_actor_id": "theo_senioranalytiker"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "finance_case_baseline_blurred",
+                  "flag": "presentation_precedes_source_and_version_lock",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                }
+              ]
+            },
+            "feedback": "Caset blir raskt presentabelt, men samme hastighet gjør det vanskeligere å vite hvilke tall som er observasjon, forventning eller ønsket retning når reviewet starter.",
+            "id": "B",
+            "label": "Bygg presentasjonen først og rydd kildene når komiteen har sett retningen",
+            "reply": "Jeg lager et ryddig hovedcase nå og dokumenterer versjon, guiding og egne antakelser etter at retningen er avklart."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Årsrapport og markedsdata er tilgjengelige, men ledelsens guiding og ditt eget marginestimat må skilles fra rapportert historikk.",
+            "Theo skal kvalitetssikre modellversjon og metode før caset går til Elin og investeringskomiteen.",
+            "Du kan analysere og anbefale; bare faktisk beslutningsorgan kan godkjenne investering eller flytte kapital."
+          ],
+          "subject": "Åpne investeringscaset som ett sporbar arbeidsobjekt – ikke fem løse regneark",
+          "summary": "Elin trenger et investeringsgrunnlag til komiteen. Historikk, guiding, egen marginantakelse og peer-gruppe peker ikke helt samme vei. Du skal eie analysesporet, men ikke investeringsbeslutningen, og må gjøre kilder, modellversjon, åpne spørsmål og neste beslutningseier eksplisitte fra starten."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {
+          "work_object_ops": [
+            {
+              "event_id": "finance_investment_case_created",
+              "op": "create",
+              "work_object": {
+                "confidentiality": "internt_investeringsgrunnlag",
+                "deadline": "investeringskomite_dag_12",
+                "flags": [
+                  "finance_investment_case_opened"
+                ],
+                "institution_id": "naeringsliv_investeringsanalyse_enhet_001",
+                "kind": "investment_analysis_case",
+                "knowledge_refs": [
+                  "data/Civication/roleModels/naeringsliv/finansanalytiker.json",
+                  "data/Civication/workGrammars/naeringsliv/finansanalytiker.json",
+                  "data/Civication/mailFamilies/naeringsliv/knowledge/finansanalytiker_knowledge.json"
+                ],
+                "open_questions": [
+                  "Hvilke tall er rapportert historikk, guiding og egne estimater?",
+                  "Hvilken modellversjon tåler seniorreview og sensitivitetstest?",
+                  "Hva kan analytikeren anbefale, og hvem kan faktisk godkjenne eller flytte kapital?"
+                ],
+                "people_refs": [
+                  "elin_portefoljeansvarlig",
+                  "theo_senioranalytiker",
+                  "investeringskomite"
+                ],
+                "phase": "baseline_and_source_lock",
+                "place_refs": [
+                  "barcode",
+                  "bankplassen",
+                  "oslo_bors"
+                ],
+                "role_scope": "finansanalytiker",
+                "shared": false,
+                "status": "in_progress",
+                "title": "Investeringscase: modell, scenario, anbefaling og beslutningsspor",
+                "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+              }
+            }
+          ]
+        },
+        "id": "naeringsliv_finansanalytiker_realism_investment_case_open_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "barcode",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "naeringsliv_finansanalytiker_realism_investment_case_open_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/job/finansanalytiker_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "naeringsliv_finansanalytiker_investment_case_realism_001",
+        "version": 1,
+        "work_context": {
+          "institution_id": "naeringsliv_investeringsanalyse_enhet_001",
+          "object_ids": [
+            "naeringsliv_finansanalytiker_investment_case_001"
+          ],
+          "priority": "high"
+        }
+      },
+      "source_hash": "4af13ec132c20ea783e894ecb6bbd631890ea5998ff352e860db68d01f6df994",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/job/finansanalytiker_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
         "choice_axis": "merke_kildetype_og_usikkerhet_vs_presentere_tallene_likt",
         "choices": [
           {
@@ -106955,6 +108182,296 @@
         "version": 1
       },
       "source_hash": "6bd233e434770fe342451429de0a63d5c4c80b25e658c89a706e1c97b07b5c0f",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/people/finansanalytiker_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
+        "choice_axis": "respektere_reviewkø_vs_parallel_modell",
+        "choices": [
+          {
+            "effect": 2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:theo_senioranalytiker",
+                  "delta": 4,
+                  "event_id": "finance_standing_theo_handoff",
+                  "reason": "Theo kan stole på at filen han reviewer fortsatt er den autoritative analyseversjonen når kommentarene hans returnerer til spilleren.",
+                  "source_actor_id": "theo_senioranalytiker"
+                },
+                {
+                  "audience_id": "manager:elin_portefoljeansvarlig",
+                  "delta": 2,
+                  "event_id": "finance_standing_elin_wait",
+                  "reason": "Elin får en presis ventestatus med neste eier og kan skille kontrollert reviewtid fra faktisk forsinkelse eller passivitet.",
+                  "source_actor_id": "elin_portefoljeansvarlig"
+                }
+              ],
+              "stats": {
+                "quality": 2,
+                "risk": -2,
+                "trust": 3
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "finance_case_waiting_for_theo",
+                  "note": "Reviewversjonen er overlevert til Theo; caset venter på metode- og versjonskontroll.",
+                  "op": "transition",
+                  "to_phase": "awaiting_senior_review",
+                  "to_status": "waiting",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                },
+                {
+                  "event_id": "finance_handoff_traced",
+                  "flag": "senior_review_version_frozen",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                }
+              ]
+            },
+            "feedback": "Ventingen blir synlig og legitim. Theo kan reviewe én faktisk versjon, og Elin ser at fremdrift ikke krever at handoffet undergraves av en parallell fil.",
+            "id": "A",
+            "label": "Frys reviewversjonen og arbeid bare med dokumenterte sideoppgaver",
+            "reply": "Jeg markerer caset som waiting på Theo, fryser reviewversjonen og jobber bare med sensitiviteter som kan tilbakeføres til samme spor."
+          },
+          {
+            "effect": -2,
+            "effects": {
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:theo_senioranalytiker",
+                  "delta": -4,
+                  "event_id": "finance_standing_theo_parallel",
+                  "reason": "Theo opplever at reviewarbeidet hans er gjort mot en versjon spilleren allerede har begynt å erstatte uten et avtalt endringsspor.",
+                  "source_actor_id": "theo_senioranalytiker"
+                },
+                {
+                  "audience_id": "manager:elin_portefoljeansvarlig",
+                  "delta": -2,
+                  "event_id": "finance_standing_elin_parallel",
+                  "reason": "Elin får raskere aktivitet, men svakere kontroll over hvilken modellversjon som faktisk ligger bak anbefalingen hun skal ta videre.",
+                  "source_actor_id": "elin_portefoljeansvarlig"
+                }
+              ],
+              "stats": {
+                "quality": -2,
+                "risk": 4,
+                "status": 1,
+                "trust": -3
+              },
+              "work_object_ops": [
+                {
+                  "event_id": "finance_case_waiting_with_parallel_copy",
+                  "note": "Caset venter fortsatt på Theo, men en parallell modellkopi skaper rework- og versjonsgjeld.",
+                  "op": "transition",
+                  "to_phase": "awaiting_senior_review",
+                  "to_status": "waiting",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                },
+                {
+                  "event_id": "finance_parallel_model",
+                  "flag": "parallel_model_created_during_handoff",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                }
+              ]
+            },
+            "feedback": "Du ser produktiv ut, men handoffet mister autoritet. Når Theo svarer, må teamet først avgjøre hvilken av to modeller som egentlig er investeringscaset.",
+            "id": "B",
+            "label": "Fortsett i en ny kopi så tiden ikke ser ubrukt ut",
+            "reply": "Jeg lar Theo reviewe den låste filen, men bygger videre i en ny kopi som vi kan bruke hvis den blir bedre før reviewet er ferdig."
+          }
+        ],
+        "competency": "versjonskontroll_og_handoff",
+        "consequence_axis": "metodespor_vs_reworkgjeld",
+        "cooldown": 10,
+        "day_phase": "afternoon",
+        "from": "Theo, senioranalytiker",
+        "id": "naeringsliv_finansanalytiker_realism_senior_handoff_wait_001",
+        "interaction_mode": "decision",
+        "mail_family": "role_world_rollout_finansanalytiker_senior_handoff",
+        "mail_type": "people",
+        "narrative_arc": "fra_modellpremiss_til_sporbart_investeringsvedtak_og_etterspill",
+        "people_ref": "theo_senioranalytiker",
+        "person_id": "theo_senioranalytiker",
+        "phase": "advanced",
+        "place_id": "barcode",
+        "planned_only": true,
+        "pressure": "produktivitetssignal_vs_legitim_venting",
+        "priority": 98,
+        "purpose": "Gjøre overlevering og legitim venting eksplisitt som del av finansanalytikerens arbeidsrytme, med samme vedvarende analysecase før og etter review.",
+        "repeatable": false,
+        "role_scope": "finansanalytiker",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/people/finansanalytiker_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Theo eier metode-reviewet i denne fasen, men ikke investeringsbeslutningen.",
+          "Caset må kunne stå i waiting uten at spilleren mister identitet eller skaper en ny uregistrert modellversjon.",
+          "Elin trenger en kort status om hva som faktisk venter og hva som fortsatt kan arbeides med."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis venting behandles som ineffektivitet, oppstår parallelle modellkopier. Da kan reviewkommentaren treffe en versjon som ikke lenger er den som presenteres, og tillit blir et spørsmål om hvem som har siste fil.",
+        "subject": "Theo har modellen – nå er venting en del av arbeidet, ikke et tomrom",
+        "summary": "Du overleverer låst modellversjon, kildeliste og scenarioantakelser til Theo. Mens han reviewer, kan du dokumentere åpne spørsmål og forberede sensitivitet, men du skal ikke lage en parallell «nyere» sannhet som gjør handoffet utdatert før det er lest.",
+        "tags": [
+          "role_world_realism",
+          "controlled_rollout",
+          "naeringsliv",
+          "finansanalytiker",
+          "persistent_work",
+          "situated_reputation"
+        ],
+        "task_domain": "senior_review_handoff",
+        "task_kind": "people",
+        "thread_key": "naeringsliv_finansanalytiker_investment_case_realism_001",
+        "work_context": {
+          "handoff_to_actor_id": "theo_senioranalytiker",
+          "institution_id": "naeringsliv_investeringsanalyse_enhet_001",
+          "object_ids": [
+            "naeringsliv_finansanalytiker_investment_case_001"
+          ],
+          "priority": "high",
+          "rework_of_scene_id": "naeringsliv_finansanalytiker_realism_investment_case_open_001",
+          "waiting_for_actor_id": "theo_senioranalytiker"
+        }
+      },
+      "id": "naeringsliv_finansanalytiker_realism_senior_handoff_wait_001",
+      "mail_type": "people",
+      "role_scope": "finansanalytiker",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:theo_senioranalytiker",
+                  "delta": 4,
+                  "event_id": "finance_standing_theo_handoff",
+                  "reason": "Theo kan stole på at filen han reviewer fortsatt er den autoritative analyseversjonen når kommentarene hans returnerer til spilleren.",
+                  "source_actor_id": "theo_senioranalytiker"
+                },
+                {
+                  "audience_id": "manager:elin_portefoljeansvarlig",
+                  "delta": 2,
+                  "event_id": "finance_standing_elin_wait",
+                  "reason": "Elin får en presis ventestatus med neste eier og kan skille kontrollert reviewtid fra faktisk forsinkelse eller passivitet.",
+                  "source_actor_id": "elin_portefoljeansvarlig"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "finance_case_waiting_for_theo",
+                  "note": "Reviewversjonen er overlevert til Theo; caset venter på metode- og versjonskontroll.",
+                  "op": "transition",
+                  "to_phase": "awaiting_senior_review",
+                  "to_status": "waiting",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                },
+                {
+                  "event_id": "finance_handoff_traced",
+                  "flag": "senior_review_version_frozen",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                }
+              ]
+            },
+            "feedback": "Ventingen blir synlig og legitim. Theo kan reviewe én faktisk versjon, og Elin ser at fremdrift ikke krever at handoffet undergraves av en parallell fil.",
+            "id": "A",
+            "label": "Frys reviewversjonen og arbeid bare med dokumenterte sideoppgaver",
+            "reply": "Jeg markerer caset som waiting på Theo, fryser reviewversjonen og jobber bare med sensitiviteter som kan tilbakeføres til samme spor."
+          },
+          {
+            "effects": {
+              "score_delta": -2,
+              "social_standing_ops": [
+                {
+                  "audience_id": "professional:theo_senioranalytiker",
+                  "delta": -4,
+                  "event_id": "finance_standing_theo_parallel",
+                  "reason": "Theo opplever at reviewarbeidet hans er gjort mot en versjon spilleren allerede har begynt å erstatte uten et avtalt endringsspor.",
+                  "source_actor_id": "theo_senioranalytiker"
+                },
+                {
+                  "audience_id": "manager:elin_portefoljeansvarlig",
+                  "delta": -2,
+                  "event_id": "finance_standing_elin_parallel",
+                  "reason": "Elin får raskere aktivitet, men svakere kontroll over hvilken modellversjon som faktisk ligger bak anbefalingen hun skal ta videre.",
+                  "source_actor_id": "elin_portefoljeansvarlig"
+                }
+              ],
+              "work_object_ops": [
+                {
+                  "event_id": "finance_case_waiting_with_parallel_copy",
+                  "note": "Caset venter fortsatt på Theo, men en parallell modellkopi skaper rework- og versjonsgjeld.",
+                  "op": "transition",
+                  "to_phase": "awaiting_senior_review",
+                  "to_status": "waiting",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                },
+                {
+                  "event_id": "finance_parallel_model",
+                  "flag": "parallel_model_created_during_handoff",
+                  "op": "add_flag",
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001"
+                }
+              ]
+            },
+            "feedback": "Du ser produktiv ut, men handoffet mister autoritet. Når Theo svarer, må teamet først avgjøre hvilken av to modeller som egentlig er investeringscaset.",
+            "id": "B",
+            "label": "Fortsett i en ny kopi så tiden ikke ser ubrukt ut",
+            "reply": "Jeg lar Theo reviewe den låste filen, men bygger videre i en ny kopi som vi kan bruke hvis den blir bedre før reviewet er ferdig."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Theo eier metode-reviewet i denne fasen, men ikke investeringsbeslutningen.",
+            "Caset må kunne stå i waiting uten at spilleren mister identitet eller skaper en ny uregistrert modellversjon.",
+            "Elin trenger en kort status om hva som faktisk venter og hva som fortsatt kan arbeides med."
+          ],
+          "subject": "Theo har modellen – nå er venting en del av arbeidet, ikke et tomrom",
+          "summary": "Du overleverer låst modellversjon, kildeliste og scenarioantakelser til Theo. Mens han reviewer, kan du dokumentere åpne spørsmål og forberede sensitivitet, men du skal ikke lage en parallell «nyere» sannhet som gjør handoffet utdatert før det er lest."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "naeringsliv_finansanalytiker_realism_senior_handoff_wait_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "barcode",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "naeringsliv_finansanalytiker_realism_senior_handoff_wait_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/people/finansanalytiker_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "naeringsliv_finansanalytiker_investment_case_realism_001",
+        "version": 1,
+        "work_context": {
+          "handoff_to_actor_id": "theo_senioranalytiker",
+          "institution_id": "naeringsliv_investeringsanalyse_enhet_001",
+          "object_ids": [
+            "naeringsliv_finansanalytiker_investment_case_001"
+          ],
+          "priority": "high",
+          "rework_of_scene_id": "naeringsliv_finansanalytiker_realism_investment_case_open_001",
+          "waiting_for_actor_id": "theo_senioranalytiker"
+        }
+      },
+      "source_hash": "7d7ace6d24acf071c4c519cabfdd1abcb0c289cfe52c1027e7b1fc5f9ae8c666",
       "source_path": "data/Civication/mailFamilies/naeringsliv/people/finansanalytiker_people.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -189210,7 +190727,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "f3af921757b019184ac371b825399d678631149aeb5fe5a67ab1a21f66ba4df6",
+  "registry_hash": "6530320283ddd930c1f3240ecd1ab3845a6fc031769a62062c817b70de2eb3f8",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -189912,16 +191429,21 @@
       "finansanalytiker_job_001",
       "finansanalytiker_job_002",
       "finansanalytiker_job_003",
+      "naeringsliv_finansanalytiker_realism_investment_case_open_001",
       "finansanalytiker_people_theo_001",
+      "naeringsliv_finansanalytiker_realism_senior_handoff_wait_001",
       "finansanalytiker_story_001",
       "finansanalytiker_story_002",
       "finansanalytiker_conflict_001",
       "finansanalytiker_conflict_002",
       "finansanalytiker_event_001",
+      "naeringsliv_finansanalytiker_realism_market_rework_001",
       "finansanalytiker_micro_antakelse_001",
       "finansanalytiker_followup_premiss_001",
+      "naeringsliv_finansanalytiker_realism_committee_wait_001",
       "finansanalytiker_knowledge_kildetype_001",
-      "finansanalytiker_consequence_premiss_001"
+      "finansanalytiker_consequence_premiss_001",
+      "naeringsliv_finansanalytiker_realism_committee_aftermath_001"
     ],
     "naeringsliv/finansdirektor": [
       "finansdirektor_intro_v2_001",
@@ -190507,7 +192029,7 @@
     "ignored_source_file_count": 1,
     "input_file_count": 351,
     "role_count": 44,
-    "scene_count": 1175,
+    "scene_count": 1180,
     "shadowed_duplicate_count": 0
   },
   "version": 1

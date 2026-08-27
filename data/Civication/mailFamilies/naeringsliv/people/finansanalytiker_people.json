@@ -1,1 +1,235 @@
-{"schema":"civication_mail_family_catalog_v1","version":1,"category":"naeringsliv","role_scope":"finansanalytiker","mail_type":"people","families":[{"id":"analytiker_senior_og_metodepress","purpose":"Gjør forholdet mellom analytiker og senior til en runtimeflate for metode, versjonskontroll og konklusjonspress.","learning_focus":["metodeintegritet","versjonskontroll","faglig_tillit"],"mails":[{"id":"finansanalytiker_people_theo_001","mail_type":"people","mail_family":"analytiker_senior_og_metodepress","role_scope":"finansanalytiker","phase":"morning","priority":58,"cooldown":2,"repeatable":false,"stage":"stable","from":"theo_senioranalytiker","sender":"theo_senioranalytiker","person_id":"theo_senioranalytiker","place_id":"barcode","subject":"Theo vil vite hvilken modellversjon som faktisk ligger bak anbefalingen","summary":"Senioranalytiker Theo ser at presentasjonen bruker et tall som kan komme fra en eldre modellversjon og ber deg låse kilde og endringsspor før anbefalingen går videre.","purpose":"Teste om analytikeren beskytter metode og sporbarhet når en senior trenger et raskt svar.","stakes":"Et raskt svar holder flyten, men kan gjøre en gammel forutsetning til beslutningsgrunnlag. Versjonskontroll koster tid, men gjør anbefalingen etterprøvbar.","situation":["To modellversjoner ligger åpne etter en sen oppdatering.","Presentasjonen peker på et nøkkeltall som avviker mellom versjonene.","Theo ber deg avklare hvilken forutsetning komiteen faktisk vil se."],"task_domain":"modellversjon_og_seniorreview","task_kind":"people","competency":"datakritikk","pressure":"presentasjonstempo_vs_sporbarhet","choice_axis":"lase_kilde_og_versjon_vs_svare_fra_siste_synlige_tall","consequence_axis":"faglig_tillit_vs_feil_beslutningsgrunnlag","narrative_arc":"Analytikeren lærer at faglig tillit bygges gjennom sporbarhet også når svaret haster.","choices":[{"id":"A","label":"Lås modellversjon, kilde og endring før tallet går videre","reply":"Jeg låser modellversjon, kilde og endringsspor før vi bruker tallet i anbefalingen.","effect":1,"tags":["people","version_control","integrity"],"feedback":"Theo får et svar som kan etterprøves, ikke bare et tall som passer tidsplanen."},{"id":"B","label":"Bruk tallet i den siste presentasjonen og rydd versjonene etter møtet","reply":"Jeg bruker tallet som står i siste presentasjon og rydder modellversjonene etter møtet.","effect":-1,"tags":["speed","version_risk"],"feedback":"Du sparer tid nå, men gjør presentasjonen avhengig av en kilde du ennå ikke har låst."}]}]}]}
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "finansanalytiker",
+  "mail_type": "people",
+  "families": [
+    {
+      "id": "analytiker_senior_og_metodepress",
+      "purpose": "Gjør forholdet mellom analytiker og senior til en runtimeflate for metode, versjonskontroll og konklusjonspress.",
+      "learning_focus": [
+        "metodeintegritet",
+        "versjonskontroll",
+        "faglig_tillit"
+      ],
+      "mails": [
+        {
+          "id": "finansanalytiker_people_theo_001",
+          "mail_type": "people",
+          "mail_family": "analytiker_senior_og_metodepress",
+          "role_scope": "finansanalytiker",
+          "phase": "morning",
+          "priority": 58,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "theo_senioranalytiker",
+          "sender": "theo_senioranalytiker",
+          "person_id": "theo_senioranalytiker",
+          "place_id": "barcode",
+          "subject": "Theo vil vite hvilken modellversjon som faktisk ligger bak anbefalingen",
+          "summary": "Senioranalytiker Theo ser at presentasjonen bruker et tall som kan komme fra en eldre modellversjon og ber deg låse kilde og endringsspor før anbefalingen går videre.",
+          "purpose": "Teste om analytikeren beskytter metode og sporbarhet når en senior trenger et raskt svar.",
+          "stakes": "Et raskt svar holder flyten, men kan gjøre en gammel forutsetning til beslutningsgrunnlag. Versjonskontroll koster tid, men gjør anbefalingen etterprøvbar.",
+          "situation": [
+            "To modellversjoner ligger åpne etter en sen oppdatering.",
+            "Presentasjonen peker på et nøkkeltall som avviker mellom versjonene.",
+            "Theo ber deg avklare hvilken forutsetning komiteen faktisk vil se."
+          ],
+          "task_domain": "modellversjon_og_seniorreview",
+          "task_kind": "people",
+          "competency": "datakritikk",
+          "pressure": "presentasjonstempo_vs_sporbarhet",
+          "choice_axis": "lase_kilde_og_versjon_vs_svare_fra_siste_synlige_tall",
+          "consequence_axis": "faglig_tillit_vs_feil_beslutningsgrunnlag",
+          "narrative_arc": "Analytikeren lærer at faglig tillit bygges gjennom sporbarhet også når svaret haster.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lås modellversjon, kilde og endring før tallet går videre",
+              "reply": "Jeg låser modellversjon, kilde og endringsspor før vi bruker tallet i anbefalingen.",
+              "effect": 1,
+              "tags": [
+                "people",
+                "version_control",
+                "integrity"
+              ],
+              "feedback": "Theo får et svar som kan etterprøves, ikke bare et tall som passer tidsplanen."
+            },
+            {
+              "id": "B",
+              "label": "Bruk tallet i den siste presentasjonen og rydd versjonene etter møtet",
+              "reply": "Jeg bruker tallet som står i siste presentasjon og rydder modellversjonene etter møtet.",
+              "effect": -1,
+              "tags": [
+                "speed",
+                "version_risk"
+              ],
+              "feedback": "Du sparer tid nå, men gjør presentasjonen avhengig av en kilde du ennå ikke har låst."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_finansanalytiker_senior_handoff",
+      "purpose": "Gjør seniorreview til et eksplisitt handoff med legitim venting og versjonsfrys.",
+      "learning_focus": [
+        "handoff",
+        "waiting",
+        "version_control"
+      ],
+      "mails": [
+        {
+          "id": "naeringsliv_finansanalytiker_realism_senior_handoff_wait_001",
+          "mail_type": "people",
+          "mail_family": "role_world_rollout_finansanalytiker_senior_handoff",
+          "role_scope": "finansanalytiker",
+          "phase": "advanced",
+          "day_phase": "afternoon",
+          "priority": 98,
+          "cooldown": 10,
+          "repeatable": false,
+          "stage": "stable",
+          "planned_only": true,
+          "thread_key": "naeringsliv_finansanalytiker_investment_case_realism_001",
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "naeringsliv",
+            "finansanalytiker",
+            "persistent_work",
+            "situated_reputation"
+          ],
+          "from": "Theo, senioranalytiker",
+          "people_ref": "theo_senioranalytiker",
+          "person_id": "theo_senioranalytiker",
+          "place_id": "barcode",
+          "subject": "Theo har modellen – nå er venting en del av arbeidet, ikke et tomrom",
+          "summary": "Du overleverer låst modellversjon, kildeliste og scenarioantakelser til Theo. Mens han reviewer, kan du dokumentere åpne spørsmål og forberede sensitivitet, men du skal ikke lage en parallell «nyere» sannhet som gjør handoffet utdatert før det er lest.",
+          "purpose": "Gjøre overlevering og legitim venting eksplisitt som del av finansanalytikerens arbeidsrytme, med samme vedvarende analysecase før og etter review.",
+          "stakes": "Hvis venting behandles som ineffektivitet, oppstår parallelle modellkopier. Da kan reviewkommentaren treffe en versjon som ikke lenger er den som presenteres, og tillit blir et spørsmål om hvem som har siste fil.",
+          "situation": [
+            "Theo eier metode-reviewet i denne fasen, men ikke investeringsbeslutningen.",
+            "Caset må kunne stå i waiting uten at spilleren mister identitet eller skaper en ny uregistrert modellversjon.",
+            "Elin trenger en kort status om hva som faktisk venter og hva som fortsatt kan arbeides med."
+          ],
+          "task_domain": "senior_review_handoff",
+          "task_kind": "people",
+          "competency": "versjonskontroll_og_handoff",
+          "pressure": "produktivitetssignal_vs_legitim_venting",
+          "choice_axis": "respektere_reviewkø_vs_parallel_modell",
+          "consequence_axis": "metodespor_vs_reworkgjeld",
+          "narrative_arc": "fra_modellpremiss_til_sporbart_investeringsvedtak_og_etterspill",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "naeringsliv_finansanalytiker_investment_case_001"
+            ],
+            "institution_id": "naeringsliv_investeringsanalyse_enhet_001",
+            "handoff_to_actor_id": "theo_senioranalytiker",
+            "waiting_for_actor_id": "theo_senioranalytiker",
+            "rework_of_scene_id": "naeringsliv_finansanalytiker_realism_investment_case_open_001",
+            "priority": "high"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Frys reviewversjonen og arbeid bare med dokumenterte sideoppgaver",
+              "reply": "Jeg markerer caset som waiting på Theo, fryser reviewversjonen og jobber bare med sensitiviteter som kan tilbakeføres til samme spor.",
+              "effect": 2,
+              "feedback": "Ventingen blir synlig og legitim. Theo kan reviewe én faktisk versjon, og Elin ser at fremdrift ikke krever at handoffet undergraves av en parallell fil.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 3,
+                  "risk": -2
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "finance_case_waiting_for_theo",
+                    "work_object_id": "naeringsliv_finansanalytiker_investment_case_001",
+                    "to_status": "waiting",
+                    "to_phase": "awaiting_senior_review",
+                    "note": "Reviewversjonen er overlevert til Theo; caset venter på metode- og versjonskontroll."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "finance_handoff_traced",
+                    "work_object_id": "naeringsliv_finansanalytiker_investment_case_001",
+                    "flag": "senior_review_version_frozen"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "finance_standing_theo_handoff",
+                    "audience_id": "professional:theo_senioranalytiker",
+                    "delta": 4,
+                    "reason": "Theo kan stole på at filen han reviewer fortsatt er den autoritative analyseversjonen når kommentarene hans returnerer til spilleren.",
+                    "source_actor_id": "theo_senioranalytiker"
+                  },
+                  {
+                    "event_id": "finance_standing_elin_wait",
+                    "audience_id": "manager:elin_portefoljeansvarlig",
+                    "delta": 2,
+                    "reason": "Elin får en presis ventestatus med neste eier og kan skille kontrollert reviewtid fra faktisk forsinkelse eller passivitet.",
+                    "source_actor_id": "elin_portefoljeansvarlig"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Fortsett i en ny kopi så tiden ikke ser ubrukt ut",
+              "reply": "Jeg lar Theo reviewe den låste filen, men bygger videre i en ny kopi som vi kan bruke hvis den blir bedre før reviewet er ferdig.",
+              "effect": -2,
+              "feedback": "Du ser produktiv ut, men handoffet mister autoritet. Når Theo svarer, må teamet først avgjøre hvilken av to modeller som egentlig er investeringscaset.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -3,
+                  "risk": 4
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "finance_case_waiting_with_parallel_copy",
+                    "work_object_id": "naeringsliv_finansanalytiker_investment_case_001",
+                    "to_status": "waiting",
+                    "to_phase": "awaiting_senior_review",
+                    "note": "Caset venter fortsatt på Theo, men en parallell modellkopi skaper rework- og versjonsgjeld."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "finance_parallel_model",
+                    "work_object_id": "naeringsliv_finansanalytiker_investment_case_001",
+                    "flag": "parallel_model_created_during_handoff"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "finance_standing_theo_parallel",
+                    "audience_id": "professional:theo_senioranalytiker",
+                    "delta": -4,
+                    "reason": "Theo opplever at reviewarbeidet hans er gjort mot en versjon spilleren allerede har begynt å erstatte uten et avtalt endringsspor.",
+                    "source_actor_id": "theo_senioranalytiker"
+                  },
+                  {
+                    "event_id": "finance_standing_elin_parallel",
+                    "audience_id": "manager:elin_portefoljeansvarlig",
+                    "delta": -2,
+                    "reason": "Elin får raskere aktivitet, men svakere kontroll over hvilken modellversjon som faktisk ligger bak anbefalingen hun skal ta videre.",
+                    "source_actor_id": "elin_portefoljeansvarlig"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

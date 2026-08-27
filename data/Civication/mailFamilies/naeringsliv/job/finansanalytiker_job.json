@@ -30,20 +30,33 @@
           "choice_axis": "teste_antakelse_vs_beholde_oppside",
           "consequence_axis": "troverdighet_vs_avkastningsbilde",
           "narrative_arc": "modellen_som_argument",
-          "learning_focus": ["EBITDA", "marginanalyse", "base case", "sensitivitet", "modellrisiko"],
+          "learning_focus": [
+            "EBITDA",
+            "marginanalyse",
+            "base case",
+            "sensitivitet",
+            "modellrisiko"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Kjør sensitivitet og forklar marginløftet eksplisitt.",
               "effect": 1,
-              "tags": ["analyse", "integritet", "risiko"],
+              "tags": [
+                "analyse",
+                "integritet",
+                "risiko"
+              ],
               "feedback": "Du gjør oppsiden betinget, ikke magisk. Caset blir mindre blankt, men mer robust."
             },
             {
               "id": "B",
               "label": "Behold marginløftet som ledelsens base case.",
               "effect": -1,
-              "tags": ["risk", "visibility"],
+              "tags": [
+                "risk",
+                "visibility"
+              ],
               "feedback": "Caset ser sterkere ut, men modellen bærer en umerket antakelse. En celle har begynt å opptre som bevis."
             }
           ]
@@ -75,20 +88,32 @@
           "choice_axis": "ren_peergruppe_vs_bredt_snitt",
           "consequence_axis": "presisjon_vs_enkelhet",
           "narrative_arc": "markedets_speil",
-          "learning_focus": ["multipler", "peer group", "kapitalstruktur", "relativ verdsettelse", "metodekritikk"],
+          "learning_focus": [
+            "multipler",
+            "peer group",
+            "kapitalstruktur",
+            "relativ verdsettelse",
+            "metodekritikk"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Rens peer-gruppen og vis hvorfor noen selskaper utelates.",
               "effect": 1,
-              "tags": ["kvalitet", "analyse"],
+              "tags": [
+                "kvalitet",
+                "analyse"
+              ],
               "feedback": "Verdsettelsen blir smalere, men mer forklarbar. Du viser markedet som metode, ikke pynt."
             },
             {
               "id": "B",
               "label": "Bruk hele snittet for å få et enkelt tall til presentasjonen.",
               "effect": -1,
-              "tags": ["tempo", "snarvei"],
+              "tags": [
+                "tempo",
+                "snarvei"
+              ],
               "feedback": "Tallet blir lett å presentere, men vanskeligere å forsvare. Snittet skjuler at selskapene egentlig forteller ulike historier."
             }
           ]
@@ -120,23 +145,219 @@
           "choice_axis": "risikobilde_vs_salgbar_anbefaling",
           "consequence_axis": "ansvar_vs_appetitt",
           "narrative_arc": "risikoens_eier",
-          "learning_focus": ["scenarioanalyse", "downside case", "sensitivitet", "kapitalrisiko", "beslutningsgrunnlag"],
+          "learning_focus": [
+            "scenarioanalyse",
+            "downside case",
+            "sensitivitet",
+            "kapitalrisiko",
+            "beslutningsgrunnlag"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Legg inn eksplisitt nedsidescenario med utløsende faktorer.",
               "effect": 1,
-              "tags": ["integritet", "risiko", "analyse"],
+              "tags": [
+                "integritet",
+                "risiko",
+                "analyse"
+              ],
               "feedback": "Du gjør anbefalingen mer ansvarlig, selv om den blir mindre blank. Risikoen får form før kapitalen flytter seg."
             },
             {
               "id": "B",
               "label": "Hold nedsiden kort for ikke å svekke hovedcaset.",
               "effect": -1,
-              "tags": ["visibility", "risk"],
+              "tags": [
+                "visibility",
+                "risk"
+              ],
               "feedback": "Hovedcaset står sterkere, men risikoen blir underkommunisert. Det som ikke tegnes i modellen, forsvinner ikke i virkeligheten."
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_finansanalytiker_case_open",
+      "purpose": "Åpner ett vedvarende investeringscase med kilde-, versjons- og myndighetsspor.",
+      "learning_focus": [
+        "persistent_work_object",
+        "source_types",
+        "authority_boundary"
+      ],
+      "mails": [
+        {
+          "id": "naeringsliv_finansanalytiker_realism_investment_case_open_001",
+          "mail_type": "job",
+          "mail_family": "role_world_rollout_finansanalytiker_case_open",
+          "role_scope": "finansanalytiker",
+          "phase": "advanced",
+          "day_phase": "morning",
+          "priority": 99,
+          "cooldown": 10,
+          "repeatable": false,
+          "stage": "stable",
+          "planned_only": true,
+          "thread_key": "naeringsliv_finansanalytiker_investment_case_realism_001",
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "naeringsliv",
+            "finansanalytiker",
+            "persistent_work",
+            "situated_reputation"
+          ],
+          "from": "Elin, porteføljeansvarlig",
+          "people_ref": "elin_portefoljeansvarlig",
+          "person_id": "elin_portefoljeansvarlig",
+          "place_id": "barcode",
+          "subject": "Åpne investeringscaset som ett sporbar arbeidsobjekt – ikke fem løse regneark",
+          "summary": "Elin trenger et investeringsgrunnlag til komiteen. Historikk, guiding, egen marginantakelse og peer-gruppe peker ikke helt samme vei. Du skal eie analysesporet, men ikke investeringsbeslutningen, og må gjøre kilder, modellversjon, åpne spørsmål og neste beslutningseier eksplisitte fra starten.",
+          "purpose": "Etablere ett vedvarende investeringscase som senere scener kan vente på, overlevere, reworke og lukke uten at anbefaling blir forvekslet med kapitalmyndighet.",
+          "stakes": "Hvis hver oppdatering behandles som et nytt dokument, kan gamle antakelser overleve uten eier, og komiteen kan få en skarp konklusjon uten å se hvilken versjon eller usikkerhet som faktisk bærer den.",
+          "situation": [
+            "Årsrapport og markedsdata er tilgjengelige, men ledelsens guiding og ditt eget marginestimat må skilles fra rapportert historikk.",
+            "Theo skal kvalitetssikre modellversjon og metode før caset går til Elin og investeringskomiteen.",
+            "Du kan analysere og anbefale; bare faktisk beslutningsorgan kan godkjenne investering eller flytte kapital."
+          ],
+          "task_domain": "investment_case_baseline",
+          "task_kind": "job",
+          "competency": "datakritikk_og_modellsporbarhet",
+          "pressure": "beslutningstempo_vs_sporbart_premiss",
+          "choice_axis": "ett_sporbart_case_vs_løse_presentasjonsfiler",
+          "consequence_axis": "metodetillit_vs_versjonsgjeld",
+          "narrative_arc": "fra_modellpremiss_til_sporbart_investeringsvedtak_og_etterspill",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "naeringsliv_finansanalytiker_investment_case_001"
+            ],
+            "institution_id": "naeringsliv_investeringsanalyse_enhet_001",
+            "priority": "high"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lås kildetype, modellversjon, scenario og åpne spørsmål i ett case",
+              "reply": "Jeg oppretter ett analysecase med historikk, guiding og egne antakelser skilt, og markerer hvem som eier neste review og beslutning.",
+              "effect": 2,
+              "feedback": "Elin får et beslutningsspor som kan følges uten at analysen later som den eier investeringen. Theo kan se nøyaktig hvilken versjon og hvilke premisser han skal reviewe.",
+              "effects": {
+                "stats": {
+                  "quality": 3,
+                  "trust": 2,
+                  "risk": -2
+                },
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "finance_case_baseline_traced",
+                    "work_object_id": "naeringsliv_finansanalytiker_investment_case_001",
+                    "flag": "sources_versions_and_decision_owner_traced"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "finance_standing_elin_open",
+                    "audience_id": "manager:elin_portefoljeansvarlig",
+                    "delta": 3,
+                    "reason": "Elin får et analysegrunnlag der premisser, versjon og beslutningseier er synlige før konklusjonen blir presentert som investeringsråd.",
+                    "source_actor_id": "elin_portefoljeansvarlig"
+                  },
+                  {
+                    "event_id": "finance_standing_theo_open",
+                    "audience_id": "professional:theo_senioranalytiker",
+                    "delta": 2,
+                    "reason": "Theo får et reviewbart modellspor med tydelig kildeklassifisering, slik at metodekritikk kan skje før anbefalingen låses.",
+                    "source_actor_id": "theo_senioranalytiker"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Bygg presentasjonen først og rydd kildene når komiteen har sett retningen",
+              "reply": "Jeg lager et ryddig hovedcase nå og dokumenterer versjon, guiding og egne antakelser etter at retningen er avklart.",
+              "effect": -2,
+              "feedback": "Caset blir raskt presentabelt, men samme hastighet gjør det vanskeligere å vite hvilke tall som er observasjon, forventning eller ønsket retning når reviewet starter.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                },
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "finance_case_baseline_blurred",
+                    "work_object_id": "naeringsliv_finansanalytiker_investment_case_001",
+                    "flag": "presentation_precedes_source_and_version_lock"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "finance_standing_elin_blurred",
+                    "audience_id": "manager:elin_portefoljeansvarlig",
+                    "delta": -2,
+                    "reason": "Elin får et skarpere lysbilde, men svakere sporbarhet mellom kildene og anbefalingen hun senere skal forsvare overfor komiteen.",
+                    "source_actor_id": "elin_portefoljeansvarlig"
+                  },
+                  {
+                    "event_id": "finance_standing_theo_blurred",
+                    "audience_id": "professional:theo_senioranalytiker",
+                    "delta": -3,
+                    "reason": "Theo må begynne reviewet med å rekonstruere hvilken modell og hvilke antakelser som allerede har lekket inn i presentasjonen.",
+                    "source_actor_id": "theo_senioranalytiker"
+                  }
+                ]
+              }
+            }
+          ],
+          "effects": {
+            "work_object_ops": [
+              {
+                "op": "create",
+                "event_id": "finance_investment_case_created",
+                "work_object": {
+                  "work_object_id": "naeringsliv_finansanalytiker_investment_case_001",
+                  "kind": "investment_analysis_case",
+                  "role_scope": "finansanalytiker",
+                  "institution_id": "naeringsliv_investeringsanalyse_enhet_001",
+                  "title": "Investeringscase: modell, scenario, anbefaling og beslutningsspor",
+                  "status": "in_progress",
+                  "phase": "baseline_and_source_lock",
+                  "people_refs": [
+                    "elin_portefoljeansvarlig",
+                    "theo_senioranalytiker",
+                    "investeringskomite"
+                  ],
+                  "place_refs": [
+                    "barcode",
+                    "bankplassen",
+                    "oslo_bors"
+                  ],
+                  "knowledge_refs": [
+                    "data/Civication/roleModels/naeringsliv/finansanalytiker.json",
+                    "data/Civication/workGrammars/naeringsliv/finansanalytiker.json",
+                    "data/Civication/mailFamilies/naeringsliv/knowledge/finansanalytiker_knowledge.json"
+                  ],
+                  "open_questions": [
+                    "Hvilke tall er rapportert historikk, guiding og egne estimater?",
+                    "Hvilken modellversjon tåler seniorreview og sensitivitetstest?",
+                    "Hva kan analytikeren anbefale, og hvem kan faktisk godkjenne eller flytte kapital?"
+                  ],
+                  "deadline": "investeringskomite_dag_12",
+                  "confidentiality": "internt_investeringsgrunnlag",
+                  "flags": [
+                    "finance_investment_case_opened"
+                  ],
+                  "shared": false
+                }
+              }
+            ]
+          }
         }
       ]
     }
