@@ -80,15 +80,20 @@ jobs:
         run: node scripts/audit-civication-career-gameplay.mjs --write
       - name: Regenerate role-world rollout readiness audit
         run: node scripts/audit-civication-role-world-rollout-readiness.mjs --write
-      - name: Verify focused rollout and canonical gates
-        run: |
-          node tests/civication-film-tv-programleder-role-world-rollout.test.js
-          node tests/civication-film-tv-programleder-playability.test.js
-          node tests/civication-role-world-contract.test.js
-          node tests/civication-role-world-broad-rollout-policy.test.js
-          node scripts/build-civication-scene-registry.mjs --check
-          node scripts/audit-civication-career-gameplay.mjs --check
-          node scripts/audit-civication-role-world-rollout-readiness.mjs --check
+      - name: Verify Programleder role-world rollout
+        run: node tests/civication-film-tv-programleder-role-world-rollout.test.js
+      - name: Verify Programleder playability
+        run: node tests/civication-film-tv-programleder-playability.test.js
+      - name: Verify role-world contract
+        run: node tests/civication-role-world-contract.test.js
+      - name: Verify broad rollout policy
+        run: node tests/civication-role-world-broad-rollout-policy.test.js
+      - name: Check scene registry
+        run: node scripts/build-civication-scene-registry.mjs --check
+      - name: Check career gameplay audit
+        run: node scripts/audit-civication-career-gameplay.mjs --check
+      - name: Check role-world rollout readiness audit
+        run: node scripts/audit-civication-role-world-rollout-readiness.mjs --check
       - name: Run full Civication suite
         run: npm run test:civication
       - name: Remove temporary materialization surface
