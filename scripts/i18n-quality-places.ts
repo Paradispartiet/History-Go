@@ -68,6 +68,7 @@ function hash(p: JsonObject): string {
 function rows(data: any): JsonObject[] {
   if (Array.isArray(data)) return data;
   if (Array.isArray(data && data.places)) return data.places;
+  if (data && typeof data === "object" && typeof data.id === "string" && data.id.trim()) return [data];
   return [];
 }
 
