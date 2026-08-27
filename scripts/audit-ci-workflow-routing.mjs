@@ -230,6 +230,13 @@ export function auditWorkflowRouting() {
 
     if (activePullRequest(source)) {
       activePullRequestWorkflows += 1;
+      const topLevelPermissions = source.match(/^permissions:\s*\n((?:  [^\n]+\n?)*)/m)?.[1] ?? '';
+      if (!/^  contents:\s*read\s*$/m.test(topLevelPermissions)) {
+        failures.push(`${file}: active pull-request validation must declare top-level contents-read permission`);
+      }
+      if (/\bwrite\b/.test(topLevelPermissions)) {
+        failures.push(`${file}: active pull-request validation must not have top-level write permission`);
+      }
       if (!/^concurrency:\s*$/m.test(source)) failures.push(`${file}: missing top-level concurrency policy`);
       if (!/^\s{2}cancel-in-progress:\s*true\s*$/m.test(source)) {
         failures.push(`${file}: stale pull-request runs are not cancelled`);
@@ -359,6 +366,22 @@ export function auditWorkflowRouting() {
   }
   if (!domainRegistrySource.includes('node scripts/run-fagverk-domain-ci-v1.mjs')) {
     failures.push('fagverk-domain-registry.yml: shared registry runner is missing');
+  }
+
+  const natureCandidatesSource = workflows.find(({ file }) => file === 'build-nature-place-candidates.yml')?.source ?? '';
+  if (!/^permissions:\s*\n\s{2}contents:\s*read\s*$/m.test(natureCandidatesSource)) {
+    failures.push('build-nature-place-candidates.yml: pull-request validation must be contents-read-only');
+  }
+  for (const publishContract of [
+    /^\s{2}publish:\s*$/m,
+    /github\.event_name == 'workflow_dispatch' && inputs\.commit_output == true/,
+    /^\s{4}needs:\s*validate\s*$/m,
+    /^\s{4}permissions:\s*\n\s{6}contents:\s*write\s*$/m,
+    /actions\/download-artifact@v4/,
+  ]) {
+    if (!publishContract.test(natureCandidatesSource)) {
+      failures.push(`build-nature-place-candidates.yml: isolated publish contract is missing: ${publishContract}`);
+    }
   }
 
   const routingSource = workflows.find(({ file }) => file === 'ci-workflow-routing.yml').source;

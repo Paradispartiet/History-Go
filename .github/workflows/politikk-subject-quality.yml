@@ -66,6 +66,10 @@ on:
       - 'reports/fagverk/politikk-forvaltning-audit.json'
       - 'reports/fagverk/politikk-parlamentarisme-audit.json'
       - '.github/workflows/politikk-subject-quality.yml'
+
+permissions:
+  contents: read
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
