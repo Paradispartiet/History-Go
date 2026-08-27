@@ -1,14 +1,245 @@
 {
-  "schema": "civication_mail_family_catalog_v1", "version": 1, "category": "film_tv", "role_scope": "programleder", "mail_type": "micro",
-  "families": [{"id": "programleder_faktalapp", "purpose": "Gjøre en liten faktarettelse synlig før den blir gjentatt på lufta.", "learning_focus": ["uttale", "tall", "kildestatus"], "mails": [{
-    "id": "film_tv_program_micro_faktalapp_001", "mail_type": "micro", "mail_family": "programleder_faktalapp", "role_scope": "programleder", "phase": "workday", "day_phase": "afternoon", "priority": 112, "cooldown": 2, "repeatable": true, "stage": "stable",
-    "from": "Amina, researcher", "people_ref": "amina_researcher_program", "person_id": "amina_researcher_program", "place_id": "briefrom_program_film_tv",
-    "subject": "Tallet gjelder søknader, ikke ferdige produksjoner", "summary": "Amina har oppdaget at introduksjonen bruker et søknadstall som om det var antall ferdige produksjoner, og har også lagt ved korrekt uttale av gjestens navn.", "purpose": "Teste om små rettelser får en canonical plass i briefen.", "stakes": "Et feil tall gjentatt med trygg stemme blir vanskeligere å rydde opp i etter sending.",
-    "situation": ["Kilden skiller tydelig mellom søknader og ferdige produksjoner.", "Feilen står i både introduksjon og stikkordskort.", "Korrekt uttale er bekreftet direkte med gjestekoordinatoren."],
-    "task_domain": "research_og_brief", "task_kind": "micro", "competency": "faktapresisjon", "pressure": "siste_minutt_vs_korreksjon", "choice_axis": "rett_canonical_brief_og_kort_vs_husk_det_muntlig", "consequence_axis": "samstemt_grunnlag_vs_dobbelt_feilspor", "narrative_arc": "fra_brief_til_sending", "interaction_mode": "decision",
-    "choices": [
-      {"id": "A", "label": "Rett brief og stikkordskort og bekreft mottak", "reply": "Jeg oppdaterer begge flatene til søknadstall og bruker den bekreftede uttalen.", "effect": 1, "tags": ["traceability", "correction"], "feedback": "Hele produksjonen arbeider videre fra samme korrigerte grunnlag.", "effects": {"stats": {"quality": 2, "risk": -2, "energy": -1}}},
-      {"id": "B", "label": "La dokumentene stå og korriger deg selv på lufta", "reply": "Jeg husker forskjellen når jeg leser introduksjonen.", "effect": -1, "tags": ["memory_only", "rework"], "feedback": "Feilen blir stående i to operative flater og kan fortsatt leses av andre.", "effects": {"stats": {"quality": -2, "risk": 2}}}
-    ]
-  }]}]
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "programleder",
+  "mail_type": "micro",
+  "families": [
+    {
+      "id": "programleder_faktalapp",
+      "purpose": "Gjøre en liten faktarettelse synlig før den blir gjentatt på lufta.",
+      "learning_focus": [
+        "uttale",
+        "tall",
+        "kildestatus"
+      ],
+      "mails": [
+        {
+          "id": "film_tv_program_micro_faktalapp_001",
+          "mail_type": "micro",
+          "mail_family": "programleder_faktalapp",
+          "role_scope": "programleder",
+          "phase": "workday",
+          "day_phase": "afternoon",
+          "priority": 112,
+          "cooldown": 2,
+          "repeatable": true,
+          "stage": "stable",
+          "from": "Amina, researcher",
+          "people_ref": "amina_researcher_program",
+          "person_id": "amina_researcher_program",
+          "place_id": "briefrom_program_film_tv",
+          "subject": "Tallet gjelder søknader, ikke ferdige produksjoner",
+          "summary": "Amina har oppdaget at introduksjonen bruker et søknadstall som om det var antall ferdige produksjoner, og har også lagt ved korrekt uttale av gjestens navn.",
+          "purpose": "Teste om små rettelser får en canonical plass i briefen.",
+          "stakes": "Et feil tall gjentatt med trygg stemme blir vanskeligere å rydde opp i etter sending.",
+          "situation": [
+            "Kilden skiller tydelig mellom søknader og ferdige produksjoner.",
+            "Feilen står i både introduksjon og stikkordskort.",
+            "Korrekt uttale er bekreftet direkte med gjestekoordinatoren."
+          ],
+          "task_domain": "research_og_brief",
+          "task_kind": "micro",
+          "competency": "faktapresisjon",
+          "pressure": "siste_minutt_vs_korreksjon",
+          "choice_axis": "rett_canonical_brief_og_kort_vs_husk_det_muntlig",
+          "consequence_axis": "samstemt_grunnlag_vs_dobbelt_feilspor",
+          "narrative_arc": "fra_brief_til_sending",
+          "interaction_mode": "decision",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Rett brief og stikkordskort og bekreft mottak",
+              "reply": "Jeg oppdaterer begge flatene til søknadstall og bruker den bekreftede uttalen.",
+              "effect": 1,
+              "tags": [
+                "traceability",
+                "correction"
+              ],
+              "feedback": "Hele produksjonen arbeider videre fra samme korrigerte grunnlag.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "La dokumentene stå og korriger deg selv på lufta",
+              "reply": "Jeg husker forskjellen når jeg leser introduksjonen.",
+              "effect": -1,
+              "tags": [
+                "memory_only",
+                "rework"
+              ],
+              "feedback": "Feilen blir stående i to operative flater og kan fortsatt leses av andre.",
+              "effects": {
+                "stats": {
+                  "quality": -2,
+                  "risk": 2
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_program_fact_card_rework",
+      "purpose": "Materialisere rework etter venting som konkret, lite redaksjonelt arbeid.",
+      "learning_focus": [
+        "research_og_forberedelse",
+        "kort_tid_vs_sporbart_rework"
+      ],
+      "mails": [
+        {
+          "role_scope": "programleder",
+          "place_id": "briefrom_program_film_tv",
+          "repeatable": false,
+          "stage": "stable",
+          "thread_key": "film_tv_program_live_interview_realism_001",
+          "planned_only": true,
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "film_tv",
+            "programleder"
+          ],
+          "id": "film_tv_program_realism_fact_card_rework_001",
+          "mail_type": "micro",
+          "mail_family": "role_world_rollout_program_fact_card_rework",
+          "phase": "mastery",
+          "day_phase": "morning",
+          "priority": 94,
+          "cooldown": 12,
+          "from": "Amina, researcher",
+          "people_ref": "amina_researcher_program",
+          "person_id": "amina_researcher_program",
+          "subject": "Gjesten har svart; nå må faktakortet bygges om før premisset kan godkjennes",
+          "summary": "Theas avklaring åpner en generell erfaring, men holder familiedetaljen utenfor. Amina trenger et revidert faktakort som skiller sitat, bakgrunn, tall og åpne spørsmål.",
+          "purpose": "Materialisere rework etter venting som konkret, lite redaksjonelt arbeid.",
+          "stakes": "En rask kosmetisk endring kan la den uavklarte detaljen overleve i oppfølgingsspørsmål eller grafikk.",
+          "situation": [
+            "Gjesten har avklart én generell formulering.",
+            "Familiedetaljen kan ikke brukes i sending, reprise eller klipp.",
+            "To tall er verifiserte; årsaksforklaringen er fortsatt hypotese."
+          ],
+          "task_domain": "brief_rework_etter_gjesteavklaring",
+          "task_kind": "micro",
+          "competency": "research_og_forberedelse",
+          "pressure": "kort_tid_vs_sporbart_rework",
+          "choice_axis": "bygg_om_faktakort_vs_fjern_bare_synlig_detalj",
+          "consequence_axis": "konsistent_premiss_vs_skjult_restrisiko",
+          "narrative_arc": "fra_uavklart_premiss_til_sporbart_sende_og_brukshandoff",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "film_tv_program_live_interview_case_001"
+            ],
+            "institution_id": "film_tv_programredaksjon_001",
+            "rework_of_scene_id": "film_tv_program_realism_history_go_bang_hansen_waiting_001",
+            "priority": "high"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bygg kortet på nytt med kildestatus og bruksgrense per felt",
+              "reply": "Jeg skiller verifisert faktum, hypotese, godkjent formulering og tilbakeholdt detalj.",
+              "effect": 2,
+              "feedback": "Reworken gjør både spørsmål, grafikk og oppfølging konsistente med gjestens svar.",
+              "effects": {
+                "stats": {
+                  "quality": 3,
+                  "trust": 2,
+                  "risk": -3,
+                  "energy": -1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_program_fact_card_reworked",
+                    "work_object_id": "film_tv_program_live_interview_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "brief_rework_after_guest_confirmation",
+                    "note": "Faktakortet er bygget om etter differensiert gjesteavklaring."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_program_fact_card_scope_clear",
+                    "work_object_id": "film_tv_program_live_interview_case_001",
+                    "flag": "fact_card_source_and_use_scope_clear"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_program_standing_research_rework",
+                    "audience_id": "professional:amina_researcher_program",
+                    "delta": 3,
+                    "reason": "Amina får et redigerbart kort med synlig kildestatus.",
+                    "source_actor_id": "amina_researcher_program"
+                  },
+                  {
+                    "event_id": "film_tv_program_standing_editorial_rework",
+                    "audience_id": "team:film_tv_programredaksjon",
+                    "delta": 2,
+                    "reason": "Redaksjonen kan etterprøve hva som er endret og hvorfor.",
+                    "source_actor_id": "ingrid_redaksjonsleder_program"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Stryk familiedetaljen i åpningen og behold resten av kortet",
+              "reply": "Jeg fjerner den mest synlige formuleringen; resten kan justeres muntlig.",
+              "effect": -2,
+              "feedback": "Den tilbakeholdte detaljen og hypotesen kan fortsatt lekke gjennom grafikk og oppfølgingslogikk.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_program_fact_card_cosmetic",
+                    "work_object_id": "film_tv_program_live_interview_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "brief_rework_after_guest_confirmation",
+                    "note": "Faktakortet er kosmetisk endret uten full sporbarhet."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_program_fact_card_residual_risk",
+                    "work_object_id": "film_tv_program_live_interview_case_001",
+                    "flag": "uncleared_detail_remains_in_brief_logic"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_program_standing_research_cosmetic",
+                    "audience_id": "professional:amina_researcher_program",
+                    "delta": -3,
+                    "reason": "Research må gjette hvilke restfelt programlederen fortsatt vil bruke.",
+                    "source_actor_id": "amina_researcher_program"
+                  },
+                  {
+                    "event_id": "film_tv_program_standing_editorial_cosmetic",
+                    "audience_id": "team:film_tv_programredaksjon",
+                    "delta": -2,
+                    "reason": "Reworken ser ferdig ut uten å være konsistent.",
+                    "source_actor_id": "ingrid_redaksjonsleder_program"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

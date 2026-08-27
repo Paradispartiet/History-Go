@@ -1,0 +1,106 @@
+{
+  "schema": "history_go_place_nullmeasurement_v1",
+  "place_id": "alunverket",
+  "measured_at": "2026-08-27",
+  "base_commit": "559195f9fb4419405216983c01f85c210e45b5c9",
+  "status": "research_in_progress",
+  "canonical_decision": {
+    "represents": "Det historiske Christian og Sophia Magdalenas Alunverk: alunbruddet i Ekebergskrenten og produksjonsanlegget nedenfor, i driftsperioden 1737–1815, med dagens synlige bruddspor og minnemarkør som fysisk inngang.",
+    "period": "1737–1815",
+    "place_type": "historic_industrial_site",
+    "primary_category": "naeringsliv",
+    "place_scope": "single_place",
+    "excludes": [
+      "villaen Alunverket som Lorentz Meyer oppførte på 1850-tallet og som ble revet i 1877",
+      "Grønlia som eget byområde",
+      "Ekebergskrenten som samlet landskapsområde",
+      "Oslo Hospital",
+      "dagens enkeltvirksomheter og boliger langs Konows gate"
+    ]
+  },
+  "aliases_checked": [
+    "Alunverket",
+    "Christian og Sophia Magdalenas Alunverk",
+    "Christians og Sophia Magdalenas Alunverk",
+    "Alunverket i Grønlia",
+    "Alunverket i Ekebergskrenten"
+  ],
+  "collision_audit": {
+    "canonical_place_found": false,
+    "open_pull_request_found": false,
+    "existing_branch_found": false,
+    "notes": "Repo-søk fant bare Freia-arbeidskortets canonical_next og byggeverktøyreferanser; ingen aktiv Place, quiz, Story eller språkpost for Alunverket."
+  },
+  "coordinate_research": {
+    "locator_type": "historic_site",
+    "required_role": "historical_anchor",
+    "candidate": {
+      "lat": 59.90183,
+      "lon": 10.76741,
+      "source_provider": "osm",
+      "source_object_id": "osm-node:12732634365",
+      "source_url": "https://www.openstreetmap.org/node/12732634365",
+      "meaning": "Navngitt minnemarkør Alunverket 1737–1815 ved de synlige bruddsporene."
+    },
+    "status": "candidate_sources_collected",
+    "decision": "Kandidaten må kryssjekkes visuelt mot blått skilt, kommunal bevaringssone og historisk anleggsutstrekning før verified_historical_source."
+  },
+  "sources_read": [
+    {
+      "url": "https://snl.no/Alunverket",
+      "role": "fagredigert virksomhetsidentitet, produksjon, eiere og hovedkronologi"
+    },
+    {
+      "url": "https://oslobyleksikon.no/side/Alunverket",
+      "role": "stedlig avgrensning, produksjonsprosess, eierskap og senere eiendomshistorie"
+    },
+    {
+      "url": "https://www.dagsavisen.no/nyheter/gamlebyens-skjulte-industrihistorie/5040330",
+      "role": "Oslo Byarkiv-historikers kildebelagte artikkel om anlegg, arbeid, produksjon og samfunn"
+    },
+    {
+      "url": "https://ekebergparken.com/historisk-tidslinje",
+      "role": "institusjonell tidslinje og dagens formidling av kulturminnet"
+    },
+    {
+      "url": "https://digitaltmuseum.no/011014324995/alunverket",
+      "role": "Oslo Museums historiske fabrikkfoto og bildeproveniens"
+    },
+    {
+      "url": "https://viewer.mapme.com/blaaskilt",
+      "role": "Oslo Byes Vels blåskiltregister og dagens publikumsanker"
+    },
+    {
+      "url": "https://www.openstreetmap.org/node/12732634365",
+      "role": "navngitt kartobjekt for dagens minnemarkør"
+    }
+  ],
+  "source_conflicts_or_cautions": [
+    "Oslo byleksikon skriver Peter Leuch, mens SNL, Ekebergparken og øvrige kilder identifiserer Peder Leuch; brukertekst låses ikke før navnet er kontrollert i en primær eller sterk biografisk kilde.",
+    "Påstanden om Norges første verksskole er bestridt i SNL-kommentarsporet og skal ikke publiseres som enerpåstand; bare at John Collett opprettet en skole for arbeidernes barn i 1806 er foreløpig sikker.",
+    "Det historiske anlegget strakte seg mellom bruddet og Grønlia; ett kartpunkt kan bare være et dokumentert historisk/publikumsanker, ikke et geometrisk sentrum for hele anlegget.",
+    "Tall om arbeidere og befolkning må holde måleenhet og år adskilt: 44 arbeidere på 1790-tallet er ikke det samme som 138 personer i arbeidersamfunnet i 1801."
+  ],
+  "subsystem_baseline": {
+    "place": "missing",
+    "description_production": "missing",
+    "naeringsliv_production": "missing",
+    "coordinate_evidence": "missing",
+    "leksikon": "missing",
+    "chronology": "missing",
+    "story": "missing",
+    "for_na": "missing",
+    "news": "research_required",
+    "lesespor": "missing",
+    "sprakleksikon": "missing",
+    "people": "research_required",
+    "objects": "research_required",
+    "brands": "research_required",
+    "structures": "research_required",
+    "quiz": "missing",
+    "knowledge": "missing",
+    "fagverk_place": "missing",
+    "images": "candidate_sources_collected"
+  },
+  "next_gate": "Complete claim-level source review, visual coordinate check, candidate audits for People/Objects/Brands/Structures and licensed image selection before implementation."
+}

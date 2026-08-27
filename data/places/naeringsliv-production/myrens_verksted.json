@@ -1,0 +1,348 @@
+{
+  "schemaVersion": "naeringsliv_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "myrens_verksted",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv/myrens_verksted.json",
+  "status": "ready",
+  "economicIdentity": {
+    "statement": "Myrens Verksted er et tidligere mekanisk fabrikkanlegg og nåværende næringsområde ved Akerselva.",
+    "anchorType": "mixed_economic_site",
+    "placeObjectDistinction": "Rapporten skiller fabrikkanlegget fra Myrens-brandet, de bevarte maskinene, arbeiderboligene, Myraløkka og dagens enkeltleietakere.",
+    "temporalScope": {
+      "start": "1854",
+      "end": "2026",
+      "precision": "period",
+      "rationale": "Produksjonen flyttet hit i 1854, ble lagt ned i 1988, og eiendoms- og tjenestevirksomhet er dokumentert som aktuell i 2026."
+    },
+    "sourceIds": [
+      "source_myrens_snl",
+      "source_myrens_byleksikon",
+      "source_myrens_current",
+      "source_myrens_industrimuseum"
+    ]
+  },
+  "businessTopics": [
+    {
+      "emneId": "em_naering_arbeid_verdiskaping",
+      "siteSpecificRationale": "Verkstedet organiserte fagarbeid, energi, kapital og maskiner som produksjonsutstyr for andre bedrifter.",
+      "caseIds": [
+        "case_myrens_machine_supplier"
+      ]
+    },
+    {
+      "emneId": "em_naering_industri_og_mekanisering",
+      "siteSpecificRationale": "Turbiner, dampmaskiner og trebearbeidingsmaskiner gjør mekanisering og fabrikkproduksjon konkret.",
+      "caseIds": [
+        "case_myrens_machine_supplier"
+      ]
+    },
+    {
+      "emneId": "em_naering_produksjon_produktivitet",
+      "siteSpecificRationale": "Myrens leverte maskiner som endret produksjonsprosesser, men kildene gir ikke en sammenlignbar produktivitetsserie.",
+      "caseIds": [
+        "case_myrens_machine_supplier"
+      ]
+    },
+    {
+      "emneId": "em_naering_logistikk_verdikjeder",
+      "siteSpecificRationale": "Produksjonsutstyret koblet Myrens til sagbruk, treforedling, cellulose- og fiskeindustri i Norge og eksportmarkeder.",
+      "caseIds": [
+        "case_myrens_machine_supplier"
+      ]
+    },
+    {
+      "emneId": "em_naering_omstilling_kriser_skift",
+      "siteSpecificRationale": "Nedleggelsen i 1988 og eiendomsombruket fra 1997 viser et skift fra maskinindustri til tjenester.",
+      "caseIds": [
+        "case_myrens_machine_supplier"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_myrens_snl",
+      "url": "https://snl.no/Myrens_Verksted",
+      "sourceLocation": "Hele fagartikkelen, særlig Etablering, treforedling, eksport og Nedleggelse",
+      "sourceType": "museum_or_heritage",
+      "verifiedAt": "2026-08-27",
+      "temporalCoverage": "mixed",
+      "provenance": "Fagredigert SNL-artikkel skrevet av fagpersoner tilknyttet Norsk teknisk museum.",
+      "limitations": "Artikkelen gir punktvise tall, ikke full regnskaps-, lønns- eller produktivitetsserie."
+    },
+    {
+      "id": "source_myrens_byleksikon",
+      "url": "https://oslobyleksikon.no/side/Myrens_Verksted",
+      "sourceLocation": "Stedsposten om anlegg, turbinoppdrag, bygninger og senere bruk",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-08-27",
+      "temporalCoverage": "mixed",
+      "provenance": "Oslo byleksikons redaksjonelle stedspost for Sandakerveien 24c.",
+      "limitations": "Siden ble sist redigert i 2021 og brukes ikke alene for dagens leietakere eller eierskap."
+    },
+    {
+      "id": "source_myrens_current",
+      "url": "https://myreneiendom.no/om-myrens-verksted/",
+      "sourceLocation": "Historien, Om Myren Eiendom og Våre bygg",
+      "sourceType": "primary_business",
+      "verifiedAt": "2026-08-27",
+      "temporalCoverage": "current",
+      "provenance": "Eiendomsselskapets egen beskrivelse av kjøpet i 1997, forvaltningen og dagens byggbruk.",
+      "limitations": "Egenpresentasjonen er relevant for nåstatus, men er ikke uavhengig dokumentasjon av historiske rekordpåstander eller økonomiske resultater."
+    },
+    {
+      "id": "source_myrens_industrimuseum",
+      "url": "https://industrimuseum.no/bedrifter/myrensverksteda_s",
+      "sourceLocation": "Bedriftsposten om produksjon og industrihistorie",
+      "sourceType": "museum_or_heritage",
+      "verifiedAt": "2026-08-27",
+      "temporalCoverage": "historical",
+      "provenance": "Norsk museumsnettverk for industrihistories bedriftspost om Myrens Verksted.",
+      "limitations": "Oppslaget er kort og brukes som museumskontroll, ikke som eneste grunnlag for tall eller nåstatus."
+    }
+  ],
+  "economicCases": [
+    {
+      "id": "case_myrens_machine_supplier",
+      "claim": "Myrens Verksted skapte verdi som maskinleverandør til andre industribransjer, før konsernomstilling stengte Oslo-produksjonen og fabrikkanlegget ble omgjort til eiendoms- og tjenestevirksomhet.",
+      "unitOfAnalysis": {
+        "unit": "Myrens Verksted-anlegget ved Akerselva",
+        "boundary": "Analysen omfatter stedets maskinproduksjon, direkte leverandørforbindelser, eierskifte, nedleggelse og bygningsombruk, ikke hele Kværner-konsernet eller kundenes komplette verdikjeder.",
+        "scale": "site",
+        "temporalScope": {
+          "start": "1854",
+          "end": "2026",
+          "precision": "period",
+          "rationale": "Perioden følger produksjon ved Myraløkka, Kværner-epoken, nedleggelsen og dokumentert nåværende næringsbruk."
+        },
+        "sourceIds": [
+          "source_myrens_snl",
+          "source_myrens_byleksikon",
+          "source_myrens_current",
+          "source_myrens_industrimuseum"
+        ]
+      },
+      "actors": [
+        {
+          "name": "Myrens eiere og ledelse",
+          "roleOrInterest": "Organiserte kapital, produktvalg, marked, investeringer og senere konserntilknytning.",
+          "economicPosition": "Kontrollerte virksomhetens strategiske beslutninger og bruken av produksjonsanlegget.",
+          "sourceIds": [
+            "source_myrens_snl",
+            "source_myrens_byleksikon"
+          ]
+        },
+        {
+          "name": "Verkstedsarbeidere og ingeniører",
+          "roleOrInterest": "Utviklet, bygde og monterte turbiner, dampmaskiner og prosessutstyr.",
+          "economicPosition": "Skapte produksjonsutstyret gjennom lønnet fagarbeid uten å kontrollere eierskapet.",
+          "sourceIds": [
+            "source_myrens_snl",
+            "source_myrens_byleksikon",
+            "source_myrens_industrimuseum"
+          ]
+        },
+        {
+          "name": "Kundebedrifter i tre-, cellulose- og fiskeindustrien",
+          "roleOrInterest": "Kjøpte maskiner og komplette anlegg for egen produksjon.",
+          "economicPosition": "Omsatte Myrens-utstyret til kapasitet og output i andre industrivirksomheter.",
+          "sourceIds": [
+            "source_myrens_snl",
+            "source_myrens_industrimuseum"
+          ]
+        },
+        {
+          "name": "Myren Eiendom og dagens leietakere",
+          "roleOrInterest": "Utvikler, drifter og bruker det tidligere fabrikkanlegget som næringsområde.",
+          "economicPosition": "Skaper inntekter og tjenester gjennom eiendom og ny bruk av de bevarte byggene.",
+          "sourceIds": [
+            "source_myrens_current"
+          ]
+        }
+      ],
+      "valueCreation": {
+        "inputs": [
+          {
+            "statement": "Vannkraft, jern, verkstedbygninger, maskiner, kapital, fagarbeid og teknisk kunnskap var sentrale innsatsfaktorer.",
+            "sourceIds": [
+              "source_myrens_snl",
+              "source_myrens_byleksikon"
+            ]
+          }
+        ],
+        "activity": {
+          "statement": "Innsatsfaktorene ble organisert som konstruksjon, støping, maskinering, montering og levering av produksjonsutstyr.",
+          "sourceIds": [
+            "source_myrens_snl",
+            "source_myrens_industrimuseum"
+          ]
+        },
+        "outputs": [
+          {
+            "statement": "Verkstedet leverte blant annet turbiner, dampmaskiner, sagbruks- og høvlerimaskiner samt utstyr til treforedling og fiskeindustri.",
+            "sourceIds": [
+              "source_myrens_snl"
+            ]
+          }
+        ],
+        "valueCreationAssessment": {
+          "statement": "Kildene dokumenterer en leverandørkjede som støttet andre industribedrifter, men gir ikke konsistente data for å beregne verdiskaping eller produktivitet gjennom hele perioden.",
+          "sourceIds": [
+            "source_myrens_snl",
+            "source_myrens_byleksikon"
+          ]
+        }
+      },
+      "measurement": {
+        "methodId": "met_naering_industrihistorisk_analyse",
+        "evidenceType": "mixed",
+        "indicatorOrObservation": "Produkter, ansattall, eksportandel, omsetningstall, eierskifter og bygningsbruk sammenholdes som punktvise indikatorer.",
+        "unit": "stedbundne industri- og omstillingsindikatorer",
+        "period": "1854–2026",
+        "comparability": "Hendelser og enkelte punktverdier kan sammenlignes, men tallene dekker ulike enheter og kan ikke behandles som én ubrutt tidsserie.",
+        "dataLimitations": "Ansattallet i 1890 inkluderer Fredrikstad-filialen, eksportandelen måler omsetning og 1978-tallene gir bare ett årspunkt.",
+        "sourceIds": [
+          "source_myrens_snl",
+          "source_myrens_byleksikon",
+          "source_myrens_current",
+          "source_myrens_industrimuseum"
+        ]
+      },
+      "distributionAndPower": {
+        "ownershipOrControl": "Gründerfamilien og senere Kværner kontrollerte investeringer, produktstrategi og beslutningen om å flytte og stenge produksjon.",
+        "laborPosition": "Arbeidere og ingeniører skapte maskinene og bar sysselsettingsrisikoen ved omstruktureringen uten å kontrollere konserneierskapet.",
+        "beneficiaries": [
+          "Eiere kunne motta avkastning fra produksjon, eksport og senere eiendomsutvikling.",
+          "Kundebedrifter fikk produksjonsutstyr til egne industriprosesser.",
+          "Arbeidere mottok lønn og utviklet spesialisert fagkompetanse."
+        ],
+        "costRiskBearers": [
+          "Eiere bar investerings- og markedsrisiko.",
+          "Ansatte bar risiko for arbeidsbelastning, omstilling og tap av arbeidsplass.",
+          "Nabolag og elvemiljø kan ha båret industrikostnader, men kildene her tallfester dem ikke."
+        ],
+        "sourceIds": [
+          "source_myrens_snl",
+          "source_myrens_byleksikon",
+          "source_myrens_current",
+          "source_myrens_industrimuseum"
+        ]
+      },
+      "riskAndExternalities": {
+        "riskAssessment": {
+          "statement": "Virksomheten var avhengig av teknologisk konkurranseevne, eksportmarkeder, konsernstrategi og etterspørselen i andre industribransjer.",
+          "sourceIds": [
+            "source_myrens_snl",
+            "source_myrens_byleksikon"
+          ]
+        },
+        "externalityAssessment": {
+          "status": "not_applicable",
+          "rationale": "Kildene dokumenterer industri ved Akerselva, men gir ikke et sammenlignbart stedsspesifikt grunnlag for å tallfeste utslipp, støy, helse eller andre eksternaliteter."
+        }
+      },
+      "comparisonAndCausality": {
+        "comparisonBasis": "SNL og Industrimuseum belyser produksjon og markeder, Oslo byleksikon belyser stedet og bygningene, mens Myren Eiendom dokumenterer nåværende bruk.",
+        "causalStatus": "descriptive_only",
+        "causalAssessment": "Materialet viser samtidighet mellom markedsendringer, oppkjøp, eksport, nedleggelse og ombruk, men isolerer ikke én årsak til veksten eller nedleggelsen.",
+        "alternativeExplanations": [
+          "Teknologisk konkurranse, etterspørsel, konsernstrategi, kostnader og lokalisering kan alle ha påvirket utviklingen."
+        ],
+        "uncertainty": "Uten sammenlignbare regnskaps-, produktivitets- og arbeidsmarkedsdata kan virkningene ikke tilskrives én faktor.",
+        "sourceIds": [
+          "source_myrens_snl",
+          "source_myrens_byleksikon",
+          "source_myrens_current",
+          "source_myrens_industrimuseum"
+        ]
+      }
+    }
+  ],
+  "presentOperation": {
+    "operationalStatus": "former",
+    "statement": "Industriselskapet ble lagt ned i Oslo i 1988; området drives nå som næringseiendom med kontorer, medier, trening, servering og andre tjenester.",
+    "originalEconomicRoleRelationship": "Den opprinnelige maskinproduksjonen er avsluttet, mens fabrikkbygningene og Myrens-navnet er videreført i en ny eiendoms- og tjenesteøkonomi.",
+    "checkedAt": "2026-08-27",
+    "sourceIds": [
+      "source_myrens_current",
+      "source_myrens_snl",
+      "source_myrens_byleksikon"
+    ]
+  },
+  "quizOpening": {
+    "status": "PASS",
+    "quizTargetId": "myrens_verksted",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/naeringsliv/myrens_verksted.json",
+    "productionContext": "data/quiz/production_context/naeringsliv/myrens_verksted.json",
+    "requiredInputs": [
+      "data/fag/naeringsliv/naeringslivpensum_canonical_v4_5.json",
+      "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+      "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+      "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+      "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+      "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    ]
+  },
+  "chronologyStories": {
+    "status": "PASS",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Leksikonets tretten milepæler eier tidslinjen; storyen om turbinoppdraget har en egen narrativ akse om overgangen fra mølleverksted til maskinleverandør."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicIdentity"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "businessTopics"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].valueCreation"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].distributionAndPower"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].measurement"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].comparisonAndCausality"
+      ]
+    },
+    "G": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "quizOpening"
+      ]
+    },
+    "H": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "chronologyStories"
+      ]
+    }
+  },
+  "review": {
+    "reviewer": "History GO Næringsliv source audit",
+    "reviewedAt": "2026-08-27",
+    "notes": "Stedsidentitet, maskinproduksjon, leverandørrolle, arbeid, eksport, eierskap, nedleggelse, målegrenser og nåstatus er kontrollert. Rapporten skiller omsetning, eksportandel, produktivitet og lønnsomhet."
+  }
+}

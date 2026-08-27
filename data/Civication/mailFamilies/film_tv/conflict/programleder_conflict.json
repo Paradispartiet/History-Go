@@ -1,14 +1,343 @@
 {
-  "schema": "civication_mail_family_catalog_v1", "version": 1, "category": "film_tv", "role_scope": "programleder", "mail_type": "conflict",
-  "families": [{"id": "programleder_skarpt_premiss", "purpose": "Synliggjøre konflikten mellom en skarp åpning og et uavklart faktagrunnlag.", "learning_focus": ["faktapresisjon", "redaksjonelt_mandat"], "mails": [{
-    "id": "film_tv_program_conflict_premiss_001", "mail_type": "conflict", "mail_family": "programleder_skarpt_premiss", "role_scope": "programleder", "phase": "mid", "day_phase": "forenoon", "priority": 125, "cooldown": 3, "repeatable": false, "stage": "stable",
-    "from": "Ingrid, redaksjonsleder", "people_ref": "ingrid_redaksjonsleder_program", "person_id": "ingrid_redaksjonsleder_program", "place_id": "briefrom_program_film_tv",
-    "subject": "Åpningen blir tydeligere hvis hypotesen sies som konklusjon", "summary": "Ingrid vil ha mer kraft i anslaget, men Amina har fortsatt bare indirekte støtte for den sentrale påstanden.", "purpose": "Teste om programlederen ber beslutningseieren velge en sannferdig formulering.", "stakes": "Programlederens stemme gjør formuleringen troverdig for publikum selv når kildestatusen er svak.",
-    "situation": ["Hypotesen er redaksjonelt relevant.", "Kilden dokumenterer ikke den bastante konklusjonen.", "Ingrid kan endre premisset, men ikke gjøre en uverifisert påstand sann."],
-    "task_domain": "research_og_brief", "task_kind": "conflict", "competency": "redaksjonell_integritet", "pressure": "skarphet_vs_kildestatus", "choice_axis": "formuler_som_apent_sporsmal_vs_les_som_konklusjon", "consequence_axis": "troverdig_nysgjerrighet_vs_falsk_sikkerhet", "narrative_arc": "fra_brief_til_sending", "interaction_mode": "decision",
-    "choices": [
-      {"id": "A", "label": "Gjør hypotesen til et åpent, presist spørsmål", "reply": "Vi kan gjøre konflikten tydelig uten å påstå mer enn kilden bærer.", "effect": 1, "tags": ["source_boundary", "clarity"], "feedback": "Åpningen beholder retning og markerer samtidig hva som skal undersøkes.", "effects": {"stats": {"quality": 2, "trust": 1, "risk": -2}}},
-      {"id": "B", "label": "Les konklusjonen og utfordre gjesten etterpå", "reply": "Jeg bruker den skarpe formuleringen og lar gjesten korrigere oss i samtalen.", "effect": -1, "tags": ["fact_risk", "burden_shift"], "feedback": "Du legger ansvaret for redaksjonens faktasnarvei på gjesten.", "effects": {"stats": {"quality": -2, "trust": -2, "risk": 3, "status": 1}}}
-    ]
-  }]}]
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "programleder",
+  "mail_type": "conflict",
+  "families": [
+    {
+      "id": "programleder_skarpt_premiss",
+      "purpose": "Synliggjøre konflikten mellom en skarp åpning og et uavklart faktagrunnlag.",
+      "learning_focus": [
+        "faktapresisjon",
+        "redaksjonelt_mandat"
+      ],
+      "mails": [
+        {
+          "id": "film_tv_program_conflict_premiss_001",
+          "mail_type": "conflict",
+          "mail_family": "programleder_skarpt_premiss",
+          "role_scope": "programleder",
+          "phase": "mid",
+          "day_phase": "forenoon",
+          "priority": 125,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Ingrid, redaksjonsleder",
+          "people_ref": "ingrid_redaksjonsleder_program",
+          "person_id": "ingrid_redaksjonsleder_program",
+          "place_id": "briefrom_program_film_tv",
+          "subject": "Åpningen blir tydeligere hvis hypotesen sies som konklusjon",
+          "summary": "Ingrid vil ha mer kraft i anslaget, men Amina har fortsatt bare indirekte støtte for den sentrale påstanden.",
+          "purpose": "Teste om programlederen ber beslutningseieren velge en sannferdig formulering.",
+          "stakes": "Programlederens stemme gjør formuleringen troverdig for publikum selv når kildestatusen er svak.",
+          "situation": [
+            "Hypotesen er redaksjonelt relevant.",
+            "Kilden dokumenterer ikke den bastante konklusjonen.",
+            "Ingrid kan endre premisset, men ikke gjøre en uverifisert påstand sann."
+          ],
+          "task_domain": "research_og_brief",
+          "task_kind": "conflict",
+          "competency": "redaksjonell_integritet",
+          "pressure": "skarphet_vs_kildestatus",
+          "choice_axis": "formuler_som_apent_sporsmal_vs_les_som_konklusjon",
+          "consequence_axis": "troverdig_nysgjerrighet_vs_falsk_sikkerhet",
+          "narrative_arc": "fra_brief_til_sending",
+          "interaction_mode": "decision",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør hypotesen til et åpent, presist spørsmål",
+              "reply": "Vi kan gjøre konflikten tydelig uten å påstå mer enn kilden bærer.",
+              "effect": 1,
+              "tags": [
+                "source_boundary",
+                "clarity"
+              ],
+              "feedback": "Åpningen beholder retning og markerer samtidig hva som skal undersøkes.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 1,
+                  "risk": -2
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Les konklusjonen og utfordre gjesten etterpå",
+              "reply": "Jeg bruker den skarpe formuleringen og lar gjesten korrigere oss i samtalen.",
+              "effect": -1,
+              "tags": [
+                "fact_risk",
+                "burden_shift"
+              ],
+              "feedback": "Du legger ansvaret for redaksjonens faktasnarvei på gjesten.",
+              "effects": {
+                "stats": {
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3,
+                  "status": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_program_editorial_premise_rework",
+      "purpose": "Skille programlederens påvirkning på formulering fra redaksjonslederens godkjenning av premiss.",
+      "learning_focus": [
+        "redaksjonell_rolleforstaelse",
+        "salgbart_anslag_vs_sannferdig_premiss"
+      ],
+      "mails": [
+        {
+          "role_scope": "programleder",
+          "place_id": "briefrom_program_film_tv",
+          "repeatable": false,
+          "stage": "stable",
+          "thread_key": "film_tv_program_live_interview_realism_001",
+          "planned_only": true,
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "film_tv",
+            "programleder"
+          ],
+          "id": "film_tv_program_realism_editorial_premise_rework_001",
+          "mail_type": "conflict",
+          "mail_family": "role_world_rollout_program_editorial_premise_rework",
+          "phase": "mastery",
+          "day_phase": "afternoon",
+          "priority": 99,
+          "cooldown": 12,
+          "from": "Ingrid, redaksjonsleder",
+          "people_ref": "ingrid_redaksjonsleder_program",
+          "person_id": "ingrid_redaksjonsleder_program",
+          "subject": "Det reviderte premisset er sannere, men mindre salgbart",
+          "summary": "Ingrid vil beholde konfliktkraften etter gjesteavklaringen og ber deg anbefale en åpning som er skarp uten å gjøre hypotesen til konklusjon, samtidig som hennes eksplisitte godkjenningspunkt består.",
+          "purpose": "Skille programlederens påvirkning på formulering fra redaksjonslederens godkjenning av premiss.",
+          "stakes": "Situert tillit hos Ingrid kan gi innflytelse, men aldri gjøre programlederen til egen publiseringsmyndighet.",
+          "situation": [
+            "Faktakortet skiller nå verifisert materiale fra hypotese.",
+            "Gjestegrensen er dokumentert for alle bruksflater.",
+            "Ingrid må godkjenne det reviderte premisset før studio."
+          ],
+          "task_domain": "redaksjonelt_premiss_rework",
+          "task_kind": "conflict",
+          "competency": "redaksjonell_rolleforstaelse",
+          "pressure": "salgbart_anslag_vs_sannferdig_premiss",
+          "choice_axis": "anbefal_apent_presist_sporsmal_vs_godkjenn_selv_skarp_konklusjon",
+          "consequence_axis": "innflytelse_med_grense_vs_mandatglidning",
+          "narrative_arc": "fra_uavklart_premiss_til_sporbart_sende_og_brukshandoff",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "film_tv_program_live_interview_case_001"
+            ],
+            "institution_id": "film_tv_programredaksjon_001",
+            "rework_of_scene_id": "film_tv_program_realism_fact_card_rework_001",
+            "priority": "high"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Anbefal et presist åpent spørsmål og be Ingrid godkjenne premisset",
+              "reply": "Jeg foreslår denne åpningen fordi den viser konflikten og holder hypotesen åpen for undersøkelse.",
+              "effect": 2,
+              "feedback": "Du bruker faglig innflytelse uten å late som anbefalingen er en redaksjonell godkjenning.",
+              "effects": {
+                "stats": {
+                  "quality": 3,
+                  "trust": 2,
+                  "risk": -3
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_program_premise_recommended",
+                    "work_object_id": "film_tv_program_live_interview_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "premise_recommendation_awaiting_editorial_approval",
+                    "note": "Programlederen har anbefalt et revidert premiss; Ingrid beholder godkjenningspunktet."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_program_premise_authority_clear",
+                    "work_object_id": "film_tv_program_live_interview_case_001",
+                    "flag": "premise_recommended_not_self_approved"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_program_standing_ingrid_recommend",
+                    "audience_id": "manager:ingrid_redaksjonsleder_program",
+                    "delta": 3,
+                    "reason": "Ingrid får en redaksjonelt anvendelig anbefaling med tydelig kildestatus.",
+                    "source_actor_id": "ingrid_redaksjonsleder_program"
+                  },
+                  {
+                    "event_id": "film_tv_program_standing_editorial_integrity",
+                    "audience_id": "team:film_tv_programredaksjon",
+                    "delta": 2,
+                    "reason": "Redaksjonen ser hvem som anbefalte og hvem som godkjente.",
+                    "source_actor_id": "ingrid_redaksjonsleder_program"
+                  }
+                ]
+              },
+              "authority_action": {
+                "action_id": "recommend_interview_premise",
+                "intent": "recommend"
+              }
+            },
+            {
+              "id": "B",
+              "label": "Bestem at den skarpeste formuleringen er sendeklar",
+              "reply": "Jeg tar ansvaret for åpningen; den fungerer bedre på lufta.",
+              "effect": -2,
+              "feedback": "Synlighet og situert tillit brukes som erstatning for redaksjonell godkjenning, slik at mandatgrensen blir uleselig.",
+              "effects": {
+                "stats": {
+                  "status": 2,
+                  "quality": -3,
+                  "trust": -2,
+                  "risk": 3
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_program_premise_self_approved",
+                    "work_object_id": "film_tv_program_live_interview_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "premise_authority_breached",
+                    "note": "Programlederen har behandlet egen formulering som godkjent premiss."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_program_premise_authority_breach",
+                    "work_object_id": "film_tv_program_live_interview_case_001",
+                    "flag": "host_self_approved_editorial_premise"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_program_standing_ingrid_override",
+                    "audience_id": "manager:ingrid_redaksjonsleder_program",
+                    "delta": -4,
+                    "reason": "Programlederen overtar et eksplisitt redaksjonelt godkjenningspunkt.",
+                    "source_actor_id": "ingrid_redaksjonsleder_program"
+                  },
+                  {
+                    "event_id": "film_tv_program_standing_editorial_override",
+                    "audience_id": "team:film_tv_programredaksjon",
+                    "delta": -3,
+                    "reason": "Egen synlighet blir behandlet som institusjonell myndighet.",
+                    "source_actor_id": "ingrid_redaksjonsleder_program"
+                  }
+                ]
+              },
+              "authority_action": {
+                "action_id": "approve_editorial_premise",
+                "intent": "execute"
+              }
+            }
+          ],
+          "authority_context": {
+            "institution_id": "film_tv_programredaksjon_001",
+            "unit_id": "film_tv_liveprogram",
+            "role_scope": "programleder",
+            "reporting_line": [
+              "ingrid_redaksjonsleder_program",
+              "jonas_liveprodusent"
+            ],
+            "peer_functions": [
+              "amina_researcher_program",
+              "thea_gjestekoordinator"
+            ],
+            "external_counterparts": [
+              "film_tv_programgjest"
+            ],
+            "goals_pressures": [
+              "faktapresisjon",
+              "gjestetillit",
+              "liveflyt",
+              "publikumstillit",
+              "sendefrist"
+            ],
+            "approval_points": [
+              {
+                "approval_id": "film_tv_program_premise_approval",
+                "action_id": "approve_editorial_premise",
+                "approver_actor_id": "ingrid_redaksjonsleder_program",
+                "approval_object_id": "film_tv_program_premise_approval_001"
+              },
+              {
+                "approval_id": "film_tv_program_publication_approval",
+                "action_id": "approve_publication",
+                "approver_actor_id": "ingrid_redaksjonsleder_program",
+                "approval_object_id": "film_tv_program_publication_approval_001"
+              },
+              {
+                "approval_id": "film_tv_program_live_rundown_approval",
+                "action_id": "release_live_rundown",
+                "approver_actor_id": "jonas_liveprodusent",
+                "approval_object_id": "film_tv_program_live_rundown_001"
+              }
+            ],
+            "authority_rules": [
+              {
+                "action_id": "recommend_interview_readiness",
+                "authority": "influence_only",
+                "requires_resources": []
+              },
+              {
+                "action_id": "recommend_interview_premise",
+                "authority": "influence_only",
+                "requires_resources": []
+              },
+              {
+                "action_id": "approve_editorial_premise",
+                "authority": "approval_required",
+                "approval_id": "film_tv_program_premise_approval",
+                "requires_resources": []
+              },
+              {
+                "action_id": "approve_publication",
+                "authority": "approval_required",
+                "approval_id": "film_tv_program_publication_approval",
+                "requires_resources": []
+              },
+              {
+                "action_id": "release_live_rundown",
+                "authority": "approval_required",
+                "approval_id": "film_tv_program_live_rundown_approval",
+                "requires_resources": []
+              },
+              {
+                "action_id": "expand_sensitive_guest_scope",
+                "authority": "forbidden",
+                "requires_resources": []
+              },
+              {
+                "action_id": "operate_untrained_studio_system",
+                "authority": "forbidden",
+                "requires_resources": []
+              },
+              {
+                "action_id": "promise_editorial_outcome",
+                "authority": "forbidden",
+                "requires_resources": []
+              }
+            ],
+            "resources": [],
+            "escalation_paths": []
+          }
+        }
+      ]
+    }
+  ]
 }

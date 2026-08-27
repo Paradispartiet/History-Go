@@ -11,7 +11,7 @@
     "schema": "history_go_fagverk_registry_v1",
     "version": "3.14.0",
     "updated_at": "2026-08-21",
-    "content_sha256": "0b9686abde2570d4dfb8c452ed301d7fa984d364e1ed5abcd1f1decbfe41c366"
+    "content_sha256": "bc29d21ad28de3bd378e9a505ffc241a6eccf5db94b72b87f7517e2888e79bf8"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,18 +27,18 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "70bbc530407227d73fe7361d553997fbed199f9535ae1b46358398e3a161ee19"
+    "content_sha256": "aa28611516ace1c0d7fec07a3a11b3097ff1d7acb75370d799253b1fb900f424"
   },
   "summary": {
     "subject_count": 20,
     "root_subject_count": 19,
     "specialization_count": 1,
     "chapter_subject_count": 17,
-    "chapter_count": 184,
-    "module_file_count": 477,
-    "package_file_count": 305,
-    "chapter_referenced_file_count": 898,
-    "referenced_file_count": 1137,
+    "chapter_count": 186,
+    "module_file_count": 485,
+    "package_file_count": 315,
+    "chapter_referenced_file_count": 912,
+    "referenced_file_count": 1159,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -3447,9 +3447,9 @@
         "universityFramework"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 37,
+      "package_file_count": 43,
       "required_package_file_count": 4,
-      "optional_package_file_count": 33,
+      "optional_package_file_count": 39,
       "package_files": [
         {
           "path": "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
@@ -3632,6 +3632,18 @@
           "content_sha256": "07f7d4df74275325d75a683886beda0d21c3f43a4703d58661a05d767f563b47"
         },
         {
+          "path": "data/quiz/naeringsliv/alunverket_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.alunverket.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "b81c74cc303b147f6febf519a439cc3cac4a08ce4f552bdfd1a43a4488c9d0c9"
+        },
+        {
           "path": "data/quiz/naeringsliv/freia_fabrikken_sets.json",
           "required": false,
           "fields": [
@@ -3654,6 +3666,18 @@
           ],
           "exists": true,
           "content_sha256": "15508c98b148ed60838bd2624a843900aaa1288676d6d81787652694c99845c7"
+        },
+        {
+          "path": "data/quiz/naeringsliv/myrens_verksted_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.myrens_verksted.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "757e59ec0acad2fafc55e0bf8c8c604d9ce47e066ccebebd4530fcb101307656"
         },
         {
           "path": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
@@ -3704,6 +3728,18 @@
           "content_sha256": "39f8fb6985fe8ee9891959dadb582fc0bf9963b2669319a7ab5b29a34ac526dd"
         },
         {
+          "path": "data/quiz/production_briefs/naeringsliv/alunverket.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.alunverket.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "0266a328ca8e93aac5a4c0750b68566375625de6be5ce2f83e27551b3c21c3da"
+        },
+        {
           "path": "data/quiz/production_briefs/naeringsliv/freia_fabrikken.json",
           "required": false,
           "fields": [
@@ -3726,6 +3762,18 @@
           ],
           "exists": true,
           "content_sha256": "e905ac7285377827dc06624dd0d1dc578b1d003329c9430a7ffd220db7b338c7"
+        },
+        {
+          "path": "data/quiz/production_briefs/naeringsliv/myrens_verksted.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.myrens_verksted.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "fdd387cb996720ecf46f71f813cec9732773a7248a81a60f97567d17076013ad"
         },
         {
           "path": "data/quiz/production_briefs/naeringsliv/oslo_posthus.json",
@@ -3776,6 +3824,18 @@
           "content_sha256": "2bfd115a43be6af78830e6e7634154b84c038b2193b4e71a4858578fdc902e4a"
         },
         {
+          "path": "data/quiz/production_context/naeringsliv/alunverket.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.alunverket.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "319f6f2130ee8861b31cdaf7b191932f2f99984b737063854ff2af6dc299682b"
+        },
+        {
           "path": "data/quiz/production_context/naeringsliv/freia_fabrikken.json",
           "required": false,
           "fields": [
@@ -3798,6 +3858,18 @@
           ],
           "exists": true,
           "content_sha256": "cf65d9819b08f767bf862f7a7447f4b8f0546c6382c0d3b8a162bd33b5255ae0"
+        },
+        {
+          "path": "data/quiz/production_context/naeringsliv/myrens_verksted.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.myrens_verksted.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "a4f4c0c736437f1e2e4d8580ab7e09c413056f648f63e7b41aa053ba80e9ac01"
         },
         {
           "path": "data/quiz/production_context/naeringsliv/oslo_posthus.json",
@@ -3896,20 +3968,20 @@
           "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
         }
       ],
-      "package_content_sha256": "34d4e11914a250475ad36def8a7b8fd7f0a840f11b15408bc5465dc7af0c9cee",
+      "package_content_sha256": "46e66893120fe35786a1176e8f204d7e311214ffb1bbdd9e94628d361d8ea934",
       "chapter_count": 12,
       "module_file_count": 36,
       "brief_file_count": 12,
       "claims_file_count": 12,
       "chapter_referenced_file_count": 72,
       "chapter_content_sha256": "06d3f52d2c3e2ff12545cbbc2fc0c1a783071c46a79f1e46ae368e44562143d1",
-      "referenced_file_count": 109,
+      "referenced_file_count": 115,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "a365588218230b59f4209cbbae29a53c8046bf07d2be4fcfdb9542ab2aa6b20c",
-      "content_sha256": "317ca4425730f98ce846d2e5ed5f9fb843680bff088e946c2878bc3c0b0f9a8b",
+      "structure_sha256": "ffa60f51fa2a0df14731e6e1d50fca4b432efe65940710f169824132b762906d",
+      "content_sha256": "6a868da96fec49b0c673051ff436965e29c02f4d46d6e6b5f3ad0950aaa5cf73",
       "chapters": [
         {
           "chapter_id": "arbeid-produksjon-verdiskaping",
@@ -5738,9 +5810,9 @@
         "supersetQuizMal"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 26,
+      "package_file_count": 30,
       "required_package_file_count": 4,
-      "optional_package_file_count": 22,
+      "optional_package_file_count": 26,
       "package_files": [
         {
           "path": "data/fag/utdanning/assessment_educational_measurement_source_claim_brief_v1.json",
@@ -5779,6 +5851,18 @@
           "content_sha256": "0e29aedf64b8e1b0e0d4d3c63a5aa1e87b2f8c31e7b53fccbef1bd7dce23e823"
         },
         {
+          "path": "data/fag/utdanning/education_policy_source_claim_brief_v1.json",
+          "required": false,
+          "fields": [
+            "sourceClaimBriefs"
+          ],
+          "key_paths": [
+            "sourceClaimBriefs[10]"
+          ],
+          "exists": true,
+          "content_sha256": "8de616f0543a11faafdd87da23d0721dd10cc3635ce96b82a6010e2c1a574672"
+        },
+        {
           "path": "data/fag/utdanning/emner_utdanning_canonical_v1.json",
           "required": true,
           "fields": [
@@ -5788,7 +5872,7 @@
             "emner"
           ],
           "exists": true,
-          "content_sha256": "acb4a5eb460641a6b289e5affa204af543e876a33799b1295ee075301850424d"
+          "content_sha256": "8dc54a5ffbe4806a1a172670984a758b2902d0db3736fc7c6ad0a1da4fc3cfb6"
         },
         {
           "path": "data/fag/utdanning/fagkart_utdanning_canonical_v1.json",
@@ -5848,7 +5932,7 @@
             "methods"
           ],
           "exists": true,
-          "content_sha256": "bc46360ea94634ae20cda3441c2c55f9aeaa8cf3f89449aea2f29ff8ebfe13b7"
+          "content_sha256": "bb4327bbd2fa75900f2c912120f01aa2ce116c08274e693bcbc0774a23497265"
         },
         {
           "path": "data/fag/utdanning/pedagogy_learning_theory_source_claim_brief_v1.json",
@@ -5873,6 +5957,18 @@
           ],
           "exists": true,
           "content_sha256": "c0e2cfe63ec2ca1b4b454439ed8698bfc8a8408f5f7d61f5f98791c74866e437"
+        },
+        {
+          "path": "data/fag/utdanning/school_leadership_organization_source_claim_brief_v1.json",
+          "required": false,
+          "fields": [
+            "sourceClaimBriefs"
+          ],
+          "key_paths": [
+            "sourceClaimBriefs[11]"
+          ],
+          "exists": true,
+          "content_sha256": "84b5b5c69bed0d40d8ee6e31757b0024dfad5b2896b5252a97bd1089d4fcd5c7"
         },
         {
           "path": "data/fag/utdanning/special_education_source_claim_brief_v1.json",
@@ -5920,7 +6016,7 @@
             "pensum"
           ],
           "exists": true,
-          "content_sha256": "11065787ab90fe59c8428c750d0c6f3f06ae1593b28f47a0f55aff658f0af58f"
+          "content_sha256": "a5a805d0255c799ab241cd3474c4ef1d613d312ea024f9273f6c6e07822a3979"
         },
         {
           "path": "data/fagverk/utdanning/barnehage-tidlig-laering-lek-sprak-samspill-og-utvikling.json",
@@ -6007,6 +6103,30 @@
           "content_sha256": "2c2f4ad05db558dbb5813e654ad5544280f4d4837b71c8cbca3c52c543ca7fc6"
         },
         {
+          "path": "data/fagverk/utdanning/utdanningshistorie-fellesskole-reformer-og-historisk-dommekraft.json",
+          "required": false,
+          "fields": [
+            "chapters"
+          ],
+          "key_paths": [
+            "chapters[9]"
+          ],
+          "exists": true,
+          "content_sha256": "56a1d7cb2f8b02c4209e295f7c874d1ef7df1b1d9d7e3966385ee0e30321f444"
+        },
+        {
+          "path": "data/fagverk/utdanning/utdanningspolitikk-rettigheter-styring-ulikhet-og-legitimitet.json",
+          "required": false,
+          "fields": [
+            "chapters"
+          ],
+          "key_paths": [
+            "chapters[10]"
+          ],
+          "exists": true,
+          "content_sha256": "f8cd9ba529557a80a15b10141260f3dcbf8f5c0d3d5d4610eb3614f57acdf507"
+        },
+        {
           "path": "data/fagverk/utdanning/videregaende-yrkesfag-overgang-fordypning-og-laering-i-arbeid.json",
           "required": false,
           "fields": [
@@ -6055,20 +6175,20 @@
           "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
         }
       ],
-      "package_content_sha256": "8841c00c52a98a2d7328bcfa38f799ad6d4b4392c6802a8d0a17ccaa2117f9ba",
-      "chapter_count": 9,
-      "module_file_count": 36,
-      "brief_file_count": 9,
-      "claims_file_count": 9,
-      "chapter_referenced_file_count": 63,
-      "chapter_content_sha256": "710e140af355476ac2e84d815942afc03e630b234de67379ce044bfcaecfca17",
-      "referenced_file_count": 80,
+      "package_content_sha256": "ace0c1bcbd88a16a5b2fca2945653b6ed7b8e0d5388a36bdab6ec23ea4c2f5bf",
+      "chapter_count": 11,
+      "module_file_count": 44,
+      "brief_file_count": 11,
+      "claims_file_count": 11,
+      "chapter_referenced_file_count": 77,
+      "chapter_content_sha256": "2d590d08596275931493d5be07cd4d5ed5963941452e726d3d943ba8ced0b006",
+      "referenced_file_count": 96,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "e09dfa3782ca44cea4a1812d115d9550b425feabc4349719dd5638da610d1815",
-      "content_sha256": "d5cf78717c2b9f16ddd0a0ee8d9b61bfd29caac6560e87e9e4a0cd3c08474578",
+      "structure_sha256": "1c8ff92abcec46e7f32dce7778a4fcec052a956ac7b59d73e3494d205a26e407",
+      "content_sha256": "8a6e731e94b490bb3c3bf5ceaad113f81c7cb2bd199ce3fb591751aea349ab85",
       "chapters": [
         {
           "chapter_id": "pedagogikk-laeringsteori-laering-kunnskap-motivasjon-og-selvregulering",
@@ -6141,6 +6261,22 @@
           "module_file_count": 4,
           "referenced_file_count": 7,
           "content_sha256": "5d653d1ee2afb787a2e4d3cc372b308be78a116600ab27f63fcc0adf4c3dc2a4"
+        },
+        {
+          "chapter_id": "utdanningshistorie-fellesskole-reformer-og-historisk-dommekraft",
+          "title": "Utdanningshistorie: fellesskole, reformer og historisk dømmekraft",
+          "file": "data/fagverk/utdanning/utdanningshistorie-fellesskole-reformer-og-historisk-dommekraft.json",
+          "module_file_count": 4,
+          "referenced_file_count": 7,
+          "content_sha256": "85d53845c7b419cbab659407ee12621da763da403b7d6893ea59e1d5a4b87283"
+        },
+        {
+          "chapter_id": "utdanningspolitikk-rettigheter-styring-ulikhet-og-legitimitet",
+          "title": "Utdanningspolitikk: rettigheter, styring, ulikhet og legitimitet",
+          "file": "data/fagverk/utdanning/utdanningspolitikk-rettigheter-styring-ulikhet-og-legitimitet.json",
+          "module_file_count": 4,
+          "referenced_file_count": 7,
+          "content_sha256": "4086511b41f3eebed62bf3de548d42275045a478ebeb60d54a84797b98189b91"
         }
       ]
     },
@@ -6322,5 +6458,5 @@
       ]
     }
   },
-  "release_sha256": "5fb093b23814c7efd4cdf5758103da5b4dab7a4131fb2f82f1b302237a74baf0"
+  "release_sha256": "6ad8dcf2f4d23cae8925ea2ddea2edc4b6ac9decdf04875cd33ae491b90a41af"
 }

@@ -1,14 +1,249 @@
 {
-  "schema": "civication_mail_family_catalog_v1", "version": 1, "category": "film_tv", "role_scope": "programleder", "mail_type": "followup",
-  "families": [{"id": "programleder_gjesteoppfolging", "purpose": "La gjesten ta stilling til bruk etter den uventede betroelsen.", "learning_focus": ["oppfolging", "samtykke", "tillit"], "mails": [{
-    "id": "film_tv_program_followup_gjestegrense_001", "mail_type": "followup", "mail_family": "programleder_gjesteoppfolging", "role_scope": "programleder", "phase": "mastery", "day_phase": "evening", "priority": 104, "cooldown": 5, "repeatable": false, "stage": "stable",
-    "from": "Thea, gjestekoordinator", "people_ref": "thea_gjestekoordinator", "person_id": "thea_gjestekoordinator", "place_id": "studio_program_film_tv", "thread_key": "film_tv_program_gjestegrense_001",
-    "subject": "Gjesten har avklart hva som kan stå igjen", "summary": "Etter samtalen har gjesten godkjent én generell formulering om erfaringen, men ber om at den konkrete familiedetaljen ikke brukes i reprise eller klipp.", "purpose": "Teste om programlederen følger en differensiert avklaring gjennom alle bruksflater.", "stakes": "En muntlig enighet hjelper bare hvis redaksjonen registrerer hva som kan brukes hvor.",
-    "situation": ["Den generelle formuleringen ble sagt i det formelle opptaket.", "Den konkrete detaljen kom bare i lydprøven.", "Reprise- og klippeflater må få samme avgrensning."],
-    "task_domain": "redaksjonell_oppfolging", "task_kind": "followup", "competency": "publikumstillit", "pressure": "klippverdi_vs_avklart_bruk", "choice_axis": "registrer_presis_bruksgrense_vs_behandle_alt_som_godkjent", "consequence_axis": "etterprovbar_oppfolging_vs_sen_konflikt", "narrative_arc": "gjestens_grense_blir_testet", "interaction_mode": "decision",
-    "choices": [
-      {"id": "A", "label": "Registrer hva som kan brukes i sending, reprise og klipp", "reply": "Jeg skiller den godkjente formuleringen fra detaljen som skal holdes utenfor alle videre flater.", "effect": 1, "tags": ["consent", "handover"], "feedback": "Avklaringen blir operativ for hele redaksjonen, ikke bare et minne mellom to personer.", "effects": {"stats": {"trust": 2, "quality": 2, "risk": -3, "energy": -1}}},
-      {"id": "B", "label": "Noter at temaet er godkjent og la klipperen velge", "reply": "Gjesten sa ja til å omtale erfaringen, så redaksjonen kan bruke det som fungerer.", "effect": -1, "tags": ["scope_blur", "handover_risk"], "feedback": "Du visker ut forskjellen mellom en godkjent generell formulering og en tilbakeholdt detalj.", "effects": {"stats": {"trust": -3, "quality": -2, "risk": 3}}}
-    ]
-  }]}]
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "programleder",
+  "mail_type": "followup",
+  "families": [
+    {
+      "id": "programleder_gjesteoppfolging",
+      "purpose": "La gjesten ta stilling til bruk etter den uventede betroelsen.",
+      "learning_focus": [
+        "oppfolging",
+        "samtykke",
+        "tillit"
+      ],
+      "mails": [
+        {
+          "id": "film_tv_program_followup_gjestegrense_001",
+          "mail_type": "followup",
+          "mail_family": "programleder_gjesteoppfolging",
+          "role_scope": "programleder",
+          "phase": "mastery",
+          "day_phase": "evening",
+          "priority": 104,
+          "cooldown": 5,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Thea, gjestekoordinator",
+          "people_ref": "thea_gjestekoordinator",
+          "person_id": "thea_gjestekoordinator",
+          "place_id": "studio_program_film_tv",
+          "thread_key": "film_tv_program_gjestegrense_001",
+          "subject": "Gjesten har avklart hva som kan stå igjen",
+          "summary": "Etter samtalen har gjesten godkjent én generell formulering om erfaringen, men ber om at den konkrete familiedetaljen ikke brukes i reprise eller klipp.",
+          "purpose": "Teste om programlederen følger en differensiert avklaring gjennom alle bruksflater.",
+          "stakes": "En muntlig enighet hjelper bare hvis redaksjonen registrerer hva som kan brukes hvor.",
+          "situation": [
+            "Den generelle formuleringen ble sagt i det formelle opptaket.",
+            "Den konkrete detaljen kom bare i lydprøven.",
+            "Reprise- og klippeflater må få samme avgrensning."
+          ],
+          "task_domain": "redaksjonell_oppfolging",
+          "task_kind": "followup",
+          "competency": "publikumstillit",
+          "pressure": "klippverdi_vs_avklart_bruk",
+          "choice_axis": "registrer_presis_bruksgrense_vs_behandle_alt_som_godkjent",
+          "consequence_axis": "etterprovbar_oppfolging_vs_sen_konflikt",
+          "narrative_arc": "gjestens_grense_blir_testet",
+          "interaction_mode": "decision",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Registrer hva som kan brukes i sending, reprise og klipp",
+              "reply": "Jeg skiller den godkjente formuleringen fra detaljen som skal holdes utenfor alle videre flater.",
+              "effect": 1,
+              "tags": [
+                "consent",
+                "handover"
+              ],
+              "feedback": "Avklaringen blir operativ for hele redaksjonen, ikke bare et minne mellom to personer.",
+              "effects": {
+                "stats": {
+                  "trust": 2,
+                  "quality": 2,
+                  "risk": -3,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Noter at temaet er godkjent og la klipperen velge",
+              "reply": "Gjesten sa ja til å omtale erfaringen, så redaksjonen kan bruke det som fungerer.",
+              "effect": -1,
+              "tags": [
+                "scope_blur",
+                "handover_risk"
+              ],
+              "feedback": "Du visker ut forskjellen mellom en godkjent generell formulering og en tilbakeholdt detalj.",
+              "effects": {
+                "stats": {
+                  "trust": -3,
+                  "quality": -2,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_program_reuse_boundary_handoff",
+      "purpose": "Gjøre etterbruk til konkret rework og handoff, ikke en vag ettertanke.",
+      "learning_focus": [
+        "redaksjonell_oppfolging",
+        "klippverdi_vs_differensiert_bruksgrense"
+      ],
+      "mails": [
+        {
+          "role_scope": "programleder",
+          "place_id": "studio_program_film_tv",
+          "repeatable": false,
+          "stage": "stable",
+          "thread_key": "film_tv_program_live_interview_realism_001",
+          "planned_only": true,
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "film_tv",
+            "programleder"
+          ],
+          "id": "film_tv_program_realism_reuse_boundary_handoff_001",
+          "mail_type": "followup",
+          "mail_family": "role_world_rollout_program_reuse_boundary_handoff",
+          "phase": "mastery",
+          "day_phase": "morning",
+          "priority": 97,
+          "cooldown": 12,
+          "from": "Thea, gjestekoordinator",
+          "people_ref": "thea_gjestekoordinator",
+          "person_id": "thea_gjestekoordinator",
+          "subject": "Etter sending må bruksgrensen overleve reprise, klipp og sosiale flater",
+          "summary": "Samtalen holdt seg innen avtalt premiss, men en sterk generell formulering kan lett klippes sammen med kontekst gjesten ba om å holde utenfor; etterbruk må derfor håndteres som nytt, sporbart handoff.",
+          "purpose": "Gjøre etterbruk til konkret rework og handoff, ikke en vag ettertanke.",
+          "stakes": "En trygg direktesending er ikke nok dersom metadata og klippebestilling senere visker ut differensiert samtykke.",
+          "situation": [
+            "Den generelle formuleringen kan brukes i sending og reprise.",
+            "Familiedetaljen og lydprøvematerialet kan ikke brukes.",
+            "Klipp, teksting og sosiale flater trenger samme eksplisitte grense."
+          ],
+          "task_domain": "etterbruk_og_redaksjonelt_handoff",
+          "task_kind": "followup",
+          "competency": "redaksjonell_oppfolging",
+          "pressure": "klippverdi_vs_differensiert_bruksgrense",
+          "choice_axis": "skriv_flatespesifikt_handoff_vs_merk_alt_godkjent",
+          "consequence_axis": "etterprovbar_etterbruk_vs_sen_tillitskonflikt",
+          "narrative_arc": "fra_uavklart_premiss_til_sporbart_sende_og_brukshandoff",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "film_tv_program_live_interview_case_001"
+            ],
+            "institution_id": "film_tv_programredaksjon_001",
+            "handoff_to_actor_id": "thea_gjestekoordinator",
+            "rework_of_scene_id": "film_tv_program_realism_live_gap_event_001",
+            "priority": "high"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skriv separat status for sending, reprise, klipp, teksting og sosiale flater",
+              "reply": "Jeg registrerer godkjent formulering og tilbakeholdt materiale per bruksflate før handoff til Ingrid.",
+              "effect": 2,
+              "feedback": "Bruksgrensen blir operativ for hele redaksjonen, følger materialet videre og kan etterprøves senere.",
+              "effects": {
+                "stats": {
+                  "quality": 3,
+                  "trust": 3,
+                  "risk": -3,
+                  "energy": -1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_program_reuse_reworked",
+                    "work_object_id": "film_tv_program_live_interview_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "post_broadcast_use_rework",
+                    "note": "Etterbruk er revidert per flate og klart for redaksjonelt handoff."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_program_reuse_scope_traced",
+                    "work_object_id": "film_tv_program_live_interview_case_001",
+                    "flag": "reuse_scope_traced_per_surface"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_program_standing_thea_reuse",
+                    "audience_id": "professional:thea_gjestekoordinator",
+                    "delta": 3,
+                    "reason": "Thea ser at gjestens avklaring overlever alle planlagte flater.",
+                    "source_actor_id": "thea_gjestekoordinator"
+                  },
+                  {
+                    "event_id": "film_tv_program_standing_editorial_reuse",
+                    "audience_id": "team:film_tv_programredaksjon",
+                    "delta": 3,
+                    "reason": "Redaksjonen får et konkret etterbrukshandoff.",
+                    "source_actor_id": "ingrid_redaksjonsleder_program"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Merk intervjuet som godkjent og la klipperen vurdere kontekst",
+              "reply": "Gjesten godkjente temaet, så redaksjonen kan bruke det som fungerer.",
+              "effect": -2,
+              "feedback": "Du visker ut forskjellen mellom generell formulering, familiedetalj og lydprøve.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -3,
+                  "trust": -3,
+                  "risk": 4
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_program_reuse_blurred",
+                    "work_object_id": "film_tv_program_live_interview_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "post_broadcast_use_rework",
+                    "note": "Etterbruk er merket generelt godkjent uten flatespesifikk grense."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_program_reuse_scope_blur",
+                    "work_object_id": "film_tv_program_live_interview_case_001",
+                    "flag": "differentiated_consent_collapsed"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_program_standing_thea_reuse_blur",
+                    "audience_id": "professional:thea_gjestekoordinator",
+                    "delta": -4,
+                    "reason": "Gjesteavklaringen mister sin operative betydning i etterbruk.",
+                    "source_actor_id": "thea_gjestekoordinator"
+                  },
+                  {
+                    "event_id": "film_tv_program_standing_editorial_reuse_blur",
+                    "audience_id": "team:film_tv_programredaksjon",
+                    "delta": -3,
+                    "reason": "Klippere og tekstere må gjette hva som faktisk kan brukes.",
+                    "source_actor_id": "ingrid_redaksjonsleder_program"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

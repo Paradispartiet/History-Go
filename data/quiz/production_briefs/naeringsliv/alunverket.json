@@ -1,0 +1,489 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "categoryId": "naeringsliv",
+  "targetId": "alunverket",
+  "profile_hint": "normal",
+  "reviewed_at": "2026-08-27",
+  "review_note": "SNL, Oslo byleksikon, Oslo Byarkiv, Ekebergparken og Edys akvatint gir fire adskilte læringsjobber om identitet, kjemisk produksjon, arbeidssamfunn, privilegier og miljøspor. Rekordpåstander, sammenblandede tall og udokumentert kausalitet er holdt ute.",
+  "scope": {
+    "place": "Alunverket",
+    "production_profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "total_questions": 28,
+    "normal_opening_questions": 14
+  },
+  "sources": {
+    "snl": {
+      "url": "https://snl.no/Alunverket",
+      "source_type": "recognized_reference",
+      "review_status": "reviewed",
+      "review_note": "Opprettelse, produkter, gjenopptakelse, pottaske, skole og nedleggelse."
+    },
+    "byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Alunverket",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Stedsidentitet, brudd, produksjonsprosess og senere eiendomshistorie."
+    },
+    "byarkiv": {
+      "url": "https://www.dagsavisen.no/nyheter/gamlebyens-skjulte-industrihistorie/5040330",
+      "source_type": "archive_history",
+      "review_status": "reviewed",
+      "review_note": "Merkantilisme, anlegg, arbeidssamfunn, prosess, Wollstonecraft og visuelle kilder."
+    },
+    "ekebergparken": {
+      "url": "https://ekebergparken.com/historisk-tidslinje",
+      "source_type": "heritage_reference",
+      "review_status": "reviewed",
+      "review_note": "Grunnleggere, tidsrom, produkter og arbeidertall i 1790-årene."
+    },
+    "edy": {
+      "url": "https://commons.wikimedia.org/wiki/File:John_William_Edy_-_Alum_Mine_at_Egeberg_-_Boydell%27s_Picturesque_scenery_of_Norway_-_NG.K%26H.1979.0056-056_-_National_Museum_of_Art%2C_Architecture_and_Design.jpg",
+      "source_type": "museum_object",
+      "review_status": "reviewed",
+      "review_note": "Samtidig akvatint, inventarnummer og public-domain-bilde."
+    },
+    "current_photo": {
+      "url": "https://commons.wikimedia.org/wiki/File:Alunbrudd.JPG",
+      "source_type": "documentary_image",
+      "review_status": "reviewed",
+      "review_note": "Lisensiert dokumentarfoto av dagens synlige bruddspor."
+    },
+    "factory": {
+      "url": "https://digitaltmuseum.no/011014324995/alunverket",
+      "source_type": "museum_image",
+      "review_status": "reviewed",
+      "review_note": "Oslo Museums CC0-foto av gjenværende fabrikkbygning omkring 1900."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "arbeid_produksjon_verdiskaping",
+      "logistikk_infrastruktur_rom",
+      "makt_regulering_baerekraft"
+    ],
+    "emne_ids": [
+      "em_naering_industri_og_mekanisering",
+      "em_naering_arbeid_verdiskaping",
+      "em_naering_makt_ulikhet_arbeidsliv",
+      "em_naering_logistikk_verdikjeder",
+      "em_naering_produksjon_produktivitet",
+      "em_naering_omstilling_kriser_skift",
+      "em_naering_baerekraft_eksternaliteter"
+    ],
+    "topic_hook_ids": [
+      "produksjonsprosess",
+      "verdikjede_spor",
+      "arbeidsdisiplin_tid",
+      "miljokostnader",
+      "eierskap_og_styring"
+    ],
+    "method_ids": [
+      "met_naering_logistikk_og_verdikjedeanalyse",
+      "met_naering_markedsanalyse",
+      "met_naering_baerekraft_og_eksternalitetsanalyse",
+      "met_naering_makt_og_ulikhetsanalyse",
+      "met_naering_industrihistorisk_analyse",
+      "met_naering_byhistorisk_naeringsanalyse",
+      "met_naering_omstilling_og_endringsanalyse"
+    ],
+    "thinker_ids": [
+      "karl_polanyi"
+    ],
+    "works": []
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/quiz_naeringsliv.json",
+      "data/quiz/naeringsliv",
+      "data/places/naeringsliv/oslo/places_naeringsliv/alunverket.json"
+    ],
+    "active_before": {
+      "file": null,
+      "set_count": 0,
+      "question_count": 0,
+      "finding": "Ingen eksisterende Alunverket-quiz, flatspørsmål eller aktiv manifestkobling ble funnet på nullmålingens base."
+    },
+    "decisions": [
+      "Opprett én normal 4x7-pakke.",
+      "Hold de første fjorten spørsmålene til vanlig stedskunnskap.",
+      "Bruk metode først i siste sett, og skill 44 arbeidere fra 138 personer i arbeidssamfunnet."
+    ],
+    "knowledge_migration": "Alle 28 nye spørsmål får stabile Knowledge-ID-er i samme materialisering."
+  },
+  "profile_decision": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "justification": "Fire tydelige læringsjobber dekker identitet og råvare, produksjonsprosess, arbeidssamfunn og politikk samt kildekritisk analyse av verdikjede, makt og miljøspor."
+  },
+  "held_back_candidates": [
+    "Påstanden om at skolen fra 1806 var Norges første verksskole.",
+    "En vekstserie som blander 44 arbeidere i 1790-årene med 138 personer i 1801.",
+    "En eksakt lønnsomhetsberegning eller én isolert årsak til nedleggelsen.",
+    "Den senere villaen Alunverket som om den var industriverket.",
+    "Et før–nå-bildepar med påstått identisk kamerastandpunkt."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_alunverket_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Christian og Sophia Magdalenas Alunverk ble opprettet i 1737.",
+      "source_ids": [
+        "snl",
+        "ekebergparken"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_industri_og_mekanisering"
+    },
+    {
+      "claim_id": "claim_alunverket_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Peter Collett og Peder Leuch var hovedmenn i interessentskapet.",
+      "source_ids": [
+        "snl",
+        "ekebergparken"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping"
+    },
+    {
+      "claim_id": "claim_alunverket_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Virksomhetsnavnet viste til kong Christian 6. og dronning Sophie Magdalene.",
+      "source_ids": [
+        "snl",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_makt_ulikhet_arbeidsliv"
+    },
+    {
+      "claim_id": "claim_alunverket_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Bruddet lå i Ekebergskrenten, med produksjonsanlegget nedenfor mot Grønlia.",
+      "source_ids": [
+        "byleksikon",
+        "byarkiv"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_alunverket_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Alunskifer var den stedbundne råvaren i produksjonen.",
+      "source_ids": [
+        "snl",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_produksjon_produktivitet"
+    },
+    {
+      "claim_id": "claim_alunverket_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Verket framstilte alun fra alunskifer.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_produksjon_produktivitet"
+    },
+    {
+      "claim_id": "claim_alunverket_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Alun ble brukt som beisemiddel i tekstilfarging og i garverier.",
+      "source_ids": [
+        "snl",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_alunverket_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Etter brytingen ble alunskiferen brent før videre behandling.",
+      "source_ids": [
+        "byleksikon",
+        "byarkiv"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_produksjon_produktivitet"
+    },
+    {
+      "claim_id": "claim_alunverket_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Vann trakk løselige stoffer ut av den brente skiferen.",
+      "source_ids": [
+        "byleksikon",
+        "byarkiv"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_produksjon_produktivitet"
+    },
+    {
+      "claim_id": "claim_alunverket_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Luten ble kokt inn i blypanner før krystallisering.",
+      "source_ids": [
+        "byarkiv"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_industri_og_mekanisering"
+    },
+    {
+      "claim_id": "claim_alunverket_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Alunen krystalliserte i store kar etter innkokingen.",
+      "source_ids": [
+        "byleksikon",
+        "byarkiv"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_produksjon_produktivitet"
+    },
+    {
+      "claim_id": "claim_alunverket_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Produksjonen ble gjenopptatt i 1758.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_alunverket_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Sønnene James Collett og Morten Leuch gjenopptok driften.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping"
+    },
+    {
+      "claim_id": "claim_alunverket_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Et pottaskekokeri utvidet virksomheten fra 1776.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_industri_og_mekanisering"
+    },
+    {
+      "claim_id": "claim_alunverket_quiz_15",
+      "order": 15,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Verket skulle produsere innenlands en vare som ellers måtte importeres.",
+      "source_ids": [
+        "byarkiv",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_makt_ulikhet_arbeidsliv"
+    },
+    {
+      "claim_id": "claim_alunverket_quiz_16",
+      "order": 16,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Myndighetene brukte privilegier og handelsvern for å støtte produksjonen.",
+      "source_ids": [
+        "byarkiv"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_makt_ulikhet_arbeidsliv"
+    },
+    {
+      "claim_id": "claim_alunverket_quiz_17",
+      "order": 17,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Ekebergparkens tidslinje oppgir 44 arbeidere i 1790-årene.",
+      "source_ids": [
+        "ekebergparken",
+        "byarkiv"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping"
+    },
+    {
+      "claim_id": "claim_alunverket_quiz_18",
+      "order": 18,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Folketellingen viser 138 personer i samfunnet rundt Alunverket i 1801.",
+      "source_ids": [
+        "byarkiv"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping"
+    },
+    {
+      "claim_id": "claim_alunverket_quiz_19",
+      "order": 19,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "44 gjelder arbeidere i 1790-årene, mens 138 gjelder hele arbeidssamfunnet i 1801.",
+      "source_ids": [
+        "byarkiv",
+        "ekebergparken"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_produksjon_produktivitet"
+    },
+    {
+      "claim_id": "claim_alunverket_quiz_20",
+      "order": 20,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "John Collett opprettet en skole knyttet til arbeidssamfunnet i 1806.",
+      "source_ids": [
+        "snl",
+        "byarkiv"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_makt_ulikhet_arbeidsliv"
+    },
+    {
+      "claim_id": "claim_alunverket_quiz_21",
+      "order": 21,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Alunverket ble nedlagt i 1815.",
+      "source_ids": [
+        "snl",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_alunverket_quiz_22",
+      "order": 22,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Produksjonskjeden gikk fra råvareuttak til kjemisk behandling og ferdig krystallinsk produkt.",
+      "source_ids": [
+        "byleksikon",
+        "byarkiv"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_alunverket_quiz_23",
+      "order": 23,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Importvern viser næringspolitisk støtte, men beviser ikke lønnsomhet eller varig markedssuksess.",
+      "source_ids": [
+        "byarkiv"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_makt_ulikhet_arbeidsliv"
+    },
+    {
+      "claim_id": "claim_alunverket_quiz_24",
+      "order": 24,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Bruddsporene viser at produksjonen etterlot en varig fysisk landskapsendring.",
+      "source_ids": [
+        "byarkiv",
+        "current_photo",
+        "edy"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_baerekraft_eksternaliteter"
+    },
+    {
+      "claim_id": "claim_alunverket_quiz_25",
+      "order": 25,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Skole og andre omsorgstiltak inngikk i et system der eierne også hadde sterk sosial og økonomisk kontroll.",
+      "source_ids": [
+        "byarkiv"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_makt_ulikhet_arbeidsliv"
+    },
+    {
+      "claim_id": "claim_alunverket_quiz_26",
+      "order": 26,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Metoden samler teknologi, arbeid, eierskap, marked og fysiske spor i én stedbunden analyse.",
+      "source_ids": [
+        "snl",
+        "byleksikon",
+        "byarkiv"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_industri_og_mekanisering"
+    },
+    {
+      "claim_id": "claim_alunverket_quiz_27",
+      "order": 27,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Bildene dokumenterer historisk arbeid og dagens bruddspor, men er ikke et eksakt matchet før–nå-par.",
+      "source_ids": [
+        "edy",
+        "current_photo"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_baerekraft_eksternaliteter"
+    },
+    {
+      "claim_id": "claim_alunverket_quiz_28",
+      "order": 28,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kildene beskriver kostnads- og avsetningsproblemer, men gir ikke et grunnlag for å isolere én årsak eller beregne lønnsomheten.",
+      "source_ids": [
+        "snl",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    }
+  ]
+}

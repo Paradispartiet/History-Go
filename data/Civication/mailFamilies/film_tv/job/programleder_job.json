@@ -1,14 +1,273 @@
 {
-  "schema": "civication_mail_family_catalog_v1", "version": 1, "category": "film_tv", "role_scope": "programleder", "mail_type": "job",
-  "families": [{"id": "programleder_intervjubrief", "purpose": "Etablere et sporbar intervjugrunnlag før programlederen går i studio.", "learning_focus": ["premiss", "faktastatus", "beslutningseier"], "mails": [{
-    "id": "film_tv_program_job_brief_001", "mail_type": "job", "mail_family": "programleder_intervjubrief", "role_scope": "programleder", "phase": "intro", "day_phase": "morning", "priority": 140, "cooldown": 1, "repeatable": false, "stage": "stable",
-    "from": "Ingrid, redaksjonsleder", "people_ref": "ingrid_redaksjonsleder_program", "person_id": "ingrid_redaksjonsleder_program", "place_id": "briefrom_program_film_tv",
-    "subject": "Tre linjer i briefen har ulik faktastatus", "summary": "Introduksjonen blander ett bekreftet tall, én redaksjonell hypotese og et sitat som gjestekoordinatoren ennå ikke har godkjent.", "purpose": "Teste om programlederen skiller faktum, hypotese og avtalt premiss før opptak.", "stakes": "En skarp, men umerket hypotese kan bli presentert som fakta i åpningen.",
-    "situation": ["Amina har kilde til ett av tre utsagn.", "Theas gjestenotat avgrenser hva sitatet kan brukes til.", "Ingrid eier endelig premiss, men trenger en tydelig statusoversikt."],
-    "task_domain": "research_og_brief", "task_kind": "job", "competency": "faktapresisjon", "pressure": "sendetid_vs_verifisering", "choice_axis": "merk_status_og_be_om_beslutning_vs_les_alt_som_fakta", "consequence_axis": "sporbar_apning_vs_rettelsesrisiko", "narrative_arc": "fra_brief_til_sending", "interaction_mode": "decision",
-    "choices": [
-      {"id": "A", "label": "Merk hver linje og be Ingrid låse premisset", "reply": "Jeg skiller bekreftet fakta, åpen hypotese og sitatgrense før vi låser introduksjonen.", "effect": 1, "tags": ["verification", "authority"], "feedback": "Redaksjonen kan se hva den faktisk vet og hvem som må ta den siste beslutningen.", "effects": {"stats": {"quality": 2, "trust": 1, "risk": -2, "energy": -1}}},
-      {"id": "B", "label": "Behold formuleringene fordi åpningen trenger fart", "reply": "Jeg leser briefen som den står og justerer hvis gjesten protesterer.", "effect": -1, "tags": ["shortcut", "fact_risk"], "feedback": "En åpen hypotese går videre uten synlig status.", "effects": {"stats": {"quality": -2, "trust": -1, "risk": 3}}}
-    ]
-  }]}]
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "programleder",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "programleder_intervjubrief",
+      "purpose": "Etablere et sporbar intervjugrunnlag før programlederen går i studio.",
+      "learning_focus": [
+        "premiss",
+        "faktastatus",
+        "beslutningseier"
+      ],
+      "mails": [
+        {
+          "id": "film_tv_program_job_brief_001",
+          "mail_type": "job",
+          "mail_family": "programleder_intervjubrief",
+          "role_scope": "programleder",
+          "phase": "intro",
+          "day_phase": "morning",
+          "priority": 140,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Ingrid, redaksjonsleder",
+          "people_ref": "ingrid_redaksjonsleder_program",
+          "person_id": "ingrid_redaksjonsleder_program",
+          "place_id": "briefrom_program_film_tv",
+          "subject": "Tre linjer i briefen har ulik faktastatus",
+          "summary": "Introduksjonen blander ett bekreftet tall, én redaksjonell hypotese og et sitat som gjestekoordinatoren ennå ikke har godkjent.",
+          "purpose": "Teste om programlederen skiller faktum, hypotese og avtalt premiss før opptak.",
+          "stakes": "En skarp, men umerket hypotese kan bli presentert som fakta i åpningen.",
+          "situation": [
+            "Amina har kilde til ett av tre utsagn.",
+            "Theas gjestenotat avgrenser hva sitatet kan brukes til.",
+            "Ingrid eier endelig premiss, men trenger en tydelig statusoversikt."
+          ],
+          "task_domain": "research_og_brief",
+          "task_kind": "job",
+          "competency": "faktapresisjon",
+          "pressure": "sendetid_vs_verifisering",
+          "choice_axis": "merk_status_og_be_om_beslutning_vs_les_alt_som_fakta",
+          "consequence_axis": "sporbar_apning_vs_rettelsesrisiko",
+          "narrative_arc": "fra_brief_til_sending",
+          "interaction_mode": "decision",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Merk hver linje og be Ingrid låse premisset",
+              "reply": "Jeg skiller bekreftet fakta, åpen hypotese og sitatgrense før vi låser introduksjonen.",
+              "effect": 1,
+              "tags": [
+                "verification",
+                "authority"
+              ],
+              "feedback": "Redaksjonen kan se hva den faktisk vet og hvem som må ta den siste beslutningen.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 1,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Behold formuleringene fordi åpningen trenger fart",
+              "reply": "Jeg leser briefen som den står og justerer hvis gjesten protesterer.",
+              "effect": -1,
+              "tags": [
+                "shortcut",
+                "fact_risk"
+              ],
+              "feedback": "En åpen hypotese går videre uten synlig status.",
+              "effects": {
+                "stats": {
+                  "quality": -2,
+                  "trust": -1,
+                  "risk": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_program_live_interview_open",
+      "purpose": "Etablere et vedvarende intervju- og sendingscase som tåler venting, gjestehandoff, kildearbeid, rework, liveavvik og etterbruk.",
+      "learning_focus": [
+        "research_og_rolleforstaelse",
+        "sendeklar_fasade_vs_sporbart_grunnlag"
+      ],
+      "mails": [
+        {
+          "role_scope": "programleder",
+          "place_id": "briefrom_program_film_tv",
+          "repeatable": false,
+          "stage": "stable",
+          "thread_key": "film_tv_program_live_interview_realism_001",
+          "planned_only": true,
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "film_tv",
+            "programleder"
+          ],
+          "id": "film_tv_program_realism_live_interview_case_open_001",
+          "mail_type": "job",
+          "mail_family": "role_world_rollout_program_live_interview_open",
+          "phase": "advanced",
+          "day_phase": "morning",
+          "priority": 98,
+          "cooldown": 12,
+          "from": "Ingrid, redaksjonsleder",
+          "people_ref": "ingrid_redaksjonsleder_program",
+          "person_id": "ingrid_redaksjonsleder_program",
+          "subject": "Åpne intervjuet som ett sporbart case før premisset blir sending",
+          "summary": "Ingrid ber deg samle verifiserte fakta, åpne hypoteser, gjestens avtalte ramme, reservespor og beslutningseiere i ett arbeidsobjekt før studiomøtet, slik at restspørsmål og mandat er synlige.",
+          "purpose": "Etablere et vedvarende intervju- og sendingscase som tåler venting, gjestehandoff, kildearbeid, rework, liveavvik og etterbruk.",
+          "stakes": "Hvis premiss, fakta og gjestegrense lever i ulike private samtaler, kan programlederens synlighet skjule at ingen har et felles beslutningsgrunnlag.",
+          "situation": [
+            "Amina har markert to tall som verifiserte og én årsaksforklaring som hypotese.",
+            "Thea har dokumentert et sensitivt tema som krever ny avklaring dersom samtalen flytter seg.",
+            "Ingrid eier premiss og publisering, mens Jonas eier kjøreplan og liveavvik."
+          ],
+          "task_domain": "vedvarende_intervju_og_sendingscase",
+          "task_kind": "job",
+          "competency": "research_og_rolleforstaelse",
+          "pressure": "sendeklar_fasade_vs_sporbart_grunnlag",
+          "choice_axis": "apne_felles_case_vs_stol_pa_egen_brief",
+          "consequence_axis": "etterprovbar_flyt_vs_personavhengig_sending",
+          "narrative_arc": "fra_uavklart_premiss_til_sporbart_sende_og_brukshandoff",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "film_tv_program_live_interview_case_001"
+            ],
+            "institution_id": "film_tv_programredaksjon_001",
+            "priority": "high"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Opprett ett case med fakta, åpne spørsmål, gjestegrense og eiere",
+              "reply": "Jeg samler statusen i ett arbeidsobjekt og markerer hva som fortsatt krever beslutning.",
+              "effect": 2,
+              "feedback": "Redaksjonen kan se forskjellen mellom det programlederen kan forberede og det andre må godkjenne.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                },
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_program_case_baseline_traced",
+                    "work_object_id": "film_tv_program_live_interview_case_001",
+                    "flag": "baseline_fact_scope_and_owners_traced"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_program_standing_ingrid_open",
+                    "audience_id": "manager:ingrid_redaksjonsleder_program",
+                    "delta": 3,
+                    "reason": "Ingrid får et beslutningsklart grunnlag uten skjulte premissendringer.",
+                    "source_actor_id": "ingrid_redaksjonsleder_program"
+                  },
+                  {
+                    "event_id": "film_tv_program_standing_research_open",
+                    "audience_id": "team:film_tv_programresearch",
+                    "delta": 2,
+                    "reason": "Researchstatus og usikkerhet blir synlige i samme case.",
+                    "source_actor_id": "amina_researcher_program"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Behold notatene privat og stol på at du kan binde dem sammen på lufta",
+              "reply": "Jeg har oversikten og kan justere formuleringene underveis.",
+              "effect": -2,
+              "feedback": "Programlederens hukommelse blir en skjult systemgrense, og andre kan ikke kontrollere hva som fortsatt er åpent.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                },
+                "work_object_ops": [
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_program_case_private_brief",
+                    "work_object_id": "film_tv_program_live_interview_case_001",
+                    "flag": "baseline_fragmented_across_private_notes"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_program_standing_ingrid_private",
+                    "audience_id": "manager:ingrid_redaksjonsleder_program",
+                    "delta": -3,
+                    "reason": "Ingrid kan ikke se hvilke premisser som fortsatt er uavklart.",
+                    "source_actor_id": "ingrid_redaksjonsleder_program"
+                  },
+                  {
+                    "event_id": "film_tv_program_standing_research_private",
+                    "audience_id": "team:film_tv_programresearch",
+                    "delta": -2,
+                    "reason": "Researcharbeidet blir løsrevet fra formuleringene som faktisk skal sies.",
+                    "source_actor_id": "amina_researcher_program"
+                  }
+                ]
+              }
+            }
+          ],
+          "effects": {
+            "work_object_ops": [
+              {
+                "op": "create",
+                "event_id": "film_tv_program_live_interview_case_opened",
+                "work_object": {
+                  "work_object_id": "film_tv_program_live_interview_case_001",
+                  "kind": "live_interview_editorial_case",
+                  "role_scope": "programleder",
+                  "institution_id": "film_tv_programredaksjon_001",
+                  "title": "Livesamtale: premiss, gjestegrense, faktagrunnlag og etterbruk",
+                  "status": "in_progress",
+                  "phase": "brief_evidence_and_guest_scope",
+                  "people_refs": [
+                    "ingrid_redaksjonsleder_program",
+                    "jonas_liveprodusent",
+                    "amina_researcher_program",
+                    "thea_gjestekoordinator"
+                  ],
+                  "place_refs": [
+                    "briefrom_program_film_tv",
+                    "studio_program_film_tv",
+                    "kontrollrom_program_film_tv",
+                    "cinemateket_oslo"
+                  ],
+                  "knowledge_refs": [
+                    "data/people/film_tv/oslo/people_film_tv_oslo.json"
+                  ],
+                  "open_questions": [
+                    "Hvilke påstander er verifisert, og hvilke må forbli åpne spørsmål?",
+                    "Hvilken sensitiv omtale har gjesten faktisk avklart for sending og etterbruk?",
+                    "Hvem eier premiss, kjøreplan, publisering og eventuelle liveavvik?"
+                  ],
+                  "deadline": "live_program_dag_10_kveld",
+                  "confidentiality": "redaksjonelt_internt_og_avgrenset_gjesteinformasjon",
+                  "flags": [
+                    "live_interview_case_opened"
+                  ],
+                  "shared": false
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
 }

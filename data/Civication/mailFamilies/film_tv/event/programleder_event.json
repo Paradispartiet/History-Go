@@ -1,14 +1,249 @@
 {
-  "schema": "civication_mail_family_catalog_v1", "version": 1, "category": "film_tv", "role_scope": "programleder", "mail_type": "event",
-  "families": [{"id": "programleder_liveavvik", "purpose": "Teste programlederens publikumskontakt under et teknisk avvik uten mandatglidning.", "learning_focus": ["liveflyt", "beredskap", "rolleforstaelse"], "mails": [{
-    "id": "film_tv_program_event_liveavvik_001", "mail_type": "event", "mail_family": "programleder_liveavvik", "role_scope": "programleder", "phase": "workday", "day_phase": "afternoon", "priority": 116, "cooldown": 3, "repeatable": true, "stage": "stable",
-    "from": "Jonas, liveprodusent", "people_ref": "jonas_liveprodusent", "person_id": "jonas_liveprodusent", "place_id": "kontrollrom_program_film_tv",
-    "subject": "Innslaget er borte og kontrollrommet trenger nitti sekunder", "summary": "Et ferdig innslag kan ikke avspilles. Jonas ber deg holde sendingen trygg og forståelig mens kontrollrommet bytter kjøreplan.", "purpose": "Teste om programlederen fyller tid innen avtalt beredskap.", "stakes": "Uvarslet improvisasjon kan åpne nye temaer, overskride gjestegrenser eller kollidere med kontrollrommets løsning.",
-    "situation": ["Jonas har varslet nitti sekunders behov.", "Gjesten sitter fortsatt i studio.", "Briefen har to forhåndsavklarte reservespor som ikke berører sensitive temaer."],
-    "task_domain": "studio_og_liveflyt", "task_kind": "event", "competency": "timing", "pressure": "stillhet_vs_mandat", "choice_axis": "bruk_avklart_reservespor_vs_improviser_nytt_tema", "consequence_axis": "rolig_liveflyt_vs_nytt_redaksjonelt_avvik", "narrative_arc": "fra_plan_til_liveberedskap", "interaction_mode": "decision",
-    "choices": [
-      {"id": "A", "label": "Bruk reservespor én og følg Jonas sin tidsbeskjed", "reply": "Vi tar ett avtalt spørsmål mens kontrollrommet gjør klart neste del.", "effect": 1, "tags": ["preparedness", "coordination"], "feedback": "Publikum får sammenheng, og kontrollrommet beholder avvikseierskapet.", "effects": {"stats": {"quality": 2, "trust": 1, "risk": -2, "energy": -1}}},
-      {"id": "B", "label": "Start et nytt tema for å skape et minneverdig øyeblikk", "reply": "Vi har litt ekstra tid, så la oss gå inn i noe vi ikke har snakket om før.", "effect": -1, "tags": ["improvisation", "scope_risk"], "feedback": "Du løser teknisk ventetid med et uavklart redaksjonelt premiss.", "effects": {"stats": {"quality": -2, "trust": -1, "risk": 3, "status": 1}}}
-    ]
-  }]}]
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "programleder",
+  "mail_type": "event",
+  "families": [
+    {
+      "id": "programleder_liveavvik",
+      "purpose": "Teste programlederens publikumskontakt under et teknisk avvik uten mandatglidning.",
+      "learning_focus": [
+        "liveflyt",
+        "beredskap",
+        "rolleforstaelse"
+      ],
+      "mails": [
+        {
+          "id": "film_tv_program_event_liveavvik_001",
+          "mail_type": "event",
+          "mail_family": "programleder_liveavvik",
+          "role_scope": "programleder",
+          "phase": "workday",
+          "day_phase": "afternoon",
+          "priority": 116,
+          "cooldown": 3,
+          "repeatable": true,
+          "stage": "stable",
+          "from": "Jonas, liveprodusent",
+          "people_ref": "jonas_liveprodusent",
+          "person_id": "jonas_liveprodusent",
+          "place_id": "kontrollrom_program_film_tv",
+          "subject": "Innslaget er borte og kontrollrommet trenger nitti sekunder",
+          "summary": "Et ferdig innslag kan ikke avspilles. Jonas ber deg holde sendingen trygg og forståelig mens kontrollrommet bytter kjøreplan.",
+          "purpose": "Teste om programlederen fyller tid innen avtalt beredskap.",
+          "stakes": "Uvarslet improvisasjon kan åpne nye temaer, overskride gjestegrenser eller kollidere med kontrollrommets løsning.",
+          "situation": [
+            "Jonas har varslet nitti sekunders behov.",
+            "Gjesten sitter fortsatt i studio.",
+            "Briefen har to forhåndsavklarte reservespor som ikke berører sensitive temaer."
+          ],
+          "task_domain": "studio_og_liveflyt",
+          "task_kind": "event",
+          "competency": "timing",
+          "pressure": "stillhet_vs_mandat",
+          "choice_axis": "bruk_avklart_reservespor_vs_improviser_nytt_tema",
+          "consequence_axis": "rolig_liveflyt_vs_nytt_redaksjonelt_avvik",
+          "narrative_arc": "fra_plan_til_liveberedskap",
+          "interaction_mode": "decision",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bruk reservespor én og følg Jonas sin tidsbeskjed",
+              "reply": "Vi tar ett avtalt spørsmål mens kontrollrommet gjør klart neste del.",
+              "effect": 1,
+              "tags": [
+                "preparedness",
+                "coordination"
+              ],
+              "feedback": "Publikum får sammenheng, og kontrollrommet beholder avvikseierskapet.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 1,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Start et nytt tema for å skape et minneverdig øyeblikk",
+              "reply": "Vi har litt ekstra tid, så la oss gå inn i noe vi ikke har snakket om før.",
+              "effect": -1,
+              "tags": [
+                "improvisation",
+                "scope_risk"
+              ],
+              "feedback": "Du løser teknisk ventetid med et uavklart redaksjonelt premiss.",
+              "effects": {
+                "stats": {
+                  "quality": -2,
+                  "trust": -1,
+                  "risk": 3,
+                  "status": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_program_live_gap_event",
+      "purpose": "Teste liveflyt som handoff mellom synlig programleder og usynlig kontrollromsmyndighet.",
+      "learning_focus": [
+        "timing_og_liveflyt",
+        "synlig_ansvar_vs_avgrenset_mandat"
+      ],
+      "mails": [
+        {
+          "role_scope": "programleder",
+          "place_id": "kontrollrom_program_film_tv",
+          "repeatable": false,
+          "stage": "stable",
+          "thread_key": "film_tv_program_live_interview_realism_001",
+          "planned_only": true,
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "film_tv",
+            "programleder"
+          ],
+          "id": "film_tv_program_realism_live_gap_event_001",
+          "mail_type": "event",
+          "mail_family": "role_world_rollout_program_live_gap_event",
+          "phase": "climax",
+          "day_phase": "evening",
+          "priority": 100,
+          "cooldown": 12,
+          "from": "Jonas, liveprodusent",
+          "people_ref": "jonas_liveprodusent",
+          "person_id": "jonas_liveprodusent",
+          "subject": "Innslaget faller ut etter premissreworken – kontrollrommet trenger nitti sekunder",
+          "summary": "Jonas aktiverer et avtalt reservespor mens studioet venter. Programlederen må holde publikum orientert uten å åpne den tilbakeholdte gjestedetaljen eller overta teknisk kontroll.",
+          "purpose": "Teste liveflyt som handoff mellom synlig programleder og usynlig kontrollromsmyndighet.",
+          "stakes": "Publikum ser programlederen, men synlighet er ikke teknisk, sikkerhetsmessig eller redaksjonell totalmyndighet.",
+          "situation": [
+            "Jonas eier kjøreplanendringen og har gitt nitti sekunders ramme.",
+            "Ett reservespor er godkjent etter premissreworken.",
+            "Den sensitive familiedetaljen forblir utenfor alle bruksflater."
+          ],
+          "task_domain": "liveflyt_og_kontrollromshandoff",
+          "task_kind": "event",
+          "competency": "timing_og_liveflyt",
+          "pressure": "synlig_ansvar_vs_avgrenset_mandat",
+          "choice_axis": "bruk_godkjent_reservespor_vs_improviser_nytt_tema",
+          "consequence_axis": "rolig_kontinuitet_vs_nytt_scopeavvik",
+          "narrative_arc": "fra_uavklart_premiss_til_sporbart_sende_og_brukshandoff",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "film_tv_program_live_interview_case_001"
+            ],
+            "institution_id": "film_tv_programredaksjon_001",
+            "handoff_to_actor_id": "jonas_liveprodusent",
+            "rework_of_scene_id": "film_tv_program_realism_editorial_premise_rework_001",
+            "priority": "high"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bekreft Jonas sin ramme og bruk det godkjente reservespor",
+              "reply": "Jeg holder oss i det avklarte temaet til kontrollrommet gir neste beskjed.",
+              "effect": 2,
+              "feedback": "Publikum får sammenheng, gjestegrensen holder og kontrollrommet beholder avvikseierskapet.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -3,
+                  "energy": -2
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_program_live_gap_controlled",
+                    "work_object_id": "film_tv_program_live_interview_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "live_continuity_under_control",
+                    "note": "Programlederen holder avtalt reservespor mens Jonas eier liveavviket."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_program_live_handoff_clear",
+                    "work_object_id": "film_tv_program_live_interview_case_001",
+                    "flag": "control_room_handoff_respected"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_program_standing_jonas_live",
+                    "audience_id": "professional:jonas_liveprodusent",
+                    "delta": 3,
+                    "reason": "Jonas kan løse avviket uten konkurrerende improvisasjon.",
+                    "source_actor_id": "jonas_liveprodusent"
+                  },
+                  {
+                    "event_id": "film_tv_program_standing_studio_live",
+                    "audience_id": "team:film_tv_programstudio",
+                    "delta": 2,
+                    "reason": "Studioet opplever rolig og avgrenset ledelse i den synlige flaten.",
+                    "source_actor_id": "jonas_liveprodusent"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Start et nytt sensitivt spor mens kontrollrommet arbeider",
+              "reply": "Vi har ekstra tid, så la oss gå inn i det du fortalte før sending.",
+              "effect": -2,
+              "feedback": "Teknisk ventetid brukes til å omgå både gjestegrense og redaksjonell beslutningslinje.",
+              "effects": {
+                "stats": {
+                  "status": 2,
+                  "quality": -3,
+                  "trust": -4,
+                  "risk": 4
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "film_tv_program_live_gap_scope_breach",
+                    "work_object_id": "film_tv_program_live_interview_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "live_scope_breach",
+                    "note": "Programlederen har åpnet et uavklart tema under et teknisk avvik."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "film_tv_program_live_unapproved_topic",
+                    "work_object_id": "film_tv_program_live_interview_case_001",
+                    "flag": "uncleared_guest_topic_opened_live"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "film_tv_program_standing_jonas_disrupted",
+                    "audience_id": "professional:jonas_liveprodusent",
+                    "delta": -4,
+                    "reason": "Kontrollrommets beredskap får et nytt redaksjonelt avvik å håndtere.",
+                    "source_actor_id": "jonas_liveprodusent"
+                  },
+                  {
+                    "event_id": "film_tv_program_standing_studio_breach",
+                    "audience_id": "team:film_tv_programstudio",
+                    "delta": -4,
+                    "reason": "Studioet ser at gjestegrense brukes som improvisasjonsreserve.",
+                    "source_actor_id": "jonas_liveprodusent"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
