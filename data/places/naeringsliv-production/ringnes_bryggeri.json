@@ -1,0 +1,346 @@
+{
+  "schemaVersion": "naeringsliv_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "ringnes_bryggeri",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv/ringnes_bryggeri.json",
+  "status": "ready",
+  "economicIdentity": {
+    "statement": "Ringnes Bryggeri var en industriell bryggerivirksomhet grunnlagt i 1876, med produksjon på Grünerløkka 1877–2001 og varemerke- og selskapskontinuitet etter flyttingen.",
+    "anchorType": "production_site",
+    "placeObjectDistinction": "Rapporten skiller virksomheten og merkevaren fra det historiske anlegget, Ringnes Park, produksjonen på Gjelleråsen og dagens selvstendige serveringsdrift.",
+    "temporalScope": {
+      "start": "1876",
+      "end": "2026",
+      "precision": "period",
+      "rationale": "Perioden dekker etablering, produksjon, teknologi, eierskap, flytting og kontrollert nåbruk."
+    },
+    "sourceIds": [
+      "source_snl_ringnes",
+      "source_byleksikon_ringnes",
+      "source_klp_ringnes"
+    ]
+  },
+  "businessTopics": [
+    {
+      "emneId": "em_naering_produksjon_produktivitet",
+      "siteSpecificRationale": "Bryggeri, gjærhus, lager, tapping og distribusjon viser produksjon som et sammenhengende system.",
+      "caseIds": [
+        "case_ringnes_industrisystem_og_ombruk"
+      ]
+    },
+    {
+      "emneId": "em_naering_innovasjon_teknologisk_skift",
+      "siteSpecificRationale": "Dyrking av egne gjærstammer og innføringen av renkultur 1887–1890 er en dokumentert prosessinnovasjon.",
+      "caseIds": [
+        "case_ringnes_industrisystem_og_ombruk"
+      ]
+    },
+    {
+      "emneId": "em_naering_logistikk_verdikjeder",
+      "siteSpecificRationale": "Det store fabrikkvartalet bandt råvarer, brygging, lager og distribusjon sammen.",
+      "caseIds": [
+        "case_ringnes_industrisystem_og_ombruk"
+      ]
+    },
+    {
+      "emneId": "em_naering_omstilling_kriser_skift",
+      "siteSpecificRationale": "Produksjonsflyttingen i 2001 og etterbruken gjør et funksjonsskifte lesbart.",
+      "caseIds": [
+        "case_ringnes_industrisystem_og_ombruk"
+      ]
+    },
+    {
+      "emneId": "em_naering_eierskap_styring",
+      "siteSpecificRationale": "Gründerledelse, aksjeselskap, Nora, Orkla, Pripps og Carlsberg viser skiftende eierskaps- og styringsrammer.",
+      "caseIds": [
+        "case_ringnes_industrisystem_og_ombruk"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_snl_ringnes",
+      "url": "https://snl.no/Ringnes_AS",
+      "sourceLocation": "Produksjon, gjærinnovasjon og selskapsendringer",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-08-27",
+      "temporalCoverage": "mixed",
+      "provenance": "Redaksjonelt kontrollert oppslagsverk.",
+      "limitations": "Ingen komplette regnskaps- eller bemanningsserier."
+    },
+    {
+      "id": "source_byleksikon_ringnes",
+      "url": "https://oslobyleksikon.no/side/Ringnes_Bryggeri",
+      "sourceLocation": "Grunnleggelse, fabrikkvartal, flytting og etterbruk",
+      "sourceType": "museum_or_heritage",
+      "verifiedAt": "2026-08-27",
+      "temporalCoverage": "mixed",
+      "provenance": "Institusjonelt lokalhistorisk oppslagsverk.",
+      "limitations": "Ikke en full bedriftsøkonomisk analyse."
+    },
+    {
+      "id": "source_byleksikon_quarter",
+      "url": "https://oslobyleksikon.no/side/Ringnes_Bryggeri",
+      "sourceLocation": "Anleggets utstrekning og omforming",
+      "sourceType": "museum_or_heritage",
+      "verifiedAt": "2026-08-27",
+      "temporalCoverage": "mixed",
+      "provenance": "Stedsspesifikk lokalhistorie.",
+      "limitations": "Gir ikke alle avtaler eller brukerdata."
+    },
+    {
+      "id": "source_klp_ringnes",
+      "url": "https://eiendomsspar.no/eiendommer/thorvald-meyers-gate-2a/",
+      "sourceLocation": "Bevarte bygg, hovedkontor og museum",
+      "sourceType": "primary_business",
+      "verifiedAt": "2026-08-27",
+      "temporalCoverage": "current",
+      "provenance": "Gårdeierens eiendomspresentasjon.",
+      "limitations": "Kommersiell primærkilde."
+    },
+    {
+      "id": "source_oslo_kulturskole",
+      "url": "https://ringnesbrygghus.no/",
+      "sourceLocation": "Mikrobryggeri og serveringssted",
+      "sourceType": "primary_business",
+      "verifiedAt": "2026-08-27",
+      "temporalCoverage": "current",
+      "provenance": "Virksomhetens egen presentasjon.",
+      "limitations": "Dokumenterer egen drift."
+    }
+  ],
+  "economicCases": [
+    {
+      "id": "case_ringnes_industrisystem_og_ombruk",
+      "claim": "Ringnes-anlegget samordnet brygging, gjærkontroll, lager og distribusjon før produksjonen flyttet og stedet fikk nye økonomiske funksjoner.",
+      "unitOfAnalysis": {
+        "unit": "Ringnes Bryggeri og opphavsanlegget i Thorvald Meyers gate",
+        "boundary": "Analysen omfatter virksomheten fra 1876, produksjonen på stedet til 2001 og dokumentert etterbruk, men ikke dagens Gjelleråsen-anlegg som samme Place.",
+        "scale": "firm",
+        "temporalScope": {
+          "start": "1876",
+          "end": "2026",
+          "precision": "period",
+          "rationale": "Tidsrommet gjør produksjon, eierskap, flytting og etterbruk sammenlignbare."
+        },
+        "sourceIds": [
+          "source_snl_ringnes",
+          "source_byleksikon_ringnes",
+          "source_klp_ringnes"
+        ]
+      },
+      "actors": [
+        {
+          "name": "Grunnleggere, eiere og ledelse",
+          "roleOrInterest": "Finansierte anlegg, organiserte produksjon og marked og inngikk senere i større selskapsstrukturer.",
+          "economicPosition": "Kontrollerte kapital, produksjonsmidler, merkevare og strategiske beslutninger.",
+          "sourceIds": [
+            "source_snl_ringnes",
+            "source_byleksikon_ringnes"
+          ]
+        },
+        {
+          "name": "Bryggeriarbeidere, laboratoriefolk og transportører",
+          "roleOrInterest": "Utførte gjærkontroll, brygging, lagring, tapping, vedlikehold og distribusjon.",
+          "economicPosition": "Leverte arbeid og fagkunnskap; kildene gir ikke sikre lønns- eller kontraktsdata.",
+          "sourceIds": [
+            "source_snl_ringnes",
+            "source_byleksikon_ringnes"
+          ]
+        },
+        {
+          "name": "Gårdeier og dagens brukere",
+          "roleOrInterest": "Forvalter og bruker bevarte deler til kontor, museum, mikrobryggeri og servering.",
+          "economicPosition": "Kontrollerer dagens eiendom og egne tilbud, men ikke den historiske storskalaproduksjonen.",
+          "sourceIds": [
+            "source_klp_ringnes",
+            "source_oslo_kulturskole"
+          ]
+        }
+      ],
+      "valueCreation": {
+        "inputs": [
+          {
+            "statement": "Malt, vann, humle, gjær, kjøling, bygninger, arbeid og transportkapasitet var nødvendige innsatsfaktorer i bryggerisystemet.",
+            "sourceIds": [
+              "source_snl_ringnes",
+              "source_byleksikon_ringnes"
+            ]
+          }
+        ],
+        "activity": {
+          "statement": "Anlegget foredlet råvarer gjennom brygging, undergjæring, lagring og tapping og organiserte deretter levering til markedet.",
+          "sourceIds": [
+            "source_snl_ringnes",
+            "source_byleksikon_ringnes"
+          ]
+        },
+        "outputs": [
+          {
+            "statement": "Bryggeriet produserte og distribuerte øl, blant annet bayerøl, og utviklet senere vørterøl som eget produkt.",
+            "sourceIds": [
+              "source_snl_ringnes",
+              "source_byleksikon_ringnes"
+            ]
+          }
+        ],
+        "valueCreationAssessment": {
+          "statement": "Kildene dokumenterer en integrert produksjons- og logistikkjede, men gir ikke grunnlag for å beregne produktivitet, marginer eller verdiskaping i faste priser.",
+          "sourceIds": [
+            "source_snl_ringnes",
+            "source_byleksikon_ringnes"
+          ]
+        }
+      },
+      "measurement": {
+        "methodId": "met_naering_arbeidsprosessanalyse",
+        "evidenceType": "qualitative",
+        "indicatorOrObservation": "Daterte grunnleggerroller, produksjonsstart, gjærinnovasjon, selskapsendringer, produksjonsflytting og dokumentert etterbruk brukes som kvalitative spor.",
+        "unit": "produksjonsanlegg og virksomhet",
+        "period": "1876–2026",
+        "comparability": "Kildene gjør funksjoner og tidslag sammenlignbare, men mangler ensartede serier for volum, kapital, ansatte og lønnsomhet.",
+        "dataLimitations": "Det foreligger ikke et komplett regnskapsarkiv, produksjonsserie, bemanningsserie eller en kausal analyse av nedleggelsen og ombruken.",
+        "sourceIds": [
+          "source_snl_ringnes",
+          "source_byleksikon_ringnes",
+          "source_klp_ringnes"
+        ]
+      },
+      "distributionAndPower": {
+        "ownershipOrControl": "Kontrollen gikk fra gründer- og familieledelse til aksjeselskap og større konsern; dagens gårdeier kontrollerer den historiske eiendommen.",
+        "laborPosition": "Arbeidet var nødvendig i hele verdikjeden, men de brukte kildene gir ikke sikre data om bemanning, lønn, arbeidstid eller medbestemmelse.",
+        "beneficiaries": [
+          "Eierne og senere selskapsgrupper kunne motta avkastning fra produksjon og markedsadgang.",
+          "Kunder fikk tilgang til standardiserte bryggeriprodukter og distribusjon.",
+          "Dagens leietakere og publikum kan bruke ombygde lokaler til arbeid, undervisning, kultur og servering."
+        ],
+        "costRiskBearers": [
+          "Eiere bar kapital- og markedsrisiko knyttet til anlegg og omstilling.",
+          "Arbeidere og leverandører var utsatt for konsekvenser av teknologisk og selskapsmessig omstilling.",
+          "Gårdeier og leietakere bærer kostnader og risiko ved vedlikehold, rehabilitering og bruksendring."
+        ],
+        "sourceIds": [
+          "source_snl_ringnes",
+          "source_byleksikon_ringnes",
+          "source_klp_ringnes"
+        ]
+      },
+      "riskAndExternalities": {
+        "riskAssessment": {
+          "statement": "Bryggeridriften var avhengig av temperaturkontroll, råvaretilgang, teknisk drift, distribusjon og marked, mens dagens ombruk er avhengig av vedlikehold, leietakere og godkjente rehabiliteringer.",
+          "sourceIds": [
+            "source_snl_ringnes",
+            "source_klp_ringnes"
+          ]
+        },
+        "externalityAssessment": {
+          "status": "not_applicable",
+          "rationale": "Kildene dokumenterer industri og bygningsombruk, men gir ikke et sikkert stedsspesifikt grunnlag for å tallfeste utslipp, støy, helsevirkninger eller fortrengning."
+        }
+      },
+      "comparisonAndCausality": {
+        "comparisonBasis": "Virksomhets- og selskapskilder sammenholdes med stedshistorikk og nåværende eiendomsinformasjon.",
+        "causalStatus": "descriptive_only",
+        "causalAssessment": "Materialet dokumenterer kronologien, men isolerer ikke én årsak til produksjonsflyttingen eller dagens funksjonsmiks.",
+        "alternativeExplanations": [
+          "Teknologi, logistikk, kapitalbehov, konsolidering og eiendomsverdi kan ha virket samtidig."
+        ],
+        "uncertainty": "Kildene gir ikke sammenlignbare økonomiske serier eller kontrafaktisk analyse.",
+        "sourceIds": [
+          "source_snl_ringnes",
+          "source_byleksikon_ringnes",
+          "source_klp_ringnes"
+        ]
+      }
+    }
+  ],
+  "presentOperation": {
+    "operationalStatus": "mixed",
+    "statement": "Storskalaproduksjonen er flyttet til Gjelleråsen; i det gamle brygghuset finnes hovedkontor, museum og aktivt mikrobryggeri/serveringssted.",
+    "originalEconomicRoleRelationship": "Dagens bruk viderefører navn og enkelte bryggerifunksjoner, men er ikke den historiske storskalaproduksjonen.",
+    "checkedAt": "2026-08-27",
+    "sourceIds": [
+      "source_klp_ringnes",
+      "source_oslo_kulturskole"
+    ]
+  },
+  "quizOpening": {
+    "status": "PASS",
+    "quizTargetId": "ringnes_bryggeri",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/naeringsliv/ringnes_bryggeri.json",
+    "productionContext": "data/quiz/production_context/naeringsliv/ringnes_bryggeri.json",
+    "requiredInputs": [
+      "data/fag/naeringsliv/naeringslivpensum_canonical_v4_5.json",
+      "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+      "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+      "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+      "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+      "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    ]
+  },
+  "chronologyStories": {
+    "status": "PASS",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Leksikonet og episode_v1-historien om renkultur er kildekontrollert og manifestkoblet."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicIdentity"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "businessTopics"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "case_ringnes_industrisystem_og_ombruk.valueCreation"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "case_ringnes_industrisystem_og_ombruk.actors",
+        "case_ringnes_industrisystem_og_ombruk.distributionAndPower"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "case_ringnes_industrisystem_og_ombruk.measurement"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "case_ringnes_industrisystem_og_ombruk.comparisonAndCausality",
+        "presentOperation"
+      ]
+    },
+    "G": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "quizOpening"
+      ]
+    },
+    "H": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "chronologyStories"
+      ]
+    }
+  },
+  "review": {
+    "reviewer": "Ringnes Bryggeri phase 8–24 Næringsliv review",
+    "reviewedAt": "2026-08-27",
+    "notes": "Rapporten skiller historisk foretak, varemerke, produksjonsanlegg, eiendom og dagens selvstendige brukere. Den gjør ingen udokumentert påstand om lønnsomhet, arbeidsvilkår eller én årsak til nedleggelsen."
+  }
+}

@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "67b4990755e0f021353d431d2d447736bb3c2fb44112b0c13165ebae9f285284"
+    "content_sha256": "ec3fe481ea914776f8582889467752ea6a43d1d9c1acac76cc2562e17c4f76dd"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 17,
     "chapter_count": 184,
     "module_file_count": 477,
-    "package_file_count": 305,
+    "package_file_count": 308,
     "chapter_referenced_file_count": 898,
-    "referenced_file_count": 1137,
+    "referenced_file_count": 1140,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -3447,9 +3447,9 @@
         "universityFramework"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 37,
+      "package_file_count": 40,
       "required_package_file_count": 4,
-      "optional_package_file_count": 33,
+      "optional_package_file_count": 36,
       "package_files": [
         {
           "path": "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
@@ -3680,6 +3680,18 @@
           "content_sha256": "76917e1ee563e2c64768199041473fab1830432077e54916c4d56c0a4c628ce6"
         },
         {
+          "path": "data/quiz/naeringsliv/ringnes_bryggeri_sets_merged.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.ringnes_bryggeri.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "b9f7bf468f49628e1e3d8f437200e7aa27aaa8a306a7900b75afdb8d53dcc300"
+        },
+        {
           "path": "data/quiz/naeringsliv/schous_bryggeri_sets_merged.json",
           "required": false,
           "fields": [
@@ -3750,6 +3762,18 @@
           ],
           "exists": true,
           "content_sha256": "c303a57ed0e975cbb1b82b03ec5424b0fa09c7ed893f222f33bcb033124577a6"
+        },
+        {
+          "path": "data/quiz/production_briefs/naeringsliv/ringnes_bryggeri.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.ringnes_bryggeri.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "8ca001a0f34a2305398239c9fa8f07719a564542a5e9d75b31567efe4154413f"
         },
         {
           "path": "data/quiz/production_briefs/naeringsliv/schous_bryggeri.json",
@@ -3824,6 +3848,18 @@
           "content_sha256": "5a188dec0578c9599220202373f05a155aaf969962abc8680def4a6cc8c35f1a"
         },
         {
+          "path": "data/quiz/production_context/naeringsliv/ringnes_bryggeri.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.ringnes_bryggeri.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "816cb1e7b7e9a16ea187a3af251b2419d54684eb9904412dcdbda87405db3754"
+        },
+        {
           "path": "data/quiz/production_context/naeringsliv/schous_bryggeri.json",
           "required": false,
           "fields": [
@@ -3896,20 +3932,20 @@
           "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
         }
       ],
-      "package_content_sha256": "0fe5710c0e9bdceb8f9e925af9392af7c0453299e594bd53ee78b4547f73e5bb",
+      "package_content_sha256": "9719210193ea0740b1f9b7a983af567e8a39b3f31671a683e61d4a2325b43551",
       "chapter_count": 12,
       "module_file_count": 36,
       "brief_file_count": 12,
       "claims_file_count": 12,
       "chapter_referenced_file_count": 72,
       "chapter_content_sha256": "06d3f52d2c3e2ff12545cbbc2fc0c1a783071c46a79f1e46ae368e44562143d1",
-      "referenced_file_count": 109,
+      "referenced_file_count": 112,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "81af3c695b6728979de865145b9fb9aa1cb4cb326cc172337570c4b83c483c3a",
-      "content_sha256": "98c936bc2d0e1b2fd23573557c032f248402ca089d62d13fe003ffd899647ce1",
+      "structure_sha256": "e92edacef4c6f01e8d27ffe5fcce87717ffab48a280d480c2c98375cfd5a4354",
+      "content_sha256": "c221fc3b75211a9e3c17cbf4035d68dbd5c8956d7981eb28107f6ccdaa91aaf2",
       "chapters": [
         {
           "chapter_id": "arbeid-produksjon-verdiskaping",
@@ -6322,5 +6358,5 @@
       ]
     }
   },
-  "release_sha256": "f8ecb533ac83fb6732909cd910defcef17c2950f9c366d57c9cd33c87eda94f9"
+  "release_sha256": "74f0e3fa77546b0aaa6b61f5f897575c2c4b82371cf037d37ab779445916fcbb"
 }

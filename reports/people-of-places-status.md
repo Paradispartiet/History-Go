@@ -1,15 +1,15 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-08-27T09:53:01.153Z
+Generert: 2026-08-27T10:06:35.601Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-08-27T09:53:01.153Z |
+| generatedAt | 2026-08-27T10:06:35.601Z |
 | peopleFilesRead | 756 |
-| totalPeople | 1419 |
-| uniquePeopleIds | 1419 |
+| totalPeople | 1417 |
+| uniquePeopleIds | 1417 |
 | duplicatePeopleIds | 0 |
 | invalidPlaceRefs | 0 |
 | peopleWithoutValidPrimaryAnchor | 0 |
@@ -401,7 +401,7 @@ Generert: 2026-08-27T09:53:01.153Z
 | data/people/naeringsliv/oslo/myrens_verksted/jens_jacob_jensen_myrens.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/naeringsliv/oslo/people_naeringsliv_oslo_politics_places_batch_03.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/naeringsliv/oslo/people_naeringsliv_oslo_politics_places_batch_04.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/naeringsliv/oslo/people_naeringsliv_oslo.json | naeringsliv | ja | 21 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/naeringsliv/oslo/people_naeringsliv_oslo.json | naeringsliv | ja | 19 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/naeringsliv/oslo/steen_og_strom/elise_marie_strom.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/naeringsliv/oslo/steen_og_strom/ole_sverre.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/naeringsliv/oslo/steen_og_strom/peter_emil_steen.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -791,7 +791,7 @@ Generert: 2026-08-27T09:53:01.153Z
 | litteratur | 171 | 0 | 128 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | media | 31 | 0 | 6 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | musikk | 124 | 0 | 88 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| naeringsliv | 82 | 0 | 28 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| naeringsliv | 80 | 0 | 28 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | natur | 22 | 0 | 4 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | politikk | 110 | 0 | 52 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | psykologi | 5 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
@@ -1207,7 +1207,7 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/naeringsliv/oslo/myrens_verksted/jens_jacob_jensen_myrens.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo_politics_places_batch_03.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo_politics_places_batch_04.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv
-- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=21/21; source_place_id=21/21; placesArray=21/21; categories=naeringsliv; schema_review: source_place_id brukes utenfor særskilt næringsliv-schema
+- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=19/19; source_place_id=19/19; placesArray=19/19; categories=naeringsliv; schema_review: source_place_id brukes utenfor særskilt næringsliv-schema
 - data/people/naeringsliv/oslo/steen_og_strom/elise_marie_strom.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv
 - data/people/naeringsliv/oslo/steen_og_strom/ole_sverre.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv
 - data/people/naeringsliv/oslo/steen_og_strom/peter_emil_steen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv

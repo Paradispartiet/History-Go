@@ -1,0 +1,572 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "categoryId": "naeringsliv",
+  "targetId": "ringnes_bryggeri",
+  "profile_hint": "rich",
+  "reviewed_at": "2026-08-27",
+  "review_note": "Kildene bærer fem adskilte læringsjobber: grunnleggelse/navn, bryggeteknologi, anlegg/logistikk, eierskap/nedleggelse og ombruk.",
+  "scope": {
+    "place": "Ringnes Bryggeri",
+    "production_profile": "rich",
+    "set_count": 5,
+    "questions_per_set": 7,
+    "total_questions": 35,
+    "normal_opening_questions": 14
+  },
+  "sources": {
+    "snl": {
+      "url": "https://snl.no/Ringnes_AS",
+      "source_type": "editorially_controlled_reference",
+      "review_status": "reviewed",
+      "review_note": "Gjærinnovasjon og selskapsendringer er kontrollert mot SNL."
+    },
+    "byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Ringnes_Bryggeri",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Grunnleggelse, produksjonsstart, kvartalsutvidelse, flytting og ombruk er kontrollert mot Oslo byleksikon."
+    },
+    "amund": {
+      "url": "https://nbl.snl.no/Amund_Ringnes",
+      "source_type": "biographical_reference",
+      "review_status": "reviewed",
+      "review_note": "Amund Ringnes' rolle i grunnleggelse og produksjon er kontrollert mot NBL."
+    },
+    "ellef": {
+      "url": "https://snl.no/Ellef_Ringnes",
+      "source_type": "biographical_reference",
+      "review_status": "reviewed",
+      "review_note": "Ellef Ringnes' rolle i grunnleggelse og ledelse er kontrollert mot SNL."
+    },
+    "property": {
+      "url": "https://eiendomsspar.no/eiendommer/thorvald-meyers-gate-2a/",
+      "source_type": "primary_property_source",
+      "review_status": "reviewed",
+      "review_note": "Bevarte bygg, hovedkontor og museum er kontrollert mot gårdeierens eiendomspresentasjon."
+    },
+    "brygghus": {
+      "url": "https://ringnesbrygghus.no/",
+      "source_type": "primary_venue_source",
+      "review_status": "reviewed",
+      "review_note": "Nåværende mikrobryggeri- og serveringsdrift er kontrollert mot virksomhetens side."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "arbeid_produksjon_verdiskaping",
+      "logistikk_infrastruktur_rom",
+      "makt_regulering_baerekraft"
+    ],
+    "emne_ids": [
+      "em_naering_kapital_finans",
+      "em_naering_teknologi_infrastruktur",
+      "em_naering_produksjon_produktivitet",
+      "em_naering_omstilling_kriser_skift",
+      "em_naering_arbeid_verdiskaping",
+      "em_naering_innovasjon_teknologisk_skift",
+      "em_naering_eierskap_styring",
+      "em_naering_logistikk_verdikjeder"
+    ],
+    "topic_hook_ids": [
+      "omstilling_av_naeringsrom",
+      "kapitalstrommer",
+      "investering_eiendom",
+      "arbeidslivets_omstilling",
+      "teknologisk_omstilling"
+    ],
+    "method_ids": [
+      "met_naering_omstilling_og_endringsanalyse",
+      "met_naering_investering_og_eiendomsanalyse",
+      "met_naering_kapital_og_finansanalyse",
+      "met_naering_arbeidslivsanalyse",
+      "met_naering_innovasjonsanalyse"
+    ],
+    "thinker_ids": [
+      "david_harvey",
+      "joseph_schumpeter",
+      "harry_braverman",
+      "richard_sennett"
+    ],
+    "works": []
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/quiz_naeringsliv.json",
+      "data/quiz/naeringsliv/ringnes_bryggeri_sets_merged.json",
+      "data/quiz/manifest.json"
+    ],
+    "active_before": {
+      "file": "data/quiz/naeringsliv/ringnes_bryggeri_sets_merged.json",
+      "set_count": 5,
+      "question_count": 30,
+      "finding": "En kildeberiket 5×6-bank og fem legacy-spørsmål fantes."
+    },
+    "decisions": [
+      "Behold og berik de 30 spørsmålene.",
+      "Legg til ett kildebelagt spørsmål i hvert sett.",
+      "Behold de første 14 som vanlig faktakunnskap.",
+      "Legg teori og metode i finalsettet."
+    ],
+    "knowledge_migration": "Stabile Ringnes-ID-er normaliseres til 35 canonicale Knowledge-enheter."
+  },
+  "profile_decision": {
+    "profile": "rich",
+    "set_count": 5,
+    "questions_per_set": 7,
+    "justification": "Fem tydelige læringsjobber med 35 kildebelagte spørsmål."
+  },
+  "held_back_candidates": [
+    "1837 som grunnleggingsår.",
+    "Ustøttet arbeidshjem/velferdspåstand.",
+    "Popsenteret som fortsatt aktiv virksomhet etter stengingen i 2024.",
+    "Ringneskjelleren som videreføring av Ringnes' Ringnes Mikrobryggeri."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_ringnes_bryggeri_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo byleksikon, Ringnes og Lokalhistoriewiki oppgir 1876 som grunnleggelsesår for Ringnes Bryggeri / Ringnes & Co.",
+      "source_ids": [
+        "snl",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_kapital_finans"
+    },
+    {
+      "claim_id": "claim_ringnes_bryggeri_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo byleksikon beskriver bryggeriet som grunnlagt i 1876 som Ringnes & Co.",
+      "source_ids": [
+        "byleksikon",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_kapital_finans"
+    },
+    {
+      "claim_id": "claim_ringnes_bryggeri_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo byleksikon og Lokalhistoriewiki oppgir Thorvald Meyers gate 2 som Ringnes Bryggeris første lokaler.",
+      "source_ids": [
+        "byleksikon",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_ringnes_bryggeri_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo byleksikon og Ringnes beskriver Ringnes & Co. som startet av Amund og Ellef Ringnes sammen med Axel Heiberg.",
+      "source_ids": [
+        "byleksikon",
+        "snl",
+        "ellef"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_kapital_finans"
+    },
+    {
+      "claim_id": "claim_ringnes_bryggeri_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Ringnes’ egen historikk oppgir at Amund kunne brygge første øl i eget hus 28. november 1877.",
+      "source_ids": [
+        "snl",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_produksjon_produktivitet"
+    },
+    {
+      "claim_id": "claim_ringnes_bryggeri_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Ringnes bør leses som industriell mat-/drikkevareproduksjon: teknologi, logistikk, arbeid, merkevarebygging, konsernstruktur og senere ombruk av bryggeriområdet.",
+      "source_ids": [
+        "snl",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_ringnes_bryggeri_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo byleksikon oppgir at produksjonen startet i 1877, året etter grunnleggelsen.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_produksjon_produktivitet"
+    },
+    {
+      "claim_id": "claim_ringnes_bryggeri_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon og Ringnes’ historikk beskriver brødrene som fra gården Ringnes i Krødsherad.",
+      "source_ids": [
+        "byleksikon",
+        "snl",
+        "ellef"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_ringnes_bryggeri_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Ringnes’ historikk og SNL beskriver Amund Ringnes' praksis/arbeid i bryggerifag og Christiania Bryggeri før oppstarten av Ringnes.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping"
+    },
+    {
+      "claim_id": "claim_ringnes_bryggeri_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Ringnes’ historikk beskriver Ellef som kontorist og senere reisende salgsmann for Christiania Bryggeri.",
+      "source_ids": [
+        "snl",
+        "ellef"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping"
+    },
+    {
+      "claim_id": "claim_ringnes_bryggeri_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Ringnes’ egen historikk beskriver arbeidet med en egen rendyrket gjærstamme som viktig for jevn og stabil kvalitet.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_produksjon_produktivitet"
+    },
+    {
+      "claim_id": "claim_ringnes_bryggeri_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Ringnes’ historikk kobler rendyrket gjærstamme til jevn og stabil kvalitet i produksjonen.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_produksjon_produktivitet"
+    },
+    {
+      "claim_id": "claim_ringnes_bryggeri_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Kildene peker på en praktisk næringslivsdeling: Amund hadde bryggerierfaring, mens Ellef hadde kontor- og salgsbakgrunn.",
+      "source_ids": [
+        "snl",
+        "ellef"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping"
+    },
+    {
+      "claim_id": "claim_ringnes_bryggeri_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Ringnes var det første norske bryggeriet som dyrket egne gjærstammer og tok renkultur i produksjonen.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_innovasjon_teknologisk_skift"
+    },
+    {
+      "claim_id": "claim_ringnes_bryggeri_quiz_15",
+      "order": 15,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon, Ringnes og Lokalhistoriewiki oppgir at selskapet ble aksjeselskap i 1899.",
+      "source_ids": [
+        "byleksikon",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_kapital_finans"
+    },
+    {
+      "claim_id": "claim_ringnes_bryggeri_quiz_16",
+      "order": 16,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon og Lokalhistoriewiki beskriver at anlegget etter hvert omfattet kvartalet mellom Thorvald Meyers gate, Sannergata, Toftes gate og Biermanns gate.",
+      "source_ids": [
+        "byleksikon",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_ringnes_bryggeri_quiz_17",
+      "order": 17,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Lokalhistoriewiki beskriver at Ringnes i 1931 kjøpte opp De forenede Bryggerier Fortuna & Central i Fredensborgveien.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_kapital_finans"
+    },
+    {
+      "claim_id": "claim_ringnes_bryggeri_quiz_18",
+      "order": 18,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon beskriver at Ringnes, Frydenlunds og Schous gikk inn som datterselskaper i Nora Industrier i 1978.",
+      "source_ids": [
+        "byleksikon",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_kapital_finans"
+    },
+    {
+      "claim_id": "claim_ringnes_bryggeri_quiz_19",
+      "order": 19,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon og Ringnes’ historikk beskriver 1988 som året Ringnes AS ble stiftet som samlet drikkevaredivisjon i Nora.",
+      "source_ids": [
+        "byleksikon",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_ringnes_bryggeri_quiz_20",
+      "order": 20,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Ringnes viser en klassisk næringslivsutvikling fra lokalt industribryggeri til konsernstruktur og internasjonalt eierskap.",
+      "source_ids": [
+        "byleksikon",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_kapital_finans"
+    },
+    {
+      "claim_id": "claim_ringnes_bryggeri_quiz_21",
+      "order": 21,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Virksomheten ble omdannet til A/S Ringnes Bryggeri i 1899.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_eierskap_styring"
+    },
+    {
+      "claim_id": "claim_ringnes_bryggeri_quiz_22",
+      "order": 22,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Oslo byleksikon beskriver at Pripps Ringnes i 2000 gikk inn i Carlsberg Breweries.",
+      "source_ids": [
+        "byleksikon",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_kapital_finans"
+    },
+    {
+      "claim_id": "claim_ringnes_bryggeri_quiz_23",
+      "order": 23,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Oslo byleksikon beskriver at Carlsberg ble eneeier av Ringnes AS i 2004 etter Orklas salg av sin eierandel.",
+      "source_ids": [
+        "byleksikon",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_kapital_finans"
+    },
+    {
+      "claim_id": "claim_ringnes_bryggeri_quiz_24",
+      "order": 24,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Oslo byleksikon beskriver at produksjonen i det gamle bryggeriet på Grünerløkka ble flyttet til Gjelleråsen i Nittedal i 2001.",
+      "source_ids": [
+        "byleksikon",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_ringnes_bryggeri_quiz_25",
+      "order": 25,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Oslo byleksikon beskriver at det meste av fabrikkområdet senere ble utviklet til boliger, kino, butikker m.m. i Ringnes Park.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_ringnes_bryggeri_quiz_26",
+      "order": 26,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Ringnes’ historikk beskriver at ølkultursenteret og bryggeriet Ringnes Brygghus åpnet i de gamle bryggerilokalene på Grünerløkka i 2018.",
+      "source_ids": [
+        "snl",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_ringnes_bryggeri_quiz_27",
+      "order": 27,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Ringnes-området viser hvordan gamle industriområder på Grünerløkka kunne omformes til blandet byøkonomi med boliger, handel, kultur og bevarte industrispor.",
+      "source_ids": [
+        "byleksikon",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_ringnes_bryggeri_quiz_28",
+      "order": 28,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Produksjonen i Thorvald Meyers gate ble flyttet til Gjelleråsen i 2001.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_ringnes_bryggeri_quiz_29",
+      "order": 29,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Oslo byleksikon beskriver Ringnes Park som området på øvre Grünerløkka der Ringnes Bryggeri tidligere lå.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_ringnes_bryggeri_quiz_30",
+      "order": 30,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Oslo byleksikon skriver at Ringnes Park-området samlet har rundt 700 leiligheter.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_ringnes_bryggeri_quiz_31",
+      "order": 31,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Ringnes’ historikk og SNL beskriver Ringnes-brødrene som sentrale støttespillere for Nansens og Otto Sverdrups Fram-ferder.",
+      "source_ids": [
+        "snl",
+        "ellef"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_kapital_finans"
+    },
+    {
+      "claim_id": "claim_ringnes_bryggeri_quiz_32",
+      "order": 32,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Ringnes’ historikk beskriver at tre øyer i Nord-Canada ble oppkalt etter Axel Heiberg, Amund Ringnes og Ellef Ringnes.",
+      "source_ids": [
+        "snl",
+        "ellef"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_kapital_finans"
+    },
+    {
+      "claim_id": "claim_ringnes_bryggeri_quiz_33",
+      "order": 33,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Place-profilen peker på byøkonomi og kontraster. Ringnes har tydelig konsern-/merkevarelinje via Nora, Orkla, Pripps og Carlsberg, mens Schous fungerer mer som lokalt bevart bryggerimiljø.",
+      "source_ids": [
+        "snl",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_ringnes_bryggeri_quiz_34",
+      "order": 34,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Ringnes Bryggeri viser hvordan en industribedrift kan utvikle seg fra lokal produksjon og fagkunnskap til merkevare, konsernstruktur, internasjonalt eierskap og byombruk.",
+      "source_ids": [
+        "snl",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_ringnes_bryggeri_quiz_35",
+      "order": 35,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Det gamle brygghuset rommer Ringnes' hovedkontor og museum samt Ringnes Brygghus.",
+      "source_ids": [
+        "property"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    }
+  ]
+}
