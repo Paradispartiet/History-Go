@@ -14,7 +14,7 @@ on:
     paths:
       - scripts/TEMP_materialize_programleder_role_world.mjs
       - tests/civication-film-tv-programleder-role-world-rollout.test.js
-      - .github/workflows/TEMP-civication-film-tv-programleder-role-world-materialize.yml
+      - .github/workflows/TEMP-civication-programleder-role-world-materialize.yml
 
 permissions:
   contents: write
@@ -33,6 +33,20 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Canonicalize authority intents in temporary source
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const file = 'scripts/TEMP_materialize_programleder_role_world.mjs';
+          let source = fs.readFileSync(file, 'utf8');
+          const matches = source.match(/intent:'approve'/g) || [];
+          if (matches.length !== 2) {
+            throw new Error(`Expected exactly two legacy approve intents, found ${matches.length}`);
+          }
+          source = source.replaceAll("intent:'approve'", "intent:'execute'");
+          fs.writeFileSync(file, source);
+          NODE
       - name: Materialize permanent authored data
         run: node scripts/TEMP_materialize_programleder_role_world.mjs
       - name: Regenerate scene registry
