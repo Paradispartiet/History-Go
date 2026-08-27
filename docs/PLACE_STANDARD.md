@@ -108,7 +108,7 @@ Relevante og dokumenterte felt kan blant annet være:
 
 For nye og fullproduserte ordinære Places er `frontImage` alltid en stående fil/variant med høyde større enn bredde. `frontImageMeta` eller tilsvarende canonical metadata dokumenterer kilde, lisens, original- og outputdimensjoner samt eventuelt crop. En liggende fil som bare maskeres av en stående CSS-ramme er ikke tilstrekkelig.
 
-`place_card_profile.collection_ids` inneholder ved ny/full produksjon **1–4 ferdige, relevante samlinger**. Hver valgt samling skal ha et lastende previewbilde av ett faktisk canonical medlem. Et tomt samlingskort er aldri godkjent closeout; en irrelevant samling utelates i stedet.
+`place_card_profile.collection_ids` inneholder ved ny/full produksjon **nøyaktig fire ferdige, relevante samlinger**. Ordinære fullprofiler bruker People, Objects, Brands og kategoriuttrykket; Nature og canonicale spesialprofiler følger sine faste firersett. Hver samling skal ha et lastende previewbilde av ett faktisk canonical medlem. Et tomt samlingskort, færre enn fire flater eller `related` som reserve er aldri godkjent closeout.
 
 Fallback er runtime-feilhåndtering, ikke godkjent closeout.
 
@@ -135,7 +135,7 @@ Badge-systemet sier hva produsenten skal undersøke, ikke hva som automatisk fin
 
 Eksempler:
 
-- Næringsliv + industri gjør produksjonsprosess/anlegg/arbeid/teknologi til sterke kandidater, men skaper ikke automatisk et Brand;
+- Næringsliv + industri gjør produksjonsprosess/anlegg/arbeid/teknologi til sterke kandidatspor; den obligatoriske Brand-samlingen må fortsatt bestå den brede Brand-kontrakten med en ekte virksomhets-, produkt-, institusjons-, venue-, legacy- eller skiltidentitet;
 - Historie + kulturminner/bevaring prioriterer materielle spor, vern og ombruk;
 - Musikk + konsertsteder prioriterer scene, artister, konserter og lyd-/venuehistorie;
 - Sport + stadion og Sport + supporterkultur skal ikke ende med identiske innholdsplaner;
@@ -165,7 +165,7 @@ Denne stedstandarden fastslår bare rollen:
 
 Samlingsmodellen eies **kun** av `data/places/README_place_rounds.md`.
 
-For nye/fullproduserte ordinære steder viser PlaceCard bare 1–4 ferdige samlinger. Færre samlinger får egen balansert layout, ikke tomme reservekort.
+For nye/fullproduserte ordinære steder viser PlaceCard nøyaktig fire ferdige samlinger i 2×2. Related er et relasjons-/navigasjonssystem, ikke en samling.
 
 ### På stedet
 
@@ -197,7 +197,7 @@ Det skal kunne vise:
 - navn og Hovedbadge/category;
 - korrekte Badge-/underbadge-signaler;
 - stedstro stående `frontImage`;
-- 1–4 kuraterte samlinger med reelle previews;
+- fire kuraterte samlinger med reelle previews;
 - `desc`;
 - relevante handlinger;
 - favoritt;
@@ -206,10 +206,7 @@ Det skal kunne vise:
 
 Visuell sluttregel:
 
-- 1 samling → stor og sentrert;
-- 2 → balansert par;
-- 3 → 2+1;
-- 4 → 2×2;
+- fire samlinger → fast 2×2;
 - ingen tomme kort;
 - ingen filler;
 - kortet skal se tilsiktet og pent ut for akkurat stedstypen.
@@ -242,14 +239,14 @@ Detaljreglene eies av `data/places/README_place_rounds.md`.
 
 For ny/revidert stedproduksjon:
 
-- `place_card_profile` = eksplisitt kuratering av 1–4 ferdige samlinger;
+- `place_card_profile` = eksplisitt kuratering av nøyaktig fire ferdige samlinger;
 - `round_profile` / `rounds` = legacy presentasjonsfelt og compatibility;
 - `objects` = canonical fysiske Object-kort;
 - `subplaces` beholdes for reell stedstruktur/soner og kan være compatibility-kilde når semantic owner tillater det.
 
 Legacy aliaser skal ikke bli nye standarder.
 
-Brands-semantikken eies av `data/brands/brand_rules_v1_1.json`: profesjonelle, arkitektur-, venue-, institusjons-, legacy- og skiltidentiteter kan kvalifisere når navnet har selvstendig gjenkjennelse og dokumentert stedskobling. Aktørtype alene er verken godkjenning eller avslag. Null treff er ikke alene N/A; et kvalifisert Brand skal heller aldri konstrueres bare fordi Badge-rutingen gjør Brand til kandidat.
+Brands-semantikken eies av `data/brands/brand_rules_v1_1.json`: profesjonelle, produkt-, venue-, institusjons-, organisasjons-, legacy- og skiltidentiteter kan kvalifisere når navnet har selvstendig gjenkjennelse og dokumentert stedskobling. Brands er fast samling i ordinære fullprofiler. Null registertreff utløser research, ikke N/A; et Brand skal likevel aldri konstrueres bare for å fylle flaten.
 
 ## 11. Strukturerte place-profiler
 

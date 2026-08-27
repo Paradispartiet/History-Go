@@ -35,7 +35,7 @@ Universal canonical core
 → produksjon
 ```
 
-Det er derfor feil å si «Næringsliv = alltid Brands», «Historie = alltid People» eller «Natur = alltid Flora + Fauna». Badge/underbadge bestemmer hvilke spor som må undersøkes; kildene bestemmer hva som faktisk kvalifiserer.
+Badge/underbadge bestemmer hvilke medlemmer og faglige spor som må undersøkes; kildene bestemmer hva som faktisk kvalifiserer. Dette endrer ikke PlaceCard-geometrien: et fullprodusert ordinært Place har alltid fire ferdige samlinger etter `data/places/README_place_rounds.md`.
 
 ## 2. Universal canonical core
 
@@ -81,24 +81,39 @@ Når Badge-filen har `groups`, `children` eller `quizFocus`, skal disse brukes s
 - `sport + stadion` prioriterer anlegg, konkurranser, utøvere/klubber og publikumskultur;
 - `sport + supporterkultur` flytter tyngde mot mennesker, uttrykk, objekter og scene-/identitetskultur;
 - `natur + vann_og_vassdrag` bruker Badge-filens vann-/økologi-hints og dokumenterte arter/landform;
-- `natur + fugler` gjør Fauna til en sterk kandidat bare når arter faktisk er dokumentert for stedet;
-- `religion + trossteder_og_hellige_rom` prioriterer Structures og romlig/rituell historie;
+- `natur + fugler` prioriterer Fauna-research, men alle fire faste naturflater krever stedsspesifikk dokumentasjon; manglende artsbelegg blokkerer fullproduksjonen og erstattes aldri av generiske arter;
+- `religion + trossteder_og_hellige_rom` prioriterer ritualer/tradisjoner, People, Objects og Brands; Structures velges bare når et reelt bygnings-/anleggsmiljø er et selvstendig hovedspor;
 - `kunst + offentlig_kunst` prioriterer Productions, kunstnere, materialer og commissioning/offentlig resepsjon;
 - `litteratur + forfattere_og_litteratursteder` prioriterer People, tekster/verk, Objects og relaterte steder;
 - `politikk + arbeiderbevegelse` prioriterer personer/organisasjoner, møter/hendelser, dokumenter og relaterte steder;
 - `utdanning + utdanningshistorie` prioriterer institusjonshistorie, lærere/elever, skolebygg og læremidler;
 - `helse + helsetjenester_helseokonomi` prioriterer institusjon, system, profesjoner og historiske tjenester fremfor individuell klinikk.
 
-Dette er kandidatstyring, aldri en kvote. Objects-kandidater følger i tillegg `docs/PLACE_OBJECTS_CANONICAL.md`: stedets hovedfunksjon styrer utvalget, og på industristeder prioriteres produksjonsverktøy, former, maskiner og annet fabrikkutstyr før sekundære kulturspor.
+Dette er kandidatstyring for medlemmene, aldri tillatelse til å redusere det faste samlingsantallet. Objects-kandidater følger i tillegg `docs/PLACE_OBJECTS_CANONICAL.md`: stedets hovedfunksjon styrer utvalget, og på industristeder prioriteres produksjonsverktøy, former, maskiner, emballasje og fysiske produkter før sekundære kulturspor.
 
-## 4. Betingede innholdsmoduler
+### Fast PlaceCard-modell
 
-Følgende skal vurderes når Badge-routeren eller underbadgen gjør dem plausible, men produseres bare når de er reelt relevante og source-backed:
+Alle ordinære fullprofiler bruker:
 
-- People;
-- Objects;
-- Brands;
-- kategori-eid samling (`structures`, `related`, `productions`, `competitions`, `destinations`);
+```text
+People · Objects · Brands · kategoriuttrykk
+```
+
+Nature og canonicale spesialprofiler følger sine faste firersett. Kategoriuttrykket og brukerrettet navn følger 19-kategorimatrisen i `data/places/README_place_rounds.md`. `related` er aldri en PlaceCard-samling. Structures er bare standard for By og ellers en uttrykkelig begrunnet stedsspesifikk variant.
+
+## 4. Obligatoriske samlingsmedlemmer og betingede moduler
+
+For en ordinær fullprofil er følgende obligatoriske produksjonsspor:
+
+- People-medlemmer;
+- Objects-medlemmer;
+- Brands-medlemmer;
+- kategoriuttrykkets medlemmer (`productions`, `structures`, `competitions` eller `destinations` etter samlingskontrakten);
+
+Badge-router, underbadges og kilder bestemmer hvilke medlemmer som kvalifiserer, ikke om en av de fire flatene kan utelates.
+
+Følgende øvrige moduler er betingede og produseres når de er reelt relevante og source-backed:
+
 - Stories;
 - Før/etter;
 - Nyheter;
@@ -107,9 +122,9 @@ Følgende skal vurderes når Badge-routeren eller underbadgen gjør dem plausibl
 - ekstra Fagverk-spor;
 - ekstra medier.
 
-`BEGRUNNET N/A` betyr at modulen etter ordentlig kandidataudit ikke tilhører stedet. Det betyr **aldri** «gjør senere» og aldri et tomt kort.
+`BEGRUNNET N/A` kan brukes for de øvrige betingede modulene etter ordentlig kandidataudit. Det kan ikke brukes for People, Objects, Brands eller kategoriuttrykket i en ordinær fullprofil. Manglende kvalifiserte medlemmer der er `BLOCKED`, ikke N/A.
 
-**Ingen tomme PlaceCard-samlinger ved fullført ny/full produksjon. Ingen filler.** Hvis en samling ikke har et ekte canonical medlem med riktig bilde, velges den ikke i `place_card_profile`.
+**Ingen tomme PlaceCard-samlinger ved fullført ny/full produksjon. Ingen filler.** Hvis en av de fire samlingene ikke har et ekte canonical medlem med riktig bilde, kan stedet ikke ferdigmeldes.
 
 ## 5. Produksjonsprofiler
 
@@ -117,19 +132,19 @@ Følgende skal vurderes når Badge-routeren eller underbadgen gjør dem plausibl
 
 Sted med stor betydning og bredt kildebåret stoff som bærer flere selvstendige lærings-, material- eller narrative spor.
 
-Forventning: dypest research og ofte 4 sterke PlaceCard-samlinger, men heller 3 ekte enn en kunstig fjerde.
+Forventning: dypest research og fire sterke PlaceCard-samlinger etter den faste kategoriprofilen.
 
 ### `standard`
 
 Default for et betydelig canonical Place med komplett stedsopplevelse, flere reelle innholdsvinkler og nok materiale til solid Fagverk/quiz uten Major-bredde.
 
-Forventning: full universal core og normalt 2–4 sterke PlaceCard-samlinger valgt av Badge-drevet innholdsplan.
+Forventning: full universal core og fire sterke PlaceCard-samlinger valgt etter den faste kategoriprofilen og produsert gjennom Badge-drevet innholdsplan.
 
 ### `focused`
 
 Canonical Place med historisk/kulturell verdi konsentrert i én hovedfunksjon, hendelse, struktur, spor eller snevert tema.
 
-Forventning: full universal core, men ingen sideveis utvidelse bare for å ligne Standard. Et Focused Place kan være fullstendig med 1–3 sterke PlaceCard-samlinger.
+Forventning: full universal core og fire ferdige PlaceCard-samlinger, men mindre dybde og færre medlemmer per samling enn et bredere sted. `focused` reduserer aldri antallet samlingsflater.
 
 `focused` kan aldri velges bare fordi oppgaven ønskes billigere eller raskere.
 
@@ -197,19 +212,22 @@ Canonical Quiz-kontrakt velger adaptivt:
 
 Badge, underbadges og eventuell `quizFocus` brukes til å planlegge hvilke kunnskapsområder som undersøkes; påstandsbank og faktisk læringsbredde bestemmer quizprofil og eksakt lengde.
 
-## 9. PlaceCard: ferdig innhold, aldri tomme kort
+## 9. PlaceCard: fire ferdige samlinger, aldri tomme kort
 
-For nye/fullproduserte ordinære Places er `place_card_profile.collection_ids` en eksplisitt kuratert liste over **bare ferdige, relevante samlinger**.
+For nye/fullproduserte ordinære Places er `place_card_profile.collection_ids` en eksplisitt kuratert liste med **nøyaktig fire ferdige, relevante samlinger**.
 
-- 1–4 samlinger er gyldig;
+- nøyaktig fire samlinger er gyldig for ordinære fullprofiler;
+- vanlig profil bruker People, Objects, Brands og kategoriuttrykket;
+- Nature og canonicale spesialprofiler følger sine faste firersett;
+- `related` er aldri samling eller reserve;
 - hver valgt samling har minst ett ekte canonical medlem og validert, lastbart previewbilde;
-- samlinger uten kvalifisert innhold utelates helt;
-- runtime gir 1, 2, 3 og 4 samlinger balanserte komposisjoner;
+- manglende kvalifisert innhold blokkerer fullproduksjonen;
+- runtime viser fire samlinger i en balansert 2×2-komposisjon;
 - People/Flora/Fauna er sirkler; øvrige er avrundede rektangler;
 - `frontImage` forblir stående hovedflate;
 - gamle Places uten ny eksplisitt profil beholder kompatibilitetsvisningen til revisjon.
 
-Designregel: **Færre samlinger skal se kuraterte ut, ikke mangelfulle.** Ett kort sentreres og får visuell tyngde; to er et balansert par; tre får 2+1; fire får 2×2.
+Designregel: **Alle fire flater skal oppleves som nødvendige, tydelig forskjellige og stedsegne.** Ingen flate fylles med en perifer entity bare for å bestå geometrien.
 
 ## 10. Arbeidskort
 
@@ -224,15 +242,17 @@ PRODUKSJONSPROFIL: major | standard | focused
 PROFILSTATUS: provisional | confirmed
 PROFILBEGRUNNELSE:
 INNHOLDSPLAN:
-  People: PRODUSER | N/A + grunn
-  Objects: PRODUSER | N/A + grunn
-  Brands: PRODUSER | N/A + grunn
-  Category collection: PRODUSER | N/A + grunn
+  People: PRODUSER | BLOCKED + grunn
+  Objects: PRODUSER | BLOCKED + grunn
+  Brands: PRODUSER | BLOCKED + grunn
+  Category expression: PRODUSER | BLOCKED + grunn
   Stories: PRODUSER | N/A + grunn
   Før/etter: PRODUSER | N/A + grunn
   Nyheter: PRODUSER | N/A + grunn
   Lesespor: PRODUSER | N/A + grunn
-PLACECARD-SAMLINGER: <1–4 ferdige IDs, ingen tomme>
+PLACECARD-SAMLINGER: <nøyaktig fire ferdige IDs, ingen tomme>
+KATEGORIUTTRYKK + BRUKERRETTET NAVN:
+OBJECTS ↔ KATEGORIUTTRYKK-EIERGRENSE:
 UNIVERSAL CORE STATUS:
 ```
 
@@ -241,10 +261,10 @@ UNIVERSAL CORE STATUS:
 - eksisterende korrekt innhold beholdes;
 - relevant source-backed innhold kan ikke hoppes over fordi stedet er `focused`;
 - Badge/underbadge kan ikke brukes til å dikte innhold som kildene ikke bærer;
-- N/A-modul vises ikke som tom PlaceCard-flate;
+- N/A gjelder ikke de fire obligatoriske fullprofil-samlingene;
 - `focused` betyr smalt komplett, ikke halvferdig;
 - grønn CI kan ikke overstyre svak redaksjonell eller visuell sluttflate.
 
 ## Kort regel
 
-**La innholdet følge Badges: hovedbadge åpner researchuniverset, underbadges former kandidatene, kildene avgjør hva som er sant og relevant, og produksjonsprofilen avgjør hvor dypt vi går. PlaceCard viser bare ferdige samlinger og skal alltid se bevisst, balansert og komplett ut.**
+**La innholdet følge Badges: hovedbadge åpner researchuniverset, underbadges former kandidatene, kildene avgjør hvilke medlemmer som er sanne og relevante, og produksjonsprofilen avgjør hvor dypt vi går. Alle fulle ordinære Places viser fire ferdige samlinger: People, Objects, Brands og kategoriens eget uttrykk.**

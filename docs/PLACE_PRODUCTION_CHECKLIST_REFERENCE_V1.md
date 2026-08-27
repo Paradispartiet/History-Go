@@ -159,10 +159,12 @@ SPRÅKLEKSIKON-STATUS:
 SPRÅKLEKSIKON-TYPE — OMRÅDE / DIREKTE SPRÅKSTED / ENKELTSTED:
 DIALEKTLAG — KUN `placeScope: "area"` / N/A:
 DIALEKTORD/LOKALE UTTRYKK — RESEARCH OG PRODUKSJON:
-MÅL FOR PLACECARD-SAMLINGER: 1–4 sterke flater valgt adaptivt + separat fast Badge + obligatorisk Quiz
+MÅL FOR PLACECARD-SAMLINGER: nøyaktig fire sterke flater + separat fast Badge + obligatorisk Quiz
 VALGTE PLACECARD-SAMLINGER:
+KATEGORIUTTRYKK + BRUKERRETTET NAVN:
+OBJECTS ↔ KATEGORIUTTRYKK-EIERGRENSE:
 PEOPLE-KANDIDATER:
-WORKS-KANDIDATER:
+KATEGORIUTTRYKK-KANDIDATER:
 BRANDS SOM ALLEREDE FINNES:
 ROUTE/RELATION-KOBLINGER:
 QUIZ-STATUS:
@@ -1047,16 +1049,19 @@ Denne oppskriften gjentar ikke samlingspool, profiler eller naturkartkrav. **Pla
 - [ ] stedet følger canonical PlaceCard-samlingskontrakt;
 - [ ] Badges vises fast og separat ved stedsoverskriften og teller ikke blant samlingene;
 - [ ] obligatorisk Quiz vises som tydelig PlaceCard-handling og fungerer;
-- [ ] 1–4 valgte samlingsflater vises adaptivt ved `frontImage`; People, Flora og Fauna bruker sirkel, øvrige samlinger avrundede rektangler;
+- [ ] nøyaktig fire samlingsflater vises i fast 2×2 ved `frontImage`; People, Flora og Fauna bruker sirkel, øvrige samlinger avrundede rektangler;
 - [ ] `frontImage` er en stående fil/variant (`height > width`) med kontrollert motiv, crop, dimensjoner og proveniens; en liggende fil i stående CSS-ramme teller ikke;
 - [ ] alle valgte samlingsflater viser et bilde av ett faktisk medlem i sin egen samling; ikon, navn og antall teller ikke som ferdig preview;
 - [ ] People, Flora og Fauna er sirkler; øvrige samlinger er avrundede rektangler;
 - [ ] Bilder ligger i `frontImage`-/medieflaten eller hos riktig bildeeier og brukes aldri som samling/reserve;
 - [ ] hver samling har en naturlig brukerforståelse, tydelig egen innholdstype og reell stedsspesifikk substans;
 - [ ] Objects følger `docs/PLACE_OBJECTS_CANONICAL.md`; hovedfunksjonen styrer utvalget, og en enkelt vilkårlig eller taksonomisk konstruert gjenstand er ikke nok til å gjøre Objects ferdig;
-- [ ] Objects og Structures/Bygg brukes ikke som to separate samlinger når skillet er uklart eller innholdet overlapper;
-- [ ] semantisk overlappende innhold dupliseres ikke mellom valgte flater; en svak eller tom kandidat utelates fra profilen og registreres som produksjonsgap uten oppdiktet innhold eller synlig falsk 0;
-- [ ] nye/fullproduserte steder bruker `place_card_profile.collection_ids` med 1–4 sterke IDs valgt adaptivt, begrunnelse og verifiseringsdato;
+- [ ] Objects og kategoriuttrykket har dokumentert entity-grense; Kunst kan ha både Objects og Kunstverk når Objects er arbeids-/ateliergjenstander og Kunstverk er selve verkene;
+- [ ] semantisk overlappende innhold dupliseres ikke mellom valgte flater; en svak eller tom kandidat blokkerer fullproduksjonen uten oppdiktet innhold eller synlig falsk 0;
+- [ ] nye/fullproduserte steder bruker `place_card_profile.collection_ids` med nøyaktig fire sterke IDs, begrunnelse og verifiseringsdato;
+- [ ] ordinær fullprofil bruker People, Objects, Brands og kategoriuttrykk; Nature og canonicale spesialprofiler følger sine faste firersett;
+- [ ] `related` er aldri PlaceCard-samling eller reserve;
+- [ ] Structures utenfor By brukes bare når flere navngitte bygg/anlegg utgjør et sentralt, substansielt og bildeklart stedsspor;
 - [ ] eksisterende `round_profile.content_round_ids` leses bare gjennom kompatibilitetslaget, og `images` filtreres bort;
 - [ ] alle valgte samlinger vurderes samlet i faktisk UI; korrekt JSON hver for seg er ikke tilstrekkelig;
 - [ ] hver samling åpnes i produksjon og viser reelt innhold; tom popup eller falsk 0 er ikke godkjent;
@@ -1163,16 +1168,16 @@ Når historisk rute berøres: **LES FØRST:** `docs/README_HistoryGo_Historiske_
 
 **LES FØRST — obligatorisk:** `docs/people-of-places-method.md`
 
-Selv om People ikke velges som PlaceCard-samling, skal relevante personer vurderes.
+People er fast samling i ordinære fullprofiler. Nature, Micro og canonicale spesialprofiler følger sine egne kontrakter, men relevante personkoblinger skal fortsatt vurderes i den øvrige stedsproduksjonen.
 
 Researchrekkefølge:
 
 1. grunnlegger/etablerer/initiativtaker;
-2. arkitekt/kunstner/skaper;
-3. eier/leder/nøkkelperson;
-4. beboer/arbeidende;
-5. utøver/forsker/politiker/aktivist med særskilt dokumentert forbindelse;
-6. eponym/minneperson.
+2. eier/leder/nøkkelperson;
+3. beboer/arbeider/utøver/forsker/politiker/aktivist med særskilt dokumentert forbindelse;
+4. annen kanonisert person som forklarer stedets hovedfunksjon;
+5. arkitekt bare når arkitekten er kjent/kanonisert, bygget er et sentralt kanonisert verk og koblingen tilfører mer enn teknisk kreditering;
+6. eponym/minneperson når minnefunksjonen faktisk er sentral.
 
 - [ ] direkte inspectable stedskilde for hver kobling;
 - [ ] tilfeldig besøk/by-/bransjetilknytning avvises;
@@ -1213,7 +1218,7 @@ Researchrekkefølge:
 
 **LES FØRST — obligatorisk:** `data/brands/brand_rules_v1_1.json` og `docs/BRAND_ASSETS.md`
 
-Brands er ikke begrenset til forbrukermerker. Profesjonelle firmaer, arkitektur-/ingeniørfirmaer, entreprenører, venue-/galleri-/serveringsidentiteter, institusjonsmerker, subkulturmerker, legacy-navn og skiltidentiteter kan kvalifisere når de har selvstendig gjenkjennelse og en dokumentert rolle ved stedet.
+Brands er fast samling i ordinære fullprofiler og er ikke begrenset til forbrukermerker. Profesjonelle firmaer, produktidentiteter, arkitektur-/ingeniørfirmaer, entreprenører, venue-/galleri-/serveringsidentiteter, skoler, universiteter, sykehus, forlag, medier, organisasjoner, subkulturmerker, legacy-navn og skiltidentiteter kan kvalifisere når de har selvstendig gjenkjennelse og en dokumentert rolle ved stedet.
 
 - [ ] søk eksisterende canonical Brand-ID-er, aliaser, `brands_by_place` og innebygde place-records;
 - [ ] auditér dokumenterte eiere, operatører, grunnleggere, historiske virksomheter, arkitekt-/ingeniørfirmaer, entreprenører, profesjonelle tjenestefirmaer, venue-navn, institusjoner og skiltidentiteter ved stedet;
@@ -1229,7 +1234,7 @@ Brands er ikke begrenset til forbrukermerker. Profesjonelle firmaer, arkitektur-
 - [ ] hver logo/ordmerke har proveniens, kilde- og rettighetskontroll og eksplisitt no-endorsement-kontekst;
 - [ ] personer, objekter og generiske aktørnavn omklassifiseres ikke til Brands;
 - [ ] null treff i Brand-master eller `brands_by_place` behandles som «må researches», ikke som N/A;
-- [ ] N/A brukes bare etter dokumentert kandidatsøk og kandidatspesifikke avvisningsgrunner.
+- [ ] N/A brukes ikke for Brand-samlingen i en ordinær fullprofil; hvis ingen kandidat består etter dokumentert kandidatsøk, er fullproduksjonen BLOCKED.
 
 Personverk håndteres i People-profilen etter People-kontrakten, ikke som PlaceCard-samling.
 
@@ -1400,7 +1405,7 @@ En valgt samling med ødelagt, misvisende eller falskt preview er ikke produksjo
 - [ ] PlaceCard-samlingene følger `data/places/README_place_rounds.md`;
 - [ ] Badges vises separat ved stedsoverskriften;
 - [ ] obligatorisk Quiz er tydelig og fungerer;
-- [ ] 1–4 samlingsflater vises adaptivt ved `frontImage`;
+- [ ] nøyaktig fire samlingsflater vises i fast 2×2 ved `frontImage`;
 - [ ] People, Flora og Fauna er sirkler; øvrige samlinger er avrundede rektangler;
 - [ ] Bilder ligger i medieflaten/riktig popupflate og aldri som PlaceCard-samling eller reserve;
 - [ ] alle valgte samlinger har korrekte, lastende previewbilder av canonicale medlemmer; robust ikonfallback er bare feilhåndtering og ikke ferdigstatus;
@@ -1418,7 +1423,7 @@ En valgt samling med ødelagt, misvisende eller falskt preview er ikke produksjo
 - [ ] favorittstatus fungerer;
 - [ ] quiz fungerer uten å skrive fysisk besøk;
 - [ ] relevante unlocks/belønninger kan leses i riktige flater;
-- [ ] tomme/irrelevante flater skjules eller har korrekt tomtilstand;
+- [ ] ingen av de fire samlingsflatene er tomme eller skjult;
 - [ ] ingen gammel 3×3-/ni-runderslogikk lekker gjennom.
 
 ---
@@ -1527,11 +1532,12 @@ Et sted er **sted-produksjon ferdig** først når hvert punkt nedenfor er sant e
 - [ ] `data/places/README_place_rounds.md` er fulgt;
 - [ ] Badges vises separat ved stedsoverskriften;
 - [ ] Quiz vises som obligatorisk, tydelig handling;
-- [ ] stedet viser 1–4 substansielle samlingsflater fra `place_card_profile`;
+- [ ] stedet viser nøyaktig fire substansielle samlingsflater fra `place_card_profile`;
 - [ ] hver samling er substansiell, naturlig og tydelig forskjellig fra de andre;
-- [ ] samlingsform og adaptiv 1–4-layout er kontrollert på mobil og desktop;
+- [ ] samlingsform og fast 2×2-layout er kontrollert på mobil og desktop;
 - [ ] Bilder brukes ikke som samling eller reserve;
-- [ ] Objects og Structures/Bygg er ikke kunstig splittet;
+- [ ] Objects og kategoriuttrykket har tydelig entity-grense; Objects og Structures er ikke kunstig splittet;
+- [ ] Related brukes bare i relasjonssystemet og aldri som PlaceCard-samling;
 - [ ] preview og innhold følger PlaceCard-kontrakten.
 
 ### På stedet / læring
@@ -1641,16 +1647,16 @@ LES: docs/PLACE_POPUP_SYSTEM.md
 
 ### F. PlaceCard-samlinger
 LES: data/places/README_place_rounds.md
-Mål: [ ] 1–4 sterke flater valgt adaptivt + separat Badge + obligatorisk Quiz
+Mål: [ ] nøyaktig fire sterke flater + separat Badge + obligatorisk Quiz
 - [ ] `place_card_profile.collection_ids` / dokumentert legacy-adapter
 - [ ] Badge separat ved overskriften
 - [ ] Quiz tydelig og fungerende
-- [ ] adaptiv 1–4-layout balansert ved `frontImage`
+- [ ] fast 2×2-layout balansert ved `frontImage`
 - [ ] `frontImage` er stående (`height > width`) med kontrollert motiv og dokumentert crop/proveniens
 - [ ] People/Flora/Fauna sirkler; øvrige samlinger avrundede rektangler
 - [ ] Bilder bare i medie-/bildeflater, aldri som samling/reserve
 For hver samling: [ ] relevant  [ ] stedsspesifikk  [ ] substansiell  [ ] faktisk medlemsbilde laster  [ ] riktig flow
-Samlet: [ ] tydelig forskjellige samlinger  [ ] ingen kunstig Objects/Structures-splitt  [ ] ingen enkel gjenstand som fyll  [ ] ingen kunstig fjerde samling
+Samlet: [ ] fire tydelig forskjellige samlinger  [ ] dokumentert Objects/kategoriuttrykk-grense  [ ] ingen kunstig Objects/Structures-splitt  [ ] ingen enkel gjenstand som fyll  [ ] Related er ikke samling
 
 ### G. People / Stories / Quiz
 - [ ] People of Places lest og vurdert
@@ -1673,7 +1679,7 @@ Samlet: [ ] tydelig forskjellige samlinger  [ ] ingen kunstig Objects/Structures
 
 ### I. Relasjoner
 - [ ] Works
-- [ ] Brands — Brand-regler lest, kandidatsøk, place-evidens, logo/rettigheter og N/A-gate
+- [ ] Brands — Brand-regler lest, kandidatsøk, place-evidens, logo/rettigheter og BLOCKED-gate
 - [ ] Leksikon
 - [ ] Relations / NextUp
 - [ ] Nearby / Søk
@@ -1700,7 +1706,7 @@ Samlet: [ ] tydelig forskjellige samlinger  [ ] ingen kunstig Objects/Structures
 - [ ] Nyheter, Lesespor og Mer: innhold eller strengt dokumentert N/A etter søk
 - [ ] identitet/attribusjon
 - [ ] JSON/referanser
-- [ ] adaptiv layout med 1–4 samlingsflater + separat Badge-plassering + tydelig obligatorisk Quiz
+- [ ] fast 2×2-layout med fire samlingsflater + separat Badge-plassering + tydelig obligatorisk Quiz
 - [ ] popupfaner
 - [ ] relevant CI
 - [ ] ren slutt-diff

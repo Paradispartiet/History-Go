@@ -67,14 +67,14 @@ Badge og underbadge er **routing**, ikke faktakilde og ikke innholdskvote.
 
 Eksempler:
 
-- `naeringsliv + industri` gjør produksjonsprosess, arbeid, teknologi, anlegg og fysiske spor til sterke kandidater; Brand produseres bare hvis Brand-kontrakten faktisk består;
+- `naeringsliv + industri` gjør produksjonsprosess, arbeid, teknologi, anlegg og fysiske spor til sterke kandidatspor; den faste Brand-samlingen krever fortsatt en kandidat som faktisk består Brand-kontrakten;
 - `naeringsliv + bank_og_finans` skal ikke få industrimaskiner fordi et annet Næringsliv-sted har dem;
 - `historie + industrihistorie` kan gi en annen innholdsplan enn `historie + sosialhistorie` eller `historie + kulturminner_og_bevaring`;
 - `musikk + konsertsteder` prioriterer scenehistorie, artister, konserter og venue-/lydspor;
-- `film_tv + filmlocations` prioriterer konkrete produksjoner og location-relasjoner, ikke automatisk et Brand;
+- `film_tv + filmlocations` prioriterer konkrete produksjoner og location-relasjoner; selve location-relasjonen er ikke Brand, mens produksjonsselskap, studio, kanal, kino eller venue-identitet kan kvalifisere etter Brand-kontrakten;
 - `sport + stadion` og `sport + supporterkultur` skal ikke få identiske PlaceCards;
-- `natur + fugler` gjør Fauna til en sterk kandidat bare når arter er dokumentert for stedet;
-- `natur + geologi` kan gi et sterkt sted uten Flora/Fauna dersom biologisk dokumentasjon ikke bærer dem;
+- `natur + fugler` prioriterer Fauna-research, men alle fire faste naturflater må fortsatt dokumenteres;
+- `natur + geologi` prioriterer kart-/landformsporet uten å fjerne Kart, Flora, Fauna eller Turmål; manglende stedsspesifikk dokumentasjon blokkerer fullproduksjonen og erstattes aldri med generiske arter;
 - én fysisk enhet skal aldri splittes kunstig til både Object og Structure bare for å fylle kortet;
 - chronology skal aldri kopieres til en svak Story bare for å fylle Stories.
 
@@ -112,16 +112,21 @@ Teknisk PASS er aldri synonymt med redaksjonell ferdigstatus.
 
 ---
 
-## 3. Betingede subsystemer — vurder gjennom Badges, produser når de passer
+## 3. Faste samlinger og betingede subsystemer
 
 Badge-router og aktive underbadges åpner kandidatene. Faktiske kilder og subsystemkontrakter avgjør sluttstatus.
 
-Betingede moduler omfatter blant annet:
+For ordinære fullprofiler er medlemsproduksjon til disse fire samlingene obligatorisk:
 
 - People;
 - Objects;
 - Brands;
-- kategori-eid samling (`structures`, `related`, `productions`, `competitions`, `destinations`);
+- kategoriuttrykk (`productions`, `structures`, `competitions` eller `destinations` etter samlingskontrakten);
+
+Badge og kilder avgjør hvilke medlemmer som kvalifiserer. De fire samlingsflatene kan ikke settes N/A eller utelates.
+
+Betingede moduler omfatter blant annet:
+
 - Stories;
 - Før/etter;
 - Nyheter;
@@ -137,37 +142,38 @@ BEGRUNNET N/A
 BLOCKED
 ```
 
-`BEGRUNNET N/A` betyr at modulen etter korrekt Badge-drevet kandidataudit og source review ikke hører til stedet. Det betyr ikke «gjør senere», og det skal aldri etterlate et tomt PlaceCard-kort.
+`BEGRUNNET N/A` betyr at en betinget modul etter korrekt Badge-drevet kandidataudit og source review ikke hører til stedet. Det betyr ikke «gjør senere». For de fire faste fullprofil-samlingene er manglende kvalifiserte medlemmer `BLOCKED`, aldri N/A.
 
-**Ingen filler:** Det er forbudt å opprette en perifer person, et tilfeldig objekt, et konstruert Brand, en duplisert Structure, en svak Story eller svake/gjentatte quizspørsmål bare for å møte en kvote eller layout.
+**Ingen filler:** Det er forbudt å opprette en perifer person, et tilfeldig objekt, et konstruert Brand, en duplisert Structure, et kunstig kategoriuttrykk, en svak Story eller svake/gjentatte quizspørsmål bare for å møte en kvote eller layout. Samtidig kan et ordinært Place ikke fullføres før alle fire reelle samlinger er produsert.
 
 ---
 
-## 4. PlaceCard — alltid pent og stedstilpasset
+## 4. PlaceCard — fire ferdige samlinger på alle fulle steder
 
 Canonical samlingskontrakt: `data/places/README_place_rounds.md`.
 
 For nye og fullproduserte ordinære Places gjelder:
 
-- `place_card_profile.collection_ids` inneholder **1–4 ferdige, relevante samlinger**;
+- `place_card_profile.collection_ids` inneholder **nøyaktig fire ferdige, relevante samlinger**;
+- ordinære fullprofiler bruker People, Objects, Brands og kategoriens uttrykk;
+- Nature bruker Kart, Flora, Fauna og Turmål; canonicale spesialprofiler følger sitt eget faste firersett;
+- `related` er et relasjons-/navigasjonssystem og kan aldri brukes som PlaceCard-samling eller reserve;
+- kategoriuttrykket følger matrisen i `data/places/README_place_rounds.md`; Structures utenfor By krever et sentralt, substansielt bygnings-/anleggsmiljø og uttrykkelig begrunnelse;
 - samlingsvalget skal følge Badge-/underbadge-baserte kandidater og faktisk materialisert innhold;
 - hver valgt samling har minst ett ekte canonical medlem;
 - hver valgt samling har et validert, lastbart previewbilde av et medlem;
-- ikke-relevante eller source-tomme samlinger utelates fra `collection_ids`;
+- source-tomme samlinger blokkerer fullproduksjonen og skal ferdigstilles med reelt innhold, aldri skjules eller fylles kunstig;
 - **ingen tomme PlaceCard-kort er tillatt ved closeout**;
-- 1 samling vises stor og sentrert;
-- 2 samlinger vises som et balansert par;
-- 3 samlinger bruker en balansert 2+1-komposisjon;
-- 4 samlinger bruker 2×2;
+- de fire samlingene vises i en fast, balansert 2×2-komposisjon;
 - People/Flora/Fauna beholder sirkelform; øvrige samlinger er avrundede rektangler;
 - `frontImage` er den stående hovedflaten og skal være en faktisk stående fil/variant (`height > width`), aldri bare en liggende fil beskåret av CSS;
 - hvert samlingspreview er et faktisk bilde av ett canonical medlem, aldri `frontImage` brukt som falskt samlingspreview;
 - ikon-/statusvisning er bare runtime-fallback ved lastingsfeil og kan aldri lukke produksjonsgaten;
-- gamle Places uten ny eksplisitt profil og eksisterende firefeltsprofiler beholder kompatibilitetsvisningen til de faktisk fullproduseres/revideres; nye adaptive 1–3-profiler viser bare bildeklare samlinger.
+- gamle Places kan beholde kompatibilitetsvisningen til de faktisk fullproduseres/revideres; ny/full produksjon migrerer alltid til firefeltskontrakten.
 
 Slutt-QA skal eksplisitt vurdere at kortet ser **pent, tilsiktet, balansert og komplett for akkurat denne typen sted og dens Badges** ut på mobil og desktop.
 
-Et valgt samlingskort uten entity eller bilde er BLOCKED. Løsningen er enten å ferdigstille den reelle samlingen eller å fjerne den fra `collection_ids` når research viser at samlingen ikke hører til stedet — aldri å la et tomt kort stå igjen.
+Et valgt samlingskort uten entity eller bilde er BLOCKED. Løsningen er å ferdigstille den reelle samlingen eller, dersom kategoriuttrykket var feil valgt, velge et annet kategoriuttrykk som kontrakten faktisk tillater og stedet bærer. People, Objects eller Brands fjernes ikke fra en ordinær fullprofil. Et sted kan ikke closeoutes med færre enn fire samlinger.
 
 ---
 
@@ -258,7 +264,9 @@ Objects følger `docs/PLACE_OBJECTS_CANONICAL.md`.
 
 Utvalget skal først forklare stedets hovedfunksjon. På industri- og produksjonssteder undersøkes former/verktøy, maskiner, måle- og kvalitetsutstyr, emballasje-/håndteringsutstyr og andre dokumenterte produksjonsgjenstander før sekundære kulturspor.
 
-Objects skal være fysiske, identifiserbare gjenstander med dokumentert stedstilknytning og egne medlemsbilder. En kjent person eller et kjent verk skal ikke gjøre et sekundært tema til stedets hovedsamling. Når en relevant Object-gruppe mangler tilstrekkelig objekt-, kilde- eller bildebevis, føres den som `SOURCE-BOUNDED HOLDBACK` og utelates fra `place_card_profile`.
+Objects skal være fysiske, identifiserbare gjenstander med dokumentert stedstilknytning og egne medlemsbilder. En kjent person eller et kjent verk skal ikke gjøre et sekundært tema til stedets hovedsamling. Når Object-gruppen mangler tilstrekkelig objekt-, kilde- eller bildebevis, føres den som `SOURCE-BOUNDED HOLDBACK` og fullproduksjonen forblir blokkert til samlingen består kontrakten.
+
+Objects følger kategoriens hovedfunksjon. Kunst kan for eksempel ha både Objects og Kunstverk: kunstnerverktøy, materialgjenstander, arbeidsmodeller og katalogobjekter hører i Objects, mens selve kunstverkene hører i Kunstverk. Tilsvarende skiller gjelder mellom fysisk eksemplar og verk, utstyr og metode, gjenstand og hendelse, emballasje/produkt og Brand-identitet.
 
 `Spor og objekter` / `Legg merke til` kan være eide underseksjoner i Objects-popupen uten å bli egne samlinger.
 
@@ -268,11 +276,11 @@ Objects skal være fysiske, identifiserbare gjenstander med dokumentert stedstil
 
 `data/brands/brand_rules_v1_1.json` er canonical Brand-eier.
 
-Noen underbadges gjør Brand til en sterk kandidat (`butikkhistorie_og_kjeder`, venue-/sceneidentitet, enkelte handels-/mediesteder); andre gjør det mindre sannsynlig. Ingen underbadge kan likevel godkjenne Brand alene.
+Brands er en fast samling og en obligatorisk kandidataudit i alle ordinære fullprofiler. Brand-kontrakten omfatter ikke bare forbrukermerker, men også dokumenterte profesjonelle, institusjonelle, venue-, organisasjons-, legacy-, produkt- og skiltidentiteter med selvstendig gjenkjennelse og direkte stedstilknytning. Ingen underbadge kan likevel godkjenne Brand alene.
 
-Null treff i eksisterende register betyr «må researches», ikke automatisk N/A. Etter faktisk kandidatsøk kan Brands ende `BEGRUNNET N/A` dersom ingen kandidat består definisjonen.
+Null treff i eksisterende register betyr «må researches», ikke automatisk N/A. Et faktisk kandidatsøk skal dokumenteres. Hvis ingen kandidat består definisjonen, er ordinær fullproduksjon blokkert; løsningen er videre source-bounded research eller ny vurdering av stedets canonical scope, aldri et konstruert Brand.
 
-Et virksomhetsnavn, stedsnavn, prosjektaktør eller skilt blir aldri Brand bare fordi PlaceCard ellers ville hatt færre samlinger.
+Et virksomhetsnavn, stedsnavn, prosjektaktør eller skilt blir aldri Brand bare fordi PlaceCard ellers ville manglet en samling.
 
 ---
 
@@ -317,8 +325,9 @@ Ingen quiz fylles med svake eller gjentatte spørsmål for å nå et settantall.
 
 Produseres når Badge-/underbadge- og source-research viser en meningsfull, stedstro historisk sammenligning.
 
+- canonical place-register/manifester er søkt før motivet velges;
 - ulike tilfeldige kamerastandpunkter er ikke nok;
-- et separat canonical delsted skal ikke brukes som proxy;
+- et delsted som har egen canonical place-oppføring brukes ikke som primært Før/etter-stedfortreder for parent-stedet;
 - et nyere bildepar erstatter ikke automatisk et eldre, mer historisk relevant førbilde;
 - hvis kildene ikke bærer en god sammenligning, settes modulen `BEGRUNNET N/A` og vises ikke som tomt innhold.
 
@@ -329,6 +338,8 @@ Produseres når en reell nyhetsflate er relevant for stedets Badge-/underbadge-i
 ### Lesespor
 
 Relevante, tilgjengelige lesespor skal produseres. Badge/underbadge brukes til å lete målrettet etter passende lesestoff. Betalingsmur alene er ikke N/A-grunn. Hvis et dokumentert kandidatsøk faktisk ikke finner et kvalifisert spor, kan modulen ende `BEGRUNNET N/A`.
+
+**Stoppgate:** Lesespor kan ikke godkjennes som tom/N/A for et innholdsrikt sted før et dokumentert søk viser at ingen relevant, rettighetsmessig trygg og direkte lesbar tekst kan vises. At de første treffene er betalingslåst er ikke tilstrekkelig N/A-grunn.
 
 ---
 
@@ -400,15 +411,17 @@ PROFILBEGRUNNELSE:
 PROFILENDRING FRA TRIAGE:
 UNIVERSAL CORE STATUS:
 INNHOLDSPLAN:
-  People: PRODUSER | N/A + grunn
-  Objects: PRODUSER | N/A + grunn
-  Brands: PRODUSER | N/A + grunn
-  Category collection: PRODUSER | N/A + grunn
+  People: PRODUSER | BLOCKED + grunn
+  Objects: PRODUSER | BLOCKED + grunn
+  Brands: PRODUSER | BLOCKED + grunn
+  Category expression: PRODUSER | BLOCKED + grunn
   Stories: PRODUSER | N/A + grunn
   Før/etter: PRODUSER | N/A + grunn
   Nyheter: PRODUSER | N/A + grunn
   Lesespor: PRODUSER | N/A + grunn
-PLACECARD-SAMLINGER: <1–4 ferdige IDs>
+PLACECARD-SAMLINGER: <nøyaktig fire ferdige IDs>
+KATEGORIUTTRYKK + BEGRUNNELSE:
+OBJECTS ↔ KATEGORIUTTRYKK-EIERGRENSE:
 ```
 
 Nullmålingen kan ligge i samme PR som senere preflight-/innholdscheckpoints når risikobildet tillater det.
@@ -517,11 +530,12 @@ Badge-/produksjonsprofil-systemet skal ha permanent test for:
 
 PlaceCard-systemendringer skal ha permanente tester for:
 
-- schema 1–4;
+- schema krever nøyaktig fire for ordinære fullprofiler;
 - ingen `images`/Badges som samlinger;
+- ingen `related` som samling;
 - legacy fallback;
-- adaptiv 1/2/3/4-layout;
-- ingen synlige tomme samlingskort for eksplisitt kuraterte profiler;
+- fast 2×2-layout for fullprofiler;
+- ingen tomme samlingskort;
 - faktisk preview fra medlem;
 - fortsatt korrekt Micro-/underkategori-unntak.
 
@@ -540,15 +554,15 @@ Minimum:
 - åpne alle relevante popupfaner;
 - kontroller obligatorisk Språk;
 - kontroller chronology/epokeviser;
-- kontroller People/Objects/Brands/related-eierskap;
+- kontroller People/Objects/Brands/kategoriuttrykk-eierskap;
 - kontroller Før/etter, Nyheter og Lesespor når de er valgt i innholdsplanen;
 - kontroller Quiz og Stories mot sine egne kontrakter;
 - kontroller `frontImage` som ekte stående fil;
 - kontroller hver valgt PlaceCard-samling og dens popup;
 - kontroller at ingen valgt samling står tom eller mangler bilde;
-- kontroller at 1/2/3/4-layouten ser god ut på mobil og desktop;
+- kontroller at den fulle 2×2-layouten ser god ut på mobil og desktop;
 - kontroller at PlaceCard faktisk føles riktig for Badge-/underbadge-typen, ikke som en generisk mal;
-- kontroller at et sted med færre samlinger ser **kuratert og komplett**, ikke «manglende», ut;
+- kontroller at alle fire samlinger er ferdige, tydelig forskjellige og visuelt balanserte;
 - gjenåpne produksjonen dersom slutt-QA motsier tidligere checkpoint.
 
 Grønn CI kan aldri overstyre et dokumentert stygt, kunstig eller ufullstendig PlaceCard.
@@ -566,8 +580,9 @@ Grønn CI kan aldri overstyre et dokumentert stygt, kunstig eller ufullstendig P
 5. produksjonsprofil bestemmer forventet dybde/bredde etter Badge- og source-review;
 6. alle plausible betingede subsystemer vurderes, men bare relevante subsystemer materialiseres;
 7. filler for å nå felttall/fullness er forbudt;
-8. PlaceCard for nye/fullproduserte ordinære Places viser 1–4 **ferdige** samlinger — aldri tomme reserver;
-9. stedsprofil og Quiz-profil er separate beslutninger.
+8. PlaceCard for nye/fullproduserte ordinære Places viser nøyaktig fire **ferdige** samlinger — aldri tomme reserver;
+9. ordinære fullprofiler bruker People, Objects, Brands og kategoriuttrykk; Related er aldri en samling;
+10. stedsprofil og Quiz-profil er separate beslutninger.
 
 Ved konflikt med eldre formulering om fast firefelts-fullness, universell Brands/People/Objects-plikt eller obligatorisk materialisering av et irrelevant subsystem gjelder denne v2.3-sjekklisten.
 
@@ -575,4 +590,4 @@ Ved konflikt med eldre formulering om fast firefelts-fullness, universell Brands
 
 ## Kort regel
 
-**La innholdet følge Badges. Hovedbadge åpner researchuniverset, underbadges former kandidatene, kildene avgjør hva som faktisk produseres, og produksjonsprofilen avgjør hvor dypt vi går. Behold samme harde canonical core. Produser relevante moduler helt. PlaceCard viser 1–4 ferdige samlinger og skal alltid se pent, balansert og stedseget ut. Ingen filler. Ingen tomme kort.**
+**La innholdet følge Badges. Hovedbadge åpner researchuniverset, underbadges former kandidatene, kildene avgjør hvilke medlemmer som kvalifiserer, og produksjonsprofilen avgjør hvor dypt vi går. Alle fulle ordinære Places viser People, Objects, Brands og kategoriens eget uttrykk i fire ferdige flater. Related er aldri en samling. Ingen filler. Ingen tomme kort.**

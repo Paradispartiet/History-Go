@@ -84,10 +84,11 @@ test("backlog closes all five content findings and queues manual re-QA", () => {
 });
 
 test("contracts preserve legacy evidence while keeping the visual grid full", () => {
-  assert.match(contract, /alltid en full, fast 2 × 2-komposisjon/i);
+  assert.match(contract, /alltid nøyaktig fire ferdige innholdssamlinger i et fast 2 × 2-felt/i);
   assert.match(contract, /"place_card_profile"[\s\S]*"collection_ids"/);
-  assert.match(contract, /Objects og Structures kan ha hver sin faste flate/);
-  assert.match(contract, /egen canonical oppføring vises bare som eksplisitt relasjon/);
+  assert.match(contract, /Objects og kategoriuttrykket har tydelig entity-grense/);
+  assert.match(contract, /separat canonical Place forblir eget Place og vises gjennom relasjonssystemet/);
+  assert.match(contract, /Legacy Places kan fortsatt leses gjennom eksisterende kompatibilitetsadapter/);
   assert.match(checklist, /nye\/fullproduserte steder bruker `place_card_profile\.collection_ids`/);
   assert.match(workcard, /Torggata = SLUTTFØRT, MERGET OG DEPLOYET/);
 });

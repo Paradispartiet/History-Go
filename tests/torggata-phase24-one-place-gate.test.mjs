@@ -64,20 +64,24 @@ test("all reopened findings are closed and the six-part score passes", () => {
   });
 });
 
-test("global checklist keeps the adaptive composition and owner boundaries", () => {
+test("global checklist keeps the fixed four-collection composition and owner boundaries", () => {
   const workflow = fs.readFileSync("docs/PLACE_PRODUCTION_CHECKLIST.md", "utf8");
   const checklist = fs.readFileSync("docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md", "utf8");
   const contract = fs.readFileSync("data/places/README_place_rounds.md", "utf8");
 
   assert.match(workflow, /PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1\.md/);
   assert.match(workflow, /Alle faglige, redaksjonelle, faktuelle og subsystemspesifikke krav i referansen er fortsatt bindende/);
-  assert.match(contract, /1–4 ferdige, relevante samlinger/);
-  assert.match(contract, /Badges står separat ved tittelen/);
-  assert.match(contract, /Bilder \/ `images`/);
-  assert.match(workflow, /`place_card_profile\.collection_ids` inneholder \*\*1–4 ferdige, relevante samlinger\*\*/);
+  assert.match(contract, /fullprodusert ordinært Place har alltid nøyaktig fire ferdige innholdssamlinger/i);
+  assert.match(contract, /Badges separat ved stedsoverskriften/);
+  assert.match(contract, /Badge, Quiz, bilder, Stories, Før\/etter, Leksikon, relasjoner og popupfaner teller ikke blant de fire samlingene/);
+  assert.match(workflow, /`place_card_profile\.collection_ids` inneholder \*\*nøyaktig fire ferdige, relevante samlinger\*\*/);
+  assert.match(workflow, /ordinære fullprofiler bruker People, Objects, Brands og kategoriens uttrykk/);
+  assert.match(workflow, /`related` er et relasjons-\/navigasjonssystem og kan aldri brukes som PlaceCard-samling eller reserve/);
+  assert.match(workflow, /fast, balansert 2×2-komposisjon/);
   assert.match(workflow, /ingen tomme PlaceCard-kort er tillatt ved closeout/i);
   assert.match(checklist, /delsted som har egen canonical place-oppføring brukes ikke som primært Før\/etter-stedfortreder/i);
   assert.match(checklist, /Nyheter kan ikke godkjennes som tom\/N\/A/);
   assert.match(checklist, /Lesespor kan ikke godkjennes som tom\/N\/A/);
-  assert.match(checklist, /Objects og Structures\/Bygg brukes ikke som to separate samlinger/);
+  assert.match(checklist, /Objects og kategoriuttrykket har dokumentert entity-grense/);
+  assert.match(checklist, /Kunst kan ha både Objects og Kunstverk/);
 });

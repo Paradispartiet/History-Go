@@ -34,24 +34,17 @@ Canonical PlaceCard-modell for nye og fullproduserte ordinære Places:
 ```text
 Badge ved tittelen
 stående frontImage
-+ 1–4 ferdige, stedstilpassede samlinger
++ nøyaktig fire ferdige, stedstilpassede samlinger
 + tydelig Quiz-handling etter quizkontrakten
 ```
 
-Samlingene velges etter stedets kategori, bekreftede produksjonsprofil, innholdsplan og faktiske canonical data. Kategori er kandidatstyring, ikke en ordre om at alle kandidattyper skal vises.
+Ordinære fullprofiler bruker People, Objects, Brands og kategoriens uttrykk. Nature bruker Kart, Flora, Fauna og Turmål; canonicale spesialprofiler følger sitt faste firersett. Kategori, underbadges og faktiske canonical data styrer hvilke medlemmer som produseres og hvordan kategoriuttrykket konkretiseres. Related er ikke en PlaceCard-samling.
 
-Visuell regel:
+Visuell regel: **fire ferdige samlinger i et fast 2 × 2-felt**.
 
-```text
-1 → stor og sentrert
-2 → balansert par
-3 → 2 + 1
-4 → 2 × 2
-```
+People, Flora og Fauna vises som sirkler. Øvrige samlinger vises som avrundede rektangler.
 
-People, Flora og Fauna vises som sirkler. Øvrige samlinger vises som avrundede rektangler. Færre samlinger skal se kuraterte og komplette ut, ikke som manglende felter.
-
-**Ingen tomme samlingskort ved fullproduksjon.** En valgt samling må ha et ekte canonical medlem og et faktisk lastbart previewbilde. Dersom et sted ikke har et reelt Brand, en kvalifisert person eller en annen kandidat, utelates den samlingen i stedet for å vise tom fallback eller produsere filler.
+**Ingen tomme samlingskort ved fullproduksjon.** Alle fire samlinger må ha ekte canonicale medlemmer og faktiske lastbare previewbilder. Manglende People-, Objects-, Brands- eller kategoriuttrykksinnhold blokkerer fullproduksjonen; samlingen utelates ikke og fylles aldri med filler.
 
 Bilder er medieinnhold. De beholdes i `frontImage`-/medieflaten eller hos riktig bildeeier og kan aldri brukes som en generell reservesamling.
 
@@ -249,7 +242,7 @@ søk og gjenbruk eksisterende research
 → gjør place-spesifikk gap-research
 → produser Universal canonical core
 → produser alle relevante betingede moduler helt
-→ kurater 1–4 ferdige PlaceCard-samlinger
+→ produser og kurater nøyaktig fire ferdige PlaceCard-samlinger
 → anti-generic review
 → individuell manuell QA og merge
 ```

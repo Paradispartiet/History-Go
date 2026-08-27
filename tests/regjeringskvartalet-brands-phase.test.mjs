@@ -7,9 +7,9 @@ const brands = readJson('data/brands/brands_master.json');
 const brandsByPlace = readJson('data/brands/brands_by_place.json');
 const place = readJson('data/places/politikk/oslo/places_politikk/regjeringskvartalet.json');
 const brandRules = readJson('data/brands/brand_rules_v1_1.json');
+const routing = readJson('data/badges/place_production_routing_v1.json');
 const audit = readJson('reports/place-production/regjeringskvartalet-brands-v2.json');
 const roundsContract = fs.readFileSync('data/places/README_place_rounds.md', 'utf8');
-const runtime = fs.readFileSync('js/ui/place-rounds-visual-collections.js', 'utf8');
 const report = fs.readFileSync('reports/place-production/regjeringskvartalet-politikk-v1.md', 'utf8');
 
 const expectedIds = [
@@ -59,17 +59,14 @@ test('Kandidatauditen dokumenterer både inkludering, holdback og logoavgjørels
   assert.match(audit.logo_policy, /Ingen logo er kopiert, generert eller rekonstruert/);
 });
 
-test('PlaceCard-runtime beholder politikk-fallback uten å gjøre kandidatsettet til en innholdskvote', () => {
-  assert.match(roundsContract, /\| `politikk` \| People, Objects, Related \|/);
-  assert.match(roundsContract, /Kategoriens default brukes til legacy-kompatibilitet og research-ruting/);
-  assert.match(roundsContract, /Fullproduksjon velger bare samlinger som faktisk passer stedet/);
-  assert.match(runtime, /politikk:\s*["']related["']/);
-  assert.match(runtime, /GENERAL_BASE = Object\.freeze\(\["people", "objects", "brands"\]\)/);
-  assert.match(runtime, /return normalizedFullGridIds\(place\)/);
-  assert.match(runtime, /const categoryId = requestedCategory \|\| preferredCategoryCollectionId\(place\)/);
-  assert.doesNotMatch(runtime, /id:"images"/);
-  assert.doesNotMatch(runtime, /id:\s*["'](?:civication|works|details|spots)["']/);
-  assert.doesNotMatch(runtime, /regjeringskvartalet/);
+test('Politikk følger firefeltskontrakten med hendelser og vedtak som kategoriuttrykk', () => {
+  assert.match(roundsContract, /\| `politikk` \| People · Objects · Brands · Productions \| \*\*Hendelser og vedtak\*\* \|/);
+  assert.deepEqual(routing.badges.politikk.candidate_collections, [
+    'people', 'objects', 'brands', 'productions'
+  ]);
+  assert.equal(routing.rules.full_place_collection_count, 4);
+  assert.equal(routing.rules.related_is_placecard_collection, false);
+  assert.match(roundsContract, /Related er ikke en PlaceCard-samling/);
 });
 
 test('Rapporten markerer Brands, Quiz og samlet sluttkontroll som ferdig', () => {
