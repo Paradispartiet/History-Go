@@ -47,6 +47,18 @@ jobs:
           }
           source = source.replaceAll("intent:'approve'", "intent:'execute'");
 
+          for (const [legacyId, canonicalId] of [
+            ['venn', 'programleder_privathjem_venn'],
+            ['familie', 'programleder_privathjem_familie']
+          ]) {
+            const anchor = `person('${legacyId}',`;
+            const matches = source.split(anchor).length - 1;
+            if (matches !== 1) {
+              throw new Error(`Expected exactly one recurring-person archetype ${legacyId}, found ${matches}`);
+            }
+            source = source.replace(anchor, `person('${canonicalId}',`);
+          }
+
           const fieldsStartMarker = "  fields: {\n    authority_context: {";
           const scenesMarker = "\n});\n\nconst scenes =";
           const fieldsStart = source.lastIndexOf(fieldsStartMarker);
