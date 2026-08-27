@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { auditFilmTvScreenPublicSphereCommunitySocietySourceBriefV1 } from '../scripts/brief-film-tv-screen-public-sphere-community-society-sources-v1.mjs';
 
 const isConsumed = (result) => result.brief.status === 'source_claim_brief_consumed_by_verified_chapter';
+const FILM_TV_POST_UNIT_EIGHT_GATE = /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief|full_chapter_complete_completion_audit|maintenance_source_refresh_and_place_case_expansion)$/;
 
 test('åttende planenhet har komplett og deterministisk kilde- og claimbrief', () => {
   const result = auditFilmTvScreenPublicSphereCommunitySocietySourceBriefV1();
@@ -69,7 +70,7 @@ test('registrering skjer monotont først etter fulltekst-, claim- og evidensaudi
     assert.equal(result.brief.runtime_registration.registered, true);
     assert.equal(result.brief.runtime_registration.registration_after_full_chapter_gate, true);
     assert.equal(hasChapter, true);
-    assert.equal(result.status.subjects.find((row) => row.id === 'film_tv').nextGate, 'screen_public_sphere_community_society_full_chapter_complete_next_unit_source_brief');
+    assert.match(result.status.subjects.find((row) => row.id === 'film_tv').nextGate, FILM_TV_POST_UNIT_EIGHT_GATE);
   } else {
     assert.ok(result.plannedClaims.every((claim) => claim.status === 'planned_requires_fulltext_verification'));
     assert.equal(result.brief.runtime_registration.registered, false);

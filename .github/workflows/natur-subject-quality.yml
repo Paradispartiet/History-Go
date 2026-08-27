@@ -4,7 +4,7 @@ on:
   pull_request:
     paths:
       - 'data/fag/natur/**'
-      - 'data/fagverk/**'
+      - 'data/fagverk/natur/**'
       - 'js/fagverk-subject-core.js'
       - 'js/fagverk.js'
       - 'scripts/materialize-natur-biology-phase-1.mjs'
@@ -26,7 +26,7 @@ on:
     branches: [main]
     paths:
       - 'data/fag/natur/**'
-      - 'data/fagverk/**'
+      - 'data/fagverk/natur/**'
       - 'js/fagverk-subject-core.js'
       - 'js/fagverk.js'
       - 'scripts/materialize-natur-biology-phase-1.mjs'
@@ -44,6 +44,10 @@ on:
       - 'reports/fagverk/natur-universal-coverage-audit.json'
       - 'reports/fagverk/natur-pilot-audit.json'
       - '.github/workflows/natur-subject-quality.yml'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   quality:

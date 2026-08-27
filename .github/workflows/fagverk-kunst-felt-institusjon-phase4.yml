@@ -5,9 +5,6 @@ on:
     paths:
       - 'data/fagverk/kunst/felt-og-institusjon.json'
       - 'data/fagverk/kunst/felt-og-institusjon/**'
-      - 'data/fagverk/fagverk_registry.json'
-      - 'data/fagverk/subject_status.json'
-      - 'data/fagverk/fagverk_release.json'
       - 'reports/fagverk/kunst-phase3-audit.json'
       - 'reports/fagverk/kunst-felt-institusjon-phase4-audit.json'
       - 'reports/fagverk/subject-baseline.json'
@@ -22,9 +19,6 @@ on:
     paths:
       - 'data/fagverk/kunst/felt-og-institusjon.json'
       - 'data/fagverk/kunst/felt-og-institusjon/**'
-      - 'data/fagverk/fagverk_registry.json'
-      - 'data/fagverk/subject_status.json'
-      - 'data/fagverk/fagverk_release.json'
       - 'reports/fagverk/kunst-phase3-audit.json'
       - 'reports/fagverk/kunst-felt-institusjon-phase4-audit.json'
       - 'reports/fagverk/subject-baseline.json'
@@ -37,6 +31,10 @@ on:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   audit:

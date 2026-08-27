@@ -6,10 +6,9 @@ on:
       - 'fagverk.html'
       - 'fagverk-forside.html'
       - 'data/categories/category_contract.json'
-      - 'data/fag/fag_manifest.json'
       - 'data/fag/religion/**'
       - 'data/badges/religion.json'
-      - 'data/fagverk/**'
+      - 'data/fagverk/religion/**'
       - 'js/fagverk-subject-core.js'
       - 'js/fagverk-subject-model.js'
       - 'js/fagverk.js'
@@ -55,7 +54,7 @@ on:
     paths:
       - 'data/fag/religion/**'
       - 'data/badges/religion.json'
-      - 'data/fagverk/**'
+      - 'data/fagverk/religion/**'
       - 'scripts/audit-fagverk-religion-pilot.mjs'
       - 'scripts/audit-fagverk-religion-university-readiness.mjs'
       - 'scripts/audit-fagverk-religion-theory-method-articles-v1.mjs'
@@ -91,6 +90,10 @@ on:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   validate:

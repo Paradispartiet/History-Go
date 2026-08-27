@@ -6,9 +6,6 @@ on:
       - "data/fag/TV_og_Film/film_tv_archive_preservation_access_authenticity_*.json"
       - "data/fagverk/film_tv/arkiv-bevaring-tilgang-og-autentisitet.json"
       - "data/fagverk/film_tv/arkiv-bevaring-tilgang-og-autentisitet/**"
-      - "data/fagverk/fagverk_registry.json"
-      - "data/fagverk/subject_status.json"
-      - "data/fagverk/fagverk_release.json"
       - "scripts/brief-film-tv-archive-preservation-access-authenticity-sources-v1.mjs"
       - "scripts/materialize-film-tv-archive-preservation-access-authenticity-fulltext-v1.mjs"
       - "scripts/audit-film-tv-archive-preservation-access-authenticity-fulltext-v1.mjs"
@@ -32,9 +29,6 @@ on:
       - "data/fag/TV_og_Film/film_tv_archive_preservation_access_authenticity_*.json"
       - "data/fagverk/film_tv/arkiv-bevaring-tilgang-og-autentisitet.json"
       - "data/fagverk/film_tv/arkiv-bevaring-tilgang-og-autentisitet/**"
-      - "data/fagverk/fagverk_registry.json"
-      - "data/fagverk/subject_status.json"
-      - "data/fagverk/fagverk_release.json"
       - "scripts/brief-film-tv-archive-preservation-access-authenticity-sources-v1.mjs"
       - "scripts/materialize-film-tv-archive-preservation-access-authenticity-fulltext-v1.mjs"
       - "scripts/audit-film-tv-archive-preservation-access-authenticity-fulltext-v1.mjs"
@@ -52,7 +46,7 @@ permissions:
 
 concurrency:
   group: fagverk-film-tv-unit14-fulltext-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   validate:

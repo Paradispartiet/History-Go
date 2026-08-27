@@ -7,10 +7,9 @@ on:
       - "fagverk.html"
       - "fagverk-forside.html"
       - "data/categories/category_contract.json"
-      - "data/fag/fag_manifest.json"
       - "data/fag/psykologi/**"
       - "data/badges/psykologi.json"
-      - "data/fagverk/**"
+      - "data/fagverk/psykologi/**"
       - "js/fagverk-subject-core.js"
       - "js/fagverk-subject-model.js"
       - "js/fagverk.js"
@@ -78,7 +77,7 @@ on:
     paths:
       - "data/fag/psykologi/**"
       - "data/badges/psykologi.json"
-      - "data/fagverk/**"
+      - "data/fagverk/psykologi/**"
       - "scripts/audit-fagverk-psykologi-phase3.mjs"
       - "scripts/materialize-psykologi-psykisk-helse-institusjoner-behandling-phase4.mjs"
       - "scripts/enrich-psykologi-psykisk-helse-source-evidence-phase4.mjs"
@@ -135,11 +134,11 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: fagverk-psykologi-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   validate:
@@ -148,7 +147,6 @@ jobs:
     steps:
       - uses: actions/checkout@v5
         with:
-          ref: ${{ github.head_ref || github.ref_name }}
           fetch-depth: 0
       - uses: actions/setup-node@v5
         with:
@@ -230,8 +228,8 @@ jobs:
           node scripts/audit-fagverk-subject-inventory.mjs
           node scripts/audit-fagverk-general-engine.mjs
 
-      - name: Build deterministic Fagverk release
-        run: node scripts/build-fagverk-release-manifest.mjs
+      - name: Verify deterministic Fagverk release
+        run: node scripts/build-fagverk-release-manifest.mjs --check
 
       - name: Validate Fagverk and Psychology contracts
         run: |
@@ -315,56 +313,11 @@ jobs:
       - name: Verify deterministic release
         run: node scripts/build-fagverk-release-manifest.mjs --check
 
-      - name: Materialize generated Psychology files on PR branch
-        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
-        env:
-          HEAD_BRANCH: ${{ github.head_ref }}
+      - name: Reject uncommitted generated Psychology changes
         run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add \
-            data/fag/psykologi/psykologi_university_readiness_v1.json \
-            data/fag/psykologi/begreper_psykologi_canonical_v1.json \
-            data/fag/psykologi/anvendte_fagfelt_psykologi_university_v1.json \
-            data/fagverk/psykologi/psykisk-helse-institusjoner-og-behandling.json \
-            data/fagverk/psykologi/psykisk-helse-institusjoner-og-behandling \
-            data/fagverk/psykologi/fagtradisjoner-teori-og-sinnet.json \
-            data/fagverk/psykologi/fagtradisjoner-teori-og-sinnet \
-            data/fagverk/psykologi/utvikling-oppvekst-og-laring.json \
-            data/fagverk/psykologi/utvikling-oppvekst-og-laring \
-            data/fagverk/psykologi/kognisjon-folelser-og-atferd.json \
-            data/fagverk/psykologi/kognisjon-folelser-og-atferd \
-            data/fagverk/psykologi/sosialpsykologi-normalitet-og-stigma.json \
-            data/fagverk/psykologi/sosialpsykologi-normalitet-og-stigma \
-            data/fagverk/psykologi/traume-krise-resiliens-og-omsorg.json \
-            data/fagverk/psykologi/traume-krise-resiliens-og-omsorg \
-            data/fagverk/psykologi/emneartikler \
-            data/fagverk/fagverk_registry.json \
-            data/fagverk/subject_status.json \
-            data/fagverk/fagverk_release.json \
-            reports/fagverk/subject-baseline.json \
-            reports/fagverk/general-engine-audit.json \
-            reports/fagverk/psykologi-phase3-audit.json \
-            reports/fagverk/psykologi-psykisk-helse-phase4-audit.json \
-            reports/fagverk/psykologi-fagtradisjoner-teori-phase4-audit.json \
-            reports/fagverk/psykologi-utvikling-oppvekst-laring-phase4-audit.json \
-            reports/fagverk/psykologi-kognisjon-folelser-atferd-phase4-audit.json \
-            reports/fagverk/psykologi-sosialpsykologi-normalitet-stigma-phase4-audit.json \
-            reports/fagverk/psykologi-traume-krise-resiliens-omsorg-phase4-audit.json \
-            reports/fagverk/psykologi-complete-audit.json \
-            reports/fagverk/psykologi-biological-university-audit.json \
-            reports/fagverk/psykologi-cognitive-university-audit.json \
-            reports/fagverk/psykologi-developmental-university-audit.json \
-            reports/fagverk/psykologi-social-university-audit.json \
-            reports/fagverk/psykologi-personality-university-audit.json \
-            reports/fagverk/psykologi-history-science-theory-university-audit.json \
-            reports/fagverk/psykologi-topic-articles-mental-health-v1-audit.json \
-            reports/fagverk/psykologi-university-completion-v1-audit.json \
-            reports/fagverk/psykologi-editorial-quality-v2-audit.json \
-            reports/fagverk/psykologi-university-readiness-audit.json
-          if git diff --cached --quiet; then
-            echo 'Psychology materialization already matches.'
-            exit 0
+          if [ -n "$(git status --porcelain)" ]; then
+            git status --short
+            git diff --stat
+            echo 'Run the deterministic Psychology generators locally and commit their outputs.' >&2
+            exit 1
           fi
-          git commit -m 'Materialize Psychology university-readiness baseline'
-          git push origin "HEAD:${HEAD_BRANCH}"

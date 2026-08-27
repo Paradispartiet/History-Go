@@ -10,7 +10,7 @@ on:
       - 'data/categories/category_contract.json'
       - 'data/fag/fag_manifest.json'
       - 'data/fag/fagverk_theory_quality_contract_v1.json'
-      - 'data/fagverk/**'
+      - 'data/fagverk/*/**'
       - 'data/places/**'
       - 'data/badges/**'
       - 'data/fag/politikk/merke_politikk.html'
@@ -86,6 +86,10 @@ on:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   documentation-contract:

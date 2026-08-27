@@ -15,7 +15,7 @@ on:
       - 'js/politikk-fagportal.js'
       - 'docs/POLITIKK_CURRICULUM_ARCHITECTURE_V1.md'
       - 'data/badges/politikk.json'
-      - 'data/fagverk/**'
+      - 'data/fagverk/politikk/**'
       - 'scripts/audit-politikk-subject-quality.mjs'
       - 'scripts/audit-politikk-thinker-integrity.mjs'
       - 'tools/audit-politikk-theory-integrity.mjs'
@@ -81,7 +81,7 @@ on:
       - 'js/politikk-fagportal.js'
       - 'docs/POLITIKK_CURRICULUM_ARCHITECTURE_V1.md'
       - 'data/badges/politikk.json'
-      - 'data/fagverk/**'
+      - 'data/fagverk/politikk/**'
       - 'scripts/audit-politikk-subject-quality.mjs'
       - 'scripts/audit-politikk-thinker-integrity.mjs'
       - 'tools/audit-politikk-theory-integrity.mjs'
@@ -132,6 +132,10 @@ on:
       - 'reports/fagverk/politikk-forvaltning-audit.json'
       - 'reports/fagverk/politikk-parlamentarisme-audit.json'
       - '.github/workflows/politikk-subject-quality.yml'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   quality:

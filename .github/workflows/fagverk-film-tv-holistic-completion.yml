@@ -4,7 +4,7 @@ on:
   pull_request:
     paths:
       - "data/fag/TV_og_Film/**"
-      - "data/fagverk/**"
+      - "data/fagverk/film_tv/**"
       - "scripts/audit-film-tv-holistic-completion-v1.mjs"
       - "scripts/audit-film-tv-cultural-heritage-canon-stars-memory-editorial-v1.mjs"
       - "scripts/audit-film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.mjs"
@@ -26,7 +26,7 @@ on:
     branches: [main]
     paths:
       - "data/fag/TV_og_Film/**"
-      - "data/fagverk/**"
+      - "data/fagverk/film_tv/**"
       - "scripts/audit-film-tv-holistic-completion-v1.mjs"
       - "scripts/audit-film-tv-cultural-heritage-canon-stars-memory-editorial-v1.mjs"
       - "scripts/audit-film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.mjs"
@@ -48,6 +48,10 @@ on:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   validate:

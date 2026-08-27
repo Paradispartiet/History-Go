@@ -28,6 +28,10 @@ on:
       - 'tests/fagverk-subject-inventory.test.mjs'
       - '.github/workflows/fagverk-inventory.yml'
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   audit:
     name: Validate all-subject inventory and living baseline
