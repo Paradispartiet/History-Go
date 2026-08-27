@@ -2,6 +2,7 @@
 import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
+import { auditLilleborgCompletion } from "../scripts/audit-lilleborg-fabrikker-completion.mjs";
 
 const root = process.cwd();
 const verifiedAt = "2026-08-27";
@@ -45,7 +46,10 @@ const urls = {
   portrait: "https://commons.wikimedia.org/wiki/File:Peter_Wessel_Wind_Kildal.jpg",
   portraitMuseum: "https://digitaltmuseum.no/021046786111/grosserer-p-w-w-kildal-xylografi",
   lano: "https://commons.wikimedia.org/wiki/File:Lilleborg_Lano.jpg",
-  greenSoapSign: "https://commons.wikimedia.org/wiki/File:Reklameskilt_Lilleborg_Gronnsepe.jpg"
+  greenSoapSign: "https://commons.wikimedia.org/wiki/File:Reklameskilt_Lilleborg_Gronnsepe.jpg",
+  adamSmith: "https://www.gutenberg.org/files/3300/3300-h/3300-h.htm",
+  schumpeter: "https://archive.org/details/in.ernet.dli.2015.190072",
+  productivityMethod: "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/labourproductivity/methodologies/labourproductivityqmi"
 };
 
 const placeFile = "data/places/naeringsliv/oslo/places_naeringsliv/lilleborg_fabrikker.json";
@@ -239,13 +243,16 @@ brandsByPlace[placeId] = [brandId];
 write("data/brands/brands_by_place.json", brandsByPlace);
 
 const sourceLinks = [
-  { type: "source", label: "Oslo byleksikon – Lilleborg Fabrikker", url: urls.byleksikon, verifiedAt },
-  { type: "source", label: "Store norske leksikon – Peter Wessel Wind Kildal", url: urls.snlKildal, verifiedAt },
-  { type: "museum", label: "Industrimuseum – Lilleborg Fabrikker", url: urls.industrimuseum, verifiedAt },
-  { type: "official", label: "Orkla – salget av Lilleborg", url: urls.orklaSale, verifiedAt },
-  { type: "official", label: "Solenis – oppkjøpet av Lilleborg", url: urls.solenis, verifiedAt },
-  { type: "image_source", label: "Wikimedia Commons – kontorbygningen", url: urls.currentPhoto, verifiedAt },
-  { type: "historical_image", label: "DigitaltMuseum – industribygninger omkring 1930", url: urls.historicalPhoto, verifiedAt }
+  { id: "source_lilleborg_byleksikon", type: "source", label: "Oslo byleksikon – Lilleborg Fabrikker", url: urls.byleksikon, verifiedAt },
+  { id: "source_lilleborg_snl_kildal", type: "source", label: "Store norske leksikon – Peter Wessel Wind Kildal", url: urls.snlKildal, verifiedAt },
+  { id: "source_lilleborg_industrimuseum", type: "museum", label: "Industrimuseum – Lilleborg Fabrikker", url: urls.industrimuseum, verifiedAt },
+  { id: "source_lilleborg_orkla", type: "official", label: "Orkla – salget av Lilleborg", url: urls.orklaSale, verifiedAt },
+  { id: "source_lilleborg_solenis", type: "official", label: "Solenis – oppkjøpet av Lilleborg", url: urls.solenis, verifiedAt },
+  { id: "source_adam_smith_wealth_nations", type: "primary_text", label: "Adam Smith – The Wealth of Nations, bok I", url: urls.adamSmith, verifiedAt },
+  { id: "source_schumpeter_creative_destruction", type: "primary_text", label: "Joseph Schumpeter – Capitalism, Socialism and Democracy", url: urls.schumpeter, verifiedAt },
+  { id: "source_ons_labour_productivity_qmi", type: "official_method", label: "Office for National Statistics – Labour productivity QMI", url: urls.productivityMethod, verifiedAt },
+  { id: "source_lilleborg_current_image", type: "image_source", label: "Wikimedia Commons – kontorbygningen", url: urls.currentPhoto, verifiedAt },
+  { id: "source_lilleborg_historical_image", type: "historical_image", label: "DigitaltMuseum – industribygninger omkring 1930", url: urls.historicalPhoto, verifiedAt }
 ];
 const chronology = [
   [1812, "Tekstilfabrikk", "Ludvig Mariboe opprettet en tekstilfabrikk på den eldre industrieiendommen."],
@@ -264,14 +271,121 @@ const chronology = [
   [2024, "Solenis overtar", "Solenis kjøpte den videreførte profesjonelle rengjøringsvirksomheten Lilleborg fra Orkla."]
 ].map(([year, title, desc], index) => ({ id: `chrono_lilleborg_${year}_${index + 1}`, year, title, desc, confidence: "high", sources: [{ title: year === 2024 ? "Solenis" : "Oslo byleksikon", url: year === 2024 ? urls.solenis : urls.byleksikon }] }));
 const leksikonFile = "data/leksikon/places/oslo/naeringsliv/leksikon_lilleborg_fabrikker.json";
+const scholarlyArticle = {
+  definition: "Lilleborg Fabrikker er her definert som det stedbundne olje-, såpe- og vaskemiddelindustrianlegget ved Sandaker i perioden da A/S Lilleborg Fabriker eksisterte og produserte på stedet, ikke som hele Lilleborg-strøket eller som den senere selskapsvirksomheten utenfor Sandaker.",
+  historical_or_systemic_background: [
+    "Stedet fikk flere økonomiske lag før aksjeselskapet: tekstilproduksjon fra 1812, oljemølle fra 1833 og såpeproduksjon fra 1842. Peter Wessel Wind Kildal overtok i 1863, mens 1897 markerer omdanningen til A/S Lilleborg Fabriker. Årstallene svarer derfor på forskjellige spørsmål om eiendom, produksjon og selskapsform.",
+    "Produksjonen bandt fett og oljer til kjemiske prosesser, arbeid, emballasje, merkevarer og distribusjon. De-No-Fa-samarbeidet fra 1925 og Unilevers deleierskap fra 1930 viser hvordan kontroll over kapital, varemerker og produksjonsmetoder kunne krysse landegrenser, mens produksjonen fortsatt var fysisk forankret ved Akerselva."
+  ],
+  theories_researchers_and_findings: [
+    {
+      id: "framework_smith_division_of_labour",
+      title: "Arbeidsdeling som analytisk linse",
+      researcher: "Adam Smith",
+      work: "An Inquiry into the Nature and Causes of the Wealth of Nations, bok I",
+      status: "analytical_lens_not_causal_claim",
+      content: "Adam Smiths analyse av arbeidsdeling gjør det mulig å spørre hvordan Lilleborg delte en forbruksvarekjede i råvarebehandling, kjemiske prosesser, pakking, merkevarearbeid og distribusjon. Kildene dokumenterer leddene, men ikke bemanning, tidsbruk eller produktivitetsvirkning godt nok til å bevise at arbeidsdeling alene forklarte veksten.",
+      claim_ids: ["claim_lilleborg_fabrikker_value_chain"],
+      source_ids: ["source_adam_smith_wealth_nations", "source_lilleborg_byleksikon"]
+    },
+    {
+      id: "framework_schumpeter_creative_destruction",
+      title: "Kreativ destruksjon og stedsskifte",
+      researcher: "Joseph Schumpeter",
+      work: "Capitalism, Socialism and Democracy",
+      status: "analytical_lens_not_causal_claim",
+      content: "Joseph Schumpeters begrep kreativ destruksjon kan belyse at gammel produksjon forsvinner mens kapital, merkevarer og arealer får nye former: produksjonen flyttet i 1997, boligomformingen fulgte, og Lilleborg-navnet fortsatte i en annen selskapslinje. Begrepet ordner forløpet, men dokumenterer ikke hvorfor beslutningene ble tatt eller hvem som vant og tapte.",
+      claim_ids: ["claim_lilleborg_fabrikker_closure_reuse", "claim_lilleborg_fabrikker_company_2024"],
+      source_ids: ["source_schumpeter_creative_destruction", "source_lilleborg_byleksikon", "source_lilleborg_solenis"]
+    }
+  ],
+  methods_and_limitations: [
+    {
+      id: "method_lilleborg_value_chain",
+      method_id: "met_naering_logistikk_og_verdikjedeanalyse",
+      method: "Logistikk- og verdikjedeanalyse",
+      application: "Analysen følger dokumenterte innsatsfaktorer og ledd fra fett og oljer via produksjon, emballasje og merkevarer til distribuerte såpe- og vaskemiddelprodukter.",
+      limitations: "Kildene gir ikke en komplett leverandørliste, transportserie eller oversikt over retur og avfall. Verdikjeden kan derfor beskrives, men ikke tallfestes eller behandles som uendret gjennom hele perioden.",
+      claim_ids: ["claim_lilleborg_fabrikker_value_chain"],
+      source_ids: ["source_lilleborg_byleksikon", "source_lilleborg_industrimuseum"]
+    },
+    {
+      id: "method_lilleborg_productivity",
+      method_id: "met_naering_statistikk_og_indikatoranalyse",
+      method: "Statistikk- og indikatoranalyse",
+      application: "Produktivitet må i prinsippet sammenholde et definert resultat med en definert innsats, for eksempel produsert volum mot arbeidstid, og krever sammenlignbare måleenheter over tid.",
+      limitations: "Lilleborg-kildene mangler sammenlignbare serier for volum, arbeidstimer, kvalitet og kapital. Artikkelen kan derfor ikke beregne produktivitet eller bruke eierskifte og produksjonsstopp som erstatning for slike mål.",
+      claim_ids: ["claim_lilleborg_fabrikker_value_chain", "claim_lilleborg_fabrikker_closure_reuse"],
+      source_ids: ["source_ons_labour_productivity_qmi", "source_lilleborg_byleksikon"]
+    },
+    {
+      id: "method_lilleborg_change",
+      method_id: "met_naering_omstilling_og_endringsanalyse",
+      method: "Omstillings- og endringsanalyse",
+      application: "Metoden skiller mellom den dokumenterte rekkefølgen—produksjonsstopp, flytting, boligomforming og senere selskapsoppkjøp—og påstander om årsak eller samlet virkning.",
+      limitations: "De brukte kildene fastslår ikke én årsak til flyttingen eller omformingen og gir ikke grunnlag for å beregne tapte arbeidsplasser, ny eiendomsverdi eller fordelingsvirkninger.",
+      claim_ids: ["claim_lilleborg_fabrikker_closure_reuse", "claim_lilleborg_fabrikker_company_2024"],
+      source_ids: ["source_lilleborg_byleksikon", "source_lilleborg_orkla", "source_lilleborg_solenis"]
+    }
+  ],
+  boundaries_and_disagreements: [
+    {
+      id: "disagreement_lilleborg_start_year",
+      title: "Hva betyr grunnlagt?",
+      content: "1833 kan brukes om oljemøllens start, 1842 om såpeproduksjonen og 1897 om aksjeselskapet. Uenigheten løses ikke ved å velge ett år for alt: denne Place-identiteten bruker 1897, mens de eldre årene beholdes som dokumenterte virksomhetslag.",
+      claim_ids: ["claim_lilleborg_fabrikker_identity", "claim_lilleborg_fabrikker_prehistory"],
+      source_ids: ["source_lilleborg_byleksikon"]
+    },
+    {
+      id: "disagreement_lilleborg_change_causality",
+      title: "Innovasjon, konsernstrategi eller eiendomsomforming?",
+      content: "Et schumpeteriansk perspektiv framhever utskifting av produksjonsformer, mens en stedlig omstillingsanalyse spør hvem som kontrollerte flytting og ny arealbruk. Kildene dokumenterer rekkefølgen, men ikke én avgjørende årsak; teknologi, marked, konsernstrategi og byutvikling forblir alternative forklaringer.",
+      claim_ids: ["claim_lilleborg_fabrikker_ownership", "claim_lilleborg_fabrikker_closure_reuse"],
+      source_ids: ["source_schumpeter_creative_destruction", "source_lilleborg_byleksikon"]
+    }
+  ],
+  documented_cases_or_teaching_scenarios: [
+    {
+      id: "case_lilleborg_wartime_supply",
+      kind: "documented_case",
+      title: "Krigstidens forsyningsdilemma",
+      analysis: "Under andre verdenskrig produserte Lilleborg både fett til okkupasjonsmakten og såpevarer som sivile trengte. Motstandsbevegelsens motstand mot sabotasje viser et dokumentert fordelingsproblem: samme anlegg kunne ha militær nytte og samtidig være nødvendig for sivil forsyning.",
+      claim_ids: ["claim_lilleborg_fabrikker_wartime"],
+      source_ids: ["source_lilleborg_byleksikon"]
+    },
+    {
+      id: "case_lilleborg_closure_reuse",
+      kind: "documented_case",
+      title: "Fra produksjonsgrunn til boligområde",
+      analysis: "Produksjonen på Sandaker sluttet i 1997 og ble flyttet til Ski; i 2000–03 ble store deler av fabrikkarealet omformet til boliger. Caset dokumenterer et funksjonsskifte i stedet, men kildene tallfester ikke arbeidsplasstap, eiendomsgevinst eller sosial fordeling.",
+      claim_ids: ["claim_lilleborg_fabrikker_closure_reuse"],
+      source_ids: ["source_lilleborg_byleksikon"]
+    }
+  ],
+  key_questions: [
+    "Hvilke arbeidstrinn og aktører bandt råvarer, kjemisk prosess, emballasje, merkevare og distribusjon sammen ved Lilleborg?",
+    "Hva endret eierskapssamarbeidene i 1925 og 1930, og hva kan kildene ikke fortelle om makt, lønn og produktivitet?",
+    "Hvem bar kostnadene og hvem fikk verdien da produksjonen flyttet og fabrikkarealet ble omformet til boliger?",
+    "Hvilke bevarte bygg og hvilke tapte produksjonsdeler må leses sammen for å forstå stedet i dag?"
+  ],
+  source_ids: sourceLinks.filter(source => !source.type.includes("image")).map(source => source.id),
+  claim_ids: ["identity", "prehistory", "kildal", "value_chain", "ownership", "wartime", "building", "closure_reuse", "company_2024", "coordinate"].map(id => `claim_${placeId}_${id}`)
+};
 write(leksikonFile, {
   place_id: placeId, title: "Lilleborg Fabrikker", type: "main", version: 1, visual: { designCode: "article_place_essay_miniature" },
   popupDesc: "Et forbruksvareindustristed der olje, såpe, merkevarer, internasjonalt eierskap og boligomforming kan leses i samme område.",
   wikiText: [
-    "A/S Lilleborg Fabriker ble grunnlagt i 1897 som videreføring av et industristed med tekstilfabrikk fra 1812, oljemølle fra 1833 og såpefabrikk fra 1842. Peter Wessel Wind Kildal overtok i 1863 og konsentrerte driften om lampeolje og såpe.",
-    "Samarbeidet med De-No-Fa fra 1925 og Unilevers deleierskap fra 1930 koblet Lilleborg til nye varemerker, produksjonsmetoder og internasjonalt eierskap. Fabrikken produserte både for sivile og okkupasjonsmakten under andre verdenskrig.",
-    "Produksjonen på Sandaker sluttet i 1997 og ble flyttet til Ski. Store deler av området ble omformet til boliger i 2000–03, mens blant annet kontorbygningen fra 1916 og enkelte industrideler ble bevart."
+    scholarlyArticle.definition,
+    ...scholarlyArticle.historical_or_systemic_background,
+    scholarlyArticle.theories_researchers_and_findings[0].content,
+    scholarlyArticle.theories_researchers_and_findings[1].content,
+    "Kildenes viktigste funn er at produksjonsstedet, selskapet og merkevaren ikke er samme enhet. De-No-Fa og Unilever endret eierskaps- og kunnskapsforbindelser, mens produksjonen fortsatt lå på Sandaker; etter 1997 fortsatte Lilleborg-navnet uten at fabrikken ble gjenåpnet der.",
+    scholarlyArticle.methods_and_limitations.map(item => `${item.method}: ${item.application} Begrensning: ${item.limitations}`).join(" "),
+    scholarlyArticle.boundaries_and_disagreements.map(item => `${item.title}: ${item.content}`).join(" "),
+    ...scholarlyArticle.documented_cases_or_teaching_scenarios.map(item => `${item.title}: ${item.analysis}`),
+    `Nøkkelspørsmål: ${scholarlyArticle.key_questions.join(" ")}`
   ],
+  scholarly_article: scholarlyArticle,
   summary: { one_liner: "Olje- og såpeindustristed ved Akerselva, omformet til boligområde etter produksjonsstopp i 1997.", themes: ["forbruksvareindustri", "arbeid", "merkevarer", "eierskap", "omstilling"], tone: ["nøktern", "stedsspesifikk"] },
   facts: [
     { id: "fact_lilleborg_grunnlagt", label: "Aksjeselskapet", desc: "A/S Lilleborg Fabriker ble grunnlagt i 1897 som videreføring av eldre fabrikkvirksomhet.", confidence: "high", sources: [{ title: "Oslo byleksikon", url: urls.byleksikon }] },
@@ -539,20 +653,20 @@ write("data/places/naeringsliv-production/lilleborg_fabrikker.json", {
   review: { reviewer: "History GO Næringsliv source audit", reviewedAt: verifiedAt, notes: "Stedsidentitet, forhistoriske tidslag, forbruksvarekjede, arbeid, merkevarer, eierskap, krigstid, produksjonsstopp, omforming, målegrenser og 2024-selskapsstatus er kontrollert." }
 });
 
+const completionAudit = auditLilleborgCompletion({ root });
 write("reports/place-production/lilleborg-fabrikker-phase1-24-gate-audit-v1.json", {
   schema: "history_go_phase1_24_quality_gate_v1", place_id: placeId, verified_at: verifiedAt,
   null_measurement: { existing_place: true, canonical_id_reused: placeId, coordinate_changed: false, coordinate_status_preserved: "verified", existing_quiz_audit: "5 flat questions plus 5x6 merged set file", brand_candidate_audited: brandId, removed_unverified_people: ["alf_bjercke_industri_og_kvalitet – ingen kildebelagt Lilleborg-rolle i eksisterende profil"], held_back_persons: ["Ludvig Mariboe – dokumentert i forhistorien, men ikke nødvendig for 1897-identiteten i denne produksjonen", "Birger Kildal – knyttet til familievirksomheten, men holdes utenfor til egen identitetspakke er kildebelagt"], before_after_exact_pair: false },
   source_conflicts: [{ claim: "Lilleborg ble grunnlagt i 1833.", status: "resolved", reason: "1833 gjelder oljemøllen; A/S Lilleborg Fabriker ble grunnlagt i 1897. 1812 og 1842 beskriver andre virksomhetslag på stedet." }, { claim: "Alf Bjercke var kvalitets- og produksjonsleder ved Lilleborg.", status: "rejected", reason: "Den eksisterende People-posten manglet kilder, datoer og dokumentert rolle ved Lilleborg og er derfor fjernet." }, { claim: "Solenis driver fabrikkproduksjon på Sandaker etter oppkjøpet i 2024.", status: "rejected", reason: "Orkla og Solenis dokumenterer selskapsoppkjøpet; Oslo byleksikon dokumenterer at produksjonen på Sandaker sluttet i 1997." }],
-  quality_score: {
-    correctness_and_evidence: { score: 5, note: "Sted, Kildal-profil, brand, produktobjekt, bilder, uendret koordinat, 28 quizspørsmål og 2024-selskapsstatus har inspiserbare kilder; tre konflikter er eksplisitt løst." },
-    coverage_and_completion: { score: 5, note: "Identitet, koordinat, fire bildeklare samlinger, Badge/Fagverk, quiz, popup, 14-punkts kronologi, språk, story, fire lesespor, People og Brand er materialisert." },
-    editorial_quality: { score: 5, note: "Tidslag og forbruksvarekjede binder sammen arbeid, råvarer, merkevarer, krigstid, eierskap og boligomforming uten å blande historisk sted og dagens selskap." },
-    technical_integrity: { score: 5, note: "Én deterministisk builder, normal 4x7-quiz, v4.2-description packet, næringslivspakke, People-claims og fokuserte tester låser leveransen." },
-    safety_and_responsibility: { score: 5, note: "Museums- og eiendomstilgang respekteres, alle bilder og brandmerket er kildeført, og ingen endorsement, falsk personkobling eller udokumentert arbeidstakerutfall hevdes." },
-    maintainability_and_auditability: { score: 5, note: "Canonical manifester, kilde-ID-er, transformasjonsmetadata, konfliktnotater og permanente tester gjør pakken etterprøvbar og reproduserbar." },
-    total: 30, critical_findings: 0, unresolved_blockers: 0
-  }
+  validation: {
+    schema: completionAudit.schema,
+    status: completionAudit.status,
+    checks: completionAudit.checks,
+    failed_checks: completionAudit.failed_checks,
+    conclusion: completionAudit.conclusion
+  },
+  quality_score: completionAudit.quality_score
 });
-write("reports/place-production/lilleborg-fabrikker-workcard-current.json", { place_id: placeId, status: "complete", phases: "1–24", verified_at: verifiedAt, canonical_next: null, notes: ["Eksisterende canonical Place er fullprodusert uten ID- eller koordinatendring.", "1897-identiteten er skilt eksplisitt fra virksomhetslagene i 1812, 1833 og 1842.", "Eldre quiz er auditert og erstattet av normal 4x7 med Knowledge-materialisering.", "Neste sted velges først etter grønn CI, verifisert merge og live-QA."] });
+write("reports/place-production/lilleborg-fabrikker-workcard-current.json", { place_id: placeId, status: completionAudit.status === "high_quality" ? "complete" : "blocked", phases: "1–24", verified_at: verifiedAt, canonical_next: null, blockers: completionAudit.failed_checks, notes: ["Eksisterende canonical Place er fullprodusert uten ID- eller koordinatendring.", "1897-identiteten er skilt eksplisitt fra virksomhetslagene i 1812, 1833 og 1842.", "Eldre quiz er auditert og erstattet av normal 4x7 med Knowledge-materialisering.", "Kvalitetsstatus beregnes fra faktiske innholds-, kilde-, leveranse- og registerkontroller; redaksjonell automatikk er begrenset til 4/5.", "Neste sted velges først etter grønn CI, verifisert merge og live-QA."] });
 
 console.log(`Built Lilleborg Fabrikker completion package (${questions.length} quiz questions, ${chronology.length} chronology entries, ${sentences(place.popupDesc).length} popup sentences).`);
