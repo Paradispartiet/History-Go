@@ -1,39 +1,65 @@
-# History GO — Place Production Checklist v2
+# History GO — Place Production Checklist v2.1
 
 Status: **canonical produksjonsarbeidsflyt**  
 Eier: `place_by_place_production_workflow`  
 Sist kontrollert: **2026-08-27**
 
-> **Micro Place-unntak:** Denne fullproduksjonschecklisten gjelder ordinære
-> Places. Steder med `placeTier: "micro"` følger den reduserte, men fortsatt
-> kilde- og identitetsstrenge kontrakten i `docs/MICRO_PLACE_CONTRACT.md`. De skal
-> ikke fylles med People, Stories, Quiz, språkpakker, Fagverk eller fire
-> PlaceCard-samlinger bare for å bestå en fullhetsregel. Bilder er valgfrie for
-> denne tieren, men valideres ordinært dersom de oppgis. Universelle
-> fullproduksjonskrav nedenfor gjelder standardsteder med mindre Micro
-> Place-kontrakten uttrykkelig krever noe annet.
+> **Produksjonsprofiler:** Ordinære Places produseres nå som `major`, `standard`
+> eller `focused` etter `docs/PLACE_PRODUCTION_PROFILES.md`. Profilen bestemmer
+> produksjonsbredden, aldri kildekrav eller faktakvalitet. Alle subsystemer skal
+> vurderes, men et subsystem som ikke er semantisk eller kildebelagt relevant skal
+> dokumenteres som `BEGRUNNET N/A` i stedet for å fylles med kunstig innhold.
 
-Dette dokumentet eier **arbeidsrekkefølge, review-checkpoints og mergekadens** for sted-for-sted-produksjon.
+> **Micro Place-unntak:** Steder med `placeTier: "micro"` følger den reduserte,
+> men fortsatt kilde- og identitetsstrenge kontrakten i
+> `docs/MICRO_PLACE_CONTRACT.md`. De skal ikke fylles med People, Stories, Quiz,
+> språkpakker, Fagverk eller fire PlaceCard-samlinger bare for å bestå en
+> fullhetsregel. Bilder er valgfrie for denne tieren, men valideres ordinært
+> dersom de oppgis. Micro er også en produksjonsprofil i katalogtriagen, men den
+> tekniske Micro-kontrakten er fortsatt autoritativ for selve dataformen.
+
+Dette dokumentet eier **arbeidsrekkefølge, review-checkpoints, produksjonsprofil og mergekadens** for sted-for-sted-produksjon.
 
 Den komplette detaljerte sjekklisten er bevart og kontraktsoppdatert i:
 
 - `docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md`
 
-Alle faglige, redaksjonelle, faktuelle og subsystemspesifikke krav i referansen er fortsatt bindende. V2 endrer **ikke** innholdsmengde, checklist-dekning, kildekrav, fullness, own-place-regler, People/Objects/Brands/Quiz/Story-kvalitet eller manuell slutt-QA. V2 erstatter bare den gamle regelen om at hvert godkjent delsteg måtte bli en separat PR/merge.
+Produksjonsprofilene eies av:
 
-Alle canonicale steder skal ha sin egen fungerende fagverkside. Kravet gjelder hvert sted, kan ikke settes til N/A og er en egen ferdigport. V2 endrer ikke dette kravet; den forenkler bare review- og mergekadensen.
+- `docs/PLACE_PRODUCTION_PROFILES.md`
+
+Alle faglige, redaksjonelle, faktuelle og subsystemspesifikke krav i referansen er fortsatt bindende **når subsystemet er relevant for stedet**. V2.1 endrer ikke kildekrav, factuality, own-place-regler, subsystemenes interne kvalitetsgrenser eller manuell slutt-QA. V2.1 endrer to ting: mergekadensen er risikobasert, og innholdsbredden er profil- og evidensbasert i stedet for at hvert ordinært Place automatisk må materialisere alle mulige subsystemer.
+
+### Universal canonical core — aldri profil-N/A for ordinære Places
+
+For `major`, `standard` og `focused` er følgende alltid bindende:
+
+- sikker canonical identitet, scope og own-place-grense;
+- verifiserte koordinater/geometri med ærlig `coordRole`;
+- inspiserbare kilder og source → claim-disiplin;
+- canonical `desc`/`popupDesc`;
+- korrekt kategori/emne-eierskap og fungerende stedsspesifikk Fagverk-side;
+- bildeproveniens for publiserte medier og ordinært stående `frontImage` der PlaceCard-kontrakten krever det;
+- Språkleksikon med minst ett reelt stedsspesifikt navne-/begrepsspor;
+- chronology/epoke-research og materialisering av kvalifiserte eksakte ankere;
+- relasjons-/own-place-audit;
+- runtime/materialisering, relevante CI-gater og manuell slutt-QA.
+
+People, Objects, Brands, Structures/kategorisamling, Stories, Før/etter, Nyheter, Lesespor og ruter er **betingede subsystemer**: alle skal vurderes, men bare kilde- og semantisk kvalifiserte flater skal materialiseres. `BEGRUNNET N/A` krever dokumentert kandidatsøk eller subsystemets egen N/A-prosedyre. Ingen produksjonsprofil tillater filler.
+
+Alle canonicale ordinære steder skal ha sin egen fungerende fagverkside. Kravet gjelder hvert sted, kan ikke settes til N/A og er en egen ferdigport.
 
 Arbeidskortet skal eksplisitt føre `FAGVERK-STED-STATUS:`. `fagverk-sted` er aldri N/A. Sluttstatusen skal dokumentere `fagverk-sted — obligatorisk, fungerende og aldri N/A` før stedet kan godkjennes ferdig.
 
-**SPRÅKLEKSIKON — ALLTID / ALDRI N/A.** Alle canonicale steder har stedsspesifikke navn og begreper som skal researches og materialiseres i Språkleksikonet. Et fullprodusert sted kan ikke ha null språkoppføringer eller mangle Språk-fanen. Manglende legacy-data er et produksjonsgap, ikke N/A.
+**SPRÅKLEKSIKON — ALLTID / ALDRI N/A.** Alle canonicale ordinære steder har stedsspesifikke navn og begreper som skal researches og materialiseres i Språkleksikonet. Et fullprodusert ordinært sted kan ikke ha null språkoppføringer eller mangle Språk-fanen. Manglende legacy-data er et produksjonsgap, ikke N/A.
 
 **DIALEKTLAG — KUN `placeScope: "area"` / N/A.** Dialekt er et separat underlag og er ikke synonymt med Språkleksikon. Dialektinnhold kan kun eies av et område-Place med `placeScope: "area"`. Et enkeltsted skal ikke diktes om til dialekteier. `coordRole` beskriver koordinatgeometri og gir aldri dialekt-eierskap. Når dialektlaget researches på et område-Place, skal minst ett reelt dialektord eller lokalt uttrykk produseres når kildene bærer det; dersom kildene ikke bærer et forsvarlig dialektfunn kan **dialektdeljobben** settes begrunnet N/A/holdback. Språkleksikonet som helhet kan aldri settes N/A.
 
-**KRONOLOGI / EPOKE — OBLIGATORISK I FULL STEDSPRODUKSJON.** For hvert ordinært canonical Place skal kildearbeidet samtidig undersøke og materialisere stedets relevante historiske tidsankere. Dette er ikke separat etterarbeid og skal ikke skyves til en senere timeline-gap-runde. Hvert tidslinjepunkt skal ha en inspectable kilde som støtter både hendelsen og dateringen. Et tiår, århundre, «omkring», «ca.» eller annen omtrentlig datering skal aldri gjøres om til et oppdiktet enkeltår. Når kildene faktisk bærer eksakte år, materialiseres de gjennom en canonical evidensbane som `scripts/build-epoke-place-index.mjs` leser, og epokeindeks/runtime/epokeviser regenereres og kontrolleres i samme stedsproduksjon. Dersom dokumentert research ikke finner en kvalifisert eksakt datering, registreres **SOURCE-BOUNDED HOLDBACK** med søkte kilder; kronologivurderingen kan aldri hoppes over eller stå uavklart.
+**KRONOLOGI / EPOKE — OBLIGATORISK I ORDINÆR STEDSPRODUKSJON.** For hvert ordinært canonical Place skal kildearbeidet samtidig undersøke og materialisere stedets relevante historiske tidsankere. Dette er ikke separat etterarbeid og skal ikke skyves til en senere timeline-gap-runde. Hvert tidslinjepunkt skal ha en inspectable kilde som støtter både hendelsen og dateringen. Et tiår, århundre, «omkring», «ca.» eller annen omtrentlig datering skal aldri gjøres om til et oppdiktet enkeltår. Når kildene faktisk bærer eksakte år, materialiseres de gjennom en canonical evidensbane som `scripts/build-epoke-place-index.mjs` leser, og epokeindeks/runtime/epokeviser regenereres og kontrolleres i samme stedsproduksjon. Dersom dokumentert research ikke finner en kvalifisert eksakt datering, registreres **SOURCE-BOUNDED HOLDBACK** med søkte kilder; kronologivurderingen kan aldri hoppes over eller stå uavklart.
 
 Arbeidskortet skal eksplisitt føre `KRONOLOGI/EPOKE-STATUS:`, `KRONOLOGI-KILDER/ANKERE:`, `EPOKE-INDEX/RUNTIME-STATUS:` og `EPOKEVISER-QA:`. Eldre Places som allerede var ferdigstilt før denne regelen kan fortsatt lukkes gjennom separate legacy gap-transer, men ny/full stedsproduksjon skal ikke skape nye slike gap.
 
-> **Ett sted ferdig før neste. Faser reviewes sekvensielt. Mergegrenser følger reell risiko — ikke antall faser.**
+> **Katalogen triageres lett først. Ett aktivt sted ferdig før neste. Profil bekreftes i preflight. Faser reviewes sekvensielt. Mergegrenser følger reell risiko — ikke antall faser.**
 
 ---
 
@@ -41,6 +67,7 @@ Arbeidskortet skal eksplisitt føre `KRONOLOGI/EPOKE-STATUS:`, `KRONOLOGI-KILDER
 
 For detaljproduksjon gjelder subsystemets canonical kontrakt, akkurat som i v1-referansen. Blant annet:
 
+- produksjonsprofil: `docs/PLACE_PRODUCTION_PROFILES.md`;
 - faktisitet: `docs/FACTUALITY_CONTRACT.md`;
 - kronologi/epoker: `scripts/build-epoke-place-index.mjs`, `data/epoker/epoke-place-index.json`, `.github/workflows/epoke-viewer-quality.yml` og `tests/epoke-place-index.test.mjs` / `tests/epoker-runtime-place-index.test.mjs` / `tests/epoke-viewer.test.mjs`;
 - Place-data: `docs/DATA_PRODUCTION_CONTRACT.md` og `docs/PLACE_STANDARD.md`;
@@ -51,58 +78,86 @@ For detaljproduksjon gjelder subsystemets canonical kontrakt, akkurat som i v1-r
 - People: `docs/people-of-places-method.md` og `docs/PEOPLE_PROFILE_CANONICAL.md`;
 - Brands: `data/brands/brand_rules_v1_1.json`;
 - Stories: `docs/STORIES_DATA_GOVERNANCE.md`;
-- Brands: `data/brands/brand_rules_v1_1.json`;
 - Quiz: `data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md`;
 - koordinater: `docs/coordinates/README.md` og coordinate-kontraktene;
 - relevante Fagverk-/kategori-/Natur-/Historie-/Politikk-/Næringsliv-/Subkultur-kontrakter.
 
-For **Brands** gjelder fortsatt de eksplisitte produksjonsgrensene: aktørtype alene brukes verken som godkjenning eller avslag. Null treff i eksisterende Brand-register behandles som «må researches», ikke som N/A; N/A krever dokumentert kandidatsøk og kandidatspesifikke avvisningsgrunner.
+For **Brands** gjelder fortsatt de eksplisitte produksjonsgrensene: aktørtype alene brukes verken som godkjenning eller avslag. Null treff i eksisterende Brand-register behandles som «må researches», ikke som automatisk N/A. Når kandidatsøket er gjort og alle plausible kandidater er avvist med kandidatspesifikke grunner, er `BEGRUNNET N/A` en gyldig ferdigstatus for et profilert sted. Et Brand skal aldri opprettes bare for å fylle PlaceCard.
 
-For **Quiz** skal alle aktive, arkiverte og alternative quizfiler for stedet auditeres før profilvalg. Profil og settantall følger den canonicale Quiz-kontrakten; et `major`-sted bruker 10 sett med 7 spørsmål per sett.
+For **Quiz** skal alle aktive, arkiverte og alternative quizfiler for stedet auditeres før profilvalg. `production_profile` og quizprofil er separate systemer. Profil og eksakt settantall følger den canonicale Quiz-kontrakten og den faktiske påstandsbanken; `major` som stedsprofil er ikke i seg selv en ordre om 10 sett dersom materialet ikke bærer ti selvstendige settplaner.
 
-For **Språk** gjelder en egen absolutt ferdigport: alle steder skal ha en canonical Språkleksikon-eier og minst én reell, stedsspesifikk språkoppføring. Dette kan være et dokumentert stedsnavn/navnespor, et relevant fagord/begrep, en historisk betegnelse, et lokalt uttrykk eller annen kildebundet språkbruk. Det er ikke et krav at stedet har dialekt.
+For **Stories** gjelder anti-dupliseringsregelen i `docs/STORIES_DATA_GOVERNANCE.md`: chronology skal ikke omskrives til pseudo-Stories bare for dekningsgrad. En sterk narrativ akse produseres når den finnes; ellers dokumenteres Story-vurderingen etter produksjonsprofilen og Story-kontrakten.
 
-`PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md` er den detaljerte ruteren for alle disse flatene. Ingen detalj kan hoppes over fordi mergekadensen nå er enklere. Der eldre referansetekst omtaler Språk som «valgfri», «når relevant» eller åpner for null språkoppføringer, er denne aktive v2-regelen autoritativ: **Språk er relevant for alle Places; bare dialektlaget kan være N/A.**
+For **Språk** gjelder en egen absolutt ferdigport: alle ordinære steder skal ha en canonical Språkleksikon-eier og minst én reell, stedsspesifikk språkoppføring. Dette kan være et dokumentert stedsnavn/navnespor, et relevant fagord/begrep, en historisk betegnelse, et lokalt uttrykk eller annen kildebundet språkbruk. Det er ikke et krav at stedet har dialekt.
+
+`PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md` er den detaljerte ruteren for alle flatene som vurderes. Ingen relevant detalj kan hoppes over fordi mergekadensen eller produksjonsprofilen er enklere. Der eldre referansetekst omtaler Språk som «valgfri», «når relevant» eller åpner for null språkoppføringer, er denne aktive v2.1-regelen autoritativ: **Språk er relevant for alle ordinære Places; bare dialektlaget kan være N/A.**
 
 ### Canonicale kvalitetslåser som fortsatt skal stå eksplisitt
 
-Arbeidskortet bruker nå feltet:
+Arbeidskortet bruker feltene:
 
-`MÅL FOR PLACECARD-SAMLINGER: alltid fire flater i fast kategori-komposisjon + separat fast Badge + obligatorisk Quiz`
+```text
+PRODUKSJONSPROFIL: major | standard | focused
+PROFILSTATUS: provisional | confirmed
+PROFILBEGRUNNELSE:
+PROFILENDRING FRA TRIAGE: none | <gammel → ny + grunn>
+UNIVERSAL CORE STATUS:
+BETINGEDE SUBSYSTEMER:
+MÅL FOR PLACECARD-SAMLINGER: fire visuelle flater i dagens runtime; relevant innhold fylles, profilgodkjent N/A forfalskes aldri
+```
 
 For PlaceCard-samlinger, Før/etter og eierstyrte popupflater gjelder:
 
-- PlaceCard beholder dagens komposisjon og viser alltid nøyaktig fire samlingsflater i et fullt 2 × 2-felt ved `frontImage`;
+- PlaceCard beholder dagens komposisjon og viser nøyaktig fire samlingsflater i et fullt 2 × 2-felt ved `frontImage` inntil en egen runtime/schema-migrasjon eventuelt endrer layoutkontrakten;
 - People, Flora og Fauna vises som sirkler; øvrige samlinger vises som avrundede rektangler;
 - Bilder er ikke en samling eller reserve, men beholdes i `frontImage`-/medieflaten og hos sine bildeeiere;
 - `frontImage` skal være en faktisk stående fil/variant (`height > width`), ikke bare en liggende fil vist i en stående CSS-ramme; crop, dimensjoner, kilde og lisens dokumenteres;
-- hver av de fire samlingsflatene skal vise et faktisk bilde av ett canonical medlem i samlingen; generisk ikon, navn eller antall er kun runtime-fallback og kan aldri lukke produksjonsgaten;
-- Quiz er obligatorisk og beholdes som tydelig PlaceCard-handling;
+- hver **relevant og kvalifisert** samlingsflate skal vise et faktisk bilde av ett canonical medlem i samlingen; generisk ikon, navn eller antall er kun fallback og lukker ikke en relevant samlingsgate;
+- en samlingsflate som etter korrekt kandidataudit er `BEGRUNNET N/A` skal beholdes ærlig tom/fallback i dagens firefeltsruntime fremfor å fylles med falskt innhold; N/A-beslutningen skal være synlig i arbeidskort/sluttrapport;
+- `major` skal normalt ha svært få eller ingen N/A-samlinger fordi innholdsbredden er del av profilbegrunnelsen, men evidens har alltid forrang over visuell fullness;
+- Quiz beholdes som tydelig PlaceCard-handling; selve quizomfanget følger Quiz-kontrakten og produksjonsprofilens evidens, ikke et universelt settantall;
 - en enkelt vilkårlig eller taksonomisk konstruert gjenstand er ikke nok til å gjøre Objects til en kvalitetsmessig ferdig samling;
-- Objects og Structures/Bygg brukes ikke som to separate samlinger når innholdet i praksis er de samme fysiske stedselementene eller forskjellen er uklar for spilleren;
-- de fire faste flatene skal researches og fylles med reelt, stedsspesifikt, bildeklart innhold; en svak eller tom canonical kilde kollapser aldri layouten i runtime, men ikon-/statusflaten registreres som produksjonsblocker og kan ikke godkjennes ved fullproduksjon;
+- Objects og Structures/Bygg brukes ikke som to separate semantiske samlinger når innholdet i praksis er de samme fysiske stedselementene eller forskjellen er uklar for spilleren;
+- alle fire runtime-flater skal researches som kandidater, men bare reelt, stedsspesifikt, bildeklart innhold materialiseres; svak eller tom kilde skal ikke skape filler;
 - nye/fullproduserte steder bruker `place_card_profile.collection_ids`; eksisterende `round_profile` leses bare gjennom kompatibilitetslaget og migreres når stedet faktisk fullproduseres;
 - **Objects-popupen** eier `Spor og objekter` og `Legg merke til` når innholdet beskriver dokumenterte fysiske gjenstander/spor; supplementene endrer ikke Objects-antallet uten canonical Objects-materialisering;
 - **People-popupen** eier personrelasjoner; en ren place→place-relasjon skal ikke inn i People;
 - **Relaterte steder (`related`)** eier dokumenterte place→place-relasjoner;
 - **Om** eier `Betydning`, `Motpunkter` og generell source-eid stedskunnskap/observasjonskunnskap når ingen smalere canonical eier finnes;
-- **Språk** er en fast obligatorisk stedspopupfane på alle canonicale steder; fullproduksjon krever reelle, stedsspesifikke begreper/navnespor og Språk kan aldri være N/A;
+- **Språk** er en fast obligatorisk stedspopupfane på alle ordinære canonicale steder; fullproduksjon krever reelle, stedsspesifikke begreper/navnespor og Språk kan aldri være N/A;
 - **Dialekt** er ikke obligatorisk for alle steder og skal aldri konstrueres for å fylle Språk-fanen;
 - canonical place-register/manifester er søkt før motivet velges, slik at bygg, virksomheter, parker, plasser eller andre delsteder med egen place-oppføring blir oppdaget;
 - et delsted som har egen canonical place-oppføring brukes ikke som primært Før/etter-stedfortreder for et overordnet sted;
 - bilder fra ulike kamerastandpunkter kan brukes som supplerende historiske bilder, men består ikke alene som fullverdig primær Før/etter-sammenligning;
 - 2009 → 2017 erstatter ikke automatisk et eldre historisk førbilde;
-- Nyheter kan ikke godkjennes som tom/N/A når fanen er relevant for stedet;
-- Lesespor kan ikke godkjennes som tom/N/A når relevant lesestoff finnes eller kan etableres etter kontrakten;
+- Nyheter researches og produseres når fanen er relevant for stedet; for et `focused`/`standard` sted uten en meningsfull nyhetsflate kan dokumentert `BEGRUNNET N/A` være korrekt;
+- Lesespor kan ikke godkjennes som tom/N/A når relevant lesestoff finnes eller kan etableres etter kontrakten; der et reelt kandidatsøk ikke finner et kvalifisert lesespor kan profilert `BEGRUNNET N/A` brukes;
 - betalingslåst er ikke tilstrekkelig N/A-grunn for Lesespor;
 - innhold som tidligere lå i `Mer` skal rutes til canonical eierflate uten å slettes, dupliseres eller skjules bak `Mer`, «Annet», «Tillegg» eller en ny generell restfane.
 
 ---
 
-## 2. Nullmåling er fortsatt obligatorisk
+## 2. Katalogtriage og nullmåling er obligatorisk
+
+### 2.1 Provisional katalogtriage før videre ordinær produksjon
+
+Etter innføring av produksjonsprofilene skal den eksisterende canonical Place-katalogen gjennom én **lett triage**, uten full research. Hvert eksisterende Place får planleggingsstatus:
+
+```text
+production_profile: major | standard | focused | micro
+profile_status: provisional
+profile_reason: <kort grunn basert på eksisterende canonical data>
+```
+
+Triagepasset skal bruke eksisterende data, kjent scope og allerede materialisert innhold. Det skal ikke starte full kildeproduksjon for alle steder samtidig. Formålet er å gjøre backlog, klynger og produksjonskost realistisk før flere steder fullproduseres.
+
+### 2.2 Confirmed profil i aktiv preflight
+
+Når et sted går inn i aktiv produksjon, skal nullmålingen bekrefte eller overstyre triagen etter faktisk source review. Nye steder som ennå ikke finnes i katalogen klassifiseres direkte som `profile_status: confirmed` i preflight.
 
 Før første brukerrettede endring skal stedet ha en skriftlig nullmåling og sanerings-/produksjonsplan som minst dekker:
 
+- `PRODUKSJONSPROFIL`, `PROFILSTATUS`, profilbegrunnelse og eventuell endring fra provisional triage;
 - canonical identitet og source-eier;
 - prior work og kollisjoner;
 - koordinater/geometri;
@@ -111,13 +166,15 @@ Før første brukerrettede endring skal stedet ha en skriftlig nullmåling og sa
 - strukturerte place-profiler;
 - alle åtte faste popupfaner, inkludert obligatorisk Språk, samt eierflater i Objects/People/Relaterte steder/Om;
 - Språkleksikon-eier, eksisterende begreper/navnespor og eventuelt separat dialektlag;
-- People, Objects/Works, Brands og PlaceCard-samlinger;
-- Stories, Quiz, Knowledge/Aha, Lesespor og ruter/relasjoner;
+- People, Objects/Works, Brands og PlaceCard-samlinger som **kandidataudit**, med PASS / BEGRUNNET N/A / BLOCKED;
+- Stories, Quiz, Knowledge/Aha, Lesespor og ruter/relasjoner, med profilet riktig forventning og uten filler;
 - eksisterende chronology/leksikon, kildebelagte årankere, epokedekning, epokeindex/runtime og epokeviserstatus;
 - kilder, bilder/proveniens og faktisk UI-visning;
 - relevante fagspesifikke place-gates.
 
 Nullmålingen kan ligge i samme PR som senere research/preflight-checkpoints. Det kreves **ikke** en egen nullmålings-PR dersom ingen risikogrense krysses.
+
+Profilvalg skal aldri brukes som kostnadsoptimalisering alene. `focused` må være begrunnet i faktisk smalt place/source-scope; `major` må bæres av reell bredde; `standard` er default i midten.
 
 ---
 
@@ -132,6 +189,7 @@ IKKE STARTET → PÅGÅR → KLAR FOR REVIEW → GODKJENT / BEGRUNNET N/A
 Før neste fase starter skal aktiv fase være reviewet og arbeidskortet oppdatert. Reviewet skal vise:
 
 - hva som ble kontrollert;
+- hvilken produksjonsprofil som styrer forventet bredde;
 - hvilke canonical filer som eier resultatet;
 - hvilke eksisterende data som ble bevart;
 - hvilke claims/kilder som støtter nye data;
@@ -140,7 +198,7 @@ Før neste fase starter skal aktiv fase være reviewet og arbeidskortet oppdater
 
 **Et checkpoint kan godkjennes på samme arbeidsgren. Det trenger ikke en egen PR eller merge.**
 
-### Faser som allerede er ferdige
+### Faser som allerede er ferdige eller korrekt N/A
 
 Hvis prior-work-gaten viser `ALLEREDE FERDIG`, `BEHOLD` eller `BEGRUNNET N/A`, registreres beslutningen i arbeidskort/review og produksjonen går videre. Det skal normalt **ikke** opprettes en audit-only PR bare for å dokumentere at ingen canonical endring var nødvendig.
 
@@ -148,16 +206,16 @@ Eksempler:
 
 - verifiserte koordinater som skal bevares;
 - riktig kategori/emne/Fagverk-binding som allerede finnes;
-- en popup-/samlingsflate som allerede har riktig canonical owner og full dekning;
-- et irrelevant subsystem med dokumentert N/A.
+- en popup-/samlingsflate som allerede har riktig canonical owner og full relevant dekning;
+- et betinget subsystem som etter korrekt audit er semantisk irrelevant eller kildebegrenset og derfor `BEGRUNNET N/A`.
 
-Språk er ikke et irrelevant subsystem for et canonical Place. Bare dialektdeljobben kan ende begrunnet N/A.
+Universal core kan ikke settes N/A for et ordinært Place. Språk er ikke et irrelevant subsystem for et ordinært canonical Place. Bare dialektdeljobben kan ende begrunnet N/A innen språksporet.
 
 ---
 
 ## 4. Mergegrenser følger risiko
 
-Standardmålet er **2–4 fokuserte PR-er for et komplett sted**, ikke én PR per fase og heller ikke én enorm ureviewet slutt-PR.
+Standardmålet er **2–4 fokuserte PR-er for et komplett sted**, ikke én PR per fase og heller ikke én enorm ureviewet slutt-PR. Et `focused`-sted kan naturlig kreve færre reelle mergegrenser dersom scope er mindre; `major` kan kreve flere hvis subsystemene har egen blast radius.
 
 En typisk produksjon kan bruke disse mergegrensene:
 
@@ -165,6 +223,7 @@ En typisk produksjon kan bruke disse mergegrensene:
 
 Kan samle flere ferdigreviewede checkpoints, for eksempel:
 
+- provisional→confirmed profilavgjørelse;
 - nullmåling;
 - canonical identity/source boundary;
 - shared source/claim pack;
@@ -179,11 +238,11 @@ Kan samle flere **sekvensielt reviewede** innholdsfaser, for eksempel:
 
 - description v4.2;
 - strukturerte place-profiler;
-- Om/Historie/Fortellinger/Før–etter/Nyheter/Lesespor/Kilder/Språk;
+- Om/Historie/Fortellinger/Før–etter/Nyheter/Lesespor/Kilder/Språk i den graden de er relevante etter profilen;
 - kildebelagt chronology med relevante eksakte tidsankere og dokumentert dateringspresisjon;
 - obligatoriske Språkleksikon-begreper/navnespor og eventuelt separat dialektlag;
 - relevante People/Objects/Brands/PlaceCard-samlinger og eide underseksjoner;
-- Quiz/Story/Knowledge/ruter når kontraktene tillater samme avgrensede diff.
+- Quiz/Story/Knowledge/ruter når deres kontrakter og det kildebårne materialet krever dem.
 
 Det er ikke lov å hoppe over intern review bare fordi fasene ligger i samme PR.
 
@@ -218,6 +277,8 @@ Det er tillatt å ha flere **godkjente checkpoints** på samme arbeidsgren. Det 
 Arbeidskortet skal skille mellom:
 
 ```text
+PRODUKSJONSPROFIL:
+PROFILSTATUS:
 AKTIV FASE:
 SISTE GODKJENTE CHECKPOINT:
 AKTIVT FILSCOPE:
@@ -236,21 +297,22 @@ Den gamle v1-feltteksten `FORRIGE FASE MERGET OG LIVE-KONTROLLERT` skal fra v2 f
 
 ## 6. Kvalitetskrav som ikke endres
 
-V2 skal aldri brukes til å begrunne kortere, mer generisk eller mindre kildebundet stedsinnhold.
+V2.1 skal aldri brukes til å begrunne mer generisk, svakere eller mindre kildebundet stedsinnhold.
 
 Fortsatt obligatorisk:
 
-- full checklist-dekning;
+- full **profilriktig** checklist-dekning: alle universelle krav ferdige og alle betingede subsystemer eksplisitt vurdert;
 - source → claim → text der kontrakten krever det;
 - place-specific tekst og local-experience-kvalitet;
-- ingen filler for å tilfredsstille felttall;
+- ingen filler for å tilfredsstille felttall eller layout;
 - own-place og entity-grenser;
-- alle relevante People/Objects/Brands/Stories/Quiz-/runde-kontrakter;
-- obligatorisk Språkleksikon på alle Places, med reelle begreper/navnespor og uten konstruert dialekt;
+- alle **relevante** People/Objects/Brands/Stories/Quiz-/runde-kontrakter;
+- obligatorisk Språkleksikon på alle ordinære Places, med reelle begreper/navnespor og uten konstruert dialekt;
 - alle relevante faglige place-gates;
 - koordinat- og bildeproveniens;
 - deterministiske manifester/indekser der de eier data;
-- teknisk PASS er aldri synonymt med redaksjonell ferdigstatus.
+- teknisk PASS er aldri synonymt med redaksjonell ferdigstatus;
+- eksisterende godt innhold slettes ikke bare fordi en ny produksjonsprofil har lavere minimumsbredde.
 
 ### Bindende detaljankere fra v1
 
@@ -273,9 +335,9 @@ Disse ankerreglene gjentas her fordi permanente governance-tester og produksjons
 
 #### Språkleksikon og dialekt
 
-**SPRÅKLEKSIKON — ALLE PLACES / ALDRI N/A**
+**SPRÅKLEKSIKON — ALLE ORDINÆRE PLACES / ALDRI N/A**
 
-Alle canonicale steder skal researches for og materialisere reelle, stedsspesifikke språkoppføringer. Relevante kandidater er blant annet stedsnavn/navnehistorie, fagord, funksjonsbegreper, historiske betegnelser og dokumenterte lokale uttrykk. Null eksisterende språkdata betyr «må produseres», ikke N/A. Generelle fagord uten dokumentert stedskobling skal ikke brukes som filler.
+Alle canonicale ordinære steder skal researches for og materialisere reelle, stedsspesifikke språkoppføringer. Relevante kandidater er blant annet stedsnavn/navnehistorie, fagord, funksjonsbegreper, historiske betegnelser og dokumenterte lokale uttrykk. Null eksisterende språkdata betyr «må produseres», ikke N/A. Generelle fagord uten dokumentert stedskobling skal ikke brukes som filler.
 
 **DIALEKTLAG — KUN `placeScope: "area"` / N/A**
 
@@ -283,11 +345,11 @@ Dialektinnhold kan kun eies av et område-Place med `placeScope: "area"`. `coord
 
 #### Brands
 
-`data/brands/brand_rules_v1_1.json` er canonical semantisk eier for Brand-vurderingen. aktørtype alene brukes verken som godkjenning eller avslag. Null treff i eksisterende brandregister behandles som «må researches», ikke som N/A. Brands kan først settes N/A etter reelt kandidatsøk og dokumenterte kandidatspesifikke avvisningsgrunner.
+`data/brands/brand_rules_v1_1.json` er canonical semantisk eier for Brand-vurderingen. Aktørtype alene brukes verken som godkjenning eller avslag. Null treff i eksisterende brandregister behandles som «må researches», ikke som N/A. Brands kan først settes `BEGRUNNET N/A` etter reelt kandidatsøk og dokumenterte kandidatspesifikke avvisningsgrunner. En slik N/A er gyldig sluttstatus for et profilert Place og skal aldri erstattes med et kunstig Brand for å tilfredsstille PlaceCard-fullness.
 
 #### Quiz
 
-Eksisterende quiz skal auditeres før profilvalg, og auditen skal omfatte alle aktive, arkiverte og alternative quizfiler. Profil og settantall skal velges eksplisitt etter canonical Quiz-kontrakt; et `major`-sted bruker 10 sett. Eksisterende gode spørsmål skal bevares, og `profile_hint` er ikke alene autoritet til å velge profil.
+Eksisterende quiz skal auditeres før profilvalg, og auditen skal omfatte alle aktive, arkiverte og alternative quizfiler. Quizprofil og settantall skal velges eksplisitt etter canonical Quiz-kontrakt og faktisk kildebåret stoffmengde. Stedets `production_profile` er bare scope-kontekst og kan ikke alene forhåndslåse `narrow`, `normal`, `rich`, `major` eller et bestemt settantall. Eksisterende gode spørsmål skal bevares, og `profile_hint` er ikke alene autoritet til å velge profil.
 
 ---
 
@@ -319,47 +381,53 @@ Det kreves ikke main/live-runde etter en audit-only intern checkpoint som ikke e
 
 ## 8. Manuell sluttvurdering er fortsatt en hard gate
 
-Et sted kan ikke merkes `produksjonsklart` eller `SLUTTFØRT` før den synlige opplevelsen er vurdert som helhet.
+Et sted kan ikke merkes `produksjonsklart` eller `SLUTTFØRT` før den synlige opplevelsen er vurdert som helhet **mot bekreftet produksjonsprofil**.
 
 Minimum:
 
-- åpne alle åtte faste faner, inkludert Språk;
+- bekreft `PRODUKSJONSPROFIL`, `PROFILSTATUS: confirmed` og profilbegrunnelse;
+- bekreft at Universal canonical core er komplett;
+- kontroller alle åtte faste faner, inkludert Språk, og skill mellom relevant innhold og dokumentert N/A etter profil/popupkontrakt;
 - kontroller at Språk viser reelle, stedsspesifikke oppføringer og ikke står i produksjonsgap-tilstand;
 - kontroller at eventuelt dialektinnhold har riktig `placeScope: "area"`-eier, og at fravær av dialekt ikke behandles som fravær av språk;
-- åpne Objects-popupen og kontroller eventuelle `Spor og objekter`/`Legg merke til`-seksjoner;
-- åpne People-popupen og kontroller personrelasjoner når de finnes;
+- åpne Objects-popupen og kontroller eventuelle `Spor og objekter`/`Legg merke til`-seksjoner når Objects er relevant;
+- åpne People-popupen og kontroller personrelasjoner når People er relevant;
 - kontroller at place→place-relasjoner ligger i Relaterte steder og ikke i People;
 - kontroller at Betydning/Motpunkter/generell stedskunnskap ligger under Om eller annen dokumentert eierflate;
-- kontroller alle valgte PlaceCard-samlinger, form, antall, datakilde og preview;
-- kontroller at hvert preview faktisk er et lastet bilde av et medlem i den aktuelle samlingen, og at ingen flate står på ikon-/antallsfallback;
+- kontroller alle fire PlaceCard-runtimeflater, form, datakilde og preview;
+- for hver relevant samling: kontroller at preview faktisk er et lastet bilde av et canonical medlem;
+- for hver profilgodkjent N/A-samling: kontroller at fallback/tomtilstanden er ærlig, at arbeidskortet dokumenterer kandidatauditen, og at ingen falsk entity er produsert for å skjule tomtilstanden;
 - kontroller at `frontImage`-filen/varianten er stående og at motivet fortsatt identifiserer riktig sted etter crop;
-- kontroller Før/etter visuelt mot begge bilder;
-- kontroller Nyheter-ferskhet der relevant;
-- kontroller Lesespor-tilgang og Kilder-lenker;
-- kontroller Stories/obligatorisk Quiz/People/Objects/Brands og ruter slik de faktisk vises;
-- registrer tomme eller feilroutede flater, svake bildevalg, kunstige PlaceCard-samlinger og taksonomisk korrekte men brukerfiendtlige kombinasjoner som reelle blockers;
+- kontroller Før/etter visuelt når Før/etter er relevant; et korrekt profil-N/A skal ikke erstattes av et svakt bildepar;
+- kontroller Nyheter-ferskhet når Nyheter er relevant;
+- kontroller Lesespor-tilgang og Kilder-lenker når Lesespor er relevant;
+- kontroller Stories, Quiz, People, Objects, Brands og ruter i tråd med deres faktiske PASS/N/A-status, ikke en universell fullness-antakelse;
+- registrer feilroutede flater, svake bildevalg, kunstige entities/samlinger og taksonomisk korrekte men brukerfiendtlige kombinasjoner som reelle blockers;
 - gjenåpne checkpoint/fase når slutt-QA motsier tidligere godkjenning.
 
-Grønn CI eller komplett schema kan aldri overstyre dokumentert svak sluttflate.
+Grønn CI eller komplett schema kan aldri overstyre dokumentert svak sluttflate. Et `BEGRUNNET N/A` kan heller aldri brukes til å skjule et subsystem som faktisk er relevant og source-backed.
 
 ---
 
 ## 9. Forholdet til v1-referansen
 
-`docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md` er fortsatt bindende for **hva som skal kontrolleres og hvordan subsystemene rutes**, med de eksplisitte v2-overstyringene nedenfor.
+`docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md` er fortsatt bindende for **hva som skal vurderes og hvordan subsystemene rutes**, med de eksplisitte v2.1-overstyringene nedenfor.
 
-Følgende v1-regler/ordlyder er uttrykkelig erstattet av dette dokumentet:
+Følgende v1-/v2-regler eller ordlyder er uttrykkelig erstattet av dette dokumentet:
 
 1. «hver godkjent fase merges som en liten, avgrenset PR»;
 2. krav om main/live-kontroll mellom hvert enkelt internt checkpoint;
 3. implisitt krav om audit-only PR for en fase som ender `ALLEREDE FERDIG` eller `BEGRUNNET N/A`;
 4. arbeidskortfelt som forutsetter at forrige fase må være merget fremfor reviewet;
-5. enhver formulering som gjør Språk/Språkleksikon valgfritt, «når relevant» eller tillater null språkoppføringer som godkjent sluttstatus.
+5. enhver formulering som gjør Språk/Språkleksikon valgfritt, «når relevant» eller tillater null språkoppføringer som godkjent sluttstatus for ordinære Places;
+6. enhver formulering som krever at et betinget subsystem materialiseres selv når korrekt kandidataudit viser at det ikke er semantisk/kildebelagt relevant;
+7. enhver fullness-regel som fører til kunstige People, Objects, Brands, Structures, Stories, Før/etter, Nyheter, Lesespor eller quizspørsmål;
+8. enhver kobling som gjør stedsprofil `major` identisk med en forhåndslåst quizlengde.
 
-Alle øvrige kvalitets-, innholds-, source-, UI- og slutt-QA-krav består. Dialektreglene i referansen består også: dialektlaget er et separat area-eid underlag og kan være begrunnet N/A uten at Språkleksikonet blir N/A.
+Alle øvrige kvalitets-, source-, UI- og slutt-QA-krav består. Dialektreglene i referansen består også: dialektlaget er et separat area-eid underlag og kan være begrunnet N/A uten at Språkleksikonet blir N/A.
 
 ---
 
 ## Kort regel
 
-**Review hver fase. Merge ved reelle risikogrenser. Behold full kvalitet. Produser kildebelagt kronologi og epokedekning samtidig med stedet. Alle Places har Språk; bare dialekt kan mangle. Ikke bruk GitHub-PR-er som fasebokføring.**
+**Triage katalogen lett. Bekreft profil når stedet når produksjon. Behold Universal canonical core for alle ordinære Places. Vurder alle subsystemer, materialiser bare de relevante, og dokumenter resten som ekte N/A — aldri filler. Review hver fase, merge ved reelle risikogrenser, og produser kildebelagt kronologi/epokedekning samtidig med stedet.**
