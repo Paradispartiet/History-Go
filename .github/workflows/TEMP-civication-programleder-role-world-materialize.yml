@@ -27,6 +27,19 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Reconcile exact current main
+        shell: bash
+        run: |
+          git config user.name "Civication rollout agent"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          expected_main=963417e9a7a4d738387c97dd8d3cd6817a8f8216
+          git fetch origin main
+          actual_main="$(git rev-parse FETCH_HEAD)"
+          if [ "$actual_main" != "$expected_main" ]; then
+            echo "main moved: expected $expected_main, actual $actual_main"
+            exit 1
+          fi
+          git merge --no-commit --no-ff "$expected_main"
       - name: Canonicalize temporary source and registry assertion
         shell: bash
         run: |
@@ -173,4 +186,4 @@ jobs:
           git commit -m "Complete Film TV Programleder Role World rollout"
           git push origin HEAD:agent/civication-film-tv-programleder-role-world-rollout
 
-# rerun after reconciliation with current main
+# exact-main reconciliation is fail-closed above
