@@ -1,0 +1,30 @@
+name: TEMP Export place production checklists
+
+on:
+  push:
+    branches:
+      - docs/place-production-chronology-epoch-gate-20260827
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify exported files
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -F 'KRONOLOGI / EPOKE — OBLIGATORISK I FULL STEDSPRODUKSJON' docs/PLACE_PRODUCTION_CHECKLIST.md
+          grep -F '## 2A. Kildebelagt kronologi og epoker — universell ferdigport' docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md
+      - name: Upload canonical checklist files
+        uses: actions/upload-artifact@v4
+        with:
+          name: place-production-checklists-5386
+          if-no-files-found: error
+          retention-days: 1
+          path: |
+            docs/PLACE_PRODUCTION_CHECKLIST.md
+            docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md
