@@ -4,51 +4,96 @@ Status: **canonical scope-kontrakt for stedsproduksjon**
 Eier: `place_by_place_production_workflow`  
 Sist kontrollert: **2026-08-27**
 
-Denne kontrakten bestemmer både **hvor omfattende et sted skal produseres** og hvordan produksjonen velger innhold som faktisk passer stedet. Den erstatter ikke stedets faglige `category`, og den er ikke en kvalitetsstige.
+Denne kontrakten bestemmer **hvor omfattende et sted skal produseres**. Hva slags innhold stedet skal få bestemmes primært av Badge-systemet og stedets kilder, ikke av en universell sjekkliste.
 
-Et `focused` Place skal være like korrekt, kildebundet, pent og ferdig som et `major` Place. Forskjellen er reell stoffbredde, ikke hvor mye arbeid produsenten ønsker å gjøre.
+Canonical Badge-router:
 
-## 1. Tre separate beslutninger
+- `data/badges/index.json` — alle 19 hovedbadges;
+- `data/badges/<badge>.json` — canonical underbadges og eventuelle grupper/`quizFocus`;
+- `data/badges/place_production_routing_v1.json` — produksjonsruting per hovedbadge.
+
+Et `focused` Place skal være like korrekt, kildebundet, pent og ferdig som et `major` Place. Forskjellen er reell stoffbredde, ikke kvalitetsnivå eller hvor mye arbeid produsenten ønsker å gjøre.
+
+## 1. Fire separate beslutninger
 
 Disse skal aldri blandes:
 
-1. **Kategori** — hva slags faglig sted dette er (`historie`, `naeringsliv`, `natur`, `kunst`, `sport` osv.).
-2. **Produksjonsprofil** — hvor bredt det kildebårne stedet faktisk er: `major`, `standard`, `focused` eller `micro`.
-3. **Innholdsplan** — hvilke konkrete moduler og PlaceCard-samlinger som er riktige for akkurat dette stedet.
+1. **Hovedbadge / category** — stedets primære faglige identitet.
+2. **Underbadges** — hvilke sider ved hovedbadgen dette konkrete stedet faktisk representerer.
+3. **Produksjonsprofil** — hvor bredt det kildebårne stedet er: `major`, `standard`, `focused` eller `micro`.
+4. **Innholdsplan** — hvilke konkrete moduler og PlaceCard-samlinger som produseres helt for akkurat dette stedet.
 
-Det er derfor feil å si «Næringsliv = alltid Brands» eller «Historie = alltid People». Kategorien styrer hva som undersøkes først; kildene og stedets karakter bestemmer hva som faktisk produseres.
-
-Canonical produksjonsprofiler:
+Canonical rekkefølge:
 
 ```text
-major
-standard
-focused
-micro
+Universal canonical core
+→ hovedbadge
+→ aktive underbadge_ids
+→ stedsspesifikk source review
+→ confirmed produksjonsprofil
+→ endelig innholdsplan
+→ produksjon
 ```
 
-`micro` representeres teknisk av `placeTier: "micro"` og følger `docs/MICRO_PLACE_CONTRACT.md`.
+Det er derfor feil å si «Næringsliv = alltid Brands», «Historie = alltid People» eller «Natur = alltid Flora + Fauna». Badge/underbadge bestemmer hvilke spor som må undersøkes; kildene bestemmer hva som faktisk kvalifiserer.
 
 ## 2. Universal canonical core
 
-For alle ordinære Places (`major`, `standard`, `focused`) er følgende obligatorisk uansett profil:
+For alle ordinære Places (`major`, `standard`, `focused`) er følgende obligatorisk uansett Badge og profil:
 
 1. løst identitet, scope og own-place-grense;
 2. verifisert koordinat/geometri med ærlig `coordRole`;
 3. inspiserte, sporbare kilder og source → claim-disiplin;
 4. canonical `desc` og `popupDesc` i korrekt kvalitet;
-5. riktig kategori, relevante emner og fungerende stedsspesifikk Fagverk-side;
+5. riktig hovedbadge/category, riktige underbadges, relevante emner og fungerende stedsspesifikk Fagverk-side;
 6. publiserte bilder med proveniens og et faktisk stående `frontImage` der ordinær PlaceCard bruker det;
 7. chronology/epoke-research med korrekt dateringspresisjon og materialisering av kvalifiserte eksakte år;
 8. canonical Språkleksikon med minst ett reelt stedsspesifikt navn-/begrepsspor;
-9. own-place-/relasjonsaudit, slik at separate steder ikke feilaktig blir People, Objects eller Structures;
+9. own-place-/relasjonsaudit;
 10. runtime/materialisering, relevante CI-gater og manuell slutt-QA.
 
 En mindre profil reduserer **stoffbredde**, aldri factuality, source-kvalitet eller sluttføring.
 
-## 3. Betingede innholdsmoduler
+## 3. Badge-drevet innholdsplan
 
-Følgende skal **vurderes**, men produseres bare når de er reelt relevante:
+Preflight skal alltid:
+
+1. slå opp stedets hovedbadge i `data/badges/index.json`;
+2. lese hele `data/badges/<badge>.json`;
+3. kontrollere alle `underbadge_ids` mot Badge-familien;
+4. lese `data/badges/place_production_routing_v1.json`;
+5. bruke hovedbadge + aktive underbadges til å lage kandidatlisten for research;
+6. teste kandidatene mot faktiske kilder og subsystemkontrakter;
+7. lage endelig `INNHOLDSPLAN` med `PRODUSER` eller `BEGRUNNET N/A` per modul.
+
+Når Badge-filen har `groups`, `children` eller `quizFocus`, skal disse brukes som canonical semantiske hint i research-/quizplanleggingen. De er ikke faktakilder og kan aldri erstatte stedsspesifikk evidens.
+
+### Eksempler på hvorfor underbadge betyr noe
+
+- `naeringsliv + industri` prioriterer produksjonsprosess, anlegg, maskiner/gjenstander, arbeidere/eiere, teknologi og eventuelt dokumentert merkeidentitet;
+- `naeringsliv + bank_og_finans` prioriterer institusjon, finansielle aktører, eierskap, dokumenter/objekter og arkitektur — ikke industrimaskiner;
+- `historie + industrihistorie` styrker produksjons-/arbeids-/teknologisporet selv om hovedbadgen er Historie;
+- `historie + kulturminner_og_bevaring` prioriterer materielle spor, vern, ombruk og minne;
+- `by + byplanlegging` prioriterer plan, byrom, infrastruktur og endring;
+- `by + monumenter_og_landemerker` prioriterer struktur, symbolfunksjon, design/arkitekt og offentlig resepsjon;
+- `musikk + konsertsteder` prioriterer scenehistorie, artister, konserter, venue-identitet og lyd/utstyr;
+- `film_tv + filmlocations` prioriterer konkrete produksjoner, locations og skapere fremfor å late som stedet er et produksjonsselskap;
+- `sport + stadion` prioriterer anlegg, konkurranser, utøvere/klubber og publikumskultur;
+- `sport + supporterkultur` flytter tyngde mot mennesker, uttrykk, objekter og scene-/identitetskultur;
+- `natur + vann_og_vassdrag` bruker Badge-filens vann-/økologi-hints og dokumenterte arter/landform;
+- `natur + fugler` gjør Fauna til en sterk kandidat bare når arter faktisk er dokumentert for stedet;
+- `religion + trossteder_og_hellige_rom` prioriterer Structures og romlig/rituell historie;
+- `kunst + offentlig_kunst` prioriterer Productions, kunstnere, materialer og commissioning/offentlig resepsjon;
+- `litteratur + forfattere_og_litteratursteder` prioriterer People, tekster/verk, Objects og relaterte steder;
+- `politikk + arbeiderbevegelse` prioriterer personer/organisasjoner, møter/hendelser, dokumenter og relaterte steder;
+- `utdanning + utdanningshistorie` prioriterer institusjonshistorie, lærere/elever, skolebygg og læremidler;
+- `helse + helsetjenester_helseokonomi` prioriterer institusjon, system, profesjoner og historiske tjenester fremfor individuell klinikk.
+
+Dette er kandidatstyring, aldri en kvote.
+
+## 4. Betingede innholdsmoduler
+
+Følgende skal vurderes når Badge-routeren eller underbadgen gjør dem plausible, men produseres bare når de er reelt relevante og source-backed:
 
 - People;
 - Objects;
@@ -62,86 +107,52 @@ Følgende skal **vurderes**, men produseres bare når de er reelt relevante:
 - ekstra Fagverk-spor;
 - ekstra medier.
 
-`BEGRUNNET N/A` betyr bare at modulen ikke tilhører stedet. Det betyr **aldri** at et tomt kort skal stå igjen i brukergrensesnittet.
+`BEGRUNNET N/A` betyr at modulen etter ordentlig kandidataudit ikke tilhører stedet. Det betyr **aldri** «gjør senere» og aldri et tomt kort.
 
-**Ingen tomme PlaceCard-samlinger ved fullført ny/full produksjon. Ingen filler.** Hvis en samling ikke har et ekte canonical medlem med riktig bilde, skal samlingen ikke velges i `place_card_profile`.
-
-## 4. Kategori styrer kandidatene — ikke resultatet
-
-Dette er research-ruting, ikke tvangsmaler:
-
-| Kategori / stedstype | Sterke kandidater som undersøkes først | Typiske betingede kandidater |
-| --- | --- | --- |
-| `naeringsliv` / industri | Structures/anlegg, produksjonsspor, People | Objects, Brands, related, Story |
-| `historie` / hendelsessted | related, chronology, fysiske spor | People, Objects, Structures, Story |
-| `by` / urbant sted | Structures/byrom, related | People, Objects, Brands, Story |
-| `religion` | Structures, People | Objects, related, Story |
-| `kunst` | productions | People, Objects, related, Brands |
-| `litteratur` | productions/tekster | People, Objects, related, Brands |
-| `musikk` / `scenekunst` / `film_tv` | productions | People, Objects, Brands, related |
-| `sport` | competitions | People, Objects, Brands, Structures |
-| `politikk` | related, chronology | People, Objects, Story |
-| `vitenskap` / `teknologi` | related, faglig prosess | People, Objects, Structures, Story |
-| `natur` | map/destinations og stedsspesifikk natur | Flora, Fauna, related etter faktisk økologi |
-
-Eksempler:
-
-- et industristed uten dokumentert selvstendig merkeidentitet skal ikke få et konstruert Brand;
-- et historisk sted uten en sentral canonical person skal ikke få en perifer People-post bare for PlaceCard;
-- et natursted skal ikke få generisk Flora/Fauna som ikke er dokumentert for stedet;
-- ett sterkt fysisk spor skal ikke splittes kunstig til både Object og Structure;
-- et sted med én god narrativ akse trenger ikke flere Stories bare for å se omfattende ut.
+**Ingen tomme PlaceCard-samlinger ved fullført ny/full produksjon. Ingen filler.** Hvis en samling ikke har et ekte canonical medlem med riktig bilde, velges den ikke i `place_card_profile`.
 
 ## 5. Produksjonsprofiler
 
 ### `major`
 
-Brukes når stedet både har stor betydning **og** bredt kildebåret stoff som bærer flere selvstendige lærings-, material- eller narrative spor.
+Sted med stor betydning og bredt kildebåret stoff som bærer flere selvstendige lærings-, material- eller narrative spor.
 
-Typiske signaler:
-
-- flere meningsfulle historiske perioder eller transformasjoner;
-- flere sentrale personer/aktører med direkte stedstilknytning;
-- flere distinkte materielle, arkitektoniske eller organisatoriske lag;
-- sterk betydning på tvers av byen/faget;
-- flere ikke-dupliserende lærings- eller fortellingsløp.
-
-Forventning: dypest research og ofte 4 sterke PlaceCard-samlinger, men heller 3 ekte enn 4 der den fjerde måtte konstrueres.
+Forventning: dypest research og ofte 4 sterke PlaceCard-samlinger, men heller 3 ekte enn en kunstig fjerde.
 
 ### `standard`
 
-Default for et betydelig canonical Place med en komplett stedsopplevelse, flere reelle innholdsvinkler og nok materiale til et solid Fagverk/quiz uten at stedet har Major-bredde.
+Default for et betydelig canonical Place med komplett stedsopplevelse, flere reelle innholdsvinkler og nok materiale til solid Fagverk/quiz uten Major-bredde.
 
-Forventning: full universal core og normalt 2–4 sterke PlaceCard-samlinger, valgt etter innholdsplanen.
+Forventning: full universal core og normalt 2–4 sterke PlaceCard-samlinger valgt av Badge-drevet innholdsplan.
 
 ### `focused`
 
-Brukes når et ekte canonical Place har historisk/kulturell verdi konsentrert i én hovedfunksjon, hendelse, struktur, spor eller snevert tema.
+Canonical Place med historisk/kulturell verdi konsentrert i én hovedfunksjon, hendelse, struktur, spor eller snevert tema.
 
-Forventning: full universal core, men ingen sideveis utvidelse bare for å ligne et Standard-sted. Et Focused Place kan være fullstendig med 1–3 sterke PlaceCard-samlinger dersom det er det stedet faktisk bærer.
+Forventning: full universal core, men ingen sideveis utvidelse bare for å ligne Standard. Et Focused Place kan være fullstendig med 1–3 sterke PlaceCard-samlinger.
 
 `focused` kan aldri velges bare fordi oppgaven ønskes billigere eller raskere.
 
 ### `micro`
 
-Brukes bare når stedet kvalifiserer etter `docs/MICRO_PLACE_CONTRACT.md`. Micro har sin egen kort- og innholdskontrakt.
+Brukes bare når stedet kvalifiserer etter `docs/MICRO_PLACE_CONTRACT.md`.
 
 ## 6. Profilavgjørelse
 
-Preflight vurderer fem dimensjoner:
+Preflight vurderer fem dimensjoner **etter Badge-/underbadge-researchen**:
 
-1. **historisk dybde** — hvor mange reelt ulike perioder/transformasjoner finnes;
-2. **entity-dybde** — hvor mange betydelige People/Objects/Brands/Structures/related Places faktisk kvalifiserer;
-3. **kildedybde** — bredde og kvalitet i inspiserbare kilder;
-4. **tolkningsdybde** — hvor mange selvstendige spørsmål, konflikter, prosesser eller læringsspor stedet bærer;
-5. **stedets betydning** — lokal, bymessig, nasjonal eller systemisk betydning av det fysiske stedet.
+1. historisk dybde;
+2. entity-dybde;
+3. kildedybde;
+4. tolkningsdybde;
+5. stedets betydning.
 
 - `major` krever at flere dimensjoner er tydelig høye;
-- `focused` brukes når canonical verdi er høy nok, men bredden etter research er reelt smal;
+- `focused` brukes når canonical verdi består, men bredden er reelt smal;
 - `standard` er hovedprofilen i midten;
 - `micro` følger egen kontrakt.
 
-Ingen mekanisk poengsum er endelig autoritet. Arbeidskortet skal ha en kort evidensbasert begrunnelse.
+Ingen mekanisk poengsum er endelig autoritet.
 
 ## 7. Katalogtriage før videre produksjon
 
@@ -149,30 +160,31 @@ Vi bruker en hybridmodell.
 
 ### Stage A — lett provisional triage
 
-Før videre ordinær stedsproduksjon gjøres én lett passering av eksisterende katalog:
+Eksisterende katalog får planleggingsmetadata basert på det som allerede finnes:
 
 ```text
 production_profile: major | standard | focused | micro
 profile_status: provisional
-profile_reason: <kort grunn fra eksisterende canonical data>
+profile_reason: <kort grunn>
+badge_basis: <category + eksisterende underbadge_ids>
 ```
 
-Dette er **ikke full research** og skal ikke produsere innhold. Det brukes til backlog, prioritering og realistisk kost/omfang.
+Triage skal lese eksisterende hovedbadge/underbadges, men er **ikke full research** og produserer ikke nytt innhold.
 
 ### Stage B — confirmed preflight
 
-Når et sted faktisk går inn i produksjon, bekreftes eller endres profilen etter ekte source review:
+Når stedet går inn i produksjon, leses Badge-filen og kildene ordentlig, og profilen bekreftes eller overstyres:
 
 ```text
-production_profile: ...
+production_profile:
 profile_status: confirmed
-profile_reason: ...
+profile_reason:
 profile_changed_from: <valgfritt>
 ```
 
-Nye steder som ikke finnes i katalogen klassifiseres direkte som `confirmed` i preflight.
+Nye steder klassifiseres direkte som `confirmed`.
 
-## 8. Quizprofil er et separat system
+## 8. Quizprofil er separat
 
 `production_profile` og quizprofil er ikke det samme.
 
@@ -183,30 +195,31 @@ Canonical Quiz-kontrakt velger adaptivt:
 - `rich`: 5–8 × 7;
 - `major`: 8–10 × 7.
 
-Valget følger påstandsbank og faktisk læringsbredde. Et `standard` Place kan derfor ha `rich` quiz, og et `major` Place skal ikke polstres til 10 sett hvis ti selvstendige settplaner ikke finnes.
+Badge/underbadge og eventuell `quizFocus` styrer hvilke kunnskapsområder som undersøkes; påstandsbank og faktisk læringsbredde bestemmer quizprofil og eksakt lengde.
 
 ## 9. PlaceCard: ferdig innhold, aldri tomme kort
 
-For nye og fullproduserte ordinære Places er `place_card_profile.collection_ids` en eksplisitt kuratert liste over **bare ferdige, relevante samlinger**.
-
-Regler:
+For nye/fullproduserte ordinære Places er `place_card_profile.collection_ids` en eksplisitt kuratert liste over **bare ferdige, relevante samlinger**.
 
 - 1–4 samlinger er gyldig;
-- hver valgt samling må ha minst ett ekte canonical medlem og et validert, lastbart previewbilde;
-- samlinger uten kvalifisert innhold utelates helt fra PlaceCard;
-- runtime skal gi 1, 2, 3 og 4 samlinger egne balanserte komposisjoner — ikke tomme reserver;
-- former beholdes semantisk: People/Flora/Fauna er sirkler; øvrige samlinger er avrundede rektangler;
-- `frontImage` forblir den stående hovedflaten og skal ikke gjenbrukes som falskt samlingspreview;
-- gamle Places uten ny eksplisitt profil beholder kompatibilitetsvisningen til de faktisk revideres;
-- ingen bulk-migrasjon skal slette eksisterende korrekt innhold.
+- hver valgt samling har minst ett ekte canonical medlem og validert, lastbart previewbilde;
+- samlinger uten kvalifisert innhold utelates helt;
+- runtime gir 1, 2, 3 og 4 samlinger balanserte komposisjoner;
+- People/Flora/Fauna er sirkler; øvrige er avrundede rektangler;
+- `frontImage` forblir stående hovedflate;
+- gamle Places uten ny eksplisitt profil beholder kompatibilitetsvisningen til revisjon.
 
-Designregel: **Færre samlinger skal se kuratert ut, ikke mangelfullt.** Ett kort sentreres og får visuell tyngde; to vises som et balansert par; tre får en 2+1-komposisjon; fire beholder 2×2.
+Designregel: **Færre samlinger skal se kuraterte ut, ikke mangelfulle.** Ett kort sentreres og får visuell tyngde; to er et balansert par; tre får 2+1; fire får 2×2.
 
 ## 10. Arbeidskort
 
 Hvert ordinære aktive sted skal minst føre:
 
 ```text
+HOVEDBADGE/CATEGORY:
+UNDERBADGE_IDS:
+BADGE-ROUTER STATUS:
+BADGE-DREVNE RESEARCHSPOR:
 PRODUKSJONSPROFIL: major | standard | focused
 PROFILSTATUS: provisional | confirmed
 PROFILBEGRUNNELSE:
@@ -225,14 +238,13 @@ UNIVERSAL CORE STATUS:
 
 ## 11. Anti-snarvei
 
-Produksjonsprofilen er aldri en snarvei:
-
 - eksisterende korrekt innhold beholdes;
-- et relevant source-backed subsystem kan ikke hoppes over fordi stedet er `focused`;
-- en modul som er N/A skal være ferdig vurdert og deretter **ikke vises som tom PlaceCard-flate**;
+- relevant source-backed innhold kan ikke hoppes over fordi stedet er `focused`;
+- Badge/underbadge kan ikke brukes til å dikte innhold som kildene ikke bærer;
+- N/A-modul vises ikke som tom PlaceCard-flate;
 - `focused` betyr smalt komplett, ikke halvferdig;
 - grønn CI kan ikke overstyre svak redaksjonell eller visuell sluttflate.
 
 ## Kort regel
 
-**Triage katalogen lett, bekreft profil i ekte preflight, behold samme harde canonical core, og produser bare innhold som passer akkurat stedet. PlaceCard viser bare ferdige samlinger og skal alltid se bevisst, balansert og komplett ut.**
+**La innholdet følge Badges: hovedbadge åpner researchuniverset, underbadges former kandidatene, kildene avgjør hva som er sant og relevant, og produksjonsprofilen avgjør hvor dypt vi går. PlaceCard viser bare ferdige samlinger og skal alltid se bevisst, balansert og komplett ut.**
