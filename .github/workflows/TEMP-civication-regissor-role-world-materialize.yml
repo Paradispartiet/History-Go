@@ -46,12 +46,6 @@ jobs:
           fs.writeFileSync(worldPath, JSON.stringify(world, null, 2) + '\n');
           fs.writeFileSync(themePath, JSON.stringify(bank, null, 2) + '\n');
           NODE
-      - name: Regenerate scene registry
-        run: node scripts/build-civication-scene-registry.mjs --write
-      - name: Regenerate career gameplay audit
-        run: node scripts/audit-civication-career-gameplay.mjs --write
-      - name: Regenerate rollout readiness
-        run: node scripts/audit-civication-role-world-rollout-readiness.mjs --write
       - name: Make Programleder completion assertion progression-safe
         run: |
           node --input-type=module <<'NODE'
@@ -69,6 +63,12 @@ jobs:
           if (!source.includes(stale)) throw new Error('Expected stale Programleder queue assertion not found');
           fs.writeFileSync(testPath, source.replace(stale, replacement));
           NODE
+      - name: Regenerate scene registry
+        run: node scripts/build-civication-scene-registry.mjs --write
+      - name: Regenerate career gameplay audit
+        run: node scripts/audit-civication-career-gameplay.mjs --write
+      - name: Regenerate rollout readiness
+        run: node scripts/audit-civication-role-world-rollout-readiness.mjs --write
       - name: Verify focused rollout and canonical gates
         run: |
           node tests/civication-film-tv-regissor-role-world-rollout.test.js
