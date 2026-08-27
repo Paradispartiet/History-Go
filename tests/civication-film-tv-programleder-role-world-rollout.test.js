@@ -247,7 +247,11 @@ assert.ok(matrixWorld.artifacts.role_tests.includes('tests/civication-film-tv-pr
 
 const readiness = read('data/Civication/roleWorldRolloutReadiness.json');
 assert.ok(!readiness.rollout_queue.some(row => row.key === KEY), 'completed role must leave rollout queue');
-assert.equal(readiness.rollout_queue[0].key, 'film_tv/regissor');
+const readinessRole = readiness.roles.find(row => row.key === KEY);
+assert.ok(readinessRole, 'completed role must remain classified by readiness');
+assert.equal(readinessRole.runtime_gate, true, 'completed Programleder must keep its runtime gate');
+assert.equal(readiness.gate.gate_pass, true, 'program-level readiness gate must remain green');
+assert.notEqual(readiness.rollout_queue[0]?.key, KEY, 'completed role cannot return to rollout head');
 assert.ok(readiness.summary.role_world_complete_or_pilot >= 11);
 
 const sourceText = fs.readFileSync(path.join(ROOT,WORLD_PATH), 'utf8');
