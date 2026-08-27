@@ -75,6 +75,8 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
+            const fs = require('node:fs');
+            const path = require('node:path');
             const disposablePrefixes = [
               'agent/',
               'automation/',
@@ -110,7 +112,9 @@ jobs:
               .sort();
 
             core.info(`Found ${disposable.length} old merged disposable branches.`);
-            core.setOutput('branches', JSON.stringify(disposable));
+            const inventoryFile = path.join(process.env.RUNNER_TEMP, 'merged-disposable-branches.txt');
+            fs.writeFileSync(inventoryFile, disposable.join('\n'), 'utf8');
+            core.setOutput('inventory-file', inventoryFile);
             await core.summary
               .addHeading('Merged branch hygiene')
               .addRaw(`${disposable.length} old merged disposable branches selected for deletion.`)
@@ -118,13 +122,11 @@ jobs:
 
       - name: Delete inventoried merged branches
         env:
-          MERGED_BRANCHES_JSON: ${{ steps.inventory.outputs.branches }}
+          MERGED_BRANCHES_FILE: ${{ steps.inventory.outputs.inventory-file }}
         shell: bash
         run: |
           set -euo pipefail
-          mapfile -t merged_branches < <(
-            node -e 'for (const branch of JSON.parse(process.env.MERGED_BRANCHES_JSON || "[]")) console.log(branch)'
-          )
+          mapfile -t merged_branches < "$MERGED_BRANCHES_FILE"
           if (( ${#merged_branches[@]} == 0 )); then
             echo 'No old merged disposable branches remain.'
             exit 0
