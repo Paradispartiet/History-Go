@@ -16,8 +16,22 @@ Domain-specific tests remain permanent but must be routed to affected data. Shar
 
 ## Branch lifecycle
 
-Merged same-repository `agent/*` branches are disposable working refs. `.github/workflows/cleanup-merged-agent-branch.yml` deletes them after successful merge. Open branches with unmerged work are never deleted by that workflow.
+Merged same-repository branches under `agent/*`, `automation/*`, `codex/*`,
+`data/audit-unsplit-*` and `data/split-*` are disposable working refs.
+`.github/workflows/cleanup-merged-agent-branch.yml` deletes the triggering branch
+after a successful merge and periodically backfills older branches. Backfill
+requires all of the following before deletion: the pull request has `merged_at`,
+the head repository is History GO, the ref still exists, the prefix is explicitly
+allowlisted and the merge is older than the race-safety window. Open, unmerged,
+fork and unknown-prefix branches are never deleted.
 
 ## Temporary workflows
 
 TEMP/bootstrap/writeback workflows are not a normal production mechanism. Permanent workflows validate the actual PR head. A temporary workflow is only acceptable for an exceptional migration and must be removed from the final merge head.
+
+On 2026-08-27, 97 historical Place split/audit workflows were retired. Ninety-six
+were tied to branches with confirmed merged pull requests; the final workflow
+targeted a ref that no longer existed. Their product data, generators, tests and
+Git history remain intact. Future split migrations run on an ordinary working
+branch and are reviewed through permanent data gates; they do not add a
+write-capable workflow per batch.

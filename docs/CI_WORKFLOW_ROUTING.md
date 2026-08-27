@@ -71,4 +71,6 @@ pull-request workflows lacked stale-run cancellation; none do now.
 
 `CI workflow routing governance` runs for every workflow, routing-audit or policy
 documentation change and enforces ownership, cancellation, duplication rules and
-the production fan-out budgets above.
+the production fan-out budgets above. It also rejects the return of completed
+`split-*` writeback workflows; historical migrations belong in Git history, not
+the permanent Actions inventory.
