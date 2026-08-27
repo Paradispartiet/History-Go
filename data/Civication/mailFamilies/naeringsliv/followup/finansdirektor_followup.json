@@ -1,1 +1,236 @@
-{"schema":"civication_mail_family_catalog_v1","version":1,"category":"naeringsliv","role_scope":"finansdirektor","mail_type":"followup","families":[{"id":"refinansiering_etter_term_sheet","purpose":"Følger et refinansieringsvalg fra første term sheet til eksplisitt sammenligning av kapitalpris, covenant og styremandat.","learning_focus":["refinansiering","term_sheet","styremandat"],"mails":[{"id":"finansdirektor_followup_refinansiering_001","mail_type":"followup","mail_family":"refinansiering_etter_term_sheet","role_scope":"finansdirektor","thread_key":"finansdirektor.case.refinansiering_og_covenant","phase":"morning","priority":64,"cooldown":2,"repeatable":false,"stage":"advanced","from":"bankkontakt","sender":"bankkontakt","person_id":"bankkontakt","place_id":"bankplassen","subject":"Term sheetet er klart, men fleksibiliteten koster mer enn første signal","summary":"Banken sender et refinansieringsutkast der rentemarginen, covenant og begrensninger på utdeling/investering samlet gjør kapitalen dyrere enn første indikasjon.","purpose":"Teste om finansdirektøren sammenligner total finansieringsrisiko og eskalerer beslutningen til riktig nivå før selskapet binder seg.","stakes":"Et raskt ja kan sikre finansieringen og bevare transaksjonstempoet, men låse selskapet til mindre strategisk frihet. En eksplisitt sammenligning kan koste tid, men gjør styrets reelle tradeoff synlig.","situation":["Likviditetsbehovet er reelt, men ikke akutt samme dag.","Term sheetet avviker på flere punkter fra første prisingssignal.","Finansdirektøren kan forhandle og anbefale, men styret må eie vesentlige endringer i kapitalstruktur og risikoramme."],"task_domain":"refinansiering_og_term_sheet","task_kind":"followup","competency":"finansiering_og_bank","pressure":"finansieringssikkerhet_vs_strategisk_fleksibilitet","choice_axis":"sammenligne_eskalere_og_forhandle_vs_akseptere_for_tempo","consequence_axis":"kapitalfleksibilitet_og_tillit_vs_dyr_binding","narrative_arc":"Finansdirektøren lærer at et tilgjengelig lån ikke er det samme som en ansvarlig kapitalstruktur.","choices":[{"id":"A","label":"Sammenlign total kostnad og covenant, forhandle avvikene og løft beslutningen til styret","reply":"Jeg sammenligner samlet kapitalpris og covenant mot mandatet, forhandler de vesentlige avvikene og løfter valget til styret før binding.","effect":1,"tags":["followup","refinancing","governance"],"feedback":"Du behandler term sheetet som et beslutningsgrunnlag, ikke som en avtale som allerede må forsvares."},{"id":"B","label":"Anbefal aksept nå for å sikre finansieringen og ta fleksibiliteten senere","reply":"Jeg anbefaler at vi sikrer finansieringen nå og håndterer den reduserte fleksibiliteten når kapitalen er på plass.","effect":-1,"tags":["refinancing_pressure","governance_risk"],"feedback":"Du kjøper sikkerhet i dag ved å gjøre fremtidig handlingsrom dyrere før styret har fått eie hele tradeoffen."}]}]}]}
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "finansdirektor",
+  "mail_type": "followup",
+  "families": [
+    {
+      "id": "refinansiering_etter_term_sheet",
+      "purpose": "Følger et refinansieringsvalg fra første term sheet til eksplisitt sammenligning av kapitalpris, covenant og styremandat.",
+      "learning_focus": [
+        "refinansiering",
+        "term_sheet",
+        "styremandat"
+      ],
+      "mails": [
+        {
+          "id": "finansdirektor_followup_refinansiering_001",
+          "mail_type": "followup",
+          "mail_family": "refinansiering_etter_term_sheet",
+          "role_scope": "finansdirektor",
+          "thread_key": "finansdirektor.case.refinansiering_og_covenant",
+          "phase": "morning",
+          "priority": 64,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "advanced",
+          "from": "bankkontakt",
+          "sender": "bankkontakt",
+          "person_id": "bankkontakt",
+          "place_id": "bankplassen",
+          "subject": "Term sheetet er klart, men fleksibiliteten koster mer enn første signal",
+          "summary": "Banken sender et refinansieringsutkast der rentemarginen, covenant og begrensninger på utdeling/investering samlet gjør kapitalen dyrere enn første indikasjon.",
+          "purpose": "Teste om finansdirektøren sammenligner total finansieringsrisiko og eskalerer beslutningen til riktig nivå før selskapet binder seg.",
+          "stakes": "Et raskt ja kan sikre finansieringen og bevare transaksjonstempoet, men låse selskapet til mindre strategisk frihet. En eksplisitt sammenligning kan koste tid, men gjør styrets reelle tradeoff synlig.",
+          "situation": [
+            "Likviditetsbehovet er reelt, men ikke akutt samme dag.",
+            "Term sheetet avviker på flere punkter fra første prisingssignal.",
+            "Finansdirektøren kan forhandle og anbefale, men styret må eie vesentlige endringer i kapitalstruktur og risikoramme."
+          ],
+          "task_domain": "refinansiering_og_term_sheet",
+          "task_kind": "followup",
+          "competency": "finansiering_og_bank",
+          "pressure": "finansieringssikkerhet_vs_strategisk_fleksibilitet",
+          "choice_axis": "sammenligne_eskalere_og_forhandle_vs_akseptere_for_tempo",
+          "consequence_axis": "kapitalfleksibilitet_og_tillit_vs_dyr_binding",
+          "narrative_arc": "Finansdirektøren lærer at et tilgjengelig lån ikke er det samme som en ansvarlig kapitalstruktur.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Sammenlign total kostnad og covenant, forhandle avvikene og løft beslutningen til styret",
+              "reply": "Jeg sammenligner samlet kapitalpris og covenant mot mandatet, forhandler de vesentlige avvikene og løfter valget til styret før binding.",
+              "effect": 1,
+              "tags": [
+                "followup",
+                "refinancing",
+                "governance"
+              ],
+              "feedback": "Du behandler term sheetet som et beslutningsgrunnlag, ikke som en avtale som allerede må forsvares."
+            },
+            {
+              "id": "B",
+              "label": "Anbefal aksept nå for å sikre finansieringen og ta fleksibiliteten senere",
+              "reply": "Jeg anbefaler at vi sikrer finansieringen nå og håndterer den reduserte fleksibiliteten når kapitalen er på plass.",
+              "effect": -1,
+              "tags": [
+                "refinancing_pressure",
+                "governance_risk"
+              ],
+              "feedback": "Du kjøper sikkerhet i dag ved å gjøre fremtidig handlingsrom dyrere før styret har fått eie hele tradeoffen."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_finansdirektor_board_wait",
+      "purpose": "Overleverer CFO-anbefalingen til styret og gjør venting på faktisk kapitalmyndighet eksplisitt.",
+      "learning_focus": [
+        "handoff",
+        "waiting",
+        "governance"
+      ],
+      "mails": [
+        {
+          "id": "naeringsliv_finansdirektor_realism_board_handoff_wait_001",
+          "mail_type": "followup",
+          "mail_family": "role_world_rollout_finansdirektor_board_wait",
+          "role_scope": "finansdirektor",
+          "phase": "advanced",
+          "day_phase": "afternoon",
+          "priority": 96,
+          "cooldown": 10,
+          "repeatable": false,
+          "stage": "stable",
+          "planned_only": true,
+          "thread_key": "naeringsliv_finansdirektor_refinancing_realism_001",
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "naeringsliv",
+            "finansdirektor",
+            "persistent_work",
+            "situated_reputation"
+          ],
+          "from": "Styreleder",
+          "people_ref": "styreleder",
+          "person_id": "styreleder",
+          "place_id": "oslo_bors",
+          "subject": "Finansieringsrådet er klart – nå må CFO overlevere og vente på styrets faktiske mandat",
+          "summary": "Reworket er ferdig og bankalternativene er forhandlet til et beslutningsklart nivå. Du kan anbefale struktur, forklare downside og peke på foretrukne vilkår, men styret må eie den vesentlige kapitalbeslutningen. Samme case går derfor fra aktiv forhandling til eksplisitt waiting på styret.",
+          "purpose": "Koble venting direkte til finansdirektørens fullmaktsgrense: høy standing hos Nora, banken eller styreleder kan gi innflytelse, men kan aldri gjøre en anbefaling eller term sheet til bindende selskapshandling uten riktig beslutning.",
+          "stakes": "Hvis finansdirektøren sosialt behandler styrevedtaket som gitt, kan banken og organisasjonen begynne å handle som om kapitalen allerede er bundet. Da blir formell governance en etterkontroll i stedet for faktisk beslutning.",
+          "situation": [
+            "Styret har fått total kapitalpris, covenantbuffer, downside og forhandlingsalternativer i samme spor.",
+            "Banken kan holde vilkår åpne en kort periode, men kan ikke få et bindende ja fra deg uten nødvendig fullmakt.",
+            "Nora vil vite hva hun kan kommunisere til organisasjonen mens styret behandler anbefalingen."
+          ],
+          "task_domain": "board_capital_handoff",
+          "task_kind": "followup",
+          "competency": "styre_og_eierkommunikasjon",
+          "pressure": "transaksjonstempo_vs_formell_kapitalmyndighet",
+          "choice_axis": "overlevere_og_vente_vs_foregripe_styrevedtak",
+          "consequence_axis": "governance_tillit_vs_mandatlekkasje",
+          "narrative_arc": "fra_refinansieringsbehov_til_sporbart_styrevedtak_og_kapitaletterspill",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "naeringsliv_finansdirektor_refinancing_case_001"
+            ],
+            "institution_id": "naeringsliv_konsernfinans_001",
+            "handoff_to_actor_id": "styreleder",
+            "waiting_for_actor_id": "styreleder",
+            "rework_of_scene_id": "naeringsliv_finansdirektor_realism_rate_covenant_rework_001",
+            "priority": "high"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Overlever anbefalingen som råd og marker caset waiting på styrets beslutning",
+              "reply": "Jeg sender anbefaling, vilkår og downside til styret og markerer at bindende kapitalbeslutning venter på styrets mandat.",
+              "effect": 2,
+              "feedback": "Du gir banken og Nora et tydelig neste steg uten å låne styrets myndighet. Ventingen blir en styrt fase i kapitalcaset, ikke et signal om at beslutningen allerede finnes.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 3,
+                  "risk": -3
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "cfo_case_waiting_for_board",
+                    "work_object_id": "naeringsliv_finansdirektor_refinancing_case_001",
+                    "to_status": "waiting",
+                    "to_phase": "awaiting_board_decision",
+                    "note": "Forhandlet finansieringsgrunnlag er overlevert; caset venter på styrets kapitalbeslutning."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "cfo_board_handoff_traced",
+                    "work_object_id": "naeringsliv_finansdirektor_refinancing_case_001",
+                    "flag": "recommendation_separated_from_binding_capital_decision"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "cfo_standing_board_wait",
+                    "audience_id": "professional:styreleder",
+                    "delta": 4,
+                    "reason": "Styreleder får et klart skille mellom CFOens finansielle anbefaling og styrets egen beslutning, slik at ansvar og fullmakt forblir etterprøvbar også under tidspress.",
+                    "source_actor_id": "styreleder"
+                  },
+                  {
+                    "event_id": "cfo_standing_nora_boardwait",
+                    "audience_id": "manager:nora_daglig_leder",
+                    "delta": 3,
+                    "reason": "Nora vet hva hun kan planlegge og hva hun ennå ikke kan kommunisere som besluttet, uten at finansdirektørens faglige tyngde blir brukt som erstatning for styrevedtak.",
+                    "source_actor_id": "nora_daglig_leder"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Gi banken et uformelt ja og behandle styremøtet som siste formalitet",
+              "reply": "Jeg signaliserer at vi går for løsningen og ber banken holde vilkårene, så kan styret formalisere beslutningen etterpå.",
+              "effect": -2,
+              "feedback": "Du beskytter tempoet ved å flytte forventning foran mandat. Banken og organisasjonen kan nå lese et uformelt signal som om selskapet allerede har bundet seg.",
+              "effects": {
+                "stats": {
+                  "status": 2,
+                  "quality": -2,
+                  "trust": -4,
+                  "risk": 5
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "cfo_case_waiting_board_prejudged",
+                    "work_object_id": "naeringsliv_finansdirektor_refinancing_case_001",
+                    "to_status": "waiting",
+                    "to_phase": "awaiting_board_decision",
+                    "note": "Caset venter formelt på styret, men spilleren har sosialt foregrepet bindende retning."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "cfo_board_outcome_prejudged",
+                    "work_object_id": "naeringsliv_finansdirektor_refinancing_case_001",
+                    "flag": "bank_received_commitment_like_signal_before_board_decision"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "cfo_standing_board_prejudged",
+                    "audience_id": "professional:styreleder",
+                    "delta": -5,
+                    "reason": "Styreleder må behandle en sak der finansdirektøren allerede har skapt ekstern forventning om utfallet, noe som svekker styrets faktiske beslutningsrom.",
+                    "source_actor_id": "styreleder"
+                  },
+                  {
+                    "event_id": "cfo_standing_bank_precommit",
+                    "audience_id": "professional:bankkontakt",
+                    "delta": -3,
+                    "reason": "Bankkontakten mottar et signal som ligner en forpliktelse før riktig beslutningsorgan har godkjent vilkårene, og fullmaktsgrensen blir vanskeligere å lese.",
+                    "source_actor_id": "bankkontakt"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

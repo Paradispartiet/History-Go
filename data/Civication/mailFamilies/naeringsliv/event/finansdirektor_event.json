@@ -30,20 +30,34 @@
           "choice_axis": "oppdatere_modell_vs_beholde_budskap",
           "consequence_axis": "troverdighet_vs_tempo",
           "narrative_arc": "markedet_endrer_kapitalrommet",
-          "learning_focus": ["rente", "refinansiering", "bankdialog", "kapitalrom", "modelloppdatering"],
+          "learning_focus": [
+            "rente",
+            "refinansiering",
+            "bankdialog",
+            "kapitalrom",
+            "modelloppdatering"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Oppdater modellen og vis effekten på buffer og lånerom.",
               "effect": 1,
-              "tags": ["tillit", "finansiering", "risiko"],
+              "tags": [
+                "tillit",
+                "finansiering",
+                "risiko"
+              ],
               "feedback": "Du gjør møtet vanskeligere, men mer reelt. Banken ser at dere følger kapitalrommet, ikke bare fortellingen."
             },
             {
               "id": "B",
               "label": "Behold presentasjonen og forklar renteeffekten muntlig.",
               "effect": -1,
-              "tags": ["tempo", "risk", "kapitalfortelling"],
+              "tags": [
+                "tempo",
+                "risk",
+                "kapitalfortelling"
+              ],
               "feedback": "Flyten bevares, men modellen ligger bak markedet. En muntlig forklaring veier mindre enn et oppdatert tall."
             }
           ]
@@ -69,21 +83,192 @@
           "choice_axis": "beredskap_vs_signalrisiko",
           "consequence_axis": "tillit_vs_status",
           "narrative_arc": "robusthet_som_tillit",
-          "learning_focus": ["beredskap", "arbeidskapital", "investering", "banktillit", "downside"],
+          "learning_focus": [
+            "beredskap",
+            "arbeidskapital",
+            "investering",
+            "banktillit",
+            "downside"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Lag operativ beredskapsplan med konkrete triggere.",
               "effect": 1,
-              "tags": ["beredskap", "tillit", "risiko"],
+              "tags": [
+                "beredskap",
+                "tillit",
+                "risiko"
+              ],
               "feedback": "Du viser banken at selskapet ikke bare har en plan for oppside. Det har også disiplin for motvind."
             },
             {
               "id": "B",
               "label": "Hold planen overordnet for ikke å svekke vekstsignalet.",
               "effect": -1,
-              "tags": ["visibility", "risk", "status"],
+              "tags": [
+                "visibility",
+                "risk",
+                "status"
+              ],
               "feedback": "Budskapet blir mer offensivt, men mindre robust. Banken får færre grunner til å tro at dere tåler avvik."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_finansdirektor_rate_rework",
+      "purpose": "Lar rente og covenant åpne samme kapitalcase for sporbar rework.",
+      "learning_focus": [
+        "rework",
+        "refinancing",
+        "covenant"
+      ],
+      "mails": [
+        {
+          "id": "naeringsliv_finansdirektor_realism_rate_covenant_rework_001",
+          "mail_type": "event",
+          "mail_family": "role_world_rollout_finansdirektor_rate_rework",
+          "role_scope": "finansdirektor",
+          "phase": "advanced",
+          "day_phase": "morning",
+          "priority": 97,
+          "cooldown": 10,
+          "repeatable": false,
+          "stage": "stable",
+          "planned_only": true,
+          "thread_key": "naeringsliv_finansdirektor_refinancing_realism_001",
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "naeringsliv",
+            "finansdirektor",
+            "persistent_work",
+            "situated_reputation"
+          ],
+          "from": "Bankkontakt",
+          "people_ref": "bankkontakt",
+          "person_id": "bankkontakt",
+          "place_id": "bankplassen",
+          "subject": "Rente og covenant flytter seg – samme refinansieringscase må åpnes for rework",
+          "summary": "Banken returnerer et indikativt term sheet samtidig som markedsrenten har flyttet seg. Finansieringen er fortsatt mulig, men samlet kapitalpris og covenantbuffer er svakere enn baseline. Det gamle grunnlaget var ryddig da det ble sendt, men kan ikke lenger bære styreanbefalingen uendret.",
+          "purpose": "Bevise at rework etter ekstern handoff er normal finansledelse: nye vilkår må endre samme arbeidsobjekt med synlig endringsspor i stedet for å bli gjemt i muntlige forbehold eller en ny parallell presentasjon.",
+          "stakes": "Hvis pris- og covenantendringen reduseres til fotnoter, kan styret vedta en kapitalstruktur som ser lik ut, men har mindre strategisk fleksibilitet. Hvis alt bygges om uten spor, forsvinner læringen om hva markedet faktisk endret.",
+          "situation": [
+            "Term sheetet er ikke en bindende avtale, men det er konkret nok til å endre selskapets reelle kapitalalternativer.",
+            "Bankkontakten forventer at du sammenligner samlet kostnad, covenant og fleksibilitet før neste forhandlingsrunde.",
+            "Nora vil beholde vekstplanen; styret trenger å se om finansieringsrammen fortsatt tåler downside."
+          ],
+          "task_domain": "rate_and_covenant_rework",
+          "task_kind": "event",
+          "competency": "kapitalpris_covenant_og_endringsspor",
+          "pressure": "vekstfortelling_vs_nye_bankvilkar",
+          "choice_axis": "sporbar_rework_vs_beholde_gammelt_hovedbudskap",
+          "consequence_axis": "beslutningsrelevans_vs_kapitalblindhet",
+          "narrative_arc": "fra_refinansieringsbehov_til_sporbart_styrevedtak_og_kapitaletterspill",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "naeringsliv_finansdirektor_refinancing_case_001"
+            ],
+            "institution_id": "naeringsliv_konsernfinans_001",
+            "rework_of_scene_id": "naeringsliv_finansdirektor_realism_bank_handoff_wait_001",
+            "priority": "high"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Åpne caset for rework og vis eksakt hva rente og covenant gjør med handlingsrommet",
+              "reply": "Jeg oppdaterer kapitalpris, covenantbuffer og downside i samme case og sender endringssporet til Nora, banken og styregrunnlaget.",
+              "effect": 2,
+              "feedback": "Samme refinansieringscase tåler at markedet flytter seg. Banken ser at vilkår behandles reelt, og styret kan skille gammel ambisjon fra ny bæreevne.",
+              "effects": {
+                "stats": {
+                  "quality": 3,
+                  "trust": 3,
+                  "risk": -3
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "cfo_case_rate_rework",
+                    "work_object_id": "naeringsliv_finansdirektor_refinancing_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "rate_and_covenant_rework",
+                    "note": "Nye rente- og covenantvilkår endrer kapitalrommet; samme case åpnes for sporbar rework."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "cfo_rate_rework_traced",
+                    "work_object_id": "naeringsliv_finansdirektor_refinancing_case_001",
+                    "flag": "term_sheet_and_market_change_logged"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "cfo_standing_bank_rework",
+                    "audience_id": "professional:bankkontakt",
+                    "delta": 3,
+                    "reason": "Bankkontakten ser at endrede vilkår faktisk slår inn i selskapets analyse og mandat, slik at neste forhandling bygger på et reelt kapitalrom fremfor et gammelt vekstbudskap.",
+                    "source_actor_id": "bankkontakt"
+                  },
+                  {
+                    "event_id": "cfo_standing_board_rework",
+                    "audience_id": "professional:styreleder",
+                    "delta": 3,
+                    "reason": "Styreleder får et beslutningsgrunnlag som viser hva som kommer fra markedet, hva som kommer fra bankens vilkår og hvordan dette endrer selskapets downside og fleksibilitet.",
+                    "source_actor_id": "styreleder"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Behold styrepresentasjonen og håndter rente- og covenantendringen muntlig",
+              "reply": "Jeg lar hovedpresentasjonen stå så veksthistorien er stabil, og forklarer de nye vilkårene muntlig når styret spør.",
+              "effect": -2,
+              "feedback": "Historien flyter bedre, men modellen ligger bak kapitalmarkedet. Banken og styret får mindre grunnlag for å vite om rådet faktisk tåler de vilkårene selskapet nå kan få.",
+              "effects": {
+                "stats": {
+                  "status": 2,
+                  "quality": -3,
+                  "trust": -3,
+                  "risk": 5
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "cfo_case_rate_rework_avoided",
+                    "work_object_id": "naeringsliv_finansdirektor_refinancing_case_001",
+                    "to_status": "in_progress",
+                    "to_phase": "rate_and_covenant_rework",
+                    "note": "Nye vilkår er kjent, men hovedgrunnlaget holdes i gammel form."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "cfo_terms_reduced_to_footnote",
+                    "work_object_id": "naeringsliv_finansdirektor_refinancing_case_001",
+                    "flag": "material_financing_change_not_reworked_into_case"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "cfo_standing_bank_footnote",
+                    "audience_id": "professional:bankkontakt",
+                    "delta": -3,
+                    "reason": "Bankkontakten ser at vesentlige vilkår behandles som presentasjonsdetaljer fremfor som faktiske rammer for kapitalstruktur og forhandling.",
+                    "source_actor_id": "bankkontakt"
+                  },
+                  {
+                    "event_id": "cfo_standing_board_footnote",
+                    "audience_id": "professional:styreleder",
+                    "delta": -4,
+                    "reason": "Styreleder får et penere hovedbudskap, men svakere mulighet til å forstå hvordan rente, covenant og fleksibilitet faktisk har endret beslutningen siden baseline.",
+                    "source_actor_id": "styreleder"
+                  }
+                ]
+              }
             }
           ]
         }

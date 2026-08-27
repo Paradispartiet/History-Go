@@ -1,1 +1,248 @@
-{"schema":"civication_mail_family_catalog_v1","version":1,"category":"naeringsliv","role_scope":"finansdirektor","mail_type":"consequence","families":[{"id":"forsinket_refinansieringskonsekvens","purpose":"Gjør senere konsekvenser av refinansieringsvalget synlige i covenantbuffer, styretillit og muligheten til å finansiere nye tiltak.","learning_focus":["forsinket_konsekvens","covenantbuffer","kapitalfleksibilitet"],"mails":[{"id":"finansdirektor_consequence_refinansiering_001","mail_type":"consequence","mail_family":"forsinket_refinansieringskonsekvens","role_scope":"finansdirektor","thread_key":"finansdirektor.case.refinansiering_og_covenant","phase":"day_end","priority":66,"cooldown":3,"repeatable":false,"stage":"mastery","from":"styreleder","sender":"styreleder","person_id":"styreleder","place_id":"oslo_bors","subject":"Noen uker senere avgjør refinansieringsvalget hvor mye kapitalrom styret faktisk har","summary":"Et nytt investeringsbehov oppstår samtidig som den valgte finansieringen nå viser sin fulle effekt på covenantbuffer og strategisk fleksibilitet.","purpose":"Vise at vilkår som virket tekniske i term sheetet senere blir konkrete grenser for styrets mulighet til å handle.","stakes":"Styret må nå prioritere med det kapitalrommet som faktisk ble kjøpt. Sporbar analyse og riktig mandat kan bevare tillit selv når rommet er stramt; en for rask binding gjør begrensningene vanskeligere å forklare og håndtere.","situation":["Finansieringen er satt i sammenheng med faktisk utvikling etter beslutningen.","Et nytt investerings- eller beredskapsbehov konkurrerer om samme kapitalrom.","Styret trenger å se hvilke begrensninger som kommer fra markedet, og hvilke som følger av det tidligere finansieringsvalget."],"task_domain":"forsinket_refinansieringskonsekvens","task_kind":"consequence","competency":"strategisk_risiko","pressure":"forklare_tidligere_valg_vs_beskytte_status","choice_axis":"vise_beslutningsspor_og_reelt_rom_vs_glatte_over_bindingen","consequence_axis":"styretillit_og_prioritering_vs_tillitsrabatt","narrative_arc":"Finansdirektøren ser at kapitalvilkår blir organisasjonens fremtidige handlingsrom, ikke bare finansielle fotnoter.","choices":[{"id":"A","label":"Vis beslutningssporet, dagens covenantbuffer og hvilke alternativer styret faktisk har","reply":"Jeg viser hvordan finansieringsvalget slo ut, dagens covenantbuffer og hvilke alternativer som fortsatt ligger innenfor styrets reelle handlingsrom.","effect":1,"tags":["consequence","board_trust","capital_flexibility"],"feedback":"Du gjør tidligere valg etterprøvbare og lar styret prioritere på grunnlag av det kapitalrommet som faktisk finnes."},{"id":"B","label":"Fokuser på dagens investeringsmulighet og ton ned hvor mye tidligere vilkår begrenser valget","reply":"Jeg fokuserer på den nye investeringsmuligheten og holder de tidligere finansieringsvilkårene i bakgrunnen så vi ikke låser diskusjonen.","effect":-1,"tags":["narrative_bias","board_trust_risk"],"feedback":"Du beskytter momentet, men gjør det vanskeligere for styret å skille ny risiko fra konsekvensen av et gammelt kapitalvalg."}]}]}]}
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "finansdirektor",
+  "mail_type": "consequence",
+  "families": [
+    {
+      "id": "forsinket_refinansieringskonsekvens",
+      "purpose": "Gjør senere konsekvenser av refinansieringsvalget synlige i covenantbuffer, styretillit og muligheten til å finansiere nye tiltak.",
+      "learning_focus": [
+        "forsinket_konsekvens",
+        "covenantbuffer",
+        "kapitalfleksibilitet"
+      ],
+      "mails": [
+        {
+          "id": "finansdirektor_consequence_refinansiering_001",
+          "mail_type": "consequence",
+          "mail_family": "forsinket_refinansieringskonsekvens",
+          "role_scope": "finansdirektor",
+          "thread_key": "finansdirektor.case.refinansiering_og_covenant",
+          "phase": "day_end",
+          "priority": 66,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "mastery",
+          "from": "styreleder",
+          "sender": "styreleder",
+          "person_id": "styreleder",
+          "place_id": "oslo_bors",
+          "subject": "Noen uker senere avgjør refinansieringsvalget hvor mye kapitalrom styret faktisk har",
+          "summary": "Et nytt investeringsbehov oppstår samtidig som den valgte finansieringen nå viser sin fulle effekt på covenantbuffer og strategisk fleksibilitet.",
+          "purpose": "Vise at vilkår som virket tekniske i term sheetet senere blir konkrete grenser for styrets mulighet til å handle.",
+          "stakes": "Styret må nå prioritere med det kapitalrommet som faktisk ble kjøpt. Sporbar analyse og riktig mandat kan bevare tillit selv når rommet er stramt; en for rask binding gjør begrensningene vanskeligere å forklare og håndtere.",
+          "situation": [
+            "Finansieringen er satt i sammenheng med faktisk utvikling etter beslutningen.",
+            "Et nytt investerings- eller beredskapsbehov konkurrerer om samme kapitalrom.",
+            "Styret trenger å se hvilke begrensninger som kommer fra markedet, og hvilke som følger av det tidligere finansieringsvalget."
+          ],
+          "task_domain": "forsinket_refinansieringskonsekvens",
+          "task_kind": "consequence",
+          "competency": "strategisk_risiko",
+          "pressure": "forklare_tidligere_valg_vs_beskytte_status",
+          "choice_axis": "vise_beslutningsspor_og_reelt_rom_vs_glatte_over_bindingen",
+          "consequence_axis": "styretillit_og_prioritering_vs_tillitsrabatt",
+          "narrative_arc": "Finansdirektøren ser at kapitalvilkår blir organisasjonens fremtidige handlingsrom, ikke bare finansielle fotnoter.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Vis beslutningssporet, dagens covenantbuffer og hvilke alternativer styret faktisk har",
+              "reply": "Jeg viser hvordan finansieringsvalget slo ut, dagens covenantbuffer og hvilke alternativer som fortsatt ligger innenfor styrets reelle handlingsrom.",
+              "effect": 1,
+              "tags": [
+                "consequence",
+                "board_trust",
+                "capital_flexibility"
+              ],
+              "feedback": "Du gjør tidligere valg etterprøvbare og lar styret prioritere på grunnlag av det kapitalrommet som faktisk finnes."
+            },
+            {
+              "id": "B",
+              "label": "Fokuser på dagens investeringsmulighet og ton ned hvor mye tidligere vilkår begrenser valget",
+              "reply": "Jeg fokuserer på den nye investeringsmuligheten og holder de tidligere finansieringsvilkårene i bakgrunnen så vi ikke låser diskusjonen.",
+              "effect": -1,
+              "tags": [
+                "narrative_bias",
+                "board_trust_risk"
+              ],
+              "feedback": "Du beskytter momentet, men gjør det vanskeligere for styret å skille ny risiko fra konsekvensen av et gammelt kapitalvalg."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "role_world_rollout_finansdirektor_board_aftermath",
+      "purpose": "Lukker caset med skille mellom CFO-råd, styrevedtak, vilkår og situert standing.",
+      "learning_focus": [
+        "aftermath",
+        "governance",
+        "situated_reputation"
+      ],
+      "mails": [
+        {
+          "id": "naeringsliv_finansdirektor_realism_board_aftermath_001",
+          "mail_type": "consequence",
+          "mail_family": "role_world_rollout_finansdirektor_board_aftermath",
+          "role_scope": "finansdirektor",
+          "phase": "advanced",
+          "day_phase": "evening",
+          "priority": 95,
+          "cooldown": 10,
+          "repeatable": false,
+          "stage": "stable",
+          "planned_only": true,
+          "thread_key": "naeringsliv_finansdirektor_refinancing_realism_001",
+          "tags": [
+            "role_world_realism",
+            "controlled_rollout",
+            "naeringsliv",
+            "finansdirektor",
+            "persistent_work",
+            "situated_reputation"
+          ],
+          "from": "Styreleder",
+          "people_ref": "styreleder",
+          "person_id": "styreleder",
+          "place_id": "oslo_bors",
+          "subject": "Styret har vedtatt kapitalretningen – nå må løfter, mandat og senere konsekvens holdes adskilt",
+          "summary": "Styret har tatt sin beslutning. Caset skal lukkes med baseline, bank-handoff, venting, rente-/covenant-rework, finansdirektørens anbefaling og styrets faktiske vedtak som separate lag. Senere likviditet eller vekst skal kunne spores tilbake uten at CFO omskriver hvem som eide beslutningen.",
+          "purpose": "Materialisere kapitaletterspill og governance-læring: et godt resultat gjør ikke et mandatbrudd riktig, og et stramt senere kapitalrom gjør ikke nødvendigvis en sporbar, riktig autorisert beslutning faglig svak.",
+          "stakes": "Hvis finansdirektøren bruker senere utfall til å omskrive mandatet eller premissene, mister styret og banken institusjonelt minne. Da kan neste finansieringsrunde gjenta samme forventnings- og covenantfeil uten å vite hvor den oppstod.",
+          "situation": [
+            "Styrets vedtak er et eget institusjonelt lag og må ikke framstilles som en automatisk forlengelse av CFOens anbefaling.",
+            "Caset inneholder nå bankventing, vilkårsrework og styrehandoff i samme arbeidsobjekt.",
+            "Eierrepresentanten og Nora vil raskt vite hva beslutningen betyr for vekst, buffer og fremtidig handlingsrom."
+          ],
+          "task_domain": "capital_decision_aftermath",
+          "task_kind": "consequence",
+          "competency": "governance_og_kapitalminne",
+          "pressure": "beskytte_status_vs_bevare_beslutningsspor",
+          "choice_axis": "lukk_med_mandat_og_premiss_vs_omskriv_som_cfo_seier",
+          "consequence_axis": "langsiktig_tillit_vs_resultatdrevet_makt",
+          "narrative_arc": "fra_refinansieringsbehov_til_sporbart_styrevedtak_og_kapitaletterspill",
+          "interaction_mode": "decision",
+          "work_context": {
+            "object_ids": [
+              "naeringsliv_finansdirektor_refinancing_case_001"
+            ],
+            "institution_id": "naeringsliv_konsernfinans_001",
+            "rework_of_scene_id": "naeringsliv_finansdirektor_realism_board_handoff_wait_001",
+            "priority": "high"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lukk caset med anbefaling, styrevedtak, vilkår og læringspunkter som separate lag",
+              "reply": "Jeg arkiverer hva vi anbefalte, hvilke vilkår styret faktisk godkjente og hvilke fremtidige triggere som skal åpne caset igjen.",
+              "effect": 2,
+              "feedback": "Refinansieringen blir institusjonelt minne fremfor en prestisjehistorie. Nora, banken, styret og eierne kan senere forstå både beslutning og konsekvens uten å flytte ansvar bakover.",
+              "effects": {
+                "stats": {
+                  "quality": 3,
+                  "trust": 3,
+                  "risk": -2
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "cfo_case_closed_with_board_record",
+                    "work_object_id": "naeringsliv_finansdirektor_refinancing_case_001",
+                    "to_status": "closed",
+                    "to_phase": "board_decision_recorded",
+                    "note": "Styrets beslutning, CFO-anbefalingen og de faktiske finansieringsvilkårene er skilt og dokumentert; caset lukkes."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "cfo_case_learning_closed",
+                    "work_object_id": "naeringsliv_finansdirektor_refinancing_case_001",
+                    "flag": "board_decision_and_finance_advice_recorded_separately"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "cfo_standing_board_aftermath",
+                    "audience_id": "professional:styreleder",
+                    "delta": 3,
+                    "reason": "Styreleder får et etterprøvbart kapitalminne der styrets vedtak, CFOens råd og de faktiske vilkårene er separate, slik at senere prioritering ikke omskriver hvem som eide beslutningen.",
+                    "source_actor_id": "styreleder"
+                  },
+                  {
+                    "event_id": "cfo_standing_bank_aftermath",
+                    "audience_id": "professional:bankkontakt",
+                    "delta": 2,
+                    "reason": "Bankkontakten ser at selskapet dokumenterer vilkår og beslutningsspor konsistent, noe som gjør senere covenant- eller refinansieringsdialog mer troverdig.",
+                    "source_actor_id": "bankkontakt"
+                  },
+                  {
+                    "event_id": "cfo_standing_nora_aftermath",
+                    "audience_id": "manager:nora_daglig_leder",
+                    "delta": 2,
+                    "reason": "Nora får et tydelig bilde av hvilket kapitalrom styret faktisk har kjøpt og hvilke fremtidige triggere som må bringes tilbake til finansfunksjonen eller styret.",
+                    "source_actor_id": "nora_daglig_leder"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Oppsummer refinansieringen som CFOens vellykkede gjennomføring og ton ned beslutningsgrensene",
+              "reply": "Jeg lager en kort suksessoppsummering rundt sikret kapital og bruker ikke plass på hvem som eide hvert mandat og hvilke vilkår som flyttet seg.",
+              "effect": -2,
+              "feedback": "Du får en sterkere prestasjonsfortelling, men svakere institusjonelt minne. Senere kan både gode og dårlige utfall feilaktig bli lest som bevis på én persons dømmekraft.",
+              "effects": {
+                "stats": {
+                  "status": 2,
+                  "quality": -3,
+                  "trust": -2,
+                  "risk": 3
+                },
+                "work_object_ops": [
+                  {
+                    "op": "transition",
+                    "event_id": "cfo_case_closed_with_status_bias",
+                    "work_object_id": "naeringsliv_finansdirektor_refinancing_case_001",
+                    "to_status": "closed",
+                    "to_phase": "board_decision_recorded",
+                    "note": "Caset lukkes, men læringen domineres av statusfortelling fremfor mandat og premiss."
+                  },
+                  {
+                    "op": "add_flag",
+                    "event_id": "cfo_status_bias",
+                    "work_object_id": "naeringsliv_finansdirektor_refinancing_case_001",
+                    "flag": "later_story_overwrites_authority_and_decision_time_reasoning"
+                  }
+                ],
+                "social_standing_ops": [
+                  {
+                    "event_id": "cfo_standing_board_statusbias",
+                    "audience_id": "professional:styreleder",
+                    "delta": -3,
+                    "reason": "Styreleder mister et presist beslutningsminne når CFOens gjennomføringsfortelling får overskygge styrets mandat, vilkårene som endret seg og hvem som tok den bindende beslutningen.",
+                    "source_actor_id": "styreleder"
+                  },
+                  {
+                    "event_id": "cfo_standing_bank_statusbias",
+                    "audience_id": "professional:bankkontakt",
+                    "delta": -2,
+                    "reason": "Bankkontakten får et mindre etterprøvbart bilde av hvordan selskapet faktisk vurderte og godkjente finansieringen, noe som svekker læring ved neste forhandling.",
+                    "source_actor_id": "bankkontakt"
+                  },
+                  {
+                    "event_id": "cfo_standing_nora_statusbias",
+                    "audience_id": "manager:nora_daglig_leder",
+                    "delta": -2,
+                    "reason": "Nora får et enklere suksessnarrativ, men mindre støtte til å skille finansdirektørens faglige innflytelse fra styrets formelle kapitalmyndighet.",
+                    "source_actor_id": "nora_daglig_leder"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
