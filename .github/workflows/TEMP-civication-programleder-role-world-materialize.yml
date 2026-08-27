@@ -141,6 +141,12 @@ jobs:
         run: node /tmp/run-programleder-prefix.cjs "const plan ="
       - name: Diagnose Programleder plan integration
         run: node /tmp/run-programleder-prefix.cjs "const registry ="
+      - name: Diagnose Programleder registry index count
+        run: node /tmp/run-programleder-prefix.cjs "for (const id of Object.values(ids)) {"
+      - name: Diagnose Programleder registry scene references
+        run: node /tmp/run-programleder-prefix.cjs "const compiledKnowledge ="
+      - name: Diagnose Programleder compiled task contract
+        run: node /tmp/run-programleder-prefix.cjs "assert.equal(compiledKnowledge.compatibility_projection.task_payload.person_id"
       - name: Diagnose Programleder compiled registry integration
         run: node /tmp/run-programleder-prefix.cjs "const matrix ="
       - name: Diagnose Programleder gameplay matrix integration
