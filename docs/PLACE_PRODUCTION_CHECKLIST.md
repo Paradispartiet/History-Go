@@ -1,10 +1,10 @@
-# History GO — Place Production Checklist v2.2
+# History GO — Place Production Checklist v2.3
 
 Status: **canonical produksjonsarbeidsflyt**  
 Eier: `place_by_place_production_workflow`  
 Sist kontrollert: **2026-08-27**
 
-Denne sjekklisten eier arbeidsrekkefølge, produksjonsprofil, review-checkpoints og mergekadens for ordinær sted-for-sted-produksjon.
+Denne sjekklisten eier arbeidsrekkefølge, Badge-gate, produksjonsprofil, review-checkpoints og mergekadens for ordinær sted-for-sted-produksjon.
 
 Detaljkravene fra tidligere full checklist består gjennom:
 
@@ -14,31 +14,67 @@ Produksjonsprofil og innholdsplan eies av:
 
 - `docs/PLACE_PRODUCTION_PROFILES.md`
 
+Badge-drevet produksjonsruting eies av:
+
+- `data/badges/index.json`
+- `data/badges/<badge>.json`
+- `data/badges/place_production_routing_v1.json`
+
 Micro Places følger:
 
 - `docs/MICRO_PLACE_CONTRACT.md`
 
-> **Hovedregel:** Alle ordinære Places har samme harde canonical core. Ulike steder får deretter bare de People, Objects, Brands, Structures/related/productions, Stories, Før/etter, Nyheter, Lesespor og øvrige moduler som faktisk passer stedet og kan dokumenteres. Et lettere sted er smalere ferdig — aldri halvferdig.
+> **Hovedregel:** Alle ordinære Places har samme harde canonical core. Hovedbadge og underbadges bestemmer hva produksjonen skal undersøke; stedets faktiske kilder bestemmer hvilke kandidater som kvalifiserer; produksjonsprofilen bestemmer hvor dypt vi går. Et lettere sted er smalere ferdig — aldri halvferdig.
 
 ---
 
-## 1. Før produksjon: kategori, profil og innholdsplan
+## 1. Før produksjon: Hovedbadge → underbadges → kilder → profil → innholdsplan
 
-Tre beslutninger skal gjøres eksplisitt og holdes fra hverandre:
+Fire beslutninger skal gjøres eksplisitt og holdes fra hverandre:
 
-1. `category` — faglig stedskategori;
-2. `production_profile` — `major`, `standard`, `focused` eller `micro`;
-3. `INNHOLDSPLAN` — hvilke konkrete subsystemer og PlaceCard-samlinger som skal produseres for akkurat dette stedet.
+1. **HOVEDBADGE/CATEGORY** — stedets primære faglige identitet;
+2. **UNDERBADGE_IDS** — hvilke sider ved Badgen dette konkrete stedet representerer;
+3. **PRODUKSJONSPROFIL** — `major`, `standard`, `focused` eller `micro`;
+4. **INNHOLDSPLAN** — hvilke konkrete subsystemer og PlaceCard-samlinger som skal produseres for akkurat dette stedet.
 
-Kategori bestemmer hvilke kandidater som undersøkes først. Den bestemmer **ikke** at alle slike kandidater må materialiseres.
+Canonical ruting:
+
+```text
+Universal canonical core
+→ HOVEDBADGE/CATEGORY
+→ UNDERBADGE_IDS
+→ data/badges/place_production_routing_v1.json
+→ stedsspesifikk source review
+→ confirmed PRODUKSJONSPROFIL
+→ endelig INNHOLDSPLAN
+```
+
+### BADGE-/UNDERBADGE-GATE — obligatorisk
+
+Før endelig innholdsplan skal produsenten:
+
+- slå opp hovedbadgen gjennom `data/badges/index.json`;
+- lese hele `data/badges/<badge>.json`;
+- kontrollere stedets `underbadge_ids` mot Badge-familien;
+- lese hovedbadgens kandidatsamlinger og researchspor fra `data/badges/place_production_routing_v1.json`;
+- bruke aktive underbadges til å prioritere/nedprioritere researchspor;
+- når Badge-filen har `groups`, `children` eller `quizFocus`, bruke disse som semantiske research-/quiz-hints;
+- deretter verifisere alle kandidater mot faktiske stedskilder og subsystemkontrakter.
+
+Badge og underbadge er **routing**, ikke faktakilde og ikke innholdskvote.
 
 Eksempler:
 
-- `naeringsliv` betyr ikke automatisk Brand;
-- `historie` betyr ikke automatisk People;
-- `natur` betyr ikke automatisk både Flora og Fauna;
-- én fysisk enhet skal ikke splittes kunstig til både Object og Structure;
-- chronology skal ikke kopieres til en svak Story bare for å fylle Stories.
+- `naeringsliv + industri` gjør produksjonsprosess, arbeid, teknologi, anlegg og fysiske spor til sterke kandidater; Brand produseres bare hvis Brand-kontrakten faktisk består;
+- `naeringsliv + bank_og_finans` skal ikke få industrimaskiner fordi et annet Næringsliv-sted har dem;
+- `historie + industrihistorie` kan gi en annen innholdsplan enn `historie + sosialhistorie` eller `historie + kulturminner_og_bevaring`;
+- `musikk + konsertsteder` prioriterer scenehistorie, artister, konserter og venue-/lydspor;
+- `film_tv + filmlocations` prioriterer konkrete produksjoner og location-relasjoner, ikke automatisk et Brand;
+- `sport + stadion` og `sport + supporterkultur` skal ikke få identiske PlaceCards;
+- `natur + fugler` gjør Fauna til en sterk kandidat bare når arter er dokumentert for stedet;
+- `natur + geologi` kan gi et sterkt sted uten Flora/Fauna dersom biologisk dokumentasjon ikke bærer dem;
+- én fysisk enhet skal aldri splittes kunstig til både Object og Structure bare for å fylle kortet;
+- chronology skal aldri kopieres til en svak Story bare for å fylle Stories.
 
 ### Produksjonsprofiler
 
@@ -47,7 +83,7 @@ Eksempler:
 - **focused** — canonical Place med reelt smalere stoffbredde;
 - **micro** — følger egen Micro Place-kontrakt.
 
-`focused` er aldri en kostnadssnarvei. Profilen skal begrunnes i faktisk scope og kilder.
+`focused` er aldri en kostnadssnarvei. Profilen skal begrunnes i faktisk Badge-/underbadge-scope og kilder.
 
 ---
 
@@ -59,7 +95,8 @@ For `major`, `standard` og `focused` kan følgende aldri settes profil-N/A:
 - verifisert koordinat/geometri med ærlig `coordRole`;
 - inspiserbare kilder og factuality/source → claim-disiplin;
 - korrekt `desc` og `popupDesc`;
-- riktig kategori, relevante emner og fungerende stedsspesifikk Fagverk-side;
+- riktig Hovedbadge/category og korrekte/relevante `underbadge_ids`;
+- relevante emner og fungerende stedsspesifikk Fagverk-side;
 - bildeproveniens for publiserte bilder;
 - stående, stedstro `frontImage` når ordinær PlaceCard brukes;
 - Språkleksikon med minst ett reelt stedsspesifikt navne-/begrepsspor;
@@ -73,9 +110,11 @@ Teknisk PASS er aldri synonymt med redaksjonell ferdigstatus.
 
 ---
 
-## 3. Betingede subsystemer — vurder alltid, produser når de passer
+## 3. Betingede subsystemer — vurder gjennom Badges, produser når de passer
 
-Følgende skal auditeres for relevans og source-dekning:
+Badge-router og aktive underbadges åpner kandidatene. Faktiske kilder og subsystemkontrakter avgjør sluttstatus.
+
+Betingede moduler omfatter blant annet:
 
 - People;
 - Objects;
@@ -88,7 +127,7 @@ Følgende skal auditeres for relevans og source-dekning:
 - ruter/narrative koblinger;
 - ekstra Fagverk-spor og medier.
 
-Gyldige sluttstatus for en betinget modul er:
+Gyldige sluttstatus:
 
 ```text
 PASS
@@ -96,9 +135,9 @@ BEGRUNNET N/A
 BLOCKED
 ```
 
-`BEGRUNNET N/A` betyr at modulen etter korrekt research ikke hører til stedet. Det betyr ikke «gjør senere», og det skal ikke etterlate et tomt PlaceCard-kort.
+`BEGRUNNET N/A` betyr at modulen etter korrekt Badge-drevet kandidataudit og source review ikke hører til stedet. Det betyr ikke «gjør senere», og det skal aldri etterlate et tomt PlaceCard-kort.
 
-**Ingen filler:** Det er forbudt å opprette en perifer person, et tilfeldig objekt, et konstruert Brand, en duplisert Structure, en svak Story eller quizspørsmål bare for å møte en kvote eller layout.
+**Ingen filler:** Det er forbudt å opprette en perifer person, et tilfeldig objekt, et konstruert Brand, en duplisert Structure, en svak Story eller svake/gjentatte quizspørsmål bare for å møte en kvote eller layout.
 
 ---
 
@@ -109,6 +148,7 @@ Canonical samlingskontrakt: `data/places/README_place_rounds.md`.
 For nye og fullproduserte ordinære Places gjelder:
 
 - `place_card_profile.collection_ids` inneholder **1–4 ferdige, relevante samlinger**;
+- samlingsvalget skal følge Badge-/underbadge-baserte kandidater og faktisk materialisert innhold;
 - hver valgt samling har minst ett ekte canonical medlem;
 - hver valgt samling har et validert, lastbart previewbilde av et medlem;
 - ikke-relevante eller source-tomme samlinger utelates fra `collection_ids`;
@@ -121,7 +161,7 @@ For nye og fullproduserte ordinære Places gjelder:
 - `frontImage` er den stående hovedflaten og kan aldri brukes som falskt samlingspreview;
 - gamle Places uten ny eksplisitt profil beholder kompatibilitetsvisningen til de faktisk fullproduseres/revideres.
 
-Slutt-QA skal eksplisitt vurdere at kortet ser **pent, tilsiktet, balansert og komplett for akkurat denne typen sted** ut på mobil og desktop.
+Slutt-QA skal eksplisitt vurdere at kortet ser **pent, tilsiktet, balansert og komplett for akkurat denne typen sted og dens Badges** ut på mobil og desktop.
 
 Et valgt samlingskort uten entity eller bilde er BLOCKED. Løsningen er enten å ferdigstille den reelle samlingen eller å fjerne den fra `collection_ids` når research viser at samlingen ikke hører til stedet — aldri å la et tomt kort stå igjen.
 
@@ -129,7 +169,7 @@ Et valgt samlingskort uten entity eller bilde er BLOCKED. Løsningen er enten å
 
 ## 5. Fagverk-sted — obligatorisk
 
-Alle ordinære canonical Places skal ha fungerende stedsspesifikk Fagverk-side.
+Alle ordinære canonical Places skal ha fungerende stedsspesifikk Fagverk-side. Fagverkets faglige vekt skal samsvare med Hovedbadge, underbadges, emner og dokumentert stedskunnskap.
 
 Arbeidskortet skal føre:
 
@@ -152,7 +192,7 @@ Alle ordinære canonical Places skal researches for og materialisere minst ett r
 - funksjons-/fagbegrep med dokumentert stedskobling;
 - lokalt uttrykk eller annen kildebundet språkbruk.
 
-Generelle fagord uten stedskobling brukes ikke som filler.
+Badge/underbadge kan peke mot relevante fagbegreper, men generelle fagord uten dokumentert stedskobling brukes aldri som filler.
 
 **DIALEKTLAG — KUN `placeScope: "area"` / N/A**
 
@@ -167,6 +207,7 @@ Dialekt er et separat area-eid lag. Et enkeltsted skal ikke konstrueres til dial
 Kronologi produseres samtidig med stedet, ikke som senere gaparbeid.
 
 - research identitetsbærende hendelser som etablering, bygging/åpning, funksjonsskifte, utvidelse, ombruk, nedleggelse og andre reelle vendepunkter;
+- Badge-/underbadge-kontekst brukes til å prioritere hvilke tidsankere som faktisk er identitetsbærende;
 - eksakt år materialiseres bare når kilden støtter eksakt år;
 - tiår, århundrer, intervaller og «ca.» gjøres aldri om til oppdiktede enkeltår;
 - chronology brukes for **hva som skjedde når**;
@@ -192,7 +233,7 @@ Ny/full stedsproduksjon skal ikke skape nye unødvendige timeline-gap.
 
 ### People
 
-People produseres bare når canonical personer har dokumentert direkte relevans for stedet. En perifer person skal ikke produseres for å fylle kortet.
+People produseres når Badge-/underbadge-planen og kildene viser canonical personer med dokumentert direkte relevans. En perifer person skal ikke produseres for å fylle kortet.
 
 Canonical metode:
 
@@ -201,13 +242,15 @@ Canonical metode:
 
 ### Objects
 
-Objects skal være fysiske, identifiserbare gjenstander med dokumentert stedstilknytning. Observasjonstekst eller et bygg gjøres ikke om til Object for å øke antallet.
+Objects skal være fysiske, identifiserbare gjenstander med dokumentert stedstilknytning. Badge kan peke mot relevante objekttyper, men observasjonstekst eller et bygg gjøres ikke om til Object for å øke antallet.
 
 `Spor og objekter` / `Legg merke til` kan være eide underseksjoner i Objects-popupen uten å bli egne samlinger.
 
 ### Brands
 
 `data/brands/brand_rules_v1_1.json` er canonical Brand-eier.
+
+Noen underbadges gjør Brand til en sterk kandidat (`butikkhistorie_og_kjeder`, venue-/sceneidentitet, enkelte handels-/mediesteder); andre gjør det mindre sannsynlig. Ingen underbadge kan likevel godkjenne Brand alene.
 
 Null treff i eksisterende register betyr «må researches», ikke automatisk N/A. Etter faktisk kandidatsøk kan Brands ende `BEGRUNNET N/A` dersom ingen kandidat består definisjonen.
 
@@ -219,13 +262,13 @@ Et virksomhetsnavn, stedsnavn, prosjektaktør eller skilt blir aldri Brand bare 
 
 Stories følger `docs/STORIES_DATA_GOVERNANCE.md`.
 
-En ny Story skal ha en selvstendig narrativ akse — konflikt, valg, overraskelse, forvandling eller annet som gir mer enn chronology.
+Badge-/underbadge-rutingen kan peke på sannsynlige narrative akser, men en ny Story skal fortsatt ha selvstendig narrativ motor — konflikt, valg, overraskelse, forvandling eller annet som gir mer enn chronology.
 
 Anti-dupliseringsregel:
 
 > Hvis datoen fjernes, må det fortsatt finnes en tydelig fortelling.
 
-Hvis ikke, hører stoffet i chronology/leksikon i stedet. Et Focused Place kan derfor være komplett uten Story når kildene ikke bærer en ekte fortelling.
+Hvis ikke, hører stoffet i chronology/leksikon i stedet. Et Focused Place kan være komplett uten Story når kildene ikke bærer en ekte fortelling.
 
 ---
 
@@ -234,6 +277,8 @@ Hvis ikke, hører stoffet i chronology/leksikon i stedet. Et Focused Place kan d
 Quiz følger bare `data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md`.
 
 Eksisterende aktive, arkiverte og alternative quizfiler auditeres før profilvalg.
+
+Badge, underbadges og eventuell canonical `quizFocus` brukes til å planlegge hva som skal undersøkes og læres. De er ikke faktakilder.
 
 `production_profile` og quizprofil er separate systemer. Canonical Quiz velger adaptivt:
 
@@ -252,7 +297,7 @@ Ingen quiz fylles med svake eller gjentatte spørsmål for å nå et settantall.
 
 ### Før/etter
 
-Produseres når det finnes en meningsfull, stedstro historisk sammenligning.
+Produseres når Badge-/underbadge- og source-research viser en meningsfull, stedstro historisk sammenligning.
 
 - ulike tilfeldige kamerastandpunkter er ikke nok;
 - et separat canonical delsted skal ikke brukes som proxy;
@@ -261,11 +306,11 @@ Produseres når det finnes en meningsfull, stedstro historisk sammenligning.
 
 ### Nyheter
 
-Produseres når en reell nyhetsflate er relevant. Et sted uten meningsfull aktuell nyhetsflate kan etter audit være `BEGRUNNET N/A`.
+Produseres når en reell nyhetsflate er relevant for stedets Badge-/underbadge-identitet og nåværende rolle. Et sted uten meningsfull aktuell nyhetsflate kan etter audit være `BEGRUNNET N/A`.
 
 ### Lesespor
 
-Relevante, tilgjengelige lesespor skal produseres. Betalingsmur alene er ikke N/A-grunn. Hvis et dokumentert kandidatsøk faktisk ikke finner et kvalifisert spor, kan modulen ende `BEGRUNNET N/A`.
+Relevante, tilgjengelige lesespor skal produseres. Badge/underbadge brukes til å lete målrettet etter passende lesestoff. Betalingsmur alene er ikke N/A-grunn. Hvis et dokumentert kandidatsøk faktisk ikke finner et kvalifisert spor, kan modulen ende `BEGRUNNET N/A`.
 
 ---
 
@@ -275,19 +320,20 @@ Vi bruker en hybridmodell, ikke full research av hele katalogen først.
 
 ### Stage A — provisional triage
 
-Eksisterende katalog får en lett klassifisering basert på eksisterende canonical data:
+Eksisterende katalog får en lett klassifisering basert på eksisterende canonical data, inkludert Badge-feltene som allerede finnes:
 
 ```text
 production_profile: major | standard | focused | micro
 profile_status: provisional
 profile_reason: <kort grunn>
+badge_basis: <category + underbadge_ids>
 ```
 
 Dette produserer ikke innhold. Formålet er realistisk backlog, prioritering og klyngeplan.
 
 ### Stage B — confirmed preflight
 
-Når et sted faktisk går inn i produksjon, bekreftes eller overstyres profilen etter ekte source review:
+Når et sted faktisk går inn i produksjon, leses Badge-familien, underbadges og stedskilder ordentlig før profilen bekreftes eller overstyres:
 
 ```text
 production_profile:
@@ -304,11 +350,14 @@ Nye Places klassifiseres direkte som `confirmed` i preflight.
 
 Før første brukerrettede endring skal arbeidskort/nullmåling minst dekke:
 
+- `HOVEDBADGE/CATEGORY` og canonical Badge-fil;
+- alle `UNDERBADGE_IDS` og hva de betyr for stedet;
+- Badge-routerens researchspor/kandidatsamlinger;
 - produksjonsprofil og profilbegrunnelse;
 - canonical identitet og source-eier;
 - prior work/kollisjoner;
 - koordinater/geometri;
-- kategori, emner og Fagverk;
+- emner og Fagverk;
 - description-status;
 - popup-/eierflater;
 - Språkleksikon og eventuelt dialektlag;
@@ -323,6 +372,10 @@ Før første brukerrettede endring skal arbeidskort/nullmåling minst dekke:
 Arbeidskortet skal ha:
 
 ```text
+HOVEDBADGE/CATEGORY:
+UNDERBADGE_IDS:
+BADGE-ROUTER STATUS:
+BADGE-DREVNE RESEARCHSPOR:
 PRODUKSJONSPROFIL: major | standard | focused
 PROFILSTATUS: provisional | confirmed
 PROFILBEGRUNNELSE:
@@ -355,6 +408,7 @@ IKKE STARTET → PÅGÅR → KLAR FOR REVIEW → GODKJENT / BEGRUNNET N/A
 Før neste checkpoint starter skal aktivt arbeid være reviewet og arbeidskort oppdatert med:
 
 - hva som ble kontrollert;
+- Badge-/underbadge-grunnlaget;
 - canonical eierfiler;
 - hvilke eksisterende data som ble bevart;
 - kilder/claims;
@@ -373,11 +427,12 @@ Typiske grenser:
 
 ### A. Preflight/evidence
 
+- Badge-/underbadge-gate;
 - profil og innholdsplan;
 - identity/source boundary;
 - koordinater;
 - shared source/claim pack;
-- category/Fagverk-eierskap.
+- Fagverk-eierskap.
 
 ### B. Canonical brukerinnhold
 
@@ -395,7 +450,7 @@ Typiske grenser:
 - visuell QA;
 - completion report.
 
-Separat system-PR brukes når runtime/schema/generell kontrakt endres eller blast radius er bred. Denne produksjonsprofilendringen er nettopp en slik systemendring og skal være merget før Alunverket produseres etter den nye modellen.
+Separat system-PR brukes når runtime/schema/generell kontrakt endres eller blast radius er bred. Denne produksjonsprofil-/Badge-/PlaceCard-endringen er en slik systemendring og skal være merget før neste ordinære nyproduksjon følger modellen.
 
 ---
 
@@ -404,6 +459,8 @@ Separat system-PR brukes når runtime/schema/generell kontrakt endres eller blas
 Arbeidskort skal skille:
 
 ```text
+HOVEDBADGE/CATEGORY:
+UNDERBADGE_IDS:
 PRODUKSJONSPROFIL:
 PROFILSTATUS:
 AKTIV FASE:
@@ -433,6 +490,13 @@ node --test tests/epoke-place-index.test.mjs tests/epoker-runtime-place-index.te
 
 Epokeindeks bygges fra sources og håndredigeres aldri for å få et sted inn i viewer.
 
+Badge-/produksjonsprofil-systemet skal ha permanent test for:
+
+- at alle hovedbadges i `data/badges/index.json` har routing i `data/badges/place_production_routing_v1.json`;
+- at alle Badge-filer har canonical underbadges;
+- at routingrekkefølgen krever underbadges og source review før endelig innholdsplan;
+- at Badge-hints aldri overstyrer kilder eller skaper filler.
+
 PlaceCard-systemendringer skal ha permanente tester for:
 
 - schema 1–4;
@@ -447,10 +511,12 @@ PlaceCard-systemendringer skal ha permanente tester for:
 
 ## 18. Manuell slutt-QA — hard gate
 
-Et ordinært sted kan ikke merkes `SLUTTFØRT` før hele opplevelsen er vurdert mot bekreftet profil og innholdsplan.
+Et ordinært sted kan ikke merkes `SLUTTFØRT` før hele opplevelsen er vurdert mot bekreftet Badge-grunnlag, profil og innholdsplan.
 
 Minimum:
 
+- bekreft Hovedbadge/category og `underbadge_ids`;
+- bekreft at endelig innholdsplan kan forklares ut fra Badges **og** faktiske kilder;
 - bekreft `PROFILSTATUS: confirmed`;
 - bekreft Universal canonical core;
 - åpne alle relevante popupfaner;
@@ -463,6 +529,7 @@ Minimum:
 - kontroller hver valgt PlaceCard-samling og dens popup;
 - kontroller at ingen valgt samling står tom eller mangler bilde;
 - kontroller at 1/2/3/4-layouten ser god ut på mobil og desktop;
+- kontroller at PlaceCard faktisk føles riktig for Badge-/underbadge-typen, ikke som en generisk mal;
 - kontroller at et sted med færre samlinger ser **kuratert og komplett**, ikke «manglende», ut;
 - gjenåpne produksjonen dersom slutt-QA motsier tidligere checkpoint.
 
@@ -477,16 +544,17 @@ Grønn CI kan aldri overstyre et dokumentert stygt, kunstig eller ufullstendig P
 1. merge mellom hver fase er ikke nødvendig;
 2. Språkleksikon er obligatorisk for alle ordinære Places;
 3. chronology/epoke research skjer samtidig med full stedsproduksjon;
-4. produksjonsprofil bestemmer forventet bredde;
-5. alle betingede subsystemer vurderes, men bare relevante subsystemer materialiseres;
-6. filler for å nå felttall/fullness er forbudt;
-7. PlaceCard for nye/fullproduserte ordinære Places viser 1–4 **ferdige** samlinger — aldri tomme reserver;
-8. stedsprofil og Quiz-profil er separate beslutninger.
+4. Hovedbadge + underbadges er obligatorisk routinggrunnlag for innholdsplanen;
+5. produksjonsprofil bestemmer forventet dybde/bredde etter Badge- og source-review;
+6. alle plausible betingede subsystemer vurderes, men bare relevante subsystemer materialiseres;
+7. filler for å nå felttall/fullness er forbudt;
+8. PlaceCard for nye/fullproduserte ordinære Places viser 1–4 **ferdige** samlinger — aldri tomme reserver;
+9. stedsprofil og Quiz-profil er separate beslutninger.
 
-Ved konflikt med eldre formulering om fast firefelts-fullness, universell Brands/People/Objects-plikt eller obligatorisk materialisering av et irrelevant subsystem gjelder denne v2.2-sjekklisten.
+Ved konflikt med eldre formulering om fast firefelts-fullness, universell Brands/People/Objects-plikt eller obligatorisk materialisering av et irrelevant subsystem gjelder denne v2.3-sjekklisten.
 
 ---
 
 ## Kort regel
 
-**Triage katalogen lett. Bekreft profil og innholdsplan i preflight. Behold samme harde canonical core. Produser bare moduler som faktisk passer stedet — men produser dem helt. PlaceCard viser 1–4 ferdige samlinger og skal alltid se pent, balansert og komplett ut. Ingen filler. Ingen tomme kort.**
+**La innholdet følge Badges. Hovedbadge åpner researchuniverset, underbadges former kandidatene, kildene avgjør hva som faktisk produseres, og produksjonsprofilen avgjør hvor dypt vi går. Behold samme harde canonical core. Produser relevante moduler helt. PlaceCard viser 1–4 ferdige samlinger og skal alltid se pent, balansert og stedseget ut. Ingen filler. Ingen tomme kort.**
