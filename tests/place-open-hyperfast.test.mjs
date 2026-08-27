@@ -67,6 +67,19 @@ test("place loader coalesces requests and hydrates all opening surfaces", async 
   assert.equal(listeners.at(-1)?.type, "hg:place-open-ready");
 });
 
+test("place card reapplies the active locale after place-open hydration", () => {
+  const runtime = read("js/ui/place-card.js");
+  const start = runtime.indexOf("if (window.HGPlaceOpen?.ensure");
+  const end = runtime.indexOf("if (window.DataHub?.loadFullPlace", start);
+  assert.ok(start >= 0 && end > start, "place-open hydration block must remain inspectable");
+  const hydration = runtime.slice(start, end);
+  assert.match(hydration, /window\.HG_I18N\?\.localizePlace\?\.\(place\)\s*\|\|\s*place/);
+  assert.ok(
+    hydration.indexOf("localizePlace") > hydration.lastIndexOf("HGPlaceOpen?.getPlace"),
+    "localization must run after every hydrated-place assignment"
+  );
+});
+
 test("runtime uses aggregate background files instead of request waterfalls", () => {
   const boot = read("js/boot-fast.js");
   const stories = read("js/stories/stories_loader.js");

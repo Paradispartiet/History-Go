@@ -995,6 +995,11 @@ window.openPlaceCard = async function (place) {
     place = window.HGPlaceOpen?.getPlace?.(placeId) || place;
   }
 
+  // Place-open hydration replaces the lightweight index row with the canonical
+  // payload. Apply the active content locale after that replacement so the
+  // async payload cannot overwrite an en/es/pt place translation with nb text.
+  place = window.HG_I18N?.localizePlace?.(place) || place;
+
   if (window.DataHub?.loadFullPlace && !PLACE_CARD_PROGRESSIVE_LOADS.full.has(placeId)) {
     PLACE_CARD_PROGRESSIVE_LOADS.full.add(placeId);
     const fullStart = performance.now();
