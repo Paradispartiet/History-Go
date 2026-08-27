@@ -1,0 +1,842 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "naeringsliv",
+  "targetId": "freia_fabrikken",
+  "profile": "narrow_3x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1962,
+    "selection_sha256": "113e8007b143ed482ef97f1897944bfb544b8d29e3defead4658319bbac00feb",
+    "category_id": "naeringsliv",
+    "target_id": "freia_fabrikken"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/naeringsliv/naeringslivpensum_canonical_v4_5.json",
+      "bytes": 33041,
+      "sha256": "d9ceba9645ed472e0448e274cac37ff09bb2de84c54abe44d99d59c7a260f2fd",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+      "bytes": 383560,
+      "sha256": "6c7c48150ebdb77d07177d015bbfe104d0eb5d206c6a9104f4bc52a7e0ee0bbe",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+      "bytes": 305981,
+      "sha256": "40a00fa3910248b779763d7746760140509741410aa046d4f694c367e7c6e345",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+      "bytes": 89971,
+      "sha256": "a109a5e6eaab0f96fdb0b14aa8139a35714b67473efa860a3f1a8448a204cad3",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+      "bytes": 17470,
+      "sha256": "f6c4a94ebfa99cff3042ae3398ab92d633150d8fc6f4bd16d7b71679540c9585",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 16882,
+      "sha256": "60804db1e587faae822930a800cfebac7966fa7e009778d46d94d1f28e02545e",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/naeringsliv/freia_fabrikken.json",
+      "bytes": 11735,
+      "sha256": "ff48709947e04eebe6e2c3ead2476362f271590b83b19a7d8dead7752777b7eb"
+    },
+    "target": {
+      "path": "data/places/naeringsliv/oslo/places_naeringsliv/freia_fabrikken.json",
+      "bytes": 14064,
+      "sha256": "60c05d3c45f8a96332a27c3982fb68a5ddf55957b4e4f823d9fe1d8c01ce8f14"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1466,
+      "selection_sha256": "c0160fc3ed9ed8bad961ecd04aa1aa341d50c35f50ac79b15594c33783dbe86e"
+    },
+    "relations": [
+      {
+        "path": "data/relations.json",
+        "matches": 3,
+        "selection_bytes": 826,
+        "selection_sha256": "20744c33a6b6b8b086d9307575319bdd556a30c44091f7dece39c2356a78af71"
+      }
+    ],
+    "stories": [
+      {
+        "path": "data/stories/stories_freia_fabrikken.json",
+        "matches": 1,
+        "selection_bytes": 2032,
+        "selection_sha256": "1bae57f6fe30b874e4e039b91ab605d4abaafb03c4af03fe92e618807aac14e8"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/naeringsliv/freia_fabrikken_sets.json",
+  "source_registry": {
+    "heritage": {
+      "url": "https://riksantikvaren.no/fredninger/freia/",
+      "source_type": "official_heritage_authority",
+      "review_status": "reviewed",
+      "review_note": "Arbeidsmiljø, park, spisesalsbygning, Munch-frise og fredning; feilåret 1882 er avvist."
+    },
+    "byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Freia",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Grunnleggelse, overtakelse, produksjon, marked, arbeidsliv, utbygging og omforming."
+    },
+    "snl_freia": {
+      "url": "https://snl.no/Freia_-_sjokoladefabrikk",
+      "source_type": "recognized_reference",
+      "review_status": "reviewed",
+      "review_note": "Virksomhets-, varemerke- og produksjonshistorie samt nåværende produksjon i Oslo."
+    },
+    "snl_johan": {
+      "url": "https://snl.no/Johan_Throne_Holst",
+      "source_type": "recognized_reference",
+      "review_status": "reviewed",
+      "review_note": "Johan Throne Holsts identitet, ledelse, industriprogram og offentlige roller."
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/naeringsliv/",
+      "data/places/naeringsliv/oslo/places_naeringsliv/freia_fabrikken.json"
+    ],
+    "active_before": {
+      "file": null,
+      "set_count": 0,
+      "question_count": 0,
+      "finding": "Ingen manifest-loadet canonical Freia-fabrikken-quiz fantes."
+    },
+    "decisions": [
+      "Opprett standard 3x7 etter gjeldende adaptive profil.",
+      "Lås de første fjorten som normale faktaspørsmål.",
+      "Bruk metode og teori bare i finalsettet."
+    ],
+    "knowledge_migration": "Nye Knowledge-enheter genereres deterministisk fra canonical quizpakke."
+  },
+  "profile_decision": {
+    "profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "justification": "Tre læringsjobber dekker identitet og produksjon, arbeidsmiljø og kultur, samt næringslivsanalyse uten å gjenta samme fabrikkhistorie."
+  },
+  "held_back_candidates": [
+    "Riksantikvarens feilaktige kjøpsår 1882.",
+    "Påstand om at velferdstiltak fjernet arbeidskonflikt.",
+    "Utdaterte eller ukontrollerte markedstall.",
+    "Den genererte illustrasjonen som historisk fotografi."
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 6,
+      "emner": 38,
+      "topic_hooks": 60,
+      "methods": 27
+    },
+    "candidate_emner": [
+      {
+        "id": "em_naering_arbeid_verdiskaping",
+        "title": "Arbeid og verdiskaping",
+        "score": 100
+      },
+      {
+        "id": "em_naering_arbeidsliv_organisering",
+        "title": "Arbeidsliv og organisering",
+        "score": 100
+      },
+      {
+        "id": "em_naering_eiendom_kapital_byutvikling",
+        "title": "Eiendom, kapital og byutvikling",
+        "score": 100
+      },
+      {
+        "id": "em_naering_eierskap_styring",
+        "title": "Eierskap og styring",
+        "score": 100
+      },
+      {
+        "id": "em_naering_forbruk_marked",
+        "title": "Forbruk og marked",
+        "score": 100
+      },
+      {
+        "id": "em_naering_geografi_infrastruktur",
+        "title": "Økonomiens geografi og infrastruktur",
+        "score": 100
+      },
+      {
+        "id": "em_naering_handel_butikk_byrom",
+        "title": "Handel, butikk og byrom",
+        "score": 100
+      },
+      {
+        "id": "em_naering_industri_og_mekanisering",
+        "title": "Industri og mekanisering",
+        "score": 100
+      },
+      {
+        "id": "em_naering_logistikk_verdikjeder",
+        "title": "Logistikk og verdikjeder",
+        "score": 100
+      },
+      {
+        "id": "em_naering_makt_ulikhet_arbeidsliv",
+        "title": "Makt, ulikhet og arbeidsliv",
+        "score": 100
+      },
+      {
+        "id": "em_naering_merkevare_og_status",
+        "title": "Merkevare og status",
+        "score": 100
+      },
+      {
+        "id": "em_naering_omstilling_kriser_skift",
+        "title": "Omstilling, kriser og skift",
+        "score": 100
+      },
+      {
+        "id": "em_naering_organisasjoner_ledelse",
+        "title": "Organisasjoner og ledelse",
+        "score": 100
+      },
+      {
+        "id": "em_naering_produksjon_produktivitet",
+        "title": "Produksjon og produktivitet",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "ansvarlig_naeringsliv",
+        "title": "Ansvarlig næringsliv",
+        "category_id": "makt_regulering_baerekraft",
+        "score": 10
+      },
+      {
+        "id": "arbeid_kapital_konflikt",
+        "title": "Arbeid–kapital-konflikt",
+        "category_id": "makt_regulering_baerekraft",
+        "score": 10
+      },
+      {
+        "id": "arbeid_som_verdiskaping",
+        "title": "Arbeid som verdiskaping",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "arbeiderkollektiv",
+        "title": "Arbeiderkollektiv og arbeidskultur",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "arbeidsdisiplin_tid",
+        "title": "Arbeidsdisiplin og tid",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "arbeidslivets_omstilling",
+        "title": "Arbeidslivets omstilling",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "byrom_som_marked",
+        "title": "Byrom som marked",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "eierskap_og_styring",
+        "title": "Eierskap og styring",
+        "category_id": "kapital_eierskap_finans",
+        "score": 10
+      },
+      {
+        "id": "fagforeninger",
+        "title": "Fagforeninger og interesser",
+        "category_id": "makt_regulering_baerekraft",
+        "score": 10
+      },
+      {
+        "id": "finansdistrikt",
+        "title": "Finansdistrikt og symbolsk økonomi",
+        "category_id": "kapital_eierskap_finans",
+        "score": 10
+      },
+      {
+        "id": "forbrukeradferd",
+        "title": "Forbrukeradferd",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "handel_som_bystruktur",
+        "title": "Handel som bystruktur",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "havn_og_varestrommer",
+        "title": "Havn og varestrømmer",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "industriell_bystruktur",
+        "title": "Industriell bystruktur",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "infrastrukturmakt",
+        "title": "Infrastrukturmakt",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "investering_eiendom",
+        "title": "Investering og eiendom",
+        "category_id": "kapital_eierskap_finans",
+        "score": 10
+      },
+      {
+        "id": "kapitalmakt",
+        "title": "Kapitalmakt",
+        "category_id": "kapital_eierskap_finans",
+        "score": 10
+      },
+      {
+        "id": "kontrollsystemer",
+        "title": "Kontrollsystemer",
+        "category_id": "makt_regulering_baerekraft",
+        "score": 10
+      },
+      {
+        "id": "krise_og_omfordeling",
+        "title": "Krise og omfordeling",
+        "category_id": "makt_regulering_baerekraft",
+        "score": 10
+      },
+      {
+        "id": "lager_og_distribusjon",
+        "title": "Lager og distribusjon",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "lokalhandel_og_kjeder",
+        "title": "Lokalhandel og kjeder",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "marked_og_ulikhet",
+        "title": "Marked og ulikhet",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "markedets_doxa",
+        "title": "Markedets doxa",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "maskin_menneske_produksjon",
+        "title": "Maskin, menneske og produksjon",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "merkevare_status",
+        "title": "Merkevare og status",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "miljokostnader",
+        "title": "Miljøkostnader og eksternaliteter",
+        "category_id": "makt_regulering_baerekraft",
+        "score": 10
+      },
+      {
+        "id": "omstilling_av_naeringsrom",
+        "title": "Omstilling av næringsrom",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "produksjonsprosess",
+        "title": "Produksjonsprosess",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "produktivitet_og_optimalisering",
+        "title": "Produktivitet og optimalisering",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "ressursbruk",
+        "title": "Ressursbruk",
+        "category_id": "makt_regulering_baerekraft",
+        "score": 10
+      },
+      {
+        "id": "servering_opplevelsesokonomi",
+        "title": "Servering og opplevelsesøkonomi",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "teknologisk_omstilling",
+        "title": "Teknologisk omstilling",
+        "category_id": "teknologi_innovasjon_plattform",
+        "score": 10
+      },
+      {
+        "id": "ulikhet_og_ekskludering",
+        "title": "Ulikhet og ekskludering",
+        "category_id": "makt_regulering_baerekraft",
+        "score": 10
+      },
+      {
+        "id": "usynlig_arbeid",
+        "title": "Usynlig arbeid",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "varehus_og_kjopesenter",
+        "title": "Varehus og kjøpesenter",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "verdikjede_spor",
+        "title": "Verdikjedens spor",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "arbeid_produksjon_verdiskaping",
+      "handel_forbruk_marked"
+    ],
+    "emne_ids": [
+      "em_naering_industri_og_mekanisering",
+      "em_naering_organisasjoner_ledelse",
+      "em_naering_geografi_infrastruktur",
+      "em_naering_produksjon_produktivitet",
+      "em_naering_eierskap_styring",
+      "em_naering_handel_butikk_byrom",
+      "em_naering_merkevare_og_status",
+      "em_naering_arbeidsliv_organisering",
+      "em_naering_eiendom_kapital_byutvikling",
+      "em_naering_logistikk_verdikjeder",
+      "em_naering_makt_ulikhet_arbeidsliv",
+      "em_naering_omstilling_kriser_skift"
+    ],
+    "topic_hook_ids": [
+      "verdikjede_spor",
+      "usynlig_arbeid",
+      "merkevare_status",
+      "eierskap_og_styring"
+    ],
+    "method_ids": [
+      "met_naering_logistikk_og_verdikjedeanalyse",
+      "met_naering_arbeidslivsanalyse",
+      "met_naering_merkevare_og_posisjoneringsanalyse",
+      "met_naering_organisasjonsanalyse"
+    ],
+    "thinker_ids": [
+      "anna_tsing",
+      "max_weber",
+      "adam_smith",
+      "joseph_schumpeter"
+    ],
+    "works": []
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Freia ble grunnlagt i 1889.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_industri_og_mekanisering"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Johan Throne Holst kjøpte fabrikken i 1892.",
+      "source_ids": [
+        "snl_johan"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_organisasjoner_ledelse"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Fabrikkanleggets adresse er Johan Throne Holsts plass 1.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_geografi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Freia er et næringsmiddel- og sjokoladeproduksjonssted.",
+      "source_ids": [
+        "snl_freia"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_produksjon_produktivitet"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Virksomheten ble A/S Freia Chocolade Fabrik i 1898.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_eierskap_styring"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Freia koblet fabrikken til markedet gjennom et butikkutsalg.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_handel_butikk_byrom"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Freia tok marabustorken i bruk som logo og kjennetegn.",
+      "source_ids": [
+        "snl_freia"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_merkevare_og_status"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_08",
+      "order": 8,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Ole Sverre utformet Freiaparken i 1922.",
+      "source_ids": [
+        "heritage"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeidsliv_organisering"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_09",
+      "order": 9,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Parken var et uteområde for ansatte og arrangementer.",
+      "source_ids": [
+        "heritage"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeidsliv_organisering"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_10",
+      "order": 10,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Den nye spisesalsbygningen stod ferdig i 1934.",
+      "source_ids": [
+        "heritage"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_industri_og_mekanisering"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_11",
+      "order": 11,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Edvard Munch laget de tolv maleriene som danner frisen.",
+      "source_ids": [
+        "heritage"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeidsliv_organisering"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_12",
+      "order": 12,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "En bedriftslegeordning ble etablert ved fabrikken i 1917.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeidsliv_organisering"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_13",
+      "order": 13,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Freia innførte 48-timers arbeidsuke i 1918.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeidsliv_organisering"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_14",
+      "order": 14,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Parken og Freiasalen fikk varig vern i 2015.",
+      "source_ids": [
+        "heritage"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_eiendom_kapital_byutvikling"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_15",
+      "order": 15,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Fabrikken ble koblet til forbrukerne gjennom distribusjon, butikk og reklame.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_16",
+      "order": 16,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Arbeidsmiljøtiltakene var både reelle goder og del av bedriftens organisering.",
+      "source_ids": [
+        "snl_johan"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_makt_ulikhet_arbeidsliv"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_17",
+      "order": 17,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Industrihistorisk analyse følger samspillet mellom produksjonsanlegg, organisasjon og marked.",
+      "source_ids": [
+        "heritage"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_industri_og_mekanisering"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_18",
+      "order": 18,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Freia-navnet, storken, butikken og reklamen kan analyseres som merkevareelementer.",
+      "source_ids": [
+        "snl_freia"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_merkevare_og_status"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_19",
+      "order": 19,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Spisesalen knyttet ledelsesvalg til rom, måltider, kunst og pauser.",
+      "source_ids": [
+        "heritage"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_organisasjoner_ledelse"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_20",
+      "order": 20,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Dokumenterte tiltak er ikke i seg selv bevis på fravær av konflikt eller ulik makt.",
+      "source_ids": [
+        "snl_johan"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_makt_ulikhet_arbeidsliv"
+    },
+    {
+      "claim_id": "claim_freia_fabrikken_quiz_21",
+      "order": 21,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Deler av anlegget ble avviklet og omformet til bolig, mens annen produksjon fortsatte.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "relation",
+      "id": "rel_freia_johan_thrane_holst",
+      "source_file": "data/relations.json",
+      "summary": "Kjøpte Freia i 1892 og ledet utbygging, arbeidsmiljøprogram og markedsarbeid."
+    },
+    {
+      "type": "relation",
+      "id": "rel_freia_edvard_munch",
+      "source_file": "data/relations.json",
+      "summary": "Utførte de tolv maleriene som ble integrert i Freiasalen."
+    },
+    {
+      "type": "relation",
+      "id": "rel_freia_ole_sverre",
+      "source_file": "data/relations.json",
+      "summary": "Utformet Freiaparken i 1922 og den nye spisesalsbygningen som stod ferdig i 1934."
+    },
+    {
+      "type": "story",
+      "id": "st_freia_spisesalen_ble_kunsterom_1934",
+      "source_file": "data/stories/stories_freia_fabrikken.json",
+      "summary": "Ole Sverres nye spisesalsbygning bandt i 1934 Freiaparken sammen med tolv store malerier av Edvard Munch og gjorde fabrikkens måltidsrom til et planlagt kulturmiljø."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "naeringsliv_freia_fabrikken_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_freia_fabrikken_quiz_01",
+        "claim_freia_fabrikken_quiz_02",
+        "claim_freia_fabrikken_quiz_03",
+        "claim_freia_fabrikken_quiz_04",
+        "claim_freia_fabrikken_quiz_05",
+        "claim_freia_fabrikken_quiz_06",
+        "claim_freia_fabrikken_quiz_07"
+      ]
+    },
+    {
+      "set_id": "naeringsliv_freia_fabrikken_set_2",
+      "order": 2,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_freia_fabrikken_quiz_08",
+        "claim_freia_fabrikken_quiz_09",
+        "claim_freia_fabrikken_quiz_10",
+        "claim_freia_fabrikken_quiz_11",
+        "claim_freia_fabrikken_quiz_12",
+        "claim_freia_fabrikken_quiz_13",
+        "claim_freia_fabrikken_quiz_14"
+      ]
+    },
+    {
+      "set_id": "naeringsliv_freia_fabrikken_set_3",
+      "order": 3,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_freia_fabrikken_quiz_15",
+        "claim_freia_fabrikken_quiz_16",
+        "claim_freia_fabrikken_quiz_17",
+        "claim_freia_fabrikken_quiz_18",
+        "claim_freia_fabrikken_quiz_19",
+        "claim_freia_fabrikken_quiz_20",
+        "claim_freia_fabrikken_quiz_21"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 21,
+    "counts": {
+      "fact": 14,
+      "context": 0,
+      "concept_theory": 7
+    },
+    "ratios": {
+      "fact": 0.667,
+      "context": 0,
+      "concept_theory": 0.333
+    }
+  }
+}

@@ -1,0 +1,234 @@
+{
+  "schemaVersion": "naeringsliv_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "bla_skilt_universal_presentkort_lille_grensen_7",
+  "placeFile": "data/places/naeringsliv/oslo/bla_skilt/bla_skilt_universal_presentkort_lille_grensen_7.json",
+  "status": "ready",
+  "economicIdentity": {
+    "statement": "Universal Presentkort er en aktiv gavekortvirksomhet med butikk og ordreutlevering i Lille Grensen 7, der Oslo Byes Vel dokumenterer virksomhetens tilstedeværelse siden 1927.",
+    "anchorType": "shop",
+    "placeObjectDistinction": "Rapporten skiller det fysiske blå skiltet, virksomheten Universal Presentkort, butikk- og utleveringsstedet og nettverket av brukersteder.",
+    "temporalScope": {
+      "start": "1927",
+      "end": "2026",
+      "precision": "period",
+      "rationale": "Oslo Byes Vel oppgir startåret på adressen, mens virksomhetens nettsted dokumenterer aktiv butikk og ordrebehandling ved kontrolltidspunktet."
+    },
+    "sourceIds": [
+      "source_oslo_byes_vel_universal",
+      "source_universal_presentkort"
+    ]
+  },
+  "businessTopics": [
+    {
+      "emneId": "em_naering_handel_butikk_byrom",
+      "siteSpecificRationale": "Stedet kobler en langvarig sentrumsbutikk til bestilling, utlevering og bruk av gavekort i et større handelsnettverk.",
+      "caseIds": [
+        "case_universal_gavekort"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_oslo_byes_vel_universal",
+      "url": "https://www.oslobyesvel.no/nyheter/p1vct8g4vl5szidorgk6gjhdbkdssf/12",
+      "sourceLocation": "Avdukingsteksten om familiebedriften, adressen og tilstedeværelsen siden 1927",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-26",
+      "temporalCoverage": "historical",
+      "provenance": "Oslo Byes Vel er ansvarlig for blå-skiltprogrammet og publiserte den stedsspesifikke avdukingsteksten.",
+      "limitations": "Siden er en kort jubileums- og avdukingstekst uten regnskap, prisutvikling, eierskapshistorikk eller full foretaksanalyse."
+    },
+    {
+      "id": "source_universal_presentkort",
+      "url": "https://www.presentkort.no/",
+      "sourceLocation": "Virksomhetens informasjon om butikkadresse, bestilling, aktivering, priser, levering og brukersteder",
+      "sourceType": "primary_business",
+      "verifiedAt": "2026-08-26",
+      "temporalCoverage": "current",
+      "provenance": "Universal Presentkort AS publiserer selv den operative produkt-, bestillings- og kontaktinformasjonen.",
+      "limitations": "Egenpresentasjonen dokumenterer tilbud og vilkår, men er ikke en uavhengig vurdering av lønnsomhet, markedsandel, kundetilfredshet eller arbeidsvilkår."
+    }
+  ],
+  "economicCases": [
+    {
+      "id": "case_universal_gavekort",
+      "claim": "Virksomheten kombinerer et fysisk butikk- og utleveringssted med bestilling og bruk av gavekort i et bredere handelsnettverk.",
+      "unitOfAnalysis": {
+        "unit": "Universal Presentkorts butikk- og gavekortvirksomhet",
+        "boundary": "Analysen omfatter den dokumenterte virksomheten i Lille Grensen 7 og dens gavekorttjeneste, ikke de selvstendige butikkene i brukerstedsnettverket som egne filialer.",
+        "scale": "firm",
+        "temporalScope": {
+          "start": "1927",
+          "end": "2026",
+          "precision": "period",
+          "rationale": "Perioden dekker den dokumenterte tilstedeværelsen på adressen og den ferskt kontrollerte aktive driften."
+        },
+        "sourceIds": [
+          "source_oslo_byes_vel_universal",
+          "source_universal_presentkort"
+        ]
+      },
+      "actors": [
+        {
+          "name": "Universal Presentkort AS",
+          "roleOrInterest": "Utsteder, aktiverer, selger og distribuerer gavekort fra nettstedet og butikken.",
+          "economicPosition": "Virksomheten fastsetter bestillings-, aktiverings-, pris- og leveringsvilkårene for eget produkt.",
+          "sourceIds": [
+            "source_universal_presentkort"
+          ]
+        },
+        {
+          "name": "Kjøpere og mottakere",
+          "roleOrInterest": "Bestiller, gir bort og bruker gavekortet i virksomhetens oppgitte nettverk av brukersteder.",
+          "economicPosition": "Kjøpere betaler for kortet, mens mottakere er avhengige av aktivering, saldo, gyldighet og aksept hos brukerstedene.",
+          "sourceIds": [
+            "source_universal_presentkort"
+          ]
+        }
+      ],
+      "valueCreation": {
+        "inputs": [
+          {
+            "statement": "Bestillingsløsning, kortaktivering, butikk, ordrebehandling og avtaler med brukersteder er dokumenterte innsatsfaktorer.",
+            "sourceIds": [
+              "source_universal_presentkort"
+            ]
+          }
+        ],
+        "activity": {
+          "statement": "Virksomheten behandler bestillinger, aktiverer gavekort og gjør dem tilgjengelige for henting i butikken eller utsending med post.",
+          "sourceIds": [
+            "source_universal_presentkort"
+          ]
+        },
+        "outputs": [
+          {
+            "statement": "Kundene mottar aktiverte gavekort som kan brukes hos virksomhetens oppgitte brukersteder.",
+            "sourceIds": [
+              "source_universal_presentkort"
+            ]
+          }
+        ],
+        "valueCreationAssessment": {
+          "statement": "Den dokumenterte verdiskapingen ligger i å samle bestilling, betaling, aktivering, distribusjon og et nettverk av brukersteder; kildene gir ikke grunnlag for å tallfeste lønnsomhet eller markedsandel.",
+          "sourceIds": [
+            "source_universal_presentkort"
+          ]
+        }
+      },
+      "measurement": {
+        "methodId": "met_naering_byhistorisk_naeringsanalyse",
+        "evidenceType": "qualitative",
+        "indicatorOrObservation": "Tilstedeværelse på adressen, butikkhenting, postutsending, aktiveringskrav, prisopplysninger og oppgitte brukersteder brukes som observerbare virksomhetsspor.",
+        "unit": "gavekortvirksomhet",
+        "period": "1927–2026",
+        "comparability": "Kildene kan sammenholdes for historisk kontinuitet og dagens funksjoner, men inneholder ikke en sammenlignbar tidsserie for omsetning eller volum.",
+        "dataLimitations": "Det mangler reviderte regnskap, årlige kortvolum, innløsningsgrad, historisk prisserie, arbeidsvilkår og uavhengig markedsanalyse.",
+        "sourceIds": [
+          "source_oslo_byes_vel_universal",
+          "source_universal_presentkort"
+        ]
+      },
+      "distributionAndPower": {
+        "ownershipOrControl": "Universal Presentkort kontrollerer utstedelse, aktivering, prisvilkår og distribusjon av eget gavekort, mens brukerstedene kontrollerer sine egne varer og tjenester.",
+        "laborPosition": "Kildene dokumenterer ordre- og butikkfunksjoner, men oppgir ikke bemanning, lønn, arbeidstid, kontraktsformer eller medbestemmelse.",
+        "beneficiaries": [
+          "Virksomheten kan få inntekter fra kortsalg og oppgitte gebyrer.",
+          "Kjøpere får en gave som mottakeren kan bruke hos flere brukersteder.",
+          "Brukerstedene kan motta etterspørsel fra gavekortbrukere."
+        ],
+        "costRiskBearers": [
+          "Virksomheten bærer driftsansvar for bestilling, aktivering og distribusjon.",
+          "Kjøpere og mottakere må følge vilkår for aktivering, gyldighet og bruk."
+        ],
+        "sourceIds": [
+          "source_universal_presentkort"
+        ]
+      },
+      "riskAndExternalities": {
+        "riskAssessment": {
+          "statement": "Tjenesten er avhengig av korrekt aktivering, ordrebehandling, distribusjon og at gavekortet aksepteres hos oppgitte brukersteder.",
+          "sourceIds": [
+            "source_universal_presentkort"
+          ]
+        },
+        "externalityAssessment": {
+          "status": "not_applicable",
+          "rationale": "Kildene dokumenterer produkt og bruksvilkår, men gir ikke sikkert stedsspesifikt grunnlag for miljø-, fortrengnings- eller andre eksterne virkninger."
+        }
+      },
+      "comparisonAndCausality": {
+        "comparisonBasis": "Oslo Byes Vels historiske adresseopplysning sammenholdes med virksomhetens aktuelle produkt-, butikk- og leveringsinformasjon.",
+        "causalStatus": "descriptive_only",
+        "causalAssessment": "Materialet viser historisk kontinuitet og dagens driftsfunksjoner, men kan ikke isolere hvorfor virksomheten har bestått eller hvilken effekt sentrumsadressen har.",
+        "alternativeExplanations": [
+          "Eierskap, kundelojalitet, produktvilkår, handelsnettverk, digital bestilling og generell etterspørsel etter gavekort kan påvirke kontinuiteten samtidig."
+        ],
+        "uncertainty": "Kildene mangler sammenligningsgruppe, regnskapsdata, transaksjonsvolum og en historisk serie for produkter og brukersteder.",
+        "sourceIds": [
+          "source_oslo_byes_vel_universal",
+          "source_universal_presentkort"
+        ]
+      }
+    }
+  ],
+  "presentOperation": {
+    "operationalStatus": "active",
+    "statement": "Universal Presentkorts nettsted oppgir aktiv bestilling, butikkhenting og kontaktadresse i Lille Grensen 7 ved kontrolltidspunktet.",
+    "originalEconomicRoleRelationship": "Den aktive gavekort- og butikkfunksjonen viderefører virksomhetens dokumenterte tilstedeværelse på adressen siden 1927, uten at kildene viser at alle produkter og prosesser er uendret.",
+    "checkedAt": "2026-08-26",
+    "sourceIds": [
+      "source_universal_presentkort"
+    ]
+  },
+  "quizOpening": {
+    "status": "N/A",
+    "rationale": "Micro Place-profilen har quizMode none, og denne rapporten produserer ingen stedquiz."
+  },
+  "chronologyStories": {
+    "status": "N/A",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "De daterte produksjonskravene er gjennomgått, men rapporten produserer ingen ny chronology eller Story."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": ["economicIdentity"]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": ["businessTopics[0]"]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": ["case_universal_gavekort.valueCreation"]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": ["case_universal_gavekort.actors", "case_universal_gavekort.distributionAndPower"]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": ["case_universal_gavekort.measurement"]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": ["case_universal_gavekort.riskAndExternalities", "case_universal_gavekort.comparisonAndCausality", "presentOperation"]
+    },
+    "G": {
+      "status": "N/A",
+      "rationale": "Ingen stedquiz produseres eller revideres i denne rapporten."
+    },
+    "H": {
+      "status": "N/A",
+      "rationale": "Ingen chronology eller Story produseres eller revideres i denne rapporten."
+    }
+  },
+  "review": {
+    "reviewer": "History GO blue-sign phase 2 Næringsliv audit",
+    "reviewedAt": "2026-08-26",
+    "notes": "Rapporten skiller minneskilt, virksomhet, butikksted og brukerstedsnettverk. Den påstår ikke dokumentert lønnsomhet, markedsandel eller uendrede prosesser siden 1927."
+  }
+}

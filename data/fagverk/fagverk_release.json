@@ -11,7 +11,7 @@
     "schema": "history_go_fagverk_registry_v1",
     "version": "3.14.0",
     "updated_at": "2026-08-21",
-    "content_sha256": "a875f92831349661c4ff5219ea3dffcd143ec2f6ec7ca4028e0a600dd981e3af"
+    "content_sha256": "0b9686abde2570d4dfb8c452ed301d7fa984d364e1ed5abcd1f1decbfe41c366"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,18 +27,18 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "c5c774193c0eb77f33dd0769bee8f743d6575f312df22c7f5f941e9f774fa455"
+    "content_sha256": "70bbc530407227d73fe7361d553997fbed199f9535ae1b46358398e3a161ee19"
   },
   "summary": {
     "subject_count": 20,
     "root_subject_count": 19,
     "specialization_count": 1,
     "chapter_subject_count": 17,
-    "chapter_count": 180,
-    "module_file_count": 461,
-    "package_file_count": 279,
-    "chapter_referenced_file_count": 870,
-    "referenced_file_count": 1087,
+    "chapter_count": 184,
+    "module_file_count": 477,
+    "package_file_count": 305,
+    "chapter_referenced_file_count": 898,
+    "referenced_file_count": 1137,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -76,9 +76,9 @@
         "supersetQuizMal"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 33,
+      "package_file_count": 39,
       "required_package_file_count": 4,
-      "optional_package_file_count": 29,
+      "optional_package_file_count": 35,
       "package_files": [
         {
           "path": "data/fag/by/emner_by.json",
@@ -201,6 +201,18 @@
           "content_sha256": "359d9ed3e5c65a1f7701dd8fa435b58c4b6f7d7e85c36b358165b9bc7c5e779d"
         },
         {
+          "path": "data/quiz/by/markveien_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.markveien.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "8bce3082cd29f6d8d739ce22251ec7e9526cac6a10c33d5b482609d16e8e64df"
+        },
+        {
           "path": "data/quiz/by/olaf_ryes_plass_sets.json",
           "required": false,
           "fields": [
@@ -211,6 +223,18 @@
           ],
           "exists": true,
           "content_sha256": "fa185331c956c53e14534de89dc3c674a1d8b6d4f7eb56f6f577d86256f71d21"
+        },
+        {
+          "path": "data/quiz/by/sofienbergparken_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.sofienbergparken.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "ce0512b55a7bd4aa636a337acc8c858e34c5529bb3f3a0a60f32f94996b1e7cc"
         },
         {
           "path": "data/quiz/by/storgata_sets.json",
@@ -297,6 +321,18 @@
           "content_sha256": "43643471123d74aaf785c72b90e691e8566a66007eb9c358d3e79113a678ce88"
         },
         {
+          "path": "data/quiz/production_briefs/by/markveien.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.markveien.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "d595c650483dfba61e6a9a728454def73f8d41bfc1ce4b831df0445d8ee28e9a"
+        },
+        {
           "path": "data/quiz/production_briefs/by/olaf_ryes_plass.json",
           "required": false,
           "fields": [
@@ -307,6 +343,18 @@
           ],
           "exists": true,
           "content_sha256": "ec9230a3cd160cf83d7bda0f859f5d61e6b1e6bcf6de35f9bb00b4227b00f2e5"
+        },
+        {
+          "path": "data/quiz/production_briefs/by/sofienbergparken.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.sofienbergparken.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "70cd3e6fac7cb970439acba5d7795460ee7caeb13bbf0d97a1aa9c5b74a03c51"
         },
         {
           "path": "data/quiz/production_briefs/by/storgata.json",
@@ -393,6 +441,18 @@
           "content_sha256": "480ad17eb38fbd3e713c813b0cf8295e98ea2e38281f04ccdbef868a85614cba"
         },
         {
+          "path": "data/quiz/production_context/by/markveien.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.markveien.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "ad6f60658e3fe34d161f0c26312080ace585af82d7e6ae0d8f43ada973a38d4c"
+        },
+        {
           "path": "data/quiz/production_context/by/olaf_ryes_plass.json",
           "required": false,
           "fields": [
@@ -403,6 +463,18 @@
           ],
           "exists": true,
           "content_sha256": "43cf33839d2d8f969a45918199671d7c9e5a4e07662ea92f327f1d83e9e253fa"
+        },
+        {
+          "path": "data/quiz/production_context/by/sofienbergparken.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.sofienbergparken.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "6abe4aabf520c85b66e0a139139f8776033fad53641757832050a9c76c161339"
         },
         {
           "path": "data/quiz/production_context/by/storgata.json",
@@ -477,20 +549,20 @@
           "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
         }
       ],
-      "package_content_sha256": "7850a3f1d57cd128a1499e83c45410e8506de01402cc478d8f3aeb2f648e28e9",
+      "package_content_sha256": "bd0ab73efdfda4ec313cf86182dc954f6b9dd80a34eda794e5767a443c1d461b",
       "chapter_count": 17,
       "module_file_count": 51,
       "brief_file_count": 17,
       "claims_file_count": 17,
       "chapter_referenced_file_count": 102,
       "chapter_content_sha256": "21ed783bb2d9f06494fa9a56eb60af89e5d8c8225a51d930eebddf35203dd283",
-      "referenced_file_count": 135,
+      "referenced_file_count": 141,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "1744801106e413aeee274985f7c6fb9876a427b61feec485cba4b6572b0936f3",
-      "content_sha256": "d17b3499a547e0eb1001455af4c617bf649025c85eb728668c6c49436006a23b",
+      "structure_sha256": "090549c1ca51b3c761abb74771669bce9c21b3dd827aa2ffa886dfc35b861063",
+      "content_sha256": "47a366b4ffcd5c6f8d9e0bb0b3ca49070037a330057839ee1bff1db518686f68",
       "chapters": [
         {
           "chapter_id": "byliv-offentlige-rom",
@@ -1804,9 +1876,9 @@
         "version"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 35,
+      "package_file_count": 38,
       "required_package_file_count": 4,
-      "optional_package_file_count": 31,
+      "optional_package_file_count": 34,
       "package_files": [
         {
           "path": "data/fag/historie/case_requirements_historie_canonical_v1.json",
@@ -2025,6 +2097,18 @@
           "content_sha256": "03b329a3d5754efcf3f9248ea677e9ca269cbc8f76b0e850e626aff47e1e2f59"
         },
         {
+          "path": "data/quiz/historie/paulus_kirke_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.paulus_kirke.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "b664d05acec84d146b9a771cf0832ea999fec3d6e785131d64eb286326d3be18"
+        },
+        {
           "path": "data/quiz/historie/var_frelsers_gravlund_sets.json",
           "required": false,
           "fields": [
@@ -2095,6 +2179,18 @@
           ],
           "exists": true,
           "content_sha256": "309ed881d26d29421f1b6442e2c892e021cbf55789ed1a3eb1b41723bc6127a5"
+        },
+        {
+          "path": "data/quiz/production_briefs/historie/paulus_kirke.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.paulus_kirke.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "afc441af7400f1e700cf93a046dc1584f3d3054ee4e0d6f66a40135e966738de"
         },
         {
           "path": "data/quiz/production_briefs/historie/var_frelsers_gravlund.json",
@@ -2169,6 +2265,18 @@
           "content_sha256": "4b5adc965f5b3d481b65d124914493f87415ce649ff0852e149988088bd0966b"
         },
         {
+          "path": "data/quiz/production_context/historie/paulus_kirke.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.paulus_kirke.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "1d0c17686b75bf97db2491be6f33d5432dea192b8706a31f866ca45c2eee9ffe"
+        },
+        {
           "path": "data/quiz/production_context/historie/var_frelsers_gravlund.json",
           "required": false,
           "fields": [
@@ -2229,20 +2337,20 @@
           "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
         }
       ],
-      "package_content_sha256": "03f668d8a99a7c161359a2d3c4dcd3970f5375ac86363c918dce849cf159f2ed",
+      "package_content_sha256": "967e1a33c0bae5b12018a0e20abe4338bdf10947921c3bfaa7008bc4d446bead",
       "chapter_count": 23,
       "module_file_count": 69,
       "brief_file_count": 0,
       "claims_file_count": 0,
       "chapter_referenced_file_count": 92,
       "chapter_content_sha256": "bedfd019dc2fa60ba92a540bf6b9f2504e0f6b1680350762a5fe074e82153148",
-      "referenced_file_count": 127,
+      "referenced_file_count": 130,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "7b9a8ef7f33a13ceed3a26e1d988cad029e2fa0915fb79a7a4d0b60575c759b5",
-      "content_sha256": "e8124eecf6cc6eccc960c1d4458d5f13198d16f4d9dbf447da6439d74d7d06c1",
+      "structure_sha256": "4c0b73d756558f524df7aa7743d177d3f7b37dbfd0608e7bd2e23dcb35631146",
+      "content_sha256": "c2b07de53311281c310075ce92bde6f26beef2741d58d6b9d334aaaf3a56d809",
       "chapters": [
         {
           "chapter_id": "historisk_tid_periodisering",
@@ -3339,9 +3447,9 @@
         "universityFramework"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 28,
+      "package_file_count": 37,
       "required_package_file_count": 4,
-      "optional_package_file_count": 24,
+      "optional_package_file_count": 33,
       "package_files": [
         {
           "path": "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
@@ -3524,6 +3632,18 @@
           "content_sha256": "07f7d4df74275325d75a683886beda0d21c3f43a4703d58661a05d767f563b47"
         },
         {
+          "path": "data/quiz/naeringsliv/freia_fabrikken_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.freia_fabrikken.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "bd40f7e7c5542978be3d3b143920dbc4d39d228fe81190711f5b31426b09331a"
+        },
+        {
           "path": "data/quiz/naeringsliv/havnelageret_sets_merged.json",
           "required": false,
           "fields": [
@@ -3548,6 +3668,30 @@
           "content_sha256": "76917e1ee563e2c64768199041473fab1830432077e54916c4d56c0a4c628ce6"
         },
         {
+          "path": "data/quiz/naeringsliv/ringnes_bryggeri_sets_merged.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.ringnes_bryggeri.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "b9f7bf468f49628e1e3d8f437200e7aa27aaa8a306a7900b75afdb8d53dcc300"
+        },
+        {
+          "path": "data/quiz/naeringsliv/schous_bryggeri_sets_merged.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.schous_bryggeri.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "de6ae26d86310f1055a4d65e5138f954fa20c8fde02e986bc387f564d4d956c8"
+        },
+        {
           "path": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
           "required": false,
           "fields": [
@@ -3558,6 +3702,18 @@
           ],
           "exists": true,
           "content_sha256": "39f8fb6985fe8ee9891959dadb582fc0bf9963b2669319a7ab5b29a34ac526dd"
+        },
+        {
+          "path": "data/quiz/production_briefs/naeringsliv/freia_fabrikken.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.freia_fabrikken.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "508689dbcc81664bf499782674c3e5657a9bc932a671a57fee6c042ab11ec3d5"
         },
         {
           "path": "data/quiz/production_briefs/naeringsliv/havnelageret.json",
@@ -3584,6 +3740,30 @@
           "content_sha256": "c303a57ed0e975cbb1b82b03ec5424b0fa09c7ed893f222f33bcb033124577a6"
         },
         {
+          "path": "data/quiz/production_briefs/naeringsliv/ringnes_bryggeri.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.ringnes_bryggeri.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "8ca001a0f34a2305398239c9fa8f07719a564542a5e9d75b31567efe4154413f"
+        },
+        {
+          "path": "data/quiz/production_briefs/naeringsliv/schous_bryggeri.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.schous_bryggeri.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "002b63a1e01bc2d702f3f456e7723199b705b8da7e7b30e58c258e919eeb11bc"
+        },
+        {
           "path": "data/quiz/production_briefs/naeringsliv/telegrafbygningen.json",
           "required": false,
           "fields": [
@@ -3594,6 +3774,18 @@
           ],
           "exists": true,
           "content_sha256": "2bfd115a43be6af78830e6e7634154b84c038b2193b4e71a4858578fdc902e4a"
+        },
+        {
+          "path": "data/quiz/production_context/naeringsliv/freia_fabrikken.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.freia_fabrikken.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "0f2b6e1b2a66d18506ff334c0b4d64100871c337a86bc42fbb6839e3cd4709e1"
         },
         {
           "path": "data/quiz/production_context/naeringsliv/havnelageret.json",
@@ -3618,6 +3810,30 @@
           ],
           "exists": true,
           "content_sha256": "5a188dec0578c9599220202373f05a155aaf969962abc8680def4a6cc8c35f1a"
+        },
+        {
+          "path": "data/quiz/production_context/naeringsliv/ringnes_bryggeri.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.ringnes_bryggeri.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "816cb1e7b7e9a16ea187a3af251b2419d54684eb9904412dcdbda87405db3754"
+        },
+        {
+          "path": "data/quiz/production_context/naeringsliv/schous_bryggeri.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.schous_bryggeri.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "03027557401a1838aeda98691bba972f9f78ea2d8bfc9650ef3b390bab407a57"
         },
         {
           "path": "data/quiz/production_context/naeringsliv/telegrafbygningen.json",
@@ -3680,20 +3896,20 @@
           "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
         }
       ],
-      "package_content_sha256": "e317d09709e9a5e06be272cf1c9bed10199c86517e07f4c2e642acb5a8778d4f",
+      "package_content_sha256": "34d4e11914a250475ad36def8a7b8fd7f0a840f11b15408bc5465dc7af0c9cee",
       "chapter_count": 12,
       "module_file_count": 36,
       "brief_file_count": 12,
       "claims_file_count": 12,
       "chapter_referenced_file_count": 72,
       "chapter_content_sha256": "06d3f52d2c3e2ff12545cbbc2fc0c1a783071c46a79f1e46ae368e44562143d1",
-      "referenced_file_count": 100,
+      "referenced_file_count": 109,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "226987d65ef23ec22dddb60dd34256f9be96bda55607c14c84825b337378905f",
-      "content_sha256": "41e35ea18bf69a24149cd42fae09cd0e6d12e9016715b93aa47349548b6a3941",
+      "structure_sha256": "a365588218230b59f4209cbbae29a53c8046bf07d2be4fcfdb9542ab2aa6b20c",
+      "content_sha256": "317ca4425730f98ce846d2e5ed5f9fb843680bff088e946c2878bc3c0b0f9a8b",
       "chapters": [
         {
           "chapter_id": "arbeid-produksjon-verdiskaping",
@@ -5522,10 +5738,22 @@
         "supersetQuizMal"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 18,
+      "package_file_count": 26,
       "required_package_file_count": 4,
-      "optional_package_file_count": 14,
+      "optional_package_file_count": 22,
       "package_files": [
+        {
+          "path": "data/fag/utdanning/assessment_educational_measurement_source_claim_brief_v1.json",
+          "required": false,
+          "fields": [
+            "sourceClaimBriefs"
+          ],
+          "key_paths": [
+            "sourceClaimBriefs[6]"
+          ],
+          "exists": true,
+          "content_sha256": "268510951358f32b2e610a7788783c3bd5c280cd7597a36f5432d6a1249a08cd"
+        },
         {
           "path": "data/fag/utdanning/didactics_source_claim_brief_v1.json",
           "required": false,
@@ -5560,7 +5788,7 @@
             "emner"
           ],
           "exists": true,
-          "content_sha256": "4774b0e475f88d7614aa22e728ea867eee9c1df5bd98acd6ca25796d77967ccb"
+          "content_sha256": "acb4a5eb460641a6b289e5affa204af543e876a33799b1295ee075301850424d"
         },
         {
           "path": "data/fag/utdanning/fagkart_utdanning_canonical_v1.json",
@@ -5587,6 +5815,30 @@
           "content_sha256": "0e9e9a68e43a537fcee7e71167f5c47c4d828cb5288a03ffc13c75d09707ad37"
         },
         {
+          "path": "data/fag/utdanning/history_of_education_source_claim_brief_v1.json",
+          "required": false,
+          "fields": [
+            "sourceClaimBriefs"
+          ],
+          "key_paths": [
+            "sourceClaimBriefs[9]"
+          ],
+          "exists": true,
+          "content_sha256": "d079ffc9c105759073e70ff0b0b6b107a90bdae58ee90b375968e62979abe15d"
+        },
+        {
+          "path": "data/fag/utdanning/inclusion_adapted_education_source_claim_brief_v1.json",
+          "required": false,
+          "fields": [
+            "sourceClaimBriefs"
+          ],
+          "key_paths": [
+            "sourceClaimBriefs[8]"
+          ],
+          "exists": true,
+          "content_sha256": "e6195e8f025f734599773f9f8757e192fba363acf74a6ca9e8357fcaa6c524bc"
+        },
+        {
           "path": "data/fag/utdanning/methods_utdanning_canonical_v1.json",
           "required": true,
           "fields": [
@@ -5596,7 +5848,7 @@
             "methods"
           ],
           "exists": true,
-          "content_sha256": "d63b8221a215335f1eee9af92342ec10e68bc454ec476f2b5778107359c80eec"
+          "content_sha256": "bc46360ea94634ae20cda3441c2c55f9aeaa8cf3f89449aea2f29ff8ebfe13b7"
         },
         {
           "path": "data/fag/utdanning/pedagogy_learning_theory_source_claim_brief_v1.json",
@@ -5621,6 +5873,18 @@
           ],
           "exists": true,
           "content_sha256": "c0e2cfe63ec2ca1b4b454439ed8698bfc8a8408f5f7d61f5f98791c74866e437"
+        },
+        {
+          "path": "data/fag/utdanning/special_education_source_claim_brief_v1.json",
+          "required": false,
+          "fields": [
+            "sourceClaimBriefs"
+          ],
+          "key_paths": [
+            "sourceClaimBriefs[7]"
+          ],
+          "exists": true,
+          "content_sha256": "6db5c65b670d97a91507bc7308e559d70b3e95e609e1299d5f93cd5129731121"
         },
         {
           "path": "data/fag/utdanning/supersetQUIZMAL_utdanning.json",
@@ -5656,7 +5920,7 @@
             "pensum"
           ],
           "exists": true,
-          "content_sha256": "8fdf7288ddc0ab7932b5356a90b89772bbf2ed93b4d489eb91de28a85cbab5ca"
+          "content_sha256": "11065787ab90fe59c8428c750d0c6f3f06ae1593b28f47a0f55aff658f0af58f"
         },
         {
           "path": "data/fagverk/utdanning/barnehage-tidlig-laering-lek-sprak-samspill-og-utvikling.json",
@@ -5695,6 +5959,30 @@
           "content_sha256": "2fc695faddfb3982a52cf47914d97e7b68bef06ff41afef24e98d990a648b3ce"
         },
         {
+          "path": "data/fagverk/utdanning/hoyere-utdanning-kunnskap-studiekvalitet-og-deltakelse.json",
+          "required": false,
+          "fields": [
+            "chapters"
+          ],
+          "key_paths": [
+            "chapters[5]"
+          ],
+          "exists": true,
+          "content_sha256": "a0690c5b82f0165752c580ecd23380645efce62afef02d1f42034c4445ac4de5"
+        },
+        {
+          "path": "data/fagverk/utdanning/inkludering-tilpasset-opplaering-fellesskap-tilgang-og-progresjon.json",
+          "required": false,
+          "fields": [
+            "chapters"
+          ],
+          "key_paths": [
+            "chapters[8]"
+          ],
+          "exists": true,
+          "content_sha256": "8ba092d647e6a8ffd5a229d8089a71b5767ec875a888c8f30b9ce24ae306643e"
+        },
+        {
           "path": "data/fagverk/utdanning/pedagogikk-laeringsteori-laering-kunnskap-motivasjon-og-selvregulering.json",
           "required": false,
           "fields": [
@@ -5707,6 +5995,18 @@
           "content_sha256": "4ebcc70b3fb863bf7181629e5c000f79570b10ad7c11fc7e6a16f670ccc405ce"
         },
         {
+          "path": "data/fagverk/utdanning/spesialpedagogikk-rettigheter-deltakelse-og-malrettet-stotte.json",
+          "required": false,
+          "fields": [
+            "chapters"
+          ],
+          "key_paths": [
+            "chapters[7]"
+          ],
+          "exists": true,
+          "content_sha256": "2c2f4ad05db558dbb5813e654ad5544280f4d4837b71c8cbca3c52c543ca7fc6"
+        },
+        {
           "path": "data/fagverk/utdanning/videregaende-yrkesfag-overgang-fordypning-og-laering-i-arbeid.json",
           "required": false,
           "fields": [
@@ -5717,6 +6017,18 @@
           ],
           "exists": true,
           "content_sha256": "4134217e40d0f3139ca12852c1da7a0e6a9d15598b2592c0d07c990ec419133d"
+        },
+        {
+          "path": "data/fagverk/utdanning/vurdering-pedagogiske-malinger-validitet-reliabilitet-og-bruk.json",
+          "required": false,
+          "fields": [
+            "chapters"
+          ],
+          "key_paths": [
+            "chapters[6]"
+          ],
+          "exists": true,
+          "content_sha256": "d7ecd5781926bbdab41bf2fee60daa51d6855c179dba0fdedd064c2d27a0b33e"
         },
         {
           "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
@@ -5743,20 +6055,20 @@
           "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
         }
       ],
-      "package_content_sha256": "bbfe5dec14ebb75e7808be1c45b3c0a7cc0959fbb51105b44009628ba09ba71f",
-      "chapter_count": 5,
-      "module_file_count": 20,
-      "brief_file_count": 5,
-      "claims_file_count": 5,
-      "chapter_referenced_file_count": 35,
-      "chapter_content_sha256": "8484c6e668644bd7613585a6b55ddddb6e6cf639f48a498b905477c49ed2d72b",
-      "referenced_file_count": 48,
+      "package_content_sha256": "8841c00c52a98a2d7328bcfa38f799ad6d4b4392c6802a8d0a17ccaa2117f9ba",
+      "chapter_count": 9,
+      "module_file_count": 36,
+      "brief_file_count": 9,
+      "claims_file_count": 9,
+      "chapter_referenced_file_count": 63,
+      "chapter_content_sha256": "710e140af355476ac2e84d815942afc03e630b234de67379ce044bfcaecfca17",
+      "referenced_file_count": 80,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "c2c1e51a7b6db7b84e2a043489834d056a6d607cf22c7ba9b99d90eb25226ca6",
-      "content_sha256": "8fa1c77f6094ea4ce9a87fed04cc143fe32f5b89f6e3bb4d6bf1d82960f9c26d",
+      "structure_sha256": "e09dfa3782ca44cea4a1812d115d9550b425feabc4349719dd5638da610d1815",
+      "content_sha256": "d5cf78717c2b9f16ddd0a0ee8d9b61bfd29caac6560e87e9e4a0cd3c08474578",
       "chapters": [
         {
           "chapter_id": "pedagogikk-laeringsteori-laering-kunnskap-motivasjon-og-selvregulering",
@@ -5797,6 +6109,38 @@
           "module_file_count": 4,
           "referenced_file_count": 7,
           "content_sha256": "17d4b00b844d61f801a9ee676bf77b70090c4dabd84d19e757d4fb0bc40a9330"
+        },
+        {
+          "chapter_id": "hoyere-utdanning-kunnskap-studiekvalitet-og-deltakelse",
+          "title": "Høyere utdanning: kunnskap, studiekvalitet og deltakelse",
+          "file": "data/fagverk/utdanning/hoyere-utdanning-kunnskap-studiekvalitet-og-deltakelse.json",
+          "module_file_count": 4,
+          "referenced_file_count": 7,
+          "content_sha256": "f5d2c7f9e3f56a615800aef2b7308f1db4f7eb082e4eecfa2e67aa8573821629"
+        },
+        {
+          "chapter_id": "vurdering-pedagogiske-malinger-validitet-reliabilitet-og-bruk",
+          "title": "Vurdering og pedagogiske målinger: validitet, reliabilitet og bruk",
+          "file": "data/fagverk/utdanning/vurdering-pedagogiske-malinger-validitet-reliabilitet-og-bruk.json",
+          "module_file_count": 4,
+          "referenced_file_count": 7,
+          "content_sha256": "9c97a9614fca063c7a03c1550b69a08a23cd0ab454fbb6bc1145fc2458a648c9"
+        },
+        {
+          "chapter_id": "spesialpedagogikk-rettigheter-deltakelse-og-malrettet-stotte",
+          "title": "Spesialpedagogikk: rettigheter, deltakelse og målrettet støtte",
+          "file": "data/fagverk/utdanning/spesialpedagogikk-rettigheter-deltakelse-og-malrettet-stotte.json",
+          "module_file_count": 4,
+          "referenced_file_count": 7,
+          "content_sha256": "ea6c480a9c145a129acfd8aa0865e2b385aa70e9861f5b269a0ed8fefff9787d"
+        },
+        {
+          "chapter_id": "inkludering-tilpasset-opplaering-fellesskap-tilgang-og-progresjon",
+          "title": "Inkludering og tilpasset opplæring: fellesskap, tilgang og progresjon",
+          "file": "data/fagverk/utdanning/inkludering-tilpasset-opplaering-fellesskap-tilgang-og-progresjon.json",
+          "module_file_count": 4,
+          "referenced_file_count": 7,
+          "content_sha256": "5d653d1ee2afb787a2e4d3cc372b308be78a116600ab27f63fcc0adf4c3dc2a4"
         }
       ]
     },
@@ -5978,5 +6322,5 @@
       ]
     }
   },
-  "release_sha256": "0fa350dd199e6f3859fd08f400e34a1425cd20be576dc075417e2fdedf1dabd2"
+  "release_sha256": "5fb093b23814c7efd4cdf5758103da5b4dab7a4131fb2f82f1b302237a74baf0"
 }

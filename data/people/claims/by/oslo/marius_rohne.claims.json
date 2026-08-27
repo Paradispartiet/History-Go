@@ -1,0 +1,164 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "marius_rohne",
+  "profile_file": "data/people/by/oslo/people_by_oslo.json",
+  "identity": {
+    "canonical_identity": "Den norske landskapsarkitekten og bygartneren Marius Røhne, født 25. april 1883 og død 30. august 1966.",
+    "name_variants": [
+      "Marius Røhne"
+    ],
+    "not": [
+      "navnelike personer"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "canonical_name",
+      "claim": "Det canonical publiserte navnet er Marius Røhne.",
+      "status": "verified",
+      "source_url": "https://snl.no/Marius_R%C3%B8hne",
+      "source_location": "overskrift",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-26",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "life_dates",
+      "claim": "Marius Røhne ble født 25. april 1883 og døde 30. august 1966.",
+      "status": "verified",
+      "source_url": "https://snl.no/Marius_R%C3%B8hne",
+      "source_location": "faktaboks",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-26",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "profession",
+      "claim": "Røhne var landskapsarkitekt og bygartner.",
+      "status": "verified",
+      "source_url": "https://nbl.snl.no/Marius_R%C3%B8hne",
+      "source_location": "faktaboks og biografi",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-26",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "park_leadership",
+      "claim": "Røhne ledet Kristianias og senere Oslos parkvesen fra 1916 til 1948.",
+      "status": "verified",
+      "source_url": "https://nbl.snl.no/Marius_R%C3%B8hne",
+      "source_location": "avsnitt om parkvesenet",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-26",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "sofienberg_connection",
+      "claim": "Omformingen av Sofienberg gravlund var et stort parktiltak i perioden Røhne ledet parkvesenet.",
+      "status": "verified",
+      "source_url": "https://lokalhistoriewiki.no/wiki/Parker_i_Oslo_kommune",
+      "source_location": "avsnitt om Parkvesenet og Sofienbergparken",
+      "source_type": "institutional_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-26",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "social_park_policy",
+      "claim": "Røhnes parkpolitikk la vekt på offentlige friområder, barns lek og opphold i den tette byen.",
+      "status": "verified",
+      "source_url": "https://nbl.snl.no/Marius_R%C3%B8hne",
+      "source_location": "avsnitt om sosial parkpolitikk",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-26",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "canonical_name"
+    ],
+    "kindLabel": [
+      "profession"
+    ],
+    "birth_date": [
+      "life_dates"
+    ],
+    "death_date": [
+      "life_dates"
+    ],
+    "year": [
+      "park_leadership"
+    ],
+    "placeId": [
+      "sofienberg_connection"
+    ],
+    "places[sofienbergparken]": [
+      "sofienberg_connection"
+    ],
+    "image": [
+      "canonical_name"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "profession",
+          "park_leadership",
+          "sofienberg_connection"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "life_dates"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "profession",
+          "park_leadership"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "sofienberg_connection"
+        ]
+      },
+      {
+        "sentence": 4,
+        "claim_ids": [
+          "sofienberg_connection"
+        ]
+      },
+      {
+        "sentence": 5,
+        "claim_ids": [
+          "social_park_policy"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "6/6",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-08-26",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}

@@ -1,0 +1,339 @@
+{
+  "schemaVersion": "naeringsliv_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "freia_fabrikken",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv/freia_fabrikken.json",
+  "status": "ready",
+  "economicIdentity": {
+    "statement": "Freia-fabrikken er et stedbundet sjokoladeproduksjonsanlegg, arbeidssted og merkevareanker på Rodeløkka.",
+    "anchorType": "factory",
+    "placeObjectDistinction": "Rapporten skiller fabrikkanlegget fra Freia-brandet, enkeltproduktene, Karl Johan-butikken, Freiaparken og Freiasalen som delstrukturer.",
+    "temporalScope": {
+      "start": "1889",
+      "end": "2026",
+      "precision": "period",
+      "rationale": "Grunnleggelsen er dokumentert i 1889, og SNL dokumenterer fortsatt Freia-produksjon i Oslo i 2026."
+    },
+    "sourceIds": [
+      "source_freia_heritage",
+      "source_freia_byleksikon",
+      "source_freia_snl",
+      "source_mondelez_current"
+    ]
+  },
+  "businessTopics": [
+    {
+      "emneId": "em_naering_arbeid_verdiskaping",
+      "siteSpecificRationale": "Fabrikken gjør arbeidsdeling, råvarer, produksjon, pakking og distribusjon til en konkret stedbundet verdikjede.",
+      "caseIds": [
+        "case_freia_factory_system"
+      ]
+    },
+    {
+      "emneId": "em_naering_arbeidsliv_organisering",
+      "siteSpecificRationale": "Pensjonskasse, bedriftslege, arbeidstid, park og spisesal dokumenterer hvordan ledelsen organiserte arbeidsmiljøet.",
+      "caseIds": [
+        "case_freia_factory_system"
+      ]
+    },
+    {
+      "emneId": "em_naering_industri_og_mekanisering",
+      "siteSpecificRationale": "De sammenbygde produksjonsfløyene viser hvordan maskiner, arbeidsdeling og fabrikkarkitektur organiserte industriell sjokoladeproduksjon.",
+      "caseIds": [
+        "case_freia_factory_system"
+      ]
+    },
+    {
+      "emneId": "em_naering_forbruk_marked",
+      "siteSpecificRationale": "Butikken, distribusjonen og reklamen knyttet fabrikkens standardiserte varer til etterspørsel og forbruk i et større marked.",
+      "caseIds": [
+        "case_freia_factory_system"
+      ]
+    },
+    {
+      "emneId": "em_naering_merkevare_og_status",
+      "siteSpecificRationale": "Fabrikknavnet, marabustorken, butikkutsalget og reklamen koblet produksjonsstedet til et nasjonalt forbrukermarked.",
+      "caseIds": [
+        "case_freia_factory_system"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_freia_heritage",
+      "url": "https://riksantikvaren.no/fredninger/freia/",
+      "sourceLocation": "Arbeidsmiljø, Munchsalen, Freiaparken og fredningsstatus",
+      "sourceType": "museum_or_heritage",
+      "verifiedAt": "2026-08-27",
+      "temporalCoverage": "mixed",
+      "provenance": "Riksantikvarens fredningspresentasjon og dokumentinngang for Freia.",
+      "limitations": "Siden har en åpenbar feil som daterer Throne Holsts kjøp til 1882; dette året er avvist mot uavhengige kilder."
+    },
+    {
+      "id": "source_freia_byleksikon",
+      "url": "https://oslobyleksikon.no/side/Freia",
+      "sourceLocation": "Hele stedspresentasjonen av fabrikk, marked, arbeidsmiljø og utbygging",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-08-27",
+      "temporalCoverage": "mixed",
+      "provenance": "Oslo Byleksikons redaksjonelle stedspost om Freia på Rodeløkka.",
+      "limitations": "Oppslaget komprimerer økonomiske resultater og gir ikke sammenlignbare regnskaps- eller lønnsdata."
+    },
+    {
+      "id": "source_freia_snl",
+      "url": "https://snl.no/Freia_-_sjokoladefabrikk",
+      "sourceLocation": "Innledning, historikk, merkevarer, reklame, fusjon og donasjoner",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-08-27",
+      "temporalCoverage": "mixed",
+      "provenance": "Store norske leksikons fagredigerte artikkel om Freia som fabrikk og varemerke.",
+      "limitations": "Artikkelen dekker hele virksomheten og kan ikke alene tilskrive alle konsernopplysninger til Rodeløkka-anlegget."
+    },
+    {
+      "id": "source_mondelez_current",
+      "url": "https://www.mondelezinternational.com/news/careers-arve-axelsson/",
+      "sourceLocation": "Intervju publisert 14. april 2025 om arbeid i Johan Throne Holsts gamle styrerom i Oslo og investering i nye ovner for den norske merkevaren",
+      "sourceType": "primary_business",
+      "verifiedAt": "2026-08-27",
+      "temporalCoverage": "current",
+      "provenance": "Mondelēz International publiserer selv intervjuet med en navngitt leder som beskriver nylig arbeid ved Oslo-anlegget.",
+      "limitations": "Egenpresentasjonen dokumenterer aktuell virksomhet og fabrikkutstyr, men er ikke en uavhengig vurdering av produksjonsvolum, lønnsomhet eller arbeidsvilkår."
+    }
+  ],
+  "economicCases": [
+    {
+      "id": "case_freia_factory_system",
+      "claim": "Freia-fabrikken bandt stedbundet produksjon til arbeidsorganisering, distribusjon og merkevarebygging, mens velferdstiltakene samtidig var del av ledelsens kontroll over arbeidsmiljøet.",
+      "unitOfAnalysis": {
+        "unit": "Freia-fabrikkanlegget på Rodeløkka",
+        "boundary": "Analysen omfatter produksjonsstedet, arbeidsorganiseringen og direkte stedbundne markedsforbindelser, ikke hele Mondelēz-konsernet eller alle Freia-produkters globale verdikjeder.",
+        "scale": "site",
+        "temporalScope": {
+          "start": "1889",
+          "end": "2026",
+          "precision": "period",
+          "rationale": "Perioden følger fabrikkens etablering, utbygging, delvise omforming og fortsatt produksjon i Oslo."
+        },
+        "sourceIds": [
+          "source_freia_heritage",
+          "source_freia_byleksikon",
+          "source_freia_snl",
+          "source_mondelez_current"
+        ]
+      },
+      "actors": [
+        {
+          "name": "Freias eiere og ledelse",
+          "roleOrInterest": "Organiserte kapital, produksjon, salg, arbeidsmiljø og utbygging.",
+          "economicPosition": "Kontrollerte investeringer, produktvalg, arbeidets rammer og bruken av fabrikkarealet.",
+          "sourceIds": [
+            "source_freia_heritage",
+            "source_freia_byleksikon",
+            "source_freia_snl",
+            "source_mondelez_current"
+          ]
+        },
+        {
+          "name": "Fabrikkarbeiderne",
+          "roleOrInterest": "Utførte produksjon, pakking, hygiene- og logistikkarbeid.",
+          "economicPosition": "Skapte varene gjennom lønnet arbeid, men kontrollerte ikke bedriftens eierskap eller overordnede strategi.",
+          "sourceIds": [
+            "source_freia_byleksikon",
+            "source_freia_heritage"
+          ]
+        },
+        {
+          "name": "Forbrukere og forhandlere",
+          "roleOrInterest": "Etterspurte, kjøpte og distribuerte Freia-varer.",
+          "economicPosition": "Bandt fabrikkproduksjonen til markedet gjennom butikk, handel og merkevarepreferanser.",
+          "sourceIds": [
+            "source_freia_byleksikon",
+            "source_freia_snl"
+          ]
+        }
+      ],
+      "valueCreation": {
+        "inputs": [
+          {
+            "statement": "Råvarer, fabrikkbygninger, maskiner, energi, arbeidstid, kompetanse og kapital var nødvendige innsatsfaktorer.",
+            "sourceIds": [
+              "source_freia_byleksikon",
+              "source_freia_snl"
+            ]
+          }
+        ],
+        "activity": {
+          "statement": "Innsatsfaktorene ble organisert som sjokoladeproduksjon, kvalitetskontroll, pakking, lager, distribusjon, butikk og markedsføring.",
+          "sourceIds": [
+            "source_freia_byleksikon",
+            "source_freia_snl"
+          ]
+        },
+        "outputs": [
+          {
+            "statement": "Anlegget leverte sjokolade og andre næringsmidler under Freia-navnet til det norske markedet.",
+            "sourceIds": [
+              "source_freia_snl"
+            ]
+          }
+        ],
+        "valueCreationAssessment": {
+          "statement": "Kildene dokumenterer en integrert produksjons- og markedskjede, men gir ikke et ensartet regnskapsgrunnlag for å beregne stedets lønnsomhet gjennom hele perioden.",
+          "sourceIds": [
+            "source_freia_byleksikon",
+            "source_freia_snl"
+          ]
+        }
+      },
+      "measurement": {
+        "methodId": "met_naering_industrihistorisk_analyse",
+        "evidenceType": "qualitative",
+        "indicatorOrObservation": "Utbyggingsår, arbeidsmiljøtiltak, butikk, reklame, park og spisesal leses som dokumenterte deler av fabrikkens organisasjon.",
+        "unit": "stedbundne produksjons- og organisasjonstrekk",
+        "period": "1889–2026",
+        "comparability": "Kildene kan sammenlignes på hendelser og funksjoner, men ikke som en stabil tidsserie for produktivitet, lønn eller fortjeneste.",
+        "dataLimitations": "Det mangler konsistente regnskaps-, lønns-, bemannings- og produksjonsserier for hele perioden.",
+        "sourceIds": [
+          "source_freia_heritage",
+          "source_freia_byleksikon",
+          "source_freia_snl",
+          "source_mondelez_current"
+        ]
+      },
+      "distributionAndPower": {
+        "ownershipOrControl": "Eiere og ledelse kontrollerte fabrikkanlegget, investeringene, produktstrategien og utformingen av arbeidsmiljøet.",
+        "laborPosition": "Arbeiderne mottok dokumenterte velferdstiltak og produserte varene, men kildene gir ikke grunnlag for å hevde at tiltakene fjernet forhandlings- eller maktforskjeller.",
+        "beneficiaries": [
+          "Eiere kunne motta avkastning fra salg og virksomhetsvekst.",
+          "Arbeidere mottok lønn og fikk tilgang til dokumenterte arbeidsmiljøtiltak.",
+          "Forbrukere fikk tilgang til standardiserte merkevarer gjennom handel og distribusjon."
+        ],
+        "costRiskBearers": [
+          "Eiere bar investerings- og markedsrisiko.",
+          "Arbeidere bar belastninger og omstillingsrisiko knyttet til industriarbeid og endringer i produksjonen."
+        ],
+        "sourceIds": [
+          "source_freia_heritage",
+          "source_freia_byleksikon",
+          "source_freia_snl",
+          "source_mondelez_current"
+        ]
+      },
+      "riskAndExternalities": {
+        "riskAssessment": {
+          "statement": "Fabrikken var avhengig av råvaretilgang, produksjonskapasitet, etterspørsel og evne til å omstille arealer og organisasjon over tid.",
+          "sourceIds": [
+            "source_freia_byleksikon",
+            "source_freia_snl"
+          ]
+        },
+        "externalityAssessment": {
+          "status": "not_applicable",
+          "rationale": "Kildene dokumenterer arbeidsmiljø og arealomforming, men gir ikke et sammenlignbart grunnlag for å tallfeste stedets helse-, miljø- eller nabolagseffekter."
+        }
+      },
+      "comparisonAndCausality": {
+        "comparisonBasis": "Riksantikvaren belyser arbeidsmiljø og kulturmiljø, mens Oslo byleksikon og SNL belyser produksjon, marked og organisasjon.",
+        "causalStatus": "descriptive_only",
+        "causalAssessment": "Materialet viser at tiltak og vekst opptrådte i samme fabrikkprogram, men isolerer ikke virkningen av park, kunst, reklame eller arbeidstid på produktivitet og lønnsomhet.",
+        "alternativeExplanations": [
+          "Markedsvekst kan også ha blitt påvirket av produktkvalitet, priser, distribusjon, konkurranse og generell etterspørsel."
+        ],
+        "uncertainty": "Ingen kontrollgruppe eller konsistent økonomisk tidsserie gjør det mulig å tilskrive resultatene til ett tiltak.",
+        "sourceIds": [
+          "source_freia_heritage",
+          "source_freia_byleksikon",
+          "source_freia_snl",
+          "source_mondelez_current"
+        ]
+      }
+    }
+  ],
+  "presentOperation": {
+    "operationalStatus": "active",
+    "statement": "SNL og Mondelēz dokumenterer fortsatt Freia-produksjon og investering i produksjonsutstyr ved Oslo-anlegget, som består av både aktive, vernede og omformede deler.",
+    "originalEconomicRoleRelationship": "Sjokoladeproduksjonen viderefører stedets opprinnelige økonomiske rolle, men eierskap, arealgrenser, produksjonslinjer og enkelte fabrikkfløyer har endret seg.",
+    "checkedAt": "2026-08-27",
+    "sourceIds": [
+      "source_mondelez_current",
+      "source_freia_snl"
+    ]
+  },
+  "quizOpening": {
+    "status": "PASS",
+    "quizTargetId": "freia_fabrikken",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/naeringsliv/freia_fabrikken.json",
+    "productionContext": "data/quiz/production_context/naeringsliv/freia_fabrikken.json",
+    "requiredInputs": [
+      "data/fag/naeringsliv/naeringslivpensum_canonical_v4_5.json",
+      "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+      "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+      "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+      "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+      "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    ]
+  },
+  "chronologyStories": {
+    "status": "PASS",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Leksikonets milepæler eier tidslinjen; storyen om Freiasalen har en egen narrativ akse om hvordan kunst, park og spiserom ble integrert."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicIdentity"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "businessTopics"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].valueCreation"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].distributionAndPower"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].measurement"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].comparisonAndCausality"
+      ]
+    },
+    "G": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "quizOpening"
+      ]
+    },
+    "H": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "chronologyStories"
+      ]
+    }
+  },
+  "review": {
+    "reviewer": "History GO Næringsliv source audit",
+    "reviewedAt": "2026-08-27",
+    "notes": "Fabrikkidentitet, verdikjede, arbeid, ledelse, merkevare, målegrenser, omstilling og nåstatus er kontrollert. Rapporten hevder ikke dokumentert lønnsomhet eller at velferdstiltak fjernet maktforskjeller."
+  }
+}

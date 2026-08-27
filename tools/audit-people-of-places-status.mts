@@ -344,7 +344,6 @@ const heldBackCandidates = [
   { id: 'trygve_bratteli', status: 'held_back_duplicate_existing', reason: 'Allerede finnes i historie/split people-data ifølge #800.', nextRequirement: 'Ikke legg inn på nytt; vurder kun krysskobling hvis produktet trenger det.' },
   { id: 'bjarne_melgaard', status: 'held_back_duplicate_existing', reason: 'Allerede finnes i kunst ifølge #812.', nextRequirement: 'Ikke legg inn på nytt; vurder eksisterende kunst-entry før eventuell utvidelse.' },
   { id: 'helvete_black_metal_miljoet', status: 'held_back_missing_valid_anchor', reason: 'Manglet passende gyldig place-anker ifølge #812.', nextRequirement: 'Finn eksisterende gyldig placeId eller opprett sted i separat place-PR før people-entry.' },
-  { id: 'johan_thrane_holst_freia', status: 'held_back_missing_valid_anchor', reason: 'Manglet passende gyldig place-anker ifølge #812.', nextRequirement: 'Finn/opprett gyldig Freia-/næringslivsanker før people-entry.' },
   { id: 'ludvig_g_braathen_luftfart', status: 'held_back_missing_valid_anchor', reason: 'Manglet passende gyldig place-anker ifølge #812.', nextRequirement: 'Finn/opprett gyldig luftfarts-/næringslivsanker før people-entry.' },
 ];
 

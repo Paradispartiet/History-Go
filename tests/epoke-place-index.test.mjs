@@ -16,8 +16,8 @@ test("generated epoch-place index is deterministic and current", () => {
   assert.equal(index.stats.canonical_source_count, 256);
   assert.equal(index.stats.place_evidence_link_count, 325);
   assert.equal(index.stats.period_case_count, 9);
-  assert.equal(index.stats.canonical_story_milestone_count, 172);
-  assert.equal(index.stats.verified_place_production_milestone_count, 105);
+  assert.equal(index.stats.canonical_story_milestone_count, 175);
+  assert.equal(index.stats.verified_place_production_milestone_count, 154);
 });
 
 test("canonical place geography separates Oslo, Lisboa and other countries deterministically", () => {
@@ -118,11 +118,18 @@ test("Oslo coverage classifies every canonical place exactly once without overst
     .sort();
 
   assert.equal(coverage.contract, "oslo-history-coverage-v1");
-  // The curated Micro Place expansion adds four Oslo places; none claims dated History evidence yet.
-  assert.equal(coverage.canonical_place_count, 567);
-  assert.equal(coverage.dated_evidence_place_count, 180);
+  // Reviewed Oslo places, including the phase-2 blue signs, carry dated, source-backed History evidence.
+  assert.equal(coverage.canonical_place_count, 583);
+  assert.equal(coverage.dated_evidence_place_count, 209);
   assert.equal(coverage.documented_case_place_count, 2);
-  assert.equal(coverage.awaiting_source_backed_history_count, 385);
+  assert.equal(coverage.awaiting_source_backed_history_count, 372);
+  for (const placeId of ["markveien", "paulus_kirke", "freia_fabrikken", "arbeidermuseet", "clemenskirken_ruin_oslo", "minneparken_gamlebyen", "saxegarden", "gamlebyen_gravlund", "gamlebyen_kirke", "galgeberg", "kampen_kirke", "kampen_park", "klosterenga_skulpturpark", "sagene", "torshov", "torshovparken", "grorud", "grorudparken"]) {
+    assert.equal(
+      coverage.places.find((place) => place.place_id === placeId)?.status,
+      "dated_evidence",
+      `${placeId} must materialize its reviewed historical claims`
+    );
+  }
   for (const placeId of [
     "hoybraten_miljostasjon",
     "bla_skilt_kjeglebanen_briskebyveien_21",
@@ -146,6 +153,86 @@ test("Oslo coverage classifies every canonical place exactly once without overst
   for (const category of coverage.categories) {
     assert.equal(category.dated_evidence + category.documented_case + category.awaiting_source_backed_history, category.total);
   }
+});
+
+test("Gamlebyen leksikon chronology materializes only reviewed exact anchors", () => {
+  const index = buildEpokePlaceIndex();
+  const chronologyMilestonesFor = (placeId) => Object.values(index.domains.historie.epochs)
+    .flatMap((group) => group.places)
+    .filter((place) => place.place_id === placeId)
+    .flatMap((place) => place.milestones)
+    .filter((milestone) => milestone.evidence_type === "leksikon_chronology");
+  const yearsFor = (placeId) => [...new Set(chronologyMilestonesFor(placeId).map((milestone) => milestone.year))].sort((a, b) => a - b);
+
+  assert.deepEqual(yearsFor("clemenskirken_ruin_oslo"), [1920, 1970, 2000]);
+  assert.deepEqual(yearsFor("minneparken_gamlebyen"), [1932, 2024]);
+  assert.deepEqual(yearsFor("saxegarden"), [1334, 1624]);
+  assert.equal(chronologyMilestonesFor("clemenskirken_ruin_oslo").some((milestone) => milestone.year === 1135), false);
+});
+
+test("Eastern Gamlebyen chronology replaces approximate metadata with reviewed exact anchors", () => {
+  const index = buildEpokePlaceIndex();
+  const chronologyMilestonesFor = (placeId) => Object.values(index.domains.historie.epochs)
+    .flatMap((group) => group.places)
+    .filter((place) => place.place_id === placeId)
+    .flatMap((place) => place.milestones)
+    .filter((milestone) => milestone.evidence_type === "leksikon_chronology");
+  const yearsFor = (placeId) => [...new Set(chronologyMilestonesFor(placeId).map((milestone) => milestone.year))].sort((a, b) => a - b);
+
+  assert.deepEqual(yearsFor("gamlebyen_gravlund"), [1874, 1894, 1925, 1961]);
+  assert.deepEqual(yearsFor("gamlebyen_kirke"), [1794, 1796, 1939]);
+  assert.deepEqual(yearsFor("galgeberg"), [1197, 1240, 1745, 1934]);
+  assert.equal(chronologyMilestonesFor("gamlebyen_gravlund").some((milestone) => milestone.year === 1880), false);
+  assert.equal(chronologyMilestonesFor("galgeberg").some((milestone) => milestone.year === 1600), false);
+});
+
+test("Kampen and Klosterenga chronology materializes exact place-specific anchors only", () => {
+  const index = buildEpokePlaceIndex();
+  const chronologyMilestonesFor = (placeId) => Object.values(index.domains.historie.epochs)
+    .flatMap((group) => group.places)
+    .filter((place) => place.place_id === placeId)
+    .flatMap((place) => place.milestones)
+    .filter((milestone) => milestone.evidence_type === "leksikon_chronology");
+  const yearsFor = (placeId) => [...new Set(chronologyMilestonesFor(placeId).map((milestone) => milestone.year))].sort((a, b) => a - b);
+
+  assert.deepEqual(yearsFor("kampen_kirke"), [1880, 1882, 1913, 1942, 1975, 1987]);
+  assert.deepEqual(yearsFor("kampen_park"), [1885, 1888, 1899, 1913, 1999, 2009]);
+  assert.deepEqual(yearsFor("klosterenga_skulpturpark"), [1999, 2000, 2019, 2023]);
+  assert.equal(chronologyMilestonesFor("kampen_kirke").some((milestone) => milestone.year === 1878), false);
+  assert.equal(chronologyMilestonesFor("kampen_park").some((milestone) => milestone.year === 1886 || milestone.year === 1895), false);
+  assert.equal(chronologyMilestonesFor("klosterenga_skulpturpark").some((milestone) => milestone.year === 1990), false);
+});
+
+test("Sagene and Torshov chronology materializes exact district and park events only", () => {
+  const index = buildEpokePlaceIndex();
+  const chronologyMilestonesFor = (placeId) => Object.values(index.domains.historie.epochs)
+    .flatMap((group) => group.places)
+    .filter((place) => place.place_id === placeId)
+    .flatMap((place) => place.milestones)
+    .filter((milestone) => milestone.evidence_type === "leksikon_chronology");
+  const yearsFor = (placeId) => [...new Set(chronologyMilestonesFor(placeId).map((milestone) => milestone.year))].sort((a, b) => a - b);
+
+  assert.deepEqual(yearsFor("sagene"), [1629, 1687, 1859]);
+  assert.deepEqual(yearsFor("torshov"), [1878, 1916, 1917, 1930, 1958]);
+  assert.deepEqual(yearsFor("torshovparken"), [1916, 1924, 1928, 1931, 1942, 2002]);
+  assert.equal(chronologyMilestonesFor("sagene").some((milestone) => [1300, 1500, 1840, 1980].includes(milestone.year)), false);
+  assert.equal(chronologyMilestonesFor("torshov").some((milestone) => milestone.year === 1925), false);
+  assert.equal(chronologyMilestonesFor("torshovparken").some((milestone) => milestone.year === 1940), false);
+});
+
+test("Grorud chronology materializes exact district and park events only", () => {
+  const index = buildEpokePlaceIndex();
+  const chronologyMilestonesFor = (placeId) => Object.values(index.domains.historie.epochs)
+    .flatMap((group) => group.places)
+    .filter((place) => place.place_id === placeId)
+    .flatMap((place) => place.milestones)
+    .filter((milestone) => milestone.evidence_type === "leksikon_chronology");
+  const yearsFor = (placeId) => [...new Set(chronologyMilestonesFor(placeId).map((milestone) => milestone.year))].sort((a, b) => a - b);
+
+  assert.deepEqual(yearsFor("grorud"), [1595, 1831, 1846, 1854, 1862, 1867, 1897, 1900, 1902, 1917, 1918, 1947, 1966, 1972]);
+  assert.deepEqual(yearsFor("grorudparken"), [2002, 2009, 2011, 2013]);
+  assert.equal(chronologyMilestonesFor("grorud").some((milestone) => [1350, 1940, 1970].includes(milestone.year)), false);
+  assert.equal(chronologyMilestonesFor("grorudparken").some((milestone) => [2010, 2012].includes(milestone.year)), false);
 });
 
 test("verified production claims fail closed for uncertainty, current-only state and non-Oslo places", () => {

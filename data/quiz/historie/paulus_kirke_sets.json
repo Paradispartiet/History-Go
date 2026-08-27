@@ -1,0 +1,1634 @@
+{
+  "targetId": "paulus_kirke",
+  "categoryId": "historie",
+  "sources": {
+    "official": "https://www.kirken.no/nn-NO/fellesrad/kirkeneioslo/menigheter/paulus-sofienberg/paulus-kirke/",
+    "use": "https://www.kirken.no/nb-NO/fellesrad/kirkeneioslo/menigheter/paulus-sofienberg/utleie/uteleie-av-kirken/",
+    "byleksikon": "https://oslobyleksikon.no/side/Paulus_kirke",
+    "historic": "https://commons.wikimedia.org/wiki/File:Paulus_kirke_Oslo_OB.Z06219.jpg"
+  },
+  "production_context": {
+    "manifest_category": "historie",
+    "profile": "rich_5x7",
+    "standard_version": "3.3",
+    "source_brief": "data/quiz/production_briefs/historie/paulus_kirke.json",
+    "context_artifact": "data/quiz/production_context/historie/paulus_kirke.json",
+    "resolved_files": {
+      "pensum": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "emner": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "fagkart": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "methods": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_makt_stat_institusjoner",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_hendelse_prosess_tidsforlop",
+      "em_his_spor_materialitet",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_kulturminner_bevaring",
+      "em_his_restaurering_autentisitet",
+      "em_his_sosialhistorie_hverdagsliv",
+      "em_his_visuelle_kilder_fotografi",
+      "em_his_brudd_kontinuitet",
+      "em_his_stat_institusjoner",
+      "em_his_kildekritikk_arkiv_spor",
+      "em_his_lang_varighet_strukturer"
+    ],
+    "topic_hook_ids": [
+      "his_institusjonsbygging_funksjon",
+      "his_spor_materialitet",
+      "his_kildekritikk",
+      "his_bevaring_restaurering_autentisitet",
+      "his_kulturminneutvelgelse_verdi",
+      "his_tidslag_samtidighet",
+      "his_lang_varighet_strukturer"
+    ],
+    "method_ids": [
+      "met_institusjonshistorisk_analyse",
+      "met_sporlesning",
+      "met_kildekritikk",
+      "met_restaurerings_autentisitetsanalyse",
+      "met_kulturarvutvelgelsesanalyse",
+      "met_tidslagsanalyse",
+      "met_langvarighetsanalyse"
+    ],
+    "thinker_ids": [
+      "max_weber",
+      "carlo_ginzburg",
+      "marc_bloch",
+      "alois_riegl",
+      "fernand_braudel"
+    ],
+    "works": [
+      "Economy and Society",
+      "Clues, Myths, and the Historical Method",
+      "The Historian's Craft",
+      "The Modern Cult of Monuments",
+      "The Mediterranean and the Mediterranean World"
+    ],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/historie/",
+        "data/places/historie/oslo/places_historie/paulus_kirke.json"
+      ],
+      "active_before": {
+        "file": null,
+        "set_count": 0,
+        "question_count": 0,
+        "finding": "Ingen manifest-loadet canonical Paulus-quiz fantes."
+      },
+      "decisions": [
+        "Opprett rich 5x7 etter gjeldende standard.",
+        "Bruk de åtte readiness-spørsmålene som faktagrunnlag.",
+        "Hold metode og teori til finalsettet."
+      ],
+      "knowledge_migration": "Nye Knowledge-enheter genereres deterministisk fra canonical quizpakke."
+    },
+    "profile_decision": {
+      "profile": "rich",
+      "set_count": 5,
+      "questions_per_set": 7,
+      "justification": "Fem læringsjobber: identitet og arkitektur, bygging og plan, endringer og vern, visuelle og sosiale lag, samt metode og teori."
+    },
+    "held_back_candidates": [
+      "Eksakt tårnhøyde uten sterk kilde.",
+      "Illustrasjonen som historisk fotografi.",
+      "Birkelunden som kirkens eiendom.",
+      "Dagens program som permanent identitet."
+    ],
+    "theory_start_phase": "final",
+    "method_start_phase": "final"
+  },
+  "sets": [
+    {
+      "set_id": "historie_paulus_kirke_set_1",
+      "title": "Kirken ved Birkelunden",
+      "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "paulus_kirke_quiz_01",
+          "quiz_id": "historie_paulus_kirke_set_1_q1",
+          "categoryId": "historie",
+          "placeId": "paulus_kirke",
+          "targetId": "paulus_kirke",
+          "question_scope": "place",
+          "question": "Når ble Paulus kirke innviet?",
+          "options": [
+            "1892",
+            "1874",
+            "1918"
+          ],
+          "answer": "1892",
+          "answerIndex": 0,
+          "knowledge": "Kirken ble innviet 30. desember 1892.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_hendelse_prosess_tidsforlop",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kirken ble innviet 30. desember 1892.",
+          "claim_id": "claim_paulus_kirke_quiz_01",
+          "primary_knowledge_unit_id": "ku_historie_paulus_kirke_01",
+          "knowledge_unit_ids": [
+            "ku_historie_paulus_kirke_01"
+          ],
+          "concepts": [
+            "hendelse og prosess"
+          ],
+          "concept_ids": [
+            "co_his_hendelse_og_prosess_cda90828bf"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "paulus_kirke_quiz_02",
+          "quiz_id": "historie_paulus_kirke_set_1_q2",
+          "categoryId": "historie",
+          "placeId": "paulus_kirke",
+          "targetId": "paulus_kirke",
+          "question_scope": "place",
+          "question": "Hvem tegnet Paulus kirke?",
+          "options": [
+            "Henrik Bull",
+            "Marius Røhne",
+            "Erling Viksjø"
+          ],
+          "answer": "Henrik Bull",
+          "answerIndex": 0,
+          "knowledge": "Henrik Bull tegnet kirken etter å ha vunnet arkitektkonkurransen.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "official"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Henrik Bull tegnet kirken etter å ha vunnet arkitektkonkurransen.",
+          "claim_id": "claim_paulus_kirke_quiz_02",
+          "primary_knowledge_unit_id": "ku_historie_paulus_kirke_02",
+          "knowledge_unit_ids": [
+            "ku_historie_paulus_kirke_02"
+          ],
+          "concepts": [
+            "materielle spor"
+          ],
+          "concept_ids": [
+            "co_his_materielle_spor_3f782496e4"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "paulus_kirke_quiz_03",
+          "quiz_id": "historie_paulus_kirke_set_1_q3",
+          "categoryId": "historie",
+          "placeId": "paulus_kirke",
+          "targetId": "paulus_kirke",
+          "question_scope": "place",
+          "question": "Hvor ligger kirkebygningen?",
+          "options": [
+            "Thorvald Meyers gate 31",
+            "Markveien 57",
+            "Helgesens gate 90"
+          ],
+          "answer": "Thorvald Meyers gate 31",
+          "answerIndex": 0,
+          "knowledge": "Den offisielle adressen er Thorvald Meyers gate 31, rett overfor Birkelunden.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "official"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Den offisielle adressen er Thorvald Meyers gate 31, rett overfor Birkelunden.",
+          "claim_id": "claim_paulus_kirke_quiz_03",
+          "primary_knowledge_unit_id": "ku_historie_paulus_kirke_03",
+          "knowledge_unit_ids": [
+            "ku_historie_paulus_kirke_03"
+          ],
+          "concepts": [
+            "historiske lag"
+          ],
+          "concept_ids": [
+            "co_his_historiske_lag_714322d8aa"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "paulus_kirke_quiz_04",
+          "quiz_id": "historie_paulus_kirke_set_1_q4",
+          "categoryId": "historie",
+          "placeId": "paulus_kirke",
+          "targetId": "paulus_kirke",
+          "question_scope": "place",
+          "question": "Hvilket materiale preger kirkens ytre?",
+          "options": [
+            "Rød tegl",
+            "Laftet tømmer",
+            "Glass og aluminium"
+          ],
+          "answer": "Rød tegl",
+          "answerIndex": 0,
+          "knowledge": "Paulus kirke er oppført i rød tegl.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "official"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Paulus kirke er oppført i rød tegl.",
+          "claim_id": "claim_paulus_kirke_quiz_04",
+          "primary_knowledge_unit_id": "ku_historie_paulus_kirke_04",
+          "knowledge_unit_ids": [
+            "ku_historie_paulus_kirke_04"
+          ],
+          "concepts": [
+            "materielle spor"
+          ],
+          "concept_ids": [
+            "co_his_materielle_spor_3f782496e4"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "paulus_kirke_quiz_05",
+          "quiz_id": "historie_paulus_kirke_set_1_q5",
+          "categoryId": "historie",
+          "placeId": "paulus_kirke",
+          "targetId": "paulus_kirke",
+          "question_scope": "place",
+          "question": "Hvilket formspråk inspirerte arkitekturen?",
+          "options": [
+            "Tysk gotikk",
+            "Funksjonalisme",
+            "Brutalisme"
+          ],
+          "answer": "Tysk gotikk",
+          "answerIndex": 0,
+          "knowledge": "Kildene beskriver kirken som inspirert av tysk gotikk.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "official"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kildene beskriver kirken som inspirert av tysk gotikk.",
+          "claim_id": "claim_paulus_kirke_quiz_05",
+          "primary_knowledge_unit_id": "ku_historie_paulus_kirke_05",
+          "knowledge_unit_ids": [
+            "ku_historie_paulus_kirke_05"
+          ],
+          "concepts": [
+            "materielle spor"
+          ],
+          "concept_ids": [
+            "co_his_materielle_spor_3f782496e4"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "paulus_kirke_quiz_06",
+          "quiz_id": "historie_paulus_kirke_set_1_q6",
+          "categoryId": "historie",
+          "placeId": "paulus_kirke",
+          "targetId": "paulus_kirke",
+          "question_scope": "place",
+          "question": "Hva står over hovedinngangen?",
+          "options": [
+            "Et høyt, smalt tårn",
+            "En glasskuppel",
+            "Et klokketårn i tre på bakken"
+          ],
+          "answer": "Et høyt, smalt tårn",
+          "answerIndex": 0,
+          "knowledge": "Det høye, smale tårnet er plassert over inngangspartiet.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "official"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Det høye, smale tårnet er plassert over inngangspartiet.",
+          "claim_id": "claim_paulus_kirke_quiz_06",
+          "primary_knowledge_unit_id": "ku_historie_paulus_kirke_06",
+          "knowledge_unit_ids": [
+            "ku_historie_paulus_kirke_06"
+          ],
+          "concepts": [
+            "materielle spor"
+          ],
+          "concept_ids": [
+            "co_his_materielle_spor_3f782496e4"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "paulus_kirke_quiz_07",
+          "quiz_id": "historie_paulus_kirke_set_1_q7",
+          "categoryId": "historie",
+          "placeId": "paulus_kirke",
+          "targetId": "paulus_kirke",
+          "question_scope": "place",
+          "question": "Når vant Henrik Bull arkitektkonkurransen?",
+          "options": [
+            "1887",
+            "1897",
+            "1907"
+          ],
+          "answer": "1887",
+          "answerIndex": 0,
+          "knowledge": "Henrik Bull vant konkurransen om kirken i 1887.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_hendelse_prosess_tidsforlop",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Henrik Bull vant konkurransen om kirken i 1887.",
+          "claim_id": "claim_paulus_kirke_quiz_07",
+          "primary_knowledge_unit_id": "ku_historie_paulus_kirke_07",
+          "knowledge_unit_ids": [
+            "ku_historie_paulus_kirke_07"
+          ],
+          "concepts": [
+            "hendelse og prosess"
+          ],
+          "concept_ids": [
+            "co_his_hendelse_og_prosess_cda90828bf"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "historie_paulus_kirke_set_2",
+      "title": "Bygging, plan og orgel",
+      "level": 2,
+      "order": 2,
+      "phase": "middle",
+      "xp": 60,
+      "questions": [
+        {
+          "id": "paulus_kirke_quiz_08",
+          "quiz_id": "historie_paulus_kirke_set_2_q1",
+          "categoryId": "historie",
+          "placeId": "paulus_kirke",
+          "targetId": "paulus_kirke",
+          "question_scope": "place",
+          "question": "Når utarbeidet Bull tegningene?",
+          "options": [
+            "1889",
+            "1874",
+            "1917"
+          ],
+          "answer": "1889",
+          "answerIndex": 0,
+          "knowledge": "Henrik Bull tegnet kirken i 1889.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_hendelse_prosess_tidsforlop",
+          "source": [
+            "official"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Henrik Bull tegnet kirken i 1889.",
+          "claim_id": "claim_paulus_kirke_quiz_08",
+          "primary_knowledge_unit_id": "ku_historie_paulus_kirke_08",
+          "knowledge_unit_ids": [
+            "ku_historie_paulus_kirke_08"
+          ],
+          "concepts": [
+            "hendelse og prosess"
+          ],
+          "concept_ids": [
+            "co_his_hendelse_og_prosess_cda90828bf"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "paulus_kirke_quiz_09",
+          "quiz_id": "historie_paulus_kirke_set_2_q2",
+          "categoryId": "historie",
+          "placeId": "paulus_kirke",
+          "targetId": "paulus_kirke",
+          "question_scope": "place",
+          "question": "Hvem innviet kirken?",
+          "options": [
+            "Biskop Essendrop",
+            "Kong Haakon VII",
+            "Henrik Bull"
+          ],
+          "answer": "Biskop Essendrop",
+          "answerIndex": 0,
+          "knowledge": "Biskop Essendrop innviet kirken 30. desember 1892.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_hendelse_prosess_tidsforlop",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Biskop Essendrop innviet kirken 30. desember 1892.",
+          "claim_id": "claim_paulus_kirke_quiz_09",
+          "primary_knowledge_unit_id": "ku_historie_paulus_kirke_09",
+          "knowledge_unit_ids": [
+            "ku_historie_paulus_kirke_09"
+          ],
+          "concepts": [
+            "hendelse og prosess"
+          ],
+          "concept_ids": [
+            "co_his_hendelse_og_prosess_cda90828bf"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "paulus_kirke_quiz_10",
+          "quiz_id": "historie_paulus_kirke_set_2_q3",
+          "categoryId": "historie",
+          "placeId": "paulus_kirke",
+          "targetId": "paulus_kirke",
+          "question_scope": "place",
+          "question": "Hva kombinerer grunnplanen?",
+          "options": [
+            "Lengdeakse og korte korsarmer",
+            "Sirkelplan og frittstående tårn",
+            "Åpent gårdsrom og søylehall"
+          ],
+          "answer": "Lengdeakse og korte korsarmer",
+          "answerIndex": 0,
+          "knowledge": "Planen er en langkirke med korte korsarmer og grunt kor.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "official"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Planen er en langkirke med korte korsarmer og grunt kor.",
+          "claim_id": "claim_paulus_kirke_quiz_10",
+          "primary_knowledge_unit_id": "ku_historie_paulus_kirke_10",
+          "knowledge_unit_ids": [
+            "ku_historie_paulus_kirke_10"
+          ],
+          "concepts": [
+            "materielle spor"
+          ],
+          "concept_ids": [
+            "co_his_materielle_spor_3f782496e4"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "paulus_kirke_quiz_11",
+          "quiz_id": "historie_paulus_kirke_set_2_q4",
+          "categoryId": "historie",
+          "placeId": "paulus_kirke",
+          "targetId": "paulus_kirke",
+          "question_scope": "place",
+          "question": "Hvilken retning markerer hovedfasaden?",
+          "options": [
+            "Mot Birkelunden",
+            "Mot Akerselva",
+            "Mot Oslofjorden"
+          ],
+          "answer": "Mot Birkelunden",
+          "answerIndex": 0,
+          "knowledge": "Inngangen og tårnet vender kirken mot plassen og Birkelunden.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "official"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Inngangen og tårnet vender kirken mot plassen og Birkelunden.",
+          "claim_id": "claim_paulus_kirke_quiz_11",
+          "primary_knowledge_unit_id": "ku_historie_paulus_kirke_11",
+          "knowledge_unit_ids": [
+            "ku_historie_paulus_kirke_11"
+          ],
+          "concepts": [
+            "historiske lag"
+          ],
+          "concept_ids": [
+            "co_his_historiske_lag_714322d8aa"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "paulus_kirke_quiz_12",
+          "quiz_id": "historie_paulus_kirke_set_2_q5",
+          "categoryId": "historie",
+          "placeId": "paulus_kirke",
+          "targetId": "paulus_kirke",
+          "question_scope": "place",
+          "question": "Hva var Hollenbach-instrumentet laget for?",
+          "options": [
+            "Innvielsen i 1892",
+            "Fredningen i 2006",
+            "Jubileet i 1992"
+          ],
+          "answer": "Innvielsen i 1892",
+          "answerIndex": 0,
+          "knowledge": "Albert Hollenbach bygde orgelet til åpningen i 1892.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "official"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Albert Hollenbach bygde orgelet til åpningen i 1892.",
+          "claim_id": "claim_paulus_kirke_quiz_12",
+          "primary_knowledge_unit_id": "ku_historie_paulus_kirke_12",
+          "knowledge_unit_ids": [
+            "ku_historie_paulus_kirke_12"
+          ],
+          "concepts": [
+            "materielle spor"
+          ],
+          "concept_ids": [
+            "co_his_materielle_spor_3f782496e4"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "paulus_kirke_quiz_13",
+          "quiz_id": "historie_paulus_kirke_set_2_q6",
+          "categoryId": "historie",
+          "placeId": "paulus_kirke",
+          "targetId": "paulus_kirke",
+          "question_scope": "place",
+          "question": "Hva skjedde med kirken i 2006?",
+          "options": [
+            "Den ble fredet",
+            "Den ble revet",
+            "Den sluttet å være kirke"
+          ],
+          "answer": "Den ble fredet",
+          "answerIndex": 0,
+          "knowledge": "Kirken ble fredet sammen med bygningsmiljøet rundt Birkelunden.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_kulturminner_bevaring",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kirken ble fredet sammen med bygningsmiljøet rundt Birkelunden.",
+          "claim_id": "claim_paulus_kirke_quiz_13",
+          "primary_knowledge_unit_id": "ku_historie_paulus_kirke_13",
+          "knowledge_unit_ids": [
+            "ku_historie_paulus_kirke_13"
+          ],
+          "concepts": [
+            "kulturminnevern"
+          ],
+          "concept_ids": [
+            "co_his_kulturminnevern_daef89343a"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "paulus_kirke_quiz_14",
+          "quiz_id": "historie_paulus_kirke_set_2_q7",
+          "categoryId": "historie",
+          "placeId": "paulus_kirke",
+          "targetId": "paulus_kirke",
+          "question_scope": "place",
+          "question": "Hva skjedde med orgelet i 2010?",
+          "options": [
+            "Det ble restaurert",
+            "Det ble solgt",
+            "Det ble flyttet til Sofienberg kirke"
+          ],
+          "answer": "Det ble restaurert",
+          "answerIndex": 0,
+          "knowledge": "Orgelet ble restaurert i 2010 med den opprinnelige fasaden bevart.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_restaurering_autentisitet",
+          "source": [
+            "official"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Orgelet ble restaurert i 2010 med den opprinnelige fasaden bevart.",
+          "claim_id": "claim_paulus_kirke_quiz_14",
+          "primary_knowledge_unit_id": "ku_historie_paulus_kirke_14",
+          "knowledge_unit_ids": [
+            "ku_historie_paulus_kirke_14"
+          ],
+          "concepts": [
+            "restaurering og autentisitet"
+          ],
+          "concept_ids": [
+            "co_his_restaurering_og_autentisitet_715d8fcf14"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "historie_paulus_kirke_set_3",
+      "title": "Endring, bruk og vern",
+      "level": 3,
+      "order": 3,
+      "phase": "middle",
+      "xp": 70,
+      "questions": [
+        {
+          "id": "paulus_kirke_quiz_15",
+          "quiz_id": "historie_paulus_kirke_set_3_q1",
+          "categoryId": "historie",
+          "placeId": "paulus_kirke",
+          "targetId": "paulus_kirke",
+          "question_scope": "place",
+          "question": "Hva ble gjenskapt under rehabiliteringen 2014–2017?",
+          "options": [
+            "Veggdekor fra 1917–1918",
+            "En middelalderkrypt",
+            "Et bryggerigulv"
+          ],
+          "answer": "Veggdekor fra 1917–1918",
+          "answerIndex": 0,
+          "knowledge": "Rehabiliteringen gjenskapte eldre veggdekor fra arbeidene i 1917–1918.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_restaurering_autentisitet",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Rehabiliteringen gjenskapte eldre veggdekor fra arbeidene i 1917–1918.",
+          "claim_id": "claim_paulus_kirke_quiz_15",
+          "primary_knowledge_unit_id": "ku_historie_paulus_kirke_15",
+          "knowledge_unit_ids": [
+            "ku_historie_paulus_kirke_15"
+          ],
+          "concepts": [
+            "restaurering og autentisitet"
+          ],
+          "concept_ids": [
+            "co_his_restaurering_og_autentisitet_715d8fcf14"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "paulus_kirke_quiz_16",
+          "quiz_id": "historie_paulus_kirke_set_3_q2",
+          "categoryId": "historie",
+          "placeId": "paulus_kirke",
+          "targetId": "paulus_kirke",
+          "question_scope": "place",
+          "question": "Hvilken bruk dokumenteres i tillegg til gudstjenester?",
+          "options": [
+            "Konserter og kulturarrangementer",
+            "Industriproduksjon",
+            "Kommunestyremøter"
+          ],
+          "answer": "Konserter og kulturarrangementer",
+          "answerIndex": 0,
+          "knowledge": "Kirken brukes også til konserter og andre kulturproduksjoner.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "use"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kirken brukes også til konserter og andre kulturproduksjoner.",
+          "claim_id": "claim_paulus_kirke_quiz_16",
+          "primary_knowledge_unit_id": "ku_historie_paulus_kirke_16",
+          "knowledge_unit_ids": [
+            "ku_historie_paulus_kirke_16"
+          ],
+          "concepts": [
+            "historisk analyse"
+          ],
+          "concept_ids": [
+            "co_his_historisk_analyse_4701c58647"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "paulus_kirke_quiz_17",
+          "quiz_id": "historie_paulus_kirke_set_3_q3",
+          "categoryId": "historie",
+          "placeId": "paulus_kirke",
+          "targetId": "paulus_kirke",
+          "question_scope": "place",
+          "question": "Hvorfor er Birkelunden relevant for kirken?",
+          "options": [
+            "Parken og kirken danner et sammenhengende bymiljø",
+            "Parken ligger inne i kirkerommet",
+            "Kirken eier hele parken"
+          ],
+          "answer": "Parken og kirken danner et sammenhengende bymiljø",
+          "answerIndex": 0,
+          "knowledge": "Kirken er plassert rett overfor parken og inngår i det fredede miljøet.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kirken er plassert rett overfor parken og inngår i det fredede miljøet.",
+          "claim_id": "claim_paulus_kirke_quiz_17",
+          "primary_knowledge_unit_id": "ku_historie_paulus_kirke_17",
+          "knowledge_unit_ids": [
+            "ku_historie_paulus_kirke_17"
+          ],
+          "concepts": [
+            "historiske lag"
+          ],
+          "concept_ids": [
+            "co_his_historiske_lag_714322d8aa"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "paulus_kirke_quiz_18",
+          "quiz_id": "historie_paulus_kirke_set_3_q4",
+          "categoryId": "historie",
+          "placeId": "paulus_kirke",
+          "targetId": "paulus_kirke",
+          "question_scope": "place",
+          "question": "Hvordan skal kirken og Birkelunden modelleres?",
+          "options": [
+            "Som to nærliggende, separate steder",
+            "Som ett identisk kartpunkt",
+            "Som et festivalbrand"
+          ],
+          "answer": "Som to nærliggende, separate steder",
+          "answerIndex": 0,
+          "knowledge": "De er fysisk forbundet, men har ulike funksjoner og egne stedsidentiteter.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "official"
+          ],
+          "source_origin": "external",
+          "claim_basis": "De er fysisk forbundet, men har ulike funksjoner og egne stedsidentiteter.",
+          "claim_id": "claim_paulus_kirke_quiz_18",
+          "primary_knowledge_unit_id": "ku_historie_paulus_kirke_18",
+          "knowledge_unit_ids": [
+            "ku_historie_paulus_kirke_18"
+          ],
+          "concepts": [
+            "historiske lag"
+          ],
+          "concept_ids": [
+            "co_his_historiske_lag_714322d8aa"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "paulus_kirke_quiz_19",
+          "quiz_id": "historie_paulus_kirke_set_3_q5",
+          "categoryId": "historie",
+          "placeId": "paulus_kirke",
+          "targetId": "paulus_kirke",
+          "question_scope": "place",
+          "question": "Hva viser avvisningen av Wentzels og Visdals arbeider?",
+          "options": [
+            "At kirkeinteriøret ble formet gjennom valg og konflikt",
+            "At kirken manglet kunst",
+            "At Henrik Bull var organist"
+          ],
+          "answer": "At kirkeinteriøret ble formet gjennom valg og konflikt",
+          "answerIndex": 0,
+          "knowledge": "Planlagte alterarbeider ble avvist, og interiøret fikk en annen løsning.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_kulturminner_bevaring",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Planlagte alterarbeider ble avvist, og interiøret fikk en annen løsning.",
+          "claim_id": "claim_paulus_kirke_quiz_19",
+          "primary_knowledge_unit_id": "ku_historie_paulus_kirke_19",
+          "knowledge_unit_ids": [
+            "ku_historie_paulus_kirke_19"
+          ],
+          "concepts": [
+            "kulturminnevern"
+          ],
+          "concept_ids": [
+            "co_his_kulturminnevern_daef89343a"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "paulus_kirke_quiz_20",
+          "quiz_id": "historie_paulus_kirke_set_3_q6",
+          "categoryId": "historie",
+          "placeId": "paulus_kirke",
+          "targetId": "paulus_kirke",
+          "question_scope": "place",
+          "question": "Hva kan et fotografi fra omkring 1900 dokumentere?",
+          "options": [
+            "Kirkens ytre i et tidlig bymiljø",
+            "Alle senere gudstjenester",
+            "Eksakt akustikk i kirkerommet"
+          ],
+          "answer": "Kirkens ytre i et tidlig bymiljø",
+          "answerIndex": 0,
+          "knowledge": "Museumsfotografiet er en visuell kilde til bygningen og omgivelsene omkring 1900.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_visuelle_kilder_fotografi",
+          "source": [
+            "historic"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Museumsfotografiet er en visuell kilde til bygningen og omgivelsene omkring 1900.",
+          "claim_id": "claim_paulus_kirke_quiz_20",
+          "primary_knowledge_unit_id": "ku_historie_paulus_kirke_20",
+          "knowledge_unit_ids": [
+            "ku_historie_paulus_kirke_20"
+          ],
+          "concepts": [
+            "historisk analyse"
+          ],
+          "concept_ids": [
+            "co_his_historisk_analyse_4701c58647"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "paulus_kirke_quiz_21",
+          "quiz_id": "historie_paulus_kirke_set_3_q7",
+          "categoryId": "historie",
+          "placeId": "paulus_kirke",
+          "targetId": "paulus_kirke",
+          "question_scope": "place",
+          "question": "Hva må en sammenligning med dagens illustrasjon presisere?",
+          "options": [
+            "At illustrasjonen ikke er et historisk fotografi",
+            "At begge bilder har identisk kamera",
+            "At illustrasjonen beviser alle endringer"
+          ],
+          "answer": "At illustrasjonen ikke er et historisk fotografi",
+          "answerIndex": 0,
+          "knowledge": "Den nye illustrasjonen tolker arkitekturen og kan ikke brukes som fotografisk dokumentasjon.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_visuelle_kilder_fotografi",
+          "source": [
+            "historic"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Den nye illustrasjonen tolker arkitekturen og kan ikke brukes som fotografisk dokumentasjon.",
+          "claim_id": "claim_paulus_kirke_quiz_21",
+          "primary_knowledge_unit_id": "ku_historie_paulus_kirke_21",
+          "knowledge_unit_ids": [
+            "ku_historie_paulus_kirke_21"
+          ],
+          "concepts": [
+            "historisk analyse"
+          ],
+          "concept_ids": [
+            "co_his_historisk_analyse_4701c58647"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "historie_paulus_kirke_set_4",
+      "title": "Kilder og historiske lag",
+      "level": 4,
+      "order": 4,
+      "phase": "bridge",
+      "xp": 80,
+      "questions": [
+        {
+          "id": "paulus_kirke_quiz_22",
+          "quiz_id": "historie_paulus_kirke_set_4_q1",
+          "categoryId": "historie",
+          "placeId": "paulus_kirke",
+          "targetId": "paulus_kirke",
+          "question_scope": "place",
+          "question": "Hva er kontinuiteten fra 1892 til nå?",
+          "options": [
+            "Bygningen brukes fortsatt som kirke",
+            "Alle interiørdetaljer er uendret",
+            "Menigheten har aldri endret seg"
+          ],
+          "answer": "Bygningen brukes fortsatt som kirke",
+          "answerIndex": 0,
+          "knowledge": "Kirkebygningen har fortsatt kirkelig bruk selv om interiør og teknikk er endret.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_his_brudd_kontinuitet",
+          "source": [
+            "use"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kirkebygningen har fortsatt kirkelig bruk selv om interiør og teknikk er endret.",
+          "claim_id": "claim_paulus_kirke_quiz_22",
+          "primary_knowledge_unit_id": "ku_historie_paulus_kirke_22",
+          "knowledge_unit_ids": [
+            "ku_historie_paulus_kirke_22"
+          ],
+          "concepts": [
+            "historisk analyse"
+          ],
+          "concept_ids": [
+            "co_his_historisk_analyse_4701c58647"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "paulus_kirke_quiz_23",
+          "quiz_id": "historie_paulus_kirke_set_4_q2",
+          "categoryId": "historie",
+          "placeId": "paulus_kirke",
+          "targetId": "paulus_kirke",
+          "question_scope": "place",
+          "question": "Hva er et tydelig brudd i byggets historie?",
+          "options": [
+            "Rehabiliteringer og endret interiør",
+            "At tegl alltid er tegl",
+            "At adressen ligger i Oslo"
+          ],
+          "answer": "Rehabiliteringer og endret interiør",
+          "answerIndex": 0,
+          "knowledge": "Arbeidene i 1917–1918 og 2014–2017 viser at uttrykket har blitt endret og senere gjenskapt.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_his_brudd_kontinuitet",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Arbeidene i 1917–1918 og 2014–2017 viser at uttrykket har blitt endret og senere gjenskapt.",
+          "claim_id": "claim_paulus_kirke_quiz_23",
+          "primary_knowledge_unit_id": "ku_historie_paulus_kirke_23",
+          "knowledge_unit_ids": [
+            "ku_historie_paulus_kirke_23"
+          ],
+          "concepts": [
+            "historisk analyse"
+          ],
+          "concept_ids": [
+            "co_his_historisk_analyse_4701c58647"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "paulus_kirke_quiz_24",
+          "quiz_id": "historie_paulus_kirke_set_4_q3",
+          "categoryId": "historie",
+          "placeId": "paulus_kirke",
+          "targetId": "paulus_kirke",
+          "question_scope": "place",
+          "question": "Hva bør observeres uten å forstyrre aktiv bruk?",
+          "options": [
+            "Ytre tegl, tårn og forholdet til plassen",
+            "Deltakernes private ritualer",
+            "Låste rom under gudstjenesten"
+          ],
+          "answer": "Ytre tegl, tårn og forholdet til plassen",
+          "answerIndex": 0,
+          "knowledge": "Den offentlige utsiden gir grunnlag for arkitektur- og byromslesning uten å gripe inn i kirkelig praksis.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "official"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Den offentlige utsiden gir grunnlag for arkitektur- og byromslesning uten å gripe inn i kirkelig praksis.",
+          "claim_id": "claim_paulus_kirke_quiz_24",
+          "primary_knowledge_unit_id": "ku_historie_paulus_kirke_24",
+          "knowledge_unit_ids": [
+            "ku_historie_paulus_kirke_24"
+          ],
+          "concepts": [
+            "materielle spor"
+          ],
+          "concept_ids": [
+            "co_his_materielle_spor_3f782496e4"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "paulus_kirke_quiz_25",
+          "quiz_id": "historie_paulus_kirke_set_4_q4",
+          "categoryId": "historie",
+          "placeId": "paulus_kirke",
+          "targetId": "paulus_kirke",
+          "question_scope": "place",
+          "question": "Hva viser konkurransen i 1887 om arkitektrollen?",
+          "options": [
+            "At kirkebygget ble valgt gjennom en organisert bestillingsprosess",
+            "At Bull arvet kirken privat",
+            "At menigheten ikke påvirket byggingen"
+          ],
+          "answer": "At kirkebygget ble valgt gjennom en organisert bestillingsprosess",
+          "answerIndex": 0,
+          "knowledge": "Konkurransen plasserer arkitekturen i en institusjonell beslutningsprosess, ikke bare i én arkitekts idé.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_his_stat_institusjoner",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Konkurransen plasserer arkitekturen i en institusjonell beslutningsprosess, ikke bare i én arkitekts idé.",
+          "claim_id": "claim_paulus_kirke_quiz_25",
+          "primary_knowledge_unit_id": "ku_historie_paulus_kirke_25",
+          "knowledge_unit_ids": [
+            "ku_historie_paulus_kirke_25"
+          ],
+          "concepts": [
+            "historisk analyse"
+          ],
+          "concept_ids": [
+            "co_his_historisk_analyse_4701c58647"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "paulus_kirke_quiz_26",
+          "quiz_id": "historie_paulus_kirke_set_4_q5",
+          "categoryId": "historie",
+          "placeId": "paulus_kirke",
+          "targetId": "paulus_kirke",
+          "question_scope": "place",
+          "question": "Hvorfor må dagens bruk ha en fersk kilde?",
+          "options": [
+            "Program og aktiviteter kan endres",
+            "Innvielsestallet endres hvert år",
+            "Teglmaterialet er hemmelig"
+          ],
+          "answer": "Program og aktiviteter kan endres",
+          "answerIndex": 0,
+          "knowledge": "Nåværende gudstjenester, åpen kirke og kulturbruk er tidsavhengige opplysninger.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "use"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Nåværende gudstjenester, åpen kirke og kulturbruk er tidsavhengige opplysninger.",
+          "claim_id": "claim_paulus_kirke_quiz_26",
+          "primary_knowledge_unit_id": "ku_historie_paulus_kirke_26",
+          "knowledge_unit_ids": [
+            "ku_historie_paulus_kirke_26"
+          ],
+          "concepts": [
+            "historisk analyse"
+          ],
+          "concept_ids": [
+            "co_his_historisk_analyse_4701c58647"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "paulus_kirke_quiz_27",
+          "quiz_id": "historie_paulus_kirke_set_4_q6",
+          "categoryId": "historie",
+          "placeId": "paulus_kirke",
+          "targetId": "paulus_kirke",
+          "question_scope": "place",
+          "question": "Hva gir orgelhistorien eksempel på?",
+          "options": [
+            "Teknisk endring innenfor et fortsatt brukt kulturminne",
+            "At kirken aldri har blitt endret",
+            "At instrumentet er eldre enn bygget"
+          ],
+          "answer": "Teknisk endring innenfor et fortsatt brukt kulturminne",
+          "answerIndex": 0,
+          "knowledge": "Orgelet fra åpningen er utvidet og restaurert, mens den opprinnelige fasaden er bevart.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_his_brudd_kontinuitet",
+          "source": [
+            "official"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Orgelet fra åpningen er utvidet og restaurert, mens den opprinnelige fasaden er bevart.",
+          "claim_id": "claim_paulus_kirke_quiz_27",
+          "primary_knowledge_unit_id": "ku_historie_paulus_kirke_27",
+          "knowledge_unit_ids": [
+            "ku_historie_paulus_kirke_27"
+          ],
+          "concepts": [
+            "historisk analyse"
+          ],
+          "concept_ids": [
+            "co_his_historisk_analyse_4701c58647"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "paulus_kirke_quiz_28",
+          "quiz_id": "historie_paulus_kirke_set_4_q7",
+          "categoryId": "historie",
+          "placeId": "paulus_kirke",
+          "targetId": "paulus_kirke",
+          "question_scope": "place",
+          "question": "Hva kan ikke fastslås fra kirkens ytre alene?",
+          "options": [
+            "Hvordan alle brukere opplever kirkerommet",
+            "At bygget er av rød tegl",
+            "At tårnet står over inngangen"
+          ],
+          "answer": "Hvordan alle brukere opplever kirkerommet",
+          "answerIndex": 0,
+          "knowledge": "Observasjon av fasaden dokumenterer fysiske trekk, ikke menneskers private erfaringer.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "official"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Observasjon av fasaden dokumenterer fysiske trekk, ikke menneskers private erfaringer.",
+          "claim_id": "claim_paulus_kirke_quiz_28",
+          "primary_knowledge_unit_id": "ku_historie_paulus_kirke_28",
+          "knowledge_unit_ids": [
+            "ku_historie_paulus_kirke_28"
+          ],
+          "concepts": [
+            "historisk analyse"
+          ],
+          "concept_ids": [
+            "co_his_historisk_analyse_4701c58647"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "historie_paulus_kirke_set_5",
+      "title": "Metode, minne og helhetslesning",
+      "level": 5,
+      "order": 5,
+      "phase": "final",
+      "xp": 90,
+      "questions": [
+        {
+          "id": "paulus_kirke_quiz_29",
+          "quiz_id": "historie_paulus_kirke_set_5_q1",
+          "categoryId": "historie",
+          "placeId": "paulus_kirke",
+          "targetId": "paulus_kirke",
+          "question_scope": "place",
+          "question": "Hva gjør en institusjonshistorisk analyse her?",
+          "options": [
+            "Kobler bygg, menighet, bruk og endring over tid",
+            "Måler bare tårnhøyden",
+            "Behandler parken som kirkens interiør"
+          ],
+          "answer": "Kobler bygg, menighet, bruk og endring over tid",
+          "answerIndex": 0,
+          "knowledge": "Institusjonshistorie undersøker hvordan organisasjon, funksjon og fysisk ramme utvikles sammen.",
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_his_stat_institusjoner",
+          "source": [
+            "official"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Institusjonshistorie undersøker hvordan organisasjon, funksjon og fysisk ramme utvikles sammen.",
+          "claim_id": "claim_paulus_kirke_quiz_29",
+          "primary_knowledge_unit_id": "ku_historie_paulus_kirke_29",
+          "knowledge_unit_ids": [
+            "ku_historie_paulus_kirke_29"
+          ],
+          "concepts": [
+            "historisk analyse"
+          ],
+          "concept_ids": [
+            "co_his_historisk_analyse_4701c58647"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "topic_hook_id": "his_institusjonsbygging_funksjon",
+          "thinker_id": "max_weber",
+          "work": "Economy and Society",
+          "method_id": "met_institusjonshistorisk_analyse",
+          "theory_ref": {
+            "topic_hook_id": "his_institusjonsbygging_funksjon",
+            "thinker_id": "max_weber",
+            "work": "Economy and Society",
+            "why_it_helps": "Perspektivet gir en etterprøvbar historisk analyse uten å erstatte stedskildene."
+          },
+          "guidance_basis": [
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "paulus_kirke_quiz_30",
+          "quiz_id": "historie_paulus_kirke_set_5_q2",
+          "categoryId": "historie",
+          "placeId": "paulus_kirke",
+          "targetId": "paulus_kirke",
+          "question_scope": "place",
+          "question": "Hva gjør sporlesning av Paulus kirke?",
+          "options": [
+            "Tolker tegl, plan og endringer som materielle kilder",
+            "Gjetter skjulte hendelser uten kilder",
+            "Erstatter arkivkilder med stilinntrykk"
+          ],
+          "answer": "Tolker tegl, plan og endringer som materielle kilder",
+          "answerIndex": 0,
+          "knowledge": "Sporlesning bruker fysiske trekk som kilder og kontrollerer tolkningen mot dokumentasjon.",
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "official"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Sporlesning bruker fysiske trekk som kilder og kontrollerer tolkningen mot dokumentasjon.",
+          "claim_id": "claim_paulus_kirke_quiz_30",
+          "primary_knowledge_unit_id": "ku_historie_paulus_kirke_30",
+          "knowledge_unit_ids": [
+            "ku_historie_paulus_kirke_30"
+          ],
+          "concepts": [
+            "materielle spor"
+          ],
+          "concept_ids": [
+            "co_his_materielle_spor_3f782496e4"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "topic_hook_id": "his_spor_materialitet",
+          "thinker_id": "carlo_ginzburg",
+          "work": "Clues, Myths, and the Historical Method",
+          "method_id": "met_sporlesning",
+          "theory_ref": {
+            "topic_hook_id": "his_spor_materialitet",
+            "thinker_id": "carlo_ginzburg",
+            "work": "Clues, Myths, and the Historical Method",
+            "why_it_helps": "Perspektivet gir en etterprøvbar historisk analyse uten å erstatte stedskildene."
+          },
+          "guidance_basis": [
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "paulus_kirke_quiz_31",
+          "quiz_id": "historie_paulus_kirke_set_5_q3",
+          "categoryId": "historie",
+          "placeId": "paulus_kirke",
+          "targetId": "paulus_kirke",
+          "question_scope": "place",
+          "question": "Hvordan brukes kildekritikk på innvielseshistorien?",
+          "options": [
+            "Sammenhold dato, aktør og kildeformål",
+            "Velg den mest dramatiske fortellingen",
+            "Ignorer uenighet mellom kilder"
+          ],
+          "answer": "Sammenhold dato, aktør og kildeformål",
+          "answerIndex": 0,
+          "knowledge": "Kildekritikk vurderer opphav, nærhet, formål og kryssjekk før en opplysning brukes.",
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kildekritikk vurderer opphav, nærhet, formål og kryssjekk før en opplysning brukes.",
+          "claim_id": "claim_paulus_kirke_quiz_31",
+          "primary_knowledge_unit_id": "ku_historie_paulus_kirke_31",
+          "knowledge_unit_ids": [
+            "ku_historie_paulus_kirke_31"
+          ],
+          "concepts": [
+            "historisk analyse"
+          ],
+          "concept_ids": [
+            "co_his_historisk_analyse_4701c58647"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "topic_hook_id": "his_kildekritikk",
+          "thinker_id": "marc_bloch",
+          "work": "The Historian's Craft",
+          "method_id": "met_kildekritikk",
+          "theory_ref": {
+            "topic_hook_id": "his_kildekritikk",
+            "thinker_id": "marc_bloch",
+            "work": "The Historian's Craft",
+            "why_it_helps": "Perspektivet gir en etterprøvbar historisk analyse uten å erstatte stedskildene."
+          },
+          "guidance_basis": [
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "paulus_kirke_quiz_32",
+          "quiz_id": "historie_paulus_kirke_set_5_q4",
+          "categoryId": "historie",
+          "placeId": "paulus_kirke",
+          "targetId": "paulus_kirke",
+          "question_scope": "place",
+          "question": "Hva spør en autentisitetsanalyse om rehabiliteringen?",
+          "options": [
+            "Hvilke lag som ble bevart, endret eller gjenskapt",
+            "Om alt nytt alltid er falskt",
+            "Om vern forbyr aktiv bruk"
+          ],
+          "answer": "Hvilke lag som ble bevart, endret eller gjenskapt",
+          "answerIndex": 0,
+          "knowledge": "Autentisitetsanalyse skiller mellom originalt materiale, senere lag og dokumentert rekonstruksjon.",
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_his_restaurering_autentisitet",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Autentisitetsanalyse skiller mellom originalt materiale, senere lag og dokumentert rekonstruksjon.",
+          "claim_id": "claim_paulus_kirke_quiz_32",
+          "primary_knowledge_unit_id": "ku_historie_paulus_kirke_32",
+          "knowledge_unit_ids": [
+            "ku_historie_paulus_kirke_32"
+          ],
+          "concepts": [
+            "restaurering og autentisitet"
+          ],
+          "concept_ids": [
+            "co_his_restaurering_og_autentisitet_715d8fcf14"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "topic_hook_id": "his_bevaring_restaurering_autentisitet",
+          "thinker_id": "alois_riegl",
+          "work": "The Modern Cult of Monuments",
+          "method_id": "met_restaurerings_autentisitetsanalyse",
+          "theory_ref": {
+            "topic_hook_id": "his_bevaring_restaurering_autentisitet",
+            "thinker_id": "alois_riegl",
+            "work": "The Modern Cult of Monuments",
+            "why_it_helps": "Perspektivet gir en etterprøvbar historisk analyse uten å erstatte stedskildene."
+          },
+          "guidance_basis": [
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "paulus_kirke_quiz_33",
+          "quiz_id": "historie_paulus_kirke_set_5_q5",
+          "categoryId": "historie",
+          "placeId": "paulus_kirke",
+          "targetId": "paulus_kirke",
+          "question_scope": "place",
+          "question": "Hvordan hjelper Alois Riegls kulturminneperspektiv?",
+          "options": [
+            "Det undersøker forholdet mellom alder, bruk og bevaringsverdi",
+            "Det daterer teglsteinen alene",
+            "Det avgjør dagens konsertprogram"
+          ],
+          "answer": "Det undersøker forholdet mellom alder, bruk og bevaringsverdi",
+          "answerIndex": 0,
+          "knowledge": "Riegls perspektiv kan belyse hvordan alder, fortsatt bruk og fredning gir ulike verdier til samme kirkebygg.",
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_his_kulturminner_bevaring",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Riegls perspektiv kan belyse hvordan alder, fortsatt bruk og fredning gir ulike verdier til samme kirkebygg.",
+          "claim_id": "claim_paulus_kirke_quiz_33",
+          "primary_knowledge_unit_id": "ku_historie_paulus_kirke_33",
+          "knowledge_unit_ids": [
+            "ku_historie_paulus_kirke_33"
+          ],
+          "concepts": [
+            "kulturminnevern"
+          ],
+          "concept_ids": [
+            "co_his_kulturminnevern_daef89343a"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "topic_hook_id": "his_kulturminneutvelgelse_verdi",
+          "thinker_id": "alois_riegl",
+          "work": "The Modern Cult of Monuments",
+          "method_id": "met_kulturarvutvelgelsesanalyse",
+          "theory_ref": {
+            "topic_hook_id": "his_kulturminneutvelgelse_verdi",
+            "thinker_id": "alois_riegl",
+            "work": "The Modern Cult of Monuments",
+            "why_it_helps": "Perspektivet gir en etterprøvbar historisk analyse uten å erstatte stedskildene."
+          },
+          "guidance_basis": [
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "paulus_kirke_quiz_34",
+          "quiz_id": "historie_paulus_kirke_set_5_q6",
+          "categoryId": "historie",
+          "placeId": "paulus_kirke",
+          "targetId": "paulus_kirke",
+          "question_scope": "place",
+          "question": "Hva er den mest presise helhetslesningen?",
+          "options": [
+            "En aktiv, endret og fredet kirke i et planlagt bymiljø",
+            "Et uendret middelalderbygg",
+            "Et vedheng til Birkelunden uten egen historie"
+          ],
+          "answer": "En aktiv, endret og fredet kirke i et planlagt bymiljø",
+          "answerIndex": 0,
+          "knowledge": "Paulus kirke må leses som arkitektur, institusjon, brukssted og kulturminne samtidig.",
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "official"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Paulus kirke må leses som arkitektur, institusjon, brukssted og kulturminne samtidig.",
+          "claim_id": "claim_paulus_kirke_quiz_34",
+          "primary_knowledge_unit_id": "ku_historie_paulus_kirke_34",
+          "knowledge_unit_ids": [
+            "ku_historie_paulus_kirke_34"
+          ],
+          "concepts": [
+            "historiske lag"
+          ],
+          "concept_ids": [
+            "co_his_historiske_lag_714322d8aa"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "topic_hook_id": "his_tidslag_samtidighet",
+          "thinker_id": "fernand_braudel",
+          "work": "The Mediterranean and the Mediterranean World",
+          "method_id": "met_tidslagsanalyse",
+          "theory_ref": {
+            "topic_hook_id": "his_tidslag_samtidighet",
+            "thinker_id": "fernand_braudel",
+            "work": "The Mediterranean and the Mediterranean World",
+            "why_it_helps": "Perspektivet gir en etterprøvbar historisk analyse uten å erstatte stedskildene."
+          },
+          "guidance_basis": [
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "paulus_kirke_quiz_35",
+          "quiz_id": "historie_paulus_kirke_set_5_q7",
+          "categoryId": "historie",
+          "placeId": "paulus_kirke",
+          "targetId": "paulus_kirke",
+          "question_scope": "place",
+          "question": "Hva tilfører en langvarighetsanalyse?",
+          "options": [
+            "Den skiller varige strukturer fra daterte endringer",
+            "Den gjør alle årstall irrelevante",
+            "Den behandler fredningen som kirkens start"
+          ],
+          "answer": "Den skiller varige strukturer fra daterte endringer",
+          "answerIndex": 0,
+          "knowledge": "Langvarighetsanalyse kan holde sammen byplan, fortsatt bruk, rehabiliteringer og fredning uten å gjøre historien uforanderlig.",
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_his_lang_varighet_strukturer",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Langvarighetsanalyse kan holde sammen byplan, fortsatt bruk, rehabiliteringer og fredning uten å gjøre historien uforanderlig.",
+          "claim_id": "claim_paulus_kirke_quiz_35",
+          "primary_knowledge_unit_id": "ku_historie_paulus_kirke_35",
+          "knowledge_unit_ids": [
+            "ku_historie_paulus_kirke_35"
+          ],
+          "concepts": [
+            "historisk analyse"
+          ],
+          "concept_ids": [
+            "co_his_historisk_analyse_4701c58647"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "topic_hook_id": "his_lang_varighet_strukturer",
+          "thinker_id": "marc_bloch",
+          "work": "The Historian's Craft",
+          "method_id": "met_langvarighetsanalyse",
+          "theory_ref": {
+            "topic_hook_id": "his_lang_varighet_strukturer",
+            "thinker_id": "marc_bloch",
+            "work": "The Historian's Craft",
+            "why_it_helps": "Perspektivet gir en etterprøvbar historisk analyse uten å erstatte stedskildene."
+          },
+          "guidance_basis": [
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json"
+          ]
+        }
+      ]
+    }
+  ]
+}
