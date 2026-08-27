@@ -10,182 +10,21 @@ permissions:
 
 jobs:
   materialize:
-    if: github.event.head_commit.message == 'chore: materialize Akerselva timeline tranche'
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Materialize source-backed chronology
+      - name: Materialize chronology
+        run: node tools/TEMP-materialize-oslo-timeline-akerselva-v9.mjs materialize
+      - name: Build generated History data
         shell: bash
         run: |
           set -euo pipefail
-          node --input-type=module <<'NODE'
-          import fs from 'node:fs';
-          import path from 'node:path';
-          import { buildEpokePlaceIndex } from './scripts/build-epoke-place-index.mjs';
-
-          const verifiedAt = '2026-08-27';
-          const myrens = 'https://oslobyleksikon.no/side/Myrens_Verksted';
-          const akerselva = 'https://oslobyleksikon.no/side/Akerselva';
-          const lilleborg = 'https://oslobyleksikon.no/side/Lilleborg_AS';
-          const torshov = 'https://www.sporveien.no/vare-tjenester/trikken/trikkeholdeplasser/t-o/torshov/';
-          const torshovLex = 'https://oslobyleksikon.no/side/Torshovgata';
-          const src = (title, url) => ({ title, url, verifiedAt });
-
-          const specs = {
-            myrens_verksted: {
-              name: 'Myrens Verksted',
-              popupDesc: 'Myrens Verksted vokste fra et mekanisk verksted grunnlagt i 1848 til en av Akerselvas store maskinindustribedrifter, flyttet til Myren i 1854 og nedlagt som industrivirksomhet i Oslo i 1988.',
-              wikiText: [
-                'Myrens Verksted ble grunnlagt i 1848 av Jens Jacob Jensen og Andreas Jensen ved Øvre Foss. Oslo byleksikon dokumenterer etableringen, mens Akerselva-artikkelen dokumenterer at virksomheten flyttet til Myren i 1854. Tidslinjen skiller derfor selskapets grunnleggelse fra den konkrete etableringen på Myren.',
-                'Bedriften fikk navnet J. & A. Jensen og Dahl, Myrens mekaniske Værksted i 1863. I 1890 var den blant landets største bedrifter med omkring 1000 ansatte, og i 1907 ble firmaet organisert som aksjeselskap.',
-                'I 1923 dannet Myrens og Karlstad Mekaniska Werkstad selskapet Kamyr for treforedlingsmaskiner. Myrens ble datterselskap under Kværner Brug i 1928. Etter sammenslåingen med Thune-Eureka i 1987 ble virksomheten i Oslo lagt ned i 1988.',
-                'Kværner solgte fabrikkarealet til Myren Eiendom AS i 1997. De bevarte industribygningene ble senere tatt i bruk til andre virksomheter, slik at fabrikkhistorien fortsatt er lesbar i bygningsmiljøet langs Akerselva.'
-              ],
-              chronology: [
-                [1848, 'Myrens Verksted grunnlegges', 'Brødrene Jens Jacob og Andreas Jensen grunnla et mekanisk verksted ved Øvre Foss.', [src('Oslo byleksikon – Myrens Verksted', myrens)]],
-                [1854, 'Verkstedet flytter til Myren', 'Virksomheten flyttet opp langs Akerselva til Myren og utviklet seg til Myrens Verksted.', [src('Oslo byleksikon – Akerselva', akerselva)]],
-                [1863, 'Myrens-navnet etableres', 'Bedriften tok navnet J. & A. Jensen og Dahl, Myrens mekaniske Værksted.', [src('Oslo byleksikon – Myrens Verksted', myrens)]],
-                [1890, 'Myrens har omkring 1000 ansatte', 'Myrens var blitt en av landets største bedrifter med omkring 1000 ansatte.', [src('Oslo byleksikon – Myrens Verksted', myrens)]],
-                [1907, 'Myrens blir aksjeselskap', 'Firmaet ble organisert som Myrens Verksted A/S.', [src('Oslo byleksikon – Myrens Verksted', myrens)]],
-                [1923, 'Kamyr-samarbeidet etableres', 'Myrens og Karlstad Mekaniska Werkstad dannet et felles selskap for treforedlingsmaskiner.', [src('Oslo byleksikon – Myrens Verksted', myrens)]],
-                [1928, 'Myrens blir del av Kværner', 'Myrens Verksted ble datterselskap under Kværner Brug.', [src('Oslo byleksikon – Myrens Verksted', myrens)]],
-                [1988, 'Industrivirksomheten i Oslo legges ned', 'Etter sammenslåingen med Thune-Eureka året før ble virksomheten ved Myrens i Oslo avsluttet.', [src('Oslo byleksikon – Myrens Verksted', myrens)]],
-                [1997, 'Fabrikkområdet selges', 'Kværner solgte området til Myren Eiendom AS.', [src('Oslo byleksikon – Myrens Verksted', myrens)]]
-              ]
-            },
-            lilleborg_fabrikker: {
-              name: 'Lilleborg Fabrikker',
-              popupDesc: 'Lilleborgs industrimiljø ved Akerselva utviklet seg fra oljemølle i 1833 og såpefabrikk i 1842 til Lilleborg Fabriker A/S i 1897, før produksjonen på Sandaker ble avviklet i 1997 og området omformet i 2002–2003.',
-              wikiText: [
-                'På Lilleborg-eiendommen ble det anlagt oljemølle i 1833 og såpefabrikk i 1842. Peter Kildal overtok eiendommen og produksjonen i 1863 og bygde ut virksomheten med lampeolje og såpe som sentrale produkter.',
-                'P. W. W. Kildal & Co. ble omdannet til Lilleborg Fabriker A/S i 1897. Kontorbygningen i nordisk nybarokk ble tatt i bruk i 1916. I 1925 startet Lilleborg samarbeid med De-No-Fa, og i 1930 overtok Lilleborg produksjon og rettigheter til flere Unilever-merker samtidig som eierskapet ble endret.',
-                'De-No-Fa og Lilleborg ble i 1959 overtatt av Borregaard og slått sammen til DeNoFa Lilleborg. Den nye administrasjonsbygningen i Sandakerveien 56 ble tatt i bruk i 1967.',
-                'Produksjonen på Sandaker ble avviklet i 1997 og flyttet til Ski. I 2002–2003 ble fabrikkmiljøet ved Akerselva bygget om til boligområde, samtidig som deler av de eldste industribygningene ble bevart.'
-              ],
-              chronology: [
-                [1833, 'Oljemølle anlegges på Lilleborg', 'En oljemølle ble anlagt på Lilleborg-eiendommen ved Akerselva.', [src('Oslo byleksikon – Lilleborg AS', lilleborg)]],
-                [1842, 'Såpefabrikk etableres', 'Et sæbesyderi ble etablert på Lilleborg-eiendommen.', [src('Oslo byleksikon – Lilleborg AS', lilleborg)]],
-                [1863, 'Peter Kildal overtar virksomheten', 'Peter Kildal overtok eiendommen og produksjonen og utvidet industrivirksomheten.', [src('Oslo byleksikon – Lilleborg AS', lilleborg)]],
-                [1897, 'Lilleborg Fabriker A/S grunnlegges', 'P. W. W. Kildal & Co. ble omdannet til aksjeselskapet Lilleborg Fabriker.', [src('Oslo byleksikon – Lilleborg AS', lilleborg)]],
-                [1916, 'Kontorbygningen tas i bruk', 'Den tidligere kontorbygningen i nordisk nybarokk ble tatt i bruk.', [src('Oslo byleksikon – Lilleborg AS', lilleborg)]],
-                [1925, 'Samarbeid med De-No-Fa innledes', 'Lilleborg startet samarbeid med De Nordiske Fabriker i Fredrikstad.', [src('Oslo byleksikon – Lilleborg AS', lilleborg)]],
-                [1930, 'Unilever-samarbeidet utvides', 'Lilleborg overtok produksjon og rettigheter til flere Unilever-merker, samtidig som De-No-Fa og Unilever overtok halvparten av aksjene.', [src('Oslo byleksikon – Lilleborg AS', lilleborg)]],
-                [1959, 'DeNoFa Lilleborg dannes', 'Borregaard overtok De-No-Fa og Lilleborg og slo selskapene sammen.', [src('Oslo byleksikon – Lilleborg AS', lilleborg)]],
-                [1967, 'Ny administrasjonsbygning tas i bruk', 'Administrasjonsbygningen i Sandakerveien 56 ble tatt i bruk.', [src('Oslo byleksikon – Lilleborg AS', lilleborg)]],
-                [1997, 'Produksjonen på Sandaker avvikles', 'Lilleborg avsluttet produksjonen ved Akerselva og flyttet den til Ski.', [src('Oslo byleksikon – Lilleborg AS', lilleborg)]],
-                [2002, 'Omforming av fabrikkmiljøet starter', 'Fabrikkmiljøet ved Akerselva gikk inn i utbyggingen som i 2002–2003 omformet området til boliger.', [src('Oslo byleksikon – Lilleborg AS', lilleborg)]],
-                [2003, 'Boligomformingen fullføres', 'Utbyggingen i 2002–2003 etablerte boligområdet og Ivan Bjørndals gate gjennom det tidligere industriområdet.', [src('Oslo byleksikon – Lilleborg AS', lilleborg)]]
-              ]
-            },
-            gamle_trikkestallen: {
-              name: 'Gamle trikkestallen',
-              popupDesc: 'Trikkestallen i Torshovgata 33 ble bygd i 1899 for den elektriske Torshovlinjen, tatt ut av trikkedrift i 1957, brukt videre som verksted til 1977 og åpnet som kulturhus i 2003.',
-              wikiText: [
-                'Trikkestallen i Torshovgata 33 ble oppført i 1899 i forbindelse med forlengelsen og elektrifiseringen av trikken til Torshov. Sporveien beskriver anlegget som en vognhall for 28 vogner med eget verksted.',
-                'Vognhallen ble tatt ut av trikkedrift i 1957. Sporveien dokumenterer at den fortsatte som karosseriverksted frem til 1977; dette skilles i tidslinjen fra selve trikkedriften.',
-                'Etter senere verksted- og kulturbruk ble bygningen ombygd og gjenåpnet som kulturhus i 2003. Den historiske vognhallen er registrert som verneverdig kulturmiljø.'
-              ],
-              chronology: [
-                [1899, 'Trikkestallen bygges', 'Vognhallen og verkstedet i Torshovgata 33 ble oppført da elektrisk trikkedrift ble forlenget til Torshov.', [src('Sporveien – Torshov', torshov), src('Oslo byleksikon – Torshovgata', torshovLex)]],
-                [1957, 'Trikkedriften i stallen opphører', 'Trikkestallen ble tatt ut av ordinær trikkedrift.', [src('Sporveien – Torshov', torshov)]],
-                [1977, 'Verkstedsbruken avsluttes', 'Etter trikkedriften fortsatte anlegget som karosseriverksted frem til 1977.', [src('Sporveien – Torshov', torshov)]],
-                [2003, 'Trikkestallen åpner som kulturhus', 'Den tidligere vognhallen ble ombygd og gjenåpnet som kulturhus.', [src('Sporveien – Torshov', torshov), src('Oslo byleksikon – Torshovgata', torshovLex)]]
-              ]
-            }
-          };
-
-          const base = buildEpokePlaceIndex().domains.historie.oslo_coverage;
-          fs.writeFileSync('/tmp/oslo-base.json', JSON.stringify({
-            canonical: base.canonical_place_count,
-            dated: base.dated_evidence_place_count,
-            documented: base.documented_case_place_count,
-            awaiting: base.awaiting_source_backed_history_count
-          }));
-
-          function walk(dir) {
-            return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
-              const full = path.join(dir, entry.name);
-              return entry.isDirectory() ? walk(full) : [full];
-            });
-          }
-          const files = walk('data/leksikon/places/oslo').filter((file) => file.endsWith('.json'));
-          const touched = new Map();
-          for (const [placeId, spec] of Object.entries(specs)) {
-            const matches = [];
-            for (const file of files) {
-              let data;
-              try { data = JSON.parse(fs.readFileSync(file, 'utf8')); } catch { continue; }
-              if (!Array.isArray(data)) continue;
-              data.forEach((entry, index) => {
-                if (entry?.place_id === placeId) matches.push({ file, data, entry, index });
-              });
-            }
-            if (!matches.length) throw new Error(`No Oslo leksikon entry found for ${placeId}`);
-            matches.sort((a, b) => {
-              const score = (m) => (String(m.entry.id || '').includes('hoved') ? 10 : 0) + (String(m.entry.title || '').toLowerCase() === spec.name.toLowerCase() ? 8 : 0) + (Array.isArray(m.entry.chronology) ? 3 : 0);
-              return score(b) - score(a);
-            });
-            const target = matches[0];
-            console.log(`Updating ${placeId} in ${target.file} (${target.entry.id || 'no-id'}); matches=${matches.length}`);
-            target.entry.popupDesc = spec.popupDesc;
-            target.entry.wikiText = spec.wikiText;
-            target.entry.chronology = spec.chronology.map(([year, title, desc, sources], idx) => ({
-              id: `chrono_${placeId}_${year}_${idx + 1}`,
-              year,
-              title,
-              desc,
-              confidence: 'high',
-              sources
-            }));
-            const sourceMap = new Map();
-            for (const [, , , sources] of spec.chronology) for (const source of sources) sourceMap.set(source.url, source);
-            target.entry.sources = [...sourceMap.values()].map((source) => ({ type: 'source', label: source.title, url: source.url, verifiedAt: source.verifiedAt }));
-            target.entry.externalLinks = [...sourceMap.values()].map((source) => ({ type: 'source', label: source.title, url: source.url, verifiedAt: source.verifiedAt }));
-            touched.set(target.file, target.data);
-          }
-          for (const [file, data] of touched) fs.writeFileSync(file, `${JSON.stringify(data, null, 2)}\n`);
-
-          const report = `# Oslo timeline v9 – Akerselva-industrien\n\nReviewed: 2026-08-27\n\n## Scope\n\nThis tranche closes three canonical Oslo history gaps without changing canonical Place files: \`myrens_verksted\`, \`lilleborg_fabrikker\`, and \`gamle_trikkestallen\`.\n\n## Approved exact anchors\n\n- **Myrens Verksted:** 1848, 1854, 1863, 1890, 1907, 1923, 1928, 1988, 1997.\n- **Lilleborg Fabrikker:** 1833, 1842, 1863, 1897, 1916, 1925, 1930, 1959, 1967, 1997, 2002, 2003.\n- **Gamle trikkestallen:** 1899, 1957, 1977, 2003.\n\nTotal: **25** exact anchors.\n\n## Evidence\n\n- Oslo byleksikon – Myrens Verksted: ${myrens}\n- Oslo byleksikon – Akerselva: ${akerselva}\n- Oslo byleksikon – Lilleborg AS: ${lilleborg}\n- Sporveien – Torshov: ${torshov}\n- Oslo byleksikon – Torshovgata: ${torshovLex}\n\n## Evidence boundaries\n\n- Myrens' founding in 1848 is company history; the move to the canonical Myren site is separately anchored to 1854. No inferred dates are created from phrases such as “after 1860” or “1850s”.\n- Lilleborg's mid-1700s soap-boiling context remains broad context. The 2002–2003 redevelopment interval contributes its stated start and completion only; no midpoint is invented.\n- Torshov's 1930s alterations are not materialized as an exact year. The 1957 end of tram-shed operation is kept distinct from continued workshop use through 1977.\n- Wartime uses are not added to this tranche because the requested scope is industrial and transport history, not war history.\n- Every materialized chronology item has claim-near HTTPS evidence.\n`;
-          fs.writeFileSync('reports/oslo-timeline-v9-akerselva-industry-sources.md', report);
-          NODE
-
           node scripts/build-epoke-place-index.mjs
           npm run place-open:build
-
-          node --input-type=module <<'NODE'
-          import fs from 'node:fs';
-          import { buildEpokePlaceIndex } from './scripts/build-epoke-place-index.mjs';
-          const before = JSON.parse(fs.readFileSync('/tmp/oslo-base.json', 'utf8'));
-          const after = buildEpokePlaceIndex().domains.historie.oslo_coverage;
-          const expected = { canonical: before.canonical, dated: before.dated + 3, documented: before.documented, awaiting: before.awaiting - 3 };
-          const actual = { canonical: after.canonical_place_count, dated: after.dated_evidence_place_count, documented: after.documented_case_place_count, awaiting: after.awaiting_source_backed_history_count };
-          if (JSON.stringify(actual) !== JSON.stringify(expected)) throw new Error(`Coverage delta mismatch: before=${JSON.stringify(before)} actual=${JSON.stringify(actual)} expected=${JSON.stringify(expected)}`);
-
-          const testPath = 'tests/epoke-place-index.test.mjs';
-          let text = fs.readFileSync(testPath, 'utf8');
-          const replacements = [
-            [`assert.equal(coverage.canonical_place_count, ${before.canonical});`, `assert.equal(coverage.canonical_place_count, ${actual.canonical});`],
-            [`assert.equal(coverage.dated_evidence_place_count, ${before.dated});`, `assert.equal(coverage.dated_evidence_place_count, ${actual.dated});`],
-            [`assert.equal(coverage.documented_case_place_count, ${before.documented});`, `assert.equal(coverage.documented_case_place_count, ${actual.documented});`],
-            [`assert.equal(coverage.awaiting_source_backed_history_count, ${before.awaiting});`, `assert.equal(coverage.awaiting_source_backed_history_count, ${actual.awaiting});`]
-          ];
-          for (const [from, to] of replacements) {
-            if (from !== to) {
-              if (!text.includes(from)) throw new Error(`Expected test baseline not found: ${from}`);
-              text = text.replace(from, to);
-            }
-          }
-          const marker = 'test("Akerselva industrial chronology materializes reviewed exact anchors only"';
-          if (!text.includes(marker)) {
-            text += `\n\ntest("Akerselva industrial chronology materializes reviewed exact anchors only", () => {\n  const index = buildEpokePlaceIndex();\n  const chronologyMilestonesFor = (placeId) => Object.values(index.domains.historie.epochs)\n    .flatMap((group) => group.places)\n    .filter((place) => place.place_id === placeId)\n    .flatMap((place) => place.milestones)\n    .filter((milestone) => milestone.evidence_type === "leksikon_chronology");\n  const yearsFor = (placeId) => [...new Set(chronologyMilestonesFor(placeId).map((milestone) => milestone.year))].sort((a, b) => a - b);\n\n  assert.deepEqual(yearsFor("myrens_verksted"), [1848, 1854, 1863, 1890, 1907, 1923, 1928, 1988, 1997]);\n  assert.deepEqual(yearsFor("lilleborg_fabrikker"), [1833, 1842, 1863, 1897, 1916, 1925, 1930, 1959, 1967, 1997, 2002, 2003]);\n  assert.deepEqual(yearsFor("gamle_trikkestallen"), [1899, 1957, 1977, 2003]);\n  assert.equal(chronologyMilestonesFor("myrens_verksted").some((milestone) => milestone.year === 1860), false);\n  assert.equal(chronologyMilestonesFor("lilleborg_fabrikker").some((milestone) => milestone.year === 1750), false);\n  assert.equal(chronologyMilestonesFor("gamle_trikkestallen").some((milestone) => milestone.year === 1930), false);\n  for (const placeId of ["myrens_verksted", "lilleborg_fabrikker", "gamle_trikkestallen"]) {\n    assert.equal(index.domains.historie.oslo_coverage.places.find((place) => place.place_id === placeId)?.status, "dated_evidence");\n  }\n});\n`;
-          }
-          fs.writeFileSync(testPath, text);
-          console.log(`Coverage: ${before.dated}/${before.awaiting} -> ${actual.dated}/${actual.awaiting}`);
-          NODE
-
+          node tools/TEMP-materialize-oslo-timeline-akerselva-v9.mjs finalize
       - name: Install dependencies
         shell: bash
         run: |
@@ -203,15 +42,21 @@ jobs:
           npm run typecheck:web
           npm run build:web:check
           git diff --check
-          if git diff --name-only origin/main...HEAD | grep -q '^data/places/'; then
+      - name: Ensure canonical Place files are untouched
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --name-only origin/main | grep -q '^data/places/'; then
             echo 'Canonical Place file changed unexpectedly' >&2
+            git diff --name-only origin/main | grep '^data/places/' >&2
             exit 1
           fi
-      - name: Commit permanent verified outputs and remove TEMP workflow
+      - name: Commit verified outputs and remove TEMP files
         shell: bash
         run: |
           set -euo pipefail
           rm .github/workflows/TEMP-oslo-timeline-akerselva-v9.yml
+          rm tools/TEMP-materialize-oslo-timeline-akerselva-v9.mjs
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
