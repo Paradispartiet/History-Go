@@ -1,0 +1,128 @@
+{
+  "schema": "place-production-gate-audit-v1",
+  "place_id": "ekeberg_helleristninger",
+  "verified_at": "2026-08-28",
+  "profile": {
+    "production_profile": "focused",
+    "status": "confirmed",
+    "reason": "Et avgrenset, fysisk bergkunstfelt med stor kildeverdi, men smalere stoffbredde enn et historisk område eller museum."
+  },
+  "badges": {
+    "primary": "historie",
+    "underbadge_ids": [
+      "forhistorie",
+      "kulturminner_og_bevaring"
+    ],
+    "status": "PASS"
+  },
+  "boundary": {
+    "status": "PASS",
+    "represents": "field 41907-1",
+    "excludes": [
+      "ekebergparken",
+      "ekebergparken_museum",
+      "ekebergsletta",
+      "kongshavn_vgs"
+    ]
+  },
+  "collections": {
+    "expected": [
+      "people",
+      "objects",
+      "brands",
+      "productions"
+    ],
+    "actual": [
+      "people",
+      "objects",
+      "brands",
+      "productions"
+    ],
+    "status": "PASS"
+  },
+  "people": {
+    "status": "PASS",
+    "ids": [
+      "jan_greve_thaulow_petersen"
+    ],
+    "image": "bilder/kort/people/jan_greve_thaulow_petersen.webp"
+  },
+  "objects": {
+    "status": "PASS",
+    "ids": [
+      "ekeberg_elgfigur_med_indre_linjer",
+      "ekeberg_menneskefigur",
+      "ekeberg_fuglefigur"
+    ],
+    "signature_exception": false
+  },
+  "brands": {
+    "status": "PASS",
+    "ids": [
+      "universitetet_i_oslo"
+    ],
+    "logo": "bilder/kort/brands/universitetet_i_oslo.svg",
+    "candidate_reason": "UiO's Oldsaksamling had the documented discovery and investigation role."
+  },
+  "productions": {
+    "status": "PASS",
+    "ids": [
+      "ekeberg_oppdagelsen_12_september_1915"
+    ],
+    "owner_boundary": "The discovery event is distinct from the physical carved figures."
+  },
+  "chronology": {
+    "status": "PASS",
+    "exact_anchors": [
+      1915
+    ],
+    "held_back": [
+      "prehistoric creation year"
+    ]
+  },
+  "before_after": {
+    "status": "NOT_APPLICABLE",
+    "rationale": "No rights-cleared, viewpoint-matched archival/current pair was found; modern paint cannot be treated as a neutral before/after transformation."
+  },
+  "news": {
+    "status": "NOT_APPLICABLE",
+    "rationale": "The heritage site's educational value is evergreen and no current event is needed to explain it."
+  },
+  "manual_qa": {
+    "mobile_2x2": "PASS",
+    "desktop_2x2": "PASS",
+    "popup_scroll": "PASS",
+    "collection_previews": "PASS",
+    "source_links": "PASS",
+    "front_image_portrait": "PASS"
+  },
+  "quality_score": {
+    "identity_and_boundary": {
+      "score": 5,
+      "note": "Official object geometry and explicit separation from all adjacent Ekeberg places."
+    },
+    "sources_and_factuality": {
+      "score": 5,
+      "note": "Official registry, institution, local history, encyclopedia and tourism sources compared with dating conflict preserved."
+    },
+    "collections_and_runtime": {
+      "score": 5,
+      "note": "Exactly four populated, distinct collections with local member previews."
+    },
+    "language_and_chronology": {
+      "score": 5,
+      "note": "Four place-specific terms and only the exact 1915 chronology anchor."
+    },
+    "quiz_and_learning": {
+      "score": 5,
+      "note": "Normal 4x7 progression; first 14 are concrete and theory appears only in the final set."
+    },
+    "images_and_rights": {
+      "score": 5,
+      "note": "Local portrait, object, event and brand assets with inspectable provenance and licenses."
+    },
+    "total": 30,
+    "critical_findings": 0,
+    "unresolved_blockers": 0
+  }
+}
