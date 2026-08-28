@@ -1,0 +1,50 @@
+name: Fagverk IA v3 Kunst gatekunst finalize probe
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/materialize-kunst-gatekunst-legacy-gap-v1.mjs'
+      - 'tests/fagverk-kunst-gatekunst-legacy-gap-v1.test.mjs'
+      - 'tests/fagverk-kunst-legacy-theory-audit.test.mjs'
+      - '.github/workflows/fagverk-ia-v3-kunst-gatekunst-finalize-probe.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  finalize-and-clean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Finalize canonical gatekunst migration
+        run: |
+          node --check scripts/materialize-kunst-gatekunst-legacy-gap-v1.mjs
+          node scripts/materialize-kunst-gatekunst-legacy-gap-v1.mjs
+          node scripts/audit-fagverk-kunst-legacy-theory.mjs --write-report
+          node --test tests/fagverk-kunst-gatekunst-legacy-gap-v1.test.mjs
+          node --test tests/fagverk-kunst-legacy-theory-audit.test.mjs
+          node --test tests/fagverk-kunst-publikum-offentlighet-phase4.test.mjs
+          node scripts/audit-fagverk-kunst-complete.mjs
+          node --test tests/fagverk-release-manifest.test.mjs
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Commit final generated state and remove probe
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/fagverk-ia-v3-kunst-gatekunst-finalize-probe.yml
+          git add data/fag/kunst/emner_kunst_canonical_v4_5.json \
+                  data/fagverk/kunst/publikum-og-offentlighet/01-grunnlag.json \
+                  reports/fagverk/kunst-legacy-theory-audit.json \
+                  data/fagverk/fagverk_release.json
+          if git diff --cached --quiet; then
+            git commit --allow-empty -m 'Finalize Kunst gatekunst generated state'
+          else
+            git commit -m 'Finalize Kunst gatekunst generated state'
+          fi
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
