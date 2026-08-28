@@ -1,0 +1,74 @@
+{
+  "schema": "history_go_sosiologi_antropologi_repository_reconciliation_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-28",
+  "audited_main_sha": "829a4e351bd10cc81146fab4cb12133bd84a5b94",
+  "owner_subject_id": "politikk",
+  "canonical_subcategory_id": "sosiologi_antropologi",
+  "status": "authority_audit_complete_source_first_production_started",
+  "authority_files": [
+    "data/categories/category_contract.json",
+    "data/fagverk/subject_inventory.json",
+    "data/fagverk/subject_status.json",
+    "data/fag/fag_manifest.json",
+    "data/fagverk/fagverk_portal.json",
+    "docs/FAGVERK.md"
+  ],
+  "findings": [
+    {
+      "path": "data/fagverk/politikk/normer-identitet-hverdagsliv.json",
+      "classification": "reuse_with_expansion",
+      "reason": "Sterkt eksisterende Politikk-kapittel med ni seksjoner, 45 verifiserte claims og omfattende retts-/forvaltningskilder, men uten full sosiologi-/antropologiteori, kvalitativ metode, vurderingspakke og underkategori-proof."
+    },
+    {
+      "path": "data/fagverk/politikk/fordeling-velferd-ulikhet.json",
+      "classification": "reuse_with_expansion",
+      "reason": "Eier allerede deler av ulikhetsanalysen; må utvides med klasse, rasialisering, kjønn, interseksjonalitet og sosiologisk mekanismeprøving før det kan telle."
+    },
+    {
+      "path": "data/fagverk/politikk/konflikt-makt-sivilsamfunn.json",
+      "classification": "reuse_with_expansion",
+      "reason": "Eier eksisterende materiale om makt og kollektiv handling; beholdes i Politikk og oppgraderes uten flytting."
+    },
+    {
+      "path": "data/fagverk/politikk/statsvitenskapelig-metode-og-sammenligning.json",
+      "classification": "secondary_link",
+      "reason": "Relevant for sammenligning og design, men statsvitenskapelig metode kan ikke erstatte etnografi, feltarbeid, refleksivitet og antropologisk sammenligning."
+    },
+    {
+      "path": "data/fagverk/politikk/rett-lov-rettssikkerhet.json",
+      "classification": "secondary_link",
+      "reason": "Rettighets- og institusjonsanalyse støtter norm- og ulikhetsfeltet, men eies fortsatt av Politikk/Juss-sporet."
+    },
+    {
+      "path": "data/fagverk/psykologi",
+      "classification": "secondary_link",
+      "reason": "Sosialpsykologisk individ- og gruppenivå er relevant, men overtar ikke sosiologiens institusjons-, relasjons- og maktperspektiv."
+    },
+    {
+      "path": "data/fagverk/religion",
+      "classification": "secondary_link",
+      "reason": "Religion som levd praksis, institusjon og materialitet kan sekundærbindes; religionsfaget beholder tradisjons- og teologieierskap."
+    },
+    {
+      "path": "data/fagverk/by",
+      "classification": "secondary_link",
+      "reason": "Byliv, offentlighet, segregasjon og sted er relevante case, men By-faget beholder urbanistisk og stedlig eierskap."
+    }
+  ],
+  "prohibited_actions": [
+    "slette eller flytte eksisterende Politikk-kapitler",
+    "telle sekundærlenker som ferdig sosiologiproduksjon",
+    "gjøre sosiologi_antropologi til nytt toppfag",
+    "oppgradere category status til ferdig før 12/12 og strict proof",
+    "bruke identitet eller kategori som årsak alene"
+  ],
+  "production_plan": {
+    "total_domains": 12,
+    "reuse_with_expansion": 3,
+    "new_production_required": 9,
+    "source_first_ready": 1,
+    "materialized": 0,
+    "next_domain": "sosiologisk_teori"
+  }
+}

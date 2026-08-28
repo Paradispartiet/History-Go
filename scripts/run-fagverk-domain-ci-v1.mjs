@@ -10,6 +10,7 @@ const SCRIPT_PATH = fileURLToPath(import.meta.url);
 const REGISTRY_PATHS = Object.freeze({
   helse: ".github/ci/fagverk-helse-domain-registry-v1.json",
   utdanning: ".github/ci/fagverk-utdanning-domain-registry-v1.json",
+  sosiologi_antropologi: ".github/ci/fagverk-sosiologi-antropologi-domain-registry-v1.json",
 });
 const SHARED_CHANGE_PATHS = new Set([
   "data/fagverk/subject_inventory.json",
@@ -252,3 +253,4 @@ export function main(argv = process.argv.slice(2)) {
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === SCRIPT_PATH) main();
+

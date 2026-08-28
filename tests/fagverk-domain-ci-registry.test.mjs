@@ -9,8 +9,8 @@ import {
 
 const registries = loadRegistries();
 
-test("Helse and Utdanning use one domain CI registry contract", () => {
-  assert.deepEqual(Object.keys(registries), ["helse", "utdanning"]);
+test("Helse, Utdanning and Sosiologi/antropologi use one domain CI registry contract", () => {
+  assert.deepEqual(Object.keys(registries), ["helse", "utdanning", "sosiologi_antropologi"]);
   for (const [subject, registry] of Object.entries(registries)) {
     const validated = validateRegistry(registry);
     assert.equal(registry.subject, subject);
@@ -31,6 +31,10 @@ test("domain routing selects affected subjects and fans shared changes into one 
   }), ["utdanning"]);
   assert.deepEqual(selectSubjects({
     registries,
+    changedFiles: ["data/fag/politikk/sosiologi_antropologi/production_registry_v1.json"],
+  }), ["sosiologi_antropologi"]);
+  assert.deepEqual(selectSubjects({
+    registries,
     changedFiles: ["data/fagverk/subject_inventory.json"],
-  }), ["helse", "utdanning"]);
+  }), ["helse", "utdanning", "sosiologi_antropologi"]);
 });
