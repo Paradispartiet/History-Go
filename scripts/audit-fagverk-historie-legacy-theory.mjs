@@ -113,7 +113,7 @@ const SECTION_POLICY = Object.freeze({
       ['arkiv'],
       ['spor'],
       ['narrativ'],
-      ['diskontinuitet'],
+      ['diskontinuitet', 'brudd'],
       ['lagdeling', 'tidslag'],
       ['kildekritikk'],
       ['materialitet'],
