@@ -1,0 +1,281 @@
+{
+  "schemaVersion": "historie_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "oslo_hospital",
+  "placeFile": "data/places/historie/oslo/places_historie_added_batch_01/oslo_hospital.json",
+  "status": "ready",
+  "historicalIdentity": {
+    "statement": "Et langvarig institusjonssted der religiøs omsorg, fattigforsorg, psykiatri, eiendomsøkonomi og ombruk kan følges fra middelalderen til 2026.",
+    "placeRelationType": "institution_site",
+    "placeRelationStatement": "Place-ID-en representerer hospitalkomplekset ved Ekebergveien 1 og dets stedbundne virksomhet, ikke hele Gamlebyen eller én enkelt bygning.",
+    "temporalScope": {
+      "start": "ca. 1290",
+      "end": "2026",
+      "precision": "period",
+      "rationale": "Perioden dekker klostertomten, stiftelsen, psykiatrien, driftsopphøret og den dokumenterte ombruken."
+    },
+    "sourceIds": [
+      "source_oslo_hospital_official",
+      "source_oslo_hospital_byarkiv",
+      "source_oslo_hospital_medical",
+      "source_oslo_hospital_allstad"
+    ]
+  },
+  "historyTopics": [
+    {
+      "emneId": "em_his_kirke_kloster_middelalder",
+      "siteSpecificRationale": "Fransiskanerklosteret fra omkring 1290 forklarer tomtens religiøse omsorgsfunksjon før reformasjonen.",
+      "caseIds": [
+        "case_oslo_hospital_omsorg_og_kontroll"
+      ]
+    },
+    {
+      "emneId": "em_his_sosialhistorie_hverdagsliv",
+      "siteSpecificRationale": "Hospitalets målgrupper, Dollhus og svake pasientstemmer gjør hverdagsliv, omsorg og kontroll til et konkret sosialhistorisk problem.",
+      "caseIds": [
+        "case_oslo_hospital_omsorg_og_kontroll"
+      ]
+    },
+    {
+      "emneId": "em_his_stat_institusjoner",
+      "siteSpecificRationale": "Kongelig ordre, stiftelsesøkonomi, jordebok, legeansvar og lov viser institusjonell organisering over tid.",
+      "caseIds": [
+        "case_oslo_hospital_omsorg_og_kontroll"
+      ]
+    },
+    {
+      "emneId": "em_his_historiske_lag_i_byrom",
+      "siteSpecificRationale": "Gråsteinsbygningen, kirken, Damehjemmet og rehabiliteringen i 2026 gjør flere bruks- og bygningslag fysisk lesbare.",
+      "caseIds": [
+        "case_oslo_hospital_omsorg_og_kontroll"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_oslo_hospital_official",
+      "url": "https://www.oslohospital.no/oslo-hospital-sin-historie",
+      "sourceLocation": "Historikksidens kronologi fra 1290 til 2018",
+      "sourceType": "institutional",
+      "verifiedAt": "2026-08-28",
+      "temporalCoverage": "mixed",
+      "provenance": "Oslo Hospitals egen historikkside.",
+      "limitations": "Institusjonens tilbakeblikk gir få pasientstemmer og bruker 1777 for Dollhuset."
+    },
+    {
+      "id": "source_oslo_hospital_byarkiv",
+      "url": "https://blogg.oslobyarkiv.no/blog/2018/12/06/oslo-hospitals-historie/",
+      "sourceLocation": "Arkivartikkelen om jordebok, beboere, Dollhus, økonomi og kirke",
+      "sourceType": "archive",
+      "verifiedAt": "2026-08-28",
+      "temporalCoverage": "mixed",
+      "provenance": "Oslo Byarkivs arkivbaserte formidling.",
+      "limitations": "Artikkelen sammenfatter arkivserier og gir ikke en komplett erfaring for hver beboer."
+    },
+    {
+      "id": "source_oslo_hospital_medical",
+      "url": "https://tidsskriftet.no/2000/11/merkesteiner-i-norsk-medisin/etableringen-av-oslo-hospitals-dollhus",
+      "sourceLocation": "Fagartikkelen om Dollhuset, Major og loven av 1848",
+      "sourceType": "scholarly",
+      "verifiedAt": "2026-08-28",
+      "temporalCoverage": "retrospective",
+      "provenance": "Medisinhistorisk artikkel i Tidsskrift for Den norske legeforening.",
+      "limitations": "Fokuserer på Dollhuset og reformhistorien, ikke hele stiftelsens utvikling."
+    },
+    {
+      "id": "source_oslo_hospital_allstad",
+      "url": "https://www.allstad.no/aktuelt/vellykket-åpning-av-oslo-hospital",
+      "sourceLocation": "Ingressen om den offisielle åpningen 20. august 2026",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-28",
+      "temporalCoverage": "current",
+      "provenance": "Eiendomsforvalterens aktuelle åpningsmelding.",
+      "limitations": "Dokumenterer dagens ombruk, ikke historisk pasientpraksis."
+    }
+  ],
+  "caseRealizations": [
+    {
+      "id": "case_oslo_hospital_omsorg_og_kontroll",
+      "claim": "Oslo Hospital viser hvordan omsorg før velferdsstaten ble organisert gjennom religion, eiendom, institusjonell kontroll og gradvis rettslig regulering.",
+      "temporalSequence": {
+        "scope": {
+          "start": "1538",
+          "end": "2026",
+          "precision": "period",
+          "rationale": "Caset følger hospitalstiftelsen, Dollhuset, reformarbeidet, driftsopphøret og ombruken."
+        },
+        "startPoint": "Hospitalet ble etablert i 1538 for fattige og syke uten familieomsorg.",
+        "endPoint": "Det rehabiliterte komplekset åpnet i 2026 som arbeids- og møtested.",
+        "breaks": [
+          "Dollhuset gjorde psykiatrisk institusjonalisering til en særskilt funksjon i 1777–1778.",
+          "Loven av 1848 ga behandlingen en nasjonal rettslig ramme.",
+          "Sykehusdriften opphørte i 2018."
+        ],
+        "continuities": [
+          "Stiftelsen, eiendomsgrunnlaget og de bevarte bygningene bandt stedet sammen over lang tid.",
+          "Omsorg, forvaltning og kontroll forble sammenvevd selv om formene endret seg."
+        ],
+        "sourceIds": [
+          "source_oslo_hospital_official",
+          "source_oslo_hospital_byarkiv",
+          "source_oslo_hospital_medical",
+          "source_oslo_hospital_allstad"
+        ]
+      },
+      "actors": [
+        {
+          "name": "Stiftelsen Oslo Hospital og dens forvaltere",
+          "roleOrInterest": "Organiserte eiendom, inntekter, opptak og institusjonsdrift.",
+          "powerPosition": "Kontrollerte ressurser, regler og fysisk adgang.",
+          "sourceIds": [
+            "source_oslo_hospital_official",
+            "source_oslo_hospital_byarkiv"
+          ]
+        },
+        {
+          "name": "Beboere og pasienter",
+          "roleOrInterest": "Mottok forsørgelse, pleie eller psykiatrisk forvaring og behandling.",
+          "powerPosition": "Var avhengige av institusjonens regler og er svakt representert med egne stemmer i de åpne kildene.",
+          "sourceIds": [
+            "source_oslo_hospital_byarkiv",
+            "source_oslo_hospital_medical"
+          ]
+        },
+        {
+          "name": "Herman Wedel Major",
+          "roleOrInterest": "Kartla forhold og arbeidet for en egen lov om behandling og forpleining.",
+          "powerPosition": "Hadde faglig og administrativ innflytelse, men eide ikke institusjonens lange historie alene.",
+          "sourceIds": [
+            "source_oslo_hospital_official",
+            "source_oslo_hospital_medical"
+          ]
+        }
+      ],
+      "conflictOrNegotiation": {
+        "statement": "Stedets historie rommer en vedvarende spenning mellom hjelp, forsørgelse, rettslig vern, institusjonell kontroll og begrenset selvbestemmelse.",
+        "sourceIds": [
+          "source_oslo_hospital_official",
+          "source_oslo_hospital_byarkiv",
+          "source_oslo_hospital_medical"
+        ]
+      },
+      "sourceComparison": {
+        "sourceIds": [
+          "source_oslo_hospital_official",
+          "source_oslo_hospital_byarkiv",
+          "source_oslo_hospital_medical"
+        ],
+        "comparison": "Institusjonshistorikken gir hovedkronologien, Byarkivet viser eiendoms- og arkivgrunnlaget, og Tidsskriftet utdyper Dollhuset og reformarbeidet.",
+        "contradictionsOrSilences": "Kildene oppgir 1777 og 1778 for Dollhuset og gir langt færre pasientstemmer enn vedtak, bygg og forvaltningsspor.",
+        "conclusionLimits": "Årstallsavviket kvalifiseres, historiske diagnoseord moderniseres ikke, og institusjonens formål brukes ikke som bevis for alle beboeres erfaringer."
+      },
+      "comparativeScale": {
+        "localFinding": "Ett kompleks i Gamlebyen bandt omsorg til eiendom, kirke, psykiatri og lov.",
+        "widerContext": "Majors reformarbeid og loven av 1848 knytter den lokale institusjonen til nasjonal regulering av psykiatrisk behandling.",
+        "scale": "national",
+        "sourceIds": [
+          "source_oslo_hospital_byarkiv",
+          "source_oslo_hospital_medical"
+        ]
+      },
+      "causationAndUncertainty": {
+        "causalAssessment": "Kildene dokumenterer at Majors kartlegging inngikk i reformarbeidet fram mot loven, men de bærer ikke en énårsaksforklaring på institusjonens samlede utvikling.",
+        "alternativeExplanations": [
+          "Religiøse ordninger, kongelig styring, stiftelsesøkonomi, medisinsk profesjonalisering og lovgivning virket på ulike tidspunkter."
+        ],
+        "uncertainty": "Pasientpraksis, individuelle erfaringer og skillet mellom bygging og åpning av Dollhuset er ikke fullstendig dokumentert i de åpne kildene.",
+        "sourceIds": [
+          "source_oslo_hospital_official",
+          "source_oslo_hospital_byarkiv",
+          "source_oslo_hospital_medical"
+        ]
+      }
+    }
+  ],
+  "presentTrace": {
+    "objectStatus": "altered",
+    "statement": "Gråsteinsbygningen, Gamlebyen kirke, Damehjemmet og andre deler av komplekset står bevart og ombygd for ny bruk.",
+    "originalSiteRelationship": "Koordinatet er et verifisert kompleksanker på den historiske hospitaltomten ved Ekebergveien 1.",
+    "sourceIds": [
+      "source_oslo_hospital_official",
+      "source_oslo_hospital_allstad"
+    ]
+  },
+  "quizOpening": {
+    "status": "PASS",
+    "quizTargetId": "oslo_hospital",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/historie/oslo_hospital.json",
+    "productionContext": "data/quiz/production_context/historie/oslo_hospital.json",
+    "requiredInputs": [
+      "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "data/fag/historie/supersetQUIZMAL_historie.json",
+      "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    ]
+  },
+  "chronologyStories": {
+    "status": "PASS",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Leksikonet eier 14 daterte milepæler; Storyen følger den selvstendige fortellingen fra Dollhusets celler til loven av 1848."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "historicalIdentity"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "historyTopics"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "caseRealizations[0].temporalSequence"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "caseRealizations[0].actors"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "caseRealizations[0].sourceComparison"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "caseRealizations[0].comparativeScale"
+      ]
+    },
+    "G": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "quizOpening"
+      ]
+    },
+    "H": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "chronologyStories"
+      ]
+    }
+  },
+  "review": {
+    "reviewer": "History GO Oslo Hospital source audit",
+    "reviewedAt": "2026-08-28",
+    "notes": "Identitet, målgrupper, jordebok, Dollhus, Major, lov, bygningslag, driftsopphør og åpning i 2026 er kontrollert. Kildekonflikt, historisk språk og pasientkildenes taushet er eksplisitt håndtert."
+  }
+}

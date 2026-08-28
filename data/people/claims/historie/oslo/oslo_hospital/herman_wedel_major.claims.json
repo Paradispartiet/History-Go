@@ -1,0 +1,173 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "herman_wedel_major",
+  "profile_file": "data/people/historie/oslo/oslo_hospital/herman_wedel_major.json",
+  "identity": {
+    "canonical_identity": "Den norske legen Herman Wedel Major (1814–1854).",
+    "name_variants": [
+      "Herman Wedel Major",
+      "Herman Major"
+    ],
+    "not": [
+      "andre medlemmer av Wedel-Jarlsberg-familien"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "identity",
+      "claim": "Herman Wedel Major levde fra 1814 til 1854 og var lege.",
+      "status": "verified",
+      "source_url": "https://snl.no/Herman_Wedel_Major",
+      "source_location": "biografiens innledning",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-28",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "hospital_role",
+      "claim": "Major arbeidet ved Oslo Hospital fra 1847 til 1854 og fikk ansvar for Dollhuset.",
+      "status": "verified",
+      "source_url": "https://tidsskriftet.no/2000/11/merkesteiner-i-norsk-medisin/etableringen-av-oslo-hospitals-dollhus",
+      "source_location": "avsnittene om Major ved Oslo Hospital",
+      "source_type": "scholarly",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-28",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "survey",
+      "claim": "Major kartla forholdene for mennesker med psykiske lidelser i Norge og arbeidet for en egen lov.",
+      "status": "verified",
+      "source_url": "https://snl.no/Herman_Wedel_Major",
+      "source_location": "avsnittene om reformarbeidet",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-28",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "law",
+      "claim": "Lov om sindssyges behandling og forpleining ble vedtatt i 1848.",
+      "status": "verified",
+      "source_url": "https://tidsskriftet.no/2000/11/merkesteiner-i-norsk-medisin/etableringen-av-oslo-hospitals-dollhus",
+      "source_location": "avsnittet om loven av 1848",
+      "source_type": "scholarly",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-28",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "image",
+      "claim": "Commons-filen identifiserer motivet som Herman Wedel Major og daterer fotografiet til omkring 1850.",
+      "status": "verified",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Herman_Wedel_Major.jpg",
+      "source_location": "Summary og Licensing",
+      "source_type": "archive",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-28",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "identity"
+    ],
+    "kindLabel": [
+      "identity"
+    ],
+    "year": [
+      "hospital_role"
+    ],
+    "placeId": [
+      "hospital_role"
+    ],
+    "places[oslo_hospital]": [
+      "hospital_role"
+    ],
+    "works[id=sinnssykeloven_1848].title": [
+      "law"
+    ],
+    "works[id=sinnssykeloven_1848].year": [
+      "law"
+    ],
+    "works[id=sinnssykeloven_1848].role": [
+      "survey",
+      "law"
+    ],
+    "works[id=sinnssykeloven_1848].place": [
+      "law"
+    ],
+    "works[id=sinnssykeloven_1848].summary": [
+      "survey",
+      "law"
+    ],
+    "image": [
+      "image"
+    ],
+    "cardImage": [
+      "image"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "hospital_role",
+          "survey",
+          "law"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "hospital_role"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "survey"
+        ]
+      },
+      {
+        "sentence": 4,
+        "claim_ids": [
+          "law"
+        ]
+      },
+      {
+        "sentence": 5,
+        "claim_ids": [
+          "hospital_role"
+        ]
+      },
+      {
+        "sentence": 6,
+        "claim_ids": [
+          "image"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "5/5",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-08-28",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}
