@@ -55,9 +55,9 @@ test('legacy produkttekst skilles fra kunnskapsseksjoner', () => {
   assert.equal(contribution.contentStatus, 'legacy_product_copy_no_canonical_migration_required');
 });
 
-test('By badgePage forblir legacy til innholdsauditen er adjudisert', () => {
+test('By badgePage går til Fagverk Progresjon etter full adjudisering', () => {
   const by = portal.categories.find((item) => item.id === 'by');
-  assert.equal(by.badgePage, 'data/fag/by/merke_by.html');
+  assert.equal(by.badgePage, 'fagverk.html?subject=by#fagverkIaProgresjon');
 });
 
 test('adjudiseringsgaten krever eksplisitt disposisjon og canonical eier for alle ti kunnskapsseksjoner', () => {
@@ -78,12 +78,14 @@ test('den geografiske legacy-seksjonen er eksplisitt migrert til canonical By et
   assert.ok(geographic.migrationRefs.includes('data/fagverk/by/arkitektur-type-skala-byform/claims.json'));
 });
 
-test('adjudisering gjør innholdet redirect-klart uten å endre badgePage i samme tranche', () => {
+test('adjudisering holder redirecten fail-closed og portalruten permanent migrert', () => {
   const report = adjudicationAudit();
   assert.equal(report.summary.anchorAuditRedirectReady, false, 'anker-auditen skal fortsatt ikke kunne auto-godkjenne redirect');
   assert.equal(report.summary.redirectReady, true);
   assert.equal(report.summary.redirectTarget, 'fagverk.html?subject=by#fagverkIaProgresjon');
-  assert.equal(report.summary.portalStillLegacy, true);
+  assert.equal(report.summary.portalRoute, report.summary.redirectTarget);
+  assert.equal(report.summary.portalRedirected, true);
+  assert.equal(report.summary.legacyBadgeSourcePreserved, true);
   const contribution = report.rows.find((row) => row.id === 'bidrag');
   assert.equal(contribution.disposition, 'retire_legacy_product_copy');
 });

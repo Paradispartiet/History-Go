@@ -116,6 +116,9 @@ if (!byPortal) throw new Error('By mangler i fagverk_portal.json.');
 const redirectReady = knowledgeRows.length === anchorAudit.summary.knowledgeSectionCount
   && knowledgeRows.every((row) => row.adjudicated && row.anchorCoverage === 1 && KNOWLEDGE_DISPOSITIONS.has(row.disposition) && row.ownerFiles.length > 0)
   && productRows.every((row) => PRODUCT_DISPOSITIONS.has(row.disposition));
+const portalRoute = text(byPortal.badgePage);
+const portalRedirected = portalRoute === EXPECTED_TARGET;
+const legacyBadgeSourcePreserved = exists(LEGACY_BADGE);
 
 const report = {
   schema: 'history_go_fagverk_by_legacy_adjudication_audit_v1',
@@ -135,12 +138,15 @@ const report = {
     anchorAuditRedirectReady: anchorAudit.summary.redirectReady,
     redirectReady,
     redirectTarget: EXPECTED_TARGET,
-    portalStillLegacy: byPortal.badgePage === LEGACY_BADGE
+    portalRoute,
+    portalRedirected,
+    legacyBadgeSourcePreserved
   },
   rows
 };
 
 if (!report.summary.redirectReady) throw new Error('By legacy adjudication er ikke redirect-klar.');
-if (!report.summary.portalStillLegacy) throw new Error('Adjudiseringsfasen skal ikke endre By badgePage; redirect skjer i egen tranche.');
+if (!report.summary.portalRedirected) throw new Error(`By badgePage må peke til ${EXPECTED_TARGET} etter grønn adjudisering.`);
+if (!report.summary.legacyBadgeSourcePreserved) throw new Error('Legacy By-merkeside må beholdes som auditkilde til arkivfasen er eksplisitt fullført.');
 
 process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);

@@ -39,14 +39,26 @@ Redirect skal peke til:
 fagverk.html?subject=<subject_id>#fagverkIaProgresjon
 ```
 
-## Første sikre migrering
+## Migrerte fag
 
-Helse og Utdanning brukte bare den generiske `merke.html`-fallbacken med badgeidentitet, poeng/nivå og nivåstige. Disse funksjonene er nå flyttet inn i Fagverkets Progresjon og deres portalruter kan derfor gå direkte dit.
+### Helse og Utdanning
+
+Helse og Utdanning brukte bare den generiske `merke.html`-fallbacken med badgeidentitet, poeng/nivå og nivåstige. Disse funksjonene er flyttet inn i Fagverkets Progresjon, og portalrutene går direkte dit.
 
 `merke.html?badge=<id>` beholdes som compatibility-URL og redirecter fail-closed til materialisert fag + Progresjon.
 
+### By & arkitektur
+
+By er første `legacy_static_theory`-fag som er fullført gjennom hele equivalence-løpet før redirect:
+
+- **#5432:** deterministisk audit sammenlignet `merke_by.html` og `teori.html` mot canonicalt By-korpus og blokkerte automatisk redirect.
+- **#5435:** de eneste eksplisitte kunnskapsgapene, `topografi` og `grunnforhold`, ble migrert kilde- og claimsporet til canonicalt Arkitektur-innhold.
+- **#5437:** alle ti kunnskapsseksjoner fikk eksplisitt canonical eier og redaksjonell disposisjon; gammel produkttekst ble eksplisitt pensjonert.
+
+Etter disse tre gatene peker By sitt canonicale `badgePage` til `fagverk.html?subject=by#fagverkIaProgresjon`. Den gamle statiske By-merkesiden beholdes foreløpig som audit- og arkivkilde, men skal ikke lenger være en aktiv produkt- eller navigasjonsflate.
+
 ## Ikke redirect ennå
 
-- **Politikk:** `rich_runtime`; undermerker, emneprogresjon, quizhistorikk, steder og begrepsutforsker må ha dokumentert equivalence.
-- **By og andre fullteorisider:** `legacy_static_theory`; innholdsaudit må bevise at unik gyldig teori ikke går tapt.
+- **Politikk:** `rich_runtime`; emneprogresjon, quizhistorikk, steder, begrepsutforsker og øvrig aktiv legacy-runtime må ha dokumentert equivalence før redirect.
+- **Andre fullteorisider:** `legacy_static_theory`; hvert fag må gjennom egen innholdsaudit og eksplisitt adjudisering. By-resultatet er prosessmal, ikke automatisk godkjenning.
 - **Tynne legacy-sider:** `legacy_stub`; må gjennom enkel unik-innhold/linkaudit før redirect.
