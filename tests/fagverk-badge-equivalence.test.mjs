@@ -7,6 +7,7 @@ const portal = JSON.parse(fs.readFileSync('data/fagverk/fagverk_portal.json', 'u
 const html = fs.readFileSync('fagverk.html', 'utf8');
 const badgeUi = fs.readFileSync('js/fagverk-ia-v3-badge-progress.js', 'utf8');
 const fallback = fs.readFileSync('js/merke-fallback.js', 'utf8');
+const portalUi = fs.readFileSync('js/fagverk-forside.js', 'utf8');
 
 function runAudit() {
   const result = spawnSync(process.execPath, ['scripts/audit-fagverk-badge-equivalence.mjs'], { encoding: 'utf8' });
@@ -40,6 +41,8 @@ test('Fagverk Progresjon overtar generic merkesides badgeidentitet, nivåstige o
   assert.match(badgeUi, /badge\?\.description/);
   assert.match(badgeUi, /badge\?\.tiers/);
   assert.match(badgeUi, /badge\?\.sub/);
+  assert.match(badgeUi, /place\?\.source/);
+  assert.match(badgeUi, /progress\.visited\?\.has/);
   assert.match(badgeUi, /Nivåstige/);
   assert.match(badgeUi, /Undermerker/);
   assert.doesNotMatch(badgeUi, /localStorage\.setItem|sessionStorage\.setItem|indexedDB/);
@@ -50,6 +53,12 @@ test('den gamle generiske merke-URL-en er compatibility-redirect, ikke en ny pro
   assert.match(fallback, /#fagverkIaProgresjon/);
   assert.match(fallback, /subjectStatus\)!=='materialized'/);
   assert.doesNotMatch(fallback, /genericBadgeTiers|genericBadgeProgress|renderSubjectAction/);
+});
+
+test('Fagverkforsiden skjuler compatibility-lenken når merket allerede er integrert i Progresjon', () => {
+  assert.match(portalUi, /integratedBadgeRoute = subjectReady && badgePage === `\$\{subjectPage\}#fagverkIaProgresjon`/);
+  assert.match(portalUi, /badgePage && !integratedBadgeRoute/);
+  assert.match(portalUi, /class="fagverk-portal-compat"/);
 });
 
 test('rich runtime og statisk teori kan ikke auto-redirectes av equivalence-auditen', () => {
