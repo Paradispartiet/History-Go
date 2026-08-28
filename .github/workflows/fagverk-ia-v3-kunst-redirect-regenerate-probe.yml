@@ -1,0 +1,57 @@
+name: Fagverk IA v3 Kunst redirect regenerate probe
+
+on:
+  pull_request:
+    paths:
+      - 'data/fag/kunst/merke_kunst (2).html'
+      - 'data/fag/kunst/archive/merke_kunst_legacy_20260828.html'
+      - 'data/fagverk/fagverk_portal.json'
+      - 'merker/merker.html'
+      - 'scripts/audit-fagverk-kunst-legacy-theory.mjs'
+      - 'scripts/audit-fagverk-kunst-legacy-adjudication.mjs'
+      - 'tests/fagverk-kunst-legacy-theory-audit.test.mjs'
+      - 'tests/fagverk-kunst-legacy-theory-adjudication.test.mjs'
+      - 'tests/fagverk-badge-equivalence.test.mjs'
+      - '.github/workflows/fagverk-ia-v3-kunst-redirect-regenerate-probe.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate-and-clean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Regenerate deterministic Kunst redirect artifacts
+        run: |
+          test "$(git hash-object 'data/fag/kunst/archive/merke_kunst_legacy_20260828.html')" = '086d2e19642ad42bfe3b494690d3e1fc250c9d60'
+          node --check scripts/audit-fagverk-kunst-legacy-theory.mjs
+          node --check scripts/audit-fagverk-kunst-legacy-adjudication.mjs
+          node scripts/audit-fagverk-kunst-legacy-theory.mjs --write-report
+          node --test tests/fagverk-kunst-legacy-theory-audit.test.mjs
+          node scripts/audit-fagverk-kunst-legacy-adjudication.mjs
+          node --test tests/fagverk-kunst-legacy-theory-adjudication.test.mjs
+          node scripts/audit-fagverk-badge-equivalence.mjs
+          node --test tests/fagverk-badge-equivalence.test.mjs
+          node scripts/audit-fagverk-general-engine.mjs --write-report
+          node scripts/audit-fagverk-general-engine.mjs
+          node --test tests/fagverk-general-engine.test.mjs
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node --test tests/fagverk-release-manifest.test.mjs
+      - name: Commit generated artifacts and remove probe
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/fagverk-ia-v3-kunst-redirect-regenerate-probe.yml
+          git add reports/fagverk/kunst-legacy-theory-audit.json \
+                  reports/fagverk/general-engine-audit.json \
+                  data/fagverk/fagverk_release.json
+          git commit -m 'Regenerate Kunst redirect deterministic artifacts'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
