@@ -37,6 +37,7 @@ on:
       - 'scripts/audit-fagverk-media-complete.mjs'
       - 'scripts/audit-fagverk-musikk.mjs'
       - 'scripts/audit-fagverk-litteratur-legacy-theory.mjs'
+      - 'scripts/audit-fagverk-litteratur-legacy-adjudication.mjs'
       - 'scripts/audit-subkultur-theory-attribution-v1.mjs'
       - 'tools/audit-historie-theory-integrity.mjs'
       - 'tools/audit-by-theory-integrity.mjs'
@@ -59,6 +60,7 @@ on:
       - 'tests/musikk-theory-integrity.test.mjs'
       - 'tests/litteratur-theory-integrity.test.mjs'
       - 'tests/fagverk-litteratur-legacy-theory-audit.test.mjs'
+      - 'tests/fagverk-litteratur-legacy-theory-adjudication.test.mjs'
       - 'tests/natur-theory-integrity.test.mjs'
       - 'tests/helse-theory-integrity.test.mjs'
       - 'tests/naeringsliv-theory-integrity.test.mjs'
@@ -92,6 +94,7 @@ jobs:
         run: |
           node --check scripts/audit-fagverk-theory-integrity.mjs
           node --check scripts/audit-fagverk-litteratur-legacy-theory.mjs
+          node --check scripts/audit-fagverk-litteratur-legacy-adjudication.mjs
           node --check tools/audit-by-theory-integrity.mjs
           node --check tools/audit-kunst-theory-integrity.mjs
           node --check tools/audit-media-theory-integrity.mjs
@@ -113,6 +116,7 @@ jobs:
           node --test tests/musikk-theory-integrity.test.mjs
           node --test tests/litteratur-theory-integrity.test.mjs
           node --test tests/fagverk-litteratur-legacy-theory-audit.test.mjs
+          node --test tests/fagverk-litteratur-legacy-theory-adjudication.test.mjs
           node --test tests/natur-theory-integrity.test.mjs
           node --test tests/helse-theory-integrity.test.mjs
           node --test tests/naeringsliv-theory-integrity.test.mjs
