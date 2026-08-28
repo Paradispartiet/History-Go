@@ -1,0 +1,164 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "frederik_holst",
+  "profile_file": "data/people/historie/oslo/botsfengselet/frederik_holst.json",
+  "identity": {
+    "canonical_identity": "Den norske legen og professoren Frederik Holst (1791–1871).",
+    "name_variants": [
+      "Frederik Holst",
+      "Fredrik Holst"
+    ],
+    "not": [
+      "fotballspilleren Frederik Holst"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "identity",
+      "claim": "Frederik Holst levde fra 1791 til 1871 og var lege og professor.",
+      "status": "verified",
+      "source_url": "https://tidsskriftet.no/2001/12/medisinsk-historie/frederik-holst-og-fengslene",
+      "source_location": "innledning og ramme om Holst",
+      "source_type": "scholarly",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-28",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "prison_studies",
+      "claim": "Holst studerte utenlandske fengsler og skrev om fengselsarkitektur, hygiene og kontroll.",
+      "status": "verified",
+      "source_url": "https://tidsskriftet.no/2001/12/medisinsk-historie/frederik-holst-og-fengslene",
+      "source_location": "materiale, resultater og omtalen av 1823-boken",
+      "source_type": "scholarly",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-28",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "commission",
+      "claim": "Holst var sentral i Straffeanstaltkommisjonen av 1837 og påvirket planleggingen av Botsfengselet.",
+      "status": "verified",
+      "source_url": "https://tidsskriftet.no/2001/12/medisinsk-historie/frederik-holst-og-fengslene",
+      "source_location": "avsnittene om kommisjonen og Botsfengselet",
+      "source_type": "scholarly",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-28",
+      "evidence_level": "explicit"
+    },
+    {
+      "id": "boundary",
+      "claim": "Holst var en faglig premissleverandør, ikke Botsfengselets arkitekt eller direktør.",
+      "status": "verified",
+      "source_url": "https://tidsskriftet.no/2001/12/medisinsk-historie/frederik-holst-og-fengslene",
+      "source_location": "skillet mellom kommisjonsarbeid, Schirmers arkitektrolle og fengselsledelsen",
+      "source_type": "scholarly",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-28",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "image",
+      "claim": "Commons-filen identifiserer portrettet som Frederik Holst og oppgir Wilhelm Peters som kunstner.",
+      "status": "verified",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Fredrik_Holst.jpg",
+      "source_location": "Summary og Licensing",
+      "source_type": "archive",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-28",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "identity"
+    ],
+    "kindLabel": [
+      "identity"
+    ],
+    "year": [
+      "commission"
+    ],
+    "placeId": [
+      "commission"
+    ],
+    "places[botsfengselet]": [
+      "commission"
+    ],
+    "works[id=betragtninger_britiske_faengsler_1823].title": [
+      "prison_studies"
+    ],
+    "works[id=betragtninger_britiske_faengsler_1823].year": [
+      "prison_studies"
+    ],
+    "works[id=betragtninger_britiske_faengsler_1823].role": [
+      "prison_studies"
+    ],
+    "works[id=betragtninger_britiske_faengsler_1823].place": [
+      "prison_studies"
+    ],
+    "works[id=betragtninger_britiske_faengsler_1823].summary": [
+      "prison_studies"
+    ],
+    "image": [
+      "image"
+    ],
+    "cardImage": [
+      "image"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "prison_studies",
+          "commission"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "prison_studies"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "commission"
+        ]
+      },
+      {
+        "sentence": 4,
+        "claim_ids": [
+          "commission"
+        ]
+      },
+      {
+        "sentence": 5,
+        "claim_ids": [
+          "boundary"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "5/5",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-08-28",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}
