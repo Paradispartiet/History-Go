@@ -30,8 +30,19 @@ test('subject-roten har fem tydelige hovedinnganger uten å lage fem nye routes'
   for (const id of ['fagverkIaOversikt', 'fagverkIaEmner', 'fagverkIaLaerestoff', 'fagverkIaUtforsk', 'fagverkIaProgresjon']) {
     assert.match(html, new RegExp(`id="${id}"`));
     assert.match(html, new RegExp(`href="#${id}"`));
+    assert.match(ia, new RegExp(`['"]${id}['"]`));
   }
   assert.match(html, /aria-label="I dette faget"/);
+});
+
+test('subject-roten viser én hovedflate om gangen med hash-state og bevarer nested curriculum-ankere', () => {
+  assert.match(ia, /section\.hidden = section\.id !== activeViewId/);
+  assert.match(ia, /link\.setAttribute\('aria-current', 'page'\)/);
+  assert.match(ia, /global\.history\.pushState\(null, '', `#\$\{targetId\}`\)/);
+  assert.match(ia, /global\.addEventListener\('hashchange'/);
+  assert.match(ia, /target\?\.closest\?\.\('\.fagverk-ia-section'\)/);
+  assert.match(ia, /scrollNestedTarget/);
+  assert.doesNotMatch(ia, /params\.set\(['"]view['"]/);
 });
 
 test('emnekatalogen viser normaliserte canonicale emner uavhengig av progresjon', () => {
