@@ -9,6 +9,7 @@ const badgeUi = fs.readFileSync('js/fagverk-ia-v3-badge-progress.js', 'utf8');
 const fallback = fs.readFileSync('js/merke-fallback.js', 'utf8');
 const portalUi = fs.readFileSync('js/fagverk-forside.js', 'utf8');
 const badgeIndex = fs.readFileSync('merker/merker.html', 'utf8');
+const historieCompatibility = fs.readFileSync('data/fag/historie/merke_historie (1).html', 'utf8');
 
 function runAudit() {
   const result = spawnSync(process.execPath, ['scripts/audit-fagverk-badge-equivalence.mjs'], { encoding: 'utf8' });
@@ -19,18 +20,19 @@ function runAudit() {
 test('badge equivalence audit klassifiserer alle canonicale fag uten ukjent familie', () => {
   const audit = runAudit();
   assert.equal(audit.rows.length, audit.canonicalSubjectCount);
-  assert.ok(audit.counts.progress_route >= 3);
+  assert.ok(audit.counts.progress_route >= 4);
   assert.ok(audit.counts.rich_runtime >= 1);
   assert.ok(audit.counts.legacy_static_theory >= 1);
   assert.ok(audit.counts.legacy_stub >= 1);
   assert.equal(audit.rows.some((row) => ['unknown', 'missing'].includes(row.family)), false);
 });
 
-test('generic fallback-fagene og adjudisert By er migrert til integrert Progresjon', () => {
+test('generic fallback-fagene, By og Historie er migrert til integrert Progresjon', () => {
   const byId = new Map(portal.categories.map((item) => [item.id, item]));
   assert.equal(byId.get('helse').badgePage, 'fagverk.html?subject=helse#fagverkIaProgresjon');
   assert.equal(byId.get('utdanning').badgePage, 'fagverk.html?subject=utdanning#fagverkIaProgresjon');
   assert.equal(byId.get('by').badgePage, 'fagverk.html?subject=by#fagverkIaProgresjon');
+  assert.equal(byId.get('historie').badgePage, 'fagverk.html?subject=historie#fagverkIaProgresjon');
   assert.equal(portal.categories.some((item) => String(item.badgePage).startsWith('merke.html?badge=')), false);
   assert.equal(byId.get('politikk').badgePage, 'data/fag/politikk/merke_politikk.html');
 });
@@ -56,27 +58,39 @@ test('den gamle generiske merke-URL-en er compatibility-redirect, ikke en ny pro
   assert.doesNotMatch(fallback, /genericBadgeTiers|genericBadgeProgress|renderSubjectAction/);
 });
 
+test('Historie sin gamle direkte URL er compatibility-redirect etter arkivering', () => {
+  assert.match(historieCompatibility, /location\.replace/);
+  assert.match(historieCompatibility, /subject=historie#fagverkIaProgresjon/);
+  assert.doesNotMatch(historieCompatibility, /id="felt"|id="begreper"/);
+});
+
 test('Fagverkforsiden skjuler compatibility-lenken når merket allerede er integrert i Progresjon', () => {
   assert.match(portalUi, /integratedBadgeRoute = subjectReady && badgePage === `\$\{subjectPage\}#fagverkIaProgresjon`/);
   assert.match(portalUi, /badgePage && !integratedBadgeRoute/);
   assert.match(portalUi, /class="fagverk-portal-compat"/);
 });
 
-test('Alle merker sender adjudisert By til integrert Progresjon og ikke tilbake til legacy-teori', () => {
+test('Alle merker sender By og Historie til integrert Progresjon og ikke tilbake til legacy-teori', () => {
   assert.match(badgeIndex, /href="\.\.\/fagverk\.html\?subject=by#fagverkIaProgresjon"/);
+  assert.match(badgeIndex, /href="\.\.\/fagverk\.html\?subject=historie#fagverkIaProgresjon"/);
   assert.doesNotMatch(badgeIndex, /href="\.\.\/data\/fag\/by\/merke_by\.html"/);
+  assert.doesNotMatch(badgeIndex, /href="\.\.\/data\/fag\/historie\/merke_historie \(1\)\.html"/);
 });
 
-test('rich runtime og ikke-adjudisert statisk teori kan ikke auto-redirectes av equivalence-auditen', () => {
+test('rich runtime og fortsatt ikke-migrert statisk teori kan ikke auto-redirectes av equivalence-auditen', () => {
   const audit = runAudit();
   const politics = audit.rows.find((row) => row.id === 'politikk');
   const history = audit.rows.find((row) => row.id === 'historie');
   const by = audit.rows.find((row) => row.id === 'by');
+  const pendingStatic = audit.rows.find((row) => row.family === 'legacy_static_theory');
   assert.equal(politics.family, 'rich_runtime');
   assert.equal(politics.equivalence, 'pending_runtime_migration');
-  assert.equal(history.family, 'legacy_static_theory');
-  assert.equal(history.equivalence, 'pending_content_audit');
+  assert.equal(history.family, 'progress_route');
+  assert.equal(history.equivalence, 'complete');
+  assert.equal(history.action, 'already_migrated');
   assert.equal(by.family, 'progress_route');
   assert.equal(by.equivalence, 'complete');
   assert.equal(by.action, 'already_migrated');
+  assert.ok(pendingStatic, 'Minst én legacy fullteoriside må fortsatt finnes mens Batch C rulles ut fagvis');
+  assert.equal(pendingStatic.equivalence, 'pending_content_audit');
 });

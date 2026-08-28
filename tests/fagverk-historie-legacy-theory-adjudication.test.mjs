@@ -4,6 +4,9 @@ import fs from 'node:fs';
 import { spawnSync } from 'node:child_process';
 
 const portal = JSON.parse(fs.readFileSync('data/fagverk/fagverk_portal.json', 'utf8'));
+const legacyArchive = 'data/fag/historie/archive/merke_historie_full_teori_legacy_20260828.html';
+const compatibilityPage = 'data/fag/historie/merke_historie (1).html';
+const progressRoute = 'fagverk.html?subject=historie#fagverkIaProgresjon';
 
 function adjudicationAudit() {
   const result = spawnSync(process.execPath, ['scripts/audit-fagverk-historie-legacy-adjudication.mjs'], { encoding: 'utf8' });
@@ -41,15 +44,20 @@ test('legacy diskontinuitet adjudiseres til canonicalt Historisk tid og periodis
   assert.match(concepts.rationale, /Brudd/);
 });
 
-test('Historie-adjudiseringen er redirect-klar, men kan ikke endre portalruten i samme tranche', () => {
+test('Historie-adjudiseringen holder migrated route fail-closed etter redirect', () => {
   const report = adjudicationAudit();
   assert.equal(report.summary.anchorAuditRedirectReady, false, 'anker-auditen alene skal aldri godkjenne redirect');
   assert.equal(report.summary.redirectReady, true);
-  assert.equal(report.summary.redirectTarget, 'fagverk.html?subject=historie#fagverkIaProgresjon');
-  assert.equal(report.summary.portalStillLegacy, true);
+  assert.equal(report.summary.redirectTarget, progressRoute);
+  assert.equal(report.summary.portalRoute, progressRoute);
+  assert.equal(report.summary.portalRedirected, true);
+  assert.equal(report.summary.legacyBadgeSourcePreserved, true);
+  assert.equal(report.summary.compatibilityRedirectPresent, true);
 
   const historie = portal.categories.find((item) => item.id === 'historie');
-  assert.equal(historie.badgePage, 'data/fag/historie/merke_historie (1).html');
+  assert.equal(historie.badgePage, progressRoute);
+  assert.ok(fs.existsSync(legacyArchive));
+  assert.ok(fs.existsSync(compatibilityPage));
 });
 
 test('Historie bidrag er eksplisitt gammel produkttekst, ikke canonical kunnskapsinnhold', () => {

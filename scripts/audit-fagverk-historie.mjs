@@ -16,7 +16,9 @@ const PATHS = Object.freeze({
   inventory: 'data/fagverk/subject_inventory.json',
   status: 'data/fagverk/subject_status.json',
   registry: 'data/fagverk/fagverk_registry.json',
-  badgePage: 'data/fag/historie/merke_historie (1).html',
+  legacyBadgePage: 'data/fag/historie/archive/merke_historie_full_teori_legacy_20260828.html',
+  compatibilityBadgePage: 'data/fag/historie/merke_historie (1).html',
+  badgeProgressRoute: 'fagverk.html?subject=historie#fagverkIaProgresjon',
   theoryEvidence: 'data/fag/historie/theory_evidence_historie_canonical_v1.json',
   universalCoverage: 'reports/historie-universal-coverage/historie-universal-coverage.json',
   curriculumArchitecture: 'data/fag/historie/curriculum_architecture_historie_v1.json',
@@ -214,7 +216,11 @@ export function auditHistorySubject({ writeReport = false, checkReport = true } 
   assert(manifestEntry && portalEntry && inventoryEntry && statusEntry, 'Historie mangler i manifest, portal, inventar eller status');
   assert(portalEntry.subjectStatus === 'materialized', 'Historie er ikke materialized');
   assert(portalEntry.subjectPage === 'fagverk.html?subject=historie', 'Historie har feil fagsiderute');
-  assert(portalEntry.badgePage === PATHS.badgePage && fs.existsSync(abs(PATHS.badgePage)), 'Historie har ugyldig merkesiderute');
+  assert(portalEntry.badgePage === PATHS.badgeProgressRoute, 'Historie har feil integrert merkesiderute');
+  assert(fs.existsSync(abs(PATHS.legacyBadgePage)), 'Historie mangler arkivert legacy-teori');
+  assert(fs.existsSync(abs(PATHS.compatibilityBadgePage)), 'Historie mangler compatibility-merkeside');
+  const compatibilityBadgeHtml = read(PATHS.compatibilityBadgePage);
+  assert(compatibilityBadgeHtml.includes('location.replace') && compatibilityBadgeHtml.includes('subject=historie#fagverkIaProgresjon'), 'Historie compatibility-merkeside redirecter ikke til Progresjon');
   assert(statusEntry.navigationStatus === 'materialized' && statusEntry.assessmentStatus === 'audited', 'Historie har usynkron strukturell status');
   assert(['structure_ready', 'chapters_in_progress', 'complete', 'expanded_and_audited'].includes(statusEntry.editorialStatus), 'Historie har ugyldig redaksjonell status');
   assert(inventoryEntry.schemaFamily === 'standard_canonical', 'Historie bruker feil schemafamilie');
