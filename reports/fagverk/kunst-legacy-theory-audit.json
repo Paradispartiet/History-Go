@@ -4,7 +4,8 @@
   "legacy": {
     "badgePage": "data/fag/kunst/merke_kunst (2).html",
     "sectionCount": 10,
-    "knowledgeSectionCount": 10
+    "knowledgeSectionCount": 9,
+    "productBoundarySectionCount": 1
   },
   "canonical": {
     "manifestFiles": [
@@ -60,17 +61,21 @@
       "data/fagverk/kunst/tid-og-transformasjon/brief.json",
       "data/fagverk/kunst/tid-og-transformasjon/claims.json"
     ],
+    "categoryBoundaryOwner": "data/categories/category_contract.json",
     "corpusCharacterCount": 663979
   },
   "summary": {
-    "knowledgeSectionCount": 10,
-    "anchorCompleteCount": 6,
-    "manualReviewCount": 4,
+    "knowledgeSectionCount": 9,
+    "productBoundarySectionCount": 1,
+    "anchorCompleteCount": 7,
+    "productBoundaryCompleteCount": 1,
+    "manualReviewCount": 2,
     "manualReview": [
       "felt",
-      "offentlig-rom",
-      "arbeid",
-      "avgrensning"
+      "offentlig-rom"
+    ],
+    "uniqueMissingAnchorTerms": [
+      "gatekunst"
     ],
     "redirectReady": false,
     "redirectBlockReason": "Anchor coverage establishes only candidate canonical ownership. Kunst redirect remains blocked until every knowledge section has explicit editorial adjudication and any semantic gaps are migrated or rejected with evidence."
@@ -80,6 +85,7 @@
       "id": "felt",
       "heading": "1. Felt",
       "role": "knowledge",
+      "ownerFile": null,
       "legacyCharacterCount": 288,
       "anchorCoverage": 0.9,
       "anchors": [
@@ -155,6 +161,7 @@
       "id": "verk",
       "heading": "2. Verk og uttrykk",
       "role": "knowledge",
+      "ownerFile": null,
       "legacyCharacterCount": 307,
       "anchorCoverage": 1,
       "anchors": [
@@ -222,6 +229,7 @@
       "id": "metode",
       "heading": "3. Metoder",
       "role": "knowledge",
+      "ownerFile": null,
       "legacyCharacterCount": 420,
       "anchorCoverage": 1,
       "anchors": [
@@ -281,6 +289,7 @@
       "id": "institusjoner",
       "heading": "4. Kunstinstitusjoner",
       "role": "knowledge",
+      "ownerFile": null,
       "legacyCharacterCount": 243,
       "anchorCoverage": 1,
       "anchors": [
@@ -343,6 +352,7 @@
       "id": "offentlig-rom",
       "heading": "5. Kunst i offentlig rom",
       "role": "knowledge",
+      "ownerFile": null,
       "legacyCharacterCount": 209,
       "anchorCoverage": 0.875,
       "anchors": [
@@ -409,6 +419,7 @@
       "id": "historie",
       "heading": "6. Kunsthistorie",
       "role": "knowledge",
+      "ownerFile": null,
       "legacyCharacterCount": 197,
       "anchorCoverage": 1,
       "anchors": [
@@ -469,8 +480,9 @@
       "id": "arbeid",
       "heading": "7. Kunst som arbeid",
       "role": "knowledge",
+      "ownerFile": null,
       "legacyCharacterCount": 212,
-      "anchorCoverage": 0.917,
+      "anchorCoverage": 1,
       "anchors": [
         {
           "alternatives": [
@@ -523,9 +535,10 @@
         },
         {
           "alternatives": [
-            "konservator"
+            "konservator",
+            "konservering"
           ],
-          "found": null
+          "found": "konservering"
         },
         {
           "alternatives": [
@@ -546,17 +559,14 @@
           "found": "produsent"
         }
       ],
-      "missingAnchors": [
-        [
-          "konservator"
-        ]
-      ],
-      "contentStatus": "canonical_anchor_gaps_manual_review_required"
+      "missingAnchors": [],
+      "contentStatus": "canonical_anchor_coverage_complete_claim_review_pending"
     },
     {
       "id": "makt",
       "heading": "8. Makt og kanon",
       "role": "knowledge",
+      "ownerFile": null,
       "legacyCharacterCount": 216,
       "anchorCoverage": 1,
       "anchors": [
@@ -625,6 +635,7 @@
       "id": "begreper",
       "heading": "9. Kjernebegreper",
       "role": "knowledge",
+      "ownerFile": null,
       "legacyCharacterCount": 203,
       "anchorCoverage": 1,
       "anchors": [
@@ -738,22 +749,22 @@
     {
       "id": "avgrensning",
       "heading": "10. Avgrensning mot Scenekunst",
-      "role": "knowledge",
+      "role": "product_boundary",
+      "ownerFile": "data/categories/category_contract.json",
       "legacyCharacterCount": 260,
-      "anchorCoverage": 0.857,
+      "anchorCoverage": 1,
       "anchors": [
+        {
+          "alternatives": [
+            "kunst"
+          ],
+          "found": "kunst"
+        },
         {
           "alternatives": [
             "scenekunst"
           ],
-          "found": null
-        },
-        {
-          "alternatives": [
-            "forestilling",
-            "performance"
-          ],
-          "found": "forestilling"
+          "found": "scenekunst"
         },
         {
           "alternatives": [
@@ -769,31 +780,20 @@
         },
         {
           "alternatives": [
-            "levende",
-            "live"
+            "billedkunst",
+            "visuell kunst"
           ],
-          "found": "levende"
+          "found": "billedkunst"
         },
         {
           "alternatives": [
-            "visuell"
+            "sceneinstitusjoner"
           ],
-          "found": "visuell"
-        },
-        {
-          "alternatives": [
-            "materiell",
-            "materialitet"
-          ],
-          "found": "materiell"
+          "found": "sceneinstitusjoner"
         }
       ],
-      "missingAnchors": [
-        [
-          "scenekunst"
-        ]
-      ],
-      "contentStatus": "canonical_anchor_gaps_manual_review_required"
+      "missingAnchors": [],
+      "contentStatus": "canonical_product_boundary_complete"
     }
   ]
 }
