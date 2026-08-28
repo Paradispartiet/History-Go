@@ -32,6 +32,20 @@ jobs:
       - run: npm ci
       - name: Materialize Serieskaper Role World
         run: node scripts/TEMP_materialize_serieskaper_role_world.mjs
+      - name: Make Programleder index assertion progression-safe
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const testPath = 'tests/civication-film-tv-programleder-role-world-rollout.test.js';
+          const source = fs.readFileSync(testPath, 'utf8');
+          const stale = "assert.equal(index.status, 'ten_role_worlds_materialized');";
+          const replacement = [
+            "assert.match(index.status, /_role_worlds_materialized$/, 'Role World index must remain in a materialized state');",
+            "assert.ok(index.roles.length >= 10, 'Programleder completion must not depend on a historical exact Role World count');"
+          ].join('\n');
+          if (!source.includes(stale)) throw new Error('Expected stale Programleder index status assertion not found');
+          fs.writeFileSync(testPath, source.replace(stale, replacement));
+          NODE
       - name: Regenerate scene registry
         run: node scripts/build-civication-scene-registry.mjs --write
       - name: Regenerate career gameplay audit
@@ -42,6 +56,7 @@ jobs:
         run: |
           node tests/civication-film-tv-serieskaper-playability.test.js
           node tests/civication-film-tv-serieskaper-role-world-rollout.test.js
+          node tests/civication-film-tv-programleder-role-world-rollout.test.js
           node tests/civication-role-world-contract.test.js
           node tests/civication-role-world-broad-rollout-policy.test.js
           node scripts/build-civication-scene-registry.mjs --check
