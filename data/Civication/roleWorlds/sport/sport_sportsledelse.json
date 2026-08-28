@@ -1,0 +1,1272 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "sport",
+  "role_scope": "sport_sportsledelse",
+  "title": "Sportsledelse — beslutningsspor, korrigerbar rytme og situert styringstillit",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "Å bruke sportslig lederstatus til langsiktig retning under resultat- og markedspress uten at status, hastverk eller personlig standing glir over i kontrakts-, budsjett-, arbeidsgiver- eller medisinsk myndighet.",
+    "description": "Role World-en lukker readiness-gjelden persistent_work_object, rhythm_waiting_handoff_rework og situated_reputation. Den følger strategi, trener/stab, rekruttering, budsjett, akademivei og fullmakt gjennom et vedvarende sportslig beslutningsspor uten ny runtime eller ny styringsmotor."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "bureaucratic_power",
+    "status_anxiety",
+    "shame_reputation",
+    "loyalty_up_down",
+    "social_mask",
+    "precarity",
+    "care_vs_efficiency"
+  ],
+  "social_environments": [
+    "Klubbkontoret der vedtatt strategi møter tabell, styrepress og behovet for å skille sportslig anbefaling fra formelt vedtak.",
+    "Det sportslige styringsbordet der trener-evaluering, resultatstøy, arbeidsgiveransvar og neste beslutningspunkt må holdes sammen.",
+    "Rekrutteringsflaten der spillerkvalitet, alternativkostnad, lønnsrom, fullmakt og markedstid konkurrerer om oppmerksomheten.",
+    "Trener- og akademibroen der stabsroller, utviklingsminutter og seniorkrav viser om klubbmodellen faktisk virker.",
+    "Overgangsvinduets tidskritiske forhandling der sportssjefens sportslige ja fortsatt må skilles fra klubbens bindende tilbud.",
+    "Supporter- og offentlighetsflaten der resultat og identitet skaper reell standing uten formell styringsfullmakt.",
+    "Privatlivet der klubbens prestisje og resultatpress må kunne skilles fra personlig verdi og fra beslutninger andre faktisk eier."
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "sportsledelse_board_world",
+      "social_function": "styreleder som representerer klubbens formelle styringsnivå og tester om sportssjefen kan gi retning uten fullmaktsglidning",
+      "class_position": "formell styremakt over klubbens overordnede styring",
+      "status": "høy organisatorisk status",
+      "power_over_player": "kan godkjenne eller avvise større sportslige/styringsmessige grep og gjøre resultatpress institusjonelt",
+      "wants": "retning, risiko, beslutningsklarhet og tydelig skille mellom anbefaling og styrevedtak",
+      "conceals": "at offentlig og intern resultaturo kan gjøre raske symbolgrep lettere å forsvare enn venting på bedre grunnlag",
+      "speech_style": "kort og styringsorientert; spør hva du anbefaler, hva du faktisk kan beslutte og hva som må tilbake til styret",
+      "teaches_player": "at tydelig ledelse også er å vise grensene for eget mandat"
+    },
+    {
+      "id": "sportsledelse_managing_director_world",
+      "social_function": "daglig leder som kobler sportslige anbefalinger til budsjett, arbeidsgiveransvar og signaturrett",
+      "class_position": "øverste operative arbeidsgiverlinje i den fiktive klubben",
+      "status": "høy formell organisasjonsstatus",
+      "power_over_player": "kan kontrollere budsjett/fullmakt og stoppe sportslige løfter som ikke er organisatorisk forankret",
+      "wants": "gjennomførbare beslutninger, sporbar økonomi og tydelig fullmaktskontroll",
+      "conceals": "at ønsket om raske avklaringer kan presse fram en enklere sportslig historie enn evidensen bærer",
+      "speech_style": "beslutnings- og rammeorientert; spør hva det koster, hvem som kan signere og hva som fortsatt mangler",
+      "teaches_player": "at sportslig kvalitet og bindende klubbvedtak er forskjellige ting"
+    },
+    {
+      "id": "sportsledelse_coach_world",
+      "social_function": "hovedtrener som eier daglig sportslig gjennomføring og samtidig blir evaluert av klubbens sportslige ledelse",
+      "class_position": "sentral faglig lederrolle med høy sportslig status men avgrenset arbeidsgiverfullmakt",
+      "status": "høy situert status i laget",
+      "power_over_player": "kan gjøre arbeidsro, metode og resultat til reelle sportslige spørsmål og påvirke hvor troverdig klubbstrategien virker i praksis",
+      "wants": "tydelig mandat, arbeidsro og evalueringskriterier som skiller stallproblem fra treneransvar",
+      "conceals": "at resultatpress kan gjøre støtte til blankofullmakt eller kritikk til personlig lojalitetstest",
+      "speech_style": "sportslig konkret; snakker om roller, kampmodell, stallbehov og hva trenerteamet faktisk kan påvirke",
+      "teaches_player": "at trenerstøtte er sterkest når kriterier og ansvar er eksplisitte"
+    },
+    {
+      "id": "sportsledelse_scout_world",
+      "social_function": "speidersjef som leverer rekrutteringsalternativer og synliggjør kvalitet, usikkerhet og markedstid",
+      "class_position": "fagspesialist med høy informasjonsmakt men begrenset formell beslutningsmyndighet",
+      "status": "høy situert rekrutteringsstatus",
+      "power_over_player": "kan åpne eller lukke sportslige alternativer gjennom scouting-evidens og tidskritiske markedsmuligheter",
+      "wants": "tydelig rekrutteringsprofil, beslutningskriterier og at scouting faktisk brukes i helhetscaset",
+      "conceals": "at begeistring for et navn kan gjøre alternativkostnad og usikkerhet mindre salient",
+      "speech_style": "evidens- og alternativorientert; beskriver kvalitet, risiko, pris, timing og sammenlignbare alternativer",
+      "teaches_player": "at en god spiller ikke automatisk er et godt klubbvalg"
+    },
+    {
+      "id": "sportsledelse_academy_world",
+      "social_function": "akademiansvarlig som gjør utviklingsvei og konsekvensen av førstelagsrekruttering synlig over tid",
+      "class_position": "utviklingsfaglig rolle med lavere hierarkisk makt enn sportssjef men høy situert kunnskap om unge spillere",
+      "status": "middels formell status, høy situert utviklingsstatus",
+      "power_over_player": "kan dokumentere om klubbens uttalte utviklingsmodell faktisk gir seniorminutter og reelle overganger",
+      "wants": "forutsigbar pathway, realistiske roller og rekrutteringsvalg som ikke blokkerer utvikling uten eksplisitt beslutning",
+      "conceals": "at langsiktig utviklingsoptimisme kan undervurdere førstelagets umiddelbare konkurransekrav",
+      "speech_style": "langsiktig og spillerutviklingsnær; spør hvilke minutter, roller og evalueringsvinduer som faktisk finnes",
+      "teaches_player": "at akademistrategi først er virkelig når den påvirker stallvalg"
+    },
+    {
+      "id": "sportsledelse_player_world",
+      "social_function": "førstelagsspiller som møter konsekvensen av trener-, stall- og rekrutteringsvalg som rolleforventninger i hverdagen",
+      "class_position": "arbeidstaker/utøver med høy sportslig synlighet men begrenset styringsmyndighet",
+      "status": "varierende prestasjons- og garderobestatus",
+      "power_over_player": "kan gjøre rolleuklarhet og rekrutteringskonsekvens synlig gjennom prestasjon, misnøye og behov for forutsigbarhet",
+      "wants": "rettferdig rolleforståelse, tydelig sportslig retning og at løfter om spilletid/posisjon ikke endres vilkårlig",
+      "conceals": "at egen karriereinteresse naturlig kan gjøre klubbens langsiktige helhet mindre viktig enn egen rolle",
+      "speech_style": "rolle- og konkurranseorientert; spør hva som forventes, hva som endres og hvorfor",
+      "teaches_player": "at sportslig styring blir sosial virkelighet i spillerens konkrete rolle"
+    },
+    {
+      "id": "sportsledelse_supporter_world",
+      "social_function": "supporterrepresentant som gjør offentlig resultatpress, klubbidentitet og behovet for forståelig retning synlig",
+      "class_position": "uten formell styringsmakt men med kollektiv symbolsk og offentlig påvirkning",
+      "status": "høy sosial synlighet, ingen formell arbeidsgivermyndighet",
+      "power_over_player": "kan øke eller redusere offentlig legitimitet og gjøre venting eller langsiktighet politisk dyrere",
+      "wants": "troverdig retning, resultater, identitet og en forklaring som ikke føles som bortforklaring",
+      "conceals": "at ønsket om synlig handling kan belønne grep som ikke har godt beslutningsgrunnlag",
+      "speech_style": "direkte og resultatnær; spør hvorfor klubben ikke handler og hva modellen faktisk lover",
+      "teaches_player": "at offentlig standing er reell makt, men ikke formell fullmakt"
+    },
+    {
+      "id": "sportsledelse_private_world",
+      "social_function": "privat nær relasjon som møter personen bak sportssjefrollen når resultatpress og klubbprestisje følger med hjem",
+      "class_position": "privat likemann uten sportslig eller organisatorisk myndighet",
+      "status": "emosjonell nærhet uten arbeidsrang",
+      "power_over_player": "kan utfordre behovet for å gjøre klubbens resultat til personlig verdi eller fortsette beslutninger privat etter at de er handoffet",
+      "wants": "at personen kan legge bort rollen når styre, daglig leder, trener eller marked eier neste steg",
+      "conceals": "at klubbens drama kan bli så sosialt altoppslukende at også privatlivet begynner å evaluere personen som sportssjef",
+      "speech_style": "uformell og direkte; spør om problemet faktisk trenger deg akkurat nå eller bare fyller hodet ditt",
+      "teaches_player": "at sportslig standing er situert og ikke identisk med personlig verdi"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "strategy_consistency",
+      "meaning": "om konkrete trener-, rekrutterings- og akademivalg faktisk følger vedtatt klubbstrategi",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "decision_trace_quality",
+      "meaning": "om premiss, alternativkostnad, fullmakt og beslutningseier forblir synlig til senere konsekvens",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "coach_evaluation_clarity",
+      "meaning": "om trener- og stabsarbeid evalueres mot eksplisitte kriterier fremfor resultatstøy eller lojalitet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "authority_handoff_clarity",
+      "meaning": "om kontrakt, budsjett, styrevalg og medisinsk vurdering sendes til faktisk beslutningseier uten fullmaktsglidning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "board_standing",
+      "meaning": "situert tillit hos styret til retning, risiko og mandatklar sportslig ledelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "managing_director_standing",
+      "meaning": "situert tillit hos daglig leder til økonomi-, arbeidsgiver- og fullmaktsklarhet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "coach_staff_standing",
+      "meaning": "situert tillit i trener/stab til rettferdig evaluering og tydelige roller",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "scouting_standing",
+      "meaning": "situert tillit i rekrutteringsmiljøet til konsistente kriterier og helhetsvurdering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "academy_standing",
+      "meaning": "situert tillit i akademiet til at utviklingsveien faktisk påvirker klubbens valg",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "player_standing",
+      "meaning": "situert tillit i stallen til rolleforutsigbarhet og sportslig rettferdighet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "supporter_standing",
+      "meaning": "situert offentlig tillit til sportslig retning uten at den blir styringsfullmakt",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "persistent_work_object_model": {
+    "id": "sportslig_beslutningsspor",
+    "runtime_binding": "editorial_only_existing_pipeline",
+    "new_runtime_state": false,
+    "fields": [
+      "club_strategy",
+      "coach_evaluation",
+      "squad_and_recruitment",
+      "budget_and_wage_room",
+      "academy_pathway",
+      "authority_owner",
+      "pending_evidence",
+      "next_decision"
+    ],
+    "rule": "Det sportslige beslutningssporet holder strategi, trener-evaluering, stall/rekruttering, budsjett, akademivei, ventende evidens og faktisk beslutningseier samlet. Sportslig anbefaling må ikke bli kontrakt, budsjettutvidelse eller styringsvedtak før riktig fullmakt og mandat foreligger.",
+    "lifecycle": [
+      {
+        "id": "strategy_baseline",
+        "meaning": "Vedtatt klubbstrategi oversettes til konkrete sportslige prioriteringer og eksplisitte avvikskriterier før resultatpresset kommer."
+      },
+      {
+        "id": "coach_evaluation_open",
+        "meaning": "Trener- og stabsbildet holdes åpent med dokumenterte kriterier, hva som fortsatt venter og hvem som eier eventuell arbeidsgiverbeslutning."
+      },
+      {
+        "id": "recruitment_case",
+        "meaning": "Spillerkvalitet, kostnad, stallrolle, akademivei og alternativkostnad bindes i samme sportslige case før klubben går videre."
+      },
+      {
+        "id": "authority_check",
+        "meaning": "Signaturrett, budsjett og fullmakt kontrolleres eksplisitt før sportslig anbefaling blir et bindende signal eller tilbud."
+      },
+      {
+        "id": "implementation_window",
+        "meaning": "Valgt sportslig løsning får et reelt observasjonsvindu der spilletid, stallbalanse, resultat og utviklingsvei kan følges uten tidlig seiersdom."
+      },
+      {
+        "id": "followup_rework",
+        "meaning": "Senere effekt brukes til å rebalansere stall, budsjett og utviklingsplan når tidligere alternativkostnad blir synlig."
+      },
+      {
+        "id": "half_year_synthesis",
+        "meaning": "Trener-, rekrutterings- og akademivalg sammenstilles mot vedtatt strategi slik at avvik og læring forblir sporbare."
+      },
+      {
+        "id": "next_window_decision",
+        "meaning": "Neste overgangsvindu starter fra dokumentert gevinst, kostnad, åpen evidens og faktisk fullmakt i stedet for en ny blank tavle."
+      }
+    ],
+    "ownership": [
+      {
+        "actor": "sportssjef",
+        "owns": "sportslig anbefaling, strategioppfølging, koordinering og beslutningsgrunnlag innen delegert mandat"
+      },
+      {
+        "actor": "board",
+        "owns": "styrebeslutninger og større styringsvalg som faktisk ligger hos styret"
+      },
+      {
+        "actor": "managing_director",
+        "owns": "arbeidsgiverfullmakt, økonomiske rammer og signaturrett der dette ligger i daglig leders mandat"
+      },
+      {
+        "actor": "coach_and_staff",
+        "owns": "trenerfaglig gjennomføring og avtalte ansvarsområder innen sitt mandat"
+      },
+      {
+        "actor": "scouting",
+        "owns": "scouting-evidens, alternativer og usikkerhet i rekrutteringsgrunnlaget"
+      },
+      {
+        "actor": "academy",
+        "owns": "utviklingsplan, relevante utviklingsdata og faktisk pathway for egne spillere"
+      },
+      {
+        "actor": "medical_staff",
+        "owns": "medisinsk vurdering og medisinsk fagansvar som sportssjefen ikke kan overta"
+      }
+    ]
+  },
+  "work_rhythm_model": {
+    "runtime_binding": "editorial_only_existing_pipeline",
+    "continuity_thread_key": "sport_sportsledelse.case.profilrekruttering_og_klubbmodell",
+    "new_runtime_state": false,
+    "rule": "Waiting, handoff og rework er eksplisitte arbeidsfaser i eksisterende Scene Pipeline. Resultatpress, markedstid og standing kan endre prioritering, men kan aldri skape kontraktsfullmakt, budsjett, arbeidsgivermyndighet eller medisinsk myndighet som sportssjefen ikke faktisk har.",
+    "states": [
+      {
+        "id": "waiting",
+        "meaning": "Arbeidet står legitimt i venteposisjon mens trenerkriterier, scouting-evidens, fullmakt, medisinsk avklaring eller et faktisk utviklings- og spilletidsvindu mangler.",
+        "guardrails": [
+          "venting skal ha tydelig grunn, eier og hva som må bli sant før neste beslutning",
+          "venting kan ikke brukes til å late som markedstid eller resultatpress allerede har avgjort sportslig eller formell beslutning"
+        ]
+      },
+      {
+        "id": "handoff",
+        "meaning": "Et sportslig spørsmål overleveres med siste bekreftede status, premisser, usikkerhet og hva mottakeren faktisk eier: styrevalg, arbeidsgiverfullmakt, scouting, treneransvar, akademi eller medisinsk vurdering.",
+        "guardrails": [
+          "handoff skal bevare forskjellen mellom anbefaling og bindende beslutning",
+          "mottakerens myndighet følger faktisk rolle og fullmakt, ikke standing eller sportssjefens preferanse"
+        ]
+      },
+      {
+        "id": "rework",
+        "meaning": "Rekrutteringscase, stallplan, trenerkriterier, stabsroller eller akademibro returneres for ny avgrensning når evidens, budsjett, fullmakt eller senere systemeffekt endrer premissene.",
+        "guardrails": [
+          "rework skal bevare tidligere premiss og beslutningseier i beslutningssporet",
+          "rework skal ikke omskrive en tidligere beslutning for å beskytte lederens standing eller resultatfortelling"
+        ]
+      },
+      {
+        "id": "interruption",
+        "meaning": "Resultatkrise, overgangsfrist, medisinsk usikkerhet eller styringspress kan avbryte planlagt arbeid og endre rekkefølgen uten å endre formelle fullmakter.",
+        "guardrails": [
+          "hastegrad kan gjøre eskalering raskere men ikke skape signaturrett eller budsjett",
+          "medisinsk spørsmål handoffes til medisinsk fagansvar i stedet for å løses av sportslig ledelse"
+        ]
+      },
+      {
+        "id": "delayed_consequence",
+        "meaning": "Effekt av trener-, rekrutterings-, stall- og akademivalg vurderes først når senere resultater, spilletid, lønnsrom eller neste overgangsvindu faktisk viser systemeffekten.",
+        "guardrails": [
+          "en sportslig vellykket signering kan fortsatt ha betydelig alternativkostnad",
+          "senere standing eller resultat kan ikke retroaktivt gjøre et fullmaktsbrudd legitimt"
+        ]
+      }
+    ],
+    "transitions": [
+      {
+        "from": "waiting",
+        "to": "handoff",
+        "trigger": "riktig beslutningseier eller nødvendig fag-/fullmaktsavklaring må ta over neste steg"
+      },
+      {
+        "from": "handoff",
+        "to": "rework",
+        "trigger": "styre, daglig leder, trener, scouting eller akademi viser at caset må bygges om før gjennomføring"
+      },
+      {
+        "from": "rework",
+        "to": "waiting",
+        "trigger": "ny versjon trenger markedssvar, utviklingsvindu, evaluering eller formell godkjenning"
+      },
+      {
+        "from": "waiting",
+        "to": "interruption",
+        "trigger": "resultatkrise, overgangsfrist eller medisinsk usikkerhet endrer prioriteten"
+      },
+      {
+        "from": "interruption",
+        "to": "handoff",
+        "trigger": "saken sendes til faktisk arbeidsgiver-, styre- eller fagansvarlig eier"
+      },
+      {
+        "from": "rework",
+        "to": "delayed_consequence",
+        "trigger": "sportslig løsning er satt ut og et reelt observasjonsvindu starter"
+      },
+      {
+        "from": "delayed_consequence",
+        "to": "rework",
+        "trigger": "senere stall-, budsjett- eller akademieffekt viser at modellen må rebalanseres"
+      }
+    ]
+  },
+  "situated_reputation_model": {
+    "global_score_allowed": false,
+    "rule": "Standing er audience-spesifikk og kan divergere mellom styre, daglig leder, trener/stab, scouting/rekruttering, akademi, spillere og supportere. Ingen global reputation-score kan brukes som kontraktsfullmakt, budsjett, arbeidsgivermyndighet, medisinsk autoritet eller rett til å overta andre styringsroller.",
+    "audiences": [
+      {
+        "id": "board",
+        "standing_axis": "board_standing",
+        "cares_about": [
+          "sportslig retning som kan forsvares under resultatpress",
+          "tydelig beslutningskart og risiko",
+          "at større grep forankres hos riktig styringsnivå"
+        ],
+        "cannot_grant": "signaturrett, ubegrenset arbeidsgivermyndighet, medisinsk fagansvar eller budsjett uten faktisk styrevedtak og organisasjonsfullmakt"
+      },
+      {
+        "id": "managing_director",
+        "standing_axis": "managing_director_standing",
+        "cares_about": [
+          "gjennomførbare sportslige anbefalinger innen økonomisk ramme",
+          "tydelig fullmaktskontroll før bindende løfter",
+          "sporbar kobling mellom sportslig behov og organisasjonsansvar"
+        ],
+        "cannot_grant": "sportslig standing kan ikke i seg selv utvide budsjett, signaturrett, arbeidsgiverfullmakt eller rett til å overstyre styre og medisinsk fagansvar"
+      },
+      {
+        "id": "coach_and_staff",
+        "standing_axis": "coach_staff_standing",
+        "cares_about": [
+          "arbeidsro med eksplisitte evalueringskriterier",
+          "tydelige faglige roller i trenerteamet",
+          "at sportssjefen skiller støtte fra symbolsk resultatreaksjon"
+        ],
+        "cannot_grant": "hovedtrenerens faglige rolle, medisinsk myndighet, kontraktsfullmakt eller rett til å gjøre popularitet til sportslig evidens"
+      },
+      {
+        "id": "scouting_and_recruitment",
+        "standing_axis": "scouting_standing",
+        "cares_about": [
+          "klar rekrutteringsprofil og beslutningskriterier",
+          "at scouting-evidens faktisk påvirker caset",
+          "at alternativkostnad og usikkerhet ikke skjules av ett attraktivt navn"
+        ],
+        "cannot_grant": "bindende klubbtilbud, budsjettfullmakt, signaturrett eller rett til å definere hele klubbstrategien på grunnlag av scouting-standing"
+      },
+      {
+        "id": "academy",
+        "standing_axis": "academy_standing",
+        "cares_about": [
+          "reell utviklingsvei til seniornivå",
+          "at spilletid og stallrolle vurderes før nye kjøp",
+          "at langsiktig klubbmodell overlever kortsiktig resultatpress"
+        ],
+        "cannot_grant": "sportssjefen kontraktsfullmakt, budsjett eller rett til å garantere seniorminutter uten faktisk sportslig og organisatorisk beslutning"
+      },
+      {
+        "id": "players",
+        "standing_axis": "player_standing",
+        "cares_about": [
+          "rolleforutsigbarhet og sportslig rettferdighet",
+          "at rekruttering og evaluering gir sammenhengende forventninger",
+          "at ledelsen forklarer retning uten vilkårlige prestisjesignaler"
+        ],
+        "cannot_grant": "arbeidsgiverfullmakt, trenermyndighet, medisinsk myndighet, kontraktsrett eller budsjett til sportssjefen gjennom garderobestanding"
+      },
+      {
+        "id": "supporters",
+        "standing_axis": "supporter_standing",
+        "cares_about": [
+          "troverdig sportslig retning",
+          "resultater og forståelig forklaring",
+          "at klubben viser handlekraft uten å miste identitet"
+        ],
+        "cannot_grant": "styrevedtak, kontraktsfullmakt, budsjett, arbeidsgivermyndighet eller medisinsk autoritet selv når supporterpresset er sterkt"
+      },
+      {
+        "id": "private_relationships",
+        "standing_axis": "private_role_boundary_standing",
+        "cares_about": [
+          "at resultatpress ikke blir total personlig identitet",
+          "at klubbkonflikter kan legges bort når andre eier neste steg",
+          "at prestisje og personlig verdi forblir forskjellige"
+        ],
+        "cannot_grant": "sportslig mandat, kontraktsrett, budsjett, arbeidsgivermyndighet eller rett til å behandle private relasjoner som klubbens styringsflate"
+      }
+    ],
+    "divergence_examples": [
+      "Å fullføre trener-evalueringen før et dramatisk grep kan redusere kortsiktig standing hos supportere eller utålmodige styremedlemmer, men øke standing hos trener/stab og daglig leder fordi beslutningsgrunnlaget forblir tydelig.",
+      "Å avstå en profilspiller kan svekke kortsiktig markedssignal og supporterstanding, men øke akademi- og ledelsesstanding når budsjett og utviklingsvei faktisk beskyttes.",
+      "Å stoppe en forhandling for å kontrollere signaturrett kan irritere scouting og motparten i øyeblikket, men øke standing hos daglig leder og styre fordi sportslig anbefaling ikke glir over i uautorisert bindende løfte."
+    ],
+    "authority_separation": "Standing kan påvirke samarbeid, arbeidsro og offentlig tillit, men kan aldri gi sportssjefen kontrakts- eller signaturfullmakt, utvide budsjett eller arbeidsgivermandat, overføre medisinsk fagansvar eller skape myndighet som tilhører andre styringsroller."
+  },
+  "primary_threads": [
+    {
+      "id": "sportslig_beslutningsspor",
+      "beat_refs": [
+        "1/morning",
+        "3/morning",
+        "7/morning",
+        "8/afternoon",
+        "9/morning",
+        "11/morning",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "trener_evaluering_og_stab",
+      "beat_refs": [
+        "2/morning",
+        "2/afternoon",
+        "5/afternoon",
+        "6/morning",
+        "6/afternoon",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "rekruttering_budsjett_og_akademi",
+      "beat_refs": [
+        "3/afternoon",
+        "4/afternoon",
+        "7/afternoon",
+        "8/afternoon",
+        "9/afternoon",
+        "11/afternoon",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "styringsdialog_og_standing",
+      "beat_refs": [
+        "1/lunch",
+        "5/lunch",
+        "7/lunch",
+        "10/lunch",
+        "11/lunch",
+        "12/lunch",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "halvaarslaring_og_privataftermath",
+      "beat_refs": [
+        "1/evening",
+        "4/evening",
+        "8/evening",
+        "10/evening",
+        "13/evening",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "strategy_pressure_aftertaste",
+      "beat_ref": "1/evening",
+      "text": "Etter styremøtet merker sportssjefen hvor lett tre tap kan gjøre egen verdi og strategi til samme spørsmål. Kvelden holder prestisjetrykket privat uten å la det omskrive hvem som faktisk eier større beslutninger."
+    },
+    {
+      "id": "coach_loyalty_aftertaste",
+      "beat_ref": "4/evening",
+      "text": "Støtte til trener og krav om evaluering skaper samtidig lojalitetsuro. Ettervirkningen får være personlig uten at trenerkriterier gjøres mildere eller hardere for å beskytte relasjonen."
+    },
+    {
+      "id": "recruitment_excitement_aftertaste",
+      "beat_ref": "8/evening",
+      "text": "Et markedscase kan være faglig spennende også når alternativkostnaden er høy. Kvelden skiller begeistring for spilleren fra klubbens faktiske budsjett, akademivei og signaturrett."
+    },
+    {
+      "id": "public_pressure_aftertaste",
+      "beat_ref": "10/evening",
+      "text": "Supporterpress og mediefortelling følger med hjem som behov for å forklare seg. Sportssjefen kan tåle lav offentlig standing uten å konstruere en rask beslutning som sosialt selvforsvar."
+    },
+    {
+      "id": "role_can_end",
+      "beat_ref": "14/evening",
+      "text": "Perioden avsluttes med åpne punkter hos styret, daglig leder, trener, scouting, akademi og neste overgangsvindu. Å legge bort rollen privat er forenlig med ansvar når beslutningsspor og handoff er tydelige."
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "profile_recruitment_returns",
+      "setup_ref": "3/afternoon",
+      "return_ref": "9/afternoon",
+      "description": "Profilrekrutteringen kommer tilbake som stall-, akademi- og lønnsromproblem som krever samlet rework."
+    },
+    {
+      "id": "authority_check_returns",
+      "setup_ref": "7/afternoon",
+      "return_ref": "11/afternoon",
+      "description": "Tidlig fullmaktskontroll kommer tilbake når neste vindu skal ha en gjennomførbar økonomisk og signaturmessig ramme."
+    },
+    {
+      "id": "coach_evaluation_returns",
+      "setup_ref": "2/afternoon",
+      "return_ref": "13/morning",
+      "description": "Trener-evalueringen kommer tilbake i halvårssyntesen som sporbar læring om metode, stall og ansvar."
+    },
+    {
+      "id": "academy_path_returns",
+      "setup_ref": "4/afternoon",
+      "return_ref": "9/morning",
+      "description": "Akademiveien kommer tilbake etter rekrutteringsvalget som konkret spilletid og behov for rebalansering."
+    },
+    {
+      "id": "strategy_baseline_returns",
+      "setup_ref": "1/morning",
+      "return_ref": "13/afternoon",
+      "description": "Den vedtatte strategien kommer tilbake som test av om faktiske valg samlet fulgte klubbmodellen."
+    },
+    {
+      "id": "recruitment_consequence_returns",
+      "setup_ref": "8/afternoon",
+      "return_ref": "14/afternoon",
+      "description": "Det gjennomførte rekrutteringsvalget kommer tilbake i neste vindu som både sportslig gevinst og dokumentert alternativkostnad."
+    }
+  ],
+  "cross_role_link": {
+    "status": "candidate_when_shared_work_is_real",
+    "materialized": false,
+    "new_runtime": false,
+    "rule": "Cross-role materialiseres bare når shared work er genuint delt i canonical runtime mellom to Role Worlds. Trener-, spiller- og akademisamarbeid er her eksisterende authored relasjoner og arbeidsflater; rollouten lager derfor ingen ny delt runtime-state."
+  },
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Tre svake resultater gjør den vedtatte klubbstrategien sosialt dyrere å holde. Sportssjefen må gjøre strategien operativ gjennom konkrete neste grep, samtidig som sportslig anbefaling, styrebeslutning og arbeidsgiverfullmakt fortsatt er forskjellige ting. Morgenen oppdaterer siste bekreftede sportslige status, eksplisitte premisser, åpne evidenspunkter og hvem som faktisk eier neste beslutning før nye signaler kan bli behandlet som vedtak.",
+        "thread_ids": [
+          "sportslig_beslutningsspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/job/sport_sportsledelse_job.json#sport_sports_job_log_001"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Tre svake resultater gjør den vedtatte klubbstrategien sosialt dyrere å holde. Sportssjefen må gjøre strategien operativ gjennom konkrete neste grep, samtidig som sportslig anbefaling, styrebeslutning og arbeidsgiverfullmakt fortsatt er forskjellige ting. Lunsjflaten gjør audience-spesifikk standing synlig mellom styre, daglig leder, trener/stab, scouting, akademi, spillere og supportere uten at popularitet eller tillit skaper ny fullmakt.",
+        "thread_ids": [
+          "styringsdialog_og_standing"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/people/sport_sportsledelse_people.json#sport_sports_people_karin_001"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 1, afternoon: Tre svake resultater gjør den vedtatte klubbstrategien sosialt dyrere å holde. Sportssjefen må gjøre strategien operativ gjennom konkrete neste grep, samtidig som sportslig anbefaling, styrebeslutning og arbeidsgiverfullmakt fortsatt er forskjellige ting. Ettermiddagen krever konkret arbeid i eksisterende Scene Pipeline: rekrutteringsanalyse, trener-evaluering, fullmaktskontroll, handoff eller avgrenset rework med budsjett og mandat fortsatt eksplisitt.",
+        "thread_ids": [
+          "marked_trener_handoff_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/conflict/sport_sportsledelse_conflict.json#sport_sports_conflict_trener_001"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Tre svake resultater gjør den vedtatte klubbstrategien sosialt dyrere å holde. Sportssjefen må gjøre strategien operativ gjennom konkrete neste grep, samtidig som sportslig anbefaling, styrebeslutning og arbeidsgiverfullmakt fortsatt er forskjellige ting. Kvelden viser forsinkede konsekvenser, prestisjepress og privat ettervirkning uten å gjøre sportssjefrollen til hele identiteten eller omskrive sportslig læring for å beskytte standing.",
+        "thread_ids": [
+          "halvaarslaring_og_privataftermath"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/event/sport_sportsledelse_event.json#sport_sports_event_vindu_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Hovedtreneren trenger arbeidsro, men evalueringen viser både forhold utenfor trenerens kontroll og reelle metodiske problemer. Sportssjefen må holde kriterier, ventende evidens og beslutningseier synlige før resultatpress blir til symbolsk trenergrep. Morgenen oppdaterer siste bekreftede sportslige status, eksplisitte premisser, åpne evidenspunkter og hvem som faktisk eier neste beslutning før nye signaler kan bli behandlet som vedtak.",
+        "thread_ids": [
+          "sportslig_beslutningsspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/micro/sport_sportsledelse_micro.json#sport_sports_micro_fullmakt_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Hovedtreneren trenger arbeidsro, men evalueringen viser både forhold utenfor trenerens kontroll og reelle metodiske problemer. Sportssjefen må holde kriterier, ventende evidens og beslutningseier synlige før resultatpress blir til symbolsk trenergrep. Lunsjflaten gjør audience-spesifikk standing synlig mellom styre, daglig leder, trener/stab, scouting, akademi, spillere og supportere uten at popularitet eller tillit skaper ny fullmakt.",
+        "thread_ids": [
+          "styringsdialog_og_standing"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/story/sport_sportsledelse_story.json#sport_sports_story_halvaar_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 2, afternoon: Hovedtreneren trenger arbeidsro, men evalueringen viser både forhold utenfor trenerens kontroll og reelle metodiske problemer. Sportssjefen må holde kriterier, ventende evidens og beslutningseier synlige før resultatpress blir til symbolsk trenergrep. Ettermiddagen krever konkret arbeid i eksisterende Scene Pipeline: rekrutteringsanalyse, trener-evaluering, fullmaktskontroll, handoff eller avgrenset rework med budsjett og mandat fortsatt eksplisitt.",
+        "thread_ids": [
+          "marked_trener_handoff_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/knowledge/sport_sportsledelse_knowledge.json#sport_sports_knowledge_alternativkostnad_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Hovedtreneren trenger arbeidsro, men evalueringen viser både forhold utenfor trenerens kontroll og reelle metodiske problemer. Sportssjefen må holde kriterier, ventende evidens og beslutningseier synlige før resultatpress blir til symbolsk trenergrep. Kvelden viser forsinkede konsekvenser, prestisjepress og privat ettervirkning uten å gjøre sportssjefrollen til hele identiteten eller omskrive sportslig læring for å beskytte standing.",
+        "thread_ids": [
+          "halvaarslaring_og_privataftermath"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/followup/sport_sportsledelse_followup.json#sport_sports_followup_profil_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: En erfaren profilspiller kan løse et akutt sportslig behov, men vil bruke lønnsrom og blokkere minutter for to prioriterte utviklingsspillere. Rekrutteringscaset må derfor følge samme beslutningsspor som budsjett, stallrolle og akademivei. Morgenen oppdaterer siste bekreftede sportslige status, eksplisitte premisser, åpne evidenspunkter og hvem som faktisk eier neste beslutning før nye signaler kan bli behandlet som vedtak.",
+        "thread_ids": [
+          "sportslig_beslutningsspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/consequence/sport_sportsledelse_consequence.json#sport_sports_consequence_profil_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: En erfaren profilspiller kan løse et akutt sportslig behov, men vil bruke lønnsrom og blokkere minutter for to prioriterte utviklingsspillere. Rekrutteringscaset må derfor følge samme beslutningsspor som budsjett, stallrolle og akademivei. Lunsjflaten gjør audience-spesifikk standing synlig mellom styre, daglig leder, trener/stab, scouting, akademi, spillere og supportere uten at popularitet eller tillit skaper ny fullmakt.",
+        "thread_ids": [
+          "styringsdialog_og_standing"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/job/sport_sportsledelse_job.json#sport_sports_job_log_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 3, afternoon: En erfaren profilspiller kan løse et akutt sportslig behov, men vil bruke lønnsrom og blokkere minutter for to prioriterte utviklingsspillere. Rekrutteringscaset må derfor følge samme beslutningsspor som budsjett, stallrolle og akademivei. Ettermiddagen krever konkret arbeid i eksisterende Scene Pipeline: rekrutteringsanalyse, trener-evaluering, fullmaktskontroll, handoff eller avgrenset rework med budsjett og mandat fortsatt eksplisitt.",
+        "thread_ids": [
+          "marked_trener_handoff_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/people/sport_sportsledelse_people.json#sport_sports_people_karin_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: En erfaren profilspiller kan løse et akutt sportslig behov, men vil bruke lønnsrom og blokkere minutter for to prioriterte utviklingsspillere. Rekrutteringscaset må derfor følge samme beslutningsspor som budsjett, stallrolle og akademivei. Kvelden viser forsinkede konsekvenser, prestisjepress og privat ettervirkning uten å gjøre sportssjefrollen til hele identiteten eller omskrive sportslig læring for å beskytte standing.",
+        "thread_ids": [
+          "halvaarslaring_og_privataftermath"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/conflict/sport_sportsledelse_conflict.json#sport_sports_conflict_trener_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Akademimiljøet ber om en reell bro til seniorlaget mens trenerteamet ønsker kortsiktig erfaring. Sportssjefen må synliggjøre hvilke utviklingsplasser som faktisk finnes, hva som venter på observasjon og hvilke valg som må reworkes hvis modellen ikke tåler press. Morgenen oppdaterer siste bekreftede sportslige status, eksplisitte premisser, åpne evidenspunkter og hvem som faktisk eier neste beslutning før nye signaler kan bli behandlet som vedtak.",
+        "thread_ids": [
+          "sportslig_beslutningsspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/event/sport_sportsledelse_event.json#sport_sports_event_vindu_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Akademimiljøet ber om en reell bro til seniorlaget mens trenerteamet ønsker kortsiktig erfaring. Sportssjefen må synliggjøre hvilke utviklingsplasser som faktisk finnes, hva som venter på observasjon og hvilke valg som må reworkes hvis modellen ikke tåler press. Lunsjflaten gjør audience-spesifikk standing synlig mellom styre, daglig leder, trener/stab, scouting, akademi, spillere og supportere uten at popularitet eller tillit skaper ny fullmakt.",
+        "thread_ids": [
+          "styringsdialog_og_standing"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/micro/sport_sportsledelse_micro.json#sport_sports_micro_fullmakt_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 4, afternoon: Akademimiljøet ber om en reell bro til seniorlaget mens trenerteamet ønsker kortsiktig erfaring. Sportssjefen må synliggjøre hvilke utviklingsplasser som faktisk finnes, hva som venter på observasjon og hvilke valg som må reworkes hvis modellen ikke tåler press. Ettermiddagen krever konkret arbeid i eksisterende Scene Pipeline: rekrutteringsanalyse, trener-evaluering, fullmaktskontroll, handoff eller avgrenset rework med budsjett og mandat fortsatt eksplisitt.",
+        "thread_ids": [
+          "marked_trener_handoff_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/story/sport_sportsledelse_story.json#sport_sports_story_halvaar_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Akademimiljøet ber om en reell bro til seniorlaget mens trenerteamet ønsker kortsiktig erfaring. Sportssjefen må synliggjøre hvilke utviklingsplasser som faktisk finnes, hva som venter på observasjon og hvilke valg som må reworkes hvis modellen ikke tåler press. Kvelden viser forsinkede konsekvenser, prestisjepress og privat ettervirkning uten å gjøre sportssjefrollen til hele identiteten eller omskrive sportslig læring for å beskytte standing.",
+        "thread_ids": [
+          "halvaarslaring_og_privataftermath"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/knowledge/sport_sportsledelse_knowledge.json#sport_sports_knowledge_alternativkostnad_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Styreleder ber om et raskt signal om retning etter nye tap. Sportssjefen kan anbefale sportslige grep innen mandatet, men større trener-, kontrakts- eller budsjettvalg må handoffes til riktig beslutningsnivå med siste bekreftede status og åpne spørsmål. Morgenen oppdaterer siste bekreftede sportslige status, eksplisitte premisser, åpne evidenspunkter og hvem som faktisk eier neste beslutning før nye signaler kan bli behandlet som vedtak.",
+        "thread_ids": [
+          "sportslig_beslutningsspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/followup/sport_sportsledelse_followup.json#sport_sports_followup_profil_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Styreleder ber om et raskt signal om retning etter nye tap. Sportssjefen kan anbefale sportslige grep innen mandatet, men større trener-, kontrakts- eller budsjettvalg må handoffes til riktig beslutningsnivå med siste bekreftede status og åpne spørsmål. Lunsjflaten gjør audience-spesifikk standing synlig mellom styre, daglig leder, trener/stab, scouting, akademi, spillere og supportere uten at popularitet eller tillit skaper ny fullmakt.",
+        "thread_ids": [
+          "styringsdialog_og_standing"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/consequence/sport_sportsledelse_consequence.json#sport_sports_consequence_profil_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 5, afternoon: Styreleder ber om et raskt signal om retning etter nye tap. Sportssjefen kan anbefale sportslige grep innen mandatet, men større trener-, kontrakts- eller budsjettvalg må handoffes til riktig beslutningsnivå med siste bekreftede status og åpne spørsmål. Ettermiddagen krever konkret arbeid i eksisterende Scene Pipeline: rekrutteringsanalyse, trener-evaluering, fullmaktskontroll, handoff eller avgrenset rework med budsjett og mandat fortsatt eksplisitt.",
+        "thread_ids": [
+          "marked_trener_handoff_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/job/sport_sportsledelse_job.json#sport_sports_job_log_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Styreleder ber om et raskt signal om retning etter nye tap. Sportssjefen kan anbefale sportslige grep innen mandatet, men større trener-, kontrakts- eller budsjettvalg må handoffes til riktig beslutningsnivå med siste bekreftede status og åpne spørsmål. Kvelden viser forsinkede konsekvenser, prestisjepress og privat ettervirkning uten å gjøre sportssjefrollen til hele identiteten eller omskrive sportslig læring for å beskytte standing.",
+        "thread_ids": [
+          "halvaarslaring_og_privataftermath"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/people/sport_sportsledelse_people.json#sport_sports_people_karin_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Trenerstaben fungerer sosialt, men faglige ansvarsområder er uklare. Rework betyr å presisere hvem som eier analyse, kampjustering og oppfølging uten å gjøre harmonien til bevis på at strukturen fungerer eller sportssjefen til hovedtrener. Morgenen oppdaterer siste bekreftede sportslige status, eksplisitte premisser, åpne evidenspunkter og hvem som faktisk eier neste beslutning før nye signaler kan bli behandlet som vedtak.",
+        "thread_ids": [
+          "sportslig_beslutningsspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/conflict/sport_sportsledelse_conflict.json#sport_sports_conflict_trener_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Trenerstaben fungerer sosialt, men faglige ansvarsområder er uklare. Rework betyr å presisere hvem som eier analyse, kampjustering og oppfølging uten å gjøre harmonien til bevis på at strukturen fungerer eller sportssjefen til hovedtrener. Lunsjflaten gjør audience-spesifikk standing synlig mellom styre, daglig leder, trener/stab, scouting, akademi, spillere og supportere uten at popularitet eller tillit skaper ny fullmakt.",
+        "thread_ids": [
+          "styringsdialog_og_standing"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/event/sport_sportsledelse_event.json#sport_sports_event_vindu_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 6, afternoon: Trenerstaben fungerer sosialt, men faglige ansvarsområder er uklare. Rework betyr å presisere hvem som eier analyse, kampjustering og oppfølging uten å gjøre harmonien til bevis på at strukturen fungerer eller sportssjefen til hovedtrener. Ettermiddagen krever konkret arbeid i eksisterende Scene Pipeline: rekrutteringsanalyse, trener-evaluering, fullmaktskontroll, handoff eller avgrenset rework med budsjett og mandat fortsatt eksplisitt.",
+        "thread_ids": [
+          "marked_trener_handoff_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/micro/sport_sportsledelse_micro.json#sport_sports_micro_fullmakt_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Trenerstaben fungerer sosialt, men faglige ansvarsområder er uklare. Rework betyr å presisere hvem som eier analyse, kampjustering og oppfølging uten å gjøre harmonien til bevis på at strukturen fungerer eller sportssjefen til hovedtrener. Kvelden viser forsinkede konsekvenser, prestisjepress og privat ettervirkning uten å gjøre sportssjefrollen til hele identiteten eller omskrive sportslig læring for å beskytte standing.",
+        "thread_ids": [
+          "halvaarslaring_og_privataftermath"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/story/sport_sportsledelse_story.json#sport_sports_story_halvaar_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Overgangsvinduet nærmer seg stenging og markedet gjør hastighet verdifull. Sportssjefen må tåle at et godt case kan vente på fullmaktskontroll eller bygges om, fordi tidsfrist ikke gjør alternativkostnad, signaturrett eller budsjett mindre reelt. Morgenen oppdaterer siste bekreftede sportslige status, eksplisitte premisser, åpne evidenspunkter og hvem som faktisk eier neste beslutning før nye signaler kan bli behandlet som vedtak.",
+        "thread_ids": [
+          "sportslig_beslutningsspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/knowledge/sport_sportsledelse_knowledge.json#sport_sports_knowledge_alternativkostnad_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Overgangsvinduet nærmer seg stenging og markedet gjør hastighet verdifull. Sportssjefen må tåle at et godt case kan vente på fullmaktskontroll eller bygges om, fordi tidsfrist ikke gjør alternativkostnad, signaturrett eller budsjett mindre reelt. Lunsjflaten gjør audience-spesifikk standing synlig mellom styre, daglig leder, trener/stab, scouting, akademi, spillere og supportere uten at popularitet eller tillit skaper ny fullmakt.",
+        "thread_ids": [
+          "styringsdialog_og_standing"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/followup/sport_sportsledelse_followup.json#sport_sports_followup_profil_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 7, afternoon: Overgangsvinduet nærmer seg stenging og markedet gjør hastighet verdifull. Sportssjefen må tåle at et godt case kan vente på fullmaktskontroll eller bygges om, fordi tidsfrist ikke gjør alternativkostnad, signaturrett eller budsjett mindre reelt. Ettermiddagen krever konkret arbeid i eksisterende Scene Pipeline: rekrutteringsanalyse, trener-evaluering, fullmaktskontroll, handoff eller avgrenset rework med budsjett og mandat fortsatt eksplisitt.",
+        "thread_ids": [
+          "marked_trener_handoff_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/consequence/sport_sportsledelse_consequence.json#sport_sports_consequence_profil_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Overgangsvinduet nærmer seg stenging og markedet gjør hastighet verdifull. Sportssjefen må tåle at et godt case kan vente på fullmaktskontroll eller bygges om, fordi tidsfrist ikke gjør alternativkostnad, signaturrett eller budsjett mindre reelt. Kvelden viser forsinkede konsekvenser, prestisjepress og privat ettervirkning uten å gjøre sportssjefrollen til hele identiteten eller omskrive sportslig læring for å beskytte standing.",
+        "thread_ids": [
+          "halvaarslaring_og_privataftermath"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/job/sport_sportsledelse_job.json#sport_sports_job_log_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Klubben velger en rekrutteringsløsning og må dokumentere hvorfor kvalitet, kostnad, stallrolle og utviklingsvei ble vektet som de ble. Beslutningssporet skal overleve entusiasme og senere resultat slik at klubben kan lære av både gevinst og pris. Morgenen oppdaterer siste bekreftede sportslige status, eksplisitte premisser, åpne evidenspunkter og hvem som faktisk eier neste beslutning før nye signaler kan bli behandlet som vedtak.",
+        "thread_ids": [
+          "sportslig_beslutningsspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/people/sport_sportsledelse_people.json#sport_sports_people_karin_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Klubben velger en rekrutteringsløsning og må dokumentere hvorfor kvalitet, kostnad, stallrolle og utviklingsvei ble vektet som de ble. Beslutningssporet skal overleve entusiasme og senere resultat slik at klubben kan lære av både gevinst og pris. Lunsjflaten gjør audience-spesifikk standing synlig mellom styre, daglig leder, trener/stab, scouting, akademi, spillere og supportere uten at popularitet eller tillit skaper ny fullmakt.",
+        "thread_ids": [
+          "styringsdialog_og_standing"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/conflict/sport_sportsledelse_conflict.json#sport_sports_conflict_trener_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 8, afternoon: Klubben velger en rekrutteringsløsning og må dokumentere hvorfor kvalitet, kostnad, stallrolle og utviklingsvei ble vektet som de ble. Beslutningssporet skal overleve entusiasme og senere resultat slik at klubben kan lære av både gevinst og pris. Ettermiddagen krever konkret arbeid i eksisterende Scene Pipeline: rekrutteringsanalyse, trener-evaluering, fullmaktskontroll, handoff eller avgrenset rework med budsjett og mandat fortsatt eksplisitt.",
+        "thread_ids": [
+          "marked_trener_handoff_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/event/sport_sportsledelse_event.json#sport_sports_event_vindu_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Klubben velger en rekrutteringsløsning og må dokumentere hvorfor kvalitet, kostnad, stallrolle og utviklingsvei ble vektet som de ble. Beslutningssporet skal overleve entusiasme og senere resultat slik at klubben kan lære av både gevinst og pris. Kvelden viser forsinkede konsekvenser, prestisjepress og privat ettervirkning uten å gjøre sportssjefrollen til hele identiteten eller omskrive sportslig læring for å beskytte standing.",
+        "thread_ids": [
+          "halvaarslaring_og_privataftermath"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/micro/sport_sportsledelse_micro.json#sport_sports_micro_fullmakt_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Noen måneder senere har laget mer kvalitet, men to unge spillere får mindre relevant spilletid og lønnsrommet er strammere. Followup skal sende stall- og utviklingsplanen til rework, ikke behandle hvert symptom som et nytt isolert problem. Morgenen oppdaterer siste bekreftede sportslige status, eksplisitte premisser, åpne evidenspunkter og hvem som faktisk eier neste beslutning før nye signaler kan bli behandlet som vedtak.",
+        "thread_ids": [
+          "sportslig_beslutningsspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/story/sport_sportsledelse_story.json#sport_sports_story_halvaar_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Noen måneder senere har laget mer kvalitet, men to unge spillere får mindre relevant spilletid og lønnsrommet er strammere. Followup skal sende stall- og utviklingsplanen til rework, ikke behandle hvert symptom som et nytt isolert problem. Lunsjflaten gjør audience-spesifikk standing synlig mellom styre, daglig leder, trener/stab, scouting, akademi, spillere og supportere uten at popularitet eller tillit skaper ny fullmakt.",
+        "thread_ids": [
+          "styringsdialog_og_standing"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/knowledge/sport_sportsledelse_knowledge.json#sport_sports_knowledge_alternativkostnad_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 9, afternoon: Noen måneder senere har laget mer kvalitet, men to unge spillere får mindre relevant spilletid og lønnsrommet er strammere. Followup skal sende stall- og utviklingsplanen til rework, ikke behandle hvert symptom som et nytt isolert problem. Ettermiddagen krever konkret arbeid i eksisterende Scene Pipeline: rekrutteringsanalyse, trener-evaluering, fullmaktskontroll, handoff eller avgrenset rework med budsjett og mandat fortsatt eksplisitt.",
+        "thread_ids": [
+          "marked_trener_handoff_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/followup/sport_sportsledelse_followup.json#sport_sports_followup_profil_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Noen måneder senere har laget mer kvalitet, men to unge spillere får mindre relevant spilletid og lønnsrommet er strammere. Followup skal sende stall- og utviklingsplanen til rework, ikke behandle hvert symptom som et nytt isolert problem. Kvelden viser forsinkede konsekvenser, prestisjepress og privat ettervirkning uten å gjøre sportssjefrollen til hele identiteten eller omskrive sportslig læring for å beskytte standing.",
+        "thread_ids": [
+          "halvaarslaring_og_privataftermath"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/consequence/sport_sportsledelse_consequence.json#sport_sports_consequence_profil_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Supportere og offentlighet ønsker en enkel fortelling om hvem som har rett eller feil. Sportssjefen må forklare retning og ansvar uten at offentlig standing blir kontraktsfullmakt, trenerdom eller grunnlag for å omskrive tidligere premisser. Morgenen oppdaterer siste bekreftede sportslige status, eksplisitte premisser, åpne evidenspunkter og hvem som faktisk eier neste beslutning før nye signaler kan bli behandlet som vedtak.",
+        "thread_ids": [
+          "sportslig_beslutningsspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/job/sport_sportsledelse_job.json#sport_sports_job_log_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Supportere og offentlighet ønsker en enkel fortelling om hvem som har rett eller feil. Sportssjefen må forklare retning og ansvar uten at offentlig standing blir kontraktsfullmakt, trenerdom eller grunnlag for å omskrive tidligere premisser. Lunsjflaten gjør audience-spesifikk standing synlig mellom styre, daglig leder, trener/stab, scouting, akademi, spillere og supportere uten at popularitet eller tillit skaper ny fullmakt.",
+        "thread_ids": [
+          "styringsdialog_og_standing"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/people/sport_sportsledelse_people.json#sport_sports_people_karin_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 10, afternoon: Supportere og offentlighet ønsker en enkel fortelling om hvem som har rett eller feil. Sportssjefen må forklare retning og ansvar uten at offentlig standing blir kontraktsfullmakt, trenerdom eller grunnlag for å omskrive tidligere premisser. Ettermiddagen krever konkret arbeid i eksisterende Scene Pipeline: rekrutteringsanalyse, trener-evaluering, fullmaktskontroll, handoff eller avgrenset rework med budsjett og mandat fortsatt eksplisitt.",
+        "thread_ids": [
+          "marked_trener_handoff_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/conflict/sport_sportsledelse_conflict.json#sport_sports_conflict_trener_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Supportere og offentlighet ønsker en enkel fortelling om hvem som har rett eller feil. Sportssjefen må forklare retning og ansvar uten at offentlig standing blir kontraktsfullmakt, trenerdom eller grunnlag for å omskrive tidligere premisser. Kvelden viser forsinkede konsekvenser, prestisjepress og privat ettervirkning uten å gjøre sportssjefrollen til hele identiteten eller omskrive sportslig læring for å beskytte standing.",
+        "thread_ids": [
+          "halvaarslaring_og_privataftermath"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/event/sport_sportsledelse_event.json#sport_sports_event_vindu_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Daglig leder ber om neste overgangsvindus ramme. Sportssjefen må gjøre sportslig behov, budsjett, akademivei og fullmakt beslutningsklart, og eksplisitt skille hva som kan anbefales nå fra hva som krever ny arbeidsgiver- eller styrebeslutning. Morgenen oppdaterer siste bekreftede sportslige status, eksplisitte premisser, åpne evidenspunkter og hvem som faktisk eier neste beslutning før nye signaler kan bli behandlet som vedtak.",
+        "thread_ids": [
+          "sportslig_beslutningsspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/micro/sport_sportsledelse_micro.json#sport_sports_micro_fullmakt_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Daglig leder ber om neste overgangsvindus ramme. Sportssjefen må gjøre sportslig behov, budsjett, akademivei og fullmakt beslutningsklart, og eksplisitt skille hva som kan anbefales nå fra hva som krever ny arbeidsgiver- eller styrebeslutning. Lunsjflaten gjør audience-spesifikk standing synlig mellom styre, daglig leder, trener/stab, scouting, akademi, spillere og supportere uten at popularitet eller tillit skaper ny fullmakt.",
+        "thread_ids": [
+          "styringsdialog_og_standing"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/story/sport_sportsledelse_story.json#sport_sports_story_halvaar_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 11, afternoon: Daglig leder ber om neste overgangsvindus ramme. Sportssjefen må gjøre sportslig behov, budsjett, akademivei og fullmakt beslutningsklart, og eksplisitt skille hva som kan anbefales nå fra hva som krever ny arbeidsgiver- eller styrebeslutning. Ettermiddagen krever konkret arbeid i eksisterende Scene Pipeline: rekrutteringsanalyse, trener-evaluering, fullmaktskontroll, handoff eller avgrenset rework med budsjett og mandat fortsatt eksplisitt.",
+        "thread_ids": [
+          "marked_trener_handoff_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/knowledge/sport_sportsledelse_knowledge.json#sport_sports_knowledge_alternativkostnad_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Daglig leder ber om neste overgangsvindus ramme. Sportssjefen må gjøre sportslig behov, budsjett, akademivei og fullmakt beslutningsklart, og eksplisitt skille hva som kan anbefales nå fra hva som krever ny arbeidsgiver- eller styrebeslutning. Kvelden viser forsinkede konsekvenser, prestisjepress og privat ettervirkning uten å gjøre sportssjefrollen til hele identiteten eller omskrive sportslig læring for å beskytte standing.",
+        "thread_ids": [
+          "halvaarslaring_og_privataftermath"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/followup/sport_sportsledelse_followup.json#sport_sports_followup_profil_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: En medisinsk usikkerhet påvirker en sportslig plan, men sportssjefen eier ikke den medisinske vurderingen. Arbeidsrytmen må avbrytes og handoffes til fagansvarlig uten at sportslig hastverk eller status presser fram en konklusjon utenfor rollen. Morgenen oppdaterer siste bekreftede sportslige status, eksplisitte premisser, åpne evidenspunkter og hvem som faktisk eier neste beslutning før nye signaler kan bli behandlet som vedtak.",
+        "thread_ids": [
+          "sportslig_beslutningsspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/consequence/sport_sportsledelse_consequence.json#sport_sports_consequence_profil_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: En medisinsk usikkerhet påvirker en sportslig plan, men sportssjefen eier ikke den medisinske vurderingen. Arbeidsrytmen må avbrytes og handoffes til fagansvarlig uten at sportslig hastverk eller status presser fram en konklusjon utenfor rollen. Lunsjflaten gjør audience-spesifikk standing synlig mellom styre, daglig leder, trener/stab, scouting, akademi, spillere og supportere uten at popularitet eller tillit skaper ny fullmakt.",
+        "thread_ids": [
+          "styringsdialog_og_standing"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/job/sport_sportsledelse_job.json#sport_sports_job_log_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 12, afternoon: En medisinsk usikkerhet påvirker en sportslig plan, men sportssjefen eier ikke den medisinske vurderingen. Arbeidsrytmen må avbrytes og handoffes til fagansvarlig uten at sportslig hastverk eller status presser fram en konklusjon utenfor rollen. Ettermiddagen krever konkret arbeid i eksisterende Scene Pipeline: rekrutteringsanalyse, trener-evaluering, fullmaktskontroll, handoff eller avgrenset rework med budsjett og mandat fortsatt eksplisitt.",
+        "thread_ids": [
+          "marked_trener_handoff_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/people/sport_sportsledelse_people.json#sport_sports_people_karin_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: En medisinsk usikkerhet påvirker en sportslig plan, men sportssjefen eier ikke den medisinske vurderingen. Arbeidsrytmen må avbrytes og handoffes til fagansvarlig uten at sportslig hastverk eller status presser fram en konklusjon utenfor rollen. Kvelden viser forsinkede konsekvenser, prestisjepress og privat ettervirkning uten å gjøre sportssjefrollen til hele identiteten eller omskrive sportslig læring for å beskytte standing.",
+        "thread_ids": [
+          "halvaarslaring_og_privataftermath"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/conflict/sport_sportsledelse_conflict.json#sport_sports_conflict_trener_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Halvårsevalueringen viser at treneroppfølging, rekruttering og akademibruk delvis peker i samme retning og delvis avviker fra klubbstrategien. Rework skal gjøre modellen mer presis og bevare beslutningshistorikken i stedet for å forklare alt gjennom tabellen. Morgenen oppdaterer siste bekreftede sportslige status, eksplisitte premisser, åpne evidenspunkter og hvem som faktisk eier neste beslutning før nye signaler kan bli behandlet som vedtak.",
+        "thread_ids": [
+          "sportslig_beslutningsspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/event/sport_sportsledelse_event.json#sport_sports_event_vindu_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Halvårsevalueringen viser at treneroppfølging, rekruttering og akademibruk delvis peker i samme retning og delvis avviker fra klubbstrategien. Rework skal gjøre modellen mer presis og bevare beslutningshistorikken i stedet for å forklare alt gjennom tabellen. Lunsjflaten gjør audience-spesifikk standing synlig mellom styre, daglig leder, trener/stab, scouting, akademi, spillere og supportere uten at popularitet eller tillit skaper ny fullmakt.",
+        "thread_ids": [
+          "styringsdialog_og_standing"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/micro/sport_sportsledelse_micro.json#sport_sports_micro_fullmakt_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 13, afternoon: Halvårsevalueringen viser at treneroppfølging, rekruttering og akademibruk delvis peker i samme retning og delvis avviker fra klubbstrategien. Rework skal gjøre modellen mer presis og bevare beslutningshistorikken i stedet for å forklare alt gjennom tabellen. Ettermiddagen krever konkret arbeid i eksisterende Scene Pipeline: rekrutteringsanalyse, trener-evaluering, fullmaktskontroll, handoff eller avgrenset rework med budsjett og mandat fortsatt eksplisitt.",
+        "thread_ids": [
+          "marked_trener_handoff_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/story/sport_sportsledelse_story.json#sport_sports_story_halvaar_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Halvårsevalueringen viser at treneroppfølging, rekruttering og akademibruk delvis peker i samme retning og delvis avviker fra klubbstrategien. Rework skal gjøre modellen mer presis og bevare beslutningshistorikken i stedet for å forklare alt gjennom tabellen. Kvelden viser forsinkede konsekvenser, prestisjepress og privat ettervirkning uten å gjøre sportssjefrollen til hele identiteten eller omskrive sportslig læring for å beskytte standing.",
+        "thread_ids": [
+          "halvaarslaring_og_privataftermath"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/knowledge/sport_sportsledelse_knowledge.json#sport_sports_knowledge_alternativkostnad_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Neste overgangsvindu viser den forsinkede kostnaden av tidligere valg. Sportssjefen avslutter perioden med tydelig beslutningsspor: hva ga verdi, hva ble fortrengt, hva venter, hvem eier neste beslutning og hvilke grenser standing aldri kan oppheve. Morgenen oppdaterer siste bekreftede sportslige status, eksplisitte premisser, åpne evidenspunkter og hvem som faktisk eier neste beslutning før nye signaler kan bli behandlet som vedtak.",
+        "thread_ids": [
+          "sportslig_beslutningsspor"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/followup/sport_sportsledelse_followup.json#sport_sports_followup_profil_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Neste overgangsvindu viser den forsinkede kostnaden av tidligere valg. Sportssjefen avslutter perioden med tydelig beslutningsspor: hva ga verdi, hva ble fortrengt, hva venter, hvem eier neste beslutning og hvilke grenser standing aldri kan oppheve. Lunsjflaten gjør audience-spesifikk standing synlig mellom styre, daglig leder, trener/stab, scouting, akademi, spillere og supportere uten at popularitet eller tillit skaper ny fullmakt.",
+        "thread_ids": [
+          "styringsdialog_og_standing"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/consequence/sport_sportsledelse_consequence.json#sport_sports_consequence_profil_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 14, afternoon: Neste overgangsvindu viser den forsinkede kostnaden av tidligere valg. Sportssjefen avslutter perioden med tydelig beslutningsspor: hva ga verdi, hva ble fortrengt, hva venter, hvem eier neste beslutning og hvilke grenser standing aldri kan oppheve. Ettermiddagen krever konkret arbeid i eksisterende Scene Pipeline: rekrutteringsanalyse, trener-evaluering, fullmaktskontroll, handoff eller avgrenset rework med budsjett og mandat fortsatt eksplisitt.",
+        "thread_ids": [
+          "marked_trener_handoff_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/job/sport_sportsledelse_job.json#sport_sports_job_log_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Neste overgangsvindu viser den forsinkede kostnaden av tidligere valg. Sportssjefen avslutter perioden med tydelig beslutningsspor: hva ga verdi, hva ble fortrengt, hva venter, hvem eier neste beslutning og hvilke grenser standing aldri kan oppheve. Kvelden viser forsinkede konsekvenser, prestisjepress og privat ettervirkning uten å gjøre sportssjefrollen til hele identiteten eller omskrive sportslig læring for å beskytte standing.",
+        "thread_ids": [
+          "halvaarslaring_og_privataftermath"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/people/sport_sportsledelse_people.json#sport_sports_people_karin_001"
+        ]
+      }
+    ]
+  },
+  "materialization": {
+    "authored_dimensions": [
+      "persistent_work_object",
+      "rhythm_waiting_handoff_rework",
+      "situated_reputation"
+    ],
+    "no_new_runtime": true,
+    "existing_plan_preserved": true,
+    "existing_role_model_preserved": true,
+    "existing_work_grammar_preserved": true,
+    "cross_role_link_materialized": false,
+    "source_refs": [
+      "data/Civication/mailFamilies/sport/job/sport_sportsledelse_job.json#sport_sports_job_log_001",
+      "data/Civication/mailFamilies/sport/people/sport_sportsledelse_people.json#sport_sports_people_karin_001",
+      "data/Civication/mailFamilies/sport/conflict/sport_sportsledelse_conflict.json#sport_sports_conflict_trener_001",
+      "data/Civication/mailFamilies/sport/event/sport_sportsledelse_event.json#sport_sports_event_vindu_001",
+      "data/Civication/mailFamilies/sport/micro/sport_sportsledelse_micro.json#sport_sports_micro_fullmakt_001",
+      "data/Civication/mailFamilies/sport/story/sport_sportsledelse_story.json#sport_sports_story_halvaar_001",
+      "data/Civication/mailFamilies/sport/knowledge/sport_sportsledelse_knowledge.json#sport_sports_knowledge_alternativkostnad_001",
+      "data/Civication/mailFamilies/sport/followup/sport_sportsledelse_followup.json#sport_sports_followup_profil_001",
+      "data/Civication/mailFamilies/sport/consequence/sport_sportsledelse_consequence.json#sport_sports_consequence_profil_001"
+    ]
+  }
+}
