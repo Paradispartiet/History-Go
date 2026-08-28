@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// One-time idempotent materializer retained as the reproducible record of the Kunst legacy gatekunst migration.
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
