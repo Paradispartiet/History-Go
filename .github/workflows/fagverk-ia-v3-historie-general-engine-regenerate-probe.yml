@@ -1,0 +1,49 @@
+name: Fagverk IA v3 Historie general engine regenerate probe
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/fagverk-ia-v3-historie-general-engine-regenerate-probe.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fagverk-ia-v3-historie-general-engine-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  regenerate-and-clean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Regenerate deterministic general engine report
+        run: |
+          node scripts/audit-fagverk-general-engine.mjs --write-report
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/audit-fagverk-historie.mjs
+          node scripts/audit-fagverk-historie-legacy-theory.mjs
+          node scripts/audit-fagverk-historie-legacy-adjudication.mjs
+          node --test tests/fagverk-general-engine.test.mjs
+          node --test tests/fagverk-badge-equivalence.test.mjs
+          node --test tests/fagverk-historie-legacy-theory-audit.test.mjs
+          node --test tests/fagverk-historie-legacy-theory-adjudication.test.mjs
+      - name: Commit generated report and remove probe
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/fagverk-ia-v3-historie-general-engine-regenerate-probe.yml
+          git add reports/fagverk/general-engine-audit.json
+          if git diff --cached --quiet; then
+            echo 'No generated changes to commit.'
+            exit 1
+          fi
+          git commit -m 'Regenerate general engine audit after Historie redirect'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
