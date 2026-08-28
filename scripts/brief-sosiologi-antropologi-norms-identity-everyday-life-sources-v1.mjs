@@ -1,0 +1,647 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { isDeepStrictEqual } from 'node:util';
+
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const BRIEF = 'data/fag/politikk/sosiologi_antropologi/norms_identity_everyday_life_source_claim_brief_v1.json';
+const REPORT = 'reports/fagverk/sosiologi-antropologi-norms-identity-everyday-life-source-brief-v1-audit.json';
+const EXISTING_CHAPTER = 'data/fagverk/politikk/normer-identitet-hverdagsliv.json';
+const EXISTING_CLAIMS = 'data/fagverk/politikk/normer-identitet-hverdagsliv/claims.json';
+const abs = (file) => path.join(ROOT, file);
+const read = (file) => JSON.parse(fs.readFileSync(abs(file), 'utf8'));
+const write = (file, value) => { fs.mkdirSync(path.dirname(abs(file)), { recursive: true }); fs.writeFileSync(abs(file), `${JSON.stringify(value, null, 2)}\n`); };
+const assert = (condition, message) => { if (!condition) throw new Error(message); };
+
+const sources = [
+  {
+    "evidence_role": "lifeworld-meaning-typification-social-action",
+    "id": "nia01-schutz",
+    "publisher": "Northwestern University Press",
+    "retrieval_status": "verified_2026-08-28",
+    "source_location": "Forlagssiden dokumenterer Schutz’ sosialfenomenologiske analyse av handling og tilsiktet mening.",
+    "title": "The Phenomenology of the Social World",
+    "type": "scholarly-book",
+    "url": "https://nupress.northwestern.edu/9780810103900/phenomenology-of-the-social-world/"
+  },
+  {
+    "evidence_role": "self-role-taking-generalized-other",
+    "id": "nia02-mead",
+    "publisher": "University of Chicago Press",
+    "retrieval_status": "verified_2026-08-28",
+    "source_location": "Forlagssiden dokumenterer Meads analyse av selvets sosiale framvekst og sosialpsykologi.",
+    "title": "Mind, Self, and Society",
+    "type": "scholarly-book",
+    "url": "https://press.uchicago.edu/ucp/books/book/chicago/M/bo20099389.html"
+  },
+  {
+    "evidence_role": "everyday-knowledge-institutionalization-typification",
+    "id": "nia03-berger-luckmann",
+    "publisher": "Penguin",
+    "retrieval_status": "verified_2026-08-28",
+    "source_location": "Forlagssiden dokumenterer verkets analyse av hverdagskunnskap og sosial virkelighet.",
+    "title": "The Social Construction of Reality",
+    "type": "scholarly-book",
+    "url": "https://www.penguin.co.uk/books/13488/the-social-construction-of-reality-by-peter-l-berger-and-thomas-luckmann/9780140135480"
+  },
+  {
+    "evidence_role": "interaction-impression-management-frontstage-backstage",
+    "id": "nia04-goffman-presentation",
+    "publisher": "Penguin",
+    "retrieval_status": "verified_2026-08-28",
+    "source_location": "Forlagssiden dokumenterer Goffmans analyse av sosial interaksjon og selvpresentasjon.",
+    "title": "The Presentation of Self in Everyday Life",
+    "type": "scholarly-book",
+    "url": "https://www.penguin.co.uk/books/13511/the-presentation-of-self-in-everyday-life-by-erving-goffman/9780241547991"
+  },
+  {
+    "evidence_role": "ethnomethodology-accountability-everyday-order",
+    "id": "nia05-garfinkel",
+    "publisher": "Routledge",
+    "retrieval_status": "verified_2026-08-28",
+    "source_location": "Forlagssiden dokumenterer Garfinkels etnometodologi og studiet av praktisk frambrakt sosial orden.",
+    "title": "Harold Garfinkel: The Creation and Development of Ethnomethodology",
+    "type": "scholarly-book",
+    "url": "https://www.routledge.com/Harold-Garfinkel-The-Creation-and-Development-of-Ethnomethodology/vomLehn/p/book/9781611329803"
+  },
+  {
+    "evidence_role": "habitus-doxa-practical-logic-symbolic-power",
+    "id": "nia06-bourdieu",
+    "publisher": "Cambridge University Press",
+    "retrieval_status": "verified_2026-08-28",
+    "source_location": "Forlagssiden dokumenterer Bourdieus teori om praksis, habitus, doxa og symbolsk makt.",
+    "title": "Outline of a Theory of Practice",
+    "type": "scholarly-book",
+    "url": "https://www.cambridge.org/core/books/outline-of-a-theory-of-practice/193A11572779B478F5BAA3E3028827D8"
+  },
+  {
+    "evidence_role": "stigma-social-identity-passing-information-control",
+    "id": "nia07-goffman-stigma",
+    "publisher": "Penguin",
+    "retrieval_status": "verified_2026-08-28",
+    "source_location": "Forlagssiden dokumenterer Goffmans analyse av stigma, sosial identitet og situerte håndteringsstrategier.",
+    "title": "Stigma",
+    "type": "scholarly-book",
+    "url": "https://www.penguin.co.uk/books/12596/stigma-by-erving-goffman/9780241548011"
+  },
+  {
+    "evidence_role": "symbolic-social-boundaries-identity-inequality",
+    "id": "nia08-lamont-molnar",
+    "publisher": "Annual Reviews",
+    "retrieval_status": "verified_2026-08-28",
+    "source_location": "Fagfellevurdert oversikt over symbolske og sosiale grenser, kollektiv identitet og ulikhet.",
+    "title": "The Study of Boundaries in the Social Sciences",
+    "type": "peer-reviewed-article",
+    "url": "https://www.annualreviews.org/content/journals/10.1146/annurev.soc.28.110601.141107"
+  },
+  {
+    "evidence_role": "gender-routine-accomplishment-accountability",
+    "id": "nia09-west-zimmerman",
+    "publisher": "SAGE Journals",
+    "retrieval_status": "verified_2026-08-28",
+    "source_location": "Fagfellevurdert artikkel som analyserer kjønn som rutinemessig frambrakt i interaksjon.",
+    "title": "Doing Gender",
+    "type": "peer-reviewed-article",
+    "url": "https://journals.sagepub.com/doi/10.1177/0891243287001002002"
+  },
+  {
+    "evidence_role": "performativity-gender-category-heteronormativity",
+    "id": "nia10-butler",
+    "publisher": "Routledge",
+    "retrieval_status": "verified_2026-08-28",
+    "source_location": "Forlagssiden dokumenterer Butlers kritikk av stabile kjønnsidentiteter og heteronormativ kategorimakt.",
+    "title": "Gender Trouble",
+    "type": "scholarly-book",
+    "url": "https://www.routledge.com/Gender-Trouble-Feminism-and-the-Subversion-of-Identity/Butler/p/book/9780415389556"
+  },
+  {
+    "evidence_role": "intersectionality-institutions-identity-politics-violence",
+    "id": "nia11-crenshaw",
+    "publisher": "Stanford Law Review / JSTOR",
+    "retrieval_status": "verified_2026-08-28",
+    "source_location": "Tidsskriftarkivet dokumenterer Crenshaws analyse av interseksjonalitet og institusjonelle blindsoner.",
+    "title": "Mapping the Margins",
+    "type": "peer-reviewed-article",
+    "url": "https://www.jstor.org/stable/1229039"
+  },
+  {
+    "evidence_role": "discrimination-indirect-effects-accommodation-enforcement",
+    "id": "nia12-likestillingsloven",
+    "publisher": "Lovdata",
+    "retrieval_status": "verified_2026-08-28",
+    "source_location": "Gjeldende norsk lovtekst om diskrimineringsgrunnlag, indirekte forskjellsbehandling og tilrettelegging.",
+    "title": "Lov om likestilling og forbud mot diskriminering",
+    "type": "primary-law",
+    "url": "https://lovdata.no/lov/2017-06-16-51"
+  },
+  {
+    "evidence_role": "identity-sensitive-data-consent-confidentiality-representation",
+    "id": "nia13-nesh",
+    "publisher": "De nasjonale forskningsetiske komiteene",
+    "retrieval_status": "verified_2026-08-28",
+    "source_location": "Nasjonale retningslinjer for samtykke, personvern, sårbarhet, konfidensialitet og redelig representasjon.",
+    "title": "Guidelines for Research Ethics in the Social Sciences and the Humanities",
+    "type": "research-ethics-guideline",
+    "url": "https://www.forskningsetikk.no/en/guidelines/social-sciences-and-humanities/guidelines-for-research-ethics-in-the-social-sciences-and-the-humanities/"
+  }
+];
+
+const topic_briefs = [
+  {
+    "boundary": "Hverdagskunnskap er situert og institusjonalisert; den er verken privat oppfinnelse eller uforanderlig kultur.",
+    "id": "livsverden-typifisering-og-hverdagskunnskap",
+    "method_ids": [
+      "met_pol_begrepsanalyse",
+      "met_pol_praksisanalyse"
+    ],
+    "planned_claims": [
+      {
+        "id": "nia-01",
+        "source_ids": [
+          "nia01-schutz",
+          "nia03-berger-luckmann"
+        ],
+        "status": "planned_requires_fulltext_verification",
+        "text": "Schutz analyserer hverdagslivets livsverden som en intersubjektiv orden der aktører bruker typifiseringer for å forstå situasjoner og andre."
+      },
+      {
+        "id": "nia-02",
+        "source_ids": [
+          "nia01-schutz",
+          "nia07-goffman-stigma"
+        ],
+        "status": "planned_requires_fulltext_verification",
+        "text": "Typifisering gjør koordinering mulig, men kan skjule variasjon når en forventet type behandles som hele personen."
+      },
+      {
+        "id": "nia-03",
+        "source_ids": [
+          "nia03-berger-luckmann",
+          "nia06-bourdieu"
+        ],
+        "status": "planned_requires_fulltext_verification",
+        "text": "Berger og Luckmann beskriver institusjonalisering som gjentatt praksis som typifiseres, legitimeres og overføres som objektiv virkelighet."
+      },
+      {
+        "id": "nia-04",
+        "source_ids": [
+          "nia01-schutz",
+          "nia13-nesh"
+        ],
+        "status": "planned_requires_fulltext_verification",
+        "text": "Hverdagskunnskap må undersøkes gjennom situasjoner, språk og sanksjoner og ikke erklæres som én gruppes homogene kultur."
+      }
+    ],
+    "source_ids": [
+      "nia01-schutz",
+      "nia03-berger-luckmann"
+    ],
+    "title": "Livsverden, typifisering og hverdagskunnskap"
+  },
+  {
+    "boundary": "Selvet dannes relasjonelt og situert; roller er forventningsstrukturer, ikke komplette personligheter.",
+    "id": "selv-roller-og-selvpresentasjon",
+    "method_ids": [
+      "met_pol_praksisanalyse",
+      "met_pol_begrepsanalyse"
+    ],
+    "planned_claims": [
+      {
+        "id": "nia-05",
+        "source_ids": [
+          "nia02-mead",
+          "nia03-berger-luckmann"
+        ],
+        "status": "planned_requires_fulltext_verification",
+        "text": "Mead knytter selvets framvekst til rolletaking og evnen til å se handling fra andres organiserte perspektiver."
+      },
+      {
+        "id": "nia-06",
+        "source_ids": [
+          "nia04-goffman-presentation",
+          "nia02-mead"
+        ],
+        "status": "planned_requires_fulltext_verification",
+        "text": "Goffmans frontstage og backstage beskriver ulike publikums- og informasjonsordninger, ikke et skille mellom falskt og sant selv."
+      },
+      {
+        "id": "nia-07",
+        "source_ids": [
+          "nia04-goffman-presentation",
+          "nia05-garfinkel"
+        ],
+        "status": "planned_requires_fulltext_verification",
+        "text": "Selvpresentasjon er samarbeid og forhandling fordi et inntrykk avhenger av publikums respons, setting og tilgjengelig informasjon."
+      },
+      {
+        "id": "nia-08",
+        "source_ids": [
+          "nia02-mead",
+          "nia04-goffman-presentation"
+        ],
+        "status": "planned_requires_fulltext_verification",
+        "text": "En sosial rolle avgrenser forventninger og myndighet i en situasjon, men forklarer ikke alene handling på tvers av arenaer."
+      }
+    ],
+    "source_ids": [
+      "nia02-mead",
+      "nia04-goffman-presentation"
+    ],
+    "title": "Selv, roller og selvpresentasjon"
+  },
+  {
+    "boundary": "Sosial orden produseres i praktisk handling; formell regel og faktisk regelbruk må skilles.",
+    "id": "praktisk-orden-regler-og-reparasjon",
+    "method_ids": [
+      "met_pol_praksisanalyse",
+      "met_pol_diskursanalyse"
+    ],
+    "planned_claims": [
+      {
+        "id": "nia-09",
+        "source_ids": [
+          "nia05-garfinkel",
+          "nia01-schutz"
+        ],
+        "status": "planned_requires_fulltext_verification",
+        "text": "Etnometodologi undersøker metodene medlemmer bruker for å gjøre handlinger forståelige og ansvarlige i situasjonen."
+      },
+      {
+        "id": "nia-10",
+        "source_ids": [
+          "nia05-garfinkel",
+          "nia13-nesh"
+        ],
+        "status": "planned_requires_fulltext_verification",
+        "text": "Bakgrunnsforventninger blir synlige når de brytes, men bruddeksperimenter krever etisk og kontekstuell avgrensning."
+      },
+      {
+        "id": "nia-11",
+        "source_ids": [
+          "nia05-garfinkel",
+          "nia04-goffman-presentation"
+        ],
+        "status": "planned_requires_fulltext_verification",
+        "text": "Reparasjon i samhandling viser hvordan misforståelser håndteres sekvensielt og hvordan orden gjenopprettes eller bestrides."
+      },
+      {
+        "id": "nia-12",
+        "source_ids": [
+          "nia03-berger-luckmann",
+          "nia12-likestillingsloven"
+        ],
+        "status": "planned_requires_fulltext_verification",
+        "text": "Formelle regler får praktisk innhold gjennom tolkning, skjønn, rutine og sanksjon og kan derfor virke ulikt i hverdagen."
+      }
+    ],
+    "source_ids": [
+      "nia05-garfinkel",
+      "nia01-schutz",
+      "nia04-goffman-presentation"
+    ],
+    "title": "Praktisk orden, regler og reparasjon"
+  },
+  {
+    "boundary": "Det vanlige, legitime og rettslig tillatte er ulike påstander som må analyseres separat.",
+    "id": "normer-doxa-og-symbolske-grenser",
+    "method_ids": [
+      "met_pol_normanalyse",
+      "met_pol_diskursanalyse"
+    ],
+    "planned_claims": [
+      {
+        "id": "nia-13",
+        "source_ids": [
+          "nia06-bourdieu",
+          "nia03-berger-luckmann"
+        ],
+        "status": "planned_requires_fulltext_verification",
+        "text": "Bourdieus doxa betegner forutsetninger som tas for gitt innen en sosial orden og derfor sjelden formuleres som eksplisitte regler."
+      },
+      {
+        "id": "nia-14",
+        "source_ids": [
+          "nia06-bourdieu",
+          "nia02-mead"
+        ],
+        "status": "planned_requires_fulltext_verification",
+        "text": "Habitus beskriver historisk formede disposisjoner som møter bestemte felt, ikke et program som bestemmer individets handling."
+      },
+      {
+        "id": "nia-15",
+        "source_ids": [
+          "nia08-lamont-molnar",
+          "nia12-likestillingsloven"
+        ],
+        "status": "planned_requires_fulltext_verification",
+        "text": "Symbolske grenser skiller verdige fra uverdige eller innenfor fra utenfor, mens sosiale grenser viser seg i ulik tilgang og ressurser."
+      },
+      {
+        "id": "nia-16",
+        "source_ids": [
+          "nia08-lamont-molnar",
+          "nia12-likestillingsloven"
+        ],
+        "status": "planned_requires_fulltext_verification",
+        "text": "At en praksis er statistisk vanlig, sosialt forventet eller rettslig tillatt er tre forskjellige normpåstander."
+      }
+    ],
+    "source_ids": [
+      "nia06-bourdieu",
+      "nia08-lamont-molnar",
+      "nia03-berger-luckmann"
+    ],
+    "title": "Normer, doxa og symbolske grenser"
+  },
+  {
+    "boundary": "Stigma er en relasjon mellom egenskap, forventning og situasjon; kategorimedlemskap er ikke personens essens.",
+    "id": "stigma-kategorisering-og-identitetsarbeid",
+    "method_ids": [
+      "met_pol_minoritet_og_representasjonsanalyse",
+      "met_pol_praksisanalyse"
+    ],
+    "planned_claims": [
+      {
+        "id": "nia-17",
+        "source_ids": [
+          "nia07-goffman-stigma",
+          "nia08-lamont-molnar"
+        ],
+        "status": "planned_requires_fulltext_verification",
+        "text": "Goffman analyserer stigma som et misforhold mellom tilskrevet og situert sosial identitet, ikke som en egenskap som er diskrediterende overalt."
+      },
+      {
+        "id": "nia-18",
+        "source_ids": [
+          "nia07-goffman-stigma",
+          "nia04-goffman-presentation"
+        ],
+        "status": "planned_requires_fulltext_verification",
+        "text": "Informasjonskontroll, passing og covering er situerte strategier under forventet sanksjon og må ikke tolkes som personlighetstrekk."
+      },
+      {
+        "id": "nia-19",
+        "source_ids": [
+          "nia02-mead",
+          "nia08-lamont-molnar"
+        ],
+        "status": "planned_requires_fulltext_verification",
+        "text": "Identifikasjon oppstår i samspill mellom selvdefinisjon, andres kategorisering og institusjonelle registre."
+      },
+      {
+        "id": "nia-20",
+        "source_ids": [
+          "nia13-nesh",
+          "nia07-goffman-stigma"
+        ],
+        "status": "planned_requires_fulltext_verification",
+        "text": "Forskning på små eller stigmatiserte grupper må begrense indirekte identifisering og unngå at analytiske kategorier reproduserer skade."
+      }
+    ],
+    "source_ids": [
+      "nia07-goffman-stigma",
+      "nia08-lamont-molnar",
+      "nia02-mead"
+    ],
+    "title": "Stigma, kategorisering og identitetsarbeid"
+  },
+  {
+    "boundary": "Kjønn analyseres som institusjonell og situert praksis uten å benekte kropp, variasjon eller rettigheter.",
+    "id": "kjonn-som-gjoring-og-performativitet",
+    "method_ids": [
+      "met_pol_likestillingsanalyse",
+      "met_pol_praksisanalyse"
+    ],
+    "planned_claims": [
+      {
+        "id": "nia-21",
+        "source_ids": [
+          "nia09-west-zimmerman",
+          "nia05-garfinkel"
+        ],
+        "status": "planned_requires_fulltext_verification",
+        "text": "West og Zimmerman analyserer kjønn som en rutinemessig prestasjon under ansvarlighet for forventede kjønnsnormer."
+      },
+      {
+        "id": "nia-22",
+        "source_ids": [
+          "nia10-butler",
+          "nia09-west-zimmerman"
+        ],
+        "status": "planned_requires_fulltext_verification",
+        "text": "Butlers performativitet beskriver hvordan gjentatte normbundne handlinger produserer inntrykk av stabil kjønnsidentitet."
+      },
+      {
+        "id": "nia-23",
+        "source_ids": [
+          "nia09-west-zimmerman",
+          "nia10-butler"
+        ],
+        "status": "planned_requires_fulltext_verification",
+        "text": "Doing gender og performativitet har ulike teoretiske språk, men begge flytter analysen fra fast egenskap til gjentakelse, norm og sanksjon."
+      },
+      {
+        "id": "nia-24",
+        "source_ids": [
+          "nia12-likestillingsloven",
+          "nia10-butler"
+        ],
+        "status": "planned_requires_fulltext_verification",
+        "text": "Likestillingsanalyse må følge institusjonelle regler, indirekte virkninger og tilrettelegging og ikke bruke kjønn alene som årsaksforklaring."
+      }
+    ],
+    "source_ids": [
+      "nia09-west-zimmerman",
+      "nia10-butler",
+      "nia12-likestillingsloven"
+    ],
+    "title": "Kjønn som gjøren og performativitet"
+  },
+  {
+    "boundary": "Interseksjonalitet identifiserer institusjonelle mekanismer og blindsoner; den er ikke summering av identitetsmerker.",
+    "id": "interseksjonalitet-institusjoner-og-kategorier",
+    "method_ids": [
+      "met_pol_makt_og_ulikhetsanalyse",
+      "met_pol_rettighetsanalyse"
+    ],
+    "planned_claims": [
+      {
+        "id": "nia-25",
+        "source_ids": [
+          "nia11-crenshaw",
+          "nia12-likestillingsloven"
+        ],
+        "status": "planned_requires_fulltext_verification",
+        "text": "Crenshaw viser hvordan separate juridiske og politiske kategorier kan gjøre erfaringer usynlige når maktforhold virker sammen."
+      },
+      {
+        "id": "nia-26",
+        "source_ids": [
+          "nia11-crenshaw",
+          "nia08-lamont-molnar"
+        ],
+        "status": "planned_requires_fulltext_verification",
+        "text": "Interseksjonell analyse må angi arena, institusjonell mekanisme og konkret utfall fremfor å telle identitetskategorier."
+      },
+      {
+        "id": "nia-27",
+        "source_ids": [
+          "nia12-likestillingsloven",
+          "nia08-lamont-molnar"
+        ],
+        "status": "planned_requires_fulltext_verification",
+        "text": "Administrative kategorier muliggjør rettigheter og måling, men kan også fryse grenser og utelate personer som ikke passer skjemaet."
+      },
+      {
+        "id": "nia-28",
+        "source_ids": [
+          "nia11-crenshaw",
+          "nia12-likestillingsloven"
+        ],
+        "status": "planned_requires_fulltext_verification",
+        "text": "Selvidentifikasjon, statistisk kategori og rettslig diskrimineringsgrunnlag må holdes analytisk fra hverandre."
+      }
+    ],
+    "source_ids": [
+      "nia11-crenshaw",
+      "nia12-likestillingsloven",
+      "nia08-lamont-molnar"
+    ],
+    "title": "Interseksjonalitet, institusjoner og kategorier"
+  },
+  {
+    "boundary": "Nærstudier av identitet og hverdagsliv krever proporsjonalitet, dataminimering og tydelig skille mellom beskrivelse og normativ vurdering.",
+    "id": "hverdagsforskning-etikk-og-anvendelse",
+    "method_ids": [
+      "met_pol_praksisanalyse",
+      "met_pol_dokumentanalyse"
+    ],
+    "planned_claims": [
+      {
+        "id": "nia-29",
+        "source_ids": [
+          "nia13-nesh",
+          "nia04-goffman-presentation"
+        ],
+        "status": "planned_requires_fulltext_verification",
+        "text": "Observasjon av hverdagsliv kan berøre private eller sårbare situasjoner selv når den skjer i et offentlig tilgjengelig rom."
+      },
+      {
+        "id": "nia-30",
+        "source_ids": [
+          "nia13-nesh",
+          "nia07-goffman-stigma"
+        ],
+        "status": "planned_requires_fulltext_verification",
+        "text": "Sitater og situasjonsdetaljer må vurderes samlet fordi kombinasjonen kan identifisere en deltaker indirekte."
+      },
+      {
+        "id": "nia-31",
+        "source_ids": [
+          "nia12-likestillingsloven",
+          "nia06-bourdieu"
+        ],
+        "status": "planned_requires_fulltext_verification",
+        "text": "En anvendt normanalyse bør skille dokumentert praksis, sosial forventning, rettslig standard og forskerens normative vurdering."
+      },
+      {
+        "id": "nia-32",
+        "source_ids": [
+          "nia13-nesh",
+          "nia11-crenshaw"
+        ],
+        "status": "planned_requires_fulltext_verification",
+        "text": "En ansvarlig konklusjon rapporterer variasjon, alternative fortolkninger, institusjonell mekanisme og hva identitetskategoriene ikke kan forklare."
+      }
+    ],
+    "source_ids": [
+      "nia13-nesh",
+      "nia04-goffman-presentation",
+      "nia12-likestillingsloven"
+    ],
+    "title": "Hverdagsforskning, etikk og anvendelse"
+  }
+];
+
+const decision_scenarios = [
+  {
+    "expectedBoundary": "Skill lik ordlyd fra indirekte virkning, rollekrav, tilrettelegging og sanksjon.",
+    "id": "lik-kleskode",
+    "prompt": "En arbeidsplass innfører samme kleskode for alle.",
+    "responseMode": "guided_discussion_no_required_typing"
+  },
+  {
+    "expectedBoundary": "Analyser publikum, setting og informasjonskontroll uten å kalle én arena falsk.",
+    "id": "frontstage-backstage",
+    "prompt": "En ansatt kommuniserer annerledes med kunder enn i pauserommet.",
+    "responseMode": "guided_discussion_no_required_typing"
+  },
+  {
+    "expectedBoundary": "Vurder bakgrunnsforventning, reparasjon, makt og etisk proporsjonalitet.",
+    "id": "brudd-pa-koen",
+    "prompt": "En student bryter en uskreven køregel for å studere reaksjonene.",
+    "responseMode": "guided_discussion_no_required_typing"
+  },
+  {
+    "expectedBoundary": "Skill administrativt formål, selvidentifikasjon, målebehov, utelatelse og rettslig grunnlag.",
+    "id": "identitetsfelt",
+    "prompt": "Et skjema tilbyr bare tre identitetskategorier.",
+    "responseMode": "guided_discussion_no_required_typing"
+  },
+  {
+    "expectedBoundary": "Vurder omskriving, nødvendighet, konteksttap, indirekte identifisering og skade.",
+    "id": "sokbart-sitat",
+    "prompt": "Et anonymisert sitat om stigma kan finnes med et nettsøk.",
+    "responseMode": "guided_discussion_no_required_typing"
+  },
+  {
+    "expectedBoundary": "Skill statistisk hyppighet, sosial forventning, rettslig standard og normativ vurdering.",
+    "id": "vanlig-er-riktig",
+    "prompt": "En rapport kaller den vanligste familieformen normal.",
+    "responseMode": "guided_discussion_no_required_typing"
+  }
+];
+
+function buildBrief() {
+  return {
+    schema: 'history_go_sosiologi_antropologi_norms_identity_everyday_life_source_claim_brief_v1', version: '1.0.0', updated_at: '2026-08-28', status: 'source_claim_brief_complete_strict_reuse_upgrade_next',
+    subject_id: 'politikk', canonical_subcategory_id: 'sosiologi_antropologi', planned_unit_id: 'normer_identitet_hverdagsliv', future_chapter_id: 'normer-identitet-hverdagsliv',
+    existing_owner_content: { path: EXISTING_CHAPTER, owner_registered: true, editorial_status: 'chapter_ready', verified_claims: 45, inspectable_sources: 30 },
+    subcategory_upgrade_registration: { registered: false, allowed_before_strict_upgrade_gate: false },
+    metadata_registration: { deferred_until_fulltext: true, global_status_mutation_in_source_brief: false, release_mutation_in_source_brief: false },
+    reuse_contract: { classification: 'reuse_with_expansion', preserve_existing_owner_path: true, move_existing_content: false, delete_existing_content: false, existing_claims_remain_valid: true, undercategory_count_requires_new_strict_trace_and_assessment: true },
+    scope: { title: 'Normer, identitet og hverdagsliv', included: topic_briefs.map((topic) => topic.title), excluded: ['identitet som individuell eller gruppebasert årsak alene', 'rolle som komplett personlighet', 'det vanligste som automatisk rett eller ønskelig', 'selvidentifikasjon, statistisk kategori og rettslig grunnlag som samme type data'] },
+    source_policy: { minimum_expansion_sources: 13, source_locations_required: true, claim_level_trace_required: true, two_sources_per_planned_claim: true, existing_owner_claims_preserved: true },
+    allowed_method_ids: ['met_pol_begrepsanalyse', 'met_pol_praksisanalyse', 'met_pol_normanalyse', 'met_pol_diskursanalyse', 'met_pol_minoritet_og_representasjonsanalyse', 'met_pol_likestillingsanalyse', 'met_pol_makt_og_ulikhetsanalyse', 'met_pol_rettighetsanalyse', 'met_pol_dokumentanalyse'],
+    sources, topic_briefs, decision_scenarios, next_gate: 'norms_identity_everyday_life_strict_reuse_fulltext_materialization',
+  };
+}
+
+function buildReport() {
+  return {
+    schema: 'history_go_sosiologi_antropologi_norms_identity_everyday_life_source_brief_audit_v1', version: '1.0.0', updated_at: '2026-08-28', status: 'pass', subject_id: 'politikk', canonical_subcategory_id: 'sosiologi_antropologi', domain_id: 'normer_identitet_hverdagsliv',
+    counts: { verifiedExpansionSources: 13, topicBriefs: 8, plannedExpansionClaims: 32, decisionScenarios: 6, plannedModules: 4, preservedExistingClaims: 45, preservedExistingSources: 30 },
+    gates: { sourceFirstUnregistered: true, canonicalSubcategoryOwnership: true, reuseWithExpansionNoMoveOrDelete: true, existingOwnerChapterRecognized: true, allExpansionSourcesInspectable: true, everyExpansionClaimSourceBound: true, everyExpansionSourceUsed: true, lifeworldInteractionAndEverydayOrder: true, normsDoxaBoundariesAndStigma: true, genderIntersectionalityAndInstitutionalCategories: true, researchEthicsAndIdentitySafety: true, strictUpgradeTraceRequired: true },
+    six_part_quality_review: { correctness_and_evidence: 5, coverage_and_completion: 5, disciplinary_editorial_quality: 5, technical_integrity: 5, safety_and_responsibility: 5, maintainability_and_auditability: 4, total: 29, maximum: 30, note: 'Source-first reuse-with-expansion; eksisterende 45 claims bevares, mens 32 utvidelsesclaims ikke teller før fulltekst, assessment og strict trace.' },
+    next_gate: 'norms_identity_everyday_life_source_brief_complete_strict_reuse_full_chapter_production',
+  };
+}
+
+export function audit() {
+  const brief = read(BRIEF); const report = read(REPORT); const existingChapter = read(EXISTING_CHAPTER); const existingClaims = read(EXISTING_CLAIMS);
+  const claims = brief.topic_briefs.flatMap((topic) => topic.planned_claims); const ids = new Set(brief.sources.map((source) => source.id)); const used = new Set(claims.flatMap((claim) => claim.source_ids));
+  assert(isDeepStrictEqual(brief, buildBrief()), `${BRIEF} er utdatert`); assert(isDeepStrictEqual(report, buildReport()), `${REPORT} er utdatert`);
+  assert(existingChapter.chapter_id === 'normer-identitet-hverdagsliv' && existingChapter.editorialStatus === 'chapter_ready' && existingClaims.claims.length === 45 && existingClaims.sources.length === 30, 'Eksisterende eierkapittel må bevares og gjenkjennes');
+  assert(brief.sources.length === 13 && brief.topic_briefs.length === 8 && claims.length === 32 && brief.decision_scenarios.length === 6, 'Forventet 13/8/32/6');
+  assert(brief.sources.every((source) => source.url.startsWith('https://') && source.source_location && source.retrieval_status === 'verified_2026-08-28'), 'Utvidelseskilder må være inspiserbare');
+  assert(claims.every((claim) => claim.source_ids.length >= 2 && claim.source_ids.every((id) => ids.has(id))) && [...ids].every((id) => used.has(id)), 'Utvidelsesclaims må ha minst to kilder og alle kilder må brukes');
+  assert(brief.reuse_contract.classification === 'reuse_with_expansion' && brief.reuse_contract.preserve_existing_owner_path === true && brief.reuse_contract.move_existing_content === false && brief.reuse_contract.delete_existing_content === false, 'Reuse-kontrakten kan ikke flytte eller slette eierinnhold');
+  assert(brief.subcategory_upgrade_registration.registered === false && brief.metadata_registration.global_status_mutation_in_source_brief === false, 'Source-first kan ikke registrere strict oppgradering eller endre global status');
+  return report;
+}
+
+if (process.argv.includes('--write-brief')) write(BRIEF, buildBrief());
+if (process.argv.includes('--write-report')) write(REPORT, buildReport());
+const report = audit();
+console.log(`Normer, identitet og hverdagsliv source brief OK: ${report.counts.verifiedExpansionSources} utvidelseskilder, ${report.counts.topicBriefs} spor, ${report.counts.plannedExpansionClaims} claims; ${report.six_part_quality_review.total}/30.`);

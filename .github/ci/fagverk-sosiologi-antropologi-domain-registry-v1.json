@@ -21,7 +21,9 @@
       "reports/fagverk/sosiologi-antropologi-sociological-theory-fulltext-v1-audit.json",
       "reports/fagverk/sosiologi-antropologi-anthropological-theory-source-brief-v1-audit.json",
       "reports/fagverk/sosiologi-antropologi-anthropological-theory-fulltext-v1-audit.json",
-      "reports/fagverk/sosiologi-antropologi-methods-ethnography-comparison-source-brief-v1-audit.json"
+      "reports/fagverk/sosiologi-antropologi-methods-ethnography-comparison-source-brief-v1-audit.json",
+      "reports/fagverk/sosiologi-antropologi-methods-ethnography-comparison-fulltext-v1-audit.json",
+      "reports/fagverk/sosiologi-antropologi-norms-identity-everyday-life-source-brief-v1-audit.json"
     ]
   },
   "domains": [
@@ -53,9 +55,21 @@
       "slug": "methods-ethnography-comparison",
       "sourceBrief": "data/fag/politikk/sosiologi_antropologi/methods_ethnography_comparison_source_claim_brief_v1.json",
       "sourceBriefScript": "scripts/brief-sosiologi-antropologi-methods-ethnography-comparison-sources-v1.mjs",
-      "sourceBriefTest": "tests/sosiologi-antropologi-methods-ethnography-comparison-source-brief-v1.test.mjs"
+      "sourceBriefTest": "tests/sosiologi-antropologi-methods-ethnography-comparison-source-brief-v1.test.mjs",
+      "fulltextMaterializer": "scripts/materialize-sosiologi-antropologi-methods-ethnography-comparison-fulltext-v1.mjs",
+      "fulltextAudit": "scripts/audit-sosiologi-antropologi-methods-ethnography-comparison-fulltext-v1.mjs",
+      "fulltextTest": "tests/sosiologi-antropologi-methods-ethnography-comparison-fulltext-v1.test.mjs"
     },
-    { "ordinal": 4, "domainId": "normer_identitet_hverdagsliv", "slug": "norms-identity-everyday-life", "reconciliation": "reuse_with_expansion", "existingChapter": "data/fagverk/politikk/normer-identitet-hverdagsliv.json" },
+    {
+      "ordinal": 4,
+      "domainId": "normer_identitet_hverdagsliv",
+      "slug": "norms-identity-everyday-life",
+      "reconciliation": "reuse_with_expansion",
+      "existingChapter": "data/fagverk/politikk/normer-identitet-hverdagsliv.json",
+      "sourceBrief": "data/fag/politikk/sosiologi_antropologi/norms_identity_everyday_life_source_claim_brief_v1.json",
+      "sourceBriefScript": "scripts/brief-sosiologi-antropologi-norms-identity-everyday-life-sources-v1.mjs",
+      "sourceBriefTest": "tests/sosiologi-antropologi-norms-identity-everyday-life-source-brief-v1.test.mjs"
+    },
     { "ordinal": 5, "domainId": "ulikhet_klasse_kjonn_rasialisering", "slug": "inequality-class-gender-racialization", "reconciliation": "reuse_with_expansion", "existingChapter": "data/fagverk/politikk/fordeling-velferd-ulikhet.json" },
     { "ordinal": 6, "domainId": "familie_slektskap_omsorg_livslop", "slug": "family-kinship-care-life-course" },
     { "ordinal": 7, "domainId": "institusjoner_organisasjoner_arbeid_velferd", "slug": "institutions-organizations-work-welfare" },
