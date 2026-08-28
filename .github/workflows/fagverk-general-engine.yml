@@ -5,8 +5,10 @@ on:
     paths:
       - 'fagverk.html'
       - 'fagverk-forside.html'
+      - 'merke.html'
       - 'data/categories/category_contract.json'
       - 'data/fag/fag_manifest.json'
+      - 'data/fag/**/merke*.html'
       - 'data/fagverk/*/**'
       - 'data/badges/**'
       - 'js/fagverk-subject-core.js'
@@ -14,17 +16,22 @@ on:
       - 'js/fagverk.js'
       - 'js/fagverk-ia-v3.js'
       - 'js/fagverk-ia-v3-detail.js'
+      - 'js/fagverk-ia-v3-badge-progress.js'
       - 'js/fagverk-forside.js'
+      - 'js/merke-fallback.js'
       - 'css/fagverk-general.css'
       - 'css/fagverk-ia-v3.css'
       - 'css/fagverk-ia-v3-detail.css'
+      - 'css/fagverk-ia-v3-badge-progress.css'
       - 'css/fagverk-forside.css'
       - 'docs/FAGVERK_NAVIGATION.md'
       - 'docs/FAGVERK_IA_V3_*.md'
       - 'scripts/audit-fagverk-general-engine.mjs'
+      - 'scripts/audit-fagverk-badge-equivalence.mjs'
       - 'tests/fagverk-general-engine.test.mjs'
       - 'tests/fagverk-ia-v3-shell.test.mjs'
       - 'tests/fagverk-ia-v3-detail.test.mjs'
+      - 'tests/fagverk-badge-equivalence.test.mjs'
       - 'reports/fagverk/general-engine-audit.json'
       - 'tests/politikk-fag-integration.test.mjs'
       - '.github/workflows/fagverk-general-engine.yml'
@@ -55,9 +62,12 @@ jobs:
           node --check js/fagverk.js
           node --check js/fagverk-ia-v3.js
           node --check js/fagverk-ia-v3-detail.js
+          node --check js/fagverk-ia-v3-badge-progress.js
           node --check js/fagverk-forside.js
+          node --check js/merke-fallback.js
           node --check scripts/audit-fagverk-subject-inventory.mjs
           node --check scripts/audit-fagverk-general-engine.mjs
+          node --check scripts/audit-fagverk-badge-equivalence.mjs
       - name: Verify inventory and status progression
         run: |
           node scripts/audit-fagverk-subject-inventory.mjs
@@ -65,7 +75,9 @@ jobs:
       - name: Verify general subject engine
         run: |
           node scripts/audit-fagverk-general-engine.mjs
+          node scripts/audit-fagverk-badge-equivalence.mjs
           node --test tests/fagverk-general-engine.test.mjs
           node --test tests/fagverk-ia-v3-shell.test.mjs
           node --test tests/fagverk-ia-v3-detail.test.mjs
+          node --test tests/fagverk-badge-equivalence.test.mjs
           node --test tests/politikk-fag-integration.test.mjs
