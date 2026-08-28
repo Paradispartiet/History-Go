@@ -67,8 +67,10 @@
   function renderEmner(model, progress, placeId) {
     const host = document.getElementById('fagverkIaEmnerContent');
     if (!host) return;
+    const domainProgressById = new Map(progress.domainProgress.map((row) => [row.domainId, row]));
     const groups = model.domains.map((domain) => {
       const emners = domain.emneIds.map((id) => model.emnersById.get(id)).filter(Boolean);
+      const domainProgress = domainProgressById.get(domain.id) || {};
       const cards = emners.map((emne) => {
         const row = progress.coverageById.get(emne.id) || {};
         const href = MODEL.emneUrl(model.subject.id, domain.id, emne.id, { place: placeId });
@@ -78,15 +80,19 @@
           <b>${Number(row.percent || 0)}%</b>
         </a>`;
       }).join('');
-      return `<section class="fagverk-ia-emne-group" data-domain-search="${escapeHtml([domain.label, domain.definition].join(' ').toLocaleLowerCase('nb-NO'))}">
-        <header><div><p class="fagverk-kicker">Fagområde</p><h4>${escapeHtml(domain.label)}</h4><p>${escapeHtml(domain.definition)}</p></div><a href="${escapeHtml(MODEL.domainUrl(model.subject.id, domain.id, { place: placeId }))}">Åpne fagområdet →</a></header>
-        <div class="fagverk-ia-emne-list">${cards}</div>
-      </section>`;
+      return `<details class="fagverk-ia-emne-group" data-domain-search="${escapeHtml([domain.label, domain.definition].join(' ').toLocaleLowerCase('nb-NO'))}">
+        <summary><span><span class="fagverk-kicker">Fagområde</span><strong>${escapeHtml(domain.label)}</strong></span><small>${emners.length} emner · ${Number(domainProgress.percent || 0)}% dekket</small></summary>
+        <div class="fagverk-ia-emne-group-body">
+          ${domain.definition ? `<p>${escapeHtml(domain.definition)}</p>` : ''}
+          <a class="fagverk-ia-domain-link" href="${escapeHtml(MODEL.domainUrl(model.subject.id, domain.id, { place: placeId }))}">Åpne fagområdet →</a>
+          <div class="fagverk-ia-emne-list">${cards}</div>
+        </div>
+      </details>`;
     }).join('');
 
     host.innerHTML = `
       <label class="fagverk-ia-search" for="fagverkIaEmneSearch"><span>Søk i alle emner</span><input id="fagverkIaEmneSearch" type="search" autocomplete="off" placeholder="Søk etter emne eller begrep"></label>
-      <p id="fagverkIaEmneCount" class="fagverk-ia-count">${model.emners.length} emner</p>
+      <p id="fagverkIaEmneCount" class="fagverk-ia-count">${model.emners.length} emner · ${model.domains.length} fagområder</p>
       <div class="fagverk-ia-emne-groups">${groups}</div>
     `;
 
@@ -106,9 +112,16 @@
             groupVisible += 1;
           }
         });
-        group.hidden = groupVisible === 0;
+        group.hidden = Boolean(query) && groupVisible === 0;
+        if (query && groupVisible > 0) {
+          if (!group.open) group.dataset.searchOpened = 'true';
+          group.open = true;
+        } else if (!query && group.dataset.searchOpened === 'true') {
+          group.open = false;
+          delete group.dataset.searchOpened;
+        }
       });
-      count.textContent = query ? `${visible} av ${model.emners.length} emner` : `${model.emners.length} emner`;
+      count.textContent = query ? `${visible} av ${model.emners.length} emner` : `${model.emners.length} emner · ${model.domains.length} fagområder`;
     };
     search?.addEventListener('input', update);
   }
