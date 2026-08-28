@@ -1,0 +1,36 @@
+name: Fagverk IA v3 Kunst legacy audit probe
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/audit-fagverk-kunst-legacy-theory.mjs'
+      - 'tests/fagverk-kunst-legacy-theory-audit.test.mjs'
+      - 'reports/fagverk/kunst-legacy-theory-audit.json'
+      - '.github/workflows/fagverk-ia-v3-kunst-legacy-audit-probe.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  generate-and-clean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Generate and validate Kunst legacy audit
+        run: |
+          node --check scripts/audit-fagverk-kunst-legacy-theory.mjs
+          node scripts/audit-fagverk-kunst-legacy-theory.mjs --write-report
+          node --test tests/fagverk-kunst-legacy-theory-audit.test.mjs
+      - name: Commit report and remove probe
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/fagverk-ia-v3-kunst-legacy-audit-probe.yml
+          git add reports/fagverk/kunst-legacy-theory-audit.json
+          git commit -m 'Regenerate corrected Kunst legacy audit'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
