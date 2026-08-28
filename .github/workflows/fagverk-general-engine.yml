@@ -9,6 +9,11 @@ on:
       - 'data/categories/category_contract.json'
       - 'data/fag/fag_manifest.json'
       - 'data/fag/**/merke*.html'
+      - 'data/fag/by/teori.html'
+      - 'data/fag/by/pensum_by.json'
+      - 'data/fag/by/emner_by.json'
+      - 'data/fag/by/fagkart_by.json'
+      - 'data/fag/by/methods_by.json'
       - 'data/fagverk/*/**'
       - 'data/badges/**'
       - 'js/fagverk-subject-core.js'
@@ -28,10 +33,12 @@ on:
       - 'docs/FAGVERK_IA_V3_*.md'
       - 'scripts/audit-fagverk-general-engine.mjs'
       - 'scripts/audit-fagverk-badge-equivalence.mjs'
+      - 'scripts/audit-fagverk-by-legacy-theory.mjs'
       - 'tests/fagverk-general-engine.test.mjs'
       - 'tests/fagverk-ia-v3-shell.test.mjs'
       - 'tests/fagverk-ia-v3-detail.test.mjs'
       - 'tests/fagverk-badge-equivalence.test.mjs'
+      - 'tests/fagverk-by-legacy-theory-audit.test.mjs'
       - 'reports/fagverk/general-engine-audit.json'
       - 'tests/politikk-fag-integration.test.mjs'
       - '.github/workflows/fagverk-general-engine.yml'
@@ -68,6 +75,7 @@ jobs:
           node --check scripts/audit-fagverk-subject-inventory.mjs
           node --check scripts/audit-fagverk-general-engine.mjs
           node --check scripts/audit-fagverk-badge-equivalence.mjs
+          node --check scripts/audit-fagverk-by-legacy-theory.mjs
       - name: Verify inventory and status progression
         run: |
           node scripts/audit-fagverk-subject-inventory.mjs
@@ -76,8 +84,10 @@ jobs:
         run: |
           node scripts/audit-fagverk-general-engine.mjs
           node scripts/audit-fagverk-badge-equivalence.mjs
+          node scripts/audit-fagverk-by-legacy-theory.mjs
           node --test tests/fagverk-general-engine.test.mjs
           node --test tests/fagverk-ia-v3-shell.test.mjs
           node --test tests/fagverk-ia-v3-detail.test.mjs
           node --test tests/fagverk-badge-equivalence.test.mjs
+          node --test tests/fagverk-by-legacy-theory-audit.test.mjs
           node --test tests/politikk-fag-integration.test.mjs
