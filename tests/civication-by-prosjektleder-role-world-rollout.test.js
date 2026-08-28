@@ -161,7 +161,7 @@ for (const id of ['kommunalsjef_lena','prosjektkoordinator_amin','maria_medvirkn
 assert.ok(model.authority_boundary?.may_not?.some(line => /overstyre lov/.test(line)));
 assert.ok(model.authority_boundary?.may_not?.some(line => /vesentlig risiko/.test(line)));
 assert.ok(model.authority_boundary?.may_not?.some(line => /binde kommunen/.test(line)));
-assert.ok(model.authority_boundary?.may_not?.some(line => /forhåndsbestemt resultat/.test(line)));
+assert.ok(model.authority_boundary?.may_not?.some(line => /på forhånd bestemt resultat/.test(line)));
 
 const index = readJson('data/Civication/roleWorlds/index.json');
 assert.ok((index.roles || []).some(row => row.category === 'by' && row.role_scope === ROLE && row.status === 'role_world_complete' && row.path === WORLD_PATH));
