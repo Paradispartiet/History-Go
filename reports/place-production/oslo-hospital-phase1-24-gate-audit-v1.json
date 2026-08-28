@@ -1,0 +1,97 @@
+{
+  "schema": "history_go_phase1_24_quality_gate_v1",
+  "place_id": "oslo_hospital",
+  "verified_at": "2026-08-28",
+  "null_measurement": {
+    "existing_place": true,
+    "coordinate_changed": false,
+    "existing_quiz": "1x3 legacy",
+    "existing_story": "legacy story with internal source",
+    "existing_collections": 0
+  },
+  "collections": {
+    "required": [
+      "people",
+      "objects",
+      "brands",
+      "structures"
+    ],
+    "loaded_preview_images": 6,
+    "missing": 0,
+    "coverage_percent": 100
+  },
+  "brands": {
+    "candidates_reviewed": [
+      "Stiftelsen Oslo Hospital",
+      "Damehjemmet"
+    ],
+    "selected": [
+      "stiftelsen_oslo_hospital"
+    ],
+    "held_back": [
+      "Damehjemmet – historisk institusjonsnavn, men uten separat autentisk logo-/ordmerkegrunnlag."
+    ],
+    "logo_coverage": {
+      "required": 1,
+      "reviewed": 1,
+      "missing": 0,
+      "percent": 100
+    }
+  },
+  "people": {
+    "candidates_reviewed": [
+      "Herman Wedel Major",
+      "Christian 3",
+      "Birthe Jonsdatter"
+    ],
+    "selected": [
+      "herman_wedel_major"
+    ],
+    "held_back": [
+      "Christian 3 – grunnleggelsesordre, men ingen stedsspesifikk People-profil i denne standardleveransen.",
+      "Birthe Jonsdatter – navngitt historisk pasient; behandles varsomt i stedsteksten, ikke som samlingsobjekt."
+    ],
+    "image_coverage_percent": 100
+  },
+  "source_conflicts": [
+    {
+      "claim": "Dollhuset dateres til ett entydig år.",
+      "status": "qualified",
+      "reason": "Offisiell historikk oppgir 1777; Byarkivet og Tidsskriftet oppgir 1778."
+    },
+    {
+      "claim": "Historisk «raseri» tilsvarer en moderne diagnose.",
+      "status": "rejected",
+      "reason": "Kildeordet moderniseres ikke uten medisinsk belegg."
+    }
+  ],
+  "quality_score": {
+    "correctness_and_evidence": {
+      "score": 5,
+      "note": "Fem inspectable hovedkilder, eksplisitt 1777/1778-konflikt og fersk åpning 20. august 2026."
+    },
+    "coverage_and_completion": {
+      "score": 5,
+      "note": "Fire bildeklare samlinger, 14 milepæler, språk, People, Brand, Story, lesespor, Fagverk og 4x7-quiz er materialisert."
+    },
+    "editorial_quality": {
+      "score": 5,
+      "note": "Teksten skiller hjelp fra kontroll, kildeord fra moderne diagnose og institusjonsformål fra pasienterfaring."
+    },
+    "technical_integrity": {
+      "score": 5,
+      "note": "Deterministisk finalizer, canonical manifests, lokale assets, v4.2-pakke og målrettet test inngår."
+    },
+    "safety_and_responsibility": {
+      "score": 5,
+      "note": "Historiske pasientopplysninger formidles nøkternt; kildetaushet, bildeår og varemerkebruk er synlige."
+    },
+    "maintainability_and_auditability": {
+      "score": 5,
+      "note": "Claims, setningsmapping, bildeproveniens, konflikter, holdbacks og permanente tester gir revisjonsspor."
+    },
+    "total": 30,
+    "critical_findings": 0,
+    "unresolved_blockers": 0
+  }
+}

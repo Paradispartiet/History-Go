@@ -3,7 +3,7 @@
   "contract": "docs/PEOPLE_POPUP_SYSTEM.md",
   "productionContract": "docs/PEOPLE_PROFILE_CANONICAL.md",
   "generatedBy": "tools/audit-people-popup-readiness.mts",
-  "sourceFingerprint": "9f6d99de5c4bfdad2cc9f46977a0ada8754d7b9431e3582b7ccc10f7f0fdc404",
+  "sourceFingerprint": "e47891c43c4ac8501f06f49ec6d3585d7d4dbdab814144a7e6ef9bc9e2cd5579",
   "thresholds": {
     "complete": 85,
     "strong": 65,
@@ -17,25 +17,25 @@
     "legacyWithoutClaimsStatus": "legacy_unreviewed"
   },
   "summary": {
-    "totalPeople": 1418,
-    "complete": 62,
-    "strong": 405,
+    "totalPeople": 1420,
+    "complete": 63,
+    "strong": 406,
     "partial": 936,
     "sparse": 15,
-    "readyPeopleV1": 68,
+    "readyPeopleV1": 70,
     "legacyUnreviewed": 1350,
     "brokenImages": 287,
     "explicitFallbacks": 1002,
     "implicitFallbacks": 26,
-    "averageScore": 65.3
+    "averageScore": 65.4
   },
   "fieldCoverage": {
     "identity": {
-      "count": 119,
-      "percent": 8.4
+      "count": 121,
+      "percent": 8.5
     },
     "popupDesc": {
-      "count": 1397,
+      "count": 1399,
       "percent": 98.5
     },
     "lifeData": {
@@ -43,32 +43,32 @@
       "percent": 4.2
     },
     "contributionsDeclared": {
-      "count": 59,
+      "count": 60,
       "percent": 4.2
     },
     "educationDeclared": {
-      "count": 59,
+      "count": 60,
       "percent": 4.2
     },
     "practiceDeclared": {
-      "count": 1400,
+      "count": 1402,
       "percent": 98.7
     },
     "placeGrounding": {
-      "count": 1418,
+      "count": 1420,
       "percent": 100
     },
     "sources": {
-      "count": 456,
-      "percent": 32.2
+      "count": 458,
+      "percent": 32.3
     },
     "imageContract": {
-      "count": 1131,
+      "count": 1133,
       "percent": 79.8
     },
     "profileStandard": {
-      "count": 68,
-      "percent": 4.8
+      "count": 70,
+      "percent": 4.9
     }
   },
   "categories": [
@@ -85,14 +85,14 @@
     },
     {
       "category": "historie",
-      "total": 232,
-      "complete": 1,
+      "total": 233,
+      "complete": 2,
       "strong": 110,
       "partial": 121,
       "sparse": 0,
-      "readyPeopleV1": 0,
+      "readyPeopleV1": 1,
       "legacyUnreviewed": 232,
-      "averageScore": 64.8
+      "averageScore": 64.9
     },
     {
       "category": "litteratur",
@@ -139,6 +139,17 @@
       "averageScore": 73.1
     },
     {
+      "category": "by",
+      "total": 81,
+      "complete": 8,
+      "strong": 57,
+      "partial": 16,
+      "sparse": 0,
+      "readyPeopleV1": 20,
+      "legacyUnreviewed": 61,
+      "averageScore": 73.9
+    },
+    {
       "category": "naeringsliv",
       "total": 81,
       "complete": 5,
@@ -148,17 +159,6 @@
       "readyPeopleV1": 8,
       "legacyUnreviewed": 73,
       "averageScore": 62.9
-    },
-    {
-      "category": "by",
-      "total": 80,
-      "complete": 8,
-      "strong": 56,
-      "partial": 16,
-      "sparse": 0,
-      "readyPeopleV1": 19,
-      "legacyUnreviewed": 61,
-      "averageScore": 73.8
     },
     {
       "category": "scenekunst",
@@ -10483,6 +10483,23 @@
           "score": 80,
           "status": "strong",
           "productionStatus": "legacy_unreviewed"
+        }
+      ]
+    },
+    {
+      "placeId": "gamle_trikkestallen",
+      "totalIncomplete": 1,
+      "sparse": 0,
+      "partial": 0,
+      "strong": 1,
+      "averageScore": 80,
+      "people": [
+        {
+          "id": "per_horn",
+          "name": "Per Horn",
+          "score": 80,
+          "status": "strong",
+          "productionStatus": "ready_people_v1"
         }
       ]
     },
@@ -69910,6 +69927,47 @@
       ]
     },
     {
+      "id": "per_horn",
+      "name": "Per Horn",
+      "category": "by",
+      "kindLabel": "Scenograf og teknisk teaterbygger",
+      "sourceFile": "data/people/by/oslo/gamle_trikkestallen/per_horn.json",
+      "primaryPlace": "gamle_trikkestallen",
+      "places": [
+        "gamle_trikkestallen"
+      ],
+      "score": 80,
+      "priority": 30,
+      "status": "strong",
+      "productionStatus": "ready_people_v1",
+      "profileStandard": "people_profile_v1.0",
+      "claimsFile": "data/people/claims/by/oslo/gamle_trikkestallen/per_horn.claims.json",
+      "paragraphCount": 1,
+      "popupLength": 562,
+      "contributionCount": 0,
+      "educationCount": 0,
+      "practiceCount": 5,
+      "sourceCount": 4,
+      "imageState": "valid_image",
+      "imagePath": "bilder/kort/people/per_horn_editorial_cutout.webp",
+      "coverage": {
+        "identity": true,
+        "popupDesc": true,
+        "lifeData": false,
+        "contributionsDeclared": false,
+        "educationDeclared": false,
+        "practiceDeclared": true,
+        "placeGrounding": true,
+        "sources": true,
+        "imageContract": true,
+        "profileStandard": true
+      },
+      "issues": [
+        "missing_birth_data",
+        "missing_contributions_field"
+      ]
+    },
+    {
       "id": "peter_marinius_jensen",
       "name": "Peter Marinius Jensen",
       "category": "by",
@@ -70733,6 +70791,46 @@
       },
       "issues": [
         "missing_contributions_field"
+      ]
+    },
+    {
+      "id": "herman_wedel_major",
+      "name": "Herman Wedel Major",
+      "category": "historie",
+      "kindLabel": "Lege og psykiatrireformator",
+      "sourceFile": "data/people/historie/oslo/oslo_hospital/herman_wedel_major.json",
+      "primaryPlace": "oslo_hospital",
+      "places": [
+        "oslo_hospital"
+      ],
+      "score": 95,
+      "priority": 5,
+      "status": "complete",
+      "productionStatus": "ready_people_v1",
+      "profileStandard": "people_profile_v1.0",
+      "claimsFile": "data/people/claims/historie/oslo/oslo_hospital/herman_wedel_major.claims.json",
+      "paragraphCount": 3,
+      "popupLength": 459,
+      "contributionCount": 1,
+      "educationCount": 0,
+      "practiceCount": 5,
+      "sourceCount": 4,
+      "imageState": "valid_image",
+      "imagePath": "bilder/kort/people/herman_wedel_major.webp",
+      "coverage": {
+        "identity": true,
+        "popupDesc": true,
+        "lifeData": false,
+        "contributionsDeclared": true,
+        "educationDeclared": true,
+        "practiceDeclared": true,
+        "placeGrounding": true,
+        "sources": true,
+        "imageContract": true,
+        "profileStandard": true
+      },
+      "issues": [
+        "missing_birth_data"
       ]
     },
     {

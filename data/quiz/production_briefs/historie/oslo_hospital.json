@@ -1,0 +1,470 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "categoryId": "historie",
+  "targetId": "oslo_hospital",
+  "profile_hint": "normal",
+  "reviewed_at": "2026-08-28",
+  "review_note": "Fem inspiserte eksterne kilder bærer 28 spørsmål uten å skjule 1777/1778-konflikten eller pasientkildenes taushet.",
+  "scope": {
+    "place": "Oslo Hospital",
+    "production_profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "total_questions": 28,
+    "normal_opening_questions": 14
+  },
+  "sources": {
+    "official": {
+      "url": "https://www.oslohospital.no/oslo-hospital-sin-historie",
+      "source_type": "institutional_history",
+      "review_status": "reviewed",
+      "review_note": "Klostertomten, stiftelsen i 1538, Birthe Jonsdatter, bygningene, Major og sykehusdrift til 2018."
+    },
+    "byarkiv": {
+      "url": "https://blogg.oslobyarkiv.no/blog/2018/12/06/oslo-hospitals-historie/",
+      "source_type": "archive_history",
+      "review_status": "reviewed",
+      "review_note": "Jordebok, eiendomsøkonomi, beboere, Dollhuset, kirken og arkivets begrensninger."
+    },
+    "medical": {
+      "url": "https://tidsskriftet.no/2000/11/merkesteiner-i-norsk-medisin/etableringen-av-oslo-hospitals-dollhus",
+      "source_type": "scholarly_medical_history",
+      "review_status": "reviewed",
+      "review_note": "Dollhuset i 1778, seksten celler, Herman Wedel Major og loven av 1848."
+    },
+    "major": {
+      "url": "https://snl.no/Herman_Wedel_Major",
+      "source_type": "recognized_reference",
+      "review_status": "reviewed",
+      "review_note": "Majors identitet, kartlegging og reformarbeid."
+    },
+    "allstad": {
+      "url": "https://www.allstad.no/aktuelt/vellykket-åpning-av-oslo-hospital",
+      "source_type": "current_official",
+      "review_status": "reviewed",
+      "review_note": "Åpningen 20. august 2026 og ny bruk som arbeids- og møtested."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "his_velferd_rett_hverdagsliv",
+      "his_religion_reformasjon_livssyn",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_kirke_kloster_middelalder",
+      "em_his_stat_institusjoner",
+      "em_his_sosialhistorie_hverdagsliv",
+      "em_his_velferd_hverdagsliv",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_kilder_taushet_blindsoner",
+      "em_his_fattigvesen_veldedighet_sosial_kontroll"
+    ],
+    "topic_hook_ids": [
+      "his_fattigvesen_veldedighet_sosial_kontroll"
+    ],
+    "method_ids": [
+      "met_kronologisk_rekonstruksjon",
+      "met_arkivlesning",
+      "met_omsorgsregimeanalyse",
+      "met_institusjonshistorisk_analyse",
+      "met_for_etter_historisk",
+      "met_langvarighetsanalyse"
+    ],
+    "thinker_ids": [
+      "anne_lise_seip"
+    ],
+    "works": [
+      "Sosialhjelpstaten blir til"
+    ]
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/historie/oslo_hospital_sets.json",
+      "data/quiz/manifest.json",
+      "data/quiz"
+    ],
+    "active_before": {
+      "file": "data/quiz/historie/oslo_hospital_sets.json",
+      "set_count": 1,
+      "question_count": 3,
+      "finding": "Én aktiv legacy-pakke med tre spørsmål, interne kilder og metode i åpningssettet."
+    },
+    "decisions": [
+      "Behold de tre faglige kjernene som påstander, men skriv hele pakken på nytt.",
+      "Utvid til normal 4x7 med fjorten direkte åpningsspørsmål.",
+      "Flytt metode og teori til sett fire."
+    ],
+    "knowledge_migration": "Alle 28 spørsmål får stabile History Knowledge-ID-er."
+  },
+  "profile_decision": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "justification": "Fire selvstendige læringsjobber dekker grunnleggelse og økonomi, Dollhuset og reformen, bygningslag og ombruk samt kildekritisk institusjonsanalyse."
+  },
+  "held_back_candidates": [
+    "En sikker moderne diagnose for Birthe Jonsdatter.",
+    "En enkelt årsak til at psykiatrien endret seg.",
+    "1777 eller 1778 presentert som sikkert eneriktig år.",
+    "Hovedfotografiet fra 2008 presentert som dagens 2026-situasjon.",
+    "Pasienterfaringer utledet fra institusjonens egne kilder."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_oslo_hospital_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Fransiskanerne etablerte et kloster ved middelalderbyen omkring 1290.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kirke_kloster_middelalder"
+    },
+    {
+      "claim_id": "claim_oslo_hospital_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Christian 3 ga ordre om hospitalet i 1538.",
+      "source_ids": [
+        "official",
+        "byarkiv"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_oslo_hospital_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Hospitalet var rettet mot mennesker som manglet familie til å forsørge eller pleie dem.",
+      "source_ids": [
+        "official",
+        "byarkiv"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_oslo_hospital_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Jordeboken dokumenterer eiendomsgrunnlaget som finansierte hospitalet.",
+      "source_ids": [
+        "byarkiv"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_oslo_hospital_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo Hospitals egen historikk navngir Birthe Jonsdatter i 1736.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_oslo_hospital_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Dollhuset var hospitalets historiske psykiatriske avdeling.",
+      "source_ids": [
+        "medical",
+        "byarkiv"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_velferd_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_oslo_hospital_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Tidsskriftet beskriver seksten celler på omkring 6,1 kvadratmeter.",
+      "source_ids": [
+        "medical"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_velferd_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_oslo_hospital_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Dagens Gamlebyen kirke sto ferdig i 1796.",
+      "source_ids": [
+        "official",
+        "byarkiv"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kirke_kloster_middelalder"
+    },
+    {
+      "claim_id": "claim_oslo_hospital_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Major begynte ved hospitalet i 1847 og fikk ansvar for Dollhuset.",
+      "source_ids": [
+        "medical",
+        "major"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_velferd_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_oslo_hospital_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Loven av 1848 ga sinnssykeomsorgen en egen rettslig ramme.",
+      "source_ids": [
+        "medical",
+        "major"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_oslo_hospital_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Major arbeidet ved Oslo Hospital fra 1847 til 1854.",
+      "source_ids": [
+        "medical"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_oslo_hospital_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Damehjemmet ble oppført i 1888 etter tegninger av Ingvar Hjorth.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_oslo_hospital_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Sykehusdriften på stedet fortsatte til 2018.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_velferd_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_oslo_hospital_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Allstad dokumenterer den offisielle åpningen 20. august 2026.",
+      "source_ids": [
+        "allstad"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_oslo_hospital_quiz_15",
+      "order": 15,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Omsorgsinstitusjonen var avhengig av eiendom, inntekter og administrasjon.",
+      "source_ids": [
+        "byarkiv"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_oslo_hospital_quiz_16",
+      "order": 16,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Saken knytter benådning, historisk sykdomsforståelse og institusjonsplassering sammen.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_oslo_hospital_quiz_17",
+      "order": 17,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Hospitalets side bruker 1777, mens Byarkivet og Tidsskriftet bruker 1778.",
+      "source_ids": [
+        "official",
+        "byarkiv",
+        "medical"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kilder_taushet_blindsoner"
+    },
+    {
+      "claim_id": "claim_oslo_hospital_quiz_18",
+      "order": 18,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Kildens ordbruk må skilles fra moderne medisinske diagnoser.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kilder_taushet_blindsoner"
+    },
+    {
+      "claim_id": "claim_oslo_hospital_quiz_19",
+      "order": 19,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Gråsteinsbygningen, kirken og Damehjemmet viser ulike historiske lag.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_oslo_hospital_quiz_20",
+      "order": 20,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Den bevarte bygningsmassen har fått ny bruk etter at sykehusdriften opphørte.",
+      "source_ids": [
+        "official",
+        "allstad"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_oslo_hospital_quiz_21",
+      "order": 21,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Kildene er sterkere på vedtak og bygg enn på pasientenes egne stemmer.",
+      "source_ids": [
+        "byarkiv",
+        "medical"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kilder_taushet_blindsoner"
+    },
+    {
+      "claim_id": "claim_oslo_hospital_quiz_22",
+      "order": 22,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "En kronologisk rekonstruksjon skiller kontinuitet i stedet fra brudd i funksjon.",
+      "source_ids": [
+        "official",
+        "allstad"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_oslo_hospital_quiz_23",
+      "order": 23,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Arkivlesning undersøker hva protokollen registrerer, hvem som førte den og hva som mangler.",
+      "source_ids": [
+        "byarkiv"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kilder_taushet_blindsoner"
+    },
+    {
+      "claim_id": "claim_oslo_hospital_quiz_24",
+      "order": 24,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Omsorgsregimeanalyse undersøker institusjon, målgruppe, praksis, rettigheter og kontroll i samme tidsrom.",
+      "source_ids": [
+        "official",
+        "byarkiv",
+        "medical"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_velferd_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_oslo_hospital_quiz_25",
+      "order": 25,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Seips sosialpolitiske perspektiv hjelper å plassere hospitalet i en lang utvikling uten å gjøre det identisk med den moderne velferdsstaten.",
+      "source_ids": [
+        "official",
+        "byarkiv"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_fattigvesen_veldedighet_sosial_kontroll"
+    },
+    {
+      "claim_id": "claim_oslo_hospital_quiz_26",
+      "order": 26,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "En institusjonskilde kan dokumentere regler og formål uten å bevise hvordan alle erfarte praksisen.",
+      "source_ids": [
+        "official",
+        "byarkiv"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_stat_institusjoner"
+    },
+    {
+      "claim_id": "claim_oslo_hospital_quiz_27",
+      "order": 27,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Motivene dokumenterer to tider, men ikke et eksakt optisk før–nå-par.",
+      "source_ids": [
+        "official"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_oslo_hospital_quiz_28",
+      "order": 28,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Stedets lange historie krever at kontinuitet, brudd, makt og kildetaushet leses sammen.",
+      "source_ids": [
+        "official",
+        "byarkiv",
+        "medical",
+        "allstad"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    }
+  ]
+}
