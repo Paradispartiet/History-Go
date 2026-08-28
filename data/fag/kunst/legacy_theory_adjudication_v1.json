@@ -1,0 +1,128 @@
+{
+  "schema": "history_go_fagverk_legacy_theory_adjudication_v1",
+  "version": "1.0.0",
+  "subject_id": "kunst",
+  "legacy_badge_page": "data/fag/kunst/merke_kunst (2).html",
+  "redirect_target": "fagverk.html?subject=kunst#fagverkIaProgresjon",
+  "policy": {
+    "canonical_content_wins": true,
+    "copy_legacy_prose": false,
+    "redirect_requires_explicit_adjudication": true,
+    "product_boundary_owner": "data/categories/category_contract.json"
+  },
+  "sections": [
+    {
+      "id": "felt",
+      "role": "knowledge",
+      "disposition": "migrated_to_canonical",
+      "owner_files": [
+        "data/fag/kunst/emner_kunst_canonical_v4_5.json",
+        "data/fagverk/kunst/publikum-og-offentlighet.json"
+      ],
+      "migration_refs": [
+        "pr:#5461",
+        "scripts/materialize-kunst-gatekunst-legacy-gap-v1.mjs",
+        "data/fag/kunst/emner_kunst_canonical_v4_5.json"
+      ],
+      "rationale": "Legacy-feltet var allerede canonicalt dekket bortsett fra gatekunst. #5461 materialiserte gatekunst og veggmaleri i det eksisterende emnet Offentlig kunst og monumenter uten å opprette et nytt emne eller fagområde."
+    },
+    {
+      "id": "verk",
+      "role": "knowledge",
+      "disposition": "canonical_supersedes",
+      "owner_files": [
+        "data/fagverk/kunst/estetisk-sprak-og-form.json"
+      ],
+      "migration_refs": [],
+      "rationale": "Form, komposisjon, motiv, materialitet, teknikk, skala, farge, rom og presentasjon er allerede integrert i det canonicale kapittelverket om estetisk språk og form."
+    },
+    {
+      "id": "metode",
+      "role": "knowledge",
+      "disposition": "canonical_supersedes",
+      "owner_files": [
+        "data/fag/kunst/methods_kunst_canonical_v4_5.json"
+      ],
+      "migration_refs": [],
+      "rationale": "Legacy-metodene er allerede canonicale i Kunsts metodekorpus, blant annet form-, materialitets-, ikonografisk, institusjons-, kontekst- og resepsjonsanalyse."
+    },
+    {
+      "id": "institusjoner",
+      "role": "knowledge",
+      "disposition": "canonical_supersedes",
+      "owner_files": [
+        "data/fagverk/kunst/felt-og-institusjon.json"
+      ],
+      "migration_refs": [],
+      "rationale": "Museer, gallerier, kunsthaller, akademier, atelierer, samlinger, kuratering og oppdrag eies allerede av det canonicale kapittelet Felt og institusjon."
+    },
+    {
+      "id": "offentlig-rom",
+      "role": "knowledge",
+      "disposition": "migrated_to_canonical",
+      "owner_files": [
+        "data/fag/kunst/emner_kunst_canonical_v4_5.json",
+        "data/fagverk/kunst/publikum-og-offentlighet.json"
+      ],
+      "migration_refs": [
+        "pr:#5461",
+        "scripts/materialize-kunst-gatekunst-legacy-gap-v1.mjs",
+        "data/fag/kunst/emner_kunst_canonical_v4_5.json"
+      ],
+      "rationale": "Offentlig kunst, monument, sted, eierskap, tilgjengelighet og konflikt var allerede canonicalt. #5461 lukket det eneste dokumenterte restgapet ved å materialisere gatekunst, veggmaleri og graffiti i det eksisterende offentlige-kunst-emnet."
+    },
+    {
+      "id": "historie",
+      "role": "knowledge",
+      "disposition": "canonical_supersedes",
+      "owner_files": [
+        "data/fagverk/kunst/tid-og-transformasjon.json"
+      ],
+      "migration_refs": [],
+      "rationale": "Kunsthistorisk periode, bevegelse, teknologi, brudd, verk, kunstner og samling er allerede redigert og claimsporet i Tid og transformasjon."
+    },
+    {
+      "id": "arbeid",
+      "role": "knowledge",
+      "disposition": "canonical_supersedes",
+      "owner_files": [
+        "data/fagverk/kunst/produksjon-og-praksis.json",
+        "data/fag/kunst/emner_kunst_canonical_v4_5.json"
+      ],
+      "migration_refs": [],
+      "rationale": "Praksis, atelier, samarbeid, produksjon, økonomi, distribusjon og profesjonelle roller er allerede canonicalt dekket. Konservering finnes eksplisitt i emnekorpuset og var derfor ikke et migreringsgap."
+    },
+    {
+      "id": "makt",
+      "role": "knowledge",
+      "disposition": "canonical_supersedes",
+      "owner_files": [
+        "data/fagverk/kunst/makt-og-legitimitet.json"
+      ],
+      "migration_refs": [],
+      "rationale": "Kanon, innkjøp, utstilling, kritikk, marked, støtte, inkludering, ekskludering og portvoktere eies allerede av Makt og legitimitet."
+    },
+    {
+      "id": "begreper",
+      "role": "knowledge",
+      "disposition": "canonical_supersedes",
+      "owner_files": [
+        "data/fagverk/kunst/estetisk-sprak-og-form.json",
+        "data/fagverk/kunst/makt-og-legitimitet.json",
+        "data/fagverk/kunst/publikum-og-offentlighet.json"
+      ],
+      "migration_refs": [],
+      "rationale": "Legacy-listen over form, materialitet, motiv, ikonografi, stil, brudd, kuratering, kanon, resepsjon og offentlighet er allerede distribuert til de canonicale kapitlene som bruker begrepene faglig."
+    },
+    {
+      "id": "avgrensning",
+      "role": "product_boundary",
+      "disposition": "canonical_product_boundary_supersedes",
+      "owner_files": [
+        "data/categories/category_contract.json"
+      ],
+      "migration_refs": [],
+      "rationale": "Skillet mellom Kunst og Scenekunst er en produkt- og kategorigrense, ikke et nytt kunstfaglig emne. Category-contracten eier eksplisitt Kunst som billed-/visuell kunst og Scenekunst som teater, dans og sceneinstitusjoner."
+    }
+  ]
+}
