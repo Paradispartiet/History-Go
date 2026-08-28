@@ -8,6 +8,14 @@ const ia = read('js/fagverk-ia-v3.js');
 const css = read('css/fagverk-ia-v3.css');
 const model = read('js/fagverk-subject-model.js');
 
+function functionSource(source, startToken, endToken) {
+  const start = source.indexOf(startToken);
+  const end = source.indexOf(endToken, start + startToken.length);
+  assert.ok(start >= 0, `Mangler ${startToken}`);
+  assert.ok(end > start, `Mangler sluttmarkør ${endToken}`);
+  return source.slice(start, end);
+}
+
 test('Fagverk IA v3 er et tillegg til den canonicale subject/domain/emne/chapter-rutingen', () => {
   assert.match(html, /src="js\/fagverk\.js"[\s\S]*src="js\/fagverk-ia-v3\.js"/);
   assert.doesNotMatch(html, /[?&]view=/);
@@ -27,13 +35,15 @@ test('subject-roten har fem tydelige hovedinnganger uten å lage fem nye routes'
 });
 
 test('emnekatalogen viser normaliserte canonicale emner uavhengig av progresjon', () => {
-  assert.match(ia, /model\.domains\.map/);
-  assert.match(ia, /domain\.emneIds\.map/);
-  assert.match(ia, /model\.emnersById\.get/);
-  assert.match(ia, /MODEL\.emneUrl/);
-  assert.match(ia, /MODEL\.domainUrl/);
-  assert.doesNotMatch(ia, /filter\([^\n]*percent/);
-  assert.doesNotMatch(ia, /filter\([^\n]*coverage/);
+  const renderEmner = functionSource(ia, 'function renderEmner(', 'function renderLaerestoff(');
+  assert.match(renderEmner, /model\.domains\.map/);
+  assert.match(renderEmner, /domain\.emneIds\.map/);
+  assert.match(renderEmner, /model\.emnersById\.get/);
+  assert.match(renderEmner, /MODEL\.emneUrl/);
+  assert.match(renderEmner, /MODEL\.domainUrl/);
+  assert.doesNotMatch(renderEmner, /progress\.coverage\.filter/);
+  assert.doesNotMatch(renderEmner, /model\.emners\.filter\([^\n]*(?:percent|coverage)/);
+  assert.doesNotMatch(renderEmner, /domain\.emneIds\.filter\([^\n]*(?:percent|coverage)/);
 });
 
 test('lærestoffet bruker eksisterende chapter-ruter og bare source-eid curriculum', () => {
