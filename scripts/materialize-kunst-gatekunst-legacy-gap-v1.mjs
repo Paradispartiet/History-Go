@@ -33,17 +33,16 @@ emne.sub_concepts = appendUnique(emne.sub_concepts, ['gatekunst', 'veggmaleri', 
 
 const module = readJson(CHAPTER_MODULE);
 if (!Array.isArray(module.concepts)) throw new Error(`${CHAPTER_MODULE} mangler concepts-array.`);
-const conceptId = 'gatekunst';
-const existingConcept = module.concepts.find((concept) => concept.id === conceptId);
-const gatekunstConcept = {
-  id: conceptId,
-  term: 'Gatekunst',
-  definition: 'Visuelle kunstuttrykk i gater og andre offentlige rom, blant annet graffiti, sjablonger og veggmalerier. Analysen må skille form og plassering fra dokumentert opphav, tillatelse, varighet og bruk.'
-};
-if (existingConcept) {
-  Object.assign(existingConcept, gatekunstConcept);
-} else {
-  module.concepts.push(gatekunstConcept);
+const migrationConcept = module.concepts.find((concept) => concept?.id === 'gatekunst');
+if (migrationConcept) {
+  const expectedDefinition = 'Visuelle kunstuttrykk i gater og andre offentlige rom, blant annet graffiti, sjablonger og veggmalerier. Analysen må skille form og plassering fra dokumentert opphav, tillatelse, varighet og bruk.';
+  if (migrationConcept.term !== 'Gatekunst' || migrationConcept.definition !== expectedDefinition) {
+    throw new Error('Fant et redaksjonelt Gatekunst-kapittelbegrep som ikke stammer fra denne migreringen; nekter å fjerne det.');
+  }
+  module.concepts = module.concepts.filter((concept) => concept?.id !== 'gatekunst');
+}
+if (module.concepts.length !== 6) {
+  throw new Error(`Publikum og offentlighet skal beholde seks authored concepts; fant ${module.concepts.length}.`);
 }
 
 if (emners.length !== 21) throw new Error('Gatekunst skal materialiseres i eksisterende emne, ikke opprette et nytt canonicalt emne.');
@@ -53,4 +52,4 @@ if (emners.some((item) => item.emne_id !== TARGET_EMNE && /gatekunst/i.test(item
 
 writeJson(EMNERS_FILE, emners);
 writeJson(CHAPTER_MODULE, module);
-console.log(`Kunst gatekunst-gap materialisert i ${TARGET_EMNE} og ${CHAPTER_MODULE}.`);
+console.log(`Kunst gatekunst-gap materialisert i ${TARGET_EMNE}; seksbegrepskontrakten i ${CHAPTER_MODULE} er bevart.`);
