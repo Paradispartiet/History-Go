@@ -1,278 +1,1272 @@
 {
-  "targetId": "gamle_radhus",
   "categoryId": "historie",
-  "generator_version": "historie_v5_1_manual_source_based",
-  "generated_from": [
-    "data/places/historie/oslo/places_historie_added_batch_01.json",
-    "Oslo byleksikon / Gamle rådhus",
-    "data/fag/historie/supersetQUIZMAL_historie.json"
-  ],
+  "targetId": "gamle_radhus",
+  "size_class": "normal_4x7",
+  "generated_from": "data/quiz/production_briefs/historie/gamle_radhus.json",
+  "generator_version": "1.0",
+  "production_context": {
+    "manifest_category": "historie",
+    "profile": "normal_4x7",
+    "standard_version": "3.3",
+    "source_brief": "data/quiz/production_briefs/historie/gamle_radhus.json",
+    "context_artifact": "data/quiz/production_context/historie/gamle_radhus.json",
+    "resolved_files": {
+      "pensum": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "emner": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "fagkart": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "methods": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "his_tid_periodisering",
+      "his_kilder_arkiv_spor",
+      "his_makt_stat_institusjoner",
+      "his_byhistorie_stedsendring"
+    ],
+    "emne_ids": [
+      "em_his_stat_institusjoner",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_modernisering_1800",
+      "em_his_arkiv_og_dokumentasjon",
+      "em_his_spor_materialitet"
+    ],
+    "topic_hook_ids": [
+      "his_tidslag_samtidighet",
+      "his_spor_materialitet",
+      "his_kildekritikk"
+    ],
+    "method_ids": [
+      "met_sporlesning",
+      "met_kildekritikk"
+    ],
+    "thinker_ids": [
+      "reinhart_koselleck"
+    ],
+    "works": [
+      "Futures Past"
+    ],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/historie/gamle_radhus_sets.json",
+        "data/places/by/oslo/gamle_radhus/gamle_radhus.json"
+      ],
+      "active_before": {
+        "file": "data/quiz/historie/gamle_radhus_sets.json",
+        "set_count": 1,
+        "question_count": 3,
+        "finding": "Legacy 1x3 quiz had only introductory coverage."
+      },
+      "decisions": [
+        "Replace with normal 4x7 using reviewed external claims."
+      ],
+      "knowledge_migration": "New place-specific Knowledge units replace the three legacy units."
+    },
+    "profile_decision": {
+      "profile": "normal",
+      "set_count": 4,
+      "questions_per_set": 7,
+      "justification": "Four learning jobs: civic identity, chronology, material layers and source criticism."
+    },
+    "held_back_candidates": [
+      "1815 as the move-in year; the detailed site source says 1821.",
+      "Claims that present-day gables or interior are untouched originals from 1641 or 1926."
+    ],
+    "theory_start_phase": "final",
+    "method_start_phase": "final"
+  },
+  "sources": {
+    "oslo_gamle_radhus": "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/gamle-radhus/",
+    "sceneweb_gamle_radhus": "https://sceneweb.no/nb/venue/31901/Gamle_Raadhus%20Scene%20%2F%20R%C3%A5dhussalen%2C%20Oslo",
+    "oppdag_hoyesterett": "https://www.oppdagkvadraturen.no/stoppesteder/hoyesterett",
+    "oslo_byleksikon": "https://oslobyleksikon.no/side/Nedre_Slottsgate",
+    "snl_lars_backer": "https://snl.no/Lars_Backer",
+    "commons_current": "https://commons.wikimedia.org/wiki/File:Gamle_r%C3%A5dhus_Oslo.jpg",
+    "commons_historic": "https://commons.wikimedia.org/wiki/File:Gamle_R%C3%A5dhus,_Oslo_-_8.9.1931_-_Ruth_Raabe_-_Oslo_Museum_-_OMu.F26672.jpg",
+    "commons_interior": "https://commons.wikimedia.org/wiki/File:Gamle_r%C3%A5dhus_14._des_2013_._Wikipedia_Akademiet_Julebord.JPG",
+    "commons_backer": "https://commons.wikimedia.org/wiki/File:Lars_Backer_-_1911.jpg"
+  },
   "sets": [
     {
       "set_id": "historie_gamle_radhus_set_1",
       "order": 1,
-      "mode": "history_intro_story",
+      "level": 1,
+      "phase": "opening",
+      "title": "Rådhuset fra 1641",
       "questions": [
         {
-          "id": "gamle_radhus_quiz_1",
+          "id": "gamle_radhus_quiz_01",
           "quiz_id": "historie_gamle_radhus_set_1_q1",
           "categoryId": "historie",
           "placeId": "gamle_radhus",
-          "personId": "",
-          "natureId": "",
           "targetId": "gamle_radhus",
           "question_scope": "place",
-          "question": "Hva var Gamle rådhus i Christiania?",
+          "question": "Når sto Gamle rådhus ferdig?",
           "options": [
-            "Et tidlig rådhus for bystyre, rett og borgerskap",
-            "Et middelalderkloster for munker",
-            "En fangeleir under andre verdenskrig"
+            "1641",
+            "1624",
+            "1733"
           ],
-          "answer": "Et tidlig rådhus for bystyre, rett og borgerskap",
+          "answer": "1641",
           "answerIndex": 0,
-          "dimension": "institusjon",
-          "topic": "Tidlig bystyre",
-          "knowledge": "Gamle rådhus viser hvordan Christiania fikk institusjoner for lokal styring, rettsvesen og borgerskap etter byflyttingen i 1624.",
-          "trivia": [],
+          "knowledge": "1641",
           "difficulty": 1,
           "question_type": "fact",
-          "question_layer": "intro_story",
-          "year": 1641,
-          "epoke_id": "1600_tall",
-          "epoke_domain": "historie",
-          "emne_id": "em_his_stat_institusjoner",
-          "related_emner": [
-            "em_his_historiske_lag_i_byrom",
-            "em_his_arkiv_og_dokumentasjon"
-          ],
-          "core_concepts": [
-            "rådhus",
-            "bystyre",
-            "borgerskap"
-          ],
-          "concept_focus": [
-            "institusjon"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "gamle_radhus",
-            "Christiania",
-            "bystyre"
-          ],
-          "required_tags": [
-            "history_anchor",
-            "em_his"
-          ],
+          "emne_id": "em_his_historiske_lag_i_byrom",
           "source": [
-            "History Go place profile: gamle_radhus",
-            "Oslo byleksikon / Gamle rådhus"
+            "oslo_gamle_radhus"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "Gamle rådhus var et institusjonsbygg for bystyre, rett og borgerskap i Christiania.",
-          "guidance_basis": {
-            "emne_id": "em_his_stat_institusjoner",
-            "method_id": "met_kildekritikk"
-          },
-          "method_id": "met_kildekritikk",
-          "history_anchor_type": "institutional_place",
-          "source_note": "Kildebasert historisk quizspørsmål.",
-          "external_source_ratio_target": 0.85,
-          "internal_file_only_allowed": false,
-          "requires_history_anchor": true,
-          "requires_external_claim_basis": true,
-          "validation": {
-            "emne_id_exists_in_emner_historie": true,
-            "method_id_exists_in_methods_historie": true,
-            "category_matches_badge": true,
-            "schema_extends_generic_supersetQUIZMAL": true
-          },
-          "primary_knowledge_unit_id": "ku_historie_gamle_radhus_viser_hvord_5b0499df22",
+          "source_origin": "external",
+          "claim_basis": "1641",
+          "claim_id": "claim_gamle_radhus_quiz_01",
+          "primary_knowledge_unit_id": "ku_his_gamle_radhus_01",
           "knowledge_unit_ids": [
-            "ku_historie_gamle_radhus_viser_hvord_5b0499df22"
+            "ku_his_gamle_radhus_01"
+          ],
+          "concepts": [
+            "historisk endring"
           ],
           "concept_ids": [
-            "co_historie_radhus_294488fa96",
-            "co_historie_bystyre_36bb623c20",
-            "co_historie_borgerskap_1887f56830",
-            "co_historie_institusjon_f70250b601"
+            "co_his_endring"
           ],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
         },
         {
-          "id": "gamle_radhus_quiz_2",
+          "id": "gamle_radhus_quiz_02",
           "quiz_id": "historie_gamle_radhus_set_1_q2",
           "categoryId": "historie",
           "placeId": "gamle_radhus",
-          "personId": "",
-          "natureId": "",
           "targetId": "gamle_radhus",
           "question_scope": "place",
-          "question": "Hvilken større byhistorisk endring hører Gamle rådhus sammen med?",
+          "question": "Hva var bygningens hovedfunksjon fra 1641?",
           "options": [
-            "Byflyttingen og oppbyggingen av Christiania etter 1624",
-            "Senkingen av Blücher i Drøbaksundet",
-            "Etableringen av Grini fangeleir"
+            "Christianias rådhus",
+            "Kongelig slott",
+            "Universitetsbibliotek"
           ],
-          "answer": "Byflyttingen og oppbyggingen av Christiania etter 1624",
+          "answer": "Christianias rådhus",
           "answerIndex": 0,
-          "dimension": "byhistorie",
-          "topic": "Christiania etter 1624",
-          "knowledge": "Rådhuset hører til den nye byen som ble anlagt nær Akershus etter brannen og byflyttingen i 1624.",
-          "trivia": [],
-          "difficulty": 2,
-          "question_type": "analysis",
-          "question_layer": "historisk_endring",
-          "year": 1624,
-          "epoke_id": "1600_tall",
-          "epoke_domain": "historie",
-          "emne_id": "em_his_historiske_lag_i_byrom",
-          "related_emner": [
-            "em_his_stat_institusjoner",
-            "em_his_branner_ulykker_brudd"
-          ],
-          "core_concepts": [
-            "byflytting",
-            "Christiania",
-            "Kvadraturen"
-          ],
-          "concept_focus": [
-            "historisk brudd"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "gamle_radhus",
-            "byflytting",
-            "1624"
-          ],
-          "required_tags": [
-            "history_anchor",
-            "em_his"
-          ],
+          "knowledge": "Christianias rådhus",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_stat_institusjoner",
           "source": [
-            "History Go place profile: gamle_radhus",
-            "Oslo byleksikon / Gamle rådhus"
+            "oslo_gamle_radhus"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "Gamle rådhus er knyttet til Christianias tidlige byfase etter byflyttingen i 1624.",
-          "guidance_basis": {
-            "emne_id": "em_his_historiske_lag_i_byrom",
-            "method_id": "met_for_etter_historisk"
-          },
-          "method_id": "met_for_etter_historisk",
-          "history_anchor_type": "historical_break",
-          "source_note": "Kildebasert historisk quizspørsmål.",
-          "external_source_ratio_target": 0.85,
-          "internal_file_only_allowed": false,
-          "requires_history_anchor": true,
-          "requires_external_claim_basis": true,
-          "validation": {
-            "emne_id_exists_in_emner_historie": true,
-            "method_id_exists_in_methods_historie": true,
-            "category_matches_badge": true,
-            "schema_extends_generic_supersetQUIZMAL": true
-          },
-          "primary_knowledge_unit_id": "ku_historie_radhuset_h_rer_til_den_n_140d999431",
+          "source_origin": "external",
+          "claim_basis": "Christianias rådhus",
+          "claim_id": "claim_gamle_radhus_quiz_02",
+          "primary_knowledge_unit_id": "ku_his_gamle_radhus_02",
           "knowledge_unit_ids": [
-            "ku_historie_radhuset_h_rer_til_den_n_140d999431"
+            "ku_his_gamle_radhus_02"
+          ],
+          "concepts": [
+            "historisk endring"
           ],
           "concept_ids": [
-            "co_historie_byflytting_249c1cad1e",
-            "co_historie_christiania_173e1620de",
-            "co_historie_kvadraturen_5930f73397",
-            "co_historie_historisk_brudd_24b9c062e4"
+            "co_his_endring"
           ],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
         },
         {
-          "id": "gamle_radhus_quiz_3",
+          "id": "gamle_radhus_quiz_03",
           "quiz_id": "historie_gamle_radhus_set_1_q3",
           "categoryId": "historie",
           "placeId": "gamle_radhus",
-          "personId": "",
-          "natureId": "",
           "targetId": "gamle_radhus",
           "question_scope": "place",
-          "question": "Hvorfor er Gamle rådhus mer enn bare et gammelt bygg?",
+          "question": "Hvem ledet byggearbeidet?",
           "options": [
-            "Fordi det viser hvordan den nye byen organiserte makt, rett og lokalt styre",
-            "Fordi det bare var en privat sommerhytte",
-            "Fordi det var en ruin fra vikingtiden"
+            "Rådmann Lauritz Hansen",
+            "Lars Backer",
+            "Hagbart Berner"
           ],
-          "answer": "Fordi det viser hvordan den nye byen organiserte makt, rett og lokalt styre",
+          "answer": "Rådmann Lauritz Hansen",
           "answerIndex": 0,
-          "dimension": "syntese",
-          "topic": "Byens institusjoner",
-          "knowledge": "Bygningen gjør tidlig moderne bystyring konkret: offentlig makt fikk rom, fasade og plass i den nye byen.",
-          "trivia": [],
-          "difficulty": 2,
-          "question_type": "synthesis",
-          "question_layer": "synthesis_comparison",
-          "year": null,
-          "epoke_id": "1600_tall",
-          "epoke_domain": "historie",
-          "emne_id": "em_his_spor_materialitet",
-          "related_emner": [
-            "em_his_stat_institusjoner",
-            "em_his_historiske_lag_i_byrom"
-          ],
-          "core_concepts": [
-            "institusjon",
-            "rett",
-            "lokal styring"
-          ],
-          "concept_focus": [
-            "sporlesning"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "gamle_radhus",
-            "institusjon",
-            "lokal_styring"
-          ],
-          "required_tags": [
-            "history_anchor",
-            "em_his"
-          ],
+          "knowledge": "Rådmann Lauritz Hansen",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_stat_institusjoner",
           "source": [
-            "History Go place profile: gamle_radhus",
-            "Oslo byleksikon / Gamle rådhus"
+            "sceneweb_gamle_radhus"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "Gamle rådhus gjør Christianias tidlige bystyre og rettsinstitusjoner lesbare som fysisk sted.",
-          "guidance_basis": {
-            "emne_id": "em_his_spor_materialitet",
-            "method_id": "met_sporlesning"
-          },
-          "method_id": "met_sporlesning",
-          "history_anchor_type": "visible_trace",
-          "source_note": "Kildebasert historisk quizspørsmål.",
-          "external_source_ratio_target": 0.85,
-          "internal_file_only_allowed": false,
-          "requires_history_anchor": true,
-          "requires_external_claim_basis": true,
-          "validation": {
-            "emne_id_exists_in_emner_historie": true,
-            "method_id_exists_in_methods_historie": true,
-            "category_matches_badge": true,
-            "schema_extends_generic_supersetQUIZMAL": true
-          },
-          "primary_knowledge_unit_id": "ku_historie_bygningen_gj_r_tidlig_mo_8879f51020",
+          "source_origin": "external",
+          "claim_basis": "Rådmann Lauritz Hansen",
+          "claim_id": "claim_gamle_radhus_quiz_03",
+          "primary_knowledge_unit_id": "ku_his_gamle_radhus_03",
           "knowledge_unit_ids": [
-            "ku_historie_bygningen_gj_r_tidlig_mo_8879f51020"
+            "ku_his_gamle_radhus_03"
+          ],
+          "concepts": [
+            "historisk endring"
           ],
           "concept_ids": [
-            "co_historie_institusjon_f70250b601",
-            "co_historie_rett_982be81f49",
-            "co_historie_lokal_styring_6cea2c9827",
-            "co_historie_sporlesning_7193e6018d"
+            "co_his_endring"
           ],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
+        },
+        {
+          "id": "gamle_radhus_quiz_04",
+          "quiz_id": "historie_gamle_radhus_set_1_q4",
+          "categoryId": "historie",
+          "placeId": "gamle_radhus",
+          "targetId": "gamle_radhus",
+          "question_scope": "place",
+          "question": "Hva lå i den bevarte kjelleren?",
+          "options": [
+            "Arrest og fengsel",
+            "Myntverk",
+            "Teaterscene"
+          ],
+          "answer": "Arrest og fengsel",
+          "answerIndex": 0,
+          "knowledge": "Arrest og fengsel",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "sceneweb_gamle_radhus"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Arrest og fengsel",
+          "claim_id": "claim_gamle_radhus_quiz_04",
+          "primary_knowledge_unit_id": "ku_his_gamle_radhus_04",
+          "knowledge_unit_ids": [
+            "ku_his_gamle_radhus_04"
+          ],
+          "concepts": [
+            "historisk endring"
+          ],
+          "concept_ids": [
+            "co_his_endring"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "gamle_radhus_quiz_05",
+          "quiz_id": "historie_gamle_radhus_set_1_q5",
+          "categoryId": "historie",
+          "placeId": "gamle_radhus",
+          "targetId": "gamle_radhus",
+          "question_scope": "place",
+          "question": "Når sluttet huset å være rådhus?",
+          "options": [
+            "1733",
+            "1686",
+            "1821"
+          ],
+          "answer": "1733",
+          "answerIndex": 0,
+          "knowledge": "1733",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "oslo_gamle_radhus"
+          ],
+          "source_origin": "external",
+          "claim_basis": "1733",
+          "claim_id": "claim_gamle_radhus_quiz_05",
+          "primary_knowledge_unit_id": "ku_his_gamle_radhus_05",
+          "knowledge_unit_ids": [
+            "ku_his_gamle_radhus_05"
+          ],
+          "concepts": [
+            "historisk endring"
+          ],
+          "concept_ids": [
+            "co_his_endring"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "gamle_radhus_quiz_06",
+          "quiz_id": "historie_gamle_radhus_set_1_q6",
+          "categoryId": "historie",
+          "placeId": "gamle_radhus",
+          "targetId": "gamle_radhus",
+          "question_scope": "place",
+          "question": "Hvorfor ble rådhussalen brukt til gudstjenester etter 1686?",
+          "options": [
+            "Hellig Trefoldighets kirke var ødelagt i brannen",
+            "Rådhuset ble kloster",
+            "Høyesterett krevde det"
+          ],
+          "answer": "Hellig Trefoldighets kirke var ødelagt i brannen",
+          "answerIndex": 0,
+          "knowledge": "Hellig Trefoldighets kirke var ødelagt i brannen",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "sceneweb_gamle_radhus"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Hellig Trefoldighets kirke var ødelagt i brannen",
+          "claim_id": "claim_gamle_radhus_quiz_06",
+          "primary_knowledge_unit_id": "ku_his_gamle_radhus_06",
+          "knowledge_unit_ids": [
+            "ku_his_gamle_radhus_06"
+          ],
+          "concepts": [
+            "historisk endring"
+          ],
+          "concept_ids": [
+            "co_his_endring"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "gamle_radhus_quiz_07",
+          "quiz_id": "historie_gamle_radhus_set_1_q7",
+          "categoryId": "historie",
+          "placeId": "gamle_radhus",
+          "targetId": "gamle_radhus",
+          "question_scope": "place",
+          "question": "Hva ble lest opp på rådhuset ved Thomasmesse?",
+          "options": [
+            "Byens privilegier",
+            "Restaurantmenyen",
+            "Teaterkritikker"
+          ],
+          "answer": "Byens privilegier",
+          "answerIndex": 0,
+          "knowledge": "Byens privilegier",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_arkiv_og_dokumentasjon",
+          "source": [
+            "sceneweb_gamle_radhus"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Byens privilegier",
+          "claim_id": "claim_gamle_radhus_quiz_07",
+          "primary_knowledge_unit_id": "ku_his_gamle_radhus_07",
+          "knowledge_unit_ids": [
+            "ku_his_gamle_radhus_07"
+          ],
+          "concepts": [
+            "historisk endring"
+          ],
+          "concept_ids": [
+            "co_his_endring"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "historie_gamle_radhus_set_2",
+      "order": 2,
+      "level": 2,
+      "phase": "middle",
+      "title": "Rett, restaurant og restaurering",
+      "questions": [
+        {
+          "id": "gamle_radhus_quiz_08",
+          "quiz_id": "historie_gamle_radhus_set_2_q1",
+          "categoryId": "historie",
+          "placeId": "gamle_radhus",
+          "targetId": "gamle_radhus",
+          "question_scope": "place",
+          "question": "Når kom tolv eligerte menn som fast borgerrepresentasjon?",
+          "options": [
+            "1730",
+            "1641",
+            "1856"
+          ],
+          "answer": "1730",
+          "answerIndex": 0,
+          "knowledge": "1730",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_stat_institusjoner",
+          "source": [
+            "sceneweb_gamle_radhus"
+          ],
+          "source_origin": "external",
+          "claim_basis": "1730",
+          "claim_id": "claim_gamle_radhus_quiz_08",
+          "primary_knowledge_unit_id": "ku_his_gamle_radhus_08",
+          "knowledge_unit_ids": [
+            "ku_his_gamle_radhus_08"
+          ],
+          "concepts": [
+            "historisk endring"
+          ],
+          "concept_ids": [
+            "co_his_endring"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "gamle_radhus_quiz_09",
+          "quiz_id": "historie_gamle_radhus_set_2_q2",
+          "categoryId": "historie",
+          "placeId": "gamle_radhus",
+          "targetId": "gamle_radhus",
+          "question_scope": "place",
+          "question": "Når flyttet Høyesterett inn i Gamle rådhus?",
+          "options": [
+            "1821",
+            "1815",
+            "1846"
+          ],
+          "answer": "1821",
+          "answerIndex": 0,
+          "knowledge": "1821",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_modernisering_1800",
+          "source": [
+            "oppdag_hoyesterett"
+          ],
+          "source_origin": "external",
+          "claim_basis": "1821",
+          "claim_id": "claim_gamle_radhus_quiz_09",
+          "primary_knowledge_unit_id": "ku_his_gamle_radhus_09",
+          "knowledge_unit_ids": [
+            "ku_his_gamle_radhus_09"
+          ],
+          "concepts": [
+            "historisk endring"
+          ],
+          "concept_ids": [
+            "co_his_endring"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "gamle_radhus_quiz_10",
+          "quiz_id": "historie_gamle_radhus_set_2_q3",
+          "categoryId": "historie",
+          "placeId": "gamle_radhus",
+          "targetId": "gamle_radhus",
+          "question_scope": "place",
+          "question": "Hva beskriver 1815 i Høyesteretts historie?",
+          "options": [
+            "Året domstolen ble opprettet",
+            "Året den flyttet inn her",
+            "Året rådhuset åpnet"
+          ],
+          "answer": "Året domstolen ble opprettet",
+          "answerIndex": 0,
+          "knowledge": "Året domstolen ble opprettet",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_modernisering_1800",
+          "source": [
+            "oppdag_hoyesterett"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Året domstolen ble opprettet",
+          "claim_id": "claim_gamle_radhus_quiz_10",
+          "primary_knowledge_unit_id": "ku_his_gamle_radhus_10",
+          "knowledge_unit_ids": [
+            "ku_his_gamle_radhus_10"
+          ],
+          "concepts": [
+            "historisk endring"
+          ],
+          "concept_ids": [
+            "co_his_endring"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "gamle_radhus_quiz_11",
+          "quiz_id": "historie_gamle_radhus_set_2_q4",
+          "categoryId": "historie",
+          "placeId": "gamle_radhus",
+          "targetId": "gamle_radhus",
+          "question_scope": "place",
+          "question": "Når forlot Høyesterett bygningen?",
+          "options": [
+            "1846",
+            "1733",
+            "1926"
+          ],
+          "answer": "1846",
+          "answerIndex": 0,
+          "knowledge": "1846",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_modernisering_1800",
+          "source": [
+            "oppdag_hoyesterett"
+          ],
+          "source_origin": "external",
+          "claim_basis": "1846",
+          "claim_id": "claim_gamle_radhus_quiz_11",
+          "primary_knowledge_unit_id": "ku_his_gamle_radhus_11",
+          "knowledge_unit_ids": [
+            "ku_his_gamle_radhus_11"
+          ],
+          "concepts": [
+            "historisk endring"
+          ],
+          "concept_ids": [
+            "co_his_endring"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "gamle_radhus_quiz_12",
+          "quiz_id": "historie_gamle_radhus_set_2_q5",
+          "categoryId": "historie",
+          "placeId": "gamle_radhus",
+          "targetId": "gamle_radhus",
+          "question_scope": "place",
+          "question": "Hvor åpnet restauranten i 1856?",
+          "options": [
+            "I en ny sidefløy",
+            "I arrestkjelleren",
+            "På torget"
+          ],
+          "answer": "I en ny sidefløy",
+          "answerIndex": 0,
+          "knowledge": "I en ny sidefløy",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "oslo_gamle_radhus"
+          ],
+          "source_origin": "external",
+          "claim_basis": "I en ny sidefløy",
+          "claim_id": "claim_gamle_radhus_quiz_12",
+          "primary_knowledge_unit_id": "ku_his_gamle_radhus_12",
+          "knowledge_unit_ids": [
+            "ku_his_gamle_radhus_12"
+          ],
+          "concepts": [
+            "historisk endring"
+          ],
+          "concept_ids": [
+            "co_his_endring"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "gamle_radhus_quiz_13",
+          "quiz_id": "historie_gamle_radhus_set_2_q6",
+          "categoryId": "historie",
+          "placeId": "gamle_radhus",
+          "targetId": "gamle_radhus",
+          "question_scope": "place",
+          "question": "Når flyttet restauranten inn i hovedbygningen?",
+          "options": [
+            "1926",
+            "1917",
+            "1996"
+          ],
+          "answer": "1926",
+          "answerIndex": 0,
+          "knowledge": "1926",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "oslo_gamle_radhus"
+          ],
+          "source_origin": "external",
+          "claim_basis": "1926",
+          "claim_id": "claim_gamle_radhus_quiz_13",
+          "primary_knowledge_unit_id": "ku_his_gamle_radhus_13",
+          "knowledge_unit_ids": [
+            "ku_his_gamle_radhus_13"
+          ],
+          "concepts": [
+            "historisk endring"
+          ],
+          "concept_ids": [
+            "co_his_endring"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "gamle_radhus_quiz_14",
+          "quiz_id": "historie_gamle_radhus_set_2_q7",
+          "categoryId": "historie",
+          "placeId": "gamle_radhus",
+          "targetId": "gamle_radhus",
+          "question_scope": "place",
+          "question": "Hvem tegnet restaurantinteriøret fra 1926?",
+          "options": [
+            "Carl og Hagbart Berner",
+            "Lauritz Hansen og Lars Backer",
+            "Arnstein Arneberg og Magnus Poulsson"
+          ],
+          "answer": "Carl og Hagbart Berner",
+          "answerIndex": 0,
+          "knowledge": "Carl og Hagbart Berner",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "oslo_gamle_radhus"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Carl og Hagbart Berner",
+          "claim_id": "claim_gamle_radhus_quiz_14",
+          "primary_knowledge_unit_id": "ku_his_gamle_radhus_14",
+          "knowledge_unit_ids": [
+            "ku_his_gamle_radhus_14"
+          ],
+          "concepts": [
+            "historisk endring"
+          ],
+          "concept_ids": [
+            "co_his_endring"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "historie_gamle_radhus_set_3",
+      "order": 3,
+      "level": 3,
+      "phase": "bridge",
+      "title": "Funksjonsskifter og grenser",
+      "questions": [
+        {
+          "id": "gamle_radhus_quiz_15",
+          "quiz_id": "historie_gamle_radhus_set_3_q1",
+          "categoryId": "historie",
+          "placeId": "gamle_radhus",
+          "targetId": "gamle_radhus",
+          "question_scope": "place",
+          "question": "Hva gjorde Lars Backer i 1917?",
+          "options": [
+            "Utarbeidet en restaureringsplan",
+            "Åpnet restauranten",
+            "Grunnla Høyesterett"
+          ],
+          "answer": "Utarbeidet en restaureringsplan",
+          "answerIndex": 0,
+          "knowledge": "Utarbeidet en restaureringsplan",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "oslo_byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Utarbeidet en restaureringsplan",
+          "claim_id": "claim_gamle_radhus_quiz_15",
+          "primary_knowledge_unit_id": "ku_his_gamle_radhus_15",
+          "knowledge_unit_ids": [
+            "ku_his_gamle_radhus_15"
+          ],
+          "concepts": [
+            "historisk endring"
+          ],
+          "concept_ids": [
+            "co_his_endring"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "gamle_radhus_quiz_16",
+          "quiz_id": "historie_gamle_radhus_set_3_q2",
+          "categoryId": "historie",
+          "placeId": "gamle_radhus",
+          "targetId": "gamle_radhus",
+          "question_scope": "place",
+          "question": "Hva skjedde med trappegavlene i 1971?",
+          "options": [
+            "De ble tilbakeført",
+            "De ble fjernet for første gang",
+            "De ble flyttet til Oslo rådhus"
+          ],
+          "answer": "De ble tilbakeført",
+          "answerIndex": 0,
+          "knowledge": "De ble tilbakeført",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "oslo_gamle_radhus"
+          ],
+          "source_origin": "external",
+          "claim_basis": "De ble tilbakeført",
+          "claim_id": "claim_gamle_radhus_quiz_16",
+          "primary_knowledge_unit_id": "ku_his_gamle_radhus_16",
+          "knowledge_unit_ids": [
+            "ku_his_gamle_radhus_16"
+          ],
+          "concepts": [
+            "historisk endring"
+          ],
+          "concept_ids": [
+            "co_his_endring"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "gamle_radhus_quiz_17",
+          "quiz_id": "historie_gamle_radhus_set_3_q3",
+          "categoryId": "historie",
+          "placeId": "gamle_radhus",
+          "targetId": "gamle_radhus",
+          "question_scope": "place",
+          "question": "Hva skjedde med restaurantinteriøret etter brannen i 1996?",
+          "options": [
+            "Det ble gjenskapt",
+            "Det ble bevart helt urørt",
+            "Det ble sendt til museum"
+          ],
+          "answer": "Det ble gjenskapt",
+          "answerIndex": 0,
+          "knowledge": "Det ble gjenskapt",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "oslo_gamle_radhus"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Det ble gjenskapt",
+          "claim_id": "claim_gamle_radhus_quiz_17",
+          "primary_knowledge_unit_id": "ku_his_gamle_radhus_17",
+          "knowledge_unit_ids": [
+            "ku_his_gamle_radhus_17"
+          ],
+          "concepts": [
+            "historisk endring"
+          ],
+          "concept_ids": [
+            "co_his_endring"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "gamle_radhus_quiz_18",
+          "quiz_id": "historie_gamle_radhus_set_3_q4",
+          "categoryId": "historie",
+          "placeId": "gamle_radhus",
+          "targetId": "gamle_radhus",
+          "question_scope": "place",
+          "question": "Hvorfor er dagens 1600-tallspreg ikke bare opprinnelig materiale?",
+          "options": [
+            "Senere restaureringer tilbakeførte eldre former",
+            "Bygningen er en filmkulisse",
+            "Hele huset ble bygd i 2014"
+          ],
+          "answer": "Senere restaureringer tilbakeførte eldre former",
+          "answerIndex": 0,
+          "knowledge": "Senere restaureringer tilbakeførte eldre former",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "oslo_gamle_radhus"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Senere restaureringer tilbakeførte eldre former",
+          "claim_id": "claim_gamle_radhus_quiz_18",
+          "primary_knowledge_unit_id": "ku_his_gamle_radhus_18",
+          "knowledge_unit_ids": [
+            "ku_his_gamle_radhus_18"
+          ],
+          "concepts": [
+            "historisk endring"
+          ],
+          "concept_ids": [
+            "co_his_endring"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "gamle_radhus_quiz_19",
+          "quiz_id": "historie_gamle_radhus_set_3_q5",
+          "categoryId": "historie",
+          "placeId": "gamle_radhus",
+          "targetId": "gamle_radhus",
+          "question_scope": "place",
+          "question": "Hva viser de mange funksjonsskiftene?",
+          "options": [
+            "At et institusjonsbygg kan ombrukes gjennom flere historiske lag",
+            "At huset alltid hadde én funksjon",
+            "At rådhuset aldri var offentlig"
+          ],
+          "answer": "At et institusjonsbygg kan ombrukes gjennom flere historiske lag",
+          "answerIndex": 0,
+          "knowledge": "At et institusjonsbygg kan ombrukes gjennom flere historiske lag",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "sceneweb_gamle_radhus"
+          ],
+          "source_origin": "external",
+          "claim_basis": "At et institusjonsbygg kan ombrukes gjennom flere historiske lag",
+          "claim_id": "claim_gamle_radhus_quiz_19",
+          "primary_knowledge_unit_id": "ku_his_gamle_radhus_19",
+          "knowledge_unit_ids": [
+            "ku_his_gamle_radhus_19"
+          ],
+          "concepts": [
+            "historisk endring"
+          ],
+          "concept_ids": [
+            "co_his_endring"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "gamle_radhus_quiz_20",
+          "quiz_id": "historie_gamle_radhus_set_3_q6",
+          "categoryId": "historie",
+          "placeId": "gamle_radhus",
+          "targetId": "gamle_radhus",
+          "question_scope": "place",
+          "question": "Hva skiller Gamle rådhus fra Christiania torv i registeret?",
+          "options": [
+            "Rådhuset er bygningen; torvet er plassrommet",
+            "De er to navn på Oslo rådhus",
+            "Torvet ligger i en annen by"
+          ],
+          "answer": "Rådhuset er bygningen; torvet er plassrommet",
+          "answerIndex": 0,
+          "knowledge": "Rådhuset er bygningen; torvet er plassrommet",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_his_arkiv_og_dokumentasjon",
+          "source": [
+            "oslo_gamle_radhus"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Rådhuset er bygningen; torvet er plassrommet",
+          "claim_id": "claim_gamle_radhus_quiz_20",
+          "primary_knowledge_unit_id": "ku_his_gamle_radhus_20",
+          "knowledge_unit_ids": [
+            "ku_his_gamle_radhus_20"
+          ],
+          "concepts": [
+            "historisk endring"
+          ],
+          "concept_ids": [
+            "co_his_endring"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "gamle_radhus_quiz_21",
+          "quiz_id": "historie_gamle_radhus_set_3_q7",
+          "categoryId": "historie",
+          "placeId": "gamle_radhus",
+          "targetId": "gamle_radhus",
+          "question_scope": "place",
+          "question": "Hva er dagens hovedbruk?",
+          "options": [
+            "Restaurant i første etasje og scene i andre",
+            "Fengsel og tinghus",
+            "Universitet og sykehus"
+          ],
+          "answer": "Restaurant i første etasje og scene i andre",
+          "answerIndex": 0,
+          "knowledge": "Restaurant i første etasje og scene i andre",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "oslo_gamle_radhus"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Restaurant i første etasje og scene i andre",
+          "claim_id": "claim_gamle_radhus_quiz_21",
+          "primary_knowledge_unit_id": "ku_his_gamle_radhus_21",
+          "knowledge_unit_ids": [
+            "ku_his_gamle_radhus_21"
+          ],
+          "concepts": [
+            "historisk endring"
+          ],
+          "concept_ids": [
+            "co_his_endring"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "historie_gamle_radhus_set_4",
+      "order": 4,
+      "level": 4,
+      "phase": "final",
+      "title": "Kildekritikk og tidslag",
+      "questions": [
+        {
+          "id": "gamle_radhus_quiz_22",
+          "quiz_id": "historie_gamle_radhus_set_4_q1",
+          "categoryId": "historie",
+          "placeId": "gamle_radhus",
+          "targetId": "gamle_radhus",
+          "question_scope": "place",
+          "question": "Hvordan bør avviket 1815/1821 undersøkes?",
+          "options": [
+            "Skille institusjonens start fra innflytting i bygningen",
+            "Velge det laveste årstallet uten kilde",
+            "Slå sammen årstallene"
+          ],
+          "answer": "Skille institusjonens start fra innflytting i bygningen",
+          "answerIndex": 0,
+          "knowledge": "Skille institusjonens start fra innflytting i bygningen",
+          "difficulty": 4,
+          "question_type": "method",
+          "emne_id": "em_his_arkiv_og_dokumentasjon",
+          "source": [
+            "oppdag_hoyesterett"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Skille institusjonens start fra innflytting i bygningen",
+          "claim_id": "claim_gamle_radhus_quiz_22",
+          "primary_knowledge_unit_id": "ku_his_gamle_radhus_22",
+          "knowledge_unit_ids": [
+            "ku_his_gamle_radhus_22"
+          ],
+          "concepts": [
+            "kildekritikk og makt"
+          ],
+          "concept_ids": [
+            "co_his_kildekritikk"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_kildekritikk",
+          "guidance_basis": [
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "gamle_radhus_quiz_23",
+          "quiz_id": "historie_gamle_radhus_set_4_q2",
+          "categoryId": "historie",
+          "placeId": "gamle_radhus",
+          "targetId": "gamle_radhus",
+          "question_scope": "place",
+          "question": "Hva kan en fasade dokumentere sikkert?",
+          "options": [
+            "Synlig form og restaurerte detaljer, ikke alle tidligere funksjoner alene",
+            "Alle møter som har skjedd inne",
+            "At bygningen aldri er endret"
+          ],
+          "answer": "Synlig form og restaurerte detaljer, ikke alle tidligere funksjoner alene",
+          "answerIndex": 0,
+          "knowledge": "Synlig form og restaurerte detaljer, ikke alle tidligere funksjoner alene",
+          "difficulty": 4,
+          "question_type": "method",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "commons_current"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Synlig form og restaurerte detaljer, ikke alle tidligere funksjoner alene",
+          "claim_id": "claim_gamle_radhus_quiz_23",
+          "primary_knowledge_unit_id": "ku_his_gamle_radhus_23",
+          "knowledge_unit_ids": [
+            "ku_his_gamle_radhus_23"
+          ],
+          "concepts": [
+            "kildekritikk og makt"
+          ],
+          "concept_ids": [
+            "co_his_kildekritikk"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_sporlesning",
+          "guidance_basis": [
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "gamle_radhus_quiz_24",
+          "quiz_id": "historie_gamle_radhus_set_4_q3",
+          "categoryId": "historie",
+          "placeId": "gamle_radhus",
+          "targetId": "gamle_radhus",
+          "question_scope": "place",
+          "question": "Hvorfor må rådhuset ikke kalles demokratisk i moderne forstand?",
+          "options": [
+            "Representasjonen var begrenset og embeter ble utnevnt",
+            "Det manglet tak",
+            "Det lå utenfor byen"
+          ],
+          "answer": "Representasjonen var begrenset og embeter ble utnevnt",
+          "answerIndex": 0,
+          "knowledge": "Representasjonen var begrenset og embeter ble utnevnt",
+          "difficulty": 4,
+          "question_type": "method",
+          "emne_id": "em_his_stat_institusjoner",
+          "source": [
+            "sceneweb_gamle_radhus"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Representasjonen var begrenset og embeter ble utnevnt",
+          "claim_id": "claim_gamle_radhus_quiz_24",
+          "primary_knowledge_unit_id": "ku_his_gamle_radhus_24",
+          "knowledge_unit_ids": [
+            "ku_his_gamle_radhus_24"
+          ],
+          "concepts": [
+            "kildekritikk og makt"
+          ],
+          "concept_ids": [
+            "co_his_kildekritikk"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_kildekritikk",
+          "guidance_basis": [
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "gamle_radhus_quiz_25",
+          "quiz_id": "historie_gamle_radhus_set_4_q4",
+          "categoryId": "historie",
+          "placeId": "gamle_radhus",
+          "targetId": "gamle_radhus",
+          "question_scope": "place",
+          "question": "Hvordan leses et rekonstruert interiør kildekritisk?",
+          "options": [
+            "Som et senere valg om å gjenskape et eldre uttrykk",
+            "Som urørt original fra 1641",
+            "Som bevis på alle brukeres erfaringer"
+          ],
+          "answer": "Som et senere valg om å gjenskape et eldre uttrykk",
+          "answerIndex": 0,
+          "knowledge": "Som et senere valg om å gjenskape et eldre uttrykk",
+          "difficulty": 4,
+          "question_type": "method",
+          "emne_id": "em_his_arkiv_og_dokumentasjon",
+          "source": [
+            "oslo_gamle_radhus"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Som et senere valg om å gjenskape et eldre uttrykk",
+          "claim_id": "claim_gamle_radhus_quiz_25",
+          "primary_knowledge_unit_id": "ku_his_gamle_radhus_25",
+          "knowledge_unit_ids": [
+            "ku_his_gamle_radhus_25"
+          ],
+          "concepts": [
+            "kildekritikk og makt"
+          ],
+          "concept_ids": [
+            "co_his_kildekritikk"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_sporlesning",
+          "guidance_basis": [
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "gamle_radhus_quiz_26",
+          "quiz_id": "historie_gamle_radhus_set_4_q5",
+          "categoryId": "historie",
+          "placeId": "gamle_radhus",
+          "targetId": "gamle_radhus",
+          "question_scope": "place",
+          "question": "Hva forbinder arrestkjelleren med magistratens sal?",
+          "options": [
+            "At administrasjon og tvang var deler av samme institusjon",
+            "At huset var et kloster",
+            "At restauranten styrte byen"
+          ],
+          "answer": "At administrasjon og tvang var deler av samme institusjon",
+          "answerIndex": 0,
+          "knowledge": "At administrasjon og tvang var deler av samme institusjon",
+          "difficulty": 4,
+          "question_type": "method",
+          "emne_id": "em_his_stat_institusjoner",
+          "source": [
+            "sceneweb_gamle_radhus"
+          ],
+          "source_origin": "external",
+          "claim_basis": "At administrasjon og tvang var deler av samme institusjon",
+          "claim_id": "claim_gamle_radhus_quiz_26",
+          "primary_knowledge_unit_id": "ku_his_gamle_radhus_26",
+          "knowledge_unit_ids": [
+            "ku_his_gamle_radhus_26"
+          ],
+          "concepts": [
+            "kildekritikk og makt"
+          ],
+          "concept_ids": [
+            "co_his_kildekritikk"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_kildekritikk",
+          "guidance_basis": [
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "gamle_radhus_quiz_27",
+          "quiz_id": "historie_gamle_radhus_set_4_q6",
+          "categoryId": "historie",
+          "placeId": "gamle_radhus",
+          "targetId": "gamle_radhus",
+          "question_scope": "place",
+          "question": "Hva er en presis konklusjon om bygningens autentisitet?",
+          "options": [
+            "Opprinnelige deler, endringer og rekonstruksjoner må skilles",
+            "Alt synlig er fra 1641",
+            "Ingenting historisk er bevart"
+          ],
+          "answer": "Opprinnelige deler, endringer og rekonstruksjoner må skilles",
+          "answerIndex": 0,
+          "knowledge": "Opprinnelige deler, endringer og rekonstruksjoner må skilles",
+          "difficulty": 4,
+          "question_type": "method",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "oslo_gamle_radhus"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Opprinnelige deler, endringer og rekonstruksjoner må skilles",
+          "claim_id": "claim_gamle_radhus_quiz_27",
+          "primary_knowledge_unit_id": "ku_his_gamle_radhus_27",
+          "knowledge_unit_ids": [
+            "ku_his_gamle_radhus_27"
+          ],
+          "concepts": [
+            "kildekritikk og makt"
+          ],
+          "concept_ids": [
+            "co_his_kildekritikk"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_sporlesning",
+          "guidance_basis": [
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json"
+          ]
+        },
+        {
+          "id": "gamle_radhus_quiz_28",
+          "quiz_id": "historie_gamle_radhus_set_4_q7",
+          "categoryId": "historie",
+          "placeId": "gamle_radhus",
+          "targetId": "gamle_radhus",
+          "question_scope": "place",
+          "question": "Hvordan hjelper Kosellecks idé om historiske tidslag her?",
+          "options": [
+            "Den lar flere perioders funksjoner og former leses samtidig uten å blande dem",
+            "Den gjør alle årstall like",
+            "Den beviser at restaurering er originalbygging"
+          ],
+          "answer": "Den lar flere perioders funksjoner og former leses samtidig uten å blande dem",
+          "answerIndex": 0,
+          "knowledge": "Den lar flere perioders funksjoner og former leses samtidig uten å blande dem",
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "oslo_gamle_radhus"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Den lar flere perioders funksjoner og former leses samtidig uten å blande dem",
+          "claim_id": "claim_gamle_radhus_quiz_28",
+          "primary_knowledge_unit_id": "ku_his_gamle_radhus_28",
+          "knowledge_unit_ids": [
+            "ku_his_gamle_radhus_28"
+          ],
+          "concepts": [
+            "kildekritikk og makt"
+          ],
+          "concept_ids": [
+            "co_his_kildekritikk"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "method_id": "met_kildekritikk",
+          "guidance_basis": [
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json"
+          ],
+          "topic_hook_id": "his_tidslag_samtidighet",
+          "thinker_id": "reinhart_koselleck",
+          "theory_ref": {
+            "topic_hook_id": "his_tidslag_samtidighet",
+            "thinker_id": "reinhart_koselleck",
+            "work": "Futures Past",
+            "why_it_helps": "Kosellecks tidslag gjør det mulig å skille samtidig synlige rester fra perioder som ikke var samtidige, uten å erstatte stedskildene."
+          }
         }
       ]
     }

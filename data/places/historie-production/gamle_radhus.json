@@ -1,0 +1,287 @@
+{
+  "schemaVersion": "historie_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "gamle_radhus",
+  "placeFile": "data/places/by/oslo/gamle_radhus/gamle_radhus.json",
+  "status": "ready",
+  "historicalIdentity": {
+    "statement": "Gamle rådhus er bygningen fra 1641 i Nedre Slottsgate 1, Christianias rådhus til 1733 og senere brukt av blant andre Høyesterett, restaurant og scene.",
+    "placeRelationType": "institution_site",
+    "placeRelationStatement": "Place-ID-en gjelder bygningen, ikke Christiania torv som plassrom eller Oslo rådhus fra 1950.",
+    "temporalScope": {
+      "start": "1624",
+      "end": "2026",
+      "precision": "period",
+      "rationale": "Perioden dekker byflytting, oppføring, institusjonsbruk, restaurering og dagens bruk."
+    },
+    "sourceIds": [
+      "source_gr_oslo",
+      "source_gr_sceneweb",
+      "source_gr_hoyesterett",
+      "source_gr_byleksikon"
+    ]
+  },
+  "historyTopics": [
+    {
+      "emneId": "em_his_stat_institusjoner",
+      "siteSpecificRationale": "Magistrat, rett, arrest og senere Høyesterett viser institusjonsmakt i samme bygg.",
+      "caseIds": [
+        "case_gr_makt_og_tidslag"
+      ]
+    },
+    {
+      "emneId": "em_his_historiske_lag_i_byrom",
+      "siteSpecificRationale": "Rådhus, kirke, losje, domstol, restaurant og scene følger hverandre i samme hus.",
+      "caseIds": [
+        "case_gr_makt_og_tidslag"
+      ]
+    },
+    {
+      "emneId": "em_his_modernisering_1800",
+      "siteSpecificRationale": "Høyesteretts bruk, restaurantetableringen og restaureringsplanen viser nye institusjons- og brukslag fra 1800- og 1900-tallet.",
+      "caseIds": [
+        "case_gr_makt_og_tidslag"
+      ]
+    },
+    {
+      "emneId": "em_his_spor_materialitet",
+      "siteSpecificRationale": "Kjeller, gavler, fasader og interiør må skilles som opprinnelige, endrede og rekonstruerte spor.",
+      "caseIds": [
+        "case_gr_makt_og_tidslag"
+      ]
+    },
+    {
+      "emneId": "em_his_arkiv_og_dokumentasjon",
+      "siteSpecificRationale": "1815/1821-avviket viser hvorfor institusjonsdato og stedsdato må holdes fra hverandre.",
+      "caseIds": [
+        "case_gr_makt_og_tidslag"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_gr_oslo",
+      "url": "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/gamle-radhus/",
+      "sourceLocation": "Om kultureiendommen",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-28",
+      "temporalCoverage": "mixed",
+      "provenance": "Oslo kommunes offisielle eiendomspresentasjon.",
+      "limitations": "Kort oversikt som oppgir Høyesterett 1815–1846 uten å skille institusjonsstart fra innflytting."
+    },
+    {
+      "id": "source_gr_sceneweb",
+      "url": "https://sceneweb.no/nb/venue/31901/Gamle_Raadhus%20Scene%20%2F%20R%C3%A5dhussalen%2C%20Oslo",
+      "sourceLocation": "Historie og dagens scene",
+      "sourceType": "institutional",
+      "verifiedAt": "2026-08-28",
+      "temporalCoverage": "current",
+      "provenance": "Nasjonal scenekunstdatabase med stedshistorie, gjenåpning og nåværende drift.",
+      "limitations": "Bygningshistorikken bygger delvis på sekundærkilder og er ikke en full arkivutgave."
+    },
+    {
+      "id": "source_gr_hoyesterett",
+      "url": "https://www.oppdagkvadraturen.no/stoppesteder/hoyesterett",
+      "sourceLocation": "Det gamle rådhus",
+      "sourceType": "institutional",
+      "verifiedAt": "2026-08-28",
+      "temporalCoverage": "retrospective",
+      "provenance": "Oslo kommunes formidlingsprosjekt Oppdag Kvadraturen.",
+      "limitations": "Formidlingsside, ikke Høyesteretts komplette arkiv."
+    },
+    {
+      "id": "source_gr_byleksikon",
+      "url": "https://oslobyleksikon.no/side/Nedre_Slottsgate",
+      "sourceLocation": "Nedre Slottsgate 1",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-08-28",
+      "temporalCoverage": "retrospective",
+      "provenance": "Redigert Oslo-spesifikt oppslagsverk.",
+      "limitations": "Kortfattet bygningsoppføring."
+    }
+  ],
+  "caseRealizations": [
+    {
+      "id": "case_gr_makt_og_tidslag",
+      "claim": "Gamle rådhus viser hvordan offentlig makt, representasjon og bruk skifter, mens bygningen selv blir endret og restaurert av ettertiden.",
+      "temporalSequence": {
+        "scope": {
+          "start": "1641",
+          "end": "2014",
+          "precision": "period",
+          "rationale": "Caset følger funksjon og fysisk form fra rådhusåpning til scenegjenåpning."
+        },
+        "startPoint": "Rådhuset samlet magistrat, rett, borgerskap og arrest i 1641.",
+        "endPoint": "Gamle Raadhus Scene gjenåpnet med Opera til folket i 2014.",
+        "breaks": [
+          "Rådhusfunksjonen flyttet i 1733–1734.",
+          "Høyesterett flyttet inn i 1821.",
+          "Restaurantbruk startet i 1856.",
+          "Brannen i 1996 utløste rekonstruksjon."
+        ],
+        "continuities": [
+          "Huset beholdt offentlige og halvoffentlige samlingsfunksjoner.",
+          "Rett, representasjon og adgang har stadig blitt organisert gjennom rommene."
+        ],
+        "sourceIds": [
+          "source_gr_oslo",
+          "source_gr_sceneweb",
+          "source_gr_hoyesterett"
+        ]
+      },
+      "actors": [
+        {
+          "name": "Magistraten og borgerskapet",
+          "roleOrInterest": "Styrte byen, behandlet rett og samlet borgere med privilegier.",
+          "powerPosition": "Embetene og borgerskapet hadde formell adgang til byens styring.",
+          "sourceIds": [
+            "source_gr_sceneweb"
+          ]
+        },
+        {
+          "name": "Arresterte og andre uten borgerskap",
+          "roleOrInterest": "Var berørt av rett og kontroll uten tilsvarende representasjon.",
+          "powerPosition": "Kildene gir dem liten egen stemme; arrestkjelleren viser den materielle tvangssiden.",
+          "sourceIds": [
+            "source_gr_sceneweb",
+            "source_gr_oslo"
+          ]
+        },
+        {
+          "name": "Restaureringsarkitekter og Oslo kommune",
+          "roleOrInterest": "Bevarte og omformet huset for nye bruksbehov.",
+          "powerPosition": "Bestemte hvilke eldre uttrykk som skulle tilbakeføres eller rekonstrueres.",
+          "sourceIds": [
+            "source_gr_oslo",
+            "source_gr_byleksikon"
+          ]
+        }
+      ],
+      "conflictOrNegotiation": {
+        "statement": "Caset rommer spenninger mellom utnevnt makt og borgerrepresentasjon, mellom bevaring og rekonstruksjon, og mellom historisk autentisitet og fortsatt bruk.",
+        "sourceIds": [
+          "source_gr_sceneweb",
+          "source_gr_oslo"
+        ]
+      },
+      "sourceComparison": {
+        "sourceIds": [
+          "source_gr_oslo",
+          "source_gr_sceneweb",
+          "source_gr_hoyesterett",
+          "source_gr_byleksikon"
+        ],
+        "comparison": "Kommunen gir hovedkronologien, Sceneweb utdyper rådhus- og scenebruken, Oppdag Kvadraturen presiserer Høyesteretts lokale, og Byleksikon knytter Lars Backer til 1917-planen.",
+        "contradictionsOrSilences": "Oslo kommune oppgir Høyesterett 1815–1846, mens den stedsnære Kvadraturen-siden skiller opprettelsen i 1815 fra oppholdet i Gamle rådhus 1821–1846. Arrestertes og ikke-borgeres egne stemmer er svakt representert.",
+        "conclusionLimits": "Funksjoner, årstall og synlige bygningslag kan dokumenteres; rommenes opplevelse for alle brukere kan ikke rekonstrueres fra disse institusjonskildene alene."
+      },
+      "comparativeScale": {
+        "localFinding": "Ett hus ved torget samlet og omformet lokal styring, rett og offentlig bruk.",
+        "widerContext": "Funksjonsskiftene viser hvordan den flyttede hovedstaden brukte eldre bygg før mer spesialiserte institusjonsbygninger kom.",
+        "scale": "national",
+        "sourceIds": [
+          "source_gr_oslo",
+          "source_gr_hoyesterett"
+        ]
+      },
+      "causationAndUncertainty": {
+        "causalAssessment": "Byflyttingen skapte behov for et rådhus; forfall, institusjonsvekst, privat eierskap, restaurantdrift og bevaringsvalg forklarer senere brudd.",
+        "alternativeExplanations": [
+          "Funksjonsskiftene skyldtes både plassbehov, økonomi, eierskap og kulturpolitikk, ikke én samlet plan."
+        ],
+        "uncertainty": "Åpne oversiktskilder beskriver ikke alle ombygginger eller brukergrupper like detaljert.",
+        "sourceIds": [
+          "source_gr_oslo",
+          "source_gr_sceneweb",
+          "source_gr_byleksikon"
+        ]
+      }
+    }
+  ],
+  "presentTrace": {
+    "objectStatus": "altered",
+    "statement": "Hvelvet kjeller, hovedvolum og tilbakeførte gavler gjør ulike tidslag synlige, mens 1926-interiøret er rekonstruert etter brannen i 1996.",
+    "originalSiteRelationship": "Bygningen står på sitt historiske sted ved Christiania torv, men torvet er en separat Place-ID.",
+    "sourceIds": [
+      "source_gr_oslo",
+      "source_gr_sceneweb"
+    ]
+  },
+  "quizOpening": {
+    "status": "PASS",
+    "quizTargetId": "gamle_radhus",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/historie/gamle_radhus.json",
+    "productionContext": "data/quiz/production_context/historie/gamle_radhus.json",
+    "requiredInputs": [
+      "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "data/fag/historie/supersetQUIZMAL_historie.json",
+      "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    ]
+  },
+  "chronologyStories": {
+    "status": "PASS",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Femten milepæler og episodehistorien er kontrollert mot offisielle og institusjonelle kilder."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "historicalIdentity"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "historyTopics"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "caseRealizations[0].temporalSequence"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "caseRealizations[0].actors"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "caseRealizations[0].sourceComparison"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "caseRealizations[0].comparativeScale"
+      ]
+    },
+    "G": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "quizOpening"
+      ]
+    },
+    "H": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "chronologyStories"
+      ]
+    }
+  },
+  "review": {
+    "reviewer": "History GO Gamle rådhus source and material-layer audit",
+    "reviewedAt": "2026-08-28",
+    "notes": "Identity, 1815/1821 boundary, representation limits, restoration, reconstruction, collections, quiz and Story are explicitly reviewed."
+  }
+}

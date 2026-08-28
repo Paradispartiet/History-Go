@@ -1,0 +1,151 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "lars_backer",
+  "profile_file": "data/people/by/oslo/gamle_radhus/lars_backer.json",
+  "identity": {
+    "canonical_identity": "Den norske arkitekten Lars Backer (1892–1930).",
+    "name_variants": [
+      "Lars Backer"
+    ],
+    "not": [
+      "maleren Harriet Backer"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "identity",
+      "claim": "Lars Backer var norsk arkitekt og levde fra 1892 til 1930.",
+      "status": "verified",
+      "source_url": "https://snl.no/Lars_Backer",
+      "source_location": "faktaboks og innledning",
+      "source_type": "reputable_secondary",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-28",
+      "evidence_level": "explicit"
+    },
+    {
+      "id": "plan",
+      "claim": "Backer utarbeidet restaureringsplanen for Gamle rådhus i 1917.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/side/Nedre_Slottsgate",
+      "source_location": "Nedre Slottsgate 1 / Gamle rådhus",
+      "source_type": "reputable_secondary",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-28",
+      "evidence_level": "explicit"
+    },
+    {
+      "id": "result",
+      "claim": "Planen omfattet innvendige dekorasjoner og et utvendig uttrykk i gammel stil.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/side/Nedre_Slottsgate",
+      "source_location": "omtalen av restaureringen etter Backers plan",
+      "source_type": "reputable_secondary",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-28",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "boundary",
+      "claim": "Backer restaurerte bygningen; han var ikke arkitekten for rådhuset fra 1641.",
+      "status": "verified",
+      "source_url": "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/gamle-radhus/",
+      "source_location": "skillet mellom oppføring i 1641 og senere restaurering",
+      "source_type": "official",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-28",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "image",
+      "claim": "Commons-filen identifiserer Lars Backer i et fotografi tatt av Gustav Borgen i 1911.",
+      "status": "verified",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Lars_Backer_-_1911.jpg",
+      "source_location": "Summary og Licensing",
+      "source_type": "archive",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-28",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "identity"
+    ],
+    "kindLabel": [
+      "identity"
+    ],
+    "year": [
+      "plan"
+    ],
+    "placeId": [
+      "plan"
+    ],
+    "places[gamle_radhus]": [
+      "plan"
+    ],
+    "works[id=gamle_radhus_restaureringsplan_1917].title": [
+      "plan"
+    ],
+    "works[id=gamle_radhus_restaureringsplan_1917].year": [
+      "plan"
+    ],
+    "works[id=gamle_radhus_restaureringsplan_1917].role": [
+      "plan"
+    ],
+    "works[id=gamle_radhus_restaureringsplan_1917].place": [
+      "plan"
+    ],
+    "works[id=gamle_radhus_restaureringsplan_1917].summary": [
+      "result"
+    ],
+    "image": [
+      "image"
+    ],
+    "cardImage": [
+      "image"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "plan"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "plan",
+          "result"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "boundary"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "5/5",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-08-28",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}
