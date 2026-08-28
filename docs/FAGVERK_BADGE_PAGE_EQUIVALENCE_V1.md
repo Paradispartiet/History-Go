@@ -66,7 +66,7 @@ Historie er andre fullteorifag som er ført gjennom samme fail-closed prosess, u
 - **#5443:** alle ti seksjoner fikk eksplisitte canonicale eiere og `canonical_supersedes`; `bidrag` ble pensjonert som gammel produkttekst. Adjudiseringen ble `redirectReady: true`, mens portalruten fortsatt var låst til legacy-siden i denne fasen.
 - **#5444:** den fullstendige legacy-teorien er bevart byte-for-byte i `data/fag/historie/archive/merke_historie_full_teori_legacy_20260828.html`. Den gamle URL-en `data/fag/historie/merke_historie (1).html` er kun en compatibility-redirect, mens canonical `badgePage` og `Alle merker` går direkte til `fagverk.html?subject=historie#fagverkIaProgresjon`.
 
-Historie-auditene leser arkivfilen, ikke redirect-wrapperen. Dermed kan gammel teori fortsatt etterprøves, samtidig som ingen aktiv navigasjonsflate bruker den som produktinnhold.
+Historie-auditene leser arkivfilen, ikke redirect-wrapperen. Dermed kan gammel teori fortsatt etterprøves, samtidig som ingen aktiv navigasjonsflate bruker den som produktinnhold. Compatibility-URL-en er kun en bakoverkompatibel inngang og skal aldri igjen få eget faginnhold eller progresjonsruntime.
 
 ## Ikke redirect ennå
 
