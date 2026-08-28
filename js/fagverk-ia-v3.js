@@ -149,17 +149,22 @@
   function renderUtforsk(model) {
     const host = document.getElementById('fagverkIaUtforskContent');
     if (!host) return;
-    if (!model.places.length) {
-      host.innerHTML = '<p class="fagverk-ia-empty">Ingen canonicale stedskoblinger er registrert for dette faget ennå.</p>';
-      return;
-    }
     const renderPlace = (place) => `<a class="fagverk-ia-place" href="${escapeHtml(place.route)}"><strong>${escapeHtml(place.title)}</strong><span>${escapeHtml(place.intro)}</span><small>Åpne stedets fagverkside →</small></a>`;
     const primary = model.places.slice(0, 12);
     const rest = model.places.slice(12);
-    host.innerHTML = `
-      <div class="fagverk-ia-place-grid">${primary.map(renderPlace).join('')}</div>
-      ${rest.length ? `<details class="fagverk-ia-more"><summary>Vis ${rest.length} flere steder</summary><div class="fagverk-ia-place-grid">${rest.map(renderPlace).join('')}</div></details>` : ''}
-    `;
+    const placesHtml = model.places.length
+      ? `<div class="fagverk-ia-place-grid">${primary.map(renderPlace).join('')}</div>
+        ${rest.length ? `<details class="fagverk-ia-more"><summary>Vis ${rest.length} flere steder</summary><div class="fagverk-ia-place-grid">${rest.map(renderPlace).join('')}</div></details>` : ''}`
+      : '<p class="fagverk-ia-empty">Ingen canonicale stedskoblinger er registrert for dette faget ennå.</p>';
+
+    host.innerHTML = `${placesHtml}<div id="fagverkIaCareerSlot" class="fagverk-ia-career-slot"></div>`;
+
+    // Career Knowledge Bridge renderer senere i scriptrekkefølgen bruker de samme DOM-id-ene.
+    // Flytt den skjulte verten inn i Utforsk nå, slik at eventuell asynkron rendering ikke
+    // oppretter en sjette, løs seksjon under den nye femdelte IA-en.
+    const careerSlot = document.getElementById('fagverkIaCareerSlot');
+    const careerSection = document.getElementById('fagverkCareerUses');
+    if (careerSlot && careerSection && careerSection.parentElement !== careerSlot) careerSlot.appendChild(careerSection);
   }
 
   function renderProgresjon(model, progress) {
