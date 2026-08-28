@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { spawnSync } from 'node:child_process';
 
-const LEGACY_ROUTE = 'data/fag/kunst/merke_kunst (2).html';
+const ARCHIVE = 'data/fag/kunst/archive/merke_kunst_legacy_20260828.html';
+const COMPATIBILITY = 'data/fag/kunst/merke_kunst (2).html';
 const PROGRESS_ROUTE = 'fagverk.html?subject=kunst#fagverkIaProgresjon';
 const CATEGORY_CONTRACT = 'data/categories/category_contract.json';
 
@@ -59,11 +60,20 @@ test('Kunst/Scenekunst-avgrensningen er product boundary, ikke nytt kunstemne', 
   assert.equal(boundary.anchorCoverage, 1);
 });
 
-test('Kunst-adjudiseringen er redirect-klar men holder portalruten urørt i egen tranche', () => {
+test('Kunst-adjudiseringen låser ferdig migrert portal, arkiv og compatibility-URL', () => {
   const report = adjudicationAudit();
   assert.equal(report.summary.redirectReady, true);
   assert.equal(report.summary.redirectTarget, PROGRESS_ROUTE);
-  assert.equal(report.summary.portalRoute, LEGACY_ROUTE);
-  assert.equal(report.summary.portalRedirected, false);
+  assert.equal(report.summary.portalRoute, PROGRESS_ROUTE);
+  assert.equal(report.summary.portalRedirected, true);
   assert.equal(report.summary.legacyBadgeSourcePreserved, true);
+  assert.equal(report.summary.compatibilityRedirectPresent, true);
+  assert.equal(report.inputs.legacyArchive, ARCHIVE);
+  assert.equal(report.inputs.compatibilityPage, COMPATIBILITY);
+
+  assert.ok(fs.existsSync(ARCHIVE));
+  const compatibility = fs.readFileSync(COMPATIBILITY, 'utf8');
+  assert.match(compatibility, /location\.replace/);
+  assert.match(compatibility, /subject=kunst#fagverkIaProgresjon/);
+  assert.doesNotMatch(compatibility, /id="felt"|id="offentlig-rom"/);
 });
