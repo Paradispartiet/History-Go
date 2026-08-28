@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - 'fagverk.html'
+      - 'fagverk-forside.html'
       - 'data/categories/category_contract.json'
       - 'data/fag/fag_manifest.json'
       - 'data/fagverk/*/**'
@@ -12,8 +13,10 @@ on:
       - 'js/fagverk-subject-model.js'
       - 'js/fagverk.js'
       - 'js/fagverk-ia-v3.js'
+      - 'js/fagverk-forside.js'
       - 'css/fagverk-general.css'
       - 'css/fagverk-ia-v3.css'
+      - 'css/fagverk-forside.css'
       - 'docs/FAGVERK_NAVIGATION.md'
       - 'docs/FAGVERK_IA_V3_*.md'
       - 'scripts/audit-fagverk-general-engine.mjs'
@@ -48,6 +51,7 @@ jobs:
           node --check js/fagverk-subject-model.js
           node --check js/fagverk.js
           node --check js/fagverk-ia-v3.js
+          node --check js/fagverk-forside.js
           node --check scripts/audit-fagverk-subject-inventory.mjs
           node --check scripts/audit-fagverk-general-engine.mjs
       - name: Verify inventory and status progression
