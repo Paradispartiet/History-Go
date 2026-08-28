@@ -68,6 +68,14 @@ test('Utforsk bruker canonicale stedskoblinger fra den normaliserte modellen', (
   assert.doesNotMatch(ia, /fagverk-sted\.html\?place=.*\+/);
 });
 
+test('Career Knowledge Bridge kan ikke åpne en sjette løs subject-root seksjon', () => {
+  const renderUtforsk = functionSource(ia, 'function renderUtforsk(', 'function renderProgresjon(');
+  assert.match(renderUtforsk, /id="fagverkIaCareerSlot"/);
+  assert.match(renderUtforsk, /document\.getElementById\('fagverkCareerUses'\)/);
+  assert.match(renderUtforsk, /careerSlot\.appendChild\(careerSection\)/);
+  assert.match(html, /id="fagverkCareerUses"/);
+});
+
 test('IA v3 reduserer subject-root sidebar uten å endre dypkoblingssidene', () => {
   assert.match(css, /body\.fagverk-ia-v3-root \.fagverk-sidebar #fagverkSubjectProgress/);
   assert.match(css, /body\.fagverk-ia-v3-root \.fagverk-sidebar #fagverkDomainNav/);
