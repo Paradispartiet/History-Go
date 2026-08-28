@@ -166,11 +166,17 @@ for (const field of disciplinaryFields) {
   }[domainId])).filter(Boolean));
 }
 
+function isDirectChapterDirectory(entry) {
+  const directory = path.join(FAGVERK, entry);
+  return fs.statSync(directory).isDirectory()
+    && fs.readdirSync(directory).some((name) => /^0\d.*\.json$/.test(name));
+}
+
 function collectChapterConcepts() {
   const definitions = new Map();
   for (const chapterDir of fs.readdirSync(FAGVERK)) {
     const directory = path.join(FAGVERK, chapterDir);
-    if (!fs.statSync(directory).isDirectory()) continue;
+    if (!isDirectChapterDirectory(chapterDir)) continue;
     for (const file of fs.readdirSync(directory).filter((name) => /^0\d.*\.json$/.test(name))) {
       const document = readJson(path.join(directory, file));
       for (const concept of list(document.concepts)) {
@@ -732,7 +738,7 @@ const architecture = {
     emne_count: emners.length,
     method_count: methods.length,
     hook_count: list(fagkart.categories).reduce((sum, category) => sum + list(category.topic_hooks).length, 0),
-    chapter_count: fs.readdirSync(FAGVERK).filter((entry) => fs.statSync(path.join(FAGVERK, entry)).isDirectory()).length,
+    chapter_count: fs.readdirSync(FAGVERK).filter(isDirectChapterDirectory).length,
     concept_count: concepts.length
   },
   orientation_sources: [
