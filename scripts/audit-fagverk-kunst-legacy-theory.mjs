@@ -7,6 +7,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const LEGACY_BADGE = 'data/fag/kunst/merke_kunst (2).html';
 const MANIFEST = 'data/fag/fag_manifest.json';
 const REGISTRY = 'data/fagverk/fagverk_registry.json';
+const CATEGORY_CONTRACT = 'data/categories/category_contract.json';
 const REPORT = 'reports/fagverk/kunst-legacy-theory-audit.json';
 const SUBJECT_ROOTS = Object.freeze(['data/fag/kunst/', 'data/fagverk/kunst/']);
 const MANIFEST_KEYS = Object.freeze(['pensum', 'emner', 'fagkart', 'methods', 'emneMappings']);
@@ -39,7 +40,7 @@ const SECTION_POLICY = Object.freeze({
   ] },
   arbeid: { role: 'knowledge', anchors: [
     ['praksis'], ['utdanning'], ['atelier', 'studio'], ['samarbeid'], ['produksjon'],
-    ['økonomi'], ['distribusjon'], ['kurator'], ['konservator'], ['tekniker'], ['formidler'], ['produsent']
+    ['økonomi'], ['distribusjon'], ['kurator'], ['konservator', 'konservering'], ['tekniker'], ['formidler'], ['produsent']
   ] },
   makt: { role: 'knowledge', anchors: [
     ['kanon'], ['innkjøp'], ['utstilling'], ['kritikk'], ['marked'], ['utdanning'],
@@ -50,9 +51,8 @@ const SECTION_POLICY = Object.freeze({
     ['ikonografi'], ['symbol'], ['stil'], ['periode'], ['brudd'], ['kuratering'], ['samling'],
     ['kunstinstitusjon', 'institusjon'], ['kanon'], ['resepsjon'], ['offentlighet']
   ] },
-  avgrensning: { role: 'knowledge', anchors: [
-    ['scenekunst'], ['forestilling', 'performance'], ['teater'], ['dans'],
-    ['levende', 'live'], ['visuell'], ['materiell', 'materialitet']
+  avgrensning: { role: 'product_boundary', owner: CATEGORY_CONTRACT, anchors: [
+    ['kunst'], ['scenekunst'], ['teater'], ['dans'], ['billedkunst', 'visuell kunst'], ['sceneinstitusjoner']
   ] }
 });
 
@@ -173,13 +173,23 @@ function registryCorpus() {
   if (graph.files.length < 6) throw new Error('Kunst registry-grafen løste uventet få canonicale filer.');
   return { chapterCount, strings: [...registryStrings, ...graph.strings], files: graph.files };
 }
+function categoryBoundaryCorpus() {
+  const contract = readJson(CATEGORY_CONTRACT);
+  if (!Array.isArray(contract.runtimeCategories) || !contract.runtimeCategories.includes('kunst') || !contract.runtimeCategories.includes('scenekunst')) {
+    throw new Error('Category-contract mangler Kunst/Scenekunst som canonicale runtimekategorier.');
+  }
+  if (!text(contract.decisions?.kunst) || !text(contract.decisions?.scenekunst)) {
+    throw new Error('Category-contract mangler eksplisitt Kunst/Scenekunst-avgrensning.');
+  }
+  return normalize([contract.decisions.kunst, contract.decisions.scenekunst].join(' '));
+}
 function anchorResult(corpus, alternatives) {
   const found = alternatives.find((candidate) => corpus.includes(normalize(candidate)));
   return { alternatives, found: found || null };
 }
 
 export function auditKunstLegacyTheory() {
-  for (const required of [LEGACY_BADGE, MANIFEST, REGISTRY]) {
+  for (const required of [LEGACY_BADGE, MANIFEST, REGISTRY, CATEGORY_CONTRACT]) {
     if (!exists(required)) throw new Error(`Mangler nødvendig Kunst-auditfil: ${required}`);
   }
   const sections = extractSections(read(LEGACY_BADGE));
@@ -189,16 +199,18 @@ export function auditKunstLegacyTheory() {
   const unknownSections = foundIds.filter((id) => !SECTION_POLICY[id]);
   if (missingSections.length) throw new Error(`Kunst-merkesiden mangler forventede legacy-seksjoner: ${missingSections.join(', ')}`);
   if (unknownSections.length) throw new Error(`Kunst-merkesiden har ukjente legacy-seksjoner: ${unknownSections.join(', ')}`);
-  if (sections.length !== 10) throw new Error(`Kunst-merkesiden skal ha 10 legacy-kunnskapsseksjoner, fant ${sections.length}.`);
+  if (sections.length !== 10) throw new Error(`Kunst-merkesiden skal ha 10 legacy-seksjoner, fant ${sections.length}.`);
 
   const manifest = manifestCorpus();
   const registry = registryCorpus();
   const canonicalCorpus = normalize([...manifest.strings, ...registry.strings].join(' '));
+  const boundaryCorpus = categoryBoundaryCorpus();
   if (canonicalCorpus.length < 100000) throw new Error('Canonical Kunst-korpus er uventet lite; audit kan ikke kjøres sikkert.');
 
   const rows = sections.map((section) => {
     const policy = SECTION_POLICY[section.id];
-    const anchors = policy.anchors.map((alternatives) => anchorResult(canonicalCorpus, alternatives));
+    const corpus = policy.role === 'product_boundary' ? boundaryCorpus : canonicalCorpus;
+    const anchors = policy.anchors.map((alternatives) => anchorResult(corpus, alternatives));
     const foundCount = anchors.filter((row) => row.found).length;
     const anchorCoverage = Number((foundCount / anchors.length).toFixed(3));
     const missingAnchors = anchors.filter((row) => !row.found).map((row) => row.alternatives);
@@ -206,33 +218,54 @@ export function auditKunstLegacyTheory() {
       id: section.id,
       heading: section.heading,
       role: policy.role,
+      ownerFile: policy.owner || null,
       legacyCharacterCount: section.text.length,
       anchorCoverage,
       anchors,
       missingAnchors,
-      contentStatus: anchorCoverage === 1
-        ? 'canonical_anchor_coverage_complete_claim_review_pending'
-        : 'canonical_anchor_gaps_manual_review_required'
+      contentStatus: policy.role === 'product_boundary'
+        ? (anchorCoverage === 1 ? 'canonical_product_boundary_complete' : 'canonical_product_boundary_gap')
+        : (anchorCoverage === 1
+          ? 'canonical_anchor_coverage_complete_claim_review_pending'
+          : 'canonical_anchor_gaps_manual_review_required')
     };
   });
 
-  const manualReview = rows.filter((row) => row.anchorCoverage < 1).map((row) => row.id);
+  const knowledgeRows = rows.filter((row) => row.role === 'knowledge');
+  const boundaryRows = rows.filter((row) => row.role === 'product_boundary');
+  if (!boundaryRows.every((row) => row.anchorCoverage === 1)) {
+    throw new Error('Kunst/Scenekunst-produktgrensen er ikke lenger dekket av category-contract.');
+  }
+  const manualReview = knowledgeRows.filter((row) => row.anchorCoverage < 1).map((row) => row.id);
+  const uniqueMissingAnchorTerms = [...new Set(
+    knowledgeRows.flatMap((row) => row.missingAnchors.map((group) => group[0])).filter(Boolean)
+  )].sort();
+
   return {
     schema: 'history_go_fagverk_kunst_legacy_theory_audit_v1',
     subject: 'kunst',
-    legacy: { badgePage: LEGACY_BADGE, sectionCount: rows.length, knowledgeSectionCount: rows.length },
+    legacy: {
+      badgePage: LEGACY_BADGE,
+      sectionCount: rows.length,
+      knowledgeSectionCount: knowledgeRows.length,
+      productBoundarySectionCount: boundaryRows.length
+    },
     canonical: {
       manifestFiles: manifest.manifestFiles,
       manifestGraphFiles: manifest.graphFiles,
       registryChapterCount: registry.chapterCount,
       registryFiles: registry.files,
+      categoryBoundaryOwner: CATEGORY_CONTRACT,
       corpusCharacterCount: canonicalCorpus.length
     },
     summary: {
-      knowledgeSectionCount: rows.length,
-      anchorCompleteCount: rows.filter((row) => row.anchorCoverage === 1).length,
+      knowledgeSectionCount: knowledgeRows.length,
+      productBoundarySectionCount: boundaryRows.length,
+      anchorCompleteCount: knowledgeRows.filter((row) => row.anchorCoverage === 1).length,
+      productBoundaryCompleteCount: boundaryRows.filter((row) => row.anchorCoverage === 1).length,
       manualReviewCount: manualReview.length,
       manualReview,
+      uniqueMissingAnchorTerms,
       redirectReady: false,
       redirectBlockReason: 'Anchor coverage establishes only candidate canonical ownership. Kunst redirect remains blocked until every knowledge section has explicit editorial adjudication and any semantic gaps are migrated or rejected with evidence.'
     },
