@@ -1,0 +1,962 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "serieskaper",
+  "title": "Serieskaper — sesongrygg, handoff, rework og situert standing",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "Å holde en serie kreativt sammenhengende gjennom venting, handoffs og gjentatt omskriving uten at kreativt eierskap blir likestilt med uinnskrenket myndighet, og uten at omdømme blir behandlet som ett globalt tall løsrevet fra hvem som faktisk er avhengig av arbeidet.",
+    "description": "Role World-en bygger på den eksisterende komplette 9/9 Serieskaper-mailflaten og gjør de to readiness-manglene eksplisitte: rhythm/waiting/handoff/rework og situated reputation. Den følger samme sesongrygg, noteskonflikt, rollefravær, locationbortfall, seriebibel, filmhistoriske kildegrense, senere oppfølging og finalegjeld over 14 dager uten nye mails, nytt runtime-state eller parallell scenemotor."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "status_anxiety",
+    "shame_reputation",
+    "loyalty_up_down",
+    "social_mask",
+    "bureaucratic_power",
+    "precarity",
+    "public_private_leakage"
+  ],
+  "social_environments": [
+    "Writers room der ideer må kunne vente på avklaring, sendes videre med eksplisitt versjon og returnere som rework uten at faglig uenighet blir personlig illojalitet.",
+    "Seriebibel-flaten der canonical tilstand, åpne spørsmål og beslutningsspor bestemmer hvilken versjon senere forfattere og produksjon kan stole på.",
+    "Utviklingsmøtet der bestiller-, produsent- og manusnotes får synlig eier og der en manglende prioritering legitimt kan stoppe omskriving.",
+    "Produksjonsmøtet der en kreativ løsning må overleveres som gjennomførbart arbeid med kjente begrensninger, ikke bare som intensjon.",
+    "Cinemateket i Oslo som read-only History Go-anker for norsk filmhistorie og Arne Skouen, ikke som normativ dokumentasjon av moderne writers-room-praksis.",
+    "Den private kvelden etter notes eller omskriving der serieskaperen kan merke forskjellen mellom å ha mistet standing hos én samarbeidspartner og å ha mistet verdi eller mandat generelt."
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "ingrid_executive_producer_series",
+      "social_function": "executive producer og beslutningseier for bestilleravklaringer, hovedramme, større omlegginger og budsjettkonsekvenser",
+      "class_position": "bestiller- og produksjonsledelse med høy formell prosjektmakt",
+      "status": "høy formell status",
+      "power_over_player": "kan prioritere motstridende bestillingsmål og avgjøre større rammeendringer, men kan ikke gjøre serieskaperens faglige kreditering eller opphavsrett vilkårlig",
+      "wants": "en serieskaper som synliggjør konflikt, rework-gjeld og konsekvens før hun må beslutte",
+      "conceals": "at hennes behov for leveransesikkerhet kan gjøre legitim kreativ venting sosialt dyrere enn den burde være",
+      "speech_style": "kort og beslutningsorientert; spør hvilken versjon som gjelder, hva som venter og hva hun faktisk må prioritere",
+      "teaches_player": "at standing oppover bygges av sporbarhet og varsling, ikke av å late som all usikkerhet allerede er løst"
+    },
+    {
+      "id": "jonas_hovedforfatter_series",
+      "social_function": "hovedforfatter som leder konkret manusarbeid og mottar eller returnerer handoffs fra serieskaperen",
+      "class_position": "kreativ nøkkelrolle med høy situert fagstatus i writers room",
+      "status": "høy situert fagstatus",
+      "power_over_player": "kan gjøre sesongryggen skrivbar eller vise at en beslutning ikke gir fungerende episode- og karakterarbeid",
+      "wants": "en serieskaper som gir tydelige rammer, lytter til motbevis og lar rework ha en faglig begrunnelse",
+      "conceals": "at hyppige reverseringer kan oppleves som manglende respekt for forfatternes arbeid selv når hver enkelt endring kan forsvares",
+      "speech_style": "idéorientert og konkret; snakker om scene, karaktervalg, funksjon og hva en omskriving faktisk koster",
+      "teaches_player": "at standing i writers room er lokal og relasjonell og kan svekkes av dårlig handoff selv om bestiller fortsatt er fornøyd"
+    },
+    {
+      "id": "amina_manusredaktor_series",
+      "social_function": "manusredaktør som holder seriebibel, versjoner, beslutningsspor og avhengigheter synlige gjennom rework",
+      "class_position": "redaksjonell spesialist med høy informasjonsmakt, men uten bestillerens formelle beslutningsmandat",
+      "status": "høy situert tillit når dokumentasjonen er canonical",
+      "power_over_player": "kan avdekke at teamet arbeider mot ulike sannheter og dermed stoppe en falsk følelse av fremdrift",
+      "wants": "at muntlige beslutninger blir oversatt til sporbar canonical tilstand før neste handoff",
+      "conceals": "at hun ofte må absorbere sosial friksjon når andre ønsker å kalle en uavklart idé for låst",
+      "speech_style": "rolig og presis; spør siste godkjente versjon, beslutningseier og hvilke flater som nå må revideres",
+      "teaches_player": "at usynlig versjonsarbeid er en del av kreativ kvalitet og at rework må ha hukommelse"
+    },
+    {
+      "id": "henrik_produksjonsprodusent_series",
+      "social_function": "produksjonsprodusent som mottar kreative handoffs og gjør tid, location, medvirkende og kostnad til reelle begrensninger",
+      "class_position": "produksjonsleder med operativ og økonomisk situert makt",
+      "status": "høy situert gjennomføringsstatus",
+      "power_over_player": "kan avvise urealistiske leveranseforutsetninger og eskalere konsekvensen av sent kreativt rework",
+      "wants": "beslutninger som kommer tidsnok, tydelige avhengigheter og ærlige varsler når writers room fortsatt venter",
+      "conceals": "at planpress kan gjøre ham tilbøyelig til å foretrekke en svak låst løsning fremfor et åpent kreativt spørsmål",
+      "speech_style": "konsekvensorientert; spør hva som er låst, hva som kan endres, og hvilken opptaks- eller kostnadseffekt en ny versjon får",
+      "teaches_player": "at production standing ikke følger automatisk av kreativ autoritet, men av pålitelig handoff og realistisk timing"
+    },
+    {
+      "id": "mari_serieskaper_venn",
+      "social_function": "privat venn uten prosjektmakt som møter spilleren etter lange utviklingsdager og offentlig kreativ eksponering",
+      "class_position": "privat relasjon uten arbeidsrang",
+      "status": "emosjonell nærhet uten profesjonell myndighet",
+      "power_over_player": "kan utfordre behovet for å gjøre hver note, forsinkelse eller svekket standing til en dom over identiteten som serieskaper",
+      "wants": "at spilleren kan skille profesjonell kritikk fra personlig verdi og være konkret om hvem tilliten faktisk er svekket hos",
+      "conceals": "at hun blir sliten når every rework-runde blir gjenfortalt som en kamp om kunstnerisk verdighet",
+      "speech_style": "uformell og direkte; spør hvem som venter, hva som faktisk må gjøres om, og hvem spilleren prøver å imponere",
+      "teaches_player": "at situated reputation nettopp er situert og ikke bør lekke sammen til én total dom over selvet"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "executive_standing",
+      "meaning": "Ingrids situerte vurdering av om serieskaperen gjør usikkerhet, prioriteringsbehov og rework-gjeld beslutningsbart før bestillingsfrister",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "writers_room_standing",
+      "meaning": "Jonas og writers room sin situerte tillit til at rammer er tydelige, ideer blir hørt og rework begrunnes i seriehelhet fremfor status",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "production_standing",
+      "meaning": "Henriks situerte tillit til at kreative handoffs har riktig versjon, riktige avhengigheter og kommer tidsnok til faktisk produksjonsplan",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "handoff_reliability",
+      "meaning": "om arbeid sendes videre med eksplisitt eier, mottaker, canonical versjon, åpne spørsmål og tydelige avhengigheter",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "rework_debt",
+      "meaning": "mengden arbeid som må gjøres om fordi tidligere valg, notes, produksjonsendringer eller versjonsfeil ikke ble reparert gjennom hele sesongen",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "canonical_integrity",
+      "meaning": "om seriebibel og manus faktisk uttrykker samme godkjente karakter-, relasjons- og informasjonstilstand",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "authority_clarity",
+      "meaning": "om kreativ ledelse holdes adskilt fra bestilling, budsjett, sikkerhet, rettigheter, kreditering og andres faglige beslutningsrom",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "private_creator_mask",
+      "meaning": "om profesjonell standing hos én konkret gruppe lekker sammen med privat selvbilde etter venting, kritikk og omskriving",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Sesongryggen låses som et delt arbeidsobjekt, og Ingrid må kunne se hvilke karakterendringer som fortsatt er åpne før bestillermøtet. Morgenen viser hvilket arbeid som faktisk er klart, hva som fortsatt venter, og hvilken versjon resten av teamet kan stole på.",
+        "thread_ids": [
+          "sesongrygg_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/job/serieskaper_job.json#film_tv_series_job_sesongrygg_001"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Sesongryggen låses som et delt arbeidsobjekt, og Ingrid må kunne se hvilke karakterendringer som fortsatt er åpne før bestillermøtet. Lunsjen gjør situated reputation konkret ved at Ingrid, Jonas, Amina og Henrik kan lese samme handling ulikt ut fra sitt ansvar og sin avhengighet.",
+        "thread_ids": [
+          "situert_omdomme_og_profesjonsmaske"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/people/serieskaper_people.json#film_tv_series_people_bue_001"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 1, afternoon: Sesongryggen låses som et delt arbeidsobjekt, og Ingrid må kunne se hvilke karakterendringer som fortsatt er åpne før bestillermøtet. Ettermiddagen krever en eksplisitt handoff eller rework-beslutning med eier, mottaker, avhengighet og konsekvens dersom arbeidet ikke er klart.",
+        "thread_ids": [
+          "notes_handoff_og_beslutning"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/conflict/serieskaper_conflict.json#film_tv_series_conflict_notes_001"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Sesongryggen låses som et delt arbeidsobjekt, og Ingrid må kunne se hvilke karakterendringer som fortsatt er åpne før bestillermøtet. Kvelden viser hvordan synlighet, venting og omskriving påvirker profesjonsmasken privat uten å gjøre sosial standing til formell beslutningsmyndighet.",
+        "thread_ids": [
+          "situert_omdomme_og_profesjonsmaske"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/story/serieskaper_story.json#film_tv_series_story_rollefravaer_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Jonas leverer en sterk episodeidé som må håndteres uten at writers room mister initiativ eller at et senere vendepunkt brukes opp for tidlig. Morgenen viser hvilket arbeid som faktisk er klart, hva som fortsatt venter, og hvilken versjon resten av teamet kan stole på.",
+        "thread_ids": [
+          "sesongrygg_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/event/serieskaper_event.json#film_tv_series_event_location_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Jonas leverer en sterk episodeidé som må håndteres uten at writers room mister initiativ eller at et senere vendepunkt brukes opp for tidlig. Lunsjen gjør situated reputation konkret ved at Ingrid, Jonas, Amina og Henrik kan lese samme handling ulikt ut fra sitt ansvar og sin avhengighet.",
+        "thread_ids": [
+          "situert_omdomme_og_profesjonsmaske"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/micro/serieskaper_micro.json#film_tv_series_micro_bibel_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 2, afternoon: Jonas leverer en sterk episodeidé som må håndteres uten at writers room mister initiativ eller at et senere vendepunkt brukes opp for tidlig. Ettermiddagen krever en eksplisitt handoff eller rework-beslutning med eier, mottaker, avhengighet og konsekvens dersom arbeidet ikke er klart.",
+        "thread_ids": [
+          "notes_handoff_og_beslutning"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/knowledge/serieskaper_knowledge.json#film_tv_series_knowledge_skouen_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Jonas leverer en sterk episodeidé som må håndteres uten at writers room mister initiativ eller at et senere vendepunkt brukes opp for tidlig. Kvelden viser hvordan synlighet, venting og omskriving påvirker profesjonsmasken privat uten å gjøre sosial standing til formell beslutningsmyndighet.",
+        "thread_ids": [
+          "situert_omdomme_og_profesjonsmaske"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/followup/serieskaper_followup.json#film_tv_series_followup_rollefravaer_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Tre legitime notes kolliderer, og omskrivingen må vente på en eksplisitt prioritering i stedet for at serieskaperen skjuler konflikten i et nytt utkast. Morgenen viser hvilket arbeid som faktisk er klart, hva som fortsatt venter, og hvilken versjon resten av teamet kan stole på.",
+        "thread_ids": [
+          "sesongrygg_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/consequence/serieskaper_consequence.json#film_tv_series_consequence_finalegjeld_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Tre legitime notes kolliderer, og omskrivingen må vente på en eksplisitt prioritering i stedet for at serieskaperen skjuler konflikten i et nytt utkast. Lunsjen gjør situated reputation konkret ved at Ingrid, Jonas, Amina og Henrik kan lese samme handling ulikt ut fra sitt ansvar og sin avhengighet.",
+        "thread_ids": [
+          "situert_omdomme_og_profesjonsmaske"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/job/serieskaper_job.json#film_tv_series_job_sesongrygg_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 3, afternoon: Tre legitime notes kolliderer, og omskrivingen må vente på en eksplisitt prioritering i stedet for at serieskaperen skjuler konflikten i et nytt utkast. Ettermiddagen krever en eksplisitt handoff eller rework-beslutning med eier, mottaker, avhengighet og konsekvens dersom arbeidet ikke er klart.",
+        "thread_ids": [
+          "notes_handoff_og_beslutning"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/people/serieskaper_people.json#film_tv_series_people_bue_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Tre legitime notes kolliderer, og omskrivingen må vente på en eksplisitt prioritering i stedet for at serieskaperen skjuler konflikten i et nytt utkast. Kvelden viser hvordan synlighet, venting og omskriving påvirker profesjonsmasken privat uten å gjøre sosial standing til formell beslutningsmyndighet.",
+        "thread_ids": [
+          "situert_omdomme_og_profesjonsmaske"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/conflict/serieskaper_conflict.json#film_tv_series_conflict_notes_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Et bekreftet rollefravær gjør omskriving til en flerleddet handoff mellom serieskaper, hovedforfatter, manusredaktør og produksjon med senere episodegjeld. Morgenen viser hvilket arbeid som faktisk er klart, hva som fortsatt venter, og hvilken versjon resten av teamet kan stole på.",
+        "thread_ids": [
+          "sesongrygg_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/story/serieskaper_story.json#film_tv_series_story_rollefravaer_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Et bekreftet rollefravær gjør omskriving til en flerleddet handoff mellom serieskaper, hovedforfatter, manusredaktør og produksjon med senere episodegjeld. Lunsjen gjør situated reputation konkret ved at Ingrid, Jonas, Amina og Henrik kan lese samme handling ulikt ut fra sitt ansvar og sin avhengighet.",
+        "thread_ids": [
+          "situert_omdomme_og_profesjonsmaske"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/event/serieskaper_event.json#film_tv_series_event_location_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 4, afternoon: Et bekreftet rollefravær gjør omskriving til en flerleddet handoff mellom serieskaper, hovedforfatter, manusredaktør og produksjon med senere episodegjeld. Ettermiddagen krever en eksplisitt handoff eller rework-beslutning med eier, mottaker, avhengighet og konsekvens dersom arbeidet ikke er klart.",
+        "thread_ids": [
+          "notes_handoff_og_beslutning"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/micro/serieskaper_micro.json#film_tv_series_micro_bibel_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Et bekreftet rollefravær gjør omskriving til en flerleddet handoff mellom serieskaper, hovedforfatter, manusredaktør og produksjon med senere episodegjeld. Kvelden viser hvordan synlighet, venting og omskriving påvirker profesjonsmasken privat uten å gjøre sosial standing til formell beslutningsmyndighet.",
+        "thread_ids": [
+          "situert_omdomme_og_profesjonsmaske"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/knowledge/serieskaper_knowledge.json#film_tv_series_knowledge_skouen_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Locationbortfall tvinger teamet til å skille dramatisk funksjon fra gammel løsning og dokumentere hva produksjonen faktisk kan levere videre. Morgenen viser hvilket arbeid som faktisk er klart, hva som fortsatt venter, og hvilken versjon resten av teamet kan stole på.",
+        "thread_ids": [
+          "sesongrygg_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/followup/serieskaper_followup.json#film_tv_series_followup_rollefravaer_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Locationbortfall tvinger teamet til å skille dramatisk funksjon fra gammel løsning og dokumentere hva produksjonen faktisk kan levere videre. Lunsjen gjør situated reputation konkret ved at Ingrid, Jonas, Amina og Henrik kan lese samme handling ulikt ut fra sitt ansvar og sin avhengighet.",
+        "thread_ids": [
+          "situert_omdomme_og_profesjonsmaske"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/consequence/serieskaper_consequence.json#film_tv_series_consequence_finalegjeld_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 5, afternoon: Locationbortfall tvinger teamet til å skille dramatisk funksjon fra gammel løsning og dokumentere hva produksjonen faktisk kan levere videre. Ettermiddagen krever en eksplisitt handoff eller rework-beslutning med eier, mottaker, avhengighet og konsekvens dersom arbeidet ikke er klart.",
+        "thread_ids": [
+          "notes_handoff_og_beslutning"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/job/serieskaper_job.json#film_tv_series_job_sesongrygg_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Locationbortfall tvinger teamet til å skille dramatisk funksjon fra gammel løsning og dokumentere hva produksjonen faktisk kan levere videre. Kvelden viser hvordan synlighet, venting og omskriving påvirker profesjonsmasken privat uten å gjøre sosial standing til formell beslutningsmyndighet.",
+        "thread_ids": [
+          "situert_omdomme_og_profesjonsmaske"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/people/serieskaper_people.json#film_tv_series_people_bue_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Amina finner en liten bibelkonflikt som krever rework på flere flater før nye episodeutkast kan fortsette uten parallelle sannheter. Morgenen viser hvilket arbeid som faktisk er klart, hva som fortsatt venter, og hvilken versjon resten av teamet kan stole på.",
+        "thread_ids": [
+          "sesongrygg_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/conflict/serieskaper_conflict.json#film_tv_series_conflict_notes_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Amina finner en liten bibelkonflikt som krever rework på flere flater før nye episodeutkast kan fortsette uten parallelle sannheter. Lunsjen gjør situated reputation konkret ved at Ingrid, Jonas, Amina og Henrik kan lese samme handling ulikt ut fra sitt ansvar og sin avhengighet.",
+        "thread_ids": [
+          "situert_omdomme_og_profesjonsmaske"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/story/serieskaper_story.json#film_tv_series_story_rollefravaer_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 6, afternoon: Amina finner en liten bibelkonflikt som krever rework på flere flater før nye episodeutkast kan fortsette uten parallelle sannheter. Ettermiddagen krever en eksplisitt handoff eller rework-beslutning med eier, mottaker, avhengighet og konsekvens dersom arbeidet ikke er klart.",
+        "thread_ids": [
+          "notes_handoff_og_beslutning"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/event/serieskaper_event.json#film_tv_series_event_location_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Amina finner en liten bibelkonflikt som krever rework på flere flater før nye episodeutkast kan fortsette uten parallelle sannheter. Kvelden viser hvordan synlighet, venting og omskriving påvirker profesjonsmasken privat uten å gjøre sosial standing til formell beslutningsmyndighet.",
+        "thread_ids": [
+          "situert_omdomme_og_profesjonsmaske"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/micro/serieskaper_micro.json#film_tv_series_micro_bibel_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Arne Skouen brukes som filmhistorisk kontekst, samtidig som teamet holder den historiske kilden adskilt fra moderne mandat og arbeidsdeling. Morgenen viser hvilket arbeid som faktisk er klart, hva som fortsatt venter, og hvilken versjon resten av teamet kan stole på.",
+        "thread_ids": [
+          "sesongrygg_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/knowledge/serieskaper_knowledge.json#film_tv_series_knowledge_skouen_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Arne Skouen brukes som filmhistorisk kontekst, samtidig som teamet holder den historiske kilden adskilt fra moderne mandat og arbeidsdeling. Lunsjen gjør situated reputation konkret ved at Ingrid, Jonas, Amina og Henrik kan lese samme handling ulikt ut fra sitt ansvar og sin avhengighet.",
+        "thread_ids": [
+          "situert_omdomme_og_profesjonsmaske"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/followup/serieskaper_followup.json#film_tv_series_followup_rollefravaer_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 7, afternoon: Arne Skouen brukes som filmhistorisk kontekst, samtidig som teamet holder den historiske kilden adskilt fra moderne mandat og arbeidsdeling. Ettermiddagen krever en eksplisitt handoff eller rework-beslutning med eier, mottaker, avhengighet og konsekvens dersom arbeidet ikke er klart.",
+        "thread_ids": [
+          "notes_handoff_og_beslutning"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/consequence/serieskaper_consequence.json#film_tv_series_consequence_finalegjeld_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Arne Skouen brukes som filmhistorisk kontekst, samtidig som teamet holder den historiske kilden adskilt fra moderne mandat og arbeidsdeling. Kvelden viser hvordan synlighet, venting og omskriving påvirker profesjonsmasken privat uten å gjøre sosial standing til formell beslutningsmyndighet.",
+        "thread_ids": [
+          "situert_omdomme_og_profesjonsmaske"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/job/serieskaper_job.json#film_tv_series_job_sesongrygg_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Teamet venter på et revidert episodeutkast, og serieskaperens standing avhenger av om ventingen brukes til tydelig avklaring eller til uformelt press nedover. Morgenen viser hvilket arbeid som faktisk er klart, hva som fortsatt venter, og hvilken versjon resten av teamet kan stole på.",
+        "thread_ids": [
+          "sesongrygg_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/people/serieskaper_people.json#film_tv_series_people_bue_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Teamet venter på et revidert episodeutkast, og serieskaperens standing avhenger av om ventingen brukes til tydelig avklaring eller til uformelt press nedover. Lunsjen gjør situated reputation konkret ved at Ingrid, Jonas, Amina og Henrik kan lese samme handling ulikt ut fra sitt ansvar og sin avhengighet.",
+        "thread_ids": [
+          "situert_omdomme_og_profesjonsmaske"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/conflict/serieskaper_conflict.json#film_tv_series_conflict_notes_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 8, afternoon: Teamet venter på et revidert episodeutkast, og serieskaperens standing avhenger av om ventingen brukes til tydelig avklaring eller til uformelt press nedover. Ettermiddagen krever en eksplisitt handoff eller rework-beslutning med eier, mottaker, avhengighet og konsekvens dersom arbeidet ikke er klart.",
+        "thread_ids": [
+          "notes_handoff_og_beslutning"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/story/serieskaper_story.json#film_tv_series_story_rollefravaer_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Teamet venter på et revidert episodeutkast, og serieskaperens standing avhenger av om ventingen brukes til tydelig avklaring eller til uformelt press nedover. Kvelden viser hvordan synlighet, venting og omskriving påvirker profesjonsmasken privat uten å gjøre sosial standing til formell beslutningsmyndighet.",
+        "thread_ids": [
+          "situert_omdomme_og_profesjonsmaske"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/event/serieskaper_event.json#film_tv_series_event_location_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: En svak handoff gjør at produksjon og writers room arbeider mot ulike versjoner av samme scene, og rework-gjelden blir synlig i både tid og tillit. Morgenen viser hvilket arbeid som faktisk er klart, hva som fortsatt venter, og hvilken versjon resten av teamet kan stole på.",
+        "thread_ids": [
+          "sesongrygg_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/micro/serieskaper_micro.json#film_tv_series_micro_bibel_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: En svak handoff gjør at produksjon og writers room arbeider mot ulike versjoner av samme scene, og rework-gjelden blir synlig i både tid og tillit. Lunsjen gjør situated reputation konkret ved at Ingrid, Jonas, Amina og Henrik kan lese samme handling ulikt ut fra sitt ansvar og sin avhengighet.",
+        "thread_ids": [
+          "situert_omdomme_og_profesjonsmaske"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/knowledge/serieskaper_knowledge.json#film_tv_series_knowledge_skouen_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 9, afternoon: En svak handoff gjør at produksjon og writers room arbeider mot ulike versjoner av samme scene, og rework-gjelden blir synlig i både tid og tillit. Ettermiddagen krever en eksplisitt handoff eller rework-beslutning med eier, mottaker, avhengighet og konsekvens dersom arbeidet ikke er klart.",
+        "thread_ids": [
+          "notes_handoff_og_beslutning"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/followup/serieskaper_followup.json#film_tv_series_followup_rollefravaer_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: En svak handoff gjør at produksjon og writers room arbeider mot ulike versjoner av samme scene, og rework-gjelden blir synlig i både tid og tillit. Kvelden viser hvordan synlighet, venting og omskriving påvirker profesjonsmasken privat uten å gjøre sosial standing til formell beslutningsmyndighet.",
+        "thread_ids": [
+          "situert_omdomme_og_profesjonsmaske"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/consequence/serieskaper_consequence.json#film_tv_series_consequence_finalegjeld_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Ingrid, Jonas og Henrik vurderer samme serieskaper forskjellig: bestiller ser sporbarhet, writers room ser faglig lytting, og produksjon ser beslutninger som kommer tidsnok. Morgenen viser hvilket arbeid som faktisk er klart, hva som fortsatt venter, og hvilken versjon resten av teamet kan stole på.",
+        "thread_ids": [
+          "sesongrygg_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/job/serieskaper_job.json#film_tv_series_job_sesongrygg_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Ingrid, Jonas og Henrik vurderer samme serieskaper forskjellig: bestiller ser sporbarhet, writers room ser faglig lytting, og produksjon ser beslutninger som kommer tidsnok. Lunsjen gjør situated reputation konkret ved at Ingrid, Jonas, Amina og Henrik kan lese samme handling ulikt ut fra sitt ansvar og sin avhengighet.",
+        "thread_ids": [
+          "situert_omdomme_og_profesjonsmaske"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/people/serieskaper_people.json#film_tv_series_people_bue_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 10, afternoon: Ingrid, Jonas og Henrik vurderer samme serieskaper forskjellig: bestiller ser sporbarhet, writers room ser faglig lytting, og produksjon ser beslutninger som kommer tidsnok. Ettermiddagen krever en eksplisitt handoff eller rework-beslutning med eier, mottaker, avhengighet og konsekvens dersom arbeidet ikke er klart.",
+        "thread_ids": [
+          "notes_handoff_og_beslutning"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/conflict/serieskaper_conflict.json#film_tv_series_conflict_notes_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Ingrid, Jonas og Henrik vurderer samme serieskaper forskjellig: bestiller ser sporbarhet, writers room ser faglig lytting, og produksjon ser beslutninger som kommer tidsnok. Kvelden viser hvordan synlighet, venting og omskriving påvirker profesjonsmasken privat uten å gjøre sosial standing til formell beslutningsmyndighet.",
+        "thread_ids": [
+          "situert_omdomme_og_profesjonsmaske"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/story/serieskaper_story.json#film_tv_series_story_rollefravaer_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Rollefraværet returnerer i episode sju og viser om tidligere omskriving faktisk ble husket eller om teamet resetter til en mer prestisjefylt gammel plan. Morgenen viser hvilket arbeid som faktisk er klart, hva som fortsatt venter, og hvilken versjon resten av teamet kan stole på.",
+        "thread_ids": [
+          "sesongrygg_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/event/serieskaper_event.json#film_tv_series_event_location_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Rollefraværet returnerer i episode sju og viser om tidligere omskriving faktisk ble husket eller om teamet resetter til en mer prestisjefylt gammel plan. Lunsjen gjør situated reputation konkret ved at Ingrid, Jonas, Amina og Henrik kan lese samme handling ulikt ut fra sitt ansvar og sin avhengighet.",
+        "thread_ids": [
+          "situert_omdomme_og_profesjonsmaske"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/micro/serieskaper_micro.json#film_tv_series_micro_bibel_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 11, afternoon: Rollefraværet returnerer i episode sju og viser om tidligere omskriving faktisk ble husket eller om teamet resetter til en mer prestisjefylt gammel plan. Ettermiddagen krever en eksplisitt handoff eller rework-beslutning med eier, mottaker, avhengighet og konsekvens dersom arbeidet ikke er klart.",
+        "thread_ids": [
+          "notes_handoff_og_beslutning"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/knowledge/serieskaper_knowledge.json#film_tv_series_knowledge_skouen_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Rollefraværet returnerer i episode sju og viser om tidligere omskriving faktisk ble husket eller om teamet resetter til en mer prestisjefylt gammel plan. Kvelden viser hvordan synlighet, venting og omskriving påvirker profesjonsmasken privat uten å gjøre sosial standing til formell beslutningsmyndighet.",
+        "thread_ids": [
+          "situert_omdomme_og_profesjonsmaske"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/followup/serieskaper_followup.json#film_tv_series_followup_rollefravaer_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Finalearbeidet krever en ny handoff fra writers room til produksjon, og åpen rework må skilles fra endeløs perfeksjonering som skyver risiko videre. Morgenen viser hvilket arbeid som faktisk er klart, hva som fortsatt venter, og hvilken versjon resten av teamet kan stole på.",
+        "thread_ids": [
+          "sesongrygg_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/consequence/serieskaper_consequence.json#film_tv_series_consequence_finalegjeld_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Finalearbeidet krever en ny handoff fra writers room til produksjon, og åpen rework må skilles fra endeløs perfeksjonering som skyver risiko videre. Lunsjen gjør situated reputation konkret ved at Ingrid, Jonas, Amina og Henrik kan lese samme handling ulikt ut fra sitt ansvar og sin avhengighet.",
+        "thread_ids": [
+          "situert_omdomme_og_profesjonsmaske"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/job/serieskaper_job.json#film_tv_series_job_sesongrygg_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 12, afternoon: Finalearbeidet krever en ny handoff fra writers room til produksjon, og åpen rework må skilles fra endeløs perfeksjonering som skyver risiko videre. Ettermiddagen krever en eksplisitt handoff eller rework-beslutning med eier, mottaker, avhengighet og konsekvens dersom arbeidet ikke er klart.",
+        "thread_ids": [
+          "notes_handoff_og_beslutning"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/people/serieskaper_people.json#film_tv_series_people_bue_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Finalearbeidet krever en ny handoff fra writers room til produksjon, og åpen rework må skilles fra endeløs perfeksjonering som skyver risiko videre. Kvelden viser hvordan synlighet, venting og omskriving påvirker profesjonsmasken privat uten å gjøre sosial standing til formell beslutningsmyndighet.",
+        "thread_ids": [
+          "situert_omdomme_og_profesjonsmaske"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/conflict/serieskaper_conflict.json#film_tv_series_conflict_notes_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Tidligere sesong- og kontinuitetsgjeld kommer tilbake i finalen og gjør det synlig hvem som eier reparasjonen og hvem som bare kan beslutte innen sitt mandat. Morgenen viser hvilket arbeid som faktisk er klart, hva som fortsatt venter, og hvilken versjon resten av teamet kan stole på.",
+        "thread_ids": [
+          "sesongrygg_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/story/serieskaper_story.json#film_tv_series_story_rollefravaer_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Tidligere sesong- og kontinuitetsgjeld kommer tilbake i finalen og gjør det synlig hvem som eier reparasjonen og hvem som bare kan beslutte innen sitt mandat. Lunsjen gjør situated reputation konkret ved at Ingrid, Jonas, Amina og Henrik kan lese samme handling ulikt ut fra sitt ansvar og sin avhengighet.",
+        "thread_ids": [
+          "situert_omdomme_og_profesjonsmaske"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/event/serieskaper_event.json#film_tv_series_event_location_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 13, afternoon: Tidligere sesong- og kontinuitetsgjeld kommer tilbake i finalen og gjør det synlig hvem som eier reparasjonen og hvem som bare kan beslutte innen sitt mandat. Ettermiddagen krever en eksplisitt handoff eller rework-beslutning med eier, mottaker, avhengighet og konsekvens dersom arbeidet ikke er klart.",
+        "thread_ids": [
+          "notes_handoff_og_beslutning"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/micro/serieskaper_micro.json#film_tv_series_micro_bibel_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Tidligere sesong- og kontinuitetsgjeld kommer tilbake i finalen og gjør det synlig hvem som eier reparasjonen og hvem som bare kan beslutte innen sitt mandat. Kvelden viser hvordan synlighet, venting og omskriving påvirker profesjonsmasken privat uten å gjøre sosial standing til formell beslutningsmyndighet.",
+        "thread_ids": [
+          "situert_omdomme_og_profesjonsmaske"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/knowledge/serieskaper_knowledge.json#film_tv_series_knowledge_skouen_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Utviklingsperioden lukkes med en tydelig forskjell mellom kreativ standing og formell myndighet: tillit bygges gjennom sporbare valg, rework og ærlige handoffs. Morgenen viser hvilket arbeid som faktisk er klart, hva som fortsatt venter, og hvilken versjon resten av teamet kan stole på.",
+        "thread_ids": [
+          "sesongrygg_og_rework"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/followup/serieskaper_followup.json#film_tv_series_followup_rollefravaer_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Utviklingsperioden lukkes med en tydelig forskjell mellom kreativ standing og formell myndighet: tillit bygges gjennom sporbare valg, rework og ærlige handoffs. Lunsjen gjør situated reputation konkret ved at Ingrid, Jonas, Amina og Henrik kan lese samme handling ulikt ut fra sitt ansvar og sin avhengighet.",
+        "thread_ids": [
+          "situert_omdomme_og_profesjonsmaske"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/consequence/serieskaper_consequence.json#film_tv_series_consequence_finalegjeld_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 14, afternoon: Utviklingsperioden lukkes med en tydelig forskjell mellom kreativ standing og formell myndighet: tillit bygges gjennom sporbare valg, rework og ærlige handoffs. Ettermiddagen krever en eksplisitt handoff eller rework-beslutning med eier, mottaker, avhengighet og konsekvens dersom arbeidet ikke er klart.",
+        "thread_ids": [
+          "notes_handoff_og_beslutning"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/job/serieskaper_job.json#film_tv_series_job_sesongrygg_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Utviklingsperioden lukkes med en tydelig forskjell mellom kreativ standing og formell myndighet: tillit bygges gjennom sporbare valg, rework og ærlige handoffs. Kvelden viser hvordan synlighet, venting og omskriving påvirker profesjonsmasken privat uten å gjøre sosial standing til formell beslutningsmyndighet.",
+        "thread_ids": [
+          "situert_omdomme_og_profesjonsmaske"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/film_tv/people/serieskaper_people.json#film_tv_series_people_bue_001"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "sesongrygg_og_rework",
+      "relationship": "Sesongryggen går fra første felles arbeidsobjekt til konkret finalereparasjon, med synlig rework hver gang et tidligere valg endrer senere avhengigheter.",
+      "beat_refs": [
+        "1/morning",
+        "2/afternoon",
+        "6/morning",
+        "9/afternoon",
+        "12/morning",
+        "13/afternoon",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "notes_handoff_og_beslutning",
+      "relationship": "Motstridende notes og manglende prioritering blir venting som først kan avsluttes når riktig eier har besluttet og handoffen sier hva som faktisk gjelder.",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "4/afternoon",
+        "8/morning",
+        "9/lunch",
+        "12/afternoon"
+      ]
+    },
+    {
+      "id": "rollefravaer_og_rewrite",
+      "relationship": "Rollefraværet flytter informasjon og relasjonseffekt gjennom flere episoder og returnerer senere som test på om omskrivingen ble husket.",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "5/afternoon",
+        "8/afternoon",
+        "11/morning",
+        "11/afternoon",
+        "13/lunch"
+      ]
+    },
+    {
+      "id": "produksjonsendring_og_tillit",
+      "relationship": "Location- og gjennomføringsendringer gjør production standing avhengig av realistiske, tidsriktige kreative handoffs fremfor generelt kreativt omdømme.",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "8/lunch",
+        "9/morning",
+        "10/afternoon",
+        "12/lunch"
+      ]
+    },
+    {
+      "id": "situert_omdomme_og_profesjonsmaske",
+      "relationship": "Ingrid, Jonas og Henrik husker ulike sider av de samme valgene; standing kan derfor stige hos én og falle hos en annen uten å bli én global reputasjon.",
+      "beat_refs": [
+        "2/lunch",
+        "3/evening",
+        "7/evening",
+        "10/lunch",
+        "10/evening",
+        "13/evening",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "beat_ref": "3/evening",
+      "surface": "private",
+      "effect": "Serieskaperen må tåle at legitim venting på Ingrid kan se ut som ubesluttsomhet i writers room uten å presse frem en falsk avklaring."
+    },
+    {
+      "beat_ref": "6/evening",
+      "surface": "private",
+      "effect": "En liten bibelfeil blir pinlig fordi Amina oppdaget den; privat etterklang skiller skam fra det konkrete rework-ansvaret."
+    },
+    {
+      "beat_ref": "9/evening",
+      "surface": "private",
+      "effect": "En svak handoff har kostet teamet tid, og spilleren må eie feilen uten å bruke kreativ status til å minimere andres merarbeid."
+    },
+    {
+      "beat_ref": "10/evening",
+      "surface": "private",
+      "effect": "Ulik standing hos bestiller, writers room og produksjon gjør det mulig å være respektert ett sted og frustrerende et annet uten en total sosial dom."
+    },
+    {
+      "beat_ref": "14/evening",
+      "surface": "private",
+      "effect": "Avslutningen lar profesjonsmasken slippe: god serieskaping måles i sammenheng, samarbeid og reparasjon, ikke i å aldri måtte gjøre om arbeid."
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "spine_shortcut_returns",
+      "setup_ref": "1/afternoon",
+      "return_ref": "6/morning",
+      "effect": "Et uavklart episodepremiss blir til konkret bibel- og kontinuitetsrework."
+    },
+    {
+      "id": "notes_wait_returns",
+      "setup_ref": "3/afternoon",
+      "return_ref": "8/morning",
+      "effect": "Måten prioriteringsventingen ble kommunisert på påvirker senere executive- og writers-room-standing."
+    },
+    {
+      "id": "absence_handoff_returns",
+      "setup_ref": "4/afternoon",
+      "return_ref": "11/morning",
+      "effect": "Rollefraværet returnerer i episode sju og avslører om handoffen faktisk flyttet informasjon og relasjonseffekt."
+    },
+    {
+      "id": "location_rewrite_returns",
+      "setup_ref": "5/afternoon",
+      "return_ref": "12/afternoon",
+      "effect": "Den nye location-løsningen påvirker senere produksjonshandoff og hvor mye rework som må gjøres før finale."
+    },
+    {
+      "id": "bible_debt_returns",
+      "setup_ref": "6/afternoon",
+      "return_ref": "13/morning",
+      "effect": "En tidlig canonical-feil blir finalegjeld dersom alle berørte flater ikke ble synkronisert."
+    },
+    {
+      "id": "situated_standing_returns",
+      "setup_ref": "10/lunch",
+      "return_ref": "14/evening",
+      "effect": "Ulike publikums vurderinger av samme arbeidsmåte blir stående side om side og kan ikke erstattes av ett globalt reputation-tall."
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "authored_dimensions": [
+      "rhythm_waiting_handoff_rework",
+      "situated_reputation"
+    ],
+    "scene_pipeline": "existing_civication_scene_v1",
+    "source_refs": [
+      "data/Civication/mailFamilies/film_tv/job/serieskaper_job.json#film_tv_series_job_sesongrygg_001",
+      "data/Civication/mailFamilies/film_tv/people/serieskaper_people.json#film_tv_series_people_bue_001",
+      "data/Civication/mailFamilies/film_tv/conflict/serieskaper_conflict.json#film_tv_series_conflict_notes_001",
+      "data/Civication/mailFamilies/film_tv/story/serieskaper_story.json#film_tv_series_story_rollefravaer_001",
+      "data/Civication/mailFamilies/film_tv/event/serieskaper_event.json#film_tv_series_event_location_001",
+      "data/Civication/mailFamilies/film_tv/micro/serieskaper_micro.json#film_tv_series_micro_bibel_001",
+      "data/Civication/mailFamilies/film_tv/knowledge/serieskaper_knowledge.json#film_tv_series_knowledge_skouen_001",
+      "data/Civication/mailFamilies/film_tv/followup/serieskaper_followup.json#film_tv_series_followup_rollefravaer_001",
+      "data/Civication/mailFamilies/film_tv/consequence/serieskaper_consequence.json#film_tv_series_consequence_finalegjeld_001"
+    ],
+    "note": "Eksisterende 9/9 Serieskaper-mails og eksakt 9-trinns plan gjenbrukes. Role World-en legger varighet, venting, handoff, rework og audience-spesifikk standing over eksisterende authored hendelser uten nye mail-scener eller runtime-state."
+  }
+}
