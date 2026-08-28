@@ -19,7 +19,9 @@
       "reports/fagverk/sosiologi-antropologi-reconciliation-v1.json",
       "reports/fagverk/sosiologi-antropologi-sociological-theory-source-brief-v1-audit.json",
       "reports/fagverk/sosiologi-antropologi-sociological-theory-fulltext-v1-audit.json",
-      "reports/fagverk/sosiologi-antropologi-anthropological-theory-source-brief-v1-audit.json"
+      "reports/fagverk/sosiologi-antropologi-anthropological-theory-source-brief-v1-audit.json",
+      "reports/fagverk/sosiologi-antropologi-anthropological-theory-fulltext-v1-audit.json",
+      "reports/fagverk/sosiologi-antropologi-methods-ethnography-comparison-source-brief-v1-audit.json"
     ]
   },
   "domains": [
@@ -45,7 +47,14 @@
       "fulltextAudit": "scripts/audit-sosiologi-antropologi-anthropological-theory-fulltext-v1.mjs",
       "fulltextTest": "tests/sosiologi-antropologi-anthropological-theory-fulltext-v1.test.mjs"
     },
-    { "ordinal": 3, "domainId": "metode_etnografi_sammenligning", "slug": "methods-ethnography-comparison" },
+    {
+      "ordinal": 3,
+      "domainId": "metode_etnografi_sammenligning",
+      "slug": "methods-ethnography-comparison",
+      "sourceBrief": "data/fag/politikk/sosiologi_antropologi/methods_ethnography_comparison_source_claim_brief_v1.json",
+      "sourceBriefScript": "scripts/brief-sosiologi-antropologi-methods-ethnography-comparison-sources-v1.mjs",
+      "sourceBriefTest": "tests/sosiologi-antropologi-methods-ethnography-comparison-source-brief-v1.test.mjs"
+    },
     { "ordinal": 4, "domainId": "normer_identitet_hverdagsliv", "slug": "norms-identity-everyday-life", "reconciliation": "reuse_with_expansion", "existingChapter": "data/fagverk/politikk/normer-identitet-hverdagsliv.json" },
     { "ordinal": 5, "domainId": "ulikhet_klasse_kjonn_rasialisering", "slug": "inequality-class-gender-racialization", "reconciliation": "reuse_with_expansion", "existingChapter": "data/fagverk/politikk/fordeling-velferd-ulikhet.json" },
     { "ordinal": 6, "domainId": "familie_slektskap_omsorg_livslop", "slug": "family-kinship-care-life-course" },
