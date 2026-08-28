@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const LEGACY_BADGE = 'data/fag/kunst/merke_kunst (2).html';
+const LEGACY_BADGE = 'data/fag/kunst/archive/merke_kunst_legacy_20260828.html';
 const MANIFEST = 'data/fag/fag_manifest.json';
 const REGISTRY = 'data/fagverk/fagverk_registry.json';
 const CATEGORY_CONTRACT = 'data/categories/category_contract.json';

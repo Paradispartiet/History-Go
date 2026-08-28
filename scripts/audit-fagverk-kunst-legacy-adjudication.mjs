@@ -5,13 +5,16 @@ import { spawnSync } from 'node:child_process';
 const ROOT = process.cwd();
 const ADJUDICATION = 'data/fag/kunst/legacy_theory_adjudication_v1.json';
 const PORTAL = 'data/fagverk/fagverk_portal.json';
-const LEGACY_BADGE = 'data/fag/kunst/merke_kunst (2).html';
+const LEGACY_ARCHIVE = 'data/fag/kunst/archive/merke_kunst_legacy_20260828.html';
+const COMPATIBILITY_PAGE = 'data/fag/kunst/merke_kunst (2).html';
 const CATEGORY_CONTRACT = 'data/categories/category_contract.json';
 const EXPECTED_TARGET = 'fagverk.html?subject=kunst#fagverkIaProgresjon';
+const RELATIVE_TARGET = '../../../fagverk.html?subject=kunst#fagverkIaProgresjon';
 const KNOWLEDGE_DISPOSITIONS = new Set(['canonical_supersedes', 'migrated_to_canonical']);
 const BOUNDARY_DISPOSITIONS = new Set(['canonical_product_boundary_supersedes']);
 
 const readJson = (file) => JSON.parse(fs.readFileSync(path.join(ROOT, file), 'utf8'));
+const read = (file) => fs.readFileSync(path.join(ROOT, file), 'utf8');
 const exists = (file) => fs.existsSync(path.join(ROOT, file));
 const text = (value) => String(value == null ? '' : value).trim();
 
@@ -24,13 +27,14 @@ function runAnchorAudit() {
   return JSON.parse(result.stdout);
 }
 
-for (const required of [ADJUDICATION, PORTAL, LEGACY_BADGE, CATEGORY_CONTRACT]) {
+for (const required of [ADJUDICATION, PORTAL, LEGACY_ARCHIVE, COMPATIBILITY_PAGE, CATEGORY_CONTRACT]) {
   if (!exists(required)) throw new Error(`Mangler nødvendig Kunst-adjudiseringsfil: ${required}`);
 }
 
 const anchorAudit = runAnchorAudit();
 const adjudication = readJson(ADJUDICATION);
 const portal = readJson(PORTAL);
+const compatibilityHtml = read(COMPATIBILITY_PAGE);
 
 if (adjudication.schema !== 'history_go_fagverk_legacy_theory_adjudication_v1') throw new Error(`Ukjent adjudiseringsschema: ${adjudication.schema}`);
 if (adjudication.subject_id !== 'kunst') throw new Error('Adjudiseringen må eie subject_id=kunst.');
@@ -38,6 +42,7 @@ if (adjudication.policy?.canonical_content_wins !== true) throw new Error('Canon
 if (adjudication.policy?.copy_legacy_prose !== false) throw new Error('Legacy prose cannot be copied by default.');
 if (adjudication.redirect_target !== EXPECTED_TARGET) throw new Error('Uventet Kunst redirect-target.');
 if (adjudication.policy?.product_boundary_owner !== CATEGORY_CONTRACT) throw new Error('Kunst/Scenekunst-grensen må eies av category-contract.');
+if (anchorAudit.legacy.badgePage !== LEGACY_ARCHIVE) throw new Error('Kunst anchor-audit skal etter migrering lese arkivfilen, ikke compatibility-wrapperen.');
 
 if (anchorAudit.summary.manualReviewCount !== 0 || anchorAudit.summary.anchorCompleteCount !== anchorAudit.summary.knowledgeSectionCount) {
   throw new Error('Kunst legacy anchor-audit har fortsatt kunnskapshull og kan ikke adjudiseres redirect-klar.');
@@ -120,6 +125,10 @@ const portalEntry = portal.categories?.find((item) => item.id === 'kunst');
 if (!portalEntry) throw new Error('Kunst mangler i fagverk_portal.json.');
 const portalRoute = text(portalEntry.badgePage);
 const portalRedirected = portalRoute === EXPECTED_TARGET;
+const compatibilityRedirectPresent = compatibilityHtml.includes('location.replace')
+  && compatibilityHtml.includes(RELATIVE_TARGET)
+  && !compatibilityHtml.includes('id="felt"')
+  && !compatibilityHtml.includes('id="offentlig-rom"');
 
 const redirectReady = knowledgeRows.length === anchorAudit.summary.knowledgeSectionCount
   && knowledgeRows.every((row) => row.adjudicated && row.anchorCoverage === 1 && KNOWLEDGE_DISPOSITIONS.has(row.disposition) && row.ownerFiles.length > 0)
@@ -132,7 +141,8 @@ const report = {
   inputs: {
     anchorAuditSchema: anchorAudit.schema,
     adjudicationFile: ADJUDICATION,
-    legacyBadgePage: LEGACY_BADGE,
+    legacyArchive: LEGACY_ARCHIVE,
+    compatibilityPage: COMPATIBILITY_PAGE,
     productBoundaryOwner: CATEGORY_CONTRACT
   },
   summary: {
@@ -148,7 +158,8 @@ const report = {
     redirectTarget: EXPECTED_TARGET,
     portalRoute,
     portalRedirected,
-    legacyBadgeSourcePreserved: exists(LEGACY_BADGE)
+    legacyBadgeSourcePreserved: exists(LEGACY_ARCHIVE),
+    compatibilityRedirectPresent
   },
   rows
 };
@@ -156,7 +167,8 @@ const report = {
 if (!report.summary.redirectReady) throw new Error('Kunst legacy adjudication er ikke redirect-klar.');
 if (report.summary.migratedSectionCount !== 2) throw new Error(`Kunst skal ha nøyaktig to migrated legacy-seksjoner etter #5461, fant ${report.summary.migratedSectionCount}.`);
 if (report.summary.supersededKnowledgeCount !== 7) throw new Error(`Kunst skal ha syv canonical_supersedes knowledge-seksjoner, fant ${report.summary.supersededKnowledgeCount}.`);
-if (report.summary.portalRedirected) throw new Error('Kunst portalruten skal ikke endres i adjudiserings-PR-en; redirect skjer i egen tranche.');
-if (!report.summary.legacyBadgeSourcePreserved) throw new Error('Kunst legacy-side må bevares som auditkilde før redirect-tranchen.');
+if (!report.summary.portalRedirected) throw new Error('Kunst portalruten skal etter route-retirement peke til integrert Progresjon.');
+if (!report.summary.legacyBadgeSourcePreserved) throw new Error('Kunst legacy-teori må bevares som arkiv etter redirect.');
+if (!report.summary.compatibilityRedirectPresent) throw new Error('Kunst compatibility-URL mangler ren redirect til integrert Progresjon.');
 
 process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);

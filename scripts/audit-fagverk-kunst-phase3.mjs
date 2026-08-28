@@ -18,6 +18,7 @@ const P = Object.freeze({
   explicitMappings: 'data/fag/kunst/emnemapping_kunst_canonical_v4_5.json',
   generator: 'data/fag/kunst/quiz_generator_rules_kunst_v5_1_source_priority_patch.json',
   badgePage: 'data/fag/kunst/merke_kunst (2).html',
+  legacyArchive: 'data/fag/kunst/archive/merke_kunst_legacy_20260828.html',
   report: 'reports/fagverk/kunst-phase3-audit.json'
 });
 const DOMAIN_ORDER = [
@@ -29,6 +30,8 @@ const DOMAIN_ORDER = [
   'tid_transformasjon'
 ];
 const HANDVERK_EMNE = 'em_kunst_materialitet_teknikk_handverk';
+const INTEGRATED_BADGE_ROUTE = 'fagverk.html?subject=kunst#fagverkIaProgresjon';
+const RELATIVE_INTEGRATED_BADGE_ROUTE = '../../../fagverk.html?subject=kunst#fagverkIaProgresjon';
 const abs = (relativePath) => path.join(ROOT, relativePath);
 const read = (relativePath) => fs.readFileSync(abs(relativePath), 'utf8');
 const json = (relativePath) => JSON.parse(read(relativePath));
@@ -86,6 +89,7 @@ export function auditKunstPhase3({ writeReport = false, checkReport = true } = {
   assert(categories.fagSubjects.includes('kunst'), 'Kunst mangler i canonical fagliste');
   assert(portalEntry?.subjectStatus === 'materialized', 'Kunst er ikke materialisert i portalen');
   assert(portalEntry?.subjectPage === 'fagverk.html?subject=kunst', 'Kunst har feil canonical fagsiderute');
+  assert(portalEntry?.badgePage === INTEGRATED_BADGE_ROUTE, 'Kunst badgePage skal etter equivalence-migrering peke til integrert Progresjon');
   assert(inventoryEntry?.schemaFamily === 'standard_canonical', 'Kunst har feil schemafamilie');
   assert(inventoryEntry?.pilot === false, 'Kunst skal være et individuelt Fase 3-fag, ikke en Fase 2-pilot');
   assert(statusEntry?.assessmentStatus === 'audited', 'Kunst har feil auditstatus');
@@ -112,6 +116,7 @@ export function auditKunstPhase3({ writeReport = false, checkReport = true } = {
   assert(model.subject.title === 'Kunst & kultur', 'Kunst har feil fagtittel');
   assert(model.subject.description.length >= 220, 'Kunst mangler eksplisitt fagbeskrivelse');
   assert(model.subject.adapter === 'standard', 'Kunst går ikke gjennom standardadapteren');
+  assert(model.subject.routes.badge === INTEGRATED_BADGE_ROUTE, 'Kunst-modellen projiserer ikke integrert Progresjon som badge-route');
   assert(model.subject.routes.badge !== model.subject.routes.subject, 'Merke- og fagside kan ikke være samme mål');
   assert(isDeepStrictEqual([...model.domains].map((domain) => domain.id), DOMAIN_ORDER), 'Kunst har feil canonical fagområderekkefølge');
   assert(model.domains.every((domain) => domain.sourceKind === 'pensum_domain'), 'Kunst opprettet kunstige fagområder');
@@ -154,9 +159,15 @@ export function auditKunstPhase3({ writeReport = false, checkReport = true } = {
   assert(handverkMapping.primary_hooks.includes('materialvalg_som_metode'), 'Materialitet og håndverk mangler materialvalg som primærhook');
   assert(handverkMapping.mappings.every((mapping) => methodIds.has(mapping.recommended_method_ids?.[0])), 'Materialitet og håndverk har uløst mappingmetode');
 
-  const badgePage = read(P.badgePage);
-  assert(badgePage.includes('../../../fagverk.html?subject=kunst'), 'Kunst-merkesiden mangler separat fagsidelenke');
-  assert(badgePage.includes('../../../fagverk-forside.html'), 'Kunst-merkesiden mangler fagverkforsiden');
+  const compatibilityPage = read(P.badgePage);
+  assert(compatibilityPage.includes('location.replace'), 'Kunst compatibility-side mangler eksplisitt redirect');
+  assert(compatibilityPage.includes(RELATIVE_INTEGRATED_BADGE_ROUTE), 'Kunst compatibility-side peker ikke til integrert Progresjon');
+  assert(!compatibilityPage.includes('id="felt"') && !compatibilityPage.includes('id="offentlig-rom"'), 'Kunst compatibility-side inneholder fortsatt legacy-teori');
+
+  const legacyArchive = read(P.legacyArchive);
+  assert(legacyArchive.includes('../../../fagverk.html?subject=kunst'), 'Kunst legacy-arkivet mangler den opprinnelige separate fagsidelenken');
+  assert(legacyArchive.includes('../../../fagverk-forside.html'), 'Kunst legacy-arkivet mangler den opprinnelige fagverkforsiden');
+  assert(legacyArchive.includes('id="felt"') && legacyArchive.includes('id="offentlig-rom"'), 'Kunst legacy-arkivet mangler forventet faglig kildeinnhold');
 
   const emneStatusCounts = Object.fromEntries([...new Set(source.emners.map((emne) => emne.status))].sort().map((value) => [value, source.emners.filter((emne) => emne.status === value).length]));
   const report = {
@@ -198,6 +209,9 @@ export function auditKunstPhase3({ writeReport = false, checkReport = true } = {
       handverkEmneIntegratedInExistingDomainAndHooks: true,
       kunstPlaceFallbackCorrect: true,
       badgeAndSubjectRoutesDistinct: true,
+      integratedBadgeRouteActive: true,
+      legacyBadgeArchivePreserved: true,
+      compatibilityRedirectClean: true,
       assessmentStatusAudited: true,
       editorialStatusComplete: true,
       chapterClaimsBackedByFullAudit: true

@@ -10,6 +10,7 @@ const fallback = fs.readFileSync('js/merke-fallback.js', 'utf8');
 const portalUi = fs.readFileSync('js/fagverk-forside.js', 'utf8');
 const badgeIndex = fs.readFileSync('merker/merker.html', 'utf8');
 const historieCompatibility = fs.readFileSync('data/fag/historie/merke_historie (1).html', 'utf8');
+const kunstCompatibility = fs.readFileSync('data/fag/kunst/merke_kunst (2).html', 'utf8');
 const litteraturCompatibility = fs.readFileSync('data/fag/litteratur/merke_litteratur (1).html', 'utf8');
 
 function runAudit() {
@@ -21,19 +22,20 @@ function runAudit() {
 test('badge equivalence audit klassifiserer alle canonicale fag uten ukjent familie', () => {
   const audit = runAudit();
   assert.equal(audit.rows.length, audit.canonicalSubjectCount);
-  assert.ok(audit.counts.progress_route >= 5);
+  assert.ok(audit.counts.progress_route >= 6);
   assert.ok(audit.counts.rich_runtime >= 1);
   assert.ok(audit.counts.legacy_static_theory >= 1);
   assert.ok(audit.counts.legacy_stub >= 1);
   assert.equal(audit.rows.some((row) => ['unknown', 'missing'].includes(row.family)), false);
 });
 
-test('generic fallback-fagene, By, Historie og Litteratur er migrert til integrert Progresjon', () => {
+test('generic fallback-fagene, By, Historie, Kunst og Litteratur er migrert til integrert Progresjon', () => {
   const byId = new Map(portal.categories.map((item) => [item.id, item]));
   assert.equal(byId.get('helse').badgePage, 'fagverk.html?subject=helse#fagverkIaProgresjon');
   assert.equal(byId.get('utdanning').badgePage, 'fagverk.html?subject=utdanning#fagverkIaProgresjon');
   assert.equal(byId.get('by').badgePage, 'fagverk.html?subject=by#fagverkIaProgresjon');
   assert.equal(byId.get('historie').badgePage, 'fagverk.html?subject=historie#fagverkIaProgresjon');
+  assert.equal(byId.get('kunst').badgePage, 'fagverk.html?subject=kunst#fagverkIaProgresjon');
   assert.equal(byId.get('litteratur').badgePage, 'fagverk.html?subject=litteratur#fagverkIaProgresjon');
   assert.equal(portal.categories.some((item) => String(item.badgePage).startsWith('merke.html?badge=')), false);
   assert.equal(byId.get('politikk').badgePage, 'data/fag/politikk/merke_politikk.html');
@@ -60,10 +62,14 @@ test('den gamle generiske merke-URL-en er compatibility-redirect, ikke en ny pro
   assert.doesNotMatch(fallback, /genericBadgeTiers|genericBadgeProgress|renderSubjectAction/);
 });
 
-test('Historie og Litteratur sine gamle direkte URL-er er compatibility-redirects etter arkivering', () => {
+test('Historie, Kunst og Litteratur sine gamle direkte URL-er er compatibility-redirects etter arkivering', () => {
   assert.match(historieCompatibility, /location\.replace/);
   assert.match(historieCompatibility, /subject=historie#fagverkIaProgresjon/);
   assert.doesNotMatch(historieCompatibility, /id="felt"|id="begreper"/);
+
+  assert.match(kunstCompatibility, /location\.replace/);
+  assert.match(kunstCompatibility, /subject=kunst#fagverkIaProgresjon/);
+  assert.doesNotMatch(kunstCompatibility, /id="felt"|id="offentlig-rom"/);
 
   assert.match(litteraturCompatibility, /location\.replace/);
   assert.match(litteraturCompatibility, /subject=litteratur#fagverkIaProgresjon/);
@@ -76,12 +82,14 @@ test('Fagverkforsiden skjuler compatibility-lenken når merket allerede er integ
   assert.match(portalUi, /class="fagverk-portal-compat"/);
 });
 
-test('Alle merker sender By, Historie og Litteratur til integrert Progresjon og ikke tilbake til legacy-teori', () => {
+test('Alle merker sender By, Historie, Kunst og Litteratur til integrert Progresjon og ikke tilbake til legacy-teori', () => {
   assert.match(badgeIndex, /href="\.\.\/fagverk\.html\?subject=by#fagverkIaProgresjon"/);
   assert.match(badgeIndex, /href="\.\.\/fagverk\.html\?subject=historie#fagverkIaProgresjon"/);
+  assert.match(badgeIndex, /href="\.\.\/fagverk\.html\?subject=kunst#fagverkIaProgresjon"/);
   assert.match(badgeIndex, /href="\.\.\/fagverk\.html\?subject=litteratur#fagverkIaProgresjon"/);
   assert.doesNotMatch(badgeIndex, /href="\.\.\/data\/fag\/by\/merke_by\.html"/);
   assert.doesNotMatch(badgeIndex, /href="\.\.\/data\/fag\/historie\/merke_historie \(1\)\.html"/);
+  assert.doesNotMatch(badgeIndex, /href="\.\.\/data\/fag\/kunst\/merke_kunst \(2\)\.html"/);
   assert.doesNotMatch(badgeIndex, /href="\.\.\/data\/fag\/litteratur\/merke_litteratur \(1\)\.html"/);
 });
 
@@ -90,11 +98,12 @@ test('rich runtime og fortsatt ikke-migrert statisk teori kan ikke auto-redirect
   const politics = audit.rows.find((row) => row.id === 'politikk');
   const history = audit.rows.find((row) => row.id === 'historie');
   const by = audit.rows.find((row) => row.id === 'by');
+  const art = audit.rows.find((row) => row.id === 'kunst');
   const literature = audit.rows.find((row) => row.id === 'litteratur');
   const pendingStatic = audit.rows.find((row) => row.family === 'legacy_static_theory');
   assert.equal(politics.family, 'rich_runtime');
   assert.equal(politics.equivalence, 'pending_runtime_migration');
-  for (const migrated of [history, by, literature]) {
+  for (const migrated of [history, by, art, literature]) {
     assert.equal(migrated.family, 'progress_route');
     assert.equal(migrated.equivalence, 'complete');
     assert.equal(migrated.action, 'already_migrated');

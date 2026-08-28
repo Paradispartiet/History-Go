@@ -19,7 +19,7 @@ test('Kunst er individuelt materialisert og auditert som første Fase 3-fag', ()
     editorialStatus: 'complete',
     nextGate: 'maintenance_source_refresh_and_place_case_expansion',
     subjectPage: 'fagverk.html?subject=kunst',
-    badgePage: 'data/fag/kunst/merke_kunst (2).html'
+    badgePage: 'fagverk.html?subject=kunst#fagverkIaProgresjon'
   });
   assert.deepEqual(report.summary, {
     domainCount: 6,
@@ -31,6 +31,9 @@ test('Kunst er individuelt materialisert og auditert som første Fase 3-fag', ()
     explicitMappingRowCount: 21
   });
   assert.deepEqual(report.emneStatusCounts, { active: 21 });
+  assert.equal(report.gates.integratedBadgeRouteActive, true);
+  assert.equal(report.gates.legacyBadgeArchivePreserved, true);
+  assert.equal(report.gates.compatibilityRedirectClean, true);
 });
 
 test('alle Kunst-emner er integrert uten kunstige fagområder', () => {
@@ -63,9 +66,17 @@ test('materialitet, teknikk og håndverk bruker eksisterende Kunst-område og ho
   assert.equal(report.gates.handverkEmneIntegratedInExistingDomainAndHooks, true);
 });
 
-test('Kunst-merkesiden skiller merket fra fagsiden', () => {
-  const html = fs.readFileSync(path.join(root, 'data/fag/kunst/merke_kunst (2).html'), 'utf8');
-  assert.match(html, /fagverk-forside\.html/);
-  assert.match(html, /fagverk\.html\?subject=kunst/);
-  assert.match(html, /Åpne Kunst-faget/);
+test('Kunst-merkesiden er compatibility-redirect mens legacy-kilden er bevart i arkiv', () => {
+  const compatibility = fs.readFileSync(path.join(root, 'data/fag/kunst/merke_kunst (2).html'), 'utf8');
+  const archive = fs.readFileSync(path.join(root, 'data/fag/kunst/archive/merke_kunst_legacy_20260828.html'), 'utf8');
+
+  assert.match(compatibility, /location\.replace/);
+  assert.match(compatibility, /fagverk\.html\?subject=kunst#fagverkIaProgresjon/);
+  assert.doesNotMatch(compatibility, /Åpne Kunst-faget|id="felt"|id="offentlig-rom"/);
+
+  assert.match(archive, /fagverk-forside\.html/);
+  assert.match(archive, /fagverk\.html\?subject=kunst/);
+  assert.match(archive, /Åpne Kunst-faget/);
+  assert.match(archive, /id="felt"/);
+  assert.match(archive, /id="offentlig-rom"/);
 });
