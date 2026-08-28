@@ -15,7 +15,7 @@ test('By er komplett først når helhetsauditen dekker canonical struktur, kapit
     mappingCount: 82,
     hookCount: 81,
     uniquePlaceCount: 20,
-    uniqueSourceUrlCount: 185,
+    uniqueSourceUrlCount: 186,
     moduleCount: 51,
     sectionCount: 153,
     paragraphCount: 459,

@@ -4,9 +4,11 @@
   "subject_id": "by",
   "chapter_id": "arkitektur-type-skala-byform",
   "primary_domain_id": "arkitektur",
-  "purpose": "Starte sammenhengende Arkitektur-produksjon med en kildebelagt analyse av bygningstyper, boligstruktur, historiske lag, skala/høyde/volum, romlig orden og estetikk/funksjon.",
-  "audience": "Brukere som kan se og bevege seg gjennom bygde omgivelser, men trenger et presist skille mellom type, stil, struktur, skala, vernestatus, estetisk vurdering og funksjon.",
+  "purpose": "Starte sammenhengende Arkitektur-produksjon med en kildebelagt analyse av bygningstyper, boligstruktur, topografi og grunnforhold, historiske lag, skala/høyde/volum, romlig orden og estetikk/funksjon.",
+  "audience": "Brukere som kan se og bevege seg gjennom bygde omgivelser, men trenger et presist skille mellom synlig terreng, dokumenterte grunnforhold, type, stil, struktur, skala, vernestatus, estetisk vurdering og funksjon.",
   "learningArc": [
+    "starte med synlig terreng og dokumenterbare stedspremisser før bygningstype og stil",
+    "skille topografi som kan observeres og kartlegges fra grunnforhold som krever geoteknisk eller annen egnet dokumentasjon",
     "starte med bygningstype og fysisk organisering før stilnavn og vurdering",
     "lese boligstruktur gjennom tomt, byggelinje, tetthet og forholdet mellom bygg og uteareal",
     "registrere historiske lag som dokumenterbare spor og kontrollere formell vernestatus i riktige registre",
@@ -14,7 +16,7 @@
     "lese romlig orden gjennom gater, kvartaler, kanter, sikt, åpninger og mellomrom",
     "skille strategiske høyde- og kvalitetsrammer fra påstander om ett konkret bygg",
     "diskutere estetikk med eksplisitte kriterier og samtidig holde funksjon som en egen analytisk dimensjon",
-    "avslutte med en beviskjede der observasjon, kart, arkivspor, regel-/strategikontekst og vurdering holdes tydelig atskilt"
+    "avslutte med en beviskjede der observasjon, kart, geoteknisk dokumentasjon, arkivspor, regel-/strategikontekst og vurdering holdes tydelig atskilt"
   ],
   "requiredEmneIds": [
     "em_by_bygningstyper_og_typologier",
@@ -32,6 +34,8 @@
     "met_arkiv_minne_spor"
   ],
   "requiredCriticalDistinctions": [
+    "topografi vs grunnforhold",
+    "synlig terreng vs dokumenterte forhold under bakken",
     "bygningstype vs stil",
     "type vs enkeltbygg",
     "boligtype vs boligstruktur",
@@ -50,6 +54,8 @@
   ],
   "sourceStrategy": {
     "priority": [
+      "Oslo kommunes kriterier for godt bomiljø for kildebelagte sammenhenger mellom topografi, landskapsformer, grunnforhold og bebyggelsesstruktur",
+      "Oslo kommunes Undergrunnsarkiv-formidling for grunnforhold, løsmasser, dybde til fjell og behovet for tomtespesifikke undersøkelser",
       "Oslo kommunes vedtatte arkitekturpolitikk for estetikk, funksjon, historiske lag, byrom, boligkvalitet og stedstilpasning",
       "Oslo kommunes høyhusstrategi fra 2023 for eksplisitte høydeintervaller, geografiske rammer og kvalitetskrav",
       "Oslo kommunes historiske Småhusplan-formidling som dokumentert plan- og typologikontekst, ikke som udokumentert påstand om dagens rettstilstand",
@@ -57,13 +63,15 @@
       "Direktoratet for byggkvalitet for byggeskikk, visuell kvalitet, form, volum, proporsjon og forholdet mellom estetikk, funksjon og omgivelser",
       "canonical By-filer som emne-, metode- og progresjonsstyring, aldri som ekstern faktakilde"
     ],
-    "minimumExternalSources": 12,
+    "minimumExternalSources": 13,
     "claimLevelTrace": true,
     "sourceLocationsRequired": true,
     "currentStatusClaimsRequireCurrentSource": true
   },
   "scope": {
     "included": [
+      "topografi og landskapsformer som synlige stedspremisser",
+      "grunnforhold som dokumentasjonskrevende premiss for planlegging og bygging",
       "bygningstyper og typologiske sammenligninger",
       "boligstruktur og morfologiske mønstre",
       "historiske lag og formell kulturminne-/verneregisterkontekst",
@@ -74,6 +82,7 @@
       "Ullevål hageby, Rodeløkka, Barcode og Deichman Bjørvika som feltcase uten nye uverifiserte stedsspesifikke fakta"
     ],
     "excluded": [
+      "grunnforhold eller geoteknisk status utledet bare fra det som er synlig i terrenget",
       "stilbestemmelse som presenteres som sikker bare fra et kort feltinntrykk uten nødvendig kildegrunnlag",
       "påstand om alder eller vernestatus utledet bare fra utseende, for eksempel at en bygning ser gammel eller verneverdig ut",
       "påstand om at høyde alene avgjør om et bygg er godt eller dårlig tilpasset",
@@ -113,6 +122,7 @@
     "paragraphLevelClaims": true,
     "permanentAudit": true,
     "ownerDomainGate": true,
+    "siteConditionEvidenceGuard": true,
     "heritageStatusGuard": true,
     "highRiseEntitlementGuard": true,
     "aestheticCriteriaGuard": true,
