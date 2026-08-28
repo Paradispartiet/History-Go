@@ -1,0 +1,341 @@
+{
+  "schemaVersion": "politikk_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "oslo_radhus",
+  "placeFile": "data/places/politikk/oslo/places_politikk/oslo_radhus.json",
+  "status": "ready",
+  "primaryFunction": {
+    "statement": "Oslo rådhus er Oslos kommunale styrings-, arbeids- og representasjonsbygg med sete for bystyre og byråd.",
+    "placeObjectDistinction": "Place-ID-en gjelder rådhusbygningen, ikke Rådhusplassen, hele kommuneorganisasjonen, Stortinget eller Nobelkomiteen.",
+    "sourceIds": [
+      "source_oslo_radhus",
+      "source_oslo_styres"
+    ]
+  },
+  "politicsTopics": [
+    {
+      "emneId": "em_pol_lokaldemokrati",
+      "siteSpecificRationale": "Bystyret, byrådet, åpne møter og parlamentarisk ansvar gjør lokaldemokratiets institusjoner konkret observerbare i rådhuset.",
+      "evidenceChainIds": [
+        "chain_lokaldemokratisk_styring",
+        "chain_offentlighet_og_kontroll"
+      ]
+    },
+    {
+      "emneId": "em_pol_byrakrati_forvaltning",
+      "siteSpecificRationale": "Skillet mellom bystyrets rammevedtak, byrådets politiske ledelse og administrasjonens gjennomføring kan følges gjennom rådhusets organer og dokumenter.",
+      "evidenceChainIds": [
+        "chain_lokaldemokratisk_styring"
+      ]
+    },
+    {
+      "emneId": "em_pol_mediert_offentlighet",
+      "siteSpecificRationale": "Møtesendinger, dokumenter, integrert kunst, klokkespill og fredsprisseremoni viser flere måter kommunal makt og representasjon blir offentlig på.",
+      "evidenceChainIds": [
+        "chain_offentlighet_og_kontroll",
+        "chain_representasjon_og_seremoni"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_oslo_radhus",
+      "url": "https://www.oslo.kommune.no/radhuset/",
+      "sourceLocation": "Hovedside: funksjon, åpenhet og nåværende bruk",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-28",
+      "temporalStatus": "current"
+    },
+    {
+      "id": "source_oslo_styres",
+      "url": "https://www.oslo.kommune.no/politikk/slik-styres-oslo/",
+      "sourceLocation": "Bystyre, byråd, administrasjon og parlamentarisk ansvar",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-28",
+      "temporalStatus": "current"
+    },
+    {
+      "id": "source_oslo_bystyre_moter",
+      "url": "https://www.oslo.kommune.no/politikk/bystyret/moter-i-bystyret/",
+      "sourceLocation": "Møtefrekvens, dokumenter, protokoll og publikumsadgang",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-28",
+      "temporalStatus": "current"
+    },
+    {
+      "id": "source_oslo_byrad_moter",
+      "url": "https://www.oslo.kommune.no/politikk/byradet/moter-i-byradet/",
+      "sourceLocation": "Ukelige møter, konferanser, vedtak og innstillinger",
+      "sourceType": "official",
+      "verifiedAt": "2026-08-28",
+      "temporalStatus": "current"
+    },
+    {
+      "id": "source_kunst_radhusjubileet",
+      "url": "https://www.kunstsamlingen.no/aktuelt/radhusjubileet-2025",
+      "sourceLocation": "Planprosess, arkitekter og kunstprogram",
+      "sourceType": "institutional",
+      "verifiedAt": "2026-08-28",
+      "temporalStatus": "historical"
+    },
+    {
+      "id": "source_nobel_seremoni",
+      "url": "https://www.nobelpeaceprize.org/nobel-peace-prize/about-the-nobel-peace-prize/nobel-peace-prize-celebrations/award-ceremony",
+      "sourceLocation": "Seremoni, arenaer, dato og roller",
+      "sourceType": "institutional",
+      "verifiedAt": "2026-08-28",
+      "temporalStatus": "current"
+    }
+  ],
+  "evidenceChains": [
+    {
+      "id": "chain_lokaldemokratisk_styring",
+      "claim": "Oslo rådhus samler folkevalgt beslutning og politisk ledet gjennomføring, mens oppgaver og ansvar fortsatt er fordelt mellom bystyre, byråd og administrasjon.",
+      "stages": {
+        "institutionActor": {
+          "status": "documented",
+          "statement": "Oslo bystyre og Oslo byråd har sete i rådhuset.",
+          "sourceIds": [
+            "source_oslo_radhus",
+            "source_oslo_styres"
+          ]
+        },
+        "competenceRole": {
+          "status": "documented",
+          "statement": "Bystyret er øverste folkevalgte organ; byrådet leder administrasjonen.",
+          "sourceIds": [
+            "source_oslo_styres"
+          ]
+        },
+        "ruleDecision": {
+          "status": "documented",
+          "statement": "Bystyret vedtar budsjett og overordnede planer.",
+          "sourceIds": [
+            "source_oslo_styres"
+          ]
+        },
+        "resourceInstrument": {
+          "status": "documented",
+          "statement": "Byrådet bruker administrasjonen og formelle møter til å forberede og gjennomføre politikk.",
+          "sourceIds": [
+            "source_oslo_byrad_moter",
+            "source_oslo_styres"
+          ]
+        },
+        "implementation": {
+          "status": "documented",
+          "statement": "Byrådet leder gjennomføringen innenfor bystyrets vedtak og rammer.",
+          "sourceIds": [
+            "source_oslo_styres"
+          ]
+        },
+        "output": {
+          "status": "documented",
+          "statement": "Møteagendaer, vedtak og protokoller dokumenterer konkrete prosessutganger.",
+          "sourceIds": [
+            "source_oslo_bystyre_moter",
+            "source_oslo_byrad_moter"
+          ]
+        },
+        "outcomeEffect": {
+          "status": "not_applicable",
+          "rationale": "Kildene dokumenterer organisering og vedtak, men ikke målte langsiktige virkninger av alle kommunale beslutninger."
+        }
+      }
+    },
+    {
+      "id": "chain_offentlighet_og_kontroll",
+      "claim": "Åpne møter, publiserte sakspapirer, protokoller og digitale sendinger gjør rådhusets politiske arbeid tilgjengelig for offentlig innsyn og kontroll.",
+      "stages": {
+        "institutionActor": {
+          "status": "documented",
+          "statement": "Oslo bystyre organiserer offentlige møter i bystyresalen.",
+          "sourceIds": [
+            "source_oslo_bystyre_moter"
+          ]
+        },
+        "competenceRole": {
+          "status": "documented",
+          "statement": "Bystyret behandler og avgjør saker som kommunens øverste folkevalgte organ.",
+          "sourceIds": [
+            "source_oslo_styres"
+          ]
+        },
+        "ruleDecision": {
+          "status": "documented",
+          "statement": "Møteordningen fastsetter publisering, publikumsadgang og møtegjennomføring.",
+          "sourceIds": [
+            "source_oslo_bystyre_moter"
+          ]
+        },
+        "resourceInstrument": {
+          "status": "documented",
+          "statement": "Sakspapirer, publikumsgalleri, strøm og tegnspråktolking er konkrete innsynsressurser.",
+          "sourceIds": [
+            "source_oslo_bystyre_moter"
+          ]
+        },
+        "implementation": {
+          "status": "documented",
+          "statement": "Møter holdes omtrent månedlig, med dokumenter før og protokoll etter.",
+          "sourceIds": [
+            "source_oslo_bystyre_moter"
+          ]
+        },
+        "output": {
+          "status": "documented",
+          "statement": "Publikum kan lese dokumentene og følge møtene fysisk eller digitalt.",
+          "sourceIds": [
+            "source_oslo_bystyre_moter"
+          ]
+        },
+        "outcomeEffect": {
+          "status": "not_applicable",
+          "rationale": "Åpen tilgjengelighet er dokumentert; kilden måler ikke hvor mye innsynet endrer tillit eller politiske resultater."
+        }
+      }
+    },
+    {
+      "id": "chain_representasjon_og_seremoni",
+      "claim": "Arkitektur, kunst, klokkespill og fredsprisseremoni gjør rådhuset til en offentlig representasjonsramme, men Nobelkomiteen og kommunen har forskjellige roller.",
+      "stages": {
+        "institutionActor": {
+          "status": "documented",
+          "statement": "Oslo kommune forvalter rådhuset, mens Nobelkomiteen gjennomfører prisseremonien.",
+          "sourceIds": [
+            "source_oslo_radhus",
+            "source_nobel_seremoni"
+          ]
+        },
+        "competenceRole": {
+          "status": "documented",
+          "statement": "Kommunen har ansvar for rådhusets funksjon; Nobelkomiteen velger prisvinneren.",
+          "sourceIds": [
+            "source_nobel_seremoni",
+            "source_oslo_radhus"
+          ]
+        },
+        "ruleDecision": {
+          "status": "documented",
+          "statement": "Rådhusprosjektet ble politisk besluttet og senere utviklet med et integrert kunstprogram.",
+          "sourceIds": [
+            "source_kunst_radhusjubileet"
+          ]
+        },
+        "resourceInstrument": {
+          "status": "documented",
+          "statement": "Rådhushallen, kunstprogrammet og den store salen gir representasjonen en fysisk ramme.",
+          "sourceIds": [
+            "source_kunst_radhusjubileet",
+            "source_nobel_seremoni"
+          ]
+        },
+        "implementation": {
+          "status": "documented",
+          "statement": "Fredsprisseremonien holdes i Rådhushallen 10. desember.",
+          "sourceIds": [
+            "source_nobel_seremoni"
+          ]
+        },
+        "output": {
+          "status": "documented",
+          "statement": "Prisvinneren mottar medalje og diplom og holder Nobelforedraget i rådhuset.",
+          "sourceIds": [
+            "source_nobel_seremoni"
+          ]
+        },
+        "outcomeEffect": {
+          "status": "not_applicable",
+          "rationale": "Seremoniens form er dokumentert, men kildene gir ikke grunnlag for å tilskrive rådhuset fredsprisens politiske virkninger."
+        }
+      }
+    }
+  ],
+  "currentVerification": {
+    "status": "PASS",
+    "checkedAt": "2026-08-28",
+    "currentClaimIds": [
+      "chain_lokaldemokratisk_styring",
+      "chain_offentlighet_og_kontroll",
+      "chain_representasjon_og_seremoni"
+    ],
+    "sourceIds": [
+      "source_oslo_radhus",
+      "source_oslo_styres",
+      "source_oslo_bystyre_moter",
+      "source_oslo_byrad_moter",
+      "source_nobel_seremoni"
+    ]
+  },
+  "quizOpening": {
+    "status": "PASS",
+    "quizTargetId": "oslo_radhus",
+    "firstTwoSetsQuestionCount": 14,
+    "sourceBrief": "data/quiz/production_briefs/politikk/oslo_radhus.json",
+    "productionContext": "data/quiz/production_context/politikk/oslo_radhus.json",
+    "requiredInputs": [
+      "data/fag/politikk/politikkpensum_canonical_v4_5.json",
+      "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+      "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+      "data/fag/politikk/methods_politikk_canonical_v4_5.json",
+      "data/fag/politikk/supersetQUIZMAL_politikk.json",
+      "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    ]
+  },
+  "chronologyStories": {
+    "status": "PASS",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Åtte canonical milepæler og tre episode_v1-historier er kontrollert mot kommunale og institusjonelle kilder."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "primaryFunction"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "politicsTopics"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "evidenceChains"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "sources"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "currentVerification"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "data/quiz/politikk/oslo_radhus_sets.json"
+      ]
+    },
+    "G": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "chronologyStories"
+      ]
+    }
+  },
+  "review": {
+    "reviewer": "History GO Oslo rådhus source, institution and representation review",
+    "reviewedAt": "2026-08-28",
+    "notes": "Kommunale roller, åpenhetsgrenser, Nobelkomiteens selvstendige rolle, politikkutfall og bildebevisets grenser er eksplisitt kontrollert."
+  }
+}

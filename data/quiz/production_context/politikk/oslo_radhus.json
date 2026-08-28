@@ -1,0 +1,2006 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "politikk",
+  "targetId": "oslo_radhus",
+  "profile": "major_8x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1174,
+    "selection_sha256": "e1a89a4f6381d8de15ff52e7e76f0231953721c394e1306af909e0342008f725",
+    "category_id": "politikk",
+    "target_id": "oslo_radhus"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/politikk/politikkpensum_canonical_v4_5.json",
+      "bytes": 106999,
+      "sha256": "391418e064d0d6c01e25c8ceb605fe1ae48d9fae3e9ccdd5e3091897e185a5a0",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/politikk/emner_politikk_canonical_v4_5.json",
+      "bytes": 1205851,
+      "sha256": "0711d942ab833490f4914d7ed472a99741021bb5fce76dfb90fea573794aaa1f",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/politikk/fagkart_politikk_canonical_v4_5.json",
+      "bytes": 1099481,
+      "sha256": "5a81d0d09ac89093705b6343f8de09d2565ca00e2086a354caa7f652f0ef63c7",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/politikk/methods_politikk_canonical_v4_5.json",
+      "bytes": 663993,
+      "sha256": "7bd3829f922e9e96d2e5cbe2cf3e901f80dea68b9c6215aa4a0eb2137125dc24",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/politikk/supersetQUIZMAL_politikk.json",
+      "bytes": 17236,
+      "sha256": "47609c9599cdffdf53702152ca3ebf071571cbfa131e1f9a89703964546476de",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 16882,
+      "sha256": "60804db1e587faae822930a800cfebac7966fa7e009778d46d94d1f28e02545e",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/politikk/oslo_radhus.json",
+      "bytes": 26092,
+      "sha256": "df52b2fcf16d0a156692697fd5986719fda7d239ab4cf2e5991e9dceb901d051"
+    },
+    "target": {
+      "path": "data/places/politikk/oslo/places_politikk/oslo_radhus.json",
+      "bytes": 18131,
+      "sha256": "4efba27646c09d5ba1af57b577621d070fc4792e5ba28680daacda2520fd681b"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1340,
+      "selection_sha256": "ff42a53558223363748f8fa8c6b061695179d40091bdb8bd5ff5ed04198fe45f"
+    },
+    "relations": [
+      {
+        "path": "data/relations.json",
+        "matches": 8,
+        "selection_bytes": 1736,
+        "selection_sha256": "156567eaf5010bda3aa6116222184eab90a8d11f4f8b9ee7df6a0179c4fb58bc"
+      },
+      {
+        "path": "data/relations_philanthropy.json",
+        "matches": 5,
+        "selection_bytes": 1502,
+        "selection_sha256": "909ab821d86c2bffbb932bd09130be1c02cdc302d0bdda1dabd9cf72c4d0392e"
+      }
+    ],
+    "stories": [
+      {
+        "path": "data/stories/stories_oslo_radhus.json",
+        "matches": 3,
+        "selection_bytes": 6328,
+        "selection_sha256": "e431d55b7d35d7193c05b0a8042b92e0767d8f288344f15328f8f12c092dd23c"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/politikk/oslo_radhus_sets.json",
+  "source_registry": {
+    "oslo_radhus": {
+      "url": "https://www.oslo.kommune.no/radhuset/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Oslo kommune – Oslo rådhus"
+    },
+    "oslo_styres": {
+      "url": "https://www.oslo.kommune.no/politikk/slik-styres-oslo/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Oslo kommune – Slik styres Oslo"
+    },
+    "oslo_bystyre_moter": {
+      "url": "https://www.oslo.kommune.no/politikk/bystyret/moter-i-bystyret/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Oslo kommune – Møter i bystyret"
+    },
+    "oslo_byrad_moter": {
+      "url": "https://www.oslo.kommune.no/politikk/byradet/moter-i-byradet/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Oslo kommune – Møter i byrådet"
+    },
+    "oslo_radhus_75": {
+      "url": "https://aktuelt.oslo.kommune.no/oslo-radhus-fyller-75-ar",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Oslo kommune – Oslo rådhus fyller 75 år"
+    },
+    "oslo_omvisning": {
+      "url": "https://www.oslo.kommune.no/radhuset/omvisninger-i-oslo-radhus/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Oslo kommune – Omvisninger i Oslo rådhus"
+    },
+    "oslo_klokkespill": {
+      "url": "https://www.oslo.kommune.no/english/oslo-city-hall/the-carillon-at-oslo-city-hall/",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Oslo kommune – The carillon at Oslo City Hall"
+    },
+    "nobel_seremoni": {
+      "url": "https://www.nobelpeaceprize.org/nobel-peace-prize/about-the-nobel-peace-prize/nobel-peace-prize-celebrations/award-ceremony",
+      "source_type": "institutional",
+      "review_status": "reviewed",
+      "review_note": "Nobel Peace Prize – Award ceremony"
+    },
+    "kunst_radhusjubileet": {
+      "url": "https://www.kunstsamlingen.no/aktuelt/radhusjubileet-2025",
+      "source_type": "institutional",
+      "review_status": "reviewed",
+      "review_note": "Kunstsamlingen – Rådhusjubileet 2025"
+    },
+    "snl_oslo_radhus": {
+      "url": "https://snl.no/Oslo_r%C3%A5dhus",
+      "source_type": "reputable_secondary",
+      "review_status": "reviewed",
+      "review_note": "Store norske leksikon – Oslo rådhus"
+    },
+    "commons_exterior": {
+      "url": "https://commons.wikimedia.org/wiki/File:Oslo_City_Hall_(Oslo_r%C3%A5dhus)_(29796674661).jpg",
+      "source_type": "archive",
+      "review_status": "reviewed",
+      "review_note": "Wikimedia Commons – Oslo City Hall"
+    },
+    "commons_hall": {
+      "url": "https://commons.wikimedia.org/wiki/File:Oslo_City_Hall_-_The_place_where_the_Nobel_Peace_Prize_is_presented_(29879653935).jpg",
+      "source_type": "archive",
+      "review_status": "reviewed",
+      "review_note": "Wikimedia Commons – Rådhushallen"
+    },
+    "commons_facade": {
+      "url": "https://commons.wikimedia.org/wiki/File:Oslo_City_Hall_fa%C3%A7ade_(Oslo_r%C3%A5dhus)_(29252794404).jpg",
+      "source_type": "archive",
+      "review_status": "reviewed",
+      "review_note": "Wikimedia Commons – fasade"
+    },
+    "commons_nobel_2009": {
+      "url": "https://commons.wikimedia.org/wiki/File:Barack_Obama_delivers_remarks_during_the_Nobel_Peace_Prize_ceremony.jpg",
+      "source_type": "archive",
+      "review_status": "reviewed",
+      "review_note": "White House via Wikimedia Commons – Nobel ceremony 2009"
+    },
+    "commons_poulsson": {
+      "url": "https://commons.wikimedia.org/wiki/File:Magnus_Poulsson.jpg",
+      "source_type": "archive",
+      "review_status": "reviewed",
+      "review_note": "Wikimedia Commons – Magnus Poulsson"
+    },
+    "commons_oslo_komm": {
+      "url": "https://commons.wikimedia.org/wiki/File:Oslo_komm.svg",
+      "source_type": "archive",
+      "review_status": "reviewed",
+      "review_note": "Wikimedia Commons – Oslo kommunevåpen"
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/politikk/oslo_radhus_sets.json",
+      "data/places/politikk/oslo/places_politikk/oslo_radhus.json"
+    ],
+    "active_before": {
+      "file": "data/quiz/politikk/oslo_radhus_sets.json",
+      "set_count": 1,
+      "question_count": 5,
+      "finding": "Den aktive 1×5-pakken ga en god introduksjon, men manglet canonical normalåpning, produksjonskontekst og bredde."
+    },
+    "decisions": {
+      "keep_as_claim_basis": [
+        "arkitektur og funksjon",
+        "Pipervika",
+        "bystyre og byråd",
+        "kunst og representasjon",
+        "fredspris"
+      ],
+      "rewrite": "Alle fem spørsmål er omskrevet i canonical 8×7-struktur.",
+      "move": [],
+      "remove": []
+    },
+    "knowledge_migration": "De fem eksisterende kunnskapspoengene bevares i den nye påstandsbanken; canonical Knowledge bygges på nytt for 56 spørsmål."
+  },
+  "profile_decision": {
+    "profile": "major",
+    "set_count": 8,
+    "questions_per_set": 7,
+    "justification": "Åtte selvstendige kildebårne læringsjobber dekker institusjonene, planhistorien, arkitektur og kunst, møter og roller, offentlighet og dokumenter, klokkespill og seremoni, vedtakskjeder samt avsluttende kildekritisk syntese."
+  },
+  "held_back_candidates": [
+    "Før/etter-modul: åpne bilder hadde ikke sammenlignbart ståsted.",
+    "Et eget teorisett ble ikke valgt; én avsluttende Dahl-binding skjerper skillet mellom institusjonelle ordninger og udokumenterte effektpåstander uten å dominere stedskunnskapen.",
+    "Sett 9–10: mulige ekstra spor om sanering og kunsthistorie overlapper de åtte læringsjobbene og ble ikke kunstig splittet.",
+    "Langsiktige politikkutfall: møte- og institusjonskildene dokumenterer prosess, ikke effekt av enkeltvedtak."
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 13,
+      "emner": 123,
+      "topic_hooks": 152,
+      "methods": 71
+    },
+    "candidate_emner": [
+      {
+        "id": "em_pol_byrakrati_forvaltning",
+        "title": "Byråkrati og forvaltning",
+        "score": 125
+      },
+      {
+        "id": "em_pol_lokaldemokrati",
+        "title": "Lokaldemokrati",
+        "score": 125
+      },
+      {
+        "id": "em_pol_mediert_offentlighet",
+        "title": "Mediert politisk offentlighet",
+        "score": 125
+      },
+      {
+        "id": "em_pol_administrativ_makt",
+        "title": "Administrativ makt",
+        "score": 25
+      },
+      {
+        "id": "em_pol_arbeidsliv_kollektiv_kamp",
+        "title": "Arbeidsliv og kollektiv kamp",
+        "score": 25
+      },
+      {
+        "id": "em_pol_boligpolitikk_byutvikling",
+        "title": "Boligpolitikk og byutvikling",
+        "score": 25
+      },
+      {
+        "id": "em_pol_budsjett_prioritering",
+        "title": "Budsjett og prioritering",
+        "score": 25
+      },
+      {
+        "id": "em_pol_demokrati_representasjon",
+        "title": "Demokrati og representasjon",
+        "score": 25
+      },
+      {
+        "id": "em_pol_desentralisering_flerniva",
+        "title": "Desentralisering og flernivåstyring",
+        "score": 25
+      },
+      {
+        "id": "em_pol_evaluering_policyfeedback",
+        "title": "Evaluering og policy feedback",
+        "score": 25
+      },
+      {
+        "id": "em_pol_fordeling_ressurser",
+        "title": "Fordeling og ressurser",
+        "score": 25
+      },
+      {
+        "id": "em_pol_forvaltning_ressursfordeling",
+        "title": "Forvaltning og ressursfordeling",
+        "score": 25
+      },
+      {
+        "id": "em_pol_helsepolitikk_omsorg",
+        "title": "Helsepolitikk og omsorg",
+        "score": 25
+      },
+      {
+        "id": "em_pol_hverdagslivets_regler",
+        "title": "Hverdagslivets regler",
+        "score": 25
+      },
+      {
+        "id": "em_pol_ideologi_konfliktlinjer",
+        "title": "Ideologi og konfliktlinjer",
+        "score": 25
+      },
+      {
+        "id": "em_pol_implementering_bakkebyrakrati",
+        "title": "Implementering og bakkebyråkrati",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjonell_endring",
+        "title": "Institusjonell endring og stiavhengighet",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjonelle_systemer",
+        "title": "Institusjonelle systemer",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjoner_styring",
+        "title": "Institusjoner og styring",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjonsfordypning_demokratisk_tilbakegang",
+        "title": "Demokratisk tilbakegang og institusjonell uthuling",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjonsfordypning_domstolskontroll_konstitusjonsdomstoler",
+        "title": "Domstolskontroll og konstitusjonsdomstoler",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjonsfordypning_enhetsstat_foderalisme",
+        "title": "Enhetsstat, føderalisme og territoriell makt",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjonsfordypning_ett_tokammersystem",
+        "title": "Ett- og tokammersystemer",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjonsfordypning_flertalls_konsensusdemokrati",
+        "title": "Flertalls- og konsensusdemokrati",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjonsfordypning_koalisjoner_mindretallsregjeringer",
+        "title": "Koalisjoner og mindretallsregjeringer",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjonsfordypning_mistillit_opplosningsrett",
+        "title": "Mistillit, kabinettspørsmål og oppløsningsrett",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjonsfordypning_parlamentarisme_presidentstyre",
+        "title": "Parlamentarisme og presidentstyre",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjonsfordypning_utovende_lovgivende_makt",
+        "title": "Utøvende og lovgivende makt",
+        "score": 25
+      },
+      {
+        "id": "em_pol_institusjonsfordypning_vetospillere_beslutningskapasitet",
+        "title": "Vetospillere og beslutningskapasitet",
+        "score": 25
+      },
+      {
+        "id": "em_pol_interessegrupper_organisasjoner",
+        "title": "Interessegrupper og organisasjoner",
+        "score": 25
+      },
+      {
+        "id": "em_pol_kampanje_deltakelse_ansvar",
+        "title": "Kampanje, deltakelse og ansvarliggjøring",
+        "score": 25
+      },
+      {
+        "id": "em_pol_klasse_ulikhet",
+        "title": "Klasse og ulikhet",
+        "score": 25
+      },
+      {
+        "id": "em_pol_kommune_byraadsmodell",
+        "title": "Kommune og byrådsmodell",
+        "score": 25
+      },
+      {
+        "id": "em_pol_krisestyring_samordning",
+        "title": "Krisestyring og samordning",
+        "score": 25
+      },
+      {
+        "id": "em_pol_legitimitet_tillit",
+        "title": "Legitimitet og tillit",
+        "score": 25
+      },
+      {
+        "id": "em_pol_levekar_demografi",
+        "title": "Levekår og demografi",
+        "score": 25
+      },
+      {
+        "id": "em_pol_lov_dokument_arkiv",
+        "title": "Lov, dokument og arkiv",
+        "score": 25
+      },
+      {
+        "id": "em_pol_majoritet_minoritet",
+        "title": "Majoritet og minoritet",
+        "score": 25
+      },
+      {
+        "id": "em_pol_makt_institusjoner",
+        "title": "Makt og institusjoner i byen",
+        "score": 25
+      },
+      {
+        "id": "em_pol_makt_interesser",
+        "title": "Makt og interesser",
+        "score": 25
+      },
+      {
+        "id": "em_pol_maktens_geografi",
+        "title": "Maktens geografi",
+        "score": 25
+      },
+      {
+        "id": "em_pol_miljopolitikk_samfunn",
+        "title": "Miljøpolitikk og samfunn",
+        "score": 25
+      },
+      {
+        "id": "em_pol_normer_doxa",
+        "title": "Normer og doxa",
+        "score": 25
+      },
+      {
+        "id": "em_pol_norsk_politikk_europeiske_regler_gjennomforing",
+        "title": "Europeiske regler i nasjonal og lokal gjennomføring",
+        "score": 25
+      },
+      {
+        "id": "em_pol_norsk_politikk_kommuner_fylker_lokaldemokrati",
+        "title": "Kommuner, fylkeskommuner og lokaldemokrati",
+        "score": 25
+      },
+      {
+        "id": "em_pol_norsk_politikk_stat_kommune_flernivastyring",
+        "title": "Stat–kommune-relasjoner og flernivåstyring",
+        "score": 25
+      },
+      {
+        "id": "em_pol_norsk_politikk_statsbudsjett_kommunefinansiering",
+        "title": "Statsbudsjett, kommunefinansiering og politisk prioritering",
+        "score": 25
+      },
+      {
+        "id": "em_pol_offentlighet_debatt",
+        "title": "Offentlighet og debatt",
+        "score": 25
+      },
+      {
+        "id": "em_pol_parlamentarisme_maktbalanse",
+        "title": "Parlamentarisme og maktbalanse",
+        "score": 25
+      },
+      {
+        "id": "em_pol_partier_bevegelser",
+        "title": "Partier og bevegelser",
+        "score": 25
+      },
+      {
+        "id": "em_pol_partisystemer",
+        "title": "Partisystemer og konfliktlinjer",
+        "score": 25
+      },
+      {
+        "id": "em_pol_policy_design_virkemidler",
+        "title": "Policy design og virkemidler",
+        "score": 25
+      },
+      {
+        "id": "em_pol_policyprosess_dagsorden",
+        "title": "Policyprosess og dagsorden",
+        "score": 25
+      },
+      {
+        "id": "em_pol_regimer_demokratisering",
+        "title": "Regimer og demokratisering",
+        "score": 25
+      },
+      {
+        "id": "em_pol_regjeringsdannelse",
+        "title": "Regjeringsdannelse og koalisjoner",
+        "score": 25
+      },
+      {
+        "id": "em_pol_regulering_planlegging",
+        "title": "Regulering og planlegging",
+        "score": 25
+      },
+      {
+        "id": "em_pol_representasjon_ulikhet",
+        "title": "Representasjon og ulikhet",
+        "score": 25
+      },
+      {
+        "id": "em_pol_rettslig_styring",
+        "title": "Rettslig styring",
+        "score": 25
+      },
+      {
+        "id": "em_pol_sivilsamfunn_organisering",
+        "title": "Sivilsamfunn og organisering",
+        "score": 25
+      },
+      {
+        "id": "em_pol_sosialpolitikk",
+        "title": "Sosialpolitikk",
+        "score": 25
+      },
+      {
+        "id": "em_pol_stat_kommune_relaster",
+        "title": "Stat og kommune-relasjoner",
+        "score": 25
+      },
+      {
+        "id": "em_pol_statsdannelse_statskapasitet",
+        "title": "Statsdannelse og statlig kapasitet",
+        "score": 25
+      },
+      {
+        "id": "em_pol_strukturell_vold",
+        "title": "Strukturell vold",
+        "score": 25
+      },
+      {
+        "id": "em_pol_symbolsk_makt",
+        "title": "Symbolsk makt",
+        "score": 25
+      },
+      {
+        "id": "em_pol_teknokrati_ekspertise",
+        "title": "Teknokrati og ekspertise",
+        "score": 25
+      },
+      {
+        "id": "em_pol_teorifordypning_demokrati_normativt_ideal",
+        "title": "Demokrati som normativt ideal",
+        "score": 25
+      },
+      {
+        "id": "em_pol_teorifordypning_feminisme_politisk_likhet",
+        "title": "Feminisme og politisk likhet",
+        "score": 25
+      },
+      {
+        "id": "em_pol_teorifordypning_frihet_likhet_autoritet_legitimitet",
+        "title": "Frihet, likhet, autoritet og legitimitet",
+        "score": 25
+      },
+      {
+        "id": "em_pol_teorifordypning_gronn_politisk_teori",
+        "title": "Grønn politisk teori",
+        "score": 25
+      },
+      {
+        "id": "em_pol_teorifordypning_ideologiske_hovedtradisjoner",
+        "title": "Liberalisme, konservatisme og sosialisme",
+        "score": 25
+      },
+      {
+        "id": "em_pol_teorifordypning_nasjonalisme_statsborgerskap",
+        "title": "Nasjonalisme og statsborgerskap",
+        "score": 25
+      },
+      {
+        "id": "em_pol_teorifordypning_populisme_folkebegrepet",
+        "title": "Populisme og folkebegrepet",
+        "score": 25
+      },
+      {
+        "id": "em_pol_teorifordypning_republikanisme_ikke_dominans",
+        "title": "Republikanisme og ikke-dominans",
+        "score": 25
+      },
+      {
+        "id": "em_pol_teorifordypning_sivil_ulydighet_politisk_forpliktelse",
+        "title": "Sivil ulydighet og politisk forpliktelse",
+        "score": 25
+      },
+      {
+        "id": "em_pol_teorifordypning_sosialdemokrati_demokratisk_sosialisme",
+        "title": "Sosialdemokrati og demokratisk sosialisme",
+        "score": 25
+      },
+      {
+        "id": "em_pol_utdanning_mobilitet",
+        "title": "Utdanning og mobilitet",
+        "score": 25
+      },
+      {
+        "id": "em_pol_valg_deltakelse",
+        "title": "Valg og deltakelse",
+        "score": 25
+      },
+      {
+        "id": "em_pol_valgsystemer",
+        "title": "Valgsystemer",
+        "score": 25
+      },
+      {
+        "id": "em_pol_velferdsstat_tjenester",
+        "title": "Velferdsstat og tjenester",
+        "score": 25
+      },
+      {
+        "id": "em_pol_velgeratferd",
+        "title": "Velgeratferd",
+        "score": 25
+      },
+      {
+        "id": "em_pol_ytringsfrihet",
+        "title": "Ytringsfrihet",
+        "score": 25
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "forvaltningsvedtak",
+        "title": "Forvaltningsvedtak",
+        "category_id": "rett_lov_rettssikkerhet",
+        "score": 33
+      },
+      {
+        "id": "kommunal_styring",
+        "title": "Kommunal styring",
+        "category_id": "styring_institusjoner_forvaltning",
+        "score": 33
+      },
+      {
+        "id": "representasjon",
+        "title": "Representasjon",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 33
+      },
+      {
+        "id": "arbeidslivspolitikk",
+        "title": "Arbeidslivspolitikk",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "beslutningsmodeller_og_begrenset_rasjonalitet",
+        "title": "Beslutningsmodeller og begrenset rasjonalitet",
+        "category_id": "offentlig_politikk_beslutning_implementering",
+        "score": 23
+      },
+      {
+        "id": "budsjett_som_styring",
+        "title": "Budsjett som styring",
+        "category_id": "styring_institusjoner_forvaltning",
+        "score": 23
+      },
+      {
+        "id": "demografi_og_plan",
+        "title": "Demografi og plan",
+        "category_id": "fordeling_velferd_ulikhet",
+        "score": 23
+      },
+      {
+        "id": "demokrati_og_autokrati",
+        "title": "Demokrati og autokrati",
+        "category_id": "komparativ_politikk_regimer_institusjoner",
+        "score": 23
+      },
+      {
+        "id": "ekspertise_kunnskap_og_usikkerhet",
+        "title": "Ekspertise, kunnskap og usikkerhet",
+        "category_id": "offentlig_politikk_beslutning_implementering",
+        "score": 23
+      },
+      {
+        "id": "evaluering_og_kausal_effekt",
+        "title": "Evaluering og kausal effekt",
+        "category_id": "offentlig_politikk_beslutning_implementering",
+        "score": 23
+      },
+      {
+        "id": "federalisme_og_desentralisering",
+        "title": "Federalisme og desentralisering",
+        "category_id": "komparativ_politikk_regimer_institusjoner",
+        "score": 23
+      },
+      {
+        "id": "implementering_og_bakkebyrakrati",
+        "title": "Implementering og bakkebyråkrati",
+        "category_id": "offentlig_politikk_beslutning_implementering",
+        "score": 23
+      },
+      {
+        "id": "institusjon_som_maktform",
+        "title": "Institusjon som maktform",
+        "category_id": "styring_institusjoner_forvaltning",
+        "score": 23
+      },
+      {
+        "id": "institusjonell_endring_og_stiavhengighet",
+        "title": "Institusjonell endring og stiavhengighet",
+        "category_id": "komparativ_politikk_regimer_institusjoner",
+        "score": 23
+      },
+      {
+        "id": "interessegrupper",
+        "title": "Interessegrupper",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "kampanjer_medier_og_dagsorden",
+        "title": "Kampanjer, medier og dagsorden",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "komparativ_velferdsstat",
+        "title": "Komparativ velferdsstat",
+        "category_id": "komparativ_politikk_regimer_institusjoner",
+        "score": 23
+      },
+      {
+        "id": "krisestyring_og_beredskap",
+        "title": "Krisestyring og beredskap",
+        "category_id": "offentlig_politikk_beslutning_implementering",
+        "score": 23
+      },
+      {
+        "id": "legitimitet_i_systemet",
+        "title": "Legitimitet i systemet",
+        "category_id": "styring_institusjoner_forvaltning",
+        "score": 23
+      },
+      {
+        "id": "likeverd",
+        "title": "Likeverd",
+        "category_id": "normer_identitet_hverdagsliv",
+        "score": 23
+      },
+      {
+        "id": "majoritet_minoritet",
+        "title": "Majoritet og minoritet",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 23
+      },
+      {
+        "id": "makt_og_interesser",
+        "title": "Makt og interesser",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "maktfordeling_og_vetospillere",
+        "title": "Maktfordeling og vetospillere",
+        "category_id": "komparativ_politikk_regimer_institusjoner",
+        "score": 23
+      },
+      {
+        "id": "miljopolitisk_konflikt",
+        "title": "Miljøpolitisk konflikt",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "minoritet_majoritet",
+        "title": "Minoritet og majoritet",
+        "category_id": "normer_identitet_hverdagsliv",
+        "score": 23
+      },
+      {
+        "id": "omfordeling_og_legitimitet",
+        "title": "Omfordeling og legitimitet",
+        "category_id": "fordeling_velferd_ulikhet",
+        "score": 23
+      },
+      {
+        "id": "parlamentarisme_og_presidentialisme",
+        "title": "Parlamentarisme og presidentialisme",
+        "category_id": "komparativ_politikk_regimer_institusjoner",
+        "score": 23
+      },
+      {
+        "id": "partiorganisasjon_og_kandidatseleksjon",
+        "title": "Partiorganisasjon og kandidatseleksjon",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "partisystemer_og_konfliktlinjer",
+        "title": "Partisystemer og konfliktlinjer",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "policy_feedback_og_stiavhengighet",
+        "title": "Policy feedback og stiavhengighet",
+        "category_id": "offentlig_politikk_beslutning_implementering",
+        "score": 23
+      },
+      {
+        "id": "politisk_deltakelse_og_valgdeltakelse",
+        "title": "Politisk deltakelse og valgdeltakelse",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "politisk_teori_demokrati_normativt_ideal",
+        "title": "Demokrati som normativt ideal",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 23
+      },
+      {
+        "id": "politisk_teori_feminisme_politisk_likhet",
+        "title": "Feminisme og politisk likhet",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "politisk_teori_frihet_likhet_autoritet_legitimitet",
+        "title": "Frihet, likhet, autoritet og legitimitet",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 23
+      },
+      {
+        "id": "politisk_teori_gronn_politisk_teori",
+        "title": "Grønn politisk teori",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "politisk_teori_ideologiske_hovedtradisjoner",
+        "title": "Liberalisme, konservatisme og sosialisme",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "politisk_teori_nasjonalisme_statsborgerskap",
+        "title": "Nasjonalisme og statsborgerskap",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "politisk_teori_populisme_folkebegrepet",
+        "title": "Populisme og folkebegrepet",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 23
+      },
+      {
+        "id": "politisk_teori_republikanisme_ikke_dominans",
+        "title": "Republikanisme og ikke-dominans",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 23
+      },
+      {
+        "id": "politisk_teori_sivil_ulydighet_politisk_forpliktelse",
+        "title": "Sivil ulydighet og politisk forpliktelse",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 23
+      },
+      {
+        "id": "politisk_teori_sosialdemokrati_demokratisk_sosialisme",
+        "title": "Sosialdemokrati og demokratisk sosialisme",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "politisk_tillit",
+        "title": "Politisk tillit",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 23
+      },
+      {
+        "id": "politisk_tillit_og_partilojalitet",
+        "title": "Politisk tillit og partilojalitet",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "populisme_og_anti_etablissement",
+        "title": "Populisme og anti-etablissement",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "problemdefinisjon_og_dagsorden",
+        "title": "Problemdefinisjon og dagsorden",
+        "category_id": "offentlig_politikk_beslutning_implementering",
+        "score": 23
+      },
+      {
+        "id": "reform_overforing_og_laering",
+        "title": "Reform, overføring og læring",
+        "category_id": "offentlig_politikk_beslutning_implementering",
+        "score": 23
+      },
+      {
+        "id": "regjeringsdannelse_og_koalisjoner",
+        "title": "Regjeringsdannelse og koalisjoner",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "representasjon_og_ansvarliggjoring",
+        "title": "Representasjon og ansvarliggjøring",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "ressursfordeling",
+        "title": "Ressursfordeling",
+        "category_id": "fordeling_velferd_ulikhet",
+        "score": 23
+      },
+      {
+        "id": "rettsstat_og_demokratisk_tilbakegang",
+        "title": "Rettsstat og demokratisk tilbakegang",
+        "category_id": "komparativ_politikk_regimer_institusjoner",
+        "score": 23
+      },
+      {
+        "id": "samordning_og_flernivastyring",
+        "title": "Samordning og flernivåstyring",
+        "category_id": "offentlig_politikk_beslutning_implementering",
+        "score": 23
+      },
+      {
+        "id": "sivilsamfunn",
+        "title": "Sivilsamfunn",
+        "category_id": "konflikt_makt_sivilsamfunn",
+        "score": 23
+      },
+      {
+        "id": "sivilt_militaert_forhold",
+        "title": "Sivilt-militært forhold",
+        "category_id": "komparativ_politikk_regimer_institusjoner",
+        "score": 23
+      },
+      {
+        "id": "stat_og_by",
+        "title": "Stat og by",
+        "category_id": "styring_institusjoner_forvaltning",
+        "score": 23
+      },
+      {
+        "id": "statsborgerskap_og_nasjon",
+        "title": "Statsborgerskap og nasjon",
+        "category_id": "komparativ_politikk_regimer_institusjoner",
+        "score": 23
+      },
+      {
+        "id": "statsdannelse_og_statlig_kapasitet",
+        "title": "Statsdannelse og statlig kapasitet",
+        "category_id": "komparativ_politikk_regimer_institusjoner",
+        "score": 23
+      },
+      {
+        "id": "tause_regler",
+        "title": "Tause regler",
+        "category_id": "normer_identitet_hverdagsliv",
+        "score": 23
+      },
+      {
+        "id": "teknokratisk_styring",
+        "title": "Teknokratisk styring",
+        "category_id": "styring_institusjoner_forvaltning",
+        "score": 23
+      },
+      {
+        "id": "valgsystemer_og_mandatfordeling",
+        "title": "Valgsystemer og mandatfordeling",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "velgeratferd_og_partivalg",
+        "title": "Velgeratferd og partivalg",
+        "category_id": "valg_partier_velgeratferd",
+        "score": 23
+      },
+      {
+        "id": "virkemidler_og_policy_design",
+        "title": "Virkemidler og policy design",
+        "category_id": "offentlig_politikk_beslutning_implementering",
+        "score": 23
+      },
+      {
+        "id": "byrakrati_og_hverdag",
+        "title": "Byråkrati og hverdag",
+        "category_id": "styring_institusjoner_forvaltning",
+        "score": 10
+      },
+      {
+        "id": "offentlighet",
+        "title": "Offentlighet",
+        "category_id": "demokrati_representasjon_offentlighet",
+        "score": 10
+      },
+      {
+        "id": "norsk_politikk_europeiske_regler_gjennomforing",
+        "title": "Europeiske regler i nasjonal og lokal gjennomføring",
+        "category_id": "norsk_politikk_eos_flernivastyring",
+        "score": 3
+      },
+      {
+        "id": "norsk_politikk_kommuner_fylker_lokaldemokrati",
+        "title": "Kommuner, fylkeskommuner og lokaldemokrati",
+        "category_id": "norsk_politikk_eos_flernivastyring",
+        "score": 3
+      },
+      {
+        "id": "norsk_politikk_stat_kommune_flernivastyring",
+        "title": "Stat–kommune-relasjoner og flernivåstyring",
+        "category_id": "norsk_politikk_eos_flernivastyring",
+        "score": 3
+      },
+      {
+        "id": "norsk_politikk_statsbudsjett_kommunefinansiering",
+        "title": "Statsbudsjett, kommunefinansiering og politisk prioritering",
+        "category_id": "norsk_politikk_eos_flernivastyring",
+        "score": 3
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "styring_institusjoner_forvaltning",
+      "demokrati_representasjon_offentlighet",
+      "offentlig_politikk_beslutning_implementering"
+    ],
+    "emne_ids": [
+      "em_pol_lokaldemokrati",
+      "em_pol_byrakrati_forvaltning",
+      "em_pol_mediert_offentlighet"
+    ],
+    "topic_hook_ids": [
+      "kommunal_styring"
+    ],
+    "method_ids": [
+      "met_pol_institusjonsanalyse",
+      "met_pol_forvaltningsanalyse",
+      "met_pol_dokumentanalyse",
+      "met_pol_offentlighetsanalyse"
+    ],
+    "thinker_ids": [
+      "robert_dahl"
+    ],
+    "works": []
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_oslo_radhus_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo rådhus åpnet 15. mai 1950 under byjubileet.",
+      "source_ids": [
+        "oslo_radhus_75"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_lokaldemokrati"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo bystyre og Oslo byråd",
+      "source_ids": [
+        "oslo_radhus"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_lokaldemokrati"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Bystyret er øverste folkevalgte organ, mens byrådet leder administrasjonen",
+      "source_ids": [
+        "oslo_styres"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_lokaldemokrati"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "59",
+      "source_ids": [
+        "oslo_styres"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_lokaldemokrati"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Arnstein Arneberg og Magnus Poulsson",
+      "source_ids": [
+        "kunst_radhusjubileet"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Besøke åpne deler og følge offentlige møter etter gjeldende regler",
+      "source_ids": [
+        "oslo_radhus"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_lokaldemokrati"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Rådhuset er bygningen; Rådhusplassen er byrommet utenfor",
+      "source_ids": [
+        "oslo_radhus"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_byrakrati_forvaltning"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Hieronymus Heyerdahl",
+      "source_ids": [
+        "kunst_radhusjubileet"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_lokaldemokrati"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Både et rådhus og regulering av Pipervika",
+      "source_ids": [
+        "kunst_radhusjubileet"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_byrakrati_forvaltning"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "1917–1918",
+      "source_ids": [
+        "kunst_radhusjubileet"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_byrakrati_forvaltning"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Å gjennomføre rådhusprosjektet",
+      "source_ids": [
+        "kunst_radhusjubileet"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_lokaldemokrati"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "1931",
+      "source_ids": [
+        "kunst_radhusjubileet"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_byrakrati_forvaltning"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Åtte",
+      "source_ids": [
+        "kunst_radhusjubileet"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_byrakrati_forvaltning"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "At et stort offentlig bygg formes av gjentatte politiske, økonomiske og arkitektoniske valg",
+      "source_ids": [
+        "kunst_radhusjubileet"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_byrakrati_forvaltning"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_15",
+      "order": 15,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Tårnene er kontorvolumer i det kommunale arbeidsbygget.",
+      "source_ids": [
+        "snl_oslo_radhus"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_byrakrati_forvaltning"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_16",
+      "order": 16,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Et stort offentlig representasjons- og seremonirom",
+      "source_ids": [
+        "oslo_omvisning"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_17",
+      "order": 17,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Munch, Sørensen, Rolfsen og Per Krohg",
+      "source_ids": [
+        "oslo_omvisning"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_18",
+      "order": 18,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Den integrerte kunsten er del av kommunens representasjon av byen.",
+      "source_ids": [
+        "kunst_radhusjubileet"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_19",
+      "order": 19,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Både administrativt arbeid, folkevalgte møter og representasjon",
+      "source_ids": [
+        "oslo_radhus"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_byrakrati_forvaltning"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_20",
+      "order": 20,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Bygningsdelene skiller kontorarbeid fra større møte- og representasjonsrom",
+      "source_ids": [
+        "snl_oslo_radhus"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_byrakrati_forvaltning"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_21",
+      "order": 21,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Bygningens synlige form på fototidspunktet",
+      "source_ids": [
+        "commons_facade"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_22",
+      "order": 22,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Budsjett og overordnede planer",
+      "source_ids": [
+        "oslo_styres"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_lokaldemokrati"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_23",
+      "order": 23,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo bystyre",
+      "source_ids": [
+        "oslo_styres"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_lokaldemokrati"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_24",
+      "order": 24,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Én gang i måneden",
+      "source_ids": [
+        "oslo_bystyre_moter"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_lokaldemokrati"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_25",
+      "order": 25,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Ukentlig",
+      "source_ids": [
+        "oslo_byrad_moter"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_byrakrati_forvaltning"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_26",
+      "order": 26,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Konferansen forbereder; det formelle møtet avgjør eller sender innstilling",
+      "source_ids": [
+        "oslo_byrad_moter"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_byrakrati_forvaltning"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_27",
+      "order": 27,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Leder administrasjonen og gjennomfører politikken",
+      "source_ids": [
+        "oslo_styres"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_byrakrati_forvaltning"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_28",
+      "order": 28,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Det huser kommunens organer, ikke Stortinget og statsregjeringen",
+      "source_ids": [
+        "oslo_styres"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_lokaldemokrati"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_29",
+      "order": 29,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Før møtene",
+      "source_ids": [
+        "oslo_bystyre_moter"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_30",
+      "order": 30,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Etter møtet",
+      "source_ids": [
+        "oslo_bystyre_moter"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_31",
+      "order": 31,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Via direktesending eller opptak",
+      "source_ids": [
+        "oslo_bystyre_moter"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_32",
+      "order": 32,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Tegnspråktolking",
+      "source_ids": [
+        "oslo_bystyre_moter"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_33",
+      "order": 33,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "I kommunens offentlige innsynsløsning",
+      "source_ids": [
+        "oslo_byrad_moter"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_34",
+      "order": 34,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "De gjør saker og vedtak etterprøvbare før og etter møtet",
+      "source_ids": [
+        "oslo_bystyre_moter"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_35",
+      "order": 35,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Åpenhet må balanseres mot sikkerhet og aktivt arbeid",
+      "source_ids": [
+        "oslo_omvisning"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_36",
+      "order": 36,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "49",
+      "source_ids": [
+        "oslo_klokkespill"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_37",
+      "order": 37,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "4000 kilo",
+      "source_ids": [
+        "oslo_klokkespill"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_38",
+      "order": 38,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "14 kilo",
+      "source_ids": [
+        "oslo_klokkespill"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_39",
+      "order": 39,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "10. desember",
+      "source_ids": [
+        "nobel_seremoni"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_40",
+      "order": 40,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "1990",
+      "source_ids": [
+        "nobel_seremoni"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_41",
+      "order": 41,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Universitetets aula",
+      "source_ids": [
+        "nobel_seremoni"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_42",
+      "order": 42,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Medalje og diplom",
+      "source_ids": [
+        "nobel_seremoni"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_43",
+      "order": 43,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Den norske Nobelkomité",
+      "source_ids": [
+        "nobel_seremoni"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_lokaldemokrati"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_44",
+      "order": 44,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Seremoniarena og vertskapsramme",
+      "source_ids": [
+        "nobel_seremoni"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_45",
+      "order": 45,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "At Barack Obama talte i Rådhushallen under den faktiske seremonien",
+      "source_ids": [
+        "commons_nobel_2009"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_46",
+      "order": 46,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Bystyret vedtar rammer, byrådet leder gjennomføringen, administrasjonen utfører",
+      "source_ids": [
+        "oslo_styres"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_byrakrati_forvaltning"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_47",
+      "order": 47,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Innsyn og mulighet til å kontrollere beslutningsprosessen",
+      "source_ids": [
+        "oslo_bystyre_moter"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_48",
+      "order": 48,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Det er et sete og symbolbygg, mens tjenester og ansatte finnes mange steder",
+      "source_ids": [
+        "oslo_radhus"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_byrakrati_forvaltning"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_49",
+      "order": 49,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "At den ønskede virkningen faktisk ble oppnådd",
+      "source_ids": [
+        "oslo_byrad_moter"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_byrakrati_forvaltning"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_50",
+      "order": 50,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Spørre hvilke motiver og grupper byen valgte å representere",
+      "source_ids": [
+        "kunst_radhusjubileet"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_51",
+      "order": 51,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "At rådhuset kommuniserer gjennom lyd også utenfor bygningen",
+      "source_ids": [
+        "oslo_klokkespill"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_52",
+      "order": 52,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Rådhuset huser kommunal styring; Stortinget vedtar nasjonale lover",
+      "source_ids": [
+        "oslo_styres"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_lokaldemokrati"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_53",
+      "order": 53,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Det første er løpende kommunal styring; det andre er en årlig internasjonal seremoni",
+      "source_ids": [
+        "nobel_seremoni"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_byrakrati_forvaltning"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_54",
+      "order": 54,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Publikum kan følge møtet innenfor praktiske adgangsregler",
+      "source_ids": [
+        "oslo_bystyre_moter"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_55",
+      "order": 55,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Sakspapir, møteopptak og protokoll",
+      "source_ids": [
+        "oslo_bystyre_moter"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_mediert_offentlighet"
+    },
+    {
+      "claim_id": "claim_oslo_radhus_quiz_56",
+      "order": 56,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Bygget samler dokumenterbare funksjoner, men kilder må skilles fra tolkninger av virkning",
+      "source_ids": [
+        "oslo_radhus"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_pol_lokaldemokrati"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "relation",
+      "id": "mig_haakon_vii_krigstid_oslo_radhus_0280ef1cde",
+      "source_file": "data/relations.json",
+      "summary": "Migrert fra people.placeId/people.places."
+    },
+    {
+      "type": "relation",
+      "id": "mig_haakon_vii_oslo_radhus_ff85f96d3c",
+      "source_file": "data/relations.json",
+      "summary": "Migrert fra people.placeId/people.places."
+    },
+    {
+      "type": "relation",
+      "id": "mig_fridtjof_nansen_oslo_radhus_1974638d13",
+      "source_file": "data/relations.json",
+      "summary": "Migrert fra people.placeId/people.places."
+    },
+    {
+      "type": "relation",
+      "id": "mig_max_manus_oslo_radhus_bf2207c09a",
+      "source_file": "data/relations.json",
+      "summary": "Migrert fra people.placeId/people.places."
+    },
+    {
+      "type": "relation",
+      "id": "mig_roald_amundsen_oslo_radhus_ec8391964d",
+      "source_file": "data/relations.json",
+      "summary": "Migrert fra people.placeId/people.places."
+    },
+    {
+      "type": "relation",
+      "id": "mig_kong_christian_iv_oslo_radhus_7d27eced10",
+      "source_file": "data/relations.json",
+      "summary": "Migrert fra people.placeId/people.places."
+    },
+    {
+      "type": "relation",
+      "id": "rel_oslo_radhus_magnus_poulsson",
+      "source_file": "data/relations.json",
+      "summary": "Poulsson tegnet Oslo rådhus sammen med Arnstein Arneberg gjennom en flerårig utviklingsprosess."
+    },
+    {
+      "type": "relation",
+      "id": "rel_oslo_radhus_arnstein_arneberg",
+      "source_file": "data/relations.json",
+      "summary": "Arneberg tegnet Oslo rådhus sammen med Magnus Poulsson."
+    },
+    {
+      "type": "relation",
+      "id": "rel_alfred_nobel_oslo_radhus_filantropi",
+      "source_file": "data/relations_philanthropy.json",
+      "summary": "Oslo rådhus er seremonisted for Nobels fredspris og gjør Nobels testamentariske prosjekt synlig i byrommet."
+    },
+    {
+      "type": "relation",
+      "id": "rel_oslo_radhus_arnstein_arneberg_arkitekt",
+      "source_file": "data/relations_philanthropy.json",
+      "summary": "Arnstein Arneberg tegnet Oslo rådhus sammen med Magnus Poulsson."
+    },
+    {
+      "type": "relation",
+      "id": "rel_oslo_radhus_magnus_poulsson_arkitekt",
+      "source_file": "data/relations_philanthropy.json",
+      "summary": "Magnus Poulsson tegnet Oslo rådhus sammen med Arnstein Arneberg."
+    },
+    {
+      "type": "relation",
+      "id": "rel_oslo_radhus_henrik_sorensen_kunstner",
+      "source_file": "data/relations_philanthropy.json",
+      "summary": "Henrik Sørensen utførte monumentalmaleriet på Rådhushallens fondvegg."
+    },
+    {
+      "type": "relation",
+      "id": "rel_oslo_radhus_alf_rolfsen_kunstner",
+      "source_file": "data/relations_philanthropy.json",
+      "summary": "Alf Rolfsen utførte tre store veggpartier i Rådhushallen."
+    },
+    {
+      "type": "story",
+      "id": "st_oslo_radhus_fra_pipervika_til_maktrom",
+      "source_file": "data/stories/stories_oslo_radhus.json",
+      "summary": "I 1916 vedtok Kristiania å legge det nye rådhuset til Pipervika og utlyste en konkurranse som knyttet rådhusprosjektet til full omforming av området."
+    },
+    {
+      "type": "story",
+      "id": "st_oslo_radhus_innvielsen_1950",
+      "source_file": "data/stories/stories_oslo_radhus.json",
+      "summary": "15. mai 1950 ble Oslo rådhus innviet under byens 900-årsjubileum etter flere tiår med prosjektering, bygging og krigsforsinkelse."
+    },
+    {
+      "type": "story",
+      "id": "st_oslo_radhus_fredsprisseremonien",
+      "source_file": "data/stories/stories_oslo_radhus.json",
+      "summary": "10. desember 1990 ble Nobels fredspris for første gang delt ut i Oslo rådhus, som siden har vært fast ramme for seremonien."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "politikk_oslo_radhus_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_oslo_radhus_quiz_01",
+        "claim_oslo_radhus_quiz_02",
+        "claim_oslo_radhus_quiz_03",
+        "claim_oslo_radhus_quiz_04",
+        "claim_oslo_radhus_quiz_05",
+        "claim_oslo_radhus_quiz_06",
+        "claim_oslo_radhus_quiz_07"
+      ]
+    },
+    {
+      "set_id": "politikk_oslo_radhus_set_2",
+      "order": 2,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_oslo_radhus_quiz_08",
+        "claim_oslo_radhus_quiz_09",
+        "claim_oslo_radhus_quiz_10",
+        "claim_oslo_radhus_quiz_11",
+        "claim_oslo_radhus_quiz_12",
+        "claim_oslo_radhus_quiz_13",
+        "claim_oslo_radhus_quiz_14"
+      ]
+    },
+    {
+      "set_id": "politikk_oslo_radhus_set_3",
+      "order": 3,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_oslo_radhus_quiz_15",
+        "claim_oslo_radhus_quiz_16",
+        "claim_oslo_radhus_quiz_17",
+        "claim_oslo_radhus_quiz_18",
+        "claim_oslo_radhus_quiz_19",
+        "claim_oslo_radhus_quiz_20",
+        "claim_oslo_radhus_quiz_21"
+      ]
+    },
+    {
+      "set_id": "politikk_oslo_radhus_set_4",
+      "order": 4,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_oslo_radhus_quiz_22",
+        "claim_oslo_radhus_quiz_23",
+        "claim_oslo_radhus_quiz_24",
+        "claim_oslo_radhus_quiz_25",
+        "claim_oslo_radhus_quiz_26",
+        "claim_oslo_radhus_quiz_27",
+        "claim_oslo_radhus_quiz_28"
+      ]
+    },
+    {
+      "set_id": "politikk_oslo_radhus_set_5",
+      "order": 5,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_oslo_radhus_quiz_29",
+        "claim_oslo_radhus_quiz_30",
+        "claim_oslo_radhus_quiz_31",
+        "claim_oslo_radhus_quiz_32",
+        "claim_oslo_radhus_quiz_33",
+        "claim_oslo_radhus_quiz_34",
+        "claim_oslo_radhus_quiz_35"
+      ]
+    },
+    {
+      "set_id": "politikk_oslo_radhus_set_6",
+      "order": 6,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_oslo_radhus_quiz_36",
+        "claim_oslo_radhus_quiz_37",
+        "claim_oslo_radhus_quiz_38",
+        "claim_oslo_radhus_quiz_39",
+        "claim_oslo_radhus_quiz_40",
+        "claim_oslo_radhus_quiz_41",
+        "claim_oslo_radhus_quiz_42"
+      ]
+    },
+    {
+      "set_id": "politikk_oslo_radhus_set_7",
+      "order": 7,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_oslo_radhus_quiz_43",
+        "claim_oslo_radhus_quiz_44",
+        "claim_oslo_radhus_quiz_45",
+        "claim_oslo_radhus_quiz_46",
+        "claim_oslo_radhus_quiz_47",
+        "claim_oslo_radhus_quiz_48",
+        "claim_oslo_radhus_quiz_49"
+      ]
+    },
+    {
+      "set_id": "politikk_oslo_radhus_set_8",
+      "order": 8,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_oslo_radhus_quiz_50",
+        "claim_oslo_radhus_quiz_51",
+        "claim_oslo_radhus_quiz_52",
+        "claim_oslo_radhus_quiz_53",
+        "claim_oslo_radhus_quiz_54",
+        "claim_oslo_radhus_quiz_55",
+        "claim_oslo_radhus_quiz_56"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 56,
+    "counts": {
+      "fact": 28,
+      "context": 14,
+      "concept_theory": 14
+    },
+    "ratios": {
+      "fact": 0.5,
+      "context": 0.25,
+      "concept_theory": 0.25
+    }
+  }
+}
