@@ -7,6 +7,9 @@ const html = read('fagverk.html');
 const ia = read('js/fagverk-ia-v3.js');
 const css = read('css/fagverk-ia-v3.css');
 const model = read('js/fagverk-subject-model.js');
+const portalHtml = read('fagverk-forside.html');
+const portalJs = read('js/fagverk-forside.js');
+const portalCss = read('css/fagverk-forside.css');
 
 function functionSource(source, startToken, endToken) {
   const start = source.indexOf(startToken);
@@ -94,6 +97,19 @@ test('Career Knowledge Bridge kan ikke åpne en sjette løs subject-root seksjon
   assert.match(renderUtforsk, /document\.getElementById\('fagverkCareerUses'\)/);
   assert.match(renderUtforsk, /careerSlot\.appendChild\(careerSection\)/);
   assert.match(html, /id="fagverkCareerUses"/);
+});
+
+test('Fagverkforsiden har faget som primær vei og merkesiden kun som compatibility', () => {
+  assert.doesNotMatch(portalHtml, /Én inngang · to tydelige veier/);
+  assert.doesNotMatch(portalHtml, /href="merker\/merker\.html"/);
+  assert.match(portalHtml, /Merke, poeng og nivå er en del av progresjonen i faget/);
+  assert.match(portalJs, /text\(item\.subjectStatus\) === 'materialized'/);
+  assert.match(portalJs, /class="fagverk-portal-action is-primary"/);
+  assert.match(portalJs, /<strong>Åpne faget →<\/strong>/);
+  assert.match(portalJs, /class="fagverk-portal-compat"/);
+  assert.match(portalJs, /Åpne eksisterende merkevisning/);
+  assert.match(portalCss, /\.fagverk-portal-action\.is-primary/);
+  assert.match(portalCss, /\.fagverk-portal-compat/);
 });
 
 test('IA v3 reduserer subject-root sidebar uten å endre dypkoblingssidene', () => {
