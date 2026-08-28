@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 // One-time idempotent materializer retained as the reproducible record of the Kunst legacy gatekunst migration.
+// Final invariant: gatekunst is canonical at emne level while the authored six-concept chapter contract stays byte-stable.
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
