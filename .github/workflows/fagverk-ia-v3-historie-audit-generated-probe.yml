@@ -1,0 +1,38 @@
+name: Fagverk IA v3 Historie audit generated probe
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/fagverk-ia-v3-historie-audit-generated-probe.yml'
+      - 'scripts/audit-fagverk-historie-legacy-theory.mjs'
+      - 'tests/fagverk-historie-legacy-theory-audit.test.mjs'
+      - 'reports/fagverk/historie-legacy-theory-audit.json'
+
+permissions:
+  contents: write
+
+jobs:
+  generate-and-clean:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Generate deterministic Historie legacy audit
+        run: node scripts/audit-fagverk-historie-legacy-theory.mjs --write-report
+      - name: Commit generated report and remove probe
+        env:
+          HEAD_BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/fagverk-ia-v3-historie-audit-generated-probe.yml
+          git add reports/fagverk/historie-legacy-theory-audit.json
+          git commit -m "Generate Historie legacy theory audit report"
+          git push origin HEAD:"$HEAD_BRANCH"
