@@ -79,8 +79,19 @@ Litteratur er tredje fullteorifag som er ført gjennom samme fail-closed prosess
 
 Litteratur-auditene skal etter redirect kun lese arkivfilen. Redirect-wrapperen er en bakoverkompatibel URL, ikke en faglig kilde eller selvstendig produktflate.
 
+### Kunst
+
+Kunst er fjerde `legacy_static_theory`-fag som føres gjennom hele equivalence-løpet. Kunst-siden hadde ni faglige seksjoner og én separat produktgrense mot Scenekunst:
+
+- **#5457:** deterministisk audit sammenlignet de faktiske ti legacy-seksjonene mot Kunsts fem manifesteide fagfiler og hele det sekskapitlers registry-eide læreverket. `Avgrensning mot Scenekunst` ble korrekt klassifisert som produktgrense eid av `data/categories/category_contract.json`, ikke som et kunstfaglig emne. Auditen isolerte `gatekunst` som eneste unike kunnskapsgap.
+- **#5461:** gatekunst, veggmaleri og graffiti ble materialisert i det eksisterende canonicale emnet `em_kunst_offentlig_kunst_monumenter`. Migreringen opprettet ikke et 22. emne eller et sjuende kapittelbegrep; Kunst beholdt 21 emner, seks kapitler og den authored seksbegrepskontrakten. Etter migreringen var legacy-dekningen 9/9 og release-manifestet ble regenerert.
+- **#5463:** alle ni kunnskapsseksjoner og produktgrensen fikk eksplisitt adjudisering. Bare `felt` og `offentlig-rom` er `migrated_to_canonical` med #5461 som bevis; de øvrige syv er `canonical_supersedes`. Kunst/Scenekunst-grensen eies fortsatt av category-contracten. Adjudiseringen ble `redirectReady: true` uten å flytte portalruten i samme tranche.
+- Redirect-tranchen bevarer den gamle Kunst-siden byte-for-byte i `data/fag/kunst/archive/merke_kunst_legacy_20260828.html`, gjør `data/fag/kunst/merke_kunst (2).html` til compatibility-redirect og flytter canonical `badgePage`/`Alle merker` til `fagverk.html?subject=kunst#fagverkIaProgresjon`.
+
+Kunst-auditene skal etter redirect bare lese arkivfilen. Compatibility-wrapperen er ikke en faglig kilde, og Kunst/Scenekunst-grensen skal fortsatt eies av category-contracten framfor å materialiseres som et kunstemne.
+
 ## Ikke redirect ennå
 
 - **Politikk:** `rich_runtime`; emneprogresjon, quizhistorikk, steder, begrepsutforsker og øvrig aktiv legacy-runtime må ha dokumentert equivalence før redirect.
-- **Andre fullteorisider:** `legacy_static_theory`; hvert fag må gjennom egen innholdsaudit og eksplisitt adjudisering. By, Historie og Litteratur er prosessbevis, ikke automatisk godkjenning av resten.
+- **Andre fullteorisider:** `legacy_static_theory`; hvert fag må gjennom egen innholdsaudit og eksplisitt adjudisering. By, Historie, Litteratur og Kunst er prosessbevis, ikke automatisk godkjenning av resten.
 - **Tynne legacy-sider:** `legacy_stub`; må gjennom enkel unik-innhold/linkaudit før redirect.
