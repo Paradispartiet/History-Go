@@ -14,6 +14,7 @@ on:
       - 'js/fagverk-subject-model.js'
       - 'js/fagverk.js'
       - 'scripts/audit-fagverk-historie.mjs'
+      - 'scripts/audit-fagverk-historie-legacy-theory.mjs'
       - 'tools/audit-historie-universal-coverage.mjs'
       - 'tools/validate-historie-curriculum-architecture.mjs'
       - 'tools/validate-historie-period-modules.mjs'
@@ -27,6 +28,7 @@ on:
       - 'tools/materialize-historie-editorial-chapters.mjs'
       - 'package.json'
       - 'tests/fagverk-historie.test.mjs'
+      - 'tests/fagverk-historie-legacy-theory-audit.test.mjs'
       - 'tests/historie-curriculum-architecture.test.mjs'
       - 'tests/historie-period-modules.test.mjs'
       - 'tests/historie-canonical-emne-identity.test.mjs'
@@ -35,6 +37,7 @@ on:
       - 'tests/historie-completion.test.mjs'
       - 'tests/historie-theory-integrity.test.mjs'
       - 'docs/HISTORY_CURRICULUM_ARCHITECTURE_V1.md'
+      - 'reports/fagverk/historie-legacy-theory-audit.json'
       - 'reports/historie-canonical-migration/**'
       - 'reports/historie-universal-coverage/**'
       - '.github/workflows/fagverk-historie.yml'
@@ -62,6 +65,7 @@ jobs:
       - name: Validate syntax and deterministic reports
         run: |
           node --check scripts/audit-fagverk-historie.mjs
+          node --check scripts/audit-fagverk-historie-legacy-theory.mjs
           node --check tools/validate-historie-curriculum-architecture.mjs
           node --check tools/validate-historie-period-modules.mjs
           node --check tools/materialize-historie-period-modules.mjs
@@ -82,6 +86,7 @@ jobs:
           node tools/validate-historie-editorial-quality.mjs
           node tools/materialize-historie-editorial-chapters.mjs --check
           node scripts/audit-fagverk-historie.mjs
+          node scripts/audit-fagverk-historie-legacy-theory.mjs
           node tools/audit-historie-universal-coverage.mjs
           node tools/audit-historie-source-authority.mjs
           node tools/audit-historie-completion.mjs
@@ -98,3 +103,4 @@ jobs:
           node --test tests/historie-completion.test.mjs
           node --test tests/historie-theory-integrity.test.mjs
           node --test tests/fagverk-historie.test.mjs
+          node --test tests/fagverk-historie-legacy-theory-audit.test.mjs
