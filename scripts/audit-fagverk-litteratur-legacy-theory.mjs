@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const LEGACY_BADGE = 'data/fag/litteratur/merke_litteratur (1).html';
+const LEGACY_BADGE = 'data/fag/litteratur/archive/merke_litteratur_full_teori_legacy_20260828.html';
 const MANIFEST = 'data/fag/fag_manifest.json';
 const REGISTRY = 'data/fagverk/fagverk_registry.json';
 const REPORT = 'reports/fagverk/litteratur-legacy-theory-audit.json';
