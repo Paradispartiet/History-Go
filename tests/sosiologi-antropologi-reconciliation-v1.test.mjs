@@ -7,6 +7,6 @@ test('Sosiologi og antropologi er en underkategori med ærlig delvis fremdrift, 
   assert.equal(result.status, 'pass');
   assert.equal(result.domains, 12);
   assert.ok(result.materialized > 0 && result.materialized < result.domains);
-  assert.equal(result.nextDomain, 'metode_etnografi_sammenligning');
+  assert.equal(result.nextDomain, 'normer_identitet_hverdagsliv');
   assert.equal(result.reuseWithExpansion, 3);
 });
