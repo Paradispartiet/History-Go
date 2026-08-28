@@ -51,7 +51,7 @@
     if (emne || domain) links.push(`<a href="${escapeHtml(subjectRoot(model, 'fagverkIaEmner'))}">Alle emner</a>`);
     if (chapter) links.push(`<a href="${escapeHtml(subjectRoot(model, 'fagverkIaLaerestoff'))}">Alt lærestoff</a>`);
 
-    const domainId = emne?.domainId || chapter?.primaryDomainId || domain?.id || '';
+    const domainId = chapter?.primaryDomainId || emne?.domainId || domain?.id || '';
     const resolvedDomain = domainId ? model.domainsById.get(domainId) : null;
     if (resolvedDomain && (emne || chapter)) {
       links.push(`<a href="${escapeHtml(MODEL.domainUrl(model.subject.id, resolvedDomain.id, { place: placeId }))}">${escapeHtml(resolvedDomain.label)}</a>`);
@@ -98,9 +98,8 @@
   }
 
   function enhanceChapter(model, chapter, placeId) {
-    const article = document.querySelector('.fagverk-article');
     const diagnostic = document.querySelector('.fagverk-diagnostic');
-    if (!article || !diagnostic || !chapter?.emneIds?.length) return;
+    if (!diagnostic || !chapter?.emneIds?.length) return;
     const emners = chapter.emneIds.map((id) => model.emnersById.get(id)).filter(Boolean);
     if (!emners.length) return;
     const links = emners.map((emne) => `<a href="${escapeHtml(MODEL.emneUrl(model.subject.id, emne.domainId, emne.id, { place: placeId }))}">${escapeHtml(emne.title)}</a>`).join('');
@@ -126,9 +125,11 @@
 
       document.body.classList.add('fagverk-ia-v3-detail');
       installDetailNav(model, { domain, emne, chapter, placeId });
-      if (emne) enhanceEmne(model, progress, emne, placeId);
-      else if (domain) enhanceDomain(model, progress, domain);
+      // Mirror the canonical base renderer exactly: chapter → emne → domain.
+      // Context parameters may coexist in chapter URLs and must not activate two detail views.
       if (chapter) enhanceChapter(model, chapter, placeId);
+      else if (emne) enhanceEmne(model, progress, emne, placeId);
+      else if (domain) enhanceDomain(model, progress, domain);
     } catch (error) {
       console.error('[fagverk-ia-v3-detail]', error);
     }
