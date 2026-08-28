@@ -1,3 +1,4 @@
+// Permanent post-migration lock for the integrated Kunst badge route.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
