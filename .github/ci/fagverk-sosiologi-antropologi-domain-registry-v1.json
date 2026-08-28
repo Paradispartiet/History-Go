@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "subject": "sosiologi_antropologi",
+  "ownerSubject": "politikk",
+  "canonicalSubcategoryId": "sosiologi_antropologi",
+  "totalDomains": 12,
+  "ci": {
+    "changeTokens": ["sosiologi_antropologi", "sosiologi-antropologi"],
+    "progress": {
+      "kind": "registered_chapter_count",
+      "source": "data/fag/politikk/sosiologi_antropologi/production_registry_v1.json",
+      "pointer": ["progress", "materializedDomains"]
+    },
+    "cumulativeAudits": ["scripts/audit-sosiologi-antropologi-reconciliation-v1.mjs"],
+    "cumulativeTests": ["tests/sosiologi-antropologi-reconciliation-v1.test.mjs"],
+    "deterministicPaths": [
+      "data/fag/politikk/sosiologi_antropologi",
+      "data/fagverk/politikk/sosiologi_antropologi",
+      "reports/fagverk/sosiologi-antropologi-reconciliation-v1.json",
+      "reports/fagverk/sosiologi-antropologi-sociological-theory-source-brief-v1-audit.json"
+    ]
+  },
+  "domains": [
+    {
+      "ordinal": 1,
+      "domainId": "sosiologisk_teori",
+      "slug": "sociological-theory",
+      "sourceBrief": "data/fag/politikk/sosiologi_antropologi/sociological_theory_source_claim_brief_v1.json",
+      "sourceBriefScript": "scripts/brief-sosiologi-antropologi-sociological-theory-sources-v1.mjs",
+      "sourceBriefTest": "tests/sosiologi-antropologi-sociological-theory-source-brief-v1.test.mjs",
+      "fulltextMaterializer": "scripts/materialize-sosiologi-antropologi-sociological-theory-fulltext-v1.mjs",
+      "fulltextAudit": "scripts/audit-sosiologi-antropologi-sociological-theory-fulltext-v1.mjs",
+      "fulltextTest": "tests/sosiologi-antropologi-sociological-theory-fulltext-v1.test.mjs"
+    },
+    { "ordinal": 2, "domainId": "antropologisk_teori", "slug": "anthropological-theory" },
+    { "ordinal": 3, "domainId": "metode_etnografi_sammenligning", "slug": "methods-ethnography-comparison" },
+    { "ordinal": 4, "domainId": "normer_identitet_hverdagsliv", "slug": "norms-identity-everyday-life", "reconciliation": "reuse_with_expansion", "existingChapter": "data/fagverk/politikk/normer-identitet-hverdagsliv.json" },
+    { "ordinal": 5, "domainId": "ulikhet_klasse_kjonn_rasialisering", "slug": "inequality-class-gender-racialization", "reconciliation": "reuse_with_expansion", "existingChapter": "data/fagverk/politikk/fordeling-velferd-ulikhet.json" },
+    { "ordinal": 6, "domainId": "familie_slektskap_omsorg_livslop", "slug": "family-kinship-care-life-course" },
+    { "ordinal": 7, "domainId": "institusjoner_organisasjoner_arbeid_velferd", "slug": "institutions-organizations-work-welfare" },
+    { "ordinal": 8, "domainId": "kultur_religion_ritual_materialitet", "slug": "culture-religion-ritual-materiality" },
+    { "ordinal": 9, "domainId": "sted_by_migrasjon_transnasjonalitet", "slug": "place-urbanity-migration-transnationality" },
+    { "ordinal": 10, "domainId": "makt_politikk_kollektiv_handling", "slug": "power-politics-collective-action", "reconciliation": "reuse_with_expansion", "existingChapter": "data/fagverk/politikk/konflikt-makt-sivilsamfunn.json" },
+    { "ordinal": 11, "domainId": "digitalisering_vitenskap_teknologi_samfunn", "slug": "digitalization-science-technology-society" },
+    { "ordinal": 12, "domainId": "anvendt_offentlig_etikk_avkolonisering", "slug": "applied-public-ethics-decolonization" }
+  ]
+}
