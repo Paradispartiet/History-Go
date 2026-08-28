@@ -31,15 +31,19 @@ test('Kunst legacy-teori har deterministisk, fail-closed canonical coverage-audi
   assert.equal(report.summary.knowledgeSectionCount, 9);
   assert.equal(report.summary.productBoundarySectionCount, 1);
   assert.equal(report.summary.productBoundaryCompleteCount, 1);
+  assert.equal(report.summary.anchorCompleteCount, 9);
+  assert.equal(report.summary.manualReviewCount, 0);
+  assert.deepEqual(report.summary.manualReview, []);
+  assert.deepEqual(report.summary.uniqueMissingAnchorTerms, []);
   assert.equal(report.summary.redirectReady, false);
   assert.match(report.summary.redirectBlockReason, /editorial adjudication/i);
-  assert.equal(report.summary.manualReviewCount, report.summary.manualReview.length);
 
   const knowledgeRows = report.rows.filter((row) => row.role === 'knowledge');
   assert.equal(knowledgeRows.length, 9);
   for (const row of knowledgeRows) {
     assert.ok(row.anchors.length > 0, `${row.id} mangler auditankere`);
-    assert.ok(row.anchorCoverage >= 0 && row.anchorCoverage <= 1, `${row.id} har ugyldig dekning`);
+    assert.equal(row.anchorCoverage, 1, `${row.id} har fortsatt canonicalt ankerhull`);
+    assert.deepEqual(row.missingAnchors, [], `${row.id} har fortsatt manglende ankere`);
   }
 
   const boundary = report.rows.find((row) => row.id === 'avgrensning');
@@ -63,29 +67,30 @@ test('Kunst legacy-teori har deterministisk, fail-closed canonical coverage-audi
   assert.equal(report.canonical.categoryBoundaryOwner, CATEGORY_CONTRACT);
   assert.ok(report.canonical.corpusCharacterCount >= 100000, 'Canonical Kunst-korpus er uventet lite');
 
-  assert.deepEqual(report.summary.manualReview.sort(), ['felt', 'offentlig-rom']);
-  assert.deepEqual(report.summary.uniqueMissingAnchorTerms, ['gatekunst']);
-
   assert.ok(fs.existsSync(REPORT), `${REPORT} må være innchecket som permanent deterministisk audit`);
   const committed = JSON.parse(fs.readFileSync(REPORT, 'utf8'));
   assert.deepEqual(committed, report, `${REPORT} er ikke synkron med audit-scriptet`);
 });
 
-test('Kunst-auditen skiller gatekunst-gapet fra allerede canonical konservering og produktgrensen mot Scenekunst', () => {
+test('Kunst-auditen låser gatekunst, konservering og Scenekunst-grensen hos riktige canonicale eiere', () => {
   const report = runAudit('--no-check-report');
   const field = report.rows.find((row) => row.id === 'felt');
   const publicArt = report.rows.find((row) => row.id === 'offentlig-rom');
   const work = report.rows.find((row) => row.id === 'arbeid');
   const boundary = report.rows.find((row) => row.id === 'avgrensning');
 
-  assert.deepEqual(field.missingAnchors, [['gatekunst']]);
-  assert.deepEqual(publicArt.missingAnchors, [['gatekunst']]);
+  for (const row of [field, publicArt]) {
+    const gatekunst = row.anchors.find((anchor) => anchor.alternatives.includes('gatekunst'));
+    assert.equal(gatekunst.found, 'gatekunst');
+    assert.deepEqual(row.missingAnchors, []);
+  }
   assert.deepEqual(work.missingAnchors, []);
   const conservation = work.anchors.find((anchor) => anchor.alternatives.includes('konservering'));
   assert.equal(conservation.found, 'konservering');
   assert.deepEqual(boundary.missingAnchors, []);
 
   const emners = fs.readFileSync('data/fag/kunst/emner_kunst_canonical_v4_5.json', 'utf8');
+  assert.match(emners, /gatekunst/);
   assert.match(emners, /konservering/);
   assert.match(emners, /konservering_og_materialhistorie/);
 
