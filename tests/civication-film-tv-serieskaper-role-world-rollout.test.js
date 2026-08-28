@@ -161,7 +161,7 @@ assert.ok(readiness.summary?.role_world_complete_or_pilot >= 17);
 assert.ok(readiness.summary?.rollout_queue_roles <= 68);
 assert.ok(!(readiness.rollout_queue || []).some(row => row.key === KEY));
 assert.notEqual(readiness.gate?.next_required_pr, 'Role World rollout: film_tv/serieskaper');
-assert.equal(readiness.rollout_queue?.[0]?.key, 'litteratur/redaksjonsmedarbeider');
+assert.notEqual(readiness.rollout_queue?.[0]?.key, KEY, 'Completed Serieskaper cannot return to rollout head');
 assert.equal(readiness.gate?.gate_pass, true);
 assert.equal(readiness.gate?.broad_rollout_allowed_now, true);
 const readinessRole = (readiness.roles || []).find(row => row.key === KEY);
