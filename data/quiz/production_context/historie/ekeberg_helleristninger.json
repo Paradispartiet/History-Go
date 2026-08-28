@@ -1,0 +1,665 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "historie",
+  "targetId": "ekeberg_helleristninger",
+  "profile": "normal_4x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1817,
+    "selection_sha256": "53b55f470d281cfa279466be6fd31e68fb274a98b3645d3c0d62337f09aaf419",
+    "category_id": "historie",
+    "target_id": "ekeberg_helleristninger"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "bytes": 93945,
+      "sha256": "37abfe99b9f3f1db23bb0cb307b2076407076a405c15868b0524ef5b9e31c72d",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "bytes": 2142053,
+      "sha256": "bcb20665e0a013c4f57e17719b610224874552b942b9bcd7421a7239463931ec",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "bytes": 1127330,
+      "sha256": "6db315c9b911fc04b99dd7609e493e744f919448668cf35fe3c72d3dabff59b1",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "bytes": 252328,
+      "sha256": "9462f9fc4a07c9c08593abaa75e4ee1bddd6af9e45a87304b52df66bcdb654be",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "bytes": 6935,
+      "sha256": "162f166d3c5be89d77b7529ba9186a552b791e9dbd04a590a01fdaad28944098",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 16882,
+      "sha256": "60804db1e587faae822930a800cfebac7966fa7e009778d46d94d1f28e02545e",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/historie/ekeberg_helleristninger.json",
+      "bytes": 14202,
+      "sha256": "6d0513402250e2e99e716d3752b08d0dbc97d457bb63929bd90d4a01ed2c2f6d"
+    },
+    "target": {
+      "path": "data/places/historie/oslo/places_historie/ekeberg_helleristninger.json",
+      "bytes": 15874,
+      "sha256": "20fd72543dee304c2c61cde8d3985d9a9cda1648707ff74a78c65d1f89e29ee5"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1129,
+      "selection_sha256": "b632819c59215ea45c525ab7417316b3eaba1a440e19852c67a51cde976dd3e6"
+    },
+    "relations": [],
+    "stories": [
+      {
+        "path": "data/stories/stories_ekeberg_helleristninger.json",
+        "matches": 1,
+        "selection_bytes": 2679,
+        "selection_sha256": "c38ba7a055df2b9d0b290a958dc97ed70bb7e9dc13191a68e10edbf082b588e2"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/historie/ekeberg_helleristninger_sets.json",
+  "source_registry": {
+    "riksantikvaren_object": {
+      "url": "https://api.ra.no/LokaliteterEnkeltminnerOgSikringssoner/collections/lokaliteter/items/41907-1?f=json",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for registrert identitet, figurantall, motivtyper og geometri."
+    },
+    "kulturminnesok": {
+      "url": "https://kulturminnesok.no/ra/lokalitet/41907",
+      "source_type": "official",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert som publikumsrettet registerinngang til samme kulturminne."
+    },
+    "ekeberg_timeline": {
+      "url": "https://ekebergparken.com/historisk-tidslinje",
+      "source_type": "institutional",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for oppdagelsesdato og parkens dateringsanslag."
+    },
+    "ekeberg_heritage": {
+      "url": "https://ekebergparken.com/kulturminner",
+      "source_type": "institutional",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for feltbeskrivelse, motivoversikt og forhistorisk landskapskontekst."
+    },
+    "local_history": {
+      "url": "https://lokalhistoriewiki.no/wiki/Helleristningene_i_Familiedalen",
+      "source_type": "reputable_secondary",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for Paul Johannessen, Jan Petersen og hendelsesforløpet i 1915."
+    },
+    "visit_oslo": {
+      "url": "https://www.visitoslo.com/no/attraksjon/helleristningene-pa-ekeberg/",
+      "source_type": "institutional",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for alternativt dateringsanslag og motivoversikt."
+    },
+    "snl_petersen": {
+      "url": "https://snl.no/Jan_Greve_Thaulow_Petersen",
+      "source_type": "reputable_secondary",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for Petersens identitet og stilling ved Oldsaksamlingen fra 1915."
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/historie/",
+      "data/places/historie/oslo/places_historie/ekeberg_helleristninger.json"
+    ],
+    "active_before": {
+      "file": null,
+      "set_count": 0,
+      "question_count": 0,
+      "finding": "Ingen aktiv målspesifikk quiz var manifestlastet."
+    },
+    "decisions": [
+      "Bygg normal 4x7 med 14 konkrete åpningsspørsmål og teori først i siste sett."
+    ],
+    "knowledge_migration": "Nye Knowledge-enheter følger canonical quiz-ID-er."
+  },
+  "profile_decision": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "justification": "Fire uavhengige læringsjobber bæres av registerdata, motiver, funnhistorie og et reelt daterings-/tolkningsproblem."
+  },
+  "held_back_candidates": [
+    "Eksakt tilblivelsesår.",
+    "Sikker forklaring av motivene som jaktmagi, ritual eller territorium.",
+    "Påstand om at alle tretten figurer er samtidige."
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 23,
+      "emner": 230,
+      "topic_hooks": 230,
+      "methods": 105
+    },
+    "candidate_emner": [
+      {
+        "id": "em_his_arkeologisk_datering_kronologi",
+        "title": "Arkeologisk datering, stratigrafi og kronologi",
+        "score": 100
+      },
+      {
+        "id": "em_his_arkeologisk_kontekst_formation",
+        "title": "Arkeologiske kilder, kontekst og formasjonsprosesser",
+        "score": 100
+      },
+      {
+        "id": "em_his_arkeologisk_landskap_miljo",
+        "title": "Arkeologiske landskap, miljø og ressursbruk",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "his_arkeologisk_datering_kronologi",
+        "title": "Arkeologisk datering, stratigrafi og kronologi",
+        "category_id": "his_forhistorie_arkeologi",
+        "score": 10
+      },
+      {
+        "id": "his_arkeologisk_kontekst_formation",
+        "title": "Arkeologiske kilder, kontekst og formasjonsprosesser",
+        "category_id": "his_forhistorie_arkeologi",
+        "score": 10
+      },
+      {
+        "id": "his_arkeologisk_landskap_miljo",
+        "title": "Arkeologiske landskap, miljø og ressursbruk",
+        "category_id": "his_forhistorie_arkeologi",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "his_forhistorie_arkeologi"
+    ],
+    "emne_ids": [
+      "em_his_arkeologisk_datering_kronologi",
+      "em_his_arkeologisk_landskap_miljo",
+      "em_his_arkeologisk_kontekst_formation"
+    ],
+    "topic_hook_ids": [
+      "his_arkeologisk_kontekst_formation",
+      "his_arkeologisk_datering_kronologi",
+      "his_arkeologisk_landskap_miljo"
+    ],
+    "method_ids": [
+      "met_sporlesning",
+      "met_kildekritikk"
+    ],
+    "thinker_ids": [
+      "ian_hodder"
+    ],
+    "works": [
+      "Reading the Past"
+    ]
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_ekeberg_helleristninger_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Selve helleristningsfeltet i Familiedalen",
+      "source_ids": [
+        "riksantikvaren_object"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_arkeologisk_kontekst_formation"
+    },
+    {
+      "claim_id": "claim_ekeberg_helleristninger_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "41907",
+      "source_ids": [
+        "riksantikvaren_object"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_arkeologisk_kontekst_formation"
+    },
+    {
+      "claim_id": "claim_ekeberg_helleristninger_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "13",
+      "source_ids": [
+        "riksantikvaren_object"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_arkeologisk_kontekst_formation"
+    },
+    {
+      "claim_id": "claim_ekeberg_helleristninger_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "10",
+      "source_ids": [
+        "riksantikvaren_object"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_arkeologisk_kontekst_formation"
+    },
+    {
+      "claim_id": "claim_ekeberg_helleristninger_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Menneske, spissoval figur og fugl",
+      "source_ids": [
+        "riksantikvaren_object"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_arkeologisk_kontekst_formation"
+    },
+    {
+      "claim_id": "claim_ekeberg_helleristninger_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Elgokser",
+      "source_ids": [
+        "riksantikvaren_object"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_arkeologisk_landskap_miljo"
+    },
+    {
+      "claim_id": "claim_ekeberg_helleristninger_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Ekebergparken, museet og Ekebergsletta",
+      "source_ids": [
+        "riksantikvaren_object"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_arkeologisk_kontekst_formation"
+    },
+    {
+      "claim_id": "claim_ekeberg_helleristninger_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "12. september 1915",
+      "source_ids": [
+        "ekeberg_timeline"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_arkeologisk_kontekst_formation"
+    },
+    {
+      "claim_id": "claim_ekeberg_helleristninger_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Preparant Paul Johannessen",
+      "source_ids": [
+        "local_history"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_arkeologisk_kontekst_formation"
+    },
+    {
+      "claim_id": "claim_ekeberg_helleristninger_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Universitetets Oldsaksamling",
+      "source_ids": [
+        "local_history"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_arkeologisk_kontekst_formation"
+    },
+    {
+      "claim_id": "claim_ekeberg_helleristninger_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Jan Greve Thaulow Petersen",
+      "source_ids": [
+        "local_history"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_arkeologisk_kontekst_formation"
+    },
+    {
+      "claim_id": "claim_ekeberg_helleristninger_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Seks eller sju",
+      "source_ids": [
+        "local_history"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_arkeologisk_kontekst_formation"
+    },
+    {
+      "claim_id": "claim_ekeberg_helleristninger_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Bergflaten ble identifisert og dokumentert som kulturminne",
+      "source_ids": [
+        "local_history"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_arkeologisk_kontekst_formation"
+    },
+    {
+      "claim_id": "claim_ekeberg_helleristninger_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Arkeologisk kontroll og identifikasjon",
+      "source_ids": [
+        "local_history"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_arkeologisk_kontekst_formation"
+    },
+    {
+      "claim_id": "claim_ekeberg_helleristninger_quiz_15",
+      "order": 15,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Det er et teknisk representasjonspunkt i et usikkert tidsrom",
+      "source_ids": [
+        "riksantikvaren_object"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_arkeologisk_datering_kronologi"
+    },
+    {
+      "claim_id": "claim_ekeberg_helleristninger_quiz_16",
+      "order": 16,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "At formidlingskilder må sammenlignes og presisjonen holdes ærlig",
+      "source_ids": [
+        "visit_oslo"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_arkeologisk_datering_kronologi"
+    },
+    {
+      "claim_id": "claim_ekeberg_helleristninger_quiz_17",
+      "order": 17,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Riksantikvarens objektregistrering",
+      "source_ids": [
+        "riksantikvaren_object"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_arkeologisk_kontekst_formation"
+    },
+    {
+      "claim_id": "claim_ekeberg_helleristninger_quiz_18",
+      "order": 18,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "At linjene er registrert i motivene",
+      "source_ids": [
+        "riksantikvaren_object"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_arkeologisk_kontekst_formation"
+    },
+    {
+      "claim_id": "claim_ekeberg_helleristninger_quiz_19",
+      "order": 19,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "En arkeologisk bergkunstgruppe knyttet til jeger-, fisker- og sankersamfunn",
+      "source_ids": [
+        "ekeberg_heritage"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_arkeologisk_landskap_miljo"
+    },
+    {
+      "claim_id": "claim_ekeberg_helleristninger_quiz_20",
+      "order": 20,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Strandlinje og arkeologisk kontekst kan avgrense tidsrom",
+      "source_ids": [
+        "ekeberg_heritage"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_arkeologisk_landskap_miljo"
+    },
+    {
+      "claim_id": "claim_ekeberg_helleristninger_quiz_21",
+      "order": 21,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Det som observeres og det som tolkes",
+      "source_ids": [
+        "riksantikvaren_object"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_arkeologisk_kontekst_formation"
+    },
+    {
+      "claim_id": "claim_ekeberg_helleristninger_quiz_22",
+      "order": 22,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Hvordan nyere tilrettelegging framhever registrerte linjer",
+      "source_ids": [
+        "ekeberg_heritage"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_arkeologisk_kontekst_formation"
+    },
+    {
+      "claim_id": "claim_ekeberg_helleristninger_quiz_23",
+      "order": 23,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Svake furer kaster skygger og blir lettere å skille fra bergflaten",
+      "source_ids": [
+        "local_history"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_arkeologisk_kontekst_formation"
+    },
+    {
+      "claim_id": "claim_ekeberg_helleristninger_quiz_24",
+      "order": 24,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Observer skånsomt uten å risse, male eller berøre",
+      "source_ids": [
+        "kulturminnesok"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_arkeologisk_kontekst_formation"
+    },
+    {
+      "claim_id": "claim_ekeberg_helleristninger_quiz_25",
+      "order": 25,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Sammenlign kildegrunnlag, presisjon og begrensninger",
+      "source_ids": [
+        "visit_oslo"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_arkeologisk_datering_kronologi"
+    },
+    {
+      "claim_id": "claim_ekeberg_helleristninger_quiz_26",
+      "order": 26,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Flere tolkninger er mulige, men ingen er sikkert bevart",
+      "source_ids": [
+        "riksantikvaren_object"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_arkeologisk_kontekst_formation"
+    },
+    {
+      "claim_id": "claim_ekeberg_helleristninger_quiz_27",
+      "order": 27,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Observasjon, kontroll og senere dokumentasjon bygger kunnskap trinnvis",
+      "source_ids": [
+        "local_history"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_arkeologisk_kontekst_formation"
+    },
+    {
+      "claim_id": "claim_ekeberg_helleristninger_quiz_28",
+      "order": 28,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Hva kan vi vite, og hvordan vet vi det?",
+      "source_ids": [
+        "riksantikvaren_object"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_arkeologisk_datering_kronologi"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "story",
+      "id": "st_ekeberg_helleristninger_sondagsturen_1915",
+      "source_file": "data/stories/stories_ekeberg_helleristninger.json",
+      "summary": "Da preparant Paul Johannessen satte seg ved en bergflate i Familiedalen 12. september 1915, oppdaget han furer som førte Jan Petersen og Oldsaksamlingen tilbake dagen etter."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "historie_ekeberg_helleristninger_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_ekeberg_helleristninger_quiz_01",
+        "claim_ekeberg_helleristninger_quiz_02",
+        "claim_ekeberg_helleristninger_quiz_03",
+        "claim_ekeberg_helleristninger_quiz_04",
+        "claim_ekeberg_helleristninger_quiz_05",
+        "claim_ekeberg_helleristninger_quiz_06",
+        "claim_ekeberg_helleristninger_quiz_07"
+      ]
+    },
+    {
+      "set_id": "historie_ekeberg_helleristninger_set_2",
+      "order": 2,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_ekeberg_helleristninger_quiz_08",
+        "claim_ekeberg_helleristninger_quiz_09",
+        "claim_ekeberg_helleristninger_quiz_10",
+        "claim_ekeberg_helleristninger_quiz_11",
+        "claim_ekeberg_helleristninger_quiz_12",
+        "claim_ekeberg_helleristninger_quiz_13",
+        "claim_ekeberg_helleristninger_quiz_14"
+      ]
+    },
+    {
+      "set_id": "historie_ekeberg_helleristninger_set_3",
+      "order": 3,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_ekeberg_helleristninger_quiz_15",
+        "claim_ekeberg_helleristninger_quiz_16",
+        "claim_ekeberg_helleristninger_quiz_17",
+        "claim_ekeberg_helleristninger_quiz_18",
+        "claim_ekeberg_helleristninger_quiz_19",
+        "claim_ekeberg_helleristninger_quiz_20",
+        "claim_ekeberg_helleristninger_quiz_21"
+      ]
+    },
+    {
+      "set_id": "historie_ekeberg_helleristninger_set_4",
+      "order": 4,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_ekeberg_helleristninger_quiz_22",
+        "claim_ekeberg_helleristninger_quiz_23",
+        "claim_ekeberg_helleristninger_quiz_24",
+        "claim_ekeberg_helleristninger_quiz_25",
+        "claim_ekeberg_helleristninger_quiz_26",
+        "claim_ekeberg_helleristninger_quiz_27",
+        "claim_ekeberg_helleristninger_quiz_28"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 28,
+    "counts": {
+      "fact": 14,
+      "context": 7,
+      "concept_theory": 7
+    },
+    "ratios": {
+      "fact": 0.5,
+      "context": 0.25,
+      "concept_theory": 0.25
+    }
+  }
+}
