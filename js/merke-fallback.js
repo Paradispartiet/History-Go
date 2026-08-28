@@ -1,13 +1,27 @@
 // @ts-nocheck
-(function installGenericBadgePage(global){
+(function installGenericBadgeRedirect(global){
   'use strict';
   const text=(value)=>String(value==null?'':value).trim();
-  const esc=(value)=>String(value==null?'':value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('\"','&quot;').replaceAll("'",'&#039;');
   const fetchJson=async(url)=>{const response=await fetch(url,{cache:'no-store'});if(!response.ok)throw new Error(`${response.status} ${url}`);return response.json();};
   function resolveBadgeId(rawId,contract){const raw=text(rawId);if((contract.runtimeCategories||[]).includes(raw))return raw;const alias=text(contract.aliases?.[raw]);return (contract.runtimeCategories||[]).includes(alias)?alias:'';}
-  function pointsFor(id,contract){try{const merits=JSON.parse(localStorage.getItem('merits_by_category')||'{}');const ids=new Set([id,...Object.entries(contract.aliases||{}).filter(([,target])=>target===id).map(([alias])=>alias)]);return [...ids].reduce((sum,key)=>sum+Number(merits?.[key]?.points||0),0);}catch{return 0;}}
-  function tierState(tiers,points){let current={label:'Nybegynner',threshold:0};let next=null;for(const tier of tiers){const threshold=Number(tier?.threshold||0);if(points>=threshold)current=tier;else if(!next)next=tier;}return {current,next};}
-  function renderSubjectAction(id,portal){const actions=document.getElementById('genericBadgeActions');const item=(portal.categories||[]).find((row)=>text(row.id)===id);if(!actions||!item)return;const target=text(item.subjectPage);if(target){actions.insertAdjacentHTML('afterbegin',`<a href="${esc(target)}">Åpne faget →</a>`);}else{actions.insertAdjacentHTML('afterbegin',`<span class="is-pending" aria-disabled="true">Faget bygges</span>`);}}
-  async function init(){const params=new URLSearchParams(global.location.search);const requestedId=text(params.get('badge'));const loading=document.getElementById('genericBadgeLoading');const content=document.getElementById('genericBadgeContent');const error=document.getElementById('genericBadgeError');try{const [contract,portal]=await Promise.all([fetchJson('data/categories/category_contract.json'),fetchJson('data/fagverk/fagverk_portal.json')]);const id=resolveBadgeId(requestedId,contract);if(!id)throw new Error(`Ukjent merke: ${requestedId||'(mangler id)'}`);if(requestedId!==id)history.replaceState(null,'',`merke.html?badge=${encodeURIComponent(id)}`);const badge=await fetchJson(`data/badges/${encodeURIComponent(id)}.json`);const points=pointsFor(id,contract);const tiers=Array.isArray(badge.tiers)?badge.tiers:[];const state=tierState(tiers,points);document.title=`${text(badge.name)||contract.labels?.[id]||id} – History Go`;document.getElementById('genericBadgeTitle').textContent=text(badge.name)||contract.labels?.[id]||id;document.getElementById('genericBadgeDescription').textContent=text(badge.description)||'Merkeprofil i History Go.';const image=document.getElementById('genericBadgeImage');image.innerHTML=badge.image?`<img src="${esc(badge.image)}" alt="">`:`<span aria-hidden="true">${esc(badge.icon||'◆')}</span>`;document.getElementById('genericBadgeProgress').innerHTML=`<div><strong>${points} poeng</strong><span>${esc(text(state.current?.label)||'Nybegynner')}</span></div><div><strong>${state.next?Math.max(0,Number(state.next.threshold||0)-points):'Fullført'}</strong><span>${state.next?`poeng til ${esc(state.next.label)}`:'øverste nivå nådd'}</span></div>`;document.getElementById('genericBadgeTiers').innerHTML=tiers.map((tier)=>`<article class="generic-badge-tier${points>=Number(tier.threshold||0)?' is-earned':''}"><strong>${esc(tier.label)}</strong><span>${Number(tier.threshold||0)} poeng</span></article>`).join('');renderSubjectAction(id,portal);loading.hidden=true;content.hidden=false;error.hidden=true;}catch(err){loading.hidden=true;content.hidden=true;error.hidden=false;error.textContent=`Merkesiden kunne ikke lastes: ${err.message}`;console.error('[generic-badge]',err);}}
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+  async function init(){
+    const params=new URLSearchParams(global.location.search);
+    const requestedId=text(params.get('badge'));
+    const error=document.getElementById('genericBadgeError');
+    const loading=document.getElementById('genericBadgeLoading');
+    try{
+      const [contract,portal]=await Promise.all([fetchJson('data/categories/category_contract.json'),fetchJson('data/fagverk/fagverk_portal.json')]);
+      const id=resolveBadgeId(requestedId,contract);
+      if(!id)throw new Error(`Ukjent merke: ${requestedId||'(mangler id)'}`);
+      const item=(portal.categories||[]).find((row)=>text(row.id)===id);
+      if(!item||text(item.subjectStatus)!=='materialized'||!text(item.subjectPage))throw new Error(`Faget ${id} er ikke materialisert.`);
+      const target=`${text(item.subjectPage)}#fagverkIaProgresjon`;
+      global.location.replace(target);
+    }catch(err){
+      if(loading)loading.hidden=true;
+      if(error){error.hidden=false;error.textContent=`Merkevisningen kunne ikke åpne fagets progresjon: ${err.message}`;}
+      console.error('[generic-badge-redirect]',err);
+    }
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else void init();
 })(window);
