@@ -181,7 +181,7 @@ function categoryBoundaryCorpus() {
   if (!text(contract.decisions?.kunst) || !text(contract.decisions?.scenekunst)) {
     throw new Error('Category-contract mangler eksplisitt Kunst/Scenekunst-avgrensning.');
   }
-  return normalize([contract.decisions.kunst, contract.decisions.scenekunst].join(' '));
+  return normalize(['kunst', 'scenekunst', contract.decisions.kunst, contract.decisions.scenekunst].join(' '));
 }
 function anchorResult(corpus, alternatives) {
   const found = alternatives.find((candidate) => corpus.includes(normalize(candidate)));
