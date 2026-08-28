@@ -1,0 +1,128 @@
+{
+  "schema": "history_go_fagverk_legacy_theory_adjudication_v1",
+  "version": "1.0.0",
+  "subject_id": "by",
+  "legacy_sources": [
+    "data/fag/by/merke_by.html",
+    "data/fag/by/teori.html"
+  ],
+  "policy": {
+    "canonical_content_wins": true,
+    "copy_legacy_prose": false,
+    "redirect_target": "fagverk.html?subject=by#fagverkIaProgresjon",
+    "note": "Legacy-merkesiden og teori.html er samme uredigerte teorisyntese. Innhold beholdes bare når det har en eksplisitt canonical eier i det kilde- og claimsporede Fagverket."
+  },
+  "sections": [
+    {
+      "id": "felt",
+      "disposition": "canonical_supersedes",
+      "owner_files": [
+        "data/fag/by/pensum_by.json",
+        "data/fagverk/by/byliv-offentlige-rom.json",
+        "data/fagverk/by/administrasjon-plan-kontroll-beredskap.json"
+      ],
+      "rationale": "Feltavgrensningen er nå eksplisitt modellert gjennom canonicale fagområder, emner og kapitler. Den gamle brede opplistingen skal ikke leve som en parallell teoridefinisjon."
+    },
+    {
+      "id": "normativ",
+      "disposition": "canonical_supersedes",
+      "owner_files": [
+        "data/fagverk/by/arkitektur-type-skala-byform.json",
+        "data/fagverk/by/klima-helse-varme-vann-tilgjengelighet.json",
+        "data/fagverk/by/byliv-stemning-mikrokomfort.json"
+      ],
+      "rationale": "Tilgjengelighet, estetikk/funksjon, bærekraft og lesbarhet behandles i kildebelagte canonicale kapitler med eksplisitte analytiske skiller, fremfor som én normativ legacy-blokk."
+    },
+    {
+      "id": "doxa",
+      "disposition": "canonical_supersedes",
+      "owner_files": [
+        "data/fagverk/by/makt-konflikt-protest-grenser-trygghet.json",
+        "data/fagverk/by/byliv-sosial-offentlighet.json",
+        "data/fagverk/by/bolig-nabolag-tilgang-endring.json"
+      ],
+      "rationale": "Makt, inkludering/ekskludering, bruk, ulikhet og grenser er allerede fordelt på canonicale makt-, offentlighets- og nabolagskapitler. Legacy-begrepet doxa skal ikke fungere som en ekstra innholdsakse."
+    },
+    {
+      "id": "metode",
+      "disposition": "canonical_supersedes",
+      "owner_files": [
+        "data/fag/by/methods_by.json",
+        "data/fagverk/by/data-styring-kart-plan-medvirkning-algoritmer.json",
+        "data/fagverk/by/historiske-lag-ruiner-minner.json"
+      ],
+      "rationale": "Metodene har egne canonicale ID-er og brukes i kapitlene. Romlig analyse, feltobservasjon, materialitet og historiske lag skal eies av metode- og kapittelsystemet, ikke gjentas som fri teoritekst."
+    },
+    {
+      "id": "materiell",
+      "disposition": "canonical_supersedes",
+      "owner_files": [
+        "data/fagverk/by/arkitektur-type-skala-byform.json",
+        "data/fagverk/by/arbeid-naering-handel-logistikk.json",
+        "data/fagverk/by/klima-helse-varme-vann-tilgjengelighet.json"
+      ],
+      "rationale": "Materialitet, bygg, infrastruktur, tekniske systemer og energi har canonicale eiere med kilde- og claimspor. Den gamle materielle dimensjonen er derfor en redundant syntese."
+    },
+    {
+      "id": "sosial",
+      "disposition": "canonical_supersedes",
+      "owner_files": [
+        "data/fagverk/by/byliv-sosial-offentlighet.json",
+        "data/fagverk/by/bolig-nabolag-tilgang-endring.json",
+        "data/fagverk/by/makt-konflikt-protest-grenser-trygghet.json"
+      ],
+      "rationale": "Nabolag, eierskap, offentlig rom, klasse/ulikhet og sosial kontroll er allerede modellert på tvers av canonicale sosial-, bolig- og maktkapitler."
+    },
+    {
+      "id": "geografisk",
+      "disposition": "migrated_to_canonical",
+      "owner_files": [
+        "data/fagverk/by/arkitektur-type-skala-byform.json",
+        "data/fagverk/by/regional-global-pendling-migrasjon-sammenligning.json",
+        "data/fagverk/by/klima-helse-varme-vann-tilgjengelighet.json"
+      ],
+      "migration_refs": [
+        "PR #5435",
+        "data/fagverk/by/arkitektur-type-skala-byform/01-grunnlag.json",
+        "data/fagverk/by/arkitektur-type-skala-byform/claims.json"
+      ],
+      "rationale": "Auditen fant topografi og grunnforhold som de eneste eksplisitte semantic-gapene. #5435 migrerte dem kildebelagt inn i Arkitektur-kapittelet og skilte synlig topografi fra dokumentasjonskrevende grunnforhold. Landskap, vannkant og romlig/geografisk skala var allerede canonicalt dekket."
+    },
+    {
+      "id": "temporal",
+      "disposition": "canonical_supersedes",
+      "owner_files": [
+        "data/fagverk/by/historiske-lag-ruiner-minner.json",
+        "data/fagverk/by/arkitektur-gatekant-makt-ombruk.json"
+      ],
+      "rationale": "Historiske lag, vern, transformasjon/ombruk, riving og arkitektoniske perioder er kildebelagt i canonicale historie- og arkitekturkapitler."
+    },
+    {
+      "id": "blindsoner",
+      "disposition": "canonical_supersedes",
+      "owner_files": [
+        "data/fagverk/by/boligpolitikk-pris-leie-eie-tilgang.json",
+        "data/fagverk/by/makt-konflikt-protest-grenser-trygghet.json",
+        "data/fagverk/by/data-styring-kart-plan-medvirkning-algoritmer.json"
+      ],
+      "rationale": "Tilgang, privatisering, vedlikehold/bydrift, ulikhet og økonomiske maktforhold behandles eksplisitt i canonicale bolig-, makt- og styringskapitler. Legacy-listen er ikke en selvstendig kunnskapsenhet."
+    },
+    {
+      "id": "begreper",
+      "disposition": "canonical_supersedes",
+      "owner_files": [
+        "data/fag/by/pensum_by.json",
+        "data/fag/by/emner_by.json",
+        "data/fag/by/methods_by.json",
+        "data/fagverk/by/arkitektur-type-skala-byform.json"
+      ],
+      "rationale": "Kjernebegrepene eies nå av subject-model, emner, metoder og kildebelagte kapitler. En statisk legacy-ordliste skal ikke konkurrere med den canonicale begrepsmodellen."
+    },
+    {
+      "id": "bidrag",
+      "disposition": "retire_legacy_product_copy",
+      "owner_files": [],
+      "rationale": "Dette er gammel produkttekst om at steder og personer bidrar til merket, ikke selvstendig faglig innhold. Koblingen håndteres nå av Fagverkets Utforsk- og progresjonsflater."
+    }
+  ]
+}
