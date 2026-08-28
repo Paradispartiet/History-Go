@@ -4,6 +4,13 @@
 
   const MODEL = global.HGFagverkSubjectModel;
   if (!MODEL) throw new Error('HGFagverkSubjectModel må lastes før fagverk-ia-v3.js');
+  const ROOT_VIEW_IDS = Object.freeze([
+    'fagverkIaOversikt',
+    'fagverkIaEmner',
+    'fagverkIaLaerestoff',
+    'fagverkIaUtforsk',
+    'fagverkIaProgresjon'
+  ]);
 
   function text(value) {
     return String(value == null ? '' : value).trim();
@@ -38,6 +45,54 @@
       observer.observe(content, { attributes: true, attributeFilter: ['hidden'] });
       observer.observe(error, { attributes: true, attributeFilter: ['hidden'] });
     });
+  }
+
+  function hashId() {
+    try {
+      return decodeURIComponent(text(global.location.hash).replace(/^#/, ''));
+    } catch {
+      return text(global.location.hash).replace(/^#/, '');
+    }
+  }
+
+  function resolveRootView() {
+    const targetId = hashId();
+    if (ROOT_VIEW_IDS.includes(targetId)) return targetId;
+    const target = targetId ? document.getElementById(targetId) : null;
+    const owner = target?.closest?.('.fagverk-ia-section');
+    return ROOT_VIEW_IDS.includes(owner?.id) ? owner.id : ROOT_VIEW_IDS[0];
+  }
+
+  function activateRootView(nav, root, { scrollNestedTarget = false } = {}) {
+    const activeViewId = resolveRootView();
+    root.querySelectorAll('.fagverk-ia-section').forEach((section) => {
+      section.hidden = section.id !== activeViewId;
+    });
+    nav.querySelectorAll('a[href^="#"]').forEach((link) => {
+      const active = link.getAttribute('href') === `#${activeViewId}`;
+      if (active) link.setAttribute('aria-current', 'page');
+      else link.removeAttribute('aria-current');
+    });
+
+    const nestedTargetId = hashId();
+    if (scrollNestedTarget && nestedTargetId && !ROOT_VIEW_IDS.includes(nestedTargetId)) {
+      const target = document.getElementById(nestedTargetId);
+      if (target?.closest?.(`#${activeViewId}`)) global.setTimeout(() => target.scrollIntoView({ block: 'start' }), 0);
+    }
+  }
+
+  function installRootNavigation(nav, root) {
+    nav.querySelectorAll('a[href^="#"]').forEach((link) => {
+      link.addEventListener('click', (event) => {
+        const targetId = text(link.getAttribute('href')).replace(/^#/, '');
+        if (!ROOT_VIEW_IDS.includes(targetId)) return;
+        event.preventDefault();
+        if (hashId() !== targetId) global.history.pushState(null, '', `#${targetId}`);
+        activateRootView(nav, root);
+      });
+    });
+    global.addEventListener('hashchange', () => activateRootView(nav, root, { scrollNestedTarget: true }));
+    activateRootView(nav, root, { scrollNestedTarget: true });
   }
 
   function renderOverview(model, progress) {
@@ -232,6 +287,7 @@
       renderLaerestoff(model, placeId);
       renderUtforsk(model);
       renderProgresjon(model, progress);
+      installRootNavigation(nav, root);
 
       document.body.classList.add('fagverk-ia-v3-root');
       nav.hidden = false;
