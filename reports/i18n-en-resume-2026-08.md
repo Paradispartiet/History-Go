@@ -1,4 +1,4 @@
-# EN i18n – gjenopptatt oversetterjobb (august 2026)
+# i18n stedsoversettelse – gjenopptatt jobb (august 2026)
 
 ## Utgangspunkt
 
@@ -92,15 +92,60 @@ oppføring beholder avsnittsinndelingen og lengden i kilden, slik at
 | Missing | 816 | 816 |
 | Extra | 4 | 4 |
 
+## Retting mot etablert arbeidsmåte
+
+De fem første batchene ble kjørt kun for `en`. Det var en avvikelse fra
+konvensjonen: den nyeste serien, `content-i18n-places-batch-N` (sist
+batch 18), oversetter **en/es/pt samlet**. Den eldre `i18n-en-batch-*`
+serien var enspråklig og ble avsluttet med
+`i18n-en-final-completion.md`.
+
+Arbeidet er lagt om for å følge den etablerte måten:
+
+- **es og pt hentes inn igjen** for de 60 oppføringene som ble gjort
+  kun for `en`, oversatt mot samme norske kildetekst.
+- **`i18n-stamp-places.js` kjøres etter hver merge**, slik batch-
+  rapportene fra forrige runde gjør. Den bekrefter at hashene i
+  oversettelsene stemmer med master (`hashes changed: 0`).
+- **Arbeidslister skrives til `tmp/i18n/`**, ikke til en midlertidig
+  mappe utenfor repoet.
+- Sammenslåingsmetoden var allerede riktig: midlertidig JSON per batch
+  som slås inn med et lite Node-skript, ingen lange oversettelser
+  injisert direkte som kommandolinjeargumenter.
+
+Status for etterslepet es/pt underveis: 20 av de 60 er hentet inn
+igjen, og OK for både es og pt har gått fra 331 til 351.
+
+## Feil nummer to: stamp-skriptet
+
+`i18n-stamp-places.ts` hadde nøyaktig samme feil i `extractRows()` som
+kvalitetsskriptet, med `Master places: 0` som resultat. Skriptet fant
+ingen steder og gjorde ingenting — konvensjonens etter-batch-steg var
+altså virkningsløst.
+
+Retting av den feilen alene ville derimot vært skadelig. Stamperen
+overskrev `_sourceHash` ubetinget, og en avvikende hash er nettopp slik
+`i18n-audit-places.js` oppdager at en oversettelse er utdatert. Med
+1212 foreldede oppføringer per språk ville et enkelt kjør ha merket alt
+som ajour uten at ett ord var oversatt.
+
+Stamperen setter derfor nå bare hash der den mangler helt. Å overskrive
+en avvikende hash krever `--restamp-stale`, og antallet foreldede
+oppføringer som ble stående rapporteres. Forrige runde kunne kjøre
+stamperen trygt fordi stale da var 0; det gjelder ikke lenger.
+
 ## Gjenstående og åpne spørsmål
 
 - **1152 oppføringer igjen for `en`** (816 missing + 336 stale), og
-  tilsvarende 1212 for hver av `es` og `pt`. Ved 12 per batch er dette
-  omkring 290 batcher totalt. Jobben trenger flere økter.
-- **Prioritering ikke avklart for `es`/`pt`.** `DEFAULT_LANGS` i
-  skriptene er `["en"]`, og arbeidet her har fulgt det. Om spansk og
-  portugisisk skal følge engelsk løpende eller tas som egne runder er
-  et produktvalg.
+  1196 for hver av `es` og `pt`. Konvensjonens batchstørrelse er 20
+  steder à tre språk. Jobben trenger mange flere økter.
+- **es/pt følger engelsk løpende.** Dette var uavklart tidligere i
+  runden, men konvensjonen svarer på det: `content-i18n-places-batch-N`
+  oversetter alle tre språk i samme batch. `DEFAULT_LANGS = ["en"]` i
+  skriptene er bare et standardargument, ikke en prioritering.
+- **40 av de 60 mangler fortsatt es/pt.** Etterslepet fra de
+  enspråklige batchene må hentes helt inn før nye batcher starter, ellers
+  driver de tre ordbøkene fra hverandre igjen.
 - **Fire ekstra oversettelses-ID-er** (`schous_plass`, `kampen`,
   `vaterland`, `gamlebyen`) har ikke lenger noe master-sted. De er
   bevisst ikke slettet: navnene er reelle Oslo-strøk som kan bli lagt
