@@ -45,7 +45,8 @@ assert.equal(checklist.principles.new_runtime_forbidden, true);
 assert.equal(checklist.principles.new_parallel_scene_format_forbidden, true);
 
 const index = read('data/Civication/roleWorlds/index.json');
-assert.equal(index.status, 'ten_role_worlds_materialized');
+assert.match(index.status, /_role_worlds_materialized$/, 'Role World index must remain in a materialized state');
+assert.ok(index.roles.length >= 10, 'Programleder completion must not depend on a historical exact Role World count');
 assert.equal(index.roles.filter(row => row.category === 'film_tv' && row.role_scope === ROLE).length, 1);
 assert.equal(index.roles.find(row => row.category === 'film_tv' && row.role_scope === ROLE).status, 'role_world_complete');
 
