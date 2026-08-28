@@ -52,11 +52,12 @@
     const subjectPage = text(item.subjectPage);
     const subjectReady = text(item.subjectStatus) === 'materialized' && Boolean(subjectPage);
     const badgePage = text(item.badgePage);
+    const integratedBadgeRoute = subjectReady && badgePage === `${subjectPage}#fagverkIaProgresjon`;
 
     const subjectAction = subjectReady
       ? `<a class="fagverk-portal-action is-primary" href="${esc(subjectPage)}"><strong>Åpne faget →</strong><small>Emner, lærestoff, utforsk og progresjon</small></a>`
       : '<span class="fagverk-portal-action is-pending" aria-disabled="true"><strong>Faget bygges →</strong><small>Fagsiden er ikke materialisert ennå</small></span>';
-    const badgeCompatibility = badgePage
+    const badgeCompatibility = badgePage && !integratedBadgeRoute
       ? `<a class="fagverk-portal-compat" href="${esc(badgePage)}">Åpne eksisterende merkevisning</a>`
       : '';
 
