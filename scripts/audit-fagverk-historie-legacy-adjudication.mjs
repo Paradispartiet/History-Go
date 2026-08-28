@@ -5,7 +5,8 @@ import { spawnSync } from 'node:child_process';
 const ROOT = process.cwd();
 const ADJUDICATION = 'data/fagverk/historie/legacy_theory_adjudication_v1.json';
 const PORTAL = 'data/fagverk/fagverk_portal.json';
-const LEGACY_BADGE = 'data/fag/historie/merke_historie (1).html';
+const LEGACY_BADGE = 'data/fag/historie/archive/merke_historie_full_teori_legacy_20260828.html';
+const COMPAT_BADGE_PAGE = 'data/fag/historie/merke_historie (1).html';
 const EXPECTED_TARGET = 'fagverk.html?subject=historie#fagverkIaProgresjon';
 const KNOWLEDGE_DISPOSITIONS = new Set(['canonical_supersedes', 'migrated_to_canonical']);
 const PRODUCT_DISPOSITIONS = new Set(['retire_legacy_product_copy']);
@@ -25,7 +26,7 @@ function runAnchorAudit() {
   return JSON.parse(result.stdout);
 }
 
-for (const required of [ADJUDICATION, PORTAL, LEGACY_BADGE]) {
+for (const required of [ADJUDICATION, PORTAL, LEGACY_BADGE, COMPAT_BADGE_PAGE]) {
   if (!exists(required)) throw new Error(`Mangler nødvendig Historie-adjudiseringsfil: ${required}`);
 }
 
@@ -111,6 +112,11 @@ const knowledgeRows = rows.filter((row) => row.role === 'knowledge');
 const productRows = rows.filter((row) => row.role === 'legacy_product_copy');
 const historiePortal = portal.categories?.find((item) => item.id === 'historie');
 if (!historiePortal) throw new Error('Historie mangler i fagverk_portal.json.');
+const portalRoute = text(historiePortal.badgePage);
+const portalRedirected = portalRoute === EXPECTED_TARGET;
+const legacyBadgeSourcePreserved = exists(LEGACY_BADGE);
+const compatibilityRedirectHtml = fs.readFileSync(path.join(ROOT, COMPAT_BADGE_PAGE), 'utf8');
+const compatibilityRedirectPresent = compatibilityRedirectHtml.includes('location.replace') && compatibilityRedirectHtml.includes('subject=historie#fagverkIaProgresjon');
 
 const redirectReady = knowledgeRows.length === anchorAudit.summary.knowledgeSectionCount
   && knowledgeRows.every((row) => row.adjudicated && row.anchorCoverage === 1 && KNOWLEDGE_DISPOSITIONS.has(row.disposition) && row.ownerFiles.length > 0)
@@ -134,12 +140,17 @@ const report = {
     anchorAuditRedirectReady: anchorAudit.summary.redirectReady,
     redirectReady,
     redirectTarget: EXPECTED_TARGET,
-    portalStillLegacy: historiePortal.badgePage === LEGACY_BADGE
+    portalRoute,
+    portalRedirected,
+    legacyBadgeSourcePreserved,
+    compatibilityRedirectPresent
   },
   rows
 };
 
 if (!report.summary.redirectReady) throw new Error('Historie legacy adjudication er ikke redirect-klar.');
-if (!report.summary.portalStillLegacy) throw new Error('Adjudiseringsfasen skal ikke endre Historie badgePage; redirect skjer i egen tranche.');
+if (!report.summary.portalRedirected) throw new Error(`Historie badgePage må peke til ${EXPECTED_TARGET} etter grønn adjudisering.`);
+if (!report.summary.legacyBadgeSourcePreserved) throw new Error('Arkivert Historie-teori må bevares som auditkilde.');
+if (!report.summary.compatibilityRedirectPresent) throw new Error('Legacy Historie-URL må være en compatibility-redirect til Progresjon.');
 
 process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
