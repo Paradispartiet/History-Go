@@ -54,7 +54,17 @@ assert.ok(readiness.blocked_roles.length > 0, 'Policy opening must not erase rol
 const blocked = new Set(readiness.blocked_roles.map((row) => row.key));
 assert.ok(readiness.first_wave_candidates.every((row) => !blocked.has(row.key)), 'Blocked roles cannot enter the first controlled wave');
 assert.ok(readiness.first_wave_candidates.every((row) => row.classification === 'rollout_ready'));
-assert.ok(readiness.first_wave_candidates.length >= 3 && readiness.first_wave_candidates.length <= 4);
+const availableReadyFamilies = new Set(
+  readiness.rollout_queue
+    .filter((row) => row.classification === 'rollout_ready')
+    .map((row) => row.structural_family)
+).size;
+const minimumWaveSize = Math.min(3, availableReadyFamilies);
+const maximumWaveSize = Math.min(4, availableReadyFamilies);
+assert.ok(
+  readiness.first_wave_candidates.length >= minimumWaveSize && readiness.first_wave_candidates.length <= maximumWaveSize,
+  `First controlled wave must use 3–4 distinct rollout-ready families when available, or every available family while the ready queue is smaller (available=${availableReadyFamilies}, selected=${readiness.first_wave_candidates.length})`
+);
 assert.equal(new Set(readiness.first_wave_candidates.map((row) => row.structural_family)).size, readiness.first_wave_candidates.length);
 
 const roleOwned = new Set(matrix.role_owned_not_global || []);

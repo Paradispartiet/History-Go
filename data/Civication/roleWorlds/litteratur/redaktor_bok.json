@@ -1,0 +1,1214 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "litteratur",
+  "role_scope": "redaktor_bok",
+  "title": "Redaktør (bok) — manusspor, korrigerbar rytme og situert redaksjonell tillit",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "Å utvikle et bokmanus over tid når forfatterautonomi, litterær vurdering, marked, produksjon og porteføljepress trekker i ulike retninger, uten å gjøre redaktørens smak eller standing til skjult beslutningsmakt.",
+    "description": "Role World-en lukker readiness-gjelden rhythm_waiting_handoff_rework og situated_reputation ved å følge det eksisterende manus- og struktursporet gjennom venting, handoff, rework og forsinkede konsekvenser uten å endre rollemodell, work grammar, åtte-stegsplan eller Scene Pipeline."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "bureaucratic_power",
+    "status_anxiety",
+    "shame_reputation",
+    "loyalty_up_down",
+    "social_mask",
+    "precarity",
+    "care_vs_efficiency"
+  ],
+  "social_environments": [
+    "Manusrommet der helhetslesing, tekstbelegg, tolkningsusikkerhet og detaljredigering må holdes i samme beslutningsspor.",
+    "Forfattermøtet der redaktøren må skille observasjon, råd, avgrenset prøve og faktisk krav slik at teksten forblir forfatterens.",
+    "Utgivelsesrådet der litterær vurdering, marked, portefølje og produksjon legges ved siden av hverandre uten at én type evidens blir total fasit.",
+    "Prøveleserflaten der sprikende reaksjoner kan bli mønsterevidens uten å bli direkte redigeringsordrer.",
+    "Produksjonshandoff der omfang og tid må være synlig samtidig som uavklarte manusspørsmål ikke skjules for å få en roligere plan.",
+    "Rettighets- og kontraktssporet der redaktøren må gi fra seg bindende vilkårsspørsmål til faktisk beslutningseier.",
+    "Fagfellesskapet der redaksjonell standing bygges av etterprøvbar nærlesing, korrigerbarhet og proporsjonal revisjon.",
+    "Privatlivet der porteføljeprestisje, forfatterkritikk og usikkerhet må kunne skilles fra personlig verdi."
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "book_editor_author_world",
+      "social_function": "forfatter som eier teksten og møter redaktørens problemforståelse, råd og avgrensede prøvearbeid",
+      "class_position": "skapende samarbeidspartner med tekstlig eierskap og lavere organisatorisk makt i forlaget",
+      "status": "høy situert autoritet over verkets prosjekt, varierende organisatorisk innflytelse",
+      "power_over_player": "kan godta, avvise eller omforme redaksjonelle forslag og gjøre skjult løsningsmakt synlig",
+      "wants": "presise problemer, reell medvirkning og et manus som utvikles uten at stemmen overtas",
+      "conceals": "at tillitsbrudd kan gjøre også faglig gode observasjoner vanskelige å høre etter flere store krav",
+      "speech_style": "verk- og eierskapsnær; spør hva du faktisk ser i teksten og om løsningen allerede er bestemt",
+      "teaches_player": "at redaksjonell innflytelse blir sterkere når forfatteren kan skille evidens, råd og beslutning"
+    },
+    {
+      "id": "book_editor_leadership_world",
+      "social_function": "redaksjonssjef som eier portefølje- og publiseringsvalg utenfor bokredaktørens delegerte mandat",
+      "class_position": "organisatorisk leder med formell beslutningsmakt i forlagslinjen",
+      "status": "høy intern status",
+      "power_over_player": "kan prioritere prosjekter, be om beslutningsgrunnlag og avgjøre større porteføljevalg innen egen fullmakt",
+      "wants": "sporbar anbefaling, tydelig usikkerhet og realistisk neste steg",
+      "conceals": "at behovet for en klar porteføljehistorie kan gjøre blandet evidens sosialt ubehagelig",
+      "speech_style": "kort og beslutningsnær; spør hva du anbefaler, hva som fortsatt er usikkert og hvem som faktisk beslutter",
+      "teaches_player": "at tydelig redaksjonell ledelse krever mandatklarhet like mye som litterær dømmekraft"
+    },
+    {
+      "id": "book_editor_market_world",
+      "social_function": "markeds- og salgsaktør som gjør målgruppe, posisjonering og kommersiell usikkerhet synlig",
+      "class_position": "fagspesialist med høy situert informasjon om marked men uten tekstlig eierskap",
+      "status": "middels til høy prosjektstatus",
+      "power_over_player": "kan endre risikobildet og gjøre en litterær løsning kommersielt dyrere eller vanskeligere å posisjonere",
+      "wants": "et verk som kan forklares til relevante lesere uten at prosjektets særpreg blir uforståelig",
+      "conceals": "at prognoser kan få mer sikker retorikk enn datagrunnlaget tåler når presentasjonstidspunktet nærmer seg",
+      "speech_style": "målgruppe- og sammenligningsnær; snakker om lesere, posisjon og usikker rekkevidde",
+      "teaches_player": "at markedskunnskap er relevant evidens uten å være tekstfaglig fasit"
+    },
+    {
+      "id": "book_editor_production_world",
+      "social_function": "produksjonsansvarlig som trenger omfang, frist og håndterbare revisjoner for å planlegge det videre løpet",
+      "class_position": "operativ spesialist med kontroll over produksjonskonsekvens og tidsplan",
+      "status": "middels organisatorisk status og høy situert gjennomføringsmakt",
+      "power_over_player": "kan gjøre kostnaden ved sen rework konkret og kreve tydelig siste bekreftede manusstatus",
+      "wants": "avgrensede endringer, ærlig usikkerhet og handoffs som ikke flytter skjult arbeid nedstrøms",
+      "conceals": "at planmessig ro kan bli mer attraktiv enn å åpne et reelt manusproblem sent i løpet",
+      "speech_style": "omfangs- og fristnær; spør hva som faktisk endres, når det kan låses og hva som fortsatt venter",
+      "teaches_player": "at produksjonsrytme er reell redaksjonell ramme, men ikke publiseringsmyndighet"
+    },
+    {
+      "id": "book_editor_peer_world",
+      "social_function": "fagfelle som vurderer nærlesing, tolkningsåpenhet, revisjonsomfang og redaksjonell korrigerbarhet",
+      "class_position": "profesjonell likemann uten direkte beslutningsmyndighet over det aktuelle verket",
+      "status": "høy epistemisk og kollegial innflytelse",
+      "power_over_player": "kan gjøre smakstyring, bekreftelsesbias eller overdreven standardisering synlig i fagmiljøet",
+      "wants": "tekstbelegg, proporsjonal revisjon og et beslutningsspor som tåler alternativ lesning",
+      "conceals": "at faglig prestisje også kan belønne en sterk egen redaktørstil selv når den passer dårlig til ett bestemt manus",
+      "speech_style": "analytisk og sammenlignende; spør hvilket tekststed, hvilken hypotese og hvilket reversibelt grep som følger",
+      "teaches_player": "at fagfellestanding bygges av begrunnelse og korrigerbarhet mer enn av sikker fremtoning"
+    },
+    {
+      "id": "book_editor_reader_world",
+      "social_function": "prøveleser som møter manusets orientering, relasjoner, rytme og slutt uten innsiden av redaksjonsprosessen",
+      "class_position": "ekstern evidensgiver uten portefølje- eller tekstmyndighet",
+      "status": "lav formell status, høy situert verdi som faktisk leserrespons",
+      "power_over_player": "kan vise gjentatte forståelsesproblemer eller friksjon som intern nærlesing har normalisert",
+      "wants": "en lesbar tekst som fortsatt har særpreg og ikke forklarer bort all tvetydighet",
+      "conceals": "at egen smak lett kan formuleres som en generell leserregel selv om responsen bare er ett datapunkt",
+      "speech_style": "erfaringsnær; beskriver hvor orientering, relasjon eller rytme skiftet for dem",
+      "teaches_player": "at leserrespons er evidens som må tolkes, ikke direkte ordre"
+    },
+    {
+      "id": "book_editor_rights_world",
+      "social_function": "rettighets- eller kontraktseier som håndterer bindende vilkår og fullmakter utenfor bokredaktørens redaksjonelle mandat",
+      "class_position": "formell avtale- eller rettighetsrolle med avgrenset beslutningskompetanse",
+      "status": "høy situert prosessautoritet",
+      "power_over_player": "kan stoppe løfter uten fullmakt og kreve at redaksjonell konsekvens skilles fra juridisk eller kommersiell bindende beslutning",
+      "wants": "presis handoff, konfidensialitet og ingen uautoriserte løfter om forskudd, rettigheter eller vilkår",
+      "conceals": "at raske forfatteravklaringer kan gjøre uformelle formuleringer fristende før fullmakten er sjekket",
+      "speech_style": "mandat- og vilkårsnær; spør hvem som kan love hva og hvilken avtale som faktisk finnes",
+      "teaches_player": "at profesjonell tillit noen ganger bygges ved å gi fra seg beslutningen til riktig eier"
+    },
+    {
+      "id": "book_editor_private_world",
+      "social_function": "privat nær relasjon som møter personen når forfatterkritikk, porteføljestatus og uferdig manusarbeid følger med hjem",
+      "class_position": "privat likemann uten redaksjonell myndighet",
+      "status": "emosjonell nærhet uten arbeidsrang",
+      "power_over_player": "kan utfordre behovet for å gjøre enhver redaksjonell uenighet til en dom over egen verdi eller kompetanse",
+      "wants": "at arbeidet kan legges bort når forfatter, leder eller annen eier faktisk har neste steg",
+      "conceals": "at det blir krevende når hver tekstlig uenighet gjenfortelles som personlig statuskamp",
+      "speech_style": "direkte og uformell; spør hva du faktisk eier nå og hva som må vente til i morgen",
+      "teaches_player": "at redaksjonell standing er situert og ikke identisk med personlig verdi"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "manuscript_decision_trace",
+      "meaning": "om tekstfunn, tolkning, anbefaling, prøve og senere resultat forblir koblet gjennom samme manusprosjekt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "revision_scope_clarity",
+      "meaning": "om rework forblir avgrenset til det evidensen faktisk åpner og ikke sklir til skjult full omskriving",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "handoff_clarity",
+      "meaning": "om siste bekreftede manusstatus, usikkerhet, omfang og faktisk beslutningseier overlever handoff mellom redaksjon, marked, produksjon og formelle eiere",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "author_trust_standing",
+      "meaning": "situert tillit hos forfatteren til redaktørens problemforståelse, transparens og respekt for tekstlig eierskap",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "editorial_leadership_standing",
+      "meaning": "situert tillit hos redaksjonsledelsen til helhetsdømmekraft, risiko og mandatklar anbefaling",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "market_sales_standing",
+      "meaning": "situert tillit hos marked og salg til at målgruppe- og posisjoneringskunnskap brukes åpent uten å skjules som litterær nødvendighet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "production_standing",
+      "meaning": "situert tillit i produksjon til realistisk omfang, frist, venting og sporbar rework",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "peer_editor_standing",
+      "meaning": "situert fagfellestillit til nærlesing, tolkningsusikkerhet og proporsjonal revisjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "reader_evidence_standing",
+      "meaning": "situert tillit til at prøveleserrespons brukes som evidens uten å bli direkte redigeringsordre eller global popularitet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "rights_contract_standing",
+      "meaning": "situert tillit hos formelle rettighets- og kontraktseiere til fullmaktsklar handoff og konfidensialitet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "private_editorial_status_mask",
+      "meaning": "hvor sterkt redaksjonell prestisje, forfatteruenighet og porteføljestatus smelter sammen med personlig verdi privat",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "work_rhythm_model": {
+    "runtime_binding": "editorial_only_existing_pipeline",
+    "continuity_anchor": "litteratur_redaktor_bok_struktur_001",
+    "new_runtime_state": false,
+    "rule": "Waiting, handoff og rework er eksplisitte redaksjonelle arbeidsfaser i den eksisterende Scene Pipeline. Venting på forfatter, lesere, portefølje, produksjon eller rettighets-/kontraktsavklaring kan endre tempo, men aldri gi redaktøren publiserings-, rettighets- eller kontraktsmyndighet eller rett til å overta forfatterens stemme.",
+    "states": [
+      {
+        "id": "waiting",
+        "meaning": "Bokprosjektet står legitimt i venteposisjon mens forfatterversjon, prøveleserrespons, porteføljevalg, produksjonsinformasjon eller formell rettighets- og kontraktsavklaring mangler.",
+        "guardrails": [
+          "venting skal ha tydelig grunn, eier og hva som må bli sant før neste redaksjonelle steg",
+          "redaktøren kan ikke fylle ventetiden med antakelser som behandles som publiseringsløfte eller ferdig beslutning"
+        ]
+      },
+      {
+        "id": "handoff",
+        "meaning": "Et manusspørsmål, en anbefaling eller en dokumentert prosjektstatus overleveres til forfatter, redaksjonsledelse, marked, produksjon eller formell rettighets-/kontraktseier med eksplisitt mottakeransvar.",
+        "guardrails": [
+          "handoff skal bevare tekstgrunnlag, usikkerhet, omfang og faktisk beslutningseier",
+          "mottakerens myndighet følger rolle og mandat, ikke redaktørens standing eller nære forfatterrelasjon"
+        ]
+      },
+      {
+        "id": "rework",
+        "meaning": "Manus, struktur, slutt, motiv eller stemme returnerer for avgrenset ny vurdering når forfatterarbeid, leserevidens eller produksjonsrammer viser at et tidligere premiss ikke holder fullt ut.",
+        "guardrails": [
+          "rework skal bruke det forrige beslutningssporet og ikke late som tidligere uenighet aldri fantes",
+          "ny bearbeiding skal begrenses til det evidensen faktisk åpner, ikke bli skjult full omskriving"
+        ]
+      },
+      {
+        "id": "interruption",
+        "meaning": "Ny leserevidens, markedspress, produksjonsfrist eller rettighets-/kontraktsspørsmål kan bryte arbeidsrekkefølgen uten å erstatte det vedvarende manussporet eller endre myndighetsgrensene.",
+        "guardrails": [
+          "hastegrad kan endre prioritet men ikke gjøre markedssignal til tekstfaglig fasit",
+          "formelle vilkår og bindende løfter handoffes til riktig eier når de ligger utenfor redaktørens mandat"
+        ]
+      },
+      {
+        "id": "delayed_consequence",
+        "meaning": "Et tidligere struktur-, slutt-, motiv- eller stemmevalg kommer tilbake senere som leserforståelse, forfattertillit, produksjonskostnad, porteføljerisiko eller dokumentert redaksjonell læring.",
+        "guardrails": [
+          "senere effekt vurderes mot det valget faktisk skulle teste og ikke som generell bekreftelse på redaktørens smak",
+          "bedre standing hos ett publikum kan ikke retroaktivt gjøre skjulte premisser eller myndighetsglidning legitime"
+        ]
+      }
+    ],
+    "transitions": [
+      {
+        "from": "waiting",
+        "to": "handoff",
+        "trigger": "nødvendig forfatter-, leder-, marked-, produksjons- eller formell avklaring har nok grunnlag til å sendes til riktig eier"
+      },
+      {
+        "from": "handoff",
+        "to": "rework",
+        "trigger": "ny versjon, leserevidens eller mottakeravklaring viser at en avgrenset del av manuset må prøves på nytt"
+      },
+      {
+        "from": "rework",
+        "to": "waiting",
+        "trigger": "revidert tekst trenger ny forfatterbeslutning, prøvelesning eller intern avklaring før neste steg"
+      },
+      {
+        "from": "rework",
+        "to": "delayed_consequence",
+        "trigger": "den avgrensede revisjonen får et senere leser-, produksjons- eller porteføljepunkt som viser faktisk effekt"
+      },
+      {
+        "from": "interruption",
+        "to": "handoff",
+        "trigger": "det akutte spørsmålet eies av marked, produksjon, redaksjonsledelse eller formell rettighets-/kontraktseier"
+      },
+      {
+        "from": "waiting",
+        "to": "delayed_consequence",
+        "trigger": "tiden eller den senere responsen gir evidensen første vurdering manglet"
+      },
+      {
+        "from": "delayed_consequence",
+        "to": "rework",
+        "trigger": "senere effekt viser et fortsatt avgrenset tekstlig eller prosessuelt problem"
+      }
+    ]
+  },
+  "situated_reputation_model": {
+    "global_score_allowed": false,
+    "rule": "Standing er audience-spesifikk og kan divergere mellom forfatter, redaksjonsledelse, marked/salg, produksjon, fagfeller, prøvelesere, rettighets-/kontraktseiere og private relasjoner. Ingen samlet eller global reputation-score materialiseres.",
+    "authority_separation": "Audience-standing kan aldri gi publiseringsmyndighet, rett til å love forskudd, rettigheter eller kontraktsvilkår, gjøre markedspress til objektiv tekstfaglig nødvendighet eller gi redaktøren rett til å overta forfatterens stemme og eierskap.",
+    "audiences": [
+      {
+        "id": "author",
+        "standing_axis": "author_trust_standing",
+        "cares_about": [
+          "at problem og løsning holdes atskilt",
+          "forfattereierskap og reversibel utvikling",
+          "sporbar begrunnelse"
+        ],
+        "cannot_grant": "Forfatterens tillit kan ikke gi redaktøren publiserings-, rettighets- eller kontraktsfullmakt eller rett til å overta forfatterstemmen."
+      },
+      {
+        "id": "editorial_leadership",
+        "standing_axis": "editorial_leadership_standing",
+        "cares_about": [
+          "helhetsdømmekraft og prioritering",
+          "etterprøvbart beslutningsgrunnlag",
+          "mandatklar porteføljeanbefaling"
+        ],
+        "cannot_grant": "Redaksjonsledelsens standing kan ikke gjøre en personlig anbefaling til bindende utgivelsesløfte eller utvide fullmakt utover faktisk delegasjon."
+      },
+      {
+        "id": "market_and_sales",
+        "standing_axis": "market_sales_standing",
+        "cares_about": [
+          "målgruppe og posisjonering",
+          "kommuniserbar risiko",
+          "sammenheng mellom verk og marked"
+        ],
+        "cannot_grant": "Markeds- og salgsstanding kan ikke gjøre usikre prognoser til objektiv litterær fasit eller gi redaktøren rett til å påtvinge tekstendringer."
+      },
+      {
+        "id": "production",
+        "standing_axis": "production_standing",
+        "cares_about": [
+          "realistisk omfang og frist",
+          "tydelige handoffs",
+          "synlig konsekvens av sen rework"
+        ],
+        "cannot_grant": "Produksjonstillit kan ikke skape publiserings- eller kontraktsfullmakt eller gjøre tidsplanen til rett til å skjule uløste redaksjonelle spørsmål."
+      },
+      {
+        "id": "peer_editors",
+        "standing_axis": "peer_editor_standing",
+        "cares_about": [
+          "nærlesing og tolkningsåpenhet",
+          "proporsjonal revisjon",
+          "profesjonell korrigerbarhet"
+        ],
+        "cannot_grant": "Kollegial prestisje kan ikke gi formell beslutningsmyndighet eller gjøre redaktørens smak til en objektiv norm for manusets riktige løsning."
+      },
+      {
+        "id": "readers_or_test_readers",
+        "standing_axis": "reader_evidence_standing",
+        "cares_about": [
+          "forståelighet og orientering",
+          "bevart særpreg",
+          "at respons brukes som evidens fremfor ordre"
+        ],
+        "cannot_grant": "Prøveleserrespons eller popularitet kan ikke avgjøre publisering, rettigheter eller kontraktsvilkår og kan ikke alene eie forfatterens tekstlige valg."
+      },
+      {
+        "id": "rights_or_contract_owners",
+        "standing_axis": "rights_contract_standing",
+        "cares_about": [
+          "korrekt fullmakt og konfidensialitet",
+          "presis handoff av vilkårsspørsmål",
+          "skille mellom redaksjonell anbefaling og bindende avtale"
+        ],
+        "cannot_grant": "Prosess- eller kontraktstillit kan bare virke innen faktisk fullmakt og gir ikke bokredaktøren rett til å love vilkår, forskudd eller rettighetsoverføring."
+      },
+      {
+        "id": "private_relationships",
+        "standing_axis": "private_editorial_status_mask",
+        "cares_about": [
+          "at arbeid kan legges bort når andre eier neste steg",
+          "at forfatterkritikk og porteføljeprestisje ikke blir personlig verdi"
+        ],
+        "cannot_grant": "Privat støtte eller kritikk kan ikke gi profesjonell myndighet, publiseringsrett eller eierskap til beslutninger som ligger hos andre roller."
+      }
+    ],
+    "divergence_examples": [
+      "Å nekte å gjøre en usikker markedsprognose til tekstkrav kan styrke forfatter- og fagfellestillit samtidig som marked opplever redaktøren som mindre beslutningsvillig.",
+      "Å vente på en avgrenset strukturprøve kan styrke forfattereierskap og beslutningskvalitet samtidig som produksjon og porteføljeledelse opplever mindre tidsmessig sikkerhet.",
+      "Å bevare ujevn setningsrytme etter nærlesing kan styrke litterær standing hos fagfeller og forfatter samtidig som enkelte prøvelesere fortsatt opplever friksjon.",
+      "Å handoffe rettighets- eller kontraktsspørsmål til faktisk eier kan styrke institusjonell standing samtidig som redaktøren fremstår mindre personlig mektig i forfatterrelasjonen.",
+      "Å beskrive et prøveresultat som blandet kan svekke kortsiktig sikkerhetsinntrykk hos ledelsen og samtidig styrke langsiktig profesjonell troverdighet."
+    ]
+  },
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Helhetslesingen viser en sterk fortellerstemme og et sent perspektivskifte som både skaper mening og orienteringsproblemer. Redaktøren må holde tekstfunn, tolkning og mulig løsning atskilt mens samme manusprosjekt får et spor som kan tåle senere revisjon. Morgenen oppdaterer siste bekreftede manusstatus, hva som faktisk venter, hvem som eier neste avklaring og hvilken tidligere evidens som må følge prosjektet videre uten å bli omskrevet.",
+        "thread_ids": [
+          "manusspor_og_venting"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/job/redaktor_bok_job.json#litteratur_redaktor_bok_job_helhetslesing_001"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Helhetslesingen viser en sterk fortellerstemme og et sent perspektivskifte som både skaper mening og orienteringsproblemer. Redaktøren må holde tekstfunn, tolkning og mulig løsning atskilt mens samme manusprosjekt får et spor som kan tåle senere revisjon. Lunsjflaten viser at forfatter, redaksjonsledelse, marked, produksjon, fagfeller, lesere og rettighets- eller kontraktseiere kan vurdere samme handling forskjellig uten at én samlet reputation-score oppstår.",
+        "thread_ids": [
+          "forfatter_handoff_og_standing"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/people/redaktor_bok_people.json#litteratur_redaktor_bok_people_struktur_001"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 1, afternoon: Helhetslesingen viser en sterk fortellerstemme og et sent perspektivskifte som både skaper mening og orienteringsproblemer. Redaktøren må holde tekstfunn, tolkning og mulig løsning atskilt mens samme manusprosjekt får et spor som kan tåle senere revisjon. Ettermiddagen bruker den eksisterende Scene Pipeline til avgrenset lesing, dialog, prøving, handoff eller rework; publisering, rettigheter, kontrakt og forfatterstemme forblir hos sine faktiske eiere.",
+        "thread_ids": [
+          "rework_marked_produksjon"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/conflict/redaktor_bok_conflict.json#litteratur_redaktor_bok_conflict_slutt_001"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Helhetslesingen viser en sterk fortellerstemme og et sent perspektivskifte som både skaper mening og orienteringsproblemer. Redaktøren må holde tekstfunn, tolkning og mulig løsning atskilt mens samme manusprosjekt får et spor som kan tåle senere revisjon. Kvelden viser forsinket sosial og privat aftermath når usikkerhet, forfatterkritikk, porteføljepress eller prestisje følger med hjem, uten at profesjonell standing blir lik personlig verdi eller ny myndighet.",
+        "thread_ids": [
+          "senere_konsekvens_og_privataftermath"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/knowledge/redaktor_bok_knowledge.json#litteratur_redaktor_bok_knowledge_motiv_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Forfatteren har lest strukturkritikken som et ferdig krav om å kutte to kapitler. Redaktøren må avklare hva som faktisk er observert, trekke tilbake skjult løsningsmakt og handoffe et avgrenset spørsmål som forfatteren kan arbeide med uten å miste eierskap. Morgenen oppdaterer siste bekreftede manusstatus, hva som faktisk venter, hvem som eier neste avklaring og hvilken tidligere evidens som må følge prosjektet videre uten å bli omskrevet.",
+        "thread_ids": [
+          "manusspor_og_venting"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/event/redaktor_bok_event.json#litteratur_redaktor_bok_event_provelesning_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Forfatteren har lest strukturkritikken som et ferdig krav om å kutte to kapitler. Redaktøren må avklare hva som faktisk er observert, trekke tilbake skjult løsningsmakt og handoffe et avgrenset spørsmål som forfatteren kan arbeide med uten å miste eierskap. Lunsjflaten viser at forfatter, redaksjonsledelse, marked, produksjon, fagfeller, lesere og rettighets- eller kontraktseiere kan vurdere samme handling forskjellig uten at én samlet reputation-score oppstår.",
+        "thread_ids": [
+          "forfatter_handoff_og_standing"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/micro/redaktor_bok_micro.json#litteratur_redaktor_bok_micro_stemme_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 2, afternoon: Forfatteren har lest strukturkritikken som et ferdig krav om å kutte to kapitler. Redaktøren må avklare hva som faktisk er observert, trekke tilbake skjult løsningsmakt og handoffe et avgrenset spørsmål som forfatteren kan arbeide med uten å miste eierskap. Ettermiddagen bruker den eksisterende Scene Pipeline til avgrenset lesing, dialog, prøving, handoff eller rework; publisering, rettigheter, kontrakt og forfatterstemme forblir hos sine faktiske eiere.",
+        "thread_ids": [
+          "rework_marked_produksjon"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/followup/redaktor_bok_followup.json#litteratur_redaktor_bok_followup_struktur_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Forfatteren har lest strukturkritikken som et ferdig krav om å kutte to kapitler. Redaktøren må avklare hva som faktisk er observert, trekke tilbake skjult løsningsmakt og handoffe et avgrenset spørsmål som forfatteren kan arbeide med uten å miste eierskap. Kvelden viser forsinket sosial og privat aftermath når usikkerhet, forfatterkritikk, porteføljepress eller prestisje følger med hjem, uten at profesjonell standing blir lik personlig verdi eller ny myndighet.",
+        "thread_ids": [
+          "senere_konsekvens_og_privataftermath"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/story/redaktor_bok_story.json#litteratur_redaktor_bok_story_retning_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Markedsansvarlig ønsker en mer entydig slutt før presentasjonen, men sammenlignbare titler gir blandede signaler. Salgsrisikoen er relevant kunnskap, ikke tekstfaglig fasit, og redaktøren må vente på riktig porteføljebeslutning i stedet for å love retning alene. Morgenen oppdaterer siste bekreftede manusstatus, hva som faktisk venter, hvem som eier neste avklaring og hvilken tidligere evidens som må følge prosjektet videre uten å bli omskrevet.",
+        "thread_ids": [
+          "manusspor_og_venting"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/consequence/redaktor_bok_consequence.json#litteratur_redaktor_bok_consequence_struktur_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Markedsansvarlig ønsker en mer entydig slutt før presentasjonen, men sammenlignbare titler gir blandede signaler. Salgsrisikoen er relevant kunnskap, ikke tekstfaglig fasit, og redaktøren må vente på riktig porteføljebeslutning i stedet for å love retning alene. Lunsjflaten viser at forfatter, redaksjonsledelse, marked, produksjon, fagfeller, lesere og rettighets- eller kontraktseiere kan vurdere samme handling forskjellig uten at én samlet reputation-score oppstår.",
+        "thread_ids": [
+          "forfatter_handoff_og_standing"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/job/redaktor_bok_job.json#litteratur_redaktor_bok_job_helhetslesing_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 3, afternoon: Markedsansvarlig ønsker en mer entydig slutt før presentasjonen, men sammenlignbare titler gir blandede signaler. Salgsrisikoen er relevant kunnskap, ikke tekstfaglig fasit, og redaktøren må vente på riktig porteføljebeslutning i stedet for å love retning alene. Ettermiddagen bruker den eksisterende Scene Pipeline til avgrenset lesing, dialog, prøving, handoff eller rework; publisering, rettigheter, kontrakt og forfatterstemme forblir hos sine faktiske eiere.",
+        "thread_ids": [
+          "rework_marked_produksjon"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/people/redaktor_bok_people.json#litteratur_redaktor_bok_people_struktur_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Markedsansvarlig ønsker en mer entydig slutt før presentasjonen, men sammenlignbare titler gir blandede signaler. Salgsrisikoen er relevant kunnskap, ikke tekstfaglig fasit, og redaktøren må vente på riktig porteføljebeslutning i stedet for å love retning alene. Kvelden viser forsinket sosial og privat aftermath når usikkerhet, forfatterkritikk, porteføljepress eller prestisje følger med hjem, uten at profesjonell standing blir lik personlig verdi eller ny myndighet.",
+        "thread_ids": [
+          "senere_konsekvens_og_privataftermath"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/conflict/redaktor_bok_conflict.json#litteratur_redaktor_bok_conflict_slutt_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Forfatteren ber om konkrete tekststeder bak påstanden om at vannmotivet mister funksjon. Redaktøren må gjøre nærlesingen sporbar, navngi tolkningsusikkerheten og tåle at en alternativ lesning kan endre den redaksjonelle hypotesen før mer arbeid bestilles. Morgenen oppdaterer siste bekreftede manusstatus, hva som faktisk venter, hvem som eier neste avklaring og hvilken tidligere evidens som må følge prosjektet videre uten å bli omskrevet.",
+        "thread_ids": [
+          "manusspor_og_venting"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/knowledge/redaktor_bok_knowledge.json#litteratur_redaktor_bok_knowledge_motiv_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Forfatteren ber om konkrete tekststeder bak påstanden om at vannmotivet mister funksjon. Redaktøren må gjøre nærlesingen sporbar, navngi tolkningsusikkerheten og tåle at en alternativ lesning kan endre den redaksjonelle hypotesen før mer arbeid bestilles. Lunsjflaten viser at forfatter, redaksjonsledelse, marked, produksjon, fagfeller, lesere og rettighets- eller kontraktseiere kan vurdere samme handling forskjellig uten at én samlet reputation-score oppstår.",
+        "thread_ids": [
+          "forfatter_handoff_og_standing"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/event/redaktor_bok_event.json#litteratur_redaktor_bok_event_provelesning_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 4, afternoon: Forfatteren ber om konkrete tekststeder bak påstanden om at vannmotivet mister funksjon. Redaktøren må gjøre nærlesingen sporbar, navngi tolkningsusikkerheten og tåle at en alternativ lesning kan endre den redaksjonelle hypotesen før mer arbeid bestilles. Ettermiddagen bruker den eksisterende Scene Pipeline til avgrenset lesing, dialog, prøving, handoff eller rework; publisering, rettigheter, kontrakt og forfatterstemme forblir hos sine faktiske eiere.",
+        "thread_ids": [
+          "rework_marked_produksjon"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/micro/redaktor_bok_micro.json#litteratur_redaktor_bok_micro_stemme_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Forfatteren ber om konkrete tekststeder bak påstanden om at vannmotivet mister funksjon. Redaktøren må gjøre nærlesingen sporbar, navngi tolkningsusikkerheten og tåle at en alternativ lesning kan endre den redaksjonelle hypotesen før mer arbeid bestilles. Kvelden viser forsinket sosial og privat aftermath når usikkerhet, forfatterkritikk, porteføljepress eller prestisje følger med hjem, uten at profesjonell standing blir lik personlig verdi eller ny myndighet.",
+        "thread_ids": [
+          "senere_konsekvens_og_privataftermath"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/followup/redaktor_bok_followup.json#litteratur_redaktor_bok_followup_struktur_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Prøveleserne misforstår den samme relasjonen, men peker på forskjellige scener. Redaktøren må samle evidensen som et mønster, formulere ett testbart spørsmål og handoffe en begrenset strukturprøve i stedet for å bestille lokale forklaringer over hele manuset. Morgenen oppdaterer siste bekreftede manusstatus, hva som faktisk venter, hvem som eier neste avklaring og hvilken tidligere evidens som må følge prosjektet videre uten å bli omskrevet.",
+        "thread_ids": [
+          "manusspor_og_venting"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/story/redaktor_bok_story.json#litteratur_redaktor_bok_story_retning_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Prøveleserne misforstår den samme relasjonen, men peker på forskjellige scener. Redaktøren må samle evidensen som et mønster, formulere ett testbart spørsmål og handoffe en begrenset strukturprøve i stedet for å bestille lokale forklaringer over hele manuset. Lunsjflaten viser at forfatter, redaksjonsledelse, marked, produksjon, fagfeller, lesere og rettighets- eller kontraktseiere kan vurdere samme handling forskjellig uten at én samlet reputation-score oppstår.",
+        "thread_ids": [
+          "forfatter_handoff_og_standing"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/consequence/redaktor_bok_consequence.json#litteratur_redaktor_bok_consequence_struktur_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 5, afternoon: Prøveleserne misforstår den samme relasjonen, men peker på forskjellige scener. Redaktøren må samle evidensen som et mønster, formulere ett testbart spørsmål og handoffe en begrenset strukturprøve i stedet for å bestille lokale forklaringer over hele manuset. Ettermiddagen bruker den eksisterende Scene Pipeline til avgrenset lesing, dialog, prøving, handoff eller rework; publisering, rettigheter, kontrakt og forfatterstemme forblir hos sine faktiske eiere.",
+        "thread_ids": [
+          "rework_marked_produksjon"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/job/redaktor_bok_job.json#litteratur_redaktor_bok_job_helhetslesing_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Prøveleserne misforstår den samme relasjonen, men peker på forskjellige scener. Redaktøren må samle evidensen som et mønster, formulere ett testbart spørsmål og handoffe en begrenset strukturprøve i stedet for å bestille lokale forklaringer over hele manuset. Kvelden viser forsinket sosial og privat aftermath når usikkerhet, forfatterkritikk, porteføljepress eller prestisje følger med hjem, uten at profesjonell standing blir lik personlig verdi eller ny myndighet.",
+        "thread_ids": [
+          "senere_konsekvens_og_privataftermath"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/people/redaktor_bok_people.json#litteratur_redaktor_bok_people_struktur_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Detaljredigeringen har glattet ut korte setninger nettopp der fortelleren mister kontroll. En tilsynelatende effektiv språkvask må reverseres i et representativt utvalg og vurderes på nytt fordi stemme, rytme og lesbarhet kan trekke i ulike retninger. Morgenen oppdaterer siste bekreftede manusstatus, hva som faktisk venter, hvem som eier neste avklaring og hvilken tidligere evidens som må følge prosjektet videre uten å bli omskrevet.",
+        "thread_ids": [
+          "manusspor_og_venting"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/conflict/redaktor_bok_conflict.json#litteratur_redaktor_bok_conflict_slutt_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Detaljredigeringen har glattet ut korte setninger nettopp der fortelleren mister kontroll. En tilsynelatende effektiv språkvask må reverseres i et representativt utvalg og vurderes på nytt fordi stemme, rytme og lesbarhet kan trekke i ulike retninger. Lunsjflaten viser at forfatter, redaksjonsledelse, marked, produksjon, fagfeller, lesere og rettighets- eller kontraktseiere kan vurdere samme handling forskjellig uten at én samlet reputation-score oppstår.",
+        "thread_ids": [
+          "forfatter_handoff_og_standing"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/knowledge/redaktor_bok_knowledge.json#litteratur_redaktor_bok_knowledge_motiv_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 6, afternoon: Detaljredigeringen har glattet ut korte setninger nettopp der fortelleren mister kontroll. En tilsynelatende effektiv språkvask må reverseres i et representativt utvalg og vurderes på nytt fordi stemme, rytme og lesbarhet kan trekke i ulike retninger. Ettermiddagen bruker den eksisterende Scene Pipeline til avgrenset lesing, dialog, prøving, handoff eller rework; publisering, rettigheter, kontrakt og forfatterstemme forblir hos sine faktiske eiere.",
+        "thread_ids": [
+          "rework_marked_produksjon"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/event/redaktor_bok_event.json#litteratur_redaktor_bok_event_provelesning_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Detaljredigeringen har glattet ut korte setninger nettopp der fortelleren mister kontroll. En tilsynelatende effektiv språkvask må reverseres i et representativt utvalg og vurderes på nytt fordi stemme, rytme og lesbarhet kan trekke i ulike retninger. Kvelden viser forsinket sosial og privat aftermath når usikkerhet, forfatterkritikk, porteføljepress eller prestisje følger med hjem, uten at profesjonell standing blir lik personlig verdi eller ny myndighet.",
+        "thread_ids": [
+          "senere_konsekvens_og_privataftermath"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/micro/redaktor_bok_micro.json#litteratur_redaktor_bok_micro_stemme_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Produksjonsplanen trenger omfang før den neste milepælen, mens forfatteren ennå arbeider med strukturprøven. Redaktøren må gjøre ventingen eksplisitt, gi produksjon siste bekreftede status og unngå å gjøre tidsbehov til en skjult beslutning om full omskriving. Morgenen oppdaterer siste bekreftede manusstatus, hva som faktisk venter, hvem som eier neste avklaring og hvilken tidligere evidens som må følge prosjektet videre uten å bli omskrevet.",
+        "thread_ids": [
+          "manusspor_og_venting"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/followup/redaktor_bok_followup.json#litteratur_redaktor_bok_followup_struktur_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Produksjonsplanen trenger omfang før den neste milepælen, mens forfatteren ennå arbeider med strukturprøven. Redaktøren må gjøre ventingen eksplisitt, gi produksjon siste bekreftede status og unngå å gjøre tidsbehov til en skjult beslutning om full omskriving. Lunsjflaten viser at forfatter, redaksjonsledelse, marked, produksjon, fagfeller, lesere og rettighets- eller kontraktseiere kan vurdere samme handling forskjellig uten at én samlet reputation-score oppstår.",
+        "thread_ids": [
+          "forfatter_handoff_og_standing"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/story/redaktor_bok_story.json#litteratur_redaktor_bok_story_retning_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 7, afternoon: Produksjonsplanen trenger omfang før den neste milepælen, mens forfatteren ennå arbeider med strukturprøven. Redaktøren må gjøre ventingen eksplisitt, gi produksjon siste bekreftede status og unngå å gjøre tidsbehov til en skjult beslutning om full omskriving. Ettermiddagen bruker den eksisterende Scene Pipeline til avgrenset lesing, dialog, prøving, handoff eller rework; publisering, rettigheter, kontrakt og forfatterstemme forblir hos sine faktiske eiere.",
+        "thread_ids": [
+          "rework_marked_produksjon"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/consequence/redaktor_bok_consequence.json#litteratur_redaktor_bok_consequence_struktur_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Produksjonsplanen trenger omfang før den neste milepælen, mens forfatteren ennå arbeider med strukturprøven. Redaktøren må gjøre ventingen eksplisitt, gi produksjon siste bekreftede status og unngå å gjøre tidsbehov til en skjult beslutning om full omskriving. Kvelden viser forsinket sosial og privat aftermath når usikkerhet, forfatterkritikk, porteføljepress eller prestisje følger med hjem, uten at profesjonell standing blir lik personlig verdi eller ny myndighet.",
+        "thread_ids": [
+          "senere_konsekvens_og_privataftermath"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/job/redaktor_bok_job.json#litteratur_redaktor_bok_job_helhetslesing_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Den nye prøvescenen kommer tilbake og forbedrer orienteringen, men relasjonsbuen er fortsatt uavklart for én leser. Rework må derfor avgrenses til det som faktisk ikke er løst, og det blandede resultatet må ikke brukes som bekreftelse på redaktørens opprinnelige løsning. Morgenen oppdaterer siste bekreftede manusstatus, hva som faktisk venter, hvem som eier neste avklaring og hvilken tidligere evidens som må følge prosjektet videre uten å bli omskrevet.",
+        "thread_ids": [
+          "manusspor_og_venting"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/people/redaktor_bok_people.json#litteratur_redaktor_bok_people_struktur_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Den nye prøvescenen kommer tilbake og forbedrer orienteringen, men relasjonsbuen er fortsatt uavklart for én leser. Rework må derfor avgrenses til det som faktisk ikke er løst, og det blandede resultatet må ikke brukes som bekreftelse på redaktørens opprinnelige løsning. Lunsjflaten viser at forfatter, redaksjonsledelse, marked, produksjon, fagfeller, lesere og rettighets- eller kontraktseiere kan vurdere samme handling forskjellig uten at én samlet reputation-score oppstår.",
+        "thread_ids": [
+          "forfatter_handoff_og_standing"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/conflict/redaktor_bok_conflict.json#litteratur_redaktor_bok_conflict_slutt_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 8, afternoon: Den nye prøvescenen kommer tilbake og forbedrer orienteringen, men relasjonsbuen er fortsatt uavklart for én leser. Rework må derfor avgrenses til det som faktisk ikke er løst, og det blandede resultatet må ikke brukes som bekreftelse på redaktørens opprinnelige løsning. Ettermiddagen bruker den eksisterende Scene Pipeline til avgrenset lesing, dialog, prøving, handoff eller rework; publisering, rettigheter, kontrakt og forfatterstemme forblir hos sine faktiske eiere.",
+        "thread_ids": [
+          "rework_marked_produksjon"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/knowledge/redaktor_bok_knowledge.json#litteratur_redaktor_bok_knowledge_motiv_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Den nye prøvescenen kommer tilbake og forbedrer orienteringen, men relasjonsbuen er fortsatt uavklart for én leser. Rework må derfor avgrenses til det som faktisk ikke er løst, og det blandede resultatet må ikke brukes som bekreftelse på redaktørens opprinnelige løsning. Kvelden viser forsinket sosial og privat aftermath når usikkerhet, forfatterkritikk, porteføljepress eller prestisje følger med hjem, uten at profesjonell standing blir lik personlig verdi eller ny myndighet.",
+        "thread_ids": [
+          "senere_konsekvens_og_privataftermath"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/event/redaktor_bok_event.json#litteratur_redaktor_bok_event_provelesning_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Redaksjonssjefen ber om en klar anbefaling til porteføljemøtet. Redaktøren må samle tekstbelegg, forfatterens prosjekt, markedssignal og produksjonsrisiko til et beslutningsgrunnlag som er tydelig nok til handling uten å late som all usikkerhet er borte. Morgenen oppdaterer siste bekreftede manusstatus, hva som faktisk venter, hvem som eier neste avklaring og hvilken tidligere evidens som må følge prosjektet videre uten å bli omskrevet.",
+        "thread_ids": [
+          "manusspor_og_venting"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/micro/redaktor_bok_micro.json#litteratur_redaktor_bok_micro_stemme_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Redaksjonssjefen ber om en klar anbefaling til porteføljemøtet. Redaktøren må samle tekstbelegg, forfatterens prosjekt, markedssignal og produksjonsrisiko til et beslutningsgrunnlag som er tydelig nok til handling uten å late som all usikkerhet er borte. Lunsjflaten viser at forfatter, redaksjonsledelse, marked, produksjon, fagfeller, lesere og rettighets- eller kontraktseiere kan vurdere samme handling forskjellig uten at én samlet reputation-score oppstår.",
+        "thread_ids": [
+          "forfatter_handoff_og_standing"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/followup/redaktor_bok_followup.json#litteratur_redaktor_bok_followup_struktur_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 9, afternoon: Redaksjonssjefen ber om en klar anbefaling til porteføljemøtet. Redaktøren må samle tekstbelegg, forfatterens prosjekt, markedssignal og produksjonsrisiko til et beslutningsgrunnlag som er tydelig nok til handling uten å late som all usikkerhet er borte. Ettermiddagen bruker den eksisterende Scene Pipeline til avgrenset lesing, dialog, prøving, handoff eller rework; publisering, rettigheter, kontrakt og forfatterstemme forblir hos sine faktiske eiere.",
+        "thread_ids": [
+          "rework_marked_produksjon"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/story/redaktor_bok_story.json#litteratur_redaktor_bok_story_retning_001"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Redaksjonssjefen ber om en klar anbefaling til porteføljemøtet. Redaktøren må samle tekstbelegg, forfatterens prosjekt, markedssignal og produksjonsrisiko til et beslutningsgrunnlag som er tydelig nok til handling uten å late som all usikkerhet er borte. Kvelden viser forsinket sosial og privat aftermath når usikkerhet, forfatterkritikk, porteføljepress eller prestisje følger med hjem, uten at profesjonell standing blir lik personlig verdi eller ny myndighet.",
+        "thread_ids": [
+          "senere_konsekvens_og_privataftermath"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/consequence/redaktor_bok_consequence.json#litteratur_redaktor_bok_consequence_struktur_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Forfatteren opplever at den langsomme, reversible arbeidsmåten endelig gjør det mulig å diskutere struktur uten lydighet, mens enkelte interne aktører opplever prosessen som mindre handlekraftig. Situert standing divergerer fordi ulike publikum vurderer ulik del av samme redaksjonelle arbeid. Morgenen oppdaterer siste bekreftede manusstatus, hva som faktisk venter, hvem som eier neste avklaring og hvilken tidligere evidens som må følge prosjektet videre uten å bli omskrevet.",
+        "thread_ids": [
+          "manusspor_og_venting"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/job/redaktor_bok_job.json#litteratur_redaktor_bok_job_helhetslesing_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Forfatteren opplever at den langsomme, reversible arbeidsmåten endelig gjør det mulig å diskutere struktur uten lydighet, mens enkelte interne aktører opplever prosessen som mindre handlekraftig. Situert standing divergerer fordi ulike publikum vurderer ulik del av samme redaksjonelle arbeid. Lunsjflaten viser at forfatter, redaksjonsledelse, marked, produksjon, fagfeller, lesere og rettighets- eller kontraktseiere kan vurdere samme handling forskjellig uten at én samlet reputation-score oppstår.",
+        "thread_ids": [
+          "forfatter_handoff_og_standing"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/people/redaktor_bok_people.json#litteratur_redaktor_bok_people_struktur_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 10, afternoon: Forfatteren opplever at den langsomme, reversible arbeidsmåten endelig gjør det mulig å diskutere struktur uten lydighet, mens enkelte interne aktører opplever prosessen som mindre handlekraftig. Situert standing divergerer fordi ulike publikum vurderer ulik del av samme redaksjonelle arbeid. Ettermiddagen bruker den eksisterende Scene Pipeline til avgrenset lesing, dialog, prøving, handoff eller rework; publisering, rettigheter, kontrakt og forfatterstemme forblir hos sine faktiske eiere.",
+        "thread_ids": [
+          "rework_marked_produksjon"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/conflict/redaktor_bok_conflict.json#litteratur_redaktor_bok_conflict_slutt_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Forfatteren opplever at den langsomme, reversible arbeidsmåten endelig gjør det mulig å diskutere struktur uten lydighet, mens enkelte interne aktører opplever prosessen som mindre handlekraftig. Situert standing divergerer fordi ulike publikum vurderer ulik del av samme redaksjonelle arbeid. Kvelden viser forsinket sosial og privat aftermath når usikkerhet, forfatterkritikk, porteføljepress eller prestisje følger med hjem, uten at profesjonell standing blir lik personlig verdi eller ny myndighet.",
+        "thread_ids": [
+          "senere_konsekvens_og_privataftermath"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/knowledge/redaktor_bok_knowledge.json#litteratur_redaktor_bok_knowledge_motiv_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: En rettighets- eller kontraktsspørsmål dukker opp i forbindelse med prosjektets videre løp. Redaktøren kan beskrive litterær og redaksjonell konsekvens, men må handoffe vilkår og bindende løfter til faktisk eier uten å bruke nærhet til forfatteren som fullmakt. Morgenen oppdaterer siste bekreftede manusstatus, hva som faktisk venter, hvem som eier neste avklaring og hvilken tidligere evidens som må følge prosjektet videre uten å bli omskrevet.",
+        "thread_ids": [
+          "manusspor_og_venting"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/event/redaktor_bok_event.json#litteratur_redaktor_bok_event_provelesning_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: En rettighets- eller kontraktsspørsmål dukker opp i forbindelse med prosjektets videre løp. Redaktøren kan beskrive litterær og redaksjonell konsekvens, men må handoffe vilkår og bindende løfter til faktisk eier uten å bruke nærhet til forfatteren som fullmakt. Lunsjflaten viser at forfatter, redaksjonsledelse, marked, produksjon, fagfeller, lesere og rettighets- eller kontraktseiere kan vurdere samme handling forskjellig uten at én samlet reputation-score oppstår.",
+        "thread_ids": [
+          "forfatter_handoff_og_standing"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/micro/redaktor_bok_micro.json#litteratur_redaktor_bok_micro_stemme_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 11, afternoon: En rettighets- eller kontraktsspørsmål dukker opp i forbindelse med prosjektets videre løp. Redaktøren kan beskrive litterær og redaksjonell konsekvens, men må handoffe vilkår og bindende løfter til faktisk eier uten å bruke nærhet til forfatteren som fullmakt. Ettermiddagen bruker den eksisterende Scene Pipeline til avgrenset lesing, dialog, prøving, handoff eller rework; publisering, rettigheter, kontrakt og forfatterstemme forblir hos sine faktiske eiere.",
+        "thread_ids": [
+          "rework_marked_produksjon"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/followup/redaktor_bok_followup.json#litteratur_redaktor_bok_followup_struktur_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: En rettighets- eller kontraktsspørsmål dukker opp i forbindelse med prosjektets videre løp. Redaktøren kan beskrive litterær og redaksjonell konsekvens, men må handoffe vilkår og bindende løfter til faktisk eier uten å bruke nærhet til forfatteren som fullmakt. Kvelden viser forsinket sosial og privat aftermath når usikkerhet, forfatterkritikk, porteføljepress eller prestisje følger med hjem, uten at profesjonell standing blir lik personlig verdi eller ny myndighet.",
+        "thread_ids": [
+          "senere_konsekvens_og_privataftermath"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/story/redaktor_bok_story.json#litteratur_redaktor_bok_story_retning_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: En ny leserreaksjon bryter den planlagte dagen kort før produksjonsavklaring. Avbruddet skal inn i det eksisterende manussporet med tydelig prioritet, ikke starte et konkurrerende prosjekt eller gjøre all tidligere læring irrelevant. Morgenen oppdaterer siste bekreftede manusstatus, hva som faktisk venter, hvem som eier neste avklaring og hvilken tidligere evidens som må følge prosjektet videre uten å bli omskrevet.",
+        "thread_ids": [
+          "manusspor_og_venting"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/consequence/redaktor_bok_consequence.json#litteratur_redaktor_bok_consequence_struktur_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: En ny leserreaksjon bryter den planlagte dagen kort før produksjonsavklaring. Avbruddet skal inn i det eksisterende manussporet med tydelig prioritet, ikke starte et konkurrerende prosjekt eller gjøre all tidligere læring irrelevant. Lunsjflaten viser at forfatter, redaksjonsledelse, marked, produksjon, fagfeller, lesere og rettighets- eller kontraktseiere kan vurdere samme handling forskjellig uten at én samlet reputation-score oppstår.",
+        "thread_ids": [
+          "forfatter_handoff_og_standing"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/job/redaktor_bok_job.json#litteratur_redaktor_bok_job_helhetslesing_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 12, afternoon: En ny leserreaksjon bryter den planlagte dagen kort før produksjonsavklaring. Avbruddet skal inn i det eksisterende manussporet med tydelig prioritet, ikke starte et konkurrerende prosjekt eller gjøre all tidligere læring irrelevant. Ettermiddagen bruker den eksisterende Scene Pipeline til avgrenset lesing, dialog, prøving, handoff eller rework; publisering, rettigheter, kontrakt og forfatterstemme forblir hos sine faktiske eiere.",
+        "thread_ids": [
+          "rework_marked_produksjon"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/people/redaktor_bok_people.json#litteratur_redaktor_bok_people_struktur_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: En ny leserreaksjon bryter den planlagte dagen kort før produksjonsavklaring. Avbruddet skal inn i det eksisterende manussporet med tydelig prioritet, ikke starte et konkurrerende prosjekt eller gjøre all tidligere læring irrelevant. Kvelden viser forsinket sosial og privat aftermath når usikkerhet, forfatterkritikk, porteføljepress eller prestisje følger med hjem, uten at profesjonell standing blir lik personlig verdi eller ny myndighet.",
+        "thread_ids": [
+          "senere_konsekvens_og_privataftermath"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/conflict/redaktor_bok_conflict.json#litteratur_redaktor_bok_conflict_slutt_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Etter flere runder blir det synlig hvilke endringer som bygde tekstlig kvalitet, hvilke som bare flyttet problemet og hvilke redaktøren måtte trekke tilbake. Profesjonell troverdighet avhenger av et ærlig beslutningsspor mer enn av å fremstå ufeilbarlig. Morgenen oppdaterer siste bekreftede manusstatus, hva som faktisk venter, hvem som eier neste avklaring og hvilken tidligere evidens som må følge prosjektet videre uten å bli omskrevet.",
+        "thread_ids": [
+          "manusspor_og_venting"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/knowledge/redaktor_bok_knowledge.json#litteratur_redaktor_bok_knowledge_motiv_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Etter flere runder blir det synlig hvilke endringer som bygde tekstlig kvalitet, hvilke som bare flyttet problemet og hvilke redaktøren måtte trekke tilbake. Profesjonell troverdighet avhenger av et ærlig beslutningsspor mer enn av å fremstå ufeilbarlig. Lunsjflaten viser at forfatter, redaksjonsledelse, marked, produksjon, fagfeller, lesere og rettighets- eller kontraktseiere kan vurdere samme handling forskjellig uten at én samlet reputation-score oppstår.",
+        "thread_ids": [
+          "forfatter_handoff_og_standing"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/event/redaktor_bok_event.json#litteratur_redaktor_bok_event_provelesning_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 13, afternoon: Etter flere runder blir det synlig hvilke endringer som bygde tekstlig kvalitet, hvilke som bare flyttet problemet og hvilke redaktøren måtte trekke tilbake. Profesjonell troverdighet avhenger av et ærlig beslutningsspor mer enn av å fremstå ufeilbarlig. Ettermiddagen bruker den eksisterende Scene Pipeline til avgrenset lesing, dialog, prøving, handoff eller rework; publisering, rettigheter, kontrakt og forfatterstemme forblir hos sine faktiske eiere.",
+        "thread_ids": [
+          "rework_marked_produksjon"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/micro/redaktor_bok_micro.json#litteratur_redaktor_bok_micro_stemme_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Etter flere runder blir det synlig hvilke endringer som bygde tekstlig kvalitet, hvilke som bare flyttet problemet og hvilke redaktøren måtte trekke tilbake. Profesjonell troverdighet avhenger av et ærlig beslutningsspor mer enn av å fremstå ufeilbarlig. Kvelden viser forsinket sosial og privat aftermath når usikkerhet, forfatterkritikk, porteføljepress eller prestisje følger med hjem, uten at profesjonell standing blir lik personlig verdi eller ny myndighet.",
+        "thread_ids": [
+          "senere_konsekvens_og_privataftermath"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/followup/redaktor_bok_followup.json#litteratur_redaktor_bok_followup_struktur_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Perioden avsluttes når strukturprøve, slutt, motiv, stemme, leserevidens og produksjonsrammer samles til neste avgrensede prosjektfase. Samme manus er fortsatt sentrum, mens venting, handoff, rework og audience-spesifikk standing forklarer hvordan redaksjonelt arbeid faktisk lever over tid. Morgenen oppdaterer siste bekreftede manusstatus, hva som faktisk venter, hvem som eier neste avklaring og hvilken tidligere evidens som må følge prosjektet videre uten å bli omskrevet.",
+        "thread_ids": [
+          "manusspor_og_venting"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/story/redaktor_bok_story.json#litteratur_redaktor_bok_story_retning_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Perioden avsluttes når strukturprøve, slutt, motiv, stemme, leserevidens og produksjonsrammer samles til neste avgrensede prosjektfase. Samme manus er fortsatt sentrum, mens venting, handoff, rework og audience-spesifikk standing forklarer hvordan redaksjonelt arbeid faktisk lever over tid. Lunsjflaten viser at forfatter, redaksjonsledelse, marked, produksjon, fagfeller, lesere og rettighets- eller kontraktseiere kan vurdere samme handling forskjellig uten at én samlet reputation-score oppstår.",
+        "thread_ids": [
+          "forfatter_handoff_og_standing"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/consequence/redaktor_bok_consequence.json#litteratur_redaktor_bok_consequence_struktur_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 14, afternoon: Perioden avsluttes når strukturprøve, slutt, motiv, stemme, leserevidens og produksjonsrammer samles til neste avgrensede prosjektfase. Samme manus er fortsatt sentrum, mens venting, handoff, rework og audience-spesifikk standing forklarer hvordan redaksjonelt arbeid faktisk lever over tid. Ettermiddagen bruker den eksisterende Scene Pipeline til avgrenset lesing, dialog, prøving, handoff eller rework; publisering, rettigheter, kontrakt og forfatterstemme forblir hos sine faktiske eiere.",
+        "thread_ids": [
+          "rework_marked_produksjon"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/job/redaktor_bok_job.json#litteratur_redaktor_bok_job_helhetslesing_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Perioden avsluttes når strukturprøve, slutt, motiv, stemme, leserevidens og produksjonsrammer samles til neste avgrensede prosjektfase. Samme manus er fortsatt sentrum, mens venting, handoff, rework og audience-spesifikk standing forklarer hvordan redaksjonelt arbeid faktisk lever over tid. Kvelden viser forsinket sosial og privat aftermath når usikkerhet, forfatterkritikk, porteføljepress eller prestisje følger med hjem, uten at profesjonell standing blir lik personlig verdi eller ny myndighet.",
+        "thread_ids": [
+          "senere_konsekvens_og_privataftermath"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/litteratur/people/redaktor_bok_people.json#litteratur_redaktor_bok_people_struktur_001"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "structure_experiment",
+      "beat_refs": [
+        "1/morning",
+        "2/lunch",
+        "5/afternoon",
+        "7/morning",
+        "8/afternoon",
+        "10/lunch",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "market_and_ending",
+      "beat_refs": [
+        "3/morning",
+        "3/afternoon",
+        "6/lunch",
+        "9/afternoon",
+        "11/morning",
+        "13/lunch",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "text_evidence_and_voice",
+      "beat_refs": [
+        "4/morning",
+        "4/afternoon",
+        "6/morning",
+        "6/afternoon",
+        "9/morning",
+        "12/afternoon",
+        "13/afternoon"
+      ]
+    },
+    {
+      "id": "production_handoff",
+      "beat_refs": [
+        "2/afternoon",
+        "5/lunch",
+        "7/afternoon",
+        "8/lunch",
+        "9/lunch",
+        "11/afternoon",
+        "12/lunch",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "standing_and_authority",
+      "beat_refs": [
+        "1/lunch",
+        "3/lunch",
+        "5/morning",
+        "8/morning",
+        "10/afternoon",
+        "11/lunch",
+        "13/morning",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "private_editorial_status",
+      "beat_refs": [
+        "2/evening",
+        "4/evening",
+        "6/evening",
+        "8/evening",
+        "10/evening",
+        "12/evening",
+        "13/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "after_structure_dispute",
+      "beat_ref": "2/evening",
+      "meaning": "Forfatterens opplevelse av et skjult omskrivingskrav følger med hjem, men privat uro kan ikke avgjøre tekstens løsning."
+    },
+    {
+      "id": "after_interpretive_challenge",
+      "beat_ref": "4/evening",
+      "meaning": "Kravet om tekstbelegg kan føles som tvil om redaktørens kompetanse selv om korrigerbarhet er selve poenget."
+    },
+    {
+      "id": "after_voice_reversal",
+      "beat_ref": "6/evening",
+      "meaning": "Å reversere en serie egne språkendringer koster prestisje uten at det gjør den opprinnelige standardiseringen verdt å beskytte."
+    },
+    {
+      "id": "after_mixed_test",
+      "beat_ref": "8/evening",
+      "meaning": "Et blandet prøveresultat gir ingen enkel seier og gjør det nødvendig å skille profesjonell læring fra behovet for å få rett."
+    },
+    {
+      "id": "after_standing_divergence",
+      "beat_ref": "10/evening",
+      "meaning": "Ulik standing hos forfatter, marked og ledelse kan ikke samles til én privat dom over hvor god redaktøren er."
+    },
+    {
+      "id": "after_rights_handoff",
+      "beat_ref": "11/evening",
+      "meaning": "Å gi fra seg bindende vilkårsspørsmål kan føles mindre mektig uten at det er mindre profesjonelt."
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "whole_read_returns",
+      "setup_ref": "1/morning",
+      "return_ref": "9/morning",
+      "meaning": "Den første helhetsdiagnosen kommer tilbake når senere prøver og rework viser hvilke deler av problemet som faktisk var bærende."
+    },
+    {
+      "id": "structure_trial_returns",
+      "setup_ref": "2/lunch",
+      "return_ref": "8/afternoon",
+      "meaning": "Strukturuenigheten kommer tilbake som en avgrenset prøvescene med blandet leserevidens og et nytt, smalere spørsmål."
+    },
+    {
+      "id": "market_ending_returns",
+      "setup_ref": "3/afternoon",
+      "return_ref": "9/afternoon",
+      "meaning": "Markedspresset rundt slutten kommer tilbake i porteføljeanbefalingen som synlig risiko fremfor skjult tekstkrav."
+    },
+    {
+      "id": "motif_evidence_returns",
+      "setup_ref": "4/afternoon",
+      "return_ref": "12/afternoon",
+      "meaning": "Den dokumenterte motivlesningen kommer tilbake når ny respons tester om tolkningen fortsatt holder etter andre manusendringer."
+    },
+    {
+      "id": "voice_edit_returns",
+      "setup_ref": "6/afternoon",
+      "return_ref": "13/afternoon",
+      "meaning": "Den reverserte rytmeredigeringen kommer tilbake som faglig læring om når lokal flyt styrker eller svekker fortellerfunksjonen."
+    },
+    {
+      "id": "production_scope_returns",
+      "setup_ref": "7/afternoon",
+      "return_ref": "14/afternoon",
+      "meaning": "Produksjonens behov for omfang kommer tilbake ved periodens slutt som test på om rework faktisk ble avgrenset og dokumentert."
+    }
+  ],
+  "cross_role_link": {
+    "status": "candidate_when_shared_work_is_real",
+    "materialized": false,
+    "new_runtime": false,
+    "rule": "Cross-role materialiseres bare når shared work er genuint delt i canonical runtime mellom to Role Worlds. Forfatter-, marked-, produksjons- og rettighetsinteraksjonene er her eksisterende authored arbeidsflater; ingen annen Role World deler et canonical persistent work object med denne rollouten, så det opprettes ingen ny delt runtime-state."
+  },
+  "materialization": {
+    "authored_dimensions": [
+      "rhythm_waiting_handoff_rework",
+      "situated_reputation"
+    ],
+    "no_new_runtime": true,
+    "existing_plan_preserved": true,
+    "existing_role_model_preserved": true,
+    "existing_work_grammar_preserved": true,
+    "cross_role_link_materialized": false,
+    "source_refs": [
+      "data/Civication/mailFamilies/litteratur/job/redaktor_bok_job.json#litteratur_redaktor_bok_job_helhetslesing_001",
+      "data/Civication/mailFamilies/litteratur/people/redaktor_bok_people.json#litteratur_redaktor_bok_people_struktur_001",
+      "data/Civication/mailFamilies/litteratur/conflict/redaktor_bok_conflict.json#litteratur_redaktor_bok_conflict_slutt_001",
+      "data/Civication/mailFamilies/litteratur/knowledge/redaktor_bok_knowledge.json#litteratur_redaktor_bok_knowledge_motiv_001",
+      "data/Civication/mailFamilies/litteratur/event/redaktor_bok_event.json#litteratur_redaktor_bok_event_provelesning_001",
+      "data/Civication/mailFamilies/litteratur/micro/redaktor_bok_micro.json#litteratur_redaktor_bok_micro_stemme_001",
+      "data/Civication/mailFamilies/litteratur/followup/redaktor_bok_followup.json#litteratur_redaktor_bok_followup_struktur_001",
+      "data/Civication/mailFamilies/litteratur/story/redaktor_bok_story.json#litteratur_redaktor_bok_story_retning_001",
+      "data/Civication/mailFamilies/litteratur/consequence/redaktor_bok_consequence.json#litteratur_redaktor_bok_consequence_struktur_001"
+    ]
+  }
+}

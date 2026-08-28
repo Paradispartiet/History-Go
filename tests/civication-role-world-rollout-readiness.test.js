@@ -84,7 +84,17 @@ assert.deepEqual(
   'Rollout queue ranks must be contiguous and deterministic'
 );
 
-assert.ok(readiness.first_wave_candidates.length >= 3 && readiness.first_wave_candidates.length <= 4, 'First rollout wave must contain 3–4 structurally varied role candidates');
+const availableReadyFamilies = new Set(
+  readiness.rollout_queue
+    .filter((row) => row.classification === 'rollout_ready')
+    .map((row) => row.structural_family)
+).size;
+const minimumWaveSize = Math.min(3, availableReadyFamilies);
+const maximumWaveSize = Math.min(4, availableReadyFamilies);
+assert.ok(
+  readiness.first_wave_candidates.length >= minimumWaveSize && readiness.first_wave_candidates.length <= maximumWaveSize,
+  `First rollout wave must contain 3–4 structurally varied rollout-ready families when available, or every available family once the ready queue is smaller (available=${availableReadyFamilies}, selected=${readiness.first_wave_candidates.length})`
+);
 assert.equal(new Set(readiness.first_wave_candidates.map((row) => row.key)).size, readiness.first_wave_candidates.length);
 assert.equal(new Set(readiness.first_wave_candidates.map((row) => row.structural_family)).size, readiness.first_wave_candidates.length, 'First wave must not repeat the same life-world structure');
 for (const row of readiness.first_wave_candidates) assert.equal(row.classification, 'rollout_ready', `${row.key}: first-wave candidate must be rollout_ready`);
@@ -107,4 +117,4 @@ assert.ok(roleOwned.has('role_specific_employment_conditions'));
 assert.ok(roleOwned.has('role_specific_professional_culture'));
 assert.equal(realism.program_level_proofs.cross_role_links.status, 'runtime_proven');
 
-console.log(`PASS: Role World rollout readiness classifies all ${readiness.summary.canonical_career_roles} canonical career roles, quarantines role-level blockers, keeps policy closed, and produces a deterministic varied rollout queue.`);
+console.log(`PASS: Role World rollout readiness classifies all ${readiness.summary.canonical_career_roles} canonical career roles, quarantines role-level blockers, keeps policy controlled, and produces a deterministic varied rollout queue that can shrink as ready roles are completed.`);
